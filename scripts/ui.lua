@@ -31,27 +31,69 @@
 Load("ccl/human/ui.lua")
 Load("ccl/orc/ui.lua")
 
-DefineCursor("cursor-glass", "any",
-    "image", "ui/cursors/magnifying_glass.png",
-    "hot-spot", {11, 11}, "size", {34, 35} )
-DefineCursor("cursor-cross", "any",
-    "image", "ui/cursors/small_green_cross.png",
-    "hot-spot", { 8,  8}, "size", {18, 18} )
-DefineCursor("cursor-scroll", "any",
-    "image", "ui/cursors/cross.png", "hot-spot", {15, 15}, "size", {32, 32} )
-DefineCursor("cursor-arrow-e", "any",
-    "image", "ui/cursors/arrow_E.png", "hot-spot", {22, 10}, "size", {32, 24} )
-DefineCursor("cursor-arrow-ne", "any",
-    "image", "ui/cursors/arrow_NE.png", "hot-spot", {20,  2}, "size", {32, 24} )
-DefineCursor("cursor-arrow-n", "any",
-    "image", "ui/cursors/arrow_N.png", "hot-spot", {12,  2}, "size", {32, 24} )
-DefineCursor("cursor-arrow-nw", "any",
-    "image", "ui/cursors/arrow_NW.png", "hot-spot", { 2,  2}, "size", {32, 24} )
-DefineCursor("cursor-arrow-w", "any",
-    "image", "ui/cursors/arrow_W.png", "hot-spot", { 4, 10}, "size", {32, 24} )
-DefineCursor("cursor-arrow-s", "any",
-    "image", "ui/cursors/arrow_S.png", "hot-spot", {12, 22}, "size", {32, 24} )
-DefineCursor("cursor-arrow-sw", "any",
-    "image", "ui/cursors/arrow_SW.png", "hot-spot", { 2, 18}, "size", {32, 24} )
-DefineCursor("cursor-arrow-se", "any",
-    "image", "ui/cursors/arrow_SE.png", "hot-spot", {20, 18}, "size", {32, 24} )
+DefineCursor({
+  Name = "cursor-glass",
+  Race = "any",
+  File = "ui/cursors/magnifying_glass.png",
+  HotSpot = {11, 11},
+  Size = {34, 35}})
+DefineCursor({
+  Name = "cursor-cross",
+  Race = "any",
+  File = "ui/cursors/small_green_cross.png",
+  HotSpot = { 8,  8},
+  Size = {18, 18}})
+DefineCursor({
+  Name = "cursor-scroll",
+  Race = "any",
+  File = "ui/cursors/cross.png",
+  HotSpot = {15, 15},
+  Size = {32, 32}})
+DefineCursor({
+  Name = "cursor-arrow-e",
+  Race = "any",
+  File = "ui/cursors/arrow_E.png",
+  HotSpot = {22, 10},
+  Size = {32, 24}})
+DefineCursor({
+  Name = "cursor-arrow-ne",
+  Race = "any",
+  File = "ui/cursors/arrow_NE.png",
+  HotSpot = {20,  2},
+  Size = {32, 24}})
+DefineCursor({
+  Name = "cursor-arrow-n",
+  Race = "any",
+  File = "ui/cursors/arrow_N.png",
+  HotSpot = {12,  2},
+  Size = {32, 24}})
+DefineCursor({
+  Name = "cursor-arrow-nw",
+  Race = "any",
+  File = "ui/cursors/arrow_NW.png",
+  HotSpot = { 2,  2},
+  Size = {32, 24}})
+DefineCursor({
+  Name = "cursor-arrow-w",
+  Race = "any",
+  File = "ui/cursors/arrow_W.png",
+  HotSpot = { 4, 10},
+  Size = {32, 24}})
+DefineCursor({
+  Name = "cursor-arrow-s",
+  Race = "any",
+  File = "ui/cursors/arrow_S.png",
+  HotSpot = {12, 22},
+  Size = {32, 24}})
+DefineCursor({
+  Name = "cursor-arrow-sw",
+  Race = "any",
+  File = "ui/cursors/arrow_SW.png",
+  HotSpot = { 2, 18},
+  Size = {32, 24}})
+DefineCursor({
+  Name = "cursor-arrow-se",
+  Race = "any",
+  File = "ui/cursors/arrow_SE.png",
+  HotSpot = {20, 18},
+  Size = {32, 24}})
