@@ -63,6 +63,8 @@
     dead "basic orc voices dead"
     attack "grunt-attack"))
 
+(define-unit-type 'unit-peon-with-gold)
+
 (define-unit-type 'unit-peon 'name "Peon"
   'files '(tileset-summer "orc/units/peon.png")
   'size '(72 72)
@@ -81,10 +83,13 @@
   'corpse '(unit-dead-body 0)
   'type-land
   'right-harvest
-  'can-attack
+  'can-attack 'can-repair
   'can-target-land
   'land-unit
   'cower-worker
+  'harvester 'resource-harvested 'gold 'resource-capacity 100
+  'wait-at-resource 150 'wait-at-depot 150
+  'transform-when-loaded 'unit-peon-with-gold
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -113,10 +118,13 @@
   'corpse '(unit-dead-body 0)
   'type-land
   'right-harvest
-  'can-attack
+  'can-attack 'can-repair
   'can-target-land
   'land-unit
   'cower-worker
+  'harvester 'resource-harvested 'gold 'resource-capacity 100
+  'wait-at-resource 150 'wait-at-depot 150
+  'transform-when-empty 'unit-peon
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -145,7 +153,7 @@
   'corpse '(unit-dead-body 0)
   'type-land
   'right-harvest
-  'can-attack
+  'can-attack 'can-repair
   'can-target-land
   'land-unit
   'cower-worker
@@ -509,7 +517,7 @@
   'demand 1
   'corpse '(unit-dead-body 12)
   'type-naval
-  'right-haul-oil
+  'right-harvest
   'sea-unit
   'harvester 'resource-harvested 'oil 'resource-capacity 100
   'wait-at-resource 100 'wait-at-depot 100
@@ -540,7 +548,7 @@
   'demand 1
   'corpse '(unit-dead-body 12)
   'type-naval
-  'right-haul-oil
+  'right-harvest
   'sea-unit
   'harvester 'resource-harvested 'oil 'resource-capacity 100
   'wait-at-resource 100 'wait-at-depot 100
