@@ -134,7 +134,7 @@ goto EOF
 
 :DIRERROR
 echo ERROR: '%ARCHIVE%\rezdat.war' not found
-echo Specify the location of the data files with the '-p' option
+echo Specify the location of the data files
 goto EOF
 
 :CONTRIBERROR
