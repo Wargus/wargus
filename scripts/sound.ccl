@@ -603,14 +603,14 @@
 	"teron gorefiend acknowledgement 3.wav"))
 )
 (if new-names?
-(make-sound "kurdran-and-sky-ree-acknowledge"
-	(list "human/units/kurdran/acknowledgement/1.wav"
-	"human/units/kurdran/acknowledgement/2.wav"
-	"human/units/kurdran/acknowledgement/3.wav"))
-(make-sound "kurdran-and-sky-ree-acknowledge"
-	(list "kurdran acknowledgement 1.wav"
-	"kurdran acknowledgement 2.wav"
-	"kurdran acknowledgement 3.wav"))
+(make-sound "kurdan-and-sky-ree-acknowledge"
+	(list "human/units/kurdan/acknowledgement/1.wav"
+	"human/units/kurdan/acknowledgement/2.wav"
+	"human/units/kurdan/acknowledgement/3.wav"))
+(make-sound "kurdan-and-sky-ree-acknowledge"
+	(list "kurdan acknowledgement 1.wav"
+	"kurdan acknowledgement 2.wav"
+	"kurdan acknowledgement 3.wav"))
 )
 (if new-names?
 (make-sound "dentarg-acknowledge"
@@ -941,14 +941,14 @@
 	"khadgar selected 3.wav"))
 )
 (if new-names?
-(make-sound "kurdran selected"
-	(list "human/units/kurdran/selected/1.wav"
-	"human/units/kurdran/selected/2.wav"
-	"human/units/kurdran/selected/3.wav"))
-(make-sound "kurdran selected"
-	(list "kurdran selected 1.wav"
-	"kurdran selected 2.wav"
-	"kurdran selected 3.wav"))
+(make-sound "kurdan selected"
+	(list "human/units/kurdan/selected/1.wav"
+	"human/units/kurdan/selected/2.wav"
+	"human/units/kurdan/selected/3.wav"))
+(make-sound "kurdan selected"
+	(list "kurdan selected 1.wav"
+	"kurdan selected 2.wav"
+	"kurdan selected 3.wav"))
 )
 (if new-names?
 (make-sound "turalyon selected"
@@ -1256,14 +1256,14 @@
 	"khadgar annoyed 3.wav"))
 )
 (if new-names?
-(make-sound "kurdran annoyed"
-	(list "human/units/kurdran/annoyed/1.wav"
-	"human/units/kurdran/annoyed/2.wav"
-	"human/units/kurdran/annoyed/3.wav"))
-(make-sound "kurdran annoyed"
-	(list "kurdran annoyed 1.wav"
-	"kurdran annoyed 2.wav"
-	"kurdran annoyed 3.wav"))
+(make-sound "kurdan annoyed"
+	(list "human/units/kurdan/annoyed/1.wav"
+	"human/units/kurdan/annoyed/2.wav"
+	"human/units/kurdan/annoyed/3.wav"))
+(make-sound "kurdan annoyed"
+	(list "kurdan annoyed 1.wav"
+	"kurdan annoyed 2.wav"
+	"kurdan annoyed 3.wav"))
 )
 (if new-names?
 (make-sound "turalyon annoyed"
@@ -1400,7 +1400,7 @@
 	"teron gorefiend selected"
 	"teron gorefiend annoyed")
 (make-sound-group "kurdan-and-sky-ree-selected"
-	"kurdran selected" "kurdran annoyed")
+	"kurdan selected" "kurdan annoyed")
 (make-sound-group "dentarg-selected"
 	"dentarg selected" "dentarg annoyed")
 (make-sound-group "khadgar-selected"
