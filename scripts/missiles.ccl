@@ -48,6 +48,10 @@
 (define	MissileDaemonFire	27)
 (define	MissileGreenCross	28)
 (define	MissileNone		29)
+(define	MissileBlizzardHit      30)
+(define	MissileDeathCoil	31)
+(define	MissileCustom		32)
+(define	MissileNone		33)
 
 ;;=============================================================================
 ;;	Define missile classes (must match internal numbers)
@@ -65,6 +69,7 @@
 (define missile-class-cycle-once		10)
 (define missile-class-point-to-point-with-hit	11)
 (define missile-class-fire			12)
+(define missile-class-custom			13)
 
 ;;=============================================================================
 ;;	Define missiles
@@ -163,3 +168,16 @@
 (missile-type MissileGreenCross
     "missile-green-cross"		"green cross.png"		32 32 
     #f)
+(missile-type MissileNone
+    "missile-none"	 		"green cross.png"      		32 32
+    #f)
+(missile-type MissileBlizzardHit
+    "missile-blizzard-hit"		"blizzard.png"  		32 32 
+    #f)
+(missile-type MissileDeathCoil
+    "missile-death-coil"		"touch of death.png"		32 32 
+    #f)
+(missile-type MissileCustom
+    "missile-custom"    		"green cross.png"      		32 32 
+    #f)
+    
