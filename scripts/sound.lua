@@ -165,7 +165,7 @@ MakeSound("invisibility", "spells/invisibility.wav")
 MakeSound("eye of vision", "spells/eye_of_kilrogg.wav")
 MakeSound("polymorph", "spells/polymorph.wav")
 MakeSound("slow", "spells/slow.wav")
-MakeSound("unholy armour", "spells/unholy_armor.wav")
+MakeSound("unholy armor", "spells/unholy_armor.wav")
 MakeSound("whirlwind", "spells/whirlwind.wav")
     -- ready sounds
 MakeSound("peon-ready", "orc/peon/ready.wav")

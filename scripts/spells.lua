@@ -170,7 +170,7 @@ DefineSpell("spell-unholy-armor",
 	"condition", {
 	    "building", "false",
 	    "max-invincibility-ticks", 10},
-	"sound-when-cast", "unholyarmor",
+	"sound-when-cast", "unholy armor",
 	"missile-when-cast", "missile-normal-spell"
 --	"autocast", {range 6 condition (coward false alliance only)},
 )
