@@ -205,6 +205,9 @@
 ;;-----------------------------------------------------------------------------
 
 ;;; Uses FreeCraft Library path!
+
+(load "ccl/wc2.ccl" #f #t)
+
 (load "ccl/tilesets.ccl" #f #t)
 ; FIXME: Need to check if sound support is present
 (load "ccl/sound.ccl" #f #t)
@@ -215,8 +218,6 @@
 (load "ccl/fonts.ccl" #f #t)
 (load "ccl/ui.ccl" #f #t)
 (load "ccl/ai.ccl" #f #t)
-
-(load "ccl/wc2.ccl" #f #t)
 
 ;;-----------------------------------------------------------------------------
 
