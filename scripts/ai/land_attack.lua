@@ -241,7 +241,7 @@ function AiLandAttack()
   player = AiPlayer() + 1
 
   while (true) do
-    print("Executing land_funcs[" .. ai_land_attack_func[player] .. "]")
+--    print("Executing land_funcs[" .. ai_land_attack_func[player] .. "]")
     ret = land_funcs[ai_land_attack_func[player]]()
     if (ret) then
       break

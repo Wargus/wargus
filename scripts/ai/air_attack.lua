@@ -192,7 +192,7 @@ function AiAirAttack()
   player = AiPlayer() + 1
 
   while (true) do
-    print("Executing air_funcs[" .. ai_air_attack_func[player] .. "]")
+--    print("Executing air_funcs[" .. ai_air_attack_func[player] .. "]")
     ret = air_funcs[ai_air_attack_func[player]]()
     if (ret) then
       break

@@ -172,7 +172,7 @@ function AiSeaAttack()
   player = AiPlayer() + 1
 
   while (true) do
-    print("Executing sea_funcs[" .. ai_sea_attack_func[player] .. "]")
+--    print("Executing sea_funcs[" .. ai_sea_attack_func[player] .. "]")
     ret = sea_funcs[ai_sea_attack_func[player]]()
     if (ret) then
       break
