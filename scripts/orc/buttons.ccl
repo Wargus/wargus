@@ -131,7 +131,7 @@
     unit-troll-destroyer orc-group))
 
 (define-button 'pos 6 'level 0 'icon 'icon-orc-attack-ground
-  'action 'attack
+  'action 'attack-ground
   'key "g" 'hint "ATTACK ~!GROUND"
   'for-unit '(unit-catapult unit-ogre-juggernaught orc-group))
 
