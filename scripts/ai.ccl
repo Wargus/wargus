@@ -716,6 +716,7 @@
 (define-ai "wc2-passive" "*" "passive"
   '(
     ;;	Define the main AI script.
+    (ai:set-auto-attack #f)
     (ai:sleep	10000)
     (ai:restart)
     ))
@@ -1383,7 +1384,7 @@
 (define-ai "wc2-air-attack" "*" "air-attack"
   '(
     ;;	Define the main AI script.
-    (begin (ai:debug #f) (ai:set-auto-attack #f) (ai:sleep (ai:get-sleep-cycles)))
+    (begin (ai:debug #f)  (ai:sleep (ai:get-sleep-cycles)))
     (ai:set-reserve! #( 0  0 0 0  0 0 0))
     (ai:need (ai:city-center))
     (ai:set  (ai:worker) 1)
@@ -1952,7 +1953,7 @@
 (define-ai 'orc-03 "*" "orc-03"
   '(
     ;;	Define the main AI script.
-    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
+    (begin (ai:debug #f) (ai:set-auto-attack #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 2)
     (ai:set  (ai:tanker) 1)
     (ai:wait (ai:worker))	;; start hangs if nothing available
@@ -2144,7 +2145,7 @@
 (define-ai 'hum-07 "*" "hum-07"
   '(
     ;;	Define the main AI script.
-    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
+    (begin (ai:debug #f) (ai:set-auto-attack #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 2)
     (ai:set  (ai:tanker) 1)
     (ai:sleep	10000)
@@ -2205,7 +2206,7 @@
 (define-ai 'hum-09 "*" "hum-09"
   '(
     ;;	Define the main AI script.
-    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
+    (begin (ai:debug #f) (ai:set-auto-attack #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 2)
     (ai:set  (ai:tanker) 1)
     (ai:sleep	10000)
@@ -2575,7 +2576,7 @@
 
     (ai:sleep	20000)
 
-    (ai:force 0 (ai:flyer) 12)
+    (ai:force 1 (ai:flyer) 12)
 
     (ai:sleep	21000)
 
@@ -2593,7 +2594,7 @@
     (ai:set  (ai:worker) 9)
     (ai:wait (ai:worker))	;; Wait for the workers
 
-    (ai:force 0 (ai:flyer) 10)
+    (ai:force 1 (ai:flyer) 10)
 
     (ai:sleep	64000)
 
