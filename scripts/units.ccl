@@ -426,20 +426,6 @@
   'detect-cloak
   'sounds '())
 
-(define-unit-type 'unit-reveal-attacker 'name "Dummy unit"
-  'size '(0 0)
-  'animations 'animations-building 'icon 'icon-holy-vision
-  'speed 0
-  'hit-points 0
-  'tile-size '(1 1) 'box-size '(1 1)
-  'sight-range 1
-  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
-  'priority 0
-  'decay-rate 1
-  'type-land
-  'building 'visible-under-fog
-  'sounds '())
-
 ;; Load the different races
 (ccl:load "ccl/human/units.ccl")
 (ccl:load "ccl/orc/units.ccl")

@@ -426,20 +426,6 @@ DefineUnitType("unit-revealer", { Name = "Dummy unit",
   DetectCloak = true,
   Sounds = {} } )
 
-DefineUnitType("unit-reveal-attacker", { Name = "Dummy unit",
-  Size = {0, 0},
-  Animations = "animations-building", Icon = "icon-holy-vision",
-  Speed = 0,
-  HitPoints = 0,
-  TileSize = {1, 1}, BoxSize = {1, 1},
-  SightRange = 1,
-  BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
-  Priority = 0,
-  DecayRate = 1,
-  Type = "land",
-  Building = true, VisibleUnderFog = true,
-  Sounds = {} } )
-
 -- Load the different races
 Load("ccl/human/units.lua")
 Load("ccl/orc/units.lua")
