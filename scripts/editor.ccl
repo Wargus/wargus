@@ -157,8 +157,10 @@
    'unit-daemon
    'unit-critter
 
-   'unit-dead-body
-   'unit-destroyed-1x1-place
-   'unit-destroyed-2x2-place
-   'unit-destroyed-3x3-place
-   'unit-destroyed-4x4-place)
+; Placing this unit-types on map is not (yet?) supported.
+;   'unit-dead-body
+;   'unit-destroyed-1x1-place
+;   'unit-destroyed-2x2-place
+;   'unit-destroyed-3x3-place
+;   'unit-destroyed-4x4-place
+  )
