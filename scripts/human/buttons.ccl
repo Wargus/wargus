@@ -156,14 +156,14 @@
 
 ;; paladin specific actions ---------------------------------------------------
 
-(if extensions
-(define-button 'pos 6 'level 0 'icon 'icon-heal
-  'action 'cast-spell 'value 'spell-area-healing
-  'allowed 'check-upgrade 'allow-arg '(upgrade-area-healing)
-  'key "l" 'hint "AREA HEA~!LING (per 1 HP)"
-  'for-unit '(unit-paladin unit-knight-rider 
-    unit-man-of-light))
-)
+;(if extensions
+;(define-button 'pos 6 'level 0 'icon 'icon-heal
+;  'action 'cast-spell 'value 'spell-area-healing
+;  'allowed 'check-upgrade 'allow-arg '(upgrade-area-healing)
+;  'key "l" 'hint "AREA HEA~!LING (per 1 HP)"
+;  'for-unit '(unit-paladin unit-knight-rider 
+;    unit-man-of-light))
+;)
 
 (define-button 'pos 7 'level 0 'icon 'icon-holy-vision
   'action 'cast-spell 'value 'spell-holy-vision
