@@ -2,22 +2,20 @@
 
 Briefing("type", "wc2",
 ^^TITLE^^
-    "background "campaigns/orc/interface/introscreen1.png",
-    "text", "campaigns/orc/level03o.txt",
-    "voice", "campaigns/orc/level03o-intro1.wav",
-    "voice", "campaigns/orc/level03o-intro2.wav",
 ^^OBJECTIVES^^
-    )
+  "background", "campaigns/orc/interface/introscreen1.png",
+  "text", "campaigns/orc/level03o.txt",
+  "voice", "campaigns/orc/level03o-intro1.wav",
+  "voice", "campaigns/orc/level03o-intro2.wav"
+)
 
 AddTrigger(
   function() return IfUnit("this", ">=", 1, "unit-mythical-shipyard") and
-  IfUnit("this", ">=", 4, "unit-mythical-oil-platform")) end,
-  function() return ActionVictory() end
-)
+    IfUnit("this", ">=", 4, "unit-mythical-oil-platform") end,
+  function() return ActionVictory() end)
 AddTrigger(
   function() return IfUnit("this", "==", 0, "all") end,
-  function() return ActionDefeat() end
-)
+  function() return ActionDefeat() end)
 
 --Units
 

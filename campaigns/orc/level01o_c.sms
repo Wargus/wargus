@@ -1,23 +1,21 @@
 ;;	Stratagus Map - Single player campaign
 
-Briefing("type", "wc2"
+Briefing("type", "wc2",
 ^^TITLE^^
-    "background", "campaigns/orc/interface/introscreen1.png",
-    "text", "campaigns/orc/level01o.txt",
-    "voice", "campaigns/orc/level01o-intro1.wav",
-    "voice", "campaigns/orc/level01o-intro2.wav",
 ^^OBJECTIVES^^
-    )
+  "background", "campaigns/orc/interface/introscreen1.png",
+  "text", "campaigns/orc/level01o.txt",
+  "voice", "campaigns/orc/level01o-intro1.wav",
+  "voice", "campaigns/orc/level01o-intro2.wav"
+)
 
 AddTrigger(
   function() return IfUnit("this", ">=", 4, "unit-pig-farm") and
     IfUnit("this", ">=", 1, "unit-mythical-barracks") end,
-  function() return ActionVictory() end
-)
+  function() return ActionVictory() end)
 AddTrigger(
   function() return IfUnit("this", "==", 0, "all") end,
-  function() return ActionDefeat() end
-)
+  function() return ActionDefeat() end)
 
 -- Units
 
