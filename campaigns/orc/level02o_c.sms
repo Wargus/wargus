@@ -20,19 +20,19 @@
 ;;Units
 
 ;;Townhall - Produces
-(define-allow 'unit-peasant			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-peasant			"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-peasant-with-gold		"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-peasant-with-wood		"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-attack-peasant		"FFFFFFFFFFFFFFFF")
 
-(define-allow 'unit-peon			"FFFFFFFFFFFFFFFF")
+(define-allow 'unit-peon			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-peon-with-gold		"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-peon-with-wood		"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-attack-peon			"FFFFFFFFFFFFFFFF")
 
 ;;Barracks - Produces
-(define-allow 'unit-footman			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-archer			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-footman			"FFFFFFFFFFFFFFFF")
+(define-allow 'unit-archer			"FFFFFFFFFFFFFFFF")
  (define-allow 'unit-ranger			"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-knight			"FFFFFFFFFFFFFFFF")
  (define-allow 'unit-paladin			"FFFFFFFFFFFFFFFF")
@@ -81,11 +81,11 @@
 (define-allow 'unit-uther-lightbringer		"FFFFFFFFFFFFFFFF")
 
 ;;Building Human
-(define-allow 'unit-town-hall			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-town-hall			"FFFFFFFFFFFFFFFF")
  (define-allow 'unit-keep			"FFFFFFFFFFFFFFFF")
  (define-allow 'unit-castle			"FFFFFFFFFFFFFFFF")
-(define-allow 'unit-human-barracks		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-farm			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-barracks		"FFFFFFFFFFFFFFFF")
+(define-allow 'unit-farm			"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-human-blacksmith		"FFFFFFFFFFFFFFFF")
  (define-allow 'upgrade-sword1			"FFFFFFFFFFFFFFFF")
  (define-allow 'upgrade-sword2			"FFFFFFFFFFFFFFFF")
@@ -96,8 +96,8 @@
 (define-allow 'unit-human-watch-tower		"FFFFFFFFFFFFFFFF")
  (define-allow 'unit-human-guard-tower		"FFFFFFFFFFFFFFFF")
  (define-allow 'unit-human-cannon-tower		"FFFFFFFFFFFFFFFF")
-(define-allow 'unit-elven-lumber-mill           "AAAAAAAAAAAAAAAA")
- (define-allow 'upgrade-arrow1                  "AAAAAAAAAAAAAAAA")
+(define-allow 'unit-elven-lumber-mill           "FFFFFFFFFFFFFFFF")
+ (define-allow 'upgrade-arrow1                  "FFFFFFFFFFFFFFFF")
  (define-allow 'upgrade-arrow2                  "FFFFFFFFFFFFFFFF")
  (define-allow 'upgrade-ranger                  "FFFFFFFFFFFFFFFF")
  (define-allow 'upgrade-longbow                 "FFFFFFFFFFFFFFFF")
@@ -139,11 +139,11 @@
 (define-allow 'unit-zuljin			"FFFFFFFFFFFFFFFF")
 
 
-(define-allow 'unit-great-hall			"FFFFFFFFFFFFFFFF")
+(define-allow 'unit-great-hall			"AAAAAAAAAAAAAAAA")
  (define-allow 'unit-stronghold			"FFFFFFFFFFFFFFFF")
  (define-allow 'unit-fortress			"FFFFFFFFFFFFFFFF")
-(define-allow 'unit-orc-barracks		"FFFFFFFFFFFFFFFF")
-(define-allow 'unit-pig-farm			"FFFFFFFFFFFFFFFF")
+(define-allow 'unit-orc-barracks		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-pig-farm			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-orc-blacksmith		"FFFFFFFFFFFFFFFF")
  (define-allow 'upgrade-battle-axe1		"FFFFFFFFFFFFFFFF")
  (define-allow 'upgrade-battle-axe2		"FFFFFFFFFFFFFFFF")
@@ -154,8 +154,8 @@
 (define-allow 'unit-orc-watch-tower		"FFFFFFFFFFFFFFFF")
  (define-allow 'unit-orc-guard-tower		"FFFFFFFFFFFFFFFF")
  (define-allow 'unit-orc-cannon-tower		"FFFFFFFFFFFFFFFF")
-(define-allow 'unit-troll-lumber-mill		"FFFFFFFFFFFFFFFF")
- (define-allow 'upgrade-throwing-axe1		"FFFFFFFFFFFFFFFF")
+(define-allow 'unit-troll-lumber-mill		"AAAAAAAAAAAAAAAA")
+ (define-allow 'upgrade-throwing-axe1		"AAAAAAAAAAAAAAAA")
  (define-allow 'upgrade-throwing-axe2		"FFFFFFFFFFFFFFFF")
  (define-allow 'upgrade-berserker		"FFFFFFFFFFFFFFFF")
   (define-allow 'upgrade-light-axes		"FFFFFFFFFFFFFFFF")
