@@ -255,7 +255,7 @@
             style gm-full)
     'menu 'menu-program-start)
 )
-(if (symbol-bound? 'freecraft-feature-debug ())
+(if (symbol-bound? 'freecraft-feature-sdl ())
 (define-menu-item 'pos (list 208 (+ 145 (* 36 4))) 'font 'large
     'button '(size (224 27)
             caption "~!Options"
@@ -264,6 +264,7 @@
             style gm-full)
     'menu 'menu-program-start)
 (define-menu-item 'pos (list 208 (+ 145 (* 36 4))) 'font 'large
+    'flags '(disabled)
     'button '(size (224 27)
             caption "~!Options"
             hotkey "o"
@@ -2960,13 +2961,13 @@
     'text '("Warning:" left)
     'menu 'menu-editor-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 1))) 'font 'game
-    'text '("This editor is not ready!" left)
+    'text '("This is the first relase of the editor!" left)
     'menu 'menu-editor-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 2))) 'font 'game
-    'text '("This is only a preview version!" left)
+    'text '("Please expect bugs and please report" left)
     'menu 'menu-editor-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 3))) 'font 'game
-    'text '(() left)
+    'text '("them!" left)
     'menu 'menu-editor-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 4))) 'font 'game
     'text '(() left)
