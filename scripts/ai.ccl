@@ -424,6 +424,8 @@
 	((ai:destroyer)
 	    (enemy-hotspot-sea-fire 70)
 	    (enemy-hotspot-ground-force 20) (enemy-hotspot-sea-force 20) (enemy-hotspot-air-force 80))
+	((ai:scout)
+	    (enemy-hotspot-sea-force 1))
 	))
 
 (define-ai-action '(defense attack)
@@ -561,7 +563,7 @@
 			(unit_force (ai:get-unittype-force unittype))
 			(wanted (quotient want_pct (* unit_force 100))))
 		(if (< wanted 1)
-		    (ai:units_pct_to_wants (cdr pcts))
+		    (cons unittype (cons 1 (ai:units_pct_to_wants (cdr pcts))))
 		    (cons unittype (cons wanted (ai:units_pct_to_wants (cdr pcts))))		    
 ))))))
 
@@ -644,7 +646,10 @@
 		    ;; return the computed value if can transport
 		    (if (ai:can-reach-hotspot 'lazy)
 			result
-			-1)
+			(begin
+				(writes nil "can't reach hotspot\n")
+				-1
+			))
 		)
 		;; can't, return -1
 		-1
@@ -1420,9 +1425,6 @@
     (ai:force 1 (ai:flyer) 2)
     (ai:wait-force 1)
     
-;;    (ai:wait-force 2)		;; wait until attack party is completed
-;;    (ai:attack-with-force 2)
-
     (ai:set-auto-attack #t)
     (ai:sleep 500)
     (ai:need (ai:city-center))
@@ -1430,7 +1432,6 @@
     (ai:upgrade-to (ai:guard-tower))
     (ai:need (ai:airport))
     (ai:force 0 (ai:flyer) 3)
-;;    (ai:wait-force 2)		;; wait until attack party is completed
 
     (ai:need (ai:city-center))
     (ai:need (ai:tower))
@@ -1438,87 +1439,41 @@
     (ai:need (ai:airport))
     (ai:set  (ai:worker) 20)
     (ai:force 1 (ai:flyer) 4)
-;;    (ai:attack-with-force 2)
 
-    (ai:sleep 500)
+    (ai:sleep 1200)
     (ai:need (ai:tower))
     (ai:upgrade-to (ai:guard-tower))
     (ai:need (ai:tower))
     (ai:upgrade-to (ai:cannon-tower))
-;;    (ai:force 2 (ai:flyer) 1)
-;;    (ai:wait-force 2)		;; wait until attack party is completed
-;;    (ai:attack-with-force 1)
 
-    (ai:sleep 500)
+    (ai:sleep 1200)
     (ai:need (ai:tower))
     (ai:upgrade-to (ai:guard-tower))
     (ai:need (ai:tower))
-;;    (ai:force 1 (ai:flyer) 2)
-;;    (ai:force 2 (ai:flyer) 2)
-;;    (ai:wait-force 2)		;; wait until attack party is completed
-;;    (ai:attack-with-force 1)
 
-    (ai:sleep 500)
+    (ai:sleep 1200)
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+    (ai:force 1 (ai:flyer) 6)
+
+    (ai:sleep 1200)
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+
+    (ai:sleep 1200)
     (ai:need (ai:tower))
     (ai:upgrade-to (ai:guard-tower))
     (ai:need (ai:tower))
-    (ai:force 0 (ai:flyer) 6)
-;;    (ai:force 1 (ai:flyer) 1)
-;;    (ai:force 2 (ai:flyer) 2)
-;;    (ai:force 3 (ai:flyer) 2)
-;;    (ai:wait-force 2)
-;;    (ai:wait-force 3)		;; wait until attack party is completed
-;;    (ai:attack-with-force 2)
-;;    (ai:attack-with-force 3)
 
-    (ai:sleep 500)
-    (ai:need (ai:tower))
-    (ai:upgrade-to (ai:guard-tower))
-    (ai:need (ai:tower))
-;;    (ai:force 1 (ai:flyer) 2)
-;;    (ai:force 2 (ai:flyer) 2)
-;;    (ai:force 3 (ai:flyer) 2)
-;;    (ai:wait-force 2)
-;;    (ai:wait-force 3)		;; wait until attack party is completed
-;;    (ai:attack-with-force 2)
-;;    (ai:attack-with-force 3)
+    (ai:sleep 1200)
+    (ai:force 1 (ai:flyer) 10)
 
-    (ai:sleep 500)
-    (ai:need (ai:tower))
-    (ai:upgrade-to (ai:guard-tower))
-    (ai:need (ai:tower))
-;;    (ai:force 1 (ai:flyer) 2)
-;;    (ai:force 2 (ai:flyer) 2)
-;;    (ai:force 3 (ai:flyer) 3)
-;;    (ai:wait-force 2)
-;;    (ai:wait-force 3)		;; wait until attack party is completed
-;;    (ai:attack-with-force 2)
-;;    (ai:attack-with-force 3)
-
-    (ai:sleep 500)
-    (ai:need (ai:tower))
-    (ai:upgrade-to (ai:guard-tower))
-    (ai:need (ai:tower))
-;;    (ai:force 1 (ai:flyer) 2)
-;;    (ai:force 2 (ai:flyer) 3)
-;;    (ai:force 3 (ai:flyer) 3)
-;;    (ai:wait-force 2)
-;;    (ai:wait-force 3)		;; wait until attack party is completed
-;;    (ai:attack-with-force 2)
-;;    (ai:attack-with-force 3)
-
-    (ai:sleep 500)
-    (ai:force 0 (ai:flyer) 10)
-;;    (ai:force 1 (ai:flyer) 1)
-;;    (ai:force 2 (ai:flyer) 2)
-;;    (ai:force 3 (ai:flyer) 2)
-;;    (ai:force 4 (ai:flyer) 2)
-;;    (ai:force 5 (ai:flyer) 2)
-;;    (ai:wait-force 5)		;; wait until attack party is completed
-;;    (ai:attack-with-force 2)
-;;    (ai:attack-with-force 3)
-;;    (ai:attack-with-force 4)
-;;    (ai:attack-with-force 5)
+    (ai:research 'upgrade-sword1)
+    (ai:research 'upgrade-human-shield1)
+    (ai:research 'upgrade-arrow1)
+    (ai:research 'upgrade-sword2)
+    (ai:research 'upgrade-human-shield2)
+    (ai:research 'upgrade-arrow2)
 
     (ai:sleep 500)
     (ai:script ai:air-attack-endloop) ))
@@ -1538,7 +1493,7 @@
     (ai:force 0 
 	      (ai:destroyer) 6 (ai:battleship) 7 (ai:scout) 1
 	      (ai:soldier) 4 (ai:cavalrie) 4 (ai:catapult) 4
-	      (ai:transporter) 2)
+	      (ai:transporter) 4)
     (ai:sleep 500)
     (ai:script ai:sea-attack-endloop) ))
 
@@ -1624,12 +1579,12 @@
     (ai:sleep 500)
     (ai:research (ai:upgrade-catapult-2))
     (ai:research (ai:upgrade-ship-cannon-1))
-    (ai:force 0 (ai:cavalrie) 1 (ai:soldier) 3 (ai:catapult) 1 (ai:scout) 2 (ai:destroyer) 4 (ai:battleship) 5 (ai:submarine) 3 (ai:transporter) 1)
+    (ai:force 0 (ai:cavalrie) 1 (ai:soldier) 3 (ai:catapult) 1 (ai:scout) 2 (ai:destroyer) 4 (ai:battleship) 5 (ai:submarine) 3 (ai:transporter) 2)
 
     (ai:sleep 500)
     (ai:research (ai:upgrade-ship-cannon-2))
     (ai:need (ai:city-center))
-    (ai:force 0 (ai:cavalrie) 2 (ai:soldier) 5 (ai:catapult) 3 (ai:scout) 3 (ai:destroyer) 6 (ai:battleship) 6 (ai:submarine) 3 (ai:transporter) 2)
+    (ai:force 0 (ai:cavalrie) 2 (ai:soldier) 5 (ai:catapult) 3 (ai:scout) 3 (ai:destroyer) 6 (ai:battleship) 6 (ai:submarine) 3 (ai:transporter) 3)
 
     (ai:sleep 500)
     (ai:need (ai:harbor))
@@ -1978,10 +1933,11 @@
 
     (ai:need (ai:platform))
 
-    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 3 (ai:shooter) 4 (ai:transporter) 1)
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 3 (ai:shooter) 4 (ai:transporter) 4)
+    (ai:force 1 (ai:destroyer) 2 (ai:soldier) 3 (ai:shooter) 4 (ai:transporter) 4)
     (ai:sleep 27000)
 
-    (ai:set  (ai:transporter) 2)
+    (ai:force 1 (ai:destroyer) 4 (ai:soldier) 10 (ai:shooter) 8 (ai:transporter) 6)
     (ai:sleep 22000)
 
     (ai:sleep 22000)
@@ -2060,7 +2016,7 @@
 
     (ai:need (ai:platform))
 
-    (ai:force 0 (ai:destroyer) 3 (ai:soldier) 4 (ai:shooter) 3 (ai:transporter) 1)
+    (ai:force 0 (ai:destroyer) 3 (ai:soldier) 4 (ai:shooter) 3 (ai:transporter) 2)
 
     (ai:sleep 3000)
 
@@ -2070,7 +2026,7 @@
 
     (ai:sleep 12000)
 
-    (ai:force 0 (ai:destroyer) 4 (ai:soldier) 6 (ai:shooter) 4 (ai:transporter) 1)
+    (ai:force 0 (ai:destroyer) 4 (ai:soldier) 12 (ai:shooter) 4 (ai:transporter) 4)
 
 
     (ai:sleep 14000)
