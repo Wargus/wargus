@@ -32,7 +32,7 @@
 	'show-picture
 	  "campaigns/human/interface/Act I   - Shores of Lordareon.png"
 	'play-level "campaigns/human/level01h.cm"
-	'play-level "campaigns/human/level02h.pud"
+	'play-level "campaigns/human/level02h.cm"
 	'play-level "campaigns/human/level03h.pud"
 	'play-level "campaigns/human/level04h.pud"
 	'play-level "campaigns/human/level05h.pud"
