@@ -313,6 +313,214 @@
     ))
 
 ;;=============================================================================
+;;	Air Attack AI, this is an example for a multi race AI.
+;;=============================================================================
+
+;;
+;;	City-center of the current race.
+;;
+(define (ai:city-center)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-town-hall 'unit-great-hall) )
+
+;;
+;;	Better city-center of the current race.
+;;
+(define (ai:better-city-center)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-keep 'unit-stronghold) )
+
+;;
+;;	Best city-center of the current race.
+;;
+(define (ai:best-city-center)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-castle 'unit-fortress) )
+
+;;
+;;	Worker of the current race.
+;;
+(define (ai:worker)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-peasant 'unit-peon) )
+
+;;
+;;	Lumber mill of the current race.
+;;
+(define (ai:lumber-mill)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-elven-lumber-mill 'unit-troll-lumber-mill) )
+
+;;
+;;	Blacksmith of the current race.
+;;
+(define (ai:blacksmith)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-blacksmith 'unit-orc-blacksmith) )
+
+;;
+;;	Cavalry of the current race.
+;;
+(define (ai:cavalry)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-stables 'unit-ogre-mound) )
+
+;;
+;;	Airport of the current race.
+;;
+(define (ai:airport)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-gryphon-aviary 'unit-dragon-roost) )
+
+;;
+;;	Barracks of the current race.
+;;
+(define (ai:barracks)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-barracks 'unit-orc-barracks) )
+
+;;
+;;	Soldier of the current race.
+;;
+(define (ai:soldier)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-footman 'unit-grunt) )
+
+;;
+;;	Shooter of the current race.
+;;
+(define (ai:shooter)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-archer 'unit-axethrower) )
+
+;;
+;;	Cavalrie of the current race.
+;;
+(define (ai:cavalrie)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-knight 'unit-ogre) )
+
+;;
+;;	Flyer of the current race.
+;;
+(define (ai:flyer)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-gryphon-rider 'unit-dragon) )
+
+;;
+;;	Tower of the current race.
+;;
+(define (ai:tower)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-watch-tower 'unit-orc-watch-tower) )
+
+;;
+;;	Guard-Tower of the current race.
+;;
+(define (ai:guard-tower)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-guard-tower 'unit-orc-guard-tower) )
+
+;;
+;;	Cannon-Tower of the current race.
+;;
+(define (ai:cannon-tower)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-cannon-tower 'unit-orc-cannon-tower) )
+
+;;=============================================================================
+;;
+;;	Define an AI engine.
+;;
+;;	(define-ai name race class script)
+;;
+;;	name	name of the AI for selection.
+;;	class	class of the AI for map editor.
+;;	script	Main AI script.
+;;
+(define ai:air-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:force 1 (ai:flyer) 2)
+    (ai:force 2 (ai:flyer) 2)
+    (ai:force 3 (ai:flyer) 2)
+    (ai:force 4 (ai:flyer) 2)
+    (ai:force 5 (ai:flyer) 2)
+    (ai:force 6 (ai:flyer) 1)
+    (ai:wait-force 6)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+    (ai:attack-with-force 3)
+    (ai:attack-with-force 4)
+    (ai:attack-with-force 5)
+    (ai:sleep 500)
+    (ai:script ai:air-attack-endloop) ))
+
+(define-ai "wc2-air-attack" "*" "air-attack"
+  '(
+    ;;	Define the main AI script.
+    (ai:debug #t)
+    (ai:need (ai:city-center))
+    (ai:set  (ai:worker) 1)
+    (ai:wait (ai:city-center))
+    (ai:wait (ai:worker))	;; start hangs if nothing is available
+
+    (ai:set  (ai:worker) 9)
+    (ai:need (ai:lumber-mill))
+    (ai:need (ai:barracks))
+    (ai:force 0 (ai:soldier) 2)
+    (ai:wait-force 0)		;; wait until defence is ready
+
+    (ai:need (ai:blacksmith))
+    (ai:upgrade-to (ai:better-city-center))
+    (ai:set  (ai:worker) 15)
+    (ai:force 0 (ai:soldier) 2 (ai:shooter) 3)
+    (ai:wait (ai:better-city-center))
+
+    (ai:need (ai:cavalry))
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+
+    (ai:upgrade-to (ai:best-city-center))
+    (ai:wait (ai:best-city-center))
+
+    (ai:need (ai:airport))
+    (ai:force 2 (ai:flyer) 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:sleep 500)
+    (ai:need (ai:city-center))
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+    (ai:need (ai:airport))
+    (ai:force 2 (ai:flyer) 2)
+    (ai:wait-force 2)		;; wait until attack party is completed
+
+    (ai:need (ai:city-center))
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+    (ai:need (ai:airport))
+    (ai:set  (ai:worker) 20)
+    (ai:force 1 (ai:flyer) 2)
+    (ai:attack-with-force 2)
+
+    (ai:sleep 500)
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:cannon-tower))
+    (ai:force 2 (ai:flyer) 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+;; WAVE 3 FIXME: 
+
+    (ai:sleep 500)
+    (ai:script ai:air-attack-endloop) ))
+
+;;=============================================================================
 ;;
 ;;	Define an AI engine.
 ;;
