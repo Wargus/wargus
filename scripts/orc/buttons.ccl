@@ -380,11 +380,13 @@
 
 (define-button 'pos 1 'level 3 'icon 'icon-dark-portal
   'action 'build 'value 'unit-dark-portal
+  'allowed 'check-no-network
   'key "p" 'hint "BUILD DARK ~!PORTAL"
   'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
 
 (define-button 'pos 2 'level 3 'icon 'icon-runestone
   'action 'build 'value 'unit-runestone
+  'allowed 'check-no-network
   'key "r" 'hint "BUILD ~!RUNESTONE"
   'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
 
