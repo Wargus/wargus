@@ -55,7 +55,7 @@
 (define-menu-item 'pos '(16 248) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Return to Game (~<Esc~>)"
-            hotkey "e"
+            hotkey "esc"
             func game-menu-return
             style gm-full)
     'menu "game-menu")
@@ -132,14 +132,14 @@
 (define-menu-item 'pos '(48 318) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "OK"
-            hotkey "o"
+            hotkey ""
             func scen-select-ok
             style gm-half)
     'menu "scene-select-menu")
 (define-menu-item 'pos '(198 318) 'font 'large 
     'button '(size (106 27)
             caption "Cancel"
-            hotkey "o"
+            hotkey ""
             func scen-select-cancel
             style gm-half)
     'menu "scene-select-menu")
@@ -168,9 +168,9 @@
 (define-menu-item 'pos '(22 112) 'font 'game 
     'button '(size (36 24)
             caption "(null)"
-            hotkey "o"
+            hotkey ""
             func scen-select-folder
-            style gm-half)
+            style folder)
     'menu "scene-select-menu")
 
 
@@ -606,169 +606,169 @@
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(10 54) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(10 76) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(10 98) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(10 120) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(10 142) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(10 164) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(10 186) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(330 32) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(330 54) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(330 76) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(330 98) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(330 120) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(330 142) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(330 164) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-square)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(218 54) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(218 76) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(218 98) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(218 120) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(218 142) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(218 164) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(218 186) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(538 32) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(538 54) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(538 76) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(538 98) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(538 120) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(538 142) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
 (define-menu-item 'pos '(538 164) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state passive
          func null
          style gem-round)
     'menu "net-multi-setup-menu")
@@ -1012,85 +1012,85 @@
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(10 54) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(10 76) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(10 98) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(10 120) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(10 142) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(10 164) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(10 186) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(330 32) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(330 54) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(330 76) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(330 98) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(330 120) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(330 142) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
 (define-menu-item 'pos '(330 164) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func multi-client-gem-action
          style gem-square)
     'menu "net-multi-client-menu")
@@ -1265,7 +1265,7 @@
 (define-menu-item 'pos '(16 248) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Previous (~!E~!s~!c)"
-            hotkey "x"
+            hotkey "esc"
             func end-menu
             style gm-full)
     'menu "end-scenario-menu")
@@ -1295,7 +1295,7 @@
     'menu "sound-options-menu")
 (define-menu-item 'pos '(240 54) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func set-master-power
          style gem-square)
     'menu "sound-options-menu")
@@ -1318,7 +1318,7 @@
     'menu "sound-options-menu")
 (define-menu-item 'pos '(240 126) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func set-music-power
          style gem-square)
     'menu "sound-options-menu")
@@ -1341,7 +1341,7 @@
     'menu "sound-options-menu")
 (define-menu-item 'pos '(240 198) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func set-cd-power
          style gem-square)
     'menu "sound-options-menu")
@@ -1350,7 +1350,7 @@
     'menu "sound-options-menu")
 (define-menu-item 'pos '(32 234) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func set-cd-mode-all
          style gem-round)
     'menu "sound-options-menu")
@@ -1359,7 +1359,7 @@
     'menu "sound-options-menu")
 (define-menu-item 'pos '(154 234) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func set-cd-mode-random
          style gem-round)
     'menu "sound-options-menu")
@@ -1385,7 +1385,7 @@
     'menu "preferences-menu")
 (define-menu-item 'pos '(16 36) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func set-fog-of-war
          style gem-square)
     'menu "preferences-menu")
@@ -1394,7 +1394,7 @@
     'menu "preferences-menu")
 (define-menu-item 'pos '(16 72) 'font 'large 
     'gem '(size (18 18)
-         state checked
+         state unchecked
          func set-command-key
          style gem-square)
     'menu "preferences-menu")
@@ -1501,7 +1501,7 @@
 (define-menu-item 'pos '(16 245) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Previous (~!E~!s~!c)"
-            hotkey "f9"
+            hotkey "esc"
             func end-menu
             style gm-full)
     'menu "game-options-menu")
@@ -1609,7 +1609,7 @@
 (define-menu-item 'pos '(16 248) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Previous (~!E~!s~!c)"
-            hotkey "t"
+            hotkey "esc"
             func end-menu
             style gm-full)
     'menu "help-menu")
@@ -1631,7 +1631,7 @@
 (define-menu-item 'pos '(64 312) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Previous (~!E~!s~!c)"
-            hotkey "t"
+            hotkey "esc"
             func end-menu
             style gm-full)
     'menu "keystroke-help-menu")
@@ -1683,7 +1683,7 @@
 (define-menu-item 'pos '(268 213) 'font 'large 
     'button '(size (106 27)
             caption "Cancel (~<Esc~>)"
-            hotkey "f5"
+            hotkey "esc"
             func end-menu
             style gm-half)
     'menu "save-game-menu")
@@ -1720,7 +1720,7 @@
 (define-menu-item 'pos '(268 213) 'font 'large 
     'button '(size (106 27)
             caption "~!Cancel (~<Esc~>)"
-            hotkey "f12"
+            hotkey "esc"
             func end-menu
             style gm-half)
     'menu "load-game-menu")
@@ -1838,23 +1838,23 @@
 (define-menu-item 'pos '(48 308) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "OK"
-            hotkey "c"
+            hotkey ""
             func editor-load-ok
             style gm-half)
     'menu "editor-load-map-menu")
 (define-menu-item 'pos '(198 308) 'font 'large 
     'button '(size (106 27)
             caption "Cancel"
-            hotkey "c"
+            hotkey ""
             func editor-load-cancel
             style gm-half)
     'menu "editor-load-map-menu")
 (define-menu-item 'pos '(21 81) 'font 'game 
     'button '(size (36 24)
             caption "(null)"
-            hotkey "c"
+            hotkey ""
             func editor-load-folder
-            style gm-half)
+            style folder)
     'menu "editor-load-map-menu")
 
 
