@@ -101,10 +101,10 @@
     '(176 16 624 464)
 
     ; Menu button
-    '("graphics/ui/human/640x480/menubutton.png" 0 0)
+    '("graphics/ui/human/menubutton.png" 0 0)
 
     ; Minimap
-    '("graphics/ui/human/640x480/minimap.png" 0 24)
+    '("graphics/ui/human/minimap.png" 0 24)
 
     ; Status line
     '("graphics/ui/human/640x480/statusline.png" 176 464)
@@ -153,10 +153,10 @@
 
 (define-ui "human" 800 600	; Selector
     ;	Filler 1
-    (list "graphics/ui/human/640x480/filler-right.png" (+ 176 608) 0)
+    (list "graphics/ui/human/800x600/filler-right.png" (+ 176 608) 0)
 
     ;	Resource line
-    '("graphics/ui/human/640x480/resource.png" 176 0)
+    '("graphics/ui/human/800x600/resource.png" 176 0)
 
     ; gold resource
     (list "graphics/ui/gold,wood,oil,mana.png"	0
@@ -191,19 +191,19 @@
     (list color-dark-green  12 313 50 313)
 
     ; Command button panel
-    (list "graphics/ui/human/640x480/buttonpanel.png" 0 336)
+    (list "graphics/ui/human/800x600/buttonpanel.png" 0 336)
 
     ; The big map
     '(176 16 784 560)
 
     ; Menu button
-    '("graphics/ui/human/640x480/menubutton.png" 0 0)
+    '("graphics/ui/human/menubutton.png" 0 0)
 
     ; Minimap
-    '("graphics/ui/human/640x480/minimap.png" 0 24)
+    '("graphics/ui/human/minimap.png" 0 24)
 
     ; Status line
-    '("graphics/ui/human/640x480/statusline.png" 176 584)
+    '("graphics/ui/human/800x600/statusline.png" 176 584)
 
     ;	Defines position and size of the different buttons.
     ; Menu button
@@ -249,10 +249,10 @@
 
 (define-ui "human" 1024 768	; Selector
     ;	Filler 1
-    (list "graphics/ui/human/640x480/filler-right.png" (+ 176 832) 0)
+    (list "graphics/ui/human/1024x768/filler-right.png" (+ 176 832) 0)
 
     ;	Resource line
-    '("graphics/ui/human/640x480/resource.png" 176 0)
+    '("graphics/ui/human/1024x768/resource.png" 176 0)
 
     ; gold resource
     (list "graphics/ui/gold,wood,oil,mana.png"	0
@@ -287,19 +287,19 @@
     (list color-dark-green  12 313 50 313)
 
     ; Command button panel
-    (list "graphics/ui/human/640x480/buttonpanel.png" 0 336)
+    (list "graphics/ui/human/1024x768/buttonpanel.png" 0 336)
 
     ; The big map
     '(176 16 1008 752)
 
     ; Menu button
-    '("graphics/ui/human/640x480/menubutton.png" 0 0)
+    '("graphics/ui/human/menubutton.png" 0 0)
 
     ; Minimap
-    '("graphics/ui/human/640x480/minimap.png" 0 24)
+    '("graphics/ui/human/minimap.png" 0 24)
 
     ; Status line
-    '("graphics/ui/human/640x480/statusline.png" 176 752)
+    '("graphics/ui/human/1024x768/statusline.png" 176 752)
 
     ;	Defines position and size of the different buttons.
     ; Menu button
@@ -345,10 +345,10 @@
 
 (define-ui "human" 1280 960	; Selector
     ;	Filler 1
-    (list "graphics/ui/human/640x480/filler-right.png" (+ 176 1088) 0)
+    (list "graphics/ui/human/1280x960/filler-right.png" (+ 176 1088) 0)
 
     ;	Resource line
-    '("graphics/ui/human/640x480/resource.png" 176 0)
+    '("graphics/ui/human/1280x960/resource.png" 176 0)
 
     ; gold resource
     (list "graphics/ui/gold,wood,oil,mana.png"	0
@@ -383,19 +383,19 @@
     (list color-dark-green  12 313 50 313)
 
     ; Command button panel
-    (list "graphics/ui/human/640x480/buttonpanel.png" 0 336)
+    (list "graphics/ui/human/1280x960/buttonpanel.png" 0 336)
 
     ; The big map
     '(176 16 1264 944)
 
     ; Menu button
-    '("graphics/ui/human/640x480/menubutton.png" 0 0)
+    '("graphics/ui/human/menubutton.png" 0 0)
 
     ; Minimap
-    '("graphics/ui/human/640x480/minimap.png" 0 24)
+    '("graphics/ui/human/minimap.png" 0 24)
 
     ; Status line
-    '("graphics/ui/human/640x480/statusline.png" 176 944)
+    '("graphics/ui/human/1280x960/statusline.png" 176 944)
 
     ;	Defines position and size of the different buttons.
     ; Menu button
@@ -441,10 +441,10 @@
 
 (define-ui "human" 1600 1200	; Selector
     ;	Filler 1
-    (list "graphics/ui/human/640x480/filler-right.png" (+ 176 1408) 0)
+    (list "graphics/ui/human/1600x1200/filler-right.png" (+ 176 1408) 0)
 
     ;	Resource line
-    '("graphics/ui/human/640x480/resource.png" 176 0)
+    '("graphics/ui/human/1600x1200/resource.png" 176 0)
 
     ; gold resource
     (list "graphics/ui/gold,wood,oil,mana.png"	0
@@ -479,19 +479,19 @@
     (list color-dark-green  12 313 50 313)
 
     ; Command button panel
-    (list "graphics/ui/human/640x480/buttonpanel.png" 0 336)
+    (list "graphics/ui/human/1600x1200/buttonpanel.png" 0 336)
 
     ; The big map
     '(176 16 1584 1184)
 
     ; Menu button
-    '("graphics/ui/human/640x480/menubutton.png" 0 0)
+    '("graphics/ui/human/menubutton.png" 0 0)
 
     ; Minimap
-    '("graphics/ui/human/640x480/minimap.png" 0 24)
+    '("graphics/ui/human/minimap.png" 0 24)
 
     ; Status line
-    '("graphics/ui/human/640x480/statusline.png" 176 1184)
+    '("graphics/ui/human/1600x1200/statusline.png" 176 1184)
 
     ;	Defines position and size of the different buttons.
     ; Menu button

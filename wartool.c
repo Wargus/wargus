@@ -544,6 +544,12 @@ Control Todo[] = {
 {N,0,"large",							281	__},
 {N,0,"game",							282	__},
 {N,0,"small",							283	__},
+// --------------------------------------------------
+{I,0,"ui/human/menubutton",					 2, 293	_2},
+{I,0,"ui/orc/menubutton",					 2, 294	_2},
+{I,0,"ui/human/minimap",					 2, 295	_2},
+{I,0,"ui/orc/minimap",						 2, 296	_2},
+{I,0,"ui/title",						300, 299 _2},
 // 284-286 unknown
 // --------------------------------------------------
 {I,0,"ui/human/640x480/resource",				 2, 287	_2},
@@ -552,13 +558,44 @@ Control Todo[] = {
 {I,0,"ui/orc/640x480/filler-right",				 2, 290	_2},
 {I,0,"ui/human/640x480/statusline",				 2, 291	_2},
 {I,0,"ui/orc/640x480/statusline",				 2, 292	_2},
-{I,0,"ui/human/640x480/menubutton",				 2, 293	_2},
-{I,0,"ui/orc/640x480/menubutton",				 2, 294	_2},
-{I,0,"ui/human/640x480/minimap",				 2, 295	_2},
-{I,0,"ui/orc/640x480/minimap",					 2, 296	_2},
 {I,0,"ui/human/640x480/buttonpanel",				 2, 297	_2},
 {I,0,"ui/orc/640x480/buttonpanel",				 2, 298	_2},
-{I,0,"ui/title",						300, 299 _2},
+//---------------------------------------------------
+{I,0,"ui/human/800x600/resource",				 2, 287, 608, 16},
+{I,0,"ui/orc/800x600/resource",					 2, 288, 608, 16},
+{I,0,"ui/human/800x600/filler-right",				 2, 289, 16, 600},
+{I,0,"ui/orc/800x600/filler-right",				 2, 290, 16, 600},
+{I,0,"ui/human/800x600/statusline",				 2, 291, 608, 16},
+{I,0,"ui/orc/800x600/statusline",				 2, 292, 608, 16},
+{I,0,"ui/human/800x600/buttonpanel",				 2, 297, 176, 264},
+{I,0,"ui/orc/800x600/buttonpanel",				 2, 298, 176, 264},
+//---------------------------------------------------
+{I,0,"ui/human/1024x768/resource",				 2, 287, 832, 16},
+{I,0,"ui/orc/1024x768/resource",				 2, 288, 832, 16},
+{I,0,"ui/human/1024x768/filler-right",				 2, 289, 16, 768},
+{I,0,"ui/orc/1024x768/filler-right",				 2, 290, 16, 768},
+{I,0,"ui/human/1024x768/statusline",				 2, 291, 832, 16},
+{I,0,"ui/orc/1024x768/statusline",				 2, 292, 832, 16},
+{I,0,"ui/human/1024x768/buttonpanel",				 2, 297, 176, 432},
+{I,0,"ui/orc/1024x768/buttonpanel",				 2, 298, 176, 432},
+// --------------------------------------------------
+{I,0,"ui/human/1280x960/resource",				 2, 287, 1088, 16},
+{I,0,"ui/orc/1280x960/resource",				 2, 288, 1088, 16},
+{I,0,"ui/human/1280x960/filler-right",				 2, 289, 16, 960},
+{I,0,"ui/orc/1280x960/filler-right",				 2, 290, 16, 960},
+{I,0,"ui/human/1280x960/statusline",				 2, 291, 1088, 16},
+{I,0,"ui/orc/1280x960/statusline",				 2, 292, 1088, 16},
+{I,0,"ui/human/1280x960/buttonpanel",				 2, 297, 176, 624},
+{I,0,"ui/orc/1280x960/buttonpanel",				 2, 298, 176, 624},
+// --------------------------------------------------
+{I,0,"ui/human/1600x1200/resource",				 2, 287, 1408, 16},
+{I,0,"ui/orc/1600x1200/resource",				 2, 288, 1408, 16},
+{I,0,"ui/human/1600x1200/filler-right",				 2, 289, 16, 1200},
+{I,0,"ui/orc/1600x1200/filler-right",				 2, 290, 16, 1200},
+{I,0,"ui/human/1600x1200/statusline",				 2, 291, 1408, 16},
+{I,0,"ui/orc/1600x1200/statusline",				 2, 292, 1408, 16},
+{I,0,"ui/human/1600x1200/buttonpanel",				 2, 297, 176, 528},
+{I,0,"ui/orc/1600x1200/buttonpanel",				 2, 298, 176, 528},
 // --------------------------------------------------
 {C,0,"human/cursors/human gauntlet",				 2, 301 _2},
 {C,0,"orc/cursors/orcish claw",					 2, 302 _2},
@@ -2553,9 +2590,43 @@ unsigned char* ConvertImg(unsigned char* bp,int *wp,int *hp)
 }
 
 /**
-**	Convert a image to my format.
+**	Resize an image
+**
+**	@param image	image data to be converted
+**	@param ow	old image width
+**	@param oh	old image height
+**	@param nw	new image width
+**	@param nh	new image height
 */
-int ConvertImage(char* file,int pale,int imge)
+void ResizeImage(unsigned char** image,int ow,int oh,int nw,int nh)
+{
+    int i;
+    int j;
+    unsigned char *data;
+    int x;
+
+    if( ow==nw && nh==oh ) {
+	return;
+    }
+
+    data = (unsigned char*)malloc(nw*nh);
+    x=0;
+    for( i=0; i<nh; ++i ) {
+	for( j=0; j<nw; ++j ) {
+	    data[x] = ((unsigned char*)*image)[
+		(i*oh+nh/2)/nh*ow + (j*ow+nw/2)/nw];
+	    ++x;
+	}
+    }
+
+    free(*image);
+    *image=data;
+}
+
+/**
+**	Convert an image to my format.
+*/
+int ConvertImage(char* file,int pale,int imge, int nw, int nh)
 {
     unsigned char* palp;
     unsigned char* imgp;
@@ -2577,6 +2648,12 @@ int ConvertImage(char* file,int pale,int imge)
 
     sprintf(buf,"%s/%s/%s.png",Dir,GRAPHIC_PATH,file);
     CheckPath(buf);
+
+    // Only resize if parameters 3 and 4 are non-zero
+    if (nw && nh) {
+	ResizeImage(&image,w,h,nw,nh);
+	w=nw; h=nh;
+    }
     SavePNG(buf,image,w,h,palp);
 
     free(image);
@@ -3558,6 +3635,7 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
 
 #endif
 
+
 //----------------------------------------------------------------------------
 //	Main loop
 //----------------------------------------------------------------------------
@@ -3692,7 +3770,8 @@ int main(int argc,char** argv)
 		ConvertFont(Todo[u].File,2,Todo[u].Arg1);
 		break;
 	    case I:
-		ConvertImage(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
+		ConvertImage(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,
+		    Todo[u].Arg3,Todo[u].Arg4);
 		break;
 	    case C:
 		ConvertCursor(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
