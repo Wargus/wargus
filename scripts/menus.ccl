@@ -3778,139 +3778,133 @@
 ;;
 (define-menu 'name 'metaserver-list 'geometry '(0 0 640 480)
   'panel 'none 'default '3)
-(define-menu-item 'pos (list 0 0) 'font 'game  'init 'metaserver-list-init 'exit 'menu-metaserver-exit 
-   'menu 'metaserver-list )
+(define-menu-item 'pos (list 0 0) 'font 'game  'init 'metaserver-list-init 'exit 'metaserver-list-exit 
+   'menu 'metaserver-list)
 (define-menu-item 'pos (list (+ (/ 640 2) 12) 8) 'font 'large
   'text '(caption "~<Online Game List ~>" align center)
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
 (define-menu-item 'pos (list (- 640 224 16) (+ 360 (* 36 2))) 'font 'large
   'button '(size (224 27)
     caption "~!Cancel Game"
     hotkey "c"
     func end-menu
     style gm-full)
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
 (define-menu-item 'pos (list (- 640 224 16) (+ 360 (* 36 1))) 'font 'large 
   'button '(size (224 27)
     caption "~!Refresh"
-    hotkey "c"
-    func metaserver-list 	;; refresh game list.
+    hotkey "r"
+    func metaserver-list	;; refresh game list.
     style gm-full)
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
 
 ;;------------------------------------------------- nickname
-(define-menu-item 'pos (list 40 (+ 32 (* 22 0))) 'font 'game
+(define-menu-item 'pos (list 30 (+ 32 (* 22 1))) 'font 'game
   'text '(caption "~<Nickname~>" )
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
 ;;------------------------------------------------- IP:Port
-(define-menu-item 'pos (list 160 (+ 32 (* 22 0))) 'font 'game
+(define-menu-item 'pos (list 100 (+ 32 (* 22 1))) 'font 'game
   'text '(caption "~<IP:PORT~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- OS
-(define-menu-item 'pos (list 280 (+ 32 (* 22 0))) 'font 'game
-  'text '(caption "~<OS~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- Other
-(define-menu-item 'pos (list 400 (+ 32 (* 22 0))) 'font 'game
-  'text '(caption "~<Other Argument~>" )
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
+;;------------------------------------------------- Map
+(define-menu-item 'pos (list 250 (+ 32 (* 22 1))) 'font 'game
+  'text '(caption "~<Map~>" )
+  'menu 'metaserver-list)
+;;------------------------------------------------- Players
+(define-menu-item 'pos (list 350 (+ 32 (* 22 1))) 'font 'game
+  'text '(caption "~<Players~>" )
+  'menu 'metaserver-list)
+;;------------------------------------------------- FreeSpots
+(define-menu-item 'pos (list 450 (+ 32 (* 22 1))) 'font 'game
+  'text '(caption "~<FreeSpots~>" )
+  'menu 'metaserver-list)
 ;;------------------------------------------------- checkbox
-(define-menu-item 'pos (list 15 (+ 32 (* 22 0)))
+(define-menu-item 'pos (list 5 (+ 32 (* 22 1)))
   'gem '(size (18 18)
     state unchecked
     func select-game-server
     style gem-square)
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
+
 ;;------------------------------------------------- nickname
-(define-menu-item 'pos (list 40 (+ 32 (* 22 1))) 'font 'game
+(define-menu-item 'pos (list 30 (+ 32 (* 22 2))) 'font 'game
   'text '(caption "~<Nickname~>" )
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
 ;;------------------------------------------------- IP:Port
-(define-menu-item 'pos (list 160 (+ 32 (* 22 1))) 'font 'game
+(define-menu-item 'pos (list 100 (+ 32 (* 22 2))) 'font 'game
   'text '(caption "~<IP:PORT~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- OS
-(define-menu-item 'pos (list 280 (+ 32 (* 22 1))) 'font 'game
-  'text '(caption "~<OS~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- Other
-(define-menu-item 'pos (list 400 (+ 32 (* 22 1))) 'font 'game
-  'text '(caption "~<Other Argument~>" )
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
+;;------------------------------------------------- Map
+(define-menu-item 'pos (list 250 (+ 32 (* 22 2))) 'font 'game
+  'text '(caption "~<Map~>" )
+  'menu 'metaserver-list)
+;;------------------------------------------------- Players
+(define-menu-item 'pos (list 350 (+ 32 (* 22 2))) 'font 'game
+  'text '(caption "~<Players~>" )
+  'menu 'metaserver-list)
+;;------------------------------------------------- FreeSpots
+(define-menu-item 'pos (list 450 (+ 32 (* 22 2))) 'font 'game
+  'text '(caption "~<FreeSpots~>" )
+  'menu 'metaserver-list)
 ;;------------------------------------------------- checkbox
-(define-menu-item 'pos (list 15 (+ 32 (* 22 1)))
+(define-menu-item 'pos (list 5 (+ 32 (* 22 2)))
   'gem '(size (18 18)
     state unchecked
     func select-game-server
     style gem-square)
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
 ;;------------------------------------------------- nickname
-(define-menu-item 'pos (list 40 (+ 32 (* 22 2))) 'font 'game
+(define-menu-item 'pos (list 30 (+ 32 (* 22 3))) 'font 'game
   'text '(caption "~<Nickname~>" )
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
 ;;------------------------------------------------- IP:Port
-(define-menu-item 'pos (list 160 (+ 32 (* 22 2))) 'font 'game
+(define-menu-item 'pos (list 100 (+ 32 (* 22 3))) 'font 'game
   'text '(caption "~<IP:PORT~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- OS
-(define-menu-item 'pos (list 280 (+ 32 (* 22 2))) 'font 'game
-  'text '(caption "~<OS~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- Other
-(define-menu-item 'pos (list 400 (+ 32 (* 22 2))) 'font 'game
-  'text '(caption "~<Other Argument~>" )
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
+;;------------------------------------------------- Map
+(define-menu-item 'pos (list 250 (+ 32 (* 22 3))) 'font 'game
+  'text '(caption "~<Map~>" )
+  'menu 'metaserver-list)
+;;------------------------------------------------- Players
+(define-menu-item 'pos (list 350 (+ 32 (* 22 3))) 'font 'game
+  'text '(caption "~<Players~>" )
+  'menu 'metaserver-list)
+;;------------------------------------------------- FreeSpots
+(define-menu-item 'pos (list 450 (+ 32 (* 22 3))) 'font 'game
+  'text '(caption "~<FreeSpots~>" )
+  'menu 'metaserver-list)
 ;;------------------------------------------------- checkbox
-(define-menu-item 'pos (list 15 (+ 32 (* 22 2)))
+(define-menu-item 'pos (list 5 (+ 32 (* 22 3)))
   'gem '(size (18 18)
     state unchecked
     func select-game-server
     style gem-square)
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
 ;;------------------------------------------------- nickname
-(define-menu-item 'pos (list 40 (+ 32 (* 22 3))) 'font 'game
+(define-menu-item 'pos (list 30 (+ 32 (* 22 4))) 'font 'game
   'text '(caption "~<Nickname~>" )
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
 ;;------------------------------------------------- IP:Port
-(define-menu-item 'pos (list 160 (+ 32 (* 22 3))) 'font 'game
+(define-menu-item 'pos (list 100 (+ 32 (* 22 4))) 'font 'game
   'text '(caption "~<IP:PORT~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- OS
-(define-menu-item 'pos (list 280 (+ 32 (* 22 3))) 'font 'game
-  'text '(caption "~<OS~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- Other
-(define-menu-item 'pos (list 400 (+ 32 (* 22 3))) 'font 'game
-  'text '(caption "~<Other Argument~>" )
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
+;;------------------------------------------------- Map
+(define-menu-item 'pos (list 250 (+ 32 (* 22 4))) 'font 'game
+  'text '(caption "~<Map~>" )
+  'menu 'metaserver-list)
+;;------------------------------------------------- Players
+(define-menu-item 'pos (list 350 (+ 32 (* 22 4))) 'font 'game
+  'text '(caption "~<Players~>" )
+  'menu 'metaserver-list)
+;;------------------------------------------------- FreeSpots
+(define-menu-item 'pos (list 450 (+ 32 (* 22 4))) 'font 'game
+  'text '(caption "~<FreeSpots~>" )
+  'menu 'metaserver-list)
 ;;------------------------------------------------- checkbox
-(define-menu-item 'pos (list 15 (+ 32 (* 22 3)))
+(define-menu-item 'pos (list 5 (+ 32 (* 22 4)))
   'gem '(size (18 18)
     state unchecked
     func select-game-server
     style gem-square)
-  'menu 'metaserver-list )
-;;------------------------------------------------- nickname
-(define-menu-item 'pos (list 40 (+ 32 (* 22 4))) 'font 'game
-  'text '(caption "~<Nickname~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- IP:Port
-(define-menu-item 'pos (list 160 (+ 32 (* 22 4))) 'font 'game
-  'text '(caption "~<IP:PORT~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- OS
-(define-menu-item 'pos (list 280 (+ 32 (* 22 4))) 'font 'game
-  'text '(caption "~<OS~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- Other
-(define-menu-item 'pos (list 400 (+ 32 (* 22 4))) 'font 'game
-  'text '(caption "~<Other Argument~>" )
-  'menu 'metaserver-list )
-;;------------------------------------------------- checkbox
-(define-menu-item 'pos (list 15 (+ 32 (* 22 4)))
-  'gem '(size (18 18)
-    state unchecked
-    func select-game-server
-    style gem-square)
-  'menu 'metaserver-list )
+  'menu 'metaserver-list)
 
