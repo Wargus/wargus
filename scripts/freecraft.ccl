@@ -71,7 +71,7 @@
 (mana-sprite	"graphics/ui/mana.png"	-7 -7 7 7)
 (mana-sprite	"mana.png"	-7 -7 7 7)
 )
-;(mana-sprite	"mana2.png"	0 -2 31 4)
+;(mana-sprite	"mana2.png"	0 -1 31 4)
 
 ;;	Define health-sprite.
 ;;
@@ -81,7 +81,7 @@
 (health-sprite	"graphics/ui/health.png"	0 -7 7 7)
 (health-sprite	"health.png"	0 -7 7 7)
 )
-;(health-sprite	"health2.png"	0 -5 31 4)
+;(health-sprite	"health2.png"	0 -4 31 4)
 
 ;;	Uncomment next, to get a health bar to the left of the unit
 ;(show-health-bar)
