@@ -290,9 +290,8 @@
   'points 100
   'demand 1
   'type-land
-  'right-demolish
-  'demolish-range 2
-  'demolish-damage 400
+  'right-spell-cast
+  'can-cast-spell '(spell-suicide-bomber)
   'can-attack
   'can-target-land
   'land-unit
