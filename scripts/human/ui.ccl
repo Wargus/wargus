@@ -126,11 +126,24 @@
     '(  6 263  46 38 )
     '( 62 263  46 38 )
     '(118 263  46 38 )
-    (list 'cursor-point 'cursor-glass 'cursor-cross
-	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
-	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
-	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
-	'cursor-arrow-s 'cursor-arrow-se )
+
+    'cursors '(
+      point cursor-point
+      glass cursor-glass
+      cross cursor-cross
+      yellow cursor-yellow-hair
+      green cursor-green-hair
+      red cursor-red-hair
+      scroll cursor-scroll
+      arrow-e cursor-arrow-e
+      arrow-ne cursor-arrow-ne
+      arrow-n cursor-arrow-n
+      arrow-nw cursor-arrow-nw
+      arrow-w cursor-arrow-w
+      arrow-sw cursor-arrow-sw
+      arrow-s cursor-arrow-s
+      arrow-se cursor-arrow-se)
+
     '("graphics/ui/human/panel 1.png")
     '("graphics/ui/human/panel 2.png")
     '("graphics/ui/human/panel 3.png")
@@ -212,11 +225,24 @@
     '(  6 263  46 38 )
     '( 62 263  46 38 )
     '(118 263  46 38 )
-    (list 'cursor-point 'cursor-glass 'cursor-cross
-	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
-	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
-	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
-	'cursor-arrow-s 'cursor-arrow-se )
+
+    'cursors '(
+      point cursor-point
+      glass cursor-glass
+      cross cursor-cross
+      yellow cursor-yellow-hair
+      green cursor-green-hair
+      red cursor-red-hair
+      scroll cursor-scroll
+      arrow-e cursor-arrow-e
+      arrow-ne cursor-arrow-ne
+      arrow-n cursor-arrow-n
+      arrow-nw cursor-arrow-nw
+      arrow-w cursor-arrow-w
+      arrow-sw cursor-arrow-sw
+      arrow-s cursor-arrow-s
+      arrow-se cursor-arrow-se)
+
     '("graphics/ui/human/panel 1.png")
     '("graphics/ui/human/panel 2.png")
     '("graphics/ui/human/panel 3.png")
@@ -297,11 +323,24 @@
     '(  6 263  46 38 )
     '( 62 263  46 38 )
     '(118 263  46 38 )
-    (list 'cursor-point 'cursor-glass 'cursor-cross
-	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
-	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
-	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
-	'cursor-arrow-s 'cursor-arrow-se )
+
+    'cursors '(
+      point cursor-point
+      glass cursor-glass
+      cross cursor-cross
+      yellow cursor-yellow-hair
+      green cursor-green-hair
+      red cursor-red-hair
+      scroll cursor-scroll
+      arrow-e cursor-arrow-e
+      arrow-ne cursor-arrow-ne
+      arrow-n cursor-arrow-n
+      arrow-nw cursor-arrow-nw
+      arrow-w cursor-arrow-w
+      arrow-sw cursor-arrow-sw
+      arrow-s cursor-arrow-s
+      arrow-se cursor-arrow-se)
+
     '("graphics/ui/human/panel 1.png")
     '("graphics/ui/human/panel 2.png")
     '("graphics/ui/human/panel 3.png")
@@ -382,11 +421,24 @@
     '(  6 263  46 38 )
     '( 62 263  46 38 )
     '(118 263  46 38 )
-    (list 'cursor-point 'cursor-glass 'cursor-cross
-	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
-	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
-	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
-	'cursor-arrow-s 'cursor-arrow-se )
+
+    'cursors '(
+      point cursor-point
+      glass cursor-glass
+      cross cursor-cross
+      yellow cursor-yellow-hair
+      green cursor-green-hair
+      red cursor-red-hair
+      scroll cursor-scroll
+      arrow-e cursor-arrow-e
+      arrow-ne cursor-arrow-ne
+      arrow-n cursor-arrow-n
+      arrow-nw cursor-arrow-nw
+      arrow-w cursor-arrow-w
+      arrow-sw cursor-arrow-sw
+      arrow-s cursor-arrow-s
+      arrow-se cursor-arrow-se)
+
     '("graphics/ui/human/panel 1.png")
     '("graphics/ui/human/panel 2.png")
     '("graphics/ui/human/panel 3.png")
@@ -467,11 +519,24 @@
     '(  6 263  46 38 )
     '( 62 263  46 38 )
     '(118 263  46 38 )
-    (list 'cursor-point 'cursor-glass 'cursor-cross
-	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
-	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
-	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
-	'cursor-arrow-s 'cursor-arrow-se )
+
+    'cursors '(
+      point cursor-point
+      glass cursor-glass
+      cross cursor-cross
+      yellow cursor-yellow-hair
+      green cursor-green-hair
+      red cursor-red-hair
+      scroll cursor-scroll
+      arrow-e cursor-arrow-e
+      arrow-ne cursor-arrow-ne
+      arrow-n cursor-arrow-n
+      arrow-nw cursor-arrow-nw
+      arrow-w cursor-arrow-w
+      arrow-sw cursor-arrow-sw
+      arrow-s cursor-arrow-s
+      arrow-se cursor-arrow-se)
+
     '("graphics/ui/human/panel 1.png")
     '("graphics/ui/human/panel 2.png")
     '("graphics/ui/human/panel 3.png")
@@ -480,81 +545,3 @@
     '("graphics/ui/human/victory.png")
     '("graphics/ui/human/defeat.png")
 )
-
-(define-new-ui 'human1 640 480	; Selector
-  'normal-font-color 'white 'reverse-font-color 'yellow
-  'filler '(pos (624 0) image "graphics/ui/human/640x480/filler-right.png")
-  'resources '(pos (176 0) image "graphics/ui/human/640x480/resource.png"
-    gold (icon-pos (176 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
-      icon-frame 0 icon-size (14 14) text-pos (194 1))
-    wood (icon-pos (241 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
-      icon-frame 1 icon-size (14 14) text-pos (259 1))
-    oil (icon-pos (296 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
-      icon-frame 2 icon-size (14 14) text-pos (314 1))
-    ore (icon-pos (351 0) icon-file "graphics/ui/ore,stone,coal.png"
-      icon-frame 0 icon-size (14 14) text-pos (369 1))
-    stone (icon-pos (406 0) icon-file "graphics/ui/ore,stone,coal.png"
-      icon-frame 1 icon-size (14 14) text-pos (424 1))
-    coal (icon-pos (461 0) icon-file "graphics/ui/ore,stone,coal.png"
-      icon-frame 2 icon-size (14 14) text-pos (479 1))
-    food (icon-pos (506 0) icon-file "graphics/ui/food.png"
-      icon-frame 0 icon-size (14 14) text-pos (524 1))
-    score (icon-pos (566 0) icon-file "graphics/ui/score.png"
-      icon-frame 0 icon-size (14 14) text-pos (584 1)))
-  'info-panel '(pos (0 160) image "graphics/ui/human/infopanel.png"
-    size (176 176)
-    complete-bar (color 149 pos (12 313) text-pos (50 313)))
-  'button-panel '(pos (0 336) image "graphics/ui/human/640x480/buttonpanel.png")
-  'map-area '(pos (176 16) size (624 464))
-  'menu-button '(pos (0 0) image "graphics/ui/human/640x480/menubutton.png")
-  'minimap '(pos (0 24) image "graphics/ui/human/640x480/minimap.png")
-  'status-line '(pos (176 464) image "graphics/ui/human/640x480/statusline.png")
-; 0 Menu 1-9 Info 10-19 Button
-  'buttons '(
-    (pos ( 24   2) size ( 128  17))
-    (pos (  6 166) size (  46  38))
-    (pos ( 62 166) size (  46  38))
-    (pos (118 166) size (  46  38))
-    (pos (  6 220) size (  46  38))
-    (pos ( 62 220) size (  46  38))
-    (pos (118 220) size (  46  38))
-    (pos (  6 274) size (  46  38))
-    (pos ( 62 274) size (  46  38))
-    (pos (118 274) size (  46  38))
-    (pos (  6 337) size (  46  38))
-    (pos ( 62 337) size (  46  38))
-    (pos (118 337) size (  46  38))
-    (pos (  6 384) size (  46  38))
-    (pos ( 62 384) size (  46  38))
-    (pos (118 384) size (  46  38))
-    (pos (  6 431) size (  46  38))
-    (pos ( 62 431) size (  46  38))
-    (pos (118 431) size (  46  38)))
-; 0-5 Training
-  'buttons-2 '(
-    (pos (  6 216) size (  46  38))
-    (pos ( 62 216) size (  46  38))
-    (pos (118 216) size (  46  38))
-    (pos (  6 263) size (  46  38))
-    (pos ( 62 263) size (  46  38))
-    (pos (118 263) size (  46  38)))
-  'cursors '(point cursor-point
-    glass cursor-glass
-    cross cursor-cross
-    yellow cursor-yellow-hair
-    green cursor-green-hair
-    red cursor-red-hair
-    scroll cursor-scroll
-    arrow-e cursor-arrow-e
-    arrow-ne cursor-arrow-ne
-    arrow-n cursor-arrow-n
-    arrow-nw cursor-arrow-nw
-    arrow-w cursor-arrow-w
-    arrow-sw cursor-arrow-sw
-    arrow-s cursor-arrow-s
-    arrow-se cursor-arrow-se)
-  'panels '(game-menu "graphics/ui/human/panel 1.png"
-    menu-1 "graphics/ui/human/panel 2.png"
-    menu-2 "graphics/ui/human/panel 3.png"
-    victory "graphics/ui/human/panel 4.png"
-    scenario "graphics/ui/human/panel 5.png") )
