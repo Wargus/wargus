@@ -1,0 +1,58 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	constructions.ccl	-	Define the human constructions.
+;;
+;;	(c) Copyright 2001 by Lutz Sammer
+;;
+;;	FreeCraft is free software; you can redistribute it and/or modify
+;;	it under the terms of the GNU General Public License as published
+;;	by the Free Software Foundation; either version 2 of the License,
+;;	or (at your option) any later version.
+;;
+;;	FreeCraft is distributed in the hope that it will be useful,
+;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;	GNU General Public License for more details.
+;;
+;;	$Id$
+
+;;=============================================================================
+;;	Define a construction.
+;;
+;;	(define-construction ident 'files '(tileset-name filename ..)
+;;	    'size '(x y))
+
+(define-construction 'construction-human-shipyard
+  'files '(summer "human/buildings/shipyard construction site.png"
+    winter "tilesets/winter/human/buildings/shipyard construction site.png"
+    swamp "tilesets/swamp/human/buildings/shipyard construction site.png")
+  'size '(96 96))
+
+(define-construction 'construction-human-oil-well
+  'files '(
+    summer "tilesets/summer/human/buildings/oil well construction site.png"
+    winter "tilesets/winter/human/buildings/oil well construction site.png"
+    wasteland
+      "tilesets/wasteland/human/buildings/oil well construction site.png"
+    swamp "tilesets/swamp/human/buildings/oil well construction site.png")
+  'size '(96 96))
+
+(define-construction 'construction-human-refinery
+  'files '(summer "human/buildings/refinery construction site.png"
+    winter "tilesets/winter/human/buildings/refinery construction site.png"
+    swamp "tilesets/swamp/human/buildings/refinery construction site.png")
+  'size '(96 96))
+
+(define-construction 'construction-human-foundry
+  'files '(summer "human/buildings/foundry construction site.png"
+    winter "tilesets/winter/human/buildings/foundry construction site.png"
+    swamp "tilesets/swamp/human/buildings/foundry construction site.png")
+  'size '(96 96))
