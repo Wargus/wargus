@@ -10,7 +10,7 @@
 ;;
 ;;	wc2.ccl		-	WC2 compatibility level
 ;;
-;;	(c) Copyright 2001-2003 by Lutz Sammer
+;;	(c) Copyright 2001-2003 by Lutz Sammer and Jimmy Salmon
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -24,9 +24,16 @@
 ;;	$Id$
 
 ;;=============================================================================
-;;	Define race mapping from original number to internal symbol
+;;	Define race names
 ;;
-;;	(define-race-wc-names 'human 'orc 'neutral )
+;;	(define-race-names
+;;	  'race '(
+;;	    race number
+;;	    name race-name
+;;	    display displayed-race-name
+;;	    [visible])
+;;	  'race ...)
+
 (define-race-names
   'race '(
     race 0
