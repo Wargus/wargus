@@ -15,16 +15,16 @@ AddTrigger(
     IfRescuedNearUnit("this", "==", 1, "unit-knight-rider", "unit-circle-of-power") end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-female-hero") and
-    IfUnit(0, "==", 0, "unit-female-hero") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-female-hero") == 0 and
+    GetPlayerData(0, "UnitTypesCount", "unit-female-hero") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-arthor-literios") and
-    IfUnit(0, "==", 0, "unit-arthor-literios") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-arthor-literios") == 0 and
+    GetPlayerData(0, "UnitTypesCount", "unit-arthor-literios") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-knight-rider") and
-    IfUnit(0, "==", 0, "unit-knight-rider") end,
+ function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-knight-rider") == 0 and
+    GetPlayerData(0, "UnitTypesCount", "unit-knight-rider") == 0 end,
   function() return ActionDefeat() end)
 
 --Units

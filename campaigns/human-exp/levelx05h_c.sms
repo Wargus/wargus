@@ -10,14 +10,14 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfUnit(2, "==", 0, "unit-orc-shipyard") and
-    IfUnit(3, "==", 0, "unit-orc-shipyard") and
-    IfUnit(4, "==", 0, "unit-orc-shipyard") and
-    IfUnit(7, "==", 0, "unit-orc-shipyard") and
-    IfUnit("this", ">=", 3, "unit-human-shipyard") end,
+  function() return GetPlayerData(2, "UnitTypesCount", "unit-orc-shipyard") == 0 and
+    GetPlayerData(3, "UnitTypesCount", "unit-orc-shipyard") == 0 and
+    GetPlayerData(4, "UnitTypesCount", "unit-orc-shipyard") == 0 and
+    GetPlayerData(7, "UnitTypesCount", "unit-orc-shipyard") == 0 and
+    GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-human-shipyard") >= 3 end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units

@@ -10,14 +10,14 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfUnit(15, "==", 0, "unit-dark-portal") end,
+  function() return GetPlayerData(15, "UnitTypesCount", "unit-dark-portal") == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-white-mage") and
-    IfUnit(4, "==", 0, "unit-white-mage") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-white-mage") == 0 and
+    GetPlayerData(4, "UnitTypesCount", "unit-white-mage") == 0 end,
   function() return ActionDefeat() end)
 
 

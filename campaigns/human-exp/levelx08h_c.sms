@@ -10,12 +10,12 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfUnit(3, "==", 0, "all") and
-    IfUnit(6, "==", 0, "all") and
-    IfUnit(7, "==", 0, "all") end,
+  function() return GetPlayerData(3, "TotalNumUnits") == 0 and
+    GetPlayerData(6, "TotalNumUnits") == 0 and
+    GetPlayerData(7, "TotalNumUnits") == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units
