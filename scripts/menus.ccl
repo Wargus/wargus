@@ -2329,7 +2329,7 @@
     'button '(size (224 27)
             caption "Cancel (~<Esc~>)"
             hotkey "esc"
-            func end-menu
+            func cancel-editor-select
             style gm-full)
     'menu 'menu-editor-select)
 
