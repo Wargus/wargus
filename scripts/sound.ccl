@@ -35,7 +35,9 @@
 ;  'tree-chopping (make-sound "tree chopping" "tree chopping.wav")
 ;  'transport-docking
 ;  'building-construction
-;  'basic human voices work complete
-;  'peasant work complete
-;  'basic orc voices work complete
+;  'basic-human-voices-work-complete
+;  'peasant-work-complete
+;  'basic-orc-voices-work-complete
+   'human-rescue (make-sound "human rescue" "rescue (human).wav")
+   'orc-rescue (make-sound "orc rescue" "rescue (orc).wav")
   )
