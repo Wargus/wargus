@@ -250,14 +250,14 @@
 
 (define-button 'pos 8 'level 0 'icon 'icon-build-advanced
   'action 'button 'value 2
-  'allowed 'check-unit 'allow-arg '(unit-elven-lumber-mill)
+  'allowed 'check-units-or 'allow-arg '(unit-elven-lumber-mill unit-keep)
   'key "v" 'hint "BUILD AD~!VANCED STRUCTURE"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
 
 (if extensions
 (define-button 'pos 9 'level 0 'icon 'icon-build-advanced
   'action 'button 'value 3
-  'allowed 'check-units 'allow-arg '(unit-castle unit-mage-tower unit-church)
+  'allowed 'check-units-and 'allow-arg '(unit-castle unit-mage-tower unit-church)
   'key "e" 'hint "BUILD SP~!ECIAL STRUCTURE"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood)) )
 
