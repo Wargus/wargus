@@ -35,6 +35,8 @@
 ;;	(define-ai-helper (list))
 ;;
 
+(define (ai:sleep) () #t)
+
 (define race1 'human)
 (define race2 'orc)
 
@@ -1423,6 +1425,75 @@
 ;;		Also if needed a farm.
 ;;		Attacks with soldier and shooter and destroyer.
 ;;
+(define ai:hum-04-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:sleep 25000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 22000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:script ai:hum-04-attack-endloop) ) )
+
+(define-ai 'hum-04 "*" "hum-04"
+  '(
+    ;;	Define the main AI script.
+    (ai:debug #t)
+    (ai:set  (ai:worker) 4)
+    (ai:set  (ai:tanker) 1)
+    (ai:set  (ai:transporter) 1)
+    (ai:wait (ai:worker))	;; start hangs if nothing available
+
+    (ai:need (ai:platform))
+
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 3 (ai:shooter) 4)
+    (ai:force 1 (ai:soldier) 2 (ai:shooter) 1)
+    (ai:sleep 27000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:set  (ai:transporter) 2)
+    (ai:sleep 22000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 22000)
+    (ai:force 0 (ai:destroyer) 0 (ai:soldier) 3 (ai:shooter) 3)
+    (ai:force 2 (ai:destroyer) 2)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:sleep 22000)
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 3 (ai:shooter) 3)
+    (ai:force 1 (ai:soldier) 2 (ai:shooter) 2)
+    (ai:force 2 (ai:destroyer) 0)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 18000)
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 3 (ai:shooter) 4)
+    (ai:force 1 (ai:soldier) 2 (ai:shooter) 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+
+    (ai:sleep 27000)
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 2 (ai:shooter) 3)
+    (ai:force 1 (ai:soldier) 3 (ai:shooter) 2)
+    (ai:wait-force 1)		;; wait until attack party is completed
+
+    (ai:sleep 24000)
+    (ai:force 0 (ai:destroyer) 0 (ai:soldier) 2 (ai:shooter) 3)
+    (ai:force 1 (ai:soldier) 3 (ai:shooter) 2)
+    (ai:force 2 (ai:destroyer) 2)
+    (ai:wait-force 2)		;; wait until attack party is completed
+
+    (ai:script ai:hum-04-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds only workers and tankers and oil platform.
+;;		Also if needed a farm.
+;;		Attacks with soldier and shooter and destroyer.
+;;
 (define ai:orc-04-attack-endloop
   '((writes nil "Looping !\n")
     (ai:sleep 10500)
@@ -1494,20 +1565,27 @@
 (define ai:hum-05-attack-endloop
   '((writes nil "Looping !\n")
     (ai:sleep 18000)
-    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
+
     (ai:sleep 12000)
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 1 (ai:shooter) 2)
     (ai:force 1 (ai:soldier) 2 (ai:shooter) 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
+
     (ai:sleep 24000)
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 0 (ai:shooter) 1)
     (ai:force 1 (ai:soldier) 3 (ai:shooter) 2)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
+
     (ai:sleep 14000)
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 0 (ai:shooter) 1)
+    (ai:force 2 (ai:destroyer) 1)
     (ai:wait-force 2)		;; wait until attack party is completed
     (ai:attack-with-force 2)
+
     (ai:script ai:hum-05-attack-endloop) ) )
 
 (define-ai 'hum-05 "*" "hum-05"
@@ -1521,7 +1599,7 @@
 
     (ai:need (ai:platform))
 
-    (ai:force 0 (ai:soldier) 2 (ai:shooter) 2 (ai:destroyer) 2)
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 2 (ai:shooter) 2)
     (ai:force 1 (ai:soldier) 1 (ai:shooter) 1)
     (ai:force 2 (ai:destroyer) 1)
     (ai:sleep 6000)
@@ -1544,6 +1622,7 @@
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 1 (ai:shooter) 2)
     (ai:force 1 (ai:soldier) 2 (ai:shooter) 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
@@ -1553,6 +1632,8 @@
     (ai:attack-with-force 1)
 
     (ai:sleep 12000)
+    (ai:force 0 (ai:destroyer) 2 (ai:soldier) 2 (ai:shooter) 2)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
