@@ -194,7 +194,7 @@
 	'upgrade-berserker-regeneration)
     (list 'research 'unit-altar-of-storms
 	'upgrade-ogre-mage 'upgrade-bloodlust 'upgrade-runes)
-    (list 'research 'unit-altar-of-storms
+    (list 'research 'unit-temple-of-the-damned
 	'upgrade-haste 'upgrade-raise-dead 'upgrade-whirlwind
 	'upgrade-unholy-armor 'upgrade-death-and-decay)
     (list 'research 'unit-orc-foundry
@@ -231,6 +231,72 @@
 
 ;;=============================================================================
 ;;
+;;	AI Script commands
+;;
+;;	(ai:debug flag) (ai:debug #f)
+;;
+;;		Enables printing of the AI commands.
+;;
+;;	(ai:need unit-type) (ai:need 'unit-farm)
+;;
+;;		Tells the ai that it should have this type of unit.
+;;		They are build in the ordered of the commands.
+;;		If lost automatic rebuild.
+;;
+;;	(ai:set unit-type count) (ai:set 'unit-farm 4)
+;;
+;;		Tells the ai that it should have count units of this type.
+;;		If there is already a request of this unit-type it number is
+;;		changed. They are build in the ordered of the commands.
+;;		If lost automatic rebuild.
+;;
+;;	(ai:wait unit-type) (ai:wait 'unit-peasant)
+;;
+;;		Waits until the *first* request of this unit-type is completed.
+;;
+;;	(ai:force force unit-type1 count1 ... unit-typeN countN)
+;;	(ai:force 0 'unit-footman 4 'unit-archer 4)
+;;
+;;		Defines a force for the AI. Ten forces are supported.
+;;		Force 0 defaults currently to the home defence and send
+;;		if a building is attacked.
+;;
+;;	(ai:wait-force force) (ai:wait-force 1)
+;;
+;;		Wait until a force is complete, the forces are build in
+;;		force number order. First 0, than 1, last 9.
+;;
+;;	(ai:attack-with-force force) (ai-attack-with-force 1)
+;;
+;;		Attack the opponent with a force.
+;;
+;;	(ai:sleep frames) (ai:sleep 1000)
+;;
+;;		Wait some frames, to let the opponent recover.
+;;
+;;	(ai:research upgrade) (ai:research 'upgrade-shield1)
+;;
+;;		Let the AI research an upgrade, upgrades are reseached in
+;;		command order. And automatic researched if lost.
+;;		Building orders have a higher priority.
+;;
+;;	(ai:upgrade-to unit-type) (ai:upgrade-to
+;;
+;;		Upgrade units to an improved type. You must give for each
+;;		unit you want to upgrade an upgrade command. The computer
+;;		automatic searches which unit it upgrades.
+;;
+;;	(ai:script list) (ai:script '(...))
+;;
+;;		Execute a new script, can be used for loops, subroutines.
+;;
+;;	(ai:restart) (ai:restart)
+;;
+;;		Restart with the main AI script.
+;;
+
+;;=============================================================================
+;;
 ;;	Define an AI engine.
 ;;
 ;;	(define-ai name race class script)
@@ -258,35 +324,27 @@
 ;;
 (define ai:human-land-attack-endloop
   '((writes nil "Looping !\n")
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-paladin 6
-	    'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-paladin 2
-	    'unit-ballista 1)
-    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:force 0 'unit-footman 1 'unit-ranger 2 'unit-paladin 4 'unit-ballista 1
+	'unit-mage 4)
+    (ai:force 1 'unit-footman 1 'unit-ranger 2 'unit-paladin 4 'unit-ballista 1
+	'unit-mage 2)
+    (ai:force 2 'unit-gryphon-rider 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
     (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
 
     (ai:sleep 500)
     (ai:script ai:human-land-attack-endloop) ) )
 
-(define ai:orc-land-attack-endloop
-  '((writes nil "Looping !\n")
-    (ai:force 0 'unit-grunt 1 'unit-berserker 2 'unit-ogre-mage 6
-	    'unit-catapult 1)
-    (ai:force 1 'unit-grunt 1 'unit-berserker 2 'unit-ogre-mage 2
-	    'unit-catapult 1)
-    (ai:wait-force 1)		;; wait until attack party is completed
-    (ai:attack-with-force 1)
-
-    (ai:sleep 500)
-    (ai:script ai:orc-land-attack-endloop) ) )
-
-(define-ai "my-ai" "human" "land-attack"
+(define-ai 'my-ai "human" "land-attack"
   '(
     ;;	Define the main AI script.
     (ai:debug #f)
     (ai:need (unit-type 'unit-town-hall))
     (ai:set  'unit-peasant 1)
-    (ai:wait 'unit-peasant)
+    (ai:wait 'unit-town-hall)
+    (ai:wait 'unit-peasant)	;; start hangs if nothing available
+
     (ai:set  'unit-peasant 4)
     (ai:need 'unit-elven-lumber-mill)
     (ai:need 'unit-human-barracks)
@@ -365,8 +423,10 @@
     (ai:research 'upgrade-healing)
     (ai:research 'upgrade-exorcism)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-paladin 5 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-paladin 3 'unit-ballista 1)
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 0 'unit-paladin 5
+	'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 0 'unit-paladin 3
+	'unit-ballista 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
@@ -386,18 +446,118 @@
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-;;; FIXME:
-;;; Spell A und Spell C
+    (ai:sleep	500)
+    (ai:research 'upgrade-slow)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:research 'upgrade-invisibility)
+
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-paladin 6 'unit-ballista 1
+	'unit-mage 5)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-paladin 2 'unit-ballista 1
+	'unit-mage 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:need 'unit-gryphon-aviary)
+
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-paladin 6 'unit-ballista 1
+	'unit-mage 5)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-paladin 2 'unit-ballista 1
+	'unit-mage 1)
+    (ai:force 2 'unit-gryphon-rider 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+
+    (ai:sleep	500)
+    (ai:research 'upgrade-ranger)
+    (ai:research 'upgrade-ranger-scouting)
+    (ai:research 'upgrade-flame-shield)
+    (ai:force 0 'unit-footman 1 'unit-archer 0 'unit-ranger 2 'unit-paladin 6
+	'unit-ballista 1 'unit-mage 5)
+    (ai:force 1 'unit-footman 1 'unit-archer 0 'unit-ranger 2 'unit-paladin 2
+	'unit-ballista 1 'unit-mage 1)
+    (ai:force 2 'unit-gryphon-rider 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+
+    (ai:sleep	500)
+    (ai:need 'unit-town-hall)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-gnomish-inventor)
+    (ai:research 'upgrade-longbow)
+
+    (ai:force 0 'unit-footman 1 'unit-archer 0 'unit-ranger 2 'unit-paladin 6
+	'unit-ballista 1 'unit-mage 5)
+    (ai:force 1 'unit-footman 1 'unit-archer 0 'unit-ranger 2 'unit-paladin 2
+	'unit-ballista 1 'unit-mage 1)
+    (ai:force 2 'unit-gryphon-rider 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+
+    (ai:sleep	500)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-cannon-tower)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:research 'upgrade-ballista1)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-cannon-tower)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:research 'upgrade-ballista2)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-cannon-tower)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:set  'unit-peasant 25)
+
+    ;; Everything researched...
 
     (ai:script ai:human-land-attack-endloop) ))
 
-(define-ai "my-ai" "orc" "land-attack"
+;;=============================================================================
+;;
+;;	Define an AI engine.
+;;
+;;	(define-ai name race class script)
+;;
+;;	name	name of the AI for selection.
+;;	class	class of the AI for map editor.
+;;	script	Main AI script.
+;;
+(define ai:orc-land-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:force 0 'unit-grunt 1 'unit-berserker 2 'unit-ogre-mage 4
+	'unit-catapult 1 'unit-death-knight 4)
+    (ai:force 1 'unit-grunt 1 'unit-berserker 2 'unit-ogre-mage 4
+	'unit-catapult 1 'unit-death-knight 2)
+    (ai:force 2 'unit-dragon 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+
+    (ai:sleep 500)
+    (ai:script ai:orc-land-attack-endloop) ) )
+
+(define-ai 'my-ai "orc" "land-attack"
   '(
     ;;	Define the main AI script.
     (ai:debug #f)
     (ai:need (unit-type 'unit-great-hall))
     (ai:set  'unit-peon 1)
-    (ai:wait 'unit-peon)
+    (ai:wait 'unit-great-hall)
+    (ai:wait 'unit-peon)	;; start hangs if nothing available
+
     (ai:set  'unit-peon 4)
     (ai:need 'unit-troll-lumber-mill)
     (ai:need 'unit-orc-barracks)
@@ -443,7 +603,138 @@
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-;; FIXME: more
+    (ai:sleep	500)
+    (ai:need 'unit-great-hall)
+    (ai:need 'unit-ogre-mound)
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre 6 'unit-catapult 1)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 2 'unit-ogre 2 'unit-catapult 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-orc-barracks)
+    (ai:upgrade-to 'unit-stronghold)
+    (ai:set  'unit-peon 19)
+    (ai:wait 'unit-stronghold)
+
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre 6 'unit-catapult 1)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 2 'unit-ogre 2 'unit-catapult 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-altar-of-storms)
+    (ai:research 'upgrade-ogre-mage)
+    (ai:research 'upgrade-bloodlust)
+    (ai:research 'upgrade-runes)
+
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre 0 'unit-ogre-mage 5
+	'unit-catapult 1)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 2 'unit-ogre 0 'unit-ogre-mage 3
+	'unit-catapult 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-temple-of-the-damned)
+    (ai:research 'upgrade-unholy-armor)
+    (ai:research 'upgrade-death-and-decay)
+
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre-mage 6
+	'unit-catapult 1 'unit-death-knight 2)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 2 'unit-ogre-mage 2
+	'unit-catapult 1 'unit-death-knight 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:research 'upgrade-haste)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:research 'upgrade-whirlwind)
+
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre-mage 6
+	'unit-catapult 1 'unit-death-knight 5)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 2 'unit-ogre-mage 2
+	'unit-catapult 1 'unit-death-knight 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:need 'unit-dragon-roost)
+
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre-mage 6
+	'unit-catapult 1 'unit-death-knight 5)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 2 'unit-ogre-mage 2
+	'unit-catapult 1 'unit-death-knight 1)
+    (ai:force 2 'unit-dragon 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+
+    (ai:sleep	500)
+    (ai:research 'upgrade-berserker)
+    (ai:research 'upgrade-berserker-scouting)
+    (ai:research 'upgrade-raise-dead)
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 0 'unit-ranger 2
+	'unit-ogre-mage 6 'unit-catapult 1 'unit-death-knight 5)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 0 'unit-ranger 2
+	'unit-ogre-mage 2 'unit-catapult 1 'unit-death-knight 1)
+    (ai:force 2 'unit-dragon 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+
+    (ai:sleep	500)
+    (ai:need 'unit-great-hall)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-goblin-alchemist)
+    (ai:research 'upgrade-light-axes)
+
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 0 'unit-ranger 2
+	'unit-ogre-mage 6 'unit-catapult 1 'unit-death-knight 5)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 0 'unit-ranger 2
+	'unit-ogre-mage 2 'unit-catapult 1 'unit-death-knight 1)
+    (ai:force 2 'unit-dragon 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+
+    (ai:sleep	500)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-cannon-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:research 'upgrade-catapult1)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-cannon-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:research 'upgrade-catapult2)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-cannon-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:set  'unit-peon 25)
+
+    ;; Everything researched...
 
     (ai:script ai:orc-land-attack-endloop) ))
 
