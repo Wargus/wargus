@@ -111,7 +111,7 @@
     ;;
     ;;	Reduce unit limits.
     ;;
-    (list 'unit-limit 'unit-pig-farm 'food)
+    (list 'unit-limit 'unit-farm 'food)
     ;;
     ;;	Equivalence of units for the resource manager.
     ;;
@@ -239,10 +239,51 @@
 ;;	class	class of the AI for map editor.
 ;;	script	Main AI script.
 ;;
+(define-ai "wc2-passive" "*" "passive"
+  '(
+    ;;	Define the main AI script.
+    (ai:sleep	10000)
+    (ai:restart)
+    ))
+
+;;=============================================================================
+;;
+;;	Define an AI engine.
+;;
+;;	(define-ai name race class script)
+;;
+;;	name	name of the AI for selection.
+;;	class	class of the AI for map editor.
+;;	script	Main AI script.
+;;
+(define ai:human-land-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-paladin 6
+	    'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-paladin 2
+	    'unit-ballista 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 500)
+    (ai:script ai:human-land-attack-endloop) ) )
+
+(define ai:orc-land-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:force 0 'unit-grunt 1 'unit-berserker 2 'unit-ogre-mage 6
+	    'unit-catapult 1)
+    (ai:force 1 'unit-grunt 1 'unit-berserker 2 'unit-ogre-mage 2
+	    'unit-catapult 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 500)
+    (ai:script ai:orc-land-attack-endloop) ) )
+
 (define-ai "my-ai" "human" "land-attack"
   '(
     ;;	Define the main AI script.
-    (ai:debug #t)
+    (ai:debug #f)
     (ai:need (unit-type 'unit-town-hall))
     (ai:set  'unit-peasant 1)
     (ai:wait 'unit-peasant)
@@ -315,36 +356,45 @@
     (ai:attack-with-force 1)
 
     (ai:sleep	500)
-;;; tower, tower, church
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-church)
+    (ai:research 'upgrade-paladin)
+    (ai:research 'upgrade-healing)
+    (ai:research 'upgrade-exorcism)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 6 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 2 'unit-ballista 1)
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-paladin 5 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-paladin 3 'unit-ballista 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 6 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 2 'unit-ballista 1)
+    (ai:sleep	500)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-mage-tower)
+    (ai:research 'upgrade-polymorph)
+    (ai:research 'upgrade-blizzard)
+
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-paladin 6 'unit-ballista 1
+	'unit-mage 2)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-paladin 2 'unit-ballista 1
+	'unit-mage 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 6 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 2 'unit-ballista 1)
-    (ai:wait-force 1)		;; wait until attack party is completed
-    (ai:attack-with-force 1)
+;;; FIXME:
+;;; Spell A und Spell C
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 6 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 2 'unit-ballista 1)
-    (ai:wait-force 1)		;; wait until attack party is completed
-    (ai:attack-with-force 1)
-
-    (writes nil "AI Ended!\a\n")
-    (ai:restart)
-    ))
+    (ai:script ai:human-land-attack-endloop) ))
 
 (define-ai "my-ai" "orc" "land-attack"
   '(
     ;;	Define the main AI script.
-    (ai:debug #t)
+    (ai:debug #f)
     (ai:need (unit-type 'unit-great-hall))
     (ai:set  'unit-peon 1)
     (ai:wait 'unit-peon)
@@ -395,14 +445,5 @@
 
 ;; FIXME: more
 
+    (ai:script ai:orc-land-attack-endloop) ))
 
-    (writes nil "AI Ended!\n")
-    (ai:restart)
-    ))
-
-(define-ai "wc2-passive" "*" "passive"
-  '(
-    ;;	Define the main AI script.
-    (ai:sleep	10000)
-    (ai:restart)
-    ))
