@@ -79,15 +79,15 @@ function OrcScreen(screen_width, screen_height)
       176, 0},
 
     "resources", {
-      "gold", { "file", "graphics/ui/gold,wood,oil,mana.png", "row", 0,
+      "gold", { "file", "graphics/ui/gold,wood,oil,mana.png", "frame", 0,
         "pos", { 176 + 0, 0}, "size", {14, 14}, "text-pos", { 176 + 0 + 18, 1}},
-      "wood", { "file", "graphics/ui/gold,wood,oil,mana.png", "row", 1,
+      "wood", { "file", "graphics/ui/gold,wood,oil,mana.png", "frame", 1,
         "pos", { 176 + 75, 0}, "size", {14, 14}, "text-pos", { 176 + 75 + 18, 1}},
-      "oil", { "file", "graphics/ui/gold,wood,oil,mana.png", "row", 2,
+      "oil", { "file", "graphics/ui/gold,wood,oil,mana.png", "frame", 2,
         "pos", { 176 + 150, 0}, "size", {14, 14}, "text-pos", { 176 + 150 + 18, 1}},
-      "food", { "file", "graphics/ui/food.png", "row", 0,
+      "food", { "file", "graphics/ui/food.png", "frame", 0,
         "pos", { screen_width - 16 - 138, 0}, "size", {14, 14}, "text-pos", { (screen_width - 16 - 138) + 18, 1}},
-      "score", { "file", "graphics/ui/score.png", "row", 0,
+      "score", { "file", "graphics/ui/score.png", "frame", 0,
         "pos", { screen_width - 16 - 68, 0}, "size", {14, 14}, "text-pos", { (screen_width - 16 - 68) + 18, 1}}},
 
     "info-panel", {
