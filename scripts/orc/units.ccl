@@ -85,7 +85,6 @@
   'can-target-land
   'land-unit
   'coward
-  'harvester
   'can-gather-resource '(
 	file-when-loaded "orc/units/peon_with_gold.png"
 	resource-id gold
@@ -293,6 +292,8 @@
   'demand 1
   'type-land
   'right-demolish
+  'demolish-range 2
+  'demolish-damage 400
   'can-attack
   'can-target-land
   'land-unit
@@ -461,7 +462,6 @@
   'type-naval
   'right-harvest
   'sea-unit 'coward
-  'harvester
   'can-gather-resource '(
         file-when-empty "human/units/oil_tanker_empty.png"
         file-when-loaded "human/units/oil_tanker_full.png"
