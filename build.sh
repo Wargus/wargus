@@ -157,7 +157,7 @@ find $DIR/text -type f -name "*.txt" -print -exec $COMPRESS {} \;
 #	Copy original puds into data directory
 #
 echo "Copy puds and compressing"
-[ -d $DATADIR/../puds ] && cp -r $DATADIR/../puds/ $DIR/puds
+[ -d $DATADIR/../puds ] && cp -r $DATADIR/../puds/ $DIR/
 [ -f $DATADIR/../alamo.pud ] && cp -r $DATADIR/../*.pud $DIR/puds
 chmod -R +w $DIR/puds
 find $DIR/puds -type f -name "*.pud" -print -exec $COMPRESS {} \;
