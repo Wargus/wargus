@@ -43,6 +43,10 @@
 ;;-----------------------------------------------------------------------------
 
 ;;	Edit the next sections to get your look and feel.
+;;	Note, some of those values are overridden by user preferences,
+;;	see ~/.stratagus/preferences1.ccl
+;;	and ~/.stratagus/gamename/preferences2.ccl
+
 
 ;;	Set the game contrast,brightness,saturation.
 (set-contrast! 100) (set-brightness! 0) (set-saturation! 100)
@@ -323,7 +327,15 @@
 (set-key-scroll-speed! 1)
 
 ;;	Set mouse scroll speed in frames (1=each frame,2 each second,...)
+;;	This is when the mouse cursor hits the border.
 (set-mouse-scroll-speed! 1)
+
+;;	While middle-mouse is pressed:
+;;	Pixels to move per scrolled mouse pixel, negative = reversed
+(set-mouse-scroll-speed-default! 4)
+
+;;	Same if Control is pressed
+(set-mouse-scroll-speed-control! 15)
 
 ;;	Change next, for the wanted double-click delay (in ms).
 (set-double-click-delay! 300)
@@ -334,10 +346,6 @@
 ;;	Edit this to enable/disable the display of the command keys in buttons.
 (set-show-command-key! #t)
 ;(set-show-command-key! #f)
-
-;;	Edit this reverse middle mouse button map move direction.
-(set-reverse-map-move! #f)
-;(set-reverse-map-move! #t)
 
 ;;	Uncomment next, to reveal the complete map.
 ;(reveal-map)
