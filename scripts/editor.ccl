@@ -1,0 +1,164 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	editor.ccl	-	Editor configuration and functions.
+;;
+;;	(c) Copyright 2002 by Lutz Sammer
+;;
+;;	FreeCraft is free software; you can redistribute it and/or modify
+;;	it under the terms of the GNU General Public License as published
+;;	by the Free Software Foundation; only version 2 of the License.
+;;
+;;	FreeCraft is distributed in the hope that it will be useful,
+;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;	GNU General Public License for more details.
+;;
+;;	$Id$
+
+
+;;
+;;	editor-unit-types a sorted list of unit-types for the editor.
+;;	FIXME: this is only a temporary hack, for better sorted units.
+;;
+(define-editor-unittypes
+   'unit-human-start-location
+
+   'unit-peasant
+   'unit-footman
+   'unit-archer
+   'unit-ranger
+   'unit-knight
+   'unit-paladin
+   'unit-mage
+   'unit-dwarves
+   'unit-ballista
+
+   'unit-human-oil-tanker
+   'unit-human-transport
+   'unit-elven-destroyer
+   'unit-battleship
+   'unit-gnomish-submarine
+
+   'unit-gnomish-flying-machine
+   'unit-gryphon-rider
+
+   'unit-human-wall
+   'unit-town-hall
+   'unit-keep
+   'unit-castle
+   'unit-farm
+   'unit-human-barracks
+   'unit-elven-lumber-mill
+   'unit-human-blacksmith
+   'unit-human-watch-tower
+   'unit-human-guard-tower
+   'unit-human-cannon-tower
+   'unit-gnomish-inventor
+   'unit-stables
+   'unit-church
+   'unit-temple-of-the-damned
+   'unit-dragon-roost
+
+   'unit-human-shipyard
+   'unit-human-foundry
+   'unit-human-refinery
+   'unit-human-oil-platform
+
+   'unit-alleria
+   'unit-kurdan-and-sky-ree
+   'unit-khadgar
+   'unit-turalyon
+   'unit-danath
+   'unit-lothar
+   'unit-uther-lightbringer
+
+   'unit-attack-peasant
+   'unit-peasant-with-gold
+   'unit-peasant-with-wood
+   'unit-human-oil-tanker-full
+
+;- - - - - - - - - - - - - - - - - - -
+
+   'unit-orc-start-location
+
+   'unit-peon
+   'unit-grunt
+   'unit-axethrower
+   'unit-berserker
+   'unit-ogre
+   'unit-ogre-mage
+   'unit-death-knight
+   'unit-goblin-sappers
+   'unit-catapult
+
+   'unit-orc-oil-tanker
+   'unit-orc-transport
+   'unit-troll-destroyer
+   'unit-ogre-juggernaught
+   'unit-giant-turtle
+
+   'unit-eye-of-vision
+   'unit-goblin-zeppelin
+   'unit-dragon
+
+   'unit-orc-wall
+   'unit-great-hall
+   'unit-stronghold
+   'unit-fortress
+   'unit-pig-farm
+   'unit-orc-barracks
+   'unit-troll-lumber-mill
+   'unit-orc-blacksmith
+   'unit-orc-watch-tower
+   'unit-orc-guard-tower
+   'unit-orc-cannon-tower
+   'unit-goblin-alchemist
+   'unit-ogre-mound
+   'unit-altar-of-storms
+   'unit-mage-tower
+   'unit-gryphon-aviary
+
+   'unit-orc-shipyard
+   'unit-orc-foundry
+   'unit-orc-refinery
+   'unit-orc-oil-platform
+
+   'unit-teron-gorefiend
+   'unit-dentarg
+   'unit-grom-hellscream
+   'unit-deathwing
+   'unit-korgath-bladefist
+   'unit-gul-dan
+   'unit-cho-gall
+   'unit-zuljin
+
+   'unit-attack-peon
+   'unit-peon-with-gold
+   'unit-peon-with-wood
+   'unit-orc-oil-tanker-full
+
+;- - - - - - - - - - - - - - - - - - -
+
+   'unit-gold-mine
+   'unit-oil-patch
+   'unit-dark-portal
+   'unit-circle-of-power
+   'unit-runestone
+
+   'unit-skeleton
+   'unit-daemon
+   'unit-critter
+
+   'unit-dead-body
+   'unit-destroyed-1x1-place
+   'unit-destroyed-2x2-place
+   'unit-destroyed-3x3-place
+   'unit-destroyed-4x4-place)
