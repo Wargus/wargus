@@ -61,7 +61,7 @@ if not [%1] == [] SET CDROM=%1
 if not [%2] == [] SET DIR=%2
 
 REM -----------------------------------------------
-REM	Convert '/' to '\' and remove trailing '/'
+REM	Convert '/' to '\' and remove trailing '\'
 REM ----------------------------------------------- 
 
 set OLDCD=%CDROM%
