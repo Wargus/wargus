@@ -38,17 +38,17 @@ DefineUpgrade("upgrade-throwing-axe1", "icon", "icon-throwing-axe2",
   "costs", {   200,   300,   300,     0,     0,     0,     0})
 DefineUpgrade("upgrade-throwing-axe2", "icon", "icon-throwing-axe3",
   "costs", {   250,   900,   500,     0,     0,     0,     0})
-DefineUpgrade("upgrade-orc-shield1", "icon", "icon-mythical-shield2",
+DefineUpgrade("upgrade-orc-shield1", "icon", "icon-orc-shield2",
   "costs", {   200,   300,   300,     0,     0,     0,     0})
-DefineUpgrade("upgrade-orc-shield2", "icon", "icon-mythical-shield3",
+DefineUpgrade("upgrade-orc-shield2", "icon", "icon-orc-shield3",
   "costs", {   250,   900,   500,     0,     0,     0,     0})
-DefineUpgrade("upgrade-orc-ship-cannon1", "icon", "icon-mythical-ship-cannon2",
+DefineUpgrade("upgrade-orc-ship-cannon1", "icon", "icon-orc-ship-cannon2",
   "costs", {   200,   700,   100,  1000,     0,     0,     0})
-DefineUpgrade("upgrade-orc-ship-cannon2", "icon", "icon-mythical-ship-cannon3",
+DefineUpgrade("upgrade-orc-ship-cannon2", "icon", "icon-orc-ship-cannon3",
   "costs", {   250,  2000,   250,  3000,     0,     0,     0})
-DefineUpgrade("upgrade-orc-ship-armor1", "icon", "icon-mythical-ship-armor2",
+DefineUpgrade("upgrade-orc-ship-armor1", "icon", "icon-orc-ship-armor2",
   "costs", {   200,   500,   500,     0,     0,     0,     0})
-DefineUpgrade("upgrade-orc-ship-armor2", "icon", "icon-mythical-ship-armor3",
+DefineUpgrade("upgrade-orc-ship-armor2", "icon", "icon-orc-ship-armor3",
   "costs", {   250,  1500,   900,     0,     0,     0,     0})
 DefineUpgrade("upgrade-catapult1", "icon", "icon-catapult1",
   "costs", {   250,  1500,     0,     0,     0,     0,     0})
@@ -126,23 +126,23 @@ DefineModifier("upgrade-orc-shield2",
 
 DefineModifier("upgrade-orc-ship-cannon1",
   {"piercing-damage", 5},
-  {"apply-to", "unit-mythical-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
-  {"apply-to", "unit-mythical-submarine"})
+  {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
+  {"apply-to", "unit-orc-submarine"})
 
 DefineModifier("upgrade-orc-ship-cannon2",
   {"piercing-damage", 5},
-  {"apply-to", "unit-mythical-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
-  {"apply-to", "unit-mythical-submarine"})
+  {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
+  {"apply-to", "unit-orc-submarine"})
 
 DefineModifier("upgrade-orc-ship-armor1",
   {"armor", 5},
-  {"apply-to", "unit-mythical-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
-  {"apply-to", "unit-mythical-transport"})
+  {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
+  {"apply-to", "unit-orc-transport"})
 
 DefineModifier("upgrade-orc-ship-armor2",
   {"armor", 5},
-  {"apply-to", "unit-mythical-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
-  {"apply-to", "unit-mythical-transport"})
+  {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
+  {"apply-to", "unit-orc-transport"})
 
 DefineModifier("upgrade-catapult1",
   {"piercing-damage", 15},
@@ -219,11 +219,11 @@ DefineAllow("unit-evil-knight",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-fad-man",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-beast-cry",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-orc-oil-tanker",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-transport",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-destroyer",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-transport",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-destroyer",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-ogre-juggernaught",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-fire-breeze",			"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-submarine",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-submarine",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-zeppelin",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-dragon",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-eye-of-vision",		"AAAAAAAAAAAAAAAA")
@@ -232,25 +232,25 @@ DefineAllow("unit-double-head",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-ice-bringer",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-sharp-axe",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-pig-farm",			"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-barracks",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-barracks",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-altar-of-storms",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-watch-tower",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-watch-tower",	"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-ogre-mound",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-alchemist",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-dragon-roost",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-shipyard",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-shipyard",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-great-hall",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-troll-lumber-mill",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-foundry",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-foundry",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-temple-of-the-damned",	"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-blacksmith",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-blacksmith",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-orc-refinery",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-oil-platform",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-oil-platform",	"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-stronghold",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-fortress",			"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-start-location",	"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-guard-tower",	"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-mythical-cannon-tower",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-start-location",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-guard-tower",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-cannon-tower",	"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-orc-wall",			"AAAAAAAAAAAAAAAA")
 
 --- upgrades
@@ -288,39 +288,39 @@ DefineAllow("upgrade-death-and-decay",		"AAAAAAAAAAAAAAAA")
 DefineDependency("unit-axethrower",
   {"unit-troll-lumber-mill"})
 DefineDependency("unit-catapult",
-  {"unit-mythical-blacksmith", "unit-troll-lumber-mill"})
+  {"unit-orc-blacksmith", "unit-troll-lumber-mill"})
 DefineDependency("unit-berserker",
   {"upgrade-berserker", "unit-troll-lumber-mill"})
 DefineDependency("unit-ogre",
-  {"unit-ogre-mound", "unit-mythical-blacksmith"})
+  {"unit-ogre-mound", "unit-orc-blacksmith"})
 DefineDependency("unit-ogre-mage",
-  {"upgrade-ogre-mage", "unit-ogre-mound", "unit-mythical-blacksmith"})
+  {"upgrade-ogre-mage", "unit-ogre-mound", "unit-orc-blacksmith"})
 
 --	- orc naval forces
-DefineDependency("unit-mythical-submarine",
+DefineDependency("unit-orc-submarine",
   {"unit-alchemist"})
-DefineDependency("unit-mythical-transport",
-  {"unit-mythical-foundry"})
+DefineDependency("unit-orc-transport",
+  {"unit-orc-foundry"})
 DefineDependency("unit-ogre-juggernaught",
-  {"unit-mythical-foundry"})
+  {"unit-orc-foundry"})
 
 --	- orc air forces
 DefineDependency("unit-zeppelin",
   {"unit-troll-lumber-mill"})
 
 --- orc buildings
-DefineDependency("unit-mythical-guard-tower",
+DefineDependency("unit-orc-guard-tower",
   {"unit-troll-lumber-mill"})
-DefineDependency("unit-mythical-cannon-tower",
-  {"unit-mythical-blacksmith"})
-DefineDependency("unit-mythical-shipyard",
+DefineDependency("unit-orc-cannon-tower",
+  {"unit-orc-blacksmith"})
+DefineDependency("unit-orc-shipyard",
   {"unit-troll-lumber-mill"})
-DefineDependency("unit-mythical-foundry",
-  {"unit-mythical-shipyard"})
+DefineDependency("unit-orc-foundry",
+  {"unit-orc-shipyard"})
 DefineDependency("unit-orc-refinery",
-  {"unit-mythical-shipyard"})
+  {"unit-orc-shipyard"})
 DefineDependency("unit-stronghold",
-  {"unit-mythical-barracks"})
+  {"unit-orc-barracks"})
 DefineDependency("unit-alchemist",
   {"unit-stronghold"},
   "or", {"unit-fortress"})
@@ -328,7 +328,7 @@ DefineDependency("unit-ogre-mound",
   {"unit-stronghold"},
   "or", {"unit-fortress"})
 DefineDependency("unit-fortress",
-  {"unit-ogre-mound", "unit-mythical-blacksmith", "unit-troll-lumber-mill"})
+  {"unit-ogre-mound", "unit-orc-blacksmith", "unit-troll-lumber-mill"})
 DefineDependency("unit-altar-of-storms",
   {"unit-fortress"})
 DefineDependency("unit-temple-of-the-damned",

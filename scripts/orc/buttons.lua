@@ -41,7 +41,7 @@ DefineButton( { Pos = 1, Level = 0, Icon = "icon-move-peon",
     "unit-zeppelin", "unit-death-knight", "unit-fire-breeze",
     "orc-group", "unit-daemon"} } )
 
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-shield1",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-shield1",
   Action = "stop",
   Key = "s", Hint = "~!STOP",
   ForUnit = {"unit-grunt", "unit-ogre", "unit-axethrower", "unit-ogre-mage",
@@ -52,7 +52,7 @@ DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-shield1",
     "unit-zeppelin", "unit-death-knight", "unit-fire-breeze",
     "orc-group", "unit-daemon"} } )
 
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-shield2",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-shield2",
   Action = "stop",
   Allowed = "check-upgrade", AllowArg = {"upgrade-orc-shield1"},
   Key = "s", Hint = "~!STOP",
@@ -60,7 +60,7 @@ DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-shield2",
     "unit-goblin-sappers", "unit-berserker", "unit-catapult", "unit-quick-blade",
     "unit-beast-cry", "unit-fad-man", "unit-double-head"} } )
 
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-shield3",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-shield3",
   Action = "stop",
   Allowed = "check-upgrade", AllowArg = {"upgrade-orc-shield2"},
   Key = "s", Hint = "~!STOP",
@@ -124,7 +124,7 @@ DefineButton( { Pos = 3, Level = 0, Icon = "icon-catapult2",
   ForUnit = {"unit-catapult"} } )
 
 if (extensions) then
-DefineButton( { Pos = 4, Level = 0, Icon = "icon-mythical-patrol-land",
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-orc-patrol-land",
   Action = "patrol",
   Key = "p", Hint = "~!PATROL",
   ForUnit = {"unit-grunt", "unit-ogre", "unit-axethrower", "unit-ogre-mage",
@@ -133,7 +133,7 @@ DefineButton( { Pos = 4, Level = 0, Icon = "icon-mythical-patrol-land",
     "unit-skeleton", "unit-dragon", "unit-fire-breeze", "orc-group", "unit-daemon",
     "unit-zeppelin", "unit-eye-of-vision"} } )
 else
-DefineButton( { Pos = 4, Level = 0, Icon = "icon-mythical-patrol-land",
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-orc-patrol-land",
   Action = "patrol",
   Key = "p", Hint = "~!PATROL",
   ForUnit = {"unit-grunt", "unit-ogre", "unit-axethrower", "unit-ogre-mage",
@@ -142,21 +142,21 @@ DefineButton( { Pos = 4, Level = 0, Icon = "icon-mythical-patrol-land",
     "unit-skeleton", "unit-dragon", "unit-fire-breeze", "orc-group", "unit-daemon"} } )
 end
 
-DefineButton( { Pos = 5, Level = 0, Icon = "icon-mythical-stand-ground",
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-orc-stand-ground",
   Action = "stand-ground",
   Key = "t", Hint = "S~!TAND GROUND",
   ForUnit = {"unit-grunt", "unit-ogre", "unit-axethrower", "unit-ogre-mage",
     "unit-goblin-sappers", "unit-berserker", "unit-catapult", "unit-fad-man",
     "unit-double-head", "unit-sharp-axe", "unit-beast-cry", "unit-quick-blade",
-    "unit-skeleton", "unit-dragon", "unit-fire-breeze", "unit-mythical-submarine",
-    "unit-ogre-juggernaught", "unit-mythical-destroyer", "orc-group", "unit-daemon"} } )
+    "unit-skeleton", "unit-dragon", "unit-fire-breeze", "unit-orc-submarine",
+    "unit-ogre-juggernaught", "unit-orc-destroyer", "orc-group", "unit-daemon"} } )
 
-DefineButton( { Pos = 6, Level = 0, Icon = "icon-mythical-attack-ground",
+DefineButton( { Pos = 6, Level = 0, Icon = "icon-orc-attack-ground",
   Action = "attack-ground",
   Key = "g", Hint = "ATTACK ~!GROUND",
   ForUnit = {"unit-catapult", "unit-ogre-juggernaught", "orc-group"} } )
 
-DefineButton( { Pos = 9, Level = 0, Icon = "icon-mythical-demolish",
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-orc-demolish",
   Action = "cast-spell", Value = "spell-suicide-bomber",
   Allowed = "check-true",
   Key = "d", Hint = "~!DEMOLISH",
@@ -275,13 +275,6 @@ DefineButton( { Pos = 8, Level = 0, Icon = "icon-build-advanced",
   Key = "v", Hint = "BUILD AD~!VANCED STRUCTURE",
   ForUnit = {"unit-peon"} } )
 
-DefineButton( { Pos = 9, Level = 0, Icon = "icon-build-advanced",
-  Action = "button", Value = 3,
-  Allowed = "check-units-and", AllowArg = {"unit-fortress", "unit-temple-of-the-damned",
-    "unit-altar-of-storms"},
-  Key = "e", Hint = "BUILD SP~!ECIAL STRUCTURE",
-  ForUnit = {"unit-peon"} } )
-
 -- simple buildings orc -------------------------------------------------------
 
 DefineButton( { Pos = 1, Level = 1, Icon = "icon-pig-farm",
@@ -289,8 +282,8 @@ DefineButton( { Pos = 1, Level = 1, Icon = "icon-pig-farm",
   Key = "f", Hint = "BUILD PIG ~!FARM",
   ForUnit = {"unit-peon"} } )
 
-DefineButton( { Pos = 2, Level = 1, Icon = "icon-mythical-barracks",
-  Action = "build", Value = "unit-mythical-barracks",
+DefineButton( { Pos = 2, Level = 1, Icon = "icon-orc-barracks",
+  Action = "build", Value = "unit-orc-barracks",
   Key = "b", Hint = "BUILD ~!BARRACKS",
   ForUnit = {"unit-peon"} } )
 
@@ -304,17 +297,17 @@ DefineButton( { Pos = 4, Level = 1, Icon = "icon-troll-lumber-mill",
   Key = "l", Hint = "BUILD TROLL ~!LUMBER MILL",
   ForUnit = {"unit-peon"} } )
 
-DefineButton( { Pos = 5, Level = 1, Icon = "icon-mythical-blacksmith",
-  Action = "build", Value = "unit-mythical-blacksmith",
+DefineButton( { Pos = 5, Level = 1, Icon = "icon-orc-blacksmith",
+  Action = "build", Value = "unit-orc-blacksmith",
   Key = "s", Hint = "BUILD BLACK~!SMITH",
   ForUnit = {"unit-peon"} } )
 
-DefineButton( { Pos = 7, Level = 1, Icon = "icon-mythical-watch-tower",
-  Action = "build", Value = "unit-mythical-watch-tower",
+DefineButton( { Pos = 7, Level = 1, Icon = "icon-orc-watch-tower",
+  Action = "build", Value = "unit-orc-watch-tower",
   Key = "t", Hint = "BUILD ~!TOWER",
   ForUnit = {"unit-peon"} } )
 
-DefineButton( { Pos = 8, Level = 1, Icon = "icon-mythical-wall",
+DefineButton( { Pos = 8, Level = 1, Icon = "icon-orc-wall",
   Action = "build", Value = "unit-orc-wall",
   Allowed = "check-network",
   Key = "w", Hint = "BUILD ~!WALL",
@@ -327,17 +320,17 @@ DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
 
 -- orc advanced buildings -----------------------------------------------------
 
-DefineButton( { Pos = 1, Level = 2, Icon = "icon-mythical-shipyard",
-  Action = "build", Value = "unit-mythical-shipyard",
+DefineButton( { Pos = 1, Level = 2, Icon = "icon-orc-shipyard",
+  Action = "build", Value = "unit-orc-shipyard",
   Key = "s", Hint = "BUILD ~!SHIPYARD",
   ForUnit = {"unit-peon"} } )
 
-DefineButton( { Pos = 2, Level = 2, Icon = "icon-mythical-foundry",
-  Action = "build", Value = "unit-mythical-foundry",
+DefineButton( { Pos = 2, Level = 2, Icon = "icon-orc-foundry",
+  Action = "build", Value = "unit-orc-foundry",
   Key = "f", Hint = "BUILD ~!FOUNDRY",
   ForUnit = {"unit-peon"} } )
 
-DefineButton( { Pos = 3, Level = 2, Icon = "icon-mythical-refinery",
+DefineButton( { Pos = 3, Level = 2, Icon = "icon-orc-refinery",
   Action = "build", Value = "unit-orc-refinery",
   Key = "r", Hint = "BUILD ~!REFINERY",
   ForUnit = {"unit-peon"} } )
@@ -368,25 +361,6 @@ DefineButton( { Pos = 8, Level = 2, Icon = "icon-dragon-roost",
   ForUnit = {"unit-peon"} } )
 
 DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
-  Action = "button", Value = 0,
-  Key = "\27", Hint = "~<ESC~> CANCEL",
-  ForUnit = {"unit-peon"} } )
-
--- orc special buildings ------------------------------------------------------
-
-DefineButton( { Pos = 1, Level = 3, Icon = "icon-dark-portal",
-  Action = "build", Value = "unit-dark-portal",
-  Allowed = "check-no-network",
-  Key = "p", Hint = "BUILD DARK ~!PORTAL",
-  ForUnit = {"unit-peon"} } )
-
-DefineButton( { Pos = 2, Level = 3, Icon = "icon-runestone",
-  Action = "build", Value = "unit-runestone",
-  Allowed = "check-no-network",
-  Key = "r", Hint = "BUILD ~!RUNESTONE",
-  ForUnit = {"unit-peon"} } )
-
-DefineButton( { Pos = 9, Level = 3, Icon = "icon-cancel",
   Action = "button", Value = 0,
   Key = "\27", Hint = "~<ESC~> CANCEL",
   ForUnit = {"unit-peon"} } )
@@ -431,21 +405,21 @@ DefineButton( { Pos = 7, Level = 0, Icon = "icon-move-peon",
   Action = "move",
   Key = "m", Hint = "SET ~!MOVE",
   ForUnit = {"unit-great-hall", "unit-stronghold", "unit-fortress",
-    "unit-mythical-barracks", "unit-temple-of-the-damned", "unit-dragon-roost",
+    "unit-orc-barracks", "unit-temple-of-the-damned", "unit-dragon-roost",
     "unit-alchemist"} } )
 
-DefineButton( { Pos = 8, Level = 0, Icon = "icon-mythical-shield1",
+DefineButton( { Pos = 8, Level = 0, Icon = "icon-orc-shield1",
   Action = "stop",
   Key = "z", Hint = "SET ~!ZTOP",
   ForUnit = {"unit-great-hall", "unit-stronghold", "unit-fortress",
-    "unit-mythical-barracks", "unit-temple-of-the-damned", "unit-dragon-roost",
+    "unit-orc-barracks", "unit-temple-of-the-damned", "unit-dragon-roost",
     "unit-alchemist"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-battle-axe1",
   Action = "attack",
   Key = "e", Hint = "S~!ET ATTACK",
   ForUnit = {"unit-great-hall", "unit-stronghold", "unit-fortress",
-    "unit-mythical-barracks", "unit-temple-of-the-damned", "unit-dragon-roost",
+    "unit-orc-barracks", "unit-temple-of-the-damned", "unit-dragon-roost",
     "unit-alchemist"} } )
 end
 end
@@ -453,32 +427,32 @@ end
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-grunt",
   Action = "train-unit", Value = "unit-grunt",
   Key = "g", Hint = "TRAIN ~!GRUNT",
-  ForUnit = {"unit-mythical-barracks"} } )
+  ForUnit = {"unit-orc-barracks"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-axethrower",
   Action = "train-unit", Value = "unit-axethrower",
   Key = "a", Hint = "TRAIN ~!AXETHROWER",
-  ForUnit = {"unit-mythical-barracks"} } )
+  ForUnit = {"unit-orc-barracks"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-berserker",
   Action = "train-unit", Value = "unit-berserker",
   Key = "b", Hint = "TRAIN ~!BERSERKER",
-  ForUnit = {"unit-mythical-barracks"} } )
+  ForUnit = {"unit-orc-barracks"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-catapult",
   Action = "train-unit", Value = "unit-catapult",
   Key = "c", Hint = "BUILD ~!CATAPULT",
-  ForUnit = {"unit-mythical-barracks"} } )
+  ForUnit = {"unit-orc-barracks"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-ogre",
   Action = "train-unit", Value = "unit-ogre",
   Key = "o", Hint = "TRAIN TWO-HEADED ~!OGRE",
-  ForUnit = {"unit-mythical-barracks"} } )
+  ForUnit = {"unit-orc-barracks"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-ogre-mage",
   Action = "train-unit", Value = "unit-ogre-mage",
   Key = "o", Hint = "TRAIN ~!OGRE MAGE",
-  ForUnit = {"unit-mythical-barracks"} } )
+  ForUnit = {"unit-orc-barracks"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-zeppelin",
   Action = "train-unit", Value = "unit-zeppelin",
@@ -500,122 +474,122 @@ DefineButton( { Pos = 1, Level = 0, Icon = "icon-dragon",
   Key = "d", Hint = "BUILD ~!DRAGON",
   ForUnit = {"unit-dragon-roost"} } )
 
-DefineButton( { Pos = 1, Level = 0, Icon = "icon-mythical-oil-tanker",
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-orc-oil-tanker",
   Action = "train-unit", Value = "unit-orc-oil-tanker",
   Key = "o", Hint = "BUILD ~!OIL TANKER",
-  ForUnit = {"unit-mythical-shipyard"} } )
+  ForUnit = {"unit-orc-shipyard"} } )
 
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-destroyer",
-  Action = "train-unit", Value = "unit-mythical-destroyer",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-destroyer",
+  Action = "train-unit", Value = "unit-orc-destroyer",
   Key = "d", Hint = "BUILD ~!DESTROYER",
-  ForUnit = {"unit-mythical-shipyard"} } )
+  ForUnit = {"unit-orc-shipyard"} } )
 
-DefineButton( { Pos = 3, Level = 0, Icon = "icon-mythical-transport",
-  Action = "train-unit", Value = "unit-mythical-transport",
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-orc-transport",
+  Action = "train-unit", Value = "unit-orc-transport",
   Key = "t", Hint = "BUILD ~!TRANSPORT",
-  ForUnit = {"unit-mythical-shipyard"} } )
+  ForUnit = {"unit-orc-shipyard"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-giant-turtle",
-  Action = "train-unit", Value = "unit-mythical-submarine",
+  Action = "train-unit", Value = "unit-orc-submarine",
   Key = "g", Hint = "BUILD ~!GIANT TURTLE",
-  ForUnit = {"unit-mythical-shipyard"} } )
+  ForUnit = {"unit-orc-shipyard"} } )
 
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-ogre-juggernaught",
   Action = "train-unit", Value = "unit-ogre-juggernaught",
   Key = "j", Hint = "BUILD ~!JUGGERNAUHGT",
-  ForUnit = {"unit-mythical-shipyard"} } )
+  ForUnit = {"unit-orc-shipyard"} } )
 
 if (extensions) then
 -----------------------------------------------------
-DefineButton( { Pos = 6, Level = 0, Icon = "icon-mythical-ship-haul-oil",
+DefineButton( { Pos = 6, Level = 0, Icon = "icon-orc-ship-haul-oil",
   Action = "harvest",
   Key = "h", Hint = "SET ~!HAUL OIL",
-  ForUnit = {"unit-mythical-shipyard"} } )
+  ForUnit = {"unit-orc-shipyard"} } )
 -----------------------------------------------------
 end
 
-DefineButton( { Pos = 1, Level = 0, Icon = "icon-mythical-guard-tower",
-  Action = "upgrade-to", Value = "unit-mythical-guard-tower",
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-orc-guard-tower",
+  Action = "upgrade-to", Value = "unit-orc-guard-tower",
   Key = "g", Hint = "UPGRADE TO ~!GUARD TOWER",
-  ForUnit = {"unit-mythical-watch-tower"} } )
+  ForUnit = {"unit-orc-watch-tower"} } )
 
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-cannon-tower",
-  Action = "upgrade-to", Value = "unit-mythical-cannon-tower",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-cannon-tower",
+  Action = "upgrade-to", Value = "unit-orc-cannon-tower",
   Key = "c", Hint = "UPGRADE TO ~!CANNON TOWER",
-  ForUnit = {"unit-mythical-watch-tower"} } )
+  ForUnit = {"unit-orc-watch-tower"} } )
 
 -- ships ----------------------------------------------------------------------
 
-DefineButton( { Pos = 1, Level = 0, Icon = "icon-mythical-ship-move",
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-orc-ship-move",
   Action = "move",
   Key = "m", Hint = "~!MOVE",
-  ForUnit = {"unit-orc-oil-tanker", "unit-mythical-submarine",
-    "unit-ogre-juggernaught", "unit-mythical-destroyer", "unit-mythical-transport"} } )
+  ForUnit = {"unit-orc-oil-tanker", "unit-orc-submarine",
+    "unit-ogre-juggernaught", "unit-orc-destroyer", "unit-orc-transport"} } )
 
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-ship-armor1",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-ship-armor1",
   Action = "stop",
   Key = "s", Hint = "~!STOP",
-  ForUnit = {"unit-orc-oil-tanker", "unit-mythical-submarine",
-    "unit-ogre-juggernaught", "unit-mythical-destroyer", "unit-mythical-transport"} } )
+  ForUnit = {"unit-orc-oil-tanker", "unit-orc-submarine",
+    "unit-ogre-juggernaught", "unit-orc-destroyer", "unit-orc-transport"} } )
 
-DefineButton( { Pos = 3, Level = 0, Icon = "icon-mythical-unload",
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-orc-unload",
   Action = "unload",
   Key = "u", Hint = "~!UNLOAD",
-  ForUnit = {"unit-mythical-transport"} } )
+  ForUnit = {"unit-orc-transport"} } )
 
-DefineButton( { Pos = 4, Level = 0, Icon = "icon-mythical-oil-platform",
-  Action = "build", Value = "unit-mythical-oil-platform",
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-orc-oil-platform",
+  Action = "build", Value = "unit-orc-oil-platform",
   Key = "b", Hint = "~!BUILD OIL PLATFORM",
   ForUnit = {"unit-orc-oil-tanker"} } )
 
-DefineButton( { Pos = 5, Level = 0, Icon = "icon-mythical-ship-haul-oil",
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-orc-ship-haul-oil",
   Action = "harvest",
   Key = "h", Hint = "~!HAUL OIL",
   ForUnit = {"unit-orc-oil-tanker"} } )
 
-DefineButton( { Pos = 6, Level = 0, Icon = "icon-mythical-ship-return-oil",
+DefineButton( { Pos = 6, Level = 0, Icon = "icon-orc-ship-return-oil",
   Action = "return-goods",
   Key = "g", Hint = "RETURN WITH ~!GOODS",
   ForUnit = {"unit-orc-oil-tanker"} } )
 
-DefineButton( { Pos = 3, Level = 0, Icon = "icon-mythical-ship-cannon1",
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-orc-ship-cannon1",
   Action = "attack",
   Key = "a", Hint = "~!ATTACK",
-  ForUnit = {"unit-mythical-submarine", "unit-ogre-juggernaught", "unit-mythical-destroyer"} } )
+  ForUnit = {"unit-orc-submarine", "unit-ogre-juggernaught", "unit-orc-destroyer"} } )
 
-DefineButton( { Pos = 3, Level = 0, Icon = "icon-mythical-ship-cannon2",
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-orc-ship-cannon2",
   Action = "attack",
   Allowed = "check-upgrade", AllowArg = {"upgrade-orc-ship-cannon1"},
   Key = "a", Hint = "~!ATTACK",
-  ForUnit = {"unit-mythical-submarine", "unit-ogre-juggernaught", "unit-mythical-destroyer"} } )
+  ForUnit = {"unit-orc-submarine", "unit-ogre-juggernaught", "unit-orc-destroyer"} } )
 
-DefineButton( { Pos = 3, Level = 0, Icon = "icon-mythical-ship-cannon3",
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-orc-ship-cannon3",
   Action = "attack",
   Allowed = "check-upgrade", AllowArg = {"upgrade-orc-ship-cannon2"},
   Key = "a", Hint = "~!ATTACK",
-  ForUnit = {"unit-mythical-submarine", "unit-ogre-juggernaught", "unit-mythical-destroyer"} } )
+  ForUnit = {"unit-orc-submarine", "unit-ogre-juggernaught", "unit-orc-destroyer"} } )
 
-DefineButton( { Pos = 4, Level = 0, Icon = "icon-mythical-patrol-naval",
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-orc-patrol-naval",
   Action = "patrol",
   Key = "p", Hint = "~!PATROL",
-  ForUnit = {"unit-mythical-submarine", "unit-ogre-juggernaught", "unit-mythical-destroyer"} } )
+  ForUnit = {"unit-orc-submarine", "unit-ogre-juggernaught", "unit-orc-destroyer"} } )
 
 if (extensions) then
 do
-DefineButton( { Pos = 7, Level = 0, Icon = "icon-mythical-ship-move",
+DefineButton( { Pos = 7, Level = 0, Icon = "icon-orc-ship-move",
   Action = "move",
   Key = "m", Hint = "SET ~!MOVE",
-  ForUnit = {"unit-mythical-shipyard"} } )
+  ForUnit = {"unit-orc-shipyard"} } )
 
-DefineButton( { Pos = 8, Level = 0, Icon = "icon-mythical-ship-armor1",
+DefineButton( { Pos = 8, Level = 0, Icon = "icon-orc-ship-armor1",
   Action = "stop",
   Key = "z", Hint = "SET ~!ZTOP",
-  ForUnit = {"unit-mythical-shipyard"} } )
+  ForUnit = {"unit-orc-shipyard"} } )
 
-DefineButton( { Pos = 9, Level = 0, Icon = "icon-mythical-ship-cannon1",
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-orc-ship-cannon1",
   Action = "attack",
   Key = "e", Hint = "S~!ET ATTACK",
-  ForUnit = {"unit-mythical-shipyard"} } )
+  ForUnit = {"unit-orc-shipyard"} } )
 end
 end
 
@@ -625,37 +599,37 @@ DefineButton( { Pos = 1, Level = 0, Icon = "icon-battle-axe2",
   Action = "research", Value = "upgrade-battle-axe1",
   Allowed = "check-single-research",
   Key = "w", Hint = "UPGRADE ~!WEAPONS (Damage +2)",
-  ForUnit = {"unit-mythical-blacksmith"} } )
+  ForUnit = {"unit-orc-blacksmith"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-battle-axe3",
   Action = "research", Value = "upgrade-battle-axe2",
   Allowed = "check-single-research",
   Key = "w", Hint = "UPGRADE ~!WEAPONS (Damage +2)",
-  ForUnit = {"unit-mythical-blacksmith"} } )
+  ForUnit = {"unit-orc-blacksmith"} } )
 
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-shield2",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-shield2",
   Action = "research", Value = "upgrade-orc-shield1",
   Allowed = "check-single-research",
   Key = "s", Hint = "UPGRADE ~!SHIELDS (Armor +2)",
-  ForUnit = {"unit-mythical-blacksmith"} } )
+  ForUnit = {"unit-orc-blacksmith"} } )
 
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-shield3",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-shield3",
   Action = "research", Value = "upgrade-orc-shield2",
   Allowed = "check-single-research",
   Key = "s", Hint = "UPGRADE ~!SHIELDS (Armor +2)",
-  ForUnit = {"unit-mythical-blacksmith"} } )
+  ForUnit = {"unit-orc-blacksmith"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-catapult1",
   Action = "research", Value = "upgrade-catapult1",
   Allowed = "check-single-research",
   Key = "c", Hint = "UPGRADE ~!CATAPULT (Damage +15)",
-  ForUnit = {"unit-mythical-blacksmith"} } )
+  ForUnit = {"unit-orc-blacksmith"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-catapult2",
   Action = "research", Value = "upgrade-catapult2",
   Allowed = "check-single-research",
   Key = "c", Hint = "UPGRADE ~!CATAPULT (Damage +15)",
-  ForUnit = {"unit-mythical-blacksmith"} } )
+  ForUnit = {"unit-orc-blacksmith"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-throwing-axe2",
   Action = "research", Value = "upgrade-throwing-axe1",
@@ -741,26 +715,26 @@ DefineButton( { Pos = 6, Level = 0, Icon = "icon-death-and-decay",
   Key = "d", Hint = "RESEARCH ~!DEATH AND DECAY",
   ForUnit = {"unit-temple-of-the-damned"} } )
 
-DefineButton( { Pos = 1, Level = 0, Icon = "icon-mythical-ship-cannon2",
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-orc-ship-cannon2",
   Action = "research", Value = "upgrade-orc-ship-cannon1",
   Allowed = "check-single-research",
   Key = "c", Hint = "UPGRADE ~!CANNONS (Damage +5)",
-  ForUnit = {"unit-mythical-foundry"} } )
+  ForUnit = {"unit-orc-foundry"} } )
 
-DefineButton( { Pos = 1, Level = 0, Icon = "icon-mythical-ship-cannon3",
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-orc-ship-cannon3",
   Action = "research", Value = "upgrade-orc-ship-cannon2",
   Allowed = "check-single-research",
   Key = "c", Hint = "UPGRADE ~!CANNONS (Damage +5)",
-  ForUnit = {"unit-mythical-foundry"} } )
+  ForUnit = {"unit-orc-foundry"} } )
 
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-ship-armor2",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-ship-armor2",
   Action = "research", Value = "upgrade-orc-ship-armor1",
   Allowed = "check-single-research",
   Key = "a", Hint = "UPGRADE SHIP ~!ARMOR (Armor +5)",
-  ForUnit = {"unit-mythical-foundry"} } )
+  ForUnit = {"unit-orc-foundry"} } )
 
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-mythical-ship-armor3",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-ship-armor3",
   Action = "research", Value = "upgrade-orc-ship-armor2",
   Allowed = "check-single-research",
   Key = "a", Hint = "UPGRADE SHIP ~!ARMOR (Armor +5)",
-  ForUnit = {"unit-mythical-foundry"} } )
+  ForUnit = {"unit-orc-foundry"} } )

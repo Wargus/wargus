@@ -30,7 +30,7 @@
 
 
 --	Set which icons to display
-SetEditorSelectIcon("icon-alliance-patrol-land")
+SetEditorSelectIcon("icon-human-patrol-land")
 SetEditorUnitsIcon("icon-footman")
 
 
@@ -39,7 +39,7 @@ SetEditorUnitsIcon("icon-footman")
 --	FIXME: this is only a temporary hack, for better sorted units.
 --
 DefineEditorUnitTypes(
-   "unit-alliance-start-location",
+   "unit-human-start-location",
 
    "unit-peasant",
    "unit-footman",
@@ -52,10 +52,10 @@ DefineEditorUnitTypes(
    "unit-ballista",
 
    "unit-human-oil-tanker",
-   "unit-alliance-transport",
-   "unit-alliance-destroyer",
+   "unit-human-transport",
+   "unit-human-destroyer",
    "unit-battleship",
-   "unit-alliance-submarine",
+   "unit-human-submarine",
 
    "unit-balloon",
    "unit-gryphon-rider",
@@ -64,22 +64,22 @@ DefineEditorUnitTypes(
    "unit-keep",
    "unit-castle",
    "unit-farm",
-   "unit-alliance-barracks",
+   "unit-human-barracks",
    "unit-elven-lumber-mill",
-   "unit-alliance-blacksmith",
-   "unit-alliance-watch-tower",
-   "unit-alliance-guard-tower",
-   "unit-alliance-cannon-tower",
+   "unit-human-blacksmith",
+   "unit-human-watch-tower",
+   "unit-human-guard-tower",
+   "unit-human-cannon-tower",
    "unit-inventor",
    "unit-stables",
    "unit-church",
    "unit-mage-tower",
    "unit-gryphon-aviary",
 
-   "unit-alliance-shipyard",
-   "unit-alliance-foundry",
+   "unit-human-shipyard",
+   "unit-human-foundry",
    "unit-human-refinery",
-   "unit-alliance-oil-platform",
+   "unit-human-oil-platform",
 
    "unit-female-hero",
    "unit-flying-angle",
@@ -91,7 +91,7 @@ DefineEditorUnitTypes(
 
 --- - - - - - - - - - - - - - - - - - -
 
-   "unit-mythical-start-location",
+   "unit-orc-start-location",
 
    "unit-peon",
    "unit-grunt",
@@ -104,10 +104,10 @@ DefineEditorUnitTypes(
    "unit-catapult",
 
    "unit-orc-oil-tanker",
-   "unit-mythical-transport",
-   "unit-mythical-destroyer",
+   "unit-orc-transport",
+   "unit-orc-destroyer",
    "unit-ogre-juggernaught",
-   "unit-mythical-submarine",
+   "unit-orc-submarine",
 
    "unit-eye-of-vision",
    "unit-zeppelin",
@@ -117,22 +117,22 @@ DefineEditorUnitTypes(
    "unit-stronghold",
    "unit-fortress",
    "unit-pig-farm",
-   "unit-mythical-barracks",
+   "unit-orc-barracks",
    "unit-troll-lumber-mill",
-   "unit-mythical-blacksmith",
-   "unit-mythical-watch-tower",
-   "unit-mythical-guard-tower",
-   "unit-mythical-cannon-tower",
+   "unit-orc-blacksmith",
+   "unit-orc-watch-tower",
+   "unit-orc-guard-tower",
+   "unit-orc-cannon-tower",
    "unit-alchemist",
    "unit-ogre-mound",
    "unit-altar-of-storms",
    "unit-temple-of-the-damned",
    "unit-dragon-roost",
 
-   "unit-mythical-shipyard",
-   "unit-mythical-foundry",
+   "unit-orc-shipyard",
+   "unit-orc-foundry",
    "unit-orc-refinery",
-   "unit-mythical-oil-platform",
+   "unit-orc-oil-platform",
 
    "unit-evil-knight",
    "unit-fad-man",

@@ -29,7 +29,7 @@
 --	$Id$
 
 
-DefineConstruction("construction-mythical-shipyard", {
+DefineConstruction("construction-orc-shipyard", {
   Files = {
    {Tileset = "summer",
     File = "orc/buildings/shipyard_construction_site.png",
@@ -52,7 +52,7 @@ DefineConstruction("construction-mythical-shipyard", {
     Frame = 1}}
 })
 
-DefineConstruction("construction-mythical-oil-well", {
+DefineConstruction("construction-orc-oil-well", {
   Files = {
    {Tileset = "summer",
     File = "tilesets/summer/orc/buildings/oil_well_construction_site.png",
@@ -78,7 +78,7 @@ DefineConstruction("construction-mythical-oil-well", {
     Frame = 1}}
 })
 
-DefineConstruction("construction-mythical-refinery", {
+DefineConstruction("construction-orc-refinery", {
   Files = {
    {Tileset = "summer",
     File = "orc/buildings/refinery_construction_site.png",
@@ -101,7 +101,7 @@ DefineConstruction("construction-mythical-refinery", {
     Frame = 1}}
 })
 
-DefineConstruction("construction-mythical-foundry", {
+DefineConstruction("construction-orc-foundry", {
   Files = {
    {Tileset = "summer",
     File = "orc/buildings/foundry_construction_site.png",
