@@ -1163,7 +1163,6 @@ DefineUnitType("unit-great-hall", { Name = "Great Hall",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true,
-  BuilderOutside = true, 
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
 				  },
