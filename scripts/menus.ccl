@@ -217,21 +217,21 @@
 (define-menu-item 'pos (list 0 0) 'font 'game  'init 'program-start
     'drawfunc 'name-line-draw
     'menu 'menu-program-start)
-(define-menu-item 'pos (list 208 (+ 145 (* 36 0))) 'font 'large
+(define-menu-item 'pos (list 208 (+ 109 (* 36 0))) 'font 'large
     'button '(size (224 27)
             caption "~!Single Player Game"
             hotkey "s"
             func single-player-game-menu
             style gm-full)
     'menu 'menu-program-start)
-(define-menu-item 'pos (list 208 (+ 145 (* 36 1))) 'font 'large
+(define-menu-item 'pos (list 208 (+ 109 (* 36 1))) 'font 'large
     'button '(size (224 27)
             caption "~!Multi Player Game"
             hotkey "m"
             func multi-player-game-menu
             style gm-full)
     'menu 'menu-program-start)
-(define-menu-item 'pos (list 208 (+ 145 (* 36 2))) 'font 'large
+(define-menu-item 'pos (list 208 (+ 109 (* 36 2))) 'font 'large
     'button '(size (224 27)
             caption "~!Campaign Game"
             hotkey "c"
@@ -239,14 +239,14 @@
             style gm-full)
     'menu 'menu-program-start)
 (if (symbol-bound? 'freecraft-feature-debug ())
-(define-menu-item 'pos (list 208 (+ 145 (* 36 3))) 'font 'large
+(define-menu-item 'pos (list 208 (+ 109 (* 36 3))) 'font 'large
     'button '(size (224 27)
             caption "~!Load Game"
             hotkey "l"
             func game-menu-load
             style gm-full)
     'menu 'menu-program-start)
-(define-menu-item 'pos (list 208 (+ 145 (* 36 3))) 'font 'large
+(define-menu-item 'pos (list 208 (+ 109 (* 36 3))) 'font 'large
     'flags '(disabled)
     'button '(size (224 27)
             caption "~!Load Game"
@@ -255,15 +255,22 @@
             style gm-full)
     'menu 'menu-program-start)
 )
+(define-menu-item 'pos (list 208 (+ 109 (* 36 4))) 'font 'large
+    'button '(size (224 27)
+            caption "~!Replay Game"
+            hotkey "r"
+            func replay-game-menu
+            style gm-full)
+    'menu 'menu-program-start)
 (if (symbol-bound? 'freecraft-feature-sdl ())
-(define-menu-item 'pos (list 208 (+ 145 (* 36 4))) 'font 'large
+(define-menu-item 'pos (list 208 (+ 109 (* 36 5))) 'font 'large
     'button '(size (224 27)
             caption "~!Options"
             hotkey "o"
             func menu-global-options
             style gm-full)
     'menu 'menu-program-start)
-(define-menu-item 'pos (list 208 (+ 145 (* 36 4))) 'font 'large
+(define-menu-item 'pos (list 208 (+ 109 (* 36 5))) 'font 'large
     'flags '(disabled)
     'button '(size (224 27)
             caption "~!Options"
@@ -272,21 +279,21 @@
             style gm-full)
     'menu 'menu-program-start)
 )
-(define-menu-item 'pos (list 208 (+ 145 (* 36 5))) 'font 'large
+(define-menu-item 'pos (list 208 (+ 109 (* 36 6))) 'font 'large
     'button '(size (224 27)
             caption "~!Editor"
             hotkey "e"
             func game-start-editor
             style gm-full)
     'menu 'menu-program-start)
-(define-menu-item 'pos (list 208 (+ 145 (* 36 6))) 'font 'large
+(define-menu-item 'pos (list 208 (+ 109 (* 36 7))) 'font 'large
     'button '(size (224 27)
             caption "S~!how Credits"
             hotkey "h"
             func game-show-credits
             style gm-full)
     'menu 'menu-program-start)
-(define-menu-item 'pos (list 208 (+ 145 (* 36 7))) 'font 'large
+(define-menu-item 'pos (list 208 (+ 109 (* 36 8))) 'font 'large
     'button '(size (224 27)
             caption "E~!xit Program"
             hotkey "x"
@@ -3198,3 +3205,46 @@
             style gm-half)
     'menu 'menu-editor-save-confirm)
 
+
+;;
+;; menu-replay-game
+;;
+(define-menu 'name 'menu-replay-game 'geometry '(144 64 352 352)
+    'image 'panel5 'default '4)
+(define-menu-item 'pos (list (/ 352 2) 11) 'font 'large  'init 'replay-game-init
+    'text '("Select game" center)
+    'menu 'menu-replay-game)
+(define-menu-item 'pos (list (/ (- 352 18 288) 2) (+ 11 98)) 'font 'game  'init 'replay-game-lb-init 'exit 'replay-game-lb-exit
+    'listbox '(size (288 108)
+             style pulldown
+             func replay-game-lb-action
+             retopt replay-game-lb-retrieve
+             handler replay-game-ok
+             nlines 6)
+    'menu 'menu-replay-game)
+(define-menu-item 'pos (list (+ (/ (- 352 18 288) 2) 288) (+ 11 98)) 'font 'small
+    'vslider '(size (18 108)
+             func replay-game-vs-action
+             handler replay-game-ok)
+    'menu 'menu-replay-game)
+(define-menu-item 'pos (list 48 308) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "OK"
+            hotkey ""
+            func replay-game-ok
+            style gm-half)
+    'menu 'menu-replay-game)
+(define-menu-item 'pos (list 198 308) 'font 'large
+    'button '(size (106 27)
+            caption "Cancel"
+            hotkey ""
+            func replay-game-cancel
+            style gm-half)
+    'menu 'menu-replay-game)
+(define-menu-item 'pos (list (- (/ (- 352 18 288) 2) 2) (- (+ 11 98) 28)) 'font 'game
+    'button '(size (36 24)
+            caption ()
+            hotkey ""
+            func replay-game-folder
+            style folder)
+    'menu 'menu-replay-game)
