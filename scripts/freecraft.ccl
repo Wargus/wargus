@@ -87,6 +87,14 @@
 
 ;;-----------------------------------------------------------------------------
 
+;;	If you prefer fighters are attacking by right clicking empty space
+;;	uncomment this.
+(right-button-attacks)
+
+;;	If you prefer fighters are moving by right clicking empty space
+;;	uncomment this.
+(right-button-moves)
+
 ;;	Change next, for the wanted mouse speed.
 (mouse-adjust 15)
 
