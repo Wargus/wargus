@@ -192,16 +192,10 @@
 
 (define-unit-type "unit-daemon"			"Daemon"
   ;; graphic data
-  (if new-names?
   #("neutral/units/daemon.png"
     ()
     ()
     () )
-  #("daemon.png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-daemon"
   "icon-daemon"
@@ -234,16 +228,10 @@
 
 (define-unit-type "unit-critter"		"Critter"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/neutral/units/critter.png"
     "tilesets/winter/neutral/units/critter.png"
     "tilesets/wasteland/neutral/units/critter.png"
     "tilesets/swamp/neutral/units/critter.png" )
-  #("critter (summer).png"
-    "critter (winter).png"
-    "critter (wasteland).png"
-    "critter (swamp).png" )
-  )
   '(  32  32 )			;; graphic size
   "animations-critter"
   "icon-critter"
@@ -273,16 +261,10 @@
 
 (define-unit-type "unit-gold-mine"		"Gold Mine"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/neutral/buildings/gold mine.png"
     "tilesets/winter/neutral/buildings/gold mine.png"
     "tilesets/wasteland/neutral/buildings/gold mine.png"
     "tilesets/swamp/neutral/buildings/gold mine.png" )
-  #("gold mine (summer).png"
-    "gold mine (winter).png"
-    "gold mine (wasteland).png"
-    "gold mine (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-gold-mine"
@@ -311,16 +293,10 @@
 
 (define-unit-type "unit-oil-patch"		"Oil Patch"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/neutral/buildings/oil patch.png"
     ()
     "tilesets/wasteland/neutral/buildings/oil patch.png"
     "tilesets/swamp/neutral/buildings/oil patch.png" )
-  #("oil patch (summer).png"
-    ()
-    "oil patch (wasteland).png"
-    "oil patch (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-oil-patch"
@@ -349,16 +325,10 @@
 
 (define-unit-type "unit-circle-of-power"	"Circle of Power"
   ;; graphic data
-  (if new-names?
   #("neutral/buildings/circle of power.png"
     ()
     ()
     () )
-  #("circle of power.png"
-    ()
-    ()
-    () )
-  )
   '(  64  64 )			;; graphic size
   "animations-building"
   "icon-circle-of-power"
@@ -386,16 +356,10 @@
 
 (define-unit-type "unit-dark-portal"		"Dark Portal"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/neutral/buildings/dark portal.png"
     "tilesets/winter/neutral/buildings/dark portal.png"
     "tilesets/wasteland/neutral/buildings/dark portal.png"
     "tilesets/swamp/neutral/buildings/dark portal.png" )
-  #("dark portal (summer).png"
-    "dark portal (winter).png"
-    "dark portal (wasteland).png"
-    "dark portal (swamp).png" )
-  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-dark-portal"
@@ -423,16 +387,10 @@
 
 (define-unit-type "unit-runestone"		"Runestone"
   ;; graphic data
-  (if new-names?
   #("neutral/buildings/runestone.png"
     "tilesets/winter/neutral/buildings/runestone.png"
     ()
     "tilesets/swamp/neutral/buildings/runestone.png" )
-  #("runestone (summer,wasteland).png"
-    "runestone (winter).png"
-    ()
-    "runestone (swamp).png" )
-  )
   '(  64  64 )			;; graphic size
   "animations-building"
   "icon-runestone"
@@ -460,16 +418,10 @@
 
 (define-unit-type "unit-dead-body"		"Dead Body"
   ;; graphic data
-  (if new-names?
   #("neutral/units/corpses.png"
     ()
     ()
     () )
-  #("corpses.png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-dead-body"
   "icon-peasant"
@@ -497,16 +449,10 @@
 
 (define-unit-type "unit-destroyed-1x1-place"	"Destroyed 1x1 Place"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/neutral/buildings/small destroyed site.png"
     "tilesets/winter/neutral/buildings/small destroyed site.png"
     "tilesets/wasteland/neutral/buildings/small destroyed site.png"
     "tilesets/swamp/neutral/buildings/small destroyed site.png" )
-  #("small destroyed site (summer).png"
-    "small destroyed site (winter).png"
-    "small destroyed site (wasteland).png"
-    "small destroyed site (swamp).png" )
-  )
   '(  32  32 )			;; graphic size
   "animations-destroyed-place"
   "icon-peasant"
@@ -535,16 +481,10 @@
 
 (define-unit-type "unit-destroyed-2x2-place"	"Destroyed 2x2 Place"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/neutral/buildings/destroyed site.png"
     "tilesets/winter/neutral/buildings/destroyed site.png"
     "tilesets/wasteland/neutral/buildings/destroyed site.png"
     "tilesets/swamp/neutral/buildings/destroyed site.png" )
-  #("destroyed site (summer).png"
-    "destroyed site (winter).png"
-    "destroyed site (wasteland).png"
-    "destroyed site (swamp).png" )
-  )
   '(  64  64 )			;; graphic size
   "animations-destroyed-place"
   "icon-peasant"
@@ -631,16 +571,10 @@
 
 (define-unit-type "unit-revealer"		"Dummy unit"
   ;; graphic data
-  (if new-names?
   #("neutral/units/daemon.png"
     ()
     ()
     () )
-  #("daemon.png"
-    ()
-    ()
-    () )
-  )
   '(  2  2 )			;; graphic size
   "animations-building"
   "icon-holy-vision"

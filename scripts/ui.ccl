@@ -35,7 +35,6 @@
 ;;	(define-cursor 'ident 'race 'image "file-path"
 ;;		'hotspot ( x y ) 'size ( width height ))
 ;;
-(if new-names? (begin
 (define-cursor	'cursor-glass		'any
     'image "ui/cursors/magnifying glass.png"
     'hot-spot '(11 11) 'size '(34 35) )
@@ -60,30 +59,6 @@
     'image "ui/cursors/arrow SW.png"	'hot-spot '( 2 18) 'size '(32 24) )
 (define-cursor	'cursor-arrow-se	'any
     'image "ui/cursors/arrow SE.png"	'hot-spot '(20 18) 'size '(32 24) )
-    ) (begin
-(define-cursor	'cursor-glass		'any
-    'image "magnifying glass.png"	'hot-spot '(11 11) 'size '(34 35) )
-(define-cursor	'cursor-cross		'any
-    'image "small green cross.png"	'hot-spot '( 8  8) 'size '(18 18) )
-(define-cursor	'cursor-scroll		'any
-    'image "cross.png"			'hot-spot '(15 15) 'size '(32 32) )
-(define-cursor	'cursor-arrow-e		'any
-    'image "arrow E.png"		'hot-spot '(22 10) 'size '(32 24) )
-(define-cursor	'cursor-arrow-ne	'any
-    'image "arrow NE.png"		'hot-spot '(20  2) 'size '(32 24) )
-(define-cursor	'cursor-arrow-n		'any
-    'image "arrow N.png"		'hot-spot '(12  2) 'size '(32 24) )
-(define-cursor	'cursor-arrow-nw	'any
-    'image "arrow NW.png"		'hot-spot '( 2  2) 'size '(32 24) )
-(define-cursor	'cursor-arrow-w		'any
-    'image "arrow W.png"		'hot-spot '( 4 10) 'size '(32 24) )
-(define-cursor	'cursor-arrow-s		'any
-    'image "arrow S.png"		'hot-spot '(12 22) 'size '(32 24) )
-(define-cursor	'cursor-arrow-sw	'any
-    'image "arrow SW.png"		'hot-spot '( 2 18) 'size '(32 24) )
-(define-cursor	'cursor-arrow-se	'any
-    'image "arrow SE.png"		'hot-spot '(20 18) 'size '(32 24) )
-    ))
 
 ;;=============================================================================
 ;;	Define the user interface

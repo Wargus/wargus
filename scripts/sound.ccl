@@ -32,10 +32,7 @@
 ;;----------------------------------------------------------------------------
 ;;	Define sounds later used
 ;;
-(if new-names?
 (define sound-click (make-sound "click" "ui/click.wav"))
-(define sound-click (make-sound "click" "click.wav"))
-)
 
 ;;----------------------------------------------------------------------------
 ;;	Define simple sounds. (FIXME: somebody must clean the order.)
@@ -44,7 +41,6 @@
 ;;----------------------------------------------------------------------------
 ;;	Define simple human sounds.
 ;;
-(if new-names? (begin
 (make-sound "basic human voices work complete"
 	"human/basic_voices/work_complete.wav")
 (make-sound "peasant work complete" "human/units/peasant/work_complete.wav")
@@ -52,15 +48,7 @@
 (make-sound "basic human voices help 1" "human/basic_voices/help/1.wav")
 (make-sound "basic human voices help 2" "human/basic_voices/help/2.wav")
 (make-sound "basic human voices dead" "human/basic_voices/dead.wav")
-)(begin
-(make-sound "basic human voices work complete"
-	"basic human voices work complete.wav")
-(make-sound "peasant work complete" "peasant work complete.wav")
-(make-sound "basic human voices ready" "basic human voices ready.wav")
-(make-sound "basic human voices help 1" "basic human voices help 1.wav")
-(make-sound "basic human voices help 2" "basic human voices help 2.wav")
-(make-sound "basic human voices dead" "basic human voices dead.wav")
-))
+
 ;;----------------------------------------------------------------------------
 ;;	Define simple human building.
 ;;
@@ -68,21 +56,13 @@
 ;;----------------------------------------------------------------------------
 ;;	Define simple orc sounds.
 ;;
-(if new-names? (begin
 (make-sound "basic orc voices work complete"
 	"orc/basic_voices/work_complete.wav")
 (make-sound "basic orc voices ready" "orc/basic_voices/ready.wav")
 (make-sound "basic orc voices help 1" "orc/basic_voices/help/1.wav")
 (make-sound "basic orc voices help 2" "orc/basic_voices/help/2.wav")
 (make-sound "basic orc voices dead" "orc/basic_voices/dead.wav")
-)(begin
-(make-sound "basic orc voices work complete"
-	"basic orc voices work complete.wav")
-(make-sound "basic orc voices ready" "basic orc voices ready.wav")
-(make-sound "basic orc voices help 1" "basic orc voices help 1.wav")
-(make-sound "basic orc voices help 2" "basic orc voices help 2.wav")
-(make-sound "basic orc voices dead" "basic orc voices dead.wav")
-))
+
 ;;----------------------------------------------------------------------------
 ;;	Define simple orc building.
 ;;
@@ -90,655 +70,231 @@
 ;;----------------------------------------------------------------------------
 ;;	Define simple misc sounds.
 ;;
-(if new-names?
 (make-sound "building construction" "misc/building construction.wav")
-(make-sound "building construction" "building construction.wav")
-)
-(if new-names?
 (make-sound "ship sinking" "ships/sinking.wav")
-(make-sound "ship sinking" "ship sinking.wav")
-)
-(if new-names?
 (make-sound "catapult-ballista movement"
 	"units/catapult-ballista/acknowledgement/1.wav")
-(make-sound "catapult-ballista movement" "catapult-ballista movement.wav")
-)
 
     ;; building selection sounds
-(if new-names?
 (make-sound "blacksmith" "buildings/blacksmith.wav")
-(make-sound "blacksmith" "blacksmith.wav")
-)
-(if new-names?
 (make-sound "church-selected" "human/buildings/church.wav")
-(make-sound "church-selected" "church.wav")
-)
-(if new-names?
 (make-sound "altar-of-storms-selected" "orc/buildings/altar of storms.wav")
-(make-sound "altar-of-storms-selected" "altar of storms.wav")
-)
-(if new-names?
 (make-sound "stables-selected" "human/buildings/stables.wav")
-(make-sound "stables-selected" "stables.wav")
-)
-(if new-names?
 (make-sound "ogre-mound-selected" "orc/buildings/ogre mound.wav")
-(make-sound "ogre-mound-selected" "ogre mound.wav")
-)
-(if new-names?
 (make-sound "farm-selected" "human/buildings/farm.wav")
-(make-sound "farm-selected" "farm.wav")
-)
-(if new-names?
 (make-sound "pig-farm-selected" "orc/buildings/pig farm.wav")
-(make-sound "pig-farm-selected" "pig farm.wav")
-)
-(if new-names?
 (make-sound "gold-mine-selected" "neutral/buildings/gold mine.wav")
-(make-sound "gold-mine-selected" "gold mine.wav")
-)
-(if new-names?
 (make-sound "shipyard" "buildings/shipyard.wav")
-(make-sound "shipyard" "shipyard.wav")
-)
-(if new-names?
 (make-sound "oil platform" "buildings/oil platform.wav")
-(make-sound "oil platform" "oil platform.wav")
-)
-(if new-names?
 (make-sound "oil refinery" "buildings/oil refinery.wav")
-(make-sound "oil refinery" "oil refinery.wav")
-)
-(if new-names?
 (make-sound "lumbermill" "buildings/lumbermill.wav")
-(make-sound "lumbermill" "lumbermill.wav")
-)
-(if new-names?
 (make-sound "transport docking" "misc/transport docking.wav")
-(make-sound "transport docking" "transport docking.wav")
-)
-(if new-names?
 (make-sound "burning" "misc/burning.wav")
-(make-sound "burning" "burning.wav")
-)
-(if new-names?
 (make-sound "gryphon-aviary-selected" "human/buildings/gryphon aviary.wav")
-(make-sound "gryphon-aviary-selected" "gryphon aviary.wav")
-)
-(if new-names?
 (make-sound "dragon-roost-selected" "orc/buildings/dragon roost.wav")
-(make-sound "dragon-roost-selected" "dragon roost.wav")
-)
-(if new-names?
 (make-sound "foundry" "buildings/foundry.wav")
-(make-sound "foundry" "foundry.wav")
-)
-(if new-names?
 (make-sound "gnomish-inventor-selected" "human/buildings/gnomish inventor.wav")
-(make-sound "gnomish-inventor-selected" "gnomish inventor.wav")
-)
-(if new-names?
 (make-sound "goblin-alchemist-selected" "orc/buildings/goblin alchemist.wav")
-(make-sound "goblin-alchemist-selected" "goblin alchemist.wav")
-)
-(if new-names?
 (make-sound "mage-tower-selected" "human/buildings/mage tower.wav")
-(make-sound "mage-tower-selected" "mage tower.wav")
-)
-(if new-names?
 (make-sound "temple-of-the-damned-selected"
 	"orc/buildings/temple of the damned.wav")
-(make-sound "temple-of-the-damned-selected" "temple of the damned.wav")
-)
-(if new-names?
 (make-sound "capture (human)" "human/capture.wav")
-(make-sound "capture (human)" "capture (human).wav")
-)
-(if new-names?
 (make-sound "capture (orc)" "orc/capture.wav")
-(make-sound "capture (orc)" "capture (orc).wav")
-)
-(if new-names?
 (make-sound "rescue (human)" "human/rescue.wav")
-(make-sound "rescue (human)" "rescue (human).wav")
-)
-(if new-names?
 (make-sound "rescue (orc)" "orc/rescue.wav")
-(make-sound "rescue (orc)" "rescue (orc).wav")
-)
-(if new-names?
 (make-sound "bloodlust" "spells/bloodlust.wav")
-(make-sound "bloodlust" "bloodlust.wav")
-)
-(if new-names?
 (make-sound "death and decay" "spells/death and decay.wav")
-(make-sound "death and decay" "death and decay.wav")
-)
-(if new-names?
 (make-sound "death coil" "spells/death coil.wav")
-(make-sound "death coil" "death coil.wav")
-)
-(if new-names?
 (make-sound "exorcism" "spells/exorcism.wav")
-(make-sound "exorcism" "exorcism.wav")
-)
-(if new-names?
 (make-sound "flame shield" "spells/flame shield.wav")
-(make-sound "flame shield" "flame shield.wav")
-)
-(if new-names?
 (make-sound "haste" "spells/haste.wav")
-(make-sound "haste" "haste.wav")
-)
-(if new-names?
 (make-sound "healing" "spells/healing.wav")
-(make-sound "healing" "healing.wav")
-)
-(if new-names?
 (make-sound "holy vision" "spells/holy vision.wav")
-(make-sound "holy vision" "holy vision.wav")
-)
-(if new-names?
 (make-sound "blizzard" "spells/blizzard.wav")
-(make-sound "blizzard" "blizzard.wav")
-)
-(if new-names?
 (make-sound "invisibility" "spells/invisibility.wav")
-(make-sound "invisibility" "invisibility.wav")
-)
-(if new-names?
 (make-sound "eye of kilrogg" "spells/eye of kilrogg.wav")
-(make-sound "eye of kilrogg" "eye of kilrogg.wav")
-)
-(if new-names?
 (make-sound "polymorph" "spells/polymorph.wav")
-(make-sound "polymorph" "polymorph.wav")
-)
-(if new-names?
 (make-sound "slow" "spells/slow.wav")
-(make-sound "slow" "slow.wav")
-)
-(if new-names?
 (make-sound "unholy armour" "spells/unholy armor.wav")
-(make-sound "unholy armour" "unholy armour.wav")
-)
-(if new-names?
 (make-sound "whirlwind" "spells/whirlwind.wav")
-(make-sound "whirlwind" "whirlwind.wav")
-)
     ;; ready sounds
-(if new-names?
 (make-sound "peon-ready" "orc/peon/ready.wav")
-(make-sound "peon-ready" "peon ready.wav")
-)
-(if new-names?
 (make-sound "death-knight-ready" "orc/units/death knight/ready.wav")
-(make-sound "death-knight-ready" "death knight ready.wav")
-)
-(if new-names?
 (make-sound "dwarves-ready" "human/units/dwarven demolition squad/ready.wav")
-(make-sound "dwarves-ready" "dwarven demolition squad ready.wav")
-)
-(if new-names?
-(make-sound "elven archer-ranger ready" "human/units/elven archer-ranger/ready.wav")
-(make-sound "elven archer-ranger ready" "elven archer-ranger ready.wav")
-)
-(if new-names?
-(make-sound "gnomish-flying-machine-ready" "human/units/gnomish flying machine/ready.wav")
-(make-sound "gnomish-flying-machine-ready" "gnomish flying machine ready.wav")
-)
-(if new-names?
+(make-sound "elven archer-ranger ready"
+	"human/units/elven archer-ranger/ready.wav")
+(make-sound "gnomish-flying-machine-ready"
+	"human/units/gnomish flying machine/ready.wav")
 (make-sound "goblin-sappers-ready" "orc/units/goblin sappers/ready.wav")
-(make-sound "goblin-sappers-ready" "goblin sappers ready.wav")
-)
-(if new-names?
 (make-sound "goblin-zeppelin-ready" "orc/units/goblin zeppelin/ready.wav")
-(make-sound "goblin-zeppelin-ready" "goblin zeppelin ready.wav")
-)
-(if new-names?
 (make-sound "knight-ready" "human/units/knight/ready.wav")
-(make-sound "knight-ready" "knight ready.wav")
-)
-(if new-names?
 (make-sound "paladin-ready" "human/units/paladin/ready.wav")
-(make-sound "paladin-ready" "paladin ready.wav")
-)
-(if new-names?
 (make-sound "ogre-ready" "orc/units/ogre/ready.wav")
-(make-sound "ogre-ready" "ogre ready.wav")
-)
-(if new-names?
 (make-sound "ogre-mage-ready" "orc/units/ogre-mage/ready.wav")
-(make-sound "ogre-mage-ready" "ogre-mage ready.wav")
-)
-(if new-names?
 (make-sound "ships human ready" "human/ships/ready.wav")
-(make-sound "ships human ready" "ships human ready.wav")
-)
-(if new-names?
 (make-sound "ships orc ready" "orc/ships/ready.wav")
-(make-sound "ships orc ready" "ships orc ready.wav")
-)
-(if new-names?
 (make-sound "troll axethrower-berserker ready"
 	"orc/units/troll axethrower-berserker/ready.wav")
-(make-sound "troll axethrower-berserker ready"
-	"troll axethrower-berserker ready.wav")
-)
-(if new-names?
 (make-sound "mage-ready" "human/units/mage/ready.wav")
-(make-sound "mage-ready" "mage ready.wav")
-)
-(if new-names?
 (make-sound "peasant-ready" "human/units/peasant/ready.wav")
-(make-sound "peasant-ready" "peasant ready.wav")
-)
-(if new-names?
 (make-sound "dragon-ready" "orc/units/dragon/ready.wav")
-(make-sound "dragon-ready" "dragon ready 2.wav")
-)
 
     ;;------------------------------------------------------------------------
     ;; selection sounds
-(if new-names?
 (make-sound "dragon-selected" "orc/units/dragon/selected/1.wav")
-(make-sound "dragon-selected" "dragon selected.wav")
-)
-(if new-names?
 (make-sound "gryphon-rider-selected" "human/units/gryphon rider/selected/1.wav")
-(make-sound "gryphon-rider-selected" "gryphon rider selected.wav")
-)
-(if new-names?
 (make-sound "sheep selected" "neutral/units/sheep/selected/1.wav")
-(make-sound "sheep selected" "sheep selected.wav")
-)
-(if new-names?
 (make-sound "seal selected" "neutral/units/seal/selected/1.wav")
-(make-sound "seal selected" "seal selected.wav")
-)
-(if new-names?
 (make-sound "pig selected" "neutral/units/pig/selected/1.wav")
-(make-sound "pig selected" "pig selected.wav")
-)
-(if new-names?
 (make-sound "warthog selected" "neutral/units/warthog/selected/1.wav")
-(make-sound "warthog selected" "warthog selected.wav")
     ;; annoyed sounds
-)
-(if new-names?
 (make-sound "sheep annoyed" "neutral/units/sheep/annoyed/1.wav")
-(make-sound "sheep annoyed" "sheep annoyed.wav")
-)
-(if new-names?
 (make-sound "seal annoyed" "neutral/units/seal/annoyed/1.wav")
-(make-sound "seal annoyed" "seal annoyed.wav")
-)
-(if new-names?
 (make-sound "pig annoyed" "neutral/units/pig/annoyed/1.wav")
-(make-sound "pig annoyed" "pig annoyed.wav")
-)
-(if new-names?
 (make-sound "warthog annoyed" "neutral/units/warthog/annoyed/1.wav")
-(make-sound "warthog annoyed" "warthog annoyed.wav")
 
     ;;------------------------------------------------------------------------
     ;; attack sounds
-)
-(if new-names?
 (make-sound "catapult-ballista attack" "missiles/catapult-ballista attack.wav")
-(make-sound "catapult-ballista attack" "catapult-ballista attack.wav")
-)
-(if new-names?
 (make-sound "punch" "missiles/punch.wav")
-(make-sound "punch" "punch.wav")
-)
-(if new-names?
 (make-sound "fireball hit" "missiles/fireball hit.wav")
-(make-sound "fireball hit" "fireball hit.wav")
-)
-(if new-names?
 (make-sound "fireball throw" "missiles/fireball throw.wav")
-(make-sound "fireball throw" "fireball throw.wav")
-)
-(if new-names?
 (make-sound "bow throw" "missiles/bow throw.wav")
-(make-sound "bow throw" "bow throw.wav")
-)
-(if new-names?
 (make-sound "bow hit" "missiles/bow hit.wav")
-(make-sound "bow hit" "bow hit.wav")
-)
-(if new-names?
 (make-sound "axe throw" "missiles/axe throw.wav")
-(make-sound "axe throw" "axe throw.wav")
-)
-(if new-names?
 (make-sound "fist" "missiles/fist.wav")
-(make-sound "fist" "fist.wav")
-)
-(if new-names?
 (make-sound "peasant attack" "human/units/peasant/attack.wav")
-(make-sound "peasant attack" "peasant attack.wav")
-)
-(if new-names?
 (make-sound "lightning" "spells/lightning.wav")
-(make-sound "lightning" "lightning.wav")
-)
-(if new-names?
 (make-sound "touch of darkness" "spells/touch of darkness.wav")
-(make-sound "touch of darkness" "touch of darkness.wav")
-)
 
 ;;----------------------------------------------------------------------------
 ;;	Define sound groups.
     ;;
     ;;	Acknowledgment sounds -------------------------------------------------
     ;;
-(if new-names?
 (make-sound "basic human voices acknowledge"
 	(list "human/basic_voices/acknowledgement/1.wav"
 	"human/basic_voices/acknowledgement/2.wav"
 	"human/basic_voices/acknowledgement/3.wav"
 	"human/basic_voices/acknowledgement/4.wav"))
-(make-sound "basic human voices acknowledge"
-	(list "basic human voices acknowledgement 1.wav"
-	"basic human voices acknowledgement 2.wav"
-	"basic human voices acknowledgement 3.wav"
-	"basic human voices acknowledgement 4.wav"))
-)
-(if new-names?
 (make-sound "basic orc voices acknowledge"
 	(list "orc/basic_voices/acknowledgement/1.wav"
 	"orc/basic_voices/acknowledgement/2.wav"
 	"orc/basic_voices/acknowledgement/3.wav"
 	"orc/basic_voices/acknowledgement/4.wav"))
-(make-sound "basic orc voices acknowledge"
-	(list "basic orc voices acknowledgement 1.wav"
-	"basic orc voices acknowledgement 2.wav"
-	"basic orc voices acknowledgement 3.wav"
-	"basic orc voices acknowledgement 4.wav"))
-)
-(if new-names?
 (make-sound "peasant-acknowledge"
 	(list "human/units/peasant/acknowledgement/1.wav"
 	"human/units/peasant/acknowledgement/2.wav"
 	"human/units/peasant/acknowledgement/3.wav"
 	"human/units/peasant/acknowledgement/4.wav"))
-(make-sound "peasant-acknowledge"
-	(list "peasant acknowledgement 1.wav"
-	"peasant acknowledgement 2.wav"
-	"peasant acknowledgement 3.wav"
-	"peasant acknowledgement 4.wav"))
-)
-(if new-names?
 (make-sound "knight-acknowledge"
 	(list "human/units/knight/acknowledgement/1.wav"
 	"human/units/knight/acknowledgement/2.wav"
 	"human/units/knight/acknowledgement/3.wav"
 	"human/units/knight/acknowledgement/4.wav"))
-(make-sound "knight-acknowledge"
-	(list "knight acknowledgement 1.wav"
-	"knight acknowledgement 2.wav"
-	"knight acknowledgement 3.wav"
-	"knight acknowledgement 4.wav"))
-)
-(if new-names?
 (make-sound "ogre-acknowledge"
 	(list "orc/units/ogre/acknowledgement/1.wav"
 	"orc/units/ogre/acknowledgement/2.wav"
 	"orc/units/ogre/acknowledgement/3.wav"))
-(make-sound "ogre-acknowledge"
-	(list "ogre acknowledgement 1.wav"
-	"ogre acknowledgement 2.wav"
-	"ogre acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "elven archer-ranger acknowledge"
 	(list "human/units/elven archer-ranger/acknowledgement/1.wav"
 	"human/units/elven archer-ranger/acknowledgement/2.wav"
 	"human/units/elven archer-ranger/acknowledgement/3.wav"
 	"human/units/elven archer-ranger/acknowledgement/4.wav"))
-(make-sound "elven archer-ranger acknowledge"
-	(list "elven archer-ranger acknowledgement 1.wav"
-	"elven archer-ranger acknowledgement 2.wav"
-	"elven archer-ranger acknowledgement 3.wav"
-	"elven archer-ranger acknowledgement 4.wav"))
-)
-(if new-names?
 (make-sound "troll axethrower-berserker acknowledge"
 	(list "orc/units/troll axethrower-berserker/acknowledgement/1.wav"
 	"orc/units/troll axethrower-berserker/acknowledgement/2.wav"
 	"orc/units/troll axethrower-berserker/acknowledgement/3.wav"))
-(make-sound "troll axethrower-berserker acknowledge"
-	(list "troll axethrower-berserker acknowledgement 1.wav"
-	"troll axethrower-berserker acknowledgement 2.wav"
-	"troll axethrower-berserker acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "mage-acknowledge"
 	(list "human/units/mage/acknowledgement/1.wav"
 	"human/units/mage/acknowledgement/2.wav"
 	"human/units/mage/acknowledgement/3.wav"))
-(make-sound "mage-acknowledge"
-	(list "mage acknowledgement 1.wav"
-	"mage acknowledgement 2.wav"
-	"mage acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "death-knight-acknowledge"
 	(list "orc/units/death knight/acknowledgement/1.wav"
 	"orc/units/death knight/acknowledgement/2.wav"
 	"orc/units/death knight/acknowledgement/3.wav"))
-(make-sound "death-knight-acknowledge"
-	(list "death knight acknowledgement 1.wav"
-	"death knight acknowledgement 2.wav"
-	"death knight acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "paladin-acknowledge"
 	(list "human/units/paladin/acknowledgement/1.wav"
 	"human/units/paladin/acknowledgement/2.wav"
 	"human/units/paladin/acknowledgement/3.wav"
 	"human/units/paladin/acknowledgement/4.wav"))
-(make-sound "paladin-acknowledge"
-	(list "paladin acknowledgement 1.wav"
-	"paladin acknowledgement 2.wav"
-	"paladin acknowledgement 3.wav"
-	"paladin acknowledgement 4.wav"))
-)
-(if new-names?
 (make-sound "ogre-mage-acknowledge"
 	(list "orc/units/ogre-mage/acknowledgement/1.wav"
 	"orc/units/ogre-mage/acknowledgement/2.wav"
 	"orc/units/ogre-mage/acknowledgement/3.wav"))
-(make-sound "ogre-mage-acknowledge"
-	(list "ogre-mage acknowledgement 1.wav"
-	"ogre-mage acknowledgement 2.wav"
-	"ogre-mage acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "dwarves-acknowledge"
 	(list "human/units/dwarven demolition squad/acknowledgement/1.wav"
 	"human/units/dwarven demolition squad/acknowledgement/2.wav"
 	"human/units/dwarven demolition squad/acknowledgement/3.wav"
 	"human/units/dwarven demolition squad/acknowledgement/4.wav"
 	"human/units/dwarven demolition squad/acknowledgement/5.wav"))
-(make-sound "dwarves-acknowledge"
-	(list "dwarven demolition squad acknowledgement 1.wav"
-	"dwarven demolition squad acknowledgement 2.wav"
-	"dwarven demolition squad acknowledgement 3.wav"
-	"dwarven demolition squad acknowledgement 4.wav"
-	"dwarven demolition squad acknowledgement 5.wav"))
-)
-(if new-names?
 (make-sound "goblin-sappers-acknowledge"
 	(list "orc/units/goblin sappers/acknowledgement/1.wav"
 	"orc/units/goblin sappers/acknowledgement/2.wav"
 	"orc/units/goblin sappers/acknowledgement/3.wav"
 	"orc/units/goblin sappers/acknowledgement/4.wav"))
-(make-sound "goblin-sappers-acknowledge"
-	(list "goblin sappers acknowledgement 1.wav"
-	"goblin sappers acknowledgement 2.wav"
-	"goblin sappers acknowledgement 3.wav"
-	"goblin sappers acknowledgement 4.wav"))
-)
-(if new-names?
 (make-sound "alleria-acknowledge"
 	(list "human/units/alleria/acknowledgement/1.wav"
 	"human/units/alleria/acknowledgement/2.wav"
 	"human/units/alleria/acknowledgement/3.wav"))
-(make-sound "alleria-acknowledge"
-	(list "alleria acknowledgement 1.wav"
-	"alleria acknowledgement 2.wav"
-	"alleria acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "teron-gorefiend-acknowledge"
 	(list "orc/units/teron gorefiend/acknowledgement/1.wav"
 	"orc/units/teron gorefiend/acknowledgement/2.wav"
 	"orc/units/teron gorefiend/acknowledgement/3.wav"))
-(make-sound "teron-gorefiend-acknowledge"
-	(list "teron gorefiend acknowledgement 1.wav"
-	"teron gorefiend acknowledgement 2.wav"
-	"teron gorefiend acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "kurdan-and-sky-ree-acknowledge"
 	(list "human/units/kurdan/acknowledgement/1.wav"
 	"human/units/kurdan/acknowledgement/2.wav"
 	"human/units/kurdan/acknowledgement/3.wav"))
-(make-sound "kurdan-and-sky-ree-acknowledge"
-	(list "kurdan acknowledgement 1.wav"
-	"kurdan acknowledgement 2.wav"
-	"kurdan acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "dentarg-acknowledge"
 	(list "orc/units/dentarg/acknowledgement/1.wav"
 	"orc/units/dentarg/acknowledgement/2.wav"
 	"orc/units/dentarg/acknowledgement/3.wav"))
-(make-sound "dentarg-acknowledge"
-	(list "dentarg acknowledgement 1.wav"
-	"dentarg acknowledgement 2.wav"
-	"dentarg acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "khadgar-acknowledge"
 	(list "human/units/khadgar/acknowledgement/1.wav"
 	"human/units/khadgar/acknowledgement/2.wav"
 	"human/units/khadgar/acknowledgement/3.wav"))
-(make-sound "khadgar-acknowledge"
-	(list "khadgar acknowledgement 1.wav"
-	"khadgar acknowledgement 2.wav"
-	"khadgar acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "grom-hellscream-acknowledge"
 	(list "orc/units/grom hellscream/acknowledgement/1.wav"
 	"orc/units/grom hellscream/acknowledgement/2.wav"
 	"orc/units/grom hellscream/acknowledgement/3.wav"))
-(make-sound "grom-hellscream-acknowledge"
-	(list "grom hellscream acknowledgement 1.wav"
-	"grom hellscream acknowledgement 2.wav"
-	"grom hellscream acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "tanker acknowledge"
 	(list "ships/tanker/acknowledgement/1.wav"))
-(make-sound "tanker acknowledge"
-	(list "tanker acknowledgement.wav"))
-)
-(if new-names?
 (make-sound "ships human acknowledge"
 	(list "human/ships/acknowledgement/1.wav"
 	"human/ships/acknowledgement/2.wav"
 	"human/ships/acknowledgement/3.wav"))
-(make-sound "ships human acknowledge"
-	(list "ships human acknowledgement 1.wav"
-	"ships human acknowledgement 2.wav"
-	"ships human acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "ships orc acknowledge"
 	(list "orc/ships/acknowledgement/1.wav"
 	"orc/ships/acknowledgement/2.wav"
 	"orc/ships/acknowledgement/3.wav"))
-(make-sound "ships orc acknowledge"
-	(list "ships orc acknowledgement 1.wav"
-	"ships orc acknowledgement 2.wav"
-	"ships orc acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "deathwing-acknowledge"
 	(list "orc/units/deathwing/acknowledgement/1.wav"
 	"orc/units/deathwing/acknowledgement/2.wav"
 	"orc/units/deathwing/acknowledgement/3.wav"))
-(make-sound "deathwing-acknowledge"
-	(list "deathwing acknowledgement 1.wav"
-	"deathwing acknowledgement 2.wav"
-	"deathwing acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "gnomish-flying-machine-acknowledge"
 	(list "human/units/gnomish flying machine/acknowledgement/1.wav"))
-(make-sound "gnomish-flying-machine-acknowledge"
-	(list "gnomish flying machine acknowledgement 1.wav"))
-)
-(if new-names?
 (make-sound "goblin-zeppelin-acknowledge"
 	(list "orc/units/goblin zeppelin/acknowledgement/1.wav"))
-(make-sound "goblin-zeppelin-acknowledge"
-	(list "goblin zeppelin acknowledgement 1.wav"))
-)
-(if new-names?
 (make-sound "gryphon-rider-acknowledge"
 	(list "human/units/gryphon rider/acknowledgement/2.wav"))
-(make-sound "gryphon-rider-acknowledge"
-	(list "gryphon rider griffon1.wav"
-	"gryphon rider griffon2.wav"))
-)
-(if new-names?
 (make-sound "dragon-acknowledge"
 	(list "orc/units/dragon/acknowledgement/1.wav"
 	"orc/units/dragon/acknowledgement/2.wav"))
-(make-sound "dragon-acknowledge"
-	(list "dragon acknowledgement 1.wav"
-	"dragon acknowledgement 2.wav"))
-)
-(if new-names?
 (make-sound "turalyon-acknowledge"
 	(list "human/units/turalyon/acknowledgement/1.wav"
 	"human/units/turalyon/acknowledgement/2.wav"
 	"human/units/turalyon/acknowledgement/3.wav"))
-(make-sound "turalyon-acknowledge"
-	(list "turalyon acknowledgement 1.wav"
-	"turalyon acknowledgement 2.wav"
-	"turalyon acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "danath-acknowledge"
 	(list "human/units/danath/acknowledgement/1.wav"
 	"human/units/danath/acknowledgement/2.wav"
 	"human/units/danath/acknowledgement/3.wav"))
-(make-sound "danath-acknowledge"
-	(list "danath acknowledgement 1.wav"
-	"danath acknowledgement 2.wav"
-	"danath acknowledgement 3.wav"))
-)
-(if new-names?
 (make-sound "korgath-bladefist-acknowledge"
 	(list "orc/units/korgath bladefist/acknowledgement/1.wav"
 	"orc/units/korgath bladefist/acknowledgement/2.wav"
 	"orc/units/korgath bladefist/acknowledgement/3.wav"))
-(make-sound "korgath-bladefist-acknowledge"
-	(list "korgath bladefist acknowledgement 1.wav"
-	"korgath bladefist acknowledgement 2.wav"
-	"korgath bladefist acknowledgement 3.wav"))
-)
     ;;
     ;;	Selection sounds -----------------------------------------------------
     ;;
-(if new-names?
 (make-sound "basic human voices selected"
 	(list "human/basic_voices/selected/1.wav"
 	"human/basic_voices/selected/2.wav"
@@ -746,15 +302,6 @@
 	"human/basic_voices/selected/4.wav"
 	"human/basic_voices/selected/5.wav"
 	"human/basic_voices/selected/6.wav"))
-(make-sound "basic human voices selected"
-	(list "basic human voices selected 1.wav"
-	"basic human voices selected 2.wav"
-	"basic human voices selected 3.wav"
-	"basic human voices selected 4.wav"
-	"basic human voices selected 5.wav"
-	"basic human voices selected 6.wav"))
-)
-(if new-names?
 (make-sound "basic orc voices selected"
 	(list "orc/basic_voices/selected/1.wav"
 	"orc/basic_voices/selected/2.wav"
@@ -762,258 +309,106 @@
 	"orc/basic_voices/selected/4.wav"
 	"orc/basic_voices/selected/5.wav"
 	"orc/basic_voices/selected/6.wav"))
-(make-sound "basic orc voices selected"
-	(list "basic orc voices selected 1.wav"
-	"basic orc voices selected 2.wav"
-	"basic orc voices selected 3.wav"
-	"basic orc voices selected 4.wav"
-	"basic orc voices selected 5.wav"
-	"basic orc voices selected 6.wav"))
-)
-(if new-names?
 (make-sound "death knight selected"
 	(list "orc/units/death knight/selected/1.wav"
 	"orc/units/death knight/selected/2.wav"))
-(make-sound "death knight selected"
-	(list "death knight selected 1.wav"
-	"death knight selected 2.wav"))
-)
-(if new-names?
 (make-sound "dwarven demolition squad selected"
 	(list "human/units/dwarven demolition squad/selected/1.wav"
 	"human/units/dwarven demolition squad/selected/2.wav"))
-(make-sound "dwarven demolition squad selected"
-	(list "dwarven demolition squad selected 1.wav"
-	"dwarven demolition squad selected 2.wav"))
-)
-(if new-names?
 (make-sound "elven archer-ranger selected"
 	(list "human/units/elven archer-ranger/selected/1.wav"
 	"human/units/elven archer-ranger/selected/2.wav"
 	"human/units/elven archer-ranger/selected/3.wav"
 	"human/units/elven archer-ranger/selected/4.wav"))
-(make-sound "elven archer-ranger selected"
-	(list "elven archer-ranger selected 1.wav"
-	"elven archer-ranger selected 2.wav"
-	"elven archer-ranger selected 3.wav"
-	"elven archer-ranger selected 4.wav"))
-)
-(if new-names?
 (make-sound "goblin sappers selected"
 	(list "orc/units/goblin sappers/selected/1.wav"
 	"orc/units/goblin sappers/selected/2.wav"
 	"orc/units/goblin sappers/selected/3.wav"
 	"orc/units/goblin sappers/selected/4.wav"))
-(make-sound "goblin sappers selected"
-	(list "goblin sappers selected 1.wav"
-	"goblin sappers selected 2.wav"
-	"goblin sappers selected 3.wav"
-	"goblin sappers selected 4.wav"))
-)
-(if new-names?
 (make-sound "knight selected"
 	(list "human/units/knight/selected/1.wav"
 	"human/units/knight/selected/2.wav"
 	"human/units/knight/selected/3.wav"
 	"human/units/knight/selected/4.wav"))
-(make-sound "knight selected"
-	(list "knight selected 1.wav"
-	"knight selected 2.wav"
-	"knight selected 3.wav"
-	"knight selected 4.wav"))
-)
-(if new-names?
 (make-sound "paladin selected"
 	(list "human/units/paladin/selected/1.wav"
 	"human/units/paladin/selected/2.wav"
 	"human/units/paladin/selected/3.wav"
 	"human/units/paladin/selected/4.wav"))
-(make-sound "paladin selected"
-	(list "paladin selected 1.wav"
-	"paladin selected 2.wav"
-	"paladin selected 3.wav"
-	"paladin selected 4.wav"))
-)
-(if new-names?
 (make-sound "ogre selected"
 	(list "orc/units/ogre/selected/1.wav"
 	"orc/units/ogre/selected/2.wav"
 	"orc/units/ogre/selected/3.wav"
 	"orc/units/ogre/selected/4.wav"))
-(make-sound "ogre selected"
-	(list "ogre selected 1.wav"
-	"ogre selected 2.wav"
-	"ogre selected 3.wav"
-	"ogre selected 4.wav"))
-)
-(if new-names?
 (make-sound "ogre-mage selected"
 	(list "orc/units/ogre-mage/selected/1.wav"
 	"orc/units/ogre-mage/selected/2.wav"
 	"orc/units/ogre-mage/selected/3.wav"
 	"orc/units/ogre-mage/selected/4.wav"))
-(make-sound "ogre-mage selected"
-	(list "ogre-mage selected 1.wav"
-	"ogre-mage selected 2.wav"
-	"ogre-mage selected 3.wav"
-	"ogre-mage selected 4.wav"))
-)
-(if new-names?
 (make-sound "ships human selected"
 	(list "human/ships/selected/1.wav"
 	"human/ships/selected/2.wav"
 	"human/ships/selected/3.wav"))
-(make-sound "ships human selected"
-	(list "ships human selected 1.wav"
-	"ships human selected 2.wav"
-	"ships human selected 3.wav"))
-)
-(if new-names?
 (make-sound "ships orc selected"
 	(list "orc/ships/selected/1.wav"
 	"orc/ships/selected/2.wav"
 	"orc/ships/selected/3.wav"))
-(make-sound "ships orc selected"
-	(list "ships orc selected 1.wav"
-	"ships orc selected 2.wav"
-	"ships orc selected 3.wav"))
-)
-(if new-names?
 (make-sound "troll axethrower-berserker selected"
 	(list "orc/units/troll axethrower-berserker/selected/1.wav"
 	"orc/units/troll axethrower-berserker/selected/2.wav"
 	"orc/units/troll axethrower-berserker/selected/3.wav"))
-(make-sound "troll axethrower-berserker selected"
-	(list "troll axethrower-berserker selected 1.wav"
-	"troll axethrower-berserker selected 2.wav"
-	"troll axethrower-berserker selected 3.wav"))
-)
-(if new-names?
 (make-sound "mage selected"
 	(list "human/units/mage/selected/1.wav"
 	"human/units/mage/selected/2.wav"
 	"human/units/mage/selected/3.wav"))
-(make-sound "mage selected"
-	(list "mage selected 1.wav"
-	"mage selected 2.wav"
-	"mage selected 3.wav"))
-)
-(if new-names?
 (make-sound "peasant selected"
 	(list "human/units/peasant/selected/1.wav"
 	"human/units/peasant/selected/2.wav"
 	"human/units/peasant/selected/3.wav"
 	"human/units/peasant/selected/4.wav"))
-(make-sound "peasant selected"
-	(list "peasant selected 1.wav"
-	"peasant selected 2.wav"
-	"peasant selected 3.wav"
-	"peasant selected 4.wav"))
-)
-(if new-names?
 (make-sound "alleria selected"
 	(list "human/units/alleria/selected/1.wav"
 	"human/units/alleria/selected/2.wav"
 	"human/units/alleria/selected/3.wav"))
-(make-sound "alleria selected"
-	(list "alleria selected 1.wav"
-	"alleria selected 2.wav"
-	"alleria selected 3.wav"))
-)
-(if new-names?
 (make-sound "danath selected"
 	(list "human/units/danath/selected/1.wav"
 	"human/units/danath/selected/2.wav"
 	"human/units/danath/selected/3.wav"))
-(make-sound "danath selected"
-	(list "danath selected 1.wav"
-	"danath selected 2.wav"
-	"danath selected 3.wav"))
-)
-(if new-names?
 (make-sound "khadgar selected"
 	(list "human/units/khadgar/selected/1.wav"
 	"human/units/khadgar/selected/2.wav"
 	"human/units/khadgar/selected/3.wav"))
-(make-sound "khadgar selected"
-	(list "khadgar selected 1.wav"
-	"khadgar selected 2.wav"
-	"khadgar selected 3.wav"))
-)
-(if new-names?
 (make-sound "kurdan selected"
 	(list "human/units/kurdan/selected/1.wav"
 	"human/units/kurdan/selected/2.wav"
 	"human/units/kurdan/selected/3.wav"))
-(make-sound "kurdan selected"
-	(list "kurdan selected 1.wav"
-	"kurdan selected 2.wav"
-	"kurdan selected 3.wav"))
-)
-(if new-names?
 (make-sound "turalyon selected"
 	(list "human/units/turalyon/selected/1.wav"
 	"human/units/turalyon/selected/2.wav"
 	"human/units/turalyon/selected/3.wav"))
-(make-sound "turalyon selected"
-	(list "turalyon selected 1.wav"
-	"turalyon selected 2.wav"
-	"turalyon selected 3.wav"))
-)
-(if new-names?
 (make-sound "deathwing selected"
 	(list "orc/units/deathwing/selected/1.wav"
 	"orc/units/deathwing/selected/2.wav"
 	"orc/units/deathwing/selected/3.wav"))
-(make-sound "deathwing selected"
-	(list "deathwing selected 1.wav"
-	"deathwing selected 2.wav"
-	"deathwing selected 3.wav"))
-)
-(if new-names?
 (make-sound "dentarg selected"
 	(list "orc/units/dentarg/selected/1.wav"
 	"orc/units/dentarg/selected/2.wav"
 	"orc/units/dentarg/selected/3.wav"))
-(make-sound "dentarg selected"
-	(list "dentarg selected 1.wav"
-	"dentarg selected 2.wav"
-	"dentarg selected 3.wav"))
-)
-(if new-names?
 (make-sound "grom hellscream selected"
 	(list "orc/units/grom hellscream/selected/1.wav"
 	"orc/units/grom hellscream/selected/2.wav"
 	"orc/units/grom hellscream/selected/3.wav"))
-(make-sound "grom hellscream selected"
-	(list "grom hellscream selected 1.wav"
-	"grom hellscream selected 2.wav"
-	"grom hellscream selected 3.wav"))
-)
-(if new-names?
 (make-sound "korgath bladefist selected"
 	(list "orc/units/korgath bladefist/selected/1.wav"
 	"orc/units/korgath bladefist/selected/2.wav"
 	"orc/units/korgath bladefist/selected/3.wav"))
-(make-sound "korgath bladefist selected"
-	(list "korgath bladefist selected 1.wav"
-	"korgath bladefist selected 2.wav"
-	"korgath bladefist selected 3.wav"))
-)
-(if new-names?
 (make-sound "teron gorefiend selected"
 	(list "orc/units/teron gorefiend/selected/1.wav"
 	"orc/units/teron gorefiend/selected/2.wav"
 	"orc/units/teron gorefiend/selected/3.wav"))
-(make-sound "teron gorefiend selected"
-	(list "teron gorefiend selected 1.wav"
-	"teron gorefiend selected 2.wav"
-	"teron gorefiend selected 3.wav"))
-)
     ;;
     ;;	Annoyed sounds --------------------------------------------------------
     ;;
-(if new-names?
 (make-sound "basic human voices annoyed"
 	(list "human/basic_voices/annoyed/1.wav"
 	"human/basic_voices/annoyed/2.wav"
@@ -1022,16 +417,6 @@
 	"human/basic_voices/annoyed/5.wav"
 	"human/basic_voices/annoyed/6.wav"
 	"human/basic_voices/annoyed/7.wav"))
-(make-sound "basic human voices annoyed"
-	(list "basic human voices annoyed 1.wav"
-	"basic human voices annoyed 2.wav"
-	"basic human voices annoyed 3.wav"
-	"basic human voices annoyed 4.wav"
-	"basic human voices annoyed 5.wav"
-	"basic human voices annoyed 6.wav"
-	"basic human voices annoyed 7.wav"))
-)
-(if new-names?
 (make-sound "basic orc voices annoyed"
 	(list "orc/basic_voices/annoyed/1.wav"
 	"orc/basic_voices/annoyed/2.wav"
@@ -1040,174 +425,70 @@
 	"orc/basic_voices/annoyed/5.wav"
 	"orc/basic_voices/annoyed/6.wav"
 	"orc/basic_voices/annoyed/7.wav"))
-(make-sound "basic orc voices annoyed"
-	(list "basic orc voices annoyed 1.wav"
-	"basic orc voices annoyed 2.wav"
-	"basic orc voices annoyed 3.wav"
-	"basic orc voices annoyed 4.wav"
-	"basic orc voices annoyed 5.wav"
-	"basic orc voices annoyed 6.wav"
-	"basic orc voices annoyed 7.wav"))
-)
-(if new-names?
 (make-sound "death knight annoyed"
 	(list "orc/units/death knight/annoyed/1.wav"
 	"orc/units/death knight/annoyed/2.wav"
 	"orc/units/death knight/annoyed/3.wav"))
-(make-sound "death knight annoyed"
-	(list "death knight annoyed 1.wav"
-	"death knight annoyed 2.wav"
-	"death knight annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "dwarven demolition squad annoyed"
 	(list "human/units/dwarven demolition squad/annoyed/1.wav"
 	"human/units/dwarven demolition squad/annoyed/2.wav"
 	"human/units/dwarven demolition squad/annoyed/3.wav"))
-(make-sound "dwarven demolition squad annoyed"
-	(list "dwarven demolition squad annoyed 1.wav"
-	"dwarven demolition squad annoyed 2.wav"
-	"dwarven demolition squad annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "elven archer-ranger annoyed"
 	(list "human/units/elven archer-ranger/annoyed/1.wav"
 	"human/units/elven archer-ranger/annoyed/2.wav"
 	"human/units/elven archer-ranger/annoyed/3.wav"))
-(make-sound "elven archer-ranger annoyed"
-	(list "elven archer-ranger annoyed 1.wav"
-	"elven archer-ranger annoyed 2.wav"
-	"elven archer-ranger annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "gnomish flying machine annoyed"
 	(list "human/units/gnomish flying machine/annoyed/1.wav"
 	"human/units/gnomish flying machine/annoyed/2.wav"
 	"human/units/gnomish flying machine/annoyed/3.wav"
 	"human/units/gnomish flying machine/annoyed/4.wav"
 	"human/units/gnomish flying machine/annoyed/5.wav"))
-(make-sound "gnomish flying machine annoyed"
-	(list "gnomish flying machine annoyed 1.wav"
-	"gnomish flying machine annoyed 2.wav"
-	"gnomish flying machine annoyed 3.wav"
-	"gnomish flying machine annoyed 4.wav"
-	"gnomish flying machine annoyed 5.wav"))
-)
-(if new-names?
 (make-sound "goblin sappers annoyed"
 	(list "orc/units/goblin sappers/annoyed/1.wav"
 	"orc/units/goblin sappers/annoyed/2.wav"
 	"orc/units/goblin sappers/annoyed/3.wav"))
-(make-sound "goblin sappers annoyed"
-	(list "goblin sappers annoyed 1.wav"
-	"goblin sappers annoyed 2.wav"
-	"goblin sappers annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "goblin zeppelin annoyed"
 	(list "orc/units/goblin zeppelin/annoyed/1.wav"
 	"orc/units/goblin zeppelin/annoyed/2.wav"))
-(make-sound "goblin zeppelin annoyed"
-	(list "goblin zeppelin annoyed 1.wav"
-	"goblin zeppelin annoyed 2.wav"))
-)
-(if new-names?
 (make-sound "knight annoyed"
 	(list "human/units/knight/annoyed/1.wav"
 	"human/units/knight/annoyed/2.wav"
 	"human/units/knight/annoyed/3.wav"))
-(make-sound "knight annoyed"
-	(list "knight annoyed 1.wav"
-	"knight annoyed 2.wav"
-	"knight annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "paladin annoyed"
 	(list "human/units/paladin/annoyed/1.wav"
 	"human/units/paladin/annoyed/2.wav"
 	"human/units/paladin/annoyed/3.wav"))
-(make-sound "paladin annoyed"
-	(list "paladin annoyed 1.wav"
-	"paladin annoyed 2.wav"
-	"paladin annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "ogre annoyed"
 	(list "orc/units/ogre/annoyed/1.wav"
 	"orc/units/ogre/annoyed/2.wav"
 	"orc/units/ogre/annoyed/3.wav"
 	"orc/units/ogre/annoyed/4.wav"
 	"orc/units/ogre/annoyed/5.wav"))
-(make-sound "ogre annoyed"
-	(list "ogre annoyed 1.wav"
-	"ogre annoyed 2.wav"
-	"ogre annoyed 3.wav"
-	"ogre annoyed 4.wav"
-	"ogre annoyed 5.wav"))
-)
-(if new-names?
 (make-sound "ogre-mage annoyed"
 	(list "orc/units/ogre-mage/annoyed/1.wav"
 	"orc/units/ogre-mage/annoyed/2.wav"
 	"orc/units/ogre-mage/annoyed/3.wav"))
-(make-sound "ogre-mage annoyed"
-	(list "ogre-mage annoyed 1.wav"
-	"ogre-mage annoyed 2.wav"
-	"ogre-mage annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "ships human annoyed"
 	(list "human/ships/annoyed/1.wav"
 	"human/ships/annoyed/2.wav"
 	"human/ships/annoyed/3.wav"))
-(make-sound "ships human annoyed"
-	(list "ships human annoyed 1.wav"
-	"ships human annoyed 2.wav"
-	"ships human annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "ships orc annoyed"
 	(list "orc/ships/annoyed/1.wav"
 	"orc/ships/annoyed/2.wav"
 	"orc/ships/annoyed/3.wav"))
-(make-sound "ships orc annoyed"
-	(list "ships orc annoyed 1.wav"
-	"ships orc annoyed 2.wav"
-	"ships orc annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "ships submarine annoyed"
 	(list "human/ships/gnomish submarine/annoyed/1.wav"
 	"human/ships/gnomish submarine/annoyed/2.wav"
 	"human/ships/gnomish submarine/annoyed/3.wav"
 	"human/ships/gnomish submarine/annoyed/4.wav"))
-(make-sound "ships submarine annoyed"
-	(list "ships submarine annoyed 1.wav"
-	"ships submarine annoyed 2.wav"
-	"ships submarine annoyed 3.wav"
-	"ships submarine annoyed 4.wav"))
-)
-(if new-names?
 (make-sound "troll axethrower-berserker annoyed"
 	(list "orc/units/troll axethrower-berserker/annoyed/1.wav"
 	"orc/units/troll axethrower-berserker/annoyed/2.wav"
 	"orc/units/troll axethrower-berserker/annoyed/3.wav"))
-(make-sound "troll axethrower-berserker annoyed"
-	(list "troll axethrower-berserker annoyed 1.wav"
-	"troll axethrower-berserker annoyed 2.wav"
-	"troll axethrower-berserker annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "mage annoyed"
 	(list "human/units/mage/annoyed/1.wav"
 	"human/units/mage/annoyed/2.wav"
 	"human/units/mage/annoyed/3.wav"))
-(make-sound "mage annoyed"
-	(list "mage annoyed 1.wav"
-	"mage annoyed 2.wav"
-	"mage annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "peasant annoyed"
 	(list "human/units/peasant/annoyed/1.wav"
 	"human/units/peasant/annoyed/2.wav"
@@ -1216,154 +497,63 @@
 	"human/units/peasant/annoyed/5.wav"
 	"human/units/peasant/annoyed/6.wav"
 	"human/units/peasant/annoyed/7.wav"))
-(make-sound "peasant annoyed"
-	(list "peasant annoyed 1.wav"
-	"peasant annoyed 2.wav"
-	"peasant annoyed 3.wav"
-	"peasant annoyed 4.wav"
-	"peasant annoyed 5.wav"
-	"peasant annoyed 6.wav"
-	"peasant annoyed 7.wav"))
-)
-(if new-names?
 (make-sound "alleria annoyed"
 	(list "human/units/alleria/annoyed/1.wav"
 	"human/units/alleria/annoyed/2.wav"
 	"human/units/alleria/annoyed/3.wav"))
-(make-sound "alleria annoyed"
-	(list "alleria annoyed 1.wav"
-	"alleria annoyed 2.wav"
-	"alleria annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "danath annoyed"
 	(list "human/units/danath/annoyed/1.wav"
 	"human/units/danath/annoyed/2.wav"
 	"human/units/danath/annoyed/3.wav"))
-(make-sound "danath annoyed"
-	(list "danath annoyed 1.wav"
-	"danath annoyed 2.wav"
-	"danath annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "khadgar annoyed"
 	(list "human/units/khadgar/annoyed/1.wav"
 	"human/units/khadgar/annoyed/2.wav"
 	"human/units/khadgar/annoyed/3.wav"))
-(make-sound "khadgar annoyed"
-	(list "khadgar annoyed 1.wav"
-	"khadgar annoyed 2.wav"
-	"khadgar annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "kurdan annoyed"
 	(list "human/units/kurdan/annoyed/1.wav"
 	"human/units/kurdan/annoyed/2.wav"
 	"human/units/kurdan/annoyed/3.wav"))
-(make-sound "kurdan annoyed"
-	(list "kurdan annoyed 1.wav"
-	"kurdan annoyed 2.wav"
-	"kurdan annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "turalyon annoyed"
 	(list "human/units/turalyon/annoyed/1.wav"
 	"human/units/turalyon/annoyed/2.wav"
 	"human/units/turalyon/annoyed/3.wav"))
-(make-sound "turalyon annoyed"
-	(list "turalyon annoyed 1.wav"
-	"turalyon annoyed 2.wav"
-	"turalyon annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "deathwing annoyed"
 	(list "orc/units/deathwing/annoyed/1.wav"
 	"orc/units/deathwing/annoyed/2.wav"
 	"orc/units/deathwing/annoyed/3.wav"))
-(make-sound "deathwing annoyed"
-	(list "deathwing annoyed 1.wav"
-	"deathwing annoyed 2.wav"
-	"deathwing annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "dentarg annoyed"
 	(list "orc/units/dentarg/annoyed/1.wav"
 	"orc/units/dentarg/annoyed/2.wav"
 	"orc/units/dentarg/annoyed/3.wav"))
-(make-sound "dentarg annoyed"
-	(list "dentarg annoyed 1.wav"
-	"dentarg annoyed 2.wav"
-	"dentarg annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "grom hellscream annoyed"
 	(list "orc/units/grom hellscream/annoyed/1.wav"
 	"orc/units/grom hellscream/annoyed/2.wav"
 	"orc/units/grom hellscream/annoyed/3.wav"))
-(make-sound "grom hellscream annoyed"
-	(list "grom hellscream annoyed 1.wav"
-	"grom hellscream annoyed 2.wav"
-	"grom hellscream annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "korgath bladefist annoyed"
 	(list "orc/units/korgath bladefist/annoyed/1.wav"
 	"orc/units/korgath bladefist/annoyed/2.wav"
 	"orc/units/korgath bladefist/annoyed/3.wav"))
-(make-sound "korgath bladefist annoyed"
-	(list "korgath bladefist annoyed 1.wav"
-	"korgath bladefist annoyed 2.wav"
-	"korgath bladefist annoyed 3.wav"))
-)
-(if new-names?
 (make-sound "teron gorefiend annoyed"
 	(list "orc/units/teron gorefiend/annoyed/1.wav"
 	"orc/units/teron gorefiend/annoyed/2.wav"
 	"orc/units/teron gorefiend/annoyed/3.wav"))
-(make-sound "teron gorefiend annoyed"
-	(list "teron gorefiend annoyed 1.wav"
-	"teron gorefiend annoyed 2.wav"
-	"teron gorefiend annoyed 3.wav"))
-)
     ;;
     ;;	Other sounds ---------------------------------------------------------
     ;;
-(if new-names?
 (make-sound "explosion" "misc/explosion.wav")
-(make-sound "explosion" "explosion.wav")
-)
-(if new-names?
 (make-sound "building destroyed"
 	(list "misc/building explosion/1.wav"
 	"misc/building explosion/2.wav"
 	"misc/building explosion/3.wav"))
-(make-sound "building destroyed"
-	(list "explosion 1.wav"
-	"explosion 2.wav"
-	"explosion 3.wav"))
-)
-(if new-names?
 (make-sound "sword attack"
 	(list "missiles/sword attack/1.wav"
 	"missiles/sword attack/2.wav"
 	"missiles/sword attack/3.wav"))
-(make-sound "sword attack"
-	(list "sword attack 1.wav"
-	"sword attack 2.wav"
-	"sword attack 3.wav"))
-)
-(if new-names?
 (make-sound "tree chopping"
 	(list "misc/tree chopping/1.wav"
 	"misc/tree chopping/2.wav"
 	"misc/tree chopping/3.wav"
 	"misc/tree chopping/4.wav"))
-(make-sound "tree chopping"
-	(list "tree chopping 1.wav"
-	"tree chopping 2.wav"
-	"tree chopping 3.wav"
-	"tree chopping 4.wav"))
-)
 
 ;;----------------------------------------------------------------------------
 ;;	Define selection sound groups.
@@ -1591,7 +781,6 @@
 
 ;;	Define sounds used by game
 ;;
-(if new-names?
 (define-game-sounds
 
   'placement-error (make-sound "placement error" "ui/placement error.wav")
@@ -1606,31 +795,10 @@
 ;  'peasant-work-complete
 ;  'basic-orc-voices-work-complete
 
-   ;; Repair sound is disabled as default
-   ;;'repair #t
-   ;;'repair (sound-for-name "peasant attack")
-   ;;'repair (make-sound "peasant attack" "human/units/peasant/attack.wav")
+  ;; Repair sound is disabled as default
+  ;;'repair #t
+  ;;'repair (sound-for-name "peasant attack")
+  ;;'repair (make-sound "peasant attack" "human/units/peasant/attack.wav")
 
-   'human-rescue (make-sound "human rescue" "human/rescue.wav")
-   'orc-rescue (make-sound "orc rescue" "orc/rescue.wav") )
-
-(define-game-sounds
-
-  'placement-error (make-sound "placement error" "placement error.wav")
-  'placement-success (make-sound "placement sucess" "placement sucess.wav")
-  'click sound-click
-
-; FIXME: Not ready
-;  'tree-chopping (make-sound "tree chopping" "tree chopping.wav")
-;  'transport-docking
-;  'building-construction
-;  'basic-human-voices-work-complete
-;  'peasant-work-complete
-;  'basic-orc-voices-work-complete
-
-   ;;'repair (sound-for-name "peasant attack")
-
-   'human-rescue (make-sound "human rescue" "rescue (human).wav")
-   'orc-rescue (make-sound "orc rescue" "rescue (orc).wav") )
-)
-))
+  'human-rescue (make-sound "human rescue" "human/rescue.wav")
+  'orc-rescue (make-sound "orc rescue" "orc/rescue.wav") )))
