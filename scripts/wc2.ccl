@@ -81,8 +81,8 @@
     "missile-impact" "missile-normal-spell" "missile-explosion"
     "missile-small-cannon" "missile-cannon-explosion"
     "missile-cannon-tower-explosion" "missile-daemon-fire"
-    "missile-green-cross" "missile-blizzard-hit" "missile-death-coil"
-    "missile-custom" "missile-none" )
+    "missile-green-cross" "missile-none" "missile-blizzard-hit"
+    "missile-death-coil" "missile-custom" )
 
 ;;=============================================================================
 ;;	Define upgrade mapping from original number to internal symbol
