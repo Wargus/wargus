@@ -166,7 +166,7 @@
   '(apply-to unit-archer) '(apply-to unit-ranger))
 
 (define-modifier 'upgrade-ranger-scouting
-  '(attack-range 3)
+  '(sight-range 3)
   '(apply-to unit-archer) '(apply-to unit-ranger))
 
 (define-modifier 'upgrade-ranger-marksmanship

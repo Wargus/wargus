@@ -161,7 +161,7 @@
   '(apply-to unit-axethrower) '(apply-to unit-berserker))
 
 (define-modifier 'upgrade-berserker-scouting
-  '(attack-range 3)
+  '(sight-range 3)
   '(apply-to unit-axethrower) '(apply-to unit-berserker))
 
 (define-modifier 'upgrade-berserker-regeneration
