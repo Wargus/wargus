@@ -391,7 +391,7 @@
 
 (define-menu-item 'pos (list 123 309) 'font 'large
     'button '(size (106 27)
-	caption "~!Ok"
+	caption "~!OK"
     	hotkey "o"
     	func end-menu
     	style gm-half)
@@ -2934,22 +2934,22 @@
 (define-menu-item 'pos (list (/ 288 2) 11) 'font 'large
     'text '(() center)
     'menu 'menu-editor-edit-resource)
-(define-menu-item 'pos (list 40 38) 'font 'game
+(define-menu-item 'pos (list 40 46) 'font 'game
     'input '(size (212 20)
            func editor-edit-resource-enter-action
            style pulldown)
     'menu 'menu-editor-edit-resource)
-(define-menu-item 'pos (list 24 80) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 24 88) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func editor-edit-resource-ok
             style gm-half)
     'menu 'menu-editor-edit-resource)
-(define-menu-item 'pos (list 154 80) 'font 'large
+(define-menu-item 'pos (list 154 88) 'font 'large
     'button '(size (106 27)
-            caption "~!Cancel"
-            hotkey "c"
+            caption "Cancel (~<Esc~>)"
+            hotkey "esc"
             func editor-edit-resource-cancel
             style gm-half)
     'menu 'menu-editor-edit-resource)
@@ -2974,4 +2974,44 @@
             style gm-half)
     'menu 'menu-editor-error)
 
+;;
+;; menu-editor-edit-ai-properties
+;;
+(define-menu 'name 'menu-editor-edit-ai-properties 'geometry '(256 176 288 128)
+    'image 'panel4 'default '6)
+(define-menu-item 'pos (list (/ 288 2) 11) 'font 'large
+    'text '("Artificial Intelligence" center)
+    'menu 'menu-editor-edit-ai-properties)
+(define-menu-item 'pos (list 100 34)
+    'gem '(size (18 18)
+         state unchecked
+         func editor-edit-ai-properties-gem
+         style gem-round)
+    'menu 'menu-editor-edit-ai-properties)
+(define-menu-item 'pos (list 124 38) 'font 'game
+    'text '("Active" left)
+    'menu 'menu-editor-edit-ai-properties)
+(define-menu-item 'pos (list 100 56)
+    'gem '(size (18 18)
+         state unchecked
+         func editor-edit-ai-properties-gem
+         style gem-round)
+    'menu 'menu-editor-edit-ai-properties)
+(define-menu-item 'pos (list 124 60) 'font 'game
+    'text '("Passive" left)
+    'menu 'menu-editor-edit-ai-properties)
+(define-menu-item 'pos (list 24 88) 'font 'large
+    'button '(size (106 27)
+            caption "~!OK"
+            hotkey "o"
+            func editor-edit-ai-properties-ok
+            style gm-half)
+    'menu 'menu-editor-edit-ai-properties)
+(define-menu-item 'pos (list 154 88) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "Cancel (~<Esc~>)"
+            hotkey "esc"
+            func editor-edit-ai-properties-cancel
+            style gm-half)
+    'menu 'menu-editor-edit-ai-properties)
 
