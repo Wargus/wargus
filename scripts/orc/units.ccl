@@ -1020,7 +1020,7 @@
   "animations-skeleton"
   "icon-skeleton"
   ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      99      0      3     40     0 #(   0     0     0     0     0     0     0)
+       8      0      3     40     0 #(   0     0     0     0     0     0     0)
   ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
   '( 1 1 ) '(  31  31 )      0       1      4       2
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
