@@ -60,9 +60,9 @@ COMPRESS=$GZIP
 #               Third choise:   uninstalled on original cdrom
 #		or use -p dir
 #
-ARCHIVE="/dos/c/games/war2/data/"
+#ARCHIVE="/dos/c/games/war2/data/"
 #ARCHIVE="./"
-#ARCHIVE=$CDROM"/data/"
+ARCHIVE=$CDROM"/data/"
 
 #
 #       Here are my executeables or -T dir.
@@ -139,7 +139,7 @@ fi
 
 # ADD -e      To force that the archive is expansion compatible
 # ADD -n      To force that the archive is not expansion compatible
-$BINPATH/wartool -e $VIDEO "$DATADIR" "$DIR"
+$BINPATH/wartool $VIDEO "$DATADIR" "$DIR"
 
 # copy own supplied files
 
