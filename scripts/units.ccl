@@ -170,6 +170,8 @@
   'can-target-land
   'land-unit
   'critter
+  'random-movement-probability 100
+  'clicks-to-explode 10
   'organic
   'sounds '(
     selected "critter-selected"
