@@ -89,20 +89,20 @@
   'land-unit
   'coward
   'can-gather-resource '(
-	file-when-loaded "human/units/peasant_with_gold.png"  
-	resource-id gold
-	resource-capacity 100
-	wait-at-resource 150
-	wait-at-depot 150 )
+    file-when-loaded "human/units/peasant_with_gold.png"  
+    resource-id gold
+    resource-capacity 100
+    wait-at-resource 150
+    wait-at-depot 150)
   'can-gather-resource '(
-	file-when-loaded "human/units/peasant_with_wood.png"  
-	resource-id wood
-	resource-capacity 100
-	resource-step 2
-	wait-at-resource 24
-	wait-at-depot 150
-	lose-resources
-	terrain-harvester )
+    file-when-loaded "human/units/peasant_with_wood.png"  
+    resource-id wood
+    resource-capacity 100
+    resource-step 2
+    wait-at-resource 24
+    wait-at-depot 150
+    lose-resources
+    terrain-harvester)
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -463,12 +463,12 @@
   'right-harvest
   'sea-unit 'coward
   'can-gather-resource '(
-      file-when-empty "human/units/oil_tanker_empty.png"
-      file-when-loaded "human/units/oil_tanker_full.png"
-      resource-id oil
-      resource-capacity 100
-      wait-at-resource 100
-      wait-at-depot 100)
+    file-when-empty "human/units/oil_tanker_empty.png"
+    file-when-loaded "human/units/oil_tanker_full.png"
+    resource-id oil
+    resource-capacity 100
+    wait-at-resource 100
+    wait-at-depot 100)
   'selectable-by-rectangle
   'sounds '(
     selected "human-oil-tanker-selected"
