@@ -439,10 +439,10 @@
 ;;		(FIXME: must be combined with game types)
 
 (define (single-player-triggers)
-  (add-trigger (lambda () (if-unit 'this '== 0 'all))
-    (lambda () (action-defeat)))
-  (add-trigger (lambda () (if-opponents 'this '== 0))
-    (lambda () (action-victory))) )
+  (add-trigger '((if-unit 'this '== 0 'all))
+    '((action-defeat)))
+  (add-trigger '((if-opponents 'this '== 0))
+    '((action-victory))) )
 
 ;;-----------------------------------------------------------------------------
 ;;	Tables-Part
