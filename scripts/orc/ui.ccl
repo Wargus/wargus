@@ -159,10 +159,22 @@
     )
 
     'button-panel (list
-      (string-append "graphics/ui/orc/"
-        (number->string screen_width) "x" (number->string screen_height)
-        "/buttonpanel.png")
-       0 336)
+      'panel (list
+        'file (string-append "graphics/ui/orc/"
+          (number->string screen_width) "x" (number->string screen_height)
+          "/buttonpanel.png")
+        'pos '(0 336))
+      'icons (list
+        (list 'pos '(  6 337) 'size icon_size)
+        (list 'pos '( 62 337) 'size icon_size)
+        (list 'pos '(118 337) 'size icon_size)
+        (list 'pos '(  6 384) 'size icon_size)
+        (list 'pos '( 62 384) 'size icon_size)
+        (list 'pos '(118 384) 'size icon_size)
+        (list 'pos '(  6 431) 'size icon_size)
+        (list 'pos '( 62 431) 'size icon_size)
+        (list 'pos '(118 431) 'size icon_size))
+    )
 
     'map-area (list
       'pos '(176 16)
@@ -201,17 +213,6 @@
       size (80 19)
       caption "Diplomacy"
       style network)
-
-    'button-buttons (list
-      (list 'pos '(  6 337) 'size icon_size)
-      (list 'pos '( 62 337) 'size icon_size)
-      (list 'pos '(118 337) 'size icon_size)
-      (list 'pos '(  6 384) 'size icon_size)
-      (list 'pos '( 62 384) 'size icon_size)
-      (list 'pos '(118 384) 'size icon_size)
-      (list 'pos '(  6 431) 'size icon_size)
-      (list 'pos '( 62 431) 'size icon_size)
-      (list 'pos '(118 431) 'size icon_size))
 
     'cursors '(
       point cursor-point
