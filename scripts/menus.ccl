@@ -296,9 +296,9 @@
 ;;
 ;; menu-global-options
 ;;
-(define-menu 'name 'menu-global-options 'geometry '(192 96 256 288)
-    'image 'panel1 'default '1)
-(define-menu-item 'pos (list 128 11) 'font 'large 'init 'init-global-options
+(define-menu 'name 'menu-global-options 'geometry '(144 64 352 352)
+    'image 'panel5 'default '1)
+(define-menu-item 'pos (list 176 11) 'font 'large 'init 'init-global-options
     'text '("Global Options" center)
     'menu 'menu-global-options)
 (define-menu-item 'pos (list 16 44) 'font 'game
@@ -355,41 +355,41 @@
     'text '("1600 x 1200" left)
     'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 160)
+(define-menu-item 'pos (list 17 164)
     'gem '(size (18 18)
          state unchecked
          func set-fullscreen
          style gem-square)
     'menu 'menu-global-options)
-(define-menu-item 'pos (list 40 164) 'font 'game
+(define-menu-item 'pos (list 40 166) 'font 'game
     'text '("Fullscreen" left)
     'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 180) 'font 'game
+(define-menu-item 'pos (list 192 44) 'font 'game
     'text '("Shadow Fog" left)
     'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 200)
+(define-menu-item 'pos (list 192 60)
     'gem '(size (18 18)
          state unchecked
          func set-shadow-fog-alpha
          style gem-round)
     'menu 'menu-global-options)
-(define-menu-item 'pos (list 40 204) 'font 'game
+(define-menu-item 'pos (list 216 64) 'font 'game
     'text '("Alpha" left)
     'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 220)
+(define-menu-item 'pos (list 192 80)
     'gem '(size (18 18)
          state unchecked
          func set-shadow-fog-gray
          style gem-round)
     'menu 'menu-global-options)
-(define-menu-item 'pos (list 40 224) 'font 'game
+(define-menu-item 'pos (list 216 84) 'font 'game
     'text '("Gray" left)
     'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 128 250) 'font 'large
+(define-menu-item 'pos (list 123 309) 'font 'large
     'button '(size (106 27)
 	caption "~!Ok"
     	hotkey "o"
