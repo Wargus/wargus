@@ -24,6 +24,10 @@
 ;;	$Id$
 
 ;;
+;; load the keystroke helps
+;;
+(load "ccl/keystrokes.ccl" #f #t)
+;;
 ;; menu-game
 ;;
 (define-menu 'name 'menu-game 'geometry '(272 96 256 288)
@@ -2795,4 +2799,3 @@
            func editor-player-properties-enter-action
            style pulldown)
     'menu 'menu-editor-player-properties)
-
