@@ -31,10 +31,6 @@
 ;; Load the animations for the units.
 (load "ccl/anim.ccl" #f #t)
 
-;; Load the different races
-(load "ccl/human/units.ccl" #f #t)
-(load "ccl/orc/units.ccl" #f #t)
-
 ;;=============================================================================
 ;;	Define unit-types.
 ;;
@@ -433,3 +429,8 @@
   'building
   'critter
   'sounds '())
+
+;; Load the different races
+(load "ccl/human/units.ccl" #f #t)
+(load "ccl/orc/units.ccl" #f #t)
+
