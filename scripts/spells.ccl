@@ -306,7 +306,7 @@
 	'manacost 100
 	'range	10
 	'target 'position ;; FIXME position or organic target
-	'action '(death-coil damage 50)
+	'action '(fireball damage 50)
 ;	'condition '(UnitTypeflag (true organic))
 	'sound-when-cast "death coil"
 	'missile-when-cast "missile-death-coil"
@@ -329,7 +329,7 @@
 	'manacost 100
 	'range	12
 	'target 'position
-	'action '(whirlwind duration 801) ; TODO damage1 4 damage2 1
+	'action '(whirlwind duration 801 damage 4) ; TODO damage1 4 damage2 1
 	'sound-when-cast "whirlwind"
 	'missile-when-cast "missile-whirlwind"
 ;;	'autocast '(range 12)
