@@ -282,6 +282,7 @@ DefineUnitType("unit-dark-portal", { Name = "Dark Portal",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true, BuilderOutside = true,
+  CanCastSpell = {"spell-circle-of-power"},
   Teleporter = true,
   Sounds = {
     "selected", "dark-portal-selected",
