@@ -41,6 +41,12 @@ DefineUnitType("unit-skeleton", {})
 DefineUnitType("unit-circle-of-power", {})
 
 if CompileFeature("META-LUA") then
+	for i = 1, 10 do
+		print("DEFINE NEW SPELLS " .. Stratagus.SyncRand(34))
+	end
+end
+
+if CompileFeature("META-LUA") then
 	print("All your base are belong to us.");
 	AssignTable(Stratagus.Spells.Create("spell-suicide-bomber"), {
 			Name = "Demolish",
@@ -176,9 +182,6 @@ if CompileFeature("META-LUA") then
 end
 
 do
-	for i = 1, 10 do
-		print("DEFINE OLD SPELLS")
-	end
 	DefineSpell("spell-suicide-bomber",
 		"showname", "Demolish",
 		"manacost", 0,
