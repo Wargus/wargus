@@ -257,6 +257,7 @@
 (load "ccl/icons.ccl" #f #t)
 (load "ccl/sound.ccl" #f #t)
 (load "ccl/missiles.ccl" #f #t)
+(load "ccl/constructions.ccl" #f #t)
 (load "ccl/units.ccl" #f #t)
 (load "ccl/upgrade.ccl" #f #t)
 (load "ccl/fonts.ccl" #f #t)

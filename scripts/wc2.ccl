@@ -40,7 +40,20 @@
   'tileset-summer 'tileset-winter 'tileset-wasteland 'tileset-swamp)
 
 ;;=============================================================================
-;;	Define unittype mapping from original number to internal symbol
+;;	Define construction mapping from original number to internal symbol
+;;
+;;	(define-construction-wc-names human-shipyard orc-shipyard ... )
+
+(define-construction-wc-names
+  'construction-0 'construction-1 'construction-2 'construction-3
+  'construction-4 'construction-5 'construction-land
+  'construction-human-shipyard 'construction-orc-shipyard
+  'construction-human-oil-well 'construction-orc-oil-well
+  'construction-human-refinery 'construction-orc-refinery
+  'construction-human-foundry 'construction-orc-foundry 'construction-wall)
+
+;;=============================================================================
+;;	Define unit-type mapping from original number to internal symbol
 ;;
 ;;	(define-unittype-wc-names footman grunt ... )
 
