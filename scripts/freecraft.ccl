@@ -223,10 +223,10 @@
 ;;-----------------------------------------------------------------------------
 
 ;;	Change the global sound volume
-(set-sound-volume! 255)
+(set-sound-volume! 128)
 
 ;;	Change the music volume
-(set-music-volume! 255)
+(set-music-volume! 128)
 
 ;;-----------------------------------------------------------------------------
 
