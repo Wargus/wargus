@@ -316,6 +316,7 @@ DefineUnitType("unit-runestone", { Name = "Runestone",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true, BuilderOutside = true,
+  CanCastSpell = {"spell-runestone-heal"},
   Sounds = {
     "selected", "runestone-selected",
     "acknowledge", "runestone-acknowledge",

@@ -464,5 +464,21 @@ do
 		"missile-when-cast", "missile-normal-spell"
 	--	"autocast", {range -1)
 	)
+
+	DefineSpell("spell-runestone-heal",
+		"showname", "runestone-heal",
+		"manacost", 0,
+		"range", 6,
+		"target",  "unit",
+		"action", {{"area-adjust-vitals", "hit-points", 1, "mana-points", 1}},
+		"condition", {
+			"organic", "only",
+			"building", "false",
+			"max-hp-percent", 100
+		},
+		"sound-when-cast", "healing",
+		"missile-when-cast", "missile-heal-effect",
+		"autocast", {"range", 6}
+	)
 end
 
