@@ -86,8 +86,8 @@
     'unit-footman 'unit-grunt 'unit-peasant 'unit-peon 'unit-ballista
     'unit-catapult 'unit-knight 'unit-ogre 'unit-archer 'unit-axethrower
     'unit-mage 'unit-death-knight 'unit-paladin 'unit-ogre-mage
-    'unit-dwarves 'unit-goblin-sappers 'unit-attack-peasant
-    'unit-attack-peon 'unit-ranger 'unit-berserker 'unit-female-hero
+    'unit-dwarves 'unit-goblin-sappers 'unit-peasant
+    'unit-peon 'unit-ranger 'unit-berserker 'unit-female-hero
     'unit-evil-knight 'unit-flying-angle 'unit-fad-man
     'unit-white-mage 'unit-beast-cry 'unit-human-oil-tanker
     'unit-orc-oil-tanker 'unit-alliance-transport 'unit-mythical-transport

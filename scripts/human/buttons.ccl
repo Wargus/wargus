@@ -45,7 +45,7 @@
     unit-peasant-with-gold unit-peasant-with-wood unit-female-hero
     unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
     unit-man-of-light unit-white-mage unit-balloon
-    unit-gryphon-rider unit-attack-peasant unit-mage unit-critter
+    unit-gryphon-rider unit-mage unit-critter
     human-group))
 
 (define-button 'pos 2 'level 0 'icon 'icon-alliance-shield1
@@ -56,7 +56,7 @@
     unit-peasant-with-gold unit-peasant-with-wood unit-female-hero
     unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
     unit-man-of-light unit-white-mage unit-balloon
-    unit-gryphon-rider unit-attack-peasant unit-mage unit-critter
+    unit-gryphon-rider unit-mage unit-critter
     human-group))
 
 (define-button 'pos 2 'level 0 'icon 'icon-alliance-shield2

@@ -89,7 +89,6 @@
    'unit-wise-man
    'unit-man-of-light
 
-   'unit-attack-peasant
    'unit-peasant-with-gold
    'unit-peasant-with-wood
    'unit-human-oil-tanker-full
@@ -148,7 +147,6 @@
    'unit-double-head
    'unit-sharp-axe
 
-   'unit-attack-peon
    'unit-peon-with-gold
    'unit-peon-with-wood
    'unit-orc-oil-tanker-full
