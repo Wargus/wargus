@@ -10,7 +10,7 @@
 ;;
 ;;	ui.ccl		-	Define the orcish user interface
 ;;
-;;	(c) Copyright 2001,2002 by Lutz Sammer
+;;	(c) Copyright 2001-2003 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -535,7 +535,7 @@
     (list "graphics/ui/orc/1600x1200/buttonpanel.png" 0 336)
 
     ; The big map
-    '(176 16 1584 1184)
+    '(176 16 1584 1168)
 
     ; Menu button
     '("graphics/ui/orc/menubutton.png" 0 0)
