@@ -105,6 +105,7 @@
     selected "peon-selected"
     acknowledge "peon-acknowledge"
     ready "peon-ready"
+;    repair "peon-attack"
     help "basic orc voices help 1"
     dead "basic orc voices dead"
     attack "peon-attack"))

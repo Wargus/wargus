@@ -826,11 +826,6 @@
   'work-complete (list 'human (make-sound "basic human voices work complete" "human/basic_voices/work_complete.wav"))
   'work-complete (list 'orc (make-sound "basic orc voices work complete" "orc/basic_voices/work_complete.wav"))
 
-  ;; Repair sound is disabled as default
-  ;;'repair #t
-  ;;'repair (sound-for-name "peasant attack")
-  ;;'repair (make-sound "peasant attack" "human/units/peasant/attack.wav")
-
   'rescue (list 'human (make-sound "human rescue" "human/rescue.wav"))
   'rescue (list 'orc (make-sound "orc rescue" "orc/rescue.wav")) )
 

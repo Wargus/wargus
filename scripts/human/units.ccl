@@ -52,7 +52,7 @@
   'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-attack 'repair-range 1
+  'can-attack
   'can-target-land
   'land-unit
   'organic
@@ -109,6 +109,7 @@
     selected "peasant-selected"
     acknowledge "peasant-acknowledge"
     ready "peasant-ready"
+;    repair "peasant-attack"
     help "basic human voices help 1"
     dead "basic human voices dead"
     attack "peasant-attack"))
