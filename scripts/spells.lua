@@ -457,7 +457,7 @@ do
 	DefineSpell("spell-circle-of-power",
 		"showname", "circle of power",
 		"manacost", 25,
-		"range", -1,
+		"range", "infinite",
 		"target", "position",
 		"action", {{"spawn-portal", "portal-type", "unit-circle-of-power"}},
 		"sound-when-cast", "circle of power",
