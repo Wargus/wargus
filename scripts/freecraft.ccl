@@ -220,6 +220,7 @@
 (load "ccl/wc2.ccl" #f #t)
 
 (load "ccl/tilesets.ccl" #f #t)
+(load "ccl/icons.ccl" #f #t)
 ; FIXME: Need to check if sound support is present
 (load "ccl/sound.ccl" #f #t)
 (load "ccl/missiles.ccl" #f #t)
