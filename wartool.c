@@ -33,33 +33,16 @@
 #include <stdlib.h>
 #include <string.h>
 #ifndef _MSC_VER
-#include <sys/stat.h>
-#include <unistd.h>
 #include <fcntl.h>
 #endif
 #include <ctype.h>
-
 #include <png.h>
 
-#ifdef USE_BEOS
-typedef unsigned long u_int32_t;
-#else
-#if !defined(__CYGWIN__) && !defined(__MINGW32__)
-#define O_BINARY	0
-#else
-typedef unsigned long u_int32_t;
-    // why is this not default :(((((
-#define mkdir(a,b)	mkdir(a)
-#endif
-#endif
-
+#include "freecraft.h"
+#include "iocompat.h"
 #include "myendian.h"
 
-#undef main
-
-#ifndef VERSION
-#define VERSION	"1.17"			/// Engine version shown.
-#endif
+typedef unsigned long u_int32_t;
 
 //----------------------------------------------------------------------------
 //	Config
@@ -1408,30 +1391,6 @@ Control Todo[] = {
 char* UnitNames[110];
 
 //----------------------------------------------------------------------------
-
-/**
-**	Print debug information of level 0.
-*/
-#define DebugLevel0(fmt,args...)	printf(fmt,##args)
-/**
-**	Print debug information of level 1.
-*/
-#define DebugLevel1(fmt,args...)	printf(fmt,##args)/**/
-/**
-**	Print debug information of level 2.
-*/
-#define DebugLevel2(fmt,args...)	printf(fmt,##args)/**/
-/**
-**	Print debug information of level 3.
-*/
-#define DebugLevel3(fmt,args...)	/* ALWAYS TURNED OFF */
-
-/**
-**	Print debug information of level 3 with function name.
-*/
-#define DebugLevel3Fn(fmt,args...)	/* ALWAYS TURNED OFF */
-
-//----------------------------------------------------------------------------
 //	TOOLS
 //----------------------------------------------------------------------------
 
@@ -1456,7 +1415,11 @@ void CheckPath(const char* path)
 	    if( s ) {
 		*s='\0';
 	    }
+#ifdef USE_WIN32
+	    mkdir(cp);
+#else
 	    mkdir(cp,0777);
+#endif
 	    if( s ) {
 		*s++='/';
 	    } else {
@@ -1590,7 +1553,7 @@ int OpenArchive(const char* file,int type)
 	exit(-1);
     }
     DebugLevel3("Filesize %ld %ldk\n"
-	,(long)stat_buf.(long)st_size,stat_buf.st_size/1024);
+	_C_ (long)stat_buf.st_size _C_ stat_buf.st_size/1024);
 
     //
     //	Read in the archive
@@ -1608,15 +1571,15 @@ int OpenArchive(const char* file,int type)
 
     cp=buf;
     i=FetchLE32(cp);
-    DebugLevel2("Magic\t%08X\t",i);
+    DebugLevel2("Magic\t%08X\t" _C_ i);
     if( i!=0x19 ) {
 	printf("Wrong magic %08x, expected %08x\n",i,0x00000019);
 	exit(-1);
     }
     entries=FetchLE16(cp);
-    DebugLevel3("Entries\t%5d\t",entries);
+    DebugLevel3("Entries\t%5d\t" _C_ entries);
     i=FetchLE16(cp);
-    DebugLevel3("ID\t%d\n",i);
+    DebugLevel3("ID\t%d\n" _C_ i);
     if( i!=type ) {
 	printf("Wrong type %08x, expected %08x\n",i,type);
 	exit(-1);
@@ -1632,7 +1595,7 @@ int OpenArchive(const char* file,int type)
     }
     for( i=0; i<entries; ++i ) {
 	op[i]=buf+FetchLE32(cp);
-	DebugLevel3("Offset\t%d\n",op[i]);
+	DebugLevel3("Offset\t%d\n" _C_ op[i]);
     }
     op[i]=buf+stat_buf.st_size;
 
@@ -1660,7 +1623,7 @@ unsigned char* ExtractEntry(unsigned char* cp,int* lenp)
     uncompressed_length=FetchLE32(cp);
     flags=uncompressed_length>>24;
     uncompressed_length&=0x00FFFFFF;
-    DebugLevel3("Entry length %8d flags %02x\t",uncompressed_length,flags);
+    DebugLevel3("Entry length %8d flags %02x\t" _C_ uncompressed_length _C_ flags);
 
     dp=dest=malloc(uncompressed_length);
     if( !dest ) {
@@ -1685,7 +1648,7 @@ unsigned char* ExtractEntry(unsigned char* cp,int* lenp)
 	    int bflags;
 
 	    bflags=FetchByte(cp);
-	    DebugLevel3("Ctrl %02x ",bflags);
+	    DebugLevel3("Ctrl %02x " _C_ bflags);
 	    for( i=0; i<8; ++i ) {
 		int j;
 		int o;
@@ -1694,10 +1657,10 @@ unsigned char* ExtractEntry(unsigned char* cp,int* lenp)
 		    j=FetchByte(cp);
 		    *dp++=j;
 		    buf[bi++&0xFFF]=j;
-		    DebugLevel3("=%02x",j);
+		    DebugLevel3("=%02x" _C_ j);
 		} else {
 		    o=FetchLE16(cp);
-		    DebugLevel3("*%d,%d",o>>12,o&0xFFF);
+		    DebugLevel3("*%d,%d" _C_ o>>12 _C_ o&0xFFF);
 		    j=(o>>12)+3;
 		    o&=0xFFF;
 		    while( j-- ) {
@@ -1844,9 +1807,9 @@ int CountUsedTiles(const unsigned char* map,const unsigned char* mega
     //
     for( i=0; i<0x9E; ++i ) {
 	tp=map+i*42;
-	DebugLevel3("%02X:",i);
+	DebugLevel3("%02X:" _C_ i);
 	for( j=0; j<0x10; ++j ) {
-	    DebugLevel3("%04X ",AccessLE16(tp+j*2));
+	    DebugLevel3("%04X " _C_ AccessLE16(tp+j*2));
 	    map2tile[(i<<4)|j]=AccessLE16(tp+j*2);
 	}
 	DebugLevel3("\n");
@@ -1880,7 +1843,7 @@ int CountUsedTiles(const unsigned char* map,const unsigned char* mega
 	    }
 	}
     }
-    DebugLevel3("Used mega tiles %d\n",used);
+    DebugLevel3("Used mega tiles %d\n" _C_ used);
 #if 0
     for( i=0; i<used; ++i ) {
 	if( !(i%16) ) {
@@ -1946,7 +1909,7 @@ void DecodeMiniTile(unsigned char* image,int ix,int iy,int iadd
     int x;
     int y;
 
-    DebugLevel3Fn("index %d\n",index);
+    DebugLevel3Fn("index %d\n" _C_ index);
     for( y=0; y<8; ++y ) {
 	for( x=0; x<8; ++x ) {
 	    image[(y+iy*8)*iadd+ix*8+x]=mini[index+
@@ -1971,12 +1934,12 @@ unsigned char* ConvertTile(unsigned char* mini,const char* mega,int msize
     int offset;
     int numtiles;
 
-    DebugLevel3("Tiles in mega %d\t",msize/32);
+    DebugLevel3("Tiles in mega %d\t" _C_ msize/32);
     numtiles=msize/32;
 
     width=TILE_PER_ROW*32;
     height=((numtiles+TILE_PER_ROW-1)/TILE_PER_ROW)*32;
-    DebugLevel3("Image %dx%d\n",width,height);
+    DebugLevel3("Image %dx%d\n" _C_ width _C_ height);
     image=malloc(height*width);
     memset(image,0,height*width);
 
@@ -2028,7 +1991,7 @@ int ConvertTileset(char* file,int pale,int mege,int mine,int mape)
     minp=ExtractEntry(ArchiveOffsets[mine],NULL);
     mapp=ExtractEntry(ArchiveOffsets[mape],NULL);
 
-    DebugLevel3("%s:\t",file);
+    DebugLevel3("%s:\t" _C_ file);
     image=ConvertTile(minp,megp,megl,mapp,&w,&h);
 
     free(megp);
@@ -2078,30 +2041,30 @@ void DecodeGfxEntry(int index,unsigned char* start
     offset=FetchLE32(bp);
 
     DebugLevel3("%2d: +x %2d +y %2d width %2d height %2d offset %d\n"
-	,index,xoff,yoff,width,height,offset);
+	_C_ index _C_ xoff _C_ yoff _C_ width _C_ height _C_ offset);
 
     rows=start+offset-6;
     dp=image+xoff-ix+(yoff-iy)*iadd;
 
     for( h=0; h<height; ++h ) {
-	DebugLevel3("%2d: row-offset %2d\t",index,AccessLE16(rows+h*2));
+	DebugLevel3("%2d: row-offset %2d\t" _C_ index _C_ AccessLE16(rows+h*2));
 	sp=rows+AccessLE16(rows+h*2);
 	for( w=0; w<width; ) {
 	    ctrl=*sp++;
-	    DebugLevel3("%02X",ctrl);
+	    DebugLevel3("%02X" _C_ ctrl);
 	    if( ctrl&0x80 ) {		// transparent
 		ctrl&=0x7F;
-		DebugLevel3("-%d,",ctrl);
+		DebugLevel3("-%d," _C_ ctrl);
 		memset(dp+h*iadd+w,255,ctrl);
 		w+=ctrl;
 	    } else if( ctrl&0x40 ) {	// repeat
 		ctrl&=0x3F;
-		DebugLevel3("*%d,",ctrl);
+		DebugLevel3("*%d," _C_ ctrl);
 		memset(dp+h*iadd+w,*sp++,ctrl);
 		w+=ctrl;
 	    } else {			// set pixels
 		ctrl&=0x3F;
-		DebugLevel3("=%d,",ctrl);
+		DebugLevel3("=%d," _C_ ctrl);
 		memcpy(dp+h*iadd+w,sp,ctrl);
 		sp+=ctrl;
 		w+=ctrl;
@@ -2140,7 +2103,7 @@ void DecodeGfuEntry(int index,unsigned char* start
     }
 
     DebugLevel3("%2d: +x %2d +y %2d width %2d height %2d offset %d\n"
-	,index,xoff,yoff,width,height,offset);
+	_C_ index _C_ xoff _C_ yoff _C_ width _C_ height _C_ offset);
 
     sp=start+offset-6;
     dp=image+xoff-ix+(yoff-iy)*iadd;
@@ -2178,8 +2141,8 @@ unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp
     max_height=FetchLE16(bp);
 
 
-    DebugLevel3("Entries %2d Max width %3d height %3d, ",count
-	    ,max_width,max_height);
+    DebugLevel3("Entries %2d Max width %3d height %3d, " _C_ count
+	    _C_ max_width _C_ max_height);
 
     // Find best image size
     minx=999;
@@ -2227,7 +2190,7 @@ unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp
     //best_height-=miny;
 #endif
 
-    DebugLevel3("Best image size %3d, %3d\n",best_width,best_height);
+    DebugLevel3("Best image size %3d, %3d\n" _C_ best_width _C_ best_height);
 
     minx=0;
     miny=0;
@@ -2410,12 +2373,12 @@ unsigned char* ConvertFnt(unsigned char* start,int *wp,int *hp)
     max_height=FetchByte(bp);
 
     DebugLevel3("Font: count %d max-width %2d max-height %2d\n"
-	    ,count,max_width,max_height);
+	    _C_ count _C_ max_width _C_ max_height);
 
     offsets=malloc(count*sizeof(u_int32_t));
     for( i=0; i<count; ++i ) {
 	offsets[i]=FetchLE32(bp);
-	DebugLevel3("%03d: offset %d\n",i,offsets[i]);
+	DebugLevel3("%03d: offset %d\n" _C_ i _C_ offsets[i]);
     }
 
     image=malloc(max_width*max_height*count);
@@ -2427,7 +2390,7 @@ unsigned char* ConvertFnt(unsigned char* start,int *wp,int *hp)
 
     for( i=0; i<count; ++i ) {
 	if( !offsets[i] ) {
-	    DebugLevel3("%03d: unused\n",i);
+	    DebugLevel3("%03d: unused\n" _C_ i);
 	    continue;
 	}
 	bp=start+offsets[i];
@@ -2437,7 +2400,7 @@ unsigned char* ConvertFnt(unsigned char* start,int *wp,int *hp)
 	yoff=FetchByte(bp);
 
 	DebugLevel3("%03d: width %d height %d xoff %d yoff %d\n"
-		,i,width,height,xoff,yoff);
+		_C_ i _C_ width _C_ height _C_ xoff _C_ yoff);
 
 	dp=image+xoff+yoff*max_width+i*(max_width*max_height);
 	h=w=0;
@@ -2445,7 +2408,7 @@ unsigned char* ConvertFnt(unsigned char* start,int *wp,int *hp)
 	    int ctrl;
 
 	    ctrl=FetchByte(bp);
-	    DebugLevel3("%d,%d ",ctrl>>3,ctrl&7);
+	    DebugLevel3("%d,%d " _C_ ctrl>>3 _C_ ctrl&7);
 	    w+=(ctrl>>3)&0x1F;
 	    if( w>=width ) {
 		DebugLevel3("\n");
@@ -2522,7 +2485,7 @@ unsigned char* ConvertImg(unsigned char* bp,int *wp,int *hp)
     width=FetchLE16(bp);
     height=FetchLE16(bp);
 
-    DebugLevel3("Image: width %3d height %3d\n",width,height);
+    DebugLevel3("Image: width %3d height %3d\n" _C_ width _C_ height);
 
     image=malloc(width*height);
     if( !image ) {
@@ -2594,7 +2557,7 @@ unsigned char* ConvertCur(unsigned char* bp,int *wp,int *hp)
     height=FetchLE16(bp);
 
     DebugLevel3("Cursor: hotx %d hoty %d width %d height %d\n"
-	    ,hotx,hoty,width,height);
+	    _C_ hotx _C_ hoty _C_ width _C_ height);
 
     image=malloc(width*height);
     if( !image ) {
@@ -3335,8 +3298,8 @@ int SetupNames(char* file __attribute__((unused)),int txte __attribute__((unused
 
     n=ConvertLE16(mp[0]);
     for( u=1; u<n; ++u ) {
-	DebugLevel3("%d %x ",u,ConvertLE16(mp[u]));
-	DebugLevel3("%s\n",txtp+ConvertLE16(mp[u]));
+	DebugLevel3("%d %x " _C_ u _C_ ConvertLE16(mp[u]));
+	DebugLevel3("%s\n" _C_ txtp+ConvertLE16(mp[u]));
 	if( u<sizeof(UnitNames)/sizeof(*UnitNames) ) {
 	    UnitNames[u]=strdup(txtp+ConvertLE16(mp[u]));
 	}
@@ -3471,17 +3434,17 @@ int main(int argc,char** argv)
 	expansion_cd=1;
     }
 
-    DebugLevel2("Extract from \"%s\" to \"%s\"\n",archivedir, Dir);
+    DebugLevel2("Extract from \"%s\" to \"%s\"\n" _C_ archivedir _C_ Dir);
     for( u=0; u<sizeof(Todo)/sizeof(*Todo); ++u ) {
 	// Should only be on the expansion cd
-	DebugLevel2("%s:\n",ParseString(Todo[u].File));
+	DebugLevel2("%s:\n" _C_ ParseString(Todo[u].File));
 	if (!expansion_cd && Todo[u].Version==2 ) {
 	    continue;
 	}
 	switch( Todo[u].Type ) {
 	    case F:
 		sprintf(buf,"%s/%s",archivedir,Todo[u].File);
-		DebugLevel2("Archive \"%s\"\n",buf);
+		DebugLevel2("Archive \"%s\"\n" _C_ buf);
 		if( ArchiveBuffer ) {
 		    CloseArchive();
 		}
