@@ -120,7 +120,7 @@
   'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-normal-spell
   'file "missiles/normal spell.png" 'size '(32 32) 'frames 6
-  'class 'missile-class-stay-with-delay 'sleep 1 'speed 0 'range 1)
+  'class 'missile-class-stay-with-delay 'sleep 5 'speed 0 'range 1)
 (define-missile-type 'missile-explosion
   'file "missiles/explosion.png" 'size '(64 64) 'frames 20
   'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
