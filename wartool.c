@@ -77,10 +77,10 @@ typedef unsigned long u_int32_t;
 #define AccessLE32(p) (*((unsigned int*)(p)))
 #define ConvertLE16(v) (v)
 #else
-static _inline unsigned short Swap16(unsigned short D) {
+static unsigned short Swap16(unsigned short D) {
 	return ((D << 8) | (D >> 8));
 }
-static _inline unsigned int Swap32(unsigned int D) {
+static unsigned int Swap32(unsigned int D) {
 	return ((D << 24) | ((D << 8) & 0x00FF0000) | ((D >> 8) & 0x0000FF00) | (D >> 24));
 }
 #define FetchLE16(p) Swap16(*((unsigned short*)(p))++)
@@ -1954,7 +1954,7 @@ int ConvertRgb(char* file, int rgbe)
 	char buf[1024];
 	FILE* f;
 	int i;
-	size_t l;
+	int l;
 
 	rgbp = ExtractEntry(ArchiveOffsets[rgbe], &l);
 	ConvertPalette(rgbp);
@@ -2952,7 +2952,7 @@ int ConvertVideo(char* file, int video)
 	unsigned char* vidp;
 	char buf[1024];
 	FILE* gf;
-	size_t l;
+	int l;
 
 	vidp = ExtractEntry(ArchiveOffsets[video], &l);
 
