@@ -156,6 +156,7 @@
   'max-attack-range 1
   'priority 37
   'points 1
+  'demand 1
   'type-land
   'right-move
   'land-unit
