@@ -84,8 +84,8 @@ static inline unsigned int FetchLE32(unsigned char*& p) {
 	return s;
 }
 #else
-#define FetchLE16(p) (*((unsigned short*)(p))++)
-#define FetchLE32(p) (*((unsigned int*)(p))++)
+#define FetchLE16(p) (*((unsigned short*)(p))); p += 2
+#define FetchLE32(p) (*((unsigned int*)(p))); p += 4
 #endif
 #define AccessLE16(p) (*((unsigned short*)(p)))
 #define AccessLE32(p) (*((unsigned int*)(p)))
@@ -97,14 +97,14 @@ static inline unsigned short Swap16(unsigned short D) {
 static inline unsigned int Swap32(unsigned int D) {
 	return ((D << 24) | ((D << 8) & 0x00FF0000) | ((D >> 8) & 0x0000FF00) | (D >> 24));
 }
-#define FetchLE16(p) Swap16(*((unsigned short*)(p))++)
-#define FetchLE32(p) Swap32(*((unsigned int*)(p))++)
+#define FetchLE16(p) Swap16(*((unsigned short*)(p))); p += 2
+#define FetchLE32(p) Swap32(*((unsigned int*)(p))) p += 4
 #define AccessLE16(p) Swap16((*((unsigned short*)(p))))
 #define AccessLE32(p) Swap32(*((unsigned int*)(p)))
 #define ConvertLE16(v) Swap16(v)
 #endif
 
-#define FetchByte(p) (*((unsigned char*)(p))++)
+#define FetchByte(p) (*((unsigned char*)(p))); ++p
 
 //----------------------------------------------------------------------------
 //  Config
@@ -2395,9 +2395,11 @@ unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
 		width = FetchByte(p);
 		height = FetchByte(p);
 		// high bit of width
-		if (FetchLE32(p) & 0x80000000) {
+		if (AccessLE32(p) & 0x80000000) {
 			width += 256;
 		}
+		// increase p by 32bits, as AccessLE32 cannot do it above.
+		p += 4;
 		if (xoff < minx) {
 			minx = xoff;
 		}
