@@ -24,12 +24,16 @@
 
 #include <png.h>
 
+#ifdef USE_BEOS
+typedef unsigned long u_int32_t;
+#else
 #if !defined(__CYGWIN__) && !defined(__MINGW32__)
 #define O_BINARY	0
 #else
 typedef unsigned long u_int32_t;
     // why is this not default :(((((
 #define mkdir(a,b)	mkdir(a)
+#endif
 #endif
 
 #include "myendian.h"
@@ -196,7 +200,11 @@ Control Todo[] = {
 //	TEXT	(must be done for all others!)
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef USE_BEOS
+{F,0,"STRDAT.WAR",				4000 },
+#else
 {F,0,"strdat.war",				4000 },
+#endif
 {S,0,"unit_names",						  1	},
 // FIXME: perhaps should be moved to the campaigns.
 {X,0,"level01h",						 65	},
@@ -227,7 +235,7 @@ Control Todo[] = {
 {X,0,"level13o",						 90	},
 {X,0,"level14h",						 91	},
 {X,0,"level14o",						 92	},
-
+#ifdef HAVE_EXPANSION
 {X,2,"levelx01h",						 99	},
 {X,2,"levelx01o",						100	},
 {X,2,"levelx02h",						101	},
@@ -252,12 +260,17 @@ Control Todo[] = {
 {X,2,"levelx11o",						120	},
 {X,2,"levelx12h",						121	},
 {X,2,"levelx12o",						122	},
-
+#endif
 ///////////////////////////////////////////////////////////////////////////////
 //	MOST THINGS
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef USE_BEOS
+{F,0,"MAINDAT.WAR",				1000 },
+#else
 {F,0,"maindat.war",				1000 },
+#endif
+
 #ifdef NEW_NAMES
 {R,0,"summer/summer",						 2	},
 {T,0,"summer/terrain/summer",			 2,	 3,	 4,	 5 },
@@ -751,8 +764,10 @@ Control Todo[] = {
 {W,0,"ui/click",						432	},
 {W,0,"ui/highclick",						435	},
 
+#ifdef HAVE_EXPANSION
 {R,2,"swamp/swamp",						438	},
 {T,2,"swamp/swamp",				438,	439,	440,	441 },
+#endif
 
 #else
 
@@ -871,9 +886,12 @@ Control Todo[] = {
 {W,0,"click",							432	},
 {W,0,"highclick",						435	},
 
+#ifdef HAVE_EXPANSION
 {R,2,"swamp",							438	},
 {T,2,"swamp",					438,	439,	440,	441 },
 #endif
+#endif
+#ifdef HAVE_EXPANSION
 // --------------------------------------------------
 {P,2,"campaigns/human-exp/levelx01h",				 446	},
 {P,2,"campaigns/orc-exp/levelx01o",				 447	},
@@ -900,7 +918,9 @@ Control Todo[] = {
 {P,2,"campaigns/human-exp/levelx12h",				 468	},
 {P,2,"campaigns/orc-exp/levelx12o",				 469	},
 // ------------------------------------------
+#endif
 #ifdef NEW_NAMES
+#ifdef HAVE_EXPANSION
 {G,2,"tilesets/swamp/neutral/units/%59",			438, 470 },
 {G,2,"tilesets/swamp/icons",					438, 471 },
 // 472: default UDTA for expansion PUDs
@@ -959,7 +979,9 @@ Control Todo[] = {
 {G,2,"tilesets/swamp/neutral/buildings/%102",			438, 525 },
 {G,2,"tilesets/swamp/human/buildings/%40",			438, 526 },
 {G,2,"tilesets/swamp/orc/buildings/%41",			438, 527 },
+#endif
 #else
+#ifdef HAVE_EXPANSION
 {G,2,"critter (swamp)",						438, 470 },
 {G,2,"icons (swamp)",						438, 471 },
 // 472: default UDTA for expansion PUDs
@@ -1019,12 +1041,17 @@ Control Todo[] = {
 {G,2,"gnomish submarine (swamp)",				438, 526 },
 {G,2,"giant turtle (swamp)",					438, 527 },
 #endif
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 //	SOUNDS
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef USE_BEOS
+{F,0,"SFXDAT.SUD",				5000 },
+#else
 {F,0,"sfxdat.sud",				5000 },
+#endif
 
 // 0 file length
 // 1 description
@@ -1320,6 +1347,7 @@ Control Todo[] = {
 {W,0,"neutral/units/pig/selected/1",				290	},
 {W,0,"neutral/units/pig/annoyed/1",				291	},
 {W,0,"units/catapult-ballista/acknowledgement/1",		292	},
+#ifdef HAVE_EXPANSION
 {W,2,"human/units/alleria/annoyed/1",				293	},
 {W,2,"human/units/alleria/annoyed/2",				294	},
 {W,2,"human/units/alleria/annoyed/3",				295	},
@@ -1412,6 +1440,7 @@ Control Todo[] = {
 {W,2,"orc/units/teron gorefiend/acknowledgement/3",		382	},
 {W,2,"neutral/units/warthog/selected/1",			383	},
 {W,2,"neutral/units/warthog/annoyed/1",				384	},
+#endif
 #else
 {W,0,"placement error",						  2	},
 {W,0,"placement sucess",					  3	}, 
@@ -1704,6 +1733,7 @@ Control Todo[] = {
 {W,0,"pig selected",						290	},
 {W,0,"pig annoyed",						291	},
 {W,0,"catapult-ballista movement",				292	},
+#ifdef HAVE_EXPANSION
 {W,2,"alleria annoyed 1",					293	},
 {W,2,"alleria annoyed 2",					294	},
 {W,2,"alleria annoyed 3",					295	},
@@ -1797,12 +1827,18 @@ Control Todo[] = {
 {W,2,"warthog selected",					383	},
 {W,2,"warthog annoyed",						384	},
 #endif
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 //	INTERFACE
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifdef USE_BEOS
+{F,0,"REZDAT.WAR",				3000 },
+#else
 {F,0,"rezdat.war",				3000 },
+#endif
+
 #ifdef NEW_NAMES
 // (correct palette is #2 in maindat)
 {U,0,"interface/buttons 1",					14, 0	}, 
@@ -1833,6 +1869,7 @@ Control Todo[] = {
 {I,0,"interface/Credits background",				27, 28 },
 {I,0,"interface/human/The End",					27, 29 },
 {I,0,"interface/orc/Smashing of Lordaeron scroll",		32, 30 },
+#ifdef HAVE_EXPANSION
 {I,2,"interface/Patch",						14, 91 },
 {I,2,"interface/Credits for extension background",		93, 94 },
 {I,2,"../campaigns/human-exp/interface/Act I  - A Time for Heroes",17, 96 },
@@ -1843,6 +1880,7 @@ Control Todo[] = {
 {I,2,"../campaigns/orc-exp/interface/Act III- The Great Sea",	17, 101 },
 {I,2,"../campaigns/human-exp/interface/Act IV - The Measure of Valor",17, 102 },
 {I,2,"../campaigns/orc-exp/interface/Act IV - Prelude to New Worlds",17, 103 },
+#endif
 #else
 // (correct palette is #2 in maindat)
 {U,0,"interface/buttons 1",					14, 0	}, 
@@ -1873,6 +1911,7 @@ Control Todo[] = {
 {I,0,"Credits background",					27, 28 },
 {I,0,"The End (Humans)",					27, 29 },
 {I,0,"Smashing of Lordaeron scroll (Orcs)",			32, 30 },
+#ifdef HAVE_EXPANSION
 {I,2,"Patch",							14, 91 },
 {I,2,"Credits for extension background",			93, 94 },
 {I,2,"Act xI  - A Time for Heroes (Human)",			17, 96 },
@@ -1883,6 +1922,7 @@ Control Todo[] = {
 {I,2,"Act xIII- The Great Sea (Orc)",				17, 101 },
 {I,2,"Act xIV - The Measure of Valor (Human)",			17, 102 },
 {I,2,"Act xIV - Prelude to New Worlds (Orc)",			17, 103 },
+#endif
 #endif
 };
 
