@@ -95,12 +95,12 @@
 (define-spell "spell-holy-vision"
 	'showname "Holy Vision"
 	'manacost 70
-	'range	-1
+	'range 'infinite
 	'target 'position
-	'action '(summon unit-type unit-revealer time-to-live 100)
+	'action '(summon unit-type unit-revealer time-to-live 10)
 	'sound-when-cast "holy vision"
 	'missile-when-cast "missile-normal-spell"
-	'autocast '(range -1)
+;	'autocast '(range -1)
 )
 
 (define-spell "spell-healing"
@@ -108,18 +108,23 @@
 	'manacost 6
 	'range	6
 	'target 'unit
-	'action '(adjust-vitals hit-points +1)
-	'condition '(	UnitTypeflag (true organic)
-			UnitTypeflag (false building)
-			DurationEffect (false flag HP_percent value 100) ;; HP < 100% HPMAX
-			Alliance true
-			)
+	'action '(adjust-vitals hit-points 1)
+	'condition '(
+	    organic only
+	    building false
+	    max-hp-percent 100)
 	'sound-when-cast "healing"
 	'missile-when-cast "missile-heal-effect"
 	'autocast '(range 6
-		condition (UnitTypeflag (false coward)
-			)
-		)
+	    condition (
+		coward false
+		alliance only
+		;; 50% in battle, 100 while waiting? could be an idea
+		;; This way we could stop healing all the time, just when an
+		;; unit drops under 50 percent.
+		max-hp-percent 100
+	    )
+	)
 )
 
 (define-spell "spell-exorcism"
@@ -128,13 +133,14 @@
 	'range	10
 	'target 'unit
 	'action '(adjust-vitals hit-points -1)
-	'condition '(	UnitTypeflag (true undead)
-			UnitTypeflag (false building)
-			Alliance false
-			)
+	'condition '(
+	    undead only
+	    building false ; any undead buildings?
+	    alliance false
+	)
 	'sound-when-cast "exorcism"
 	'missile-when-cast "missile-exorcism"
-	'autocast '(range 10 condition (UnitTypeflag (false coward)))
+	'autocast '(range 10 condition (coward false alliance false))
 )
 
 (define-spell "spell-eye-of-vision"
@@ -154,13 +160,13 @@
 	'range	6
 	'target 'unit
 	'action '(adjust-buffs haste-ticks 1000 slow-ticks 0)
-	'condition '(	UnitTypeflag (false building)
-			DurationEffect (false flag haste value 900) ;; haste < 900 / CYCLE_PER_SECOND
-			Alliance true
-			)
+	'condition '(
+	    building false
+	    max-haste-ticks 10 ;; FIXME: proper value?
+	)
 	'sound-when-cast "haste"
 	'missile-when-cast "missile-normal-spell"
-	'autocast '(range 6 condition (UnitTypeflag (false coward)))
+	'autocast '(range 6 condition (coward false alliance only))
 )
 
 (define-spell "spell-slow"
@@ -169,13 +175,12 @@
 	'range	10
 	'target 'unit
 	'action '(adjust-buffs slow-ticks 1000 haste-ticks 0)
-	'condition '(	UnitTypeflag (false building)
-			DurationEffect (false flag slow value 900) ;; slow < 900 / CYCLE_PER_SECOND
-			Alliance true
-			)
+	'condition '(
+	    building false
+	    max-slow-ticks 10)
 	'sound-when-cast "slow"
 	'missile-when-cast "missile-normal-spell"
-	'autocast '(range 10 condition (UnitTypeflag (false coward)))
+	'autocast '(range 10 condition (coward false alliance only))
 )
 
 (define-spell "spell-bloodlust"
@@ -184,13 +189,12 @@
 	'range	6
 	'target 'unit
 	'action '(adjust-buffs bloodlust-ticks 1000)
-	'condition '(	UnitTypeflag (true organic)
-			DurationEffect (false flag bloodlust value 900) ;; bloodlust < 900 / CYCLE_PER_SECOND
-			Alliance true
-			)
+	'condition '(
+	    organic only
+	    max-bloodlust-ticks 10)
 	'sound-when-cast "bloodlust"
 	'missile-when-cast "missile-normal-spell"
-	'autocast '(range 6 condition (UnitTypeflag (false coward)))
+	'autocast '(range 6 condition (coward false alliance only))
 )
 
 (define-spell "spell-invisibility"
@@ -199,13 +203,12 @@
 	'range	6
 	'target 'unit
 	'action '(adjust-buffs invisibility-ticks 2000)
-	'condition '(	UnitTypeflag (false building)
-			DurationEffect (false flag invisibility value 900) ;; invisibility < 900 / CYCLE_PER_SECOND
-			Alliance true
-			)
+	'condition '(
+	    building false
+	    max-invisibility-ticks 10)
 	'sound-when-cast "invisibility"
 	'missile-when-cast "missile-normal-spell"
-	'autocast '(range 6 condition (UnitTypeflag (false coward)))
+	'autocast '(range 6 condition (coward false))
 )
 
 (define-spell "spell-unholy-armor"
@@ -214,13 +217,12 @@
 	'range	6
 	'target 'unit
 	'action '(adjust-buffs invincibility-ticks 500)
-	'condition '(UnitTypeflag (false building)
-			DurationEffect (false flag unholyarmor value 900) ;; unholyarmor < 900 / CYCLE_PER_SECOND
-			Alliance true
-			)
+	'condition '(
+	    building false
+	    max-invincibility-ticks 10)
 	'sound-when-cast "unholyarmor"
 	'missile-when-cast "missile-normal-spell"
-	'autocast '(range 6 condition (UnitTypeflag (false coward)))
+	'autocast '(range 6 condition (coward false alliance only))
 )
 
 (define-spell "spell-flame-shield"
@@ -229,13 +231,12 @@
 	'range	6
 	'target 'unit
 	'action '(flame-shield duration 600)
-	'condition '(UnitTypeflag (false building)
-			DurationEffect (false flag flameshield value 500) ;; flameshield < 900 / CYCLE_PER_SECOND
-;;			Alliance false;; On which player (true own , false opponents)
-			);; FIXME
+	;; I think it's better if we can cast it multiple times and the effects stack.
+	;; Can be casted, and is effective on both allies and enemies
+	'condition '(building false)
 	'sound-when-cast "flame shield"
 	'missile-when-cast "missile-flame-shield" ; NOT use
-	'autocast '(range 6 condition (UnitTypeflag (false coward)))
+	'autocast '(range 6 condition (coward false))
 )
 
 (define-spell "spell-polymorph"
@@ -244,12 +245,11 @@
 	'range	10
 	'target 'unit
 	'action '(polymorph new-form unit-critter)
-	'condition '(UnitTypeflag (true organic)
-			Alliance false
-			)
+	'condition '(organic only)
 	'sound-when-cast "polymorph"
 	'missile-when-cast "missile-normal-spell"
-	'autocast '(range 10 condition (UnitTypeflag (false coward)))
+	;;  Only cast on the strongest units!!!
+	'autocast '(range 10 condition (alliance false min-hp-percent 75))
 )
 
 
