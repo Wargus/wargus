@@ -134,8 +134,6 @@ fi
 [ -d $DIR/graphic/tilesets/wasteland ] || mkdir $DIR/graphic/tilesets/wasteland
 [ -d $DIR/graphic/tilesets/swamp ] || mkdir $DIR/graphic/tilesets/swamp
 [ -d $DIR/graphic/ui ] || mkdir $DIR/graphic/ui
-[ -d $DIR/graphic/ui/alliance ] || mkdir $DIR/graphic/ui/alliance
-[ -d $DIR/graphic/ui/mythical ] || mkdir $DIR/graphic/ui/mythical
 [ -d $DIR/graphic/ui/human ] || mkdir $DIR/graphic/ui/human
 [ -d $DIR/graphic/ui/orc ] || mkdir $DIR/graphic/ui/orc
 
@@ -156,8 +154,6 @@ cp $CONTRIB/food.png $DIR/graphic
 cp $CONTRIB/score.png $DIR/graphic
 cp $CONTRIB/ore,stone,coal.png $DIR/graphic
 cp $CONTRIB/ale-title.png $DIR
-cp $CONTRIB/ui/mythical/* $DIR/graphic/ui/mythical
-cp $CONTRIB/ui/alliance/* $DIR/graphic/ui/alliance
 
 ###############################################################################
 ##	MISC

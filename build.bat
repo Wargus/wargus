@@ -85,8 +85,6 @@ mkdir %DIR%graphic\tilesets\summer
 mkdir %DIR%graphic\tilesets\winter
 mkdir %DIR%graphic\tilesets\wasteland
 mkdir %DIR%graphic\tilesets\swamp
-mkdir %DIR%graphic\ui\alliance
-mkdir %DIR%graphic\ui\mythical
 mkdir %DIR%graphic\ui\human
 mkdir %DIR%graphic\ui\orc
 
@@ -107,8 +105,6 @@ copy /b %CONTRIB%\food.png %DIR%\graphic
 copy /b %CONTRIB%\score.png %DIR%\graphic
 copy /b %CONTRIB%\ore,stone,coal.png %DIR%\graphic
 copy /b %CONTRIB%\ale-title.png %DIR%
-copy /b %CONTRIB%\ui\alliance\*.png %DIR%\graphic\ui\alliance
-copy /b %CONTRIB%\ui\mythical\*.png %DIR%\graphic\ui\mythical
 
 REM ###########################################################################
 REM ##      MISC
