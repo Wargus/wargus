@@ -24,6 +24,20 @@
 ;;	$Id$
 
 ;;=============================================================================
+;;	Define all campaigns.
+
+;; FIXME: it is not necessary to preload the campaings.
+
+;(define-campaign 'human 'name "The human campaign"
+;  'file "ccl/ccl/human/campaign1.ccl")
+;(define-campaign 'human-exp 'name "The human expansion campaign"
+;  'file "ccl/ccl/human/campaign2.ccl")
+;(define-campaign 'orc 'name "The orc campaign"
+;  'file "ccl/ccl/orc/campaign1.ccl")
+;(define-campaign 'orc-exp 'name "The orc expansion campaign"
+;  'file "ccl/ccl/orc/campaign2.ccl")
+
+;;=============================================================================
 ;;	Load all campaigns
 
 (load "ccl/human/campaign1.ccl" #f #t)
