@@ -328,10 +328,11 @@ Control Todo[] = {
 {G,0,"tilesets/summer/neutral/buildings/%94",			 2, 119	_2},
 {G,0,"neutral/units/corpses",					 2, 120	_2},
 {G,0,"tilesets/summer/neutral/buildings/destroyed site",	 2, 121	_2},
-{G,0,"human/units/%4 with wood",				 2, 122	_2},
-{G,0,"orc/units/%5 with wood",					 2, 123	_2},
-{G,0,"human/units/%4 with gold",				 2, 124	_2},
-{G,0,"orc/units/%5 with gold",					 2, 125	_2},
+    // Hardcoded support for worker with resource repairing
+{G,0,"human/units/%4 with wood",				 2, 122, 47, 25},	
+{G,0,"orc/units/%5 with wood",					 2, 123, 48, 25},
+{G,0,"human/units/%4 with gold",				 2, 124, 47, 25},
+{G,0,"orc/units/%5 with gold",					 2, 125, 48, 25},
 {G,0,"human/units/%-28 full",					 2, 126	_2},
 {G,0,"orc/units/%-29 full",					 2, 127	_2},
 {G,0,"tilesets/winter/human/buildings/%90",			18, 128	_2},
@@ -1947,7 +1948,8 @@ void DecodeGfuEntry(int index,unsigned char* start
 /**
 **	Convert graphics into image.
 */
-unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp)
+unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp
+	,unsigned char* bp2,int start2)
 {
     int i;
     int count;
@@ -1961,9 +1963,15 @@ unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp)
     unsigned char* image;
     int IPR;
 
+    if (bp2) {	// Init pointer to 2nd animation
+	count=FetchLE16(bp2);
+	max_width=FetchLE16(bp2);
+	max_height=FetchLE16(bp2);
+    }
     count=FetchLE16(bp);
     max_width=FetchLE16(bp);
     max_height=FetchLE16(bp);
+
 
     DebugLevel3("Entries %2d Max width %3d height %3d, ",count
 	    ,max_width,max_height);
@@ -2049,7 +2057,11 @@ unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp)
 
     if( gfx ) {
 	for( i=0; i<count; ++i ) {
-	    DecodeGfxEntry(i,bp
+    // Hardcoded support for worker with resource repairing
+	    if (i>=start2 && bp2) DecodeGfxEntry(i,bp2
+		,image+best_width*(i%IPR)+best_height*best_width*IPR*(i/IPR)
+		,minx,miny,best_width*IPR);
+	    else DecodeGfxEntry(i,bp
 		,image+best_width*(i%IPR)+best_height*best_width*IPR*(i/IPR)
 		,minx,miny,best_width*IPR);
 	}
@@ -2070,10 +2082,11 @@ unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp)
 /**
 **	Convert a graphic to my format.
 */
-int ConvertGfx(char* file,int pale,int gfxe)
+int ConvertGfx(char* file,int pale,int gfxe,int gfxe2,int start2)
 {
     unsigned char* palp;
     unsigned char* gfxp;
+    unsigned char* gfxp2;
     unsigned char* image;
     int w;
     int h;
@@ -2081,8 +2094,10 @@ int ConvertGfx(char* file,int pale,int gfxe)
 
     palp=ExtractEntry(ArchiveOffsets[pale],NULL);
     gfxp=ExtractEntry(ArchiveOffsets[gfxe],NULL);
+    if (gfxe2) gfxp2=ExtractEntry(ArchiveOffsets[gfxe2],NULL);
+    else gfxp2=NULL;
 
-    image=ConvertGraphic(1,gfxp,&w,&h);
+    image=ConvertGraphic(1,gfxp,&w,&h,gfxp2,start2);
 
     free(gfxp);
     ConvertPalette(palp);
@@ -2112,7 +2127,7 @@ int ConvertGfu(char* file,int pale,int gfue)
     palp=ExtractEntry(ArchiveOffsets[pale],NULL);
     gfup=ExtractEntry(ArchiveOffsets[gfue],NULL);
 
-    image=ConvertGraphic(0,gfup,&w,&h);
+    image=ConvertGraphic(0,gfup,&w,&h,NULL,0);
 
     free(gfup);
     ConvertPalette(palp);
@@ -3222,7 +3237,8 @@ int main(int argc,char** argv)
 			,Todo[i].Arg3,Todo[i].Arg4);
 		break;
 	    case G:
-		ConvertGfx(ParseString(Todo[i].File),Todo[i].Arg1,Todo[i].Arg2);
+		ConvertGfx(ParseString(Todo[i].File),Todo[i].Arg1,Todo[i].Arg2
+			,Todo[i].Arg3,Todo[i].Arg4);
 		break;
 	    case U:
 		ConvertGfu(Todo[i].File,Todo[i].Arg1,Todo[i].Arg2);
