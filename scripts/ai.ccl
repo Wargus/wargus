@@ -1680,15 +1680,15 @@
     (ai:set  'unit-peasant 4)
     (ai:need 'unit-elven-lumber-mill)
     (ai:need 'unit-alliance-barracks)
-    (ai:force 0 'unit-footman 3)
-    (ai:force 1 'unit-footman 4)
+    (ai:force 1 'unit-footman 3)
 
     (ai:set  'unit-peasant 9)
-    (ai:sleep	500)
+    (ai:sleep	1000)
     (ai:need 'unit-alliance-blacksmith)
+    (ai:force 1 'unit-footman 4 'unit-archer 2)
     (ai:force 0 'unit-footman 4 'unit-archer 2)
 
-    (ai:sleep	500)
+    (ai:sleep	1000)
     (ai:research 'upgrade-sword1)
     (ai:research 'upgrade-human-shield1)
     (ai:research 'upgrade-arrow1)
@@ -1699,33 +1699,32 @@
 
     (ai:force 0 'unit-footman 6 'unit-archer 3)
 
-    (ai:sleep	500)
+    (ai:sleep	1000)
     (ai:set  'unit-peasant 15)
     (ai:force 0 'unit-footman 6 'unit-archer 3 'unit-ballista 1)
     (ai:force 1 'unit-footman 6 'unit-archer 3 'unit-ballista 1)
 
-    (ai:sleep	500)
+    (ai:sleep	2000)
     (ai:upgrade-to 'unit-keep)
     (ai:wait 'unit-keep)
 
-    (ai:sleep	500)
+    (ai:sleep	2000)
     (ai:need 'unit-town-hall)
     (ai:need 'unit-stables)
-    (ai:force 0 'unit-footman 1 'unit-archer 4 'unit-knight 6 'unit-ballista 2)
-
-    (ai:sleep	500)
+    (ai:force 0 'unit-footman 1 'unit-archer 4 'unit-knight 4 'unit-ballista 2)
+    (ai:force 1 'unit-footman 1 'unit-archer 4 'unit-knight 10 'unit-ballista 2)
+    
+    (ai:sleep	4000)
     (ai:need 'unit-alliance-watch-tower)
     (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:need 'unit-alliance-watch-tower)
     (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:need 'unit-alliance-barracks)
     (ai:upgrade-to 'unit-castle)
-    (ai:set  'unit-peasant 19)
+    (ai:set  'unit-peasant 22)
     (ai:wait 'unit-castle)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 10 'unit-ballista 2)
-
-    (ai:sleep	500)
+    (ai:sleep	2000)
     (ai:need 'unit-alliance-watch-tower)
     (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:need 'unit-alliance-watch-tower)
@@ -1735,9 +1734,10 @@
     (ai:research 'upgrade-healing)
     (ai:research 'upgrade-exorcism)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 0 'unit-paladin 5 'unit-ballista 1)
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-paladin 5 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 6 'unit-paladin 12 'unit-ballista 4)
 
-    (ai:sleep	500)
+    (ai:sleep	1000)
     (ai:need 'unit-alliance-watch-tower)
     (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:need 'unit-alliance-watch-tower)
@@ -1747,9 +1747,10 @@
     (ai:research 'upgrade-blizzard)
 
     (ai:force 0 'unit-footman 1 'unit-archer 3 'unit-paladin 10 'unit-ballista 3
-	'unit-mage 3)
-
-    (ai:sleep	500)
+	'unit-mage 1)
+    (ai:force 0 'unit-mage 2)
+    (ai:set  'unit-peasant 30)
+    (ai:sleep	1000)
     (ai:research 'upgrade-slow)
     (ai:need 'unit-alliance-watch-tower)
     (ai:upgrade-to 'unit-alliance-guard-tower)
@@ -1757,35 +1758,27 @@
     (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:research 'upgrade-invisibility)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 4 'unit-paladin 12 'unit-ballista 4
-	'unit-mage 5)
+    (ai:force 1 'unit-footman 1 'unit-archer 8 'unit-paladin 18 'unit-ballista 4 'unit-mage 5)
 
-    (ai:sleep	500)
+    (ai:sleep	1000)
     (ai:need 'unit-gryphon-aviary)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 5 'unit-paladin 14 'unit-ballista 4
-	'unit-mage 6 'unit-gryphon-rider 1)
-
-    (ai:sleep	500)
+    (ai:force 0 'unit-gryphon-rider 1)
+    (ai:force 1 'unit-gryphon-rider 2)
+    
+    (ai:sleep	2000)
     (ai:research 'upgrade-ranger)
     (ai:research 'upgrade-ranger-scouting)
     (ai:research 'upgrade-flame-shield)
-    (ai:force 0 'unit-footman 1 'unit-archer 0 'unit-ranger 5 'unit-paladin 14 'unit-ballista 4
-	'unit-mage 6 'unit-gryphon-rider 3)
 
-
-    (ai:sleep	500)
+    (ai:sleep	1000)
     (ai:need 'unit-town-hall)
-    (ai:need 'unit-alliance-watch-tower)
-    (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:need 'unit-alliance-watch-tower)
     (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:need 'unit-inventor)
     (ai:research 'upgrade-longbow)
 
-    (ai:sleep	500)
-    (ai:need 'unit-alliance-watch-tower)
-    (ai:upgrade-to 'unit-alliance-cannon-tower)
+    (ai:sleep	1000)
     (ai:need 'unit-alliance-watch-tower)
     (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:research 'upgrade-ballista1)
@@ -1796,9 +1789,7 @@
     (ai:research 'upgrade-ballista2)
     (ai:need 'unit-alliance-watch-tower)
     (ai:upgrade-to 'unit-alliance-cannon-tower)
-    (ai:need 'unit-alliance-watch-tower)
-    (ai:upgrade-to 'unit-alliance-guard-tower)
-    (ai:set  'unit-peasant 25)
+    (ai:set  'unit-peasant 35)
 
     ;; Everything researched...
 
@@ -1832,14 +1823,16 @@
     (ai:set  'unit-peon 4)
     (ai:need 'unit-troll-lumber-mill)
     (ai:need 'unit-mythical-barracks)
-    (ai:force 0 'unit-grunt 3)
+    (ai:force 1 'unit-grunt 3)
 
     (ai:set  'unit-peon 9)
-    (ai:sleep	500)
+    (ai:sleep	1000)
     (ai:need 'unit-mythical-blacksmith)
     (ai:force 0 'unit-grunt 4 'unit-axethrower 2)
+    (ai:force 1 'unit-grunt 4 'unit-axethrower 2)
 
-    (ai:sleep	500)
+    (ai:sleep	1000)
+
     (ai:research 'upgrade-battle-axe1)
     (ai:research 'upgrade-orc-shield1)
     (ai:research 'upgrade-throwing-axe1)
@@ -1850,32 +1843,34 @@
 
     (ai:force 0 'unit-grunt 6 'unit-axethrower 4)
 
-    (ai:sleep	500)
+    (ai:sleep	1000)
     (ai:set  'unit-peon 15)
-    (ai:force 0 'unit-grunt 6 'unit-axethrower 2 'unit-catapult 1)
+    (ai:force 0 'unit-grunt 4 'unit-axethrower 2 'unit-catapult 1)
+    (ai:force 1 'unit-grunt 4 'unit-axethrower 2 'unit-catapult 2)
 
-    (ai:sleep	500)
+    (ai:sleep	2000)
     (ai:upgrade-to 'unit-stronghold)
     (ai:wait 'unit-stronghold)
 
     (ai:force 0 'unit-grunt 7 'unit-axethrower 3 'unit-catapult 1)
 
-    (ai:sleep	500)
+    (ai:sleep	2000)
     (ai:need 'unit-great-hall)
     (ai:need 'unit-ogre-mound)
-    (ai:force 0 'unit-grunt 1 'unit-axethrower 7 'unit-ogre 10 'unit-catapult 2)
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 3 'unit-ogre 5 'unit-catapult 2)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 5 'unit-ogre 10 'unit-catapult 2)
 
-    (ai:sleep	500)
+    (ai:sleep	4000)
     (ai:need 'unit-mythical-watch-tower)
     (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:need 'unit-mythical-watch-tower)
     (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:need 'unit-mythical-barracks)
     (ai:upgrade-to 'unit-fortress)
-    (ai:set  'unit-peon 19)
+    (ai:set  'unit-peon 22)
     (ai:wait 'unit-fortress)
 
-    (ai:sleep	500)
+    (ai:sleep	2000)
     (ai:need 'unit-mythical-watch-tower)
     (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:need 'unit-mythical-watch-tower)
@@ -1885,9 +1880,10 @@
     (ai:research 'upgrade-bloodlust)
     (ai:research 'upgrade-runes)
 
-    (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre 0 'unit-ogre-mage 10	'unit-catapult 1)
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre-mage 5 'unit-catapult 2)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 6 'unit-ogre-mage 12 'unit-catapult 4)
 
-    (ai:sleep	500)
+    (ai:sleep	1000)
     (ai:need 'unit-mythical-watch-tower)
     (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:need 'unit-mythical-watch-tower)
@@ -1898,7 +1894,7 @@
 
     (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre-mage 10 'unit-catapult 2 'unit-death-knight 2)
 
-    (ai:sleep	500)
+    (ai:sleep 	1000)
     (ai:research 'upgrade-haste)
     (ai:need 'unit-mythical-watch-tower)
     (ai:upgrade-to 'unit-mythical-guard-tower)
@@ -1907,46 +1903,38 @@
     (ai:research 'upgrade-whirlwind)
 
     (ai:force 0 'unit-grunt 1 'unit-axethrower 5 'unit-ogre-mage 16 'unit-catapult 3 'unit-death-knight 5)
-
-    (ai:wait-force 1)		;; wait until attack party is completed
-    (ai:attack-with-force 1)
-
-    (ai:sleep	500)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 8 'unit-ogre-mage 16 'unit-catapult 4 'unit-death-knight 5)
+    (ai:set  'unit-peon 30)
+    (ai:research 'upgrade-berserker)
+    (ai:sleep	2000)
     (ai:need 'unit-dragon-roost)
 
-    (ai:force 0 'unit-grunt 1 'unit-axethrower 4 'unit-ogre-mage 16 'unit-catapult 3 'unit-death-knight 6)
+    (ai:sleep	1000)
 
-    (ai:sleep	500)
-    (ai:research 'upgrade-berserker)
     (ai:research 'upgrade-berserker-scouting)
     (ai:research 'upgrade-raise-dead)
-    (ai:force 0 'unit-grunt 1 'unit-axethrower 4 'unit-ogre-mage 16 'unit-catapult 3 'unit-death-knight 6 'unit-dragon 4)
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 4 'unit-ogre-mage 16 'unit-catapult 3 'unit-death-knight 6 'unit-dragon 1)
+    (ai:force 1 'unit-dragon 3)
 
-    (ai:sleep	500)
+    (ai:sleep	1000)
     (ai:need 'unit-great-hall)
-    (ai:need 'unit-mythical-watch-tower)
-    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:need 'unit-mythical-watch-tower)
     (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:need 'unit-alchemist)
     (ai:research 'upgrade-light-axes)
 
-    (ai:sleep	500)
-    (ai:need 'unit-mythical-watch-tower)
-    (ai:upgrade-to 'unit-mythical-cannon-tower)
+    (ai:sleep	1000)
     (ai:need 'unit-mythical-watch-tower)
     (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:research 'upgrade-catapult1)
     (ai:need 'unit-mythical-watch-tower)
     (ai:upgrade-to 'unit-mythical-cannon-tower)
-    (ai:need 'unit-mythical-watch-tower)
-    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:research 'upgrade-catapult2)
     (ai:need 'unit-mythical-watch-tower)
     (ai:upgrade-to 'unit-mythical-cannon-tower)
     (ai:need 'unit-mythical-watch-tower)
     (ai:upgrade-to 'unit-mythical-guard-tower)
-    (ai:set  'unit-peon 25)
+    (ai:set  'unit-peon 35)
 
     ;; Everything researched...
 
