@@ -1448,7 +1448,7 @@
 ;;
 (define-menu 'name 'menu-sound-options 'geometry '(224 64 352 352)
     'image 'panel5 'default '24)
-(define-menu-item 'pos (list 176 11) 'font 'large
+(define-menu-item 'pos (list 176 11) 'font 'large 'init 'init-sound-options
     'text '("Sound Options" center)
     'menu 'menu-sound-options)
 (define-menu-item 'pos (list 16 (* 36 1)) 'font 'game
