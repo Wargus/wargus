@@ -10,7 +10,7 @@
 ;;
 ;;	ui.ccl		-	Define the human user interface
 ;;
-;;	(c) Copyright 2001-2003 by Lutz Sammer and Jimmy Salmon
+;;	(c) Copyright 2001-2003 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -30,17 +30,17 @@
 ;;		'hotspot ( x y ) 'size ( width height ))
 ;;
 (define-cursor	'cursor-point		'human
-  'image "ui/human/cursors/human gauntlet.png"
-  'hot-spot '( 3  2) 'size '(28 32) )
+    'image "ui/human/cursors/human gauntlet.png"
+    'hot-spot '( 3  2) 'size '(28 32) )
 (define-cursor	'cursor-green-hair	'human
-  'image "ui/human/cursors/green eagle.png"
-  'hot-spot '(15 15) 'size '(32 32) )
+    'image "ui/human/cursors/green eagle.png"
+    'hot-spot '(15 15) 'size '(32 32) )
 (define-cursor	'cursor-yellow-hair	'human
-  'image "ui/human/cursors/yellow eagle.png"
-  'hot-spot '(15 15) 'size '(32 32) )
+    'image "ui/human/cursors/yellow eagle.png"
+    'hot-spot '(15 15) 'size '(32 32) )
 (define-cursor	'cursor-red-hair	'human
-  'image "ui/human/cursors/red eagle.png"
-  'hot-spot '(15 15) 'size '(32 32) )
+    'image "ui/human/cursors/red eagle.png"
+    'hot-spot '(15 15) 'size '(32 32) )
 
 ;;=============================================================================
 ;;	Define the user interface
@@ -55,157 +55,576 @@
 ;;	* Race human.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define (human_screen screen_width screen_height)
+(define-ui "human" 640 480	; Selector
+    ;	Filler 1
+    (list "graphics/ui/human/640x480/filler-right.png" (+ 176 448) 0)
 
-  (define-ui 'human screen_width screen_height
-    'normal-font-color 'white
-    'reverse-font-color 'yellow
- 
-    'panel (list 'file
-      (string-append "graphics/ui/human/"
-        (number->string screen_width) "x" (number->string screen_height)
-        "/filler-right.png")
-      'pos (list (- screen_width 16) 0))
-    'panel (list 'file
-      (string-append "graphics/ui/human/"
-        (number->string screen_width) "x" (number->string screen_height)
-        "/buttonpanel.png")
-      'pos '(0 336))
-    'panel (list 'file "graphics/ui/human/menubutton.png"
-      'pos '(0 0))
-    'panel (list 'file "graphics/ui/human/minimap.png"
-      'pos '(0 24))
-    'panel (list 'file
-      (string-append "graphics/ui/human/"
-        (number->string screen_width) "x" (number->string screen_height)
-        "/statusline.png")
-      'pos (list 176 (- screen_height 16)))
-    'panel (list 'file
-      (string-append "graphics/ui/human/"
-        (number->string screen_width) "x" (number->string screen_height)
-        "/resource.png")
-      'pos '(176 0))
- 
-    'resources '(
-      gold (pos (176 0) file "graphics/ui/gold,wood,oil,mana.png"
-        row 0 size (14 14) text-pos (194 1))
-      wood (pos (241 0) file "graphics/ui/gold,wood,oil,mana.png"
-        row 1 size (14 14) text-pos (259 1))
-      oil (pos (296 0) file "graphics/ui/gold,wood,oil,mana.png"
-        row 2 size (14 14) text-pos (314 1))
-      food (pos (506 0) file "graphics/ui/food.png"
-        row 0 size (14 14) text-pos (524 1))
-      score (pos (566 0) file "graphics/ui/score.png"
-        row 0 size (14 14) text-pos (584 1)))
- 
-    'map-area (list
-      'pos '(176 16)
-      'size (list (* 32 (trunc (/ (- screen_width 176 16) 32))) (* 32 (trunc (/ (- screen_height 16 16) 32)))))
- 
-    'info-area '(
-      pos (0 160)
-      panel (file "graphics/ui/human/infopanel.png" size (176 176))
-      neutral-frame 0
-      selected-frame 1
-      magic-frame 2
-      construction-frame 3
-      completed-bar (
-        color 149
-        pos ( 12 313)
-        size (152  14)
-        text "% Complete"
-        font game
-        text-pos ( 50 313))
-      buttons (
-        (pos (  6 166) size (46 38))
-        (pos ( 62 166) size (46 38))
-        (pos (118 166) size (46 38))
-        (pos (  6 220) size (46 38))
-        (pos ( 62 220) size (46 38))
-        (pos (118 220) size (46 38))
-        (pos (  6 274) size (46 38))
-        (pos ( 62 274) size (46 38))
-        (pos (118 274) size (46 38)))
-      training-buttons (
-        (pos (  6 216) size (46 38))
-        (pos ( 62 216) size (46 38))
-        (pos (118 216) size (46 38))
-        (pos (  6 263) size (46 38))
-        (pos ( 62 263) size (46 38))
-        (pos (118 263) size (46 38))))
- 
-    'button-area '(
-      buttons (
-        (pos (  6 337) size (46 38))
-        (pos ( 62 337) size (46 38))
-        (pos (118 337) size (46 38))
-        (pos (  6 384) size (46 38))
-        (pos ( 62 384) size (46 38))
-        (pos (118 384) size (46 38))
-        (pos (  6 431) size (46 38))
-        (pos ( 62 431) size (46 38))
-        (pos (118 431) size (46 38))))
- 
-    'minimap-area '(
-      pos (24 26)
-      size (128 128)
-      cursor-color 246)
- 
-    'status-line (list
-      'font 'game
-      'pos (list 178 (- screen_height 14))
-      'width (- screen_width 176 16))
- 
-    'menu-button '(
-      pos (24 2)
-      size (128 19)
-      caption "Menu (~<F10~>)"
-      style main)
-    'network-menu-button '(
-      pos (6 2)
-      size (80 19)
-      caption "Menu"
-      style network)
-    'network-diplomacy-button '(
-      pos (90 2)
-      size (80 19)
-      caption "Diplomacy"
-      style network)
- 
-    'message-area (list
-      'font 'game
-      'pos '(184 24)
-      'width (- screen_width 176 16 6 2))
+    ;	Resource line
+    '("graphics/ui/human/640x480/resource.png" 176 0)
 
-    'cursors '(
-      point cursor-point
-      glass cursor-glass
-      cross cursor-cross
-      yellow cursor-yellow-hair
-      green cursor-green-hair
-      red cursor-red-hair
-      scroll cursor-scroll
-      arrow-e cursor-arrow-e
-      arrow-ne cursor-arrow-ne
-      arrow-n cursor-arrow-n
-      arrow-nw cursor-arrow-nw
-      arrow-w cursor-arrow-w
-      arrow-sw cursor-arrow-sw
-      arrow-s cursor-arrow-s
-      arrow-se cursor-arrow-se)
+    ; gold resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	0
+    (+ 176   0) 0 14 14 (+ 176   0 18) 1)
+    ; wood resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	1
+    (+ 176  65) 0 14 14 (+ 176  65 18) 1)
+    ;  oil resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	2
+    (+ 176 120) 0 14 14 (+ 176 120 18) 1)
+    ;  oge resource
+    (list "graphics/ui/ore,stone,coal.png"	0
+    (+ 176 175) 0 14 14 (+ 176 175 18) 1)
+    ;  stone resource
+    (list "graphics/ui/ore,stone,coal.png"	1
+    (+ 176 230) 0 14 14 (+ 176 230 18) 1)
+    ;  coal resource
+    (list "graphics/ui/ore,stone,coal.png"	2
+    (+ 176 285) 0 14 14 (+ 176 285 18) 1)
 
-    'victory-background "graphics/ui/human/victory.png"
-    'defeat-background "graphics/ui/human/defeat.png"
+    ; food resource
+    (list "graphics/ui/food.png"		0
+    (+ 176 330) 0 14 14 (+ 176 330 18) 1)
+    ; score
+    (list "graphics/ui/score.png"		0
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
 
-    'menu-panels '(
-      panel1 "graphics/ui/human/panel 1.png"
-      panel2 "graphics/ui/human/panel 2.png"
-      panel3 "graphics/ui/human/panel 3.png"
-      panel4 "graphics/ui/human/panel 4.png"
-      panel5 "graphics/ui/human/panel 5.png") ) )
+    ; Info panel
+    (list "graphics/ui/human/infopanel.png" 0 160 176 176)
 
-(human_screen 640 480)
-(human_screen 800 600)
-(human_screen 1024 768)
-(human_screen 1280 960)
-(human_screen 1600 1200)
+    ; Completed bar
+    (list color-dark-green  12 313 50 313)
+
+    ; Command button panel
+    (list "graphics/ui/human/640x480/buttonpanel.png" 0 336)
+
+    ; The big map
+    '(176 16 624 464)
+
+    ; Menu button
+    '("graphics/ui/human/menubutton.png" 0 0)
+
+    ; Minimap
+    '("graphics/ui/human/minimap.png" 0 24)
+
+    ; Status line
+    '("graphics/ui/human/640x480/statusline.png" 176 464)
+
+    ;	Defines position and size of the different buttons.
+    ; Menu button
+    '( 24   2 128 19 )
+    ; 9 Character portraits
+    '(  6 166  46 38 )
+    '( 62 166  46 38 )
+    '(118 166  46 38 )
+    '(  6 220  46 38 )
+    '( 62 220  46 38 )
+    '(118 220  46 38 )
+    '(  6 274  46 38 )
+    '( 62 274  46 38 )
+    '(118 274  46 38 )
+    ; 9 Buttons interface
+    '(  6 337  46 38 )
+    '( 62 337  46 38 )
+    '(118 337  46 38 )
+    '(  6 384  46 38 )
+    '( 62 384  46 38 )
+    '(118 384  46 38 )
+    '(  6 431  46 38 )
+    '( 62 431  46 38 )
+    '(118 431  46 38 )
+
+    ;	Defines position and size of the training queue buttons.
+    '(  6 216  46 38 )
+    '( 62 216  46 38 )
+    '(118 216  46 38 )
+    '(  6 263  46 38 )
+    '( 62 263  46 38 )
+    '(118 263  46 38 )
+    (list 'cursor-point 'cursor-glass 'cursor-cross
+	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	'cursor-arrow-s 'cursor-arrow-se )
+    '("graphics/ui/human/panel 1.png")
+    '("graphics/ui/human/panel 2.png")
+    '("graphics/ui/human/panel 3.png")
+    '("graphics/ui/human/panel 4.png")
+    '("graphics/ui/human/panel 5.png")
+
+    '("graphics/ui/human/victory.png")
+    '("graphics/ui/human/defeat.png")
+)
+
+(define-ui "human" 800 600	; Selector
+    ;	Filler 1
+    (list "graphics/ui/human/800x600/filler-right.png" (+ 176 608) 0)
+
+    ;	Resource line
+    '("graphics/ui/human/800x600/resource.png" 176 0)
+
+    ; gold resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	0
+    (+ 176   0) 0 14 14 (+ 176   0 18) 1)
+    ; wood resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	1
+    (+ 176  65) 0 14 14 (+ 176  65 18) 1)
+    ;  oil resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	2
+    (+ 176 130) 0 14 14 (+ 176 130 18) 1)
+    ;  oge resource
+    (list "graphics/ui/ore,stone,coal.png"	0
+    (+ 176 195) 0 14 14 (+ 176 195 18) 1)
+    ;  stone resource
+    (list "graphics/ui/ore,stone,coal.png"	1
+    (+ 176 260) 0 14 14 (+ 176 260 18) 1)
+    ;  coal resource
+    (list "graphics/ui/ore,stone,coal.png"	2
+    (+ 176 325) 0 14 14 (+ 176 325 18) 1)
+
+    ; food resource
+    (list "graphics/ui/food.png"		0
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
+    ; score
+    (list "graphics/ui/score.png"		0
+    (+ 176 455) 0 14 14 (+ 176 455 18) 1)
+
+    ; Info panel
+    (list "graphics/ui/human/infopanel.png" 0 160 176 176)
+
+    ; Completed bar
+    (list color-dark-green  12 313 50 313)
+
+    ; Command button panel
+    (list "graphics/ui/human/800x600/buttonpanel.png" 0 336)
+
+    ; The big map
+    '(176 16 784 560)
+
+    ; Menu button
+    '("graphics/ui/human/menubutton.png" 0 0)
+
+    ; Minimap
+    '("graphics/ui/human/minimap.png" 0 24)
+
+    ; Status line
+    '("graphics/ui/human/800x600/statusline.png" 176 584)
+
+    ;	Defines position and size of the different buttons.
+    ; Menu button
+    '( 24   2 128 19 )
+    ; 9 Character portraits
+    '(  6 166  46 38 )
+    '( 62 166  46 38 )
+    '(118 166  46 38 )
+    '(  6 220  46 38 )
+    '( 62 220  46 38 )
+    '(118 220  46 38 )
+    '(  6 274  46 38 )
+    '( 62 274  46 38 )
+    '(118 274  46 38 )
+    ; 9 Buttons interface
+    '(  6 337  46 38 )
+    '( 62 337  46 38 )
+    '(118 337  46 38 )
+    '(  6 384  46 38 )
+    '( 62 384  46 38 )
+    '(118 384  46 38 )
+    '(  6 431  46 38 )
+    '( 62 431  46 38 )
+    '(118 431  46 38 )
+
+    ;	Defines position and size of the training queue buttons.
+    '(  6 216  46 38 )
+    '( 62 216  46 38 )
+    '(118 216  46 38 )
+    '(  6 263  46 38 )
+    '( 62 263  46 38 )
+    '(118 263  46 38 )
+    (list 'cursor-point 'cursor-glass 'cursor-cross
+	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	'cursor-arrow-s 'cursor-arrow-se )
+    '("graphics/ui/human/panel 1.png")
+    '("graphics/ui/human/panel 2.png")
+    '("graphics/ui/human/panel 3.png")
+    '("graphics/ui/human/panel 4.png")
+    '("graphics/ui/human/panel 5.png")
+    '("graphics/ui/human/victory.png")
+    '("graphics/ui/human/defeat.png")
+)
+
+(define-ui "human" 1024 768	; Selector
+    ;	Filler 1
+    (list "graphics/ui/human/1024x768/filler-right.png" (+ 176 832) 0)
+
+    ;	Resource line
+    '("graphics/ui/human/1024x768/resource.png" 176 0)
+
+    ; gold resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	0
+    (+ 176   0) 0 14 14 (+ 176   0 18) 1)
+    ; wood resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	1
+    (+ 176  65) 0 14 14 (+ 176  65 18) 1)
+    ;  oil resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	2
+    (+ 176 120) 0 14 14 (+ 176 120 18) 1)
+    ;  oge resource
+    (list "graphics/ui/ore,stone,coal.png"	0
+    (+ 176 175) 0 14 14 (+ 176 175 18) 1)
+    ;  stone resource
+    (list "graphics/ui/ore,stone,coal.png"	1
+    (+ 176 230) 0 14 14 (+ 176 230 18) 1)
+    ;  coal resource
+    (list "graphics/ui/ore,stone,coal.png"	2
+    (+ 176 285) 0 14 14 (+ 176 285 18) 1)
+
+    ; food resource
+    (list "graphics/ui/food.png"		0
+    (+ 176 330) 0 14 14 (+ 176 330 18) 1)
+    ; score
+    (list "graphics/ui/score.png"		0
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
+
+    ; Info panel
+    (list "graphics/ui/human/infopanel.png" 0 160 176 176)
+
+    ; Completed bar
+    (list color-dark-green  12 313 50 313)
+
+    ; Command button panel
+    (list "graphics/ui/human/1024x768/buttonpanel.png" 0 336)
+
+    ; The big map
+    '(176 16 1008 752)
+
+    ; Menu button
+    '("graphics/ui/human/menubutton.png" 0 0)
+
+    ; Minimap
+    '("graphics/ui/human/minimap.png" 0 24)
+
+    ; Status line
+    '("graphics/ui/human/1024x768/statusline.png" 176 752)
+
+    ;	Defines position and size of the different buttons.
+    ; Menu button
+    '( 24   2 128 19 )
+    ; 9 Character portraits
+    '(  6 166  46 38 )
+    '( 62 166  46 38 )
+    '(118 166  46 38 )
+    '(  6 220  46 38 )
+    '( 62 220  46 38 )
+    '(118 220  46 38 )
+    '(  6 274  46 38 )
+    '( 62 274  46 38 )
+    '(118 274  46 38 )
+    ; 9 Buttons interface
+    '(  6 337  46 38 )
+    '( 62 337  46 38 )
+    '(118 337  46 38 )
+    '(  6 384  46 38 )
+    '( 62 384  46 38 )
+    '(118 384  46 38 )
+    '(  6 431  46 38 )
+    '( 62 431  46 38 )
+    '(118 431  46 38 )
+
+    ;	Defines position and size of the training queue buttons.
+    '(  6 216  46 38 )
+    '( 62 216  46 38 )
+    '(118 216  46 38 )
+    '(  6 263  46 38 )
+    '( 62 263  46 38 )
+    '(118 263  46 38 )
+    (list 'cursor-point 'cursor-glass 'cursor-cross
+	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	'cursor-arrow-s 'cursor-arrow-se )
+    '("graphics/ui/human/panel 1.png")
+    '("graphics/ui/human/panel 2.png")
+    '("graphics/ui/human/panel 3.png")
+    '("graphics/ui/human/panel 4.png")
+    '("graphics/ui/human/panel 5.png")
+    '("graphics/ui/human/victory.png")
+    '("graphics/ui/human/defeat.png")
+)
+
+(define-ui "human" 1280 960	; Selector
+    ;	Filler 1
+    (list "graphics/ui/human/1280x960/filler-right.png" (+ 176 1088) 0)
+
+    ;	Resource line
+    '("graphics/ui/human/1280x960/resource.png" 176 0)
+
+    ; gold resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	0
+    (+ 176   0) 0 14 14 (+ 176   0 18) 1)
+    ; wood resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	1
+    (+ 176  65) 0 14 14 (+ 176  65 18) 1)
+    ;  oil resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	2
+    (+ 176 120) 0 14 14 (+ 176 120 18) 1)
+    ;  oge resource
+    (list "graphics/ui/ore,stone,coal.png"	0
+    (+ 176 175) 0 14 14 (+ 176 175 18) 1)
+    ;  stone resource
+    (list "graphics/ui/ore,stone,coal.png"	1
+    (+ 176 230) 0 14 14 (+ 176 230 18) 1)
+    ;  coal resource
+    (list "graphics/ui/ore,stone,coal.png"	2
+    (+ 176 285) 0 14 14 (+ 176 285 18) 1)
+
+    ; food resource
+    (list "graphics/ui/food.png"		0
+    (+ 176 330) 0 14 14 (+ 176 330 18) 1)
+    ; score
+    (list "graphics/ui/score.png"		0
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
+
+    ; Info panel
+    (list "graphics/ui/human/infopanel.png" 0 160 176 176)
+
+    ; Completed bar
+    (list color-dark-green  12 313 50 313)
+
+    ; Command button panel
+    (list "graphics/ui/human/1280x960/buttonpanel.png" 0 336)
+
+    ; The big map
+    '(176 16 1264 944)
+
+    ; Menu button
+    '("graphics/ui/human/menubutton.png" 0 0)
+
+    ; Minimap
+    '("graphics/ui/human/minimap.png" 0 24)
+
+    ; Status line
+    '("graphics/ui/human/1280x960/statusline.png" 176 944)
+
+    ;	Defines position and size of the different buttons.
+    ; Menu button
+    '( 24   2 128 19 )
+    ; 9 Character portraits
+    '(  6 166  46 38 )
+    '( 62 166  46 38 )
+    '(118 166  46 38 )
+    '(  6 220  46 38 )
+    '( 62 220  46 38 )
+    '(118 220  46 38 )
+    '(  6 274  46 38 )
+    '( 62 274  46 38 )
+    '(118 274  46 38 )
+    ; 9 Buttons interface
+    '(  6 337  46 38 )
+    '( 62 337  46 38 )
+    '(118 337  46 38 )
+    '(  6 384  46 38 )
+    '( 62 384  46 38 )
+    '(118 384  46 38 )
+    '(  6 431  46 38 )
+    '( 62 431  46 38 )
+    '(118 431  46 38 )
+
+    ;	Defines position and size of the training queue buttons.
+    '(  6 216  46 38 )
+    '( 62 216  46 38 )
+    '(118 216  46 38 )
+    '(  6 263  46 38 )
+    '( 62 263  46 38 )
+    '(118 263  46 38 )
+    (list 'cursor-point 'cursor-glass 'cursor-cross
+	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	'cursor-arrow-s 'cursor-arrow-se )
+    '("graphics/ui/human/panel 1.png")
+    '("graphics/ui/human/panel 2.png")
+    '("graphics/ui/human/panel 3.png")
+    '("graphics/ui/human/panel 4.png")
+    '("graphics/ui/human/panel 5.png")
+    '("graphics/ui/human/victory.png")
+    '("graphics/ui/human/defeat.png")
+)
+
+(define-ui "human" 1600 1200	; Selector
+    ;	Filler 1
+    (list "graphics/ui/human/1600x1200/filler-right.png" (+ 176 1408) 0)
+
+    ;	Resource line
+    '("graphics/ui/human/1600x1200/resource.png" 176 0)
+
+    ; gold resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	0
+    (+ 176   0) 0 14 14 (+ 176   0 18) 1)
+    ; wood resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	1
+    (+ 176  65) 0 14 14 (+ 176  65 18) 1)
+    ;  oil resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	2
+    (+ 176 120) 0 14 14 (+ 176 120 18) 1)
+    ;  oge resource
+    (list "graphics/ui/ore,stone,coal.png"	0
+    (+ 176 175) 0 14 14 (+ 176 175 18) 1)
+    ;  stone resource
+    (list "graphics/ui/ore,stone,coal.png"	1
+    (+ 176 230) 0 14 14 (+ 176 230 18) 1)
+    ;  coal resource
+    (list "graphics/ui/ore,stone,coal.png"	2
+    (+ 176 285) 0 14 14 (+ 176 285 18) 1)
+
+    ; food resource
+    (list "graphics/ui/food.png"		0
+    (+ 176 330) 0 14 14 (+ 176 330 18) 1)
+    ; score
+    (list "graphics/ui/score.png"		0
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
+
+    ; Info panel
+    (list "graphics/ui/human/infopanel.png" 0 160 176 176)
+
+    ; Completed bar
+    (list color-dark-green  12 313 50 313)
+
+    ; Command button panel
+    (list "graphics/ui/human/1600x1200/buttonpanel.png" 0 336)
+
+    ; The big map
+    '(176 16 1584 1168)
+
+    ; Menu button
+    '("graphics/ui/human/menubutton.png" 0 0)
+
+    ; Minimap
+    '("graphics/ui/human/minimap.png" 0 24)
+
+    ; Status line
+    '("graphics/ui/human/1600x1200/statusline.png" 176 1184)
+
+    ;	Defines position and size of the different buttons.
+    ; Menu button
+    '( 24   2 128 19 )
+    ; 9 Character portraits
+    '(  6 166  46 38 )
+    '( 62 166  46 38 )
+    '(118 166  46 38 )
+    '(  6 220  46 38 )
+    '( 62 220  46 38 )
+    '(118 220  46 38 )
+    '(  6 274  46 38 )
+    '( 62 274  46 38 )
+    '(118 274  46 38 )
+    ; 9 Buttons interface
+    '(  6 337  46 38 )
+    '( 62 337  46 38 )
+    '(118 337  46 38 )
+    '(  6 384  46 38 )
+    '( 62 384  46 38 )
+    '(118 384  46 38 )
+    '(  6 431  46 38 )
+    '( 62 431  46 38 )
+    '(118 431  46 38 )
+
+    ;	Defines position and size of the training queue buttons.
+    '(  6 216  46 38 )
+    '( 62 216  46 38 )
+    '(118 216  46 38 )
+    '(  6 263  46 38 )
+    '( 62 263  46 38 )
+    '(118 263  46 38 )
+    (list 'cursor-point 'cursor-glass 'cursor-cross
+	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	'cursor-arrow-s 'cursor-arrow-se )
+    '("graphics/ui/human/panel 1.png")
+    '("graphics/ui/human/panel 2.png")
+    '("graphics/ui/human/panel 3.png")
+    '("graphics/ui/human/panel 4.png")
+    '("graphics/ui/human/panel 5.png")
+    '("graphics/ui/human/victory.png")
+    '("graphics/ui/human/defeat.png")
+)
+
+(define-new-ui 'human1 640 480	; Selector
+  'normal-font-color 'white 'reverse-font-color 'yellow
+  'filler '(pos (624 0) image "graphics/ui/human/640x480/filler-right.png")
+  'resources '(pos (176 0) image "graphics/ui/human/640x480/resource.png"
+    gold (icon-pos (176 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
+      icon-frame 0 icon-size (14 14) text-pos (194 1))
+    wood (icon-pos (241 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
+      icon-frame 1 icon-size (14 14) text-pos (259 1))
+    oil (icon-pos (296 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
+      icon-frame 2 icon-size (14 14) text-pos (314 1))
+    ore (icon-pos (351 0) icon-file "graphics/ui/ore,stone,coal.png"
+      icon-frame 0 icon-size (14 14) text-pos (369 1))
+    stone (icon-pos (406 0) icon-file "graphics/ui/ore,stone,coal.png"
+      icon-frame 1 icon-size (14 14) text-pos (424 1))
+    coal (icon-pos (461 0) icon-file "graphics/ui/ore,stone,coal.png"
+      icon-frame 2 icon-size (14 14) text-pos (479 1))
+    food (icon-pos (506 0) icon-file "graphics/ui/food.png"
+      icon-frame 0 icon-size (14 14) text-pos (524 1))
+    score (icon-pos (566 0) icon-file "graphics/ui/score.png"
+      icon-frame 0 icon-size (14 14) text-pos (584 1)))
+  'info-panel '(pos (0 160) image "graphics/ui/human/infopanel.png"
+    size (176 176)
+    complete-bar (color 149 pos (12 313) text-pos (50 313)))
+  'button-panel '(pos (0 336) image "graphics/ui/human/640x480/buttonpanel.png")
+  'map-area '(pos (176 16) size (624 464))
+  'menu-button '(pos (0 0) image "graphics/ui/human/640x480/menubutton.png")
+  'minimap '(pos (0 24) image "graphics/ui/human/640x480/minimap.png")
+  'status-line '(pos (176 464) image "graphics/ui/human/640x480/statusline.png")
+; 0 Menu 1-9 Info 10-19 Button
+  'buttons '(
+    (pos ( 24   2) size ( 128  17))
+    (pos (  6 166) size (  46  38))
+    (pos ( 62 166) size (  46  38))
+    (pos (118 166) size (  46  38))
+    (pos (  6 220) size (  46  38))
+    (pos ( 62 220) size (  46  38))
+    (pos (118 220) size (  46  38))
+    (pos (  6 274) size (  46  38))
+    (pos ( 62 274) size (  46  38))
+    (pos (118 274) size (  46  38))
+    (pos (  6 337) size (  46  38))
+    (pos ( 62 337) size (  46  38))
+    (pos (118 337) size (  46  38))
+    (pos (  6 384) size (  46  38))
+    (pos ( 62 384) size (  46  38))
+    (pos (118 384) size (  46  38))
+    (pos (  6 431) size (  46  38))
+    (pos ( 62 431) size (  46  38))
+    (pos (118 431) size (  46  38)))
+; 0-5 Training
+  'buttons-2 '(
+    (pos (  6 216) size (  46  38))
+    (pos ( 62 216) size (  46  38))
+    (pos (118 216) size (  46  38))
+    (pos (  6 263) size (  46  38))
+    (pos ( 62 263) size (  46  38))
+    (pos (118 263) size (  46  38)))
+  'cursors '(point cursor-point
+    glass cursor-glass
+    cross cursor-cross
+    yellow cursor-yellow-hair
+    green cursor-green-hair
+    red cursor-red-hair
+    scroll cursor-scroll
+    arrow-e cursor-arrow-e
+    arrow-ne cursor-arrow-ne
+    arrow-n cursor-arrow-n
+    arrow-nw cursor-arrow-nw
+    arrow-w cursor-arrow-w
+    arrow-sw cursor-arrow-sw
+    arrow-s cursor-arrow-s
+    arrow-se cursor-arrow-se)
+  'panels '(game-menu "graphics/ui/human/panel 1.png"
+    menu-1 "graphics/ui/human/panel 2.png"
+    menu-2 "graphics/ui/human/panel 3.png"
+    victory "graphics/ui/human/panel 4.png"
+    scenario "graphics/ui/human/panel 5.png") )
