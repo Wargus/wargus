@@ -8,7 +8,7 @@
 --			  T H E   W A R   B E G I N S
 --	   Stratagus - A free fantasy real time strategy game engine
 --
---	menus.ccl	-	Menus configuration
+--	menus.lua	-	Menus configuration
 --
 --	(c) Copyright 2002-2003 by Kachalov Anton and Jimmy Salmon.
 --
@@ -31,7 +31,7 @@
 --
 -- load the keystroke helps
 --
-Load("ccl/keystrokes.lua")
+Load("scripts/keystrokes.lua")
 
 --
 -- define the menu graphics

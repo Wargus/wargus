@@ -8,7 +8,7 @@
 --			  T H E   W A R   B E G I N S
 --	   Stratagus - A free fantasy real time strategy game engine
 --
---	ui.ccl		-	Define the user interface
+--	ui.lua		-	Define the user interface
 --
 --	(c) Copyright 2000,2002 by Lutz Sammer
 --
@@ -28,8 +28,8 @@
 --
 --	$Id$
 
-Load("ccl/human/ui.lua")
-Load("ccl/orc/ui.lua")
+Load("scripts/human/ui.lua")
+Load("scripts/orc/ui.lua")
 
 DefineCursor({
   Name = "cursor-glass",

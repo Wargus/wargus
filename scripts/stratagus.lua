@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---      stratagus.ccl - The craft configuration language.
+--      stratagus.lua - The craft configuration language.
 --
 --      (c) Copyright 1998-2003 by Lutz Sammer
 --
@@ -28,12 +28,12 @@
 --
 --      $Id$
 
--- For documentation see stratagus/doc/ccl/ccl.html
+-- For documentation see stratagus/doc/scripts/scripts.html
 --[[
 (cond ((equal? *scheme* 'guile)
-       (load "guile.ccl"))
+       (load "guile.scripts"))
       ((equal? *scheme* 'siod)
-       (load "ccl/siod.ccl" #f #t)))
+       (load "scripts/siod.scripts" #f #t)))
 ]]
 print("Stratagus default config file loading ...\n")
 
@@ -46,8 +46,8 @@ print("Stratagus default config file loading ...\n")
 
 --  Edit the next sections to get your look and feel.
 --  Note, some of those values are overridden by user preferences,
---  see ~/.stratagus/preferences1.ccl
---  and ~/.stratagus/gamename/preferences2.ccl
+--  see ~/.stratagus/preferences1.scripts
+--  and ~/.stratagus/gamename/preferences2.scripts
 
 
 --  Set the game contrast,brightness,saturation.
@@ -374,27 +374,27 @@ end
 -------------------------------------------------------------------------------
 
 --- Uses Stratagus Library path!
-Load("ccl/wc2.lua")
+Load("scripts/wc2.lua")
 
-Load("ccl/tilesets.lua")
-Load("ccl/icons.lua")
+Load("scripts/tilesets.lua")
+Load("scripts/icons.lua")
 if (WithSound()) then
-  Load("ccl/sound.lua")
+  Load("scripts/sound.lua")
 end
-Load("ccl/missiles.lua")
-Load("ccl/constructions.lua")
-Load("ccl/spells.lua")
-Load("ccl/units.lua")
-Load("ccl/upgrade.lua")
-Load("ccl/fonts.lua")
-Load("ccl/buttons.lua")
-Load("ccl/ui.lua")
-Load("ccl/ai.lua")
-Load("ccl/campaigns.lua")
-Load("ccl/credits.lua")
-Load("ccl/tips.lua")
-Load("ccl/ranks.lua")
-Load("ccl/menus.lua")
-Load("ccl/cheats.lua")
+Load("scripts/missiles.lua")
+Load("scripts/constructions.lua")
+Load("scripts/spells.lua")
+Load("scripts/units.lua")
+Load("scripts/upgrade.lua")
+Load("scripts/fonts.lua")
+Load("scripts/buttons.lua")
+Load("scripts/ui.lua")
+Load("scripts/ai.lua")
+Load("scripts/campaigns.lua")
+Load("scripts/credits.lua")
+Load("scripts/tips.lua")
+Load("scripts/ranks.lua")
+Load("scripts/menus.lua")
+Load("scripts/cheats.lua")
 
 print("... ready!\n")

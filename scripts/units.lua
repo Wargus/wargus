@@ -8,7 +8,7 @@
 --			  T H E   W A R   B E G I N S
 --	   Stratagus - A free fantasy real time strategy game engine
 --
---	units.ccl	-	Define the used unit-types.
+--	units.lua	-	Define the used unit-types.
 --
 --	(c) Copyright 1998,2000-2002 by Lutz Sammer
 --
@@ -29,7 +29,7 @@
 --	$Id$
 
 -- Load the animations for the units.
-Load("ccl/anim.lua")
+Load("scripts/anim.lua")
 
 --=============================================================================
 --	Define unit-types.
@@ -427,6 +427,6 @@ DefineUnitType("unit-revealer", { Name = "Dummy unit",
   Sounds = {} } )
 
 -- Load the different races
-Load("ccl/human/units.lua")
-Load("ccl/orc/units.lua")
+Load("scripts/human/units.lua")
+Load("scripts/orc/units.lua")
 

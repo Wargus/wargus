@@ -8,7 +8,7 @@
 --			  T H E   W A R   B E G I N S
 --	   Stratagus - A free fantasy real time strategy game engine
 --
---	upgrade.ccl	-	Define the dependencies and upgrades.
+--	upgrade.lua	-	Define the dependencies and upgrades.
 --
 --	(c) Copyright 2001 by Lutz Sammer
 --
@@ -29,8 +29,8 @@
 --	$Id$
 
 -- Load the different races
-Load("ccl/human/upgrade.lua")
-Load("ccl/orc/upgrade.lua")
+Load("scripts/human/upgrade.lua")
+Load("scripts/orc/upgrade.lua")
 
 --	NOTE: Save can generate this table.
 

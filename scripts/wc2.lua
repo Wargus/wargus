@@ -8,7 +8,7 @@
 --			  T H E   W A R   B E G I N S
 --	   Stratagus - A free fantasy real time strategy game engine
 --
---	wc2.ccl		-	WC2 compatibility level
+--	wc2.lua		-	WC2 compatibility level
 --
 --	(c) Copyright 2001-2003 by Lutz Sammer and Jimmy Salmon
 --
@@ -211,4 +211,4 @@ SetColorIconCycleEnd(244)
 SetColorBuildingCycleStart(205)
 SetColorBuildingCycleEnd(207)
 
-Load("ccl/wc2-config.lua")
+Load("scripts/wc2-config.lua")
