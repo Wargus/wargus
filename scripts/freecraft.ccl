@@ -28,9 +28,6 @@
 ; Config file version
 (define media-version (list 'wc2 'class 'wc2 'version '(1 18 0)))
 
-;; FIXME: Needed until new ui code is working
-(define define-old-ui define-ui)
-
 ;;-----------------------------------------------------------------------------
 ;;	Config-Part
 ;;-----------------------------------------------------------------------------
@@ -64,7 +61,9 @@
 (set-color-cycle-all! #t)
 ;(set-color-cycle-all! #f)
 
+;;	FIXME: documentation
 (set-game-name! "wc2")
+
 ;;-----------------------------------------------------------------------------
 ;;	Music play list -	Insert your titles here
 
