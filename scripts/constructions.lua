@@ -8,7 +8,7 @@
 --			  T H E   W A R   B E G I N S
 --	   Stratagus - A free fantasy real time strategy game engine
 --
---	constructions.ccl	-	Define the constructions.
+--	constructions.lua	-	Define the constructions.
 --
 --	(c) Copyright 2001-2003 by Lutz Sammer and Jimmy Salmon
 --
@@ -28,8 +28,8 @@
 --
 --	$Id$
 
-Load("ccl/human/constructions.lua")
-Load("ccl/orc/constructions.lua")
+Load("scripts/human/constructions.lua")
+Load("scripts/orc/constructions.lua")
 
 DefineConstruction("construction-none", {
   Files = {

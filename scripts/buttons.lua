@@ -8,7 +8,7 @@
 --			  T H E   W A R   B E G I N S
 --	   Stratagus - A free fantasy real time strategy game engine
 --
---	buttons.ccl	-	Define the general unit-buttons.
+--	buttons.lua	-	Define the general unit-buttons.
 --
 --	(c) Copyright 2001 by Vladi Belperchinov-Shabanski and Lutz Sammer
 --
@@ -30,8 +30,8 @@
 
 -- Load the buttons of all races
 
-Load("ccl/human/buttons.lua")
-Load("ccl/orc/buttons.lua")
+Load("scripts/human/buttons.lua")
+Load("scripts/orc/buttons.lua")
 
 ------------------------------------------------------------------------------
 --	Define unit-button.

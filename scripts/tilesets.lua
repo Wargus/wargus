@@ -8,7 +8,7 @@
 --			  T H E   W A R   B E G I N S
 --	   Stratagus - A free fantasy real time strategy game engine
 --
---	tilesets.ccl	-	Define the used tilesets.
+--	tilesets.lua	-	Define the used tilesets.
 --
 --	(c) Copyright 1998,2000-2003 by Lutz Sammer and Jimmy Salmon
 --
@@ -33,18 +33,18 @@
 --
 --	FIXME: need a way to automatic load all available tileset definitions
 
-Load("ccl/wc2-config.lua")
+Load("scripts/wc2-config.lua")
 
 DefineTileset("tileset-summer", "class", "summer", "name", "Forest",
-  "file", "ccl/tilesets/summer.lua")
+  "file", "scripts/tilesets/summer.lua")
 DefineTileset("tileset-winter", "class", "winter", "name", "Winter",
-  "file", "ccl/tilesets/winter.lua")
+  "file", "scripts/tilesets/winter.lua")
 DefineTileset("tileset-wasteland", "class", "wasteland", "name", "Wasteland",
-  "file", "ccl/tilesets/wasteland.lua")
+  "file", "scripts/tilesets/wasteland.lua")
 if (expansion) then
   DefineTileset("tileset-swamp", "class", "swamp", "name", "Swamp",
-    "file", "ccl/tilesets/swamp.lua")
+    "file", "scripts/tilesets/swamp.lua")
 else
   DefineTileset("tileset-swamp", "class", "swamp", "name", "Swamp",
-    "file", "ccl/tilesets/dummy-swamp.lua")
+    "file", "scripts/tilesets/dummy-swamp.lua")
 end

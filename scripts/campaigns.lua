@@ -32,14 +32,14 @@
 --	Define all campaigns.
 
 DefineCampaign("human", "name", "~!Human campaign",
-  "file", "ccl/human/campaign1.lua")
+  "file", "scripts/human/campaign1.lua")
 DefineCampaign("orc", "name", "~!Orc campaign",
-  "file", "ccl/orc/campaign1.lua")
+  "file", "scripts/orc/campaign1.lua")
 if (expansion) then
 do
   DefineCampaign("human-exp", "name", "H~!uman expansion levels",
-    "file", "ccl/human/campaign2.lua")
+    "file", "scripts/human/campaign2.lua")
   DefineCampaign("orc-exp", "name", "O~!rc expansion levels",
-    "file", "ccl/orc/campaign2.lua")
+    "file", "scripts/orc/campaign2.lua")
 end
 end

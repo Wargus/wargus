@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---      ai.ccl - Define the AI.
+--      ai.lua - Define the AI.
 --
 --      (c) Copyright 2000-2004 by Lutz Sammer and Jimmy Salmon
 --
@@ -39,7 +39,7 @@ race2 = "orc"
 --  AI helper table, the AI must know where to build units,
 --  where to research spells, where to upgrade units.
 --  If this is allowed and which dependencies exists, isn't
---  handled here. (see upgrade.ccl)
+--  handled here. (see upgrade.lua)
 --
 --  NOTE: perhaps this could later be used to build the buttons?
 --
@@ -849,10 +849,10 @@ end
 
 
 
-Load("ccl/ai/passive.lua")
-Load("ccl/ai/air_attack.lua")
-Load("ccl/ai/land_attack.lua")
-Load("ccl/ai/sea_attack.lua")
+Load("scripts/ai/passive.lua")
+Load("scripts/ai/air_attack.lua")
+Load("scripts/ai/land_attack.lua")
+Load("scripts/ai/sea_attack.lua")
 
 
 --[[
