@@ -95,12 +95,12 @@
 (define-spell "spell-suicide-bomber"
 	'showname "Demolish"
 	'manacost 0
-	'range 10
-	'target 'position
+	'target 'self
 	'action '((demolish range 1 damage 400))
 	'sound-when-cast "holy vision"
 	'missile-when-cast "missile-normal-spell"
 )
+
 (define-spell "spell-holy-vision"
 	'showname "Holy Vision"
 	'manacost 70

@@ -149,10 +149,10 @@
   'for-unit '(unit-ballista unit-battleship human-group))
 
 (define-button 'pos 9 'level 0 'icon 'icon-alliance-demolish
-  'action 'demolish
+  'action 'cast-spell 'value 'spell-suicide-bomber
+  'allowed 'check-true
   'key "d" 'hint "~!DEMOLISH"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista unit-gryphon-rider human-group))
+  'for-unit '(unit-dwarves))
 
 ;; paladin specific actions ---------------------------------------------------
 
@@ -218,8 +218,8 @@
   'for-unit '(unit-mage unit-white-mage))
 
 (define-button 'pos 8 'level 0 'icon 'icon-polymorph
-  'action 'cast-spell 'value 'spell-polymorph
-;  'action 'cast-spell 'value 'spell-suicide-bomber
+;  'action 'cast-spell 'value 'spell-polymorph
+  'action 'cast-spell 'value 'spell-suicide-bomber
   'allowed 'check-upgrade 'allow-arg '(upgrade-polymorph)
   'key "p" 'hint "~!POLYMORPH"
   'for-unit '(unit-mage unit-white-mage))
