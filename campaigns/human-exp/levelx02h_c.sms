@@ -16,7 +16,7 @@
 (add-trigger (lambda () (if-unit 'this '== 0 'all))
   (lambda () (action-defeat)))
 (add-trigger (lambda () (and (if-unit 'this '== 0 'unit-danath)
-                             (if-unit 0 '== 0 'unit-danath)))
+                             (if-unit 4 '== 0 'unit-danath)))
   (lambda () (action-defeat)))
 
 ;;Units
