@@ -66,32 +66,32 @@ function HumanScreen(screen_width, screen_height)
     "reverse-font-color", "yellow",
 
     "filler", {
-      "file", "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/filler-right.png",
-      "pos", { screen_width - 16, 0}},
+      File = "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/filler-right.png",
+      Pos = { screen_width - 16, 0}},
     "filler", {
-      "file", "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/resource.png",
-      "pos", {176, 0}},
+      File = "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/resource.png",
+      Pos = {176, 0}},
     "filler", {
-      "file", "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/statusline.png",
-      "pos", {176, screen_height - 16}},
+      File = "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/statusline.png",
+      Pos = {176, screen_height - 16}},
     "filler", {
-      "file", "graphics/ui/human/menubutton.png",
-      "pos", {0, 0}},
+      File = "graphics/ui/human/menubutton.png",
+      Pos = {0, 0}},
     "filler", {
-      "file", "graphics/ui/human/minimap.png",
-      "pos", {0, 24}},
+      File = "graphics/ui/human/minimap.png",
+      Pos = {0, 24}},
 
     "resources", {
-      "gold", { "file", "graphics/ui/gold,wood,oil,mana.png", "frame", 0,
-        "pos", { 176 + 0, 0}, "size", {14, 14}, "text-pos", { 176 + 0 + 18, 1}},
-      "wood", { "file", "graphics/ui/gold,wood,oil,mana.png", "frame", 1,
-        "pos", { 176 + 75, 0}, "size", {14, 14}, "text-pos", { 176 + 75 + 18, 1}},
-      "oil", { "file", "graphics/ui/gold,wood,oil,mana.png", "frame", 2,
-        "pos", { 176 + 150, 0}, "size", {14, 14}, "text-pos", { 176 + 150 + 18, 1}},
-      "food", { "file", "graphics/ui/food.png", "frame", 0,
-        "pos", { screen_width - 16 - 138, 0}, "size", {14, 14}, "text-pos", { (screen_width - 16 - 138) + 18, 1}},
-      "score", { "file", "graphics/ui/score.png", "frame", 0,
-        "pos", { screen_width - 16 - 68, 0}, "size", {14, 14}, "text-pos", { (screen_width - 16 - 68) + 18, 1}}},
+      "gold", { File = "graphics/ui/gold,wood,oil,mana.png", Frame = 0,
+        Pos = { 176 + 0, 0}, Size = {14, 14}, TextPos = { 176 + 0 + 18, 1}},
+      "wood", { File = "graphics/ui/gold,wood,oil,mana.png", Frame = 1,
+        Pos = { 176 + 75, 0}, Size = {14, 14}, TextPos = { 176 + 75 + 18, 1}},
+      "oil", { File = "graphics/ui/gold,wood,oil,mana.png", Frame = 2,
+        Pos = { 176 + 150, 0}, Size = {14, 14}, TextPos = { 176 + 150 + 18, 1}},
+      "food", { File = "graphics/ui/food.png", Frame = 0,
+        Pos = { screen_width - 16 - 138, 0}, Size = {14, 14}, TextPos = { (screen_width - 16 - 138) + 18, 1}},
+      "score", { File = "graphics/ui/score.png", Frame = 0,
+        Pos = { screen_width - 16 - 68, 0}, Size = {14, 14}, TextPos = { (screen_width - 16 - 68) + 18, 1}}},
 
     "info-panel", {
       "panel", {
@@ -201,17 +201,17 @@ function HumanScreen(screen_width, screen_height)
 
     "menu-panel", {
       "menu-button", {
-        "pos", {24, 2},
-        "caption", "Menu (~<F10~>)",
-        "style", "main"},
+        Pos = {24, 2},
+        Caption = "Menu (~<F10~>)",
+        Style = "main"},
       "network-menu-button", {
-        "pos", {6, 2},
-        "caption", "Menu",
-        "style", "network"},
+        Pos = {6, 2},
+        Caption = "Menu",
+        Style = "network"},
       "network-diplomacy-button", {
-        "pos", {90, 2},
-        "caption", "Diplomacy",
-        "style", "network"},
+        Pos = {90, 2},
+        Caption = "Diplomacy",
+        Style = "network"},
     },
 
     "minimap", {
@@ -219,9 +219,9 @@ function HumanScreen(screen_width, screen_height)
       Size = {128, 128}},
 
     "status-line", {
-      "text-pos", { 2 + 176, 2 + screen_height - 16},
-      "font", "game",
-      "width", screen_width - 192},
+      TextPos = { 2 + 176, 2 + screen_height - 16},
+      Font = "game",
+      Width = screen_width - 192},
 
     "cursors", {
       Point = "cursor-point",
