@@ -34,5 +34,4 @@
   (define-campaign 'human-exp 'name "H~!uman expansion levels"
     'file "ccl/human/campaign2.ccl")
   (define-campaign 'orc-exp 'name "O~!rc expansion levels"
-    'file "ccl/orc/campaign2.ccl"))
-)
+    'file "ccl/orc/campaign2.ccl")))
