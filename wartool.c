@@ -1949,7 +1949,7 @@ Control Todo[] = {
 {I,0,"ui/orc/Smashing of Lordaeron scroll",			32, 30 },
 #ifdef HAVE_EXPANSION
 {I,2,"ui/Patch",						14, 91 },
-{I,2,"iui/Credits for extension background",		93, 94 },
+{I,2,"ui/Credits for extension background",			93, 94 },
 {I,2,"../campaigns/human-exp/interface/Act I  - A Time for Heroes",17, 96 },
 {I,2,"../campaigns/orc-exp/interface/Act I  - Draenor, the Red World",17, 97 },
 {I,2,"../campaigns/human-exp/interface/Act II - Draenor, the Red World",17, 98 },
