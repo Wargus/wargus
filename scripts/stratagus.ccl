@@ -190,10 +190,6 @@
 (spell-sprite "graphics/ui/bloodlust,haste,slow,invisible,shield.png"
   1 1	16 16)
 
-;;	Edit this to enable/disable the original game resource line.
-(set-original-resources! #f)
-;(set-original-resources! #t)
-
 ;;	Uncomment next, to enable fancy building (random mirroring buildings)
 (set-fancy-buildings! #t)
 ;(set-fancy-buildings! #f)
