@@ -1006,7 +1006,7 @@
   #("tilesets/summer/human/buildings/gnomish inventor.png"
     "tilesets/winter/human/buildings/gnomish inventor.png"
     ()
-    "tilesets/wasteland/human/buildings/gnomish inventor.png" )
+    "tilesets/swamp/human/buildings/gnomish inventor.png" )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-gnomish-inventor"
@@ -1259,7 +1259,7 @@
   #("tilesets/summer/human/buildings/refinery.png"
     "tilesets/winter/human/buildings/refinery.png"
     ()
-    "tilesets/wasteland/human/buildings/refinery.png" )
+    "tilesets/swamp/human/buildings/refinery.png" )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-refinery"

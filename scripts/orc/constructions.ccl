@@ -42,7 +42,7 @@
     summer "tilesets/summer/orc/buildings/oil well construction site.png"
     winter "tilesets/winter/orc/buildings/oil well construction site.png"
     wasteland "tilesets/wasteland/orc/buildings/oil well construction site.png"
-    swamp "tilesets/swamp/orc/buildings/oil well construction site.png")
+    swamp "tilesets/swamp/orc/buildings/oil platform construction site.png")
   'size '(96 96))
 
 (define-construction 'construction-orc-refinery

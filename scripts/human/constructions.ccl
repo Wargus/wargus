@@ -42,7 +42,7 @@
     winter "tilesets/winter/human/buildings/oil well construction site.png"
     wasteland
       "tilesets/wasteland/human/buildings/oil well construction site.png"
-    swamp "tilesets/swamp/human/buildings/oil well construction site.png")
+    swamp "tilesets/swamp/human/buildings/oil platform construction site.png")
   'size '(96 96))
 
 (define-construction 'construction-human-refinery
