@@ -41,6 +41,16 @@
     tileset winter
     file "tilesets/winter/neutral/buildings/land construction site.png"
     size (64 64))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
 )
 
 (define-construction 'construction-land
@@ -52,6 +62,34 @@
     tileset winter
     file "tilesets/winter/neutral/buildings/land construction site.png"
     size (64 64))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
+)
+
+(define-construction 'construction-land2
+  'file '(
+    tileset summer
+    file "neutral/buildings/land construction site.png"
+    size (64 64))
+  'file '(
+    tileset winter
+    file "tilesets/winter/neutral/buildings/land construction site.png"
+    size (64 64))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1))
 )
 
 (define-construction 'construction-wall
@@ -67,4 +105,14 @@
     tileset wasteland
     file "tilesets/wasteland/neutral/buildings/wall construction site.png"
     size (32 32))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
 )

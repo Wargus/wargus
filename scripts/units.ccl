@@ -179,7 +179,7 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-gold-mine
   'costs '(time 150)
-  'construction 'construction-land
+  'construction 'construction-land2
   'speed 0
   'hit-points 25500
   'tile-size '(3 3) 'box-size '(95 95)
@@ -250,7 +250,7 @@
   'size '(128 128)
   'animations 'animations-building 'icon 'icon-dark-portal
   'costs '(time 100 gold 3000 wood 3000 oil 1000)
-  'construction 'construction-land
+  'construction 'construction-land2
   'speed 0
   'hit-points 5000
   'max-mana 255
@@ -278,7 +278,7 @@
   'size '(64 64)
   'animations 'animations-building 'icon 'icon-runestone
   'costs '(time 175 gold 900 wood 500)
-  'construction 'construction-land
+  'construction 'construction-land2
   'speed 0
   'hit-points 5000
   'max-mana 255

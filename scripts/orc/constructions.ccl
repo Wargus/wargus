@@ -43,6 +43,16 @@
     tileset swamp
     file "tilesets/swamp/orc/buildings/shipyard construction site.png"
     size (96 96))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
 )
 
 (define-construction 'construction-mythical-oil-well
@@ -62,6 +72,16 @@
     tileset swamp
     file "tilesets/swamp/orc/buildings/oil platform construction site.png"
     size (96 96))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
 )
 
 (define-construction 'construction-mythical-refinery
@@ -77,6 +97,16 @@
     tileset swamp
     file "tilesets/swamp/orc/buildings/refinery construction site.png"
     size (96 96))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
 )
 
 (define-construction 'construction-mythical-foundry
@@ -92,4 +122,14 @@
     tileset swamp
     file "tilesets/swamp/orc/buildings/foundry construction site.png"
     size (96 96))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
 )
