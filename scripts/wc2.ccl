@@ -257,4 +257,4 @@
 (set-color-building-cycle-start! 205)
 (set-color-building-cycle-end! 207)
 
-(load "ccl/wc2-config.ccl" #f #t)
+(ccl:load "ccl/wc2-config.ccl")

@@ -28,6 +28,11 @@
 ;;
 ;;	$Id$
 
+(cond ((equal? *scheme* 'guile)
+       (load "guile.ccl"))
+      ((equal? *scheme* 'siod)
+       (load "ccl/siod.ccl" #f #t)))
+
 (writes nil "Stratagus default config file loading ...\n")
 
 ; Config file version
@@ -75,13 +80,21 @@
 ;
 ;;	Create a list from the directory content
 ;
+
 (define (dir->list s . prepend)
   (define (aux d rl p)
     (let ((q (readdir d)))
-      (if (equal? q ()) (begin (closedir d) rl)
-          (if (or (equal? q ".") (equal? q "..")) (aux d rl p)
-              (aux d (cons (string-append p q) rl) p)))))
-  (aux (opendir s) () (if (string? (car prepend)) (car prepend) "")))
+      (cond ((eof-object? q)
+             (closedir d)
+             rl)
+            (else
+             (if (or (equal? q ".") (equal? q ".."))
+                 (aux d rl p)
+                 (aux d (cons (string-append p q) rl) p))))))
+
+  (aux (opendir s) '() (if (string? (car prepend))
+                           (car prepend) 
+                           "")))
 
 ;; Uncomment to play automatic all music
 ;; FIXME: Comments are wrong, system dependend stuff didn't belong into the
@@ -432,33 +445,34 @@
 
 (define (single-player-triggers)
   (add-trigger '((if-unit 'this '== 0 'all))
-    '((action-defeat)))
+               '((action-defeat)))
   (add-trigger '((if-opponents 'this '== 0))
-    '((action-victory))) )
+               '((action-victory))))
 
 ;;-----------------------------------------------------------------------------
 ;;	Tables-Part
 ;;-----------------------------------------------------------------------------
 
 ;;; Uses Stratagus Library path!
-(load "ccl/wc2.ccl" #f #t)
+(ccl:load "ccl/wc2.ccl")
 
-(load "ccl/tilesets.ccl" #f #t)
-(load "ccl/icons.ccl" #f #t)
-(load "ccl/sound.ccl" #f #t)
-(load "ccl/missiles.ccl" #f #t)
-(load "ccl/constructions.ccl" #f #t)
-(load "ccl/units.ccl" #f #t)
-(load "ccl/upgrade.ccl" #f #t)
-(load "ccl/fonts.ccl" #f #t)
-(load "ccl/buttons.ccl" #f #t)
-(load "ccl/ui.ccl" #f #t)
-(load "ccl/ai.ccl" #f #t)
-(load "ccl/campaigns.ccl" #f #t)
-(load "ccl/credits.ccl" #f #t)
-(load "ccl/tips.ccl" #f #t)
-(load "ccl/ranks.ccl" #f #t)
-(load "ccl/menus.ccl" #f #t)
+(ccl:load "ccl/tilesets.ccl")
+(ccl:load "ccl/icons.ccl")
+(if (with-sound)
+    (ccl:load "ccl/sound.ccl"))
+(ccl:load "ccl/missiles.ccl")
+(ccl:load "ccl/constructions.ccl")
+(ccl:load "ccl/units.ccl")
+(ccl:load "ccl/upgrade.ccl")
+(ccl:load "ccl/fonts.ccl")
+(ccl:load "ccl/buttons.ccl")
+(ccl:load "ccl/ui.ccl")
+(ccl:load "ccl/ai.ccl")
+(ccl:load "ccl/campaigns.ccl")
+(ccl:load "ccl/credits.ccl")
+(ccl:load "ccl/tips.ccl")
+(ccl:load "ccl/ranks.ccl")
+(ccl:load "ccl/menus.ccl")
 
 ;;-----------------------------------------------------------------------------
 
@@ -491,3 +505,4 @@
 ;;-----------------------------------------------------------------------------
 
 (writes nil "... ready!\n")
+(display (unit-type-array))

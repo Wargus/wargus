@@ -30,8 +30,8 @@
 
 (define color-dark-green	149)	; FIXME: move to central position
 
-(load "ccl/human/ui.ccl" #f #t)
-(load "ccl/orc/ui.ccl" #f #t)
+(ccl:load "ccl/human/ui.ccl")
+(ccl:load "ccl/orc/ui.ccl")
 
 ;;=============================================================================
 ;;	Define a cursor.
