@@ -1334,6 +1334,7 @@
   'files '(tileset-summer "human/x_startpoint.png")
   'size '(32 32)
   'animations 'animations-building 'icon 'icon-cancel
+  'num-directions 1
   'speed 0
   'hit-points 0
   'draw-level 0

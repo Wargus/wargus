@@ -1424,6 +1424,7 @@
 (define-unit-type 'unit-mythical-start-location 'name "Start Location"
   'files '(tileset-summer "orc/o_startpoint.png")
   'size '(32 32)
+  'num-directions 1
   'animations 'animations-building 'icon 'icon-cancel
   'speed 0
   'hit-points 0
