@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -57,7 +57,17 @@ DefinePanelContents(
 	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
 		More = {"FormattedText2", {Format = "%s Left:%d", Variable = "GiveResource",
 					Component1 = "Name", Component2 = "Value", Centered = true}}
-	}
+	},
+
+-- Construction
+	{ Pos = {12, 153}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 12}}
+	},
+	{ Pos = {50, 154}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+		More = {"Text", "% Complete"}},
+	{ Pos = {107, 78}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+		More = {"Icon", {Unit = "Worker"}}}
+
 
   } },
 -- Supply Building constructed.----------------
@@ -100,12 +110,6 @@ DefinePanelContents(
 		More = {"Text", {
 					Text = "Range: ", Variable = "AttackRange" , Stat = true}}
 	},
--- Construction
-	{ Pos = {12, 153}, Condition = {Build = "only"},
-		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 12}}
-	},
-	{ Pos = {50, 154}, Condition = {Build = "only"}, More = {"Text", "% Complete"}},
-	{ Pos = {107, 78}, Condition = {Build = "only"}, More = {"Icon", {Unit = "Worker"}}},
 -- Research
 	{ Pos = {12, 153}, Condition = {Research = "only"},
 		More = {"CompleteBar", {Variable = "Research", Width = 152, Height = 12}}
