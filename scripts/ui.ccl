@@ -33,12 +33,6 @@
 (ccl:load "ccl/human/ui.ccl")
 (ccl:load "ccl/orc/ui.ccl")
 
-;;=============================================================================
-;;	Define a cursor.
-;;
-;;	(define-cursor 'ident 'race 'image "file-path"
-;;		'hotspot ( x y ) 'size ( width height ))
-;;
 (define-cursor	'cursor-glass		'any
     'image "ui/cursors/magnifying_glass.png"
     'hot-spot '(11 11) 'size '(34 35) )

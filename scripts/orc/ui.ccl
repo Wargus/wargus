@@ -28,12 +28,6 @@
 ;;
 ;;	$Id$
 
-;;=============================================================================
-;;	Define a cursor.
-;;
-;;	(define-cursor 'ident 'race 'image "file-path"
-;;		'hotspot ( x y ) 'size ( width height ))
-;;
 (define-cursor	'cursor-point		'orc
     'image "ui/orc/cursors/orcish_claw.png"
     'hot-spot '( 3  2) 'size '(26 32) )
@@ -46,15 +40,6 @@
 (define-cursor	'cursor-red-hair	'orc
     'image "ui/orc/cursors/red_crosshairs.png"
     'hot-spot '(15 15) 'size '(32 32) )
-
-;;=============================================================================
-;;	Define the user interface
-;;
-;;	(define-ui "race" screen-width screen-height
-;;
-;;	This defines the position and sizes of the different user
-;;	interface sections.
-;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race orc.
@@ -92,7 +77,6 @@
 
     'info-panel (list "graphics/ui/orc/infopanel.png" 0 160 176 176)
 
-    ; Completed bar
     'completed-bar '(
       color 149
       pos ( 12 313)
@@ -101,7 +85,6 @@
       font game
       text-pos ( 50 313))
 
-    ; Command button panel
     'button-panel (list
       (string-append "graphics/ui/orc/"
         (number->string screen_width) "x" (number->string screen_height)
@@ -114,10 +97,8 @@
         (* 32 (trunc (/ (- screen_width 176 16) 32)))
         (* 32 (trunc (/ (- screen_height 16 16) 32)))))
 
-    ; Menu button
     'menu-panel (list "graphics/ui/orc/menubutton.png" 0 0)
 
-    ; Minimap
     'minimap-panel (list "graphics/ui/orc/minimap.png" 0 24)
     'minimap-pos (list (+ 0 24) (+ 24 2))
 
@@ -129,7 +110,6 @@
       'text-pos (list (+ 2 176) (+ 2 (- screen_height 16)))
       'font 'game)
 
-    ; Menu buttons
     'menu-button '(
       pos (24 2)
       size (128 19)
