@@ -1,6 +1,6 @@
 ;;   ___________		     _________		      _____  __
 ;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
-;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\
 ;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
 ;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
 ;;	  \/		    \/	   \/	     \/		   \/
@@ -8,19 +8,18 @@
 ;;			  T H E   W A R   B E G I N S
 ;;	   FreeCraft - A free fantasy real time strategy game engine
 ;;
-;;	tilesets.ccl	-	Define the used tilesets.
+;;	wc2.ccl		-	WC2 compatibility level
 ;;
-;;	(c) Copyright 1998,2000,2001 by Lutz Sammer
+;;	(c) Copyright 2001 by Lutz Sammer
 ;;
 ;;	$Id$
+;;
 
 ;;=============================================================================
-;;	Load the different tileset definitions
+;;	Define tileset mapping from original number to internal symbol
 ;;
-;;	FIXME: need a way to automatic load all available tileset definitions
+;;	(define-tilset-wc-names summer winter wasteland swamp)
 
-(load "ccl/summer.ccl" #f #t)
-(load "ccl/winter.ccl" #f #t)
-(load "ccl/wasteland.ccl" #f #t)
-(load "ccl/swamp.ccl" #f #t)
-;(load "../tileset/fc-summer.ccl")
+(define-tileset-wc-names
+  "tileset-summer" "tileset-winter" "tileset-wasteland" "tileset-swamp" )
+

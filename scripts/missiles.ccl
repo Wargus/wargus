@@ -80,104 +80,104 @@
 ;;	FIXME: use ident insteed of numbers.
 ;;
 (missile-type MissileLightning
-    "missile-lightning"			"lightning.png"			32 32 
+    "missile-lightning"			"lightning.png"			32 32
     #f
     missile-class-point-to-point-with-hit)
 (missile-type MissileGriffonHammer
-    "missile-griffon-hammer"		"gryphon hammer.png"		32 32 
+    "missile-griffon-hammer"		"gryphon hammer.png"		32 32
     sound-fireball-hit)
 (missile-type MissileDragonBreath
-    "missile-dragon-breath"		"dragon breath.png"		32 32 
+    "missile-dragon-breath"		"dragon breath.png"		32 32
     sound-fireball-hit)
 
 (missile-type MissileFireball
-    "missile-fireball"			"fireball.png"			32 32 
+    "missile-fireball"			"fireball.png"			32 32
     sound-fireball-hit)
 (missile-type MissileFlameShield
-    "missile-flame-shield"		"flame shield.png"		32 32 
+    "missile-flame-shield"		"flame shield.png"		32 32
     #f)
 (missile-type MissileBlizzard
-    "missile-blizzard"			"blizzard.png"			32 32 
+    "missile-blizzard"			"blizzard.png"			32 32
     #f)
 (missile-type MissileDeathDecay
-    "missile-death-and-decay"		"death and decay.png"		32 32 
+    "missile-death-and-decay"		"death and decay.png"		32 32
     #f)
 (missile-type MissileBigCannon
-    "missile-big-cannon"		"big cannon.png"		16 16 
+    "missile-big-cannon"		"big cannon.png"		16 16
     sound-explosion)
 (missile-type MissileExorcism
-    "missile-exorcism"			"exorcism.png"			48 48 
+    "missile-exorcism"			"exorcism.png"			48 48
     #f)
 (missile-type MissileHealEffect
-    "missile-heal-effect"		"heal effect.png"		48 48 
+    "missile-heal-effect"		"heal effect.png"		48 48
     #f)
 (missile-type MissileTouchOfDeath
-    "missile-touch-of-death"		"touch of death.png"		32 32 
+    "missile-touch-of-death"		"touch of death.png"		32 32
     #f)
 (missile-type MissileRune
-    "missile-rune"			"rune.png"			16 16 
+    "missile-rune"			"rune.png"			16 16
     #f)
 (missile-type MissileWhirlwind
-    "missile-whirlwind"			"tornado.png"			56 56 
+    "missile-whirlwind"			"tornado.png"			56 56
     #f)
 (missile-type MissileCatapultRock
-    "missile-catapult-rock"		"catapult rock.png"		32 32 
+    "missile-catapult-rock"		"catapult rock.png"		32 32
     sound-explosion)
 (missile-type MissileBallistaBolt
-    "missile-ballista-bolt"		"ballista bolt.png"		64 64 
+    "missile-ballista-bolt"		"ballista bolt.png"		64 64
     sound-explosion)
 (missile-type MissileArrow
-    "missile-arrow"			"arrow.png"			40 40 
+    "missile-arrow"			"arrow.png"			40 40
     sound-bow-hit)
 (missile-type MissileAxe
-    "missile-axe"			"axe.png"			32 32 
+    "missile-axe"			"axe.png"			32 32
     sound-bow-hit)
 (missile-type MissileSubmarineMissile
-    "missile-submarine-missile"		"submarine missile.png"		40 40 
+    "missile-submarine-missile"		"submarine missile.png"		40 40
     sound-explosion)
 (missile-type MissileTurtleMissile
-    "missile-turtle-missile"		"turtle missile.png"		40 40 
+    "missile-turtle-missile"		"turtle missile.png"		40 40
     sound-explosion)
 (missile-type MissileSmallFire
-    "missile-small-fire"		"small fire.png"		32 48 
+    "missile-small-fire"		"small fire.png"		32 48
     #f)
 (missile-type MissileBigFire
-    "missile-big-fire"			"big fire.png"			48 48 
+    "missile-big-fire"			"big fire.png"			48 48
     #f)
 (missile-type MissileImpact
-    "missile-impact"			"ballista-catapult impact.png"	48 48 
+    "missile-impact"			"ballista-catapult impact.png"	48 48
     #f)
 (missile-type MissileNormalSpell
-    "missile-normal-spell"		"normal spell.png"		32 32 
+    "missile-normal-spell"		"normal spell.png"		32 32
     #f)
 (missile-type MissileExplosion
-    "missile-explosion"			"explosion.png"			64 64 
+    "missile-explosion"			"explosion.png"			64 64
     #f)
 (missile-type MissileSmallCannon
-    "missile-small-cannon"		"cannon.png"			32 32 
+    "missile-small-cannon"		"cannon.png"			32 32
     sound-explosion)
 (missile-type MissileCannonExplosion
-    "missile-cannon-explosion"		"cannon explosion.png"		32 32 
+    "missile-cannon-explosion"		"cannon explosion.png"		32 32
     #f)
 (missile-type MissileCannonTowerExplosion
-    "missile-cannon-tower-explosion"	"cannon-tower explosion.png"	32 32 
+    "missile-cannon-tower-explosion"	"cannon-tower explosion.png"	32 32
     #f)
 (missile-type MissileDaemonFire
-    "missile-daemon-fire"		"daemon fire.png"		32 32 
+    "missile-daemon-fire"		"daemon fire.png"		32 32
     #f)
 (missile-type MissileGreenCross
-    "missile-green-cross"		"green cross.png"		32 32 
+    "missile-green-cross"		"green cross.png"		32 32
     #f)
 (missile-type MissileNone
-    "missile-none"	 		"green cross.png"      		32 32
+    "missile-none"			"green cross.png"		32 32
     #f)
 (missile-type MissileBlizzardHit
-    "missile-blizzard-hit"		"blizzard.png"  		32 32 
+    "missile-blizzard-hit"		"blizzard.png"			32 32
     #f)
 (missile-type MissileDeathCoil
-    "missile-death-coil"		"touch of death.png"		32 32 
+    "missile-death-coil"		"touch of death.png"		32 32
     #f)
 (missile-type MissileCustom
-    "missile-custom"    		"green cross.png"      		32 32 
+    "missile-custom"			"green cross.png"		32 32
     #f)
-    
+
