@@ -611,9 +611,9 @@ Control Todo[] = {
 // ------------------------------------------
 {G,2,"critter (swamp)",						438, 470 },
 #ifdef NEW_NAMES
-{G,2,"icons (swamp)",						438, 471 },
-#else
 {G,2,"tilesets/swamp/icons",					438, 471 },
+#else
+{G,2,"icons (swamp)",						438, 471 },
 #endif
 // 472: default UDTA for expansion PUDs
 {G,2,"keep (swamp)",						438, 473 },
