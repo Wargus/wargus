@@ -90,7 +90,8 @@ static _inline unsigned int Swap32(unsigned int D) {
 
 #define FetchByte(p) (*((unsigned char*)(p))++)
 
-
+// Temporary define, remove
+#define USE_SDL_SURFACE
 
 //----------------------------------------------------------------------------
 //  Config
