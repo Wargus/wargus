@@ -40,8 +40,8 @@
 (define-font 'small	"graphics/ui/fonts/small.png"	 7  6)
 (define-font 'game	"graphics/ui/fonts/game.png"	13 14)
 (define-font 'large	"graphics/ui/fonts/large.png"	17 17)
-(define-font 'small-title "graphics/ui/fonts/small epsisode titles.png"	32 35)
-(define-font 'large-title "graphics/ui/fonts/large epsisode titles.png"	52 50)
+(define-font 'small-title "graphics/ui/fonts/small episode titles.png"	32 35)
+(define-font 'large-title "graphics/ui/fonts/large episode titles.png"	52 50)
 
 ) (begin
 
