@@ -435,7 +435,7 @@
 (define-button 'pos 9 'level 0 'icon 'icon-battle-axe1
   'action 'attack
   'allowed 'check-no-work
-  'key "t" 'hint "SET A~!TTACK"
+  'key "e" 'hint "S~!ET ATTACK"
   'for-unit '(unit-great-hall unit-stronghold unit-fortress 
     unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost 
     unit-goblin-alchemist)) ))
@@ -597,7 +597,7 @@
 (define-button 'pos 9 'level 0 'icon 'icon-orc-ship-cannon1
   'action 'attack
   'allowed 'check-no-work
-  'key "a" 'hint "SET ~!ATTACK"
+  'key "e" 'hint "S~!ET ATTACK"
   'for-unit '(unit-orc-shipyard)) ))
 
 ;; upgrades -------------------------------------------------------------------
