@@ -6,17 +6,17 @@
 //	  \/		    \/	   \/	     \/		   \/
 //  ______________________                           ______________________
 //			  T H E   W A R   B E G I N S
-//   Utility for FreeCraft - A free fantasy real time strategy game engine
+//   Utility for Stratagus - A free fantasy real time strategy game engine
 //
 /**@name wartool.c	-	Extract files from war archives. */
 //
 //	(c) Copyright 1999-2003 by Lutz Sammer & Nehal Mistry
 //
-//	FreeCraft is free software; you can redistribute it and/or modify
+//	Stratagus is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published
 //	by the Free Software Foundation; only version 2 of the License.
 //
-//	FreeCraft is distributed in the hope that it will be useful,
+//	Stratagus is distributed in the hope that it will be useful,
 //	but WITHOUT ANY WARRANTY; without even the implied warranty of
 //	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //	GNU General Public License for more details.
@@ -38,7 +38,7 @@
 #include <ctype.h>
 #include <png.h>
 
-#include "freecraft.h"
+#include "stratagus.h"
 #include "iocompat.h"
 #include "myendian.h"
 
@@ -1856,7 +1856,7 @@ int ConvertRgb(char* file,int rgbe)
 	printf("Can't open %s\n",buf);
 	exit(-1);
     }
-    fprintf(f,"GIMP Palette\n# FreeCraft %c%s -- GIMP Palette file\n"
+    fprintf(f,"GIMP Palette\n# Stratagus %c%s -- GIMP Palette file\n"
 	    ,toupper(*file),file+1);
 
     for( i=0; i<256; ++i ) {
@@ -3679,7 +3679,7 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs)
 */
 void Usage(const char* name)
 {
-    printf("wartool for FreeCraft V" VERSION ", (c) 1999-2002 by the FreeCraft Project\n\
+    printf("wartool for Stratagus V" VERSION ", (c) 1999-2002 by the Stratagus Project\n\
 Usage: %s [-e] archive-directory [destination-directory]\n\
 \t-e\tThe archive is expansion compatible (default: autodetect)\n\
 \t-n\tThe archive is not expansion compatible (default: autodetect)\n\

@@ -6,17 +6,17 @@
 ;;	  \/		    \/	   \/	     \/		   \/
 ;;  ______________________                           ______________________
 ;;			  T H E   W A R   B E G I N S
-;;	   FreeCraft - A free fantasy real time strategy game engine
+;;	   Stratagus - A free fantasy real time strategy game engine
 ;;
 ;;	anim.ccl	-	The unit animation definitions.
 ;;
 ;;	(c) Copyright 2000-2002 by Josh Cogliati, Lutz Sammer
 ;;
-;;	FreeCraft is free software; you can redistribute it and/or modify
+;;	Stratagus is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
 ;;	by the Free Software Foundation; only version 2 of the License.
 ;;
-;;	FreeCraft is distributed in the hope that it will be useful,
+;;	Stratagus is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;;	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;;	GNU General Public License for more details.
@@ -231,7 +231,7 @@
 
 ;;------
 ;;	Kurdan and Sky'ree, Gryphon Rider
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-kurdan-and-sky-ree
   'still '(	; #24
     #( 2 0   6   0) #( 2 0   6   5) #( 2 0   6  10) #( 3 0   6  15))
@@ -292,7 +292,7 @@
 
 ;;------
 ;;	Oil tanker, Oil tanker, Oil tanker, Oil tanker
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-human-oil-tanker
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -324,7 +324,7 @@
 
 ;;------
 ;;	Transport, Transport
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-human-transport
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -356,7 +356,7 @@
 
 ;;------
 ;;	Elven Destroyer, Troll Destroyer
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-elven-destroyer
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -388,7 +388,7 @@
 
 ;;------
 ;;	Battleship, Ogre Juggernaught
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-battleship
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -420,7 +420,7 @@
 
 ;;------
 ;;	Deathwing, Dragon
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-deathwing
   'still '(	; #24
     #( 2 0   6   0) #( 2 0   6   5) #( 2 0   6  10) #( 3 0   6  15))
@@ -463,7 +463,7 @@
 
 ;;------
 ;;	Gnomish Submarine, Giant Turtle
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-gnomish-submarine
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -497,7 +497,7 @@
 
 ;;------
 ;;	Gnomish Flying Machine
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-gnomish-flying-machine
   'still '(	; #4
     #( 2 0   1   0) #( 2 0   1   5) #( 2 0   1   5) #( 3 0   1   0))
@@ -525,7 +525,7 @@
 
 ;;------
 ;;	Goblin Zeppelin
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-goblin-zeppelin
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -549,7 +549,7 @@
 
 ;;------
 ;;	Eye of Kilrogg
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-eye-of-vision
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -584,7 +584,7 @@
 
 ;;------
 ;;	Daemon
-(if (symbol-bound? 'freecraft-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships ())
 (define-animations 'animations-daemon
   'still '(	; #16
     #( 2 0   4   0) #( 2 0   4   5) #( 2 0   4  10) #( 3 0   4  15))

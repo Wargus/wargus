@@ -9,17 +9,17 @@ REM   \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
 REM       \/                \/     \/        \/            \/
 REM ______________________                           ______________________
 REM                       T H E   W A R   B E G I N S
-REM	   FreeCraft - A free fantasy real time strategy game engine
+REM	   Stratagus - A free fantasy real time strategy game engine
 REM
 REM	build.bat	-	The graphics and sound extractor.
 REM
 REM	(c) Copyright 1999-2003 by Lutz Sammer and Jimmy Salmon.
 REM
-REM	FreeCraft is free software; you can redistribute it and/or modify
+REM	Stratagus is free software; you can redistribute it and/or modify
 REM	it under the terms of the GNU General Public License as published
 REM	by the Free Software Foundation; only version 2 of the License.
 REM
-REM	FreeCraft is distributed in the hope that it will be useful,
+REM	Stratagus is distributed in the hope that it will be useful,
 REM	but WITHOUT ANY WARRANTY; without even the implied warranty of
 REM	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 REM	GNU General Public License for more details.
@@ -90,7 +90,7 @@ copy /b %CONTRIB%\health2.png %DIR%\graphics\ui
 copy /b %CONTRIB%\food.png %DIR%\graphics\ui
 copy /b %CONTRIB%\score.png %DIR%\graphics\ui
 copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphics\ui
-copy /b %CONTRIB%\freecraft.png %DIR%\graphics\ui
+copy /b %CONTRIB%\stratagus.png %DIR%\graphics\ui
 mkdir %DIR%\music
 copy /b %CONTRIB%\music\toccata.mod.gz %DIR%\music\default.mod.gz
 
@@ -133,7 +133,7 @@ goto EOF
 
 :CONTRIBERROR
 ECHO ERROR: '%CONTRIB%' not found; try running %0
-ECHO 	from the toplevel freecraft directory
+ECHO 	from the toplevel stratagus directory
 goto EOF
 
 :EOF

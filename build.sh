@@ -7,17 +7,17 @@
 ##	  \/		    \/	   \/	     \/		   \/
 ##  ______________________                           ______________________
 ##			  T H E   W A R   B E G I N S
-##	   FreeCraft - A free fantasy real time strategy game engine
+##	   Stratagus - A free fantasy real time strategy game engine
 ##
 ##	build.sh	-	The graphics and sound extractor.
 ##
 ##	(c) Copyright 1999-2002 by Lutz Sammer
 ##
-##	FreeCraft is free software; you can redistribute it and/or modify
+##	Stratagus is free software; you can redistribute it and/or modify
 ##	it under the terms of the GNU General Public License as published
 ##	by the Free Software Foundation; only version 2 of the License.
 ##
-##	FreeCraft is distributed in the hope that it will be useful,
+##	Stratagus is distributed in the hope that it will be useful,
 ##	but WITHOUT ANY WARRANTY; without even the implied warranty of
 ##	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ##	GNU General Public License for more details.
@@ -29,9 +29,9 @@
 #
 # -z / -I : COMPRESS = gzip --force --best / bzip2 --force
 # -p path : ARCHIVE = /cdrom / /mnt/cdrom ..
-# -o DIR = /usr/share/games/freecraft/warii
-# -T path : BINPATH = /usr/lib/freecraft/tools
-# -C CONTRIB = /usr/lib/freecraft/contrib
+# -o DIR = /usr/share/games/stratagus/warii
+# -T path : BINPATH = /usr/lib/stratagus/tools
+# -C CONTRIB = /usr/lib/stratagus/contrib
 # -v : Extract also videos
 
 #	compress parameters
@@ -68,22 +68,22 @@ ARCHIVE=$CDROM"/data/"
 #       Here are my executeables or -T dir.
 #
 BINPATH="tools"
-#BINPATH="/usr/local/lib/freecraft/bin"
-#BINPATH="/usr/lib/freecraft/tools"
+#BINPATH="/usr/local/lib/stratagus/bin"
+#BINPATH="/usr/lib/stratagus/tools"
 
 #
 #       Here are the extra files contributed or -C dir.
 #
 CONTRIB="contrib"
-#CONTRIB="/usr/lib/freecraft/contrib"
-#CONTRIB="/usr/local/lib/freecraft/contrib"
+#CONTRIB="/usr/lib/stratagus/contrib"
+#CONTRIB="/usr/local/lib/stratagus/contrib"
 
 #
 #       Here is the destination for the generated files
 #
 DIR="data"
-#DIR="/usr/local/lib/freecraft/data"
-#DIR="/usr/share/games/freecraft/WarII"
+#DIR="/usr/local/lib/stratagus/data"
+#DIR="/usr/share/games/stratagus/WarII"
 
 ###
 ###	Below this point, you should only search bugs. :-)
@@ -106,9 +106,9 @@ while [ $# -gt 0 ]; do
 build.sh
  -z / -I : COMPRESS = gzip --force --best / bzip2 --force
  -p path : ARCHIVE = /cdrom / /mnt/cdrom ..
- -o DIR = /usr/share/games/freecraft/warii
- -T path : BINPATH = /usr/lib/freecraft/tools
- -C CONTRIB = /usr/lib/freecraft/contrib
+ -o DIR = /usr/share/games/stratagus/warii
+ -T path : BINPATH = /usr/lib/stratagus/tools
+ -C CONTRIB = /usr/lib/stratagus/contrib
  -v : Also extract video
 EOF
 			exit 0;;
@@ -134,7 +134,7 @@ fi
 
 if [ ! -d "$CONTRIB" ]; then
     echo "error: $CONTRIB does not exist; try running $0" 
-    echo "	from the toplevel freecraft directory."
+    echo "	from the toplevel stratagus directory."
     exit -1
 fi
 
@@ -164,7 +164,7 @@ cp $CONTRIB/health2.png $DIR/graphics/ui
 cp $CONTRIB/food.png $DIR/graphics/ui
 cp $CONTRIB/score.png $DIR/graphics/ui
 cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
-cp $CONTRIB/freecraft.png $DIR/graphics/ui
+cp $CONTRIB/stratagus.png $DIR/graphics/ui
 cp $CONTRIB/music/toccata.mod.gz $DIR/music/default.mod.gz
 
 ###############################################################################
