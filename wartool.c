@@ -183,7 +183,7 @@ Control Todo[] = {
 {X,0,"objectives",						 54	__},
 {X,0,"human/dialog",						 55	__},
 {X,0,"orc/dialog",						 56	__},
-{X,0,"credits",						 	 58 ,4	_2},
+{X,0,"credits",							 58 ,4	_2},
 
 {X,0,"human/level01h",						 65 ,4	_2},
 {X,0,"orc/level01o",						 66 ,4	_2},
@@ -337,7 +337,7 @@ Control Todo[] = {
 {G,0,"neutral/units/corpses",					 2, 120	_2},
 {G,0,"tilesets/summer/neutral/buildings/destroyed site",	 2, 121	_2},
     // Hardcoded support for worker with resource repairing
-{G,0,"human/units/%4 with wood",				 2, 122, 47, 25},	
+{G,0,"human/units/%4 with wood",				 2, 122, 47, 25},
 {G,0,"orc/units/%5 with wood",					 2, 123, 48, 25},
 {G,0,"human/units/%4 with gold",				 2, 124, 47, 25},
 {G,0,"orc/units/%5 with gold",					 2, 125, 48, 25},
@@ -1741,7 +1741,7 @@ int ConvertRgb(char* file,int rgbe)
     char buf[1024];
     FILE* f;
     int i;
-    int l;
+    size_t l;
 
     rgbp=ExtractEntry(ArchiveOffsets[rgbe],&l);
 
@@ -2369,7 +2369,7 @@ unsigned char* ConvertFnt(unsigned char* start,int *wp,int *hp)
     unsigned char* bp;
     unsigned char* dp;
     unsigned char* image;
-    unsigned int* offsets;
+    unsigned* offsets;
 
     bp=start+5;				// skip "FONT "
     count=FetchByte(bp)-32;
@@ -2649,7 +2649,7 @@ int ConvertVideo(char* file,int video)
     unsigned char* vidp;
     char buf[1024];
     FILE* gf;
-    int l;
+    size_t l;
 
     vidp=ExtractEntry(ArchiveOffsets[video],&l);
 
@@ -3280,9 +3280,9 @@ int SetupNames(char* file __attribute__((unused)),int txte __attribute__((unused
 {
     unsigned char* txtp;
     const unsigned short* mp;
-    int l;
-    int i;
-    int n;
+    size_t l;
+    unsigned u;
+    unsigned n;
 
     //txtp=ExtractEntry(ArchiveOffsets[txte],&l);
     txtp=Names;
@@ -3290,11 +3290,11 @@ int SetupNames(char* file __attribute__((unused)),int txte __attribute__((unused
     mp=(const unsigned short*)txtp;
 
     n=ConvertLE16(mp[0]);
-    for( i=1; i<n; ++i ) {
-	DebugLevel3("%d %x ",i,ConvertLE16(mp[i]));
-	DebugLevel3("%s\n",txtp+ConvertLE16(mp[i]));
-	if( i<sizeof(UnitNames)/sizeof(*UnitNames) ) {
-	    UnitNames[i]=strdup(txtp+ConvertLE16(mp[i]));
+    for( u=1; u<n; ++u ) {
+	DebugLevel3("%d %x ",u,ConvertLE16(mp[u]));
+	DebugLevel3("%s\n",txtp+ConvertLE16(mp[u]));
+	if( u<sizeof(UnitNames)/sizeof(*UnitNames) ) {
+	    UnitNames[u]=strdup(txtp+ConvertLE16(mp[u]));
 	}
     }
 
@@ -3369,7 +3369,7 @@ destination-directory\tDirectory where the extracted files are placed.\n"
 */
 int main(int argc,char** argv)
 {
-    int i;
+    unsigned u;
     char* archivedir;
     char buf[1024];
     struct stat stat_buf;
@@ -3428,59 +3428,59 @@ int main(int argc,char** argv)
     }
 
     DebugLevel2("Extract from \"%s\" to \"%s\"\n",archivedir, Dir);
-    for( i=0; i<sizeof(Todo)/sizeof(*Todo); ++i ) {
+    for( u=0; u<sizeof(Todo)/sizeof(*Todo); ++u ) {
 	// Should only be on the expansion cd
-	DebugLevel2("%s:\n",ParseString(Todo[i].File));
-	if (!expansion_cd && Todo[i].Version==2 ) {
+	DebugLevel2("%s:\n",ParseString(Todo[u].File));
+	if (!expansion_cd && Todo[u].Version==2 ) {
 	    continue;
 	}
-	switch( Todo[i].Type ) {
+	switch( Todo[u].Type ) {
 	    case F:
-		sprintf(buf,"%s/%s",archivedir,Todo[i].File);
+		sprintf(buf,"%s/%s",archivedir,Todo[u].File);
 		DebugLevel2("Archive \"%s\"\n",buf);
 		if( ArchiveBuffer ) {
 		    CloseArchive();
 		}
-		OpenArchive(buf,Todo[i].Arg1);
+		OpenArchive(buf,Todo[u].Arg1);
 		break;
 	    case R:
-		ConvertRgb(Todo[i].File,Todo[i].Arg1);
+		ConvertRgb(Todo[u].File,Todo[u].Arg1);
 		break;
 	    case T:
-		ConvertTileset(Todo[i].File,Todo[i].Arg1,Todo[i].Arg2
-			,Todo[i].Arg3,Todo[i].Arg4);
+		ConvertTileset(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2
+			,Todo[u].Arg3,Todo[u].Arg4);
 		break;
 	    case G:
-		ConvertGfx(ParseString(Todo[i].File),Todo[i].Arg1,Todo[i].Arg2
-			,Todo[i].Arg3,Todo[i].Arg4);
+		ConvertGfx(ParseString(Todo[u].File),Todo[u].Arg1,Todo[u].Arg2
+			,Todo[u].Arg3,Todo[u].Arg4);
 		break;
 	    case U:
-		ConvertGfu(Todo[i].File,Todo[i].Arg1,Todo[i].Arg2);
+		ConvertGfu(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
 		break;
 	    case P:
-		ConvertPud(Todo[i].File,Todo[i].Arg1);
+		ConvertPud(Todo[u].File,Todo[u].Arg1);
 		break;
 	    case N:
-		ConvertFont(Todo[i].File,2,Todo[i].Arg1);
+		ConvertFont(Todo[u].File,2,Todo[u].Arg1);
 		break;
 	    case I:
-		ConvertImage(Todo[i].File,Todo[i].Arg1,Todo[i].Arg2);
+		ConvertImage(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
 		break;
 	    case C:
-		ConvertCursor(Todo[i].File,Todo[i].Arg1,Todo[i].Arg2);
+		ConvertCursor(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
 		break;
 	    case W:
-		ConvertWav(Todo[i].File,Todo[i].Arg1);
+		ConvertWav(Todo[u].File,Todo[u].Arg1);
 		break;
 	    case X:
-		ConvertText(Todo[i].File,Todo[i].Arg1,Todo[i].Arg2);
+		ConvertText(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
 		break;
 	    case S:
-		SetupNames(Todo[i].File,Todo[i].Arg1);
+		SetupNames(Todo[u].File,Todo[u].Arg1);
 		break;
 	    case V:
 		if( video ) {
-		    ConvertVideo(Todo[i].File,Todo[i].Arg1);
+		    ConvertVideo(Todo[u].File,Todo[u].Arg1);
 		}
 		break;
 	    default:
