@@ -29,7 +29,7 @@
 ;;	$Id$
 
 (credits
-    'background "graphics/ui/Credits background.png"
+    'background "graphics/ui/Credits_background.png"
     'title "Programmers:"
     'name "  Andreas 'Ari' Arens"
     'name "  Lutz 'Johns' Sammer"

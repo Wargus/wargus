@@ -159,7 +159,7 @@
     attack "ogre-attack"))
 
 (define-unit-type 'unit-axethrower 'name "Troll Axethrower"
-  'files '(tileset-summer "orc/units/troll axethrower.png")
+  'files '(tileset-summer "orc/units/troll_axethrower.png")
   'size '(72 72)
   'animations 'animations-axethrower 'icon 'icon-axethrower
   'costs '(time 70 gold 500 wood 50)
@@ -191,7 +191,7 @@
     attack "axethrower-attack"))
 
 (define-unit-type 'unit-death-knight 'name "Death Knight"
-  'files '(tileset-summer "orc/units/death knight.png")
+  'files '(tileset-summer "orc/units/death_knight.png")
   'size '(72 72)
   'animations 'animations-death-knight 'icon 'icon-death-knight
   'costs '(time 120 gold 1200)
@@ -260,7 +260,7 @@
     attack "ogre-mage-attack"))
 
 (define-unit-type 'unit-goblin-sappers 'name "Goblin Sappers"
-  'files '(tileset-summer "orc/units/goblin sappers.png")
+  'files '(tileset-summer "orc/units/goblin_sappers.png")
   'size '(56 56)
   'animations 'animations-goblin-sappers 'icon 'icon-goblin-sappers
   'costs '(time 200 gold 700 wood 250)
@@ -458,7 +458,7 @@
     attack "grom-hellscream-attack"))
 
 (define-unit-type 'unit-orc-oil-tanker 'name "Oil tanker"
-  'files '(tileset-summer "orc/units/oil tanker empty.png")
+  'files '(tileset-summer "orc/units/oil_tanker_empty.png")
   'size '(72 72)
   'animations 'animations-human-oil-tanker 'icon 'icon-mythical-oil-tanker
   'costs '(time 50 gold 400 wood 200)
@@ -518,7 +518,7 @@
     attack "orc-transport-attack"))
 
 (define-unit-type 'unit-mythical-destroyer 'name "Troll Destroyer"
-  'files '(tileset-summer "orc/units/troll destroyer.png")
+  'files '(tileset-summer "orc/units/troll_destroyer.png")
   'size '(88 88)
   'animations 'animations-elven-destroyer 'icon 'icon-mythical-destroyer
   'costs '(time 90 gold 700 wood 350 oil 700)
@@ -549,7 +549,7 @@
     attack "troll-destroyer-attack"))
 
 (define-unit-type 'unit-ogre-juggernaught 'name "Ogre Juggernaught"
-  'files '(tileset-summer "orc/units/ogre juggernaught.png")
+  'files '(tileset-summer "orc/units/ogre_juggernaught.png")
   'size '(88 88)
   'animations 'animations-battleship 'icon 'icon-ogre-juggernaught
   'costs '(time 140 gold 1000 wood 500 oil 1000)
@@ -612,9 +612,9 @@
     attack "deathwing-attack"))
 
 (define-unit-type 'unit-mythical-submarine 'name "Giant Turtle"
-  'files '(tileset-summer "orc/units/giant turtle.png"
-    tileset-wasteland "tilesets/wasteland/orc/units/giant turtle.png"
-    tileset-swamp "tilesets/swamp/orc/units/giant turtle.png")
+  'files '(tileset-summer "orc/units/giant_turtle.png"
+    tileset-wasteland "tilesets/wasteland/orc/units/giant_turtle.png"
+    tileset-swamp "tilesets/swamp/orc/units/giant_turtle.png")
   'size '(72 72)
   'animations 'animations-gnomish-submarine 'icon 'icon-giant-turtle
   'costs '(time 100 gold 800 wood 150 oil 900)
@@ -646,7 +646,7 @@
     attack "giant-turtle-attack"))
 
 (define-unit-type 'unit-zeppelin 'name "Goblin Zeppelin"
-  'files '(tileset-summer "orc/units/goblin zeppelin.png")
+  'files '(tileset-summer "orc/units/goblin_zeppelin.png")
   'size '(72 72)
   'animations 'animations-goblin-zeppelin 'icon 'icon-zeppelin
   'costs '(time 65 gold 500 wood 100)
@@ -705,7 +705,7 @@
     attack "dragon-attack"))
 
 (define-unit-type 'unit-eye-of-vision 'name "Eye of Kilrogg"
-  'files '(tileset-summer "orc/units/eye of kilrogg.png")
+  'files '(tileset-summer "orc/units/eye_of_kilrogg.png")
   'size '(32 32)
   'animations 'animations-eye-of-vision 'icon 'icon-eye-of-kilrogg
   'speed 42
@@ -898,10 +898,10 @@
     attack "skeleton-attack"))
 
 (define-unit-type 'unit-pig-farm 'name "Pig Farm"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/pig farm.png"
-    tileset-winter "tilesets/winter/orc/buildings/pig farm.png"
-    tileset-wasteland "tilesets/wasteland/orc/buildings/pig farm.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/pig farm.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/pig_farm.png"
+    tileset-winter "tilesets/winter/orc/buildings/pig_farm.png"
+    tileset-wasteland "tilesets/wasteland/orc/buildings/pig_farm.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/pig_farm.png")
   'size '(64 64)
   'animations 'animations-building 'icon 'icon-pig-farm
   'costs '(time 100 gold 500 wood 250)
@@ -954,9 +954,9 @@
     attack "orc-barracks-attack"))
 
 (define-unit-type 'unit-altar-of-storms 'name "Altar of Storms"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/altar of storms.png"
-    tileset-winter "tilesets/winter/orc/buildings/altar of storms.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/altar of storms.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/altar_of_storms.png"
+    tileset-winter "tilesets/winter/orc/buildings/altar_of_storms.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/altar_of_storms.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-altar-of-storms
   'costs '(time 175 gold 900 wood 500)
@@ -981,9 +981,9 @@
     attack "altar-of-storms-attack"))
 
 (define-unit-type 'unit-mythical-watch-tower 'name "Watch Tower"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/watch tower.png"
-    tileset-winter "tilesets/winter/orc/buildings/watch tower.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/watch tower.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/watch_tower.png"
+    tileset-winter "tilesets/winter/orc/buildings/watch_tower.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/watch_tower.png")
   'size '(64 64)
   'animations 'animations-building 'icon 'icon-mythical-watch-tower
   'costs '(time 60 gold 550 wood 200)
@@ -1010,9 +1010,9 @@
     attack "orc-watch-tower-attack"))
 
 (define-unit-type 'unit-ogre-mound 'name "Ogre Mound"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/ogre mound.png"
-    tileset-winter "tilesets/winter/orc/buildings/ogre mound.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/ogre mound.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/ogre_mound.png"
+    tileset-winter "tilesets/winter/orc/buildings/ogre_mound.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/ogre_mound.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-ogre-mound
   'costs '(time 150 gold 1000 wood 300)
@@ -1037,9 +1037,9 @@
     attack "ogre-mound-attack"))
 
 (define-unit-type 'unit-alchemist 'name "Goblin Alchemist"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/goblin alchemist.png"
-    tileset-winter "tilesets/winter/orc/buildings/goblin alchemist.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/goblin alchemist.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/goblin_alchemist.png"
+    tileset-winter "tilesets/winter/orc/buildings/goblin_alchemist.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/goblin_alchemist.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-alchemist
   'costs '(time 150 gold 1000 wood 400)
@@ -1064,9 +1064,9 @@
     attack "goblin-alchemist-attack"))
 
 (define-unit-type 'unit-dragon-roost 'name "Dragon Roost"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/dragon roost.png"
-    tileset-winter "tilesets/winter/orc/buildings/dragon roost.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/dragon roost.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/dragon_roost.png"
+    tileset-winter "tilesets/winter/orc/buildings/dragon_roost.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/dragon_roost.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-dragon-roost
   'costs '(time 150 gold 1000 wood 400)
@@ -1120,9 +1120,9 @@
     attack "orc-shipyard-attack"))
 
 (define-unit-type 'unit-great-hall 'name "Great Hall"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/great hall.png"
-    tileset-winter "tilesets/winter/orc/buildings/great hall.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/great hall.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/great_hall.png"
+    tileset-winter "tilesets/winter/orc/buildings/great_hall.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/great_hall.png")
   'size '(128 128)
   'animations 'animations-building 'icon 'icon-great-hall
   'costs '(time 255 gold 1200 wood 800)
@@ -1149,10 +1149,10 @@
     attack "great-hall-attack"))
 
 (define-unit-type 'unit-troll-lumber-mill 'name "Troll Lumber Mill"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/troll lumber mill.png"
-    tileset-winter "tilesets/winter/orc/buildings/troll lumber mill.png"
-    tileset-wasteland "tilesets/wasteland/orc/buildings/troll lumber mill.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/troll lumber mill.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/troll_lumber_mill.png"
+    tileset-winter "tilesets/winter/orc/buildings/troll_lumber_mill.png"
+    tileset-wasteland "tilesets/wasteland/orc/buildings/troll_lumber_mill.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/troll_lumber_mill.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-troll-lumber-mill
   'costs '(time 150 gold 600 wood 450)
@@ -1206,9 +1206,9 @@
     attack "orc-foundry-attack"))
 
 (define-unit-type 'unit-temple-of-the-damned 'name "Temple of the Damned"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/temple of the damned.png"
-    tileset-winter "tilesets/winter/orc/buildings/temple of the damned.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/temple of the damned.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/temple_of_the_damned.png"
+    tileset-winter "tilesets/winter/orc/buildings/temple_of_the_damned.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/temple_of_the_damned.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-temple-of-the-damned
   'costs '(time 125 gold 1000 wood 200)
@@ -1289,10 +1289,10 @@
     attack "orc-refinery-attack"))
 
 (define-unit-type 'unit-mythical-oil-platform 'name "Oil Platform"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/oil platform.png"
-    tileset-winter "tilesets/winter/orc/buildings/oil platform.png"
-    tileset-wasteland "tilesets/wasteland/orc/buildings/oil platform.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/oil platform.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/oil_platform.png"
+    tileset-winter "tilesets/winter/orc/buildings/oil_platform.png"
+    tileset-wasteland "tilesets/wasteland/orc/buildings/oil_platform.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/oil_platform.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-mythical-oil-platform
   'costs '(time 200 gold 700 wood 450)
@@ -1376,7 +1376,7 @@
     attack "fortress-attack"))
 
 (define-unit-type 'unit-mythical-start-location 'name "Start Location"
-  'files '(tileset-summer "orc/o startpoint.png")
+  'files '(tileset-summer "orc/o_startpoint.png")
   'size '(32 32)
   'animations 'animations-building 'icon 'icon-cancel
   'speed 0
@@ -1397,9 +1397,9 @@
     attack "orc-start-location-attack"))
 
 (define-unit-type 'unit-mythical-guard-tower 'name "Guard Tower"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/guard tower.png"
-    tileset-winter "tilesets/winter/orc/buildings/guard tower.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/guard tower.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/guard_tower.png"
+    tileset-winter "tilesets/winter/orc/buildings/guard_tower.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/guard_tower.png")
   'size '(64 64)
   'animations 'animations-human-guard-tower 'icon 'icon-mythical-guard-tower
   'costs '(time 140 gold 500 wood 150)
@@ -1429,9 +1429,9 @@
     attack "orc-guard-tower-attack"))
 
 (define-unit-type 'unit-mythical-cannon-tower 'name "Cannon Tower"
-  'files '(tileset-summer "tilesets/summer/orc/buildings/cannon tower.png"
-    tileset-winter "tilesets/winter/orc/buildings/cannon tower.png"
-    tileset-swamp "tilesets/swamp/orc/buildings/cannon tower.png")
+  'files '(tileset-summer "tilesets/summer/orc/buildings/cannon_tower.png"
+    tileset-winter "tilesets/winter/orc/buildings/cannon_tower.png"
+    tileset-swamp "tilesets/swamp/orc/buildings/cannon_tower.png")
   'size '(64 64)
   'animations 'animations-human-cannon-tower 'icon 'icon-mythical-cannon-tower
   'costs '(time 190 gold 1000 wood 300)
@@ -1486,7 +1486,7 @@
     attack "orc-wall-attack"))
 
 (define-unit-type 'unit-peon-with-gold 'name "Peon"
-  'files '(tileset-summer "orc/units/peon with gold.png")
+  'files '(tileset-summer "orc/units/peon_with_gold.png")
   'size '(72 72)
   'animations 'animations-peasant 'icon 'icon-peon
   'costs '(time 45 gold 400)
@@ -1518,7 +1518,7 @@
     attack "peon-with-gold-attack"))
 
 (define-unit-type 'unit-peon-with-wood 'name "Peon"
-  'files '(tileset-summer "orc/units/peon with wood.png")
+  'files '(tileset-summer "orc/units/peon_with_wood.png")
   'size '(72 72)
   'animations 'animations-peasant 'icon 'icon-peon
   'costs '(time 45 gold 400)
@@ -1550,7 +1550,7 @@
     attack "peon-with-wood-attack"))
 
 (define-unit-type 'unit-orc-oil-tanker-full 'name "Oil tanker"
-  'files '(tileset-summer "orc/units/oil tanker full.png")
+  'files '(tileset-summer "orc/units/oil_tanker_full.png")
   'size '(72 72)
   'animations 'animations-human-oil-tanker 'icon 'icon-mythical-oil-tanker
   'costs '(time 50 gold 400 wood 200)

@@ -43,12 +43,12 @@
   'class 'missile-class-point-to-point-with-hit 'sleep 1 'speed 16 'range 1
   'draw-level 50)
 (define-missile-type 'missile-griffon-hammer
-  'file "missiles/gryphon hammer.png" 'size '(32 32) 'frames 15
+  'file "missiles/gryphon_hammer.png" 'size '(32 32) 'frames 15
   'impact-sound "fireball hit"
   'class 'missile-class-point-to-point-3bounces 'sleep 1 'speed 16 'range 2
   'draw-level 50 'impact-missile 'missile-explosion)
 (define-missile-type 'missile-dragon-breath
-  'file "missiles/dragon breath.png" 'size '(32 32) 'frames 5
+  'file "missiles/dragon_breath.png" 'size '(32 32) 'frames 5
   'impact-sound "fireball hit"
   'class 'missile-class-point-to-point-3bounces 'sleep 1 'speed 16 'range 2
   'draw-level 70 'impact-missile 'missile-explosion)
@@ -57,17 +57,17 @@
   'impact-sound "fireball hit"
   'draw-level 50 'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-flame-shield
-  'file "missiles/flame shield.png" 'size '(32 48) 'frames 6
+  'file "missiles/flame_shield.png" 'size '(32 48) 'frames 6
   'draw-level 50 'class 'missile-class-flame-shield 'sleep 2 'speed 4 'range 1)
 (define-missile-type 'missile-blizzard
   'file "missiles/blizzard.png" 'size '(32 32) 'frames 4
   'class 'missile-class-blizzard 'sleep 2 'speed 8 'range 1
   'draw-level 100 'impact-missile 'missile-blizzard-hit)
 (define-missile-type 'missile-death-and-decay
-  'file "missiles/death and decay.png" 'size '(32 32) 'frames 8
+  'file "missiles/death_and_decay.png" 'size '(32 32) 'frames 8
   'draw-level 100 'class 'missile-class-death-decay 'sleep 1 'speed 0 'range 1)
 (define-missile-type 'missile-big-cannon
-  'file "missiles/big cannon.png" 'size '(16 16) 'frames 20
+  'file "missiles/big_cannon.png" 'size '(16 16) 'frames 20
   'draw-level 50 'impact-sound "explosion"
   'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-cannon-tower-explosion)
@@ -75,10 +75,10 @@
   'file "missiles/exorcism.png" 'size '(48 48) 'frames 10
   'draw-level 50 'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-heal-effect
-  'file "missiles/heal effect.png" 'size '(48 48) 'frames 10
+  'file "missiles/heal_effect.png" 'size '(48 48) 'frames 10
   'draw-level 50 'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-touch-of-death
-  'file "missiles/touch of death.png" 'size '(32 32) 'frames 30
+  'file "missiles/touch_of_death.png" 'size '(32 32) 'frames 30
   'draw-level 50 'class 'missile-class-point-to-point-with-hit 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-rune
   'file "missiles/rune.png" 'size '(16 16) 'frames 4
@@ -87,12 +87,12 @@
   'file "missiles/tornado.png" 'size '(56 56) 'frames 4
   'draw-level 50 'class 'missile-class-whirlwind 'sleep 2 'speed 2 'range 1)
 (define-missile-type 'missile-catapult-rock
-  'file "missiles/catapult rock.png" 'size '(32 32) 'frames 15
+  'file "missiles/catapult_rock.png" 'size '(32 32) 'frames 15
   'impact-sound "explosion"
   'draw-level 50 'class 'missile-class-point-to-point-with-delay 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-impact)
 (define-missile-type 'missile-ballista-bolt
-  'file "missiles/ballista bolt.png" 'size '(64 64) 'frames 5
+  'file "missiles/ballista_bolt.png" 'size '(64 64) 'frames 5
   'draw-level 50 'impact-sound "explosion"
   'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-impact)
@@ -105,26 +105,26 @@
   'impact-sound "bow hit"
   'draw-level 50 'class 'missile-class-point-to-point 'sleep 1 'speed 32 'range 0)
 (define-missile-type 'missile-submarine-missile
-  'file "missiles/submarine missile.png" 'size '(40 40) 'frames 5
+  'file "missiles/submarine_missile.png" 'size '(40 40) 'frames 5
   'impact-sound "explosion"
   'draw-level 50 'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1
   'impact-missile 'missile-impact)
 (define-missile-type 'missile-turtle-missile
-  'file "missiles/turtle missile.png" 'size '(40 40) 'frames 5
+  'file "missiles/turtle_missile.png" 'size '(40 40) 'frames 5
   'draw-level 50 'impact-sound "explosion"
   'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1
   'impact-missile 'missile-impact)
 (define-missile-type 'missile-small-fire
-  'file "missiles/small fire.png" 'size '(32 48) 'frames 6
+  'file "missiles/small_fire.png" 'size '(32 48) 'frames 6
   'draw-level 45 'class 'missile-class-fire 'sleep 8 'speed 16 'range 1)
 (define-missile-type 'missile-big-fire
-  'file "missiles/big fire.png" 'size '(48 48) 'frames 10
+  'file "missiles/big_fire.png" 'size '(48 48) 'frames 10
   'draw-level 45 'class 'missile-class-fire 'sleep 8 'speed 16 'range 1)
 (define-missile-type 'missile-impact
-  'file "missiles/ballista-catapult impact.png" 'size '(48 48) 'frames 10
+  'file "missiles/ballista-catapult_impact.png" 'size '(48 48) 'frames 10
   'draw-level 50 'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-normal-spell
-  'file "missiles/normal spell.png" 'size '(32 32) 'frames 6
+  'file "missiles/normal_spell.png" 'size '(32 32) 'frames 6
   'draw-level 50 'class 'missile-class-stay-with-delay 'sleep 5 'speed 0 'range 1)
 (define-missile-type 'missile-explosion
   'file "missiles/explosion.png" 'size '(64 64) 'frames 20
@@ -135,17 +135,17 @@
   'class 'missile-class-point-to-point-with-delay 'sleep 1 'speed 16 'range 1
   'impact-missile 'missile-cannon-explosion)
 (define-missile-type 'missile-cannon-explosion
-  'file "missiles/cannon explosion.png" 'size '(32 32) 'frames 4
+  'file "missiles/cannon_explosion.png" 'size '(32 32) 'frames 4
   'draw-level 50 'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-cannon-tower-explosion
-  'file "missiles/cannon-tower explosion.png" 'size '(32 32) 'frames 4
+  'file "missiles/cannon-tower_explosion.png" 'size '(32 32) 'frames 4
   'draw-level 50 'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-daemon-fire
-  'file "missiles/daemon fire.png" 'size '(32 32) 'frames 15
+  'file "missiles/daemon_fire.png" 'size '(32 32) 'frames 15
   'draw-level 70 'impact-sound "fireball hit"
   'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-green-cross
-  'file "missiles/green cross.png" 'size '(32 32) 'frames 4
+  'file "missiles/green_cross.png" 'size '(32 32) 'frames 4
   'draw-level 150 'class 'missile-class-cycle-once 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-red-cross
   'file "missiles/red_cross.png" 'size '(32 32) 'frames 4
@@ -157,7 +157,7 @@
   'file "missiles/blizzard.png" 'size '(32 32) 'frames 4
   'draw-level 60 'class 'missile-class-stay-with-delay 'sleep 2 'speed 8 'range 1)
 (define-missile-type 'missile-death-coil
-  'file "missiles/touch of death.png" 'size '(32 32) 'frames 30
+  'file "missiles/touch_of_death.png" 'size '(32 32) 'frames 30
   'draw-level 50 'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-hit
   'size '(15 15) 'draw-level 150
@@ -166,7 +166,7 @@
   'size '(32 32) 'draw-level 50
   'class 'missile-class-custom 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-critter-explosion
-  'file "missiles/catapult rock.png" 'size '(32 32) 'frames 15
+  'file "missiles/catapult_rock.png" 'size '(32 32) 'frames 15
   'impact-sound "explosion" 'draw-level 50
   'class 'missile-class-hit 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-impact 'can-hit-owner #t)
