@@ -229,7 +229,7 @@ SetMouseScrollSpeed(1)
 SetMouseScrollSpeedDefault(4)
 
 --  Same if Control is pressed
-SetMouseScrollSpeedDefault(15)
+SetMouseScrollSpeedControl(15)
 
 --  Change next, for the wanted double-click delay (in ms).
 SetDoubleClickDelay(300)
