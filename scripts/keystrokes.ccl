@@ -1,0 +1,73 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	keystrokes.ccl	-	All keystroke helps for the menus.
+;;
+;;	(c) Copyright 2002 by Jimmy Salmon.
+;;
+;;	FreeCraft is free software; you can redistribute it and/or modify
+;;	it under the terms of the GNU General Public License as published
+;;	by the Free Software Foundation; only version 2 of the License.
+;;
+;;	FreeCraft is distributed in the hope that it will be useful,
+;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;	GNU General Public License for more details.
+;;
+;;	$Id$
+
+;;=============================================================================
+;;	Reset keystroke help list to empty
+;;
+;;	(reset-keystroke-help)
+;;
+(reset-keystroke-help)
+;;
+;;	Add a keystroke help.
+;;
+;;	(add-keystroke-help "key" "description")
+;;
+(add-keystroke-help "Alt-F" "- toggle full screen")
+(add-keystroke-help "Alt-G" "- toggle grab mouse")
+(add-keystroke-help "Ctrl-S" "- mute sound")
+(add-keystroke-help "Ctrl-M" "- mute music")
+(add-keystroke-help "+" "- increase game speed")
+(add-keystroke-help "-" "- decrease game speed")
+(add-keystroke-help "Ctrl-P" "- pause game")
+(add-keystroke-help "PAUSE" "- pause game")
+(add-keystroke-help "PRINT" "- make screen shot")
+(add-keystroke-help "Alt-H" "- help menu")
+(add-keystroke-help "Alt-R" "- restart scenario")
+(add-keystroke-help "Alt-Q" "- quit to main menu")
+(add-keystroke-help "Alt-X" "- quit game")
+(add-keystroke-help "Alt-B" "- toggle expand map")
+(add-keystroke-help "Alt-M" "- game menu")
+(add-keystroke-help "ENTER" "- write a message")
+(add-keystroke-help "SPACE" "- goto last event")
+(add-keystroke-help "TAB" "- hide/unhide terrain")
+(add-keystroke-help "Alt-I" "- find idle peon")
+(add-keystroke-help "Alt-C" "- center on selected unit")
+(add-keystroke-help "Alt-V" "- next view port")
+(add-keystroke-help "Ctrl-V" "- previous view port")
+(add-keystroke-help "^" "- select nothing")
+(add-keystroke-help "#" "- select group")
+(add-keystroke-help "##" "- center on group")
+(add-keystroke-help "Ctrl-#" "- define group")
+(add-keystroke-help "Shift-#" "- add to group")
+(add-keystroke-help "Alt-#" "- add to alternate group")
+(add-keystroke-help "F2-F4" "- recall map position")
+(add-keystroke-help "Shift F2-F4" "- save map postition")
+(add-keystroke-help "F5" "- game options")
+(add-keystroke-help "F7" "- sound options")
+(add-keystroke-help "F8" "- speed options")
+(add-keystroke-help "F9" "- preferences")
+(add-keystroke-help "F10" "- game menu")
+(add-keystroke-help "F11" "- save game")
+(add-keystroke-help "F12" "- load game")
