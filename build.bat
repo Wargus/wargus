@@ -98,11 +98,15 @@ REM ###########################################################################
 REM Compress HOW-TODO ?
 
 REM	*** Copy original maps into data directory ***
-md %DIR%\maps\multiple
+REM	for the expansion cd,
+if not exist %ARCHIVE%\..\puds\multi\* goto NOEXP
 md %DIR%\maps\single
-REM for the expansion cd,
-if exist %ARCHIVE%\puds\multi\* copy /b %ARCHIVE%\puds\multi\* %DIR%\maps\multi >nul
-REM for the original cd,
+md %DIR%\maps\strange
+copy /b %ARCHIVE%\..\puds\multi\*.pud %DIR%\maps\multi >nul
+copy /b %ARCHIVE%\..\puds\single\*.pud %DIR%\maps\single >nul
+copy /b %ARCHIVE%\..\puds\strange\*.pud %DIR%\maps\strange >nul
+:NOEXP
+REM	for the original cd,
 if exist %ARCHIVE%\*.pud copy /b %ARCHIVE%\*.pud %DIR%\maps >nul
 
 REM	*** Copy contrib maps into data directory ***
@@ -123,7 +127,7 @@ copy scripts\human\*.lua %DIR%\scripts\human >nul
 copy scripts\orc\*.lua %DIR%\scripts\orc >nul
 copy scripts\tilesets\*.lua %DIR%\scripts\tilesets >nul
 
-echo WC2 data setup is now complete!
+echo WC2 data setup is now complete
 echo NOTE: you do not need to run this script again
 goto EOF
 
