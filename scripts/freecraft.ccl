@@ -59,6 +59,24 @@
 ;;
 (set-selection-style! 'corners)
 
+;;	Uncomment next, to show the sight range of the selected unit on map.
+;;		#f			None
+;;		'rectangle		Alpha rectangle around unit
+;;		'circle			Alpha circle around unit
+;;		#t			Rectangle around unit
+;;
+(set-show-sight-range! 'circle)
+
+;;	Uncomment next, to show the reaction range of the selected unit on map.
+(set-show-reaction-range! #t)
+
+;;	Uncomment next, to show the attack range of the selected unit on map.
+(set-show-attack-range! #t)
+
+;;	Uncomment next, to show the orders of the selected unit on map.
+(set-show-orders! #t)
+
+
 ;;	Define mana-sprite.
 ;;
 ;;	(mana-sprite file hotx hoty width height)
@@ -110,25 +128,6 @@
 ;;	FIXME: planned feature
 (decoration-on-top)
 
-;;	Uncomment next, to show the sight range of the selected unit on map.
-;(show-sight-range)
-
-;;	Uncomment next, to show the react range of the selected unit on map.
-;(show-react-range)
-(define (show-reaction-range) (show-react-range))
-
-;;	Uncomment next, to show the attack range of the selected unit on map.
-;(show-attack-range)
-
-;;	Uncomment next, to show the orders of the selected unit on map.
-(set-show-orders! #t)
-
-;;	Uncomment next to enable hit point regeneration for all units
-;(set-hitpoint-regeneration! #t)
-
-;;	Uncomment next to disable hit point regeneration for all units
-;(set-hitpoint-regeneration! #f)
-
 ;;	Uncomment next, to show the original game resource line.
 (set-original-resources! #f)
 ;(set-original-resources! #t)
@@ -136,6 +135,15 @@
 ;;	Uncomment next, to enable fancy building (random mirrowing buildings)
 (set-fancy-buildings! #t)
 ;(set-fancy-buildings! #f)
+
+;;-----------------------------------------------------------------------------
+;;	Game modification 
+
+;;	Uncomment next to enable hit point regeneration for all units
+;(set-hitpoint-regeneration! #t)
+
+;;	Uncomment next to disable hit point regeneration for all units
+;(set-hitpoint-regeneration! #f)
 
 ;;	Uncomment next, to get extended features.
 ;;		Currently enables some additional buttons.
