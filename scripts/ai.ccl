@@ -2300,9 +2300,9 @@
     (ai:script ai:hum-10-attack-endloop) ))
 
 ;;=============================================================================
-;;	This AI script builds only worker and tanker.
+;;	This AI script builds only workers.
 ;;		Upgrades very much.
-;;		Attacks with land units and water units.
+;;		Attacks with land units.
 ;;
 (define ai:hum-11-attack-endloop
   '((writes nil "Looping !\n")
@@ -2438,3 +2438,231 @@
     (ai:attack-with-force 1)
 
     (ai:script ai:hum-11-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds only workers and tankers.
+;;		Upgrades very much.
+;;		Attacks with land and water units.
+;;
+(define ai:hum-12-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:sleep	10000)
+    (ai:force 0 (ai:soldier) 1 (ai:cavalrie) 7 (ai:mage) 1)
+    (ai:force 1 (ai:soldier) 1 (ai:cavalrie) 3 (ai:mage) 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	5000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	7000)
+    (ai:force 2 (ai:destroyer) 1 (ai:battleship) 1 (ai:submarine) 4
+	(ai:scout) 1) 
+    (ai:force 3 (ai:destroyer) 1 (ai:battleship) 1 (ai:submarine) 1
+	(ai:scout) 1) 
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 3)
+
+    (ai:script ai:hum-12-attack-endloop) ) )
+
+(define-ai 'hum-12 "*" "hum-12"
+  '(
+    ;;	Define the main AI script.
+    (begin (ai:debug #f)
+      (ai:force-role 0 'defend) (ai:force-role 1 'attack)
+      (ai:force-role 2 'defend) (ai:force-role 3 'attack)
+      (ai:sleep (ai:get-sleep-cycles)))
+
+    (ai:set  (ai:tanker) 3)
+    (ai:set  (ai:worker) 7)
+    (ai:wait (ai:worker))	;; Wait for the workers
+
+    (ai:need (ai:platform))
+    (ai:set  (ai:transporter) 2)
+
+    (ai:force 1 (ai:soldier) 2)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:soldier) 2)
+    (ai:sleep	2000)
+
+    (ai:force 2 (ai:destroyer) 2 (ai:battleship) 1 (ai:submarine) 3) 
+    (ai:force 3 (ai:destroyer) 0 (ai:battleship) 1 (ai:submarine) 1) 
+
+    (ai:sleep	3000)
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 3)
+
+    (ai:force 0 (ai:soldier) 1 (ai:cavalrie) 10 (ai:mage) 2)
+    (ai:force 1 (ai:soldier) 1 )
+
+    (ai:research (ai:mage-spell-1))
+    (ai:research (ai:upgrade-cavalrie-mage))
+    (ai:research (ai:cavalrie-mage-spell-1))
+    (ai:research (ai:mage-spell-2))
+    (ai:research (ai:mage-spell-3))
+    (ai:research (ai:mage-spell-4))
+    (ai:research (ai:cavalrie-mage-spell-2))
+    (ai:research (ai:mage-spell-5))
+    (ai:research (ai:upgrade-ship-cannon-1))
+    (ai:research (ai:upgrade-ship-armor-1))
+    (ai:sleep	4000)
+
+    (ai:force 2 (ai:destroyer) 1 (ai:battleship) 1 (ai:submarine) 3) 
+    (ai:force 3 (ai:destroyer) 1 (ai:battleship) 1 (ai:submarine) 1) 
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 3)
+
+    (ai:research (ai:upgrade-ship-cannon-2))
+    (ai:research (ai:upgrade-ship-armor-2))
+    (ai:research (ai:upgrade-catapult-1))
+    (ai:research (ai:upgrade-catapult-2))
+    (ai:sleep	6000)
+
+    (ai:force 2 (ai:destroyer) 1 (ai:battleship) 1 (ai:submarine) 3) 
+    (ai:force 3 (ai:destroyer) 1 (ai:battleship) 1 (ai:submarine) 2) 
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 3)
+
+    (ai:sleep	7000)
+    (ai:force 2 (ai:destroyer) 1 (ai:battleship) 1 (ai:submarine) 2) 
+    (ai:force 3 (ai:destroyer) 1 (ai:battleship) 1 (ai:submarine) 3) 
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 3)
+
+    (ai:sleep	5000)
+    (ai:force 2 (ai:destroyer) 1 (ai:battleship) 0 (ai:submarine) 2) 
+    (ai:force 3 (ai:destroyer) 1 (ai:battleship) 2 (ai:submarine) 3) 
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 3)
+
+    (ai:force 0 (ai:soldier) 1 (ai:cavalrie) 10 (ai:mage) 2 (ai:catapult) 1)
+    (ai:force 1 (ai:soldier) 1 (ai:catapult) 1)
+
+    (ai:force 2 (ai:destroyer) 1 (ai:battleship) 0 (ai:submarine) 2
+	(ai:scout) 1) 
+    (ai:force 3 (ai:destroyer) 1 (ai:battleship) 2 (ai:submarine) 3
+	(ai:scout) 1) 
+
+    (ai:research (ai:upgrade-missile-1))
+    (ai:research (ai:upgrade-weapon-1))
+    (ai:research (ai:upgrade-armor-1))
+    (ai:research (ai:upgrade-missile-2))
+
+    (ai:research (ai:upgrade-elite-shooter))
+    (ai:research (ai:upgrade-elite-shooter-1))
+    (ai:research (ai:upgrade-elite-shooter-2))
+    (ai:research (ai:upgrade-elite-shooter-3))
+    (ai:research (ai:upgrade-weapon-2))
+    (ai:research (ai:upgrade-armor-2))
+
+    (ai:script ai:hum-12-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds only workers and tankers.
+;;		Upgrades very much.
+;;		Attacks with land and air units.
+;;
+(define ai:hum-13-attack-endloop
+  '((writes nil "Looping !\n")
+
+    (ai:sleep	12000)
+    (ai:force 0 (ai:cavalrie) 1 (ai:mage) 1 (ai:catapult) 2)
+    (ai:force 1 (ai:cavalrie) 2 (ai:shooter) 1 (ai:mage) 1 (ai:catapult) 0)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	14000)
+    (ai:force 2 (ai:flyer) 1)
+    (ai:force 3 (ai:flyer) 3)
+    (ai:sleep	14000)
+
+    (ai:force 0 (ai:cavalrie) 1 (ai:mage) 2 (ai:catapult) 1)
+    (ai:force 1 (ai:cavalrie) 2 (ai:shooter) 1 (ai:mage) 0 (ai:catapult) 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:script ai:hum-13-attack-endloop) ) )
+
+(define-ai 'hum-13 "*" "hum-13"
+  '(
+    ;;	Define the main AI script.
+    (begin (ai:debug #f)
+      (ai:force-role 0 'defend) (ai:force-role 1 'attack)
+      (ai:force-role 2 'defend) (ai:force-role 3 'attack)
+      (ai:sleep (ai:get-sleep-cycles)))
+
+    (ai:set  (ai:tanker) 2)
+    (ai:set  (ai:worker) 5)
+    (ai:wait (ai:worker))	;; Wait for the workers
+
+    (ai:need (ai:platform))
+    (ai:set  (ai:transporter) 2)
+
+    (ai:force 0 (ai:cavalrie) 3 (ai:mage) 2)
+
+    (ai:research (ai:mage-spell-1))
+    (ai:research (ai:upgrade-cavalrie-mage))
+    (ai:research (ai:cavalrie-mage-spell-1))
+    (ai:research (ai:mage-spell-2))
+    (ai:research (ai:mage-spell-3))
+    (ai:research (ai:mage-spell-4))
+    (ai:research (ai:cavalrie-mage-spell-2))
+
+    (ai:sleep	4000)
+
+    (ai:force 0 (ai:cavalrie) 1 (ai:mage) 1)
+    (ai:force 1 (ai:cavalrie) 2 (ai:mage) 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:cavalrie) 1 (ai:mage) 1)
+    (ai:force 1 (ai:cavalrie) 2 (ai:shooter) 1 (ai:mage) 1)
+    (ai:sleep	12000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	15000)
+    (ai:force 0 (ai:cavalrie) 0 (ai:mage) 1)
+    (ai:force 1 (ai:cavalrie) 3 (ai:shooter) 1 (ai:mage) 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:research (ai:mage-spell-5))
+    (ai:research (ai:upgrade-ship-cannon-1))
+    (ai:research (ai:upgrade-ship-armor-1))
+    (ai:research (ai:upgrade-ship-cannon-2))
+    (ai:research (ai:upgrade-ship-armor-2))
+    (ai:force 0 (ai:cavalrie) 2 (ai:mage) 2 (ai:catapult) 1)
+    (ai:force 1 (ai:cavalrie) 1 (ai:shooter) 1 (ai:mage) 0 (ai:catapult) 1)
+    (ai:sleep	15000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 2 (ai:flyer) 1)
+    (ai:force 3 (ai:flyer) 3)
+    (ai:sleep	20000)
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 3)
+
+    (ai:sleep	14000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	18000)
+    (ai:force 0 (ai:cavalrie) 2 (ai:mage) 2 (ai:catapult) 2)
+    (ai:force 1 (ai:cavalrie) 1 (ai:shooter) 1 (ai:mage) 0 (ai:catapult) 0)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:research (ai:upgrade-catapult-1))
+    (ai:research (ai:upgrade-catapult-2))
+    (ai:research (ai:upgrade-missile-1))
+    (ai:research (ai:upgrade-weapon-1))
+    (ai:research (ai:upgrade-armor-1))
+    (ai:research (ai:upgrade-missile-2))
+    (ai:research (ai:upgrade-elite-shooter))
+
+    (ai:script ai:hum-13-attack-endloop) ))
