@@ -3570,7 +3570,7 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
     race = 0;
     levelno = 0;
     //Find the start of the Levels
-    while (current[0] != 'I' && current[1] != '.') {
+    while (current[0] && current[0] != 'I' && current[1] != '.') {
 	current = current + strlen(current) + 1;
     }
     for (l = 0; l < expansion; l++) {
