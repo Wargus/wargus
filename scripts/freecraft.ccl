@@ -169,6 +169,19 @@
 ;;	FIXME: planned feature
 (decoration-on-top)
 
+;;	Define shadow-sprite.
+;;
+;;	(shadow-sprite file hotx hoty width height)
+;;
+(shadow-sprite "graphics/missiles/unit shadow.png"	3 42	32 32)
+
+;;	Define spell-sprite.
+;;
+;;	(shadow-sprite file hotx hoty width height)
+;;
+(spell-sprite "graphics/ui/bloodlust,haste,slow,invisible,shield.png"
+  1 1	16 16)
+
 ;;	Edit this to enable/disable the original game resource line.
 (set-original-resources! #f)
 ;(set-original-resources! #t)
