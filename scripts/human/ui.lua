@@ -194,8 +194,8 @@ function HumanScreen(screen_width, screen_height)
     },
 
     "map-area", {
-      "pos", {176, 16},
-      "size", {
+      Pos = {176, 16},
+      Size = {
         screen_width - 176 - 16,
         screen_height - 16 - 16}},
 
@@ -215,8 +215,8 @@ function HumanScreen(screen_width, screen_height)
     },
 
     "minimap", {
-      "pos", {0 + 24, 24 + 2},
-      "size", {128, 128}},
+      Pos = {0 + 24, 24 + 2},
+      Size = {128, 128}},
 
     "status-line", {
       "text-pos", { 2 + 176, 2 + screen_height - 16},
@@ -224,21 +224,21 @@ function HumanScreen(screen_width, screen_height)
       "width", screen_width - 192},
 
     "cursors", {
-      "point", "cursor-point",
-      "glass", "cursor-glass",
-      "cross", "cursor-cross",
-      "yellow", "cursor-yellow-hair",
-      "green", "cursor-green-hair",
-      "red", "cursor-red-hair",
-      "scroll", "cursor-scroll",
-      "arrow-e", "cursor-arrow-e",
-      "arrow-ne", "cursor-arrow-ne",
-      "arrow-n", "cursor-arrow-n",
-      "arrow-nw", "cursor-arrow-nw",
-      "arrow-w", "cursor-arrow-w",
-      "arrow-sw", "cursor-arrow-sw",
-      "arrow-s", "cursor-arrow-s",
-      "arrow-se", "cursor-arrow-se"},
+      Point = "cursor-point",
+      Glass = "cursor-glass",
+      Cross = "cursor-cross",
+      Yellow = "cursor-yellow-hair",
+      Green = "cursor-green-hair",
+      Red = "cursor-red-hair",
+      Scroll = "cursor-scroll",
+      ArrowE = "cursor-arrow-e",
+      ArrowNE = "cursor-arrow-ne",
+      ArrowN = "cursor-arrow-n",
+      ArrowNW = "cursor-arrow-nw",
+      ArrowW = "cursor-arrow-w",
+      ArrowSW = "cursor-arrow-sw",
+      ArrowS = "cursor-arrow-s",
+      ArrowSE = "cursor-arrow-se"},
 
     "menu-panels", {
       "panel1", "graphics/ui/human/panel_1.png",
