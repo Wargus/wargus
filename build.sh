@@ -189,9 +189,9 @@ cp $CONTRIB/puds/multi/* $DIR/puds/multiple
 #
 ##	The default pud.
 #
-[ -f $DIR/puds/internal/internal12.pud.gz ] \
-	&& ln -s puds/internal/internal12.pud.gz $DIR/default.pud.gz
-[ -f $DIR/puds/internal/internal12.pud.bz2 ] \
-	&& ln -s puds/internal/internal12.pud.bz2 $DIR/default.pud.bz2
+[ -f $DIR/puds/multi/(2)mysterious-dragon-isle.pud.gz ] \
+	&& ln -s puds/multi/(2)mysterious-dragon-isle.pud.gz $DIR/default.pud.gz
+[ -f $DIR/puds/multi/(2)mysterious-dragon-isle.pud.bz2 ] \
+	&& ln -s puds/multi/(2)mysterious-dragon-isle.pud.bz2 $DIR/default.pud.bz2
 
 exit 0
