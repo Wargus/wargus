@@ -338,7 +338,7 @@ DefineDefaultResourcesHigh(
   0, 10000, 5000, 5000, 5000, 5000, 5000)
 
 DefineDefaultIncomes(
-  0, 100, 100, 100, 100, 100)
+  0, 100, 100, 100, 100, 100, 100)
 
 DefineDefaultActions(
   "stop", "mine", "chop", "drill", "mine", "mine", "mine")
