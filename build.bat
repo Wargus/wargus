@@ -26,25 +26,15 @@ REM	GNU General Public License for more details.
 REM	
 REM	$Id$
 REM
-
 :START
+
 
 REM
 REM     Enter the letter of your CDROM drive.
 REM
 
-if "x%1" == "x" goto :HELP
-goto :START2
+SET CDROM=D:
 
-:HELP
-echo ---
-echo usage:        %0 cd-drive
-echo example:      %0 d:
-echo ---
-goto EOF
-
-:START2
-SET CDROM=%1
 
 REM
 REM     Alternatively: Enter the path to WC2 on your hard drive.
@@ -59,9 +49,11 @@ SET ARCHIVE=%CDROM%\data
 REM
 REM	This is the name of the directory where the files will be extracted.
 REM	If you installed with fcmp then you should use data.wc2 instead.
+REM
 
 SET DIR=data
 REM SET DIR=data.wc2
+
 
 
 
@@ -77,6 +69,10 @@ REM ###########################################################################
 
 SET BINDIR=tools
 SET CONTRIB=contrib
+
+IF NOT [%1] == [] SET CDROM=%1
+IF NOT [%2] == [] SET DIR=%2
+
 
 REM ###########################################################################
 REM ##      Extract
