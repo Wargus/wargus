@@ -2930,7 +2930,7 @@
 ;; menu-editor-edit-resource
 ;;
 (define-menu 'name 'menu-editor-edit-resource 'geometry '(256 176 288 128)
-    'image 'panel4 'default '3)
+    'image 'panel4 'default '1)
 (define-menu-item 'pos (list (/ 288 2) 11) 'font 'large
     'text '(() center)
     'menu 'menu-editor-edit-resource)
