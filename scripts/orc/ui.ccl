@@ -257,7 +257,7 @@
     '("graphics/ui/orc/640x480/minimap.png" 0 24)
 
     ; Status line
-    '("graphics/ui/orc/640x480/statusline.png" 176 560)
+    '("graphics/ui/orc/640x480/statusline.png" 176 584)
 
     ;	Defines position and size of the different buttons.
     ; Menu button
