@@ -185,7 +185,7 @@
     'pulldown '(size (192 20)
               style pulldown
               func scen-select-tpms-action
-              options ("Freecraft scenario (cm)" "Foreign scenario (pud)" )
+              options ("FreeCraft scenario (cm)" "Foreign scenario (pud)" )
               default 1
               current 1)
     'menu 'menu-select-scenario)
@@ -202,7 +202,7 @@
     'menu 'menu-select-scenario)
 (define-menu-item 'pos (list 22 112) 'font 'game
     'button '(size (36 24)
-            caption "null"
+            caption ()
             hotkey ""
             func scen-select-folder
             style folder)
@@ -1299,28 +1299,28 @@
     'image 'none 'default '0)
 (define-menu-item 'pos (list 208 (+ 212 (* 36 0))) 'font 'large
     'button '(size (224 27)
-            caption "null"
+            caption ()
             hotkey "a"
             func campaign-1
             style gm-full)
     'menu 'menu-campaign-select)
 (define-menu-item 'pos (list 208 (+ 212 (* 36 1))) 'font 'large
     'button '(size (224 27)
-            caption "null"
+            caption ()
             hotkey "m"
             func campaign-2
             style gm-full)
     'menu 'menu-campaign-select)
 (define-menu-item 'pos (list 208 (+ 212 (* 36 2))) 'font 'large
     'button '(size (224 27)
-            caption "null"
+            caption ()
             hotkey "l"
             func campaign-3
             style gm-full)
     'menu 'menu-campaign-select)
 (define-menu-item 'pos (list 208 (+ 212 (* 36 3))) 'font 'large
     'button '(size (224 27)
-            caption "null"
+            caption ()
             hotkey "y"
             func campaign-4
             style gm-full)
@@ -1364,31 +1364,31 @@
     'text '("Objectives" center)
     'menu 'menu-objectives)
 (define-menu-item 'pos (list 14 (+ 38 (* 21 0))) 'font 'large
-    'text '("null" none)
+    'text '(() none)
     'menu 'menu-objectives)
 (define-menu-item 'pos (list 14 (+ 38 (* 21 1))) 'font 'large
-    'text '("null" none)
+    'text '(() none)
     'menu 'menu-objectives)
 (define-menu-item 'pos (list 14 (+ 38 (* 21 2))) 'font 'large
-    'text '("null" none)
+    'text '(() none)
     'menu 'menu-objectives)
 (define-menu-item 'pos (list 14 (+ 38 (* 21 3))) 'font 'large
-    'text '("null" none)
+    'text '(() none)
     'menu 'menu-objectives)
 (define-menu-item 'pos (list 14 (+ 38 (* 21 4))) 'font 'large
-    'text '("null" none)
+    'text '(() none)
     'menu 'menu-objectives)
 (define-menu-item 'pos (list 14 (+ 38 (* 21 5))) 'font 'large
-    'text '("null" none)
+    'text '(() none)
     'menu 'menu-objectives)
 (define-menu-item 'pos (list 14 (+ 38 (* 21 6))) 'font 'large
-    'text '("null" none)
+    'text '(() none)
     'menu 'menu-objectives)
 (define-menu-item 'pos (list 14 (+ 38 (* 21 7))) 'font 'large
-    'text '("null" none)
+    'text '(() none)
     'menu 'menu-objectives)
 (define-menu-item 'pos (list 14 (+ 38 (* 21 8))) 'font 'large
-    'text '("null" none)
+    'text '(() none)
     'menu 'menu-objectives)
 (define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
     'button '(size (224 27)
@@ -1689,7 +1689,7 @@
     'text '("Error:" center)
     'menu 'menu-net-error)
 (define-menu-item 'pos (list 144 38) 'font 'large
-    'text '("null" center)
+    'text '(() center)
     'menu 'menu-net-error)
 (define-menu-item 'pos (list 92 80) 'font 'large 'flags '(selected)
     'button '(size (106 27)
@@ -1706,7 +1706,7 @@
 (define-menu 'name 'menu-tips 'geometry '(256 112 288 256)
     'image 'panel2 'default '4)
 (define-menu-item 'pos (list 144 11) 'font 'large  'init 'init-tips
-    'text '("Freecraft Tips" center)
+    'text '("FreeCraft Tips" center)
     'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (- 256 75)) 'font 'game
     'gem '(size (18 18)
@@ -1732,28 +1732,28 @@
             style gm-half)
     'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 0))) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 1))) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 2))) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 3))) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 4))) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 5))) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 6))) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (+ 35 (* 16 7))) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-tips)
 
 
@@ -1774,7 +1774,7 @@
     'menu 'menu-help)
 (define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large 'flags '(selected)
     'button '(size (224 27)
-            caption "Freecraft ~!Tips"
+            caption "FreeCraft ~!Tips"
             hotkey "t"
             func show-tips
             style gm-full)
@@ -1911,7 +1911,7 @@
     'text '("Are you sure you want to overwrite" left)
     'menu 'menu-save-confirm)
 (define-menu-item 'pos (list 16 (+ 11 (* 20 2.5))) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-save-confirm)
 (define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
     'button '(size (106 27)
@@ -1941,7 +1941,7 @@
     'text '("Are you sure you want to delete" left)
     'menu 'menu-delete-confirm)
 (define-menu-item 'pos (list 16 (+ 11 (* 20 2.5))) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-delete-confirm)
 (define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
     'button '(size (106 27)
@@ -2024,7 +2024,7 @@
     'menu 'menu-editor-load-map)
 (define-menu-item 'pos (list (- (/ (- 352 18 288) 2) 2) (- (+ 11 98) 28)) 'font 'game
     'button '(size (36 24)
-            caption "null"
+            caption ()
             hotkey ""
             func editor-load-folder
             style folder)
@@ -2110,7 +2110,7 @@
     'text '("Size:" left)
     'menu 'menu-editor-map-properties)
 (define-menu-item 'pos (list (- 288 (/ (- 288 260) 2) 152) (+ 11 (* 36 2) 22)) 'font 'game
-    'text '("null" left)
+    'text '(() left)
     'menu 'menu-editor-map-properties)
 (define-menu-item 'pos (list (/ (- 288 260) 2) (+ 11 (* 36 3) 22)) 'font 'game
     'text '("Tileset:" left)
@@ -2360,7 +2360,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2368,7 +2368,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2376,7 +2376,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2384,7 +2384,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2392,7 +2392,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2400,7 +2400,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2408,7 +2408,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2416,7 +2416,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2424,7 +2424,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2432,7 +2432,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2440,7 +2440,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2448,7 +2448,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2456,7 +2456,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2464,7 +2464,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2472,7 +2472,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2480,7 +2480,7 @@
     'pulldown '(size (150 20)
               style pulldown
               func null
-              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              options ("Person" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
               default 0
               current 0)
     'menu 'menu-editor-player-properties)
@@ -2868,3 +2868,61 @@
            func editor-player-properties-enter-action
            style pulldown)
     'menu 'menu-editor-player-properties)
+
+;;
+;; editor-tips
+;;
+(define-menu 'name 'menu-editor-tips 'geometry '(256 112 288 256)
+    'image 'panel2 'default '4)
+(define-menu-item 'pos (list 144 11) 'font 'large  ;'init 'init-editor-tips
+    'text '("Editor Tips" center)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 14 (- 256 75)) 'font 'game
+    'gem '(size (18 18)
+         state checked
+         func set-editor-tips
+         style gem-square)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list (+ 14 22) (+ (- 256 75) 4)) 'font 'game
+    'text '("Show tips at startup" left)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 14 (- 256 40)) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "~!Next Tip"
+            hotkey "n"
+            func show-next-editor-tip
+            style gm-half)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 168 (- 256 40)) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "~!Close"
+            hotkey "c"
+            func editor-end-menu
+            style gm-half)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 14 (+ 35 (* 16 0))) 'font 'game
+    'text '("Warning:" left)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 14 (+ 35 (* 16 1))) 'font 'game
+    'text '("This editor is not ready!" left)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 14 (+ 35 (* 16 2))) 'font 'game
+    'text '("This is only a preview version!" left)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 14 (+ 35 (* 16 3))) 'font 'game
+    'text '(() left)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 14 (+ 35 (* 16 4))) 'font 'game
+    'text '("ALT-S to save to freecraft.pud.gz" left)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 14 (+ 35 (* 16 5))) 'font 'game
+    'text '(() left)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 14 (+ 35 (* 16 6))) 'font 'game
+    'text '(() left)
+    'menu 'menu-editor-tips)
+(define-menu-item 'pos (list 14 (+ 35 (* 16 7))) 'font 'game
+    'text '(() left)
+    'menu 'menu-editor-tips)
+
+
