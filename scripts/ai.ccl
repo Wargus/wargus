@@ -351,7 +351,7 @@
 ;;		command order. And automatic researched if lost.
 ;;		Building orders have a higher priority.
 ;;
-;;	(ai:upgrade-to unit-type) (ai:upgrade-to
+;;	(ai:upgrade-to unit-type) (ai:upgrade-to 'unit-keep)
 ;;
 ;;		Upgrade units to an improved type. You must give for each
 ;;		unit you want to upgrade an upgrade command. The computer
