@@ -578,7 +578,7 @@
 ;;
 (define-menu 'name 'menu-multi-setup 'geometry '(0 0 640 480)
     'image 'none 'default '3)
-(define-menu-item 'pos (list 0 0) 'font 'game  'init 'multi-game-setup-init
+(define-menu-item 'pos (list 0 0) 'font 'game  'init 'multi-game-setup-init 'exit 'multi-game-setup-exit
     'drawfunc 'multi-game-draw-func
     'menu 'menu-multi-setup)
 (define-menu-item 'pos (list (+ (/ 640 2) 12) 8) 'font 'large
@@ -1006,7 +1006,7 @@
 ;;
 (define-menu 'name 'menu-net-multi-client 'geometry '(0 0 640 480)
     'image 'none 'default '4 'netaction 'terminate-net-connect)
-(define-menu-item 'pos (list 0 0) 'font 'game  'init 'multi-game-client-init
+(define-menu-item 'pos (list 0 0) 'font 'game  'init 'multi-game-client-init 'exit 'multi-game-client-exit
     'drawfunc 'multi-client-draw-func
     'menu 'menu-net-multi-client)
 (define-menu-item 'pos (list (+ (/ 640 2) 12) 8) 'font 'large
@@ -1327,14 +1327,14 @@
 ;;
 (define-menu 'name 'menu-net-connecting 'geometry '(176 260 288 128)
     'image 'panel4 'default '2 'netaction 'terminate-net-connect)
-(define-menu-item 'pos (list 144 11) 'font 'large
+(define-menu-item 'pos (list 144 11) 'font 'large 'init 'net-connecting-init
     'text '("Connecting to server" center)
     'menu 'menu-net-connecting)
 (define-menu-item 'pos (list 144 32) 'font 'large
-    'text '("" center)
+    'text '(() center)
     'menu 'menu-net-connecting)
 (define-menu-item 'pos (list 144 53) 'font 'large
-    'text '("" center)
+    'text '(() center)
     'menu 'menu-net-connecting)
 (define-menu-item 'pos (list 32 90) 'font 'large 'flags '(selected)
     'button '(size (224 27)
@@ -1957,7 +1957,7 @@
 ;;
 (define-menu 'name 'menu-save-confirm 'geometry '(256 112 288 128)
     'image 'panel4 'default '1)
-(define-menu-item 'pos (list (/ 288 2) 11) 'font 'large  'init 'confirm-save-init
+(define-menu-item 'pos (list (/ 288 2) 11) 'font 'large  'init 'save-confirm-init
     'text '("Overwrite File" center)
     'menu 'menu-save-confirm)
 (define-menu-item 'pos (list 16 (+ 11 (* 20 1.5))) 'font 'game
@@ -1970,14 +1970,14 @@
     'button '(size (106 27)
             caption "~!Ok"
             hotkey "o"
-            func confirm-save-file
+            func save-confirm-ok
             style gm-half)
     'menu 'menu-save-confirm)
 (define-menu-item 'pos (list (- 288 16 106) (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
-            func end-menu
+            func save-confirm-cancel
             style gm-half)
     'menu 'menu-save-confirm)
 
@@ -2000,14 +2000,14 @@
     'button '(size (106 27)
             caption "~!Ok"
             hotkey "o"
-            func fc-delete-file
+            func fc-delete-ok
             style gm-half)
     'menu 'menu-delete-confirm)
 (define-menu-item 'pos (list (- 288 16 106) (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
-            func end-menu
+            func fc-delete-cancel
             style gm-half)
     'menu 'menu-delete-confirm)
 
