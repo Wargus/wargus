@@ -1019,7 +1019,7 @@
   'type-land
   'building
   'shore-building
-  'stores-oil
+  'can-store '(oil)
   'sounds '(
     selected "human-shipyard-selected"
     acknowledge "human-shipyard-acknowledge"
@@ -1048,7 +1048,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
   'building
-  'stores-wood
+  'can-store '(wood)
   'sounds '(
     selected "elven-lumber-mill-selected"
     acknowledge "elven-lumber-mill-acknowledge"
@@ -1105,7 +1105,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
   'building
-  'stores-gold
+  'can-store '(wood gold)
   'sounds '(
     selected "town-hall-selected"
     acknowledge "town-hall-acknowledge"
@@ -1188,7 +1188,7 @@
   'type-land
   'building
   'shore-building
-  'stores-oil
+  'can-store '(oil)
   'sounds '(
     selected "human-refinery-selected"
     acknowledge "human-refinery-acknowledge"
@@ -1246,7 +1246,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
   'building
-  'stores-gold
+  'can-store '(gold wood)
   'sounds '(
     selected "keep-selected"
     acknowledge "keep-acknowledge"
@@ -1275,7 +1275,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
   'building
-  'stores-gold
+  'can-store '(gold wood)
   'sounds '(
     selected "castle-selected"
     acknowledge "castle-acknowledge"

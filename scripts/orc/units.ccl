@@ -1110,7 +1110,7 @@
   'type-land
   'building
   'shore-building
-  'stores-oil
+  'can-store '(oil)
   'sounds '(
     selected "orc-shipyard-selected"
     acknowledge "orc-shipyard-acknowledge"
@@ -1139,7 +1139,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
   'building
-  'stores-gold
+  'can-store '(gold wood)
   'sounds '(
     selected "great-hall-selected"
     acknowledge "great-hall-acknowledge"
@@ -1168,7 +1168,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
   'building
-  'stores-wood
+  'can-store '(wood)
   'sounds '(
     selected "troll-lumber-mill-selected"
     acknowledge "troll-lumber-mill-acknowledge"
@@ -1279,7 +1279,7 @@
   'type-land
   'building
   'shore-building
-  'stores-oil
+  'can-store '(oil)
   'sounds '(
     selected "orc-refinery-selected"
     acknowledge "orc-refinery-acknowledge"
@@ -1337,7 +1337,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
   'building
-  'stores-gold
+  'can-store '(gold wood)
   'sounds '(
     selected "stronghold-selected"
     acknowledge "stronghold-acknowledge"
@@ -1366,7 +1366,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
   'building
-  'stores-gold
+  'can-store '(gold wood)
   'sounds '(
     selected "fortress-selected"
     acknowledge "fortress-acknowledge"
