@@ -36,7 +36,7 @@
 ;;
 ;;		This is a random music player demo
 ;;
-(if (not (= (length play-list) 0)) (
+(if (not (= (length play-list) 0)) (begin
 (define (music-stopped)
   (play-music (nth (rand (length play-list)) play-list)) )
 ))
