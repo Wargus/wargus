@@ -336,88 +336,72 @@
   'text '("Video Resolution" left)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 60)
+(define-menu-item 'pos (list 16 65)
   'gem '(size (18 18)
+    text "640 x 480"
     state unchecked
     func global-options-resolution-gem
     style gem-round)
-  'menu 'menu-global-options)
-(define-menu-item 'pos (list 40 64) 'font 'game
-  'text '("640 x 480" left)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 80)
+(define-menu-item 'pos (list 16 90)
   'gem '(size (18 18)
+    text "800 x 600"
     state unchecked
     func global-options-resolution-gem
     style gem-round)
-  'menu 'menu-global-options)
-(define-menu-item 'pos (list 40 84) 'font 'game
-  'text '("800 x 600" left)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 100)
+(define-menu-item 'pos (list 16 115)
   'gem '(size (18 18)
+    text "1024 x 768"
     state unchecked
     func global-options-resolution-gem
     style gem-round)
-  'menu 'menu-global-options)
-(define-menu-item 'pos (list 40 104) 'font 'game
-  'text '("1024 x 768" left)
-  'menu 'menu-global-options)
-
-(define-menu-item 'pos (list 16 120)
-  'gem '(size (18 18)
-    state unchecked
-    func global-options-resolution-gem
-    style gem-round)
-  'menu 'menu-global-options)
-(define-menu-item 'pos (list 40 124) 'font 'game
-  'text '("1280 x 960" left)
   'menu 'menu-global-options)
 
 (define-menu-item 'pos (list 16 140)
   'gem '(size (18 18)
+    text "1280 x 960"
     state unchecked
     func global-options-resolution-gem
     style gem-round)
   'menu 'menu-global-options)
-(define-menu-item 'pos (list 40 144) 'font 'game
-  'text '("1600 x 1200" left)
+
+(define-menu-item 'pos (list 16 165)
+  'gem '(size (18 18)
+    text "1600 x 1200"
+    state unchecked
+    func global-options-resolution-gem
+    style gem-round)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 17 164)
+(define-menu-item 'pos (list 17 190)
   'gem '(size (18 18)
+    text "Fullscreen"
     state unchecked
     func global-options-fullscreen-gem
     style gem-square)
-  'menu 'menu-global-options)
-(define-menu-item 'pos (list 40 166) 'font 'game
-  'text '("Fullscreen" left)
   'menu 'menu-global-options)
 
 (define-menu-item 'pos (list 192 44) 'font 'game
   'text '("Shadow Fog" left)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 192 60)
+(define-menu-item 'pos (list 192 65)
   'gem '(size (18 18)
+    text "Original"
     state unchecked
     func global-options-fog-original-gem
     style gem-round)
   'menu 'menu-global-options)
-(define-menu-item 'pos (list 216 64) 'font 'game
-  'text '("Original" left)
-  'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 192 80)
+(define-menu-item 'pos (list 192 90)
   'gem '(size (18 18)
+    text "Alpha"
     state unchecked
     func global-options-fog-alpha-gem
     style gem-round)
-  'menu 'menu-global-options)
-(define-menu-item 'pos (list 216 84) 'font 'game
-  'text '("Alpha" left)
   'menu 'menu-global-options)
 
 (define-menu-item 'pos (list 123 309) 'font 'large
