@@ -92,8 +92,9 @@
   'land-unit
   'coward
   'harvester 'resource-harvested 'gold 'resource-capacity 100
-  'wait-at-resource 150 'wait-at-depot 150
+  'resource-step 10 'wait-at-resource 15 'wait-at-depot 150
   'transform-when-loaded 'unit-peasant-with-gold
+;; 'harvest-from-outside
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -127,8 +128,9 @@
   'land-unit
   'coward
   'harvester 'resource-harvested 'gold 'resource-capacity 100
-  'wait-at-resource 150 'wait-at-depot 150
+  'resource-step 10 'wait-at-resource 15 'wait-at-depot 150
   'transform-when-empty 'unit-peasant
+;;'harvest-from-outside
   'organic
   'selectable-by-rectangle
   'sounds '(

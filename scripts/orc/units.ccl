@@ -1215,7 +1215,6 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
   'building 
-  'builder-outside
   'can-store '(gold wood)
   'sounds '(
     selected "great-hall-selected"
