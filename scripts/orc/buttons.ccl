@@ -10,7 +10,7 @@
 ;;
 ;;	buttons.ccl	-	Define the unit-buttons of the orc race.
 ;;
-;;	(c) Copyright 2001 by Vladi Belperchinov-Shabanski and Lutz Sammer
+;;	(c) Copyright 2001,2002 by Vladi Belperchinov-Shabanski and Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -40,7 +40,7 @@
     unit-goblin-sappers unit-berserker unit-catapult unit-peon
     unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall
     unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan
-    unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon
+    unit-teron-gorefiend unit-skeleton unit-eye-of-vision unit-dragon
     unit-goblin-zeppelin unit-attack-peon unit-death-knight unit-deathwing
     orc-group unit-daemon))
 
@@ -51,7 +51,7 @@
     unit-goblin-sappers unit-berserker unit-catapult unit-peon
     unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall
     unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan
-    unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon
+    unit-teron-gorefiend unit-skeleton unit-eye-of-vision unit-dragon
     unit-goblin-zeppelin unit-attack-peon unit-death-knight unit-deathwing
     orc-group unit-daemon))
 
@@ -155,13 +155,13 @@
     unit-goblin-sappers unit-berserker unit-catapult unit-peon
     unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall
     unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan
-    unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon
+    unit-teron-gorefiend unit-skeleton unit-eye-of-vision unit-dragon
     unit-goblin-zeppelin orc-group))
 
 ;; ogre-mage specific actions -------------------------------------------------
 
 (define-button 'pos 7 'level 0 'icon 'icon-eye-of-kilrogg
-  'action 'cast-spell 'value 'spell-eye-of-kilrogg
+  'action 'cast-spell 'value 'spell-eye-of-vision
   'allowed 'check-upgrade 'allow-arg '(upgrade-ogre-mage)
   'key "k" 'hint "EYE OF ~!KILROGG"
   'for-unit '(unit-ogre-mage unit-dentarg))
@@ -181,7 +181,7 @@
 ;; cho'gall specific actions --- same as ogre mage but it has them always -----
 
 (define-button 'pos 7 'level 0 'icon 'icon-eye-of-kilrogg
-  'action 'cast-spell 'value 'spell-eye-of-kilrogg
+  'action 'cast-spell 'value 'spell-eye-of-vision
   'allowed 'check-true
   'key "k" 'hint "EYE OF ~!KILROGG"
   'for-unit '(unit-cho-gall))

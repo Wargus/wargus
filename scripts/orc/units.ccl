@@ -10,7 +10,7 @@
 ;;
 ;;	units.ccl	-	Define the used orc unit-types.
 ;;
-;;	(c) Copyright 2001 by Lutz Sammer
+;;	(c) Copyright 2001,2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -747,7 +747,7 @@
     "basic orc voices dead" )
   "dragon-attack" )
 
-(define-unit-type "unit-eye-of-kilrogg"		"Eye of Kilrogg"
+(define-unit-type "unit-eye-of-vision"		"Eye of Kilrogg"
   ;; graphic data
   #("orc/units/eye of kilrogg.png"
     ()
