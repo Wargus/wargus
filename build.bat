@@ -33,12 +33,17 @@ REM
 REM     Enter the letter of your CDROM drive.
 REM
 
-if "x%1" == "x" echo ---
-if "x%1" == "x" echo usage:        %0 cd-drive
-if "x%1" == "x" echo example:      %0 d:
-if "x%1" == "x" echo ---
-if "x%1" == "x" goto EOF
+if "x%1" == "x" goto :HELP
+goto :START2
 
+:HELP
+echo ---
+echo usage:        %0 cd-drive
+echo example:      %0 d:
+echo ---
+goto EOF
+
+:START2
 SET CDROM=%1
 
 REM
