@@ -25,10 +25,16 @@
 ;;
 (define-unit-type "unit-footman"		"Footman"
   ;; graphic data
+  (if new-names?
+  #("human/units/footman.png"
+    ()
+    ()
+    () )
   #("footman.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-footman"
   "icon-footman"
@@ -60,10 +66,16 @@
 
 (define-unit-type "unit-grunt"			"Grunt"
   ;; graphic data
+  (if new-names?
+  #("orc/units/grunt.png"
+    ()
+    ()
+    () )
   #("grunt.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-footman"
   "icon-grunt"
@@ -95,10 +107,16 @@
 
 (define-unit-type "unit-peasant"		"Peasant"
   ;; graphic data
+  (if new-names?
+  #("human/units/peasant.png"
+    ()
+    ()
+    () )
   #("peasant.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-peasant"
   "icon-peasant"
@@ -131,10 +149,16 @@
 
 (define-unit-type "unit-peon"			"Peon"
   ;; graphic data
+  (if new-names?
+  #("orc/units/peon.png"
+    ()
+    ()
+    () )
   #("peon.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-peasant"
   "icon-peon"
@@ -167,10 +191,16 @@
 
 (define-unit-type "unit-ballista"		"Ballista"
   ;; graphic data
+  (if new-names?
+  #("human/units/ballista.png"
+    ()
+    ()
+    () )
   #("ballista.png"
     ()
     ()
     () )
+  )
   '(  64  64 )			;; graphic size
   "animations-ballista"
   "icon-ballista"
@@ -202,10 +232,16 @@
 
 (define-unit-type "unit-catapult"		"Catapult"
   ;; graphic data
+  (if new-names?
+  #("orc/units/catapult.png"
+    ()
+    ()
+    () )
   #("catapult.png"
     ()
     ()
     () )
+  )
   '(  64  64 )			;; graphic size
   "animations-catapult"
   "icon-catapult"
@@ -237,10 +273,16 @@
 
 (define-unit-type "unit-knight"			"Knight"
   ;; graphic data
+  (if new-names?
+  #("human/units/knight.png"
+    ()
+    ()
+    () )
   #("knight.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-knight"
   "icon-knight"
@@ -272,10 +314,16 @@
 
 (define-unit-type "unit-ogre"			"Ogre"
   ;; graphic data
+  (if new-names?
+  #("orc/units/ogre.png"
+    ()
+    ()
+    () )
   #("ogre.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-ogre"
   "icon-ogre"
@@ -307,10 +355,16 @@
 
 (define-unit-type "unit-archer"			"Archer"
   ;; graphic data
+  (if new-names?
+  #("human/units/elven archer.png"
+    ()
+    ()
+    () )
   #("archer.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-archer"
   "icon-archer"
@@ -342,10 +396,16 @@
 
 (define-unit-type "unit-axethrower"		"Troll Axethrower"
   ;; graphic data
+  (if new-names?
+  #("orc/units/troll axethrower.png"
+    ()
+    ()
+    () )
   #("axethrower.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-axethrower"
   "icon-axethrower"
@@ -377,10 +437,16 @@
 
 (define-unit-type "unit-mage"			"Mage"
   ;; graphic data
+  (if new-names?
+  #("human/units/mage.png"
+    ()
+    ()
+    () )
   #("mage.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-mage"
   "icon-mage"
@@ -414,10 +480,16 @@
 
 (define-unit-type "unit-death-knight"		"Death Knight"
   ;; graphic data
+  (if new-names?
+  #("orc/units/death knight.png"
+    ()
+    ()
+    () )
   #("death knight.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-death-knight"
   "icon-death-knight"
@@ -518,10 +590,16 @@
 
 (define-unit-type "unit-dwarves"		"Dwarves"
   ;; graphic data
+  (if new-names?
+  #("human/units/dwarven demolition squad.png"
+    ()
+    ()
+    () )
   #("dwarves.png"
     ()
     ()
     () )
+  )
   '(  56  56 )			;; graphic size
   "animations-dwarves"
   "icon-dwarves"
@@ -554,10 +632,16 @@
 
 (define-unit-type "unit-goblin-sappers"		"Goblin Sappers"
   ;; graphic data
+  (if new-names?
+  #("orc/units/goblin sappers.png"
+    ()
+    ()
+    () )
   #("goblin sapper.png"
     ()
     ()
     () )
+  )
   '(  56  56 )			;; graphic size
   "animations-goblin-sappers"
   "icon-goblin-sappers"
@@ -785,10 +869,16 @@
 
 (define-unit-type "unit-kurdan-and-sky-ree"	"Kurdan and Sky'ree"
   ;; graphic data
+  (if new-names?
+  #("human/units/gryphon rider.png"
+    ()
+    ()
+    () )
   #("gryphon rider.png"
     ()
     ()
     () )
+  )
   '(  80  80 )			;; graphic size
   "animations-kurdan-and-sky-ree"
   "icon-kurdan-and-sky-ree"
@@ -920,10 +1010,16 @@
 
 (define-unit-type "unit-human-oil-tanker"	"Oil tanker"
   ;; graphic data
+  (if new-names?
+  #("human/units/oil tanker empty.png"
+    ()
+    ()
+    () )
   #("human tanker (empty).png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-human-oil-tanker"
   "icon-human-oil-tanker"
@@ -953,10 +1049,16 @@
 
 (define-unit-type "unit-orc-oil-tanker"		"Oil tanker"
   ;; graphic data
+  (if new-names?
+  #("orc/units/oil tanker empty.png"
+    ()
+    ()
+    () )
   #("orc tanker (empty).png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-human-oil-tanker"
   "icon-orc-oil-tanker"
@@ -986,10 +1088,16 @@
 
 (define-unit-type "unit-human-transport"	"Transport"
   ;; graphic data
+  (if new-names?
+  #("human/units/transport.png"
+    ()
+    ()
+    () )
   #("human transport.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-human-transport"
   "icon-human-transport"
@@ -1019,10 +1127,16 @@
 
 (define-unit-type "unit-orc-transport"		"Transport"
   ;; graphic data
+  (if new-names?
+  #("orc/units/transport.png"
+    ()
+    ()
+    () )
   #("orc transport.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-human-transport"
   "icon-orc-transport"
@@ -1052,10 +1166,16 @@
 
 (define-unit-type "unit-elven-destroyer"	"Elven Destroyer"
   ;; graphic data
+  (if new-names?
+  #("human/units/elven destroyer.png"
+    ()
+    ()
+    () )
   #("elven destroyer.png"
     ()
     ()
     () )
+  )
   '(  80  88 )			;; graphic size
   "animations-elven-destroyer"
   "icon-elven-destroyer"
@@ -1086,10 +1206,16 @@
 
 (define-unit-type "unit-troll-destroyer"	"Troll Destroyer"
   ;; graphic data
+  (if new-names?
+  #("orc/units/troll destroyer.png"
+    ()
+    ()
+    () )
   #("troll destroyer.png"
     ()
     ()
     () )
+  )
   '(  88  88 )			;; graphic size
   "animations-elven-destroyer"
   "icon-troll-destroyer"
@@ -1120,10 +1246,16 @@
 
 (define-unit-type "unit-battleship"		"Battleship"
   ;; graphic data
+  (if new-names?
+  #("human/units/battleship.png"
+    ()
+    ()
+    () )
   #("battleship.png"
     ()
     ()
     () )
+  )
   '(  88  88 )			;; graphic size
   "animations-battleship"
   "icon-battleship"
@@ -1155,10 +1287,16 @@
 
 (define-unit-type "unit-ogre-juggernaught"	"Ogre Juggernaught"
   ;; graphic data
+  (if new-names?
+  #("orc/units/ogre juggernaught.png"
+    ()
+    ()
+    () )
   #("juggernaught.png"
     ()
     ()
     () )
+  )
   '(  88  88 )			;; graphic size
   "animations-battleship"
   "icon-ogre-juggernaught"
@@ -1220,10 +1358,16 @@
 
 (define-unit-type "unit-deathwing"		"Deathwing"
   ;; graphic data
+  (if new-names?
+  #("orc/units/dragon.png"
+    ()
+    ()
+    () )
   #("dragon.png"
     ()
     ()
     () )
+  )
   '(  88  80 )			;; graphic size
   "animations-deathwing"
   "icon-deathwing"
@@ -1320,10 +1464,16 @@
 
 (define-unit-type "unit-gnomish-submarine"	"Gnomish Submarine"
   ;; graphic data
+  (if new-names?
+  #("human/units/gnomish submarine.png"
+    ()
+    "tilesets/wasteland/human/units/gnomish submarine.png"
+    "tilesets/swamp/human/units/gnomish submarine.png" )
   #("gnomish submarine (summer,winter).png"
     ()
     "gnomish submarine (wasteland).png"
     "gnomish submarine (swamp).png" )
+  )
   '(  72  72 )			;; graphic size
   "animations-gnomish-submarine"
   "icon-gnomish-submarine"
@@ -1356,10 +1506,16 @@
 
 (define-unit-type "unit-giant-turtle"		"Giant Turtle"
   ;; graphic data
+  (if new-names?
+  #("orc/units/giant turtle.png"
+    ()
+    "tilesets/wasteland/orc/units/giant turtle.png"
+    "tilesets/swamp/orc/units/giant turtle.png" )
   #("giant turtle (summer,winter).png"
     ()
     "giant turtle (wasteland).png"
     "giant turtle (swamp).png" )
+  )
   '(  72  72 )			;; graphic size
   "animations-gnomish-submarine"
   "icon-giant-turtle"
@@ -1392,10 +1548,16 @@
 
 (define-unit-type "unit-gnomish-flying-machine"	"Gnomish Flying Machine"
   ;; graphic data
+  (if new-names?
+  #("human/units/gnomish flying machine.png"
+    ()
+    ()
+    () )
   #("gnomish flying machine.png"
     ()
     ()
     () )
+  )
   '(  80  80 )			;; graphic size
   "animations-gnomish-flying-machine"
   "icon-gnomish-flying-machine"
@@ -1425,10 +1587,16 @@
 
 (define-unit-type "unit-goblin-zeppelin"	"Goblin Zeppelin"
   ;; graphic data
+  (if new-names?
+  #("orc/units/goblin zeppelin.png"
+    ()
+    ()
+    () )
   #("goblin zeppelin.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-goblin-zeppelin"
   "icon-goblin-zeppelin"
@@ -1557,10 +1725,16 @@
 
 (define-unit-type "unit-eye-of-kilrogg"		"Eye of Kilrogg"
   ;; graphic data
+  (if new-names?
+  #("orc/units/eye of kilrogg.png"
+    ()
+    ()
+    () )
   #("eye of kilrogg.png"
     ()
     ()
     () )
+  )
   '(  32  32 )			;; graphic size
   "animations-eye-of-kilrogg"
   "icon-eye-of-kilrogg"
@@ -1883,10 +2057,16 @@
 
 (define-unit-type "unit-skeleton"		"Skeleton"
   ;; graphic data
+  (if new-names?
+  #("neutral/units/skeleton.png"
+    ()
+    ()
+    () )
   #("skeleton.png"
     ()
     ()
     () )
+  )
   '(  56  56 )			;; graphic size
   "animations-skeleton"
   "icon-skeleton"
@@ -1920,10 +2100,16 @@
 
 (define-unit-type "unit-daemon"			"Daemon"
   ;; graphic data
+  (if new-names?
+  #("neutral/units/daemon.png"
+    ()
+    ()
+    () )
   #("daemon.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-daemon"
   "icon-daemon"
@@ -1956,10 +2142,16 @@
 
 (define-unit-type "unit-critter"		"Critter"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/neutral/units/critter.png"
+    "tilesets/winter/neutral/units/critter.png"
+    "tilesets/wasteland/neutral/units/critter.png"
+    "tilesets/swamp/neutral/units/critter.png" )
   #("critter (summer).png"
     "critter (winter).png"
     "critter (wasteland).png"
     "critter (swamp).png" )
+  )
   '(  32  32 )			;; graphic size
   "animations-critter"
   "icon-critter"
@@ -1989,10 +2181,16 @@
 
 (define-unit-type "unit-farm"			"Farm"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/farm.png"
+    "tilesets/winter/human/buildings/farm.png"
+    "tilesets/wasteland/human/buildings/farm.png"
+    "tilesets/swamp/human/buildings/farm.png" )
   #("farm (summer).png"
     "farm (winter).png"
     "farm (wasteland).png"
     "farm (swamp).png" )
+  )
   '(  64  64 )			;; graphic size
   "animations-building"
   "icon-farm"
@@ -2020,10 +2218,16 @@
 
 (define-unit-type "unit-pig-farm"		"Pig Farm"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/pig farm.png"
+    "tilesets/winter/orc/buildings/pig farm.png"
+    "tilesets/wasteland/orc/buildings/pig farm.png"
+    "tilesets/swamp/orc/buildings/pig farm.png" )
   #("pig farm (summer).png"
     "pig farm (winter).png"
     "pig farm (wasteland).png"
     "pig farm (swamp).png" )
+  )
   '(  64  64 )			;; graphic size
   "animations-building"
   "icon-pig-farm"
@@ -2051,10 +2255,16 @@
 
 (define-unit-type "unit-human-barracks"		"Barracks"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/barracks.png"
+    "tilesets/winter/human/buildings/barracks.png"
+    ()
+    "tilesets/swamp/human/buildings/barracks.png" )
   #("human barracks (summer).png"
     "human barracks (winter).png"
     ()
     "human barracks (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-barracks"
@@ -2082,10 +2292,16 @@
 
 (define-unit-type "unit-orc-barracks"		"Barracks"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/barracks.png"
+    "tilesets/winter/orc/buildings/barracks.png"
+    ()
+    "tilesets/swamp/orc/buildings/barracks.png" )
   #("orc barracks (summer).png"
     "orc barracks (winter).png"
     ()
     "orc barracks (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-orc-barracks"
@@ -2113,10 +2329,16 @@
 
 (define-unit-type "unit-church"			"Church"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/church.png"
+    "tilesets/winter/human/buildings/church.png"
+    ()
+    "tilesets/swamp/human/buildings/church.png" )
   #("church (summer).png"
     "church (winter).png"
     ()
     "church (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-church"
@@ -2144,10 +2366,16 @@
 
 (define-unit-type "unit-altar-of-storms"	"Altar of Storms"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/altar of storms.png"
+    "tilesets/winter/orc/buildings/altar of storms.png"
+    ()
+    "tilesets/swamp/orc/buildings/altar of storms.png" )
   #("altar of storms (summer).png"
     "altar of storms (winter).png"
     ()
     "altar of storms (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-altar-of-storms"
@@ -2175,10 +2403,16 @@
 
 (define-unit-type "unit-human-watch-tower"	"Scout Tower"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/scout tower.png"
+    "tilesets/winter/human/buildings/scout tower.png"
+    ()
+    "tilesets/swamp/human/buildings/scout tower.png" )
   #("human scout tower (summer).png"
     "human scout tower (winter).png"
     ()
     "human scout tower (swamp).png" )
+  )
   '(  64  64 )			;; graphic size
   "animations-building"
   "icon-human-watch-tower"
@@ -2206,12 +2440,18 @@
     "building destroyed" )
   "human-watch-tower-attack" )
 
-(define-unit-type "unit-orc-watch-tower"	"Scout Tower"
+(define-unit-type "unit-orc-watch-tower"	"Watch Tower"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/watch tower.png"
+    "tilesets/winter/orc/buildings/watch tower.png"
+    ()
+    "tilesets/swamp/orc/buildings/watch tower.png" )
   #("orc scout tower (summer).png"
     "orc scout tower (winter).png"
     ()
     "orc scout tower (swamp).png" )
+  )
   '(  64  64 )			;; graphic size
   "animations-building"
   "icon-orc-watch-tower"
@@ -2241,10 +2481,16 @@
 
 (define-unit-type "unit-stables"		"Stables"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/stables.png"
+    "tilesets/winter/human/buildings/stables.png"
+    ()
+    "tilesets/swamp/human/buildings/stables.png" )
   #("stables (summer).png"
+    "stables (winter).png"
     ()
-    ()
-    () )
+    "stables (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-stables"
@@ -2272,10 +2518,16 @@
 
 (define-unit-type "unit-ogre-mound"		"Ogre Mound"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/ogre mound.png"
+    "tilesets/winter/orc/buildings/ogre mound.png"
+    ()
+    "tilesets/swamp/orc/buildings/ogre mound.png" )
   #("ogre mound (summer).png"
+    "ogre mound (winter).png"
     ()
-    ()
-    () )
+    "ogre mound (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-ogre-mound"
@@ -2303,10 +2555,16 @@
 
 (define-unit-type "unit-gnomish-inventor"	"Gnomish Inventor"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/gnomish inventor.png"
+    "tilesets/winter/human/buildings/gnomish inventor.png"
+    ()
+    "tilesets/wasteland/human/buildings/gnomish inventor.png" )
   #("gnomish inventor (summer).png"
+    "gnomish inventor (winter).png"
     ()
-    ()
-    () )
+    "gnomish inventor (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-gnomish-inventor"
@@ -2334,10 +2592,16 @@
 
 (define-unit-type "unit-goblin-alchemist"	"Goblin Alchemist"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/goblin alchemist.png"
+    "tilesets/winter/orc/buildings/goblin alchemist.png"
+    ()
+    "tilesets/swamp/orc/buildings/goblin alchemist.png" )
   #("goblin alchemist (summer).png"
+    "goblin alchemist (winter).png"
     ()
-    ()
-    () )
+    "goblin alchemist (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-goblin-alchemist"
@@ -2365,10 +2629,16 @@
 
 (define-unit-type "unit-gryphon-aviary"		"Gryphon Aviary"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/gryphon aviary.png"
+    "tilesets/winter/human/buildings/gryphon aviary.png"
+    ()
+    "tilesets/swamp/human/buildings/gryphon aviary.png" )
   #("gryphon aviary (summer).png"
     "gryphon aviary (winter).png"
     ()
     "gryphon aviary (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-gryphon-aviary"
@@ -2396,10 +2666,16 @@
 
 (define-unit-type "unit-dragon-roost"		"Dragon Roost"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/dragon roost.png"
+    "tilesets/winter/orc/buildings/dragon roost.png"
+    ()
+    "tilesets/swamp/orc/buildings/dragon roost.png" )
   #("dragon roost (summer).png"
     "dragon roost (winter).png"
     ()
     "dragon roost (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-dragon-roost"
@@ -2427,10 +2703,16 @@
 
 (define-unit-type "unit-human-shipyard"		"Shipyard"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/shipyard.png"
+    "tilesets/winter/human/buildings/shipyard.png"
+    ()
+    "tilesets/swamp/human/buildings/shipyard.png" )
   #("human shipyard (summer).png"
     "human shipyard (winter).png"
     ()
     "human shipyard (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-shipyard"
@@ -2460,10 +2742,16 @@
 
 (define-unit-type "unit-orc-shipyard"		"Shipyard"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/shipyard.png"
+    "tilesets/winter/orc/buildings/shipyard.png"
+    ()
+    "tilesets/swamp/orc/buildings/shipyard.png" )
   #("orc shipyard (summer).png"
     "orc shipyard (winter).png"
     ()
     "orc shipyard (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-orc-shipyard"
@@ -2493,10 +2781,16 @@
 
 (define-unit-type "unit-town-hall"		"Town Hall"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/town hall.png"
+    "tilesets/winter/human/buildings/town hall.png"
+    ()
+    "tilesets/swamp/human/buildings/town hall.png" )
   #("town hall (summer).png"
     "town hall (winter).png"
     ()
     "town hall (swamp).png" )
+  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-town-hall"
@@ -2525,10 +2819,16 @@
 
 (define-unit-type "unit-great-hall"		"Great Hall"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/great hall.png"
+    "tilesets/winter/orc/buildings/great hall.png"
+    ()
+    "tilesets/swamp/orc/buildings/great hall.png" )
   #("great hall (summer).png"
     "great hall (winter).png"
     ()
     "great hall (swamp).png" )
+  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-great-hall"
@@ -2557,10 +2857,16 @@
 
 (define-unit-type "unit-elven-lumber-mill"	"Elven Lumber Mill"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/elven lumber mill.png"
+    "tilesets/winter/human/buildings/elven lumber mill.png"
+    "tilesets/wasteland/human/buildings/elven lumber mill.png"
+    "tilesets/swamp/human/buildings/elven lumber mill.png" )
   #("elven lumber mill (summer).png"
     "elven lumber mill (winter).png"
     "elven lumber mill (wasteland).png"
     "elven lumber mill (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-elven-lumber-mill"
@@ -2589,10 +2895,16 @@
 
 (define-unit-type "unit-troll-lumber-mill"	"Troll Lumber Mill"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/troll lumber mill.png"
+    "tilesets/winter/orc/buildings/troll lumber mill.png"
+    "tilesets/wasteland/orc/buildings/troll lumber mill.png"
+    "tilesets/swamp/orc/buildings/troll lumber mill.png" )
   #("troll lumber mill (summer).png"
     "troll lumber mill (winter).png"
     "troll lumber mill (wasteland).png"
     "troll lumber mill (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-troll-lumber-mill"
@@ -2621,10 +2933,16 @@
 
 (define-unit-type "unit-human-foundry"		"Foundry"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/foundry.png"
+    "tilesets/winter/human/buildings/foundry.png"
+    ()
+    "tilesets/swamp/human/buildings/foundry.png" )
   #("human foundry (summer).png"
     "human foundry (winter).png"
     ()
     "human foundry (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-foundry"
@@ -2653,10 +2971,16 @@
 
 (define-unit-type "unit-orc-foundry"		"Foundry"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/foundry.png"
+    "tilesets/winter/orc/buildings/foundry.png"
+    ()
+    "tilesets/swamp/orc/buildings/foundry.png" )
   #("orc foundry (summer).png"
     "orc foundry (winter).png"
     ()
     "orc foundry (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-orc-foundry"
@@ -2685,10 +3009,16 @@
 
 (define-unit-type "unit-mage-tower"		"Mage Tower"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/mage tower.png"
+    "tilesets/winter/human/buildings/mage tower.png"
+    ()
+    "tilesets/swamp/human/buildings/mage tower.png" )
   #("mage tower (summer).png"
     "mage tower (winter).png"
     ()
     "mage tower (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-mage-tower"
@@ -2716,10 +3046,16 @@
 
 (define-unit-type "unit-temple-of-the-damned"	"Temple of the Damned"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/temple of the damned.png"
+    "tilesets/winter/orc/buildings/temple of the damned.png"
+    ()
+    "tilesets/swamp/orc/buildings/temple of the damned.png" )
   #("temple of the damned (summer).png"
     "temple of the damned (winter).png"
     ()
     "temple of the damned (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-temple-of-the-damned"
@@ -2747,10 +3083,16 @@
 
 (define-unit-type "unit-human-blacksmith"	"Blacksmith"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/blacksmith.png"
+    "tilesets/winter/human/buildings/blacksmith.png"
+    ()
+    "tilesets/swamp/human/buildings/blacksmith.png" )
   #("human blacksmith (summer).png"
     "human blacksmith (winter).png"
     ()
     "human blacksmith (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-blacksmith"
@@ -2778,10 +3120,16 @@
 
 (define-unit-type "unit-orc-blacksmith"		"Blacksmith"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/blacksmith.png"
+    "tilesets/winter/orc/buildings/blacksmith.png"
+    ()
+    "tilesets/wasteland/orc/buildings/blacksmith.png" )
   #("orc blacksmith (summer).png"
     "orc blacksmith (winter).png"
     ()
     "orc blacksmith (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-orc-blacksmith"
@@ -2809,10 +3157,16 @@
 
 (define-unit-type "unit-human-refinery"		"Refinery"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/refinery.png"
+    "tilesets/winter/human/buildings/refinery.png"
+    ()
+    "tilesets/wasteland/human/buildings/refinery.png" )
   #("human refinery (summer).png"
     "human refinery (winter).png"
     ()
     "human refinery (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-refinery"
@@ -2842,10 +3196,16 @@
 
 (define-unit-type "unit-orc-refinery"		"Refinery"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/refinery.png"
+    "tilesets/winter/orc/buildings/refinery.png"
+    ()
+    "tilesets/wasteland/orc/buildings/refinery.png" )
   #("orc refinery (summer).png"
     "orc refinery (winter).png"
     ()
     "orc refinery (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-orc-refinery"
@@ -2875,10 +3235,16 @@
 
 (define-unit-type "unit-human-oil-platform"	"Oil Platform"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/oil platform.png"
+    "tilesets/winter/human/buildings/oil platform.png"
+    "tilesets/wasteland/human/buildings/oil platform.png"
+    "tilesets/swamp/human/buildings/oil platform.png" )
   #("human oil well (summer).png"
     "human oil well (winter).png"
     "human oil well (wasteland).png"
     "human oil well (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-oil-platform"
@@ -2907,10 +3273,16 @@
 
 (define-unit-type "unit-orc-oil-platform"	"Oil Platform"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/oil platform.png"
+    "tilesets/winter/orc/buildings/oil platform.png"
+    "tilesets/wasteland/orc/buildings/oil platform.png"
+    "tilesets/swamp/orc/buildings/oil platform.png" )
   #("orc oil well (summer).png"
     "orc oil well (winter).png"
     "orc oil well (wasteland).png"
     "orc oil well (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-orc-oil-platform"
@@ -2939,10 +3311,16 @@
 
 (define-unit-type "unit-keep"			"Keep"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/keep.png"
+    "tilesets/winter/human/buildings/keep.png"
+    ()
+    "tilesets/swamp/human/buildings/keep.png" )
   #("keep (summer).png"
     "keep (winter).png"
     ()
     "keep (swamp).png" )
+  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-keep"
@@ -2971,10 +3349,16 @@
 
 (define-unit-type "unit-stronghold"		"Stronghold"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/stronghold.png"
+    "tilesets/winter/orc/buildings/stronghold.png"
+    ()
+    "tilesets/swamp/orc/buildings/stronghold.png" )
   #("stronghold (summer).png"
     "stronghold (winter).png"
     ()
     "stronghold (swamp).png" )
+  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-stronghold"
@@ -3003,10 +3387,16 @@
 
 (define-unit-type "unit-castle"			"Castle"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/castle.png"
+    "tilesets/winter/human/buildings/castle.png"
+    ()
+    "tilesets/swamp/human/buildings/castle.png" )
   #("castle (summer).png"
     "castle (winter).png"
     ()
     "castle (swamp).png" )
+  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-castle"
@@ -3035,10 +3425,16 @@
 
 (define-unit-type "unit-fortress"		"Fortress"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/fortress.png"
+    "tilesets/winter/orc/buildings/fortress.png"
+    ()
+    "tilesets/swamp/orc/buildings/fortress.png" )
   #("fortress (summer).png"
     "fortress (winter).png"
     ()
     "fortress (swamp).png" )
+  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-fortress"
@@ -3067,10 +3463,16 @@
 
 (define-unit-type "unit-gold-mine"		"Gold Mine"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/neutral/buildings/gold mine.png"
+    "tilesets/winter/neutral/buildings/gold mine.png"
+    "tilesets/wasteland/neutral/buildings/gold mine.png"
+    "tilesets/swamp/neutral/buildings/gold mine.png" )
   #("gold mine (summer).png"
     "gold mine (winter).png"
     "gold mine (wasteland).png"
     "gold mine (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-gold-mine"
@@ -3099,10 +3501,16 @@
 
 (define-unit-type "unit-oil-patch"		"Oil Patch"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/neutral/buildings/oil patch.png"
+    ()
+    "tilesets/wasteland/neutral/buildings/oil patch.png"
+    "tilesets/swamp/neutral/buildings/oil patch.png" )
   #("oil patch (summer).png"
     ()
     "oil patch (wasteland).png"
     "oil patch (swamp).png" )
+  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-oil-patch"
@@ -3191,10 +3599,16 @@
 
 (define-unit-type "unit-human-guard-tower"	"Guard Tower"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/guard tower.png"
+    "tilesets/winter/human/buildings/guard tower.png"
+    ()
+    "tilesets/swamp/human/buildings/guard tower.png" )
   #("human guard tower (summer).png"
     "human guard tower (winter).png"
     ()
     "human guard tower (swamp).png" )
+  )
   '(  64  64 )			;; graphic size
   "animations-human-guard-tower"
   "icon-human-guard-tower"
@@ -3226,10 +3640,16 @@
 
 (define-unit-type "unit-orc-guard-tower"	"Guard Tower"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/guard tower.png"
+    "tilesets/winter/orc/buildings/guard tower.png"
+    ()
+    "tilesets/swamp/orc/buildings/guard tower.png" )
   #("orc guard tower (summer).png"
     "orc guard tower (winter).png"
     ()
     "orc guard tower (swamp).png" )
+  )
   '(  64  64 )			;; graphic size
   "animations-human-guard-tower"
   "icon-orc-guard-tower"
@@ -3261,10 +3681,16 @@
 
 (define-unit-type "unit-human-cannon-tower"	"Cannon Tower"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/human/buildings/cannon tower.png"
+    "tilesets/winter/human/buildings/cannon tower.png"
+    ()
+    "tilesets/swamp/human/buildings/cannon tower.png" )
   #("human cannon tower (summer).png"
     "human cannon tower (winter).png"
     ()
     "human cannon tower (swamp).png" )
+  )
   '(  64  64 )			;; graphic size
   "animations-human-cannon-tower"
   "icon-human-cannon-tower"
@@ -3296,10 +3722,16 @@
 
 (define-unit-type "unit-orc-cannon-tower"	"Cannon Tower"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/orc/buildings/cannon tower.png"
+    "tilesets/winter/orc/buildings/cannon tower.png"
+    ()
+    "tilesets/swamp/orc/buildings/cannon tower.png" )
   #("orc cannon tower (summer).png"
     "orc cannon tower (winter).png"
     ()
     "orc cannon tower (swamp).png" )
+  )
   '(  64  64 )			;; graphic size
   "animations-human-cannon-tower"
   "icon-orc-cannon-tower"
@@ -3331,10 +3763,16 @@
 
 (define-unit-type "unit-circle-of-power"	"Circle of Power"
   ;; graphic data
+  (if new-names?
+  #("neutral/buildings/circle of power.png"
+    ()
+    ()
+    () )
   #("circle of power.png"
     ()
     ()
     () )
+  )
   '(  64  64 )			;; graphic size
   "animations-building"
   "icon-circle-of-power"
@@ -3362,10 +3800,16 @@
 
 (define-unit-type "unit-dark-portal"		"Dark Portal"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/neutral/buildings/dark portal.png"
+    "tilesets/winter/neutral/buildings/dark portal.png"
+    "tilesets/wasteland/neutral/buildings/dark portal.png"
+    "tilesets/swamp/neutral/buildings/dark portal.png" )
   #("dark portal (summer).png"
     "dark portal (winter).png"
     "dark portal (wasteland).png"
     "dark portal (swamp).png" )
+  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-dark-portal"
@@ -3393,10 +3837,16 @@
 
 (define-unit-type "unit-runestone"		"Runestone"
   ;; graphic data
+  (if new-names?
+  #("neutral/buildings/runestone.png"
+    "tilesets/winter/neutral/buildings/runestone.png"
+    ()
+    "tilesets/swamp/neutral/buildings/runestone.png" )
   #("runestone (summer,wasteland).png"
     "runestone (winter).png"
     ()
     "runestone (swamp).png" )
+  )
   '(  64  64 )			;; graphic size
   "animations-building"
   "icon-runestone"
@@ -3424,10 +3874,16 @@
 
 (define-unit-type "unit-human-wall"		"Wall"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/neutral/buildings/wall.png"
+    "tilesets/winter/neutral/buildings/wall.png"
+    "tilesets/wasteland/neutral/buildings/wall.png"
+    () )
   #("wall (summer).png"
     "wall (winter).png"
     "wall (wasteland).png"
     () )
+  )
   '(  32  32 )			;; graphic size
   "animations-building"
   "icon-human-wall"
@@ -3483,10 +3939,16 @@
 
 (define-unit-type "unit-dead-body"		"Dead Body"
   ;; graphic data
+  (if new-names?
+  #("neutral/units/corpses.png"
+    ()
+    ()
+    () )
   #("corpses.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-dead-body"
   "icon-peasant"
@@ -3514,10 +3976,16 @@
 
 (define-unit-type "unit-destroyed-1x1-place"	"Destroyed 1x1 Place"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/neutral/buildings/small destroyed site.png"
+    "tilesets/winter/neutral/buildings/small destroyed site.png"
+    "tilesets/wasteland/neutral/buildings/small destroyed site.png"
+    "tilesets/swamp/neutral/buildings/small destroyed site.png" )
   #("small destroyed site (summer).png"
     "small destroyed site (winter).png"
     "small destroyed site (wasteland).png"
     "small destroyed site (swamp).png" )
+  )
   '(  32  32 )			;; graphic size
   "animations-destroyed-place"
   "icon-peasant"
@@ -3546,10 +4014,16 @@
 
 (define-unit-type "unit-destroyed-2x2-place"	"Destroyed 2x2 Place"
   ;; graphic data
+  (if new-names?
+  #("tilesets/summer/neutral/buildings/destroyed site.png"
+    "tilesets/winter/neutral/buildings/destroyed site.png"
+    "tilesets/wasteland/neutral/buildings/destroyed site.png"
+    "tilesets/swamp/neutral/buildings/destroyed site.png" )
   #("destroyed site (summer).png"
     "destroyed site (winter).png"
     "destroyed site (wasteland).png"
     "destroyed site (swamp).png" )
+  )
   '(  64  64 )			;; graphic size
   "animations-destroyed-place"
   "icon-peasant"
@@ -3636,10 +4110,16 @@
 
 (define-unit-type "unit-peasant-with-gold"	"Peasant"
   ;; graphic data
+  (if new-names?
+  #("human/units/peasant with gold.png"
+    ()
+    ()
+    () )
   #("peasant with gold.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-peasant"
   "icon-peasant"
@@ -3672,10 +4152,16 @@
 
 (define-unit-type "unit-peon-with-gold"		"Peon"
   ;; graphic data
+  (if new-names?
+  #("orc/units/peon with gold.png"
+    ()
+    ()
+    () )
   #("peon with gold.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-peasant"
   "icon-peon"
@@ -3708,10 +4194,16 @@
 
 (define-unit-type "unit-peasant-with-wood"	"Peasant"
   ;; graphic data
+  (if new-names?
+  #("human/units/peasant with wood.png"
+    ()
+    ()
+    () )
   #("peasant with wood.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-peasant"
   "icon-peasant"
@@ -3744,10 +4236,16 @@
 
 (define-unit-type "unit-peon-with-wood"		"Peon"
   ;; graphic data
+  (if new-names?
+  #("orc/units/peon with wood.png"
+    ()
+    ()
+    () )
   #("peon with wood.png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-peasant"
   "icon-peon"
@@ -3780,10 +4278,16 @@
 
 (define-unit-type "unit-human-oil-tanker-full"	"Oil tanker"
   ;; graphic data
+  (if new-names?
+  #("human/units/oil tanker full.png"
+    ()
+    ()
+    () )
   #("human tanker (full).png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-human-oil-tanker"
   "icon-human-oil-tanker"
@@ -3813,10 +4317,16 @@
 
 (define-unit-type "unit-orc-oil-tanker-full"	"Oil tanker"
   ;; graphic data
+  (if new-names?
+  #("orc/units/oil tanker full.png"
+    ()
+    ()
+    () )
   #("orc tanker (full).png"
     ()
     ()
     () )
+  )
   '(  72  72 )			;; graphic size
   "animations-human-oil-tanker"
   "icon-orc-oil-tanker"
