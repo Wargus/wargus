@@ -3900,12 +3900,12 @@ int main(int argc,char** argv)
 
 	sprintf(buf, "%s/ccl", Dir);
 	if (!stat(buf, &st)) {
-		sprintf(buf, "%s/ccl/wc2-config.ccl", Dir);
+		sprintf(buf, "%s/ccl/wc2-config.lua", Dir);
 		f = fopen(buf, "w");
 		if (expansion_cd) {
-			fprintf(f, "(define expansion #t)\n");
+			fprintf(f, "expansion = true\n");
 		} else {
-			fprintf(f, "(define expansion #f)\n");
+			fprintf(f, "expansion = false\n");
 		}
 		fclose(f);
 	}
