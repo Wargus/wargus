@@ -39,7 +39,7 @@ function HandleCheats(str)
     AddMessage("cheat enabled")
 
   elseif (str == "hatchet") then
-    SetSpeedResourceHarvest("wood", 52 / 2)
+    SetSpeedResourcesHarvest("wood", 52 / 2)
     AddMessage("Wow -- I got jigsaw!")
 
   elseif (str == "glittering prizes") then
