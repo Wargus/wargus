@@ -10,7 +10,7 @@
 ;;
 ;;	buttons.ccl	-	Define the unit-buttons of the orc race.
 ;;
-;;	(c) Copyright 2001,2002 by Vladi Belperchinov-Shabanski and Lutz Sammer
+;;	(c) Copyright 2001-2003 by Vladi Belperchinov-Shabanski and Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -170,7 +170,7 @@
 
 (define-button 'pos 7 'level 0 'icon 'icon-eye-of-kilrogg
   'action 'cast-spell 'value 'spell-eye-of-vision
-  'allowed 'check-upgrade 'allow-arg '(upgrade-ogre-mage)
+  'allowed 'check-upgrade 'allow-arg '(upgrade-eye-of-kilrogg)
   'key "k" 'hint "EYE OF ~!KILROGG"
   'for-unit '(unit-ogre-mage unit-dentarg))
 

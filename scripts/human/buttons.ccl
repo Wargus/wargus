@@ -10,7 +10,7 @@
 ;;
 ;;	buttons.ccl	-	Define the unit-buttons of the human race.
 ;;
-;;	(c) Copyright 2001,2002 by Vladi Belperchinov-Shabanski and Lutz Sammer
+;;	(c) Copyright 2001-2003 by Vladi Belperchinov-Shabanski and Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -162,7 +162,7 @@
 
 (define-button 'pos 7 'level 0 'icon 'icon-holy-vision
   'action 'cast-spell 'value 'spell-holy-vision
-  'allowed 'check-upgrade 'allow-arg '(upgrade-paladin)
+  'allowed 'check-upgrade 'allow-arg '(upgrade-holy-vision)
   'key "v" 'hint "HOLY ~!VISION"
   'for-unit '(unit-paladin unit-turalyon unit-lothar
     unit-uther-lightbringer))
