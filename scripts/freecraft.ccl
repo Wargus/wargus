@@ -51,21 +51,34 @@
 ;(health-sprite	"health2.png"	0 -2 23 3)
 
 ;;	Uncomment next, to get a health bar to the left of the unit
-;(show-health-bar)
+(show-health-bar)
 
 ;;	Uncomment next, to get a health dot to the left of the unit
-(show-health-dot)
+;(show-health-dot)
 
 ;;	Uncomment next, to get a mana bar to the right of the unit
-;(show-mana-bar)
+(show-mana-bar)
 
 ;;	Uncomment next, to get a mana dot to the right of the unit
-(show-mana-dot)
+;(show-mana-dot)
 
 ;;	Uncomment next, to get no full bars or dots.
 (show-no-full) 
+
 ;;	Uncomment next, to show always bars or dots.
-;(show-full) 
+(show-full)
+
+;;	Uncomment next, to show health bars vertical.
+;(show-health-vertical)
+
+;;	Uncomment next, to show health bars horizontal.
+(show-health-horizontal)
+
+;;	Uncomment next, to show mana bars vertical.
+;(show-mana-vertical)
+
+;;	Uncomment next, to show mana bars horizontal.
+(show-mana-horizontal)
 
 ;;	Uncomment next, to show bars and dots always on top.
 (decoration-on-top)
