@@ -334,6 +334,7 @@
 (load "ccl/buttons.ccl" #f #t)
 (load "ccl/ui.ccl" #f #t)
 (load "ccl/ai.ccl" #f #t)
+(load "ccl/campaigns.ccl" #f #t)
 
 ;;-----------------------------------------------------------------------------
 
