@@ -3735,21 +3735,29 @@ int main(int argc,char** argv)
 	Dir="data";
     }
 
-    // detect Expansion CD by getting size of rezdat.war
+    // detect Expansion/Mac CD by getting size of rezdat.war
 #ifdef USE_BEOS
     sprintf(buf, "%s/REZDAT.WAR", ArchiveDir);
 #else
     sprintf(buf, "%s/rezdat.war", ArchiveDir);
 #endif
-    stat(buf, &st);
+    if (stat(buf, &st)) {
+	UseMacCd=1;
+	sprintf(buf, "%s/War Resources", ArchiveDir);
+	if (stat(buf, &st)) {
+	    fprintf(stderr, "Could not find Warcraft 2 Data\n");
+	    exit(-1);
+	}
+    }
     sprintf(buf, "%s/ccl/wc2-config.ccl", Dir);
     f = fopen(buf, "w");
-    if ( expansion_cd==-1 || (expansion_cd!=1 && (st.st_size != 2811086)) ) {
-	expansion_cd=0;
-	fprintf(f, "(define expansion #f)\n");
+    if ( expansion_cd==-1 || (expansion_cd!=1 && (st.st_size != 2811086) &&
+	    (UseMacCd && st.st_size != 2876978)) ) {
+        expansion_cd=0;
+        fprintf(f, "(define expansion #f)\n");
     } else {
-	expansion_cd=1;
-	fprintf(f, "(define expansion #t)\n");
+        expansion_cd=1;
+        fprintf(f, "(define expansion #t)\n");
     }
     fclose(f);
 

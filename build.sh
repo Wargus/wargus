@@ -126,8 +126,9 @@ else
 	DATADIR="$ARCHIVE/"
 fi
 
-if [ ! -f "$DATADIR/rezdat.war" ]; then
-    echo "error: $DATADIR/rezdat.war does not exist"
+if [ ! -f "$DATADIR/rezdat.war" ] && [ ! -f "$DATADIR/War Resources" ]; then
+    echo "error: '$DATADIR/rezdat.war' does not exist"
+    echo "error: '$DATADIR/War Resources' does not exist"
     exit -1
 fi
 
