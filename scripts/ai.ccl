@@ -146,6 +146,10 @@
 	'unit-keep 'unit-castle)
     (list 'unit-equiv 'unit-keep
 	'unit-castle)
+    (list 'unit-equiv 'unit-archer
+	'unit-ranger)
+    (list 'unit-equiv 'unit-knight
+	'unit-paladin)
     (list 'unit-equiv 'unit-peasant
 	'unit-peasant-with-gold 'unit-peasant-with-wood)
     (list 'unit-equiv 'unit-human-oil-tanker
@@ -276,6 +280,10 @@
 	'unit-stronghold 'unit-fortress)
     (list 'unit-equiv 'unit-stronghold
 	'unit-fortress)
+    (list 'unit-equiv 'unit-axethrower
+	'unit-berserker)
+    (list 'unit-equiv 'unit-ogre
+	'unit-ogre-mage)
     (list 'unit-equiv 'unit-peon
 	'unit-peon-with-gold 'unit-peon-with-wood)
     (list 'unit-equiv 'unit-orc-oil-tanker
