@@ -903,7 +903,7 @@
   'supply 4
   'corpse '(unit-destroyed-2x2-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'sounds '(
     selected "farm-selected"
     acknowledge "farm-acknowledge"
@@ -930,7 +930,7 @@
   'points 160
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'sounds '(
     selected "human-barracks-selected"
     acknowledge "human-barracks-acknowledge"
@@ -957,7 +957,7 @@
   'points 240
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building 'builder-inside 
+  'building 
   'sounds '(
     selected "church-selected"
     acknowledge "church-acknowledge"
@@ -985,7 +985,7 @@
   'corpse '(unit-destroyed-2x2-place 0)
   'type-land
   'can-target-land 'can-target-sea 'can-target-air
-  'building 'builder-inside
+  'building 
   'can-see-submarine
   'sounds '(
     selected "human-watch-tower-selected"
@@ -1013,7 +1013,7 @@
   'points 210
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'sounds '(
     selected "stables-selected"
     acknowledge "stables-acknowledge"
@@ -1040,7 +1040,7 @@
   'points 230
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'sounds '(
     selected "gnomish-inventor-selected"
     acknowledge "gnomish-inventor-acknowledge"
@@ -1067,7 +1067,7 @@
   'points 280
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'sounds '(
     selected "gryphon-aviary-selected"
     acknowledge "gryphon-aviary-acknowledge"
@@ -1094,7 +1094,7 @@
   'points 170
   'corpse '(unit-destroyed-3x3-place 3)
   'type-land
-  'building 'builder-inside
+  'building 
   'shore-building
   'can-store '(oil)
   'sounds '(
@@ -1124,7 +1124,7 @@
   'points 150
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'can-store '(wood)
   'sounds '(
     selected "elven-lumber-mill-selected"
@@ -1152,7 +1152,7 @@
   'points 200
   'corpse '(unit-destroyed-3x3-place 3)
   'type-land
-  'building 'builder-inside
+  'building 
   'shore-building
   'sounds '(
     selected "human-foundry-selected"
@@ -1181,7 +1181,7 @@
   'supply 1
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'can-store '(wood gold)
   'sounds '(
     selected "town-hall-selected"
@@ -1209,7 +1209,7 @@
   'points 240
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'sounds '(
     selected "mage-tower-selected"
     acknowledge "mage-tower-acknowledge"
@@ -1236,7 +1236,7 @@
   'points 170
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'sounds '(
     selected "human-blacksmith-selected"
     acknowledge "human-blacksmith-acknowledge"
@@ -1263,7 +1263,7 @@
   'points 200
   'corpse '(unit-destroyed-3x3-place 3)
   'type-land
-  'building 'builder-inside
+  'building 
   'shore-building
   'can-store '(oil)
   'sounds '(
@@ -1293,7 +1293,7 @@
   'points 160
   'corpse '(unit-destroyed-3x3-place 3)
   'type-naval
-  'building 'builder-inside
+  'building 
   'must-build-on-top 'unit-oil-patch
   'gives-resource 'oil 'can-harvest
   'sounds '(
@@ -1323,7 +1323,7 @@
   'supply 1
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'can-store '(gold wood)
   'sounds '(
     selected "keep-selected"
@@ -1352,7 +1352,7 @@
   'supply 1
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'can-store '(gold wood)
   'sounds '(
     selected "castle-selected"
@@ -1404,7 +1404,7 @@
   'type-land
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
-  'building 'builder-inside
+  'building 
   'can-see-submarine
   'tower
   'sounds '(
@@ -1436,7 +1436,7 @@
   'type-land
   'can-attack
   'can-target-land 'can-target-sea
-  'building 'builder-inside
+  'building 
   'can-see-submarine
   'tower
   'sounds '(
@@ -1465,7 +1465,7 @@
   'points 1
   'corpse '(unit-destroyed-1x1-place 0)
   'type-land
-  'building 'builder-inside
+  'building 
   'sounds '(
     selected "human-wall-selected"
     acknowledge "human-wall-acknowledge"
