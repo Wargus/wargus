@@ -102,6 +102,7 @@ while [ $# -gt 0 ]; do
 
 		-v)	VIDEO="-v"; shift ;;
 
+		--help) $0 -h; exit 0;;
 		-h)	cat << EOF
 build.sh
  -z / -I : COMPRESS = gzip --force --best / bzip2 --force
@@ -129,6 +130,7 @@ fi
 if [ ! -f "$DATADIR/rezdat.war" ] && [ ! -f "$DATADIR/War Resources" ]; then
     echo "error: '$DATADIR/rezdat.war' does not exist"
     echo "error: '$DATADIR/War Resources' does not exist"
+    echo "Specify the location of the data files with the '-p' option"
     exit -1
 fi
 
