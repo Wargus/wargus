@@ -117,12 +117,13 @@
     ; Minimap
     (list "graphics/ui/orc/minimap.png" 0 24)
 
-    ; Status line
-    (list
-      (string-append "graphics/ui/orc/"
+    'status-line (list
+      'file (string-append "graphics/ui/orc/"
         (number->string screen_width) "x" (number->string screen_height)
         "/statusline.png")
-      176 (- screen_height 16))
+      'pos (list 176 (- screen_height 16))
+      'text-pos (list (+ 2 176) (+ 2 (- screen_height 16)))
+      'font 'game)
 
     ; Menu buttons
     'menu-button '(
