@@ -65,6 +65,8 @@
     dead "basic human voices dead"
     attack "footman-attack"))
 
+(define-unit-type 'unit-peasant-with-gold)
+
 (define-unit-type 'unit-peasant 'name "Peasant"
   'files '(tileset-summer "human/units/peasant.png")
   'size '(72 72)
@@ -88,6 +90,9 @@
   'can-target-land
   'land-unit
   'cower-worker
+  'harvester 'resource-harvested 'gold 'resource-capacity 100
+  'wait-at-resource 150 'wait-at-depot 150
+  'transform-when-loaded 'unit-peasant-with-gold
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -120,6 +125,9 @@
   'can-target-land
   'land-unit
   'cower-worker
+  'harvester 'resource-harvested 'gold 'resource-capacity 100
+  'wait-at-resource 150 'wait-at-depot 150
+  'transform-when-empty 'unit-peasant
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -161,37 +169,6 @@
     help "basic human voices help 1"
     dead "basic human voices dead"
     attack "peasant-with-wood-attack"))
-
-(define-unit-type 'unit-attack-peasant 'name "Peasant"
-  'use 'unit-peasant
-  'size '(72 72)
-  'animations 'animations-peasant 'icon 'icon-peasant
-  'costs '(time 45 gold 400)
-  'speed 10
-  'hit-points 30
-  'draw-level 40
-  'tile-size '(1 1) 'box-size '(31 31)
-  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
-  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
-  'max-attack-range 1
-  'priority 50
-  'points 30
-  'demand 1
-  'corpse '(unit-dead-body 6)
-  'type-land
-  'right-attack
-  'can-attack
-  'can-target-land
-  'land-unit
-  'organic
-  'selectable-by-rectangle
-  'sounds '(
-    selected "peasant-selected"
-    acknowledge "peasant-acknowledge"
-    ready "peasant-ready"
-    help "basic human voices help 1"
-    dead "basic human voices dead"
-    attack "peasant-attack"))
 
 (define-unit-type 'unit-ballista 'name "Ballista"
   'files '(tileset-summer "human/units/ballista.png")

@@ -45,7 +45,7 @@
     unit-peon-with-gold unit-peon-with-wood unit-fad-man unit-double-head
     unit-sharp-axe unit-beast-cry unit-quick-blade unit-ice-bringer
     unit-evil-knight unit-skeleton unit-eye-of-vision unit-dragon
-    unit-zeppelin unit-attack-peon unit-death-knight unit-fire-breeze
+    unit-zeppelin unit-death-knight unit-fire-breeze
     orc-group unit-daemon))
 
 (define-button 'pos 2 'level 0 'icon 'icon-mythical-shield1
@@ -56,7 +56,7 @@
     unit-peon-with-gold unit-peon-with-wood unit-fad-man unit-double-head
     unit-sharp-axe unit-beast-cry unit-quick-blade unit-ice-bringer
     unit-evil-knight unit-skeleton unit-eye-of-vision unit-dragon
-    unit-zeppelin unit-attack-peon unit-death-knight unit-fire-breeze
+    unit-zeppelin unit-death-knight unit-fire-breeze
     orc-group unit-daemon))
 
 (define-button 'pos 2 'level 0 'icon 'icon-mythical-shield2
