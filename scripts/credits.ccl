@@ -10,7 +10,7 @@
 ;;
 ;;	credits.ccl	-	The credits of the engine.
 ;;
-;;	(c) Copyright 2002 by Jimmy Salmon.
+;;	(c) Copyright 2002-2003 by Jimmy Salmon.
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -29,6 +29,9 @@
     'name "  Andreas 'Ari' Arens"
     'name "  Lutz 'Johns' Sammer"
     'name "  Edgar 'Froese' Toernig"
+    'name "  Jimmy Salmon"
+    'name "  Nehal Mistry"
+    'name "  Russell Smith"
     'name "  Valery Shchedrin"
     'name "  Iftikhar Rathore"
     'name "  Charles K Hardin"
@@ -65,13 +68,11 @@
     'name "  Dave Reed"
     'name "  Josef Spillner"
     'name "  James Dessart"
-    'name "  Jimmy Salmon"
     'name "  Jan Uerpmann"
     'name "  Aaron Berger"
     'name "  Latimerius"
     'name "  Antonis Chaniotis"
     'name "  Samuel Hays"
-    'name "  Nehal Mistry"
     'name "  David Martinez Moreno"
     'name "  Flavio Silvestrow"
     'name "  Daniel Burrows"
@@ -83,7 +84,6 @@
     'name "  Martin Hajduch"
     'name "  Jeff Binder"
     'name "  Ludovic"
-    'name "  Russell Smith"
     'name ""
     'title "FreeCraft Media Project (WC2 Edition)"
     'title " Graphics"
