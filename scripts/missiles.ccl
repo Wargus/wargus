@@ -40,12 +40,12 @@
 (define-missile-type 'missile-griffon-hammer
   'file "missiles/gryphon hammer.png" 'size '(32 32) 'frames 15
   'impact-sound "fireball hit"
-  'class 'missile-class-point-to-point-3bounces 'sleep 1 'speed 16 'range 1
+  'class 'missile-class-point-to-point-3bounces 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-explosion)
 (define-missile-type 'missile-dragon-breath
   'file "missiles/dragon breath.png" 'size '(32 32) 'frames 5
   'impact-sound "fireball hit"
-  'class 'missile-class-point-to-point-3bounces 'sleep 1 'speed 16 'range 1
+  'class 'missile-class-point-to-point-3bounces 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-explosion)
 (define-missile-type 'missile-fireball
   'file "missiles/fireball.png" 'size '(32 32) 'frames 5
