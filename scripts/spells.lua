@@ -40,6 +40,32 @@ DefineUnitType("unit-critter", {})
 DefineUnitType("unit-skeleton", {})
 DefineUnitType("unit-circle-of-power", {})
 
+-- And declare upgrade for dependency...
+-- For human
+DefineUpgrade("upgrade-holy-vision")
+DefineUpgrade("upgrade-healing")
+if (extensions) then
+DefineUpgrade("upgrade-area-healing")
+end
+DefineUpgrade("upgrade-exorcism")
+DefineUpgrade("upgrade-flame-shield")
+DefineUpgrade("upgrade-fireball")
+DefineUpgrade("upgrade-slow")
+DefineUpgrade("upgrade-invisibility")
+DefineUpgrade("upgrade-polymorph")
+DefineUpgrade("upgrade-blizzard")
+-- For orc
+DefineUpgrade("upgrade-eye-of-kilrogg")
+DefineUpgrade("upgrade-bloodlust")
+DefineUpgrade("upgrade-raise-dead")
+DefineUpgrade("upgrade-death-coil")
+DefineUpgrade("upgrade-whirlwind")
+DefineUpgrade("upgrade-haste")
+DefineUpgrade("upgrade-unholy-armor")
+DefineUpgrade("upgrade-runes")
+DefineUpgrade("upgrade-death-and-decay")
+
+
 if CompileFeature("META-LUA") then
 	for i = 1, 10 do
 		print("DEFINE NEW SPELLS " .. Stratagus.SyncRand(34))
@@ -198,6 +224,7 @@ do
 		"target", "position",
 		"action", {{"summon", "unit-type", "unit-revealer", "time-to-live", 25}},
 		"sound-when-cast", "holy vision",
+		"depend-upgrade", "upgrade-holy-vision",
 		"missile-when-cast", "missile-normal-spell"
 	)
 
@@ -213,6 +240,7 @@ do
 			"max-hp-percent", 100
 		},
 		"sound-when-cast", "healing",
+		"depend-upgrade", "upgrade-healing",
 		"missile-when-cast", "missile-heal-effect",
 		"autocast", {"range", 6, "condition", {"alliance", "only", "max-hp-percent", 90}}
 	)
@@ -228,6 +256,7 @@ do
 			"building", "false", -- any undead buildings?
 		},
 		"sound-when-cast", "exorcism",
+		"depend-upgrade", "upgrade-exorcism",
 		"missile-when-cast", "missile-exorcism",
 		"autocast", {"range", 10, "condition", {"coward", "false", "alliance", "false"}}
 	)
@@ -239,6 +268,7 @@ do
 		"target", "position",
 		"action", {{"summon", "unit-type", "unit-eye-of-vision", "time-to-live", 5000}},
 		"sound-when-cast", "eye of vision",
+		"depend-upgrade", "upgrade-eye-of-kilrogg",
 		"missile-when-cast", "missile-normal-spell"
 	)
 
@@ -253,6 +283,7 @@ do
 			"max-haste-ticks", 10 -- FIXME: proper value?
 		},
 		"sound-when-cast", "haste",
+		"depend-upgrade", "upgrade-haste",
 		"missile-when-cast", "missile-normal-spell",
 		"autocast", {"range", 6, "condition", {"coward", "false", "alliance", "only"}},
 		"ai-cast", {"range", 6, "combat", "only", "condition", {"coward", "false", "alliance", "only"}}
@@ -268,6 +299,7 @@ do
 			"building", "false",
 			"max-slow-ticks", 10},
 		"sound-when-cast", "slow",
+		"depend-upgrade", "upgrade-slow",
 		"missile-when-cast", "missile-normal-spell",
 		"autocast", {"range", 10, "condition", {"coward", "false", "alliance", "false"}},
 		"ai-cast", {"range", 10, "combat", "only", "condition", {"coward", "false", "alliance", "false"}}
@@ -283,6 +315,7 @@ do
 			"organic", "only",
 			"max-bloodlust-ticks", 10},
 		"sound-when-cast", "bloodlust",
+		"depend-upgrade", "upgrade-bloodlust",
 		"missile-when-cast", "missile-normal-spell",
 		"autocast", {"range", 6, "condition", {"coward", "false", "alliance", "only"}},
 		"ai-cast", {"range", 6, "combat", "only", "condition", {"coward", "false", "alliance", "only"}}
@@ -298,6 +331,7 @@ do
 			"building", "false",
 			"max-invisibility-ticks", 10},
 		"sound-when-cast", "invisibility",
+		"depend-upgrade", "upgrade-invisibility",
 		"missile-when-cast", "missile-normal-spell"
 	--	"autocast", {"range", 6, "condition", {"coward", "false"}},
 	)
@@ -312,6 +346,7 @@ do
 			"building", "false",
 			"max-invincibility-ticks", 10},
 		"sound-when-cast", "unholy armor",
+		"depend-upgrade", "upgrade-unholy-armor",
 		"missile-when-cast", "missile-normal-spell"
 	--	"autocast", {range 6 condition (coward false alliance only)},
 	)
@@ -332,6 +367,7 @@ do
 		-- Can be casted, and is effective on both allies and enemies
 		"condition", {"building", "false"},
 		"sound-when-cast", "flame shield",
+		"depend-upgrade", "upgrade-flame-shield",
 		"missile-when-cast", "missile-flame-shield" -- NOT use
 	--	"autocast", {range 6 condition (coward false)},
 	)
@@ -344,6 +380,7 @@ do
 		"action", {{"polymorph", "new-form", "unit-critter", "player-neutral"}},
 		"condition", {"organic", "only"},
 		"sound-when-cast", "polymorph",
+		"depend-upgrade", "upgrade-polymorph",
 		"missile-when-cast", "missile-normal-spell"
 		--  Only cast on the strongest units!!!
 	--	"autocast", {range 10 condition (alliance false min-hp-percent 75)},
@@ -363,6 +400,7 @@ do
 			 "start-offset-x", -128,
 			 "start-offset-y", -128}},
 		"sound-when-cast", "blizzard",
+		"depend-upgrade", "upgrade-blizzard",
 		"missile-when-cast", "missile-blizzard"
 	--	"autocast", {range 12)
 	)
@@ -374,6 +412,7 @@ do
 		"target", "position",
 		"action", {{"area-bombardment", "fields", 5, "shards", 10, "damage", 10}},
 		"sound-when-cast", "death and decay",
+		"depend-upgrade", "upgrade-death-and-decay",
 		"missile-when-cast", "missile-death-and-decay"
 	--	"autocast", {range 12)
 	)
@@ -385,6 +424,7 @@ do
 		"target", "position",
 		"action", {{"spawn-missile", "damage", 20}},
 		"sound-when-cast", "fireball throw",
+		"depend-upgrade", "upgrade-fireball",
 		"missile-when-cast", "missile-fireball"
 	--	"autocast", {range 8)
 	)
@@ -412,6 +452,7 @@ do
 			 "end-point",   {"base", "target", "add-x", 0, "add-y", -32}},
 		},
 		"sound-when-cast", "runes",
+		"depend-upgrade", "upgrade-runes",
 		"missile-when-cast", "missile-rune"
 	--	"autocast", {range 10)
 	)
@@ -424,6 +465,7 @@ do
 		"action", {{"spawn-missile", "damage", 50}},
 	--	"condition", {"UnitTypeflag", {"true", "organic"}},
 		"sound-when-cast", "death coil",
+		"depend-upgrade", "upgrade-death-coil",
 		"missile-when-cast", "missile-death-coil"
 	--	"autocast", {"range", 6}
 	)
@@ -436,6 +478,7 @@ do
 		"target", "position",
 		"action", {{"summon", "unit-type", "unit-skeleton", "time-to-live", 3600, "require-corpse"}},
 		"sound-when-cast", "raise dead",
+		"depend-upgrade", "upgrade-raise-dead",
 		"missile-when-cast", "missile-normal-spell"
 	--	"autocast", {"range", 6}
 	)
@@ -450,6 +493,7 @@ do
 			 "start-point", {"base", "target", "add-x", 0, "add-y", 0},
 			 "end-point",   {"base", "target", "add-x", 0, "add-y", 0}}},
 		"sound-when-cast", "whirlwind",
+		"depend-upgrade", "upgrade-whirlwind",
 		"missile-when-cast", "missile-whirlwind"
 	--	"autocast", {range 12)
 	)
