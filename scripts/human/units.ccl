@@ -91,6 +91,7 @@
   'can-gather-resource '(
     file-when-loaded "human/units/peasant_with_gold.png"  
     resource-id gold
+;;    harvest-from-outside
     resource-capacity 100
     wait-at-resource 150
     wait-at-depot 150)
