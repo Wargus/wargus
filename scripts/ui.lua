@@ -46,7 +46,7 @@ DefinePanelContents(
 		More = {"LifeBar", {Variable = "HitPoints", Height = 7, Width = 45}}
 	},
 	{ Pos = {34, 49}, Condition = {ShowOpponent = false, HideNeutral = true},
-		More = {"FormatedText2", {
+		More = {"FormattedText2", {
 			Font = "small", Variable = "HitPoints", Format = "%d/%d",
 			Component1 = "Value", Component2 = "Max", Centered = true}}
 	},
@@ -55,7 +55,7 @@ DefinePanelContents(
 		Condition = {Slot = "only"} }, -- DEBUG ONLY.
 -- Ressource Left
 	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
-		More = {"FormatedText2", {Format = "%s Left:%d", Variable = "GiveResource",
+		More = {"FormattedText2", {Format = "%s Left:%d", Variable = "GiveResource",
 					Component1 = "Name", Component2 = "Value", Centered = true}}
 	}
 
@@ -73,7 +73,7 @@ DefinePanelContents(
 										Component = "Max"}} },
 	{ Pos = {51, 102}, More = {"Text", {Text = "Demand : ", Variable = "Demand",
 										Component = "Max"}} },
-	{ Pos = {51, 102}, More = {"FormatedText", {Format = "Demand : ~<%d~>",
+	{ Pos = {51, 102}, More = {"FormattedText", {Format = "Demand : ~<%d~>",
 									Variable = "Demand", Component = "Max"}}
 -- FIXME COLOR when Demand >= Supply
     }
@@ -87,11 +87,11 @@ DefinePanelContents(
   Condition = {ShowOpponent = false, HideNeutral = true, Build = "false"},
   Contents = {
 	{ Pos = {37, 86}, Condition = {Damage = "only"},
-		More = {"FormatedText2", {Format = "Damage: %d-%d", Variable = "Damage",
+		More = {"FormattedText2", {Format = "Damage: %d-%d", Variable = "Damage",
 			Component1 = "Value", Component2 = "Max"}}
 	},
 	{ Pos = {130, 86}, Condition = {Damage = "only"},-- FIXME When PiercingDamage.Diff != 0.
-		More = {"FormatedText2", {Format = "~<%+d+%d~>", Variable1 = "ExtraDamage",
+		More = {"FormattedText2", {Format = "~<%+d+%d~>", Variable1 = "ExtraDamage",
 			Variable2 = "PiercingDamage", Component2 = "Diff"}}
 
 	},
@@ -130,7 +130,7 @@ DefinePanelContents(
 	{ Pos = {86, 150}, More = {"Text", {Variable = "Mana"}}, Condition = {Mana = "only"} },
 -- Ressource Carry
 	{ Pos = {61, 149}, Condition = {CarryResource = "only"},
-		More = {"FormatedText2", {Format = "Carry: %d %s", Variable = "CarryResource",
+		More = {"FormattedText2", {Format = "Carry: %d %s", Variable = "CarryResource",
 				Component1 = "Value", Component2 = "Name"}}
 	}
 
@@ -144,10 +144,10 @@ DefinePanelContents(
   Contents = {
 -- Unit caracteristics
 	{ Pos = {114, 41}, Condition = {Level = "only"},
-		More = {"FormatedText", {Variable = "Level", Format = "Level ~<%d~>"}}
+		More = {"FormattedText", {Variable = "Level", Format = "Level ~<%d~>"}}
 	},
 	{ Pos = {114, 56}, Condition = {Level = "only"},
-		More = {"FormatedText2", {Centered = true,
+		More = {"FormattedText2", {Centered = true,
 			Variable1 = "Xp", Variable2 = "Kill", Format = "XP:~<%d~> Kills:~<%d~>"}}
 	},
 	{ Pos = {47, 71}, Condition = {Armor = "only"},
