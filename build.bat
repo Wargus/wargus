@@ -47,6 +47,7 @@ REM	Second choise:  installed/copied in current directory
 REM	Third choise:   uninstalled on original cdrom
 
 REM SET ARCHIVE=C:\war2\data
+REM SET ARCHIVE="C:\Program Files\War2"
 REM SET ARCHIVE=.
 SET ARCHIVE=%CDROM%\data
 
@@ -80,7 +81,7 @@ REM ADD -n      To force the archive is not expansion compatible
 REM copy own supplied files
 
 copy /b %CONTRIB%\cross.png %DIR%\graphics\ui\cursors
-copy /b %CONTRIB%\red_cross.png %DIR%\graphics\ui\cursors
+copy /b %CONTRIB%\red_cross.png %DIR%\graphics\missiles
 copy /b %CONTRIB%\mana.png %DIR%\graphics\ui
 copy /b %CONTRIB%\mana2.png %DIR%\graphics\ui
 copy /b %CONTRIB%\health.png %DIR%\graphics\ui
