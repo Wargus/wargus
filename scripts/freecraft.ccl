@@ -405,6 +405,7 @@
 (load "ccl/campaigns.ccl" #f #t)
 (load "ccl/credits.ccl" #f #t)
 (load "ccl/tips.ccl" #f #t)
+(load "ccl/ranks.ccl" #f #t)
 (load "ccl/menus.ccl" #f #t)
 
 ;;-----------------------------------------------------------------------------
