@@ -8,7 +8,7 @@ LDFLAGS = -lz -lpng -lm -static -L/usr/local/lib
 
 all: cleanobj wartool$(EXE)
 
-wartool: wartool.o
+wartool$(EXE): wartool.o
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 wartool.o:
