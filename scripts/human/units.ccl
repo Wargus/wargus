@@ -33,6 +33,7 @@
 ;;
 ;;	NOTE: Save can generate this table.
 ;;
+
 (define-unit-type 'unit-footman 'name "Footman"
   'files '(tileset-summer "human/units/footman.png")
   'size '(72 72)
@@ -52,7 +53,7 @@
   'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-attack
+  'can-attack 'can-repair
   'can-target-land
   'land-unit
   'organic
@@ -86,7 +87,7 @@
   'corpse '(unit-dead-body 6)
   'type-land
   'right-harvest
-  'can-attack
+  'can-attack 'can-repair
   'can-target-land
   'land-unit
   'cower-worker
@@ -121,7 +122,7 @@
   'corpse '(unit-dead-body 6)
   'type-land
   'right-harvest
-  'can-attack
+  'can-attack 'can-repair
   'can-target-land
   'land-unit
   'cower-worker
@@ -156,7 +157,7 @@
   'corpse '(unit-dead-body 6)
   'type-land
   'right-harvest
-  'can-attack
+  'can-attack 'can-repair
   'can-target-land
   'land-unit
   'cower-worker
@@ -514,7 +515,7 @@
   'demand 1
   'corpse '(unit-dead-body 12)
   'type-naval
-  'right-haul-oil
+  'right-harvest
   'sea-unit
   'harvester 'resource-harvested 'oil 'resource-capacity 100
   'wait-at-resource 100 'wait-at-depot 100
@@ -545,7 +546,7 @@
   'demand 1
   'corpse '(unit-dead-body 12)
   'type-naval
-  'right-haul-oil
+  'right-harvest
   'sea-unit
   'harvester 'resource-harvested 'oil 'resource-capacity 100
   'wait-at-resource 100 'wait-at-depot 100
