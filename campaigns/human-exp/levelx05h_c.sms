@@ -9,15 +9,22 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (and (if-unit '2 '== 0 'unit-mythical-shipyard) 
-                             (if-unit '3 '== 0 'unit-mythical-shipyard) 
-                             (if-unit '4 '== 0 'unit-mythical-shipyard) 
-                             (if-unit '7 '== 0 'unit-mythical-shipyard) 
-                             (if-unit 'this '>= 3 'unit-alliance-shipyard)))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-unit '2 '== 0 'unit-mythical-shipyard) 
+      (if-unit '3 '== 0 'unit-mythical-shipyard) 
+      (if-unit '4 '== 0 'unit-mythical-shipyard) 
+      (if-unit '7 '== 0 'unit-mythical-shipyard) 
+      (if-unit 'this '>= 3 'unit-alliance-shipyard)))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

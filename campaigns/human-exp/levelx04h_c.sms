@@ -10,12 +10,19 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (and (if-opponents 'this '== 0) 
-                             (if-unit 'this '>= 1 'unit-castle)))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-opponents 'this '== 0) 
+      (if-unit 'this '>= 1 'unit-castle)))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

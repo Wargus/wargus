@@ -10,25 +10,38 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda ()
-  (and
-    (if-unit '0 '== 0 'unit-mythical-shipyard) 
-    (if-unit '2 '== 0 'unit-mythical-shipyard) 
-    (if-unit '4 '== 0 'unit-mythical-shipyard) 
-    (if-unit '5 '== 0 'unit-mythical-shipyard) 
-    (if-rescued-near-unit 'this '== 1 'unit-arthor-literios 'unit-circle-of-power)
-    (if-rescued-near-unit 'this '== 1 'unit-knight-rider 'unit-circle-of-power)))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-unit '0 '== 0 'unit-mythical-shipyard) 
+      (if-unit '2 '== 0 'unit-mythical-shipyard) 
+      (if-unit '4 '== 0 'unit-mythical-shipyard) 
+      (if-unit '5 '== 0 'unit-mythical-shipyard) 
+      (if-rescued-near-unit 'this '== 1 'unit-arthor-literios 'unit-circle-of-power)
+      (if-rescued-near-unit 'this '== 1 'unit-knight-rider 'unit-circle-of-power)))
+  '(
+    (action-victory)))
 
 
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-arthor-literios)
-                             (if-unit 6 '== 0 'unit-arthor-literios)))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-knight-rider)
-                             (if-unit 6 '== 0 'unit-knight-rider)))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-arthor-literios)
+      (if-unit 6 '== 0 'unit-arthor-literios)))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-knight-rider)
+      (if-unit 6 '== 0 'unit-knight-rider)))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

@@ -9,15 +9,26 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (and (if-opponents 'this '== 0) 
-                             (if-unit 'this '== 1 'unit-knight-rider)))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-opponents 'this '== 0) 
+      (if-unit 'this '== 1 'unit-knight-rider)))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-knight-rider)
-                             (if-unit 6 '== 0 'unit-knight-rider)))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-knight-rider)
+      (if-unit 6 '== 0 'unit-knight-rider)))
+  '(
+    (action-defeat)))
 
 ;;Units
 
