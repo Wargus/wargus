@@ -3,16 +3,16 @@ CC = gcc
 
 CROSSDIR = /usr/local/cross
 
+CFLAGS = -I/usr/local/include
+LDFLAGS = -lz -lpng -lm -static -L/usr/local/lib
+
 all: cleanobj wartool$(EXE)
 
 wartool: wartool.o
-	$(CC) -o $@ $^ -lz -lpng -lm -static
-
-wartool.exe: wartool.o
-	$(CC) -o $@ $^ -lz -lpng -lm -static
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 wartool.o:
-	$(CC) -c wartool.c -o $@
+	$(CC) -c wartool.c -o $@ $(CFLAGS)
 
 win32_2:
 	
