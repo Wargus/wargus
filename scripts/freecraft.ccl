@@ -187,8 +187,8 @@
 (speeds 1)
 
 ;; a* configuration
-;(no-a-star)
-(a-star)
+(no-a-star)
+;(a-star)
 (a-star-fixed-unit-cost 1000)
 (a-star-moving-unit-cost 2)
 
