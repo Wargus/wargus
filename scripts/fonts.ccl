@@ -10,7 +10,7 @@
 ;;
 ;;	fonts.ccl	-	Define the used fonts.
 ;;
-;;	(c) Copyright 2000-2002 by Lutz Sammer
+;;	(c) Copyright 2000-2003 by Lutz Sammer and Jimmy Salmon
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -61,36 +61,70 @@
 ;;
 ;;	FIXME: only 3=yellow and 7=white and 8=grey are correct.
 ;;
-(define-font-colors
-    ;; 0 black
-    #(   0 228 228 228 228 239   0 )
-    ;; 1 red
-    #(   0 208 209 210 211 239   0 )
-    ;; 2 green
-    #(   0 216 216 216 216 239   0 )
-    ;; 3 yellow
-    #( 246 200 199 197 192 239 104 )
-    ;; 4 blue
-    #(   0   1   1   1   1 239   0 )
-    ;; 5 magenta
-    #(   0 220 220 220 220 239   0 )
-    ;; 6 cyan
-    #(   0 224 224 224 224 239   0 )
-    ;; 7 white
-    #(   0 246 246 246 104 239   0 )
-    ;; 8 grey
-    #(   0 111 110 109 104 239   0 )
-    ;; 9 light-red
-    #(   0 208 208 208 208 239   0 )
-    ;; a light-green
-    #(   0 216 216 216 216 239   0 )
-    ;; b light-yellow
-    #( 246 200 199 197 192 239 104 )
-    ;; c light-blue
-    #(   0   1   1   1   1 239   0 )
-    ;; d light-magenta
-    #(   0 220 220 220 220 239   0 )
-    ;; e light-cyan
-    #(   0 224 224 224 224 239   0 )
-    ;; f light grey
-    #(   0 111 110 109 104 239   0 ) )
+
+(define-font-color 'black
+  #(   0   0   0	; 0
+      40  40  60	; 228
+      40  40  60	; 228
+      40  40  60	; 228
+      40  40  60	; 228
+       0   0   0	; 239
+       0   0   0))	; 0
+(define-font-color 'red
+  #(   0   0   0	; 0
+     164   0   0	; 208
+     124   0   0	; 209
+      92   4   0	; 210
+      68   4   0	; 211
+       0   0   0	; 239
+       0   0   0))	; 0
+(define-font-color 'yellow
+  #( 252 248 240	; 246
+     244 224  32	; 200
+     208 192  28	; 199
+     168 140  16	; 197
+      92  48   0	; 192
+       0   0   0	; 239
+     108 108 108))	; 104
+(define-font-color 'white
+  #(   0   0   0	; 0
+     252 248 240	; 246
+     252 248 240	; 246
+     252 248 240	; 246
+     108 108 108	; 104
+       0   0   0	; 239
+       0   0   0))	; 0
+
+;(define-font-colors
+;    ;; 0 black
+;    #(   0 228 228 228 228 239   0 )
+;    ;; 1 red
+;    #(   0 208 209 210 211 239   0 )
+;    ;; 2 green
+;    #(   0 216 216 216 216 239   0 )
+;    ;; 3 yellow
+;    #( 246 200 199 197 192 239 104 )
+;    ;; 4 blue
+;    #(   0   1   1   1   1 239   0 )
+;    ;; 5 magenta
+;    #(   0 220 220 220 220 239   0 )
+;    ;; 6 cyan
+;    #(   0 224 224 224 224 239   0 )
+;    ;; 7 white
+;    #(   0 246 246 246 104 239   0 )
+;    ;; 8 grey
+;    #(   0 111 110 109 104 239   0 )
+;    ;; 9 light-red
+;    #(   0 208 208 208 208 239   0 )
+;    ;; a light-green
+;    #(   0 216 216 216 216 239   0 )
+;    ;; b light-yellow
+;    #( 246 200 199 197 192 239 104 )
+;    ;; c light-blue
+;    #(   0   1   1   1   1 239   0 )
+;    ;; d light-magenta
+;    #(   0 220 220 220 220 239   0 )
+;    ;; e light-cyan
+;    #(   0 224 224 224 224 239   0 )
+;    ;; f light grey
+;    #(   0 111 110 109 104 239   0 ) )
