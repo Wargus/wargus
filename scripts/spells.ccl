@@ -208,7 +208,6 @@
 ;	'autocast '(range 10 condition (alliance false min-hp-percent 75))
 )
 
-
 (define-spell "spell-blizzard"
 	'showname "blizzard"
 	'manacost 25
