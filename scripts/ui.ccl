@@ -24,9 +24,6 @@
 ;;
 ;;	$Id$
 
-;;	Use internal races 0=original 1=new
-;(race-add 1)			; This enables the alliance and mythical race
-
 (define color-dark-green	149)	; FIXME: move to central position
 
 (load "ccl/human/ui.ccl" #f #t)

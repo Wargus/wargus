@@ -45,10 +45,6 @@
 ;(contrast 100) (brightness 0) (saturation 100)
 (contrast 110) (brightness 15) (saturation 100)
 
-;;	Use internal races 0=original 1=new
-(race-add 0)
-;(race-add 1)
-
 ;;	Enter your default title screen.
 ;;	FIXME: remove check if only NEW_NAMES is supported.
 (if new-names?
