@@ -306,7 +306,7 @@
 	'manacost 100
 	'range	10
 	'target 'position ;; FIXME position or organic target
-	'action '(fireball ttl 10000 damage 10000 )
+	'action '(death-coil damage 50)
 ;	'condition '(UnitTypeflag (true organic))
 	'sound-when-cast "death coil"
 	'missile-when-cast "missile-death-coil"
