@@ -10,7 +10,7 @@
 ;;
 ;;	tilesets.ccl	-	Define the used tilesets.
 ;;
-;;	(c) Copyright 1998,2000,2001 by Lutz Sammer
+;;	(c) Copyright 1998,2000-2003 by Lutz Sammer and Jimmy Salmon
 ;;
 ;;      This program is free software; you can redistribute it and/or modify
 ;;      it under the terms of the GNU General Public License as published by
@@ -33,11 +33,11 @@
 ;;
 ;;	FIXME: need a way to automatic load all available tileset definitions
 
-(define-tileset 'tileset-summer 'class "summer"
+(define-tileset 'tileset-summer 'class "summer" 'name "Forest"
   'file "ccl/tilesets/summer.ccl")
-(define-tileset 'tileset-winter 'class "winter"
+(define-tileset 'tileset-winter 'class "winter" 'name "Winter"
   'file "ccl/tilesets/winter.ccl")
-(define-tileset 'tileset-wasteland 'class "wasteland"
+(define-tileset 'tileset-wasteland 'class "wasteland" 'name "Wasteland"
   'file "ccl/tilesets/wasteland.ccl")
-(define-tileset 'tileset-swamp 'class "swamp"
+(define-tileset 'tileset-swamp 'class "swamp" 'name "Swamp"
   'file "ccl/tilesets/swamp.ccl")
