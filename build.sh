@@ -127,7 +127,7 @@ else
 	DATADIR="$ARCHIVE/"
 fi
 
-if [ ! -f "$DATADIR/rezdat.war" ] && [ ! -f "$DATADIR/War Resources" ]; then
+if [ ! -f "$DATADIR/rezdat.war" ] && [ ! -f "$DATADIR/REZDAT.WAR" ] && [ ! -f "$DATADIR/War Resources" ]; then
     echo "error: '$DATADIR/rezdat.war' does not exist"
     echo "error: '$DATADIR/War Resources' does not exist"
     echo "Specify the location of the data files with the '-p' option"
