@@ -117,7 +117,7 @@
   'can-target-land 
   ;; flags
   'land-unit
-  'cower-peon
+  'cower-worker
   'can-attack
   'organic
   'selectable-by-rectangle
@@ -153,7 +153,7 @@
   'can-target-land 
   ;; flags
   'land-unit
-  'cower-peon
+  'cower-worker
   'can-attack
   'organic
   'selectable-by-rectangle
@@ -3658,7 +3658,7 @@
   'can-target-land 
   ;; flags
   'land-unit
-  'cower-peon
+  'cower-worker
   'can-attack
   'organic
   'selectable-by-rectangle
@@ -3694,7 +3694,7 @@
   'can-target-land 
   ;; flags
   'land-unit
-  'cower-peon
+  'cower-worker
   'can-attack
   'organic
   'selectable-by-rectangle
@@ -3730,7 +3730,7 @@
   'can-target-land 
   ;; flags
   'land-unit
-  'cower-peon
+  'cower-worker
   'can-attack
   'organic
   'selectable-by-rectangle
@@ -3766,7 +3766,7 @@
   'can-target-land 
   ;; flags
   'land-unit
-  'cower-peon
+  'cower-worker
   'can-attack
   'organic
   'selectable-by-rectangle
