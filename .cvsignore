@@ -6,3 +6,6 @@ puds
 *.rgb
 *.gimp
 *.png
+#NEW_NAMES
+graphics
+sounds
