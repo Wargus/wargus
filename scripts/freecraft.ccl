@@ -76,6 +76,8 @@
   (aux (opendir s) () (if (string? (car prepend)) (car prepend) "")))
 
 ;; Uncomment to play automatic all music
+;; FIXME: Comments are wrong, system dependend stuff didn't belong into the
+;;	  config files.
 (if (eq? (os-classification) (intern "win32"))
   (define play-list
     (dir->list (string-append (library-path) "/music/*") "music/"))
