@@ -192,8 +192,8 @@ function OrcScreen(screen_width, screen_height)
     "map-area", {
       "pos", {176, 16},
       "size", {
-        (32 * math.floor((screen_width - 176 - 16) / 32)),
-        (32 * math.floor((screen_height - 16 - 16) / 32))}},
+        (32 * math.ceil((screen_width - 176 - 16) / 32)),
+        (32 * math.ceil((screen_height - 16 - 16) / 32))}},
 
     "menu-panel", {
       "panel", {
