@@ -1609,6 +1609,9 @@ int SavePNG(const char* name,unsigned char* image,int w,int h
     png_infop info_ptr;
     unsigned char** lines;
     int i;
+#ifdef USE_SDL_SURFACE
+    int j;
+#endif
 
     if( !(fp=fopen(name,"wb")) ) {
 	printf("%s:",name);
@@ -1662,6 +1665,17 @@ int SavePNG(const char* name,unsigned char* image,int w,int h
 	fclose(fp);
 	return 1;
     }
+
+#ifdef USE_SDL_SURFACE
+    // So the engine doesn't need to support 2 transparent indexes
+    for (i = 0; i < h; ++i) {
+	for (j = 0; j < w; ++j) {
+	    if (!image[j + i * w]) {
+    		image[j + i * w] = 255;
+	    }
+	}
+    }
+#endif
 
     for( i=0; i<h; ++i ) {
 	lines[i]=image+i*w;
