@@ -102,13 +102,13 @@
 (define-missile-type 'missile-catapult-rock
   'file "missiles/catapult_rock.png" 'size '(32 32) 'frames 15
   'impact-sound "explosion"
-  'draw-level 50 'class 'missile-class-point-to-point-with-delay 'sleep 1 'speed 16 'range 2
+  'draw-level 50 'class 'missile-class-parabolic 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-impact)
 
 (define-missile-type 'missile-ballista-bolt
   'file "missiles/ballista_bolt.png" 'size '(64 64) 'frames 5
   'draw-level 50 'impact-sound "explosion"
-  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 2
+  'class 'missile-class-parabolic 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-impact)
 
 (define-missile-type 'missile-arrow
@@ -156,7 +156,7 @@
 (define-missile-type 'missile-small-cannon
   'file "missiles/cannon.png" 'size '(32 32) 'frames 15
   'draw-level 50 'impact-sound "explosion"
-  'class 'missile-class-point-to-point-with-delay 'sleep 1 'speed 16 'range 1
+  'class 'missile-class-parabolic 'sleep 1 'speed 16 'range 1
   'impact-missile 'missile-cannon-explosion)
 
 (define-missile-type 'missile-cannon-explosion
