@@ -35,7 +35,6 @@
 --
 DefineTileset("tileset-swamp", "class", "swamp", "name", "Swamp",
   "image", "tilesets/swamp/terrain/swamp.png",
-  "palette", "tilesets/swamp/swamp.rgb",
   -- Slots descriptions
   "slots", { "special", {		-- Can't be in pud
     "top-one-tree", 121, "mid-one-tree", 122, "bot-one-tree", 123,
