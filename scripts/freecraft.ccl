@@ -82,8 +82,7 @@
   (define play-list
     (dir->list (string-append (library-path) "/music/*") "music/"))
   (define play-list
-    (dir->list (string-append (library-path) "/music") "music/"))
-)
+    (dir->list (string-append (library-path) "/music") "music/")))
 
 ;; Comment this, if you use above
 ;(define play-list (list "music/default.mod"))
@@ -374,6 +373,17 @@
 
 ;;	Define default resources
 
+;; FIXME: Must be removed: Use and write (define-resource)
+;;
+;;	(define-resource 'gold 'name "Gold"
+;;	  'start-resource-default 2000
+;;	  'start-resource-low 2000
+;;	  'start-resource-medium 5000
+;;	  'start-resource-high 10000
+;;	  'income 100)
+;;	  FIXME: Must describe how geting resources work.
+;;
+
 (define-default-resources
   0   2000 1000 1000   1000 1000 1000)
 
@@ -421,11 +431,14 @@
 (set-all-players-total-unit-limit! 400)
 
 ;;-----------------------------------------------------------------------------
-;;	Default triggers
+;;	Default triggers for single player
+;;		(FIXME: must be combined with game types)
+
 (define (single-player-triggers)
-  (add-trigger (lambda () (if-unit 'this '== 0 'all)) (lambda () (action-defeat)))
-  (add-trigger (lambda () (if-opponents 'this '== 0)) (lambda () (action-victory)))
-  )
+  (add-trigger (lambda () (if-unit 'this '== 0 'all))
+    (lambda () (action-defeat)))
+  (add-trigger (lambda () (if-opponents 'this '== 0))
+    (lambda () (action-victory))) )
 
 ;;-----------------------------------------------------------------------------
 ;;	Tables-Part
