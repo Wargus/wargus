@@ -25,6 +25,13 @@
 ;;	$Id$
 
 ;;=============================================================================
+;;	Define race mapping from original number to internal symbol
+;;
+;;	(define-race-wc-names 'human 'orc 'neutral )
+(define-race-wc-names
+  'human 'orc 'neutral)
+
+;;=============================================================================
 ;;	Define tileset mapping from original number to internal symbol
 ;;
 ;;	(define-tilset-wc-names summer winter wasteland swamp)
