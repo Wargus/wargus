@@ -230,10 +230,6 @@
 (set-forest-regeneration! 0)
 ;(set-forest-regeneration! 5)
 
-;;	Set depleted % for gold-mines. (n percent, 0 = disabled)
-(set-goldmine-depleted! 0)
-;(set-goldmine-depleted! 5)
-
 ;;	Set burning building percent and rate. (n percent, h HP/second)
 ;;	Buildings with less than n% HP lose h HP every wait cycles.
 ;(set-burn-buildings! 25 2 6)
