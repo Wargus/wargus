@@ -132,6 +132,9 @@ typedef struct _control_ {
     int		Arg4;			/// Extra argument 4
 } Control;
 
+// Pal N27
+unsigned char* pal27=NULL;
+
 /**
 **	Original archive buffer.
 */
@@ -173,6 +176,13 @@ Control Todo[] = {
 ///////////////////////////////////////////////////////////////////////////////
 //	TEXT	(must be done for all others!)
 ///////////////////////////////////////////////////////////////////////////////
+
+#ifdef USE_BEOS
+{F,0,"REZDAT.WAR",				3000 __},
+#else
+{F,0,"rezdat.war",				3000 __},
+#endif
+{I,0,"ui/Credits background",			27, 28 _2},
 
 #ifdef USE_BEOS
 {F,0,"STRDAT.WAR",				4000 __},
@@ -537,7 +547,7 @@ Control Todo[] = {
 {C,0,"cursors/magnifying glass",				 2, 311 _2},
 {C,0,"cursors/small green cross",				 2, 312 _2},
 {C,0,"cursors/hourglass",					 2, 313 _2},
-{C,0,"cursors/blue arrow NW",					 2, 314 _2},
+{C,0,"cursors/credits arrow",					 27, 314 _2},
 {C,0,"cursors/arrow N",						 2, 315 _2},
 {C,0,"cursors/arrow NE",					 2, 316 _2},
 {C,0,"cursors/arrow E",						 2, 317 _2},
@@ -1130,7 +1140,6 @@ Control Todo[] = {
 {I,0,"../campaigns/human/interface/Act IV  - Return to Azeroth",17, 25 _2},
 {I,0,"../campaigns/orc/interface/Act IV  - Tides of Darkness",	17, 26 _2},
 
-{I,0,"ui/Credits background",					27, 28 _2},
 {I,0,"ui/human/The End",					27, 29 _2},
 {I,0,"ui/orc/Smashing of Lordaeron scroll",			32, 30 _2},
 #ifdef HAVE_EXPANSION
@@ -2517,6 +2526,9 @@ int ConvertImage(char* file,int pale,int imge)
     char buf[1024];
 
     palp=ExtractEntry(ArchiveOffsets[pale],NULL);
+    if (pale == 27 && imge == 28) {
+	pal27 = palp;
+    }
     imgp=ExtractEntry(ArchiveOffsets[imge],NULL);
 
     image=ConvertImg(imgp,&w,&h);
@@ -2529,7 +2541,9 @@ int ConvertImage(char* file,int pale,int imge)
     SavePNG(buf,image,w,h,palp);
 
     free(image);
-    free(palp);
+    if (pale != 27 && imge != 28) {
+	free(palp);
+    }
 
     return 0;
 }
@@ -2585,7 +2599,11 @@ int ConvertCursor(char* file,int pale,int cure)
     int h;
     char buf[1024];
 
-    palp=ExtractEntry(ArchiveOffsets[pale],NULL);
+    if (pale == 27 && cure == 314 && pal27 != NULL) { // Credits arrow (Blue arrow NW)
+	palp = pal27;
+    } else {
+	palp=ExtractEntry(ArchiveOffsets[pale],NULL);
+    }
     curp=ExtractEntry(ArchiveOffsets[cure],NULL);
 
     image=ConvertCur(curp,&w,&h);
@@ -2598,7 +2616,9 @@ int ConvertCursor(char* file,int pale,int cure)
     SavePNG(buf,image,w,h,palp);
 
     free(image);
-    free(palp);
+    if (pale != 27 && cure != 314) {
+	free(palp);
+    }
 
     return 0;
 }
