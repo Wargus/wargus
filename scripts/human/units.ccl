@@ -230,6 +230,13 @@
   'right-attack
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
+  'can-cast-spell '(
+      spell-fireball
+      spell-slow
+      spell-flame-shield
+      spell-invisibility
+      spell-polymorph
+      spell-blizzard)
   'land-unit
   'coward
   'organic
