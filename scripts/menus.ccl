@@ -1188,7 +1188,7 @@
     'pulldown '(size (152 20)
               style pulldown
               func multi-game-fws-action
-              options ("On" "Off" )
+              options ("Fog of War" "No Fog of War" "Reveal map" "Reveal map,No fog" )
               state passive
               default 0
               current 0)
