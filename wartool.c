@@ -16,6 +16,10 @@
 
 //@{
 
+/*----------------------------------------------------------------------------
+--	Includes
+----------------------------------------------------------------------------*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -41,6 +45,10 @@ typedef unsigned long u_int32_t;
 #include "myendian.h"
 
 #undef main
+
+#ifndef VERSION
+#define VERSION	"1.17pre1"		/// Engine version shown.
+#define
 
 //----------------------------------------------------------------------------
 //	Config
