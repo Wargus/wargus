@@ -482,6 +482,20 @@
       'upgrade-sword2 'upgrade-battle-axe2) )
 
 ;;
+;;	Upgrade missile 1 of the current race.
+;;
+(define (ai:upgrade-missile-1)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-arrow1 'upgrade-throwing-axe1) )
+
+;;
+;;	Upgrade missile 2 of the current race.
+;;
+(define (ai:upgrade-missile-2)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-arrow2 'upgrade-throwing-axe2) )
+
+;;
 ;;	Upgrade catapult 1 of the current race.
 ;;
 (define (ai:upgrade-catapult-1)
@@ -1637,3 +1651,92 @@
     (ai:attack-with-force 1)
 
     (ai:script ai:hum-05-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds only workers and tankers and oil platform.
+;;		Also if needed a farm.
+;;		Attacks with soldier, shooter and destroyer.
+;;
+(define ai:hum-06-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 1 (ai:cavalrie) 1 )
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 3 (ai:cavalrie) 2 )
+    (ai:sleep 14000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:soldier) 1 (ai:shooter) 3 (ai:cavalrie) 2 )
+    (ai:force 1 (ai:soldier) 0 (ai:shooter) 1 (ai:cavalrie) 1 )
+    (ai:sleep 11000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 3 (ai:cavalrie) 2 )
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 )
+    (ai:sleep 8000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 2 (ai:cavalrie) 2 )
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 2 (ai:cavalrie) 1 )
+    (ai:sleep 11000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:soldier) 1 (ai:shooter) 4 (ai:cavalrie) 1 )
+    (ai:force 1 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 2 )
+    (ai:sleep 9000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:script ai:hum-06-attack-endloop) ) )
+
+(define-ai 'hum-06 "*" "hum-06"
+  '(
+    ;;	Define the main AI script.
+    (ai:debug #t)
+    (ai:set  (ai:worker) 4)
+    (ai:wait (ai:worker))	;; start hangs if nothing available
+
+    (ai:force 0 (ai:soldier) 3 (ai:shooter) 3)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1)
+    (ai:sleep 4000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 3000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 4000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:need (ai:blacksmith))
+    (ai:research (ai:upgrade-missile-1))
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:soldier) 2 (ai:shooter) 2)
+    (ai:force 1 (ai:soldier) 2 (ai:shooter) 2)
+    (ai:sleep 9000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:research (ai:upgrade-weapon-1))
+
+    (ai:force 0 (ai:soldier) 1 (ai:shooter) 2)
+    (ai:force 1 (ai:soldier) 3 (ai:shooter) 2)
+    (ai:sleep 13000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:soldier) 1 (ai:shooter) 3 (ai:cavalrie) 1 )
+    (ai:force 1 (ai:soldier) 0 (ai:shooter) 1 (ai:cavalrie) 2 )
+    (ai:sleep 14000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:research (ai:upgrade-weapon-2))
+
+    (ai:script ai:hum-06-attack-endloop) ))
