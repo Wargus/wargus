@@ -1,9 +1,9 @@
-//       _________ __                 __                               
+//       _________ __                 __
 //      /   _____//  |_____________ _/  |______     ____  __ __  ______
 //      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 //      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ |
 //     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
-//             \/                  \/          \//_____/            \/ 
+//             \/                  \/          \//_____/            \/
 //  ______________________                           ______________________
 //			  T H E   W A R   B E G I N S
 //   Utility for Stratagus - A free fantasy real time strategy game engine
@@ -31,7 +31,7 @@
 //@{
 
 /*----------------------------------------------------------------------------
---	Includes
+--		Includes
 ----------------------------------------------------------------------------*/
 
 #include <stdio.h>
@@ -52,548 +52,548 @@ typedef unsigned long u_int32_t;
 #endif
 
 //----------------------------------------------------------------------------
-//	Config
+//		Config
 //----------------------------------------------------------------------------
 
 /**
-**	Destination directory of the graphics
+**		Destination directory of the graphics
 */
 char* Dir;
 
 /**
-**	Path to the tileset graphics. (default=$DIR/graphics/tilesets)
+**		Path to the tileset graphics. (default=$DIR/graphics/tilesets)
 */
-#define TILESET_PATH	"graphics/tilesets"
+#define TILESET_PATH		"graphics/tilesets"
 
 /**
-**	Path to the unit graphics. (default=$DIR/graphics)
+**		Path to the unit graphics. (default=$DIR/graphics)
 */
-#define UNIT_PATH	"graphics"
+#define UNIT_PATH		"graphics"
 
 /**
-**	Path the pud files. (default=$DIR)
+**		Path the pud files. (default=$DIR)
 */
-#define PUD_PATH	"."
+#define PUD_PATH		"."
 
 /**
-**	Path the font files. (default=$DIR/graphics/ui/fonts)
+**		Path the font files. (default=$DIR/graphics/ui/fonts)
 */
-#define FONT_PATH	"graphics/ui/fonts"
+#define FONT_PATH		"graphics/ui/fonts"
 
 /**
-**	Path the cursor files. (default=$DIR/graphic/ui/)
+**		Path the cursor files. (default=$DIR/graphic/ui/)
 */
-#define CURSOR_PATH	"graphics/ui"
+#define CURSOR_PATH		"graphics/ui"
 
 /**
-**	Path the graphic files. (default=$DIR/graphic)
+**		Path the graphic files. (default=$DIR/graphic)
 */
-#define GRAPHIC_PATH	"graphics"
+#define GRAPHIC_PATH		"graphics"
 
 /**
-**	Path the sound files. (default=$DIR/sounds)
+**		Path the sound files. (default=$DIR/sounds)
 */
-#define SOUND_PATH	"sounds"
+#define SOUND_PATH		"sounds"
 
 /**
-**	Path the sound files. (default=$DIR/music)
+**		Path the sound files. (default=$DIR/music)
 */
-#define MUSIC_PATH	"music"
+#define MUSIC_PATH		"music"
 
 /**
-**	Path the text files. (default=$DIR/texts)
+**		Path the text files. (default=$DIR/texts)
 */
-#define TEXT_PATH	"campaigns"
+#define TEXT_PATH		"campaigns"
 
 /**
-**	How much tiles are stored in a row.
+**		How much tiles are stored in a row.
 */
-#define TILE_PER_ROW	16
+#define TILE_PER_ROW		16
 
 //----------------------------------------------------------------------------
 
 /**
-**	Conversion control sturcture.
+**		Conversion control sturcture.
 */
 typedef struct _control_ {
-    int		Type;			/// Entry type
-    int		Version;		/// Only in this version
-    char*	File;			/// Save file
-    int		Arg1;			/// Extra argument 1
-    int		Arg2;			/// Extra argument 2
-    int		Arg3;			/// Extra argument 3
-    int		Arg4;			/// Extra argument 4
+	int				Type;						/// Entry type
+	int				Version;				/// Only in this version
+	char*		File;						/// Save file
+	int				Arg1;						/// Extra argument 1
+	int				Arg2;						/// Extra argument 2
+	int				Arg3;						/// Extra argument 3
+	int				Arg4;						/// Extra argument 4
 } Control;
 
 /**
-**	Palette N27, for credits cursor
+**		Palette N27, for credits cursor
 */
 unsigned char* Pal27;
 
 /**
-**	Original archive buffer.
+**		Original archive buffer.
 */
 unsigned char* ArchiveBuffer;
 
 /**
-**	Offsets for each entry into original archive buffer.
+**		Offsets for each entry into original archive buffer.
 */
 unsigned char** ArchiveOffsets;
 
 /**
-**	Possible entry types of archive file.
+**		Possible entry types of archive file.
 */
 enum _archive_type_ {
-    S,			// Setup
-    F,			// File				(name)
-    T,			// Tileset			(name,pal,mega,mini,map)
-    R,			// RGB -> gimp			(name,rgb)
-    G,			// Graphics			(name,pal,gfx)
-    U,			// Uncompressed Graphics	(name,pal,gfu)
-    P,			// Pud				(name,idx)
-    N,			// Font				(name,idx)
-    I,			// Image			(name,pal,img)
-    W,			// Wav				(name,wav)
-    X,			// Text				(name,text,ofs)
-    C,			// Cursor			(name,cursor)
-    V,			// Video			(name)
+	S,						// Setup
+	F,						// File								(name)
+	T,						// Tileset						(name,pal,mega,mini,map)
+	R,						// RGB -> gimp						(name,rgb)
+	G,						// Graphics						(name,pal,gfx)
+	U,						// Uncompressed Graphics		(name,pal,gfu)
+	P,						// Pud								(name,idx)
+	N,						// Font								(name,idx)
+	I,						// Image						(name,pal,img)
+	W,						// Wav								(name,wav)
+	X,						// Text								(name,text,ofs)
+	C,						// Cursor						(name,cursor)
+	V,						// Video						(name)
 #ifndef NO_IMPORT_CAMPAIGNS
-    L,			// Campaign Levels		
+	L,						// Campaign Levels
 #endif
 };
 
 char* ArchiveDir;
 
-#define CD_MAC		(1)
-#define CD_EXPANSION	(1 << 1)
-#define CD_US		(1 << 4)
-#define CD_SPANISH	(1 << 5)
-#define CD_GERMAN	(1 << 6)
-#define CD_UK		(1 << 7)	// also Australian
+#define CD_MAC				(1)
+#define CD_EXPANSION		(1 << 1)
+#define CD_US				(1 << 4)
+#define CD_SPANISH		(1 << 5)
+#define CD_GERMAN		(1 << 6)
+#define CD_UK				(1 << 7)		// also Australian
 /**
-**	What CD Type is it?
+**		What CD Type is it?
 */
 int CDType;
 
 /**
-**	What, where, how to extract.
+**		What, where, how to extract.
 **
-**	FIXME: version alpha, demo, 1.00, 1.31, 1.40, 1.50 dependend!
+**		FIXME: version alpha, demo, 1.00, 1.31, 1.40, 1.50 dependend!
 */
 Control Todo[] = {
-#define __	,0,0,0
-#define _2	,0,0,
+#define __		,0,0,0
+#define _2		,0,0,
 
 ///////////////////////////////////////////////////////////////////////////////
-//	TEXT	(must be done for all others!)
+//		TEXT		(must be done for all others!)
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifdef USE_BEOS
-{F,0,"REZDAT.WAR",				3000 __},
+{F,0,"REZDAT.WAR",								3000 __},
 #else
-{F,0,"rezdat.war",				3000 __},
+{F,0,"rezdat.war",								3000 __},
 #endif
-{I,0,"ui/Credits_background",			27, 28 _2},
+{I,0,"ui/Credits_background",						27, 28 _2},
 
 #ifdef USE_BEOS
-{F,0,"STRDAT.WAR",				4000 __},
+{F,0,"STRDAT.WAR",								4000 __},
 #else
-{F,0,"strdat.war",				4000 __},
+{F,0,"strdat.war",								4000 __},
 #endif
-{S,0,"unit_names",						  1	__},
+{S,0,"unit_names",												  1		__},
 #ifndef NO_IMPORT_CAMPAIGNS
-{L,0,"objectives",						 54 ,236	_2},
+{L,0,"objectives",												 54 ,236		_2},
 #else
-{X,0,"objectives",                                               54     __},
+{X,0,"objectives",											   54	 __},
 #endif
-{X,0,"human/dialog",						 55	__},
-{X,0,"orc/dialog",						 56	__},
-{X,0,"credits",							 58 ,4	_2},
+{X,0,"human/dialog",												 55		__},
+{X,0,"orc/dialog",												 56		__},
+{X,0,"credits",														 58 ,4		_2},
 
-{X,0,"human/level01h",						 65 ,4	_2},
-{X,0,"orc/level01o",						 66 ,4	_2},
-{X,0,"human/level02h",						 67 ,4	_2},
-{X,0,"orc/level02o",						 68 ,4	_2},
-{X,0,"human/level03h",						 69 ,4	_2},
-{X,0,"orc/level03o",						 70 ,4	_2},
-{X,0,"human/level04h",						 71 ,4	_2},
-{X,0,"orc/level04o",						 72 ,4	_2},
-{X,0,"human/level05h",						 73 ,4	_2},
-{X,0,"orc/level05o",						 74 ,4	_2},
-{X,0,"human/level06h",						 75 ,4	_2},
-{X,0,"orc/level06o",						 76 ,4	_2},
-{X,0,"human/level07h",						 77 ,4	_2},
-{X,0,"orc/level07o",						 78 ,4	_2},
-{X,0,"human/level08h",						 79 ,4	_2},
-{X,0,"orc/level08o",						 80 ,4	_2},
-{X,0,"human/level09h",						 81 ,4	_2},
-{X,0,"orc/level09o",						 82 ,4	_2},
-{X,0,"human/level10h",						 83 ,4	_2},
-{X,0,"orc/level10o",						 84 ,4	_2},
-{X,0,"human/level11h",						 85 ,4	_2},
-{X,0,"orc/level11o",						 86 ,4	_2},
-{X,0,"human/level12h",						 87 ,4	_2},
-{X,0,"orc/level12o",						 88 ,4	_2},
-{X,0,"human/level13h",						 89 ,4	_2},
-{X,0,"orc/level13o",						 90 ,4	_2},
-{X,0,"human/level14h",						 91 ,4	_2},
-{X,0,"orc/level14o",						 92 ,4	_2},
-{X,2,"human-exp/levelx01h",						 99 ,4	_2},
-{X,2,"orc-exp/levelx01o",						100 ,4	_2},
-{X,2,"human-exp/levelx02h",						101 ,4	_2},
-{X,2,"orc-exp/levelx02o",						102 ,4	_2},
-{X,2,"human-exp/levelx03h",						103 ,4	_2},
-{X,2,"orc-exp/levelx03o",						104 ,4	_2},
-{X,2,"human-exp/levelx04h",						105 ,4	_2},
-{X,2,"orc-exp/levelx04o",						106 ,4	_2},
-{X,2,"human-exp/levelx05h",						107 ,4	_2},
-{X,2,"orc-exp/levelx05o",						108 ,4	_2},
-{X,2,"human-exp/levelx06h",						109 ,4	_2},
-{X,2,"orc-exp/levelx06o",						110 ,4	_2},
-{X,2,"human-exp/levelx07h",						111 ,4	_2},
-{X,2,"orc-exp/levelx07o",						112 ,4	_2},
-{X,2,"human-exp/levelx08h",						113 ,4	_2},
-{X,2,"orc-exp/levelx08o",						114 ,4	_2},
-{X,2,"human-exp/levelx09h",						115 ,4	_2},
-{X,2,"orc-exp/levelx09o",						116 ,4	_2},
-{X,2,"human-exp/levelx10h",						117 ,4	_2},
-{X,2,"orc-exp/levelx10o",						118 ,4	_2},
-{X,2,"human-exp/levelx11h",						119 ,4	_2},
-{X,2,"orc-exp/levelx11o",						120 ,4	_2},
-{X,2,"human-exp/levelx12h",						121 ,4	_2},
-{X,2,"orc-exp/levelx12o",						122 ,4	_2},
-{X,2,"credits2",						123 ,4	_2},
-{X,2,"credits-ext.txt",						124	__},
+{X,0,"human/level01h",												 65 ,4		_2},
+{X,0,"orc/level01o",												 66 ,4		_2},
+{X,0,"human/level02h",												 67 ,4		_2},
+{X,0,"orc/level02o",												 68 ,4		_2},
+{X,0,"human/level03h",												 69 ,4		_2},
+{X,0,"orc/level03o",												 70 ,4		_2},
+{X,0,"human/level04h",												 71 ,4		_2},
+{X,0,"orc/level04o",												 72 ,4		_2},
+{X,0,"human/level05h",												 73 ,4		_2},
+{X,0,"orc/level05o",												 74 ,4		_2},
+{X,0,"human/level06h",												 75 ,4		_2},
+{X,0,"orc/level06o",												 76 ,4		_2},
+{X,0,"human/level07h",												 77 ,4		_2},
+{X,0,"orc/level07o",												 78 ,4		_2},
+{X,0,"human/level08h",												 79 ,4		_2},
+{X,0,"orc/level08o",												 80 ,4		_2},
+{X,0,"human/level09h",												 81 ,4		_2},
+{X,0,"orc/level09o",												 82 ,4		_2},
+{X,0,"human/level10h",												 83 ,4		_2},
+{X,0,"orc/level10o",												 84 ,4		_2},
+{X,0,"human/level11h",												 85 ,4		_2},
+{X,0,"orc/level11o",												 86 ,4		_2},
+{X,0,"human/level12h",												 87 ,4		_2},
+{X,0,"orc/level12o",												 88 ,4		_2},
+{X,0,"human/level13h",												 89 ,4		_2},
+{X,0,"orc/level13o",												 90 ,4		_2},
+{X,0,"human/level14h",												 91 ,4		_2},
+{X,0,"orc/level14o",												 92 ,4		_2},
+{X,2,"human-exp/levelx01h",												 99 ,4		_2},
+{X,2,"orc-exp/levelx01o",												100 ,4		_2},
+{X,2,"human-exp/levelx02h",												101 ,4		_2},
+{X,2,"orc-exp/levelx02o",												102 ,4		_2},
+{X,2,"human-exp/levelx03h",												103 ,4		_2},
+{X,2,"orc-exp/levelx03o",												104 ,4		_2},
+{X,2,"human-exp/levelx04h",												105 ,4		_2},
+{X,2,"orc-exp/levelx04o",												106 ,4		_2},
+{X,2,"human-exp/levelx05h",												107 ,4		_2},
+{X,2,"orc-exp/levelx05o",												108 ,4		_2},
+{X,2,"human-exp/levelx06h",												109 ,4		_2},
+{X,2,"orc-exp/levelx06o",												110 ,4		_2},
+{X,2,"human-exp/levelx07h",												111 ,4		_2},
+{X,2,"orc-exp/levelx07o",												112 ,4		_2},
+{X,2,"human-exp/levelx08h",												113 ,4		_2},
+{X,2,"orc-exp/levelx08o",												114 ,4		_2},
+{X,2,"human-exp/levelx09h",												115 ,4		_2},
+{X,2,"orc-exp/levelx09o",												116 ,4		_2},
+{X,2,"human-exp/levelx10h",												117 ,4		_2},
+{X,2,"orc-exp/levelx10o",												118 ,4		_2},
+{X,2,"human-exp/levelx11h",												119 ,4		_2},
+{X,2,"orc-exp/levelx11o",												120 ,4		_2},
+{X,2,"human-exp/levelx12h",												121 ,4		_2},
+{X,2,"orc-exp/levelx12o",												122 ,4		_2},
+{X,2,"credits2",												123 ,4		_2},
+{X,2,"credits-ext.txt",												124		__},
 
 ///////////////////////////////////////////////////////////////////////////////
-//	MOST THINGS
+//		MOST THINGS
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifdef USE_BEOS
-{F,0,"MAINDAT.WAR",				1000 __},
+{F,0,"MAINDAT.WAR",								1000 __},
 #else
-{F,0,"maindat.war",				1000 __},
+{F,0,"maindat.war",								1000 __},
 #endif
 
-{R,0,"summer/summer",						 2	__},
-{T,0,"summer/terrain/summer",			 2,	 3,	 4,	 5 },
-{R,0,"wasteland/wasteland",					10	__},
-{T,0,"wasteland/terrain/wasteland",		10,	11,	12,	13 },
-{R,3,"swamp/swamp",					10	__},
-{T,3,"swamp/terrain/swamp",			10,	11,	12,	13 },
-{R,0,"winter/winter",						18	__},
-{T,0,"winter/terrain/winter",			18,	19,	20,	21 },
+{R,0,"summer/summer",												 2		__},
+{T,0,"summer/terrain/summer",						 2,		 3,		 4,		 5 },
+{R,0,"wasteland/wasteland",										10		__},
+{T,0,"wasteland/terrain/wasteland",				10,		11,		12,		13 },
+{R,3,"swamp/swamp",										10		__},
+{T,3,"swamp/terrain/swamp",						10,		11,		12,		13 },
+{R,0,"winter/winter",												18		__},
+{T,0,"winter/terrain/winter",						18,		19,		20,		21 },
 
-{G,0,"human/units/%16",						 2,  33	_2},
-{G,0,"orc/units/%17",						 2,  34	_2},
-{G,0,"human/units/%44",						 2,  35	_2},
-{G,0,"orc/units/%45",						 2,  36	_2},
-{G,0,"orc/units/%47",						 2,  37	_2},
-{G,0,"human/units/%42",						 2,  38	_2},
-{G,0,"human/units/%-30",					 2,  39	_2},
-{G,0,"orc/units/%-31",						 2,  40	_2},
-{G,0,"human/units/%34",						 2,  41	_2},
-{G,0,"orc/units/%35",						 2,  42	_2},
-{G,0,"human/units/%40",						 2,  43	_2},
-{G,0,"orc/units/%41",						 2,  44	_2},
-{G,0,"human/units/%2",						 2,  45	_2},
-{G,0,"orc/units/%3",						 2,  46	_2},
-{G,0,"human/units/%4",						 2,  47	_2},
-{G,0,"orc/units/%5",						 2,  48	_2},
-{G,0,"human/units/%6",						 2,  49	_2},
-{G,0,"orc/units/%7",						 2,  50	_2},
-{G,0,"human/units/%8",						 2,  51	_2},
-{G,0,"orc/units/%9",						 2,  52	_2},
-{G,0,"human/units/%10",						 2,  53	_2},
-{G,0,"orc/units/%11",						 2,  54	_2},
-{G,0,"human/units/%12",						 2,  55	_2},
-{G,0,"orc/units/%13",						 2,  58	_2},
-{G,0,"human/units/%-28_empty",					 2,  59	_2},
-{G,0,"orc/units/%-29_empty",					 2,  60	_2},
-{G,0,"human/units/%32",						 2,  61	_2},
-{G,0,"orc/units/%33",						 2,  62	_2},
-{G,0,"orc/units/%43",						 2,  63	_2},
-{G,0,"tilesets/summer/neutral/units/%59",			 2,  64	_2},
-{G,0,"tilesets/wasteland/neutral/units/%59",			10,  65	_2},
-{G,3,"tilesets/swamp/neutral/units/%59",			10,  65	_2},
-{G,0,"tilesets/winter/neutral/units/%59",			18,  66	_2},
-{G,0,"neutral/units/%57",					 2,  69	_2},
-{G,0,"neutral/units/%58",					 2,  70	_2},
+{G,0,"human/units/%16",												 2,  33		_2},
+{G,0,"orc/units/%17",												 2,  34		_2},
+{G,0,"human/units/%44",												 2,  35		_2},
+{G,0,"orc/units/%45",												 2,  36		_2},
+{G,0,"orc/units/%47",												 2,  37		_2},
+{G,0,"human/units/%42",												 2,  38		_2},
+{G,0,"human/units/%-30",										 2,  39		_2},
+{G,0,"orc/units/%-31",												 2,  40		_2},
+{G,0,"human/units/%34",												 2,  41		_2},
+{G,0,"orc/units/%35",												 2,  42		_2},
+{G,0,"human/units/%40",												 2,  43		_2},
+{G,0,"orc/units/%41",												 2,  44		_2},
+{G,0,"human/units/%2",												 2,  45		_2},
+{G,0,"orc/units/%3",												 2,  46		_2},
+{G,0,"human/units/%4",												 2,  47		_2},
+{G,0,"orc/units/%5",												 2,  48		_2},
+{G,0,"human/units/%6",												 2,  49		_2},
+{G,0,"orc/units/%7",												 2,  50		_2},
+{G,0,"human/units/%8",												 2,  51		_2},
+{G,0,"orc/units/%9",												 2,  52		_2},
+{G,0,"human/units/%10",												 2,  53		_2},
+{G,0,"orc/units/%11",												 2,  54		_2},
+{G,0,"human/units/%12",												 2,  55		_2},
+{G,0,"orc/units/%13",												 2,  58		_2},
+{G,0,"human/units/%-28_empty",										 2,  59		_2},
+{G,0,"orc/units/%-29_empty",										 2,  60		_2},
+{G,0,"human/units/%32",												 2,  61		_2},
+{G,0,"orc/units/%33",												 2,  62		_2},
+{G,0,"orc/units/%43",												 2,  63		_2},
+{G,0,"tilesets/summer/neutral/units/%59",						 2,  64		_2},
+{G,0,"tilesets/wasteland/neutral/units/%59",						10,  65		_2},
+{G,3,"tilesets/swamp/neutral/units/%59",						10,  65		_2},
+{G,0,"tilesets/winter/neutral/units/%59",						18,  66		_2},
+{G,0,"neutral/units/%57",										 2,  69		_2},
+{G,0,"neutral/units/%58",										 2,  70		_2},
 // 71-79 unknown
-{G,0,"tilesets/summer/human/buildings/%-98",			 2,  80	_2},
-{G,0,"tilesets/summer/orc/buildings/%-99",			 2,  81	_2},
-{G,0,"tilesets/summer/human/buildings/%-100",			 2,  82	_2},
-{G,0,"tilesets/summer/orc/buildings/%-101",			 2,  83	_2},
-{G,0,"tilesets/summer/human/buildings/%82",			 2,  84	_2},
-{G,0,"tilesets/summer/orc/buildings/%83",			 2,  85	_2},
-{G,0,"tilesets/summer/human/buildings/%90",			 2,  86	_2},
-{G,0,"tilesets/summer/orc/buildings/%91",			 2,  87	_2},
-{G,0,"tilesets/summer/human/buildings/%72",			 2,  88	_2},
-{G,0,"tilesets/summer/orc/buildings/%73",			 2,  89	_2},
-{G,0,"tilesets/summer/human/buildings/%70",			 2,  90	_2},
-{G,0,"tilesets/summer/orc/buildings/%71",			 2,  91	_2},
-{G,0,"tilesets/summer/human/buildings/%60",			 2,  92	_2},
-{G,0,"tilesets/summer/orc/buildings/%61",			 2,  93	_2},
-{G,0,"tilesets/summer/human/buildings/%-62",			 2,  94	_2},
-{G,0,"tilesets/summer/orc/buildings/%-63",			 2,  95	_2},
-{G,0,"tilesets/summer/human/buildings/%64",			 2,  96	_2},
-{G,0,"tilesets/summer/orc/buildings/%65",			 2,  97	_2},
-{G,0,"tilesets/summer/human/buildings/%66",			 2,  98	_2},
-{G,0,"tilesets/summer/orc/buildings/%67",			 2,  99	_2},
-{G,0,"tilesets/summer/human/buildings/%76",			 2, 100	_2},
-{G,0,"tilesets/summer/orc/buildings/%77",			 2, 101	_2},
-{G,0,"tilesets/summer/human/buildings/%78",			 2, 102	_2},
-{G,0,"tilesets/summer/orc/buildings/%79",			 2, 103	_2},
-{G,0,"tilesets/summer/human/buildings/%68",			 2, 104	_2},
-{G,0,"tilesets/summer/orc/buildings/%69",			 2, 105	_2},
-{G,0,"tilesets/summer/human/buildings/%-84",			 2, 106	_2},
-{G,0,"tilesets/summer/orc/buildings/%-85",			 2, 107	_2},
-{G,0,"tilesets/summer/human/buildings/%-74",			 2, 108	_2},
-{G,0,"tilesets/summer/orc/buildings/%-75",			 2, 109	_2},
-{G,0,"tilesets/summer/human/buildings/%-80",			 2, 110	_2},
-{G,0,"tilesets/summer/orc/buildings/%-81",			 2, 111	_2},
-{G,0,"tilesets/summer/human/buildings/%-86",			 2, 112	_2},
-{G,0,"tilesets/summer/orc/buildings/%-87",			 2, 113	_2},
-{G,0,"tilesets/summer/human/buildings/%-88",			 2, 114	_2},
-{G,0,"tilesets/summer/orc/buildings/%-89",			 2, 115	_2},
-{G,0,"tilesets/summer/human/buildings/%92",			 2, 116	_2},
-{G,0,"tilesets/summer/orc/buildings/%93",			 2, 117	_2},
-{G,0,"tilesets/summer/neutral/buildings/%95",			 2, 118	_2},
-{G,0,"tilesets/summer/neutral/buildings/%94",			 2, 119	_2},
-{G,3,"tilesets/swamp/human/buildings/%-98",			 2,  80	_2},
-{G,3,"tilesets/swamp/orc/buildings/%-99",			 2,  81	_2},
-{G,3,"tilesets/swamp/human/buildings/%-100",			 2,  82	_2},
-{G,3,"tilesets/swamp/orc/buildings/%-101",			 2,  83	_2},
-{G,3,"tilesets/swamp/human/buildings/%82",			 2,  84	_2},
-{G,3,"tilesets/swamp/orc/buildings/%83",			 2,  85	_2},
-{G,3,"tilesets/swamp/human/buildings/%90",			 2,  86	_2},
-{G,3,"tilesets/swamp/orc/buildings/%91",			 2,  87	_2},
-{G,3,"tilesets/swamp/human/buildings/%72",			 2,  88	_2},
-{G,3,"tilesets/swamp/orc/buildings/%73",			 2,  89	_2},
-{G,3,"tilesets/swamp/human/buildings/%70",			 2,  90	_2},
-{G,3,"tilesets/swamp/orc/buildings/%71",			 2,  91	_2},
-{G,3,"tilesets/swamp/human/buildings/%60",			 2,  92	_2},
-{G,3,"tilesets/swamp/orc/buildings/%61",			 2,  93	_2},
-{G,3,"tilesets/swamp/human/buildings/%-62",			 2,  94	_2},
-{G,3,"tilesets/swamp/orc/buildings/%-63",			 2,  95	_2},
-{G,3,"tilesets/swamp/human/buildings/%64",			 2,  96	_2},
-{G,3,"tilesets/swamp/orc/buildings/%65",			 2,  97	_2},
-{G,3,"tilesets/swamp/human/buildings/%66",			 2,  98	_2},
-{G,3,"tilesets/swamp/orc/buildings/%67",			 2,  99	_2},
-{G,3,"tilesets/swamp/human/buildings/%76",			 2, 100	_2},
-{G,3,"tilesets/swamp/orc/buildings/%77",			 2, 101	_2},
-{G,3,"tilesets/swamp/human/buildings/%78",			 2, 102	_2},
-{G,3,"tilesets/swamp/orc/buildings/%79",			 2, 103	_2},
-{G,3,"tilesets/swamp/human/buildings/%68",			 2, 104	_2},
-{G,3,"tilesets/swamp/orc/buildings/%69",			 2, 105	_2},
-{G,3,"tilesets/swamp/human/buildings/%-84",			 2, 106	_2},
-{G,3,"tilesets/swamp/orc/buildings/%-85",			 2, 107	_2},
-{G,3,"tilesets/swamp/human/buildings/%-74",			 2, 108	_2},
-{G,3,"tilesets/swamp/orc/buildings/%-75",			 2, 109	_2},
-{G,3,"tilesets/swamp/human/buildings/%-80",			 2, 110	_2},
-{G,3,"tilesets/swamp/orc/buildings/%-81",			 2, 111	_2},
-{G,3,"tilesets/swamp/human/buildings/%-86",			 2, 112	_2},
-{G,3,"tilesets/swamp/orc/buildings/%-87",			 2, 113	_2},
-{G,3,"tilesets/swamp/human/buildings/%-88",			 2, 114	_2},
-{G,3,"tilesets/swamp/orc/buildings/%-89",			 2, 115	_2},
-{G,3,"tilesets/swamp/human/buildings/%92",			 2, 116	_2},
-{G,3,"tilesets/swamp/orc/buildings/%93",			 2, 117	_2},
-{G,0,"neutral/units/corpses",					 2, 120	_2},
-{G,0,"tilesets/summer/neutral/buildings/destroyed_site",	 2, 121	_2},
-    // Hardcoded support for worker with resource repairing
-{G,0,"human/units/%4_with_wood",				 2, 122, 47, 25},
-{G,0,"orc/units/%5_with_wood",					 2, 123, 48, 25},
-{G,0,"human/units/%4_with_gold",				 2, 124, 47, 25},
-{G,0,"orc/units/%5_with_gold",					 2, 125, 48, 25},
-{G,0,"human/units/%-28_full",					 2, 126	_2},
-{G,0,"orc/units/%-29_full",					 2, 127	_2},
-{G,0,"tilesets/winter/human/buildings/%90",			18, 128	_2},
-{G,0,"tilesets/winter/orc/buildings/%91",			18, 129	_2},
-{G,0,"tilesets/winter/human/buildings/%72",			18, 130	_2},
-{G,0,"tilesets/winter/orc/buildings/%73",			18, 131	_2},
-{G,0,"tilesets/winter/human/buildings/%70",			18, 132	_2},
-{G,0,"tilesets/winter/orc/buildings/%71",			18, 133	_2},
-{G,0,"tilesets/winter/human/buildings/%60",			18, 134	_2},
-{G,0,"tilesets/winter/orc/buildings/%61",			18, 135	_2},
-{G,0,"tilesets/winter/human/buildings/%-62",			18, 136	_2},
-{G,0,"tilesets/winter/orc/buildings/%-63",			18, 137	_2},
-{G,0,"tilesets/winter/human/buildings/%64",			18, 138	_2},
-{G,0,"tilesets/winter/orc/buildings/%65",			18, 139	_2},
-{G,0,"tilesets/winter/human/buildings/%66",			18, 140	_2},
-{G,0,"tilesets/winter/orc/buildings/%67",			18, 141	_2},
-{G,0,"tilesets/winter/human/buildings/%76",			18, 142	_2},
-{G,0,"tilesets/winter/orc/buildings/%77",			18, 143	_2},
-{G,0,"tilesets/winter/human/buildings/%78",			18, 144	_2},
-{G,0,"tilesets/winter/orc/buildings/%79",			18, 145	_2},
-{G,0,"tilesets/winter/human/buildings/%68",			18, 146	_2},
-{G,0,"tilesets/winter/orc/buildings/%69",			18, 147	_2},
-{G,0,"tilesets/winter/human/buildings/%-84",			18, 148	_2},
-{G,0,"tilesets/winter/orc/buildings/%-85",			18, 149	_2},
-{G,0,"tilesets/winter/human/buildings/%-74",			18, 150	_2},
-{G,0,"tilesets/winter/orc/buildings/%-75",			18, 151	_2},
-{G,0,"tilesets/winter/human/buildings/%-80",			18, 152	_2},
-{G,0,"tilesets/winter/orc/buildings/%-81",			18, 153	_2},
-{G,0,"tilesets/winter/human/buildings/%-86",			18, 154	_2},
-{G,0,"tilesets/winter/orc/buildings/%-87",			18, 155	_2},
-{G,0,"tilesets/winter/human/buildings/%-88",			18, 156	_2},
-{G,0,"tilesets/winter/orc/buildings/%-89",			18, 157	_2},
-{G,0,"tilesets/winter/human/buildings/%92",			18, 158	_2},
-{G,0,"tilesets/winter/orc/buildings/%93",			18, 159	_2},
-{G,0,"tilesets/winter/human/buildings/%82",			18, 160	_2},
-{G,0,"tilesets/winter/orc/buildings/%83",			18, 161	_2},
-{G,0,"tilesets/winter/neutral/buildings/%94",			18, 162	_2},
-{G,0,"tilesets/winter/neutral/buildings/destroyed_site",	18, 163	_2},
-{G,0,"human/x_startpoint",					 2, 164	_2},
-{G,0,"orc/o_startpoint",					 2, 165	_2},
-{G,0,"neutral/buildings/%102",					 2, 166	_2},
-{G,0,"tilesets/summer/neutral/buildings/%103",			 2, 167	_2},
-{G,0,"tilesets/summer/neutral/buildings/%105",			 2, 168	_2},
-{G,0,"tilesets/winter/human/buildings/%-98",			18, 169	_2},
-{G,0,"tilesets/winter/orc/buildings/%-99",			18, 170	_2},
-{G,0,"tilesets/winter/human/buildings/%-100",			18, 171	_2},
-{G,0,"tilesets/winter/orc/buildings/%-101",			18, 172	_2},
-{G,0,"tilesets/wasteland/human/buildings/%60",			10, 173	_2},
-{G,0,"tilesets/wasteland/orc/buildings/%61",			10, 174	_2},
-{G,0,"tilesets/wasteland/human/buildings/%78",			10, 175	_2},
-{G,0,"tilesets/wasteland/orc/buildings/%79",			10, 176	_2},
-{G,0,"tilesets/wasteland/human/buildings/%-88",			10, 177	_2},
-{G,0,"tilesets/wasteland/orc/buildings/%-89",			10, 178	_2},
-{G,0,"tilesets/wasteland/neutral/buildings/%94",		10, 179	_2},
-{G,0,"tilesets/wasteland/neutral/buildings/%95",		10, 180	_2},
-{G,3,"tilesets/swamp/human/buildings/%60",			10, 173	_2},
-{G,3,"tilesets/swamp/orc/buildings/%61",			10, 174	_2},
-{G,3,"tilesets/swamp/human/buildings/%78",			10, 175	_2},
-{G,3,"tilesets/swamp/orc/buildings/%79",			10, 176	_2},
-{G,3,"tilesets/swamp/human/buildings/%-88",			10, 177	_2},
-{G,3,"tilesets/swamp/orc/buildings/%-89",			10, 178	_2},
-{G,3,"tilesets/swamp/neutral/buildings/%94",			10, 179	_2},
-{G,3,"tilesets/swamp/neutral/buildings/%95",			10, 180	_2},
-{G,0,"neutral/buildings/%104",					 2, 181	_2},
-{G,0,"tilesets/wasteland/human/units/%40",			10, 182	_2},
-{G,0,"tilesets/wasteland/orc/units/%41",			10, 183	_2},
-{G,3,"tilesets/swamp/human/units/%40",				10, 182	_2},
-{G,3,"tilesets/swamp/orc/units/%41",				10, 183	_2},
-{G,0,"tilesets/winter/neutral/buildings/%103",			18, 184	_2},
-{G,0,"tilesets/wasteland/neutral/buildings/%103",		10, 185	_2},
-{G,3,"tilesets/swamp/neutral/buildings/%103",			10, 185	_2},
-{G,3,"tilesets/swamp/neutral/buildings/%104",			 2, 181	_2},
-{G,0,"tilesets/winter/neutral/buildings/%104",			18, 186	_2},
-{U,0,"ui/gold,wood,oil,mana",					 2, 187	_2},
-{G,0,"tilesets/wasteland/neutral/buildings/small_destroyed_site",10,188	_2},
-{G,3,"tilesets/swamp/neutral/buildings/small_destroyed_site",	10, 188	_2},
-{G,0,"tilesets/summer/neutral/buildings/small_destroyed_site",	 2, 189	_2},
-{G,0,"tilesets/winter/neutral/buildings/small_destroyed_site",	18, 190	_2},
-{G,0,"tilesets/wasteland/neutral/buildings/destroyed_site",	10, 191	_2},
-{G,3,"tilesets/swamp/neutral/buildings/destroyed_site",		10, 191	_2},
+{G,0,"tilesets/summer/human/buildings/%-98",						 2,  80		_2},
+{G,0,"tilesets/summer/orc/buildings/%-99",						 2,  81		_2},
+{G,0,"tilesets/summer/human/buildings/%-100",						 2,  82		_2},
+{G,0,"tilesets/summer/orc/buildings/%-101",						 2,  83		_2},
+{G,0,"tilesets/summer/human/buildings/%82",						 2,  84		_2},
+{G,0,"tilesets/summer/orc/buildings/%83",						 2,  85		_2},
+{G,0,"tilesets/summer/human/buildings/%90",						 2,  86		_2},
+{G,0,"tilesets/summer/orc/buildings/%91",						 2,  87		_2},
+{G,0,"tilesets/summer/human/buildings/%72",						 2,  88		_2},
+{G,0,"tilesets/summer/orc/buildings/%73",						 2,  89		_2},
+{G,0,"tilesets/summer/human/buildings/%70",						 2,  90		_2},
+{G,0,"tilesets/summer/orc/buildings/%71",						 2,  91		_2},
+{G,0,"tilesets/summer/human/buildings/%60",						 2,  92		_2},
+{G,0,"tilesets/summer/orc/buildings/%61",						 2,  93		_2},
+{G,0,"tilesets/summer/human/buildings/%-62",						 2,  94		_2},
+{G,0,"tilesets/summer/orc/buildings/%-63",						 2,  95		_2},
+{G,0,"tilesets/summer/human/buildings/%64",						 2,  96		_2},
+{G,0,"tilesets/summer/orc/buildings/%65",						 2,  97		_2},
+{G,0,"tilesets/summer/human/buildings/%66",						 2,  98		_2},
+{G,0,"tilesets/summer/orc/buildings/%67",						 2,  99		_2},
+{G,0,"tilesets/summer/human/buildings/%76",						 2, 100		_2},
+{G,0,"tilesets/summer/orc/buildings/%77",						 2, 101		_2},
+{G,0,"tilesets/summer/human/buildings/%78",						 2, 102		_2},
+{G,0,"tilesets/summer/orc/buildings/%79",						 2, 103		_2},
+{G,0,"tilesets/summer/human/buildings/%68",						 2, 104		_2},
+{G,0,"tilesets/summer/orc/buildings/%69",						 2, 105		_2},
+{G,0,"tilesets/summer/human/buildings/%-84",						 2, 106		_2},
+{G,0,"tilesets/summer/orc/buildings/%-85",						 2, 107		_2},
+{G,0,"tilesets/summer/human/buildings/%-74",						 2, 108		_2},
+{G,0,"tilesets/summer/orc/buildings/%-75",						 2, 109		_2},
+{G,0,"tilesets/summer/human/buildings/%-80",						 2, 110		_2},
+{G,0,"tilesets/summer/orc/buildings/%-81",						 2, 111		_2},
+{G,0,"tilesets/summer/human/buildings/%-86",						 2, 112		_2},
+{G,0,"tilesets/summer/orc/buildings/%-87",						 2, 113		_2},
+{G,0,"tilesets/summer/human/buildings/%-88",						 2, 114		_2},
+{G,0,"tilesets/summer/orc/buildings/%-89",						 2, 115		_2},
+{G,0,"tilesets/summer/human/buildings/%92",						 2, 116		_2},
+{G,0,"tilesets/summer/orc/buildings/%93",						 2, 117		_2},
+{G,0,"tilesets/summer/neutral/buildings/%95",						 2, 118		_2},
+{G,0,"tilesets/summer/neutral/buildings/%94",						 2, 119		_2},
+{G,3,"tilesets/swamp/human/buildings/%-98",						 2,  80		_2},
+{G,3,"tilesets/swamp/orc/buildings/%-99",						 2,  81		_2},
+{G,3,"tilesets/swamp/human/buildings/%-100",						 2,  82		_2},
+{G,3,"tilesets/swamp/orc/buildings/%-101",						 2,  83		_2},
+{G,3,"tilesets/swamp/human/buildings/%82",						 2,  84		_2},
+{G,3,"tilesets/swamp/orc/buildings/%83",						 2,  85		_2},
+{G,3,"tilesets/swamp/human/buildings/%90",						 2,  86		_2},
+{G,3,"tilesets/swamp/orc/buildings/%91",						 2,  87		_2},
+{G,3,"tilesets/swamp/human/buildings/%72",						 2,  88		_2},
+{G,3,"tilesets/swamp/orc/buildings/%73",						 2,  89		_2},
+{G,3,"tilesets/swamp/human/buildings/%70",						 2,  90		_2},
+{G,3,"tilesets/swamp/orc/buildings/%71",						 2,  91		_2},
+{G,3,"tilesets/swamp/human/buildings/%60",						 2,  92		_2},
+{G,3,"tilesets/swamp/orc/buildings/%61",						 2,  93		_2},
+{G,3,"tilesets/swamp/human/buildings/%-62",						 2,  94		_2},
+{G,3,"tilesets/swamp/orc/buildings/%-63",						 2,  95		_2},
+{G,3,"tilesets/swamp/human/buildings/%64",						 2,  96		_2},
+{G,3,"tilesets/swamp/orc/buildings/%65",						 2,  97		_2},
+{G,3,"tilesets/swamp/human/buildings/%66",						 2,  98		_2},
+{G,3,"tilesets/swamp/orc/buildings/%67",						 2,  99		_2},
+{G,3,"tilesets/swamp/human/buildings/%76",						 2, 100		_2},
+{G,3,"tilesets/swamp/orc/buildings/%77",						 2, 101		_2},
+{G,3,"tilesets/swamp/human/buildings/%78",						 2, 102		_2},
+{G,3,"tilesets/swamp/orc/buildings/%79",						 2, 103		_2},
+{G,3,"tilesets/swamp/human/buildings/%68",						 2, 104		_2},
+{G,3,"tilesets/swamp/orc/buildings/%69",						 2, 105		_2},
+{G,3,"tilesets/swamp/human/buildings/%-84",						 2, 106		_2},
+{G,3,"tilesets/swamp/orc/buildings/%-85",						 2, 107		_2},
+{G,3,"tilesets/swamp/human/buildings/%-74",						 2, 108		_2},
+{G,3,"tilesets/swamp/orc/buildings/%-75",						 2, 109		_2},
+{G,3,"tilesets/swamp/human/buildings/%-80",						 2, 110		_2},
+{G,3,"tilesets/swamp/orc/buildings/%-81",						 2, 111		_2},
+{G,3,"tilesets/swamp/human/buildings/%-86",						 2, 112		_2},
+{G,3,"tilesets/swamp/orc/buildings/%-87",						 2, 113		_2},
+{G,3,"tilesets/swamp/human/buildings/%-88",						 2, 114		_2},
+{G,3,"tilesets/swamp/orc/buildings/%-89",						 2, 115		_2},
+{G,3,"tilesets/swamp/human/buildings/%92",						 2, 116		_2},
+{G,3,"tilesets/swamp/orc/buildings/%93",						 2, 117		_2},
+{G,0,"neutral/units/corpses",										 2, 120		_2},
+{G,0,"tilesets/summer/neutral/buildings/destroyed_site",		 2, 121		_2},
+	// Hardcoded support for worker with resource repairing
+{G,0,"human/units/%4_with_wood",								 2, 122, 47, 25},
+{G,0,"orc/units/%5_with_wood",										 2, 123, 48, 25},
+{G,0,"human/units/%4_with_gold",								 2, 124, 47, 25},
+{G,0,"orc/units/%5_with_gold",										 2, 125, 48, 25},
+{G,0,"human/units/%-28_full",										 2, 126		_2},
+{G,0,"orc/units/%-29_full",										 2, 127		_2},
+{G,0,"tilesets/winter/human/buildings/%90",						18, 128		_2},
+{G,0,"tilesets/winter/orc/buildings/%91",						18, 129		_2},
+{G,0,"tilesets/winter/human/buildings/%72",						18, 130		_2},
+{G,0,"tilesets/winter/orc/buildings/%73",						18, 131		_2},
+{G,0,"tilesets/winter/human/buildings/%70",						18, 132		_2},
+{G,0,"tilesets/winter/orc/buildings/%71",						18, 133		_2},
+{G,0,"tilesets/winter/human/buildings/%60",						18, 134		_2},
+{G,0,"tilesets/winter/orc/buildings/%61",						18, 135		_2},
+{G,0,"tilesets/winter/human/buildings/%-62",						18, 136		_2},
+{G,0,"tilesets/winter/orc/buildings/%-63",						18, 137		_2},
+{G,0,"tilesets/winter/human/buildings/%64",						18, 138		_2},
+{G,0,"tilesets/winter/orc/buildings/%65",						18, 139		_2},
+{G,0,"tilesets/winter/human/buildings/%66",						18, 140		_2},
+{G,0,"tilesets/winter/orc/buildings/%67",						18, 141		_2},
+{G,0,"tilesets/winter/human/buildings/%76",						18, 142		_2},
+{G,0,"tilesets/winter/orc/buildings/%77",						18, 143		_2},
+{G,0,"tilesets/winter/human/buildings/%78",						18, 144		_2},
+{G,0,"tilesets/winter/orc/buildings/%79",						18, 145		_2},
+{G,0,"tilesets/winter/human/buildings/%68",						18, 146		_2},
+{G,0,"tilesets/winter/orc/buildings/%69",						18, 147		_2},
+{G,0,"tilesets/winter/human/buildings/%-84",						18, 148		_2},
+{G,0,"tilesets/winter/orc/buildings/%-85",						18, 149		_2},
+{G,0,"tilesets/winter/human/buildings/%-74",						18, 150		_2},
+{G,0,"tilesets/winter/orc/buildings/%-75",						18, 151		_2},
+{G,0,"tilesets/winter/human/buildings/%-80",						18, 152		_2},
+{G,0,"tilesets/winter/orc/buildings/%-81",						18, 153		_2},
+{G,0,"tilesets/winter/human/buildings/%-86",						18, 154		_2},
+{G,0,"tilesets/winter/orc/buildings/%-87",						18, 155		_2},
+{G,0,"tilesets/winter/human/buildings/%-88",						18, 156		_2},
+{G,0,"tilesets/winter/orc/buildings/%-89",						18, 157		_2},
+{G,0,"tilesets/winter/human/buildings/%92",						18, 158		_2},
+{G,0,"tilesets/winter/orc/buildings/%93",						18, 159		_2},
+{G,0,"tilesets/winter/human/buildings/%82",						18, 160		_2},
+{G,0,"tilesets/winter/orc/buildings/%83",						18, 161		_2},
+{G,0,"tilesets/winter/neutral/buildings/%94",						18, 162		_2},
+{G,0,"tilesets/winter/neutral/buildings/destroyed_site",		18, 163		_2},
+{G,0,"human/x_startpoint",										 2, 164		_2},
+{G,0,"orc/o_startpoint",										 2, 165		_2},
+{G,0,"neutral/buildings/%102",										 2, 166		_2},
+{G,0,"tilesets/summer/neutral/buildings/%103",						 2, 167		_2},
+{G,0,"tilesets/summer/neutral/buildings/%105",						 2, 168		_2},
+{G,0,"tilesets/winter/human/buildings/%-98",						18, 169		_2},
+{G,0,"tilesets/winter/orc/buildings/%-99",						18, 170		_2},
+{G,0,"tilesets/winter/human/buildings/%-100",						18, 171		_2},
+{G,0,"tilesets/winter/orc/buildings/%-101",						18, 172		_2},
+{G,0,"tilesets/wasteland/human/buildings/%60",						10, 173		_2},
+{G,0,"tilesets/wasteland/orc/buildings/%61",						10, 174		_2},
+{G,0,"tilesets/wasteland/human/buildings/%78",						10, 175		_2},
+{G,0,"tilesets/wasteland/orc/buildings/%79",						10, 176		_2},
+{G,0,"tilesets/wasteland/human/buildings/%-88",						10, 177		_2},
+{G,0,"tilesets/wasteland/orc/buildings/%-89",						10, 178		_2},
+{G,0,"tilesets/wasteland/neutral/buildings/%94",				10, 179		_2},
+{G,0,"tilesets/wasteland/neutral/buildings/%95",				10, 180		_2},
+{G,3,"tilesets/swamp/human/buildings/%60",						10, 173		_2},
+{G,3,"tilesets/swamp/orc/buildings/%61",						10, 174		_2},
+{G,3,"tilesets/swamp/human/buildings/%78",						10, 175		_2},
+{G,3,"tilesets/swamp/orc/buildings/%79",						10, 176		_2},
+{G,3,"tilesets/swamp/human/buildings/%-88",						10, 177		_2},
+{G,3,"tilesets/swamp/orc/buildings/%-89",						10, 178		_2},
+{G,3,"tilesets/swamp/neutral/buildings/%94",						10, 179		_2},
+{G,3,"tilesets/swamp/neutral/buildings/%95",						10, 180		_2},
+{G,0,"neutral/buildings/%104",										 2, 181		_2},
+{G,0,"tilesets/wasteland/human/units/%40",						10, 182		_2},
+{G,0,"tilesets/wasteland/orc/units/%41",						10, 183		_2},
+{G,3,"tilesets/swamp/human/units/%40",								10, 182		_2},
+{G,3,"tilesets/swamp/orc/units/%41",								10, 183		_2},
+{G,0,"tilesets/winter/neutral/buildings/%103",						18, 184		_2},
+{G,0,"tilesets/wasteland/neutral/buildings/%103",				10, 185		_2},
+{G,3,"tilesets/swamp/neutral/buildings/%103",						10, 185		_2},
+{G,3,"tilesets/swamp/neutral/buildings/%104",						 2, 181		_2},
+{G,0,"tilesets/winter/neutral/buildings/%104",						18, 186		_2},
+{U,0,"ui/gold,wood,oil,mana",										 2, 187		_2},
+{G,0,"tilesets/wasteland/neutral/buildings/small_destroyed_site",10,188		_2},
+{G,3,"tilesets/swamp/neutral/buildings/small_destroyed_site",		10, 188		_2},
+{G,0,"tilesets/summer/neutral/buildings/small_destroyed_site",		 2, 189		_2},
+{G,0,"tilesets/winter/neutral/buildings/small_destroyed_site",		18, 190		_2},
+{G,0,"tilesets/wasteland/neutral/buildings/destroyed_site",		10, 191		_2},
+{G,3,"tilesets/swamp/neutral/buildings/destroyed_site",				10, 191		_2},
 //--------------------------------------------------
-{P,0,"campaigns/human/level01h",				 192	__},
-{P,0,"campaigns/orc/level01o",					 193	__},
-{P,0,"campaigns/human/level02h",				 194	__},
-{P,0,"campaigns/orc/level02o",					 195	__},
-{P,0,"campaigns/human/level03h",				 196	__},
-{P,0,"campaigns/orc/level03o",					 197	__},
-{P,0,"campaigns/human/level04h",				 198	__},
-{P,0,"campaigns/orc/level04o",					 199	__},
-{P,0,"campaigns/human/level05h",				 200	__},
-{P,0,"campaigns/orc/level05o",					 201	__},
-{P,0,"campaigns/human/level06h",				 202	__},
-{P,0,"campaigns/orc/level06o",					 203	__},
-{P,0,"campaigns/human/level07h",				 204	__},
-{P,0,"campaigns/orc/level07o",					 205	__},
-{P,0,"campaigns/human/level08h",				 206	__},
-{P,0,"campaigns/orc/level08o",					 207	__},
-{P,0,"campaigns/human/level09h",				 208	__},
-{P,0,"campaigns/orc/level09o",					 209	__},
-{P,0,"campaigns/human/level10h",				 210	__},
-{P,0,"campaigns/orc/level10o",					 211	__},
-{P,0,"campaigns/human/level11h",				 212	__},
-{P,0,"campaigns/orc/level11o",					 213	__},
-{P,0,"campaigns/human/level12h",				 214	__},
-{P,0,"campaigns/orc/level12o",					 215	__},
-{P,0,"campaigns/human/level13h",				 216	__},
-{P,0,"campaigns/orc/level13o",					 217	__},
-{P,0,"campaigns/human/level14h",				 218	__},
-{P,0,"campaigns/orc/level14o",					 219	__},
+{P,0,"campaigns/human/level01h",								 192		__},
+{P,0,"campaigns/orc/level01o",										 193		__},
+{P,0,"campaigns/human/level02h",								 194		__},
+{P,0,"campaigns/orc/level02o",										 195		__},
+{P,0,"campaigns/human/level03h",								 196		__},
+{P,0,"campaigns/orc/level03o",										 197		__},
+{P,0,"campaigns/human/level04h",								 198		__},
+{P,0,"campaigns/orc/level04o",										 199		__},
+{P,0,"campaigns/human/level05h",								 200		__},
+{P,0,"campaigns/orc/level05o",										 201		__},
+{P,0,"campaigns/human/level06h",								 202		__},
+{P,0,"campaigns/orc/level06o",										 203		__},
+{P,0,"campaigns/human/level07h",								 204		__},
+{P,0,"campaigns/orc/level07o",										 205		__},
+{P,0,"campaigns/human/level08h",								 206		__},
+{P,0,"campaigns/orc/level08o",										 207		__},
+{P,0,"campaigns/human/level09h",								 208		__},
+{P,0,"campaigns/orc/level09o",										 209		__},
+{P,0,"campaigns/human/level10h",								 210		__},
+{P,0,"campaigns/orc/level10o",										 211		__},
+{P,0,"campaigns/human/level11h",								 212		__},
+{P,0,"campaigns/orc/level11o",										 213		__},
+{P,0,"campaigns/human/level12h",								 214		__},
+{P,0,"campaigns/orc/level12o",										 215		__},
+{P,0,"campaigns/human/level13h",								 216		__},
+{P,0,"campaigns/orc/level13o",										 217		__},
+{P,0,"campaigns/human/level14h",								 218		__},
+{P,0,"campaigns/orc/level14o",										 219		__},
 // --------------------------------------------------
-	// 6 Gold separates east from west
-{P,0,"puds/multi/(6)gold-separates-east-west",				 220	__},
-	// 4 Oil is the key
-{P,0,"puds/multi/(4)oil-is-the-key",				 221	__},
-	// 8 Bridge to bridge combat
-{P,0,"puds/multi/(8)bridge-to-bridge-combat",				 222	__},
-	// 8 Plains of snow
-{P,0,"puds/multi/(8)plains-of-snow",				 223	__},
-	// 3 Three ways to cross
-{P,0,"puds/multi/(3)three-ways-to-cross",				 224	__},
-	// 8 A continent to explore
-{P,0,"puds/multi/(8)a-continent-to-explore",				 225	__},
-	// 8 High seas combat
-{P,0,"puds/multi/(8)high-seas-combat",				 226	__},
-	// 4 Islands in the stream
-{P,0,"puds/multi/(4)islands-in-the-stream",				 227	__},
-	// 4 Opposing city states
-{P,0,"puds/multi/(4)opposing-city-states",				 228	__},
-	// 4 Death in the middle
-{P,0,"puds/multi/(4)death-in-the-middle",				 229	__},
-	// 5 The spiral
-{P,0,"puds/multi/(5)the-spiral",				 230	__},
-	// 2 Mysterious dragon isle
-{P,0,"puds/multi/(2)mysterious-dragon-isle",				 231	__},
-	// 4 The four corners
-{P,0,"puds/multi/(4)the-four-corners",				 232	__},
-	// 6 No way out of this maze
-{P,0,"puds/multi/(6)no-way-out-of-this-maze",				 233	__},
-	// 8 Fierce ocean combat
-{P,0,"puds/multi/(8)fierce-ocean-combat",				 234	__},
-	// 2 Cross the streams
-{P,0,"puds/multi/(2)cross-the-streams",				 235	__},
-	// 5 How much can you mine?
-{P,0,"puds/multi/(5)how-much-can-you-mine",				 236	__},
-	// 2 X marks the spot
-{P,0,"puds/multi/(2)x-marks-the-spot",				 237	__},
-	// 2 One way in one way out
-{P,0,"puds/multi/(2)one-way-in-one-way-out",				 238	__},
-	// 4 Nowhere to run, nowhere to hide
-{P,0,"puds/multi/(4)nowhere-to-run",				 239	__},
-	// 2 2 players
-{P,0,"puds/multi/(2)2-players",				 240	__},
-	// 7 ..and the rivers ran as blood..
-{P,0,"puds/multi/(7)and-the-rivers-ran-as-blood",				 241	__},
-	// 3 Critter attack
-{P,0,"puds/multi/(3)critter-attack",				 242	__},
-	// 6 Skull isle
-{P,0,"puds/multi/(6)skull-isle",				 243	__},
-	// 8 Cross over
-{P,0,"puds/multi/(8)cross-over",				 244	__},
-	// 8 Garden of war
-{P,0,"puds/multi/(8)garden-of-war",				 245	__},
-	// 4 Mine the center
-{P,0,"puds/multi/(4)mine-the-center",				 246	__},
-	// 3 River fork
-{P,0,"puds/multi/(3)river-fork",				 247	__},
+		// 6 Gold separates east from west
+{P,0,"puds/multi/(6)gold-separates-east-west",								 220		__},
+		// 4 Oil is the key
+{P,0,"puds/multi/(4)oil-is-the-key",								 221		__},
+		// 8 Bridge to bridge combat
+{P,0,"puds/multi/(8)bridge-to-bridge-combat",								 222		__},
+		// 8 Plains of snow
+{P,0,"puds/multi/(8)plains-of-snow",								 223		__},
+		// 3 Three ways to cross
+{P,0,"puds/multi/(3)three-ways-to-cross",								 224		__},
+		// 8 A continent to explore
+{P,0,"puds/multi/(8)a-continent-to-explore",								 225		__},
+		// 8 High seas combat
+{P,0,"puds/multi/(8)high-seas-combat",								 226		__},
+		// 4 Islands in the stream
+{P,0,"puds/multi/(4)islands-in-the-stream",								 227		__},
+		// 4 Opposing city states
+{P,0,"puds/multi/(4)opposing-city-states",								 228		__},
+		// 4 Death in the middle
+{P,0,"puds/multi/(4)death-in-the-middle",								 229		__},
+		// 5 The spiral
+{P,0,"puds/multi/(5)the-spiral",								 230		__},
+		// 2 Mysterious dragon isle
+{P,0,"puds/multi/(2)mysterious-dragon-isle",								 231		__},
+		// 4 The four corners
+{P,0,"puds/multi/(4)the-four-corners",								 232		__},
+		// 6 No way out of this maze
+{P,0,"puds/multi/(6)no-way-out-of-this-maze",								 233		__},
+		// 8 Fierce ocean combat
+{P,0,"puds/multi/(8)fierce-ocean-combat",								 234		__},
+		// 2 Cross the streams
+{P,0,"puds/multi/(2)cross-the-streams",								 235		__},
+		// 5 How much can you mine?
+{P,0,"puds/multi/(5)how-much-can-you-mine",								 236		__},
+		// 2 X marks the spot
+{P,0,"puds/multi/(2)x-marks-the-spot",								 237		__},
+		// 2 One way in one way out
+{P,0,"puds/multi/(2)one-way-in-one-way-out",								 238		__},
+		// 4 Nowhere to run, nowhere to hide
+{P,0,"puds/multi/(4)nowhere-to-run",								 239		__},
+		// 2 2 players
+{P,0,"puds/multi/(2)2-players",								 240		__},
+		// 7 ..and the rivers ran as blood..
+{P,0,"puds/multi/(7)and-the-rivers-ran-as-blood",								 241		__},
+		// 3 Critter attack
+{P,0,"puds/multi/(3)critter-attack",								 242		__},
+		// 6 Skull isle
+{P,0,"puds/multi/(6)skull-isle",								 243		__},
+		// 8 Cross over
+{P,0,"puds/multi/(8)cross-over",								 244		__},
+		// 8 Garden of war
+{P,0,"puds/multi/(8)garden-of-war",								 245		__},
+		// 4 Mine the center
+{P,0,"puds/multi/(4)mine-the-center",								 246		__},
+		// 3 River fork
+{P,0,"puds/multi/(3)river-fork",								 247		__},
 // -------------------------------------------------
-{P,0,"puds/demo/demo01",					 248	__},
-{P,0,"puds/demo/demo02",					 249	__},
-{P,0,"puds/demo/demo03",					 250	__},
-{P,0,"puds/demo/demo04",					 251	__},
+{P,0,"puds/demo/demo01",										 248		__},
+{P,0,"puds/demo/demo02",										 249		__},
+{P,0,"puds/demo/demo03",										 250		__},
+{P,0,"puds/demo/demo04",										 251		__},
 // --------------------------------------------------
-{G,0,"neutral/buildings/land_construction_site",		 2, 252	_2},
-{G,0,"human/buildings/shipyard_construction_site",		 2, 253	_2},
-{G,0,"orc/buildings/shipyard_construction_site",		 2, 254	_2},
-{G,3,"tilesets/swamp/neutral/buildings/land_construction_site",	 2, 252	_2},
+{G,0,"neutral/buildings/land_construction_site",				 2, 252		_2},
+{G,0,"human/buildings/shipyard_construction_site",				 2, 253		_2},
+{G,0,"orc/buildings/shipyard_construction_site",				 2, 254		_2},
+{G,3,"tilesets/swamp/neutral/buildings/land_construction_site",		 2, 252		_2},
 {G,3,"tilesets/swamp/human/buildings/shipyard_construction_site", 2, 253 _2},
-{G,3,"tilesets/swamp/orc/buildings/shipyard_construction_site",	 2, 254	_2},
+{G,3,"tilesets/swamp/orc/buildings/shipyard_construction_site",		 2, 254		_2},
 {G,0,"tilesets/summer/human/buildings/oil_well_construction_site",2, 255 _2},
-{G,0,"tilesets/summer/orc/buildings/oil_well_construction_site", 2, 256	_2},
-{G,0,"human/buildings/refinery_construction_site",		 2, 257	_2},
-{G,0,"orc/buildings/refinery_construction_site",		 2, 258	_2},
-{G,0,"human/buildings/foundry_construction_site",		 2, 259	_2},
-{G,0,"orc/buildings/foundry_construction_site",			 2, 260	_2},
+{G,0,"tilesets/summer/orc/buildings/oil_well_construction_site", 2, 256		_2},
+{G,0,"human/buildings/refinery_construction_site",				 2, 257		_2},
+{G,0,"orc/buildings/refinery_construction_site",				 2, 258		_2},
+{G,0,"human/buildings/foundry_construction_site",				 2, 259		_2},
+{G,0,"orc/buildings/foundry_construction_site",						 2, 260		_2},
 {G,3,"tilesets/swamp/human/buildings/refinery_construction_site", 2, 257 _2},
-{G,3,"tilesets/swamp/orc/buildings/refinery_construction_site",	2, 258	_2},
-{G,3,"tilesets/swamp/human/buildings/foundry_construction_site", 2, 259	_2},
-{G,3,"tilesets/swamp/orc/buildings/foundry_construction_site",	 2, 260	_2},
-{G,0,"tilesets/summer/neutral/buildings/wall_construction_site", 2, 261	_2},
+{G,3,"tilesets/swamp/orc/buildings/refinery_construction_site",		2, 258		_2},
+{G,3,"tilesets/swamp/human/buildings/foundry_construction_site", 2, 259		_2},
+{G,3,"tilesets/swamp/orc/buildings/foundry_construction_site",		 2, 260		_2},
+{G,0,"tilesets/summer/neutral/buildings/wall_construction_site", 2, 261		_2},
 {G,0,"tilesets/winter/neutral/buildings/land_construction_site",18, 262 _2},
 {G,0,"tilesets/winter/human/buildings/shipyard_construction_site",18, 263 _2},
 {G,0,"tilesets/winter/orc/buildings/shipyard_construction_site",18, 264 _2},
@@ -602,2359 +602,2359 @@ Control Todo[] = {
 {G,0,"tilesets/winter/human/buildings/refinery_construction_site",18, 267 _2},
 {G,0,"tilesets/winter/orc/buildings/refinery_construction_site",18, 268 _2},
 {G,0,"tilesets/winter/human/buildings/foundry_construction_site",18, 269 _2},
-{G,0,"tilesets/winter/orc/buildings/foundry_construction_site",	18, 270 _2},
+{G,0,"tilesets/winter/orc/buildings/foundry_construction_site",		18, 270 _2},
 {G,0,"tilesets/wasteland/human/buildings/oil_well_construction_site",10, 271 _2},
 {G,0,"tilesets/wasteland/orc/buildings/oil_well_construction_site",10, 272 _2},
 {G,3,"tilesets/swamp/human/buildings/oil_platform_construction_site",10, 271 _2},
 {G,3,"tilesets/swamp/orc/buildings/oil_platform_construction_site",10, 272 _2},
-{G,0,"tilesets/winter/neutral/buildings/wall",			18, 273 _2},
-{G,0,"tilesets/wasteland/neutral/buildings/wall",		10, 274 _2},
-{G,3,"tilesets/swamp/neutral/buildings/wall",			10, 274 _2},
+{G,0,"tilesets/winter/neutral/buildings/wall",						18, 273 _2},
+{G,0,"tilesets/wasteland/neutral/buildings/wall",				10, 274 _2},
+{G,3,"tilesets/swamp/neutral/buildings/wall",						10, 274 _2},
 {G,0,"tilesets/winter/neutral/buildings/wall_construction_site",18, 275 _2},
 {G,0,"tilesets/wasteland/neutral/buildings/wall_construction_site",10, 276 _2},
 {G,3,"tilesets/swamp/neutral/buildings/wall_construction_site",10, 276 _2},
 // 277 Control programs for computer player AI
 // 278 Control programs for unit movement
 // --------------------------------------------------
-{N,0,"large_episode_titles",					279	__},
-{N,0,"small_episode_titles",					280	__},
-{N,0,"large",							281	__},
-{N,0,"game",							282	__},
-{N,0,"small",							283	__},
+{N,0,"large_episode_titles",										279		__},
+{N,0,"small_episode_titles",										280		__},
+{N,0,"large",														281		__},
+{N,0,"game",														282		__},
+{N,0,"small",														283		__},
 // --------------------------------------------------
-{I,0,"ui/human/menubutton",					 2, 293	_2},
-{I,0,"ui/orc/menubutton",					 2, 294	_2},
-{I,0,"ui/human/minimap",					 2, 295	_2},
-{I,0,"ui/orc/minimap",						 2, 296	_2},
-{I,0,"ui/title",						300, 299 _2},
+{I,0,"ui/human/menubutton",										 2, 293		_2},
+{I,0,"ui/orc/menubutton",										 2, 294		_2},
+{I,0,"ui/human/minimap",										 2, 295		_2},
+{I,0,"ui/orc/minimap",												 2, 296		_2},
+{I,0,"ui/title",												300, 299 _2},
 // 284-286 unknown
 // --------------------------------------------------
-{I,0,"ui/human/640x480/resource",				 2, 287	_2},
-{I,0,"ui/orc/640x480/resource",					 2, 288	_2},
-{I,0,"ui/human/640x480/filler-right",				 2, 289	_2},
-{I,0,"ui/orc/640x480/filler-right",				 2, 290	_2},
-{I,0,"ui/human/640x480/statusline",				 2, 291	_2},
-{I,0,"ui/orc/640x480/statusline",				 2, 292	_2},
-{I,0,"ui/human/640x480/buttonpanel",				 2, 297	_2},
-{I,0,"ui/orc/640x480/buttonpanel",				 2, 298	_2},
+{I,0,"ui/human/640x480/resource",								 2, 287		_2},
+{I,0,"ui/orc/640x480/resource",										 2, 288		_2},
+{I,0,"ui/human/640x480/filler-right",								 2, 289		_2},
+{I,0,"ui/orc/640x480/filler-right",								 2, 290		_2},
+{I,0,"ui/human/640x480/statusline",								 2, 291		_2},
+{I,0,"ui/orc/640x480/statusline",								 2, 292		_2},
+{I,0,"ui/human/640x480/buttonpanel",								 2, 297		_2},
+{I,0,"ui/orc/640x480/buttonpanel",								 2, 298		_2},
 //---------------------------------------------------
-{I,0,"ui/human/800x600/resource",				 2, 287, 608, 16},
-{I,0,"ui/orc/800x600/resource",					 2, 288, 608, 16},
-{I,0,"ui/human/800x600/filler-right",				 2, 289, 16, 600},
-{I,0,"ui/orc/800x600/filler-right",				 2, 290, 16, 600},
-{I,0,"ui/human/800x600/statusline",				 2, 291, 608, 16},
-{I,0,"ui/orc/800x600/statusline",				 2, 292, 608, 16},
-{I,0,"ui/human/800x600/buttonpanel",				 2, 297, 176, 264},
-{I,0,"ui/orc/800x600/buttonpanel",				 2, 298, 176, 264},
+{I,0,"ui/human/800x600/resource",								 2, 287, 608, 16},
+{I,0,"ui/orc/800x600/resource",										 2, 288, 608, 16},
+{I,0,"ui/human/800x600/filler-right",								 2, 289, 16, 600},
+{I,0,"ui/orc/800x600/filler-right",								 2, 290, 16, 600},
+{I,0,"ui/human/800x600/statusline",								 2, 291, 608, 16},
+{I,0,"ui/orc/800x600/statusline",								 2, 292, 608, 16},
+{I,0,"ui/human/800x600/buttonpanel",								 2, 297, 176, 264},
+{I,0,"ui/orc/800x600/buttonpanel",								 2, 298, 176, 264},
 //---------------------------------------------------
-{I,0,"ui/human/1024x768/resource",				 2, 287, 832, 16},
-{I,0,"ui/orc/1024x768/resource",				 2, 288, 832, 16},
-{I,0,"ui/human/1024x768/filler-right",				 2, 289, 16, 768},
-{I,0,"ui/orc/1024x768/filler-right",				 2, 290, 16, 768},
-{I,0,"ui/human/1024x768/statusline",				 2, 291, 832, 16},
-{I,0,"ui/orc/1024x768/statusline",				 2, 292, 832, 16},
-{I,0,"ui/human/1024x768/buttonpanel",				 2, 297, 176, 432},
-{I,0,"ui/orc/1024x768/buttonpanel",				 2, 298, 176, 432},
+{I,0,"ui/human/1024x768/resource",								 2, 287, 832, 16},
+{I,0,"ui/orc/1024x768/resource",								 2, 288, 832, 16},
+{I,0,"ui/human/1024x768/filler-right",								 2, 289, 16, 768},
+{I,0,"ui/orc/1024x768/filler-right",								 2, 290, 16, 768},
+{I,0,"ui/human/1024x768/statusline",								 2, 291, 832, 16},
+{I,0,"ui/orc/1024x768/statusline",								 2, 292, 832, 16},
+{I,0,"ui/human/1024x768/buttonpanel",								 2, 297, 176, 432},
+{I,0,"ui/orc/1024x768/buttonpanel",								 2, 298, 176, 432},
 // --------------------------------------------------
-{I,0,"ui/human/1280x960/resource",				 2, 287, 1088, 16},
-{I,0,"ui/orc/1280x960/resource",				 2, 288, 1088, 16},
-{I,0,"ui/human/1280x960/filler-right",				 2, 289, 16, 960},
-{I,0,"ui/orc/1280x960/filler-right",				 2, 290, 16, 960},
-{I,0,"ui/human/1280x960/statusline",				 2, 291, 1088, 16},
-{I,0,"ui/orc/1280x960/statusline",				 2, 292, 1088, 16},
-{I,0,"ui/human/1280x960/buttonpanel",				 2, 297, 176, 624},
-{I,0,"ui/orc/1280x960/buttonpanel",				 2, 298, 176, 624},
+{I,0,"ui/human/1280x960/resource",								 2, 287, 1088, 16},
+{I,0,"ui/orc/1280x960/resource",								 2, 288, 1088, 16},
+{I,0,"ui/human/1280x960/filler-right",								 2, 289, 16, 960},
+{I,0,"ui/orc/1280x960/filler-right",								 2, 290, 16, 960},
+{I,0,"ui/human/1280x960/statusline",								 2, 291, 1088, 16},
+{I,0,"ui/orc/1280x960/statusline",								 2, 292, 1088, 16},
+{I,0,"ui/human/1280x960/buttonpanel",								 2, 297, 176, 624},
+{I,0,"ui/orc/1280x960/buttonpanel",								 2, 298, 176, 624},
 // --------------------------------------------------
-{I,0,"ui/human/1600x1200/resource",				 2, 287, 1408, 16},
-{I,0,"ui/orc/1600x1200/resource",				 2, 288, 1408, 16},
-{I,0,"ui/human/1600x1200/filler-right",				 2, 289, 16, 1200},
-{I,0,"ui/orc/1600x1200/filler-right",				 2, 290, 16, 1200},
-{I,0,"ui/human/1600x1200/statusline",				 2, 291, 1408, 16},
-{I,0,"ui/orc/1600x1200/statusline",				 2, 292, 1408, 16},
-{I,0,"ui/human/1600x1200/buttonpanel",				 2, 297, 176, 864},
-{I,0,"ui/orc/1600x1200/buttonpanel",				 2, 298, 176, 864},
+{I,0,"ui/human/1600x1200/resource",								 2, 287, 1408, 16},
+{I,0,"ui/orc/1600x1200/resource",								 2, 288, 1408, 16},
+{I,0,"ui/human/1600x1200/filler-right",								 2, 289, 16, 1200},
+{I,0,"ui/orc/1600x1200/filler-right",								 2, 290, 16, 1200},
+{I,0,"ui/human/1600x1200/statusline",								 2, 291, 1408, 16},
+{I,0,"ui/orc/1600x1200/statusline",								 2, 292, 1408, 16},
+{I,0,"ui/human/1600x1200/buttonpanel",								 2, 297, 176, 864},
+{I,0,"ui/orc/1600x1200/buttonpanel",								 2, 298, 176, 864},
 // --------------------------------------------------
-{C,0,"human/cursors/human_gauntlet",				 2, 301 _2},
-{C,0,"orc/cursors/orcish_claw",					 2, 302 _2},
-{C,0,"human/cursors/human_don't_click_here",			 2, 303 _2},
-{C,0,"orc/cursors/orcish_don't_click_here",			 2, 304 _2},
-{C,0,"human/cursors/yellow_eagle",				 2, 305 _2},
-{C,0,"orc/cursors/yellow_crosshairs",				 2, 306 _2},
-{C,0,"human/cursors/red_eagle",					 2, 307 _2},
-{C,0,"orc/cursors/red_crosshairs",				 2, 308 _2},
-{C,0,"human/cursors/green_eagle",				 2, 309 _2},
-{C,0,"orc/cursors/green_crosshairs",				 2, 310 _2},
-{C,0,"cursors/magnifying_glass",				 2, 311 _2},
-{C,0,"cursors/small_green_cross",				 2, 312 _2},
-{C,0,"cursors/hourglass",					 2, 313 _2},
-{C,0,"cursors/credits_arrow",					 27, 314 _2},
-{C,0,"cursors/arrow_N",						 2, 315 _2},
-{C,0,"cursors/arrow_NE",					 2, 316 _2},
-{C,0,"cursors/arrow_E",						 2, 317 _2},
-{C,0,"cursors/arrow_SE",					 2, 318 _2},
-{C,0,"cursors/arrow_S",						 2, 319 _2},
-{C,0,"cursors/arrow_SW",					 2, 320 _2},
-{C,0,"cursors/arrow_W",						 2, 321 _2},
-{C,0,"cursors/arrow_NW",					 2, 322 _2},
-{U,0,"ui/bloodlust,haste,slow,invisible,shield",		 2, 323 _2},
+{C,0,"human/cursors/human_gauntlet",								 2, 301 _2},
+{C,0,"orc/cursors/orcish_claw",										 2, 302 _2},
+{C,0,"human/cursors/human_don't_click_here",						 2, 303 _2},
+{C,0,"orc/cursors/orcish_don't_click_here",						 2, 304 _2},
+{C,0,"human/cursors/yellow_eagle",								 2, 305 _2},
+{C,0,"orc/cursors/yellow_crosshairs",								 2, 306 _2},
+{C,0,"human/cursors/red_eagle",										 2, 307 _2},
+{C,0,"orc/cursors/red_crosshairs",								 2, 308 _2},
+{C,0,"human/cursors/green_eagle",								 2, 309 _2},
+{C,0,"orc/cursors/green_crosshairs",								 2, 310 _2},
+{C,0,"cursors/magnifying_glass",								 2, 311 _2},
+{C,0,"cursors/small_green_cross",								 2, 312 _2},
+{C,0,"cursors/hourglass",										 2, 313 _2},
+{C,0,"cursors/credits_arrow",										 27, 314 _2},
+{C,0,"cursors/arrow_N",												 2, 315 _2},
+{C,0,"cursors/arrow_NE",										 2, 316 _2},
+{C,0,"cursors/arrow_E",												 2, 317 _2},
+{C,0,"cursors/arrow_SE",										 2, 318 _2},
+{C,0,"cursors/arrow_S",												 2, 319 _2},
+{C,0,"cursors/arrow_SW",										 2, 320 _2},
+{C,0,"cursors/arrow_W",												 2, 321 _2},
+{C,0,"cursors/arrow_NW",										 2, 322 _2},
+{U,0,"ui/bloodlust,haste,slow,invisible,shield",				 2, 323 _2},
 // --------------------------------------------------------
-{G,0,"missiles/lightning",					 2, 324 _2},
-{G,0,"missiles/gryphon_hammer",					 2, 325 _2},
+{G,0,"missiles/lightning",										 2, 324 _2},
+{G,0,"missiles/gryphon_hammer",										 2, 325 _2},
 // "fireball (also dragon breath)"
-{G,0,"missiles/dragon_breath",					 2, 326 _2},
+{G,0,"missiles/dragon_breath",										 2, 326 _2},
 // "fireball (when casting flameshield)"
-{G,0,"missiles/fireball",					 2, 327 _2},
-{G,0,"missiles/flame_shield",					 2, 328 _2},
-{G,0,"missiles/blizzard",					 2, 329 _2},
-{G,0,"missiles/death_and_decay",				 2, 330 _2},
-{G,0,"missiles/big_cannon",					 2, 331 _2},
-{G,0,"missiles/exorcism",					 2, 332 _2},
-{G,0,"missiles/heal_effect",					 2, 333 _2},
-{G,0,"missiles/touch_of_death",					 2, 334 _2},
-{G,0,"missiles/rune",						 2, 335 _2},
-{G,0,"missiles/tornado",					 2, 336 _2},
-{G,0,"missiles/catapult_rock",					 2, 337 _2},
-{G,0,"missiles/ballista_bolt",					 2, 338 _2},
-{G,0,"missiles/arrow",						 2, 339 _2},
-{G,0,"missiles/axe",						 2, 340 _2},
-{G,0,"missiles/submarine_missile",				 2, 341 _2},
-{G,0,"missiles/turtle_missile",					 2, 342 _2},
-{G,0,"missiles/small_fire",					 2, 343 _2},
-{G,0,"missiles/big_fire",					 2, 344 _2},
-{G,0,"missiles/ballista-catapult_impact",			 2, 345 _2},
-{G,0,"missiles/normal_spell",					 2, 346 _2},
-{G,0,"missiles/explosion",					 2, 347 _2},
-{G,0,"missiles/cannon",						 2, 348 _2},
-{G,0,"missiles/cannon_explosion",				 2, 349 _2},
-{G,0,"missiles/cannon-tower_explosion",				 2, 350 _2},
-{G,0,"missiles/daemon_fire",					 2, 351 _2},
-{G,0,"missiles/green_cross",					 2, 352 _2},
-{G,0,"missiles/unit_shadow",					 2, 353 _2},
-{U,0,"ui/human/infopanel",					 2, 354 _2},
-{U,0,"ui/orc/infopanel",					 2, 355 _2},
-{G,0,"tilesets/summer/icons",					 2, 356 _2},
-{G,0,"tilesets/winter/icons",					18, 357 _2},
-{G,0,"tilesets/wasteland/icons",				10, 358 _2},
-{G,3,"tilesets/swamp/icons",					10, 358 _2},
+{G,0,"missiles/fireball",										 2, 327 _2},
+{G,0,"missiles/flame_shield",										 2, 328 _2},
+{G,0,"missiles/blizzard",										 2, 329 _2},
+{G,0,"missiles/death_and_decay",								 2, 330 _2},
+{G,0,"missiles/big_cannon",										 2, 331 _2},
+{G,0,"missiles/exorcism",										 2, 332 _2},
+{G,0,"missiles/heal_effect",										 2, 333 _2},
+{G,0,"missiles/touch_of_death",										 2, 334 _2},
+{G,0,"missiles/rune",												 2, 335 _2},
+{G,0,"missiles/tornado",										 2, 336 _2},
+{G,0,"missiles/catapult_rock",										 2, 337 _2},
+{G,0,"missiles/ballista_bolt",										 2, 338 _2},
+{G,0,"missiles/arrow",												 2, 339 _2},
+{G,0,"missiles/axe",												 2, 340 _2},
+{G,0,"missiles/submarine_missile",								 2, 341 _2},
+{G,0,"missiles/turtle_missile",										 2, 342 _2},
+{G,0,"missiles/small_fire",										 2, 343 _2},
+{G,0,"missiles/big_fire",										 2, 344 _2},
+{G,0,"missiles/ballista-catapult_impact",						 2, 345 _2},
+{G,0,"missiles/normal_spell",										 2, 346 _2},
+{G,0,"missiles/explosion",										 2, 347 _2},
+{G,0,"missiles/cannon",												 2, 348 _2},
+{G,0,"missiles/cannon_explosion",								 2, 349 _2},
+{G,0,"missiles/cannon-tower_explosion",								 2, 350 _2},
+{G,0,"missiles/daemon_fire",										 2, 351 _2},
+{G,0,"missiles/green_cross",										 2, 352 _2},
+{G,0,"missiles/unit_shadow",										 2, 353 _2},
+{U,0,"ui/human/infopanel",										 2, 354 _2},
+{U,0,"ui/orc/infopanel",										 2, 355 _2},
+{G,0,"tilesets/summer/icons",										 2, 356 _2},
+{G,0,"tilesets/winter/icons",										18, 357 _2},
+{G,0,"tilesets/wasteland/icons",								10, 358 _2},
+{G,3,"tilesets/swamp/icons",										10, 358 _2},
 
-{I,0,"ui/human/victory",				       363, 359 _2},
-{I,0,"ui/orc/victory",					       364, 360 _2},
-{I,0,"ui/human/defeat",					       365, 361 _2},
-{I,0,"ui/orc/defeat",					       366, 362 _2},
+{I,0,"ui/human/victory",									   363, 359 _2},
+{I,0,"ui/orc/victory",											   364, 360 _2},
+{I,0,"ui/human/defeat",											   365, 361 _2},
+{I,0,"ui/orc/defeat",											   366, 362 _2},
 
-{I,0,"../campaigns/human/interface/introscreen1",	       367, 369 _2},
-{I,0,"../campaigns/orc/interface/introscreen1",		       368, 370 _2},
-{I,0,"../campaigns/orc/interface/introscreen2",		       368, 371 _2},
-{I,0,"../campaigns/orc/interface/introscreen3",		       368, 372 _2},
-{I,0,"../campaigns/orc/interface/introscreen4",		       368, 373 _2},
-{I,0,"../campaigns/orc/interface/introscreen5",		       368, 374 _2},
-{I,0,"../campaigns/human/interface/introscreen2",	       367, 375 _2},
-{I,0,"../campaigns/human/interface/introscreen3",	       367, 376 _2},
-{I,0,"../campaigns/human/interface/introscreen4",	       367, 377 _2},
-{I,0,"../campaigns/human/interface/introscreen5",	       367, 378 _2},
+{I,0,"../campaigns/human/interface/introscreen1",			   367, 369 _2},
+{I,0,"../campaigns/orc/interface/introscreen1",					   368, 370 _2},
+{I,0,"../campaigns/orc/interface/introscreen2",					   368, 371 _2},
+{I,0,"../campaigns/orc/interface/introscreen3",					   368, 372 _2},
+{I,0,"../campaigns/orc/interface/introscreen4",					   368, 373 _2},
+{I,0,"../campaigns/orc/interface/introscreen5",					   368, 374 _2},
+{I,0,"../campaigns/human/interface/introscreen2",			   367, 375 _2},
+{I,0,"../campaigns/human/interface/introscreen3",			   367, 376 _2},
+{I,0,"../campaigns/human/interface/introscreen4",			   367, 377 _2},
+{I,0,"../campaigns/human/interface/introscreen5",			   367, 378 _2},
 
-{W,0,"ui/click",						432	__},
-{W,0,"ui/highclick",						435	__},
-{W,0,"ui/statsthump",						436	__},
+{W,0,"ui/click",												432		__},
+{W,0,"ui/highclick",												435		__},
+{W,0,"ui/statsthump",												436		__},
 
-{V,0,"videos/gameintro",					429	__},
+{V,0,"videos/gameintro",										429		__},
 
-{R,2,"swamp/swamp",						438	__},
-{T,2,"swamp/terrain/swamp",			438,	439,	440,	441 },
+{R,2,"swamp/swamp",												438		__},
+{T,2,"swamp/terrain/swamp",						438,		439,		440,		441 },
 
 // --------------------------------------------------
-{P,2,"campaigns/human-exp/levelx01h",				 446	__},
-{P,2,"campaigns/orc-exp/levelx01o",				 447	__},
-{P,2,"campaigns/human-exp/levelx02h",				 448	__},
-{P,2,"campaigns/orc-exp/levelx02o",				 449	__},
-{P,2,"campaigns/human-exp/levelx03h",				 450	__},
-{P,2,"campaigns/orc-exp/levelx03o",				 451	__},
-{P,2,"campaigns/human-exp/levelx04h",				 452	__},
-{P,2,"campaigns/orc-exp/levelx04o",				 453	__},
-{P,2,"campaigns/human-exp/levelx05h",				 454	__},
-{P,2,"campaigns/orc-exp/levelx05o",				 455	__},
-{P,2,"campaigns/human-exp/levelx06h",				 456	__},
-{P,2,"campaigns/orc-exp/levelx06o",				 457	__},
-{P,2,"campaigns/human-exp/levelx07h",				 458	__},
-{P,2,"campaigns/orc-exp/levelx07o",				 459	__},
-{P,2,"campaigns/human-exp/levelx08h",				 460	__},
-{P,2,"campaigns/orc-exp/levelx08o",				 461	__},
-{P,2,"campaigns/human-exp/levelx09h",				 462	__},
-{P,2,"campaigns/orc-exp/levelx09o",				 463	__},
-{P,2,"campaigns/human-exp/levelx10h",				 464	__},
-{P,2,"campaigns/orc-exp/levelx10o",				 465	__},
-{P,2,"campaigns/human-exp/levelx11h",				 466	__},
-{P,2,"campaigns/orc-exp/levelx11o",				 467	__},
-{P,2,"campaigns/human-exp/levelx12h",				 468	__},
-{P,2,"campaigns/orc-exp/levelx12o",				 469	__},
+{P,2,"campaigns/human-exp/levelx01h",								 446		__},
+{P,2,"campaigns/orc-exp/levelx01o",								 447		__},
+{P,2,"campaigns/human-exp/levelx02h",								 448		__},
+{P,2,"campaigns/orc-exp/levelx02o",								 449		__},
+{P,2,"campaigns/human-exp/levelx03h",								 450		__},
+{P,2,"campaigns/orc-exp/levelx03o",								 451		__},
+{P,2,"campaigns/human-exp/levelx04h",								 452		__},
+{P,2,"campaigns/orc-exp/levelx04o",								 453		__},
+{P,2,"campaigns/human-exp/levelx05h",								 454		__},
+{P,2,"campaigns/orc-exp/levelx05o",								 455		__},
+{P,2,"campaigns/human-exp/levelx06h",								 456		__},
+{P,2,"campaigns/orc-exp/levelx06o",								 457		__},
+{P,2,"campaigns/human-exp/levelx07h",								 458		__},
+{P,2,"campaigns/orc-exp/levelx07o",								 459		__},
+{P,2,"campaigns/human-exp/levelx08h",								 460		__},
+{P,2,"campaigns/orc-exp/levelx08o",								 461		__},
+{P,2,"campaigns/human-exp/levelx09h",								 462		__},
+{P,2,"campaigns/orc-exp/levelx09o",								 463		__},
+{P,2,"campaigns/human-exp/levelx10h",								 464		__},
+{P,2,"campaigns/orc-exp/levelx10o",								 465		__},
+{P,2,"campaigns/human-exp/levelx11h",								 466		__},
+{P,2,"campaigns/orc-exp/levelx11o",								 467		__},
+{P,2,"campaigns/human-exp/levelx12h",								 468		__},
+{P,2,"campaigns/orc-exp/levelx12o",								 469		__},
 // ------------------------------------------
-{G,2,"tilesets/swamp/neutral/units/%59",			438, 470 _2},
-{G,2,"tilesets/swamp/icons",					438, 471 _2},
+{G,2,"tilesets/swamp/neutral/units/%59",						438, 470 _2},
+{G,2,"tilesets/swamp/icons",										438, 471 _2},
 // 472: default UDTA for expansion PUDs
-{G,2,"tilesets/swamp/human/buildings/%90",			438, 473 _2},
-{G,2,"tilesets/swamp/orc/buildings/%91",			438, 474 _2},
-{G,2,"tilesets/swamp/human/buildings/%72",			438, 475 _2},
-{G,2,"tilesets/swamp/orc/buildings/%73",			438, 476 _2},
-{G,2,"tilesets/swamp/human/buildings/%70",			438, 477 _2},
-{G,2,"tilesets/swamp/orc/buildings/%71",			438, 478 _2},
-{G,2,"tilesets/swamp/human/buildings/%60",			438, 479 _2},
-{G,2,"tilesets/swamp/orc/buildings/%61",			438, 480 _2},
-{G,2,"tilesets/swamp/human/buildings/%-62",			438, 481 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-63",			438, 482 _2},
-{G,2,"tilesets/swamp/human/buildings/%64",			438, 483 _2},
-{G,2,"tilesets/swamp/orc/buildings/%65",			438, 484 _2},
-{G,2,"tilesets/swamp/human/buildings/%66",			438, 485 _2},
-{G,2,"tilesets/swamp/orc/buildings/%67",			438, 486 _2},
-{G,2,"tilesets/swamp/human/buildings/%76",			438, 487 _2},
-{G,2,"tilesets/swamp/orc/buildings/%77",			438, 488 _2},
-{G,2,"tilesets/swamp/human/buildings/%78",			438, 489 _2},
-{G,2,"tilesets/swamp/orc/buildings/%79",			438, 490 _2},
-{G,2,"tilesets/swamp/human/buildings/%68",			438, 491 _2},
-{G,2,"tilesets/swamp/orc/buildings/%69",			438, 492 _2},
-{G,2,"tilesets/swamp/human/buildings/%-84",			438, 493 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-85",			438, 494 _2},
-{G,2,"tilesets/swamp/human/buildings/%-74",			438, 495 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-75",			438, 496 _2},
-{G,2,"tilesets/swamp/human/buildings/%-80",			438, 497 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-81",			438, 498 _2},
-{G,2,"tilesets/swamp/human/buildings/%-86",			438, 499 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-87",			438, 500 _2},
-{G,2,"tilesets/swamp/human/buildings/%-88",			438, 501 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-89",			438, 502 _2},
-{G,2,"tilesets/swamp/human/buildings/%92",			438, 503 _2},
-{G,2,"tilesets/swamp/orc/buildings/%93",			438, 504 _2},
-{G,2,"tilesets/swamp/human/buildings/%82",			438, 505 _2},
-{G,2,"tilesets/swamp/orc/buildings/%83",			438, 506 _2},
-{G,2,"tilesets/swamp/human/buildings/%-98",			438, 507 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-99",			438, 508 _2},
-{G,2,"tilesets/swamp/human/buildings/%-100",			438, 509 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-101",			438, 510 _2},
-{G,2,"tilesets/swamp/neutral/buildings/%94",			438, 511 _2},
-{G,2,"tilesets/swamp/neutral/buildings/destroyed_site",		438, 512 _2},
-{G,2,"tilesets/swamp/neutral/buildings/%103",			438, 513 _2},
-{G,2,"tilesets/swamp/neutral/buildings/%104",			438, 514 _2},
-{G,2,"tilesets/swamp/neutral/buildings/%95",			438, 515 _2},
-{G,2,"tilesets/swamp/human/buildings/%-74_construction_site",	438, 516 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-75_construction_site",	438, 517 _2},
-{G,2,"tilesets/swamp/human/buildings/%-88_construction_site",	438, 518 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-89_construction_site",	438, 519 _2},
-{G,2,"tilesets/swamp/human/buildings/%-86_construction_site",	438, 520 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-87_construction_site",	438, 521 _2},
-{G,2,"tilesets/swamp/human/buildings/%-80_construction_site",	438, 522 _2},
-{G,2,"tilesets/swamp/orc/buildings/%-81_construction_site",	438, 523 _2},
-{G,2,"tilesets/swamp/neutral/buildings/small_destroyed_site",	438, 524 _2},
-{G,2,"tilesets/swamp/neutral/buildings/%102",			438, 525 _2},
-{G,2,"tilesets/swamp/human/units/%40",				438, 526 _2},
-{G,2,"tilesets/swamp/orc/units/%41",				438, 527 _2},
+{G,2,"tilesets/swamp/human/buildings/%90",						438, 473 _2},
+{G,2,"tilesets/swamp/orc/buildings/%91",						438, 474 _2},
+{G,2,"tilesets/swamp/human/buildings/%72",						438, 475 _2},
+{G,2,"tilesets/swamp/orc/buildings/%73",						438, 476 _2},
+{G,2,"tilesets/swamp/human/buildings/%70",						438, 477 _2},
+{G,2,"tilesets/swamp/orc/buildings/%71",						438, 478 _2},
+{G,2,"tilesets/swamp/human/buildings/%60",						438, 479 _2},
+{G,2,"tilesets/swamp/orc/buildings/%61",						438, 480 _2},
+{G,2,"tilesets/swamp/human/buildings/%-62",						438, 481 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-63",						438, 482 _2},
+{G,2,"tilesets/swamp/human/buildings/%64",						438, 483 _2},
+{G,2,"tilesets/swamp/orc/buildings/%65",						438, 484 _2},
+{G,2,"tilesets/swamp/human/buildings/%66",						438, 485 _2},
+{G,2,"tilesets/swamp/orc/buildings/%67",						438, 486 _2},
+{G,2,"tilesets/swamp/human/buildings/%76",						438, 487 _2},
+{G,2,"tilesets/swamp/orc/buildings/%77",						438, 488 _2},
+{G,2,"tilesets/swamp/human/buildings/%78",						438, 489 _2},
+{G,2,"tilesets/swamp/orc/buildings/%79",						438, 490 _2},
+{G,2,"tilesets/swamp/human/buildings/%68",						438, 491 _2},
+{G,2,"tilesets/swamp/orc/buildings/%69",						438, 492 _2},
+{G,2,"tilesets/swamp/human/buildings/%-84",						438, 493 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-85",						438, 494 _2},
+{G,2,"tilesets/swamp/human/buildings/%-74",						438, 495 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-75",						438, 496 _2},
+{G,2,"tilesets/swamp/human/buildings/%-80",						438, 497 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-81",						438, 498 _2},
+{G,2,"tilesets/swamp/human/buildings/%-86",						438, 499 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-87",						438, 500 _2},
+{G,2,"tilesets/swamp/human/buildings/%-88",						438, 501 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-89",						438, 502 _2},
+{G,2,"tilesets/swamp/human/buildings/%92",						438, 503 _2},
+{G,2,"tilesets/swamp/orc/buildings/%93",						438, 504 _2},
+{G,2,"tilesets/swamp/human/buildings/%82",						438, 505 _2},
+{G,2,"tilesets/swamp/orc/buildings/%83",						438, 506 _2},
+{G,2,"tilesets/swamp/human/buildings/%-98",						438, 507 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-99",						438, 508 _2},
+{G,2,"tilesets/swamp/human/buildings/%-100",						438, 509 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-101",						438, 510 _2},
+{G,2,"tilesets/swamp/neutral/buildings/%94",						438, 511 _2},
+{G,2,"tilesets/swamp/neutral/buildings/destroyed_site",				438, 512 _2},
+{G,2,"tilesets/swamp/neutral/buildings/%103",						438, 513 _2},
+{G,2,"tilesets/swamp/neutral/buildings/%104",						438, 514 _2},
+{G,2,"tilesets/swamp/neutral/buildings/%95",						438, 515 _2},
+{G,2,"tilesets/swamp/human/buildings/%-74_construction_site",		438, 516 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-75_construction_site",		438, 517 _2},
+{G,2,"tilesets/swamp/human/buildings/%-88_construction_site",		438, 518 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-89_construction_site",		438, 519 _2},
+{G,2,"tilesets/swamp/human/buildings/%-86_construction_site",		438, 520 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-87_construction_site",		438, 521 _2},
+{G,2,"tilesets/swamp/human/buildings/%-80_construction_site",		438, 522 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-81_construction_site",		438, 523 _2},
+{G,2,"tilesets/swamp/neutral/buildings/small_destroyed_site",		438, 524 _2},
+{G,2,"tilesets/swamp/neutral/buildings/%102",						438, 525 _2},
+{G,2,"tilesets/swamp/human/units/%40",								438, 526 _2},
+{G,2,"tilesets/swamp/orc/units/%41",								438, 527 _2},
 
 ///////////////////////////////////////////////////////////////////////////////
-//	SOUNDS
+//		SOUNDS
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifdef USE_BEOS
-{F,0,"SFXDAT.SUD",				5000 __},
+{F,0,"SFXDAT.SUD",								5000 __},
 #else
-{F,0,"sfxdat.sud",				5000 __},
+{F,0,"sfxdat.sud",								5000 __},
 #endif
 
 // 0 file length
 // 1 description
-{W,0,"ui/placement_error",					  2	__},
-{W,0,"ui/placement_success",					  3	__},
-{W,0,"misc/building_construction",				  4	__},
-{W,0,"human/basic_voices/selected/1",				  5	__},
-{W,0,"orc/basic_voices/selected/1",				  6	__},
-{W,0,"human/basic_voices/selected/2",				  7	__},
-{W,0,"orc/basic_voices/selected/2",				  8	__},
-{W,0,"human/basic_voices/selected/3",				  9	__},
-{W,0,"orc/basic_voices/selected/3",				 10	__},
-{W,0,"human/basic_voices/selected/4",				 11	__},
-{W,0,"orc/basic_voices/selected/4",				 12	__},
-{W,0,"human/basic_voices/selected/5",				 13	__},
-{W,0,"orc/basic_voices/selected/5",				 14	__},
-{W,0,"human/basic_voices/selected/6",				 15	__},
-{W,0,"orc/basic_voices/selected/6",				 16	__},
-{W,0,"human/basic_voices/annoyed/1",				 17	__},
-{W,0,"orc/basic_voices/annoyed/1",				 18	__},
-{W,0,"human/basic_voices/annoyed/2",				 19	__},
-{W,0,"orc/basic_voices/annoyed/2",				 20	__},
-{W,0,"human/basic_voices/annoyed/3",				 21	__},
-{W,0,"orc/basic_voices/annoyed/3",				 22	__},
-{W,0,"human/basic_voices/annoyed/4",				 23	__},
-{W,0,"orc/basic_voices/annoyed/4",				 24	__},
-{W,0,"human/basic_voices/annoyed/5",				 25	__},
-{W,0,"orc/basic_voices/annoyed/5",				 26	__},
-{W,0,"human/basic_voices/annoyed/6",				 27	__},
-{W,0,"orc/basic_voices/annoyed/6",				 28	__},
-{W,0,"human/basic_voices/annoyed/7",				 29	__},
-{W,0,"orc/basic_voices/annoyed/7",				 30	__},
-{W,0,"misc/explosion",						 31	__},
-{W,0,"human/basic_voices/acknowledgement/1",			 32	__},
-{W,0,"orc/basic_voices/acknowledgement/1",			 33	__},
-{W,0,"human/basic_voices/acknowledgement/2",			 34	__},
-{W,0,"orc/basic_voices/acknowledgement/2",			 35	__},
-{W,0,"human/basic_voices/acknowledgement/3",			 36	__},
-{W,0,"orc/basic_voices/acknowledgement/3",			 37	__},
-{W,0,"human/basic_voices/acknowledgement/4",			 38	__},
-{W,0,"orc/basic_voices/acknowledgement/4",			 39	__},
-{W,0,"human/basic_voices/work_complete",			 40	__},
-{W,0,"orc/basic_voices/work_complete",				 41	__},
-{W,0,"human/units/peasant/work_complete",			 42	__},
-{W,0,"human/basic_voices/ready",				 43	__},
-{W,0,"orc/basic_voices/ready",					 44	__},
-{W,0,"human/basic_voices/help/1",				 45	__},
-{W,0,"orc/basic_voices/help/1",					 46	__},
-{W,0,"human/basic_voices/help/2",				 47	__},
-{W,0,"orc/basic_voices/help/2",					 48	__},
-{W,0,"human/basic_voices/dead",					 49	__},
-{W,0,"orc/basic_voices/dead",					 50	__},
-{W,0,"ships/sinking",						 51	__},
-{W,0,"misc/building_explosion/1",				 52	__},
-{W,0,"misc/building_explosion/2",				 53	__},
-{W,0,"misc/building_explosion/3",				 54	__},
-{W,0,"missiles/catapult-ballista_attack",			 55	__},
-{W,0,"misc/tree_chopping/1",					 56	__},
-{W,0,"misc/tree_chopping/2",					 57	__},
-{W,0,"misc/tree_chopping/3",					 58	__},
-{W,0,"misc/tree_chopping/4",					 59	__},
-{W,0,"missiles/sword_attack/1",					 60	__},
-{W,0,"missiles/sword_attack/2",					 61	__},
-{W,0,"missiles/sword_attack/3",					 62	__},
-{W,0,"missiles/punch",						 63	__},
-{W,0,"missiles/fireball_hit",					 64	__},
-{W,0,"missiles/fireball_throw",					 65	__},
-{W,0,"missiles/bow_throw",					 66	__},
-{W,0,"missiles/bow_hit",					 67	__},
-{W,0,"spells/basic_spell_sound",				 68	__},
-{W,0,"buildings/blacksmith",					 69	__},
-{W,0,"human/buildings/church",					 70	__},
-{W,0,"orc/buildings/altar_of_storms",				 71	__},
-{W,0,"human/buildings/stables",					 72	__},
-{W,0,"orc/buildings/ogre_mound",				 73	__},
-{W,0,"human/buildings/farm",					 74	__},
-{W,0,"orc/buildings/pig_farm",					 75	__},
-{W,0,"neutral/buildings/gold_mine",				 76	__},
-{W,0,"missiles/axe_throw",					 77	__},
-{W,0,"ships/tanker/acknowledgement/1",				 78	__},
-{W,0,"missiles/fist",						 79	__},
-{W,0,"buildings/shipyard",					 80	__},
-{W,0,"human/units/peasant/attack",				 81	__},
-{W,0,"buildings/oil_platform",					 82	__},
-{W,0,"buildings/oil_refinery",					 83	__},
-{W,0,"buildings/lumbermill",					 84	__},
-{W,0,"misc/transport_docking",					 85	__},
-{W,0,"misc/burning",						 86	__},
-{W,0,"human/buildings/gryphon_aviary",				 87	__},
-{W,0,"orc/buildings/dragon_roost",				 88	__},
-{W,0,"buildings/foundry",					 89	__},
-{W,0,"human/buildings/gnomish_inventor",			 90	__},
-{W,0,"orc/buildings/goblin_alchemist",				 91	__},
-{W,0,"human/buildings/mage_tower",				 92	__},
-{W,0,"orc/buildings/temple_of_the_damned",			 93	__},
-{W,0,"human/capture",						 94	__},
-{W,0,"orc/capture",						 95	__},
-{W,0,"human/rescue",						 96	__},
-{W,0,"orc/rescue",						 97	__},
-{W,0,"spells/bloodlust",					 98	__},
-{W,0,"spells/death_and_decay",					 99	__},
-{W,0,"spells/death_coil",					100	__},
-{W,0,"spells/exorcism",						101	__},
-{W,0,"spells/flame_shield",					102	__},
-{W,0,"spells/haste",						103	__},
-{W,0,"spells/healing",						104	__},
-{W,0,"spells/holy_vision",					105	__},
-{W,0,"spells/blizzard",						106	__},
-{W,0,"spells/invisibility",					107	__},
-{W,0,"spells/eye_of_kilrogg",					108	__},
-{W,0,"spells/polymorph",					109	__},
-{W,0,"spells/slow",						110	__},
-{W,0,"spells/lightning",					111	__},
-{W,0,"spells/touch_of_darkness",				112	__},
-{W,0,"spells/unholy_armor",					113	__},
-{W,0,"spells/whirlwind",					114	__},
-{W,0,"orc/peon/ready",						115	__},
-{W,0,"orc/units/death_knight/annoyed/1",			116	__},
-{W,0,"orc/units/death_knight/annoyed/2",			117	__},
-{W,0,"orc/units/death_knight/annoyed/3",			118	__},
-{W,0,"orc/units/death_knight/ready",				119	__},
-{W,0,"orc/units/death_knight/selected/1",			120	__},
-{W,0,"orc/units/death_knight/selected/2",			121	__},
-{W,0,"orc/units/death_knight/acknowledgement/1",		122	__},
-{W,0,"orc/units/death_knight/acknowledgement/2",		123	__},
-{W,0,"orc/units/death_knight/acknowledgement/3",		124	__},
-{W,0,"human/units/dwarven_demolition_squad/annoyed/1",		125	__},
-{W,0,"human/units/dwarven_demolition_squad/annoyed/2",		126	__},
-{W,0,"human/units/dwarven_demolition_squad/annoyed/3",		127	__},
-{W,0,"human/units/dwarven_demolition_squad/ready",		128	__},
-{W,0,"human/units/dwarven_demolition_squad/selected/1",		129	__},
-{W,0,"human/units/dwarven_demolition_squad/selected/2",		130	__},
-{W,0,"human/units/dwarven_demolition_squad/acknowledgement/1",	131	__},
-{W,0,"human/units/dwarven_demolition_squad/acknowledgement/2",	132	__},
-{W,0,"human/units/dwarven_demolition_squad/acknowledgement/3",	133	__},
-{W,0,"human/units/dwarven_demolition_squad/acknowledgement/4",	134	__},
-{W,0,"human/units/dwarven_demolition_squad/acknowledgement/5",	135	__},
-{W,0,"human/units/elven_archer-ranger/annoyed/1",		136	__},
-{W,0,"human/units/elven_archer-ranger/annoyed/2",		137	__},
-{W,0,"human/units/elven_archer-ranger/annoyed/3",		138	__},
-{W,0,"human/units/elven_archer-ranger/ready",			139	__},
-{W,0,"human/units/elven_archer-ranger/selected/1",		140	__},
-{W,0,"human/units/elven_archer-ranger/selected/2",		141	__},
-{W,0,"human/units/elven_archer-ranger/selected/3",		142	__},
-{W,0,"human/units/elven_archer-ranger/selected/4",		143	__},
-{W,0,"human/units/elven_archer-ranger/acknowledgement/1",	144	__},
-{W,0,"human/units/elven_archer-ranger/acknowledgement/2",	145	__},
-{W,0,"human/units/elven_archer-ranger/acknowledgement/3",	146	__},
-{W,0,"human/units/elven_archer-ranger/acknowledgement/4",	147	__},
-{W,0,"human/units/gnomish_flying_machine/annoyed/1",		148	__},
-{W,0,"human/units/gnomish_flying_machine/annoyed/2",		149	__},
-{W,0,"human/units/gnomish_flying_machine/annoyed/3",		150	__},
-{W,0,"human/units/gnomish_flying_machine/annoyed/4",		151	__},
-{W,0,"human/units/gnomish_flying_machine/annoyed/5",		152	__},
-{W,0,"human/units/gnomish_flying_machine/ready",		153	__},
-{W,0,"human/units/gnomish_flying_machine/acknowledgement/1",	154	__},
-{W,0,"orc/units/goblin_sappers/annoyed/1",			155	__},
-{W,0,"orc/units/goblin_sappers/annoyed/2",			156	__},
-{W,0,"orc/units/goblin_sappers/annoyed/3",			157	__},
-{W,0,"orc/units/goblin_sappers/ready",				158	__},
-{W,0,"orc/units/goblin_sappers/selected/1",			159	__},
-{W,0,"orc/units/goblin_sappers/selected/2",			160	__},
-{W,0,"orc/units/goblin_sappers/selected/3",			161	__},
-{W,0,"orc/units/goblin_sappers/selected/4",			162	__},
-{W,0,"orc/units/goblin_sappers/acknowledgement/1",		163	__},
-{W,0,"orc/units/goblin_sappers/acknowledgement/2",		164	__},
-{W,0,"orc/units/goblin_sappers/acknowledgement/3",		165	__},
-{W,0,"orc/units/goblin_sappers/acknowledgement/4",		166	__},
-{W,0,"orc/units/goblin_zeppelin/annoyed/1",			167	__},
-{W,0,"orc/units/goblin_zeppelin/annoyed/2",			168	__},
-{W,0,"orc/units/goblin_zeppelin/ready",				169	__},
-{W,0,"orc/units/goblin_zeppelin/acknowledgement/1",		170	__},
-{W,0,"human/units/knight/annoyed/1",				171	__},
-{W,0,"human/units/knight/annoyed/2",				172	__},
-{W,0,"human/units/knight/annoyed/3",				173	__},
-{W,0,"human/units/knight/ready",				174	__},
-{W,0,"human/units/knight/selected/1",				175	__},
-{W,0,"human/units/knight/selected/2",				176	__},
-{W,0,"human/units/knight/selected/3",				177	__},
-{W,0,"human/units/knight/selected/4",				178	__},
-{W,0,"human/units/knight/acknowledgement/1",			179	__},
-{W,0,"human/units/knight/acknowledgement/2",			180	__},
-{W,0,"human/units/knight/acknowledgement/3",			181	__},
-{W,0,"human/units/knight/acknowledgement/4",			182	__},
-{W,0,"human/units/paladin/annoyed/1",				183	__},
-{W,0,"human/units/paladin/annoyed/2",				184	__},
-{W,0,"human/units/paladin/annoyed/3",				185	__},
-{W,0,"human/units/paladin/ready",				186	__},
-{W,0,"human/units/paladin/selected/1",				187	__},
-{W,0,"human/units/paladin/selected/2",				188	__},
-{W,0,"human/units/paladin/selected/3",				189	__},
-{W,0,"human/units/paladin/selected/4",				190	__},
-{W,0,"human/units/paladin/acknowledgement/1",			191	__},
-{W,0,"human/units/paladin/acknowledgement/2",			192	__},
-{W,0,"human/units/paladin/acknowledgement/3",			193	__},
-{W,0,"human/units/paladin/acknowledgement/4",			194	__},
-{W,0,"orc/units/ogre/annoyed/1",				195	__},
-{W,0,"orc/units/ogre/annoyed/2",				196	__},
-{W,0,"orc/units/ogre/annoyed/3",				197	__},
-{W,0,"orc/units/ogre/annoyed/4",				198	__},
-{W,0,"orc/units/ogre/annoyed/5",				199	__},
-{W,0,"orc/units/ogre/ready",					200	__},
-{W,0,"orc/units/ogre/selected/1",				201	__},
-{W,0,"orc/units/ogre/selected/2",				202	__},
-{W,0,"orc/units/ogre/selected/3",				203	__},
-{W,0,"orc/units/ogre/selected/4",				204	__},
-{W,0,"orc/units/ogre/acknowledgement/1",			205	__},
-{W,0,"orc/units/ogre/acknowledgement/2",			206	__},
-{W,0,"orc/units/ogre/acknowledgement/3",			207	__},
-{W,0,"orc/units/ogre-mage/annoyed/1",				208	__},
-{W,0,"orc/units/ogre-mage/annoyed/2",				209	__},
-{W,0,"orc/units/ogre-mage/annoyed/3",				210	__},
-{W,0,"orc/units/ogre-mage/ready",				211	__},
-{W,0,"orc/units/ogre-mage/selected/1",				212	__},
-{W,0,"orc/units/ogre-mage/selected/2",				213	__},
-{W,0,"orc/units/ogre-mage/selected/3",				214	__},
-{W,0,"orc/units/ogre-mage/selected/4",				215	__},
-{W,0,"orc/units/ogre-mage/acknowledgement/1",			216	__},
-{W,0,"orc/units/ogre-mage/acknowledgement/2",			217	__},
-{W,0,"orc/units/ogre-mage/acknowledgement/3",			218	__},
-{W,0,"human/ships/annoyed/1",					219	__},
-{W,0,"orc/ships/annoyed/1",					220	__},
-{W,0,"human/ships/annoyed/2",					221	__},
-{W,0,"orc/ships/annoyed/2",					222	__},
-{W,0,"human/ships/annoyed/3",					223	__},
-{W,0,"orc/ships/annoyed/3",					224	__},
-{W,0,"human/ships/ready",					225	__},
-{W,0,"orc/ships/ready",						226	__},
-{W,0,"human/ships/selected/1",					227	__},
-{W,0,"orc/ships/selected/1",					228	__},
-{W,0,"human/ships/selected/2",					229	__},
-{W,0,"orc/ships/selected/2",					230	__},
-{W,0,"human/ships/selected/3",					231	__},
-{W,0,"orc/ships/selected/3",					232	__},
-{W,0,"human/ships/acknowledgement/1",				233	__},
-{W,0,"orc/ships/acknowledgement/1",				234	__},
-{W,0,"human/ships/acknowledgement/2",				235	__},
-{W,0,"orc/ships/acknowledgement/2",				236	__},
-{W,0,"human/ships/acknowledgement/3",				237	__},
-{W,0,"orc/ships/acknowledgement/3",				238	__},
-{W,0,"human/ships/gnomish_submarine/annoyed/1",			239	__},
-{W,0,"human/ships/gnomish_submarine/annoyed/2",			240	__},
-{W,0,"human/ships/gnomish_submarine/annoyed/3",			241	__},
-{W,0,"human/ships/gnomish_submarine/annoyed/4",			242	__},
-{W,0,"orc/units/troll_axethrower-berserker/annoyed/1",		243	__},
-{W,0,"orc/units/troll_axethrower-berserker/annoyed/2",		244	__},
-{W,0,"orc/units/troll_axethrower-berserker/annoyed/3",		245	__},
-{W,0,"orc/units/troll_axethrower-berserker/ready",		246	__},
-{W,0,"orc/units/troll_axethrower-berserker/selected/1",		247	__},
-{W,0,"orc/units/troll_axethrower-berserker/selected/2",		248	__},
-{W,0,"orc/units/troll_axethrower-berserker/selected/3",		249	__},
-{W,0,"orc/units/troll_axethrower-berserker/acknowledgement/1",	250	__},
-{W,0,"orc/units/troll_axethrower-berserker/acknowledgement/2",	251	__},
-{W,0,"orc/units/troll_axethrower-berserker/acknowledgement/3",	252	__},
-{W,0,"human/units/mage/annoyed/1",				253	__},
-{W,0,"human/units/mage/annoyed/2",				254	__},
-{W,0,"human/units/mage/annoyed/3",				255	__},
-{W,0,"human/units/mage/ready",					256	__},
-{W,0,"human/units/mage/selected/1",				257	__},
-{W,0,"human/units/mage/selected/2",				258	__},
-{W,0,"human/units/mage/selected/3",				259	__},
-{W,0,"human/units/mage/acknowledgement/1",			260	__},
-{W,0,"human/units/mage/acknowledgement/2",			261	__},
-{W,0,"human/units/mage/acknowledgement/3",			262	__},
-{W,0,"human/units/peasant/ready",				263	__},
-{W,0,"human/units/peasant/annoyed/1",				264	__},
-{W,0,"human/units/peasant/annoyed/2",				265	__},
-{W,0,"human/units/peasant/annoyed/3",				266	__},
-{W,0,"human/units/peasant/annoyed/4",				267	__},
-{W,0,"human/units/peasant/annoyed/5",				268	__},
-{W,0,"human/units/peasant/annoyed/6",				269	__},
-{W,0,"human/units/peasant/annoyed/7",				270	__},
-{W,0,"human/units/peasant/selected/1",				271	__},
-{W,0,"human/units/peasant/selected/2",				272	__},
-{W,0,"human/units/peasant/selected/3",				273	__},
-{W,0,"human/units/peasant/selected/4",				274	__},
-{W,0,"human/units/peasant/acknowledgement/1",			275	__},
-{W,0,"human/units/peasant/acknowledgement/2",			276	__},
-{W,0,"human/units/peasant/acknowledgement/3",			277	__},
-{W,0,"human/units/peasant/acknowledgement/4",			278	__},
-{W,0,"orc/units/dragon/ready",					279	__},
-{W,0,"orc/units/dragon/selected/1",				280	__},
-{W,0,"orc/units/dragon/acknowledgement/1",			281	__},
-{W,0,"orc/units/dragon/acknowledgement/2",			282	__},
-{W,0,"human/units/gryphon_rider/selected/1",			283	__},
-{W,0,"human/units/gryphon_rider/ready",				284	__},
-{W,0,"human/units/gryphon_rider/acknowledgement/2",		285	__},
-{W,0,"neutral/units/sheep/selected/1",				286	__},
-{W,0,"neutral/units/sheep/annoyed/1",				287	__},
-{W,0,"neutral/units/seal/selected/1",				288	__},
-{W,0,"neutral/units/seal/annoyed/1",				289	__},
-{W,0,"neutral/units/pig/selected/1",				290	__},
-{W,0,"neutral/units/pig/annoyed/1",				291	__},
-{W,0,"units/catapult-ballista/acknowledgement/1",		292	__},
-{W,2,"human/units/alleria/annoyed/1",				293	__},
-{W,2,"human/units/alleria/annoyed/2",				294	__},
-{W,2,"human/units/alleria/annoyed/3",				295	__},
-{W,2,"human/units/alleria/selected/1",				296	__},
-{W,2,"human/units/alleria/selected/2",				297	__},
-{W,2,"human/units/alleria/selected/3",				298	__},
-{W,2,"human/units/alleria/acknowledgement/1",			299	__},
-{W,2,"human/units/alleria/acknowledgement/2",			300	__},
-{W,2,"human/units/alleria/acknowledgement/3",			301	__},
-{W,2,"human/units/danath/annoyed/1",				302	__},
-{W,2,"human/units/danath/annoyed/2",				303	__},
-{W,2,"human/units/danath/annoyed/3",				304	__},
-{W,2,"human/units/danath/selected/1",				305	__},
-{W,2,"human/units/danath/selected/2",				306	__},
-{W,2,"human/units/danath/selected/3",				307	__},
-{W,2,"human/units/danath/acknowledgement/1",			308	__},
-{W,2,"human/units/danath/acknowledgement/2",			309	__},
-{W,2,"human/units/danath/acknowledgement/3",			310	__},
-{W,2,"human/units/khadgar/annoyed/1",				311	__},
-{W,2,"human/units/khadgar/annoyed/2",				312	__},
-{W,2,"human/units/khadgar/annoyed/3",				313	__},
-{W,2,"human/units/khadgar/selected/1",				314	__},
-{W,2,"human/units/khadgar/selected/2",				315	__},
-{W,2,"human/units/khadgar/selected/3",				316	__},
-{W,2,"human/units/khadgar/acknowledgement/1",			317	__},
-{W,2,"human/units/khadgar/acknowledgement/2",			318	__},
-{W,2,"human/units/khadgar/acknowledgement/3",			319	__},
-{W,2,"human/units/kurdan/annoyed/1",				320	__},
-{W,2,"human/units/kurdan/annoyed/2",				321	__},
-{W,2,"human/units/kurdan/annoyed/3",				322	__},
-{W,2,"human/units/kurdan/selected/1",				323	__},
-{W,2,"human/units/kurdan/selected/2",				324	__},
-{W,2,"human/units/kurdan/selected/3",				325	__},
-{W,2,"human/units/kurdan/acknowledgement/1",			326	__},
-{W,2,"human/units/kurdan/acknowledgement/2",			327	__},
-{W,2,"human/units/kurdan/acknowledgement/3",			328	__},
-{W,2,"human/units/turalyon/annoyed/1",				329	__},
-{W,2,"human/units/turalyon/annoyed/2",				330	__},
-{W,2,"human/units/turalyon/annoyed/3",				331	__},
-{W,2,"human/units/turalyon/selected/1",				332	__},
-{W,2,"human/units/turalyon/selected/2",				333	__},
-{W,2,"human/units/turalyon/selected/3",				334	__},
-{W,2,"human/units/turalyon/acknowledgement/1",			335	__},
-{W,2,"human/units/turalyon/acknowledgement/2",			336	__},
-{W,2,"human/units/turalyon/acknowledgement/3",			337	__},
-{W,2,"orc/units/deathwing/annoyed/1",				338	__},
-{W,2,"orc/units/deathwing/annoyed/2",				339	__},
-{W,2,"orc/units/deathwing/annoyed/3",				340	__},
-{W,2,"orc/units/deathwing/selected/1",				341	__},
-{W,2,"orc/units/deathwing/selected/2",				342	__},
-{W,2,"orc/units/deathwing/selected/3",				343	__},
-{W,2,"orc/units/deathwing/acknowledgement/1",			344	__},
-{W,2,"orc/units/deathwing/acknowledgement/2",			345	__},
-{W,2,"orc/units/deathwing/acknowledgement/3",			346	__},
-{W,2,"orc/units/dentarg/annoyed/1",				347	__},
-{W,2,"orc/units/dentarg/annoyed/2",				348	__},
-{W,2,"orc/units/dentarg/annoyed/3",				349	__},
-{W,2,"orc/units/dentarg/selected/1",				350	__},
-{W,2,"orc/units/dentarg/selected/2",				351	__},
-{W,2,"orc/units/dentarg/selected/3",				352	__},
-{W,2,"orc/units/dentarg/acknowledgement/1",			353	__},
-{W,2,"orc/units/dentarg/acknowledgement/2",			354	__},
-{W,2,"orc/units/dentarg/acknowledgement/3",			355	__},
-{W,2,"orc/units/grom_hellscream/annoyed/1",			356	__},
-{W,2,"orc/units/grom_hellscream/annoyed/2",			357	__},
-{W,2,"orc/units/grom_hellscream/annoyed/3",			358	__},
-{W,2,"orc/units/grom_hellscream/selected/1",			359	__},
-{W,2,"orc/units/grom_hellscream/selected/2",			360	__},
-{W,2,"orc/units/grom_hellscream/selected/3",			361	__},
-{W,2,"orc/units/grom_hellscream/acknowledgement/1",		362	__},
-{W,2,"orc/units/grom_hellscream/acknowledgement/2",		363	__},
-{W,2,"orc/units/grom_hellscream/acknowledgement/3",		364	__},
-{W,2,"orc/units/korgath_bladefist/annoyed/1",			365	__},
-{W,2,"orc/units/korgath_bladefist/annoyed/2",			366	__},
-{W,2,"orc/units/korgath_bladefist/annoyed/3",			367	__},
-{W,2,"orc/units/korgath_bladefist/selected/1",			368	__},
-{W,2,"orc/units/korgath_bladefist/selected/2",			369	__},
-{W,2,"orc/units/korgath_bladefist/selected/3",			370	__},
-{W,2,"orc/units/korgath_bladefist/acknowledgement/1",		371	__},
-{W,2,"orc/units/korgath_bladefist/acknowledgement/2",		372	__},
-{W,2,"orc/units/korgath_bladefist/acknowledgement/3",		373	__},
-{W,2,"orc/units/teron_gorefiend/annoyed/1",			374	__},
-{W,2,"orc/units/teron_gorefiend/annoyed/2",			375	__},
-{W,2,"orc/units/teron_gorefiend/annoyed/3",			376	__},
-{W,2,"orc/units/teron_gorefiend/selected/1",			377	__},
-{W,2,"orc/units/teron_gorefiend/selected/2",			378	__},
-{W,2,"orc/units/teron_gorefiend/selected/3",			379	__},
-{W,2,"orc/units/teron_gorefiend/acknowledgement/1",		380	__},
-{W,2,"orc/units/teron_gorefiend/acknowledgement/2",		381	__},
-{W,2,"orc/units/teron_gorefiend/acknowledgement/3",		382	__},
-{W,2,"neutral/units/warthog/selected/1",			383	__},
-{W,2,"neutral/units/warthog/annoyed/1",				384	__},
+{W,0,"ui/placement_error",										  2		__},
+{W,0,"ui/placement_success",										  3		__},
+{W,0,"misc/building_construction",								  4		__},
+{W,0,"human/basic_voices/selected/1",								  5		__},
+{W,0,"orc/basic_voices/selected/1",								  6		__},
+{W,0,"human/basic_voices/selected/2",								  7		__},
+{W,0,"orc/basic_voices/selected/2",								  8		__},
+{W,0,"human/basic_voices/selected/3",								  9		__},
+{W,0,"orc/basic_voices/selected/3",								 10		__},
+{W,0,"human/basic_voices/selected/4",								 11		__},
+{W,0,"orc/basic_voices/selected/4",								 12		__},
+{W,0,"human/basic_voices/selected/5",								 13		__},
+{W,0,"orc/basic_voices/selected/5",								 14		__},
+{W,0,"human/basic_voices/selected/6",								 15		__},
+{W,0,"orc/basic_voices/selected/6",								 16		__},
+{W,0,"human/basic_voices/annoyed/1",								 17		__},
+{W,0,"orc/basic_voices/annoyed/1",								 18		__},
+{W,0,"human/basic_voices/annoyed/2",								 19		__},
+{W,0,"orc/basic_voices/annoyed/2",								 20		__},
+{W,0,"human/basic_voices/annoyed/3",								 21		__},
+{W,0,"orc/basic_voices/annoyed/3",								 22		__},
+{W,0,"human/basic_voices/annoyed/4",								 23		__},
+{W,0,"orc/basic_voices/annoyed/4",								 24		__},
+{W,0,"human/basic_voices/annoyed/5",								 25		__},
+{W,0,"orc/basic_voices/annoyed/5",								 26		__},
+{W,0,"human/basic_voices/annoyed/6",								 27		__},
+{W,0,"orc/basic_voices/annoyed/6",								 28		__},
+{W,0,"human/basic_voices/annoyed/7",								 29		__},
+{W,0,"orc/basic_voices/annoyed/7",								 30		__},
+{W,0,"misc/explosion",												 31		__},
+{W,0,"human/basic_voices/acknowledgement/1",						 32		__},
+{W,0,"orc/basic_voices/acknowledgement/1",						 33		__},
+{W,0,"human/basic_voices/acknowledgement/2",						 34		__},
+{W,0,"orc/basic_voices/acknowledgement/2",						 35		__},
+{W,0,"human/basic_voices/acknowledgement/3",						 36		__},
+{W,0,"orc/basic_voices/acknowledgement/3",						 37		__},
+{W,0,"human/basic_voices/acknowledgement/4",						 38		__},
+{W,0,"orc/basic_voices/acknowledgement/4",						 39		__},
+{W,0,"human/basic_voices/work_complete",						 40		__},
+{W,0,"orc/basic_voices/work_complete",								 41		__},
+{W,0,"human/units/peasant/work_complete",						 42		__},
+{W,0,"human/basic_voices/ready",								 43		__},
+{W,0,"orc/basic_voices/ready",										 44		__},
+{W,0,"human/basic_voices/help/1",								 45		__},
+{W,0,"orc/basic_voices/help/1",										 46		__},
+{W,0,"human/basic_voices/help/2",								 47		__},
+{W,0,"orc/basic_voices/help/2",										 48		__},
+{W,0,"human/basic_voices/dead",										 49		__},
+{W,0,"orc/basic_voices/dead",										 50		__},
+{W,0,"ships/sinking",												 51		__},
+{W,0,"misc/building_explosion/1",								 52		__},
+{W,0,"misc/building_explosion/2",								 53		__},
+{W,0,"misc/building_explosion/3",								 54		__},
+{W,0,"missiles/catapult-ballista_attack",						 55		__},
+{W,0,"misc/tree_chopping/1",										 56		__},
+{W,0,"misc/tree_chopping/2",										 57		__},
+{W,0,"misc/tree_chopping/3",										 58		__},
+{W,0,"misc/tree_chopping/4",										 59		__},
+{W,0,"missiles/sword_attack/1",										 60		__},
+{W,0,"missiles/sword_attack/2",										 61		__},
+{W,0,"missiles/sword_attack/3",										 62		__},
+{W,0,"missiles/punch",												 63		__},
+{W,0,"missiles/fireball_hit",										 64		__},
+{W,0,"missiles/fireball_throw",										 65		__},
+{W,0,"missiles/bow_throw",										 66		__},
+{W,0,"missiles/bow_hit",										 67		__},
+{W,0,"spells/basic_spell_sound",								 68		__},
+{W,0,"buildings/blacksmith",										 69		__},
+{W,0,"human/buildings/church",										 70		__},
+{W,0,"orc/buildings/altar_of_storms",								 71		__},
+{W,0,"human/buildings/stables",										 72		__},
+{W,0,"orc/buildings/ogre_mound",								 73		__},
+{W,0,"human/buildings/farm",										 74		__},
+{W,0,"orc/buildings/pig_farm",										 75		__},
+{W,0,"neutral/buildings/gold_mine",								 76		__},
+{W,0,"missiles/axe_throw",										 77		__},
+{W,0,"ships/tanker/acknowledgement/1",								 78		__},
+{W,0,"missiles/fist",												 79		__},
+{W,0,"buildings/shipyard",										 80		__},
+{W,0,"human/units/peasant/attack",								 81		__},
+{W,0,"buildings/oil_platform",										 82		__},
+{W,0,"buildings/oil_refinery",										 83		__},
+{W,0,"buildings/lumbermill",										 84		__},
+{W,0,"misc/transport_docking",										 85		__},
+{W,0,"misc/burning",												 86		__},
+{W,0,"human/buildings/gryphon_aviary",								 87		__},
+{W,0,"orc/buildings/dragon_roost",								 88		__},
+{W,0,"buildings/foundry",										 89		__},
+{W,0,"human/buildings/gnomish_inventor",						 90		__},
+{W,0,"orc/buildings/goblin_alchemist",								 91		__},
+{W,0,"human/buildings/mage_tower",								 92		__},
+{W,0,"orc/buildings/temple_of_the_damned",						 93		__},
+{W,0,"human/capture",												 94		__},
+{W,0,"orc/capture",												 95		__},
+{W,0,"human/rescue",												 96		__},
+{W,0,"orc/rescue",												 97		__},
+{W,0,"spells/bloodlust",										 98		__},
+{W,0,"spells/death_and_decay",										 99		__},
+{W,0,"spells/death_coil",										100		__},
+{W,0,"spells/exorcism",												101		__},
+{W,0,"spells/flame_shield",										102		__},
+{W,0,"spells/haste",												103		__},
+{W,0,"spells/healing",												104		__},
+{W,0,"spells/holy_vision",										105		__},
+{W,0,"spells/blizzard",												106		__},
+{W,0,"spells/invisibility",										107		__},
+{W,0,"spells/eye_of_kilrogg",										108		__},
+{W,0,"spells/polymorph",										109		__},
+{W,0,"spells/slow",												110		__},
+{W,0,"spells/lightning",										111		__},
+{W,0,"spells/touch_of_darkness",								112		__},
+{W,0,"spells/unholy_armor",										113		__},
+{W,0,"spells/whirlwind",										114		__},
+{W,0,"orc/peon/ready",												115		__},
+{W,0,"orc/units/death_knight/annoyed/1",						116		__},
+{W,0,"orc/units/death_knight/annoyed/2",						117		__},
+{W,0,"orc/units/death_knight/annoyed/3",						118		__},
+{W,0,"orc/units/death_knight/ready",								119		__},
+{W,0,"orc/units/death_knight/selected/1",						120		__},
+{W,0,"orc/units/death_knight/selected/2",						121		__},
+{W,0,"orc/units/death_knight/acknowledgement/1",				122		__},
+{W,0,"orc/units/death_knight/acknowledgement/2",				123		__},
+{W,0,"orc/units/death_knight/acknowledgement/3",				124		__},
+{W,0,"human/units/dwarven_demolition_squad/annoyed/1",				125		__},
+{W,0,"human/units/dwarven_demolition_squad/annoyed/2",				126		__},
+{W,0,"human/units/dwarven_demolition_squad/annoyed/3",				127		__},
+{W,0,"human/units/dwarven_demolition_squad/ready",				128		__},
+{W,0,"human/units/dwarven_demolition_squad/selected/1",				129		__},
+{W,0,"human/units/dwarven_demolition_squad/selected/2",				130		__},
+{W,0,"human/units/dwarven_demolition_squad/acknowledgement/1",		131		__},
+{W,0,"human/units/dwarven_demolition_squad/acknowledgement/2",		132		__},
+{W,0,"human/units/dwarven_demolition_squad/acknowledgement/3",		133		__},
+{W,0,"human/units/dwarven_demolition_squad/acknowledgement/4",		134		__},
+{W,0,"human/units/dwarven_demolition_squad/acknowledgement/5",		135		__},
+{W,0,"human/units/elven_archer-ranger/annoyed/1",				136		__},
+{W,0,"human/units/elven_archer-ranger/annoyed/2",				137		__},
+{W,0,"human/units/elven_archer-ranger/annoyed/3",				138		__},
+{W,0,"human/units/elven_archer-ranger/ready",						139		__},
+{W,0,"human/units/elven_archer-ranger/selected/1",				140		__},
+{W,0,"human/units/elven_archer-ranger/selected/2",				141		__},
+{W,0,"human/units/elven_archer-ranger/selected/3",				142		__},
+{W,0,"human/units/elven_archer-ranger/selected/4",				143		__},
+{W,0,"human/units/elven_archer-ranger/acknowledgement/1",		144		__},
+{W,0,"human/units/elven_archer-ranger/acknowledgement/2",		145		__},
+{W,0,"human/units/elven_archer-ranger/acknowledgement/3",		146		__},
+{W,0,"human/units/elven_archer-ranger/acknowledgement/4",		147		__},
+{W,0,"human/units/gnomish_flying_machine/annoyed/1",				148		__},
+{W,0,"human/units/gnomish_flying_machine/annoyed/2",				149		__},
+{W,0,"human/units/gnomish_flying_machine/annoyed/3",				150		__},
+{W,0,"human/units/gnomish_flying_machine/annoyed/4",				151		__},
+{W,0,"human/units/gnomish_flying_machine/annoyed/5",				152		__},
+{W,0,"human/units/gnomish_flying_machine/ready",				153		__},
+{W,0,"human/units/gnomish_flying_machine/acknowledgement/1",		154		__},
+{W,0,"orc/units/goblin_sappers/annoyed/1",						155		__},
+{W,0,"orc/units/goblin_sappers/annoyed/2",						156		__},
+{W,0,"orc/units/goblin_sappers/annoyed/3",						157		__},
+{W,0,"orc/units/goblin_sappers/ready",								158		__},
+{W,0,"orc/units/goblin_sappers/selected/1",						159		__},
+{W,0,"orc/units/goblin_sappers/selected/2",						160		__},
+{W,0,"orc/units/goblin_sappers/selected/3",						161		__},
+{W,0,"orc/units/goblin_sappers/selected/4",						162		__},
+{W,0,"orc/units/goblin_sappers/acknowledgement/1",				163		__},
+{W,0,"orc/units/goblin_sappers/acknowledgement/2",				164		__},
+{W,0,"orc/units/goblin_sappers/acknowledgement/3",				165		__},
+{W,0,"orc/units/goblin_sappers/acknowledgement/4",				166		__},
+{W,0,"orc/units/goblin_zeppelin/annoyed/1",						167		__},
+{W,0,"orc/units/goblin_zeppelin/annoyed/2",						168		__},
+{W,0,"orc/units/goblin_zeppelin/ready",								169		__},
+{W,0,"orc/units/goblin_zeppelin/acknowledgement/1",				170		__},
+{W,0,"human/units/knight/annoyed/1",								171		__},
+{W,0,"human/units/knight/annoyed/2",								172		__},
+{W,0,"human/units/knight/annoyed/3",								173		__},
+{W,0,"human/units/knight/ready",								174		__},
+{W,0,"human/units/knight/selected/1",								175		__},
+{W,0,"human/units/knight/selected/2",								176		__},
+{W,0,"human/units/knight/selected/3",								177		__},
+{W,0,"human/units/knight/selected/4",								178		__},
+{W,0,"human/units/knight/acknowledgement/1",						179		__},
+{W,0,"human/units/knight/acknowledgement/2",						180		__},
+{W,0,"human/units/knight/acknowledgement/3",						181		__},
+{W,0,"human/units/knight/acknowledgement/4",						182		__},
+{W,0,"human/units/paladin/annoyed/1",								183		__},
+{W,0,"human/units/paladin/annoyed/2",								184		__},
+{W,0,"human/units/paladin/annoyed/3",								185		__},
+{W,0,"human/units/paladin/ready",								186		__},
+{W,0,"human/units/paladin/selected/1",								187		__},
+{W,0,"human/units/paladin/selected/2",								188		__},
+{W,0,"human/units/paladin/selected/3",								189		__},
+{W,0,"human/units/paladin/selected/4",								190		__},
+{W,0,"human/units/paladin/acknowledgement/1",						191		__},
+{W,0,"human/units/paladin/acknowledgement/2",						192		__},
+{W,0,"human/units/paladin/acknowledgement/3",						193		__},
+{W,0,"human/units/paladin/acknowledgement/4",						194		__},
+{W,0,"orc/units/ogre/annoyed/1",								195		__},
+{W,0,"orc/units/ogre/annoyed/2",								196		__},
+{W,0,"orc/units/ogre/annoyed/3",								197		__},
+{W,0,"orc/units/ogre/annoyed/4",								198		__},
+{W,0,"orc/units/ogre/annoyed/5",								199		__},
+{W,0,"orc/units/ogre/ready",										200		__},
+{W,0,"orc/units/ogre/selected/1",								201		__},
+{W,0,"orc/units/ogre/selected/2",								202		__},
+{W,0,"orc/units/ogre/selected/3",								203		__},
+{W,0,"orc/units/ogre/selected/4",								204		__},
+{W,0,"orc/units/ogre/acknowledgement/1",						205		__},
+{W,0,"orc/units/ogre/acknowledgement/2",						206		__},
+{W,0,"orc/units/ogre/acknowledgement/3",						207		__},
+{W,0,"orc/units/ogre-mage/annoyed/1",								208		__},
+{W,0,"orc/units/ogre-mage/annoyed/2",								209		__},
+{W,0,"orc/units/ogre-mage/annoyed/3",								210		__},
+{W,0,"orc/units/ogre-mage/ready",								211		__},
+{W,0,"orc/units/ogre-mage/selected/1",								212		__},
+{W,0,"orc/units/ogre-mage/selected/2",								213		__},
+{W,0,"orc/units/ogre-mage/selected/3",								214		__},
+{W,0,"orc/units/ogre-mage/selected/4",								215		__},
+{W,0,"orc/units/ogre-mage/acknowledgement/1",						216		__},
+{W,0,"orc/units/ogre-mage/acknowledgement/2",						217		__},
+{W,0,"orc/units/ogre-mage/acknowledgement/3",						218		__},
+{W,0,"human/ships/annoyed/1",										219		__},
+{W,0,"orc/ships/annoyed/1",										220		__},
+{W,0,"human/ships/annoyed/2",										221		__},
+{W,0,"orc/ships/annoyed/2",										222		__},
+{W,0,"human/ships/annoyed/3",										223		__},
+{W,0,"orc/ships/annoyed/3",										224		__},
+{W,0,"human/ships/ready",										225		__},
+{W,0,"orc/ships/ready",												226		__},
+{W,0,"human/ships/selected/1",										227		__},
+{W,0,"orc/ships/selected/1",										228		__},
+{W,0,"human/ships/selected/2",										229		__},
+{W,0,"orc/ships/selected/2",										230		__},
+{W,0,"human/ships/selected/3",										231		__},
+{W,0,"orc/ships/selected/3",										232		__},
+{W,0,"human/ships/acknowledgement/1",								233		__},
+{W,0,"orc/ships/acknowledgement/1",								234		__},
+{W,0,"human/ships/acknowledgement/2",								235		__},
+{W,0,"orc/ships/acknowledgement/2",								236		__},
+{W,0,"human/ships/acknowledgement/3",								237		__},
+{W,0,"orc/ships/acknowledgement/3",								238		__},
+{W,0,"human/ships/gnomish_submarine/annoyed/1",						239		__},
+{W,0,"human/ships/gnomish_submarine/annoyed/2",						240		__},
+{W,0,"human/ships/gnomish_submarine/annoyed/3",						241		__},
+{W,0,"human/ships/gnomish_submarine/annoyed/4",						242		__},
+{W,0,"orc/units/troll_axethrower-berserker/annoyed/1",				243		__},
+{W,0,"orc/units/troll_axethrower-berserker/annoyed/2",				244		__},
+{W,0,"orc/units/troll_axethrower-berserker/annoyed/3",				245		__},
+{W,0,"orc/units/troll_axethrower-berserker/ready",				246		__},
+{W,0,"orc/units/troll_axethrower-berserker/selected/1",				247		__},
+{W,0,"orc/units/troll_axethrower-berserker/selected/2",				248		__},
+{W,0,"orc/units/troll_axethrower-berserker/selected/3",				249		__},
+{W,0,"orc/units/troll_axethrower-berserker/acknowledgement/1",		250		__},
+{W,0,"orc/units/troll_axethrower-berserker/acknowledgement/2",		251		__},
+{W,0,"orc/units/troll_axethrower-berserker/acknowledgement/3",		252		__},
+{W,0,"human/units/mage/annoyed/1",								253		__},
+{W,0,"human/units/mage/annoyed/2",								254		__},
+{W,0,"human/units/mage/annoyed/3",								255		__},
+{W,0,"human/units/mage/ready",										256		__},
+{W,0,"human/units/mage/selected/1",								257		__},
+{W,0,"human/units/mage/selected/2",								258		__},
+{W,0,"human/units/mage/selected/3",								259		__},
+{W,0,"human/units/mage/acknowledgement/1",						260		__},
+{W,0,"human/units/mage/acknowledgement/2",						261		__},
+{W,0,"human/units/mage/acknowledgement/3",						262		__},
+{W,0,"human/units/peasant/ready",								263		__},
+{W,0,"human/units/peasant/annoyed/1",								264		__},
+{W,0,"human/units/peasant/annoyed/2",								265		__},
+{W,0,"human/units/peasant/annoyed/3",								266		__},
+{W,0,"human/units/peasant/annoyed/4",								267		__},
+{W,0,"human/units/peasant/annoyed/5",								268		__},
+{W,0,"human/units/peasant/annoyed/6",								269		__},
+{W,0,"human/units/peasant/annoyed/7",								270		__},
+{W,0,"human/units/peasant/selected/1",								271		__},
+{W,0,"human/units/peasant/selected/2",								272		__},
+{W,0,"human/units/peasant/selected/3",								273		__},
+{W,0,"human/units/peasant/selected/4",								274		__},
+{W,0,"human/units/peasant/acknowledgement/1",						275		__},
+{W,0,"human/units/peasant/acknowledgement/2",						276		__},
+{W,0,"human/units/peasant/acknowledgement/3",						277		__},
+{W,0,"human/units/peasant/acknowledgement/4",						278		__},
+{W,0,"orc/units/dragon/ready",										279		__},
+{W,0,"orc/units/dragon/selected/1",								280		__},
+{W,0,"orc/units/dragon/acknowledgement/1",						281		__},
+{W,0,"orc/units/dragon/acknowledgement/2",						282		__},
+{W,0,"human/units/gryphon_rider/selected/1",						283		__},
+{W,0,"human/units/gryphon_rider/ready",								284		__},
+{W,0,"human/units/gryphon_rider/acknowledgement/2",				285		__},
+{W,0,"neutral/units/sheep/selected/1",								286		__},
+{W,0,"neutral/units/sheep/annoyed/1",								287		__},
+{W,0,"neutral/units/seal/selected/1",								288		__},
+{W,0,"neutral/units/seal/annoyed/1",								289		__},
+{W,0,"neutral/units/pig/selected/1",								290		__},
+{W,0,"neutral/units/pig/annoyed/1",								291		__},
+{W,0,"units/catapult-ballista/acknowledgement/1",				292		__},
+{W,2,"human/units/alleria/annoyed/1",								293		__},
+{W,2,"human/units/alleria/annoyed/2",								294		__},
+{W,2,"human/units/alleria/annoyed/3",								295		__},
+{W,2,"human/units/alleria/selected/1",								296		__},
+{W,2,"human/units/alleria/selected/2",								297		__},
+{W,2,"human/units/alleria/selected/3",								298		__},
+{W,2,"human/units/alleria/acknowledgement/1",						299		__},
+{W,2,"human/units/alleria/acknowledgement/2",						300		__},
+{W,2,"human/units/alleria/acknowledgement/3",						301		__},
+{W,2,"human/units/danath/annoyed/1",								302		__},
+{W,2,"human/units/danath/annoyed/2",								303		__},
+{W,2,"human/units/danath/annoyed/3",								304		__},
+{W,2,"human/units/danath/selected/1",								305		__},
+{W,2,"human/units/danath/selected/2",								306		__},
+{W,2,"human/units/danath/selected/3",								307		__},
+{W,2,"human/units/danath/acknowledgement/1",						308		__},
+{W,2,"human/units/danath/acknowledgement/2",						309		__},
+{W,2,"human/units/danath/acknowledgement/3",						310		__},
+{W,2,"human/units/khadgar/annoyed/1",								311		__},
+{W,2,"human/units/khadgar/annoyed/2",								312		__},
+{W,2,"human/units/khadgar/annoyed/3",								313		__},
+{W,2,"human/units/khadgar/selected/1",								314		__},
+{W,2,"human/units/khadgar/selected/2",								315		__},
+{W,2,"human/units/khadgar/selected/3",								316		__},
+{W,2,"human/units/khadgar/acknowledgement/1",						317		__},
+{W,2,"human/units/khadgar/acknowledgement/2",						318		__},
+{W,2,"human/units/khadgar/acknowledgement/3",						319		__},
+{W,2,"human/units/kurdan/annoyed/1",								320		__},
+{W,2,"human/units/kurdan/annoyed/2",								321		__},
+{W,2,"human/units/kurdan/annoyed/3",								322		__},
+{W,2,"human/units/kurdan/selected/1",								323		__},
+{W,2,"human/units/kurdan/selected/2",								324		__},
+{W,2,"human/units/kurdan/selected/3",								325		__},
+{W,2,"human/units/kurdan/acknowledgement/1",						326		__},
+{W,2,"human/units/kurdan/acknowledgement/2",						327		__},
+{W,2,"human/units/kurdan/acknowledgement/3",						328		__},
+{W,2,"human/units/turalyon/annoyed/1",								329		__},
+{W,2,"human/units/turalyon/annoyed/2",								330		__},
+{W,2,"human/units/turalyon/annoyed/3",								331		__},
+{W,2,"human/units/turalyon/selected/1",								332		__},
+{W,2,"human/units/turalyon/selected/2",								333		__},
+{W,2,"human/units/turalyon/selected/3",								334		__},
+{W,2,"human/units/turalyon/acknowledgement/1",						335		__},
+{W,2,"human/units/turalyon/acknowledgement/2",						336		__},
+{W,2,"human/units/turalyon/acknowledgement/3",						337		__},
+{W,2,"orc/units/deathwing/annoyed/1",								338		__},
+{W,2,"orc/units/deathwing/annoyed/2",								339		__},
+{W,2,"orc/units/deathwing/annoyed/3",								340		__},
+{W,2,"orc/units/deathwing/selected/1",								341		__},
+{W,2,"orc/units/deathwing/selected/2",								342		__},
+{W,2,"orc/units/deathwing/selected/3",								343		__},
+{W,2,"orc/units/deathwing/acknowledgement/1",						344		__},
+{W,2,"orc/units/deathwing/acknowledgement/2",						345		__},
+{W,2,"orc/units/deathwing/acknowledgement/3",						346		__},
+{W,2,"orc/units/dentarg/annoyed/1",								347		__},
+{W,2,"orc/units/dentarg/annoyed/2",								348		__},
+{W,2,"orc/units/dentarg/annoyed/3",								349		__},
+{W,2,"orc/units/dentarg/selected/1",								350		__},
+{W,2,"orc/units/dentarg/selected/2",								351		__},
+{W,2,"orc/units/dentarg/selected/3",								352		__},
+{W,2,"orc/units/dentarg/acknowledgement/1",						353		__},
+{W,2,"orc/units/dentarg/acknowledgement/2",						354		__},
+{W,2,"orc/units/dentarg/acknowledgement/3",						355		__},
+{W,2,"orc/units/grom_hellscream/annoyed/1",						356		__},
+{W,2,"orc/units/grom_hellscream/annoyed/2",						357		__},
+{W,2,"orc/units/grom_hellscream/annoyed/3",						358		__},
+{W,2,"orc/units/grom_hellscream/selected/1",						359		__},
+{W,2,"orc/units/grom_hellscream/selected/2",						360		__},
+{W,2,"orc/units/grom_hellscream/selected/3",						361		__},
+{W,2,"orc/units/grom_hellscream/acknowledgement/1",				362		__},
+{W,2,"orc/units/grom_hellscream/acknowledgement/2",				363		__},
+{W,2,"orc/units/grom_hellscream/acknowledgement/3",				364		__},
+{W,2,"orc/units/korgath_bladefist/annoyed/1",						365		__},
+{W,2,"orc/units/korgath_bladefist/annoyed/2",						366		__},
+{W,2,"orc/units/korgath_bladefist/annoyed/3",						367		__},
+{W,2,"orc/units/korgath_bladefist/selected/1",						368		__},
+{W,2,"orc/units/korgath_bladefist/selected/2",						369		__},
+{W,2,"orc/units/korgath_bladefist/selected/3",						370		__},
+{W,2,"orc/units/korgath_bladefist/acknowledgement/1",				371		__},
+{W,2,"orc/units/korgath_bladefist/acknowledgement/2",				372		__},
+{W,2,"orc/units/korgath_bladefist/acknowledgement/3",				373		__},
+{W,2,"orc/units/teron_gorefiend/annoyed/1",						374		__},
+{W,2,"orc/units/teron_gorefiend/annoyed/2",						375		__},
+{W,2,"orc/units/teron_gorefiend/annoyed/3",						376		__},
+{W,2,"orc/units/teron_gorefiend/selected/1",						377		__},
+{W,2,"orc/units/teron_gorefiend/selected/2",						378		__},
+{W,2,"orc/units/teron_gorefiend/selected/3",						379		__},
+{W,2,"orc/units/teron_gorefiend/acknowledgement/1",				380		__},
+{W,2,"orc/units/teron_gorefiend/acknowledgement/2",				381		__},
+{W,2,"orc/units/teron_gorefiend/acknowledgement/3",				382		__},
+{W,2,"neutral/units/warthog/selected/1",						383		__},
+{W,2,"neutral/units/warthog/annoyed/1",								384		__},
 
 ///////////////////////////////////////////////////////////////////////////////
-//	INTERFACE
+//		INTERFACE
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifdef USE_BEOS
-{F,0,"REZDAT.WAR",				3000 __},
+{F,0,"REZDAT.WAR",								3000 __},
 #else
-{F,0,"rezdat.war",				3000 __},
+{F,0,"rezdat.war",								3000 __},
 #endif
 
 // (correct palette is #2 in maindat)
-{U,0,"ui/buttons_1",						14, 0	_2},
+{U,0,"ui/buttons_1",												14, 0		_2},
 // (correct palette is #2 in maindat)
-{U,0,"ui/buttons_2",						14, 1	_2},
-{I,0,"ui/cd-icon",						14, 2	_2},
-{I,0,"ui/human/panel_1",					14, 3	_2},
-{I,0,"ui/orc/panel_1",						14, 4	_2},
-{I,0,"ui/human/panel_2",					14, 5	_2},
-{I,0,"ui/orc/panel_2",						14, 6	_2},
-{I,0,"ui/human/panel_3",					14, 7	_2},
-{I,0,"ui/orc/panel_3",						14, 8	_2},
-{I,0,"ui/human/panel_4",					14, 9	_2},
-{I,0,"ui/orc/panel_4",						14, 10	_2},
-{I,0,"ui/human/panel_5",					14, 11	_2},
-{I,0,"ui/orc/panel_5",						14, 12	_2},
-{I,0,"ui/Menu_background_with_title",				14, 13	_2},
-{I,0,"ui/Menu_background_without_title",			16, 15	_2},
+{U,0,"ui/buttons_2",												14, 1		_2},
+{I,0,"ui/cd-icon",												14, 2		_2},
+{I,0,"ui/human/panel_1",										14, 3		_2},
+{I,0,"ui/orc/panel_1",												14, 4		_2},
+{I,0,"ui/human/panel_2",										14, 5		_2},
+{I,0,"ui/orc/panel_2",												14, 6		_2},
+{I,0,"ui/human/panel_3",										14, 7		_2},
+{I,0,"ui/orc/panel_3",												14, 8		_2},
+{I,0,"ui/human/panel_4",										14, 9		_2},
+{I,0,"ui/orc/panel_4",												14, 10		_2},
+{I,0,"ui/human/panel_5",										14, 11		_2},
+{I,0,"ui/orc/panel_5",												14, 12		_2},
+{I,0,"ui/Menu_background_with_title",								14, 13		_2},
+{I,0,"ui/Menu_background_without_title",						16, 15		_2},
 {I,0,"../campaigns/human/interface/Act_I_-_Shores_of_Lordareon",17, 19 _2},
-{I,0,"../campaigns/orc/interface/Act_I_-_Seas_of_Blood",	17, 20 _2},
-{I,0,"../campaigns/human/interface/Act_II_-_Khaz_Modan",	17, 21 _2},
-{I,0,"../campaigns/orc/interface/Act_II_-_Khaz_Modan",		17, 22 _2},
-{I,0,"../campaigns/human/interface/Act_III_-_The_Northlands",	17, 23 _2},
-{I,0,"../campaigns/orc/interface/Act_III_-_Quel'Thalas",	17, 24 _2},
+{I,0,"../campaigns/orc/interface/Act_I_-_Seas_of_Blood",		17, 20 _2},
+{I,0,"../campaigns/human/interface/Act_II_-_Khaz_Modan",		17, 21 _2},
+{I,0,"../campaigns/orc/interface/Act_II_-_Khaz_Modan",				17, 22 _2},
+{I,0,"../campaigns/human/interface/Act_III_-_The_Northlands",		17, 23 _2},
+{I,0,"../campaigns/orc/interface/Act_III_-_Quel'Thalas",		17, 24 _2},
 {I,0,"../campaigns/human/interface/Act_IV_-_Return_to_Azeroth",17, 25 _2},
-{I,0,"../campaigns/orc/interface/Act_IV_-_Tides_of_Darkness",	17, 26 _2},
+{I,0,"../campaigns/orc/interface/Act_IV_-_Tides_of_Darkness",		17, 26 _2},
 
-{I,0,"ui/human/The_End",					27, 29 _2},
-{I,0,"ui/orc/Smashing_of_Lordaeron_scroll",			32, 30 _2},
-{I,2,"ui/Patch",						14, 91 _2},
-{I,2,"ui/Credits_for_extension_background",			93, 94 _2},
+{I,0,"ui/human/The_End",										27, 29 _2},
+{I,0,"ui/orc/Smashing_of_Lordaeron_scroll",						32, 30 _2},
+{I,2,"ui/Patch",												14, 91 _2},
+{I,2,"ui/Credits_for_extension_background",						93, 94 _2},
 {I,2,"../campaigns/human-exp/interface/Act_I_-_A_Time_for_Heroes",17,96 _2},
 {I,2,"../campaigns/orc-exp/interface/Act_I_-_Draenor,_the_Red_World",17,97 _2},
 {I,2,"../campaigns/human-exp/interface/Act_II_-_Draenor,_the_Red_World",17,98 _2},
 {I,2,"../campaigns/orc-exp/interface/Act_II_-_The_Burning_of_Azeroth",17,99 _2},
 {I,2,"../campaigns/human-exp/interface/Act_III_-_War_in_the_Shadows",17, 100 _2},
-{I,2,"../campaigns/orc-exp/interface/Act_III_-_The_Great_Sea",	17, 101 _2},
+{I,2,"../campaigns/orc-exp/interface/Act_III_-_The_Great_Sea",		17, 101 _2},
 {I,2,"../campaigns/human-exp/interface/Act_IV_-_The_Measure_of_Valor",17,102 _2},
 {I,2,"../campaigns/orc-exp/interface/Act_IV_-_Prelude_to_New_Worlds",17,103 _2},
 
 ///////////////////////////////////////////////////////////////////////////////
-//	SPEACH INTROS
+//		SPEACH INTROS
 ///////////////////////////////////////////////////////////////////////////////
 
-	// FIXME: this file contains different data, if expansion or not.
-	// FIXME: Where and what are the expansion entries
+		// FIXME: this file contains different data, if expansion or not.
+		// FIXME: Where and what are the expansion entries
 
 #ifdef USE_BEOS
-{F,0,"SNDDAT.WAR",				2000 __},
+{F,0,"SNDDAT.WAR",								2000 __},
 #else
-{F,0,"snddat.war",				2000 __},
+{F,0,"snddat.war",								2000 __},
 #endif
-{W,0,"../campaigns/human/victory",					2  __},
-{W,0,"../campaigns/orc/victory",					3  __},
-{W,0,"../campaigns/human/level01h-intro1",				4  __},
-{W,0,"../campaigns/human/level01h-intro2",				5  __},
-{W,0,"../campaigns/human/level02h-intro1",				6  __},
-{W,0,"../campaigns/human/level02h-intro2",				7  __},
-{W,0,"../campaigns/human/level03h-intro1",				8  __},
-{W,0,"../campaigns/human/level03h-intro2",				9  __},
-{W,0,"../campaigns/human/level04h-intro1",				10 __},
-{W,0,"../campaigns/human/level04h-intro2",				11 __},
-{W,0,"../campaigns/human/level05h-intro1",				12 __},
-{W,0,"../campaigns/human/level05h-intro2",				13 __},
-{W,0,"../campaigns/human/level06h-intro1",				14 __},
-{W,0,"../campaigns/human/level07h-intro1",				15 __},
-{W,0,"../campaigns/human/level07h-intro2",				16 __},
-{W,0,"../campaigns/human/level08h-intro1",				17 __},
-{W,0,"../campaigns/human/level08h-intro2",				18 __},
-{W,0,"../campaigns/human/level09h-intro1",				19 __},
-{W,0,"../campaigns/human/level10h-intro1",				20 __},
-{W,0,"../campaigns/human/level11h-intro1",				21 __},
-{W,0,"../campaigns/human/level11h-intro2",				22 __},
-{W,0,"../campaigns/human/level12h-intro1",				23 __},
-{W,0,"../campaigns/human/level13h-intro1",				24 __},
-{W,0,"../campaigns/human/level13h-intro2",				25 __},
-{W,0,"../campaigns/human/level14h-intro1",				26 __},
+{W,0,"../campaigns/human/victory",										2  __},
+{W,0,"../campaigns/orc/victory",										3  __},
+{W,0,"../campaigns/human/level01h-intro1",								4  __},
+{W,0,"../campaigns/human/level01h-intro2",								5  __},
+{W,0,"../campaigns/human/level02h-intro1",								6  __},
+{W,0,"../campaigns/human/level02h-intro2",								7  __},
+{W,0,"../campaigns/human/level03h-intro1",								8  __},
+{W,0,"../campaigns/human/level03h-intro2",								9  __},
+{W,0,"../campaigns/human/level04h-intro1",								10 __},
+{W,0,"../campaigns/human/level04h-intro2",								11 __},
+{W,0,"../campaigns/human/level05h-intro1",								12 __},
+{W,0,"../campaigns/human/level05h-intro2",								13 __},
+{W,0,"../campaigns/human/level06h-intro1",								14 __},
+{W,0,"../campaigns/human/level07h-intro1",								15 __},
+{W,0,"../campaigns/human/level07h-intro2",								16 __},
+{W,0,"../campaigns/human/level08h-intro1",								17 __},
+{W,0,"../campaigns/human/level08h-intro2",								18 __},
+{W,0,"../campaigns/human/level09h-intro1",								19 __},
+{W,0,"../campaigns/human/level10h-intro1",								20 __},
+{W,0,"../campaigns/human/level11h-intro1",								21 __},
+{W,0,"../campaigns/human/level11h-intro2",								22 __},
+{W,0,"../campaigns/human/level12h-intro1",								23 __},
+{W,0,"../campaigns/human/level13h-intro1",								24 __},
+{W,0,"../campaigns/human/level13h-intro2",								25 __},
+{W,0,"../campaigns/human/level14h-intro1",								26 __},
 
-{W,0,"../campaigns/orc/level01o-intro1",				27 __},
-{W,0,"../campaigns/orc/level02o-intro1",				28 __},
-{W,0,"../campaigns/orc/level03o-intro1",				29 __},
-{W,0,"../campaigns/orc/level03o-intro2",				30 __},
-{W,0,"../campaigns/orc/level04o-intro1",				31 __},
-{W,0,"../campaigns/orc/level05o-intro1",				32 __},
-{W,0,"../campaigns/orc/level06o-intro1",				33 __},
-{W,0,"../campaigns/orc/level07o-intro1",				34 __},
-{W,0,"../campaigns/orc/level07o-intro2",				35 __},
-{W,0,"../campaigns/orc/level08o-intro1",				36 __},
-{W,0,"../campaigns/orc/level09o-intro1",				37 __},
-{W,0,"../campaigns/orc/level10o-intro1",				38 __},
-{W,0,"../campaigns/orc/level11o-intro1",				39 __},
-{W,0,"../campaigns/orc/level11o-intro2",				40 __},
-{W,0,"../campaigns/orc/level12o-intro1",				41 __},
-{W,0,"../campaigns/orc/level12o-intro2",				42 __},
-{W,0,"../campaigns/orc/level13o-intro1",				43 __},
-{W,0,"../campaigns/orc/level13o-intro2",				44 __},
-{W,0,"../campaigns/orc/level14o-intro1",				45 __},
+{W,0,"../campaigns/orc/level01o-intro1",								27 __},
+{W,0,"../campaigns/orc/level02o-intro1",								28 __},
+{W,0,"../campaigns/orc/level03o-intro1",								29 __},
+{W,0,"../campaigns/orc/level03o-intro2",								30 __},
+{W,0,"../campaigns/orc/level04o-intro1",								31 __},
+{W,0,"../campaigns/orc/level05o-intro1",								32 __},
+{W,0,"../campaigns/orc/level06o-intro1",								33 __},
+{W,0,"../campaigns/orc/level07o-intro1",								34 __},
+{W,0,"../campaigns/orc/level07o-intro2",								35 __},
+{W,0,"../campaigns/orc/level08o-intro1",								36 __},
+{W,0,"../campaigns/orc/level09o-intro1",								37 __},
+{W,0,"../campaigns/orc/level10o-intro1",								38 __},
+{W,0,"../campaigns/orc/level11o-intro1",								39 __},
+{W,0,"../campaigns/orc/level11o-intro2",								40 __},
+{W,0,"../campaigns/orc/level12o-intro1",								41 __},
+{W,0,"../campaigns/orc/level12o-intro2",								42 __},
+{W,0,"../campaigns/orc/level13o-intro1",								43 __},
+{W,0,"../campaigns/orc/level13o-intro2",								44 __},
+{W,0,"../campaigns/orc/level14o-intro1",								45 __},
 
-{W,2,"../campaigns/human-exp/victory",					50 __},
-{W,2,"../campaigns/human-exp/victory-2",				51 __},
+{W,2,"../campaigns/human-exp/victory",										50 __},
+{W,2,"../campaigns/human-exp/victory-2",								51 __},
 
-{W,2,"../campaigns/orc-exp/victory-1",					52 __},
-{W,2,"../campaigns/orc-exp/victory-2",					53 __},
-{W,2,"../campaigns/orc-exp/victory-3",					54 __},
-{W,2,"../campaigns/human-exp/levelx01h-intro1",				55 __},
-{W,2,"../campaigns/human-exp/levelx01h-intro2",				56 __},
-{W,2,"../campaigns/human-exp/levelx02h-intro1",				57 __},
-{W,2,"../campaigns/human-exp/levelx02h-intro2",				58 __},
-{W,2,"../campaigns/human-exp/levelx03h-intro1",				59 __},
-{W,2,"../campaigns/human-exp/levelx03h-intro2",				60 __},
-{W,2,"../campaigns/human-exp/levelx04h-intro1",				61 __},
-{W,2,"../campaigns/human-exp/levelx04h-intro2",				62 __},
-{W,2,"../campaigns/human-exp/levelx04h-intro3",				63 __},
-{W,2,"../campaigns/human-exp/levelx05h-intro1",				64 __},
-{W,2,"../campaigns/human-exp/levelx05h-intro2",				65 __},
-{W,2,"../campaigns/human-exp/levelx06h-intro1",				66 __},
-{W,2,"../campaigns/human-exp/levelx06h-intro2",				67 __},
-{W,2,"../campaigns/human-exp/levelx06h-intro3",				68 __},
-{W,2,"../campaigns/human-exp/levelx07h-intro1",				69 __},
-{W,2,"../campaigns/human-exp/levelx07h-intro2",				70 __},
-{W,2,"../campaigns/human-exp/levelx07h-intro3",				71 __},
-{W,2,"../campaigns/human-exp/levelx08h-intro1",				72 __},
-{W,2,"../campaigns/human-exp/levelx08h-intro2",				73 __},
-{W,2,"../campaigns/human-exp/levelx09h-intro1",				74 __},
-{W,2,"../campaigns/human-exp/levelx09h-intro2",				75 __},
-{W,2,"../campaigns/human-exp/levelx10h-intro1",				76 __},
-{W,2,"../campaigns/human-exp/levelx10h-intro2",				77 __},
-{W,2,"../campaigns/human-exp/levelx10h-intro3",				78 __},
-{W,2,"../campaigns/human-exp/levelx11h-intro1",				79 __},
-{W,2,"../campaigns/human-exp/levelx11h-intro2",				80 __},
-{W,2,"../campaigns/human-exp/levelx12h-intro1",				81 __},
-{W,2,"../campaigns/human-exp/levelx12h-intro2",				82 __},
-{W,2,"../campaigns/orc-exp/levelx01o-intro1",				83 __},
-{W,2,"../campaigns/orc-exp/levelx01o-intro2",				84 __},
-{W,2,"../campaigns/orc-exp/levelx01o-intro3",				85 __},
-{W,2,"../campaigns/orc-exp/levelx02o-intro1",				86 __},
-{W,2,"../campaigns/orc-exp/levelx02o-intro2",				87 __},
-{W,2,"../campaigns/orc-exp/levelx03o-intro1",				88 __},
-{W,2,"../campaigns/orc-exp/levelx03o-intro2",				89 __},
-{W,2,"../campaigns/orc-exp/levelx04o-intro1",				90 __},
-{W,2,"../campaigns/orc-exp/levelx04o-intro2",				91 __},
-{W,2,"../campaigns/orc-exp/levelx05o-intro1",				92 __},
-{W,2,"../campaigns/orc-exp/levelx05o-intro2",				93 __},
-{W,2,"../campaigns/orc-exp/levelx06o-intro1",				94 __},
-{W,2,"../campaigns/orc-exp/levelx06o-intro2",				95 __},
-{W,2,"../campaigns/orc-exp/levelx07o-intro1",				96 __},
-{W,2,"../campaigns/orc-exp/levelx07o-intro2",				97 __},
-{W,2,"../campaigns/orc-exp/levelx07o-intro3",				98 __},
-{W,2,"../campaigns/orc-exp/levelx08o-intro1",				99 __},
-{W,2,"../campaigns/orc-exp/levelx09o-intro1",				100 __},
-{W,2,"../campaigns/orc-exp/levelx09o-intro2",				101 __},
-{W,2,"../campaigns/orc-exp/levelx10o-intro1",				102 __},
-{W,2,"../campaigns/orc-exp/levelx10o-intro2",				103 __},
-{W,2,"../campaigns/orc-exp/levelx10o-intro3",				104 __},
-{W,2,"../campaigns/orc-exp/levelx11o-intro1",				105 __},
-{W,2,"../campaigns/orc-exp/levelx11o-intro2",				106 __},
-{W,2,"../campaigns/orc-exp/levelx12o-intro1",				107 __},
-{W,2,"../campaigns/orc-exp/levelx12o-intro2",				108 __},
-{W,2,"../campaigns/orc-exp/levelx12o-intro3",				109 __},
+{W,2,"../campaigns/orc-exp/victory-1",										52 __},
+{W,2,"../campaigns/orc-exp/victory-2",										53 __},
+{W,2,"../campaigns/orc-exp/victory-3",										54 __},
+{W,2,"../campaigns/human-exp/levelx01h-intro1",								55 __},
+{W,2,"../campaigns/human-exp/levelx01h-intro2",								56 __},
+{W,2,"../campaigns/human-exp/levelx02h-intro1",								57 __},
+{W,2,"../campaigns/human-exp/levelx02h-intro2",								58 __},
+{W,2,"../campaigns/human-exp/levelx03h-intro1",								59 __},
+{W,2,"../campaigns/human-exp/levelx03h-intro2",								60 __},
+{W,2,"../campaigns/human-exp/levelx04h-intro1",								61 __},
+{W,2,"../campaigns/human-exp/levelx04h-intro2",								62 __},
+{W,2,"../campaigns/human-exp/levelx04h-intro3",								63 __},
+{W,2,"../campaigns/human-exp/levelx05h-intro1",								64 __},
+{W,2,"../campaigns/human-exp/levelx05h-intro2",								65 __},
+{W,2,"../campaigns/human-exp/levelx06h-intro1",								66 __},
+{W,2,"../campaigns/human-exp/levelx06h-intro2",								67 __},
+{W,2,"../campaigns/human-exp/levelx06h-intro3",								68 __},
+{W,2,"../campaigns/human-exp/levelx07h-intro1",								69 __},
+{W,2,"../campaigns/human-exp/levelx07h-intro2",								70 __},
+{W,2,"../campaigns/human-exp/levelx07h-intro3",								71 __},
+{W,2,"../campaigns/human-exp/levelx08h-intro1",								72 __},
+{W,2,"../campaigns/human-exp/levelx08h-intro2",								73 __},
+{W,2,"../campaigns/human-exp/levelx09h-intro1",								74 __},
+{W,2,"../campaigns/human-exp/levelx09h-intro2",								75 __},
+{W,2,"../campaigns/human-exp/levelx10h-intro1",								76 __},
+{W,2,"../campaigns/human-exp/levelx10h-intro2",								77 __},
+{W,2,"../campaigns/human-exp/levelx10h-intro3",								78 __},
+{W,2,"../campaigns/human-exp/levelx11h-intro1",								79 __},
+{W,2,"../campaigns/human-exp/levelx11h-intro2",								80 __},
+{W,2,"../campaigns/human-exp/levelx12h-intro1",								81 __},
+{W,2,"../campaigns/human-exp/levelx12h-intro2",								82 __},
+{W,2,"../campaigns/orc-exp/levelx01o-intro1",								83 __},
+{W,2,"../campaigns/orc-exp/levelx01o-intro2",								84 __},
+{W,2,"../campaigns/orc-exp/levelx01o-intro3",								85 __},
+{W,2,"../campaigns/orc-exp/levelx02o-intro1",								86 __},
+{W,2,"../campaigns/orc-exp/levelx02o-intro2",								87 __},
+{W,2,"../campaigns/orc-exp/levelx03o-intro1",								88 __},
+{W,2,"../campaigns/orc-exp/levelx03o-intro2",								89 __},
+{W,2,"../campaigns/orc-exp/levelx04o-intro1",								90 __},
+{W,2,"../campaigns/orc-exp/levelx04o-intro2",								91 __},
+{W,2,"../campaigns/orc-exp/levelx05o-intro1",								92 __},
+{W,2,"../campaigns/orc-exp/levelx05o-intro2",								93 __},
+{W,2,"../campaigns/orc-exp/levelx06o-intro1",								94 __},
+{W,2,"../campaigns/orc-exp/levelx06o-intro2",								95 __},
+{W,2,"../campaigns/orc-exp/levelx07o-intro1",								96 __},
+{W,2,"../campaigns/orc-exp/levelx07o-intro2",								97 __},
+{W,2,"../campaigns/orc-exp/levelx07o-intro3",								98 __},
+{W,2,"../campaigns/orc-exp/levelx08o-intro1",								99 __},
+{W,2,"../campaigns/orc-exp/levelx09o-intro1",								100 __},
+{W,2,"../campaigns/orc-exp/levelx09o-intro2",								101 __},
+{W,2,"../campaigns/orc-exp/levelx10o-intro1",								102 __},
+{W,2,"../campaigns/orc-exp/levelx10o-intro2",								103 __},
+{W,2,"../campaigns/orc-exp/levelx10o-intro3",								104 __},
+{W,2,"../campaigns/orc-exp/levelx11o-intro1",								105 __},
+{W,2,"../campaigns/orc-exp/levelx11o-intro2",								106 __},
+{W,2,"../campaigns/orc-exp/levelx12o-intro1",								107 __},
+{W,2,"../campaigns/orc-exp/levelx12o-intro2",								108 __},
+{W,2,"../campaigns/orc-exp/levelx12o-intro3",								109 __},
 #if 0
-{W,2,"../campaigns/levelx057-intro1",					110 __},
-{W,2,"../campaigns/levelx058-intro1",					111 __},
-{W,2,"../campaigns/levelx059-intro1",					112 __},
-{W,2,"../campaigns/levelx060-intro1",					113 __},
-{W,2,"../campaigns/levelx061-intro1",					114 __},
-{W,2,"../campaigns/levelx062-intro1",					115 __},
-{W,2,"../campaigns/levelx063-intro1",					116 __},
-{W,2,"../campaigns/levelx064-intro1",					117 __},
-{W,2,"../campaigns/levelx065-intro1",					118 __},
-{W,2,"../campaigns/levelx066-intro1",					119 __},
-{W,2,"../campaigns/levelx067-intro1",					120 __},
-{W,2,"../campaigns/levelx068-intro1",					121 __},
-{W,2,"../campaigns/levelx069-intro1",					122 __},
-{W,2,"../campaigns/levelx070-intro1",					123 __},
-{W,2,"../campaigns/levelx071-intro1",					124 __},
-{W,2,"../campaigns/levelx072-intro1",					125 __},
-{W,2,"../campaigns/levelx073-intro1",					126 __},
-{W,2,"../campaigns/levelx074-intro1",					127 __},
-{W,2,"../campaigns/levelx075-intro1",					128 __},
-{W,2,"../campaigns/levelx076-intro1",					129 __},
-{W,2,"../campaigns/levelx077-intro1",					130 __},
-{W,2,"../campaigns/levelx078-intro1",					131 __},
-{W,2,"../campaigns/levelx079-intro1",					132 __},
-{W,2,"../campaigns/levelx080-intro1",					133 __},
-{W,2,"../campaigns/levelx081-intro1",					134 __},
-{W,2,"../campaigns/levelx082-intro1",					135 __},
-{W,2,"../campaigns/levelx083-intro1",					136 __},
-{W,2,"../campaigns/levelx084-intro1",					137 __},
-{W,2,"../campaigns/levelx085-intro1",					138 __},
-{W,2,"../campaigns/levelx086-intro1",					139 __},
-{W,2,"../campaigns/levelx087-intro1",					140 __},
-{W,2,"../campaigns/levelx088-intro1",					141 __},
-{W,2,"../campaigns/levelx089-intro1",					142 __},
-{W,2,"../campaigns/levelx090-intro1",					143 __},
-{W,2,"../campaigns/levelx091-intro1",					144 __},
-{W,2,"../campaigns/levelx092-intro1",					145 __},
-{W,2,"../campaigns/levelx093-intro1",					146 __},
-{W,2,"../campaigns/levelx094-intro1",					147 __},
-{W,2,"../campaigns/levelx095-intro1",					148 __},
-{W,2,"../campaigns/levelx096-intro1",					149 __},
-{W,2,"../campaigns/levelx097-intro1",					150 __},
-{W,2,"../campaigns/levelx098-intro1",					151 __},
-{W,2,"../campaigns/levelx099-intro1",					152 __},
-{W,2,"../campaigns/levelx100-intro1",					153 __},
-{W,2,"../campaigns/levelx101-intro1",					154 __},
-{W,2,"../campaigns/levelx102-intro1",					155 __},
-{W,2,"../campaigns/levelx103-intro1",					156 __},
-{W,2,"../campaigns/levelx104-intro1",					157 __},
-{W,2,"../campaigns/levelx105-intro1",					158 __},
-{W,2,"../campaigns/levelx106-intro1",					159 __},
-{W,2,"../campaigns/levelx107-intro1",					160 __},
-{W,2,"../campaigns/levelx108-intro1",					161 __},
-{W,2,"../campaigns/levelx109-intro1",					162 __},
-{W,2,"../campaigns/levelx110-intro1",					163 __},
-{W,2,"../campaigns/levelx111-intro1",					164 __},
-{W,2,"../campaigns/levelx112-intro1",					165 __},
-{W,2,"../campaigns/levelx113-intro1",					166 __},
-{W,2,"../campaigns/levelx114-intro1",					167 __},
-{W,2,"../campaigns/levelx115-intro1",					168 __},
-{W,2,"../campaigns/levelx116-intro1",					169 __},
-{W,2,"../campaigns/levelx117-intro1",					170 __},
-{W,2,"../campaigns/levelx118-intro1",					171 __},
-{W,2,"../campaigns/levelx119-intro1",					172 __},
-{W,2,"../campaigns/levelx120-intro1",					173 __},
+{W,2,"../campaigns/levelx057-intro1",										110 __},
+{W,2,"../campaigns/levelx058-intro1",										111 __},
+{W,2,"../campaigns/levelx059-intro1",										112 __},
+{W,2,"../campaigns/levelx060-intro1",										113 __},
+{W,2,"../campaigns/levelx061-intro1",										114 __},
+{W,2,"../campaigns/levelx062-intro1",										115 __},
+{W,2,"../campaigns/levelx063-intro1",										116 __},
+{W,2,"../campaigns/levelx064-intro1",										117 __},
+{W,2,"../campaigns/levelx065-intro1",										118 __},
+{W,2,"../campaigns/levelx066-intro1",										119 __},
+{W,2,"../campaigns/levelx067-intro1",										120 __},
+{W,2,"../campaigns/levelx068-intro1",										121 __},
+{W,2,"../campaigns/levelx069-intro1",										122 __},
+{W,2,"../campaigns/levelx070-intro1",										123 __},
+{W,2,"../campaigns/levelx071-intro1",										124 __},
+{W,2,"../campaigns/levelx072-intro1",										125 __},
+{W,2,"../campaigns/levelx073-intro1",										126 __},
+{W,2,"../campaigns/levelx074-intro1",										127 __},
+{W,2,"../campaigns/levelx075-intro1",										128 __},
+{W,2,"../campaigns/levelx076-intro1",										129 __},
+{W,2,"../campaigns/levelx077-intro1",										130 __},
+{W,2,"../campaigns/levelx078-intro1",										131 __},
+{W,2,"../campaigns/levelx079-intro1",										132 __},
+{W,2,"../campaigns/levelx080-intro1",										133 __},
+{W,2,"../campaigns/levelx081-intro1",										134 __},
+{W,2,"../campaigns/levelx082-intro1",										135 __},
+{W,2,"../campaigns/levelx083-intro1",										136 __},
+{W,2,"../campaigns/levelx084-intro1",										137 __},
+{W,2,"../campaigns/levelx085-intro1",										138 __},
+{W,2,"../campaigns/levelx086-intro1",										139 __},
+{W,2,"../campaigns/levelx087-intro1",										140 __},
+{W,2,"../campaigns/levelx088-intro1",										141 __},
+{W,2,"../campaigns/levelx089-intro1",										142 __},
+{W,2,"../campaigns/levelx090-intro1",										143 __},
+{W,2,"../campaigns/levelx091-intro1",										144 __},
+{W,2,"../campaigns/levelx092-intro1",										145 __},
+{W,2,"../campaigns/levelx093-intro1",										146 __},
+{W,2,"../campaigns/levelx094-intro1",										147 __},
+{W,2,"../campaigns/levelx095-intro1",										148 __},
+{W,2,"../campaigns/levelx096-intro1",										149 __},
+{W,2,"../campaigns/levelx097-intro1",										150 __},
+{W,2,"../campaigns/levelx098-intro1",										151 __},
+{W,2,"../campaigns/levelx099-intro1",										152 __},
+{W,2,"../campaigns/levelx100-intro1",										153 __},
+{W,2,"../campaigns/levelx101-intro1",										154 __},
+{W,2,"../campaigns/levelx102-intro1",										155 __},
+{W,2,"../campaigns/levelx103-intro1",										156 __},
+{W,2,"../campaigns/levelx104-intro1",										157 __},
+{W,2,"../campaigns/levelx105-intro1",										158 __},
+{W,2,"../campaigns/levelx106-intro1",										159 __},
+{W,2,"../campaigns/levelx107-intro1",										160 __},
+{W,2,"../campaigns/levelx108-intro1",										161 __},
+{W,2,"../campaigns/levelx109-intro1",										162 __},
+{W,2,"../campaigns/levelx110-intro1",										163 __},
+{W,2,"../campaigns/levelx111-intro1",										164 __},
+{W,2,"../campaigns/levelx112-intro1",										165 __},
+{W,2,"../campaigns/levelx113-intro1",										166 __},
+{W,2,"../campaigns/levelx114-intro1",										167 __},
+{W,2,"../campaigns/levelx115-intro1",										168 __},
+{W,2,"../campaigns/levelx116-intro1",										169 __},
+{W,2,"../campaigns/levelx117-intro1",										170 __},
+{W,2,"../campaigns/levelx118-intro1",										171 __},
+{W,2,"../campaigns/levelx119-intro1",										172 __},
+{W,2,"../campaigns/levelx120-intro1",										173 __},
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
-//	INTERFACE
+//		INTERFACE
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifdef USE_BEOS
-{F,0,"MUDDAT.CUD",				6000 __},
+{F,0,"MUDDAT.CUD",								6000 __},
 #else
-{F,0,"muddat.cud",				6000 __},
+{F,0,"muddat.cud",								6000 __},
 #endif
 
-{V,0,"videos/video1",						0	__},
-{V,0,"videos/video2",						2	__},
-{V,0,"videos/video3",						3	__},
-{V,0,"videos/video4",						4	__},
-{V,0,"videos/video5",						5	__},
-{V,0,"videos/video6",						6	__},
+{V,0,"videos/video1",												0		__},
+{V,0,"videos/video2",												2		__},
+{V,0,"videos/video3",												3		__},
+{V,0,"videos/video4",												4		__},
+{V,0,"videos/video5",												5		__},
+{V,0,"videos/video6",												6		__},
 
-{V,0,"videos/video7",						8	__},
-{V,0,"videos/video8",						9	__},
-{V,0,"videos/video9",						10	__},
-{V,0,"videos/video10",						11	__},
-{V,0,"videos/video11",						12	__},
+{V,0,"videos/video7",												8		__},
+{V,0,"videos/video8",												9		__},
+{V,0,"videos/video9",												10		__},
+{V,0,"videos/video10",												11		__},
+{V,0,"videos/video11",												12		__},
 
-{V,0,"videos/video12",						14	__},
+{V,0,"videos/video12",												14		__},
 
-{V,2,"videos/video13",						15	__},
-{V,2,"videos/video14",						16	__},
-{V,2,"videos/video15",						17	__},
-{V,2,"videos/video16",						18	__},
+{V,2,"videos/video13",												15		__},
+{V,2,"videos/video14",												16		__},
+{V,2,"videos/video15",												17		__},
+{V,2,"videos/video16",												18		__},
 
 #undef __
 };
 
 /**
-**	File names.
+**		File names.
 */
 char* UnitNames[110];
 
 //----------------------------------------------------------------------------
-//	TOOLS
+//		TOOLS
 //----------------------------------------------------------------------------
 
 /**
-**	Check if path exists, if not make all directories.
+**		Check if path exists, if not make all directories.
 */
 void CheckPath(const char* path)
 {
-    char* cp;
-    char* s;
+	char* cp;
+	char* s;
 
-    if( *path && path[0]=='.' ) {	// relative don't work
-	return;
-    }
-    cp=strdup(path);
-    s=strrchr(cp,'/');
-    if( s ) {
-	*s='\0';			// remove file
-	s=cp;
-	for( ;; ) {			// make each path element
-	    s=strchr(s,'/');
-	    if( s ) {
-		*s='\0';
-	    }
-#ifdef USE_WIN32
-	    mkdir(cp);
-#else
-	    mkdir(cp,0777);
-#endif
-	    if( s ) {
-		*s++='/';
-	    } else {
-		break;
-	    }
+	if( *path && path[0]=='.' ) {		// relative don't work
+		return;
 	}
-    }
-    free(cp);
+	cp=strdup(path);
+	s=strrchr(cp,'/');
+	if( s ) {
+		*s='\0';						// remove file
+		s=cp;
+		for( ;; ) {						// make each path element
+			s=strchr(s,'/');
+			if( s ) {
+				*s='\0';
+			}
+#ifdef USE_WIN32
+			mkdir(cp);
+#else
+			mkdir(cp,0777);
+#endif
+			if( s ) {
+				*s++='/';
+			} else {
+				break;
+			}
+		}
+	}
+	free(cp);
 }
 
 /**
-**	Given a file name that would appear in a PC archive convert it to what
-**	would appear on the Mac.
+**		Given a file name that would appear in a PC archive convert it to what
+**		would appear on the Mac.
 */
 void ConvertToMac(char *filename)
 {
-    if (!strcmp(filename, "rezdat.war")) {
-	strcpy(filename, "War Resources");
-	return;
-    }
-    if (!strcmp(filename, "strdat.war")) {
-	strcpy(filename, "War Strings");
-	return;
-    }
-    if (!strcmp(filename, "maindat.war")) {
-	strcpy(filename, "War Data");
-	return;
-    }
-    if (!strcmp(filename, "snddat.war")) {
-	strcpy(filename, "War Music");
-	return;
-    }
-    if (!strcmp(filename, "muddat.cud")) {
-	strcpy(filename, "War Movies");
-	return;
-    }
-    if (!strcmp(filename, "sfxdat.sud")) {
-	strcpy(filename, "War Sounds");
-	return;
-    }
+	if (!strcmp(filename, "rezdat.war")) {
+		strcpy(filename, "War Resources");
+		return;
+	}
+	if (!strcmp(filename, "strdat.war")) {
+		strcpy(filename, "War Strings");
+		return;
+	}
+	if (!strcmp(filename, "maindat.war")) {
+		strcpy(filename, "War Data");
+		return;
+	}
+	if (!strcmp(filename, "snddat.war")) {
+		strcpy(filename, "War Music");
+		return;
+	}
+	if (!strcmp(filename, "muddat.cud")) {
+		strcpy(filename, "War Movies");
+		return;
+	}
+	if (!strcmp(filename, "sfxdat.sud")) {
+		strcpy(filename, "War Sounds");
+		return;
+	}
 }
 
 //----------------------------------------------------------------------------
-//	PNG
+//		PNG
 //----------------------------------------------------------------------------
 
 /**
-**	Save a png file.
+**		Save a png file.
 **
-**	@param name	File name
-**	@param image	Graphic data
-**	@param w	Graphic width
-**	@param h	Graphic height
-**	@param pal	Palette
+**		@param name		File name
+**		@param image		Graphic data
+**		@param w		Graphic width
+**		@param h		Graphic height
+**		@param pal		Palette
 */
 int SavePNG(const char* name,unsigned char* image,int w,int h
-	,unsigned char* pal)
+		,unsigned char* pal)
 {
-    FILE* fp;
-    png_structp png_ptr;
-    png_infop info_ptr;
-    unsigned char** lines;
-    int i;
+	FILE* fp;
+	png_structp png_ptr;
+	png_infop info_ptr;
+	unsigned char** lines;
+	int i;
 #ifdef USE_SDL_SURFACE
-    int j;
+	int j;
 #endif
 
-    if( !(fp=fopen(name,"wb")) ) {
-	printf("%s:",name);
-	perror("Can't open file");
-	return 1;
-    }
-
-    png_ptr=png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
-    if( !png_ptr ) {
-	fclose(fp);
-	return 1;
-    }
-    info_ptr=png_create_info_struct(png_ptr);
-    if( !info_ptr ) {
-	png_destroy_write_struct(&png_ptr,NULL);
-	fclose(fp);
-	return 1;
-    }
-
-    if( setjmp(png_ptr->jmpbuf) ) {
-	// FIXME: must free buffers!!
-	png_destroy_write_struct(&png_ptr,&info_ptr);
-	fclose(fp);
-	return 1;
-    }
-    png_init_io(png_ptr,fp);
-
-    // zlib parameters
-    png_set_compression_level(png_ptr,Z_BEST_COMPRESSION);
-
-    //	prepare the file information
-
-    info_ptr->width=w;
-    info_ptr->height=h;
-    info_ptr->bit_depth=8;
-    info_ptr->color_type=PNG_COLOR_TYPE_PALETTE;
-    info_ptr->interlace_type=0;
-    info_ptr->valid|=PNG_INFO_PLTE;
-    info_ptr->palette=(void*)pal;
-    info_ptr->num_palette=256;
-
-    png_write_info(png_ptr,info_ptr);	// write the file header information
-
-    //	set transformation
-
-    //	prepare image
-
-    lines=malloc(h*sizeof(*lines));
-    if( !lines ) {
-	png_destroy_write_struct(&png_ptr,&info_ptr);
-	fclose(fp);
-	return 1;
-    }
-
-#ifdef USE_SDL_SURFACE
-    // So the engine doesn't need to support 2 transparent indexes
-    for (i = 0; i < h; ++i) {
-	for (j = 0; j < w; ++j) {
-	    if (!image[j + i * w]) {
-    		image[j + i * w] = 255;
-	    }
+	if( !(fp=fopen(name,"wb")) ) {
+		printf("%s:",name);
+		perror("Can't open file");
+		return 1;
 	}
-    }
+
+	png_ptr=png_create_write_struct(PNG_LIBPNG_VER_STRING,NULL,NULL,NULL);
+	if( !png_ptr ) {
+		fclose(fp);
+		return 1;
+	}
+	info_ptr=png_create_info_struct(png_ptr);
+	if( !info_ptr ) {
+		png_destroy_write_struct(&png_ptr,NULL);
+		fclose(fp);
+		return 1;
+	}
+
+	if( setjmp(png_ptr->jmpbuf) ) {
+		// FIXME: must free buffers!!
+		png_destroy_write_struct(&png_ptr,&info_ptr);
+		fclose(fp);
+		return 1;
+	}
+	png_init_io(png_ptr,fp);
+
+	// zlib parameters
+	png_set_compression_level(png_ptr,Z_BEST_COMPRESSION);
+
+	//		prepare the file information
+
+	info_ptr->width=w;
+	info_ptr->height=h;
+	info_ptr->bit_depth=8;
+	info_ptr->color_type=PNG_COLOR_TYPE_PALETTE;
+	info_ptr->interlace_type=0;
+	info_ptr->valid|=PNG_INFO_PLTE;
+	info_ptr->palette=(void*)pal;
+	info_ptr->num_palette=256;
+
+	png_write_info(png_ptr,info_ptr);		// write the file header information
+
+	//		set transformation
+
+	//		prepare image
+
+	lines=malloc(h*sizeof(*lines));
+	if( !lines ) {
+		png_destroy_write_struct(&png_ptr,&info_ptr);
+		fclose(fp);
+		return 1;
+	}
+
+#ifdef USE_SDL_SURFACE
+	// So the engine doesn't need to support 2 transparent indexes
+	for (i = 0; i < h; ++i) {
+		for (j = 0; j < w; ++j) {
+			if (!image[j + i * w]) {
+					image[j + i * w] = 255;
+			}
+		}
+	}
 #endif
 
-    for( i=0; i<h; ++i ) {
-	lines[i]=image+i*w;
-    }
+	for( i=0; i<h; ++i ) {
+		lines[i]=image+i*w;
+	}
 
-    png_write_image(png_ptr,lines);
-    png_write_end(png_ptr,info_ptr);
+	png_write_image(png_ptr,lines);
+	png_write_end(png_ptr,info_ptr);
 
-    png_destroy_write_struct(&png_ptr,&info_ptr);
-    fclose(fp);
+	png_destroy_write_struct(&png_ptr,&info_ptr);
+	fclose(fp);
 
-    free(lines);
+	free(lines);
 
-    return 0;
+	return 0;
 }
 
 //----------------------------------------------------------------------------
-//	Archive
+//		Archive
 //----------------------------------------------------------------------------
 
 /**
-**	Open the archive file.
+**		Open the archive file.
 **
-**	@param file	Archive file name
-**	@param type	Archive type requested
+**		@param file		Archive file name
+**		@param type		Archive type requested
 */
 int OpenArchive(const char* file,int type)
 {
-    int f;
-    struct stat stat_buf;
-    unsigned char* buf;
-    unsigned char* cp;
-    unsigned char** op;
-    int entries;
-    int i;
+	int f;
+	struct stat stat_buf;
+	unsigned char* buf;
+	unsigned char* cp;
+	unsigned char** op;
+	int entries;
+	int i;
 
-    //
-    //	Open the archive file
-    //
-    f=open(file,O_RDONLY|O_BINARY,0);
-    if( f==-1 ) {
-	printf("Can't open %s\n",file);
-	exit(-1);
-    }
-    if( fstat(f,&stat_buf) ) {
-	printf("Can't fstat %s\n",file);
-	exit(-1);
-    }
-    DebugLevel3("Filesize %ld %ldk\n"
-	_C_ (long)stat_buf.st_size _C_ stat_buf.st_size/1024);
+	//
+	//		Open the archive file
+	//
+	f=open(file,O_RDONLY|O_BINARY,0);
+	if( f==-1 ) {
+		printf("Can't open %s\n",file);
+		exit(-1);
+	}
+	if( fstat(f,&stat_buf) ) {
+		printf("Can't fstat %s\n",file);
+		exit(-1);
+	}
+	DebugLevel3("Filesize %ld %ldk\n"
+		_C_ (long)stat_buf.st_size _C_ stat_buf.st_size/1024);
 
-    //
-    //	Read in the archive
-    //
-    buf=malloc(stat_buf.st_size);
-    if( !buf ) {
-	printf("Can't malloc %ld\n",(long)stat_buf.st_size);
-	exit(-1);
-    }
-    if( read(f,buf,stat_buf.st_size)!=stat_buf.st_size ) {
-	printf("Can't read %ld\n",(long)stat_buf.st_size);
-	exit(-1);
-    }
-    close(f);
+	//
+	//		Read in the archive
+	//
+	buf=malloc(stat_buf.st_size);
+	if( !buf ) {
+		printf("Can't malloc %ld\n",(long)stat_buf.st_size);
+		exit(-1);
+	}
+	if( read(f,buf,stat_buf.st_size)!=stat_buf.st_size ) {
+		printf("Can't read %ld\n",(long)stat_buf.st_size);
+		exit(-1);
+	}
+	close(f);
 
-    cp=buf;
-    i=FetchLE32(cp);
-    DebugLevel2("Magic\t%08X\t" _C_ i);
-    if( i!=0x19 ) {
-	printf("Wrong magic %08x, expected %08x\n",i,0x00000019);
-	exit(-1);
-    }
-    entries=FetchLE16(cp);
-    DebugLevel3("Entries\t%5d\t" _C_ entries);
-    i=FetchLE16(cp);
-    DebugLevel3("ID\t%d\n" _C_ i);
-    if( i!=type ) {
-	printf("Wrong type %08x, expected %08x\n",i,type);
-	exit(-1);
-    }
+	cp=buf;
+	i=FetchLE32(cp);
+	DebugLevel2("Magic\t%08X\t" _C_ i);
+	if( i!=0x19 ) {
+		printf("Wrong magic %08x, expected %08x\n",i,0x00000019);
+		exit(-1);
+	}
+	entries=FetchLE16(cp);
+	DebugLevel3("Entries\t%5d\t" _C_ entries);
+	i=FetchLE16(cp);
+	DebugLevel3("ID\t%d\n" _C_ i);
+	if( i!=type ) {
+		printf("Wrong type %08x, expected %08x\n",i,type);
+		exit(-1);
+	}
 
-    //
-    //	Read offsets.
-    //
-    op=malloc((entries+1)*sizeof(unsigned char**));
-    if( !op ) {
-	printf("Can't malloc %d entries\n",entries);
-	exit(-1);
-    }
-    for( i=0; i<entries; ++i ) {
-	op[i]=buf+FetchLE32(cp);
-	DebugLevel3("Offset\t%d\n" _C_ op[i]);
-    }
-    op[i]=buf+stat_buf.st_size;
+	//
+	//		Read offsets.
+	//
+	op=malloc((entries+1)*sizeof(unsigned char**));
+	if( !op ) {
+		printf("Can't malloc %d entries\n",entries);
+		exit(-1);
+	}
+	for( i=0; i<entries; ++i ) {
+		op[i]=buf+FetchLE32(cp);
+		DebugLevel3("Offset\t%d\n" _C_ op[i]);
+	}
+	op[i]=buf+stat_buf.st_size;
 
-    ArchiveOffsets=op;
-    ArchiveBuffer=buf;
+	ArchiveOffsets=op;
+	ArchiveBuffer=buf;
 
-    return 0;
+	return 0;
 }
 
 /**
-**	Extract/uncompress entry.
+**		Extract/uncompress entry.
 **
-**	@param cp	Pointer to compressed entry
-**	@param lenp	Return pointer of length of the entry
+**		@param cp		Pointer to compressed entry
+**		@param lenp		Return pointer of length of the entry
 **
-**	@return		Pointer to uncompressed entry
+**		@return				Pointer to uncompressed entry
 */
 unsigned char* ExtractEntry(unsigned char* cp,int* lenp)
 {
-    unsigned char* dp;
-    unsigned char* dest;
-    int uncompressed_length;
-    int flags;
+	unsigned char* dp;
+	unsigned char* dest;
+	int uncompressed_length;
+	int flags;
 
-    uncompressed_length=FetchLE32(cp);
-    flags=uncompressed_length>>24;
-    uncompressed_length&=0x00FFFFFF;
-    DebugLevel3("Entry length %8d flags %02x\t" _C_ uncompressed_length _C_ flags);
+	uncompressed_length=FetchLE32(cp);
+	flags=uncompressed_length>>24;
+	uncompressed_length&=0x00FFFFFF;
+	DebugLevel3("Entry length %8d flags %02x\t" _C_ uncompressed_length _C_ flags);
 
-    dp=dest=malloc(uncompressed_length);
-    if( !dest ) {
-	printf("Can't malloc %d\n",uncompressed_length);
-	exit(-1);
-    }
-
-    if( flags==0x20 ) {
-	unsigned char buf[4096];
-	unsigned char* ep;
-	int bi;
-
-	DebugLevel3("Compressed entry\n");
-
-	bi=0;
-	memset(buf,0,sizeof(buf));
-	ep=dp+uncompressed_length;
-
-	// FIXME: If the decompression is too slow, optimise this loop :->
-	while( dp<ep ) {
-	    int i;
-	    int bflags;
-
-	    bflags=FetchByte(cp);
-	    DebugLevel3("Ctrl %02x " _C_ bflags);
-	    for( i=0; i<8; ++i ) {
-		int j;
-		int o;
-
-		if( bflags&1 ) {
-		    j=FetchByte(cp);
-		    *dp++=j;
-		    buf[bi++&0xFFF]=j;
-		    DebugLevel3("=%02x" _C_ j);
-		} else {
-		    o=FetchLE16(cp);
-		    DebugLevel3("*%d,%d" _C_ o>>12 _C_ o&0xFFF);
-		    j=(o>>12)+3;
-		    o&=0xFFF;
-		    while( j-- ) {
-			buf[bi++&0xFFF]=*dp++=buf[o++&0xFFF];
-			if( dp==ep ) {
-			    break;
-			}
-		    }
-		}
-		if( dp==ep ) {
-		    break;
-		}
-		bflags>>=1;
-	    }
-	    DebugLevel3("\n");
+	dp=dest=malloc(uncompressed_length);
+	if( !dest ) {
+		printf("Can't malloc %d\n",uncompressed_length);
+		exit(-1);
 	}
-	//if( dp!=ep ) printf("%p,%p %d\n",dp,ep,dp-dest);
-    } else if( flags==0x00 ) {
-	DebugLevel3("Uncompressed entry\n");
-	memcpy(dest,cp,uncompressed_length);
-    } else {
-	printf("Unknown flags %x\n",flags);
-	exit(-1);
-    }
 
-    if( lenp ) {			// return resulting length
-	*lenp=uncompressed_length;
-    }
+	if( flags==0x20 ) {
+		unsigned char buf[4096];
+		unsigned char* ep;
+		int bi;
 
-    return dest;
+		DebugLevel3("Compressed entry\n");
+
+		bi=0;
+		memset(buf,0,sizeof(buf));
+		ep=dp+uncompressed_length;
+
+		// FIXME: If the decompression is too slow, optimise this loop :->
+		while( dp<ep ) {
+			int i;
+			int bflags;
+
+			bflags=FetchByte(cp);
+			DebugLevel3("Ctrl %02x " _C_ bflags);
+			for( i=0; i<8; ++i ) {
+				int j;
+				int o;
+
+				if( bflags&1 ) {
+					j=FetchByte(cp);
+					*dp++=j;
+					buf[bi++&0xFFF]=j;
+					DebugLevel3("=%02x" _C_ j);
+				} else {
+					o=FetchLE16(cp);
+					DebugLevel3("*%d,%d" _C_ o>>12 _C_ o&0xFFF);
+					j=(o>>12)+3;
+					o&=0xFFF;
+					while( j-- ) {
+						buf[bi++&0xFFF]=*dp++=buf[o++&0xFFF];
+						if( dp==ep ) {
+							break;
+						}
+					}
+				}
+				if( dp==ep ) {
+					break;
+				}
+				bflags>>=1;
+			}
+			DebugLevel3("\n");
+		}
+		//if( dp!=ep ) printf("%p,%p %d\n",dp,ep,dp-dest);
+	} else if( flags==0x00 ) {
+		DebugLevel3("Uncompressed entry\n");
+		memcpy(dest,cp,uncompressed_length);
+	} else {
+		printf("Unknown flags %x\n",flags);
+		exit(-1);
+	}
+
+	if( lenp ) {						// return resulting length
+		*lenp=uncompressed_length;
+	}
+
+	return dest;
 }
 
 /**
-**	Close the archive file.
+**		Close the archive file.
 */
 int CloseArchive(void)
 {
-    free(ArchiveBuffer);
-    free(ArchiveOffsets);
-    ArchiveBuffer=0;
-    ArchiveOffsets=0;
+	free(ArchiveBuffer);
+	free(ArchiveOffsets);
+	ArchiveBuffer=0;
+	ArchiveOffsets=0;
 
-    return 0;
+	return 0;
 }
 
 //----------------------------------------------------------------------------
-//	Palette
+//		Palette
 //----------------------------------------------------------------------------
 
 /**
-**	Convert palette.
+**		Convert palette.
 **
-**	@param pal	Pointer to palette
+**		@param pal		Pointer to palette
 **
-**	@return		Pointer to palette
+**		@return				Pointer to palette
 */
 unsigned char* ConvertPalette(unsigned char* pal)
 {
-    int i;
+	int i;
 
-    for( i=0; i<768; ++i ) {		// PNG needs 0-256
-	pal[i]<<=2;
-    }
+	for( i=0; i<768; ++i ) {				// PNG needs 0-256
+		pal[i]<<=2;
+	}
 
-    return pal;
+	return pal;
 }
 
 /**
-**	Convert rgb to my format.
+**		Convert rgb to my format.
 */
 int ConvertRgb(char* file,int rgbe)
 {
-    unsigned char* rgbp;
-    char buf[1024];
-    FILE* f;
-    int i;
-    size_t l;
+	unsigned char* rgbp;
+	char buf[1024];
+	FILE* f;
+	int i;
+	size_t l;
 
-    rgbp=ExtractEntry(ArchiveOffsets[rgbe],&l);
-    ConvertPalette(rgbp);
+	rgbp=ExtractEntry(ArchiveOffsets[rgbe],&l);
+	ConvertPalette(rgbp);
 
-    //
-    //	Generate RGB File.
-    //
-    sprintf(buf,"%s/%s/%s.rgb",Dir,TILESET_PATH,file);
-    CheckPath(buf);
-    f=fopen(buf,"wb");
-    if( !f ) {
-	perror("");
-	printf("Can't open %s\n",buf);
-	exit(-1);
-    }
-    if( l!=fwrite(rgbp,1,l,f) ) {
-	printf("Can't write %d bytes\n",l);
-    }
+	//
+	//		Generate RGB File.
+	//
+	sprintf(buf,"%s/%s/%s.rgb",Dir,TILESET_PATH,file);
+	CheckPath(buf);
+	f=fopen(buf,"wb");
+	if( !f ) {
+		perror("");
+		printf("Can't open %s\n",buf);
+		exit(-1);
+	}
+	if( l!=fwrite(rgbp,1,l,f) ) {
+		printf("Can't write %d bytes\n",l);
+	}
 
-    fclose(f);
+	fclose(f);
 
-    //
-    //	Generate GIMP palette
-    //
-    sprintf(buf,"%s/%s/%s.gimp",Dir,TILESET_PATH,file);
-    CheckPath(buf);
-    f=fopen(buf,"wb");
-    if( !f ) {
-	perror("");
-	printf("Can't open %s\n",buf);
-	exit(-1);
-    }
-    fprintf(f,"GIMP Palette\n# Stratagus %c%s -- GIMP Palette file\n"
-	    ,toupper(*file),file+1);
+	//
+	//		Generate GIMP palette
+	//
+	sprintf(buf,"%s/%s/%s.gimp",Dir,TILESET_PATH,file);
+	CheckPath(buf);
+	f=fopen(buf,"wb");
+	if( !f ) {
+		perror("");
+		printf("Can't open %s\n",buf);
+		exit(-1);
+	}
+	fprintf(f,"GIMP Palette\n# Stratagus %c%s -- GIMP Palette file\n"
+			,toupper(*file),file+1);
 
-    for( i=0; i<256; ++i ) {
-	// FIXME: insert nice names!
-	fprintf(f,"%d %d %d\t#%d\n"
-		,rgbp[i*3],rgbp[i*3+1],rgbp[i*3+2],i);
-    }
+	for( i=0; i<256; ++i ) {
+		// FIXME: insert nice names!
+		fprintf(f,"%d %d %d\t#%d\n"
+				,rgbp[i*3],rgbp[i*3+1],rgbp[i*3+2],i);
+	}
 
-    free(rgbp);
+	free(rgbp);
 
-    return 0;
+	return 0;
 }
 
 //----------------------------------------------------------------------------
-//	Tileset
+//		Tileset
 //----------------------------------------------------------------------------
 
 /**
-**	Count used mega tiles for map.
+**		Count used mega tiles for map.
 */
 int CountUsedTiles(const unsigned char* map,const unsigned char* mega
-	,int* map2tile)
+		,int* map2tile)
 {
-    int i;
-    int j;
-    int used;
-    const char* tp;
-    int img2tile[0x9E0];
+	int i;
+	int j;
+	int used;
+	const char* tp;
+	int img2tile[0x9E0];
 
-    DebugLevel3Fn("\n");
-    memset(map2tile,0,sizeof(map2tile));
+	DebugLevel3Fn("\n");
+	memset(map2tile,0,sizeof(map2tile));
 
-    //
-    //	Build conversion table.
-    //
-    for( i=0; i<0x9E; ++i ) {
-	tp=map+i*42;
-	DebugLevel3("%02X:" _C_ i);
-	for( j=0; j<0x10; ++j ) {
-	    DebugLevel3("%04X " _C_ AccessLE16(tp+j*2));
-	    map2tile[(i<<4)|j]=AccessLE16(tp+j*2);
-	}
-	DebugLevel3("\n");
-    }
-
-    //
-    //	Mark all used mega tiles.
-    //
-    used=0;
-    for( i=0; i<0x9E0; ++i ) {
-	if( !map2tile[i] ) {
-	    continue;
-	}
-	for( j=0; j<used; ++j ) {
-	    if( img2tile[j]==map2tile[i] ) {
-		break;
-	    }
-	}
-	if( j==used ) {
-	    //
-	    //	Check unique mega tiles.
-	    //
-	    for( j=0; j<used; ++j ) {
-		if( !memcmp(mega+img2tile[j]*32
-			    ,mega+map2tile[i]*32,32) ) {
-		    break;
+	//
+	//		Build conversion table.
+	//
+	for( i=0; i<0x9E; ++i ) {
+		tp=map+i*42;
+		DebugLevel3("%02X:" _C_ i);
+		for( j=0; j<0x10; ++j ) {
+			DebugLevel3("%04X " _C_ AccessLE16(tp+j*2));
+			map2tile[(i<<4)|j]=AccessLE16(tp+j*2);
 		}
-	    }
-	    if( j==used ) {
-		img2tile[used++]=map2tile[i];
-	    }
+		DebugLevel3("\n");
 	}
-    }
-    DebugLevel3("Used mega tiles %d\n" _C_ used);
+
+	//
+	//		Mark all used mega tiles.
+	//
+	used=0;
+	for( i=0; i<0x9E0; ++i ) {
+		if( !map2tile[i] ) {
+			continue;
+		}
+		for( j=0; j<used; ++j ) {
+			if( img2tile[j]==map2tile[i] ) {
+				break;
+			}
+		}
+		if( j==used ) {
+			//
+			//		Check unique mega tiles.
+			//
+			for( j=0; j<used; ++j ) {
+				if( !memcmp(mega+img2tile[j]*32
+							,mega+map2tile[i]*32,32) ) {
+					break;
+				}
+			}
+			if( j==used ) {
+				img2tile[used++]=map2tile[i];
+			}
+		}
+	}
+	DebugLevel3("Used mega tiles %d\n" _C_ used);
 #if 0
-    for( i=0; i<used; ++i ) {
-	if( !(i%16) ) {
-	    DebugLevel1("\n");
+	for( i=0; i<used; ++i ) {
+		if( !(i%16) ) {
+			DebugLevel1("\n");
+		}
+		DebugLevel1("%3d ",img2tile[i]);
 	}
-	DebugLevel1("%3d ",img2tile[i]);
-    }
-    DebugLevel1("\n");
+	DebugLevel1("\n");
 #endif
 
-    return used;
+	return used;
 }
 
 /**
-**	Convert for ccl.
+**		Convert for ccl.
 */
 void SaveCCL(const char* name,unsigned char* map __attribute__((unused)),const int* map2tile)
 {
-    int i;
-    char* cp;
-    FILE* f;
-    char file[1024];
-    char tileset[1024];
+	int i;
+	char* cp;
+	FILE* f;
+	char file[1024];
+	char tileset[1024];
 
-    f=stdout;
-    // FIXME: open file!
+	f=stdout;
+	// FIXME: open file!
 
-    if( (cp=strrchr(name,'/')) ) {	// remove leading path
-	++cp;
-    } else {
-	cp=(char*)name;
-    }
-    strcpy(file,cp);
-    strcpy(tileset,cp);
-    if( (cp=strrchr(tileset,'.')) ) {	// remove suffix
-	*cp='\0';
-    }
-
-    fprintf(f,"(tileset Tileset%c%s \"%s\" \"%s\"\n"
-	,toupper(*tileset),tileset+1,tileset,file);
-
-    fprintf(f,"  #(");
-    for( i=0; i<0x9E0; ++i ) {
-	if( i&15 ) {
-	    fprintf(f," ");
-	} else if( i ) {
-	    fprintf(f,"\t; %03X\n    ",i-16);
+	if( (cp=strrchr(name,'/')) ) {		// remove leading path
+		++cp;
+	} else {
+		cp=(char*)name;
 	}
-	fprintf(f,"%3d",map2tile[i]);
-    }
+	strcpy(file,cp);
+	strcpy(tileset,cp);
+	if( (cp=strrchr(tileset,'.')) ) {		// remove suffix
+		*cp='\0';
+	}
 
-    fprintf(f,"  ))\n");
+	fprintf(f,"(tileset Tileset%c%s \"%s\" \"%s\"\n"
+		,toupper(*tileset),tileset+1,tileset,file);
 
-    // fclose(f);
+	fprintf(f,"  #(");
+	for( i=0; i<0x9E0; ++i ) {
+		if( i&15 ) {
+			fprintf(f," ");
+		} else if( i ) {
+			fprintf(f,"\t; %03X\n	",i-16);
+		}
+		fprintf(f,"%3d",map2tile[i]);
+	}
+
+	fprintf(f,"  ))\n");
+
+	// fclose(f);
 }
 
 /**
-**	Decode a minitile into the image.
+**		Decode a minitile into the image.
 */
 void DecodeMiniTile(unsigned char* image,int ix,int iy,int iadd
-	,unsigned char* mini,int index,int flipx,int flipy)
+		,unsigned char* mini,int index,int flipx,int flipy)
 {
-    int x;
-    int y;
+	int x;
+	int y;
 
-    DebugLevel3Fn("index %d\n" _C_ index);
-    for( y=0; y<8; ++y ) {
-	for( x=0; x<8; ++x ) {
-	    image[(y+iy*8)*iadd+ix*8+x]=mini[index+
-		(flipy ? (8-y) : y)*8+(flipx ? (8-x) : x)];
+	DebugLevel3Fn("index %d\n" _C_ index);
+	for( y=0; y<8; ++y ) {
+		for( x=0; x<8; ++x ) {
+			image[(y+iy*8)*iadd+ix*8+x]=mini[index+
+				(flipy ? (8-y) : y)*8+(flipx ? (8-x) : x)];
+		}
 	}
-    }
 }
 
 /**
-**	Convert tiles into image.
+**		Convert tiles into image.
 */
 unsigned char* ConvertTile(unsigned char* mini,const char* mega,int msize
-	,const char* map __attribute__((unused)),int *wp,int *hp)
+		,const char* map __attribute__((unused)),int *wp,int *hp)
 {
-    unsigned char* image;
-    const unsigned short* mp;
-    int height;
-    int width;
-    int i;
-    int x;
-    int y;
-    int offset;
-    int numtiles;
+	unsigned char* image;
+	const unsigned short* mp;
+	int height;
+	int width;
+	int i;
+	int x;
+	int y;
+	int offset;
+	int numtiles;
 
-    DebugLevel3("Tiles in mega %d\t" _C_ msize/32);
-    numtiles=msize/32;
+	DebugLevel3("Tiles in mega %d\t" _C_ msize/32);
+	numtiles=msize/32;
 
-    width=TILE_PER_ROW*32;
-    height=((numtiles+TILE_PER_ROW-1)/TILE_PER_ROW)*32;
-    DebugLevel3("Image %dx%d\n" _C_ width _C_ height);
-    image=malloc(height*width);
-    memset(image,0,height*width);
+	width=TILE_PER_ROW*32;
+	height=((numtiles+TILE_PER_ROW-1)/TILE_PER_ROW)*32;
+	DebugLevel3("Image %dx%d\n" _C_ width _C_ height);
+	image=malloc(height*width);
+	memset(image,0,height*width);
 
-    for( i=0; i<numtiles; ++i ) {
-	//mp=(const unsigned short*)(mega+img2tile[i]*32);
-	mp=(const unsigned short*)(mega+i*32);
-	if( i<16 ) {		// fog of war
-	    for( y=0; y<32; ++y ) {
-		offset=i*32*32+y*32;
-		memcpy(image+(i%TILE_PER_ROW)*32
-			+(((i/TILE_PER_ROW)*32)+y)*width
-			,mini+offset,32);
-	    }
-	} else {		// normal tile
-	    for( y=0; y<4; ++y ) {
-		for( x=0; x<4; ++x ) {
-		    offset=ConvertLE16(mp[x+y*4]);
-		    DecodeMiniTile(image
-			,x+((i%TILE_PER_ROW)*4),y+(i/TILE_PER_ROW)*4,width
-			,mini,(offset&0xFFFC)*16,offset&2,offset&1);
+	for( i=0; i<numtiles; ++i ) {
+		//mp=(const unsigned short*)(mega+img2tile[i]*32);
+		mp=(const unsigned short*)(mega+i*32);
+		if( i<16 ) {				// fog of war
+			for( y=0; y<32; ++y ) {
+				offset=i*32*32+y*32;
+				memcpy(image+(i%TILE_PER_ROW)*32
+						+(((i/TILE_PER_ROW)*32)+y)*width
+						,mini+offset,32);
+			}
+		} else {				// normal tile
+			for( y=0; y<4; ++y ) {
+				for( x=0; x<4; ++x ) {
+					offset=ConvertLE16(mp[x+y*4]);
+					DecodeMiniTile(image
+						,x+((i%TILE_PER_ROW)*4),y+(i/TILE_PER_ROW)*4,width
+						,mini,(offset&0xFFFC)*16,offset&2,offset&1);
+				}
+			}
 		}
-	    }
 	}
-    }
 
-    *wp=width;
-    *hp=height;
+	*wp=width;
+	*hp=height;
 
-    return image;
+	return image;
 }
 
 /**
-**	Convert a tileset to my format.
+**		Convert a tileset to my format.
 */
 int ConvertTileset(char* file,int pale,int mege,int mine,int mape)
 {
-    unsigned char* palp;
-    unsigned char* megp;
-    unsigned char* minp;
-    unsigned char* mapp;
-    unsigned char* image;
-    int w;
-    int h;
-    int megl;
-    char buf[1024];
+	unsigned char* palp;
+	unsigned char* megp;
+	unsigned char* minp;
+	unsigned char* mapp;
+	unsigned char* image;
+	int w;
+	int h;
+	int megl;
+	char buf[1024];
 
-    palp=ExtractEntry(ArchiveOffsets[pale],NULL);
-    megp=ExtractEntry(ArchiveOffsets[mege],&megl);
-    minp=ExtractEntry(ArchiveOffsets[mine],NULL);
-    mapp=ExtractEntry(ArchiveOffsets[mape],NULL);
+	palp=ExtractEntry(ArchiveOffsets[pale],NULL);
+	megp=ExtractEntry(ArchiveOffsets[mege],&megl);
+	minp=ExtractEntry(ArchiveOffsets[mine],NULL);
+	mapp=ExtractEntry(ArchiveOffsets[mape],NULL);
 
-    DebugLevel3("%s:\t" _C_ file);
-    image=ConvertTile(minp,megp,megl,mapp,&w,&h);
+	DebugLevel3("%s:\t" _C_ file);
+	image=ConvertTile(minp,megp,megl,mapp,&w,&h);
 
-    free(megp);
-    free(minp);
-    free(mapp);
+	free(megp);
+	free(minp);
+	free(mapp);
 
-    ConvertPalette(palp);
+	ConvertPalette(palp);
 
-    sprintf(buf,"%s/%s/%s.png",Dir,TILESET_PATH,file);
-    CheckPath(buf);
-    SavePNG(buf,image,w,h,palp);
+	sprintf(buf,"%s/%s/%s.png",Dir,TILESET_PATH,file);
+	CheckPath(buf);
+	SavePNG(buf,image,w,h,palp);
 
-    free(image);
-    free(palp);
+	free(image);
+	free(palp);
 
-    return 0;
+	return 0;
 }
 
 //----------------------------------------------------------------------------
-//	Graphics
+//		Graphics
 //----------------------------------------------------------------------------
 
 /**
-**	Decode a entry(frame) into image.
+**		Decode a entry(frame) into image.
 */
 void DecodeGfxEntry(int index,unsigned char* start
-	,unsigned char* image,int ix,int iy,int iadd)
+		,unsigned char* image,int ix,int iy,int iadd)
 {
-    unsigned char* bp;
-    unsigned char* sp;
-    unsigned char* dp;
-    int xoff;
-    int yoff;
-    int width;
-    int height;
-    int offset;
-    unsigned char* rows;
-    int h;
-    int w;
-    int ctrl;
-
-    bp=start+index*8;
-    xoff=FetchByte(bp);
-    yoff=FetchByte(bp);
-    width=FetchByte(bp);
-    height=FetchByte(bp);
-    offset=FetchLE32(bp);
-
-    DebugLevel3("%2d: +x %2d +y %2d width %2d height %2d offset %d\n"
-	_C_ index _C_ xoff _C_ yoff _C_ width _C_ height _C_ offset);
-
-    rows=start+offset-6;
-    dp=image+xoff-ix+(yoff-iy)*iadd;
-
-    for( h=0; h<height; ++h ) {
-	DebugLevel3("%2d: row-offset %2d\t" _C_ index _C_ AccessLE16(rows+h*2));
-	sp=rows+AccessLE16(rows+h*2);
-	for( w=0; w<width; ) {
-	    ctrl=*sp++;
-	    DebugLevel3("%02X" _C_ ctrl);
-	    if( ctrl&0x80 ) {		// transparent
-		ctrl&=0x7F;
-		DebugLevel3("-%d," _C_ ctrl);
-		memset(dp+h*iadd+w,255,ctrl);
-		w+=ctrl;
-	    } else if( ctrl&0x40 ) {	// repeat
-		ctrl&=0x3F;
-		DebugLevel3("*%d," _C_ ctrl);
-		memset(dp+h*iadd+w,*sp++,ctrl);
-		w+=ctrl;
-	    } else {			// set pixels
-		ctrl&=0x3F;
-		DebugLevel3("=%d," _C_ ctrl);
-		memcpy(dp+h*iadd+w,sp,ctrl);
-		sp+=ctrl;
-		w+=ctrl;
-	    }
-	}
-	//dp[h*iadd+width-1]=0;
-	DebugLevel3("\n");
-    }
-}
-
-/**
-**	Decode a entry(frame) into image.
-*/
-void DecodeGfuEntry(int index,unsigned char* start
-	,unsigned char* image,int ix,int iy,int iadd)
-{
-    unsigned char* bp;
-    unsigned char* sp;
-    unsigned char* dp;
-    int i;
-    int xoff;
-    int yoff;
-    int width;
-    int height;
-    int offset;
-
-    bp=start+index*8;
-    xoff=FetchByte(bp);
-    yoff=FetchByte(bp);
-    width=FetchByte(bp);
-    height=FetchByte(bp);
-    offset=FetchLE32(bp);
-    if( offset<0 ) {			// High bit of width
-	offset&=0x7FFFFFFF;
-	width+=256;
-    }
-
-    DebugLevel3("%2d: +x %2d +y %2d width %2d height %2d offset %d\n"
-	_C_ index _C_ xoff _C_ yoff _C_ width _C_ height _C_ offset);
-
-    sp=start+offset-6;
-    dp=image+xoff-ix+(yoff-iy)*iadd;
-    for( i=0; i<height; ++i ) {
-	memcpy(dp,sp,width);
-	dp+=iadd;
-	sp+=width;
-    }
-}
-/**
-**	Convert graphics into image.
-*/
-unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp
-	,unsigned char* bp2,int start2)
-{
-    int i;
-    int count;
-    int length;
-    int max_width;
-    int max_height;
-    int minx;
-    int miny;
-    int best_width;
-    int best_height;
-    unsigned char* image;
-    int IPR;
-
-    if (bp2) {	// Init pointer to 2nd animation
-	count=FetchLE16(bp2);
-	max_width=FetchLE16(bp2);
-	max_height=FetchLE16(bp2);
-    }
-    count=FetchLE16(bp);
-    max_width=FetchLE16(bp);
-    max_height=FetchLE16(bp);
-
-
-    DebugLevel3("Entries %2d Max width %3d height %3d, " _C_ count
-	    _C_ max_width _C_ max_height);
-
-    // Find best image size
-    minx=999;
-    miny=999;
-    best_width=0;
-    best_height=0;
-    for( i=0; i<count; ++i ) {
-	unsigned char* p;
+	unsigned char* bp;
+	unsigned char* sp;
+	unsigned char* dp;
 	int xoff;
 	int yoff;
 	int width;
 	int height;
+	int offset;
+	unsigned char* rows;
+	int h;
+	int w;
+	int ctrl;
 
-	p=bp+i*8;
-	xoff=FetchByte(p);
-	yoff=FetchByte(p);
-	width=FetchByte(p);
-	height=FetchByte(p);
-	if( FetchLE32(p)&0x80000000 ) {	// high bit of width
-	    width+=256;
+	bp=start+index*8;
+	xoff=FetchByte(bp);
+	yoff=FetchByte(bp);
+	width=FetchByte(bp);
+	height=FetchByte(bp);
+	offset=FetchLE32(bp);
+
+	DebugLevel3("%2d: +x %2d +y %2d width %2d height %2d offset %d\n"
+		_C_ index _C_ xoff _C_ yoff _C_ width _C_ height _C_ offset);
+
+	rows=start+offset-6;
+	dp=image+xoff-ix+(yoff-iy)*iadd;
+
+	for( h=0; h<height; ++h ) {
+		DebugLevel3("%2d: row-offset %2d\t" _C_ index _C_ AccessLE16(rows+h*2));
+		sp=rows+AccessLE16(rows+h*2);
+		for( w=0; w<width; ) {
+			ctrl=*sp++;
+			DebugLevel3("%02X" _C_ ctrl);
+			if( ctrl&0x80 ) {				// transparent
+				ctrl&=0x7F;
+				DebugLevel3("-%d," _C_ ctrl);
+				memset(dp+h*iadd+w,255,ctrl);
+				w+=ctrl;
+			} else if( ctrl&0x40 ) {		// repeat
+				ctrl&=0x3F;
+				DebugLevel3("*%d," _C_ ctrl);
+				memset(dp+h*iadd+w,*sp++,ctrl);
+				w+=ctrl;
+			} else {						// set pixels
+				ctrl&=0x3F;
+				DebugLevel3("=%d," _C_ ctrl);
+				memcpy(dp+h*iadd+w,sp,ctrl);
+				sp+=ctrl;
+				w+=ctrl;
+			}
+		}
+		//dp[h*iadd+width-1]=0;
+		DebugLevel3("\n");
 	}
-	if( xoff<minx ) minx=xoff;
-	if( yoff<miny ) miny=yoff;
-	if( xoff+width>best_width ) best_width=xoff+width;
-	if( yoff+height>best_height ) best_height=yoff+height;
-    }
-    // FIXME: the image isn't centered!!
-
-#if 0
-    // Taken out, must be rewritten.
-    if( max_width-best_width<minx ) {
-	minx=max_width-best_width;
-	best_width-=minx;
-    } else {
-	best_width=max_width-minx;
-    }
-    if( max_height-best_height<miny ) {
-	miny=max_height-best_height;
-	best_height-=miny;
-    } else {
-	best_height=max_width-miny;
-    }
-
-    //best_width-=minx;
-    //best_height-=miny;
-#endif
-
-    DebugLevel3("Best image size %3d, %3d\n" _C_ best_width _C_ best_height);
-
-    minx=0;
-    miny=0;
-
-    if( gfx ) {
-	best_width=max_width;
-	best_height=max_height;
-	IPR=5;				// st*rcr*ft 17!
-	if( count<IPR ) {		// images per row !!
-	    IPR=1;
-	    length=count;
-	} else {
-	    length=((count+IPR-1)/IPR)*IPR;
-	}
-    } else {
-	max_width=best_width;
-	max_height=best_height;
-	IPR=1;
-	length=count;
-    }
-
-    image=malloc(best_width*best_height*length);
-
-    //	Image:	0, 1, 2, 3, 4,
-    //		5, 6, 7, 8, 9, ...
-    if( !image ) {
-	printf("Can't allocate image\n");
-	exit(-1);
-    }
-    // Set all to transparent.
-    memset(image,255,best_width*best_height*length);
-
-    if( gfx ) {
-	for( i=0; i<count; ++i ) {
-    // Hardcoded support for worker with resource repairing
-	    if (i>=start2 && bp2) DecodeGfxEntry(i,bp2
-		,image+best_width*(i%IPR)+best_height*best_width*IPR*(i/IPR)
-		,minx,miny,best_width*IPR);
-	    else DecodeGfxEntry(i,bp
-		,image+best_width*(i%IPR)+best_height*best_width*IPR*(i/IPR)
-		,minx,miny,best_width*IPR);
-	}
-    } else {
-	for( i=0; i<count; ++i ) {
-	    DecodeGfuEntry(i,bp
-		,image+best_width*(i%IPR)+best_height*best_width*IPR*(i/IPR)
-		,minx,miny,best_width*IPR);
-	}
-    }
-
-    *wp=best_width*IPR;
-    *hp=best_height*(length/IPR);
-
-    return image;
 }
 
 /**
-**	Convert a graphic to my format.
+**		Decode a entry(frame) into image.
+*/
+void DecodeGfuEntry(int index,unsigned char* start
+		,unsigned char* image,int ix,int iy,int iadd)
+{
+	unsigned char* bp;
+	unsigned char* sp;
+	unsigned char* dp;
+	int i;
+	int xoff;
+	int yoff;
+	int width;
+	int height;
+	int offset;
+
+	bp=start+index*8;
+	xoff=FetchByte(bp);
+	yoff=FetchByte(bp);
+	width=FetchByte(bp);
+	height=FetchByte(bp);
+	offset=FetchLE32(bp);
+	if( offset<0 ) {						// High bit of width
+		offset&=0x7FFFFFFF;
+		width+=256;
+	}
+
+	DebugLevel3("%2d: +x %2d +y %2d width %2d height %2d offset %d\n"
+		_C_ index _C_ xoff _C_ yoff _C_ width _C_ height _C_ offset);
+
+	sp=start+offset-6;
+	dp=image+xoff-ix+(yoff-iy)*iadd;
+	for( i=0; i<height; ++i ) {
+		memcpy(dp,sp,width);
+		dp+=iadd;
+		sp+=width;
+	}
+}
+/**
+**		Convert graphics into image.
+*/
+unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp
+		,unsigned char* bp2,int start2)
+{
+	int i;
+	int count;
+	int length;
+	int max_width;
+	int max_height;
+	int minx;
+	int miny;
+	int best_width;
+	int best_height;
+	unsigned char* image;
+	int IPR;
+
+	if (bp2) {		// Init pointer to 2nd animation
+		count=FetchLE16(bp2);
+		max_width=FetchLE16(bp2);
+		max_height=FetchLE16(bp2);
+	}
+	count=FetchLE16(bp);
+	max_width=FetchLE16(bp);
+	max_height=FetchLE16(bp);
+
+
+	DebugLevel3("Entries %2d Max width %3d height %3d, " _C_ count
+			_C_ max_width _C_ max_height);
+
+	// Find best image size
+	minx=999;
+	miny=999;
+	best_width=0;
+	best_height=0;
+	for( i=0; i<count; ++i ) {
+		unsigned char* p;
+		int xoff;
+		int yoff;
+		int width;
+		int height;
+
+		p=bp+i*8;
+		xoff=FetchByte(p);
+		yoff=FetchByte(p);
+		width=FetchByte(p);
+		height=FetchByte(p);
+		if( FetchLE32(p)&0x80000000 ) {		// high bit of width
+			width+=256;
+		}
+		if( xoff<minx ) minx=xoff;
+		if( yoff<miny ) miny=yoff;
+		if( xoff+width>best_width ) best_width=xoff+width;
+		if( yoff+height>best_height ) best_height=yoff+height;
+	}
+	// FIXME: the image isn't centered!!
+
+#if 0
+	// Taken out, must be rewritten.
+	if( max_width-best_width<minx ) {
+		minx=max_width-best_width;
+		best_width-=minx;
+	} else {
+		best_width=max_width-minx;
+	}
+	if( max_height-best_height<miny ) {
+		miny=max_height-best_height;
+		best_height-=miny;
+	} else {
+		best_height=max_width-miny;
+	}
+
+	//best_width-=minx;
+	//best_height-=miny;
+#endif
+
+	DebugLevel3("Best image size %3d, %3d\n" _C_ best_width _C_ best_height);
+
+	minx=0;
+	miny=0;
+
+	if( gfx ) {
+		best_width=max_width;
+		best_height=max_height;
+		IPR=5;								// st*rcr*ft 17!
+		if( count<IPR ) {				// images per row !!
+			IPR=1;
+			length=count;
+		} else {
+			length=((count+IPR-1)/IPR)*IPR;
+		}
+	} else {
+		max_width=best_width;
+		max_height=best_height;
+		IPR=1;
+		length=count;
+	}
+
+	image=malloc(best_width*best_height*length);
+
+	//		Image:		0, 1, 2, 3, 4,
+	//				5, 6, 7, 8, 9, ...
+	if( !image ) {
+		printf("Can't allocate image\n");
+		exit(-1);
+	}
+	// Set all to transparent.
+	memset(image,255,best_width*best_height*length);
+
+	if( gfx ) {
+		for( i=0; i<count; ++i ) {
+	// Hardcoded support for worker with resource repairing
+			if (i>=start2 && bp2) DecodeGfxEntry(i,bp2
+				,image+best_width*(i%IPR)+best_height*best_width*IPR*(i/IPR)
+				,minx,miny,best_width*IPR);
+			else DecodeGfxEntry(i,bp
+				,image+best_width*(i%IPR)+best_height*best_width*IPR*(i/IPR)
+				,minx,miny,best_width*IPR);
+		}
+	} else {
+		for( i=0; i<count; ++i ) {
+			DecodeGfuEntry(i,bp
+				,image+best_width*(i%IPR)+best_height*best_width*IPR*(i/IPR)
+				,minx,miny,best_width*IPR);
+		}
+	}
+
+	*wp=best_width*IPR;
+	*hp=best_height*(length/IPR);
+
+	return image;
+}
+
+/**
+**		Convert a graphic to my format.
 */
 int ConvertGfx(char* file,int pale,int gfxe,int gfxe2,int start2)
 {
-    unsigned char* palp;
-    unsigned char* gfxp;
-    unsigned char* gfxp2;
-    unsigned char* image;
-    int w;
-    int h;
-    char buf[1024];
+	unsigned char* palp;
+	unsigned char* gfxp;
+	unsigned char* gfxp2;
+	unsigned char* image;
+	int w;
+	int h;
+	char buf[1024];
 
-    palp=ExtractEntry(ArchiveOffsets[pale],NULL);
-    gfxp=ExtractEntry(ArchiveOffsets[gfxe],NULL);
-    if (gfxe2) gfxp2=ExtractEntry(ArchiveOffsets[gfxe2],NULL);
-    else gfxp2=NULL;
+	palp=ExtractEntry(ArchiveOffsets[pale],NULL);
+	gfxp=ExtractEntry(ArchiveOffsets[gfxe],NULL);
+	if (gfxe2) gfxp2=ExtractEntry(ArchiveOffsets[gfxe2],NULL);
+	else gfxp2=NULL;
 
-    image=ConvertGraphic(1,gfxp,&w,&h,gfxp2,start2);
+	image=ConvertGraphic(1,gfxp,&w,&h,gfxp2,start2);
 
-    free(gfxp);
-    ConvertPalette(palp);
+	free(gfxp);
+	ConvertPalette(palp);
 
-    sprintf(buf,"%s/%s/%s.png",Dir,UNIT_PATH,file);
-    CheckPath(buf);
-    SavePNG(buf,image,w,h,palp);
+	sprintf(buf,"%s/%s/%s.png",Dir,UNIT_PATH,file);
+	CheckPath(buf);
+	SavePNG(buf,image,w,h,palp);
 
-    free(image);
-    free(palp);
+	free(image);
+	free(palp);
 
-    return 0;
+	return 0;
 }
 
 /**
-**	Convert a uncompressed graphic to my format.
+**		Convert a uncompressed graphic to my format.
 */
 int ConvertGfu(char* file,int pale,int gfue)
 {
-    unsigned char* palp;
-    unsigned char* gfup;
-    unsigned char* image;
-    int w;
-    int h;
-    char buf[1024];
+	unsigned char* palp;
+	unsigned char* gfup;
+	unsigned char* image;
+	int w;
+	int h;
+	char buf[1024];
 
-    palp=ExtractEntry(ArchiveOffsets[pale],NULL);
-    gfup=ExtractEntry(ArchiveOffsets[gfue],NULL);
+	palp=ExtractEntry(ArchiveOffsets[pale],NULL);
+	gfup=ExtractEntry(ArchiveOffsets[gfue],NULL);
 
-    image=ConvertGraphic(0,gfup,&w,&h,NULL,0);
+	image=ConvertGraphic(0,gfup,&w,&h,NULL,0);
 
-    free(gfup);
-    ConvertPalette(palp);
+	free(gfup);
+	ConvertPalette(palp);
 
-    sprintf(buf,"%s/%s/%s.png",Dir,UNIT_PATH,file);
-    CheckPath(buf);
-    SavePNG(buf,image,w,h,palp);
+	sprintf(buf,"%s/%s/%s.png",Dir,UNIT_PATH,file);
+	CheckPath(buf);
+	SavePNG(buf,image,w,h,palp);
 
-    free(image);
-    free(palp);
+	free(image);
+	free(palp);
 
-    return 0;
+	return 0;
 }
 
 //----------------------------------------------------------------------------
-//	Puds
+//		Puds
 //----------------------------------------------------------------------------
 
 /**
-**	Convert pud to my format.
+**		Convert pud to my format.
 */
 void ConvertPud(char* file,int pude)
 {
-    unsigned char* pudp;
-    char buf[1024];
-    gzFile gf;
-    int l;
+	unsigned char* pudp;
+	char buf[1024];
+	gzFile gf;
+	int l;
 
-    pudp=ExtractEntry(ArchiveOffsets[pude],&l);
+	pudp=ExtractEntry(ArchiveOffsets[pude],&l);
 
-    sprintf(buf,"%s/%s/%s.pud.gz",Dir,PUD_PATH,file);
-    CheckPath(buf);
-    gf=gzopen(buf,"wb9");
-    if( !gf ) {
-	perror("");
-	printf("Can't open %s\n",buf);
-	exit(-1);
-    }
-    if( l!=gzwrite(gf,pudp,l) ) {
-	printf("Can't write %d bytes\n",l);
-    }
+	sprintf(buf,"%s/%s/%s.pud.gz",Dir,PUD_PATH,file);
+	CheckPath(buf);
+	gf=gzopen(buf,"wb9");
+	if( !gf ) {
+		perror("");
+		printf("Can't open %s\n",buf);
+		exit(-1);
+	}
+	if( l!=gzwrite(gf,pudp,l) ) {
+		printf("Can't write %d bytes\n",l);
+	}
 
-    free(pudp);
+	free(pudp);
 
-    gzclose(gf);
+	gzclose(gf);
 }
 
 //----------------------------------------------------------------------------
-//	Font
+//		Font
 //----------------------------------------------------------------------------
 
 /**
-**	Convert font into image.
+**		Convert font into image.
 */
 unsigned char* ConvertFnt(unsigned char* start,int *wp,int *hp)
 {
-    int i;
-    int count;
-    int max_width;
-    int max_height;
-    int width;
-    int height;
-    int w;
-    int h;
-    int xoff;
-    int yoff;
-    unsigned char* bp;
-    unsigned char* dp;
-    unsigned char* image;
-    unsigned* offsets;
+	int i;
+	int count;
+	int max_width;
+	int max_height;
+	int width;
+	int height;
+	int w;
+	int h;
+	int xoff;
+	int yoff;
+	unsigned char* bp;
+	unsigned char* dp;
+	unsigned char* image;
+	unsigned* offsets;
 
-    bp=start+5;				// skip "FONT "
-    count=FetchByte(bp)-32;
-    max_width=FetchByte(bp);
-    max_height=FetchByte(bp);
+	bp=start+5;								// skip "FONT "
+	count=FetchByte(bp)-32;
+	max_width=FetchByte(bp);
+	max_height=FetchByte(bp);
 
-    DebugLevel3("Font: count %d max-width %2d max-height %2d\n"
-	    _C_ count _C_ max_width _C_ max_height);
+	DebugLevel3("Font: count %d max-width %2d max-height %2d\n"
+			_C_ count _C_ max_width _C_ max_height);
 
-    offsets=malloc(count*sizeof(u_int32_t));
-    for( i=0; i<count; ++i ) {
-	offsets[i]=FetchLE32(bp);
-	DebugLevel3("%03d: offset %d\n" _C_ i _C_ offsets[i]);
-    }
-
-    image=malloc(max_width*max_height*count);
-    if( !image ) {
-	printf("Can't allocate image\n");
-	exit(-1);
-    }
-    memset(image,255,max_width*max_height*count);
-
-    for( i=0; i<count; ++i ) {
-	if( !offsets[i] ) {
-	    DebugLevel3("%03d: unused\n" _C_ i);
-	    continue;
+	offsets=malloc(count*sizeof(u_int32_t));
+	for( i=0; i<count; ++i ) {
+		offsets[i]=FetchLE32(bp);
+		DebugLevel3("%03d: offset %d\n" _C_ i _C_ offsets[i]);
 	}
-	bp=start+offsets[i];
-	width=FetchByte(bp);
-	height=FetchByte(bp);
-	xoff=FetchByte(bp);
-	yoff=FetchByte(bp);
 
-	DebugLevel3("%03d: width %d height %d xoff %d yoff %d\n"
-		_C_ i _C_ width _C_ height _C_ xoff _C_ yoff);
-
-	dp=image+xoff+yoff*max_width+i*(max_width*max_height);
-	h=w=0;
-	for( ;; ) {
-	    int ctrl;
-
-	    ctrl=FetchByte(bp);
-	    DebugLevel3("%d,%d " _C_ ctrl>>3 _C_ ctrl&7);
-	    w+=(ctrl>>3)&0x1F;
-	    if( w>=width ) {
-		DebugLevel3("\n");
-		w-=width;
-		++h;
-		if( h>=height ) {
-		    break;
-		}
-	    }
-	    dp[h*max_width+w]=ctrl&0x07;
-	    ++w;
-	    if( w>=width ) {
-		DebugLevel3("\n");
-		w-=width;
-		++h;
-		if( h>=height ) {
-		    break;
-		}
-	    }
+	image=malloc(max_width*max_height*count);
+	if( !image ) {
+		printf("Can't allocate image\n");
+		exit(-1);
 	}
-    }
+	memset(image,255,max_width*max_height*count);
 
-    free(offsets);
+	for( i=0; i<count; ++i ) {
+		if( !offsets[i] ) {
+			DebugLevel3("%03d: unused\n" _C_ i);
+			continue;
+		}
+		bp=start+offsets[i];
+		width=FetchByte(bp);
+		height=FetchByte(bp);
+		xoff=FetchByte(bp);
+		yoff=FetchByte(bp);
 
-    *wp=max_width;
-    *hp=max_height*count;
+		DebugLevel3("%03d: width %d height %d xoff %d yoff %d\n"
+				_C_ i _C_ width _C_ height _C_ xoff _C_ yoff);
 
-    return image;
+		dp=image+xoff+yoff*max_width+i*(max_width*max_height);
+		h=w=0;
+		for( ;; ) {
+			int ctrl;
+
+			ctrl=FetchByte(bp);
+			DebugLevel3("%d,%d " _C_ ctrl>>3 _C_ ctrl&7);
+			w+=(ctrl>>3)&0x1F;
+			if( w>=width ) {
+				DebugLevel3("\n");
+				w-=width;
+				++h;
+				if( h>=height ) {
+					break;
+				}
+			}
+			dp[h*max_width+w]=ctrl&0x07;
+			++w;
+			if( w>=width ) {
+				DebugLevel3("\n");
+				w-=width;
+				++h;
+				if( h>=height ) {
+					break;
+				}
+			}
+		}
+	}
+
+	free(offsets);
+
+	*wp=max_width;
+	*hp=max_height*count;
+
+	return image;
 }
 
 /**
-**	Convert a font to my format.
+**		Convert a font to my format.
 */
 int ConvertFont(char* file,int pale,int fnte)
 {
-    unsigned char* palp;
-    unsigned char* fntp;
-    unsigned char* image;
-    int w;
-    int h;
-    char buf[1024];
+	unsigned char* palp;
+	unsigned char* fntp;
+	unsigned char* image;
+	int w;
+	int h;
+	char buf[1024];
 
-    palp=ExtractEntry(ArchiveOffsets[pale],NULL);
-    fntp=ExtractEntry(ArchiveOffsets[fnte],NULL);
+	palp=ExtractEntry(ArchiveOffsets[pale],NULL);
+	fntp=ExtractEntry(ArchiveOffsets[fnte],NULL);
 
-    image=ConvertFnt(fntp,&w,&h);
+	image=ConvertFnt(fntp,&w,&h);
 
-    free(fntp);
-    ConvertPalette(palp);
+	free(fntp);
+	ConvertPalette(palp);
 
-    sprintf(buf,"%s/%s/%s.png",Dir,FONT_PATH,file);
-    CheckPath(buf);
-    SavePNG(buf,image,w,h,palp);
+	sprintf(buf,"%s/%s/%s.png",Dir,FONT_PATH,file);
+	CheckPath(buf);
+	SavePNG(buf,image,w,h,palp);
 
-    free(image);
-    free(palp);
+	free(image);
+	free(palp);
 
-    return 0;
+	return 0;
 }
 
 //----------------------------------------------------------------------------
-//	Image
+//		Image
 //----------------------------------------------------------------------------
 
 /**
-**	Convert image into image.
+**		Convert image into image.
 */
 unsigned char* ConvertImg(unsigned char* bp,int *wp,int *hp)
 {
-    int width;
-    int height;
-    unsigned char* image;
+	int width;
+	int height;
+	unsigned char* image;
 
-    width=FetchLE16(bp);
-    height=FetchLE16(bp);
+	width=FetchLE16(bp);
+	height=FetchLE16(bp);
 
-    DebugLevel3("Image: width %3d height %3d\n" _C_ width _C_ height);
+	DebugLevel3("Image: width %3d height %3d\n" _C_ width _C_ height);
 
-    image=malloc(width*height);
-    if( !image ) {
-	printf("Can't allocate image\n");
-	exit(-1);
-    }
-    memcpy(image,bp,width*height);
+	image=malloc(width*height);
+	if( !image ) {
+		printf("Can't allocate image\n");
+		exit(-1);
+	}
+	memcpy(image,bp,width*height);
 
-    *wp=width;
-    *hp=height;
+	*wp=width;
+	*hp=height;
 
-    if (!*wp || !*hp) {
-	return NULL;
-    } else {
-	return image;
-    }
+	if (!*wp || !*hp) {
+		return NULL;
+	} else {
+		return image;
+	}
 }
 
 /**
-**	Resize an image
+**		Resize an image
 **
-**	@param image	image data to be converted
-**	@param ow	old image width
-**	@param oh	old image height
-**	@param nw	new image width
-**	@param nh	new image height
+**		@param image		image data to be converted
+**		@param ow		old image width
+**		@param oh		old image height
+**		@param nw		new image width
+**		@param nh		new image height
 */
 void ResizeImage(unsigned char** image,int ow,int oh,int nw,int nh)
 {
-    int i;
-    int j;
-    unsigned char *data;
-    int x;
+	int i;
+	int j;
+	unsigned char *data;
+	int x;
 
-    if( ow==nw && nh==oh ) {
-	return;
-    }
-
-    data = (unsigned char*)malloc(nw*nh);
-    x=0;
-    for( i=0; i<nh; ++i ) {
-	for( j=0; j<nw; ++j ) {
-	    data[x] = ((unsigned char*)*image)[i*oh/nh*ow + j*ow/nw];
-	    ++x;
+	if( ow==nw && nh==oh ) {
+		return;
 	}
-    }
 
-    free(*image);
-    *image=data;
+	data = (unsigned char*)malloc(nw*nh);
+	x=0;
+	for( i=0; i<nh; ++i ) {
+		for( j=0; j<nw; ++j ) {
+			data[x] = ((unsigned char*)*image)[i*oh/nh*ow + j*ow/nw];
+			++x;
+		}
+	}
+
+	free(*image);
+	*image=data;
 }
 
 /**
-**	Convert an image to my format.
+**		Convert an image to my format.
 */
 int ConvertImage(char* file,int pale,int imge, int nw, int nh)
 {
-    unsigned char* palp;
-    unsigned char* imgp;
-    unsigned char* image;
-    int w;
-    int h;
-    char buf[1024];
+	unsigned char* palp;
+	unsigned char* imgp;
+	unsigned char* image;
+	int w;
+	int h;
+	char buf[1024];
 
-    // Workaround for MAC expansion CD
-    if (1 & CDType) {
-	if (imge >= 94 && imge <= 103) {
-	    imge += 7;
+	// Workaround for MAC expansion CD
+	if (1 & CDType) {
+		if (imge >= 94 && imge <= 103) {
+			imge += 7;
+		}
+		if (pale == 93) {
+			pale += 7;
+		}
 	}
-	if (pale == 93) {
-	    pale += 7;
-        }
-    }
 
-    palp=ExtractEntry(ArchiveOffsets[pale],NULL);
-    if (pale == 27 && imge == 28) {
-	Pal27 = palp;
-    }
-    imgp=ExtractEntry(ArchiveOffsets[imge],NULL);
+	palp=ExtractEntry(ArchiveOffsets[pale],NULL);
+	if (pale == 27 && imge == 28) {
+		Pal27 = palp;
+	}
+	imgp=ExtractEntry(ArchiveOffsets[imge],NULL);
 
-    image=ConvertImg(imgp,&w,&h);
+	image=ConvertImg(imgp,&w,&h);
 
-    if (!image) {
-	fprintf(stderr, "Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n", 
-	    file, pale, imge, nw, nh, 1 & CDType);
-	exit(-1);
-    }
-    free(imgp);
-    ConvertPalette(palp);
+	if (!image) {
+		fprintf(stderr, "Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n",
+			file, pale, imge, nw, nh, 1 & CDType);
+		exit(-1);
+	}
+	free(imgp);
+	ConvertPalette(palp);
 
-    sprintf(buf,"%s/%s/%s.png",Dir,GRAPHIC_PATH,file);
-    CheckPath(buf);
+	sprintf(buf,"%s/%s/%s.png",Dir,GRAPHIC_PATH,file);
+	CheckPath(buf);
 
-    // Only resize if parameters 3 and 4 are non-zero
-    if (nw && nh) {
-	ResizeImage(&image,w,h,nw,nh);
-	w=nw; h=nh;
-    }
-    SavePNG(buf,image,w,h,palp);
+	// Only resize if parameters 3 and 4 are non-zero
+	if (nw && nh) {
+		ResizeImage(&image,w,h,nw,nh);
+		w=nw; h=nh;
+	}
+	SavePNG(buf,image,w,h,palp);
 
-    free(image);
-    if (pale != 27 && imge != 28) {
-	free(palp);
-    }
+	free(image);
+	if (pale != 27 && imge != 28) {
+		free(palp);
+	}
 
-    return 0;
+	return 0;
 }
 
 //----------------------------------------------------------------------------
-//	Cursor
+//		Cursor
 //----------------------------------------------------------------------------
 
 /**
-**	Convert cursor into image.
+**		Convert cursor into image.
 */
 unsigned char* ConvertCur(unsigned char* bp,int *wp,int *hp)
 {
-    int i;
-    int hotx;
-    int hoty;
-    int width;
-    int height;
-    unsigned char* image;
+	int i;
+	int hotx;
+	int hoty;
+	int width;
+	int height;
+	unsigned char* image;
 
-    hotx=FetchLE16(bp);
-    hoty=FetchLE16(bp);
-    width=FetchLE16(bp);
-    height=FetchLE16(bp);
+	hotx=FetchLE16(bp);
+	hoty=FetchLE16(bp);
+	width=FetchLE16(bp);
+	height=FetchLE16(bp);
 
-    DebugLevel3("Cursor: hotx %d hoty %d width %d height %d\n"
-	    _C_ hotx _C_ hoty _C_ width _C_ height);
+	DebugLevel3("Cursor: hotx %d hoty %d width %d height %d\n"
+			_C_ hotx _C_ hoty _C_ width _C_ height);
 
-    image=malloc(width*height);
-    if( !image ) {
-	printf("Can't allocate image\n");
-	exit(-1);
-    }
-    for( i=0; i<width*height; ++i ) {
-	image[i]=bp[i] ? bp[i] : 255;
-    }
+	image=malloc(width*height);
+	if( !image ) {
+		printf("Can't allocate image\n");
+		exit(-1);
+	}
+	for( i=0; i<width*height; ++i ) {
+		image[i]=bp[i] ? bp[i] : 255;
+	}
 
-    *wp=width;
-    *hp=height;
+	*wp=width;
+	*hp=height;
 
-    return image;
+	return image;
 }
 
 /**
-**	Convert a cursor to my format.
+**		Convert a cursor to my format.
 */
 int ConvertCursor(char* file,int pale,int cure)
 {
-    unsigned char* palp;
-    unsigned char* curp;
-    unsigned char* image;
-    int w;
-    int h;
-    char buf[1024];
+	unsigned char* palp;
+	unsigned char* curp;
+	unsigned char* image;
+	int w;
+	int h;
+	char buf[1024];
 
-    if (pale == 27 && cure == 314 && Pal27 ) { // Credits arrow (Blue arrow NW)
-	palp = Pal27;
-    } else {
-	palp=ExtractEntry(ArchiveOffsets[pale],NULL);
-    }
-    curp=ExtractEntry(ArchiveOffsets[cure],NULL);
+	if (pale == 27 && cure == 314 && Pal27 ) { // Credits arrow (Blue arrow NW)
+		palp = Pal27;
+	} else {
+		palp=ExtractEntry(ArchiveOffsets[pale],NULL);
+	}
+	curp=ExtractEntry(ArchiveOffsets[cure],NULL);
 
-    image=ConvertCur(curp,&w,&h);
+	image=ConvertCur(curp,&w,&h);
 
-    free(curp);
-    ConvertPalette(palp);
+	free(curp);
+	ConvertPalette(palp);
 
-    sprintf(buf,"%s/%s/%s.png",Dir,CURSOR_PATH,file);
-    CheckPath(buf);
-    SavePNG(buf,image,w,h,palp);
+	sprintf(buf,"%s/%s/%s.png",Dir,CURSOR_PATH,file);
+	CheckPath(buf);
+	SavePNG(buf,image,w,h,palp);
 
-    free(image);
-    if (pale != 27 && cure != 314) {
-	free(palp);
-    }
+	free(image);
+	if (pale != 27 && cure != 314) {
+		free(palp);
+	}
 
-    return 0;
+	return 0;
 }
 
 //----------------------------------------------------------------------------
-//	Wav
+//		Wav
 //----------------------------------------------------------------------------
 
 /**
-**	Convert pud to my format.
+**		Convert pud to my format.
 */
 int ConvertWav(char* file,int wave)
 {
-    unsigned char* wavp;
-    char buf[1024];
-    gzFile gf;
-    int l;
+	unsigned char* wavp;
+	char buf[1024];
+	gzFile gf;
+	int l;
 
-    wavp=ExtractEntry(ArchiveOffsets[wave],&l);
+	wavp=ExtractEntry(ArchiveOffsets[wave],&l);
 
-    sprintf(buf,"%s/%s/%s.wav.gz",Dir,SOUND_PATH,file);
-    CheckPath(buf);
-    gf=gzopen(buf,"wb9");
-    if( !gf ) {
-	perror("");
-	printf("Can't open %s\n",buf);
-	exit(-1);
-    }
-    if( l!=gzwrite(gf,wavp,l) ) {
-	printf("Can't write %d bytes\n",l);
-    }
+	sprintf(buf,"%s/%s/%s.wav.gz",Dir,SOUND_PATH,file);
+	CheckPath(buf);
+	gf=gzopen(buf,"wb9");
+	if( !gf ) {
+		perror("");
+		printf("Can't open %s\n",buf);
+		exit(-1);
+	}
+	if( l!=gzwrite(gf,wavp,l) ) {
+		printf("Can't write %d bytes\n",l);
+	}
 
-    free(wavp);
+	free(wavp);
 
-    gzclose(gf);
-    return 0;
+	gzclose(gf);
+	return 0;
 }
 
 //----------------------------------------------------------------------------
-//	Video
+//		Video
 //----------------------------------------------------------------------------
 
 /**
-**	Convert pud to my format.
+**		Convert pud to my format.
 */
 int ConvertVideo(char* file,int video)
 {
-    unsigned char* vidp;
-    char buf[1024];
-    FILE* gf;
-    size_t l;
+	unsigned char* vidp;
+	char buf[1024];
+	FILE* gf;
+	size_t l;
 
-    vidp=ExtractEntry(ArchiveOffsets[video],&l);
+	vidp=ExtractEntry(ArchiveOffsets[video],&l);
 
-    sprintf(buf,"%s/%s.smk",Dir,file);
-    CheckPath(buf);
-    gf=fopen(buf,"wb");
-    if( !gf ) {
-	perror("");
-	printf("Can't open %s\n",buf);
-	exit(-1);
-    }
-    if( l!=fwrite(vidp,1,l,gf) ) {
-	printf("Can't write %d bytes\n",l);
-    }
+	sprintf(buf,"%s/%s.smk",Dir,file);
+	CheckPath(buf);
+	gf=fopen(buf,"wb");
+	if( !gf ) {
+		perror("");
+		printf("Can't open %s\n",buf);
+		exit(-1);
+	}
+	if( l!=fwrite(vidp,1,l,gf) ) {
+		printf("Can't write %d bytes\n",l);
+	}
 
-    free(vidp);
+	free(vidp);
 
-    fclose(gf);
-    return 0;
+	fclose(gf);
+	return 0;
 }
 
 //----------------------------------------------------------------------------
-//	Text
+//		Text
 //----------------------------------------------------------------------------
 
 /**
-**	Convert text to my format.
+**		Convert text to my format.
 */
 int ConvertText(char* file,int txte,int ofs)
 {
-    unsigned char* txtp;
-    char buf[1024];
-    gzFile gf;
-    int l;
+	unsigned char* txtp;
+	char buf[1024];
+	gzFile gf;
+	int l;
 
-    // workaround for German/UK/Australian CD's
-    if (!(CD_EXPANSION & CDType) && ((CD_GERMAN | CD_UK) & CDType)) {
-	--txte;
-    }
+	// workaround for German/UK/Australian CD's
+	if (!(CD_EXPANSION & CDType) && ((CD_GERMAN | CD_UK) & CDType)) {
+		--txte;
+	}
 
-    // workaround for MAC expansion CD
-    if ((CD_MAC & CDType) && txte >= 99) {
-	txte += 6;
-    }
+	// workaround for MAC expansion CD
+	if ((CD_MAC & CDType) && txte >= 99) {
+		txte += 6;
+	}
 
-    txtp=ExtractEntry(ArchiveOffsets[txte],&l);
+	txtp=ExtractEntry(ArchiveOffsets[txte],&l);
 
-    sprintf(buf,"%s/%s/%s.txt.gz",Dir,TEXT_PATH,file);
-    CheckPath(buf);
-    gf=gzopen(buf,"wb9");
-    if( !gf ) {
-	perror("");
-	printf("Can't open %s\n",buf);
-	exit(-1);
-    }
-    if( l-ofs!=gzwrite(gf,txtp+ofs,l-ofs) ) {
-	printf("Can't write %d bytes\n",l);
-    }
+	sprintf(buf,"%s/%s/%s.txt.gz",Dir,TEXT_PATH,file);
+	CheckPath(buf);
+	gf=gzopen(buf,"wb9");
+	if( !gf ) {
+		perror("");
+		printf("Can't open %s\n",buf);
+		exit(-1);
+	}
+	if( l-ofs!=gzwrite(gf,txtp+ofs,l-ofs) ) {
+		printf("Can't write %d bytes\n",l);
+	}
 
-    free(txtp);
+	free(txtp);
 
-    gzclose(gf);
-    return 0;
+	gzclose(gf);
+	return 0;
 }
 
 /**
-**	Names for localised versions.
+**		Names for localised versions.
 */
 unsigned char Names[]={
 0xDF,0x01,0xC0,0x03,0xC1,0x03,0xC9,0x03,0xCF,0x03,0xD7,0x03,0xDC,0x03,0xE5,0x03,
@@ -3522,476 +3522,476 @@ unsigned char Names[]={
 };
 
 /**
-**	Convert text to my format.
+**		Convert text to my format.
 */
 int SetupNames(char* file __attribute__((unused)),int txte __attribute__((unused)))
 {
-    unsigned char* txtp;
-    const unsigned short* mp;
-    size_t l;
-    unsigned u;
-    unsigned n;
+	unsigned char* txtp;
+	const unsigned short* mp;
+	size_t l;
+	unsigned u;
+	unsigned n;
 
-    //txtp=ExtractEntry(ArchiveOffsets[txte],&l);
-    txtp=Names;
-    l=sizeof(Names);
-    mp=(const unsigned short*)txtp;
+	//txtp=ExtractEntry(ArchiveOffsets[txte],&l);
+	txtp=Names;
+	l=sizeof(Names);
+	mp=(const unsigned short*)txtp;
 
-    n=ConvertLE16(mp[0]);
-    for( u=1; u<n; ++u ) {
-	DebugLevel3("%d %x " _C_ u _C_ ConvertLE16(mp[u]));
-	DebugLevel3("%s\n" _C_ txtp+ConvertLE16(mp[u]));
-	if( u<sizeof(UnitNames)/sizeof(*UnitNames) ) {
-	    UnitNames[u]=strdup(txtp+ConvertLE16(mp[u]));
+	n=ConvertLE16(mp[0]);
+	for( u=1; u<n; ++u ) {
+		DebugLevel3("%d %x " _C_ u _C_ ConvertLE16(mp[u]));
+		DebugLevel3("%s\n" _C_ txtp+ConvertLE16(mp[u]));
+		if( u<sizeof(UnitNames)/sizeof(*UnitNames) ) {
+			UnitNames[u]=strdup(txtp+ConvertLE16(mp[u]));
+		}
 	}
-    }
 
-    if( txtp!=Names ) {
-	free(txtp);
-    }
-    return 0;
+	if( txtp!=Names ) {
+		free(txtp);
+	}
+	return 0;
 }
 
 /**
-**	Parse string.
+**		Parse string.
 */
 char* ParseString(char* input)
 {
-    static char buf[1024];
-    char* dp;
-    char* sp;
-    char* tp;
-    int i;
-    int f;
+	static char buf[1024];
+	char* dp;
+	char* sp;
+	char* tp;
+	int i;
+	int f;
 
-    DebugLevel3("%s -> " _C_ input);
+	DebugLevel3("%s -> " _C_ input);
 
-    for( sp=input,dp=buf; *sp; ) {
-	if( *sp=='%' ) {
-	    f=0;
-	    if( *++sp=='-' ) {
-		f=1;
-		++sp;
-	    }
-	    i=strtol(sp,&sp,0);
-	    tp=UnitNames[i];
-	    if( f ) {
-		tp=strchr(tp,' ')+1;
-	    }
-	    while( *tp ) {	// make them readabler
-		if( *tp=='-' ) {
-		    *dp++='_';
-		    tp++;
-		} else if (*tp==' ') {
-		    *dp++='_';
-		    tp++;
-		} else {
-		    *dp++=tolower(*tp++);
+	for( sp=input,dp=buf; *sp; ) {
+		if( *sp=='%' ) {
+			f=0;
+			if( *++sp=='-' ) {
+				f=1;
+				++sp;
+			}
+			i=strtol(sp,&sp,0);
+			tp=UnitNames[i];
+			if( f ) {
+				tp=strchr(tp,' ')+1;
+			}
+			while( *tp ) {		// make them readabler
+				if( *tp=='-' ) {
+					*dp++='_';
+					tp++;
+				} else if (*tp==' ') {
+					*dp++='_';
+					tp++;
+				} else {
+					*dp++=tolower(*tp++);
+				}
+			}
+			continue;
 		}
-	    }
-	    continue;
+		*dp++=*sp++;
 	}
-	*dp++=*sp++;
-    }
-    *dp='\0';
+	*dp='\0';
 
-    DebugLevel3("%s\n" _C_ buf);
-    return buf;
+	DebugLevel3("%s\n" _C_ buf);
+	return buf;
 }
 
 //----------------------------------------------------------------------------
-//	Import the campaigns
+//		Import the campaigns
 //----------------------------------------------------------------------------
 
 #ifndef NO_IMPORT_CAMPAIGNS
 
 /**
-**	FIXME: docu
+**		FIXME: docu
 */
 int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs)
 {
-    unsigned char *objectives;
-    char buf[1024];
-    unsigned char *CampaignData[2][26][10];
-    unsigned char *current, *next, *nextobj, *currentobj;
-    FILE *inlevel, *outlevel;
-    int l, levelno, noobjs, race, expansion;
+	unsigned char *objectives;
+	char buf[1024];
+	unsigned char *CampaignData[2][26][10];
+	unsigned char *current, *next, *nextobj, *currentobj;
+	FILE *inlevel, *outlevel;
+	int l, levelno, noobjs, race, expansion;
 
-    //Campaign data is in different spots for different CD's
-    if (CD_EXPANSION & CDType) {
-	expansion = 1;
-	ofs=236;
-	txte=54;
-    } else {
-	expansion = 0;
-	// 54 for Mac or US/Spanish CD, 53 for UK and German CD
-	if ((CD_US | CD_SPANISH) & CDType) {
-	    txte=54;
-        } else {
-	    txte=53;
-	}
-	// 172 for Spanish CD, 140 for anything else
-	if (CD_SPANISH & CDType) {
-	    ofs=172;
+	//Campaign data is in different spots for different CD's
+	if (CD_EXPANSION & CDType) {
+		expansion = 1;
+		ofs=236;
+		txte=54;
 	} else {
-	    ofs=140;
-	}
-    }
-
-    objectives = ExtractEntry(ArchiveOffsets[txte], &l);
-    if (!objectives) {
-	printf("Objectives allocation failed\n");
-	exit(-1);
-    }
-    objectives = realloc(objectives, l + 1);
-    if (!objectives) {
-	printf("Objectives allocation failed\n");
-	exit(-1);
-    }
-    objectives[l] = '\0';
-
-    //Now Search from start of objective data
-    levelno = 0;
-    race = 0;
-
-    //Extract all the values for objectives
-    if (expansion) {
-	expansion = 52;
-    } else {
-	expansion = 28;
-    }
-    current = objectives + ofs;
-    for (l = 0; l < expansion; l++) {
-	next = current + strlen(current) + 1;
-
-	noobjs = 1;			//Number of objectives is zero.
-	currentobj = current;
-	while ((nextobj = strchr(currentobj, '\n')) != NULL) {
-	    *nextobj = '\0';
-	    nextobj++;
-	    CampaignData[race][levelno][noobjs] = currentobj;
-	    currentobj = nextobj;
-	    noobjs++;
-	}
-	//Get the final one.
-	CampaignData[race][levelno][noobjs] = currentobj;
-	for (noobjs++; noobjs < 10; noobjs++) {
-	    CampaignData[race][levelno][noobjs] = NULL;
-	}
-	current = next;
-	if (race == 0) {
-	    race = 1;
-	} else if (race == 1) {
-	    race = 0;
-	    levelno++;
-	};
-    }
-
-    //Extract the Level titles now.
-    race = 0;
-    levelno = 0;
-    //Find the start of the Levels
-    while (current[0] && current[0] != 'I' && current[1] != '.') {
-	current = current + strlen(current) + 1;
-    }
-    for (l = 0; l < expansion; l++) {
-	next = current + strlen(current) + 1;
-	CampaignData[race][levelno][0] = current;
-	current = next;
-	if (race == 0) {
-	    race = 1;
-	} else {
-	    if (race == 1) {
-		race = 0;
-		levelno++;
-	    }
-	}
-    }
-
-    for (levelno = 0; levelno < expansion / 2; levelno++) {
-	for (race = 0; race < 2; race++) {
-	    //Open Relevant file, to write stuff too.
-	    sprintf(buf, "%s/../%s/%s/%s.cm", Dir, "contrib", TEXT_PATH,
-		Todo[2 * levelno + 1 + race + 7].File);
-	    if (!(inlevel = fopen(buf, "rb"))) {
-		sprintf(buf, "./contrib/%s/%s.cm", TEXT_PATH, 
-		    Todo[2 * levelno + 1 + race + 7].File);
-		if (!(inlevel = fopen(buf, "rb"))) {
-		    printf("Cannot Open File (Skipping Level): %s\n", buf);
-		    continue;
-		}
-	    }
-	    sprintf(buf, "%s/%s/%s.cm", Dir, TEXT_PATH,
-		Todo[2 * levelno + 1 + race + 7].File);
-	    CheckPath(buf);
-	    if (!(outlevel = fopen(buf, "wb"))) {
-		printf("Cannot Write File (Skipping Level: %s\n", buf);
-		continue;
-	    }
-	    //Title Key is ^^TITLE^^
-	    //Objectives Key is ^^OBJECTIVES^^
-	    while (fgets(buf, 1023, inlevel) != 0) {
-		if (!strncmp(buf, "^^TITLE^^", 9)) {
-		    sprintf(buf, "    'title \"%s\"\n",
-			CampaignData[race][levelno][0]);
-		    fputs(buf, outlevel);
+		expansion = 0;
+		// 54 for Mac or US/Spanish CD, 53 for UK and German CD
+		if ((CD_US | CD_SPANISH) & CDType) {
+			txte=54;
 		} else {
-		    if (!strncmp(buf, "^^OBJECTIVES^^", 14)) {
-			for (noobjs = 1; noobjs < 10; noobjs++) {
-			    if (CampaignData[race][levelno][noobjs] != NULL) {
-				sprintf(buf, "    'objective \"%s\"\n",
-				    CampaignData[race][levelno][noobjs]);
-				fputs(buf, outlevel);
-			    }
-			}
-		    } else {
-			fputs(buf, outlevel);
-		    }
+			txte=53;
 		}
-	    }
-	    //Close levels and move on.
-	    fclose(inlevel);
-	    fclose(outlevel);
+		// 172 for Spanish CD, 140 for anything else
+		if (CD_SPANISH & CDType) {
+			ofs=172;
+		} else {
+			ofs=140;
+		}
 	}
-    }
-    
-    free(objectives);
-    return 0;
+
+	objectives = ExtractEntry(ArchiveOffsets[txte], &l);
+	if (!objectives) {
+		printf("Objectives allocation failed\n");
+		exit(-1);
+	}
+	objectives = realloc(objectives, l + 1);
+	if (!objectives) {
+		printf("Objectives allocation failed\n");
+		exit(-1);
+	}
+	objectives[l] = '\0';
+
+	//Now Search from start of objective data
+	levelno = 0;
+	race = 0;
+
+	//Extract all the values for objectives
+	if (expansion) {
+		expansion = 52;
+	} else {
+		expansion = 28;
+	}
+	current = objectives + ofs;
+	for (l = 0; l < expansion; l++) {
+		next = current + strlen(current) + 1;
+
+		noobjs = 1;						//Number of objectives is zero.
+		currentobj = current;
+		while ((nextobj = strchr(currentobj, '\n')) != NULL) {
+			*nextobj = '\0';
+			nextobj++;
+			CampaignData[race][levelno][noobjs] = currentobj;
+			currentobj = nextobj;
+			noobjs++;
+		}
+		//Get the final one.
+		CampaignData[race][levelno][noobjs] = currentobj;
+		for (noobjs++; noobjs < 10; noobjs++) {
+			CampaignData[race][levelno][noobjs] = NULL;
+		}
+		current = next;
+		if (race == 0) {
+			race = 1;
+		} else if (race == 1) {
+			race = 0;
+			levelno++;
+		};
+	}
+
+	//Extract the Level titles now.
+	race = 0;
+	levelno = 0;
+	//Find the start of the Levels
+	while (current[0] && current[0] != 'I' && current[1] != '.') {
+		current = current + strlen(current) + 1;
+	}
+	for (l = 0; l < expansion; l++) {
+		next = current + strlen(current) + 1;
+		CampaignData[race][levelno][0] = current;
+		current = next;
+		if (race == 0) {
+			race = 1;
+		} else {
+			if (race == 1) {
+				race = 0;
+				levelno++;
+			}
+		}
+	}
+
+	for (levelno = 0; levelno < expansion / 2; levelno++) {
+		for (race = 0; race < 2; race++) {
+			//Open Relevant file, to write stuff too.
+			sprintf(buf, "%s/../%s/%s/%s.cm", Dir, "contrib", TEXT_PATH,
+				Todo[2 * levelno + 1 + race + 7].File);
+			if (!(inlevel = fopen(buf, "rb"))) {
+				sprintf(buf, "./contrib/%s/%s.cm", TEXT_PATH,
+					Todo[2 * levelno + 1 + race + 7].File);
+				if (!(inlevel = fopen(buf, "rb"))) {
+					printf("Cannot Open File (Skipping Level): %s\n", buf);
+					continue;
+				}
+			}
+			sprintf(buf, "%s/%s/%s.cm", Dir, TEXT_PATH,
+				Todo[2 * levelno + 1 + race + 7].File);
+			CheckPath(buf);
+			if (!(outlevel = fopen(buf, "wb"))) {
+				printf("Cannot Write File (Skipping Level: %s\n", buf);
+				continue;
+			}
+			//Title Key is ^^TITLE^^
+			//Objectives Key is ^^OBJECTIVES^^
+			while (fgets(buf, 1023, inlevel) != 0) {
+				if (!strncmp(buf, "^^TITLE^^", 9)) {
+					sprintf(buf, "	'title \"%s\"\n",
+						CampaignData[race][levelno][0]);
+					fputs(buf, outlevel);
+				} else {
+					if (!strncmp(buf, "^^OBJECTIVES^^", 14)) {
+						for (noobjs = 1; noobjs < 10; noobjs++) {
+							if (CampaignData[race][levelno][noobjs] != NULL) {
+								sprintf(buf, "	'objective \"%s\"\n",
+									CampaignData[race][levelno][noobjs]);
+								fputs(buf, outlevel);
+							}
+						}
+					} else {
+						fputs(buf, outlevel);
+					}
+				}
+			}
+			//Close levels and move on.
+			fclose(inlevel);
+			fclose(outlevel);
+		}
+	}
+
+	free(objectives);
+	return 0;
 }
 
 #endif
 
 
 //----------------------------------------------------------------------------
-//	Main loop
+//		Main loop
 //----------------------------------------------------------------------------
 
 /**
-**	Display the usage.
+**		Display the usage.
 */
 void Usage(const char* name)
 {
-    printf("wartool for Stratagus V" VERSION ", (c) 1999-2002 by the Stratagus Project\n\
+	printf("wartool for Stratagus V" VERSION ", (c) 1999-2002 by the Stratagus Project\n\
 Usage: %s [-e] archive-directory [destination-directory]\n\
 \t-e\tThe archive is expansion compatible (default: autodetect)\n\
 \t-n\tThe archive is not expansion compatible (default: autodetect)\n\
 \t-v\tExtract also the videos needs additional 70Mb\n\
 archive-directory\tDirectory which includes the archives maindat.war...\n\
 destination-directory\tDirectory where the extracted files are placed.\n"
-    ,name);
+	,name);
 }
 
 /**
-**	Main
+**		Main
 */
 #undef main
 int main(int argc,char** argv)
 {
-    unsigned u;
-    char buf[1024];
-    struct stat st;
-    int expansion_cd;
-    int video;
-    int a;
-    char filename[1024];
-    FILE *f;
+	unsigned u;
+	char buf[1024];
+	struct stat st;
+	int expansion_cd;
+	int video;
+	int a;
+	char filename[1024];
+	FILE *f;
 
-    a=1;
-    video=expansion_cd=CDType=0;
-    while( argc>=2 ) {
-	if( !strcmp(argv[a],"-v") ) {
-	    video=1;
-	    ++a;
-	    --argc;
-	    continue;
+	a=1;
+	video=expansion_cd=CDType=0;
+	while( argc>=2 ) {
+		if( !strcmp(argv[a],"-v") ) {
+			video=1;
+			++a;
+			--argc;
+			continue;
+		}
+		if( !strcmp(argv[a],"-e") ) {
+			expansion_cd=1;
+			++a;
+			--argc;
+			continue;
+		}
+		if( !strcmp(argv[a],"-n") ) {
+			expansion_cd=-1;
+			++a;
+			--argc;
+			continue;
+		}
+		if( !strcmp(argv[a],"-h") ) {
+			Usage(argv[0]);
+			++a;
+			--argc;
+			exit(0);
+		}
+		break;
 	}
-	if( !strcmp(argv[a],"-e") ) {
-	    expansion_cd=1;
-	    ++a;
-	    --argc;
-	    continue;
-	}
-	if( !strcmp(argv[a],"-n") ) {
-	    expansion_cd=-1;
-	    ++a;
-	    --argc;
-	    continue;
-	}
-	if( !strcmp(argv[a],"-h") ) {
-	    Usage(argv[0]);
-	    ++a;
-	    --argc;
-	    exit(0);
-	}
-	break;
-    }
 
-    if( argc!=2 && argc!=3 ) {
-	Usage(argv[0]);
-	exit(-1);
-    }
+	if( argc!=2 && argc!=3 ) {
+		Usage(argv[0]);
+		exit(-1);
+	}
 
-    ArchiveDir=argv[a];
-    if( argc==3 ) {
-	Dir=argv[a+1];
-    } else {
-	Dir="data";
-    }
+	ArchiveDir=argv[a];
+	if( argc==3 ) {
+		Dir=argv[a+1];
+	} else {
+		Dir="data";
+	}
 
-    // Detect if CD is Mac/Dos, Expansion/Original, and language
+	// Detect if CD is Mac/Dos, Expansion/Original, and language
 #ifdef USE_BEOS
-    sprintf(buf, "%s/REZDAT.WAR", ArchiveDir);
-    sprintf(filename, "%s/STRDAT.WAR", ArchiveDir);
+	sprintf(buf, "%s/REZDAT.WAR", ArchiveDir);
+	sprintf(filename, "%s/STRDAT.WAR", ArchiveDir);
 #else
-    sprintf(buf, "%s/rezdat.war", ArchiveDir);
-    sprintf(filename, "%s/strdat.war", ArchiveDir);
+	sprintf(buf, "%s/rezdat.war", ArchiveDir);
+	sprintf(filename, "%s/strdat.war", ArchiveDir);
 #endif
-    if (stat(buf, &st)) {
-	CDType |= CD_MAC | CD_US;
-	sprintf(buf, "%s/War Resources", ArchiveDir);
 	if (stat(buf, &st)) {
-	    fprintf(stderr, "Could not find Warcraft 2 Data\n");
-	    exit(-1);
-	}
-	if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2876978)) {
-	    printf("Detected original MAC CD\n");
+		CDType |= CD_MAC | CD_US;
+		sprintf(buf, "%s/War Resources", ArchiveDir);
+		if (stat(buf, &st)) {
+			fprintf(stderr, "Could not find Warcraft 2 Data\n");
+			exit(-1);
+		}
+		if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2876978)) {
+			printf("Detected original MAC CD\n");
+		} else {
+			printf("Detected expansion MAC CD\n");
+			CDType |= CD_EXPANSION;
+		}
 	} else {
-	    printf("Detected expansion MAC CD\n");
-	    CDType |= CD_EXPANSION;
+		if (st.st_size != 2811086) {
+			expansion_cd = 0;
+			stat(filename, &st);
+			switch (st.st_size) {
+				case 51550:
+					printf("Detected US original DOS CD\n");
+					CDType |= CD_US;
+					break;
+				case 55014:
+					printf("Detected Spanish original DOS CD\n");
+					CDType |= CD_SPANISH;
+					break;
+				case 55724:
+					printf("Detected German original DOS CD\n");
+					CDType |= CD_GERMAN;
+					break;
+				case 51451:
+					printf("Detected UK/Australian original DOS CD\n");
+					CDType |= CD_UK;
+					break;
+				default:
+					printf("Could not detect CD version:\n");
+					printf("Defaulting to German original DOS CD\n");
+					CDType |= CD_GERMAN;
+					break;
+			}
+		} else {
+			printf("Detected expansion DOS CD\n");
+			CDType |= CD_EXPANSION | CD_US;
+		}
 	}
-    } else {
-	if (st.st_size != 2811086) {
-	    expansion_cd = 0;
-	    stat(filename, &st);
-	    switch (st.st_size) {
-		case 51550:
-		    printf("Detected US original DOS CD\n");
-		    CDType |= CD_US;
-		    break;
-		case 55014:
-		    printf("Detected Spanish original DOS CD\n");
-		    CDType |= CD_SPANISH;
-		    break;
-		case 55724:
-		    printf("Detected German original DOS CD\n");
-		    CDType |= CD_GERMAN;
-		    break;
-		case 51451:
-		    printf("Detected UK/Australian original DOS CD\n");
-		    CDType |= CD_UK;
-		    break;
-		default:
-		    printf("Could not detect CD version:\n");
-		    printf("Defaulting to German original DOS CD\n");
-		    CDType |= CD_GERMAN;
-		    break;
-	    }
-	} else {
-	    printf("Detected expansion DOS CD\n");
-	    CDType |= CD_EXPANSION | CD_US;
-	}
-    }
 
-    if (expansion_cd == -1 || (expansion_cd != 1 && !(CDType & CD_EXPANSION))) {
-	expansion_cd = 0;
-    } else {
-	expansion_cd = 1;
-    }
-
-    sprintf(buf, "%s/ccl", Dir);
-    if (!stat(buf, &st)) {
-	sprintf(buf, "%s/ccl/wc2-config.ccl", Dir);
-	f = fopen(buf, "w");
-	if (expansion_cd) {
-	    fprintf(f, "(define expansion #t)\n");
+	if (expansion_cd == -1 || (expansion_cd != 1 && !(CDType & CD_EXPANSION))) {
+		expansion_cd = 0;
 	} else {
-	    fprintf(f, "(define expansion #f)\n");
+		expansion_cd = 1;
 	}
-	fclose(f);
-    }
+
+	sprintf(buf, "%s/ccl", Dir);
+	if (!stat(buf, &st)) {
+		sprintf(buf, "%s/ccl/wc2-config.ccl", Dir);
+		f = fopen(buf, "w");
+		if (expansion_cd) {
+			fprintf(f, "(define expansion #t)\n");
+		} else {
+			fprintf(f, "(define expansion #f)\n");
+		}
+		fclose(f);
+	}
 
 #ifndef DEBUG
-    printf("Please be patient, the data may take a couple of minutes to extract...\n");
+	printf("Please be patient, the data may take a couple of minutes to extract...\n");
 #endif
 
-    DebugLevel2("Extract from \"%s\" to \"%s\"\n" _C_ ArchiveDir _C_ Dir);
-    for( u=0; u<sizeof(Todo)/sizeof(*Todo); ++u ) {
-	if (1 & CDType) {
-	    strcpy(filename,Todo[u].File);
-	    Todo[u].File=filename;
-	    ConvertToMac(Todo[u].File);
-	}
-	// Should only be on the expansion cd
-	DebugLevel2("%s:\n" _C_ ParseString(Todo[u].File));
-	if (!expansion_cd && Todo[u].Version==2 ) {
-	    continue;
-	}
-	// Extract dummy expansion files
-	if (expansion_cd && Todo[u].Version==3) {
-	    continue;
-	}
-	switch( Todo[u].Type ) {
-		
-	    case F:
-		sprintf(buf,"%s/%s",ArchiveDir,Todo[u].File);
-		DebugLevel2("Archive \"%s\"\n" _C_ buf);
-		if( ArchiveBuffer ) {
-		    CloseArchive();
+	DebugLevel2("Extract from \"%s\" to \"%s\"\n" _C_ ArchiveDir _C_ Dir);
+	for( u=0; u<sizeof(Todo)/sizeof(*Todo); ++u ) {
+		if (1 & CDType) {
+			strcpy(filename,Todo[u].File);
+			Todo[u].File=filename;
+			ConvertToMac(Todo[u].File);
 		}
-		OpenArchive(buf,Todo[u].Arg1);
-		break;
-	    case R:
-		ConvertRgb(Todo[u].File,Todo[u].Arg1);
-		break;
-	    case T:
-		ConvertTileset(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2
-			,Todo[u].Arg3,Todo[u].Arg4);
-		break;
-	    case G:
-		ConvertGfx(ParseString(Todo[u].File),Todo[u].Arg1,Todo[u].Arg2
-			,Todo[u].Arg3,Todo[u].Arg4);
-		break;
-	    case U:
-		ConvertGfu(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
-		break;
-	    case P:
-		ConvertPud(Todo[u].File,Todo[u].Arg1);
-		break;
-	    case N:
-		ConvertFont(Todo[u].File,2,Todo[u].Arg1);
-		break;
-	    case I:
-		ConvertImage(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,
-		    Todo[u].Arg3,Todo[u].Arg4);
-		break;
-	    case C:
-		ConvertCursor(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
-		break;
-	    case W:
-		ConvertWav(Todo[u].File,Todo[u].Arg1);
-		break;
-	    case X:
-		ConvertText(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
-		break;
-	    case S:
-		SetupNames(Todo[u].File,Todo[u].Arg1);
-		break;
-	    case V:
-		if( video ) {
-		    ConvertVideo(Todo[u].File,Todo[u].Arg1);
+		// Should only be on the expansion cd
+		DebugLevel2("%s:\n" _C_ ParseString(Todo[u].File));
+		if (!expansion_cd && Todo[u].Version==2 ) {
+			continue;
 		}
-		break; 
+		// Extract dummy expansion files
+		if (expansion_cd && Todo[u].Version==3) {
+			continue;
+		}
+		switch( Todo[u].Type ) {
+
+			case F:
+				sprintf(buf,"%s/%s",ArchiveDir,Todo[u].File);
+				DebugLevel2("Archive \"%s\"\n" _C_ buf);
+				if( ArchiveBuffer ) {
+					CloseArchive();
+				}
+				OpenArchive(buf,Todo[u].Arg1);
+				break;
+			case R:
+				ConvertRgb(Todo[u].File,Todo[u].Arg1);
+				break;
+			case T:
+				ConvertTileset(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2
+						,Todo[u].Arg3,Todo[u].Arg4);
+				break;
+			case G:
+				ConvertGfx(ParseString(Todo[u].File),Todo[u].Arg1,Todo[u].Arg2
+						,Todo[u].Arg3,Todo[u].Arg4);
+				break;
+			case U:
+				ConvertGfu(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
+				break;
+			case P:
+				ConvertPud(Todo[u].File,Todo[u].Arg1);
+				break;
+			case N:
+				ConvertFont(Todo[u].File,2,Todo[u].Arg1);
+				break;
+			case I:
+				ConvertImage(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,
+					Todo[u].Arg3,Todo[u].Arg4);
+				break;
+			case C:
+				ConvertCursor(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
+				break;
+			case W:
+				ConvertWav(Todo[u].File,Todo[u].Arg1);
+				break;
+			case X:
+				ConvertText(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
+				break;
+			case S:
+				SetupNames(Todo[u].File,Todo[u].Arg1);
+				break;
+			case V:
+				if( video ) {
+					ConvertVideo(Todo[u].File,Todo[u].Arg1);
+				}
+				break;
 #ifndef NO_IMPORT_CAMPAIGNS
-	    case L:
-		CampaignsCreate(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
-		break;
+			case L:
+				CampaignsCreate(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
+				break;
 #endif
-	    default:
-		break;
+			default:
+				break;
+		}
 	}
-    }
 
-    return 0;
+	return 0;
 }
 
 //@}
