@@ -195,8 +195,8 @@ find $DIR/puds -type f -name "*.pud" -print -exec $COMPRESS {} \;
 #
 [ -d $DIR/puds/single ] || mkdir $DIR/puds/single
 [ -d $DIR/puds/multiple ] || mkdir $DIR/puds/multiple
-cp $CONTRIB/puds/single/* $DIR/puds/single
-cp $CONTRIB/puds/multi/* $DIR/puds/multiple
+cp $CONTRIB/puds/single/* $DIR/puds/single >/dev/null 2>&1
+cp $CONTRIB/puds/multi/* $DIR/puds/multiple >/dev/null 2>&1
 
 #
 ##	The default pud.
