@@ -305,7 +305,7 @@
   '( "upgrade-catapult1" ))
 
 (define-dependency "upgrade-berserker"
-  '( "unit-fortress" "unit-stronghold" ))
+  '( "unit-fortress" ) '( "unit-stronghold" ))
 (define-dependency "upgrade-light-axes"
   '( "unit-fortress" "upgrade-berserker" ))
 (define-dependency "upgrade-berserker-scouting"
