@@ -144,11 +144,12 @@
       arrow-s cursor-arrow-s
       arrow-se cursor-arrow-se)
 
-    '("graphics/ui/human/panel 1.png")
-    '("graphics/ui/human/panel 2.png")
-    '("graphics/ui/human/panel 3.png")
-    '("graphics/ui/human/panel 4.png")
-    '("graphics/ui/human/panel 5.png")
+    'menu-panels '(
+      panel1 "graphics/ui/human/panel 1.png"
+      panel2 "graphics/ui/human/panel 2.png"
+      panel3 "graphics/ui/human/panel 3.png"
+      panel4 "graphics/ui/human/panel 4.png"
+      panel5 "graphics/ui/human/panel 5.png")
 
     '("graphics/ui/human/victory.png")
     '("graphics/ui/human/defeat.png")
@@ -243,11 +244,13 @@
       arrow-s cursor-arrow-s
       arrow-se cursor-arrow-se)
 
-    '("graphics/ui/human/panel 1.png")
-    '("graphics/ui/human/panel 2.png")
-    '("graphics/ui/human/panel 3.png")
-    '("graphics/ui/human/panel 4.png")
-    '("graphics/ui/human/panel 5.png")
+    'menu-panels '(
+      panel1 "graphics/ui/human/panel 1.png"
+      panel2 "graphics/ui/human/panel 2.png"
+      panel3 "graphics/ui/human/panel 3.png"
+      panel4 "graphics/ui/human/panel 4.png"
+      panel5 "graphics/ui/human/panel 5.png")
+
     '("graphics/ui/human/victory.png")
     '("graphics/ui/human/defeat.png")
 )
@@ -341,11 +344,13 @@
       arrow-s cursor-arrow-s
       arrow-se cursor-arrow-se)
 
-    '("graphics/ui/human/panel 1.png")
-    '("graphics/ui/human/panel 2.png")
-    '("graphics/ui/human/panel 3.png")
-    '("graphics/ui/human/panel 4.png")
-    '("graphics/ui/human/panel 5.png")
+    'menu-panels '(
+      panel1 "graphics/ui/human/panel 1.png"
+      panel2 "graphics/ui/human/panel 2.png"
+      panel3 "graphics/ui/human/panel 3.png"
+      panel4 "graphics/ui/human/panel 4.png"
+      panel5 "graphics/ui/human/panel 5.png")
+
     '("graphics/ui/human/victory.png")
     '("graphics/ui/human/defeat.png")
 )
@@ -439,11 +444,13 @@
       arrow-s cursor-arrow-s
       arrow-se cursor-arrow-se)
 
-    '("graphics/ui/human/panel 1.png")
-    '("graphics/ui/human/panel 2.png")
-    '("graphics/ui/human/panel 3.png")
-    '("graphics/ui/human/panel 4.png")
-    '("graphics/ui/human/panel 5.png")
+    'menu-panels '(
+      panel1 "graphics/ui/human/panel 1.png"
+      panel2 "graphics/ui/human/panel 2.png"
+      panel3 "graphics/ui/human/panel 3.png"
+      panel4 "graphics/ui/human/panel 4.png"
+      panel5 "graphics/ui/human/panel 5.png")
+
     '("graphics/ui/human/victory.png")
     '("graphics/ui/human/defeat.png")
 )
@@ -537,11 +544,13 @@
       arrow-s cursor-arrow-s
       arrow-se cursor-arrow-se)
 
-    '("graphics/ui/human/panel 1.png")
-    '("graphics/ui/human/panel 2.png")
-    '("graphics/ui/human/panel 3.png")
-    '("graphics/ui/human/panel 4.png")
-    '("graphics/ui/human/panel 5.png")
+    'menu-panels '(
+      panel1 "graphics/ui/human/panel 1.png"
+      panel2 "graphics/ui/human/panel 2.png"
+      panel3 "graphics/ui/human/panel 3.png"
+      panel4 "graphics/ui/human/panel 4.png"
+      panel5 "graphics/ui/human/panel 5.png")
+
     '("graphics/ui/human/victory.png")
     '("graphics/ui/human/defeat.png")
 )
