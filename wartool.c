@@ -5,12 +5,12 @@
 //     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 //             \/                  \/          \//_____/            \/
 //  ______________________                           ______________________
-//			  T H E   W A R   B E G I N S
+//                        T H E   W A R   B E G I N S
 //   Utility for Stratagus - A free fantasy real time strategy game engine
 //
-/**@name wartool.c	-	Extract files from war archives. */
+/**@name wartool.c - Extract files from war archives. */
 //
-//	(c) Copyright 1999-2003 by Lutz Sammer & Nehal Mistry
+//      (c) Copyright 1999-2003 by Lutz Sammer & Nehal Mistry
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -26,12 +26,12 @@
 //      Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //      02111-1307, USA.
 //
-//	$Id$
+//      $Id$
 
 //@{
 
 /*----------------------------------------------------------------------------
---		Includes
+--  Includes
 ----------------------------------------------------------------------------*/
 
 #include <stdio.h>
@@ -52,7 +52,7 @@ typedef unsigned long u_int32_t;
 #endif
 
 //----------------------------------------------------------------------------
-//		Config
+//  Config
 //----------------------------------------------------------------------------
 
 /**
@@ -3600,41 +3600,49 @@ char* ParseString(char* input)
 }
 
 //----------------------------------------------------------------------------
-//		Import the campaigns
+//  Import the campaigns
 //----------------------------------------------------------------------------
 
 #ifndef NO_IMPORT_CAMPAIGNS
 
 /**
-**		FIXME: docu
+**  FIXME: docu
 */
-int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs)
+int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 {
-	unsigned char *objectives;
+	unsigned char* objectives;
 	char buf[1024];
-	unsigned char *CampaignData[2][26][10];
-	unsigned char *current, *next, *nextobj, *currentobj;
-	FILE *inlevel, *outlevel;
-	int l, levelno, noobjs, race, expansion;
+	unsigned char* CampaignData[2][26][10];
+	unsigned char* current;
+	unsigned char* next;
+	unsigned char* nextobj;
+	unsigned char* currentobj;
+	FILE* inlevel;
+	FILE* outlevel;
+	int l;
+	int levelno;
+	int noobjs;
+	int race;
+	int expansion;
 
-	//Campaign data is in different spots for different CD's
+	// Campaign data is in different spots for different CD's
 	if (CD_EXPANSION & CDType) {
 		expansion = 1;
-		ofs=236;
-		txte=54;
+		ofs = 236;
+		txte = 54;
 	} else {
 		expansion = 0;
 		// 54 for Mac or US/Spanish CD, 53 for UK and German CD
 		if ((CD_US | CD_SPANISH) & CDType) {
-			txte=54;
+			txte = 54;
 		} else {
-			txte=53;
+			txte = 53;
 		}
 		// 172 for Spanish CD, 140 for anything else
 		if (CD_SPANISH & CDType) {
-			ofs=172;
+			ofs = 172;
 		} else {
-			ofs=140;
+			ofs = 140;
 		}
 	}
 
@@ -3661,21 +3669,21 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs)
 		expansion = 28;
 	}
 	current = objectives + ofs;
-	for (l = 0; l < expansion; l++) {
+	for (l = 0; l < expansion; ++l) {
 		next = current + strlen(current) + 1;
 
-		noobjs = 1;						//Number of objectives is zero.
+		noobjs = 1;  // Number of objectives is zero.
 		currentobj = current;
 		while ((nextobj = strchr(currentobj, '\n')) != NULL) {
 			*nextobj = '\0';
-			nextobj++;
+			++nextobj;
 			CampaignData[race][levelno][noobjs] = currentobj;
 			currentobj = nextobj;
-			noobjs++;
+			++noobjs;
 		}
-		//Get the final one.
+		// Get the final one.
 		CampaignData[race][levelno][noobjs] = currentobj;
-		for (noobjs++; noobjs < 10; noobjs++) {
+		for (++noobjs; noobjs < 10; ++noobjs) {
 			CampaignData[race][levelno][noobjs] = NULL;
 		}
 		current = next;
@@ -3683,18 +3691,18 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs)
 			race = 1;
 		} else if (race == 1) {
 			race = 0;
-			levelno++;
+			++levelno;
 		};
 	}
 
-	//Extract the Level titles now.
+	// Extract the Level titles now.
 	race = 0;
 	levelno = 0;
-	//Find the start of the Levels
+	// Find the start of the Levels
 	while (current[0] && current[0] != 'I' && current[1] != '.') {
 		current = current + strlen(current) + 1;
 	}
-	for (l = 0; l < expansion; l++) {
+	for (l = 0; l < expansion; ++l) {
 		next = current + strlen(current) + 1;
 		CampaignData[race][levelno][0] = current;
 		current = next;
@@ -3703,13 +3711,13 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs)
 		} else {
 			if (race == 1) {
 				race = 0;
-				levelno++;
+				++levelno;
 			}
 		}
 	}
 
-	for (levelno = 0; levelno < expansion / 2; levelno++) {
-		for (race = 0; race < 2; race++) {
+	for (levelno = 0; levelno < expansion / 2; ++levelno) {
+		for (race = 0; race < 2; ++race) {
 			//Open Relevant file, to write stuff too.
 			sprintf(buf, "%s/../%s/%s/%s.cm", Dir, "contrib", TEXT_PATH,
 				Todo[2 * levelno + 1 + race + 7].File);
@@ -3728,18 +3736,18 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs)
 				printf("Cannot Write File (Skipping Level: %s\n", buf);
 				continue;
 			}
-			//Title Key is ^^TITLE^^
-			//Objectives Key is ^^OBJECTIVES^^
+			// Title Key is ^^TITLE^^
+			// Objectives Key is ^^OBJECTIVES^^
 			while (fgets(buf, 1023, inlevel) != 0) {
 				if (!strncmp(buf, "^^TITLE^^", 9)) {
-					sprintf(buf, "	'title \"%s\"\n",
+					sprintf(buf, "  \"title\", \"%s\",\n",
 						CampaignData[race][levelno][0]);
 					fputs(buf, outlevel);
 				} else {
 					if (!strncmp(buf, "^^OBJECTIVES^^", 14)) {
-						for (noobjs = 1; noobjs < 10; noobjs++) {
+						for (noobjs = 1; noobjs < 10; ++noobjs) {
 							if (CampaignData[race][levelno][noobjs] != NULL) {
-								sprintf(buf, "	'objective \"%s\"\n",
+								sprintf(buf, "  \"objective\", \"%s\",\n",
 									CampaignData[race][levelno][noobjs]);
 								fputs(buf, outlevel);
 							}
@@ -3749,7 +3757,7 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs)
 					}
 				}
 			}
-			//Close levels and move on.
+			// Close levels and move on.
 			fclose(inlevel);
 			fclose(outlevel);
 		}
