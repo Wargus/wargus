@@ -61,10 +61,6 @@ SetTitleScreens({
 --  Enter your default menu background.
 SetMenuBackground("graphics/ui/Menu_background_without_title.png")
 
---  Enter your default menu background with title.
-SetMenuBackgroundWithTitle(
-  "graphics/ui/Menu_background_with_title.png")
-
 --  Enter your menu music.
 SetMenuMusic("music/default.mod")
 
