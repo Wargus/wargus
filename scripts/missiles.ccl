@@ -1,0 +1,164 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	missiles.ccl	-	Define the used missiles.
+;;
+;;	(c) Copyright 1998-2000 by Lutz Sammer and Fabrice Rossi
+;;
+;;	$Id$
+;;
+
+;;; THIS PART SHOULD BE REMOVED
+
+;;	Missile names for slots
+(define	MissileLightning	0)
+(define	MissileGriffonHammer	1)
+(define	MissileDragonBreath	2)
+(define	MissileFireball		3)
+(define	MissileFlameShield	4)
+(define	MissileBlizzard		5)
+(define	MissileDeathDecay	6)
+(define	MissileBigCannon	7)
+(define	MissileExorcism		8)
+(define	MissileHealEffect	9)
+(define	MissileTouchOfDeath	10)
+(define	MissileRune		11)
+(define	MissileWhirlwind	12)
+(define	MissileCatapultRock	13)
+(define	MissileBallistaBolt	14)
+(define	MissileArrow		15)
+(define	MissileAxe		16)
+(define	MissileSubmarineMissile	17)
+(define	MissileTurtleMissile	18)
+(define	MissileSmallFire	19)
+(define	MissileBigFire		20)
+(define	MissileImpact		21)
+(define	MissileNormalSpell	22)
+(define	MissileExplosion	23)
+(define	MissileSmallCannon	24)
+(define	MissileCannonExplosion	25)
+(define	MissileCannonTowerExplosion	26)
+(define	MissileDaemonFire	27)
+(define	MissileGreenCross	28)
+(define	MissileNone		29)
+
+;;=============================================================================
+;;	Define missile classes (must match internal numbers)
+;;
+(define missile-class-none			0)
+(define missile-class-point-to-point		1)
+(define missile-class-point-to-point-with-delay	2)
+(define missile-class-stay-with-delay		3)
+(define missile-class-point-to-point-3bounces	4)
+(define missile-class-fireball			5)
+(define missile-class-flame-shield		6)
+(define missile-class-blizzard			7)
+(define missile-class-death-decay		8)
+(define missile-class-whirlwind			9)
+(define missile-class-cycle-once		10)
+(define missile-class-point-to-point-with-hit	11)
+
+;;=============================================================================
+;;	Define missiles
+;;
+;;	(missile-type slot name file width height hit-sound ...)
+;;
+;;	FIXME: class and speed must be added
+;;	FIXME: use ident insteed of numbers.
+;;
+(missile-type MissileLightning
+    "missile-lightning"			"lightning.png"			32 32 
+    #f
+    missile-class-point-to-point-with-hit)
+(missile-type MissileGriffonHammer
+    "missile-griffon-hammer"		"gryphon hammer.png"		32 32 
+    sound-fireball-hit)
+(missile-type MissileDragonBreath
+    "missile-dragon-breath"		"dragon breath.png"		32 32 
+    sound-fireball-hit)
+
+(missile-type MissileFireball
+    "missile-fireball"			"fireball.png"			32 32 
+    sound-fireball-hit)
+(missile-type MissileFlameShield
+    "missile-flame-shield"		"flame shield.png"		32 32 
+    #f)
+(missile-type MissileBlizzard
+    "missile-blizzard"			"blizzard.png"			32 32 
+    #f)
+(missile-type MissileDeathDecay
+    "missile-death-and-decay"		"death and decay.png"		32 32 
+    #f)
+(missile-type MissileBigCannon
+    "missile-big-cannon"		"big cannon.png"		16 16 
+    sound-explosion)
+(missile-type MissileExorcism
+    "missile-exorcism"			"exorcism.png"			32 32 
+    #f)
+(missile-type MissileHealEffect
+    "missile-heal-effect"		"heal effect.png"		32 32 
+    #f)
+(missile-type MissileTouchOfDeath
+    "missile-touch-of-death"		"touch of death.png"		32 32 
+    #f)
+(missile-type MissileRune
+    "missile-rune"			"rune.png"			32 32 
+    #f)
+(missile-type MissileWhirlwind
+    "missile-whirlwind"			"tornado.png"			56 56 
+    #f)
+(missile-type MissileCatapultRock
+    "missile-catapult-rock"		"catapult rock.png"		32 32 
+    sound-explosion)
+(missile-type MissileBallistaBolt
+    "missile-ballista-bolt"		"ballista bolt.png"		64 64 
+    sound-explosion)
+(missile-type MissileArrow
+    "missile-arrow"			"arrow.png"			40 40 
+    sound-bow-hit)
+(missile-type MissileAxe
+    "missile-axe"			"axe.png"			32 32 
+    sound-bow-hit)
+(missile-type MissileSubmarineMissile
+    "missile-submarine-missile"		"submarine missile.png"		40 40 
+    sound-explosion)
+(missile-type MissileTurtleMissile
+    "missile-turtle-missile"		"turtle missile.png"		40 40 
+    sound-explosion)
+(missile-type MissileSmallFire
+    "missile-small-fire"		"small fire.png"		32 48 
+    #f)
+(missile-type MissileBigFire
+    "missile-big-fire"			"big fire.png"			48 48 
+    #f)
+(missile-type MissileImpact
+    "missile-impact"			"ballista-catapult impact.png"	48 48 
+    #f)
+(missile-type MissileNormalSpell
+    "missile-normal-spell"		"normal spell.png"		32 32 
+    #f)
+(missile-type MissileExplosion
+    "missile-explosion"			"explosion.png"			64 64 
+    #f)
+(missile-type MissileSmallCannon
+    "missile-small-cannon"		"cannon.png"			32 32 
+    sound-explosion)
+(missile-type MissileCannonExplosion
+    "missile-cannon-explosion"		"cannon explosion.png"		32 32 
+    #f)
+(missile-type MissileCannonTowerExplosion
+    "missile-cannon-tower-explosion"	"cannon-tower explosion.png"	32 32 
+    #f)
+(missile-type MissileDaemonFire
+    "missile-daemon-fire"		"daemon fire.png"		32 32 
+    #f)
+(missile-type MissileGreenCross
+    "missile-green-cross"		"green cross.png"		32 32 
+    #f)

@@ -1,0 +1,3847 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	units.ccl	-	Define the used unit types.
+;;
+;;	(c) Copyright 1998,2000 by Lutz Sammer
+;;
+;;	$Id$
+;;
+
+;;=============================================================================
+;;	Define unit types.
+;;
+;;	NOTE: Save can generate this table.
+;;
+;;	NOTE: Don't change the order or delete or add an item !!
+;;	NOTE: The current C-code didn't like it.
+;;
+(define-unit-type "unit-footman"		"Footman"
+  ;; graphic data
+  #("footman.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-footman"	;; animations
+  "icon-footman"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     60      0 #(   60    600       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       2    60      6      3       1       1
+  ;;Decay Annoy	Points
+      0      0      50
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("footman-selected"
+    "footman-acknowledge"
+    "footman-ready"
+    "footman-help"
+    "footman-dead" )
+  "footman-attack" )
+
+(define-unit-type "unit-grunt"			"Grunt"
+  ;; graphic data
+  #("grunt.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-grunt"	;; animations
+  "icon-grunt"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     60      0 #(   60    600       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       2    60      6      3       1       1
+  ;;Decay Annoy	Points
+      0      0      50
+  "missile-none"
+  'corpse-orc
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("grunt-selected"
+    "grunt-acknowledge"
+    "grunt-ready"
+    "grunt-help"
+    "grunt-dead" )
+  "grunt-attack" )
+
+(define-unit-type "unit-peasant"		"Peasant"
+  ;; graphic data
+  #("peasant.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-peasant"	;; animations
+  "icon-peasant"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     30      0 #(   45    400       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    50      3      2       0       0
+  ;;Decay Annoy	Points
+      0      0      30
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-harvest
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'cower-peon
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("peasant-selected"
+    "peasant-acknowledge"
+    "peasant-ready"
+    "peasant-help"
+    "peasant-dead" )
+  "peasant-attack" )
+
+(define-unit-type "unit-peon"			"Peon"
+  ;; graphic data
+  #("peon.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-peon"	;; animations
+  "icon-peon"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     30      0 #(   45    400       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    50      3      2       0       0
+  ;;Decay Annoy	Points
+      0      0      30
+  "missile-none"
+  'corpse-orc
+  'type-land
+  'right-harvest
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'cower-peon
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("peon-selected"
+    "peon-acknowledge"
+    "peon-ready"
+    "peon-help"
+    "peon-dead" )
+  "peon-attack" )
+
+(define-unit-type "unit-ballista"		"Ballista"
+  ;; graphic data
+  #("ballista.png"
+    ()
+    ()
+    () )
+  '(  64  64 )			;; graphic size
+  "animations-ballista"	;; animations
+  "icon-ballista"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       5       0      9    110      0 #(  250    900     300      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     8      11       9
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    70     80      0       1       0
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-ballista-bolt"
+  'corpse-none
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 
+  ;; flags
+  'explode-when-killed
+  'can-ground-attack
+  'can-attack
+  'selectable-by-rectangle
+  ;; sounds
+  #("ballista-selected"
+    "ballista-acknowledge"
+    "ballista-ready"
+    "ballista-help"
+    "ballista-dead" )
+  "ballista-attack" )
+
+(define-unit-type "unit-catapult"		"Catapult"
+  ;; graphic data
+  #("catapult.png"
+    ()
+    ()
+    () )
+  '(  64  64 )			;; graphic size
+  "animations-catapult"	;; animations
+  "icon-catapult"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       5       0      9    110      0 #(  250    900     300      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     8      11       9
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    70     80      0       1       0
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-catapult-rock"
+  'corpse-none
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 
+  ;; flags
+  'explode-when-killed
+  'can-ground-attack
+  'can-attack
+  'selectable-by-rectangle
+  ;; sounds
+  #("catapult-selected"
+    "catapult-acknowledge"
+    "catapult-ready"
+    "catapult-help"
+    "catapult-dead" )
+  "catapult-attack" )
+
+(define-unit-type "unit-knight"			"Knight"
+  ;; graphic data
+  #("knight.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-knight"	;; animations
+  "icon-knight"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      13       0      4     90      0 #(   90    800     100      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  42  42 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       4    63      8      4       1       1
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("knight-selected"
+    "knight-acknowledge"
+    "knight-ready"
+    "knight-help"
+    "knight-dead" )
+  "knight-attack" )
+
+(define-unit-type "unit-ogre"			"Ogre"
+  ;; graphic data
+  #("ogre.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-ogre"	;; animations
+  "icon-ogre"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      13       0      4     90      0 #(   90    800     100      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  42  42 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       4    63      8      4       1       1
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-none"
+  'corpse-orc
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("ogre-selected"
+    "ogre-acknowledge"
+    "ogre-ready"
+    "ogre-help"
+    "ogre-dead" )
+  "ogre-attack" )
+
+(define-unit-type "unit-archer"			"Archer"
+  ;; graphic data
+  #("archer.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-archer"	;; animations
+  "icon-archer"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      5     40      0 #(   70    500      50      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  33  33 )     4       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    55      3      6       1       0
+  ;;Decay Annoy	Points
+      0      0      60
+  "missile-arrow"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("archer-selected"
+    "archer-acknowledge"
+    "archer-ready"
+    "archer-help"
+    "archer-dead" )
+  "archer-attack" )
+
+(define-unit-type "unit-axethrower"		"Troll Axethrower"
+  ;; graphic data
+  #("axethrower.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-axethrower"	;; animations
+  "icon-axethrower"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      5     40      0 #(   70    500      50      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  36  36 )     4       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    55      3      6       1       0
+  ;;Decay Annoy	Points
+      0      0      60
+  "missile-axe"
+  'corpse-orc
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("axethrower-selected"
+    "axethrower-acknowledge"
+    "axethrower-ready"
+    "axethrower-help"
+    "axethrower-dead" )
+  "axethrower-attack" )
+
+(define-unit-type "unit-mage"			"Mage"
+  ;; graphic data
+  #("mage.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-mage"	;; animations
+  "icon-mage"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       8       0      9     60      1 #(  120   1200       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  33  33 )     2      11       9
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    70      0      9       0       0
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'can-cast-spell
+  'can-attack
+  'cower-mage
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("mage-selected"
+    "mage-acknowledge"
+    "mage-ready"
+    "mage-help"
+    "mage-dead" )
+  "mage-attack" )
+
+(define-unit-type "unit-death-knight"		"Death Knight"
+  ;; graphic data
+  #("death knight.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-death-knight"	;; animations
+  "icon-death-knight"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       8       0      9     60      1 #(  120   1200       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  39  39 )     3      11       9
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    70      0      9       0       0
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-touch-of-death"
+  'corpse-none
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'isundead
+  'can-cast-spell
+  'can-attack
+  'cower-mage
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("death-knight-selected"
+    "death-knight-acknowledge"
+    "death-knight-ready"
+    "death-knight-help"
+    "death-knight-dead" )
+  "death-knight-attack" )
+
+(define-unit-type "unit-paladin"		"Paladin"
+  ;; graphic data
+  "unit-knight"
+  '(  72  72 )			;; graphic size
+  "animations-paladin"	;; animations
+  "icon-paladin"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      13       0      5     90      0 #(   90    800     100      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  42  42 )     1       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       4    65      8      4       1       1
+  ;;Decay Annoy	Points
+      0      0     110
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-cast-spell
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("paladin-selected"
+    "paladin-acknowledge"
+    "paladin-ready"
+    "paladin-help"
+    "paladin-dead" )
+  "paladin-attack" )
+
+(define-unit-type "unit-ogre-mage"		"Ogre Mage"
+  ;; graphic data
+  "unit-ogre"
+  '(  72  72 )			;; graphic size
+  "animations-ogre-mage"	;; animations
+  "icon-ogre-mage"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      13       0      5     90      0 #(   90    800     100      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  42  42 )     1       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       4    65      8      4       1       1
+  ;;Decay Annoy	Points
+      0      0     110
+  "missile-none"
+  'corpse-orc
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-cast-spell
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("ogre-mage-selected"
+    "ogre-mage-acknowledge"
+    "ogre-mage-ready"
+    "ogre-mage-help"
+    "ogre-mage-dead" )
+  "ogre-mage-attack" )
+
+(define-unit-type "unit-dwarves"		"Dwarves"
+  ;; graphic data
+  #("dwarves.png"
+    ()
+    ()
+    () )
+  '(  56  56 )			;; graphic size
+  "animations-dwarves"	;; animations
+  "icon-dwarves"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      11       0      4     40      0 #(  200    700     250      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  32  32 )     1       4       2
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    55      4      2       1       0
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-none"
+  'corpse-none
+  'type-land
+  'right-demolish
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'volatile
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("dwarves-selected"
+    "dwarves-acknowledge"
+    "dwarves-ready"
+    "dwarves-help"
+    "dwarves-dead" )
+  "dwarves-attack" )
+
+(define-unit-type "unit-goblin-sappers"		"Goblin Sappers"
+  ;; graphic data
+  #("goblin sapper.png"
+    ()
+    ()
+    () )
+  '(  56  56 )			;; graphic size
+  "animations-goblin-sappers"	;; animations
+  "icon-goblin-sappers"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      11       0      4     40      0 #(  200    700     250      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  37  37 )     1       4       2
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    55      4      2       1       0
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-none"
+  'corpse-none
+  'type-land
+  'right-demolish
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'volatile
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("goblin-sappers-selected"
+    "goblin-sappers-acknowledge"
+    "goblin-sappers-ready"
+    "goblin-sappers-help"
+    "goblin-sappers-dead" )
+  "goblin-sappers-attack" )
+
+(define-unit-type "unit-attack-peasant"		"Peasant"
+  ;; graphic data
+  "unit-peasant"
+  '(  72  72 )			;; graphic size
+  "animations-attack-peasant"	;; animations
+  "icon-peasant"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     30      0 #(   45    400       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    50      3      2       0       0
+  ;;Decay Annoy	Points
+      0      0      30
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("peasant-selected"
+    "peasant-acknowledge"
+    "peasant-ready"
+    "peasant-help"
+    "peasant-dead" )
+  "peasant-attack" )
+
+(define-unit-type "unit-attack-peon"		"Peon"
+  ;; graphic data
+  "unit-peon"
+  '(  72  72 )			;; graphic size
+  "animations-attack-peon"	;; animations
+  "icon-peon"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     30      0 #(   45    400       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    50      3      2       0       0
+  ;;Decay Annoy	Points
+      0      0      30
+  "missile-none"
+  'corpse-orc
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("peon-selected"
+    "peon-acknowledge"
+    "peon-ready"
+    "peon-help"
+    "peon-dead" )
+  "peon-attack" )
+
+(define-unit-type "unit-ranger"			"Ranger"
+  ;; graphic data
+  "unit-archer"
+  '(  72  72 )			;; graphic size
+  "animations-ranger"	;; animations
+  "icon-ranger"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      6     50      0 #(   70    500      50      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  33  33 )     4       9       6
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    57      3      6       1       0
+  ;;Decay Annoy	Points
+      0      0      70
+  "missile-arrow"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("ranger-selected"
+    "ranger-acknowledge"
+    "ranger-ready"
+    "ranger-help"
+    "ranger-dead" )
+  "ranger-attack" )
+
+(define-unit-type "unit-berserker"		"Berserker"
+  ;; graphic data
+  "unit-axethrower"
+  '(  72  72 )			;; graphic size
+  "animations-berserker"	;; animations
+  "icon-berserker"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      6     50      0 #(   70    500      50      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  36  36 )     4       9       6
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    57      3      6       1       0
+  ;;Decay Annoy	Points
+      0      0      70
+  "missile-axe"
+  'corpse-orc
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("berserker-selected"
+    "berserker-acknowledge"
+    "berserker-ready"
+    "berserker-help"
+    "berserker-dead" )
+  "berserker-attack" )
+
+(define-unit-type "unit-alleria"		"Alleria"
+  ;; graphic data
+  "unit-archer"
+  '(  72  72 )			;; graphic size
+  "animations-alleria"	;; animations
+  "icon-alleria"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      9    120      0 #(   70    500      50      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  33  33 )     7       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       5    55     10     18       1       0
+  ;;Decay Annoy	Points
+      0      0      60
+  "missile-arrow"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("alleria-selected"
+    "alleria-acknowledge"
+    "alleria-ready"
+    "alleria-help"
+    "alleria-dead" )
+  "alleria-attack" )
+
+(define-unit-type "unit-teron-gorefiend"	"Teron Gorefiend"
+  ;; graphic data
+  "unit-death-knight"
+  '(  72  72 )			;; graphic size
+  "animations-teron-gorefiend"	;; animations
+  "icon-teron-gorefiend"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       8       0      9    180      1 #(  120   1200       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  39  39 )     4      11       9
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       2    70      0     16       0       0
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-touch-of-death"
+  'corpse-orc
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'isundead
+  'can-cast-spell
+  'can-attack
+  'cower-mage
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("teron-gorefiend-selected"
+    "teron-gorefiend-acknowledge"
+    "teron-gorefiend-ready"
+    "teron-gorefiend-help"
+    "teron-gorefiend-dead" )
+  "teron-gorefiend-attack" )
+
+(define-unit-type "unit-kurdan-and-sky'ree"	"Kurdan and Sky'ree"
+  ;; graphic data
+  #("gryphon rider.png"
+    ()
+    ()
+    () )
+  '(  80  80 )			;; graphic size
+  "animations-kurdan-and-sky'ree"	;; animations
+  "icon-kurdan-and-sky'ree"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      14       0      9    250      0 #(  250   2500       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     5       8       6
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       6    65      0     25       0       0
+  ;;Decay Annoy	Points
+      0      0     150
+  "missile-griffon-hammer"
+  'corpse-none
+  'type-fly
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'air-unit
+  'can-see-submarine
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("kurdan-and-sky'ree-selected"
+    "kurdan-and-sky'ree-acknowledge"
+    "kurdan-and-sky'ree-ready"
+    "kurdan-and-sky'ree-help"
+    "kurdan-and-sky'ree-dead" )
+  "kurdan-and-sky'ree-attack" )
+
+(define-unit-type "unit-dentarg"		"Dentarg"
+  ;; graphic data
+  "unit-ogre"
+  '(  72  72 )			;; graphic size
+  "animations-dentarg"	;; animations
+  "icon-dentarg"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      13       0      6    300      1 #(   90    800     100      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  42  42 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       8    63     18      6       1       1
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-none"
+  'corpse-orc
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-cast-spell
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("dentarg-selected"
+    "dentarg-acknowledge"
+    "dentarg-ready"
+    "dentarg-help"
+    "dentarg-dead" )
+  "dentarg-attack" )
+
+(define-unit-type "unit-khadgar"		"Khadgar"
+  ;; graphic data
+  "unit-mage"
+  '(  72  72 )			;; graphic size
+  "animations-khadgar"	;; animations
+  "icon-khadgar"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       8       0      9    120      1 #(  120   1200       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  33  33 )     6      11       9
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       3    70      0     16       0       0
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'can-cast-spell
+  'can-attack
+  'cower-mage
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("khadgar-selected"
+    "khadgar-acknowledge"
+    "khadgar-ready"
+    "khadgar-help"
+    "khadgar-dead" )
+  "khadgar-attack" )
+
+(define-unit-type "unit-grom-hellscream"	"Grom Hellscream"
+  ;; graphic data
+  "unit-grunt"
+  '(  72  72 )			;; graphic size
+  "animations-grom-hellscream"	;; animations
+  "icon-grom-hellscream"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      5    240      0 #(   60    600       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       8    60     16      6       1       1
+  ;;Decay Annoy	Points
+      0      0      50
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("grom-hellscream-selected"
+    "grom-hellscream-acknowledge"
+    "grom-hellscream-ready"
+    "grom-hellscream-help"
+    "grom-hellscream-dead" )
+  "grom-hellscream-attack" )
+
+(define-unit-type "unit-human-oil-tanker"	"Oil tanker"
+  ;; graphic data
+  #("human tanker (empty).png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-human-oil-tanker"	;; animations
+  "icon-human-oil-tanker"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     90      0 #(   50    400     200      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     1       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      10    50      0      0       0       0
+  ;;Decay Annoy	Points
+      0     10      40
+  "missile-none"
+  'corpse-ship
+  'type-naval
+  'right-haul-oil
+  ;; flags
+  'sea-unit
+  'tanker
+  'selectable-by-rectangle
+  ;; sounds
+  #("human-oil-tanker-selected"
+    "human-oil-tanker-acknowledge"
+    "human-oil-tanker-ready"
+    "human-oil-tanker-help"
+    "human-oil-tanker-dead" )
+  "human-oil-tanker-attack" )
+
+(define-unit-type "unit-orc-oil-tanker"		"Oil tanker"
+  ;; graphic data
+  #("orc tanker (empty).png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-orc-oil-tanker"	;; animations
+  "icon-orc-oil-tanker"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     90      0 #(   50    400     200      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     1       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      10    50      0      0       0       0
+  ;;Decay Annoy	Points
+      0     10      40
+  "missile-none"
+  'corpse-ship
+  'type-naval
+  'right-haul-oil
+  ;; flags
+  'sea-unit
+  'tanker
+  'selectable-by-rectangle
+  ;; sounds
+  #("orc-oil-tanker-selected"
+    "orc-oil-tanker-acknowledge"
+    "orc-oil-tanker-ready"
+    "orc-oil-tanker-help"
+    "orc-oil-tanker-dead" )
+  "orc-oil-tanker-attack" )
+
+(define-unit-type "unit-human-transport"	"Transport"
+  ;; graphic data
+  #("human transport.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-human-transport"	;; animations
+  "icon-human-transport"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4    150      0 #(   70    600     200    500 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     1       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    70      0      0       0       1
+  ;;Decay Annoy	Points
+      0     15      50
+  "missile-none"
+  'corpse-ship
+  'type-naval
+  'right-sail
+  ;; flags
+  'sea-unit
+  'transporter
+  'selectable-by-rectangle
+  ;; sounds
+  #("human-transport-selected"
+    "human-transport-acknowledge"
+    "human-transport-ready"
+    "human-transport-help"
+    "human-transport-dead" )
+  "human-transport-attack" )
+
+(define-unit-type "unit-orc-transport"		"Transport"
+  ;; graphic data
+  #("orc transport.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-orc-transport"	;; animations
+  "icon-orc-transport"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4    150      0 #(   70    600     200    500 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     1       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    70      0      0       0       1
+  ;;Decay Annoy	Points
+      0     15      50
+  "missile-none"
+  'corpse-ship
+  'type-naval
+  'right-sail
+  ;; flags
+  'sea-unit
+  'transporter
+  'selectable-by-rectangle
+  ;; sounds
+  #("orc-transport-selected"
+    "orc-transport-acknowledge"
+    "orc-transport-ready"
+    "orc-transport-help"
+    "orc-transport-dead" )
+  "orc-transport-attack" )
+
+(define-unit-type "unit-elven-destroyer"	"Elven Destroyer"
+  ;; graphic data
+  #("elven destroyer.png"
+    ()
+    ()
+    () )
+  '(  80  88 )			;; graphic size
+  "animations-elven-destroyer"	;; animations
+  "icon-elven-destroyer"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      8    100      0 #(   90    700     350    700 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     4      10       8
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      10    65     35      0       1       1
+  ;;Decay Annoy	Points
+      0     20     150
+  "missile-small-cannon"
+  'corpse-ship
+  'type-naval
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'sea-unit
+  'can-attack
+  'selectable-by-rectangle
+  ;; sounds
+  #("elven-destroyer-selected"
+    "elven-destroyer-acknowledge"
+    "elven-destroyer-ready"
+    "elven-destroyer-help"
+    "elven-destroyer-dead" )
+  "elven-destroyer-attack" )
+
+(define-unit-type "unit-troll-destroyer"	"Troll Destroyer"
+  ;; graphic data
+  #("troll destroyer.png"
+    ()
+    ()
+    () )
+  '(  88  88 )			;; graphic size
+  "animations-troll-destroyer"	;; animations
+  "icon-troll-destroyer"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      8    100      0 #(   90    700     350    700 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     4      10       8
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      10    65     35      0       1       1
+  ;;Decay Annoy	Points
+      0     20     150
+  "missile-small-cannon"
+  'corpse-ship
+  'type-naval
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'sea-unit
+  'can-attack
+  'selectable-by-rectangle
+  ;; sounds
+  #("troll-destroyer-selected"
+    "troll-destroyer-acknowledge"
+    "troll-destroyer-ready"
+    "troll-destroyer-help"
+    "troll-destroyer-dead" )
+  "troll-destroyer-attack" )
+
+(define-unit-type "unit-battleship"		"Battleship"
+  ;; graphic data
+  #("battleship.png"
+    ()
+    ()
+    () )
+  '(  88  88 )			;; graphic size
+  "animations-battleship"	;; animations
+  "icon-battleship"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       6       0      8    150      0 #(  140   1000     500   1000 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  70  70 )     6      10       8
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      15    63    130      0       1       1
+  ;;Decay Annoy	Points
+      0     25     300
+  "missile-big-cannon"
+  'corpse-ship
+  'type-naval
+  'right-attack
+  'can-target-land 'can-target-sea 
+  ;; flags
+  'sea-unit
+  'can-ground-attack
+  'can-attack
+  'selectable-by-rectangle
+  ;; sounds
+  #("battleship-selected"
+    "battleship-acknowledge"
+    "battleship-ready"
+    "battleship-help"
+    "battleship-dead" )
+  "battleship-attack" )
+
+(define-unit-type "unit-ogre-juggernaught"	"Ogre Juggernaught"
+  ;; graphic data
+  #("juggernaught.png"
+    ()
+    ()
+    () )
+  '(  88  88 )			;; graphic size
+  "animations-ogre-juggernaught"	;; animations
+  "icon-ogre-juggernaught"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       6       0      8    150      0 #(  140   1000     500   1000 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  70  70 )     6      10       8
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      15    63    130      0       1       1
+  ;;Decay Annoy	Points
+      0     25     300
+  "missile-big-cannon"
+  'corpse-ship
+  'type-naval
+  'right-attack
+  'can-target-land 'can-target-sea 
+  ;; flags
+  'sea-unit
+  'can-ground-attack
+  'can-attack
+  'selectable-by-rectangle
+  ;; sounds
+  #("ogre-juggernaught-selected"
+    "ogre-juggernaught-acknowledge"
+    "ogre-juggernaught-ready"
+    "ogre-juggernaught-help"
+    "ogre-juggernaught-dead" )
+  "ogre-juggernaught-attack" )
+
+(define-unit-type "unit-nothing-22"		"Nothing 22"
+  ;; graphic data
+  #(()
+    ()
+    ()
+    () )
+  '(   0   0 )			;; graphic size
+  "animations-nothing-22"	;; animations
+  "icon-cancel"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      99       0      0      0      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 0 0 ) '(   0   0 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-none
+  ;; flags
+  ;; sounds
+  #("nothing-22-selected"
+    "nothing-22-acknowledge"
+    "nothing-22-ready"
+    "nothing-22-help"
+    "nothing-22-dead" )
+  "nothing-22-attack" )
+
+(define-unit-type "unit-deathwing"		"Deathwing"
+  ;; graphic data
+  #("dragon.png"
+    ()
+    ()
+    () )
+  '(  88  80 )			;; graphic size
+  "animations-deathwing"	;; animations
+  "icon-deathwing"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      14       0      9    800      0 #(  250   2500       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  71  71 )     5       8       6
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      10    65     10     25       0       0
+  ;;Decay Annoy	Points
+      0      0     150
+  "missile-dragon-breath"
+  'corpse-none
+  'type-fly
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'air-unit
+  'can-see-submarine
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("deathwing-selected"
+    "deathwing-acknowledge"
+    "deathwing-ready"
+    "deathwing-help"
+    "deathwing-dead" )
+  "deathwing-attack" )
+
+(define-unit-type "unit-nothing-24"		"Nothing 24"
+  ;; graphic data
+  #(()
+    ()
+    ()
+    () )
+  '(  32  32 )			;; graphic size
+  "animations-nothing-24"	;; animations
+  "icon-cancel"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      99       0      4     60      0 #(   60    400       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     1      20      10
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       2    40      9      1       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-none"
+  'corpse-none
+  'type-naval
+  'right-attack
+  ;; flags
+  'sea-unit
+  'selectable-by-rectangle
+  ;; sounds
+  #("nothing-24-selected"
+    "nothing-24-acknowledge"
+    "nothing-24-ready"
+    "nothing-24-help"
+    "nothing-24-dead" )
+  "nothing-24-attack" )
+
+(define-unit-type "unit-nothing-25"		"Nothing 25"
+  ;; graphic data
+  #(()
+    ()
+    ()
+    () )
+  '(  32  32 )			;; graphic size
+  "animations-nothing-25"	;; animations
+  "icon-cancel"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      99       0      4     60      0 #(   60    400       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     1      20      10
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       2    40      9      1       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-none"
+  'corpse-none
+  'type-naval
+  'right-attack
+  ;; flags
+  'sea-unit
+  'selectable-by-rectangle
+  ;; sounds
+  #("nothing-25-selected"
+    "nothing-25-acknowledge"
+    "nothing-25-ready"
+    "nothing-25-help"
+    "nothing-25-dead" )
+  "nothing-25-attack" )
+
+(define-unit-type "unit-gnomish-submarine"	"Gnomish Submarine"
+  ;; graphic data
+  #("gnomish submarine (summer,winter).png"
+    ()
+    "gnomish submarine (wasteland).png"
+    "gnomish submarine (swamp).png" )
+  '(  72  72 )			;; graphic size
+  "animations-gnomish-submarine"	;; animations
+  "icon-gnomish-submarine"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       7       0      5     60      0 #(  100    800     150    900 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     4       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    60     50      0       0       0
+  ;;Decay Annoy	Points
+      0     20     120
+  "missile-submarine-missile"
+  'corpse-ship
+  'type-naval
+  'right-attack
+  'can-target-sea 
+  ;; flags
+  'sea-unit
+  'submarine
+  'can-see-submarine
+  'can-attack
+  'selectable-by-rectangle
+  ;; sounds
+  #("gnomish-submarine-selected"
+    "gnomish-submarine-acknowledge"
+    "gnomish-submarine-ready"
+    "gnomish-submarine-help"
+    "gnomish-submarine-dead" )
+  "gnomish-submarine-attack" )
+
+(define-unit-type "unit-giant-turtle"		"Giant Turtle"
+  ;; graphic data
+  #("giant turtle (summer,winter).png"
+    ()
+    "giant turtle (wasteland).png"
+    "giant turtle (swamp).png" )
+  '(  72  72 )			;; graphic size
+  "animations-giant-turtle"	;; animations
+  "icon-giant-turtle"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       7       0      5     60      0 #(  100    800     150    900 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     4       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    60     50      0       0       0
+  ;;Decay Annoy	Points
+      0     20     120
+  "missile-turtle-missile"
+  'corpse-ship
+  'type-naval
+  'right-attack
+  'can-target-sea 
+  ;; flags
+  'sea-unit
+  'submarine
+  'can-see-submarine
+  'can-attack
+  'selectable-by-rectangle
+  ;; sounds
+  #("giant-turtle-selected"
+    "giant-turtle-acknowledge"
+    "giant-turtle-ready"
+    "giant-turtle-help"
+    "giant-turtle-dead" )
+  "giant-turtle-attack" )
+
+(define-unit-type "unit-gnomish-flying-machine"	"Gnomish Flying Machine"
+  ;; graphic data
+  #("gnomish flying machine.png"
+    ()
+    ()
+    () )
+  '(  80  80 )			;; graphic size
+  "animations-gnomish-flying-machine"	;; animations
+  "icon-gnomish-flying-machine"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      17       0      9    150      0 #(   65    500     100      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     1      19      15
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       2    40      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0      40
+  "missile-none"
+  'corpse-none
+  'type-fly
+  'right-move
+  ;; flags
+  'air-unit
+  'can-see-submarine
+  'selectable-by-rectangle
+  ;; sounds
+  #("gnomish-flying-machine-selected"
+    "gnomish-flying-machine-acknowledge"
+    "gnomish-flying-machine-ready"
+    "gnomish-flying-machine-help"
+    "gnomish-flying-machine-dead" )
+  "gnomish-flying-machine-attack" )
+
+(define-unit-type "unit-goblin-zeppelin"	"Goblin Zeppelin"
+  ;; graphic data
+  #("goblin zeppelin.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-goblin-zeppelin"	;; animations
+  "icon-goblin-zeppelin"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      17       0      9    150      0 #(   65    500     100      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     1      19      15
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       2    40      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0      40
+  "missile-none"
+  'corpse-none
+  'type-fly
+  'right-move
+  ;; flags
+  'air-unit
+  'can-see-submarine
+  'selectable-by-rectangle
+  ;; sounds
+  #("goblin-zeppelin-selected"
+    "goblin-zeppelin-acknowledge"
+    "goblin-zeppelin-ready"
+    "goblin-zeppelin-help"
+    "goblin-zeppelin-dead" )
+  "goblin-zeppelin-attack" )
+
+(define-unit-type "unit-gryphon-rider"		"Gryphon Rider"
+  ;; graphic data
+  "unit-kurdan-and-sky'ree"
+  '(  80  80 )			;; graphic size
+  "animations-gryphon-rider"	;; animations
+  "icon-gryphon-rider"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      14       0      6    100      0 #(  250   2500       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     4       8       6
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       5    65      0     16       0       0
+  ;;Decay Annoy	Points
+      0      0     150
+  "missile-griffon-hammer"
+  'corpse-none
+  'type-fly
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'air-unit
+  'can-see-submarine
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("gryphon-rider-selected"
+    "gryphon-rider-acknowledge"
+    "gryphon-rider-ready"
+    "gryphon-rider-help"
+    "gryphon-rider-dead" )
+  "gryphon-rider-attack" )
+
+(define-unit-type "unit-dragon"			"Dragon"
+  ;; graphic data
+  "unit-deathwing"
+  '(  88  80 )			;; graphic size
+  "animations-dragon"	;; animations
+  "icon-dragon"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      14       0      6    100      0 #(  250   2500       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  71  71 )     4       8       6
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       5    65      0     16       0       0
+  ;;Decay Annoy	Points
+      0      0     150
+  "missile-dragon-breath"
+  'corpse-none
+  'type-fly
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'air-unit
+  'can-see-submarine
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("dragon-selected"
+    "dragon-acknowledge"
+    "dragon-ready"
+    "dragon-help"
+    "dragon-dead" )
+  "dragon-attack" )
+
+(define-unit-type "unit-turalyon"		"Turalyon"
+  ;; graphic data
+  "unit-knight"
+  '(  72  72 )			;; graphic size
+  "animations-turalyon"	;; animations
+  "icon-turalyon"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      13       0      6    180      0 #(   90    800     100      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  42  42 )     1       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      10    65     14      5       1       1
+  ;;Decay Annoy	Points
+      0      0     110
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-cast-spell
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("turalyon-selected"
+    "turalyon-acknowledge"
+    "turalyon-ready"
+    "turalyon-help"
+    "turalyon-dead" )
+  "turalyon-attack" )
+
+(define-unit-type "unit-eye-of-kilrogg"		"Eye of Kilrogg"
+  ;; graphic data
+  #("eye of kilrogg.png"
+    ()
+    ()
+    () )
+  '(  32  32 )			;; graphic size
+  "animations-eye-of-kilrogg"	;; animations
+  "icon-eye-of-kilrogg"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      42       0      3    100      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1      20      10
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      1      0       0       0
+  ;;Decay Annoy	Points
+      3      0       0
+  "missile-none"
+  'corpse-none
+  'type-fly
+  'right-move
+  ;; flags
+  'air-unit
+  'can-see-submarine
+  'selectable-by-rectangle
+  ;; sounds
+  #("eye-of-kilrogg-selected"
+    "eye-of-kilrogg-acknowledge"
+    "eye-of-kilrogg-ready"
+    "eye-of-kilrogg-help"
+    "eye-of-kilrogg-dead" )
+  "eye-of-kilrogg-attack" )
+
+(define-unit-type "unit-danath"			"Danath"
+  ;; graphic data
+  "unit-footman"
+  '(  72  72 )			;; graphic size
+  "animations-danath"	;; animations
+  "icon-danath"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      6    220      0 #(   60    600       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       8    60     15      8       1       1
+  ;;Decay Annoy	Points
+      0      0      50
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("danath-selected"
+    "danath-acknowledge"
+    "danath-ready"
+    "danath-help"
+    "danath-dead" )
+  "danath-attack" )
+
+(define-unit-type "unit-korgath-bladefist"	"Korgath Bladefist"
+  ;; graphic data
+  "unit-grunt"
+  '(  72  72 )			;; graphic size
+  "animations-korgath-bladefist"	;; animations
+  "icon-korgath-bladefist"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      5    240      0 #(   60    600       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       8    60     16      6       1       1
+  ;;Decay Annoy	Points
+      0      0      50
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("korgath-bladefist-selected"
+    "korgath-bladefist-acknowledge"
+    "korgath-bladefist-ready"
+    "korgath-bladefist-help"
+    "korgath-bladefist-dead" )
+  "korgath-bladefist-attack" )
+
+(define-unit-type "unit-nothing-30"		"Nothing 30"
+  ;; graphic data
+  #(()
+    ()
+    ()
+    () )
+  '(   0   0 )			;; graphic size
+  "animations-nothing-30"	;; animations
+  "icon-cancel"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      99       0      0      0      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 0 0 ) '(   0   0 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-none
+  ;; flags
+  ;; sounds
+  #("nothing-30-selected"
+    "nothing-30-acknowledge"
+    "nothing-30-ready"
+    "nothing-30-help"
+    "nothing-30-dead" )
+  "nothing-30-attack" )
+
+(define-unit-type "unit-cho'gall"		"Cho'gall"
+  ;; graphic data
+  "unit-ogre"
+  '(  72  72 )			;; graphic size
+  "animations-cho'gall"	;; animations
+  "icon-cho'gall"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      13       0      5    100      0 #(  100   1100      50      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  42  42 )     1       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    65     10      5       1       1
+  ;;Decay Annoy	Points
+      0      0     120
+  "missile-none"
+  'corpse-orc
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-cast-spell
+  'can-attack
+  'hero
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("cho'gall-selected"
+    "cho'gall-acknowledge"
+    "cho'gall-ready"
+    "cho'gall-help"
+    "cho'gall-dead" )
+  "cho'gall-attack" )
+
+(define-unit-type "unit-lothar"			"Lothar"
+  ;; graphic data
+  "unit-knight"
+  '(  72  72 )			;; graphic size
+  "animations-lothar"	;; animations
+  "icon-lothar"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      13       0      5     90      0 #(  100    900     100      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  42  42 )     1       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       4    65      8      4       1       1
+  ;;Decay Annoy	Points
+      0      0     120
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-attack
+  'hero
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("lothar-selected"
+    "lothar-acknowledge"
+    "lothar-ready"
+    "lothar-help"
+    "lothar-dead" )
+  "lothar-attack" )
+
+(define-unit-type "unit-gul'dan"		"Gul'dan"
+  ;; graphic data
+  "unit-death-knight"
+  '(  72  72 )			;; graphic size
+  "animations-gul'dan"	;; animations
+  "icon-gul'dan"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       8       0      8     40      1 #(  120   1200       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  33  33 )     3      10       8
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    70      0      3       0       0
+  ;;Decay Annoy	Points
+      0      0     120
+  "missile-touch-of-death"
+  'corpse-none
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'isundead
+  'can-cast-spell
+  'can-attack
+  'hero
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("gul'dan-selected"
+    "gul'dan-acknowledge"
+    "gul'dan-ready"
+    "gul'dan-help"
+    "gul'dan-dead" )
+  "gul'dan-attack" )
+
+(define-unit-type "unit-uther-lightbringer"	"Uther Lightbringer"
+  ;; graphic data
+  "unit-knight"
+  '(  72  72 )			;; graphic size
+  "animations-uther-lightbringer"	;; animations
+  "icon-uther-lightbringer"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      13       0      5     90      0 #(  100    900     100      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  42  42 )     1       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       4    65      8      4       1       1
+  ;;Decay Annoy	Points
+      0      0     120
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'can-cast-spell
+  'can-attack
+  'hero
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("uther-lightbringer-selected"
+    "uther-lightbringer-acknowledge"
+    "uther-lightbringer-ready"
+    "uther-lightbringer-help"
+    "uther-lightbringer-dead" )
+  "uther-lightbringer-attack" )
+
+(define-unit-type "unit-zuljin"			"Zuljin"
+  ;; graphic data
+  "unit-axethrower"
+  '(  72  72 )			;; graphic size
+  "animations-zuljin"	;; animations
+  "icon-zuljin"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      6     40      0 #(   70    500      50      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  36  36 )     5       8       6
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    55      3      6       1       0
+  ;;Decay Annoy	Points
+      0      0     120
+  "missile-axe"
+  'corpse-orc
+  'type-land
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'land-unit
+  'can-attack
+  'hero
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("zuljin-selected"
+    "zuljin-acknowledge"
+    "zuljin-ready"
+    "zuljin-help"
+    "zuljin-dead" )
+  "zuljin-attack" )
+
+(define-unit-type "unit-nothing-36"		"Nothing 36"
+  ;; graphic data
+  #(()
+    ()
+    ()
+    () )
+  '(   0   0 )			;; graphic size
+  "animations-nothing-36"	;; animations
+  "icon-cancel"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      99       0      0      0      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 0 0 ) '(   0   0 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-none
+  ;; flags
+  ;; sounds
+  #("nothing-36-selected"
+    "nothing-36-acknowledge"
+    "nothing-36-ready"
+    "nothing-36-help"
+    "nothing-36-dead" )
+  "nothing-36-attack" )
+
+(define-unit-type "unit-skeleton"		"Skeleton"
+  ;; graphic data
+  #("skeleton.png"
+    ()
+    ()
+    () )
+  '(  56  56 )			;; graphic size
+  "animations-skeleton"	;; animations
+  "icon-skeleton"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      99       0      3     40      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       4       2
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    55      6      3       0       0
+  ;;Decay Annoy	Points
+    100      0       0
+  "missile-none"
+  'corpse-none
+  'type-land
+  'right-attack
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'critter
+  'isundead
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("skeleton-selected"
+    "skeleton-acknowledge"
+    "skeleton-ready"
+    "skeleton-help"
+    "skeleton-dead" )
+  "skeleton-attack" )
+
+(define-unit-type "unit-daemon"			"Daemon"
+  ;; graphic data
+  #("daemon.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-daemon"	;; animations
+  "icon-daemon"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      99       0      5     60      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     3       7       5
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       3    63     10      2       0       0
+  ;;Decay Annoy	Points
+      0      0     100
+  "missile-daemon-fire"
+  'corpse-none
+  'type-fly
+  'right-attack
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'air-unit
+  'critter
+  'can-see-submarine
+  'can-attack
+  'organic
+  ;; sounds
+  #("daemon-selected"
+    "daemon-acknowledge"
+    "daemon-ready"
+    "daemon-help"
+    "daemon-dead" )
+  "daemon-attack" )
+
+(define-unit-type "unit-critter"		"Critter"
+  ;; graphic data
+  #("critter (summer).png"
+    "critter (winter).png"
+    "critter (wasteland).png"
+    "critter (swamp).png" )
+  '(  32  32 )			;; graphic size
+  "animations-critter"	;; animations
+  "icon-critter"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       3       0      2      5      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1      20      10
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    37      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       1
+  "missile-none"
+  'corpse-none
+  'type-land
+  'right-move
+  ;; flags
+  'land-unit
+  'critter
+  'organic
+  ;; sounds
+  #("critter-selected"
+    "critter-acknowledge"
+    "critter-ready"
+    "critter-help"
+    "critter-dead" )
+  "critter-attack" )
+
+(define-unit-type "unit-farm"			"Farm"
+  ;; graphic data
+  #("farm (summer).png"
+    "farm (winter).png"
+    "farm (wasteland).png"
+    "farm (swamp).png" )
+  '(  64  64 )			;; graphic size
+  "animations-farm"	;; animations
+  "icon-farm"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    400      0 #(  100    500     250      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    20      0      0       0       0
+  ;;Decay Annoy	Points
+      0     45     100
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("farm-selected"
+    "farm-acknowledge"
+    "farm-ready"
+    "farm-help"
+    "farm-dead" )
+  "farm-attack" )
+
+(define-unit-type "unit-pig-farm"		"Pig Farm"
+  ;; graphic data
+  #("pig farm (summer).png"
+    "pig farm (winter).png"
+    "pig farm (wasteland).png"
+    "pig farm (swamp).png" )
+  '(  64  64 )			;; graphic size
+  "animations-pig-farm"	;; animations
+  "icon-pig-farm"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    400      0 #(  100    500     250      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    20      0      0       0       0
+  ;;Decay Annoy	Points
+      0     45     100
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("pig-farm-selected"
+    "pig-farm-acknowledge"
+    "pig-farm-ready"
+    "pig-farm-help"
+    "pig-farm-dead" )
+  "pig-farm-attack" )
+
+(define-unit-type "unit-human-barracks"		"Barracks"
+  ;; graphic data
+  #("human barracks (summer).png"
+    "human barracks (winter).png"
+    ()
+    "human barracks (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-human-barracks"	;; animations
+  "icon-human-barracks"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    800      0 #(  200    700     450      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    30      0      0       0       0
+  ;;Decay Annoy	Points
+      0     35     160
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("human-barracks-selected"
+    "human-barracks-acknowledge"
+    "human-barracks-ready"
+    "human-barracks-help"
+    "human-barracks-dead" )
+  "human-barracks-attack" )
+
+(define-unit-type "unit-orc-barracks"		"Barracks"
+  ;; graphic data
+  #("orc barracks (summer).png"
+    "orc barracks (winter).png"
+    ()
+    "orc barracks (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-orc-barracks"	;; animations
+  "icon-orc-barracks"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    800      0 #(  200    700     450      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    30      0      0       0       0
+  ;;Decay Annoy	Points
+      0     35     160
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("orc-barracks-selected"
+    "orc-barracks-acknowledge"
+    "orc-barracks-ready"
+    "orc-barracks-help"
+    "orc-barracks-dead" )
+  "orc-barracks-attack" )
+
+(define-unit-type "unit-church"			"Church"
+  ;; graphic data
+  #("church (summer).png"
+    "church (winter).png"
+    ()
+    "church (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-church"	;; animations
+  "icon-church"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    700      0 #(  175    900     500      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     35     240
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("church-selected"
+    "church-acknowledge"
+    "church-ready"
+    "church-help"
+    "church-dead" )
+  "church-attack" )
+
+(define-unit-type "unit-altar-of-storms"	"Altar of Storms"
+  ;; graphic data
+  #("altar of storms (summer).png"
+    "altar of storms (winter).png"
+    ()
+    "altar of storms (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-altar-of-storms"	;; animations
+  "icon-altar-of-storms"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    700      0 #(  175    900     500      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     35     240
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("altar-of-storms-selected"
+    "altar-of-storms-acknowledge"
+    "altar-of-storms-ready"
+    "altar-of-storms-help"
+    "altar-of-storms-dead" )
+  "altar-of-storms-attack" )
+
+(define-unit-type "unit-human-watch-tower"	"Scout Tower"
+  ;; graphic data
+  #("human scout tower (summer).png"
+    "human scout tower (winter).png"
+    ()
+    "human scout tower (swamp).png" )
+  '(  64  64 )			;; graphic size
+  "animations-human-watch-tower"	;; animations
+  "icon-human-watch-tower"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      9    100      0 #(   60    550     200      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    55      0      0       0       0
+  ;;Decay Annoy	Points
+      0     50      95
+  "missile-none"
+  'corpse-land-site
+  'type-land
+  'right-none
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'building
+  'can-see-submarine
+  ;; sounds
+  #("human-watch-tower-selected"
+    "human-watch-tower-acknowledge"
+    "human-watch-tower-ready"
+    "human-watch-tower-help"
+    "human-watch-tower-dead" )
+  "human-watch-tower-attack" )
+
+(define-unit-type "unit-orc-watch-tower"	"Scout Tower"
+  ;; graphic data
+  #("orc scout tower (summer).png"
+    "orc scout tower (winter).png"
+    ()
+    "orc scout tower (swamp).png" )
+  '(  64  64 )			;; graphic size
+  "animations-orc-watch-tower"	;; animations
+  "icon-orc-watch-tower"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      9    100      0 #(   60    550     200      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    55      0      0       0       0
+  ;;Decay Annoy	Points
+      0     50      95
+  "missile-none"
+  'corpse-land-site
+  'type-land
+  'right-none
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'building
+  'can-see-submarine
+  ;; sounds
+  #("orc-watch-tower-selected"
+    "orc-watch-tower-acknowledge"
+    "orc-watch-tower-ready"
+    "orc-watch-tower-help"
+    "orc-watch-tower-dead" )
+  "orc-watch-tower-attack" )
+
+(define-unit-type "unit-stables"		"Stables"
+  ;; graphic data
+  #("stables (summer).png"
+    ()
+    ()
+    () )
+  '(  96  96 )			;; graphic size
+  "animations-stables"	;; animations
+  "icon-stables"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    500      0 #(  150   1000     300      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     15     210
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("stables-selected"
+    "stables-acknowledge"
+    "stables-ready"
+    "stables-help"
+    "stables-dead" )
+  "stables-attack" )
+
+(define-unit-type "unit-ogre-mound"		"Ogre Mound"
+  ;; graphic data
+  #("ogre mound (summer).png"
+    ()
+    ()
+    () )
+  '(  96  96 )			;; graphic size
+  "animations-ogre-mound"	;; animations
+  "icon-ogre-mound"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    500      0 #(  150   1000     300      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     15     210
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("ogre-mound-selected"
+    "ogre-mound-acknowledge"
+    "ogre-mound-ready"
+    "ogre-mound-help"
+    "ogre-mound-dead" )
+  "ogre-mound-attack" )
+
+(define-unit-type "unit-gnomish-inventor"	"Gnomish Inventor"
+  ;; graphic data
+  #("gnomish inventor (summer).png"
+    ()
+    ()
+    () )
+  '(  96  96 )			;; graphic size
+  "animations-gnomish-inventor"	;; animations
+  "icon-gnomish-inventor"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    500      0 #(  150   1000     400      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     230
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("gnomish-inventor-selected"
+    "gnomish-inventor-acknowledge"
+    "gnomish-inventor-ready"
+    "gnomish-inventor-help"
+    "gnomish-inventor-dead" )
+  "gnomish-inventor-attack" )
+
+(define-unit-type "unit-goblin-alchemist"	"Goblin Alchemist"
+  ;; graphic data
+  #("goblin alchemist (summer).png"
+    ()
+    ()
+    () )
+  '(  96  96 )			;; graphic size
+  "animations-goblin-alchemist"	;; animations
+  "icon-goblin-alchemist"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    500      0 #(  150   1000     400      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     230
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("goblin-alchemist-selected"
+    "goblin-alchemist-acknowledge"
+    "goblin-alchemist-ready"
+    "goblin-alchemist-help"
+    "goblin-alchemist-dead" )
+  "goblin-alchemist-attack" )
+
+(define-unit-type "unit-gryphon-aviary"		"Gryphon Aviary"
+  ;; graphic data
+  #("gryphon aviary (summer).png"
+    "gryphon aviary (winter).png"
+    ()
+    "gryphon aviary (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-gryphon-aviary"	;; animations
+  "icon-gryphon-aviary"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    500      0 #(  150   1000     400      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     280
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("gryphon-aviary-selected"
+    "gryphon-aviary-acknowledge"
+    "gryphon-aviary-ready"
+    "gryphon-aviary-help"
+    "gryphon-aviary-dead" )
+  "gryphon-aviary-attack" )
+
+(define-unit-type "unit-dragon-roost"		"Dragon Roost"
+  ;; graphic data
+  #("dragon roost (summer).png"
+    "dragon roost (winter).png"
+    ()
+    "dragon roost (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-dragon-roost"	;; animations
+  "icon-dragon-roost"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    500      0 #(  150   1000     400      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     280
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("dragon-roost-selected"
+    "dragon-roost-acknowledge"
+    "dragon-roost-ready"
+    "dragon-roost-help"
+    "dragon-roost-dead" )
+  "dragon-roost-attack" )
+
+(define-unit-type "unit-human-shipyard"		"Shipyard"
+  ;; graphic data
+  #("human shipyard (summer).png"
+    "human shipyard (winter).png"
+    ()
+    "human shipyard (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-human-shipyard"	;; animations
+  "icon-human-shipyard"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       7      3   1100      0 #(  200    800     450      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    30      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     170
+  "missile-lightning"
+  'corpse-water-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'shore-building
+  'stores-oil
+  ;; sounds
+  #("human-shipyard-selected"
+    "human-shipyard-acknowledge"
+    "human-shipyard-ready"
+    "human-shipyard-help"
+    "human-shipyard-dead" )
+  "human-shipyard-attack" )
+
+(define-unit-type "unit-orc-shipyard"		"Shipyard"
+  ;; graphic data
+  #("orc shipyard (summer).png"
+    "orc shipyard (winter).png"
+    ()
+    "orc shipyard (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-orc-shipyard"	;; animations
+  "icon-orc-shipyard"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       8      3   1100      0 #(  200    800     450      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    30      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     170
+  "missile-lightning"
+  'corpse-water-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'shore-building
+  'stores-oil
+  ;; sounds
+  #("orc-shipyard-selected"
+    "orc-shipyard-acknowledge"
+    "orc-shipyard-ready"
+    "orc-shipyard-help"
+    "orc-shipyard-dead" )
+  "orc-shipyard-attack" )
+
+(define-unit-type "unit-town-hall"		"Town Hall"
+  ;; graphic data
+  #("town hall (summer).png"
+    "town hall (winter).png"
+    ()
+    "town hall (swamp).png" )
+  '( 128 128 )			;; graphic size
+  "animations-town-hall"	;; animations
+  "icon-town-hall"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      4   1200      0 #(  255   1200     800      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 4 4 ) '( 126 126 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    35      0      0       0       0
+  ;;Decay Annoy	Points
+      0     45     200
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'stores-gold
+  ;; sounds
+  #("town-hall-selected"
+    "town-hall-acknowledge"
+    "town-hall-ready"
+    "town-hall-help"
+    "town-hall-dead" )
+  "town-hall-attack" )
+
+(define-unit-type "unit-great-hall"		"Great Hall"
+  ;; graphic data
+  #("great hall (summer).png"
+    "great hall (winter).png"
+    ()
+    "great hall (swamp).png" )
+  '( 128 128 )			;; graphic size
+  "animations-great-hall"	;; animations
+  "icon-great-hall"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      4   1200      0 #(  255   1200     800      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 4 4 ) '( 127 127 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    35      0      0       0       0
+  ;;Decay Annoy	Points
+      0     45     200
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'stores-gold
+  ;; sounds
+  #("great-hall-selected"
+    "great-hall-acknowledge"
+    "great-hall-ready"
+    "great-hall-help"
+    "great-hall-dead" )
+  "great-hall-attack" )
+
+(define-unit-type "unit-elven-lumber-mill"	"Elven Lumber Mill"
+  ;; graphic data
+  #("elven lumber mill (summer).png"
+    "elven lumber mill (winter).png"
+    "elven lumber mill (wasteland).png"
+    "elven lumber mill (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-elven-lumber-mill"	;; animations
+  "icon-elven-lumber-mill"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    600      0 #(  150    600     450      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    25      0      0       0       0
+  ;;Decay Annoy	Points
+      0     15     150
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'stores-wood
+  ;; sounds
+  #("elven-lumber-mill-selected"
+    "elven-lumber-mill-acknowledge"
+    "elven-lumber-mill-ready"
+    "elven-lumber-mill-help"
+    "elven-lumber-mill-dead" )
+  "elven-lumber-mill-attack" )
+
+(define-unit-type "unit-troll-lumber-mill"	"Troll Lumber Mill"
+  ;; graphic data
+  #("troll lumber mill (summer).png"
+    "troll lumber mill (winter).png"
+    "troll lumber mill (wasteland).png"
+    "troll lumber mill (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-troll-lumber-mill"	;; animations
+  "icon-troll-lumber-mill"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    600      0 #(  150    600     450      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    25      0      0       0       0
+  ;;Decay Annoy	Points
+      0     15     150
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'stores-wood
+  ;; sounds
+  #("troll-lumber-mill-selected"
+    "troll-lumber-mill-acknowledge"
+    "troll-lumber-mill-ready"
+    "troll-lumber-mill-help"
+    "troll-lumber-mill-dead" )
+  "troll-lumber-mill-attack" )
+
+(define-unit-type "unit-human-foundry"		"Foundry"
+  ;; graphic data
+  #("human foundry (summer).png"
+    "human foundry (winter).png"
+    ()
+    "human foundry (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-human-foundry"	;; animations
+  "icon-human-foundry"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0      13      3    750      0 #(  175    700     400    400 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     200
+  "missile-lightning"
+  'corpse-water-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'shore-building
+  ;; sounds
+  #("human-foundry-selected"
+    "human-foundry-acknowledge"
+    "human-foundry-ready"
+    "human-foundry-help"
+    "human-foundry-dead" )
+  "human-foundry-attack" )
+
+(define-unit-type "unit-orc-foundry"		"Foundry"
+  ;; graphic data
+  #("orc foundry (summer).png"
+    "orc foundry (winter).png"
+    ()
+    "orc foundry (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-orc-foundry"	;; animations
+  "icon-orc-foundry"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0      14      3    750      0 #(  175    700     400    400 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     200
+  "missile-lightning"
+  'corpse-water-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'shore-building
+  ;; sounds
+  #("orc-foundry-selected"
+    "orc-foundry-acknowledge"
+    "orc-foundry-ready"
+    "orc-foundry-help"
+    "orc-foundry-dead" )
+  "orc-foundry-attack" )
+
+(define-unit-type "unit-mage-tower"		"Mage Tower"
+  ;; graphic data
+  #("mage tower (summer).png"
+    "mage tower (winter).png"
+    ()
+    "mage tower (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-mage-tower"	;; animations
+  "icon-mage-tower"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    500      0 #(  125   1000     200      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    35      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     240
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("mage-tower-selected"
+    "mage-tower-acknowledge"
+    "mage-tower-ready"
+    "mage-tower-help"
+    "mage-tower-dead" )
+  "mage-tower-attack" )
+
+(define-unit-type "unit-temple-of-the-damned"	"Temple of the Damned"
+  ;; graphic data
+  #("temple of the damned (summer).png"
+    "temple of the damned (winter).png"
+    ()
+    "temple of the damned (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-temple-of-the-damned"	;; animations
+  "icon-temple-of-the-damned"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    500      0 #(  125   1000     200      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    35      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     240
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("temple-of-the-damned-selected"
+    "temple-of-the-damned-acknowledge"
+    "temple-of-the-damned-ready"
+    "temple-of-the-damned-help"
+    "temple-of-the-damned-dead" )
+  "temple-of-the-damned-attack" )
+
+(define-unit-type "unit-human-blacksmith"	"Blacksmith"
+  ;; graphic data
+  #("human blacksmith (summer).png"
+    "human blacksmith (winter).png"
+    ()
+    "human blacksmith (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-human-blacksmith"	;; animations
+  "icon-human-blacksmith"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    775      0 #(  200    800     450    100 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     170
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("human-blacksmith-selected"
+    "human-blacksmith-acknowledge"
+    "human-blacksmith-ready"
+    "human-blacksmith-help"
+    "human-blacksmith-dead" )
+  "human-blacksmith-attack" )
+
+(define-unit-type "unit-orc-blacksmith"		"Blacksmith"
+  ;; graphic data
+  #("orc blacksmith (summer).png"
+    "orc blacksmith (winter).png"
+    ()
+    "orc blacksmith (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-orc-blacksmith"	;; animations
+  "icon-orc-blacksmith"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3    775      0 #(  200    800     450    100 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     170
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("orc-blacksmith-selected"
+    "orc-blacksmith-acknowledge"
+    "orc-blacksmith-ready"
+    "orc-blacksmith-help"
+    "orc-blacksmith-dead" )
+  "orc-blacksmith-attack" )
+
+(define-unit-type "unit-human-refinery"		"Refinery"
+  ;; graphic data
+  #("human refinery (summer).png"
+    "human refinery (winter).png"
+    ()
+    "human refinery (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-human-refinery"	;; animations
+  "icon-human-refinery"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0      11      3    600      0 #(  225    800     350    200 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    25      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     200
+  "missile-lightning"
+  'corpse-water-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'shore-building
+  'stores-oil
+  ;; sounds
+  #("human-refinery-selected"
+    "human-refinery-acknowledge"
+    "human-refinery-ready"
+    "human-refinery-help"
+    "human-refinery-dead" )
+  "human-refinery-attack" )
+
+(define-unit-type "unit-orc-refinery"		"Refinery"
+  ;; graphic data
+  #("orc refinery (summer).png"
+    "orc refinery (winter).png"
+    ()
+    "orc refinery (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-orc-refinery"	;; animations
+  "icon-orc-refinery"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0      12      3    600      0 #(  225    800     350    200 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    25      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     200
+  "missile-lightning"
+  'corpse-water-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'shore-building
+  'stores-oil
+  ;; sounds
+  #("orc-refinery-selected"
+    "orc-refinery-acknowledge"
+    "orc-refinery-ready"
+    "orc-refinery-help"
+    "orc-refinery-dead" )
+  "orc-refinery-attack" )
+
+(define-unit-type "unit-human-oil-platform"	"Oil Platform"
+  ;; graphic data
+  #("human oil well (summer).png"
+    "human oil well (winter).png"
+    "human oil well (wasteland).png"
+    "human oil well (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-human-oil-platform"	;; animations
+  "icon-human-oil-platform"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       9      3    650      0 #(  200    700     450      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    20      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     160
+  "missile-lightning"
+  'corpse-water-site
+  'type-naval
+  'right-none
+  ;; flags
+  'building
+  'gives-oil
+  ;; sounds
+  #("human-oil-platform-selected"
+    "human-oil-platform-acknowledge"
+    "human-oil-platform-ready"
+    "human-oil-platform-help"
+    "human-oil-platform-dead" )
+  "human-oil-platform-attack" )
+
+(define-unit-type "unit-orc-oil-platform"	"Oil Platform"
+  ;; graphic data
+  #("orc oil well (summer).png"
+    "orc oil well (winter).png"
+    "orc oil well (wasteland).png"
+    "orc oil well (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-orc-oil-platform"	;; animations
+  "icon-orc-oil-platform"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0      10      3    650      0 #(  200    700     450      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    20      0      0       0       0
+  ;;Decay Annoy	Points
+      0     20     160
+  "missile-lightning"
+  'corpse-water-site
+  'type-naval
+  'right-none
+  ;; flags
+  'building
+  'gives-oil
+  ;; sounds
+  #("orc-oil-platform-selected"
+    "orc-oil-platform-acknowledge"
+    "orc-oil-platform-ready"
+    "orc-oil-platform-help"
+    "orc-oil-platform-dead" )
+  "orc-oil-platform-attack" )
+
+(define-unit-type "unit-keep"			"Keep"
+  ;; graphic data
+  #("keep (summer).png"
+    "keep (winter).png"
+    ()
+    "keep (swamp).png" )
+  '( 128 128 )			;; graphic size
+  "animations-keep"	;; animations
+  "icon-keep"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      6   1400      0 #(  200   2000    1000    200 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 4 4 ) '( 127 127 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    37      0      0       0       0
+  ;;Decay Annoy	Points
+      0     40     600
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'stores-gold
+  ;; sounds
+  #("keep-selected"
+    "keep-acknowledge"
+    "keep-ready"
+    "keep-help"
+    "keep-dead" )
+  "keep-attack" )
+
+(define-unit-type "unit-stronghold"		"Stronghold"
+  ;; graphic data
+  #("stronghold (summer).png"
+    "stronghold (winter).png"
+    ()
+    "stronghold (swamp).png" )
+  '( 128 128 )			;; graphic size
+  "animations-stronghold"	;; animations
+  "icon-stronghold"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      6   1400      0 #(  200   2000    1000    200 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 4 4 ) '( 127 127 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    37      0      0       0       0
+  ;;Decay Annoy	Points
+      0     40     600
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'stores-gold
+  ;; sounds
+  #("stronghold-selected"
+    "stronghold-acknowledge"
+    "stronghold-ready"
+    "stronghold-help"
+    "stronghold-dead" )
+  "stronghold-attack" )
+
+(define-unit-type "unit-castle"			"Castle"
+  ;; graphic data
+  #("castle (summer).png"
+    "castle (winter).png"
+    ()
+    "castle (swamp).png" )
+  '( 128 128 )			;; graphic size
+  "animations-castle"	;; animations
+  "icon-castle"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      9   1600      0 #(  200   2500    1200    500 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 4 4 ) '( 127 127 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    40      0      0       0       0
+  ;;Decay Annoy	Points
+      0     50    1500
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'stores-gold
+  ;; sounds
+  #("castle-selected"
+    "castle-acknowledge"
+    "castle-ready"
+    "castle-help"
+    "castle-dead" )
+  "castle-attack" )
+
+(define-unit-type "unit-fortress"		"Fortress"
+  ;; graphic data
+  #("fortress (summer).png"
+    "fortress (winter).png"
+    ()
+    "fortress (swamp).png" )
+  '( 128 128 )			;; graphic size
+  "animations-fortress"	;; animations
+  "icon-fortress"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      9   1600      0 #(  200   2500    1200    500 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 4 4 ) '( 127 127 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    40      0      0       0       0
+  ;;Decay Annoy	Points
+      0     50    1500
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'stores-gold
+  ;; sounds
+  #("fortress-selected"
+    "fortress-acknowledge"
+    "fortress-ready"
+    "fortress-help"
+    "fortress-dead" )
+  "fortress-attack" )
+
+(define-unit-type "unit-gold-mine"		"Gold Mine"
+  ;; graphic data
+  #("gold mine (summer).png"
+    "gold mine (winter).png"
+    "gold mine (wasteland).png"
+    "gold mine (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-gold-mine"	;; animations
+  "icon-gold-mine"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      3  25500      0 #(  150      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'gives-gold
+  ;; sounds
+  #("gold-mine-selected"
+    "gold-mine-acknowledge"
+    "gold-mine-ready"
+    "gold-mine-help"
+    "gold-mine-dead" )
+  "gold-mine-attack" )
+
+(define-unit-type "unit-oil-patch"		"Oil Patch"
+  ;; graphic data
+  #("oil patch (summer).png"
+    ()
+    "oil patch (wasteland).png"
+    "oil patch (swamp).png" )
+  '(  96  96 )			;; graphic size
+  "animations-oil-patch"	;; animations
+  "icon-oil-patch"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       0      0      0      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-naval
+  'right-none
+  ;; flags
+  'building
+  'oil-patch
+  ;; sounds
+  #("oil-patch-selected"
+    "oil-patch-acknowledge"
+    "oil-patch-ready"
+    "oil-patch-help"
+    "oil-patch-dead" )
+  "oil-patch-attack" )
+
+(define-unit-type "unit-human-start-location"	"Start Location"
+  ;; graphic data
+  #(()
+    ()
+    ()
+    () )
+  '(  32  32 )			;; graphic size
+  "animations-human-start-location"	;; animations
+  "icon-cancel"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       0      0      0      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-none
+  ;; flags
+  ;; sounds
+  #("human-start-location-selected"
+    "human-start-location-acknowledge"
+    "human-start-location-ready"
+    "human-start-location-help"
+    "human-start-location-dead" )
+  "human-start-location-attack" )
+
+(define-unit-type "unit-orc-start-location"	"Start Location"
+  ;; graphic data
+  #(()
+    ()
+    ()
+    () )
+  '(  32  32 )			;; graphic size
+  "animations-orc-start-location"	;; animations
+  "icon-cancel"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       0      0      0      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-none
+  ;; flags
+  ;; sounds
+  #("orc-start-location-selected"
+    "orc-start-location-acknowledge"
+    "orc-start-location-ready"
+    "orc-start-location-help"
+    "orc-start-location-dead" )
+  "orc-start-location-attack" )
+
+(define-unit-type "unit-human-guard-tower"	"Guard Tower"
+  ;; graphic data
+  #("human guard tower (summer).png"
+    "human guard tower (winter).png"
+    ()
+    "human guard tower (swamp).png" )
+  '(  64  64 )			;; graphic size
+  "animations-human-guard-tower"	;; animations
+  "icon-human-guard-tower"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      9    130      0 #(  140    500     150      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     6       6       6
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    40      4     12       0       0
+  ;;Decay Annoy	Points
+      0     50     200
+  "missile-arrow"
+  'corpse-land-site
+  'type-land
+  'right-none
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'building
+  'can-see-submarine
+  'can-attack
+  'tower
+  ;; sounds
+  #("human-guard-tower-selected"
+    "human-guard-tower-acknowledge"
+    "human-guard-tower-ready"
+    "human-guard-tower-help"
+    "human-guard-tower-dead" )
+  "human-guard-tower-attack" )
+
+(define-unit-type "unit-orc-guard-tower"	"Guard Tower"
+  ;; graphic data
+  #("orc guard tower (summer).png"
+    "orc guard tower (winter).png"
+    ()
+    "orc guard tower (swamp).png" )
+  '(  64  64 )			;; graphic size
+  "animations-orc-guard-tower"	;; animations
+  "icon-orc-guard-tower"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      9    130      0 #(  140    500     150      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     6       6       6
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    40      4     12       0       0
+  ;;Decay Annoy	Points
+      0     50     200
+  "missile-arrow"
+  'corpse-land-site
+  'type-land
+  'right-none
+  'can-target-land 'can-target-sea 'can-target-air 
+  ;; flags
+  'building
+  'can-see-submarine
+  'can-attack
+  'tower
+  ;; sounds
+  #("orc-guard-tower-selected"
+    "orc-guard-tower-acknowledge"
+    "orc-guard-tower-ready"
+    "orc-guard-tower-help"
+    "orc-guard-tower-dead" )
+  "orc-guard-tower-attack" )
+
+(define-unit-type "unit-human-cannon-tower"	"Cannon Tower"
+  ;; graphic data
+  #("human cannon tower (summer).png"
+    "human cannon tower (winter).png"
+    ()
+    "human cannon tower (swamp).png" )
+  '(  64  64 )			;; graphic size
+  "animations-human-cannon-tower"	;; animations
+  "icon-human-cannon-tower"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      9    160      0 #(  190   1000     300      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     7       7       7
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    40     50      0       0       0
+  ;;Decay Annoy	Points
+      0     50     250
+  "missile-small-cannon"
+  'corpse-land-site
+  'type-land
+  'right-none
+  'can-target-land 'can-target-sea 
+  ;; flags
+  'building
+  'can-see-submarine
+  'can-attack
+  'tower
+  ;; sounds
+  #("human-cannon-tower-selected"
+    "human-cannon-tower-acknowledge"
+    "human-cannon-tower-ready"
+    "human-cannon-tower-help"
+    "human-cannon-tower-dead" )
+  "human-cannon-tower-attack" )
+
+(define-unit-type "unit-orc-cannon-tower"	"Cannon Tower"
+  ;; graphic data
+  #("orc cannon tower (summer).png"
+    "orc cannon tower (winter).png"
+    ()
+    "orc cannon tower (swamp).png" )
+  '(  64  64 )			;; graphic size
+  "animations-orc-cannon-tower"	;; animations
+  "icon-orc-cannon-tower"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      9    160      0 #(  190   1000     300      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     7       7       7
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    40     50      0       0       0
+  ;;Decay Annoy	Points
+      0     50     250
+  "missile-small-cannon"
+  'corpse-land-site
+  'type-land
+  'right-none
+  'can-target-land 'can-target-sea 
+  ;; flags
+  'building
+  'can-see-submarine
+  'can-attack
+  'tower
+  ;; sounds
+  #("orc-cannon-tower-selected"
+    "orc-cannon-tower-acknowledge"
+    "orc-cannon-tower-ready"
+    "orc-cannon-tower-help"
+    "orc-cannon-tower-dead" )
+  "orc-cannon-tower-attack" )
+
+(define-unit-type "unit-circle-of-power"	"Circle of Power"
+  ;; graphic data
+  #("circle of power.png"
+    ()
+    ()
+    () )
+  '(  64  64 )			;; graphic size
+  "animations-circle-of-power"	;; animations
+  "icon-circle-of-power"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       0      0      0      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("circle-of-power-selected"
+    "circle-of-power-acknowledge"
+    "circle-of-power-ready"
+    "circle-of-power-help"
+    "circle-of-power-dead" )
+  "circle-of-power-attack" )
+
+(define-unit-type "unit-dark-portal"		"Dark Portal"
+  ;; graphic data
+  #("dark portal (summer).png"
+    "dark portal (winter).png"
+    "dark portal (wasteland).png"
+    "dark portal (swamp).png" )
+  '( 128 128 )			;; graphic size
+  "animations-dark-portal"	;; animations
+  "icon-dark-portal"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       0      0   5000      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 4 4 ) '( 127 127 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("dark-portal-selected"
+    "dark-portal-acknowledge"
+    "dark-portal-ready"
+    "dark-portal-help"
+    "dark-portal-dead" )
+  "dark-portal-attack" )
+
+(define-unit-type "unit-runestone"		"Runestone"
+  ;; graphic data
+  #("runestone (summer,wasteland).png"
+    "runestone (winter).png"
+    ()
+    "runestone (swamp).png" )
+  '(  64  64 )			;; graphic size
+  "animations-runestone"	;; animations
+  "icon-runestone"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       6      4   5000      0 #(  175    900     500      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      20    15      0      0       0       0
+  ;;Decay Annoy	Points
+      0     35     150
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("runestone-selected"
+    "runestone-acknowledge"
+    "runestone-ready"
+    "runestone-help"
+    "runestone-dead" )
+  "runestone-attack" )
+
+(define-unit-type "unit-human-wall"		"Wall"
+  ;; graphic data
+  #("wall (summer).png"
+    "wall (winter).png"
+    "wall (wasteland).png"
+    () )
+  '(  32  32 )			;; graphic size
+  "animations-human-wall"	;; animations
+  "icon-human-wall"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0      15      1     40      0 #(   30     20      10      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0     45       1
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("human-wall-selected"
+    "human-wall-acknowledge"
+    "human-wall-ready"
+    "human-wall-help"
+    "human-wall-dead" )
+  "human-wall-attack" )
+
+(define-unit-type "unit-orc-wall"		"Wall"
+  ;; graphic data
+  "unit-human-wall"
+  '(  32  32 )			;; graphic size
+  "animations-orc-wall"	;; animations
+  "icon-orc-wall"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0      15      1     40      0 #(   30     20      10      0 0 0)
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0     45       1
+  "missile-lightning"
+  'corpse-land-site
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  ;; sounds
+  #("orc-wall-selected"
+    "orc-wall-acknowledge"
+    "orc-wall-ready"
+    "orc-wall-help"
+    "orc-wall-dead" )
+  "orc-wall-attack" )
+
+(define-unit-type "unit-dead-body"		"Dead Body"
+  ;; graphic data
+  #("corpses.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-dead-body"	;; animations
+  "icon-peasant"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       0      1    255      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-none
+  ;; flags
+  'vanishes
+  ;; sounds
+  #("dead-body-selected"
+    "dead-body-acknowledge"
+    "dead-body-ready"
+    "dead-body-help"
+    "dead-body-dead" )
+  "dead-body-attack" )
+
+(define-unit-type "unit-destroyed-1x1-place"	"1x1 Destroyed Place"
+  ;; graphic data
+  #("small destroyed site (summer).png"
+    "small destroyed site (winter).png"
+    "small destroyed site (wasteland).png"
+    "small destroyed site (swamp).png" )
+  '(  32  32 )			;; graphic size
+  "animations-destroyed-1x1-place"	;; animations
+  "icon-peasant"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       0      2    255      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'vanishes
+  ;; sounds
+  #("destroyed-1x1-place-selected"
+    "destroyed-1x1-place-acknowledge"
+    "destroyed-1x1-place-ready"
+    "destroyed-1x1-place-help"
+    "destroyed-1x1-place-dead" )
+  "destroyed-1x1-place-attack" )
+
+(define-unit-type "unit-destroyed-2x2-place"	"2x2 Destroyed Place"
+  ;; graphic data
+  #("destroyed site (summer).png"
+    "destroyed site (winter).png"
+    "destroyed site (wasteland).png"
+    "destroyed site (swamp).png" )
+  '(  64  64 )			;; graphic size
+  "animations-destroyed-2x2-place"	;; animations
+  "icon-peasant"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       0      2    255      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 2 2 ) '(  63  63 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'vanishes
+  ;; sounds
+  #("destroyed-2x2-place-selected"
+    "destroyed-2x2-place-acknowledge"
+    "destroyed-2x2-place-ready"
+    "destroyed-2x2-place-help"
+    "destroyed-2x2-place-dead" )
+  "destroyed-2x2-place-attack" )
+
+(define-unit-type "unit-destroyed-3x3-place"	"3x3 Destroyed Place"
+  ;; graphic data
+  "unit-destroyed-2x2-place"
+  '(  96  96 )			;; graphic size
+  "animations-destroyed-3x3-place"	;; animations
+  "icon-peasant"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       0      3    255      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 3 3 ) '(  95  95 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'vanishes
+  ;; sounds
+  #("destroyed-3x3-place-selected"
+    "destroyed-3x3-place-acknowledge"
+    "destroyed-3x3-place-ready"
+    "destroyed-3x3-place-help"
+    "destroyed-3x3-place-dead" )
+  "destroyed-3x3-place-attack" )
+
+(define-unit-type "unit-destroyed-4x4-place"	"4x4 Destroyed Place"
+  ;; graphic data
+  "unit-destroyed-2x2-place"
+  '( 128 128 )			;; graphic size
+  "animations-destroyed-4x4-place"	;; animations
+  "icon-peasant"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+       0       0      3    255      0 #(    0      0       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 4 4 ) '( 127 127 )     0       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      0      0       0
+  "missile-lightning"
+  'corpse-none
+  'type-land
+  'right-none
+  ;; flags
+  'building
+  'vanishes
+  ;; sounds
+  #("destroyed-4x4-place-selected"
+    "destroyed-4x4-place-acknowledge"
+    "destroyed-4x4-place-ready"
+    "destroyed-4x4-place-help"
+    "destroyed-4x4-place-dead" )
+  "destroyed-4x4-place-attack" )
+
+(define-unit-type "unit-peasant-with-gold"	"Peasant"
+  ;; graphic data
+  #("peasant with gold.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-peasant-with-gold"	;; animations
+  "icon-peasant"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     30      0 #(   45    400       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    50      3      2       0       0
+  ;;Decay Annoy	Points
+      0      0      30
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-harvest
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'cower-peon
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("peasant-with-gold-selected"
+    "peasant-with-gold-acknowledge"
+    "peasant-with-gold-ready"
+    "peasant-with-gold-help"
+    "peasant-with-gold-dead" )
+  "peasant-with-gold-attack" )
+
+(define-unit-type "unit-peon-with-gold"		"Peon"
+  ;; graphic data
+  #("peon with gold.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-peon-with-gold"	;; animations
+  "icon-peon"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     30      0 #(   45    400       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    50      3      2       0       0
+  ;;Decay Annoy	Points
+      0      0      30
+  "missile-none"
+  'corpse-orc
+  'type-land
+  'right-harvest
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'cower-peon
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("peon-with-gold-selected"
+    "peon-with-gold-acknowledge"
+    "peon-with-gold-ready"
+    "peon-with-gold-help"
+    "peon-with-gold-dead" )
+  "peon-with-gold-attack" )
+
+(define-unit-type "unit-peasant-with-wood"	"Peasant"
+  ;; graphic data
+  #("peasant with wood.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-peasant-with-wood"	;; animations
+  "icon-peasant"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     30      0 #(   45    400       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    50      3      2       0       0
+  ;;Decay Annoy	Points
+      0      0      30
+  "missile-none"
+  'corpse-human
+  'type-land
+  'right-harvest
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'cower-peon
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("peasant-with-wood-selected"
+    "peasant-with-wood-acknowledge"
+    "peasant-with-wood-ready"
+    "peasant-with-wood-help"
+    "peasant-with-wood-dead" )
+  "peasant-with-wood-attack" )
+
+(define-unit-type "unit-peon-with-wood"		"Peon"
+  ;; graphic data
+  #("peon with wood.png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-peon-with-wood"	;; animations
+  "icon-peon"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     30      0 #(   45    400       0      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  31  31 )     1       6       4
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0    50      3      2       0       0
+  ;;Decay Annoy	Points
+      0      0      30
+  "missile-none"
+  'corpse-orc
+  'type-land
+  'right-harvest
+  'can-target-land 
+  ;; flags
+  'land-unit
+  'cower-peon
+  'can-attack
+  'organic
+  'selectable-by-rectangle
+  ;; sounds
+  #("peon-with-wood-selected"
+    "peon-with-wood-acknowledge"
+    "peon-with-wood-ready"
+    "peon-with-wood-help"
+    "peon-with-wood-dead" )
+  "peon-with-wood-attack" )
+
+(define-unit-type "unit-human-oil-tanker-full"	"Oil tanker"
+  ;; graphic data
+  #("human tanker (full).png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-human-oil-tanker-full"	;; animations
+  "icon-human-oil-tanker"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     90      0 #(   50    400     200      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     1       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      10    50      0      0       0       0
+  ;;Decay Annoy	Points
+      0     10      40
+  "missile-none"
+  'corpse-ship
+  'type-naval
+  'right-haul-oil
+  ;; flags
+  'sea-unit
+  'tanker
+  'selectable-by-rectangle
+  ;; sounds
+  #("human-oil-tanker-full-selected"
+    "human-oil-tanker-full-acknowledge"
+    "human-oil-tanker-full-ready"
+    "human-oil-tanker-full-help"
+    "human-oil-tanker-full-dead" )
+  "human-oil-tanker-full-attack" )
+
+(define-unit-type "unit-orc-oil-tanker-full"	"Oil tanker"
+  ;; graphic data
+  #("orc tanker (full).png"
+    ()
+    ()
+    () )
+  '(  72  72 )			;; graphic size
+  "animations-orc-oil-tanker-full"	;; animations
+  "icon-orc-oil-tanker"
+  ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
+      10       0      4     90      0 #(   50    400     200      0 )
+  ;;Tile    Box Size    Attack	ReactC	ReactH
+  '( 1 1 ) '(  63  63 )     1       0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+      10    50      0      0       0       0
+  ;;Decay Annoy	Points
+      0     10      40
+  "missile-none"
+  'corpse-ship
+  'type-naval
+  'right-haul-oil
+  ;; flags
+  'sea-unit
+  'tanker
+  'selectable-by-rectangle
+  ;; sounds
+  #("orc-oil-tanker-full-selected"
+    "orc-oil-tanker-full-acknowledge"
+    "orc-oil-tanker-full-ready"
+    "orc-oil-tanker-full-help"
+    "orc-oil-tanker-full-dead" )
+  "orc-oil-tanker-full-attack" )
+
+;;; EOF

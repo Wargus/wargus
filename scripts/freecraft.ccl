@@ -1,0 +1,181 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	freecraft.ccl	-	The craft configuration language.
+;;
+;;	(c) Copyright 1998-2000 by Lutz Sammer
+;;
+;;	$Id$
+;;
+
+(writes nil "FreeCraft default config file loading ...")
+
+;;-----------------------------------------------------------------------------
+;;	Config-Part
+;;-----------------------------------------------------------------------------
+
+;;	Edit the next sections to get your look and feel.
+
+;;	Set the game contrast,brightness,saturation.
+;(contrast 100) (brightness 0) (saturation 100)
+(contrast 110) (brightness 15) (saturation 100)
+
+;;	Use internal races 0=original 1=new
+(race-add 0)
+;(race-add 1)
+
+;;	Enter your default title screen.
+(title-screen "ale-title.png")
+
+;;-----------------------------------------------------------------------------
+
+;;	Define mana-sprite.
+;;
+;;	(mana-sprite file hotx hoty width height)
+;;
+(mana-sprite	"mana.png"	-7 -7 7 7)
+;(mana-sprite	"mana2.png"	-12 -2 13 4)
+
+;;	Define health-sprite.
+;;
+;;	(mana-sprite file hotx hoty width height)
+;;
+(health-sprite	"health.png"	0 -7 7 7)
+;(health-sprite	"health2.png"	0 -2 23 3)
+
+;;	Uncomment next, to get a health bar to the left of the unit
+;(show-health-bar)
+
+;;	Uncomment next, to get a health dot to the left of the unit
+(show-health-dot)
+
+;;	Uncomment next, to get a mana bar to the right of the unit
+;(show-mana-bar)
+
+;;	Uncomment next, to get a mana dot to the right of the unit
+(show-mana-dot)
+
+;;	Uncomment next, to get no full bars or dots.
+(show-no-full) 
+;;	Uncomment next, to show always bars or dots.
+(show-full) 
+
+;;	Uncomment next, to show bars and dots always on top.
+(decoration-on-top)
+
+;;	Uncomment next, to show the sight range of the selected unit on map.
+;(show-sight-range)
+
+;;	Uncomment next, to show the react range of the selected unit on map.
+;(show-react-range)
+
+;;	Uncomment next, to show the attack range of the selected unit on map.
+;(show-attack-range)
+
+;;	Uncomment next, to show the orders of the selected unit on map.
+;(show-orders)
+
+;;	Uncomment next, to show the original game resource line.
+;(original-resources)
+
+;;-----------------------------------------------------------------------------
+
+;;	Change next, for the wanted mouse speed.
+(mouse-adjust 15)
+
+;;	Uncomment next, to disable mouse scrolling.
+;(mouse-scroll-off)
+
+;;	Keyboard scroll speed in frames (1=each frame,2 each second,...)
+(key-scroll-speed 1)
+
+;;	Mouse scroll speed in frames (1=each frame,2 each second,...)
+(key-scroll-speed 1)
+
+;;	Comment next, to disable the display of the command keys in buttons.
+(show-command-key)
+
+;;	Uncomment next, to reverse middle mouse button map move direction.
+;(reverse-map-move)
+
+;;	Uncomment next, to reveal the complete map.
+;(reveal-map)
+
+;;	Uncomment next, to disable the fog of war.
+;(no-fog-of-war)
+(define (no-fog) (no-fog-of-war))	; SHORTCUT
+
+;;	Uncomment next, to enable the fog of war.
+(fog-of-war)
+
+;;	Choose your default for minimap with/without terrain.
+(minimap-terrain)
+;(minimap-no-terrain)
+
+;;	Choose your default for the fog of war style.
+;(original-fog-of-war)
+(gray-fog-of-war)
+
+;;	If you use gray style fog of war set the contrast,brightness,saturation
+(fog-of-war-contrast 30)
+(fog-of-war-brightness 10)
+(fog-of-war-saturation 100)
+
+;;	Set forest regeneration speed. (n* seconds, 0 = disabled)
+;;	(Auf allgemeinen Wunsch eines einzelnen Herrn :)
+(forest-regeneration 0)
+;(forest-regeneration 5)
+
+;;-----------------------------------------------------------------------------
+
+;;	Edit next to increase the speed, for debugging.
+
+;;	Decrease the mining time by this factor.
+(speed-mine 10)
+;;	Decrease the time in a gold deposit by this factor.
+(speed-gold 10)
+;;	Decrease the time for chopping a tree by this factor.
+(speed-chop 10)
+;;	Decrease the time in a wood deposit by this factor.
+(speed-wood 10)
+;;	Decrease the time for haul oil by this factor.
+(speed-haul 10)
+;;	Decrease the time in an oil deposit by this factor.
+(speed-oil 10)
+;;	Decrease the time to build a unit by this factor.
+(speed-build 10)
+;;	Decrease the time to train a unit by this factor.
+(speed-train 10)
+;;	Decrease the time to upgrade a unit by this factor.
+(speed-upgrade 10)
+;;	Decrease the time to research by this factor.
+(speed-research 10)
+
+;;	You can do all the above with this
+(speeds 1)
+
+;;-----------------------------------------------------------------------------
+;;	Tables-Part
+;;-----------------------------------------------------------------------------
+
+;;; Uses FreeCraft Library path!
+(load "ccl/tilesets.ccl" #f #t)
+; FIXME: Need to check if sound support is present
+(load "ccl/sound.ccl" #f #t)
+(load "ccl/missiles.ccl" #f #t)
+(load "ccl/anim.ccl" #f #t)
+(load "ccl/units.ccl" #f #t)
+(load "ccl/upgrade.ccl" #f #t)
+(load "ccl/fonts.ccl" #f #t)
+(load "ccl/ui.ccl" #f #t)
+
+;;-----------------------------------------------------------------------------
+
+(writes nil "... ready!\n")

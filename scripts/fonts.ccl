@@ -1,0 +1,75 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	fonts.ccl	-	Define the used fonts.
+;;
+;;	(c) Copyright 2000 by Lutz Sammer
+;;
+;;	$Id$
+;;
+
+;;=============================================================================
+;;	Define the used fonts.
+;;
+;;	(define-font type file size)
+;;
+;;	type:	type of font, currently supported 'game,'small,'large
+;;	file:	file name for font file, currently only multicolor bitmap
+;;		fonts supported.
+;;	size:	font size width and height.
+
+(define-font 'game	"graphic/small font.png"	13 14)
+(define-font 'small	"graphic/game font.png"		 7  6)
+(define-font 'large	"graphic/large font.png"	17 17)
+
+;;=============================================================================
+;;	Define the font colors.
+;;
+;;	(define-font-colors color0 ... color15)
+;;
+;;	color0:		array of 7 colors #( 1 2 3 4 5 6 7 )
+;;	...
+;;	color15:	16 different font colors supported.
+;;
+;;	FIXME: only 3=yellow and 7=white and 8=grey are correct.
+;;
+(define-font-colors
+    ;; 0 black
+    #(   0 228 228 228 228 239   0 )
+    ;; 1 red
+    #(   0 208 209 210 211 239   0 )
+    ;; 2 green
+    #(   0 216 216 216 216 239   0 )
+    ;; 3 yellow
+    #( 246 200 199 197 192 239 104 )
+    ;; 4 blue
+    #(   0   1   1   1   1 239   0 )
+    ;; 5 magenta
+    #(   0 220 220 220 220 239   0 )
+    ;; 6 cyan
+    #(   0 224 224 224 224 239   0 )
+    ;; 7 white
+    #(   0 246 246 246 104 239   0 )
+    ;; 8 grey
+    #(   0 111 110 109 104 239   0 )
+    ;; 9 light-red
+    #(   0 208 208 208 208 239   0 )
+    ;; a light-green
+    #(   0 216 216 216 216 239   0 )
+    ;; b light-yellow
+    #( 246 200 199 197 192 239 104 )
+    ;; c light-blue
+    #(   0   1   1   1   1 239   0 )
+    ;; d light-magenta
+    #(   0 220 220 220 220 239   0 )
+    ;; e light-cyan
+    #(   0 224 224 224 224 239   0 )
+    ;; f light grey
+    #(   0 111 110 109 104 239   0 ) )

@@ -1,0 +1,41 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	sound.ccl	-	Define the used sounds.
+;;
+;;	(c) Copyright 1999,2000 by Fabrice Rossi
+;;
+;;	$Id$
+;;
+
+;;	Uncomment this to enable threaded sound
+(sound-thread)
+
+;;	Define sounds later used
+;;
+(define sound-click (make-sound "click" "click.wav"))
+(define sound-explosion (make-sound "explosion" "explosion.wav"))
+(define sound-bow-hit (make-sound "bow hit" "bow hit.wav"))
+(define sound-fireball-hit (make-sound "fireball hit" "fireball hit.wav"))
+
+;;	Define sounds used by game
+;;
+(define-game-sounds
+  'placement-error (make-sound "placement error" "placement error.wav")
+  'placement-success (make-sound "placement success" "placement sucess.wav")
+  'click sound-click
+; FIXME: Not ready
+;  'tree-chopping (make-sound "tree chopping" "tree chopping.wav")
+;  'transport-docking
+;  'building-construction
+;  'basic human voices work complete
+;  'peasant work complete
+;  'basic orc voices work complete
+  )
