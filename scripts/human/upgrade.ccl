@@ -1,0 +1,389 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	upgrade.ccl	-	Define the human dependencies and upgrades.
+;;
+;;	(c) Copyright 2001 by Lutz Sammer
+;;
+;;	$Id$
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;=============================================================================
+;;	Define the upgrades
+;;
+;;	(define-upgrade upgrade-name 'icon icon 'costs #( costs ))
+;;
+;;	upgrade-name	is the identifier of the upgrade
+;;	icon		is the icon shown for upgrading.
+;;	costs		are the costs of the upgrade
+;;			(time gold wood oil ore stone coal)
+;;
+;;	NOTE: Save can generate this table.
+
+(define-upgrade 'upgrade-sword1 'icon 'icon-sword2
+  'costs #(   200   800     0     0     0     0     0))
+(define-upgrade 'upgrade-sword2 'icon 'icon-sword3
+  'costs #(   250  2400     0     0     0     0     0))
+(define-upgrade 'upgrade-arrow1 'icon 'icon-arrow2
+  'costs #(   200   300   300     0     0     0     0))
+(define-upgrade 'upgrade-arrow2 'icon 'icon-arrow3
+  'costs #(   250   900   500     0     0     0     0))
+
+(define-upgrade 'upgrade-human-shield1 'icon 'icon-human-shield2
+  'costs #(   200   300   300     0     0     0     0))
+(define-upgrade 'upgrade-human-shield2 'icon 'icon-human-shield3
+  'costs #(   250   900   500     0     0     0     0))
+
+(define-upgrade 'upgrade-human-ship-cannon1 'icon 'icon-human-ship-cannon2
+  'costs #(   200   700   100  1000     0     0     0))
+(define-upgrade 'upgrade-human-ship-cannon2 'icon 'icon-human-ship-cannon3
+  'costs #(   250  2000   250  3000     0     0     0))
+(define-upgrade 'upgrade-human-ship-armor1 'icon 'icon-human-ship-armor2
+  'costs #(   200   500   500     0     0     0     0))
+(define-upgrade 'upgrade-human-ship-armor2 'icon 'icon-human-ship-armor3
+  'costs #(   250  1500   900     0     0     0     0))
+
+(define-upgrade 'upgrade-catapult1 'icon 'icon-catapult1
+  'costs #(   250  1500     0     0     0     0     0))
+(define-upgrade 'upgrade-catapult2 'icon 'icon-catapult2
+  'costs #(   250  4000     0     0     0     0     0))
+
+(define-upgrade 'upgrade-ranger 'icon 'icon-ranger
+  'costs #(   250  1500     0     0     0     0     0))
+(define-upgrade 'upgrade-longbow 'icon 'icon-longbow
+  'costs #(   250  2000     0     0     0     0     0))
+(define-upgrade 'upgrade-ranger-scouting 'icon 'icon-ranger-scouting
+  'costs #(   250  1500     0     0     0     0     0))
+(define-upgrade 'upgrade-ranger-marksmanship 'icon 'icon-ranger-marksmanship
+  'costs #(   250  2500     0     0     0     0     0))
+
+(define-upgrade 'upgrade-paladin 'icon 'icon-paladin
+  'costs #(   250  1000     0     0     0     0     0))
+(define-upgrade 'upgrade-holy-vision 'icon 'icon-holy-vision
+  'costs #(     0     0     0     0     0     0     0))
+(define-upgrade 'upgrade-healing 'icon 'icon-heal
+  'costs #(   200  1000     0     0     0     0     0))
+(define-upgrade 'upgrade-exorcism 'icon 'icon-exorcism
+  'costs #(   200  2000     0     0     0     0     0))
+
+(define-upgrade 'upgrade-flame-shield 'icon 'icon-flame-shield
+  'costs #(   100  1000     0     0     0     0     0))
+(define-upgrade 'upgrade-fireball 'icon 'icon-fireball
+  'costs #(     0     0     0     0     0     0     0))
+(define-upgrade 'upgrade-slow 'icon 'icon-slow
+  'costs #(   100   500     0     0     0     0     0))
+(define-upgrade 'upgrade-invisibility 'icon 'icon-invisibility
+  'costs #(   200  2500     0     0     0     0     0))
+(define-upgrade 'upgrade-polymorph 'icon 'icon-critter
+  'costs #(   200  2000     0     0     0     0     0))
+(define-upgrade 'upgrade-blizzard 'icon 'icon-blizzard
+  'costs #(   200  2000     0     0     0     0     0))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;=============================================================================
+;;	Define the upgrade modifiers
+;;
+;;	(define-modifier upgrade-name '(modifiers) ... )
+;;
+;,	This does the real upgrades.
+;;
+;;	upgrade-name	is the identifier of the upgrade modifier
+;;	modifiers	is a pair of the effect name and value.
+;;
+;;	NOTE: Save can generate this table.
+
+(define-modifier 'upgrade-sword1
+  '(piercing-damage 2)
+  '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
+  '(apply-to unit-dwarves))
+
+(define-modifier 'upgrade-sword2
+  '(piercing-damage 2)
+  '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
+  '(apply-to unit-dwarves))
+
+(define-modifier 'upgrade-arrow1
+  '(piercing-damage 1)
+  '(apply-to unit-archer) '(apply-to unit-ranger))
+
+(define-modifier 'upgrade-arrow2
+  '(piercing-damage 1)
+  '(apply-to unit-archer) '(apply-to unit-ranger))
+
+(define-modifier 'upgrade-human-shield1
+  '(armor 2)
+  '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
+  '(apply-to unit-dwarves))
+
+(define-modifier 'upgrade-human-shield2
+  '(armor 2)
+  '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
+  '(apply-to unit-dwarves))
+
+(define-modifier 'upgrade-human-ship-cannon1
+  '(piercing-damage 5)
+  '(apply-to unit-elven-destroyer) '(apply-to unit-battleship)
+  '(apply-to unit-gnomish-submarine))
+
+(define-modifier 'upgrade-human-ship-cannon2
+  '(piercing-damage 5)
+  '(apply-to unit-elven-destroyer) '(apply-to unit-battleship)
+  '(apply-to unit-gnomish-submarine))
+
+(define-modifier 'upgrade-human-ship-armor1
+  '(armor 5)
+  '(apply-to unit-elven-destroyer) '(apply-to unit-battleship)
+  '(apply-to unit-gnomish-submarine))
+
+(define-modifier 'upgrade-human-ship-armor2
+  '(armor 5)
+  '(apply-to unit-elven-destroyer) '(apply-to unit-battleship)
+  '(apply-to unit-gnomish-submarine))
+
+(define-modifier 'upgrade-catapult1
+  '(piercing-damage 15)
+  '(apply-to unit-catapult))
+
+(define-modifier 'upgrade-catapult2
+  '(attack-range 1)
+  '(piercing-damage 15)
+  '(apply-to unit-catapult))
+
+(define-modifier 'upgrade-ranger
+  '(apply-to unit-archer) '(convert-to unit-ranger))
+
+(define-modifier 'upgrade-longbow
+  '(sight-range 1)
+  '(attack-range 1)
+  '(apply-to unit-archer) '(apply-to unit-ranger))
+
+(define-modifier 'upgrade-ranger-scouting
+  '(attack-range 3)
+  '(apply-to unit-archer) '(apply-to unit-ranger))
+
+(define-modifier 'upgrade-ranger-marksmanship
+  '(piercing-damage 3)
+  '(apply-to unit-archer) '(apply-to unit-ranger))
+
+(define-modifier 'upgrade-paladin
+  '(apply-to unit-knight) '(convert-to unit-paladin))
+
+(define-modifier 'upgrade-holy-vision
+  '(apply-to unit-paladin))
+
+(define-modifier 'upgrade-healing
+  '(apply-to unit-paladin))
+
+(define-modifier 'upgrade-exorcism
+  '(apply-to unit-paladin))
+
+(define-modifier 'upgrade-flame-shield)
+
+(define-modifier 'upgrade-fireball)
+
+(define-modifier 'upgrade-slow)
+
+(define-modifier 'upgrade-invisibility)
+
+(define-modifier 'upgrade-polymorph)
+
+(define-modifier 'upgrade-blizzard)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;=============================================================================
+;;
+;;	Define which units/upgrades are allowed.
+;;		A: allowed, E: enabled F: forbiden, R: researched
+;;
+;;	(define-allow unit/upgrade "AAAAAAAAAAAAAAAA")
+;;				    ^- player 0 ... 15
+;;
+;;	NOTE: Save can generate this table.
+;;
+
+;;	- units
+
+(define-allow 'unit-footman			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-peasant			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-ballista			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-knight			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-archer			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mage			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-paladin			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-dwarves			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-attack-peasant		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-ranger			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alleria			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-kurdan-and-sky-ree		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-khadgar			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-oil-tanker		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-transport		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-elven-destroyer		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-battleship			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-gnomish-submarine		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-gnomish-flying-machine	"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-gryphon-rider		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-turalyon			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-danath			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-lothar			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-uther-lightbringer		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-farm			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-barracks		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-church			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-watch-tower		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-stables			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-gnomish-inventor		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-gryphon-aviary		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-shipyard		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-town-hall			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-elven-lumber-mill		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-foundry		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mage-tower			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-blacksmith		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-refinery		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-oil-platform		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-keep			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-castle			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-start-location	"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-guard-tower		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-cannon-tower		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-wall			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-peasant-with-gold		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-peasant-with-wood		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-human-oil-tanker-full	"AAAAAAAAAAAAAAAA")
+
+;;	- upgrades
+
+(define-allow 'upgrade-sword1			"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-sword2			"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-arrow1			"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-arrow2			"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-human-shield1		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-human-shield2		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-human-ship-cannon1	"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-human-ship-cannon2	"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-human-ship-armor1	"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-human-ship-armor2	"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-catapult1		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-catapult2		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-ranger			"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-longbow			"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-ranger-scouting		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-ranger-marksmanship	"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-paladin			"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-holy-vision		"RRRRRRRRRRRRRRRR")
+(define-allow 'upgrade-healing			"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-exorcism			"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-flame-shield		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-fireball			"RRRRRRRRRRRRRRRR")
+(define-allow 'upgrade-slow			"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-invisibility		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-polymorph		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-blizzard			"AAAAAAAAAAAAAAAA")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;=============================================================================
+;;	Define the dependencies
+;;
+;;	(define-dependency unit/upgrade
+;;		'( required-unit/upgrade count ... ) ['or ...] )
+;;
+;;	Define the dependencies of an unit or upgrade.
+;;
+;;	unit/upgrade	Dependencies for this unit or upgrade.
+;;	required-unit/upgrade	Units required to build or research.
+;;	count		Number of units required.
+;;	'or		Alternative set of units/upgrades required.
+;;
+;;	NOTE: Save can generate this table.
+
+;;	- human land forces
+(define-dependency 'unit-archer
+  '(unit-elven-lumber-mill))
+(define-dependency 'unit-ballista
+  '(unit-human-blacksmith unit-elven-lumber-mill))
+(define-dependency 'unit-knight
+  '(unit-stables unit-human-blacksmith))
+(define-dependency 'unit-ranger
+  '(upgrade-ranger unit-elven-lumber-mill))
+(define-dependency 'unit-paladin
+  '(upgrade-paladin unit-stables unit-human-blacksmith))
+
+;;	- human naval forces
+(define-dependency 'unit-gnomish-submarine
+  '(unit-gnomish-inventor))
+(define-dependency 'unit-human-transport
+  '(unit-human-foundry))
+(define-dependency 'unit-battleship
+  '(unit-human-foundry))
+
+;;	- human air forces
+(define-dependency 'unit-gnomish-flying-machine
+  '(unit-elven-lumber-mill))
+
+;;	- human buildings
+(define-dependency 'unit-human-guard-tower
+  '(unit-elven-lumber-mill))
+(define-dependency 'unit-human-cannon-tower
+  '(unit-human-blacksmith))
+(define-dependency 'unit-human-shipyard
+  '(unit-elven-lumber-mill))
+(define-dependency 'unit-human-foundry
+  '(unit-human-shipyard))
+(define-dependency 'unit-human-refinery
+  '(unit-human-shipyard))
+(define-dependency 'unit-keep
+  '(unit-human-barracks))
+(define-dependency 'unit-gnomish-inventor
+  '(unit-castle)
+  'or '(unit-keep))
+(define-dependency 'unit-stables
+  '(unit-castle)
+  'or '(unit-keep))
+(define-dependency 'unit-castle
+  '(unit-stables unit-human-blacksmith unit-elven-lumber-mill))
+(define-dependency 'unit-mage-tower
+  '(unit-castle))
+(define-dependency 'unit-church
+  '(unit-castle))
+(define-dependency 'unit-gryphon-aviary
+  '(unit-castle))
+
+;;	- human upgrades/research
+(define-dependency 'upgrade-sword2
+  '(upgrade-sword1))
+(define-dependency 'upgrade-arrow2
+  '(upgrade-arrow1))
+(define-dependency 'upgrade-human-shield2
+  '(upgrade-human-shield1))
+(define-dependency 'upgrade-catapult2
+  '(upgrade-catapult1))
+(define-dependency 'upgrade-human-ship-cannon2
+  '(upgrade-human-ship-cannon1))
+(define-dependency 'upgrade-human-ship-armor2
+  '(upgrade-human-ship-armor1))
+(define-dependency 'upgrade-ranger
+  '(unit-keep)
+  'or '(unit-castle))
+(define-dependency 'upgrade-longbow
+  '(unit-castle upgrade-ranger))
+(define-dependency 'upgrade-ranger-scouting
+  '(unit-castle upgrade-ranger))
+(define-dependency 'upgrade-ranger-marksmanship
+  '(unit-castle upgrade-ranger))
+
+;;	- human spells
+(define-dependency 'upgrade-holy-vision
+  '(upgrade-paladin))
+(define-dependency 'upgrade-healing
+  '(upgrade-paladin))
+(define-dependency 'upgrade-exorcism
+  '(upgrade-paladin))
