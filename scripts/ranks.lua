@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---      ranks.ccl - Ranks for all of the races.
+--      ranks.lua - Ranks for all of the races.
 --
 --      (c) Copyright 2002-2004 by Jimmy Salmon.
 --

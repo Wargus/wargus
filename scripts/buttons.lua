@@ -5,12 +5,13 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/ 
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	buttons.lua	-	Define the general unit-buttons.
+--      buttons.lua - Define the general unit-buttons.
 --
---	(c) Copyright 2001 by Vladi Belperchinov-Shabanski and Lutz Sammer
+--      (c) Copyright 2001-2004 by Vladi Belperchinov-Shabanski, Lutz Sammer,
+--                                 and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,7 +27,7 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
+--      $Id$
 
 -- Load the buttons of all races
 
@@ -34,27 +35,29 @@ Load("scripts/human/buttons.lua")
 Load("scripts/orc/buttons.lua")
 
 ------------------------------------------------------------------------------
---	Define unit-button.
+--  Define unit-button.
 --
---	DefineButton( { Pos = n Level = n Icon = ident Action = name ['value value]
---		['allowed check ['values]] Key = key Hint = hint ForUnit = units)
+--  DefineButton( { Pos = n, Level = n, Icon = ident,
+--    Action = name, [Value = value,]
+--    [Allowed = check, [values,]]
+--    Key = key, Hint = hint, ForUnit = units)
 --
 
 -- neutral --------------------------------------------------------------------
 
 if (extensions) then
-DefineButton( { Pos = 1, Level = 0, Icon = "icon-circle-of-power",
-  Action = "cast-spell", Value = "spell-circle-of-power",
-  Allowed = "check-true",
-  Key = "c", Hint = "~!CAST DESTINATION",
-  ForUnit = {"unit-dark-portal"} } )
+  DefineButton( { Pos = 1, Level = 0, Icon = "icon-circle-of-power",
+    Action = "cast-spell", Value = "spell-circle-of-power",
+    Allowed = "check-true",
+    Key = "c", Hint = "~!CAST DESTINATION",
+    ForUnit = {"unit-dark-portal"} } )
 end
 
 if (extensions) then
-DefineButton( { Pos = 2, Level = 0, Icon = "icon-daemon",
-  Action = "train-unit", Value = "unit-daemon",
-  Key = "d", Hint = "SUMMON ~!DAEMON",
-  ForUnit = {"unit-dark-portal"} } )
+  DefineButton( { Pos = 2, Level = 0, Icon = "icon-daemon",
+    Action = "train-unit", Value = "unit-daemon",
+    Key = "d", Hint = "SUMMON ~!DAEMON",
+    ForUnit = {"unit-dark-portal"} } )
 end
 
 -- general cancel button ------------------------------------------------------
