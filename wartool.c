@@ -3510,13 +3510,6 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
       txte=53;
     }
 
-    //For the moment, force expansion to 0 since we haven't
-    //written the campaign files for the expansion yet.
-    //Don't extract them, but we still needed the correct
-    //location for the cd we are extracting.
-    expansion = 0;
-
-    
     objectives = ExtractEntry(ArchiveOffsets[txte], &l);
     if (!objectives) {
 	printf("Objectives allocation failed\n");
