@@ -1,0 +1,24 @@
+
+	(4)scandinavia.pud
+
+	I saw a map of USA and got the idea to make a map of scandinavia in
+	europe. The map might not be the most fair because I wanted to place
+	the resources as lifelike as possible. It's good for multiplayer with
+	4-5 players.
+
+	(c) Copyright 2002 by John Ericson
+
+	This file is part of FreeCraft Media Project
+
+	FreeCraft Media Project is free media (incl. sounds, voices, music,
+	fonts, graphics, animations, videos or 3d models;
+	you can redistribute it and/or modify it under the terms
+	of the GNU General Public License as published by the Free Software
+	Foundation; only version 2 of the License.
+
+	FreeCraft Media Project is distributed in the hope that it will be
+	useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+	of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	$ID: $
