@@ -116,9 +116,7 @@
     'unit-runestone 'unit-human-wall 'unit-orc-wall 'unit-dead-body
     'unit-destroyed-1x1-place 'unit-destroyed-2x2-place
     'unit-destroyed-3x3-place 'unit-destroyed-4x4-place
-    'unit-peasant-with-gold 'unit-peon-with-gold 'unit-peasant-with-wood
-    'unit-peon-with-wood 'unit-human-oil-tanker-full
-    'unit-orc-oil-tanker-full)
+    'unit-peasant 'unit-peon 'unit-peasant 'unit-peon 'unit-human-oil-tanker 'unit-orc-oil-tanker)
 
 ;;=============================================================================
 ;;	Define missiletype mapping from original number to internal symbol

@@ -284,9 +284,6 @@
 (define-allow 'unit-mythical-guard-tower	"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-mythical-cannon-tower	"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-orc-wall			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-peon-with-gold		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-peon-with-wood		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-oil-tanker-full		"AAAAAAAAAAAAAAAA")
 
 ;;	- upgrades
 
