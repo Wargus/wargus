@@ -24,7 +24,7 @@
 ;;	$Id$
 
 ;;
-;; game-menu
+;; menu-game
 ;;
 (define-menu 'name 'menu-game 'geometry '(272 96 256 288)
     'image 'panel1 'default '7)
@@ -83,7 +83,7 @@
 
 
 ;;
-;; victory-menu
+;; menu-victory
 ;;
 (define-menu 'name 'menu-victory 'geometry '(256 176 288 128)
     'image 'panel4 'default '2)
@@ -110,7 +110,7 @@
 
 
 ;;
-;; lost-menu
+;; menu-defeated
 ;;
 (define-menu 'name 'menu-defeated 'geometry '(256 176 288 128)
     'image 'panel4 'default '2)
@@ -130,7 +130,7 @@
 
 
 ;;
-;; scene-select-menu
+;; menu-select-scenario
 ;;
 (define-menu 'name 'menu-select-scenario 'geometry '(144 64 352 352)
     'image 'panel5 'default '4)
@@ -196,7 +196,7 @@
 
 
 ;;
-;; program-start-menu
+;; menu-program-start
 ;;
 (define-menu 'name 'menu-program-start 'geometry '(0 0 640 480)
     'image 'none 'default '1)
@@ -262,7 +262,7 @@
 
 
 ;;
-;; custom-game-menu
+;; menu-custom-game
 ;;
 (define-menu 'name 'menu-custom-game 'geometry '(0 0 640 480)
     'image 'none 'default '3)
@@ -362,7 +362,7 @@
 
 
 ;;
-;; enter-name-menu
+;; menu-enter-name
 ;;
 (define-menu 'name 'menu-enter-name 'geometry '(176 260 288 128)
     'image 'panel4 'default '2)
@@ -391,7 +391,7 @@
 
 
 ;;
-;; net-create-join-menu
+;; menu-create-join-menu
 ;;
 (define-menu 'name 'menu-create-join-menu 'geometry '(0 0 640 480)
     'image 'none 'default '2)
@@ -419,7 +419,7 @@
 
 
 ;;
-;; net-multi-setup-menu
+;; menu-multi-setup
 ;;
 (define-menu 'name 'menu-multi-setup 'geometry '(0 0 640 480)
     'image 'none 'default '3)
@@ -796,7 +796,7 @@
 
 
 ;;
-;; net-enter-server-menu
+;; menu-enter-server
 ;;
 (define-menu 'name 'menu-enter-server 'geometry '(176 260 288 128)
     'image 'panel4 'default '3)
@@ -825,7 +825,7 @@
 
 
 ;;
-;; net-multi-client-menu
+;; menu-net-multi-client
 ;;
 (define-menu 'name 'menu-net-multi-client 'geometry '(0 0 640 480)
     'image 'none 'default '4 'netaction 'terminate-net-connect)
@@ -1118,7 +1118,7 @@
 
 
 ;;
-;; net-connecting-menu
+;; menu-net-connecting
 ;;
 (define-menu 'name 'menu-net-connecting 'geometry '(176 260 288 128)
     'image 'panel4 'default '2 'netaction 'terminate-net-connect)
@@ -1141,7 +1141,7 @@
 
 
 ;;
-;; campaign-select-menu
+;; menu-campaign-select
 ;;
 (define-menu 'name 'menu-campaign-select 'geometry '(0 0 640 480)
     'image 'none 'default '0)
@@ -1190,7 +1190,7 @@
 
 
 ;;
-;; campaign-continue-menu
+;; menu-campaign-continue
 ;;
 (define-menu 'name 'menu-campaign-continue 'geometry '(0 0 640 480)
     'image 'none 'default '0)
@@ -1204,7 +1204,7 @@
 
 
 ;;
-;; objectives-menu
+;; menu-objectives
 ;;
 (define-menu 'name 'menu-objectives 'geometry '(272 96 256 288)
     'image 'panel1 'default '10)
@@ -1248,7 +1248,7 @@
 
 
 ;;
-;; end-scenario-menu
+;; menu-end-scenario
 ;;
 (define-menu 'name 'menu-end-scenario 'geometry '(272 96 256 288)
     'image 'panel1 'default '5)
@@ -1293,7 +1293,7 @@
 
 
 ;;
-;; sound-options-menu
+;; menu-sound-options
 ;;
 (define-menu 'name 'menu-sound-options 'geometry '(224 64 352 352)
     'image 'panel5 'default '24)
@@ -1397,7 +1397,7 @@
 
 
 ;;
-;; preferences-menu
+;; menu-preferences
 ;;
 (define-menu 'name 'menu-preferences 'geometry '(272 96 256 288)
     'image 'panel1 'default '6)
@@ -1432,7 +1432,7 @@
 
 
 ;;
-;; speed-settings-menu
+;; menu-settings-speed
 ;;
 (define-menu 'name 'menu-settings-speed 'geometry '(272 96 256 288)
     'image 'panel1 'default '14)
@@ -1491,7 +1491,7 @@
 
 
 ;;
-;; game-options-menu
+;; menu-game-options
 ;;
 (define-menu 'name 'menu-game-options 'geometry '(272 96 256 288)
     'image 'panel1 'default '4)
@@ -1529,7 +1529,7 @@
 
 
 ;;
-;; net-error-menu
+;; menu-net-error
 ;;
 (define-menu 'name 'menu-net-error 'geometry '(176 260 288 128)
     'image 'panel4 'default '2)
@@ -1549,7 +1549,7 @@
 
 
 ;;
-;; tips-menu
+;; menu-tips
 ;;
 (define-menu 'name 'menu-tips 'geometry '(256 112 288 256)
     'image 'panel2 'default '4)
@@ -1606,7 +1606,7 @@
 
 
 ;;
-;; help-menu
+;; menu-help
 ;;
 (define-menu 'name 'menu-help 'geometry '(272 96 256 288)
     'image 'panel1 'default '3)
@@ -1637,7 +1637,7 @@
 
 
 ;;
-;; keystroke-help-menu
+;; menu-keystroke-help
 ;;
 (define-menu 'name 'menu-keystroke-help 'geometry '(224 64 352 352)
     'image 'panel5 'default '2)
@@ -1662,7 +1662,7 @@
 
 
 ;;
-;; save-game-menu
+;; menu-save-game
 ;;
 (define-menu 'name 'menu-save-game 'geometry '(208 112 384 256)
     'image 'panel3 'default '6)
@@ -1711,7 +1711,7 @@
 
 
 ;;
-;; load-game-menu
+;; menu-load-game
 ;;
 (define-menu 'name 'menu-load-game 'geometry '(208 112 384 256)
     'image 'panel3 'default '4)
@@ -1748,7 +1748,7 @@
 
 
 ;;
-;; save-confirm-menu
+;; menu-save-confirm
 ;;
 (define-menu 'name 'menu-save-confirm 'geometry '(256 112 288 128)
     'image 'panel4 'default '1)
@@ -1778,7 +1778,7 @@
 
 
 ;;
-;; delete-confirm-menu
+;; menu-delete-confirm
 ;;
 (define-menu 'name 'menu-delete-confirm 'geometry '(256 112 288 128)
     'image 'panel4 'default '1)
@@ -1808,7 +1808,7 @@
 
 
 ;;
-;; editor-select-menu
+;; menu-editor-select
 ;;
 (define-menu 'name 'menu-editor-select 'geometry '(0 0 640 480)
     'image 'none 'default '0)
@@ -1836,13 +1836,13 @@
 
 
 ;;
-;; editor-load-map-menu
+;; menu-editor-load-map
 ;;
-(define-menu 'name "editor-load-map-menu" 'geometry '(144 64 352 352)
+(define-menu 'name "menu-editor-load-map" 'geometry '(144 64 352 352)
     'image 'panel5 'default '4)
 (define-menu-item 'pos '(176 11) 'font 'large  'init 'editor-load-init
     'text '("Select map" center)
-    'menu "editor-load-map-menu")
+    'menu "menu-editor-load-map")
 (define-menu-item 'pos '(23 109) 'font 'game  'init 'editor-load-lb-init 'exit 'editor-load-lb-exit
     'listbox '(size (288 108)
              style pulldown
@@ -1850,37 +1850,37 @@
              retopt editor-load-lb-retrieve
              handler editor-load-ok
              nlines 6)
-    'menu "editor-load-map-menu")
+    'menu "menu-editor-load-map")
 (define-menu-item 'pos '(311 109) 'font 'small 
     'vslider '(size (18 108)
              func editor-load-vs-action
              handler editor-load-ok)
-    'menu "editor-load-map-menu")
+    'menu "menu-editor-load-map")
 (define-menu-item 'pos '(48 308) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "OK"
             hotkey ""
             func editor-load-ok
             style gm-half)
-    'menu "editor-load-map-menu")
+    'menu "menu-editor-load-map")
 (define-menu-item 'pos '(198 308) 'font 'large 
     'button '(size (106 27)
             caption "Cancel"
             hotkey ""
             func editor-load-cancel
             style gm-half)
-    'menu "editor-load-map-menu")
+    'menu "menu-editor-load-map")
 (define-menu-item 'pos '(21 81) 'font 'game 
     'button '(size (36 24)
             caption "(null)"
             hotkey ""
             func editor-load-folder
             style folder)
-    'menu "editor-load-map-menu")
+    'menu "menu-editor-load-map")
 
 
 ;;
-;; editor-menu
+;; menu-editor
 ;;
 (define-menu 'name 'menu-editor 'geometry '(272 96 256 288)
     'image 'panel1 'default '7)
@@ -1939,7 +1939,7 @@
 
 
 ;;
-;; editor-map-properties
+;; menu-editor-map-properties
 ;;
 (define-menu 'name 'menu-editor-map-properties 'geometry '(256 112 288 256)
     'image 'panel2 'default '10)
@@ -1999,7 +1999,7 @@
 
 
 ;;
-;; editor-player-properties
+;; menu-editor-player-properties
 ;;
 (define-menu 'name 'menu-editor-player-properties 'geometry '(272 96 256 288)
     'image 'panel1 'default '0)
