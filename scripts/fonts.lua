@@ -28,11 +28,26 @@
 --
 --	$Id$
 
-DefineFont("small", "graphics/ui/fonts/small.png", 7, 6)
-DefineFont("game", "graphics/ui/fonts/game.png", 13, 14)
-DefineFont("large", "graphics/ui/fonts/large.png", 17, 17)
-DefineFont("small-title", "graphics/ui/fonts/small_episode_titles.png", 32, 35)
-DefineFont("large-title", "graphics/ui/fonts/large_episode_titles.png", 52, 50)
+DefineFont({
+  Name = "small",
+  File = "graphics/ui/fonts/small.png",
+  Size = {7, 6}})
+DefineFont({
+  Name = "game",
+  File = "graphics/ui/fonts/game.png",
+  Size = {13, 14}})
+DefineFont({
+  Name = "large",
+  File = "graphics/ui/fonts/large.png",
+  Size = {17, 17}})
+DefineFont({
+  Name = "small-title",
+  File = "graphics/ui/fonts/small_episode_titles.png",
+  Size = {32, 35}})
+DefineFont({
+  Name = "large-title",
+  File = "graphics/ui/fonts/large_episode_titles.png",
+  Size = {52, 50}})
 
 --	FIXME: only yellow, white, and grey are correct.
 
