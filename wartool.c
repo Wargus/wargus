@@ -41,6 +41,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #ifdef _MSC_VER
+#define strdup _strdup
+#define DEBUG _DEBUG
 #include <direct.h>
 #include <io.h>
 #else
@@ -1583,7 +1585,7 @@ void CheckPath(const char* path)
 			if (s) {
 				*s = '\0';
 			}
-#ifdef USE_WIN32
+#ifdef WIN32
 			mkdir(cp);
 #else
 			mkdir(cp, 0777);
@@ -3969,17 +3971,15 @@ int main(int argc, char** argv)
 		expansion_cd = 1;
 	}
 
-	sprintf(buf, "%s/scripts", Dir);
-	if (!stat(buf, &st)) {
-		sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
-		f = fopen(buf, "w");
-		if (expansion_cd) {
-			fprintf(f, "expansion = true\n");
-		} else {
-			fprintf(f, "expansion = false\n");
-		}
-		fclose(f);
+	sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
+	CheckPath(buf);
+	f = fopen(buf, "w");
+	if (expansion_cd) {
+		fprintf(f, "expansion = true\n");
+	} else {
+		fprintf(f, "expansion = false\n");
 	}
+	fclose(f);
 
 #ifdef DEBUG
 	printf("Extract from \"%s\" to \"%s\"\n", ArchiveDir, Dir);
