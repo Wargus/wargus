@@ -2,6 +2,7 @@
 CC = gcc
 
 CROSSDIR = /usr/local/cross
+STRATAGUSPATH = ../
 
 CFLAGS = -I/usr/local/include
 LDFLAGS = -lz -lpng -lm -static -L/usr/local/lib
@@ -44,9 +45,12 @@ release-src: clean cleanobj
 	rm -rf wargus-$(ver) .list;
 
 release-linux: clean wartool strip cleanobj
-	echo `find Makefile build.sh contrib campaigns wartool scripts maps | grep -v 'CVS' | grep -v '/\.'` > .list
+	pwd
+	cp -f $(STRATAGUSPATH)stratagus .
+	echo `find Makefile build.sh contrib campaigns wartool scripts maps stratagus | grep -v 'CVS' | grep -v '/\.'` > .list
 	mkdir wargus-$(ver); \
 	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
 	rm -rf `find wargus-$(ver) | grep -i cvs`; \
 	tar -zcf wargus-$(ver)-linux.tar.gz wargus-$(ver); \
-	rm -rf wargus-$(ver) .list;
+	cat .list; \
+	rm -rf wargus-$(ver) .list stratagus;
