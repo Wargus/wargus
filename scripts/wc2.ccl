@@ -218,7 +218,8 @@
   'hum-exp-07a 'hum-exp-07b 'hum-exp-07c 'orc-exp-12a 'orc-exp-12b 'orc-exp-12c
   'orc-exp-12d 'orc-exp-02 'orc-exp-07b 'orc-exp-03
 ; Some additionals scripts
+  'gruntrush 'goldfever
   'fca-01 'fca-02 'fca-03 'fca-04 'fca-05 'fca-06 'fca-07 'fca-08 'fca-09
-  'fca-11 'fca-12 'fca-13 'fca-14 'fca-15 'fca-16 'fca-17 'fca-18 'fca-19
+  'fca-10 'fca-11 'fca-12 'fca-13 'fca-14 'fca-15 'fca-16 'fca-17 'fca-18
   'fcm-01 'fcm-02 'fcm-03 'fcm-04 'fcm-05 'fcm-06 'fcm-07 'fcm-08 'fcm-09
-  'fcm-11 'fcm-12 'fcm-13 'fcm-14 'fcm-15 'fcm-16 'fcm-17 'fcm-18 'fcm-19 )
+  'fcm-10 'fcm-11 'fcm-12 'fcm-13 'fcm-14 'fcm-15 'fcm-16 'fcm-17 'fcm-18 )
