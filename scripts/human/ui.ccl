@@ -181,7 +181,26 @@
         (* 32 (trunc (/ (- screen_width 176 16) 32)))
         (* 32 (trunc (/ (- screen_height 16 16) 32)))))
 
-    'menu-panel (list "graphics/ui/human/menubutton.png" 0 0)
+    'menu-panel (list
+      'panel (list
+        'file "graphics/ui/human/menubutton.png"
+        'pos '(0 0))
+      'menu-button '(
+        pos (24 2)
+        size (128 19)
+        caption "Menu (~<F10~>)"
+        style main)
+      'network-menu-button '(
+        pos (6 2)
+        size (80 19)
+        caption "Menu"
+        style network)
+      'network-diplomacy-button '(
+        pos (90 2)
+        size (80 19)
+        caption "Diplomacy"
+        style network)
+    )
 
     'minimap (list
       'file "graphics/ui/human/minimap.png"
@@ -196,22 +215,6 @@
       'pos (list 176 (- screen_height 16))
       'text-pos (list (+ 2 176) (+ 2 (- screen_height 16)))
       'font 'game)
-
-    'menu-button '(
-      pos (24 2)
-      size (128 19)
-      caption "Menu (~<F10~>)"
-      style main)
-    'network-menu-button '(
-      pos (6 2)
-      size (80 19)
-      caption "Menu"
-      style network)
-    'network-diplomacy-button '(
-      pos (90 2)
-      size (80 19)
-      caption "Diplomacy"
-      style network)
 
     'cursors '(
       point cursor-point
