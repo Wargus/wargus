@@ -10,13 +10,13 @@
     )
 
 (add-trigger (lambda () (and (if-opponents 'this '== 0) 
-                             (if-unit 'this '== 1 'unit-turalyn)))
+                             (if-unit 'this '== 1 'unit-turalyon)))
   (lambda () (action-victory)))
 
 (add-trigger (lambda () (if-unit 'this '== 0 'all))
   (lambda () (action-defeat)))
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-turalyn)
-                             (if-unit 0 '== 0 'unit-turalyn)))
+(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-turalyon)
+                             (if-unit 6 '== 0 'unit-turalyon)))
   (lambda () (action-defeat)))
 
 ;;Units
