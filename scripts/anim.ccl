@@ -34,8 +34,8 @@
 ;;	o Sleep is the number of frames to wait for the next animation
 ;;	o Frame is increment to the frame of the image
 ;;
-(if (symbol-bound? 'freecraft-feature-new-ships (the-environment))
-    (write () "should make ships/flyers faster")
+(if (not (symbol-bound? 'freecraft-feature-new-ships ()))
+    (writes () "should make ships/flyers faster\n")
 )
 
 ;;------
@@ -407,6 +407,7 @@
 
 ;;------
 ;;	Eye of Kilrogg
+(if (symbol-bound? 'freecraft-feature-new-ships ())
 (define-animations "animations-eye-of-kilrogg"
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -415,6 +416,13 @@
     #( 0 4   1   0) #( 0 4   1   0) #( 0 4   1   0) #( 3 4   1   0))
   'attack '(	; #1
     #( 3 0   1   0)))
+(define-animations "animations-eye-of-kilrogg"
+  'still '(	; #5
+    #( 0 0   4   0) #( 3 0   1   0))
+  'move '(	; #4 P32
+    #( 0 8   1   0) #( 0 8   1   0) #( 0 8   1   0) #( 3 8   1   0))
+  'attack '(	; #1
+    #( 3 0   1   0))) )
 
 ;;------
 ;;	Skeleton
