@@ -93,9 +93,6 @@ static inline unsigned int Swap32(unsigned int D) {
 
 #define FetchByte(p) (*((unsigned char*)(p))++)
 
-// Temporary define, remove
-#define USE_SDL_SURFACE
-
 //----------------------------------------------------------------------------
 //  Config
 //----------------------------------------------------------------------------
@@ -1640,23 +1637,21 @@ void ConvertToMac(char* filename)
 /**
 **  Save a png file.
 **
-**  @param name   File name
-**  @param image  Graphic data
-**  @param w      Graphic width
-**  @param h      Graphic height
-**  @param pal    Palette
+**  @param name         File name
+**  @param image        Graphic data
+**  @param w            Graphic width
+**  @param h            Graphic height
+**  @param pal          Palette
+**  @param transparent  Image uses transparency
 */
 int SavePNG(const char* name, unsigned char* image, int w, int h,
-	unsigned char* pal)
+	unsigned char* pal, int transparent)
 {
 	FILE* fp;
 	png_structp png_ptr;
 	png_infop info_ptr;
 	unsigned char** lines;
 	int i;
-#ifdef USE_SDL_SURFACE
-	int j;
-#endif
 
 	if (!(fp = fopen(name, "wb"))) {
 		printf("%s:", name);
@@ -1697,6 +1692,25 @@ int SavePNG(const char* name, unsigned char* image, int w, int h,
 	info_ptr->palette = (void*)pal;
 	info_ptr->num_palette = 256;
 
+	if (transparent) {
+		unsigned char* p;
+		unsigned char* end;
+		png_byte trans[256];
+
+		p = image;
+		end = image + w * h;
+		while (p < end) {
+			if (!*p) {
+				*p = 0xFF;
+			}
+			++p;
+		}
+
+		memset(trans, 0xFF, sizeof(trans));
+		trans[255] = 0x0;
+		png_set_tRNS(png_ptr, info_ptr, trans, 256, 0);
+	}
+
 	// write the file header information
 	png_write_info(png_ptr, info_ptr);
 
@@ -1709,17 +1723,6 @@ int SavePNG(const char* name, unsigned char* image, int w, int h,
 		fclose(fp);
 		return 1;
 	}
-
-#ifdef USE_SDL_SURFACE
-	// So the engine doesn't need to support 2 transparent indexes
-	for (i = 0; i < h; ++i) {
-		for (j = 0; j < w; ++j) {
-			if (!image[j + i * w]) {
-				image[j + i * w] = 255;
-			}
-		}
-	}
-#endif
 
 	for (i = 0; i < h; ++i) {
 		lines[i] = image + i * w;
@@ -2222,7 +2225,7 @@ int ConvertTileset(char* file, int pale, int mege, int mine, int mape)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, TILESET_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, w, h, palp);
+	SavePNG(buf, image, w, h, palp, 1);
 
 	free(image);
 	free(palp);
@@ -2510,7 +2513,7 @@ int ConvertGfx(char* file, int pale, int gfxe, int gfxe2, int start2)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, UNIT_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, w, h, palp);
+	SavePNG(buf, image, w, h, palp, 1);
 
 	free(image);
 	free(palp);
@@ -2540,7 +2543,7 @@ int ConvertGfu(char* file,int pale,int gfue)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, UNIT_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, w, h, palp);
+	SavePNG(buf, image, w, h, palp, 1);
 
 	free(image);
 	free(palp);
@@ -2699,7 +2702,7 @@ int ConvertFont(char* file, int pale, int fnte)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, FONT_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, w, h, palp);
+	SavePNG(buf, image, w, h, palp, 1);
 
 	free(image);
 	free(palp);
@@ -2822,7 +2825,7 @@ int ConvertImage(char* file, int pale, int imge, int nw, int nh)
 		w = nw;
 		h = nh;
 	}
-	SavePNG(buf, image, w, h, palp);
+	SavePNG(buf, image, w, h, palp, 0);
 
 	free(image);
 	if (pale != 27 && imge != 28) {
@@ -2897,7 +2900,7 @@ int ConvertCursor(char* file, int pale, int cure)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, CURSOR_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, w, h, palp);
+	SavePNG(buf, image, w, h, palp, 1);
 
 	free(image);
 	if (pale != 27 && cure != 314) {
