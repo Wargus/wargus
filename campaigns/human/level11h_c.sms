@@ -11,11 +11,19 @@
 
 ;; FIXME: Check if units are freed.
 
-(add-trigger (lambda () (and (if-unit 3 '== 0 'all) (if-opponents 'this '== 0)))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-unit 3 '== 0 'all)
+      (if-opponents 'this '== 0)))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 
