@@ -56,14 +56,19 @@
 ;;
 ;;	(mana-sprite file hotx hoty width height)
 ;;
+(if new-names?
+(mana-sprite	"graphics/ui/mana.png"	-7 -7 7 7)
 (mana-sprite	"mana.png"	-7 -7 7 7)
+)
 ;(mana-sprite	"mana2.png"	-12 -2 13 4)
 
 ;;	Define health-sprite.
 ;;
 ;;	(mana-sprite file hotx hoty width height)
 ;;
-(health-sprite	"health.png"	0 -7 7 7)
+(if new-names?
+(health-sprite	"graphics/ui/health.png"	0 -7 7 7)
+)
 ;(health-sprite	"health2.png"	0 -2 23 3)
 
 ;;	Uncomment next, to get a health bar to the left of the unit
@@ -124,7 +129,8 @@
 
 ;;	Uncomment next, to get extended features.
 ;;		Currently enables some additional buttons.
-(define extensions #f)
+(define extensions #t)
+;(define extensions #f)
 
 ;;-----------------------------------------------------------------------------
 
