@@ -114,11 +114,6 @@
 	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone
 	'unit-alliance-transport)
     ;;
-    ;;	Workers can collect which resource.
-    ;;
-    (list 'collect 'unit-peasant 'gold 'wood 'ore 'stone 'coal)
-    (list 'collect 'unit-human-oil-tanker 'oil )
-    ;;
     ;;	Reduce unit limits.
     ;;
     (list 'unit-limit 'unit-farm 'food)
@@ -208,11 +203,6 @@
 	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
 	'unit-altar-of-storms 'unit-dragon-roost 'unit-dark-portal
 	'unit-runestone 'unit-mythical-transport)
-    ;;
-    ;;	Workers can collect which resource.
-    ;;
-    (list 'collect 'unit-peon 'gold 'wood 'ore 'stone 'coal)
-    (list 'collect 'unit-orc-oil-tanker 'oil )
     ;;
     ;;	Reduce unit limits.
     ;;

@@ -395,7 +395,7 @@
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
   'air-unit
-  'can-see-submarine
+  'detect-cloak
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -595,8 +595,8 @@
   'can-attack
   'can-target-sea
   'sea-unit
-  'submarine
-  'can-see-submarine
+  'permanent-cloak
+  'detect-cloak
   'selectable-by-rectangle
   'sounds '(
     selected "gnomish-submarine-selected"
@@ -624,7 +624,7 @@
   'type-fly
   'right-move
   'air-unit 'coward
-  'can-see-submarine
+  'detect-cloak
   'selectable-by-rectangle
   'sounds '(
     selected "gnomish-flying-machine-selected"
@@ -655,7 +655,7 @@
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
   'air-unit
-  'can-see-submarine
+  'detect-cloak
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -912,7 +912,7 @@
   'type-land
   'can-target-land 'can-target-sea 'can-target-air
   'building 
-  'can-see-submarine
+  'detect-cloak
   'sounds '(
     selected "human-watch-tower-selected"
     acknowledge "human-watch-tower-acknowledge"
@@ -1361,7 +1361,7 @@
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
   'building 
-  'can-see-submarine
+  'detect-cloak
   'tower
   'sounds '(
     selected "human-guard-tower-selected"
@@ -1395,7 +1395,7 @@
   'can-attack
   'can-target-land 'can-target-sea
   'building 
-  'can-see-submarine
+  'detect-cloak
   'tower
   'sounds '(
     selected "human-cannon-tower-selected"
