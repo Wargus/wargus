@@ -127,9 +127,7 @@ DefineAiHelper(
   {"unit-equiv", "unit-archer",
   "unit-ranger"},
   {"unit-equiv", "unit-knight",
-  "unit-paladin"},
-  {"unit-equiv", "unit-peasant"},
-  {"unit-equiv", "unit-human-oil-tanker"} )
+  "unit-paladin"} )
 
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 --  * Race orc.
@@ -213,9 +211,7 @@ DefineAiHelper(
   {"unit-equiv", "unit-axethrower",
   "unit-berserker"},
   {"unit-equiv", "unit-ogre",
-  "unit-ogre-mage"},
-  {"unit-equiv", "unit-peon"},
-  {"unit-equiv", "unit-orc-oil-tanker"} )
+  "unit-ogre-mage"} )
 
 --
 --  City-center of the current race.
