@@ -399,27 +399,23 @@
 (if extensions (begin
 (define-button 'pos 5 'level 0 'icon 'icon-harvest
   'action 'harvest
-  'allowed 'check-no-work
   'key "h" 'hint "SET ~!HARVEST LUMBER/MINE GOLD"
   'for-unit '(unit-town-hall unit-keep unit-castle))
 
 (define-button 'pos 7 'level 0 'icon 'icon-move-peasant
   'action 'move
-  'allowed 'check-no-work
   'key "m" 'hint "SET ~!MOVE"
   'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks
     unit-mage-tower unit-gryphon-aviary unit-gnomish-inventor))
 
 (define-button 'pos 8 'level 0 'icon 'icon-human-shield1
   'action 'stop
-  'allowed 'check-no-work
   'key "z" 'hint "SET ~!ZTOP"
   'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks
     unit-mage-tower unit-gryphon-aviary unit-gnomish-inventor))
 
 (define-button 'pos 9 'level 0 'icon 'icon-sword1
   'action 'attack
-  'allowed 'check-no-work
   'key "e" 'hint "S~!ET ATTACK"
   'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks
     unit-mage-tower unit-gryphon-aviary unit-gnomish-inventor)) ))
