@@ -28,6 +28,14 @@
 ;;		Splitting this file into races is a problem, because all
 ;;		icons are in a single file.
 
+
+;;	Set the icon size (width height)
+(set-icon-size! 46 38)
+
+;;	Set the number of icons per row
+(set-icons-per-row! 5)
+
+
 (define summer-icons-file "tilesets/summer/icons.png")
 (define winter-icons-file "tilesets/winter/icons.png")
 (define wasteland-icons-file "tilesets/wasteland/icons.png")
