@@ -1273,7 +1273,7 @@
 ;;
 (define-menu 'name 'menu-net-connecting 'geometry '(176 260 288 128)
     'image 'panel4 'default '2 'netaction 'terminate-net-connect)
-(define-menu-item 'pos (list 144 11) 'font 'large 'init 'net-connecting-init
+(define-menu-item 'pos (list 144 11) 'font 'large 'init 'net-connecting-init 'exit 'net-connecting-exit
     'text '("Connecting to server" center)
     'menu 'menu-net-connecting)
 (define-menu-item 'pos (list 144 32) 'font 'large
