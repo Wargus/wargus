@@ -366,6 +366,8 @@ end
 --  Tables-Part
 -------------------------------------------------------------------------------
 
+Load("preferences1.lua")
+
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")
 
@@ -389,5 +391,7 @@ Load("scripts/tips.lua")
 Load("scripts/ranks.lua")
 Load("scripts/menus.lua")
 Load("scripts/cheats.lua")
+
+Load("preferences2.lua")
 
 print("... ready!\n")
