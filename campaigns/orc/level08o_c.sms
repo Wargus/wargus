@@ -13,7 +13,7 @@
 
 (add-trigger (lambda ()
   (and (if-unit 7 '== 0 'unit-rune-stone)
-    (if-unit 1 '== 0 'unit-castle) )
+    (if-unit 1 '== 0 'unit-castle)))
   (lambda () (action-victory)))
 
 (add-trigger (lambda () (if-unit 'this '== 0 'all))
