@@ -57,10 +57,10 @@ function HandleCheats(str)
     RevealMap()
 
   elseif (str == "fow on") then
-    -- FIXME: Not supported yet
+    SetFogOfWar(true)
 
   elseif (str == "fow off") then
-    -- FIXME: Not supported yet
+    SetFogOfWar(false)
 
   elseif (str == "fast debug") then
     for i = 1,table.getn(resources) do
@@ -114,10 +114,10 @@ function HandleCheats(str)
     end
 
   elseif (str == "unite the clans") then
-    -- FIXME: Not supported yet
+    ActionVictory()
 
   elseif (str == "you pitiful worm") then
-    -- FIXME: Not supported yet
+    ActionDefeat()
 
   elseif (str == "it is a good day to die") then
     -- FIXME: Not supported yet
