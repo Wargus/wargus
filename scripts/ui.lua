@@ -57,15 +57,8 @@ DefinePanelContents(
 			Component1 = "Value", Component2 = "Max", Centered = true}}
 	},
 
-	{ Pos = {111, 11}, More = {"Text", {Text = If(LessThan(VideoTextLength("game", UnitName("Active")), 110),
-												"",
-												SubString(UnitName("Active"), 0,
-													StringFind(UnitName("Active"), ' '))), Centered = true}} },
-
-	{ Pos = {114, 25}, More = {"Text", {Text = If(LessThan(VideoTextLength("game", UnitName("Active")), 110),
-												UnitName("Active"),
-												SubString(UnitName("Active"),
-													Add(1, StringFind(UnitName("Active"), ' ')))), Centered = true}} },
+	{ Pos = {114, 11}, More = {"Text", {Text = Line(1, UnitName("Active"), 110, "game"), Centered = true}} },
+	{ Pos = {114, 25}, More = {"Text", {Text = Line(2, UnitName("Active"), 110, "game"), Centered = true}} },
 
 -- Ressource Left
 	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
