@@ -197,6 +197,10 @@
 (set-forest-regeneration! 0)
 ;(set-forest-regeneration! 5)
 
+;;	Set depleted % for gold-mines. (0 = disabled)
+(set-goldmine-depleted! 0)
+;(set-goldmine-depleted! 5)
+
 ;;-----------------------------------------------------------------------------
 
 ;;	If you prefer fighters are attacking by right clicking empty space
