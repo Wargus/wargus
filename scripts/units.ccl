@@ -376,6 +376,7 @@
   '("unit-destroyed-4x4-place" 0)
   'type-land
   'right-none
+  'can-cast-spell
   ;; flags
   'building
   ;; sounds
