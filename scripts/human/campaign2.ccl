@@ -27,7 +27,7 @@
 ;;	Define the campaign
 ;;
 ;;	(define-campagin 'ident 'name "name" 'campaign (list elements)
-(define-campaign 'human-exp 'name "The human expansion campaign"
+(define-campaign 'human-exp 'name "H~!uman expansion levels"
   'campaign (list
 	'show-picture
 	  "Act I"

@@ -27,7 +27,7 @@
 ;;	Define the campaign
 ;;
 ;;	(define-campagin 'ident 'name "name" 'campaign (list elements)
-(define-campaign 'orc-exp 'name "The orc expansion campaign"
+(define-campaign 'orc-exp 'name "O~!rc expansion levels"
   'campaign (list
 	'show-picture
 	  "Act I"
