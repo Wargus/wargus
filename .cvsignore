@@ -6,3 +6,8 @@ music
 videos
 wartool
 wartool.o
+Debug
+Release
+wartool.ncb
+wartool.opt
+wartool.plg
