@@ -145,7 +145,9 @@ local icons = {
   {"icon-bloodlust", 112},
   {"icon-unknown113", 113},
   {"icon-skeleton", 114},
+  {"icon-raise-dead", 114},
   {"icon-critter", 115},
+  {"icon-polymorph", 115},
   {"icon-sword1", 116},
   {"icon-sword2", 117},
   {"icon-sword3", 118},
@@ -234,33 +236,27 @@ for i = 1,table.getn(icons) do
     Tileset = "tileset-summer",
     Size = {46, 38},
     File = "tilesets/summer/icons.png",
-    Index = icons[i][2],})
+    Frame = icons[i][2],})
 
   DefineIcon({
     Name = icons[i][1],
     Tileset = "tileset-winter",
     Size = {46, 38},
     File = "tilesets/winter/icons.png",
-    Index = icons[i][2],})
+    Frame = icons[i][2],})
 
   DefineIcon({
     Name = icons[i][1],
     Tileset = "tileset-wasteland",
     Size = {46, 38},
     File = "tilesets/wasteland/icons.png",
-    Index = icons[i][2],})
+    Frame = icons[i][2],})
 
   DefineIcon({
     Name = icons[i][1],
     Tileset = "tileset-swamp",
     Size = {46, 38},
     File = "tilesets/swamp/icons.png",
-    Index = icons[i][2],})
+    Frame = icons[i][2],})
 end
 
-
---
---  Icon aliases
---
-DefineIconAlias("icon-raise-dead", "icon-skeleton")
-DefineIconAlias("icon-polymorph", "icon-critter")
