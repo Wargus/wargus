@@ -67,7 +67,7 @@ ARCHIVE=$CDROM"/data/"
 #
 #       Here are my executeables or -T dir.
 #
-BINPATH="tools"
+BINPATH="."
 #BINPATH="/usr/local/lib/stratagus/bin"
 #BINPATH="/usr/lib/stratagus/tools"
 
@@ -165,7 +165,7 @@ cp $CONTRIB/food.png $DIR/graphics/ui
 cp $CONTRIB/score.png $DIR/graphics/ui
 cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
 cp $CONTRIB/stratagus.png $DIR/graphics/ui
-cp $CONTRIB/music/toccata.mod.gz $DIR/music/default.mod.gz
+cp $CONTRIB/toccata.mod.gz $DIR/music/default.mod.gz
 
 ###############################################################################
 ##	MISC
@@ -207,5 +207,10 @@ cp $CONTRIB/puds/multi/* $DIR/puds/multiple >/dev/null 2>&1
 [ -f "$DIR/puds/multi/(2)mysterious-dragon-isle.pud.bz2" ] \
 	&& ln -s "multi/(2)mysterious-dragon-isle.pud.bz2" \
 	    $DIR/puds/default.pud.bz2
+
+#
+##  Rename puds to maps for consistancy
+mv $DIR/puds $DIR/maps
+[ -d $DIR/maps/my_puds ] mv $DIR/maps/my_puds $DIR/maps/my_maps
 
 exit 0

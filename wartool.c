@@ -3782,10 +3782,10 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 	for (levelno = 0; levelno < expansion / 2; ++levelno) {
 		for (race = 0; race < 2; ++race) {
 			//Open Relevant file, to write stuff too.
-			sprintf(buf, "%s/../%s/%s/%s.cm", Dir, "contrib", TEXT_PATH,
+			sprintf(buf, "%s/../%s/%s.cm", Dir, TEXT_PATH,
 				Todo[2 * levelno + 1 + race + 7].File);
 			if (!(inlevel = fopen(buf, "rb"))) {
-				sprintf(buf, "./contrib/%s/%s.cm", TEXT_PATH,
+				sprintf(buf, "./%s/%s.cm", TEXT_PATH,
 					Todo[2 * levelno + 1 + race + 7].File);
 				if (!(inlevel = fopen(buf, "rb"))) {
 					printf("Cannot Open File (Skipping Level): %s\n", buf);
