@@ -1217,6 +1217,7 @@
   'corpse '(unit-destroyed-3x3-place 3)
   'type-naval
   'building
+  'must-build-on-top 'unit-oil-patch
   'gives-oil
   'sounds '(
     selected "human-oil-platform-selected"

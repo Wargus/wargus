@@ -1309,6 +1309,7 @@
   'type-naval
   'building
   'gives-oil
+  'must-build-on-top 'unit-oil-patch
   'sounds '(
     selected "orc-oil-platform-selected"
     acknowledge "orc-oil-platform-acknowledge"
