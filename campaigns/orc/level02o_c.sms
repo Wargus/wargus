@@ -11,7 +11,7 @@ Briefing("type", "wc2",
 
 AddTrigger( 
   function() return IfUnit(2, "==", 0, "unit-sharp-axe") and
-    IfRescuedNearUnit("this", "==", 1, "unit-sharp-axe", "unit-circle-of-power) end,
+    IfRescuedNearUnit("this", "==", 1, "unit-sharp-axe", "unit-circle-of-power") end,
   function() return ActionVictory() end)
 	
 AddTrigger(
