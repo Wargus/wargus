@@ -1571,10 +1571,15 @@
 
 (define-unit-type "unit-human-start-location"	"Start Location"
   ;; graphic data
-  #( "x (human player startpoint).png"
+  (if new-names?
+  #( "human/x startpoint.png"
     ()
     ()
     () )
+  #( "x (human player startpoint).png"
+    ()
+    ()
+    () ))
   '(  32  32 )			;; graphic size
   "animations-building"
   "icon-cancel"
