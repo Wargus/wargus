@@ -1115,6 +1115,7 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-elven-lumber-mill
   'costs '(time 150 gold 600 wood 450)
+  'improve-production '(wood 25)
   'construction 'construction-land
   'speed 0
   'hit-points 600
@@ -1254,6 +1255,7 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-alliance-refinery
   'costs '(time 225 gold 800 wood 350 oil 200)
+  'improve-production '(oil 25)
   'construction 'construction-alliance-refinery
   'speed 0
   'hit-points 600
@@ -1313,6 +1315,7 @@
   'size '(128 128)
   'animations 'animations-building 'icon 'icon-keep
   'costs '(time 200 gold 2000 wood 1000 oil 200)
+  'improve-production '(gold 10)
   'construction 'construction-land
   'speed 0
   'hit-points 1400
@@ -1342,6 +1345,7 @@
   'size '(128 128)
   'animations 'animations-building 'icon 'icon-castle
   'costs '(time 200 gold 2500 wood 1200 oil 500)
+  'improve-production '(gold 20)
   'construction 'construction-land
   'speed 0
   'hit-points 1600
