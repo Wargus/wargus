@@ -35,7 +35,7 @@ ver = 2.1pre1
 release: release-src release-linux
 
 release-src: clean cleanobj
-	echo `find Makefile build.* contrib campaigns wartool.c scripts maps | grep -v 'CVS' | grep -v '/\.'` > .list
+	echo `find Makefile build.* contrib campaigns wartool.c wartool.ds* scripts maps | grep -v 'CVS' | grep -v '/\.'` > .list
 	mkdir wargus-$(ver); \
 	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
 	rm -rf `find wargus-$(ver) | grep -i cvs`; \
