@@ -72,8 +72,7 @@
         "/filler-right.png")
       'pos (list (- screen_width 16) 0))
 
-    ;	Resource line
-    (list
+    'ressource-line (list
       (string-append "graphics/ui/human/"
         (number->string screen_width) "x" (number->string screen_height)
         "/resource.png")
@@ -91,8 +90,7 @@
       'score (list 'file "graphics/ui/score.png" 'row 0
         'pos (list (- screen_width 16 68) 0) 'size '(14 14) 'text-pos (list (+ (- screen_width 16 68) 18) 1)))
 
-    ; Info panel
-    (list "graphics/ui/human/infopanel.png" 0 160 176 176)
+    'info-panel (list "graphics/ui/human/infopanel.png" 0 160 176 176)
 
     'completed-bar '(
       color 149
@@ -103,7 +101,7 @@
       text-pos ( 50 313))
 
     ; Command button panel
-    (list
+    'button-panel (list
       (string-append "graphics/ui/human/"
         (number->string screen_width) "x" (number->string screen_height)
         "/buttonpanel.png")
@@ -116,10 +114,10 @@
         (* 32 (trunc (/ (- screen_height 16 16) 32)))))
 
     ; Menu button
-    (list "graphics/ui/human/menubutton.png" 0 0)
+    'menu-panel (list "graphics/ui/human/menubutton.png" 0 0)
 
-    ; Minimap
-    (list "graphics/ui/human/minimap.png" 0 24)
+    'minimap-panel (list "graphics/ui/human/minimap.png" 0 24)
+    'minimap-pos (list (+ 0 24) (+ 24 2))
 
     'status-line (list
       'file (string-append "graphics/ui/human/"
