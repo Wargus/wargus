@@ -1619,21 +1619,17 @@
   'menu 'menu-preferences)
 (define-menu-item 'pos (list 16 (* 36 1)) 'font 'large
   'gem '(size (18 18)
+    text "Fog of War Enabled"
     state unchecked
     func set-fog-of-war
     style gem-square)
   'menu 'menu-preferences)
-(define-menu-item 'pos (list 46 (+ (* 36 1) 2)) 'font 'game
-  'text '("Fog of War Enabled" left func set-fog-of-war)
-  'menu 'menu-preferences)
 (define-menu-item 'pos (list 16 (* 36 2)) 'font 'large
   'gem '(size (18 18)
+    text "Show command key"
     state unchecked
     func set-command-key
     style gem-square)
-  'menu 'menu-preferences)
-(define-menu-item 'pos (list 46 (+ (* 36 2) 2)) 'font 'game
-  'text '("Show command key" left func set-command-key)
   'menu 'menu-preferences)
 (define-menu-item 'pos (list (- 128 (/ 106 2)) 245) 'font 'large
   'button '(size (106 27)
