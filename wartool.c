@@ -2623,7 +2623,7 @@ int ConvertText(char* file,int txte,int ofs)
 	printf("Can't open %s\n",buf);
 	exit(-1);
     }
-    if( l!=gzwrite(gf,txtp+ofs,l-ofs) ) {
+    if( l-ofs!=gzwrite(gf,txtp+ofs,l-ofs) ) {
 	printf("Can't write %d bytes\n",l);
     }
 
