@@ -115,7 +115,7 @@
   'button '(size (224 27)
     caption "Save ~!Replay"
     hotkey "r"
-    func save-replay
+    func save-replay-init
     style gm-full)
   'menu 'menu-victory)
 
@@ -123,7 +123,7 @@
 ;;
 ;; menu-defeated
 ;;
-(define-menu 'name 'menu-defeated 'geometry '(256 176 288 256)
+(define-menu 'name 'menu-defeated 'geometry '(256 112 288 256)
   'image 'panel2 'default '2)
 (define-menu-item 'pos (list 144 11) 'font 'large
   'text '("You failed to" center)
@@ -142,9 +142,36 @@
   'button '(size (224 27)
     caption "Save ~!Replay"
     hotkey "r"
-    func save-replay
+    func save-replay-init
     style gm-full)
   'menu 'menu-victory)
+
+;;
+;; menu-save-replay
+;;
+(define-menu 'name 'menu-save-replay 'geometry '(256 176 288 128)
+  'image 'panel4 'default '1)
+(define-menu-item 'pos (list 144 11) 'font 'large
+  'text '("Save Replay" center)
+  'menu 'menu-save-replay)
+(define-menu-item 'pos (list 14 40) 'font 'game
+  'input '(size (260 20)
+    func enter-name-action
+    style pulldown)
+  'menu 'menu-save-replay)
+(define-menu-item 'pos (list 14 80) 'font 'large 'flags '(disabled)
+  'button '(size (112 27)
+    caption "Ok"
+    func save-replay
+    style gm-half)
+  'menu 'menu-save-replay)
+(define-menu-item 'pos (list 162 80) 'font 'large
+  'button '(size (112 27)
+    caption "Cancel (~<Esc~>)"
+    hotkey "esc"
+    func end-menu
+    style gm-half)
+  'menu 'menu-save-replay)
 
 
 ;;
