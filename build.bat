@@ -59,6 +59,31 @@ set CONTRIB=contrib
 
 if not [%1] == [] SET CDROM=%1
 if not [%2] == [] SET DIR=%2
+
+REM -----------------------------------------------
+REM	Convert '/' to '\' and remove trailing '/'
+REM ----------------------------------------------- 
+
+set OLDCD=%CDROM%
+set CDROM=
+
+:slashloop
+set C=%OLDCD:~0,1%
+if %C% == / set C=\
+set CDROM=%CDROM%%C%
+set OLDCD=%OLDCD:~1%
+if defined OLDCD goto slashloop
+
+echo %CDROM%
+
+set C=%CDROM:~-1%
+if %C% == \ set C=
+set CDROM=%CDROM:~0,-1%%C%
+
+REM ----------------------------------------------- 
+REM	End slash conversion
+REM ----------------------------------------------- 
+
 set ARCHIVE=%CDROM%\data
 
 if not EXIST %ARCHIVE%\rezdat.war goto DIRERROR
@@ -107,7 +132,7 @@ copy /b %ARCHIVE%\..\puds\single\*.pud %DIR%\maps\single >nul
 copy /b %ARCHIVE%\..\puds\strange\*.pud %DIR%\maps\strange >nul
 :NOEXP
 REM	for the original cd,
-if exist %ARCHIVE%\*.pud copy /b %ARCHIVE%\*.pud %DIR%\maps >nul
+if exist %ARCHIVE%\..\*.pud copy /b %ARCHIVE%\..\*.pud %DIR%\maps >nul
 
 REM	*** Copy contrib maps into data directory ***
 md %DIR%\maps\other
