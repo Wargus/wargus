@@ -108,7 +108,7 @@
 	'manacost 6
 	'range	6
 	'target 'unit
-	'action '( Healing (HP 1) )
+	'action '( healing (HP 1) )
 	'condition '(	UnitTypeflag (true organic)
 			UnitTypeflag (false building)
 			DurationEffect (false flag HP_percent value 100) ;; HP < 100% HPMAX
@@ -127,7 +127,7 @@
 	'manacost 4
 	'range	10
 	'target 'unit
-	'action '( Healing (HP -1) )
+	'action '( healing (HP -1) )
 	'condition '(	UnitTypeflag (true undead)
 			UnitTypeflag (false building)
 			Alliance false
@@ -153,7 +153,7 @@
 	'manacost 50
 	'range	6
 	'target 'unit
-	'action '( Haste (haste 1000 slow 0) )
+	'action '( haste (haste 1000 slow 0) )
 	'condition '(	UnitTypeflag (false building)
 			DurationEffect (false flag haste value 900) ;; haste < 900 / CYCLE_PER_SECOND
 			Alliance true
@@ -168,7 +168,7 @@
 	'manacost 50
 	'range	10
 	'target 'unit
-	'action '( Haste (slow 1000 haste 0) )
+	'action '( haste (slow 1000 haste 0) )
 	'condition '(	UnitTypeflag (false building)
 			DurationEffect (false flag slow value 900) ;; slow < 900 / CYCLE_PER_SECOND
 			Alliance true
@@ -183,7 +183,7 @@
 	'manacost 50
 	'range	6
 	'target 'unit
-	'action '( Haste (bloodlust 1000) )
+	'action '( haste (bloodlust 1000) )
 	'condition '(	UnitTypeflag (true organic)
 			DurationEffect (false flag bloodlust value 900) ;; bloodlust < 900 / CYCLE_PER_SECOND
 			Alliance true
@@ -228,13 +228,13 @@
 	'manacost 50
 	'range	6
 	'target 'unit
-	'action '( FlameShield (ttl 600))
+	'action '( flame-shield (ttl 600))
 	'condition '(UnitTypeflag (false building)
 			DurationEffect (false flag flameshield value 500) ;; flameshield < 900 / CYCLE_PER_SECOND
 ;;			Alliance false;; On which player (true own , false opponents)
 			);; FIXME
 	'sound-when-cast "flame shield"
-;;	'missile-when-cast "missile-flame-shield" ; NOT use
+	'missile-when-cast "missile-flame-shield" ; NOT use
 	'autocast '(range 6 condition (UnitTypeflag (false coward)))
 )
 
@@ -258,7 +258,13 @@
 	'manacost 25
 	'range	12
 	'target 'position
-	'action '( Blizzard (fields 5 shards 10 damage 10) )
+	'action '(area-bombardment
+	    (fields 5
+	     shards 10
+	     damage 10
+	     ;;  128=4*32=4 tiles
+	     start-offset-x -128
+	     start-offset-y -128))
 	'sound-when-cast "blizzard"
 	'missile-when-cast "missile-blizzard"
 ;;	'autocast '(range 12)
@@ -269,7 +275,7 @@
 	'manacost 25
 	'range	12
 	'target 'position
-	'action '( DeathAndDecay (fields 5 shards 10 damage 10) )
+	'action '(area-bombardment (fields 5 shards 10 damage 10) )
 	'sound-when-cast "death and decay"
 	'missile-when-cast "missile-death-and-decay"
 ;;	'autocast '(range 12)
@@ -280,7 +286,7 @@
 	'manacost 100
 	'range	8
 	'target 'position
-	'action '( FireBall (ttl 1000 damage 20))
+	'action '( fireball (ttl 1000 damage 20))
 	'sound-when-cast "fireball throw"
 	'missile-when-cast "missile-fireball"
 ;;	'autocast '(range 8)
@@ -302,7 +308,7 @@
 	'manacost 100
 	'range	10
 	'target 'position ;; FIXME position or organic target
-	'action '( DeathCoil )
+	'action '( death-coil )
 ;;	'condition '(UnitTypeflag (true organic))
 	'sound-when-cast "death coil"
 	'missile-when-cast "missile-death-coil"
@@ -336,20 +342,9 @@
 	'manacost 25
 	'range	-1
 	'target 'position
-	'action '( CircleOfPower "unit-circle-of-power" )
+	'action '( spawn-portal "unit-circle-of-power" )
 	'sound-when-cast "circle of power"
 	'missile-when-cast "missile-normal-spell"
 ;;	'autocast '(range -1)
 )
 
-;(define-caster 'caster "unit-paladin" 'spell "spell-holy-vision" "spell-healing" "spell-exorcism")
-;(define-caster 'caster "unit-mage"
-;	'spell "spell-fireball" "spell-slow" "spell-flame-shield" "spell-invisibility"
-;		"spell-polymorph" "spell-blizzard")
-;(define-caster 'caster "unit-ogre-mage" 'spell "spell-eye-of-vision" "spell-bloodlust" "spell-runes")
-;(define-caster 'caster "unit-death-knight"
-;	'spell "spell-death-coil" "spell-haste" "spell-raise-dead" "spell-whirlwind"
-;		"spell-unholy-armor" "spell-death-and-decay")
-
-;(define-caster 'caster ""
-;	'spell "spell-circle-of-power")
