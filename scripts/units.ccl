@@ -280,7 +280,6 @@
   'explode-when-killed 'missile-explosion
   'type-land
   'building 'builder-outside
-  'can-cast-spell
   'teleporter
   'sounds '(
     selected "dark-portal-selected"
@@ -313,7 +312,6 @@
   'explode-when-killed 'missile-explosion
   'type-land
   'building 'builder-outside
-  'can-cast-spell
   'sounds '(
     selected "runestone-selected"
     acknowledge "runestone-acknowledge"

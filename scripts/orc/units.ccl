@@ -226,10 +226,16 @@
   'right-attack
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
+  'can-cast-spell '(
+      spell-death-coil
+      spell-haste
+      spell-raise-dead
+      spell-whirlwind
+      spell-unholy-armor
+      spell-death-and-decay)
   'land-unit
   'coward
   'isundead
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -262,8 +268,8 @@
   'right-attack
   'can-attack
   'can-target-land
+  'can-cast-spell '(spell-eye-of-vision spell-runes spell-bloodlust)
   'land-unit
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -365,7 +371,6 @@
   'land-unit
   'coward
   'isundead
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -400,7 +405,6 @@
   'can-attack
   'can-target-land
   'land-unit
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -781,7 +785,6 @@
   'can-target-land
   'land-unit
   'hero
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -816,7 +819,6 @@
   'land-unit
   'hero
   'isundead
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
