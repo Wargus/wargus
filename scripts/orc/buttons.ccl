@@ -42,7 +42,7 @@
     unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan
     unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon
     unit-goblin-zeppelin unit-attack-peon unit-death-knight unit-deathwing
-    orc-group))
+    orc-group unit-daemon))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-shield1
   'action 'stop
@@ -53,7 +53,7 @@
     unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan
     unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon
     unit-goblin-zeppelin unit-attack-peon unit-death-knight unit-deathwing
-    orc-group))
+    orc-group unit-daemon))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-shield2
   'action 'stop
@@ -77,7 +77,7 @@
     unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall
     unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan
     unit-teron-gorefiend unit-skeleton unit-dragon unit-deathwing
-    orc-group))
+    orc-group unit-daemon))
 
 (define-button 'pos 3 'level 0 'icon 'icon-battle-axe2
   'action 'attack
@@ -128,7 +128,7 @@
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult unit-dentarg
     unit-cho-gall unit-zuljin unit-grom-hellscream unit-korgath-bladefist
-    unit-skeleton unit-dragon unit-deathwing orc-group))
+    unit-skeleton unit-dragon unit-deathwing orc-group unit-daemon))
 
 (define-button 'pos 5 'level 0 'icon 'icon-orc-stand-ground
   'action 'stand-ground
@@ -136,8 +136,8 @@
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult unit-dentarg
     unit-cho-gall unit-zuljin unit-grom-hellscream unit-korgath-bladefist
-    unit-dragon unit-deathwing unit-giant-turtle unit-ogre-juggernaught
-    unit-troll-destroyer orc-group))
+    unit-skeleton unit-dragon unit-deathwing unit-giant-turtle
+    unit-ogre-juggernaught unit-troll-destroyer orc-group unit-daemon))
 
 (define-button 'pos 6 'level 0 'icon 'icon-orc-attack-ground
   'action 'attack-ground
