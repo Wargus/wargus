@@ -308,7 +308,7 @@
 (define-menu-item 'pos (list 16 60)
     'gem '(size (18 18)
          state unchecked
-         func set-res-640
+         func set-res
          style gem-round)
     'menu 'menu-global-options)
 (define-menu-item 'pos (list 40 64) 'font 'game
@@ -318,7 +318,7 @@
 (define-menu-item 'pos (list 16 80)
     'gem '(size (18 18)
          state unchecked
-         func set-res-800
+         func set-res
          style gem-round)
     'menu 'menu-global-options)
 (define-menu-item 'pos (list 40 84) 'font 'game
@@ -328,7 +328,7 @@
 (define-menu-item 'pos (list 16 100)
     'gem '(size (18 18)
          state unchecked
-         func set-res-1024
+         func set-res
          style gem-round)
     'menu 'menu-global-options)
 (define-menu-item 'pos (list 40 104) 'font 'game
@@ -338,7 +338,7 @@
 (define-menu-item 'pos (list 16 120)
     'gem '(size (18 18)
          state unchecked
-         func set-res-1280
+         func set-res
          style gem-round)
     'menu 'menu-global-options)
 (define-menu-item 'pos (list 40 124) 'font 'game
@@ -348,7 +348,7 @@
 (define-menu-item 'pos (list 16 140)
     'gem '(size (18 18)
          state unchecked
-         func set-res-1600
+         func set-res
          style gem-round)
     'menu 'menu-global-options)
 (define-menu-item 'pos (list 40 144) 'font 'game
