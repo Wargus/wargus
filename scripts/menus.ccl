@@ -152,7 +152,7 @@
 ;;
 (define-menu 'name 'menu-save-replay 'geometry '(256 176 288 128)
   'image 'panel4 'default '1)
-(define-menu-item 'pos (list 144 11) 'font 'large
+(define-menu-item 'pos (list 144 11) 'font 'large 'init 'save-replay-init 'exit 'save-replay-exit
   'text '("Save Replay" center)
   'menu 'menu-save-replay)
 (define-menu-item 'pos (list 14 40) 'font 'game
@@ -1659,7 +1659,7 @@
 ;;
 (define-menu 'name 'menu-diplomacy 'geometry '(222 76 352 352)
   'image 'panel5 'default '5)
-(define-menu-item 'pos (list 136 30) 'font 'game
+(define-menu-item 'pos (list 136 30) 'font 'game 'init 'diplomacy-init 'exit 'diplomacy-exit
   'text '("Allied" center)
   'menu 'menu-diplomacy)
 (define-menu-item 'pos (list 196 30) 'font 'game
@@ -2238,7 +2238,7 @@
 ;;
 (define-menu 'name 'menu-save-game 'geometry '(208 112 384 256)
   'image 'panel3 'default '6)
-(define-menu-item 'pos (list (/ 384 2) 11) 'font 'large  'init 'save-game-init
+(define-menu-item 'pos (list (/ 384 2) 11) 'font 'large  'init 'save-game-init 'exit 'save-game-exit
   'text '("Save Game" center)
   'menu 'menu-save-game)
 (define-menu-item 'pos (list (/ (- 384 300 18) 2) (+ 11 36)) 'font 'game
@@ -2287,7 +2287,7 @@
 ;;
 (define-menu 'name 'menu-load-game 'geometry '(208 112 384 256)
   'image 'panel3 'default '4)
-(define-menu-item 'pos (list (/ 384 2) 11) 'font 'large  'init 'load-game-init
+(define-menu-item 'pos (list (/ 384 2) 11) 'font 'large  'init 'load-game-init 'exit 'load-game-exit
   'text '("Load Game" center)
   'menu 'menu-load-game)
 (define-menu-item 'pos (list (/ (- 384 300 18) 2) (+ 11 (* 36 1.5))) 'font 'game  'init 'load-game-lb-init 'exit 'load-game-lb-exit
