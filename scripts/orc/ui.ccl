@@ -99,7 +99,9 @@
             (list 'pos '(  6 274) 'size icon_size)
             (list 'pos '( 62 274) 'size icon_size)
             (list 'pos '(118 274) 'size icon_size))
-	  'max-text-pos (list (+ info_panel_x 10) (+ info_panel_y 10)))
+          'max-text (list
+            'font 'game
+            'pos (list (+ info_panel_x 10) (+ info_panel_y 10))))
       )
       'training (list
         'single (list
@@ -109,8 +111,7 @@
             'pos (list (+ info_panel_x 37) (+ info_panel_y 8 78)))
           'icon (list
             'pos (list (+ info_panel_x 107) (+ info_panel_y 8 70))
-            'size icon_size)
-        )
+            'size icon_size))
         'multiple (list
           'icons (list
             (list 'pos '(  6 216) 'size icon_size)
