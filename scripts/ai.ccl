@@ -895,7 +895,7 @@
 ;;    (ai:attack-with-force 1)
 
 	(ai:sleep 500)
-    (ai:force 0 'unit-grunt 1 'unit-axethrower 0 'unit-ranger 2
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 0
 	'unit-ogre-mage 6 'unit-catapult 1 'unit-death-knight 5)
 ;;    (ai:force 1 'unit-grunt 1 'unit-axethrower 0 'unit-ranger 2
 ;;	'unit-ogre-mage 2 'unit-catapult 1 'unit-death-knight 1)
@@ -1920,7 +1920,7 @@
     (ai:research 'upgrade-berserker)
     (ai:research 'upgrade-berserker-scouting)
     (ai:research 'upgrade-raise-dead)
-    (ai:force 0 'unit-grunt 1 'unit-axethrower 0 'unit-ranger 4	'unit-ogre-mage 16 'unit-catapult 3 'unit-death-knight 6 'unit-dragon 4)
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 4 'unit-ogre-mage 16 'unit-catapult 3 'unit-death-knight 6 'unit-dragon 4)
 
     (ai:sleep	500)
     (ai:need 'unit-great-hall)
