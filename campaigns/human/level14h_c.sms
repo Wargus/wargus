@@ -6,7 +6,6 @@ Briefing("type", "wc2",
   "background", "campaigns/human/interface/introscreen5.png",
   "text", "campaigns/human/level14h.txt",
   "voice", "campaigns/human/level14h-intro1.wav",
-  "voice", "campaigns/human/level14h-intro2.wav"
 )
 
 -- FIXME: Check if units are destroyed.
