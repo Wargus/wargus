@@ -158,6 +158,7 @@ enum _archive_type_ {
     W,			// Wav				(name,wav)
     X,			// Text				(name,text,ofs)
     C,			// Cursor			(name,cursor)
+    V,			// Video			(name)
 };
 
 /**
@@ -595,6 +596,8 @@ Control Todo[] = {
 
 {W,0,"ui/click",						432	__},
 {W,0,"ui/highclick",						435	__},
+
+{V,0,"videos/gameintro",					429	__},
 
 #ifdef HAVE_EXPANSION
 {R,2,"swamp/swamp",						438	__},
@@ -1326,6 +1329,38 @@ Control Todo[] = {
 {W,2,"../campaigns/levelx119-intro1",					172 __},
 {W,2,"../campaigns/levelx120-intro1",					173 __},
 #endif
+#endif
+
+///////////////////////////////////////////////////////////////////////////////
+//	INTERFACE
+///////////////////////////////////////////////////////////////////////////////
+
+#ifdef USE_BEOS
+{F,0,"MUDDAT.CUD",				6000 __},
+#else
+{F,0,"muddat.cud",				6000 __},
+#endif
+
+{V,0,"videos/video1",						0	__},
+{V,0,"videos/video2",						2	__},
+{V,0,"videos/video3",						3	__},
+{V,0,"videos/video4",						4	__},
+{V,0,"videos/video5",						5	__},
+{V,0,"videos/video6",						6	__},
+
+{V,0,"videos/video7",						8	__},
+{V,0,"videos/video8",						9	__},
+{V,0,"videos/video9",						10	__},
+{V,0,"videos/video10",						11	__},
+{V,0,"videos/video11",						12	__},
+
+{V,0,"videos/video12",						14	__},
+
+#ifdef HAVE_EXPANSION
+{V,2,"videos/video13",						15	__},
+{V,2,"videos/video14",						16	__},
+{V,2,"videos/video15",						17	__},
+{V,2,"videos/video16",						18	__},
 #endif
 
 #undef __
@@ -2600,6 +2635,40 @@ int ConvertWav(char* file,int wave)
 }
 
 //----------------------------------------------------------------------------
+//	Video
+//----------------------------------------------------------------------------
+
+/**
+**	Convert pud to my format.
+*/
+int ConvertVideo(char* file,int video)
+{
+    unsigned char* vidp;
+    char buf[1024];
+    FILE* gf;
+    int l;
+
+    vidp=ExtractEntry(ArchiveOffsets[video],&l);
+
+    sprintf(buf,"%s/%s.smk",Dir,file);
+    CheckPath(buf);
+    gf=fopen(buf,"wb");
+    if( !gf ) {
+	perror("");
+	printf("Can't open %s\n",buf);
+	exit(-1);
+    }
+    if( l!=fwrite(vidp,1,l,gf) ) {
+	printf("Can't write %d bytes\n",l);
+    }
+
+    free(vidp);
+
+    fclose(gf);
+    return 0;
+}
+
+//----------------------------------------------------------------------------
 //	Text
 //----------------------------------------------------------------------------
 
@@ -3286,6 +3355,7 @@ void Usage(const char* name)
 Usage: %s [-e] archive-directory [destination-directory]\n\
 \t-e\tThe archive are expansion compatible\n\
 \t-n\tThe archive is not expansion compatible\n\
+\t-v\tExtract also the videos needs additional 70Mb\n\
 archive-directory\tDirectory which includes the archives maindat.war...\n\
 destination-directory\tDirectory where the extracted files are placed.\n"
     ,name);
@@ -3301,11 +3371,18 @@ int main(int argc,char** argv)
     char buf[1024];
     struct stat stat_buf;
     int expansion_cd;
+    int video;
     int a;
 
     a=1;
-    expansion_cd=0;
+    video=expansion_cd=0;
     while( argc>=2 ) {
+	if( !strcmp(argv[a],"-v") ) {
+	    video=1;
+	    ++a;
+	    --argc;
+	    continue;
+	}
 	if( !strcmp(argv[a],"-e") ) {
 	    expansion_cd=1;
 	    ++a;
@@ -3397,6 +3474,11 @@ int main(int argc,char** argv)
 		break;
 	    case S:
 		SetupNames(Todo[i].File,Todo[i].Arg1);
+		break;
+	    case V:
+		if( video ) {
+		    ConvertVideo(Todo[i].File,Todo[i].Arg1);
+		}
 		break;
 	    default:
 		break;
