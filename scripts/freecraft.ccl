@@ -176,7 +176,7 @@
 (load "ccl/sound.ccl" #f #t)
 (load "ccl/missiles.ccl" #f #t)
 ; UNCOMMENTED FOR DEBUGING (load "ccl/anim.ccl" #f #t)
-(load "ccl/units.ccl" #f #t)
+; UNCOMMENTED FOR DEBUGING (load "ccl/units.ccl" #f #t)
 (load "ccl/upgrade.ccl" #f #t)
 (load "ccl/fonts.ccl" #f #t)
 (load "ccl/ui.ccl" #f #t)
