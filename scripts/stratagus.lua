@@ -379,7 +379,7 @@ SetSpeeds(1)
 
 -------------------------------------------------------------------------------
 
-AStar("fixed-unit-cost", 1000, "moving-unit-cost", 20, "dont-know-unseen-terrain", "unseen-terrain-cost", 2)
+AStar("fixed-unit-cost", 1000, "moving-unit-cost", 20, "know-unseen-terrain", "unseen-terrain-cost", 2)
 
 -------------------------------------------------------------------------------
 
@@ -396,13 +396,17 @@ SetAllPlayersTotalUnitLimit(400)
 -------------------------------------------------------------------------------
 --	Default triggers for single player
 --		(FIXME: must be combined with game types)
---[[
-(define (single-player-triggers)
-  (add-trigger '((if-unit 'this '== 0 'all))
-               '((action-defeat)))
-  (add-trigger '((if-opponents 'this '== 0))
-               '((action-victory))))
-]]
+
+function SinglePlayerTriggers()
+  AddTrigger(
+    function() return IfUnit("this", "==", 0, "all") end,
+    function() return ActionDefeat() end)
+
+  AddTrigger(
+    function() return IfOpponents("this", "==", 0) end,
+    function() return ActionVictory() end)
+end
+
 -------------------------------------------------------------------------------
 --	Tables-Part
 -------------------------------------------------------------------------------
