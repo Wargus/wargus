@@ -600,16 +600,16 @@
 ;;
 ;;	Ship weapon 1 of the current race.
 ;;
-(define (ai:upgrade-ship-weapon-1)
+(define (ai:upgrade-ship-cannon-1)
   (if (eq? (ai:get-race) 'human) 
-      'upgrade-human-ship-weapon1 'upgrade-orc-ship-cannon1) )
+      'upgrade-human-ship-cannon1 'upgrade-orc-ship-cannon1) )
 
 ;;
 ;;	Ship weapon 2 of the current race.
 ;;
-(define (ai:upgrade-ship-weapon-2)
+(define (ai:upgrade-ship-cannon-2)
   (if (eq? (ai:get-race) 'human) 
-      'upgrade-human-ship-weapon2 'upgrade-orc-ship-cannon2) )
+      'upgrade-human-ship-cannon2 'upgrade-orc-ship-cannon2) )
 
 ;;
 ;;	Platform of the current race.
@@ -899,7 +899,7 @@
 
     (ai:sleep 500)
     (ai:research (ai:upgrade-catapult-2))
-    (ai:research (ai:upgrade-ship-weapon-1))
+    (ai:research (ai:upgrade-ship-cannon-1))
     (ai:force 0 (ai:soldier) 3 (ai:catapult) 1 (ai:scout) 1)
     (ai:force 3 (ai:destroyer) 1 (ai:battleship) 1 (ai:scout) 1)
     (ai:force 1 (ai:submarine) 1 (ai:destroyer) 2 (ai:battleship) 3
@@ -909,7 +909,7 @@
     (ai:attack-with-force 1)
 
     (ai:sleep 500)
-    (ai:research (ai:upgrade-ship-weapon-2))
+    (ai:research (ai:upgrade-ship-cannon-2))
     (ai:need (ai:city-center))
     (ai:force 0 (ai:soldier) 3 (ai:catapult) 1 (ai:scout) 1)
     (ai:force 3 (ai:destroyer) 1 (ai:battleship) 1 (ai:scout) 1)
