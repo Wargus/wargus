@@ -61,12 +61,11 @@
     'normal-font-color 'yellow
     'reverse-font-color 'white
 
-    ;	Filler 1
-    (list
-      (string-append "graphics/ui/orc/"
+    'filler (list
+      'file (string-append "graphics/ui/orc/"
         (number->string screen_width) "x" (number->string screen_height)
         "/filler-right.png")
-      (- screen_width 16) 0)
+      'pos (list (- screen_width 16) 0))
 
     ;	Resource line
     (list
