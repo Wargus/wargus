@@ -13,12 +13,11 @@ REM	   FreeCraft - A free fantasy real time strategy game engine
 REM
 REM	build.bat	-	The graphics and sound extractor.
 REM
-REM	(c) Copyright 1999-2001 by Lutz Sammer.
+REM	(c) Copyright 1999-2002 by Lutz Sammer.
 REM
 REM	FreeCraft is free software; you can redistribute it and/or modify
 REM	it under the terms of the GNU General Public License as published
-REM	by the Free Software Foundation; either version 2 of the License,
-REM	or (at your option) any later version.
+REM	by the Free Software Foundation; only version 2 of the License.
 REM
 REM	FreeCraft is distributed in the hope that it will be useful,
 REM	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -81,6 +80,7 @@ REM ADD -n      To force the archive is not expansion compatible
 REM copy own supplied files
 
 copy /b %CONTRIB%\cross.png %DIR%\graphics\ui\cursors
+copy /b %CONTRIB%\red_cross.png %DIR%\graphics\ui\cursors
 copy /b %CONTRIB%\mana.png %DIR%\graphics\ui
 copy /b %CONTRIB%\mana2.png %DIR%\graphics\ui
 copy /b %CONTRIB%\health.png %DIR%\graphics\ui

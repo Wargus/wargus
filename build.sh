@@ -144,6 +144,7 @@ $BINPATH/wartool "$VIDEO" "$DATADIR" "$DIR"
 # copy own supplied files
 
 cp $CONTRIB/cross.png $DIR/graphics/ui/cursors
+cp $CONTRIB/red_cross.png $DIR/graphics/missiles
 cp $CONTRIB/mana.png $DIR/graphics/ui
 cp $CONTRIB/mana2.png $DIR/graphics/ui
 cp $CONTRIB/health.png $DIR/graphics/ui
@@ -153,7 +154,6 @@ cp $CONTRIB/score.png $DIR/graphics/ui
 cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
 cp $CONTRIB/freecraft.png $DIR/graphics/ui
 cp $CONTRIB/music/toccata.mod.gz $DIR/music/default.mod.gz
-cp $CONTRIB/red\ cross.png $DIR/graphics/missiles
 
 ###############################################################################
 ##	MISC
