@@ -78,13 +78,13 @@
       'gold (list 'file "graphics/ui/gold,wood,oil,mana.png" 'row 0
         'pos (list (+ 176   0) 0) 'size '(14 14) 'text-pos (list (+ 176   0 18) 1))
       'wood (list 'file "graphics/ui/gold,wood,oil,mana.png" 'row 1
-        'pos (list (+ 176  65) 0) 'size '(14 14) 'text-pos (list (+ 176  65 18) 1))
+        'pos (list (+ 176  75) 0) 'size '(14 14) 'text-pos (list (+ 176  75 18) 1))
       'oil (list 'file "graphics/ui/gold,wood,oil,mana.png" 'row 2
-        'pos (list (+ 176 120) 0) 'size '(14 14) 'text-pos (list (+ 176 120 18) 1))
+        'pos (list (+ 176 150) 0) 'size '(14 14) 'text-pos (list (+ 176 150 18) 1))
       'food (list 'file "graphics/ui/food.png" 'row 0
-        'pos (list (+ 176 330) 0) 'size '(14 14) 'text-pos (list (+ 176 330 18) 1))
+        'pos (list (- screen_width 16 138) 0) 'size '(14 14) 'text-pos (list (+ (- screen_width 16 138) 18) 1))
       'score (list 'file "graphics/ui/score.png" 'row 0
-        'pos (list (+ 176 390) 0) 'size '(14 14) 'text-pos (list (+ 176 390 18) 1)))
+        'pos (list (- screen_width 16 68) 0) 'size '(14 14) 'text-pos (list (+ (- screen_width 16 68) 18) 1)))
 
     ; Info panel
     (list "graphics/ui/human/infopanel.png" 0 160 176 176)
