@@ -2621,7 +2621,7 @@ void ResizeImage(unsigned char** image,int ow,int oh,int nw,int nh)
 /**
 **	Convert an image to my format.
 */
-int ConvertImage(char* file,int pale,int imge, int nw, int nh)
+int ConvertImage(char* file,int pale,int imge, int nw, int nh, int mac)
 {
     unsigned char* palp;
     unsigned char* imgp;
@@ -2629,6 +2629,16 @@ int ConvertImage(char* file,int pale,int imge, int nw, int nh)
     int w;
     int h;
     char buf[1024];
+
+    // Workaround for MAC expansion CD
+    if (mac) {
+	if (imge >= 94 && imge <= 103) {
+	    imge += 7;
+	}
+	if (pale == 93) {
+	    pale += 7;
+        }
+    }
 
     palp=ExtractEntry(ArchiveOffsets[pale],NULL);
     if (pale == 27 && imge == 28) {
@@ -2639,7 +2649,9 @@ int ConvertImage(char* file,int pale,int imge, int nw, int nh)
     image=ConvertImg(imgp,&w,&h);
 
     if (!image) {
-	return -1;
+	fprintf(stderr, "Please report this bug, could not extract image: 
+	    %s pale=%d imge=%d nw=%d nh=%d mac=%d\n", file, pale, imge, nw, nh, mac);
+	exit(-1);
     }
     free(imgp);
     ConvertPalette(palp);
@@ -2812,7 +2824,7 @@ int ConvertVideo(char* file,int video)
 /**
 **	Convert text to my format.
 */
-int ConvertText(char* file,int txte,int ofs,int expansion)
+int ConvertText(char* file,int txte,int ofs,int expansion,int mac)
 {
     unsigned char* txtp;
     char buf[1024];
@@ -2827,10 +2839,15 @@ int ConvertText(char* file,int txte,int ofs,int expansion)
     sprintf(strdat, "%s/strdat.war", ArchiveDir);
 #endif
     stat(strdat, &st);
-    // check for German or UK CD's respectively, else US CD
 //    if (st.st_size == 55724 || st.st_size == 51451) {
+    // check for German or UK CD's, else US CD
     if (!expansion && st.st_size != 51550) {
 	--txte;
+    }
+
+    // workaround for MAC expansion CD
+    if (mac && txte >= 99) {
+	txte += 6;
     }
 
     txtp=ExtractEntry(ArchiveOffsets[txte],&l);
@@ -3761,14 +3778,18 @@ int main(int argc,char** argv)
 	    exit(-1);
 	}
 	if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2876978)) {
+	    printf("Extracting from original MAC CD\n");
 	    expansion_cd = 0;
 	} else {
+	    printf("Extracting from expansion MAC CD\n");
 	    expansion_cd = 1;
 	}
     } else {
 	if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2811086)) {
+	    printf("Extracting from original DOS CD\n");
 	    expansion_cd = 0;
 	} else {
+	    printf("Extracting from expansion DOS CD\n");
 	    expansion_cd = 1;
 	}
     }
@@ -3829,7 +3850,7 @@ int main(int argc,char** argv)
 		break;
 	    case I:
 		ConvertImage(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,
-		    Todo[u].Arg3,Todo[u].Arg4);
+		    Todo[u].Arg3,Todo[u].Arg4,UseMacCd);
 		break;
 	    case C:
 		ConvertCursor(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
@@ -3838,7 +3859,8 @@ int main(int argc,char** argv)
 		ConvertWav(Todo[u].File,Todo[u].Arg1);
 		break;
 	    case X:
-		ConvertText(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,expansion_cd);
+		ConvertText(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,
+			expansion_cd,UseMacCd);
 		break;
 	    case S:
 		SetupNames(Todo[u].File,Todo[u].Arg1);
