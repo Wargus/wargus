@@ -1768,7 +1768,7 @@
   ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
        0      6      9    160     0 #( 190  1000   300     0     0     0     0)
   ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 2 2 ) '(  63  63 )      0       7      7       7
+  '( 2 2 ) '(  63  63 )      1       7      7       7
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
       20    40     50      0       0       0
   ;;Decay Annoy	Points
