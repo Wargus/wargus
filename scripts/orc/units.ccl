@@ -457,6 +457,8 @@
     dead "basic orc voices dead"
     attack "grom-hellscream-attack"))
 
+(define-unit-type 'unit-orc-oil-tanker-full)
+ 
 (define-unit-type 'unit-orc-oil-tanker 'name "Oil tanker"
   'files '(tileset-summer "orc/units/oil_tanker_empty.png")
   'size '(72 72)
@@ -476,7 +478,9 @@
   'type-naval
   'right-haul-oil
   'sea-unit
-  'tanker
+  'harvester 'resource-harvested 'oil 'resource-capacity 100
+  'wait-at-resource 100 'wait-at-depot 100
+  'transform-when-loaded 'unit-orc-oil-tanker-full
   'selectable-by-rectangle
   'sounds '(
     selected "orc-oil-tanker-selected"
@@ -486,6 +490,37 @@
     dead "ship sinking"
     attack "orc-oil-tanker-attack"))
 
+(define-unit-type 'unit-orc-oil-tanker-full 'name "Oil tanker"
+  'files '(tileset-summer "orc/units/oil_tanker_full.png")
+  'size '(72 72)
+  'animations 'animations-human-oil-tanker 'icon 'icon-mythical-oil-tanker
+  'costs '(time 50 gold 400 wood 200)
+  'speed 10
+  'hit-points 90
+  'draw-level 40
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 4
+  'armor 10 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50 'annoy-computer-factor 10
+  'points 40
+  'demand 1
+  'corpse '(unit-dead-body 12)
+  'type-naval
+  'right-haul-oil
+  'sea-unit
+  'harvester 'resource-harvested 'oil 'resource-capacity 100
+  'wait-at-resource 100 'wait-at-depot 100
+  'transform-when-empty 'unit-orc-oil-tanker
+  'selectable-by-rectangle
+  'sounds '(
+    selected "orc-oil-tanker-full-selected"
+    acknowledge "orc-oil-tanker-full-acknowledge"
+    ready "orc-oil-tanker-full-ready"
+    help "basic orc voices help 1"
+    dead "ship sinking"
+    attack "orc-oil-tanker-full-attack"))
+    
 (define-unit-type 'unit-mythical-transport 'name "Transport"
   'files '(tileset-summer "orc/units/transport.png")
   'size '(72 72)
@@ -1308,8 +1343,8 @@
   'corpse '(unit-destroyed-3x3-place 3)
   'type-naval
   'building
-  'gives-oil
   'must-build-on-top 'unit-oil-patch
+  'gives-resource 'oil 'can-harvest
   'sounds '(
     selected "orc-oil-platform-selected"
     acknowledge "orc-oil-platform-acknowledge"
@@ -1550,31 +1585,3 @@
     dead "basic orc voices dead"
     attack "peon-with-wood-attack"))
 
-(define-unit-type 'unit-orc-oil-tanker-full 'name "Oil tanker"
-  'files '(tileset-summer "orc/units/oil_tanker_full.png")
-  'size '(72 72)
-  'animations 'animations-human-oil-tanker 'icon 'icon-mythical-oil-tanker
-  'costs '(time 50 gold 400 wood 200)
-  'speed 10
-  'hit-points 90
-  'draw-level 40
-  'tile-size '(1 1) 'box-size '(63 63)
-  'sight-range 4
-  'armor 10 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
-  'max-attack-range 1
-  'priority 50 'annoy-computer-factor 10
-  'points 40
-  'demand 1
-  'corpse '(unit-dead-body 12)
-  'type-naval
-  'right-haul-oil
-  'sea-unit
-  'tanker
-  'selectable-by-rectangle
-  'sounds '(
-    selected "orc-oil-tanker-full-selected"
-    acknowledge "orc-oil-tanker-full-acknowledge"
-    ready "orc-oil-tanker-full-ready"
-    help "basic orc voices help 1"
-    dead "ship sinking"
-    attack "orc-oil-tanker-full-attack"))

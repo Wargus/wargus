@@ -98,6 +98,101 @@
     dead "basic human voices dead"
     attack "peasant-attack"))
 
+(define-unit-type 'unit-peasant-with-gold 'name "Peasant"
+  'files '(tileset-summer "human/units/peasant_with_gold.png")
+  'size '(72 72)
+  'animations 'animations-peasant 'icon 'icon-peasant
+  'costs '(time 45 gold 400)
+  'speed 10
+  'hit-points 30
+  'draw-level 40
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
+  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50
+  'points 30
+  'demand 1
+  'corpse '(unit-dead-body 6)
+  'type-land
+  'right-harvest
+  'can-attack
+  'can-target-land
+  'land-unit
+  'cower-worker
+  'organic
+  'selectable-by-rectangle
+  'sounds '(
+    selected "peasant-with-gold-selected"
+    acknowledge "peasant-with-gold-acknowledge"
+    ready "peasant-with-gold-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "peasant-with-gold-attack"))
+
+(define-unit-type 'unit-peasant-with-wood 'name "Peasant"
+  'files '(tileset-summer "human/units/peasant_with_wood.png")
+  'size '(72 72)
+  'animations 'animations-peasant 'icon 'icon-peasant
+  'costs '(time 45 gold 400)
+  'speed 10
+  'hit-points 30
+  'draw-level 40
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
+  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50
+  'points 30
+  'demand 1
+  'corpse '(unit-dead-body 6)
+  'type-land
+  'right-harvest
+  'can-attack
+  'can-target-land
+  'land-unit
+  'cower-worker
+  'organic
+  'selectable-by-rectangle
+  'sounds '(
+    selected "peasant-with-wood-selected"
+    acknowledge "peasant-with-wood-acknowledge"
+    ready "peasant-with-wood-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "peasant-with-wood-attack"))
+
+(define-unit-type 'unit-attack-peasant 'name "Peasant"
+  'use 'unit-peasant
+  'size '(72 72)
+  'animations 'animations-peasant 'icon 'icon-peasant
+  'costs '(time 45 gold 400)
+  'speed 10
+  'hit-points 30
+  'draw-level 40
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
+  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50
+  'points 30
+  'demand 1
+  'corpse '(unit-dead-body 6)
+  'type-land
+  'right-attack
+  'can-attack
+  'can-target-land
+  'land-unit
+  'organic
+  'selectable-by-rectangle
+  'sounds '(
+    selected "peasant-selected"
+    acknowledge "peasant-acknowledge"
+    ready "peasant-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "peasant-attack"))
+
 (define-unit-type 'unit-ballista 'name "Ballista"
   'files '(tileset-summer "human/units/ballista.png")
   'size '(64 64)
@@ -293,37 +388,6 @@
     dead "explosion"
     attack "dwarves-attack"))
 
-(define-unit-type 'unit-attack-peasant 'name "Peasant"
-  'use 'unit-peasant
-  'size '(72 72)
-  'animations 'animations-peasant 'icon 'icon-peasant
-  'costs '(time 45 gold 400)
-  'speed 10
-  'hit-points 30
-  'draw-level 40
-  'tile-size '(1 1) 'box-size '(31 31)
-  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
-  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
-  'max-attack-range 1
-  'priority 50
-  'points 30
-  'demand 1
-  'corpse '(unit-dead-body 6)
-  'type-land
-  'right-attack
-  'can-attack
-  'can-target-land
-  'land-unit
-  'organic
-  'selectable-by-rectangle
-  'sounds '(
-    selected "peasant-selected"
-    acknowledge "peasant-acknowledge"
-    ready "peasant-ready"
-    help "basic human voices help 1"
-    dead "basic human voices dead"
-    attack "peasant-attack"))
-
 (define-unit-type 'unit-ranger 'name "Ranger"
   'use 'unit-archer
   'size '(72 72)
@@ -454,6 +518,8 @@
     dead "basic human voices dead"
     attack "khadgar-attack"))
 
+(define-unit-type 'unit-human-oil-tanker-full)
+ 
 (define-unit-type 'unit-human-oil-tanker 'name "Oil tanker"
   'files '(tileset-summer "human/units/oil_tanker_empty.png")
   'size '(72 72)
@@ -473,7 +539,9 @@
   'type-naval
   'right-haul-oil
   'sea-unit
-  'tanker
+  'harvester 'resource-harvested 'oil 'resource-capacity 100
+  'wait-at-resource 100 'wait-at-depot 100
+  'transform-when-loaded 'unit-human-oil-tanker-full
   'selectable-by-rectangle
   'sounds '(
     selected "human-oil-tanker-selected"
@@ -482,7 +550,38 @@
     help "basic human voices help 1"
     dead "ship sinking"
     attack "human-oil-tanker-attack"))
-
+    
+(define-unit-type 'unit-human-oil-tanker-full 'name "Oil tanker"
+  'files '(tileset-summer "human/units/oil_tanker_full.png")
+  'size '(72 72)
+  'animations 'animations-human-oil-tanker 'icon 'icon-alliance-oil-tanker
+  'costs '(time 50 gold 400 wood 200)
+  'speed 10
+  'hit-points 90
+  'draw-level 40
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 4
+  'armor 10 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50 'annoy-computer-factor 10
+  'points 40
+  'demand 1
+  'corpse '(unit-dead-body 12)
+  'type-naval
+  'right-haul-oil
+  'sea-unit
+  'harvester 'resource-harvested 'oil 'resource-capacity 100
+  'wait-at-resource 100 'wait-at-depot 100
+  'transform-when-empty 'unit-human-oil-tanker
+  'selectable-by-rectangle
+  'sounds '(
+    selected "human-oil-tanker-selected"
+    acknowledge "human-oil-tanker-acknowledge"
+    ready "human-oil-tanker-ready"
+    help "basic human voices help 1"
+    dead "ship sinking"
+    attack "human-oil-tanker-attack"))
+   
 (define-unit-type 'unit-alliance-transport 'name "Transport"
   'files '(tileset-summer "human/units/transport.png")
   'size '(72 72)
@@ -1218,7 +1317,7 @@
   'type-naval
   'building
   'must-build-on-top 'unit-oil-patch
-  'gives-oil
+  'gives-resource 'oil 'can-harvest
   'sounds '(
     selected "human-oil-platform-selected"
     acknowledge "human-oil-platform-acknowledge"
@@ -1397,95 +1496,4 @@
     dead "building destroyed"
     attack "human-wall-attack"))
 
-(define-unit-type 'unit-peasant-with-gold 'name "Peasant"
-  'files '(tileset-summer "human/units/peasant_with_gold.png")
-  'size '(72 72)
-  'animations 'animations-peasant 'icon 'icon-peasant
-  'costs '(time 45 gold 400)
-  'speed 10
-  'hit-points 30
-  'draw-level 40
-  'tile-size '(1 1) 'box-size '(31 31)
-  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
-  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
-  'max-attack-range 1
-  'priority 50
-  'points 30
-  'demand 1
-  'corpse '(unit-dead-body 6)
-  'type-land
-  'right-harvest
-  'can-attack
-  'can-target-land
-  'land-unit
-  'cower-worker
-  'organic
-  'selectable-by-rectangle
-  'sounds '(
-    selected "peasant-with-gold-selected"
-    acknowledge "peasant-with-gold-acknowledge"
-    ready "peasant-with-gold-ready"
-    help "basic human voices help 1"
-    dead "basic human voices dead"
-    attack "peasant-with-gold-attack"))
 
-(define-unit-type 'unit-peasant-with-wood 'name "Peasant"
-  'files '(tileset-summer "human/units/peasant_with_wood.png")
-  'size '(72 72)
-  'animations 'animations-peasant 'icon 'icon-peasant
-  'costs '(time 45 gold 400)
-  'speed 10
-  'hit-points 30
-  'draw-level 40
-  'tile-size '(1 1) 'box-size '(31 31)
-  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
-  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
-  'max-attack-range 1
-  'priority 50
-  'points 30
-  'demand 1
-  'corpse '(unit-dead-body 6)
-  'type-land
-  'right-harvest
-  'can-attack
-  'can-target-land
-  'land-unit
-  'cower-worker
-  'organic
-  'selectable-by-rectangle
-  'sounds '(
-    selected "peasant-with-wood-selected"
-    acknowledge "peasant-with-wood-acknowledge"
-    ready "peasant-with-wood-ready"
-    help "basic human voices help 1"
-    dead "basic human voices dead"
-    attack "peasant-with-wood-attack"))
-
-(define-unit-type 'unit-human-oil-tanker-full 'name "Oil tanker"
-  'files '(tileset-summer "human/units/oil_tanker_full.png")
-  'size '(72 72)
-  'animations 'animations-human-oil-tanker 'icon 'icon-alliance-oil-tanker
-  'costs '(time 50 gold 400 wood 200)
-  'speed 10
-  'hit-points 90
-  'draw-level 40
-  'tile-size '(1 1) 'box-size '(63 63)
-  'sight-range 4
-  'armor 10 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
-  'max-attack-range 1
-  'priority 50 'annoy-computer-factor 10
-  'points 40
-  'demand 1
-  'corpse '(unit-dead-body 12)
-  'type-naval
-  'right-haul-oil
-  'sea-unit
-  'tanker
-  'selectable-by-rectangle
-  'sounds '(
-    selected "human-oil-tanker-full-selected"
-    acknowledge "human-oil-tanker-full-acknowledge"
-    ready "human-oil-tanker-full-ready"
-    help "basic human voices help 1"
-    dead "ship sinking"
-    attack "human-oil-tanker-full-attack"))
