@@ -150,12 +150,12 @@
 (define-modifier 'upgrade-human-ship-armor1
   '(armor 5)
   '(apply-to unit-elven-destroyer) '(apply-to unit-battleship)
-  '(apply-to unit-gnomish-submarine))
+  '(apply-to unit-human-transport))
 
 (define-modifier 'upgrade-human-ship-armor2
   '(armor 5)
   '(apply-to unit-elven-destroyer) '(apply-to unit-battleship)
-  '(apply-to unit-gnomish-submarine))
+  '(apply-to unit-human-transport))
 
 (define-modifier 'upgrade-catapult1
   '(piercing-damage 15)
