@@ -1544,7 +1544,7 @@
     style gem-square)
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 266 (+ (* 36 1.5) 2)) 'font 'game
-  'text '("Enabled" left)
+  'text '("Enabled" left func set-master-power)
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 16 (* 36 3)) 'font 'game
   'text '("Music Volume" left)
@@ -1567,7 +1567,7 @@
     style gem-square)
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 266 (+ (* 36 3.5) 2)) 'font 'game
-  'text '("Enabled" left)
+  'text '("Enabled" left func set-music-power)
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 16 (* 36 5)) 'font 'game
   'text '("CD Volume" left)
@@ -1590,7 +1590,7 @@
     style gem-square)
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 266 (+ (* 36 5.5) 2)) 'font 'game
-  'text '("Enabled" left)
+  'text '("Enabled" left func set-cd-power)
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 32 (* 36 6.5)) 'font 'large
   'gem '(size (18 18)
@@ -1634,7 +1634,7 @@
     style gem-square)
   'menu 'menu-preferences)
 (define-menu-item 'pos (list 46 (+ (* 36 1) 2)) 'font 'game
-  'text '("Fog of War Enabled" left)
+  'text '("Fog of War Enabled" left func set-fog-of-war)
   'menu 'menu-preferences)
 (define-menu-item 'pos (list 16 (* 36 2)) 'font 'large
   'gem '(size (18 18)
@@ -1643,7 +1643,7 @@
     style gem-square)
   'menu 'menu-preferences)
 (define-menu-item 'pos (list 46 (+ (* 36 2) 2)) 'font 'game
-  'text '("Show command key" left)
+  'text '("Show command key" left func set-command-key)
   'menu 'menu-preferences)
 (define-menu-item 'pos (list (- 128 (/ 106 2)) 245) 'font 'large
   'button '(size (106 27)
