@@ -1,0 +1,355 @@
+;;       _________ __                 __                               
+;;      /   _____//  |_____________ _/  |______     ____  __ __  ______
+;;      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
+;;      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
+;;     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
+;;             \/                  \/          \//_____/            \/ 
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   Stratagus - A free fantasy real time strategy game engine
+;;
+;;	stratagus.ccl	-	The craft configuration language.
+;;
+;;	(c) Copyright 1998-2003 by Joris Dauphin.
+;;
+;;      This program is free software; you can redistribute it and/or modify
+;;      it under the terms of the GNU General Public License as published by
+;;      the Free Software Foundation; either version 2 of the License, or
+;;      (at your option) any later version.
+;;  
+;;      This program is distributed in the hope that it will be useful,
+;;      but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;      GNU General Public License for more details.
+;;  
+;;      You should have received a copy of the GNU General Public License
+;;      along with this program; if not, write to the Free Software
+;;      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+;;
+;;	$Id$
+
+;; For documentation see stratagus/doc/ccl/ccl.html ;; FIXME write and move doc.
+
+;;		// Warning, Some names and specifications should be changed
+;;		// Todo parameter coherency ? negative for dealing damage, positive for healing ?
+;;
+;;		... 		: for list.
+;;		{a, b, c}	: choice between a, b, or c.
+;;		name#n		: name is of type number.
+;;		#n			: Number.
+;;		#t			: {true, false}
+;;		#target		: {'self, 'Unit, 'position}
+;;		#f_inv		: {unholyarmor, invisibility}
+;;		#f_haste	: {bloodlust, slow, haste, HP, mana, HP_percent, mana_percent}
+;;		#f_flag		: {invisibility, bloodlust, unholyarmor, slow, haste, flameshield,
+;;				  HP, mana, HP_percent, mana_percent
+;;		#flagtype	: {coward, organic, undead, canattack, building}
+;;		<condition>	: Same syntax as 'condition
+;;
+;;	(define-spell	"IdentName"	// Ident name for call in unit
+;;		'Showname "ShowName"	// Name show in the engine
+;;		'ManaCost #n		// Mana to cast the spell
+;;		'range #n		// Range of the spell (0)
+;;		'Target #target		// Which target is allowed (None by default)
+;;		'Action '({
+;;			Blizzard ('fields #n 'shards #n 'damage #n),
+;;			CircleOfPower "unit-goal",
+;;			DeathAndDecay(fields #n shards #n damage #n),
+;;			DeathCoil,
+;;			FireBall (ttl #n damage #n),
+;;			FlameShield (ttl #n),
+;;			Haste (#f_haste #n ...),
+;;			Healing (HP#n), // Healing (HP >0) or exorcism (HP < 0)
+;;			HolyVision "unit-revealer",
+;;			Invisibility (flag #f_inv value #n missile "MissileType")
+;;			Polymorph "unittype",
+;;			RaiseDead "skeleton",
+;;			Runes (ttl #n damage #n),
+;;			Summon "UnitType",
+;;			Whirlwind (ttl #n)
+;;				} )
+;;		'sound-when-cast "SoundConfig"
+;;		'missile-when-cast "MissileType"
+;;		'condition '( {
+;;			Enemypresence	(#t range #n),			// enemy in range
+;;			DurationEffect	(#t flag #f_flag value #n),	// "f_flag" < #n
+;;			Alliance 	#t,				// check the target is allied.
+;;			UnitTypeflag	(#t #flagtype),			// Unit is a "type"
+;;			...}
+;;			)
+;;		'autocast '(
+;;				range #n
+;;				condition (<condition>)// Additional condition
+;;				+++order () // which target choose.
+;;				)
+;;
+
+;;  Declare some unit types used in spells. This is quite accetable, the other
+;;  way would be to define can-cast-spell outside unit definitions, not much of an improvement.
+(define-unit-type 'unit-revealer)
+(define-unit-type 'unit-eye-of-vision)
+(define-unit-type 'unit-critter)
+(define-unit-type 'unit-skeleton)
+(define-unit-type 'unit-circle-of-power)
+
+(define-spell "spell-holy-vision"
+	'showname "Holy Vision"
+	'manacost 70
+	'range	-1
+	'target 'position
+	'action '( HolyVision "unit-revealer" )
+	'sound-when-cast "holy vision"
+	'missile-when-cast "missile-normal-spell"
+	'autocast '(range -1)
+)
+
+(define-spell "spell-healing"
+	'showname "Healing"
+	'manacost 6
+	'range	6
+	'target 'unit
+	'action '( Healing (HP 1) )
+	'condition '(	UnitTypeflag (true organic)
+			UnitTypeflag (false building)
+			DurationEffect (false flag HP_percent value 100) ;; HP < 100% HPMAX
+			Alliance true
+			)
+	'sound-when-cast "healing"
+	'missile-when-cast "missile-heal-effect"
+	'autocast '(range 6
+		condition (UnitTypeflag (false coward)
+			)
+		)
+)
+
+(define-spell "spell-exorcism"
+	'showname "Exorcism"
+	'manacost 4
+	'range	10
+	'target 'unit
+	'action '( Healing (HP -1) )
+	'condition '(	UnitTypeflag (true undead)
+			UnitTypeflag (false building)
+			Alliance false
+			)
+	'sound-when-cast "exorcism"
+	'missile-when-cast "missile-exorcism"
+	'autocast '(range 10 condition (UnitTypeflag (false coward)))
+)
+
+(define-spell "spell-eye-of-vision"
+	'showname "eye of vision"
+	'manacost 70
+	'range	6
+	'target 'none
+	'action '( Summon "unit-eye-of-vision" )
+	'sound-when-cast "eye of vision"
+	'missile-when-cast "missile-normal-spell"
+	'autocast '(range 6)
+)
+
+(define-spell "spell-haste"
+	'showname "haste"
+	'manacost 50
+	'range	6
+	'target 'unit
+	'action '( Haste (haste 1000 slow 0) )
+	'condition '(	UnitTypeflag (false building)
+			DurationEffect (false flag haste value 900) ;; haste < 900 / CYCLE_PER_SECOND
+			Alliance true
+			)
+	'sound-when-cast "haste"
+	'missile-when-cast "missile-normal-spell"
+	'autocast '(range 6 condition (UnitTypeflag (false coward)))
+)
+
+(define-spell "spell-slow"
+	'showname "slow"
+	'manacost 50
+	'range	10
+	'target 'unit
+	'action '( Haste (slow 1000 haste 0) )
+	'condition '(	UnitTypeflag (false building)
+			DurationEffect (false flag slow value 900) ;; slow < 900 / CYCLE_PER_SECOND
+			Alliance true
+			)
+	'sound-when-cast "slow"
+	'missile-when-cast "missile-normal-spell"
+	'autocast '(range 10 condition (UnitTypeflag (false coward)))
+)
+
+(define-spell "spell-bloodlust"
+	'showname "bloodlust"
+	'manacost 50
+	'range	6
+	'target 'unit
+	'action '( Haste (bloodlust 1000) )
+	'condition '(	UnitTypeflag (true organic)
+			DurationEffect (false flag bloodlust value 900) ;; bloodlust < 900 / CYCLE_PER_SECOND
+			Alliance true
+			)
+	'sound-when-cast "bloodlust"
+	'missile-when-cast "missile-normal-spell"
+	'autocast '(range 6 condition (UnitTypeflag (false coward)))
+)
+
+(define-spell "spell-invisibility"
+	'showname "invisibility"
+	'manacost 200
+	'range	6
+	'target 'unit
+	'action '( Invisibility ( flag invisibility value 2000 missile "missile-explosion" ))
+	'condition '(	UnitTypeflag (false building)
+			DurationEffect (false flag invisibility value 900) ;; invisibility < 900 / CYCLE_PER_SECOND
+			Alliance true
+			)
+	'sound-when-cast "invisibility"
+	'missile-when-cast "missile-normal-spell"
+	'autocast '(range 6 condition (UnitTypeflag (false coward)))
+)
+
+(define-spell "spell-unholy-armor"
+	'showname "unholyarmor"
+	'manacost 100
+	'range	6
+	'target 'unit
+	'action '( Invisibility ( flag unholyarmor value 500 missile "missile-explosion" ))
+	'condition '(UnitTypeflag (false building)
+			DurationEffect (false flag unholyarmor value 900) ;; unholyarmor < 900 / CYCLE_PER_SECOND
+			Alliance true
+			)
+	'sound-when-cast "unholyarmor"
+	'missile-when-cast "missile-normal-spell"
+	'autocast '(range 6 condition (UnitTypeflag (false coward)))
+)
+
+(define-spell "spell-flame-shield"
+	'showname "flame shield"
+	'manacost 50
+	'range	6
+	'target 'unit
+	'action '( FlameShield (ttl 600))
+	'condition '(UnitTypeflag (false building)
+			DurationEffect (false flag flameshield value 500) ;; flameshield < 900 / CYCLE_PER_SECOND
+;;			Alliance false;; On which player (true own , false opponents)
+			);; FIXME
+	'sound-when-cast "flame shield"
+;;	'missile-when-cast "missile-flame-shield" ; NOT use
+	'autocast '(range 6 condition (UnitTypeflag (false coward)))
+)
+
+(define-spell "spell-polymorph"
+	'showname "polymorph"
+	'manacost 200
+	'range	10
+	'target 'unit
+	'action '( Polymorph "unit-critter")
+	'condition '(UnitTypeflag (true organic)
+			Alliance false
+			)
+	'sound-when-cast "polymorph"
+	'missile-when-cast "missile-normal-spell"
+	'autocast '(range 10 condition (UnitTypeflag (false coward)))
+)
+
+
+(define-spell "spell-blizzard"
+	'showname "blizzard"
+	'manacost 25
+	'range	12
+	'target 'position
+	'action '( Blizzard (fields 5 shards 10 damage 10) )
+	'sound-when-cast "blizzard"
+	'missile-when-cast "missile-blizzard"
+;;	'autocast '(range 12)
+)
+
+(define-spell "spell-death-and-decay"
+	'showname "death and decay"
+	'manacost 25
+	'range	12
+	'target 'position
+	'action '( DeathAndDecay (fields 5 shards 10 damage 10) )
+	'sound-when-cast "death and decay"
+	'missile-when-cast "missile-death-and-decay"
+;;	'autocast '(range 12)
+)
+
+(define-spell "spell-fireball"
+	'showname "fireball"
+	'manacost 100
+	'range	8
+	'target 'position
+	'action '( FireBall (ttl 1000 damage 20))
+	'sound-when-cast "fireball throw"
+	'missile-when-cast "missile-fireball"
+;;	'autocast '(range 8)
+)
+
+(define-spell "spell-runes"
+	'showname "runes"
+	'manacost 200
+	'range	10
+	'target 'position
+	'action '( Runes (ttl 2000 damage 50))
+	'sound-when-cast "runes"
+	'missile-when-cast "missile-rune"
+;;	'autocast '(range 10)
+)
+
+(define-spell "spell-death-coil"
+	'showname "death coil"
+	'manacost 100
+	'range	10
+	'target 'position ;; FIXME position or organic target
+	'action '( DeathCoil )
+;;	'condition '(UnitTypeflag (true organic))
+	'sound-when-cast "death coil"
+	'missile-when-cast "missile-death-coil"
+;;	'autocast '(range 6)
+)
+
+(define-spell "spell-raise-dead"
+	'showname "raise dead"
+	'manacost 50
+	'range	6
+	'target 'none
+	'action '( RaiseDead "unit-skeleton" )
+	'sound-when-cast "raise dead"
+	'missile-when-cast "missile-normal-spell"
+;;	'autocast '(range 6)
+)
+
+(define-spell "spell-whirlwind"
+	'showname "whirlwind"
+	'manacost 100
+	'range	12
+	'target 'position
+	'action '( Whirlwind (ttl 801)) ; TODO damage1 4 damage2 1
+	'sound-when-cast "whirlwind"
+	'missile-when-cast "missile-whirlwind"
+;;	'autocast '(range 12)
+)
+
+(define-spell "spell-circle-of-power"
+	'showname "circle of power"
+	'manacost 25
+	'range	-1
+	'target 'position
+	'action '( CircleOfPower "unit-circle-of-power" )
+	'sound-when-cast "circle of power"
+	'missile-when-cast "missile-normal-spell"
+;;	'autocast '(range -1)
+)
+
+;(define-caster 'caster "unit-paladin" 'spell "spell-holy-vision" "spell-healing" "spell-exorcism")
+;(define-caster 'caster "unit-mage"
+;	'spell "spell-fireball" "spell-slow" "spell-flame-shield" "spell-invisibility"
+;		"spell-polymorph" "spell-blizzard")
+;(define-caster 'caster "unit-ogre-mage" 'spell "spell-eye-of-vision" "spell-bloodlust" "spell-runes")
+;(define-caster 'caster "unit-death-knight"
+;	'spell "spell-death-coil" "spell-haste" "spell-raise-dead" "spell-whirlwind"
+;		"spell-unholy-armor" "spell-death-and-decay")
+
+;(define-caster 'caster ""
+;	'spell "spell-circle-of-power")
