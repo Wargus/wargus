@@ -39,7 +39,7 @@ REM     Alternatively: Enter the path to WC2 on your hard drive.
 REM	If you need to force expansion, use the -e option.
 REM
 
-REM SET ARCHIVE="C:\Program Files\War2\data"
+SET CDROM="C:\War2"
 REM SET EXPANSION=-e
 
 REM
