@@ -51,8 +51,8 @@
   '( 0 0 ) '(   0   0 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0       0     0       0
   "missile-none"
   '()
   'type-land
@@ -81,8 +81,8 @@
   '( 1 1 ) '(  63  63 )      0       1     20      10
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        2    40      9      1       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0       0     0       0
   "missile-none"
   '()
   'type-naval
@@ -113,8 +113,8 @@
   '( 1 1 ) '(  63  63 )      0       1     20      10
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        2    40      9      1       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0       0     0       0
   "missile-none"
   '()
   'type-naval
@@ -145,8 +145,8 @@
   '( 0 0 ) '(   0   0 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0       0     0       0
   "missile-none"
   '()
   'type-land
@@ -175,8 +175,8 @@
   '( 0 0 ) '(   0   0 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0       0     0       0
   "missile-none"
   '()
   'type-land
@@ -205,8 +205,8 @@
   '( 1 1 ) '(  31  31 )      0       3      7       5
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        3    63     10      2       0       0
-  ;;Decay Annoy	Points
-      0      0     100
+  ;;Decay Annoy	Points  Food
+      0      0     100     1       0
   "missile-daemon-fire"
   '()
   'type-fly
@@ -242,8 +242,8 @@
   '( 1 1 ) '(  31  31 )      0       1     20      10
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0    37      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       1
+  ;;Decay Annoy	Points  Food
+      0      0     1       0       0
   "missile-none"
   '()
   'type-land
@@ -275,8 +275,8 @@
   '( 3 3 ) '(  95  95 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
       20     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0     0       0       0
   "missile-none"
   '("unit-destroyed-3x3-place" 0)
   'type-land
@@ -307,8 +307,8 @@
   '( 3 3 ) '(  95  95 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0     0       0       0
   "missile-none"
   '()
   'type-naval
@@ -339,8 +339,8 @@
   '( 2 2 ) '(  63  63 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0     0       0       0
   "missile-none"
   '("unit-destroyed-2x2-place" 0)
   'type-land
@@ -370,8 +370,8 @@
   '( 4 4 ) '( 127 127 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0     0       0       0
   "missile-none"
   '("unit-destroyed-4x4-place" 0)
   'type-land
@@ -401,8 +401,8 @@
   '( 2 2 ) '(  63  63 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
       20    15      0      0       0       0
-  ;;Decay Annoy	Points
-      0     35     150
+  ;;Decay Annoy	Points  Food
+      0     35     150     0       0
   "missile-none"
   '("unit-destroyed-2x2-place" 0)
   'type-land
@@ -432,8 +432,8 @@
   '( 1 1 ) '(  31  31 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0     0       0       0
   "missile-none"
   '()
   'type-land
@@ -463,8 +463,8 @@
   '( 1 1 ) '(  31  31 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0     0       0       0
   "missile-none"
   '()
   'type-land
@@ -495,8 +495,8 @@
   '( 2 2 ) '(  63  63 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0     0       0       0
   "missile-none"
   '()
   'type-land
@@ -524,8 +524,8 @@
   '( 3 3 ) '(  95  95 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0     0       0       0
   "missile-none"
   '()
   'type-land
@@ -553,8 +553,8 @@
   '( 4 4 ) '( 127 127 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      0      0       0
+  ;;Decay Annoy	Points  Food
+      0      0     0       0       0
   "missile-none"
   '()
   'type-land
@@ -585,8 +585,8 @@
   '( 1 1 ) '(  1  1 )        0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0     0      0      0       0       0
-  ;;Decay Annoy	Points
-      1      0       0
+  ;;Decay Annoy	Points  Food
+      1      0     0       0       0
   "missile-none"
   '()
   ;; flags
