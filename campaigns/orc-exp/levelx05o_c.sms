@@ -10,17 +10,13 @@ Briefing("type", "wc2",
 )
 
 -- FIXME: Check if units are destroyed.
-(add-trigger
-  '(
-    (if-unit 'this '== 1 'unit-dragon-roost))
-  '(
-    (action-victory)))
+AddTrigger(
+  function() return IfUnit("this", "==", 1, "unit-dragon-roost") end,
+  function() return ActionVictory() end)
 
-(add-trigger
-  '(
-    (if-unit 'this '== 0 'all))
-  '(
-    (action-defeat)))
+AddTrigger(
+  function() return IfUnit("this", "==", 0, "all") end,
+  function() return ActionDefeat() end)
 
 --Units
 
