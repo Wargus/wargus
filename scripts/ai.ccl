@@ -617,9 +617,9 @@
     (ai:need 'unit-orc-watch-tower)
     (ai:upgrade-to 'unit-orc-guard-tower)
     (ai:need 'unit-orc-barracks)
-    (ai:upgrade-to 'unit-stronghold)
+    (ai:upgrade-to 'unit-fortress)
     (ai:set  'unit-peon 19)
-    (ai:wait 'unit-stronghold)
+    (ai:wait 'unit-fortress)
 
     (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre 6 'unit-catapult 1)
     (ai:force 1 'unit-grunt 1 'unit-axethrower 2 'unit-ogre 2 'unit-catapult 1)
