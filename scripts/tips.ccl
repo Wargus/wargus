@@ -40,4 +40,10 @@
 (add-tip "You can demolish trees and rocks.")
 (add-tip "Keep all workers working. Use ALT-I to find idle workers.")
 
+;; Shift tips
+(add-tip "You can give an unit an order which is executed after it finishes the current work, if you hold the SHIFT key.")
+(add-tip "You can give way points, if you press the SHIFT key, while you click right for the move command.")
+(add-tip "You can order a worker to build one building after the other, if you hold the SHIFT key, while you place the building.");
+(add-tip "You can build many of the same building, if you hold the ALT and SHIFT keys while you place the buildings.")
+
 (add-tip "Know a useful tip?  Then add it here!")
