@@ -349,6 +349,10 @@
 (define-default-resource-names
   'time 'gold 'wood 'oil 'ore 'stone 'coal)
 
+(define-default-resource-amounts
+  'gold 100000
+  'oil 50000)
+
 ;;-----------------------------------------------------------------------------
 
 ;;	Edit next to increase the speed, for debugging.
