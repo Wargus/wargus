@@ -210,8 +210,7 @@
   '(apply-to unit-catapult))
 
 (define-modifier 'upgrade-ranger
-  '(armor 1)
-  '(apply-to unit-archer) '(apply-to unit-ranger))
+  '(apply-to unit-archer) '(convert-to unit-ranger))
 
 (define-modifier 'upgrade-longbow
   '(sight-range 1)
@@ -227,7 +226,7 @@
   '(apply-to unit-archer) '(apply-to unit-ranger))
 
 (define-modifier 'upgrade-paladin
-  '(apply-to unit-knight))
+  '(apply-to unit-knight) '(convert-to unit-paladin))
 
 (define-modifier 'upgrade-holy-vision
   '(apply-to unit-paladin))
@@ -308,8 +307,7 @@
   '(apply-to unit-ballista))
 
 (define-modifier 'upgrade-berserker
-  '(armor 1)
-  '(apply-to unit-axethrower) '(apply-to unit-berserker))
+  '(apply-to unit-axethrower) '(convert-to unit-berserker))
 
 (define-modifier 'upgrade-light-axes
   '(sight-range 1)
@@ -324,7 +322,7 @@
   '(apply-to unit-axethrower) '(apply-to unit-berserker))
 
 (define-modifier 'upgrade-ogre-mage
-  '(apply-to unit-ogre))
+  '(apply-to unit-ogre) '(convert-to unit-ogre-mage))
 
 (define-modifier 'upgrade-eye-of-kilrogg
   '(apply-to unit-ogre-mage))
