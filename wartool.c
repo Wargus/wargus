@@ -3529,6 +3529,7 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
     int l, levelno, noobjs, race;
     struct stat st;
     char rezdat[1024];
+    char strdat[1024];
 
     //Campaign data is in different spots on the original and
     //expansion CD's, have to take care of this at runtime.
@@ -3536,23 +3537,31 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
 	ofs=236;
 	txte=54;
     } else {
-	ofs=140;
 	if (UseMacCd) {
 	    sprintf(rezdat, "%s/War Resources", ArchiveDir);
 	} else {
 #ifdef USE_BEOS
+	    sprintf(strdat, "%s/STRDAT.WAR", ArchiveDir);
 	    sprintf(rezdat, "%s/REZDAT.WAR", ArchiveDir);
 #else
+	    sprintf(strdat, "%s/strdat.war", ArchiveDir);
 	    sprintf(rezdat, "%s/rezdat.war", ArchiveDir);
 #endif
 	}
 	stat(rezdat, &st);
-	// 54 for US cd, 53 for UK and German CD
+	// 54 for US/Spanish CD, 53 for UK and German CD
 	if ((UseMacCd && st.st_size == 1960206) || 
 	    (!UseMacCd && st.st_size == 1894026)) {
 	    txte=54;
         } else {
 	    txte=53;
+	}
+	stat(strdat, &st);
+	// 172 for Spanish CD, 140 for anything else
+	if (!UseMacCd && st.st_size == 55014) {
+	    ofs=172;
+	} else {
+	    ofs=140;
 	}
     }
 
