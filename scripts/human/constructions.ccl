@@ -42,6 +42,16 @@
     tileset swamp
     file "tilesets/swamp/human/buildings/shipyard construction site.png"
     size (96 96))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
 )
 
 (define-construction 'construction-alliance-oil-well
@@ -61,6 +71,16 @@
     tileset swamp
     file "tilesets/swamp/human/buildings/oil platform construction site.png"
     size (96 96))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
 )
 
 (define-construction 'construction-alliance-refinery
@@ -76,6 +96,16 @@
     tileset swamp
     file "tilesets/swamp/human/buildings/refinery construction site.png"
     size (96 96))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
 )
 
 (define-construction 'construction-alliance-foundry
@@ -91,4 +121,14 @@
     tileset swamp
     file "tilesets/swamp/human/buildings/foundry construction site.png"
     size (96 96))
+  'constructions (list
+    '(percent 0
+      file construction
+      frame 0)
+    '(percent 25
+      file construction
+      frame 1)
+    '(percent 50
+      file main
+      frame 1))
 )

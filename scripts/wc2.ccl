@@ -49,7 +49,8 @@
   'construction-alliance-shipyard 'construction-mythical-shipyard
   'construction-alliance-oil-well 'construction-mythical-oil-well
   'construction-alliance-refinery 'construction-mythical-refinery
-  'construction-alliance-foundry 'construction-mythical-foundry 'construction-wall)
+  'construction-alliance-foundry 'construction-mythical-foundry 'construction-wall
+  'construction-land2)
 
 ;;=============================================================================
 ;;	Define unit-type mapping from original number to internal symbol
