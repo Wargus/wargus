@@ -500,7 +500,7 @@ DefineUnitType("unit-orc-transport", { Name = "Transport",
   Type = "naval",
   RightMouseAction = "sail",
   SeaUnit = true,
-  Transporter = true,
+  CanTransport = {},
   SelectableByRectangle = true,
   Sounds = {
     "selected", "orc-transport-selected",

@@ -501,7 +501,7 @@ DefineUnitType("unit-human-transport", { Name = "Transport",
   Type = "naval",
   RightMouseAction = "sail",
   SeaUnit = true,
-  Transporter = true,
+  CanTransport = {},
   SelectableByRectangle = true,
   Sounds = {
     "selected", "human-transport-selected",
