@@ -264,7 +264,6 @@
             style gm-full)
     'menu 'menu-program-start)
 (define-menu-item 'pos (list 208 (+ 145 (* 36 4))) 'font 'large
-    'flags '(disabled)
     'button '(size (224 27)
             caption "~!Options"
             hotkey "o"
