@@ -42,10 +42,36 @@
 ;;----------------------------------------------------------------------------
 ;;	(set-cd-mode!) set how your CD is played.
 ;;		all	plays all tracks
-;;		random plays random tracks
+;;		random	plays random tracks
+;;		defined	play according to playlist below
 ;;		off	turns cd player off
-(set-cd-mode! 'all)
+;(set-cd-mode! 'all)
 ;(set-cd-mode! 'random) 
+(set-cd-mode! 'defined)
+;(set-cd-mode! 'off)
+
+;;----------------------------------------------------------------------------
+;;	(define-play-sections) set the playlist for different 
+;;			       sections of the game
+;;
+(define-play-sections 'type 'main-menu 
+    'cd '(order all tracks #(15)))
+(define-play-sections 'race 'human 'type 'game
+    'cd '(order random tracks #(3 4 5 6)))
+(define-play-sections 'race 'human 'type 'briefing
+    'cd '(order all tracks #(7)))
+(define-play-sections 'race 'human 'type 'stats-victory
+    'cd '(order all tracks #(8)))
+(define-play-sections 'race 'human 'type 'stats-defeat
+    'cd '(order all tracks #(9)))
+(define-play-sections 'race 'orc 'type 'game
+    'cd '(order random tracks #(10 11 12 13 14)))
+(define-play-sections 'race 'orc 'type 'briefing
+    'cd '(order all tracks #(15)))
+(define-play-sections 'race 'orc 'type 'stats-victory
+    'cd '(order all tracks #(16)))
+(define-play-sections 'race 'orc 'type 'stats-defeat
+    'cd '(order all tracks #(17)))
 
 ;;----------------------------------------------------------------------------
 ;;	Define sounds later used
