@@ -48,7 +48,7 @@ DefineNewAnimations("animations-daemon", {
   Attack = {"unbreakable begin", "frame 0", "wait 4", "frame 5", "wait 4",
     "frame 10", "wait 4", "frame 15", "wait 4", "frame 20", "wait 4",
     "frame 20", "wait 1", "frame 25", "wait 4", "frame 30", "wait 4",
-    "frame 35", "wait 4", "frame 40", "attack", "sound daemon-attack", "wait 4",
+    "frame 35", "wait 4", "frame 40", "attack", "wait 4",
     "frame 45", "wait 4", "frame 0", "unbreakable end", "wait 1",},
   Death = {"unbreakable begin", "frame 50", "wait 5", "frame 55", "wait 5", "frame 60", "wait 5",
     "frame 65", "wait 5", "frame 65", "unbreakable end", "wait 1",},

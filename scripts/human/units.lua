@@ -236,8 +236,7 @@ DefineUnitType("unit-mage", { Name = "Mage",
     "acknowledge", "mage-acknowledge",
     "ready", "mage-ready",
     "help", "basic human voices help 1",
-    "dead", "basic human voices dead",
-    "attack", "mage-attack"} } )
+    "dead", "basic human voices dead"} } )
 
 DefineUnitType("unit-paladin", { Name = "Paladin",
   Files = {"tileset-summer", "human/units/knight.png"},
@@ -358,7 +357,7 @@ DefineUnitType("unit-female-hero", { Name = "Alleria",
   Sounds = {
     "selected", "alleria-selected",
     "acknowledge", "alleria-acknowledge",
-    "ready", "alleria-ready",
+--    "ready", "alleria-ready",
     "help", "basic human voices help 1",
     "dead", "basic human voices dead"} } )
 
@@ -420,7 +419,7 @@ DefineUnitType("unit-flying-angle", { Name = "Kurdan and Sky'ree",
   Sounds = {
     "selected", "kurdan-and-sky-ree-selected",
     "acknowledge", "kurdan-and-sky-ree-acknowledge",
-    "ready", "kurdan-and-sky-ree-ready",
+--    "ready", "kurdan-and-sky-ree-ready",
     "help", "basic human voices help 1",
     "dead", "basic human voices dead"} } )
 
@@ -458,7 +457,7 @@ DefineUnitType("unit-white-mage", { Name = "Khadgar",
   Sounds = {
     "selected", "khadgar-selected",
     "acknowledge", "khadgar-acknowledge",
-    "ready", "khadgar-ready",
+--    "ready", "khadgar-ready",
     "help", "basic human voices help 1",
     "dead", "basic human voices dead"} } )
 
@@ -644,8 +643,7 @@ DefineUnitType("unit-balloon", { Name = "Gnomish Flying Machine",
     "acknowledge", "gnomish-flying-machine-acknowledge",
     "ready", "gnomish-flying-machine-ready",
     "help", "basic human voices help 1",
-    "dead", "explosion",
-    "attack", "gnomish-flying-machine-attack"} } )
+    "dead", "explosion"} } )
 
 DefineUnitType("unit-knight-rider", { Name = "Turalyon",
   Files = {"tileset-summer", "human/units/knight.png"},
@@ -675,7 +673,7 @@ DefineUnitType("unit-knight-rider", { Name = "Turalyon",
   Sounds = {
     "selected", "turalyon-selected",
     "acknowledge", "turalyon-acknowledge",
-    "ready", "turalyon-ready",
+--    "ready", "turalyon-ready",
     "help", "basic human voices help 1",
     "dead", "basic human voices dead"} } )
 
@@ -705,7 +703,7 @@ DefineUnitType("unit-arthor-literios", { Name = "Danath",
   Sounds = {
     "selected", "danath-selected",
     "acknowledge", "danath-acknowledge",
-    "ready", "danath-ready",
+--    "ready", "danath-ready",
     "help", "basic human voices help 1",
     "dead", "basic human voices dead"} } )
 
@@ -738,7 +736,7 @@ DefineUnitType("unit-wise-man", { Name = "Lothar",
   Sounds = {
     "selected", "lothar-selected",
     "acknowledge", "lothar-acknowledge",
-    "ready", "lothar-ready",
+--    "ready", "lothar-ready",
     "help", "basic human voices help 1",
     "dead", "basic human voices dead"} } )
 
@@ -771,7 +769,7 @@ DefineUnitType("unit-man-of-light", { Name = "Uther Lightbringer",
   Sounds = {
     "selected", "uther-lightbringer-selected",
     "acknowledge", "uther-lightbringer-acknowledge",
-    "ready", "uther-lightbringer-ready",
+--    "ready", "uther-lightbringer-ready",
     "help", "basic human voices help 1",
     "dead", "basic human voices dead"} } )
 
@@ -801,8 +799,8 @@ DefineUnitType("unit-farm", { Name = "Farm",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "farm-selected",
-    "acknowledge", "farm-acknowledge",
-    "ready", "farm-ready",
+--    "acknowledge", "farm-acknowledge",
+--    "ready", "farm-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -830,8 +828,8 @@ DefineUnitType("unit-human-barracks", { Name = "Barracks",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "human-barracks-selected",
-    "acknowledge", "human-barracks-acknowledge",
-    "ready", "human-barracks-ready",
+--    "acknowledge", "human-barracks-acknowledge",
+--    "ready", "human-barracks-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -859,8 +857,8 @@ DefineUnitType("unit-church", { Name = "Church",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "church-selected",
-    "acknowledge", "church-acknowledge",
-    "ready", "church-ready",
+--    "acknowledge", "church-acknowledge",
+--    "ready", "church-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -890,8 +888,8 @@ DefineUnitType("unit-human-watch-tower", { Name = "Scout Tower",
   DetectCloak = true,
   Sounds = {
     "selected", "human-watch-tower-selected",
-    "acknowledge", "human-watch-tower-acknowledge",
-    "ready", "human-watch-tower-ready",
+--    "acknowledge", "human-watch-tower-acknowledge",
+--    "ready", "human-watch-tower-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -919,8 +917,8 @@ DefineUnitType("unit-stables", { Name = "Stables",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "stables-selected",
-    "acknowledge", "stables-acknowledge",
-    "ready", "stables-ready",
+--    "acknowledge", "stables-acknowledge",
+--    "ready", "stables-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -948,8 +946,8 @@ DefineUnitType("unit-inventor", { Name = "Gnomish Inventor",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "gnomish-inventor-selected",
-    "acknowledge", "gnomish-inventor-acknowledge",
-    "ready", "gnomish-inventor-ready",
+--    "acknowledge", "gnomish-inventor-acknowledge",
+ --   "ready", "gnomish-inventor-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -977,8 +975,8 @@ DefineUnitType("unit-gryphon-aviary", { Name = "Gryphon Aviary",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "gryphon-aviary-selected",
-    "acknowledge", "gryphon-aviary-acknowledge",
-    "ready", "gryphon-aviary-ready",
+--    "acknowledge", "gryphon-aviary-acknowledge",
+--    "ready", "gryphon-aviary-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1013,8 +1011,8 @@ DefineUnitType("unit-human-shipyard", { Name = "Shipyard",
   CanStore = {"oil"},
   Sounds = {
     "selected", "human-shipyard-selected",
-    "acknowledge", "human-shipyard-acknowledge",
-    "ready", "human-shipyard-ready",
+--    "acknowledge", "human-shipyard-acknowledge",
+--    "ready", "human-shipyard-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1045,8 +1043,8 @@ DefineUnitType("unit-elven-lumber-mill", { Name = "Elven Lumber Mill",
   CanStore = {"wood"},
   Sounds = {
     "selected", "elven-lumber-mill-selected",
-    "acknowledge", "elven-lumber-mill-acknowledge",
-    "ready", "elven-lumber-mill-ready",
+--    "acknowledge", "elven-lumber-mill-acknowledge",
+--    "ready", "elven-lumber-mill-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1075,8 +1073,8 @@ DefineUnitType("unit-human-foundry", { Name = "Foundry",
   ShoreBuilding = true,
   Sounds = {
     "selected", "human-foundry-selected",
-    "acknowledge", "human-foundry-acknowledge",
-    "ready", "human-foundry-ready",
+--    "acknowledge", "human-foundry-acknowledge",
+--    "ready", "human-foundry-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1109,8 +1107,8 @@ DefineUnitType("unit-town-hall", { Name = "Town Hall",
   CanStore = {"wood", "gold"},
   Sounds = {
     "selected", "town-hall-selected",
-    "acknowledge", "town-hall-acknowledge",
-    "ready", "town-hall-ready",
+--    "acknowledge", "town-hall-acknowledge",
+--    "ready", "town-hall-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1138,8 +1136,8 @@ DefineUnitType("unit-mage-tower", { Name = "Mage Tower",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "mage-tower-selected",
-    "acknowledge", "mage-tower-acknowledge",
-    "ready", "mage-tower-ready",
+--    "acknowledge", "mage-tower-acknowledge",
+--    "ready", "mage-tower-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1167,8 +1165,8 @@ DefineUnitType("unit-human-blacksmith", { Name = "Blacksmith",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "human-blacksmith-selected",
-    "acknowledge", "human-blacksmith-acknowledge",
-    "ready", "human-blacksmith-ready",
+--    "acknowledge", "human-blacksmith-acknowledge",
+--    "ready", "human-blacksmith-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1204,8 +1202,8 @@ DefineUnitType("unit-human-refinery", { Name = "Refinery",
   CanStore = {"oil"},
   Sounds = {
     "selected", "human-refinery-selected",
-    "acknowledge", "human-refinery-acknowledge",
-    "ready", "human-refinery-ready",
+--    "acknowledge", "human-refinery-acknowledge",
+--    "ready", "human-refinery-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1234,8 +1232,8 @@ DefineUnitType("unit-human-oil-platform", { Name = "Oil Platform",
   GivesResource = "oil", CanHarvest = true,
   Sounds = {
     "selected", "human-oil-platform-selected",
-    "acknowledge", "human-oil-platform-acknowledge",
-    "ready", "human-oil-platform-ready",
+--    "acknowledge", "human-oil-platform-acknowledge",
+--    "ready", "human-oil-platform-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1266,8 +1264,8 @@ DefineUnitType("unit-keep", { Name = "Keep",
   CanStore = {"gold", "wood"},
   Sounds = {
     "selected", "keep-selected",
-    "acknowledge", "keep-acknowledge",
-    "ready", "keep-ready",
+--    "acknowledge", "keep-acknowledge",
+--    "ready", "keep-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1298,8 +1296,8 @@ DefineUnitType("unit-castle", { Name = "Castle",
   CanStore = {"gold", "wood"},
   Sounds = {
     "selected", "castle-selected",
-    "acknowledge", "castle-acknowledge",
-    "ready", "castle-ready",
+--    "acknowledge", "castle-acknowledge",
+--    "ready", "castle-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1318,9 +1316,9 @@ DefineUnitType("unit-human-start-location", { Name = "Start Location",
   Demand = 0,
   Type = "land",
   Sounds = {
-    "selected", "human-start-location-selected",
-    "acknowledge", "human-start-location-acknowledge",
-    "ready", "human-start-location-ready",
+--    "selected", "human-start-location-selected",
+--    "acknowledge", "human-start-location-acknowledge",
+--    "ready", "human-start-location-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1352,8 +1350,8 @@ DefineUnitType("unit-human-guard-tower", { Name = "Guard Tower",
   DetectCloak = true,
   Sounds = {
     "selected", "human-guard-tower-selected",
-    "acknowledge", "human-guard-tower-acknowledge",
-    "ready", "human-guard-tower-ready",
+--    "acknowledge", "human-guard-tower-acknowledge",
+--    "ready", "human-guard-tower-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1385,8 +1383,8 @@ DefineUnitType("unit-human-cannon-tower", { Name = "Cannon Tower",
   DetectCloak = true,
   Sounds = {
     "selected", "human-cannon-tower-selected",
-    "acknowledge", "human-cannon-tower-acknowledge",
-    "ready", "human-cannon-tower-ready",
+--    "acknowledge", "human-cannon-tower-acknowledge",
+--    "ready", "human-cannon-tower-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1411,9 +1409,9 @@ DefineUnitType("unit-human-wall", { Name = "Wall",
   Type = "land",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
-    "selected", "human-wall-selected",
-    "acknowledge", "human-wall-acknowledge",
-    "ready", "human-wall-ready",
+--    "selected", "human-wall-selected",
+--    "acknowledge", "human-wall-acknowledge",
+--    "ready", "human-wall-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
