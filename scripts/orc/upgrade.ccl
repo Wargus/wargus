@@ -165,6 +165,7 @@
   '(apply-to unit-axethrower) '(apply-to unit-berserker))
 
 (define-modifier 'upgrade-berserker-regeneration
+  '(regeneration-rate 1)
   '(apply-to unit-axethrower) '(apply-to unit-berserker))
 
 (define-modifier 'upgrade-ogre-mage
