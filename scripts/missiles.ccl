@@ -215,11 +215,11 @@
 (define-missile-type 'missile-arrow
   'file "arrow.png" 'size '(40 40) 'frames 5
   'impact-sound "bow hit"
-  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 0)
+  'class 'missile-class-point-to-point 'sleep 0 'speed 16 'range 0)
 (define-missile-type 'missile-axe
   'file "axe.png" 'size '(32 32) 'frames 15
   'impact-sound "bow hit"
-  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 0)
+  'class 'missile-class-point-to-point 'sleep 0 'speed 16 'range 0)
 (define-missile-type 'missile-submarine-missile
   'file "submarine missile.png" 'size '(40 40) 'frames 5
   'impact-sound "explosion"
