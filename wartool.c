@@ -119,6 +119,7 @@ unsigned char** ArchiveOffsets;
 **	Possible entry types of archive file.
 */
 enum _archive_type_ {
+    S,			// Setup
     F,			// File				(name)
     T,			// Tileset			(name,pal,mega,mini,map)
 // FIXME: should be removed use from tileset
@@ -139,6 +140,71 @@ enum _archive_type_ {
 **	FIXME: version 1.00, 1.31, 1.40, 1.50 dependend!
 */
 Control Todo[] = {
+
+///////////////////////////////////////////////////////////////////////////////
+//	TEXT	(must be done for all others!)
+///////////////////////////////////////////////////////////////////////////////
+
+{F,0,"strdat.war",				4000 },
+{S,0,"unit_names",						  1	},
+{X,0,"level01h",						 65	},
+{X,0,"level01o",						 66	},
+{X,0,"level02h",						 67	},
+{X,0,"level02o",						 68	},
+{X,0,"level03h",						 69	},
+{X,0,"level03o",						 70	},
+{X,0,"level04h",						 71	},
+{X,0,"level04o",						 72	},
+{X,0,"level05h",						 73	},
+{X,0,"level05o",						 74	},
+{X,0,"level06h",						 75	},
+{X,0,"level06o",						 76	},
+{X,0,"level07h",						 77	},
+{X,0,"level07o",						 78	},
+{X,0,"level08h",						 79	},
+{X,0,"level08o",						 80	},
+{X,0,"level09h",						 81	},
+{X,0,"level09o",						 82	},
+{X,0,"level10h",						 83	},
+{X,0,"level10o",						 84	},
+{X,0,"level11h",						 85	},
+{X,0,"level11o",						 86	},
+{X,0,"level12h",						 87	},
+{X,0,"level12o",						 88	},
+{X,0,"level13h",						 89	},
+{X,0,"level13o",						 90	},
+{X,0,"level14h",						 91	},
+{X,0,"level14o",						 92	},
+
+{X,2,"levelx01h",						 99	},
+{X,2,"levelx01o",						100	},
+{X,2,"levelx02h",						101	},
+{X,2,"levelx02o",						102	},
+{X,2,"levelx03h",						103	},
+{X,2,"levelx03o",						104	},
+{X,2,"levelx04h",						105	},
+{X,2,"levelx04o",						106	},
+{X,2,"levelx05h",						107	},
+{X,2,"levelx05o",						108	},
+{X,2,"levelx06h",						109	},
+{X,2,"levelx06o",						110	},
+{X,2,"levelx07h",						111	},
+{X,2,"levelx07o",						112	},
+{X,2,"levelx08h",						113	},
+{X,2,"levelx08o",						114	},
+{X,2,"levelx09h",						115	},
+{X,2,"levelx09o",						116	},
+{X,2,"levelx10h",						117	},
+{X,2,"levelx10o",						118	},
+{X,2,"levelx11h",						119	},
+{X,2,"levelx11o",						120	},
+{X,2,"levelx12h",						121	},
+{X,2,"levelx12o",						122	},
+
+///////////////////////////////////////////////////////////////////////////////
+//	MOST THINGS
+///////////////////////////////////////////////////////////////////////////////
+
 {F,0,"maindat.war",				1000 },
 {R,0,"summer",							 2	},
 {T,0,"summer",					 2,	 3,	 4,	 5 },
@@ -158,8 +224,13 @@ Control Todo[] = {
 {G,0,"juggernaught",						 2,  42	},
 {G,0,"gnomish submarine (summer,winter)",			 2,  43	},
 {G,0,"giant turtle (summer,winter)",				 2,  44	},
-{G,0,"footman",							 2,  45	},
-{G,0,"grunt",							 2,  46	},
+#ifdef NEW_NAMES
+{G,0,"human/units/%1",						 2,  45	},
+{G,0,"orc/units/%2",						 2,  46	},
+#else
+{G,0,"%1",							 2,  45	},
+{G,0,"%2",							 2,  46	},
+#endif
 {G,0,"peasant",							 2,  47	},
 {G,0,"peon",							 2,  48	},
 {G,0,"ballista",						 2,  49	},
@@ -1013,66 +1084,12 @@ Control Todo[] = {
 {I,2,"Act xIV | The Measure of Valor (Human)",			17, 102 },
 {I,2,"Act xIV | Prelude to New Worlds (Orc)",			17, 103 },
 
-///////////////////////////////////////////////////////////////////////////////
-//	TEXT
-///////////////////////////////////////////////////////////////////////////////
-
-{F,0,"strdat.war",				4000 },
-{X,0,"level01h",						 65	},
-{X,0,"level01o",						 66	},
-{X,0,"level02h",						 67	},
-{X,0,"level02o",						 68	},
-{X,0,"level03h",						 69	},
-{X,0,"level03o",						 70	},
-{X,0,"level04h",						 71	},
-{X,0,"level04o",						 72	},
-{X,0,"level05h",						 73	},
-{X,0,"level05o",						 74	},
-{X,0,"level06h",						 75	},
-{X,0,"level06o",						 76	},
-{X,0,"level07h",						 77	},
-{X,0,"level07o",						 78	},
-{X,0,"level08h",						 79	},
-{X,0,"level08o",						 80	},
-{X,0,"level09h",						 81	},
-{X,0,"level09o",						 82	},
-{X,0,"level10h",						 83	},
-{X,0,"level10o",						 84	},
-{X,0,"level11h",						 85	},
-{X,0,"level11o",						 86	},
-{X,0,"level12h",						 87	},
-{X,0,"level12o",						 88	},
-{X,0,"level13h",						 89	},
-{X,0,"level13o",						 90	},
-{X,0,"level14h",						 91	},
-{X,0,"level14o",						 92	},
-
-{X,2,"levelx01h",						 99	},
-{X,2,"levelx01o",						100	},
-{X,2,"levelx02h",						101	},
-{X,2,"levelx02o",						102	},
-{X,2,"levelx03h",						103	},
-{X,2,"levelx03o",						104	},
-{X,2,"levelx04h",						105	},
-{X,2,"levelx04o",						106	},
-{X,2,"levelx05h",						107	},
-{X,2,"levelx05o",						108	},
-{X,2,"levelx06h",						109	},
-{X,2,"levelx06o",						110	},
-{X,2,"levelx07h",						111	},
-{X,2,"levelx07o",						112	},
-{X,2,"levelx08h",						113	},
-{X,2,"levelx08o",						114	},
-{X,2,"levelx09h",						115	},
-{X,2,"levelx09o",						116	},
-{X,2,"levelx10h",						117	},
-{X,2,"levelx10o",						118	},
-{X,2,"levelx11h",						119	},
-{X,2,"levelx11o",						120	},
-{X,2,"levelx12h",						121	},
-{X,2,"levelx12o",						122	},
-
 };
+
+/**
+**	File names.
+*/
+char* UnitNames[110];
 
 //----------------------------------------------------------------------------
 
@@ -1436,6 +1453,8 @@ int ConvertRgb(char* file,int rgbe)
 	fprintf(f,"%d %d %d\t#%d\n"
 		,rgbp[i*3]*4,rgbp[i*3+1]*4,rgbp[i*3+2]*4,i);
     }
+
+    free(rgbp);
 
     return 0;
 }
@@ -1980,6 +1999,8 @@ int ConvertPud(char* file,int pude)
 	printf("Can't write %d bytes\n",l);
     }
 
+    free(pudp);
+
     gzclose(gf);
     return 0;
 #else
@@ -2001,6 +2022,8 @@ int ConvertPud(char* file,int pude)
     if( l!=fwrite(pudp,1,l,f) ) {
 	printf("Can't write %d bytes\n",l);
     }
+
+    free(pudp);
 
     fclose(f);
     return 0;
@@ -2288,6 +2311,8 @@ int ConvertWav(char* file,int wave)
 	printf("Can't write %d bytes\n",l);
     }
 
+    free(wavp);
+
     gzclose(gf);
     return 0;
 }
@@ -2319,8 +2344,64 @@ int ConvertText(char* file,int txte)
 	printf("Can't write %d bytes\n",l);
     }
 
+    free(txtp);
+
     gzclose(gf);
     return 0;
+}
+
+/**
+**	Convert text to my format.
+*/
+int SetupNames(char* file,int txte)
+{
+    unsigned char* txtp;
+    const unsigned short* mp;
+    int l;
+    int i;
+    int n;
+
+    txtp=ExtractEntry(ArchiveOffsets[txte],&l);
+    mp=(const unsigned short*)txtp;
+
+    n=ConvertLE16(mp[0]);
+    for( i=1; i<n; ++i ) {
+	DebugLevel3("%d %x ",i,ConvertLE16(mp[i]));
+	DebugLevel3("%s\n",txtp+ConvertLE16(mp[i]));
+	if( i<sizeof(UnitNames)/sizeof(*UnitNames) ) {
+	    UnitNames[i]=strdup(txtp+ConvertLE16(mp[i]));
+	}
+    }
+
+    free(txtp);
+    return 0;
+}
+
+/**
+**	Parse string.
+*/
+char* ParseString(char* input)
+{
+    static char buf[1024];
+    char* dp;
+    char* sp;
+    char* tp;
+    int i;
+
+    for( sp=input,dp=buf; *sp; ) {
+	if( *sp=='%' ) {
+	    i=strtol(sp+1,&sp,0);
+	    tp=UnitNames[i];
+	    while( *tp ) {
+		*dp++=tolower(*tp++);
+	    }
+	    continue;
+	}
+	*dp++=*sp++;
+    }
+    *dp='\0';
+
+    return buf;
 }
 
 //----------------------------------------------------------------------------
@@ -2332,7 +2413,7 @@ int ConvertText(char* file,int txte)
 */
 void Usage(const char* name)
 {
-    printf("wartool for ALE Clone V" VERSION ", (c) 1999,2000 by the FreeCraft Project\n\
+    printf("wartool for FreeCraft V" VERSION ", (c) 1999,2000 by the FreeCraft Project\n\
 Usage: %s [-e] archive-directory [destination-directory]\n\
 \t-e\tThe archive are expansion compatible\n\
 \t-n\tThe archive is not expansion compatible\n\
@@ -2421,7 +2502,7 @@ int main(int argc,char** argv)
 			,Todo[i].Arg3,Todo[i].Arg4);
 		break;
 	    case G:
-		ConvertGfx(Todo[i].File,Todo[i].Arg1,Todo[i].Arg2);
+		ConvertGfx(ParseString(Todo[i].File),Todo[i].Arg1,Todo[i].Arg2);
 		break;
 	    case U:
 		ConvertGfu(Todo[i].File,Todo[i].Arg1,Todo[i].Arg2);
@@ -2443,6 +2524,9 @@ int main(int argc,char** argv)
 		break;
 	    case X:
 		ConvertText(Todo[i].File,Todo[i].Arg1);
+		break;
+	    case S:
+		SetupNames(Todo[i].File,Todo[i].Arg1);
 		break;
 	    default:
 		break;
