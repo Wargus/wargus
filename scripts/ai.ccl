@@ -408,6 +408,238 @@
     ))
 
 ;;=============================================================================
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  grunt-rush tactics
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define ai:orc-land-rush-endloop
+  '((writes nil "Looping !\n")
+    (ai:force 0 'unit-grunt 15 'unit-ogre-mage 9 'unit-catapult 3)
+    (ai:force 1 'unit-grunt 20)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:script ai:orc-land-rush-endloop) ) )
+
+(define-ai 'rush race2 "gruntrush"
+  '(
+    ;;	Define the main AI script.
+    (ai:debug #f)
+    (ai:need (unit-type 'unit-great-hall))
+    (ai:set  'unit-peon 1)
+    (ai:wait 'unit-great-hall)
+    (ai:wait 'unit-peon)	;; start hangs if nothing available
+
+    (ai:set  'unit-peon 10)
+    (ai:set  'unit-pig-farm 2)
+    (ai:need 'unit-orc-barracks)
+    (ai:need 'unit-orc-blacksmith)
+    (ai:force 1 'unit-grunt 1)
+    (ai:force 0 'unit-grunt 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+
+    (ai:force 0 'unit-grunt 2)
+    (ai:research 'upgrade-battle-axe1)
+    (ai:research 'upgrade-orc-shield1)
+    (ai:research 'upgrade-battle-axe2)
+    (ai:research 'upgrade-orc-shield2)
+    (ai:set  'unit-peon 20)
+    (ai:force 1 'unit-grunt 6)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:set 'unit-orc-barracks 3)
+    (ai:force 1 'unit-grunt 20)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:set 'unit-orc-barracks 6)
+    (ai:force 1 'unit-grunt 40)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:set  'unit-pig-farm 25)
+
+
+    (ai:force 0 'unit-grunt 9)
+    (ai:force 2 'unit-grunt 20)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:force 0 'unit-grunt 15)
+    (ai:force 1 'unit-grunt 20)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:need (unit-type 'unit-great-hall))
+
+    (ai:force 0 'unit-grunt 15)
+    (ai:force 2 'unit-grunt 80)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:force 1 'unit-grunt 20)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 2 'unit-grunt 20)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:force 1 'unit-grunt 20)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 2 'unit-grunt 20)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+
+
+
+
+    (ai:force 1 'unit-grunt 9)
+    (ai:force 2 'unit-grunt 4)
+    (ai:force 3 'unit-grunt 5)
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 3)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:set 'unit-ogre-mound 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:force 0 'unit-grunt 9)
+    (ai:force 4 'unit-grunt 9)
+
+    (ai:set  'unit-peon 25)
+
+    (ai:set  'unit-pig-farm 20)
+    (ai:force 0 'unit-grunt 9 'unit-ogre 1)
+    (ai:force 1 'unit-grunt 9)
+    (ai:force 2 'unit-grunt 9)
+    (ai:force 3 'unit-grunt 12)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:set 'unit-orc-barracks 9)
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+
+    (ai:force 0 'unit-grunt 9 'unit-ogre 3)
+    (ai:force 1 'unit-grunt 14)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 3)
+
+    (ai:force 0 'unit-grunt 14 'unit-axethrower 2 'unit-ogre 5 'unit-catapult 1)
+    (ai:force 1 'unit-grunt 9)
+    (ai:force 2 'unit-grunt 9)
+    (ai:force 3 'unit-grunt 9)
+    (ai:force 4 'unit-grunt 4)
+    (ai:force 5 'unit-grunt 9 'unit-ogre 3)
+    (ai:wait-force 4)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+    (ai:attack-with-force 3)
+    (ai:attack-with-force 4)
+
+    (ai:force 6 'unit-grunt 19)
+    (ai:force 7 'unit-grunt 19)
+
+    (ai:force 0 'unit-grunt 9 'unit-axethrower 9 'unit-ogre 9 'unit-catapult 2)
+    (ai:force 1 'unit-grunt 9 'unit-ogre 3)
+    (ai:wait-force 5)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 5)
+    (ai:attack-with-force 6)
+    (ai:attack-with-force 7)
+
+    (ai:force 1 'unit-grunt 9 'unit-ogre 2)
+    (ai:force 2 'unit-grunt 9)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+
+    (ai:force 1 'unit-grunt 11 'unit-ogre 4)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 1 'unit-grunt 15)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 1 'unit-grunt 11 'unit-ogre 4)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 1 'unit-grunt 15)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+	(ai:sleep 500)
+    (ai:force 0 'unit-grunt 1 'unit-axethrower 0 'unit-ranger 2
+	'unit-ogre-mage 6 'unit-catapult 1 'unit-death-knight 5)
+    (ai:force 1 'unit-grunt 1 'unit-axethrower 0 'unit-ranger 2
+	'unit-ogre-mage 2 'unit-catapult 1 'unit-death-knight 1)
+    (ai:force 2 'unit-dragon 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+
+    ;;(ai:sleep 500)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-cannon-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:research 'upgrade-catapult1)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-cannon-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:research 'upgrade-catapult2)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-cannon-tower)
+    (ai:need 'unit-orc-watch-tower)
+    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:set  'unit-peon 25)
+
+    ;; Everything researched...
+
+    (ai:script ai:orc-land-rush-endloop) ))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  goldfever tactics
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define ai:orc-goldfever-endloop
+  '((writes nil "Looping !\n")
+    (ai:force 0 'unit-grunt 15)
+
+    (ai:sleep 500)
+    (ai:script ai:orc-goldfever-endloop) ) )
+
+(define-ai 'goldfever race2 "goldfever"
+  '(
+    ;;	Define the main AI script.
+    (ai:debug #f)
+    (ai:need (unit-type 'unit-great-hall))
+    (ai:set  'unit-peon 1)
+    (ai:wait 'unit-great-hall)
+    (ai:wait 'unit-peon)	;; start hangs if nothing available
+
+    (ai:set  'unit-pig-farm 1)
+
+    (ai:set  'unit-peon 5)
+    (ai:wait 'unit-peon)
+
+    (ai:need 'unit-orc-barracks)
+
+    (ai:set  'unit-peon 50)
+    (ai:script ai:orc-goldfever-endloop) ))
+
+;;=============================================================================
 ;;	Air Attack AI, this is an example for a multi race AI.
 ;;=============================================================================
 
@@ -1653,9 +1885,10 @@
     (ai:script ai:hum-05-attack-endloop) ))
 
 ;;=============================================================================
-;;	This AI script builds only workers and tankers and oil platform.
+;;	This AI script builds only workers, blacksmith.
 ;;		Also if needed a farm.
-;;		Attacks with soldier, shooter and destroyer.
+;;		Upgrades weapon and missile.
+;;		Attacks with soldier, shooter and cavalrie.
 ;;
 (define ai:hum-06-attack-endloop
   '((writes nil "Looping !\n")
@@ -1737,6 +1970,7 @@
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-    (ai:research (ai:upgrade-weapon-2))
+    (ai:research (ai:upgrade-armor-1))
 
     (ai:script ai:hum-06-attack-endloop) ))
+
