@@ -49,7 +49,7 @@
     (list 'train 'unit-town-hall 'unit-peasant)
     (list 'train 'unit-keep 'unit-peasant)
     (list 'train 'unit-castle 'unit-peasant)
-    (list 'train 'unit-human-barracks 
+    (list 'train 'unit-human-barracks
 	'unit-footman 'unit-archer 'unit-ranger 'unit-ballista 'unit-knight
 	'unit-paladin)
     (list 'train 'unit-gnomish-inventor
@@ -69,7 +69,7 @@
     ;;
     ;;	Building can research which spells or upgrades.
     ;;
-    (list 'research 'unit-human-blacksmith 
+    (list 'research 'unit-human-blacksmith
 	'upgrade-sword1 'upgrade-sword2
 	'upgrade-human-shield1 'upgrade-human-shield2
 	'upgrade-ballista1 'upgrade-ballista2)
@@ -109,7 +109,7 @@
     (list 'train 'unit-great-hall 'unit-peon)
     (list 'train 'unit-stronghold 'unit-peon)
     (list 'train 'unit-fortress 'unit-peon)
-    (list 'train 'unit-orc-barracks 
+    (list 'train 'unit-orc-barracks
 	'unit-grunt 'unit-axethrower 'unit-berserker 'unit-catapult 'unit-ogre
 	'unit-ogre-mage)
     (list 'train 'unit-goblin-alchemist
@@ -129,7 +129,7 @@
     ;;
     ;;	Building can research which spells or upgrades.
     ;;
-    (list 'research 'unit-orc-blacksmith 
+    (list 'research 'unit-orc-blacksmith
 	'upgrade-battle-axe1 'upgrade-battle-axe2
 	'upgrade-orc-shield1 'upgrade-orc-shield2
 	'upgrade-catapult1 'upgrade-catapult2)
@@ -152,7 +152,7 @@
 ;;	Define an AI engine.
 ;;
 ;;	(define-ai name race class script)
-;;		
+;;
 ;;	name	name of the AI for selection.
 ;;	class	class of the AI for map editor.
 ;;	script	Main AI script.
@@ -166,7 +166,7 @@
     ;;	    (set-cheat-unexplored! #f)
     ;;		The AI sees unexplored area as it is.
     ;;
-    (set-cheat-unexplored! #t) 
+    (set-cheat-unexplored! #t)
     ;;
     ;;	Enable or disable the AI cheating on visible area.
     ;;	    (set-cheat-visible! #t)
@@ -174,7 +174,7 @@
     ;;	    (set-cheat-visible! #f)
     ;;		The AI sees visible area as it is.
     ;;
-    (set-cheat-visible! #t) 
+    (set-cheat-visible! #t)
     ;;
     ;;	Need a building.
     ;;	    (need building)

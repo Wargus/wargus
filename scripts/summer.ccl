@@ -2,7 +2,7 @@
 ;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
 ;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
 ;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
-;;    \___  /   |__|    \___  &gt;\___  &gt;\______  /|__|  (____  /__|   |__|
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
 ;;	  \/		    \/	   \/	     \/		   \/
 ;;  ______________________                           ______________________
 ;;			  T H E   W A R   B E G I N S
@@ -31,7 +31,7 @@
     'extra-rocks #( 153 154 155 156 157 158 )
     'top-one-rock 161 'mid-one-rock 162 'bot-one-rock 163
     'removed-rock 166 )
-  ( 'solid "unused" 
+  ( 'solid "unused"
     #())								; 000
   ( 'solid "light-water" 'water
     #( 328 329 329 330))						; 010
@@ -41,9 +41,9 @@
     #( 334 335 336   0 337 338 339 340 341 342 343 344))		; 030
   ( 'solid "dark-coast" 'no-building
     #( 345 346 347   0 348 349 350 351 352 353 354 355))		; 040
-  ( 'solid "light-grass" 
+  ( 'solid "light-grass"
     #( 356 357 356   0 358 359 360 361 362 363 358 359 358 359 358 359)); 050
-  ( 'solid "dark-grass" 
+  ( 'solid "dark-grass"
     #( 364 365 364   0 366 367 368 369 370 371 366 367 366 367 366 367)); 060
   ( 'solid "forest" 'forest
     #( 125 127 128))							; 070
@@ -57,11 +57,11 @@
     #(  33   0  69   0 101))						; 0B0
   ( 'solid "orc-open-wall" 'wall
     #(  51   0  87   0 101))						; 0C0
-  ( 'solid "unused" 
+  ( 'solid "unused"
     #())								; 0D0
-  ( 'solid "unused" 
+  ( 'solid "unused"
     #())								; 0E0
-  ( 'solid "unused" 
+  ( 'solid "unused"
     #())								; 0F0
   ( 'mixed "dark-water" "light-water" 'water
     #( 300 301)								; 100
@@ -148,7 +148,7 @@
     #( 298 299)								; 5D0
     #()									; 5E0
     #())								; 5F0
-  ( 'mixed "dark-ground" "light-ground" 
+  ( 'mixed "dark-ground" "light-ground"
     #( 238 239)								; 600
     #( 240 241)								; 610
     #( 242 243 244)							; 620

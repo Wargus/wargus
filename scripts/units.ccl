@@ -44,7 +44,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -79,7 +79,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -114,7 +114,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-harvest
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'cower-worker
@@ -150,7 +150,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-harvest
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'cower-worker
@@ -186,7 +186,7 @@
   '()
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 
+  'can-target-land 'can-target-sea
   ;; flags
   'explode-when-killed
   'can-ground-attack
@@ -221,7 +221,7 @@
   '()
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 
+  'can-target-land 'can-target-sea
   ;; flags
   'explode-when-killed
   'can-ground-attack
@@ -256,7 +256,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -291,7 +291,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -326,7 +326,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'can-attack
@@ -361,7 +361,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'can-attack
@@ -396,7 +396,7 @@
   '()
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'can-cast-spell
@@ -433,7 +433,7 @@
   '()
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'isundead
@@ -468,7 +468,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-cast-spell
@@ -501,7 +501,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-cast-spell
@@ -537,7 +537,7 @@
   '()
   'type-land
   'right-demolish
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -573,7 +573,7 @@
   '()
   'type-land
   'right-demolish
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -606,7 +606,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -638,7 +638,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -670,7 +670,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'can-attack
@@ -702,7 +702,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'can-attack
@@ -734,7 +734,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'can-attack
@@ -766,7 +766,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'isundead
@@ -804,7 +804,7 @@
   '()
   'type-fly
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'air-unit
   'can-see-submarine
@@ -837,7 +837,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-cast-spell
@@ -870,7 +870,7 @@
   '()
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'can-cast-spell
@@ -904,7 +904,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -1071,7 +1071,7 @@
   '("unit-dead-body" 12)
   'type-naval
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'sea-unit
   'can-attack
@@ -1105,7 +1105,7 @@
   '("unit-dead-body" 12)
   'type-naval
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'sea-unit
   'can-attack
@@ -1139,7 +1139,7 @@
   '("unit-dead-body" 12)
   'type-naval
   'right-attack
-  'can-target-land 'can-target-sea 
+  'can-target-land 'can-target-sea
   ;; flags
   'sea-unit
   'can-ground-attack
@@ -1174,7 +1174,7 @@
   '("unit-dead-body" 12)
   'type-naval
   'right-attack
-  'can-target-land 'can-target-sea 
+  'can-target-land 'can-target-sea
   ;; flags
   'sea-unit
   'can-ground-attack
@@ -1239,7 +1239,7 @@
   '()
   'type-fly
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'air-unit
   'can-see-submarine
@@ -1339,7 +1339,7 @@
   '("unit-dead-body" 12)
   'type-naval
   'right-attack
-  'can-target-sea 
+  'can-target-sea
   ;; flags
   'sea-unit
   'submarine
@@ -1375,7 +1375,7 @@
   '("unit-dead-body" 12)
   'type-naval
   'right-attack
-  'can-target-sea 
+  'can-target-sea
   ;; flags
   'sea-unit
   'submarine
@@ -1474,7 +1474,7 @@
   '()
   'type-fly
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'air-unit
   'can-see-submarine
@@ -1507,7 +1507,7 @@
   '()
   'type-fly
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'air-unit
   'can-see-submarine
@@ -1540,7 +1540,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-cast-spell
@@ -1606,7 +1606,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -1638,7 +1638,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -1700,7 +1700,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-cast-spell
@@ -1734,7 +1734,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-attack
@@ -1767,7 +1767,7 @@
   '()
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'isundead
@@ -1802,7 +1802,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'can-cast-spell
@@ -1836,7 +1836,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'land-unit
   'can-attack
@@ -1902,7 +1902,7 @@
   '()
   'type-land
   'right-attack
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'critter
@@ -1939,7 +1939,7 @@
   '()
   'type-fly
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'air-unit
   'critter
@@ -2194,7 +2194,7 @@
   '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'building
   'can-see-submarine
@@ -2227,7 +2227,7 @@
   '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'building
   'can-see-submarine
@@ -3210,7 +3210,7 @@
   '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'building
   'can-see-submarine
@@ -3245,7 +3245,7 @@
   '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
-  'can-target-land 'can-target-sea 'can-target-air 
+  'can-target-land 'can-target-sea 'can-target-air
   ;; flags
   'building
   'can-see-submarine
@@ -3280,7 +3280,7 @@
   '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
-  'can-target-land 'can-target-sea 
+  'can-target-land 'can-target-sea
   ;; flags
   'building
   'can-see-submarine
@@ -3315,7 +3315,7 @@
   '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
-  'can-target-land 'can-target-sea 
+  'can-target-land 'can-target-sea
   ;; flags
   'building
   'can-see-submarine
@@ -3655,7 +3655,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-harvest
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'cower-worker
@@ -3691,7 +3691,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-harvest
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'cower-worker
@@ -3727,7 +3727,7 @@
   '("unit-dead-body" 6)
   'type-land
   'right-harvest
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'cower-worker
@@ -3763,7 +3763,7 @@
   '("unit-dead-body" 0)
   'type-land
   'right-harvest
-  'can-target-land 
+  'can-target-land
   ;; flags
   'land-unit
   'cower-worker

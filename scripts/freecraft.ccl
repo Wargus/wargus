@@ -1,6 +1,6 @@
 ;;   ___________		     _________		      _____  __
 ;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
-;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
 ;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
 ;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
 ;;	  \/		    \/	   \/	     \/		   \/
@@ -34,10 +34,10 @@
 ;;	Enter your default title screen.
 (title-screen "freecraft.png")
 
-;;; If color-cycle-all is off only the tileset and global palettes are 
-;;; color cycled.  Otherwise all palettes are 
+;; If color-cycle-all is off only the tileset and global palettes are
+;; color cycled.  Otherwise all palettes are
 ;(no-color-cycle-all)
-(color-cycle-all) 
+(color-cycle-all)
 
 ;;-----------------------------------------------------------------------------
 
@@ -215,6 +215,8 @@
 (load "ccl/fonts.ccl" #f #t)
 (load "ccl/ui.ccl" #f #t)
 (load "ccl/ai.ccl" #f #t)
+
+(load "ccl/wc2.ccl" #f #t)
 
 ;;-----------------------------------------------------------------------------
 
