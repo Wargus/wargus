@@ -3514,14 +3514,19 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
 	txte=54;
     } else {
 	ofs=140;
+	if (UseMacCd) {
+	    sprintf(rezdat, "%s/War Resources", ArchiveDir);
+	} else {
 #ifdef USE_BEOS
-	sprintf(rezdat, "%s/REZDAT.WAR", ArchiveDir);
+	    sprintf(rezdat, "%s/REZDAT.WAR", ArchiveDir);
 #else
-	sprintf(rezdat, "%s/rezdat.war", ArchiveDir);
+	    sprintf(rezdat, "%s/rezdat.war", ArchiveDir);
 #endif
+	}
 	stat(rezdat, &st);
 	// 54 for US cd, 53 for UK and German CD
-	if (st.st_size == 1894026) {
+	if ((UseMacCd && st.st_size == 1960206) || 
+	    (!UseMacCd && st.st_size == 1894026)) {
 	    txte=54;
         } else {
 	    txte=53;
