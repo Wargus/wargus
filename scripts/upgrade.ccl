@@ -29,8 +29,8 @@
 ;;	$Id$
 
 ;; Load the different races
-(load "ccl/human/upgrade.ccl" #f #t)
-(load "ccl/orc/upgrade.ccl" #f #t)
+(ccl:load "ccl/human/upgrade.ccl")
+(ccl:load "ccl/orc/upgrade.ccl")
 
 ;;=============================================================================
 ;;

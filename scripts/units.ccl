@@ -29,7 +29,7 @@
 ;;	$Id$
 
 ;; Load the animations for the units.
-(load "ccl/anim.ccl" #f #t)
+(ccl:load "ccl/anim.ccl")
 
 ;;=============================================================================
 ;;	Define unit-types.
@@ -432,6 +432,6 @@
   'sounds '())
 
 ;; Load the different races
-(load "ccl/human/units.ccl" #f #t)
-(load "ccl/orc/units.ccl" #f #t)
+(ccl:load "ccl/human/units.ccl")
+(ccl:load "ccl/orc/units.ccl")
 

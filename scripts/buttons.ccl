@@ -30,8 +30,8 @@
 
 ;; Load the buttons of all races
 
-(load "ccl/human/buttons.ccl" #f #t)
-(load "ccl/orc/buttons.ccl" #f #t)
+(ccl:load "ccl/human/buttons.ccl")
+(ccl:load "ccl/orc/buttons.ccl")
 
 ;;----------------------------------------------------------------------------
 ;;	Define unit-button.

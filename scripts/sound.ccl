@@ -28,8 +28,6 @@
 ;;
 ;;	$Id$
 
-(if (with-sound) (begin
-
 ;;	Uncomment this to enable threaded sound
 ;(sound-thread)
 
@@ -858,4 +856,4 @@
   'rescue (list 'orc (make-sound "orc rescue" "orc/rescue.wav")) )
 
 (define sound-click (make-sound "highclick" "ui/highclick.wav"))
-(define sound-click (make-sound "statsthump" "ui/statsthump.wav")) ))
+(define sound-click (make-sound "statsthump" "ui/statsthump.wav"))

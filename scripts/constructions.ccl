@@ -28,8 +28,8 @@
 ;;
 ;;	$Id$
 
-(load "ccl/human/constructions.ccl" #f #t)
-(load "ccl/orc/constructions.ccl" #f #t)
+(ccl:load "ccl/human/constructions.ccl")
+(ccl:load "ccl/orc/constructions.ccl")
 
 ;;=============================================================================
 ;;	Define a construction.
