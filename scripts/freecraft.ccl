@@ -162,6 +162,12 @@
 ;;	Uncomment next, to disable mouse scrolling.
 ;(mouse-scroll-off)
 
+;;	Change next, for the wanted double-click delay.
+(set-double-click-delay! 300)
+
+;;	Change next, for the wanted hold-click delay.
+(set-hold-click-delay! 1000)
+
 ;;	Keyboard scroll speed in frames (1=each frame,2 each second,...)
 (key-scroll-speed 1)
 
