@@ -222,6 +222,14 @@
 
 ;;-----------------------------------------------------------------------------
 
+;;	Change the global sound volume
+(set-sound-volume! 255)
+
+;;	Change the music volume
+(set-music-volume! 255)
+
+;;-----------------------------------------------------------------------------
+
 ;;	A* configuration, FIXME: currently not correct supported.
 (no-a-star)
 ;(a-star)
