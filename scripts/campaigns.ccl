@@ -34,4 +34,3 @@
   'file "ccl/orc/campaign1.ccl")
 (define-campaign 'orc-exp 'name "O~!rc expansion levels"
   'file "ccl/orc/campaign2.ccl")
-
