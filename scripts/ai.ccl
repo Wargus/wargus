@@ -359,6 +359,27 @@
       'unit-human-blacksmith 'unit-orc-blacksmith) )
 
 ;;
+;;	Upgrade catapult 1 of the current race.
+;;
+(define (ai:upgrade-catapult-1)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-ballista1 'unit-catapult1) )
+
+;;
+;;	Upgrade catapult 2 of the current race.
+;;
+(define (ai:upgrade-catapult-2)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-ballista2 'unit-catapult2) )
+
+;;
+;;	Research of the current race.
+;;
+(define (ai:scientific)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-gnomish-inventor 'unit-goblin-alchemist) )
+
+;;
 ;;	Cavalry of the current race.
 ;;
 (define (ai:cavalry)
@@ -401,6 +422,20 @@
       'unit-knight 'unit-ogre) )
 
 ;;
+;;	Catapult of the current race.
+;;
+(define (ai:catapult)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-ballista 'unit-catapult) )
+
+;;
+;;	Scout of the current race.
+;;
+(define (ai:scout)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-gnomish-flying-machine 'unit-goblin-zeppelin) )
+
+;;
 ;;	Flyer of the current race.
 ;;
 (define (ai:flyer)
@@ -427,6 +462,97 @@
 (define (ai:cannon-tower)
   (if (eq? (ai:get-race) 'human) 
       'unit-human-cannon-tower 'unit-orc-cannon-tower) )
+
+;;
+;;	Harbor of the current race.
+;;
+(define (ai:harbor)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-shipyard 'unit-orc-shipyard) )
+
+;;
+;;	Refinery of the current race.
+;;
+(define (ai:refinery)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-refinery 'unit-orc-refinery) )
+
+;;
+;;	Foundry of the current race.
+;;
+(define (ai:foundry)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-foundry 'unit-orc-foundry) )
+
+;;
+;;	Ship armor 1 of the current race.
+;;
+(define (ai:ship-armor-1)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-ship-armor1 'unit-orc-ship-armor1) )
+
+;;
+;;	Ship armor 2 of the current race.
+;;
+(define (ai:ship-armor-2)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-ship-armor2 'unit-orc-ship-armor2) )
+
+;;
+;;	Ship weapon 1 of the current race.
+;;
+(define (ai:ship-weapon-1)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-ship-weapon1 'unit-orc-ship-weapon1) )
+
+;;
+;;	Ship weapon 2 of the current race.
+;;
+(define (ai:ship-weapon-2)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-ship-weapon2 'unit-orc-ship-weapon2) )
+
+;;
+;;	Platform of the current race.
+;;
+(define (ai:platform)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-oil-platform 'unit-orc-oil-platform) )
+
+;;
+;;	Tanker of the current race.
+;;
+(define (ai:tanker)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-oil-tanker 'unit-orc-oil-tanker) )
+
+;;
+;;	Submarine of the current race.
+;;
+(define (ai:submarine)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-gnomish-submarine 'unit-giant-turtle) )
+
+;;
+;;	Destroyer of the current race.
+;;
+(define (ai:destroyer)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-elven-destroyer 'unit-troll-destroyer) )
+
+;;
+;;	Battleship of the current race.
+;;
+(define (ai:battleship)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-battleship 'unit-ogre-juggernaught) )
+
+;;
+;;	Transporter of the current race.
+;;
+(define (ai:transporter)
+  (if (eq? (ai:get-race) 'human) 
+      'unit-human-transporter 'unit-orc-transporter) )
 
 ;;=============================================================================
 ;;
@@ -586,6 +712,109 @@
 
     (ai:sleep 500)
     (ai:script ai:air-attack-endloop) ))
+
+;;=============================================================================
+;;
+;;	Define an AI engine.
+;;
+;;	(define-ai name race class script)
+;;
+;;	name	name of the AI for selection.
+;;	class	class of the AI for map editor.
+;;	script	Main AI script.
+;;
+(define ai:sea-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:force 1 (ai:destoryer) 6 (ai:battleship) 7 (ai:scout 1))
+    (ai:force 2 (ai:footman) 4 (ai:cavalier) 4 (ai:catapult) 4 
+	(ai:transporter) 2)
+    (ai:wait-force 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:attack-with-force 2)
+    (ai:sleep 500)
+    (ai:script ai:sea-attack-endloop) ))
+
+(define-ai "wc2-sea-attack" "*" "sea-attack"
+  '(
+    ;;	Define the main AI script.
+    (ai:debug #t)
+    (ai:need (ai:city-center))
+    (ai:set  (ai:worker) 1)
+    (ai:wait (ai:city-center))
+    (ai:wait (ai:worker))	;; start hangs if nothing is available
+
+    (ai:set  (ai:worker) 9)
+    (ai:need (ai:lumber-mill))
+    (ai:need (ai:barracks))
+    (ai:force 0 (ai:soldier) 3)
+    (ai:wait-force 0)		;; wait until defence is ready
+
+    (ai:need (ai:harbor))
+    (ai:upgrade-to (ai:better-city-center))
+    (ai:need (ai:refinery))
+    (ai:need (ai:scientific))
+    (ai:set  (ai:worker) 15)
+    (ai:set  (ai:tanker) 1)
+    (ai:need (ai:platform))
+    (ai:wait (ai:better-city-center))
+
+    (ai:set  (ai:tanker) 3)
+    (ai:force 1 (ai:submarine) 3)
+    (ai:wait-force 1)		;; wait until attack force is ready
+    (ai:attack-with-force 1)
+
+    (ai:sleep 500)
+    (ai:need (ai:foundry))
+    (ai:research (ai:ship-armor-1))
+    (ai:research (ai:ship-armor-2))
+    (ai:set  (ai:tanker) 4)
+    (ai:force 1 (ai:submarine) 4)
+    (ai:wait-force 1)		;; wait until attack force is ready
+    (ai:attack-with-force 1)
+
+    (ai:sleep 500)
+    (ai:need (ai:harbor))
+    (ai:need (ai:blacksmith))
+    (ai:force 1 (ai:submarine) 5 (ai:scout) 1)
+    (ai:wait-force 1)		;; wait until attack force is ready
+    (ai:attack-with-force 1)
+
+    (ai:sleep 500)
+    (ai:research (ai:upgrade-catapult-1))
+    (ai:need (ai:cavalry))
+    (ai:force 0 (ai:soldier) 3 (ai:catapult) 1 (ai:scout) 1)
+    (ai:force 1 (ai:submarine) 1 (ai:destroyer) 2 (ai:battleship) 1
+	(ai:scout) 2)
+    (ai:sleep 3000)
+    (ai:wait-force  1)
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:soldier) 3 (ai:catapult) 1 (ai:scout) 1)
+    (ai:force 3 (ai:destroyer) 1 (ai:scout) 1)
+    (ai:force 1 (ai:submarine) 1 (ai:destroyer) 2 (ai:battleship) 2
+	(ai:scout) 2)
+    (ai:force 2 (ai:catapult) 2 (ai:transporter) 1)
+    (ai:wait-force  1)
+    (ai:attack-with-force 1)
+
+    (ai:sleep 500)
+    (ai:research (ai:upgrade-catapult-2))
+    (ai:research (ai:ship-weapon1))
+    (ai:force 0 (ai:soldier) 3 (ai:catapult) 1 (ai:scout) 1)
+    (ai:force 3 (ai:destroyer) 1 (ai:battleship) 1 (ai:scout) 1)
+    (ai:force 1 (ai:submarine) 1 (ai:destroyer) 2 (ai:battleship) 3
+	(ai:scout) 1)
+    (ai:force 2 (ai:cavalerie) 1 (ai:catapult) 3 (ai:transporter) 1)
+    (ai:wait-force  1)
+    (ai:attack-with-force 1)
+
+    (ai:sleep 500)
+
+;;; FIXME: ship weapon 2
+
+    (ai:sleep 500)
+    (ai:script ai:sea-attack-endloop) ))
 
 ;;=============================================================================
 ;;
