@@ -2487,7 +2487,7 @@ DefineMenuItem("pos", { ((352 - 18 - 288) / 2) - 2, (11 + 98) - 28}, "font", "ga
 -- menu-editor-load
 --
 DefineMenu("name", "menu-editor-load", "geometry", {224, 64, 352, 352},
-  "panel", "panel5", "background", MenuBackground, "default", 4)
+  "panel", "panel5", "default", 4)
 DefineMenuItem("pos", { 352 / 2, 11}, "font", "large",  "init", "editor-load-init",
   "text", {"caption", "Select map", "align", "center"},
   "menu", "menu-editor-load")
