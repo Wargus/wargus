@@ -227,4 +227,6 @@
     #(  50   0  86   0 100))						; 9D0
   )
   ;; Animated tiles
-  'animations (list  #( ) ))
+  'animations (list #( ) )
+  ;; Object tiles
+  'objects (list #( ) ))
