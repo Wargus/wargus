@@ -66,6 +66,8 @@ IF NOT [%1] == [] SET CDROM=%1
 IF NOT [%2] == [] SET DIR=%2
 SET ARCHIVE=%CDROM%\data
 
+IF NOT EXIST %ARCHIVE%\rezdat.war goto DIRERROR
+
 REM ###########################################################################
 REM ##      Extract
 REM ###########################################################################
@@ -100,25 +102,32 @@ REM Compress HOW-TODO ?
 REM
 REM	Copy original puds into data directory
 REM
+mkdir %DIR%\puds
 mkdir %DIR%\puds\single
 mkdir %DIR%\puds\multi
 mkdir %DIR%\puds\multiple
 mkdir %DIR%\puds\strange
-copy /b %ARCHIVE%\..\puds\multi\* %DIR%\puds\multi
-copy /b %ARCHIVE%\..\puds\single\* %DIR%\puds\single
-copy /b %ARCHIVE%\..\puds\strange\* %DIR%\puds\strange
-copy /b %ARCHIVE%\..\*.pud %DIR%\puds
+
+IF EXIST %ARCHIVE%\..\puds\multi\* copy /b %ARCHIVE%\..\puds\multi\* %DIR%\puds\multi
+IF EXIST %ARCHIVE%\..\puds\single\* copy /b %ARCHIVE%\..\puds\single\* %DIR%\puds\single
+IF EXIST %ARCHIVE%\..\puds\strange\* copy /b %ARCHIVE%\..\puds\strange\* %DIR%\puds\strange
+IF EXIST %ARCHIVE%\..\*.pud copy /b %ARCHIVE%\..\*.pud %DIR%\puds
 
 REM
 REM	Copy contrib puds into data directory
 REM
-copy /b %CONTRIB%\puds\single\* %DIR%\puds\single
+rem copy /b %CONTRIB%\puds\single\* %DIR%\puds\single
 copy /b %CONTRIB%\puds\multi\* %DIR%\puds\multiple
 
 REM
 REM	Setup the default pud
 REM
 copy /b %DIR%\puds\multi\(2)mysterious-dragon-isle.pud.gz %DIR%\puds\default.pud.gz
-ECHO You only need to run this script once
+ECHO NOTE: You only need to run this script once
+goto EOF
+
+:DIRERROR
+ECHO ERROR: %ARCHIVE%\rezdat.war not found
 
 :EOF
+pause
