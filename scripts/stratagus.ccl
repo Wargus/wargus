@@ -260,6 +260,9 @@
 ;;	Change next, for the wanted mouse scale. (only SVGALIB)
 (set-mouse-scale! 1)
 
+;;	Set the name of the missile to use when clicking
+(set-click-missile! 'missile-green-cross)
+
 ;;	Edit this to enable/disable grabbing the mouse.
 (set-grab-mouse! #f)
 
