@@ -166,23 +166,23 @@
     (+ 176  65) 0 14 14 (+ 176  65 18) 1)
     ;  oil resource
     (list "graphics/ui/gold,wood,oil,mana.png"	2
-    (+ 176 120) 0 14 14 (+ 176 120 18) 1)
+    (+ 176 130) 0 14 14 (+ 176 130 18) 1)
     ;  oge resource
     (list "graphics/ui/ore,stone,coal.png"	0
-    (+ 176 175) 0 14 14 (+ 176 175 18) 1)
+    (+ 176 195) 0 14 14 (+ 176 195 18) 1)
     ;  stone resource
     (list "graphics/ui/ore,stone,coal.png"	1
-    (+ 176 230) 0 14 14 (+ 176 230 18) 1)
+    (+ 176 260) 0 14 14 (+ 176 260 18) 1)
     ;  coal resource
     (list "graphics/ui/ore,stone,coal.png"	2
-    (+ 176 285) 0 14 14 (+ 176 285 18) 1)
+    (+ 176 325) 0 14 14 (+ 176 325 18) 1)
 
     ; food resource
     (list "graphics/ui/food.png"		0
-    (+ 176 330) 0 14 14 (+ 176 330 18) 1)
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
     ; score
     (list "graphics/ui/score.png"		0
-    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
+    (+ 176 455) 0 14 14 (+ 176 455 18) 1)
 
     ; Info panel
     (list "graphics/ui/human/infopanel.png" 0 160 176 176)
