@@ -1617,6 +1617,347 @@
 
 
 ;;
+;; menu-diplomacy
+;;
+(define-menu 'name 'menu-diplomacy 'geometry '(222 76 352 352)
+    'image 'panel5 'default '5)
+(define-menu-item 'pos (list 136 30) 'font 'game
+    'text '("Allied" center)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 196 30) 'font 'game
+    'text '("Enemy" center)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 286 30) 'font 'game
+    'text '("Shared Vision" center)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 176 11) 'font 'large
+    'text '("Diplomacy" center)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 1) 26)) 'font 'game
+    'text '("Player 1" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 1) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 1) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 1) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 16 (+ (* 18 2) 26)) 'font 'game
+    'text '("Player 3" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 2) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 2) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 2) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 3) 26)) 'font 'game
+    'text '("Player 4" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 3) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 3) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 3) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 4) 26)) 'font 'game
+    'text '("Player 5" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 4) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 4) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 4) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 5) 26)) 'font 'game
+    'text '("Player 6" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 5) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 5) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 5) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 6) 26)) 'font 'game
+    'text '("Player 7" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 6) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 6) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 6) 23)) 'font 'large
+   'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 7) 26)) 'font 'game
+    'text '("Player 8" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 7) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 7) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 7) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 8) 26)) 'font 'game
+    'text '("Player 9" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 8) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 8) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 8) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 9) 26)) 'font 'game
+    'text '("Player 10" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 9) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 9) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 9) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 10) 26)) 'font 'game
+    'text '("Player 11" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 10) 23)) 'font 'large
+    'gem '(size (18 18)
+        state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 10) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 10) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 11) 26)) 'font 'game
+    'text '("Player 12" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 11) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 11) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 11) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 12) 26)) 'font 'game
+    'text '("Player 13" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 12) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 12) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 12) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 13) 26)) 'font 'game
+    'text '("Player 14" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 13) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 13) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 13) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 16 (+ (* 18 14) 26)) 'font 'game
+    'text '("Player 15" left)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 126 (+ (* 18 14) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 186 (+ (* 18 14) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-round)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 276 (+ (* 18 14) 23)) 'font 'large
+    'gem '(size (18 18)
+         state unchecked
+         func diplomacy-wait
+         style gem-square)
+    'menu 'menu-diplomacy)
+
+(define-menu-item 'pos (list 75 (- 352 40)) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "~!OK"
+            hotkey "o"
+            func diplomacy-ok
+            style gm-half)
+    'menu 'menu-diplomacy)
+(define-menu-item 'pos (list 195 (- 352 40)) 'font 'large
+    'button '(size (106 27)
+            caption "~!Cancel"
+            hotkey "c"
+            func end-menu
+            style gm-half)
+    'menu 'menu-diplomacy)
+
+
+;;
 ;; menu-settings-speed
 ;;
 (define-menu 'name 'menu-settings-speed 'geometry '(272 96 256 288)
@@ -1679,7 +2020,7 @@
 ;; menu-game-options
 ;;
 (define-menu 'name 'menu-game-options 'geometry '(272 96 256 288)
-    'image 'panel1 'default '4)
+    'image 'panel1 'default '5)
 (define-menu-item 'pos (list 128 11) 'font 'large
     'text '("Game Options" center)
     'menu 'menu-game-options)
@@ -1704,6 +2045,12 @@
             func preferences
             style gm-full)
     'menu 'menu-game-options)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 3))) 'font 'large 'flags '(selected)    'button '(size (224 27)
+            caption "~!Diplomacy"
+            hotkey "d"
+            func menu-diplomacy
+            style gm-full)
+     'menu 'menu-game-options)
 (define-menu-item 'pos (list (- 128 (/ 224 2)) 245) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Previous (~<Esc~>)"
