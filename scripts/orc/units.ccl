@@ -1452,7 +1452,6 @@
   'can-target-land 'can-target-sea 'can-target-air
   'building 
   'detect-cloak
-  'tower
   'sounds '(
     selected "orc-guard-tower-selected"
     acknowledge "orc-guard-tower-acknowledge"
@@ -1486,7 +1485,6 @@
   'can-target-land 'can-target-sea
   'building 
   'detect-cloak
-  'tower
   'sounds '(
     selected "orc-cannon-tower-selected"
     acknowledge "orc-cannon-tower-acknowledge"
