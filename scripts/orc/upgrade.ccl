@@ -107,30 +107,40 @@
 (define-modifier 'upgrade-battle-axe1
   '(piercing-damage 2)
   '(apply-to unit-grunt) '(apply-to unit-ogre) '(apply-to unit-ogre-mage)
-  '(apply-to unit-goblin-sappers))
+  '(apply-to unit-goblin-sappers) '(apply-to unit-korgath-bladefist)
+  '(apply-to unit-grom-hellscream) '(apply-to unit-dentarg)
+  '(apply-to unit-cho-gall))
 
 (define-modifier 'upgrade-battle-axe2
   '(piercing-damage 2)
   '(apply-to unit-grunt) '(apply-to unit-ogre) '(apply-to unit-ogre-mage)
-  '(apply-to unit-goblin-sappers))
+  '(apply-to unit-goblin-sappers) '(apply-to unit-korgath-bladefist)
+  '(apply-to unit-grom-hellscream) '(apply-to unit-dentarg)
+  '(apply-to unit-cho-gall))
 
 (define-modifier 'upgrade-throwing-axe1
   '(piercing-damage 1)
-  '(apply-to unit-axethrower) '(apply-to unit-berserker))
+  '(apply-to unit-axethrower) '(apply-to unit-berserker)
+  '(apply-to unit-zuljin))
 
 (define-modifier 'upgrade-throwing-axe2
   '(piercing-damage 1)
-  '(apply-to unit-axethrower) '(apply-to unit-berserker))
+  '(apply-to unit-axethrower) '(apply-to unit-berserker)
+  '(apply-to unit-zuljin))
 
 (define-modifier 'upgrade-orc-shield1
   '(armor 2)
   '(apply-to unit-grunt) '(apply-to unit-ogre) '(apply-to unit-ogre-mage)
-  '(apply-to unit-goblin-sappers))
+  '(apply-to unit-goblin-sappers) '(apply-to unit-korgath-bladefist)
+  '(apply-to unit-grom-hellscream) '(apply-to unit-dentarg)
+  '(apply-to unit-cho-gall))
 
 (define-modifier 'upgrade-orc-shield2
   '(armor 2)
   '(apply-to unit-grunt) '(apply-to unit-ogre) '(apply-to unit-ogre-mage)
-  '(apply-to unit-goblin-sappers))
+  '(apply-to unit-goblin-sappers) '(apply-to unit-korgath-bladefist)
+  '(apply-to unit-grom-hellscream) '(apply-to unit-dentarg)
+  '(apply-to unit-cho-gall))
 
 (define-modifier 'upgrade-orc-ship-cannon1
   '(piercing-damage 5)
@@ -188,17 +198,29 @@
 (define-modifier 'upgrade-runes
   '(apply-to unit-ogre-mage))
 
-(define-modifier 'upgrade-raise-dead)
+(define-modifier 'upgrade-raise-dead
+  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
+  '(apply-to unit-teron-gorefiend))
 
-(define-modifier 'upgrade-death-coil)
+(define-modifier 'upgrade-death-coil
+  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
+  '(apply-to unit-teron-gorefiend))
 
-(define-modifier 'upgrade-whirlwind)
+(define-modifier 'upgrade-whirlwind
+  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
+  '(apply-to unit-teron-gorefiend))
 
-(define-modifier 'upgrade-haste)
+(define-modifier 'upgrade-haste
+  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
+  '(apply-to unit-teron-gorefiend))
 
-(define-modifier 'upgrade-unholy-armor)
+(define-modifier 'upgrade-unholy-armor
+  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
+  '(apply-to unit-teron-gorefiend))
 
-(define-modifier 'upgrade-death-and-decay)
+(define-modifier 'upgrade-death-and-decay
+  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
+  '(apply-to unit-teron-gorefiend))
 
 ;;=============================================================================
 ;;
