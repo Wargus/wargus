@@ -65,7 +65,7 @@
 (define-missile-type 'missile-big-cannon
   'file "missiles/big cannon.png" 'size '(16 16) 'frames 20
   'impact-sound "explosion"
-  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1
+  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-cannon-tower-explosion)
 (define-missile-type 'missile-exorcism
   'file "missiles/exorcism.png" 'size '(48 48) 'frames 10
