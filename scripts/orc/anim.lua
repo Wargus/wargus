@@ -272,7 +272,7 @@ DefineNewAnimations("animations-orc-oil-tanker", {
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "unbreakable end", "wait 1",},
-  Attack = {"unbreakable begin", "frame 0", "attack", "sound orc-oil-tanker-attack", "wait 30",
+  Attack = {"unbreakable begin", "frame 0", "attack", "wait 30",
     "frame 0", "wait 99", "frame 0", "unbreakable end", "wait 1",},
   Death = {"unbreakable begin", "frame 5", "wait 50", "frame 10", "wait 50", "frame 10", "unbreakable end", "wait 1",},
 })
@@ -288,13 +288,13 @@ DefineNewAnimations("animations-orc-transport", {
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "unbreakable end", "wait 1",},
-  Attack = {"unbreakable begin", "frame 0", "attack", "sound orc-transport-attack", "wait 119",
+  Attack = {"unbreakable begin", "frame 0", "attack", "wait 119",
     "frame 0", "unbreakable end", "wait 1",},
   Death = {"unbreakable begin", "frame 5", "wait 50", "frame 10", "wait 50", "frame 10", "unbreakable end", "wait 1",},
 })
 
 
-DefineNewAnimations("animations-orc-destroyer", {
+DefineNewAnimations("animations-troll-destroyer", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1", },
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
@@ -304,7 +304,7 @@ DefineNewAnimations("animations-orc-destroyer", {
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "unbreakable end", "wait 1",},
-  Attack = {"unbreakable begin", "frame 0", "attack", "sound orc-destroyer-attack", "wait 119",
+  Attack = {"unbreakable begin", "frame 0", "attack", "sound troll-destroyer-attack", "wait 119",
     "frame 0", "unbreakable end", "wait 1",},
   Death = {"unbreakable begin", "frame 5", "wait 50", "frame 10", "wait 50", "frame 10", "unbreakable end", "wait 1",},
 })
@@ -364,7 +364,7 @@ DefineNewAnimations("animations-fire-breeze", {
   Move = DragonMove,
   Attack = {"unbreakable begin", "frame 0", "wait 6", "frame 5", "wait 6",
     "frame 10", "wait 6", "frame 15", "wait 6", "frame 15", "wait 1",
-    "frame 20", "attack", "sound fire-breeze-attack", "wait 20",
+    "frame 20", "attack", "sound deathwing-attack", "wait 20",
     "frame 0", "wait 6", "frame 5", "wait 6", "frame 10", "wait 6",
     "frame 15", "wait 6", "frame 0", "wait 6", "frame 5", "wait 6",
     "frame 10", "wait 6", "frame 15", "wait 6", "frame 0", "wait 6",
@@ -432,7 +432,7 @@ DefineNewAnimations("animations-skeleton", {
 
 DefineNewAnimations("animations-orc-guard-tower", {
   Still = BuildingStill,
-  Attack = {"unbreakable begin", "frame 0", "attack", "sound orc-guard-tower-attack", "wait 59",
+  Attack = {"unbreakable begin", "frame 0", "attack", "wait 59",
     "frame 0", "unbreakable end", "wait 1",},
 })
 
@@ -440,7 +440,7 @@ DefineNewAnimations("animations-orc-guard-tower", {
 --	Cannon Tower, Cannon Tower
 DefineNewAnimations("animations-orc-cannon-tower", {
   Still = BuildingStill,
-  Attack = {"unbreakable begin", "frame 0", "attack", "sound orc-cannon-tower-attack", "wait 150",
+  Attack = {"unbreakable begin", "frame 0", "attack", "wait 150",
     "frame 0", "unbreakable end", "wait 1",},
 })
 

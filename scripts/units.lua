@@ -140,11 +140,10 @@ DefineUnitType("unit-daemon", { Name = "Daemon",
   SelectableByRectangle = true,
   Sounds = {
     "selected", "daemon-selected",
-    "acknowledge", "daemon-acknowledge",
-    "ready", "daemon-ready",
+--    "acknowledge", "daemon-acknowledge",
+--    "ready", "daemon-ready",
     "help", "basic orc voices help 1",
-    "dead", "basic orc voices dead",
-    "attack", "daemon-attack"} } )
+    "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-critter", { Name = "Critter",
   Files = {"tileset-summer", "tilesets/summer/neutral/units/critter.png",
@@ -173,11 +172,10 @@ DefineUnitType("unit-critter", { Name = "Critter",
   organic = true,
   Sounds = {
     "selected", "critter-selected",
-    "acknowledge", "critter-acknowledge",
-    "ready", "critter-ready",
+--    "acknowledge", "critter-acknowledge",
+--    "ready", "critter-ready",
     "help", "critter-help",
-    "dead", "critter-dead",
-    "attack", "critter-attack"} } )
+    "dead", "critter-dead"} } )
 
 DefineUnitType("unit-gold-mine", { Name = "Gold Mine",
   Files = {"tileset-summer", "tilesets/summer/neutral/buildings/gold_mine.png",
@@ -203,11 +201,10 @@ DefineUnitType("unit-gold-mine", { Name = "Gold Mine",
   GivesResource = "gold", CanHarvest = true,
   Sounds = {
     "selected", "gold-mine-selected",
-    "acknowledge", "gold-mine-acknowledge",
-    "ready", "gold-mine-ready",
+--    "acknowledge", "gold-mine-acknowledge",
+--    "ready", "gold-mine-ready",
     "help", "gold-mine-help",
-    "dead", "building destroyed",
-    "attack", "gold-mine-attack"} } )
+    "dead", "building destroyed"} } )
 
 DefineUnitType("unit-oil-patch", { Name = "Oil Patch",
   Files = {"tileset-summer", "tilesets/summer/neutral/buildings/oil_patch.png",
@@ -228,11 +225,10 @@ DefineUnitType("unit-oil-patch", { Name = "Oil Patch",
   GivesResource = "oil",
   Sounds = {
     "selected", "oil-patch-selected",
-    "acknowledge", "oil-patch-acknowledge",
-    "ready", "oil-patch-ready",
-    "help", "oil-patch-help",
-    "dead", "building destroyed",
-    "attack", "oil-patch-attack"} } )
+--    "acknowledge", "oil-patch-acknowledge",
+--    "ready", "oil-patch-ready",
+--    "help", "oil-patch-help",
+    "dead", "building destroyed"} } )
 
 DefineUnitType("unit-circle-of-power", { Name = "Circle of Power",
   Files = {"tileset-summer", "neutral/buildings/circle_of_power.png"},
@@ -251,12 +247,11 @@ DefineUnitType("unit-circle-of-power", { Name = "Circle of Power",
   Type = "land",
   Building = true, VisibleUnderFog = true,
   Sounds = {
-    "selected", "circle-of-power-selected",
-    "acknowledge", "circle-of-power-acknowledge",
-    "ready", "circle-of-power-ready",
+--    "selected", "circle-of-power-selected",
+--    "acknowledge", "circle-of-power-acknowledge",
+ --   "ready", "circle-of-power-ready",
     "help", "basic human voices help 2",
-    "dead", "building destroyed",
-    "attack", "circle-of-power-attack"} } )
+    "dead", "building destroyed"} } )
 
 DefineUnitType("unit-dark-portal", { Name = "Dark Portal",
   Files = {"tileset-summer", "tilesets/summer/neutral/buildings/dark_portal.png",
@@ -284,12 +279,11 @@ DefineUnitType("unit-dark-portal", { Name = "Dark Portal",
   Building = true, VisibleUnderFog = true, BuilderOutside = true,
   Teleporter = true,
   Sounds = {
-    "selected", "dark-portal-selected",
-    "acknowledge", "dark-portal-acknowledge",
-    "ready", "dark-portal-ready",
+--    "selected", "dark-portal-selected",
+--    "acknowledge", "dark-portal-acknowledge",
+--    "ready", "dark-portal-ready",
     "help", "basic orc voices help 2",
-    "dead", "building destroyed",
-    "attack", "dark-portal-attack"} } )
+    "dead", "building destroyed"} } )
 
 DefineUnitType("unit-runestone", { Name = "Runestone",
   Files = {"tileset-summer", "neutral/buildings/runestone.png",
@@ -316,12 +310,11 @@ DefineUnitType("unit-runestone", { Name = "Runestone",
   Type = "land",
   Building = true, VisibleUnderFog = true, BuilderOutside = true,
   Sounds = {
-    "selected", "runestone-selected",
-    "acknowledge", "runestone-acknowledge",
-    "ready", "runestone-ready",
+--    "selected", "runestone-selected",
+--    "acknowledge", "runestone-acknowledge",
+--    "ready", "runestone-ready",
     "help", "basic orc voices help 2",
-    "dead", "building destroyed",
-    "attack", "runestone-attack"} } )
+    "dead", "building destroyed"} } )
 
 DefineUnitType("unit-dead-body", { Name = "Dead Body",
   Files = {"tileset-summer", "neutral/units/corpses.png"},

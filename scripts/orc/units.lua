@@ -363,7 +363,7 @@ DefineUnitType("unit-evil-knight", { Name = "Teron Gorefiend",
   Sounds = {
     "selected", "teron-gorefiend-selected",
     "acknowledge", "teron-gorefiend-acknowledge",
-    "ready", "teron-gorefiend-ready",
+--    "ready", "teron-gorefiend-ready",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
@@ -395,7 +395,7 @@ DefineUnitType("unit-fad-man", { Name = "Dentarg",
   Sounds = {
     "selected", "dentarg-selected",
     "acknowledge", "dentarg-acknowledge",
-    "ready", "dentarg-ready",
+--    "ready", "dentarg-ready",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
@@ -425,7 +425,7 @@ DefineUnitType("unit-beast-cry", { Name = "Grom Hellscream",
   Sounds = {
     "selected", "grom-hellscream-selected",
     "acknowledge", "grom-hellscream-acknowledge",
-    "ready", "grom-hellscream-ready",
+--    "ready", "grom-hellscream-ready",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
@@ -497,7 +497,7 @@ DefineUnitType("unit-orc-transport", { Name = "Transport",
 DefineUnitType("unit-orc-destroyer", { Name = "Troll Destroyer",
   Files = {"tileset-summer", "orc/units/troll_destroyer.png"},
   Size = {88, 88},
-  NewAnimations = "animations-orc-destroyer", Icon = "icon-orc-destroyer",
+  NewAnimations = "animations-troll-destroyer", Icon = "icon-orc-destroyer",
   Costs = {"time", 90, "gold", 700, "wood", 350, "oil", 700},
   Speed = 10,
   HitPoints = 100,
@@ -609,7 +609,7 @@ DefineUnitType("unit-fire-breeze", { Name = "Deathwing",
   Sounds = {
     "selected", "deathwing-selected",
     "acknowledge", "deathwing-acknowledge",
-    "ready", "deathwing-ready",
+--    "ready", "deathwing-ready",
     "help", "basic orc voices help 1",
     "dead", "explosion"} } )
 
@@ -694,10 +694,11 @@ DefineUnitType("unit-eye-of-vision", { Name = "Eye of Kilrogg",
   SelectableByRectangle = true,
   Sounds = {
     "selected", "eye-of-kilrogg-selected",
-    "acknowledge", "eye-of-kilrogg-acknowledge",
-    "ready", "eye-of-kilrogg-ready",
+--    "acknowledge", "eye-of-kilrogg-acknowledge",
+--    "ready", "eye-of-kilrogg-ready",
     "help", "basic orc voices help 1",
-    "dead", "eye-of-kilrogg-dead"} } )
+--    "dead", "eye-of-kilrogg-dead"
+  } } )
 
 DefineUnitType("unit-quick-blade", { Name = "Korgath Bladefist",
   Files = {"tileset-summer", "orc/units/grunt.png"},
@@ -725,7 +726,7 @@ DefineUnitType("unit-quick-blade", { Name = "Korgath Bladefist",
   Sounds = {
     "selected", "korgath-bladefist-selected",
     "acknowledge", "korgath-bladefist-acknowledge",
-    "ready", "korgath-bladefist-ready",
+--    "ready", "korgath-bladefist-ready",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
@@ -758,7 +759,7 @@ DefineUnitType("unit-double-head", { Name = "Cho'gall",
   Sounds = {
     "selected", "cho-gall-selected",
     "acknowledge", "cho-gall-acknowledge",
-    "ready", "cho-gall-ready",
+--    "ready", "cho-gall-ready",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
@@ -797,7 +798,7 @@ DefineUnitType("unit-ice-bringer", { Name = "Gul'dan",
   Sounds = {
     "selected", "gul-dan-selected",
     "acknowledge", "gul-dan-acknowledge",
-    "ready", "gul-dan-ready",
+--    "ready", "gul-dan-ready",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
@@ -828,7 +829,7 @@ DefineUnitType("unit-sharp-axe", { Name = "Zuljin",
   Sounds = {
     "selected", "zuljin-selected",
     "acknowledge", "zuljin-acknowledge",
-    "ready", "zuljin-ready",
+--    "ready", "zuljin-ready",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
@@ -856,8 +857,8 @@ DefineUnitType("unit-skeleton", { Name = "Skeleton",
   SelectableByRectangle = true,
   Sounds = {
     "selected", "skeleton-selected",
-    "acknowledge", "skeleton-acknowledge",
-    "ready", "skeleton-ready",
+--    "acknowledge", "skeleton-acknowledge",
+--    "ready", "skeleton-ready",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
@@ -887,8 +888,8 @@ DefineUnitType("unit-pig-farm", { Name = "Pig Farm",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "pig-farm-selected",
-    "acknowledge", "pig-farm-acknowledge",
-    "ready", "pig-farm-ready",
+--    "acknowledge", "pig-farm-acknowledge",
+--    "ready", "pig-farm-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -916,8 +917,8 @@ DefineUnitType("unit-orc-barracks", { Name = "Barracks",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "orc-barracks-selected",
-    "acknowledge", "orc-barracks-acknowledge",
-    "ready", "orc-barracks-ready",
+--    "acknowledge", "orc-barracks-acknowledge",
+--    "ready", "orc-barracks-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -945,8 +946,8 @@ DefineUnitType("unit-altar-of-storms", { Name = "Altar of Storms",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "altar-of-storms-selected",
-    "acknowledge", "altar-of-storms-acknowledge",
-    "ready", "altar-of-storms-ready",
+--    "acknowledge", "altar-of-storms-acknowledge",
+--    "ready", "altar-of-storms-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -976,8 +977,8 @@ DefineUnitType("unit-orc-watch-tower", { Name = "Watch Tower",
   DetectCloak = true,
   Sounds = {
     "selected", "orc-watch-tower-selected",
-    "acknowledge", "orc-watch-tower-acknowledge",
-    "ready", "orc-watch-tower-ready",
+--    "acknowledge", "orc-watch-tower-acknowledge",
+--    "ready", "orc-watch-tower-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1005,8 +1006,8 @@ DefineUnitType("unit-ogre-mound", { Name = "Ogre Mound",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "ogre-mound-selected",
-    "acknowledge", "ogre-mound-acknowledge",
-    "ready", "ogre-mound-ready",
+--    "acknowledge", "ogre-mound-acknowledge",
+--    "ready", "ogre-mound-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1034,8 +1035,8 @@ DefineUnitType("unit-alchemist", { Name = "Goblin Alchemist",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "goblin-alchemist-selected",
-    "acknowledge", "goblin-alchemist-acknowledge",
-    "ready", "goblin-alchemist-ready",
+--    "acknowledge", "goblin-alchemist-acknowledge",
+--    "ready", "goblin-alchemist-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1063,8 +1064,8 @@ DefineUnitType("unit-dragon-roost", { Name = "Dragon Roost",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "dragon-roost-selected",
-    "acknowledge", "dragon-roost-acknowledge",
-    "ready", "dragon-roost-ready",
+--    "acknowledge", "dragon-roost-acknowledge",
+--    "ready", "dragon-roost-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1099,8 +1100,8 @@ DefineUnitType("unit-orc-shipyard", { Name = "Shipyard",
   CanStore = {"oil"},
   Sounds = {
     "selected", "orc-shipyard-selected",
-    "acknowledge", "orc-shipyard-acknowledge",
-    "ready", "orc-shipyard-ready",
+--    "acknowledge", "orc-shipyard-acknowledge",
+--    "ready", "orc-shipyard-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1133,8 +1134,8 @@ DefineUnitType("unit-great-hall", { Name = "Great Hall",
   CanStore = {"gold", "wood"},
   Sounds = {
     "selected", "great-hall-selected",
-    "acknowledge", "great-hall-acknowledge",
-    "ready", "great-hall-ready",
+--    "acknowledge", "great-hall-acknowledge",
+--    "ready", "great-hall-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1165,8 +1166,8 @@ DefineUnitType("unit-troll-lumber-mill", { Name = "Troll Lumber Mill",
   CanStore = {"wood"},
   Sounds = {
     "selected", "troll-lumber-mill-selected",
-    "acknowledge", "troll-lumber-mill-acknowledge",
-    "ready", "troll-lumber-mill-ready",
+--    "acknowledge", "troll-lumber-mill-acknowledge",
+--    "ready", "troll-lumber-mill-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1195,8 +1196,8 @@ DefineUnitType("unit-orc-foundry", { Name = "Foundry",
   ShoreBuilding = true,
   Sounds = {
     "selected", "orc-foundry-selected",
-    "acknowledge", "orc-foundry-acknowledge",
-    "ready", "orc-foundry-ready",
+--    "acknowledge", "orc-foundry-acknowledge",
+--    "ready", "orc-foundry-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1224,8 +1225,8 @@ DefineUnitType("unit-temple-of-the-damned", { Name = "Temple of the Damned",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "temple-of-the-damned-selected",
-    "acknowledge", "temple-of-the-damned-acknowledge",
-    "ready", "temple-of-the-damned-ready",
+--    "acknowledge", "temple-of-the-damned-acknowledge",
+--    "ready", "temple-of-the-damned-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1253,8 +1254,8 @@ DefineUnitType("unit-orc-blacksmith", { Name = "Blacksmith",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
     "selected", "orc-blacksmith-selected",
-    "acknowledge", "orc-blacksmith-acknowledge",
-    "ready", "orc-blacksmith-ready",
+--    "acknowledge", "orc-blacksmith-acknowledge",
+--    "ready", "orc-blacksmith-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1291,8 +1292,8 @@ DefineUnitType("unit-orc-refinery", { Name = "Refinery",
   CanStore = {"oil"},
   Sounds = {
     "selected", "orc-refinery-selected",
-    "acknowledge", "orc-refinery-acknowledge",
-    "ready", "orc-refinery-ready",
+--    "acknowledge", "orc-refinery-acknowledge",
+--    "ready", "orc-refinery-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1321,8 +1322,8 @@ DefineUnitType("unit-orc-oil-platform", { Name = "Oil Platform",
   GivesResource = "oil", CanHarvest = true,
   Sounds = {
     "selected", "orc-oil-platform-selected",
-    "acknowledge", "orc-oil-platform-acknowledge",
-    "ready", "orc-oil-platform-ready",
+--    "acknowledge", "orc-oil-platform-acknowledge",
+--    "ready", "orc-oil-platform-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1353,8 +1354,8 @@ DefineUnitType("unit-stronghold", { Name = "Stronghold",
   CanStore = {"gold", "wood"},
   Sounds = {
     "selected", "stronghold-selected",
-    "acknowledge", "stronghold-acknowledge",
-    "ready", "stronghold-ready",
+--    "acknowledge", "stronghold-acknowledge",
+--    "ready", "stronghold-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1385,8 +1386,8 @@ DefineUnitType("unit-fortress", { Name = "Fortress",
   CanStore = {"gold", "wood"},
   Sounds = {
     "selected", "fortress-selected",
-    "acknowledge", "fortress-acknowledge",
-    "ready", "fortress-ready",
+--    "acknowledge", "fortress-acknowledge",
+--    "ready", "fortress-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1405,9 +1406,9 @@ DefineUnitType("unit-orc-start-location", { Name = "Start Location",
   Demand = 0,
   Type = "land",
   Sounds = {
-    "selected", "orc-start-location-selected",
-    "acknowledge", "orc-start-location-acknowledge",
-    "ready", "orc-start-location-ready",
+--    "selected", "orc-start-location-selected",
+--    "acknowledge", "orc-start-location-acknowledge",
+--    "ready", "orc-start-location-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1439,8 +1440,8 @@ DefineUnitType("unit-orc-guard-tower", { Name = "Guard Tower",
   DetectCloak = true,
   Sounds = {
     "selected", "orc-guard-tower-selected",
-    "acknowledge", "orc-guard-tower-acknowledge",
-    "ready", "orc-guard-tower-ready",
+--    "acknowledge", "orc-guard-tower-acknowledge",
+--    "ready", "orc-guard-tower-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1471,12 +1472,11 @@ DefineUnitType("unit-orc-cannon-tower", { Name = "Cannon Tower",
   Building = true, VisibleUnderFog = true, 
   DetectCloak = true,
   Sounds = {
-    "selected", "orc-cannon-tower-selected",
-    "acknowledge", "orc-cannon-tower-acknowledge",
-    "ready", "orc-cannon-tower-ready",
+--    "selected", "orc-cannon-tower-selected",
+--    "acknowledge", "orc-cannon-tower-acknowledge",
+--    "ready", "orc-cannon-tower-ready",
     "help", "basic orc voices help 2",
-    "dead", "building destroyed",
-    "attack", "orc-cannon-tower-attack"} } )
+    "dead", "building destroyed"} } )
 
 DefineUnitType("unit-orc-wall", { Name = "Wall",
   Files = {"tileset-summer", "tilesets/summer/neutral/buildings/wall.png",
@@ -1499,9 +1499,9 @@ DefineUnitType("unit-orc-wall", { Name = "Wall",
   Type = "land",
   Building = true, VisibleUnderFog = true, 
   Sounds = {
-    "selected", "orc-wall-selected",
-    "acknowledge", "orc-wall-acknowledge",
-    "ready", "orc-wall-ready",
+--    "selected", "orc-wall-selected",
+--    "acknowledge", "orc-wall-acknowledge",
+--    "ready", "orc-wall-ready",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 

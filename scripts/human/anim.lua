@@ -137,7 +137,7 @@ DefineNewAnimations("animations-knight-rider", {
   Still = KnightStill,
   Move = KnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
-    "frame 40", "attack", "sound knight-rider-attack", "wait 5", "frame 0", "wait 10",
+    "frame 40", "attack", "sound turalyon-attack", "wait 5", "frame 0", "wait 10",
     "frame 0", "unbreakable end", "wait 1",},
   Death = KnightDeath,
 })
@@ -314,7 +314,7 @@ DefineNewAnimations("animations-human-oil-tanker", {
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "unbreakable end", "wait 1",},
-  Attack = {"unbreakable begin", "frame 0", "attack", "sound human-oil-tanker-attack", "wait 30",
+  Attack = {"unbreakable begin", "frame 0", "attack", "wait 30",
     "frame 0", "wait 99", "frame 0", "unbreakable end", "wait 1",},
   Death = {"unbreakable begin", "frame 5", "wait 50", "frame 10", "wait 50", "frame 10", "unbreakable end", "wait 1",},
 })
@@ -330,7 +330,7 @@ DefineNewAnimations("animations-human-transport", {
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "unbreakable end", "wait 1",},
-  Attack = {"unbreakable begin", "frame 0", "attack", "sound human-transport-attack", "wait 119",
+  Attack = {"unbreakable begin", "frame 0", "attack", "wait 119",
     "frame 0", "unbreakable end", "wait 1",},
   Death = {"unbreakable begin", "frame 5", "wait 50", "frame 10", "wait 50", "frame 10", "unbreakable end", "wait 1",},
 })
@@ -400,7 +400,7 @@ DefineNewAnimations("animations-balloon", {
 
 DefineNewAnimations("animations-human-guard-tower", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
-  Attack = {"unbreakable begin", "frame 0", "attack", "sound human-guard-tower-attack", "wait 59",
+  Attack = {"unbreakable begin", "frame 0", "attack", "wait 59",
     "frame 0", "unbreakable end", "wait 1",},
 })
 
@@ -408,7 +408,7 @@ DefineNewAnimations("animations-human-guard-tower", {
 --	Cannon Tower, Cannon Tower
 DefineNewAnimations("animations-human-cannon-tower", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
-  Attack = {"unbreakable begin", "frame 0", "attack", "sound human-cannon-tower-attack", "wait 150",
+  Attack = {"unbreakable begin", "frame 0", "attack", "wait 150",
     "frame 0", "unbreakable end", "wait 1",},
 })
 
