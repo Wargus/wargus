@@ -1,5 +1,5 @@
-@ECHO OFF
-GOTO START
+@echo off
+goto START
 REM      _________ __                 __                               
 REM     /   _____//  |_____________ _/  |______     ____  __ __  ______
 REM     \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
@@ -31,7 +31,7 @@ REM
 REM     Enter the letter of your CDROM drive.
 REM
 
-SET CDROM=D:
+set CDROM=D:
 
 REM
 REM     Alternatively: Enter the path to WC2 on your hard drive.
@@ -43,13 +43,10 @@ REM SET EXPANSION=-e
 
 REM
 REM	This is the name of the directory where the files will be extracted.
-REM	If you installed with fcmp then you should use data.wc2 instead.
+REM     You shouldn't need to change this.
 REM
 
-SET DIR=data
-REM SET DIR=data.wc2
-
-
+set DIR=data.wc2
 
 
 
@@ -58,15 +55,16 @@ REM ###########################################################################
 REM ##      DO NOT EDIT BELOW THIS LINE
 REM ###########################################################################
 
-SET BINDIR=tools
-SET CONTRIB=contrib
+set CONTRIB=contrib
 
-IF NOT [%1] == [] SET CDROM=%1
-IF NOT [%2] == [] SET DIR=%2
-SET ARCHIVE=%CDROM%\data
+if not [%1] == [] SET CDROM=%1
+if not [%2] == [] SET DIR=%2
+set ARCHIVE=%CDROM%\data
 
-IF NOT EXIST %ARCHIVE%\rezdat.war goto DIRERROR
-IF NOT EXIST %CONTRIB%\* goto CONTRIBERROR
+if not EXIST %ARCHIVE%\rezdat.war goto DIRERROR
+if not EXIST %CONTRIB%\* goto CONTRIBERROR
+
+if not EXIST %DIR% md %DIR%
 
 REM ###########################################################################
 REM ##      Extract
@@ -76,22 +74,22 @@ ECHO Extracting files...
 
 REM ADD -e      To force the archive are expansion compatible
 REM ADD -n      To force the archive is not expansion compatible   
-%BINDIR%\wartool %EXPANSION% %ARCHIVE% %DIR%
+wartool %EXPANSION% %ARCHIVE% %DIR%
 
 REM copy own supplied files
 
-copy /b %CONTRIB%\cross.png %DIR%\graphics\ui\cursors
-copy /b %CONTRIB%\red_cross.png %DIR%\graphics\missiles
-copy /b %CONTRIB%\mana.png %DIR%\graphics\ui
-copy /b %CONTRIB%\mana2.png %DIR%\graphics\ui
-copy /b %CONTRIB%\health.png %DIR%\graphics\ui
-copy /b %CONTRIB%\health2.png %DIR%\graphics\ui
-copy /b %CONTRIB%\food.png %DIR%\graphics\ui
-copy /b %CONTRIB%\score.png %DIR%\graphics\ui
-copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphics\ui
-copy /b %CONTRIB%\stratagus.png %DIR%\graphics\ui
-mkdir %DIR%\music
-copy /b %CONTRIB%\music\toccata.mod.gz %DIR%\music\default.mod.gz
+copy /b %CONTRIB%\cross.png %DIR%\graphics\ui\cursors >nul
+copy /b %CONTRIB%\red_cross.png %DIR%\graphics\missiles >nul
+copy /b %CONTRIB%\mana.png %DIR%\graphics\ui >nul
+copy /b %CONTRIB%\mana2.png %DIR%\graphics\ui >nul
+copy /b %CONTRIB%\health.png %DIR%\graphics\ui >nul
+copy /b %CONTRIB%\health2.png %DIR%\graphics\ui >nul
+copy /b %CONTRIB%\food.png %DIR%\graphics\ui >nul
+copy /b %CONTRIB%\score.png %DIR%\graphics\ui >nul
+copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphics\ui >nul
+copy /b %CONTRIB%\stratagus.png %DIR%\graphics\ui >nul
+md %DIR%\music
+copy /b %CONTRIB%\toccata.mod.gz %DIR%\music\default.mod.gz >nul
 
 REM ###########################################################################
 REM ##      MISC
@@ -99,31 +97,35 @@ REM ###########################################################################
 
 REM Compress HOW-TODO ?
 
-REM
-REM	Copy original puds into data directory
-REM
-mkdir %DIR%\puds
-mkdir %DIR%\puds\single
-mkdir %DIR%\puds\multi
-mkdir %DIR%\puds\multiple
-mkdir %DIR%\puds\strange
+REM	*** Copy original maps into data directory ***
+md %DIR%\maps\multiple
+md %DIR%\maps\single
+REM for the expansion cd,
+if exist %ARCHIVE%\puds\multi\* copy /b %ARCHIVE%\puds\multi\* %DIR%\maps\multi >nul
+REM for the original cd,
+if exist %ARCHIVE%\*.pud copy /b %ARCHIVE%\*.pud %DIR%\maps >nul
 
-IF EXIST %ARCHIVE%\..\puds\multi\* copy /b %ARCHIVE%\..\puds\multi\* %DIR%\puds\multi
-IF EXIST %ARCHIVE%\..\puds\single\* copy /b %ARCHIVE%\..\puds\single\* %DIR%\puds\single
-IF EXIST %ARCHIVE%\..\puds\strange\* copy /b %ARCHIVE%\..\puds\strange\* %DIR%\puds\strange
-IF EXIST %ARCHIVE%\..\*.pud copy /b %ARCHIVE%\..\*.pud %DIR%\puds
+REM	*** Copy contrib maps into data directory ***
+REM copy /b %CONTRIB%\puds\single\* %DIR%\puds\single
+REM todo copy /b %CONTRIB%\puds\multi\* %DIR%\puds\multiple
 
-REM
-REM	Copy contrib puds into data directory
-REM
-rem copy /b %CONTRIB%\puds\single\* %DIR%\puds\single
-copy /b %CONTRIB%\puds\multi\* %DIR%\puds\multiple
+REM	*** Setup the default pud ***
+copy /b %DIR%\maps\multi\(2)mysterious-dragon-isle.pud.gz %DIR%\maps\default.pud.gz >nul
 
-REM
-REM	Setup the default pud
-REM
-copy /b %DIR%\puds\multi\(2)mysterious-dragon-isle.pud.gz %DIR%\puds\default.pud.gz
-ECHO NOTE: You only need to run this script once
+REM	*** Copy script files ***
+md %DIR%\scripts\ai
+md %DIR%\scripts\human
+md %DIR%\scripts\orc
+md %DIR%\scripts\tilesets
+copy scripts\*.lua %DIR%\scripts >nul
+copy scripts\ai\*.lua %DIR%\scripts\ai >nul
+copy scripts\human\*.lua %DIR%\scripts\human >nul
+copy scripts\orc\*.lua %DIR%\scripts\orc >nul
+copy scripts\tilesets\*.lua %DIR%\scripts\tilesets >nul
+
+echo
+echo WC2 data setup is now complete!
+echo NOTE: you do not need to run this script again
 goto EOF
 
 :DIRERROR

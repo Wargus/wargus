@@ -561,66 +561,66 @@ Control Todo[] = {
 {P,0,"campaigns/orc/level14o",										 219		__},
 // --------------------------------------------------
 		// 6 Gold separates east from west
-{P,0,"puds/multi/(6)gold-separates-east-west",								 220		__},
+{P,0,"maps/multi/(6)gold-separates-east-west",								 220		__},
 		// 4 Oil is the key
-{P,0,"puds/multi/(4)oil-is-the-key",								 221		__},
+{P,0,"maps/multi/(4)oil-is-the-key",								 221		__},
 		// 8 Bridge to bridge combat
-{P,0,"puds/multi/(8)bridge-to-bridge-combat",								 222		__},
+{P,0,"maps/multi/(8)bridge-to-bridge-combat",								 222		__},
 		// 8 Plains of snow
-{P,0,"puds/multi/(8)plains-of-snow",								 223		__},
+{P,0,"maps/multi/(8)plains-of-snow",								 223		__},
 		// 3 Three ways to cross
-{P,0,"puds/multi/(3)three-ways-to-cross",								 224		__},
+{P,0,"maps/multi/(3)three-ways-to-cross",								 224		__},
 		// 8 A continent to explore
-{P,0,"puds/multi/(8)a-continent-to-explore",								 225		__},
+{P,0,"maps/multi/(8)a-continent-to-explore",								 225		__},
 		// 8 High seas combat
-{P,0,"puds/multi/(8)high-seas-combat",								 226		__},
+{P,0,"maps/multi/(8)high-seas-combat",								 226		__},
 		// 4 Islands in the stream
-{P,0,"puds/multi/(4)islands-in-the-stream",								 227		__},
+{P,0,"maps/multi/(4)islands-in-the-stream",								 227		__},
 		// 4 Opposing city states
-{P,0,"puds/multi/(4)opposing-city-states",								 228		__},
+{P,0,"maps/multi/(4)opposing-city-states",								 228		__},
 		// 4 Death in the middle
-{P,0,"puds/multi/(4)death-in-the-middle",								 229		__},
+{P,0,"maps/multi/(4)death-in-the-middle",								 229		__},
 		// 5 The spiral
-{P,0,"puds/multi/(5)the-spiral",								 230		__},
+{P,0,"maps/multi/(5)the-spiral",								 230		__},
 		// 2 Mysterious dragon isle
-{P,0,"puds/multi/(2)mysterious-dragon-isle",								 231		__},
+{P,0,"maps/multi/(2)mysterious-dragon-isle",								 231		__},
 		// 4 The four corners
-{P,0,"puds/multi/(4)the-four-corners",								 232		__},
+{P,0,"maps/multi/(4)the-four-corners",								 232		__},
 		// 6 No way out of this maze
-{P,0,"puds/multi/(6)no-way-out-of-this-maze",								 233		__},
+{P,0,"maps/multi/(6)no-way-out-of-this-maze",								 233		__},
 		// 8 Fierce ocean combat
-{P,0,"puds/multi/(8)fierce-ocean-combat",								 234		__},
+{P,0,"maps/multi/(8)fierce-ocean-combat",								 234		__},
 		// 2 Cross the streams
-{P,0,"puds/multi/(2)cross-the-streams",								 235		__},
+{P,0,"maps/multi/(2)cross-the-streams",								 235		__},
 		// 5 How much can you mine?
-{P,0,"puds/multi/(5)how-much-can-you-mine",								 236		__},
+{P,0,"maps/multi/(5)how-much-can-you-mine",								 236		__},
 		// 2 X marks the spot
-{P,0,"puds/multi/(2)x-marks-the-spot",								 237		__},
+{P,0,"maps/multi/(2)x-marks-the-spot",								 237		__},
 		// 2 One way in one way out
-{P,0,"puds/multi/(2)one-way-in-one-way-out",								 238		__},
+{P,0,"maps/multi/(2)one-way-in-one-way-out",								 238		__},
 		// 4 Nowhere to run, nowhere to hide
-{P,0,"puds/multi/(4)nowhere-to-run",								 239		__},
+{P,0,"maps/multi/(4)nowhere-to-run",								 239		__},
 		// 2 2 players
-{P,0,"puds/multi/(2)2-players",								 240		__},
+{P,0,"maps/multi/(2)2-players",								 240		__},
 		// 7 ..and the rivers ran as blood..
-{P,0,"puds/multi/(7)and-the-rivers-ran-as-blood",								 241		__},
+{P,0,"maps/multi/(7)and-the-rivers-ran-as-blood",								 241		__},
 		// 3 Critter attack
-{P,0,"puds/multi/(3)critter-attack",								 242		__},
+{P,0,"maps/multi/(3)critter-attack",								 242		__},
 		// 6 Skull isle
-{P,0,"puds/multi/(6)skull-isle",								 243		__},
+{P,0,"maps/multi/(6)skull-isle",								 243		__},
 		// 8 Cross over
-{P,0,"puds/multi/(8)cross-over",								 244		__},
+{P,0,"maps/multi/(8)cross-over",								 244		__},
 		// 8 Garden of war
-{P,0,"puds/multi/(8)garden-of-war",								 245		__},
+{P,0,"maps/multi/(8)garden-of-war",								 245		__},
 		// 4 Mine the center
-{P,0,"puds/multi/(4)mine-the-center",								 246		__},
+{P,0,"maps/multi/(4)mine-the-center",								 246		__},
 		// 3 River fork
-{P,0,"puds/multi/(3)river-fork",								 247		__},
+{P,0,"maps/multi/(3)river-fork",								 247		__},
 // -------------------------------------------------
-{P,0,"puds/demo/demo01",										 248		__},
-{P,0,"puds/demo/demo02",										 249		__},
-{P,0,"puds/demo/demo03",										 250		__},
-{P,0,"puds/demo/demo04",										 251		__},
+{P,0,"maps/demo/demo01",										 248		__},
+{P,0,"maps/demo/demo02",										 249		__},
+{P,0,"maps/demo/demo03",										 250		__},
+{P,0,"maps/demo/demo04",										 251		__},
 // --------------------------------------------------
 {G,0,"neutral/buildings/land_construction_site",				 2, 252		_2},
 {G,0,"human/buildings/shipyard_construction_site",				 2, 253		_2},
