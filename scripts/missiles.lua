@@ -105,13 +105,13 @@ DefineMissileType("missile-catapult-rock",
   "file", "missiles/catapult_rock.png", "size", {32, 32}, "frames", 15, "num-directions", 5,
   "impact-sound", "explosion",
   "draw-level", 50, "class", "missile-class-parabolic", "sleep", 1, "speed", 16, "range", 2,
-  "impact-missile", "missile-impact")
+  "impact-missile", "missile-impact", "splash-factor", 4)
 
 DefineMissileType("missile-ballista-bolt",
   "file", "missiles/ballista_bolt.png", "size", {64, 64}, "frames", 5, "num-directions", 5,
   "draw-level", 50, "impact-sound", "explosion",
   "class", "missile-class-parabolic", "sleep", 1, "speed", 16, "range", 2,
-  "impact-missile", "missile-impact")
+  "impact-missile", "missile-impact", "splash-factor", 4)
 
 DefineMissileType("missile-arrow",
   "file", "missiles/arrow.png", "size", {40, 40}, "frames", 5, "num-directions", 5,
