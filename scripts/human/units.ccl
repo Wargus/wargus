@@ -231,7 +231,8 @@
       spell-flame-shield
       spell-invisibility
       spell-polymorph
-      spell-blizzard)
+      spell-blizzard
+      spell-suicide-bomber)
   'land-unit
   'coward
   'organic
