@@ -178,7 +178,6 @@ local hum_05_funcs = {
 }
 
 function AiHuman05() return AiLoop(hum_05_funcs, hum_05_pos) end
-
 DefineAi("hum-05", "*", "hum-05", AiHuman05)
 
 --[[ Human 06 campaign ai ]]--
@@ -226,7 +225,6 @@ local hum_06_funcs = {
 }
 
 function AiHuman06() return AiLoop(hum_06_funcs, hum_06_pos) end
-
 DefineAi("hum-06", "*", "hum-06", AiHuman06)
 
 --[[ Human 07 campaign ai]]--
@@ -239,7 +237,7 @@ local hum_07_funcs = {
     function() return AiSet(AiWorker(), 2) end,
     function() return AiSet(AiTanker(), 1) end,
     function() return AiSleep(10000) end,
-    function() return AiRestart() end,
+    function() hum_07_pos[player] = 1; return false end,
 }
 
 function AiHuman07() return AiLoop(hum_07_funcs, hum_07_pos) end
@@ -297,7 +295,7 @@ local hum_09_funcs = {
     function() return AiSet(AiWorker(), 2) end,
     function() return AiSet(AiTanker(), 1) end,
     function() return AiSleep(10000) end,
-    function() return AiRestart() end,
+    function() hum_09_pos[player] = 1; return false end,
 }
 
 function AiHuman09() return AiLoop(hum_09_funcs, hum_09_pos) end
