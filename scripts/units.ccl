@@ -380,19 +380,19 @@
   'vanishes
   'sounds '())
 
-;(define-unit-type 'unit-revealer 'name "Dummy unit"
-;  'files '(tileset-summer "neutral/units/daemon.png")
-;  'size '(2 2)
-;  'animations 'animations-building 'icon 'icon-holy-vision
-;  'speed 0
-;  'hit-points 0
-;  'tile-size '(1 1) 'box-size '(1 1)
-;  'sight-range 12
-;  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
-;  'priority 0
-;  'decay-rate 1
-;  'type-land
-;  'building
-;  'critter
-;  'can-see-submarine
-;  'sounds '())
+(define-unit-type 'unit-revealer 'name "Dummy unit"
+  'files '(tileset-summer "neutral/units/daemon.png")
+  'size '(2 2)
+  'animations 'animations-building 'icon 'icon-holy-vision
+  'speed 0
+  'hit-points 0
+  'tile-size '(1 1) 'box-size '(1 1)
+  'sight-range 12
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
+  'decay-rate 1
+  'type-land
+  'building
+  'critter
+  'can-see-submarine
+  'sounds '())
