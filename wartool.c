@@ -677,6 +677,7 @@ Control Todo[] = {
 
 {W,0,"ui/click",						432	__},
 {W,0,"ui/highclick",						435	__},
+{W,0,"ui/statsthump",						436	__},
 
 {V,0,"videos/gameintro",					429	__},
 

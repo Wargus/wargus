@@ -850,3 +850,6 @@
 
   'human-rescue (make-sound "human rescue" "human/rescue.wav")
   'orc-rescue (make-sound "orc rescue" "orc/rescue.wav") )))
+
+(define sound-click (make-sound "highclick" "ui/highclick.wav"))
+(define sound-click (make-sound "statsthump" "ui/statsthump.wav"))
