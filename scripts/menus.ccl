@@ -89,8 +89,8 @@
 ;;
 ;; menu-victory
 ;;
-(define-menu 'name 'menu-victory 'geometry '(256 176 288 128)
-  'image 'panel4 'default '2)
+(define-menu 'name 'menu-victory 'geometry '(256 112 288 256)
+  'image 'panel2 'default '2)
 (define-menu-item 'pos (list 144 11) 'font 'large
   'text '("Congratulations!" center)
   'menu 'menu-victory)
@@ -111,13 +111,20 @@
     func null
     style gm-full)
   'menu 'menu-victory)
+(define-menu-item 'pos (list 32 124) 'font 'large
+  'button '(size (224 27)
+    caption "Save ~!Replay"
+    hotkey "r"
+    func save-replay
+    style gm-full)
+  'menu 'menu-victory)
 
 
 ;;
 ;; menu-defeated
 ;;
-(define-menu 'name 'menu-defeated 'geometry '(256 176 288 128)
-  'image 'panel4 'default '2)
+(define-menu 'name 'menu-defeated 'geometry '(256 176 288 256)
+  'image 'panel2 'default '2)
 (define-menu-item 'pos (list 144 11) 'font 'large
   'text '("You failed to" center)
   'menu 'menu-defeated)
@@ -131,6 +138,13 @@
     func game-menu-end
     style gm-full)
   'menu 'menu-defeated)
+(define-menu-item 'pos (list 32 124) 'font 'large
+  'button '(size (224 27)
+    caption "Save ~!Replay"
+    hotkey "r"
+    func save-replay
+    style gm-full)
+  'menu 'menu-victory)
 
 
 ;;
