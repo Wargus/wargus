@@ -289,24 +289,43 @@
 ))
 
 ;;;	Gryphon Rider  Kurdan and Sky'ree
+(if (symbol-bound? 'freecraft-feature-new-ships (the-environment))
 (define GryphonRiderMove   '(
     (0  0  1   0)  (0  2  2   0)  (0  3  2   0)  (0  3  2   5)  (0  2  2   0)
     (0  3  2   0)  (0  3  2   5)  (0  2  2   0)  (0  3  2   0)  (0  3  2   5)
     (0  2  2   0)  (0  3  2   0)  (3  3  1 -15)
 ))
+(define GryphonRiderMove   '(
+    (0  0  1   0)  (0  4  1   0)  (0  4  1   5)  (0  2  1   0)
+    (0  3  1   0)  (0  3  1   5)  (0  2  1   0)  (0  3  1   0)  (0  3  1   5)
+    (0  2  1   0)  (0  3  1   0)  (3  3  1 -15)
+))
+)
 
+(if (symbol-bound? 'freecraft-feature-new-ships (the-environment))
 ;;;	Dragon  Deathwing
 (define DragonMove   '(
     (0  0  1   0)  (0  2  2   0)  (0  3  2   0)  (0  3  2   5)  (0  2  2   0)
     (0  3  2   0)  (0  3  2   5)  (0  2  2   0)  (0  3  2   0)  (0  3  2   5)
     (0  2  2   0)  (0  3  2   0)  (3  3  1 -15)
 ))
+(define DragonMove   '(
+    (0  0  1   0)  (0  5  1   0)  (0  3  1   5)  (0  2  1   0)
+    (0  3  1   0)  (0  3  1   5)  (0  2  1   0)  (0  3  1   0)  (0  3  1   5)
+    (0  2  2   0)  (0  3  2   0)  (3  3  1 -15)
+))
+)
 
+(if (symbol-bound? 'freecraft-feature-new-ships (the-environment))
 ;;;	Eye of kilrogg
 (define EyeOfKilroggMove   '(
     (0  4  1   0)  (0  4  1   0)  (0  4  1   0)  (0  4  1   0)  (0  4  1   0)
     (0  4  1   0)  (0  4  1   0)  (3  4  1   0)
 ))
+(define EyeOfKilroggMove   '(
+    (0  8  1   0)  (0  8  1   0)  (0  8  1   0)  (3  8  1   0)
+))
+)
 
 ;;;	Human tanker  orc tanker
 (define TankerMove   '(
@@ -364,20 +383,33 @@
 ))
 
 ;;;	Gnomish flying machine
+(if (symbol-bound? 'freecraft-feature-new-ships (the-environment))
 (define GnomishFlyingMachineMove   '(
     (0  2  1   0)  (0  1  1   5)  (0  2  1   0)  (0  2  1  -5)  (0  1  1   0)
     (0  2  1   5)  (0  1  1   0)  (0  2  1  -5)  (0  2  1   0)  (0  1  1   5)
     (0  2  1   0)  (0  1  1  -5)  (0  2  1   0)  (0  2  1   5)  (0  1  1   0)
     (0  2  1  -5)  (0  1  1   0)  (0  2  1   5)  (0  2  1   0)  (3  1  1  -5)
 ))
+(define GnomishFlyingMachineMove   '(
+    (0  4  1   0)  (0  2  1   5)  (0  4  1   0)  (0  4  1  -5)  (0  2  1   0)
+    (0  4  1   5)  (0  2  1   0)  (0  4  1  -5)  (0  4  1   0)  (3  2  1   5)
+))
+)
 
 ;;;	Goblin zeppelin
+(if (symbol-bound? 'freecraft-feature-new-ships (the-environment))
 (define GoblinZeppelinMove   '(
     (0  2  1   0)  (0  1  1   0)  (0  2  1   0)  (0  2  1   0)  (0  1  1   0)
     (0  2  1   0)  (0  1  1   0)  (0  2  1   0)  (0  2  1   0)  (0  1  1   0)
     (0  2  1   0)  (0  1  1   0)  (0  2  1   0)  (0  2  1   0)  (0  1  1   0)
     (0  2  1   0)  (0  1  1   0)  (0  2  1   0)  (0  2  1   0)  (3  1  1   0)
 ))
+(define GoblinZeppelinMove   '(
+    (0  3  1   0)  (0  3  1   0)  (0  3  1   0)  (0  3  1   0)  (0  3  1   0)
+    (0  3  1   0)  (0  3  1   0)  (0  3  1   0)  (0  3  1   0)  (0  3  1   0) 
+    (3  2  1   0)
+))
+)
 
 ;;;	Skeleton
 (define SkeletonMove   '(
