@@ -3,7 +3,7 @@
 Briefing("type", "wc2",
 ^^TITLE^^
 ^^OBJECTIVES^^
-  "background", "campaigns/human/interface/introscreen3.png",
+  "background", "../campaigns/human/interface/introscreen3.png",
   "text", "campaigns/human/level10h.txt",
   "voice", "campaigns/human/level10h-intro1.wav"
 )
