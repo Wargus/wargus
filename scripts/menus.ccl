@@ -1974,7 +1974,7 @@
     'button '(size (224 27)
             caption "~!Load Map"
             hotkey "l"
-            func editor-load-map
+            func editor-main-load-map
             style gm-full)
     'menu 'menu-editor-select)
 (define-menu-item 'pos (list 208 (+ 320 (* 36 2))) 'font 'large
@@ -1987,47 +1987,47 @@
 
 
 ;;
-;; menu-editor-load-map
+;; menu-editor-main-load-map
 ;;
-(define-menu 'name 'menu-editor-load-map 'geometry '(144 64 352 352)
+(define-menu 'name 'menu-editor-main-load-map 'geometry '(144 64 352 352)
     'image 'panel5 'default '4)
-(define-menu-item 'pos (list (/ 352 2) 11) 'font 'large  'init 'editor-load-init
+(define-menu-item 'pos (list (/ 352 2) 11) 'font 'large  'init 'editor-main-load-init
     'text '("Select map" center)
-    'menu 'menu-editor-load-map)
-(define-menu-item 'pos (list (/ (- 352 18 288) 2) (+ 11 98)) 'font 'game  'init 'editor-load-lb-init 'exit 'editor-load-lb-exit
+    'menu 'menu-editor-main-load-map)
+(define-menu-item 'pos (list (/ (- 352 18 288) 2) (+ 11 98)) 'font 'game  'init 'editor-main-load-lb-init 'exit 'editor-main-load-lb-exit
     'listbox '(size (288 108)
              style pulldown
-             func editor-load-lb-action
-             retopt editor-load-lb-retrieve
-             handler editor-load-ok
+             func editor-main-load-lb-action
+             retopt editor-main-load-lb-retrieve
+             handler editor-main-load-ok
              nlines 6)
-    'menu 'menu-editor-load-map)
+    'menu 'menu-editor-main-load-map)
 (define-menu-item 'pos (list (+ (/ (- 352 18 288) 2) 288) (+ 11 98)) 'font 'small
     'vslider '(size (18 108)
-             func editor-load-vs-action
-             handler editor-load-ok)
-    'menu 'menu-editor-load-map)
+             func editor-main-load-vs-action
+             handler editor-main-load-ok)
+    'menu 'menu-editor-main-load-map)
 (define-menu-item 'pos (list 48 308) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "OK"
             hotkey ""
-            func editor-load-ok
+            func editor-main-load-ok
             style gm-half)
-    'menu 'menu-editor-load-map)
+    'menu 'menu-editor-main-load-map)
 (define-menu-item 'pos (list 198 308) 'font 'large
     'button '(size (106 27)
             caption "Cancel"
             hotkey ""
-            func editor-load-cancel
+            func editor-main-load-cancel
             style gm-half)
-    'menu 'menu-editor-load-map)
+    'menu 'menu-editor-main-load-map)
 (define-menu-item 'pos (list (- (/ (- 352 18 288) 2) 2) (- (+ 11 98) 28)) 'font 'game
     'button '(size (36 24)
             caption ()
             hotkey ""
-            func editor-load-folder
+            func editor-main-load-folder
             style folder)
-    'menu 'menu-editor-load-map)
+    'menu 'menu-editor-main-load-map)
 
 
 ;;
@@ -2038,11 +2038,11 @@
 (define-menu-item 'pos (list 128 11) 'font 'large  'init 'init-game-menu
     'text '("Editor Menu" center)
     'menu 'menu-editor)
-(define-menu-item 'pos (list 16 40) 'font 'large 'flags '(disabled)
+(define-menu-item 'pos (list 16 40) 'font 'large
     'button '(size (106 27)
             caption "Save (~<F11~>)"
             hotkey "f11"
-            func game-menu-save
+            func editor-save
             style gm-half)
     'menu 'menu-editor)
 (define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large 'flags '(disabled)
@@ -2974,6 +2974,7 @@
             style gm-half)
     'menu 'menu-editor-error)
 
+
 ;;
 ;; menu-editor-edit-ai-properties
 ;;
@@ -3014,4 +3015,54 @@
             func editor-edit-ai-properties-cancel
             style gm-half)
     'menu 'menu-editor-edit-ai-properties)
+
+
+;;
+;; menu-editor-save
+;;
+(define-menu 'name 'menu-editor-save 'geometry '(144 64 352 352)
+    'image 'panel5 'default '5)
+(define-menu-item 'pos (list (/ 352 2) 11) 'font 'large
+    'text '("Save map" center)
+    'menu 'menu-editor-save)
+(define-menu-item 'pos (list (/ (- 352 18 288) 2) (+ 11 98)) 'font 'game  'init 'editor-save-lb-init 'exit 'editor-save-lb-exit
+    'listbox '(size (288 108)
+             style pulldown
+             func editor-save-lb-action
+             retopt editor-save-lb-retrieve
+             handler editor-save-ok
+             nlines 6)
+    'menu 'menu-editor-save)
+(define-menu-item 'pos (list (+ (/ (- 352 18 288) 2) 288) (+ 11 98)) 'font 'small
+    'vslider '(size (18 108)
+             func editor-save-vs-action
+             handler editor-save-ok)
+    'menu 'menu-editor-save)
+(define-menu-item 'pos (list (/ (- 352 18 288) 2) (+ 11 98 108 12)) 'font 'game
+    'input '(size (288 20)
+           func editor-save-enter-action
+           style pulldown)
+    'menu 'menu-editor-save)
+(define-menu-item 'pos (list 48 308) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "OK"
+            hotkey ""
+            func editor-save-ok
+            style gm-half)
+    'menu 'menu-editor-save)
+(define-menu-item 'pos (list 198 308) 'font 'large
+    'button '(size (106 27)
+            caption "Cancel"
+            hotkey ""
+            func editor-save-cancel
+            style gm-half)
+    'menu 'menu-editor-save)
+(define-menu-item 'pos (list (- (/ (- 352 18 288) 2) 2) (- (+ 11 98) 28)) 'font 'game
+    'button '(size (36 24)
+            caption ()
+            hotkey ""
+            func editor-save-folder
+            style folder)
+    'menu 'menu-editor-save)
+
 
