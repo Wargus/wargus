@@ -100,7 +100,7 @@
 
 ;;	Enable/disable display of the orders of the selected unit on map.
 ;(set-show-orders! #t)
-(set-show-orders! #f)
+(set-show-orders! 2)
 
 ;;	Enable/disable the short display of the orders after command.
 ;;	FIXME: planned
