@@ -140,7 +140,7 @@
     (+ 176 330) 0 14 14 (+ 176 330 18) 1)
     ; score
     (list "graphics/ui/score.png"		0
-    (+ 176 409) 0 14 14 (+ 176 409 18) 1)
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
 
     ; Info panel
     (list "graphics/ui/human/infopanel.png" 0 160 176 176)
@@ -236,7 +236,7 @@
     (+ 176 330) 0 14 14 (+ 176 330 18) 1)
     ; score
     (list "graphics/ui/score.png"		0
-    (+ 176 409) 0 14 14 (+ 176 409 18) 1)
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
 
     ; Info panel
     (list "graphics/ui/human/infopanel.png" 0 160 176 176)
@@ -332,7 +332,7 @@
     (+ 176 330) 0 14 14 (+ 176 330 18) 1)
     ; score
     (list "graphics/ui/score.png"		0
-    (+ 176 409) 0 14 14 (+ 176 409 18) 1)
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
 
     ; Info panel
     (list "graphics/ui/human/infopanel.png" 0 160 176 176)
@@ -428,7 +428,7 @@
     (+ 176 330) 0 14 14 (+ 176 330 18) 1)
     ; score
     (list "graphics/ui/score.png"		0
-    (+ 176 409) 0 14 14 (+ 176 409 18) 1)
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
 
     ; Info panel
     (list "graphics/ui/human/infopanel.png" 0 160 176 176)
@@ -524,7 +524,7 @@
     (+ 176 330) 0 14 14 (+ 176 330 18) 1)
     ; score
     (list "graphics/ui/score.png"		0
-    (+ 176 409) 0 14 14 (+ 176 409 18) 1)
+    (+ 176 390) 0 14 14 (+ 176 390 18) 1)
 
     ; Info panel
     (list "graphics/ui/human/infopanel.png" 0 160 176 176)
