@@ -192,6 +192,11 @@
 (set-building-capture! #t)
 ;(set-building-capture! #f)
 
+;;	Set forest regeneration speed. (n* seconds, 0 = disabled)
+;;	(Auf allgemeinen Wunsch eines einzelnen Herrn :)
+(set-forest-regeneration! 0)
+;(set-forest-regeneration! 5)
+
 ;;-----------------------------------------------------------------------------
 
 ;;	If you prefer fighters are attacking by right clicking empty space
@@ -246,22 +251,17 @@
 ;(set-fog-of-war! #f)
 
 ;;	Choose your default for minimap with/without terrain.
-(minimap-terrain)
-;(minimap-no-terrain)
+(set-minimap-terrain! #t)
+;(set-minimap-terrain! #f)
 
 ;;	Choose your default for the fog of war style.
 ;(original-fog-of-war)
 (gray-fog-of-war)
 
 ;;	If you use gray style fog of war set the contrast,brightness,saturation
-(fog-of-war-contrast 30)
-(fog-of-war-brightness 10)
-(fog-of-war-saturation 100)
-
-;;	Set forest regeneration speed. (n* seconds, 0 = disabled)
-;;	(Auf allgemeinen Wunsch eines einzelnen Herrn :)
-(forest-regeneration 0)
-;(forest-regeneration 5)
+(set-fog-of-war-contrast!    30)
+(set-fog-of-war-brightness!  10)
+(set-fog-of-war-saturation! 100)
 
 ;;-----------------------------------------------------------------------------
 
