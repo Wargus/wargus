@@ -156,7 +156,7 @@
   'action 'cast-spell 'value 'spell-area-healing
   'allowed 'check-upgrade 'allow-arg '(upgrade-area-healing)
   'key "l" 'hint "AREA HEA~!LING (per 1 HP)"
-  'for-unit '(unit-paladin unit-turalyon unit-lothar
+  'for-unit '(unit-paladin unit-turalyon 
     unit-uther-lightbringer))
 )
 
@@ -164,21 +164,21 @@
   'action 'cast-spell 'value 'spell-holy-vision
   'allowed 'check-upgrade 'allow-arg '(upgrade-holy-vision)
   'key "v" 'hint "HOLY ~!VISION"
-  'for-unit '(unit-paladin unit-turalyon unit-lothar
+  'for-unit '(unit-paladin unit-turalyon
     unit-uther-lightbringer))
 
 (define-button 'pos 8 'level 0 'icon 'icon-heal
   'action 'cast-spell 'value 'spell-healing
   'allowed 'check-upgrade 'allow-arg '(upgrade-healing)
   'key "h" 'hint "~!HEALING (per 1 HP)"
-  'for-unit '(unit-paladin unit-turalyon unit-lothar
+  'for-unit '(unit-paladin unit-turalyon 
     unit-uther-lightbringer))
 
 (define-button 'pos 9 'level 0 'icon 'icon-exorcism
   'action 'cast-spell 'value 'spell-exorcism
   'allowed 'check-upgrade 'allow-arg '(upgrade-exorcism)
   'key "e" 'hint "~!EXORCISM"
-  'for-unit '(unit-paladin unit-turalyon unit-lothar
+  'for-unit '(unit-paladin unit-turalyon
     unit-uther-lightbringer))
 
 ;; mage specific actions ------------------------------------------------------
