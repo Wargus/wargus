@@ -137,6 +137,7 @@
   'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-daemon-fire
   'file "missiles/daemon fire.png" 'size '(32 32) 'frames 15
+  'impact-sound "fireball hit"
   'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-green-cross
   'file "missiles/green cross.png" 'size '(32 32) 'frames 4
