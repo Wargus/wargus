@@ -118,29 +118,29 @@
 
     ; gold resource
     (list "graphics/ui/gold,wood,oil,mana.png"	0
-    (+ 176   0) 0 14 14 (+ 176   0 18) 1)
+      (+ 176   0) 0 14 14 (+ 176   0 18) 1)
     ; wood resource
     (list "graphics/ui/gold,wood,oil,mana.png"	1
-    (+ 176  65) 0 14 14 (+ 176  65 18) 1)
+      (+ 176  65) 0 14 14 (+ 176  65 18) 1)
     ;  oil resource
     (list "graphics/ui/gold,wood,oil,mana.png"	2
-    (+ 176 120) 0 14 14 (+ 176 120 18) 1)
+      (+ 176 120) 0 14 14 (+ 176 120 18) 1)
     ;  oge resource
     (list "graphics/ui/ore,stone,coal.png"	0
-    (+ 176 175) 0 14 14 (+ 176 175 18) 1)
+      (+ 176 175) 0 14 14 (+ 176 175 18) 1)
     ;  stone resource
     (list "graphics/ui/ore,stone,coal.png"	1
-    (+ 176 230) 0 14 14 (+ 176 230 18) 1)
+      (+ 176 230) 0 14 14 (+ 176 230 18) 1)
     ;  coal resource
     (list "graphics/ui/ore,stone,coal.png"	2
-    (+ 176 285) 0 14 14 (+ 176 285 18) 1)
+      (+ 176 285) 0 14 14 (+ 176 285 18) 1)
 
     ; food resource
     (list "graphics/ui/food.png"		0
-    (+ 176 330) 0 14 14 (+ 176 330 18) 1)
+      (+ 176 330) 0 14 14 (+ 176 330 18) 1)
     ; score
     (list "graphics/ui/score.png"		0
-    (+ 176 409) 0 14 14 (+ 176 409 18) 1)
+      (+ 176 409) 0 14 14 (+ 176 409 18) 1)
 
     ; Info panel
     (list "graphics/ui/orc/infopanel.png" 0 160 176 176)
@@ -214,29 +214,29 @@
 
     ; gold resource
     (list "graphics/ui/gold,wood,oil,mana.png"	0
-    (+ 176  20) 0 14 14 (+ 176  40) 1)
+      (+ 176  20) 0 14 14 (+ 176  40) 1)
     ; wood resource
     (list "graphics/ui/gold,wood,oil,mana.png"	1
-    (+ 176 100) 0 14 14 (+ 176 120) 1)
+      (+ 176 100) 0 14 14 (+ 176 120) 1)
     ;  oil resource
     (list "graphics/ui/gold,wood,oil,mana.png"	2
-    (+ 176 180) 0 14 14 (+ 176 200) 1)
+      (+ 176 180) 0 14 14 (+ 176 200) 1)
     ;  oge resource
     (list "graphics/ui/ore,stone,coal.png"		0
-    (+ 176 240) 0 14 14 (+ 176 260) 1)
+      (+ 176 240) 0 14 14 (+ 176 260) 1)
     ;  stone resource
     (list "graphics/ui/ore,stone,coal.png"		1
-    (+ 176 320) 0 14 14 (+ 176 340) 1)
+      (+ 176 320) 0 14 14 (+ 176 340) 1)
     ;  coal resource
     (list "graphics/ui/ore,stone,coal.png"		2
-    (+ 176 400) 0 14 14 (+ 176 420) 1)
+      (+ 176 400) 0 14 14 (+ 176 420) 1)
 
     ; food resource
     (list "graphics/ui/food.png"			0
-    (+ 176 480) 0 14 14 (+ 176 500) 1)
+      (+ 176 480) 0 14 14 (+ 176 500) 1)
     ; score
     (list "graphics/ui/score.png"			0
-    (+ 176 540) 0 14 14 (+ 176 560) 1)
+      (+ 176 540) 0 14 14 (+ 176 560) 1)
 
     ; Info panel
     (list "graphics/ui/orc/infopanel.png" 0 160 176 176)
@@ -310,29 +310,29 @@
 
     ; gold resource
     (list "graphics/ui/gold,wood,oil,mana.png"	0
-    (+ 176  20) 0 14 14 (+ 176  40) 1)
+      (+ 176  20) 0 14 14 (+ 176  40) 1)
     ; wood resource
     (list "graphics/ui/gold,wood,oil,mana.png"	1
-    (+ 176 100) 0 14 14 (+ 176 120) 1)
+      (+ 176 100) 0 14 14 (+ 176 120) 1)
     ;  oil resource
     (list "graphics/ui/gold,wood,oil,mana.png"	2
-    (+ 176 180) 0 14 14 (+ 176 200) 1)
+      (+ 176 180) 0 14 14 (+ 176 200) 1)
     ;  oge resource
     (list "graphics/ui/ore,stone,coal.png"		0
-    (+ 176 240) 0 14 14 (+ 176 260) 1)
+      (+ 176 240) 0 14 14 (+ 176 260) 1)
     ;  stone resource
     (list "graphics/ui/ore,stone,coal.png"		1
-    (+ 176 320) 0 14 14 (+ 176 340) 1)
+      (+ 176 320) 0 14 14 (+ 176 340) 1)
     ;  coal resource
     (list "graphics/ui/ore,stone,coal.png"		2
-    (+ 176 400) 0 14 14 (+ 176 420) 1)
+      (+ 176 400) 0 14 14 (+ 176 420) 1)
 
     ; food resource
     (list "graphics/ui/food.png"			0
-    (+ 176 480) 0 14 14 (+ 176 500) 1)
+      (+ 176 480) 0 14 14 (+ 176 500) 1)
     ; score
     (list "graphics/ui/score.png"			0
-    (+ 176 540) 0 14 14 (+ 176 560) 1)
+      (+ 176 540) 0 14 14 (+ 176 560) 1)
 
     ; Info panel
     (list "graphics/ui/orc/infopanel.png" 0 160 176 176)
@@ -406,29 +406,29 @@
 
     ; gold resource
     (list "graphics/ui/gold,wood,oil,mana.png"	0
-    (+ 176  20) 0 14 14 (+ 176  40) 1)
+      (+ 176  20) 0 14 14 (+ 176  40) 1)
     ; wood resource
     (list "graphics/ui/gold,wood,oil,mana.png"	1
-    (+ 176 100) 0 14 14 (+ 176 120) 1)
+      (+ 176 100) 0 14 14 (+ 176 120) 1)
     ;  oil resource
     (list "graphics/ui/gold,wood,oil,mana.png"	2
-    (+ 176 180) 0 14 14 (+ 176 200) 1)
+      (+ 176 180) 0 14 14 (+ 176 200) 1)
     ;  oge resource
     (list "graphics/ui/ore,stone,coal.png"		0
-    (+ 176 240) 0 14 14 (+ 176 260) 1)
+      (+ 176 240) 0 14 14 (+ 176 260) 1)
     ;  stone resource
     (list "graphics/ui/ore,stone,coal.png"		1
-    (+ 176 320) 0 14 14 (+ 176 340) 1)
+      (+ 176 320) 0 14 14 (+ 176 340) 1)
     ;  coal resource
     (list "graphics/ui/ore,stone,coal.png"		2
-    (+ 176 400) 0 14 14 (+ 176 420) 1)
+      (+ 176 400) 0 14 14 (+ 176 420) 1)
 
     ; food resource
     (list "graphics/ui/food.png"			0
-    (+ 176 480) 0 14 14 (+ 176 500) 1)
+      (+ 176 480) 0 14 14 (+ 176 500) 1)
     ; score
     (list "graphics/ui/score.png"			0
-    (+ 176 540) 0 14 14 (+ 176 560) 1)
+      (+ 176 540) 0 14 14 (+ 176 560) 1)
 
     ; Info panel
     (list "graphics/ui/orc/infopanel.png" 0 160 176 176)
@@ -502,29 +502,29 @@
 
     ; gold resource
     (list "graphics/ui/gold,wood,oil,mana.png"	0
-    (+ 176  20) 0 14 14 (+ 176  40) 1)
+      (+ 176  20) 0 14 14 (+ 176  40) 1)
     ; wood resource
     (list "graphics/ui/gold,wood,oil,mana.png"	1
-    (+ 176 100) 0 14 14 (+ 176 120) 1)
+      (+ 176 100) 0 14 14 (+ 176 120) 1)
     ;  oil resource
     (list "graphics/ui/gold,wood,oil,mana.png"	2
-    (+ 176 180) 0 14 14 (+ 176 200) 1)
+      (+ 176 180) 0 14 14 (+ 176 200) 1)
     ;  oge resource
     (list "graphics/ui/ore,stone,coal.png"		0
-    (+ 176 240) 0 14 14 (+ 176 260) 1)
+      (+ 176 240) 0 14 14 (+ 176 260) 1)
     ;  stone resource
     (list "graphics/ui/ore,stone,coal.png"		1
-    (+ 176 320) 0 14 14 (+ 176 340) 1)
+      (+ 176 320) 0 14 14 (+ 176 340) 1)
     ;  coal resource
     (list "graphics/ui/ore,stone,coal.png"		2
-    (+ 176 400) 0 14 14 (+ 176 420) 1)
+      (+ 176 400) 0 14 14 (+ 176 420) 1)
 
     ; food resource
     (list "graphics/ui/food.png"			0
-    (+ 176 480) 0 14 14 (+ 176 500) 1)
+      (+ 176 480) 0 14 14 (+ 176 500) 1)
     ; score
     (list "graphics/ui/score.png"			0
-    (+ 176 540) 0 14 14 (+ 176 560) 1)
+      (+ 176 540) 0 14 14 (+ 176 560) 1)
 
     ; Info panel
     (list "graphics/ui/orc/infopanel.png" 0 160 176 176)
