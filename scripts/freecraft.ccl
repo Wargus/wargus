@@ -65,7 +65,7 @@
 ;;	Uncomment next, to get no full bars or dots.
 (show-no-full) 
 ;;	Uncomment next, to show always bars or dots.
-(show-full) 
+;(show-full) 
 
 ;;	Uncomment next, to show bars and dots always on top.
 (decoration-on-top)
@@ -175,6 +175,7 @@
 (load "ccl/upgrade.ccl" #f #t)
 (load "ccl/fonts.ccl" #f #t)
 (load "ccl/ui.ccl" #f #t)
+(load "ccl/ai.ccl" #f #t)
 
 ;;-----------------------------------------------------------------------------
 
