@@ -65,7 +65,7 @@
 ;;	Music play list -	Insert your titles here
 
 ;
-;;	Create a list from the directory content (unix only!)
+;;	Create a list from the directory content
 ;
 (define (dir->list s . prepend)
   (define (aux d rl p)
@@ -76,10 +76,15 @@
   (aux (opendir s) () (if (string? (car prepend)) (car prepend) "")))
 
 ;; Uncomment to play automatic all music
-;(define play-list (dir->list "data/music" "music/"))
+(if (eq? (os-classification) (intern "win32"))
+  (define play-list
+    (dir->list (string-append (library-path) "/music/*") "music/"))
+  (define play-list
+    (dir->list (string-append (library-path) "/music") "music/"))
+)
 
 ;; Comment this, if you use above
-(define play-list (list "music/default.mod"))
+;(define play-list (list "music/default.mod"))
 
 ;;-----------------------------------------------------------------------------
 
