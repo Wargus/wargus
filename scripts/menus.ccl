@@ -1887,7 +1887,7 @@
              handler scen-select-ok
              nlines 7)
     'menu 'menu-save-game)
-(define-menu-item 'pos (list (+ (/ (- 384 300 18) 2) 300) (+ 11 (* 36 1.5))) 'font 'small
+(define-menu-item 'pos (list (+ (/ (- 384 300 18) 2) 300) (+ 11 36 22)) 'font 'small
     'vslider '(size (18 126)
              func save-vs-action
              handler save-ok)
