@@ -3742,7 +3742,7 @@ int main(int argc,char** argv)
 #endif
     stat(buf, &st);
     sprintf(buf, "%s/ccl/wc2-config.ccl", Dir);
-    f = fopen(buf, "a");
+    f = fopen(buf, "w");
     if ( expansion_cd==-1 || (expansion_cd!=1 && (st.st_size != 2811086)) ) {
 	expansion_cd=0;
 	fprintf(f, "(define expansion #f)\n");
