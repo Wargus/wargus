@@ -40,8 +40,9 @@
 
 (if extensions
 (define-button 'pos 1 'level 0 'icon 'icon-circle-of-power
-  'action 'build 'value 'unit-circle-of-power
-  'key "p" 'hint "~!PLACE EXIT/DESTINATION POINT"
+  'action 'cast-spell 'value 'spell-circle-of-power
+  'allowed 'check-true
+  'key "d" 'hint "SET ~!DESTINATION"
   'for-unit '(unit-dark-portal)) )
 
 (if extensions
