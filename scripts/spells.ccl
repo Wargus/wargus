@@ -100,7 +100,6 @@
 	'action '(summon unit-type unit-revealer time-to-live 10)
 	'sound-when-cast "holy vision"
 	'missile-when-cast "missile-normal-spell"
-;	'autocast '(range -1)
 )
 
 (define-spell "spell-healing"
@@ -115,16 +114,13 @@
 	    max-hp-percent 100)
 	'sound-when-cast "healing"
 	'missile-when-cast "missile-heal-effect"
-;	'autocast '(range 6
-;	    condition (
-;		coward false
-;		alliance only
-;		;; 50% in battle, 100 while waiting? could be an idea
-;		;; This way we could stop healing all the time, just when an
-;		;; unit drops under 50 percent.
-;		max-hp-percent 100
-;	    )
-;	)
+	'autocast '(range 6
+	    condition (
+		coward false
+		alliance only
+		max-hp-percent 50
+	    )
+	)
 )
 
 (define-spell "spell-exorcism"
@@ -140,7 +136,7 @@
 	)
 	'sound-when-cast "exorcism"
 	'missile-when-cast "missile-exorcism"
-;	'autocast '(range 10 condition (coward false alliance false))
+	'autocast '(range 10 condition (coward false alliance false))
 )
 
 (define-spell "spell-eye-of-vision"
@@ -151,7 +147,6 @@
 	'action '(summon unit-type unit-eye-of-vision time-to-live 5000)
 	'sound-when-cast "eye of vision"
 	'missile-when-cast "missile-normal-spell"
-;	'autocast '(range 6)
 )
 
 (define-spell "spell-haste"
@@ -166,7 +161,7 @@
 	)
 	'sound-when-cast "haste"
 	'missile-when-cast "missile-normal-spell"
-;	'autocast '(range 6 condition (coward false alliance only))
+	'autocast '(range 6 combat only condition (coward false alliance only))
 )
 
 (define-spell "spell-slow"
@@ -180,7 +175,7 @@
 	    max-slow-ticks 10)
 	'sound-when-cast "slow"
 	'missile-when-cast "missile-normal-spell"
-;	'autocast '(range 10 condition (coward false alliance only))
+	'autocast '(range 10 combat only condition (coward false alliance false))
 )
 
 (define-spell "spell-bloodlust"
@@ -194,7 +189,7 @@
 	    max-bloodlust-ticks 10)
 	'sound-when-cast "bloodlust"
 	'missile-when-cast "missile-normal-spell"
-;	'autocast '(range 6 condition (coward false alliance only))
+	'autocast '(range 6 combat only condition (coward false alliance only))
 )
 
 (define-spell "spell-invisibility"
