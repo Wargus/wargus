@@ -13,7 +13,7 @@ REM	   FreeCraft - A free fantasy real time strategy game engine
 REM
 REM	build.bat	-	The graphics and sound extractor.
 REM
-REM	(c) Copyright 1999-2002 by Lutz Sammer.
+REM	(c) Copyright 1999-2003 by Lutz Sammer and Jimmy Salmon.
 REM
 REM	FreeCraft is free software; you can redistribute it and/or modify
 REM	it under the terms of the GNU General Public License as published
@@ -26,57 +26,57 @@ REM	GNU General Public License for more details.
 REM	
 REM	$Id$
 REM
-REM	Johns didn't know how to write dos batch scripts.
-REM	This should become more user friendly!
-REM	See build.sh what must done.
-REM
+
 :START
+
 REM
-REM     Choose your CDROM drive / Installed data path.
+REM     Enter the letter of your CDROM drive.
 REM
+
 SET CDROM=D:
-REM SET CDROM=E:
-REM SET CDROM=C:\Programme\WAR2E
 
-REM     Altenatively: Choose where you have the orignal file.
+
 REM
-REM	Here are the input files for sounds, graphics and texts.
-REM	WARNING: If not from CD, choose below expansion/no-expansion
-REM	First choice:   installed on orginal position
-REM	Second choise:  installed/copied in current directory
-REM	Third choise:   uninstalled on original cdrom
+REM     Alternatively: Enter the path to WC2 on your hard drive.
+REM	If you have the expansion installed use the -e option.
+REM
 
-REM SET ARCHIVE=C:\war2\data
 REM SET ARCHIVE="C:\Program Files\War2\data"
-REM SET ARCHIVE=.
+REM SET EXPANSION=-e
 SET ARCHIVE=%CDROM%\data
 
-REM
-REM	Here are my executables. (wartool...)
-REM
-SET BINDIR=tools
 
 REM
-REM	Here is the extra files contributed with FreeCraft.
-REM
-SET CONTRIB=contrib
+REM	This is the name of the directory where the files will be extracted.
+REM	If you installed with fcmp then you should use data.wc2 instead.
 
-REM
-REM	Here is the destination for the generated library files.
-REM
 SET DIR=data
+REM SET DIR=data.wc2
 
-REM
-REM     Below this point, you should only search bugs. :-)
-REM
+
+
+
+
+
+
+REM ###########################################################################
+REM ##      DO NOT EDIT BELOW THIS LINE
+REM ###########################################################################
+
+
+
+SET BINDIR=tools
+SET CONTRIB=contrib
 
 REM ###########################################################################
 REM ##      Extract
 REM ###########################################################################
 
+ECHO Extracting files...
+
 REM ADD -e      To force the archive are expansion compatible
 REM ADD -n      To force the archive is not expansion compatible   
-%BINDIR%\wartool %ARCHIVE% %DIR%
+%BINDIR%\wartool %EXPANSION% %ARCHIVE% %DIR%
 
 REM copy own supplied files
 
