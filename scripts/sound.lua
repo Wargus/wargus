@@ -10,7 +10,7 @@
 --
 --      sound.lua - Define the used sounds.
 --
---      (c) Copyright 1999-2004 by Fabrice Rossi, Lutz Sammer, and Jimmy Salmon
+--      (c) Copyright 1999-2005 by Fabrice Rossi, Lutz Sammer, and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -599,7 +599,7 @@ MakeSound("sword attack",
 	{"missiles/sword_attack/1.wav",
 	"missiles/sword_attack/2.wav",
 	"missiles/sword_attack/3.wav"})
-MakeSound("tree chopping",
+MakeSound("tree-chopping",
 	{"misc/tree_chopping/1.wav",
 	"misc/tree_chopping/2.wav",
 	"misc/tree_chopping/3.wav",
