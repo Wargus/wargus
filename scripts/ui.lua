@@ -176,6 +176,95 @@ DefineButtonStyle("folder", {
   },
 })
 
+DefineCheckboxStyle("round", {
+  Size = {19, 19},
+  Font = "game",
+  TextNormalColor = "yellow",
+  TextReverseColor = "white",
+  TextAlign = "Left",
+  TextPos = {24, 4},
+  Default = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 19,
+  },
+  Hover = {
+    TextNormalColor = "white",
+  },
+  Selected = {
+    Border = {
+      Color = {252, 252, 0}, Size = 1,
+    },
+  },
+  Disabled = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 18,
+  },
+  Clicked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 20,
+    TextNormalColor = "white",
+  },
+  Checked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 21,
+  },
+  CheckedHover = {
+    TextNormalColor = "white",
+  },
+  CheckedSelected = {
+    Border = {
+      Color = {252, 252, 0}, Size = 1,
+    },
+  },
+  CheckedClicked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 22,
+    TextNormalColor = "white",
+  },
+  CheckedDisabled = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 18,
+  },
+})
+
+DefineCheckboxStyle("square", {
+  Size = {19, 19},
+  Font = "game",
+  TextNormalColor = "yellow",
+  TextReverseColor = "white",
+  TextAlign = "Left",
+  TextPos = {24, 4},
+  Default = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 24,
+  },
+  Hover = {
+    TextNormalColor = "white",
+  },
+  Selected = {
+    Border = {
+      Color = {252, 252, 0}, Size = 1,
+    },
+  },
+  Clicked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 25,
+    TextNormalColor = "white",
+  },
+  Disabled = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 23,
+  },
+  Checked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 26,
+  },
+  CheckedHover = {
+    TextNormalColor = "white",
+  },
+  CheckedSelected = {
+    Border = {
+      Color = {252, 252, 0}, Size = 1,
+    },
+  },
+  CheckedClicked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 27,
+    TextNormalColor = "white",
+  },
+  CheckedDisabled = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 23,
+  },
+})
 
 Load("scripts/human/ui.lua")
 Load("scripts/orc/ui.lua")
