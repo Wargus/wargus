@@ -2649,8 +2649,7 @@ int ConvertImage(char* file,int pale,int imge, int nw, int nh, int mac)
     image=ConvertImg(imgp,&w,&h);
 
     if (!image) {
-	fprintf(stderr, "Please report this bug, could not extract image: 
-	    %s pale=%d imge=%d nw=%d nh=%d mac=%d\n", file, pale, imge, nw, nh, mac);
+	fprintf(stderr, "Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n", file, pale, imge, nw, nh, mac);
 	exit(-1);
     }
     free(imgp);
