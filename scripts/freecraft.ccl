@@ -37,6 +37,15 @@
 
 ;;	Enter your default title screen.
 (set-title-screen! "graphics/ui/freecraft.png")
+;;	Enter your title music.
+(set-title-music! "music/default.mod")
+;;	Enter your default menu background.
+(set-menu-background! "graphics/ui/Menu background without title.png")
+;;	Enter your default menu background with title.
+(set-menu-background-with-title!
+  "graphics/ui/Menu background without title.png")
+;;	Enter your menu music.
+(set-menu-music! "music/default.mod")
 
 ;;	If color-cycle-all is off (#f) only the tileset and global palettes are
 ;;	color cycled.  Otherwise all palettes are color cycled.
