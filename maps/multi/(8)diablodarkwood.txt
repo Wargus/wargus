@@ -1,5 +1,5 @@
 
-	(8)dialodarkwood.pud
+	(8)diablodarkwood.pud
 
 	A 128x128 8 player map, in the style of Blizzard's Garden of War,
 	set in the deep forest of Darkwood.
