@@ -30,12 +30,11 @@
 
 Credits(
 	"background", "graphics/ui/Credits_background.png",
-	"title", "Programmers (v2.0)",
+	"title", "Programmers",
 	"name", "  Jimmy Salmon",
 	"name", "  Russell Smith",
 	"name", "  Nehal Mistry",
-	"name", "  Crestez Leonard",
-	"title", "Patches (v2.0)",
+	"title", "Patches",
 	"name", "  Martin Renold",
 	"name", "  Carlos Perello Marin",
 	"name", "  Pludov",
@@ -43,6 +42,7 @@ Credits(
 	"name", "  Andreas 'Ari' Arens",
 	"name", "  Lutz 'Johns' Sammer",
 	"name", "  Edgar 'Froese' Toernig",
+	"name", "  Crestez Leonard",
 	"name", "  Mark Pazolli",
 	"name", "  Valery Shchedrin",
 	"name", "  Iftikhar Rathore",
