@@ -28,8 +28,6 @@
 ;;
 ;;	$Id$
 
-(define color-dark-green	149)	; FIXME: move to central position
-
 (ccl:load "ccl/human/ui.ccl")
 (ccl:load "ccl/orc/ui.ccl")
 
