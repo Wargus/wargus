@@ -31,14 +31,6 @@
 -- For documentation see stratagus/doc/scripts/scripts.html
 print("Stratagus default config file loading ...\n")
 
---	Helper function to Assign a table.
-function AssignTable(tab1, tab2)
-	function assign(key, value)
-		tab1[key] = value
-	end
-	table.foreach(tab2, assign)
-end
-
 -- Config file version
 --(define media-version (list 'wc2 'class 'wc2 'version '(1 18 0)))
 
