@@ -593,7 +593,7 @@
   'button '(size (224 27)
     caption "~!Previous Menu"
     hotkey "p"
-    func end-menu
+    func menu-internet-end-menu
     style gm-full)
   'menu 'menu-internet-create-join-menu)
 
