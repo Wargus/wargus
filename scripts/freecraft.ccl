@@ -45,8 +45,8 @@
     (title-screen "freecraft.png")
 )
 
-;; If color-cycle-all is off only the tileset and global palettes are
-;; color cycled.  Otherwise all palettes are
+;;	If color-cycle-all is off only the tileset and global palettes are
+;;	color cycled.  Otherwise all palettes are
 ;(no-color-cycle-all)
 (color-cycle-all)
 
@@ -100,6 +100,7 @@
 ;(show-energy-selected-only)
 
 ;;	Uncomment next, to show bars and dots always on top.
+;;	FIXME: planned feature
 (decoration-on-top)
 
 ;;	Uncomment next, to show the sight range of the selected unit on map.
@@ -121,10 +122,14 @@
 ;;	Uncomment next, to enable fancy building (random mirrowing buildings)
 (fancy-buildings)
 
+;;	Uncomment next, to get extended features.
+;;		Currently enables some additional buttons.
+(define extensions #t)
+
 ;;-----------------------------------------------------------------------------
 
 ;;	If you prefer fighters are attacking by right clicking empty space
-;;	uncomment this.
+;;	uncomment this (you must comment the next).
 (right-button-attacks)
 
 ;;	If you prefer fighters are moving by right clicking empty space
@@ -205,7 +210,7 @@
 ;;	You can do all the above with this
 (speeds 1)
 
-;; a* configuration
+;;	A* configuration, FIXME: currently not correct supported.
 (no-a-star)
 ;(a-star)
 ;(a-star-fixed-unit-cost 1000)
@@ -221,14 +226,12 @@
 
 (load "ccl/tilesets.ccl" #f #t)
 (load "ccl/icons.ccl" #f #t)
-; FIXME: Need to check if sound support is present
 (load "ccl/sound.ccl" #f #t)
 (load "ccl/missiles.ccl" #f #t)
 (load "ccl/units.ccl" #f #t)
 (load "ccl/upgrade.ccl" #f #t)
 (load "ccl/fonts.ccl" #f #t)
-(load "ccl/human/buttons.ccl" #f #t)
-(load "ccl/orc/buttons.ccl" #f #t)
+(load "ccl/buttons.ccl" #f #t)
 (load "ccl/ui.ccl" #f #t)
 (load "ccl/ai.ccl" #f #t)
 

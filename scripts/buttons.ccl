@@ -1,0 +1,30 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	buttons.ccl	-	Define the general unit-buttons.
+;;
+;;	(c) Copyright 2001 by Vladi Belperchinov-Shabanski and Lutz Sammer
+;;
+;;	$Id$
+;;
+
+;; Load the buttons of all races
+
+(load "ccl/human/buttons.ccl" #f #t)
+(load "ccl/orc/buttons.ccl" #f #t)
+
+;;----------------------------------------------------------------------------
+;;	Define unit-button.
+;;
+;;	(define-button 'pos n 'level n 'icon ident 'action name ['value value]
+;;		['allowed check ['values]] 'key key 'hint hint 'for-unit units)
+;;
+;; neutral --------------------------------------------------------------------
+;; general cancel button ------------------------------------------------------
