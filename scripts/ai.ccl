@@ -35,6 +35,8 @@
 ;;	(define-ai-helper (list))
 ;;
 
+(verbose 5) 
+
 ;(define (ai:sleep) () #t)
 
 (define race1 'human)
@@ -426,7 +428,7 @@
 (define-ai 'rush race2 "gruntrush"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:need (unit-type 'unit-great-hall))
     (ai:set  'unit-peon 1)
     (ai:wait 'unit-great-hall)
@@ -623,7 +625,7 @@
 (define-ai 'goldfever race2 "goldfever"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:need (unit-type 'unit-great-hall))
     (ai:set  'unit-peon 1)
     (ai:wait 'unit-great-hall)
@@ -1066,7 +1068,7 @@
 (define-ai "wc2-air-attack" "*" "air-attack"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set-reserve! #( 0  0 0 0  0 0 0))
     (ai:need (ai:city-center))
     (ai:set  (ai:worker) 1)
@@ -1220,7 +1222,7 @@
 (define-ai "wc2-sea-attack" "*" "sea-attack"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:need (ai:city-center))
     (ai:set  (ai:worker) 1)
     (ai:wait (ai:city-center))
@@ -1358,7 +1360,7 @@
 (define-ai 'my-ai race1 "land-attack"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:need (unit-type 'unit-town-hall))
     (ai:set  'unit-peasant 1)
     (ai:wait 'unit-town-hall)
@@ -1571,7 +1573,7 @@
 (define-ai 'my-ai race2 "land-attack"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:need (unit-type 'unit-great-hall))
     (ai:set  'unit-peon 1)
     (ai:wait 'unit-great-hall)
@@ -1769,7 +1771,7 @@
 (define-ai 'orc-03 "*" "orc-03"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 2)
     (ai:set  (ai:tanker) 1)
     (ai:wait (ai:worker))	;; start hangs if nothing available
@@ -1797,7 +1799,7 @@
 (define-ai 'hum-04 "*" "hum-04"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 4)
     (ai:set  (ai:tanker) 1)
     (ai:wait (ai:worker))	;; start hangs if nothing available
@@ -1865,7 +1867,7 @@
 (define-ai 'orc-04 "*" "orc-04"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 4)
     (ai:set  (ai:tanker) 1)
     (ai:wait (ai:worker))	;; start hangs if nothing available
@@ -1948,7 +1950,7 @@
 (define-ai 'hum-05 "*" "hum-05"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 4)
     (ai:set  (ai:tanker) 1)
     (ai:set  (ai:transporter) 1)
@@ -2039,7 +2041,7 @@
 (define-ai 'hum-06 "*" "hum-06"
   '(
     ;;	Define the main AI script.
-    (ai:debug #f)
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 4)
     (ai:wait (ai:worker))	;; start hangs if nothing available
 
@@ -2090,7 +2092,9 @@
 ;;	This AI script builds only worker and tanker.
 ;;
 (define-ai 'hum-07 "*" "hum-07"
-  '((ai:debug #f)
+  '(
+    ;;	Define the main AI script.
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 2)
     (ai:set  (ai:tanker) 1)
     (ai:sleep	10000)
@@ -2127,7 +2131,7 @@
 (define-ai 'hum-08 "*" "hum-08"
   '(
     ;;	Define the main AI script.
-    (ai:debug #t)
+    (begin (ai:debug #t) (ai:sleep (ai:get-sleep-cycles)))
 
     (ai:set  (ai:worker) 3)
     (ai:wait (ai:worker))	;; start hangs if nothing available
@@ -2178,7 +2182,9 @@
 ;;	This AI script builds only worker and tanker.
 ;;
 (define-ai 'hum-09 "*" "hum-09"
-  '((ai:debug #f)
+  '(
+    ;;	Define the main AI script.
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 2)
     (ai:set  (ai:tanker) 1)
     (ai:sleep	10000)
@@ -2220,7 +2226,11 @@
     (ai:script ai:hum-10-attack-endloop) ) )
 
 (define-ai 'hum-10 "*" "hum-10"
-  '((begin (ai:debug #t) (ai:force-role 0 'defend) (ai:force-role 1 'defend))
+  '(
+    ;;	Define the main AI script.
+    (begin (ai:debug #t) (ai:sleep (ai:get-sleep-cycles))
+      (ai:force-role 0 'defend) (ai:force-role 1 'defend))
+
     (ai:set  (ai:worker) 7)
     (ai:set  (ai:tanker) 3)
     (ai:wait (ai:worker))	;; Wait for the workers
@@ -2304,7 +2314,10 @@
     (ai:script ai:hum-11-attack-endloop) ) )
 
 (define-ai 'hum-11 "*" "hum-11"
-  '((begin (ai:debug #t) (ai:force-role 0 'defend) (ai:force-role 1 'attack))
+  '(
+    ;;	Define the main AI script.
+    (begin (ai:debug #t) (ai:sleep (ai:get-sleep-cycles))
+      (ai:force-role 0 'defend) (ai:force-role 1 'attack))
     (ai:set  (ai:worker) 8)
     (ai:wait (ai:worker))	;; Wait for the workers
     (ai:sleep	6000)
