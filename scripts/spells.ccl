@@ -30,7 +30,7 @@
 
 ;; For documentation see stratagus/doc/ccl/ccl.html ;; FIXME write and move doc.
 
-(define-bool-flags 'isundead 'organic 'hero)
+(define-bool-flags 'isundead 'organic 'hero 'volatile)
 
 ;;  Declare some unit types used in spells. This is quite accetable, the other
 ;;  way would be to define can-cast-spell outside unit definitions, not much of an improvement.
