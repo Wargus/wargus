@@ -36,6 +36,9 @@
 ;;	(define-ai-helper (list))
 ;;
 
+(define race1 'human)
+(define race2 'orc)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race human.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -411,266 +414,266 @@
 ;;	City-center of the current race.
 ;;
 (define (ai:city-center)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-town-hall 'unit-great-hall) )
 
 ;;
 ;;	Better city-center of the current race.
 ;;
 (define (ai:better-city-center)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-keep 'unit-stronghold) )
 
 ;;
 ;;	Best city-center of the current race.
 ;;
 (define (ai:best-city-center)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-castle 'unit-fortress) )
 
 ;;
 ;;	Worker of the current race.
 ;;
 (define (ai:worker)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-peasant 'unit-peon) )
 
 ;;
 ;;	Lumber mill of the current race.
 ;;
 (define (ai:lumber-mill)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-elven-lumber-mill 'unit-troll-lumber-mill) )
 
 ;;
 ;;	Blacksmith of the current race.
 ;;
 (define (ai:blacksmith)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-blacksmith 'unit-orc-blacksmith) )
 
 ;;
 ;;	Upgrade armor 1 of the current race.
 ;;
 (define (ai:upgrade-armor-1)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'upgrade-human-shield1 'upgrade-orc-shield1) )
 
 ;;
 ;;	Upgrade armor 2 of the current race.
 ;;
 (define (ai:upgrade-armor-2)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'upgrade-human-shield2 'upgrade-orc-shield2) )
 
 ;;
 ;;	Upgrade weapon 1 of the current race.
 ;;
 (define (ai:upgrade-weapon-1)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'upgrade-sword1 'upgrade-battle-axe1) )
 
 ;;
 ;;	Upgrade weapon 2 of the current race.
 ;;
 (define (ai:upgrade-weapon-2)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'upgrade-sword2 'upgrade-battle-axe2) )
 
 ;;
 ;;	Upgrade catapult 1 of the current race.
 ;;
 (define (ai:upgrade-catapult-1)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'upgrade-ballista1 'upgrade-catapult1) )
 
 ;;
 ;;	Upgrade catapult 2 of the current race.
 ;;
 (define (ai:upgrade-catapult-2)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'upgrade-ballista2 'upgrade-catapult2) )
 
 ;;
 ;;	Research of the current race.
 ;;
 (define (ai:scientific)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-gnomish-inventor 'unit-goblin-alchemist) )
 
 ;;
 ;;	Cavalry of the current race.
 ;;
 (define (ai:cavalry)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-stables 'unit-ogre-mound) )
 
 ;;
 ;;	Airport of the current race.
 ;;
 (define (ai:airport)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-gryphon-aviary 'unit-dragon-roost) )
 
 ;;
 ;;	Barracks of the current race.
 ;;
 (define (ai:barracks)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-barracks 'unit-orc-barracks) )
 
 ;;
 ;;	Soldier of the current race.
 ;;
 (define (ai:soldier)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-footman 'unit-grunt) )
 
 ;;
 ;;	Shooter of the current race.
 ;;
 (define (ai:shooter)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-archer 'unit-axethrower) )
 
 ;;
 ;;	Cavalrie of the current race.
 ;;
 (define (ai:cavalrie)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-knight 'unit-ogre) )
 
 ;;
 ;;	Catapult of the current race.
 ;;
 (define (ai:catapult)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-ballista 'unit-catapult) )
 
 ;;
 ;;	Scout of the current race.
 ;;
 (define (ai:scout)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-gnomish-flying-machine 'unit-goblin-zeppelin) )
 
 ;;
 ;;	Flyer of the current race.
 ;;
 (define (ai:flyer)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-gryphon-rider 'unit-dragon) )
 
 ;;
 ;;	Tower of the current race.
 ;;
 (define (ai:tower)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-watch-tower 'unit-orc-watch-tower) )
 
 ;;
 ;;	Guard-Tower of the current race.
 ;;
 (define (ai:guard-tower)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-guard-tower 'unit-orc-guard-tower) )
 
 ;;
 ;;	Cannon-Tower of the current race.
 ;;
 (define (ai:cannon-tower)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-cannon-tower 'unit-orc-cannon-tower) )
 
 ;;
 ;;	Harbor of the current race.
 ;;
 (define (ai:harbor)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-shipyard 'unit-orc-shipyard) )
 
 ;;
 ;;	Refinery of the current race.
 ;;
 (define (ai:refinery)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-refinery 'unit-orc-refinery) )
 
 ;;
 ;;	Foundry of the current race.
 ;;
 (define (ai:foundry)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-foundry 'unit-orc-foundry) )
 
 ;;
 ;;	Ship armor 1 of the current race.
 ;;
 (define (ai:upgrade-ship-armor-1)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'upgrade-human-ship-armor1 'upgrade-orc-ship-armor1) )
 
 ;;
 ;;	Ship armor 2 of the current race.
 ;;
 (define (ai:upgrade-ship-armor-2)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'upgrade-human-ship-armor2 'upgrade-orc-ship-armor2) )
 
 ;;
 ;;	Ship weapon 1 of the current race.
 ;;
 (define (ai:upgrade-ship-cannon-1)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'upgrade-human-ship-cannon1 'upgrade-orc-ship-cannon1) )
 
 ;;
 ;;	Ship weapon 2 of the current race.
 ;;
 (define (ai:upgrade-ship-cannon-2)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'upgrade-human-ship-cannon2 'upgrade-orc-ship-cannon2) )
 
 ;;
 ;;	Platform of the current race.
 ;;
 (define (ai:platform)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-oil-platform 'unit-orc-oil-platform) )
 
 ;;
 ;;	Tanker of the current race.
 ;;
 (define (ai:tanker)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-oil-tanker 'unit-orc-oil-tanker) )
 
 ;;
 ;;	Submarine of the current race.
 ;;
 (define (ai:submarine)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-gnomish-submarine 'unit-giant-turtle) )
 
 ;;
 ;;	Destroyer of the current race.
 ;;
 (define (ai:destroyer)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-elven-destroyer 'unit-troll-destroyer) )
 
 ;;
 ;;	Battleship of the current race.
 ;;
 (define (ai:battleship)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-battleship 'unit-ogre-juggernaught) )
 
 ;;
 ;;	Transporter of the current race.
 ;;
 (define (ai:transporter)
-  (if (eq? (ai:get-race) 'human)
+  (if (eq? (ai:get-race) race1)
       'unit-human-transport 'unit-orc-transport) )
 
 ;;=============================================================================
@@ -992,7 +995,7 @@
     (ai:sleep 500)
     (ai:script ai:human-land-attack-endloop) ) )
 
-(define-ai 'my-ai "human" "land-attack"
+(define-ai 'my-ai race1 "land-attack"
   '(
     ;;	Define the main AI script.
     (ai:debug #f)
@@ -1205,7 +1208,7 @@
     (ai:sleep 500)
     (ai:script ai:orc-land-attack-endloop) ) )
 
-(define-ai 'my-ai "orc" "land-attack"
+(define-ai 'my-ai race2 "land-attack"
   '(
     ;;	Define the main AI script.
     (ai:debug #f)
