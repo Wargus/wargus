@@ -2616,6 +2616,9 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 	unsigned char* dp;
 	unsigned char* image;
 	unsigned* offsets;
+	int image_width;
+	int image_height;
+	int IPR;
 
 	bp = start + 5;  // skip "FONT "
 	count = FetchByte(bp);
@@ -2623,21 +2626,25 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 	max_width = FetchByte(bp);
 	max_height = FetchByte(bp);
 
+	IPR = 15;  // 15 characters per row
+	image_width = max_width * IPR;
+	image_height = (count + IPR - 1) / IPR * max_height;
+
 //	printf("Font: count %d max-width %2d max-height %2d\n",
 //		count, max_width, max_height);
 
-	offsets = (unsigned*)malloc(count*sizeof(u_int32_t));
+	offsets = (unsigned*)malloc(count * sizeof(u_int32_t));
 	for (i = 0; i < count; ++i) {
 		offsets[i] = FetchLE32(bp);
 //		printf("%03d: offset %d\n", i, offsets[i]);
 	}
 
-	image = (unsigned char*)malloc(max_width * max_height * count);
+	image = (unsigned char*)malloc(image_width * image_height);
 	if (!image) {
 		printf("Can't allocate image\n");
 		exit(-1);
 	}
-	memset(image, 255, max_width * max_height * count);
+	memset(image, 255, image_width * image_height);
 
 	for (i = 0; i < count; ++i) {
 		if (!offsets[i]) {
@@ -2653,7 +2660,8 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 //		printf("%03d: width %d height %d xoff %d yoff %d\n",
 //			i, width, height, xoff, yoff);
 
-		dp = image + xoff + yoff * max_width + i * (max_width * max_height);
+		dp = image + (i % IPR) * max_width + (i / IPR) * image_width * max_height;
+		dp += xoff + yoff * image_width;
 		h = w = 0;
 		for (;;) {
 			int ctrl;
@@ -2669,7 +2677,7 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 					break;
 				}
 			}
-			dp[h * max_width + w] = ctrl & 0x07;
+			dp[h * image_width + w] = ctrl & 0x07;
 			++w;
 			if (w >= width) {
 //				printf("\n");
@@ -2684,8 +2692,8 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 
 	free(offsets);
 
-	*wp = max_width;
-	*hp = max_height * count;
+	*wp = image_width;
+	*hp = image_height;
 
 	return image;
 }
