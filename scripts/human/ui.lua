@@ -5,12 +5,12 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/ 
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	ui.ccl		-	Define the human user interface
+--      ui.lua - Define the human user interface
 --
---	(c) Copyright 2001-2003 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2001-2004 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
+--      $Id$
 
 DefineCursor({
   Name = "cursor-point",
@@ -66,16 +66,11 @@ function HumanScreen(screen_width, screen_height)
     "reverse-font-color", "yellow",
 
     "filler", {
-      "file", "graphics/ui/human/" ..
-        screen_width .. "x" .. screen_height ..
-        "/filler-right.png",
+      "file", "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/filler-right.png",
       "pos", { screen_width - 16, 0}},
-
-    "resource-line", {
-      "graphics/ui/human/" ..
-        screen_width .. "x" .. screen_height ..
-        "/resource.png",
-      176, 0},
+    "filler", {
+      "file", "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/resource.png",
+      "pos", {176, 0}},
 
     "resources", {
       "gold", { "file", "graphics/ui/gold,wood,oil,mana.png", "frame", 0,
