@@ -200,7 +200,7 @@
   "animations-daemon"
   "icon-daemon"
   ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      99      0      5     60     0 #(   0     0     0     0     0     0     0)
+      14      0      5     60     0 #(  70   500     0     50    0     0     0)
   ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
   '( 1 1 ) '(  31  31 )      0       3      7       5
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
@@ -218,6 +218,7 @@
   'can-see-submarine
   'can-attack
   'organic
+  'selectable-by-rectangle
   ;; sounds
   #("daemon-selected"
     "daemon-acknowledge"
