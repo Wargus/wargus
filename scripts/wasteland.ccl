@@ -8,7 +8,7 @@
 ;;			  T H E   W A R   B E G I N S
 ;;	   FreeCraft - A free fantasy real time strategy game engine
 ;;
-;;	tileset_wasteland.ccl	-	Define the wasteland tileset.
+;;	wasteland.ccl		-	Define the wasteland tileset.
 ;;
 ;;	(c) Copyright 2000,2001 by Lutz Sammer
 ;;
@@ -21,8 +21,10 @@
 ;;	(define-tileset slot-ident class-name image palette slots animations)
 ;;
 (define-tileset 'tileset-wasteland 'class "wasteland"
-  'image "graphic/tileset/wasteland.png"
-  'palette "wasteland.rgb"
+  'image (if new-names? "graphics/tilesets/wasteland/terrain/wasteland.png"
+    "graphic/tileset/wasteland.png")
+  'palette (if new-names? "graphics/tilesets/wasteland/wasteland.rgb"
+    "wasteland.rgb")
   ;; Slots descriptions
   'slots '(( 'special
     'extra-trees #( 115 116 117 118 119 120 )
@@ -228,8 +230,10 @@
 ;;
 
 (tileset 'tileset-wasteland	"wasteland"
-  "graphic/tileset/wasteland.png"
-  "wasteland.rgb"
+  (if new-names? "graphics/tilesets/wasteland/terrain/wasteland.png"
+    "graphic/tileset/wasteland.png")
+  (if new-names? "graphics/tilesets/wasteland/wasteland.rgb"
+    "wasteland.rgb")
   #(  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0	; 000
     324 325 325 326   0 324 325 325   0   0   0   0   0   0   0   0	; 010
     327 328 328 329   0 327 328 328   0   0   0   0   0   0   0   0	; 020
