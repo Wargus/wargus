@@ -479,7 +479,7 @@
     'pulldown '(size (190 20)
               style pulldown
               func game-gat-action
-              options ("Use map settings" "Melee" "Free for all" "Top vs bottom" "Left vs right" )
+              options ("Use map settings" "Melee" "Free for all" "Top vs bottom" "Left vs right" "Man vs Machine" )
               default 0
               current 0)
     'menu 'menu-custom-game)
@@ -756,7 +756,7 @@
     'pulldown '(size (190 20)
               style pulldown
               func game-gat-action
-              options ("Use map settings" "Melee" "Free for all" "Top vs bottom" "Left vs right" )
+              options ("Use map settings" "Melee" "Free for all" "Top vs bottom" "Left vs right" "Man vs Machine" )
               default 0
               current 0)
     'menu 'menu-multi-setup)
@@ -1177,7 +1177,7 @@
     'pulldown '(size (190 20)
               style pulldown
               func game-gat-action
-              options ("Use map settings" "Melee" "Free for all" "Top vs bottom" "Left vs right" )
+              options ("Use map settings" "Melee" "Free for all" "Top vs bottom" "Left vs right" "Man vs Machine" )
               state passive
               default 0
               current 0)
