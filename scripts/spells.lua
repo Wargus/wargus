@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -99,7 +99,7 @@ DefineSpell("spell-healing",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"organic", "only",
-		"building", "false",
+		"Building", "false",
 		"max-hp-percent", 100
 	},
 	"sound-when-cast", "healing",
@@ -117,11 +117,11 @@ DefineSpell("spell-exorcism",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"isundead", "only",
-		"building", "false", -- any undead buildings?
+		"Building", "false", -- any undead buildings?
 	},
 	"sound-when-cast", "exorcism",
 	"depend-upgrade", "upgrade-exorcism",
-	"autocast", {"range", 10, "condition", {"coward", "false", "alliance", "false"}}
+	"autocast", {"range", 10, "condition", {"Coward", "false", "alliance", "false"}}
 )
 
 DefineSpell("spell-eye-of-vision",
@@ -145,13 +145,13 @@ DefineSpell("spell-haste",
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
 	"condition", {
-		"building", "false",
+		"Building", "false",
 		"max-haste-ticks", 10 -- FIXME: proper value?
 	},
 	"sound-when-cast", "haste",
 	"depend-upgrade", "upgrade-haste",
-	"autocast", {"range", 6, "condition", {"coward", "false", "alliance", "only"}},
-	"ai-cast", {"range", 6, "combat", "only", "condition", {"coward", "false", "alliance", "only"}}
+	"autocast", {"range", 6, "condition", {"Coward", "false", "alliance", "only"}},
+	"ai-cast", {"range", 6, "combat", "only", "condition", {"Coward", "false", "alliance", "only"}}
 )
 
 DefineSpell("spell-slow",
@@ -163,12 +163,12 @@ DefineSpell("spell-slow",
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
 	"condition", {
-		"building", "false",
+		"Building", "false",
 		"max-slow-ticks", 10},
 	"sound-when-cast", "slow",
 	"depend-upgrade", "upgrade-slow",
-	"autocast", {"range", 10, "condition", {"coward", "false", "alliance", "false"}},
-	"ai-cast", {"range", 10, "combat", "only", "condition", {"coward", "false", "alliance", "false"}}
+	"autocast", {"range", 10, "condition", {"Coward", "false", "alliance", "false"}},
+	"ai-cast", {"range", 10, "combat", "only", "condition", {"Coward", "false", "alliance", "false"}}
 )
 
 DefineSpell("spell-bloodlust",
@@ -184,8 +184,8 @@ DefineSpell("spell-bloodlust",
 		"max-bloodlust-ticks", 10},
 	"sound-when-cast", "bloodlust",
 	"depend-upgrade", "upgrade-bloodlust",
-	"autocast", {"range", 6, "condition", {"coward", "false", "alliance", "only"}},
-	"ai-cast", {"range", 6, "combat", "only", "condition", {"coward", "false", "alliance", "only"}}
+	"autocast", {"range", 6, "condition", {"Coward", "false", "alliance", "only"}},
+	"ai-cast", {"range", 6, "combat", "only", "condition", {"Coward", "false", "alliance", "only"}}
 )
 
 DefineSpell("spell-invisibility",
@@ -197,11 +197,11 @@ DefineSpell("spell-invisibility",
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
 	"condition", {
-		"building", "false",
+		"Building", "false",
 		"max-invisibility-ticks", 10},
 	"sound-when-cast", "invisibility",
 	"depend-upgrade", "upgrade-invisibility"
---	"autocast", {"range", 6, "condition", {"coward", "false"}},
+--	"autocast", {"range", 6, "condition", {"Coward", "false"}},
 )
 
 DefineSpell("spell-unholy-armor",
@@ -213,11 +213,11 @@ DefineSpell("spell-unholy-armor",
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
 	"condition", {
-		"building", "false",
+		"Building", "false",
 		"max-invincibility-ticks", 10},
 	"sound-when-cast", "unholy armor",
 	"depend-upgrade", "upgrade-unholy-armor"
---	"autocast", {range 6 condition (coward false alliance only)},
+--	"autocast", {range 6 condition (Coward false alliance only)},
 )
 
 DefineSpell("spell-flame-shield",
@@ -234,10 +234,10 @@ DefineSpell("spell-flame-shield",
 	},
 	-- I think it's better if we can cast it multiple times and the effects stack.
 	-- Can be casted, and is effective on both allies and enemies
-	"condition", {"building", "false"},
+	"condition", {"Building", "false"},
 	"sound-when-cast", "flame shield",
 	"depend-upgrade", "upgrade-flame-shield"
---	"autocast", {range 6 condition (coward false)},
+--	"autocast", {range 6 condition (Coward false)},
 )
 
 DefineSpell("spell-polymorph",
