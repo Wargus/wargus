@@ -407,6 +407,7 @@
   "missile-none"
   '("unit-destroyed-2x2-place" 0)
   'type-land
+  'can-cast-spell
   'right-none
   ;; flags
   'building
