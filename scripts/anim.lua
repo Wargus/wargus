@@ -30,6 +30,8 @@
 --      $Id$
 
 
+BuildingStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
+
 Load("scripts/human/anim.lua")
 Load("scripts/orc/anim.lua")
 
@@ -52,8 +54,7 @@ DefineNewAnimations("animations-daemon", {
     "frame 65", "wait 5", "frame 65", "unbreakable end", "wait 1",},
 })
 
---------
---	Critter
+
 DefineNewAnimations("animations-critter", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 2", "frame 0", "move 2", "wait 3",
@@ -69,8 +70,6 @@ DefineNewAnimations("animations-critter", {
   Death = {"unbreakable begin", "frame 5", "wait 200", "frame 5", "unbreakable end", "wait 1",},
 })
 
-
-BuildingStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
 
 DefineNewAnimations("animations-building", {
   Still = BuildingStill,
