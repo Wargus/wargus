@@ -340,7 +340,7 @@
     "goblin-sappers-acknowledge"
     "goblin-sappers-ready"
     "basic orc voices help 1"
-    "basic orc voices dead" )
+    "explosion" )
   "goblin-sappers-attack" )
 
 (define-unit-type "unit-attack-peon"		"Peon"
