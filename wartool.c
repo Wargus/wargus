@@ -3591,6 +3591,7 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
 	    }
 	    sprintf(buf, "%s/%s/%s.cm", Dir, TEXT_PATH,
 		Todo[2 * levelno + 1 + race + 7].File);
+	    CheckPath(buf);
 	    if (!(outlevel = fopen(buf, "wb"))) {
 		printf("Cannot Write File (Skipping Level: %s\n", buf);
 		continue;
