@@ -99,8 +99,11 @@
 
     'menu-panel (list "graphics/ui/human/menubutton.png" 0 0)
 
-    'minimap-panel (list "graphics/ui/human/minimap.png" 0 24)
-    'minimap-pos (list (+ 0 24) (+ 24 2))
+    'minimap (list
+      'file "graphics/ui/human/minimap.png"
+      'panel-pos '(0 24)
+      'pos (list (+ 0 24) (+ 24 2))
+      'size '(128 128))
 
     'status-line (list
       'file (string-append "graphics/ui/human/"
