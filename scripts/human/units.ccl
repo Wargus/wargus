@@ -110,6 +110,7 @@
     acknowledge "peasant-acknowledge"
     ready "peasant-ready"
 ;    repair "peasant-attack"
+    harvest wood "tree chopping"
     help "basic human voices help 1"
     dead "basic human voices dead"
     attack "peasant-attack"))
