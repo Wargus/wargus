@@ -499,7 +499,6 @@
 ;---------------------------------------------------
 (define-button 'pos 6 'level 0 'icon 'icon-human-ship-haul-oil
   'action 'harvest
-  'allowed 'check-no-work
   'key "h" 'hint "SET ~!HAUL OIL"
   'for-unit '(unit-human-shipyard))
 ;---------------------------------------------------
@@ -576,19 +575,16 @@
 (if extensions (begin
 (define-button 'pos 7 'level 0 'icon 'icon-human-ship-move
   'action 'move
-  'allowed 'check-no-work
   'key "m" 'hint "SET ~!MOVE"
   'for-unit '(unit-human-shipyard))
 
 (define-button 'pos 8 'level 0 'icon 'icon-human-ship-armor1
   'action 'stop
-  'allowed 'check-no-work
   'key "z" 'hint "SET ~!ZTOP"
   'for-unit '(unit-human-shipyard))
 
 (define-button 'pos 9 'level 0 'icon 'icon-human-ship-cannon1
   'action 'attack
-  'allowed 'check-no-work
   'key "e" 'hint "S~!ET ATTACK"
   'for-unit '(unit-human-shipyard)) ))
 
