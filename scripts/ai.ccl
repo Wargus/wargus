@@ -482,9 +482,8 @@
     (ai:upgrade-to (ai:guard-tower))
     (ai:need (ai:tower))
     (ai:upgrade-to (ai:guard-tower))
-
     (ai:upgrade-to (ai:best-city-center))
-    (ai:wait (ai:best-city-center))
+    (ai:wait (ai:best-city-center))	;; need this for airport!
 
     (ai:need (ai:airport))
     (ai:force 2 (ai:flyer) 1)
