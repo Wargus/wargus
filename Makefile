@@ -2,7 +2,7 @@
 CC = gcc
 
 CROSSDIR = /usr/local/cross
-STRATAGUSPATH = ../
+STRATAGUSPATH = ../stratagus/
 
 CFLAGS = -I/usr/local/include
 LDFLAGS = -lz -lpng -lm -static -L/usr/local/lib
@@ -31,7 +31,7 @@ strip:
 #	strip wartool.exe
 
 date = $(shell date +%y%m%d)
-ver = 2.1pre1
+ver = 2.1pre2
 
 release: release-src release-linux
 
@@ -52,5 +52,4 @@ release-linux: clean wartool strip cleanobj
 	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
 	rm -rf `find wargus-$(ver) | grep -i cvs`; \
 	tar -zcf wargus-$(ver)-linux.tar.gz wargus-$(ver); \
-	cat .list; \
 	rm -rf wargus-$(ver) .list stratagus;
