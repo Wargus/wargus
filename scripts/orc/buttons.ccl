@@ -435,7 +435,7 @@
 (define-button 'pos 9 'level 0 'icon 'icon-battle-axe1
   'action 'attack
   'allowed 'check-no-work
-  'key "a" 'hint "SET ~!ATTACK"
+  'key "t" 'hint "SET A~!TTACK"
   'for-unit '(unit-great-hall unit-stronghold unit-fortress 
     unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost 
     unit-goblin-alchemist)) ))

@@ -396,7 +396,7 @@
 (define-button 'pos 9 'level 0 'icon 'icon-sword1
   'action 'attack
   'allowed 'check-no-work
-  'key "a" 'hint "SET ~!ATTACK"
+  'key "t" 'hint "SET A~!TTACK"
   'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks 
     unit-mage-tower unit-gryphon-aviary unit-gnomish-inventor)) ))
 
@@ -447,7 +447,7 @@
 
 (define-button 'pos 1 'level 0 'icon 'icon-gryphon-rider
   'action 'train-unit 'value 'unit-gryphon-rider
-  'key "t" 'hint "~!TRAIN GRYPHON RIDER"
+  'key "g" 'hint "TRAIN ~!GRYPHON RIDER"
   'for-unit '(unit-gryphon-aviary))
 
 (define-button 'pos 1 'level 0 'icon 'icon-human-oil-tanker
