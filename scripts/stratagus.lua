@@ -80,7 +80,7 @@ SetColorCycleAll(true)
 --  and setting. Might also be used for multiplayer.
 SetGameName("wc2")
 --  set the default map file.
-SetDefaultMap("puds/default.pud")
+SetDefaultMap("maps/default.pud")
 
 
 SetSelectionStyle("corners")
