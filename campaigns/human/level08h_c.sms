@@ -5,7 +5,7 @@
 Briefing("type", "wc2",
 ^^TITLE^^
 ^^OBJECTIVES^^
-  "background", "campaigns/human/interface/introscreen3.png",
+  "background", "../campaigns/human/interface/introscreen3.png",
   "text", "campaigns/human/level08h.txt",
   "voice", "campaigns/human/level08h-intro1.wav",
   "voice", "campaigns/human/level08h-intro2.wav"
