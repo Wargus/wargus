@@ -297,7 +297,7 @@ DefineSpell("spell-fireball",
 
 DefineSpell("spell-runes",
 	"showname", "runes",
-	"manacost", 10,
+	"manacost", 200,
 	"range", 10,
 	"target", "position",
 	"action", {
