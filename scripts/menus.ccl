@@ -984,7 +984,18 @@
     func null
     style gem-round)
   'menu 'menu-multi-setup)
-
+(define-menu-item 'pos (list 17 (+ 360 (* 36 1)))
+  'gem '(size (18 18)
+    text "Show game on master server"
+    state unchecked
+    func menu-multi-master-gem
+    style gem-square)
+  'menu 'menu-multi-setup)
+(define-menu-item 'pos (list 40 (+ 362 (* 36 2))) 'font 'game
+  'input '(size (212 20)
+    func enter-master-action
+    style pulldown)
+  'menu 'menu-multi-setup)
 
 ;;
 ;; menu-enter-server
