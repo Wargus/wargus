@@ -54,7 +54,7 @@
 	'manacost 70
 	'range 'infinite
 	'target 'position
-	'action '( (summon unit-type unit-revealer time-to-live 10) )
+	'action '( (summon unit-type unit-revealer time-to-live 25) )
 	'sound-when-cast "holy vision"
 	'missile-when-cast "missile-normal-spell"
 )
@@ -292,7 +292,7 @@
 	'manacost 50
 	'range	6
 	'target 'position
-	'action '((summon unit-type unit-skeleton time-to-live 100 require-corpse))
+	'action '((summon unit-type unit-skeleton time-to-live 3600 require-corpse))
 	'sound-when-cast "raise dead"
 	'missile-when-cast "missile-normal-spell"
 ;;	'autocast '(range 6)
