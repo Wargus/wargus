@@ -10,7 +10,7 @@
 ;;
 ;;	freecraft.ccl	-	The craft configuration language.
 ;;
-;;	(c) Copyright 1998-2002 by Lutz Sammer
+;;	(c) Copyright 1998-2003 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -26,7 +26,7 @@
 (writes nil "FreeCraft default config file loading ...\n")
 
 ; Config file version
-(define media-version (list 'wc2 'class 'wc2 'version '(1 17 99)))
+(define media-version (list 'wc2 'class 'wc2 'version '(1 18 0)))
 
 ;; FIXME: Needed until new ui code is working
 (define define-old-ui define-ui)
