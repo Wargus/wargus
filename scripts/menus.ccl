@@ -2595,7 +2595,7 @@
 ;;
 (define-menu 'name 'menu-editor-player-properties 'geometry '(0 0 640 480)
     'image 'none 'default '0)
-(define-menu-item 'pos (list 0 0) 'font 'game  'init 'program-start
+(define-menu-item 'pos (list 0 0) 'font 'game
     'drawfunc 'editor-player-properties-draw-func
     'menu 'menu-editor-player-properties)
 (define-menu-item 'pos (list (/ 640 2) 11) 'font 'large
