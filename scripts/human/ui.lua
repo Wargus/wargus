@@ -99,21 +99,23 @@ function HumanScreen(screen_width, screen_height)
         "pos", { info_panel_x, info_panel_y},
         "size", {176, 176}
       },
+      "panels", {"panel-general-contents", "panel-attack-unit-contents",
+                "panel-all-unit-contents", "panel-building-contents"},
       "selected", {
         "single", {
           "icon", {
-            "pos", {  9, 169}, "style", "icon"}},
+            "pos", {info_panel_x + 9, info_panel_y + 9}, "style", "icon"}},
         "multiple", {
           "icons", {
-            { "pos", {  9, 169}, "style", "icon"},
-            { "pos", { 65, 169}, "style", "icon"},
-            { "pos", {121, 169}, "style", "icon"},
-            { "pos", {  9, 223}, "style", "icon"},
-            { "pos", { 65, 223}, "style", "icon"},
-            { "pos", {121, 223}, "style", "icon"},
-            { "pos", {  9, 277}, "style", "icon"},
-            { "pos", { 65, 277}, "style", "icon"},
-            { "pos", {121, 277}, "style", "icon"}},
+            { "pos", {info_panel_x +   9, info_panel_y + 9}, "style", "icon"},
+            { "pos", {info_panel_x +  65, info_panel_y + 9}, "style", "icon"},
+            { "pos", {info_panel_x + 121, info_panel_y + 9}, "style", "icon"},
+            { "pos", {info_panel_x +   9, info_panel_y + 63}, "style", "icon"},
+            { "pos", {info_panel_x +  65, info_panel_y + 63}, "style", "icon"},
+            { "pos", {info_panel_x + 121, info_panel_y + 63}, "style", "icon"},
+            { "pos", {info_panel_x +   9, info_panel_y + 117}, "style", "icon"},
+            { "pos", {info_panel_x +  65, info_panel_y + 117}, "style", "icon"},
+            { "pos", {info_panel_x + 121, info_panel_y + 117}, "style", "icon"}},
           "max-text", {
             "font", "game",
             "pos", { info_panel_x + 10, info_panel_y + 10}}}
@@ -137,19 +139,11 @@ function HumanScreen(screen_width, screen_height)
             { "pos", {121, 266}, "style", "icon"}}}
       },
       "upgrading", {
-        "text", {
-          "text", "Upgrading:",
-          "font", "game",
-          "pos", { info_panel_x + 29, info_panel_y + 8 + 78}},
         "icon", {
           "pos", { info_panel_x + 110, info_panel_y + 11 + 70},
           "style", "icon"},
       },
       "researching", {
-        "text", {
-          "text", "Researching:",
-          "font", "game",
-          "pos", { info_panel_x + 16, info_panel_y + 8 + 78}},
         "icon", {
           "pos", { info_panel_x + 110, info_panel_y + 11 + 70},
           "style", "icon"}
@@ -164,13 +158,7 @@ function HumanScreen(screen_width, screen_height)
           { "pos", {121, 277}, "style", "icon"}}
       },
       "completed-bar", {
-        "color", {48, 100, 4},
-        "pos", { 12, 313},
-        "size", {152, 14},
-        "text", {
-          "text", "% Complete",
-          "font", "game",
-          "pos", { 50, 313}}
+        "color", {48, 100, 4}
       }
     },
 
