@@ -126,6 +126,17 @@ else
 	DATADIR="$ARCHIVE/"
 fi
 
+if [ ! -f "$DATADIR/rezdat.war" ]; then
+    echo "error: $DATADIR/rezdat.war does not exist"
+    exit -1
+fi
+
+if [ ! -d "$CONTRIB" ]; then
+    echo "error: $CONTRIB does not exist; try running $0" 
+    echo "	from the toplevel freecraft directory."
+    exit -1
+fi
+
 # Create the directory structure
 
 [ -d $DIR ] || mkdir $DIR
