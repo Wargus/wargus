@@ -200,10 +200,6 @@
 ;;-----------------------------------------------------------------------------
 ;;	Game modification
 
-;;	Edit this to enable/disable hit point regeneration for all units
-;(set-hitpoint-regeneration! #t)
-(set-hitpoint-regeneration! #f)
-
 ;;	Edit this to enable/disable XP to add more damage to attacks
 ;(set-xp-damage! #t)
 (set-xp-damage! #f)
