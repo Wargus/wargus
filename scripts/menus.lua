@@ -539,14 +539,14 @@ DefineMenu("name", "menu-create-join-menu", "geometry", {0, 0, 640, 480},
   "panel", "none", "background", MenuBackground, "default", 2)
 DefineMenuItem("pos", { 208, 320 + (36 * 0)}, "font", "large",
   "button", {"size", {224, 27},
-    "caption", "~!Join LAN Game",
+    "caption", "~!Join Game",
     "hotkey", "j",
     "func", "net-join-game",
     "style", "gm-full"},
   "menu", "menu-create-join-menu")
 DefineMenuItem("pos", { 208, 320 + (36 * 1)}, "font", "large",
   "button", {"size", {224, 27},
-    "caption", "~!Create LAN Game",
+    "caption", "~!Create Game",
     "hotkey", "c",
     "func", "net-create-game",
     "style", "gm-full"},
@@ -559,6 +559,7 @@ DefineMenuItem("pos", { 208, 320 + (36 * 2)}, "font", "large",
     "style", "gm-full"},
   "menu", "menu-create-join-menu")
 
+--[[ disable until internet play is working
 --
 -- menu-internet-create-join-menu
 --
@@ -585,7 +586,10 @@ DefineMenuItem("pos", { 208, 320 + (36 * 2)}, "font", "large",
     "func", "menu-internet-end-menu",
     "style", "gm-full"},
   "menu", "menu-internet-create-join-menu")
+]]
 
+
+--[[ disable until internet play is working
 --
 -- menu-multi-net-type-menu
 --
@@ -612,6 +616,7 @@ DefineMenuItem("pos", { 208, 320 + (36 * 2)}, "font", "large",
     "func", "end-menu",
     "style", "gm-full"},
   "menu", "menu-multi-net-type-menu")
+]]
 
 
 --
