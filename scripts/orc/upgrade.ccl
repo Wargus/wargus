@@ -44,17 +44,17 @@
   'costs #(   200   300   300     0     0     0     0))
 (define-upgrade 'upgrade-throwing-axe2 'icon 'icon-throwing-axe3
   'costs #(   250   900   500     0     0     0     0))
-(define-upgrade 'upgrade-orc-shield1 'icon 'icon-orc-shield2
+(define-upgrade 'upgrade-orc-shield1 'icon 'icon-mythical-shield2
   'costs #(   200   300   300     0     0     0     0))
-(define-upgrade 'upgrade-orc-shield2 'icon 'icon-orc-shield3
+(define-upgrade 'upgrade-orc-shield2 'icon 'icon-mythical-shield3
   'costs #(   250   900   500     0     0     0     0))
-(define-upgrade 'upgrade-orc-ship-cannon1 'icon 'icon-orc-ship-cannon2
+(define-upgrade 'upgrade-orc-ship-cannon1 'icon 'icon-mythical-ship-cannon2
   'costs #(   200   700   100  1000     0     0     0))
-(define-upgrade 'upgrade-orc-ship-cannon2 'icon 'icon-orc-ship-cannon3
+(define-upgrade 'upgrade-orc-ship-cannon2 'icon 'icon-mythical-ship-cannon3
   'costs #(   250  2000   250  3000     0     0     0))
-(define-upgrade 'upgrade-orc-ship-armor1 'icon 'icon-orc-ship-armor2
+(define-upgrade 'upgrade-orc-ship-armor1 'icon 'icon-mythical-ship-armor2
   'costs #(   200   500   500     0     0     0     0))
-(define-upgrade 'upgrade-orc-ship-armor2 'icon 'icon-orc-ship-armor3
+(define-upgrade 'upgrade-orc-ship-armor2 'icon 'icon-mythical-ship-armor3
   'costs #(   250  1500   900     0     0     0     0))
 (define-upgrade 'upgrade-ballista1 'icon 'icon-ballista1
   'costs #(   250  1500     0     0     0     0     0))
@@ -106,60 +106,60 @@
 (define-modifier 'upgrade-battle-axe1
   '(piercing-damage 2)
   '(apply-to unit-grunt) '(apply-to unit-ogre) '(apply-to unit-ogre-mage)
-  '(apply-to unit-goblin-sappers) '(apply-to unit-korgath-bladefist)
-  '(apply-to unit-grom-hellscream) '(apply-to unit-dentarg)
-  '(apply-to unit-cho-gall))
+  '(apply-to unit-goblin-sappers) '(apply-to unit-quick-blade)
+  '(apply-to unit-beast-cry) '(apply-to unit-fad-man)
+  '(apply-to unit-double-head))
 
 (define-modifier 'upgrade-battle-axe2
   '(piercing-damage 2)
   '(apply-to unit-grunt) '(apply-to unit-ogre) '(apply-to unit-ogre-mage)
-  '(apply-to unit-goblin-sappers) '(apply-to unit-korgath-bladefist)
-  '(apply-to unit-grom-hellscream) '(apply-to unit-dentarg)
-  '(apply-to unit-cho-gall))
+  '(apply-to unit-goblin-sappers) '(apply-to unit-quick-blade)
+  '(apply-to unit-beast-cry) '(apply-to unit-fad-man)
+  '(apply-to unit-double-head))
 
 (define-modifier 'upgrade-throwing-axe1
   '(piercing-damage 1)
   '(apply-to unit-axethrower) '(apply-to unit-berserker)
-  '(apply-to unit-zuljin))
+  '(apply-to unit-sharp-axe))
 
 (define-modifier 'upgrade-throwing-axe2
   '(piercing-damage 1)
   '(apply-to unit-axethrower) '(apply-to unit-berserker)
-  '(apply-to unit-zuljin))
+  '(apply-to unit-sharp-axe))
 
 (define-modifier 'upgrade-orc-shield1
   '(armor 2)
   '(apply-to unit-grunt) '(apply-to unit-ogre) '(apply-to unit-ogre-mage)
-  '(apply-to unit-goblin-sappers) '(apply-to unit-korgath-bladefist)
-  '(apply-to unit-grom-hellscream) '(apply-to unit-dentarg)
-  '(apply-to unit-cho-gall))
+  '(apply-to unit-goblin-sappers) '(apply-to unit-quick-blade)
+  '(apply-to unit-beast-cry) '(apply-to unit-fad-man)
+  '(apply-to unit-double-head))
 
 (define-modifier 'upgrade-orc-shield2
   '(armor 2)
   '(apply-to unit-grunt) '(apply-to unit-ogre) '(apply-to unit-ogre-mage)
-  '(apply-to unit-goblin-sappers) '(apply-to unit-korgath-bladefist)
-  '(apply-to unit-grom-hellscream) '(apply-to unit-dentarg)
-  '(apply-to unit-cho-gall))
+  '(apply-to unit-goblin-sappers) '(apply-to unit-quick-blade)
+  '(apply-to unit-beast-cry) '(apply-to unit-fad-man)
+  '(apply-to unit-double-head))
 
 (define-modifier 'upgrade-orc-ship-cannon1
   '(piercing-damage 5)
-  '(apply-to unit-troll-destroyer) '(apply-to unit-ogre-juggernaught)
-  '(apply-to unit-giant-turtle))
+  '(apply-to unit-mythical-destroyer) '(apply-to unit-ogre-juggernaught)
+  '(apply-to unit-mythical-submarine))
 
 (define-modifier 'upgrade-orc-ship-cannon2
   '(piercing-damage 5)
-  '(apply-to unit-troll-destroyer) '(apply-to unit-ogre-juggernaught)
-  '(apply-to unit-giant-turtle))
+  '(apply-to unit-mythical-destroyer) '(apply-to unit-ogre-juggernaught)
+  '(apply-to unit-mythical-submarine))
 
 (define-modifier 'upgrade-orc-ship-armor1
   '(armor 5)
-  '(apply-to unit-troll-destroyer) '(apply-to unit-ogre-juggernaught)
-  '(apply-to unit-orc-transport))
+  '(apply-to unit-mythical-destroyer) '(apply-to unit-ogre-juggernaught)
+  '(apply-to unit-mythical-transport))
 
 (define-modifier 'upgrade-orc-ship-armor2
   '(armor 5)
-  '(apply-to unit-troll-destroyer) '(apply-to unit-ogre-juggernaught)
-  '(apply-to unit-orc-transport))
+  '(apply-to unit-mythical-destroyer) '(apply-to unit-ogre-juggernaught)
+  '(apply-to unit-mythical-transport))
 
 (define-modifier 'upgrade-ballista1
   '(piercing-damage 15)
@@ -197,28 +197,28 @@
   '(apply-to unit-ogre-mage))
 
 (define-modifier 'upgrade-raise-dead
-  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
-  '(apply-to unit-teron-gorefiend))
+  '(apply-to unit-death-knight) '(apply-to unit-ice-bringer)
+  '(apply-to unit-evil-knight))
 
 (define-modifier 'upgrade-death-coil
-  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
-  '(apply-to unit-teron-gorefiend))
+  '(apply-to unit-death-knight) '(apply-to unit-ice-bringer)
+  '(apply-to unit-evil-knight))
 
 (define-modifier 'upgrade-whirlwind
-  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
-  '(apply-to unit-teron-gorefiend))
+  '(apply-to unit-death-knight) '(apply-to unit-ice-bringer)
+  '(apply-to unit-evil-knight))
 
 (define-modifier 'upgrade-haste
-  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
-  '(apply-to unit-teron-gorefiend))
+  '(apply-to unit-death-knight) '(apply-to unit-ice-bringer)
+  '(apply-to unit-evil-knight))
 
 (define-modifier 'upgrade-unholy-armor
-  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
-  '(apply-to unit-teron-gorefiend))
+  '(apply-to unit-death-knight) '(apply-to unit-ice-bringer)
+  '(apply-to unit-evil-knight))
 
 (define-modifier 'upgrade-death-and-decay
-  '(apply-to unit-death-knight) '(apply-to unit-gul-dan)
-  '(apply-to unit-teron-gorefiend))
+  '(apply-to unit-death-knight) '(apply-to unit-ice-bringer)
+  '(apply-to unit-evil-knight))
 
 ;;=============================================================================
 ;;
@@ -243,42 +243,42 @@
 (define-allow 'unit-goblin-sappers		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-attack-peon			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-berserker			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-teron-gorefiend		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-dentarg			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-grom-hellscream		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-evil-knight		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-fad-man			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-beast-cry		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-orc-oil-tanker		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-transport		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-troll-destroyer		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-transport		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-destroyer		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-ogre-juggernaught		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-deathwing			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-giant-turtle		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-goblin-zeppelin		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-fire-breeze			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-submarine		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-zeppelin		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-dragon			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-eye-of-vision		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-korgath-bladefist		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-cho-gall			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-gul-dan			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-zuljin			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-quick-blade		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-double-head			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-ice-bringer			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-sharp-axe			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-pig-farm			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-barracks		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-barracks		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-altar-of-storms		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-watch-tower		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-watch-tower		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-ogre-mound			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-goblin-alchemist		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alchemist		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-dragon-roost		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-shipyard		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-shipyard		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-great-hall			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-troll-lumber-mill		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-foundry			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-foundry			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-temple-of-the-damned	"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-blacksmith		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-blacksmith		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-orc-refinery		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-oil-platform		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-oil-platform		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-stronghold			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-fortress			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-start-location		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-guard-tower		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-orc-cannon-tower		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-start-location		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-guard-tower		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-mythical-cannon-tower		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-orc-wall			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-peon-with-gold		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-peon-with-wood		"AAAAAAAAAAAAAAAA")
@@ -333,47 +333,47 @@
 (define-dependency 'unit-axethrower
   '(unit-troll-lumber-mill))
 (define-dependency 'unit-catapult
-  '(unit-orc-blacksmith unit-troll-lumber-mill))
+  '(unit-mythical-blacksmith unit-troll-lumber-mill))
 (define-dependency 'unit-berserker
   '(upgrade-berserker unit-troll-lumber-mill))
 (define-dependency 'unit-ogre
-  '(unit-ogre-mound unit-orc-blacksmith))
+  '(unit-ogre-mound unit-mythical-blacksmith))
 (define-dependency 'unit-ogre-mage
-  '(upgrade-ogre-mage unit-ogre-mound unit-orc-blacksmith))
+  '(upgrade-ogre-mage unit-ogre-mound unit-mythical-blacksmith))
 
 ;;	- orc naval forces
-(define-dependency 'unit-giant-turtle
-  '(unit-goblin-alchemist))
-(define-dependency 'unit-orc-transport
-  '(unit-orc-foundry))
+(define-dependency 'unit-mythical-submarine
+  '(unit-alchemist))
+(define-dependency 'unit-mythical-transport
+  '(unit-mythical-foundry))
 (define-dependency 'unit-ogre-juggernaught
-  '(unit-orc-foundry))
+  '(unit-mythical-foundry))
 
 ;;	- orc air forces
-(define-dependency 'unit-goblin-zeppelin
+(define-dependency 'unit-zeppelin
   '(unit-troll-lumber-mill))
 
 ;;	- orc buildings
-(define-dependency 'unit-orc-guard-tower
+(define-dependency 'unit-mythical-guard-tower
   '(unit-troll-lumber-mill))
-(define-dependency 'unit-orc-cannon-tower
-  '(unit-orc-blacksmith))
-(define-dependency 'unit-orc-shipyard
+(define-dependency 'unit-mythical-cannon-tower
+  '(unit-mythical-blacksmith))
+(define-dependency 'unit-mythical-shipyard
   '(unit-troll-lumber-mill))
-(define-dependency 'unit-orc-foundry
-  '(unit-orc-shipyard))
+(define-dependency 'unit-mythical-foundry
+  '(unit-mythical-shipyard))
 (define-dependency 'unit-orc-refinery
-  '(unit-orc-shipyard))
+  '(unit-mythical-shipyard))
 (define-dependency 'unit-stronghold
-  '(unit-orc-barracks))
-(define-dependency 'unit-goblin-alchemist
+  '(unit-mythical-barracks))
+(define-dependency 'unit-alchemist
   '(unit-stronghold)
   'or '(unit-fortress))
 (define-dependency 'unit-ogre-mound
   '(unit-stronghold)
   'or '(unit-fortress))
 (define-dependency 'unit-fortress
-  '(unit-ogre-mound unit-orc-blacksmith unit-troll-lumber-mill))
+  '(unit-ogre-mound unit-mythical-blacksmith unit-troll-lumber-mill))
 (define-dependency 'unit-altar-of-storms
   '(unit-fortress))
 (define-dependency 'unit-temple-of-the-damned

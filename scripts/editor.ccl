@@ -25,7 +25,7 @@
 
 
 ;;	Set which icons to display
-(set-editor-select-icon! 'icon-human-patrol-land)
+(set-editor-select-icon! 'icon-alliance-patrol-land)
 (set-editor-units-icon! 'icon-footman)
 
 
@@ -34,7 +34,7 @@
 ;;	FIXME: this is only a temporary hack, for better sorted units.
 ;;
 (define-editor-unittypes
-   'unit-human-start-location
+   'unit-alliance-start-location
 
    'unit-peasant
    'unit-footman
@@ -47,42 +47,42 @@
    'unit-ballista
 
    'unit-human-oil-tanker
-   'unit-human-transport
-   'unit-elven-destroyer
+   'unit-alliance-transport
+   'unit-alliance-destroyer
    'unit-battleship
-   'unit-gnomish-submarine
+   'unit-alliance-submarine
 
-   'unit-gnomish-flying-machine
+   'unit-balloon
    'unit-gryphon-rider
 
    'unit-town-hall
    'unit-keep
    'unit-castle
    'unit-farm
-   'unit-human-barracks
+   'unit-alliance-barracks
    'unit-elven-lumber-mill
-   'unit-human-blacksmith
-   'unit-human-watch-tower
-   'unit-human-guard-tower
-   'unit-human-cannon-tower
-   'unit-gnomish-inventor
+   'unit-alliance-blacksmith
+   'unit-alliance-watch-tower
+   'unit-alliance-guard-tower
+   'unit-alliance-cannon-tower
+   'unit-inventor
    'unit-stables
    'unit-church
    'unit-mage-tower
    'unit-gryphon-aviary
 
-   'unit-human-shipyard
-   'unit-human-foundry
+   'unit-alliance-shipyard
+   'unit-alliance-foundry
    'unit-human-refinery
-   'unit-human-oil-platform
+   'unit-alliance-oil-platform
 
-   'unit-alleria
-   'unit-kurdan-and-sky-ree
-   'unit-khadgar
-   'unit-turalyon
-   'unit-danath
-   'unit-lothar
-   'unit-uther-lightbringer
+   'unit-female-hero
+   'unit-flying-angle
+   'unit-white-mage
+   'unit-knight-rider
+   'unit-arthor-literios
+   'unit-wise-man
+   'unit-man-of-light
 
    'unit-attack-peasant
    'unit-peasant-with-gold
@@ -91,7 +91,7 @@
 
 ;- - - - - - - - - - - - - - - - - - -
 
-   'unit-orc-start-location
+   'unit-mythical-start-location
 
    'unit-peon
    'unit-grunt
@@ -104,44 +104,44 @@
    'unit-catapult
 
    'unit-orc-oil-tanker
-   'unit-orc-transport
-   'unit-troll-destroyer
+   'unit-mythical-transport
+   'unit-mythical-destroyer
    'unit-ogre-juggernaught
-   'unit-giant-turtle
+   'unit-mythical-submarine
 
    'unit-eye-of-vision
-   'unit-goblin-zeppelin
+   'unit-zeppelin
    'unit-dragon
 
    'unit-great-hall
    'unit-stronghold
    'unit-fortress
    'unit-pig-farm
-   'unit-orc-barracks
+   'unit-mythical-barracks
    'unit-troll-lumber-mill
-   'unit-orc-blacksmith
-   'unit-orc-watch-tower
-   'unit-orc-guard-tower
-   'unit-orc-cannon-tower
-   'unit-goblin-alchemist
+   'unit-mythical-blacksmith
+   'unit-mythical-watch-tower
+   'unit-mythical-guard-tower
+   'unit-mythical-cannon-tower
+   'unit-alchemist
    'unit-ogre-mound
    'unit-altar-of-storms
    'unit-temple-of-the-damned
    'unit-dragon-roost
 
-   'unit-orc-shipyard
-   'unit-orc-foundry
+   'unit-mythical-shipyard
+   'unit-mythical-foundry
    'unit-orc-refinery
-   'unit-orc-oil-platform
+   'unit-mythical-oil-platform
 
-   'unit-teron-gorefiend
-   'unit-dentarg
-   'unit-grom-hellscream
-   'unit-deathwing
-   'unit-korgath-bladefist
-   'unit-gul-dan
-   'unit-cho-gall
-   'unit-zuljin
+   'unit-evil-knight
+   'unit-fad-man
+   'unit-beast-cry
+   'unit-fire-breeze
+   'unit-quick-blade
+   'unit-ice-bringer
+   'unit-double-head
+   'unit-sharp-axe
 
    'unit-attack-peon
    'unit-peon-with-gold

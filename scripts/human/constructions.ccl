@@ -29,13 +29,13 @@
 ;;	(define-construction ident 'files '(tileset-name filename ..)
 ;;	    'size '(x y))
 
-(define-construction 'construction-human-shipyard
+(define-construction 'construction-alliance-shipyard
   'files '(summer "human/buildings/shipyard construction site.png"
     winter "tilesets/winter/human/buildings/shipyard construction site.png"
     swamp "tilesets/swamp/human/buildings/shipyard construction site.png")
   'size '(96 96))
 
-(define-construction 'construction-human-oil-well
+(define-construction 'construction-alliance-oil-well
   'files '(
     summer "tilesets/summer/human/buildings/oil well construction site.png"
     winter "tilesets/winter/human/buildings/oil well construction site.png"
@@ -44,13 +44,13 @@
     swamp "tilesets/swamp/human/buildings/oil platform construction site.png")
   'size '(96 96))
 
-(define-construction 'construction-human-refinery
+(define-construction 'construction-alliance-refinery
   'files '(summer "human/buildings/refinery construction site.png"
     winter "tilesets/winter/human/buildings/refinery construction site.png"
     swamp "tilesets/swamp/human/buildings/refinery construction site.png")
   'size '(96 96))
 
-(define-construction 'construction-human-foundry
+(define-construction 'construction-alliance-foundry
   'files '(summer "human/buildings/foundry construction site.png"
     winter "tilesets/winter/human/buildings/foundry construction site.png"
     swamp "tilesets/swamp/human/buildings/foundry construction site.png")

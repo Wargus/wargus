@@ -46,10 +46,10 @@
 (define-construction-wc-names
   'construction-none 'construction-none 'construction-none 'construction-none
   'construction-none 'construction-none 'construction-land
-  'construction-human-shipyard 'construction-orc-shipyard
-  'construction-human-oil-well 'construction-orc-oil-well
-  'construction-human-refinery 'construction-orc-refinery
-  'construction-human-foundry 'construction-orc-foundry 'construction-wall)
+  'construction-alliance-shipyard 'construction-mythical-shipyard
+  'construction-alliance-oil-well 'construction-mythical-oil-well
+  'construction-alliance-refinery 'construction-mythical-refinery
+  'construction-alliance-foundry 'construction-mythical-foundry 'construction-wall)
 
 ;;=============================================================================
 ;;	Define unit-type mapping from original number to internal symbol
@@ -61,32 +61,32 @@
     'unit-catapult 'unit-knight 'unit-ogre 'unit-archer 'unit-axethrower
     'unit-mage 'unit-death-knight 'unit-paladin 'unit-ogre-mage
     'unit-dwarves 'unit-goblin-sappers 'unit-attack-peasant
-    'unit-attack-peon 'unit-ranger 'unit-berserker 'unit-alleria
-    'unit-teron-gorefiend 'unit-kurdan-and-sky-ree 'unit-dentarg
-    'unit-khadgar 'unit-grom-hellscream 'unit-human-oil-tanker
-    'unit-orc-oil-tanker 'unit-human-transport 'unit-orc-transport
-    'unit-elven-destroyer 'unit-troll-destroyer 'unit-battleship
-    'unit-ogre-juggernaught 'unit-nothing-22 'unit-deathwing
-    'unit-nothing-24 'unit-nothing-25 'unit-gnomish-submarine
-    'unit-giant-turtle 'unit-gnomish-flying-machine 'unit-goblin-zeppelin
-    'unit-gryphon-rider 'unit-dragon 'unit-turalyon 'unit-eye-of-vision
-    'unit-danath 'unit-korgath-bladefist 'unit-nothing-30 'unit-cho-gall
-    'unit-lothar 'unit-gul-dan 'unit-uther-lightbringer 'unit-zuljin
+    'unit-attack-peon 'unit-ranger 'unit-berserker 'unit-female-hero
+    'unit-evil-knight 'unit-flying-angle 'unit-fad-man
+    'unit-white-mage 'unit-beast-cry 'unit-human-oil-tanker
+    'unit-orc-oil-tanker 'unit-alliance-transport 'unit-mythical-transport
+    'unit-alliance-destroyer 'unit-mythical-destroyer 'unit-battleship
+    'unit-ogre-juggernaught 'unit-nothing-22 'unit-fire-breeze
+    'unit-nothing-24 'unit-nothing-25 'unit-alliance-submarine
+    'unit-mythical-submarine 'unit-balloon 'unit-zeppelin
+    'unit-gryphon-rider 'unit-dragon 'unit-knight-rider 'unit-eye-of-vision
+    'unit-arthor-literios 'unit-quick-blade 'unit-nothing-30 'unit-double-head
+    'unit-wise-man 'unit-ice-bringer 'unit-man-of-light 'unit-sharp-axe
     'unit-nothing-36 'unit-skeleton 'unit-daemon 'unit-critter
-    'unit-farm 'unit-pig-farm 'unit-human-barracks 'unit-orc-barracks
-    'unit-church 'unit-altar-of-storms 'unit-human-watch-tower
-    'unit-orc-watch-tower 'unit-stables 'unit-ogre-mound
-    'unit-gnomish-inventor 'unit-goblin-alchemist 'unit-gryphon-aviary
-    'unit-dragon-roost 'unit-human-shipyard 'unit-orc-shipyard
+    'unit-farm 'unit-pig-farm 'unit-alliance-barracks 'unit-mythical-barracks
+    'unit-church 'unit-altar-of-storms 'unit-alliance-watch-tower
+    'unit-mythical-watch-tower 'unit-stables 'unit-ogre-mound
+    'unit-inventor 'unit-alchemist 'unit-gryphon-aviary
+    'unit-dragon-roost 'unit-alliance-shipyard 'unit-mythical-shipyard
     'unit-town-hall 'unit-great-hall 'unit-elven-lumber-mill
-    'unit-troll-lumber-mill 'unit-human-foundry 'unit-orc-foundry
-    'unit-mage-tower 'unit-temple-of-the-damned 'unit-human-blacksmith
-    'unit-orc-blacksmith 'unit-human-refinery 'unit-orc-refinery
-    'unit-human-oil-platform 'unit-orc-oil-platform 'unit-keep
+    'unit-troll-lumber-mill 'unit-alliance-foundry 'unit-mythical-foundry
+    'unit-mage-tower 'unit-temple-of-the-damned 'unit-alliance-blacksmith
+    'unit-mythical-blacksmith 'unit-human-refinery 'unit-orc-refinery
+    'unit-alliance-oil-platform 'unit-mythical-oil-platform 'unit-keep
     'unit-stronghold 'unit-castle 'unit-fortress 'unit-gold-mine
-    'unit-oil-patch 'unit-human-start-location 'unit-orc-start-location
-    'unit-human-guard-tower 'unit-orc-guard-tower 'unit-human-cannon-tower
-    'unit-orc-cannon-tower 'unit-circle-of-power 'unit-dark-portal
+    'unit-oil-patch 'unit-alliance-start-location 'unit-mythical-start-location
+    'unit-alliance-guard-tower 'unit-mythical-guard-tower 'unit-alliance-cannon-tower
+    'unit-mythical-cannon-tower 'unit-circle-of-power 'unit-dark-portal
     'unit-runestone 'unit-human-wall 'unit-orc-wall 'unit-dead-body
     'unit-destroyed-1x1-place 'unit-destroyed-2x2-place
     'unit-destroyed-3x3-place 'unit-destroyed-4x4-place
@@ -121,29 +121,29 @@
     'icon-peasant 'icon-peon 'icon-footman 'icon-grunt 'icon-archer
     'icon-axethrower 'icon-ranger 'icon-berserker 'icon-knight 'icon-ogre
     'icon-paladin 'icon-ogre-mage 'icon-dwarves 'icon-goblin-sappers 'icon-mage
-    'icon-death-knight 'icon-ballista 'icon-catapult 'icon-human-oil-tanker
-    'icon-orc-oil-tanker 'icon-human-transport 'icon-orc-transport
-    'icon-elven-destroyer 'icon-troll-destroyer 'icon-battleship
+    'icon-death-knight 'icon-ballista 'icon-catapult 'icon-alliance-oil-tanker
+    'icon-mythical-oil-tanker 'icon-alliance-transport 'icon-mythical-transport
+    'icon-alliance-destroyer 'icon-mythical-destroyer 'icon-battleship
     'icon-ogre-juggernaught 'icon-gnomish-submarine 'icon-giant-turtle
-    'icon-gnomish-flying-machine 'icon-goblin-zeppelin 'icon-gryphon-rider
-    'icon-dragon 'icon-lothar 'icon-gul-dan 'icon-uther-lightbringer
-    'icon-zuljin 'icon-cho-gall 'icon-daemon 'icon-farm 'icon-pig-farm
-    'icon-town-hall 'icon-great-hall 'icon-human-barracks 'icon-orc-barracks
-    'icon-elven-lumber-mill 'icon-troll-lumber-mill 'icon-human-blacksmith
-    'icon-orc-blacksmith 'icon-human-shipyard 'icon-orc-shipyard
-    'icon-human-refinery 'icon-orc-refinery 'icon-human-foundry
-    'icon-orc-foundry 'icon-human-oil-platform 'icon-orc-oil-platform
-    'icon-stables 'icon-ogre-mound 'icon-gnomish-inventor 'icon-goblin-alchemist
-    'icon-human-watch-tower 'icon-orc-watch-tower 'icon-church
+    'icon-gnomish-flying-machine 'icon-zeppelin 'icon-gryphon-rider
+    'icon-dragon 'icon-wise-man 'icon-ice-bringer 'icon-man-of-light
+    'icon-sharp-axe 'icon-double-head 'icon-daemon 'icon-farm 'icon-pig-farm
+    'icon-town-hall 'icon-great-hall 'icon-alliance-barracks 'icon-mythical-barracks
+    'icon-elven-lumber-mill 'icon-troll-lumber-mill 'icon-alliance-blacksmith
+    'icon-mythical-blacksmith 'icon-alliance-shipyard 'icon-mythical-shipyard
+    'icon-alliance-refinery 'icon-mythical-refinery 'icon-alliance-foundry
+    'icon-mythical-foundry 'icon-alliance-oil-platform 'icon-mythical-oil-platform
+    'icon-stables 'icon-ogre-mound 'icon-gnomish-inventor 'icon-alchemist
+    'icon-alliance-watch-tower 'icon-mythical-watch-tower 'icon-church
     'icon-altar-of-storms 'icon-mage-tower 'icon-temple-of-the-damned 'icon-keep
     'icon-stronghold 'icon-castle-upgrade 'icon-fortress-upgrade 'icon-castle
     'icon-fortress 'icon-gryphon-aviary 'icon-dragon-roost 'icon-gold-mine
-    'icon-human-guard-tower 'icon-human-cannon-tower 'icon-orc-guard-tower
-    'icon-orc-cannon-tower 'icon-oil-patch 'icon-dark-portal
+    'icon-alliance-guard-tower 'icon-alliance-cannon-tower 'icon-mythical-guard-tower
+    'icon-mythical-cannon-tower 'icon-oil-patch 'icon-dark-portal
     'icon-circle-of-power 'icon-runestone 'icon-move-peasant 'icon-move-peon
     'icon-repair 'icon-harvest 'icon-build-basic 'icon-build-advanced
     'icon-return-goods-peasant 'icon-return-goods-peon 'icon-cancel
-    'icon-human-wall 'icon-orc-wall 'icon-slow 'icon-invisibility 'icon-haste
+    'icon-alliance-wall 'icon-mythical-wall 'icon-slow 'icon-invisibility 'icon-haste
     'icon-runes 'icon-unholy-armor 'icon-lightning 'icon-flame-shield
     'icon-fireball 'icon-touch-of-darkness 'icon-death-coil 'icon-whirlwind
     'icon-blizzard 'icon-holy-vision 'icon-heal 'icon-death-and-decay 'icon-109
@@ -155,22 +155,22 @@
     'icon-longbow 'icon-ranger-scouting 'icon-ranger-marksmanship
     'icon-light-axes 'icon-berserker-scouting 'icon-berserker-regeneration
     'icon-catapult1 'icon-catapult2 'icon-ballista1 'icon-ballista2
-    'icon-human-demolish 'icon-orc-demolish 'icon-human-ship-cannon1
-    'icon-human-ship-cannon2 'icon-human-ship-cannon3 'icon-orc-ship-cannon1
-    'icon-orc-ship-cannon2 'icon-orc-ship-cannon3 'icon-orc-ship-armor1
-    'icon-orc-ship-armor2 'icon-orc-ship-armor3 'icon-human-ship-armor1
-    'icon-human-ship-armor2 'icon-human-ship-armor3 'icon-orc-ship-move
-    'icon-human-ship-move 'icon-orc-ship-return-oil 'icon-human-ship-return-oil
-    'icon-orc-ship-haul-oil 'icon-human-ship-haul-oil 'icon-human-unload
-    'icon-orc-unload 'icon-human-shield1 'icon-human-shield2 'icon-human-shield3
-    'icon-orc-shield1 'icon-orc-shield2 'icon-orc-shield3 'icon-170 'icon-171
+    'icon-alliance-demolish 'icon-mythical-demolish 'icon-alliance-ship-cannon1
+    'icon-alliance-ship-cannon2 'icon-alliance-ship-cannon3 'icon-mythical-ship-cannon1
+    'icon-mythical-ship-cannon2 'icon-mythical-ship-cannon3 'icon-mythical-ship-armor1
+    'icon-mythical-ship-armor2 'icon-mythical-ship-armor3 'icon-alliance-ship-armor1
+    'icon-alliance-ship-armor2 'icon-alliance-ship-armor3 'icon-mythical-ship-move
+    'icon-alliance-ship-move 'icon-mythical-ship-return-oil 'icon-alliance-ship-return-oil
+    'icon-mythical-ship-haul-oil 'icon-alliance-ship-haul-oil 'icon-alliance-unload
+    'icon-mythical-unload 'icon-alliance-shield1 'icon-alliance-shield2 'icon-alliance-shield3
+    'icon-mythical-shield1 'icon-mythical-shield2 'icon-mythical-shield3 'icon-170 'icon-171
     'icon-172 'icon-173 'icon-174 'icon-175 'icon-176 'icon-177
-    'icon-human-patrol-land 'icon-orc-patrol-land 'icon-human-stand-ground
-    'icon-orc-stand-ground 'icon-human-attack-ground 'icon-orc-attack-ground
-    'icon-human-patrol-naval 'icon-orc-patrol-naval 'icon-korgath-bladefist
-    'icon-alleria 'icon-danath 'icon-teron-gorefiend 'icon-grom-hellscream
-    'icon-kurdan-and-sky-ree 'icon-deathwing 'icon-khadgar 'icon-dentarg
-    'icon-turalyon)
+    'icon-alliance-patrol-land 'icon-mythical-patrol-land 'icon-alliance-stand-ground
+    'icon-mythical-stand-ground 'icon-alliance-attack-ground 'icon-mythical-attack-ground
+    'icon-alliance-patrol-naval 'icon-mythical-patrol-naval 'icon-quick-blade
+    'icon-female-hero 'icon-ugly-guy 'icon-evil-knight 'icon-beast-cry
+    'icon-flying-angle 'icon-fire-breeze 'icon-white-mage 'icon-fad-man
+    'icon-knight-rider)
 
 ;;=============================================================================
 ;;	Define upgrade mapping from original number to internal symbol
