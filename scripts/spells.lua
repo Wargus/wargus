@@ -341,7 +341,7 @@ do
 		"manacost", 200,
 		"range", 10,
 		"target", "unit",
-		"action", {{"polymorph", "new-form", "unit-critter"}},
+		"action", {{"polymorph", "new-form", "unit-critter", "player-neutral"}},
 		"condition", {"organic", "only"},
 		"sound-when-cast", "polymorph",
 		"missile-when-cast", "missile-normal-spell"
