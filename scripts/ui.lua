@@ -50,7 +50,8 @@ DefinePanelContents(
 			Font = "small", Variable = "HitPoints", Format = "%d/%d",
 			Component1 = "Value", Component2 = "Max", Centered = true}}
 	},
-	{ Pos = {114, 25}, More = {"Text", {ShowName = true}} }, -- FIXME:split for long name
+	{ Pos = {114, 25}, More = {"Text", {Text = UnitName("Active"), Centered = true}} }, -- FIXME:split for long name
+
 -- Ressource Left
 	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
 		More = {"FormattedText2", {Format = "%s Left:%d", Variable = "GiveResource",
@@ -77,13 +78,11 @@ DefinePanelContents(
   Contents = {
 -- Food building
 	{ Pos = {16, 71}, More = {"Text", "Usage"} },
-	{ Pos = {58, 86}, More = {"Text", {Text = "Supply : ", Variable = "Supply",
-										Component = "Max"}} },
-	{ Pos = {51, 102}, More = {"Text", {Text = "Demand : ", Variable = "Demand",
-										Component = "Max"}} },
-	{ Pos = {51, 102}, More = {"FormattedText", {Format = "Demand : ~<%d~>",
-									Variable = "Demand", Component = "Max"}}
--- FIXME COLOR when Demand >= Supply
+	{ Pos = {58, 86}, More = {"Text", {Text = "Supply : ", Variable = "Supply", Component = "Max"}} },
+	{ Pos = {51, 102}, More = { "Text", {Text = Concat("Demand : ",
+									If(GreaterThan(ActiveUnitVar("Demand", "Max"), ActiveUnitVar("Supply", "Max")),
+										InverseVideo(String(ActiveUnitVar("Demand", "Max"))),
+										String(ActiveUnitVar("Demand", "Max")) ))}}
     }
 
   } },
@@ -142,13 +141,13 @@ DefinePanelContents(
   Ident = "panel-attack-unit-contents",
   Pos = {info_panel_x, info_panel_y},
   DefaultFont = "game",
-  Condition = {ShowOpponent = false, HideNeutral = true, Level = "only", Build = "false"},
+  Condition = {ShowOpponent = false, HideNeutral = true, Building = "false", Build = "false"},
   Contents = {
 -- Unit caracteristics
-	{ Pos = {114, 41}, Condition = {Level = "only"},
+	{ Pos = {114, 41},
 		More = {"FormattedText", {Variable = "Level", Format = "Level ~<%d~>"}}
 	},
-	{ Pos = {114, 56}, Condition = {Level = "only"},
+	{ Pos = {114, 56},
 		More = {"FormattedText2", {Centered = true,
 			Variable1 = "Xp", Variable2 = "Kill", Format = "XP:~<%d~> Kills:~<%d~>"}}
 	},
