@@ -281,6 +281,7 @@
     (ai:attack-with-force 1)
 
     (writes nil "AI Ended!\n")
+    (ai:restart)
     ))
 
 (define-ai "my-ai" "orc" "land-attack"
@@ -337,6 +338,7 @@
     (ai:attack-with-force 1)
 
     (writes nil "AI Ended!\n")
+    (ai:restart)
     ))
 
 
