@@ -45,6 +45,10 @@
 ;(set-color-cycle-all! #f)
 
 ;;-----------------------------------------------------------------------------
+;;	Music play list -	Insert your titles here
+(define play-list (list "music/default.mod"))
+
+;;-----------------------------------------------------------------------------
 
 ;;	Define mana-sprite.
 ;;
