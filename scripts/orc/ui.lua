@@ -28,18 +28,30 @@
 --
 --	$Id$
 
-DefineCursor("cursor-point", "orc",
-    "image", "ui/orc/cursors/orcish_claw.png",
-    "hot-spot", { 3,  2}, "size", {26, 32} )
-DefineCursor("cursor-green-hair", "orc",
-    "image", "ui/orc/cursors/green_crosshairs.png",
-    "hot-spot", {15, 15}, "size", {32, 32} )
-DefineCursor("cursor-yellow-hair", "orc",
-    "image", "ui/orc/cursors/yellow_crosshairs.png",
-    "hot-spot", {15, 15}, "size", {32, 32} )
-DefineCursor("cursor-red-hair", "orc",
-    "image", "ui/orc/cursors/red_crosshairs.png",
-    "hot-spot", {15, 15}, "size", {32, 32} )
+DefineCursor({
+  Name = "cursor-point",
+  Race = "orc",
+  File = "ui/orc/cursors/orcish_claw.png",
+  HotSpot = { 3,  2},
+  Size = {26, 32}})
+DefineCursor({
+  Name = "cursor-green-hair",
+  Race = "orc",
+  File = "ui/orc/cursors/green_crosshairs.png",
+  HotSpot = {15, 15},
+  Size = {32, 32}})
+DefineCursor({
+  Name = "cursor-yellow-hair",
+  Race = "orc",
+  File = "ui/orc/cursors/yellow_crosshairs.png",
+  HotSpot = {15, 15},
+  Size = {32, 32}})
+DefineCursor({
+  Name = "cursor-red-hair",
+  Race = "orc",
+  File = "ui/orc/cursors/red_crosshairs.png",
+  HotSpot = {15, 15},
+  Size = {32, 32}})
 
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 --	* Race orc.
