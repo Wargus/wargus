@@ -10,7 +10,7 @@
 --
 --      ui.lua - Define the user interface
 --
---      (c) Copyright 2000-2004 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2000-2005 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -35,6 +35,12 @@ Load("scripts/widgets.lua")
 --
 local info_panel_x = 0
 local info_panel_y = 160
+
+local min_damage = Div(ActiveUnitVar("PiercingDamage"), 2)
+local max_damage = Add(ActiveUnitVar("PiercingDamage"), ActiveUnitVar("BasicDamage"))
+local damage_bonus = Sub(ActiveUnitVar("PiercingDamage", "Value", "Type"),
+							ActiveUnitVar("PiercingDamage", "Value", "Initial"));
+
 
 DefinePanelContents(
 -- Default presentation. ------------------------
@@ -102,13 +108,10 @@ DefinePanelContents(
   DefaultFont = "game",
   Condition = {ShowOpponent = false, HideNeutral = true, Build = "false"},
   Contents = {
-	{ Pos = {37, 86}, Condition = {Damage = "only"},
-		More = {"FormattedText2", {Format = "Damage: %d-%d", Variable = "Damage",
-			Component1 = "Value", Component2 = "Max"}}
-	},
-	{ Pos = {130, 86}, Condition = {Damage = "only"},-- FIXME When PiercingDamage.Diff != 0.
-		More = {"FormattedText2", {Format = "~<%+d+%d~>", Variable1 = "ExtraDamage",
-			Variable2 = "PiercingDamage", Component2 = "Diff"}}
+	{ Pos = {37, 86}, Condition = {PiercingDamage = "only"},
+		More = {"Text", {Text = Concat("Damage: ", String(min_damage), "-", String(max_damage),
+								If(Equal(0, damage_bonus), "",
+									InverseVideo(Concat("+", String(damage_bonus)))) )}}
 
 	},
 
