@@ -1,0 +1,22 @@
+
+	(8)dialodarkwood.pud
+
+	A 128x128 8 player map, in the style of Blizzard's Garden of War,
+	set in the deep forest of Darkwood.
+
+	Copyright (c) 2003 by Patrick McFarland
+
+	This file is part of FreeCraft Media Project
+
+	FreeCraft Media Project is free media (incl. sounds, voices, music,
+	fonts, graphics, animations, videos or 3d models;
+	you can redistribute it and/or modify it under the terms
+	of the GNU General Public License as published by the Free Software
+	Foundation; only version 2 of the License.
+
+	FreeCraft Media Project is distributed in the hope that it will be
+	useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+	of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	
