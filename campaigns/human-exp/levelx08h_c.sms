@@ -9,7 +9,9 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (if-unit 'opponents '== 0 'all))
+(add-trigger (lambda () (and (if-unit '3 '== 0 'all)
+                             (if-unit '6 '== 0 'all)
+                             (if-unit '7 '== 0 'all)))
   (lambda () (action-victory)))
 
 (add-trigger (lambda () (if-unit 'this '== 0 'all))
