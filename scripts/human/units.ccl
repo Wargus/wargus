@@ -1362,7 +1362,6 @@
   'can-target-land 'can-target-sea 'can-target-air
   'building 
   'detect-cloak
-  'tower
   'sounds '(
     selected "human-guard-tower-selected"
     acknowledge "human-guard-tower-acknowledge"
@@ -1396,7 +1395,6 @@
   'can-target-land 'can-target-sea
   'building 
   'detect-cloak
-  'tower
   'sounds '(
     selected "human-cannon-tower-selected"
     acknowledge "human-cannon-tower-acknowledge"
