@@ -23,6 +23,11 @@
 ;;
 ;;	$Id$
 
+;(define (ai:sleep) () #t)
+
+(define race1 'human)
+(define race2 'orc)
+
 ;;=============================================================================
 ;;
 ;;	AI helper table, the AI must know where to build units,
@@ -34,13 +39,6 @@
 ;;
 ;;	(define-ai-helper (list))
 ;;
-
-(verbose 5) 
-
-;(define (ai:sleep) () #t)
-
-(define race1 'human)
-(define race2 'orc)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race human.
@@ -2228,8 +2226,9 @@
 (define-ai 'hum-10 "*" "hum-10"
   '(
     ;;	Define the main AI script.
-    (begin (ai:debug #t) (ai:sleep (ai:get-sleep-cycles))
-      (ai:force-role 0 'defend) (ai:force-role 1 'defend))
+    (begin (ai:debug #t)
+      (ai:force-role 0 'defend) (ai:force-role 1 'defend)
+      (ai:sleep (ai:get-sleep-cycles)))
 
     (ai:set  (ai:worker) 7)
     (ai:set  (ai:tanker) 3)
@@ -2316,8 +2315,9 @@
 (define-ai 'hum-11 "*" "hum-11"
   '(
     ;;	Define the main AI script.
-    (begin (ai:debug #t) (ai:sleep (ai:get-sleep-cycles))
-      (ai:force-role 0 'defend) (ai:force-role 1 'attack))
+    (begin (ai:debug #t)
+      (ai:force-role 0 'defend) (ai:force-role 1 'attack)
+      (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 8)
     (ai:wait (ai:worker))	;; Wait for the workers
     (ai:sleep	6000)
