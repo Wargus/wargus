@@ -137,6 +137,10 @@
 (set-training-queue! #t)
 ;(set-training-queue! #f)
 
+;;	Edit this to enable/disable building capture.
+(set-building-capture! #t)
+;(set-building-capture! #f)
+
 ;;-----------------------------------------------------------------------------
 
 ;;	If you prefer fighters are attacking by right clicking empty space
