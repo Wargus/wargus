@@ -53,9 +53,9 @@
 (define-upgrade 'upgrade-human-ship-armor2 'icon 'icon-alliance-ship-armor3
   'costs #(   250  1500   900     0     0     0     0))
 
-(define-upgrade 'upgrade-catapult1 'icon 'icon-catapult1
+(define-upgrade 'upgrade-ballista1 'icon 'icon-ballista1
   'costs #(   250  1500     0     0     0     0     0))
-(define-upgrade 'upgrade-catapult2 'icon 'icon-catapult2
+(define-upgrade 'upgrade-ballista2 'icon 'icon-ballista2
   'costs #(   250  4000     0     0     0     0     0))
 
 (define-upgrade 'upgrade-ranger 'icon 'icon-ranger
@@ -147,13 +147,13 @@
   '(apply-to unit-alliance-destroyer) '(apply-to unit-battleship)
   '(apply-to unit-alliance-transport))
 
-(define-modifier 'upgrade-catapult1
+(define-modifier 'upgrade-ballista1
   '(piercing-damage 15)
-  '(apply-to unit-catapult))
+  '(apply-to unit-ballista))
 
-(define-modifier 'upgrade-catapult2
+(define-modifier 'upgrade-ballista2
   '(piercing-damage 15)
-  '(apply-to unit-catapult))
+  '(apply-to unit-ballista))
 
 (define-modifier 'upgrade-ranger
   '(apply-to unit-archer) '(convert-to unit-ranger))
@@ -267,8 +267,8 @@
 (define-allow 'upgrade-human-ship-cannon2	"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-human-ship-armor1	"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-human-ship-armor2	"AAAAAAAAAAAAAAAA")
-(define-allow 'upgrade-catapult1		"AAAAAAAAAAAAAAAA")
-(define-allow 'upgrade-catapult2		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-ballista1		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-ballista2		"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-ranger			"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-longbow			"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-ranger-scouting		"AAAAAAAAAAAAAAAA")
@@ -350,8 +350,8 @@
   '(upgrade-arrow1))
 (define-dependency 'upgrade-human-shield2
   '(upgrade-human-shield1))
-(define-dependency 'upgrade-catapult2
-  '(upgrade-catapult1))
+(define-dependency 'upgrade-ballista2
+  '(upgrade-ballista1))
 (define-dependency 'upgrade-human-ship-cannon2
   '(upgrade-human-ship-cannon1))
 (define-dependency 'upgrade-human-ship-armor2
