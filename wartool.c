@@ -260,7 +260,7 @@ Control Todo[] = {
 
 {F,0,"maindat.war",				1000 },
 #ifdef NEW_NAMES
-{R,0,"swamp/swamp",						 2	},
+{R,0,"summer/summer",						 2	},
 {T,0,"summer/terrain/summer",			 2,	 3,	 4,	 5 },
 {R,0,"wasteland/wasteland",					10	},
 {T,0,"wasteland/terrain/wasteland",		10,	11,	12,	13 },
@@ -752,8 +752,8 @@ Control Todo[] = {
 {W,0,"ui/click",						432	},
 {W,0,"ui/highclick",						435	},
 
-{R,2,"tilesets/swamp/swamp",					438	},
-{T,2,"tilesets/swamp/swamp",			438,	439,	440,	441 },
+{R,2,"swamp/swamp",						438	},
+{T,2,"swamp/swamp",				438,	439,	440,	441 },
 
 #else
 
@@ -2471,14 +2471,14 @@ unsigned char* ConvertTile(unsigned char* mini,const char* mega,int msize
     for( i=0; i<numtiles; ++i ) {
 	//mp=(const unsigned short*)(mega+img2tile[i]*32);
 	mp=(const unsigned short*)(mega+i*32);
-	if( i<16 ) {
+	if( i<16 ) {		// fog of war
 	    for( y=0; y<32; ++y ) {
 		offset=i*32*32+y*32;
 		memcpy(image+(i%TILE_PER_ROW)*32
 			+(((i/TILE_PER_ROW)*32)+y)*width
 			,mini+offset,32);
 	    }
-	} else {
+	} else {		// normal tile
 	    for( y=0; y<4; ++y ) {
 		for( x=0; x<4; ++x ) {
 		    offset=ConvertLE16(mp[x+y*4]);
