@@ -109,6 +109,7 @@ mkdir %DIR%\puds\strange
 copy /b %ARCHIVE%\..\puds\multi\* %DIR%\puds\multi
 copy /b %ARCHIVE%\..\puds\single\* %DIR%\puds\single
 copy /b %ARCHIVE%\..\puds\strange\* %DIR%\puds\strange
+copy /b %ARCHIVE%\..\*.pud %DIR%\puds
 
 REM
 REM	Copy contrib puds into data directory
