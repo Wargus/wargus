@@ -79,6 +79,142 @@
 ;;	FIXME: class and speed must be added
 ;;	FIXME: use ident insteed of numbers.
 ;;
+(if new-names? (begin
+(missile-type MissileLightning
+    "missile-lightning"			"missiles/lightning.png"
+    32 32
+    #f
+    missile-class-point-to-point-with-hit)
+(missile-type MissileGriffonHammer
+    "missile-griffon-hammer"		"missiles/gryphon hammer.png"
+    32 32
+    sound-fireball-hit)
+(missile-type MissileDragonBreath
+    "missile-dragon-breath"		"missiles/dragon breath.png"
+    32 32
+    sound-fireball-hit)
+
+(missile-type MissileFireball
+    "missile-fireball"			"missiles/fireball.png"
+    32 32
+    sound-fireball-hit)
+(missile-type MissileFlameShield
+    "missile-flame-shield"		"missiles/flame shield.png"
+    32 32
+    #f)
+(missile-type MissileBlizzard
+    "missile-blizzard"			"missiles/blizzard.png"
+    32 32
+    #f)
+(missile-type MissileDeathDecay
+    "missile-death-and-decay"		"missiles/death and decay.png"
+    32 32
+    #f)
+(missile-type MissileBigCannon
+    "missile-big-cannon"		"missiles/big cannon.png"
+    16 16
+    sound-explosion)
+(missile-type MissileExorcism
+    "missile-exorcism"			"missiles/exorcism.png"
+    48 48
+    #f)
+(missile-type MissileHealEffect
+    "missile-heal-effect"		"missiles/heal effect.png"
+    48 48
+    #f)
+(missile-type MissileTouchOfDeath
+    "missile-touch-of-death"		"missiles/touch of death.png"
+    32 32
+    #f)
+(missile-type MissileRune
+    "missile-rune"			"missiles/rune.png"
+    16 16
+    #f)
+(missile-type MissileWhirlwind
+    "missile-whirlwind"			"missiles/tornado.png"
+    56 56
+    #f)
+(missile-type MissileCatapultRock
+    "missile-catapult-rock"		"missiles/catapult rock.png"
+    32 32
+    sound-explosion)
+(missile-type MissileBallistaBolt
+    "missile-ballista-bolt"		"missiles/ballista bolt.png"
+    64 64
+    sound-explosion)
+(missile-type MissileArrow
+    "missile-arrow"			"missiles/arrow.png"
+    40 40
+    sound-bow-hit)
+(missile-type MissileAxe
+    "missile-axe"			"missiles/axe.png"
+    32 32
+    sound-bow-hit)
+(missile-type MissileSubmarineMissile
+    "missile-submarine-missile"		"missiles/submarine missile.png"
+    40 40
+    sound-explosion)
+(missile-type MissileTurtleMissile
+    "missile-turtle-missile"		"missiles/turtle missile.png"
+    40 40
+    sound-explosion)
+(missile-type MissileSmallFire
+    "missile-small-fire"		"missiles/small fire.png"
+    32 48
+    #f)
+(missile-type MissileBigFire
+    "missile-big-fire"			"missiles/big fire.png"
+    48 48
+    #f)
+(missile-type MissileImpact
+    "missile-impact"			"missiles/ballista-catapult impact.png"
+    48 48
+    #f)
+(missile-type MissileNormalSpell
+    "missile-normal-spell"		"missiles/normal spell.png"
+    32 32
+    #f)
+(missile-type MissileExplosion
+    "missile-explosion"			"missiles/explosion.png"
+    64 64
+    #f)
+(missile-type MissileSmallCannon
+    "missile-small-cannon"		"missiles/cannon.png"
+    32 32
+    sound-explosion)
+(missile-type MissileCannonExplosion
+    "missile-cannon-explosion"		"missiles/cannon explosion.png"
+    32 32
+    #f)
+(missile-type MissileCannonTowerExplosion
+    "missile-cannon-tower-explosion"	"missiles/cannon-tower explosion.png"
+    32 32
+    #f)
+(missile-type MissileDaemonFire
+    "missile-daemon-fire"		"missiles/daemon fire.png"
+    32 32
+    #f)
+(missile-type MissileGreenCross
+    "missile-green-cross"		"missiles/green cross.png"
+    32 32
+    #f)
+(missile-type MissileNone
+    "missile-none"			"missiles/green cross.png"
+    32 32
+    #f)
+(missile-type MissileBlizzardHit
+    "missile-blizzard-hit"		"missiles/blizzard.png"
+    32 32
+    #f)
+(missile-type MissileDeathCoil
+    "missile-death-coil"		"missiles/touch of death.png"
+    32 32
+    #f)
+(missile-type MissileCustom
+    "missile-custom"			"missiles/green cross.png"
+    32 32
+    #f)
+)(begin
 (missile-type MissileLightning
     "missile-lightning"			"lightning.png"			32 32
     #f
@@ -180,4 +316,4 @@
 (missile-type MissileCustom
     "missile-custom"			"green cross.png"		32 32
     #f)
-
+))
