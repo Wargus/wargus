@@ -286,9 +286,6 @@
 (define-allow 'unit-alliance-guard-tower		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-alliance-cannon-tower		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-human-wall			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-peasant-with-gold		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-peasant-with-wood		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-oil-tanker-full	"AAAAAAAAAAAAAAAA")
 
 ;;	- upgrades
 

@@ -59,20 +59,7 @@
 	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
 	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
 	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone)
-    (list 'build 'unit-peasant-with-gold
-	'unit-farm 'unit-alliance-barracks 'unit-town-hall 'unit-elven-lumber-mill
-	'unit-alliance-blacksmith 'unit-alliance-watch-tower 'unit-human-wall
-	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
-	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
-	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone)
-    (list 'build 'unit-peasant-with-wood
-	'unit-farm 'unit-alliance-barracks 'unit-town-hall 'unit-elven-lumber-mill
-	'unit-alliance-blacksmith 'unit-alliance-watch-tower 'unit-human-wall
-	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
-	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
-	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone)
     (list 'build 'unit-human-oil-tanker 'unit-alliance-oil-platform)
-    (list 'build 'unit-human-oil-tanker-full 'unit-alliance-oil-platform)
     ;;
     ;;	Building can train which units.
     ;;
@@ -126,33 +113,11 @@
 	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
 	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone
 	'unit-alliance-transport)
-    (list 'repair 'unit-peasant-with-gold
-	'unit-farm 'unit-alliance-barracks 'unit-town-hall 'unit-keep 'unit-castle
-	'unit-elven-lumber-mill 'unit-alliance-blacksmith 'unit-alliance-watch-tower
-	'unit-alliance-guard-tower 'unit-alliance-cannon-tower 'unit-human-wall
-	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
-	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
-	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone
-	'unit-alliance-transport)
-    (list 'repair 'unit-peasant-with-wood
-	'unit-farm 'unit-alliance-barracks 'unit-town-hall 'unit-keep 'unit-castle
-	'unit-elven-lumber-mill 'unit-alliance-blacksmith 'unit-alliance-watch-tower
-	'unit-alliance-guard-tower 'unit-alliance-cannon-tower 'unit-human-wall
-	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
-	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
-	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone
-	'unit-alliance-transport)
     ;;
     ;;	Workers can collect which resource.
     ;;
     (list 'collect 'unit-peasant 'gold 'wood 'ore 'stone 'coal)
     (list 'collect 'unit-human-oil-tanker 'oil )
-    ;;
-    ;;	Workers with resource.
-    ;;
-    (list 'with-goods 'unit-peasant-with-gold 'gold)
-    (list 'with-goods 'unit-peasant-with-wood 'wood)
-    (list 'with-goods 'unit-human-oil-tanker-full 'oil )
     ;;
     ;;	Reduce unit limits.
     ;;
@@ -168,10 +133,8 @@
 	'unit-ranger)
     (list 'unit-equiv 'unit-knight
 	'unit-paladin)
-    (list 'unit-equiv 'unit-peasant
-	'unit-peasant-with-gold 'unit-peasant-with-wood)
-    (list 'unit-equiv 'unit-human-oil-tanker
-	'unit-human-oil-tanker-full)
+    (list 'unit-equiv 'unit-peasant)
+    (list 'unit-equiv 'unit-human-oil-tanker)
     (list 'unit-equiv 'unit-alliance-watch-tower
 	 'unit-alliance-guard-tower 'unit-alliance-cannon-tower) )
 
@@ -190,22 +153,7 @@
 	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
 	'unit-altar-of-storms
 	'unit-dragon-roost 'unit-dark-portal 'unit-runestone)
-    (list 'build 'unit-peon-with-gold
-	'unit-pig-farm 'unit-mythical-barracks 'unit-great-hall
-	'unit-troll-lumber-mill 'unit-mythical-blacksmith 'unit-mythical-watch-tower
-	'unit-orc-wall 'unit-mythical-shipyard 'unit-mythical-foundry 'unit-orc-refinery
-	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
-	'unit-altar-of-storms
-	'unit-dragon-roost 'unit-dark-portal 'unit-runestone)
-    (list 'build 'unit-peon-with-wood
-	'unit-pig-farm 'unit-mythical-barracks 'unit-great-hall
-	'unit-troll-lumber-mill 'unit-mythical-blacksmith 'unit-mythical-watch-tower
-	'unit-orc-wall 'unit-mythical-shipyard 'unit-mythical-foundry 'unit-orc-refinery
-	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
-	'unit-altar-of-storms
-	'unit-dragon-roost 'unit-dark-portal 'unit-runestone)
     (list 'build 'unit-orc-oil-tanker 'unit-mythical-oil-platform)
-    (list 'build 'unit-orc-oil-tanker-full 'unit-mythical-oil-platform)
     ;;
     ;;	Building can train which units.
     ;;
@@ -260,33 +208,11 @@
 	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
 	'unit-altar-of-storms 'unit-dragon-roost 'unit-dark-portal
 	'unit-runestone 'unit-mythical-transport)
-    (list 'repair 'unit-peon-with-gold
-	'unit-pig-farm 'unit-mythical-barracks 'unit-great-hall 'unit-stronghold
-	'unit-fortress 'unit-troll-lumber-mill 'unit-mythical-blacksmith
-	'unit-mythical-watch-tower 'unit-mythical-guard-tower 'unit-mythical-cannon-tower
-	'unit-orc-wall 'unit-mythical-shipyard 'unit-mythical-foundry 'unit-orc-refinery
-	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
-	'unit-altar-of-storms 'unit-dragon-roost 'unit-dark-portal
-	'unit-runestone 'unit-mythical-transport)
-    (list 'repair 'unit-peon-with-wood
-	'unit-pig-farm 'unit-mythical-barracks 'unit-great-hall 'unit-stronghold
-	'unit-fortress 'unit-troll-lumber-mill 'unit-mythical-blacksmith
-	'unit-mythical-watch-tower 'unit-mythical-guard-tower 'unit-mythical-cannon-tower
-	'unit-orc-wall 'unit-mythical-shipyard 'unit-mythical-foundry 'unit-orc-refinery
-	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
-	'unit-altar-of-storms 'unit-dragon-roost 'unit-dark-portal
-	'unit-runestone 'unit-mythical-transport)
     ;;
     ;;	Workers can collect which resource.
     ;;
     (list 'collect 'unit-peon 'gold 'wood 'ore 'stone 'coal)
     (list 'collect 'unit-orc-oil-tanker 'oil )
-    ;;
-    ;;	Workers with resource.
-    ;;
-    (list 'with-goods 'unit-peon-with-gold 'gold)
-    (list 'with-goods 'unit-peon-with-wood 'wood)
-    (list 'with-goods 'unit-orc-oil-tanker-full 'oil )
     ;;
     ;;	Reduce unit limits.
     ;;
@@ -302,10 +228,8 @@
 	'unit-berserker)
     (list 'unit-equiv 'unit-ogre
 	'unit-ogre-mage)
-    (list 'unit-equiv 'unit-peon
-	'unit-peon-with-gold 'unit-peon-with-wood)
-    (list 'unit-equiv 'unit-orc-oil-tanker
-	'unit-orc-oil-tanker-full)
+    (list 'unit-equiv 'unit-peon)
+    (list 'unit-equiv 'unit-orc-oil-tanker)
     (list 'unit-equiv 'unit-mythical-watch-tower
 	 'unit-mythical-guard-tower 'unit-mythical-cannon-tower) )
 

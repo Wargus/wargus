@@ -63,8 +63,6 @@
     dead "basic orc voices dead"
     attack "grunt-attack"))
 
-(define-unit-type 'unit-peon-with-gold)
-
 (define-unit-type 'unit-peon 'name "Peon"
   'files '(tileset-summer "orc/units/peon.png")
   'size '(72 72)
@@ -87,9 +85,22 @@
   'can-target-land
   'land-unit
   'coward
-  'harvester 'resource-harvested 'gold 'resource-capacity 100
-  'wait-at-resource 150 'wait-at-depot 150
-  'transform-when-loaded 'unit-peon-with-gold
+  'harvester
+  'can-gather-resource '(
+	file-when-loaded "orc/units/peon_with_gold.png"
+	resource-id gold
+	resource-capacity 100
+	wait-at-resource 150
+	wait-at-depot 150)
+  'can-gather-resource '(
+	file-when-loaded "orc/units/peon_with_wood.png"
+	resource-id wood
+	resource-capacity 100
+	resource-step 2
+	wait-at-resource 24
+	wait-at-depot 150
+	lose-resources
+	terrain-harvester )
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -99,73 +110,6 @@
     help "basic orc voices help 1"
     dead "basic orc voices dead"
     attack "peon-attack"))
-
-(define-unit-type 'unit-peon-with-gold 'name "Peon"
-  'files '(tileset-summer "orc/units/peon_with_gold.png")
-  'size '(72 72)
-  'animations 'animations-peasant 'icon 'icon-peon
-  'costs '(time 45 gold 400)
-  'speed 10
-  'hit-points 30
-  'draw-level 40
-  'tile-size '(1 1) 'box-size '(31 31)
-  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
-  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
-  'max-attack-range 1
-  'priority 50
-  'points 30
-  'demand 1
-  'corpse '(unit-dead-body 0)
-  'type-land
-  'right-harvest
-  'can-attack 'repair-range 1
-  'can-target-land
-  'land-unit
-  'coward
-  'harvester 'resource-harvested 'gold 'resource-capacity 100
-  'wait-at-resource 150 'wait-at-depot 150
-  'transform-when-empty 'unit-peon
-  'organic
-  'selectable-by-rectangle
-  'sounds '(
-    selected "peon-with-gold-selected"
-    acknowledge "peon-with-gold-acknowledge"
-    ready "peon-with-gold-ready"
-    help "basic orc voices help 1"
-    dead "basic orc voices dead"
-    attack "peon-with-gold-attack"))
-
-(define-unit-type 'unit-peon-with-wood 'name "Peon"
-  'files '(tileset-summer "orc/units/peon_with_wood.png")
-  'size '(72 72)
-  'animations 'animations-peasant 'icon 'icon-peon
-  'costs '(time 45 gold 400)
-  'speed 10
-  'hit-points 30
-  'draw-level 40
-  'tile-size '(1 1) 'box-size '(31 31)
-  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
-  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
-  'max-attack-range 1
-  'priority 50
-  'points 30
-  'demand 1
-  'corpse '(unit-dead-body 0)
-  'type-land
-  'right-harvest
-  'can-attack 'repair-range 1
-  'can-target-land
-  'land-unit
-  'coward
-  'organic
-  'selectable-by-rectangle
-  'sounds '(
-    selected "peon-with-wood-selected"
-    acknowledge "peon-with-wood-acknowledge"
-    ready "peon-with-wood-ready"
-    help "basic orc voices help 1"
-    dead "basic orc voices dead"
-    attack "peon-with-wood-attack"))
 
 (define-unit-type 'unit-catapult 'name "Catapult"
   'files '(tileset-summer "orc/units/catapult.png")
@@ -498,8 +442,6 @@
     dead "basic orc voices dead"
     attack "grom-hellscream-attack"))
 
-(define-unit-type 'unit-orc-oil-tanker-full)
- 
 (define-unit-type 'unit-orc-oil-tanker 'name "Oil tanker"
   'files '(tileset-summer "orc/units/oil_tanker_empty.png")
   'size '(72 72)
@@ -519,9 +461,14 @@
   'type-naval
   'right-harvest
   'sea-unit 'coward
-  'harvester 'resource-harvested 'oil 'resource-capacity 100
-  'wait-at-resource 100 'wait-at-depot 100
-  'transform-when-loaded 'unit-orc-oil-tanker-full
+  'harvester
+  'can-gather-resource '(
+        file-when-empty "human/units/oil_tanker_empty.png"
+        file-when-loaded "human/units/oil_tanker_full.png"
+	resource-id oil
+        resource-capacity 100
+	wait-at-resource 100
+	wait-at-depot 100 )
   'selectable-by-rectangle
   'sounds '(
     selected "orc-oil-tanker-selected"
@@ -531,37 +478,6 @@
     dead "ship sinking"
     attack "orc-oil-tanker-attack"))
 
-(define-unit-type 'unit-orc-oil-tanker-full 'name "Oil tanker"
-  'files '(tileset-summer "orc/units/oil_tanker_full.png")
-  'size '(72 72)
-  'animations 'animations-human-oil-tanker 'icon 'icon-mythical-oil-tanker
-  'costs '(time 50 gold 400 wood 200)
-  'speed 10
-  'hit-points 90
-  'draw-level 40
-  'tile-size '(1 1) 'box-size '(63 63)
-  'sight-range 4
-  'armor 10 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
-  'max-attack-range 1
-  'priority 50 'annoy-computer-factor 10
-  'points 40
-  'demand 1
-  'corpse '(unit-dead-body 12)
-  'type-naval
-  'right-harvest
-  'sea-unit 'coward
-  'harvester 'resource-harvested 'oil 'resource-capacity 100
-  'wait-at-resource 100 'wait-at-depot 100
-  'transform-when-empty 'unit-orc-oil-tanker
-  'selectable-by-rectangle
-  'sounds '(
-    selected "orc-oil-tanker-full-selected"
-    acknowledge "orc-oil-tanker-full-acknowledge"
-    ready "orc-oil-tanker-full-ready"
-    help "basic orc voices help 1"
-    dead "ship sinking"
-    attack "orc-oil-tanker-full-attack"))
-    
 (define-unit-type 'unit-mythical-transport 'name "Transport"
   'files '(tileset-summer "orc/units/transport.png")
   'size '(72 72)

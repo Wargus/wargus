@@ -89,10 +89,6 @@
    'unit-wise-man
    'unit-man-of-light
 
-   'unit-peasant-with-gold
-   'unit-peasant-with-wood
-   'unit-human-oil-tanker-full
-
 ;- - - - - - - - - - - - - - - - - - -
 
    'unit-mythical-start-location
@@ -146,10 +142,6 @@
    'unit-ice-bringer
    'unit-double-head
    'unit-sharp-axe
-
-   'unit-peon-with-gold
-   'unit-peon-with-wood
-   'unit-orc-oil-tanker-full
 
 ;- - - - - - - - - - - - - - - - - - -
 

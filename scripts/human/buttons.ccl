@@ -42,7 +42,7 @@
   'key "m" 'hint "~!MOVE"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista unit-peasant
-    unit-peasant-with-gold unit-peasant-with-wood unit-female-hero
+    unit-female-hero
     unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
     unit-man-of-light unit-white-mage unit-balloon
     unit-gryphon-rider unit-mage unit-critter
@@ -53,7 +53,7 @@
   'key "s" 'hint "~!STOP"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista unit-peasant
-    unit-peasant-with-gold unit-peasant-with-wood unit-female-hero
+    unit-female-hero
     unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
     unit-man-of-light unit-white-mage unit-balloon
     unit-gryphon-rider unit-mage unit-critter
@@ -80,7 +80,7 @@
   'key "a" 'hint "~!ATTACK"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista unit-peasant
-    unit-peasant-with-gold unit-peasant-with-wood unit-female-hero
+    unit-female-hero
     unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
     unit-man-of-light unit-white-mage unit-gryphon-rider human-group))
 
@@ -234,7 +234,7 @@
 (define-button 'pos 4 'level 0 'icon 'icon-repair
   'action 'repair
   'key "r" 'hint "~!REPAIR"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 5 'level 0 'icon 'icon-harvest
   'action 'harvest
@@ -244,117 +244,117 @@
 (define-button 'pos 6 'level 0 'icon 'icon-return-goods-peasant
   'action 'return-goods
   'key "g" 'hint "RETURN WITH ~!GOODS"
-  'for-unit '(unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 ;; build basic/advanced structs -----------------------------------------------
 
 (define-button 'pos 7 'level 0 'icon 'icon-build-basic
   'action 'button 'value 1
   'key "b" 'hint "~!BUILD BASIC STRUCTURE"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 8 'level 0 'icon 'icon-build-advanced
   'action 'button 'value 2
   'allowed 'check-units-or 'allow-arg '(unit-elven-lumber-mill unit-keep)
   'key "v" 'hint "BUILD AD~!VANCED STRUCTURE"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (if extensions
 (define-button 'pos 9 'level 0 'icon 'icon-build-advanced
   'action 'button 'value 3
   'allowed 'check-units-and 'allow-arg '(unit-castle unit-mage-tower unit-church)
   'key "e" 'hint "BUILD SP~!ECIAL STRUCTURE"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood)) )
+  'for-unit '(unit-peasant)) )
 
 ;; simple buildings human -----------------------------------------------------
 
 (define-button 'pos 1 'level 1 'icon 'icon-farm
   'action 'build 'value 'unit-farm
   'key "f" 'hint "BUILD ~!FARM"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 2 'level 1 'icon 'icon-alliance-barracks
   'action 'build 'value 'unit-alliance-barracks
   'key "b" 'hint "BUILD ~!BARRACKS"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 3 'level 1 'icon 'icon-town-hall
   'action 'build 'value 'unit-town-hall
   'key "h" 'hint "BUILD TOWN ~!HALL"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 4 'level 1 'icon 'icon-elven-lumber-mill
   'action 'build 'value 'unit-elven-lumber-mill
   'key "l" 'hint "BUILD ELVEN ~!LUMBER MILL"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 5 'level 1 'icon 'icon-alliance-blacksmith
   'action 'build 'value 'unit-alliance-blacksmith
   'key "s" 'hint "BUILD BLACK~!SMITH"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 7 'level 1 'icon 'icon-alliance-watch-tower
   'action 'build 'value 'unit-alliance-watch-tower
   'key "t" 'hint "BUILD ~!TOWER"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 8 'level 1 'icon 'icon-alliance-wall
   'action 'build 'value 'unit-human-wall
   'allowed 'check-network
   'key "w" 'hint "BUILD ~!WALL"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 9 'level 1 'icon 'icon-cancel
   'action 'button 'value 0
   'key "\033" 'hint "~<ESC~> CANCEL"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 ;; human advanced buildings ---------------------------------------------------
 
 (define-button 'pos 1 'level 2 'icon 'icon-alliance-shipyard
   'action 'build 'value 'unit-alliance-shipyard
   'key "s" 'hint "BUILD ~!SHIPYARD"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 2 'level 2 'icon 'icon-alliance-foundry
   'action 'build 'value 'unit-alliance-foundry
   'key "f" 'hint "BUILD ~!FOUNDRY"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 3 'level 2 'icon 'icon-alliance-refinery
   'action 'build 'value 'unit-human-refinery
   'key "r" 'hint "BUILD ~!REFINERY"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 4 'level 2 'icon 'icon-gnomish-inventor
   'action 'build 'value 'unit-inventor
   'key "i" 'hint "BUILD GNOMISH ~!INVENTOR"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 5 'level 2 'icon 'icon-stables
   'action 'build 'value 'unit-stables
   'key "a" 'hint "BUILD ST~!ABLES"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 6 'level 2 'icon 'icon-mage-tower
   'action 'build 'value 'unit-mage-tower
   'key "m" 'hint "BUILD ~!MAGE TOWER"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 7 'level 2 'icon 'icon-church
   'action 'build 'value 'unit-church
   'key "c" 'hint "BUILD ~!CHURCH"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 8 'level 2 'icon 'icon-gryphon-aviary
   'action 'build 'value 'unit-gryphon-aviary
   'key "g" 'hint "BUILD ~!GRYPHON AVIARY"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 9 'level 2 'icon 'icon-cancel
   'action 'button 'value 0
   'key "\033" 'hint "~<ESC~> CANCEL"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 ;; human special buildings ----------------------------------------------------
 
@@ -362,18 +362,18 @@
   'action 'build 'value 'unit-dark-portal
   'allowed 'check-no-network
   'key "p" 'hint "BUILD DARK ~!PORTAL"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 2 'level 3 'icon 'icon-runestone
   'action 'build 'value 'unit-runestone
   'allowed 'check-no-network
   'key "r" 'hint "BUILD ~!RUNESTONE"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 (define-button 'pos 9 'level 3 'icon 'icon-cancel
   'action 'button 'value 0
   'key "\033" 'hint "~<ESC~> CANCEL"
-  'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
+  'for-unit '(unit-peasant))
 
 ;; buildings commands ---------------------------------------------------------
 
@@ -526,14 +526,14 @@
 (define-button 'pos 1 'level 0 'icon 'icon-alliance-ship-move
   'action 'move
   'key "m" 'hint "~!MOVE"
-  'for-unit '(unit-human-oil-tanker unit-human-oil-tanker-full
+  'for-unit '(unit-human-oil-tanker
     unit-alliance-submarine unit-battleship unit-alliance-destroyer
     unit-alliance-transport))
 
 (define-button 'pos 2 'level 0 'icon 'icon-alliance-ship-armor1
   'action 'stop
   'key "s" 'hint "~!STOP"
-  'for-unit '(unit-human-oil-tanker unit-human-oil-tanker-full
+  'for-unit '(unit-human-oil-tanker
     unit-alliance-submarine unit-battleship unit-alliance-destroyer
     unit-alliance-transport))
 
@@ -555,7 +555,7 @@
 (define-button 'pos 6 'level 0 'icon 'icon-alliance-ship-return-oil
   'action 'return-goods
   'key "g" 'hint "RETURN WITH ~!GOODS"
-  'for-unit '(unit-human-oil-tanker-full))
+  'for-unit '(unit-human-oil))
 
 (define-button 'pos 3 'level 0 'icon 'icon-alliance-ship-cannon1
   'action 'attack

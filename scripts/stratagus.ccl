@@ -77,8 +77,10 @@
 (set-color-cycle-all! #t)
 ;(set-color-cycle-all! #f)
 
-;;	FIXME: documentation
+;;	Set the game name. It's used so we can mantain different savegames
+;;	and setting. Might also be used for multiplayer.
 (set-game-name! "wc2")
+;;	set the default map file.
 (set-default-map! "puds/default.pud")
 
 ;;-----------------------------------------------------------------------------

@@ -42,7 +42,7 @@
   'key "m" 'hint "~!MOVE"
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult unit-peon
-    unit-peon-with-gold unit-peon-with-wood unit-fad-man unit-double-head
+    unit-fad-man unit-double-head
     unit-sharp-axe unit-beast-cry unit-quick-blade unit-ice-bringer
     unit-evil-knight unit-skeleton unit-eye-of-vision unit-dragon
     unit-zeppelin unit-death-knight unit-fire-breeze
@@ -53,7 +53,7 @@
   'key "s" 'hint "~!STOP"
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult unit-peon
-    unit-peon-with-gold unit-peon-with-wood unit-fad-man unit-double-head
+    unit-fad-man unit-double-head
     unit-sharp-axe unit-beast-cry unit-quick-blade unit-ice-bringer
     unit-evil-knight unit-skeleton unit-eye-of-vision unit-dragon
     unit-zeppelin unit-death-knight unit-fire-breeze
@@ -80,7 +80,7 @@
   'key "a" 'hint "~!ATTACK"
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult unit-peon
-    unit-peon-with-gold unit-peon-with-wood unit-fad-man unit-double-head
+    unit-fad-man unit-double-head
     unit-sharp-axe unit-beast-cry unit-quick-blade unit-ice-bringer
     unit-evil-knight unit-skeleton unit-dragon unit-fire-breeze
     orc-group unit-daemon))
@@ -166,7 +166,7 @@
   'key "d" 'hint "~!DEMOLISH"
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult unit-peon
-    unit-peon-with-gold unit-peon-with-wood unit-fad-man unit-double-head
+    unit-fad-man unit-double-head
     unit-sharp-axe unit-beast-cry unit-quick-blade unit-ice-bringer
     unit-evil-knight unit-skeleton unit-eye-of-vision unit-dragon
     unit-zeppelin orc-group))
@@ -259,7 +259,7 @@
 (define-button 'pos 4 'level 0 'icon 'icon-repair
   'action 'repair
   'key "r" 'hint "~!REPAIR"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 5 'level 0 'icon 'icon-harvest
   'action 'harvest
@@ -269,117 +269,117 @@
 (define-button 'pos 6 'level 0 'icon 'icon-return-goods-peon
   'action 'return-goods
   'key "g" 'hint "RETURN WITH ~!GOODS"
-  'for-unit '(unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 ;; build basic/advanced structs -----------------------------------------------
 
 (define-button 'pos 7 'level 0 'icon 'icon-build-basic
   'action 'button 'value 1
   'key "b" 'hint "~!BUILD BASIC STRUCTURE"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 8 'level 0 'icon 'icon-build-advanced
   'action 'button 'value 2
   'allowed 'check-units-or 'allow-arg '(unit-troll-lumber-mill unit-stronghold)
   'key "v" 'hint "BUILD AD~!VANCED STRUCTURE"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 9 'level 0 'icon 'icon-build-advanced
   'action 'button 'value 3
   'allowed 'check-units-and 'allow-arg '(unit-fortress unit-temple-of-the-damned
     unit-altar-of-storms)
   'key "e" 'hint "BUILD SP~!ECIAL STRUCTURE"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 ;; simple buildings orc -------------------------------------------------------
 
 (define-button 'pos 1 'level 1 'icon 'icon-pig-farm
   'action 'build 'value 'unit-pig-farm
   'key "f" 'hint "BUILD PIG ~!FARM"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 2 'level 1 'icon 'icon-mythical-barracks
   'action 'build 'value 'unit-mythical-barracks
   'key "b" 'hint "BUILD ~!BARRACKS"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 3 'level 1 'icon 'icon-great-hall
   'action 'build 'value 'unit-great-hall
   'key "h" 'hint "BUILD GREAT ~!HALL"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 4 'level 1 'icon 'icon-troll-lumber-mill
   'action 'build 'value 'unit-troll-lumber-mill
   'key "l" 'hint "BUILD TROLL ~!LUMBER MILL"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 5 'level 1 'icon 'icon-mythical-blacksmith
   'action 'build 'value 'unit-mythical-blacksmith
   'key "s" 'hint "BUILD BLACK~!SMITH"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 7 'level 1 'icon 'icon-mythical-watch-tower
   'action 'build 'value 'unit-mythical-watch-tower
   'key "t" 'hint "BUILD ~!TOWER"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 8 'level 1 'icon 'icon-mythical-wall
   'action 'build 'value 'unit-orc-wall
   'allowed 'check-network
   'key "w" 'hint "BUILD ~!WALL"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 9 'level 1 'icon 'icon-cancel
   'action 'button 'value 0
   'key "\033" 'hint "~<ESC~> CANCEL"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 ;; orc advanced buildings -----------------------------------------------------
 
 (define-button 'pos 1 'level 2 'icon 'icon-mythical-shipyard
   'action 'build 'value 'unit-mythical-shipyard
   'key "s" 'hint "BUILD ~!SHIPYARD"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 2 'level 2 'icon 'icon-mythical-foundry
   'action 'build 'value 'unit-mythical-foundry
   'key "f" 'hint "BUILD ~!FOUNDRY"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 3 'level 2 'icon 'icon-mythical-refinery
   'action 'build 'value 'unit-orc-refinery
   'key "r" 'hint "BUILD ~!REFINERY"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 4 'level 2 'icon 'icon-alchemist
   'action 'build 'value 'unit-alchemist
   'key "a" 'hint "BUILD GOBLIN ~!ALCHEMIST"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 5 'level 2 'icon 'icon-ogre-mound
   'action 'build 'value 'unit-ogre-mound
   'key "o" 'hint "BUILD ~!OGRE MOUND"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 6 'level 2 'icon 'icon-temple-of-the-damned
   'action 'build 'value 'unit-temple-of-the-damned
   'key "t" 'hint "BUILD ~!TEMPLE OF THE DAMNED"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 7 'level 2 'icon 'icon-altar-of-storms
   'action 'build 'value 'unit-altar-of-storms
   'key "l" 'hint "BUILD A~!LTAR OF STORMS"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 8 'level 2 'icon 'icon-dragon-roost
   'action 'build 'value 'unit-dragon-roost
   'key "d" 'hint "BUILD ~!DRAGON ROOST"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 9 'level 2 'icon 'icon-cancel
   'action 'button 'value 0
   'key "\033" 'hint "~<ESC~> CANCEL"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 ;; orc special buildings ------------------------------------------------------
 
@@ -387,18 +387,18 @@
   'action 'build 'value 'unit-dark-portal
   'allowed 'check-no-network
   'key "p" 'hint "BUILD DARK ~!PORTAL"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 2 'level 3 'icon 'icon-runestone
   'action 'build 'value 'unit-runestone
   'allowed 'check-no-network
   'key "r" 'hint "BUILD ~!RUNESTONE"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 (define-button 'pos 9 'level 3 'icon 'icon-cancel
   'action 'button 'value 0
   'key "\033" 'hint "~<ESC~> CANCEL"
-  'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
+  'for-unit '(unit-peon))
 
 ;; orc buildings commands -----------------------------------------------------
 
@@ -554,13 +554,13 @@
 (define-button 'pos 1 'level 0 'icon 'icon-mythical-ship-move
   'action 'move
   'key "m" 'hint "~!MOVE"
-  'for-unit '(unit-orc-oil-tanker unit-orc-oil-tanker-full unit-mythical-submarine
+  'for-unit '(unit-orc-oil-tanker unit-mythical-submarine
     unit-ogre-juggernaught unit-mythical-destroyer unit-mythical-transport))
 
 (define-button 'pos 2 'level 0 'icon 'icon-mythical-ship-armor1
   'action 'stop
   'key "s" 'hint "~!STOP"
-  'for-unit '(unit-orc-oil-tanker unit-orc-oil-tanker-full unit-mythical-submarine
+  'for-unit '(unit-orc-oil-tanker unit-mythical-submarine
     unit-ogre-juggernaught unit-mythical-destroyer unit-mythical-transport))
 
 (define-button 'pos 3 'level 0 'icon 'icon-mythical-unload
@@ -581,7 +581,7 @@
 (define-button 'pos 6 'level 0 'icon 'icon-mythical-ship-return-oil
   'action 'return-goods
   'key "g" 'hint "RETURN WITH ~!GOODS"
-  'for-unit '(unit-orc-oil-tanker-full))
+  'for-unit '(unit-orc-oil))
 
 (define-button 'pos 3 'level 0 'icon 'icon-mythical-ship-cannon1
   'action 'attack
