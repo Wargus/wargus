@@ -1,0 +1,86 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	ai.ccl		-	Define the AI.
+;;
+;;	(c) Copyright 2000 by Lutz Sammer
+;;
+;;	$Id$
+;;
+
+;;=============================================================================
+;;
+;;	AI helper table, the AI must know where to build units.
+;;
+;;	(define-ai-helper (list))
+;;
+(define-ai-helper
+    ;;
+    ;;	Unit can build which buildings.
+    ;;
+    (build 'unit-peasant 'unit-main-hall)
+    ;;
+    ;;	Building can train which units.
+    ;;
+    (train 'unit-main-hall 'unit-peasant)
+    ;;
+    ;;	Building can research which upgrades.
+    ;;
+    (research 'unit-main-hall 'unit-town-hall 'unit-great-hall)
+    )
+
+;;
+;;	Define an AI engine.
+;;
+;;	(define-ai name race class script)
+;;		
+;;	name	name of the AI for selection.
+;;	class	class of the AI for map editor.
+;;	script	Main AI script.
+;;
+(define-ai "my-ai" "human" "land-attack"
+  (list
+    ;;
+    ;;	Enable or disable the AI cheating on unexplored area.
+    ;;	    (set-cheat-unexplored! #t)
+    ;;		The AI sees all area explored.
+    ;;	    (set-cheat-unexplored! #f)
+    ;;		The AI sees unexplored area as it is.
+    ;;
+    (set-cheat-unexplored! #t) 
+    ;;
+    ;;	Enable or disable the AI cheating on visibile area.
+    ;;	    (set-cheat-visibile! #t)
+    ;;		The AI sees all area visibile.
+    ;;	    (set-cheat-visibile! #f)
+    ;;		The AI sees visibile area as it is.
+    ;;
+    (set-cheat-visible! #t) 
+    ;;
+    ;;	Build a building.
+    ;;	    (build building x y)
+    ;;		Build a building at position x,y.
+    ;;	    (build building)
+    ;;		Build a building position selected from the AI.
+    ;;
+    (build 'unit-town-hall)
+    ;;
+    ;;	Train an unit.
+    ;;	    (train unit)
+    ;;		Train a units.
+    ;;	    (train unit count)
+    ;;		Train count units.
+    (train 'unit-peon 4)
+    ;;
+    ;;	Wait until the units are ready.
+    ;;	    (wait unit count)
+    ;;
+    (wait 'unit-peon 4)
+    ))
