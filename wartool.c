@@ -2809,13 +2809,13 @@ int ConvertText(char* file,int txte,int ofs)
     char strdat[1024];
     struct stat st;
 
-    // need this for German version of original cd
 #ifdef USE_BEOS
     sprintf(strdat, "%s/STRDAT.WAR", ArchiveDir);
 #else
     sprintf(strdat, "%s/strdat.war", ArchiveDir);
 #endif
     stat(strdat, &st);
+    // check for German or UK CD's respectively, else US CD
     if (st.st_size == 55724 || st.st_size == 51451) {
 	--txte;
     }
@@ -3498,27 +3498,28 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
     unsigned char *current, *next, *nextobj, *currentobj;
     FILE *inlevel, *outlevel;
     int l, levelno, noobjs, race;
-    struct stat s;
+    struct stat st;
     char rezdat[1024];
 
     //Campaign data is in different spots on the original and
     //expansion CD's, have to take care of this at runtime.
     if (expansion) {
-      ofs=236;
-      txte=54;
+	ofs=236;
+	txte=54;
     } else {
-      ofs=140;
+	ofs=140;
 #ifdef USE_BEOS
-      sprintf(rezdat, "%s/REZDAT.WAR", ArchiveDir);
+	sprintf(rezdat, "%s/REZDAT.WAR", ArchiveDir);
 #else
-      sprintf(rezdat, "%s/rezdat.war", ArchiveDir);
+	sprintf(rezdat, "%s/rezdat.war", ArchiveDir);
 #endif
-      stat(rezdat, &s);
-      if (s.st_size == 1894026) {
-        txte=54;
-      } else {
-        txte=53;
-      }
+	stat(rezdat, &st);
+	// 54 for US cd, 53 for UK and German CD
+	if (st.st_size == 1894026) {
+	    txte=54;
+        } else {
+	    txte=53;
+	}
     }
 
     objectives = ExtractEntry(ArchiveOffsets[txte], &l);
@@ -3673,7 +3674,7 @@ int main(int argc,char** argv)
 {
     unsigned u;
     char buf[1024];
-    struct stat stat_buf;
+    struct stat st;
     int expansion_cd;
     int video;
     int a;
@@ -3733,8 +3734,8 @@ int main(int argc,char** argv)
 #else
     sprintf(buf, "%s/rezdat.war", ArchiveDir);
 #endif
-    stat(buf, &stat_buf);
-    if ( expansion_cd==-1 || (expansion_cd!=1 && (stat_buf.st_size != 2811086)) ) {
+    stat(buf, &st);
+    if ( expansion_cd==-1 || (expansion_cd!=1 && (st.st_size != 2811086)) ) {
 	expansion_cd=0;
     } else {
 	expansion_cd=1;
