@@ -713,6 +713,7 @@
   'costs '(time 100 gold 900 wood 100)
   'speed 13
   'hit-points 90
+  'max-mana 255
   'tile-size '(1 1) 'box-size '(42 42)
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
   'armor 4 'basic-damage 8 'piercing-damage 4 'missile 'missile-none
