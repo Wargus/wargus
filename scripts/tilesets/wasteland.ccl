@@ -39,11 +39,9 @@
   'palette "tilesets/wasteland/wasteland.rgb"
   ;; Slots descriptions
   'slots (list 'special (list
-    'extra-trees #( 115 116 117 118 119 120 )
     'top-one-tree 121 'mid-one-tree 122 'bot-one-tree 123
     'removed-tree 126
     'growing-tree #( -1 -1 )
-    'extra-rocks #( 150 151 152 153 154 155 )
     'top-one-rock 158 'mid-one-rock 159 'bot-one-rock 160
     'removed-rock 163 )
   'solid (list "unused"
