@@ -86,7 +86,7 @@ static inline unsigned int Swap32(unsigned int D) {
 }
 #define FetchLE16(p) Swap16(*((unsigned short*)(p))++)
 #define FetchLE32(p) Swap32(*((unsigned int*)(p))++)
-#define AccessLE16(p) (*((unsigned short*)(p)))
+#define AccessLE16(p) Swap16((*((unsigned short*)(p))))
 #define AccessLE32(p) Swap32(*((unsigned int*)(p)))
 #define ConvertLE16(v) Swap16(v)
 #endif
