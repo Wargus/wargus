@@ -92,8 +92,6 @@ copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphics\ui
 copy /b %CONTRIB%\freecraft.png %DIR%\graphics\ui
 mkdir %DIR%\music
 copy /b %CONTRIB%\music\toccata.mod.gz %DIR%\music\default.mod.gz
-REM copy /b %CONTRIB%\ui\alliance\*.png %DIR%\graphic\ui\alliance
-REM copy /b %CONTRIB%\ui\mythical\*.png %DIR%\graphic\ui\mythical
 
 REM ###########################################################################
 REM ##      MISC
@@ -102,8 +100,24 @@ REM ###########################################################################
 REM Compress HOW-TODO ?
 
 REM
+REM	Copy original puds into data directory
+REM
+mkdir %DIR%\puds\single
+mkdir %DIR%\puds\multi
+mkdir %DIR%\puds\multiple
+mkdir %DIR%\puds\strange
+copy /b %ARCHIVE%\..\puds\multi\* %DIR%\puds\multi
+copy /b %ARCHIVE%\..\puds\single\* %DIR%\puds\single
+copy /b %ARCHIVE%\..\puds\strange\* %DIR%\puds\strange
+
+REM
+REM	Copy contrib puds into data directory
+REM
+copy /b %CONTRIB%\puds\single\* %DIR%\puds\single
+copy /b %CONTRIB%\puds\multi\* %DIR%\puds\multiple
+
+REM
 REM	Setup the default pud
 REM
 copy /b %DIR%\puds\internal\internal12.pud.gz %DIR%\default.pud.gz
 ECHO You only need to run this script once
-
