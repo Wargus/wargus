@@ -812,6 +812,13 @@
       'unit-paladin 'unit-ogre-mage) )
 
 ;;
+;;	Mage of the current race.
+;;
+(define (ai:mage)
+  (if (eq? (ai:get-race) race1)
+      'unit-mage 'unit-death-knight) )
+
+;;
 ;;	Catapult of the current race.
 ;;
 (define (ai:catapult)
@@ -945,11 +952,32 @@
       'unit-human-transport 'unit-orc-transport) )
 
 ;;
-;;	Upgrade shooter to elite Shooter of the current race.
+;;	1st Elite Shooter of the current race.
 ;;
 (define (ai:upgrade-elite-shooter)
   (if (eq? (ai:get-race) race1)
       'upgrade-ranger 'upgrade-berserker) )
+
+;;
+;;	1st Upgrade of elite Shooter of the current race.
+;;
+(define (ai:upgrade-elite-shooter-1)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-ranger-scouting 'upgrade-berserker-scouting) )
+
+;;
+;;	2nd Upgrade of elite Shooter of the current race.
+;;
+(define (ai:upgrade-elite-shooter-2)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-longbow 'upgrade-light-axes) )
+
+;;
+;;	3th Upgrade of elite Shooter of the current race.
+;;
+(define (ai:upgrade-elite-shooter-3)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-ranger-marksmanship 'upgrade-berserker-regeneration) )
 
 ;;
 ;;	Upgrade cavalrie to cavalrie mages of the current race.
@@ -959,7 +987,7 @@
       'upgrade-paladin 'upgrade-ogre-mage) )
 
 ;;
-;;	1th spell of the cavalrie mages of the current race.
+;;	1st spell of the cavalrie mages of the current race.
 ;;
 (define (ai:cavalrie-mage-spell-1)
   (if (eq? (ai:get-race) race1)
@@ -971,6 +999,41 @@
 (define (ai:cavalrie-mage-spell-2)
   (if (eq? (ai:get-race) race1)
       'upgrade-exorcism 'upgrade-runes))
+
+;;
+;;	1st spell of the mages of the current race.
+;;
+(define (ai:mage-spell-1)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-slow 'upgrade-haste))
+
+;;
+;;	2nd spell of the mages of the current race.
+;;
+(define (ai:mage-spell-2)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-flame-shield 'upgrade-raise-dead))
+
+;;
+;;	3th spell of the mages of the current race.
+;;
+(define (ai:mage-spell-3)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-invisibility 'upgrade-whirlwind))
+
+;;
+;;	4th spell of the mages of the current race.
+;;
+(define (ai:mage-spell-4)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-polymorph 'upgrade-unholy-armor))
+
+;;
+;;	5th spell of the mages of the current race.
+;;
+(define (ai:mage-spell-5)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-blizzard 'upgrade-death-and-decay))
 
 ;;=============================================================================
 ;;
@@ -2111,3 +2174,164 @@
 
     (ai:script ai:hum-08-attack-endloop) ))
 
+;;=============================================================================
+;;	This AI script builds only worker and tanker.
+;;
+(define-ai 'hum-09 "*" "hum-09"
+  '((ai:debug #f)
+    (ai:set  (ai:worker) 2)
+    (ai:set  (ai:tanker) 1)
+    (ai:sleep	10000)
+    (ai:restart)))
+
+;;=============================================================================
+;;	This AI script builds only worker and tanker.
+;;		Upgrades very much.
+;;		Attacks with land units and water units.
+;;
+(define ai:hum-10-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:sleep	5000)
+    (ai:force 0 (ai:soldier) 3 (ai:shooter) 3 (ai:cavalrie) 2 (ai:catapult) 1)
+    (ai:force 2 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 2 (ai:catapult) 1
+	(ai:transporter) 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:sleep	6000)
+    (ai:force 1 (ai:destroyer) 1 (ai:battleship) 0)
+    (ai:force 3 (ai:destroyer) 2 (ai:battleship) 1)
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 3)
+
+    (ai:sleep	5000)
+    (ai:force 1 (ai:destroyer) 3 (ai:battleship) 1)
+    (ai:force 3 (ai:destroyer) 0 (ai:battleship) 0)
+    (ai:force 0 (ai:soldier) 4 (ai:shooter) 2 (ai:cavalrie) 2 (ai:catapult) 2)
+    (ai:force 2 (ai:soldier) 0 (ai:shooter) 2 (ai:cavalrie) 2 (ai:catapult) 0)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:force 1 (ai:destroyer) 1 (ai:battleship) 1)
+    (ai:force 3 (ai:destroyer) 2 (ai:battleship) 0)
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 3)
+
+    (ai:script ai:hum-10-attack-endloop) ) )
+
+(define-ai 'hum-10 "*" "hum-10"
+  '((begin (ai:debug #t) (ai:force-role 0 'defend) (ai:force-role 1 'defend))
+    (ai:set  (ai:worker) 7)
+    (ai:set  (ai:tanker) 3)
+    (ai:wait (ai:worker))	;; Wait for the workers
+
+    (ai:set  (ai:transporter) 1)
+    (ai:force 0 (ai:destroyer) 2)
+    (ai:force 2 (ai:transporter) 1)
+    (ai:sleep	6000)
+    (ai:force 2 (ai:transporter) 0)
+    (ai:force 0 (ai:soldier) 4 (ai:shooter) 4
+      (ai:destroyer) 0 (ai:transporter) 1)
+    (ai:force 1 (ai:destroyer) 2)
+
+    (ai:research (ai:upgrade-cavalrie-mage))
+    (ai:research (ai:cavalrie-mage-spell-1))
+    (ai:research (ai:mage-spell-1))
+    (ai:research (ai:mage-spell-2))
+    (ai:research (ai:upgrade-missile-1))
+
+    (ai:force 0 (ai:soldier) 2 (ai:shooter) 2 (ai:transporter) 0)
+    (ai:force 2 (ai:soldier) 2 (ai:shooter) 2 (ai:transporter) 1)
+    (ai:force 1 (ai:destroyer) 2)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:research (ai:upgrade-weapon-1))
+    (ai:sleep	4000)
+    (ai:research (ai:upgrade-armor-1))
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:sleep	5000)
+    (ai:force 1 (ai:destroyer) 3 (ai:battleship) 1)
+    (ai:research (ai:upgrade-missile-2))
+    (ai:research (ai:upgrade-weapon-2))
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:research (ai:upgrade-ship-cannon-1))
+    (ai:sleep	3000)
+    (ai:research (ai:upgrade-armor-2))
+    (ai:research (ai:upgrade-ship-armor-1))
+    (ai:research (ai:upgrade-elite-shooter))
+    (ai:force 0 (ai:soldier) 2 (ai:shooter) 3)
+    (ai:force 2 (ai:soldier) 2 (ai:shooter) 1 (ai:transporter) 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:research (ai:upgrade-catapult-1))
+    (ai:research (ai:upgrade-ship-cannon-2))
+    (ai:research (ai:upgrade-ship-armor-2))
+    (ai:research (ai:upgrade-elite-shooter-1))
+    (ai:force 0 (ai:soldier) 1 (ai:shooter) 2 (ai:mage) 1)
+    (ai:sleep	5000)
+    (ai:research (ai:upgrade-elite-shooter-2))
+    (ai:research (ai:upgrade-elite-shooter-3))
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:force 0 (ai:soldier) 4 (ai:shooter) 3 (ai:cavalrie) 2 (ai:catapult) 1)
+    (ai:force 2 (ai:soldier) 0 (ai:shooter) 1 (ai:cavalrie) 2 (ai:catapult) 1
+	(ai:transporter) 1)
+    (ai:sleep	5000)
+
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:script ai:hum-10-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds only worker and tanker.
+;;		Upgrades very much.
+;;		Attacks with land units and water units.
+;;
+(define ai:hum-11-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:sleep	12000)
+    (ai:sleep	8000)
+    (ai:sleep	13000)
+    ;; FIXME: continue
+    (ai:script ai:hum-11-attack-endloop) ) )
+
+(define-ai 'hum-11 "*" "hum-11"
+  '((begin (ai:debug #t) (ai:force-role 0 'defend) (ai:force-role 1 'attack))
+    (ai:set  (ai:worker) 8)
+    (ai:wait (ai:worker))	;; Wait for the workers
+    (ai:sleep	6000)
+
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 2 (ai:cavalrie) 2)
+    (ai:force 1 (ai:soldier) 2 (ai:shooter) 0 (ai:cavalrie) 0)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:sleep	6000)
+
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	7000)
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 1 (ai:cavalrie) 2)
+    (ai:force 1 (ai:soldier) 2 (ai:shooter) 1 (ai:cavalrie) 0)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	5000)
+    (ai:force 1 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0)
+    (ai:force 0 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 2 (ai:catapult) 1)
+    (ai:research (ai:upgrade-missile-1))
+    (ai:research (ai:upgrade-weapon-1))
+    (ai:research (ai:upgrade-armor-1))
+    (ai:sleep	6000)
+
+    ;; FIXME: continue
+
+    (ai:script ai:hum-11-attack-endloop) ))
