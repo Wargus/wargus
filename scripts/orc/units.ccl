@@ -106,6 +106,7 @@
     acknowledge "peon-acknowledge"
     ready "peon-ready"
 ;    repair "peon-attack"
+    harvest wood "tree chopping"
     help "basic orc voices help 1"
     dead "basic orc voices dead"
     attack "peon-attack"))

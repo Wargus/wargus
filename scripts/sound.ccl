@@ -819,7 +819,6 @@
   'click sound-click
 
 ; FIXME: Not ready
-;  'tree-chopping (make-sound "tree chopping" "tree_chopping.wav")
 ;  'transport-docking
 ;  'building-construction
 
