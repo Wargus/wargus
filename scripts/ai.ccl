@@ -446,6 +446,7 @@
     (ai:force 4 (ai:flyer) 2)
     (ai:force 5 (ai:flyer) 2)
     (ai:force 6 (ai:flyer) 1)
+    (ai:wait-force 5)
     (ai:wait-force 6)		;; wait until attack party is completed
     (ai:attack-with-force 1)
     (ai:attack-with-force 2)
@@ -515,7 +516,74 @@
     (ai:wait-force 2)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-;; WAVE 3 FIXME: 
+    (ai:sleep 500)
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+    (ai:need (ai:tower))
+    (ai:force 1 (ai:flyer) 2)
+    (ai:force 2 (ai:flyer) 2)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 500)
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+    (ai:need (ai:tower))
+    (ai:force 1 (ai:flyer) 1)
+    (ai:force 2 (ai:flyer) 2)
+    (ai:force 3 (ai:flyer) 2)
+    (ai:wait-force 2)
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+    (ai:attack-with-force 3)
+
+    (ai:sleep 500)
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+    (ai:need (ai:tower))
+    (ai:force 1 (ai:flyer) 2)
+    (ai:force 2 (ai:flyer) 2)
+    (ai:force 3 (ai:flyer) 2)
+    (ai:wait-force 2)
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+    (ai:attack-with-force 3)
+
+    (ai:sleep 500)
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+    (ai:need (ai:tower))
+    (ai:force 1 (ai:flyer) 2)
+    (ai:force 2 (ai:flyer) 2)
+    (ai:force 3 (ai:flyer) 3)
+    (ai:wait-force 2)
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+    (ai:attack-with-force 3)
+
+    (ai:sleep 500)
+    (ai:need (ai:tower))
+    (ai:upgrade-to (ai:guard-tower))
+    (ai:need (ai:tower))
+    (ai:force 1 (ai:flyer) 2)
+    (ai:force 2 (ai:flyer) 3)
+    (ai:force 3 (ai:flyer) 3)
+    (ai:wait-force 2)
+    (ai:wait-force 3)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+    (ai:attack-with-force 3)
+
+    (ai:sleep 500)
+    (ai:force 1 (ai:flyer) 1)
+    (ai:force 2 (ai:flyer) 2)
+    (ai:force 3 (ai:flyer) 2)
+    (ai:force 4 (ai:flyer) 2)
+    (ai:force 5 (ai:flyer) 2)
+    (ai:wait-force 5)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+    (ai:attack-with-force 3)
+    (ai:attack-with-force 4)
+    (ai:attack-with-force 5)
 
     (ai:sleep 500)
     (ai:script ai:air-attack-endloop) ))
