@@ -137,7 +137,7 @@
   'can-target-land 'can-target-sea 'can-target-air
   'air-unit
   'critter
-  'can-see-submarine
+  'detect-cloak
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -417,7 +417,7 @@
   'building
   'revealer
   'critter
-  'can-see-submarine
+  'detect-cloak
   'sounds '())
 
 (define-unit-type 'unit-reveal-attacker 'name "Dummy unit"
