@@ -101,16 +101,16 @@
     "missile-big-cannon"		"big cannon.png"		16 16 
     sound-explosion)
 (missile-type MissileExorcism
-    "missile-exorcism"			"exorcism.png"			32 32 
+    "missile-exorcism"			"exorcism.png"			48 48 
     #f)
 (missile-type MissileHealEffect
-    "missile-heal-effect"		"heal effect.png"		32 32 
+    "missile-heal-effect"		"heal effect.png"		48 48 
     #f)
 (missile-type MissileTouchOfDeath
     "missile-touch-of-death"		"touch of death.png"		32 32 
     #f)
 (missile-type MissileRune
-    "missile-rune"			"rune.png"			32 32 
+    "missile-rune"			"rune.png"			16 16 
     #f)
 (missile-type MissileWhirlwind
     "missile-whirlwind"			"tornado.png"			56 56 
