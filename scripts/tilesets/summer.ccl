@@ -39,11 +39,9 @@
   'palette "tilesets/summer/summer.rgb"
   ;; Slots descriptions
   'slots (list 'special (list		;; Can't be in pud
-    'extra-trees #( 115 116 117 118 119 120 )
     'top-one-tree 121 'mid-one-tree 122 'bot-one-tree 123
     'removed-tree 126
     'growing-tree #( -1 -1 )
-    'extra-rocks #( 153 154 155 156 157 158 )
     'top-one-rock 161 'mid-one-rock 162 'bot-one-rock 163
     'removed-rock 166 )
   'solid (list "unused"
