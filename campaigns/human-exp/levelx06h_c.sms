@@ -10,17 +10,22 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (and (and (if-unit 'opponents '== 0 'unit-orc-shipyard) 
-                             (if-rescued-near-unit 'this '== 1 'unit-danath 'unit-circle-of-power))
- 			     ) (if-rescued-near-unit 'this '== 1 'unit-turalyn 'unit-circle-of-power))
+(add-trigger (lambda ()
+  (and
+    (if-unit '0 '== 0 'unit-orc-shipyard) 
+    (if-unit '2 '== 0 'unit-orc-shipyard) 
+    (if-unit '4 '== 0 'unit-orc-shipyard) 
+    (if-unit '5 '== 0 'unit-orc-shipyard) 
+    (if-rescued-near-unit 'this '== 1 'unit-danath 'unit-circle-of-power)
+    (if-rescued-near-unit 'this '== 1 'unit-turalyon 'unit-circle-of-power)))
   (lambda () (action-victory)))
 
 
 (add-trigger (lambda () (and (if-unit 'this '== 0 'unit-danath)
                              (if-unit 6 '== 0 'unit-danath)))
   (lambda () (action-defeat)))
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-turalyn)
-                             (if-unit 6 '== 0 'unit-turalyn)))
+(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-turalyon)
+                             (if-unit 6 '== 0 'unit-turalyon)))
   (lambda () (action-defeat)))
 (add-trigger (lambda () (if-unit 'this '== 0 'all))
   (lambda () (action-defeat)))
@@ -208,4 +213,4 @@
 (define-allow 'unit-destroyed-3x3-place		"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-destroyed-4x4-place		"FFFFFFFFFFFFFFFF")
 
-(load-pud "campaigns/human-exp/levelx03h.pud")
+(load-pud "campaigns/human-exp/levelx06h.pud")
