@@ -125,7 +125,7 @@
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
   'basic-damage 80 'piercing-damage 0 'missile 'missile-ballista-bolt
-  'min-attack-range 1 'max-attack-range 8
+  'min-attack-range 2 'max-attack-range 8
   'weapons-upgradable 1
   'priority 70
   'points 100
@@ -1387,7 +1387,7 @@
   'tile-size '(2 2) 'box-size '(63 63)
   'sight-range 9 'computer-reaction-range 7 'person-reaction-range 7
   'armor 20 'basic-damage 50 'piercing-damage 0 'missile 'missile-small-cannon
-  'min-attack-range 1 'max-attack-range 7
+  'min-attack-range 2 'max-attack-range 7
   'priority 40 'annoy-computer-factor 50
   'points 250
   'corpse '(unit-destroyed-2x2-place 0)
