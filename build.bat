@@ -39,7 +39,7 @@ REM     Alternatively: Enter the path to WC2 on your hard drive.
 REM	If you need to force expansion, use the -e option.
 REM
 
-SET CDROM="C:\War2"
+REM SET CDROM="C:\War2"
 REM SET EXPANSION=-e
 
 REM
@@ -67,6 +67,7 @@ IF NOT [%2] == [] SET DIR=%2
 SET ARCHIVE=%CDROM%\data
 
 IF NOT EXIST %ARCHIVE%\rezdat.war goto DIRERROR
+IF NOT EXIST %CONTRIB%\* goto CONTRIBERROR
 
 REM ###########################################################################
 REM ##      Extract
@@ -127,7 +128,13 @@ ECHO NOTE: You only need to run this script once
 goto EOF
 
 :DIRERROR
-ECHO ERROR: %ARCHIVE%\rezdat.war not found
+ECHO ERROR: '%ARCHIVE%\rezdat.war' not found
+goto EOF
+
+:CONTRIBERROR
+ECHO ERROR: '%CONTRIB%' not found try running %0
+ECHO 	from the toplevel freecraft directory
+goto EOF
 
 :EOF
 pause
