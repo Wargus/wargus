@@ -46,8 +46,8 @@ DefineMenuGraphics({
 -- menu-game
 --
 DefineMenu("name", "menu-game", "geometry", {272, 96, 256, 288},
-  "panel", "panel1", "default", 7)
-DefineMenuItem("pos", { 128, 11}, "font", "large", "init", "game-menu-init",
+  "panel", "panel1", "default", 7, "init", "game-menu-init")
+DefineMenuItem("pos", { 128, 11}, "font", "large",
   "text", {"caption", "Game Menu", "align", "center"},
   "menu", "menu-game")
 DefineMenuItem("pos", { 16, 40}, "font", "large",
@@ -105,8 +105,8 @@ DefineMenuItem("pos", { 16, 288 - 40}, "font", "large",
 -- menu-victory
 --
 DefineMenu("name", "menu-victory", "geometry", {256, 176, 288, 128},
-  "panel", "panel4", "default", 2)
-DefineMenuItem("pos", { 144, 11}, "font", "large", "init", "victory-init",
+  "panel", "panel4", "default", 2, "init", "victory-init")
+DefineMenuItem("pos", { 144, 11}, "font", "large",
   "text", {"caption", "Congratulations!", "align", "center"},
   "menu", "menu-victory")
 DefineMenuItem("pos", { 144, 32}, "font", "large",
@@ -132,8 +132,8 @@ DefineMenuItem("pos", { 32, 90}, "font", "large",
 -- menu-defeated
 --
 DefineMenu("name", "menu-defeated", "geometry", {256, 176, 288, 128},
-  "panel", "panel4", "default", 2)
-DefineMenuItem("pos", { 144, 11}, "font", "large", "init", "defeated-init",
+  "panel", "panel4", "default", 2, "init", "defeated-init")
+DefineMenuItem("pos", { 144, 11}, "font", "large",
   "text", {"caption", "You have failed to", "align", "center"},
   "menu", "menu-defeated")
 DefineMenuItem("pos", { 144, 32}, "font", "large",
@@ -158,8 +158,8 @@ DefineMenuItem("pos", { 32, 90}, "font", "large",
 -- menu-save-replay
 --
 DefineMenu("name", "menu-save-replay", "geometry", {256, 176, 288, 128},
-  "panel", "panel4", "default", 1)
-DefineMenuItem("pos", { 144, 11}, "font", "large", "init", "save-replay-init", "exit", "save-replay-exit",
+  "panel", "panel4", "default", 1, "init", "save-replay-init", "exit", "save-replay-exit")
+DefineMenuItem("pos", { 144, 11}, "font", "large",
   "text", {"caption", "Save Replay", "align", "center"},
   "menu", "menu-save-replay")
 DefineMenuItem("pos", { 14, 40}, "font", "game",
@@ -187,11 +187,12 @@ DefineMenuItem("pos", { 162, 80}, "font", "large",
 -- menu-select-scenario
 --
 DefineMenu("name", "menu-select-scenario", "geometry", {144, 64, 352, 352},
-  "panel", "panel5", "background", MenuBackground, "default", 4)
-DefineMenuItem("pos", { 176, 8}, "font", "large", "init", "scen-select-init",
+  "panel", "panel5", "background", MenuBackground, "default", 4,
+  "init", "scen-select-init", "exit", "scen-select-exit")
+DefineMenuItem("pos", { 176, 8}, "font", "large",
   "text", {"caption", "Select scenario", "align", "center"},
   "menu", "menu-select-scenario")
-DefineMenuItem("pos", { 24, 140}, "font", "game", "init", "scen-select-lb-init", "exit", "scen-select-lb-exit",
+DefineMenuItem("pos", { 24, 140}, "font", "game",
   "listbox", {"size", {288, 108},
     "style", "pulldown",
     "func", "scen-select-lb-action",
@@ -253,8 +254,8 @@ DefineMenuItem("pos", { 22, 112}, "font", "game",
 -- menu-program-start
 --
 DefineMenu("name", "menu-program-start", "geometry", {0, 0, 640, 480},
-  "panel", "none", "background", MenuBackground, "default", 1)
-DefineMenuItem("pos", { 0, 0}, "font", "game", "init", "program-start",
+  "panel", "none", "background", MenuBackground, "default", 1, "init", "program-start")
+DefineMenuItem("pos", { 0, 0}, "font", "game",
   "drawfunc", "name-line-draw",
   "menu", "menu-program-start")
 DefineMenuItem("pos", { 208, 104 + (36 * 0)}, "font", "large",
@@ -325,8 +326,8 @@ DefineMenuItem("pos", { 208, 104 + (36 * 8)}, "font", "large",
 -- menu-global-options
 --
 DefineMenu("name", "menu-global-options", "geometry", {144, 64, 352, 352},
-  "panel", "panel5", "background", MenuBackground, "default", 8)
-DefineMenuItem("pos", { 176, 11}, "font", "large", "init", "global-options-init", "exit", "global-options-exit",
+  "panel", "panel5", "background", MenuBackground, "default", 8, "init", "global-options-init", "exit", "global-options-exit")
+DefineMenuItem("pos", { 176, 11}, "font", "large",
   "text", {"caption", "Global Options", "align", "center"},
   "menu", "menu-global-options")
 DefineMenuItem("pos", { 16, 44}, "font", "game",
@@ -413,8 +414,8 @@ DefineMenuItem("pos", { 123, 309}, "font", "large",
 -- menu-custom-game
 --
 DefineMenu("name", "menu-custom-game", "geometry", {0, 0, 640, 480},
-  "panel", "none", "background", MenuBackground, "default", 3)
-DefineMenuItem("pos", { 0, 0}, "font", "game", "init", "game-setup-init",
+  "panel", "none", "background", MenuBackground, "default", 3, "init", "game-setup-init")
+DefineMenuItem("pos", { 0, 0}, "font", "game",
   "drawfunc", "game-draw-func",
   "menu", "menu-custom-game")
 DefineMenuItem("pos", { (640 / 2) + 12, 192}, "font", "large",
@@ -623,8 +624,8 @@ DefineMenuItem("pos", { 208, 320 + (36 * 2)}, "font", "large",
 -- menu-multi-setup
 --
 DefineMenu("name", "menu-multi-setup", "geometry", {0, 0, 640, 480},
-  "panel", "none", "background", MenuBackground, "default", 3)
-DefineMenuItem("pos", { 0, 0}, "font", "game", "init", "multi-game-setup-init", "exit", "multi-game-setup-exit",
+  "panel", "none", "background", MenuBackground, "default", 3, "init", "multi-game-setup-init", "exit", "multi-game-setup-exit")
+DefineMenuItem("pos", { 0, 0}, "font", "game",
   "drawfunc", "multi-game-draw-func",
   "menu", "menu-multi-setup")
 DefineMenuItem("pos", { (640 / 2) + 12, 8}, "font", "large",
@@ -1078,8 +1079,9 @@ DefineMenuItem("pos", { 154, 80}, "font", "large",
 -- menu-net-multi-client
 --
 DefineMenu("name", "menu-net-multi-client", "geometry", {0, 0, 640, 480},
-  "panel", "none", "background", MenuBackground, "default", 4, "netaction", "terminate-net-connect")
-DefineMenuItem("pos", { 0, 0}, "font", "game", "init", "multi-game-client-init", "exit", "multi-game-client-exit",
+  "panel", "none", "background", MenuBackground, "default", 4, "netaction", "terminate-net-connect",
+   "init", "multi-game-client-init", "exit", "multi-game-client-exit")
+DefineMenuItem("pos", { 0, 0}, "font", "game",
   "drawfunc", "multi-client-draw-func",
   "menu", "menu-net-multi-client")
 DefineMenuItem("pos", { (640 / 2) + 12, 8}, "font", "large",
@@ -1426,8 +1428,9 @@ DefineMenuItem("pos", { 40, 34 + (22 * 14)}, "font", "large",
 -- menu-net-connecting
 --
 DefineMenu("name", "menu-net-connecting", "geometry", {176, 260, 288, 128},
-  "panel", "panel4", "background", MenuBackground, "default", 2, "netaction", "terminate-net-connect")
-DefineMenuItem("pos", { 144, 11}, "font", "large", "init", "net-connecting-init", "exit", "net-connecting-exit",
+  "panel", "panel4", "background", MenuBackground, "default", 2, "netaction", "terminate-net-connect",
+  "init", "net-connecting-init", "exit", "net-connecting-exit")
+DefineMenuItem("pos", { 144, 11}, "font", "large",
   "text", {"caption", "Connecting to server", "align", "center"},
   "menu", "menu-net-connecting")
 DefineMenuItem("pos", { 144, 32}, "font", "large",
@@ -1512,8 +1515,8 @@ DefineMenuItem("pos", { 508, 320 + (36 * 3)}, "font", "large",
 -- menu-objectives
 --
 DefineMenu("name", "menu-objectives", "geometry", {272, 96, 256, 288},
-  "panel", "panel1", "default", 10)
-DefineMenuItem("pos", { 128, 11}, "font", "large", "init", "objectives-init",
+  "panel", "panel1", "default", 10, "init", "objectives-init")
+DefineMenuItem("pos", { 128, 11}, "font", "large",
   "text", {"caption", "Objectives", "align", "center"},
   "menu", "menu-objectives")
 DefineMenuItem("pos", { 14, 38 + (21 * 0)}, "font", "large",
@@ -1601,8 +1604,8 @@ DefineMenuItem("pos", { 16, 288 - 40}, "font", "large",
 -- menu-sound-options
 --
 DefineMenu("name", "menu-sound-options", "geometry", {224, 64, 352, 352},
-  "panel", "panel5", "default", 23)
-DefineMenuItem("pos", { 176, 11}, "font", "large", "init", "sound-options-init", "exit", "sound-options-exit",
+  "panel", "panel5", "default", 23, "init", "sound-options-init", "exit", "sound-options-exit")
+DefineMenuItem("pos", { 176, 11}, "font", "large",
   "text", {"caption", "Sound Options", "align", "center"},
   "menu", "menu-sound-options")
 DefineMenuItem("pos", { 16, 36 * 1}, "font", "game",
@@ -1695,8 +1698,8 @@ DefineMenuItem("pos", { 176 - (106 / 2), 352 - 11 - 27}, "font", "large",
 -- menu-preferences
 --
 DefineMenu("name", "menu-preferences", "geometry", {272, 96, 256, 288},
-  "panel", "panel1", "default", 5)
-DefineMenuItem("pos", { 128, 11}, "font", "large", "init", "preferences-init", "exit", "preferences-exit",
+  "panel", "panel1", "default", 5, "init", "preferences-init", "exit", "preferences-exit")
+DefineMenuItem("pos", { 128, 11}, "font", "large",
   "text", {"caption", "Preferences", "align", "center"},
   "menu", "menu-preferences")
 DefineMenuItem("pos", { 16, 36 * 1}, "font", "large",
@@ -1726,8 +1729,8 @@ DefineMenuItem("pos", { 128 - (106 / 2), 245}, "font", "large",
 -- menu-diplomacy
 --
 DefineMenu("name", "menu-diplomacy", "geometry", {222, 76, 352, 352},
-  "panel", "panel5", "default", 5)
-DefineMenuItem("pos", { 136, 30}, "font", "game", "init", "diplomacy-init", "exit", "diplomacy-exit",
+  "panel", "panel5", "default", 5, "init", "diplomacy-init", "exit", "diplomacy-exit")
+DefineMenuItem("pos", { 136, 30}, "font", "game",
   "text", {"caption", "Allied", "align", "center"},
   "menu", "menu-diplomacy")
 DefineMenuItem("pos", { 196, 30}, "font", "game",
@@ -2067,8 +2070,8 @@ DefineMenuItem("pos", { 195, 352 - 40}, "font", "large",
 -- menu-speed-options
 --
 DefineMenu("name", "menu-speed-options", "geometry", {272, 96, 256, 288},
-  "panel", "panel1", "default", 13)
-DefineMenuItem("pos", { 128, 11}, "font", "large", "init", "speed-options-init", "exit", "speed-options-exit",
+  "panel", "panel1", "default", 13, "init", "speed-options-init", "exit", "speed-options-exit")
+DefineMenuItem("pos", { 128, 11}, "font", "large",
   "text", {"caption", "Speed Settings", "align", "center"},
   "menu", "menu-speed-options")
 DefineMenuItem("pos", { 16, 36 * 1}, "font", "game",
@@ -2191,8 +2194,8 @@ DefineMenuItem("pos", { 92, 80}, "font", "large",
 -- menu-tips
 --
 DefineMenu("name", "menu-tips", "geometry", {256, 112, 288, 256},
-  "panel", "panel2", "default", 4)
-DefineMenuItem("pos", { 144, 11}, "font", "large", "init", "tips-init", "exit", "tips-exit",
+  "panel", "panel2", "default", 4, "init", "tips-init", "exit", "tips-exit")
+DefineMenuItem("pos", { 144, 11}, "font", "large",
   "text", {"caption", "Stratagus Tips", "align", "center"},
   "menu", "menu-tips")
 DefineMenuItem("pos", { 14, 256 - 75}, "font", "game",
@@ -2303,8 +2306,8 @@ DefineMenuItem("pos", { 16, 40 + 20}, "font", "game",
 -- menu-save-game
 --
 DefineMenu("name", "menu-save-game", "geometry", {208, 112, 384, 256},
-  "panel", "panel3", "default", 6)
-DefineMenuItem("pos", { 384 / 2, 11}, "font", "large",  "init", "save-game-init", "exit", "save-game-exit",
+  "panel", "panel3", "default", 6, "init", "save-game-init", "exit", "save-game-exit")
+DefineMenuItem("pos", { 384 / 2, 11}, "font", "large",
   "text", {"caption", "Save Game", "align", "center"},
   "menu", "menu-save-game")
 DefineMenuItem("pos", { (384 - 300 - 18) / 2, 11 + 36}, "font", "game",
@@ -2312,7 +2315,7 @@ DefineMenuItem("pos", { (384 - 300 - 18) / 2, 11 + 36}, "font", "game",
     "func", "save-game-enter-action",
     "style", "pulldown"},
   "menu", "menu-save-game")
-DefineMenuItem("pos", { (384 - 300 - 18) / 2, 11 + 36 + 22}, "font", "game",  "init", "save-game-lb-init", "exit", "save-game-lb-exit",
+DefineMenuItem("pos", { (384 - 300 - 18) / 2, 11 + 36 + 22}, "font", "game",
   "listbox", {"size", {300, 126},
     "style", "pulldown",
     "func", "save-game-lb-action",
@@ -2352,11 +2355,12 @@ DefineMenuItem("pos", { (3 * (384 / 3)) - 106 - 10, 256 - 16 - 27}, "font", "lar
 -- menu-load-game
 --
 DefineMenu("name", "menu-load-game", "geometry", {128, 112, 384, 256},
-  "panel", "panel3", "background", MenuBackground, "default", 4)
-DefineMenuItem("pos", { 384 / 2, 11}, "font", "large",  "init", "load-game-init", "exit", "load-game-exit",
+  "panel", "panel3", "background", MenuBackground, "default", 4,
+  "init", "load-game-init", "exit", "load-game-exit")
+DefineMenuItem("pos", { 384 / 2, 11}, "font", "large",
   "text", {"caption", "Load Game", "align", "center"},
   "menu", "menu-load-game")
-DefineMenuItem("pos", { (384 - 300 - 18) / 2, 11 + (36 * 1.5)}, "font", "game",  "init", "load-game-lb-init", "exit", "load-game-lb-exit",
+DefineMenuItem("pos", { (384 - 300 - 18) / 2, 11 + (36 * 1.5)}, "font", "game",
   "listbox", {"size", {300, 126},
     "style", "pulldown",
     "func", "load-game-lb-action",
@@ -2389,8 +2393,8 @@ DefineMenuItem("pos", { 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27}, "fon
 -- menu-save-confirm
 --
 DefineMenu("name", "menu-save-confirm", "geometry", {256, 112, 288, 128},
-  "panel", "panel4", "default", 1)
-DefineMenuItem("pos", { 288 / 2, 11}, "font", "large",  "init", "save-confirm-init", "exit", "save-confirm-exit",
+  "panel", "panel4", "default", 1, "init", "save-confirm-init", "exit", "save-confirm-exit")
+DefineMenuItem("pos", { 288 / 2, 11}, "font", "large",
   "text", {"caption", "Overwrite File", "align", "center"},
   "menu", "menu-save-confirm")
 DefineMenuItem("pos", { 16, 11 + (20 * 1.5)}, "font", "game",
@@ -2419,8 +2423,8 @@ DefineMenuItem("pos", { 288 - 16 - 106, 128 - (27 * 1.5)}, "font", "large",
 -- menu-delete-confirm
 --
 DefineMenu("name", "menu-delete-confirm", "geometry", {256, 112, 288, 128},
-  "panel", "panel4", "default", 1)
-DefineMenuItem("pos", { 288 / 2, 11}, "font", "large",  "init", "delete-confirm-init", "exit", "delete-confirm-exit",
+  "panel", "panel4", "default", 1, "init", "delete-confirm-init", "exit", "delete-confirm-exit")
+DefineMenuItem("pos", { 288 / 2, 11}, "font", "large",
   "text", {"caption", "Delete File", "align", "center"},
   "menu", "menu-delete-confirm")
 DefineMenuItem("pos", { 16, 11 + (20 * 1.5)}, "font", "game",
@@ -2533,11 +2537,12 @@ DefineMenuItem("pos", { 320 + 23, 328}, "font", "large",
 -- menu-editor-main-load-map
 --
 DefineMenu("name", "menu-editor-main-load-map", "geometry", {144, 64, 352, 352},
-  "panel", "panel5", "background", MenuBackground, "default", 4)
-DefineMenuItem("pos", { 352 / 2, 11}, "font", "large",  "init", "editor-main-load-init",
+  "panel", "panel5", "background", MenuBackground, "default", 4,
+  "init", "editor-main-load-init", "exit", "editor-main-load-exit")
+DefineMenuItem("pos", { 352 / 2, 11}, "font", "large",
   "text", {"caption", "Select map", "align", "center"},
   "menu", "menu-editor-main-load-map")
-DefineMenuItem("pos", { (352 - 18 - 288) / 2, 11 + 98}, "font", "game",  "init", "editor-main-load-lb-init", "exit", "editor-main-load-lb-exit",
+DefineMenuItem("pos", { (352 - 18 - 288) / 2, 11 + 98}, "font", "game",
   "listbox", {"size", {288, 108},
     "style", "pulldown",
     "func", "editor-main-load-lb-action",
@@ -2577,11 +2582,12 @@ DefineMenuItem("pos", { ((352 - 18 - 288) / 2) - 2, (11 + 98) - 28}, "font", "ga
 -- menu-editor-load
 --
 DefineMenu("name", "menu-editor-load", "geometry", {224, 64, 352, 352},
-  "panel", "panel5", "default", 4)
-DefineMenuItem("pos", { 352 / 2, 11}, "font", "large",  "init", "editor-load-init",
+  "panel", "panel5", "default", 4,
+  "init", "editor-load-init", "exit", "editor-load-exit")
+DefineMenuItem("pos", { 352 / 2, 11}, "font", "large",
   "text", {"caption", "Select map", "align", "center"},
   "menu", "menu-editor-load")
-DefineMenuItem("pos", { (352 - 18 - 288) / 2, 11 + 98}, "font", "game",  "init", "editor-load-lb-init", "exit", "editor-load-lb-exit",
+DefineMenuItem("pos", { (352 - 18 - 288) / 2, 11 + 98}, "font", "game",
   "listbox", {"size", {288, 108},
     "style", "pulldown",
     "func", "editor-load-lb-action",
@@ -3598,11 +3604,11 @@ DefineMenuItem("pos", { 154, 88}, "font", "large",
 -- menu-editor-save
 --
 DefineMenu("name", "menu-editor-save", "geometry", {224, 64, 352, 352},
-  "panel", "panel5", "default", 5)
+  "panel", "panel5", "default", 5, "init", "editor-save-init", "exit", "editor-save-exit")
 DefineMenuItem("pos", { 352 / 2, 11}, "font", "large",
   "text", {"caption", "Save map", "align", "center"},
   "menu", "menu-editor-save")
-DefineMenuItem("pos", { (352 - 18 - 288) / 2, 11 + 98}, "font", "game",  "init", "editor-save-lb-init", "exit", "editor-save-lb-exit",
+DefineMenuItem("pos", { (352 - 18 - 288) / 2, 11 + 98}, "font", "game",
   "listbox", {"size", {288, 108},
     "style", "pulldown",
     "func", "editor-save-lb-action",
@@ -3647,8 +3653,8 @@ DefineMenuItem("pos", { ((352 - 18 - 288) / 2) - 2, (11 + 98) - 28}, "font", "ga
 -- menu-editor-save-confirm
 --
 DefineMenu("name", "menu-editor-save-confirm", "geometry", {256, 112, 288, 128},
-  "panel", "panel4", "default", 1)
-DefineMenuItem("pos", { 288 / 2, 11}, "font", "large",  "init", "editor-save-confirm-init",
+  "panel", "panel4", "default", 1, "init", "editor-save-confirm-init")
+DefineMenuItem("pos", { 288 / 2, 11}, "font", "large",
   "text", {"caption", "Overwrite File", "align", "center"},
   "menu", "menu-editor-save-confirm")
 DefineMenuItem("pos", { 16, 11 + (20 * 1.5)}, "font", "game",
@@ -3677,11 +3683,12 @@ DefineMenuItem("pos", { 288 - 16 - 106, 128 - (27 * 1.5)}, "font", "large",
 -- menu-replay-game
 --
 DefineMenu("name", "menu-replay-game", "geometry", {144, 64, 352, 352},
-  "panel", "panel5", "background", MenuBackground, "default", 4)
-DefineMenuItem("pos", { 352 / 2, 11}, "font", "large",  "init", "replay-game-init",
+  "panel", "panel5", "background", MenuBackground, "default", 4,
+  "init", "replay-game-init", "exit", "replay-game-exit")
+DefineMenuItem("pos", { 352 / 2, 11}, "font", "large",
   "text", {"caption", "Select game", "align", "center"},
   "menu", "menu-replay-game")
-DefineMenuItem("pos", { (352 - 18 - 288) / 2, 11 + 98}, "font", "game",  "init", "replay-game-lb-init", "exit", "replay-game-lb-exit",
+DefineMenuItem("pos", { (352 - 18 - 288) / 2, 11 + 98}, "font", "game",
   "listbox", {"size", {288, 108},
     "style", "pulldown",
     "func", "replay-game-lb-action",
@@ -3849,8 +3856,8 @@ DefineMenuItem("pos", { 16, 288 - 40}, "font", "large",
 -- metaserver-list
 --
 DefineMenu("name", "metaserver-list", "geometry", {0, 0, 640, 480},
-  "panel", "none", "default", 3)
-DefineMenuItem("pos", { 0, 0}, "font", "game", "init", "metaserver-list-init", "exit", "metaserver-list-exit",
+  "panel", "none", "default", 3, "init", "metaserver-list-init", "exit", "metaserver-list-exit")
+DefineMenuItem("pos", { 0, 0}, "font", "game",
    "menu", "metaserver-list")
 DefineMenuItem("pos", { (640 / 2) + 12, 8}, "font", "large",
   "text", {"caption", "~<Online Game List ~>", "align", "center"},
