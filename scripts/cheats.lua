@@ -123,7 +123,10 @@ function HandleCheats(str)
     -- FIXME: Not supported yet
 
   elseif (str == "fill mana") then
-    -- FIXME: Not supported yet
+    t = GetUnits("this");
+    for i = 1,table.getn(t) do
+      SetUnitMana(t[i], 255)
+    end
 
   elseif (str == "ai me") then
     -- FIXME: Not supported yet
