@@ -36,61 +36,61 @@
 (define-button 'pos 1 'level 0 'icon 'icon-move-peon
   'action 'move
   'key "m" 'hint "~!MOVE"
-  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage 
-    unit-goblin-sappers unit-berserker unit-catapult unit-peon 
-    unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall 
-    unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan 
-    unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon 
-    unit-goblin-zeppelin unit-attack-peon unit-death-knight unit-deathwing 
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
+    unit-goblin-sappers unit-berserker unit-catapult unit-peon
+    unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall
+    unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan
+    unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon
+    unit-goblin-zeppelin unit-attack-peon unit-death-knight unit-deathwing
     orc-group))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-shield1
   'action 'stop
   'key "s" 'hint "~!STOP"
-  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage 
-    unit-goblin-sappers unit-berserker unit-catapult unit-peon 
-    unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall 
-    unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan 
-    unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon 
-    unit-goblin-zeppelin unit-attack-peon unit-death-knight unit-deathwing 
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
+    unit-goblin-sappers unit-berserker unit-catapult unit-peon
+    unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall
+    unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan
+    unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon
+    unit-goblin-zeppelin unit-attack-peon unit-death-knight unit-deathwing
     orc-group))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-shield2
   'action 'stop
   'allowed 'check-upgrade 'allow-arg '(upgrade-orc-shield1)
   'key "s" 'hint "~!STOP"
-  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage 
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-shield3
   'action 'stop
   'allowed 'check-upgrade 'allow-arg '(upgrade-orc-shield2)
   'key "s" 'hint "~!STOP"
-  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage 
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult))
 
 (define-button 'pos 3 'level 0 'icon 'icon-battle-axe1
   'action 'attack
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage 
-    unit-goblin-sappers unit-berserker unit-catapult unit-peon 
-    unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall 
-    unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan 
-    unit-teron-gorefiend unit-skeleton unit-dragon unit-deathwing 
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
+    unit-goblin-sappers unit-berserker unit-catapult unit-peon
+    unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall
+    unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan
+    unit-teron-gorefiend unit-skeleton unit-dragon unit-deathwing
     orc-group))
 
 (define-button 'pos 3 'level 0 'icon 'icon-battle-axe2
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-battle-axe1)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage 
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult))
 
 (define-button 'pos 3 'level 0 'icon 'icon-battle-axe3
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-battle-axe2)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage 
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult))
 
 (define-button 'pos 3 'level 0 'icon 'icon-throwing-axe1
@@ -125,18 +125,18 @@
 (define-button 'pos 4 'level 0 'icon 'icon-orc-patrol-land
   'action 'patrol
   'key "p" 'hint "~!PATROL"
-  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage 
-    unit-goblin-sappers unit-berserker unit-catapult unit-dentarg 
-    unit-cho-gall unit-zuljin unit-grom-hellscream unit-korgath-bladefist 
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
+    unit-goblin-sappers unit-berserker unit-catapult unit-dentarg
+    unit-cho-gall unit-zuljin unit-grom-hellscream unit-korgath-bladefist
     unit-skeleton unit-dragon unit-deathwing orc-group))
 
 (define-button 'pos 5 'level 0 'icon 'icon-orc-stand-ground
   'action 'stand-ground
   'key "t" 'hint "S~!TAND GROUND"
-  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage 
-    unit-goblin-sappers unit-berserker unit-catapult unit-dentarg 
-    unit-cho-gall unit-zuljin unit-grom-hellscream unit-korgath-bladefist 
-    unit-dragon unit-deathwing unit-giant-turtle unit-ogre-juggernaught 
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
+    unit-goblin-sappers unit-berserker unit-catapult unit-dentarg
+    unit-cho-gall unit-zuljin unit-grom-hellscream unit-korgath-bladefist
+    unit-dragon unit-deathwing unit-giant-turtle unit-ogre-juggernaught
     unit-troll-destroyer orc-group))
 
 (define-button 'pos 6 'level 0 'icon 'icon-orc-attack-ground
@@ -147,11 +147,11 @@
 (define-button 'pos 9 'level 0 'icon 'icon-orc-demolish
   'action 'demolish
   'key "d" 'hint "~!DEMOLISH"
-  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage 
-    unit-goblin-sappers unit-berserker unit-catapult unit-peon 
-    unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall 
-    unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan 
-    unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon 
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
+    unit-goblin-sappers unit-berserker unit-catapult unit-peon
+    unit-peon-with-gold unit-peon-with-wood unit-dentarg unit-cho-gall
+    unit-zuljin unit-grom-hellscream unit-korgath-bladefist unit-gul-dan
+    unit-teron-gorefiend unit-skeleton unit-eye-of-kilrogg unit-dragon
     unit-goblin-zeppelin orc-group))
 
 ;; ogre-mage specific actions -------------------------------------------------
@@ -420,24 +420,24 @@
   'action 'move
   'allowed 'check-no-work
   'key "m" 'hint "SET ~!MOVE"
-  'for-unit '(unit-great-hall unit-stronghold unit-fortress 
-    unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost 
+  'for-unit '(unit-great-hall unit-stronghold unit-fortress
+    unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost
     unit-goblin-alchemist))
 
 (define-button 'pos 8 'level 0 'icon 'icon-orc-shield1
   'action 'stop
   'allowed 'check-no-work
   'key "s" 'hint "SET ~!STOP"
-  'for-unit '(unit-great-hall unit-stronghold unit-fortress 
-    unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost 
+  'for-unit '(unit-great-hall unit-stronghold unit-fortress
+    unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost
     unit-goblin-alchemist))
 
 (define-button 'pos 9 'level 0 'icon 'icon-battle-axe1
   'action 'attack
   'allowed 'check-no-work
   'key "e" 'hint "S~!ET ATTACK"
-  'for-unit '(unit-great-hall unit-stronghold unit-fortress 
-    unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost 
+  'for-unit '(unit-great-hall unit-stronghold unit-fortress
+    unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost
     unit-goblin-alchemist)) ))
 
 (define-button 'pos 1 'level 0 'icon 'icon-grunt
@@ -515,6 +515,16 @@
   'key "j" 'hint "BUILD ~!JUGGERNAUHGT"
   'for-unit '(unit-orc-shipyard))
 
+(if extensions (begin
+;---------------------------------------------------
+(define-button 'pos 6 'level 0 'icon 'icon-orc-ship-haul-oil
+  'action 'harvest
+  'allowed 'check-no-work
+  'key "h" 'hint "SET ~!HAUL OIL"
+  'for-unit '(unit-orc-shipyard))
+;---------------------------------------------------
+  ))
+
 (define-button 'pos 1 'level 0 'icon 'icon-orc-guard-tower
   'action 'upgrade-to 'value 'unit-orc-guard-tower
   'key "g" 'hint "UPGRADE TO ~!GUARD TOWER"
@@ -530,13 +540,13 @@
 (define-button 'pos 1 'level 0 'icon 'icon-orc-ship-move
   'action 'move
   'key "m" 'hint "~!MOVE"
-  'for-unit '(unit-orc-oil-tanker unit-orc-oil-tanker-full unit-giant-turtle 
+  'for-unit '(unit-orc-oil-tanker unit-orc-oil-tanker-full unit-giant-turtle
     unit-ogre-juggernaught unit-troll-destroyer unit-orc-transport))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-ship-armor1
   'action 'stop
   'key "s" 'hint "~!STOP"
-  'for-unit '(unit-orc-oil-tanker unit-orc-oil-tanker-full unit-giant-turtle 
+  'for-unit '(unit-orc-oil-tanker unit-orc-oil-tanker-full unit-giant-turtle
     unit-ogre-juggernaught unit-troll-destroyer unit-orc-transport))
 
 (define-button 'pos 3 'level 0 'icon 'icon-orc-unload
