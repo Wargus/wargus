@@ -896,7 +896,7 @@
   'hit-points 400
   'draw-level 20
   'tile-size '(2 2) 'box-size '(63 63)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 20 'annoy-computer-factor 45
   'points 100
@@ -924,7 +924,7 @@
   'hit-points 800
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 30 'annoy-computer-factor 35
   'points 160
@@ -951,7 +951,7 @@
   'hit-points 700
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 15 'annoy-computer-factor 35
   'points 240
@@ -1007,7 +1007,7 @@
   'hit-points 500
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 15 'annoy-computer-factor 15
   'points 210
@@ -1034,7 +1034,7 @@
   'hit-points 500
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 15 'annoy-computer-factor 20
   'points 230
@@ -1061,7 +1061,7 @@
   'hit-points 500
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 15 'annoy-computer-factor 20
   'points 280
@@ -1088,7 +1088,7 @@
   'hit-points 1100
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 30 'annoy-computer-factor 20
   'points 170
@@ -1118,7 +1118,7 @@
   'hit-points 600
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 25 'annoy-computer-factor 15
   'points 150
@@ -1146,7 +1146,7 @@
   'hit-points 750
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 15 'annoy-computer-factor 20
   'points 200
@@ -1174,7 +1174,7 @@
   'hit-points 1200
   'draw-level 20
   'tile-size '(4 4) 'box-size '(126 126)
-  'sight-range 4
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 35 'annoy-computer-factor 45
   'points 200
@@ -1203,7 +1203,7 @@
   'hit-points 500
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 35 'annoy-computer-factor 20
   'points 240
@@ -1230,7 +1230,7 @@
   'hit-points 775
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 15 'annoy-computer-factor 20
   'points 170
@@ -1257,7 +1257,7 @@
   'hit-points 600
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 25 'annoy-computer-factor 20
   'points 200
@@ -1287,7 +1287,7 @@
   'hit-points 650
   'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 20 'annoy-computer-factor 20
   'points 160
@@ -1316,7 +1316,7 @@
   'hit-points 1400
   'draw-level 20
   'tile-size '(4 4) 'box-size '(127 127)
-  'sight-range 6
+  'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 37 'annoy-computer-factor 40
   'points 600
@@ -1345,7 +1345,7 @@
   'hit-points 1600
   'draw-level 20
   'tile-size '(4 4) 'box-size '(127 127)
-  'sight-range 9
+  'sight-range 6
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 40 'annoy-computer-factor 50
   'points 1500

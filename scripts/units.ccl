@@ -192,7 +192,7 @@
   'hit-points 25500
   'draw-level 40
   'tile-size '(3 3) 'box-size '(95 95)
-  'sight-range 3
+  'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 0
   'corpse '(unit-destroyed-3x3-place 0)
