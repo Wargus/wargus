@@ -36,60 +36,60 @@
 (define-button 'pos 1 'level 0 'icon 'icon-move-peasant
   'action 'move
   'key "m" 'hint "~!MOVE"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin 
-    unit-dwarves unit-ranger unit-ballista unit-peasant 
-    unit-peasant-with-gold unit-peasant-with-wood unit-alleria 
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar 
-    unit-uther-lightbringer unit-khadgar unit-gnomish-flying-machine 
-    unit-gryphon-rider unit-attack-peasant unit-mage unit-critter 
+  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
+    unit-dwarves unit-ranger unit-ballista unit-peasant
+    unit-peasant-with-gold unit-peasant-with-wood unit-alleria
+    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
+    unit-uther-lightbringer unit-khadgar unit-gnomish-flying-machine
+    unit-gryphon-rider unit-attack-peasant unit-mage unit-critter
     human-group))
 
 (define-button 'pos 2 'level 0 'icon 'icon-human-shield1
   'action 'stop
   'key "s" 'hint "~!STOP"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin 
-    unit-dwarves unit-ranger unit-ballista unit-peasant 
-    unit-peasant-with-gold unit-peasant-with-wood unit-alleria 
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar 
-    unit-uther-lightbringer unit-khadgar unit-gnomish-flying-machine 
-    unit-gryphon-rider unit-attack-peasant unit-mage unit-critter 
+  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
+    unit-dwarves unit-ranger unit-ballista unit-peasant
+    unit-peasant-with-gold unit-peasant-with-wood unit-alleria
+    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
+    unit-uther-lightbringer unit-khadgar unit-gnomish-flying-machine
+    unit-gryphon-rider unit-attack-peasant unit-mage unit-critter
     human-group))
 
 (define-button 'pos 2 'level 0 'icon 'icon-human-shield2
   'action 'stop
   'allowed 'check-upgrade 'allow-arg '(upgrade-human-shield1)
   'key "s" 'hint "~!STOP"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin 
+  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista))
 
 (define-button 'pos 2 'level 0 'icon 'icon-human-shield3
   'action 'stop
   'allowed 'check-upgrade 'allow-arg '(upgrade-human-shield2)
   'key "s" 'hint "~!STOP"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin 
+  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista))
 
 (define-button 'pos 3 'level 0 'icon 'icon-sword1
   'action 'attack
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin 
-    unit-dwarves unit-ranger unit-ballista unit-peasant 
-    unit-peasant-with-gold unit-peasant-with-wood unit-alleria 
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar 
+  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
+    unit-dwarves unit-ranger unit-ballista unit-peasant
+    unit-peasant-with-gold unit-peasant-with-wood unit-alleria
+    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
     unit-uther-lightbringer unit-khadgar unit-gryphon-rider human-group))
 
 (define-button 'pos 3 'level 0 'icon 'icon-sword2
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-sword1)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin 
+  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista))
 
 (define-button 'pos 3 'level 0 'icon 'icon-sword3
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-sword2)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin 
+  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista))
 
 (define-button 'pos 3 'level 0 'icon 'icon-arrow1
@@ -112,18 +112,18 @@
 (define-button 'pos 4 'level 0 'icon 'icon-human-patrol-land
   'action 'patrol
   'key "p" 'hint "~!PATROL"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin 
-    unit-dwarves unit-ranger unit-ballista unit-alleria 
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar 
+  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
+    unit-dwarves unit-ranger unit-ballista unit-alleria
+    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
     unit-uther-lightbringer unit-gryphon-rider human-group))
 
 (define-button 'pos 5 'level 0 'icon 'icon-human-stand-ground
   'action 'stand-ground
   'key "t" 'hint "S~!TAND GROUND"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin 
-    unit-dwarves unit-ranger unit-ballista unit-alleria 
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar 
-    unit-uther-lightbringer unit-gryphon-rider human-group 
+  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
+    unit-dwarves unit-ranger unit-ballista unit-alleria
+    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
+    unit-uther-lightbringer unit-gryphon-rider human-group
     unit-gnomish-submarine unit-battleship unit-elven-destroyer))
 
 (define-button 'pos 6 'level 0 'icon 'icon-human-attack-ground
@@ -134,7 +134,7 @@
 (define-button 'pos 9 'level 0 'icon 'icon-human-demolish
   'action 'demolish
   'key "d" 'hint "~!DEMOLISH"
-  'for-unit '(unit-footman unit-knight unit-archer unit-paladin 
+  'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista unit-gryphon-rider human-group))
 
 ;; paladin specific actions ---------------------------------------------------
@@ -383,21 +383,21 @@
   'action 'move
   'allowed 'check-no-work
   'key "m" 'hint "SET ~!MOVE"
-  'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks 
+  'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks
     unit-mage-tower unit-gryphon-aviary unit-gnomish-inventor))
 
 (define-button 'pos 8 'level 0 'icon 'icon-human-shield1
   'action 'stop
   'allowed 'check-no-work
   'key "s" 'hint "SET ~!STOP"
-  'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks 
+  'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks
     unit-mage-tower unit-gryphon-aviary unit-gnomish-inventor))
 
 (define-button 'pos 9 'level 0 'icon 'icon-sword1
   'action 'attack
   'allowed 'check-no-work
   'key "e" 'hint "S~!ET ATTACK"
-  'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks 
+  'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks
     unit-mage-tower unit-gryphon-aviary unit-gnomish-inventor)) ))
 
 (define-button 'pos 1 'level 0 'icon 'icon-footman
@@ -475,6 +475,16 @@
   'key "b" 'hint "BUILD ~!BATTLESHIP"
   'for-unit '(unit-human-shipyard))
 
+(if extensions (begin
+;---------------------------------------------------
+(define-button 'pos 6 'level 0 'icon 'icon-human-ship-haul-oil
+  'action 'harvest
+  'allowed 'check-no-work
+  'key "h" 'hint "SET ~!HAUL OIL"
+  'for-unit '(unit-human-shipyard))
+;---------------------------------------------------
+  ))
+
 (define-button 'pos 1 'level 0 'icon 'icon-human-guard-tower
   'action 'upgrade-to 'value 'unit-human-guard-tower
   'key "g" 'hint "UPGRADE TO ~!GUARD TOWER"
@@ -490,15 +500,15 @@
 (define-button 'pos 1 'level 0 'icon 'icon-human-ship-move
   'action 'move
   'key "m" 'hint "~!MOVE"
-  'for-unit '(unit-human-oil-tanker unit-human-oil-tanker-full 
-    unit-gnomish-submarine unit-battleship unit-elven-destroyer 
+  'for-unit '(unit-human-oil-tanker unit-human-oil-tanker-full
+    unit-gnomish-submarine unit-battleship unit-elven-destroyer
     unit-human-transport))
 
 (define-button 'pos 2 'level 0 'icon 'icon-human-ship-armor1
   'action 'stop
   'key "s" 'hint "~!STOP"
-  'for-unit '(unit-human-oil-tanker unit-human-oil-tanker-full 
-    unit-gnomish-submarine unit-battleship unit-elven-destroyer 
+  'for-unit '(unit-human-oil-tanker unit-human-oil-tanker-full
+    unit-gnomish-submarine unit-battleship unit-elven-destroyer
     unit-human-transport))
 
 (define-button 'pos 3 'level 0 'icon 'icon-human-unload
