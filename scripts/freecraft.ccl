@@ -331,7 +331,7 @@
 
 ;;-----------------------------------------------------------------------------
 ;;	Default triggers
-(define (single-player-triggers) ()
+(define (single-player-triggers)
   (add-trigger (lambda () (if-unit 'this 0 'all)) (lambda () (action-defeat)))
   (add-trigger (lambda () (if-opponents 'this 0)) (lambda () (action-victory)))
   )
@@ -355,6 +355,23 @@
 (load "ccl/ui.ccl" #f #t)
 (load "ccl/ai.ccl" #f #t)
 (load "ccl/campaigns.ccl" #f #t)
+
+;;-----------------------------------------------------------------------------
+
+;; Test code to create male orc names.
+(define orc-first (list "B" "Er" "G" "Gr" "H" "P" "Pr" "R" "V" "Vr"))
+(define orc-middle (list "a" "i" "o" "u"))
+(define orc-last (list "dash" "dish" "dush" "gar" "gor" "gdush" "lo" "gdish"
+    "k" "lg" "nak" "rag" "rbag" "rg" "rk" "ng" "nk" "rt" "ol" "urk" "shnak"))
+
+
+(define (orc-name)
+  (string-append (nth (rand (length orc-first)) orc-first)
+    (nth (rand (length orc-middle)) orc-middle)
+    (nth (rand (length orc-last)) orc-last)))
+
+(define (gen-unit-name ut)
+  (orc-name))
 
 ;;-----------------------------------------------------------------------------
 
