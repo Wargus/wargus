@@ -3679,6 +3679,7 @@ int main(int argc,char** argv)
     int video;
     int a;
     char filename[1024];
+    FILE *f;
 
     a=1;
     video=expansion_cd=UseMacCd=0;
@@ -3735,11 +3736,16 @@ int main(int argc,char** argv)
     sprintf(buf, "%s/rezdat.war", ArchiveDir);
 #endif
     stat(buf, &st);
+    sprintf(buf, "%s/ccl/wc2-config.ccl", Dir);
+    f = fopen(buf, "a");
     if ( expansion_cd==-1 || (expansion_cd!=1 && (st.st_size != 2811086)) ) {
 	expansion_cd=0;
+	fprintf(f, "(define expansion #f)\n");
     } else {
 	expansion_cd=1;
+	fprintf(f, "(define expansion #t)\n");
     }
+    fclose(f);
 
     DebugLevel2("Extract from \"%s\" to \"%s\"\n" _C_ ArchiveDir _C_ Dir);
     for( u=0; u<sizeof(Todo)/sizeof(*Todo); ++u ) {

@@ -10,7 +10,7 @@
 ;;
 ;;	campaigns.ccl	-	Define the used campaigns.
 ;;
-;;	(c) Copyright 2002 by Lutz Sammer
+;;	(c) Copyright 2002-2003 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -29,10 +29,10 @@
 (if expansion (begin 
 (define-campaign 'human 'name "~!Human campaign"
   'file "ccl/human/campaign1.ccl")
-(define-campaign 'human-exp 'name "H~!uman expansion levels"
-  'file "ccl/human/campaign2.ccl")
 (define-campaign 'orc 'name "~!Orc campaign"
   'file "ccl/orc/campaign1.ccl")
+(define-campaign 'human-exp 'name "H~!uman expansion levels"
+  'file "ccl/human/campaign2.ccl")
 (define-campaign 'orc-exp 'name "O~!rc expansion levels"
   'file "ccl/orc/campaign2.ccl")
 )(begin 
