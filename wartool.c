@@ -126,6 +126,11 @@ typedef struct _control_ {
 unsigned char* Pal27;
 
 /**
+**  True if arguments specified that we should treat the CD as a Mac one
+*/
+unsigned char UseMacCd;
+
+/**
 **	Original archive buffer.
 */
 unsigned char* ArchiveBuffer;
@@ -1435,6 +1440,38 @@ void CheckPath(const char* path)
 	}
     }
     free(cp);
+}
+
+/**
+**	Given a file name that would appear in a PC archive convert it to what
+**	would appear on the Mac.
+*/
+void ConvertToMac(char *filename)
+{
+    if (!strcmp(filename, "rezdat.war")) {
+	strcpy(filename, "War Resources");
+	return;
+    }
+    if (!strcmp(filename, "strdat.war")) {
+	strcpy(filename, "War Strings");
+	return;
+    }
+    if (!strcmp(filename, "maindat.war")) {
+	strcpy(filename, "War Data");
+	return;
+    }
+    if (!strcmp(filename, "snddat.war")) {
+	strcpy(filename, "War Music");
+	return;
+    }
+    if (!strcmp(filename, "muddat.cud")) {
+	strcpy(filename, "War Movies");
+	return;
+    }
+    if (!strcmp(filename, "sfxdat.sud")) {
+	strcpy(filename, "War Sounds");
+	return;
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -3368,11 +3405,12 @@ char* ParseString(char* input)
 */
 void Usage(const char* name)
 {
-    printf("wartool for FreeCraft V" VERSION ", (c) 1999,2000 by the FreeCraft Project\n\
+    printf("wartool for FreeCraft V" VERSION ", (c) 1999-2002 by the FreeCraft Project\n\
 Usage: %s [-e] archive-directory [destination-directory]\n\
-\t-e\tThe archive are expansion compatible\n\
+\t-e\tThe archive is expansion compatible\n\
 \t-n\tThe archive is not expansion compatible\n\
 \t-v\tExtract also the videos needs additional 70Mb\n\
+\t-m\tTreat the archive-directory as a Macintosh archive\n\
 archive-directory\tDirectory which includes the archives maindat.war...\n\
 destination-directory\tDirectory where the extracted files are placed.\n"
     ,name);
@@ -3391,9 +3429,10 @@ int main(int argc,char** argv)
     int expansion_cd;
     int video;
     int a;
+    char filename[1024];
 
     a=1;
-    video=expansion_cd=0;
+    video=expansion_cd=UseMacCd=0;
     while( argc>=2 ) {
 	if( !strcmp(argv[a],"-v") ) {
 	    video=1;
@@ -3415,6 +3454,12 @@ int main(int argc,char** argv)
 	}
 	if( !strcmp(argv[a],"-h") ) {
 	    Usage(argv[0]);
+	    ++a;
+	    --argc;
+	    exit(0);
+	}
+	if( !strcmp(argv[a],"-m") ) {
+	    UseMacCd=1;
 	    ++a;
 	    --argc;
 	    continue;
@@ -3444,6 +3489,11 @@ int main(int argc,char** argv)
 
     DebugLevel2("Extract from \"%s\" to \"%s\"\n" _C_ archivedir _C_ Dir);
     for( u=0; u<sizeof(Todo)/sizeof(*Todo); ++u ) {
+	if (UseMacCd) {
+	    strcpy(filename,Todo[u].File);
+	    Todo[u].File=filename;
+	    ConvertToMac(Todo[u].File);
+	}
 	// Should only be on the expansion cd
 	DebugLevel2("%s:\n" _C_ ParseString(Todo[u].File));
 	if (!expansion_cd && Todo[u].Version==2 ) {
