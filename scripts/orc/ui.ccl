@@ -202,7 +202,10 @@
     '("graphics/ui/orc/panel 2.png")
     '("graphics/ui/orc/panel 3.png")
     '("graphics/ui/orc/panel 4.png")
-    '("graphics/ui/orc/panel 5.png") )
+    '("graphics/ui/orc/panel 5.png")
+    '("graphics/ui/orc/victory.png")
+    '("graphics/ui/orc/defeat.png")
+)
 
 (define-ui "orc" 800 600	; Selector
     ;	Filler 1
@@ -298,7 +301,10 @@
     '("graphics/ui/orc/panel 2.png")
     '("graphics/ui/orc/panel 3.png")
     '("graphics/ui/orc/panel 4.png")
-    '("graphics/ui/orc/panel 5.png") )
+    '("graphics/ui/orc/panel 5.png")
+    '("graphics/ui/orc/victory.png")
+    '("graphics/ui/orc/defeat.png")
+)
 
 (define-ui "orc" 1024 768	; Selector
     ;	Filler 1
@@ -394,7 +400,10 @@
     '("graphics/ui/orc/panel 2.png")
     '("graphics/ui/orc/panel 3.png")
     '("graphics/ui/orc/panel 4.png")
-    '("graphics/ui/orc/panel 5.png") )
+    '("graphics/ui/orc/panel 5.png")
+    '("graphics/ui/orc/victory.png")
+    '("graphics/ui/orc/defeat.png")
+)
 
 (define-ui "orc" 1280 960	; Selector
     ;	Filler 1
@@ -490,7 +499,10 @@
     '("graphics/ui/orc/panel 2.png")
     '("graphics/ui/orc/panel 3.png")
     '("graphics/ui/orc/panel 4.png")
-    '("graphics/ui/orc/panel 5.png") )
+    '("graphics/ui/orc/panel 5.png")
+    '("graphics/ui/orc/victory.png")
+    '("graphics/ui/orc/defeat.png")
+)
 
 (define-ui "orc" 1600 1200	; Selector
     ;	Filler 1
@@ -586,4 +598,7 @@
     '("graphics/ui/orc/panel 2.png")
     '("graphics/ui/orc/panel 3.png")
     '("graphics/ui/orc/panel 4.png")
-    '("graphics/ui/orc/panel 5.png") )
+    '("graphics/ui/orc/panel 5.png")
+    '("graphics/ui/orc/victory.png")
+    '("graphics/ui/orc/defeat.png")
+)
