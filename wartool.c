@@ -2578,7 +2578,11 @@ unsigned char* ConvertImg(unsigned char* bp,int *wp,int *hp)
     *wp=width;
     *hp=height;
 
-    return image;
+    if (!*wp || !*hp) {
+	return NULL;
+    } else {
+	return image;
+    }
 }
 
 /**
@@ -2605,8 +2609,7 @@ void ResizeImage(unsigned char** image,int ow,int oh,int nw,int nh)
     x=0;
     for( i=0; i<nh; ++i ) {
 	for( j=0; j<nw; ++j ) {
-	    data[x] = ((unsigned char*)*image)[
-		(i*oh+nh/2)/nh*ow + (j*ow+nw/2)/nw];
+	    data[x] = ((unsigned char*)*image)[i*oh/nh*ow + j*ow/nw];
 	    ++x;
 	}
     }
@@ -2635,6 +2638,9 @@ int ConvertImage(char* file,int pale,int imge, int nw, int nh)
 
     image=ConvertImg(imgp,&w,&h);
 
+    if (!image) {
+	return -1;
+    }
     free(imgp);
     ConvertPalette(palp);
 
@@ -3754,18 +3760,30 @@ int main(int argc,char** argv)
 	    fprintf(stderr, "Could not find Warcraft 2 Data\n");
 	    exit(-1);
 	}
-    }
-    sprintf(buf, "%s/ccl/wc2-config.ccl", Dir);
-    f = fopen(buf, "w");
-    if ( expansion_cd==-1 || (expansion_cd!=1 && st.st_size != 2811086 &&
-	    st.st_size != 2876978) ) {
-        expansion_cd=0;
-        fprintf(f, "(define expansion #f)\n");
+	if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2876978)) {
+	    expansion_cd = 0;
+	} else {
+	    expansion_cd = 1;
+	}
     } else {
-        expansion_cd=1;
-        fprintf(f, "(define expansion #t)\n");
+	if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2811086)) {
+	    expansion_cd = 0;
+	} else {
+	    expansion_cd = 1;
+	}
     }
-    fclose(f);
+
+    sprintf(buf, "%s/ccl", Dir);
+    if (!stat(buf, &st)) {
+	sprintf(buf, "%s/ccl/wc2-config.ccl", Dir);
+	f = fopen(buf, "w");
+	if (expansion_cd) {
+	    fprintf(f, "(define expansion #t)\n");
+	} else {
+	    fprintf(f, "(define expansion #f)\n");
+	}
+	fclose(f);
+    }
 
     DebugLevel2("Extract from \"%s\" to \"%s\"\n" _C_ ArchiveDir _C_ Dir);
     for( u=0; u<sizeof(Todo)/sizeof(*Todo); ++u ) {
