@@ -153,6 +153,8 @@ fi
 
 # copy script files
 cp -R scripts $DIR/scripts
+rm -Rf `find $DIR/scripts | grep CVS`
+rm -Rf `find $DIR/scripts | grep cvsignore`
 
 # ADD -e      To force that the archive is expansion compatible
 # ADD -n      To force that the archive is not expansion compatible
@@ -177,31 +179,31 @@ cp $CONTRIB/toccata.mod.gz $DIR/music/default.mod.gz
 ###############################################################################
 
 #
-#	Compress the sounds
+##	Compress the sounds
 #
 find $DIR/sounds -type f -name "*.wav" -print -exec $COMPRESS {} \;
 
 #
-#	Compress the texts
+##	Compress the texts
 #
 find $DIR/campaigns -type f -name "*.txt" -print -exec $COMPRESS {} \;
 
 #
 ##	Copy original puds into data directory
 #
-echo "Copy puds and compressing"
-[ -d $DATADIR/../puds ] && cp -r $DATADIR/../puds/ $DIR/
-[ -f $DATADIR/../alamo.pud ] && cp -r $DATADIR/../*.pud $DIR/puds
+echo "Copying maps and compressing"
+[ -d $DATADIR/../puds ] && cp -r $DATADIR/../puds/ $DIR/ >/dev/null 2>&1
+[ -f $DATADIR/../alamo.pud ] && cp -r $DATADIR/../*.pud $DIR/puds >/dev/null 2>&1
 chmod -R +w $DIR/puds
-find $DIR/puds -type f -name "*.pud" -print -exec $COMPRESS {} \;
+
+find $DIR/puds -type f -name "*.pud" -print -exec $COMPRESS {} \ >/dev/null 2>&1;
 
 #
 ##	Copy contrib puds into data directory
 #
-[ -d $DIR/puds/single ] || mkdir $DIR/puds/single
-[ -d $DIR/puds/multiple ] || mkdir $DIR/puds/multiple
-cp $CONTRIB/puds/single/* $DIR/puds/single >/dev/null 2>&1
-cp $CONTRIB/puds/multi/* $DIR/puds/multiple >/dev/null 2>&1
+[ -d $DIR/puds/other ] || mkdir $DIR/puds/other
+cp maps/multi/* $DIR/puds/other >/dev/null 2>&1
+cp maps/single/* $DIR/puds/other >/dev/null 2>&1
 
 #
 ##	The default pud.
@@ -215,9 +217,11 @@ cp $CONTRIB/puds/multi/* $DIR/puds/multiple >/dev/null 2>&1
 
 #
 ##  Rename puds to maps for consistancy
-mv $DIR/puds $DIR/maps
-if [ -d $DIR/maps/my_puds ]; then
-    mv $DIR/maps/my_puds $DIR/maps/my_maps
-fi
-	
+#
+cp -R $DIR/puds/. $DIR/maps
+rm -rf $DIR/maps/my_puds $DIR/puds
+
+echo "WC2 data setup is now complete"
+echo "NOTE: you do not need to run this script again"
+
 exit 0
