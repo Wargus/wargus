@@ -199,6 +199,7 @@
   'type-land
   'building
   'gives-resource 'gold 'can-harvest
+  'max-workers 2
   'sounds '(
     selected "gold-mine-selected"
     acknowledge "gold-mine-acknowledge"
@@ -272,7 +273,7 @@
   'priority 0
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'building
+  'building 'builder-outside
   'can-cast-spell
   'teleporter
   'sounds '(
@@ -302,7 +303,7 @@
   'points 150
   'corpse '(unit-destroyed-2x2-place 0)
   'type-land
-  'building
+  'building 'builder-outside
   'can-cast-spell
   'sounds '(
     selected "runestone-selected"
