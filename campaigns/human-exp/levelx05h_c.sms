@@ -9,8 +9,11 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (and (if-unit 'opponents '== 0 'unit-orc-shipyard) 
-                             (if-unit 'this '>= 3 'unit-turalyn)))
+(add-trigger (lambda () (and (if-unit '2 '== 0 'unit-orc-shipyard) 
+                             (if-unit '3 '== 0 'unit-orc-shipyard) 
+                             (if-unit '4 '== 0 'unit-orc-shipyard) 
+                             (if-unit '7 '== 0 'unit-orc-shipyard) 
+                             (if-unit 'this '>= 3 'unit-human-shipyard)))
   (lambda () (action-victory)))
 
 (add-trigger (lambda () (if-unit 'this '== 0 'all))
@@ -199,4 +202,4 @@
 (define-allow 'unit-destroyed-3x3-place		"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-destroyed-4x4-place		"FFFFFFFFFFFFFFFF")
 
-(load-pud "campaigns/human-exp/levelx03h.pud")
+(load-pud "campaigns/human-exp/levelx05h.pud")
