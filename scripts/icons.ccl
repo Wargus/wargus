@@ -36,9 +36,6 @@
 ;;	FIXME: can be removed: Set the icon size (width height)
 (set-icon-size! 46 38)
 
-;;	FIXME: can be removed: Set the number of icons per row
-(set-icons-per-row! 5)
-
 ;;=============================================================================
 ;;	Define an icon.
 ;;
