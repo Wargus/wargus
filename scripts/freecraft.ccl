@@ -124,6 +124,9 @@
 ;;	Uncomment next, to show the orders of the selected unit on map.
 ;(show-orders)
 
+;;	Uncomment next to enable hit point regeneration for all units
+(hitpoint-regeneration)
+
 ;;	Uncomment next, to show the original game resource line.
 ;(original-resources)
 
