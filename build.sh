@@ -208,12 +208,12 @@ cp maps/single/* $DIR/puds/other >/dev/null 2>&1
 #
 ##	The default pud.
 #
-[ -f "$DIR/puds/multi/(2)mysterious-dragon-isle.pud.gz" ] \
+[ -f "$DIR/maps/multi/(2)mysterious-dragon-isle.pud.gz" ] \
 	&& ln -s "multi/(2)mysterious-dragon-isle.pud.gz" \
-	    $DIR/puds/default.pud.gz
-[ -f "$DIR/puds/multi/(2)mysterious-dragon-isle.pud.bz2" ] \
+	    $DIR/maps/default.pud.gz
+[ -f "$DIR/maps/multi/(2)mysterious-dragon-isle.pud.bz2" ] \
 	&& ln -s "multi/(2)mysterious-dragon-isle.pud.bz2" \
-	    $DIR/puds/default.pud.bz2
+	    $DIR/maps/default.pud.bz2
 
 #
 ##  Rename puds to maps for consistancy
