@@ -37,9 +37,11 @@
 
 ;;	Enter your default title screen.
 (set-title-screen! "graphics/ui/freecraft.png")
+;(set-title-screen! "videos/splash2.avi")
 
 ;;	Enter your title music.
 (set-title-music! "music/default.mod")
+;(set-title-music! "music/Matthew_T._Yankovich---_Twilight_March.ogg")
 
 ;;	Enter your default menu background.
 (set-menu-background! "graphics/ui/Menu background without title.png")
@@ -58,7 +60,15 @@
 
 ;;-----------------------------------------------------------------------------
 ;;	Music play list -	Insert your titles here
-(define play-list (list "music/default.mod"))
+;(define play-list (list "music/default.mod"))
+(define play-list (list
+  ;"music/TCB_-_Become_Elite.mp3"
+  "music/Matthew_T._Yankovich---_Twilight_March.ogg"
+  "music/Matthew_T._Yankovich--_Midnight_Shadows.ogg"
+  "music/Matthew_T._Yankovich--_Wind_Wraith.ogg"
+))
+;;  "music/default.mod"))
+
 
 ;;-----------------------------------------------------------------------------
 
@@ -378,8 +388,6 @@
 ;;-----------------------------------------------------------------------------
 ;;	Tables-Part
 ;;-----------------------------------------------------------------------------
-
-(define define-unit-type define-new-unit-type)
 
 ;;; Uses FreeCraft Library path!
 (load "ccl/wc2.ccl" #f #t)
