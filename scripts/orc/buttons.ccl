@@ -604,144 +604,144 @@
 
 (define-button 'pos 1 'level 0 'icon 'icon-battle-axe2
   'action 'research 'value 'upgrade-battle-axe1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "w" 'hint "UPGRADE ~!WEAPONS (Damage +2)"
   'for-unit '(unit-orc-blacksmith))
 
 (define-button 'pos 1 'level 0 'icon 'icon-battle-axe3
   'action 'research 'value 'upgrade-battle-axe2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "w" 'hint "UPGRADE ~!WEAPONS (Damage +2)"
   'for-unit '(unit-orc-blacksmith))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-shield2
   'action 'research 'value 'upgrade-orc-shield1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "s" 'hint "UPGRADE ~!SHIELDS (Armor +2)"
   'for-unit '(unit-orc-blacksmith))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-shield3
   'action 'research 'value 'upgrade-orc-shield2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "s" 'hint "UPGRADE ~!SHIELDS (Armor +2)"
   'for-unit '(unit-orc-blacksmith))
 
 (define-button 'pos 3 'level 0 'icon 'icon-catapult1
   'action 'research 'value 'upgrade-catapult1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "c" 'hint "UPGRADE ~!CATAPULT (Damage +15)"
   'for-unit '(unit-orc-blacksmith))
 
 (define-button 'pos 3 'level 0 'icon 'icon-catapult2
   'action 'research 'value 'upgrade-catapult2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "c" 'hint "UPGRADE ~!CATAPULT (Damage +15)"
   'for-unit '(unit-orc-blacksmith))
 
 (define-button 'pos 1 'level 0 'icon 'icon-throwing-axe2
   'action 'research 'value 'upgrade-throwing-axe1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "u" 'hint "~!UPGRADE THROWING AXE (Damage +1)"
   'for-unit '(unit-troll-lumber-mill))
 
 (define-button 'pos 1 'level 0 'icon 'icon-throwing-axe3
   'action 'research 'value 'upgrade-throwing-axe2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "u" 'hint "~!UPGRADE THROWING AXE (Damage +1)"
   'for-unit '(unit-troll-lumber-mill))
 
 (define-button 'pos 4 'level 0 'icon 'icon-berserker
   'action 'research 'value 'upgrade-berserker
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "b" 'hint "TROLL ~!BERSERKER TRAINING"
   'for-unit '(unit-troll-lumber-mill))
 
 (define-button 'pos 4 'level 0 'icon 'icon-berserker-scouting
   'action 'research 'value 'upgrade-berserker-scouting
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "s" 'hint "BERSERKER ~!SCOUTING (Sight:9)"
   'for-unit '(unit-troll-lumber-mill))
 
 (define-button 'pos 5 'level 0 'icon 'icon-light-axes
   'action 'research 'value 'upgrade-light-axes
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "a" 'hint "RESEARCH LIGHTER ~!AXES (Range +1)"
   'for-unit '(unit-troll-lumber-mill))
 
 (define-button 'pos 6 'level 0 'icon 'icon-berserker-regeneration
   'action 'research 'value 'upgrade-berserker-regeneration
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "r" 'hint "BERSERKER ~!REGENERATION"
   'for-unit '(unit-troll-lumber-mill))
 
 (define-button 'pos 1 'level 0 'icon 'icon-ogre-mage
   'action 'research 'value 'upgrade-ogre-mage
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "m" 'hint "UPGRADES OGRES TO ~!MAGES"
   'for-unit '(unit-altar-of-storms))
 
 (define-button 'pos 2 'level 0 'icon 'icon-bloodlust
   'action 'research 'value 'upgrade-bloodlust
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "b" 'hint "RESEARCH ~!BLOODLUST"
   'for-unit '(unit-altar-of-storms))
 
 (define-button 'pos 3 'level 0 'icon 'icon-runes
   'action 'research 'value 'upgrade-runes
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "r" 'hint "RESEARCH ~!RUNES"
   'for-unit '(unit-altar-of-storms))
 
 (define-button 'pos 2 'level 0 'icon 'icon-haste
   'action 'research 'value 'upgrade-haste
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "h" 'hint "RESEARCH ~!HASTE"
   'for-unit '(unit-temple-of-the-damned))
 
 (define-button 'pos 3 'level 0 'icon 'icon-skeleton
   'action 'research 'value 'upgrade-raise-dead
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "r" 'hint "RESEARCH ~!RAISE DEAD"
   'for-unit '(unit-temple-of-the-damned))
 
 (define-button 'pos 4 'level 0 'icon 'icon-whirlwind
   'action 'research 'value 'upgrade-whirlwind
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "w" 'hint "RESEARCH ~!WHIRLWIND"
   'for-unit '(unit-temple-of-the-damned))
 
 (define-button 'pos 5 'level 0 'icon 'icon-unholy-armor
   'action 'research 'value 'upgrade-unholy-armor
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "u" 'hint "RESEARCH ~!UNHOLY ARMOR"
   'for-unit '(unit-temple-of-the-damned))
 
 (define-button 'pos 6 'level 0 'icon 'icon-death-and-decay
   'action 'research 'value 'upgrade-death-and-decay
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "d" 'hint "RESEARCH ~!DEATH AND DECAY"
   'for-unit '(unit-temple-of-the-damned))
 
 (define-button 'pos 1 'level 0 'icon 'icon-orc-ship-cannon2
   'action 'research 'value 'upgrade-orc-ship-cannon1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "c" 'hint "UPGRADE ~!CANNONS (Damage +5)"
   'for-unit '(unit-orc-foundry))
 
 (define-button 'pos 1 'level 0 'icon 'icon-orc-ship-cannon3
   'action 'research 'value 'upgrade-orc-ship-cannon2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "c" 'hint "UPGRADE ~!CANNONS (Damage +5)"
   'for-unit '(unit-orc-foundry))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-ship-armor2
   'action 'research 'value 'upgrade-orc-ship-armor1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "a" 'hint "UPGRADE SHIP ~!ARMOR (Armor +5)"
   'for-unit '(unit-orc-foundry))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-ship-armor3
   'action 'research 'value 'upgrade-orc-ship-armor2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "a" 'hint "UPGRADE SHIP ~!ARMOR (Armor +5)"
   'for-unit '(unit-orc-foundry))

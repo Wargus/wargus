@@ -566,144 +566,144 @@
 
 (define-button 'pos 1 'level 0 'icon 'icon-sword2
   'action 'research 'value 'upgrade-sword1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "w" 'hint "UPGRADE S~!WORDS (Damage +2)"
   'for-unit '(unit-human-blacksmith))
 
 (define-button 'pos 1 'level 0 'icon 'icon-sword3
   'action 'research 'value 'upgrade-sword2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "w" 'hint "UPGRADE S~!WORDS (Damage +2)"
   'for-unit '(unit-human-blacksmith))
 
 (define-button 'pos 2 'level 0 'icon 'icon-human-shield2
   'action 'research 'value 'upgrade-human-shield1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "s" 'hint "UPGRADE ~!SHIELDS (Armor +2)"
   'for-unit '(unit-human-blacksmith))
 
 (define-button 'pos 2 'level 0 'icon 'icon-human-shield3
   'action 'research 'value 'upgrade-human-shield2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "s" 'hint "UPGRADE ~!SHIELDS (Armor +2)"
   'for-unit '(unit-human-blacksmith))
 
 (define-button 'pos 3 'level 0 'icon 'icon-ballista1
   'action 'research 'value 'upgrade-ballista1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "b" 'hint "UPGRADE ~!BALLISTA (Damage +15)"
   'for-unit '(unit-human-blacksmith))
 
 (define-button 'pos 3 'level 0 'icon 'icon-ballista2
   'action 'research 'value 'upgrade-ballista2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "b" 'hint "UPGRADE ~!BALLISTA (Damage +15)"
   'for-unit '(unit-human-blacksmith))
 
 (define-button 'pos 1 'level 0 'icon 'icon-arrow2
   'action 'research 'value 'upgrade-arrow1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "u" 'hint "~!UPGRADE ARROWS (Damage +1)"
   'for-unit '(unit-elven-lumber-mill))
 
 (define-button 'pos 1 'level 0 'icon 'icon-arrow3
   'action 'research 'value 'upgrade-arrow2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "u" 'hint "~!UPGRADE ARROWS (Damage +1)"
   'for-unit '(unit-elven-lumber-mill))
 
 (define-button 'pos 4 'level 0 'icon 'icon-ranger
   'action 'research 'value 'upgrade-ranger
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "r" 'hint "ELVEN ~!RANGER TRAINING"
   'for-unit '(unit-elven-lumber-mill))
 
 (define-button 'pos 4 'level 0 'icon 'icon-ranger-scouting
   'action 'research 'value 'upgrade-ranger-scouting
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "s" 'hint "RANGER ~!SCOUTING (Sight:9)"
   'for-unit '(unit-elven-lumber-mill))
 
 (define-button 'pos 5 'level 0 'icon 'icon-longbow
   'action 'research 'value 'upgrade-longbow
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "l" 'hint "RESEARCH ~!LONGBOW (Range +1)"
   'for-unit '(unit-elven-lumber-mill))
 
 (define-button 'pos 6 'level 0 'icon 'icon-ranger-marksmanship
   'action 'research 'value 'upgrade-ranger-marksmanship
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "m" 'hint "RANGER ~!MARKSMANSHIP (Damage +3)"
   'for-unit '(unit-elven-lumber-mill))
 
 (define-button 'pos 1 'level 0 'icon 'icon-paladin
   'action 'research 'value 'upgrade-paladin
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "p" 'hint "UPGRADES KNIGHTS TO ~!PALADINS"
   'for-unit '(unit-church))
 
 (define-button 'pos 2 'level 0 'icon 'icon-heal
   'action 'research 'value 'upgrade-healing
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "h" 'hint "RESEARCH ~!HEALING"
   'for-unit '(unit-church))
 
 (define-button 'pos 3 'level 0 'icon 'icon-exorcism
   'action 'research 'value 'upgrade-exorcism
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "e" 'hint "RESEARCH ~!EXORCISM"
   'for-unit '(unit-church))
 
 (define-button 'pos 2 'level 0 'icon 'icon-slow
   'action 'research 'value 'upgrade-slow
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "o" 'hint "RESEARCH SL~!OW"
   'for-unit '(unit-mage-tower))
 
 (define-button 'pos 3 'level 0 'icon 'icon-flame-shield
   'action 'research 'value 'upgrade-flame-shield
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "l" 'hint "RESEARCH F~!LAME SHIELD"
   'for-unit '(unit-mage-tower))
 
 (define-button 'pos 4 'level 0 'icon 'icon-invisibility
   'action 'research 'value 'upgrade-invisibility
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "i" 'hint "RESEARCH ~!INVISIBILITY"
   'for-unit '(unit-mage-tower))
 
 (define-button 'pos 5 'level 0 'icon 'icon-polymorph
   'action 'research 'value 'upgrade-polymorph
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "p" 'hint "RESEARCH ~!POLYMORPH"
   'for-unit '(unit-mage-tower))
 
 (define-button 'pos 6 'level 0 'icon 'icon-blizzard
   'action 'research 'value 'upgrade-blizzard
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "b" 'hint "RESEARCH ~!BLIZZARD"
   'for-unit '(unit-mage-tower))
 
 (define-button 'pos 1 'level 0 'icon 'icon-human-ship-cannon2
   'action 'research 'value 'upgrade-human-ship-cannon1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "c" 'hint "UPGRADE ~!CANNONS (Damage +5)"
   'for-unit '(unit-human-foundry))
 
 (define-button 'pos 1 'level 0 'icon 'icon-human-ship-cannon3
   'action 'research 'value 'upgrade-human-ship-cannon2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "c" 'hint "UPGRADE ~!CANNONS (Damage +5)"
   'for-unit '(unit-human-foundry))
 
 (define-button 'pos 2 'level 0 'icon 'icon-human-ship-armor2
   'action 'research 'value 'upgrade-human-ship-armor1
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "a" 'hint "UPGRADE SHIP ~!ARMOR (Armor +5)"
   'for-unit '(unit-human-foundry))
 
 (define-button 'pos 2 'level 0 'icon 'icon-human-ship-armor3
   'action 'research 'value 'upgrade-human-ship-armor2
-  'allowed 'check-research
+  'allowed 'check-single-research
   'key "a" 'hint "UPGRADE SHIP ~!ARMOR (Armor +5)"
   'for-unit '(unit-human-foundry))
