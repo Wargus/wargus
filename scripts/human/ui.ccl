@@ -149,7 +149,11 @@
     '("graphics/ui/human/panel 2.png")
     '("graphics/ui/human/panel 3.png")
     '("graphics/ui/human/panel 4.png")
-    '("graphics/ui/human/panel 5.png") )
+    '("graphics/ui/human/panel 5.png")
+
+    '("graphics/ui/human/victory.png")
+    '("graphics/ui/human/defeat.png")
+)
 
 (define-ui "human" 800 600	; Selector
     ;	Filler 1
@@ -245,7 +249,10 @@
     '("graphics/ui/human/panel 2.png")
     '("graphics/ui/human/panel 3.png")
     '("graphics/ui/human/panel 4.png")
-    '("graphics/ui/human/panel 5.png") )
+    '("graphics/ui/human/panel 5.png")
+    '("graphics/ui/human/victory.png")
+    '("graphics/ui/human/defeat.png")
+)
 
 (define-ui "human" 1024 768	; Selector
     ;	Filler 1
@@ -341,7 +348,10 @@
     '("graphics/ui/human/panel 2.png")
     '("graphics/ui/human/panel 3.png")
     '("graphics/ui/human/panel 4.png")
-    '("graphics/ui/human/panel 5.png") )
+    '("graphics/ui/human/panel 5.png")
+    '("graphics/ui/human/victory.png")
+    '("graphics/ui/human/defeat.png")
+)
 
 (define-ui "human" 1280 960	; Selector
     ;	Filler 1
@@ -437,7 +447,10 @@
     '("graphics/ui/human/panel 2.png")
     '("graphics/ui/human/panel 3.png")
     '("graphics/ui/human/panel 4.png")
-    '("graphics/ui/human/panel 5.png") )
+    '("graphics/ui/human/panel 5.png")
+    '("graphics/ui/human/victory.png")
+    '("graphics/ui/human/defeat.png")
+)
 
 (define-ui "human" 1600 1200	; Selector
     ;	Filler 1
@@ -533,7 +546,10 @@
     '("graphics/ui/human/panel 2.png")
     '("graphics/ui/human/panel 3.png")
     '("graphics/ui/human/panel 4.png")
-    '("graphics/ui/human/panel 5.png") )
+    '("graphics/ui/human/panel 5.png")
+    '("graphics/ui/human/victory.png")
+    '("graphics/ui/human/defeat.png")
+)
 
 (define-new-ui 'orc1 640 480	; Selector
   'normal-font-color 3 'reverse-font-color 7
