@@ -89,9 +89,6 @@
 ;;----------------------------------------------------------------------------
 ;;	Define simple human sounds.
 ;;
-(make-sound "basic human voices work complete"
-	"human/basic_voices/work_complete.wav")
-(make-sound "peasant work complete" "human/units/peasant/work_complete.wav")
 (make-sound "basic human voices ready" "human/basic_voices/ready.wav")
 (make-sound "basic human voices help 1" "human/basic_voices/help/1.wav")
 (make-sound "basic human voices help 2" "human/basic_voices/help/2.wav")
@@ -104,8 +101,6 @@
 ;;----------------------------------------------------------------------------
 ;;	Define simple orc sounds.
 ;;
-(make-sound "basic orc voices work complete"
-	"orc/basic_voices/work_complete.wav")
 (make-sound "basic orc voices ready" "orc/basic_voices/ready.wav")
 (make-sound "basic orc voices help 1" "orc/basic_voices/help/1.wav")
 (make-sound "basic orc voices help 2" "orc/basic_voices/help/2.wav")
@@ -827,9 +822,9 @@
 ;  'tree-chopping (make-sound "tree chopping" "tree_chopping.wav")
 ;  'transport-docking
 ;  'building-construction
-;  'basic-human-voices-work-complete
-;  'peasant-work-complete
-;  'basic-orc-voices-work-complete
+
+  'work-complete (list 'human (make-sound "basic human voices work complete" "human/basic_voices/work_complete.wav"))
+  'work-complete (list 'orc (make-sound "basic orc voices work complete" "orc/basic_voices/work_complete.wav"))
 
   ;; Repair sound is disabled as default
   ;;'repair #t
