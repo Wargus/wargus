@@ -55,8 +55,10 @@ SetContrast(100) SetBrightness(0) SetSaturation(100)
 --SetContrast(110) SetBrightness(15) SetSaturation(100)
 
 --	Enter your default title screen.
-SetTitleScreens(
-	{"graphics/ui/stratagus.png", "music/default.mod"}
+SetTitleScreens({
+    Image = "graphics/ui/stratagus.png",
+	Music = "music/default.mod"
+	}
 --	{"graphics/logo_stratagus.avi"}
 )
 
