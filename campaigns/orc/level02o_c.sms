@@ -9,13 +9,19 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda ()
-  (and (if-unit 2 '== 0 'unit-sharp-axe)
-    (if-rescued-near-unit 'this '== 1 'unit-sharp-axe 'unit-circle-of-power)) )
-  (lambda () (action-victory)))
+(add-trigger
+  '
+    (and
+      (if-unit 2 '== 0 'unit-sharp-axe)
+      (if-rescued-near-unit 'this '== 1 'unit-sharp-axe 'unit-circle-of-power)) )
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

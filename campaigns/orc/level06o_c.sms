@@ -7,15 +7,24 @@
     'voice "campaigns/orc/level06o-intro1.wav"
 ^^OBJECTIVES^^
     )
-(add-trigger (lambda () (if-near-unit 'this '== 1 'unit-double-head
-    'unit-circle-of-power))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (if-near-unit 'this '== 1 'unit-double-head 'unit-circle-of-power))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-double-head)
-    (if-unit 3 '== 0 'unit-double-head)))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-double-head)
+      (if-unit 3 '== 0 'unit-double-head)))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 
 ;;Units

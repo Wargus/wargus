@@ -7,14 +7,19 @@
     'voice "campaigns/orc/level09o-intro1.wav"
 ^^OBJECTIVES^^
     )
-(add-trigger (lambda () (and (if-near-unit 'this '>= 1 'unit-fortress
-                              'unit-circle-of-power) 
-                             (if-near-unit 'this '>= 1 'unit-shipyard
-                              'unit-circle-of-power))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-near-unit 'this '>= 1 'unit-fortress 'unit-circle-of-power) 
+      (if-near-unit 'this '>= 1 'unit-shipyard 'unit-circle-of-power))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 
