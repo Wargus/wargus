@@ -2085,24 +2085,24 @@ char* UnitNames[110];
 /**
 **	Print debug information of level 0.
 */
-#define DebugLevel0(fmt...)	printf(fmt##)
+#define DebugLevel0(fmt,args...)	printf(fmt,##args)
 /**
 **	Print debug information of level 1.
 */
-#define DebugLevel1(fmt...)	printf(fmt##)/**/
+#define DebugLevel1(fmt,args...)	printf(fmt,##args)/**/
 /**
 **	Print debug information of level 2.
 */
-#define DebugLevel2(fmt...)	printf(fmt##)/**/
+#define DebugLevel2(fmt,args...)	printf(fmt,##args)/**/
 /**
 **	Print debug information of level 3.
 */
-#define DebugLevel3(fmt...)	/* ALWAYS TURNED OFF */
+#define DebugLevel3(fmt,args...)	/* ALWAYS TURNED OFF */
 
 /**
 **	Print debug information of level 3 with function name.
 */
-#define DebugLevel3Fn(fmt...)	/* ALWAYS TURNED OFF */
+#define DebugLevel3Fn(fmt,args...)	/* ALWAYS TURNED OFF */
 
 //----------------------------------------------------------------------------
 //	TOOLS
