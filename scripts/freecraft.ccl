@@ -227,6 +227,10 @@
 (set-goldmine-depleted! 0)
 ;(set-goldmine-depleted! 5)
 
+;;	Set burning building percent and rate. (n percent, h HP/second)
+;;	Buildings with less than n% HP lose h HP every second.
+;(set-burn-buildings! 25 2)
+
 ;;	Edit this to enable/disable the reveal of the attacker.
 ;(set-reveal-attacker! #t)
 (set-reveal-attacker! #f)
