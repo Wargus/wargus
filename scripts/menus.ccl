@@ -1572,12 +1572,12 @@
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 32 (* 36 6.5)) 'font 'large
   'gem '(size (18 18)
-    text "All Tracks"
+    text "Defined Tracks"
     state unchecked
-    func set-cd-mode-all
+    func set-cd-mode-defined
     style gem-round)
   'menu 'menu-sound-options)
-(define-menu-item 'pos (list 154 (* 36 6.5)) 'font 'large
+(define-menu-item 'pos (list 170 (* 36 6.5)) 'font 'large
   'gem '(size (18 18)
     text "Random Tracks"
     state unchecked
