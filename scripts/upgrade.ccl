@@ -45,6 +45,7 @@
 (define-allow 'unit-nothing-30			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-nothing-36			"AAAAAAAAAAAAAAAA")
 
+(define-allow 'unit-critter			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-skeleton			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-daemon			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-gold-mine			"AAAAAAAAAAAAAAAA")
