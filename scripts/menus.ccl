@@ -455,10 +455,7 @@
 (define-menu-item 'pos (list 40 (+ 10 240)) 'font 'game
   'pulldown '(size (152 20)
     style pulldown
-    func game-rcs-action
-    options ("Human" "Orc" "Map Default" )
-    default 2
-    current 2)
+    func game-rcs-action)
   'menu 'menu-custom-game)
 (define-menu-item 'pos (list 220 (- (+ 10 240) 20)) 'font 'game
   'text '(caption "~<Resources:~>" none)
@@ -761,10 +758,7 @@
 (define-menu-item 'pos (list 40 (+ 10 240)) 'font 'game
   'pulldown '(size (152 20)
     style pulldown
-    func game-rcs-action
-    options ("Human" "Orc" "Map Default" )
-    default 2
-    current 2)
+    func game-rcs-action)
   'menu 'menu-multi-setup)
 (define-menu-item 'pos (list 220 (- (+ 10 240) 20)) 'font 'game
   'text '(caption "~<Resources:~>" none)
@@ -1189,10 +1183,7 @@
 (define-menu-item 'pos (list 40 (+ 10 240)) 'font 'game
   'pulldown '(size (152 20)
     style pulldown
-    func multi-client-rcs-action
-    options ("Human" "Orc" "Map Default" )
-    default 2
-    current 2)
+    func multi-client-rcs-action)
   'menu 'menu-net-multi-client)
 (define-menu-item 'pos (list 220 (- (+ 10 240) 20)) 'font 'game
   'text '(caption "~<Resources:~>" none)
