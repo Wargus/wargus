@@ -1784,6 +1784,7 @@ int ConvertRgb(char* file,int rgbe)
     size_t l;
 
     rgbp=ExtractEntry(ArchiveOffsets[rgbe],&l);
+    ConvertPalette(rgbp);
 
     //
     //	Generate RGB File.
@@ -1819,7 +1820,7 @@ int ConvertRgb(char* file,int rgbe)
     for( i=0; i<256; ++i ) {
 	// FIXME: insert nice names!
 	fprintf(f,"%d %d %d\t#%d\n"
-		,rgbp[i*3]*4,rgbp[i*3+1]*4,rgbp[i*3+2]*4,i);
+		,rgbp[i*3],rgbp[i*3+1],rgbp[i*3+2],i);
     }
 
     free(rgbp);
