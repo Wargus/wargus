@@ -109,6 +109,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define-ui "orc" 640 480	; Selector
+    'normal-font-color 'yellow
+    'reverse-font-color 'white
+
     ;	Filler 1
     (list "graphics/ui/orc/640x480/filler-right.png" (+ 176 448) 0)
 
@@ -209,6 +212,9 @@
 )
 
 (define-ui "orc" 800 600	; Selector
+    'normal-font-color 'yellow
+    'reverse-font-color 'white
+
     ;	Filler 1
     (list "graphics/ui/orc/800x600/filler-right.png" (+ 176 608) 0)
 
@@ -309,6 +315,9 @@
 )
 
 (define-ui "orc" 1024 768	; Selector
+    'normal-font-color 'yellow
+    'reverse-font-color 'white
+
     ;	Filler 1
     (list "graphics/ui/orc/1024x768/filler-right.png" (+ 176 832) 0)
 
@@ -409,6 +418,9 @@
 )
 
 (define-ui "orc" 1280 960	; Selector
+    'normal-font-color 'yellow
+    'reverse-font-color 'white
+
     ;	Filler 1
     (list "graphics/ui/orc/1280x960/filler-right.png" (+ 176 1088) 0)
 
@@ -509,6 +521,9 @@
 )
 
 (define-ui "orc" 1600 1200	; Selector
+    'normal-font-color 'yellow
+    'reverse-font-color 'white
+
     ;	Filler 1
     (list "graphics/ui/orc/1600x1200/filler-right.png" (+ 176 1408) 0)
 
