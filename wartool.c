@@ -157,6 +157,9 @@ enum _archive_type_ {
     X,			// Text				(name,text,ofs)
     C,			// Cursor			(name,cursor)
     V,			// Video			(name)
+#ifdef IMPORT_CAMPAIGNS
+    L,			// Campaign Levels		
+#endif
 };
 
 /**
@@ -185,7 +188,11 @@ Control Todo[] = {
 {F,0,"strdat.war",				4000 __},
 #endif
 {S,0,"unit_names",						  1	__},
-{X,0,"objectives",						 54	__},
+#ifdef IMPORT_CAMPAIGNS
+{L,0,"objectives",						 54 ,236	_2},
+#else
+{X,0,"objectives",                                               54     __},
+#endif
 {X,0,"human/dialog",						 55	__},
 {X,0,"orc/dialog",						 56	__},
 {X,0,"credits",							 58 ,4	_2},
@@ -3398,6 +3405,148 @@ char* ParseString(char* input)
 }
 
 //----------------------------------------------------------------------------
+//	Import the campaigns
+//----------------------------------------------------------------------------
+
+#ifdef IMPORT_CAMPAIGNS
+
+/**
+**	FIXME: docu
+*/
+int CampaignsCreate(char *file, int txte, int ofs, int expansion)
+{
+    unsigned char *objectives;
+    char buf[1024];
+    unsigned char *CampaignData[2][26][10];
+    unsigned char *current, *next, *nextobj, *currentobj;
+    FILE *inlevel, *outlevel;
+    int l, levelno, noobjs, race;
+
+    //For the moment, force expansion to 0 since we haven't
+    //written the campaign files for the expansion yet.
+    expansion = 0;
+
+    objectives = ExtractEntry(ArchiveOffsets[txte], &l);
+    if (!objectives) {
+	printf("Objectives allocation failed\n");
+	exit(-1);
+    }
+    objectives = realloc(objectives, l + 1);
+    if (!objectives) {
+	printf("Objectives allocation failed\n");
+	exit(-1);
+    }
+    objectives[l] = '\0';
+
+    //Now Search from start of objective data
+    levelno = 0;
+    race = 0;
+
+    //Extract all the values for objectives
+    if (expansion) {
+	expansion = 52;
+    } else {
+	expansion = 28;
+    }
+    current = objectives + ofs;
+    for (l = 0; l < expansion; l++) {
+	next = current + strlen(current) + 1;
+
+	noobjs = 1;			//Number of objectives is zero.
+	currentobj = current;
+	while ((nextobj = index(currentobj, '\n')) != NULL) {
+	    *nextobj = '\0';
+	    nextobj++;
+	    CampaignData[race][levelno][noobjs] = currentobj;
+	    currentobj = nextobj;
+	    noobjs++;
+	}
+	//Get the final one.
+	CampaignData[race][levelno][noobjs] = currentobj;
+	for (noobjs++; noobjs < 10; noobjs++) {
+	    CampaignData[race][levelno][noobjs] = NULL;
+	}
+	current = next;
+	if (race == 0) {
+	    race = 1;
+	} else if (race == 1) {
+	    race = 0;
+	    levelno++;
+	};
+    }
+
+    //Extract the Level titles now.
+    race = 0;
+    levelno = 0;
+    //Find the start of the Levels
+    while (current[0] != 'I' && current[1] != '.') {
+	current = current + strlen(current) + 1;
+    }
+    for (l = 0; l < expansion; l++) {
+	next = current + strlen(current) + 1;
+	CampaignData[race][levelno][0] = current;
+	current = next;
+	if (race == 0) {
+	    race = 1;
+	} else {
+	    if (race == 1) {
+		race = 0;
+		levelno++;
+	    }
+	}
+    }
+
+    for (levelno = 0; levelno < expansion / 2; levelno++) {
+	for (race = 0; race < 2; race++) {
+	    //Open Relevant file, to write stuff too.
+	    sprintf(buf, "%s/../%s/%s/%s.cm", Dir, "contrib", TEXT_PATH,
+		Todo[2 * levelno + 1 + race + 7].File);
+	    if (!(inlevel = fopen(buf, "rb"))) {
+		printf("%s:", buf);
+		perror("Can't open file");
+		continue;
+	    }
+	    sprintf(buf, "%s/%s/%s.cm", Dir, TEXT_PATH,
+		Todo[2 * levelno + 1 + race + 7].File);
+	    if (!(outlevel = fopen(buf, "wb"))) {
+		printf("%s:", buf);
+		perror("Can't open file");
+		continue;
+	    }
+	    //Title Key is ^^TITLE^^
+	    //Objectives Key is ^^OBJECTIVES^^
+	    while (fgets(buf, 1023, inlevel) != 0) {
+		if (!strncmp(buf, "^^TITLE^^", 9)) {
+		    sprintf(buf, "    'title \"%s\"\n",
+			CampaignData[race][levelno][0]);
+		    fputs(buf, outlevel);
+		} else {
+		    if (!strncmp(buf, "^^OBJECTIVES^^", 14)) {
+			for (noobjs = 1; noobjs < 10; noobjs++) {
+			    if (CampaignData[race][levelno][noobjs] != NULL) {
+				sprintf(buf, "    'objective \"%s\"\n",
+				    CampaignData[race][levelno][noobjs]);
+				fputs(buf, outlevel);
+			    }
+			}
+		    } else {
+			fputs(buf, outlevel);
+		    }
+		}
+	    }
+	    //Close levels and move on.
+	    fclose(inlevel);
+	    fclose(outlevel);
+	}
+    }
+
+    return 0;
+    free(objectives);
+}
+
+#endif
+
+//----------------------------------------------------------------------------
 //	Main loop
 //----------------------------------------------------------------------------
 
@@ -3501,6 +3650,7 @@ int main(int argc,char** argv)
 	    continue;
 	}
 	switch( Todo[u].Type ) {
+		
 	    case F:
 		sprintf(buf,"%s/%s",archivedir,Todo[u].File);
 		DebugLevel2("Archive \"%s\"\n" _C_ buf);
@@ -3548,7 +3698,12 @@ int main(int argc,char** argv)
 		if( video ) {
 		    ConvertVideo(Todo[u].File,Todo[u].Arg1);
 		}
+		break; 
+#ifdef IMPORT_CAMPAIGNS
+	    case L:
+		CampaignsCreate(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,expansion_cd);
 		break;
+#endif
 	    default:
 		break;
 	}
