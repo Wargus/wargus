@@ -80,6 +80,9 @@
 ;;	Uncomment next, to show mana bars horizontal.
 (show-mana-horizontal)
 
+;;	Uncomment next, to show energy bars and dots only for selected units
+;(show-energy-selected-only)
+
 ;;	Uncomment next, to show bars and dots always on top.
 (decoration-on-top)
 
