@@ -399,7 +399,7 @@
 
 (define-ui "human" 1280 1024	; Selector
     ;	Filler 1
-    (list "graphics/ui/human/640x480/filler-right.png" (+ 176 448) 0)
+    (list "graphics/ui/human/640x480/filler-right.png" (+ 176 1088) 0)
 
     ;	Resource line
     '("graphics/ui/human/640x480/resource.png" 176 0)
@@ -495,7 +495,7 @@
 
 (define-ui "human" 1600 1200	; Selector
     ;	Filler 1
-    (list "graphics/ui/human/640x480/filler-right.png" (+ 176 448) 0)
+    (list "graphics/ui/human/640x480/filler-right.png" (+ 176 1408) 0)
 
     ;	Resource line
     '("graphics/ui/human/640x480/resource.png" 176 0)

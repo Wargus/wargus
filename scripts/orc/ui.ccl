@@ -207,7 +207,7 @@
 
 (define-ui "orc" 800 600	; Selector
     ;	Filler 1
-    (list "graphics/ui/orc/640x480/filler-right.png" (+ 176 448) 0)
+    (list "graphics/ui/orc/640x480/filler-right.png" (+ 176 608) 0)
 
     ;	Resource line
     '("graphics/ui/orc/640x480/resource.png" 176 0)
@@ -303,7 +303,7 @@
 
 (define-ui "orc" 1024 768	; Selector
     ;	Filler 1
-    (list "graphics/ui/orc/640x480/filler-right.png" (+ 176 448) 0)
+    (list "graphics/ui/orc/640x480/filler-right.png" (+ 176 832) 0)
 
     ;	Resource line
     '("graphics/ui/orc/640x480/resource.png" 176 0)
@@ -399,7 +399,7 @@
 
 (define-ui "orc" 1280 1024	; Selector
     ;	Filler 1
-    (list "graphics/ui/orc/640x480/filler-right.png" (+ 176 448) 0)
+    (list "graphics/ui/orc/640x480/filler-right.png" (+ 176 1088) 0)
 
     ;	Resource line
     '("graphics/ui/orc/640x480/resource.png" 176 0)
@@ -495,7 +495,7 @@
 
 (define-ui "orc" 1600 1200	; Selector
     ;	Filler 1
-    (list "graphics/ui/orc/640x480/filler-right.png" (+ 176 448) 0)
+    (list "graphics/ui/orc/640x480/filler-right.png" (+ 176 1408) 0)
 
     ;	Resource line
     '("graphics/ui/orc/640x480/resource.png" 176 0)
