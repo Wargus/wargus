@@ -57,6 +57,10 @@ typedef unsigned long u_int32_t;
 #define __attribute__(args)  // Does nothing for non GNU CC
 #endif
 
+#ifndef O_BINARY
+#define O_BINARY 0
+#endif
+
 // From SDL_byteorder.h
 #if  defined(__i386__) || defined(__ia64__) || defined(WIN32) || \
     (defined(__alpha__) || defined(__alpha)) || \
