@@ -175,7 +175,7 @@
 ; FIXME: Need to check if sound support is present
 (load "ccl/sound.ccl" #f #t)
 (load "ccl/missiles.ccl" #f #t)
-(load "ccl/anim.ccl" #f #t)
+; UNCOMMENTED FOR DEBUGING (load "ccl/anim.ccl" #f #t)
 (load "ccl/units.ccl" #f #t)
 (load "ccl/upgrade.ccl" #f #t)
 (load "ccl/fonts.ccl" #f #t)
