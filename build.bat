@@ -132,7 +132,7 @@ ECHO ERROR: '%ARCHIVE%\rezdat.war' not found
 goto EOF
 
 :CONTRIBERROR
-ECHO ERROR: '%CONTRIB%' not found try running %0
+ECHO ERROR: '%CONTRIB%' not found; try running %0
 ECHO 	from the toplevel freecraft directory
 goto EOF
 
