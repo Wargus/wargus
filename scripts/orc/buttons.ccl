@@ -60,14 +60,16 @@
   'allowed 'check-upgrade 'allow-arg '(upgrade-orc-shield1)
   'key "s" 'hint "~!STOP"
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
-    unit-goblin-sappers unit-berserker unit-catapult))
+    unit-goblin-sappers unit-berserker unit-catapult unit-korgath-bladefist
+    unit-grom-hellscream unit-dentarg unit-cho-gall))
 
 (define-button 'pos 2 'level 0 'icon 'icon-orc-shield3
   'action 'stop
   'allowed 'check-upgrade 'allow-arg '(upgrade-orc-shield2)
   'key "s" 'hint "~!STOP"
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
-    unit-goblin-sappers unit-berserker unit-catapult))
+    unit-goblin-sappers unit-berserker unit-catapult unit-korgath-bladefist
+    unit-grom-hellscream unit-dentarg unit-cho-gall))
 
 (define-button 'pos 3 'level 0 'icon 'icon-battle-axe1
   'action 'attack
@@ -84,14 +86,16 @@
   'allowed 'check-upgrade 'allow-arg '(upgrade-battle-axe1)
   'key "a" 'hint "~!ATTACK"
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
-    unit-goblin-sappers unit-berserker unit-catapult))
+    unit-goblin-sappers unit-berserker unit-catapult unit-korgath-bladefist
+    unit-grom-hellscream unit-dentarg unit-cho-gall))
 
 (define-button 'pos 3 'level 0 'icon 'icon-battle-axe3
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-battle-axe2)
   'key "a" 'hint "~!ATTACK"
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
-    unit-goblin-sappers unit-berserker unit-catapult))
+    unit-goblin-sappers unit-berserker unit-catapult unit-korgath-bladefist
+    unit-grom-hellscream unit-dentarg unit-cho-gall))
 
 (define-button 'pos 3 'level 0 'icon 'icon-throwing-axe1
   'action 'attack
@@ -102,13 +106,13 @@
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-throwing-axe1)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-axethrower unit-berserker))
+  'for-unit '(unit-axethrower unit-berserker unit-zuljin))
 
 (define-button 'pos 3 'level 0 'icon 'icon-throwing-axe3
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-throwing-axe2)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-axethrower unit-berserker))
+  'for-unit '(unit-axethrower unit-berserker unit-zuljin))
 
 (define-button 'pos 3 'level 0 'icon 'icon-catapult1
   'action 'attack
@@ -158,21 +162,21 @@
 
 (define-button 'pos 7 'level 0 'icon 'icon-eye-of-kilrogg
   'action 'cast-spell 'value 'spell-eye-of-kilrogg
-  'allowed 'check-upgrade 'allow-arg '(upgrade-eye-of-kilrogg)
+  'allowed 'check-upgrade 'allow-arg '(upgrade-ogre-mage)
   'key "k" 'hint "EYE OF ~!KILROGG"
-  'for-unit '(unit-ogre-mage))
+  'for-unit '(unit-ogre-mage unit-dentarg))
 
 (define-button 'pos 8 'level 0 'icon 'icon-bloodlust
   'action 'cast-spell 'value 'spell-bloodlust
   'allowed 'check-upgrade 'allow-arg '(upgrade-bloodlust)
   'key "b" 'hint "~!BLOODLUST"
-  'for-unit '(unit-ogre-mage))
+  'for-unit '(unit-ogre-mage unit-dentarg))
 
 (define-button 'pos 9 'level 0 'icon 'icon-runes
   'action 'cast-spell 'value 'spell-runes
   'allowed 'check-upgrade 'allow-arg '(upgrade-runes)
   'key "r" 'hint "~!RUNES"
-  'for-unit '(unit-ogre-mage))
+  'for-unit '(unit-ogre-mage unit-dentarg))
 
 ;; cho'gall specific actions --- same as ogre mage but it has them always -----
 
@@ -211,31 +215,31 @@
   'action 'cast-spell 'value 'spell-haste
   'allowed 'check-upgrade 'allow-arg '(upgrade-haste)
   'key "h" 'hint "~!HASTE"
-  'for-unit '(unit-death-knight))
+  'for-unit '(unit-death-knight unit-gul-dan unit-teron-gorefiend))
 
 (define-button 'pos 6 'level 0 'icon 'icon-raise-dead
   'action 'cast-spell 'value 'spell-raise-dead
   'allowed 'check-upgrade 'allow-arg '(upgrade-raise-dead)
   'key "r" 'hint "~!RAISE DEAD"
-  'for-unit '(unit-death-knight))
+  'for-unit '(unit-death-knight unit-gul-dan unit-teron-gorefiend))
 
 (define-button 'pos 7 'level 0 'icon 'icon-whirlwind
   'action 'cast-spell 'value 'spell-whirlwind
   'allowed 'check-upgrade 'allow-arg '(upgrade-whirlwind)
   'key "w" 'hint "~!WHIRLWIND"
-  'for-unit '(unit-death-knight))
+  'for-unit '(unit-death-knight unit-gul-dan unit-teron-gorefiend))
 
 (define-button 'pos 8 'level 0 'icon 'icon-unholy-armor
   'action 'cast-spell 'value 'spell-unholy-armor
   'allowed 'check-upgrade 'allow-arg '(upgrade-unholy-armor)
   'key "u" 'hint "~!UNHOLY ARMOR"
-  'for-unit '(unit-death-knight))
+  'for-unit '(unit-death-knight unit-gul-dan unit-teron-gorefiend))
 
 (define-button 'pos 9 'level 0 'icon 'icon-death-and-decay
   'action 'cast-spell 'value 'spell-death-and-decay
   'allowed 'check-upgrade 'allow-arg '(upgrade-death-and-decay)
   'key "d" 'hint "~!DEATH AND DECAY"
-  'for-unit '(unit-death-knight))
+  'for-unit '(unit-death-knight unit-gul-dan unit-teron-gorefiend))
 
 ;; peon specific actions ------------------------------------------------------
 
@@ -395,7 +399,7 @@
   'key "p" 'hint "TRAIN ~!PEON"
   'for-unit '(unit-great-hall unit-stronghold unit-fortress))
 
-;; string hold upgrades -------------------------------------------------------
+;; strong hold upgrades -------------------------------------------------------
 
 (define-button 'pos 2 'level 0 'icon 'icon-stronghold
   'action 'upgrade-to 'value 'unit-stronghold
