@@ -104,10 +104,11 @@
         "/buttonpanel.png")
        0 336)
 
-    ; The big map
-    (list 176 16
-      (+ 176 (* 32 (trunc (/ (- screen_width 176 16) 32))))
-      (+ 16 (* 32 (trunc (/ (- screen_height 16 16) 32)))))
+    'map-area (list
+      'pos '(176 16)
+      'size (list
+        (* 32 (trunc (/ (- screen_width 176 16) 32)))
+        (* 32 (trunc (/ (- screen_height 16 16) 32)))))
 
     ; Menu button
     (list "graphics/ui/human/menubutton.png" 0 0)
