@@ -183,6 +183,7 @@ Control Todo[] = {
 {X,0,"objectives",						 54	__},
 {X,0,"human/dialog",						 55	__},
 {X,0,"orc/dialog",						 56	__},
+{X,0,"credits",						 	 58 ,4	_2},
 
 {X,0,"human/level01h",						 65 ,4	_2},
 {X,0,"orc/level01o",						 66 ,4	_2},
@@ -237,6 +238,8 @@ Control Todo[] = {
 {X,2,"orc/levelx11o",						120 ,4	_2},
 {X,2,"human/levelx12h",						121 ,4	_2},
 {X,2,"orc/levelx12o",						122 ,4	_2},
+{X,2,"credits2",						123 ,4	_2},
+{X,2,"credits-ext.txt",						124	__},
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
