@@ -10,7 +10,7 @@
 ;;
 ;;	constructions.ccl	-	Define the orc constructions.
 ;;
-;;	(c) Copyright 2001 by Lutz Sammer
+;;	(c) Copyright 2001,2003 by Lutz Sammer and Jimmy Salmon
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -31,27 +31,65 @@
 ;;	    'size '(x y))
 
 (define-construction 'construction-mythical-shipyard
-  'files '(summer "orc/buildings/shipyard construction site.png"
-    winter "tilesets/winter/orc/buildings/shipyard construction site.png"
-    swamp "tilesets/swamp/orc/buildings/shipyard construction site.png")
-  'size '(96 96))
+  'file '(
+    tileset summer
+    file "orc/buildings/shipyard construction site.png"
+    size (96 96))
+  'file '(
+    tileset winter
+    file "tilesets/winter/orc/buildings/shipyard construction site.png"
+    size (96 96))
+  'file '(
+    tileset swamp
+    file "tilesets/swamp/orc/buildings/shipyard construction site.png"
+    size (96 96))
+)
 
 (define-construction 'construction-mythical-oil-well
-  'files '(
-    summer "tilesets/summer/orc/buildings/oil well construction site.png"
-    winter "tilesets/winter/orc/buildings/oil well construction site.png"
-    wasteland "tilesets/wasteland/orc/buildings/oil well construction site.png"
-    swamp "tilesets/swamp/orc/buildings/oil platform construction site.png")
-  'size '(96 96))
+  'file '(
+    tileset summer
+    file "tilesets/summer/orc/buildings/oil well construction site.png"
+    size (96 96))
+  'file '(
+    tileset winter
+    file "tilesets/winter/orc/buildings/oil well construction site.png"
+    size (96 96))
+  'file '(
+    tileset wasteland
+    file "tilesets/wasteland/orc/buildings/oil well construction site.png"
+    size (96 96))
+  'file '(
+    tileset swamp
+    file "tilesets/swamp/orc/buildings/oil platform construction site.png"
+    size (96 96))
+)
 
 (define-construction 'construction-mythical-refinery
-  'files '(summer "orc/buildings/refinery construction site.png"
-    winter "tilesets/winter/orc/buildings/refinery construction site.png"
-    swamp "tilesets/swamp/orc/buildings/refinery construction site.png")
-  'size '(96 96))
+  'file '(
+    tileset summer
+    file "orc/buildings/refinery construction site.png"
+    size (96 96))
+  'file '(
+    tileset winter
+    file "tilesets/winter/orc/buildings/refinery construction site.png"
+    size (96 96))
+  'file '(
+    tileset swamp
+    file "tilesets/swamp/orc/buildings/refinery construction site.png"
+    size (96 96))
+)
 
 (define-construction 'construction-mythical-foundry
-  'files '(summer "orc/buildings/foundry construction site.png"
-    winter "tilesets/winter/orc/buildings/foundry construction site.png"
-    swamp "tilesets/swamp/orc/buildings/foundry construction site.png")
-  'size '(96 96))
+  'file '(
+    tileset summer
+    file "orc/buildings/foundry construction site.png"
+    size (96 96))
+  'file '(
+    tileset winter
+    file "tilesets/winter/orc/buildings/foundry construction site.png"
+    size (96 96))
+  'file '(
+    tileset swamp
+    file "tilesets/swamp/orc/buildings/foundry construction site.png"
+    size (96 96))
+)

@@ -10,7 +10,7 @@
 ;;
 ;;	constructions.ccl	-	Define the human constructions.
 ;;
-;;	(c) Copyright 2001 by Lutz Sammer
+;;	(c) Copyright 2001,2003 by Lutz Sammer and Jimmy Salmon
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -30,28 +30,65 @@
 ;;	    'size '(x y))
 
 (define-construction 'construction-alliance-shipyard
-  'files '(summer "human/buildings/shipyard construction site.png"
-    winter "tilesets/winter/human/buildings/shipyard construction site.png"
-    swamp "tilesets/swamp/human/buildings/shipyard construction site.png")
-  'size '(96 96))
+  'file '(
+    tileset summer
+    file "human/buildings/shipyard construction site.png"
+    size (96 96))
+  'file '(
+    tileset winter
+    file "tilesets/winter/human/buildings/shipyard construction site.png"
+    size (96 96))
+  'file '(
+    tileset swamp
+    file "tilesets/swamp/human/buildings/shipyard construction site.png"
+    size (96 96))
+)
 
 (define-construction 'construction-alliance-oil-well
-  'files '(
-    summer "tilesets/summer/human/buildings/oil well construction site.png"
-    winter "tilesets/winter/human/buildings/oil well construction site.png"
-    wasteland
-      "tilesets/wasteland/human/buildings/oil well construction site.png"
-    swamp "tilesets/swamp/human/buildings/oil platform construction site.png")
-  'size '(96 96))
+  'file '(
+    tileset summer
+    file "tilesets/summer/human/buildings/oil well construction site.png"
+    size (96 96))
+  'file '(
+    tileset winter
+    file "tilesets/winter/human/buildings/oil well construction site.png"
+    size (96 96))
+  'file '(
+    tileset wasteland
+    file "tilesets/wasteland/human/buildings/oil well construction site.png"
+    size (96 96))
+  'file '(
+    tileset swamp
+    file "tilesets/swamp/human/buildings/oil platform construction site.png"
+    size (96 96))
+)
 
 (define-construction 'construction-alliance-refinery
-  'files '(summer "human/buildings/refinery construction site.png"
-    winter "tilesets/winter/human/buildings/refinery construction site.png"
-    swamp "tilesets/swamp/human/buildings/refinery construction site.png")
-  'size '(96 96))
+  'file '(
+    tileset summer
+    file "human/buildings/refinery construction site.png"
+    size (96 96))
+  'file '(
+    tileset winter
+    file "tilesets/winter/human/buildings/refinery construction site.png"
+    size (96 96))
+  'file '(
+    tileset swamp
+    file "tilesets/swamp/human/buildings/refinery construction site.png"
+    size (96 96))
+)
 
 (define-construction 'construction-alliance-foundry
-  'files '(summer "human/buildings/foundry construction site.png"
-    winter "tilesets/winter/human/buildings/foundry construction site.png"
-    swamp "tilesets/swamp/human/buildings/foundry construction site.png")
-  'size '(96 96))
+  'file '(
+    tileset summer
+    file "human/buildings/foundry construction site.png"
+    size (96 96))
+  'file '(
+    tileset winter
+    file "tilesets/winter/human/buildings/foundry construction site.png"
+    size (96 96))
+  'file '(
+    tileset swamp
+    file "tilesets/swamp/human/buildings/foundry construction site.png"
+    size (96 96))
+)

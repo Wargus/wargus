@@ -10,7 +10,7 @@
 ;;
 ;;	constructions.ccl	-	Define the constructions.
 ;;
-;;	(c) Copyright 2001,2002 by Lutz Sammer
+;;	(c) Copyright 2001-2003 by Lutz Sammer and Jimmy Salmon
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -33,17 +33,38 @@
 ;;	    'size '(x y))
 
 (define-construction 'construction-none
-  'files '(summer "neutral/buildings/land construction site.png"
-    winter "tilesets/winter/neutral/buildings/land construction site.png")
-  'size '(64 64))
+  'file '(
+    tileset summer
+    file "neutral/buildings/land construction site.png"
+    size (64 64))
+  'file '(
+    tileset winter
+    file "tilesets/winter/neutral/buildings/land construction site.png"
+    size (64 64))
+)
 
 (define-construction 'construction-land
-  'files '(summer "neutral/buildings/land construction site.png"
-    winter "tilesets/winter/neutral/buildings/land construction site.png")
-  'size '(64 64))
+  'file '(
+    tileset summer
+    file "neutral/buildings/land construction site.png"
+    size (64 64))
+  'file '(
+    tileset winter
+    file "tilesets/winter/neutral/buildings/land construction site.png"
+    size (64 64))
+)
 
 (define-construction 'construction-wall
-  'files '(summer "tilesets/summer/neutral/buildings/wall construction site.png"
-    winter "tilesets/winter/neutral/buildings/wall construction site.png"
-    wasteland "tilesets/wasteland/neutral/buildings/wall construction site.png")
-  'size '(32 32))
+  'file '(
+    tileset summer
+    file "tilesets/summer/neutral/buildings/wall construction site.png"
+    size (32 32))
+  'file '(
+    tileset winter
+    file "tilesets/winter/neutral/buildings/wall construction site.png"
+    size (32 32))
+  'file '(
+    tileset wasteland
+    file "tilesets/wasteland/neutral/buildings/wall construction site.png"
+    size (32 32))
+)
