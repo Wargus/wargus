@@ -10,16 +10,27 @@
     )
 
 ;; FIXME: Check if units are destroyed.
-(add-trigger (lambda () (and (if-unit 'this '== 1 'unit-evil-knight)
-                             (if-opponents 'this '== 0))
-                        ) (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 1 'unit-evil-knight)
+      (if-opponents 'this '== 0)))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-evil-knight)
-                             (if-unit 7 '== 0 'unit-evil-knight)))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-evil-knight)
+      (if-unit 7 '== 0 'unit-evil-knight)))
+  '(
+    (action-defeat)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

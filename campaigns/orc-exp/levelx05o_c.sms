@@ -10,11 +10,17 @@
     )
 
 ;; FIXME: Check if units are destroyed.
-(add-trigger (lambda () (if-unit 'this '== 1 'unit-dragon-roost)
-                        ) (lambda () (action-victory)))
+(add-trigger
+  '(
+    (if-unit 'this '== 1 'unit-dragon-roost))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 
