@@ -86,7 +86,7 @@
   'can-attack 'can-repair
   'can-target-land
   'land-unit
-  'cower-worker
+  'coward
   'harvester 'resource-harvested 'gold 'resource-capacity 100
   'wait-at-resource 150 'wait-at-depot 150
   'transform-when-loaded 'unit-peon-with-gold
@@ -121,7 +121,7 @@
   'can-attack 'can-repair
   'can-target-land
   'land-unit
-  'cower-worker
+  'coward
   'harvester 'resource-harvested 'gold 'resource-capacity 100
   'wait-at-resource 150 'wait-at-depot 150
   'transform-when-empty 'unit-peon
@@ -156,7 +156,7 @@
   'can-attack 'can-repair
   'can-target-land
   'land-unit
-  'cower-worker
+  'coward
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -284,7 +284,7 @@
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
   'land-unit
-  'cower-mage
+  'coward
   'isundead
   'can-cast-spell
   'organic
@@ -418,7 +418,7 @@
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
   'land-unit
-  'cower-mage
+  'coward
   'isundead
   'can-cast-spell
   'organic
@@ -518,7 +518,7 @@
   'corpse '(unit-dead-body 12)
   'type-naval
   'right-harvest
-  'sea-unit
+  'sea-unit 'coward
   'harvester 'resource-harvested 'oil 'resource-capacity 100
   'wait-at-resource 100 'wait-at-depot 100
   'transform-when-loaded 'unit-orc-oil-tanker-full
@@ -549,7 +549,7 @@
   'corpse '(unit-dead-body 12)
   'type-naval
   'right-harvest
-  'sea-unit
+  'sea-unit 'coward
   'harvester 'resource-harvested 'oil 'resource-capacity 100
   'wait-at-resource 100 'wait-at-depot 100
   'transform-when-empty 'unit-orc-oil-tanker
@@ -738,7 +738,7 @@
   'demand 1
   'type-fly
   'right-move
-  'air-unit
+  'air-unit 'coward
   'can-see-submarine
   'selectable-by-rectangle
   'sounds '(
@@ -993,7 +993,7 @@
   'supply 4
   'corpse '(unit-destroyed-2x2-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'sounds '(
     selected "pig-farm-selected"
     acknowledge "pig-farm-acknowledge"
@@ -1020,7 +1020,7 @@
   'points 160
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'sounds '(
     selected "orc-barracks-selected"
     acknowledge "orc-barracks-acknowledge"
@@ -1047,7 +1047,7 @@
   'points 240
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'sounds '(
     selected "altar-of-storms-selected"
     acknowledge "altar-of-storms-acknowledge"
@@ -1075,7 +1075,7 @@
   'corpse '(unit-destroyed-2x2-place 0)
   'type-land
   'can-target-land 'can-target-sea 'can-target-air
-  'building
+  'building 'builder-inside
   'can-see-submarine
   'sounds '(
     selected "orc-watch-tower-selected"
@@ -1103,7 +1103,7 @@
   'points 210
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'sounds '(
     selected "ogre-mound-selected"
     acknowledge "ogre-mound-acknowledge"
@@ -1130,7 +1130,7 @@
   'points 230
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'sounds '(
     selected "goblin-alchemist-selected"
     acknowledge "goblin-alchemist-acknowledge"
@@ -1157,7 +1157,7 @@
   'points 280
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'sounds '(
     selected "dragon-roost-selected"
     acknowledge "dragon-roost-acknowledge"
@@ -1184,7 +1184,7 @@
   'points 170
   'corpse '(unit-destroyed-3x3-place 3)
   'type-land
-  'building
+  'building 'builder-inside
   'shore-building
   'can-store '(oil)
   'sounds '(
@@ -1214,7 +1214,7 @@
   'supply 1
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'can-store '(gold wood)
   'sounds '(
     selected "great-hall-selected"
@@ -1243,7 +1243,7 @@
   'points 150
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'can-store '(wood)
   'sounds '(
     selected "troll-lumber-mill-selected"
@@ -1271,7 +1271,7 @@
   'points 200
   'corpse '(unit-destroyed-3x3-place 3)
   'type-land
-  'building
+  'building 'builder-inside
   'shore-building
   'sounds '(
     selected "orc-foundry-selected"
@@ -1299,7 +1299,7 @@
   'points 240
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'sounds '(
     selected "temple-of-the-damned-selected"
     acknowledge "temple-of-the-damned-acknowledge"
@@ -1326,7 +1326,7 @@
   'points 170
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'sounds '(
     selected "orc-blacksmith-selected"
     acknowledge "orc-blacksmith-acknowledge"
@@ -1353,7 +1353,7 @@
   'points 200
   'corpse '(unit-destroyed-3x3-place 3)
   'type-land
-  'building
+  'building 'builder-inside
   'shore-building
   'can-store '(oil)
   'sounds '(
@@ -1413,7 +1413,7 @@
   'supply 1
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'can-store '(gold wood)
   'sounds '(
     selected "stronghold-selected"
@@ -1442,7 +1442,7 @@
   'supply 1
   'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'can-store '(gold wood)
   'sounds '(
     selected "fortress-selected"
@@ -1494,7 +1494,7 @@
   'type-land
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
-  'building
+  'building 'builder-inside
   'can-see-submarine
   'tower
   'sounds '(
@@ -1526,7 +1526,7 @@
   'type-land
   'can-attack
   'can-target-land 'can-target-sea
-  'building
+  'building 'builder-inside
   'can-see-submarine
   'tower
   'sounds '(
@@ -1553,7 +1553,7 @@
   'points 1
   'corpse '(unit-destroyed-1x1-place 0)
   'type-land
-  'building
+  'building 'builder-inside
   'sounds '(
     selected "orc-wall-selected"
     acknowledge "orc-wall-acknowledge"

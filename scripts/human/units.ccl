@@ -90,7 +90,7 @@
   'can-attack 'can-repair
   'can-target-land
   'land-unit
-  'cower-worker
+  'coward
   'harvester 'resource-harvested 'gold 'resource-capacity 100
   'wait-at-resource 150 'wait-at-depot 150
   'transform-when-loaded 'unit-peasant-with-gold
@@ -125,7 +125,7 @@
   'can-attack 'can-repair
   'can-target-land
   'land-unit
-  'cower-worker
+  'coward
   'harvester 'resource-harvested 'gold 'resource-capacity 100
   'wait-at-resource 150 'wait-at-depot 150
   'transform-when-empty 'unit-peasant
@@ -160,7 +160,7 @@
   'can-attack 'can-repair
   'can-target-land
   'land-unit
-  'cower-worker
+  'coward
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -288,7 +288,7 @@
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
   'land-unit
-  'cower-mage
+  'coward
   'can-cast-spell
   'organic
   'selectable-by-rectangle
@@ -484,7 +484,7 @@
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
   'land-unit
-  'cower-mage
+  'coward
   'can-cast-spell
   'organic
   'selectable-by-rectangle
@@ -516,7 +516,7 @@
   'corpse '(unit-dead-body 12)
   'type-naval
   'right-harvest
-  'sea-unit
+  'sea-unit 'coward
   'harvester 'resource-harvested 'oil 'resource-capacity 100
   'wait-at-resource 100 'wait-at-depot 100
   'transform-when-loaded 'unit-human-oil-tanker-full
@@ -547,7 +547,7 @@
   'corpse '(unit-dead-body 12)
   'type-naval
   'right-harvest
-  'sea-unit
+  'sea-unit 'coward
   'harvester 'resource-harvested 'oil 'resource-capacity 100
   'wait-at-resource 100 'wait-at-depot 100
   'transform-when-empty 'unit-human-oil-tanker
@@ -705,7 +705,7 @@
   'demand 1
   'type-fly
   'right-move
-  'air-unit
+  'air-unit 'coward
   'can-see-submarine
   'selectable-by-rectangle
   'sounds '(
