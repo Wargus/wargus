@@ -27,3 +27,19 @@
 ;;	Define the campaign
 ;;
 ;;	(define-campagin 'ident 'name "name" 'campaign (list elements)
+(define-campaign 'human-exp 'name "The human expansion campaign"
+  'campaign (list
+	'show-picture
+	  "campaigns/human-exp/interface/Act I  - A Time for Heroes.png"
+	'play-level "campaigns/human-exp/levelx01h.pud"
+	'play-level "campaigns/human-exp/levelx02h.pud"
+	'play-level "campaigns/human-exp/levelx03h.pud"
+	'play-level "campaigns/human-exp/levelx04h.pud"
+	'play-level "campaigns/human-exp/levelx05h.pud"
+	'play-level "campaigns/human-exp/levelx06h.pud"
+	'play-level "campaigns/human-exp/levelx07h.pud"
+	'play-level "campaigns/human-exp/levelx08h.pud"
+	'play-level "campaigns/human-exp/levelx09h.pud"
+	'play-level "campaigns/human-exp/levelx10h.pud"
+	'play-level "campaigns/human-exp/levelx11h.pud"
+	'play-level "campaigns/human-exp/levelx12h.pud" ) )

@@ -77,7 +77,7 @@
 (set-show-sight-range! 'circle)
 
 ;;	Uncomment next, to show the reaction range of the selected unit on map.
-(set-show-reaction-range! #t)
+(set-show-reaction-range! 'circle)
 
 ;;	Uncomment next, to show the attack range of the selected unit on map.
 (set-show-attack-range! #t)

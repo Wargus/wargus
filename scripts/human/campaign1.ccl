@@ -27,3 +27,21 @@
 ;;	Define the campaign
 ;;
 ;;	(define-campagin 'ident 'name "name" 'campaign (list elements)
+(define-campaign 'human 'name "The human campaign"
+  'campaign (list
+	'show-picture
+	  "campaigns/human/interface/Act I   - Shores of Lordareon.png"
+	'play-level "campaigns/human/level01h.pud"
+	'play-level "campaigns/human/level02h.pud"
+	'play-level "campaigns/human/level03h.pud"
+	'play-level "campaigns/human/level04h.pud"
+	'play-level "campaigns/human/level05h.pud"
+	'play-level "campaigns/human/level06h.pud"
+	'play-level "campaigns/human/level07h.pud"
+	'play-level "campaigns/human/level08h.pud"
+	'play-level "campaigns/human/level09h.pud"
+	'play-level "campaigns/human/level10h.pud"
+	'play-level "campaigns/human/level11h.pud"
+	'play-level "campaigns/human/level12h.pud"
+	'play-level "campaigns/human/level13h.pud"
+	'play-level "campaigns/human/level14h.pud" ) )
