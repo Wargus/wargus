@@ -29,12 +29,6 @@
 --      $Id$
 
 -- For documentation see stratagus/doc/scripts/scripts.html
---[[
-(cond ((equal? *scheme* 'guile)
-       (load "guile.scripts"))
-      ((equal? *scheme* 'siod)
-       (load "scripts/siod.scripts" #f #t)))
-]]
 print("Stratagus default config file loading ...\n")
 
 -- Config file version
