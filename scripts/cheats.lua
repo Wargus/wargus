@@ -43,12 +43,12 @@ function HandleCheats(str)
     AddMessage("Wow -- I got jigsaw!")
 
   elseif (str == "glittering prizes") then
-    SetPlayerResource(GetThisPlayer(), "gold",
-      GetPlayerResource(GetThisPlayer(), "gold") + 12000)
-    SetPlayerResource(GetThisPlayer(), "wood",
-      GetPlayerResource(GetThisPlayer(), "wood") + 5000)
-    SetPlayerResource(GetThisPlayer(), "oil",
-      GetPlayerResource(GetThisPlayer(), "oil") + 5000)
+    SetPlayerData(GetThisPlayer(), "Resources", "gold",
+      GetPlayerData(GetThisPlayer(), "Resources", "gold") + 12000)
+    SetPlayerData(GetThisPlayer(), "Resources", "wood",
+      GetPlayerData(GetThisPlayer(), "Resources", "wood") + 5000)
+    SetPlayerData(GetThisPlayer(), "Resources", "oil",
+      GetPlayerData(GetThisPlayer(), "Resources", "oil") + 5000)
     AddMessage("!!! :)")
 
   elseif (str == "on screen") then
@@ -108,8 +108,8 @@ function HandleCheats(str)
       SetSpeedUpgrade(10)
       SetSpeedResearch(10)
       for i = 1,table.getn(resources) do
-        SetPlayerResource(GetThisPlayer(), resources[i],
-          GetPlayerResource(GetThisPlayer(), resources[i]) + 32000)
+        SetPlayerData(GetThisPlayer(), "Resources", resources[i],
+          GetPlayerData(GetThisPlayer(), "Resources", resources[i]) + 32000)
       end
       AddMessage("SO!")
     end
