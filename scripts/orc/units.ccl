@@ -126,7 +126,7 @@
   'priority 70
   'points 100
   'demand 1
-  'explode-when-killed
+  'explode-when-killed 'missile-explosion
   'type-land
   'right-attack
   'can-ground-attack
@@ -912,6 +912,7 @@
   'points 100
   'supply 4
   'corpse '(unit-destroyed-2x2-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'sounds '(
@@ -941,6 +942,7 @@
   'priority 30 'annoy-computer-factor 35
   'points 160
   'corpse '(unit-destroyed-3x3-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'sounds '(
@@ -970,6 +972,7 @@
   'priority 15 'annoy-computer-factor 35
   'points 240
   'corpse '(unit-destroyed-3x3-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'sounds '(
@@ -999,6 +1002,7 @@
   'priority 55 'annoy-computer-factor 50
   'points 95
   'corpse '(unit-destroyed-2x2-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'can-target-land 'can-target-sea 'can-target-air
   'building 
@@ -1030,6 +1034,7 @@
   'priority 15 'annoy-computer-factor 15
   'points 210
   'corpse '(unit-destroyed-3x3-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'sounds '(
@@ -1059,6 +1064,7 @@
   'priority 15 'annoy-computer-factor 20
   'points 230
   'corpse '(unit-destroyed-3x3-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'sounds '(
@@ -1088,6 +1094,7 @@
   'priority 15 'annoy-computer-factor 20
   'points 280
   'corpse '(unit-destroyed-3x3-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'sounds '(
@@ -1117,6 +1124,7 @@
   'priority 30 'annoy-computer-factor 20
   'points 170
   'corpse '(unit-destroyed-3x3-place 3)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'shore-building
@@ -1149,6 +1157,7 @@
   'points 200
   'supply 1
   'corpse '(unit-destroyed-4x4-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'can-store '(gold wood)
@@ -1181,6 +1190,7 @@
   'priority 25 'annoy-computer-factor 15
   'points 150
   'corpse '(unit-destroyed-3x3-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'can-store '(wood)
@@ -1211,6 +1221,7 @@
   'priority 15 'annoy-computer-factor 20
   'points 200
   'corpse '(unit-destroyed-3x3-place 3)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'shore-building
@@ -1241,6 +1252,7 @@
   'priority 35 'annoy-computer-factor 20
   'points 240
   'corpse '(unit-destroyed-3x3-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'sounds '(
@@ -1270,6 +1282,7 @@
   'priority 15 'annoy-computer-factor 20
   'points 170
   'corpse '(unit-destroyed-3x3-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'sounds '(
@@ -1300,6 +1313,7 @@
   'priority 25 'annoy-computer-factor 20
   'points 200
   'corpse '(unit-destroyed-3x3-place 3)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'shore-building
@@ -1330,6 +1344,7 @@
   'priority 20 'annoy-computer-factor 20
   'points 160
   'corpse '(unit-destroyed-3x3-place 3)
+  'explode-when-killed 'missile-explosion
   'type-naval
   'building 
   'must-build-on-top 'unit-oil-patch
@@ -1363,6 +1378,7 @@
   'points 600
   'supply 1
   'corpse '(unit-destroyed-4x4-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'can-store '(gold wood)
@@ -1395,6 +1411,7 @@
   'points 1500
   'supply 1
   'corpse '(unit-destroyed-4x4-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'can-store '(gold wood)
@@ -1447,6 +1464,7 @@
   'priority 40 'annoy-computer-factor 50
   'points 200
   'corpse '(unit-destroyed-2x2-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
@@ -1480,6 +1498,7 @@
   'priority 40 'annoy-computer-factor 50
   'points 250
   'corpse '(unit-destroyed-2x2-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'can-attack
   'can-target-land 'can-target-sea
@@ -1508,6 +1527,7 @@
   'priority 0 'annoy-computer-factor 45
   'points 1
   'corpse '(unit-destroyed-1x1-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 
   'sounds '(
