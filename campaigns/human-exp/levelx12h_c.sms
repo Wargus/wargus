@@ -9,14 +9,13 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (and (if-unit 15 '== 0 'unit-dark-portal)
-                             (if-unit 'this '== 1 'unit-khadgar))
+(add-trigger (lambda () (if-unit 15 '== 0 'unit-dark-portal))
   (lambda () (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all) 
+(add-trigger (lambda () (if-unit 'this '== 0 'all))
   (lambda () (action-defeat)))
 (add-trigger (lambda () (and (if-unit 'this '== 0 'unit-khadgar)
-                             (if-unit 0 '== 0 'unit-khadgar)))
+                             (if-unit 4 '== 0 'unit-khadgar)))
   (lambda () (action-defeat)))
 
 
@@ -203,4 +202,4 @@
 (define-allow 'unit-destroyed-3x3-place		"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-destroyed-4x4-place		"FFFFFFFFFFFFFFFF")
 
-(load-pud "campaigns/human-exp/levelx03h.pud")
+(load-pud "campaigns/human-exp/levelx12h.pud")
