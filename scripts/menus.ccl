@@ -231,11 +231,11 @@
             func game-menu-load
             style gm-full)
     'menu 'menu-program-start)
-(define-menu-item 'pos '(208 289) 'font 'large 'flags '(disabled)
+(define-menu-item 'pos '(208 289) 'font 'large
     'button '(size (224 27)
             caption "~!Options"
             hotkey "o"
-            func game-global-options
+            func menu-global-options
             style gm-full)
     'menu 'menu-program-start)
 (define-menu-item 'pos '(208 325) 'font 'large 
@@ -260,6 +260,85 @@
             style gm-full)
     'menu 'menu-program-start)
 
+;;
+;; menu-global-options
+;;
+(define-menu 'name 'menu-global-options 'geometry '(192 96 256 288)
+    'image 'panel1 'default '1)
+(define-menu-item 'pos '(128 11) 'font 'large
+    'text '("Global Options" center)
+    'menu 'menu-global-options)
+(define-menu-item 'pos '(16 44) 'font 'game
+    'text '("Video Resolution" left)
+    'menu 'menu-global-options)
+    
+(define-menu-item 'pos '(16 60)
+    'gem '(size (18 18)
+         state unchecked
+         func set-res-640
+         style gem-round)
+    'menu 'menu-global-options)
+(define-menu-item 'pos '(40 64) 'font 'game
+    'text '("640 x 480" left)
+    'menu 'menu-global-options)
+    
+(define-menu-item 'pos '(16 80)
+    'gem '(size (18 18)
+         state unchecked
+         func set-res-800
+         style gem-round)
+    'menu 'menu-global-options)
+(define-menu-item 'pos '(40 84) 'font 'game
+    'text '("800 x 600" left)
+    'menu 'menu-global-options)
+    
+(define-menu-item 'pos '(16 100)
+    'gem '(size (18 18)
+         state unchecked
+         func set-res-1024
+         style gem-round)
+    'menu 'menu-global-options)
+(define-menu-item 'pos '(40 104) 'font 'game
+    'text '("1024 x 768" left)
+    'menu 'menu-global-options)
+
+(define-menu-item 'pos '(16 120)
+    'gem '(size (18 18)
+         state unchecked
+         func set-res-1280
+         style gem-round)
+    'menu 'menu-global-options)
+(define-menu-item 'pos '(40 124) 'font 'game
+    'text '("1280 x 960" left)
+    'menu 'menu-global-options)
+
+(define-menu-item 'pos '(16 140)
+    'gem '(size (18 18)
+         state unchecked
+         func set-res-1600
+         style gem-round)
+    'menu 'menu-global-options)
+(define-menu-item 'pos '(40 144) 'font 'game
+    'text '("1600 x 1200" left)
+    'menu 'menu-global-options)
+
+(define-menu-item 'pos '(16 160)
+    'gem '(size (18 18)
+         state unchecked
+         func set-fullscreen
+         style gem-square)
+    'menu 'menu-global-options)
+(define-menu-item 'pos '(40 164) 'font 'game
+    'text '("Fullscreen" left)
+    'menu 'menu-global-options)
+
+(define-menu-item 'pos '(128 250) 'font 'large
+    'button '(size (106 27)
+	caption "~!Ok"
+    	hotkey "o"
+    	func end-menu
+    	style gm-half)
+    'menu 'menu-global-options)
 
 ;;
 ;; menu-custom-game
