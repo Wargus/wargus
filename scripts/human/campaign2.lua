@@ -36,7 +36,7 @@ DefineCampaign("human-exp", "name", "H~!uman expansion levels",
   "campaign", {
 	"show-picture", {
 	  "image", "campaigns/human-exp/interface/Act_I_-_A_Time_for_Heroes.png",
-	  "fade-out", 30 * 2,
+	  "fade-in", 30 * 2,
 	  "fade-out", 30 * 2,
 	  "display-time", 30 * 10,
 	  "text", {
@@ -60,7 +60,7 @@ DefineCampaign("human-exp", "name", "H~!uman expansion levels",
 	"play-level", "campaigns/human-exp/levelx03h.cm",
 	"show-picture", {
 	  "image", "campaigns/human-exp/interface/Act_II_-_Draenor,_the_Red_World.png",
-	  "fade-out", 30 * 2,
+	  "fade-in", 30 * 2,
 	  "fade-out", 30 * 2,
 	  "display-time", 30 * 10,
 	  "text", {
@@ -84,7 +84,7 @@ DefineCampaign("human-exp", "name", "H~!uman expansion levels",
 	"play-level", "campaigns/human-exp/levelx06h.cm",
 	"show-picture", {
 	  "image", "campaigns/human-exp/interface/Act_III_-_War_in_the_Shadows.png",
-	  "fade-out", 30 * 2,
+	  "fade-in", 30 * 2,
 	  "fade-out", 30 * 2,
 	  "display-time", 30 * 10,
 	  "text", {
@@ -108,7 +108,7 @@ DefineCampaign("human-exp", "name", "H~!uman expansion levels",
 	"play-level", "campaigns/human-exp/levelx09h.cm",
 	"show-picture", {
 	  "image", "campaigns/human-exp/interface/Act_IV_-_The_Measure_of_Valor.png",
-	  "fade-out", 30 * 2,
+	  "fade-in", 30 * 2,
 	  "fade-out", 30 * 2,
 	  "display-time", 30 * 10,
 	  "text", {
