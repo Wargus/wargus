@@ -227,8 +227,8 @@
 ;;	Change next, for the wanted mouse scale. (only SVGALIB)
 (set-mouse-scale! 1)
 
-;;	Edit this to enable/disable grabing the mouse.
-(set-grab-mouse! #t)
+;;	Edit this to enable/disable grabbing the mouse.
+(set-grab-mouse! #f)
 
 ;;	Edit this to enable/disable stopping scrolling on mouse leave.
 (set-leave-stops! #t)
