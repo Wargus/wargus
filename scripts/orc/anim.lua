@@ -84,7 +84,7 @@ DefineNewAnimations("animations-peon", {
     "frame 40", "attack", "sound peon-attack", "wait 5", "frame 45", "wait 3",
     "frame 25", "wait 7", "frame 25", "unbreakable end", "wait 1",},
   Harvest_wood = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
-    "frame 40", "attack", "sound tree-chopping", "wait 5", "frame 45", "wait 3",
+    "frame 40", "sound tree-chopping", "wait 5", "frame 45", "wait 3",
     "frame 25", "wait 7", "frame 25", "unbreakable end", "wait 1",},
   Repair = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
     "frame 40", "sound peon-attack", "wait 5", "frame 45", "wait 3",
