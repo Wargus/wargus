@@ -29,31 +29,99 @@
 ;;	(define-campagin 'ident 'name "name" 'campaign (list elements)
 (define-campaign 'human-exp 'name "H~!uman expansion levels"
   'campaign (list
-	'show-picture
-	  "Act I"
-	  "A Time for Heroes"
-	  "campaigns/human-exp/interface/Act I  - A Time for Heroes.png"
+	'show-picture (list
+	  'image "campaigns/human-exp/interface/Act I  - A Time for Heroes.png"
+	  'fade-in (* 30 2)
+	  'fade-out (* 30 2)
+	  'display-time (* 30 10)
+	  'text (list
+	    'font 'large-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 67)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Act I")
+	  'text (list
+	    'font 'small-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 25)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "A Time for Heroes"))
 	'play-level "campaigns/human-exp/levelx01h.cm"
 	'play-level "campaigns/human-exp/levelx02h.cm"
 	'play-level "campaigns/human-exp/levelx03h.cm"
-	'show-picture
-	  "Act II"
-	  "Draenor, The Red World"
-	  "campaigns/human-exp/interface/Act II - Draenor, the Red World.png"
+	'show-picture (list
+	  'image "campaigns/human-exp/interface/Act II - Draenor, the Red World.png"
+	  'fade-in (* 30 2)
+	  'fade-out (* 30 2)
+	  'display-time (* 30 10)
+	  'text (list
+	    'font 'large-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 67)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Act II")
+	  'text (list
+	    'font 'small-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 25)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Draenor, The Red World"))
 	'play-level "campaigns/human-exp/levelx04h.cm"
 	'play-level "campaigns/human-exp/levelx05h.cm"
 	'play-level "campaigns/human-exp/levelx06h.cm"
-	'show-picture
-	  "Act III"
-	  "War in the Shadows"
-	  "campaigns/human-exp/interface/Act III- War in the Shadows.png"
+	'show-picture (list
+	  'image "campaigns/human-exp/interface/Act III- War in the Shadows.png"
+	  'fade-in (* 30 2)
+	  'fade-out (* 30 2)
+	  'display-time (* 30 10)
+	  'text (list
+	    'font 'large-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 67)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Act III")
+	  'text (list
+	    'font 'small-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 25)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "War in the Shadows"))
 	'play-level "campaigns/human-exp/levelx07h.cm"
 	'play-level "campaigns/human-exp/levelx08h.cm"
 	'play-level "campaigns/human-exp/levelx09h.cm"
-	'show-picture
-	  "Act IV"
-	  "The Measure of Valor"
-	  "campaigns/human-exp/interface/Act IV - The Measure of Valor.png"
+	'show-picture (list
+	  'image "campaigns/human-exp/interface/Act IV - The Measure of Valor.png"
+	  'fade-in (* 30 2)
+	  'fade-out (* 30 2)
+	  'display-time (* 30 10)
+	  'text (list
+	    'font 'large-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 67)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Act IV")
+	  'text (list
+	    'font 'small-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 25)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "The Measure of Valor"))
 	'play-level "campaigns/human-exp/levelx10h.cm"
 	'play-level "campaigns/human-exp/levelx11h.cm"
 	'play-level "campaigns/human-exp/levelx12h.cm" ) )

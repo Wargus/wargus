@@ -30,32 +30,100 @@
 (define-campaign 'human 'name "~!Human campaign"
   'campaign (list
 	;'play-movie "movie/splash2.avi" '(full-screen zoom-screen)
-	'show-picture
-	  "Act I"
-	  "The Shores of Lordareon"
-	  "campaigns/human/interface/Act I   - Shores of Lordareon.png"
+	'show-picture (list
+	  'image "campaigns/human/interface/Act I   - Shores of Lordareon.png"
+	  'fade-in (* 30 2)
+	  'fade-out (* 30 2)
+	  'display-time (* 30 10)
+	  'text (list
+	    'font 'large-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 67)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Act I")
+	  'text (list
+	    'font 'small-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 25)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "The Shores of Lordareon"))
 	'play-level "campaigns/human/level01h.cm"
 	'play-level "campaigns/human/level02h.cm"
 	'play-level "campaigns/human/level03h.cm"
 	'play-level "campaigns/human/level04h.cm"
-	'show-picture
-	  "Act II"
-	  "Khaz Modan"
-	  "campaigns/human/interface/Act II  - Khaz Modan.png"
+	'show-picture (list
+	  'image "campaigns/human/interface/Act II  - Khaz Modan.png"
+	  'fade-in (* 30 2)
+	  'fade-out (* 30 2)
+	  'display-time (* 30 10)
+	  'text (list
+	    'font 'large-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 67)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Act II")
+	  'text (list
+	    'font 'small-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 25)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Khaz Modan"))
 	'play-level "campaigns/human/level05h.cm"
 	'play-level "campaigns/human/level06h.cm"
 	'play-level "campaigns/human/level07h.cm"
-	'show-picture
-	  "Act III"
-	  "The Northlands"
-	  "campaigns/human/interface/Act III - The Northlands.png"
+	'show-picture (list
+	  'image "campaigns/human/interface/Act III - The Northlands.png"
+	  'fade-in (* 30 2)
+	  'fade-out (* 30 2)
+	  'display-time (* 30 10)
+	  'text (list
+	    'font 'large-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 67)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Act III")
+	  'text (list
+	    'font 'small-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 25)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "The Northlands"))
 	'play-level "campaigns/human/level08h.cm"
 	'play-level "campaigns/human/level09h.cm"
 	'play-level "campaigns/human/level10h.cm"
-	'show-picture
-	  "Act IV"
-	  "Return to Azeroth"
-	  "campaigns/human/interface/Act IV  - Return to Azeroth.png"
+	'show-picture (list
+	  'image "campaigns/human/interface/Act IV  - Return to Azeroth.png"
+	  'fade-in (* 30 2)
+	  'fade-out (* 30 2)
+	  'display-time (* 30 10)
+	  'text (list
+	    'font 'large-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 67)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Act IV")
+	  'text (list
+	    'font 'small-title
+	    'x (/ 640 2)
+	    'y (- (/ 480 2) 25)
+	    'width 640
+	    'height 0
+	    'align 'center
+	    'text "Return to Azeroth"))
 	'play-level "campaigns/human/level11h.cm"
 	'play-level "campaigns/human/level12h.cm"
 	'play-level "campaigns/human/level13h.cm"
