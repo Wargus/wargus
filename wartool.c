@@ -126,11 +126,6 @@ typedef struct _control_ {
 unsigned char* Pal27;
 
 /**
-**  True if arguments specified that we should treat the CD as a Mac one
-*/
-unsigned char UseMacCd;
-
-/**
 **	Original archive buffer.
 */
 unsigned char* ArchiveBuffer;
@@ -163,6 +158,18 @@ enum _archive_type_ {
 };
 
 char* ArchiveDir;
+
+/*
+	(1 << 0)	1=mac 0=original
+	(1 << 1)	1=expansion 0=orignal
+	(1 << 2)	reserved
+	(1 << 3)	reserved
+	(1 << 4)	US
+	(1 << 5)	Spanish
+	(1 << 6)	German
+	(1 << 7)	UK/Australian
+*/
+int CDType;
 
 /**
 **	What, where, how to extract.
@@ -2621,7 +2628,7 @@ void ResizeImage(unsigned char** image,int ow,int oh,int nw,int nh)
 /**
 **	Convert an image to my format.
 */
-int ConvertImage(char* file,int pale,int imge, int nw, int nh, int mac)
+int ConvertImage(char* file,int pale,int imge, int nw, int nh)
 {
     unsigned char* palp;
     unsigned char* imgp;
@@ -2631,7 +2638,7 @@ int ConvertImage(char* file,int pale,int imge, int nw, int nh, int mac)
     char buf[1024];
 
     // Workaround for MAC expansion CD
-    if (mac) {
+    if (1 & CDType) {
 	if (imge >= 94 && imge <= 103) {
 	    imge += 7;
 	}
@@ -2649,7 +2656,8 @@ int ConvertImage(char* file,int pale,int imge, int nw, int nh, int mac)
     image=ConvertImg(imgp,&w,&h);
 
     if (!image) {
-	fprintf(stderr, "Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n", file, pale, imge, nw, nh, mac);
+	fprintf(stderr, "Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n", 
+	    file, pale, imge, nw, nh, 1 & CDType);
 	exit(-1);
     }
     free(imgp);
@@ -2823,29 +2831,20 @@ int ConvertVideo(char* file,int video)
 /**
 **	Convert text to my format.
 */
-int ConvertText(char* file,int txte,int ofs,int expansion,int mac)
+int ConvertText(char* file,int txte,int ofs)
 {
     unsigned char* txtp;
     char buf[1024];
     gzFile gf;
     int l;
-    char strdat[1024];
-    struct stat st;
 
-#ifdef USE_BEOS
-    sprintf(strdat, "%s/STRDAT.WAR", ArchiveDir);
-#else
-    sprintf(strdat, "%s/strdat.war", ArchiveDir);
-#endif
-    stat(strdat, &st);
-//    if (st.st_size == 55724 || st.st_size == 51451) {
-    // check for German or UK CD's, else US/Spanish CD
-    if (!expansion && st.st_size != 51550 && st.st_size != 55014) {
+    // workaround for German/UK/Australian CD's
+    if (!((1 << 1) & CDType) && (((1 << 5) | (1 << 6)) & CDType)) {
 	--txte;
     }
 
     // workaround for MAC expansion CD
-    if (mac && txte >= 99) {
+    if ((1 & CDType) && txte >= 99) {
 	txte += 6;
     }
 
@@ -3518,47 +3517,30 @@ char* ParseString(char* input)
 /**
 **	FIXME: docu
 */
-int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
-	int expansion)
+int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs)
 {
     unsigned char *objectives;
     char buf[1024];
     unsigned char *CampaignData[2][26][10];
     unsigned char *current, *next, *nextobj, *currentobj;
     FILE *inlevel, *outlevel;
-    int l, levelno, noobjs, race;
-    struct stat st;
-    char rezdat[1024];
-    char strdat[1024];
+    int l, levelno, noobjs, race, expansion;
 
-    //Campaign data is in different spots on the original and
-    //expansion CD's, have to take care of this at runtime.
-    if (expansion) {
+    //Campaign data is in different spots for different CD's
+    if ((1 << 1) & CDType) {
+	expansion = 1;
 	ofs=236;
 	txte=54;
     } else {
-	if (UseMacCd) {
-	    sprintf(rezdat, "%s/War Resources", ArchiveDir);
-	} else {
-#ifdef USE_BEOS
-	    sprintf(strdat, "%s/STRDAT.WAR", ArchiveDir);
-	    sprintf(rezdat, "%s/REZDAT.WAR", ArchiveDir);
-#else
-	    sprintf(strdat, "%s/strdat.war", ArchiveDir);
-	    sprintf(rezdat, "%s/rezdat.war", ArchiveDir);
-#endif
-	}
-	stat(rezdat, &st);
-	// 54 for US/Spanish CD, 53 for UK and German CD
-	if ((UseMacCd && st.st_size == 1960206) || 
-	    (!UseMacCd && st.st_size == 1894026)) {
+	expansion = 0;
+	// 54 for Mac or US/Spanish CD, 53 for UK and German CD
+	if (((1 << 4) | (1 << 5)) & CDType) {
 	    txte=54;
         } else {
 	    txte=53;
 	}
-	stat(strdat, &st);
 	// 172 for Spanish CD, 140 for anything else
-	if (!UseMacCd && st.st_size == 55014) {
+	if ((1 << 5) & CDType) {
 	    ofs=172;
 	} else {
 	    ofs=140;
@@ -3700,10 +3682,9 @@ void Usage(const char* name)
 {
     printf("wartool for FreeCraft V" VERSION ", (c) 1999-2002 by the FreeCraft Project\n\
 Usage: %s [-e] archive-directory [destination-directory]\n\
-\t-e\tThe archive is expansion compatible\n\
-\t-n\tThe archive is not expansion compatible\n\
+\t-e\tThe archive is expansion compatible (default: autodetect)\n\
+\t-n\tThe archive is not expansion compatible (default: autodetect)\n\
 \t-v\tExtract also the videos needs additional 70Mb\n\
-\t-m\tTreat the archive-directory as a Macintosh archive\n\
 archive-directory\tDirectory which includes the archives maindat.war...\n\
 destination-directory\tDirectory where the extracted files are placed.\n"
     ,name);
@@ -3725,7 +3706,7 @@ int main(int argc,char** argv)
     FILE *f;
 
     a=1;
-    video=expansion_cd=UseMacCd=0;
+    video=expansion_cd=CDType=0;
     while( argc>=2 ) {
 	if( !strcmp(argv[a],"-v") ) {
 	    video=1;
@@ -3751,12 +3732,6 @@ int main(int argc,char** argv)
 	    --argc;
 	    exit(0);
 	}
-	if( !strcmp(argv[a],"-m") ) {
-	    UseMacCd=1;
-	    ++a;
-	    --argc;
-	    continue;
-	}
 	break;
     }
 
@@ -3772,34 +3747,64 @@ int main(int argc,char** argv)
 	Dir="data";
     }
 
-    // detect Expansion/Mac CD by getting size of rezdat.war
+    // Detect if CD is Mac/Dos, Expansion/Original, and language
 #ifdef USE_BEOS
     sprintf(buf, "%s/REZDAT.WAR", ArchiveDir);
+    sprintf(filename, "%s/strdat.war", ArchiveDir);
 #else
     sprintf(buf, "%s/rezdat.war", ArchiveDir);
+    sprintf(filename, "%s/strdat.war", ArchiveDir);
 #endif
     if (stat(buf, &st)) {
-	UseMacCd=1;
+	CDType |= 1 | (1 << 4);
 	sprintf(buf, "%s/War Resources", ArchiveDir);
 	if (stat(buf, &st)) {
 	    fprintf(stderr, "Could not find Warcraft 2 Data\n");
 	    exit(-1);
 	}
 	if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2876978)) {
-	    printf("Extracting from original MAC CD\n");
-	    expansion_cd = 0;
+	    printf("Detected original MAC CD\n");
 	} else {
-	    printf("Extracting from expansion MAC CD\n");
-	    expansion_cd = 1;
+	    printf("Detected expansion MAC CD\n");
+	    CDType |= (1 << 1);
 	}
     } else {
-	if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2811086)) {
-	    printf("Extracting from original DOS CD\n");
+	if (st.st_size != 2811086) {
 	    expansion_cd = 0;
+	    stat(filename, &st);
+	    switch (st.st_size) {
+		case 51550:
+		    printf("Detected US original DOS CD\n");
+		    CDType |= (1 << 4);
+		    break;
+		case 55014:
+		    printf("Detected Spanish original DOS CD\n");
+		    CDType |= (1 << 5);
+		    break;
+		case 55724:
+		    printf("Detected German original DOS CD\n");
+		    CDType |= (1 << 6);
+		    break;
+		case 51451:
+		    printf("Detected UK/Australian original DOS CD\n");
+		    CDType |= (1 << 7);
+		    break;
+		default:
+		    printf("Could not detect CD version:\n");
+		    printf("Defaulting to German original DOS CD\n");
+		    CDType |= (1 << 6);
+		    break;
+	    }
 	} else {
-	    printf("Extracting from expansion DOS CD\n");
-	    expansion_cd = 1;
+	    printf("Detected expansion DOS CD\n");
+	    CDType |= (1 << 1) | (1 << 4);
 	}
+    }
+
+    if (expansion_cd == -1 || (expansion_cd != 1 && !(CDType & (1 << 1)))) {
+	expansion_cd = 0;
+    } else {
+	expansion_cd = 1;
     }
 
     sprintf(buf, "%s/ccl", Dir);
@@ -3816,7 +3821,7 @@ int main(int argc,char** argv)
 
     DebugLevel2("Extract from \"%s\" to \"%s\"\n" _C_ ArchiveDir _C_ Dir);
     for( u=0; u<sizeof(Todo)/sizeof(*Todo); ++u ) {
-	if (UseMacCd) {
+	if (1 & CDType) {
 	    strcpy(filename,Todo[u].File);
 	    Todo[u].File=filename;
 	    ConvertToMac(Todo[u].File);
@@ -3858,7 +3863,7 @@ int main(int argc,char** argv)
 		break;
 	    case I:
 		ConvertImage(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,
-		    Todo[u].Arg3,Todo[u].Arg4,UseMacCd);
+		    Todo[u].Arg3,Todo[u].Arg4);
 		break;
 	    case C:
 		ConvertCursor(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
@@ -3867,8 +3872,7 @@ int main(int argc,char** argv)
 		ConvertWav(Todo[u].File,Todo[u].Arg1);
 		break;
 	    case X:
-		ConvertText(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,
-			expansion_cd,UseMacCd);
+		ConvertText(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
 		break;
 	    case S:
 		SetupNames(Todo[u].File,Todo[u].Arg1);
@@ -3880,8 +3884,7 @@ int main(int argc,char** argv)
 		break; 
 #ifndef NO_IMPORT_CAMPAIGNS
 	    case L:
-		CampaignsCreate(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,
-		    expansion_cd);
+		CampaignsCreate(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
 		break;
 #endif
 	    default:
