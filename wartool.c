@@ -224,30 +224,30 @@ Control Todo[] = {
 {X,0,"human/level14h",						 91 ,4	_2},
 {X,0,"orc/level14o",						 92 ,4	_2},
 #ifdef HAVE_EXPANSION
-{X,2,"human/levelx01h",						 99 ,4	_2},
-{X,2,"orc/levelx01o",						100 ,4	_2},
-{X,2,"human/levelx02h",						101 ,4	_2},
-{X,2,"orc/levelx02o",						102 ,4	_2},
-{X,2,"human/levelx03h",						103 ,4	_2},
-{X,2,"orc/levelx03o",						104 ,4	_2},
-{X,2,"human/levelx04h",						105 ,4	_2},
-{X,2,"orc/levelx04o",						106 ,4	_2},
-{X,2,"human/levelx05h",						107 ,4	_2},
-{X,2,"orc/levelx05o",						108 ,4	_2},
-{X,2,"human/levelx06h",						109 ,4	_2},
-{X,2,"orc/levelx06o",						110 ,4	_2},
-{X,2,"human/levelx07h",						111 ,4	_2},
-{X,2,"orc/levelx07o",						112 ,4	_2},
-{X,2,"human/levelx08h",						113 ,4	_2},
-{X,2,"orc/levelx08o",						114 ,4	_2},
-{X,2,"human/levelx09h",						115 ,4	_2},
-{X,2,"orc/levelx09o",						116 ,4	_2},
-{X,2,"human/levelx10h",						117 ,4	_2},
-{X,2,"orc/levelx10o",						118 ,4	_2},
-{X,2,"human/levelx11h",						119 ,4	_2},
-{X,2,"orc/levelx11o",						120 ,4	_2},
-{X,2,"human/levelx12h",						121 ,4	_2},
-{X,2,"orc/levelx12o",						122 ,4	_2},
+{X,2,"human-exp/levelx01h",						 99 ,4	_2},
+{X,2,"orc-exp/levelx01o",						100 ,4	_2},
+{X,2,"human-exp/levelx02h",						101 ,4	_2},
+{X,2,"orc-exp/levelx02o",						102 ,4	_2},
+{X,2,"human-exp/levelx03h",						103 ,4	_2},
+{X,2,"orc-exp/levelx03o",						104 ,4	_2},
+{X,2,"human-exp/levelx04h",						105 ,4	_2},
+{X,2,"orc-exp/levelx04o",						106 ,4	_2},
+{X,2,"human-exp/levelx05h",						107 ,4	_2},
+{X,2,"orc-exp/levelx05o",						108 ,4	_2},
+{X,2,"human-exp/levelx06h",						109 ,4	_2},
+{X,2,"orc-exp/levelx06o",						110 ,4	_2},
+{X,2,"human-exp/levelx07h",						111 ,4	_2},
+{X,2,"orc-exp/levelx07o",						112 ,4	_2},
+{X,2,"human-exp/levelx08h",						113 ,4	_2},
+{X,2,"orc-exp/levelx08o",						114 ,4	_2},
+{X,2,"human-exp/levelx09h",						115 ,4	_2},
+{X,2,"orc-exp/levelx09o",						116 ,4	_2},
+{X,2,"human-exp/levelx10h",						117 ,4	_2},
+{X,2,"orc-exp/levelx10o",						118 ,4	_2},
+{X,2,"human-exp/levelx11h",						119 ,4	_2},
+{X,2,"orc-exp/levelx11o",						120 ,4	_2},
+{X,2,"human-exp/levelx12h",						121 ,4	_2},
+{X,2,"orc-exp/levelx12o",						122 ,4	_2},
 {X,2,"credits2",						123 ,4	_2},
 {X,2,"credits-ext.txt",						124	__},
 #endif
@@ -3465,7 +3465,7 @@ int main(int argc,char** argv)
 
     // alamo.pud is not on Expansion CD
     sprintf(buf,"%s/../alamo.pud",archivedir);
-    if ( expansion_cd==-1 || !stat(buf,&stat_buf)) {
+    if ( expansion_cd==-1 || (expansion_cd!=1 && !stat(buf,&stat_buf)) ) {
 	expansion_cd=0;
     } else {
 	expansion_cd=1;
