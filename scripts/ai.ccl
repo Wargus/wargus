@@ -365,6 +365,26 @@
 ;;
 ;;		Restart with the main AI script.
 ;;
+;; ----------------------------------------------------------------------------
+;;	Planned, not ready.
+;;
+;;	Enable or disable the AI cheating on unexplored area.
+;;	    (set-cheat-unexplored! #t)
+;;		The AI sees all area explored.
+;;	    (set-cheat-unexplored! #f)
+;;		The AI sees unexplored area as it is.
+;;
+;;	(set-cheat-unexplored! #t)
+;;
+;;	Enable or disable the AI cheating on visible area.
+;;	    (set-cheat-visible! #t)
+;;		The AI sees all area visible.
+;;	    (set-cheat-visible! #f)
+;;		The AI sees visible area as it is.
+;;
+;;	(set-cheat-visible! #t)
+;;
+
 
 ;;=============================================================================
 ;;
@@ -391,266 +411,266 @@
 ;;	City-center of the current race.
 ;;
 (define (ai:city-center)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-town-hall 'unit-great-hall) )
 
 ;;
 ;;	Better city-center of the current race.
 ;;
 (define (ai:better-city-center)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-keep 'unit-stronghold) )
 
 ;;
 ;;	Best city-center of the current race.
 ;;
 (define (ai:best-city-center)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-castle 'unit-fortress) )
 
 ;;
 ;;	Worker of the current race.
 ;;
 (define (ai:worker)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-peasant 'unit-peon) )
 
 ;;
 ;;	Lumber mill of the current race.
 ;;
 (define (ai:lumber-mill)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-elven-lumber-mill 'unit-troll-lumber-mill) )
 
 ;;
 ;;	Blacksmith of the current race.
 ;;
 (define (ai:blacksmith)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-blacksmith 'unit-orc-blacksmith) )
 
 ;;
 ;;	Upgrade armor 1 of the current race.
 ;;
 (define (ai:upgrade-armor-1)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'upgrade-human-shield1 'upgrade-orc-shield1) )
 
 ;;
 ;;	Upgrade armor 2 of the current race.
 ;;
 (define (ai:upgrade-armor-2)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'upgrade-human-shield2 'upgrade-orc-shield2) )
 
 ;;
 ;;	Upgrade weapon 1 of the current race.
 ;;
 (define (ai:upgrade-weapon-1)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'upgrade-sword1 'upgrade-battle-axe1) )
 
 ;;
 ;;	Upgrade weapon 2 of the current race.
 ;;
 (define (ai:upgrade-weapon-2)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'upgrade-sword2 'upgrade-battle-axe2) )
 
 ;;
 ;;	Upgrade catapult 1 of the current race.
 ;;
 (define (ai:upgrade-catapult-1)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'upgrade-ballista1 'upgrade-catapult1) )
 
 ;;
 ;;	Upgrade catapult 2 of the current race.
 ;;
 (define (ai:upgrade-catapult-2)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'upgrade-ballista2 'upgrade-catapult2) )
 
 ;;
 ;;	Research of the current race.
 ;;
 (define (ai:scientific)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-gnomish-inventor 'unit-goblin-alchemist) )
 
 ;;
 ;;	Cavalry of the current race.
 ;;
 (define (ai:cavalry)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-stables 'unit-ogre-mound) )
 
 ;;
 ;;	Airport of the current race.
 ;;
 (define (ai:airport)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-gryphon-aviary 'unit-dragon-roost) )
 
 ;;
 ;;	Barracks of the current race.
 ;;
 (define (ai:barracks)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-barracks 'unit-orc-barracks) )
 
 ;;
 ;;	Soldier of the current race.
 ;;
 (define (ai:soldier)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-footman 'unit-grunt) )
 
 ;;
 ;;	Shooter of the current race.
 ;;
 (define (ai:shooter)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-archer 'unit-axethrower) )
 
 ;;
 ;;	Cavalrie of the current race.
 ;;
 (define (ai:cavalrie)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-knight 'unit-ogre) )
 
 ;;
 ;;	Catapult of the current race.
 ;;
 (define (ai:catapult)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-ballista 'unit-catapult) )
 
 ;;
 ;;	Scout of the current race.
 ;;
 (define (ai:scout)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-gnomish-flying-machine 'unit-goblin-zeppelin) )
 
 ;;
 ;;	Flyer of the current race.
 ;;
 (define (ai:flyer)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-gryphon-rider 'unit-dragon) )
 
 ;;
 ;;	Tower of the current race.
 ;;
 (define (ai:tower)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-watch-tower 'unit-orc-watch-tower) )
 
 ;;
 ;;	Guard-Tower of the current race.
 ;;
 (define (ai:guard-tower)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-guard-tower 'unit-orc-guard-tower) )
 
 ;;
 ;;	Cannon-Tower of the current race.
 ;;
 (define (ai:cannon-tower)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-cannon-tower 'unit-orc-cannon-tower) )
 
 ;;
 ;;	Harbor of the current race.
 ;;
 (define (ai:harbor)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-shipyard 'unit-orc-shipyard) )
 
 ;;
 ;;	Refinery of the current race.
 ;;
 (define (ai:refinery)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-refinery 'unit-orc-refinery) )
 
 ;;
 ;;	Foundry of the current race.
 ;;
 (define (ai:foundry)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-foundry 'unit-orc-foundry) )
 
 ;;
 ;;	Ship armor 1 of the current race.
 ;;
 (define (ai:upgrade-ship-armor-1)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'upgrade-human-ship-armor1 'upgrade-orc-ship-armor1) )
 
 ;;
 ;;	Ship armor 2 of the current race.
 ;;
 (define (ai:upgrade-ship-armor-2)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'upgrade-human-ship-armor2 'upgrade-orc-ship-armor2) )
 
 ;;
 ;;	Ship weapon 1 of the current race.
 ;;
 (define (ai:upgrade-ship-cannon-1)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'upgrade-human-ship-cannon1 'upgrade-orc-ship-cannon1) )
 
 ;;
 ;;	Ship weapon 2 of the current race.
 ;;
 (define (ai:upgrade-ship-cannon-2)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'upgrade-human-ship-cannon2 'upgrade-orc-ship-cannon2) )
 
 ;;
 ;;	Platform of the current race.
 ;;
 (define (ai:platform)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-oil-platform 'unit-orc-oil-platform) )
 
 ;;
 ;;	Tanker of the current race.
 ;;
 (define (ai:tanker)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-oil-tanker 'unit-orc-oil-tanker) )
 
 ;;
 ;;	Submarine of the current race.
 ;;
 (define (ai:submarine)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-gnomish-submarine 'unit-giant-turtle) )
 
 ;;
 ;;	Destroyer of the current race.
 ;;
 (define (ai:destroyer)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-elven-destroyer 'unit-troll-destroyer) )
 
 ;;
 ;;	Battleship of the current race.
 ;;
 (define (ai:battleship)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-battleship 'unit-ogre-juggernaught) )
 
 ;;
 ;;	Transporter of the current race.
 ;;
 (define (ai:transporter)
-  (if (eq? (ai:get-race) 'human) 
+  (if (eq? (ai:get-race) 'human)
       'unit-human-transport 'unit-orc-transport) )
 
 ;;=============================================================================
@@ -825,7 +845,7 @@
 (define ai:sea-attack-endloop
   '((writes nil "Looping !\n")
     (ai:force 1 (ai:destroyer) 6 (ai:battleship) 7 (ai:scout) 1)
-    (ai:force 2 (ai:soldier) 4 (ai:cavalrie) 4 (ai:catapult) 4 
+    (ai:force 2 (ai:soldier) 4 (ai:cavalrie) 4 (ai:catapult) 4
 	(ai:transporter) 2)
     (ai:wait-force 1)
     (ai:wait-force 2)		;; wait until attack party is completed
