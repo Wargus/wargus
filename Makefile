@@ -14,9 +14,6 @@ wartool$(EXE): wartool.o
 wartool.o:
 	$(CC) -c wartool.c -o $@ $(CFLAGS)
 
-win32_2:
-	
-
 win32:
 	export PATH=$(CROSSDIR)/bin:$(CROSSDIR)/i386-mingw32msvc/bin:$$PATH; \
 	export EXE=.exe; \
@@ -30,15 +27,26 @@ clean:
 
 strip:
 	strip wartool
-	strip wartool.exe
+#	strip wartool.exe
 
 date = $(shell date +%y%m%d)
+ver = 2.1pre1
 
-release: clean wartool win32 strip cleanobj
-	echo `find Makefile build.* contrib campaigns wartool* scripts maps | grep -v 'CVS' | grep -v '/\.'` > .list
-	mkdir wargus; \
-	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus;\
-	rm -rf `find wargus | grep -i cvs`; \
-	tar -zcf wargus-$(date).tar.gz wargus; \
-	zip -qr wargus-$(date).zip wargus; \
-	rm -rf wargus .list;
+release: release-src release-linux
+
+release-src: clean cleanobj
+	echo `find Makefile build.* contrib campaigns wartool.c scripts maps | grep -v 'CVS' | grep -v '/\.'` > .list
+	mkdir wargus-$(ver); \
+	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
+	rm -rf `find wargus-$(ver) | grep -i cvs`; \
+	tar -zcf wargus-$(ver)-src.tar.gz wargus-$(ver); \
+	zip -qr wargus-$(ver)-src.zip wargus-$(ver); \
+	rm -rf wargus-$(ver) .list;
+
+release-linux: clean wartool strip cleanobj
+	echo `find Makefile build.sh contrib campaigns wartool scripts maps | grep -v 'CVS' | grep -v '/\.'` > .list
+	mkdir wargus-$(ver); \
+	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
+	rm -rf `find wargus-$(ver) | grep -i cvs`; \
+	tar -zcf wargus-$(ver)-linux.tar.gz wargus-$(ver); \
+	rm -rf wargus-$(ver) .list;
