@@ -2403,7 +2403,7 @@ DefineMenuItem("pos", { 176 + (288 - ((288 - 260) / 2) - 152), 112 + (11 + (36 *
     "func", "editor-new-map-size-enter-action",
     "style", "pulldown"},
   "menu", "menu-editor-new")
-DefineMenuItem("pos", { 176 + (288 - ((- 288 - 260) / 2) - 60), 112 + (11 + (36 * 2) + 22)}, "font", "game",
+DefineMenuItem("pos", { 176 + (288 - ((288 - 260) / 2) - 60), 112 + (11 + (36 * 2) + 22)}, "font", "game",
   "input", {"size", {60, 20},
     "func", "editor-new-map-size-enter-action",
     "style", "pulldown"},
