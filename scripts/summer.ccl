@@ -228,8 +228,10 @@
 ;;
 
 (tileset 'tileset-summer	"summer"
-  "graphic/tileset/summer.png"
-  "summer.rgb"
+  (if new-names? "graphics/tilesets/summer/terrain/summer.png"
+    "graphic/tileset/summer.png")
+  (if new-names? "graphics/tilesets/summer/summer.rgb"
+    "summer.rgb")
   #(  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0	; 000
     328 329 329 330   0   0   0   0   0   0   0   0   0   0   0   0	; 010
     331 332 332 333   0   0   0   0   0   0   0   0   0   0   0   0	; 020
