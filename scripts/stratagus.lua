@@ -50,9 +50,6 @@ SetTitleScreens({
 --  {"graphics/logo_stratagus.avi"}
 )
 
---  Enter your default menu background.
-SetMenuBackground("graphics/ui/Menu_background_without_title.png")
-
 --  Enter your menu music.
 SetMenuMusic("music/default.mod")
 
