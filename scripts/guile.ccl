@@ -57,6 +57,9 @@
 (define (ccl:load filename)
   (load (substring filename 4)))
 
+(define (ccl:eval str)
+  (eval str (current-module)))
+
 (display "Using Scheme: Guile\n")
 
 ;; EOF ;;

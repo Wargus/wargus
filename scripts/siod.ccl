@@ -37,6 +37,9 @@
 (define (ccl:load filename)
   (load filename #f #t))
 
+(define (ccl:eval code)
+  (eval code))
+
 (define else #t)
 
 (define (display str)
