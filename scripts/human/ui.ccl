@@ -194,7 +194,7 @@
     (list "graphics/ui/human/640x480/buttonpanel.png" 0 336)
 
     ; The big map
-    '(176 16 784 584)
+    '(176 16 784 560)
 
     ; Menu button
     '("graphics/ui/human/640x480/menubutton.png" 0 0)
