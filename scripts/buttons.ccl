@@ -44,6 +44,12 @@
   'key "p" 'hint "~!PLACE EXIT/DESTINATION POINT"
   'for-unit '(unit-dark-portal)) )
 
+(if extensions
+(define-button 'pos 2 'level 0 'icon 'icon-daemon
+  'action 'train-unit 'value 'unit-daemon
+  'key "d" 'hint "SUMMON ~!DAEMON"
+  'for-unit '(unit-dark-portal)) )
+
 ;; general cancel button ------------------------------------------------------
 
 (define-button 'pos 9 'level 9 'icon 'icon-cancel
