@@ -553,7 +553,7 @@
 
 (define-new-ui 'human1 640 480	; Selector
   'normal-font-color 'white 'reverse-font-color 'yellow
-  'filler-1 '(pos (624 0) image "graphics/ui/human/640x480/filler-right.png")
+  'filler '(pos (624 0) image "graphics/ui/human/640x480/filler-right.png")
   'resources '(pos (176 0) image "graphics/ui/human/640x480/resource.png"
     gold (icon-pos (176 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
       icon-frame 0 icon-size (14 14) text-pos (194 1))
