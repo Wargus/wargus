@@ -49,25 +49,25 @@
     ;;	Unit can build which buildings.
     ;;
     (list 'build 'unit-peasant
-	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-elven-lumber-mill
-	'unit-human-blacksmith 'unit-human-watch-tower 'unit-human-wall
-	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
-	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-farm 'unit-alliance-barracks 'unit-town-hall 'unit-elven-lumber-mill
+	'unit-alliance-blacksmith 'unit-alliance-watch-tower 'unit-human-wall
+	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
+	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
 	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone)
     (list 'build 'unit-peasant-with-gold
-	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-elven-lumber-mill
-	'unit-human-blacksmith 'unit-human-watch-tower 'unit-human-wall
-	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
-	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-farm 'unit-alliance-barracks 'unit-town-hall 'unit-elven-lumber-mill
+	'unit-alliance-blacksmith 'unit-alliance-watch-tower 'unit-human-wall
+	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
+	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
 	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone)
     (list 'build 'unit-peasant-with-wood
-	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-elven-lumber-mill
-	'unit-human-blacksmith 'unit-human-watch-tower 'unit-human-wall
-	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
-	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-farm 'unit-alliance-barracks 'unit-town-hall 'unit-elven-lumber-mill
+	'unit-alliance-blacksmith 'unit-alliance-watch-tower 'unit-human-wall
+	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
+	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
 	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone)
-    (list 'build 'unit-human-oil-tanker 'unit-human-oil-platform)
-    (list 'build 'unit-human-oil-tanker-full 'unit-human-oil-platform)
+    (list 'build 'unit-human-oil-tanker 'unit-alliance-oil-platform)
+    (list 'build 'unit-human-oil-tanker-full 'unit-alliance-oil-platform)
     ;;
     ;;	Building can train which units.
     ;;
@@ -75,27 +75,27 @@
     (list 'train 'unit-town-hall 'unit-peasant)
     (list 'train 'unit-keep 'unit-peasant)
     (list 'train 'unit-castle 'unit-peasant)
-    (list 'train 'unit-human-barracks
+    (list 'train 'unit-alliance-barracks
 	'unit-footman 'unit-archer 'unit-ranger 'unit-ballista 'unit-knight
 	'unit-paladin)
-    (list 'train 'unit-gnomish-inventor
-	'unit-gnomish-flying-machine 'unit-dwarves)
+    (list 'train 'unit-inventor
+	'unit-balloon 'unit-dwarves)
     (list 'train 'unit-mage-tower 'unit-mage)
     (list 'train 'unit-gryphon-aviary 'unit-gryphon-rider)
-    (list 'train 'unit-human-shipyard
-	'unit-human-oil-tanker 'unit-elven-destroyer 'unit-human-transport
-	'unit-gnomish-submarine 'unit-battleship)
+    (list 'train 'unit-alliance-shipyard
+	'unit-human-oil-tanker 'unit-alliance-destroyer 'unit-alliance-transport
+	'unit-alliance-submarine 'unit-battleship)
     ;;
     ;;	Building can upgrade which upgrades.
     ;;
     (list 'upgrade 'unit-town-hall 'unit-keep)
     (list 'upgrade 'unit-keep 'unit-castle)
-    (list 'upgrade 'unit-human-watch-tower
-	'unit-human-guard-tower 'unit-human-cannon-tower)
+    (list 'upgrade 'unit-alliance-watch-tower
+	'unit-alliance-guard-tower 'unit-alliance-cannon-tower)
     ;;
     ;;	Building can research which spells or upgrades.
     ;;
-    (list 'research 'unit-human-blacksmith
+    (list 'research 'unit-alliance-blacksmith
 	'upgrade-sword1 'upgrade-sword2
 	'upgrade-human-shield1 'upgrade-human-shield2
 	'upgrade-ballista1 'upgrade-ballista2)
@@ -107,36 +107,36 @@
     (list 'research 'unit-mage-tower
 	'upgrade-slow 'upgrade-flame-shield 'upgrade-invisibility
 	'upgrade-polymorph 'upgrade-blizzard)
-    (list 'research 'unit-human-foundry
+    (list 'research 'unit-alliance-foundry
 	'upgrade-human-ship-cannon1 'upgrade-human-ship-cannon2
 	'upgrade-human-ship-armor1 'upgrade-human-ship-armor2)
     ;;
     ;;	Unit can repair which units.
     ;;
     (list 'repair 'unit-peasant
-	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-keep 'unit-castle
-	'unit-elven-lumber-mill 'unit-human-blacksmith 'unit-human-watch-tower
-	'unit-human-guard-tower 'unit-human-cannon-tower 'unit-human-wall
-	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
-	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-farm 'unit-alliance-barracks 'unit-town-hall 'unit-keep 'unit-castle
+	'unit-elven-lumber-mill 'unit-alliance-blacksmith 'unit-alliance-watch-tower
+	'unit-alliance-guard-tower 'unit-alliance-cannon-tower 'unit-human-wall
+	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
+	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
 	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone
-	'unit-human-transport)
+	'unit-alliance-transport)
     (list 'repair 'unit-peasant-with-gold
-	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-keep 'unit-castle
-	'unit-elven-lumber-mill 'unit-human-blacksmith 'unit-human-watch-tower
-	'unit-human-guard-tower 'unit-human-cannon-tower 'unit-human-wall
-	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
-	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-farm 'unit-alliance-barracks 'unit-town-hall 'unit-keep 'unit-castle
+	'unit-elven-lumber-mill 'unit-alliance-blacksmith 'unit-alliance-watch-tower
+	'unit-alliance-guard-tower 'unit-alliance-cannon-tower 'unit-human-wall
+	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
+	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
 	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone
-	'unit-human-transport)
+	'unit-alliance-transport)
     (list 'repair 'unit-peasant-with-wood
-	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-keep 'unit-castle
-	'unit-elven-lumber-mill 'unit-human-blacksmith 'unit-human-watch-tower
-	'unit-human-guard-tower 'unit-human-cannon-tower 'unit-human-wall
-	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
-	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-farm 'unit-alliance-barracks 'unit-town-hall 'unit-keep 'unit-castle
+	'unit-elven-lumber-mill 'unit-alliance-blacksmith 'unit-alliance-watch-tower
+	'unit-alliance-guard-tower 'unit-alliance-cannon-tower 'unit-human-wall
+	'unit-alliance-shipyard 'unit-alliance-foundry 'unit-human-refinery
+	'unit-inventor 'unit-stables 'unit-mage-tower 'unit-church
 	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone
-	'unit-human-transport)
+	'unit-alliance-transport)
     ;;
     ;;	Workers can collect which resource.
     ;;
@@ -167,8 +167,8 @@
 	'unit-peasant-with-gold 'unit-peasant-with-wood)
     (list 'unit-equiv 'unit-human-oil-tanker
 	'unit-human-oil-tanker-full)
-    (list 'unit-equiv 'unit-human-watch-tower
-	 'unit-human-guard-tower 'unit-human-cannon-tower) )
+    (list 'unit-equiv 'unit-alliance-watch-tower
+	 'unit-alliance-guard-tower 'unit-alliance-cannon-tower) )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race orc.
@@ -179,28 +179,28 @@
     ;;	Unit can build which buildings.
     ;;
     (list 'build 'unit-peon
-	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall
-	'unit-troll-lumber-mill 'unit-orc-blacksmith 'unit-orc-watch-tower
-	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
-	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-pig-farm 'unit-mythical-barracks 'unit-great-hall
+	'unit-troll-lumber-mill 'unit-mythical-blacksmith 'unit-mythical-watch-tower
+	'unit-orc-wall 'unit-mythical-shipyard 'unit-mythical-foundry 'unit-orc-refinery
+	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
 	'unit-altar-of-storms
 	'unit-dragon-roost 'unit-dark-portal 'unit-runestone)
     (list 'build 'unit-peon-with-gold
-	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall
-	'unit-troll-lumber-mill 'unit-orc-blacksmith 'unit-orc-watch-tower
-	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
-	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-pig-farm 'unit-mythical-barracks 'unit-great-hall
+	'unit-troll-lumber-mill 'unit-mythical-blacksmith 'unit-mythical-watch-tower
+	'unit-orc-wall 'unit-mythical-shipyard 'unit-mythical-foundry 'unit-orc-refinery
+	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
 	'unit-altar-of-storms
 	'unit-dragon-roost 'unit-dark-portal 'unit-runestone)
     (list 'build 'unit-peon-with-wood
-	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall
-	'unit-troll-lumber-mill 'unit-orc-blacksmith 'unit-orc-watch-tower
-	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
-	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-pig-farm 'unit-mythical-barracks 'unit-great-hall
+	'unit-troll-lumber-mill 'unit-mythical-blacksmith 'unit-mythical-watch-tower
+	'unit-orc-wall 'unit-mythical-shipyard 'unit-mythical-foundry 'unit-orc-refinery
+	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
 	'unit-altar-of-storms
 	'unit-dragon-roost 'unit-dark-portal 'unit-runestone)
-    (list 'build 'unit-orc-oil-tanker 'unit-orc-oil-platform)
-    (list 'build 'unit-orc-oil-tanker-full 'unit-orc-oil-platform)
+    (list 'build 'unit-orc-oil-tanker 'unit-mythical-oil-platform)
+    (list 'build 'unit-orc-oil-tanker-full 'unit-mythical-oil-platform)
     ;;
     ;;	Building can train which units.
     ;;
@@ -208,27 +208,27 @@
     (list 'train 'unit-great-hall 'unit-peon)
     (list 'train 'unit-stronghold 'unit-peon)
     (list 'train 'unit-fortress 'unit-peon)
-    (list 'train 'unit-orc-barracks
+    (list 'train 'unit-mythical-barracks
 	'unit-grunt 'unit-axethrower 'unit-berserker 'unit-catapult 'unit-ogre
 	'unit-ogre-mage)
-    (list 'train 'unit-goblin-alchemist
-	'unit-goblin-zeppelin 'unit-goblin-sappers)
+    (list 'train 'unit-alchemist
+	'unit-zeppelin 'unit-goblin-sappers)
     (list 'train 'unit-temple-of-the-damned 'unit-death-knight)
     (list 'train 'unit-dragon-roost 'unit-dragon)
-    (list 'train 'unit-orc-shipyard
-	'unit-orc-oil-tanker 'unit-troll-destroyer 'unit-orc-transport
-	'unit-giant-turtle 'unit-ogre-juggernaught)
+    (list 'train 'unit-mythical-shipyard
+	'unit-orc-oil-tanker 'unit-mythical-destroyer 'unit-mythical-transport
+	'unit-mythical-submarine 'unit-ogre-juggernaught)
     ;;
     ;;	Building can upgrade which upgrades.
     ;;
     (list 'upgrade 'unit-great-hall 'unit-stronghold)
     (list 'upgrade 'unit-stronghold 'unit-fortress)
-    (list 'upgrade 'unit-orc-watch-tower
-	'unit-orc-guard-tower 'unit-orc-cannon-tower)
+    (list 'upgrade 'unit-mythical-watch-tower
+	'unit-mythical-guard-tower 'unit-mythical-cannon-tower)
     ;;
     ;;	Building can research which spells or upgrades.
     ;;
-    (list 'research 'unit-orc-blacksmith
+    (list 'research 'unit-mythical-blacksmith
 	'upgrade-battle-axe1 'upgrade-battle-axe2
 	'upgrade-orc-shield1 'upgrade-orc-shield2
 	'upgrade-catapult1 'upgrade-catapult2)
@@ -241,36 +241,36 @@
     (list 'research 'unit-temple-of-the-damned
 	'upgrade-haste 'upgrade-raise-dead 'upgrade-whirlwind
 	'upgrade-unholy-armor 'upgrade-death-and-decay)
-    (list 'research 'unit-orc-foundry
+    (list 'research 'unit-mythical-foundry
 	'upgrade-orc-ship-cannon1 'upgrade-orc-ship-cannon2
 	'upgrade-orc-ship-armor1 'upgrade-orc-ship-armor2)
     ;;
     ;;	Unit can build which units.
     ;;
     (list 'repair 'unit-peon
-	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall 'unit-stronghold
-	'unit-fortress 'unit-troll-lumber-mill 'unit-orc-blacksmith
-	'unit-orc-watch-tower 'unit-orc-guard-tower 'unit-orc-cannon-tower
-	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
-	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-pig-farm 'unit-mythical-barracks 'unit-great-hall 'unit-stronghold
+	'unit-fortress 'unit-troll-lumber-mill 'unit-mythical-blacksmith
+	'unit-mythical-watch-tower 'unit-mythical-guard-tower 'unit-mythical-cannon-tower
+	'unit-orc-wall 'unit-mythical-shipyard 'unit-mythical-foundry 'unit-orc-refinery
+	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
 	'unit-altar-of-storms 'unit-dragon-roost 'unit-dark-portal
-	'unit-runestone 'unit-orc-transport)
+	'unit-runestone 'unit-mythical-transport)
     (list 'repair 'unit-peon-with-gold
-	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall 'unit-stronghold
-	'unit-fortress 'unit-troll-lumber-mill 'unit-orc-blacksmith
-	'unit-orc-watch-tower 'unit-orc-guard-tower 'unit-orc-cannon-tower
-	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
-	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-pig-farm 'unit-mythical-barracks 'unit-great-hall 'unit-stronghold
+	'unit-fortress 'unit-troll-lumber-mill 'unit-mythical-blacksmith
+	'unit-mythical-watch-tower 'unit-mythical-guard-tower 'unit-mythical-cannon-tower
+	'unit-orc-wall 'unit-mythical-shipyard 'unit-mythical-foundry 'unit-orc-refinery
+	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
 	'unit-altar-of-storms 'unit-dragon-roost 'unit-dark-portal
-	'unit-runestone 'unit-orc-transport)
+	'unit-runestone 'unit-mythical-transport)
     (list 'repair 'unit-peon-with-wood
-	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall 'unit-stronghold
-	'unit-fortress 'unit-troll-lumber-mill 'unit-orc-blacksmith
-	'unit-orc-watch-tower 'unit-orc-guard-tower 'unit-orc-cannon-tower
-	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
-	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-pig-farm 'unit-mythical-barracks 'unit-great-hall 'unit-stronghold
+	'unit-fortress 'unit-troll-lumber-mill 'unit-mythical-blacksmith
+	'unit-mythical-watch-tower 'unit-mythical-guard-tower 'unit-mythical-cannon-tower
+	'unit-orc-wall 'unit-mythical-shipyard 'unit-mythical-foundry 'unit-orc-refinery
+	'unit-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
 	'unit-altar-of-storms 'unit-dragon-roost 'unit-dark-portal
-	'unit-runestone 'unit-orc-transport)
+	'unit-runestone 'unit-mythical-transport)
     ;;
     ;;	Workers can collect which resource.
     ;;
@@ -301,8 +301,8 @@
 	'unit-peon-with-gold 'unit-peon-with-wood)
     (list 'unit-equiv 'unit-orc-oil-tanker
 	'unit-orc-oil-tanker-full)
-    (list 'unit-equiv 'unit-orc-watch-tower
-	 'unit-orc-guard-tower 'unit-orc-cannon-tower) )
+    (list 'unit-equiv 'unit-mythical-watch-tower
+	 'unit-mythical-guard-tower 'unit-mythical-cannon-tower) )
 
 ;;=============================================================================
 ;;
@@ -434,8 +434,8 @@
 
     (ai:set  'unit-peon 10)
     (ai:set  'unit-pig-farm 2)
-    (ai:need 'unit-orc-barracks)
-    (ai:need 'unit-orc-blacksmith)
+    (ai:need 'unit-mythical-barracks)
+    (ai:need 'unit-mythical-blacksmith)
     (ai:force 1 'unit-grunt 1)
     (ai:force 0 'unit-grunt 1)
     (ai:wait-force 1)		;; wait until attack party is completed
@@ -450,12 +450,12 @@
     (ai:set  'unit-peon 20)
     (ai:force 1 'unit-grunt 6)
     (ai:wait-force 1)		;; wait until attack party is completed
-    (ai:set 'unit-orc-barracks 3)
+    (ai:set 'unit-mythical-barracks 3)
     (ai:force 1 'unit-grunt 20)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-    (ai:set 'unit-orc-barracks 6)
+    (ai:set 'unit-mythical-barracks 6)
     (ai:force 1 'unit-grunt 40)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
@@ -522,7 +522,7 @@
     (ai:force 3 'unit-grunt 12)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:wait-force 2)		;; wait until attack party is completed
-    (ai:set 'unit-orc-barracks 9)
+    (ai:set 'unit-mythical-barracks 9)
     (ai:attack-with-force 1)
     (ai:attack-with-force 2)
 
@@ -588,20 +588,20 @@
     (ai:attack-with-force 2)
 
     ;;(ai:sleep 500)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-cannon-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-cannon-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:research 'upgrade-catapult1)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-cannon-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-cannon-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:research 'upgrade-catapult2)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-cannon-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-cannon-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:set  'unit-peon 25)
 
     ;; Everything researched...
@@ -634,7 +634,7 @@
     (ai:set  'unit-peon 5)
     (ai:wait 'unit-peon)
 
-    (ai:need 'unit-orc-barracks)
+    (ai:need 'unit-mythical-barracks)
 
     (ai:set  'unit-peon 50)
     (ai:script ai:orc-goldfever-endloop) ))
@@ -683,7 +683,7 @@
 ;;
 (define (ai:blacksmith)
   (if (eq? (ai:get-race) race1)
-      'unit-human-blacksmith 'unit-orc-blacksmith) )
+      'unit-alliance-blacksmith 'unit-mythical-blacksmith) )
 
 ;;
 ;;	Upgrade armor 1 of the current race.
@@ -746,7 +746,7 @@
 ;;
 (define (ai:scientific)
   (if (eq? (ai:get-race) race1)
-      'unit-gnomish-inventor 'unit-goblin-alchemist) )
+      'unit-inventor 'unit-alchemist) )
 
 ;;
 ;;	Cavalry of the current race.
@@ -774,7 +774,7 @@
 ;;
 (define (ai:barracks)
   (if (eq? (ai:get-race) race1)
-      'unit-human-barracks 'unit-orc-barracks) )
+      'unit-alliance-barracks 'unit-mythical-barracks) )
 
 ;;
 ;;	Soldier of the current race.
@@ -830,7 +830,7 @@
 ;;
 (define (ai:scout)
   (if (eq? (ai:get-race) race1)
-      'unit-gnomish-flying-machine 'unit-goblin-zeppelin) )
+      'unit-balloon 'unit-zeppelin) )
 
 ;;
 ;;	Flyer of the current race.
@@ -844,28 +844,28 @@
 ;;
 (define (ai:tower)
   (if (eq? (ai:get-race) race1)
-      'unit-human-watch-tower 'unit-orc-watch-tower) )
+      'unit-alliance-watch-tower 'unit-mythical-watch-tower) )
 
 ;;
 ;;	Guard-Tower of the current race.
 ;;
 (define (ai:guard-tower)
   (if (eq? (ai:get-race) race1)
-      'unit-human-guard-tower 'unit-orc-guard-tower) )
+      'unit-alliance-guard-tower 'unit-mythical-guard-tower) )
 
 ;;
 ;;	Cannon-Tower of the current race.
 ;;
 (define (ai:cannon-tower)
   (if (eq? (ai:get-race) race1)
-      'unit-human-cannon-tower 'unit-orc-cannon-tower) )
+      'unit-alliance-cannon-tower 'unit-mythical-cannon-tower) )
 
 ;;
 ;;	Harbor of the current race.
 ;;
 (define (ai:harbor)
   (if (eq? (ai:get-race) race1)
-      'unit-human-shipyard 'unit-orc-shipyard) )
+      'unit-alliance-shipyard 'unit-mythical-shipyard) )
 
 ;;
 ;;	Refinery of the current race.
@@ -879,7 +879,7 @@
 ;;
 (define (ai:foundry)
   (if (eq? (ai:get-race) race1)
-      'unit-human-foundry 'unit-orc-foundry) )
+      'unit-alliance-foundry 'unit-mythical-foundry) )
 
 ;;
 ;;	Ship armor 1 of the current race.
@@ -914,7 +914,7 @@
 ;;
 (define (ai:platform)
   (if (eq? (ai:get-race) race1)
-      'unit-human-oil-platform 'unit-orc-oil-platform) )
+      'unit-alliance-oil-platform 'unit-mythical-oil-platform) )
 
 ;;
 ;;	Tanker of the current race.
@@ -928,14 +928,14 @@
 ;;
 (define (ai:submarine)
   (if (eq? (ai:get-race) race1)
-      'unit-gnomish-submarine 'unit-giant-turtle) )
+      'unit-alliance-submarine 'unit-mythical-submarine) )
 
 ;;
 ;;	Destroyer of the current race.
 ;;
 (define (ai:destroyer)
   (if (eq? (ai:get-race) race1)
-      'unit-elven-destroyer 'unit-troll-destroyer) )
+      'unit-alliance-destroyer 'unit-mythical-destroyer) )
 
 ;;
 ;;	Battleship of the current race.
@@ -949,7 +949,7 @@
 ;;
 (define (ai:transporter)
   (if (eq? (ai:get-race) race1)
-      'unit-human-transport 'unit-orc-transport) )
+      'unit-alliance-transport 'unit-mythical-transport) )
 
 ;;
 ;;	1st Elite Shooter of the current race.
@@ -1366,7 +1366,7 @@
 
     (ai:set  'unit-peasant 4)
     (ai:need 'unit-elven-lumber-mill)
-    (ai:need 'unit-human-barracks)
+    (ai:need 'unit-alliance-barracks)
     (ai:force 0  'unit-footman 2)
     (ai:force 1  'unit-footman 1)
     (ai:wait-force 1)		;; wait until attack party is completed
@@ -1374,7 +1374,7 @@
 
     (ai:set  'unit-peasant 9)
     (ai:sleep	500)
-    (ai:need 'unit-human-blacksmith)
+    (ai:need 'unit-alliance-blacksmith)
     (ai:force 0 'unit-footman 2 'unit-archer 1)
     (ai:force 1 'unit-footman 2 'unit-archer 1)
     (ai:wait-force 1)		;; wait until attack party is completed
@@ -1387,7 +1387,7 @@
     (ai:research 'upgrade-sword2)
     (ai:research 'upgrade-human-shield2)
     (ai:research 'upgrade-arrow2)
-    (ai:need 'unit-human-barracks)
+    (ai:need 'unit-alliance-barracks)
 
     (ai:force 0 'unit-footman 3 'unit-archer 2)
     (ai:force 1 'unit-footman 3 'unit-archer 1)
@@ -1418,11 +1418,11 @@
     (ai:attack-with-force 1)
 
     (ai:sleep	500)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
-    (ai:need 'unit-human-barracks)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
+    (ai:need 'unit-alliance-barracks)
     (ai:upgrade-to 'unit-castle)
     (ai:set  'unit-peasant 19)
     (ai:wait 'unit-castle)
@@ -1433,10 +1433,10 @@
     (ai:attack-with-force 1)
 
     (ai:sleep	500)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:need 'unit-church)
     (ai:research 'upgrade-paladin)
     (ai:research 'upgrade-healing)
@@ -1450,10 +1450,10 @@
     (ai:attack-with-force 1)
 
     (ai:sleep	500)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:need 'unit-mage-tower)
     (ai:research 'upgrade-polymorph)
     (ai:research 'upgrade-blizzard)
@@ -1467,10 +1467,10 @@
 
     (ai:sleep	500)
     (ai:research 'upgrade-slow)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:research 'upgrade-invisibility)
 
     (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-paladin 6 'unit-ballista 1
@@ -1507,11 +1507,11 @@
 
     (ai:sleep	500)
     (ai:need 'unit-town-hall)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
-    (ai:need 'unit-gnomish-inventor)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
+    (ai:need 'unit-inventor)
     (ai:research 'upgrade-longbow)
 
     (ai:force 0 'unit-footman 1 'unit-archer 0 'unit-ranger 2 'unit-paladin 6
@@ -1524,20 +1524,20 @@
     (ai:attack-with-force 2)
 
     (ai:sleep	500)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-cannon-tower)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-cannon-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:research 'upgrade-ballista1)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-cannon-tower)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-cannon-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:research 'upgrade-ballista2)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-cannon-tower)
-    (ai:need 'unit-human-watch-tower)
-    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-cannon-tower)
+    (ai:need 'unit-alliance-watch-tower)
+    (ai:upgrade-to 'unit-alliance-guard-tower)
     (ai:set  'unit-peasant 25)
 
     ;; Everything researched...
@@ -1579,7 +1579,7 @@
 
     (ai:set  'unit-peon 4)
     (ai:need 'unit-troll-lumber-mill)
-    (ai:need 'unit-orc-barracks)
+    (ai:need 'unit-mythical-barracks)
     (ai:force 0 'unit-grunt 2)
     (ai:force 1 'unit-grunt 1)
     (ai:wait-force 1)		;; wait until attack party is completed
@@ -1587,7 +1587,7 @@
 
     (ai:set  'unit-peon 9)
     (ai:sleep	500)
-    (ai:need 'unit-orc-blacksmith)
+    (ai:need 'unit-mythical-blacksmith)
     (ai:force 0 'unit-grunt 2 'unit-axethrower 1)
     (ai:force 1 'unit-grunt 2 'unit-axethrower 1)
     (ai:wait-force 1)		;; wait until attack party is completed
@@ -1600,7 +1600,7 @@
     (ai:research 'upgrade-battle-axe2)
     (ai:research 'upgrade-orc-shield2)
     (ai:research 'upgrade-throwing-axe2)
-    (ai:need 'unit-orc-barracks)
+    (ai:need 'unit-mythical-barracks)
 
     (ai:force 0 'unit-grunt 3 'unit-axethrower 2)
     (ai:force 1 'unit-grunt 3 'unit-axethrower 1)
@@ -1631,11 +1631,11 @@
     (ai:attack-with-force 1)
 
     (ai:sleep	500)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
-    (ai:need 'unit-orc-barracks)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
+    (ai:need 'unit-mythical-barracks)
     (ai:upgrade-to 'unit-fortress)
     (ai:set  'unit-peon 19)
     (ai:wait 'unit-fortress)
@@ -1646,10 +1646,10 @@
     (ai:attack-with-force 1)
 
     (ai:sleep	500)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:need 'unit-altar-of-storms)
     (ai:research 'upgrade-ogre-mage)
     (ai:research 'upgrade-bloodlust)
@@ -1663,10 +1663,10 @@
     (ai:attack-with-force 1)
 
     (ai:sleep	500)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:need 'unit-temple-of-the-damned)
     (ai:research 'upgrade-unholy-armor)
     (ai:research 'upgrade-death-and-decay)
@@ -1680,10 +1680,10 @@
 
     (ai:sleep	500)
     (ai:research 'upgrade-haste)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:research 'upgrade-whirlwind)
 
     (ai:force 0 'unit-grunt 1 'unit-axethrower 2 'unit-ogre-mage 6
@@ -1720,11 +1720,11 @@
 
     (ai:sleep	500)
     (ai:need 'unit-great-hall)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
-    (ai:need 'unit-goblin-alchemist)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
+    (ai:need 'unit-alchemist)
     (ai:research 'upgrade-light-axes)
 
     (ai:force 0 'unit-grunt 1 'unit-axethrower 0 'unit-ranger 2
@@ -1737,20 +1737,20 @@
     (ai:attack-with-force 2)
 
     (ai:sleep	500)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-cannon-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-cannon-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:research 'upgrade-catapult1)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-cannon-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-cannon-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:research 'upgrade-catapult2)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-cannon-tower)
-    (ai:need 'unit-orc-watch-tower)
-    (ai:upgrade-to 'unit-orc-guard-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-cannon-tower)
+    (ai:need 'unit-mythical-watch-tower)
+    (ai:upgrade-to 'unit-mythical-guard-tower)
     (ai:set  'unit-peon 25)
 
     ;; Everything researched...

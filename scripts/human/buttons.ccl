@@ -37,113 +37,113 @@
   'key "m" 'hint "~!MOVE"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista unit-peasant
-    unit-peasant-with-gold unit-peasant-with-wood unit-alleria
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
-    unit-uther-lightbringer unit-khadgar unit-gnomish-flying-machine
+    unit-peasant-with-gold unit-peasant-with-wood unit-female-hero
+    unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
+    unit-man-of-light unit-white-mage unit-balloon
     unit-gryphon-rider unit-attack-peasant unit-mage unit-critter
     human-group))
 
-(define-button 'pos 2 'level 0 'icon 'icon-human-shield1
+(define-button 'pos 2 'level 0 'icon 'icon-alliance-shield1
   'action 'stop
   'key "s" 'hint "~!STOP"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista unit-peasant
-    unit-peasant-with-gold unit-peasant-with-wood unit-alleria
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
-    unit-uther-lightbringer unit-khadgar unit-gnomish-flying-machine
+    unit-peasant-with-gold unit-peasant-with-wood unit-female-hero
+    unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
+    unit-man-of-light unit-white-mage unit-balloon
     unit-gryphon-rider unit-attack-peasant unit-mage unit-critter
     human-group))
 
-(define-button 'pos 2 'level 0 'icon 'icon-human-shield2
+(define-button 'pos 2 'level 0 'icon 'icon-alliance-shield2
   'action 'stop
   'allowed 'check-upgrade 'allow-arg '(upgrade-human-shield1)
   'key "s" 'hint "~!STOP"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista unit-danath unit-turalyon
-    unit-lothar unit-uther-lightbringer))
+    unit-dwarves unit-ranger unit-ballista unit-arthor-literios unit-knight-rider
+    unit-wise-man unit-man-of-light))
 
-(define-button 'pos 2 'level 0 'icon 'icon-human-shield3
+(define-button 'pos 2 'level 0 'icon 'icon-alliance-shield3
   'action 'stop
   'allowed 'check-upgrade 'allow-arg '(upgrade-human-shield2)
   'key "s" 'hint "~!STOP"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista unit-danath unit-turalyon
-    unit-lothar unit-uther-lightbringer))
+    unit-dwarves unit-ranger unit-ballista unit-arthor-literios unit-knight-rider
+    unit-wise-man unit-man-of-light))
 
 (define-button 'pos 3 'level 0 'icon 'icon-sword1
   'action 'attack
   'key "a" 'hint "~!ATTACK"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
     unit-dwarves unit-ranger unit-ballista unit-peasant
-    unit-peasant-with-gold unit-peasant-with-wood unit-alleria
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
-    unit-uther-lightbringer unit-khadgar unit-gryphon-rider human-group))
+    unit-peasant-with-gold unit-peasant-with-wood unit-female-hero
+    unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
+    unit-man-of-light unit-white-mage unit-gryphon-rider human-group))
 
 (define-button 'pos 3 'level 0 'icon 'icon-sword2
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-sword1)
   'key "a" 'hint "~!ATTACK"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista unit-danath unit-turalyon
-    unit-lothar unit-uther-lightbringer))
+    unit-dwarves unit-ranger unit-ballista unit-arthor-literios unit-knight-rider
+    unit-wise-man unit-man-of-light))
 
 (define-button 'pos 3 'level 0 'icon 'icon-sword3
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-sword2)
   'key "a" 'hint "~!ATTACK"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista unit-danath unit-turalyon
-    unit-lothar unit-uther-lightbringer))
+    unit-dwarves unit-ranger unit-ballista unit-arthor-literios unit-knight-rider
+    unit-wise-man unit-man-of-light))
 
 (define-button 'pos 3 'level 0 'icon 'icon-arrow1
   'action 'attack
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-archer unit-ranger unit-alleria))
+  'for-unit '(unit-archer unit-ranger unit-female-hero))
 
 (define-button 'pos 3 'level 0 'icon 'icon-arrow2
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-arrow1)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-archer unit-ranger unit-alleria))
+  'for-unit '(unit-archer unit-ranger unit-female-hero))
 
 (define-button 'pos 3 'level 0 'icon 'icon-arrow3
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-arrow2)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-archer unit-ranger unit-alleria))
+  'for-unit '(unit-archer unit-ranger unit-female-hero))
 
 (if extensions
-(define-button 'pos 4 'level 0 'icon 'icon-human-patrol-land
+(define-button 'pos 4 'level 0 'icon 'icon-alliance-patrol-land
   'action 'patrol
   'key "p" 'hint "~!PATROL"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista unit-alleria
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
-    unit-uther-lightbringer unit-gryphon-rider human-group
-    unit-gnomish-flying-machine))
-(define-button 'pos 4 'level 0 'icon 'icon-human-patrol-land
+    unit-dwarves unit-ranger unit-ballista unit-female-hero
+    unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
+    unit-man-of-light unit-gryphon-rider human-group
+    unit-balloon))
+(define-button 'pos 4 'level 0 'icon 'icon-alliance-patrol-land
   'action 'patrol
   'key "p" 'hint "~!PATROL"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista unit-alleria
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
-    unit-uther-lightbringer unit-gryphon-rider human-group)) )
+    unit-dwarves unit-ranger unit-ballista unit-female-hero
+    unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
+    unit-man-of-light unit-gryphon-rider human-group)) )
 
-(define-button 'pos 5 'level 0 'icon 'icon-human-stand-ground
+(define-button 'pos 5 'level 0 'icon 'icon-alliance-stand-ground
   'action 'stand-ground
   'key "t" 'hint "S~!TAND GROUND"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista unit-alleria
-    unit-kurdan-and-sky-ree unit-danath unit-turalyon unit-lothar
-    unit-uther-lightbringer unit-gryphon-rider human-group
-    unit-gnomish-submarine unit-battleship unit-elven-destroyer))
+    unit-dwarves unit-ranger unit-ballista unit-female-hero
+    unit-flying-angle unit-arthor-literios unit-knight-rider unit-wise-man
+    unit-man-of-light unit-gryphon-rider human-group
+    unit-alliance-submarine unit-battleship unit-alliance-destroyer))
 
-(define-button 'pos 6 'level 0 'icon 'icon-human-attack-ground
+(define-button 'pos 6 'level 0 'icon 'icon-alliance-attack-ground
   'action 'attack-ground
   'key "g" 'hint "ATTACK ~!GROUND"
   'for-unit '(unit-ballista unit-battleship human-group))
 
-(define-button 'pos 9 'level 0 'icon 'icon-human-demolish
+(define-button 'pos 9 'level 0 'icon 'icon-alliance-demolish
   'action 'demolish
   'key "d" 'hint "~!DEMOLISH"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
@@ -156,73 +156,73 @@
   'action 'cast-spell 'value 'spell-area-healing
   'allowed 'check-upgrade 'allow-arg '(upgrade-area-healing)
   'key "l" 'hint "AREA HEA~!LING (per 1 HP)"
-  'for-unit '(unit-paladin unit-turalyon 
-    unit-uther-lightbringer))
+  'for-unit '(unit-paladin unit-knight-rider 
+    unit-man-of-light))
 )
 
 (define-button 'pos 7 'level 0 'icon 'icon-holy-vision
   'action 'cast-spell 'value 'spell-holy-vision
   'allowed 'check-upgrade 'allow-arg '(upgrade-holy-vision)
   'key "v" 'hint "HOLY ~!VISION"
-  'for-unit '(unit-paladin unit-turalyon
-    unit-uther-lightbringer))
+  'for-unit '(unit-paladin unit-knight-rider
+    unit-man-of-light))
 
 (define-button 'pos 8 'level 0 'icon 'icon-heal
   'action 'cast-spell 'value 'spell-healing
   'allowed 'check-upgrade 'allow-arg '(upgrade-healing)
   'key "h" 'hint "~!HEALING (per 1 HP)"
-  'for-unit '(unit-paladin unit-turalyon 
-    unit-uther-lightbringer))
+  'for-unit '(unit-paladin unit-knight-rider 
+    unit-man-of-light))
 
 (define-button 'pos 9 'level 0 'icon 'icon-exorcism
   'action 'cast-spell 'value 'spell-exorcism
   'allowed 'check-upgrade 'allow-arg '(upgrade-exorcism)
   'key "e" 'hint "~!EXORCISM"
-  'for-unit '(unit-paladin unit-turalyon
-    unit-uther-lightbringer))
+  'for-unit '(unit-paladin unit-knight-rider
+    unit-man-of-light))
 
 ;; mage specific actions ------------------------------------------------------
 
 (define-button 'pos 3 'level 0 'icon 'icon-lightning
   'action 'attack
   'key "a" 'hint "LIGHTNING ~!ATTACK"
-  'for-unit '(unit-mage unit-khadgar))
+  'for-unit '(unit-mage unit-white-mage))
 
 (define-button 'pos 4 'level 0 'icon 'icon-fireball
   'action 'cast-spell 'value 'spell-fireball
   'allowed 'check-upgrade 'allow-arg '(upgrade-fireball)
   'key "f" 'hint "~!FIREBALL"
-  'for-unit '(unit-mage unit-khadgar))
+  'for-unit '(unit-mage unit-white-mage))
 
 (define-button 'pos 5 'level 0 'icon 'icon-slow
   'action 'cast-spell 'value 'spell-slow
   'allowed 'check-upgrade 'allow-arg '(upgrade-slow)
   'key "o" 'hint "SL~!OW"
-  'for-unit '(unit-mage unit-khadgar))
+  'for-unit '(unit-mage unit-white-mage))
 
 (define-button 'pos 6 'level 0 'icon 'icon-flame-shield
   'action 'cast-spell 'value 'spell-flame-shield
   'allowed 'check-upgrade 'allow-arg '(upgrade-flame-shield)
   'key "l" 'hint "F~!LAME SHIELD"
-  'for-unit '(unit-mage unit-khadgar))
+  'for-unit '(unit-mage unit-white-mage))
 
 (define-button 'pos 7 'level 0 'icon 'icon-invisibility
   'action 'cast-spell 'value 'spell-invisibility
   'allowed 'check-upgrade 'allow-arg '(upgrade-invisibility)
   'key "i" 'hint "~!INVISIBILITY"
-  'for-unit '(unit-mage unit-khadgar))
+  'for-unit '(unit-mage unit-white-mage))
 
 (define-button 'pos 8 'level 0 'icon 'icon-polymorph
   'action 'cast-spell 'value 'spell-polymorph
   'allowed 'check-upgrade 'allow-arg '(upgrade-polymorph)
   'key "p" 'hint "~!POLYMORPH"
-  'for-unit '(unit-mage unit-khadgar))
+  'for-unit '(unit-mage unit-white-mage))
 
 (define-button 'pos 9 'level 0 'icon 'icon-blizzard
   'action 'cast-spell 'value 'spell-blizzard
   'allowed 'check-upgrade 'allow-arg '(upgrade-blizzard)
   'key "b" 'hint "~!BLIZZARD"
-  'for-unit '(unit-mage unit-khadgar))
+  'for-unit '(unit-mage unit-white-mage))
 
 ;; peasant specific actions ---------------------------------------------------
 
@@ -268,8 +268,8 @@
   'key "f" 'hint "BUILD ~!FARM"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
 
-(define-button 'pos 2 'level 1 'icon 'icon-human-barracks
-  'action 'build 'value 'unit-human-barracks
+(define-button 'pos 2 'level 1 'icon 'icon-alliance-barracks
+  'action 'build 'value 'unit-alliance-barracks
   'key "b" 'hint "BUILD ~!BARRACKS"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
 
@@ -283,17 +283,17 @@
   'key "l" 'hint "BUILD ELVEN ~!LUMBER MILL"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
 
-(define-button 'pos 5 'level 1 'icon 'icon-human-blacksmith
-  'action 'build 'value 'unit-human-blacksmith
+(define-button 'pos 5 'level 1 'icon 'icon-alliance-blacksmith
+  'action 'build 'value 'unit-alliance-blacksmith
   'key "s" 'hint "BUILD BLACK~!SMITH"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
 
-(define-button 'pos 7 'level 1 'icon 'icon-human-watch-tower
-  'action 'build 'value 'unit-human-watch-tower
+(define-button 'pos 7 'level 1 'icon 'icon-alliance-watch-tower
+  'action 'build 'value 'unit-alliance-watch-tower
   'key "t" 'hint "BUILD ~!TOWER"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
 
-(define-button 'pos 8 'level 1 'icon 'icon-human-wall
+(define-button 'pos 8 'level 1 'icon 'icon-alliance-wall
   'action 'build 'value 'unit-human-wall
   'allowed 'check-network
   'key "w" 'hint "BUILD ~!WALL"
@@ -306,23 +306,23 @@
 
 ;; human advanced buildings ---------------------------------------------------
 
-(define-button 'pos 1 'level 2 'icon 'icon-human-shipyard
-  'action 'build 'value 'unit-human-shipyard
+(define-button 'pos 1 'level 2 'icon 'icon-alliance-shipyard
+  'action 'build 'value 'unit-alliance-shipyard
   'key "s" 'hint "BUILD ~!SHIPYARD"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
 
-(define-button 'pos 2 'level 2 'icon 'icon-human-foundry
-  'action 'build 'value 'unit-human-foundry
+(define-button 'pos 2 'level 2 'icon 'icon-alliance-foundry
+  'action 'build 'value 'unit-alliance-foundry
   'key "f" 'hint "BUILD ~!FOUNDRY"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
 
-(define-button 'pos 3 'level 2 'icon 'icon-human-refinery
+(define-button 'pos 3 'level 2 'icon 'icon-alliance-refinery
   'action 'build 'value 'unit-human-refinery
   'key "r" 'hint "BUILD ~!REFINERY"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
 
 (define-button 'pos 4 'level 2 'icon 'icon-gnomish-inventor
-  'action 'build 'value 'unit-gnomish-inventor
+  'action 'build 'value 'unit-inventor
   'key "i" 'hint "BUILD GNOMISH ~!INVENTOR"
   'for-unit '(unit-peasant unit-peasant-with-gold unit-peasant-with-wood))
 
@@ -407,60 +407,60 @@
 (define-button 'pos 7 'level 0 'icon 'icon-move-peasant
   'action 'move
   'key "m" 'hint "SET ~!MOVE"
-  'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks
-    unit-mage-tower unit-gryphon-aviary unit-gnomish-inventor))
+  'for-unit '(unit-town-hall unit-keep unit-castle unit-alliance-barracks
+    unit-mage-tower unit-gryphon-aviary unit-inventor))
 
-(define-button 'pos 8 'level 0 'icon 'icon-human-shield1
+(define-button 'pos 8 'level 0 'icon 'icon-alliance-shield1
   'action 'stop
   'key "z" 'hint "SET ~!ZTOP"
-  'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks
-    unit-mage-tower unit-gryphon-aviary unit-gnomish-inventor))
+  'for-unit '(unit-town-hall unit-keep unit-castle unit-alliance-barracks
+    unit-mage-tower unit-gryphon-aviary unit-inventor))
 
 (define-button 'pos 9 'level 0 'icon 'icon-sword1
   'action 'attack
   'key "e" 'hint "S~!ET ATTACK"
-  'for-unit '(unit-town-hall unit-keep unit-castle unit-human-barracks
-    unit-mage-tower unit-gryphon-aviary unit-gnomish-inventor)) ))
+  'for-unit '(unit-town-hall unit-keep unit-castle unit-alliance-barracks
+    unit-mage-tower unit-gryphon-aviary unit-inventor)) ))
 
 (define-button 'pos 1 'level 0 'icon 'icon-footman
   'action 'train-unit 'value 'unit-footman
   'key "f" 'hint "TRAIN ~!FOOTMAN"
-  'for-unit '(unit-human-barracks))
+  'for-unit '(unit-alliance-barracks))
 
 (define-button 'pos 2 'level 0 'icon 'icon-archer
   'action 'train-unit 'value 'unit-archer
   'key "a" 'hint "TRAIN ~!ARCHER"
-  'for-unit '(unit-human-barracks))
+  'for-unit '(unit-alliance-barracks))
 
 (define-button 'pos 2 'level 0 'icon 'icon-ranger
   'action 'train-unit 'value 'unit-ranger
   'key "r" 'hint "TRAIN ~!RANGER"
-  'for-unit '(unit-human-barracks))
+  'for-unit '(unit-alliance-barracks))
 
 (define-button 'pos 3 'level 0 'icon 'icon-ballista
   'action 'train-unit 'value 'unit-ballista
   'key "b" 'hint "BUILD ~!BALLISTA"
-  'for-unit '(unit-human-barracks))
+  'for-unit '(unit-alliance-barracks))
 
 (define-button 'pos 4 'level 0 'icon 'icon-knight
   'action 'train-unit 'value 'unit-knight
   'key "k" 'hint "TRAIN ~!KNIGHT"
-  'for-unit '(unit-human-barracks))
+  'for-unit '(unit-alliance-barracks))
 
 (define-button 'pos 4 'level 0 'icon 'icon-paladin
   'action 'train-unit 'value 'unit-paladin
   'key "p" 'hint "TRAIN ~!PALADIN"
-  'for-unit '(unit-human-barracks))
+  'for-unit '(unit-alliance-barracks))
 
 (define-button 'pos 1 'level 0 'icon 'icon-gnomish-flying-machine
-  'action 'train-unit 'value 'unit-gnomish-flying-machine
+  'action 'train-unit 'value 'unit-balloon
   'key "f" 'hint "BUILD GNOMISH ~!FLYING MACHINE"
-  'for-unit '(unit-gnomish-inventor))
+  'for-unit '(unit-inventor))
 
 (define-button 'pos 2 'level 0 'icon 'icon-dwarves
   'action 'train-unit 'value 'unit-dwarves
   'key "d" 'hint "TRAIN ~!DWARVEN DEMOLITION SQUAD"
-  'for-unit '(unit-gnomish-inventor))
+  'for-unit '(unit-inventor))
 
 (define-button 'pos 1 'level 0 'icon 'icon-mage
   'action 'train-unit 'value 'unit-mage
@@ -472,123 +472,123 @@
   'key "g" 'hint "TRAIN ~!GRYPHON RIDER"
   'for-unit '(unit-gryphon-aviary))
 
-(define-button 'pos 1 'level 0 'icon 'icon-human-oil-tanker
+(define-button 'pos 1 'level 0 'icon 'icon-alliance-oil-tanker
   'action 'train-unit 'value 'unit-human-oil-tanker
   'key "o" 'hint "BUILD ~!OIL TANKER"
-  'for-unit '(unit-human-shipyard))
+  'for-unit '(unit-alliance-shipyard))
 
-(define-button 'pos 2 'level 0 'icon 'icon-elven-destroyer
-  'action 'train-unit 'value 'unit-elven-destroyer
+(define-button 'pos 2 'level 0 'icon 'icon-alliance-destroyer
+  'action 'train-unit 'value 'unit-alliance-destroyer
   'key "d" 'hint "BUILD ~!DESTROYER"
-  'for-unit '(unit-human-shipyard))
+  'for-unit '(unit-alliance-shipyard))
 
-(define-button 'pos 3 'level 0 'icon 'icon-human-transport
-  'action 'train-unit 'value 'unit-human-transport
+(define-button 'pos 3 'level 0 'icon 'icon-alliance-transport
+  'action 'train-unit 'value 'unit-alliance-transport
   'key "t" 'hint "BUILD ~!TRANSPORT"
-  'for-unit '(unit-human-shipyard))
+  'for-unit '(unit-alliance-shipyard))
 
 (define-button 'pos 4 'level 0 'icon 'icon-gnomish-submarine
-  'action 'train-unit 'value 'unit-gnomish-submarine
+  'action 'train-unit 'value 'unit-alliance-submarine
   'key "s" 'hint "BUILD GNOMISH ~!SUBMARINE"
-  'for-unit '(unit-human-shipyard))
+  'for-unit '(unit-alliance-shipyard))
 
 (define-button 'pos 5 'level 0 'icon 'icon-battleship
   'action 'train-unit 'value 'unit-battleship
   'key "b" 'hint "BUILD ~!BATTLESHIP"
-  'for-unit '(unit-human-shipyard))
+  'for-unit '(unit-alliance-shipyard))
 
 (if extensions (begin
 ;---------------------------------------------------
-(define-button 'pos 6 'level 0 'icon 'icon-human-ship-haul-oil
+(define-button 'pos 6 'level 0 'icon 'icon-alliance-ship-haul-oil
   'action 'harvest
   'key "h" 'hint "SET ~!HAUL OIL"
-  'for-unit '(unit-human-shipyard))
+  'for-unit '(unit-alliance-shipyard))
 ;---------------------------------------------------
   ))
 
-(define-button 'pos 1 'level 0 'icon 'icon-human-guard-tower
-  'action 'upgrade-to 'value 'unit-human-guard-tower
+(define-button 'pos 1 'level 0 'icon 'icon-alliance-guard-tower
+  'action 'upgrade-to 'value 'unit-alliance-guard-tower
   'key "g" 'hint "UPGRADE TO ~!GUARD TOWER"
-  'for-unit '(unit-human-watch-tower))
+  'for-unit '(unit-alliance-watch-tower))
 
-(define-button 'pos 2 'level 0 'icon 'icon-human-cannon-tower
-  'action 'upgrade-to 'value 'unit-human-cannon-tower
+(define-button 'pos 2 'level 0 'icon 'icon-alliance-cannon-tower
+  'action 'upgrade-to 'value 'unit-alliance-cannon-tower
   'key "c" 'hint "UPGRADE TO ~!CANNON TOWER"
-  'for-unit '(unit-human-watch-tower))
+  'for-unit '(unit-alliance-watch-tower))
 
 ;; ships ----------------------------------------------------------------------
 
-(define-button 'pos 1 'level 0 'icon 'icon-human-ship-move
+(define-button 'pos 1 'level 0 'icon 'icon-alliance-ship-move
   'action 'move
   'key "m" 'hint "~!MOVE"
   'for-unit '(unit-human-oil-tanker unit-human-oil-tanker-full
-    unit-gnomish-submarine unit-battleship unit-elven-destroyer
-    unit-human-transport))
+    unit-alliance-submarine unit-battleship unit-alliance-destroyer
+    unit-alliance-transport))
 
-(define-button 'pos 2 'level 0 'icon 'icon-human-ship-armor1
+(define-button 'pos 2 'level 0 'icon 'icon-alliance-ship-armor1
   'action 'stop
   'key "s" 'hint "~!STOP"
   'for-unit '(unit-human-oil-tanker unit-human-oil-tanker-full
-    unit-gnomish-submarine unit-battleship unit-elven-destroyer
-    unit-human-transport))
+    unit-alliance-submarine unit-battleship unit-alliance-destroyer
+    unit-alliance-transport))
 
-(define-button 'pos 3 'level 0 'icon 'icon-human-unload
+(define-button 'pos 3 'level 0 'icon 'icon-alliance-unload
   'action 'unload
   'key "u" 'hint "~!UNLOAD"
-  'for-unit '(unit-human-transport))
+  'for-unit '(unit-alliance-transport))
 
-(define-button 'pos 4 'level 0 'icon 'icon-human-oil-platform
-  'action 'build 'value 'unit-human-oil-platform
+(define-button 'pos 4 'level 0 'icon 'icon-alliance-oil-platform
+  'action 'build 'value 'unit-alliance-oil-platform
   'key "b" 'hint "~!BUILD OIL PLATFORM"
   'for-unit '(unit-human-oil-tanker))
 
-(define-button 'pos 5 'level 0 'icon 'icon-human-ship-haul-oil
+(define-button 'pos 5 'level 0 'icon 'icon-alliance-ship-haul-oil
   'action 'harvest
   'key "h" 'hint "~!HAUL OIL"
   'for-unit '(unit-human-oil-tanker))
 
-(define-button 'pos 6 'level 0 'icon 'icon-human-ship-return-oil
+(define-button 'pos 6 'level 0 'icon 'icon-alliance-ship-return-oil
   'action 'return-goods
   'key "g" 'hint "RETURN WITH ~!GOODS"
   'for-unit '(unit-human-oil-tanker-full))
 
-(define-button 'pos 3 'level 0 'icon 'icon-human-ship-cannon1
+(define-button 'pos 3 'level 0 'icon 'icon-alliance-ship-cannon1
   'action 'attack
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-gnomish-submarine unit-battleship unit-elven-destroyer))
+  'for-unit '(unit-alliance-submarine unit-battleship unit-alliance-destroyer))
 
-(define-button 'pos 3 'level 0 'icon 'icon-human-ship-cannon2
+(define-button 'pos 3 'level 0 'icon 'icon-alliance-ship-cannon2
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-human-ship-cannon1)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-gnomish-submarine unit-battleship unit-elven-destroyer))
+  'for-unit '(unit-alliance-submarine unit-battleship unit-alliance-destroyer))
 
-(define-button 'pos 3 'level 0 'icon 'icon-human-ship-cannon3
+(define-button 'pos 3 'level 0 'icon 'icon-alliance-ship-cannon3
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-human-ship-cannon2)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-gnomish-submarine unit-battleship unit-elven-destroyer))
+  'for-unit '(unit-alliance-submarine unit-battleship unit-alliance-destroyer))
 
-(define-button 'pos 4 'level 0 'icon 'icon-human-patrol-naval
+(define-button 'pos 4 'level 0 'icon 'icon-alliance-patrol-naval
   'action 'patrol
   'key "p" 'hint "~!PATROL"
-  'for-unit '(unit-gnomish-submarine unit-battleship unit-elven-destroyer))
+  'for-unit '(unit-alliance-submarine unit-battleship unit-alliance-destroyer))
 
 (if extensions (begin
-(define-button 'pos 7 'level 0 'icon 'icon-human-ship-move
+(define-button 'pos 7 'level 0 'icon 'icon-alliance-ship-move
   'action 'move
   'key "m" 'hint "SET ~!MOVE"
-  'for-unit '(unit-human-shipyard))
+  'for-unit '(unit-alliance-shipyard))
 
-(define-button 'pos 8 'level 0 'icon 'icon-human-ship-armor1
+(define-button 'pos 8 'level 0 'icon 'icon-alliance-ship-armor1
   'action 'stop
   'key "z" 'hint "SET ~!ZTOP"
-  'for-unit '(unit-human-shipyard))
+  'for-unit '(unit-alliance-shipyard))
 
-(define-button 'pos 9 'level 0 'icon 'icon-human-ship-cannon1
+(define-button 'pos 9 'level 0 'icon 'icon-alliance-ship-cannon1
   'action 'attack
   'key "e" 'hint "S~!ET ATTACK"
-  'for-unit '(unit-human-shipyard)) ))
+  'for-unit '(unit-alliance-shipyard)) ))
 
 ;; upgrades -------------------------------------------------------------------
 
@@ -596,37 +596,37 @@
   'action 'research 'value 'upgrade-sword1
   'allowed 'check-single-research
   'key "w" 'hint "UPGRADE S~!WORDS (Damage +2)"
-  'for-unit '(unit-human-blacksmith))
+  'for-unit '(unit-alliance-blacksmith))
 
 (define-button 'pos 1 'level 0 'icon 'icon-sword3
   'action 'research 'value 'upgrade-sword2
   'allowed 'check-single-research
   'key "w" 'hint "UPGRADE S~!WORDS (Damage +2)"
-  'for-unit '(unit-human-blacksmith))
+  'for-unit '(unit-alliance-blacksmith))
 
-(define-button 'pos 2 'level 0 'icon 'icon-human-shield2
+(define-button 'pos 2 'level 0 'icon 'icon-alliance-shield2
   'action 'research 'value 'upgrade-human-shield1
   'allowed 'check-single-research
   'key "s" 'hint "UPGRADE ~!SHIELDS (Armor +2)"
-  'for-unit '(unit-human-blacksmith))
+  'for-unit '(unit-alliance-blacksmith))
 
-(define-button 'pos 2 'level 0 'icon 'icon-human-shield3
+(define-button 'pos 2 'level 0 'icon 'icon-alliance-shield3
   'action 'research 'value 'upgrade-human-shield2
   'allowed 'check-single-research
   'key "s" 'hint "UPGRADE ~!SHIELDS (Armor +2)"
-  'for-unit '(unit-human-blacksmith))
+  'for-unit '(unit-alliance-blacksmith))
 
 (define-button 'pos 3 'level 0 'icon 'icon-ballista1
   'action 'research 'value 'upgrade-ballista1
   'allowed 'check-single-research
   'key "b" 'hint "UPGRADE ~!BALLISTA (Damage +15)"
-  'for-unit '(unit-human-blacksmith))
+  'for-unit '(unit-alliance-blacksmith))
 
 (define-button 'pos 3 'level 0 'icon 'icon-ballista2
   'action 'research 'value 'upgrade-ballista2
   'allowed 'check-single-research
   'key "b" 'hint "UPGRADE ~!BALLISTA (Damage +15)"
-  'for-unit '(unit-human-blacksmith))
+  'for-unit '(unit-alliance-blacksmith))
 
 (define-button 'pos 1 'level 0 'icon 'icon-arrow2
   'action 'research 'value 'upgrade-arrow1
@@ -720,26 +720,26 @@
   'key "b" 'hint "RESEARCH ~!BLIZZARD"
   'for-unit '(unit-mage-tower))
 
-(define-button 'pos 1 'level 0 'icon 'icon-human-ship-cannon2
+(define-button 'pos 1 'level 0 'icon 'icon-alliance-ship-cannon2
   'action 'research 'value 'upgrade-human-ship-cannon1
   'allowed 'check-single-research
   'key "c" 'hint "UPGRADE ~!CANNONS (Damage +5)"
-  'for-unit '(unit-human-foundry))
+  'for-unit '(unit-alliance-foundry))
 
-(define-button 'pos 1 'level 0 'icon 'icon-human-ship-cannon3
+(define-button 'pos 1 'level 0 'icon 'icon-alliance-ship-cannon3
   'action 'research 'value 'upgrade-human-ship-cannon2
   'allowed 'check-single-research
   'key "c" 'hint "UPGRADE ~!CANNONS (Damage +5)"
-  'for-unit '(unit-human-foundry))
+  'for-unit '(unit-alliance-foundry))
 
-(define-button 'pos 2 'level 0 'icon 'icon-human-ship-armor2
+(define-button 'pos 2 'level 0 'icon 'icon-alliance-ship-armor2
   'action 'research 'value 'upgrade-human-ship-armor1
   'allowed 'check-single-research
   'key "a" 'hint "UPGRADE SHIP ~!ARMOR (Armor +5)"
-  'for-unit '(unit-human-foundry))
+  'for-unit '(unit-alliance-foundry))
 
-(define-button 'pos 2 'level 0 'icon 'icon-human-ship-armor3
+(define-button 'pos 2 'level 0 'icon 'icon-alliance-ship-armor3
   'action 'research 'value 'upgrade-human-ship-armor2
   'allowed 'check-single-research
   'key "a" 'hint "UPGRADE SHIP ~!ARMOR (Armor +5)"
-  'for-unit '(unit-human-foundry))
+  'for-unit '(unit-alliance-foundry))

@@ -45,18 +45,18 @@
 (define-upgrade 'upgrade-arrow2 'icon 'icon-arrow3
   'costs #(   250   900   500     0     0     0     0))
 
-(define-upgrade 'upgrade-human-shield1 'icon 'icon-human-shield2
+(define-upgrade 'upgrade-human-shield1 'icon 'icon-alliance-shield2
   'costs #(   200   300   300     0     0     0     0))
-(define-upgrade 'upgrade-human-shield2 'icon 'icon-human-shield3
+(define-upgrade 'upgrade-human-shield2 'icon 'icon-alliance-shield3
   'costs #(   250   900   500     0     0     0     0))
 
-(define-upgrade 'upgrade-human-ship-cannon1 'icon 'icon-human-ship-cannon2
+(define-upgrade 'upgrade-human-ship-cannon1 'icon 'icon-alliance-ship-cannon2
   'costs #(   200   700   100  1000     0     0     0))
-(define-upgrade 'upgrade-human-ship-cannon2 'icon 'icon-human-ship-cannon3
+(define-upgrade 'upgrade-human-ship-cannon2 'icon 'icon-alliance-ship-cannon3
   'costs #(   250  2000   250  3000     0     0     0))
-(define-upgrade 'upgrade-human-ship-armor1 'icon 'icon-human-ship-armor2
+(define-upgrade 'upgrade-human-ship-armor1 'icon 'icon-alliance-ship-armor2
   'costs #(   200   500   500     0     0     0     0))
-(define-upgrade 'upgrade-human-ship-armor2 'icon 'icon-human-ship-armor3
+(define-upgrade 'upgrade-human-ship-armor2 'icon 'icon-alliance-ship-armor3
   'costs #(   250  1500   900     0     0     0     0))
 
 (define-upgrade 'upgrade-catapult1 'icon 'icon-catapult1
@@ -115,54 +115,54 @@
 (define-modifier 'upgrade-sword1
   '(piercing-damage 2)
   '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
-  '(apply-to unit-dwarves) '(apply-to unit-danath) '(apply-to unit-lothar)
-  '(apply-to unit-uther-lightbringer) '(apply-to unit-turalyon))
+  '(apply-to unit-dwarves) '(apply-to unit-arthor-literios) '(apply-to unit-wise-man)
+  '(apply-to unit-man-of-light) '(apply-to unit-knight-rider))
 
 (define-modifier 'upgrade-sword2
   '(piercing-damage 2)
   '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
-  '(apply-to unit-dwarves) '(apply-to unit-danath) '(apply-to unit-lothar)
-  '(apply-to unit-uther-lightbringer) '(apply-to unit-turalyon))
+  '(apply-to unit-dwarves) '(apply-to unit-arthor-literios) '(apply-to unit-wise-man)
+  '(apply-to unit-man-of-light) '(apply-to unit-knight-rider))
 
 (define-modifier 'upgrade-arrow1
   '(piercing-damage 1)
-  '(apply-to unit-archer) '(apply-to unit-ranger) '(apply-to unit-alleria))
+  '(apply-to unit-archer) '(apply-to unit-ranger) '(apply-to unit-female-hero))
 
 (define-modifier 'upgrade-arrow2
   '(piercing-damage 1)
-  '(apply-to unit-archer) '(apply-to unit-ranger) '(apply-to unit-alleria))
+  '(apply-to unit-archer) '(apply-to unit-ranger) '(apply-to unit-female-hero))
 
 (define-modifier 'upgrade-human-shield1
   '(armor 2)
   '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
-  '(apply-to unit-dwarves) '(apply-to unit-danath) '(apply-to unit-lothar)
-  '(apply-to unit-uther-lightbringer) '(apply-to unit-turalyon))
+  '(apply-to unit-dwarves) '(apply-to unit-arthor-literios) '(apply-to unit-wise-man)
+  '(apply-to unit-man-of-light) '(apply-to unit-knight-rider))
 
 (define-modifier 'upgrade-human-shield2
   '(armor 2)
   '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
-  '(apply-to unit-dwarves) '(apply-to unit-danath) '(apply-to unit-lothar)
-  '(apply-to unit-uther-lightbringer) '(apply-to unit-turalyon))
+  '(apply-to unit-dwarves) '(apply-to unit-arthor-literios) '(apply-to unit-wise-man)
+  '(apply-to unit-man-of-light) '(apply-to unit-knight-rider))
 
 (define-modifier 'upgrade-human-ship-cannon1
   '(piercing-damage 5)
-  '(apply-to unit-elven-destroyer) '(apply-to unit-battleship)
-  '(apply-to unit-gnomish-submarine))
+  '(apply-to unit-alliance-destroyer) '(apply-to unit-battleship)
+  '(apply-to unit-alliance-submarine))
 
 (define-modifier 'upgrade-human-ship-cannon2
   '(piercing-damage 5)
-  '(apply-to unit-elven-destroyer) '(apply-to unit-battleship)
-  '(apply-to unit-gnomish-submarine))
+  '(apply-to unit-alliance-destroyer) '(apply-to unit-battleship)
+  '(apply-to unit-alliance-submarine))
 
 (define-modifier 'upgrade-human-ship-armor1
   '(armor 5)
-  '(apply-to unit-elven-destroyer) '(apply-to unit-battleship)
-  '(apply-to unit-human-transport))
+  '(apply-to unit-alliance-destroyer) '(apply-to unit-battleship)
+  '(apply-to unit-alliance-transport))
 
 (define-modifier 'upgrade-human-ship-armor2
   '(armor 5)
-  '(apply-to unit-elven-destroyer) '(apply-to unit-battleship)
-  '(apply-to unit-human-transport))
+  '(apply-to unit-alliance-destroyer) '(apply-to unit-battleship)
+  '(apply-to unit-alliance-transport))
 
 (define-modifier 'upgrade-catapult1
   '(piercing-damage 15)
@@ -206,22 +206,22 @@
   '(apply-to unit-paladin))
 
 (define-modifier 'upgrade-flame-shield
-  '(apply-to unit-mage) '(apply-to unit-khadgar))
+  '(apply-to unit-mage) '(apply-to unit-white-mage))
 
 (define-modifier 'upgrade-fireball
-  '(apply-to unit-mage) '(apply-to unit-khadgar))
+  '(apply-to unit-mage) '(apply-to unit-white-mage))
 
 (define-modifier 'upgrade-slow
-  '(apply-to unit-mage) '(apply-to unit-khadgar))
+  '(apply-to unit-mage) '(apply-to unit-white-mage))
 
 (define-modifier 'upgrade-invisibility
-  '(apply-to unit-mage) '(apply-to unit-khadgar))
+  '(apply-to unit-mage) '(apply-to unit-white-mage))
 
 (define-modifier 'upgrade-polymorph
-  '(apply-to unit-mage) '(apply-to unit-khadgar))
+  '(apply-to unit-mage) '(apply-to unit-white-mage))
 
 (define-modifier 'upgrade-blizzard
-  '(apply-to unit-mage) '(apply-to unit-khadgar))
+  '(apply-to unit-mage) '(apply-to unit-white-mage))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;=============================================================================
@@ -247,40 +247,40 @@
 (define-allow 'unit-dwarves			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-attack-peasant		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-ranger			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-alleria			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-kurdan-and-sky-ree		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-khadgar			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-female-hero			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-flying-angle		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-white-mage			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-human-oil-tanker		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-transport		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-elven-destroyer		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-transport		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-destroyer		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-battleship			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-gnomish-submarine		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-gnomish-flying-machine	"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-submarine		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-balloon	"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-gryphon-rider		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-turalyon			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-danath			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-lothar			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-uther-lightbringer		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-knight-rider			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-arthor-literios			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-wise-man			"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-man-of-light		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-farm			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-barracks		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-barracks		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-church			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-watch-tower		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-watch-tower		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-stables			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-gnomish-inventor		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-inventor		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-gryphon-aviary		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-shipyard		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-shipyard		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-town-hall			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-elven-lumber-mill		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-foundry		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-foundry		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-mage-tower			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-blacksmith		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-blacksmith		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-human-refinery		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-oil-platform		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-oil-platform		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-keep			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-castle			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-start-location	"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-guard-tower		"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-human-cannon-tower		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-start-location	"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-guard-tower		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-alliance-cannon-tower		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-human-wall			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-peasant-with-gold		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-peasant-with-wood		"AAAAAAAAAAAAAAAA")
@@ -340,47 +340,47 @@
 (define-dependency 'unit-archer
   '(unit-elven-lumber-mill))
 (define-dependency 'unit-ballista
-  '(unit-human-blacksmith unit-elven-lumber-mill))
+  '(unit-alliance-blacksmith unit-elven-lumber-mill))
 (define-dependency 'unit-knight
-  '(unit-stables unit-human-blacksmith))
+  '(unit-stables unit-alliance-blacksmith))
 (define-dependency 'unit-ranger
   '(upgrade-ranger unit-elven-lumber-mill))
 (define-dependency 'unit-paladin
-  '(upgrade-paladin unit-stables unit-human-blacksmith))
+  '(upgrade-paladin unit-stables unit-alliance-blacksmith))
 
 ;;	- human naval forces
-(define-dependency 'unit-gnomish-submarine
-  '(unit-gnomish-inventor))
-(define-dependency 'unit-human-transport
-  '(unit-human-foundry))
+(define-dependency 'unit-alliance-submarine
+  '(unit-inventor))
+(define-dependency 'unit-alliance-transport
+  '(unit-alliance-foundry))
 (define-dependency 'unit-battleship
-  '(unit-human-foundry))
+  '(unit-alliance-foundry))
 
 ;;	- human air forces
-(define-dependency 'unit-gnomish-flying-machine
+(define-dependency 'unit-balloon
   '(unit-elven-lumber-mill))
 
 ;;	- human buildings
-(define-dependency 'unit-human-guard-tower
+(define-dependency 'unit-alliance-guard-tower
   '(unit-elven-lumber-mill))
-(define-dependency 'unit-human-cannon-tower
-  '(unit-human-blacksmith))
-(define-dependency 'unit-human-shipyard
+(define-dependency 'unit-alliance-cannon-tower
+  '(unit-alliance-blacksmith))
+(define-dependency 'unit-alliance-shipyard
   '(unit-elven-lumber-mill))
-(define-dependency 'unit-human-foundry
-  '(unit-human-shipyard))
+(define-dependency 'unit-alliance-foundry
+  '(unit-alliance-shipyard))
 (define-dependency 'unit-human-refinery
-  '(unit-human-shipyard))
+  '(unit-alliance-shipyard))
 (define-dependency 'unit-keep
-  '(unit-human-barracks))
-(define-dependency 'unit-gnomish-inventor
+  '(unit-alliance-barracks))
+(define-dependency 'unit-inventor
   '(unit-castle)
   'or '(unit-keep))
 (define-dependency 'unit-stables
   '(unit-castle)
   'or '(unit-keep))
 (define-dependency 'unit-castle
-  '(unit-stables unit-human-blacksmith unit-elven-lumber-mill))
+  '(unit-stables unit-alliance-blacksmith unit-elven-lumber-mill))
 (define-dependency 'unit-mage-tower
   '(unit-castle))
 (define-dependency 'unit-church

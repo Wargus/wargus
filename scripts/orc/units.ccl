@@ -339,10 +339,10 @@
     dead "basic orc voices dead"
     attack "berserker-attack"))
 
-(define-unit-type 'unit-teron-gorefiend 'name "Teron Gorefiend"
+(define-unit-type 'unit-evil-knight 'name "Teron Gorefiend"
   'use 'unit-death-knight
   'size '(72 72)
-  'animations 'animations-death-knight 'icon 'icon-teron-gorefiend
+  'animations 'animations-death-knight 'icon 'icon-evil-knight
   'costs '(time 120 gold 1200)
   'speed 8
   'hit-points 180
@@ -374,10 +374,10 @@
     dead "basic orc voices dead"
     attack "teron-gorefiend-attack"))
 
-(define-unit-type 'unit-dentarg 'name "Dentarg"
+(define-unit-type 'unit-fad-man 'name "Dentarg"
   'use 'unit-ogre
   'size '(72 72)
-  'animations 'animations-ogre 'icon 'icon-dentarg
+  'animations 'animations-ogre 'icon 'icon-fad-man
   'costs '(time 90 gold 800 wood 100)
   'speed 13
   'hit-points 300
@@ -408,10 +408,10 @@
     dead "basic orc voices dead"
     attack "dentarg-attack"))
 
-(define-unit-type 'unit-grom-hellscream 'name "Grom Hellscream"
+(define-unit-type 'unit-beast-cry 'name "Grom Hellscream"
   'use 'unit-grunt
   'size '(72 72)
-  'animations 'animations-footman 'icon 'icon-grom-hellscream
+  'animations 'animations-footman 'icon 'icon-beast-cry
   'costs '(time 60 gold 600)
   'speed 10
   'hit-points 240
@@ -442,7 +442,7 @@
 (define-unit-type 'unit-orc-oil-tanker 'name "Oil tanker"
   'files '(tileset-summer "orc/units/oil tanker empty.png")
   'size '(72 72)
-  'animations 'animations-human-oil-tanker 'icon 'icon-orc-oil-tanker
+  'animations 'animations-human-oil-tanker 'icon 'icon-mythical-oil-tanker
   'costs '(time 50 gold 400 wood 200)
   'speed 10
   'hit-points 90
@@ -467,10 +467,10 @@
     dead "ship sinking"
     attack "orc-oil-tanker-attack"))
 
-(define-unit-type 'unit-orc-transport 'name "Transport"
+(define-unit-type 'unit-mythical-transport 'name "Transport"
   'files '(tileset-summer "orc/units/transport.png")
   'size '(72 72)
-  'animations 'animations-human-transport 'icon 'icon-orc-transport
+  'animations 'animations-human-transport 'icon 'icon-mythical-transport
   'costs '(time 70 gold 600 wood 200 oil 500)
   'speed 10
   'hit-points 150
@@ -496,10 +496,10 @@
     dead "ship sinking"
     attack "orc-transport-attack"))
 
-(define-unit-type 'unit-troll-destroyer 'name "Troll Destroyer"
+(define-unit-type 'unit-mythical-destroyer 'name "Troll Destroyer"
   'files '(tileset-summer "orc/units/troll destroyer.png")
   'size '(88 88)
-  'animations 'animations-elven-destroyer 'icon 'icon-troll-destroyer
+  'animations 'animations-elven-destroyer 'icon 'icon-mythical-destroyer
   'costs '(time 90 gold 700 wood 350 oil 700)
   'speed 10
   'hit-points 100
@@ -557,10 +557,10 @@
     dead "ship sinking"
     attack "ogre-juggernaught-attack"))
 
-(define-unit-type 'unit-deathwing 'name "Deathwing"
+(define-unit-type 'unit-fire-breeze 'name "Deathwing"
   'files '(tileset-summer "orc/units/dragon.png")
   'size '(88 80)
-  'animations 'animations-deathwing 'icon 'icon-deathwing
+  'animations 'animations-deathwing 'icon 'icon-fire-breeze
   'costs '(time 250 gold 2500)
   'speed 14
   'hit-points 800
@@ -587,7 +587,7 @@
     dead "explosion"
     attack "deathwing-attack"))
 
-(define-unit-type 'unit-giant-turtle 'name "Giant Turtle"
+(define-unit-type 'unit-mythical-submarine 'name "Giant Turtle"
   'files '(tileset-summer "orc/units/giant turtle.png"
     tileset-wasteland "tilesets/wasteland/orc/units/giant turtle.png"
     tileset-swamp "tilesets/swamp/orc/units/giant turtle.png")
@@ -620,10 +620,10 @@
     dead "ship sinking"
     attack "giant-turtle-attack"))
 
-(define-unit-type 'unit-goblin-zeppelin 'name "Goblin Zeppelin"
+(define-unit-type 'unit-zeppelin 'name "Goblin Zeppelin"
   'files '(tileset-summer "orc/units/goblin zeppelin.png")
   'size '(72 72)
-  'animations 'animations-goblin-zeppelin 'icon 'icon-goblin-zeppelin
+  'animations 'animations-goblin-zeppelin 'icon 'icon-zeppelin
   'costs '(time 65 gold 500 wood 100)
   'speed 17
   'hit-points 150
@@ -648,7 +648,7 @@
     attack "goblin-zeppelin-attack"))
 
 (define-unit-type 'unit-dragon 'name "Dragon"
-  'use 'unit-deathwing
+  'use 'unit-fire-breeze
   'size '(88 80)
   'animations 'animations-deathwing 'icon 'icon-dragon
   'costs '(time 250 gold 2500)
@@ -703,10 +703,10 @@
     dead "eye-of-kilrogg-dead"
     attack "eye-of-kilrogg-attack"))
 
-(define-unit-type 'unit-korgath-bladefist 'name "Korgath Bladefist"
+(define-unit-type 'unit-quick-blade 'name "Korgath Bladefist"
   'use 'unit-grunt
   'size '(72 72)
-  'animations 'animations-footman 'icon 'icon-korgath-bladefist
+  'animations 'animations-footman 'icon 'icon-quick-blade
   'costs '(time 60 gold 600)
   'speed 10
   'hit-points 240
@@ -734,10 +734,10 @@
     dead "basic orc voices dead"
     attack "korgath-bladefist-attack"))
 
-(define-unit-type 'unit-cho-gall 'name "Cho'gall"
+(define-unit-type 'unit-double-head 'name "Cho'gall"
   'use 'unit-ogre
   'size '(72 72)
-  'animations 'animations-ogre 'icon 'icon-cho-gall
+  'animations 'animations-ogre 'icon 'icon-double-head
   'costs '(time 100 gold 1100 wood 50)
   'speed 13
   'hit-points 100
@@ -768,10 +768,10 @@
     dead "basic orc voices dead"
     attack "cho-gall-attack"))
 
-(define-unit-type 'unit-gul-dan 'name "Gul'dan"
+(define-unit-type 'unit-ice-bringer 'name "Gul'dan"
   'use 'unit-death-knight
   'size '(72 72)
-  'animations 'animations-death-knight 'icon 'icon-gul-dan
+  'animations 'animations-death-knight 'icon 'icon-ice-bringer
   'costs '(time 120 gold 1200)
   'speed 8
   'hit-points 40
@@ -802,10 +802,10 @@
     dead "basic orc voices dead"
     attack "gul-dan-attack"))
 
-(define-unit-type 'unit-zuljin 'name "Zuljin"
+(define-unit-type 'unit-sharp-axe 'name "Zuljin"
   'use 'unit-axethrower
   'size '(72 72)
-  'animations 'animations-axethrower 'icon 'icon-zuljin
+  'animations 'animations-axethrower 'icon 'icon-sharp-axe
   'costs '(time 70 gold 500 wood 50)
   'speed 10
   'hit-points 40
@@ -892,12 +892,12 @@
     dead "building destroyed"
     attack "pig-farm-attack"))
 
-(define-unit-type 'unit-orc-barracks 'name "Barracks"
+(define-unit-type 'unit-mythical-barracks 'name "Barracks"
   'files '(tileset-summer "tilesets/summer/orc/buildings/barracks.png"
     tileset-winter "tilesets/winter/orc/buildings/barracks.png"
     tileset-swamp "tilesets/swamp/orc/buildings/barracks.png")
   'size '(96 96)
-  'animations 'animations-building 'icon 'icon-orc-barracks
+  'animations 'animations-building 'icon 'icon-mythical-barracks
   'costs '(time 200 gold 700 wood 450)
   'construction 'construction-land
   'speed 0
@@ -944,12 +944,12 @@
     dead "building destroyed"
     attack "altar-of-storms-attack"))
 
-(define-unit-type 'unit-orc-watch-tower 'name "Watch Tower"
+(define-unit-type 'unit-mythical-watch-tower 'name "Watch Tower"
   'files '(tileset-summer "tilesets/summer/orc/buildings/watch tower.png"
     tileset-winter "tilesets/winter/orc/buildings/watch tower.png"
     tileset-swamp "tilesets/swamp/orc/buildings/watch tower.png")
   'size '(64 64)
-  'animations 'animations-building 'icon 'icon-orc-watch-tower
+  'animations 'animations-building 'icon 'icon-mythical-watch-tower
   'costs '(time 60 gold 550 wood 200)
   'construction 'construction-land
   'speed 0
@@ -998,12 +998,12 @@
     dead "building destroyed"
     attack "ogre-mound-attack"))
 
-(define-unit-type 'unit-goblin-alchemist 'name "Goblin Alchemist"
+(define-unit-type 'unit-alchemist 'name "Goblin Alchemist"
   'files '(tileset-summer "tilesets/summer/orc/buildings/goblin alchemist.png"
     tileset-winter "tilesets/winter/orc/buildings/goblin alchemist.png"
     tileset-swamp "tilesets/swamp/orc/buildings/goblin alchemist.png")
   'size '(96 96)
-  'animations 'animations-building 'icon 'icon-goblin-alchemist
+  'animations 'animations-building 'icon 'icon-alchemist
   'costs '(time 150 gold 1000 wood 400)
   'construction 'construction-land
   'speed 0
@@ -1050,14 +1050,14 @@
     dead "building destroyed"
     attack "dragon-roost-attack"))
 
-(define-unit-type 'unit-orc-shipyard 'name "Shipyard"
+(define-unit-type 'unit-mythical-shipyard 'name "Shipyard"
   'files '(tileset-summer "tilesets/summer/orc/buildings/shipyard.png"
     tileset-winter "tilesets/winter/orc/buildings/shipyard.png"
     tileset-swamp "tilesets/swamp/orc/buildings/shipyard.png")
   'size '(96 96)
-  'animations 'animations-building 'icon 'icon-orc-shipyard
+  'animations 'animations-building 'icon 'icon-mythical-shipyard
   'costs '(time 200 gold 800 wood 450)
-  'construction 'construction-orc-shipyard
+  'construction 'construction-mythical-shipyard
   'speed 0
   'hit-points 1100
   'tile-size '(3 3) 'box-size '(95 95)
@@ -1134,14 +1134,14 @@
     dead "building destroyed"
     attack "troll-lumber-mill-attack"))
 
-(define-unit-type 'unit-orc-foundry 'name "Foundry"
+(define-unit-type 'unit-mythical-foundry 'name "Foundry"
   'files '(tileset-summer "tilesets/summer/orc/buildings/foundry.png"
     tileset-winter "tilesets/winter/orc/buildings/foundry.png"
     tileset-swamp "tilesets/swamp/orc/buildings/foundry.png")
   'size '(96 96)
-  'animations 'animations-building 'icon 'icon-orc-foundry
+  'animations 'animations-building 'icon 'icon-mythical-foundry
   'costs '(time 175 gold 700 wood 400 oil 400)
-  'construction 'construction-orc-foundry
+  'construction 'construction-mythical-foundry
   'speed 0
   'hit-points 750
   'tile-size '(3 3) 'box-size '(95 95)
@@ -1187,12 +1187,12 @@
     dead "building destroyed"
     attack "temple-of-the-damned-attack"))
 
-(define-unit-type 'unit-orc-blacksmith 'name "Blacksmith"
+(define-unit-type 'unit-mythical-blacksmith 'name "Blacksmith"
   'files '(tileset-summer "tilesets/summer/orc/buildings/blacksmith.png"
     tileset-winter "tilesets/winter/orc/buildings/blacksmith.png"
     tileset-swamp "tilesets/swamp/orc/buildings/blacksmith.png")
   'size '(96 96)
-  'animations 'animations-building 'icon 'icon-orc-blacksmith
+  'animations 'animations-building 'icon 'icon-mythical-blacksmith
   'costs '(time 200 gold 800 wood 450 oil 100)
   'construction 'construction-land
   'speed 0
@@ -1218,9 +1218,9 @@
     tileset-winter "tilesets/winter/orc/buildings/refinery.png"
     tileset-swamp "tilesets/swamp/orc/buildings/refinery.png")
   'size '(96 96)
-  'animations 'animations-building 'icon 'icon-orc-refinery
+  'animations 'animations-building 'icon 'icon-mythical-refinery
   'costs '(time 225 gold 800 wood 350 oil 200)
-  'construction 'construction-orc-refinery
+  'construction 'construction-mythical-refinery
   'speed 0
   'hit-points 600
   'tile-size '(3 3) 'box-size '(95 95)
@@ -1241,15 +1241,15 @@
     dead "building destroyed"
     attack "orc-refinery-attack"))
 
-(define-unit-type 'unit-orc-oil-platform 'name "Oil Platform"
+(define-unit-type 'unit-mythical-oil-platform 'name "Oil Platform"
   'files '(tileset-summer "tilesets/summer/orc/buildings/oil platform.png"
     tileset-winter "tilesets/winter/orc/buildings/oil platform.png"
     tileset-wasteland "tilesets/wasteland/orc/buildings/oil platform.png"
     tileset-swamp "tilesets/swamp/orc/buildings/oil platform.png")
   'size '(96 96)
-  'animations 'animations-building 'icon 'icon-orc-oil-platform
+  'animations 'animations-building 'icon 'icon-mythical-oil-platform
   'costs '(time 200 gold 700 wood 450)
-  'construction 'construction-orc-oil-well
+  'construction 'construction-mythical-oil-well
   'speed 0
   'hit-points 650
   'tile-size '(3 3) 'box-size '(95 95)
@@ -1325,7 +1325,7 @@
     dead "building destroyed"
     attack "fortress-attack"))
 
-(define-unit-type 'unit-orc-start-location 'name "Start Location"
+(define-unit-type 'unit-mythical-start-location 'name "Start Location"
   'files '(tileset-summer "orc/o startpoint.png")
   'size '(32 32)
   'animations 'animations-building 'icon 'icon-cancel
@@ -1345,12 +1345,12 @@
     dead "building destroyed"
     attack "orc-start-location-attack"))
 
-(define-unit-type 'unit-orc-guard-tower 'name "Guard Tower"
+(define-unit-type 'unit-mythical-guard-tower 'name "Guard Tower"
   'files '(tileset-summer "tilesets/summer/orc/buildings/guard tower.png"
     tileset-winter "tilesets/winter/orc/buildings/guard tower.png"
     tileset-swamp "tilesets/swamp/orc/buildings/guard tower.png")
   'size '(64 64)
-  'animations 'animations-human-guard-tower 'icon 'icon-orc-guard-tower
+  'animations 'animations-human-guard-tower 'icon 'icon-mythical-guard-tower
   'costs '(time 140 gold 500 wood 150)
   'construction 'construction-land
   'speed 0
@@ -1376,12 +1376,12 @@
     dead "building destroyed"
     attack "orc-guard-tower-attack"))
 
-(define-unit-type 'unit-orc-cannon-tower 'name "Cannon Tower"
+(define-unit-type 'unit-mythical-cannon-tower 'name "Cannon Tower"
   'files '(tileset-summer "tilesets/summer/orc/buildings/cannon tower.png"
     tileset-winter "tilesets/winter/orc/buildings/cannon tower.png"
     tileset-swamp "tilesets/swamp/orc/buildings/cannon tower.png")
   'size '(64 64)
-  'animations 'animations-human-cannon-tower 'icon 'icon-orc-cannon-tower
+  'animations 'animations-human-cannon-tower 'icon 'icon-mythical-cannon-tower
   'costs '(time 190 gold 1000 wood 300)
   'construction 'construction-land
   'speed 0
@@ -1410,7 +1410,7 @@
 (define-unit-type 'unit-orc-wall 'name "Wall"
   'use 'unit-human-wall
   'size '(32 32)
-  'animations 'animations-building 'icon 'icon-orc-wall
+  'animations 'animations-building 'icon 'icon-mythical-wall
   'costs '(time 30 gold 20 wood 10)
   'construction 'construction-wall
   'speed 0
@@ -1496,7 +1496,7 @@
 (define-unit-type 'unit-orc-oil-tanker-full 'name "Oil tanker"
   'files '(tileset-summer "orc/units/oil tanker full.png")
   'size '(72 72)
-  'animations 'animations-human-oil-tanker 'icon 'icon-orc-oil-tanker
+  'animations 'animations-human-oil-tanker 'icon 'icon-mythical-oil-tanker
   'costs '(time 50 gold 400 wood 200)
   'speed 10
   'hit-points 90
