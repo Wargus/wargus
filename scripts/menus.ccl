@@ -475,25 +475,14 @@
 (define-menu-item 'pos (list (- 640 224 16) (- (+ 10 300) 20)) 'font 'game
     'text '("~<Game Type:~>" none)
     'menu 'menu-custom-game)
-(if (symbol-bound? 'freecraft-feature-debug ())
 (define-menu-item 'pos (list (- 640 224 16) (+ 10 300)) 'font 'game
     'pulldown '(size (190 20)
               style pulldown
               func game-gat-action
-              options ("Use map settings" "Melee" "Free for all" "One on one" "Capture the flag" "Greed" "Slaughter" "Sudden death" "Team melee" "Team capture the flag" "Top vs bottom" "Left vs right" )
+              options ("Use map settings" "Melee" "Free for all" "Top vs bottom" "Left vs right" )
               default 0
               current 0)
     'menu 'menu-custom-game)
-(define-menu-item 'pos (list (- 640 224 16) (+ 10 300)) 'font 'game
-    'flags '(disabled)
-    'pulldown '(size (190 20)
-              style pulldown
-              func game-gat-action
-              options ("Use map settings" "Melee" "Free for all" "One on one" "Capture the flag" "Greed" "Slaughter" "Sudden death" "Team melee" "Team capture the flag" "Top vs bottom" "Left vs right" )
-              default 0
-              current 0)
-    'menu 'menu-custom-game)
-)
 
 
 ;;
@@ -763,25 +752,14 @@
 (define-menu-item 'pos (list (- 640 224 16) (- (+ 10 300) 20)) 'font 'game
     'text '("~<Game Type:~>" none)
     'menu 'menu-multi-setup)
-(if (symbol-bound? 'freecraft-feature-debug ())
 (define-menu-item 'pos (list (- 640 224 16) (+ 10 300)) 'font 'game
     'pulldown '(size (190 20)
               style pulldown
               func game-gat-action
-              options ("Use map settings" "Melee" "Free for all" "One on one" "Capture the flag" "Greed" "Slaughter" "Sudden death" "Team melee" "Team capture the flag" "Top vs bottom" "Left vs right" )
+              options ("Use map settings" "Melee" "Free for all" "Top vs bottom" "Left vs right" )
               default 0
               current 0)
     'menu 'menu-multi-setup)
-(define-menu-item 'pos (list (- 640 224 16) (+ 10 300)) 'font 'game
-    'flags '(disabled)
-    'pulldown '(size (190 20)
-              style pulldown
-              func game-gat-action
-              options ("Use map settings" "Melee" "Free for all" "One on one" "Capture the flag" "Greed" "Slaughter" "Sudden death" "Team melee" "Team capture the flag" "Top vs bottom" "Left vs right" )
-              default 0
-              current 0)
-    'menu 'menu-multi-setup)
-)
 (define-menu-item 'pos (list 10 (+ 32 (* 22 1))) 'font 'large
     'gem '(size (18 18)
          state passive
@@ -1195,27 +1173,15 @@
 (define-menu-item 'pos (list (- 640 224 16) (- (+ 10 300) 20)) 'font 'game
     'text '("~<Game Type:~>" none)
     'menu 'menu-net-multi-client)
-(if (symbol-bound? 'freecraft-feature-debug ())
 (define-menu-item 'pos (list (- 640 224 16) (+ 10 300)) 'font 'game
     'pulldown '(size (190 20)
               style pulldown
               func game-gat-action
-              options ("Use map settings" "Melee" "Free for all" "One on one" "Capture the flag" "Greed" "Slaughter" "Sudden death" "Team melee" "Team capture the flag" "Top vs bottom" "Left vs right" )
+              options ("Use map settings" "Melee" "Free for all" "Top vs bottom" "Left vs right" )
               state passive
               default 0
               current 0)
     'menu 'menu-net-multi-client)
-(define-menu-item 'pos (list (- 640 224 16) (+ 10 300)) 'font 'game
-    'flags '(disabled)
-    'pulldown '(size (190 20)
-              style pulldown
-              func game-gat-action
-              options ("Use map settings" "Melee" "Free for all" "One on one" "Capture the flag" "Greed" "Slaughter" "Sudden death" "Team melee" "Team capture the flag" "Top vs bottom" "Left vs right" )
-              state passive
-              default 0
-              current 0)
-    'menu 'menu-net-multi-client)
-)
 (define-menu-item 'pos (list 10 (+ 32 (* 22 1))) 'font 'large
     'gem '(size (18 18)
          state unchecked
