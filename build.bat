@@ -62,44 +62,13 @@ REM
 SET CONTRIB=contrib
 
 REM
-REM	Here is the destionation for the generated library files.
+REM	Here is the destination for the generated library files.
 REM
 SET DIR=data
 
 REM
 REM     Below this point, you should only search bugs. :-)
 REM
-
-REM Create the directory structure
-
-mkdir %DIR%
-mkdir %DIR%\graphic
-mkdir %DIR%\graphic\tileset
-mkdir %DIR%\graphic\interface
-
-mkdir %DIR%\sound
-
-mkdir %DIR%\campaigns
-mkdir %DIR%\campaigns\human
-mkdir %DIR%\campaigns\orc
-mkdir %DIR%\campaigns\human-exp
-mkdir %DIR%\campaigns\orc-exp
-mkdir %DIR%\text
-
-mkdir %DIR%\puds
-mkdir %DIR%\puds\internal
-mkdir %DIR%\puds\demo
-REM new structure
-mkdir %DIR%\graphic\tilesets
-mkdir %DIR%\graphic\tilesets\summer
-mkdir %DIR%\graphic\tilesets\winter
-mkdir %DIR%\graphic\tilesets\wasteland
-mkdir %DIR%\graphic\tilesets\swamp
-mkdir %DIR%\graphic\ui
-mkdir %DIR%\graphic\ui\alliance
-mkdir %DIR%\graphic\ui\mythical
-mkdir %DIR%\graphic\ui\human
-mkdir %DIR%\graphic\ui\orc
 
 REM ###########################################################################
 REM ##      Extract
@@ -119,13 +88,13 @@ copy /b %CONTRIB%\score.png %DIR%\graphic
 copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphic
 copy /b %CONTRIB%\freecraft.png %DIR%
 REM This is for the new-names
-copy /b %CONTRIB%\cross.png %DIR%\graphics\ui\cursors\
-copy /b %CONTRIB%\mana.png %DIR%\graphics\ui\
-copy /b %CONTRIB%\health.png %DIR%\graphics\ui\
-copy /b %CONTRIB%\food.png %DIR%\graphics\\ui\
-copy /b %CONTRIB%\score.png %DIR%\graphics\\ui\
-copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphics\ui\
-copy /b %CONTRIB%\freecraft.png %DIR%\graphics\ui\
+copy /b %CONTRIB%\cross.png %DIR%\graphics\ui\cursors
+copy /b %CONTRIB%\mana.png %DIR%\graphics\ui
+copy /b %CONTRIB%\health.png %DIR%\graphics\ui
+copy /b %CONTRIB%\food.png %DIR%\graphics\ui
+copy /b %CONTRIB%\score.png %DIR%\graphics\ui
+copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphics\ui
+copy /b %CONTRIB%\freecraft.png %DIR%\graphics\ui
 REM copy /b %CONTRIB%\ui\alliance\*.png %DIR%\graphic\ui\alliance
 REM copy /b %CONTRIB%\ui\mythical\*.png %DIR%\graphic\ui\mythical
 
