@@ -59,6 +59,7 @@ Section "Uninstall"
   !insertmacro MUI_STARTMENU_GETFOLDER Application $MUI_TEMP
 
   Delete "$SMPROGRAMS\$MUI_TEMP\${NAME}.lnk"
+  Delete "$SMPROGRAMS\$MUI_TEMP\Extract WC2 Data.lnk"
   Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall.lnk"
   RMDir "$SMPROGRAMS\$MUI_TEMP"
 
