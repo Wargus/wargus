@@ -34,9 +34,6 @@
 ;;	o Sleep is the number of frames to wait for the next animation
 ;;	o Frame is increment to the frame of the image
 ;;
-(if (not (symbol-bound? 'freecraft-feature-new-ships ()))
-    (writes () "should make ships/flyers faster\n")
-)
 
 ;;------
 ;;	Footman, Grunt, Grom Hellscream, Danath, Korgath Bladefist
