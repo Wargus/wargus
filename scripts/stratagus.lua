@@ -412,8 +412,9 @@ Load("ccl/wc2.lua")
 
 Load("ccl/tilesets.lua")
 Load("ccl/icons.lua")
---(if (with-sound)
---	Load("ccl/sound.lua"))
+if (WithSound()) then
+	Load("ccl/sound.lua")
+end
 Load("ccl/missiles.lua")
 Load("ccl/constructions.lua")
 Load("ccl/spells.lua")
