@@ -2806,7 +2806,7 @@ int ConvertVideo(char* file,int video)
 /**
 **	Convert text to my format.
 */
-int ConvertText(char* file,int txte,int ofs)
+int ConvertText(char* file,int txte,int ofs,int expansion)
 {
     unsigned char* txtp;
     char buf[1024];
@@ -3820,7 +3820,7 @@ int main(int argc,char** argv)
 		ConvertWav(Todo[u].File,Todo[u].Arg1);
 		break;
 	    case X:
-		ConvertText(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2);
+		ConvertText(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,expansion_cd);
 		break;
 	    case S:
 		SetupNames(Todo[u].File,Todo[u].Arg1);
