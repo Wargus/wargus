@@ -222,10 +222,6 @@
 (set-forest-regeneration! 0)
 ;(set-forest-regeneration! 5)
 
-;;	Set burning building percent and rate. (n percent, h HP/second)
-;;	Buildings with less than n% HP lose h HP every wait cycles.
-;(set-burn-buildings! 25 2 6)
-
 ;;	Edit this to enable/disable the reveal of the attacker.
 ;(set-reveal-attacker! #t)
 (set-reveal-attacker! #f)
