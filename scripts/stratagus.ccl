@@ -427,6 +427,7 @@
     (ccl:load "ccl/sound.ccl"))
 (ccl:load "ccl/missiles.ccl")
 (ccl:load "ccl/constructions.ccl")
+(ccl:load "ccl/spells.ccl")
 (ccl:load "ccl/units.ccl")
 (ccl:load "ccl/upgrade.ccl")
 (ccl:load "ccl/fonts.ccl")

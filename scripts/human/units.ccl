@@ -232,7 +232,6 @@
   'can-target-land 'can-target-sea 'can-target-air
   'land-unit
   'coward
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -265,8 +264,8 @@
   'right-attack
   'can-attack
   'can-target-land
+  'can-cast-spell '(spell-holy-vision spell-healing spell-exorcism)
   'land-unit
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -428,9 +427,15 @@
   'right-attack
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
+  'can-cast-spell '(
+      spell-fireball
+      spell-slow
+      spell-flame-shield
+      spell-invisibility
+      spell-polymorph
+      spell-blizzard)
   'land-unit
   'coward
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -689,7 +694,6 @@
   'can-attack
   'can-target-land
   'land-unit
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
@@ -790,7 +794,6 @@
   'can-target-land
   'land-unit
   'hero
-  'can-cast-spell
   'organic
   'selectable-by-rectangle
   'sounds '(
