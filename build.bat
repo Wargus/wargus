@@ -47,7 +47,7 @@ REM	Second choise:  installed/copied in current directory
 REM	Third choise:   uninstalled on original cdrom
 
 REM SET ARCHIVE=C:\war2\data
-REM SET ARCHIVE="C:\Program Files\War2"
+REM SET ARCHIVE="C:\Program Files\War2\data"
 REM SET ARCHIVE=.
 SET ARCHIVE=%CDROM%\data
 
