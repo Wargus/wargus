@@ -149,6 +149,9 @@ fi
 ##	Extract
 ###############################################################################
 
+# copy script files
+cp -R scripts $DIR/scripts
+
 # ADD -e      To force that the archive is expansion compatible
 # ADD -n      To force that the archive is not expansion compatible
 $BINPATH/wartool $VIDEO "$DATADIR" "$DIR"
@@ -211,6 +214,8 @@ cp $CONTRIB/puds/multi/* $DIR/puds/multiple >/dev/null 2>&1
 #
 ##  Rename puds to maps for consistancy
 mv $DIR/puds $DIR/maps
-[ -d $DIR/maps/my_puds ] mv $DIR/maps/my_puds $DIR/maps/my_maps
-
+if [ -d $DIR/maps/my_puds ]; then
+    mv $DIR/maps/my_puds $DIR/maps/my_maps
+fi
+	
 exit 0

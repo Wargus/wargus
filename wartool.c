@@ -3969,9 +3969,9 @@ int main(int argc, char** argv)
 		expansion_cd = 1;
 	}
 
-	sprintf(buf, "%s/ccl", Dir);
+	sprintf(buf, "%s/scripts", Dir);
 	if (!stat(buf, &st)) {
-		sprintf(buf, "%s/ccl/wc2-config.lua", Dir);
+		sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
 		f = fopen(buf, "w");
 		if (expansion_cd) {
 			fprintf(f, "expansion = true\n");
