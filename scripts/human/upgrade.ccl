@@ -10,12 +10,11 @@
 ;;
 ;;	upgrade.ccl	-	Define the human dependencies and upgrades.
 ;;
-;;	(c) Copyright 2001 by Lutz Sammer
+;;	(c) Copyright 2001,2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
-;;	by the Free Software Foundation; either version 2 of the License,
-;;	or (at your option) any later version.
+;;	by the Free Software Foundation; only version 2 of the License.
 ;;
 ;;	FreeCraft is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -80,8 +79,10 @@
   'costs #(     0     0     0     0     0     0     0))
 (define-upgrade 'upgrade-healing 'icon 'icon-heal
   'costs #(   200  1000     0     0     0     0     0))
+(if extensions
 (define-upgrade 'upgrade-area-healing 'icon 'icon-heal
   'costs #(   400  2000     0     0     0     0     0))
+)
 (define-upgrade 'upgrade-exorcism 'icon 'icon-exorcism
   'costs #(   200  2000     0     0     0     0     0))
 
@@ -197,6 +198,11 @@
 (define-modifier 'upgrade-healing
   '(apply-to unit-paladin))
 
+(if extensions
+(define-modifier 'upgrade-area-healing
+  '(apply-to unit-paladin))
+)
+
 (define-modifier 'upgrade-exorcism
   '(apply-to unit-paladin))
 
@@ -302,6 +308,11 @@
 (define-allow 'upgrade-paladin			"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-holy-vision		"RRRRRRRRRRRRRRRR")
 (define-allow 'upgrade-healing			"AAAAAAAAAAAAAAAA")
+(if extensions
+(define-allow 'upgrade-area-healing		"FFFFFFFFFFFFFFFF")
+; JOHNS: engine didn't support it yet
+;(define-allow 'upgrade-area-healing		"AAAAAAAAAAAAAAAA")
+)
 (define-allow 'upgrade-exorcism			"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-flame-shield		"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-fireball			"RRRRRRRRRRRRRRRR")
@@ -406,5 +417,9 @@
   '(upgrade-paladin))
 (define-dependency 'upgrade-healing
   '(upgrade-paladin))
+(if extensions
+(define-dependency 'upgrade-area-healing
+  '(upgrade-paladin upgrade-healing))
+)
 (define-dependency 'upgrade-exorcism
   '(upgrade-paladin))
