@@ -89,29 +89,22 @@
 ;;
 ;; menu-victory
 ;;
-(define-menu 'name 'menu-victory 'geometry '(256 112 288 256)
-  'image 'panel2 'default '2)
-(define-menu-item 'pos (list 144 22) 'font 'large
+(define-menu 'name 'menu-victory 'geometry '(256 176 288 128)
+  'image 'panel4 'default '2)
+(define-menu-item 'pos (list 144 11) 'font 'large
   'text '("Congratulations!" center)
   'menu 'menu-victory)
-(define-menu-item 'pos (list 144 42) 'font 'large
+(define-menu-item 'pos (list 144 32) 'font 'large
   'text '("You are victorious!" center)
   'menu 'menu-victory)
-(define-menu-item 'pos (list 32 134) 'font 'large
+(define-menu-item 'pos (list 32 56) 'font 'large
   'button '(size (224 27)
     caption "~!Victory"
     hotkey "v"
     func game-menu-end
     style gm-full)
   'menu 'menu-victory)
-(define-menu-item 'pos (list 32 168) 'font 'large 'flags '(disabled)
-  'button '(size (224 27)
-    caption "Save Game (~<F11~>)"
-    hotkey "f11"
-    func null
-    style gm-full)
-  'menu 'menu-victory)
-(define-menu-item 'pos (list 32 202) 'font 'large
+(define-menu-item 'pos (list 32 90) 'font 'large
   'button '(size (224 27)
     caption "Save ~!Replay"
     hotkey "r"
@@ -123,22 +116,22 @@
 ;;
 ;; menu-defeated
 ;;
-(define-menu 'name 'menu-defeated 'geometry '(256 112 288 256)
-  'image 'panel2 'default '2)
-(define-menu-item 'pos (list 144 22) 'font 'large
+(define-menu 'name 'menu-defeated 'geometry '(256 176 288 128)
+  'image 'panel4 'default '2)
+(define-menu-item 'pos (list 144 11) 'font 'large
   'text '("You have failed to" center)
   'menu 'menu-defeated)
-(define-menu-item 'pos (list 144 42) 'font 'large
+(define-menu-item 'pos (list 144 32) 'font 'large
   'text '("achieve victory!" center)
   'menu 'menu-defeated)
-(define-menu-item 'pos (list 32 168) 'font 'large
+(define-menu-item 'pos (list 32 56) 'font 'large
   'button '(size (224 27)
     caption "~!OK"
     hotkey "o"
     func game-menu-end
     style gm-full)
   'menu 'menu-defeated)
-(define-menu-item 'pos (list 32 202) 'font 'large
+(define-menu-item 'pos (list 32 90) 'font 'large
   'button '(size (224 27)
     caption "Save ~!Replay"
     hotkey "r"
