@@ -42,13 +42,18 @@
 #include "iocompat.h"
 #include "myendian.h"
 
+#ifdef _MSC_VER
 typedef unsigned long u_int32_t;
+#endif
 
 //----------------------------------------------------------------------------
 //	Config
 //----------------------------------------------------------------------------
 
-char *Dir = NULL;
+/**
+**	Destination directory of the graphics
+*/
+char* Dir;
 
 /**
 **	Path to the tileset graphics. (default=$DIR/graphics/tilesets)
@@ -115,8 +120,10 @@ typedef struct _control_ {
     int		Arg4;			/// Extra argument 4
 } Control;
 
-// Pal N27
-unsigned char* pal27=NULL;
+/**
+**	Palette N27, for credits cursor
+*/
+unsigned char* Pal27;
 
 /**
 **	Original archive buffer.
@@ -2514,7 +2521,7 @@ int ConvertImage(char* file,int pale,int imge)
 
     palp=ExtractEntry(ArchiveOffsets[pale],NULL);
     if (pale == 27 && imge == 28) {
-	pal27 = palp;
+	Pal27 = palp;
     }
     imgp=ExtractEntry(ArchiveOffsets[imge],NULL);
 
@@ -2586,8 +2593,8 @@ int ConvertCursor(char* file,int pale,int cure)
     int h;
     char buf[1024];
 
-    if (pale == 27 && cure == 314 && pal27 != NULL) { // Credits arrow (Blue arrow NW)
-	palp = pal27;
+    if (pale == 27 && cure == 314 && Pal27 ) { // Credits arrow (Blue arrow NW)
+	palp = Pal27;
     } else {
 	palp=ExtractEntry(ArchiveOffsets[pale],NULL);
     }
@@ -3374,6 +3381,7 @@ destination-directory\tDirectory where the extracted files are placed.\n"
 /**
 **	Main
 */
+#undef main
 int main(int argc,char** argv)
 {
     unsigned u;
