@@ -213,6 +213,7 @@
 	'showname "blizzard"
 	'manacost 25
 	'range	12
+	'repeat-cast
 	'target 'position
 	'action '((area-bombardment
 	     fields 5
@@ -291,6 +292,7 @@
 	'showname "raise dead"
 	'manacost 50
 	'range	6
+	'repeat-cast
 	'target 'position
 	'action '((summon unit-type unit-skeleton time-to-live 3600 require-corpse))
 	'sound-when-cast "raise dead"
