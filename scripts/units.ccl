@@ -783,15 +783,15 @@
     "basic orc voices dead" )
   "teron-gorefiend-attack" )
 
-(define-unit-type "unit-kurdan-and-sky'ree"	"Kurdan and Sky'ree"
+(define-unit-type "unit-kurdan-and-sky-ree"	"Kurdan and Sky'ree"
   ;; graphic data
   #("gryphon rider.png"
     ()
     ()
     () )
   '(  80  80 )			;; graphic size
-  "animations-kurdan-and-sky'ree"
-  "icon-kurdan-and-sky'ree"
+  "animations-kurdan-and-sky-ree"
+  "icon-kurdan-and-sky-ree"
   ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
       14      0      9    250     0 #( 250  2500     0     0     0     0     0)
   ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
@@ -812,12 +812,12 @@
   'organic
   'selectable-by-rectangle
   ;; sounds
-  #("kurdan-and-sky'ree-selected"
-    "kurdan-and-sky'ree-acknowledge"
-    "kurdan-and-sky'ree-ready"
+  #("kurdan-and-sky-ree-selected"
+    "kurdan-and-sky-ree-acknowledge"
+    "kurdan-and-sky-ree-ready"
     "basic human voices help 1"
     "basic human voices dead" )
-  "kurdan-and-sky'ree-attack" )
+  "kurdan-and-sky-ree-attack" )
 
 (define-unit-type "unit-dentarg"		"Dentarg"
   ;; graphic data
@@ -1458,9 +1458,9 @@
 
 (define-unit-type "unit-gryphon-rider"		"Gryphon Rider"
   ;; graphic data
-  "unit-kurdan-and-sky'ree"
+  "unit-kurdan-and-sky-ree"
   '(  80  80 )			;; graphic size
-  "animations-kurdan-and-sky'ree"
+  "animations-kurdan-and-sky-ree"
   "icon-gryphon-rider"
   ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
       14      0      6    100     0 #( 250  2500     0     0     0     0     0)
@@ -1682,12 +1682,12 @@
     () )
   () )
 
-(define-unit-type "unit-cho'gall"		"Cho'gall"
+(define-unit-type "unit-cho-gall"		"Cho'gall"
   ;; graphic data
   "unit-ogre"
   '(  72  72 )			;; graphic size
   "animations-ogre"
-  "icon-cho'gall"
+  "icon-cho-gall"
   ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
       13      0      5    100     0 #( 100  1100    50     0     0     0     0)
   ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
@@ -1709,12 +1709,12 @@
   'organic
   'selectable-by-rectangle
   ;; sounds
-  #("cho'gall-selected"
-    "cho'gall-acknowledge"
-    "cho'gall-ready"
+  #("cho-gall-selected"
+    "cho-gall-acknowledge"
+    "cho-gall-ready"
     "basic orc voices help 1"
     "basic orc voices dead" )
-  "cho'gall-attack" )
+  "cho-gall-attack" )
 
 (define-unit-type "unit-lothar"			"Lothar"
   ;; graphic data
@@ -1749,12 +1749,12 @@
     "basic human voices dead" )
   "lothar-attack" )
 
-(define-unit-type "unit-gul'dan"		"Gul'dan"
+(define-unit-type "unit-gul-dan"		"Gul'dan"
   ;; graphic data
   "unit-death-knight"
   '(  72  72 )			;; graphic size
   "animations-death-knight"
-  "icon-gul'dan"
+  "icon-gul-dan"
   ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
        8      0      8     40     1 #( 120  1200     0     0     0     0     0)
   ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
@@ -1777,12 +1777,12 @@
   'organic
   'selectable-by-rectangle
   ;; sounds
-  #("gul'dan-selected"
-    "gul'dan-acknowledge"
-    "gul'dan-ready"
+  #("gul-dan-selected"
+    "gul-dan-acknowledge"
+    "gul-dan-ready"
     "basic orc voices help 1"
     "basic orc voices dead" )
-  "gul'dan-attack" )
+  "gul-dan-attack" )
 
 (define-unit-type "unit-uther-lightbringer"	"Uther Lightbringer"
   ;; graphic data

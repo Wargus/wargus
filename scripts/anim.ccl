@@ -226,7 +226,7 @@
 
 ;;------
 ;;	Kurdan and Sky'ree, Gryphon Rider
-(define-animations "animations-kurdan-and-sky'ree"
+(define-animations "animations-kurdan-and-sky-ree"
   'still '(	; #24
     #( 2 0   6   0) #( 2 0   6   5) #( 2 0   6  10) #( 3 0   6  15))
   'move '(	; #24 P32
