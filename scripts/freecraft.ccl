@@ -86,6 +86,9 @@
 ;;	Uncomment next, to show the original game resource line.
 ;(original-resources)
 
+;;	Uncomment next, to enable fancy building (random mirrowing buildings)
+(fancy-buildings)
+
 ;;-----------------------------------------------------------------------------
 
 ;;	If you prefer fighters are attacking by right clicking empty space
