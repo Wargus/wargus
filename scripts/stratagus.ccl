@@ -79,7 +79,7 @@
 
 ;;	FIXME: documentation
 (set-game-name! "wc2")
-(set-default-map! "puds/default2.pud")
+(set-default-map! "puds/default.pud")
 
 ;;-----------------------------------------------------------------------------
 ;;	Music play list -	Insert your titles here
