@@ -41,6 +41,9 @@
 
 ;;----------------------------------------------------------------------------
 ;;	(set-cd-mode!) set how your CD is played.
+;;		:all	plays all tracks
+;;		:random plays random tracks
+;;		:off	turns cd player off
 (set-cd-mode! ":all") 
 ;(set-cd-mode! ":random") 
 
