@@ -1,0 +1,94 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	credits.ccl	-	The credits of the engine.
+;;
+;;	(c) Copyright 2002 by Jimmy Salmon.
+;;
+;;	FreeCraft is free software; you can redistribute it and/or modify
+;;	it under the terms of the GNU General Public License as published
+;;	by the Free Software Foundation; only version 2 of the License.
+;;
+;;	FreeCraft is distributed in the hope that it will be useful,
+;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;	GNU General Public License for more details.
+;;
+;;	$Id$
+
+(credits
+    'background "graphics/ui/Credits background.png"
+    'title "Programmers:"
+    'name "  Andreas 'Ari' Arens"
+    'name "  Lutz 'Johns' Sammer"
+    'name "  Edgar 'Froese' Toernig"
+    'name "  Valery Shchedrin"
+    'name "  Iftikhar Rathore"
+    'name "  Charles K Hardin"
+    'name "  Fabrice Rossi"
+    'name "  DigiCat"
+    'name "  Josh Cogliati"
+    'name "  Patrick Mullen"
+    'name "  Vladi Shabanski"
+    'name "  Cris Daniluk"
+    'name "  Patrice Fortier"
+    'name "  FT Rathore"
+    'name "  Trent Piepho"
+    'name "  Jon Gabrielson"
+    'name "  Lukas Hejtmanek"
+    'name "  Steinar Hamre"
+    'name "  Ian Farmer"
+    'name "  Sebastian Drews"
+    'name "  Jarek Sobieszek"
+    'name "  Anthony Towns"
+    'name "  Stefan Dirsch"
+    'name "  Al Koskelin"
+    'name "  George J. Carrette"
+    'name "  Dirk 'Guardian' Richartz"
+    'name "  Michael O'Reilly"
+    'name "  Dan Hensley"
+    'name "  Sean McMillian"
+    'name "  Mike Earl"
+    'name "  Ian Turner"
+    'name "  David Slimp"
+    'name "  Iuri Fiedoruk"
+    'name "  Luke Mauldin"
+    'name "  Natan Adams"
+    'name "  Stephan Rasenbergver"
+    'name "  Dave Reed"
+    'name "  Josef Spillner"
+    'name "  James Dessart"
+    'name "  Jimmy Salmon"
+    'name "  Jan Uerpmann"
+    'name "  Aaron Berger"
+    'name "  Latimerius"
+    'name "  Antonis Chaniotis"
+    'name "  Samuel Hays"
+    'name "  Nehal Mistry"
+    'name "  Patrick Beasley"
+    'name "  David Martinez Moreno"
+    'name "  Flavio Silvestrow"
+    'name "  Daniel Burrows"
+    'name ""
+    'title "FreeCraft Media Project Graphics:"
+    'name "  Paolo D'Incà"
+    'name "  José Plans"
+    'name "  Chris Hopp"
+    'name "  Andreas Nilsson"
+    'name "  Bastian Salmela"
+    'name "  Anton Bondar"
+    'name "  Carlo Almario"
+    'name "  Nehal Mistry"
+    'name "  David Slimp"
+    'name ""
+    'name ""
+    'comment "The FreeCraft Team thanks all the people who have contributed"
+    'comment "patches, bug reports, ideas."
+)
