@@ -33,8 +33,13 @@ REM
 REM     Enter the letter of your CDROM drive.
 REM
 
-SET CDROM=D:
+if "x%1" == "x" echo ---
+if "x%1" == "x" echo usage:        %0 cd-drive
+if "x%1" == "x" echo example:      %0 d:
+if "x%1" == "x" echo ---
+if "x%1" == "x" goto EOF
 
+SET CDROM=%1
 
 REM
 REM     Alternatively: Enter the path to WC2 on your hard drive.
@@ -122,3 +127,5 @@ REM	Setup the default pud
 REM
 copy /b %DIR%\puds\multi\(2)mysterious-dragon-isle.pud.gz %DIR%\puds\default.pud.gz
 ECHO You only need to run this script once
+
+:EOF
