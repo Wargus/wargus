@@ -3580,8 +3580,12 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
 	    sprintf(buf, "%s/../%s/%s/%s.cm", Dir, "contrib", TEXT_PATH,
 		Todo[2 * levelno + 1 + race + 7].File);
 	    if (!(inlevel = fopen(buf, "rb"))) {
-		printf("Cannot Open File (Skipping Level): %s\n", buf);
-		continue;
+		sprintf(buf, "./contrib/%s/%s.cm", TEXT_PATH, 
+		    Todo[2 * levelno + 1 + race + 7].File);
+		if (!(inlevel = fopen(buf, "rb"))) {
+		    printf("Cannot Open File (Skipping Level): %s\n", buf);
+		    continue;
+		}
 	    }
 	    sprintf(buf, "%s/%s/%s.cm", Dir, TEXT_PATH,
 		Todo[2 * levelno + 1 + race + 7].File);
