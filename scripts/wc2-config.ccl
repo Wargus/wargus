@@ -1,6 +1,6 @@
 ;;   ___________		     _________		      _____  __
 ;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
-;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\  ___\\   __|
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __|
 ;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
 ;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
 ;;	  \/		    \/	   \/	     \/		   \/
@@ -8,9 +8,9 @@
 ;;			  T H E   W A R   B E G I N S
 ;;	   FreeCraft - A free fantasy real time strategy game engine
 ;;
-;;	campaigns.ccl	-	Define the used campaigns.
+;;	upgrade.ccl	-	Define the dependencies and upgrades.
 ;;
-;;	(c) Copyright 2002 by Lutz Sammer
+;;	(c) Copyright 2001 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -21,23 +21,5 @@
 ;;	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;;	GNU General Public License for more details.
 ;;
-;;	$Id$
+;;	$Id: upgrade.ccl,v 1.12 2002/12/17 06:40:31 nehalmistry Exp $
 
-;;=============================================================================
-;;	Define all campaigns.
-
-(if expansion (begin 
-(define-campaign 'human 'name "~!Human campaign"
-  'file "ccl/human/campaign1.ccl")
-(define-campaign 'human-exp 'name "H~!uman expansion levels"
-  'file "ccl/human/campaign2.ccl")
-(define-campaign 'orc 'name "~!Orc campaign"
-  'file "ccl/orc/campaign1.ccl")
-(define-campaign 'orc-exp 'name "O~!rc expansion levels"
-  'file "ccl/orc/campaign2.ccl")
-)(begin 
-(define-campaign 'human 'name "~!Human campaign"
-  'file "ccl/human/campaign1.ccl")
-(define-campaign 'orc 'name "~!Orc campaign"
-  'file "ccl/orc/campaign1.ccl")
-))
