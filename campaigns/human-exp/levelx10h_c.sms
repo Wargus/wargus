@@ -10,12 +10,9 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (and (if-unit 'opponents '== 0 'all)
-                             (if-unit 'this '== 1 'unit-khadgar)
-                             (if-unit 'this '== 1 'unit-alleria)
-			     (if-unit 'this '== 1 'unit-danath)
-			     (if-unit 'this '== 1 'unit-turalyon)
-                             (if-unit 'this '== 1 'unit-kurdan-and-sky-ree))
+(add-trigger (lambda () (and (if-unit '2 '== 0 'all)
+                             (if-unit '3 '== 0 'all)
+                             (if-unit '6 '== 0 'all))
   (lambda () (action-victory)))
 
 (add-trigger (lambda () (if-unit 'this '== 0 'all) 
@@ -220,4 +217,4 @@
 (define-allow 'unit-destroyed-3x3-place		"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-destroyed-4x4-place		"FFFFFFFFFFFFFFFF")
 
-(load-pud "campaigns/human-exp/levelx03h.pud")
+(load-pud "campaigns/human-exp/levelx10h.pud")
