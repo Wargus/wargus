@@ -32,11 +32,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <string.h>
-#ifndef __MSC__
+#ifndef _MSC_VER
+#include <sys/stat.h>
 #include <unistd.h>
+#include <fcntl.h>
 #endif
 #include <ctype.h>
 
