@@ -56,7 +56,7 @@
     'button '(size (224 27)
             caption "Help (~<F1~>)"
             hotkey "f1"
-            func help-menu
+            func menu-help
             style gm-full)
     'menu 'menu-game)
 (define-menu-item 'pos '(16 148) 'font 'large 
@@ -1905,14 +1905,14 @@
     'button '(size (224 27)
             caption "Map Properties (~<F5~>)"
             hotkey "f5"
-            func editor-map-properties
+            func menu-editor-map-properties
             style gm-full)
     'menu 'menu-editor)
 (define-menu-item 'pos '(16 112) 'font 'large 'flags '(disabled)
     'button '(size (224 27)
             caption "Player Properties (~<F6~>)"
             hotkey "f6"
-            func editor-player-properties
+            func menu-editor-player-properties
             style gm-full)
     'menu 'menu-editor)
 (define-menu-item 'pos '(16 148) 'font 'large 'flags '(disabled)
