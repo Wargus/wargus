@@ -227,6 +227,8 @@
 (load "ccl/units.ccl" #f #t)
 (load "ccl/upgrade.ccl" #f #t)
 (load "ccl/fonts.ccl" #f #t)
+(load "ccl/human/buttons.ccl" #f #t)
+(load "ccl/orc/buttons.ccl" #f #t)
 (load "ccl/ui.ccl" #f #t)
 (load "ccl/ai.ccl" #f #t)
 
