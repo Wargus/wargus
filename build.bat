@@ -123,7 +123,6 @@ copy scripts\human\*.lua %DIR%\scripts\human >nul
 copy scripts\orc\*.lua %DIR%\scripts\orc >nul
 copy scripts\tilesets\*.lua %DIR%\scripts\tilesets >nul
 
-echo
 echo WC2 data setup is now complete!
 echo NOTE: you do not need to run this script again
 goto EOF
