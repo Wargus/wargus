@@ -71,6 +71,9 @@ function HumanScreen(screen_width, screen_height)
     "filler", {
       "file", "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/resource.png",
       "pos", {176, 0}},
+    "filler", {
+      "file", "graphics/ui/human/menubutton.png",
+      "pos", {0, 0}},
 
     "resources", {
       "gold", { "file", "graphics/ui/gold,wood,oil,mana.png", "frame", 0,
@@ -191,9 +194,6 @@ function HumanScreen(screen_width, screen_height)
         screen_height - 16 - 16}},
 
     "menu-panel", {
-      "panel", {
-        "file", "graphics/ui/human/menubutton.png",
-        "pos", {0, 0}},
       "menu-button", {
         "pos", {24, 2},
         "caption", "Menu (~<F10~>)",
