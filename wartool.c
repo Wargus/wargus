@@ -486,6 +486,30 @@ Control Todo[] = {
 {I,0,"Panel (Bottom,Orcs)",					 2, 298	},
 {I,0,"title",							300, 299},
 // --------------------------------------------------
+#ifdef NEW_NAMES
+{C,0,"ui/human/cursors/human gauntlet",				 2, 301 },
+{C,0,"ui/orc/cursors/orcish claw",				 2, 302 },
+{C,0,"ui/human/cursors/human don't click here",			 2, 303 },
+{C,0,"ui/orc/cursors/orcish don't click here",			 2, 304 },
+{C,0,"ui/human/cursors/yellow eagle",				 2, 305 },
+{C,0,"ui/orc/cursors/yellow crosshairs",			 2, 306 },
+{C,0,"ui/human/cursors/red eagle",				 2, 307 },
+{C,0,"ui/orc/cursors/red crosshairs",				 2, 308 },
+{C,0,"ui/human/cursors/green eagle",				 2, 309 },
+{C,0,"ui/orc/cursors/green crosshairs",				 2, 310 },
+{C,0,"ui/cursors/magnifying glass",				 2, 311 },
+{C,0,"ui/cursors/small green cross",				 2, 312 },
+{C,0,"ui/cursors/hourglass",					 2, 313 },
+{C,0,"ui/cursors/blue arrow NW",				 2, 314 },
+{C,0,"ui/cursors/arrow N",					 2, 315 },
+{C,0,"ui/cursors/arrow NE",					 2, 316 },
+{C,0,"ui/cursors/arrow E",					 2, 317 },
+{C,0,"ui/cursors/arrow SE",					 2, 318 },
+{C,0,"ui/cursors/arrow S",					 2, 319 },
+{C,0,"ui/cursors/arrow SW",					 2, 320 },
+{C,0,"ui/cursors/arrow W",					 2, 321 },
+{C,0,"ui/cursors/arrow NW",					 2, 322 },
+#else
 {C,0,"human gauntlet",						 2, 301 },
 {C,0,"orcish claw",						 2, 302 },
 {C,0,"human don't click here",					 2, 303 },
@@ -508,6 +532,7 @@ Control Todo[] = {
 {C,0,"arrow SW",						 2, 320 },
 {C,0,"arrow W",							 2, 321 },
 {C,0,"arrow NW",						 2, 322 },
+#endif
 {U,0,"bloodlust,haste,slow,invis.,shield",			 2, 323 },
 // --------------------------------------------------------
 {G,0,"lightning",						 2, 324 },
