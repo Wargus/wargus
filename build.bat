@@ -74,8 +74,6 @@ set CDROM=%CDROM%%C%
 set OLDCD=%OLDCD:~1%
 if defined OLDCD goto slashloop
 
-echo %CDROM%
-
 set C=%CDROM:~-1%
 if %C% == \ set C=
 set CDROM=%CDROM:~0,-1%%C%
