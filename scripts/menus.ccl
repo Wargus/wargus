@@ -2046,7 +2046,7 @@
     hotkey "d"
     func diplomacy-menu
     style gm-full)
-    'menu 'menu-game-options)
+  'menu 'menu-game-options)
 (define-menu-item 'pos (list (- 128 (/ 224 2)) 245) 'font 'large
   'button '(size (224 27)
     caption "Previous (~<Esc~>)"
@@ -2529,7 +2529,7 @@
 (define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large
   'button '(size (106 27)
     caption "Load (~<F12~>)"
-    hotkey ""
+    hotkey "f12"
     func editor-load-menu
     style gm-half)
   'menu 'menu-editor)
