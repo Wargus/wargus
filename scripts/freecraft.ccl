@@ -205,6 +205,10 @@
 ;(set-hitpoint-regeneration! #t)
 (set-hitpoint-regeneration! #f)
 
+;;	Edit this to enable/disable XP to add more damage to attacks
+;(set-xp-damage! #t)
+(set-xp-damage! #f)
+
 ;;	Edit this to enable/disable extended features.
 ;;		Currently enables some additional buttons.
 (define extensions #t)
