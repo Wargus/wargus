@@ -24,6 +24,11 @@
 ;;	$Id$
 
 
+;;	Set which icons to display
+(set-editor-select-icon! 'icon-human-patrol-land)
+(set-editor-units-icon! 'icon-footman)
+
+
 ;;
 ;;	editor-unit-types a sorted list of unit-types for the editor.
 ;;	FIXME: this is only a temporary hack, for better sorted units.
