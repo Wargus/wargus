@@ -61,12 +61,11 @@
     'normal-font-color 'white
     'reverse-font-color 'yellow
 
-    ;	Filler 1
-    (list
-      (string-append "graphics/ui/human/"
+    'filler (list
+      'file (string-append "graphics/ui/human/"
         (number->string screen_width) "x" (number->string screen_height)
         "/filler-right.png")
-      (- screen_width 16) 0)
+      'pos (list (- screen_width 16) 0))
 
     ;	Resource line
     (list
