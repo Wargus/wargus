@@ -28,7 +28,7 @@
 --
 --	$Id$
 
-DefineCursor("cursor-point	", "orc",
+DefineCursor("cursor-point", "orc",
     "image", "ui/orc/cursors/orcish_claw.png",
     "hot-spot", { 3,  2}, "size", {26, 32} )
 DefineCursor("cursor-green-hair", "orc",
