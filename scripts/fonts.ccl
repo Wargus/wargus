@@ -10,7 +10,7 @@
 ;;
 ;;	fonts.ccl	-	Define the used fonts.
 ;;
-;;	(c) Copyright 2000 by Lutz Sammer
+;;	(c) Copyright 2000,2001 by Lutz Sammer
 ;;
 ;;	$Id$
 ;;
@@ -25,9 +25,18 @@
 ;;		fonts supported.
 ;;	size:	font size width and height.
 
+(if new-names? (begin
+
+(define-font 'small	"graphics/ui/fonts/small.png"	 7  6)
+(define-font 'game	"graphics/ui/fonts/game.png"	13 14)
+(define-font 'large	"graphics/ui/fonts/large.png"	17 17)
+
+) (begin
+
 (define-font 'game	"graphic/small font.png"	13 14)
 (define-font 'small	"graphic/game font.png"		 7  6)
 (define-font 'large	"graphic/large font.png"	17 17)
+))
 
 ;;=============================================================================
 ;;	Define the font colors.

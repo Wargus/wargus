@@ -129,7 +129,8 @@ $BINPATH/wartool "$DATADIR" "$DIR"
 
 # own supplied files
 
-[ -d $DIR/sound ] && {
+# Check for old version:
+[ -d $DIR/text ] && {
 cp $CONTRIB/cross.png $DIR/graphic
 cp $CONTRIB/mana.png $DIR
 cp $CONTRIB/health.png $DIR
@@ -137,6 +138,14 @@ cp $CONTRIB/food.png $DIR/graphic
 cp $CONTRIB/score.png $DIR/graphic
 cp $CONTRIB/ore,stone,coal.png $DIR/graphic
 cp $CONTRIB/freecraft.png $DIR
+} || {
+cp $CONTRIB/cross.png $DIR/graphics/ui/cursors/
+cp $CONTRIB/mana.png $DIR/graphics/ui/
+cp $CONTRIB/health.png $DIR/graphics/ui/
+cp $CONTRIB/food.png $DIR/graphics/graphics/ui/
+cp $CONTRIB/score.png $DIR/graphics/graphics/ui/
+cp $CONTRIB/ore,stone,coal.png $DIR/graphics/graphics/ui/
+cp $CONTRIB/freecraft.png $DIR/graphics/ui/
 }
 
 ###############################################################################
