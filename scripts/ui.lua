@@ -28,6 +28,154 @@
 --
 --      $Id$
 
+
+DefineButtonStyle("main", {
+  Size = {128, 20},
+  Font = "game",
+  TextNormalColor = "yellow",
+  TextReverseColor = "white",
+  Default = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 4,
+  },
+  Hover = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 4,
+    TextNormalColor = "white",
+  },
+  Selected = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 4,
+    Border = {
+      Color = {252, 252, 0}, Size = 1,
+    },
+  },
+  Clicked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 5,
+    TextNormalColor = "white",
+    TextOffset = {2, 2},
+  },
+  Disabled = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 3,
+    TextNormalColor = "grey",
+    TextReverseColor = "grey",
+  },
+})
+
+DefineButtonStyle("network", {
+  Size = {80, 20},
+  Font = "game",
+  TextNormalColor = "yellow",
+  TextReverseColor = "white",
+  Default = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 7,
+  },
+  Hover = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 7,
+    TextNormalColor = "white",
+  },
+  Selected = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 7,
+    Border = {
+      Color = {252, 252, 0}, Size = 1,
+    },
+  },
+  Clicked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 8,
+    TextNormalColor = "white",
+    TextOffset = {2, 2},
+  },
+  Disabled = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 6,
+    TextNormalColor = "grey",
+    TextReverseColor = "grey",
+  },
+})
+
+DefineButtonStyle("gm-half", {
+  Size = {106, 28},
+  Font = "large",
+  TextNormalColor = "yellow",
+  TextReverseColor = "white",
+  Default = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 10,
+  },
+  Hover = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 10,
+    TextNormalColor = "white",
+  },
+  Selected = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 10,
+    Border = {
+      Color = {252, 252, 0}, Size = 1,
+    },
+  },
+  Clicked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 11,
+    TextNormalColor = "white",
+    TextOffset = {2, 2},
+  },
+  Disabled = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 9,
+    TextNormalColor = "grey",
+    TextReverseColor = "grey",
+  },
+})
+
+DefineButtonStyle("gm-full", {
+  Size = {224, 28},
+  Font = "large",
+  TextNormalColor = "yellow",
+  TextReverseColor = "white",
+  Default = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 16,
+  },
+  Hover = {
+    TextNormalColor = "white",
+  },
+  Selected = {
+    Border = {
+      Color = {252, 252, 0}, Size = 1,
+    },
+  },
+  Clicked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 17,
+    TextNormalColor = "white",
+    TextOffset = {2, 2},
+  },
+  Disabled = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 15,
+    TextNormalColor = "grey",
+    TextReverseColor = "grey",
+  },
+})
+
+DefineButtonStyle("folder", {
+  Size = {39, 22},
+  Font = "large",
+  TextNormalColor = "yellow",
+  TextReverseColor = "white",
+  Default = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 51,
+  },
+  Hover = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 51,
+    TextNormalColor = "white",
+  },
+  Selected = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 51,
+    Border = {
+      Color = {252, 252, 0}, Size = 1,
+    },
+  },
+  Clicked = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 52,
+    TextNormalColor = "white",
+    TextOffset = {2, 2},
+  },
+  Disabled = {
+    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 50,
+  },
+})
+
+
 Load("scripts/human/ui.lua")
 Load("scripts/orc/ui.lua")
 
