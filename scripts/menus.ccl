@@ -360,21 +360,21 @@
 (define-menu-item 'pos (list 192 60)
   'gem '(size (18 18)
     state unchecked
-    func global-options-fog-alpha-gem
+    func global-options-fog-original-gem
     style gem-round)
   'menu 'menu-global-options)
 (define-menu-item 'pos (list 216 64) 'font 'game
-  'text '("Alpha" left)
+  'text '("Original" left)
   'menu 'menu-global-options)
 
 (define-menu-item 'pos (list 192 80)
   'gem '(size (18 18)
     state unchecked
-    func global-options-fog-gray-gem
+    func global-options-fog-alpha-gem
     style gem-round)
   'menu 'menu-global-options)
 (define-menu-item 'pos (list 216 84) 'font 'game
-  'text '("Gray" left)
+  'text '("Alpha" left)
   'menu 'menu-global-options)
 
 (define-menu-item 'pos (list 123 309) 'font 'large
