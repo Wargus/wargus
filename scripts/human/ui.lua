@@ -58,9 +58,9 @@ DefineCursor({
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 function HumanScreen(screen_width, screen_height)
-  info_panel_x = 0
-  info_panel_y = 160
-  icon_size = {46, 38}
+  local info_panel_x = 0
+  local info_panel_y = 160
+  local icon_size = {46, 38}
 
   DefineUI("human", screen_width, screen_height,
     "normal-font-color", "white",

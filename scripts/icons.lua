@@ -29,7 +29,7 @@
 --      $Id$
 
 
-icons = {
+local icons = {
   {"icon-peasant", 0},
   {"icon-peon", 1},
   {"icon-footman", 2},

@@ -40,7 +40,7 @@
 --		This is a random music player demo
 --
 
-playlist = {
+local playlist = {
   "music/default.mod"
 }
 

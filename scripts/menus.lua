@@ -33,7 +33,7 @@
 --
 Load("scripts/keystrokes.lua")
 
-MenuBackground = "graphics/ui/Menu_background_without_title.png"
+local MenuBackground = "graphics/ui/Menu_background_without_title.png"
 
 --
 -- define the menu graphics
