@@ -11,24 +11,19 @@ Briefing("type", "wc2",
 )
 
 -- FIXME: Check if units are destroyed.
-(add-trigger
-  '(
-    (and
-      (if-unit 'this '>= 5 'unit-mythical-shipyard)
-      (if-unit 2 '== 0 'unit-battleship)
-      (if-unit 1 '== 0 'unit-battleship)
-      (if-unit 2 '== 0 'unit-alliance-destroyer)
-      (if-unit 1 '== 0 'unit-alliance-destroyer)
-      (if-unit 2 '== 0 'unit-alliance-transport)
-      (if-unit 1 '== 0 'unit-alliance-transport)))
-  '(
-    (action-victory)))
+AddTrigger(
+  function() return IfUnit("this", ">=", 5, "unit-mythical-shipyard") and
+    IfUnit(2, "==", 0, "unit-battleship") and
+    IfUnit(1, "==", 0, "unit-battleship") and
+    IfUnit(2, "==", 0, "unit-alliance-destroyer") and
+    IfUnit(1, "==", 0, "unit-alliance-destroyer") and
+    IfUnit(2, "==", 0, "unit-alliance-transport") and
+    IfUnit(1, "==", 0, "unit-alliance-transport") end,
+  function() return ActionVictory() end)
 
-(add-trigger
-  '(
-    (if-unit 'this '== 0 'all))
-  '(
-    (action-defeat)))
+AddTrigger(
+  function() return IfUnit("this", "==", 0, "all") end,
+  function() return ActionDefeat() end)
 
 --Units
 
