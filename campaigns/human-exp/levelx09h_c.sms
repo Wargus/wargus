@@ -10,11 +10,11 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfUnit(4, "==", 0, "unit-runestone") and
-    IfUnit(5, "==", 0, "unit-fortress") end,
+  function() return GetPlayerData(4, "UnitTypesCount", "unit-runestone") == 0 and
+    GetPlayerData(5, "UnitTypesCount", "unit-fortress") == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units

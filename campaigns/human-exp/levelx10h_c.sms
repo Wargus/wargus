@@ -11,32 +11,32 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfUnit(2, "==", 0, "all") and
-    IfUnit(3, "==", 0, "all") and
-    IfUnit(6, "==", 0, "all") end,
+  function() return GetPlayerData(2, "TotalNumUnits") == 0 and
+    GetPlayerData(3, "TotalNumUnits") == 0 and
+    GetPlayerData(6, "TotalNumUnits") == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-white-mage") and
-    IfUnit(0, "==", 0, "unit-white-mage") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-white-mage") == 0 and
+    GetPlayerData(0, "UnitTypesCount", "unit-white-mage") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-female-hero") and
-    IfUnit(0, "==", 0, "unit-female-hero") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-female-hero") == 0 and
+    GetPlayerData(0, "UnitTypesCount", "unit-female-hero") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-flying-angle") and
-    IfUnit(0, "==", 0, "unit-flying-angle") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-flying-angle") == 0 and
+    GetPlayerData(0, "UnitTypesCount", "unit-flying-angle") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-arthor-literios") and
-    IfUnit(0, "==", 0, "unit-arthor-literios") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-arthor-literios") == 0 and
+    GetPlayerData(0, "UnitTypesCount", "unit-arthor-literios") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-knight-rider") and
-    IfUnit(0, "==", 0, "unit-knight-rider") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-knight-rider") == 0 and
+    GetPlayerData(0, "UnitTypesCount", "unit-knight-rider") == 0 end,
   function() return ActionDefeat() end)
 
 

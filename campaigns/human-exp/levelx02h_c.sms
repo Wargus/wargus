@@ -11,14 +11,14 @@ Briefing("type", "wc2",
 
 AddTrigger(
   function() return GetNumOpponents(GetThisPlayer()) == 0 and
-    IfUnit("this", "==", 1, "unit-arthor-literios") end,
+    GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-arthor-literios") == 1 end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-arthor-literios") and
-    IfUnit(4, "==", 0, "unit-arthor-literios") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-arthor-literios") == 0 and
+    GetPlayerData(4, "UnitTypesCount", "unit-arthor-literios") == 0 end,
   function() return ActionDefeat() end)
 
 --Units

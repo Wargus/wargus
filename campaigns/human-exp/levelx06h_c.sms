@@ -11,23 +11,23 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfUnit(0, "==", 0, "unit-orc-shipyard") and
-    IfUnit(2, "==", 0, "unit-orc-shipyard") and
-    IfUnit(4, "==", 0, "unit-orc-shipyard") and
-    IfUnit(5, "==", 0, "unit-orc-shipyard") and
+  function() return GetPlayerData(0, "UnitTypesCount", "unit-orc-shipyard") == 0 and
+    GetPlayerData(2, "UnitTypesCount", "unit-orc-shipyard") == 0 and
+    GetPlayerData(4, "UnitTypesCount", "unit-orc-shipyard") == 0 and
+    GetPlayerData(5, "UnitTypesCount", "unit-orc-shipyard") == 0 and
     IfRescuedNearUnit("this", "==", 1, "unit-arthor-literios", "unit-circle-of-power") and
     IfRescuedNearUnit("this", "==", 1, "unit-knight-rider", "unit-circle-of-power") end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-arthor-literios") and
-    IfUnit(6, "==", 0, "unit-arthor-literios") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-arthor-literios") == 0 and
+    GetPlayerData(6, "UnitTypesCount", "unit-arthor-literios") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-knight-rider") and
-    IfUnit(6, "==", 0, "unit-knight-rider") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-knight-rider") == 0 and
+    GetPlayerData(6, "UnitTypesCount", "unit-knight-rider") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units
