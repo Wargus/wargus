@@ -33,7 +33,7 @@
 ;;=============================================================================
 ;;	Define tileset mapping from original number to internal symbol
 ;;
-;;	(define-tilset-wc-names summer winter wasteland swamp)
+;;	(define-tileset-wc-names summer winter wasteland swamp)
 
 (define-tileset-wc-names
   'tileset-summer 'tileset-winter 'tileset-wasteland 'tileset-swamp)
