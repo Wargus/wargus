@@ -110,7 +110,7 @@
     'missile-small-cannon 'missile-cannon-explosion
     'missile-cannon-tower-explosion 'missile-daemon-fire
     'missile-green-cross 'missile-none 'missile-blizzard-hit
-    'missile-death-coil 'missile-none)
+    'missile-death-coil 'missile-none 'missile-critter-explosion)
 
 ;;=============================================================================
 ;;	Define icon mapping from original number to internal symbol
