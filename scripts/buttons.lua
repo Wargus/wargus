@@ -46,7 +46,7 @@ if (extensions) then
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-circle-of-power",
   Action = "cast-spell", Value = "spell-circle-of-power",
   Allowed = "check-true",
-  Key = "d", Hint = "SET ~!DESTINATION",
+  Key = "c", Hint = "~!CAST DESTINATION",
   ForUnit = {"unit-dark-portal"} } )
 end
 
