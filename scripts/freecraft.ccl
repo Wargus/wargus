@@ -410,11 +410,7 @@
 
 ;;-----------------------------------------------------------------------------
 
-;;	A* configuration, FIXME: currently not correct supported.
-(no-a-star)
-;(a-star)
-;(a-star-fixed-unit-cost 1000)
-;(a-star-moving-unit-cost 2)
+(a-star 'on 'fixed-unit-cost 1000 'moving-unit-cost 2 'dont-know-unseen-terrain 'unseen-terrain-cost 100)
 
 ;;-----------------------------------------------------------------------------
 
