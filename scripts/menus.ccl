@@ -3235,7 +3235,7 @@
          style gem-square)
     'menu 'menu-replay-game)
 (define-menu-item 'pos (list 47 (+ 264 2)) 'font 'large
-    'text '("Reveal map" 'left)
+    'text '("Reveal map" left)
     'menu 'menu-replay-game)
 
 
