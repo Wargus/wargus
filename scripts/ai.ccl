@@ -2666,3 +2666,153 @@
     (ai:research (ai:upgrade-elite-shooter))
 
     (ai:script ai:hum-13-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds only workers and ogres.
+;;
+(define ai:hum-14-orange-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:script ai:hum-14-orange-attack-endloop) ) )
+
+(define-ai 'hum-14-orange "*" "hum-14-orange"
+  '(
+    ;;	Define the main AI script.
+    (begin (ai:debug #f)
+      (ai:force-role 0 'defend) (ai:force-role 1 'attack)
+      (ai:sleep (ai:get-sleep-cycles)))
+
+    (ai:set  (ai:worker) 5)
+    (ai:wait (ai:worker))	;; Wait for the workers
+
+    (ai:force 0 (ai:cavalrie) 8)
+    (ai:force 1 (ai:cavalrie) 7)
+
+    (ai:script ai:hum-14-orange-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds nothing.
+;;		Does only upgrades.
+;;
+(define ai:hum-14-red-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:sleep	30000)
+    (ai:sleep	30000)
+    (ai:script ai:hum-14-red-attack-endloop) ) )
+
+(define-ai 'hum-14-red "*" "hum-14-red"
+  '(
+    ;;	Define the main AI script.
+    (begin (ai:debug #f)
+      (ai:force-role 0 'defend) (ai:force-role 1 'attack)
+      (ai:sleep (ai:get-sleep-cycles)))
+
+    (ai:research (ai:mage-spell-1))
+    (ai:research (ai:mage-spell-2))
+    (ai:research (ai:mage-spell-3))
+    (ai:research (ai:mage-spell-4))
+    (ai:research (ai:mage-spell-5))
+
+    (ai:script ai:hum-14-red-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds only workers and dragons.
+;;		Does only air attacks.
+;;
+;;	FIXME: This AI should only collect GOLD.
+;;
+(define ai:hum-14-white-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:force 0 (ai:flyer) 8)
+    (ai:force 1 (ai:flyer) 2)
+    (ai:sleep	19000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:flyer) 5)
+    (ai:force 1 (ai:flyer) 4)
+    (ai:sleep	20000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:flyer) 6)
+    (ai:force 1 (ai:flyer) 3)
+    (ai:sleep	21000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 (ai:flyer) 3)
+    (ai:force 1 (ai:flyer) 6)
+    (ai:sleep	20000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:script ai:hum-14-white-attack-endloop) ) )
+
+(define-ai 'hum-14-white "*" "hum-14-white"
+  '(
+    ;;	Define the main AI script.
+    (begin (ai:debug #f)
+      (ai:force-role 0 'defend) (ai:force-role 1 'attack)
+      (ai:sleep (ai:get-sleep-cycles)))
+
+    (ai:set  (ai:worker) 9)
+    (ai:wait (ai:worker))	;; Wait for the workers
+
+    (ai:force 0 (ai:flyer) 9)
+    (ai:force 1 (ai:flyer) 1)
+
+    (ai:sleep	64000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	12000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	18000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:script ai:hum-14-white-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds only tanker.
+;;		Does only upgrades.
+;;
+;;	FIXME: This AI should only collect GOLD.
+;;
+(define ai:hum-14-black-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:sleep	30000)
+    (ai:script ai:hum-14-black-attack-endloop) ) )
+
+(define-ai 'hum-14-black "*" "hum-14-black"
+  '(
+    ;;	Define the main AI script.
+    (begin (ai:debug #f)
+      (ai:force-role 0 'defend) (ai:force-role 1 'attack)
+      (ai:sleep (ai:get-sleep-cycles)))
+
+    (ai:set  (ai:tanker) 1)
+    (ai:research (ai:upgrade-cavalrie-mage))
+    (ai:research (ai:cavalrie-mage-spell-1))
+    (ai:research (ai:cavalrie-mage-spell-2))
+    (ai:research (ai:mage-spell-1))
+    (ai:research (ai:mage-spell-2))
+    (ai:research (ai:mage-spell-3))
+    (ai:research (ai:mage-spell-4))
+    (ai:research (ai:mage-spell-5))
+    (ai:research (ai:upgrade-weapon-1))
+    (ai:research (ai:upgrade-armor-1))
+    (ai:research (ai:upgrade-weapon-2))
+    (ai:research (ai:upgrade-armor-2))
+    (ai:research (ai:upgrade-elite-shooter))
+    (ai:research (ai:upgrade-elite-shooter-1))
+    (ai:research (ai:upgrade-elite-shooter-2))
+    (ai:research (ai:upgrade-elite-shooter-3))
+    (ai:research (ai:upgrade-ship-cannon-1))
+    (ai:research (ai:upgrade-ship-armor-1))
+    (ai:research (ai:upgrade-ship-cannon-2))
+    (ai:research (ai:upgrade-ship-armor-2))
+
+    (ai:script ai:hum-14-black-attack-endloop) ))
