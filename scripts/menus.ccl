@@ -1464,33 +1464,33 @@
     'button '(size (224 27)
             caption "~!Restart Scenario"
             hotkey "r"
-            func end-scenario-restart
+            func restart-confirm-menu
             style gm-full)
     'menu 'menu-end-scenario)
 (define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large
     'button '(size (224 27)
             caption "~!Surrender"
             hotkey "s"
-            func end-scenario-surrender
+            func surrender-confirm-menu
             style gm-full)
     'menu 'menu-end-scenario)
 (define-menu-item 'pos (list 16 (+ 40 (* 36 2))) 'font 'large
     'button '(size (224 27)
             caption "~!Quit to Menu"
             hotkey "q"
-            func end-scenario-quit-menu
+            func quit-to-menu-confirm-menu
             style gm-full)
     'menu 'menu-end-scenario)
 (define-menu-item 'pos (list 16 (+ 40 (* 36 3))) 'font 'large
     'button '(size (224 27)
             caption "E~!xit Program"
             hotkey "x"
-            func game-menu-exit
+            func exit-confirm-menu
             style gm-full)
     'menu 'menu-end-scenario)
 (define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
     'button '(size (224 27)
-            caption "Previous (~!E~!s~!c)"
+            caption "Previous (~<Esc~>)"
             hotkey "esc"
             func end-menu
             style gm-full)
@@ -1705,28 +1705,28 @@
     'menu 'menu-game-options)
 (define-menu-item 'pos (list 16 (+ 40 (* 36 0))) 'font 'large 'flags '(selected)
     'button '(size (224 27)
-            caption "Sound (~!F~!7)"
+            caption "Sound (~<F7~>)"
             hotkey "f7"
             func sound-options
             style gm-full)
     'menu 'menu-game-options)
 (define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large 'flags '(selected)
     'button '(size (224 27)
-            caption "Speeds (~!F~!8)"
+            caption "Speeds (~<F8~>)"
             hotkey "f8"
             func speed-settings
             style gm-full)
     'menu 'menu-game-options)
 (define-menu-item 'pos (list 16 (+ 40 (* 36 2))) 'font 'large 'flags '(selected)
     'button '(size (224 27)
-            caption "Preferences (~!F~!9)"
+            caption "Preferences (~<F9~>)"
             hotkey "f9"
             func preferences
             style gm-full)
     'menu 'menu-game-options)
 (define-menu-item 'pos (list (- 128 (/ 224 2)) 245) 'font 'large 'flags '(selected)
     'button '(size (224 27)
-            caption "Previous (~!E~!s~!c)"
+            caption "Previous (~<Esc~>)"
             hotkey "esc"
             func end-menu
             style gm-full)
@@ -1834,7 +1834,7 @@
     'menu 'menu-help)
 (define-menu-item 'pos (list (- 128 (/ 224 2)) 248) 'font 'large 'flags '(selected)
     'button '(size (224 27)
-            caption "Previous (~!E~!s~!c)"
+            caption "Previous (~<Esc~>)"
             hotkey "esc"
             func end-menu
             style gm-full)
@@ -1856,7 +1856,7 @@
     'menu 'menu-keystroke-help)
 (define-menu-item 'pos (list (- (/ 352 2) (/ 224 2)) (- 352 40)) 'font 'large 'flags '(selected)
     'button '(size (224 27)
-            caption "Previous (~!E~!s~!c)"
+            caption "Previous (~<Esc~>)"
             hotkey "esc"
             func end-menu
             style gm-full)
@@ -3248,3 +3248,124 @@
             func replay-game-folder
             style folder)
     'menu 'menu-replay-game)
+
+
+;;
+;; menu-restart-confirm
+;;
+(define-menu 'name 'menu-restart-confirm 'geometry '(272 96 256 288)
+    'image 'panel1 'default '4)
+(define-menu-item 'pos (list 128 11) 'font 'large
+    'text '("Are you sure you" center)
+    'menu 'menu-restart-confirm)
+(define-menu-item 'pos (list 128 (+ 11 (* 24 1))) 'font 'large
+    'text '("want to restart" center)
+    'menu 'menu-restart-confirm)
+(define-menu-item 'pos (list 128 (+ 11 (* 24 2))) 'font 'large
+    'text '("the scenario?" center)
+    'menu 'menu-restart-confirm)
+(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large 'flags '(selected)
+    'button '(size (224 27)
+            caption "~!Restart Scenario"
+            hotkey "r"
+            func end-scenario-restart
+            style gm-full)
+    'menu 'menu-restart-confirm)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+    'button '(size (224 27)
+            caption "Cancel (~<Esc~>)"
+            hotkey "esc"
+            func end-menu
+            style gm-full)
+    'menu 'menu-restart-confirm)
+
+
+;;
+;; menu-surrender-confirm
+;;
+(define-menu 'name 'menu-surrender-confirm 'geometry '(272 96 256 288)
+    'image 'panel1 'default '4)
+(define-menu-item 'pos (list 128 11) 'font 'large
+    'text '("Are you sure you" center)
+    'menu 'menu-surrender-confirm)
+(define-menu-item 'pos (list 128 (+ 11 (* 24 1))) 'font 'large
+    'text '("want to surrender" center)
+    'menu 'menu-surrender-confirm)
+(define-menu-item 'pos (list 128 (+ 11 (* 24 2))) 'font 'large
+    'text '("to your enemies?" center)
+    'menu 'menu-surrender-confirm)
+(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large 'flags '(selected)
+    'button '(size (224 27)
+            caption "~!Surrender"
+            hotkey "s"
+            func end-scenario-surrender
+            style gm-full)
+    'menu 'menu-surrender-confirm)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+    'button '(size (224 27)
+            caption "Cancel (~<Esc~>)"
+            hotkey "esc"
+            func end-menu
+            style gm-full)
+    'menu 'menu-surrender-confirm)
+
+
+;;
+;; menu-quit-to-menu-confirm
+;;
+(define-menu 'name 'menu-quit-to-menu-confirm 'geometry '(272 96 256 288)
+    'image 'panel1 'default '4)
+(define-menu-item 'pos (list 128 11) 'font 'large
+    'text '("Are you sure you" center)
+    'menu 'menu-quit-to-menu-confirm)
+(define-menu-item 'pos (list 128 (+ 11 (* 24 1))) 'font 'large
+    'text '("want to quit to" center)
+    'menu 'menu-quit-to-menu-confirm)
+(define-menu-item 'pos (list 128 (+ 11 (* 24 2))) 'font 'large
+    'text '("the main menu?" center)
+    'menu 'menu-quit-to-menu-confirm)
+(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large 'flags '(selected)
+    'button '(size (224 27)
+            caption "~!Quit to Menu"
+            hotkey "q"
+            func end-scenario-quit-to-menu
+            style gm-full)
+    'menu 'menu-quit-to-menu-confirm)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+    'button '(size (224 27)
+            caption "Cancel (~<Esc~>)"
+            hotkey "esc"
+            func end-menu
+            style gm-full)
+    'menu 'menu-quit-to-menu-confirm)
+
+
+;;
+;; menu-exit-confirm
+;;
+(define-menu 'name 'menu-exit-confirm 'geometry '(272 96 256 288)
+    'image 'panel1 'default '4)
+(define-menu-item 'pos (list 128 11) 'font 'large
+    'text '("Are you sure you" center)
+    'menu 'menu-exit-confirm)
+(define-menu-item 'pos (list 128 (+ 11 (* 24 1))) 'font 'large
+    'text '("want to exit" center)
+    'menu 'menu-exit-confirm)
+(define-menu-item 'pos (list 128 (+ 11 (* 24 2))) 'font 'large
+    'text '("FreeCraft?" center)
+    'menu 'menu-exit-confirm)
+(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large 'flags '(selected)
+    'button '(size (224 27)
+            caption "E~!xit Program"
+            hotkey "x"
+            func game-menu-exit
+            style gm-full)
+    'menu 'menu-exit-confirm)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+    'button '(size (224 27)
+            caption "Cancel (~<Esc~>)"
+            hotkey "esc"
+            func end-menu
+            style gm-full)
+    'menu 'menu-exit-confirm)
+
