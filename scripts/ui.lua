@@ -38,11 +38,9 @@ DefineButtonStyle("main", {
     File = "ui/buttons_1.png", Size = {300, 144}, Frame = 4,
   },
   Hover = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 4,
     TextNormalColor = "white",
   },
   Selected = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 4,
     Border = {
       Color = {252, 252, 0}, Size = 1,
     },
@@ -68,11 +66,9 @@ DefineButtonStyle("network", {
     File = "ui/buttons_1.png", Size = {300, 144}, Frame = 7,
   },
   Hover = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 7,
     TextNormalColor = "white",
   },
   Selected = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 7,
     Border = {
       Color = {252, 252, 0}, Size = 1,
     },
@@ -98,11 +94,9 @@ DefineButtonStyle("gm-half", {
     File = "ui/buttons_1.png", Size = {300, 144}, Frame = 10,
   },
   Hover = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 10,
     TextNormalColor = "white",
   },
   Selected = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 10,
     Border = {
       Color = {252, 252, 0}, Size = 1,
     },
@@ -156,11 +150,9 @@ DefineButtonStyle("folder", {
     File = "ui/buttons_1.png", Size = {300, 144}, Frame = 51,
   },
   Hover = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 51,
     TextNormalColor = "white",
   },
   Selected = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 51,
     Border = {
       Color = {252, 252, 0}, Size = 1,
     },
