@@ -45,60 +45,7 @@
 ;;=============================================================================
 ;;	Define the user interface
 ;;
-;;	(define-ui "rasse" screen-width screen-height
-;;		(list "filler" x y)
-;;		(list "resource" x y)
-;;		(list "gold-icon" nummer x y width height text-x text-y)
-;;		(list "wood-icon" nummer x y width height text-x text-y)
-;;		(list "oil-icon" nummer x y width height text-x text-y)
-;;		(list "ore-icon" nummer x y width height text-x text-y)
-;;		(list "stone-icon" nummer x y width height text-x text-y)
-;;		(list "coal-icon" nummer x y width height text-x text-y)
-;;		(list "food-icon" nummer x y width height text-x text-y)
-;;		(list "score-icon" nummer x y width height text-x text-y)
-;;		(list "infopanel" x y width height)
-;;		(list complete-bar-color x y text-x text-y)
-;;		(list "buttonpanel" x y)
-;;		(list map-x map-y end-x end-y)
-;;		(list "menubutton" x y)
-;;		(list "minimap" x y)
-;;		(list "statusline" x y)
-;;		    ; Menu-button F10
-;;		(list menu-button-x menu-button-y width height)
-;;		    ; 9 Character portraits
-;;		(list selected-1-x selected-1-y width height)
-;;		(list selected-2-x selected-2-y width height)
-;;		(list selected-3-x selected-3-y width height)
-;;		(list selected-4-x selected-4-y width height)
-;;		(list selected-5-x selected-5-y width height)
-;;		(list selected-6-x selected-6-y width height)
-;;		(list selected-7-x selected-7-y width height)
-;;		(list selected-8-x selected-8-y width height)
-;;		(list selected-9-x selected-9-y width height)
-;;		    ; 9 Buttons interface
-;;		(list button-1-x button-1-y width height)
-;;		(list button-2-x button-2-y width height)
-;;		(list button-3-x button-3-y width height)
-;;		(list button-4-x button-4-y width height)
-;;		(list button-5-x button-5-y width height)
-;;		(list button-6-x button-6-y width height)
-;;		(list button-7-x button-7-y width height)
-;;		(list button-8-x button-8-y width height)
-;;		(list button-9-x button-9-y width height)
-;;		    ;	6 training queue buttons.
-;;		(list train-1-x train-1-y width height)
-;;		(list train-2-x train-2-y width height)
-;;		(list train-3-x train-3-y width height)
-;;		(list train-4-x train-4-y width height)
-;;		(list train-5-x train-5-y width height)
-;;		(list train-6-x train-6-y width height)
-;;		    ;	Cursors used by engine
-;;		(list
-;;		  'cursor-point 'cursor-glass 'cursor-cross
-;;		  'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
-;;		  'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne
-;;		  'cursor-arrow-n 'cursor-arrow-nw 'cursor-arrow-w
-;;		  'cursor-arrow-sw 'cursor-arrow-s 'cursor-arrow-se ) )
+;;	(define-ui "race" screen-width screen-height
 ;;
 ;;	This defines the position and sizes of the different user
 ;;	interface sections.
