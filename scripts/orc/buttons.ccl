@@ -427,7 +427,7 @@
 (define-button 'pos 8 'level 0 'icon 'icon-orc-shield1
   'action 'stop
   'allowed 'check-no-work
-  'key "s" 'hint "SET ~!STOP"
+  'key "z" 'hint "SET ~!ZTOP"
   'for-unit '(unit-great-hall unit-stronghold unit-fortress
     unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost
     unit-goblin-alchemist))
@@ -601,7 +601,7 @@
 (define-button 'pos 8 'level 0 'icon 'icon-orc-ship-armor1
   'action 'stop
   'allowed 'check-no-work
-  'key "s" 'hint "SET ~!STOP"
+  'key "z" 'hint "SET ~!ZTOP"
   'for-unit '(unit-orc-shipyard))
 
 (define-button 'pos 9 'level 0 'icon 'icon-orc-ship-cannon1
