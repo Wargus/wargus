@@ -2810,7 +2810,11 @@ int ConvertText(char* file,int txte,int ofs)
     struct stat st;
 
     // need this for German version of original cd
+#ifdef USE_BEOS
+    sprintf(strdat, "%s/STRDAT.WAR", ArchiveDir);
+#else
     sprintf(strdat, "%s/strdat.war", ArchiveDir);
+#endif
     stat(strdat, &st);
     if (st.st_size == 55724) {
 	--txte;
@@ -3504,7 +3508,11 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
       txte=54;
     } else {
       ofs=140;
+#ifdef USE_BEOS
+      sprintf(rezdat, "%s/REZDAT.WAR", ArchiveDir);
+#else
       sprintf(rezdat, "%s/rezdat.war", ArchiveDir);
+#endif
       stat(rezdat, &s);
       if (s.st_size == 1894026) {
         txte=54;
@@ -3720,7 +3728,11 @@ int main(int argc,char** argv)
     }
 
     // detect Expansion CD by getting size of rezdat.war
+#ifdef USE_BEOS
+    sprintf(buf, "%s/REZDAT.WAR", ArchiveDir);
+#else
     sprintf(buf, "%s/rezdat.war", ArchiveDir);
+#endif
     stat(buf, &stat_buf);
     if ( expansion_cd==-1 || (expansion_cd!=1 && (stat_buf.st_size != 2811086)) ) {
 	expansion_cd=0;
