@@ -339,7 +339,7 @@
     "dwarves-acknowledge"
     "dwarves-ready"
     "basic human voices help 1"
-    "basic human voices dead" )
+    "explosion" )
   "dwarves-attack" )
 
 (define-unit-type "unit-attack-peasant"		"Peasant"
