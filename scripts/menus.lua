@@ -378,7 +378,7 @@ DefineMenuItem("pos", { 17, 195},
     "func", "global-options-fullscreen-gem",
     "style", "gem-square"},
   "menu", "menu-global-options")
-
+--[[
 DefineMenuItem("pos", { 192, 44}, "font", "game",
   "text", {"caption", "Shadow Fog", "align", "left"},
   "menu", "menu-global-options")
@@ -398,7 +398,7 @@ DefineMenuItem("pos", { 192, 91},
     "func", "global-options-fog-alpha-gem",
     "style", "gem-round"},
   "menu", "menu-global-options")
-
+]]
 DefineMenuItem("pos", { 123, 309}, "font", "large",
   "button", {"size", {106, 27},
     "caption", "~!OK",
