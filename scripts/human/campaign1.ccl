@@ -29,6 +29,7 @@
 ;;	(define-campagin 'ident 'name "name" 'campaign (list elements)
 (define-campaign 'human 'name "~!Human campaign"
   'campaign (list
+	;'play-movie "movie/splash2.avi" '(full-screen zoom-screen)
 	'show-picture
 	  "Act I"
 	  "The Shores of Lordareon"
