@@ -1896,7 +1896,7 @@
     'button '(size (106 27)
             caption "~!Save"
             hotkey "s"
-            func save-action
+            func save-ok
             style gm-half)
     'menu 'menu-save-game)
 (define-menu-item 'pos (list (- (* 2 (/ 384 3)) 106 10) (- 256 16 27)) 'font 'large
@@ -1968,7 +1968,7 @@
     'menu 'menu-save-confirm)
 (define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
     'button '(size (106 27)
-            caption "~!Ok"
+            caption "~!OK"
             hotkey "o"
             func save-confirm-ok
             style gm-half)
@@ -1998,7 +1998,7 @@
     'menu 'menu-delete-confirm)
 (define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
     'button '(size (106 27)
-            caption "~!Ok"
+            caption "~!OK"
             hotkey "o"
             func fc-delete-ok
             style gm-half)
