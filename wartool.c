@@ -636,17 +636,17 @@ Control Todo[] = {
 {P,0,"puds/demo/demo04",					 251	},
 // --------------------------------------------------
 #ifdef NEW_NAMES
-{G,0,"neutral/building/land construction site",			 2, 252	},
-{G,0,"human/building/shipyard construction site",		 2, 253	},
-{G,0,"orc/building/shipyard construction site",			 2, 254	},
-{G,0,"tilesets/summer/human/building/oil well construction site",2, 255	},
-{G,0,"tilesets/summer/orc/building/oil well construction site",	 2, 256	},
-{G,0,"human/building/refinery construction site",		 2, 257	},
-{G,0,"orc/building/refinery construction site",			 2, 258	},
-{G,0,"human/building/foundry construction site",		 2, 259	},
-{G,0,"orc/building/foundry construction site",			 2, 260	},
-{G,0,"tilesets/summer/neutral/building/wall construction site",	 2, 261	},
-{G,0,"tilesets/winter/neutral/buildibgs/land construction site",18, 262 },
+{G,0,"neutral/buildings/land construction site",		 2, 252	},
+{G,0,"human/buildings/shipyard construction site",		 2, 253	},
+{G,0,"orc/buildings/shipyard construction site",		 2, 254	},
+{G,0,"tilesets/summer/human/buildings/oil well construction site",2, 255 },
+{G,0,"tilesets/summer/orc/buildings/oil well construction site", 2, 256	},
+{G,0,"human/buildings/refinery construction site",		 2, 257	},
+{G,0,"orc/buildings/refinery construction site",		 2, 258	},
+{G,0,"human/buildings/foundry construction site",		 2, 259	},
+{G,0,"orc/buildings/foundry construction site",			 2, 260	},
+{G,0,"tilesets/summer/neutral/buildings/wall construction site", 2, 261	},
+{G,0,"tilesets/winter/neutral/buildings/land construction site",18, 262 },
 {G,0,"tilesets/winter/human/buildings/shipyard construction site",18, 263 },
 {G,0,"tilesets/winter/orc/buildings/shipyard construction site",18, 264 },
 {G,0,"tilesets/winter/human/buildings/oil well construction site",18, 265 },
@@ -1820,28 +1820,28 @@ Control Todo[] = {
 {I,0,"interface/orc/panel 5",					14, 12	},
 {I,0,"interface/Menu background with title",			14, 13	},
 {I,0,"interface/Menu background without title",			16, 15	},
-{I,0,"campaigns/human/interface/Act I   - Shores of Lordareon",	17, 19 },
-{I,0,"campaigns/orc/interface/Act I   - Seas of Blood",		17, 20 },
-{I,0,"campaigns/human/interface/Act II  - Khaz Modan",		17, 21 },
-{I,0,"campaigns/orc/interface/Act II  - Khaz Modan",		17, 22 },
-{I,0,"campaigns/human/interface/Act III - The Northlands",	17, 23 },
-{I,0,"campaigns/orc/interface/Act III - Quel'Thalas",		17, 24 },
-{I,0,"campaigns/human/interface/Act IV  - Return to Azeroth",	17, 25 },
-{I,0,"campaigns/orc/interface/Act IV  - Tides of Darkness",	17, 26 },
+{I,0,"../campaigns/human/interface/Act I   - Shores of Lordareon",	17, 19 },
+{I,0,"../campaigns/orc/interface/Act I   - Seas of Blood",		17, 20 },
+{I,0,"../campaigns/human/interface/Act II  - Khaz Modan",		17, 21 },
+{I,0,"../campaigns/orc/interface/Act II  - Khaz Modan",		17, 22 },
+{I,0,"../campaigns/human/interface/Act III - The Northlands",	17, 23 },
+{I,0,"../campaigns/orc/interface/Act III - Quel'Thalas",		17, 24 },
+{I,0,"../campaigns/human/interface/Act IV  - Return to Azeroth",	17, 25 },
+{I,0,"../campaigns/orc/interface/Act IV  - Tides of Darkness",	17, 26 },
 
 {I,0,"interface/Credits background",				27, 28 },
 {I,0,"interface/human/The End",					27, 29 },
 {I,0,"interface/orc/Smashing of Lordaeron scroll",		32, 30 },
 {I,2,"interface/Patch",						14, 91 },
 {I,2,"interface/Credits for extension background",		93, 94 },
-{I,2,"campaigns/human-exp/interface/Act I  - A Time for Heroes",17, 96 },
-{I,2,"campaigns/orc-exp/interface/Act I  - Draenor, the Red World",17, 97 },
-{I,2,"campaigns/human-exp/interface/Act II - Draenor, the Red World",17, 98 },
-{I,2,"campaigns/orc-exp/interface/Act II - The Burning of Azeroth",17, 99 },
-{I,2,"campaigns/human-exp/interface/Act III- War in the Shadows",17, 100 },
-{I,2,"campaigns/orc-exp/interface/Act III- The Great Sea",	17, 101 },
-{I,2,"campaigns/human-exp/interface/Act IV - The Measure of Valor",17, 102 },
-{I,2,"campaigns/orc-exp/interface/Act IV - Prelude to New Worlds",17, 103 },
+{I,2,"../campaigns/human-exp/interface/Act I  - A Time for Heroes",17, 96 },
+{I,2,"../campaigns/orc-exp/interface/Act I  - Draenor, the Red World",17, 97 },
+{I,2,"../campaigns/human-exp/interface/Act II - Draenor, the Red World",17, 98 },
+{I,2,"../campaigns/orc-exp/interface/Act II - The Burning of Azeroth",17, 99 },
+{I,2,"../campaigns/human-exp/interface/Act III- War in the Shadows",17, 100 },
+{I,2,"../campaigns/orc-exp/interface/Act III- The Great Sea",	17, 101 },
+{I,2,"../campaigns/human-exp/interface/Act IV - The Measure of Valor",17, 102 },
+{I,2,"../campaigns/orc-exp/interface/Act IV - Prelude to New Worlds",17, 103 },
 #else
 // (correct palette is #2 in maindat)
 {U,0,"interface/buttons 1",					14, 0	}, 
@@ -1921,6 +1921,9 @@ void CheckPath(const char* path)
     char* cp;
     char* s;
 
+    if( *path && path[0]=='.' ) {	// relative don't work
+	return;
+    }
     cp=strdup(path);
     s=strrchr(cp,'/');
     if( s ) {
