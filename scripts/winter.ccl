@@ -10,7 +10,7 @@
 ;;
 ;;	tileset_winter.ccl	-	Define the winter tileset.
 ;;
-;;	(c) Copyright 2000 by Lutz Sammer
+;;	(c) Copyright 2000,2001 by Lutz Sammer
 ;;
 ;;	$Id$
 ;;
@@ -18,8 +18,9 @@
 ;;=============================================================================
 ;;	Define a tileset
 ;;
-;;	(define-tileset slot-ident class-name file slots)
+;;	(define-tileset slot-ident class-name image palette slots animations)
 ;;
+;; FIXME: (define-tileset) is missing
 
 ;;=============================================================================
 ;;	Define tilesets
@@ -29,7 +30,9 @@
 ;;	WARNING: tile2png can generate this tables!
 ;;
 
-(tileset 'tileset-winter	"winter"	"graphic/tileset/winter.png"
+(tileset 'tileset-winter	"winter"
+  "graphic/tileset/winter.png"
+  "winter.rgb"
   #(  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0	; 000
     319 320 320 321   0 322 323 324   0   0   0   0   0   0   0   0	; 010
     325 326 326 327   0 328 329 330   0   0   0   0   0   0   0   0	; 020
