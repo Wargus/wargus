@@ -9,14 +9,24 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (if-unit 15 '== 0 'unit-dark-portal))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (if-unit 15 '== 0 'unit-dark-portal))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-white-mage)
-                             (if-unit 4 '== 0 'unit-white-mage)))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-white-mage)
+      (if-unit 4 '== 0 'unit-white-mage)))
+  '(
+    (action-defeat)))
 
 
 ;;Units

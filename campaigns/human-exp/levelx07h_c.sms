@@ -10,23 +10,43 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (and (if-unit 0 '== 0 'all)
-                             (if-unit 2 '== 0 'all)
-                             (if-unit 5 '== 0 'all)
-                             (if-unit 6 '== 0 'all)))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-unit 0 '== 0 'all)
+      (if-unit 2 '== 0 'all)
+      (if-unit 5 '== 0 'all)
+      (if-unit 6 '== 0 'all)))
+  '(
+    (action-victory)))
 
 
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-white-mage)
-                             (if-unit 4 '== 0 'unit-white-mage)))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-female-hero)
-                             (if-unit 4 '== 0 'unit-female-hero)))
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-flying-angle)
-                             (if-unit 4 '== 0 'unit-flying-angle)))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-white-mage)
+      (if-unit 4 '== 0 'unit-white-mage)))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-female-hero)
+      (if-unit 4 '== 0 'unit-female-hero)))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-flying-angle)
+      (if-unit 4 '== 0 'unit-flying-angle)))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

@@ -9,21 +9,40 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (and (if-unit '2 '== 0 'all)
-                             (if-unit '3 '== 0 'all)))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-unit '2 '== 0 'all)
+      (if-unit '3 '== 0 'all)))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-white-mage)
-                             (if-unit 0 '== 0 'unit-white-mage)))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-female-hero)
-                             (if-unit 0 '== 0 'unit-female-hero)))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-knight-rider)
-                             (if-unit 0 '== 0 'unit-knight-rider)))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-white-mage)
+      (if-unit 0 '== 0 'unit-white-mage)))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-female-hero)
+      (if-unit 0 '== 0 'unit-female-hero)))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-knight-rider)
+      (if-unit 0 '== 0 'unit-knight-rider)))
+  '(
+    (action-defeat)))
 
 
 ;;Units
