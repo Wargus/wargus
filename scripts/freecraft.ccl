@@ -75,7 +75,7 @@
 
 ;;	Uncomment next, to show the react range of the selected unit on map.
 ;(show-react-range)
-(define show-reaction-range (show-react-range))
+(define (show-reaction-range) (show-react-range))
 
 ;;	Uncomment next, to show the attack range of the selected unit on map.
 ;(show-attack-range)
@@ -171,7 +171,8 @@
 (speeds 1)
 
 ;; a* configuration
-(no-a-star)
+;(no-a-star)
+(a-star)
 (a-star-fixed-unit-cost 1000)
 (a-star-moving-unit-cost 2)
 
