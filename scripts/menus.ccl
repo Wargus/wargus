@@ -42,7 +42,6 @@
             func game-menu-save
             style gm-half)
     'menu 'menu-game)
-(if (symbol-bound? 'freecraft-feature-debug ())
 (define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "Load (~<F12~>)"
@@ -50,15 +49,6 @@
             func game-menu-load
             style gm-half)
     'menu 'menu-game)
-(define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large 'flags '(selected)
-    'flags '(disabled)
-    'button '(size (106 27)
-            caption "Load (~<F12~>)"
-            hotkey "f12"
-            func game-menu-load
-            style gm-half)
-    'menu 'menu-game)
-)
 (define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Options (~<F5~>)"
@@ -238,7 +228,6 @@
             func campaign-game-menu
             style gm-full)
     'menu 'menu-program-start)
-(if (symbol-bound? 'freecraft-feature-debug ())
 (define-menu-item 'pos (list 208 (+ 109 (* 36 3))) 'font 'large
     'button '(size (224 27)
             caption "~!Load Game"
@@ -246,15 +235,6 @@
             func game-menu-load
             style gm-full)
     'menu 'menu-program-start)
-(define-menu-item 'pos (list 208 (+ 109 (* 36 3))) 'font 'large
-    'flags '(disabled)
-    'button '(size (224 27)
-            caption "~!Load Game"
-            hotkey "l"
-            func game-menu-load
-            style gm-full)
-    'menu 'menu-program-start)
-)
 (define-menu-item 'pos (list 208 (+ 109 (* 36 4))) 'font 'large
     'button '(size (224 27)
             caption "~!Replay Game"
@@ -2158,7 +2138,7 @@
 (define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large 'flags '(disabled)
     'button '(size (106 27)
             caption "Load (~<F12~>)"
-            hotkey "f12"
+            hotkey ""
             func game-menu-load
             style gm-half)
     'menu 'menu-editor)
