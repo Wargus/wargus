@@ -2618,7 +2618,8 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 	unsigned* offsets;
 
 	bp = start + 5;  // skip "FONT "
-	count = FetchByte(bp) - 32;
+	count = FetchByte(bp);
+	count -= 32;
 	max_width = FetchByte(bp);
 	max_height = FetchByte(bp);
 
