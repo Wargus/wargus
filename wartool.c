@@ -48,7 +48,7 @@ typedef unsigned long u_int32_t;
 
 #ifndef VERSION
 #define VERSION	"1.17pre1"		/// Engine version shown.
-#define
+#endif
 
 //----------------------------------------------------------------------------
 //	Config
