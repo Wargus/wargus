@@ -150,6 +150,7 @@ cp $CONTRIB/score.png $DIR/graphics/ui
 cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
 cp $CONTRIB/freecraft.png $DIR/graphics/ui
 cp $CONTRIB/music/toccata.mod.gz $DIR/music/default.mod.gz
+cp $CONTRIB/red\ cross.png $DIR/graphics/missiles
 
 ###############################################################################
 ##	MISC
