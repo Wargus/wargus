@@ -379,10 +379,10 @@
 
 (define-menu-item 'pos (list 123 309) 'font 'large
   'button '(size (106 27)
-	caption "~!OK"
-    	hotkey "o"
-    	func end-menu
-    	style gm-half)
+    caption "~!OK"
+    hotkey "o"
+    func end-menu
+    style gm-half)
   'menu 'menu-global-options)
 
 ;;
@@ -1754,7 +1754,7 @@
     style gem-round)
   'menu 'menu-diplomacy)
 (define-menu-item 'pos (list 276 (+ (* 18 6) 23)) 'font 'large
-   'gem '(size (18 18)
+  'gem '(size (18 18)
     state unchecked
     func diplomacy-wait
     style gem-square)
@@ -1831,7 +1831,7 @@
   'menu 'menu-diplomacy)
 (define-menu-item 'pos (list 126 (+ (* 18 10) 23)) 'font 'large
   'gem '(size (18 18)
-      state unchecked
+    state unchecked
     func diplomacy-wait
     style gem-round)
   'menu 'menu-diplomacy)
