@@ -72,7 +72,7 @@
         "/filler-right.png")
       'pos (list (- screen_width 16) 0))
 
-    'ressource-line (list
+    'resource-line (list
       (string-append "graphics/ui/orc/"
         (number->string screen_width) "x" (number->string screen_height)
         "/resource.png")
