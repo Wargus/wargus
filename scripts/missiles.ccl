@@ -170,3 +170,10 @@
   'impact-sound "explosion" 'draw-level 50
   'class 'missile-class-hit 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-impact 'can-hit-owner #t)
+
+
+(define-burning-building
+  '(percent 0 missile missile-big-fire)
+  '(percent 50 missile missile-small-fire)
+  '(percent 75 ) ; no missile
+)
