@@ -84,6 +84,8 @@
 ;;				)
 ;;
 
+(define-bool-flags 'isundead 'organic 'hero)
+
 ;;  Declare some unit types used in spells. This is quite accetable, the other
 ;;  way would be to define can-cast-spell outside unit definitions, not much of an improvement.
 (define-unit-type 'unit-revealer)
@@ -139,7 +141,7 @@
 	'target 'unit
 	'action '((adjust-vitals hit-points -1))
 	'condition '(
-	    undead only
+	    isundead only
 	    building false ; any undead buildings?
 	    alliance false
 	)
@@ -170,8 +172,8 @@
 	)
 	'sound-when-cast "haste"
 	'missile-when-cast "missile-normal-spell"
-	'autocast '(range 6 combat only condition (coward false alliance only))
-	'ai-cast '(range 6 condition (coward false alliance only))
+	'autocast '(range 6 condition (coward false alliance only))
+	'ai-cast '(range 6 combat only condition (coward false alliance only))
 )
 
 (define-spell "spell-slow"
