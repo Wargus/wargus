@@ -411,7 +411,7 @@ local hum_11_funcs = {
     function() return AiResearch(AiUpgradeWeapon1()) end,
     function() return AiResearch(AiUpgradeArmor1()) end,
     function() return AiSleep(6000) end,
-    function() return Aiforce(0, {AiSoldier(), 1, AiShooter(), 1,
+    function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 1,
 	    AiCavalry(), 1, AiCatapult(), 1, AiMage(), 3}) end,
     function() return AiSleep(9000) end,
     function() return AiSleep(7000) end,
