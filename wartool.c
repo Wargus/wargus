@@ -1926,6 +1926,75 @@ Control Todo[] = {
 {I,2,"Act xIV - Prelude to New Worlds (Orc)",			17, 103 },
 #endif
 #endif
+
+///////////////////////////////////////////////////////////////////////////////
+//	SPEACH INTROS
+///////////////////////////////////////////////////////////////////////////////
+
+#if 0	// FIXME: this isn't supported by the engine
+	// FIXME: this file contains different data, if expansion or not.
+	// FIXME: Where and what are the expansion entries
+
+#ifdef USE_BEOS
+{F,0,"SNDDAT.WAR",				2000 },
+#else
+{F,0,"snddat.war",				2000 },
+#endif
+{W,0,"../campaigns/human/victory",					2 },
+{W,0,"../campaigns/orc/victory",					3 },
+{W,0,"../campaigns/human/level01h-intro1",				4 },
+{W,0,"../campaigns/human/level01h-intro2",				5 },
+{W,0,"../campaigns/human/level02h-intro1",				6 },
+{W,0,"../campaigns/human/level02h-intro2",				7 },
+{W,0,"../campaigns/human/level03h-intro1",				8 },
+{W,0,"../campaigns/human/level03h-intro2",				9 },
+{W,0,"../campaigns/human/level04h-intro1",				10 },
+{W,0,"../campaigns/human/level04h-intro2",				11},
+{W,0,"../campaigns/human/level05h-intro1",				12 },
+{W,0,"../campaigns/human/level05h-intro2",				13 },
+{W,0,"../campaigns/human/level06h-intro1",				14 },
+{W,0,"../campaigns/human/level07h-intro1",				15 },
+{W,0,"../campaigns/human/level07h-intro2",				16 },
+{W,0,"../campaigns/human/level08h-intro1",				17 },
+{W,0,"../campaigns/human/level08h-intro2",				18 },
+{W,0,"../campaigns/human/level09h-intro1",				19 },
+{W,0,"../campaigns/human/level10h-intro1",				20 },
+{W,0,"../campaigns/human/level11h-intro1",				21 },
+{W,0,"../campaigns/human/level11h-intro2",				22 },
+{W,0,"../campaigns/human/level12h-intro1",				23 },
+{W,0,"../campaigns/human/level13h-intro1",				24 },
+{W,0,"../campaigns/human/level13h-intro2",				25 },
+{W,0,"../campaigns/human/level14h-intro1",				26 },
+
+{W,0,"../campaigns/orc/level01o-intro1",				27 },
+{W,0,"../campaigns/orc/level02o-intro1",				28 },
+{W,0,"../campaigns/orc/level03o-intro1",				29 },
+{W,0,"../campaigns/orc/level03o-intro2",				30 },
+{W,0,"../campaigns/orc/level04o-intro1",				31 },
+{W,0,"../campaigns/orc/level05o-intro1",				32 },
+{W,0,"../campaigns/orc/level06o-intro1",				33 },
+{W,0,"../campaigns/orc/level07o-intro1",				34 },
+{W,0,"../campaigns/orc/level07o-intro2",				35 },
+{W,0,"../campaigns/orc/level08o-intro1",				36 },
+{W,0,"../campaigns/orc/level09o-intro1",				37 },
+{W,0,"../campaigns/orc/level10o-intro1",				38 },
+{W,0,"../campaigns/orc/level11o-intro1",				39 },
+{W,0,"../campaigns/orc/level11o-intro2",				40 },
+{W,0,"../campaigns/orc/level12o-intro1",				41 },
+{W,0,"../campaigns/orc/level12o-intro2",				42 },
+{W,0,"../campaigns/orc/level13o-intro1",				43 },
+{W,0,"../campaigns/orc/level13o-intro2",				44 },
+{W,0,"../campaigns/orc/level14o-intro1",				45 },
+
+#ifdef HAVE_EXPANSION
+{W,2,"../campaigns/human-exp/victory",					50 },
+{W,2,"../campaigns/orc-exp/victory",					51 },
+
+{W,2,"../campaigns/orc-exp/levelx01o-intro1",				52 },
+{W,2,"../campaigns/orc-exp/levelx01o-intro2",				53 },
+#endif
+
+#endif
 };
 
 /**
