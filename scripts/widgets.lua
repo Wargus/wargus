@@ -176,6 +176,40 @@ DefineButtonStyle("folder", {
   },
 })
 
+DefineButtonStyle("icon", {
+  Size = {46, 38},
+  Font = "game",
+  TextNormalColor = "yellow",
+  TextReverseColor = "white",
+  TextAlign = "Right",
+  TextPos = {46, 26},
+  Default = {
+    Border = {
+      Color = {0, 0, 0}, Size = 1,
+    },
+  },
+  Hover = {
+    TextNormalColor = "white",
+    Border = {
+      Color = {128, 128, 128}, Size = 1,
+    },
+  },
+  Selected = {
+    Border = {
+      Color = {0, 252, 0}, Size = 1,
+    },
+  },
+  Clicked = {
+    TextNormalColor = "white",
+    Border = {
+      Color = {128, 128, 128}, Size = 1,
+    },
+  },
+  Disabled = {
+  },
+})
+
+
 DefineCheckboxStyle("round", {
   Size = {19, 19},
   Font = "game",
