@@ -156,7 +156,7 @@ DefineModifier("upgrade-ballista2",
   {"apply-to", "unit-ballista"})
 
 DefineModifier("upgrade-ranger",
-  {"apply-to", "unit-archer"}, {"convert-to unit-ranger"})
+  {"apply-to", "unit-archer"}, {"convert-to", "unit-ranger"})
 
 DefineModifier("upgrade-longbow",
   {"sight-range", 1},
@@ -172,7 +172,7 @@ DefineModifier("upgrade-ranger-marksmanship",
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"})
 
 DefineModifier("upgrade-paladin",
-  {"apply-to", "unit-knight"}, {"convert-to unit-paladin"})
+  {"apply-to", "unit-knight"}, {"convert-to", "unit-paladin"})
 
 DefineModifier("upgrade-holy-vision",
   {"apply-to", "unit-paladin"})

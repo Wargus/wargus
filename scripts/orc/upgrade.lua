@@ -153,7 +153,7 @@ DefineModifier("upgrade-catapult2",
   {"apply-to", "unit-catapult"})
 
 DefineModifier("upgrade-berserker",
-  {"apply-to", "unit-axethrower"}, {"convert-to unit-berserker"})
+  {"apply-to", "unit-axethrower"}, {"convert-to", "unit-berserker"})
 
 DefineModifier("upgrade-light-axes",
   {"sight-range", 1},
@@ -169,7 +169,7 @@ DefineModifier("upgrade-berserker-regeneration",
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"})
 
 DefineModifier("upgrade-ogre-mage",
-  {"apply-to", "unit-ogre"}, {"convert-to unit-ogre-mage"})
+  {"apply-to", "unit-ogre"}, {"convert-to", "unit-ogre-mage"})
 
 DefineModifier("upgrade-eye-of-kilrogg",
   {"apply-to", "unit-ogre-mage"})
