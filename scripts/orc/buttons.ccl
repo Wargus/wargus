@@ -424,13 +424,11 @@
 (if extensions (begin
 (define-button 'pos 5 'level 0 'icon 'icon-harvest
   'action 'harvest
-  'allowed 'check-no-work
   'key "h" 'hint "SET ~!HARVEST LUMBER/MINE GOLD"
   'for-unit '(unit-great-hall unit-stronghold unit-fortress))
 
 (define-button 'pos 7 'level 0 'icon 'icon-move-peon
   'action 'move
-  'allowed 'check-no-work
   'key "m" 'hint "SET ~!MOVE"
   'for-unit '(unit-great-hall unit-stronghold unit-fortress
     unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost
@@ -438,7 +436,6 @@
 
 (define-button 'pos 8 'level 0 'icon 'icon-orc-shield1
   'action 'stop
-  'allowed 'check-no-work
   'key "z" 'hint "SET ~!ZTOP"
   'for-unit '(unit-great-hall unit-stronghold unit-fortress
     unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost
@@ -446,7 +443,6 @@
 
 (define-button 'pos 9 'level 0 'icon 'icon-battle-axe1
   'action 'attack
-  'allowed 'check-no-work
   'key "e" 'hint "S~!ET ATTACK"
   'for-unit '(unit-great-hall unit-stronghold unit-fortress
     unit-orc-barracks unit-temple-of-the-damned unit-dragon-roost
