@@ -159,15 +159,14 @@ enum _archive_type_ {
 
 char* ArchiveDir;
 
-/*
-	(1 << 0)	1=mac 0=original
-	(1 << 1)	1=expansion 0=orignal
-	(1 << 2)	reserved
-	(1 << 3)	reserved
-	(1 << 4)	US
-	(1 << 5)	Spanish
-	(1 << 6)	German
-	(1 << 7)	UK/Australian
+#define CD_MAC		(1)
+#define CD_EXPANSION	(1 << 1)
+#define CD_US		(1 << 4)
+#define CD_SPANISH	(1 << 5)
+#define CD_GERMAN	(1 << 6)
+#define CD_UK		(1 << 7)	// also Australian
+/**
+**	What CD Type is it?
 */
 int CDType;
 
@@ -2839,12 +2838,12 @@ int ConvertText(char* file,int txte,int ofs)
     int l;
 
     // workaround for German/UK/Australian CD's
-    if (!((1 << 1) & CDType) && (((1 << 5) | (1 << 6)) & CDType)) {
+    if (!(CD_EXPANSION & CDType) && ((CD_GERMAN | CD_UK) & CDType)) {
 	--txte;
     }
 
     // workaround for MAC expansion CD
-    if ((1 & CDType) && txte >= 99) {
+    if ((CD_MAC & CDType) && txte >= 99) {
 	txte += 6;
     }
 
@@ -3527,20 +3526,20 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs)
     int l, levelno, noobjs, race, expansion;
 
     //Campaign data is in different spots for different CD's
-    if ((1 << 1) & CDType) {
+    if (CD_EXPANSION & CDType) {
 	expansion = 1;
 	ofs=236;
 	txte=54;
     } else {
 	expansion = 0;
 	// 54 for Mac or US/Spanish CD, 53 for UK and German CD
-	if (((1 << 4) | (1 << 5)) & CDType) {
+	if ((CD_US | CD_SPANISH) & CDType) {
 	    txte=54;
         } else {
 	    txte=53;
 	}
 	// 172 for Spanish CD, 140 for anything else
-	if ((1 << 5) & CDType) {
+	if (CD_SPANISH & CDType) {
 	    ofs=172;
 	} else {
 	    ofs=140;
@@ -3756,7 +3755,7 @@ int main(int argc,char** argv)
     sprintf(filename, "%s/strdat.war", ArchiveDir);
 #endif
     if (stat(buf, &st)) {
-	CDType |= 1 | (1 << 4);
+	CDType |= CD_MAC | CD_US;
 	sprintf(buf, "%s/War Resources", ArchiveDir);
 	if (stat(buf, &st)) {
 	    fprintf(stderr, "Could not find Warcraft 2 Data\n");
@@ -3766,7 +3765,7 @@ int main(int argc,char** argv)
 	    printf("Detected original MAC CD\n");
 	} else {
 	    printf("Detected expansion MAC CD\n");
-	    CDType |= (1 << 1);
+	    CDType |= CD_EXPANSION;
 	}
     } else {
 	if (st.st_size != 2811086) {
@@ -3775,33 +3774,33 @@ int main(int argc,char** argv)
 	    switch (st.st_size) {
 		case 51550:
 		    printf("Detected US original DOS CD\n");
-		    CDType |= (1 << 4);
+		    CDType |= CD_US;
 		    break;
 		case 55014:
 		    printf("Detected Spanish original DOS CD\n");
-		    CDType |= (1 << 5);
+		    CDType |= CD_SPANISH;
 		    break;
 		case 55724:
 		    printf("Detected German original DOS CD\n");
-		    CDType |= (1 << 6);
+		    CDType |= CD_GERMAN;
 		    break;
 		case 51451:
 		    printf("Detected UK/Australian original DOS CD\n");
-		    CDType |= (1 << 7);
+		    CDType |= CD_UK;
 		    break;
 		default:
 		    printf("Could not detect CD version:\n");
 		    printf("Defaulting to German original DOS CD\n");
-		    CDType |= (1 << 6);
+		    CDType |= CD_GERMAN;
 		    break;
 	    }
 	} else {
 	    printf("Detected expansion DOS CD\n");
-	    CDType |= (1 << 1) | (1 << 4);
+	    CDType |= CD_EXPANSION | CD_US;
 	}
     }
 
-    if (expansion_cd == -1 || (expansion_cd != 1 && !(CDType & (1 << 1)))) {
+    if (expansion_cd == -1 || (expansion_cd != 1 && !(CDType & CD_EXPANSION))) {
 	expansion_cd = 0;
     } else {
 	expansion_cd = 1;
