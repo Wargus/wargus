@@ -111,6 +111,98 @@
 ;;	* Race human.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(if new-names?
+(define-ui "human" 640 480	; Selector
+    ;	Filler 1
+    (list "graphics/ui/human/640x480/filler-right.png" (+ 176 448) 0)
+
+    ;	Resource line
+    '("graphics/ui/human/640x480/resource.png" 176 0)
+
+    ; gold resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	0
+    (+ 176   0) 0 14 14 (+ 176   0 18) 1)
+    ; wood resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	1
+    (+ 176  65) 0 14 14 (+ 176  65 18) 1)
+    ;  oil resource
+    (list "graphics/ui/gold,wood,oil,mana.png"	2
+    (+ 176 120) 0 14 14 (+ 176 120 18) 1)
+    ;  oge resource
+    (list "graphics/ui/ore,stone,coal.png"	0
+    (+ 176 175) 0 14 14 (+ 176 175 18) 1)
+    ;  stone resource
+    (list "graphics/ui/ore,stone,coal.png"	1
+    (+ 176 230) 0 14 14 (+ 176 230 18) 1)
+    ;  coal resource
+    (list "graphics/ui/ore,stone,coal.png"	2
+    (+ 176 285) 0 14 14 (+ 176 285 18) 1)
+
+    ; food resource
+    (list "graphics/ui/food.png"		0
+    (+ 176 330) 0 14 14 (+ 176 330 18) 1)
+    ; score
+    (list "graphics/ui/score.png"		0
+    (+ 176 409) 0 14 14 (+ 176 409 18) 1)
+
+    ; Info panel
+    (list "graphics/ui/human/infopanel.png" 0 160 176 176)
+
+    ; Completed bar
+    (list color-dark-green  12 313 50 313)
+
+    ; Command button panel
+    (list "graphics/ui/human/640x480/buttonpanel.png" 0 336)
+
+    ; The big map
+    '(176 16 624 464)
+
+    ; Menu button
+    '("graphics/ui/human/640x480/menubutton.png" 0 0)
+
+    ; Minimap
+    '("graphics/ui/human/640x480/minimap.png" 0 24)
+
+    ; Status line
+    '("graphics/ui/human/640x480/statusline.png" 176 464)
+
+    ;	Defines position and size of the different buttons.
+    ; Menu button
+    '( 24   2 128 17 )
+    ; 9 Character portraits
+    '(  6 166  46 38 )
+    '( 62 166  46 38 )
+    '(118 166  46 38 )
+    '(  6 218  46 38 )
+    '( 62 218  46 38 )
+    '(118 218  46 38 )
+    '(  6 270  46 38 )
+    '( 62 270  46 38 )
+    '(118 270  46 38 )
+    ; 9 Buttons interface
+    '(  6 337  46 38 )
+    '( 62 337  46 38 )
+    '(118 337  46 38 )
+    '(  6 384  46 38 )
+    '( 62 384  46 38 )
+    '(118 384  46 38 )
+    '(  6 431  46 38 )
+    '( 62 431  46 38 )
+    '(118 431  46 38 )
+
+    ;	Defines position and size of the training queue buttons.
+    '(  6 216  46 38 )
+    '( 62 216  46 38 )
+    '(118 216  46 38 )
+    '(  6 263  46 38 )
+    '( 62 263  46 38 )
+    '(118 263  46 38 )
+    (list 'cursor-point 'cursor-glass 'cursor-cross
+	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	'cursor-arrow-s 'cursor-arrow-se ) )
+
 (define-ui "human" 640 480	; Selector
     ;	Filler 1
     '("graphic/Map border (Right,Humans).png" 624 0)
@@ -201,6 +293,7 @@
 	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
 	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
 	'cursor-arrow-s 'cursor-arrow-se ) )
+)
 
 (define-ui "human" 800 600	; Selector
     ;	Filler 1
