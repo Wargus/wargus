@@ -99,7 +99,7 @@
 ;;
 (define-menu 'name 'menu-victory 'geometry '(256 176 288 128)
   'image 'panel4 'default '2)
-(define-menu-item 'pos (list 144 11) 'font 'large
+(define-menu-item 'pos (list 144 11) 'font 'large 'init 'victory-init
   'text '("Congratulations!" center)
   'menu 'menu-victory)
 (define-menu-item 'pos (list 144 32) 'font 'large
@@ -126,7 +126,7 @@
 ;;
 (define-menu 'name 'menu-defeated 'geometry '(256 176 288 128)
   'image 'panel4 'default '2)
-(define-menu-item 'pos (list 144 11) 'font 'large
+(define-menu-item 'pos (list 144 11) 'font 'large 'init 'defeated-init
   'text '("You have failed to" center)
   'menu 'menu-defeated)
 (define-menu-item 'pos (list 144 32) 'font 'large
