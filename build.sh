@@ -142,9 +142,9 @@ cp $CONTRIB/freecraft.png $DIR
 cp $CONTRIB/cross.png $DIR/graphics/ui/cursors/
 cp $CONTRIB/mana.png $DIR/graphics/ui/
 cp $CONTRIB/health.png $DIR/graphics/ui/
-cp $CONTRIB/food.png $DIR/graphics/graphics/ui/
-cp $CONTRIB/score.png $DIR/graphics/graphics/ui/
-cp $CONTRIB/ore,stone,coal.png $DIR/graphics/graphics/ui/
+cp $CONTRIB/food.png $DIR/graphics/ui/
+cp $CONTRIB/score.png $DIR/graphics/ui/
+cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui/
 cp $CONTRIB/freecraft.png $DIR/graphics/ui/
 }
 
