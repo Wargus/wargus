@@ -1034,6 +1034,11 @@ DefineUnitType("unit-human-shipyard", { Name = "Shipyard",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true, 
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-oil-patch"},
+                      "distance", { Distance = 3, DistanceType = ">", Type = "unit-orc-oil-platform"},
+					  "distance", { Distance = 3, DistanceType = ">", Type = "unit-human-oil-platform"}
+					}
+				  },
   ShoreBuilding = true,
   CanStore = {"oil"},
   Sounds = {
@@ -1131,6 +1136,9 @@ DefineUnitType("unit-town-hall", { Name = "Town Hall",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true, 
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+				  },
   CanStore = {"wood", "gold"},
   Sounds = {
     "selected", "town-hall-selected",
@@ -1223,6 +1231,11 @@ DefineUnitType("unit-human-refinery", { Name = "Refinery",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true,
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-oil-patch"},
+                      "distance", { Distance = 3, DistanceType = ">", Type = "unit-orc-oil-platform"},
+					  "distance", { Distance = 3, DistanceType = ">", Type = "unit-human-oil-platform"}
+					}
+				  },
   ShoreBuilding = true,
   CanStore = {"oil"},
   Sounds = {
@@ -1254,7 +1267,7 @@ DefineUnitType("unit-human-oil-platform", { Name = "Oil Platform",
   ExplodeWhenKilled = "missile-explosion",
   Type = "naval",
   Building = true, VisibleUnderFog = true, 
-  MustBuildOnTop = "unit-oil-patch",
+  BuildingRules = { { "ontop", { Type = "unit-oil-patch", ReplaceOnDie = true, ReplaceOnBuild = true} } },
   GivesResource = "oil", CanHarvest = true,
   Sounds = {
     "selected", "human-oil-platform-selected",
