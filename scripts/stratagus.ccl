@@ -28,6 +28,8 @@
 ;;
 ;;	$Id$
 
+;; For documentation see stratagus/doc/ccl/ccl.html
+
 (cond ((equal? *scheme* 'guile)
        (load "guile.ccl"))
       ((equal? *scheme* 'siod)
@@ -113,36 +115,11 @@
 ;; Comment this, if you use above
 ;(define play-list (list "music/default.mod"))
 
-;;-----------------------------------------------------------------------------
-
-;;	Set selection style, show what units the user had selected.
-;;		#f			None
-;;		'rectangle		Rectangle around unit
-;;		'circle			Circle around unit
-;;		'alpha-rectangle	Rectangle with alpha around unit
-;;		'alpha-circle		Circle with alpha around unit
-;;		'corners		Draw corners of rectangle
-;;
 (set-selection-style! 'corners)
-
-;;	How the sight range of the selected unit is shown on map.
-;;		#f			None
-;;		'rectangle		Alpha rectangle around unit
-;;		'circle			Alpha circle around unit
-;;		#t			Rectangle around unit
-;;
 (set-show-sight-range! #f)
-;(set-show-sight-range! #t)
-;(set-show-sight-range! 'circle)
-;;	Enable/disable display of attack range of the selected unit on map.
 (set-show-attack-range! #f)
-;(set-show-attack-range! #t)
-
-;;	Enable/disable display of reaction range of the selected unit on map.
 (set-show-reaction-range! #f)
 
-;;	Enable/disable display of the orders of the selected unit on map.
-;(set-show-orders! #t)
 (set-show-orders! 2)
 
 ;;	Enable/disable the short display of the orders after command.
@@ -176,49 +153,25 @@
 ;;		'background-long
 ;;	  )
 
-;;	Define mana-sprite.
-;;
-;;	(mana-sprite file hotx hoty width height)
-;;
-;(mana-sprite	"graphics/ui/mana.png"		 -7  -7   7   7)
-(mana-sprite	"graphics/ui/mana2.png"		  0  -1  31   4)
+;;              file                             hotx hoty width height
+;(mana-sprite	"graphics/ui/mana.png"		 -7   -7    7    7)
+(mana-sprite	"graphics/ui/mana2.png"		  0   -1   31    4)
+;(health-sprite	"graphics/ui/health.png"	  1   -7    7    7)
+(health-sprite	"graphics/ui/health2.png"	  0   -4   31    4)
 
-;;	Define health-sprite.
-;;
-;;	(mana-sprite file hotx hoty width height)
-;;
-;(health-sprite	"graphics/ui/health.png"	  1  -7   7   7)
-(health-sprite	"graphics/ui/health2.png"	  0  -4  31   4)
-
-;;	Uncomment next, to get a health bar to the left of the unit
 ;(show-health-bar)
-
-;;	Uncomment next, to get a health dot to the left of the unit
+;(show-health-vertical)
+;(show-health-horizontal)
 (show-health-dot)
 
-;;	Uncomment next, to get a mana bar to the right of the unit
 ;(show-mana-bar)
-
-;;	Uncomment next, to get a mana dot to the right of the unit
+;(show-mana-vertical)
+;(show-mana-horizontal)
 (show-mana-dot)
 
-;;	Uncomment next, to get no full bars or dots.
 (show-no-full)
-
-;;	Uncomment next, to show always bars or dots.
 ;(show-full)
 
-;;	Uncomment next, to show health bars vertical.
-;(show-health-vertical)
-
-;;	Uncomment next, to show health bars horizontal.
-;(show-health-horizontal)
-
-;;	Uncomment next, to show mana bars vertical.
-;(show-mana-vertical)
-
-;;	Uncomment next, to show mana bars horizontal.
-;(show-mana-horizontal)
 
 ;;	Uncomment next, to show energy bars and dots only for selected units
 ;(show-energy-selected-only)
@@ -232,11 +185,6 @@
 ;;	(shadow-sprite file hotx hoty width height)
 ;;
 (shadow-sprite "graphics/missiles/unit_shadow.png"	3 42	32 32)
-
-;;	Define spell-sprite.
-;;
-;;	(shadow-sprite file hotx hoty width height)
-;;
 (spell-sprite "graphics/ui/bloodlust,haste,slow,invisible,shield.png"
   1 1	16 16)
 

@@ -28,26 +28,6 @@
 ;;
 ;;	$Id$
 
-;;=============================================================================
-;;	Define animations.
-;;
-;;	(define-animations ident 'still script 'move script 'die script
-;;		'attack script)
-;;
-;;	A script is a list of quad numbers.
-;;		(#(Flags Pixel Sleep Frame) (#Flags Pixel Sleep Frame) ...)
-;;	* Format of quad numbers:
-;;		#(Flags Pixel Sleep Frame)
-;;	o Flags are the sum of the following:
-;;		1 Restart - restart animation
-;;		2 Reset   - animation could here be aborted (switch to another)
-;;		4 Sound   - play a sound with the animation
-;;		8 Missile - fire a missile at this point
-;;	o Pixel is the number of pixels to move (if this is a moving animation)
-;;	o Sleep is the number of frames to wait for the next animation
-;;	o Frame is increment to the frame of the image
-;;
-
 ;;------
 ;;	Footman, Grunt, Grom Hellscream, Danath, Korgath Bladefist
 (define-animations 'animations-footman
