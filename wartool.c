@@ -3751,8 +3751,8 @@ int main(int argc,char** argv)
     }
     sprintf(buf, "%s/ccl/wc2-config.ccl", Dir);
     f = fopen(buf, "w");
-    if ( expansion_cd==-1 || (expansion_cd!=1 && (st.st_size != 2811086) &&
-	    (UseMacCd && st.st_size != 2876978)) ) {
+    if ( expansion_cd==-1 || (expansion_cd!=1 && st.st_size != 2811086 &&
+	    st.st_size != 2876978) ) {
         expansion_cd=0;
         fprintf(f, "(define expansion #f)\n");
     } else {
