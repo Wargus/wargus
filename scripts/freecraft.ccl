@@ -32,23 +32,27 @@
 ;;	Edit the next sections to get your look and feel.
 
 ;;	Set the game contrast,brightness,saturation.
-;(set-contrast! 100) (set-brightness! 0) (set-saturation! 100)
-(set-contrast! 110) (set-brightness! 15) (set-saturation! 100)
+(set-contrast! 100) (set-brightness! 0) (set-saturation! 100)
+;(set-contrast! 110) (set-brightness! 15) (set-saturation! 100)
 
 ;;	Enter your default title screen.
 (set-title-screen! "graphics/ui/freecraft.png")
+
 ;;	Enter your title music.
 (set-title-music! "music/default.mod")
+
 ;;	Enter your default menu background.
 (set-menu-background! "graphics/ui/Menu background without title.png")
+
 ;;	Enter your default menu background with title.
 (set-menu-background-with-title!
-  "graphics/ui/Menu background without title.png")
+  "graphics/ui/Menu background with title.png")
+
 ;;	Enter your menu music.
 (set-menu-music! "music/default.mod")
 
-;;	If color-cycle-all is off (#f) only the tileset and global palettes are
-;;	color cycled.  Otherwise all palettes are color cycled.
+;;	If color-cycle-all is off (#f) only the tileset and global palette are
+;;	color cycled.  Otherwise (#t) all palettes are color cycled.
 (set-color-cycle-all! #t)
 ;(set-color-cycle-all! #f)
 
@@ -68,46 +72,49 @@
 ;;
 (set-selection-style! 'corners)
 
-;;	Uncomment next, to show the sight range of the selected unit on map.
+;;	How the sight range of the selected unit is shown on map.
 ;;		#f			None
 ;;		'rectangle		Alpha rectangle around unit
 ;;		'circle			Alpha circle around unit
 ;;		#t			Rectangle around unit
 ;;
-(set-show-sight-range! 'circle)
+(set-show-sight-range! #f)
+;(set-show-sight-range! #t)
 
-;;	Uncomment next, to show the reaction range of the selected unit on map.
-(set-show-reaction-range! 'circle)
+;;	Enable/disable display of attack range of the selected unit on map.
+(set-show-attack-range! #f)
+;(set-show-attack-range! #t)
 
-;;	Uncomment next, to show the attack range of the selected unit on map.
-(set-show-attack-range! #t)
+;;	Enable/disable display of reaction range of the selected unit on map.
+(set-show-reaction-range! #f)
 
-;;	Uncomment next, to show the orders of the selected unit on map.
-(set-show-orders! #t)
+;;	Enable/disable display of the orders of the selected unit on map.
+;(set-show-orders! #t)
+(set-show-orders! #f)
 
-;;	Define the mana/energie decoration.
+;;	Define the mana/energy decoration.
 ;;	FIXME: Planned?
 ;;
-;;	(set-mana-style! 
+;;	(set-mana-style!
 ;;		'sprite (...)
 ;;		'horizontal
 ;;		'vertical
 ;;		'no-full
 ;;		'on-top
-;;		'selected-only 
+;;		'only-selected
 ;;		'background-long
 ;;	  )
 
 ;;	Define the health decoration.
 ;;	FIXME: Planned?
 ;;
-;;	(set-health-style! 
+;;	(set-health-style!
 ;;		'sprite (...)
 ;;		'horizontal
 ;;		'vertical
 ;;		'no-full
 ;;		'on-top
-;;		'selected-only 
+;;		'only-selected
 ;;		'background-long
 ;;	  )
 
@@ -141,7 +148,7 @@
 (show-no-full)
 
 ;;	Uncomment next, to show always bars or dots.
-(show-full)
+;(show-full)
 
 ;;	Uncomment next, to show health bars vertical.
 ;(show-health-vertical)
@@ -162,24 +169,22 @@
 ;;	FIXME: planned feature
 (decoration-on-top)
 
-;;	Uncomment next, to show the original game resource line.
+;;	Edit this to enable/disable the original game resource line.
 (set-original-resources! #f)
 ;(set-original-resources! #t)
 
-;;	Uncomment next, to enable fancy building (random mirrowing buildings)
+;;	Uncomment next, to enable fancy building (random mirroring buildings)
 (set-fancy-buildings! #t)
 ;(set-fancy-buildings! #f)
 
 ;;-----------------------------------------------------------------------------
-;;	Game modification 
+;;	Game modification
 
-;;	Uncomment next to enable hit point regeneration for all units
+;;	Edit this to enable/disable hit point regeneration for all units
 ;(set-hitpoint-regeneration! #t)
+(set-hitpoint-regeneration! #f)
 
-;;	Uncomment next to disable hit point regeneration for all units
-;(set-hitpoint-regeneration! #f)
-
-;;	Uncomment next, to get extended features.
+;;	Edit this to enable/disable extended features.
 ;;		Currently enables some additional buttons.
 (define extensions #t)
 ;(define extensions #f)
@@ -197,7 +202,7 @@
 (set-forest-regeneration! 0)
 ;(set-forest-regeneration! 5)
 
-;;	Set depleted % for gold-mines. (0 = disabled)
+;;	Set depleted % for gold-mines. (n percent, 0 = disabled)
 (set-goldmine-depleted! 0)
 ;(set-goldmine-depleted! 5)
 
@@ -205,10 +210,12 @@
 
 ;;	If you prefer fighters are attacking by right clicking empty space
 ;;	uncomment this (you must comment the next).
+;;	FIXME: this option will be renamed
 (right-button-attacks)
 
 ;;	If you prefer fighters are moving by right clicking empty space
 ;;	uncomment this.
+;;	FIXME: this option will be renamed
 (right-button-moves)
 
 ;;	Change next, for the wanted mouse speed. (only SVGALIB)
@@ -217,41 +224,39 @@
 ;;	Change next, for the wanted mouse scale. (only SVGALIB)
 (set-mouse-scale! 1)
 
-;;	Uncomment next, to disable mouse scrolling.
+;;	Edit this to enable/disable mouse scrolling.
 (set-mouse-scroll! #t)
 ;(set-mouse-scroll! #f)
 
-;;	Uncomment next, to disable keyboard scrolling.
+;;	Edit this to enable/disable keyboard scrolling.
 (set-key-scroll! #t)
 ;(set-key-scroll! #f)
 
-;;	Keyboard scroll speed in frames (1=each frame,2 each second,...)
+;;	Set keyboard scroll speed in frames (1=each frame,2 each second,...)
 (set-key-scroll-speed! 1)
 
-;;	Mouse scroll speed in frames (1=each frame,2 each second,...)
+;;	Set mouse scroll speed in frames (1=each frame,2 each second,...)
 (set-mouse-scroll-speed! 1)
 
-;;	Change next, for the wanted double-click delay.
+;;	Change next, for the wanted double-click delay (in ms).
 (set-double-click-delay! 300)
 
-;;	Change next, for the wanted hold-click delay.
+;;	Change next, for the wanted hold-click delay (in ms).
 (set-hold-click-delay! 1000)
 
-;;	Uncomment next, to disable the display of the command keys in buttons.
+;;	Edit this to enable/disable the display of the command keys in buttons.
 (set-show-command-key! #t)
 ;(set-show-command-key! #f)
 
-;;	Uncomment next, to reverse middle mouse button map move direction.
+;;	Edit this reverse middle mouse button map move direction.
 (set-reverse-map-move! #f)
 ;(set-reverse-map-move! #t)
 
 ;;	Uncomment next, to reveal the complete map.
 ;(reveal-map)
 
-;;	Uncomment next, to enable the fog of war.
-;(set-fog-of-war! #t)
-
-;;	Uncomment next, to disable the fog of war.
+;;	Choose your default fog of war state (enabled #t/disabled #f).
+(set-fog-of-war! #t)
 ;(set-fog-of-war! #f)
 
 ;;	Choose your default for minimap with/without terrain.
@@ -259,6 +264,8 @@
 ;(set-minimap-terrain! #f)
 
 ;;	Choose your default for the fog of war style.
+;; Planned	(set-fog-of-war-style! 'original)
+;; 		(set-fog-of-war-style! 'alpha-gray)
 ;(original-fog-of-war)
 (gray-fog-of-war)
 
@@ -270,6 +277,7 @@
 ;;-----------------------------------------------------------------------------
 
 ;;	Edit next to increase the speed, for debugging.
+;;	FIXME: change to new syntax (set-...!)
 
 ;;	Decrease the mining time by this factor.
 (speed-mine 10)
@@ -297,10 +305,10 @@
 
 ;;-----------------------------------------------------------------------------
 
-;;	Change the global sound volume
+;;	Change the global sound volume (from 0 min to 256 max)
 (set-sound-volume! 128)
 
-;;	Change the music volume
+;;	Change the music volume (from 0 min to 256 max)
 (set-music-volume! 128)
 
 ;;-----------------------------------------------------------------------------
