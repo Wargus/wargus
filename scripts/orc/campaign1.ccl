@@ -27,3 +27,21 @@
 ;;	Define the campaign
 ;;
 ;;	(define-campagin 'ident 'name "name" 'campaign (list elements)
+(define-campaign 'orc 'name "The orc campaign"
+  'campaign (list
+	'show-picture
+	  "campaigns/orc/interface/Act I   - Seas of Blood.png"
+	'play-level "campaigns/orc/level01o.pud"
+	'play-level "campaigns/orc/level02o.pud"
+	'play-level "campaigns/orc/level03o.pud"
+	'play-level "campaigns/orc/level04o.pud"
+	'play-level "campaigns/orc/level05o.pud"
+	'play-level "campaigns/orc/level06o.pud"
+	'play-level "campaigns/orc/level07o.pud"
+	'play-level "campaigns/orc/level08o.pud"
+	'play-level "campaigns/orc/level09o.pud"
+	'play-level "campaigns/orc/level10o.pud"
+	'play-level "campaigns/orc/level11o.pud"
+	'play-level "campaigns/orc/level12o.pud"
+	'play-level "campaigns/orc/level13o.pud"
+	'play-level "campaigns/orc/level14o.pud" ) )

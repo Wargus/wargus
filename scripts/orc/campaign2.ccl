@@ -27,3 +27,19 @@
 ;;	Define the campaign
 ;;
 ;;	(define-campagin 'ident 'name "name" 'campaign (list elements)
+(define-campaign 'orc-exp 'name "The orc expansion campaign"
+  'campaign (list
+	'show-picture
+	  "campaigns/orc-exp/interface/Act I  - Draenor, the Red World.png"
+	'play-level "campaigns/orc-exp/levelx01o.pud"
+	'play-level "campaigns/orc-exp/levelx02o.pud"
+	'play-level "campaigns/orc-exp/levelx03o.pud"
+	'play-level "campaigns/orc-exp/levelx04o.pud"
+	'play-level "campaigns/orc-exp/levelx05o.pud"
+	'play-level "campaigns/orc-exp/levelx06o.pud"
+	'play-level "campaigns/orc-exp/levelx07o.pud"
+	'play-level "campaigns/orc-exp/levelx08o.pud"
+	'play-level "campaigns/orc-exp/levelx09o.pud"
+	'play-level "campaigns/orc-exp/levelx10o.pud"
+	'play-level "campaigns/orc-exp/levelx11o.pud"
+	'play-level "campaigns/orc-exp/levelx12o.pud" ) )
