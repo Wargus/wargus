@@ -30,6 +30,7 @@
 --      $Id$
 
 
+UnitStill = {"frame 0", "wait 4", "random-goto 99 no-rotate", "random-rotate 1", "label no-rotate", "wait 1",}
 BuildingStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
 
 Load("scripts/human/anim.lua")

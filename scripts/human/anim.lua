@@ -34,7 +34,7 @@
 -- footman and arthor-literios
 --
 
-local FootmanStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
+local FootmanStill = UnitStill
 local FootmanMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "frame 5", "move 3", "wait 1",
     "frame 5", "move 3", "wait 2", "frame 10", "move 2", "wait 1",
     "frame 10", "move 3", "wait 1", "frame 0", "move 2", "wait 1",
@@ -64,7 +64,7 @@ DefineNewAnimations("animations-arthor-literios", {
 
 
 DefineNewAnimations("animations-peasant", {
-  Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
+  Still = UnitStill,
   Move = {"unbreakable begin", "frame 0", "move 3", "wait 2", "frame 5", "move 3", "wait 1",
     "frame 5", "move 3", "wait 2", "frame 10", "move 2", "wait 1",
     "frame 10", "move 3", "wait 1", "frame 0", "move 2", "wait 1",
@@ -106,7 +106,7 @@ DefineNewAnimations("animations-ballista", {
 -- knight, paladin, knight-rider, wise-man, and man-of-light
 --
 
-local KnightStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
+local KnightStill = UnitStill
 local KnightMove = {"unbreakable begin","frame 0", "move 3", "wait 1", "frame 5", "move 3", "wait 1",
     "frame 5", "move 4", "wait 2", "frame 10", "move 3", "wait 1",
     "frame 10", "move 3", "wait 1", "frame 15", "move 3", "wait 1",
@@ -165,7 +165,7 @@ DefineNewAnimations("animations-man-of-light", {
 -- archer, ranger, and female-hero
 --
 
-local ArcherStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
+local ArcherStill = UnitStill
 local ArcherMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "frame 5", "move 3", "wait 1",
     "frame 5", "move 3", "wait 2", "frame 10", "move 2", "wait 1",
     "frame 10", "move 3", "wait 1", "frame 0", "move 2", "wait 1",
@@ -204,7 +204,7 @@ DefineNewAnimations("animations-female-hero", {
 -- mage and white-mage
 --
 
-local MageStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
+local MageStill = UnitStill
 local MageMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "frame 5", "move 3", "wait 1",
     "frame 5", "move 3", "wait 2", "frame 10", "move 2", "wait 1",
     "frame 10", "move 3", "wait 2", "frame 0", "move 2", "wait 1",
@@ -235,7 +235,7 @@ DefineNewAnimations("animations-white-mage", {
 
 
 DefineNewAnimations("animations-dwarves", {
-  Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
+  Still = UnitStill,
   Move = {"unbreakable begin", "frame 0", "move 3", "wait 2", "frame 10", "move 3", "wait 1",
     "frame 10", "move 4", "wait 2", "frame 25", "move 3", "wait 1",
     "frame 25", "move 3", "wait 2", "frame 40", "move 3", "wait 1",
