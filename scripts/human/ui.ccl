@@ -10,12 +10,11 @@
 ;;
 ;;	ui.ccl		-	Define the human user interface
 ;;
-;;	(c) Copyright 2001 by Lutz Sammer
+;;	(c) Copyright 2001,2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
-;;	by the Free Software Foundation; either version 2 of the License,
-;;	or (at your option) any later version.
+;;	by the Free Software Foundation; only version 2 of the License.
 ;;
 ;;	FreeCraft is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -47,59 +46,6 @@
 ;;	Define the user interface
 ;;
 ;;	(define-ui "race" screen-width screen-height
-;;		(list "filler" x y)
-;;		(list "resource" x y)
-;;		(list "gold-icon" nummer x y width height text-x text-y)
-;;		(list "wood-icon" nummer x y width height text-x text-y)
-;;		(list "oil-icon" nummer x y width height text-x text-y)
-;;		(list "ore-icon" nummer x y width height text-x text-y)
-;;		(list "stone-icon" nummer x y width height text-x text-y)
-;;		(list "coal-icon" nummer x y width height text-x text-y)
-;;		(list "food-icon" nummer x y width height text-x text-y)
-;;		(list "score-icon" nummer x y width height text-x text-y)
-;;		(list "infopanel" x y width height)
-;;		(list complete-bar-color x y text-x text-y)
-;;		(list "buttonpanel" x y)
-;;		(list map-x map-y end-x end-y)
-;;		(list "menubutton" x y)
-;;		(list "minimap" x y)
-;;		(list "statusline" x y)
-;;		    ; Menu-button F10
-;;		(list menu-button-x menu-button-y width height)
-;;		    ; 9 Character portraits
-;;		(list selected-1-x selected-1-y width height)
-;;		(list selected-2-x selected-2-y width height)
-;;		(list selected-3-x selected-3-y width height)
-;;		(list selected-4-x selected-4-y width height)
-;;		(list selected-5-x selected-5-y width height)
-;;		(list selected-6-x selected-6-y width height)
-;;		(list selected-7-x selected-7-y width height)
-;;		(list selected-8-x selected-8-y width height)
-;;		(list selected-9-x selected-9-y width height)
-;;		    ; 9 Buttons interface
-;;		(list button-1-x button-1-y width height)
-;;		(list button-2-x button-2-y width height)
-;;		(list button-3-x button-3-y width height)
-;;		(list button-4-x button-4-y width height)
-;;		(list button-5-x button-5-y width height)
-;;		(list button-6-x button-6-y width height)
-;;		(list button-7-x button-7-y width height)
-;;		(list button-8-x button-8-y width height)
-;;		(list button-9-x button-9-y width height)
-;;		    ;	6 training queue buttons.
-;;		(list train-1-x train-1-y width height)
-;;		(list train-2-x train-2-y width height)
-;;		(list train-3-x train-3-y width height)
-;;		(list train-4-x train-4-y width height)
-;;		(list train-5-x train-5-y width height)
-;;		(list train-6-x train-6-y width height)
-;;		    ;	Cursors used by engine
-;;		(list
-;;		  'cursor-point 'cursor-glass 'cursor-cross
-;;		  'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
-;;		  'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne
-;;		  'cursor-arrow-n 'cursor-arrow-nw 'cursor-arrow-w
-;;		  'cursor-arrow-sw 'cursor-arrow-s 'cursor-arrow-se ) )
 ;;
 ;;	This defines the position and sizes of the different user
 ;;	interface sections.
@@ -397,7 +343,7 @@
     '("graphics/ui/human/panel 4.png")
     '("graphics/ui/human/panel 5.png") )
 
-(define-ui "human" 1280 1024	; Selector
+(define-ui "human" 1280 960	; Selector
     ;	Filler 1
     (list "graphics/ui/human/640x480/filler-right.png" (+ 176 1088) 0)
 
@@ -440,7 +386,7 @@
     (list "graphics/ui/human/640x480/buttonpanel.png" 0 336)
 
     ; The big map
-    '(176 16 1264 1008)
+    '(176 16 1264 944)
 
     ; Menu button
     '("graphics/ui/human/640x480/menubutton.png" 0 0)
@@ -449,7 +395,7 @@
     '("graphics/ui/human/640x480/minimap.png" 0 24)
 
     ; Status line
-    '("graphics/ui/human/640x480/statusline.png" 176 1008)
+    '("graphics/ui/human/640x480/statusline.png" 176 944)
 
     ;	Defines position and size of the different buttons.
     ; Menu button
@@ -588,3 +534,81 @@
     '("graphics/ui/human/panel 3.png")
     '("graphics/ui/human/panel 4.png")
     '("graphics/ui/human/panel 5.png") )
+
+(define-new-ui 'orc1 640 480	; Selector
+  'normal-font-color 3 'reverse-font-color 7
+  'filler-1 '(pos (624 0) image "graphics/ui/orc/640x480/filler-right.png")
+  'resources '(pos (176 0) image "graphics/ui/orc/640x480/resource.png"
+    gold (icon-pos (176 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
+      icon-frame 0 icon-size (14 14) text-pos (194 1))
+    wood (icon-pos (241 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
+      icon-frame 1 icon-size (14 14) text-pos (259 1))
+    oil (icon-pos (296 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
+      icon-frame 2 icon-size (14 14) text-pos (314 1))
+    ore (icon-pos (351 0) icon-file "graphics/ui/ore,stone,coal.png"
+      icon-frame 0 icon-size (14 14) text-pos (369 1))
+    stone (icon-pos (406 0) icon-file "graphics/ui/ore,stone,coal.png"
+      icon-frame 1 icon-size (14 14) text-pos (424 1))
+    coal (icon-pos (461 0) icon-file "graphics/ui/ore,stone,coal.png"
+      icon-frame 2 icon-size (14 14) text-pos (479 1))
+    food (icon-pos (506 0) icon-file "graphics/ui/food.png"
+      icon-frame 0 icon-size (14 14) text-pos (524 1))
+    score (icon-pos (566 0) icon-file "graphics/ui/score.png"
+      icon-frame 0 icon-size (14 14) text-pos (584 1)))
+  'info-panel '(pos (0 160) image "graphics/ui/orc/infopanel.png"
+    size (176 176)
+    complete-bar (color 149 pos (12 313) text-pos (50 313)))
+  'button-panel '(pos (0 336) image "graphics/ui/orc/640x480/buttonpanel.png")
+  'map-area '(pos (176 16) size (624 464))
+  'menu-button '(pos (0 0) image "graphics/ui/orc/640x480/menubutton.png")
+  'minimap '(pos (0 24) image "graphics/ui/orc/640x480/minimap.png")
+  'status-line '(pos (176 464) image "graphics/ui/orc/640x480/statusline.png")
+; 0 Menu 1-9 Info 10-19 Button
+  'buttons '(
+    (pos ( 24   2) size ( 128  17))
+    (pos (  6 166) size (  46  38))
+    (pos ( 62 166) size (  46  38))
+    (pos (118 166) size (  46  38))
+    (pos (  6 220) size (  46  38))
+    (pos ( 62 220) size (  46  38))
+    (pos (118 220) size (  46  38))
+    (pos (  6 274) size (  46  38))
+    (pos ( 62 274) size (  46  38))
+    (pos (118 274) size (  46  38))
+    (pos (  6 337) size (  46  38))
+    (pos ( 62 337) size (  46  38))
+    (pos (118 337) size (  46  38))
+    (pos (  6 384) size (  46  38))
+    (pos ( 62 384) size (  46  38))
+    (pos (118 384) size (  46  38))
+    (pos (  6 431) size (  46  38))
+    (pos ( 62 431) size (  46  38))
+    (pos (118 431) size (  46  38)))
+; 0-5 Training
+  'buttons-2 '(
+    (pos (  6 216) size (  46  38))
+    (pos ( 62 216) size (  46  38))
+    (pos (118 216) size (  46  38))
+    (pos (  6 263) size (  46  38))
+    (pos ( 62 263) size (  46  38))
+    (pos (118 263) size (  46  38)))
+  'cursors '(point cursor-point
+    glass cursor-glass
+    cross cursor-cross
+    yellow cursor-yellow-hair
+    green cursor-green-hair
+    red cursor-red-hair
+    scroll cursor-scroll
+    arrow-e cursor-arrow-e
+    arrow-ne cursor-arrow-ne
+    arrow-n cursor-arrow-n
+    arrow-nw cursor-arrow-nw
+    arrow-w cursor-arrow-w
+    arrow-sw cursor-arrow-sw
+    arrow-s cursor-arrow-s
+    arrow-se cursor-arrow-se)
+  'panels '(game-menu "graphics/ui/orc/panel 1.png"
+    menue-1 "graphics/ui/orc/panel 2.png"
+    menue-2 "graphics/ui/orc/panel 3.png"
+    victory "graphics/ui/orc/panel 4.png"
+    scenario "graphics/ui/orc/panel 5.png") )

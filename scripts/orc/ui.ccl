@@ -10,12 +10,11 @@
 ;;
 ;;	ui.ccl		-	Define the orcish user interface
 ;;
-;;	(c) Copyright 2001 by Lutz Sammer
+;;	(c) Copyright 2001,2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
-;;	by the Free Software Foundation; either version 2 of the License,
-;;	or (at your option) any later version.
+;;	by the Free Software Foundation; only version 2 of the License.
 ;;
 ;;	FreeCraft is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -397,7 +396,7 @@
     '("graphics/ui/orc/panel 4.png")
     '("graphics/ui/orc/panel 5.png") )
 
-(define-ui "orc" 1280 1024	; Selector
+(define-ui "orc" 1280 960	; Selector
     ;	Filler 1
     (list "graphics/ui/orc/640x480/filler-right.png" (+ 176 1088) 0)
 
@@ -440,7 +439,7 @@
     (list "graphics/ui/orc/640x480/buttonpanel.png" 0 336)
 
     ; The big map
-    '(176 16 1264 1008)
+    '(176 16 1264 944)
 
     ; Menu button
     '("graphics/ui/orc/640x480/menubutton.png" 0 0)
@@ -449,7 +448,7 @@
     '("graphics/ui/orc/640x480/minimap.png" 0 24)
 
     ; Status line
-    '("graphics/ui/orc/640x480/statusline.png" 176 1008)
+    '("graphics/ui/orc/640x480/statusline.png" 176 944)
 
     ;	Defines position and size of the different buttons.
     ; Menu button
