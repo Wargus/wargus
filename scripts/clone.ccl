@@ -126,6 +126,11 @@
 ;;	You can do all the above with this
 (speeds 1)
 
+;; a* configuration
+(no-a-star)
+(a-star-fixed-unit-cost 1000)
+(a-star-moving-unit-cost 2)
+
 ;;-----------------------------------------------------------------------------
 ;;	Definitions-Part
 ;;-----------------------------------------------------------------------------
