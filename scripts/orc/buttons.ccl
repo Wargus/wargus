@@ -28,13 +28,6 @@
 ;;
 ;;	$Id$
 
-;;----------------------------------------------------------------------------
-;;	Define unit-button.
-;;
-;;	(define-button 'pos n 'level n 'icon ident 'action name ['value value]
-;;		['allowed check ['values]] 'key key 'hint hint 'for-unit units)
-;;
-
 ;; general commands -- almost all units have it -------------------------------
 
 (define-button 'pos 1 'level 0 'icon 'icon-move-peon

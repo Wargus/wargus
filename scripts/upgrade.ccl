@@ -32,16 +32,7 @@
 (ccl:load "ccl/human/upgrade.ccl")
 (ccl:load "ccl/orc/upgrade.ccl")
 
-;;=============================================================================
-;;
-;;	Define which units/upgrades are allowed.
-;;		A: allowed, E: enabled, F: forbidden, R: researched
-;;
-;;	(define-allow unit/upgrade "AAAAAAAAAAAAAAAA")
-;;				    ^- player 0 ... 15
-;;
 ;;	NOTE: Save can generate this table.
-;;
 
 (define-allow 'unit-nothing-22			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-nothing-24			"AAAAAAAAAAAAAAAA")

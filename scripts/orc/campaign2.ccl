@@ -28,10 +28,6 @@
 ;;
 ;;	$Id$
 
-;;=============================================================================
-;;	Define the campaign
-;;
-;;	(define-campagin 'ident 'name "name" 'campaign (list elements)
 (define-campaign 'orc-exp 'name "O~!rc expansion levels"
   'campaign (list
 	'show-picture (list

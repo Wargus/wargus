@@ -28,17 +28,6 @@
 ;;
 ;;	$Id$
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;=============================================================================
-;;	Define the upgrades
-;;
-;;	(define-upgrade upgrade-name 'icon icon 'costs #( costs ))
-;;
-;;	upgrade-name	is the identifier of the upgrade
-;;	icon		is the icon shown for upgrading.
-;;	costs		are the costs of the upgrade
-;;			(time gold wood oil ore stone coal)
-;;
 ;;	NOTE: Save can generate this table.
 
 (define-upgrade 'upgrade-battle-axe1 'icon 'icon-battle-axe2
@@ -95,17 +84,6 @@
 (define-upgrade 'upgrade-death-and-decay 'icon 'icon-death-and-decay
   'costs #(   200  2000     0     0     0     0     0))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;=============================================================================
-;;	Define the upgrade modifiers
-;;
-;;	(define-modifier upgrade-name '(modifiers) ... )
-;;
-;,	This does the real upgrades.
-;;
-;;	upgrade-name	is the identifier of the upgrade modifier
-;;	modifiers	is a pair of the effect name and value.
-;;
 ;;	NOTE: Save can generate this table.
 
 (define-modifier 'upgrade-battle-axe1
@@ -225,18 +203,7 @@
   '(apply-to unit-death-knight) '(apply-to unit-ice-bringer)
   '(apply-to unit-evil-knight))
 
-;;=============================================================================
-;;
-;;	Define which units/upgrades are allowed.
-;;		A: allowed, E: enabled, F: forbidden, R: researched
-;;
-;;	(define-allow unit/upgrade "AAAAAAAAAAAAAAAA")
-;;				    ^- player 0 ... 15
-;;
 ;;	NOTE: Save can generate this table.
-;;
-
-;;	- units
 
 (define-allow 'unit-grunt			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-peon			"AAAAAAAAAAAAAAAA")
@@ -314,20 +281,6 @@
 (define-allow 'upgrade-runes			"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-death-and-decay		"AAAAAAAAAAAAAAAA")
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;=============================================================================
-;;	Define the dependencies
-;;
-;;	(define-dependency unit/upgrade
-;;		'( required-unit/upgrade count ... ) ['or ...] )
-;;
-;;	Define the dependencies of an unit or upgrade.
-;;
-;;	unit/upgrade	Dependencies for this unit or upgrade.
-;;	required-unit/upgrade	Units required to build or research.
-;;	count		Number of units required.
-;;	'or		Alternative set of units/upgrades required.
-;;
 ;;	NOTE: Save can generate this table.
 
 ;;	- orc land forces
