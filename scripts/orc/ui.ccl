@@ -46,6 +46,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define (orc_screen screen_width screen_height)
+  (define info_panel_x 0)
+  (define info_panel_y 160)
+  (define icon_size '(46 38))
 
   (define-ui 'orc screen_width screen_height
     'normal-font-color 'yellow
@@ -75,15 +78,85 @@
       'score (list 'file "graphics/ui/score.png" 'row 0
         'pos (list (- screen_width 16 68) 0) 'size '(14 14) 'text-pos (list (+ (- screen_width 16 68) 18) 1)))
 
-    'info-panel (list "graphics/ui/orc/infopanel.png" 0 160 176 176)
-
-    'completed-bar '(
-      color (48 100 4)
-      pos ( 12 313)
-      size (152 14)
-      text "% Complete"
-      font game
-      text-pos ( 50 313))
+    'info-panel (list
+      'panel (list
+        'file "graphics/ui/orc/infopanel.png"
+        'pos (list info_panel_x info_panel_y)
+        'size '(176 176)
+      )
+      'selected (list
+        'single (list
+          'icon (list
+            'pos '(  6 166) 'size icon_size))
+        'multiple (list
+          'icons (list
+            (list 'pos '(  6 166) 'size icon_size)
+            (list 'pos '( 62 166) 'size icon_size)
+            (list 'pos '(118 166) 'size icon_size)
+            (list 'pos '(  6 220) 'size icon_size)
+            (list 'pos '( 62 220) 'size icon_size)
+            (list 'pos '(118 220) 'size icon_size)
+            (list 'pos '(  6 274) 'size icon_size)
+            (list 'pos '( 62 274) 'size icon_size)
+            (list 'pos '(118 274) 'size icon_size)))
+      )
+      'training (list
+        'single (list
+          'text (list
+            'text "Training:"
+            'font 'game
+            'pos (list (+ info_panel_x 37) (+ info_panel_y 8 78)))
+          'icon (list
+            'pos (list (+ info_panel_x 107) (+ info_panel_y 8 70))
+            'size icon_size)
+        )
+        'multiple (list
+          'icons (list
+            (list 'pos '(  6 216) 'size icon_size)
+            (list 'pos '( 62 216) 'size icon_size)
+            (list 'pos '(118 216) 'size icon_size)
+            (list 'pos '(  6 263) 'size icon_size)
+            (list 'pos '( 62 263) 'size icon_size)
+            (list 'pos '(118 263) 'size icon_size))
+        )
+      )
+      'upgrading (list
+        'text (list
+          'text "Upgrading:"
+          'font 'game
+          'pos (list (+ info_panel_x 29) (+ info_panel_y 8 78)))
+        'icon (list
+          'pos (list (+ info_panel_x 107) (+ info_panel_y 8 70))
+          'size icon_size)
+      )
+      'researching (list
+        'text (list
+          'text "Researching:"
+          'font 'game
+          'pos (list (+ info_panel_x 16) (+ info_panel_y 8 78)))
+        'icon (list
+          'pos (list (+ info_panel_x 107) (+ info_panel_y 8 70))
+          'size icon_size)
+      )
+      'transporting (list
+        'icons (list
+          (list 'pos '(  6 220) 'size icon_size)
+          (list 'pos '( 62 220) 'size icon_size)
+          (list 'pos '(118 220) 'size icon_size)
+          (list 'pos '(  6 274) 'size icon_size)
+          (list 'pos '( 62 274) 'size icon_size)
+          (list 'pos '(118 274) 'size icon_size))
+      )
+      'completed-bar (list
+        'color '(48 100 4)
+        'pos '( 12 313)
+        'size '(152 14)
+        'text (list
+          'text "% Complete"
+          'font 'game
+          'pos '( 50 313))
+      )
+    )
 
     'button-panel (list
       (string-append "graphics/ui/orc/"
@@ -129,33 +202,16 @@
       caption "Diplomacy"
       style network)
 
-    'info-buttons '(
-      (pos (  6 166) size (46 38))
-      (pos ( 62 166) size (46 38))
-      (pos (118 166) size (46 38))
-      (pos (  6 220) size (46 38))
-      (pos ( 62 220) size (46 38))
-      (pos (118 220) size (46 38))
-      (pos (  6 274) size (46 38))
-      (pos ( 62 274) size (46 38))
-      (pos (118 274) size (46 38)))
-    'training-buttons '(
-      (pos (  6 216) size (46 38))
-      (pos ( 62 216) size (46 38))
-      (pos (118 216) size (46 38))
-      (pos (  6 263) size (46 38))
-      (pos ( 62 263) size (46 38))
-      (pos (118 263) size (46 38)))
-    'button-buttons '(
-      (pos (  6 337) size (46 38))
-      (pos ( 62 337) size (46 38))
-      (pos (118 337) size (46 38))
-      (pos (  6 384) size (46 38))
-      (pos ( 62 384) size (46 38))
-      (pos (118 384) size (46 38))
-      (pos (  6 431) size (46 38))
-      (pos ( 62 431) size (46 38))
-      (pos (118 431) size (46 38)))
+    'button-buttons (list
+      (list 'pos '(  6 337) 'size icon_size)
+      (list 'pos '( 62 337) 'size icon_size)
+      (list 'pos '(118 337) 'size icon_size)
+      (list 'pos '(  6 384) 'size icon_size)
+      (list 'pos '( 62 384) 'size icon_size)
+      (list 'pos '(118 384) 'size icon_size)
+      (list 'pos '(  6 431) 'size icon_size)
+      (list 'pos '( 62 431) 'size icon_size)
+      (list 'pos '(118 431) 'size icon_size))
 
     'cursors '(
       point cursor-point
