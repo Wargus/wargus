@@ -41,7 +41,20 @@
 	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
 	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
 	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone)
+    (list 'build 'unit-peasant-with-gold
+	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-elven-lumber-mill
+	'unit-human-blacksmith 'unit-human-watch-tower 'unit-human-wall
+	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
+	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone)
+    (list 'build 'unit-peasant-with-wood
+	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-elven-lumber-mill
+	'unit-human-blacksmith 'unit-human-watch-tower 'unit-human-wall
+	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
+	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone)
     (list 'build 'unit-human-oil-tanker 'unit-human-oil-platform)
+    (list 'build 'unit-human-oil-tanker-full 'unit-human-oil-platform)
     ;;
     ;;	Building can train which units.
     ;;
@@ -88,7 +101,14 @@
     ;;	Workers can collect which resource.
     ;;
     (list 'collect 'unit-peasant 'gold 'wood 'ore 'stone 'coal)
-    (list 'collect 'unit-human-oil-tanker 'oil ) )
+    (list 'collect 'unit-human-oil-tanker 'oil )
+    ;;
+    ;;	Workers with resource.
+    ;;
+    (list 'with-goods 'unit-peasant-with-gold 'gold)
+    (list 'with-goods 'unit-peasant-with-wood 'wood)
+    (list 'with-goods 'unit-human-oil-tanker-full 'oil )
+    (list 'unit-limit 'unit-pig-farm 'food) )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race orc.
@@ -105,7 +125,22 @@
 	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
 	'unit-altar-of-storms
 	'unit-dragon-roost 'unit-dark-portal 'unit-runestone)
+    (list 'build 'unit-peon-with-gold
+	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall
+	'unit-troll-lumber-mill 'unit-orc-blacksmith 'unit-orc-watch-tower
+	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
+	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-altar-of-storms
+	'unit-dragon-roost 'unit-dark-portal 'unit-runestone)
+    (list 'build 'unit-peon-with-wood
+	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall
+	'unit-troll-lumber-mill 'unit-orc-blacksmith 'unit-orc-watch-tower
+	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
+	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-altar-of-storms
+	'unit-dragon-roost 'unit-dark-portal 'unit-runestone)
     (list 'build 'unit-orc-oil-tanker 'unit-orc-oil-platform)
+    (list 'build 'unit-orc-oil-tanker-full 'unit-orc-oil-platform)
     ;;
     ;;	Building can train which units.
     ;;
@@ -153,7 +188,14 @@
     ;;	Workers can collect which resource.
     ;;
     (list 'collect 'unit-peon 'gold 'wood 'ore 'stone 'coal)
-    (list 'collect 'unit-orc-oil-tanker 'oil ) )
+    (list 'collect 'unit-orc-oil-tanker 'oil )
+    ;;
+    ;;	Workers with resource.
+    ;;
+    (list 'with-goods 'unit-peon-with-gold 'gold)
+    (list 'with-goods 'unit-peon-with-wood 'wood)
+    (list 'with-goods 'unit-orc-oil-tanker-full 'oil )
+    (list 'unit-limit 'unit-pig-farm 'food) )
 
 ;;=============================================================================
 ;;
@@ -177,6 +219,9 @@
     (ai:need 'unit-human-barracks)
     (ai:set  'unit-peasant 1)
     (ai:wait 'unit-peasant)
+    (ai:set  'unit-peasant 9)
+    (ai:set  'unit-footmen 3)
+    (ai:wait  'unit-footmen 3)
 
     (writes nil "AI 1!\n")
     (writes nil "AI 2!\n")
@@ -196,6 +241,9 @@
     (ai:need 'unit-orc-barracks)
     (ai:set  'unit-peon 1)
     (ai:wait 'unit-peon)
+    (ai:set  'unit-peon 9)
+    (ai:set  'unit-grunt 3)
+    (ai:wait  'unit-grunt 3)
 
     (writes nil "AI 1!\n")
     (writes nil "AI 2!\n")
