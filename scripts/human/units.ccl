@@ -35,6 +35,7 @@
   'costs '(time 60 gold 600)
   'speed 10
   'hit-points 60
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
   'armor 2 'basic-damage 6 'piercing-damage 3 'missile 'missile-none
@@ -62,10 +63,12 @@
 (define-unit-type 'unit-peasant 'name "Peasant"
   'files '(tileset-summer "human/units/peasant.png")
   'size '(72 72)
+  'draw-level 19
   'animations 'animations-peasant 'icon 'icon-peasant
   'costs '(time 45 gold 400)
   'speed 10
   'hit-points 30
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
   'basic-damage 3 'piercing-damage 2 'missile 'missile-none
@@ -97,6 +100,7 @@
   'costs '(time 250 gold 900 wood 300)
   'speed 5
   'hit-points 110
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
   'basic-damage 80 'piercing-damage 0 'missile 'missile-ballista-bolt
@@ -127,6 +131,7 @@
   'costs '(time 90 gold 800 wood 100)
   'speed 13
   'hit-points 90
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(42 42)
   'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
   'armor 4 'basic-damage 8 'piercing-damage 4 'missile 'missile-none
@@ -158,6 +163,7 @@
   'costs '(time 70 gold 500 wood 50)
   'speed 10
   'hit-points 40
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(33 33)
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
   'basic-damage 3 'piercing-damage 6 'missile 'missile-arrow
@@ -189,6 +195,7 @@
   'costs '(time 120 gold 1200)
   'speed 8
   'hit-points 60
+  'draw-level 40
   'max-mana 255
   'magic 1
   'tile-size '(1 1) 'box-size '(33 33)
@@ -222,6 +229,7 @@
   'costs '(time 90 gold 800 wood 100)
   'speed 13
   'hit-points 90
+  'draw-level 40
   'max-mana 255
   'tile-size '(1 1) 'box-size '(42 42)
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
@@ -255,6 +263,7 @@
   'costs '(time 200 gold 700 wood 250)
   'speed 11
   'hit-points 40
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(32 32)
   'sight-range 4 'computer-reaction-range 4 'person-reaction-range 2
   'basic-damage 4 'piercing-damage 2 'missile 'missile-none
@@ -286,6 +295,7 @@
   'costs '(time 45 gold 400)
   'speed 10
   'hit-points 30
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
   'basic-damage 3 'piercing-damage 2 'missile 'missile-none
@@ -316,6 +326,7 @@
   'costs '(time 70 gold 500 wood 50)
   'speed 10
   'hit-points 50
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(33 33)
   'sight-range 6 'computer-reaction-range 9 'person-reaction-range 6
   'basic-damage 3 'piercing-damage 6 'missile 'missile-arrow
@@ -347,6 +358,7 @@
   'costs '(time 70 gold 500 wood 50)
   'speed 10
   'hit-points 120
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(33 33)
   'sight-range 9 'computer-reaction-range 7 'person-reaction-range 5
   'armor 5 'basic-damage 10 'piercing-damage 18 'missile 'missile-arrow
@@ -374,10 +386,12 @@
 (define-unit-type 'unit-flying-angle 'name "Kurdan and Sky'ree"
   'files '(tileset-summer "human/units/gryphon rider.png")
   'size '(80 80)
+  'draw-level 45
   'animations 'animations-kurdan-and-sky-ree 'icon 'icon-flying-angle
   'costs '(time 250 gold 2500)
   'speed 14
   'hit-points 250
+  'draw-level 60
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 9 'computer-reaction-range 8 'person-reaction-range 6
   'armor 6 'basic-damage 0 'piercing-damage 25 'missile 'missile-griffon-hammer
@@ -408,6 +422,7 @@
   'costs '(time 120 gold 1200)
   'speed 8
   'hit-points 120
+  'draw-level 40
   'max-mana 255
   'magic 1
   'tile-size '(1 1) 'box-size '(33 33)
@@ -441,6 +456,7 @@
   'costs '(time 50 gold 400 wood 200)
   'speed 10
   'hit-points 90
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 4
   'armor 10 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -469,6 +485,8 @@
   'costs '(time 70 gold 600 wood 200 oil 500)
   'speed 10
   'hit-points 150
+  'draw-level 40
+  'max-on-board 6
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 4
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -498,6 +516,7 @@
   'costs '(time 90 gold 700 wood 350 oil 700)
   'speed 10
   'hit-points 100
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 8 'computer-reaction-range 10 'person-reaction-range 8
   'armor 10 'basic-damage 35 'piercing-damage 0 'missile 'missile-small-cannon
@@ -528,6 +547,7 @@
   'costs '(time 140 gold 1000 wood 500 oil 1000)
   'speed 6
   'hit-points 150
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(70 70)
   'sight-range 8 'computer-reaction-range 10 'person-reaction-range 8
   'armor 15 'basic-damage 130 'piercing-damage 0 'missile 'missile-big-cannon
@@ -561,6 +581,7 @@
   'costs '(time 100 gold 800 wood 150 oil 900)
   'speed 7
   'hit-points 60
+  'draw-level 35
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
   'basic-damage 50 'piercing-damage 0 'missile 'missile-submarine-missile
@@ -592,6 +613,7 @@
   'costs '(time 65 gold 500 wood 100)
   'speed 17
   'hit-points 150
+  'draw-level 60
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 9 'computer-reaction-range 19 'person-reaction-range 15
   'armor 2 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -615,10 +637,12 @@
 (define-unit-type 'unit-gryphon-rider 'name "Gryphon Rider"
   'use 'unit-flying-angle
   'size '(80 80)
+  'draw-level 45
   'animations 'animations-kurdan-and-sky-ree 'icon 'icon-gryphon-rider
   'costs '(time 250 gold 2500)
   'speed 14
   'hit-points 100
+  'draw-level 60
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 6 'computer-reaction-range 8 'person-reaction-range 6
   'armor 5 'basic-damage 0 'piercing-damage 16 'missile 'missile-griffon-hammer
@@ -649,6 +673,7 @@
   'costs '(time 90 gold 800 wood 100)
   'speed 13
   'hit-points 180
+  'draw-level 40
   'max-mana 255
   'tile-size '(1 1) 'box-size '(42 42)
   'sight-range 6 'computer-reaction-range 7 'person-reaction-range 5
@@ -682,6 +707,7 @@
   'costs '(time 60 gold 600)
   'speed 10
   'hit-points 220
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 6 'computer-reaction-range 6 'person-reaction-range 4
   'armor 8 'basic-damage 15 'piercing-damage 8 'missile 'missile-none
@@ -713,6 +739,7 @@
   'costs '(time 100 gold 900 wood 100)
   'speed 13
   'hit-points 90
+  'draw-level 40
   'max-mana 255
   'tile-size '(1 1) 'box-size '(42 42)
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
@@ -746,6 +773,7 @@
   'costs '(time 100 gold 900 wood 100)
   'speed 13
   'hit-points 90
+  'draw-level 40
   'max-mana 255
   'tile-size '(1 1) 'box-size '(42 42)
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
@@ -784,6 +812,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 400
+  'draw-level 20
   'tile-size '(2 2) 'box-size '(63 63)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -811,6 +840,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 800
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -837,6 +867,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 700
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -863,6 +894,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 100
+  'draw-level 20
   'tile-size '(2 2) 'box-size '(63 63)
   'sight-range 9
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -891,6 +923,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 500
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -917,6 +950,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 500
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -943,6 +977,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 500
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -969,6 +1004,7 @@
   'construction 'construction-alliance-shipyard
   'speed 0
   'hit-points 1100
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -998,6 +1034,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 600
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -1025,6 +1062,7 @@
   'construction 'construction-alliance-foundry
   'speed 0
   'hit-points 750
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -1052,6 +1090,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 1200
+  'draw-level 20
   'tile-size '(4 4) 'box-size '(126 126)
   'sight-range 4
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -1080,6 +1119,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 500
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -1106,6 +1146,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 775
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -1132,6 +1173,7 @@
   'construction 'construction-alliance-refinery
   'speed 0
   'hit-points 600
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -1161,6 +1203,7 @@
   'construction 'construction-alliance-oil-well
   'speed 0
   'hit-points 650
+  'draw-level 20
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -1188,6 +1231,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 1400
+  'draw-level 20
   'tile-size '(4 4) 'box-size '(127 127)
   'sight-range 6
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -1216,6 +1260,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 1600
+  'draw-level 20
   'tile-size '(4 4) 'box-size '(127 127)
   'sight-range 9
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -1240,11 +1285,12 @@
   'animations 'animations-building 'icon 'icon-cancel
   'speed 0
   'hit-points 0
+  'draw-level 0
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 0
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 0
-  'demand 1
+  'demand 0
   'type-land
   'sounds '(
     selected "human-start-location-selected"
@@ -1264,6 +1310,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 130
+  'draw-level 40
   'tile-size '(2 2) 'box-size '(63 63)
   'sight-range 9 'computer-reaction-range 6 'person-reaction-range 6
   'armor 20 'basic-damage 4 'piercing-damage 12 'missile 'missile-arrow
@@ -1295,6 +1342,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 160
+  'draw-level 40
   'tile-size '(2 2) 'box-size '(63 63)
   'sight-range 9 'computer-reaction-range 7 'person-reaction-range 7
   'armor 20 'basic-damage 50 'piercing-damage 0 'missile 'missile-small-cannon
@@ -1326,6 +1374,7 @@
   'construction 'construction-wall
   'speed 0
   'hit-points 40
+  'draw-level 39
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 1
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -1349,6 +1398,7 @@
   'costs '(time 45 gold 400)
   'speed 10
   'hit-points 30
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
   'basic-damage 3 'piercing-damage 2 'missile 'missile-none
@@ -1380,6 +1430,7 @@
   'costs '(time 45 gold 400)
   'speed 10
   'hit-points 30
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
   'basic-damage 3 'piercing-damage 2 'missile 'missile-none
@@ -1411,6 +1462,7 @@
   'costs '(time 50 gold 400 wood 200)
   'speed 10
   'hit-points 90
+  'draw-level 40
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 4
   'armor 10 'basic-damage 0 'piercing-damage 0 'missile 'missile-none

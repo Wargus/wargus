@@ -40,7 +40,8 @@
   'size '(0 0)
   'animations 'animations-building 'icon 'icon-cancel
   'speed 99
-  'hit-points 0
+  'hit-points 10
+  'draw-level 0
   'tile-size '(0 0) 'box-size '(0 0)
   'sight-range 0
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -55,6 +56,7 @@
   'costs '(time 60 gold 400)
   'speed 99
   'hit-points 60
+  'draw-level 10
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 4 'computer-reaction-range 20 'person-reaction-range 10
   'armor 2 'basic-damage 9 'piercing-damage 1 'missile 'missile-none
@@ -73,6 +75,7 @@
   'costs '(time 60 gold 400)
   'speed 99
   'hit-points 60
+  'draw-level 10
   'tile-size '(1 1) 'box-size '(63 63)
   'sight-range 4 'computer-reaction-range 20 'person-reaction-range 10
   'armor 2 'basic-damage 9 'piercing-damage 1 'missile 'missile-none
@@ -90,6 +93,7 @@
   'animations 'animations-building 'icon 'icon-cancel
   'speed 99
   'hit-points 0
+  'draw-level 10
   'tile-size '(0 0) 'box-size '(0 0)
   'sight-range 0
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -103,6 +107,7 @@
   'animations 'animations-building 'icon 'icon-cancel
   'speed 99
   'hit-points 0
+  'draw-level 10
   'tile-size '(0 0) 'box-size '(0 0)
   'sight-range 0
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -117,6 +122,7 @@
   'costs '(time 70 gold 500 oil 50)
   'speed 14
   'hit-points 60
+  'draw-level 60
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
   'armor 3 'basic-damage 10 'piercing-damage 2 'missile 'missile-daemon-fire
@@ -150,6 +156,7 @@
   'animations 'animations-critter 'icon 'icon-critter
   'speed 3
   'hit-points 5
+  'draw-level 35
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 2 'computer-reaction-range 20 'person-reaction-range 10
   'basic-damage 80 'piercing-damage 0 'missile 'missile-critter-explosion
@@ -182,6 +189,7 @@
   'construction 'construction-land2
   'speed 0
   'hit-points 25500
+  'draw-level 40
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -206,6 +214,7 @@
   'animations 'animations-building 'icon 'icon-oil-patch
   'speed 0
   'hit-points 0
+  'draw-level 5
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 0
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -227,6 +236,7 @@
   'animations 'animations-building 'icon 'icon-circle-of-power
   'speed 0
   'hit-points 0
+  'draw-level 5
   'tile-size '(2 2) 'box-size '(63 63)
   'sight-range 0
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -253,6 +263,7 @@
   'construction 'construction-land2
   'speed 0
   'hit-points 5000
+  'draw-level 40
   'max-mana 255
   'tile-size '(4 4) 'box-size '(127 127)
   'sight-range 4
@@ -281,6 +292,7 @@
   'construction 'construction-land2
   'speed 0
   'hit-points 5000
+  'draw-level 40
   'max-mana 255
   'tile-size '(2 2) 'box-size '(63 63)
   'sight-range 4
@@ -305,6 +317,7 @@
   'animations 'animations-dead-body 'icon 'icon-peasant
   'speed 0
   'hit-points 255
+  'draw-level 30
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 1
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -324,6 +337,7 @@
   'animations 'animations-destroyed-place 'icon 'icon-peasant
   'speed 0
   'hit-points 255
+  'draw-level 10
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 2
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -342,6 +356,7 @@
   'animations 'animations-destroyed-place 'icon 'icon-peasant
   'speed 0
   'hit-points 255
+  'draw-level 10
   'tile-size '(2 2) 'box-size '(63 63)
   'sight-range 2
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -357,6 +372,7 @@
   'animations 'animations-destroyed-place 'icon 'icon-peasant
   'speed 0
   'hit-points 255
+  'draw-level 10
   'tile-size '(3 3) 'box-size '(95 95)
   'sight-range 3
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -372,6 +388,7 @@
   'animations 'animations-destroyed-place 'icon 'icon-peasant
   'speed 0
   'hit-points 255
+  'draw-level 10
   'tile-size '(4 4) 'box-size '(127 127)
   'sight-range 3
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
