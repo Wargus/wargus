@@ -37,4 +37,7 @@
 (add-tip "Use your workers to repair damaged buildings.")
 (add-tip "Explore your surroundings early in the game.")
 
+(add-tip "You can demolish trees and rocks.")
+(add-tip "Keep all workers working. Use ALT-I to find idle workers.")
+
 (add-tip "Know a useful tip?  Then add it here!")
