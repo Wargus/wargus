@@ -363,7 +363,7 @@
 
 (define-button 'pos 7 'level 2 'icon 'icon-altar-of-storms
   'action 'build 'value 'unit-altar-of-storms
-  'key "l" 'hint "BUILD ~!ALTAR OF STORMS"
+  'key "l" 'hint "BUILD A~!LTAR OF STORMS"
   'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
 
 (define-button 'pos 8 'level 2 'icon 'icon-dragon-roost
