@@ -457,7 +457,7 @@
     'pulldown '(size (152 20)
               style pulldown
               func custom-game-ops-action
-              options ("Map Default" "1 Opponent" "2 Opponents" "3 Opponents" "4 Opponents" "5 Opponents" "6 Opponents" "7 Opponents" )
+              options ("Map Default" "1 Opponent" "2 Opponents" "3 Opponents" "4 Opponents" "5 Opponents" "6 Opponents" "7 Opponents" "8 Opponents" "9 Opponents" "10 Opponents" "11 Opponents" "12 Opponents" "13 Opponents" "14 Opponents" )
               default 0
               current 0)
     'menu 'menu-custom-game)
