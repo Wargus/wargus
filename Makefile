@@ -18,7 +18,7 @@ win32_2:
 	
 
 win32:
-	export PATH=$(CROSSDIR)/i386-mingw32msvc/bin:$(CROSSDIR)/bin:$$PATH; \
+	export PATH=$(CROSSDIR)/bin:$(CROSSDIR)/i386-mingw32msvc/bin:$$PATH; \
 	export EXE=.exe; \
 	$(MAKE) $(WIN32)
 
@@ -34,8 +34,8 @@ strip:
 
 date = $(shell date +%y%m%d)
 
-release: clean wartool win32 strip
-	echo `find .` >.list
+release: clean wartool win32 strip cleanobj
+	echo `find Makefile build.* contrib campaigns wartool* scripts maps | grep -v 'CVS' | grep -v '/\.'` > .list
 	mkdir wargus; \
 	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus;\
 	rm -rf `find wargus | grep -i cvs`; \
