@@ -78,7 +78,7 @@
     'info-panel (list "graphics/ui/human/infopanel.png" 0 160 176 176)
 
     'completed-bar '(
-      color 149
+      color (48 100 4)
       pos ( 12 313)
       size (152 14)
       text "% Complete"
