@@ -2,23 +2,21 @@
 
 Briefing("type", "wc2",
 ^^TITLE^^
-    "background", "campaigns/orc/interface/introscreen1.png",
-    "text", "campaigns/orc/level02o.txt",
-    "voice", "campaigns/orc/level02o-intro1.wav",
-    "voice", "campaigns/orc/level02o-intro2.wav",
 ^^OBJECTIVES^^
-    )
+  "background", "campaigns/orc/interface/introscreen1.png",
+  "text", "campaigns/orc/level02o.txt",
+  "voice", "campaigns/orc/level02o-intro1.wav",
+  "voice", "campaigns/orc/level02o-intro2.wav"
+)
 
 AddTrigger( 
   function() return IfUnit(2, "==", 0, "unit-sharp-axe") and
     IfRescuedNearUnit("this", "==", 1, "unit-sharp-axe", "unit-circle-of-power) end,
-  function() return ActionVictory() end
-)
+  function() return ActionVictory() end)
 	
 AddTrigger(
   function() return IfUnit("this", "==", 0, "all") end,
-  function() return ActionDefeat() end
-)
+  function() return ActionDefeat() end)
 
 -- Units
 
