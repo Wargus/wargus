@@ -3620,9 +3620,9 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
 	    fclose(outlevel);
 	}
     }
-
-    return 0;
+    
     free(objectives);
+    return 0;
 }
 
 #endif
