@@ -848,8 +848,8 @@
   ;;'repair (sound-for-name "peasant attack")
   ;;'repair (make-sound "peasant attack" "human/units/peasant/attack.wav")
 
-  'human-rescue (make-sound "human rescue" "human/rescue.wav")
-  'orc-rescue (make-sound "orc rescue" "orc/rescue.wav") )))
+  'rescue (list 'human (make-sound "human rescue" "human/rescue.wav"))
+  'rescue (list 'orc (make-sound "orc rescue" "orc/rescue.wav")) )))
 
 (define sound-click (make-sound "highclick" "ui/highclick.wav"))
 (define sound-click (make-sound "statsthump" "ui/statsthump.wav"))
