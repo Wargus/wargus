@@ -10,7 +10,7 @@
 ;;
 ;;	freecraft.ccl	-	The craft configuration language.
 ;;
-;;	(c) Copyright 1998-2000 by Lutz Sammer
+;;	(c) Copyright 1998-2001 by Lutz Sammer
 ;;
 ;;	$Id$
 ;;
@@ -223,7 +223,6 @@
 ; FIXME: Need to check if sound support is present
 (load "ccl/sound.ccl" #f #t)
 (load "ccl/missiles.ccl" #f #t)
-(load "ccl/anim.ccl" #f #t)
 (load "ccl/units.ccl" #f #t)
 (load "ccl/upgrade.ccl" #f #t)
 (load "ccl/fonts.ccl" #f #t)
