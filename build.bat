@@ -28,23 +28,19 @@ REM	$Id$
 REM
 :START
 
-
 REM
 REM     Enter the letter of your CDROM drive.
 REM
 
 SET CDROM=D:
 
-
 REM
 REM     Alternatively: Enter the path to WC2 on your hard drive.
-REM	If you have the expansion installed use the -e option.
+REM	If you need to force expansion, use the -e option.
 REM
 
 REM SET ARCHIVE="C:\Program Files\War2\data"
 REM SET EXPANSION=-e
-SET ARCHIVE=%CDROM%\data
-
 
 REM
 REM	This is the name of the directory where the files will be extracted.
@@ -59,20 +55,16 @@ REM SET DIR=data.wc2
 
 
 
-
-
 REM ###########################################################################
 REM ##      DO NOT EDIT BELOW THIS LINE
 REM ###########################################################################
-
-
 
 SET BINDIR=tools
 SET CONTRIB=contrib
 
 IF NOT [%1] == [] SET CDROM=%1
 IF NOT [%2] == [] SET DIR=%2
-
+SET ARCHIVE=%CDROM%\data
 
 REM ###########################################################################
 REM ##      Extract
