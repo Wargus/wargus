@@ -236,7 +236,7 @@
 
 ;;------
 ;;	Kurdan and Sky'ree, Gryphon Rider
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-kurdan-and-sky-ree
   'still '(	; #24
     #( 2 0   6   0) #( 2 0   6   5) #( 2 0   6  10) #( 3 0   6  15))
@@ -297,7 +297,7 @@
 
 ;;------
 ;;	Oil tanker, Oil tanker, Oil tanker, Oil tanker
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-human-oil-tanker
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -329,7 +329,7 @@
 
 ;;------
 ;;	Transport, Transport
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-human-transport
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -361,7 +361,7 @@
 
 ;;------
 ;;	Elven Destroyer, Troll Destroyer
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-elven-destroyer
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -393,7 +393,7 @@
 
 ;;------
 ;;	Battleship, Ogre Juggernaught
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-battleship
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -425,7 +425,7 @@
 
 ;;------
 ;;	Deathwing, Dragon
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-deathwing
   'still '(	; #24
     #( 2 0   6   0) #( 2 0   6   5) #( 2 0   6  10) #( 3 0   6  15))
@@ -468,7 +468,7 @@
 
 ;;------
 ;;	Gnomish Submarine, Giant Turtle
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-gnomish-submarine
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -502,7 +502,7 @@
 
 ;;------
 ;;	Gnomish Flying Machine
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-gnomish-flying-machine
   'still '(	; #4
     #( 2 0   1   0) #( 2 0   1   5) #( 2 0   1   5) #( 3 0   1   0))
@@ -530,7 +530,7 @@
 
 ;;------
 ;;	Goblin Zeppelin
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-goblin-zeppelin
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -554,7 +554,7 @@
 
 ;;------
 ;;	Eye of Kilrogg
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-eye-of-vision
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
@@ -589,7 +589,7 @@
 
 ;;------
 ;;	Daemon
-(if (symbol-bound? 'stratagus-feature-new-ships ())
+(if (symbol-bound? 'stratagus-feature-new-ships '())
 (define-animations 'animations-daemon
   'still '(	; #16
     #( 2 0   4   0) #( 2 0   4   5) #( 2 0   4  10) #( 3 0   4  15))
