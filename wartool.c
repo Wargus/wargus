@@ -3423,10 +3423,23 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
     FILE *inlevel, *outlevel;
     int l, levelno, noobjs, race;
 
+    //Campaign data is in different spots on the original and
+    //expansion CD's, have to take care of this at runtime.
+    if (expansion) {
+      ofs=236;
+      txte=54;
+    } else {
+      ofs=140;
+      txte=53;
+    }
+
     //For the moment, force expansion to 0 since we haven't
     //written the campaign files for the expansion yet.
+    //Don't extract them, but we still needed the correct
+    //location for the cd we are extracting.
     expansion = 0;
 
+    
     objectives = ExtractEntry(ArchiveOffsets[txte], &l);
     if (!objectives) {
 	printf("Objectives allocation failed\n");
@@ -3503,15 +3516,13 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
 	    sprintf(buf, "%s/../%s/%s/%s.cm", Dir, "contrib", TEXT_PATH,
 		Todo[2 * levelno + 1 + race + 7].File);
 	    if (!(inlevel = fopen(buf, "rb"))) {
-		printf("%s:", buf);
-		perror("Can't open file");
+		printf("Cannot Open File (Skipping Level): %s\n", buf);
 		continue;
 	    }
 	    sprintf(buf, "%s/%s/%s.cm", Dir, TEXT_PATH,
 		Todo[2 * levelno + 1 + race + 7].File);
 	    if (!(outlevel = fopen(buf, "wb"))) {
-		printf("%s:", buf);
-		perror("Can't open file");
+		printf("Cannot Write File (Skipping Level: %s\n", buf);
 		continue;
 	    }
 	    //Title Key is ^^TITLE^^
