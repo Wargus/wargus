@@ -221,7 +221,7 @@ function OrcScreen(screen_width, screen_height)
     "status-line", {
       TextPos = {2 + 176, 2 + screen_height - 16},
       Font = "game",
-      Width = screen_width - 192},
+      Width = screen_width - 16 - 2 - 176},
 
     "cursors", {
       Point = "cursor-point",
