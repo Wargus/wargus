@@ -14,8 +14,7 @@
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
-;;	by the Free Software Foundation; either version 2 of the License,
-;;	or (at your option) any later version.
+;;	by the Free Software Foundation; only version 2 of the License.
 ;;
 ;;	FreeCraft is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -126,13 +125,22 @@
   'key "a" 'hint "~!ATTACK"
   'for-unit '(unit-catapult))
 
+(if extensions
 (define-button 'pos 4 'level 0 'icon 'icon-orc-patrol-land
   'action 'patrol
   'key "p" 'hint "~!PATROL"
   'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
     unit-goblin-sappers unit-berserker unit-catapult unit-dentarg
     unit-cho-gall unit-zuljin unit-grom-hellscream unit-korgath-bladefist
-    unit-skeleton unit-dragon unit-deathwing orc-group unit-daemon))
+    unit-skeleton unit-dragon unit-deathwing orc-group unit-daemon
+    unit-goblin-zeppelin unit-eye-of-vision))
+(define-button 'pos 4 'level 0 'icon 'icon-orc-patrol-land
+  'action 'patrol
+  'key "p" 'hint "~!PATROL"
+  'for-unit '(unit-grunt unit-ogre unit-axethrower unit-ogre-mage
+    unit-goblin-sappers unit-berserker unit-catapult unit-dentarg
+    unit-cho-gall unit-zuljin unit-grom-hellscream unit-korgath-bladefist
+    unit-skeleton unit-dragon unit-deathwing orc-group unit-daemon)) )
 
 (define-button 'pos 5 'level 0 'icon 'icon-orc-stand-ground
   'action 'stand-ground
