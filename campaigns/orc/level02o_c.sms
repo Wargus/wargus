@@ -5,7 +5,7 @@ Briefing("type", "wc2",
 ^^OBJECTIVES^^
   "background", "campaigns/orc/interface/introscreen1.png",
   "text", "campaigns/orc/level02o.txt",
-  "voice", "campaigns/orc/level02o-intro1.wav",
+  "voice", "campaigns/orc/level02o-intro1.wav"
 )
 
 AddTrigger( 

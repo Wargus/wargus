@@ -5,7 +5,7 @@ Briefing("type", "wc2",
 ^^OBJECTIVES^^
   "background", "campaigns/orc/interface/introscreen5.png",
   "text", "campaigns/orc-exp/levelx08o.txt",
-  "voice", "campaigns/orc-exp/levelx08o-intro1.wav",
+  "voice", "campaigns/orc-exp/levelx08o-intro1.wav"
 )
 
 -- FIXME: Check if units are destroyed.
