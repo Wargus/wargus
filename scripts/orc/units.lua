@@ -243,7 +243,7 @@ DefineUnitType("unit-death-knight", { Name = "Death Knight",
     "attack", "death-knight-attack"} } )
 
 DefineUnitType("unit-ogre-mage", { Name = "Ogre Mage",
-  Use = "unit-ogre",
+  Files = {"tileset-summer", "orc/units/ogre.png"},
   Size = {72, 72},
   Animations = "animations-ogre", Icon = "icon-ogre-mage",
   Costs = {"time", 90, "gold", 800, "wood", 100},
@@ -308,7 +308,7 @@ DefineUnitType("unit-goblin-sappers", { Name = "Goblin Sappers",
     "attack", "goblin-sappers-attack"} } )
 
 DefineUnitType("unit-berserker", { Name = "Berserker",
-  Use = "unit-axethrower",
+  Files = {"tileset-summer", "orc/units/troll_axethrower.png"},
   Size = {72, 72},
   Animations = "animations-axethrower", Icon = "icon-berserker",
   Costs = {"time", 70, "gold", 500, "wood", 50},
@@ -339,7 +339,7 @@ DefineUnitType("unit-berserker", { Name = "Berserker",
     "attack", "berserker-attack"} } )
 
 DefineUnitType("unit-evil-knight", { Name = "Teron Gorefiend",
-  Use = "unit-death-knight",
+  Files = {"tileset-summer", "orc/units/death_knight.png"},
   Size = {72, 72},
   Animations = "animations-death-knight", Icon = "icon-evil-knight",
   Costs = {"time", 120, "gold", 1200},
@@ -380,7 +380,7 @@ DefineUnitType("unit-evil-knight", { Name = "Teron Gorefiend",
     "attack", "teron-gorefiend-attack"} } )
 
 DefineUnitType("unit-fad-man", { Name = "Dentarg",
-  Use = "unit-ogre",
+  Files = {"tileset-summer", "orc/units/ogre.png"},
   Size = {72, 72},
   Animations = "animations-ogre", Icon = "icon-fad-man",
   Costs = {"time", 90, "gold", 800, "wood", 100},
@@ -413,7 +413,7 @@ DefineUnitType("unit-fad-man", { Name = "Dentarg",
     "attack", "dentarg-attack"} } )
 
 DefineUnitType("unit-beast-cry", { Name = "Grom Hellscream",
-  Use = "unit-grunt",
+  Files = {"tileset-summer", "orc/units/grunt.png"},
   Size = {72, 72},
   Animations = "animations-footman", Icon = "icon-beast-cry",
   Costs = {"time", 60, "gold", 600},
@@ -665,7 +665,7 @@ DefineUnitType("unit-zeppelin", { Name = "Goblin Zeppelin",
     "attack", "goblin-zeppelin-attack"} } )
 
 DefineUnitType("unit-dragon", { Name = "Dragon",
-  Use = "unit-fire-breeze",
+  Files = {"tileset-summer", "orc/units/dragon.png"},
   Size = {88, 80},
   Animations = "animations-deathwing", Icon = "icon-dragon",
   Costs = {"time", 250, "gold", 2500},
@@ -723,7 +723,7 @@ DefineUnitType("unit-eye-of-vision", { Name = "Eye of Kilrogg",
     "attack", "eye-of-kilrogg-attack"} } )
 
 DefineUnitType("unit-quick-blade", { Name = "Korgath Bladefist",
-  Use = "unit-grunt",
+  Files = {"tileset-summer", "orc/units/grunt.png"},
   Size = {72, 72},
   Animations = "animations-footman", Icon = "icon-quick-blade",
   Costs = {"time", 60, "gold", 600},
@@ -754,7 +754,7 @@ DefineUnitType("unit-quick-blade", { Name = "Korgath Bladefist",
     "attack", "korgath-bladefist-attack"} } )
 
 DefineUnitType("unit-double-head", { Name = "Cho'gall",
-  Use = "unit-ogre",
+  Files = {"tileset-summer", "orc/units/ogre.png"},
   Size = {72, 72},
   Animations = "animations-ogre", Icon = "icon-double-head",
   Costs = {"time", 100, "gold", 1100, "wood", 50},
@@ -788,7 +788,7 @@ DefineUnitType("unit-double-head", { Name = "Cho'gall",
     "attack", "cho-gall-attack"} } )
 
 DefineUnitType("unit-ice-bringer", { Name = "Gul'dan",
-  Use = "unit-death-knight",
+  Files = {"tileset-summer", "orc/units/death_knight.png"},
   Size = {72, 72},
   Animations = "animations-death-knight", Icon = "icon-ice-bringer",
   Costs = {"time", 120, "gold", 1200},
@@ -828,7 +828,7 @@ DefineUnitType("unit-ice-bringer", { Name = "Gul'dan",
     "attack", "gul-dan-attack"} } )
 
 DefineUnitType("unit-sharp-axe", { Name = "Zuljin",
-  Use = "unit-axethrower",
+  Files = {"tileset-summer", "orc/units/troll_axethrower.png"},
   Size = {72, 72},
   Animations = "animations-axethrower", Icon = "icon-sharp-axe",
   Costs = {"time", 70, "gold", 500, "wood", 50},
@@ -1526,7 +1526,9 @@ DefineUnitType("unit-orc-cannon-tower", { Name = "Cannon Tower",
     "attack", "orc-cannon-tower-attack"} } )
 
 DefineUnitType("unit-orc-wall", { Name = "Wall",
-  Use = "unit-human-wall",
+  Files = {"tileset-summer", "tilesets/summer/neutral/buildings/wall.png",
+    "tileset-winter", "tilesets/winter/neutral/buildings/wall.png",
+    "tileset-wasteland", "tilesets/wasteland/neutral/buildings/wall.png"},
   Size = {32, 32},
   Animations = "animations-building", Icon = "icon-orc-wall",
   Costs = {"time", 30, "gold", 20, "wood", 10},

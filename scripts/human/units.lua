@@ -247,7 +247,7 @@ DefineUnitType("unit-mage", { Name = "Mage",
     "attack", "mage-attack"} } )
 
 DefineUnitType("unit-paladin", { Name = "Paladin",
-  Use = "unit-knight",
+  Files = {"tileset-summer", "human/units/knight.png"},
   Size = {72, 72},
   Animations = "animations-knight", Icon = "icon-paladin",
   Costs = {"time", 90, "gold", 800, "wood", 100},
@@ -312,7 +312,7 @@ DefineUnitType("unit-dwarves", { Name = "Dwarves",
     "attack", "dwarves-attack"} } )
 
 DefineUnitType("unit-ranger", { Name = "Ranger",
-  Use = "unit-archer",
+  Files = {"tileset-summer", "human/units/elven_archer.png"},
   Size = {72, 72},
   Animations = "animations-archer", Icon = "icon-ranger",
   Costs = {"time", 70, "gold", 500, "wood", 50},
@@ -343,7 +343,7 @@ DefineUnitType("unit-ranger", { Name = "Ranger",
     "attack", "ranger-attack"} } )
 
 DefineUnitType("unit-female-hero", { Name = "Alleria",
-  Use = "unit-archer",
+  Files = {"tileset-summer", "human/units/elven_archer.png"},
   Size = {72, 72},
   Animations = "animations-archer", Icon = "icon-female-hero",
   Costs = {"time", 70, "gold", 500, "wood", 50},
@@ -406,7 +406,7 @@ DefineUnitType("unit-flying-angle", { Name = "Kurdan and Sky'ree",
     "attack", "kurdan-and-sky-ree-attack"} } )
 
 DefineUnitType("unit-white-mage", { Name = "Khadgar",
-  Use = "unit-mage",
+  Files = {"tileset-summer", "human/units/mage.png"},
   Size = {72, 72},
   Animations = "animations-mage", Icon = "icon-white-mage",
   Costs = {"time", 120, "gold", 1200},
@@ -635,7 +635,7 @@ DefineUnitType("unit-balloon", { Name = "Gnomish Flying Machine",
     "attack", "gnomish-flying-machine-attack"} } )
 
 DefineUnitType("unit-gryphon-rider", { Name = "Gryphon Rider",
-  Use = "unit-flying-angle",
+  Files = {"tileset-summer", "human/units/gryphon_rider.png"},
   Size = {80, 80},
   DrawLevel = 45,
   Animations = "animations-kurdan-and-sky-ree", Icon = "icon-gryphon-rider",
@@ -667,7 +667,7 @@ DefineUnitType("unit-gryphon-rider", { Name = "Gryphon Rider",
     "attack", "gryphon-rider-attack"} } )
 
 DefineUnitType("unit-knight-rider", { Name = "Turalyon",
-  Use = "unit-knight",
+  Files = {"tileset-summer", "human/units/knight.png"},
   Size = {72, 72},
   Animations = "animations-knight", Icon = "icon-knight-rider",
   Costs = {"time", 90, "gold", 800, "wood", 100},
@@ -700,7 +700,7 @@ DefineUnitType("unit-knight-rider", { Name = "Turalyon",
     "attack", "turalyon-attack"} } )
 
 DefineUnitType("unit-arthor-literios", { Name = "Danath",
-  Use = "unit-footman",
+  Files = {"tileset-summer", "human/units/footman.png"},
   Size = {72, 72},
   Animations = "animations-footman", Icon = "icon-ugly-guy",
   Costs = {"time", 60, "gold", 600},
@@ -731,7 +731,7 @@ DefineUnitType("unit-arthor-literios", { Name = "Danath",
     "attack", "danath-attack"} } )
 
 DefineUnitType("unit-wise-man", { Name = "Lothar",
-  Use = "unit-knight",
+  Files = {"tileset-summer", "human/units/knight.png"},
   Size = {72, 72},
   Animations = "animations-knight", Icon = "icon-wise-man",
   Costs = {"time", 100, "gold", 900, "wood", 100},
@@ -765,7 +765,7 @@ DefineUnitType("unit-wise-man", { Name = "Lothar",
     "attack", "lothar-attack"} } )
 
 DefineUnitType("unit-man-of-light", { Name = "Uther Lightbringer",
-  Use = "unit-knight",
+  Files = {"tileset-summer", "human/units/knight.png"},
   Size = {72, 72},
   Animations = "animations-knight", Icon = "icon-man-of-light",
   Costs = {"time", 100, "gold", 900, "wood", 100},
