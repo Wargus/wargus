@@ -46,7 +46,7 @@
 	'play-level "campaigns/human/level09h.cm"
 	'play-level "campaigns/human/level10h.cm"
 	'show-picture
-	  "campaigns/human/interface/Act IV  - Return to Azeroth.png
+	  "campaigns/human/interface/Act IV  - Return to Azeroth.png"
 	'play-level "campaigns/human/level11h.cm"
 	'play-level "campaigns/human/level12h.cm"
 	'play-level "campaigns/human/level13h.cm"
