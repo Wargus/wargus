@@ -10,8 +10,15 @@
 ;;
 ;;      default.cm	-	Freecraft default map loader.
 ;;
+;;	(c) Copyright 2000 by Ari
+;;
+;;	$Id$
+;;
 
+; More comes soon :)
 ;(display-picture "graphic/interface/Menu background without title.png")
 ;(process-menu 0)
 
+; You could choose your default pud here.
 (load-pud "data/default.pud")
+;(load-pud "data/puds/alamo.pud")
