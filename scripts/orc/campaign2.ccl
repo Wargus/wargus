@@ -35,7 +35,7 @@
 (define-campaign 'orc-exp 'name "O~!rc expansion levels"
   'campaign (list
 	'show-picture (list
-	  'image "campaigns/orc-exp/interface/Act_I__-_Draenor,_the_Red_World.png"
+	  'image "campaigns/orc-exp/interface/Act_I_-_Draenor,_the_Red_World.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -83,7 +83,7 @@
 	'play-level "campaigns/orc-exp/levelx05o.cm"
 	'play-level "campaigns/orc-exp/levelx06o.cm"
 	'show-picture (list
-	  'image "campaigns/orc-exp/interface/Act_III-_The_Great_Sea.png"
+	  'image "campaigns/orc-exp/interface/Act_III_-_The_Great_Sea.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
