@@ -42,7 +42,7 @@
 #include "iocompat.h"
 #include "myendian.h"
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__MINGW32__) || defined(USE_BEOS)
 typedef unsigned long u_int32_t;
 #endif
 
