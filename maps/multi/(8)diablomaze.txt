@@ -3,7 +3,7 @@
 
 	A large 256x256, confusing, maze of rocks and forest.
 
-	(c) Copyright 2002 by John Ericson
+	Copyright (c) 2002 by Patrick McFarland
 
 	This file is part of FreeCraft Media Project
 
