@@ -34,7 +34,7 @@
 --	(define-construction ident 'files '(tileset-name filename ..)
 --	    'size '(x y))
 
-DefineConstruction("construction-alliance-shipyard", {
+DefineConstruction("construction-human-shipyard", {
   Files = {
    {Tileset = "summer",
     File = "human/buildings/shipyard_construction_site.png",
@@ -57,7 +57,7 @@ DefineConstruction("construction-alliance-shipyard", {
     Frame = 1}}
 })
 
-DefineConstruction("construction-alliance-oil-well", {
+DefineConstruction("construction-human-oil-well", {
   Files = {
    {Tileset = "summer",
     File = "tilesets/summer/human/buildings/oil_well_construction_site.png",
@@ -83,7 +83,7 @@ DefineConstruction("construction-alliance-oil-well", {
     Frame = 1}}
 })
 
-DefineConstruction("construction-alliance-refinery", {
+DefineConstruction("construction-human-refinery", {
   Files = {
    {Tileset = "summer",
     File = "human/buildings/refinery_construction_site.png",
@@ -106,7 +106,7 @@ DefineConstruction("construction-alliance-refinery", {
     Frame = 1}}
 })
 
-DefineConstruction("construction-alliance-foundry", {
+DefineConstruction("construction-human-foundry", {
   Files = {
    {Tileset = "summer",
     File = "human/buildings/foundry_construction_site.png",

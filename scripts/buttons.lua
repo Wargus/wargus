@@ -43,23 +43,6 @@ Load("scripts/orc/buttons.lua")
 --    Key = key, Hint = hint, ForUnit = units)
 --
 
--- neutral --------------------------------------------------------------------
-
-if (extensions) then
-  DefineButton( { Pos = 1, Level = 0, Icon = "icon-circle-of-power",
-    Action = "cast-spell", Value = "spell-circle-of-power",
-    Allowed = "check-true",
-    Key = "c", Hint = "~!CAST DESTINATION",
-    ForUnit = {"unit-dark-portal"} } )
-end
-
-if (extensions) then
-  DefineButton( { Pos = 2, Level = 0, Icon = "icon-daemon",
-    Action = "train-unit", Value = "unit-daemon",
-    Key = "d", Hint = "SUMMON ~!DAEMON",
-    ForUnit = {"unit-dark-portal"} } )
-end
-
 -- general cancel button ------------------------------------------------------
 
 DefineButton( { Pos = 9, Level = 9, Icon = "icon-cancel",

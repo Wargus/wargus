@@ -39,18 +39,18 @@ DefineUpgrade("upgrade-arrow1", "icon", "icon-arrow2",
 DefineUpgrade("upgrade-arrow2", "icon", "icon-arrow3",
   "costs", {   250,   900,   500,     0,     0,     0,     0})
 
-DefineUpgrade("upgrade-human-shield1", "icon", "icon-alliance-shield2",
+DefineUpgrade("upgrade-human-shield1", "icon", "icon-human-shield2",
   "costs", {   200,   300,   300,     0,     0,     0,     0})
-DefineUpgrade("upgrade-human-shield2", "icon", "icon-alliance-shield3",
+DefineUpgrade("upgrade-human-shield2", "icon", "icon-human-shield3",
   "costs", {   250,   900,   500,     0,     0,     0,     0})
 
-DefineUpgrade("upgrade-human-ship-cannon1", "icon", "icon-alliance-ship-cannon2",
+DefineUpgrade("upgrade-human-ship-cannon1", "icon", "icon-human-ship-cannon2",
   "costs", {   200,   700,   100,  1000,     0,     0,     0})
-DefineUpgrade("upgrade-human-ship-cannon2", "icon", "icon-alliance-ship-cannon3",
+DefineUpgrade("upgrade-human-ship-cannon2", "icon", "icon-human-ship-cannon3",
   "costs", {   250,  2000,   250,  3000,     0,     0,     0})
-DefineUpgrade("upgrade-human-ship-armor1", "icon", "icon-alliance-ship-armor2",
+DefineUpgrade("upgrade-human-ship-armor1", "icon", "icon-human-ship-armor2",
   "costs", {   200,   500,   500,     0,     0,     0,     0})
-DefineUpgrade("upgrade-human-ship-armor2", "icon", "icon-alliance-ship-armor3",
+DefineUpgrade("upgrade-human-ship-armor2", "icon", "icon-human-ship-armor3",
   "costs", {   250,  1500,   900,     0,     0,     0,     0})
 
 DefineUpgrade("upgrade-ballista1", "icon", "icon-ballista1",
@@ -129,23 +129,23 @@ DefineModifier("upgrade-human-shield2",
 
 DefineModifier("upgrade-human-ship-cannon1",
   {"piercing-damage", 5},
-  {"apply-to", "unit-alliance-destroyer"}, {"apply-to", "unit-battleship"},
-  {"apply-to", "unit-alliance-submarine"})
+  {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
+  {"apply-to", "unit-human-submarine"})
 
 DefineModifier("upgrade-human-ship-cannon2",
   {"piercing-damage", 5},
-  {"apply-to", "unit-alliance-destroyer"}, {"apply-to", "unit-battleship"},
-  {"apply-to", "unit-alliance-submarine"})
+  {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
+  {"apply-to", "unit-human-submarine"})
 
 DefineModifier("upgrade-human-ship-armor1",
   {"armor", 5},
-  {"apply-to", "unit-alliance-destroyer"}, {"apply-to", "unit-battleship"},
-  {"apply-to", "unit-alliance-transport"})
+  {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
+  {"apply-to", "unit-human-transport"})
 
 DefineModifier("upgrade-human-ship-armor2",
   {"armor", 5},
-  {"apply-to", "unit-alliance-destroyer"}, {"apply-to", "unit-battleship"},
-  {"apply-to", "unit-alliance-transport"})
+  {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
+  {"apply-to", "unit-human-transport"})
 
 DefineModifier("upgrade-ballista1",
   {"piercing-damage", 15},
@@ -223,10 +223,10 @@ DefineAllow("unit-female-hero",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-flying-angle",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-white-mage",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-human-oil-tanker",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-transport",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-destroyer",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-transport",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-destroyer",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-battleship",			"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-submarine",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-submarine",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-balloon",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-gryphon-rider",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-knight-rider",		"AAAAAAAAAAAAAAAA")
@@ -234,25 +234,25 @@ DefineAllow("unit-arthor-literios",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-wise-man",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-man-of-light",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-farm",			"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-barracks",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-barracks",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-church",			"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-watch-tower",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-watch-tower",	"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-stables",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-inventor",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-gryphon-aviary",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-shipyard",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-shipyard",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-town-hall",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-elven-lumber-mill",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-foundry",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-foundry",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-mage-tower",			"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-blacksmith",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-blacksmith",		"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-human-refinery",		"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-oil-platform",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-oil-platform",	"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-keep",			"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-castle",			"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-start-location",	"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-guard-tower",	"AAAAAAAAAAAAAAAA")
-DefineAllow("unit-alliance-cannon-tower",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-start-location",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-guard-tower",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-cannon-tower",	"AAAAAAAAAAAAAAAA")
 DefineAllow("unit-human-wall",			"AAAAAAAAAAAAAAAA")
 
 --- upgrades
@@ -295,39 +295,39 @@ DefineAllow("upgrade-blizzard",			"AAAAAAAAAAAAAAAA")
 DefineDependency("unit-archer",
   {"unit-elven-lumber-mill"})
 DefineDependency("unit-ballista",
-  {"unit-alliance-blacksmith", "unit-elven-lumber-mill"})
+  {"unit-human-blacksmith", "unit-elven-lumber-mill"})
 DefineDependency("unit-knight",
-  {"unit-stables", "unit-alliance-blacksmith"})
+  {"unit-stables", "unit-human-blacksmith"})
 DefineDependency("unit-ranger",
   {"upgrade-ranger", "unit-elven-lumber-mill"})
 DefineDependency("unit-paladin",
-  {"upgrade-paladin", "unit-stables", "unit-alliance-blacksmith"})
+  {"upgrade-paladin", "unit-stables", "unit-human-blacksmith"})
 
 --- human naval forces
-DefineDependency("unit-alliance-submarine",
+DefineDependency("unit-human-submarine",
   {"unit-inventor"})
-DefineDependency("unit-alliance-transport",
-  {"unit-alliance-foundry"})
+DefineDependency("unit-human-transport",
+  {"unit-human-foundry"})
 DefineDependency("unit-battleship",
-  {"unit-alliance-foundry"})
+  {"unit-human-foundry"})
 
 --	- human air forces
 DefineDependency("unit-balloon",
   {"unit-elven-lumber-mill"})
 
 --- human buildings
-DefineDependency("unit-alliance-guard-tower",
+DefineDependency("unit-human-guard-tower",
   {"unit-elven-lumber-mill"})
-DefineDependency("unit-alliance-cannon-tower",
-  {"unit-alliance-blacksmith"})
-DefineDependency("unit-alliance-shipyard",
+DefineDependency("unit-human-cannon-tower",
+  {"unit-human-blacksmith"})
+DefineDependency("unit-human-shipyard",
   {"unit-elven-lumber-mill"})
-DefineDependency("unit-alliance-foundry",
-  {"unit-alliance-shipyard"})
+DefineDependency("unit-human-foundry",
+  {"unit-human-shipyard"})
 DefineDependency("unit-human-refinery",
-  {"unit-alliance-shipyard"})
+  {"unit-human-shipyard"})
 DefineDependency("unit-keep",
-  {"unit-alliance-barracks"})
+  {"unit-human-barracks"})
 DefineDependency("unit-inventor",
   {"unit-castle"},
   "or", {"unit-keep"})
@@ -335,7 +335,7 @@ DefineDependency("unit-stables",
   {"unit-castle"},
   "or", {"unit-keep"})
 DefineDependency("unit-castle",
-  {"unit-stables", "unit-alliance-blacksmith", "unit-elven-lumber-mill"})
+  {"unit-stables", "unit-human-blacksmith", "unit-elven-lumber-mill"})
 DefineDependency("unit-mage-tower",
   {"unit-castle"})
 DefineDependency("unit-church",

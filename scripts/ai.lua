@@ -55,12 +55,12 @@ DefineAiHelper(
   -- Unit can build which buildings.
   --
   {"build", "unit-peasant",
-  "unit-farm", "unit-alliance-barracks", "unit-town-hall", "unit-elven-lumber-mill",
-  "unit-alliance-blacksmith", "unit-alliance-watch-tower", "unit-human-wall",
-  "unit-alliance-shipyard", "unit-alliance-foundry", "unit-human-refinery",
+  "unit-farm", "unit-human-barracks", "unit-town-hall", "unit-elven-lumber-mill",
+  "unit-human-blacksmith", "unit-human-watch-tower", "unit-human-wall",
+  "unit-human-shipyard", "unit-human-foundry", "unit-human-refinery",
   "unit-inventor", "unit-stables", "unit-mage-tower", "unit-church",
-  "unit-gryphon-aviary", "unit-dark-portal", "unit-runestone"},
-  {"build", "unit-human-oil-tanker", "unit-alliance-oil-platform"},
+  "unit-gryphon-aviary"},
+  {"build", "unit-human-oil-tanker", "unit-human-oil-platform"},
   --
   -- Building can train which units.
   --
@@ -68,27 +68,27 @@ DefineAiHelper(
   {"train", "unit-town-hall", "unit-peasant"},
   {"train", "unit-keep", "unit-peasant"},
   {"train", "unit-castle", "unit-peasant"},
-  {"train", "unit-alliance-barracks",
+  {"train", "unit-human-barracks",
   "unit-footman", "unit-archer", "unit-ranger", "unit-ballista", "unit-knight",
   "unit-paladin"},
   {"train", "unit-inventor",
   "unit-balloon", "unit-dwarves"},
   {"train", "unit-mage-tower", "unit-mage"},
   {"train", "unit-gryphon-aviary", "unit-gryphon-rider"},
-  {"train", "unit-alliance-shipyard",
-  "unit-human-oil-tanker", "unit-alliance-destroyer", "unit-alliance-transport",
-  "unit-alliance-submarine", "unit-battleship"},
+  {"train", "unit-human-shipyard",
+  "unit-human-oil-tanker", "unit-human-destroyer", "unit-human-transport",
+  "unit-human-submarine", "unit-battleship"},
   --
   -- Building can upgrade which upgrades.
   --
   {"upgrade", "unit-town-hall", "unit-keep"},
   {"upgrade", "unit-keep", "unit-castle"},
-  {"upgrade", "unit-alliance-watch-tower",
-  "unit-alliance-guard-tower", "unit-alliance-cannon-tower"},
+  {"upgrade", "unit-human-watch-tower",
+  "unit-human-guard-tower", "unit-human-cannon-tower"},
   --
   -- Building can research which spells or upgrades.
   --
-  {"research", "unit-alliance-blacksmith",
+  {"research", "unit-human-blacksmith",
   "upgrade-sword1", "upgrade-sword2",
   "upgrade-human-shield1", "upgrade-human-shield2",
   "upgrade-ballista1", "upgrade-ballista2"},
@@ -100,20 +100,19 @@ DefineAiHelper(
   {"research", "unit-mage-tower",
   "upgrade-slow", "upgrade-flame-shield", "upgrade-invisibility",
   "upgrade-polymorph", "upgrade-blizzard"},
-  {"research", "unit-alliance-foundry",
+  {"research", "unit-human-foundry",
   "upgrade-human-ship-cannon1", "upgrade-human-ship-cannon2",
   "upgrade-human-ship-armor1", "upgrade-human-ship-armor2"},
   --
   -- Unit can repair which units.
   --
   {"repair", "unit-peasant",
-  "unit-farm", "unit-alliance-barracks", "unit-town-hall", "unit-keep", "unit-castle",
-  "unit-elven-lumber-mill", "unit-alliance-blacksmith", "unit-alliance-watch-tower",
-  "unit-alliance-guard-tower", "unit-alliance-cannon-tower", "unit-human-wall",
-  "unit-alliance-shipyard", "unit-alliance-foundry", "unit-human-refinery",
+  "unit-farm", "unit-human-barracks", "unit-town-hall", "unit-keep", "unit-castle",
+  "unit-elven-lumber-mill", "unit-human-blacksmith", "unit-human-watch-tower",
+  "unit-human-guard-tower", "unit-human-cannon-tower", "unit-human-wall",
+  "unit-human-shipyard", "unit-human-foundry", "unit-human-refinery",
   "unit-inventor", "unit-stables", "unit-mage-tower", "unit-church",
-  "unit-gryphon-aviary", "unit-dark-portal", "unit-runestone",
-  "unit-alliance-transport"},
+  "unit-gryphon-aviary", "unit-human-transport"},
   --
   -- Reduce unit limits.
   --
@@ -141,13 +140,12 @@ DefineAiHelper(
   -- Unit can build which buildings.
   --
   {"build", "unit-peon",
-  "unit-pig-farm", "unit-mythical-barracks", "unit-great-hall",
-  "unit-troll-lumber-mill", "unit-mythical-blacksmith", "unit-mythical-watch-tower",
-  "unit-orc-wall", "unit-mythical-shipyard", "unit-mythical-foundry", "unit-orc-refinery",
+  "unit-pig-farm", "unit-orc-barracks", "unit-great-hall",
+  "unit-troll-lumber-mill", "unit-orc-blacksmith", "unit-orc-watch-tower",
+  "unit-orc-wall", "unit-orc-shipyard", "unit-orc-foundry", "unit-orc-refinery",
   "unit-alchemist", "unit-ogre-mound", "unit-temple-of-the-damned",
-  "unit-altar-of-storms",
-  "unit-dragon-roost", "unit-dark-portal", "unit-runestone"},
-  {"build", "unit-orc-oil-tanker", "unit-mythical-oil-platform"},
+  "unit-altar-of-storms", "unit-dragon-roost"},
+  {"build", "unit-orc-oil-tanker", "unit-orc-oil-platform"},
   --
   -- Building can train which units.
   --
@@ -155,27 +153,27 @@ DefineAiHelper(
   {"train", "unit-great-hall", "unit-peon"},
   {"train", "unit-stronghold", "unit-peon"},
   {"train", "unit-fortress", "unit-peon"},
-  {"train", "unit-mythical-barracks",
+  {"train", "unit-orc-barracks",
   "unit-grunt", "unit-axethrower", "unit-berserker", "unit-catapult", "unit-ogre",
   "unit-ogre-mage"},
   {"train", "unit-alchemist",
   "unit-zeppelin", "unit-goblin-sappers"},
   {"train", "unit-temple-of-the-damned", "unit-death-knight"},
   {"train", "unit-dragon-roost", "unit-dragon"},
-  {"train", "unit-mythical-shipyard",
-  "unit-orc-oil-tanker", "unit-mythical-destroyer", "unit-mythical-transport",
-  "unit-mythical-submarine", "unit-ogre-juggernaught"},
+  {"train", "unit-orc-shipyard",
+  "unit-orc-oil-tanker", "unit-orc-destroyer", "unit-orc-transport",
+  "unit-orc-submarine", "unit-ogre-juggernaught"},
   --
   -- Building can upgrade which upgrades.
   --
   {"upgrade", "unit-great-hall", "unit-stronghold"},
   {"upgrade", "unit-stronghold", "unit-fortress"},
-  {"upgrade", "unit-mythical-watch-tower",
-  "unit-mythical-guard-tower", "unit-mythical-cannon-tower"},
+  {"upgrade", "unit-orc-watch-tower",
+  "unit-orc-guard-tower", "unit-orc-cannon-tower"},
   --
   -- Building can research which spells or upgrades.
   --
-  {"research", "unit-mythical-blacksmith",
+  {"research", "unit-orc-blacksmith",
   "upgrade-battle-axe1", "upgrade-battle-axe2",
   "upgrade-orc-shield1", "upgrade-orc-shield2",
   "upgrade-catapult1", "upgrade-catapult2"},
@@ -188,20 +186,19 @@ DefineAiHelper(
   {"research", "unit-temple-of-the-damned",
   "upgrade-haste", "upgrade-raise-dead", "upgrade-whirlwind",
   "upgrade-unholy-armor", "upgrade-death-and-decay"},
-  {"research", "unit-mythical-foundry",
+  {"research", "unit-orc-foundry",
   "upgrade-orc-ship-cannon1", "upgrade-orc-ship-cannon2",
   "upgrade-orc-ship-armor1", "upgrade-orc-ship-armor2"},
   --
   -- Unit can build which units.
   --
   {"repair", "unit-peon",
-  "unit-pig-farm", "unit-mythical-barracks", "unit-great-hall", "unit-stronghold",
-  "unit-fortress", "unit-troll-lumber-mill", "unit-mythical-blacksmith",
-  "unit-mythical-watch-tower", "unit-mythical-guard-tower", "unit-mythical-cannon-tower",
-  "unit-orc-wall", "unit-mythical-shipyard", "unit-mythical-foundry", "unit-orc-refinery",
+  "unit-pig-farm", "unit-orc-barracks", "unit-great-hall", "unit-stronghold",
+  "unit-fortress", "unit-troll-lumber-mill", "unit-orc-blacksmith",
+  "unit-orc-watch-tower", "unit-orc-guard-tower", "unit-orc-cannon-tower",
+  "unit-orc-wall", "unit-orc-shipyard", "unit-orc-foundry", "unit-orc-refinery",
   "unit-alchemist", "unit-ogre-mound", "unit-temple-of-the-damned",
-  "unit-altar-of-storms", "unit-dragon-roost", "unit-dark-portal",
-  "unit-runestone", "unit-mythical-transport"},
+  "unit-altar-of-storms", "unit-dragon-roost", "unit-orc-transport"},
   --
   -- Reduce unit limits.
   --
@@ -280,9 +277,9 @@ end
 --
 function AiBlacksmith()
   if (AiGetRace() == race1) then
-    return "unit-alliance-blacksmith"
+    return "unit-human-blacksmith"
   else
-    return "unit-mythical-blacksmith"
+    return "unit-orc-blacksmith"
   end
 end
 
@@ -434,9 +431,9 @@ end
 --
 function AiBarracks()
   if (AiGetRace() == race1) then
-    return "unit-alliance-barracks"
+    return "unit-human-barracks"
   else
-    return "unit-mythical-barracks"
+    return "unit-orc-barracks"
   end
 end
 
@@ -544,9 +541,9 @@ end
 --
 function AiTower()
   if (AiGetRace() == race1) then
-    return "unit-alliance-watch-tower"
+    return "unit-human-watch-tower"
   else
-    return "unit-mythical-watch-tower"
+    return "unit-orc-watch-tower"
   end
 end
 
@@ -555,9 +552,9 @@ end
 --
 function AiGuardTower()
   if (AiGetRace() == race1) then
-    return "unit-alliance-guard-tower"
+    return "unit-human-guard-tower"
   else
-    return "unit-mythical-guard-tower"
+    return "unit-orc-guard-tower"
   end
 end
 
@@ -566,9 +563,9 @@ end
 --
 function AiCannonTower()
   if (AiGetRace() == race1) then
-    return "unit-alliance-cannon-tower"
+    return "unit-human-cannon-tower"
   else
-    return "unit-mythical-cannon-tower"
+    return "unit-orc-cannon-tower"
   end
 end
 
@@ -577,9 +574,9 @@ end
 --
 function AiHarbor()
   if (AiGetRace() == race1) then
-    return "unit-alliance-shipyard"
+    return "unit-human-shipyard"
   else
-    return "unit-mythical-shipyard"
+    return "unit-orc-shipyard"
   end
 end
 
@@ -599,9 +596,9 @@ end
 --
 function AiFoundry()
   if (AiGetRace() == race1) then
-    return "unit-alliance-foundry"
+    return "unit-human-foundry"
   else
-    return "unit-mythical-foundry"
+    return "unit-orc-foundry"
   end
 end
 
@@ -654,9 +651,9 @@ end
 --
 function AiPlatform()
   if (AiGetRace() == race1) then
-    return "unit-alliance-oil-platform"
+    return "unit-human-oil-platform"
   else
-    return "unit-mythical-oil-platform"
+    return "unit-orc-oil-platform"
   end
 end
 
@@ -676,9 +673,9 @@ end
 --
 function AiSubmarine()
   if (AiGetRace() == race1) then
-    return "unit-alliance-submarine"
+    return "unit-human-submarine"
   else
-    return "unit-mythical-submarine"
+    return "unit-orc-submarine"
   end
 end
 
@@ -687,9 +684,9 @@ end
 --
 function AiDestroyer()
   if (AiGetRace() == race1) then
-    return "unit-alliance-destroyer"
+    return "unit-human-destroyer"
   else
-    return "unit-mythical-destroyer"
+    return "unit-orc-destroyer"
   end
 end
 
@@ -709,9 +706,9 @@ end
 --
 function AiTransporter()
   if (AiGetRace() == race1) then
-    return "unit-alliance-transport"
+    return "unit-human-transport"
   else
-    return "unit-mythical-transport"
+    return "unit-orc-transport"
   end
 end
 
