@@ -30,6 +30,8 @@
 (define-campaign 'orc-exp 'name "The orc expansion campaign"
   'campaign (list
 	'show-picture
+	  "Act I"
+	  "Draenor, the Red World"
 	  "campaigns/orc-exp/interface/Act I  - Draenor, the Red World.png"
 	'play-level "campaigns/orc-exp/levelx01o.pud"
 	'play-level "campaigns/orc-exp/levelx02o.pud"

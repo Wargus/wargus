@@ -30,6 +30,8 @@
 (define-campaign 'orc 'name "The orc campaign"
   'campaign (list
 	'show-picture
+	  "Act I"
+	  "Seas of Blood"
 	  "campaigns/orc/interface/Act I   - Seas of Blood.png"
 	'play-level "campaigns/orc/level01o.pud"
 	'play-level "campaigns/orc/level02o.pud"
