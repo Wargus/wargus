@@ -52,11 +52,11 @@
 ;(set-title-music! "music/Matthew_T._Yankovich---_Twilight_March.ogg")
 
 ;;	Enter your default menu background.
-(set-menu-background! "graphics/ui/Menu background without title.png")
+(set-menu-background! "graphics/ui/Menu_background_without_title.png")
 
 ;;	Enter your default menu background with title.
 (set-menu-background-with-title!
-  "graphics/ui/Menu background with title.png")
+  "graphics/ui/Menu_background_with_title.png")
 
 ;;	Enter your menu music.
 (set-menu-music! "music/default.mod")
@@ -213,7 +213,7 @@
 ;;
 ;;	(shadow-sprite file hotx hoty width height)
 ;;
-(shadow-sprite "graphics/missiles/unit shadow.png"	3 42	32 32)
+(shadow-sprite "graphics/missiles/unit_shadow.png"	3 42	32 32)
 
 ;;	Define spell-sprite.
 ;;

@@ -40,11 +40,11 @@
 (define-construction 'construction-none
   'file '(
     tileset summer
-    file "neutral/buildings/land construction site.png"
+    file "neutral/buildings/land_construction_site.png"
     size (64 64))
   'file '(
     tileset winter
-    file "tilesets/winter/neutral/buildings/land construction site.png"
+    file "tilesets/winter/neutral/buildings/land_construction_site.png"
     size (64 64))
   'constructions (list
     '(percent 0
@@ -61,11 +61,11 @@
 (define-construction 'construction-land
   'file '(
     tileset summer
-    file "neutral/buildings/land construction site.png"
+    file "neutral/buildings/land_construction_site.png"
     size (64 64))
   'file '(
     tileset winter
-    file "tilesets/winter/neutral/buildings/land construction site.png"
+    file "tilesets/winter/neutral/buildings/land_construction_site.png"
     size (64 64))
   'constructions (list
     '(percent 0
@@ -82,11 +82,11 @@
 (define-construction 'construction-land2
   'file '(
     tileset summer
-    file "neutral/buildings/land construction site.png"
+    file "neutral/buildings/land_construction_site.png"
     size (64 64))
   'file '(
     tileset winter
-    file "tilesets/winter/neutral/buildings/land construction site.png"
+    file "tilesets/winter/neutral/buildings/land_construction_site.png"
     size (64 64))
   'constructions (list
     '(percent 0
@@ -100,15 +100,15 @@
 (define-construction 'construction-wall
   'file '(
     tileset summer
-    file "tilesets/summer/neutral/buildings/wall construction site.png"
+    file "tilesets/summer/neutral/buildings/wall_construction_site.png"
     size (32 32))
   'file '(
     tileset winter
-    file "tilesets/winter/neutral/buildings/wall construction site.png"
+    file "tilesets/winter/neutral/buildings/wall_construction_site.png"
     size (32 32))
   'file '(
     tileset wasteland
-    file "tilesets/wasteland/neutral/buildings/wall construction site.png"
+    file "tilesets/wasteland/neutral/buildings/wall_construction_site.png"
     size (32 32))
   'constructions (list
     '(percent 0

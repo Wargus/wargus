@@ -184,10 +184,10 @@
     attack "critter-attack"))
 
 (define-unit-type 'unit-gold-mine 'name "Gold Mine"
-  'files '(tileset-summer "tilesets/summer/neutral/buildings/gold mine.png"
-    tileset-winter "tilesets/winter/neutral/buildings/gold mine.png"
-    tileset-wasteland "tilesets/wasteland/neutral/buildings/gold mine.png"
-    tileset-swamp "tilesets/swamp/neutral/buildings/gold mine.png")
+  'files '(tileset-summer "tilesets/summer/neutral/buildings/gold_mine.png"
+    tileset-winter "tilesets/winter/neutral/buildings/gold_mine.png"
+    tileset-wasteland "tilesets/wasteland/neutral/buildings/gold_mine.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/gold_mine.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-gold-mine
   'costs '(time 150)
@@ -212,9 +212,9 @@
     attack "gold-mine-attack"))
 
 (define-unit-type 'unit-oil-patch 'name "Oil Patch"
-  'files '(tileset-summer "tilesets/summer/neutral/buildings/oil patch.png"
-    tileset-wasteland "tilesets/wasteland/neutral/buildings/oil patch.png"
-    tileset-swamp "tilesets/swamp/neutral/buildings/oil patch.png")
+  'files '(tileset-summer "tilesets/summer/neutral/buildings/oil_patch.png"
+    tileset-wasteland "tilesets/wasteland/neutral/buildings/oil_patch.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/oil_patch.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-oil-patch
   'speed 0
@@ -236,7 +236,7 @@
     attack "oil-patch-attack"))
 
 (define-unit-type 'unit-circle-of-power 'name "Circle of Power"
-  'files '(tileset-summer "neutral/buildings/circle of power.png")
+  'files '(tileset-summer "neutral/buildings/circle_of_power.png")
   'size '(64 64)
   'animations 'animations-building 'icon 'icon-circle-of-power
   'speed 0
@@ -258,10 +258,10 @@
     attack "circle-of-power-attack"))
 
 (define-unit-type 'unit-dark-portal 'name "Dark Portal"
-  'files '(tileset-summer "tilesets/summer/neutral/buildings/dark portal.png"
-    tileset-winter "tilesets/winter/neutral/buildings/dark portal.png"
-    tileset-wasteland "tilesets/wasteland/neutral/buildings/dark portal.png"
-    tileset-swamp "tilesets/swamp/neutral/buildings/dark portal.png")
+  'files '(tileset-summer "tilesets/summer/neutral/buildings/dark_portal.png"
+    tileset-winter "tilesets/winter/neutral/buildings/dark_portal.png"
+    tileset-wasteland "tilesets/wasteland/neutral/buildings/dark_portal.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/dark_portal.png")
   'size '(128 128)
   'animations 'animations-building 'icon 'icon-dark-portal
   'costs '(time 100 gold 3000 wood 3000 oil 1000)
@@ -333,11 +333,11 @@
 
 (define-unit-type 'unit-destroyed-1x1-place 'name "Destroyed 1x1 Place"
   'files '(
-    tileset-summer "tilesets/summer/neutral/buildings/small destroyed site.png"
-    tileset-winter "tilesets/winter/neutral/buildings/small destroyed site.png"
+    tileset-summer "tilesets/summer/neutral/buildings/small_destroyed_site.png"
+    tileset-winter "tilesets/winter/neutral/buildings/small_destroyed_site.png"
     tileset-wasteland
-      "tilesets/wasteland/neutral/buildings/small destroyed site.png"
-    tileset-swamp "tilesets/swamp/neutral/buildings/small destroyed site.png")
+      "tilesets/wasteland/neutral/buildings/small_destroyed_site.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/small_destroyed_site.png")
   'size '(32 32)
   'animations 'animations-destroyed-place 'icon 'icon-peasant
   'speed 0
@@ -353,10 +353,10 @@
   'sounds '())
 
 (define-unit-type 'unit-destroyed-2x2-place 'name "Destroyed 2x2 Place"
-  'files '(tileset-summer "tilesets/summer/neutral/buildings/destroyed site.png"
-    tileset-winter "tilesets/winter/neutral/buildings/destroyed site.png"
-    tileset-wasteland "tilesets/wasteland/neutral/buildings/destroyed site.png"
-    tileset-swamp "tilesets/swamp/neutral/buildings/destroyed site.png")
+  'files '(tileset-summer "tilesets/summer/neutral/buildings/destroyed_site.png"
+    tileset-winter "tilesets/winter/neutral/buildings/destroyed_site.png"
+    tileset-wasteland "tilesets/wasteland/neutral/buildings/destroyed_site.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/destroyed_site.png")
   'size '(64 64)
   'animations 'animations-destroyed-place 'icon 'icon-peasant
   'speed 0

@@ -35,16 +35,16 @@
 ;;		'hotspot ( x y ) 'size ( width height ))
 ;;
 (define-cursor	'cursor-point		'human
-    'image "ui/human/cursors/human gauntlet.png"
+    'image "ui/human/cursors/human_gauntlet.png"
     'hot-spot '( 3  2) 'size '(28 32) )
 (define-cursor	'cursor-green-hair	'human
-    'image "ui/human/cursors/green eagle.png"
+    'image "ui/human/cursors/green_eagle.png"
     'hot-spot '(15 15) 'size '(32 32) )
 (define-cursor	'cursor-yellow-hair	'human
-    'image "ui/human/cursors/yellow eagle.png"
+    'image "ui/human/cursors/yellow_eagle.png"
     'hot-spot '(15 15) 'size '(32 32) )
 (define-cursor	'cursor-red-hair	'human
-    'image "ui/human/cursors/red eagle.png"
+    'image "ui/human/cursors/red_eagle.png"
     'hot-spot '(15 15) 'size '(32 32) )
 
 ;;=============================================================================
@@ -192,11 +192,11 @@
       arrow-se cursor-arrow-se)
 
     'menu-panels '(
-      panel1 "graphics/ui/human/panel 1.png"
-      panel2 "graphics/ui/human/panel 2.png"
-      panel3 "graphics/ui/human/panel 3.png"
-      panel4 "graphics/ui/human/panel 4.png"
-      panel5 "graphics/ui/human/panel 5.png")
+      panel1 "graphics/ui/human/panel_1.png"
+      panel2 "graphics/ui/human/panel_2.png"
+      panel3 "graphics/ui/human/panel_3.png"
+      panel4 "graphics/ui/human/panel_4.png"
+      panel5 "graphics/ui/human/panel_5.png")
 
     'victory-background "graphics/ui/human/victory.png"
     'defeat-background "graphics/ui/human/defeat.png") )

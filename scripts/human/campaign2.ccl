@@ -35,7 +35,7 @@
 (define-campaign 'human-exp 'name "H~!uman expansion levels"
   'campaign (list
 	'show-picture (list
-	  'image "campaigns/human-exp/interface/Act I  - A Time for Heroes.png"
+	  'image "campaigns/human-exp/interface/Act_I__-_A_Time_for_Heroes.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -59,7 +59,7 @@
 	'play-level "campaigns/human-exp/levelx02h.cm"
 	'play-level "campaigns/human-exp/levelx03h.cm"
 	'show-picture (list
-	  'image "campaigns/human-exp/interface/Act II - Draenor, the Red World.png"
+	  'image "campaigns/human-exp/interface/Act_II_-_Draenor,_the_Red_World.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -83,7 +83,7 @@
 	'play-level "campaigns/human-exp/levelx05h.cm"
 	'play-level "campaigns/human-exp/levelx06h.cm"
 	'show-picture (list
-	  'image "campaigns/human-exp/interface/Act III- War in the Shadows.png"
+	  'image "campaigns/human-exp/interface/Act_III-_War_in_the_Shadows.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -107,7 +107,7 @@
 	'play-level "campaigns/human-exp/levelx08h.cm"
 	'play-level "campaigns/human-exp/levelx09h.cm"
 	'show-picture (list
-	  'image "campaigns/human-exp/interface/Act IV - The Measure of Valor.png"
+	  'image "campaigns/human-exp/interface/Act_IV_-_The_Measure_of_Valor.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)

@@ -35,7 +35,7 @@
 (define-campaign 'orc-exp 'name "O~!rc expansion levels"
   'campaign (list
 	'show-picture (list
-	  'image "campaigns/orc-exp/interface/Act I  - Draenor, the Red World.png"
+	  'image "campaigns/orc-exp/interface/Act_I__-_Draenor,_the_Red_World.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -59,7 +59,7 @@
 	'play-level "campaigns/orc-exp/levelx02o.cm"
 	'play-level "campaigns/orc-exp/levelx03o.cm"
 	'show-picture (list
-	  'image "campaigns/orc-exp/interface/Act II - The Burning of Azeroth.png"
+	  'image "campaigns/orc-exp/interface/Act_II_-_The_Burning_of_Azeroth.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -83,7 +83,7 @@
 	'play-level "campaigns/orc-exp/levelx05o.cm"
 	'play-level "campaigns/orc-exp/levelx06o.cm"
 	'show-picture (list
-	  'image "campaigns/orc-exp/interface/Act III- The Great Sea.png"
+	  'image "campaigns/orc-exp/interface/Act_III-_The_Great_Sea.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -107,7 +107,7 @@
 	'play-level "campaigns/orc-exp/levelx08o.cm"
 	'play-level "campaigns/orc-exp/levelx09o.cm"
 	'show-picture (list
-	  'image "campaigns/orc-exp/interface/Act IV - Prelude to New Worlds.png"
+	  'image "campaigns/orc-exp/interface/Act_IV_-_Prelude_to_New_Worlds.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)

@@ -162,7 +162,7 @@
     attack "knight-attack"))
 
 (define-unit-type 'unit-archer 'name "Archer"
-  'files '(tileset-summer "human/units/elven archer.png")
+  'files '(tileset-summer "human/units/elven_archer.png")
   'size '(72 72)
   'animations 'animations-archer 'icon 'icon-archer
   'costs '(time 70 gold 500 wood 50)
@@ -262,7 +262,7 @@
     attack "paladin-attack"))
 
 (define-unit-type 'unit-dwarves 'name "Dwarves"
-  'files '(tileset-summer "human/units/dwarven demolition squad.png")
+  'files '(tileset-summer "human/units/dwarven_demolition_squad.png")
   'size '(56 56)
   'animations 'animations-dwarves 'icon 'icon-dwarves
   'costs '(time 200 gold 700 wood 250)
@@ -389,7 +389,7 @@
     attack "alleria-attack"))
 
 (define-unit-type 'unit-flying-angle 'name "Kurdan and Sky'ree"
-  'files '(tileset-summer "human/units/gryphon rider.png")
+  'files '(tileset-summer "human/units/gryphon_rider.png")
   'size '(80 80)
   'draw-level 45
   'animations 'animations-kurdan-and-sky-ree 'icon 'icon-flying-angle
@@ -455,7 +455,7 @@
     attack "khadgar-attack"))
 
 (define-unit-type 'unit-human-oil-tanker 'name "Oil tanker"
-  'files '(tileset-summer "human/units/oil tanker empty.png")
+  'files '(tileset-summer "human/units/oil_tanker_empty.png")
   'size '(72 72)
   'animations 'animations-human-oil-tanker 'icon 'icon-alliance-oil-tanker
   'costs '(time 50 gold 400 wood 200)
@@ -515,7 +515,7 @@
     attack "human-transport-attack"))
 
 (define-unit-type 'unit-alliance-destroyer 'name "Elven Destroyer"
-  'files '(tileset-summer "human/units/elven destroyer.png")
+  'files '(tileset-summer "human/units/elven_destroyer.png")
   'size '(80 88)
   'animations 'animations-elven-destroyer 'icon 'icon-alliance-destroyer
   'costs '(time 90 gold 700 wood 350 oil 700)
@@ -578,9 +578,9 @@
     attack "battleship-attack"))
 
 (define-unit-type 'unit-alliance-submarine 'name "Gnomish Submarine"
-  'files '(tileset-summer "human/units/gnomish submarine.png"
-    tileset-wasteland "tilesets/wasteland/human/units/gnomish submarine.png"
-    tileset-swamp "tilesets/swamp/human/units/gnomish submarine.png")
+  'files '(tileset-summer "human/units/gnomish_submarine.png"
+    tileset-wasteland "tilesets/wasteland/human/units/gnomish_submarine.png"
+    tileset-swamp "tilesets/swamp/human/units/gnomish_submarine.png")
   'size '(72 72)
   'animations 'animations-gnomish-submarine 'icon 'icon-gnomish-submarine
   'costs '(time 100 gold 800 wood 150 oil 900)
@@ -612,7 +612,7 @@
     attack "gnomish-submarine-attack"))
 
 (define-unit-type 'unit-balloon 'name "Gnomish Flying Machine"
-  'files '(tileset-summer "human/units/gnomish flying machine.png")
+  'files '(tileset-summer "human/units/gnomish_flying_machine.png")
   'size '(80 80)
   'animations 'animations-gnomish-flying-machine 'icon 'icon-gnomish-flying-machine
   'costs '(time 65 gold 500 wood 100)
@@ -890,9 +890,9 @@
     attack "church-attack"))
 
 (define-unit-type 'unit-alliance-watch-tower 'name "Scout Tower"
-  'files '(tileset-summer "tilesets/summer/human/buildings/scout tower.png"
-    tileset-winter "tilesets/winter/human/buildings/scout tower.png"
-    tileset-swamp "tilesets/swamp/human/buildings/scout tower.png")
+  'files '(tileset-summer "tilesets/summer/human/buildings/scout_tower.png"
+    tileset-winter "tilesets/winter/human/buildings/scout_tower.png"
+    tileset-swamp "tilesets/swamp/human/buildings/scout_tower.png")
   'size '(64 64)
   'animations 'animations-building 'icon 'icon-alliance-watch-tower
   'costs '(time 60 gold 550 wood 200)
@@ -946,9 +946,9 @@
     attack "stables-attack"))
 
 (define-unit-type 'unit-inventor 'name "Gnomish Inventor"
-  'files '(tileset-summer "tilesets/summer/human/buildings/gnomish inventor.png"
-    tileset-winter "tilesets/winter/human/buildings/gnomish inventor.png"
-    tileset-swamp "tilesets/swamp/human/buildings/gnomish inventor.png")
+  'files '(tileset-summer "tilesets/summer/human/buildings/gnomish_inventor.png"
+    tileset-winter "tilesets/winter/human/buildings/gnomish_inventor.png"
+    tileset-swamp "tilesets/swamp/human/buildings/gnomish_inventor.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-gnomish-inventor
   'costs '(time 150 gold 1000 wood 400)
@@ -973,9 +973,9 @@
     attack "gnomish-inventor-attack"))
 
 (define-unit-type 'unit-gryphon-aviary 'name "Gryphon Aviary"
-  'files '(tileset-summer "tilesets/summer/human/buildings/gryphon aviary.png"
-    tileset-winter "tilesets/winter/human/buildings/gryphon aviary.png"
-    tileset-swamp "tilesets/swamp/human/buildings/gryphon aviary.png")
+  'files '(tileset-summer "tilesets/summer/human/buildings/gryphon_aviary.png"
+    tileset-winter "tilesets/winter/human/buildings/gryphon_aviary.png"
+    tileset-swamp "tilesets/swamp/human/buildings/gryphon_aviary.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-gryphon-aviary
   'costs '(time 150 gold 1000 wood 400)
@@ -1029,10 +1029,10 @@
     attack "human-shipyard-attack"))
 
 (define-unit-type 'unit-elven-lumber-mill 'name "Elven Lumber Mill"
-  'files '(tileset-summer "tilesets/summer/human/buildings/elven lumber mill.png"
-    tileset-winter "tilesets/winter/human/buildings/elven lumber mill.png"
-    tileset-wasteland "tilesets/wasteland/human/buildings/elven lumber mill.png"
-    tileset-swamp "tilesets/swamp/human/buildings/elven lumber mill.png")
+  'files '(tileset-summer "tilesets/summer/human/buildings/elven_lumber_mill.png"
+    tileset-winter "tilesets/winter/human/buildings/elven_lumber_mill.png"
+    tileset-wasteland "tilesets/wasteland/human/buildings/elven_lumber_mill.png"
+    tileset-swamp "tilesets/swamp/human/buildings/elven_lumber_mill.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-elven-lumber-mill
   'costs '(time 150 gold 600 wood 450)
@@ -1086,9 +1086,9 @@
     attack "human-foundry-attack"))
 
 (define-unit-type 'unit-town-hall 'name "Town Hall"
-  'files '(tileset-summer "tilesets/summer/human/buildings/town hall.png"
-    tileset-winter "tilesets/winter/human/buildings/town hall.png"
-    tileset-swamp "tilesets/swamp/human/buildings/town hall.png")
+  'files '(tileset-summer "tilesets/summer/human/buildings/town_hall.png"
+    tileset-winter "tilesets/winter/human/buildings/town_hall.png"
+    tileset-swamp "tilesets/swamp/human/buildings/town_hall.png")
   'size '(128 128)
   'animations 'animations-building 'icon 'icon-town-hall
   'costs '(time 255 gold 1200 wood 800)
@@ -1115,9 +1115,9 @@
     attack "town-hall-attack"))
 
 (define-unit-type 'unit-mage-tower 'name "Mage Tower"
-  'files '(tileset-summer "tilesets/summer/human/buildings/mage tower.png"
-    tileset-winter "tilesets/winter/human/buildings/mage tower.png"
-    tileset-swamp "tilesets/swamp/human/buildings/mage tower.png")
+  'files '(tileset-summer "tilesets/summer/human/buildings/mage_tower.png"
+    tileset-winter "tilesets/winter/human/buildings/mage_tower.png"
+    tileset-swamp "tilesets/swamp/human/buildings/mage_tower.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-mage-tower
   'costs '(time 125 gold 1000 wood 200)
@@ -1198,10 +1198,10 @@
     attack "human-refinery-attack"))
 
 (define-unit-type 'unit-alliance-oil-platform 'name "Oil Platform"
-  'files '(tileset-summer "tilesets/summer/human/buildings/oil platform.png"
-    tileset-winter "tilesets/winter/human/buildings/oil platform.png"
-    tileset-wasteland "tilesets/wasteland/human/buildings/oil platform.png"
-    tileset-swamp "tilesets/swamp/human/buildings/oil platform.png")
+  'files '(tileset-summer "tilesets/summer/human/buildings/oil_platform.png"
+    tileset-winter "tilesets/winter/human/buildings/oil_platform.png"
+    tileset-wasteland "tilesets/wasteland/human/buildings/oil_platform.png"
+    tileset-swamp "tilesets/swamp/human/buildings/oil_platform.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-alliance-oil-platform
   'costs '(time 200 gold 700 wood 450)
@@ -1285,7 +1285,7 @@
     attack "castle-attack"))
 
 (define-unit-type 'unit-alliance-start-location 'name "Start Location"
-  'files '(tileset-summer "human/x startpoint.png")
+  'files '(tileset-summer "human/x_startpoint.png")
   'size '(32 32)
   'animations 'animations-building 'icon 'icon-cancel
   'speed 0
@@ -1306,9 +1306,9 @@
     attack "human-start-location-attack"))
 
 (define-unit-type 'unit-alliance-guard-tower 'name "Guard Tower"
-  'files '(tileset-summer "tilesets/summer/human/buildings/guard tower.png"
-    tileset-winter "tilesets/winter/human/buildings/guard tower.png"
-    tileset-swamp "tilesets/swamp/human/buildings/guard tower.png")
+  'files '(tileset-summer "tilesets/summer/human/buildings/guard_tower.png"
+    tileset-winter "tilesets/winter/human/buildings/guard_tower.png"
+    tileset-swamp "tilesets/swamp/human/buildings/guard_tower.png")
   'size '(64 64)
   'animations 'animations-human-guard-tower 'icon 'icon-alliance-guard-tower
   'costs '(time 140 gold 500 wood 150)
@@ -1338,9 +1338,9 @@
     attack "human-guard-tower-attack"))
 
 (define-unit-type 'unit-alliance-cannon-tower 'name "Cannon Tower"
-  'files '(tileset-summer "tilesets/summer/human/buildings/cannon tower.png"
-    tileset-winter "tilesets/winter/human/buildings/cannon tower.png"
-    tileset-swamp "tilesets/swamp/human/buildings/cannon tower.png")
+  'files '(tileset-summer "tilesets/summer/human/buildings/cannon_tower.png"
+    tileset-winter "tilesets/winter/human/buildings/cannon_tower.png"
+    tileset-swamp "tilesets/swamp/human/buildings/cannon_tower.png")
   'size '(64 64)
   'animations 'animations-human-cannon-tower 'icon 'icon-alliance-cannon-tower
   'costs '(time 190 gold 1000 wood 300)
@@ -1397,7 +1397,7 @@
     attack "human-wall-attack"))
 
 (define-unit-type 'unit-peasant-with-gold 'name "Peasant"
-  'files '(tileset-summer "human/units/peasant with gold.png")
+  'files '(tileset-summer "human/units/peasant_with_gold.png")
   'size '(72 72)
   'animations 'animations-peasant 'icon 'icon-peasant
   'costs '(time 45 gold 400)
@@ -1429,7 +1429,7 @@
     attack "peasant-with-gold-attack"))
 
 (define-unit-type 'unit-peasant-with-wood 'name "Peasant"
-  'files '(tileset-summer "human/units/peasant with wood.png")
+  'files '(tileset-summer "human/units/peasant_with_wood.png")
   'size '(72 72)
   'animations 'animations-peasant 'icon 'icon-peasant
   'costs '(time 45 gold 400)
@@ -1461,7 +1461,7 @@
     attack "peasant-with-wood-attack"))
 
 (define-unit-type 'unit-human-oil-tanker-full 'name "Oil tanker"
-  'files '(tileset-summer "human/units/oil tanker full.png")
+  'files '(tileset-summer "human/units/oil_tanker_full.png")
   'size '(72 72)
   'animations 'animations-human-oil-tanker 'icon 'icon-alliance-oil-tanker
   'costs '(time 50 gold 400 wood 200)

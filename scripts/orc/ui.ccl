@@ -35,16 +35,16 @@
 ;;		'hotspot ( x y ) 'size ( width height ))
 ;;
 (define-cursor	'cursor-point		'orc
-    'image "ui/orc/cursors/orcish claw.png"
+    'image "ui/orc/cursors/orcish_claw.png"
     'hot-spot '( 3  2) 'size '(26 32) )
 (define-cursor	'cursor-green-hair	'orc
-    'image "ui/orc/cursors/green crosshairs.png"
+    'image "ui/orc/cursors/green_crosshairs.png"
     'hot-spot '(15 15) 'size '(32 32) )
 (define-cursor	'cursor-yellow-hair	'orc
-    'image "ui/orc/cursors/yellow crosshairs.png"
+    'image "ui/orc/cursors/yellow_crosshairs.png"
     'hot-spot '(15 15) 'size '(32 32) )
 (define-cursor	'cursor-red-hair	'orc
-    'image "ui/orc/cursors/red crosshairs.png"
+    'image "ui/orc/cursors/red_crosshairs.png"
     'hot-spot '(15 15) 'size '(32 32) )
 
 ;;=============================================================================
@@ -193,11 +193,11 @@
       arrow-se cursor-arrow-se)
 
     'menu-panels '(
-      panel1 "graphics/ui/orc/panel 1.png"
-      panel2 "graphics/ui/orc/panel 2.png"
-      panel3 "graphics/ui/orc/panel 3.png"
-      panel4 "graphics/ui/orc/panel 4.png"
-      panel5 "graphics/ui/orc/panel 5.png")
+      panel1 "graphics/ui/orc/panel_1.png"
+      panel2 "graphics/ui/orc/panel_2.png"
+      panel3 "graphics/ui/orc/panel_3.png"
+      panel4 "graphics/ui/orc/panel_4.png"
+      panel5 "graphics/ui/orc/panel_5.png")
 
     'victory-background "graphics/ui/orc/victory.png"
     'defeat-background "graphics/ui/orc/defeat.png") )

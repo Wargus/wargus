@@ -37,15 +37,15 @@
 (define-construction 'construction-alliance-shipyard
   'file '(
     tileset summer
-    file "human/buildings/shipyard construction site.png"
+    file "human/buildings/shipyard_construction_site.png"
     size (96 96))
   'file '(
     tileset winter
-    file "tilesets/winter/human/buildings/shipyard construction site.png"
+    file "tilesets/winter/human/buildings/shipyard_construction_site.png"
     size (96 96))
   'file '(
     tileset swamp
-    file "tilesets/swamp/human/buildings/shipyard construction site.png"
+    file "tilesets/swamp/human/buildings/shipyard_construction_site.png"
     size (96 96))
   'constructions (list
     '(percent 0
@@ -62,19 +62,19 @@
 (define-construction 'construction-alliance-oil-well
   'file '(
     tileset summer
-    file "tilesets/summer/human/buildings/oil well construction site.png"
+    file "tilesets/summer/human/buildings/oil_well_construction_site.png"
     size (96 96))
   'file '(
     tileset winter
-    file "tilesets/winter/human/buildings/oil well construction site.png"
+    file "tilesets/winter/human/buildings/oil_well_construction_site.png"
     size (96 96))
   'file '(
     tileset wasteland
-    file "tilesets/wasteland/human/buildings/oil well construction site.png"
+    file "tilesets/wasteland/human/buildings/oil_well_construction_site.png"
     size (96 96))
   'file '(
     tileset swamp
-    file "tilesets/swamp/human/buildings/oil platform construction site.png"
+    file "tilesets/swamp/human/buildings/oil_platform_construction_site.png"
     size (96 96))
   'constructions (list
     '(percent 0
@@ -91,15 +91,15 @@
 (define-construction 'construction-alliance-refinery
   'file '(
     tileset summer
-    file "human/buildings/refinery construction site.png"
+    file "human/buildings/refinery_construction_site.png"
     size (96 96))
   'file '(
     tileset winter
-    file "tilesets/winter/human/buildings/refinery construction site.png"
+    file "tilesets/winter/human/buildings/refinery_construction_site.png"
     size (96 96))
   'file '(
     tileset swamp
-    file "tilesets/swamp/human/buildings/refinery construction site.png"
+    file "tilesets/swamp/human/buildings/refinery_construction_site.png"
     size (96 96))
   'constructions (list
     '(percent 0
@@ -116,15 +116,15 @@
 (define-construction 'construction-alliance-foundry
   'file '(
     tileset summer
-    file "human/buildings/foundry construction site.png"
+    file "human/buildings/foundry_construction_site.png"
     size (96 96))
   'file '(
     tileset winter
-    file "tilesets/winter/human/buildings/foundry construction site.png"
+    file "tilesets/winter/human/buildings/foundry_construction_site.png"
     size (96 96))
   'file '(
     tileset swamp
-    file "tilesets/swamp/human/buildings/foundry construction site.png"
+    file "tilesets/swamp/human/buildings/foundry_construction_site.png"
     size (96 96))
   'constructions (list
     '(percent 0

@@ -38,15 +38,15 @@
 (define-construction 'construction-mythical-shipyard
   'file '(
     tileset summer
-    file "orc/buildings/shipyard construction site.png"
+    file "orc/buildings/shipyard_construction_site.png"
     size (96 96))
   'file '(
     tileset winter
-    file "tilesets/winter/orc/buildings/shipyard construction site.png"
+    file "tilesets/winter/orc/buildings/shipyard_construction_site.png"
     size (96 96))
   'file '(
     tileset swamp
-    file "tilesets/swamp/orc/buildings/shipyard construction site.png"
+    file "tilesets/swamp/orc/buildings/shipyard_construction_site.png"
     size (96 96))
   'constructions (list
     '(percent 0
@@ -63,19 +63,19 @@
 (define-construction 'construction-mythical-oil-well
   'file '(
     tileset summer
-    file "tilesets/summer/orc/buildings/oil well construction site.png"
+    file "tilesets/summer/orc/buildings/oil_well_construction_site.png"
     size (96 96))
   'file '(
     tileset winter
-    file "tilesets/winter/orc/buildings/oil well construction site.png"
+    file "tilesets/winter/orc/buildings/oil_well_construction_site.png"
     size (96 96))
   'file '(
     tileset wasteland
-    file "tilesets/wasteland/orc/buildings/oil well construction site.png"
+    file "tilesets/wasteland/orc/buildings/oil_well_construction_site.png"
     size (96 96))
   'file '(
     tileset swamp
-    file "tilesets/swamp/orc/buildings/oil platform construction site.png"
+    file "tilesets/swamp/orc/buildings/oil_platform_construction_site.png"
     size (96 96))
   'constructions (list
     '(percent 0
@@ -92,15 +92,15 @@
 (define-construction 'construction-mythical-refinery
   'file '(
     tileset summer
-    file "orc/buildings/refinery construction site.png"
+    file "orc/buildings/refinery_construction_site.png"
     size (96 96))
   'file '(
     tileset winter
-    file "tilesets/winter/orc/buildings/refinery construction site.png"
+    file "tilesets/winter/orc/buildings/refinery_construction_site.png"
     size (96 96))
   'file '(
     tileset swamp
-    file "tilesets/swamp/orc/buildings/refinery construction site.png"
+    file "tilesets/swamp/orc/buildings/refinery_construction_site.png"
     size (96 96))
   'constructions (list
     '(percent 0
@@ -117,15 +117,15 @@
 (define-construction 'construction-mythical-foundry
   'file '(
     tileset summer
-    file "orc/buildings/foundry construction site.png"
+    file "orc/buildings/foundry_construction_site.png"
     size (96 96))
   'file '(
     tileset winter
-    file "tilesets/winter/orc/buildings/foundry construction site.png"
+    file "tilesets/winter/orc/buildings/foundry_construction_site.png"
     size (96 96))
   'file '(
     tileset swamp
-    file "tilesets/swamp/orc/buildings/foundry construction site.png"
+    file "tilesets/swamp/orc/buildings/foundry_construction_site.png"
     size (96 96))
   'constructions (list
     '(percent 0

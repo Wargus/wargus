@@ -120,7 +120,7 @@
 ;;----------------------------------------------------------------------------
 ;;	Define simple misc sounds.
 ;;
-(make-sound "building construction" "misc/building construction.wav")
+(make-sound "building construction" "misc/building_construction.wav")
 (make-sound "ship sinking" "ships/sinking.wav")
 (make-sound "catapult-ballista movement"
 	"units/catapult-ballista/acknowledgement/1.wav")
@@ -128,55 +128,55 @@
     ;; building selection sounds
 (make-sound "blacksmith" "buildings/blacksmith.wav")
 (make-sound "church-selected" "human/buildings/church.wav")
-(make-sound "altar-of-storms-selected" "orc/buildings/altar of storms.wav")
+(make-sound "altar-of-storms-selected" "orc/buildings/altar_of_storms.wav")
 (make-sound "stables-selected" "human/buildings/stables.wav")
-(make-sound "ogre-mound-selected" "orc/buildings/ogre mound.wav")
+(make-sound "ogre-mound-selected" "orc/buildings/ogre_mound.wav")
 (make-sound "farm-selected" "human/buildings/farm.wav")
-(make-sound "pig-farm-selected" "orc/buildings/pig farm.wav")
-(make-sound "gold-mine-selected" "neutral/buildings/gold mine.wav")
+(make-sound "pig-farm-selected" "orc/buildings/pig_farm.wav")
+(make-sound "gold-mine-selected" "neutral/buildings/gold_mine.wav")
 (make-sound "shipyard" "buildings/shipyard.wav")
-(make-sound "oil platform" "buildings/oil platform.wav")
-(make-sound "oil refinery" "buildings/oil refinery.wav")
+(make-sound "oil platform" "buildings/oil_platform.wav")
+(make-sound "oil refinery" "buildings/oil_refinery.wav")
 (make-sound "lumbermill" "buildings/lumbermill.wav")
-(make-sound "transport docking" "misc/transport docking.wav")
+(make-sound "transport docking" "misc/transport_docking.wav")
 (make-sound "burning" "misc/burning.wav")
-(make-sound "gryphon-aviary-selected" "human/buildings/gryphon aviary.wav")
-(make-sound "dragon-roost-selected" "orc/buildings/dragon roost.wav")
+(make-sound "gryphon-aviary-selected" "human/buildings/gryphon_aviary.wav")
+(make-sound "dragon-roost-selected" "orc/buildings/dragon_roost.wav")
 (make-sound "foundry" "buildings/foundry.wav")
-(make-sound "gnomish-inventor-selected" "human/buildings/gnomish inventor.wav")
-(make-sound "goblin-alchemist-selected" "orc/buildings/goblin alchemist.wav")
-(make-sound "mage-tower-selected" "human/buildings/mage tower.wav")
+(make-sound "gnomish-inventor-selected" "human/buildings/gnomish_inventor.wav")
+(make-sound "goblin-alchemist-selected" "orc/buildings/goblin_alchemist.wav")
+(make-sound "mage-tower-selected" "human/buildings/mage_tower.wav")
 (make-sound "temple-of-the-damned-selected"
-	"orc/buildings/temple of the damned.wav")
+	"orc/buildings/temple_of_the_damned.wav")
 (make-sound "capture (human)" "human/capture.wav")
 (make-sound "capture (orc)" "orc/capture.wav")
 (make-sound "rescue (human)" "human/rescue.wav")
 (make-sound "rescue (orc)" "orc/rescue.wav")
 (make-sound "bloodlust" "spells/bloodlust.wav")
-(make-sound "death and decay" "spells/death and decay.wav")
-(make-sound "death coil" "spells/death coil.wav")
+(make-sound "death and decay" "spells/death_and_decay.wav")
+(make-sound "death coil" "spells/death_coil.wav")
 (make-sound "exorcism" "spells/exorcism.wav")
-(make-sound "flame shield" "spells/flame shield.wav")
+(make-sound "flame shield" "spells/flame_shield.wav")
 (make-sound "haste" "spells/haste.wav")
 (make-sound "healing" "spells/healing.wav")
-(make-sound "holy vision" "spells/holy vision.wav")
+(make-sound "holy vision" "spells/holy_vision.wav")
 (make-sound "blizzard" "spells/blizzard.wav")
 (make-sound "invisibility" "spells/invisibility.wav")
-(make-sound "eye of vision" "spells/eye of kilrogg.wav")
+(make-sound "eye of vision" "spells/eye_of_kilrogg.wav")
 (make-sound "polymorph" "spells/polymorph.wav")
 (make-sound "slow" "spells/slow.wav")
-(make-sound "unholy armour" "spells/unholy armor.wav")
+(make-sound "unholy armour" "spells/unholy_armor.wav")
 (make-sound "whirlwind" "spells/whirlwind.wav")
     ;; ready sounds
 (make-sound "peon-ready" "orc/peon/ready.wav")
-(make-sound "death-knight-ready" "orc/units/death knight/ready.wav")
-(make-sound "dwarves-ready" "human/units/dwarven demolition squad/ready.wav")
+(make-sound "death-knight-ready" "orc/units/death_knight/ready.wav")
+(make-sound "dwarves-ready" "human/units/dwarven_demolition_squad/ready.wav")
 (make-sound "elven archer-ranger ready"
-	"human/units/elven archer-ranger/ready.wav")
+	"human/units/elven_archer-ranger/ready.wav")
 (make-sound "gnomish-flying-machine-ready"
-	"human/units/gnomish flying machine/ready.wav")
-(make-sound "goblin-sappers-ready" "orc/units/goblin sappers/ready.wav")
-(make-sound "goblin-zeppelin-ready" "orc/units/goblin zeppelin/ready.wav")
+	"human/units/gnomish_flying_machine/ready.wav")
+(make-sound "goblin-sappers-ready" "orc/units/goblin_sappers/ready.wav")
+(make-sound "goblin-zeppelin-ready" "orc/units/goblin_zeppelin/ready.wav")
 (make-sound "knight-ready" "human/units/knight/ready.wav")
 (make-sound "paladin-ready" "human/units/paladin/ready.wav")
 (make-sound "ogre-ready" "orc/units/ogre/ready.wav")
@@ -184,7 +184,7 @@
 (make-sound "ships human ready" "human/ships/ready.wav")
 (make-sound "ships orc ready" "orc/ships/ready.wav")
 (make-sound "troll axethrower-berserker ready"
-	"orc/units/troll axethrower-berserker/ready.wav")
+	"orc/units/troll_axethrower-berserker/ready.wav")
 (make-sound "mage-ready" "human/units/mage/ready.wav")
 (make-sound "peasant-ready" "human/units/peasant/ready.wav")
 (make-sound "dragon-ready" "orc/units/dragon/ready.wav")
@@ -192,7 +192,7 @@
     ;;------------------------------------------------------------------------
     ;; selection sounds
 (make-sound "dragon-selected" "orc/units/dragon/selected/1.wav")
-(make-sound "gryphon-rider-selected" "human/units/gryphon rider/selected/1.wav")
+(make-sound "gryphon-rider-selected" "human/units/gryphon_rider/selected/1.wav")
 (make-sound "sheep selected" "neutral/units/sheep/selected/1.wav")
 (make-sound "seal selected" "neutral/units/seal/selected/1.wav")
 (make-sound "pig selected" "neutral/units/pig/selected/1.wav")
@@ -205,17 +205,17 @@
 
     ;;------------------------------------------------------------------------
     ;; attack sounds
-(make-sound "catapult-ballista attack" "missiles/catapult-ballista attack.wav")
+(make-sound "catapult-ballista attack" "missiles/catapult-ballista_attack.wav")
 (make-sound "punch" "missiles/punch.wav")
-(make-sound "fireball hit" "missiles/fireball hit.wav")
-(make-sound "fireball throw" "missiles/fireball throw.wav")
-(make-sound "bow throw" "missiles/bow throw.wav")
-(make-sound "bow hit" "missiles/bow hit.wav")
-(make-sound "axe throw" "missiles/axe throw.wav")
+(make-sound "fireball hit" "missiles/fireball_hit.wav")
+(make-sound "fireball throw" "missiles/fireball_throw.wav")
+(make-sound "bow throw" "missiles/bow_throw.wav")
+(make-sound "bow hit" "missiles/bow_hit.wav")
+(make-sound "axe throw" "missiles/axe_throw.wav")
 (make-sound "fist" "missiles/fist.wav")
 (make-sound "peasant attack" "human/units/peasant/attack.wav")
 (make-sound "lightning" "spells/lightning.wav")
-(make-sound "touch of darkness" "spells/touch of darkness.wav")
+(make-sound "touch of darkness" "spells/touch_of_darkness.wav")
 
 ;;----------------------------------------------------------------------------
 ;;	Define sound groups.
@@ -247,22 +247,22 @@
 	"orc/units/ogre/acknowledgement/2.wav"
 	"orc/units/ogre/acknowledgement/3.wav"))
 (make-sound "elven archer-ranger acknowledge"
-	(list "human/units/elven archer-ranger/acknowledgement/1.wav"
-	"human/units/elven archer-ranger/acknowledgement/2.wav"
-	"human/units/elven archer-ranger/acknowledgement/3.wav"
-	"human/units/elven archer-ranger/acknowledgement/4.wav"))
+	(list "human/units/elven_archer-ranger/acknowledgement/1.wav"
+	"human/units/elven_archer-ranger/acknowledgement/2.wav"
+	"human/units/elven_archer-ranger/acknowledgement/3.wav"
+	"human/units/elven_archer-ranger/acknowledgement/4.wav"))
 (make-sound "troll axethrower-berserker acknowledge"
-	(list "orc/units/troll axethrower-berserker/acknowledgement/1.wav"
-	"orc/units/troll axethrower-berserker/acknowledgement/2.wav"
-	"orc/units/troll axethrower-berserker/acknowledgement/3.wav"))
+	(list "orc/units/troll_axethrower-berserker/acknowledgement/1.wav"
+	"orc/units/troll_axethrower-berserker/acknowledgement/2.wav"
+	"orc/units/troll_axethrower-berserker/acknowledgement/3.wav"))
 (make-sound "mage-acknowledge"
 	(list "human/units/mage/acknowledgement/1.wav"
 	"human/units/mage/acknowledgement/2.wav"
 	"human/units/mage/acknowledgement/3.wav"))
 (make-sound "death-knight-acknowledge"
-	(list "orc/units/death knight/acknowledgement/1.wav"
-	"orc/units/death knight/acknowledgement/2.wav"
-	"orc/units/death knight/acknowledgement/3.wav"))
+	(list "orc/units/death_knight/acknowledgement/1.wav"
+	"orc/units/death_knight/acknowledgement/2.wav"
+	"orc/units/death_knight/acknowledgement/3.wav"))
 (make-sound "paladin-acknowledge"
 	(list "human/units/paladin/acknowledgement/1.wav"
 	"human/units/paladin/acknowledgement/2.wav"
@@ -273,24 +273,24 @@
 	"orc/units/ogre-mage/acknowledgement/2.wav"
 	"orc/units/ogre-mage/acknowledgement/3.wav"))
 (make-sound "dwarves-acknowledge"
-	(list "human/units/dwarven demolition squad/acknowledgement/1.wav"
-	"human/units/dwarven demolition squad/acknowledgement/2.wav"
-	"human/units/dwarven demolition squad/acknowledgement/3.wav"
-	"human/units/dwarven demolition squad/acknowledgement/4.wav"
-	"human/units/dwarven demolition squad/acknowledgement/5.wav"))
+	(list "human/units/dwarven_demolition_squad/acknowledgement/1.wav"
+	"human/units/dwarven_demolition_squad/acknowledgement/2.wav"
+	"human/units/dwarven_demolition_squad/acknowledgement/3.wav"
+	"human/units/dwarven_demolition_squad/acknowledgement/4.wav"
+	"human/units/dwarven_demolition_squad/acknowledgement/5.wav"))
 (make-sound "goblin-sappers-acknowledge"
-	(list "orc/units/goblin sappers/acknowledgement/1.wav"
-	"orc/units/goblin sappers/acknowledgement/2.wav"
-	"orc/units/goblin sappers/acknowledgement/3.wav"
-	"orc/units/goblin sappers/acknowledgement/4.wav"))
+	(list "orc/units/goblin_sappers/acknowledgement/1.wav"
+	"orc/units/goblin_sappers/acknowledgement/2.wav"
+	"orc/units/goblin_sappers/acknowledgement/3.wav"
+	"orc/units/goblin_sappers/acknowledgement/4.wav"))
 (make-sound "alleria-acknowledge"
 	(list "human/units/alleria/acknowledgement/1.wav"
 	"human/units/alleria/acknowledgement/2.wav"
 	"human/units/alleria/acknowledgement/3.wav"))
 (make-sound "teron-gorefiend-acknowledge"
-	(list "orc/units/teron gorefiend/acknowledgement/1.wav"
-	"orc/units/teron gorefiend/acknowledgement/2.wav"
-	"orc/units/teron gorefiend/acknowledgement/3.wav"))
+	(list "orc/units/teron_gorefiend/acknowledgement/1.wav"
+	"orc/units/teron_gorefiend/acknowledgement/2.wav"
+	"orc/units/teron_gorefiend/acknowledgement/3.wav"))
 (make-sound "kurdan-and-sky-ree-acknowledge"
 	(list "human/units/kurdan/acknowledgement/1.wav"
 	"human/units/kurdan/acknowledgement/2.wav"
@@ -304,9 +304,9 @@
 	"human/units/khadgar/acknowledgement/2.wav"
 	"human/units/khadgar/acknowledgement/3.wav"))
 (make-sound "grom-hellscream-acknowledge"
-	(list "orc/units/grom hellscream/acknowledgement/1.wav"
-	"orc/units/grom hellscream/acknowledgement/2.wav"
-	"orc/units/grom hellscream/acknowledgement/3.wav"))
+	(list "orc/units/grom_hellscream/acknowledgement/1.wav"
+	"orc/units/grom_hellscream/acknowledgement/2.wav"
+	"orc/units/grom_hellscream/acknowledgement/3.wav"))
 (make-sound "tanker acknowledge"
 	(list "ships/tanker/acknowledgement/1.wav"))
 (make-sound "ships human acknowledge"
@@ -322,11 +322,11 @@
 	"orc/units/deathwing/acknowledgement/2.wav"
 	"orc/units/deathwing/acknowledgement/3.wav"))
 (make-sound "gnomish-flying-machine-acknowledge"
-	(list "human/units/gnomish flying machine/acknowledgement/1.wav"))
+	(list "human/units/gnomish_flying_machine/acknowledgement/1.wav"))
 (make-sound "goblin-zeppelin-acknowledge"
-	(list "orc/units/goblin zeppelin/acknowledgement/1.wav"))
+	(list "orc/units/goblin_zeppelin/acknowledgement/1.wav"))
 (make-sound "gryphon-rider-acknowledge"
-	(list "human/units/gryphon rider/acknowledgement/2.wav"))
+	(list "human/units/gryphon_rider/acknowledgement/2.wav"))
 (make-sound "dragon-acknowledge"
 	(list "orc/units/dragon/acknowledgement/1.wav"
 	"orc/units/dragon/acknowledgement/2.wav"))
@@ -339,9 +339,9 @@
 	"human/units/danath/acknowledgement/2.wav"
 	"human/units/danath/acknowledgement/3.wav"))
 (make-sound "korgath-bladefist-acknowledge"
-	(list "orc/units/korgath bladefist/acknowledgement/1.wav"
-	"orc/units/korgath bladefist/acknowledgement/2.wav"
-	"orc/units/korgath bladefist/acknowledgement/3.wav"))
+	(list "orc/units/korgath_bladefist/acknowledgement/1.wav"
+	"orc/units/korgath_bladefist/acknowledgement/2.wav"
+	"orc/units/korgath_bladefist/acknowledgement/3.wav"))
     ;;
     ;;	Selection sounds -----------------------------------------------------
     ;;
@@ -360,21 +360,21 @@
 	"orc/basic_voices/selected/5.wav"
 	"orc/basic_voices/selected/6.wav"))
 (make-sound "death knight selected"
-	(list "orc/units/death knight/selected/1.wav"
-	"orc/units/death knight/selected/2.wav"))
+	(list "orc/units/death_knight/selected/1.wav"
+	"orc/units/death_knight/selected/2.wav"))
 (make-sound "dwarven demolition squad selected"
-	(list "human/units/dwarven demolition squad/selected/1.wav"
-	"human/units/dwarven demolition squad/selected/2.wav"))
+	(list "human/units/dwarven_demolition_squad/selected/1.wav"
+	"human/units/dwarven_demolition_squad/selected/2.wav"))
 (make-sound "elven archer-ranger selected"
-	(list "human/units/elven archer-ranger/selected/1.wav"
-	"human/units/elven archer-ranger/selected/2.wav"
-	"human/units/elven archer-ranger/selected/3.wav"
-	"human/units/elven archer-ranger/selected/4.wav"))
+	(list "human/units/elven_archer-ranger/selected/1.wav"
+	"human/units/elven_archer-ranger/selected/2.wav"
+	"human/units/elven_archer-ranger/selected/3.wav"
+	"human/units/elven_archer-ranger/selected/4.wav"))
 (make-sound "goblin sappers selected"
-	(list "orc/units/goblin sappers/selected/1.wav"
-	"orc/units/goblin sappers/selected/2.wav"
-	"orc/units/goblin sappers/selected/3.wav"
-	"orc/units/goblin sappers/selected/4.wav"))
+	(list "orc/units/goblin_sappers/selected/1.wav"
+	"orc/units/goblin_sappers/selected/2.wav"
+	"orc/units/goblin_sappers/selected/3.wav"
+	"orc/units/goblin_sappers/selected/4.wav"))
 (make-sound "knight selected"
 	(list "human/units/knight/selected/1.wav"
 	"human/units/knight/selected/2.wav"
@@ -404,9 +404,9 @@
 	"orc/ships/selected/2.wav"
 	"orc/ships/selected/3.wav"))
 (make-sound "troll axethrower-berserker selected"
-	(list "orc/units/troll axethrower-berserker/selected/1.wav"
-	"orc/units/troll axethrower-berserker/selected/2.wav"
-	"orc/units/troll axethrower-berserker/selected/3.wav"))
+	(list "orc/units/troll_axethrower-berserker/selected/1.wav"
+	"orc/units/troll_axethrower-berserker/selected/2.wav"
+	"orc/units/troll_axethrower-berserker/selected/3.wav"))
 (make-sound "mage selected"
 	(list "human/units/mage/selected/1.wav"
 	"human/units/mage/selected/2.wav"
@@ -445,17 +445,17 @@
 	"orc/units/dentarg/selected/2.wav"
 	"orc/units/dentarg/selected/3.wav"))
 (make-sound "grom hellscream selected"
-	(list "orc/units/grom hellscream/selected/1.wav"
-	"orc/units/grom hellscream/selected/2.wav"
-	"orc/units/grom hellscream/selected/3.wav"))
+	(list "orc/units/grom_hellscream/selected/1.wav"
+	"orc/units/grom_hellscream/selected/2.wav"
+	"orc/units/grom_hellscream/selected/3.wav"))
 (make-sound "korgath bladefist selected"
-	(list "orc/units/korgath bladefist/selected/1.wav"
-	"orc/units/korgath bladefist/selected/2.wav"
-	"orc/units/korgath bladefist/selected/3.wav"))
+	(list "orc/units/korgath_bladefist/selected/1.wav"
+	"orc/units/korgath_bladefist/selected/2.wav"
+	"orc/units/korgath_bladefist/selected/3.wav"))
 (make-sound "teron gorefiend selected"
-	(list "orc/units/teron gorefiend/selected/1.wav"
-	"orc/units/teron gorefiend/selected/2.wav"
-	"orc/units/teron gorefiend/selected/3.wav"))
+	(list "orc/units/teron_gorefiend/selected/1.wav"
+	"orc/units/teron_gorefiend/selected/2.wav"
+	"orc/units/teron_gorefiend/selected/3.wav"))
     ;;
     ;;	Annoyed sounds --------------------------------------------------------
     ;;
@@ -476,30 +476,30 @@
 	"orc/basic_voices/annoyed/6.wav"
 	"orc/basic_voices/annoyed/7.wav"))
 (make-sound "death knight annoyed"
-	(list "orc/units/death knight/annoyed/1.wav"
-	"orc/units/death knight/annoyed/2.wav"
-	"orc/units/death knight/annoyed/3.wav"))
+	(list "orc/units/death_knight/annoyed/1.wav"
+	"orc/units/death_knight/annoyed/2.wav"
+	"orc/units/death_knight/annoyed/3.wav"))
 (make-sound "dwarven demolition squad annoyed"
-	(list "human/units/dwarven demolition squad/annoyed/1.wav"
-	"human/units/dwarven demolition squad/annoyed/2.wav"
-	"human/units/dwarven demolition squad/annoyed/3.wav"))
+	(list "human/units/dwarven_demolition_squad/annoyed/1.wav"
+	"human/units/dwarven_demolition_squad/annoyed/2.wav"
+	"human/units/dwarven_demolition_squad/annoyed/3.wav"))
 (make-sound "elven archer-ranger annoyed"
-	(list "human/units/elven archer-ranger/annoyed/1.wav"
-	"human/units/elven archer-ranger/annoyed/2.wav"
-	"human/units/elven archer-ranger/annoyed/3.wav"))
+	(list "human/units/elven_archer-ranger/annoyed/1.wav"
+	"human/units/elven_archer-ranger/annoyed/2.wav"
+	"human/units/elven_archer-ranger/annoyed/3.wav"))
 (make-sound "gnomish flying machine annoyed"
-	(list "human/units/gnomish flying machine/annoyed/1.wav"
-	"human/units/gnomish flying machine/annoyed/2.wav"
-	"human/units/gnomish flying machine/annoyed/3.wav"
-	"human/units/gnomish flying machine/annoyed/4.wav"
-	"human/units/gnomish flying machine/annoyed/5.wav"))
+	(list "human/units/gnomish_flying_machine/annoyed/1.wav"
+	"human/units/gnomish_flying_machine/annoyed/2.wav"
+	"human/units/gnomish_flying_machine/annoyed/3.wav"
+	"human/units/gnomish_flying_machine/annoyed/4.wav"
+	"human/units/gnomish_flying_machine/annoyed/5.wav"))
 (make-sound "goblin sappers annoyed"
-	(list "orc/units/goblin sappers/annoyed/1.wav"
-	"orc/units/goblin sappers/annoyed/2.wav"
-	"orc/units/goblin sappers/annoyed/3.wav"))
+	(list "orc/units/goblin_sappers/annoyed/1.wav"
+	"orc/units/goblin_sappers/annoyed/2.wav"
+	"orc/units/goblin_sappers/annoyed/3.wav"))
 (make-sound "goblin zeppelin annoyed"
-	(list "orc/units/goblin zeppelin/annoyed/1.wav"
-	"orc/units/goblin zeppelin/annoyed/2.wav"))
+	(list "orc/units/goblin_zeppelin/annoyed/1.wav"
+	"orc/units/goblin_zeppelin/annoyed/2.wav"))
 (make-sound "knight annoyed"
 	(list "human/units/knight/annoyed/1.wav"
 	"human/units/knight/annoyed/2.wav"
@@ -527,14 +527,14 @@
 	"orc/ships/annoyed/2.wav"
 	"orc/ships/annoyed/3.wav"))
 (make-sound "ships submarine annoyed"
-	(list "human/ships/gnomish submarine/annoyed/1.wav"
-	"human/ships/gnomish submarine/annoyed/2.wav"
-	"human/ships/gnomish submarine/annoyed/3.wav"
-	"human/ships/gnomish submarine/annoyed/4.wav"))
+	(list "human/ships/gnomish_submarine/annoyed/1.wav"
+	"human/ships/gnomish_submarine/annoyed/2.wav"
+	"human/ships/gnomish_submarine/annoyed/3.wav"
+	"human/ships/gnomish_submarine/annoyed/4.wav"))
 (make-sound "troll axethrower-berserker annoyed"
-	(list "orc/units/troll axethrower-berserker/annoyed/1.wav"
-	"orc/units/troll axethrower-berserker/annoyed/2.wav"
-	"orc/units/troll axethrower-berserker/annoyed/3.wav"))
+	(list "orc/units/troll_axethrower-berserker/annoyed/1.wav"
+	"orc/units/troll_axethrower-berserker/annoyed/2.wav"
+	"orc/units/troll_axethrower-berserker/annoyed/3.wav"))
 (make-sound "mage annoyed"
 	(list "human/units/mage/annoyed/1.wav"
 	"human/units/mage/annoyed/2.wav"
@@ -576,34 +576,34 @@
 	"orc/units/dentarg/annoyed/2.wav"
 	"orc/units/dentarg/annoyed/3.wav"))
 (make-sound "grom hellscream annoyed"
-	(list "orc/units/grom hellscream/annoyed/1.wav"
-	"orc/units/grom hellscream/annoyed/2.wav"
-	"orc/units/grom hellscream/annoyed/3.wav"))
+	(list "orc/units/grom_hellscream/annoyed/1.wav"
+	"orc/units/grom_hellscream/annoyed/2.wav"
+	"orc/units/grom_hellscream/annoyed/3.wav"))
 (make-sound "korgath bladefist annoyed"
-	(list "orc/units/korgath bladefist/annoyed/1.wav"
-	"orc/units/korgath bladefist/annoyed/2.wav"
-	"orc/units/korgath bladefist/annoyed/3.wav"))
+	(list "orc/units/korgath_bladefist/annoyed/1.wav"
+	"orc/units/korgath_bladefist/annoyed/2.wav"
+	"orc/units/korgath_bladefist/annoyed/3.wav"))
 (make-sound "teron gorefiend annoyed"
-	(list "orc/units/teron gorefiend/annoyed/1.wav"
-	"orc/units/teron gorefiend/annoyed/2.wav"
-	"orc/units/teron gorefiend/annoyed/3.wav"))
+	(list "orc/units/teron_gorefiend/annoyed/1.wav"
+	"orc/units/teron_gorefiend/annoyed/2.wav"
+	"orc/units/teron_gorefiend/annoyed/3.wav"))
     ;;
     ;;	Other sounds ---------------------------------------------------------
     ;;
 (make-sound "explosion" "misc/explosion.wav")
 (make-sound "building destroyed"
-	(list "misc/building explosion/1.wav"
-	"misc/building explosion/2.wav"
-	"misc/building explosion/3.wav"))
+	(list "misc/building_explosion/1.wav"
+	"misc/building_explosion/2.wav"
+	"misc/building_explosion/3.wav"))
 (make-sound "sword attack"
-	(list "missiles/sword attack/1.wav"
-	"missiles/sword attack/2.wav"
-	"missiles/sword attack/3.wav"))
+	(list "missiles/sword_attack/1.wav"
+	"missiles/sword_attack/2.wav"
+	"missiles/sword_attack/3.wav"))
 (make-sound "tree chopping"
-	(list "misc/tree chopping/1.wav"
-	"misc/tree chopping/2.wav"
-	"misc/tree chopping/3.wav"
-	"misc/tree chopping/4.wav"))
+	(list "misc/tree_chopping/1.wav"
+	"misc/tree_chopping/2.wav"
+	"misc/tree_chopping/3.wav"
+	"misc/tree_chopping/4.wav"))
 
 ;;----------------------------------------------------------------------------
 ;;	Define selection sound groups.
@@ -837,12 +837,12 @@
 ;;
 (define-game-sounds
 
-  'placement-error (make-sound "placement error" "ui/placement error.wav")
-  'placement-success (make-sound "placement success" "ui/placement success.wav")
+  'placement-error (make-sound "placement error" "ui/placement_error.wav")
+  'placement-success (make-sound "placement success" "ui/placement_success.wav")
   'click sound-click
 
 ; FIXME: Not ready
-;  'tree-chopping (make-sound "tree chopping" "tree chopping.wav")
+;  'tree-chopping (make-sound "tree chopping" "tree_chopping.wav")
 ;  'transport-docking
 ;  'building-construction
 ;  'basic-human-voices-work-complete

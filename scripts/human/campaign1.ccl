@@ -36,7 +36,7 @@
   'campaign (list
 	;'play-movie "movie/splash2.avi" '(full-screen zoom-screen)
 	'show-picture (list
-	  'image "campaigns/human/interface/Act I   - Shores of Lordareon.png"
+	  'image "campaigns/human/interface/Act_I___-_Shores_of_Lordareon.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -61,7 +61,7 @@
 	'play-level "campaigns/human/level03h.cm"
 	'play-level "campaigns/human/level04h.cm"
 	'show-picture (list
-	  'image "campaigns/human/interface/Act II  - Khaz Modan.png"
+	  'image "campaigns/human/interface/Act_II__-_Khaz_Modan.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -85,7 +85,7 @@
 	'play-level "campaigns/human/level06h.cm"
 	'play-level "campaigns/human/level07h.cm"
 	'show-picture (list
-	  'image "campaigns/human/interface/Act III - The Northlands.png"
+	  'image "campaigns/human/interface/Act_III_-_The_Northlands.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -109,7 +109,7 @@
 	'play-level "campaigns/human/level09h.cm"
 	'play-level "campaigns/human/level10h.cm"
 	'show-picture (list
-	  'image "campaigns/human/interface/Act IV  - Return to Azeroth.png"
+	  'image "campaigns/human/interface/Act_IV__-_Return_to_Azeroth.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
