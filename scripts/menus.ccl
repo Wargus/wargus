@@ -1142,6 +1142,7 @@
               style pulldown
               func game-res-action
               options ("Map Default" "Low" "Medium" "High" )
+              state passive
               default 0
               current 0)
     'menu 'menu-net-multi-client)
@@ -1153,6 +1154,7 @@
               style pulldown
               func game-uns-action
               options ("Map Default" "One Peasant Only" )
+              state passive
               default 0
               current 0)
     'menu 'menu-net-multi-client)
@@ -1164,6 +1166,7 @@
               style pulldown
               func multi-game-fws-action
               options ("On" "Off" )
+              state passive
               default 0
               current 0)
     'menu 'menu-net-multi-client)
@@ -1175,6 +1178,7 @@
               style pulldown
               func game-tss-action
               options ("Map Default" "Forest" "Winter" "Wasteland" "Orc Swamp" )
+              state passive
               default 0
               current 0)
     'menu 'menu-net-multi-client)
