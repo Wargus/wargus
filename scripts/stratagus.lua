@@ -239,6 +239,8 @@ SetShowCommandKey(true)
 SetFogOfWar(true)
 --SetFogOfWar(false)
 
+SetFogOfWarGraphics("tilesets/summer/terrain/summer.png")
+
 --  Choose your default for minimap with/without terrain.
 SetMinimapTerrain(true)
 --SetMinimapTerrain(false)
