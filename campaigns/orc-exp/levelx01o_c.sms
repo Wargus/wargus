@@ -12,18 +12,18 @@ Briefing("type", "wc2",
 
 -- FIXME: Check if units are destroyed.
 AddTrigger(
-  function() return IfUnit("this", "==", 1, "unit-beast-cry") and
-    IfUnit(6, "==", 0, "unit-death-knight") and
-    IfUnit(6, "==", 0, "unit-temple-of-the-damned") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-beast-cry") == 1 and
+    GetPlayerData(6, "UnitTypesCount", "unit-death-knight") == 0 and
+    GetPlayerData(6, "UnitTypesCount", "unit-temple-of-the-damned") == 0 end,
   function() return ActionVictory() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-beast-cry") and
-    IfUnit(0, "==", 0, "unit-beast-cry") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-beast-cry") == 0 and
+    GetPlayerData(0, "UnitTypesCount", "unit-beast-cry") == 0 end,
   function() return ActionDefeat() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units

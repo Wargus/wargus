@@ -11,11 +11,11 @@ Briefing("type", "wc2",
 
 -- FIXME: Check if units are destroyed.
 AddTrigger(
-  function() return IfUnit("this", "==", 1, "unit-dragon-roost") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-dragon-roost") == 1 end,
   function() return ActionVictory() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units

@@ -11,11 +11,11 @@ Briefing("type", "wc2",
 
 -- FIXME: Check if units are destroyed.
 AddTrigger(
-  function() return IfUnit(1, "==", 0, "unit-daemon") end,
+  function() return GetPlayerData(1, "UnitTypesCount", "unit-daemon") == 0 end,
   function() return ActionVictory() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units

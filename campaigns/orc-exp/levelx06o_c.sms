@@ -11,17 +11,17 @@ Briefing("type", "wc2",
 
 -- FIXME: Check if units are destroyed.
 AddTrigger(
-  function() return IfUnit("this", "==", 1, "unit-evil-knight") and
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-evil-knight") == 1 and
     GetNumOpponents(GetThisPlayer()) == 0 end,
   function() return ActionVictory() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-evil-knight") and
-    IfUnit(7, "==", 0, "unit-evil-knight") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-evil-knight") == 0 and
+    GetPlayerData(7, "UnitTypesCount", "unit-evil-knight") == 0 end,
   function() return ActionDefeat() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units

@@ -12,17 +12,18 @@ Briefing("type", "wc2",
 
 -- FIXME: Check if units are destroyed.
 AddTrigger(
-  function() return IfUnit("this", ">=", 5, "unit-orc-shipyard") and
-    IfUnit(2, "==", 0, "unit-battleship") and
-    IfUnit(1, "==", 0, "unit-battleship") and
-    IfUnit(2, "==", 0, "unit-human-destroyer") and
-    IfUnit(1, "==", 0, "unit-human-destroyer") and
-    IfUnit(2, "==", 0, "unit-human-transport") and
-    IfUnit(1, "==", 0, "unit-human-transport") end,
+
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-orc-shipyard") >= 5 and
+    GetPlayerData(2, "UnitTypesCount", "unit-battleship") == 0 and
+    GetPlayerData(1, "UnitTypesCount", "unit-battleship") == 0 and
+    GetPlayerData(2, "UnitTypesCount", "unit-human-destroyer") == 0 and
+    GetPlayerData(1, "UnitTypesCount", "unit-human-destroyer") == 0 and
+    GetPlayerData(2, "UnitTypesCount", "unit-human-transport") == 0 and
+    GetPlayerData(1, "UnitTypesCount", "unit-human-transport") == 0 end,
   function() return ActionVictory() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units
