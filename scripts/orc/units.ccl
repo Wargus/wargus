@@ -913,7 +913,7 @@
   'corpse '(unit-destroyed-2x2-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "pig-farm-selected"
     acknowledge "pig-farm-acknowledge"
@@ -943,7 +943,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "orc-barracks-selected"
     acknowledge "orc-barracks-acknowledge"
@@ -973,7 +973,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "altar-of-storms-selected"
     acknowledge "altar-of-storms-acknowledge"
@@ -1004,7 +1004,7 @@
   'explode-when-killed 'missile-explosion
   'type-land
   'can-target-land 'can-target-sea 'can-target-air
-  'building 
+  'building 'visible-under-fog 
   'detect-cloak
   'sounds '(
     selected "orc-watch-tower-selected"
@@ -1035,7 +1035,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "ogre-mound-selected"
     acknowledge "ogre-mound-acknowledge"
@@ -1065,7 +1065,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "goblin-alchemist-selected"
     acknowledge "goblin-alchemist-acknowledge"
@@ -1095,7 +1095,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "dragon-roost-selected"
     acknowledge "dragon-roost-acknowledge"
@@ -1125,7 +1125,7 @@
   'corpse '(unit-destroyed-3x3-place 3)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'shore-building
   'can-store '(oil)
   'sounds '(
@@ -1158,7 +1158,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'can-store '(gold wood)
   'sounds '(
     selected "great-hall-selected"
@@ -1191,7 +1191,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'can-store '(wood)
   'sounds '(
     selected "troll-lumber-mill-selected"
@@ -1222,7 +1222,7 @@
   'corpse '(unit-destroyed-3x3-place 3)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'shore-building
   'sounds '(
     selected "orc-foundry-selected"
@@ -1253,7 +1253,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "temple-of-the-damned-selected"
     acknowledge "temple-of-the-damned-acknowledge"
@@ -1283,7 +1283,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "orc-blacksmith-selected"
     acknowledge "orc-blacksmith-acknowledge"
@@ -1314,7 +1314,7 @@
   'corpse '(unit-destroyed-3x3-place 3)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'shore-building
   'can-store '(oil)
   'sounds '(
@@ -1345,7 +1345,7 @@
   'corpse '(unit-destroyed-3x3-place 3)
   'explode-when-killed 'missile-explosion
   'type-naval
-  'building 
+  'building 'visible-under-fog 
   'must-build-on-top 'unit-oil-patch
   'gives-resource 'oil 'can-harvest
   'sounds '(
@@ -1379,7 +1379,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'can-store '(gold wood)
   'sounds '(
     selected "stronghold-selected"
@@ -1412,7 +1412,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'can-store '(gold wood)
   'sounds '(
     selected "fortress-selected"
@@ -1468,7 +1468,7 @@
   'type-land
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
-  'building 
+  'building 'visible-under-fog 
   'detect-cloak
   'sounds '(
     selected "orc-guard-tower-selected"
@@ -1502,7 +1502,7 @@
   'type-land
   'can-attack
   'can-target-land 'can-target-sea
-  'building 
+  'building 'visible-under-fog 
   'detect-cloak
   'sounds '(
     selected "orc-cannon-tower-selected"
@@ -1529,7 +1529,7 @@
   'corpse '(unit-destroyed-1x1-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "orc-wall-selected"
     acknowledge "orc-wall-acknowledge"

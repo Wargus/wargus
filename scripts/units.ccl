@@ -199,7 +199,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building
+  'building 'visible-under-fog
   'gives-resource 'gold 'can-harvest
   'sounds '(
     selected "gold-mine-selected"
@@ -224,7 +224,7 @@
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 0
   'type-naval
-  'building
+  'building 'visible-under-fog
   'gives-resource 'oil
   'sounds '(
     selected "oil-patch-selected"
@@ -249,7 +249,7 @@
   'corpse '(unit-destroyed-2x2-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building
+  'building 'visible-under-fog
   'sounds '(
     selected "circle-of-power-selected"
     acknowledge "circle-of-power-acknowledge"
@@ -281,7 +281,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 'builder-outside
+  'building 'visible-under-fog 'builder-outside
   'teleporter
   'sounds '(
     selected "dark-portal-selected"
@@ -314,7 +314,7 @@
   'corpse '(unit-destroyed-2x2-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 'builder-outside
+  'building 'visible-under-fog 'builder-outside
   'sounds '(
     selected "runestone-selected"
     acknowledge "runestone-acknowledge"
@@ -355,7 +355,7 @@
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 0
   'type-land
-  'building
+  'building 'visible-under-fog
   'vanishes
   'sounds '())
 
@@ -374,7 +374,7 @@
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 0
   'type-land
-  'building
+  'building 'visible-under-fog
   'vanishes
   'sounds '())
 
@@ -390,7 +390,7 @@
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 0
   'type-land
-  'building
+  'building 'visible-under-fog
   'vanishes
   'sounds '())
 
@@ -406,7 +406,7 @@
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 0
   'type-land
-  'building
+  'building 'visible-under-fog
   'vanishes
   'sounds '())
 
@@ -421,7 +421,7 @@
   'priority 0
   'decay-rate 1
   'type-land
-  'building
+  'building 'visible-under-fog
   'revealer
   'detect-cloak
   'sounds '())
@@ -437,7 +437,7 @@
   'priority 0
   'decay-rate 1
   'type-land
-  'building
+  'building 'visible-under-fog
   'sounds '())
 
 ;; Load the different races

@@ -821,7 +821,7 @@
   'corpse '(unit-destroyed-2x2-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "farm-selected"
     acknowledge "farm-acknowledge"
@@ -851,7 +851,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "human-barracks-selected"
     acknowledge "human-barracks-acknowledge"
@@ -881,7 +881,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "church-selected"
     acknowledge "church-acknowledge"
@@ -912,7 +912,7 @@
   'explode-when-killed 'missile-explosion
   'type-land
   'can-target-land 'can-target-sea 'can-target-air
-  'building 
+  'building 'visible-under-fog 
   'detect-cloak
   'sounds '(
     selected "human-watch-tower-selected"
@@ -943,7 +943,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "stables-selected"
     acknowledge "stables-acknowledge"
@@ -973,7 +973,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "gnomish-inventor-selected"
     acknowledge "gnomish-inventor-acknowledge"
@@ -1003,7 +1003,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "gryphon-aviary-selected"
     acknowledge "gryphon-aviary-acknowledge"
@@ -1033,7 +1033,7 @@
   'corpse '(unit-destroyed-3x3-place 3)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'shore-building
   'can-store '(oil)
   'sounds '(
@@ -1067,7 +1067,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'can-store '(wood)
   'sounds '(
     selected "elven-lumber-mill-selected"
@@ -1098,7 +1098,7 @@
   'corpse '(unit-destroyed-3x3-place 3)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'shore-building
   'sounds '(
     selected "human-foundry-selected"
@@ -1130,7 +1130,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'can-store '(wood gold)
   'sounds '(
     selected "town-hall-selected"
@@ -1161,7 +1161,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "mage-tower-selected"
     acknowledge "mage-tower-acknowledge"
@@ -1191,7 +1191,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "human-blacksmith-selected"
     acknowledge "human-blacksmith-acknowledge"
@@ -1222,7 +1222,7 @@
   'corpse '(unit-destroyed-3x3-place 3)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'shore-building
   'can-store '(oil)
   'sounds '(
@@ -1253,7 +1253,7 @@
   'corpse '(unit-destroyed-3x3-place 3)
   'explode-when-killed 'missile-explosion
   'type-naval
-  'building 
+  'building 'visible-under-fog 
   'must-build-on-top 'unit-oil-patch
   'gives-resource 'oil 'can-harvest
   'sounds '(
@@ -1287,7 +1287,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'can-store '(gold wood)
   'sounds '(
     selected "keep-selected"
@@ -1320,7 +1320,7 @@
   'corpse '(unit-destroyed-4x4-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'can-store '(gold wood)
   'sounds '(
     selected "castle-selected"
@@ -1376,7 +1376,7 @@
   'type-land
   'can-attack
   'can-target-land 'can-target-sea 'can-target-air
-  'building 
+  'building 'visible-under-fog 
   'detect-cloak
   'sounds '(
     selected "human-guard-tower-selected"
@@ -1410,7 +1410,7 @@
   'type-land
   'can-attack
   'can-target-land 'can-target-sea
-  'building 
+  'building 'visible-under-fog 
   'detect-cloak
   'sounds '(
     selected "human-cannon-tower-selected"
@@ -1439,7 +1439,7 @@
   'corpse '(unit-destroyed-1x1-place 0)
   'explode-when-killed 'missile-explosion
   'type-land
-  'building 
+  'building 'visible-under-fog 
   'sounds '(
     selected "human-wall-selected"
     acknowledge "human-wall-acknowledge"
