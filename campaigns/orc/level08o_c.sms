@@ -8,7 +8,6 @@ Briefing("type", "wc2",
   "background", "campaigns/orc/interface/introscreen3.png",
   "text", "campaigns/orc/level08o.txt",
   "voice", "campaigns/orc/level08o-intro1.wav",
-  "voice", "campaigns/orc/level08o-intro2.wav"
 )
 
 AddTrigger(
