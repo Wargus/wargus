@@ -68,6 +68,7 @@
 ;;
 (if new-names?
 (health-sprite	"graphics/ui/health.png"	0 -7 7 7)
+(health-sprite	"health.png"	0 -7 7 7)
 )
 ;(health-sprite	"health2.png"	0 -2 23 3)
 
