@@ -579,7 +579,7 @@
   'button '(size (224 27)
     caption "~!Join Internet Game"
     hotkey "j"
-    func menu-multi-master-gem
+    func menu-metaserver-init
     style gm-full)
   'menu 'menu-internet-create-join-menu)
 (define-menu-item 'pos (list 208 (+ 320 (* 36 1))) 'font 'large
