@@ -3454,7 +3454,7 @@ int CampaignsCreate(char *file, int txte, int ofs, int expansion)
 
 	noobjs = 1;			//Number of objectives is zero.
 	currentobj = current;
-	while ((nextobj = index(currentobj, '\n')) != NULL) {
+	while ((nextobj = strchr(currentobj, '\n')) != NULL) {
 	    *nextobj = '\0';
 	    nextobj++;
 	    CampaignData[race][levelno][noobjs] = currentobj;
