@@ -1706,7 +1706,7 @@
   ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
   '( 1 1 ) '(  31  31 )      0       0      0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
+      20     0      0      0       0       0
   ;;Decay Annoy	Points
       0     45       1
   "missile-none"
