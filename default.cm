@@ -16,9 +16,9 @@
 ;;
 
 ; More comes soon :)
-;(display-picture "graphic/interface/Menu background without title.png")
-;(process-menu 0)
+(display-picture "graphic/interface/Menu background without title.png")
+(process-menu 3)
 
 ; You could choose your default pud here.
-(load-pud "data/default.pud")
+;(load-pud "data/default.pud")
 ;(load-pud "data/puds/alamo.pud")
