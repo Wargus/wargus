@@ -129,9 +129,7 @@
     (list 'unit-equiv 'unit-knight
 	'unit-paladin)
     (list 'unit-equiv 'unit-peasant)
-    (list 'unit-equiv 'unit-human-oil-tanker)
-    (list 'unit-equiv 'unit-alliance-watch-tower
-	 'unit-alliance-guard-tower 'unit-alliance-cannon-tower) )
+    (list 'unit-equiv 'unit-human-oil-tanker) )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race orc.
@@ -218,9 +216,7 @@
     (list 'unit-equiv 'unit-ogre
 	'unit-ogre-mage)
     (list 'unit-equiv 'unit-peon)
-    (list 'unit-equiv 'unit-orc-oil-tanker)
-    (list 'unit-equiv 'unit-mythical-watch-tower
-	 'unit-mythical-guard-tower 'unit-mythical-cannon-tower) )
+    (list 'unit-equiv 'unit-orc-oil-tanker) )
 
 ;;=============================================================================
 ;;
@@ -308,41 +304,39 @@
 ;;
 
 
-(define-ai-action '(defense attack)
-    '(
-	(
-	    availables-orc-units
-	    ai:send-all:get-needs
-	    ai:default-defend
-	)
-	(
-		unit-ogre-mage
-	   	unit-ogre
-		unit-catapult	
-		unit-axethrower	
-		unit-berserker
-		unit-grunt
-		unit-death-knight
-		unit-dragon))
-)
+;;(define-ai-action '(defense attack)
+;;    '(
+;;	(
+;;	    availables-orc-units
+;;	    ai:send-all:get-needs
+;;	    ai:default-defend
+;;	)
+;;	(
+;;		unit-ogre-mage
+;;	   	unit-ogre
+;;		unit-catapult	
+;;		unit-axethrower	
+;;		unit-berserker
+;;		unit-grunt
+;;		unit-death-knight
+;;		unit-dragon))
+;;)
 
-(define-ai-action '(defense attack)
-    '(
-	(
-	    availables-human-units
-	    ai:send-all:get-needs
-	    ai:default-defend
-	)
-	(
-		unit-paladin	
-	   	unit-knight	
-		unit-ballista
-		unit-ranger
-		unit-archer
-		unit-footman
-		unit-mage
-		unit-gryphon-rider))
-)
+;;(define-ai-action '(defense attack)
+;;    '(
+;;	(
+;;	    availables-human-units
+;;	    ai:send-all:get-needs
+;;	    ai:default-defend
+;;	)
+;;	(
+;;	   	unit-knight	
+;;		unit-ballista
+;;		unit-archer
+;;		unit-footman
+;;		unit-mage
+;;		unit-gryphon-rider))
+;;)
 
 ;; Define the script's properties ( rules used to choose a script... ) 
 (define-ai-action '(defense attack)
@@ -361,7 +355,7 @@
     
     ;; Global force requirement ( percentages ).
     ;; Must send unit of at least this force... ( can remove allied force ... )
-    (force-minimum (enemy-hotspot-ground-force 100) )
+    (force-minimum (enemy-hotspot-ground-force 100) (enemy-map-ground-force 20))
     
     ;; force requirements in units ( percentages )
     ((ai:soldier) (enemy-hotspot-ground-force 110))
@@ -383,7 +377,7 @@
     
     ;; Global force requirement ( percentages ).
     ;; Must send unit of at least this force... ( can remove allied force ... )
-    (force-minimum (enemy-hotspot-ground-force 200) )
+    (force-minimum (enemy-hotspot-ground-force 200) (enemy-map-ground-force 20))
 
     ;; force requirements in units ( percentages )
     ((ai:worker) (enemy-hotspot-ground-force 110))))
@@ -404,7 +398,7 @@
     
     ;; Global force requirement ( percentages ).
     ;; Must send unit of at least this force... ( can remove allied force ... )
-    (force-minimum (enemy-hotspot-air-fire 110)	)
+    (force-minimum (enemy-hotspot-air-fire 110)	(enemy-map-air-force 25))
     
     ;; force requirements in units ( percentages )
     ((ai:flyer) 
@@ -423,7 +417,7 @@
 	    ai:default-defend
 	)
     	(zero-gauges)
-	(force-minimum (enemy-hotspot-sea-force 100) )
+	(force-minimum (enemy-hotspot-sea-force 100) (enemy-map-sea-force 25))
 	((ai:battleship)
 	    (enemy-hotspot-sea-fire 70)
 	    (enemy-hotspot-ground-force 30) (enemy-hotspot-sea-force 30))
@@ -441,7 +435,7 @@
 	    ai:default-defend
 	)
     	(zero-gauges enemy-hotspot-detectors)
-	(force-minimum (enemy-hotspot-sea-force 50))
+	(force-minimum (enemy-hotspot-sea-force 50) (enemy-map-sea-force 25))
 	((ai:submarine) (enemy-hotspot-sea-force 50))
 	))
 
@@ -455,12 +449,12 @@
 	    ai:default-defend
 	)
 	
-	;; gauge which must be 0..	    
+	;; gauge which must be 0...	    
 	(zero-gauges enemy-hotspot-air-force enemy-hotspot-sea-force)
     
 	;; Global force requirement ( percentages ).
 	;; Must send unit of at least this force... ( can remove allied force ... )
-	(force-minimum (enemy-hotspot-ground-force 100) )
+	(force-minimum (enemy-hotspot-ground-force 100) (enemy-map-ground-force 25))
 	
 	;; force requirements in units ( percentages )
 	((ai:cavalrie) (enemy-hotspot-ground-force 130))    
@@ -475,18 +469,19 @@
 	    ;; Ai Script to execute when ready
 	    ai:default-defend
 	)
-	;; gauge which must be 0..	    
+	;; gauge which must be 0...
 	(zero-gauges enemy-hotspot-sea-force)
     
 	;; Global force requirement ( percentages ).
 	;; Must send unit of at least this force... ( can remove allied force ... )
-	(force-minimum (enemy-hotspot-ground-force 100) (enemy-hotspot-air-force 100) )
+	(force-minimum (enemy-hotspot-ground-force 100) (enemy-hotspot-air-force 100) 
+			(enemy-map-ground-force 25) (enemy-map-air-force 25))
     
 	;; force requirements in units ( percentages )
-	((ai:cavalrie) 	(enemy-hotspot-ground-force 75))
-	((ai:soldier) 	(enemy-hotspot-ground-force 20))
 	((ai:shooter)   (enemy-hotspot-ground-force 25)
 	    		(enemy-hotspot-air-force 120))
+	((ai:cavalrie) 	(enemy-hotspot-ground-force 75))
+	((ai:soldier) 	(enemy-hotspot-ground-force 20))
     ))
 
 (define-ai-action '(defense attack)    
@@ -499,10 +494,11 @@
 	    ai:default-defend
 	)
 	(zero-gauges enemy-hotspot-sea-force)
-	(force-minimum 	(enemy-hotspot-ground-force 100) (enemy-hotspot-air-force 100) )
-	((ai:soldier)	(enemy-hotspot-ground-force 80))
+	(force-minimum 	(enemy-hotspot-ground-force 100) (enemy-hotspot-air-force 100) 
+			(enemy-map-ground-force 25) (enemy-map-air-force 25))
 	((ai:shooter)	(enemy-hotspot-ground-force 40)
 	    		(enemy-hotspot-air-force 120))
+	((ai:soldier)	(enemy-hotspot-ground-force 80))
     ))
 
 ;;
@@ -755,8 +751,10 @@
     (ai:need 'unit-mythical-blacksmith)
 ;;    (ai:force 1 'unit-grunt 1)
     (ai:force 0 'unit-grunt 1)
+    (ai:force 1 'unit-grunt 2)
 ;;    (ai:wait-force 1)		;; wait until attack party is completed
 ;;    (ai:attack-with-force 1)
+    (ai:sleep 20)
 
     (ai:force 0 'unit-grunt 2)
     (ai:research 'upgrade-battle-axe1)
@@ -765,6 +763,7 @@
     (ai:research 'upgrade-orc-shield2)
     (ai:set  'unit-peon 20)
     (ai:force 0 'unit-grunt 6)
+    (ai:force 1 'unit-grunt 6)
 ;;    (ai:wait-force 1)		;; wait until attack party is completed
     (ai:set 'unit-mythical-barracks 3)
     (ai:force 0 'unit-grunt 20)
@@ -1442,7 +1441,7 @@
     (ai:upgrade-to (ai:guard-tower))
     (ai:need (ai:airport))
     (ai:set  (ai:worker) 20)
-;;    (ai:force 1 (ai:flyer) 2)
+    (ai:force 1 (ai:flyer) 4)
 ;;    (ai:attack-with-force 2)
 
     (ai:sleep 500)
@@ -1612,7 +1611,7 @@
     (ai:sleep 500)
     (ai:research (ai:upgrade-catapult-1))
     (ai:need (ai:cavalry))
-    (ai:force 0 (ai:soldier) 3 (ai:catapult) 1 (ai:scout) 1 (ai:submarine) 1 (ai:destroyer) 2 (ai:battleship) 1 )    
+    (ai:force 0 (ai:soldier) 3 (ai:catapult) 1 (ai:scout) 1 (ai:submarine) 1 (ai:destroyer) 2 (ai:battleship) 1 )
     (ai:force 1 (ai:scout) 1 (ai:destroyer) 2 (ai:battleship) 2)
     
     (ai:sleep 3000)
@@ -1664,8 +1663,7 @@
 ;;
 (define ai:human-land-attack-endloop
   '((writes nil "Looping !\n")
-    (ai:force 0 'unit-footman 2 'unit-ranger 4 'unit-paladin 8 'unit-ballista 2
-	'unit-mage 6 'unit-gryphon-rider 3)
+    (ai:force 0 'unit-footman 2 'unit-ranger 4 'unit-paladin 8 'unit-ballista 2	'unit-mage 6 'unit-gryphon-rider 3)
 
     (ai:sleep 500)
     (ai:script ai:human-land-attack-endloop) ) )
@@ -1682,7 +1680,8 @@
     (ai:set  'unit-peasant 4)
     (ai:need 'unit-elven-lumber-mill)
     (ai:need 'unit-alliance-barracks)
-    (ai:force 0  'unit-footman 3)
+    (ai:force 0 'unit-footman 3)
+    (ai:force 1 'unit-footman 4)
 
     (ai:set  'unit-peasant 9)
     (ai:sleep	500)
@@ -1703,6 +1702,7 @@
     (ai:sleep	500)
     (ai:set  'unit-peasant 15)
     (ai:force 0 'unit-footman 6 'unit-archer 3 'unit-ballista 1)
+    (ai:force 1 'unit-footman 6 'unit-archer 3 'unit-ballista 1)
 
     (ai:sleep	500)
     (ai:upgrade-to 'unit-keep)
