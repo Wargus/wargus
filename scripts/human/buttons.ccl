@@ -118,7 +118,7 @@
     unit-gnomish-submarine unit-battleship unit-elven-destroyer))
 
 (define-button 'pos 6 'level 0 'icon 'icon-human-attack-ground
-  'action 'attack
+  'action 'attack-ground
   'key "g" 'hint "ATTACK ~!GROUND"
   'for-unit '(unit-ballista unit-battleship human-group))
 
