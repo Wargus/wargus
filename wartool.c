@@ -72,8 +72,21 @@ typedef unsigned long u_int32_t;
      defined(__SYMBIAN32__) || \
      defined(__x86_64__) || \
      defined(__LITTLE_ENDIAN__)
+#ifdef __cplusplus
+static inline unsigned short FetchLE16(unsigned char*& p) {
+	unsigned short s = *(unsigned short*)p;
+	p += 2;
+	return s;
+}
+static inline unsigned int FetchLE32(unsigned char*& p) {
+	unsigned int s = *(unsigned int*)p;
+	p += 4;
+	return s;
+}
+#else
 #define FetchLE16(p) (*((unsigned short*)(p))++)
 #define FetchLE32(p) (*((unsigned int*)(p))++)
+#endif
 #define AccessLE16(p) (*((unsigned short*)(p)))
 #define AccessLE32(p) (*((unsigned int*)(p)))
 #define ConvertLE16(v) (v)
@@ -1689,7 +1702,7 @@ int SavePNG(const char* name, unsigned char* image, int w, int h,
 	info_ptr->color_type = PNG_COLOR_TYPE_PALETTE;
 	info_ptr->interlace_type = 0;
 	info_ptr->valid |= PNG_INFO_PLTE;
-	info_ptr->palette = (void*)pal;
+	info_ptr->palette = (png_colorp)pal;
 	info_ptr->num_palette = 256;
 
 	if (transparent) {
@@ -1717,7 +1730,7 @@ int SavePNG(const char* name, unsigned char* image, int w, int h,
 	// set transformation
 
 	// prepare image
-	lines = malloc(h * sizeof(*lines));
+	lines = (unsigned char**)malloc(h * sizeof(*lines));
 	if (!lines) {
 		png_destroy_write_struct(&png_ptr, &info_ptr);
 		fclose(fp);
@@ -1777,7 +1790,7 @@ int OpenArchive(const char* file, int type)
 	//
 	//  Read in the archive
 	//
-	buf = malloc(stat_buf.st_size);
+	buf = (unsigned char*)malloc(stat_buf.st_size);
 	if (!buf) {
 		printf("Can't malloc %ld\n", (long)stat_buf.st_size);
 		exit(-1);
@@ -1807,7 +1820,7 @@ int OpenArchive(const char* file, int type)
 	//
 	//  Read offsets.
 	//
-	op = malloc((entries + 1) * sizeof(unsigned char**));
+	op = (unsigned char**)malloc((entries + 1) * sizeof(unsigned char*));
 	if (!op) {
 		printf("Can't malloc %d entries\n", entries);
 		exit(-1);
@@ -1832,11 +1845,11 @@ int OpenArchive(const char* file, int type)
 **
 **  @return      Pointer to uncompressed entry
 */
-unsigned char* ExtractEntry(unsigned char* cp, int* lenp)
+unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
 {
 	unsigned char* dp;
 	unsigned char* dest;
-	int uncompressed_length;
+	size_t uncompressed_length;
 	int flags;
 
 	uncompressed_length = FetchLE32(cp);
@@ -1844,7 +1857,7 @@ unsigned char* ExtractEntry(unsigned char* cp, int* lenp)
 	uncompressed_length &= 0x00FFFFFF;
 //	printf("Entry length %8d flags %02x\t", uncompressed_length, flags);
 
-	dp = dest = malloc(uncompressed_length);
+	dp = dest = (unsigned char*)malloc(uncompressed_length);
 	if (!dest) {
 		printf("Can't malloc %d\n", uncompressed_length);
 		exit(-1);
@@ -2018,7 +2031,7 @@ int CountUsedTiles(const unsigned char* map, const unsigned char* mega,
 	int i;
 	int j;
 	int used;
-	const char* tp;
+	const unsigned char* tp;
 	int img2tile[0x9E0];
 
 	memset(map2tile, 0, sizeof(map2tile));
@@ -2144,8 +2157,8 @@ void DecodeMiniTile(unsigned char* image, int ix, int iy, int iadd,
 /**
 **  Convert tiles into image.
 */
-unsigned char* ConvertTile(unsigned char* mini, const char* mega, int msize,
-	const char* map __attribute__((unused)), int *wp, int *hp)
+unsigned char* ConvertTile(unsigned char* mini, const unsigned char* mega, int msize,
+	const unsigned char* map __attribute__((unused)), int *wp, int *hp)
 {
 	unsigned char* image;
 	const unsigned short* mp;
@@ -2163,7 +2176,7 @@ unsigned char* ConvertTile(unsigned char* mini, const char* mega, int msize,
 	width = TILE_PER_ROW * 32;
 	height = ((numtiles + TILE_PER_ROW - 1) / TILE_PER_ROW) * 32;
 //	printf("Image %dx%d\n", width, height);
-	image = malloc(height * width);
+	image = (unsigned char*)malloc(height * width);
 	memset(image, 0, height * width);
 
 	for (i = 0; i < numtiles; ++i) {
@@ -2206,7 +2219,7 @@ int ConvertTileset(char* file, int pale, int mege, int mine, int mape)
 	unsigned char* image;
 	int w;
 	int h;
-	int megl;
+	size_t megl;
 	char buf[1024];
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
@@ -2447,7 +2460,7 @@ unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
 		length = count;
 	}
 
-	image = malloc(best_width * best_height * length);
+	image = (unsigned char*)malloc(best_width * best_height * length);
 
 	//  Image: 0, 1, 2, 3, 4,
 	//         5, 6, 7, 8, 9, ...
@@ -2563,7 +2576,7 @@ void ConvertPud(char* file, int pude)
 	unsigned char* pudp;
 	char buf[1024];
 	gzFile gf;
-	int l;
+	size_t l;
 
 	pudp = ExtractEntry(ArchiveOffsets[pude], &l);
 
@@ -2575,7 +2588,7 @@ void ConvertPud(char* file, int pude)
 		printf("Can't open %s\n", buf);
 		exit(-1);
 	}
-	if (l != gzwrite(gf, pudp, l)) {
+	if (l != (size_t)gzwrite(gf, pudp, l)) {
 		printf("Can't write %d bytes\n", l);
 	}
 
@@ -2616,13 +2629,13 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 //	printf("Font: count %d max-width %2d max-height %2d\n",
 //		count, max_width, max_height);
 
-	offsets = malloc(count*sizeof(u_int32_t));
+	offsets = (unsigned*)malloc(count*sizeof(u_int32_t));
 	for (i = 0; i < count; ++i) {
 		offsets[i] = FetchLE32(bp);
 //		printf("%03d: offset %d\n", i, offsets[i]);
 	}
 
-	image = malloc(max_width * max_height * count);
+	image = (unsigned char*)malloc(max_width * max_height * count);
 	if (!image) {
 		printf("Can't allocate image\n");
 		exit(-1);
@@ -2728,7 +2741,7 @@ unsigned char* ConvertImg(unsigned char* bp, int* wp, int* hp)
 
 //	printf("Image: width %3d height %3d\n", width, height);
 
-	image = malloc(width * height);
+	image = (unsigned char*)malloc(width * height);
 	if (!image) {
 		printf("Can't allocate image\n");
 		exit(-1);
@@ -2859,7 +2872,7 @@ unsigned char* ConvertCur(unsigned char* bp, int* wp, int* hp)
 //	printf("Cursor: hotx %d hoty %d width %d height %d\n",
 //		hotx, hoty, width, height);
 
-	image = malloc(width * height);
+	image = (unsigned char*)malloc(width * height);
 	if (!image) {
 		printf("Can't allocate image\n");
 		exit(-1);
@@ -2922,7 +2935,7 @@ int ConvertWav(char* file, int wave)
 	unsigned char* wavp;
 	char buf[1024];
 	gzFile gf;
-	int l;
+	size_t l;
 
 	wavp = ExtractEntry(ArchiveOffsets[wave], &l);
 
@@ -2934,7 +2947,7 @@ int ConvertWav(char* file, int wave)
 		printf("Can't open %s\n", buf);
 		exit(-1);
 	}
-	if (l != gzwrite(gf, wavp, l)) {
+	if (l != (size_t)gzwrite(gf, wavp, l)) {
 		printf("Can't write %d bytes\n", l);
 	}
 
@@ -2990,7 +3003,7 @@ int ConvertText(char* file, int txte, int ofs)
 	unsigned char* txtp;
 	char buf[1024];
 	gzFile gf;
-	int l;
+	size_t l;
 
 	// workaround for German/UK/Australian CD's
 	if (!(CD_EXPANSION & CDType) && ((CD_GERMAN | CD_UK) & CDType)) {
@@ -3012,7 +3025,7 @@ int ConvertText(char* file, int txte, int ofs)
 		printf("Can't open %s\n", buf);
 		exit(-1);
 	}
-	if (l - ofs != gzwrite(gf, txtp + ofs, l - ofs)) {
+	if (l - ofs != (size_t)gzwrite(gf, txtp + ofs, l - ofs)) {
 		printf("Can't write %d bytes\n", l);
 	}
 
@@ -3611,7 +3624,7 @@ int SetupNames(char* file __attribute__((unused)), int txte __attribute__((unuse
 //		printf("%d %x ", u, ConvertLE16(mp[u]));
 //		printf("%s\n", txtp + ConvertLE16(mp[u]));
 		if (u < sizeof(UnitNames) / sizeof(*UnitNames)) {
-			UnitNames[u] = strdup(txtp + ConvertLE16(mp[u]));
+			UnitNames[u] = strdup((char*)txtp + ConvertLE16(mp[u]));
 		}
 	}
 
@@ -3688,7 +3701,7 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 	unsigned char* currentobj;
 	FILE* inlevel;
 	FILE* outlevel;
-	int l;
+	size_t l;
 	int levelno;
 	int noobjs;
 	int race;
@@ -3720,7 +3733,7 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 		printf("Objectives allocation failed\n");
 		exit(-1);
 	}
-	objectives = realloc(objectives, l + 1);
+	objectives = (unsigned char*)realloc(objectives, l + 1);
 	if (!objectives) {
 		printf("Objectives allocation failed\n");
 		exit(-1);
@@ -3738,12 +3751,12 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 		expansion = 28;
 	}
 	current = objectives + ofs;
-	for (l = 0; l < expansion; ++l) {
-		next = current + strlen(current) + 1;
+	for (l = 0; l < (size_t)expansion; ++l) {
+		next = current + strlen((char*)current) + 1;
 
 		noobjs = 1;  // Number of objectives is zero.
 		currentobj = current;
-		while ((nextobj = strchr(currentobj, '\n')) != NULL) {
+		while ((nextobj = (unsigned char*)strchr((char*)currentobj, '\n')) != NULL) {
 			*nextobj = '\0';
 			++nextobj;
 			CampaignData[race][levelno][noobjs] = currentobj;
@@ -3769,10 +3782,10 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 	levelno = 0;
 	// Find the start of the Levels
 	while (current[0] && current[0] != 'I' && current[1] != '.') {
-		current = current + strlen(current) + 1;
+		current = current + strlen((char*)current) + 1;
 	}
-	for (l = 0; l < expansion; ++l) {
-		next = current + strlen(current) + 1;
+	for (l = 0; l < (size_t)expansion; ++l) {
+		next = current + strlen((char*)current) + 1;
 		CampaignData[race][levelno][0] = current;
 		current = next;
 		if (race == 0) {
