@@ -44,15 +44,15 @@
   'impact-sound "fireball hit"
   'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-flame-shield
-  'file "missiles/flame shield.png" 'size '(32 32) 'frames 15
-  'class 'missile-class-flame-shield 'sleep 1 'speed 16 'range 1)
+  'file "missiles/flame shield.png" 'size '(32 48) 'frames 6
+  'class 'missile-class-flame-shield 'sleep 2 'speed 4 'range 1)
 (define-missile-type 'missile-blizzard
   'file "missiles/blizzard.png" 'size '(32 32) 'frames 4
-  'class 'missile-class-blizzard 'sleep 1 'speed 16 'range 1
+  'class 'missile-class-blizzard 'sleep 2 'speed 8 'range 1
   'impact-missile 'missile-blizzard-hit)
 (define-missile-type 'missile-death-and-decay
-  'file "missiles/death and decay.png" 'size '(32 32) 'frames 10
-  'class 'missile-class-death-decay 'sleep 1 'speed 16 'range 1)
+  'file "missiles/death and decay.png" 'size '(32 32) 'frames 8
+  'class 'missile-class-death-decay 'sleep 1 'speed 0 'range 1)
 (define-missile-type 'missile-big-cannon
   'file "missiles/big cannon.png" 'size '(16 16) 'frames 20
   'impact-sound "explosion"
@@ -72,7 +72,7 @@
   'class 'missile-class-stay-with-delay 'sleep 5 'speed 16 'range 1)
 (define-missile-type 'missile-whirlwind
   'file "missiles/tornado.png" 'size '(56 56) 'frames 4
-  'class 'missile-class-whirlwind 'sleep 1 'speed 16 'range 1)
+  'class 'missile-class-whirlwind 'sleep 2 'speed 2 'range 1)
 (define-missile-type 'missile-catapult-rock
   'file "missiles/catapult rock.png" 'size '(32 32) 'frames 15
   'impact-sound "explosion"
@@ -111,8 +111,8 @@
   'file "missiles/ballista-catapult impact.png" 'size '(48 48) 'frames 10
   'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-normal-spell
-  'file "missiles/normal spell.png" 'size '(32 32) 'frames 10
-  'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
+  'file "missiles/normal spell.png" 'size '(32 32) 'frames 6
+  'class 'missile-class-stay-with-delay 'sleep 1 'speed 0 'range 1)
 (define-missile-type 'missile-explosion
   'file "missiles/explosion.png" 'size '(64 64) 'frames 20
   'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
@@ -138,7 +138,7 @@
   'class 'missile-class-none 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-blizzard-hit
   'file "missiles/blizzard.png" 'size '(32 32) 'frames 4
-  'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
+  'class 'missile-class-stay-with-delay 'sleep 2 'speed 8 'range 1)
 (define-missile-type 'missile-death-coil
   'file "missiles/touch of death.png" 'size '(32 32) 'frames 30
   'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
@@ -164,15 +164,15 @@
   'impact-sound "fireball hit"
   'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-flame-shield
-  'file "flame shield.png" 'size '(32 32) 'frames 15
-  'class 'missile-class-flame-shield 'sleep 1 'speed 16 'range 1)
+  'file "flame shield.png" 'size '(32 48) 'frames 6
+  'class 'missile-class-flame-shield 'sleep 2 'speed 4 'range 1)
 (define-missile-type 'missile-blizzard
   'file "blizzard.png" 'size '(32 32) 'frames 4
   'class 'missile-class-blizzard 'sleep 1 'speed 16 'range 1
   'impact-missile 'missile-blizzard-hit)
 (define-missile-type 'missile-death-and-decay
-  'file "death and decay.png" 'size '(32 32) 'frames 10
-  'class 'missile-class-death-decay 'sleep 1 'speed 16 'range 1)
+  'file "death and decay.png" 'size '(32 32) 'frames 8
+  'class 'missile-class-death-decay 'sleep 1 'speed 0 'range 1)
 (define-missile-type 'missile-big-cannon
   'file "big cannon.png" 'size '(16 16) 'frames 20
   'impact-sound "explosion"
@@ -192,7 +192,7 @@
   'class 'missile-class-stay-with-delay 'sleep 5 'speed 16 'range 1)
 (define-missile-type 'missile-whirlwind
   'file "tornado.png" 'size '(56 56) 'frames 4
-  'class 'missile-class-whirlwind 'sleep 1 'speed 16 'range 1)
+  'class 'missile-class-whirlwind 'sleep 2 'speed 2 'range 1)
 (define-missile-type 'missile-catapult-rock
   'file "catapult rock.png" 'size '(32 32) 'frames 15
   'impact-sound "explosion"
@@ -231,8 +231,8 @@
   'file "ballista-catapult impact.png" 'size '(48 48) 'frames 10
   'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-normal-spell
-  'file "normal spell.png" 'size '(32 32) 'frames 10
-  'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
+  'file "normal spell.png" 'size '(32 32) 'frames 6
+  'class 'missile-class-stay-with-delay 'sleep 1 'speed 0 'range 1)
 (define-missile-type 'missile-explosion
   'file "explosion.png" 'size '(64 64) 'frames 20
   'class 'missile-class-stay-with-delay 'sleep 1 'speed 16 'range 1)
