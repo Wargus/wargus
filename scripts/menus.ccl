@@ -1866,14 +1866,14 @@
 (define-menu-item 'pos '(128 11) 'font 'large  'init 'init-game-menu
     'text '("Editor Menu" center)
     'menu "editor-menu")
-(define-menu-item 'pos '(16 40) 'font 'large 'flags '(selected)
+(define-menu-item 'pos '(16 40) 'font 'large 'flags '(disabled)
     'button '(size (106 27)
             caption "Save (~<F11~>)"
             hotkey "f11"
             func game-menu-save
             style gm-half)
     'menu "editor-menu")
-(define-menu-item 'pos '(134 40) 'font 'large 'flags '(selected)
+(define-menu-item 'pos '(134 40) 'font 'large 'flags '(disabled)
     'button '(size (106 27)
             caption "Load (~<F12~>)"
             hotkey "f12"
@@ -1920,23 +1920,58 @@
 ;;
 ;; editor-map-properties
 ;;
-(define-menu 'name "editor-map-properties" 'geometry '(208 112 384 256)
-    'image 'panel3 'default '3)
-(define-menu-item 'pos '(192 11) 'font 'large 
+(define-menu 'name "editor-map-properties" 'geometry '(256 112 288 256)
+    'image 'panel2 'default '10)
+(define-menu-item 'pos '(144 11) 'font 'large 
     'text '("Map Properties" center)
     'menu "editor-map-properties")
-(define-menu-item 'pos '(48 47) 'font 'game 
+(define-menu-item 'pos '(14 47) 'font 'game 
     'text '("Map Description:" left)
     'menu "editor-map-properties")
-(define-menu-item 'pos '(48 69) 'font 'game 
-    'input '(size (288 16)
+(define-menu-item 'pos '(14 69) 'font 'game 
+    'input '(size (260 16)
            func editor-map-description-action
            style pulldown)
     'menu "editor-map-properties")
-(define-menu-item 'pos '(139 218) 'font 'large 'flags '(selected)
+(define-menu-item 'pos '(14 105) 'font 'game 
+    'text '("Size:" left)
+    'menu "editor-map-properties")
+(define-menu-item 'pos '(122 105) 'font 'game 
+    'text '("null" left)
+    'menu "editor-map-properties")
+(define-menu-item 'pos '(14 141) 'font 'game 
+    'text '("Tileset:" left)
+    'menu "editor-map-properties")
+(define-menu-item 'pos '(122 141) 'font 'game 
+    'pulldown '(size (152 20)
+              style pulldown
+              func null
+              options ("Forest" "Winter" "Wasteland" "Orc Swamp" )
+              default 0
+              current 0)
+    'menu "editor-map-properties")
+(define-menu-item 'pos '(14 177) 'font 'game 
+    'text '("Version:" left)
+    'menu "editor-map-properties")
+(define-menu-item 'pos '(122 177) 'font 'game 
+    'pulldown '(size (152 20)
+              style pulldown
+              func null
+              options ("Original" "Expansion" "FreeCraft" )
+              default 0
+              current 0)
+    'menu "editor-map-properties")
+(define-menu-item 'pos '(19 218) 'font 'large 'flags '(selected)
     'button '(size (106 27)
-            caption "~!OK"
+            caption "OK"
             hotkey ""
+            func editor-map-properties-ok
+            style gm-half)
+    'menu "editor-map-properties")
+(define-menu-item 'pos '(163 218) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "Cancel (~<Esc~>)"
+            hotkey "esc"
             func editor-end-menu
             style gm-half)
     'menu "editor-map-properties")
