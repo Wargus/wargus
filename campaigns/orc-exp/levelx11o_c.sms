@@ -11,12 +11,19 @@
     )
 
 ;; FIXME: Check if units are destroyed.
-(add-trigger (lambda () (and (if-unit 3 '== 0 'all)
-                             (if-unit 6 '== 0 'unit-mage-tower)
-                        )) (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-unit 3 '== 0 'all)
+      (if-unit 6 '== 0 'unit-mage-tower)))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

@@ -10,21 +10,36 @@
     )
 
 ;; FIXME: Check if units are destroyed.
-(add-trigger (lambda () (and (if-unit 'this '== 1 'unit-quick-blade)
-                             (if-unit 'this '== 1 'unit-fad-man)
-                             (if-opponents 'this '== 0)
-                        )) (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 1 'unit-quick-blade)
+      (if-unit 'this '== 1 'unit-fad-man)
+      (if-opponents 'this '== 0)))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-quick-blade)
-                             (if-unit 6 '== 0 'unit-quick-blade)))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-quick-blade)
+      (if-unit 6 '== 0 'unit-quick-blade)))
+  '(
+    (action-defeat)))
 
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-fad-man)
-                             (if-unit 1 '== 0 'unit-fad-man)))
-    (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-fad-man)
+      (if-unit 1 '== 0 'unit-fad-man)))
+  '(
+    (action-defeat)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

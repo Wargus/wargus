@@ -11,17 +11,24 @@
     )
 
 ;; FIXME: Check if units are destroyed.
-(add-trigger (lambda () (and (if-unit 'this '>= 5 'unit-mythical-shipyard)
-                             (if-unit 2 '== 0 'unit-battleship)
-			     (if-unit 1 '== 0 'unit-battleship)
-			     (if-unit 2 '== 0 'unit-alliance-destroyer)
-			     (if-unit 1 '== 0 'unit-alliance-destroyer)
-			     (if-unit 2 '== 0 'unit-alliance-transport)
-			     (if-unit 1 '== 0 'unit-alliance-transport)
-                        )) (lambda () (action-victory)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '>= 5 'unit-mythical-shipyard)
+      (if-unit 2 '== 0 'unit-battleship)
+      (if-unit 1 '== 0 'unit-battleship)
+      (if-unit 2 '== 0 'unit-alliance-destroyer)
+      (if-unit 1 '== 0 'unit-alliance-destroyer)
+      (if-unit 2 '== 0 'unit-alliance-transport)
+      (if-unit 1 '== 0 'unit-alliance-transport)))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 
