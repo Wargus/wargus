@@ -145,12 +145,12 @@
 (define-modifier 'upgrade-orc-ship-armor1
   '(armor 5)
   '(apply-to unit-troll-destroyer) '(apply-to unit-ogre-juggernaught)
-  '(apply-to unit-giant-turtle))
+  '(apply-to unit-orc-transport))
 
 (define-modifier 'upgrade-orc-ship-armor2
   '(armor 5)
   '(apply-to unit-troll-destroyer) '(apply-to unit-ogre-juggernaught)
-  '(apply-to unit-giant-turtle))
+  '(apply-to unit-orc-transport))
 
 (define-modifier 'upgrade-ballista1
   '(piercing-damage 15)
