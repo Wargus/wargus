@@ -1235,7 +1235,7 @@ Control Todo[] = {
 {W,0,"spells/slow",						110	},
 {W,0,"spells/lightning",					111	},
 {W,0,"spells/touch of darkness",				112	},
-{W,0,"spells/unholy armour",					113	},
+{W,0,"spells/unholy armor",					113	},
 {W,0,"spells/whirlwind",					114	},
 {W,0,"orc/peon/ready",						115	},
 {W,0,"orc/units/death knight/annoyed/1",			116	},
