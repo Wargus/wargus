@@ -25,6 +25,9 @@
 
 (writes nil "FreeCraft default config file loading ...\n")
 
+; Config file version
+(define media-version 'wc2 'class 'wc2 'version '(1 18 0))
+
 ;;-----------------------------------------------------------------------------
 ;;	Config-Part
 ;;-----------------------------------------------------------------------------
@@ -60,15 +63,23 @@
 
 ;;-----------------------------------------------------------------------------
 ;;	Music play list -	Insert your titles here
-;(define play-list (list "music/default.mod"))
-(define play-list (list
-  ;"music/TCB_-_Become_Elite.mp3"
-  "music/Matthew_T._Yankovich---_Twilight_March.ogg"
-  "music/Matthew_T._Yankovich--_Midnight_Shadows.ogg"
-  "music/Matthew_T._Yankovich--_Wind_Wraith.ogg"
-))
-;;  "music/default.mod"))
 
+;
+;;	Create a list from the directory content (unix only!)
+;
+(define (dir->list s . prepend)
+  (define (aux d rl p)
+    (let ((q (readdir d)))
+      (if (equal? q ()) (begin (closedir d) rl)
+          (if (or (equal? q ".") (equal? q "..")) (aux d rl p)
+              (aux d (cons (string-append p q) rl) p)))))
+  (aux (opendir s) () (if (string? (car prepend)) (car prepend) "")))
+
+;; Uncomment to play automatic all music
+;(define play-list (dir->list "data/music" "music/"))
+
+;; Comment this, if you use above
+(define play-list (list "music/default.mod"))
 
 ;;-----------------------------------------------------------------------------
 
