@@ -10,7 +10,7 @@
 //
 /**@name wartool.c	-	Extract files from war archives. */
 //
-//	(c) Copyright 1999-2002 by Lutz Sammer
+//	(c) Copyright 1999-2003 by Lutz Sammer
 //
 //	FreeCraft is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published
@@ -594,8 +594,8 @@ Control Todo[] = {
 {I,0,"ui/orc/1600x1200/filler-right",				 2, 290, 16, 1200},
 {I,0,"ui/human/1600x1200/statusline",				 2, 291, 1408, 16},
 {I,0,"ui/orc/1600x1200/statusline",				 2, 292, 1408, 16},
-{I,0,"ui/human/1600x1200/buttonpanel",				 2, 297, 176, 528},
-{I,0,"ui/orc/1600x1200/buttonpanel",				 2, 298, 176, 528},
+{I,0,"ui/human/1600x1200/buttonpanel",				 2, 297, 176, 864},
+{I,0,"ui/orc/1600x1200/buttonpanel",				 2, 298, 176, 864},
 // --------------------------------------------------
 {C,0,"human/cursors/human gauntlet",				 2, 301 _2},
 {C,0,"orc/cursors/orcish claw",					 2, 302 _2},
