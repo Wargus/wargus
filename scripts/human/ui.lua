@@ -186,7 +186,8 @@ function HumanScreen(screen_width, screen_height)
         {"pos", {118, 384}, "size", icon_size},
         {"pos", {  6, 431}, "size", icon_size},
         {"pos", { 62, 431}, "size", icon_size},
-        {"pos", {118, 431}, "size", icon_size}}
+        {"pos", {118, 431}, "size", icon_size}},
+      "command-key-font", "game"
     },
 
     "map-area", {
