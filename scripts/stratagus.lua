@@ -245,11 +245,7 @@ SetFogOfWar(true)
 SetMinimapTerrain(true)
 --SetMinimapTerrain(false)
 
---  Choose your default for the fog of war style.
--- Planned  (set-fog-of-war-style! 'original)
---          (set-fog-of-war-style! 'alpha-gray)
---OriginalFogOfWar()
-AlphaFogOfWar()
+--  Set Fog of War opacity
 SetFogOfWarOpacity(128)
 
 -------------------------------------------------------------------------------
