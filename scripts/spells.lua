@@ -226,7 +226,6 @@ do
 		"condition", {
 			"isundead", "only",
 			"building", "false", -- any undead buildings?
-			"alliance", "false"
 		},
 		"sound-when-cast", "exorcism",
 		"missile-when-cast", "missile-exorcism",
