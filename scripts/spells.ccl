@@ -97,7 +97,7 @@
 	'manacost 70
 	'range	-1
 	'target 'position
-	'action '( HolyVision "unit-revealer" )
+	'action '(summon unit-type unit-revealer time-to-live 100)
 	'sound-when-cast "holy vision"
 	'missile-when-cast "missile-normal-spell"
 	'autocast '(range -1)
@@ -108,7 +108,7 @@
 	'manacost 6
 	'range	6
 	'target 'unit
-	'action '( healing (HP 1) )
+	'action '(adjust-vitals hit-points +1)
 	'condition '(	UnitTypeflag (true organic)
 			UnitTypeflag (false building)
 			DurationEffect (false flag HP_percent value 100) ;; HP < 100% HPMAX
@@ -127,7 +127,7 @@
 	'manacost 4
 	'range	10
 	'target 'unit
-	'action '( healing (HP -1) )
+	'action '(adjust-vitals hit-points -1)
 	'condition '(	UnitTypeflag (true undead)
 			UnitTypeflag (false building)
 			Alliance false
@@ -142,7 +142,7 @@
 	'manacost 70
 	'range	6
 	'target 'none
-	'action '( Summon "unit-eye-of-vision" )
+	'action '(summon unit-type unit-eye-of-vision time-to-live 5000)
 	'sound-when-cast "eye of vision"
 	'missile-when-cast "missile-normal-spell"
 	'autocast '(range 6)
@@ -153,7 +153,7 @@
 	'manacost 50
 	'range	6
 	'target 'unit
-	'action '( haste (haste 1000 slow 0) )
+	'action '(adjust-buffs haste-ticks 1000 slow-ticks 0)
 	'condition '(	UnitTypeflag (false building)
 			DurationEffect (false flag haste value 900) ;; haste < 900 / CYCLE_PER_SECOND
 			Alliance true
@@ -168,7 +168,7 @@
 	'manacost 50
 	'range	10
 	'target 'unit
-	'action '( haste (slow 1000 haste 0) )
+	'action '(adjust-buffs slow-ticks 1000 haste-ticks 0)
 	'condition '(	UnitTypeflag (false building)
 			DurationEffect (false flag slow value 900) ;; slow < 900 / CYCLE_PER_SECOND
 			Alliance true
@@ -183,7 +183,7 @@
 	'manacost 50
 	'range	6
 	'target 'unit
-	'action '( haste (bloodlust 1000) )
+	'action '(adjust-buffs bloodlust-ticks 1000)
 	'condition '(	UnitTypeflag (true organic)
 			DurationEffect (false flag bloodlust value 900) ;; bloodlust < 900 / CYCLE_PER_SECOND
 			Alliance true
@@ -198,7 +198,7 @@
 	'manacost 200
 	'range	6
 	'target 'unit
-	'action '( Invisibility ( flag invisibility value 2000 missile "missile-explosion" ))
+	'action '(adjust-buffs invisibility-ticks 2000)
 	'condition '(	UnitTypeflag (false building)
 			DurationEffect (false flag invisibility value 900) ;; invisibility < 900 / CYCLE_PER_SECOND
 			Alliance true
@@ -213,7 +213,7 @@
 	'manacost 100
 	'range	6
 	'target 'unit
-	'action '( Invisibility ( flag unholyarmor value 500 missile "missile-explosion" ))
+	'action '(adjust-buffs invincibility-ticks 500)
 	'condition '(UnitTypeflag (false building)
 			DurationEffect (false flag unholyarmor value 900) ;; unholyarmor < 900 / CYCLE_PER_SECOND
 			Alliance true
@@ -228,7 +228,7 @@
 	'manacost 50
 	'range	6
 	'target 'unit
-	'action '( flame-shield (ttl 600))
+	'action '(flame-shield duration 600)
 	'condition '(UnitTypeflag (false building)
 			DurationEffect (false flag flameshield value 500) ;; flameshield < 900 / CYCLE_PER_SECOND
 ;;			Alliance false;; On which player (true own , false opponents)
@@ -243,7 +243,7 @@
 	'manacost 200
 	'range	10
 	'target 'unit
-	'action '( Polymorph "unit-critter")
+	'action '(polymorph new-form unit-critter)
 	'condition '(UnitTypeflag (true organic)
 			Alliance false
 			)
@@ -259,12 +259,12 @@
 	'range	12
 	'target 'position
 	'action '(area-bombardment
-	    (fields 5
+	     fields 5
 	     shards 10
 	     damage 10
 	     ;;  128=4*32=4 tiles
 	     start-offset-x -128
-	     start-offset-y -128))
+	     start-offset-y -128)
 	'sound-when-cast "blizzard"
 	'missile-when-cast "missile-blizzard"
 ;;	'autocast '(range 12)
@@ -275,7 +275,7 @@
 	'manacost 25
 	'range	12
 	'target 'position
-	'action '(area-bombardment (fields 5 shards 10 damage 10) )
+	'action '(area-bombardment fields 5 shards 10 damage 10)
 	'sound-when-cast "death and decay"
 	'missile-when-cast "missile-death-and-decay"
 ;;	'autocast '(range 12)
@@ -286,7 +286,7 @@
 	'manacost 100
 	'range	8
 	'target 'position
-	'action '( fireball (ttl 1000 damage 20))
+	'action '(fireball ttl 1000 damage 20)
 	'sound-when-cast "fireball throw"
 	'missile-when-cast "missile-fireball"
 ;;	'autocast '(range 8)
@@ -297,7 +297,7 @@
 	'manacost 200
 	'range	10
 	'target 'position
-	'action '( Runes (ttl 2000 damage 50))
+	'action '(runes ttl 2000 damage 50)
 	'sound-when-cast "runes"
 	'missile-when-cast "missile-rune"
 ;;	'autocast '(range 10)
@@ -308,11 +308,11 @@
 	'manacost 100
 	'range	10
 	'target 'position ;; FIXME position or organic target
-	'action '( death-coil )
-;;	'condition '(UnitTypeflag (true organic))
+	'action '(fireball ttl 10000 damage 10000 )
+;	'condition '(UnitTypeflag (true organic))
 	'sound-when-cast "death coil"
 	'missile-when-cast "missile-death-coil"
-;;	'autocast '(range 6)
+;	'autocast '(range 6)
 )
 
 (define-spell "spell-raise-dead"
@@ -320,7 +320,7 @@
 	'manacost 50
 	'range	6
 	'target 'none
-	'action '( RaiseDead "unit-skeleton" )
+	'action '(raise-dead unit-raised unit-skeleton time-to-live 100)
 	'sound-when-cast "raise dead"
 	'missile-when-cast "missile-normal-spell"
 ;;	'autocast '(range 6)
@@ -331,7 +331,7 @@
 	'manacost 100
 	'range	12
 	'target 'position
-	'action '( Whirlwind (ttl 801)) ; TODO damage1 4 damage2 1
+	'action '(whirlwind duration 801) ; TODO damage1 4 damage2 1
 	'sound-when-cast "whirlwind"
 	'missile-when-cast "missile-whirlwind"
 ;;	'autocast '(range 12)
@@ -342,7 +342,7 @@
 	'manacost 25
 	'range	-1
 	'target 'position
-	'action '( spawn-portal "unit-circle-of-power" )
+	'action '(spawn-portal portal-type unit-circle-of-power)
 	'sound-when-cast "circle of power"
 	'missile-when-cast "missile-normal-spell"
 ;;	'autocast '(range -1)
