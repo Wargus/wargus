@@ -125,7 +125,10 @@
 ;(show-orders)
 
 ;;	Uncomment next to enable hit point regeneration for all units
-;(hitpoint-regeneration)
+;(set-hitpoint-regeneration! #t)
+
+;;	Uncomment next to disable hit point regeneration for all units
+;(set-hitpoint-regeneration! #f)
 
 ;;	Uncomment next, to show the original game resource line.
 ;(original-resources)
@@ -169,12 +172,11 @@
 ;;	Uncomment next, to reveal the complete map.
 ;(reveal-map)
 
-;;	Uncomment next, to disable the fog of war.
-;(no-fog-of-war)
-(define (no-fog) (no-fog-of-war))	; SHORTCUT
-
 ;;	Uncomment next, to enable the fog of war.
-(fog-of-war)
+;(set-fog-of-war! #t)
+
+;;	Uncomment next, to disable the fog of war.
+;(set-fog-of-war! #f)
 
 ;;	Choose your default for minimap with/without terrain.
 (minimap-terrain)
