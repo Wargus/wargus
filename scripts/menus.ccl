@@ -35,28 +35,28 @@
 (define-menu-item 'pos (list 128 11) 'font 'large  'init 'init-game-menu
     'text '("Game Menu" center)
     'menu 'menu-game)
-(define-menu-item 'pos (list 16 40) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 40) 'font 'large
     'button '(size (106 27)
             caption "Save (~<F11~>)"
             hotkey "f11"
             func game-menu-save
             style gm-half)
     'menu 'menu-game)
-(define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large
     'button '(size (106 27)
             caption "Load (~<F12~>)"
             hotkey "f12"
             func game-menu-load
             style gm-half)
     'menu 'menu-game)
-(define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large
     'button '(size (224 27)
             caption "Options (~<F5~>)"
             hotkey "f5"
             func game-options
             style gm-full)
     'menu 'menu-game)
-(define-menu-item 'pos (list 16 (+ 40 (* 36 2))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 2))) 'font 'large
     'button '(size (224 27)
             caption "Help (~<F1~>)"
             hotkey "f1"
@@ -77,7 +77,7 @@
             func game-menu-end-scenario
             style gm-full)
     'menu 'menu-game)
-(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large
     'button '(size (224 27)
             caption "Return to Game (~<Esc~>)"
             hotkey "esc"
@@ -97,7 +97,7 @@
 (define-menu-item 'pos (list 144 32) 'font 'large
     'text '("You are victorious!" center)
     'menu 'menu-victory)
-(define-menu-item 'pos (list 32 90) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 32 90) 'font 'large
     'button '(size (224 27)
             caption "~!Victory"
             hotkey "v"
@@ -124,7 +124,7 @@
 (define-menu-item 'pos (list 144 32) 'font 'large
     'text '("achieve victory!" center)
     'menu 'menu-defeated)
-(define-menu-item 'pos (list 32 90) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 32 90) 'font 'large
     'button '(size (224 27)
             caption "~!OK"
             hotkey "o"
@@ -154,7 +154,7 @@
              func scen-select-vs-action
              handler scen-select-ok)
     'menu 'menu-select-scenario)
-(define-menu-item 'pos (list 48 318) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 48 318) 'font 'large
     'button '(size (106 27)
             caption "OK"
             hotkey ""
@@ -498,7 +498,7 @@
            func enter-name-action
            style pulldown)
     'menu 'menu-enter-name)
-(define-menu-item 'pos (list 24 80) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 24 80) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
@@ -950,7 +950,7 @@
             func end-menu
             style gm-half)
     'menu 'menu-enter-server)
-(define-menu-item 'pos (list 154 80) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 154 80) 'font 'large
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
@@ -1282,7 +1282,7 @@
 (define-menu-item 'pos (list 144 53) 'font 'large
     'text '(() center)
     'menu 'menu-net-connecting)
-(define-menu-item 'pos (list 32 90) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 32 90) 'font 'large
     'button '(size (224 27)
             caption "Cancel (~<Esc~>)"
             hotkey "esc"
@@ -1389,7 +1389,7 @@
 (define-menu-item 'pos (list 14 (+ 38 (* 21 8))) 'font 'large
     'text '(() none)
     'menu 'menu-objectives)
-(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large
     'button '(size (224 27)
             caption "~!OK"
             hotkey "o"
@@ -1434,7 +1434,7 @@
             func exit-confirm-menu
             style gm-full)
     'menu 'menu-end-scenario)
-(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large
     'button '(size (224 27)
             caption "Previous (~<Esc~>)"
             hotkey "esc"
@@ -1538,7 +1538,7 @@
 (define-menu-item 'pos (list 180 (+ (* 36 6.5) 2)) 'font 'game
     'text '("Random Tracks" left)
     'menu 'menu-sound-options)
-(define-menu-item 'pos (list (- 176 (/ 106 2)) (- 352 11 27)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (- 176 (/ 106 2)) (- 352 11 27)) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
@@ -1573,7 +1573,7 @@
 (define-menu-item 'pos (list 46 (+ (* 36 2) 2)) 'font 'game
     'text '("Show command key" left)
     'menu 'menu-preferences)
-(define-menu-item 'pos (list (- 128 (/ 106 2)) 245) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (- 128 (/ 106 2)) 245) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
@@ -1907,7 +1907,7 @@
          style gem-square)
     'menu 'menu-diplomacy)
 
-(define-menu-item 'pos (list 75 (- 352 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 75 (- 352 40)) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
@@ -1973,7 +1973,7 @@
 (define-menu-item 'pos (list 230 (+ (* 36 6) 6)) 'font 'small
     'text '("fast" right)
     'menu 'menu-settings-speed)
-(define-menu-item 'pos (list (- 128 (/ 106 2)) 245) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (- 128 (/ 106 2)) 245) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
@@ -1990,34 +1990,35 @@
 (define-menu-item 'pos (list 128 11) 'font 'large
     'text '("Game Options" center)
     'menu 'menu-game-options)
-(define-menu-item 'pos (list 16 (+ 40 (* 36 0))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 0))) 'font 'large
     'button '(size (224 27)
             caption "Sound (~<F7~>)"
             hotkey "f7"
             func sound-options
             style gm-full)
     'menu 'menu-game-options)
-(define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large
     'button '(size (224 27)
             caption "Speeds (~<F8~>)"
             hotkey "f8"
             func speed-settings
             style gm-full)
     'menu 'menu-game-options)
-(define-menu-item 'pos (list 16 (+ 40 (* 36 2))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 2))) 'font 'large
     'button '(size (224 27)
             caption "Preferences (~<F9~>)"
             hotkey "f9"
             func preferences
             style gm-full)
     'menu 'menu-game-options)
-(define-menu-item 'pos (list 16 (+ 40 (* 36 3))) 'font 'large 'flags '(selected)    'button '(size (224 27)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 3))) 'font 'large
+    'button '(size (224 27)
             caption "~!Diplomacy"
             hotkey "d"
             func menu-diplomacy
             style gm-full)
      'menu 'menu-game-options)
-(define-menu-item 'pos (list (- 128 (/ 224 2)) 245) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (- 128 (/ 224 2)) 245) 'font 'large
     'button '(size (224 27)
             caption "Previous (~<Esc~>)"
             hotkey "esc"
@@ -2037,7 +2038,7 @@
 (define-menu-item 'pos (list 144 38) 'font 'large
     'text '(() center)
     'menu 'menu-net-error)
-(define-menu-item 'pos (list 92 80) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 92 80) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
@@ -2063,14 +2064,14 @@
 (define-menu-item 'pos (list (+ 14 22) (+ (- 256 75) 4)) 'font 'game
     'text '("Show tips at startup" left)
     'menu 'menu-tips)
-(define-menu-item 'pos (list 14 (- 256 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 14 (- 256 40)) 'font 'large
     'button '(size (106 27)
             caption "~!Next Tip"
             hotkey "n"
             func show-next-tip
             style gm-half)
     'menu 'menu-tips)
-(define-menu-item 'pos (list 168 (- 256 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 168 (- 256 40)) 'font 'large
     'button '(size (106 27)
             caption "~!Close"
             hotkey "c"
@@ -2111,21 +2112,21 @@
 (define-menu-item 'pos (list 128 11) 'font 'large
     'text '("Help Menu" center)
     'menu 'menu-help)
-(define-menu-item 'pos (list 16 (+ 40 (* 36 0))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 0))) 'font 'large
     'button '(size (224 27)
             caption "Keystroke ~!Help"
             hotkey "h"
             func keystroke-help
             style gm-full)
     'menu 'menu-help)
-(define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large
     'button '(size (224 27)
             caption "FreeCraft ~!Tips"
             hotkey "t"
             func show-tips
             style gm-full)
     'menu 'menu-help)
-(define-menu-item 'pos (list (- 128 (/ 224 2)) 248) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (- 128 (/ 224 2)) 248) 'font 'large
     'button '(size (224 27)
             caption "Previous (~<Esc~>)"
             hotkey "esc"
@@ -2147,7 +2148,7 @@
              func keystroke-help-vs-action
              handler null)
     'menu 'menu-keystroke-help)
-(define-menu-item 'pos (list (- (/ 352 2) (/ 224 2)) (- 352 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (- (/ 352 2) (/ 224 2)) (- 352 40)) 'font 'large
     'button '(size (224 27)
             caption "Previous (~<Esc~>)"
             hotkey "esc"
@@ -2259,14 +2260,14 @@
 (define-menu-item 'pos (list 16 (+ 11 (* 20 2.5))) 'font 'game
     'text '(() left)
     'menu 'menu-save-confirm)
-(define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func save-confirm-ok
             style gm-half)
     'menu 'menu-save-confirm)
-(define-menu-item 'pos (list (- 288 16 106) (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (- 288 16 106) (- 128 (* 27 1.5))) 'font 'large
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
@@ -2289,14 +2290,14 @@
 (define-menu-item 'pos (list 16 (+ 11 (* 20 2.5))) 'font 'game
     'text '(() left)
     'menu 'menu-delete-confirm)
-(define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func fc-delete-ok
             style gm-half)
     'menu 'menu-delete-confirm)
-(define-menu-item 'pos (list (- 288 16 106) (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (- 288 16 106) (- 128 (* 27 1.5))) 'font 'large
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
@@ -2410,7 +2411,7 @@
              func editor-main-load-vs-action
              handler editor-main-load-ok)
     'menu 'menu-editor-main-load-map)
-(define-menu-item 'pos (list 48 308) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 48 308) 'font 'large
     'button '(size (106 27)
             caption "OK"
             hotkey ""
@@ -2434,6 +2435,50 @@
 
 
 ;;
+;; menu-editor-load-map
+;;
+(define-menu 'name 'menu-editor-load-map 'geometry '(224 64 352 352)
+    'image 'panel5 'default '4)
+(define-menu-item 'pos (list (/ 352 2) 11) 'font 'large  'init 'editor-load-init
+    'text '("Select map" center)
+    'menu 'menu-editor-load-map)
+(define-menu-item 'pos (list (/ (- 352 18 288) 2) (+ 11 98)) 'font 'game  'init 'editor-load-lb-init 'exit 'editor-load-lb-exit
+    'listbox '(size (288 108)
+             style pulldown
+             func editor-load-lb-action
+             retopt editor-load-lb-retrieve
+             handler editor-load-ok
+             nlines 6)
+    'menu 'menu-editor-load-map)
+(define-menu-item 'pos (list (+ (/ (- 352 18 288) 2) 288) (+ 11 98)) 'font 'small
+    'vslider '(size (18 108)
+             func editor-load-vs-action
+             handler editor-load-ok)
+    'menu 'menu-editor-load-map)
+(define-menu-item 'pos (list 48 308) 'font 'large
+    'button '(size (106 27)
+            caption "OK"
+            hotkey ""
+            func editor-load-ok
+            style gm-half)
+    'menu 'menu-editor-load-map)
+(define-menu-item 'pos (list 198 308) 'font 'large
+    'button '(size (106 27)
+            caption "Cancel"
+            hotkey ""
+            func editor-load-cancel
+            style gm-half)
+    'menu 'menu-editor-load-map)
+(define-menu-item 'pos (list (- (/ (- 352 18 288) 2) 2) (- (+ 11 98) 28)) 'font 'game
+    'button '(size (36 24)
+            caption ()
+            hotkey ""
+            func editor-load-folder
+            style folder)
+    'menu 'menu-editor-load-map)
+
+
+;;
 ;; menu-editor
 ;;
 (define-menu 'name 'menu-editor 'geometry '(272 96 256 288)
@@ -2448,34 +2493,27 @@
             func editor-save
             style gm-half)
     'menu 'menu-editor)
-(define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large 'flags '(disabled)
+(define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large
     'button '(size (106 27)
             caption "Load (~<F12~>)"
             hotkey ""
-            func game-menu-load
+            func editor-load-map
             style gm-half)
     'menu 'menu-editor)
-(define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large
     'button '(size (224 27)
             caption "Map Properties (~<F5~>)"
             hotkey "f5"
             func editor-map-properties
             style gm-full)
     'menu 'menu-editor)
-(define-menu-item 'pos (list 16 (+ 40 (* 36 2))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 40 (* 36 2))) 'font 'large
     'button '(size (224 27)
             caption "Player Properties (~<F6~>)"
             hotkey "f6"
             func editor-player-properties
             style gm-full)
     'menu 'menu-editor)
-;(define-menu-item 'pos (list 16 (+ 40 (* 36 3))) 'font 'large 'flags '(disabled)
-;    'button '(size (224 27)
-;            caption ""
-;            hotkey "o"
-;            func game-menu-objectives
-;            style gm-full)
-;    'menu 'menu-editor)
 (define-menu-item 'pos (list 16 (- 288 40 36)) 'font 'large
     'button '(size (224 27)
             caption "E~!xit to Menu"
@@ -2483,7 +2521,7 @@
             func editor-quit-menu
             style gm-full)
     'menu 'menu-editor)
-(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large
     'button '(size (224 27)
             caption "Return to Editor (~<Esc~>)"
             hotkey "esc"
@@ -2536,14 +2574,14 @@
               default 0
               current 0)
     'menu 'menu-editor-map-properties)
-(define-menu-item 'pos (list (/ (- 288 (* 106 2)) 4) (- 256 11 27)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (/ (- 288 (* 106 2)) 4) (- 256 11 27)) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func editor-map-properties-ok
             style gm-half)
     'menu 'menu-editor-map-properties)
-(define-menu-item 'pos (list (- 288 (/ (- 288 (* 106 2)) 4) 106) (- 256 11 27)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (- 288 (/ (- 288 (* 106 2)) 4) 106) (- 256 11 27)) 'font 'large
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
@@ -3289,14 +3327,14 @@
 (define-menu-item 'pos (list (+ 14 22) (+ (- 256 75) 4)) 'font 'game
     'text '("Show tips at startup" left)
     'menu 'menu-editor-tips)
-(define-menu-item 'pos (list 14 (- 256 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 14 (- 256 40)) 'font 'large
     'button '(size (106 27)
             caption "~!Next Tip"
             hotkey "n"
             func null ;show-next-editor-tip
             style gm-half)
     'menu 'menu-editor-tips)
-(define-menu-item 'pos (list 168 (- 256 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 168 (- 256 40)) 'font 'large
     'button '(size (106 27)
             caption "~!Close"
             hotkey "c"
@@ -3369,7 +3407,7 @@
 (define-menu-item 'pos (list 144 38) 'font 'large
     'text '(() center)
     'menu 'menu-editor-error)
-(define-menu-item 'pos (list 92 80) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 92 80) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
@@ -3411,7 +3449,7 @@
             func editor-edit-ai-properties-ok
             style gm-half)
     'menu 'menu-editor-edit-ai-properties)
-(define-menu-item 'pos (list 154 88) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 154 88) 'font 'large
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
@@ -3446,7 +3484,7 @@
            func editor-save-enter-action
            style pulldown)
     'menu 'menu-editor-save)
-(define-menu-item 'pos (list 48 308) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 48 308) 'font 'large
     'button '(size (106 27)
             caption "OK"
             hotkey "o"
@@ -3483,14 +3521,14 @@
 (define-menu-item 'pos (list 16 (+ 11 (* 20 2.5))) 'font 'game
     'text '(() left)
     'menu 'menu-editor-save-confirm)
-(define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func editor-save-confirm-ok
             style gm-half)
     'menu 'menu-editor-save-confirm)
-(define-menu-item 'pos (list (- 288 16 106) (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list (- 288 16 106) (- 128 (* 27 1.5))) 'font 'large
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
@@ -3520,7 +3558,7 @@
              func replay-game-vs-action
              handler replay-game-ok)
     'menu 'menu-replay-game)
-(define-menu-item 'pos (list 48 308) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 48 308) 'font 'large
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
@@ -3566,14 +3604,14 @@
 (define-menu-item 'pos (list 128 (+ 11 (* 24 2))) 'font 'large
     'text '("the scenario?" center)
     'menu 'menu-restart-confirm)
-(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large
     'button '(size (224 27)
             caption "~!Restart Scenario"
             hotkey "r"
             func end-scenario-restart
             style gm-full)
     'menu 'menu-restart-confirm)
-(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large
     'button '(size (224 27)
             caption "Cancel (~<Esc~>)"
             hotkey "esc"
@@ -3596,14 +3634,14 @@
 (define-menu-item 'pos (list 128 (+ 11 (* 24 2))) 'font 'large
     'text '("to your enemies?" center)
     'menu 'menu-surrender-confirm)
-(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large
     'button '(size (224 27)
             caption "~!Surrender"
             hotkey "s"
             func end-scenario-surrender
             style gm-full)
     'menu 'menu-surrender-confirm)
-(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large
     'button '(size (224 27)
             caption "Cancel (~<Esc~>)"
             hotkey "esc"
@@ -3626,14 +3664,14 @@
 (define-menu-item 'pos (list 128 (+ 11 (* 24 2))) 'font 'large
     'text '("the main menu?" center)
     'menu 'menu-quit-to-menu-confirm)
-(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large
     'button '(size (224 27)
             caption "~!Quit to Menu"
             hotkey "q"
             func end-scenario-quit-to-menu
             style gm-full)
     'menu 'menu-quit-to-menu-confirm)
-(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large
     'button '(size (224 27)
             caption "Cancel (~<Esc~>)"
             hotkey "esc"
@@ -3656,14 +3694,14 @@
 (define-menu-item 'pos (list 128 (+ 11 (* 24 2))) 'font 'large
     'text '("FreeCraft?" center)
     'menu 'menu-exit-confirm)
-(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (+ 11 (* 24 3) 29)) 'font 'large
     'button '(size (224 27)
             caption "E~!xit Program"
             hotkey "x"
             func game-menu-exit
             style gm-full)
     'menu 'menu-exit-confirm)
-(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large 'flags '(selected)
+(define-menu-item 'pos (list 16 (- 288 40)) 'font 'large
     'button '(size (224 27)
             caption "Cancel (~<Esc~>)"
             hotkey "esc"
