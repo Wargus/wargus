@@ -212,9 +212,10 @@ do
 		"showname", "Demolish",
 		"manacost", 0,
 		"target", "self",
-		"action", {{"demolish", "range", 1, "damage", 400}},
-		"sound-when-cast", "holy vision",
-		"missile-when-cast", "missile-normal-spell"
+		"action", {{"demolish", "range", 1, "damage", 400},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"end-point",   {"base", "caster"}}},
+		"sound-when-cast", "holy vision"
 	)
 
 	DefineSpell("spell-holy-vision",
@@ -222,10 +223,11 @@ do
 		"manacost", 70,
 		"range", "infinite",
 		"target", "position",
-		"action", {{"summon", "unit-type", "unit-revealer", "time-to-live", 25}},
+		"action", {{"summon", "unit-type", "unit-revealer", "time-to-live", 25},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
 		"sound-when-cast", "holy vision",
-		"depend-upgrade", "upgrade-holy-vision",
-		"missile-when-cast", "missile-normal-spell"
+		"depend-upgrade", "upgrade-holy-vision"
 	)
 
 	DefineSpell("spell-healing",
@@ -233,7 +235,9 @@ do
 		"manacost", 6,
 		"range", 6,
 		"target", "unit",
-		"action", {{"adjust-vitals", "hit-points", 1}},
+		"action", {{"adjust-vitals", "hit-points", 1},
+			{"spawn-missile", "missile", "missile-heal-effect",
+				"start-point", {"base", "target"}}},
 		"condition", {
 			"organic", "only",
 			"building", "false",
@@ -241,7 +245,6 @@ do
 		},
 		"sound-when-cast", "healing",
 		"depend-upgrade", "upgrade-healing",
-		"missile-when-cast", "missile-heal-effect",
 		"autocast", {"range", 6, "condition", {"alliance", "only", "max-hp-percent", 90}}
 	)
 
@@ -250,14 +253,15 @@ do
 		"manacost", 4,
 		"range", 10,
 		"target", "unit",
-		"action", {{"adjust-vitals", "hit-points", -1}},
+		"action", {{"adjust-vitals", "hit-points", -1},
+			{"spawn-missile", "missile", "missile-exorcism",
+				"start-point", {"base", "target"}}},
 		"condition", {
 			"isundead", "only",
 			"building", "false", -- any undead buildings?
 		},
 		"sound-when-cast", "exorcism",
 		"depend-upgrade", "upgrade-exorcism",
-		"missile-when-cast", "missile-exorcism",
 		"autocast", {"range", 10, "condition", {"coward", "false", "alliance", "false"}}
 	)
 
@@ -266,10 +270,11 @@ do
 		"manacost", 70,
 		"range", 6,
 		"target", "position",
-		"action", {{"summon", "unit-type", "unit-eye-of-vision", "time-to-live", 5000}},
+			"action", {{"summon", "unit-type", "unit-eye-of-vision", "time-to-live", 5000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
 		"sound-when-cast", "eye of vision",
-		"depend-upgrade", "upgrade-eye-of-kilrogg",
-		"missile-when-cast", "missile-normal-spell"
+		"depend-upgrade", "upgrade-eye-of-kilrogg"
 	)
 
 	DefineSpell("spell-haste",
@@ -277,14 +282,15 @@ do
 		"manacost", 50,
 		"range", 6,
 		"target", "unit",
-		"action", {{"adjust-buffs", "haste-ticks", 1000, "slow-ticks", 0}},
+		"action", {{"adjust-buffs", "haste-ticks", 1000, "slow-ticks", 0},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
 		"condition", {
 			"building", "false",
 			"max-haste-ticks", 10 -- FIXME: proper value?
 		},
 		"sound-when-cast", "haste",
 		"depend-upgrade", "upgrade-haste",
-		"missile-when-cast", "missile-normal-spell",
 		"autocast", {"range", 6, "condition", {"coward", "false", "alliance", "only"}},
 		"ai-cast", {"range", 6, "combat", "only", "condition", {"coward", "false", "alliance", "only"}}
 	)
@@ -294,13 +300,14 @@ do
 		"manacost", 50,
 		"range", 10,
 		"target", "unit",
-		"action", {{"adjust-buffs", "slow-ticks", 1000, "haste-ticks", 0}},
+		"action", {{"adjust-buffs", "slow-ticks", 1000, "haste-ticks", 0},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
 		"condition", {
 			"building", "false",
 			"max-slow-ticks", 10},
 		"sound-when-cast", "slow",
 		"depend-upgrade", "upgrade-slow",
-		"missile-when-cast", "missile-normal-spell",
 		"autocast", {"range", 10, "condition", {"coward", "false", "alliance", "false"}},
 		"ai-cast", {"range", 10, "combat", "only", "condition", {"coward", "false", "alliance", "false"}}
 	)
@@ -310,13 +317,14 @@ do
 		"manacost", 50,
 		"range", 6,
 		"target", "unit",
-		"action", {{"adjust-buffs", "bloodlust-ticks", 1000}},
+		"action", {{"adjust-buffs", "bloodlust-ticks", 1000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
 		"condition", {
 			"organic", "only",
 			"max-bloodlust-ticks", 10},
 		"sound-when-cast", "bloodlust",
 		"depend-upgrade", "upgrade-bloodlust",
-		"missile-when-cast", "missile-normal-spell",
 		"autocast", {"range", 6, "condition", {"coward", "false", "alliance", "only"}},
 		"ai-cast", {"range", 6, "combat", "only", "condition", {"coward", "false", "alliance", "only"}}
 	)
@@ -326,13 +334,14 @@ do
 		"manacost", 200,
 		"range", 6,
 		"target", "unit",
-		"action", {{"adjust-buffs", "invisibility-ticks", 2000}},
+		"action", {{"adjust-buffs", "invisibility-ticks", 2000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
 		"condition", {
 			"building", "false",
 			"max-invisibility-ticks", 10},
 		"sound-when-cast", "invisibility",
-		"depend-upgrade", "upgrade-invisibility",
-		"missile-when-cast", "missile-normal-spell"
+		"depend-upgrade", "upgrade-invisibility"
 	--	"autocast", {"range", 6, "condition", {"coward", "false"}},
 	)
 
@@ -341,13 +350,14 @@ do
 		"manacost", 100,
 		"range", 6,
 		"target", "unit",
-		"action", {{"adjust-buffs", "invincibility-ticks", 500}},
+		"action", {{"adjust-buffs", "invincibility-ticks", 500},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
 		"condition", {
 			"building", "false",
 			"max-invincibility-ticks", 10},
 		"sound-when-cast", "unholy armor",
-		"depend-upgrade", "upgrade-unholy-armor",
-		"missile-when-cast", "missile-normal-spell"
+		"depend-upgrade", "upgrade-unholy-armor"
 	--	"autocast", {range 6 condition (coward false alliance only)},
 	)
 
@@ -357,18 +367,17 @@ do
 		"range", 6,
 		"target", "unit",
 		"action", {
-			{"spawn-missile", "ttl", 600, "damage", 1},
-			{"spawn-missile", "ttl", 607, "damage", 1},
-			{"spawn-missile", "ttl", 614, "damage", 1},
-			{"spawn-missile", "ttl", 621, "damage", 1},
-			{"spawn-missile", "ttl", 628, "damage", 1}
+			{"spawn-missile", "missile", "missile-flame-shield", "ttl", 600, "damage", 1},
+			{"spawn-missile", "missile", "missile-flame-shield", "ttl", 607, "damage", 1},
+			{"spawn-missile", "missile", "missile-flame-shield", "ttl", 614, "damage", 1},
+			{"spawn-missile", "missile", "missile-flame-shield", "ttl", 621, "damage", 1},
+			{"spawn-missile", "missile", "missile-flame-shield", "ttl", 628, "damage", 1}
 		},
 		-- I think it's better if we can cast it multiple times and the effects stack.
 		-- Can be casted, and is effective on both allies and enemies
 		"condition", {"building", "false"},
 		"sound-when-cast", "flame shield",
-		"depend-upgrade", "upgrade-flame-shield",
-		"missile-when-cast", "missile-flame-shield" -- NOT use
+		"depend-upgrade", "upgrade-flame-shield"
 	--	"autocast", {range 6 condition (coward false)},
 	)
 
@@ -377,11 +386,12 @@ do
 		"manacost", 200,
 		"range", 10,
 		"target", "unit",
-		"action", {{"polymorph", "new-form", "unit-critter", "player-neutral"}},
+		"action", {{"polymorph", "new-form", "unit-critter", "player-neutral"},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
 		"condition", {"organic", "only"},
 		"sound-when-cast", "polymorph",
-		"depend-upgrade", "upgrade-polymorph",
-		"missile-when-cast", "missile-normal-spell"
+		"depend-upgrade", "upgrade-polymorph"
 		--  Only cast on the strongest units!!!
 	--	"autocast", {range 10 condition (alliance false min-hp-percent 75)},
 	)
@@ -392,7 +402,7 @@ do
 		"range", 12,
 		"repeat-cast",
 		"target", "position",
-		"action", {{"area-bombardment",
+		"action", {{"area-bombardment", "missile", "missile-blizzard",
 			 "fields", 5,
 			 "shards", 10,
 			 "damage", 10,
@@ -400,8 +410,7 @@ do
 			 "start-offset-x", -128,
 			 "start-offset-y", -128}},
 		"sound-when-cast", "blizzard",
-		"depend-upgrade", "upgrade-blizzard",
-		"missile-when-cast", "missile-blizzard"
+		"depend-upgrade", "upgrade-blizzard"
 	--	"autocast", {range 12)
 	)
 
@@ -410,10 +419,10 @@ do
 		"manacost", 25,
 		"range", 12,
 		"target", "position",
-		"action", {{"area-bombardment", "fields", 5, "shards", 10, "damage", 10}},
+		"action", {{"area-bombardment", "missile", "missile-death-and-decay",
+			"fields", 5, "shards", 10, "damage", 10}},
 		"sound-when-cast", "death and decay",
-		"depend-upgrade", "upgrade-death-and-decay",
-		"missile-when-cast", "missile-death-and-decay"
+		"depend-upgrade", "upgrade-death-and-decay"
 	--	"autocast", {range 12)
 	)
 
@@ -422,10 +431,9 @@ do
 		"manacost", 100,
 		"range", 8,
 		"target", "position",
-		"action", {{"spawn-missile", "damage", 20}},
+		"action", {{"spawn-missile", "missile", "missile-fireball", "damage", 20}},
 		"sound-when-cast", "fireball throw",
-		"depend-upgrade", "upgrade-fireball",
-		"missile-when-cast", "missile-fireball"
+		"depend-upgrade", "upgrade-fireball"
 	--	"autocast", {range 8)
 	)
 
@@ -435,25 +443,24 @@ do
 		"range", 10,
 		"target", "position",
 		"action", {
-			{"spawn-missile", "ttl", 2000, "damage", 50,
+			{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
 			 "start-point", {"base", "target", "add-x", 0, "add-y", 0},
 			 "end-point",   {"base", "target", "add-x", 0, "add-y", 0}},
-			{"spawn-missile", "ttl", 2000, "damage", 50,
+			{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
 			 "start-point", {"base", "target", "add-x", 32, "add-y", 0},
 			 "end-point",   {"base", "target", "add-x", 32, "add-y", 0}},
-			{"spawn-missile", "ttl", 2000, "damage", 50,
+			{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
 			 "start-point", {"base", "target", "add-x", 0, "add-y", 32},
 			 "end-point",   {"base", "target", "add-x", 0, "add-y", 32}},
-			{"spawn-missile", "ttl", 2000, "damage", 50,
+			{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
 			 "start-point", {"base", "target", "add-x", -32, "add-y", 0},
 			 "end-point",   {"base", "target", "add-x", -32, "add-y", 0}},
-			{"spawn-missile", "ttl", 2000, "damage", 50,
+			{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
 			 "start-point", {"base", "target", "add-x", 0, "add-y", -32},
 			 "end-point",   {"base", "target", "add-x", 0, "add-y", -32}},
 		},
 		"sound-when-cast", "runes",
-		"depend-upgrade", "upgrade-runes",
-		"missile-when-cast", "missile-rune"
+		"depend-upgrade", "upgrade-runes"
 	--	"autocast", {range 10)
 	)
 
@@ -462,11 +469,10 @@ do
 		"manacost", 100,
 		"range", 10,
 		"target", "position", -- FIXME position or organic target
-		"action", {{"spawn-missile", "damage", 50}},
+		"action", {{"spawn-missile", "missile", "missile-death-coil", "damage", 50}},
 	--	"condition", {"UnitTypeflag", {"true", "organic"}},
 		"sound-when-cast", "death coil",
-		"depend-upgrade", "upgrade-death-coil",
-		"missile-when-cast", "missile-death-coil"
+		"depend-upgrade", "upgrade-death-coil"
 	--	"autocast", {"range", 6}
 	)
 
@@ -476,10 +482,11 @@ do
 		"range", 6,
 		"repeat-cast",
 		"target", "position",
-		"action", {{"summon", "unit-type", "unit-skeleton", "time-to-live", 3600, "require-corpse"}},
+		"action", {{"summon", "unit-type", "unit-skeleton", "time-to-live", 3600, "require-corpse"},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
 		"sound-when-cast", "raise dead",
-		"depend-upgrade", "upgrade-raise-dead",
-		"missile-when-cast", "missile-normal-spell"
+		"depend-upgrade", "upgrade-raise-dead"
 	--	"autocast", {"range", 6}
 	)
 
@@ -489,12 +496,11 @@ do
 		"range", 12,
 		"target", "position",
 		"action", {
-			{"spawn-missile", "ttl", 800, "damage", 3,
+			{"spawn-missile", "ttl", 800, "damage", 3, "missile", "missile-whirlwind",
 			 "start-point", {"base", "target", "add-x", 0, "add-y", 0},
 			 "end-point",   {"base", "target", "add-x", 0, "add-y", 0}}},
 		"sound-when-cast", "whirlwind",
-		"depend-upgrade", "upgrade-whirlwind",
-		"missile-when-cast", "missile-whirlwind"
+		"depend-upgrade", "upgrade-whirlwind"
 	--	"autocast", {range 12)
 	)
 
