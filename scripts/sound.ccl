@@ -1606,6 +1606,11 @@
 ;  'peasant-work-complete
 ;  'basic-orc-voices-work-complete
 
+   ;; Repair sound is disabled as default
+   ;;'repair #t
+   ;;'repair (sound-for-name "peasant attack")
+   ;;'repair (make-sound "peasant attack" "human/units/peasant/attack.wav")
+
    'human-rescue (make-sound "human rescue" "human/rescue.wav")
    'orc-rescue (make-sound "orc rescue" "orc/rescue.wav") )
 
@@ -1622,6 +1627,8 @@
 ;  'basic-human-voices-work-complete
 ;  'peasant-work-complete
 ;  'basic-orc-voices-work-complete
+
+   ;;'repair (sound-for-name "peasant attack")
 
    'human-rescue (make-sound "human rescue" "rescue (human).wav")
    'orc-rescue (make-sound "orc rescue" "rescue (orc).wav") )
