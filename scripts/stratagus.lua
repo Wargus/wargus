@@ -433,6 +433,7 @@ Load("ccl/credits.lua")
 Load("ccl/tips.lua")
 Load("ccl/ranks.lua")
 Load("ccl/menus.lua")
+Load("ccl/cheats.lua")
 
 -------------------------------------------------------------------------------
 
