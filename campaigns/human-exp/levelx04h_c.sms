@@ -200,4 +200,4 @@
 (define-allow 'unit-destroyed-3x3-place		"FFFFFFFFFFFFFFFF")
 (define-allow 'unit-destroyed-4x4-place		"FFFFFFFFFFFFFFFF")
 
-(load-pud "campaigns/human-exp/levelx03h.pud")
+(load-pud "campaigns/human-exp/levelx04h.pud")
