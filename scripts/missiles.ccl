@@ -76,12 +76,12 @@
 (define-missile-type 'missile-catapult-rock
   'file "missiles/catapult rock.png" 'size '(32 32) 'frames 15
   'impact-sound "explosion"
-  'class 'missile-class-point-to-point-with-delay 'sleep 1 'speed 16 'range 1
+  'class 'missile-class-point-to-point-with-delay 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-impact)
 (define-missile-type 'missile-ballista-bolt
   'file "missiles/ballista bolt.png" 'size '(64 64) 'frames 5
   'impact-sound "explosion"
-  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1
+  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-impact)
 (define-missile-type 'missile-arrow
   'file "missiles/arrow.png" 'size '(40 40) 'frames 5
@@ -176,7 +176,7 @@
 (define-missile-type 'missile-big-cannon
   'file "big cannon.png" 'size '(16 16) 'frames 20
   'impact-sound "explosion"
-  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1
+  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-cannon-tower-explosion)
 (define-missile-type 'missile-exorcism
   'file "exorcism.png" 'size '(48 48) 'frames 10
@@ -196,12 +196,12 @@
 (define-missile-type 'missile-catapult-rock
   'file "catapult rock.png" 'size '(32 32) 'frames 15
   'impact-sound "explosion"
-  'class 'missile-class-point-to-point-with-delay 'sleep 1 'speed 16 'range 1
+  'class 'missile-class-point-to-point-with-delay 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-impact)
 (define-missile-type 'missile-ballista-bolt
   'file "ballista bolt.png" 'size '(64 64) 'frames 5
   'impact-sound "explosion"
-  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1
+  'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 2
   'impact-missile 'missile-impact)
 (define-missile-type 'missile-arrow
   'file "arrow.png" 'size '(40 40) 'frames 5
