@@ -605,6 +605,7 @@ MakeSound("tree-chopping",
 	"misc/tree_chopping/2.wav",
 	"misc/tree_chopping/3.wav",
 	"misc/tree_chopping/4.wav"})
+SetSoundRange("tree-chopping", 32)
 
 ------------------------------------------------------------------------------
 --	Define selection sound groups.
