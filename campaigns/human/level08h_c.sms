@@ -23,7 +23,7 @@ AddTrigger(
   function() return IfUnit("this", ">=", 1, "unit-castle") and
     IfUnit(2, "==", 0, "unit-peasant") and
     IfUnit(4, "==", 0, "unit-peasant") and
-    IfOpponents("this", "==", 0) end,
+    GetNumOpponents(GetThisPlayer()) == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
   function() return IfUnit("this", "==", 0, "all") end,

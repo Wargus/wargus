@@ -10,7 +10,7 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfOpponents("this", "==", 0) and
+  function() return GetNumOpponents(GetThisPlayer()) == 0 and
     IfUnit("this", "==", 1, "unit-arthor-literios") end,
   function() return ActionVictory() end)
 AddTrigger(

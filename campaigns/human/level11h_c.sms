@@ -13,7 +13,7 @@ Briefing("type", "wc2",
 
 AddTrigger(
   function() return IfUnit(3, "==", 0, "all") and
-    IfOpponents("this", "==", 0) end,
+    GetNumOpponents(GetThisPlayer()) == 0 end,
   function() return ActionVictory() end)
 
 AddTrigger(

@@ -12,7 +12,7 @@ Briefing("type", "wc2",
 -- FIXME: Check if units are destroyed.
 
 AddTrigger(
-  function() return IfOpponents("this", "==", 0) end,
+  function() return GetNumOpponents(GetThisPlayer()) == 0 end,
   function() return ActionVictory() end)
 
 AddTrigger(

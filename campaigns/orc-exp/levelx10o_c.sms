@@ -13,7 +13,7 @@ Briefing("type", "wc2",
 -- FIXME: Check if units are destroyed.
 AddTrigger(
   function() return IfRescuedNearUnit("this", "==", 1, "unit-mage", "unit-circle-of-power") and
-    IfOpponents("this", "==", 0) end,
+    GetNumOpponents(GetThisPlayer()) == 0 end,
   function() return ActionVictory() end)
 
 AddTrigger(
