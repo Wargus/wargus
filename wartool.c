@@ -3413,7 +3413,8 @@ char* ParseString(char* input)
 /**
 **	FIXME: docu
 */
-int CampaignsCreate(char *file, int txte, int ofs, int expansion)
+int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
+	int expansion)
 {
     unsigned char *objectives;
     char buf[1024];
