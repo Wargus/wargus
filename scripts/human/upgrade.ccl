@@ -80,6 +80,8 @@
   'costs #(     0     0     0     0     0     0     0))
 (define-upgrade 'upgrade-healing 'icon 'icon-heal
   'costs #(   200  1000     0     0     0     0     0))
+(define-upgrade 'upgrade-area-healing 'icon 'icon-heal
+  'costs #(   400  2000     0     0     0     0     0))
 (define-upgrade 'upgrade-exorcism 'icon 'icon-exorcism
   'costs #(   200  2000     0     0     0     0     0))
 

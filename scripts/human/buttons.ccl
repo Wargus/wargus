@@ -157,6 +157,13 @@
   'for-unit '(unit-paladin unit-turalyon unit-lothar
     unit-uther-lightbringer))
 
+(define-button 'pos 6 'level 0 'icon 'icon-heal
+  'action 'cast-spell 'value 'spell-area-healing
+  'allowed 'check-upgrade 'allow-arg '(upgrade-area-healing)
+  'key "l" 'hint "AREA HEA~!LING (per 1 HP)"
+  'for-unit '(unit-paladin unit-turalyon unit-lothar
+    unit-uther-lightbringer))
+
 (define-button 'pos 9 'level 0 'icon 'icon-exorcism
   'action 'cast-spell 'value 'spell-exorcism
   'allowed 'check-upgrade 'allow-arg '(upgrade-exorcism)
@@ -663,6 +670,12 @@
   'action 'research 'value 'upgrade-healing
   'allowed 'check-single-research
   'key "h" 'hint "RESEARCH ~!HEALING"
+  'for-unit '(unit-church))
+
+(define-button 'pos 5 'level 0 'icon 'icon-heal
+  'action 'research 'value 'upgrade-area-healing
+  'allowed 'check-single-research
+  'key "l" 'hint "RESEARCH AREA HEA~!LING"
   'for-unit '(unit-church))
 
 (define-button 'pos 3 'level 0 'icon 'icon-exorcism
