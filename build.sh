@@ -1,6 +1,13 @@
 #!/bin/sh
-##
-##	A clone of a famous game.
+##   ___________		     _________		      _____  __
+##   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+##    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+##    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+##    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+##	  \/		    \/	   \/	     \/		   \/
+##  ______________________                           ______________________
+##			  T H E   W A R   B E G I N S
+##	   FreeCraft - A free fantasy real time strategy game engine
 ##
 ##	build.sh	-	The graphics and sound extractor.
 ##
@@ -51,7 +58,7 @@ ARCHIVE=$CDROM"/data/"
 #       Here are my executeables or -T dir.
 #
 BINPATH="tools"
-#BINPATH="/usr/local/lib/clone/bin"
+#BINPATH="/usr/local/lib/freecraft/bin"
 #BINPATH="/usr/lib/freecraft/tools"
 
 #
@@ -59,13 +66,13 @@ BINPATH="tools"
 #
 CONTRIB="contrib"
 #CONTRIB="/usr/lib/freecraft/contrib"
-#CONTRIB="/usr/local/lib/clone/contrib"
+#CONTRIB="/usr/local/lib/freecraft/contrib"
 
 #
 #       Here is the destination for the generated files
 #
 DIR="data"
-#DIR="/usr/local/lib/clone/data"
+#DIR="/usr/local/lib/freecraft/data"
 #DIR="/usr/share/games/freecraft/WarII"
 
 ###
@@ -110,42 +117,7 @@ fi
 
 [ -d $DIR ] || mkdir $DIR
 
-[ -d $DIR/graphic ] || mkdir $DIR/graphic
-#comes with 1.17
-#[ -d $DIR/graphic/human ] || mkdir $DIR/graphic/human
-#[ -d $DIR/graphic/human/units ] || mkdir $DIR/graphic/human/units
-#[ -d $DIR/graphic/human/buildings ] || mkdir $DIR/graphic/human/buildings
-#[ -d $DIR/graphic/orc ] || mkdir $DIR/graphic/orc
-#[ -d $DIR/graphic/orc/units ] || mkdir $DIR/graphic/orc/units
-#[ -d $DIR/graphic/orc/buildings ] || mkdir $DIR/graphic/orc/buildings
-#[ -d $DIR/graphic/tilesets ] || mkdir $DIR/graphic/tilesets
-#[ -d $DIR/graphic/tilesets/summer ] || mkdir $DIR/graphic/tilesets/summer
-
-[ -d $DIR/graphic/tileset ] || mkdir $DIR/graphic/tileset
-[ -d $DIR/graphic/interface ] || mkdir $DIR/graphic/interface
-
-[ -d $DIR/sound ] || mkdir $DIR/sound
-
-[ -d $DIR/campaigns ] || mkdir $DIR/campaigns
-[ -d $DIR/campaigns/human ] || mkdir $DIR/campaigns/human
-[ -d $DIR/campaigns/orc ] || mkdir $DIR/campaigns/orc
-[ -d $DIR/campaigns/human-exp ] || mkdir $DIR/campaigns/human-exp
-[ -d $DIR/campaigns/orc-exp ] || mkdir $DIR/campaigns/orc-exp
-[ -d $DIR/text ] || mkdir $DIR/text
-
-[ -d $DIR/puds ] || mkdir $DIR/puds
-[ -d $DIR/puds/internal ] || mkdir $DIR/puds/internal
-[ -d $DIR/puds/demo ] || mkdir $DIR/puds/demo
-
-# New directory structure
-[ -d $DIR/graphic/tilesets ] || mkdir $DIR/graphic/tilesets
-[ -d $DIR/graphic/tilesets/summer ] || mkdir $DIR/graphic/tilesets/summer
-[ -d $DIR/graphic/tilesets/winter ] || mkdir $DIR/graphic/tilesets/winter
-[ -d $DIR/graphic/tilesets/wasteland ] || mkdir $DIR/graphic/tilesets/wasteland
-[ -d $DIR/graphic/tilesets/swamp ] || mkdir $DIR/graphic/tilesets/swamp
-[ -d $DIR/graphic/ui ] || mkdir $DIR/graphic/ui
-[ -d $DIR/graphic/ui/human ] || mkdir $DIR/graphic/ui/human
-[ -d $DIR/graphic/ui/orc ] || mkdir $DIR/graphic/ui/orc
+# More is now done automatic
 
 ###############################################################################
 ##	Extract
@@ -157,6 +129,7 @@ $BINPATH/wartool "$DATADIR" "$DIR"
 
 # own supplied files
 
+[ -d $DIR/sound ] && {
 cp $CONTRIB/cross.png $DIR/graphic
 cp $CONTRIB/mana.png $DIR
 cp $CONTRIB/health.png $DIR
@@ -164,6 +137,7 @@ cp $CONTRIB/food.png $DIR/graphic
 cp $CONTRIB/score.png $DIR/graphic
 cp $CONTRIB/ore,stone,coal.png $DIR/graphic
 cp $CONTRIB/freecraft.png $DIR
+}
 
 ###############################################################################
 ##	MISC
@@ -196,7 +170,4 @@ find $DIR/puds -type f -name "*.pud" -print -exec $COMPRESS {} \;
 [ -f $DIR/puds/internal/internal12.pud.bz2 ] \
 	&& ln -s puds/internal/internal12.pud.bz2 $DIR/default.pud.bz2
 
-#
-#	Some checks
-#
-[ -s $DIR/swamp.rgb ] || echo "This script isn't tested with the non-expansion CD!"
+exit 0
