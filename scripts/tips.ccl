@@ -8,9 +8,9 @@
 ;;			  T H E   W A R   B E G I N S
 ;;	   FreeCraft - A free fantasy real time strategy game engine
 ;;
-;;	tips.ccl	-	The craft configuration language.
+;;	tips.ccl	-	All tips of the engine.
 ;;
-;;	(c) Copyright 1998-2002 by Lutz Sammer
+;;	(c) Copyright 2002 by Jimmy Salmon.
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -32,4 +32,8 @@
 ;;
 
 (add-tip "You can select all currently visible units of the same type by holding down the CTRL key and selecting a unit.")
+(add-tip "You can select all currently visible units of the same type by \"double clicking\" on an unit. It didn't work with buildings or enemy units.")
+(add-tip "Let more than one worker (peon, peasant, ...) collect resources.")
+(add-tip "Build more barracks to get faster soldiars.")
+
 (add-tip "Know a useful tip?  Then add it here!")
