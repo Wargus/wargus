@@ -31,87 +31,82 @@
 Load("ccl/human/constructions.lua")
 Load("ccl/orc/constructions.lua")
 
-DefineConstruction("construction-none",
-  "file", {
-    "tileset", "summer",
-    "file", "neutral/buildings/land_construction_site.png",
-    "size", {64, 64}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/neutral/buildings/land_construction_site.png",
-    "size", {64, 64}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-none", {
+  Files = {
+   {Tileset = "summer",
+    File = "neutral/buildings/land_construction_site.png",
+    Size = {64, 64}},
+   {Tileset = "winter",
+    File = "tilesets/winter/neutral/buildings/land_construction_site.png",
+    Size = {64, 64}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})
 
-DefineConstruction("construction-land",
-  "file", {
-    "tileset", "summer",
-    "file", "neutral/buildings/land_construction_site.png",
-    "size", {64, 64}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/neutral/buildings/land_construction_site.png",
-    "size", {64, 64}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-land", {
+  Files = {
+   {Tileset = "summer",
+    File = "neutral/buildings/land_construction_site.png",
+    Size = {64, 64}},
+   {Tileset = "winter",
+    File = "tilesets/winter/neutral/buildings/land_construction_site.png",
+    Size = {64, 64}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})
 
-DefineConstruction("construction-land2",
-  "file", {
-    "tileset", "summer",
-    "file", "neutral/buildings/land_construction_site.png",
-    "size", {64, 64}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/neutral/buildings/land_construction_site.png",
-    "size", {64, 64}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1}}
-)
+DefineConstruction("construction-land2", {
+  Files = {
+   {Tileset = "summer",
+    File = "neutral/buildings/land_construction_site.png",
+    Size = {64, 64}},
+   {Tileset = "winter",
+    File = "tilesets/winter/neutral/buildings/land_construction_site.png",
+    Size = {64, 64}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1}}
+})
 
-DefineConstruction("construction-wall",
-  "file", {
-    "tileset", "summer",
-    "file", "tilesets/summer/neutral/buildings/wall_construction_site.png",
-    "size", {32, 32}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/neutral/buildings/wall_construction_site.png",
-    "size", {32, 32}},
-  "file", {
-    "tileset", "wasteland",
-    "file", "tilesets/wasteland/neutral/buildings/wall_construction_site.png",
-    "size", {32, 32}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-wall", {
+  Files = {
+   {Tileset = "summer",
+    File = "tilesets/summer/neutral/buildings/wall_construction_site.png",
+    Size = {32, 32}},
+   {Tileset = "winter",
+    File = "tilesets/winter/neutral/buildings/wall_construction_site.png",
+    Size = {32, 32}},
+   {Tileset = "wasteland",
+    File = "tilesets/wasteland/neutral/buildings/wall_construction_site.png",
+    Size = {32, 32}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})
