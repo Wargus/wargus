@@ -77,11 +77,12 @@
    'unit-human-refinery
    'unit-human-oil-platform
 
-   'unit-alleria
-   'unit-kurdan-and-sky-ree
-   'unit-khadgar
-   'unit-turalyon
-   'unit-danath
+   ;; FIXME: Check if we have these graphics and enable them
+;   'unit-alleria
+;   'unit-kurdan-and-sky-ree
+;   'unit-khadgar
+;   'unit-turalyon
+;   'unit-danath
    'unit-lothar
    'unit-uther-lightbringer
 
@@ -136,11 +137,12 @@
    'unit-orc-refinery
    'unit-orc-oil-platform
 
-   'unit-teron-gorefiend
-   'unit-dentarg
-   'unit-grom-hellscream
-   'unit-deathwing
-   'unit-korgath-bladefist
+   ;; FIXME: Check if we have these graphics and enable them
+;   'unit-teron-gorefiend
+;   'unit-dentarg
+;   'unit-grom-hellscream
+;   'unit-deathwing
+;   'unit-korgath-bladefist
    'unit-gul-dan
    'unit-cho-gall
    'unit-zuljin
