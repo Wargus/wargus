@@ -198,7 +198,7 @@
   'corpse '(unit-destroyed-3x3-place 0)
   'type-land
   'building
-  'gives-gold
+  'gives-resource 'gold 'can-harvest
   'sounds '(
     selected "gold-mine-selected"
     acknowledge "gold-mine-acknowledge"
@@ -222,7 +222,7 @@
   'priority 0
   'type-naval
   'building
-  'oil-patch
+  'gives-resource 'oil
   'sounds '(
     selected "oil-patch-selected"
     acknowledge "oil-patch-acknowledge"
