@@ -375,7 +375,7 @@ Control Todo[] = {
 {G,0,"orc/units/%-29 empty",					 2,  60	},
 {G,0,"human/units/%32",						 2,  61	},
 {G,0,"orc/units/%33",						 2,  62	},
-{G,0,"human/units/%43",						 2,  63	},
+{G,0,"orc/units/%43",						 2,  63	},
 {G,0,"tilesets/summer/neutral/units/%59",			 2,  64	},
 {G,0,"tilesets/wasteland/neutral/units/%59",			10,  65	},
 {G,0,"tilesets/winter/neutral/units/%59",			18,  66	},
@@ -481,8 +481,8 @@ Control Todo[] = {
 {G,0,"tilesets/wasteland/orc/buildings/%79",			10, 176	},
 {G,0,"tilesets/wasteland/human/buildings/%-88",			10, 177	},
 {G,0,"tilesets/wasteland/orc/buildings/%-89",			10, 178	},
-{G,0,"tilesets/wasteland/neutral/%94",				10, 179	},
-{G,0,"tilesets/wasteland/neutral/%95",				10, 180	},
+{G,0,"tilesets/wasteland/neutral/buildings/%94",		10, 179	},
+{G,0,"tilesets/wasteland/neutral/buildings/%95",		10, 180	},
 {G,0,"neutral/buildings/%104",					 2, 181	},
 {G,0,"tilesets/wasteland/human/units/%40",			10, 182	},
 {G,0,"tilesets/wasteland/orc/units/%41",			10, 183	},
@@ -1045,8 +1045,8 @@ Control Todo[] = {
 {G,2,"tilesets/swamp/orc/buildings/%-81 construction site",	438, 523 },
 {G,2,"tilesets/swamp/neutral/buildings/small destroyed site",	438, 524 },
 {G,2,"tilesets/swamp/neutral/buildings/%102",			438, 525 },
-{G,2,"tilesets/swamp/human/buildings/%40",			438, 526 },
-{G,2,"tilesets/swamp/orc/buildings/%41",			438, 527 },
+{G,2,"tilesets/swamp/human/units/%40",				438, 526 },
+{G,2,"tilesets/swamp/orc/units/%41",				438, 527 },
 #endif
 #else
 #ifdef HAVE_EXPANSION
