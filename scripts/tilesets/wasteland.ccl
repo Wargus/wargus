@@ -10,7 +10,7 @@
 ;;
 ;;	wasteland.ccl		-	Define the wasteland tileset.
 ;;
-;;	(c) Copyright 2000,2001 by Lutz Sammer
+;;	(c) Copyright 2000-2003 by Lutz Sammer and Jimmy Salmon
 ;;
 ;;      This program is free software; you can redistribute it and/or modify
 ;;      it under the terms of the GNU General Public License as published by
@@ -33,8 +33,7 @@
 ;;
 ;;	(define-tileset ident class name image palette slots animations)
 ;;
-(define-tileset 'tileset-wasteland 'class "wasteland"
-  'name "original wc2 wasteland tileset"
+(define-tileset 'tileset-wasteland 'class "wasteland" 'name "Wasteland"
   'image "tilesets/wasteland/terrain/wasteland.png"
   'palette "tilesets/wasteland/wasteland.rgb"
   ;; Slots descriptions

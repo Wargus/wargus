@@ -10,7 +10,7 @@
 ;;
 ;;	winter.ccl		-	Define the winter tileset.
 ;;
-;;	(c) Copyright 2000-2002 by Lutz Sammer
+;;	(c) Copyright 2000-2003 by Lutz Sammer and Jimmy Salmon
 ;;
 ;;      This program is free software; you can redistribute it and/or modify
 ;;      it under the terms of the GNU General Public License as published by
@@ -33,8 +33,7 @@
 ;;
 ;;	(define-tileset ident class name image palette slots animations)
 ;;
-(define-tileset 'tileset-winter 'class "winter"
-  'name "original wc2 winter tileset"
+(define-tileset 'tileset-winter 'class "winter" 'name "Winter"
   'image "tilesets/winter/terrain/winter.png"
   'palette "tilesets/winter/winter.rgb"
   ;; Slots descriptions

@@ -486,10 +486,7 @@
 (define-menu-item 'pos (list 220 (+ 10 300)) 'font 'game
   'pulldown '(size (152 20)
     style pulldown
-    func game-tss-action
-    options ("Map Default" "Forest" "Winter" "Wasteland" "Orc Swamp" )
-    default 0
-    current 0)
+    func game-tss-action)
   'menu 'menu-custom-game)
 (define-menu-item 'pos (list (- 640 224 16) (- (+ 10 300) 20)) 'font 'game
   'text '(caption "~<Game Type:~>" none)
@@ -814,10 +811,7 @@
 (define-menu-item 'pos (list 220 (+ 10 300)) 'font 'game
   'pulldown '(size (152 20)
     style pulldown
-    func game-tss-action
-    options ("Map Default" "Forest" "Winter" "Wasteland" "Orc Swamp" )
-    default 0
-    current 0)
+    func game-tss-action)
   'menu 'menu-multi-setup)
 (define-menu-item 'pos (list (- 640 224 16) (- (+ 10 300) 20)) 'font 'game
   'text '(caption "~<Game Type:~>" none)
@@ -1231,10 +1225,7 @@
   'pulldown '(size (152 20)
     style pulldown
     func game-tss-action
-    options ("Map Default" "Forest" "Winter" "Wasteland" "Orc Swamp" )
-    state passive
-    default 0
-    current 0)
+    state passive)
   'menu 'menu-net-multi-client)
 (define-menu-item 'pos (list (- 640 224 16) (- (+ 10 300) 20)) 'font 'game
   'text '(caption "~<Game Type:~>" none)
@@ -2423,10 +2414,7 @@
 (define-menu-item 'pos (list (+ 176 (- 288 (/ (- 288 260) 2) 152)) (+ 112 (+ 11 (* 36 3) 22))) 'font 'game
   'pulldown '(size (152 20)
     style pulldown
-    func null
-    options ("Forest" "Winter" "Wasteland" "Orc Swamp" )
-    default 0
-    current 0)
+    func null)
   'menu 'menu-editor-new)
 (define-menu-item 'pos (list (- 320 106 23) 328) 'font 'large
   'button '(size (106 27)
@@ -2612,10 +2600,7 @@
 (define-menu-item 'pos (list (- 288 (/ (- 288 260) 2) 152) (+ 11 (* 36 3) 22)) 'font 'game
   'pulldown '(size (152 20)
     style pulldown
-    func null
-    options ("Forest" "Winter" "Wasteland" "Orc Swamp" )
-    default 0
-    current 0)
+    func null)
   'menu 'menu-editor-map-properties)
 (define-menu-item 'pos (list (/ (- 288 260) 2) (+ 11 (* 36 4) 22)) 'font 'game
   'text '(caption "Version:" align left)
