@@ -881,7 +881,6 @@
   'can-attack
   'can-target-land
   'land-unit
-  'critter
   'isundead
   'organic
   'selectable-by-rectangle
