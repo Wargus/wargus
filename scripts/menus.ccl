@@ -336,6 +336,30 @@
     'text '("Fullscreen" left)
     'menu 'menu-global-options)
 
+(define-menu-item 'pos (list 16 180) 'font 'game
+    'text '("Shadow Fog" left)
+    'menu 'menu-global-options)
+
+(define-menu-item 'pos (list 16 200)
+    'gem '(size (18 18)
+         state unchecked
+         func set-shadow-fog-alpha
+         style gem-round)
+    'menu 'menu-global-options)
+(define-menu-item 'pos (list 40 204) 'font 'game
+    'text '("Alpha" left)
+    'menu 'menu-global-options)
+
+(define-menu-item 'pos (list 16 220)
+    'gem '(size (18 18)
+         state unchecked
+         func set-shadow-fog-gray
+         style gem-round)
+    'menu 'menu-global-options)
+(define-menu-item 'pos (list 40 224) 'font 'game
+    'text '("Gray" left)
+    'menu 'menu-global-options)
+
 (define-menu-item 'pos (list 128 250) 'font 'large
     'button '(size (106 27)
 	caption "~!Ok"
