@@ -9,11 +9,10 @@
 //   Utility for FreeCraft - A free fantasy real time strategy game engine
 //	
 /**@name wartool.c	-	Extract files from war archives. */
-/*
-**	(c) Copyright 1999-2000 by Lutz Sammer
-**
-**	$Id$
-*/
+//
+//	(c) Copyright 1999-2000 by Lutz Sammer
+//
+//	$Id$
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -2094,9 +2093,9 @@ int OpenArchive(const char* file,int type)
 	exit(-1);
     }
     entries=FetchLE16(cp);
-    DebugLevel2("Entries\t%5d\t",entries);
+    DebugLevel3("Entries\t%5d\t",entries);
     i=FetchLE16(cp);
-    DebugLevel2("ID\t%d\n",i);
+    DebugLevel3("ID\t%d\n",i);
     if( i!=type ) {
 	printf("Wrong type %08x, expected %08x\n",i,type);
 	exit(-1);
@@ -2324,7 +2323,7 @@ int CountUsedTiles(const unsigned char* map,const unsigned char* mega
     const char* tp;
     int img2tile[0x9E0];
 
-    DebugLevel1(__FUNCTION__":\n");
+    DebugLevel3(__FUNCTION__":\n");
     memset(map2tile,0,sizeof(map2tile));
 
     //
@@ -2332,12 +2331,12 @@ int CountUsedTiles(const unsigned char* map,const unsigned char* mega
     //
     for( i=0; i<0x9E; ++i ) {
 	tp=map+i*42;
-	DebugLevel2("%02X:",i);
+	DebugLevel3("%02X:",i);
 	for( j=0; j<0x10; ++j ) {
-	    DebugLevel2("%04X ",AccessLE16(tp+j*2));
+	    DebugLevel3("%04X ",AccessLE16(tp+j*2));
 	    map2tile[(i<<4)|j]=AccessLE16(tp+j*2);
 	}
-	DebugLevel2("\n");
+	DebugLevel3("\n");
     }
 
     //
@@ -2368,7 +2367,7 @@ int CountUsedTiles(const unsigned char* map,const unsigned char* mega
 	    }
 	}
     }
-    DebugLevel1("Used mega tiles %d\n",used);
+    DebugLevel3("Used mega tiles %d\n",used);
 #if 0
     for( i=0; i<used; ++i ) {
 	if( !(i%16) ) {
@@ -2459,12 +2458,12 @@ unsigned char* ConvertTile(unsigned char* mini,const char* mega,int msize
     int offset;
     int numtiles;
 
-    DebugLevel1("Tiles in mega %d\t",msize/32);
+    DebugLevel3("Tiles in mega %d\t",msize/32);
     numtiles=msize/32;
 
     width=TILE_PER_ROW*32;
     height=((numtiles+TILE_PER_ROW-1)/TILE_PER_ROW)*32;
-    DebugLevel1("Image %dx%d\n",width,height);
+    DebugLevel3("Image %dx%d\n",width,height);
     image=malloc(height*width);
     memset(image,0,height*width);
 
@@ -2516,7 +2515,7 @@ int ConvertTileset(char* file,int pale,int mege,int mine,int mape)
     minp=ExtractEntry(ArchiveOffsets[mine],NULL);
     mapp=ExtractEntry(ArchiveOffsets[mape],NULL);
 
-    DebugLevel1("%s:\t",file);
+    DebugLevel3("%s:\t",file);
     image=ConvertTile(minp,megp,megl,mapp,&w,&h);
 
     free(megp);
@@ -2659,7 +2658,7 @@ unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp)
     max_width=FetchLE16(bp);
     max_height=FetchLE16(bp);
 
-    DebugLevel0("Entries %2d Max width %3d height %3d, ",count
+    DebugLevel3("Entries %2d Max width %3d height %3d, ",count
 	    ,max_width,max_height);
 
     // Find best image size
@@ -2708,7 +2707,7 @@ unsigned char* ConvertGraphic(int gfx,unsigned char* bp,int *wp,int *hp)
     //best_height-=miny;
 #endif
 
-    DebugLevel0("Best image size %3d, %3d\n",best_width,best_height);
+    DebugLevel3("Best image size %3d, %3d\n",best_width,best_height);
 
     minx=0;
     miny=0;
@@ -2883,7 +2882,7 @@ unsigned char* ConvertFnt(unsigned char* start,int *wp,int *hp)
     max_width=FetchByte(bp);
     max_height=FetchByte(bp);
 
-    DebugLevel0("Font: count %d max-width %2d max-height %2d\n"
+    DebugLevel3("Font: count %d max-width %2d max-height %2d\n"
 	    ,count,max_width,max_height);
 
     offsets=malloc(count*sizeof(u_int32_t));
@@ -2997,7 +2996,7 @@ unsigned char* ConvertImg(unsigned char* bp,int *wp,int *hp)
     width=FetchLE16(bp);
     height=FetchLE16(bp);
     
-    DebugLevel0("Image: width %3d height %3d\n",width,height);
+    DebugLevel3("Image: width %3d height %3d\n",width,height);
 
     image=malloc(width*height);
     if( !image ) {
@@ -3063,7 +3062,7 @@ unsigned char* ConvertCur(unsigned char* bp,int *wp,int *hp)
     width=FetchLE16(bp);
     height=FetchLE16(bp);
     
-    DebugLevel0("Cursor: hotx %d hoty %d width %d height %d\n"
+    DebugLevel3("Cursor: hotx %d hoty %d width %d height %d\n"
 	    ,hotx,hoty,width,height);
 
     image=malloc(width*height);
@@ -3324,7 +3323,7 @@ int main(int argc,char** argv)
     DebugLevel2("Extract from \"%s\" to \"%s\"\n",archivedir, Dir);
     for( i=0; i<sizeof(Todo)/sizeof(*Todo); ++i ) {
 	// Should only be on the expansion cd
-	DebugLevel3("%s\n",Todo[i].File);
+	DebugLevel2("%s:\n",ParseString(Todo[i].File));
 	if (!expansion_cd && Todo[i].Version==2 ) {
 	    continue;
 	}
