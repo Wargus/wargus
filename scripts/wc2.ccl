@@ -10,7 +10,7 @@
 ;;
 ;;	wc2.ccl		-	WC2 compatibility level
 ;;
-;;	(c) Copyright 2001 by Lutz Sammer
+;;	(c) Copyright 2001,2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -70,7 +70,7 @@
     'unit-ogre-juggernaught 'unit-nothing-22 'unit-deathwing
     'unit-nothing-24 'unit-nothing-25 'unit-gnomish-submarine
     'unit-giant-turtle 'unit-gnomish-flying-machine 'unit-goblin-zeppelin
-    'unit-gryphon-rider 'unit-dragon 'unit-turalyon 'unit-eye-of-kilrogg
+    'unit-gryphon-rider 'unit-dragon 'unit-turalyon 'unit-eye-of-vision
     'unit-danath 'unit-korgath-bladefist 'unit-nothing-30 'unit-cho-gall
     'unit-lothar 'unit-gul-dan 'unit-uther-lightbringer 'unit-zuljin
     'unit-nothing-36 'unit-skeleton 'unit-daemon 'unit-critter

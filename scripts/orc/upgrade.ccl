@@ -10,7 +10,7 @@
 ;;
 ;;	upgrade.ccl	-	Define the orcish dependencies and upgrades.
 ;;
-;;	(c) Copyright 2001 by Lutz Sammer
+;;	(c) Copyright 2001,2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -256,7 +256,7 @@
 (define-allow 'unit-giant-turtle		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-goblin-zeppelin		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-dragon			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-eye-of-kilrogg		"AAAAAAAAAAAAAAAA")
+(define-allow 'unit-eye-of-vision		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-korgath-bladefist		"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-cho-gall			"AAAAAAAAAAAAAAAA")
 (define-allow 'unit-gul-dan			"AAAAAAAAAAAAAAAA")
