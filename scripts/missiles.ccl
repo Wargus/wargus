@@ -64,6 +64,7 @@
 (define missile-class-whirlwind			9)
 (define missile-class-cycle-once		10)
 (define missile-class-point-to-point-with-hit	11)
+(define missile-class-fire			12)
 
 ;;=============================================================================
 ;;	Define missiles
