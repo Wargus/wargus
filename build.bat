@@ -110,8 +110,9 @@ REM	for the original cd,
 if exist %ARCHIVE%\*.pud copy /b %ARCHIVE%\*.pud %DIR%\maps >nul
 
 REM	*** Copy contrib maps into data directory ***
-REM copy /b %CONTRIB%\puds\single\* %DIR%\puds\single
-REM todo copy /b %CONTRIB%\puds\multi\* %DIR%\puds\multiple
+md %DIR%\maps\other
+copy /b maps\multi\* %DIR%\maps\other >nul
+REM copy /b maps\single\* %DIR%\maps\other >nul
 
 REM	*** Setup the default pud ***
 copy /b %DIR%\maps\multi\(2)mysterious-dragon-isle.pud.gz %DIR%\maps\default.pud.gz >nul
@@ -132,12 +133,13 @@ echo NOTE: you do not need to run this script again
 goto EOF
 
 :DIRERROR
-ECHO ERROR: '%ARCHIVE%\rezdat.war' not found
+echo ERROR: '%ARCHIVE%\rezdat.war' not found
+echo Specify the location of the data files with the '-p' option
 goto EOF
 
 :CONTRIBERROR
-ECHO ERROR: '%CONTRIB%' not found; try running %0
-ECHO 	from the toplevel stratagus directory
+echo ERROR: '%CONTRIB%' not found; try running %0
+echo 	from the toplevel stratagus directory
 goto EOF
 
 :EOF
