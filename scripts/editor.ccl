@@ -64,8 +64,8 @@
    'unit-gnomish-inventor
    'unit-stables
    'unit-church
-   'unit-temple-of-the-damned
-   'unit-dragon-roost
+   'unit-mage-tower
+   'unit-gryphon-aviary
 
    'unit-human-shipyard
    'unit-human-foundry
@@ -123,8 +123,8 @@
    'unit-goblin-alchemist
    'unit-ogre-mound
    'unit-altar-of-storms
-   'unit-mage-tower
-   'unit-gryphon-aviary
+   'unit-temple-of-the-damned
+   'unit-dragon-roost
 
    'unit-orc-shipyard
    'unit-orc-foundry
