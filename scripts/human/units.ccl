@@ -189,7 +189,8 @@
   'costs '(time 120 gold 1200)
   'speed 8
   'hit-points 60
-  'magic 255
+  'max-mana 255
+  'magic 1
   'tile-size '(1 1) 'box-size '(33 33)
   'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
   'basic-damage 0 'piercing-damage 9 'missile 'missile-lightning
@@ -221,6 +222,7 @@
   'costs '(time 90 gold 800 wood 100)
   'speed 13
   'hit-points 90
+  'max-mana 255
   'tile-size '(1 1) 'box-size '(42 42)
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
   'armor 4 'basic-damage 8 'piercing-damage 4 'missile 'missile-none
@@ -406,7 +408,8 @@
   'costs '(time 120 gold 1200)
   'speed 8
   'hit-points 120
-  'magic 255
+  'max-mana 255
+  'magic 1
   'tile-size '(1 1) 'box-size '(33 33)
   'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
   'armor 3 'basic-damage 0 'piercing-damage 16 'missile 'missile-lightning
@@ -646,6 +649,7 @@
   'costs '(time 90 gold 800 wood 100)
   'speed 13
   'hit-points 180
+  'max-mana 255
   'tile-size '(1 1) 'box-size '(42 42)
   'sight-range 6 'computer-reaction-range 7 'person-reaction-range 5
   'armor 10 'basic-damage 14 'piercing-damage 5 'missile 'missile-none
@@ -741,6 +745,7 @@
   'costs '(time 100 gold 900 wood 100)
   'speed 13
   'hit-points 90
+  'max-mana 255
   'tile-size '(1 1) 'box-size '(42 42)
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
   'armor 4 'basic-damage 8 'piercing-damage 4 'missile 'missile-none

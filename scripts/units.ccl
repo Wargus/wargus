@@ -252,6 +252,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 5000
+  'max-mana 255
   'tile-size '(4 4) 'box-size '(127 127)
   'sight-range 4
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
@@ -279,6 +280,7 @@
   'construction 'construction-land
   'speed 0
   'hit-points 5000
+  'max-mana 255
   'tile-size '(2 2) 'box-size '(63 63)
   'sight-range 4
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
