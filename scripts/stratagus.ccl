@@ -56,8 +56,8 @@
 
 ;;	Enter your default title screen.
 (set-title-screens!
-  '("graphics/ui/stratagus.png" "music/default.mod")
-;  '("graphics/logo_stratagus.avi")
+  '(image "graphics/ui/stratagus.png" music "music/default.mod"
+;  '(image "graphics/logo_stratagus.avi")
 )
 
 ;;	Enter your default menu background.
