@@ -189,7 +189,7 @@
   'costs '(time 120 gold 1200)
   'speed 8
   'hit-points 60
-  'magic 1
+  'magic 255
   'tile-size '(1 1) 'box-size '(33 33)
   'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
   'basic-damage 0 'piercing-damage 9 'missile 'missile-lightning
@@ -406,7 +406,7 @@
   'costs '(time 120 gold 1200)
   'speed 8
   'hit-points 120
-  'magic 1
+  'magic 255
   'tile-size '(1 1) 'box-size '(33 33)
   'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
   'armor 3 'basic-damage 0 'piercing-damage 16 'missile 'missile-lightning
