@@ -379,8 +379,6 @@
 
 ;;	Maximum number of selectable units
 (set-max-selectable! 18)
-;;	Maximum number of units per group
-(set-num-units-per-group! 18)
 
 ;;	All player food unit limit
 (set-all-players-food-unit-limit! 200)
