@@ -410,7 +410,7 @@
 
 ;;-----------------------------------------------------------------------------
 
-(a-star 'on 'fixed-unit-cost 1000 'moving-unit-cost 2 'dont-know-unseen-terrain 'unseen-terrain-cost 100)
+(a-star 'on 'fixed-unit-cost 1000 'moving-unit-cost 2 'dont-know-unseen-terrain 'unseen-terrain-cost 2)
 
 ;;-----------------------------------------------------------------------------
 
