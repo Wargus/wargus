@@ -40,7 +40,7 @@
     'growing-tree #( -1 -1 )
     'extra-rocks #( 147 148 149 150 151 152 )
     'top-one-rock 155 'mid-one-rock 156 'bot-one-rock 157
-    'removed-rock 160 )
+    'removed-rock 161 )
   'solid (list "unused"
     #())								; 000
   'solid (list "light-water" 'water
