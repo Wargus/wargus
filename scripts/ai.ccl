@@ -1398,26 +1398,162 @@
     (ai:script ai:orc-land-attack-endloop) ))
 
 ;;=============================================================================
+;;	This AI script builds only workers and tankers and oil platform.
+;;		Also if needed a farm.
 ;;
-;;	Define an AI engine.
-;;
-;;	(define-ai name race class script)
-;;
-;;	name	name of the AI for selection.
-;;	class	class of the AI for map editor.
-;;	script	Main AI script.
-;;
-(define ai:orc3-attack-endloop
+(define ai:orc-03-attack-endloop
   '((writes nil "Looping !\n")
     (ai:sleep 65535)
-    (ai:script ai:orc3-attack-endloop) ) )
+    (ai:script ai:orc-03-attack-endloop) ) )
 
-(define-ai 'my-ai race2 "orc-03"
+(define-ai 'orc-03 "*" "orc-03"
   '(
     ;;	Define the main AI script.
     (ai:debug #f)
-    (ai:set  'unit-peon 2)
-    (ai:set  'unit-orc-oil-tanker 1)
-    (ai:wait 'unit-peon)	;; start hangs if nothing available
-    (ai:script ai:orc3-attack-endloop) ))
+    (ai:set  (ai:worker) 2)
+    (ai:set  (ai:tanker) 1)
+    (ai:wait (ai:worker))	;; start hangs if nothing available
 
+    (ai:need (ai:platform))
+
+    (ai:script ai:orc-03-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds only workers and tankers and oil platform.
+;;		Also if needed a farm.
+;;		Attacks with soldier and shooter and destroyer.
+;;
+(define ai:orc-04-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:sleep 10500)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 10500)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:script ai:orc-04-attack-endloop) ) )
+
+(define-ai 'orc-04 "*" "orc-04"
+  '(
+    ;;	Define the main AI script.
+    (ai:debug #f)
+    (ai:set  (ai:worker) 4)
+    (ai:set  (ai:tanker) 1)
+    (ai:wait (ai:worker))	;; start hangs if nothing available
+
+    (ai:set  (ai:transporter) 1)
+    (ai:force 0 (ai:soldier) 3 (ai:shooter) 4 (ai:destroyer) 2)
+    (ai:need (ai:platform))
+
+    (ai:force 1 (ai:soldier) 2 (ai:shooter) 1)
+    (ai:sleep 27000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:set  (ai:transporter) 2)
+    (ai:sleep 15000)
+    (ai:force 0 (ai:soldier) 3 (ai:shooter) 3 (ai:destroyer) 2)
+    (ai:force 1 (ai:soldier) 2 (ai:shooter) 2)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 15000)
+    (ai:force 0 (ai:soldier) 3 (ai:shooter) 3 (ai:destroyer) 0)
+    (ai:force 2 (ai:destroyer) 2)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:sleep 19500)
+    (ai:force 0 (ai:soldier) 4 (ai:shooter) 4 (ai:destroyer) 0)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 12000)
+    (ai:force 0 (ai:soldier) 4 (ai:shooter) 4 (ai:destroyer) 1)
+    (ai:force 2 (ai:destroyer) 1)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:sleep 13500)
+    (ai:force 0 (ai:soldier) 2 (ai:shooter) 3 (ai:destroyer) 1)
+    (ai:force 1 (ai:soldier) 3 (ai:shooter) 2)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 30500)
+
+    (ai:script ai:orc-04-attack-endloop) ))
+
+;;=============================================================================
+;;	This AI script builds only workers and tankers and oil platform.
+;;		Also if needed a farm.
+;;		Attacks with soldier, shooter and destroyer.
+;;
+(define ai:hum-05-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:sleep 18000)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:sleep 12000)
+    (ai:force 1 (ai:soldier) 2 (ai:shooter) 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:sleep 24000)
+    (ai:force 1 (ai:soldier) 3 (ai:shooter) 2)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:sleep 14000)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+    (ai:script ai:hum-05-attack-endloop) ) )
+
+(define-ai 'hum-05 "*" "hum-05"
+  '(
+    ;;	Define the main AI script.
+    (ai:debug #t)
+    (ai:set  (ai:worker) 4)
+    (ai:set  (ai:tanker) 1)
+    (ai:set  (ai:transporter) 2)
+    (ai:wait (ai:worker))	;; start hangs if nothing available
+
+    (ai:need (ai:platform))
+
+    (ai:force 0 (ai:soldier) 2 (ai:shooter) 2 (ai:destroyer) 2)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1)
+    (ai:force 2 (ai:destroyer) 1)
+    (ai:sleep 6000)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+
+    (ai:sleep 3000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 4000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 4000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 12000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 1 (ai:soldier) 2 (ai:shooter) 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 14000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep 12000)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:script ai:hum-05-attack-endloop) ))
