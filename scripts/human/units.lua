@@ -467,7 +467,7 @@ DefineUnitType("unit-human-oil-tanker", "name", "Oil tanker",
   "can-gather-resource", {
     "file-when-empty", "human/units/oil_tanker_empty.png",
     "file-when-loaded", "human/units/oil_tanker_full.png",
-    "resource-id oil",
+    "resource-id", "oil",
     "resource-capacity", 100,
     "wait-at-resource", 100,
     "wait-at-depot", 100},
