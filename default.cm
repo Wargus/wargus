@@ -17,5 +17,5 @@
 
 
 ; You could choose your default pud here.
-(load-pud "data/default.pud")
-;(load-pud "data/puds/alamo.pud")
+(load-pud "puds/default.pud")
+;(load-pud "puds/alamo.pud")
