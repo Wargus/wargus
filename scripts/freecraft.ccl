@@ -76,6 +76,31 @@
 ;;	Uncomment next, to show the orders of the selected unit on map.
 (set-show-orders! #t)
 
+;;	Define the mana/energie decoration.
+;;	FIXME: Planned?
+;;
+;;	(set-mana-style! 
+;;		'sprite (...)
+;;		'horizontal
+;;		'vertical
+;;		'no-full
+;;		'on-top
+;;		'selected-only 
+;;		'background-long
+;;	  )
+
+;;	Define the health decoration.
+;;	FIXME: Planned?
+;;
+;;	(set-health-style! 
+;;		'sprite (...)
+;;		'horizontal
+;;		'vertical
+;;		'no-full
+;;		'on-top
+;;		'selected-only 
+;;		'background-long
+;;	  )
 
 ;;	Define mana-sprite.
 ;;
