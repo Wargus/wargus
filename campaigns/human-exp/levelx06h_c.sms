@@ -47,12 +47,8 @@
 
 ;;Townhall - Produces
 (define-allow 'unit-peasant			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-peasant-with-gold		"FFFFFFFFFFFFFFFF")
-(define-allow 'unit-peasant-with-wood		"FFFFFFFFFFFFFFFF")
 
 (define-allow 'unit-peon			"AAAAAAAAAAAAAAAA")
-(define-allow 'unit-peon-with-gold		"FFFFFFFFFFFFFFFF")
-(define-allow 'unit-peon-with-wood		"FFFFFFFFFFFFFFFF")
 
 ;;Barracks - Produces
 (define-allow 'unit-footman			"AAAAAAAAAAAAAAAA")
