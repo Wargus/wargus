@@ -10,7 +10,7 @@
 ;;
 ;;	editor.ccl	-	Editor configuration and functions.
 ;;
-;;	(c) Copyright 2002 by Lutz Sammer
+;;	(c) Copyright 2002-2003 by Lutz Sammer and Jimmy Salmon
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -55,7 +55,6 @@
    'unit-gnomish-flying-machine
    'unit-gryphon-rider
 
-   'unit-human-wall
    'unit-town-hall
    'unit-keep
    'unit-castle
@@ -115,7 +114,6 @@
    'unit-goblin-zeppelin
    'unit-dragon
 
-   'unit-orc-wall
    'unit-great-hall
    'unit-stronghold
    'unit-fortress
