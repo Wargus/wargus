@@ -64,6 +64,7 @@
 (set-color-cycle-all! #t)
 ;(set-color-cycle-all! #f)
 
+(set-game-name! "wc2")
 ;;-----------------------------------------------------------------------------
 ;;	Music play list -	Insert your titles here
 
