@@ -7,12 +7,18 @@
     'voice "campaigns/human/level10h-intro1.wav"
 ^^OBJECTIVES^^
     )
-(add-trigger (lambda () (if-rescued-near-unit 'this '>= 4 'unit-peasant
-    'unit-circle-of-power))
-  (lambda () (action-victory)))
 
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-rescued-near-unit 'this '>= 4 'unit-peasant 'unit-circle-of-power))
+  '(
+    (action-victory)))
+
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

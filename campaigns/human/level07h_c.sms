@@ -9,10 +9,16 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (if-unit 2 '== 0 'unit-orc-refinery))
-  (lambda () (action-victory)))
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 2 '== 0 'unit-orc-refinery))
+  '(
+    (action-victory)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

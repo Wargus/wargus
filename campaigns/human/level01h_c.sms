@@ -9,11 +9,18 @@
 ^^OBJECTIVES^^
   )
 
-(add-trigger (lambda ()
-  (and (if-unit 'this '>= 4 'unit-farm) (if-unit 'this '>= 1 'unit-alliance-barracks)))
-  (lambda () (action-victory)))
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '>= 4 'unit-farm)
+      (if-unit 'this '>= 1 'unit-alliance-barracks)))
+  '(
+    (action-victory)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 

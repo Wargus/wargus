@@ -8,15 +8,24 @@
 ^^OBJECTIVES^^
     )
 
-(add-trigger (lambda () (if-near-unit 'this '== 1 'unit-man-of-light
-    'unit-circle-of-power))
-  (lambda () (action-victory)))
+(add-trigger
+  '(
+    (if-near-unit 'this '== 1 'unit-man-of-light 'unit-circle-of-power))
+  '(
+    (action-victory)))
 
-(add-trigger (lambda () (and (if-unit 'this '== 0 'unit-man-of-light)
-    (if-unit 3 '== 0 'unit-man-of-light)))
-  (lambda () (action-defeat)))
-(add-trigger (lambda () (if-unit 'this '== 0 'all))
-  (lambda () (action-defeat)))
+(add-trigger
+  '(
+    (and
+      (if-unit 'this '== 0 'unit-man-of-light)
+      (if-unit 3 '== 0 'unit-man-of-light)))
+  '(
+    (action-defeat)))
+(add-trigger
+  '(
+    (if-unit 'this '== 0 'all))
+  '(
+    (action-defeat)))
 
 ;;Units
 
