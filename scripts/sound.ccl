@@ -10,7 +10,7 @@
 ;;
 ;;	sound.ccl	-	Define the used sounds.
 ;;
-;;	(c) Copyright 1999,2000 by Fabrice Rossi
+;;	(c) Copyright 1999-2001 by Fabrice Rossi and Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -28,6 +28,11 @@
 
 ;;	Uncomment this to enable threaded sound
 ;(sound-thread)
+
+;;----------------------------------------------------------------------------
+;;	Music part
+(define (music-stopped)
+  (play-music "music/default.mod"))
 
 ;;----------------------------------------------------------------------------
 ;;	Define sounds later used
