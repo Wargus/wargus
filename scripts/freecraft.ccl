@@ -15,14 +15,16 @@
 ;;	$Id$
 ;;
 
-(writes nil "FreeCraft default config file loading ...")
+(writes nil "FreeCraft default config file loading ...\n")
 
 ;;-----------------------------------------------------------------------------
 ;;	Support functions
 ;;-----------------------------------------------------------------------------
 
-(set! new-names?
-  (access-problem? (string-append (library-path) "/freecraft.png") "r"))
+;(set! new-names?
+;  (access-problem? (string-append (library-path) "/freecraft.png") "r"))
+
+(set! new-names? (symbol-bound? 'freecraft-feature-new-names ()))
 
 ;;-----------------------------------------------------------------------------
 ;;	Config-Part
