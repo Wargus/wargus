@@ -99,7 +99,7 @@
 
 (define-missile-type 'missile-whirlwind
   'file "missiles/tornado.png" 'size '(56 56) 'frames 4 'num-directions 1
-  'draw-level 50 'class 'missile-class-whirlwind 'sleep 1 'speed 2 'range 1)
+  'draw-level 50 'class 'missile-class-whirlwind 'sleep 1 'speed 2 'range 2)
 
 (define-missile-type 'missile-catapult-rock
   'file "missiles/catapult_rock.png" 'size '(32 32) 'frames 15 'num-directions 5
