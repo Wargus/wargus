@@ -1539,12 +1539,10 @@
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 240 (* 36 1.5)) 'font 'large
   'gem '(size (18 18)
+    text "Enabled"
     state unchecked
     func set-master-power
     style gem-square)
-  'menu 'menu-sound-options)
-(define-menu-item 'pos (list 266 (+ (* 36 1.5) 2)) 'font 'game
-  'text '("Enabled" left func set-master-power)
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 16 (* 36 3)) 'font 'game
   'text '("Music Volume" left)
@@ -1562,12 +1560,10 @@
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 240 (* 36 3.5)) 'font 'large
   'gem '(size (18 18)
+    text "Enabled"
     state unchecked
     func set-music-power
     style gem-square)
-  'menu 'menu-sound-options)
-(define-menu-item 'pos (list 266 (+ (* 36 3.5) 2)) 'font 'game
-  'text '("Enabled" left func set-music-power)
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 16 (* 36 5)) 'font 'game
   'text '("CD Volume" left)
@@ -1585,30 +1581,24 @@
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 240 (* 36 5.5)) 'font 'large
   'gem '(size (18 18)
+    text "Enabled"
     state unchecked
     func set-cd-power
     style gem-square)
   'menu 'menu-sound-options)
-(define-menu-item 'pos (list 266 (+ (* 36 5.5) 2)) 'font 'game
-  'text '("Enabled" left func set-cd-power)
-  'menu 'menu-sound-options)
 (define-menu-item 'pos (list 32 (* 36 6.5)) 'font 'large
   'gem '(size (18 18)
+    text "All Tracks"
     state unchecked
     func set-cd-mode-all
     style gem-round)
   'menu 'menu-sound-options)
-(define-menu-item 'pos (list 58 (+ (* 36 6.5) 2)) 'font 'game
-  'text '("All Tracks" left)
-  'menu 'menu-sound-options)
 (define-menu-item 'pos (list 154 (* 36 6.5)) 'font 'large
   'gem '(size (18 18)
+    text "Random Tracks"
     state unchecked
     func set-cd-mode-random
     style gem-round)
-  'menu 'menu-sound-options)
-(define-menu-item 'pos (list 180 (+ (* 36 6.5) 2)) 'font 'game
-  'text '("Random Tracks" left)
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list (- 176 (/ 106 2)) (- 352 11 27)) 'font 'large
   'button '(size (106 27)
