@@ -28,43 +28,13 @@
 ;;
 ;;	$Id$
 
-;;=============================================================================
-;;	Define the used fonts.
-;;
-;;	(define-font type file size)
-;;
-;;	type:	type of font, currently supported 'game,'small,'large
-;;		'small-title 'large-title
-;;	file:	file name for font file, currently only multicolor bitmap
-;;		fonts supported.
-;;	size:	font size width and height.
-
 (define-font 'small	"graphics/ui/fonts/small.png"	 7  6)
 (define-font 'game	"graphics/ui/fonts/game.png"	13 14)
 (define-font 'large	"graphics/ui/fonts/large.png"	17 17)
 (define-font 'small-title "graphics/ui/fonts/small_episode_titles.png"	32 35)
 (define-font 'large-title "graphics/ui/fonts/large_episode_titles.png"	52 50)
 
-;;=============================================================================
-;;	Define the font colors.
-;;
-;;	(define-font-color color array)
-;;
-;;	color:		name of the color
-;;	array:		array of 7 rgb colors #( r1 g1 b1 r2 g2 b2 ...)
-;;
-;;	The colors are:
-;;		#0   is background color
-;;		#1   is the light font color
-;;		#2   is the middle (main) font color
-;;		#3   is the dark font color
-;;		#4   is the font/shadow antialias color
-;;		#5   is the dark shadow color
-;;		#6   is the light shadow color
-;;		#255 is transparent
-;;
 ;;	FIXME: only yellow, white, and grey are correct.
-;;
 
 (define-font-color 'black
   #(   0   0   0	; 0

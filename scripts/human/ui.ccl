@@ -28,12 +28,6 @@
 ;;
 ;;	$Id$
 
-;;=============================================================================
-;;	Define a cursor.
-;;
-;;	(define-cursor 'ident 'race 'image "file-path"
-;;		'hotspot ( x y ) 'size ( width height ))
-;;
 (define-cursor	'cursor-point		'human
     'image "ui/human/cursors/human_gauntlet.png"
     'hot-spot '( 3  2) 'size '(28 32) )
@@ -46,15 +40,6 @@
 (define-cursor	'cursor-red-hair	'human
     'image "ui/human/cursors/red_eagle.png"
     'hot-spot '(15 15) 'size '(32 32) )
-
-;;=============================================================================
-;;	Define the user interface
-;;
-;;	(define-ui "race" screen-width screen-height
-;;
-;;	This defines the position and sizes of the different user
-;;	interface sections.
-;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race human.
@@ -100,7 +85,6 @@
       font game
       text-pos ( 50 313))
 
-    ; Command button panel
     'button-panel (list
       (string-append "graphics/ui/human/"
         (number->string screen_width) "x" (number->string screen_height)
@@ -113,7 +97,6 @@
         (* 32 (trunc (/ (- screen_width 176 16) 32)))
         (* 32 (trunc (/ (- screen_height 16 16) 32)))))
 
-    ; Menu button
     'menu-panel (list "graphics/ui/human/menubutton.png" 0 0)
 
     'minimap-panel (list "graphics/ui/human/minimap.png" 0 24)
@@ -127,7 +110,6 @@
       'text-pos (list (+ 2 176) (+ 2 (- screen_height 16)))
       'font 'game)
 
-    ; Menu buttons
     'menu-button '(
       pos (24 2)
       size (128 19)
