@@ -127,6 +127,10 @@
 (define extensions #t)
 ;(define extensions #f)
 
+;;	Edit this to enable/disable the training queues.
+;(set-training-queue! #t)
+;(set-training-queue! #f)
+
 ;;-----------------------------------------------------------------------------
 
 ;;	If you prefer fighters are attacking by right clicking empty space
