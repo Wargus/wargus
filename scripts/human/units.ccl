@@ -29,16 +29,10 @@
 ;;
 (define-unit-type "unit-footman"		"Footman"
   ;; graphic data
-  (if new-names?
   #("human/units/footman.png"
     ()
     ()
     () )
-  #("footman.png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-footman"
   "icon-footman"
@@ -70,16 +64,10 @@
 
 (define-unit-type "unit-peasant"		"Peasant"
   ;; graphic data
-  (if new-names?
   #("human/units/peasant.png"
     ()
     ()
     () )
-  #("peasant.png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-peasant"
   "icon-peasant"
@@ -112,16 +100,10 @@
 
 (define-unit-type "unit-ballista"		"Ballista"
   ;; graphic data
-  (if new-names?
   #("human/units/ballista.png"
     ()
     ()
     () )
-  #("ballista.png"
-    ()
-    ()
-    () )
-  )
   '(  64  64 )			;; graphic size
   "animations-ballista"
   "icon-ballista"
@@ -153,16 +135,10 @@
 
 (define-unit-type "unit-knight"			"Knight"
   ;; graphic data
-  (if new-names?
   #("human/units/knight.png"
     ()
     ()
     () )
-  #("knight.png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-knight"
   "icon-knight"
@@ -194,16 +170,10 @@
 
 (define-unit-type "unit-archer"			"Archer"
   ;; graphic data
-  (if new-names?
   #("human/units/elven archer.png"
     ()
     ()
     () )
-  #("archer.png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-archer"
   "icon-archer"
@@ -235,16 +205,10 @@
 
 (define-unit-type "unit-mage"			"Mage"
   ;; graphic data
-  (if new-names?
   #("human/units/mage.png"
     ()
     ()
     () )
-  #("mage.png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-mage"
   "icon-mage"
@@ -311,16 +275,10 @@
 
 (define-unit-type "unit-dwarves"		"Dwarves"
   ;; graphic data
-  (if new-names?
   #("human/units/dwarven demolition squad.png"
     ()
     ()
     () )
-  #("dwarves.png"
-    ()
-    ()
-    () )
-  )
   '(  56  56 )			;; graphic size
   "animations-dwarves"
   "icon-dwarves"
@@ -449,16 +407,10 @@
 
 (define-unit-type "unit-kurdan-and-sky-ree"	"Kurdan and Sky'ree"
   ;; graphic data
-  (if new-names?
   #("human/units/gryphon rider.png"
     ()
     ()
     () )
-  #("gryphon rider.png"
-    ()
-    ()
-    () )
-  )
   '(  80  80 )			;; graphic size
   "animations-kurdan-and-sky-ree"
   "icon-kurdan-and-sky-ree"
@@ -525,16 +477,10 @@
 
 (define-unit-type "unit-human-oil-tanker"	"Oil tanker"
   ;; graphic data
-  (if new-names?
   #("human/units/oil tanker empty.png"
     ()
     ()
     () )
-  #("human tanker (empty).png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-human-oil-tanker"
   "icon-human-oil-tanker"
@@ -564,16 +510,10 @@
 
 (define-unit-type "unit-human-transport"	"Transport"
   ;; graphic data
-  (if new-names?
   #("human/units/transport.png"
     ()
     ()
     () )
-  #("human transport.png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-human-transport"
   "icon-human-transport"
@@ -603,16 +543,10 @@
 
 (define-unit-type "unit-elven-destroyer"	"Elven Destroyer"
   ;; graphic data
-  (if new-names?
   #("human/units/elven destroyer.png"
     ()
     ()
     () )
-  #("elven destroyer.png"
-    ()
-    ()
-    () )
-  )
   '(  80  88 )			;; graphic size
   "animations-elven-destroyer"
   "icon-elven-destroyer"
@@ -643,16 +577,10 @@
 
 (define-unit-type "unit-battleship"		"Battleship"
   ;; graphic data
-  (if new-names?
   #("human/units/battleship.png"
     ()
     ()
     () )
-  #("battleship.png"
-    ()
-    ()
-    () )
-  )
   '(  88  88 )			;; graphic size
   "animations-battleship"
   "icon-battleship"
@@ -684,16 +612,10 @@
 
 (define-unit-type "unit-gnomish-submarine"	"Gnomish Submarine"
   ;; graphic data
-  (if new-names?
   #("human/units/gnomish submarine.png"
     ()
     "tilesets/wasteland/human/units/gnomish submarine.png"
     "tilesets/swamp/human/units/gnomish submarine.png" )
-  #("gnomish submarine (summer,winter).png"
-    ()
-    "gnomish submarine (wasteland).png"
-    "gnomish submarine (swamp).png" )
-  )
   '(  72  72 )			;; graphic size
   "animations-gnomish-submarine"
   "icon-gnomish-submarine"
@@ -726,16 +648,10 @@
 
 (define-unit-type "unit-gnomish-flying-machine"	"Gnomish Flying Machine"
   ;; graphic data
-  (if new-names?
   #("human/units/gnomish flying machine.png"
     ()
     ()
     () )
-  #("gnomish flying machine.png"
-    ()
-    ()
-    () )
-  )
   '(  80  80 )			;; graphic size
   "animations-gnomish-flying-machine"
   "icon-gnomish-flying-machine"
@@ -930,16 +846,10 @@
 
 (define-unit-type "unit-farm"			"Farm"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/farm.png"
     "tilesets/winter/human/buildings/farm.png"
     "tilesets/wasteland/human/buildings/farm.png"
     "tilesets/swamp/human/buildings/farm.png" )
-  #("farm (summer).png"
-    "farm (winter).png"
-    "farm (wasteland).png"
-    "farm (swamp).png" )
-  )
   '(  64  64 )			;; graphic size
   "animations-building"
   "icon-farm"
@@ -967,16 +877,10 @@
 
 (define-unit-type "unit-human-barracks"		"Barracks"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/barracks.png"
     "tilesets/winter/human/buildings/barracks.png"
     ()
     "tilesets/swamp/human/buildings/barracks.png" )
-  #("human barracks (summer).png"
-    "human barracks (winter).png"
-    ()
-    "human barracks (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-barracks"
@@ -1004,16 +908,10 @@
 
 (define-unit-type "unit-church"			"Church"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/church.png"
     "tilesets/winter/human/buildings/church.png"
     ()
     "tilesets/swamp/human/buildings/church.png" )
-  #("church (summer).png"
-    "church (winter).png"
-    ()
-    "church (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-church"
@@ -1041,16 +939,10 @@
 
 (define-unit-type "unit-human-watch-tower"	"Scout Tower"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/scout tower.png"
     "tilesets/winter/human/buildings/scout tower.png"
     ()
     "tilesets/swamp/human/buildings/scout tower.png" )
-  #("human scout tower (summer).png"
-    "human scout tower (winter).png"
-    ()
-    "human scout tower (swamp).png" )
-  )
   '(  64  64 )			;; graphic size
   "animations-building"
   "icon-human-watch-tower"
@@ -1080,16 +972,10 @@
 
 (define-unit-type "unit-stables"		"Stables"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/stables.png"
     "tilesets/winter/human/buildings/stables.png"
     ()
     "tilesets/swamp/human/buildings/stables.png" )
-  #("stables (summer).png"
-    "stables (winter).png"
-    ()
-    "stables (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-stables"
@@ -1117,16 +1003,10 @@
 
 (define-unit-type "unit-gnomish-inventor"	"Gnomish Inventor"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/gnomish inventor.png"
     "tilesets/winter/human/buildings/gnomish inventor.png"
     ()
     "tilesets/wasteland/human/buildings/gnomish inventor.png" )
-  #("gnomish inventor (summer).png"
-    "gnomish inventor (winter).png"
-    ()
-    "gnomish inventor (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-gnomish-inventor"
@@ -1154,16 +1034,10 @@
 
 (define-unit-type "unit-gryphon-aviary"		"Gryphon Aviary"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/gryphon aviary.png"
     "tilesets/winter/human/buildings/gryphon aviary.png"
     ()
     "tilesets/swamp/human/buildings/gryphon aviary.png" )
-  #("gryphon aviary (summer).png"
-    "gryphon aviary (winter).png"
-    ()
-    "gryphon aviary (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-gryphon-aviary"
@@ -1191,16 +1065,10 @@
 
 (define-unit-type "unit-human-shipyard"		"Shipyard"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/shipyard.png"
     "tilesets/winter/human/buildings/shipyard.png"
     ()
     "tilesets/swamp/human/buildings/shipyard.png" )
-  #("human shipyard (summer).png"
-    "human shipyard (winter).png"
-    ()
-    "human shipyard (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-shipyard"
@@ -1230,16 +1098,10 @@
 
 (define-unit-type "unit-elven-lumber-mill"	"Elven Lumber Mill"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/elven lumber mill.png"
     "tilesets/winter/human/buildings/elven lumber mill.png"
     "tilesets/wasteland/human/buildings/elven lumber mill.png"
     "tilesets/swamp/human/buildings/elven lumber mill.png" )
-  #("elven lumber mill (summer).png"
-    "elven lumber mill (winter).png"
-    "elven lumber mill (wasteland).png"
-    "elven lumber mill (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-elven-lumber-mill"
@@ -1268,16 +1130,10 @@
 
 (define-unit-type "unit-human-foundry"		"Foundry"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/foundry.png"
     "tilesets/winter/human/buildings/foundry.png"
     ()
     "tilesets/swamp/human/buildings/foundry.png" )
-  #("human foundry (summer).png"
-    "human foundry (winter).png"
-    ()
-    "human foundry (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-foundry"
@@ -1306,16 +1162,10 @@
 
 (define-unit-type "unit-town-hall"		"Town Hall"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/town hall.png"
     "tilesets/winter/human/buildings/town hall.png"
     ()
     "tilesets/swamp/human/buildings/town hall.png" )
-  #("town hall (summer).png"
-    "town hall (winter).png"
-    ()
-    "town hall (swamp).png" )
-  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-town-hall"
@@ -1344,16 +1194,10 @@
 
 (define-unit-type "unit-mage-tower"		"Mage Tower"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/mage tower.png"
     "tilesets/winter/human/buildings/mage tower.png"
     ()
     "tilesets/swamp/human/buildings/mage tower.png" )
-  #("mage tower (summer).png"
-    "mage tower (winter).png"
-    ()
-    "mage tower (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-mage-tower"
@@ -1381,16 +1225,10 @@
 
 (define-unit-type "unit-human-blacksmith"	"Blacksmith"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/blacksmith.png"
     "tilesets/winter/human/buildings/blacksmith.png"
     ()
     "tilesets/swamp/human/buildings/blacksmith.png" )
-  #("human blacksmith (summer).png"
-    "human blacksmith (winter).png"
-    ()
-    "human blacksmith (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-blacksmith"
@@ -1418,16 +1256,10 @@
 
 (define-unit-type "unit-human-refinery"		"Refinery"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/refinery.png"
     "tilesets/winter/human/buildings/refinery.png"
     ()
     "tilesets/wasteland/human/buildings/refinery.png" )
-  #("human refinery (summer).png"
-    "human refinery (winter).png"
-    ()
-    "human refinery (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-refinery"
@@ -1457,16 +1289,10 @@
 
 (define-unit-type "unit-human-oil-platform"	"Oil Platform"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/oil platform.png"
     "tilesets/winter/human/buildings/oil platform.png"
     "tilesets/wasteland/human/buildings/oil platform.png"
     "tilesets/swamp/human/buildings/oil platform.png" )
-  #("human oil well (summer).png"
-    "human oil well (winter).png"
-    "human oil well (wasteland).png"
-    "human oil well (swamp).png" )
-  )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-human-oil-platform"
@@ -1495,16 +1321,10 @@
 
 (define-unit-type "unit-keep"			"Keep"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/keep.png"
     "tilesets/winter/human/buildings/keep.png"
     ()
     "tilesets/swamp/human/buildings/keep.png" )
-  #("keep (summer).png"
-    "keep (winter).png"
-    ()
-    "keep (swamp).png" )
-  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-keep"
@@ -1533,16 +1353,10 @@
 
 (define-unit-type "unit-castle"			"Castle"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/castle.png"
     "tilesets/winter/human/buildings/castle.png"
     ()
     "tilesets/swamp/human/buildings/castle.png" )
-  #("castle (summer).png"
-    "castle (winter).png"
-    ()
-    "castle (swamp).png" )
-  )
   '( 128 128 )			;; graphic size
   "animations-building"
   "icon-castle"
@@ -1571,15 +1385,10 @@
 
 (define-unit-type "unit-human-start-location"	"Start Location"
   ;; graphic data
-  (if new-names?
   #( "human/x startpoint.png"
     ()
     ()
     () )
-  #( "x (human player startpoint).png"
-    ()
-    ()
-    () ))
   '(  32  32 )			;; graphic size
   "animations-building"
   "icon-cancel"
@@ -1606,16 +1415,10 @@
 
 (define-unit-type "unit-human-guard-tower"	"Guard Tower"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/guard tower.png"
     "tilesets/winter/human/buildings/guard tower.png"
     ()
     "tilesets/swamp/human/buildings/guard tower.png" )
-  #("human guard tower (summer).png"
-    "human guard tower (winter).png"
-    ()
-    "human guard tower (swamp).png" )
-  )
   '(  64  64 )			;; graphic size
   "animations-human-guard-tower"
   "icon-human-guard-tower"
@@ -1647,16 +1450,10 @@
 
 (define-unit-type "unit-human-cannon-tower"	"Cannon Tower"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/human/buildings/cannon tower.png"
     "tilesets/winter/human/buildings/cannon tower.png"
     ()
     "tilesets/swamp/human/buildings/cannon tower.png" )
-  #("human cannon tower (summer).png"
-    "human cannon tower (winter).png"
-    ()
-    "human cannon tower (swamp).png" )
-  )
   '(  64  64 )			;; graphic size
   "animations-human-cannon-tower"
   "icon-human-cannon-tower"
@@ -1688,16 +1485,10 @@
 
 (define-unit-type "unit-human-wall"		"Wall"
   ;; graphic data
-  (if new-names?
   #("tilesets/summer/neutral/buildings/wall.png"
     "tilesets/winter/neutral/buildings/wall.png"
     "tilesets/wasteland/neutral/buildings/wall.png"
     () )
-  #("wall (summer).png"
-    "wall (winter).png"
-    "wall (wasteland).png"
-    () )
-  )
   '(  32  32 )			;; graphic size
   "animations-building"
   "icon-human-wall"
@@ -1725,16 +1516,10 @@
 
 (define-unit-type "unit-peasant-with-gold"	"Peasant"
   ;; graphic data
-  (if new-names?
   #("human/units/peasant with gold.png"
     ()
     ()
     () )
-  #("peasant with gold.png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-peasant"
   "icon-peasant"
@@ -1767,16 +1552,10 @@
 
 (define-unit-type "unit-peasant-with-wood"	"Peasant"
   ;; graphic data
-  (if new-names?
   #("human/units/peasant with wood.png"
     ()
     ()
     () )
-  #("peasant with wood.png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-peasant"
   "icon-peasant"
@@ -1809,16 +1588,10 @@
 
 (define-unit-type "unit-human-oil-tanker-full"	"Oil tanker"
   ;; graphic data
-  (if new-names?
   #("human/units/oil tanker full.png"
     ()
     ()
     () )
-  #("human tanker (full).png"
-    ()
-    ()
-    () )
-  )
   '(  72  72 )			;; graphic size
   "animations-human-oil-tanker"
   "icon-human-oil-tanker"

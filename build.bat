@@ -13,7 +13,7 @@ REM	   FreeCraft - A free fantasy real time strategy game engine
 REM
 REM	build.bat	-	The graphics and sound extractor.
 REM
-REM	(c) Copyright 1999-2000 by Lutz Sammer.
+REM	(c) Copyright 1999-2001 by Lutz Sammer.
 REM
 REM	FreeCraft is free software; you can redistribute it and/or modify
 REM	it under the terms of the GNU General Public License as published
@@ -78,19 +78,13 @@ REM ADD -e      To force the archive are expansion compatible
 REM ADD -n      To force the archive is not expansion compatible   
 %BINDIR%\wartool %ARCHIVE% %DIR%
 
-REM own supplied files
+REM copy own supplied files
 
-copy /b %CONTRIB%\cross.png %DIR%\graphic
-copy /b %CONTRIB%\mana.png %DIR%
-copy /b %CONTRIB%\health.png %DIR%
-copy /b %CONTRIB%\food.png %DIR%\graphic
-copy /b %CONTRIB%\score.png %DIR%\graphic
-copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphic
-copy /b %CONTRIB%\freecraft.png %DIR%
-REM This is for the new-names
 copy /b %CONTRIB%\cross.png %DIR%\graphics\ui\cursors
 copy /b %CONTRIB%\mana.png %DIR%\graphics\ui
+copy /b %CONTRIB%\mana2.png %DIR%\graphics\ui
 copy /b %CONTRIB%\health.png %DIR%\graphics\ui
+copy /b %CONTRIB%\health2.png %DIR%\graphics\ui
 copy /b %CONTRIB%\food.png %DIR%\graphics\ui
 copy /b %CONTRIB%\score.png %DIR%\graphics\ui
 copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphics\ui

@@ -11,7 +11,7 @@
 ##
 ##	build.sh	-	The graphics and sound extractor.
 ##
-##	(c) Copyright 1999-2000 by Lutz Sammer
+##	(c) Copyright 1999-2001 by Lutz Sammer
 ##
 ##	FreeCraft is free software; you can redistribute it and/or modify
 ##	it under the terms of the GNU General Public License as published
@@ -137,26 +137,17 @@ fi
 # ADD -n      To force that the archive is not expansion compatible
 $BINPATH/wartool "$DATADIR" "$DIR"
 
-# own supplied files
+# copy own supplied files
 
-# Check for old version:
-[ -d $DIR/text ] && {
-cp $CONTRIB/cross.png $DIR/graphic
-cp $CONTRIB/mana.png $DIR
-cp $CONTRIB/health.png $DIR
-cp $CONTRIB/food.png $DIR/graphic
-cp $CONTRIB/score.png $DIR/graphic
-cp $CONTRIB/ore,stone,coal.png $DIR/graphic
-cp $CONTRIB/freecraft.png $DIR
-} || {
-cp $CONTRIB/cross.png $DIR/graphics/ui/cursors/
-cp $CONTRIB/mana.png $DIR/graphics/ui/
-cp $CONTRIB/health.png $DIR/graphics/ui/
-cp $CONTRIB/food.png $DIR/graphics/ui/
-cp $CONTRIB/score.png $DIR/graphics/ui/
-cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui/
-cp $CONTRIB/freecraft.png $DIR/graphics/ui/
-}
+cp $CONTRIB/cross.png $DIR/graphics/ui/cursors
+cp $CONTRIB/mana.png $DIR/graphics/ui
+cp $CONTRIB/mana2.png $DIR/graphics/ui
+cp $CONTRIB/health.png $DIR/graphics/ui
+cp $CONTRIB/health2.png $DIR/graphics/ui
+cp $CONTRIB/food.png $DIR/graphics/ui
+cp $CONTRIB/score.png $DIR/graphics/ui
+cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
+cp $CONTRIB/freecraft.png $DIR/graphics/ui
 
 ###############################################################################
 ##	MISC
@@ -165,12 +156,12 @@ cp $CONTRIB/freecraft.png $DIR/graphics/ui/
 #
 #	Compress the sounds
 #
-find $DIR/sound -type f -name "*.wav" -print -exec $COMPRESS {} \;
+find $DIR/sounds -type f -name "*.wav" -print -exec $COMPRESS {} \;
 
 #
 #	Compress the texts
 #
-find $DIR/text -type f -name "*.txt" -print -exec $COMPRESS {} \;
+find $DIR/campaigns -type f -name "*.txt" -print -exec $COMPRESS {} \;
 
 #
 #	Copy original puds into data directory
