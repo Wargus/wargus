@@ -10,7 +10,7 @@
 //
 /**@name wartool.c	-	Extract files from war archives. */
 //
-//	(c) Copyright 1999-2003 by Lutz Sammer
+//	(c) Copyright 1999-2003 by Lutz Sammer & Nehal Mistry
 //
 //	FreeCraft is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published
@@ -3750,7 +3750,7 @@ int main(int argc,char** argv)
     // Detect if CD is Mac/Dos, Expansion/Original, and language
 #ifdef USE_BEOS
     sprintf(buf, "%s/REZDAT.WAR", ArchiveDir);
-    sprintf(filename, "%s/strdat.war", ArchiveDir);
+    sprintf(filename, "%s/STRDAT.WAR", ArchiveDir);
 #else
     sprintf(buf, "%s/rezdat.war", ArchiveDir);
     sprintf(filename, "%s/strdat.war", ArchiveDir);
