@@ -344,7 +344,7 @@
     style gem-round)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 90)
+(define-menu-item 'pos (list 16 91)
   'gem '(size (18 18)
     text "800 x 600"
     state unchecked
@@ -352,7 +352,7 @@
     style gem-round)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 115)
+(define-menu-item 'pos (list 16 117)
   'gem '(size (18 18)
     text "1024 x 768"
     state unchecked
@@ -360,7 +360,7 @@
     style gem-round)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 140)
+(define-menu-item 'pos (list 16 143)
   'gem '(size (18 18)
     text "1280 x 960"
     state unchecked
@@ -368,7 +368,7 @@
     style gem-round)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 16 165)
+(define-menu-item 'pos (list 16 169)
   'gem '(size (18 18)
     text "1600 x 1200"
     state unchecked
@@ -376,7 +376,7 @@
     style gem-round)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 17 190)
+(define-menu-item 'pos (list 17 195)
   'gem '(size (18 18)
     text "Fullscreen"
     state unchecked
@@ -396,7 +396,7 @@
     style gem-round)
   'menu 'menu-global-options)
 
-(define-menu-item 'pos (list 192 90)
+(define-menu-item 'pos (list 192 91)
   'gem '(size (18 18)
     text "Alpha"
     state unchecked
