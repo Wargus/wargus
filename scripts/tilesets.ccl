@@ -33,4 +33,3 @@
 (load "ccl/tilesets/winter.ccl" #f #t)
 (load "ccl/tilesets/wasteland.ccl" #f #t)
 (load "ccl/tilesets/swamp.ccl" #f #t)
-;(load "../tileset/fc-summer.ccl")
