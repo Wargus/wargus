@@ -29,12 +29,6 @@
 ;;	$Id$
 
 
-;;=============================================================================
-;;	Define a construction.
-;;
-;;	(define-construction ident 'files '(tileset-name filename ..)
-;;	    'size '(x y))
-
 (define-construction 'construction-mythical-shipyard
   'file '(
     tileset summer

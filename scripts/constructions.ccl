@@ -31,12 +31,6 @@
 (ccl:load "ccl/human/constructions.ccl")
 (ccl:load "ccl/orc/constructions.ccl")
 
-;;=============================================================================
-;;	Define a construction.
-;;
-;;	(define-construction ident 'files '(tileset-name filename ..)
-;;	    'size '(x y))
-
 (define-construction 'construction-none
   'file '(
     tileset summer

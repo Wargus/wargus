@@ -28,17 +28,6 @@
 ;;
 ;;	$Id$
 
-;;=============================================================================
-;;	Define race names
-;;
-;;	(define-race-names
-;;	  'race '(
-;;	    race number
-;;	    name race-name
-;;	    display displayed-race-name
-;;	    [visible])
-;;	  'race ...)
-
 (define-race-names
   'race '(
     race 0
@@ -55,18 +44,8 @@
     name "neutral"
     display "Neutral"))
 
-;;=============================================================================
-;;	Define tileset mapping from original number to internal symbol
-;;
-;;	(define-tileset-wc-names summer winter wasteland swamp)
-
 (define-tileset-wc-names
   'tileset-summer 'tileset-winter 'tileset-wasteland 'tileset-swamp)
-
-;;=============================================================================
-;;	Define construction mapping from original number to internal symbol
-;;
-;;	(define-construction-wc-names human-shipyard orc-shipyard ... )
 
 (define-construction-wc-names
   'construction-none 'construction-none 'construction-none 'construction-none
@@ -76,11 +55,6 @@
   'construction-alliance-refinery 'construction-mythical-refinery
   'construction-alliance-foundry 'construction-mythical-foundry 'construction-wall
   'construction-land2)
-
-;;=============================================================================
-;;	Define unit-type mapping from original number to internal symbol
-;;
-;;	(define-unittype-wc-names footman grunt ... )
 
 (define-unittype-wc-names
     'unit-footman 'unit-grunt 'unit-peasant 'unit-peon 'unit-ballista
@@ -118,10 +92,6 @@
     'unit-destroyed-3x3-place 'unit-destroyed-4x4-place
     'unit-peasant 'unit-peon 'unit-peasant 'unit-peon 'unit-human-oil-tanker 'unit-orc-oil-tanker)
 
-;;=============================================================================
-;;	Define missiletype mapping from original number to internal symbol
-;;
-;;	(define-missiletype-wc-names lightning griffon-hammer ... )
 (define-missiletype-wc-names
     'missile-lightning 'missile-griffon-hammer 'missile-dragon-breath
     'missile-fireball 'missile-flame-shield 'missile-blizzard
@@ -135,11 +105,6 @@
     'missile-cannon-tower-explosion 'missile-daemon-fire
     'missile-green-cross 'missile-none 'missile-blizzard-hit
     'missile-death-coil 'missile-none)
-
-;;=============================================================================
-;;	Define icon mapping from original number to internal symbol
-;;
-;;	(define-icon-wc-names peasant peon ... )
 
 (define-icon-wc-names
     'icon-peasant 'icon-peon 'icon-footman 'icon-grunt 'icon-archer
@@ -196,11 +161,6 @@
     'icon-flying-angle 'icon-fire-breeze 'icon-white-mage 'icon-fad-man
     'icon-knight-rider)
 
-;;=============================================================================
-;;	Define upgrade mapping from original number to internal symbol
-;;
-;;	(define-upgrade-wc-names sword1 sword2 ... )
-
 (define-upgrade-wc-names
   'upgrade-sword1 'upgrade-sword2 'upgrade-battle-axe1 'upgrade-battle-axe2
   'upgrade-arrow1 'upgrade-arrow2 'upgrade-throwing-axe1
@@ -220,10 +180,6 @@
   'upgrade-death-coil 'upgrade-whirlwind 'upgrade-haste 'upgrade-unholy-armor
   'upgrade-runes 'upgrade-death-and-decay)
 
-;;=============================================================================
-;;	Define AI mapping from original number to internal symbol
-;;
-;;	(define-ai-wc-names 'land-attack 'passive ... )
 (define-ai-wc-names
   'land-attack 'passive 'orc-03 'hum-04 'orc-04 'hum-05 'orc-05
   'hum-06 'orc-06 'hum-07 'orc-07 'hum-08 'orc-08 'hum-09 'orc-09
