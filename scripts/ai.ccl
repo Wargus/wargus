@@ -241,7 +241,6 @@
 ;;
 (define-ai "my-ai" "human" "land-attack"
   '(
-
     ;;	Define the main AI script.
     (ai:debug #t)
     (ai:need (unit-type 'unit-town-hall))
@@ -295,8 +294,8 @@
     (ai:sleep	500)
     (ai:need 'unit-town-hall)
     (ai:need 'unit-stables)
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 2 'unit-ballista 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
@@ -310,31 +309,31 @@
     (ai:set  'unit-peasant 19)
     (ai:wait 'unit-castle)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 2 'unit-ballista 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
     (ai:sleep	500)
 ;;; tower, tower, church
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 2 'unit-ballista 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 2 'unit-ballista 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 2 'unit-ballista 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
-    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knight 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knight 2 'unit-ballista 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
