@@ -7,12 +7,14 @@
 //  ______________________                           ______________________
 //			  T H E   W A R   B E G I N S
 //   Utility for FreeCraft - A free fantasy real time strategy game engine
-//	
+//
 /**@name wartool.c	-	Extract files from war archives. */
 //
-//	(c) Copyright 1999-2000 by Lutz Sammer
+//	(c) Copyright 1999-2001 by Lutz Sammer
 //
 //	$Id$
+
+//@{
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -153,7 +155,7 @@ char *Dir = NULL;
 */
 typedef struct _control_ {
     int		Type;			/// Entry type
-    int		Version;		/// Only in this version 
+    int		Version;		/// Only in this version
     char*	File;			/// Save file
     int		Arg1;			/// Extra argument 1
     int		Arg2;			/// Extra argument 2
@@ -1057,13 +1059,13 @@ Control Todo[] = {
 // 1 description
 #ifdef NEW_NAMES
 {W,0,"ui/placement error",					  2	},
-{W,0,"ui/placement sucess",					  3	}, 
-{W,0,"misc/building construction",				  4	}, 
-{W,0,"human/basic_voices/selected/1",				  5	}, 
-{W,0,"orc/basic_voices/selected/1",				  6	}, 
-{W,0,"human/basic_voices/selected/2",				  7	}, 
-{W,0,"orc/basic_voices/selected/2",				  8	}, 
-{W,0,"human/basic_voices/selected/3",				  9	}, 
+{W,0,"ui/placement sucess",					  3	},
+{W,0,"misc/building construction",				  4	},
+{W,0,"human/basic_voices/selected/1",				  5	},
+{W,0,"orc/basic_voices/selected/1",				  6	},
+{W,0,"human/basic_voices/selected/2",				  7	},
+{W,0,"orc/basic_voices/selected/2",				  8	},
+{W,0,"human/basic_voices/selected/3",				  9	},
 {W,0,"orc/basic_voices/selected/3",				 10	},
 {W,0,"human/basic_voices/selected/4",				 11	},
 {W,0,"orc/basic_voices/selected/4",				 12	},
@@ -1443,13 +1445,13 @@ Control Todo[] = {
 #endif
 #else
 {W,0,"placement error",						  2	},
-{W,0,"placement sucess",					  3	}, 
-{W,0,"building construction",					  4	}, 
-{W,0,"basic human voices selected 1",				  5	}, 
-{W,0,"basic orc voices selected 1",				  6	}, 
-{W,0,"basic human voices selected 2",				  7	}, 
-{W,0,"basic orc voices selected 2",				  8	}, 
-{W,0,"basic human voices selected 3",				  9	}, 
+{W,0,"placement sucess",					  3	},
+{W,0,"building construction",					  4	},
+{W,0,"basic human voices selected 1",				  5	},
+{W,0,"basic orc voices selected 1",				  6	},
+{W,0,"basic human voices selected 2",				  7	},
+{W,0,"basic orc voices selected 2",				  8	},
+{W,0,"basic human voices selected 3",				  9	},
 {W,0,"basic orc voices selected 3",				 10	},
 {W,0,"basic human voices selected 4",				 11	},
 {W,0,"basic orc voices selected 4",				 12	},
@@ -1841,9 +1843,9 @@ Control Todo[] = {
 
 #ifdef NEW_NAMES
 // (correct palette is #2 in maindat)
-{U,0,"interface/buttons 1",					14, 0	}, 
+{U,0,"interface/buttons 1",					14, 0	},
 // (correct palette is #2 in maindat)
-{U,0,"interface/buttons 2",					14, 1	}, 
+{U,0,"interface/buttons 2",					14, 1	},
 {I,0,"interface/cd-icon",					14, 2	},
 {I,0,"interface/human/panel 1",					14, 3	},
 {I,0,"interface/orc/panel 1",					14, 4	},
@@ -1883,9 +1885,9 @@ Control Todo[] = {
 #endif
 #else
 // (correct palette is #2 in maindat)
-{U,0,"interface/buttons 1",					14, 0	}, 
+{U,0,"interface/buttons 1",					14, 0	},
 // (correct palette is #2 in maindat)
-{U,0,"interface/buttons 2",					14, 1	}, 
+{U,0,"interface/buttons 2",					14, 1	},
 {I,0,"interface/cd-icon",					14, 2	},
 {I,0,"interface/panel 1 (humans)",				14, 3	},
 {I,0,"interface/panel 1 (orcs)",				14, 4	},
@@ -1950,6 +1952,11 @@ char* UnitNames[110];
 */
 #define DebugLevel3(fmt...)	/* ALWAYS TURNED OFF */
 
+/**
+**	Print debug information of level 3 with function name.
+*/
+#define DebugLevel3Fn(fmt...)	/* ALWAYS TURNED OFF */
+
 //----------------------------------------------------------------------------
 //	TOOLS
 //----------------------------------------------------------------------------
@@ -1995,8 +2002,8 @@ void CheckPath(const char* path)
 **
 **	@param name	File name
 **	@param image	Graphic data
-**	@param w	Graphic width 
-**	@param h	Graphic height 
+**	@param w	Graphic width
+**	@param h	Graphic height
 **	@param pal	Palette
 */
 int SavePNG(const char* name,unsigned char* image,int w,int h
@@ -2363,7 +2370,7 @@ int CountUsedTiles(const unsigned char* map,const unsigned char* mega
     const char* tp;
     int img2tile[0x9E0];
 
-    DebugLevel3(__FUNCTION__":\n");
+    DebugLevel3Fn("\n");
     memset(map2tile,0,sizeof(map2tile));
 
     //
@@ -2473,7 +2480,7 @@ void DecodeMiniTile(unsigned char* image,int ix,int iy,int iadd
     int x;
     int y;
 
-    DebugLevel3(__FUNCTION__": index %d\n",index);
+    DebugLevel3Fn("index %d\n",index);
     for( y=0; y<8; ++y ) {
 	for( x=0; x<8; ++x ) {
 	    image[(y+iy*8)*iadd+ix*8+x]=mini[index+
@@ -2665,7 +2672,7 @@ void DecodeGfuEntry(int index,unsigned char* start
 	offset&=0x7FFFFFFF;
 	width+=256;
     }
-    
+
     DebugLevel3("%2d: +x %2d +y %2d width %2d height %2d offset %d\n"
 	,index,xoff,yoff,width,height,offset);
 
@@ -2956,7 +2963,7 @@ unsigned char* ConvertFnt(unsigned char* start,int *wp,int *hp)
 	h=w=0;
 	for( ;; ) {
 	    int ctrl;
-	    
+
 	    ctrl=FetchByte(bp);
 	    DebugLevel3("%d,%d ",ctrl>>3,ctrl&7);
 	    w+=(ctrl>>3)&0x1F;
@@ -2980,7 +2987,6 @@ unsigned char* ConvertFnt(unsigned char* start,int *wp,int *hp)
 	    }
 	}
     }
-    
 
     free(offsets);
 
@@ -3035,7 +3041,7 @@ unsigned char* ConvertImg(unsigned char* bp,int *wp,int *hp)
 
     width=FetchLE16(bp);
     height=FetchLE16(bp);
-    
+
     DebugLevel3("Image: width %3d height %3d\n",width,height);
 
     image=malloc(width*height);
@@ -3101,7 +3107,7 @@ unsigned char* ConvertCur(unsigned char* bp,int *wp,int *hp)
     hoty=FetchLE16(bp);
     width=FetchLE16(bp);
     height=FetchLE16(bp);
-    
+
     DebugLevel3("Cursor: hotx %d hoty %d width %d height %d\n"
 	    ,hotx,hoty,width,height);
 
@@ -3417,3 +3423,5 @@ int main(int argc,char** argv)
 
     return 0;
 }
+
+//@}
