@@ -3706,9 +3706,10 @@ int main(int argc,char** argv)
 	Dir="data";
     }
 
-    // alamo.pud is not on Expansion CD
-    sprintf(buf,"%s/../alamo.pud",ArchiveDir);
-    if ( expansion_cd==-1 || (expansion_cd!=1 && !stat(buf,&stat_buf)) ) {
+    // detect Expansion CD by getting size of rezdat.war
+    sprintf(buf, "%s/rezdat.war", ArchiveDir);
+    stat(buf, &stat_buf);
+    if ( expansion_cd==-1 || (expansion_cd!=1 && (stat_buf.st_size != 2811086)) ) {
 	expansion_cd=0;
     } else {
 	expansion_cd=1;
