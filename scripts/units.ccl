@@ -199,7 +199,6 @@
   'type-land
   'building
   'gives-resource 'gold 'can-harvest
-  'max-workers 2
   'sounds '(
     selected "gold-mine-selected"
     acknowledge "gold-mine-acknowledge"
