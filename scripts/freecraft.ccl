@@ -50,11 +50,14 @@
 ;;-----------------------------------------------------------------------------
 
 ;;	Set selection style, show what units the user had selected.
-;;		#f		None
-;;		'rectangle	Rectangle around unit
-;;		'circle		Circle around unit
+;;		#f			None
+;;		'rectangle		Rectangle around unit
+;;		'circle			Circle around unit
+;;		'alpha-rectangle	Rectangle with alpha around unit
+;;		'alpha-circle		Circle with alpha around unit
+;;		'corners		Draw corners of rectangle
 ;;
-(set-selection-style! 'rectangle)
+(set-selection-style! 'corners)
 
 ;;	Define mana-sprite.
 ;;
