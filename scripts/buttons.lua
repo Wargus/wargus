@@ -36,45 +36,45 @@ Load("ccl/orc/buttons.lua")
 ------------------------------------------------------------------------------
 --	Define unit-button.
 --
---	DefineButton("pos", n "level", n "icon", ident "action", name ['value value]
---		['allowed check ['values]] "key", key "hint", hint "for-unit", units)
+--	DefineButton( { Pos = n Level = n Icon = ident Action = name ['value value]
+--		['allowed check ['values]] Key = key Hint = hint ForUnit = units)
 --
 
 -- neutral --------------------------------------------------------------------
 
 if (extensions) then
-DefineButton("pos", 1, "level", 0, "icon", "icon-circle-of-power",
-  "action", "cast-spell", "value", "spell-circle-of-power",
-  "allowed", "check-true",
-  "key", "d", "hint", "SET ~!DESTINATION",
-  "for-unit", {"unit-dark-portal"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-circle-of-power",
+  Action = "cast-spell", Value = "spell-circle-of-power",
+  Allowed = "check-true",
+  Key = "d", Hint = "SET ~!DESTINATION",
+  ForUnit = {"unit-dark-portal"} } )
 end
 
 if (extensions) then
-DefineButton("pos", 2, "level", 0, "icon", "icon-daemon",
-  "action", "train-unit", "value", "unit-daemon",
-  "key", "d", "hint", "SUMMON ~!DAEMON",
-  "for-unit", {"unit-dark-portal"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-daemon",
+  Action = "train-unit", Value = "unit-daemon",
+  Key = "d", Hint = "SUMMON ~!DAEMON",
+  ForUnit = {"unit-dark-portal"} } )
 end
 
 -- general cancel button ------------------------------------------------------
 
-DefineButton("pos", 9, "level", 9, "icon", "icon-cancel",
-  "action", "cancel",
-  "key", "\033", "hint", "~<ESC~> CANCEL",
-  "for-unit", {"*"})
+DefineButton( { Pos = 9, Level = 9, Icon = "icon-cancel",
+  Action = "cancel",
+  Key = "\033", Hint = "~<ESC~> CANCEL",
+  ForUnit = {"*"} } )
 
-DefineButton("pos", 9, "level", 0, "icon", "icon-cancel",
-  "action", "cancel-upgrade",
-  "key", "\033", "hint", "~<ESC~> CANCEL UPGRADE",
-  "for-unit", {"cancel-upgrade"})
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-cancel",
+  Action = "cancel-upgrade",
+  Key = "\033", Hint = "~<ESC~> CANCEL UPGRADE",
+  ForUnit = {"cancel-upgrade"} } )
 
-DefineButton("pos", 9, "level", 0, "icon", "icon-cancel",
-  "action", "cancel-train-unit",
-  "key", "\033", "hint", "~<ESC~> CANCEL UNIT TRAINING",
-  "for-unit", {"*"})
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-cancel",
+  Action = "cancel-train-unit",
+  Key = "\033", Hint = "~<ESC~> CANCEL UNIT TRAINING",
+  ForUnit = {"*"} } )
 
-DefineButton("pos", 9, "level", 0, "icon", "icon-cancel",
-  "action", "cancel-build",
-  "key", "\033", "hint", "~<ESC~> CANCEL CONSTRUCTION",
-  "for-unit", {"cancel-build"})
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-cancel",
+  Action = "cancel-build",
+  Key = "\033", Hint = "~<ESC~> CANCEL CONSTRUCTION",
+  ForUnit = {"cancel-build"} } )

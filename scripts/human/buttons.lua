@@ -31,731 +31,731 @@
 ------------------------------------------------------------------------------
 --	Define", "unit-button.
 --
---	DefineButton("pos", n, "level", n 'icon ident "action", name ['value value]
---		['allowed check ['values]] "key", key, "hint", hint 'for-unit", "units)
+--	DefineButton( { Pos = n, Level = n 'icon ident Action = name ['value value]
+--		['allowed check ['values]] Key = key, Hint = hint 'for-unit", "units)
 --
 
 -- general commands -- almost all", "units have it -------------------------------
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-move-peasant",
-  "action", "move",
-  "key", "m", "hint", "~!MOVE",
-  "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-move-peasant",
+  Action = "move",
+  Key = "m", Hint = "~!MOVE",
+  ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-peasant",
     "unit-female-hero",
     "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-white-mage", "unit-balloon",
     "unit-gryphon-rider", "unit-mage", "unit-critter",
-    "human-group"})
+    "human-group"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-alliance-shield1",
-  "action", "stop",
-  "key", "s", "hint", "~!STOP",
-  "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-alliance-shield1",
+  Action = "stop",
+  Key = "s", Hint = "~!STOP",
+  ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-peasant",
     "unit-female-hero",
     "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-white-mage", "unit-balloon",
     "unit-gryphon-rider", "unit-mage", "unit-critter",
-    "human-group"})
+    "human-group"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-alliance-shield2",
-  "action", "stop",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-human-shield1"},
-  "key", "s", "hint", "~!STOP",
-  "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-alliance-shield2",
+  Action = "stop",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-human-shield1"},
+  Key = "s", Hint = "~!STOP",
+  ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-arthor-literios", "unit-knight-rider",
-    "unit-wise-man", "unit-man-of-light"})
+    "unit-wise-man", "unit-man-of-light"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-alliance-shield3",
-  "action", "stop",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-human-shield2"},
-  "key", "s", "hint", "~!STOP",
-  "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-alliance-shield3",
+  Action = "stop",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-human-shield2"},
+  Key = "s", Hint = "~!STOP",
+  ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-arthor-literios", "unit-knight-rider",
-    "unit-wise-man", "unit-man-of-light"})
+    "unit-wise-man", "unit-man-of-light"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-sword1",
-  "action", "attack",
-  "key", "a", "hint", "~!ATTACK",
-  "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-sword1",
+  Action = "attack",
+  Key = "a", Hint = "~!ATTACK",
+  ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-peasant",
     "unit-female-hero",
     "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
-    "unit-man-of-light", "unit-white-mage", "unit-gryphon-rider", "human-group"})
+    "unit-man-of-light", "unit-white-mage", "unit-gryphon-rider", "human-group"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-sword2",
-  "action", "attack",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-sword1"},
-  "key", "a", "hint", "~!ATTACK",
-  "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-sword2",
+  Action = "attack",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-sword1"},
+  Key = "a", Hint = "~!ATTACK",
+  ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-arthor-literios", "unit-knight-rider",
-    "unit-wise-man", "unit-man-of-light"})
+    "unit-wise-man", "unit-man-of-light"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-sword3",
-  "action", "attack",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-sword2"},
-  "key", "a", "hint", "~!ATTACK",
-  "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-sword3",
+  Action = "attack",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-sword2"},
+  Key = "a", Hint = "~!ATTACK",
+  ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-arthor-literios", "unit-knight-rider",
-    "unit-wise-man", "unit-man-of-light"})
+    "unit-wise-man", "unit-man-of-light"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-arrow1",
-  "action", "attack",
-  "key", "a", "hint", "~!ATTACK",
-  "for-unit", {"unit-archer", "unit-ranger", "unit-female-hero"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-arrow1",
+  Action = "attack",
+  Key = "a", Hint = "~!ATTACK",
+  ForUnit = {"unit-archer", "unit-ranger", "unit-female-hero"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-arrow2",
-  "action", "attack",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-arrow1"},
-  "key", "a", "hint", "~!ATTACK",
-  "for-unit", {"unit-archer", "unit-ranger", "unit-female-hero"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-arrow2",
+  Action = "attack",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-arrow1"},
+  Key = "a", Hint = "~!ATTACK",
+  ForUnit = {"unit-archer", "unit-ranger", "unit-female-hero"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-arrow3",
-  "action", "attack",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-arrow2"},
-  "key", "a", "hint", "~!ATTACK",
-  "for-unit", {"unit-archer", "unit-ranger", "unit-female-hero"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-arrow3",
+  Action = "attack",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-arrow2"},
+  Key = "a", Hint = "~!ATTACK",
+  ForUnit = {"unit-archer", "unit-ranger", "unit-female-hero"} } )
 
 if (extensions) then
-DefineButton("pos", 4, "level", 0, "icon", "icon-alliance-patrol-land",
-  "action", "patrol",
-  "key", "p", "hint", "~!PATROL",
-  "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-alliance-patrol-land",
+  Action = "patrol",
+  Key = "p", Hint = "~!PATROL",
+  ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-female-hero",
     "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
-    "unit-man-of-light", "unit-gryphon-rider human-group",
-    "unit-balloon"})
+    "unit-man-of-light", "unit-gryphon-rider", "human-group",
+    "unit-balloon"} } )
 else
-DefineButton("pos", 4, "level", 0, "icon", "icon-alliance-patrol-land",
-  "action", "patrol",
-  "key", "p", "hint", "~!PATROL",
-  "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-alliance-patrol-land",
+  Action = "patrol",
+  Key = "p", Hint = "~!PATROL",
+  ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-female-hero",
     "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
-    "unit-man-of-light", "unit-gryphon-rider human-group"})
+    "unit-man-of-light", "unit-gryphon-rider", "human-group"} } )
 end
 
-DefineButton("pos", 5, "level", 0, "icon", "icon-alliance-stand-ground",
-  "action", "stand-ground",
-  "key", "t", "hint", "S~!TAND GROUND",
-  "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-alliance-stand-ground",
+  Action = "stand-ground",
+  Key = "t", Hint = "S~!TAND GROUND",
+  ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-female-hero",
     "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
-    "unit-man-of-light", "unit-gryphon-rider human-group",
-    "unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"})
+    "unit-man-of-light", "unit-gryphon-rider", "human-group",
+    "unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"} } )
 
-DefineButton("pos", 6, "level", 0, "icon", "icon-alliance-attack-ground",
-  "action", "attack-ground",
-  "key", "g", "hint", "ATTACK ~!GROUND",
-  "for-unit", {"unit-ballista", "unit-battleship human-group"})
+DefineButton( { Pos = 6, Level = 0, Icon = "icon-alliance-attack-ground",
+  Action = "attack-ground",
+  Key = "g", Hint = "ATTACK ~!GROUND",
+  ForUnit = {"unit-ballista", "unit-battleship", "human-group"} } )
 
-DefineButton("pos", 9, "level", 0, "icon", "icon-alliance-demolish",
-  "action", "cast-spell", "value", "spell-suicide-bomber",
-  "allowed", "check-true",
-  "key", "d", "hint", "~!DEMOLISH",
-  "for-unit", {"unit-dwarves"})
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-alliance-demolish",
+  Action = "cast-spell", Value = "spell-suicide-bomber",
+  Allowed = "check-true",
+  Key = "d", Hint = "~!DEMOLISH",
+  ForUnit = {"unit-dwarves"} } )
 
 -- paladin specific actions ---------------------------------------------------
 
 --(if extensions
---DefineButton("pos", 6, "level", 0, "icon", "icon-heal
---  "action", "cast-spell", "value", "spell-area-healing
---  "allowed", "check-upgrade", "allow-arg", {"upgrade-area-healing)
---  "key", "l", "hint", "AREA HEA~!LING (per 1 HP)",
---  "for-unit", {"unit-paladin", "unit-knight-rider 
---    "unit-man-of-light"})
+--DefineButton( { Pos = 6, Level = 0, Icon = "icon-heal
+--  Action = "cast-spell", Value = "spell-area-healing
+--  Allowed = "check-upgrade", AllowArg = {"upgrade-area-healing)
+--  Key = "l", Hint = "AREA HEA~!LING (per 1 HP)",
+--  ForUnit = {"unit-paladin", "unit-knight-rider 
+--    "unit-man-of-light"} } )
 --)
 
-DefineButton("pos", 7, "level", 0, "icon", "icon-holy-vision",
-  "action", "cast-spell", "value", "spell-holy-vision",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-holy-vision"},
-  "key", "v", "hint", "HOLY ~!VISION",
-  "for-unit", {"unit-paladin", "unit-knight-rider",
-    "unit-man-of-light"})
+DefineButton( { Pos = 7, Level = 0, Icon = "icon-holy-vision",
+  Action = "cast-spell", Value = "spell-holy-vision",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-holy-vision"},
+  Key = "v", Hint = "HOLY ~!VISION",
+  ForUnit = {"unit-paladin", "unit-knight-rider",
+    "unit-man-of-light"} } )
 
-DefineButton("pos", 8, "level", 0, "icon", "icon-heal",
-  "action", "cast-spell", "value", "spell-healing",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-healing"},
-  "key", "h", "hint", "~!HEALING (per 1 HP)",
-  "for-unit", {"unit-paladin", "unit-knight-rider",
-    "unit-man-of-light"})
+DefineButton( { Pos = 8, Level = 0, Icon = "icon-heal",
+  Action = "cast-spell", Value = "spell-healing",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-healing"},
+  Key = "h", Hint = "~!HEALING (per 1 HP)",
+  ForUnit = {"unit-paladin", "unit-knight-rider",
+    "unit-man-of-light"} } )
 
-DefineButton("pos", 9, "level", 0, "icon", "icon-exorcism",
-  "action", "cast-spell", "value", "spell-exorcism",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-exorcism"},
-  "key", "e", "hint", "~!EXORCISM",
-  "for-unit", {"unit-paladin", "unit-knight-rider",
-    "unit-man-of-light"})
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-exorcism",
+  Action = "cast-spell", Value = "spell-exorcism",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-exorcism"},
+  Key = "e", Hint = "~!EXORCISM",
+  ForUnit = {"unit-paladin", "unit-knight-rider",
+    "unit-man-of-light"} } )
 
 -- mage specific actions ------------------------------------------------------
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-lightning",
-  "action", "attack",
-  "key", "a", "hint", "LIGHTNING ~!ATTACK",
-  "for-unit", {"unit-mage", "unit-white-mage"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-lightning",
+  Action = "attack",
+  Key = "a", Hint = "LIGHTNING ~!ATTACK",
+  ForUnit = {"unit-mage", "unit-white-mage"} } )
 
-DefineButton("pos", 4, "level", 0, "icon", "icon-fireball",
-  "action", "cast-spell", "value", "spell-fireball",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-fireball"},
-  "key", "f", "hint", "~!FIREBALL",
-  "for-unit", {"unit-mage", "unit-white-mage"})
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-fireball",
+  Action = "cast-spell", Value = "spell-fireball",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-fireball"},
+  Key = "f", Hint = "~!FIREBALL",
+  ForUnit = {"unit-mage", "unit-white-mage"} } )
 
-DefineButton("pos", 5, "level", 0, "icon", "icon-slow",
-  "action", "cast-spell", "value", "spell-slow",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-slow"},
-  "key", "o", "hint", "SL~!OW",
-  "for-unit", {"unit-mage", "unit-white-mage"})
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-slow",
+  Action = "cast-spell", Value = "spell-slow",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-slow"},
+  Key = "o", Hint = "SL~!OW",
+  ForUnit = {"unit-mage", "unit-white-mage"} } )
 
-DefineButton("pos", 6, "level", 0, "icon", "icon-flame-shield",
-  "action", "cast-spell", "value", "spell-flame-shield",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-flame-shield"},
-  "key", "l", "hint", "F~!LAME SHIELD",
-  "for-unit", {"unit-mage", "unit-white-mage"})
+DefineButton( { Pos = 6, Level = 0, Icon = "icon-flame-shield",
+  Action = "cast-spell", Value = "spell-flame-shield",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-flame-shield"},
+  Key = "l", Hint = "F~!LAME SHIELD",
+  ForUnit = {"unit-mage", "unit-white-mage"} } )
 
-DefineButton("pos", 7, "level", 0, "icon", "icon-invisibility",
-  "action", "cast-spell", "value", "spell-invisibility",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-invisibility"},
-  "key", "i", "hint", "~!INVISIBILITY",
-  "for-unit", {"unit-mage", "unit-white-mage"})
+DefineButton( { Pos = 7, Level = 0, Icon = "icon-invisibility",
+  Action = "cast-spell", Value = "spell-invisibility",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-invisibility"},
+  Key = "i", Hint = "~!INVISIBILITY",
+  ForUnit = {"unit-mage", "unit-white-mage"} } )
 
-DefineButton("pos", 8, "level", 0, "icon", "icon-polymorph",
-  "action", "cast-spell", "value", "spell-polymorph",
---  "action", "cast-spell", "value", "spell-suicide-bomber",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-polymorph"},
-  "key", "p", "hint", "~!POLYMORPH",
-  "for-unit", {"unit-mage", "unit-white-mage"})
+DefineButton( { Pos = 8, Level = 0, Icon = "icon-polymorph",
+  Action = "cast-spell", Value = "spell-polymorph",
+--  Action = "cast-spell", Value = "spell-suicide-bomber",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-polymorph"},
+  Key = "p", Hint = "~!POLYMORPH",
+  ForUnit = {"unit-mage", "unit-white-mage"} } )
 
-DefineButton("pos", 9, "level", 0, "icon", "icon-blizzard",
-  "action", "cast-spell", "value", "spell-blizzard",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-blizzard"},
-  "key", "b", "hint", "~!BLIZZARD",
-  "for-unit", {"unit-mage", "unit-white-mage"})
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-blizzard",
+  Action = "cast-spell", Value = "spell-blizzard",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-blizzard"},
+  Key = "b", Hint = "~!BLIZZARD",
+  ForUnit = {"unit-mage", "unit-white-mage"} } )
 
 -- peasant specific actions ---------------------------------------------------
 
-DefineButton("pos", 4, "level", 0, "icon", "icon-repair",
-  "action", "repair",
-  "key", "r", "hint", "~!REPAIR",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-repair",
+  Action = "repair",
+  Key = "r", Hint = "~!REPAIR",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 5, "level", 0, "icon", "icon-harvest",
-  "action", "harvest",
-  "key", "h", "hint", "~!HARVEST LUMBER/MINE GOLD",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-harvest",
+  Action = "harvest",
+  Key = "h", Hint = "~!HARVEST LUMBER/MINE GOLD",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 6, "level", 0, "icon", "icon-return-goods-peasant",
-  "action", "return-goods",
-  "key", "g", "hint", "RETURN WITH ~!GOODS",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 6, Level = 0, Icon = "icon-return-goods-peasant",
+  Action = "return-goods",
+  Key = "g", Hint = "RETURN WITH ~!GOODS",
+  ForUnit = {"unit-peasant"} } )
 
 -- build basic/advanced structs -----------------------------------------------
 
-DefineButton("pos", 7, "level", 0, "icon", "icon-build-basic",
-  "action", "button", "value", 1,
-  "key", "b", "hint", "~!BUILD BASIC STRUCTURE",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 7, Level = 0, Icon = "icon-build-basic",
+  Action = "button", Value = 1,
+  Key = "b", Hint = "~!BUILD BASIC STRUCTURE",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 8, "level", 0, "icon", "icon-build-advanced",
-  "action", "button", "value", 2,
-  "allowed", "check-units-or", "allow-arg", {"unit-elven-lumber-mill", "unit-keep"},
-  "key", "v", "hint", "BUILD AD~!VANCED STRUCTURE",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 8, Level = 0, Icon = "icon-build-advanced",
+  Action = "button", Value = 2,
+  Allowed = "check-units-or", AllowArg = {"unit-elven-lumber-mill", "unit-keep"},
+  Key = "v", Hint = "BUILD AD~!VANCED STRUCTURE",
+  ForUnit = {"unit-peasant"} } )
 
 if (extensions) then
-DefineButton("pos", 9, "level", 0, "icon", "icon-build-advanced",
-  "action", "button", "value", 3,
-  "allowed", "check-units-and", "allow-arg", {"unit-castle", "unit-mage-tower", "unit-church"},
-  "key", "e", "hint", "BUILD SP~!ECIAL STRUCTURE",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-build-advanced",
+  Action = "button", Value = 3,
+  Allowed = "check-units-and", AllowArg = {"unit-castle", "unit-mage-tower", "unit-church"},
+  Key = "e", Hint = "BUILD SP~!ECIAL STRUCTURE",
+  ForUnit = {"unit-peasant"} } )
 end
 
 -- simple buildings human -----------------------------------------------------
 
-DefineButton("pos", 1, "level", 1, "icon", "icon-farm",
-  "action", "build", "value", "unit-farm",
-  "key", "f", "hint", "BUILD ~!FARM",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 1, Level = 1, Icon = "icon-farm",
+  Action = "build", Value = "unit-farm",
+  Key = "f", Hint = "BUILD ~!FARM",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 2, "level", 1, "icon", "icon-alliance-barracks",
-  "action", "build", "value", "unit-alliance-barracks",
-  "key", "b", "hint", "BUILD ~!BARRACKS",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 2, Level = 1, Icon = "icon-alliance-barracks",
+  Action = "build", Value = "unit-alliance-barracks",
+  Key = "b", Hint = "BUILD ~!BARRACKS",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 3, "level", 1, "icon", "icon-town-hall",
-  "action", "build", "value", "unit-town-hall",
-  "key", "h", "hint", "BUILD TOWN ~!HALL",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 3, Level = 1, Icon = "icon-town-hall",
+  Action = "build", Value = "unit-town-hall",
+  Key = "h", Hint = "BUILD TOWN ~!HALL",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 4, "level", 1, "icon", "icon-elven-lumber-mill",
-  "action", "build", "value", "unit-elven-lumber-mill",
-  "key", "l", "hint", "BUILD ELVEN ~!LUMBER MILL",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 4, Level = 1, Icon = "icon-elven-lumber-mill",
+  Action = "build", Value = "unit-elven-lumber-mill",
+  Key = "l", Hint = "BUILD ELVEN ~!LUMBER MILL",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 5, "level", 1, "icon", "icon-alliance-blacksmith",
-  "action", "build", "value", "unit-alliance-blacksmith",
-  "key", "s", "hint", "BUILD BLACK~!SMITH",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 5, Level = 1, Icon = "icon-alliance-blacksmith",
+  Action = "build", Value = "unit-alliance-blacksmith",
+  Key = "s", Hint = "BUILD BLACK~!SMITH",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 7, "level", 1, "icon", "icon-alliance-watch-tower",
-  "action", "build", "value", "unit-alliance-watch-tower",
-  "key", "t", "hint", "BUILD ~!TOWER",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 7, Level = 1, Icon = "icon-alliance-watch-tower",
+  Action = "build", Value = "unit-alliance-watch-tower",
+  Key = "t", Hint = "BUILD ~!TOWER",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 8, "level", 1, "icon", "icon-alliance-wall",
-  "action", "build", "value", "unit-human-wall",
-  "allowed", "check-network",
-  "key", "w", "hint", "BUILD ~!WALL",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 8, Level = 1, Icon = "icon-alliance-wall",
+  Action = "build", Value = "unit-human-wall",
+  Allowed = "check-network",
+  Key = "w", Hint = "BUILD ~!WALL",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 9, "level", 1, "icon", "icon-cancel",
-  "action", "button", "value", 0,
-  "key", "\033", "hint", "~<ESC~> CANCEL",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
+  Action = "button", Value = 0,
+  Key = "\033", Hint = "~<ESC~> CANCEL",
+  ForUnit = {"unit-peasant"} } )
 
 -- human advanced buildings ---------------------------------------------------
 
-DefineButton("pos", 1, "level", 2, "icon", "icon-alliance-shipyard",
-  "action", "build", "value", "unit-alliance-shipyard",
-  "key", "s", "hint", "BUILD ~!SHIPYARD",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 1, Level = 2, Icon = "icon-alliance-shipyard",
+  Action = "build", Value = "unit-alliance-shipyard",
+  Key = "s", Hint = "BUILD ~!SHIPYARD",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 2, "level", 2, "icon", "icon-alliance-foundry",
-  "action", "build", "value", "unit-alliance-foundry",
-  "key", "f", "hint", "BUILD ~!FOUNDRY",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 2, Level = 2, Icon = "icon-alliance-foundry",
+  Action = "build", Value = "unit-alliance-foundry",
+  Key = "f", Hint = "BUILD ~!FOUNDRY",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 3, "level", 2, "icon", "icon-alliance-refinery",
-  "action", "build", "value", "unit-human-refinery",
-  "key", "r", "hint", "BUILD ~!REFINERY",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 3, Level = 2, Icon = "icon-alliance-refinery",
+  Action = "build", Value = "unit-human-refinery",
+  Key = "r", Hint = "BUILD ~!REFINERY",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 4, "level", 2, "icon", "icon-gnomish-inventor",
-  "action", "build", "value", "unit-inventor",
-  "key", "i", "hint", "BUILD GNOMISH ~!INVENTOR",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 4, Level = 2, Icon = "icon-gnomish-inventor",
+  Action = "build", Value = "unit-inventor",
+  Key = "i", Hint = "BUILD GNOMISH ~!INVENTOR",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 5, "level", 2, "icon", "icon-stables",
-  "action", "build", "value", "unit-stables",
-  "key", "a", "hint", "BUILD ST~!ABLES",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 5, Level = 2, Icon = "icon-stables",
+  Action = "build", Value = "unit-stables",
+  Key = "a", Hint = "BUILD ST~!ABLES",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 6, "level", 2, "icon", "icon-mage-tower",
-  "action", "build", "value", "unit-mage-tower",
-  "key", "m", "hint", "BUILD ~!MAGE TOWER",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 6, Level = 2, Icon = "icon-mage-tower",
+  Action = "build", Value = "unit-mage-tower",
+  Key = "m", Hint = "BUILD ~!MAGE TOWER",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 7, "level", 2, "icon", "icon-church",
-  "action", "build", "value", "unit-church",
-  "key", "c", "hint", "BUILD ~!CHURCH",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 7, Level = 2, Icon = "icon-church",
+  Action = "build", Value = "unit-church",
+  Key = "c", Hint = "BUILD ~!CHURCH",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 8, "level", 2, "icon", "icon-gryphon-aviary",
-  "action", "build", "value", "unit-gryphon-aviary",
-  "key", "g", "hint", "BUILD ~!GRYPHON AVIARY",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 8, Level = 2, Icon = "icon-gryphon-aviary",
+  Action = "build", Value = "unit-gryphon-aviary",
+  Key = "g", Hint = "BUILD ~!GRYPHON AVIARY",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 9, "level", 2, "icon", "icon-cancel",
-  "action", "button", "value", 0,
-  "key", "\033", "hint", "~<ESC~> CANCEL",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
+  Action = "button", Value = 0,
+  Key = "\033", Hint = "~<ESC~> CANCEL",
+  ForUnit = {"unit-peasant"} } )
 
 -- human special buildings ----------------------------------------------------
 
-DefineButton("pos", 1, "level", 3, "icon", "icon-dark-portal",
-  "action", "build", "value", "unit-dark-portal",
-  "allowed", "check-no-network",
-  "key", "p", "hint", "BUILD DARK ~!PORTAL",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 1, Level = 3, Icon = "icon-dark-portal",
+  Action = "build", Value = "unit-dark-portal",
+  Allowed = "check-no-network",
+  Key = "p", Hint = "BUILD DARK ~!PORTAL",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 2, "level", 3, "icon", "icon-runestone",
-  "action", "build", "value", "unit-runestone",
-  "allowed", "check-no-network",
-  "key", "r", "hint", "BUILD ~!RUNESTONE",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 2, Level = 3, Icon = "icon-runestone",
+  Action = "build", Value = "unit-runestone",
+  Allowed = "check-no-network",
+  Key = "r", Hint = "BUILD ~!RUNESTONE",
+  ForUnit = {"unit-peasant"} } )
 
-DefineButton("pos", 9, "level", 3, "icon", "icon-cancel",
-  "action", "button", "value", 0,
-  "key", "\033", "hint", "~<ESC~> CANCEL",
-  "for-unit", {"unit-peasant"})
+DefineButton( { Pos = 9, Level = 3, Icon = "icon-cancel",
+  Action = "button", Value = 0,
+  Key = "\033", Hint = "~<ESC~> CANCEL",
+  ForUnit = {"unit-peasant"} } )
 
 -- buildings commands ---------------------------------------------------------
 
 if (extensions) then
-DefineButton("pos", 1, "level", 0, "icon", "icon-critter",
-  "action", "train-unit", "value", "unit-critter",
-  "key", "c", "hint", "TRAIN ~!CRITTER",
-  "for-unit", {"unit-farm"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-critter",
+  Action = "train-unit", Value = "unit-critter",
+  Key = "c", Hint = "TRAIN ~!CRITTER",
+  ForUnit = {"unit-farm"} } )
 end
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-peasant",
-  "action", "train-unit", "value", "unit-peasant",
-  "allowed", "check-no-research",
-  "key", "p", "hint", "TRAIN ~!PEASANT",
-  "for-unit", {"unit-town-hall", "unit-keep", "unit-castle"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-peasant",
+  Action = "train-unit", Value = "unit-peasant",
+  Allowed = "check-no-research",
+  Key = "p", Hint = "TRAIN ~!PEASANT",
+  ForUnit = {"unit-town-hall", "unit-keep", "unit-castle"} } )
 
 -- town hall upgrades ---------------------------------------------------------
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-keep",
-  "action", "upgrade-to", "value", "unit-keep",
-  "allowed", "check-upgrade-to",
-  "key", "k", "hint", "UPGRADE TO ~!KEEP",
-  "for-unit", {"unit-town-hall"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-keep",
+  Action = "upgrade-to", Value = "unit-keep",
+  Allowed = "check-upgrade-to",
+  Key = "k", Hint = "UPGRADE TO ~!KEEP",
+  ForUnit = {"unit-town-hall"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-castle-upgrade",
-  "action", "upgrade-to", "value", "unit-castle",
-  "allowed", "check-upgrade-to",
-  "key", "c", "hint", "UPGRADE TO ~!CASTLE",
-  "for-unit", {"unit-keep"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-castle-upgrade",
+  Action = "upgrade-to", Value = "unit-castle",
+  Allowed = "check-upgrade-to",
+  Key = "c", Hint = "UPGRADE TO ~!CASTLE",
+  ForUnit = {"unit-keep"} } )
 
 if (extensions) then
 do
-DefineButton("pos", 5, "level", 0, "icon", "icon-harvest",
-  "action", "harvest",
-  "key", "h", "hint", "SET ~!HARVEST LUMBER/MINE GOLD",
-  "for-unit", {"unit-town-hall", "unit-keep", "unit-castle"})
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-harvest",
+  Action = "harvest",
+  Key = "h", Hint = "SET ~!HARVEST LUMBER/MINE GOLD",
+  ForUnit = {"unit-town-hall", "unit-keep", "unit-castle"} } )
 
-DefineButton("pos", 7, "level", 0, "icon", "icon-move-peasant",
-  "action", "move",
-  "key", "m", "hint", "SET ~!MOVE",
-  "for-unit", {"unit-town-hall", "unit-keep", "unit-castle", "unit-alliance-barracks",
-    "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"})
+DefineButton( { Pos = 7, Level = 0, Icon = "icon-move-peasant",
+  Action = "move",
+  Key = "m", Hint = "SET ~!MOVE",
+  ForUnit = {"unit-town-hall", "unit-keep", "unit-castle", "unit-alliance-barracks",
+    "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"} } )
 
-DefineButton("pos", 8, "level", 0, "icon", "icon-alliance-shield1",
-  "action", "stop",
-  "key", "z", "hint", "SET ~!ZTOP",
-  "for-unit", {"unit-town-hall", "unit-keep", "unit-castle", "unit-alliance-barracks",
-    "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"})
+DefineButton( { Pos = 8, Level = 0, Icon = "icon-alliance-shield1",
+  Action = "stop",
+  Key = "z", Hint = "SET ~!ZTOP",
+  ForUnit = {"unit-town-hall", "unit-keep", "unit-castle", "unit-alliance-barracks",
+    "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"} } )
 
-DefineButton("pos", 9, "level", 0, "icon", "icon-sword1",
-  "action", "attack",
-  "key", "e", "hint", "S~!ET ATTACK",
-  "for-unit", {"unit-town-hall", "unit-keep", "unit-castle", "unit-alliance-barracks",
-    "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"})
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-sword1",
+  Action = "attack",
+  Key = "e", Hint = "S~!ET ATTACK",
+  ForUnit = {"unit-town-hall", "unit-keep", "unit-castle", "unit-alliance-barracks",
+    "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"} } )
 end
 end
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-footman",
-  "action", "train-unit", "value", "unit-footman",
-  "key", "f", "hint", "TRAIN ~!FOOTMAN",
-  "for-unit", {"unit-alliance-barracks"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-footman",
+  Action = "train-unit", Value = "unit-footman",
+  Key = "f", Hint = "TRAIN ~!FOOTMAN",
+  ForUnit = {"unit-alliance-barracks"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-archer",
-  "action", "train-unit", "value", "unit-archer",
-  "key", "a", "hint", "TRAIN ~!ARCHER",
-  "for-unit", {"unit-alliance-barracks"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-archer",
+  Action = "train-unit", Value = "unit-archer",
+  Key = "a", Hint = "TRAIN ~!ARCHER",
+  ForUnit = {"unit-alliance-barracks"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-ranger",
-  "action", "train-unit", "value", "unit-ranger",
-  "key", "r", "hint", "TRAIN ~!RANGER",
-  "for-unit", {"unit-alliance-barracks"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-ranger",
+  Action = "train-unit", Value = "unit-ranger",
+  Key = "r", Hint = "TRAIN ~!RANGER",
+  ForUnit = {"unit-alliance-barracks"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-ballista",
-  "action", "train-unit", "value", "unit-ballista",
-  "key", "b", "hint", "BUILD ~!BALLISTA",
-  "for-unit", {"unit-alliance-barracks"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-ballista",
+  Action = "train-unit", Value = "unit-ballista",
+  Key = "b", Hint = "BUILD ~!BALLISTA",
+  ForUnit = {"unit-alliance-barracks"} } )
 
-DefineButton("pos", 4, "level", 0, "icon", "icon-knight",
-  "action", "train-unit", "value", "unit-knight",
-  "key", "k", "hint", "TRAIN ~!KNIGHT",
-  "for-unit", {"unit-alliance-barracks"})
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-knight",
+  Action = "train-unit", Value = "unit-knight",
+  Key = "k", Hint = "TRAIN ~!KNIGHT",
+  ForUnit = {"unit-alliance-barracks"} } )
 
-DefineButton("pos", 4, "level", 0, "icon", "icon-paladin",
-  "action", "train-unit", "value", "unit-paladin",
-  "key", "p", "hint", "TRAIN ~!PALADIN",
-  "for-unit", {"unit-alliance-barracks"})
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-paladin",
+  Action = "train-unit", Value = "unit-paladin",
+  Key = "p", Hint = "TRAIN ~!PALADIN",
+  ForUnit = {"unit-alliance-barracks"} } )
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-gnomish-flying-machine",
-  "action", "train-unit", "value", "unit-balloon",
-  "key", "f", "hint", "BUILD GNOMISH ~!FLYING MACHINE",
-  "for-unit", {"unit-inventor"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-gnomish-flying-machine",
+  Action = "train-unit", Value = "unit-balloon",
+  Key = "f", Hint = "BUILD GNOMISH ~!FLYING MACHINE",
+  ForUnit = {"unit-inventor"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-dwarves",
-  "action", "train-unit", "value", "unit-dwarves",
-  "key", "d", "hint", "TRAIN ~!DWARVEN DEMOLITION SQUAD",
-  "for-unit", {"unit-inventor"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-dwarves",
+  Action = "train-unit", Value = "unit-dwarves",
+  Key = "d", Hint = "TRAIN ~!DWARVEN DEMOLITION SQUAD",
+  ForUnit = {"unit-inventor"} } )
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-mage",
-  "action", "train-unit", "value", "unit-mage",
-  "key", "t", "hint", "~!TRAIN MAGE",
-  "for-unit", {"unit-mage-tower"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-mage",
+  Action = "train-unit", Value = "unit-mage",
+  Key = "t", Hint = "~!TRAIN MAGE",
+  ForUnit = {"unit-mage-tower"} } )
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-gryphon-rider",
-  "action", "train-unit", "value", "unit-gryphon-rider",
-  "key", "g", "hint", "TRAIN ~!GRYPHON RIDER",
-  "for-unit", {"unit-gryphon-aviary"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-gryphon-rider",
+  Action = "train-unit", Value = "unit-gryphon-rider",
+  Key = "g", Hint = "TRAIN ~!GRYPHON RIDER",
+  ForUnit = {"unit-gryphon-aviary"} } )
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-alliance-oil-tanker",
-  "action", "train-unit", "value", "unit-human-oil-tanker",
-  "key", "o", "hint", "BUILD ~!OIL TANKER",
-  "for-unit", {"unit-alliance-shipyard"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-alliance-oil-tanker",
+  Action = "train-unit", Value = "unit-human-oil-tanker",
+  Key = "o", Hint = "BUILD ~!OIL TANKER",
+  ForUnit = {"unit-alliance-shipyard"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-alliance-destroyer",
-  "action", "train-unit", "value", "unit-alliance-destroyer",
-  "key", "d", "hint", "BUILD ~!DESTROYER",
-  "for-unit", {"unit-alliance-shipyard"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-alliance-destroyer",
+  Action = "train-unit", Value = "unit-alliance-destroyer",
+  Key = "d", Hint = "BUILD ~!DESTROYER",
+  ForUnit = {"unit-alliance-shipyard"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-alliance-transport",
-  "action", "train-unit", "value", "unit-alliance-transport",
-  "key", "t", "hint", "BUILD ~!TRANSPORT",
-  "for-unit", {"unit-alliance-shipyard"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-alliance-transport",
+  Action = "train-unit", Value = "unit-alliance-transport",
+  Key = "t", Hint = "BUILD ~!TRANSPORT",
+  ForUnit = {"unit-alliance-shipyard"} } )
 
-DefineButton("pos", 4, "level", 0, "icon", "icon-gnomish-submarine",
-  "action", "train-unit", "value", "unit-alliance-submarine",
-  "key", "s", "hint", "BUILD GNOMISH ~!SUBMARINE",
-  "for-unit", {"unit-alliance-shipyard"})
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-gnomish-submarine",
+  Action = "train-unit", Value = "unit-alliance-submarine",
+  Key = "s", Hint = "BUILD GNOMISH ~!SUBMARINE",
+  ForUnit = {"unit-alliance-shipyard"} } )
 
-DefineButton("pos", 5, "level", 0, "icon", "icon-battleship",
-  "action", "train-unit", "value", "unit-battleship",
-  "key", "b", "hint", "BUILD ~!BATTLESHIP",
-  "for-unit", {"unit-alliance-shipyard"})
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-battleship",
+  Action = "train-unit", Value = "unit-battleship",
+  Key = "b", Hint = "BUILD ~!BATTLESHIP",
+  ForUnit = {"unit-alliance-shipyard"} } )
 
 if (extensions) then
 -----------------------------------------------------
-DefineButton("pos", 6, "level", 0, "icon", "icon-alliance-ship-haul-oil",
-  "action", "harvest",
-  "key", "h", "hint", "SET ~!HAUL OIL",
-  "for-unit", {"unit-alliance-shipyard"})
+DefineButton( { Pos = 6, Level = 0, Icon = "icon-alliance-ship-haul-oil",
+  Action = "harvest",
+  Key = "h", Hint = "SET ~!HAUL OIL",
+  ForUnit = {"unit-alliance-shipyard"} } )
 -----------------------------------------------------
 end
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-alliance-guard-tower",
-  "action", "upgrade-to", "value", "unit-alliance-guard-tower",
-  "key", "g", "hint", "UPGRADE TO ~!GUARD TOWER",
-  "for-unit", {"unit-alliance-watch-tower"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-alliance-guard-tower",
+  Action = "upgrade-to", Value = "unit-alliance-guard-tower",
+  Key = "g", Hint = "UPGRADE TO ~!GUARD TOWER",
+  ForUnit = {"unit-alliance-watch-tower"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-alliance-cannon-tower",
-  "action", "upgrade-to", "value", "unit-alliance-cannon-tower",
-  "key", "c", "hint", "UPGRADE TO ~!CANNON TOWER",
-  "for-unit", {"unit-alliance-watch-tower"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-alliance-cannon-tower",
+  Action = "upgrade-to", Value = "unit-alliance-cannon-tower",
+  Key = "c", Hint = "UPGRADE TO ~!CANNON TOWER",
+  ForUnit = {"unit-alliance-watch-tower"} } )
 
 -- ships ----------------------------------------------------------------------
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-alliance-ship-move",
-  "action", "move",
-  "key", "m", "hint", "~!MOVE",
-  "for-unit", {"unit-human-oil-tanker",
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-alliance-ship-move",
+  Action = "move",
+  Key = "m", Hint = "~!MOVE",
+  ForUnit = {"unit-human-oil-tanker",
     "unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer",
-    "unit-alliance-transport"})
+    "unit-alliance-transport"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-alliance-ship-armor1",
-  "action", "stop",
-  "key", "s", "hint", "~!STOP",
-  "for-unit", {"unit-human-oil-tanker",
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-alliance-ship-armor1",
+  Action = "stop",
+  Key = "s", Hint = "~!STOP",
+  ForUnit = {"unit-human-oil-tanker",
     "unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer",
-    "unit-alliance-transport"})
+    "unit-alliance-transport"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-alliance-unload",
-  "action", "unload",
-  "key", "u", "hint", "~!UNLOAD",
-  "for-unit", {"unit-alliance-transport"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-alliance-unload",
+  Action = "unload",
+  Key = "u", Hint = "~!UNLOAD",
+  ForUnit = {"unit-alliance-transport"} } )
 
-DefineButton("pos", 4, "level", 0, "icon", "icon-alliance-oil-platform",
-  "action", "build", "value", "unit-alliance-oil-platform",
-  "key", "b", "hint", "~!BUILD OIL PLATFORM",
-  "for-unit", {"unit-human-oil-tanker"})
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-alliance-oil-platform",
+  Action = "build", Value = "unit-alliance-oil-platform",
+  Key = "b", Hint = "~!BUILD OIL PLATFORM",
+  ForUnit = {"unit-human-oil-tanker"} } )
 
-DefineButton("pos", 5, "level", 0, "icon", "icon-alliance-ship-haul-oil",
-  "action", "harvest",
-  "key", "h", "hint", "~!HAUL OIL",
-  "for-unit", {"unit-human-oil-tanker"})
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-alliance-ship-haul-oil",
+  Action = "harvest",
+  Key = "h", Hint = "~!HAUL OIL",
+  ForUnit = {"unit-human-oil-tanker"} } )
 
-DefineButton("pos", 6, "level", 0, "icon", "icon-alliance-ship-return-oil",
-  "action", "return-goods",
-  "key", "g", "hint", "RETURN WITH ~!GOODS",
-  "for-unit", {"unit-human-oil"})
+DefineButton( { Pos = 6, Level = 0, Icon = "icon-alliance-ship-return-oil",
+  Action = "return-goods",
+  Key = "g", Hint = "RETURN WITH ~!GOODS",
+  ForUnit = {"unit-human-oil"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-alliance-ship-cannon1",
-  "action", "attack",
-  "key", "a", "hint", "~!ATTACK",
-  "for-unit", {"unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-alliance-ship-cannon1",
+  Action = "attack",
+  Key = "a", Hint = "~!ATTACK",
+  ForUnit = {"unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-alliance-ship-cannon2",
-  "action", "attack",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-human-ship-cannon1"},
-  "key", "a", "hint", "~!ATTACK",
-  "for-unit", {"unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-alliance-ship-cannon2",
+  Action = "attack",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-human-ship-cannon1"},
+  Key = "a", Hint = "~!ATTACK",
+  ForUnit = {"unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-alliance-ship-cannon3",
-  "action", "attack",
-  "allowed", "check-upgrade", "allow-arg", {"upgrade-human-ship-cannon2"},
-  "key", "a", "hint", "~!ATTACK",
-  "for-unit", {"unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-alliance-ship-cannon3",
+  Action = "attack",
+  Allowed = "check-upgrade", AllowArg = {"upgrade-human-ship-cannon2"},
+  Key = "a", Hint = "~!ATTACK",
+  ForUnit = {"unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"} } )
 
-DefineButton("pos", 4, "level", 0, "icon", "icon-alliance-patrol-naval",
-  "action", "patrol",
-  "key", "p", "hint", "~!PATROL",
-  "for-unit", {"unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"})
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-alliance-patrol-naval",
+  Action = "patrol",
+  Key = "p", Hint = "~!PATROL",
+  ForUnit = {"unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"} } )
 
 if (extensions) then
 do
-DefineButton("pos", 7, "level", 0, "icon", "icon-alliance-ship-move",
-  "action", "move",
-  "key", "m", "hint", "SET ~!MOVE",
-  "for-unit", {"unit-alliance-shipyard"})
+DefineButton( { Pos = 7, Level = 0, Icon = "icon-alliance-ship-move",
+  Action = "move",
+  Key = "m", Hint = "SET ~!MOVE",
+  ForUnit = {"unit-alliance-shipyard"} } )
 
-DefineButton("pos", 8, "level", 0, "icon", "icon-alliance-ship-armor1",
-  "action", "stop",
-  "key", "z", "hint", "SET ~!ZTOP",
-  "for-unit", {"unit-alliance-shipyard"})
+DefineButton( { Pos = 8, Level = 0, Icon = "icon-alliance-ship-armor1",
+  Action = "stop",
+  Key = "z", Hint = "SET ~!ZTOP",
+  ForUnit = {"unit-alliance-shipyard"} } )
 
-DefineButton("pos", 9, "level", 0, "icon", "icon-alliance-ship-cannon1",
-  "action", "attack",
-  "key", "e", "hint", "S~!ET ATTACK",
-  "for-unit", {"unit-alliance-shipyard"})
+DefineButton( { Pos = 9, Level = 0, Icon = "icon-alliance-ship-cannon1",
+  Action = "attack",
+  Key = "e", Hint = "S~!ET ATTACK",
+  ForUnit = {"unit-alliance-shipyard"} } )
 end
 end
 
 -- upgrades -------------------------------------------------------------------
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-sword2",
-  "action", "research", "value", "upgrade-sword1",
-  "allowed", "check-single-research",
-  "key", "w", "hint", "UPGRADE S~!WORDS (Damage +2)",
-  "for-unit", {"unit-alliance-blacksmith"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-sword2",
+  Action = "research", Value = "upgrade-sword1",
+  Allowed = "check-single-research",
+  Key = "w", Hint = "UPGRADE S~!WORDS (Damage +2)",
+  ForUnit = {"unit-alliance-blacksmith"} } )
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-sword3",
-  "action", "research", "value", "upgrade-sword2",
-  "allowed", "check-single-research",
-  "key", "w", "hint", "UPGRADE S~!WORDS (Damage +2)",
-  "for-unit", {"unit-alliance-blacksmith"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-sword3",
+  Action = "research", Value = "upgrade-sword2",
+  Allowed = "check-single-research",
+  Key = "w", Hint = "UPGRADE S~!WORDS (Damage +2)",
+  ForUnit = {"unit-alliance-blacksmith"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-alliance-shield2",
-  "action", "research", "value", "upgrade-human-shield1",
-  "allowed", "check-single-research",
-  "key", "s", "hint", "UPGRADE ~!SHIELDS (Armor +2)",
-  "for-unit", {"unit-alliance-blacksmith"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-alliance-shield2",
+  Action = "research", Value = "upgrade-human-shield1",
+  Allowed = "check-single-research",
+  Key = "s", Hint = "UPGRADE ~!SHIELDS (Armor +2)",
+  ForUnit = {"unit-alliance-blacksmith"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-alliance-shield3",
-  "action", "research", "value", "upgrade-human-shield2",
-  "allowed", "check-single-research",
-  "key", "s", "hint", "UPGRADE ~!SHIELDS (Armor +2)",
-  "for-unit", {"unit-alliance-blacksmith"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-alliance-shield3",
+  Action = "research", Value = "upgrade-human-shield2",
+  Allowed = "check-single-research",
+  Key = "s", Hint = "UPGRADE ~!SHIELDS (Armor +2)",
+  ForUnit = {"unit-alliance-blacksmith"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-ballista1",
-  "action", "research", "value", "upgrade-ballista1",
-  "allowed", "check-single-research",
-  "key", "b", "hint", "UPGRADE ~!BALLISTA (Damage +15)",
-  "for-unit", {"unit-alliance-blacksmith"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-ballista1",
+  Action = "research", Value = "upgrade-ballista1",
+  Allowed = "check-single-research",
+  Key = "b", Hint = "UPGRADE ~!BALLISTA (Damage +15)",
+  ForUnit = {"unit-alliance-blacksmith"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-ballista2",
-  "action", "research", "value", "upgrade-ballista2",
-  "allowed", "check-single-research",
-  "key", "b", "hint", "UPGRADE ~!BALLISTA (Damage +15)",
-  "for-unit", {"unit-alliance-blacksmith"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-ballista2",
+  Action = "research", Value = "upgrade-ballista2",
+  Allowed = "check-single-research",
+  Key = "b", Hint = "UPGRADE ~!BALLISTA (Damage +15)",
+  ForUnit = {"unit-alliance-blacksmith"} } )
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-arrow2",
-  "action", "research", "value", "upgrade-arrow1",
-  "allowed", "check-single-research",
-  "key", "u", "hint", "~!UPGRADE ARROWS (Damage +1)",
-  "for-unit", {"unit-elven-lumber-mill"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-arrow2",
+  Action = "research", Value = "upgrade-arrow1",
+  Allowed = "check-single-research",
+  Key = "u", Hint = "~!UPGRADE ARROWS (Damage +1)",
+  ForUnit = {"unit-elven-lumber-mill"} } )
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-arrow3",
-  "action", "research", "value", "upgrade-arrow2",
-  "allowed", "check-single-research",
-  "key", "u", "hint", "~!UPGRADE ARROWS (Damage +1)",
-  "for-unit", {"unit-elven-lumber-mill"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-arrow3",
+  Action = "research", Value = "upgrade-arrow2",
+  Allowed = "check-single-research",
+  Key = "u", Hint = "~!UPGRADE ARROWS (Damage +1)",
+  ForUnit = {"unit-elven-lumber-mill"} } )
 
-DefineButton("pos", 4, "level", 0, "icon", "icon-ranger",
-  "action", "research", "value", "upgrade-ranger",
-  "allowed", "check-single-research",
-  "key", "r", "hint", "ELVEN ~!RANGER TRAINING",
-  "for-unit", {"unit-elven-lumber-mill"})
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-ranger",
+  Action = "research", Value = "upgrade-ranger",
+  Allowed = "check-single-research",
+  Key = "r", Hint = "ELVEN ~!RANGER TRAINING",
+  ForUnit = {"unit-elven-lumber-mill"} } )
 
-DefineButton("pos", 4, "level", 0, "icon", "icon-ranger-scouting",
-  "action", "research", "value", "upgrade-ranger-scouting",
-  "allowed", "check-single-research",
-  "key", "s", "hint", "RANGER ~!SCOUTING (Sight:9)",
-  "for-unit", {"unit-elven-lumber-mill"})
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-ranger-scouting",
+  Action = "research", Value = "upgrade-ranger-scouting",
+  Allowed = "check-single-research",
+  Key = "s", Hint = "RANGER ~!SCOUTING (Sight:9)",
+  ForUnit = {"unit-elven-lumber-mill"} } )
 
-DefineButton("pos", 5, "level", 0, "icon", "icon-longbow",
-  "action", "research", "value", "upgrade-longbow",
-  "allowed", "check-single-research",
-  "key", "l", "hint", "RESEARCH ~!LONGBOW (Range +1)",
-  "for-unit", {"unit-elven-lumber-mill"})
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-longbow",
+  Action = "research", Value = "upgrade-longbow",
+  Allowed = "check-single-research",
+  Key = "l", Hint = "RESEARCH ~!LONGBOW (Range +1)",
+  ForUnit = {"unit-elven-lumber-mill"} } )
 
-DefineButton("pos", 6, "level", 0, "icon", "icon-ranger-marksmanship",
-  "action", "research", "value", "upgrade-ranger-marksmanship",
-  "allowed", "check-single-research",
-  "key", "m", "hint", "RANGER ~!MARKSMANSHIP (Damage +3)",
-  "for-unit", {"unit-elven-lumber-mill"})
+DefineButton( { Pos = 6, Level = 0, Icon = "icon-ranger-marksmanship",
+  Action = "research", Value = "upgrade-ranger-marksmanship",
+  Allowed = "check-single-research",
+  Key = "m", Hint = "RANGER ~!MARKSMANSHIP (Damage +3)",
+  ForUnit = {"unit-elven-lumber-mill"} } )
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-paladin",
-  "action", "research", "value", "upgrade-paladin",
-  "allowed", "check-single-research",
-  "key", "p", "hint", "UPGRADES KNIGHTS TO ~!PALADINS",
-  "for-unit", {"unit-church"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-paladin",
+  Action = "research", Value = "upgrade-paladin",
+  Allowed = "check-single-research",
+  Key = "p", Hint = "UPGRADES KNIGHTS TO ~!PALADINS",
+  ForUnit = {"unit-church"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-heal",
-  "action", "research", "value", "upgrade-healing",
-  "allowed", "check-single-research",
-  "key", "h", "hint", "RESEARCH ~!HEALING",
-  "for-unit", {"unit-church"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-heal",
+  Action = "research", Value = "upgrade-healing",
+  Allowed = "check-single-research",
+  Key = "h", Hint = "RESEARCH ~!HEALING",
+  ForUnit = {"unit-church"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-exorcism",
-  "action", "research", "value", "upgrade-exorcism",
-  "allowed", "check-single-research",
-  "key", "e", "hint", "RESEARCH ~!EXORCISM",
-  "for-unit", {"unit-church"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-exorcism",
+  Action = "research", Value = "upgrade-exorcism",
+  Allowed = "check-single-research",
+  Key = "e", Hint = "RESEARCH ~!EXORCISM",
+  ForUnit = {"unit-church"} } )
 
 if (extensions) then
-DefineButton("pos", 5, "level", 0, "icon", "icon-heal",
-  "action", "research", "value", "upgrade-area-healing",
-  "allowed", "check-single-research",
-  "key", "l", "hint", "RESEARCH AREA HEA~!LING",
-  "for-unit", {"unit-church"})
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-heal",
+  Action = "research", Value = "upgrade-area-healing",
+  Allowed = "check-single-research",
+  Key = "l", Hint = "RESEARCH AREA HEA~!LING",
+  ForUnit = {"unit-church"} } )
 end
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-slow",
-  "action", "research", "value", "upgrade-slow",
-  "allowed", "check-single-research",
-  "key", "o", "hint", "RESEARCH SL~!OW",
-  "for-unit", {"unit-mage-tower"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-slow",
+  Action = "research", Value = "upgrade-slow",
+  Allowed = "check-single-research",
+  Key = "o", Hint = "RESEARCH SL~!OW",
+  ForUnit = {"unit-mage-tower"} } )
 
-DefineButton("pos", 3, "level", 0, "icon", "icon-flame-shield",
-  "action", "research", "value", "upgrade-flame-shield",
-  "allowed", "check-single-research",
-  "key", "l", "hint", "RESEARCH F~!LAME SHIELD",
-  "for-unit", {"unit-mage-tower"})
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-flame-shield",
+  Action = "research", Value = "upgrade-flame-shield",
+  Allowed = "check-single-research",
+  Key = "l", Hint = "RESEARCH F~!LAME SHIELD",
+  ForUnit = {"unit-mage-tower"} } )
 
-DefineButton("pos", 4, "level", 0, "icon", "icon-invisibility",
-  "action", "research", "value", "upgrade-invisibility",
-  "allowed", "check-single-research",
-  "key", "i", "hint", "RESEARCH ~!INVISIBILITY",
-  "for-unit", {"unit-mage-tower"})
+DefineButton( { Pos = 4, Level = 0, Icon = "icon-invisibility",
+  Action = "research", Value = "upgrade-invisibility",
+  Allowed = "check-single-research",
+  Key = "i", Hint = "RESEARCH ~!INVISIBILITY",
+  ForUnit = {"unit-mage-tower"} } )
 
-DefineButton("pos", 5, "level", 0, "icon", "icon-polymorph",
-  "action", "research", "value", "upgrade-polymorph",
-  "allowed", "check-single-research",
-  "key", "p", "hint", "RESEARCH ~!POLYMORPH",
-  "for-unit", {"unit-mage-tower"})
+DefineButton( { Pos = 5, Level = 0, Icon = "icon-polymorph",
+  Action = "research", Value = "upgrade-polymorph",
+  Allowed = "check-single-research",
+  Key = "p", Hint = "RESEARCH ~!POLYMORPH",
+  ForUnit = {"unit-mage-tower"} } )
 
-DefineButton("pos", 6, "level", 0, "icon", "icon-blizzard",
-  "action", "research", "value", "upgrade-blizzard",
-  "allowed", "check-single-research",
-  "key", "b", "hint", "RESEARCH ~!BLIZZARD",
-  "for-unit", {"unit-mage-tower"})
+DefineButton( { Pos = 6, Level = 0, Icon = "icon-blizzard",
+  Action = "research", Value = "upgrade-blizzard",
+  Allowed = "check-single-research",
+  Key = "b", Hint = "RESEARCH ~!BLIZZARD",
+  ForUnit = {"unit-mage-tower"} } )
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-alliance-ship-cannon2",
-  "action", "research", "value", "upgrade-human-ship-cannon1",
-  "allowed", "check-single-research",
-  "key", "c", "hint", "UPGRADE ~!CANNONS (Damage +5)",
-  "for-unit", {"unit-alliance-foundry"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-alliance-ship-cannon2",
+  Action = "research", Value = "upgrade-human-ship-cannon1",
+  Allowed = "check-single-research",
+  Key = "c", Hint = "UPGRADE ~!CANNONS (Damage +5)",
+  ForUnit = {"unit-alliance-foundry"} } )
 
-DefineButton("pos", 1, "level", 0, "icon", "icon-alliance-ship-cannon3",
-  "action", "research", "value", "upgrade-human-ship-cannon2",
-  "allowed", "check-single-research",
-  "key", "c", "hint", "UPGRADE ~!CANNONS (Damage +5)",
-  "for-unit", {"unit-alliance-foundry"})
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-alliance-ship-cannon3",
+  Action = "research", Value = "upgrade-human-ship-cannon2",
+  Allowed = "check-single-research",
+  Key = "c", Hint = "UPGRADE ~!CANNONS (Damage +5)",
+  ForUnit = {"unit-alliance-foundry"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-alliance-ship-armor2",
-  "action", "research", "value", "upgrade-human-ship-armor1",
-  "allowed", "check-single-research",
-  "key", "a", "hint", "UPGRADE SHIP ~!ARMOR (Armor +5)",
-  "for-unit", {"unit-alliance-foundry"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-alliance-ship-armor2",
+  Action = "research", Value = "upgrade-human-ship-armor1",
+  Allowed = "check-single-research",
+  Key = "a", Hint = "UPGRADE SHIP ~!ARMOR (Armor +5)",
+  ForUnit = {"unit-alliance-foundry"} } )
 
-DefineButton("pos", 2, "level", 0, "icon", "icon-alliance-ship-armor3",
-  "action", "research", "value", "upgrade-human-ship-armor2",
-  "allowed", "check-single-research",
-  "key", "a", "hint", "UPGRADE SHIP ~!ARMOR (Armor +5)",
-  "for-unit", {"unit-alliance-foundry"})
+DefineButton( { Pos = 2, Level = 0, Icon = "icon-alliance-ship-armor3",
+  Action = "research", Value = "upgrade-human-ship-armor2",
+  Allowed = "check-single-research",
+  Key = "a", Hint = "UPGRADE SHIP ~!ARMOR (Armor +5)",
+  ForUnit = {"unit-alliance-foundry"} } )
