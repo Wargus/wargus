@@ -5,12 +5,12 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/ 
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	stratagus.ccl	-	The craft configuration language.
+--      stratagus.ccl - The craft configuration language.
 --
---	(c) Copyright 1998-2003 by Lutz Sammer
+--      (c) Copyright 1998-2003 by Lutz Sammer
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
+--      $Id$
 
 -- For documentation see stratagus/doc/ccl/ccl.html
 --[[
@@ -41,53 +41,52 @@ print("Stratagus default config file loading ...\n")
 --(define media-version (list 'wc2 'class 'wc2 'version '(1 18 0)))
 
 -------------------------------------------------------------------------------
---	Config-Part
+--  Config-Part
 -------------------------------------------------------------------------------
 
---	Edit the next sections to get your look and feel.
---	Note, some of those values are overridden by user preferences,
---	see ~/.stratagus/preferences1.ccl
---	and ~/.stratagus/gamename/preferences2.ccl
+--  Edit the next sections to get your look and feel.
+--  Note, some of those values are overridden by user preferences,
+--  see ~/.stratagus/preferences1.ccl
+--  and ~/.stratagus/gamename/preferences2.ccl
 
 
---	Set the game contrast,brightness,saturation.
+--  Set the game contrast,brightness,saturation.
 SetContrast(100) SetBrightness(0) SetSaturation(100)
 --SetContrast(110) SetBrightness(15) SetSaturation(100)
 
---	Enter your default title screen.
+--  Enter your default title screen.
 SetTitleScreens({
-    Image = "graphics/ui/stratagus.png",
-	Music = "music/default.mod"
-	}
---	{"graphics/logo_stratagus.avi"}
+  Image = "graphics/ui/stratagus.png",
+  Music = "music/default.mod"}
+--  {"graphics/logo_stratagus.avi"}
 )
 
---	Enter your default menu background.
+--  Enter your default menu background.
 SetMenuBackground("graphics/ui/Menu_background_without_title.png")
 
---	Enter your default menu background with title.
+--  Enter your default menu background with title.
 SetMenuBackgroundWithTitle(
-	"graphics/ui/Menu_background_with_title.png")
+  "graphics/ui/Menu_background_with_title.png")
 
---	Enter your menu music.
+--  Enter your menu music.
 SetMenuMusic("music/default.mod")
 
---	If color-cycle-all is off (#f) only the tileset and global palette are
---	color cycled.  Otherwise (#t) all palettes are color cycled.
+--  If color-cycle-all is off (#f) only the tileset and global palette are
+--  color cycled.  Otherwise (#t) all palettes are color cycled.
 SetColorCycleAll(true)
 --SetColorCycleAll(false)
 
---	Set the game name. It's used so we can mantain different savegames
---	and setting. Might also be used for multiplayer.
+--  Set the game name. It's used so we can mantain different savegames
+--  and setting. Might also be used for multiplayer.
 SetGameName("wc2")
---	set the default map file.
+--  set the default map file.
 SetDefaultMap("puds/default.pud")
 
 -------------------------------------------------------------------------------
---	Music play list -	Insert your titles here
+--  Music play list - Insert your titles here
 
 --
---	Create a list from the directory content
+--  Create a list from the directory content
 --
 --[[
 (define (dir->list s . prepend)
@@ -130,38 +129,38 @@ SetShowReactionRange(false)
 
 SetShowOrders(2)
 
---	Enable/disable the short display of the orders after command.
---	FIXME: planned
+--  Enable/disable the short display of the orders after command.
+--  FIXME: planned
 --(set-order-feedback! #t)
 --(set-order-feedback! #f)
 
---	Define the mana/energy decoration.
---	FIXME: Planned?
+--  Define the mana/energy decoration.
+--  FIXME: Planned?
 --
---	(set-mana-style!
---		'sprite (...)
---		'horizontal
---		'vertical
---		'no-full
---		'on-top
---		'only-selected
---		'background-long
---	  )
+--  (set-mana-style!
+--    'sprite (...)
+--    'horizontal
+--    'vertical
+--    'no-full
+--    'on-top
+--    'only-selected
+--    'background-long
+--  )
 
---	Define the health decoration.
---	FIXME: Planned?
+--  Define the health decoration.
+--  FIXME: Planned?
 --
---	(set-health-style!
---		'sprite (...)
---		'horizontal
---		'vertical
---		'no-full
---		'on-top
---		'only-selected
---		'background-long
---	  )
+--  (set-health-style!
+--    'sprite (...)
+--    'horizontal
+--    'vertical
+--    'no-full
+--    'on-top
+--    'only-selected
+--    'background-long
+--  )
 
---              file                             hotx hoty width height
+--              file              hotx hoty width height
 --ManaSprite("graphics/ui/mana.png", -7, -7, 7, 7)
 ManaSprite("graphics/ui/mana2.png", 0, -1, 31, 4)
 --HealthSprite("graphics/ui/health.png", 1, -7, 7, 7)
@@ -181,202 +180,202 @@ ShowNoFull()
 --ShowFull()
 
 
---	Uncomment next, to show energy bars and dots only for selected units
+--  Uncomment next, to show energy bars and dots only for selected units
 --(show-energy-selected-only)
 
---	Uncomment next, to show bars and dots always on top.
---	FIXME: planned feature
+--  Uncomment next, to show bars and dots always on top.
+--  FIXME: planned feature
 DecorationOnTop()
 
---	Define shadow-sprite.
+--  Define shadow-sprite.
 --
---	(shadow-sprite file hotx hoty width height)
+--  (shadow-sprite file hotx hoty width height)
 --
 ShadowSprite("graphics/missiles/unit_shadow.png", 3, 42, 32, 32)
 SpellSprite("graphics/ui/bloodlust,haste,slow,invisible,shield.png",
-	1, 1, 16, 16)
+  1, 1, 16, 16)
 
---	Uncomment next, to enable fancy building (random mirroring buildings)
+--  Uncomment next, to enable fancy building (random mirroring buildings)
 SetFancyBuildings(true)
 --SetFancyBuildings(false)
 
---	Edit this to enable/disable show tips at the start of a level
+--  Edit this to enable/disable show tips at the start of a level
 SetShowTips(true)
 
 -------------------------------------------------------------------------------
---	Game modification
+--  Game modification
 
---	Edit this to enable/disable XP to add more damage to attacks
+--  Edit this to enable/disable XP to add more damage to attacks
 --SetXPDamage(true)
 SetXPDamage(false)
 
---	Edit this to enable/disable extended features.
---		Currently enables some additional buttons.
+--  Edit this to enable/disable extended features.
+--    Currently enables some additional buttons.
 extensions = true
 --extensions = false
 
---	Edit this to enable/disable the training queues.
+--  Edit this to enable/disable the training queues.
 SetTrainingQueue(true)
 --SetTrainingQueue(false)
 
---	Edit this to enable/disable building capture.
+--  Edit this to enable/disable building capture.
 --SetBuildingCapture(true)
 SetBuildingCapture(false)
 
---	Set forest regeneration speed. (n* seconds, 0 = disabled)
---	(Auf allgemeinen Wunsch eines einzelnen Herrn :)
+--  Set forest regeneration speed. (n* seconds, 0 = disabled)
+--  (Auf allgemeinen Wunsch eines einzelnen Herrn :)
 SetForestRegeneration(0)
 --SetForestRegeneration(5)
 
---	Edit this to enable/disable the reveal of the attacker.
+--  Edit this to enable/disable the reveal of the attacker.
 --SetRevealAttacker(true)
 SetRevealAttacker(false)
 
 -------------------------------------------------------------------------------
 
---	If you prefer fighters are attacking by right clicking empty space
---	uncomment this (you must comment the next).
---	FIXME: this option will be renamed
+--  If you prefer fighters are attacking by right clicking empty space
+--  uncomment this (you must comment the next).
+--  FIXME: this option will be renamed
 --RightButtonAttacks()
 
---	If you prefer fighters are moving by right clicking empty space
---	uncomment this.
---	FIXME: this option will be renamed
+--  If you prefer fighters are moving by right clicking empty space
+--  uncomment this.
+--  FIXME: this option will be renamed
 RightButtonMoves()
 
---	Set the name of the missile to use when clicking
+--  Set the name of the missile to use when clicking
 SetClickMissile("missile-green-cross")
 
---	Set the name of the missile to use when displaying damage
+--  Set the name of the missile to use when displaying damage
 SetDamageMissile("missile-hit")
 
---	Edit this to enable/disable grabbing the mouse.
+--  Edit this to enable/disable grabbing the mouse.
 SetGrabMouse(false)
 
---	Edit this to enable/disable stopping scrolling on mouse leave.
+--  Edit this to enable/disable stopping scrolling on mouse leave.
 SetLeaveStops(true)
 
---	Edit this to enable/disable mouse scrolling.
+--  Edit this to enable/disable mouse scrolling.
 SetMouseScroll(true)
 --SetMouseScroll(false)
 
---	Edit this to enable/disable keyboard scrolling.
+--  Edit this to enable/disable keyboard scrolling.
 SetKeyScroll(true)
 --SetKeyScroll(false)
 
---	Set keyboard scroll speed in frames (1=each frame,2 each second,...)
+--  Set keyboard scroll speed in frames (1=each frame,2 each second,...)
 SetKeyScrollSpeed(1)
 
---	Set mouse scroll speed in frames (1=each frame,2 each second,...)
---	This is when the mouse cursor hits the border.
+--  Set mouse scroll speed in frames (1=each frame,2 each second,...)
+--  This is when the mouse cursor hits the border.
 SetMouseScrollSpeed(1)
 
---	While middle-mouse is pressed:
---	Pixels to move per scrolled mouse pixel, negative = reversed
+--  While middle-mouse is pressed:
+--  Pixels to move per scrolled mouse pixel, negative = reversed
 SetMouseScrollSpeedDefault(4)
 
---	Same if Control is pressed
+--  Same if Control is pressed
 SetMouseScrollSpeedDefault(15)
 
---	Change next, for the wanted double-click delay (in ms).
+--  Change next, for the wanted double-click delay (in ms).
 SetDoubleClickDelay(300)
 
---	Change next, for the wanted hold-click delay (in ms).
+--  Change next, for the wanted hold-click delay (in ms).
 SetHoldClickDelay(1000)
 
---	Edit this to enable/disable the display of the command keys in buttons.
+--  Edit this to enable/disable the display of the command keys in buttons.
 SetShowCommandKey(true)
 --SetShowCommandKey(false)
 
---	Uncomment next, to reveal the complete map.
+--  Uncomment next, to reveal the complete map.
 --RevealMap()
 
---	Choose your default fog of war state (enabled #t/disabled #f).
---		disabled is a C&C like fog of war.
+--  Choose your default fog of war state (enabled #t/disabled #f).
+--    disabled is a C&C like fog of war.
 SetFogOfWar(true)
 --SetFogOfWar(false)
 
---	Choose your default for minimap with/without terrain.
+--  Choose your default for minimap with/without terrain.
 SetMinimapTerrain(true)
 --SetMinimapTerrain(false)
 
---	Choose your default for the fog of war style.
--- Planned	(set-fog-of-war-style! 'original)
--- 		(set-fog-of-war-style! 'alpha-gray)
+--  Choose your default for the fog of war style.
+-- Planned  (set-fog-of-war-style! 'original)
+--          (set-fog-of-war-style! 'alpha-gray)
 --OriginalFogOfWar()
 AlphaFogOfWar()
 
---	If you use gray style fog of war set the contrast,brightness,saturation
+--  If you use gray style fog of war set the contrast,brightness,saturation
 SetFogOfWarContrast(30)
 SetFogOfWarBrightness(10)
 SetFogOfWarSaturation(100)
 
 -------------------------------------------------------------------------------
 
---	Define default resources
+--  Define default resources
 
 -- FIXME: Must be removed: Use and write (define-resource)
 --
---	(define-resource 'gold 'name "Gold"
---	  'start-resource-default 2000
---	  'start-resource-low 2000
---	  'start-resource-medium 5000
---	  'start-resource-high 10000
---	  'income 100)
---	  FIXME: Must describe how geting resources work.
+--  (define-resource 'gold 'name "Gold"
+--    'start-resource-default 2000
+--    'start-resource-low 2000
+--    'start-resource-medium 5000
+--    'start-resource-high 10000
+--    'income 100)
+--  FIXME: Must describe how geting resources work.
 --
 
 DefineDefaultResources(
-	0, 2000, 1000, 1000, 1000, 1000, 1000)
+  0, 2000, 1000, 1000, 1000, 1000, 1000)
 
 DefineDefaultResourcesLow(
-	0, 2000, 1000, 1000, 1000, 1000, 1000)
+  0, 2000, 1000, 1000, 1000, 1000, 1000)
 
 DefineDefaultResourcesMedium(
-	0, 5000, 2000, 2000, 2000, 2000, 2000)
+  0, 5000, 2000, 2000, 2000, 2000, 2000)
 
 DefineDefaultResourcesHigh(
-	0, 10000, 5000, 5000, 5000, 5000, 5000)
+  0, 10000, 5000, 5000, 5000, 5000, 5000)
 
 DefineDefaultIncomes(
-	0, 100, 100, 100, 100, 100)
+  0, 100, 100, 100, 100, 100)
 
 DefineDefaultActions(
-	"stop", "mine", "chop", "drill", "mine", "mine", "mine")
+  "stop", "mine", "chop", "drill", "mine", "mine", "mine")
 
 DefineDefaultResourceNames(
-	"time", "gold", "wood", "oil", "ore", "stone", "coal")
+  "time", "gold", "wood", "oil", "ore", "stone", "coal")
 
 DefineDefaultResourceAmounts(
-	"gold", 100000,
-	"oil", 50000)
+  "gold", 100000,
+  "oil", 50000)
 
 -------------------------------------------------------------------------------
 
---	Edit next to increase the speed, for debugging.
+--  Edit next to increase the speed, for debugging.
 
---	Decrease the mining time by this factor.
+--  Decrease the mining time by this factor.
 --SetSpeedResourcesHarvest("gold", 10)
---	Decrease the time in a gold deposit by this factor.
+--  Decrease the time in a gold deposit by this factor.
 --SetSpeedResourcesReturn("gold", 10)
---	Decrease the time for chopping a tree by this factor.
+--  Decrease the time for chopping a tree by this factor.
 --SetSpeedResourcesHarvest("wood", 10)
---	Decrease the time in a wood deposit by this factor.
+--  Decrease the time in a wood deposit by this factor.
 --SetSpeedResourcesReturn("wood", 10)
---	Decrease the time for haul oil by this factor.
+--  Decrease the time for haul oil by this factor.
 --SetSpeedResourcesHarvest("oil", 10)
---	Decrease the time in an oil deposit by this factor.
+--  Decrease the time in an oil deposit by this factor.
 --SetSpeedResourcesReturn("oil", 10)
---	Decrease the time to build a unit by this factor.
+--  Decrease the time to build a unit by this factor.
 --SetSpeedBuild(10)
---	Decrease the time to train a unit by this factor.
+--  Decrease the time to train a unit by this factor.
 --SetSpeedTrain(10)
---	Decrease the time to upgrade a unit by this factor.
+--  Decrease the time to upgrade a unit by this factor.
 --SetSpeedUpgrade(10)
---	Decrease the time to research by this factor.
+--  Decrease the time to research by this factor.
 --SetSpeedResearch(10)
 
---	You can do all the above with this
+--  You can do all the above with this
 SetSpeeds(1)
 
 -------------------------------------------------------------------------------
@@ -385,19 +384,19 @@ AStar("fixed-unit-cost", 1000, "moving-unit-cost", 20, "know-unseen-terrain", "u
 
 -------------------------------------------------------------------------------
 
---	Maximum number of selectable units
+--  Maximum number of selectable units
 SetMaxSelectable(18)
 
---	All player food unit limit
+--  All player food unit limit
 SetAllPlayersUnitLimit(200)
---	All player building limit
+--  All player building limit
 SetAllPlayersBuildingLimit(200)
---	All player total unit limit
+--  All player total unit limit
 SetAllPlayersTotalUnitLimit(400)
 
 -------------------------------------------------------------------------------
---	Default triggers for single player
---		(FIXME: must be combined with game types)
+--  Default triggers for single player
+--    (FIXME: must be combined with game types)
 
 function SinglePlayerTriggers()
   AddTrigger(
@@ -410,7 +409,7 @@ function SinglePlayerTriggers()
 end
 
 -------------------------------------------------------------------------------
---	Tables-Part
+--  Tables-Part
 -------------------------------------------------------------------------------
 
 --- Uses Stratagus Library path!
@@ -419,7 +418,7 @@ Load("ccl/wc2.lua")
 Load("ccl/tilesets.lua")
 Load("ccl/icons.lua")
 if (WithSound()) then
-	Load("ccl/sound.lua")
+  Load("ccl/sound.lua")
 end
 Load("ccl/missiles.lua")
 Load("ccl/constructions.lua")
@@ -443,7 +442,7 @@ Load("ccl/cheats.lua")
 --(define orc-first (list "B" "Er" "G" "Gr" "H" "P" "Pr" "R" "V" "Vr"))
 --(define orc-middle (list "a" "i" "o" "u"))
 --(define orc-last (list "dash" "dish" "dush" "gar" "gor" "gdush" "lo" "gdish"
---    "k" "lg" "nak" "rag" "rbag" "rg" "rk" "ng" "nk" "rt" "ol" "urk" "shnak"))
+--  "k" "lg" "nak" "rag" "rbag" "rg" "rk" "ng" "nk" "rt" "ol" "urk" "shnak"))
 
 --(define (orc-name)
 --  (string-append (nth (rand (length orc-first)) orc-first)
@@ -452,10 +451,10 @@ Load("ccl/cheats.lua")
 
 -- Test code to create male human names.
 --(define human-first (list "Au" "Gar" "Bo" "Natha" "Gwë" "Ann" "Ma"
---    "Ygd" "Ni" "Lau" "Fra" "O'" "Sul"))
+--  "Ygd" "Ni" "Lau" "Fra" "O'" "Sul"))
 --(define human-middle (list "ba" "ga" "ro" "na" "ji" "ria" "da" "li" "re" "va"))
 --(define human-last (list "nel" "mel" "mir" "ël" "len" "ll" "ril" "van"
---    "lin" "lien"))
+--  "lin" "lien"))
 
 --(define (human-name)
 --  (string-append (nth (rand (length human-first)) human-first)
