@@ -42,6 +42,7 @@
             func game-menu-save
             style gm-half)
     'menu 'menu-game)
+(if (symbol-bound? 'freecraft-feature-debug ())
 (define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "Load (~<F12~>)"
@@ -49,6 +50,15 @@
             func game-menu-load
             style gm-half)
     'menu 'menu-game)
+(define-menu-item 'pos (list (+ 16 12 106) 40) 'font 'large 'flags '(selected)
+    'flags '(disabled)
+    'button '(size (106 27)
+            caption "Load (~<F12~>)"
+            hotkey "f12"
+            func game-menu-load
+            style gm-half)
+    'menu 'menu-game)
+)
 (define-menu-item 'pos (list 16 (+ 40 (* 36 1))) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Options (~<F5~>)"
@@ -228,6 +238,7 @@
             func campaign-game-menu
             style gm-full)
     'menu 'menu-program-start)
+(if (symbol-bound? 'freecraft-feature-debug ())
 (define-menu-item 'pos (list 208 (+ 145 (* 36 3))) 'font 'large
     'button '(size (224 27)
             caption "~!Load Game"
@@ -235,6 +246,16 @@
             func game-menu-load
             style gm-full)
     'menu 'menu-program-start)
+(define-menu-item 'pos (list 208 (+ 145 (* 36 3))) 'font 'large
+    'flags '(disabled)
+    'button '(size (224 27)
+            caption "~!Load Game"
+            hotkey "l"
+            func game-menu-load
+            style gm-full)
+    'menu 'menu-program-start)
+)
+(if (symbol-bound? 'freecraft-feature-debug ())
 (define-menu-item 'pos (list 208 (+ 145 (* 36 4))) 'font 'large
     'button '(size (224 27)
             caption "~!Options"
@@ -242,6 +263,15 @@
             func menu-global-options
             style gm-full)
     'menu 'menu-program-start)
+(define-menu-item 'pos (list 208 (+ 145 (* 36 4))) 'font 'large
+    'flags '(disabled)
+    'button '(size (224 27)
+            caption "~!Options"
+            hotkey "o"
+            func menu-global-options
+            style gm-full)
+    'menu 'menu-program-start)
+)
 (define-menu-item 'pos (list 208 (+ 145 (* 36 5))) 'font 'large
     'button '(size (224 27)
             caption "~!Editor"
@@ -458,6 +488,7 @@
 (define-menu-item 'pos (list (- 640 224 16) (- (+ 10 300) 20)) 'font 'game
     'text '("~<Game Type:~>" none)
     'menu 'menu-custom-game)
+(if (symbol-bound? 'freecraft-feature-debug ())
 (define-menu-item 'pos (list (- 640 224 16) (+ 10 300)) 'font 'game
     'pulldown '(size (190 20)
               style pulldown
@@ -466,6 +497,15 @@
               default 0
               current 0)
     'menu 'menu-custom-game)
+(define-menu-item 'pos (list (- 640 224 16) (+ 10 300)) 'font 'game
+    'pulldown '(size (190 20)
+              style pulldown
+              func game-gat-action
+              options ("Use map settings" "Melee" "Free for all" "One on one" "Capture the flag" "Greed" "Slaughter" "Sudden death" "Team melee" "Team free for all" "Team capture the flag" "Top vs bottom" "Left vs right" )
+              default 0
+              current 0)
+    'menu 'menu-custom-game)
+)
 
 
 ;;
