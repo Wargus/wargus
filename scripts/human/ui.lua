@@ -72,6 +72,9 @@ function HumanScreen(screen_width, screen_height)
       "file", "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/resource.png",
       "pos", {176, 0}},
     "filler", {
+      "file", "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/statusline.png",
+      "pos", {176, screen_height - 16}},
+    "filler", {
       "file", "graphics/ui/human/menubutton.png",
       "pos", {0, 0}},
     "filler", {
@@ -216,12 +219,9 @@ function HumanScreen(screen_width, screen_height)
       "size", {128, 128}},
 
     "status-line", {
-      "file", "graphics/ui/human/" ..
-        screen_width .. "x" .. screen_height ..
-        "/statusline.png",
-      "pos", { 176, screen_height - 16},
       "text-pos", { 2 + 176, 2 + screen_height - 16},
-      "font", "game"},
+      "font", "game",
+      "width", screen_width - 192},
 
     "cursors", {
       "point", "cursor-point",
