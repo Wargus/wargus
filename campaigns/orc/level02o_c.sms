@@ -9,12 +9,12 @@ Briefing("type", "wc2",
 )
 
 AddTrigger( 
-  function() return IfUnit(2, "==", 0, "unit-sharp-axe") and
+  function() return GetPlayerData(2, "UnitTypesCount", "unit-sharp-axe") == 0 and
     IfRescuedNearUnit("this", "==", 1, "unit-sharp-axe", "unit-circle-of-power") end,
   function() return ActionVictory() end)
 	
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 -- Units

@@ -9,11 +9,11 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfUnit("this", ">=", 4, "unit-pig-farm") and
-    IfUnit("this", ">=", 1, "unit-orc-barracks") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-pig-farm") >= 4 and
+    GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-orc-barracks") >= 1 end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 -- Units

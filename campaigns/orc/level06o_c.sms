@@ -12,11 +12,11 @@ AddTrigger(
    function() return IfNearUnit("this", "==", 1, "unit-double-head", "unit-circle-of-power") end,
    function() return ActionVictory() end)
 AddTrigger(
-   function() return IfUnit("this", "==", 0, "unit-double-head") and
-     IfUnit(3, "==", 0, "unit-double-head") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-double-head") == 0 and
+    GetPlayerData(3, "UnitTypesCount", "unit-double-head") == 0 end,
    function() return ActionDefeat() end)
 AddTrigger(
-   function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
    function() return ActionDefeat() end)
 
 
