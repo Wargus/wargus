@@ -8,9 +8,9 @@
 ;;			  T H E   W A R   B E G I N S
 ;;	   FreeCraft - A free fantasy real time strategy game engine
 ;;
-;;	tileset_swamp.ccl	-	Define the swamp tileset.
+;;	tileset_swamp.ccl	-	Define the orc swamp tileset.
 ;;
-;;	(c) Copyright 2000 by Lutz Sammer
+;;	(c) Copyright 2000,2001 by Lutz Sammer
 ;;
 ;;	$Id$
 ;;
@@ -18,18 +18,21 @@
 ;;=============================================================================
 ;;	Define a tileset
 ;;
-;;	(define-tileset slot-ident class-name file slots)
+;;	(define-tileset slot-ident class-name image palette slots animations)
 ;;
+;; FIXME: (define-tileset) is missing
 
 ;;=============================================================================
 ;;	Define tilesets
 ;;
-;;	(tileset slot-name name file table)
+;;	(tileset slot-name name file palette table)
 ;;
 ;;	WARNING: tile2png can generate this tables!
 ;;
 
-(tileset 'tileset-swamp		"swamp"		"graphic/tileset/swamp.png"
+(tileset 'tileset-swamp		"swamp"
+  "graphic/tileset/swamp.png"
+  "swamp.rgb"
   #(  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0	; 000
     330 331 331 332   0   0   0   0   0   0   0   0   0   0   0   0	; 010
     333 334 334 335   0   0   0   0   0   0   0   0   0   0   0   0	; 020

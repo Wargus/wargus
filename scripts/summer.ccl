@@ -10,7 +10,7 @@
 ;;
 ;;	tileset_summer.ccl	-	Define the summer tileset.
 ;;
-;;	(c) Copyright 2000 by Lutz Sammer
+;;	(c) Copyright 2000,2001 by Lutz Sammer
 ;;
 ;;	$Id$
 ;;
@@ -18,12 +18,13 @@
 ;;=============================================================================
 ;;	Define a tileset
 ;;
-;;	(define-tileset slot-ident class-name file slots)
+;;	(define-tileset slot-ident class-name image palette slots animations)
 ;;
-(define-tileset
-  'tileset-summer	"summer"		"graphic/tileset/summer.png"
-  ;; Slots
-  '(( 'special		;; Can't be in pud
+(define-tileset 'tileset-summer	'class "summer"
+  'image "graphic/tileset/summer.png"
+  'palette "summer.rgb"
+  ;; Slots descriptions
+  'slots '(( 'special		;; Can't be in pud
     'extra-trees #( 115 116 117 118 119 120 )
     'top-one-tree 121 'mid-one-tree 122 'bot-one-tree 123
     'removed-tree 126
@@ -216,17 +217,19 @@
     #(  50   0  86   0  99))						; 9D0
   )
   ;; Animated tiles
-  '( #( ) ))
+  'animations '( #( ) ))
 
 ;;=============================================================================
 ;;	Define tilesets
 ;;
-;;	(tileset slot-name name file table)
+;;	(tileset slot-name name file palette table)
 ;;
 ;;	WARNING: tile2png can generate this tables!
 ;;
 
-(tileset 'tileset-summer	"summer"	"graphic/tileset/summer.png"
+(tileset 'tileset-summer	"summer"
+  "graphic/tileset/summer.png"
+  "summer.rgb"
   #(  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0	; 000
     328 329 329 330   0   0   0   0   0   0   0   0   0   0   0   0	; 010
     331 332 332 333   0   0   0   0   0   0   0   0   0   0   0   0	; 020
