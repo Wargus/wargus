@@ -3123,7 +3123,7 @@
 ;;
 ;; menu-editor-save
 ;;
-(define-menu 'name 'menu-editor-save 'geometry '(144 64 352 352)
+(define-menu 'name 'menu-editor-save 'geometry '(224 64 352 352)
     'image 'panel5 'default '5)
 (define-menu-item 'pos (list (/ 352 2) 11) 'font 'large
     'text '("Save map" center)
@@ -3168,4 +3168,33 @@
             style folder)
     'menu 'menu-editor-save)
 
+
+;;
+;; menu-editor-save-confirm
+;;
+(define-menu 'name 'menu-editor-save-confirm 'geometry '(256 112 288 128)
+    'image 'panel4 'default '1)
+(define-menu-item 'pos (list (/ 288 2) 11) 'font 'large  'init 'editor-save-confirm-init
+    'text '("Overwrite File" center)
+    'menu 'menu-editor-save-confirm)
+(define-menu-item 'pos (list 16 (+ 11 (* 20 1.5))) 'font 'game
+    'text '("Are you sure you want to overwrite" left)
+    'menu 'menu-editor-save-confirm)
+(define-menu-item 'pos (list 16 (+ 11 (* 20 2.5))) 'font 'game
+    'text '(() left)
+    'menu 'menu-editor-save-confirm)
+(define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "~!Ok"
+            hotkey "o"
+            func editor-save-confirm-ok
+            style gm-half)
+    'menu 'menu-editor-save-confirm)
+(define-menu-item 'pos (list (- 288 16 106) (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "~!Cancel"
+            hotkey "c"
+            func editor-save-confirm-cancel
+            style gm-half)
+    'menu 'menu-editor-save-confirm)
 
