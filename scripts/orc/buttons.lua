@@ -576,7 +576,7 @@ DefineButton( { Pos = 5, Level = 0, Icon = "icon-mythical-ship-haul-oil",
 DefineButton( { Pos = 6, Level = 0, Icon = "icon-mythical-ship-return-oil",
   Action = "return-goods",
   Key = "g", Hint = "RETURN WITH ~!GOODS",
-  ForUnit = {"unit-orc-oil"} } )
+  ForUnit = {"unit-orc-oil-tanker"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-mythical-ship-cannon1",
   Action = "attack",
