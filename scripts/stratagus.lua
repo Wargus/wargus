@@ -363,7 +363,7 @@ Load("scripts/wc2.lua")
 
 Load("scripts/tilesets.lua")
 Load("scripts/icons.lua")
-if (WithSound()) then
+if (CompileFeature("SOUND")) then
   Load("scripts/sound.lua")
 end
 Load("scripts/missiles.lua")
