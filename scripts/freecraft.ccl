@@ -32,7 +32,7 @@
 ;(race-add 1)
 
 ;;	Enter your default title screen.
-(title-screen "ale-title.png")
+(title-screen "freecraft.png")
 
 ;;-----------------------------------------------------------------------------
 

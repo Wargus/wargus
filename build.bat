@@ -107,7 +107,7 @@ copy /b %CONTRIB%\health.png %DIR%
 copy /b %CONTRIB%\food.png %DIR%\graphic
 copy /b %CONTRIB%\score.png %DIR%\graphic
 copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphic
-copy /b %CONTRIB%\ale-title.png %DIR%
+copy /b %CONTRIB%\freecraft.png %DIR%
 REM copy /b %CONTRIB%\ui\alliance\*.png %DIR%\graphic\ui\alliance
 REM copy /b %CONTRIB%\ui\mythical\*.png %DIR%\graphic\ui\mythical
 
