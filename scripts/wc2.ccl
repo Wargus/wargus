@@ -91,9 +91,9 @@
     'unit-nothing-24 'unit-nothing-25 'unit-alliance-submarine
     'unit-mythical-submarine 'unit-balloon 'unit-zeppelin
     'unit-gryphon-rider 'unit-dragon 'unit-knight-rider 'unit-eye-of-vision
-    'unit-arthor-literios 'unit-quick-blade 'unit-nothing-30 'unit-double-head
+    'unit-arthor-literios 'unit-quick-blade 'unit-knight-rider 'unit-double-head
     'unit-wise-man 'unit-ice-bringer 'unit-man-of-light 'unit-sharp-axe
-    'unit-nothing-36 'unit-skeleton 'unit-daemon 'unit-critter
+    'unit-skeleton 'unit-skeleton 'unit-daemon 'unit-critter
     'unit-farm 'unit-pig-farm 'unit-alliance-barracks 'unit-mythical-barracks
     'unit-church 'unit-altar-of-storms 'unit-alliance-watch-tower
     'unit-mythical-watch-tower 'unit-stables 'unit-ogre-mound
