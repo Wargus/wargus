@@ -10,12 +10,11 @@
 ;;
 ;;	constructions.ccl	-	Define the constructions.
 ;;
-;;	(c) Copyright 2001 by Lutz Sammer
+;;	(c) Copyright 2001,2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
-;;	by the Free Software Foundation; either version 2 of the License,
-;;	or (at your option) any later version.
+;;	by the Free Software Foundation; only version 2 of the License.
 ;;
 ;;	FreeCraft is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -33,7 +32,7 @@
 ;;	(define-construction ident 'files '(tileset-name filename ..)
 ;;	    'size '(x y))
 
-(define-construction 'construction-0
+(define-construction 'construction-none
   'files '(summer "neutral/buildings/land construction site.png"
     winter "tilesets/winter/neutral/buildings/land construction site.png")
   'size '(64 64))
