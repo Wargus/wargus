@@ -567,6 +567,8 @@
   'size '(72 72)
   'animations 'animations-human-transport 'icon 'icon-mythical-transport
   'costs '(time 70 gold 600 wood 200 oil 500)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1 oil 1)
   'speed 10
   'hit-points 150
   'draw-level 40
@@ -981,6 +983,8 @@
   'size '(64 64)
   'animations 'animations-building 'icon 'icon-pig-farm
   'costs '(time 100 gold 500 wood 250)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 400
@@ -1009,6 +1013,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-mythical-barracks
   'costs '(time 200 gold 700 wood 450)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 800
@@ -1036,6 +1042,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-altar-of-storms
   'costs '(time 175 gold 900 wood 500)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 700
@@ -1063,6 +1071,8 @@
   'size '(64 64)
   'animations 'animations-building 'icon 'icon-mythical-watch-tower
   'costs '(time 60 gold 550 wood 200)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 100
@@ -1092,6 +1102,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-ogre-mound
   'costs '(time 150 gold 1000 wood 300)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 500
@@ -1119,6 +1131,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-alchemist
   'costs '(time 150 gold 1000 wood 400)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 500
@@ -1146,6 +1160,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-dragon-roost
   'costs '(time 150 gold 1000 wood 400)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 500
@@ -1173,6 +1189,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-mythical-shipyard
   'costs '(time 200 gold 800 wood 450)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-mythical-shipyard
   'speed 0
   'hit-points 1100
@@ -1202,6 +1220,8 @@
   'size '(128 128)
   'animations 'animations-building 'icon 'icon-great-hall
   'costs '(time 255 gold 1200 wood 800)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 1200
@@ -1232,6 +1252,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-troll-lumber-mill
   'costs '(time 150 gold 600 wood 450)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'improve-production '(wood 25)
   'construction 'construction-land
   'speed 0
@@ -1261,6 +1283,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-mythical-foundry
   'costs '(time 175 gold 700 wood 400 oil 400)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1 oil 1)
   'construction 'construction-mythical-foundry
   'speed 0
   'hit-points 750
@@ -1289,6 +1313,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-temple-of-the-damned
   'costs '(time 125 gold 1000 wood 200)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 500
@@ -1316,6 +1342,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-mythical-blacksmith
   'costs '(time 200 gold 800 wood 450 oil 100)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1 oil 1)
   'construction 'construction-land
   'speed 0
   'hit-points 775
@@ -1343,6 +1371,8 @@
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-mythical-refinery
   'costs '(time 225 gold 800 wood 350 oil 200)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1 oil 1)
   'improve-production '(oil 25)
   'construction 'construction-mythical-refinery
   'speed 0
@@ -1403,6 +1433,8 @@
   'size '(128 128)
   'animations 'animations-building 'icon 'icon-stronghold
   'costs '(time 200 gold 2000 wood 1000 oil 200)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1 oil 1)
   'improve-production '(gold 10)
   'construction 'construction-land
   'speed 0
@@ -1433,6 +1465,8 @@
   'size '(128 128)
   'animations 'animations-building 'icon 'icon-fortress
   'costs '(time 200 gold 2500 wood 1200 oil 500)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1 oil 1)
   'improve-production '(gold 20)
   'construction 'construction-land
   'speed 0
@@ -1484,6 +1518,8 @@
   'size '(64 64)
   'animations 'animations-human-guard-tower 'icon 'icon-mythical-guard-tower
   'costs '(time 140 gold 500 wood 150)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 130
@@ -1516,6 +1552,8 @@
   'size '(64 64)
   'animations 'animations-human-cannon-tower 'icon 'icon-mythical-cannon-tower
   'costs '(time 190 gold 1000 wood 300)
+  'repair-hp 4
+  'repair-costs '(gold 1 wood 1)
   'construction 'construction-land
   'speed 0
   'hit-points 160
