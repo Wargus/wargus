@@ -10,12 +10,11 @@
 //
 /**@name wartool.c	-	Extract files from war archives. */
 //
-//	(c) Copyright 1999-2001 by Lutz Sammer
+//	(c) Copyright 1999-2002 by Lutz Sammer
 //
 //	FreeCraft is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published
-//	by the Free Software Foundation; either version 2 of the License,
-//	or (at your option) any later version.
+//	by the Free Software Foundation; only version 2 of the License.
 //
 //	FreeCraft is distributed in the hope that it will be useful,
 //	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -157,7 +156,7 @@ enum _archive_type_ {
     N,			// Font				(name,idx)
     I,			// Image			(name,pal,img)
     W,			// Wav				(name,wav)
-    X,			// Text				(name,text)
+    X,			// Text				(name,text,ofs)
     C,			// Cursor			(name,cursor)
 };
 
@@ -180,60 +179,65 @@ Control Todo[] = {
 {F,0,"strdat.war",				4000 __},
 #endif
 {S,0,"unit_names",						  1	__},
-{X,0,"human/level01h",						 65	__},
-{X,0,"orc/level01o",						 66	__},
-{X,0,"human/level02h",						 67	__},
-{X,0,"orc/level02o",						 68	__},
-{X,0,"human/level03h",						 69	__},
-{X,0,"orc/level03o",						 70	__},
-{X,0,"human/level04h",						 71	__},
-{X,0,"orc/level04o",						 72	__},
-{X,0,"human/level05h",						 73	__},
-{X,0,"orc/level05o",						 74	__},
-{X,0,"human/level06h",						 75	__},
-{X,0,"orc/level06o",						 76	__},
-{X,0,"human/level07h",						 77	__},
-{X,0,"orc/level07o",						 78	__},
-{X,0,"human/level08h",						 79	__},
-{X,0,"orc/level08o",						 80	__},
-{X,0,"human/level09h",						 81	__},
-{X,0,"orc/level09o",						 82	__},
-{X,0,"human/level10h",						 83	__},
-{X,0,"orc/level10o",						 84	__},
-{X,0,"human/level11h",						 85	__},
-{X,0,"orc/level11o",						 86	__},
-{X,0,"human/level12h",						 87	__},
-{X,0,"orc/level12o",						 88	__},
-{X,0,"human/level13h",						 89	__},
-{X,0,"orc/level13o",						 90	__},
-{X,0,"human/level14h",						 91	__},
-{X,0,"orc/level14o",						 92	__},
+{X,0,"objectives",						 54	__},
+{X,0,"human/dialog",						 55	__},
+{X,0,"orc/dialog",						 56	__},
+
+{X,0,"human/level01h",						 65 ,4	_2},
+{X,0,"orc/level01o",						 66 ,4	_2},
+{X,0,"human/level02h",						 67 ,4	_2},
+{X,0,"orc/level02o",						 68 ,4	_2},
+{X,0,"human/level03h",						 69 ,4	_2},
+{X,0,"orc/level03o",						 70 ,4	_2},
+{X,0,"human/level04h",						 71 ,4	_2},
+{X,0,"orc/level04o",						 72 ,4	_2},
+{X,0,"human/level05h",						 73 ,4	_2},
+{X,0,"orc/level05o",						 74 ,4	_2},
+{X,0,"human/level06h",						 75 ,4	_2},
+{X,0,"orc/level06o",						 76 ,4	_2},
+{X,0,"human/level07h",						 77 ,4	_2},
+{X,0,"orc/level07o",						 78 ,4	_2},
+{X,0,"human/level08h",						 79 ,4	_2},
+{X,0,"orc/level08o",						 80 ,4	_2},
+{X,0,"human/level09h",						 81 ,4	_2},
+{X,0,"orc/level09o",						 82 ,4	_2},
+{X,0,"human/level10h",						 83 ,4	_2},
+{X,0,"orc/level10o",						 84 ,4	_2},
+{X,0,"human/level11h",						 85 ,4	_2},
+{X,0,"orc/level11o",						 86 ,4	_2},
+{X,0,"human/level12h",						 87 ,4	_2},
+{X,0,"orc/level12o",						 88 ,4	_2},
+{X,0,"human/level13h",						 89 ,4	_2},
+{X,0,"orc/level13o",						 90 ,4	_2},
+{X,0,"human/level14h",						 91 ,4	_2},
+{X,0,"orc/level14o",						 92 ,4	_2},
 #ifdef HAVE_EXPANSION
-{X,2,"human/levelx01h",						 99	__},
-{X,2,"orc/levelx01o",						100	__},
-{X,2,"human/levelx02h",						101	__},
-{X,2,"orc/levelx02o",						102	__},
-{X,2,"human/levelx03h",						103	__},
-{X,2,"orc/levelx03o",						104	__},
-{X,2,"human/levelx04h",						105	__},
-{X,2,"orc/levelx04o",						106	__},
-{X,2,"human/levelx05h",						107	__},
-{X,2,"orc/levelx05o",						108	__},
-{X,2,"human/levelx06h",						109	__},
-{X,2,"orc/levelx06o",						110	__},
-{X,2,"human/levelx07h",						111	__},
-{X,2,"orc/levelx07o",						112	__},
-{X,2,"human/levelx08h",						113	__},
-{X,2,"orc/levelx08o",						114	__},
-{X,2,"human/levelx09h",						115	__},
-{X,2,"orc/levelx09o",						116	__},
-{X,2,"human/levelx10h",						117	__},
-{X,2,"orc/levelx10o",						118	__},
-{X,2,"human/levelx11h",						119	__},
-{X,2,"orc/levelx11o",						120	__},
-{X,2,"human/levelx12h",						121	__},
-{X,2,"orc/levelx12o",						122	__},
+{X,2,"human/levelx01h",						 99 ,4	_2},
+{X,2,"orc/levelx01o",						100 ,4	_2},
+{X,2,"human/levelx02h",						101 ,4	_2},
+{X,2,"orc/levelx02o",						102 ,4	_2},
+{X,2,"human/levelx03h",						103 ,4	_2},
+{X,2,"orc/levelx03o",						104 ,4	_2},
+{X,2,"human/levelx04h",						105 ,4	_2},
+{X,2,"orc/levelx04o",						106 ,4	_2},
+{X,2,"human/levelx05h",						107 ,4	_2},
+{X,2,"orc/levelx05o",						108 ,4	_2},
+{X,2,"human/levelx06h",						109 ,4	_2},
+{X,2,"orc/levelx06o",						110 ,4	_2},
+{X,2,"human/levelx07h",						111 ,4	_2},
+{X,2,"orc/levelx07o",						112 ,4	_2},
+{X,2,"human/levelx08h",						113 ,4	_2},
+{X,2,"orc/levelx08o",						114 ,4	_2},
+{X,2,"human/levelx09h",						115 ,4	_2},
+{X,2,"orc/levelx09o",						116 ,4	_2},
+{X,2,"human/levelx10h",						117 ,4	_2},
+{X,2,"orc/levelx10o",						118 ,4	_2},
+{X,2,"human/levelx11h",						119 ,4	_2},
+{X,2,"orc/levelx11o",						120 ,4	_2},
+{X,2,"human/levelx12h",						121 ,4	_2},
+{X,2,"orc/levelx12o",						122 ,4	_2},
 #endif
+
 ///////////////////////////////////////////////////////////////////////////////
 //	MOST THINGS
 ///////////////////////////////////////////////////////////////////////////////
@@ -577,6 +581,17 @@ Control Todo[] = {
 {G,0,"tilesets/summer/icons",					 2, 356 _2},
 {G,0,"tilesets/winter/icons",					18, 357 _2},
 {G,0,"tilesets/wasteland/icons",				10, 358 _2},
+
+{I,0,"../campaigns/human/interface/introscreen1",	       367, 369 _2},
+{I,0,"../campaigns/orc/interface/introscreen1",		       368, 370 _2},
+{I,0,"../campaigns/orc/interface/introscreen2",		       368, 371 _2},
+{I,0,"../campaigns/orc/interface/introscreen3",		       368, 372 _2},
+{I,0,"../campaigns/orc/interface/introscreen4",		       368, 373 _2},
+{I,0,"../campaigns/orc/interface/introscreen5",		       368, 374 _2},
+{I,0,"../campaigns/human/interface/introscreen2",	       367, 375 _2},
+{I,0,"../campaigns/human/interface/introscreen3",	       367, 376 _2},
+{I,0,"../campaigns/human/interface/introscreen4",	       367, 377 _2},
+{I,0,"../campaigns/human/interface/introscreen5",	       367, 378 _2},
 
 {W,0,"ui/click",						432	__},
 {W,0,"ui/highclick",						435	__},
@@ -1129,7 +1144,6 @@ Control Todo[] = {
 //	SPEACH INTROS
 ///////////////////////////////////////////////////////////////////////////////
 
-#if 0	// FIXME: this isn't supported by the engine
 	// FIXME: this file contains different data, if expansion or not.
 	// FIXME: Where and what are the expansion entries
 
@@ -1190,8 +1204,128 @@ Control Todo[] = {
 
 {W,2,"../campaigns/orc-exp/levelx01o-intro1",				52 __},
 {W,2,"../campaigns/orc-exp/levelx01o-intro2",				53 __},
+{W,2,"../campaigns/levelx001-intro1",					54 __},
+{W,2,"../campaigns/levelx002-intro1",					55 __},
+{W,2,"../campaigns/levelx003-intro1",					56 __},
+{W,2,"../campaigns/levelx004-intro1",					57 __},
+{W,2,"../campaigns/levelx005-intro1",					58 __},
+{W,2,"../campaigns/levelx006-intro1",					59 __},
+{W,2,"../campaigns/levelx007-intro1",					60 __},
+{W,2,"../campaigns/levelx008-intro1",					61 __},
+{W,2,"../campaigns/levelx009-intro1",					62 __},
+{W,2,"../campaigns/levelx010-intro1",					63 __},
+{W,2,"../campaigns/levelx011-intro1",					64 __},
+{W,2,"../campaigns/levelx012-intro1",					65 __},
+{W,2,"../campaigns/levelx013-intro1",					66 __},
+{W,2,"../campaigns/levelx014-intro1",					67 __},
+{W,2,"../campaigns/levelx015-intro1",					68 __},
+{W,2,"../campaigns/levelx016-intro1",					69 __},
+{W,2,"../campaigns/levelx017-intro1",					70 __},
+{W,2,"../campaigns/levelx018-intro1",					71 __},
+{W,2,"../campaigns/levelx019-intro1",					72 __},
+{W,2,"../campaigns/levelx020-intro1",					73 __},
+{W,2,"../campaigns/levelx021-intro1",					74 __},
+{W,2,"../campaigns/levelx022-intro1",					75 __},
+{W,2,"../campaigns/levelx023-intro1",					76 __},
+{W,2,"../campaigns/levelx024-intro1",					77 __},
+{W,2,"../campaigns/levelx025-intro1",					78 __},
+{W,2,"../campaigns/levelx026-intro1",					79 __},
+{W,2,"../campaigns/levelx027-intro1",					80 __},
+{W,2,"../campaigns/levelx028-intro1",					81 __},
+{W,2,"../campaigns/levelx029-intro1",					82 __},
+{W,2,"../campaigns/levelx030-intro1",					83 __},
+{W,2,"../campaigns/levelx031-intro1",					84 __},
+{W,2,"../campaigns/levelx032-intro1",					85 __},
+{W,2,"../campaigns/levelx033-intro1",					86 __},
+{W,2,"../campaigns/levelx034-intro1",					87 __},
+{W,2,"../campaigns/levelx035-intro1",					88 __},
+{W,2,"../campaigns/levelx036-intro1",					89 __},
+{W,2,"../campaigns/levelx037-intro1",					90 __},
+{W,2,"../campaigns/levelx038-intro1",					91 __},
+{W,2,"../campaigns/levelx039-intro1",					92 __},
+{W,2,"../campaigns/levelx040-intro1",					93 __},
+{W,2,"../campaigns/levelx041-intro1",					94 __},
+{W,2,"../campaigns/levelx042-intro1",					95 __},
+{W,2,"../campaigns/levelx043-intro1",					96 __},
+{W,2,"../campaigns/levelx044-intro1",					97 __},
+{W,2,"../campaigns/levelx045-intro1",					98 __},
+{W,2,"../campaigns/levelx046-intro1",					99 __},
+{W,2,"../campaigns/levelx047-intro1",					100 __},
+{W,2,"../campaigns/levelx048-intro1",					101 __},
+{W,2,"../campaigns/levelx049-intro1",					102 __},
+{W,2,"../campaigns/levelx050-intro1",					103 __},
+{W,2,"../campaigns/levelx051-intro1",					104 __},
+{W,2,"../campaigns/levelx052-intro1",					105 __},
+{W,2,"../campaigns/levelx053-intro1",					106 __},
+{W,2,"../campaigns/levelx054-intro1",					107 __},
+{W,2,"../campaigns/levelx055-intro1",					108 __},
+{W,2,"../campaigns/levelx056-intro1",					109 __},
+#if 0
+{W,2,"../campaigns/levelx057-intro1",					110 __},
+{W,2,"../campaigns/levelx058-intro1",					111 __},
+{W,2,"../campaigns/levelx059-intro1",					112 __},
+{W,2,"../campaigns/levelx060-intro1",					113 __},
+{W,2,"../campaigns/levelx061-intro1",					114 __},
+{W,2,"../campaigns/levelx062-intro1",					115 __},
+{W,2,"../campaigns/levelx063-intro1",					116 __},
+{W,2,"../campaigns/levelx064-intro1",					117 __},
+{W,2,"../campaigns/levelx065-intro1",					118 __},
+{W,2,"../campaigns/levelx066-intro1",					119 __},
+{W,2,"../campaigns/levelx067-intro1",					120 __},
+{W,2,"../campaigns/levelx068-intro1",					121 __},
+{W,2,"../campaigns/levelx069-intro1",					122 __},
+{W,2,"../campaigns/levelx070-intro1",					123 __},
+{W,2,"../campaigns/levelx071-intro1",					124 __},
+{W,2,"../campaigns/levelx072-intro1",					125 __},
+{W,2,"../campaigns/levelx073-intro1",					126 __},
+{W,2,"../campaigns/levelx074-intro1",					127 __},
+{W,2,"../campaigns/levelx075-intro1",					128 __},
+{W,2,"../campaigns/levelx076-intro1",					129 __},
+{W,2,"../campaigns/levelx077-intro1",					130 __},
+{W,2,"../campaigns/levelx078-intro1",					131 __},
+{W,2,"../campaigns/levelx079-intro1",					132 __},
+{W,2,"../campaigns/levelx080-intro1",					133 __},
+{W,2,"../campaigns/levelx081-intro1",					134 __},
+{W,2,"../campaigns/levelx082-intro1",					135 __},
+{W,2,"../campaigns/levelx083-intro1",					136 __},
+{W,2,"../campaigns/levelx084-intro1",					137 __},
+{W,2,"../campaigns/levelx085-intro1",					138 __},
+{W,2,"../campaigns/levelx086-intro1",					139 __},
+{W,2,"../campaigns/levelx087-intro1",					140 __},
+{W,2,"../campaigns/levelx088-intro1",					141 __},
+{W,2,"../campaigns/levelx089-intro1",					142 __},
+{W,2,"../campaigns/levelx090-intro1",					143 __},
+{W,2,"../campaigns/levelx091-intro1",					144 __},
+{W,2,"../campaigns/levelx092-intro1",					145 __},
+{W,2,"../campaigns/levelx093-intro1",					146 __},
+{W,2,"../campaigns/levelx094-intro1",					147 __},
+{W,2,"../campaigns/levelx095-intro1",					148 __},
+{W,2,"../campaigns/levelx096-intro1",					149 __},
+{W,2,"../campaigns/levelx097-intro1",					150 __},
+{W,2,"../campaigns/levelx098-intro1",					151 __},
+{W,2,"../campaigns/levelx099-intro1",					152 __},
+{W,2,"../campaigns/levelx100-intro1",					153 __},
+{W,2,"../campaigns/levelx101-intro1",					154 __},
+{W,2,"../campaigns/levelx102-intro1",					155 __},
+{W,2,"../campaigns/levelx103-intro1",					156 __},
+{W,2,"../campaigns/levelx104-intro1",					157 __},
+{W,2,"../campaigns/levelx105-intro1",					158 __},
+{W,2,"../campaigns/levelx106-intro1",					159 __},
+{W,2,"../campaigns/levelx107-intro1",					160 __},
+{W,2,"../campaigns/levelx108-intro1",					161 __},
+{W,2,"../campaigns/levelx109-intro1",					162 __},
+{W,2,"../campaigns/levelx110-intro1",					163 __},
+{W,2,"../campaigns/levelx111-intro1",					164 __},
+{W,2,"../campaigns/levelx112-intro1",					165 __},
+{W,2,"../campaigns/levelx113-intro1",					166 __},
+{W,2,"../campaigns/levelx114-intro1",					167 __},
+{W,2,"../campaigns/levelx115-intro1",					168 __},
+{W,2,"../campaigns/levelx116-intro1",					169 __},
+{W,2,"../campaigns/levelx117-intro1",					170 __},
+{W,2,"../campaigns/levelx118-intro1",					171 __},
+{W,2,"../campaigns/levelx119-intro1",					172 __},
+{W,2,"../campaigns/levelx120-intro1",					173 __},
 #endif
-
 #endif
 
 #undef __
@@ -2472,7 +2606,7 @@ int ConvertWav(char* file,int wave)
 /**
 **	Convert text to my format.
 */
-int ConvertText(char* file,int txte)
+int ConvertText(char* file,int txte,int ofs)
 {
     unsigned char* txtp;
     char buf[1024];
@@ -2489,7 +2623,7 @@ int ConvertText(char* file,int txte)
 	printf("Can't open %s\n",buf);
 	exit(-1);
     }
-    if( l!=gzwrite(gf,txtp,l) ) {
+    if( l!=gzwrite(gf,txtp+ofs,l-ofs) ) {
 	printf("Can't write %d bytes\n",l);
     }
 
@@ -3259,7 +3393,7 @@ int main(int argc,char** argv)
 		ConvertWav(Todo[i].File,Todo[i].Arg1);
 		break;
 	    case X:
-		ConvertText(Todo[i].File,Todo[i].Arg1);
+		ConvertText(Todo[i].File,Todo[i].Arg1,Todo[i].Arg2);
 		break;
 	    case S:
 		SetupNames(Todo[i].File,Todo[i].Arg1);
