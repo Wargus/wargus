@@ -1383,7 +1383,7 @@
   'points 160
   'corpse '(unit-destroyed-3x3-place 3)
   'type-naval
-  'building
+  'building 'builder-inside
   'must-build-on-top 'unit-oil-patch
   'gives-resource 'oil 'can-harvest
   'sounds '(
