@@ -363,14 +363,14 @@
 ;;
 (define (ai:upgrade-catapult-1)
   (if (eq? (ai:get-race) 'human) 
-      'unit-ballista1 'unit-catapult1) )
+      'upgrade-ballista1 'upgrade-catapult1) )
 
 ;;
 ;;	Upgrade catapult 2 of the current race.
 ;;
 (define (ai:upgrade-catapult-2)
   (if (eq? (ai:get-race) 'human) 
-      'unit-ballista2 'unit-catapult2) )
+      'upgrade-ballista2 'upgrade-catapult2) )
 
 ;;
 ;;	Research of the current race.
@@ -489,28 +489,28 @@
 ;;
 (define (ai:ship-armor-1)
   (if (eq? (ai:get-race) 'human) 
-      'unit-human-ship-armor1 'unit-orc-ship-armor1) )
+      'upgrade-human-ship-armor1 'upgrade-orc-ship-armor1) )
 
 ;;
 ;;	Ship armor 2 of the current race.
 ;;
 (define (ai:ship-armor-2)
   (if (eq? (ai:get-race) 'human) 
-      'unit-human-ship-armor2 'unit-orc-ship-armor2) )
+      'upgrade-human-ship-armor2 'upgrade-orc-ship-armor2) )
 
 ;;
 ;;	Ship weapon 1 of the current race.
 ;;
 (define (ai:ship-weapon-1)
   (if (eq? (ai:get-race) 'human) 
-      'unit-human-ship-weapon1 'unit-orc-ship-weapon1) )
+      'upgrade-human-ship-weapon1 'upgrade-orc-ship-cannon1) )
 
 ;;
 ;;	Ship weapon 2 of the current race.
 ;;
 (define (ai:ship-weapon-2)
   (if (eq? (ai:get-race) 'human) 
-      'unit-human-ship-weapon2 'unit-orc-ship-weapon2) )
+      'upgrade-human-ship-weapon2 'upgrade-orc-ship-cannon2) )
 
 ;;
 ;;	Platform of the current race.
@@ -552,7 +552,7 @@
 ;;
 (define (ai:transporter)
   (if (eq? (ai:get-race) 'human) 
-      'unit-human-transporter 'unit-orc-transporter) )
+      'unit-human-transport 'unit-orc-transport) )
 
 ;;=============================================================================
 ;;
@@ -725,8 +725,8 @@
 ;;
 (define ai:sea-attack-endloop
   '((writes nil "Looping !\n")
-    (ai:force 1 (ai:destoryer) 6 (ai:battleship) 7 (ai:scout 1))
-    (ai:force 2 (ai:footman) 4 (ai:cavalier) 4 (ai:catapult) 4 
+    (ai:force 1 (ai:destroyer) 6 (ai:battleship) 7 (ai:scout) 1)
+    (ai:force 2 (ai:soldier) 4 (ai:cavalrie) 4 (ai:catapult) 4 
 	(ai:transporter) 2)
     (ai:wait-force 1)
     (ai:wait-force 2)		;; wait until attack party is completed
@@ -800,12 +800,12 @@
 
     (ai:sleep 500)
     (ai:research (ai:upgrade-catapult-2))
-    (ai:research (ai:ship-weapon1))
+    (ai:research (ai:ship-weapon-1))
     (ai:force 0 (ai:soldier) 3 (ai:catapult) 1 (ai:scout) 1)
     (ai:force 3 (ai:destroyer) 1 (ai:battleship) 1 (ai:scout) 1)
     (ai:force 1 (ai:submarine) 1 (ai:destroyer) 2 (ai:battleship) 3
 	(ai:scout) 1)
-    (ai:force 2 (ai:cavalerie) 1 (ai:catapult) 3 (ai:transporter) 1)
+    (ai:force 2 (ai:cavalrie) 1 (ai:catapult) 3 (ai:transporter) 1)
     (ai:wait-force  1)
     (ai:attack-with-force 1)
 
