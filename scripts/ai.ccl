@@ -17,7 +17,8 @@
 
 ;;=============================================================================
 ;;
-;;	AI helper table, the AI must know where to build units.
+;;	AI helper table, the AI must know where to build units,
+;;	where to research spells, where to upgrade units.
 ;;
 ;;	(define-ai-helper (list))
 ;;
@@ -25,15 +26,18 @@
     ;;
     ;;	Unit can build which buildings.
     ;;
-    (build 'unit-peasant 'unit-main-hall)
+    (list 'build 'unit-peasant 'unit-town-hall)
     ;;
     ;;	Building can train which units.
     ;;
-    (train 'unit-main-hall 'unit-peasant)
+    (list 'train 'unit-town-hall 'unit-peasant)
     ;;
-    ;;	Building can research which upgrades.
+    ;;	Building can upgrade which upgrades.
     ;;
-    (research 'unit-main-hall 'unit-town-hall 'unit-great-hall)
+    (list 'upgrade 'unit-town-hall 'unit-keep 'unit-castle)
+    ;;
+    ;;	Building can research which spells.
+    ;;
     )
 
 ;;
@@ -46,7 +50,7 @@
 ;;	script	Main AI script.
 ;;
 (define-ai "my-ai" "human" "land-attack"
-  (list
+  '(
     ;;
     ;;	Enable or disable the AI cheating on unexplored area.
     ;;	    (set-cheat-unexplored! #t)
@@ -64,6 +68,25 @@
     ;;
     (set-cheat-visible! #t) 
     ;;
+    ;;	Need a building.
+    ;;	    (need building)
+    ;;		Build a building position selected from the AI, if not
+    ;;		already available.
+    ;;
+    (need 'unit-town-hall)
+    ;;
+    ;;	Train an unit.
+    ;;	    (train unit)
+    ;;		Train a units.
+    ;;	    (train unit count)
+    ;;		Train count units.
+    (train 'unit-peasant 3)
+    ;;
+    ;;	Wait until the units are ready.
+    ;;	    (wait unit count)
+    ;;
+    (wait 'unit-peasant 3)
+    ;;
     ;;	Build a building.
     ;;	    (build building x y)
     ;;		Build a building at position x,y.
@@ -71,16 +94,4 @@
     ;;		Build a building position selected from the AI.
     ;;
     (build 'unit-town-hall)
-    ;;
-    ;;	Train an unit.
-    ;;	    (train unit)
-    ;;		Train a units.
-    ;;	    (train unit count)
-    ;;		Train count units.
-    (train 'unit-peon 4)
-    ;;
-    ;;	Wait until the units are ready.
-    ;;	    (wait unit count)
-    ;;
-    (wait 'unit-peon 4)
     ))

@@ -15,12 +15,15 @@
 ;;	$Id$
 ;;
 
+;;	Use internal races 0=original 1=new
+(race-add 1)			; This enables the alliance and mythical race
+
 (define color-dark-green	149)	; FIXME: move to central position
 
 ;;=============================================================================
 ;;	Define the user interface
 ;;
-;;	(define-ui "rasse" screen-width screen-height 
+;;	(define-ui "rasse" screen-width screen-height
 ;;		(list "filler" x y)
 ;;		(list "resource" x y)
 ;;		(list "gold-icon" nummer x y width height text-x text-y)
@@ -68,7 +71,7 @@
 ;;		(list train-5-x train-5-y width height)
 ;;		(list train-6-x train-6-y width height)
 ;;	)
-;;	
+;;
 ;;	This defines the position and sizes of the different user
 ;;	interface sections.
 ;;
@@ -431,76 +434,76 @@
 
 ;;	Currently shares the graphics with mythical
 
-(define (alliance_screen screen_width screen_height)    
+(define (alliance_screen screen_width screen_height)
   (let (
 	;;(screen_height-(16+((screen_height - 192)/32)*32))
 	(map_bottom (+ 16 (* 32 (trunc (/ (- screen_height 192) 32)))))
 	)
-    
+
     (define-ui "alliance" screen_width screen_height ; Selector
-					;	Filler 1
+	;	Filler 1
       (list (string-append
 	"graphic/ui/mythical/"
 	(number->string screen_width) "x" (number->string screen_height)
 	"/filler1.png") 528 (+ map_bottom 16))
-      
-					;	Resource line
+
+	;	Resource line
       (list (string-append
 	"graphic/ui/mythical/"
 	(number->string screen_width) "x" (number->string screen_height)
 	"/resource.png") 0 0)
-      
-					; gold resource
+
+	; gold resource
       (list "graphic/gold,wood,oil,mana.png"	0
 	    (+ 176   0) 0 14 14 (+ 176   0 18) 1)
-					; wood resource
+	; wood resource
       (list "graphic/gold,wood,oil,mana.png"	1
 	    (+ 176  65) 0 14 14 (+ 176  65 18) 1)
-					;  oil resource
+	;  oil resource
       (list "graphic/gold,wood,oil,mana.png"	2
 	    (+ 176 120) 0 14 14 (+ 176 120 18) 1)
-					;  oge resource
+	;  oge resource
       (list "graphic/ore,stone,coal.png"		0
 	    (+ 176 175) 0 14 14 (+ 176 175 18) 1)
-					;  stone resource
+	;  stone resource
       (list "graphic/ore,stone,coal.png"		1
 	    (+ 176 230) 0 14 14 (+ 176 230 18) 1)
-					;  coal resource
+	;  coal resource
       (list "graphic/ore,stone,coal.png"		2
 	    (+ 176 285) 0 14 14 (+ 176 285 18) 1)
 
-					; food resource
+	; food resource
       (list "graphic/food.png"			0
 	    (+ 176 330) 0 14 14 (+ 176 330 18) 1)
-					; score
+	; score
       (list "graphic/score.png"			0
 	    (+ 176 409) 0 14 14 (+ 176 409 18) 1)
-      
-					; Info panel
+
+	; Info panel
       (list "graphic/ui/mythical/infopanel.png" 0 map_bottom 176 176)
 
-					; Completed bar
+	; Completed bar
       (list color-dark-green  12 (+ map_bottom 153) 50 (+ map_bottom 153))
 
-					; Command button panel
+	; Command button panel
       (list "graphic/ui/mythical/buttonpanel.png" 352 (+ map_bottom 16))
 
-					; The big map
+	; The big map
       (list 0 16 screen_width map_bottom)
 
-					; Menu button
+	; Menu button
       (list "graphic/ui/mythical/menubutton.png" 176 (+ map_bottom 16))
 
-					; Minimap
+	; Minimap
       (list "graphic/ui/mythical/minimap.png" 176 (+ map_bottom 40))
 
-					; Status line
+	; Status line
       (list "graphic/ui/mythical/statusline.png" 176 map_bottom)
 
-					;	Defines position and size of the different buttons.
-					; Menu button
+	;	Defines position and size of the different buttons.
+	; Menu button
       (list 198 (+ map_bottom 18) 128 17 )
-					; 9 Character portraits
+	; 9 Character portraits
       (list   6 (+ map_bottom 6)  46 38 )
       (list  62 (+ map_bottom 6)  46 38 )
       (list 118 (+ map_bottom 6)  46 38 )
@@ -510,7 +513,7 @@
       (list   6 (+ map_bottom 110) 46 38 )
       (list  62 (+ map_bottom 110) 46 38 )
       (list 118 (+ map_bottom 110) 46 38 )
-					; 9 Buttons interface
+	; 9 Buttons interface
       (list 358 (+ map_bottom 33)  46 38 )
       (list 414 (+ map_bottom 33)  46 38 )
       (list 470 (+ map_bottom 33)  46 38 )
@@ -521,13 +524,13 @@
       (list 414 (+ map_bottom 127) 46 38 )
       (list 470 (+ map_bottom 127) 46 38 )
 
-					;	Defines position and size of the training queue buttons.
+	;	Defines position and size of the training queue buttons.
       (list   6 (+ map_bottom 56)  46 38 )
       (list  62 (+ map_bottom 56)  46 38 )
       (list 118 (+ map_bottom 56)  46 38 )
       (list   6 (+ map_bottom 103) 46 38 )
       (list  62 (+ map_bottom 103) 46 38 )
-      (list 118 (+ map_bottom 103) 46 38 ) 
+      (list 118 (+ map_bottom 103) 46 38 )
       ) ) )
 
 (alliance_screen 640 480)
@@ -539,76 +542,76 @@
 ;;	* Race mythical.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define (mythical_screen screen_width screen_height)    
+(define (mythical_screen screen_width screen_height)
   (let (
 	;;(screen_height-(16+((screen_height - 192)/32)*32))
 	(map_bottom (+ 16 (* 32 (trunc (/ (- screen_height 192) 32)))))
 	)
-    
+
     (define-ui "mythical" screen_width screen_height ; Selector
-					;	Filler 1
+	;	Filler 1
       (list (string-append
 	"graphic/ui/mythical/"
 	(number->string screen_width) "x" (number->string screen_height)
 	"/filler1.png") 528 (+ map_bottom 16))
-      
-					;	Resource line
+
+	;	Resource line
       (list (string-append
 	"graphic/ui/mythical/"
 	(number->string screen_width) "x" (number->string screen_height)
 	"/resource.png") 0 0)
-      
-					; gold resource
+
+	; gold resource
       (list "graphic/gold,wood,oil,mana.png"	0
 	    (+ 176   0) 0 14 14 (+ 176   0 18) 1)
-					; wood resource
+	; wood resource
       (list "graphic/gold,wood,oil,mana.png"	1
 	    (+ 176  65) 0 14 14 (+ 176  65 18) 1)
-					;  oil resource
+	;  oil resource
       (list "graphic/gold,wood,oil,mana.png"	2
 	    (+ 176 120) 0 14 14 (+ 176 120 18) 1)
-					;  oge resource
+	;  oge resource
       (list "graphic/ore,stone,coal.png"		0
 	    (+ 176 175) 0 14 14 (+ 176 175 18) 1)
-					;  stone resource
+	;  stone resource
       (list "graphic/ore,stone,coal.png"		1
 	    (+ 176 230) 0 14 14 (+ 176 230 18) 1)
-					;  coal resource
+	;  coal resource
       (list "graphic/ore,stone,coal.png"		2
 	    (+ 176 285) 0 14 14 (+ 176 285 18) 1)
 
-					; food resource
+	; food resource
       (list "graphic/food.png"			0
 	    (+ 176 330) 0 14 14 (+ 176 330 18) 1)
-					; score
+	; score
       (list "graphic/score.png"			0
 	    (+ 176 409) 0 14 14 (+ 176 409 18) 1)
-      
-					; Info panel
+
+	; Info panel
       (list "graphic/ui/mythical/infopanel.png" 0 map_bottom 176 176)
 
-					; Completed bar
+	; Completed bar
       (list color-dark-green  12 (+ map_bottom 153) 50 (+ map_bottom 153))
 
-					; Command button panel
+	; Command button panel
       (list "graphic/ui/mythical/buttonpanel.png" 352 (+ map_bottom 16))
 
-					; The big map
+	; The big map
       (list 0 16 screen_width map_bottom)
 
-					; Menu button
+	; Menu button
       (list "graphic/ui/mythical/menubutton.png" 176 (+ map_bottom 16))
 
-					; Minimap
+	; Minimap
       (list "graphic/ui/mythical/minimap.png" 176 (+ map_bottom 40))
 
-					; Status line
+	; Status line
       (list "graphic/ui/mythical/statusline.png" 176 map_bottom)
 
-					;	Defines position and size of the different buttons.
-					; Menu button
+	;	Defines position and size of the different buttons.
+	; Menu button
       (list 198 (+ map_bottom 18) 128 17 )
-					; 9 Character portraits
+	; 9 Character portraits
       (list   6 (+ map_bottom 6)  46 38 )
       (list  62 (+ map_bottom 6)  46 38 )
       (list 118 (+ map_bottom 6)  46 38 )
@@ -618,7 +621,7 @@
       (list   6 (+ map_bottom 110) 46 38 )
       (list  62 (+ map_bottom 110) 46 38 )
       (list 118 (+ map_bottom 110) 46 38 )
-					; 9 Buttons interface
+	; 9 Buttons interface
       (list 358 (+ map_bottom 33)  46 38 )
       (list 414 (+ map_bottom 33)  46 38 )
       (list 470 (+ map_bottom 33)  46 38 )
@@ -629,13 +632,13 @@
       (list 414 (+ map_bottom 127) 46 38 )
       (list 470 (+ map_bottom 127) 46 38 )
 
-					;	Defines position and size of the training queue buttons.
+	;	Defines position and size of the training queue buttons.
       (list   6 (+ map_bottom 56)  46 38 )
       (list  62 (+ map_bottom 56)  46 38 )
       (list 118 (+ map_bottom 56)  46 38 )
       (list   6 (+ map_bottom 103) 46 38 )
       (list  62 (+ map_bottom 103) 46 38 )
-      (list 118 (+ map_bottom 103) 46 38 ) 
+      (list 118 (+ map_bottom 103) 46 38 )
       ) ) )
 
 (mythical_screen 640 480)

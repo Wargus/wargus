@@ -111,6 +111,16 @@ fi
 [ -d $DIR ] || mkdir $DIR
 
 [ -d $DIR/graphic ] || mkdir $DIR/graphic
+#comes with 1.17
+#[ -d $DIR/graphic/human ] || mkdir $DIR/graphic/human
+#[ -d $DIR/graphic/human/units ] || mkdir $DIR/graphic/human/units
+#[ -d $DIR/graphic/human/buildings ] || mkdir $DIR/graphic/human/buildings
+#[ -d $DIR/graphic/orc ] || mkdir $DIR/graphic/orc
+#[ -d $DIR/graphic/orc/units ] || mkdir $DIR/graphic/orc/units
+#[ -d $DIR/graphic/orc/buildings ] || mkdir $DIR/graphic/orc/buildings
+#[ -d $DIR/graphic/tilesets ] || mkdir $DIR/graphic/tilesets
+#[ -d $DIR/graphic/tilesets/summer ] || mkdir $DIR/graphic/tilesets/summer
+
 [ -d $DIR/graphic/tileset ] || mkdir $DIR/graphic/tileset
 [ -d $DIR/graphic/interface ] || mkdir $DIR/graphic/interface
 
