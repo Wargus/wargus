@@ -170,13 +170,21 @@ find $DIR/sounds -type f -name "*.wav" -print -exec $COMPRESS {} \;
 find $DIR/campaigns -type f -name "*.txt" -print -exec $COMPRESS {} \;
 
 #
-#	Copy original puds into data directory
+##	Copy original puds into data directory
 #
 echo "Copy puds and compressing"
 [ -d $DATADIR/../puds ] && cp -r $DATADIR/../puds/ $DIR/
 [ -f $DATADIR/../alamo.pud ] && cp -r $DATADIR/../*.pud $DIR/puds
 chmod -R +w $DIR/puds
 find $DIR/puds -type f -name "*.pud" -print -exec $COMPRESS {} \;
+
+#
+##	Copy contrib puds into data directory
+#
+[ -d $DIR/puds/single ] || mkdir $DIR/puds/single
+[ -d $DIR/puds/multiple ] || mkdir $DIR/puds/multiple
+cp $CONTRIB/puds/single/* $DIR/puds/single
+cp $CONTRIB/puds/multi/* $DIR/puds/multiple
 
 #
 ##	The default pud.
