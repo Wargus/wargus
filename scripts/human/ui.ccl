@@ -551,10 +551,10 @@
     '("graphics/ui/human/defeat.png")
 )
 
-(define-new-ui 'orc1 640 480	; Selector
-  'normal-font-color 3 'reverse-font-color 7
-  'filler-1 '(pos (624 0) image "graphics/ui/orc/640x480/filler-right.png")
-  'resources '(pos (176 0) image "graphics/ui/orc/640x480/resource.png"
+(define-new-ui 'human1 640 480	; Selector
+  'normal-font-color 'white 'reverse-font-color 'yellow
+  'filler-1 '(pos (624 0) image "graphics/ui/human/640x480/filler-right.png")
+  'resources '(pos (176 0) image "graphics/ui/human/640x480/resource.png"
     gold (icon-pos (176 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
       icon-frame 0 icon-size (14 14) text-pos (194 1))
     wood (icon-pos (241 0) icon-file "graphics/ui/gold,wood,oil,mana.png"
@@ -571,14 +571,14 @@
       icon-frame 0 icon-size (14 14) text-pos (524 1))
     score (icon-pos (566 0) icon-file "graphics/ui/score.png"
       icon-frame 0 icon-size (14 14) text-pos (584 1)))
-  'info-panel '(pos (0 160) image "graphics/ui/orc/infopanel.png"
+  'info-panel '(pos (0 160) image "graphics/ui/human/infopanel.png"
     size (176 176)
     complete-bar (color 149 pos (12 313) text-pos (50 313)))
-  'button-panel '(pos (0 336) image "graphics/ui/orc/640x480/buttonpanel.png")
+  'button-panel '(pos (0 336) image "graphics/ui/human/640x480/buttonpanel.png")
   'map-area '(pos (176 16) size (624 464))
-  'menu-button '(pos (0 0) image "graphics/ui/orc/640x480/menubutton.png")
-  'minimap '(pos (0 24) image "graphics/ui/orc/640x480/minimap.png")
-  'status-line '(pos (176 464) image "graphics/ui/orc/640x480/statusline.png")
+  'menu-button '(pos (0 0) image "graphics/ui/human/640x480/menubutton.png")
+  'minimap '(pos (0 24) image "graphics/ui/human/640x480/minimap.png")
+  'status-line '(pos (176 464) image "graphics/ui/human/640x480/statusline.png")
 ; 0 Menu 1-9 Info 10-19 Button
   'buttons '(
     (pos ( 24   2) size ( 128  17))
@@ -623,8 +623,8 @@
     arrow-sw cursor-arrow-sw
     arrow-s cursor-arrow-s
     arrow-se cursor-arrow-se)
-  'panels '(game-menu "graphics/ui/orc/panel 1.png"
-    menue-1 "graphics/ui/orc/panel 2.png"
-    menue-2 "graphics/ui/orc/panel 3.png"
-    victory "graphics/ui/orc/panel 4.png"
-    scenario "graphics/ui/orc/panel 5.png") )
+  'panels '(game-menu "graphics/ui/human/panel 1.png"
+    menu-1 "graphics/ui/human/panel 2.png"
+    menu-2 "graphics/ui/human/panel 3.png"
+    victory "graphics/ui/human/panel 4.png"
+    scenario "graphics/ui/human/panel 5.png") )
