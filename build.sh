@@ -50,7 +50,7 @@ CDROM="/cdrom"
 #       Choose your default compression or use -z or -I.
 #
 COMPRESS=$GZIP
-COMPRESS=$BZIP2
+#COMPRESS=$BZIP2
 
 #
 #       Here are the input files for sounds, graphics and texts.
@@ -60,9 +60,9 @@ COMPRESS=$BZIP2
 #               Third choise:   uninstalled on original cdrom
 #		or use -p dir
 #
-ARCHIVE="/misc/win98/freecraft/war2/data/"
+#ARCHIVE="/dos/c/games/war2/data/"
 #ARCHIVE="./"
-#ARCHIVE=$CDROM"/data/"
+ARCHIVE=$CDROM"/data/"
 
 #
 #       Here are my executeables or -T dir.
