@@ -52,6 +52,7 @@
 (add-keystroke-help "ENTER" "- write a message")
 (add-keystroke-help "SPACE" "- goto last event")
 (add-keystroke-help "TAB" "- hide/unhide terrain")
+(add-keystroke-help "Ctrl-T" "- track unit")
 (add-keystroke-help "Alt-I" "- find idle peon")
 (add-keystroke-help "Alt-C" "- center on selected unit")
 (add-keystroke-help "Alt-V" "- next view port")
