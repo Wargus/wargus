@@ -103,6 +103,12 @@
                            (car prepend) 
                            "")))
 
+;; hack to detect WC2 directory without data extracted
+(if (< (length (dir->list (library-path) nil)) 6)
+  (begin
+    (writes nil "You are trying to run the WC2 but your data seems incomplete.\n")
+    (writes nil "Use tools/wartool or specify another game with '-d /path/to/gamedir'!\n")))
+
 ;; Uncomment to play automatic all music
 ;; FIXME: Comments are wrong, system dependend stuff didn't belong into the
 ;;	  config files.
