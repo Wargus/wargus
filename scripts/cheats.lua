@@ -29,6 +29,7 @@
 --	$Id$
 
 speedcheat = false
+godcheat = false
 
 function HandleCheats(str)
   local resources = { "gold", "wood", "oil" }
@@ -120,16 +121,21 @@ function HandleCheats(str)
     ActionDefeat()
 
   elseif (str == "it is a good day to die") then
-    -- FIXME: Not supported yet
+    if (godcheat) then
+      godcheat = false
+      SetGodMode(false)
+      AddMessage("God Mode OFF")
+    else
+      godcheat = true
+      SetGodMode(true)
+      AddMessage("God Mode ON")
+    end
 
   elseif (str == "fill mana") then
     t = GetUnits("this");
     for i = 1,table.getn(t) do
       SetUnitMana(t[i], 255)
     end
-
-  elseif (str == "ai me") then
-    -- FIXME: Not supported yet
 
   else
     return false
