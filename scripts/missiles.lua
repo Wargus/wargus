@@ -95,7 +95,7 @@ DefineMissileType("missile-touch-of-death",
 DefineMissileType("missile-rune",
   "file", "missiles/rune.png", "size", {16, 16}, "frames", 4, "num-directions", 1,
   "draw-level", 20, "class", "missile-class-land-mine", "sleep", 5, "speed", 16, "range", 1,
-  "impact-missile", "missile-explosion", "can-hit-owner", true)
+  "impact-missile", "missile-explosion", "can-hit-owner")
 
 DefineMissileType("missile-whirlwind",
   "file", "missiles/tornado.png", "size", {56, 56}, "frames", 4, "num-directions", 1,
@@ -202,7 +202,7 @@ DefineMissileType("missile-critter-explosion",
   "file", "missiles/catapult_rock.png", "size", {32, 32}, "frames", 15, "num-directions", 5,
   "impact-sound", "explosion", "draw-level", 50,
   "class", "missile-class-hit", "sleep", 1, "speed", 16, "range", 2,
-  "impact-missile", "missile-impact", "can-hit-owner", true)
+  "impact-missile", "missile-impact", "can-hit-owner")
 
 DefineBurningBuilding(
   {"percent", 0, "missile", "missile-big-fire"},

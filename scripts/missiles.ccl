@@ -95,7 +95,7 @@
 (define-missile-type 'missile-rune
   'file "missiles/rune.png" 'size '(16 16) 'frames 4 'num-directions 1
   'draw-level 20 'class 'missile-class-land-mine 'sleep 5 'speed 16 'range 1
-  'impact-missile 'missile-explosion 'can-hit-owner #t)
+  'impact-missile 'missile-explosion 'can-hit-owner)
 
 (define-missile-type 'missile-whirlwind
   'file "missiles/tornado.png" 'size '(56 56) 'frames 4 'num-directions 1
@@ -105,13 +105,13 @@
   'file "missiles/catapult_rock.png" 'size '(32 32) 'frames 15 'num-directions 5
   'impact-sound "explosion"
   'draw-level 50 'class 'missile-class-parabolic 'sleep 1 'speed 16 'range 2
-  'impact-missile 'missile-impact)
+  'impact-missile 'missile-impact 'splash-factor 4)
 
 (define-missile-type 'missile-ballista-bolt
   'file "missiles/ballista_bolt.png" 'size '(64 64) 'frames 5 'num-directions 5
   'draw-level 50 'impact-sound "explosion"
   'class 'missile-class-parabolic 'sleep 1 'speed 16 'range 2
-  'impact-missile 'missile-impact)
+  'impact-missile 'missile-impact 'splash-factor 4)
 
 (define-missile-type 'missile-arrow
   'file "missiles/arrow.png" 'size '(40 40) 'frames 5 'num-directions 5
@@ -202,7 +202,7 @@
   'file "missiles/catapult_rock.png" 'size '(32 32) 'frames 15 'num-directions 5
   'impact-sound "explosion" 'draw-level 50
   'class 'missile-class-hit 'sleep 1 'speed 16 'range 2
-  'impact-missile 'missile-impact 'can-hit-owner #t)
+  'impact-missile 'missile-impact 'can-hit-owner)
 
 (define-burning-building
   '(percent 0 missile missile-big-fire)
