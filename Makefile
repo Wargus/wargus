@@ -6,10 +6,10 @@ CROSSDIR = /usr/local/cross
 all: cleanobj wartool$(EXE)
 
 wartool: wartool.o
-	$(CC) -o $@ $^ -lz -lpng -lm
+	$(CC) -o $@ $^ -lz -lpng -lm -static
 
 wartool.exe: wartool.o
-	$(CC) -o $@ $^ -lz -lpng -lm
+	$(CC) -o $@ $^ -lz -lpng -lm -static
 
 wartool.o:
 	$(CC) -c wartool.c -o $@
