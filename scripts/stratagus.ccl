@@ -55,12 +55,10 @@
 ;(set-contrast! 110) (set-brightness! 15) (set-saturation! 100)
 
 ;;	Enter your default title screen.
-(set-title-screen! "graphics/ui/stratagus.png")
-;(set-title-screen! "graphics/logo_stratagus.avi")
-
-;;	Enter your title music.
-(set-title-music! "music/default.mod")
-;(set-title-music! "music/Matthew_T._Yankovich---_Twilight_March.ogg")
+(set-title-screens!
+  '("graphics/ui/stratagus.png" "music/default.mod")
+;  '("graphics/logo_stratagus.avi")
+)
 
 ;;	Enter your default menu background.
 (set-menu-background! "graphics/ui/Menu_background_without_title.png")
