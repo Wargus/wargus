@@ -659,6 +659,11 @@ Control Todo[] = {
 {G,0,"tilesets/winter/icons",					18, 357 _2},
 {G,0,"tilesets/wasteland/icons",				10, 358 _2},
 
+{I,0,"ui/human/victory",				       363, 359 _2},
+{I,0,"ui/orc/victory",					       364, 360 _2},
+{I,0,"ui/human/defeat",					       365, 361 _2},
+{I,0,"ui/orc/defeat",					       366, 362 _2},
+
 {I,0,"../campaigns/human/interface/introscreen1",	       367, 369 _2},
 {I,0,"../campaigns/orc/interface/introscreen1",		       368, 370 _2},
 {I,0,"../campaigns/orc/interface/introscreen2",		       368, 371 _2},
