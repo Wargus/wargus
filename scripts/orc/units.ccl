@@ -1335,7 +1335,7 @@
   #("tilesets/summer/orc/buildings/blacksmith.png"
     "tilesets/winter/orc/buildings/blacksmith.png"
     ()
-    "tilesets/wasteland/orc/buildings/blacksmith.png" )
+    "tilesets/swamp/orc/buildings/blacksmith.png" )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-orc-blacksmith"
@@ -1366,7 +1366,7 @@
   #("tilesets/summer/orc/buildings/refinery.png"
     "tilesets/winter/orc/buildings/refinery.png"
     ()
-    "tilesets/wasteland/orc/buildings/refinery.png" )
+    "tilesets/swamp/orc/buildings/refinery.png" )
   '(  96  96 )			;; graphic size
   "animations-building"
   "icon-orc-refinery"

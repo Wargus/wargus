@@ -582,7 +582,7 @@ Control Todo[] = {
 
 #ifdef HAVE_EXPANSION
 {R,2,"swamp/swamp",						438	__},
-{T,2,"swamp/swamp",				438,	439,	440,	441 },
+{T,2,"swamp/terrain/swamp",			438,	439,	440,	441 },
 #endif
 
 #ifdef HAVE_EXPANSION
@@ -649,12 +649,12 @@ Control Todo[] = {
 {G,2,"tilesets/swamp/orc/buildings/%-89",			438, 502 _2},
 {G,2,"tilesets/swamp/human/buildings/%92",			438, 503 _2},
 {G,2,"tilesets/swamp/orc/buildings/%93",			438, 504 _2},
-{G,2,"tilesets/swamp/human/%82",				438, 505 _2},
-{G,2,"tilesets/swamp/orc/%83",					438, 506 _2},
-{G,2,"tilesets/swamp/human/%-98",				438, 507 _2},
-{G,2,"tilesets/swamp/orc/%-99",					438, 508 _2},
-{G,2,"tilesets/swamp/human/%-100",				438, 509 _2},
-{G,2,"tilesets/swamp/orc/%-101",				438, 510 _2},
+{G,2,"tilesets/swamp/human/buildings/%82",			438, 505 _2},
+{G,2,"tilesets/swamp/orc/buildings/%83",			438, 506 _2},
+{G,2,"tilesets/swamp/human/buildings/%-98",			438, 507 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-99",			438, 508 _2},
+{G,2,"tilesets/swamp/human/buildings/%-100",			438, 509 _2},
+{G,2,"tilesets/swamp/orc/buildings/%-101",			438, 510 _2},
 {G,2,"tilesets/swamp/neutral/buildings/%94",			438, 511 _2},
 {G,2,"tilesets/swamp/neutral/buildings/destroyed site",		438, 512 _2},
 {G,2,"tilesets/swamp/neutral/buildings/%103",			438, 513 _2},
