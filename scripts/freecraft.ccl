@@ -327,31 +327,30 @@
 ;;-----------------------------------------------------------------------------
 
 ;;	Edit next to increase the speed, for debugging.
-;;	FIXME: change to new syntax (set-...!)
 
 ;;	Decrease the mining time by this factor.
-(speed-mine 10)
+(set-speed-mine! 10)
 ;;	Decrease the time in a gold deposit by this factor.
-(speed-gold 10)
+(set-speed-gold! 10)
 ;;	Decrease the time for chopping a tree by this factor.
-(speed-chop 10)
+(set-speed-chop! 10)
 ;;	Decrease the time in a wood deposit by this factor.
-(speed-wood 10)
+(set-speed-wood! 10)
 ;;	Decrease the time for haul oil by this factor.
-(speed-haul 10)
+(set-speed-haul! 10)
 ;;	Decrease the time in an oil deposit by this factor.
-(speed-oil 10)
+(set-speed-oil! 10)
 ;;	Decrease the time to build a unit by this factor.
-(speed-build 10)
+(set-speed-build! 10)
 ;;	Decrease the time to train a unit by this factor.
-(speed-train 10)
+(set-speed-train! 10)
 ;;	Decrease the time to upgrade a unit by this factor.
-(speed-upgrade 10)
+(set-speed-upgrade! 10)
 ;;	Decrease the time to research by this factor.
-(speed-research 10)
+(set-speed-research! 10)
 
 ;;	You can do all the above with this
-(speeds 1)
+(set-speeds! 1)
 
 ;;-----------------------------------------------------------------------------
 
