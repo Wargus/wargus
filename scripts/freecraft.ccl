@@ -39,7 +39,7 @@
 ;;	Enter your default title screen.
 (set-title-screen! "graphics/ui/freecraft.png")
 
-;;	If color-cycle-all is off only the tileset and global palettes are
+;;	If color-cycle-all is off (#f) only the tileset and global palettes are
 ;;	color cycled.  Otherwise all palettes are color cycled.
 (set-color-cycle-all! #t)
 ;(set-color-cycle-all! #f)
