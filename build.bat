@@ -1,4 +1,5 @@
 @ECHO OFF
+GOTO START
 REM
 REM  ___________                     _________                _____  __
 REM  \_   _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
@@ -20,14 +21,15 @@ REM	Johns didn't know how to write dos batch scripts.
 REM	This should become more user friendly!
 REM	See build.sh what must done.
 REM
-
+:START
 REM
-REM	Choose your CDROM drive.
+REM     Choose your CDROM drive / Installed data path.
 REM
 SET CDROM=D:
 REM SET CDROM=E:
+REM SET CDROM=C:\Programme\WAR2E
 
-REM	Choose where you have the orignal file.
+REM     Altenatively: Choose where you have the orignal file.
 REM
 REM	Here are the input files for sounds, graphics and texts.
 REM	WARNING: If not from CD, choose below expansion/no-expansion
@@ -36,10 +38,8 @@ REM	Second choise:  installed/copied in current directory
 REM	Third choise:   uninstalled on original cdrom
 
 REM SET ARCHIVE=C:\war2\data
-REM SET ARCHIVE=.\
+REM SET ARCHIVE=.
 SET ARCHIVE=%CDROM%\data
-
-REM SET ARCHIVE=C:\games\war2\data
 
 REM
 REM	Here are my executables. (wartool...)
@@ -63,30 +63,33 @@ REM
 REM Create the directory structure
 
 mkdir %DIR%
-mkdir %DIR%graphic
-mkdir %DIR%graphic\tileset
-mkdir %DIR%graphic\interface
+mkdir %DIR%\graphic
+mkdir %DIR%\graphic\tileset
+mkdir %DIR%\graphic\interface
 
-mkdir %DIR%sound
+mkdir %DIR%\sound
 
-mkdir %DIR%campaigns
-mkdir %DIR%campaigns\human
-mkdir %DIR%campaigns\orc
-mkdir %DIR%campaigns\human-exp
-mkdir %DIR%campaigns\orc-exp
-mkdir %DIR%text
+mkdir %DIR%\campaigns
+mkdir %DIR%\campaigns\human
+mkdir %DIR%\campaigns\orc
+mkdir %DIR%\campaigns\human-exp
+mkdir %DIR%\campaigns\orc-exp
+mkdir %DIR%\text
 
-mkdir %DIR%puds
-mkdir %DIR%puds\internal
-mkdir %DIR%puds\demo
+mkdir %DIR%\puds
+mkdir %DIR%\puds\internal
+mkdir %DIR%\puds\demo
 REM new structure
-mkdir %DIR%graphic\tilesets
-mkdir %DIR%graphic\tilesets\summer
-mkdir %DIR%graphic\tilesets\winter
-mkdir %DIR%graphic\tilesets\wasteland
-mkdir %DIR%graphic\tilesets\swamp
-mkdir %DIR%graphic\ui\human
-mkdir %DIR%graphic\ui\orc
+mkdir %DIR%\graphic\tilesets
+mkdir %DIR%\graphic\tilesets\summer
+mkdir %DIR%\graphic\tilesets\winter
+mkdir %DIR%\graphic\tilesets\wasteland
+mkdir %DIR%\graphic\tilesets\swamp
+mkdir %DIR%\graphic\ui
+mkdir %DIR%\graphic\ui\alliance
+mkdir %DIR%\graphic\ui\mythical
+mkdir %DIR%\graphic\ui\human
+mkdir %DIR%\graphic\ui\orc
 
 REM ###########################################################################
 REM ##      Extract
@@ -103,8 +106,10 @@ copy /b %CONTRIB%\mana.png %DIR%
 copy /b %CONTRIB%\health.png %DIR%
 copy /b %CONTRIB%\food.png %DIR%\graphic
 copy /b %CONTRIB%\score.png %DIR%\graphic
-copy /b %CONTRIB%\ore,stone,coal.png %DIR%\graphic
+copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphic
 copy /b %CONTRIB%\ale-title.png %DIR%
+REM copy /b %CONTRIB%\ui\alliance\*.png %DIR%\graphic\ui\alliance
+REM copy /b %CONTRIB%\ui\mythical\*.png %DIR%\graphic\ui\mythical
 
 REM ###########################################################################
 REM ##      MISC
@@ -116,5 +121,4 @@ REM
 REM	Setup the default pud
 REM
 copy /b %DIR%\puds\internal\internal12.pud.gz %DIR%\default.pud.gz
-ECHO You only need to run this scipt once
-
+ECHO You only need to run this script once
