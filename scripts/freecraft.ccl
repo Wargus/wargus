@@ -50,15 +50,15 @@
 ;;
 ;;	(mana-sprite file hotx hoty width height)
 ;;
-(mana-sprite	"graphics/ui/mana.png"		 -7  -7   7   7)
-;(mana-sprite	"graphics/ui/mana2.png"		  0  -1  31   4)
+;(mana-sprite	"graphics/ui/mana.png"		 -7  -7   7   7)
+(mana-sprite	"graphics/ui/mana2.png"		  0  -1  31   4)
 
 ;;	Define health-sprite.
 ;;
 ;;	(mana-sprite file hotx hoty width height)
 ;;
-(health-sprite	"graphics/ui/health.png"	  1  -7   7   7)
-;(health-sprite	"graphics/ui/health2.png"	  0  -4  31   4)
+;(health-sprite	"graphics/ui/health.png"	  1  -7   7   7)
+(health-sprite	"graphics/ui/health2.png"	  0  -4  31   4)
 
 ;;	Uncomment next, to get a health bar to the left of the unit
 ;(show-health-bar)
