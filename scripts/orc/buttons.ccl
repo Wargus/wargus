@@ -18,5 +18,19 @@
 ;;----------------------------------------------------------------------------
 ;;	Define unit-button.
 ;;
-;;	(define-button)
+;;	(define-button 'pos n 'level n 'icon ident 'action name ['value value]
+;;		['allowed check ['values]] 'key key 'hint hint 'for-unit units)
 ;;
+;; general commands -- almost all units have it -------------------------------
+;; ogre-mage specific actions -------------------------------------------------
+;; cho'gall specific actions --- same as ogre mage but it has them always -----
+;; death-knight specific actions ----------------------------------------------
+;; peon specific actions ------------------------------------------------------
+;; build basic/advanced structs -----------------------------------------------
+;; simple buildings orc -------------------------------------------------------
+;; orc advanced buildings -----------------------------------------------------
+;; orc special buildings ------------------------------------------------------
+;; orc buildings commands -----------------------------------------------------
+;; town hall upgrades ---------------------------------------------------------
+;; ships ----------------------------------------------------------------------
+;; upgrades -------------------------------------------------------------------
