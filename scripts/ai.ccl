@@ -19,27 +19,135 @@
 ;;
 ;;	AI helper table, the AI must know where to build units,
 ;;	where to research spells, where to upgrade units.
+;;	If this is allowed and which dependencies exists, isn't
+;;	handled	here. (see upgrade.ccl)
+;;
+;;	NOTE: perhaps this could later be used to build the buttons?
 ;;
 ;;	(define-ai-helper (list))
 ;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;	* Race human.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (define-ai-helper
     ;;
     ;;	Unit can build which buildings.
     ;;
-    (list 'build 'unit-peasant 'unit-town-hall)
+    (list 'build 'unit-peasant
+	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-elven-lumber-mill
+	'unit-human-blacksmith 'unit-human-watch-tower 'unit-human-wall
+	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
+	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone)
+    (list 'build 'unit-human-oil-tanker 'unit-human-oil-platform)
     ;;
     ;;	Building can train which units.
     ;;
+    (list 'train 'unit-farm 'unit-critter)
     (list 'train 'unit-town-hall 'unit-peasant)
+    (list 'train 'unit-keep 'unit-peasant)
+    (list 'train 'unit-castle 'unit-peasant)
+    (list 'train 'unit-human-barracks 
+	'unit-footman 'unit-archer 'unit-ranger 'unit-ballista 'unit-knight
+	'unit-paladin)
+    (list 'train 'unit-gnomish-inventor
+	'unit-gnomish-flying-machine 'unit-dwarves)
+    (list 'train 'unit-mage-tower 'unit-mage)
+    (list 'train 'unit-gryphon-aviary 'unit-gryphon-rider)
+    (list 'train 'unit-human-shipyard
+	'unit-human-oil-tanker 'unit-elven-destroyer 'unit-human-transport
+	'unit-gnomish-submarine 'unit-battleship)
     ;;
     ;;	Building can upgrade which upgrades.
     ;;
-    (list 'upgrade 'unit-town-hall 'unit-keep 'unit-castle)
+    (list 'upgrade 'unit-town-hall 'unit-keep)
+    (list 'upgrade 'unit-keep 'unit-castle)
+    (list 'upgrade 'unit-human-watch-tower
+	'unit-human-guard-tower 'unit-human-cannon-tower)
     ;;
-    ;;	Building can research which spells.
+    ;;	Building can research which spells or upgrades.
     ;;
+    (list 'research 'unit-human-blacksmith 
+	'upgrade-sword1 'upgrade-sword2
+	'upgrade-human-shield1 'upgrade-human-shield2
+	'upgrade-ballista1 'upgrade-ballista2)
+    (list 'research 'unit-elven-lumber-mill
+	'upgrade-arrow1 'upgrade-arrow2 'upgrade-ranger
+	'upgrade-ranger-scouting 'upgrade-longbow 'upgrade-ranger-marksmanship)
+    (list 'research 'church
+	'upgrade-paladin 'upgrade-healing 'upgrade-exorcism)
+    (list 'reseach 'unit-mage-tower
+	'upgrade-slow 'upgrade-flame-shield 'upgrade-invisibility
+	'upgrade-polymorph 'upgrade-blizzard)
+    (list 'reseach 'unit-human-foundry
+	'upgrade-human-ship-cannon1 'upgrade-human-ship-cannon2
+	'upgrade-human-ship-armor1 'upgrade-human-ship-armor2)
     )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;	* Race orc.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define-ai-helper
+    ;;
+    ;;	Unit can build which buildings.
+    ;;
+    (list 'build 'unit-peon
+	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall
+	'unit-troll-lumber-mill 'unit-orc-blacksmith 'unit-orc-watch-tower
+	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
+	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-altar-of-storms
+	'unit-dragon-roost 'unit-dark-portal 'unit-runestone)
+    (list 'build 'unit-orc-oil-tanker 'unit-orc-oil-platform)
+    ;;
+    ;;	Building can train which units.
+    ;;
+    (list 'train 'unit-pig-farm 'unit-critter)
+    (list 'train 'unit-great-hall 'unit-peon)
+    (list 'train 'unit-stronghold 'unit-peon)
+    (list 'train 'unit-fortress 'unit-peon)
+    (list 'train 'unit-orc-barracks 
+	'unit-grunt 'unit-axethrower 'unit-berserker 'unit-catapult 'unit-ogre
+	'unit-ogre-mage)
+    (list 'train 'unit-goblin-alchemist
+	'icon-goblin-zeppelin 'unit-goblin-sappers)
+    (list 'train 'unit-temple-of-the-damned 'unit-death-knight)
+    (list 'train 'unit-dragon-roost 'unit-dragon)
+    (list 'train 'unit-orc-shipyard
+	'unit-orc-oil-tanker 'unit-troll-destroyer 'unit-orc-transport
+	'unit-giant-turtle 'unit-ogre-juggernaught)
+    ;;
+    ;;	Building can upgrade which upgrades.
+    ;;
+    (list 'upgrade 'unit-great-hall 'unit-stronghold)
+    (list 'upgrade 'unit-stronghold 'unit-fortress)
+    (list 'upgrade 'unit-orc-watch-tower
+	'unit-orc-guard-tower 'unit-orc-cannon-tower)
+    ;;
+    ;;	Building can research which spells or upgrades.
+    ;;
+    (list 'research 'unit-orc-blacksmith 
+	'upgrade-battle-axe1 'upgrade-battle-axe2
+	'upgrade-orc-shield1 'upgrade-orc-shield2
+	'upgrade-catapult1 'upgrade-catapult2)
+    (list 'research 'unit-troll-lumber-mill
+	'upgrade-throwing-axe1 'upgrade-throwing-axe2 'upgrade-berserker
+	'upgrade-berserker-scouting 'upgrade-light-axes
+	'upgrade-berserker-regeneration)
+    (list 'research 'unit-altar-of-storms
+	'upgrade-ogre-mage 'upgrade-bloodlust 'upgrade-runes)
+    (list 'reseach 'unit-altar-of-storms
+	'upgrade-haste 'upgrade-raise-dead 'upgrade-whirlwind
+	'upgrade-unholy-armor 'upgrade-death-and-decay)
+    (list 'reseach 'unit-orc-foundry
+	'upgrade-orc-ship-cannon1 'upgrade-orc-ship-cannon2
+	'upgrade-orc-ship-armor1 'upgrade-orc-ship-armor2)
+    )
+
+;;=============================================================================
 ;;
 ;;	Define an AI engine.
 ;;
@@ -60,11 +168,11 @@
     ;;
     (set-cheat-unexplored! #t) 
     ;;
-    ;;	Enable or disable the AI cheating on visibile area.
-    ;;	    (set-cheat-visibile! #t)
-    ;;		The AI sees all area visibile.
-    ;;	    (set-cheat-visibile! #f)
-    ;;		The AI sees visibile area as it is.
+    ;;	Enable or disable the AI cheating on visible area.
+    ;;	    (set-cheat-visible! #t)
+    ;;		The AI sees all area visible.
+    ;;	    (set-cheat-visible! #f)
+    ;;		The AI sees visible area as it is.
     ;;
     (set-cheat-visible! #t) 
     ;;
@@ -80,7 +188,7 @@
     ;;		Train a units.
     ;;	    (train unit count)
     ;;		Train count units.
-    (need 'unit-peasant 3)
+    (train 'unit-peasant 3)
     ;;
     ;;	Wait until the units are ready.
     ;;	    (wait unit count)
@@ -105,3 +213,85 @@
     ;;		Train count units.
     (train 'unit-peasant 3)
     ))
+
+(define-ai "orig-air-ai" "human" "air-attack"
+  '(
+    (need 'unit-town-hall)
+    (need 'unit-human-lumbermill)
+    (need 'unit-human-barrack)
+    (need 'unit-peasant)
+    (wait 'unit-peasant)		; initial setup
+
+    (need 'unit-peasant 9)
+    (need 'unit-footman 2)
+    (force 1 'unit-footman 2)
+    (wait force 1)			; build home defence
+
+    (need 'unit-blacksmith)
+    (upgrade 'unit-keep)
+    (need 'unit-peasant 15)
+    (need 'unit-archer 3)
+    (wait 'unit-keep)			; improve
+
+    (need 'unit-stable)
+    (need 'unit-tower 2)
+    (upgrade 'unit-castle)
+    (wait 'unit-castle)			; improve
+
+    (need 'unit-gryphon-aviary)
+    (need 'unit-gryphon)
+    (force 1 'unit-gryphon 1)
+    (wait force 1)			; wave 1
+
+    (attack-with force 1)
+    (sleep 500)
+    (need 'unit-town-hall)
+    (need 'unit-tower 2)
+    (need 'unit-gryphon 2)
+
+    (wait force 1)			; wave 2
+
+    (attack-with force 1)
+
+    (wait force 1)			; wave 3
+
+    (attack-with force 1)
+
+    (wait force 1)			; wave 4
+
+    (attack-with force 1)
+
+    (wait force 1)			; wave 5
+
+    (attack-with force 1)
+
+    (wait force 1)			; wave 6
+
+    (attack-with force 1)
+
+    (wait force 1)			; wave 7
+
+    (attack-with force 1)
+
+    (wait force 1)			; wave 8
+
+    (attack-with force 1)
+
+    (wait force 1)			; wave 9
+
+    (attack-with force 1)
+    (sleep 500)
+
+;; MORE --
+
+    (label loop)
+	(need 'unit-gryphon 11)
+	(force 1 'unit-gryphon 11)
+	(wait force 1)			; wave OO
+
+	(force 1 'unit-gryphon 5)
+	(force 2 'unit-gryphon 5)
+	(attack-with force 1)
+	(attack-with force 2)
+	(sleep 500)
+    (goto loop) ))
