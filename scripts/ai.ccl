@@ -756,6 +756,13 @@
       'unit-stables 'unit-ogre-mound) )
 
 ;;
+;;	Temple of the current race.
+;;
+(define (ai:temple)
+  (if (eq? (ai:get-race) race1)
+      'unit-church 'unit-altar-of-storms) )
+
+;;
 ;;	Airport of the current race.
 ;;
 (define (ai:airport)
@@ -938,18 +945,32 @@
       'unit-human-transport 'unit-orc-transport) )
 
 ;;
+;;	Upgrade shooter to elite Shooter of the current race.
+;;
+(define (ai:upgrade-elite-shooter)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-ranger 'upgrade-berserker) )
+
+;;
+;;	Upgrade cavalrie to cavalrie mages of the current race.
+;;
+(define (ai:upgrade-cavalrie-mage)
+  (if (eq? (ai:get-race) race1)
+      'upgrade-paladin 'upgrade-ogre-mage) )
+
+;;
 ;;	1th spell of the cavalrie mages of the current race.
 ;;
 (define (ai:cavalrie-mage-spell-1)
   (if (eq? (ai:get-race) race1)
-      'unit-healing 'unit-bloodlust))
+      'upgrade-healing 'upgrade-bloodlust))
 
 ;;
 ;;	2nd spell of the cavalrie mages of the current race.
 ;;
 (define (ai:cavalrie-mage-spell-2)
   (if (eq? (ai:get-race) race1)
-      'unit-exorcism 'unit-runes))
+      'upgrade-exorcism 'upgrade-runes))
 
 ;;=============================================================================
 ;;
@@ -1713,7 +1734,7 @@
 (define-ai 'hum-04 "*" "hum-04"
   '(
     ;;	Define the main AI script.
-    (ai:debug #t)
+    (ai:debug #f)
     (ai:set  (ai:worker) 4)
     (ai:set  (ai:tanker) 1)
     (ai:wait (ai:worker))	;; start hangs if nothing available
@@ -1864,7 +1885,7 @@
 (define-ai 'hum-05 "*" "hum-05"
   '(
     ;;	Define the main AI script.
-    (ai:debug #t)
+    (ai:debug #f)
     (ai:set  (ai:worker) 4)
     (ai:set  (ai:tanker) 1)
     (ai:set  (ai:transporter) 1)
@@ -1955,7 +1976,7 @@
 (define-ai 'hum-06 "*" "hum-06"
   '(
     ;;	Define the main AI script.
-    (ai:debug #t)
+    (ai:debug #f)
     (ai:set  (ai:worker) 4)
     (ai:wait (ai:worker))	;; start hangs if nothing available
 
@@ -2006,7 +2027,7 @@
 ;;	This AI script builds only worker and tanker.
 ;;
 (define-ai 'hum-07 "*" "hum-07"
-  '((ai:debug #t)
+  '((ai:debug #f)
     (ai:set  (ai:worker) 2)
     (ai:set  (ai:tanker) 1)
     (ai:sleep	10000)
@@ -2066,7 +2087,7 @@
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-    (ai:research (ai:cavalrie-mage))
+    (ai:research (ai:upgrade-cavalrie-mage))
     (ai:research (ai:cavalrie-mage-spell-1))
     (ai:research (ai:upgrade-missile-1))
     (ai:force 0 (ai:soldier) 2 (ai:shooter) 5 (ai:cavalrie) 1)
@@ -2081,7 +2102,7 @@
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-    (ai:research (ai:elite-shooter))
+    (ai:research (ai:upgrade-elite-shooter))
     (ai:sleep 12000)
     (ai:force 0 (ai:soldier) 2 (ai:shooter) 5 (ai:cavalrie) 2)
     (ai:force 1 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 1 (ai:catapult) 1)
