@@ -49,11 +49,6 @@ print("Stratagus default config file loading ...\n")
 --  see ~/.stratagus/preferences1.scripts
 --  and ~/.stratagus/gamename/preferences2.scripts
 
-
---  Set the game contrast,brightness,saturation.
-SetContrast(100) SetBrightness(0) SetSaturation(100)
---SetContrast(110) SetBrightness(15) SetSaturation(100)
-
 --  Enter your default title screen.
 SetTitleScreens({
   Image = "graphics/ui/stratagus.png",
@@ -265,11 +260,7 @@ SetMinimapTerrain(true)
 --          (set-fog-of-war-style! 'alpha-gray)
 --OriginalFogOfWar()
 AlphaFogOfWar()
-
---  If you use gray style fog of war set the contrast,brightness,saturation
-SetFogOfWarContrast(30)
-SetFogOfWarBrightness(10)
-SetFogOfWarSaturation(100)
+SetFogOfWarOpacity(128)
 
 -------------------------------------------------------------------------------
 

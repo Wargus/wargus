@@ -204,11 +204,11 @@ cp $CONTRIB/puds/multi/* $DIR/puds/multiple >/dev/null 2>&1
 #
 ##	The default pud.
 #
-[ -f "$DIR/puds/multi/(2)mysterious-dragon-isle.pud.gz" ] \
-	&& ln -s "multi/(2)mysterious-dragon-isle.pud.gz" \
+[ -f "$DIR/puds/alamo.pud.gz" ] \
+	&& ln -s "alamo.pud.gz" \
 	    $DIR/puds/default.pud.gz
-[ -f "$DIR/puds/multi/(2)mysterious-dragon-isle.pud.bz2" ] \
-	&& ln -s "multi/(2)mysterious-dragon-isle.pud.bz2" \
+[ -f "$DIR/puds/alamo.pud.bz2" ] \
+	&& ln -s "alamo.pud.bz2" \
 	    $DIR/puds/default.pud.bz2
 
 #
