@@ -97,7 +97,7 @@
 	'manacost 70
 	'range 'infinite
 	'target 'position
-	'action '(summon unit-type unit-revealer time-to-live 10)
+	'action '( (summon unit-type unit-revealer time-to-live 10) )
 	'sound-when-cast "holy vision"
 	'missile-when-cast "missile-normal-spell"
 )
@@ -107,7 +107,7 @@
 	'manacost 6
 	'range	6
 	'target 'unit
-	'action '(adjust-vitals hit-points 1)
+	'action '((adjust-vitals hit-points 1))
 	'condition '(
 	    organic only
 	    building false
@@ -128,7 +128,7 @@
 	'manacost 4
 	'range	10
 	'target 'unit
-	'action '(adjust-vitals hit-points -1)
+	'action '((adjust-vitals hit-points -1))
 	'condition '(
 	    undead only
 	    building false ; any undead buildings?
@@ -144,7 +144,7 @@
 	'manacost 70
 	'range	6
 	'target 'position
-	'action '(summon unit-type unit-eye-of-vision time-to-live 5000)
+	'action '((summon unit-type unit-eye-of-vision time-to-live 5000))
 	'sound-when-cast "eye of vision"
 	'missile-when-cast "missile-normal-spell"
 )
@@ -154,7 +154,7 @@
 	'manacost 50
 	'range	6
 	'target 'unit
-	'action '(adjust-buffs haste-ticks 1000 slow-ticks 0)
+	'action '((adjust-buffs haste-ticks 1000 slow-ticks 0))
 	'condition '(
 	    building false
 	    max-haste-ticks 10 ;; FIXME: proper value?
@@ -170,7 +170,7 @@
 	'manacost 50
 	'range	10
 	'target 'unit
-	'action '(adjust-buffs slow-ticks 1000 haste-ticks 0)
+	'action '((adjust-buffs slow-ticks 1000 haste-ticks 0))
 	'condition '(
 	    building false
 	    max-slow-ticks 10)
@@ -185,7 +185,7 @@
 	'manacost 50
 	'range	6
 	'target 'unit
-	'action '(adjust-buffs bloodlust-ticks 1000)
+	'action '((adjust-buffs bloodlust-ticks 1000))
 	'condition '(
 	    organic only
 	    max-bloodlust-ticks 10)
@@ -200,7 +200,7 @@
 	'manacost 200
 	'range	6
 	'target 'unit
-	'action '(adjust-buffs invisibility-ticks 2000)
+	'action '((adjust-buffs invisibility-ticks 2000))
 	'condition '(
 	    building false
 	    max-invisibility-ticks 10)
@@ -214,7 +214,7 @@
 	'manacost 100
 	'range	6
 	'target 'unit
-	'action '(adjust-buffs invincibility-ticks 500)
+	'action '((adjust-buffs invincibility-ticks 500))
 	'condition '(
 	    building false
 	    max-invincibility-ticks 10)
@@ -228,7 +228,13 @@
 	'manacost 50
 	'range	6
 	'target 'unit
-	'action '(flame-shield duration 600 damage 1)
+	'action '(
+	    (spawn-missile ttl 600 damage 1)
+	    (spawn-missile ttl 607 damage 1)
+	    (spawn-missile ttl 614 damage 1)
+	    (spawn-missile ttl 621 damage 1)
+	    (spawn-missile ttl 628 damage 1)
+	)
 	;; I think it's better if we can cast it multiple times and the effects stack.
 	;; Can be casted, and is effective on both allies and enemies
 	'condition '(building false)
@@ -242,7 +248,7 @@
 	'manacost 200
 	'range	10
 	'target 'unit
-	'action '(polymorph new-form unit-critter)
+	'action '((polymorph new-form unit-critter))
 	'condition '(organic only)
 	'sound-when-cast "polymorph"
 	'missile-when-cast "missile-normal-spell"
@@ -256,13 +262,13 @@
 	'manacost 25
 	'range	12
 	'target 'position
-	'action '(area-bombardment
+	'action '((area-bombardment
 	     fields 5
 	     shards 10
 	     damage 10
 	     ;;  128=4*32=4 tiles
 	     start-offset-x -128
-	     start-offset-y -128)
+	     start-offset-y -128))
 	'sound-when-cast "blizzard"
 	'missile-when-cast "missile-blizzard"
 ;;	'autocast '(range 12)
@@ -273,7 +279,7 @@
 	'manacost 25
 	'range	12
 	'target 'position
-	'action '(area-bombardment fields 5 shards 10 damage 10)
+	'action '((area-bombardment fields 5 shards 10 damage 10))
 	'sound-when-cast "death and decay"
 	'missile-when-cast "missile-death-and-decay"
 ;;	'autocast '(range 12)
@@ -284,7 +290,7 @@
 	'manacost 100
 	'range	8
 	'target 'position
-	'action '(fireball ttl 1000 damage 20)
+	'action '((spawn-missile damage 20))
 	'sound-when-cast "fireball throw"
 	'missile-when-cast "missile-fireball"
 ;;	'autocast '(range 8)
@@ -292,10 +298,26 @@
 
 (define-spell "spell-runes"
 	'showname "runes"
-	'manacost 200
+	'manacost 10
 	'range	10
 	'target 'position
-	'action '(runes ttl 2000 damage 50)
+	'action '(
+	    (spawn-missile ttl 2000 damage 50
+	     start-point (base target add-x 0 add-y 0)
+	     end-point   (base target add-x 0 add-y 0))
+	    (spawn-missile ttl 2000 damage 50
+	     start-point (base target add-x 32 add-y 0)
+	     end-point   (base target add-x 32 add-y 0))
+	    (spawn-missile ttl 2000 damage 50
+	     start-point (base target add-x 0 add-y 32)
+	     end-point   (base target add-x 0 add-y 32))
+	    (spawn-missile ttl 2000 damage 50
+	     start-point (base target add-x -32 add-y 0)
+	     end-point   (base target add-x -32 add-y 0))
+	    (spawn-missile ttl 2000 damage 50
+	     start-point (base target add-x 0 add-y -32)
+	     end-point   (base target add-x 0 add-y -32))
+	)
 	'sound-when-cast "runes"
 	'missile-when-cast "missile-rune"
 ;;	'autocast '(range 10)
@@ -306,7 +328,7 @@
 	'manacost 100
 	'range	10
 	'target 'position ;; FIXME position or organic target
-	'action '(fireball damage 50)
+	'action '((spawn-missile damage 50))
 ;	'condition '(UnitTypeflag (true organic))
 	'sound-when-cast "death coil"
 	'missile-when-cast "missile-death-coil"
@@ -318,7 +340,7 @@
 	'manacost 50
 	'range	6
 	'target 'position
-	'action '(summon unit-type unit-skeleton time-to-live 100 require-corpse)
+	'action '((summon unit-type unit-skeleton time-to-live 100 require-corpse))
 	'sound-when-cast "raise dead"
 	'missile-when-cast "missile-normal-spell"
 ;;	'autocast '(range 6)
@@ -329,7 +351,10 @@
 	'manacost 100
 	'range	12
 	'target 'position
-	'action '(whirlwind duration 801 damage 4) ; TODO damage1 4 damage2 1
+	'action '(
+	    (spawn-missile ttl 800 damage 3
+	     start-point (base target add-x 0 add-y 0)
+	     end-point   (base target add-x 0 add-y 0)))
 	'sound-when-cast "whirlwind"
 	'missile-when-cast "missile-whirlwind"
 ;;	'autocast '(range 12)
@@ -340,7 +365,7 @@
 	'manacost 25
 	'range	-1
 	'target 'position
-	'action '(spawn-portal portal-type unit-circle-of-power)
+	'action '((spawn-portal portal-type unit-circle-of-power))
 	'sound-when-cast "circle of power"
 	'missile-when-cast "missile-normal-spell"
 ;;	'autocast '(range -1)
