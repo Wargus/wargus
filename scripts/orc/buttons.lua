@@ -322,7 +322,7 @@ DefineButton( { Pos = 8, Level = 1, Icon = "icon-mythical-wall",
 
 DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
   Action = "button", Value = 0,
-  Key = "\033", Hint = "~<ESC~> CANCEL",
+  Key = "\27", Hint = "~<ESC~> CANCEL",
   ForUnit = {"unit-peon"} } )
 
 -- orc advanced buildings -----------------------------------------------------
@@ -369,7 +369,7 @@ DefineButton( { Pos = 8, Level = 2, Icon = "icon-dragon-roost",
 
 DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
   Action = "button", Value = 0,
-  Key = "\033", Hint = "~<ESC~> CANCEL",
+  Key = "\27", Hint = "~<ESC~> CANCEL",
   ForUnit = {"unit-peon"} } )
 
 -- orc special buildings ------------------------------------------------------
@@ -388,7 +388,7 @@ DefineButton( { Pos = 2, Level = 3, Icon = "icon-runestone",
 
 DefineButton( { Pos = 9, Level = 3, Icon = "icon-cancel",
   Action = "button", Value = 0,
-  Key = "\033", Hint = "~<ESC~> CANCEL",
+  Key = "\27", Hint = "~<ESC~> CANCEL",
   ForUnit = {"unit-peon"} } )
 
 -- orc buildings commands -----------------------------------------------------
