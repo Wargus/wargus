@@ -35,7 +35,9 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#ifndef __MSC__
 #include <unistd.h>
+#endif
 #include <ctype.h>
 
 #include <png.h>
