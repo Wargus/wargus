@@ -377,14 +377,14 @@
 ;;
 (define (ai:upgrade-weapon-1)
   (if (eq? (ai:get-race) 'human) 
-      'upgrade-human-sword1 'upgrade-orc-battle-axe1) )
+      'upgrade-sword1 'upgrade-battle-axe1) )
 
 ;;
 ;;	Upgrade weapon 2 of the current race.
 ;;
 (define (ai:upgrade-weapon-2)
   (if (eq? (ai:get-race) 'human) 
-      'upgrade-human-sword2 'upgrade-orc-battle-axe2) )
+      'upgrade-sword2 'upgrade-battle-axe2) )
 
 ;;
 ;;	Upgrade catapult 1 of the current race.
