@@ -1338,8 +1338,8 @@
     'menu 'menu-net-connecting)
 (define-menu-item 'pos (list 32 90) 'font 'large 'flags '(selected)
     'button '(size (224 27)
-            caption "~!Cancel"
-            hotkey "c"
+            caption "Cancel (~<Esc~>)"
+            hotkey "esc"
             func net-connecting-cancel
             style gm-full)
     'menu 'menu-net-connecting)
@@ -1874,42 +1874,42 @@
 (define-menu-item 'pos (list (/ 384 2) 11) 'font 'large  'init 'init-save-game-menu
     'text '("Save Game" center)
     'menu 'menu-save-game)
-(define-menu-item 'pos (list 16 (+ 11 (* 36 1))) 'font 'game
-    'input '(size (352 20)
+(define-menu-item 'pos (list (/ (- 384 300 18) 2) (+ 11 36)) 'font 'game
+    'input '(size (300 20)
            func enter-save-game-action
            style pulldown)
     'menu 'menu-save-game)
-(define-menu-item 'pos (list 16 (+ 11 (* 36 1.5))) 'font 'game  'init 'save-lb-init 'exit 'save-lb-exit
-    'listbox '(size (336 126)
+(define-menu-item 'pos (list (/ (- 384 300 18) 2) (+ 11 36 22)) 'font 'game  'init 'save-lb-init 'exit 'save-lb-exit
+    'listbox '(size (300 126)
              style pulldown
              func save-lb-action
              retopt save-lb-retrieve
              handler scen-select-ok
              nlines 7)
     'menu 'menu-save-game)
-(define-menu-item 'pos (list (- 384 16 16) (+ 11 (* 36 1.5))) 'font 'small
+(define-menu-item 'pos (list (+ (/ (- 384 300 18) 2) 300) (+ 11 (* 36 1.5))) 'font 'small
     'vslider '(size (18 126)
              func save-vs-action
              handler save-ok)
     'menu 'menu-save-game)
 (define-menu-item 'pos (list (- (* 1 (/ 384 3)) 106 10) (- 256 16 27)) 'font 'large
     'button '(size (106 27)
-            caption "Save (~<F11~>)"
-            hotkey "f11"
+            caption "~!Save"
+            hotkey "s"
             func save-action
             style gm-half)
     'menu 'menu-save-game)
 (define-menu-item 'pos (list (- (* 2 (/ 384 3)) 106 10) (- 256 16 27)) 'font 'large
     'button '(size (106 27)
-            caption "Delete (~<F5~>)"
-            hotkey "f5"
+            caption "~!Delete"
+            hotkey "d"
             func fc-delete-menu
             style gm-half)
     'menu 'menu-save-game)
 (define-menu-item 'pos (list (- (* 3 (/ 384 3)) 106 10) (- 256 16 27)) 'font 'large
     'button '(size (106 27)
-            caption "Cancel (~<Esc~>)"
-            hotkey "esc"
+            caption "~!Cancel"
+            hotkey "c"
             func end-menu
             style gm-half)
     'menu 'menu-save-game)
@@ -1923,30 +1923,30 @@
 (define-menu-item 'pos (list (/ 384 2) 11) 'font 'large  'init 'init-load-game-menu
     'text '("Load Game" center)
     'menu 'menu-load-game)
-(define-menu-item 'pos (list 16 (+ 11 (* 36 1.5))) 'font 'game  'init 'load-lb-init 'exit 'load-lb-exit
-    'listbox '(size (336 126)
+(define-menu-item 'pos (list (/ (- 384 300 18) 2) (+ 11 (* 36 1.5))) 'font 'game  'init 'load-lb-init 'exit 'load-lb-exit
+    'listbox '(size (300 126)
              style pulldown
              func load-lb-action
              retopt load-lb-retrieve
              handler scen-select-ok
              nlines 7)
     'menu 'menu-load-game)
-(define-menu-item 'pos (list (- 384 16 16) (+ 11 (* 36 1.5))) 'font 'small
+(define-menu-item 'pos (list (+ (/ (- 384 300 18) 2) 300) (+ 11 (* 36 1.5))) 'font 'small
     'vslider '(size (18 126)
              func load-vs-action
              handler load-ok)
     'menu 'menu-load-game)
-(define-menu-item 'pos (list (- (/ 384 3) 106 10) (- 256 16 27)) 'font 'large
+(define-menu-item 'pos (list (/ (- 384 300 18) 2) (- 256 16 27)) 'font 'large
     'button '(size (106 27)
-            caption "Load (~<F12~>)"
-            hotkey "f12"
+            caption "~!Load"
+            hotkey "l"
             func load-action
             style gm-half)
     'menu 'menu-load-game)
-(define-menu-item 'pos (list (- (* 3 (/ 384 3)) 106 10) (- 256 16 27)) 'font 'large
+(define-menu-item 'pos (list (- 384 (/ (- 384 300 18) 2) 106) (- 256 16 27)) 'font 'large
     'button '(size (106 27)
-            caption "~!Cancel (~<Esc~>)"
-            hotkey "esc"
+            caption "~!Cancel"
+            hotkey "c"
             func end-menu
             style gm-half)
     'menu 'menu-load-game)
@@ -2033,8 +2033,8 @@
     'menu 'menu-editor-select)
 (define-menu-item 'pos (list 208 (+ 320 (* 36 2))) 'font 'large
     'button '(size (224 27)
-            caption "~!Cancel"
-            hotkey "c"
+            caption "Cancel (~<Esc~>)"
+            hotkey "esc"
             func end-menu
             style gm-full)
     'menu 'menu-editor-select)
@@ -2245,15 +2245,15 @@
     'menu 'menu-editor-map-properties)
 (define-menu-item 'pos (list (/ (- 288 (* 106 2)) 4) (- 256 11 27)) 'font 'large 'flags '(selected)
     'button '(size (106 27)
-            caption "OK"
-            hotkey ""
+            caption "~!OK"
+            hotkey "o"
             func editor-map-properties-ok
             style gm-half)
     'menu 'menu-editor-map-properties)
 (define-menu-item 'pos (list (- 288 (/ (- 288 (* 106 2)) 4) 106) (- 256 11 27)) 'font 'large 'flags '(selected)
     'button '(size (106 27)
-            caption "Cancel (~<Esc~>)"
-            hotkey "esc"
+            caption "~!Cancel"
+            hotkey "c"
             func editor-end-menu
             style gm-half)
     'menu 'menu-editor-map-properties)
@@ -3058,8 +3058,8 @@
     'menu 'menu-editor-edit-resource)
 (define-menu-item 'pos (list 154 88) 'font 'large
     'button '(size (106 27)
-            caption "Cancel (~<Esc~>)"
-            hotkey "esc"
+            caption "~!Cancel"
+            hotkey "c"
             func editor-edit-resource-cancel
             style gm-half)
     'menu 'menu-editor-edit-resource)
@@ -3120,8 +3120,8 @@
     'menu 'menu-editor-edit-ai-properties)
 (define-menu-item 'pos (list 154 88) 'font 'large 'flags '(selected)
     'button '(size (106 27)
-            caption "Cancel (~<Esc~>)"
-            hotkey "esc"
+            caption "~!Cancel"
+            hotkey "c"
             func editor-edit-ai-properties-cancel
             style gm-half)
     'menu 'menu-editor-edit-ai-properties)
@@ -3156,14 +3156,14 @@
 (define-menu-item 'pos (list 48 308) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "OK"
-            hotkey ""
+            hotkey "o"
             func editor-save-ok
             style gm-half)
     'menu 'menu-editor-save)
 (define-menu-item 'pos (list 198 308) 'font 'large
     'button '(size (106 27)
             caption "Cancel"
-            hotkey ""
+            hotkey "c"
             func editor-save-cancel
             style gm-half)
     'menu 'menu-editor-save)
@@ -3192,7 +3192,7 @@
     'menu 'menu-editor-save-confirm)
 (define-menu-item 'pos (list 16 (- 128 (* 27 1.5))) 'font 'large 'flags '(selected)
     'button '(size (106 27)
-            caption "~!Ok"
+            caption "~!OK"
             hotkey "o"
             func editor-save-confirm-ok
             style gm-half)
@@ -3229,15 +3229,15 @@
     'menu 'menu-replay-game)
 (define-menu-item 'pos (list 48 308) 'font 'large 'flags '(selected)
     'button '(size (106 27)
-            caption "OK"
-            hotkey ""
+            caption "~!OK"
+            hotkey "o"
             func replay-game-ok
             style gm-half)
     'menu 'menu-replay-game)
 (define-menu-item 'pos (list 198 308) 'font 'large
     'button '(size (106 27)
-            caption "Cancel"
-            hotkey ""
+            caption "~!Cancel"
+            hotkey "c"
             func replay-game-cancel
             style gm-half)
     'menu 'menu-replay-game)
