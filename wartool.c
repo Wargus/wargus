@@ -1667,11 +1667,13 @@ int SavePNG(const char* name,unsigned char* image,int w,int h
     }
 
 #ifdef USE_SDL_SURFACE
-    // So the engine doesn't need to support 2 transparent indexes
-    for (i = 0; i < h; ++i) {
-	for (j = 0; j < w; ++j) {
-	    if (!image[j + i * w]) {
-    		image[j + i * w] = 255;
+    // To fix fog of war
+    if (w == 512 && h == 768) {
+	for (i = 0; i < 32; ++i) {
+	    for (j = 32; j < w; ++j) {
+		if (!image[j + i * w]) {
+    		    image[j + i * w] = 255;
+		}
 	    }
 	}
     }
