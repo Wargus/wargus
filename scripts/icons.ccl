@@ -28,17 +28,10 @@
 ;;		Splitting this file into races is a problem, because all
 ;;		icons are in a single file.
 
-(if new-names? (begin
-  (define summer-icons-file "tilesets/summer/icons.png")
-  (define winter-icons-file "tilesets/winter/icons.png")
-  (define wasteland-icons-file "tilesets/wasteland/icons.png")
-  (define swamp-icons-file "tilesets/swamp/icons.png")
-)(begin
-  (define summer-icons-file "icons (summer).png")
-  (define winter-icons-file "icons (winter).png")
-  (define wasteland-icons-file "icons (wasteland).png")
-  (define swamp-icons-file "icons (swamp).png")
-))
+(define summer-icons-file "tilesets/summer/icons.png")
+(define winter-icons-file "tilesets/winter/icons.png")
+(define wasteland-icons-file "tilesets/wasteland/icons.png")
+(define swamp-icons-file "tilesets/swamp/icons.png")
 
 ;;=============================================================================
 ;;	Define an icon.

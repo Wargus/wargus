@@ -27,15 +27,6 @@
 (writes nil "FreeCraft default config file loading ...\n")
 
 ;;-----------------------------------------------------------------------------
-;;	Support functions
-;;-----------------------------------------------------------------------------
-
-;(set! new-names?
-;  (access-problem? (string-append (library-path) "/freecraft.png") "r"))
-
-(set! new-names? (symbol-bound? 'freecraft-feature-new-names ()))
-
-;;-----------------------------------------------------------------------------
 ;;	Config-Part
 ;;-----------------------------------------------------------------------------
 
@@ -46,11 +37,7 @@
 (contrast 110) (brightness 15) (saturation 100)
 
 ;;	Enter your default title screen.
-;;	FIXME: remove check if only NEW_NAMES is supported.
-(if new-names?
-    (title-screen "graphics/ui/freecraft.png")
-    (title-screen "freecraft.png")
-)
+(title-screen "graphics/ui/freecraft.png")
 
 ;;	If color-cycle-all is off only the tileset and global palettes are
 ;;	color cycled.  Otherwise all palettes are
@@ -63,21 +50,15 @@
 ;;
 ;;	(mana-sprite file hotx hoty width height)
 ;;
-(if new-names?
-(mana-sprite	"graphics/ui/mana.png"	-7 -7 7 7)
-(mana-sprite	"mana.png"	-7 -7 7 7)
-)
-;(mana-sprite	"mana2.png"	0 -1 31 4)
+(mana-sprite	"graphics/ui/mana.png"		 -7  -7   7   7)
+;(mana-sprite	"graphics/ui/mana2.png"		  0  -1  31   4)
 
 ;;	Define health-sprite.
 ;;
 ;;	(mana-sprite file hotx hoty width height)
 ;;
-(if new-names?
-(health-sprite	"graphics/ui/health.png"	1 -7 7 7)
-(health-sprite	"health.png"	1 -7 7 7)
-)
-;(health-sprite	"health2.png"	0 -4 31 4)
+(health-sprite	"graphics/ui/health.png"	  1  -7   7   7)
+;(health-sprite	"graphics/ui/health2.png"	  0  -4  31   4)
 
 ;;	Uncomment next, to get a health bar to the left of the unit
 ;(show-health-bar)

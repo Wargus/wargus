@@ -35,23 +35,11 @@
 ;;		fonts supported.
 ;;	size:	font size width and height.
 
-(if new-names? (begin
-
 (define-font 'small	"graphics/ui/fonts/small.png"	 7  6)
 (define-font 'game	"graphics/ui/fonts/game.png"	13 14)
 (define-font 'large	"graphics/ui/fonts/large.png"	17 17)
 (define-font 'small-title "graphics/ui/fonts/small episode titles.png"	32 35)
 (define-font 'large-title "graphics/ui/fonts/large episode titles.png"	52 50)
-
-) (begin
-
-(define-font 'small	"graphic/game font.png"		 7  6)
-(define-font 'game	"graphic/small font.png"	13 14)
-(define-font 'large	"graphic/large font.png"	17 17)
-(define-font 'small-title "graphic/small font episode titles.png"	32 35)
-(define-font 'large-title "graphic/large font episode titles.png"	52 50)
-
-))
 
 ;;=============================================================================
 ;;	Define the font colors.

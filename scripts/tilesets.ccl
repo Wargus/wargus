@@ -29,8 +29,8 @@
 ;;
 ;;	FIXME: need a way to automatic load all available tileset definitions
 
-(load "ccl/summer.ccl" #f #t)
-(load "ccl/winter.ccl" #f #t)
-(load "ccl/wasteland.ccl" #f #t)
-(load "ccl/swamp.ccl" #f #t)
+(load "ccl/tilesets/summer.ccl" #f #t)
+(load "ccl/tilesets/winter.ccl" #f #t)
+(load "ccl/tilesets/wasteland.ccl" #f #t)
+(load "ccl/tilesets/swamp.ccl" #f #t)
 ;(load "../tileset/fc-summer.ccl")

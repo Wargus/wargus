@@ -1,11 +1,4 @@
-text
-graphic
-sound
 campaigns
-puds
-*.rgb
-*.gimp
-*.png
-#NEW_NAMES
 graphics
+puds
 sounds
