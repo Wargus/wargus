@@ -11,23 +11,23 @@ Briefing("type", "wc2",
 
 -- FIXME: Check if units are destroyed.
 AddTrigger(
-  function() return IfUnit("this", "==", 1, "unit-quick-blade") and
-    IfUnit("this", "==", 1, "unit-fad-man") and
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-quick-blade") == 1 and
+    GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-fad-man") == 1 and
     GetNumOpponents(GetThisPlayer()) == 0 end,
   function() return ActionVictory() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-quick-blade") and
-    IfUnit(6, "==", 0, "unit-quick-blade") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-quick-blade") == 0 and
+    GetPlayerData(6, "UnitTypesCount", "unit-quick-blade") == 0 end,
   function() return ActionDefeat() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "unit-fad-man") and
-    IfUnit(1, "==", 0, "unit-fad-man") end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-fad-man") == 0 and
+    GetPlayerData(1, "UnitTypesCount", "unit-fad-man") == 0 end,
   function() return ActionDefeat() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units
