@@ -27,6 +27,14 @@
 ;; load the keystroke helps
 ;;
 (load "ccl/keystrokes.ccl" #f #t)
+
+;;
+;; define the menu graphics
+;;
+(define-menu-graphics
+  '(file "ui/buttons 1.png" size (300 144))
+  '(file "ui/buttons 2.png" size (300 144)))
+
 ;;
 ;; menu-game
 ;;
