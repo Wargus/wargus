@@ -2806,6 +2806,15 @@ int ConvertText(char* file,int txte,int ofs)
     char buf[1024];
     gzFile gf;
     int l;
+    char strdat[1024];
+    struct stat st;
+
+    // need this for German version of original cd
+    sprintf(strdat, "%s/strdat.war");
+    stat(strdat, &st);
+    if (st.size == 55724) {
+	--txte;
+    }
 
     txtp=ExtractEntry(ArchiveOffsets[txte],&l);
 
