@@ -82,46 +82,7 @@ SetGameName("wc2")
 --  set the default map file.
 SetDefaultMap("puds/default.pud")
 
--------------------------------------------------------------------------------
---  Music play list - Insert your titles here
 
---
---  Create a list from the directory content
---
---[[
-(define (dir->list s . prepend)
-  (define (aux d rl p)
-    (let ((q (readdir d)))
-      (cond ((eof-object? q)
-             (closedir d)
-             rl)
-            (else
-             (if (or (equal? q ".") (equal? q ".."))
-                 (aux d rl p)
-                 (aux d (cons (string-append p q) rl) p))))))
-
-  (aux (opendir s) '() (if (string? (car prepend))
-                           (car prepend) 
-                           "")))
-
-;; hack to detect WC2 directory without data extracted
-(if (< (length (dir->list (library-path) nil)) 6)
-  (begin
-    (writes nil "You are trying to run the WC2 but your data seems incomplete.\n")
-    (writes nil "Use tools/wartool or specify another game with '-d /path/to/gamedir'!\n")))
-
-;; Uncomment to play automatic all music
-;; FIXME: Comments are wrong, system dependend stuff didn't belong into the
-;;	  config files.
-(if (eq? (os-classification) (intern "win32"))
-  (define play-list
-    (dir->list (string-append (library-path) "/music/*") "music/"))
-  (define play-list
-    (dir->list (string-append (library-path) "/music") "music/")))
-
-;; Comment this, if you use above
-;(define play-list (list "music/default.mod"))
-]]
 SetSelectionStyle("corners")
 SetShowSightRange(false)
 SetShowAttackRange(false)

@@ -35,13 +35,20 @@
 --	Music part
 
 ------------------------------------------------------------------------------
---	(music-stopped) is called if the current music is finished.
+--	MusicStopped is called if the current music is finished.
 --
 --		This is a random music player demo
 --
---(define (music-stopped)
---  (if (not (= (length play-list) 0)) 
---    (play-music (nth (rand (length play-list)) play-list))))
+
+playlist = {
+  "music/default.mod"
+}
+
+function MusicStopped()
+  if (table.getn(playlist) ~= 0) then
+    PlayMusic(playlist[math.random(table.getn(playlist))])
+  end
+end
 
 ------------------------------------------------------------------------------
 --	(set-cd-mode!) set how your CD is played.
