@@ -46,7 +46,8 @@ print("Stratagus default config file loading ...\n")
 --  Enter your default title screen.
 SetTitleScreens({
   Image = "graphics/ui/stratagus.png",
-  Music = "music/default.mod"}
+  Music = "music/default.mod",
+  Timeout = 20}
 --  {"graphics/logo_stratagus.avi"}
 )
 
