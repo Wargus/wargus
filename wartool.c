@@ -2816,7 +2816,7 @@ int ConvertText(char* file,int txte,int ofs)
     sprintf(strdat, "%s/strdat.war", ArchiveDir);
 #endif
     stat(strdat, &st);
-    if (st.st_size == 55724) {
+    if (st.st_size == 55724 || st.st_size == 51451) {
 	--txte;
     }
 
