@@ -46,4 +46,6 @@
 (add-tip "You can order a worker to build one building after the other, if you hold the SHIFT key, while you place the building.");
 (add-tip "You can build many of the same building, if you hold the ALT and SHIFT keys while you place the buildings.")
 
+(add-tip "Use CTRL-V or ALT-V to cycle through the viewport configuration, you can than monitor your base and lead an attack.")
+
 (add-tip "Know a useful tip?  Then add it here!")
