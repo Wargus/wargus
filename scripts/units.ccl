@@ -64,7 +64,6 @@
   'max-attack-range 1
   'priority 40
   'type-naval
-  'right-attack
   'sea-unit
   'selectable-by-rectangle
   'sounds '())
@@ -83,7 +82,6 @@
   'max-attack-range 1
   'priority 40
   'type-naval
-  'right-attack
   'sea-unit
   'selectable-by-rectangle
   'sounds '())
