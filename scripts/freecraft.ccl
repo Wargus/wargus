@@ -380,7 +380,7 @@
   0  10000 5000 5000   5000 5000 5000)
 
 (define-default-incomes
-  0    900  100  100    100  100  100)
+  0    100  100  100    100  100  100)
 
 (define-default-actions
   'stop 'mine 'chop 'drill 'mine 'mine 'mine)
