@@ -141,7 +141,7 @@
   'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-green-cross
   'file "missiles/green cross.png" 'size '(32 32) 'frames 4
-  'draw-level 5 'class 'missile-class-cycle-once 'sleep 1 'speed 16 'range 1)
+  'draw-level 150 'class 'missile-class-cycle-once 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-red-cross
   'file "missiles/red_cross.png" 'size '(32 32) 'frames 4
   'draw-level 5 'class 'missile-class-cycle-once 'sleep 1 'speed 16 'range 1)
@@ -155,7 +155,7 @@
   'file "missiles/touch of death.png" 'size '(32 32) 'frames 30
   'draw-level 50 'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-hit
-  'size '(15 15) 'draw-level 50
+  'size '(15 15) 'draw-level 150
   'class 'missile-class-hit 'sleep 1 'speed 1 'range 16)
 (define-missile-type 'missile-custom
   'size '(32 32) 'draw-level 50
