@@ -60,7 +60,6 @@ DefineCursor({
 function OrcScreen(screen_width, screen_height)
   local info_panel_x = 0
   local info_panel_y = 160
-  local icon_size = {46, 38}
 
   DefineUI("orc", screen_width, screen_height,
     "normal-font-color", "yellow",
@@ -99,18 +98,18 @@ function OrcScreen(screen_width, screen_height)
       "selected", {
         "single", {
           "icon", {
-            "pos", {  6, 166}, "size", icon_size}},
+            "pos", {  9, 169}, "style", "icon"}},
         "multiple", {
           "icons", {
-            { "pos", {  6, 166}, "size", icon_size},
-            { "pos", { 62, 166}, "size", icon_size},
-            { "pos", {118, 166}, "size", icon_size},
-            { "pos", {  6, 220}, "size", icon_size},
-            { "pos", { 62, 220}, "size", icon_size},
-            { "pos", {118, 220}, "size", icon_size},
-            { "pos", {  6, 274}, "size", icon_size},
-            { "pos", { 62, 274}, "size", icon_size},
-            { "pos", {118, 274}, "size", icon_size}},
+            { "pos", {  9, 169}, "style", "icon"},
+            { "pos", { 65, 169}, "style", "icon"},
+            { "pos", {121, 169}, "style", "icon"},
+            { "pos", {  9, 223}, "style", "icon"},
+            { "pos", { 65, 223}, "style", "icon"},
+            { "pos", {121, 223}, "style", "icon"},
+            { "pos", {  9, 277}, "style", "icon"},
+            { "pos", { 65, 277}, "style", "icon"},
+            { "pos", {121, 277}, "style", "icon"}},
           "max-text", {
             "font", "game",
             "pos", { info_panel_x + 10, info_panel_y + 10}}}
@@ -122,16 +121,16 @@ function OrcScreen(screen_width, screen_height)
             "font", "game",
             "pos", { info_panel_x + 37, info_panel_y + 8 + 78}},
           "icon", {
-            "pos", { info_panel_x + 107, info_panel_y + 8 + 70},
-            "size", icon_size}},
+            "pos", { info_panel_x + 110, info_panel_y + 11 + 70},
+            "style", "icon"}},
         "multiple", {
           "icons", {
-            { "pos", {  6, 216}, "size", icon_size},
-            { "pos", { 62, 216}, "size", icon_size},
-            { "pos", {118, 216}, "size", icon_size},
-            { "pos", {  6, 263}, "size", icon_size},
-            { "pos", { 62, 263}, "size", icon_size},
-            { "pos", {118, 263}, "size", icon_size}}}
+            { "pos", {  9, 219}, "style", "icon"},
+            { "pos", { 65, 219}, "style", "icon"},
+            { "pos", {121, 219}, "style", "icon"},
+            { "pos", {  9, 266}, "style", "icon"},
+            { "pos", { 65, 266}, "style", "icon"},
+            { "pos", {121, 266}, "style", "icon"}}}
       },
       "upgrading", {
         "text", {
@@ -139,8 +138,8 @@ function OrcScreen(screen_width, screen_height)
           "font", "game",
           "pos", { info_panel_x + 29, info_panel_y + 8 + 78}},
         "icon", {
-          "pos", { info_panel_x + 107, info_panel_y + 8 + 70},
-          "size", icon_size}
+          "pos", { info_panel_x + 110, info_panel_y + 11 + 70},
+          "style", "icon"}
       },
       "researching", {
         "text", {
@@ -148,17 +147,17 @@ function OrcScreen(screen_width, screen_height)
           "font", "game",
           "pos", { info_panel_x + 16, info_panel_y + 8 + 78}},
         "icon", {
-          "pos", { info_panel_x + 107, info_panel_y + 8 + 70},
-          "size", icon_size}
+          "pos", { info_panel_x + 110, info_panel_y + 11 + 70},
+          "style", "icon"}
       },
       "transporting", {
         "icons", {
-          { "pos", {  6, 220}, "size", icon_size},
-          { "pos", { 62, 220}, "size", icon_size},
-          { "pos", {118, 220}, "size", icon_size},
-          { "pos", {  6, 274}, "size", icon_size},
-          { "pos", { 62, 274}, "size", icon_size},
-          { "pos", {118, 274}, "size", icon_size}}
+          { "pos", {  9, 223}, "style", "icon"},
+          { "pos", { 65, 223}, "style", "icon"},
+          { "pos", {121, 223}, "style", "icon"},
+          { "pos", {  9, 277}, "style", "icon"},
+          { "pos", { 65, 277}, "style", "icon"},
+          { "pos", {121, 277}, "style", "icon"}}
       },
       "completed-bar", {
         "color", {48, 100, 4},
