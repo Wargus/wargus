@@ -215,8 +215,8 @@
 ;(set-training-queue! #f)
 
 ;;	Edit this to enable/disable building capture.
-(set-building-capture! #t)
-;(set-building-capture! #f)
+;(set-building-capture! #t)
+(set-building-capture! #f)
 
 ;;	Set forest regeneration speed. (n* seconds, 0 = disabled)
 ;;	(Auf allgemeinen Wunsch eines einzelnen Herrn :)
