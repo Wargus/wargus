@@ -1125,6 +1125,11 @@ DefineUnitType("unit-orc-shipyard", { Name = "Shipyard",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true, 
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-oil-patch"},
+                      "distance", { Distance = 3, DistanceType = ">", Type = "unit-orc-oil-platform"},
+					  "distance", { Distance = 3, DistanceType = ">", Type = "unit-human-oil-platform"}
+					}
+				  },
   ShoreBuilding = true,
   CanStore = {"oil"},
   Sounds = {
@@ -1157,7 +1162,11 @@ DefineUnitType("unit-great-hall", { Name = "Great Hall",
   Corpse = {"unit-destroyed-4x4-place", 0},
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
+  BuilderOutside = true, 
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+				  },
   CanStore = {"gold", "wood"},
   Sounds = {
     "selected", "great-hall-selected",
@@ -1314,6 +1323,12 @@ DefineUnitType("unit-orc-refinery", { Name = "Refinery",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true, 
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-oil-patch"},
+                      "distance", { Distance = 3, DistanceType = ">", Type = "unit-orc-oil-platform"},
+					  "distance", { Distance = 3, DistanceType = ">", Type = "unit-human-oil-platform"}
+					}
+				  },
+  ShoreBuilding = true,
   ShoreBuilding = true,
   CanStore = {"oil"},
   Sounds = {
@@ -1345,7 +1360,7 @@ DefineUnitType("unit-orc-oil-platform", { Name = "Oil Platform",
   ExplodeWhenKilled = "missile-explosion",
   Type = "naval",
   Building = true, VisibleUnderFog = true, 
-  MustBuildOnTop = "unit-oil-patch",
+  BuildingRules = { { "ontop", { Type = "unit-oil-patch", ReplaceOnDie = true, ReplaceOnBuild = true} } },
   GivesResource = "oil", CanHarvest = true,
   Sounds = {
     "selected", "orc-oil-platform-selected",
