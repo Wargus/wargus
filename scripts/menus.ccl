@@ -2868,8 +2868,9 @@
            style pulldown)
     'menu 'menu-editor-player-properties)
 
+
 ;;
-;; editor-tips
+;; menu-editor-tips
 ;;
 (define-menu 'name 'menu-editor-tips 'geometry '(256 112 288 256)
     'image 'panel2 'default '4)
@@ -2923,5 +2924,54 @@
 (define-menu-item 'pos (list 14 (+ 35 (* 16 7))) 'font 'game
     'text '(() left)
     'menu 'menu-editor-tips)
+
+
+;;
+;; menu-editor-edit-resource
+;;
+(define-menu 'name 'menu-editor-edit-resource 'geometry '(256 176 288 128)
+    'image 'panel4 'default '3)
+(define-menu-item 'pos (list (/ 288 2) 11) 'font 'large
+    'text '(() center)
+    'menu 'menu-editor-edit-resource)
+(define-menu-item 'pos (list 40 38) 'font 'game
+    'input '(size (212 20)
+           func editor-edit-resource-enter-action
+           style pulldown)
+    'menu 'menu-editor-edit-resource)
+(define-menu-item 'pos (list 24 80) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "~!OK"
+            hotkey "o"
+            func editor-edit-resource-ok
+            style gm-half)
+    'menu 'menu-editor-edit-resource)
+(define-menu-item 'pos (list 154 80) 'font 'large
+    'button '(size (106 27)
+            caption "~!Cancel"
+            hotkey "c"
+            func editor-edit-resource-cancel
+            style gm-half)
+    'menu 'menu-editor-edit-resource)
+
+
+;;
+;; menu-editor-error
+;;
+(define-menu 'name 'menu-editor-error 'geometry '(256 176 288 128)
+    'image 'panel4 'default '2)
+(define-menu-item 'pos (list 144 11) 'font 'large
+    'text '("Error:" center)
+    'menu 'menu-editor-error)
+(define-menu-item 'pos (list 144 38) 'font 'large
+    'text '(() center)
+    'menu 'menu-editor-error)
+(define-menu-item 'pos (list 92 80) 'font 'large 'flags '(selected)
+    'button '(size (106 27)
+            caption "~!OK"
+            hotkey "o"
+            func editor-end-menu
+            style gm-half)
+    'menu 'menu-editor-error)
 
 
