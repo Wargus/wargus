@@ -15,6 +15,16 @@ REM	build.bat	-	The graphics and sound extractor.
 REM
 REM	(c) Copyright 1999-2000 by Lutz Sammer.
 REM
+REM	FreeCraft is free software; you can redistribute it and/or modify
+REM	it under the terms of the GNU General Public License as published
+REM	by the Free Software Foundation; either version 2 of the License,
+REM	or (at your option) any later version.
+REM
+REM	FreeCraft is distributed in the hope that it will be useful,
+REM	but WITHOUT ANY WARRANTY; without even the implied warranty of
+REM	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+REM	GNU General Public License for more details.
+REM	
 REM	$Id$
 REM
 REM	Johns didn't know how to write dos batch scripts.
