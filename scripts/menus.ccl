@@ -807,7 +807,7 @@
 ;; net-multi-client-menu
 ;;
 (define-menu 'name "net-multi-client-menu" 'geometry '(0 0 640 480)
-    'image 'none 'default '4)
+    'image 'none 'default '4 'netaction 'terminate-net-connect)
 (define-menu-item 'pos '(0 0) 'font 'game  'init 'multi-game-client-init
     'drawfunc 'multi-client-draw-func
     'menu "net-multi-client-menu")
@@ -1100,7 +1100,7 @@
 ;; net-connecting-menu
 ;;
 (define-menu 'name "net-connecting-menu" 'geometry '(176 260 288 128)
-    'image 'panel4 'default '2)
+    'image 'panel4 'default '2 'netaction 'terminate-net-connect)
 (define-menu-item 'pos '(144 11) 'font 'large 
     'text '("Connecting to server" center)
     'menu "net-connecting-menu")
