@@ -124,7 +124,7 @@
 
 ;;	Uncomment next, to get extended features.
 ;;		Currently enables some additional buttons.
-(define extensions #t)
+(define extensions #f)
 
 ;;-----------------------------------------------------------------------------
 
@@ -221,7 +221,6 @@
 ;;-----------------------------------------------------------------------------
 
 ;;; Uses FreeCraft Library path!
-
 (load "ccl/wc2.ccl" #f #t)
 
 (load "ccl/tilesets.ccl" #f #t)

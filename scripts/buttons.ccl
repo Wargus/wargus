@@ -26,5 +26,33 @@
 ;;	(define-button 'pos n 'level n 'icon ident 'action name ['value value]
 ;;		['allowed check ['values]] 'key key 'hint hint 'for-unit units)
 ;;
+
 ;; neutral --------------------------------------------------------------------
+
+(if extensions
+(define-button 'pos 1 'level 0 'icon 'icon-circle-of-power
+  'action 'build 'value 'unit-circle-of-power
+  'key "p" 'hint "~!PLACE EXIT/DESTINATION POINT"
+  'for-unit '(unit-dark-portal)) )
+
 ;; general cancel button ------------------------------------------------------
+
+(define-button 'pos 9 'level 9 'icon 'icon-cancel
+  'action 'cancel
+  'key "\033" 'hint "~<ESC~> CANCEL"
+  'for-unit '(*))
+
+(define-button 'pos 9 'level 0 'icon 'icon-cancel
+  'action 'cancel-upgrade
+  'key "\033" 'hint "~<ESC~> CANCEL UPGRADE"
+  'for-unit '(cancel-upgrade))
+
+(define-button 'pos 9 'level 0 'icon 'icon-cancel
+  'action 'cancel-train-unit
+  'key "\033" 'hint "~<ESC~> CANCEL UNIT TRAINING"
+  'for-unit '(*))
+
+(define-button 'pos 9 'level 0 'icon 'icon-cancel
+  'action 'cancel-build
+  'key "\033" 'hint "~<ESC~> CANCEL CONSTRUCTION"
+  'for-unit '(cancel-build))
