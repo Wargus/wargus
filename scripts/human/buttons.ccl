@@ -219,6 +219,7 @@
 
 (define-button 'pos 8 'level 0 'icon 'icon-polymorph
   'action 'cast-spell 'value 'spell-polymorph
+;  'action 'cast-spell 'value 'spell-suicide-bomber
   'allowed 'check-upgrade 'allow-arg '(upgrade-polymorph)
   'key "p" 'hint "~!POLYMORPH"
   'for-unit '(unit-mage unit-white-mage))
