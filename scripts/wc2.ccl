@@ -44,8 +44,8 @@
 ;;	(define-construction-wc-names human-shipyard orc-shipyard ... )
 
 (define-construction-wc-names
-  'construction-0 'construction-1 'construction-2 'construction-3
-  'construction-4 'construction-5 'construction-land
+  'construction-none 'construction-none 'construction-none 'construction-none
+  'construction-none 'construction-none 'construction-land
   'construction-human-shipyard 'construction-orc-shipyard
   'construction-human-oil-well 'construction-orc-oil-well
   'construction-human-refinery 'construction-orc-refinery
