@@ -275,13 +275,13 @@
 
 (define-button 'pos 8 'level 0 'icon 'icon-build-advanced
   'action 'button 'value 2
-  'allowed 'check-unit 'allow-arg '(unit-troll-lumber-mill)
+  'allowed 'check-units-or 'allow-arg '(unit-troll-lumber-mill unit-stronghold)
   'key "v" 'hint "BUILD AD~!VANCED STRUCTURE"
   'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
 
 (define-button 'pos 9 'level 0 'icon 'icon-build-advanced
   'action 'button 'value 3
-  'allowed 'check-units 'allow-arg '(unit-fortress unit-temple-of-the-damned
+  'allowed 'check-units-and 'allow-arg '(unit-fortress unit-temple-of-the-damned
     unit-altar-of-storms)
   'key "e" 'hint "BUILD SP~!ECIAL STRUCTURE"
   'for-unit '(unit-peon unit-peon-with-gold unit-peon-with-wood))
