@@ -48,25 +48,25 @@
     #( 324 325 325 326   0 324 325 325))				; 010
   'solid (list "dark-water" 'water
     #( 327 328 328 329   0 327 328 328))				; 020
-  'solid (list "light-coast" 'no-building
+  'solid (list "light-dirt" 'land 'no-building
     #( 330 331 332   0 333 334 335 336 337 338 334 336))		; 030
-  'solid (list "dark-coast" 'no-building
+  'solid (list "dark-dirt" 'land 'no-building
     #( 339 340 341   0 342 343 344 345 342 343 340 341))		; 040
-  'solid (list "light-grass"
+  'solid (list "light-ground" 'land
     #( 346 347 348   0 349 350 351 352 353 354 355 356 357 358 359 360)); 050
-  'solid (list "dark-grass"
+  'solid (list "dark-ground" 'land
     #( 261 262 263   0 361 362 363 364 365 366 367 368 369 370 371 372)); 060
-  'solid (list "forest" 'forest
+  'solid (list "forest" 'land 'forest 'unpassable
     #( 125 137 138))							; 070
-  'solid (list "rocks" 'rock
+  'solid (list "rocks" 'land 'rock 'unpassable
     #( 162 174 175 176))						; 080
-  'solid (list "human-closed-wall" 'wall
+  'solid (list "human-closed-wall" 'land 'human 'wall 'unpassable
     #(  16   0  52   0  88))						; 090
-  'solid (list "orc-closed-wall" 'wall
+  'solid (list "orc-closed-wall" 'land 'wall 'unpassable
     #(  34   0  70   0  88))						; 0A0
-  'solid (list "human-open-wall" 'wall
+  'solid (list "human-open-wall" 'land 'human 'wall 'unpassable
     #(  33   0  69   0 101))						; 0B0
-  'solid (list "orc-open-wall" 'wall
+  'solid (list "orc-open-wall" 'land 'wall 'unpassable
     #(  51   0  87   0 101))						; 0C0
   'solid (list "unused"
     #())								; 0D0
@@ -91,7 +91,7 @@
     #( 322 323)								; 1D0
     #()									; 1E0
     #())								; 1F0
-  'mixed (list "light-water" "light-coast" 'coast
+  'mixed (list "light-water" "light-dirt" 'coast
     #( 201 202)								; 200
     #( 203 204)								; 210
     #( 205 206 207)							; 220
@@ -108,7 +108,7 @@
     #( 229 230)								; 2D0
     #()									; 2E0
     #())								; 2F0
-  'mixed (list "dark-coast" "light-coast" 'no-building
+  'mixed (list "dark-dirt" "light-dirt" 'land 'no-building
     #( 177 177)								; 300
     #( 178 178)								; 310
     #( 179 180 181)							; 320
@@ -125,7 +125,7 @@
     #( 200 200)								; 3D0
     #()									; 3E0
     #())								; 3F0
-  'mixed (list "rocks" "light-coast" 'rock
+  'mixed (list "rocks" "light-dirt" 'land 'rock 'unpassable
     #( 147 170)								; 400
     #( 139 164)								; 410
     #( 161 173)								; 420
@@ -142,7 +142,7 @@
     #( 142)								; 4D0
     #()									; 4E0
     #())								; 4F0
-  'mixed (list "light-coast" "light-ground" 'no-building
+  'mixed (list "light-dirt" "light-ground" 'land 'no-building
     #( 264 265)								; 500
     #( 266 267)								; 510
     #( 268 269 270)							; 520
@@ -159,7 +159,7 @@
     #( 294 295)								; 5D0
     #()									; 5E0
     #())								; 5F0
-  'mixed (list "dark-ground" "light-ground"
+  'mixed (list "dark-ground" "light-ground" 'land
     #( 233 234)								; 600
     #( 235 236)								; 610
     #( 237 238 239)							; 620
@@ -176,7 +176,7 @@
     #( 260 260)								; 6D0
     #()									; 6E0
     #())								; 6F0
-  'mixed (list "forest" "light-ground" 'forest
+  'mixed (list "forest" "light-ground" 'land 'forest 'unpassable
     #( 110 134)								; 700
     #( 102 127)								; 710
     #( 124 136)								; 720
@@ -193,7 +193,7 @@
     #( 105 105)								; 7D0
     #()									; 7E0
     #())								; 7F0
-  'mixed (list "human-wall" "human-wall" 'wall
+  'mixed (list "human-wall" "human-wall" 'land 'human 'wall 'unpassable
     #(  17   0  53   0  89)						; 800
     #(  18   0  54   0  90)						; 810
     #(  19   0  55   0  91)						; 820
@@ -210,7 +210,7 @@
     #(  32   0  68   0  99)						; 8D0
     #()									; 8E0
     #())								; 8F0
-  'mixed (list "orc-wall" "orc-wall" 'wall
+  'mixed (list "orc-wall" "orc-wall" 'land 'wall 'unpassable
     #(  35   0  71   0  89)						; 900
     #(  36   0  72   0  90)						; 910
     #(  37   0  73   0  91)						; 920
