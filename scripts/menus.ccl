@@ -39,7 +39,7 @@
 ;; menu-game
 ;;
 (define-menu 'name 'menu-game 'geometry '(272 96 256 288)
-  'image 'panel1 'default '7)
+  'panel 'panel1 'default '7)
 (define-menu-item 'pos (list 128 11) 'font 'large  'init 'game-menu-init
   'text '(caption "Game Menu" align center)
   'menu 'menu-game)
@@ -98,7 +98,7 @@
 ;; menu-victory
 ;;
 (define-menu 'name 'menu-victory 'geometry '(256 176 288 128)
-  'image 'panel4 'default '2)
+  'panel 'panel4 'default '2)
 (define-menu-item 'pos (list 144 11) 'font 'large 'init 'victory-init
   'text '(caption "Congratulations!" align center)
   'menu 'menu-victory)
@@ -125,7 +125,7 @@
 ;; menu-defeated
 ;;
 (define-menu 'name 'menu-defeated 'geometry '(256 176 288 128)
-  'image 'panel4 'default '2)
+  'panel 'panel4 'default '2)
 (define-menu-item 'pos (list 144 11) 'font 'large 'init 'defeated-init
   'text '(caption "You have failed to" align center)
   'menu 'menu-defeated)
@@ -151,7 +151,7 @@
 ;; menu-save-replay
 ;;
 (define-menu 'name 'menu-save-replay 'geometry '(256 176 288 128)
-  'image 'panel4 'default '1)
+  'panel 'panel4 'default '1)
 (define-menu-item 'pos (list 144 11) 'font 'large 'init 'save-replay-init 'exit 'save-replay-exit
   'text '(caption "Save Replay" align center)
   'menu 'menu-save-replay)
@@ -180,7 +180,7 @@
 ;; menu-select-scenario
 ;;
 (define-menu 'name 'menu-select-scenario 'geometry '(144 64 352 352)
-  'image 'panel5 'default '4)
+  'panel 'panel5 'default '4)
 (define-menu-item 'pos (list 176 8) 'font 'large  'init 'scen-select-init
   'text '(caption "Select scenario" align center)
   'menu 'menu-select-scenario)
@@ -246,7 +246,7 @@
 ;; menu-program-start
 ;;
 (define-menu 'name 'menu-program-start 'geometry '(0 0 640 480)
-  'image 'none 'default '1)
+  'panel 'none 'default '1)
 (define-menu-item 'pos (list 0 0) 'font 'game  'init 'program-start
   'drawfunc 'name-line-draw
   'menu 'menu-program-start)
@@ -328,7 +328,7 @@
 ;; menu-global-options
 ;;
 (define-menu 'name 'menu-global-options 'geometry '(144 64 352 352)
-  'image 'panel5 'default '1)
+  'panel 'panel5 'default '1)
 (define-menu-item 'pos (list 176 11) 'font 'large 'init 'global-options-init 'exit 'global-options-exit
   'text '(caption "Global Options" align center)
   'menu 'menu-global-options)
@@ -416,7 +416,7 @@
 ;; menu-custom-game
 ;;
 (define-menu 'name 'menu-custom-game 'geometry '(0 0 640 480)
-  'image 'none 'default '3)
+  'panel 'none 'default '3)
 (define-menu-item 'pos (list 0 0) 'font 'game  'init 'game-setup-init
   'drawfunc 'game-draw-func
   'menu 'menu-custom-game)
@@ -516,7 +516,7 @@
 ;; menu-enter-name
 ;;
 (define-menu 'name 'menu-enter-name 'geometry '(176 260 288 128)
-  'image 'panel4 'default '2)
+  'panel 'panel4 'default '2)
 (define-menu-item 'pos (list 144 11) 'font 'game
   'text '(caption "Enter your name:" align center)
   'menu 'menu-enter-name)
@@ -545,7 +545,7 @@
 ;; menu-create-join-menu
 ;;
 (define-menu 'name 'menu-create-join-menu 'geometry '(0 0 640 480)
-  'image 'none 'default '2)
+  'panel 'none 'default '2)
 (define-menu-item 'pos (list 208 (+ 320 (* 36 0))) 'font 'large
   'button '(size (224 27)
     caption "~!Join Game"
@@ -573,7 +573,7 @@
 ;; menu-multi-net-type-menu
 ;;
 (define-menu 'name 'menu-multi-net-type-menu 'geometry '(0 0 640 480)
-  'image 'none 'default '2)
+  'panel 'none 'default '2)
 (define-menu-item 'pos (list 208 (+ 320 (* 36 0))) 'font 'large
   'button '(size (224 27)
     caption "~!LAN/P2P Game"
@@ -602,7 +602,7 @@
 ;; menu-multi-setup
 ;;
 (define-menu 'name 'menu-multi-setup 'geometry '(0 0 640 480)
-  'image 'none 'default '3)
+  'panel 'none 'default '3)
 (define-menu-item 'pos (list 0 0) 'font 'game  'init 'multi-game-setup-init 'exit 'multi-game-setup-exit
   'drawfunc 'multi-game-draw-func
   'menu 'menu-multi-setup)
@@ -990,7 +990,7 @@
 ;; menu-enter-server
 ;;
 (define-menu 'name 'menu-enter-server 'geometry '(176 260 288 128)
-  'image 'panel4 'default '3)
+  'panel 'panel4 'default '3)
 (define-menu-item 'pos (list 144 11) 'font 'game
   'text '(caption "Enter server IP-address:" align center)
   'menu 'menu-enter-server)
@@ -1019,7 +1019,7 @@
 ;; menu-net-multi-client
 ;;
 (define-menu 'name 'menu-net-multi-client 'geometry '(0 0 640 480)
-  'image 'none 'default '4 'netaction 'terminate-net-connect)
+  'panel 'none 'default '4 'netaction 'terminate-net-connect)
 (define-menu-item 'pos (list 0 0) 'font 'game  'init 'multi-game-client-init 'exit 'multi-game-client-exit
   'drawfunc 'multi-client-draw-func
   'menu 'menu-net-multi-client)
@@ -1328,7 +1328,7 @@
 ;; menu-net-connecting
 ;;
 (define-menu 'name 'menu-net-connecting 'geometry '(176 260 288 128)
-  'image 'panel4 'default '2 'netaction 'terminate-net-connect)
+  'panel 'panel4 'default '2 'netaction 'terminate-net-connect)
 (define-menu-item 'pos (list 144 11) 'font 'large 'init 'net-connecting-init 'exit 'net-connecting-exit
   'text '(caption "Connecting to server" align center)
   'menu 'menu-net-connecting)
@@ -1351,7 +1351,7 @@
 ;; menu-campaign-select
 ;;
 (define-menu 'name 'menu-campaign-select 'geometry '(0 0 640 480)
-  'image 'none 'default '0)
+  'panel 'none 'default '0)
 (define-menu-item 'pos (list 208 (+ 212 (* 36 0))) 'font 'large
   'button '(size (224 27)
     caption ()
@@ -1400,7 +1400,7 @@
 ;; menu-campaign-continue
 ;;
 (define-menu 'name 'menu-campaign-continue 'geometry '(0 0 640 480)
-  'image 'none 'default '0)
+  'panel 'none 'default '0)
 (define-menu-item 'pos (list 508 (+ 320 (* 36 3))) 'font 'large
   'button '(size (106 27)
     caption "~!Continue"
@@ -1414,7 +1414,7 @@
 ;; menu-objectives
 ;;
 (define-menu 'name 'menu-objectives 'geometry '(272 96 256 288)
-  'image 'panel1 'default '10)
+  'panel 'panel1 'default '10)
 (define-menu-item 'pos (list 128 11) 'font 'large 'init 'objectives-init
   'text '(caption "Objectives" align center)
   'menu 'menu-objectives)
@@ -1458,7 +1458,7 @@
 ;; menu-end-scenario
 ;;
 (define-menu 'name 'menu-end-scenario 'geometry '(272 96 256 288)
-  'image 'panel1 'default '5)
+  'panel 'panel1 'default '5)
 (define-menu-item 'pos (list 128 11) 'font 'large
   'text '(caption "End Scenario" align center)
   'menu 'menu-end-scenario)
@@ -1503,7 +1503,7 @@
 ;; menu-sound-options
 ;;
 (define-menu 'name 'menu-sound-options 'geometry '(224 64 352 352)
-  'image 'panel5 'default '23)
+  'panel 'panel5 'default '23)
 (define-menu-item 'pos (list 176 11) 'font 'large 'init 'sound-options-init 'exit 'sound-options-exit
   'text '(caption "Sound Options" align center)
   'menu 'menu-sound-options)
@@ -1597,7 +1597,7 @@
 ;; menu-preferences
 ;;
 (define-menu 'name 'menu-preferences 'geometry '(272 96 256 288)
-  'image 'panel1 'default '5)
+  'panel 'panel1 'default '5)
 (define-menu-item 'pos (list 128 11) 'font 'large 'init 'preferences-init 'exit 'preferences-exit
   'text '(caption "Preferences" align center)
   'menu 'menu-preferences)
@@ -1628,7 +1628,7 @@
 ;; menu-diplomacy
 ;;
 (define-menu 'name 'menu-diplomacy 'geometry '(222 76 352 352)
-  'image 'panel5 'default '5)
+  'panel 'panel5 'default '5)
 (define-menu-item 'pos (list 136 30) 'font 'game 'init 'diplomacy-init 'exit 'diplomacy-exit
   'text '(caption "Allied" align center)
   'menu 'menu-diplomacy)
@@ -1969,7 +1969,7 @@
 ;; menu-speed-options
 ;;
 (define-menu 'name 'menu-speed-options 'geometry '(272 96 256 288)
-  'image 'panel1 'default '13)
+  'panel 'panel1 'default '13)
 (define-menu-item 'pos (list 128 11) 'font 'large 'init 'speed-options-init 'exit 'speed-options-exit
   'text '(caption "Speed Settings" align center)
   'menu 'menu-speed-options)
@@ -2028,7 +2028,7 @@
 ;; menu-game-options
 ;;
 (define-menu 'name 'menu-game-options 'geometry '(272 96 256 288)
-  'image 'panel1 'default '5)
+  'panel 'panel1 'default '5)
 (define-menu-item 'pos (list 128 11) 'font 'large
   'text '(caption "Game Options" align center)
   'menu 'menu-game-options)
@@ -2073,7 +2073,7 @@
 ;; menu-net-error
 ;;
 (define-menu 'name 'menu-net-error 'geometry '(176 260 288 128)
-  'image 'panel4 'default '2)
+  'panel 'panel4 'default '2)
 (define-menu-item 'pos (list 144 11) 'font 'large
   'text '(caption "Error:" align center)
   'menu 'menu-net-error)
@@ -2093,7 +2093,7 @@
 ;; menu-tips
 ;;
 (define-menu 'name 'menu-tips 'geometry '(256 112 288 256)
-  'image 'panel2 'default '4)
+  'panel 'panel2 'default '4)
 (define-menu-item 'pos (list 144 11) 'font 'large  'init 'tips-init 'exit 'tips-exit
   'text '(caption "FreeCraft Tips" align center)
   'menu 'menu-tips)
@@ -2148,7 +2148,7 @@
 ;; menu-help
 ;;
 (define-menu 'name 'menu-help 'geometry '(272 96 256 288)
-  'image 'panel1 'default '3)
+  'panel 'panel1 'default '3)
 (define-menu-item 'pos (list 128 11) 'font 'large
   'text '(caption "Help Menu" align center)
   'menu 'menu-help)
@@ -2179,7 +2179,7 @@
 ;; menu-keystroke-help
 ;;
 (define-menu 'name 'menu-keystroke-help 'geometry '(224 64 352 352)
-  'image 'panel5 'default '2)
+  'panel 'panel5 'default '2)
 (define-menu-item 'pos (list (/ 352 2) 11) 'font 'large
   'text '(caption "Keystroke Help Menu" align center)
   'menu 'menu-keystroke-help)
@@ -2205,7 +2205,7 @@
 ;; menu-save-game
 ;;
 (define-menu 'name 'menu-save-game 'geometry '(208 112 384 256)
-  'image 'panel3 'default '6)
+  'panel 'panel3 'default '6)
 (define-menu-item 'pos (list (/ 384 2) 11) 'font 'large  'init 'save-game-init 'exit 'save-game-exit
   'text '(caption "Save Game" align center)
   'menu 'menu-save-game)
@@ -2254,7 +2254,7 @@
 ;; menu-load-game
 ;;
 (define-menu 'name 'menu-load-game 'geometry '(208 112 384 256)
-  'image 'panel3 'default '4)
+  'panel 'panel3 'default '4)
 (define-menu-item 'pos (list (/ 384 2) 11) 'font 'large  'init 'load-game-init 'exit 'load-game-exit
   'text '(caption "Load Game" align center)
   'menu 'menu-load-game)
@@ -2291,7 +2291,7 @@
 ;; menu-save-confirm
 ;;
 (define-menu 'name 'menu-save-confirm 'geometry '(256 112 288 128)
-  'image 'panel4 'default '1)
+  'panel 'panel4 'default '1)
 (define-menu-item 'pos (list (/ 288 2) 11) 'font 'large  'init 'save-confirm-init 'exit 'save-confirm-exit
   'text '(caption "Overwrite File" align center)
   'menu 'menu-save-confirm)
@@ -2321,7 +2321,7 @@
 ;; menu-delete-confirm
 ;;
 (define-menu 'name 'menu-delete-confirm 'geometry '(256 112 288 128)
-  'image 'panel4 'default '1)
+  'panel 'panel4 'default '1)
 (define-menu-item 'pos (list (/ 288 2) 11) 'font 'large  'init 'delete-confirm-init 'exit 'delete-confirm-exit
   'text '(caption "Delete File" align center)
   'menu 'menu-delete-confirm)
@@ -2351,7 +2351,7 @@
 ;; menu-editor-select
 ;;
 (define-menu 'name 'menu-editor-select 'geometry '(0 0 640 480)
-  'image 'none 'default '0)
+  'panel 'none 'default '0)
 (define-menu-item 'pos (list 0 0) 'font 'game
   'drawfunc 'editor-new-draw-func
   'menu 'menu-editor-select)
@@ -2382,7 +2382,7 @@
 ;; menu-editor-new
 ;;
 (define-menu 'name 'menu-editor-new 'geometry '(0 0 640 480)
-  'image 'none 'default '0)
+  'panel 'none 'default '0)
 (define-menu-item 'pos (list (+ 176 16) (+ 112 (+ 40 20))) 'font 'game
   'drawfunc 'editor-new-draw-func
   'menu 'menu-editor-new)
@@ -2438,7 +2438,7 @@
 ;; menu-editor-main-load-map
 ;;
 (define-menu 'name 'menu-editor-main-load-map 'geometry '(144 64 352 352)
-  'image 'panel5 'default '4)
+  'panel 'panel5 'default '4)
 (define-menu-item 'pos (list (/ 352 2) 11) 'font 'large  'init 'editor-main-load-init
   'text '(caption "Select map" align center)
   'menu 'menu-editor-main-load-map)
@@ -2482,7 +2482,7 @@
 ;; menu-editor-load
 ;;
 (define-menu 'name 'menu-editor-load 'geometry '(224 64 352 352)
-  'image 'panel5 'default '4)
+  'panel 'panel5 'default '4)
 (define-menu-item 'pos (list (/ 352 2) 11) 'font 'large  'init 'editor-load-init
   'text '(caption "Select map" align center)
   'menu 'menu-editor-load)
@@ -2526,7 +2526,7 @@
 ;; menu-editor
 ;;
 (define-menu 'name 'menu-editor 'geometry '(272 96 256 288)
-  'image 'panel1 'default '6)
+  'panel 'panel1 'default '6)
 (define-menu-item 'pos (list 128 11) 'font 'large
   'text '(caption "Editor Menu" align center)
   'menu 'menu-editor)
@@ -2578,7 +2578,7 @@
 ;; menu-editor-map-properties
 ;;
 (define-menu 'name 'menu-editor-map-properties 'geometry '(256 112 288 256)
-  'image 'panel2 'default '10)
+  'panel 'panel2 'default '10)
 (define-menu-item 'pos (list (/ 288 2) 11) 'font 'large
   'text '(caption "Map Properties" align center)
   'menu 'menu-editor-map-properties)
@@ -2638,7 +2638,7 @@
 ;; menu-editor-player-properties
 ;;
 (define-menu 'name 'menu-editor-player-properties 'geometry '(0 0 640 480)
-  'image 'none 'default '0)
+  'panel 'none 'default '0)
 (define-menu-item 'pos (list 0 0) 'font 'game
   'drawfunc 'editor-player-properties-draw-func
   'menu 'menu-editor-player-properties)
@@ -3358,7 +3358,7 @@
 ;; menu-editor-tips
 ;;
 (define-menu 'name 'menu-editor-tips 'geometry '(256 112 288 256)
-  'image 'panel2 'default '4)
+  'panel 'panel2 'default '4)
 (define-menu-item 'pos (list 144 11) 'font 'large  ;'init 'init-editor-tips
   'text '(caption "Editor Tips" align center)
   'menu 'menu-editor-tips)
@@ -3415,7 +3415,7 @@
 ;; menu-editor-edit-resource
 ;;
 (define-menu 'name 'menu-editor-edit-resource 'geometry '(256 176 288 128)
-  'image 'panel4 'default '1)
+  'panel 'panel4 'default '1)
 (define-menu-item 'pos (list (/ 288 2) 11) 'font 'large
   'text '(caption () align center)
   'menu 'menu-editor-edit-resource)
@@ -3444,7 +3444,7 @@
 ;; menu-editor-error
 ;;
 (define-menu 'name 'menu-editor-error 'geometry '(256 176 288 128)
-  'image 'panel4 'default '2)
+  'panel 'panel4 'default '2)
 (define-menu-item 'pos (list 144 11) 'font 'large
   'text '(caption "Error:" align center)
   'menu 'menu-editor-error)
@@ -3464,7 +3464,7 @@
 ;; menu-editor-edit-ai-properties
 ;;
 (define-menu 'name 'menu-editor-edit-ai-properties 'geometry '(256 176 288 128)
-  'image 'panel4 'default '6)
+  'panel 'panel4 'default '6)
 (define-menu-item 'pos (list (/ 288 2) 11) 'font 'large
   'text '(caption "Artificial Intelligence" align center)
   'menu 'menu-editor-edit-ai-properties)
@@ -3506,7 +3506,7 @@
 ;; menu-editor-save
 ;;
 (define-menu 'name 'menu-editor-save 'geometry '(224 64 352 352)
-  'image 'panel5 'default '5)
+  'panel 'panel5 'default '5)
 (define-menu-item 'pos (list (/ 352 2) 11) 'font 'large
   'text '(caption "Save map" align center)
   'menu 'menu-editor-save)
@@ -3555,7 +3555,7 @@
 ;; menu-editor-save-confirm
 ;;
 (define-menu 'name 'menu-editor-save-confirm 'geometry '(256 112 288 128)
-  'image 'panel4 'default '1)
+  'panel 'panel4 'default '1)
 (define-menu-item 'pos (list (/ 288 2) 11) 'font 'large  'init 'editor-save-confirm-init
   'text '(caption "Overwrite File" align center)
   'menu 'menu-editor-save-confirm)
@@ -3585,7 +3585,7 @@
 ;; menu-replay-game
 ;;
 (define-menu 'name 'menu-replay-game 'geometry '(144 64 352 352)
-  'image 'panel5 'default '4)
+  'panel 'panel5 'default '4)
 (define-menu-item 'pos (list (/ 352 2) 11) 'font 'large  'init 'replay-game-init
   'text '(caption "Select game" align center)
   'menu 'menu-replay-game)
@@ -3638,7 +3638,7 @@
 ;; menu-restart-confirm
 ;;
 (define-menu 'name 'menu-restart-confirm 'geometry '(272 96 256 288)
-  'image 'panel1 'default '4)
+  'panel 'panel1 'default '4)
 (define-menu-item 'pos (list 128 11) 'font 'large
   'text '(caption "Are you sure you" align center)
   'menu 'menu-restart-confirm)
@@ -3668,7 +3668,7 @@
 ;; menu-surrender-confirm
 ;;
 (define-menu 'name 'menu-surrender-confirm 'geometry '(272 96 256 288)
-  'image 'panel1 'default '4)
+  'panel 'panel1 'default '4)
 (define-menu-item 'pos (list 128 11) 'font 'large
   'text '(caption "Are you sure you" align center)
   'menu 'menu-surrender-confirm)
@@ -3698,7 +3698,7 @@
 ;; menu-quit-to-menu-confirm
 ;;
 (define-menu 'name 'menu-quit-to-menu-confirm 'geometry '(272 96 256 288)
-  'image 'panel1 'default '4)
+  'panel 'panel1 'default '4)
 (define-menu-item 'pos (list 128 11) 'font 'large
   'text '(caption "Are you sure you" align center)
   'menu 'menu-quit-to-menu-confirm)
@@ -3728,7 +3728,7 @@
 ;; menu-exit-confirm
 ;;
 (define-menu 'name 'menu-exit-confirm 'geometry '(272 96 256 288)
-  'image 'panel1 'default '4)
+  'panel 'panel1 'default '4)
 (define-menu-item 'pos (list 128 11) 'font 'large
   'text '(caption "Are you sure you" align center)
   'menu 'menu-exit-confirm)
