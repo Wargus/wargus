@@ -75,6 +75,7 @@
 
 ;;	Uncomment next, to show the react range of the selected unit on map.
 ;(show-react-range)
+(define show-reaction-range (show-react-range))
 
 ;;	Uncomment next, to show the attack range of the selected unit on map.
 ;(show-attack-range)
