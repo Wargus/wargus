@@ -1,4 +1,4 @@
-;;       _________ __                 __                               
+;;       _________ __                 __
 ;;      /   _____//  |_____________ _/  |______     ____  __ __  ______
 ;;      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 ;;      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -83,7 +83,7 @@
   'corpse '(unit-dead-body 0)
   'type-land
   'right-harvest
-  'can-attack 'can-repair
+  'can-attack 'repair-range 1
   'can-target-land
   'land-unit
   'coward
@@ -118,7 +118,7 @@
   'corpse '(unit-dead-body 0)
   'type-land
   'right-harvest
-  'can-attack 'can-repair
+  'can-attack 'repair-range 1
   'can-target-land
   'land-unit
   'coward
@@ -153,7 +153,7 @@
   'corpse '(unit-dead-body 0)
   'type-land
   'right-harvest
-  'can-attack 'can-repair
+  'can-attack 'repair-range 1
   'can-target-land
   'land-unit
   'coward
