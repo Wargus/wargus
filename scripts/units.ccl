@@ -409,7 +409,7 @@
   'size '(0 0)
   'animations 'animations-building 'icon 'icon-holy-vision
   'speed 0
-  'hit-points 0
+  'hit-points 1
   'tile-size '(1 1) 'box-size '(1 1)
   'sight-range 12
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
