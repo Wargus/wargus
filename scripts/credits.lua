@@ -29,7 +29,7 @@
 --      $Id$
 
 Credits(
-	"background", "graphics/ui/Credits_background.png",
+	"background", "ui/Credits_background.png",
 	"title", "Programmers",
 	"name", "  Jimmy Salmon",
 	"name", "  Russell Smith",

@@ -66,36 +66,36 @@ function HumanScreen(screen_width, screen_height)
     "reverse-font-color", "yellow",
 
     "filler", {
-      File = "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/filler-right.png",
+      File = "ui/human/" .. screen_width .. "x" .. screen_height .. "/filler-right.png",
       Pos = { screen_width - 16, 0}},
     "filler", {
-      File = "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/resource.png",
+      File = "ui/human/" .. screen_width .. "x" .. screen_height .. "/resource.png",
       Pos = {176, 0}},
     "filler", {
-      File = "graphics/ui/human/" .. screen_width .. "x" .. screen_height .. "/statusline.png",
+      File = "ui/human/" .. screen_width .. "x" .. screen_height .. "/statusline.png",
       Pos = {176, screen_height - 16}},
     "filler", {
-      File = "graphics/ui/human/menubutton.png",
+      File = "ui/human/menubutton.png",
       Pos = {0, 0}},
     "filler", {
-      File = "graphics/ui/human/minimap.png",
+      File = "ui/human/minimap.png",
       Pos = {0, 24}},
 
     "resources", {
-      "gold", { File = "graphics/ui/gold,wood,oil,mana.png", Frame = 0,
+      "gold", { File = "ui/gold,wood,oil,mana.png", Frame = 0,
         Pos = { 176 + 0, 0}, Size = {14, 14}, TextPos = { 176 + 0 + 18, 1}},
-      "wood", { File = "graphics/ui/gold,wood,oil,mana.png", Frame = 1,
+      "wood", { File = "ui/gold,wood,oil,mana.png", Frame = 1,
         Pos = { 176 + 75, 0}, Size = {14, 14}, TextPos = { 176 + 75 + 18, 1}},
-      "oil", { File = "graphics/ui/gold,wood,oil,mana.png", Frame = 2,
+      "oil", { File = "ui/gold,wood,oil,mana.png", Frame = 2,
         Pos = { 176 + 150, 0}, Size = {14, 14}, TextPos = { 176 + 150 + 18, 1}},
-      "food", { File = "graphics/ui/food.png", Frame = 0,
+      "food", { File = "ui/food.png", Frame = 0,
         Pos = { screen_width - 16 - 138, 0}, Size = {14, 14}, TextPos = { (screen_width - 16 - 138) + 18, 1}},
-      "score", { File = "graphics/ui/score.png", Frame = 0,
+      "score", { File = "ui/score.png", Frame = 0,
         Pos = { screen_width - 16 - 68, 0}, Size = {14, 14}, TextPos = { (screen_width - 16 - 68) + 18, 1}}},
 
     "info-panel", {
       "panel", {
-        "file", "graphics/ui/human/infopanel.png",
+        "file", "ui/human/infopanel.png",
         "pos", { info_panel_x, info_panel_y},
         "size", {176, 176}
       },
@@ -176,7 +176,7 @@ function HumanScreen(screen_width, screen_height)
 
     "button-panel", {
       "panel", {
-        "file", "graphics/ui/human/" ..
+        "file", "ui/human/" ..
           screen_width .. "x" .. screen_height ..
           "/buttonpanel.png",
         "pos", {0, 336}},
@@ -241,14 +241,14 @@ function HumanScreen(screen_width, screen_height)
       ArrowSE = "cursor-arrow-se"},
 
     "menu-panels", {
-      "panel1", "graphics/ui/human/panel_1.png",
-      "panel2", "graphics/ui/human/panel_2.png",
-      "panel3", "graphics/ui/human/panel_3.png",
-      "panel4", "graphics/ui/human/panel_4.png",
-      "panel5", "graphics/ui/human/panel_5.png"},
+      "panel1", "ui/human/panel_1.png",
+      "panel2", "ui/human/panel_2.png",
+      "panel3", "ui/human/panel_3.png",
+      "panel4", "ui/human/panel_4.png",
+      "panel5", "ui/human/panel_5.png"},
 
-    "victory-background", "graphics/ui/human/victory.png",
-    "defeat-background", "graphics/ui/human/defeat.png")
+    "victory-background", "ui/human/victory.png",
+    "defeat-background", "ui/human/defeat.png")
 end
 
 HumanScreen(640, 480)
