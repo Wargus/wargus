@@ -120,5 +120,5 @@ copy /b %CONTRIB%\puds\multi\* %DIR%\puds\multiple
 REM
 REM	Setup the default pud
 REM
-copy /b %DIR%\puds\multi\(2)mysterious-dragon-isle.pud.gz %DIR%\default.pud.gz
+copy /b %DIR%\puds\multi\(2)mysterious-dragon-isle.pud.gz %DIR%\puds\default.pud.gz
 ECHO You only need to run this script once
