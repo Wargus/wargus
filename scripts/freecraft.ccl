@@ -33,8 +33,8 @@
 ;;	Edit the next sections to get your look and feel.
 
 ;;	Set the game contrast,brightness,saturation.
-;(contrast 100) (brightness 0) (saturation 100)
-(contrast 110) (brightness 15) (saturation 100)
+;(set-contrast! 100) (set-brightness! 0) (set-saturation! 100)
+(set-contrast! 110) (set-brightness! 15) (set-saturation! 100)
 
 ;;	Enter your default title screen.
 (title-screen "graphics/ui/freecraft.png")
@@ -117,7 +117,8 @@
 ;(set-hitpoint-regeneration! #f)
 
 ;;	Uncomment next, to show the original game resource line.
-;(original-resources)
+(set-original-resources! #f)
+;(set-original-resources! #t)
 
 ;;	Uncomment next, to enable fancy building (random mirrowing buildings)
 (fancy-buildings)
@@ -141,11 +142,25 @@
 ;;	uncomment this.
 (right-button-moves)
 
-;;	Change next, for the wanted mouse speed.
-(mouse-adjust 15)
+;;	Change next, for the wanted mouse speed. (only SVGALIB)
+(set-mouse-adjust! 15)
+
+;;	Change next, for the wanted mouse scale. (only SVGALIB)
+(set-mouse-scale! 1)
 
 ;;	Uncomment next, to disable mouse scrolling.
-;(mouse-scroll-off)
+(set-mouse-scroll! #t)
+;(set-mouse-scroll! #f)
+
+;;	Uncomment next, to disable keyboard scrolling.
+(set-key-scroll! #t)
+;(set-key-scroll! #f)
+
+;;	Keyboard scroll speed in frames (1=each frame,2 each second,...)
+(set-key-scroll-speed! 1)
+
+;;	Mouse scroll speed in frames (1=each frame,2 each second,...)
+(set-mouse-scroll-speed! 1)
 
 ;;	Change next, for the wanted double-click delay.
 (set-double-click-delay! 300)
@@ -153,17 +168,13 @@
 ;;	Change next, for the wanted hold-click delay.
 (set-hold-click-delay! 1000)
 
-;;	Keyboard scroll speed in frames (1=each frame,2 each second,...)
-(key-scroll-speed 1)
-
-;;	Mouse scroll speed in frames (1=each frame,2 each second,...)
-(key-scroll-speed 1)
-
-;;	Comment next, to disable the display of the command keys in buttons.
-(show-command-key)
+;;	Uncomment next, to disable the display of the command keys in buttons.
+(set-show-command-key! #t)
+;(set-show-command-key! #f)
 
 ;;	Uncomment next, to reverse middle mouse button map move direction.
-;(reverse-map-move)
+(set-reverse-map-move! #f)
+;(set-reverse-map-move! #t)
 
 ;;	Uncomment next, to reveal the complete map.
 ;(reveal-map)
