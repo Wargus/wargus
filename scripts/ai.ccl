@@ -1355,7 +1355,7 @@
     (ai:sleep 500)
     (ai:script ai:human-land-attack-endloop) ) )
 
-(define-ai 'my-ai race1 "land-attack"
+(define-ai 'my-ai1 race1 "land-attack"
   '(
     ;;	Define the main AI script.
     (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
@@ -1568,7 +1568,7 @@
     (ai:sleep 500)
     (ai:script ai:orc-land-attack-endloop) ) )
 
-(define-ai 'my-ai race2 "land-attack"
+(define-ai 'my-ai2 race2 "land-attack"
   '(
     ;;	Define the main AI script.
     (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
