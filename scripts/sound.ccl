@@ -204,7 +204,7 @@
 	(list "teron gorefiend acknowledgement 1.wav"
 	"teron gorefiend acknowledgement 2.wav"
 	"teron gorefiend acknowledgement 3.wav"))
-(make-sound "kurdran-and-sky'ree-acknowledge"
+(make-sound "kurdran-and-sky-ree-acknowledge"
 	(list "kurdran acknowledgement 1.wav"
 	"kurdran acknowledgement 2.wav"
 	"kurdran acknowledgement 3.wav"))
@@ -552,7 +552,7 @@
 (make-sound-group "teron-gorefiend-selected"
 	"teron gorefiend selected"
 	"teron gorefiend annoyed")
-(make-sound-group "kurdan-and-sky'ree-selected"
+(make-sound-group "kurdan-and-sky-ree-selected"
 	"kurdran selected" "kurdran annoyed")
 (make-sound-group "dentarg-selected"
 	"dentarg selected" "dentarg annoyed")
@@ -602,9 +602,9 @@
 (map-sound "ogre-juggernaught-acknowledge" "ships orc acknowledge")
 (map-sound "gnomish-submarine-acknowledge" "ships human acknowledge")
 (map-sound "giant-turtle-acknowledge" "ships orc acknowledge")
-(map-sound "cho'gall-acknowledge" "ogre-mage-acknowledge")
+(map-sound "cho-gall-acknowledge" "ogre-mage-acknowledge")
 (map-sound "lothar-acknowledge" "knight-acknowledge")
-(map-sound "gul'dan-acknowledge" "death-knight-acknowledge")
+(map-sound "gul-dan-acknowledge" "death-knight-acknowledge")
 (map-sound "uther-lightbringer-acknowledge" "paladin-acknowledge")
 (map-sound "zuljin-acknowledge" "troll axethrower-berserker acknowledge")
 (map-sound "peon-with-gold-acknowledge" "basic orc voices acknowledge")
@@ -646,9 +646,9 @@
 (map-sound "ogre-juggernaught-selected" "orc-oil-tanker-selected")
 (map-sound "giant-turtle-selected" "orc-oil-tanker-selected")
 (map-sound "eye-of-kilrogg-selected" "click")
-(map-sound "cho'gall-selected" "mage-selected")
+(map-sound "cho-gall-selected" "mage-selected")
 (map-sound "lothar-selected" "knight-selected")
-(map-sound "gul'dan" "death-knight-selected")
+(map-sound "gul-dan" "death-knight-selected")
 (map-sound "uther-lightbringer-selected" "paladin-selected")
 (map-sound "zuljin-selected" "troll axethrower-berserker selected")
 (map-sound "skeleton-selected" "click")
@@ -707,7 +707,7 @@
 (map-sound "berserker-attack" "axe throw")
 (map-sound "alleria-attack" "bow throw")
 (map-sound "teron-gorefiend-attack" "touch of darkness")
-(map-sound "kurdan-and-sky'ree-attack" "lightning")
+(map-sound "kurdan-and-sky-ree-attack" "lightning")
 (map-sound "dentarg-attack" "punch")
 (map-sound "khadgar-attack" "lightning")
 (map-sound "grom-hellscream-attack" "sword attack")
@@ -725,9 +725,9 @@
 ;;	(map-sound "turalyon-attack")
 ;;	(map-sound "danath-attack")
 ;;	(map-sound "korgath-bladefist-attack")
-;;	(map-sound "cho'gall-attack")
+;;	(map-sound "cho-gall-attack")
 ;;	(map-sound "lothar-attack")
-;;	(map-sound "gul'dan-attack")
+;;	(map-sound "gul-dan-attack")
 ;;	(map-sound "uther-lightbringer-attack")
 ;;	(map-sound "zuljin-attack")
 (map-sound "skeleton-attack" "fist")

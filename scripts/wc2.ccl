@@ -21,7 +21,7 @@
 ;;	(define-tilset-wc-names summer winter wasteland swamp)
 
 (define-tileset-wc-names
-  "tileset-summer" "tileset-winter" "tileset-wasteland" "tileset-swamp" )
+  'tileset-summer 'tileset-winter 'tileset-wasteland 'tileset-swamp)
 
 ;;=============================================================================
 ;;	Define unittype mapping from original number to internal symbol
@@ -29,60 +29,60 @@
 ;;	(define-unittype-wc-names footman grunt ... )
 
 (define-unittype-wc-names
-    "unit-footman" "unit-grunt" "unit-peasant" "unit-peon" "unit-ballista"
-    "unit-catapult" "unit-knight" "unit-ogre" "unit-archer" "unit-axethrower"
-    "unit-mage" "unit-death-knight" "unit-paladin" "unit-ogre-mage"
-    "unit-dwarves" "unit-goblin-sappers" "unit-attack-peasant"
-    "unit-attack-peon" "unit-ranger" "unit-berserker" "unit-alleria"
-    "unit-teron-gorefiend" "unit-kurdan-and-sky'ree" "unit-dentarg"
-    "unit-khadgar" "unit-grom-hellscream" "unit-human-oil-tanker"
-    "unit-orc-oil-tanker" "unit-human-transport" "unit-orc-transport"
-    "unit-elven-destroyer" "unit-troll-destroyer" "unit-battleship"
-    "unit-ogre-juggernaught" "unit-nothing-22" "unit-deathwing"
-    "unit-nothing-24" "unit-nothing-25" "unit-gnomish-submarine"
-    "unit-giant-turtle" "unit-gnomish-flying-machine" "unit-goblin-zeppelin"
-    "unit-gryphon-rider" "unit-dragon" "unit-turalyon" "unit-eye-of-kilrogg"
-    "unit-danath" "unit-korgath-bladefist" "unit-nothing-30" "unit-cho'gall"
-    "unit-lothar" "unit-gul'dan" "unit-uther-lightbringer" "unit-zuljin"
-    "unit-nothing-36" "unit-skeleton" "unit-daemon" "unit-critter"
-    "unit-farm" "unit-pig-farm" "unit-human-barracks" "unit-orc-barracks"
-    "unit-church" "unit-altar-of-storms" "unit-human-watch-tower"
-    "unit-orc-watch-tower" "unit-stables" "unit-ogre-mound"
-    "unit-gnomish-inventor" "unit-goblin-alchemist" "unit-gryphon-aviary"
-    "unit-dragon-roost" "unit-human-shipyard" "unit-orc-shipyard"
-    "unit-town-hall" "unit-great-hall" "unit-elven-lumber-mill"
-    "unit-troll-lumber-mill" "unit-human-foundry" "unit-orc-foundry"
-    "unit-mage-tower" "unit-temple-of-the-damned" "unit-human-blacksmith"
-    "unit-orc-blacksmith" "unit-human-refinery" "unit-orc-refinery"
-    "unit-human-oil-platform" "unit-orc-oil-platform" "unit-keep"
-    "unit-stronghold" "unit-castle" "unit-fortress" "unit-gold-mine"
-    "unit-oil-patch" "unit-human-start-location" "unit-orc-start-location"
-    "unit-human-guard-tower" "unit-orc-guard-tower" "unit-human-cannon-tower"
-    "unit-orc-cannon-tower" "unit-circle-of-power" "unit-dark-portal"
-    "unit-runestone" "unit-human-wall" "unit-orc-wall" "unit-dead-body"
-    "unit-destroyed-1x1-place" "unit-destroyed-2x2-place"
-    "unit-destroyed-3x3-place" "unit-destroyed-4x4-place"
-    "unit-peasant-with-gold" "unit-peon-with-gold" "unit-peasant-with-wood"
-    "unit-peon-with-wood" "unit-human-oil-tanker-full"
-    "unit-orc-oil-tanker-full" )
+    'unit-footman 'unit-grunt 'unit-peasant 'unit-peon 'unit-ballista
+    'unit-catapult 'unit-knight 'unit-ogre 'unit-archer 'unit-axethrower
+    'unit-mage 'unit-death-knight 'unit-paladin 'unit-ogre-mage
+    'unit-dwarves 'unit-goblin-sappers 'unit-attack-peasant
+    'unit-attack-peon 'unit-ranger 'unit-berserker 'unit-alleria
+    'unit-teron-gorefiend 'unit-kurdan-and-sky-ree 'unit-dentarg
+    'unit-khadgar 'unit-grom-hellscream 'unit-human-oil-tanker
+    'unit-orc-oil-tanker 'unit-human-transport 'unit-orc-transport
+    'unit-elven-destroyer 'unit-troll-destroyer 'unit-battleship
+    'unit-ogre-juggernaught 'unit-nothing-22 'unit-deathwing
+    'unit-nothing-24 'unit-nothing-25 'unit-gnomish-submarine
+    'unit-giant-turtle 'unit-gnomish-flying-machine 'unit-goblin-zeppelin
+    'unit-gryphon-rider 'unit-dragon 'unit-turalyon 'unit-eye-of-kilrogg
+    'unit-danath 'unit-korgath-bladefist 'unit-nothing-30 'unit-cho-gall
+    'unit-lothar 'unit-gul-dan 'unit-uther-lightbringer 'unit-zuljin
+    'unit-nothing-36 'unit-skeleton 'unit-daemon 'unit-critter
+    'unit-farm 'unit-pig-farm 'unit-human-barracks 'unit-orc-barracks
+    'unit-church 'unit-altar-of-storms 'unit-human-watch-tower
+    'unit-orc-watch-tower 'unit-stables 'unit-ogre-mound
+    'unit-gnomish-inventor 'unit-goblin-alchemist 'unit-gryphon-aviary
+    'unit-dragon-roost 'unit-human-shipyard 'unit-orc-shipyard
+    'unit-town-hall 'unit-great-hall 'unit-elven-lumber-mill
+    'unit-troll-lumber-mill 'unit-human-foundry 'unit-orc-foundry
+    'unit-mage-tower 'unit-temple-of-the-damned 'unit-human-blacksmith
+    'unit-orc-blacksmith 'unit-human-refinery 'unit-orc-refinery
+    'unit-human-oil-platform 'unit-orc-oil-platform 'unit-keep
+    'unit-stronghold 'unit-castle 'unit-fortress 'unit-gold-mine
+    'unit-oil-patch 'unit-human-start-location 'unit-orc-start-location
+    'unit-human-guard-tower 'unit-orc-guard-tower 'unit-human-cannon-tower
+    'unit-orc-cannon-tower 'unit-circle-of-power 'unit-dark-portal
+    'unit-runestone 'unit-human-wall 'unit-orc-wall 'unit-dead-body
+    'unit-destroyed-1x1-place 'unit-destroyed-2x2-place
+    'unit-destroyed-3x3-place 'unit-destroyed-4x4-place
+    'unit-peasant-with-gold 'unit-peon-with-gold 'unit-peasant-with-wood
+    'unit-peon-with-wood 'unit-human-oil-tanker-full
+    'unit-orc-oil-tanker-full)
 
 ;;=============================================================================
 ;;	Define missiletype mapping from original number to internal symbol
 ;;
 ;;	(define-missiletype-wc-names lightning griffon-hammer ... )
 (define-missiletype-wc-names
-    "missile-lightning" "missile-griffon-hammer" "missile-dragon-breath"
-    "missile-fireball" "missile-flame-shield" "missile-blizzard"
-    "missile-death-and-decay" "missile-big-cannon" "missile-exorcism"
-    "missile-heal-effect" "missile-touch-of-death" "missile-rune"
-    "missile-whirlwind" "missile-catapult-rock" "missile-ballista-bolt"
-    "missile-arrow" "missile-axe" "missile-submarine-missile"
-    "missile-turtle-missile" "missile-small-fire" "missile-big-fire"
-    "missile-impact" "missile-normal-spell" "missile-explosion"
-    "missile-small-cannon" "missile-cannon-explosion"
-    "missile-cannon-tower-explosion" "missile-daemon-fire"
-    "missile-green-cross" "missile-none" "missile-blizzard-hit"
-    "missile-death-coil" "missile-custom" )
+    'missile-lightning 'missile-griffon-hammer 'missile-dragon-breath
+    'missile-fireball 'missile-flame-shield 'missile-blizzard
+    'missile-death-and-decay 'missile-big-cannon 'missile-exorcism
+    'missile-heal-effect 'missile-touch-of-death 'missile-rune
+    'missile-whirlwind 'missile-catapult-rock 'missile-ballista-bolt
+    'missile-arrow 'missile-axe 'missile-submarine-missile
+    'missile-turtle-missile 'missile-small-fire 'missile-big-fire
+    'missile-impact 'missile-normal-spell 'missile-explosion
+    'missile-small-cannon 'missile-cannon-explosion
+    'missile-cannon-tower-explosion 'missile-daemon-fire
+    'missile-green-cross 'missile-none 'missile-blizzard-hit
+    'missile-death-coil 'missile-custom)
 
 ;;=============================================================================
 ;;	Define upgrade mapping from original number to internal symbol
@@ -90,21 +90,21 @@
 ;;	(define-upgrade-wc-names sword1 sword2 ... )
 
 (define-upgrade-wc-names
-    "upgrade-sword1" "upgrade-sword2" "upgrade-battle-axe1"
-    "upgrade-battle-axe2" "upgrade-arrow1" "upgrade-arrow2"
-    "upgrade-throwing-axe1" "upgrade-throwing-axe2" "upgrade-human-shield1"
-    "upgrade-human-shield2" "upgrade-orc-shield1" "upgrade-orc-shield2"
-    "upgrade-human-ship-cannon1" "upgrade-human-ship-cannon2"
-    "upgrade-orc-ship-cannon1" "upgrade-orc-ship-cannon2"
-    "upgrade-human-ship-armor1" "upgrade-human-ship-armor2"
-    "upgrade-orc-ship-armor1" "upgrade-orc-ship-armor2" "upgrade-catapult1"
-    "upgrade-catapult2" "upgrade-ballista1" "upgrade-ballista2"
-    "upgrade-ranger" "upgrade-longbow" "upgrade-ranger-scouting"
-    "upgrade-ranger-marksmanship" "upgrade-berserker" "upgrade-light-axes"
-    "upgrade-berserker-scouting" "upgrade-berserker-regeneration"
-    "upgrade-ogre-mage" "upgrade-paladin" "upgrade-holy-vision"
-    "upgrade-healing" "upgrade-exorcism" "upgrade-flame-shield"
-    "upgrade-fireball" "upgrade-polymorph" "upgrade-blizzard"
-    "upgrade-eye-of-kilrogg" "upgrade-bloodlust" "upgrade-raise-dead"
-    "upgrade-death-coil" "upgrade-whirlwind" "upgrade-haste"
-    "upgrade-unholy-armor" "upgrade-runes" "upgrade-death-and-decay" )
+    'upgrade-sword1 'upgrade-sword2 'upgrade-battle-axe1
+    'upgrade-battle-axe2 'upgrade-arrow1 'upgrade-arrow2
+    'upgrade-throwing-axe1 'upgrade-throwing-axe2 'upgrade-human-shield1
+    'upgrade-human-shield2 'upgrade-orc-shield1 'upgrade-orc-shield2
+    'upgrade-human-ship-cannon1 'upgrade-human-ship-cannon2
+    'upgrade-orc-ship-cannon1 'upgrade-orc-ship-cannon2
+    'upgrade-human-ship-armor1 'upgrade-human-ship-armor2
+    'upgrade-orc-ship-armor1 'upgrade-orc-ship-armor2 'upgrade-catapult1
+    'upgrade-catapult2 'upgrade-ballista1 'upgrade-ballista2
+    'upgrade-ranger 'upgrade-longbow 'upgrade-ranger-scouting
+    'upgrade-ranger-marksmanship 'upgrade-berserker 'upgrade-light-axes
+    'upgrade-berserker-scouting 'upgrade-berserker-regeneration
+    'upgrade-ogre-mage 'upgrade-paladin 'upgrade-holy-vision
+    'upgrade-healing 'upgrade-exorcism 'upgrade-flame-shield
+    'upgrade-fireball 'upgrade-polymorph 'upgrade-blizzard
+    'upgrade-eye-of-kilrogg 'upgrade-bloodlust 'upgrade-raise-dead
+    'upgrade-death-coil 'upgrade-whirlwind 'upgrade-haste
+    'upgrade-unholy-armor 'upgrade-runes  'upgrade-death-and-decay)
