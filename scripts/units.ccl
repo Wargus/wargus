@@ -198,6 +198,7 @@
   'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 0
   'corpse '(unit-destroyed-3x3-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building
   'gives-resource 'gold 'can-harvest
@@ -245,6 +246,7 @@
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 0
   'corpse '(unit-destroyed-2x2-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building
   'sounds '(
@@ -275,6 +277,7 @@
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'priority 0
   'corpse '(unit-destroyed-4x4-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 'builder-outside
   'can-cast-spell
@@ -307,6 +310,7 @@
   'priority 15 'annoy-computer-factor 35
   'points 150
   'corpse '(unit-destroyed-2x2-place 0)
+  'explode-when-killed 'missile-explosion
   'type-land
   'building 'builder-outside
   'can-cast-spell
