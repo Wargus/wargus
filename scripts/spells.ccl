@@ -30,60 +30,6 @@
 
 ;; For documentation see stratagus/doc/ccl/ccl.html ;; FIXME write and move doc.
 
-;;		// Warning, Some names and specifications should be changed
-;;		// Todo parameter coherency ? negative for dealing damage, positive for healing ?
-;;
-;;		... 		: for list.
-;;		{a, b, c}	: choice between a, b, or c.
-;;		name#n		: name is of type number.
-;;		#n			: Number.
-;;		#t			: {true, false}
-;;		#target		: {'self, 'Unit, 'position}
-;;		#f_inv		: {unholyarmor, invisibility}
-;;		#f_haste	: {bloodlust, slow, haste, HP, mana, HP_percent, mana_percent}
-;;		#f_flag		: {invisibility, bloodlust, unholyarmor, slow, haste, flameshield,
-;;				  HP, mana, HP_percent, mana_percent
-;;		#flagtype	: {coward, organic, undead, canattack, building}
-;;		<condition>	: Same syntax as 'condition
-;;
-;;	(define-spell	"IdentName"	// Ident name for call in unit
-;;		'Showname "ShowName"	// Name show in the engine
-;;		'ManaCost #n		// Mana to cast the spell
-;;		'range #n		// Range of the spell (0)
-;;		'Target #target		// Which target is allowed (None by default)
-;;		'Action '({
-;;			Blizzard ('fields #n 'shards #n 'damage #n),
-;;			CircleOfPower "unit-goal",
-;;			DeathAndDecay(fields #n shards #n damage #n),
-;;			DeathCoil,
-;;			FireBall (ttl #n damage #n),
-;;			FlameShield (ttl #n),
-;;			Haste (#f_haste #n ...),
-;;			Healing (HP#n), // Healing (HP >0) or exorcism (HP < 0)
-;;			HolyVision "unit-revealer",
-;;			Invisibility (flag #f_inv value #n missile "MissileType")
-;;			Polymorph "unittype",
-;;			RaiseDead "skeleton",
-;;			Runes (ttl #n damage #n),
-;;			Summon "UnitType",
-;;			Whirlwind (ttl #n)
-;;				} )
-;;		'sound-when-cast "SoundConfig"
-;;		'missile-when-cast "MissileType"
-;;		'condition '( {
-;;			Enemypresence	(#t range #n),			// enemy in range
-;;			DurationEffect	(#t flag #f_flag value #n),	// "f_flag" < #n
-;;			Alliance 	#t,				// check the target is allied.
-;;			UnitTypeflag	(#t #flagtype),			// Unit is a "type"
-;;			...}
-;;			)
-;;		'autocast '(
-;;				range #n
-;;				condition (<condition>)// Additional condition
-;;				+++order () // which target choose.
-;;				)
-;;
-
 (define-bool-flags 'isundead 'organic 'hero)
 
 ;;  Declare some unit types used in spells. This is quite accetable, the other
@@ -125,12 +71,7 @@
 	    max-hp-percent 100)
 	'sound-when-cast "healing"
 	'missile-when-cast "missile-heal-effect"
-	'autocast '(range 6
-	    condition (
-		coward false
-		alliance only
-		max-hp-percent 50
-	    )
+	'autocast '(range 6 condition (alliance only max-hp-percent 90 )
 	)
 )
 
@@ -187,8 +128,8 @@
 	    max-slow-ticks 10)
 	'sound-when-cast "slow"
 	'missile-when-cast "missile-normal-spell"
-	'autocast '(range 10 combat only condition (coward false alliance false))
-	'ai-cast '(range 10 condition (coward false alliance false))
+	'autocast '(range 10 condition (coward false alliance false))
+	'ai-cast '(range 10 combat only condition (coward false alliance false))
 )
 
 (define-spell "spell-bloodlust"
@@ -251,7 +192,7 @@
 	'condition '(building false)
 	'sound-when-cast "flame shield"
 	'missile-when-cast "missile-flame-shield" ; NOT use
-;	'autocast '(range 6 condition (coward false))
+;;	'autocast '(range 6 condition (coward false))
 )
 
 (define-spell "spell-polymorph"
