@@ -115,10 +115,16 @@
     ;;
     ;;	Equivalence of units for the resource manager.
     ;;
-    (list 'unit-equiv 'unit-town-hall 'unit-keep 'unit-castle)
+    (list 'unit-equiv 'unit-town-hall
+	'unit-keep 'unit-castle)
+    (list 'unit-equiv 'unit-keep
+	'unit-castle)
     (list 'unit-equiv 'unit-peasant
 	'unit-peasant-with-gold 'unit-peasant-with-wood)
-    (list 'unit-equiv 'unit-human-oil-tanker 'unit-human-oil-tanker-full) )
+    (list 'unit-equiv 'unit-human-oil-tanker
+	'unit-human-oil-tanker-full)
+    (list 'unit-equiv 'unit-human-watch-tower
+	 'unit-human-guard-tower 'unit-human-cannon-tower) )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race orc.
@@ -212,10 +218,16 @@
     ;;
     ;;	Equivalence of units for the resource manager.
     ;;
-    (list 'unit-equiv 'unit-great-hall 'unit-stronghold 'unit-fortress)
+    (list 'unit-equiv 'unit-great-hall
+	'unit-stronghold 'unit-fortress)
+    (list 'unit-equiv 'unit-'unit-stronghold
+	'unit-fortress)
     (list 'unit-equiv 'unit-peon
 	'unit-peon-with-gold 'unit-peon-with-wood)
-    (list 'unit-equiv 'unit-orc-oil-tanker 'unit-orc-oil-tanker-full) )
+    (list 'unit-equiv 'unit-orc-oil-tanker
+	'unit-orc-oil-tanker-full)
+    (list 'unit-equiv 'unit-orc-watch-tower
+	 'unit-orc-guard-tower 'unit-orc-cannon-tower) )
 
 ;;=============================================================================
 ;;
@@ -280,13 +292,58 @@
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
-    (writes nil "AI Ended!\n")
+    (ai:sleep	500)
+    (ai:need 'unit-town-hall)
+    (ai:need 'unit-stables)
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-human-watch-tower)
+    (ai:upgrade-to 'unit-human-guard-tower)
+    (ai:need 'unit-human-barracks)
+    (ai:upgrade-to 'unit-castle)
+    (ai:set  'unit-peasant 19)
+    (ai:wait 'unit-castle)
+
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+;;; tower, tower, church
+
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:force 0 'unit-footman 1 'unit-archer 2 'unit-knights 6 'unit-ballista 1)
+    (ai:force 1 'unit-footman 1 'unit-archer 2 'unit-knights 2 'unit-ballista 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (writes nil "AI Ended!\a\n")
     (ai:restart)
     ))
 
 (define-ai "my-ai" "orc" "land-attack"
   '(
-
     ;;	Define the main AI script.
     (ai:debug #t)
     (ai:need (unit-type 'unit-great-hall))
@@ -337,147 +394,16 @@
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
+;; FIXME: more
+
+
     (writes nil "AI Ended!\n")
     (ai:restart)
     ))
 
-
-'(
-    ;;	Enable or disable the AI cheating on unexplored area.
-    ;;	    (set-cheat-unexplored! #t)
-    ;;		The AI sees all area explored.
-    ;;	    (set-cheat-unexplored! #f)
-    ;;		The AI sees unexplored area as it is.
-    ;;
-    (set-cheat-unexplored! #t)
-
-    ;;	Enable or disable the AI cheating on visible area.
-    ;;	    (set-cheat-visible! #t)
-    ;;		The AI sees all area visible.
-    ;;	    (set-cheat-visible! #f)
-    ;;		The AI sees visible area as it is.
-    ;;
-    (set-cheat-visible! #t)
-
-    ;;
-    ;;	Need a building.
-    ;;	    (need building)
-    ;;		Build a building position selected from the AI, if not
-    ;;		already available.
-    ;;
-    (need 'unit-town-hall)
-    ;;
-    ;;	Train an unit.
-    ;;	    (train unit)
-    ;;		Train a units.
-    ;;	    (train unit count)
-    ;;		Train count units.
-    (train 'unit-peasant 3)
-    ;;
-    ;;	Wait until the units are ready.
-    ;;	    (wait unit count)
-    ;;
-    (wait 'unit-peasant 3)
-
-
-    ;;
-    ;;	Build a building.
-    ;;	    (build building x y)
-    ;;		Build a building at position x,y.
-    ;;	    (build building)
-    ;;		Build a building position selected from the AI.
-    ;;
-    (build 'unit-town-hall)
-
-    ;;
-    ;;	Train an unit.
-    ;;	    (train unit)
-    ;;		Train a units.
-    ;;	    (train unit count)
-    ;;		Train count units.
-    (train 'unit-peasant 3)
-    )
-
-'(
-(define-ai "orig-air-ai" "human" "air-attack"
+(define-ai "wc2-passive" "*" "passive"
   '(
-    (need 'unit-town-hall)
-    (need 'unit-human-lumbermill)
-    (need 'unit-human-barrack)
-    (need 'unit-peasant)
-    (wait 'unit-peasant)		; initial setup
-
-    (need 'unit-peasant 9)
-    (need 'unit-footman 2)
-    (force 1 'unit-footman 2)
-    (wait force 1)			; build home defence
-
-    (need 'unit-blacksmith)
-    (upgrade 'unit-keep)
-    (need 'unit-peasant 15)
-    (need 'unit-archer 3)
-    (wait 'unit-keep)			; improve
-
-    (need 'unit-stable)
-    (need 'unit-tower 2)
-    (upgrade 'unit-castle)
-    (wait 'unit-castle)			; improve
-
-    (need 'unit-gryphon-aviary)
-    (need 'unit-gryphon)
-    (force 1 'unit-gryphon 1)
-    (wait force 1)			; wave 1
-
-    (attack-with force 1)
-    (sleep 500)
-    (need 'unit-town-hall)
-    (need 'unit-tower 2)
-    (need 'unit-gryphon 2)
-
-    (wait force 1)			; wave 2
-
-    (attack-with force 1)
-
-    (wait force 1)			; wave 3
-
-    (attack-with force 1)
-
-    (wait force 1)			; wave 4
-
-    (attack-with force 1)
-
-    (wait force 1)			; wave 5
-
-    (attack-with force 1)
-
-    (wait force 1)			; wave 6
-
-    (attack-with force 1)
-
-    (wait force 1)			; wave 7
-
-    (attack-with force 1)
-
-    (wait force 1)			; wave 8
-
-    (attack-with force 1)
-
-    (wait force 1)			; wave 9
-
-    (attack-with force 1)
-    (sleep 500)
-
-;; MORE --
-
-    (label loop)
-	(need 'unit-gryphon 11)
-	(force 1 'unit-gryphon 11)
-	(wait force 1)			; wave OO
-
-	(force 1 'unit-gryphon 5)
-	(force 2 'unit-gryphon 5)
-	(attack-with force 1)
-	(attack-with force 2)
-	(sleep 500)
-    (goto loop) ))
-)
+    ;;	Define the main AI script.
+    (ai:sleep	10000)
+    (ai:restart)
+    ))
