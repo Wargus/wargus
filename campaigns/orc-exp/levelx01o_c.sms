@@ -11,28 +11,20 @@ Briefing("type", "wc2",
 )
 
 -- FIXME: Check if units are destroyed.
-(add-trigger
-  '(
-    (and
-      (if-unit 'this '== 1 'unit-beast-cry)
-      (if-unit 6 '== 0 'unit-death-knight)
-      (if-unit 6 '== 0 'unit-temple-of-the-damned)))
-  '(
-    (action-victory)))
+AddTrigger(
+  function() return IfUnit("this", "==", 1, "unit-beast-cry") and
+    IfUnit(6, "==", 0, "unit-death-knight") and
+    IfUnit(6, "==", 0, "unit-temple-of-the-damned") end,
+  function() return ActionVictory() end)
 
-(add-trigger
-  '(
-    (and
-      (if-unit 'this '== 0 'unit-beast-cry)
-      (if-unit 0 '== 0 'unit-beast-cry)))
-  '(
-    (action-defeat)))
+AddTrigger(
+  function() return IfUnit("this", "==", 0, "unit-beast-cry") and
+    IfUnit(0, "==", 0, "unit-beast-cry") end,
+  function() return ActionDefeat() end)
 
-(add-trigger
-  '(
-    (if-unit 'this '== 0 'all))
-  '(
-    (action-defeat)))
+AddTrigger(
+  function() return IfUnit("this", "==", 0, "all") end,
+  function() return ActionDefeat() end)
 
 --Units
 

@@ -10,36 +10,25 @@ Briefing("type", "wc2",
 )
 
 -- FIXME: Check if units are destroyed.
-(add-trigger
-  '(
-    (and
-      (if-unit 'this '== 1 'unit-quick-blade)
-      (if-unit 'this '== 1 'unit-fad-man)
-      (if-opponents 'this '== 0)))
-  '(
-    (action-victory)))
+AddTrigger(
+  function() return IfUnit("this", "==", 1, "unit-quick-blade") and
+    IfUnit("this", "==", 1, "unit-fad-man") and
+    IfOpponents("this", "==", 0) end,
+  function() return ActionVictory() end)
 
-(add-trigger
-  '(
-    (and
-      (if-unit 'this '== 0 'unit-quick-blade)
-      (if-unit 6 '== 0 'unit-quick-blade)))
-  '(
-    (action-defeat)))
+AddTrigger(
+  function() return IfUnit("this", "==", 0, "unit-quick-blade") and
+    IfUnit(6, "==", 0, "unit-quick-blade") end,
+  function() return ActionDefeat() end)
 
-(add-trigger
-  '(
-    (and
-      (if-unit 'this '== 0 'unit-fad-man)
-      (if-unit 1 '== 0 'unit-fad-man)))
-  '(
-    (action-defeat)))
+AddTrigger(
+  function() return IfUnit("this", "==", 0, "unit-fad-man") and
+    IfUnit(1, "==", 0, "unit-fad-man") end,
+  function() return ActionDefeat() end)
 
-(add-trigger
-  '(
-    (if-unit 'this '== 0 'all))
-  '(
-    (action-defeat)))
+AddTrigger(
+  function() return IfUnit("this", "==", 0, "all") end,
+  function() return ActionDefeat() end)
 
 --Units
 
