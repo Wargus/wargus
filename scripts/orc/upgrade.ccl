@@ -50,9 +50,9 @@
   'costs #(   200   500   500     0     0     0     0))
 (define-upgrade 'upgrade-orc-ship-armor2 'icon 'icon-mythical-ship-armor3
   'costs #(   250  1500   900     0     0     0     0))
-(define-upgrade 'upgrade-ballista1 'icon 'icon-ballista1
+(define-upgrade 'upgrade-catapult1 'icon 'icon-catapult1
   'costs #(   250  1500     0     0     0     0     0))
-(define-upgrade 'upgrade-ballista2 'icon 'icon-ballista2
+(define-upgrade 'upgrade-catapult2 'icon 'icon-catapult2
   'costs #(   250  4000     0     0     0     0     0))
 (define-upgrade 'upgrade-berserker 'icon 'icon-berserker
   'costs #(   250  1500     0     0     0     0     0))
@@ -144,13 +144,13 @@
   '(apply-to unit-mythical-destroyer) '(apply-to unit-ogre-juggernaught)
   '(apply-to unit-mythical-transport))
 
-(define-modifier 'upgrade-ballista1
+(define-modifier 'upgrade-catapult1
   '(piercing-damage 15)
-  '(apply-to unit-ballista))
+  '(apply-to unit-catapult))
 
-(define-modifier 'upgrade-ballista2
+(define-modifier 'upgrade-catapult2
   '(piercing-damage 15)
-  '(apply-to unit-ballista))
+  '(apply-to unit-catapult))
 
 (define-modifier 'upgrade-berserker
   '(apply-to unit-axethrower) '(convert-to unit-berserker))
@@ -265,8 +265,8 @@
 (define-allow 'upgrade-orc-ship-cannon2		"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-orc-ship-armor1		"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-orc-ship-armor2		"AAAAAAAAAAAAAAAA")
-(define-allow 'upgrade-ballista1		"AAAAAAAAAAAAAAAA")
-(define-allow 'upgrade-ballista2		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-catapult1		"AAAAAAAAAAAAAAAA")
+(define-allow 'upgrade-catapult2		"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-berserker		"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-light-axes		"AAAAAAAAAAAAAAAA")
 (define-allow 'upgrade-berserker-scouting	"AAAAAAAAAAAAAAAA")
@@ -343,8 +343,8 @@
   '(upgrade-throwing-axe1))
 (define-dependency 'upgrade-orc-shield2
   '(upgrade-orc-shield1))
-(define-dependency 'upgrade-ballista2
-  '(upgrade-ballista1))
+(define-dependency 'upgrade-catapult2
+  '(upgrade-catapult1))
 (define-dependency 'upgrade-orc-ship-cannon2
   '(upgrade-orc-ship-cannon1))
 (define-dependency 'upgrade-orc-ship-armor2
