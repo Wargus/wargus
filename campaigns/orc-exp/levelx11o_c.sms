@@ -11,19 +11,14 @@ Briefing("type", "wc2",
 )
 
 -- FIXME: Check if units are destroyed.
-(add-trigger
-  '(
-    (and
-      (if-unit 3 '== 0 'all)
-      (if-unit 6 '== 0 'unit-mage-tower)))
-  '(
-    (action-victory)))
+AddTrigger(
+  function() return IfUnit(3, "==", 0, "all") and
+    IfUnit(6, "==", 0, "unit-mage-tower") end,
+  function() return ActionVictory() end)
 
-(add-trigger
-  '(
-    (if-unit 'this '== 0 'all))
-  '(
-    (action-defeat)))
+AddTrigger(
+  function() return IfUnit("this", "==", 0, "all") end,
+  function() return ActionDefeat() end)
 
 --Units
 

@@ -11,19 +11,14 @@ Briefing("type", "wc2",
 )
 
 -- FIXME: Check if units are destroyed.
-(add-trigger
-  '(
-    (and
-      (if-rescued-near-unit 'this '== 1 'unit-mage 'unit-circle-of-power)
-      (if-opponents 'this '== 0)))
-  '(
-    (action-victory)))
+AddTrigger(
+  function() return IfRescuedNearUnit("this", "==", 1, "unit-mage", "unit-circle-of-power") and
+    IfOpponents("this", "==", 0) end,
+  function() return ActionVictory() end)
 
-(add-trigger
-  '(
-    (if-unit 'this '== 0 'all))
-  '(
-    (action-defeat)))
+AddTrigger(
+  function() return IfUnit("this", "==", 0, "all") end,
+  function() return ActionDefeat() end)
 
 --Units
 
