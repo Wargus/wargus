@@ -353,7 +353,7 @@ DefineDependency("upgrade-berserker",
   {"unit-stronghold"},
   "or", {"unit-fortress"})
 DefineDependency("upgrade-berserker-scouting",
-  {"unit-fortress upgrade-berserker"})
+  {"unit-fortress", "upgrade-berserker"})
 DefineDependency("upgrade-berserker-regeneration",
   {"unit-fortress", "upgrade-berserker"})
 DefineDependency("upgrade-light-axes",
