@@ -152,13 +152,14 @@
   'hit-points 5
   'tile-size '(1 1) 'box-size '(31 31)
   'sight-range 2 'computer-reaction-range 20 'person-reaction-range 10
-  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'basic-damage 80 'piercing-damage 0 'missile 'missile-critter-explosion
   'max-attack-range 1
   'priority 37
   'points 1
   'demand 1
   'type-land
   'right-move
+  'can-target-land
   'land-unit
   'critter
   'organic

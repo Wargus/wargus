@@ -159,3 +159,8 @@
 (define-missile-type 'missile-custom
   'size '(32 32)
   'class 'missile-class-custom 'sleep 1 'speed 16 'range 1)
+(define-missile-type 'missile-critter-explosion
+  'file "missiles/catapult rock.png" 'size '(32 32) 'frames 15
+  'impact-sound "explosion"
+  'class 'missile-class-hit 'sleep 1 'speed 16 'range 2
+  'impact-missile 'missile-impact 'can-hit-owner #t)
