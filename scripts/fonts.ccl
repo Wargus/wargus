@@ -43,11 +43,10 @@
 ;;=============================================================================
 ;;	Define the font colors.
 ;;
-;;	(define-font-colors color0 ... color15)
+;;	(define-font-color color array)
 ;;
-;;	color0:		array of 7 colors #( 1 2 3 4 5 6 7 )
-;;	...
-;;	color15:	16 different font colors supported.
+;;	color:		name of the color
+;;	array:		array of 7 rgb colors #( r1 g1 b1 r2 g2 b2 ...)
 ;;
 ;;	The colors are:
 ;;		#0   is background color
@@ -59,7 +58,7 @@
 ;;		#6   is the light shadow color
 ;;		#255 is transparent
 ;;
-;;	FIXME: only 3=yellow and 7=white and 8=grey are correct.
+;;	FIXME: only yellow, white, and grey are correct.
 ;;
 
 (define-font-color 'black
@@ -94,6 +93,30 @@
       92  48   0	; 192
        0   0   0	; 239
      108 108 108))	; 104
+(define-font-color 'blue
+  #(   0   0   0	; 0
+       0 148 252	; 1
+       0 148 252	; 1
+       0 148 252	; 1
+       0 148 252	; 1
+       0   0   0	; 239
+       0   0   0))	; 0
+(define-font-color 'magenta
+  #(   0   0   0	; 0
+     152  72 176	; 220
+     152  72 176	; 220
+     152  72 176	; 220
+     152  72 176	; 220
+       0   0   0	; 239
+       0   0   0))	; 0
+(define-font-color 'cyan
+  #(   0   0   0	; 0
+     248 140 140	; 224
+     248 140 140	; 224
+     248 140 140	; 224
+     248 140 140	; 224
+       0   0   0	; 239
+       0   0   0))	; 0
 (define-font-color 'white
   #(   0   0   0	; 0
      252 248 240	; 246
@@ -110,37 +133,59 @@
      108 108 108	; 104
        0   0   0	; 239
        0   0   0))	; 0
-
-;(define-font-colors
-;    ;; 0 black
-;    #(   0 228 228 228 228 239   0 )
-;    ;; 1 red
-;    #(   0 208 209 210 211 239   0 )
-;    ;; 2 green
-;    #(   0 216 216 216 216 239   0 )
-;    ;; 3 yellow
-;    #( 246 200 199 197 192 239 104 )
-;    ;; 4 blue
-;    #(   0   1   1   1   1 239   0 )
-;    ;; 5 magenta
-;    #(   0 220 220 220 220 239   0 )
-;    ;; 6 cyan
-;    #(   0 224 224 224 224 239   0 )
-;    ;; 7 white
-;    #(   0 246 246 246 104 239   0 )
-;    ;; 8 grey
-;    #(   0 111 110 109 104 239   0 )
-;    ;; 9 light-red
-;    #(   0 208 208 208 208 239   0 )
-;    ;; a light-green
-;    #(   0 216 216 216 216 239   0 )
-;    ;; b light-yellow
-;    #( 246 200 199 197 192 239 104 )
-;    ;; c light-blue
-;    #(   0   1   1   1   1 239   0 )
-;    ;; d light-magenta
-;    #(   0 220 220 220 220 239   0 )
-;    ;; e light-cyan
-;    #(   0 224 224 224 224 239   0 )
-;    ;; f light grey
-;    #(   0 111 110 109 104 239   0 ) )
+(define-font-color 'light-red
+  #(   0   0   0	; 0
+     164   0   0	; 208
+     164   0   0	; 208
+     164   0   0	; 208
+     164   0   0	; 208
+       0   0   0	; 239
+       0   0   0))	; 0
+(define-font-color 'light-green
+  #(   0   0   0	; 0
+      44 180 148	; 216
+      44 180 148	; 216
+      44 180 148	; 216
+      44 180 148	; 216
+       0   0   0	; 239
+       0   0   0))	; 0
+(define-font-color 'light-yellow
+  #( 252 248 240	; 246
+     244 224  32	; 200
+     208 192  28	; 199
+     168 140  16	; 197
+      92  48   0	; 192
+       0   0   0	; 239
+     108 108 108))	; 104
+(define-font-color 'light-blue
+  #(   0   0   0	; 0
+       0 148 252	; 1
+       0 148 252	; 1
+       0 148 252	; 1
+       0 148 252	; 1
+       0   0   0	; 239
+       0   0   0))	; 0
+(define-font-color 'light-magenta
+  #(   0   0   0	; 0
+     152  72 176	; 220
+     152  72 176	; 220
+     152  72 176	; 220
+     152  72 176	; 220
+       0   0   0	; 239
+       0   0   0))	; 0
+(define-font-color 'light-cyan
+  #(   0   0   0	; 0
+     248 140  20	; 224
+     248 140  20	; 224
+     248 140  20	; 224
+     248 140  20	; 224
+       0   0   0	; 239
+       0   0   0))	; 0
+(define-font-color 'light-grey
+  #(   0   0   0	; 0
+     192 192 192	; 111
+     180 180 180	; 110
+     168 168 168	; 109
+     108 108 108	; 104
+       0   0   0	; 239
+       0   0   0))	; 0
