@@ -3818,6 +3818,10 @@ int main(int argc,char** argv)
 	fclose(f);
     }
 
+#ifndef DEBUG
+    printf("Please be patient, the data may take a couple of minutes to extract...\n");
+#endif
+
     DebugLevel2("Extract from \"%s\" to \"%s\"\n" _C_ ArchiveDir _C_ Dir);
     for( u=0; u<sizeof(Todo)/sizeof(*Todo); ++u ) {
 	if (1 & CDType) {
