@@ -192,6 +192,7 @@ find $DIR/campaigns -type f -name "*.txt" -print -exec $COMPRESS {} \;
 ##	Copy original puds into data directory
 #
 echo "Copying maps and compressing"
+[ -d $DIR/puds ] || mkdir $DIR/puds
 [ -d $DATADIR/../puds ] && cp -r $DATADIR/../puds/ $DIR/ >/dev/null 2>&1
 [ -f $DATADIR/../alamo.pud ] && cp -r $DATADIR/../*.pud $DIR/puds >/dev/null 2>&1
 chmod -R +w $DIR/puds
