@@ -121,6 +121,7 @@
   'size '(72 72)
   'animations 'animations-daemon 'icon 'icon-daemon
   'costs '(time 70 gold 500 oil 50)
+  'neutral-minimap-color '(192 0 0)
   'speed 14
   'hit-points 60
   'draw-level 60
@@ -154,6 +155,7 @@
     tileset-swamp "tilesets/swamp/neutral/units/critter.png")
   'size '(32 32)
   'animations 'animations-critter 'icon 'icon-critter
+  'neutral-minimap-color '(192 192 192)
   'speed 3
   'hit-points 5
   'draw-level 35
@@ -186,6 +188,7 @@
     tileset-swamp "tilesets/swamp/neutral/buildings/gold_mine.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-gold-mine
+  'neutral-minimap-color '(255 255 0)
   'costs '(time 150)
   'construction 'construction-land2
   'speed 0
@@ -214,6 +217,7 @@
     tileset-swamp "tilesets/swamp/neutral/buildings/oil_patch.png")
   'size '(96 96)
   'animations 'animations-building 'icon 'icon-oil-patch
+  'neutral-minimap-color '(0 0 0)
   'speed 0
   'hit-points 0
   'draw-level 5
@@ -236,6 +240,7 @@
   'files '(tileset-summer "neutral/buildings/circle_of_power.png")
   'size '(64 64)
   'animations 'animations-building 'icon 'icon-circle-of-power
+  'neutral-minimap-color '(128 128 0)
   'speed 0
   'hit-points 0
   'draw-level 5
@@ -262,6 +267,7 @@
     tileset-swamp "tilesets/swamp/neutral/buildings/dark_portal.png")
   'size '(128 128)
   'animations 'animations-building 'icon 'icon-dark-portal
+  'neutral-minimap-color '(255 255 0)
   'costs '(time 100 gold 3000 wood 3000 oil 1000)
   'repair-hp 4
   'repair-costs '(gold 1 wood 1 oil 1)
@@ -293,6 +299,7 @@
     tileset-swamp "tilesets/swamp/neutral/buildings/runestone.png")
   'size '(64 64)
   'animations 'animations-building 'icon 'icon-runestone
+  'neutral-minimap-color '(255 255 0)
   'costs '(time 175 gold 900 wood 500)
   'repair-hp 4
   'repair-costs '(gold 1 wood 1)
