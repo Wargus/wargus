@@ -436,34 +436,4 @@ Load("ccl/ranks.lua")
 Load("ccl/menus.lua")
 Load("ccl/cheats.lua")
 
--------------------------------------------------------------------------------
-
--- Test code to create male orc names.
---(define orc-first (list "B" "Er" "G" "Gr" "H" "P" "Pr" "R" "V" "Vr"))
---(define orc-middle (list "a" "i" "o" "u"))
---(define orc-last (list "dash" "dish" "dush" "gar" "gor" "gdush" "lo" "gdish"
---  "k" "lg" "nak" "rag" "rbag" "rg" "rk" "ng" "nk" "rt" "ol" "urk" "shnak"))
-
---(define (orc-name)
---  (string-append (nth (rand (length orc-first)) orc-first)
---    (nth (rand (length orc-middle)) orc-middle)
---    (nth (rand (length orc-last)) orc-last)))
-
--- Test code to create male human names.
---(define human-first (list "Au" "Gar" "Bo" "Natha" "Gwë" "Ann" "Ma"
---  "Ygd" "Ni" "Lau" "Fra" "O'" "Sul"))
---(define human-middle (list "ba" "ga" "ro" "na" "ji" "ria" "da" "li" "re" "va"))
---(define human-last (list "nel" "mel" "mir" "ël" "len" "ll" "ril" "van"
---  "lin" "lien"))
-
---(define (human-name)
---  (string-append (nth (rand (length human-first)) human-first)
---    (nth (rand (length human-middle)) human-middle)
---    (nth (rand (length human-last)) human-last)))
-
---(define (gen-unit-name ut)
---  (orc-name))
-
--------------------------------------------------------------------------------
-
 print("... ready!\n")
