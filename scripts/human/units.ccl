@@ -91,7 +91,6 @@
   'can-gather-resource '(
 	file-when-loaded "human/units/peasant_with_gold.png"  
 	resource-id gold
-	harvest-from-outside
 	resource-capacity 100
 	wait-at-resource 150
 	wait-at-depot 150 )
@@ -687,6 +686,7 @@
   'right-attack
   'can-attack
   'can-target-land
+  'can-cast-spell '(spell-holy-vision spell-healing spell-exorcism)
   'land-unit
   'organic
   'selectable-by-rectangle
@@ -751,6 +751,7 @@
   'can-attack
   'can-target-land
   'land-unit
+  'can-cast-spell '(spell-holy-vision spell-healing spell-exorcism)
   'hero
   'organic
   'selectable-by-rectangle
@@ -783,6 +784,7 @@
   'right-attack
   'can-attack
   'can-target-land
+  'can-cast-spell '(spell-holy-vision spell-healing spell-exorcism)
   'land-unit
   'hero
   'organic

@@ -363,6 +363,13 @@
   'coward
   'isundead
   'organic
+  'can-cast-spell '(
+      spell-death-coil
+      spell-haste
+      spell-raise-dead
+      spell-whirlwind
+      spell-unholy-armor
+      spell-death-and-decay)				      
   'selectable-by-rectangle
   'sounds '(
     selected "teron-gorefiend-selected"
@@ -393,6 +400,7 @@
   'right-attack
   'can-attack
   'can-target-land
+  'can-cast-spell '(spell-eye-of-vision spell-runes spell-bloodlust)
   'land-unit
   'organic
   'selectable-by-rectangle
@@ -766,6 +774,7 @@
   'right-attack
   'can-attack
   'can-target-land
+  'can-cast-spell '(spell-eye-of-vision spell-runes spell-bloodlust)
   'land-unit
   'hero
   'organic
@@ -800,6 +809,13 @@
   'can-target-land 'can-target-sea 'can-target-air
   'land-unit
   'hero
+  'can-cast-spell '(
+      spell-death-coil
+      spell-haste
+      spell-raise-dead
+      spell-whirlwind
+      spell-unholy-armor
+      spell-death-and-decay)
   'isundead
   'organic
   'selectable-by-rectangle
