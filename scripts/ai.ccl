@@ -559,7 +559,7 @@
 	(cond
 	    ((null? pcts)	'())
 	    (#t	
-		(let* (	(unittype (eval (caar pcts) ))
+		(let* (	(unittype (ccl:eval (caar pcts) ))
 			(gauges_pcts (cdar pcts))
 			(want_pct (ai:sum-gauges-pcts gauges_pcts))
 			(unit_force (ai:get-unittype-force unittype))
@@ -594,7 +594,7 @@
 	  	
 	    ;; Build at least one of the first type.
 	    (if (null? units)
-		(set! units (list (eval (caar units_pct) ) 1)))
+		(set! units (list (ccl:eval (caar units_pct) ) 1)))
 	    
 	    ;; Complete if necessary to achieve minimum force ...
 	    (set! units (complete-force-to units force-mini))
