@@ -33,11 +33,17 @@
 ;;
 ;;	FIXME: need a way to automatic load all available tileset definitions
 
+(ccl:load "ccl/wc2-config.ccl")
+
 (define-tileset 'tileset-summer 'class "summer" 'name "Forest"
   'file "ccl/tilesets/summer.ccl")
 (define-tileset 'tileset-winter 'class "winter" 'name "Winter"
   'file "ccl/tilesets/winter.ccl")
 (define-tileset 'tileset-wasteland 'class "wasteland" 'name "Wasteland"
   'file "ccl/tilesets/wasteland.ccl")
-(define-tileset 'tileset-swamp 'class "swamp" 'name "Swamp"
-  'file "ccl/tilesets/swamp.ccl")
+(if expansion (begin
+  (define-tileset 'tileset-swamp 'class "swamp" 'name "Swamp"
+    'file "ccl/tilesets/swamp.ccl")))
+(if (not expansion) (begin
+  (define-tileset 'tileset-swamp 'class "swamp" 'name "Swamp"
+    'file "ccl/tilesets/dummy-swamp.ccl")))
