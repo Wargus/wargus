@@ -779,6 +779,10 @@
 (map-sound "peon-with-wood-attack" "peasant-attack")
 (map-sound "peasant-with-wood-attack" "peasant-attack")
 
+(map-sound "critter-help" "basic orc voices help 1")
+(map-sound "critter-dead" "explosion")
+
+
 ;;	Define sounds used by game
 ;;
 (define-game-sounds
