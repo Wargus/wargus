@@ -667,7 +667,7 @@
 (define-ai "wc2-air-attack" "*" "air-attack"
   '(
     ;;	Define the main AI script.
-    (ai:debug #t)
+    (ai:debug #f)
     (ai:need (ai:city-center))
     (ai:set  (ai:worker) 1)
     (ai:wait (ai:city-center))
@@ -820,7 +820,7 @@
 (define-ai "wc2-sea-attack" "*" "sea-attack"
   '(
     ;;	Define the main AI script.
-    (ai:debug #t)
+    (ai:debug #f)
     (ai:need (ai:city-center))
     (ai:set  (ai:worker) 1)
     (ai:wait (ai:city-center))
