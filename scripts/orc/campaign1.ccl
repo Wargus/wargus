@@ -35,7 +35,7 @@
 (define-campaign 'orc 'name "~!Orc campaign"
   'campaign (list
 	'show-picture (list
-	  'image "campaigns/orc/interface/Act_I___-_Seas_of_Blood.png"
+	  'image "campaigns/orc/interface/Act_I_-_Seas_of_Blood.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -60,7 +60,7 @@
 	'play-level "campaigns/orc/level03o.cm"
 	'play-level "campaigns/orc/level04o.cm"
 	'show-picture (list
-	  'image "campaigns/orc/interface/Act_II__-_Khaz_Modan.png"
+	  'image "campaigns/orc/interface/Act_II_-_Khaz_Modan.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
@@ -109,7 +109,7 @@
 	'play-level "campaigns/orc/level10o.cm"
 	'play-level "campaigns/orc/level11o.cm"
 	'show-picture (list
-	  'image "campaigns/orc/interface/Act_IV__-_Tides_of_Darkness.png"
+	  'image "campaigns/orc/interface/Act_IV_-_Tides_of_Darkness.png"
 	  'fade-in (* 30 2)
 	  'fade-out (* 30 2)
 	  'display-time (* 30 10)
