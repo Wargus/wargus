@@ -157,7 +157,7 @@ enum _archive_type_ {
     X,			// Text				(name,text,ofs)
     C,			// Cursor			(name,cursor)
     V,			// Video			(name)
-#ifdef IMPORT_CAMPAIGNS
+#ifndef NO_IMPORT_CAMPAIGNS
     L,			// Campaign Levels		
 #endif
 };
@@ -188,7 +188,7 @@ Control Todo[] = {
 {F,0,"strdat.war",				4000 __},
 #endif
 {S,0,"unit_names",						  1	__},
-#ifdef IMPORT_CAMPAIGNS
+#ifndef NO_IMPORT_CAMPAIGNS
 {L,0,"objectives",						 54 ,236	_2},
 #else
 {X,0,"objectives",                                               54     __},
@@ -3408,7 +3408,7 @@ char* ParseString(char* input)
 //	Import the campaigns
 //----------------------------------------------------------------------------
 
-#ifdef IMPORT_CAMPAIGNS
+#ifndef NO_IMPORT_CAMPAIGNS
 
 /**
 **	FIXME: docu
@@ -3699,9 +3699,10 @@ int main(int argc,char** argv)
 		    ConvertVideo(Todo[u].File,Todo[u].Arg1);
 		}
 		break; 
-#ifdef IMPORT_CAMPAIGNS
+#ifndef NO_IMPORT_CAMPAIGNS
 	    case L:
-		CampaignsCreate(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,expansion_cd);
+		CampaignsCreate(Todo[u].File,Todo[u].Arg1,Todo[u].Arg2,
+		    expansion_cd);
 		break;
 #endif
 	    default:
