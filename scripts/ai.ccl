@@ -80,12 +80,14 @@
     ;;		Train a units.
     ;;	    (train unit count)
     ;;		Train count units.
-    (train 'unit-peasant 3)
+    (need 'unit-peasant 3)
     ;;
     ;;	Wait until the units are ready.
     ;;	    (wait unit count)
     ;;
     (wait 'unit-peasant 3)
+
+
     ;;
     ;;	Build a building.
     ;;	    (build building x y)
@@ -94,4 +96,12 @@
     ;;		Build a building position selected from the AI.
     ;;
     (build 'unit-town-hall)
+
+    ;;
+    ;;	Train an unit.
+    ;;	    (train unit)
+    ;;		Train a units.
+    ;;	    (train unit count)
+    ;;		Train count units.
+    (train 'unit-peasant 3)
     ))

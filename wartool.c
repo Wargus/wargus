@@ -225,11 +225,11 @@ Control Todo[] = {
 {G,0,"gnomish submarine (summer,winter)",			 2,  43	},
 {G,0,"giant turtle (summer,winter)",				 2,  44	},
 #ifdef NEW_NAMES
-{G,0,"human/units/%1",						 2,  45	},
-{G,0,"orc/units/%2",						 2,  46	},
+{G,0,"human/units/%2",						 2,  45	},
+{G,0,"orc/units/%3",						 2,  46	},
 #else
-{G,0,"%1",							 2,  45	},
-{G,0,"%2",							 2,  46	},
+{G,0,"%2",							 2,  45	},
+{G,0,"%3",							 2,  46	},
 #endif
 {G,0,"peasant",							 2,  47	},
 {G,0,"peon",							 2,  48	},
