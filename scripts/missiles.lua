@@ -5,13 +5,13 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/ 
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	missiles.ccl	-	Define the used missiles.
+--      missiles.lua - Define the used missiles.
 --
---	(c) Copyright 1998-2004 by Lutz Sammer, Fabrice Rossi,
---				Jimmy Salmon and Crestez Leonard
+--      (c) Copyright 1998-2004 by Lutz Sammer, Fabrice Rossi,
+--                                 Jimmy Salmon and Crestez Leonard
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
+--      $Id$
 
 if CompileFeature("META-LUA") then
 	AssignTable(Stratagus.MissileTypes.Create("missile-lightning"),

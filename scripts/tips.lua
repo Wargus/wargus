@@ -5,12 +5,12 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/ 
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	tips.ccl	-	All tips of the engine.
+--      tips.lua - All tips of the engine.
 --
---	(c) Copyright 2002-2003 by Jimmy Salmon.
+--      (c) Copyright 2002-2004 by Jimmy Salmon.
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
+--      $Id$
 
 AddTip("You can select all of your currently visible units of the same type by holding down the CTRL key and selecting a unit or by \"double clicking\" on a unit.")
 AddTip("The more workers you have collecting resources, the faster your economy will grow.")

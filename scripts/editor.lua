@@ -5,12 +5,12 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/ 
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	editor.ccl	-	Editor configuration and functions.
+--      editor.lua - Editor configuration and functions.
 --
---	(c) Copyright 2002-2003 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2002-2004 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
+--      $Id$
 
 
 --	Set which icons to display
@@ -161,4 +161,4 @@ DefineEditorUnitTypes(
 --   "unit-destroyed-2x2-place",
 --   "unit-destroyed-3x3-place",
 --   "unit-destroyed-4x4-place",
-  )
+)

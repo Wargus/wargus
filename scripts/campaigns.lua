@@ -5,12 +5,12 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/ 
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	campaigns.lua	-	Define the used campaigns.
+--      campaigns.lua - Define the used campaigns.
 --
---	(c) Copyright 2002-2003 by Lutz Sammer
+--      (c) Copyright 2002-2004 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,20 +26,18 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
+--      $Id$
 
 --=============================================================================
---	Define all campaigns.
+--  Define all campaigns.
 
 DefineCampaign("human", "name", "~!Human campaign",
   "file", "scripts/human/campaign1.lua")
 DefineCampaign("orc", "name", "~!Orc campaign",
   "file", "scripts/orc/campaign1.lua")
 if (expansion) then
-do
   DefineCampaign("human-exp", "name", "H~!uman expansion levels",
     "file", "scripts/human/campaign2.lua")
   DefineCampaign("orc-exp", "name", "O~!rc expansion levels",
     "file", "scripts/orc/campaign2.lua")
-end
 end
