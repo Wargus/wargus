@@ -11,11 +11,11 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfUnit(7, "==", 0, "unit-rune-stone") and
-    IfUnit(1, "==", 0, "unit-castle") end,
+  function() return GetPlayerData(7, "UnitTypesCount", "unit-rune-stone") == 0 and
+    GetPlayerData(1, "UnitTypesCount", "unit-castle") == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units
