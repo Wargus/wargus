@@ -108,6 +108,14 @@ copy /b %CONTRIB%\food.png %DIR%\graphic
 copy /b %CONTRIB%\score.png %DIR%\graphic
 copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphic
 copy /b %CONTRIB%\freecraft.png %DIR%
+REM This is for the new-names
+copy /b %CONTRIB%\cross.png %DIR%\graphics\ui\cursors\
+copy /b %CONTRIB%\mana.png %DIR%\graphics\ui\
+copy /b %CONTRIB%\health.png %DIR%\graphics\ui\
+copy /b %CONTRIB%\food.png %DIR%\graphics\\ui\
+copy /b %CONTRIB%\score.png %DIR%\graphics\\ui\
+copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphics\ui\
+copy /b %CONTRIB%\freecraft.png %DIR%\graphics\ui\
 REM copy /b %CONTRIB%\ui\alliance\*.png %DIR%\graphic\ui\alliance
 REM copy /b %CONTRIB%\ui\mythical\*.png %DIR%\graphic\ui\mythical
 
@@ -122,3 +130,4 @@ REM	Setup the default pud
 REM
 copy /b %DIR%\puds\internal\internal12.pud.gz %DIR%\default.pud.gz
 ECHO You only need to run this script once
+
