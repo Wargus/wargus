@@ -177,8 +177,8 @@
 (set-fancy-buildings! #t)
 ;(set-fancy-buildings! #f)
 
-;;	Show tips at the start of a level
-(show-tips)
+;;	Edit this to enable/disable show tips at the start of a level
+(set-show-tips! #t)
 
 ;;-----------------------------------------------------------------------------
 ;;	Game modification
@@ -226,6 +226,12 @@
 
 ;;	Change next, for the wanted mouse scale. (only SVGALIB)
 (set-mouse-scale! 1)
+
+;;	Edit this to enable/disable grabing the mouse.
+(set-grab-mouse! #t)
+
+;;	Edit this to enable/disable stopping scrolling on mouse leave.
+(set-leave-stops! #t)
 
 ;;	Edit this to enable/disable mouse scrolling.
 (set-mouse-scroll! #t)
