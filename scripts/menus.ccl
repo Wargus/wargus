@@ -2129,12 +2129,10 @@
   'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (- 256 75)) 'font 'game
   'gem '(size (18 18)
+    text "Show tips at startup"
     state checked
     func tips-show-tips-gem
     style gem-square)
-  'menu 'menu-tips)
-(define-menu-item 'pos (list (+ 14 22) (+ (- 256 75) 4)) 'font 'game
-  'text '("Show tips at startup" left func tips-show-tips-text)
   'menu 'menu-tips)
 (define-menu-item 'pos (list 14 (- 256 40)) 'font 'large
   'button '(size (106 27)
