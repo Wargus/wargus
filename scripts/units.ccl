@@ -619,3 +619,35 @@
     ()
     () )
   () )
+
+(define-unit-type "unit-revealer"		"Dummy unit"
+  ;; graphic data
+  (if new-names?
+  #("neutral/units/daemon.png"
+    ()
+    ()
+    () )
+  #("daemon.png"
+    ()
+    ()
+    () )
+  )
+  '(  2  2 )			;; graphic size
+  "animations-building"
+  "icon-holy-vision"
+  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
+       0      0     12      0     0 #(   0     0     0     0     0     0     0)
+  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
+  '( 1 1 ) '(  1  1 )        0       0      0       0
+  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
+       0     0      0      0       0       0
+  ;;Decay Annoy	Points
+      1      0       0
+  "missile-none"
+  '()
+  ;; flags
+  'critter
+  'building
+  'can-see-submarine
+  ;; sounds
+  #(() () () () () ) '() )
