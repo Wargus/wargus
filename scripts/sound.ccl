@@ -31,8 +31,14 @@
 
 ;;----------------------------------------------------------------------------
 ;;	Music part
+
+;;----------------------------------------------------------------------------
+;;	(music-stopped) is called if the current music is finished.
+;;
+;;		This is a random music player demo
+;;
 (define (music-stopped)
-  (play-music "music/default.mod"))
+  (play-music (nth (rand (length play-list)) play-list)) )
 
 ;;----------------------------------------------------------------------------
 ;;	Define sounds later used
