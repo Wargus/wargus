@@ -334,7 +334,7 @@
 ;; Planned	(set-fog-of-war-style! 'original)
 ;; 		(set-fog-of-war-style! 'alpha-gray)
 ;(original-fog-of-war)
-(gray-fog-of-war)
+(alpha-fog-of-war)
 
 ;;	If you use gray style fog of war set the contrast,brightness,saturation
 (set-fog-of-war-contrast!    30)
