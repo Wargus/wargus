@@ -220,7 +220,7 @@
     ;;
     (list 'unit-equiv 'unit-great-hall
 	'unit-stronghold 'unit-fortress)
-    (list 'unit-equiv 'unit-'unit-stronghold
+    (list 'unit-equiv 'unit-stronghold
 	'unit-fortress)
     (list 'unit-equiv 'unit-peon
 	'unit-peon-with-gold 'unit-peon-with-wood)
