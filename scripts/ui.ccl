@@ -258,6 +258,11 @@
 	  'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
 	  'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
 	  'cursor-arrow-s 'cursor-arrow-se )
+      '("ui/alliance/panel 1.png")
+      '("ui/alliance/panel 2.png")
+      '("ui/alliance/panel 3.png")
+      '("ui/alliance/panel 4.png")
+      '("ui/alliance/panel 5.png")
       ) ) )
 
 (alliance_screen 640 480)
@@ -371,6 +376,11 @@
 	  'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
 	  'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
 	  'cursor-arrow-s 'cursor-arrow-se )
+      '("ui/mythical/panel 1.png")
+      '("ui/mythical/panel 2.png")
+      '("ui/mythical/panel 3.png")
+      '("ui/mythical/panel 4.png")
+      '("ui/mythical/panel 5.png")
       ) ) )
 
 (mythical_screen 640 480)

@@ -210,7 +210,12 @@
 	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
 	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
 	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
-	'cursor-arrow-s 'cursor-arrow-se ) )
+	'cursor-arrow-s 'cursor-arrow-se )
+    '("graphics/ui/human/panel 1.png")
+    '("graphics/ui/human/panel 2.png")
+    '("graphics/ui/human/panel 3.png")
+    '("graphics/ui/human/panel 4.png")
+    '("graphics/ui/human/panel 5.png") )
 
 (define-ui "human" 640 480	; Selector
     ;	Filler 1
@@ -301,7 +306,12 @@
 	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
 	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
 	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
-	'cursor-arrow-s 'cursor-arrow-se ) )
+	'cursor-arrow-s 'cursor-arrow-se )
+    '("graphics/ui/human/panel 1.png")
+    '("graphics/ui/human/panel 2.png")
+    '("graphics/ui/human/panel 3.png")
+    '("graphics/ui/human/panel 4.png")
+    '("graphics/ui/human/panel 5.png") )
 )
 
 (define-ui "human" 800 600	; Selector
@@ -393,4 +403,9 @@
 	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
 	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
 	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
-	'cursor-arrow-s 'cursor-arrow-se ) )
+	'cursor-arrow-s 'cursor-arrow-se )
+    '("graphics/ui/human/panel 1.png")
+    '("graphics/ui/human/panel 2.png")
+    '("graphics/ui/human/panel 3.png")
+    '("graphics/ui/human/panel 4.png")
+    '("graphics/ui/human/panel 5.png") )
