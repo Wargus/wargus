@@ -43,7 +43,6 @@
   'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
   'armor 2 'basic-damage 6 'piercing-damage 3 'missile 'missile-none
   'max-attack-range 1
-  'weapons-upgradable 1 'armor-upgradable 1
   'priority 60
   'points 50
   'demand 1
@@ -122,7 +121,6 @@
   'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
   'basic-damage 80 'piercing-damage 0 'missile 'missile-catapult-rock
   'min-attack-range 2 'max-attack-range 8
-  'weapons-upgradable 1
   'priority 70
   'points 100
   'demand 1
@@ -153,7 +151,6 @@
   'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
   'armor 4 'basic-damage 8 'piercing-damage 4 'missile 'missile-none
   'max-attack-range 1
-  'weapons-upgradable 1 'armor-upgradable 1
   'priority 63
   'points 100
   'demand 1
@@ -185,7 +182,6 @@
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
   'basic-damage 3 'piercing-damage 6 'missile 'missile-axe
   'max-attack-range 4
-  'weapons-upgradable 1
   'priority 55
   'points 60
   'demand 1
@@ -214,7 +210,6 @@
   'hit-points 60
   'draw-level 40
   'max-mana 255
-  'magic 1
   'tile-size '(1 1) 'box-size '(39 39)
   'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
   'basic-damage 0 'piercing-damage 9 'missile 'missile-touch-of-death
@@ -259,7 +254,6 @@
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
   'armor 4 'basic-damage 8 'piercing-damage 4 'missile 'missile-none
   'max-attack-range 1
-  'weapons-upgradable 1 'armor-upgradable 1
   'priority 65
   'points 110
   'demand 1
@@ -292,7 +286,6 @@
   'sight-range 4 'computer-reaction-range 4 'person-reaction-range 2
   'basic-damage 4 'piercing-damage 2 'missile 'missile-none
   'max-attack-range 1
-  'weapons-upgradable 1
   'priority 55
   'points 100
   'demand 1
@@ -326,7 +319,6 @@
   'sight-range 6 'computer-reaction-range 9 'person-reaction-range 6
   'basic-damage 3 'piercing-damage 6 'missile 'missile-axe
   'max-attack-range 4
-  'weapons-upgradable 1
   'priority 57
   'points 70
   'demand 1
@@ -355,7 +347,6 @@
   'hit-points 180
   'draw-level 40
   'max-mana 255
-  'magic 1
   'tile-size '(1 1) 'box-size '(39 39)
   'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
   'armor 2 'basic-damage 0 'piercing-damage 16 'missile 'missile-touch-of-death
@@ -390,12 +381,10 @@
   'hit-points 300
   'draw-level 40
   'max-mana 255
-  'magic 1
   'tile-size '(1 1) 'box-size '(42 42)
   'sight-range 6 'computer-reaction-range 6 'person-reaction-range 4
   'armor 8 'basic-damage 18 'piercing-damage 6 'missile 'missile-none
   'max-attack-range 1
-  'weapons-upgradable 1 'armor-upgradable 1
   'priority 63
   'points 100
   'demand 1
@@ -427,7 +416,6 @@
   'sight-range 5 'computer-reaction-range 6 'person-reaction-range 4
   'armor 8 'basic-damage 16 'piercing-damage 6 'missile 'missile-none
   'max-attack-range 1
-  'weapons-upgradable 1 'armor-upgradable 1
   'priority 60
   'points 50
   'demand 1
@@ -497,7 +485,6 @@
   'sight-range 4
   'basic-damage 0 'piercing-damage 0 'missile 'missile-none
   'max-attack-range 1
-  'armor-upgradable 1
   'priority 70 'annoy-computer-factor 15
   'points 50
   'demand 1
@@ -527,7 +514,6 @@
   'sight-range 8 'computer-reaction-range 10 'person-reaction-range 8
   'armor 10 'basic-damage 35 'piercing-damage 0 'missile 'missile-small-cannon
   'max-attack-range 4
-  'weapons-upgradable 1 'armor-upgradable 1
   'priority 65 'annoy-computer-factor 20
   'points 150
   'demand 1
@@ -558,7 +544,6 @@
   'sight-range 8 'computer-reaction-range 10 'person-reaction-range 8
   'armor 15 'basic-damage 130 'piercing-damage 0 'missile 'missile-big-cannon
   'max-attack-range 6
-  'weapons-upgradable 1 'armor-upgradable 1
   'priority 63 'annoy-computer-factor 25
   'points 300
   'demand 1
@@ -741,7 +726,6 @@
   'sight-range 5 'computer-reaction-range 6 'person-reaction-range 4
   'armor 8 'basic-damage 16 'piercing-damage 6 'missile 'missile-none
   'max-attack-range 1
-  'weapons-upgradable 1 'armor-upgradable 1
   'priority 60
   'points 50
   'demand 1
@@ -774,7 +758,6 @@
   'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
   'basic-damage 10 'piercing-damage 5 'missile 'missile-none
   'max-attack-range 1
-  'weapons-upgradable 1 'armor-upgradable 1
   'priority 65
   'points 120
   'demand 1
@@ -804,7 +787,6 @@
   'hit-points 40
   'draw-level 40
   'max-mana 255
-  'magic 1
   'tile-size '(1 1) 'box-size '(33 33)
   'sight-range 8 'computer-reaction-range 10 'person-reaction-range 8
   'basic-damage 0 'piercing-damage 3 'missile 'missile-touch-of-death
@@ -841,7 +823,6 @@
   'sight-range 6 'computer-reaction-range 8 'person-reaction-range 6
   'basic-damage 3 'piercing-damage 6 'missile 'missile-axe
   'max-attack-range 5
-  'weapons-upgradable 1
   'priority 55
   'points 120
   'demand 1
