@@ -323,8 +323,6 @@
   (add-trigger (lambda () (if-opponents 'this 0)) (lambda () (action-victory)))
   )
 
-(writes nil single-player-triggers "\n")
-
 ;;-----------------------------------------------------------------------------
 ;;	Tables-Part
 ;;-----------------------------------------------------------------------------
