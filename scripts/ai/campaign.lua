@@ -490,7 +490,7 @@ local hum_12_funcs = {
     function() return AiResearch(AiMageSpell5()) end,
     function() return AiResearch(AiUpgradeShipCannon1()) end,
     function() return AiResearch(AiUpgradeShipArmor1()) end,
-    function() return Aisleep(4000) end,
+    function() return AiSleep(4000) end,
 
     function() return AiForce(0, {AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 4}) end,
     function() return AiResearch(AiUpgradeShipCannon2()) end,
