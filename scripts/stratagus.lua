@@ -45,10 +45,10 @@ print("Stratagus default config file loading ...\n")
 
 --  Enter your default title screen.
 SetTitleScreens({
-  Image = "graphics/ui/stratagus.png",
+  Image = "ui/stratagus.png",
   Music = "music/default.mod",
   Timeout = 20}
---  {"graphics/logo_stratagus.avi"}
+--  {"logo_stratagus.avi"}
 )
 
 --  Enter your menu music.
@@ -105,10 +105,10 @@ SetShowOrders(2)
 --  )
 
 --              file              hotx hoty width height
---ManaSprite("graphics/ui/mana.png", -7, -7, 7, 7)
-ManaSprite("graphics/ui/mana2.png", 0, -1, 31, 4)
---HealthSprite("graphics/ui/health.png", 1, -7, 7, 7)
-HealthSprite("graphics/ui/health2.png", 0, -4, 31, 4)
+--ManaSprite("ui/mana.png", -7, -7, 7, 7)
+ManaSprite("ui/mana2.png", 0, -1, 31, 4)
+--HealthSprite("ui/health.png", 1, -7, 7, 7)
+HealthSprite("ui/health2.png", 0, -4, 31, 4)
 
 --ShowHealthBar()
 --ShowHealthVertical()
@@ -135,8 +135,8 @@ DecorationOnTop()
 --
 --  (shadow-sprite file hotx hoty width height)
 --
-ShadowSprite("graphics/missiles/unit_shadow.png", 3, 42, 32, 32)
-SpellSprite("graphics/ui/bloodlust,haste,slow,invisible,shield.png",
+ShadowSprite("missiles/unit_shadow.png", 3, 42, 32, 32)
+SpellSprite("ui/bloodlust,haste,slow,invisible,shield.png",
   1, 1, 16, 16)
 
 --  Uncomment next, to enable fancy building (random mirroring buildings)
