@@ -2129,7 +2129,7 @@
 (define-ai 'hum-08 "*" "hum-08"
   '(
     ;;	Define the main AI script.
-    (begin (ai:debug #t) (ai:sleep (ai:get-sleep-cycles)))
+    (begin (ai:debug #f) (ai:sleep (ai:get-sleep-cycles)))
 
     (ai:set  (ai:worker) 3)
     (ai:wait (ai:worker))	;; start hangs if nothing available
@@ -2226,7 +2226,7 @@
 (define-ai 'hum-10 "*" "hum-10"
   '(
     ;;	Define the main AI script.
-    (begin (ai:debug #t)
+    (begin (ai:debug #f)
       (ai:force-role 0 'defend) (ai:force-role 1 'defend)
       (ai:sleep (ai:get-sleep-cycles)))
 
@@ -2307,27 +2307,48 @@
 (define ai:hum-11-attack-endloop
   '((writes nil "Looping !\n")
     (ai:sleep	12000)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 (ai:catapult) 1
+	(ai:mage) 0)
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0 (ai:catapult) 0
+	(ai:mage) 3)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
     (ai:sleep	8000)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 (ai:catapult) 1
+	(ai:mage) 1)
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0 (ai:catapult) 0
+	(ai:mage) 2)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
     (ai:sleep	13000)
-    ;; FIXME: continue
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 (ai:catapult) 1
+	(ai:mage) 0)
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0 (ai:catapult) 0
+	(ai:mage) 3)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
     (ai:script ai:hum-11-attack-endloop) ) )
 
 (define-ai 'hum-11 "*" "hum-11"
   '(
     ;;	Define the main AI script.
-    (begin (ai:debug #t)
+    (begin (ai:debug #f)
       (ai:force-role 0 'defend) (ai:force-role 1 'attack)
+      (ai:force-role 2 'attack)
       (ai:sleep (ai:get-sleep-cycles)))
     (ai:set  (ai:worker) 8)
     (ai:wait (ai:worker))	;; Wait for the workers
-    (ai:sleep	6000)
 
+    (ai:sleep	6000)
     (ai:force 0 (ai:soldier) 0 (ai:shooter) 2 (ai:cavalrie) 2)
     (ai:force 1 (ai:soldier) 2 (ai:shooter) 0 (ai:cavalrie) 0)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
-    (ai:sleep	6000)
 
+    (ai:sleep	6000)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
@@ -2343,8 +2364,77 @@
     (ai:research (ai:upgrade-missile-1))
     (ai:research (ai:upgrade-weapon-1))
     (ai:research (ai:upgrade-armor-1))
-    (ai:sleep	6000)
 
-    ;; FIXME: continue
+    (ai:sleep	6000)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 (ai:catapult) 1)
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0 (ai:catapult) 0
+	(ai:mage) 3)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	9000)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 (ai:catapult) 1
+	(ai:mage) 1)
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0 (ai:catapult) 0
+	(ai:mage) 2)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	7000)
+    (ai:research (ai:upgrade-elite-shooter))
+    (ai:research (ai:upgrade-elite-shooter-1))
+    (ai:sleep	13000)
+
+    (ai:force 2 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 (ai:catapult) 1
+	(ai:mage) 1)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 (ai:catapult) 1
+	(ai:mage) 1)
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0 (ai:catapult) 0
+	(ai:mage) 2)
+    (ai:wait-force 2)		;; wait until attack party is completed
+    (ai:attack-with-force 2)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:research (ai:upgrade-elite-shooter-2))
+    (ai:research (ai:mage-spell-1))
+
+    (ai:research (ai:upgrade-cavalrie-mage))
+    (ai:sleep	7000)
+    (ai:research (ai:cavalrie-mage-spell-1))
+    (ai:research (ai:mage-spell-2))
+    (ai:research (ai:upgrade-weapon-2))
+    (ai:sleep	12000)
+    (ai:force 2 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0 (ai:catapult) 0
+	(ai:mage) 0)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 (ai:catapult) 1
+	(ai:mage) 2)
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0 (ai:catapult) 0
+	(ai:mage) 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+    (ai:research (ai:upgrade-armor-2))
+    (ai:research (ai:mage-spell-3))
+    (ai:research (ai:mage-spell-4))
+    (ai:research (ai:upgrade-catapult-1))
+
+    (ai:sleep	8000)
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 (ai:catapult) 1
+	(ai:mage) 1)
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0 (ai:catapult) 0
+	(ai:mage) 2)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:research (ai:cavalrie-mage-spell-1))
+    (ai:research (ai:mage-spell-5))
+    (ai:sleep	13000)
+
+    (ai:force 1 (ai:soldier) 1 (ai:shooter) 1 (ai:cavalrie) 1 (ai:catapult) 1
+	(ai:mage) 0)
+    (ai:force 0 (ai:soldier) 0 (ai:shooter) 0 (ai:cavalrie) 0 (ai:catapult) 0
+	(ai:mage) 3)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
 
     (ai:script ai:hum-11-attack-endloop) ))
