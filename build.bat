@@ -89,6 +89,7 @@ copy /b %CONTRIB%\food.png %DIR%\graphics\ui
 copy /b %CONTRIB%\score.png %DIR%\graphics\ui
 copy /b "%CONTRIB%\ore,stone,coal.png" %DIR%\graphics\ui
 copy /b %CONTRIB%\freecraft.png %DIR%\graphics\ui
+copy /b %CONTRIB%\music\toccata.mod.gz %DIR%\music\default.pud.gz
 REM copy /b %CONTRIB%\ui\alliance\*.png %DIR%\graphic\ui\alliance
 REM copy /b %CONTRIB%\ui\mythical\*.png %DIR%\graphic\ui\mythical
 
