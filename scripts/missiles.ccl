@@ -143,7 +143,7 @@
   'file "missiles/green cross.png" 'size '(32 32) 'frames 4
   'class 'missile-class-cycle-once 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-red-cross
-  'file "missiles/red cross.png" 'size '(32 32) 'frames 4
+  'file "missiles/red_cross.png" 'size '(32 32) 'frames 4
   'class 'missile-class-cycle-once 'sleep 1 'speed 16 'range 1)
 (define-missile-type 'missile-none
   'size '(32 32)
