@@ -202,21 +202,15 @@ function OrcScreen(screen_width, screen_height)
         "pos", {0, 0}},
       "menu-button", {
         "pos", {24, 2},
-        "size", {128, 19},
         "caption", "Menu (~<F10~>)",
-        "font", "game",
         "style", "main"},
       "network-menu-button", {
         "pos", {6, 2},
-        "size", {80, 19},
         "caption", "Menu",
-        "font", "game",
         "style", "network"},
       "network-diplomacy-button", {
         "pos", {90, 2},
-        "size", {80, 19},
         "caption", "Diplomacy",
-        "font", "game",
         "style", "network"}
     },
 
