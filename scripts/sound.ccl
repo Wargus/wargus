@@ -127,7 +127,7 @@
 (make-sound "holy vision" "spells/holy vision.wav")
 (make-sound "blizzard" "spells/blizzard.wav")
 (make-sound "invisibility" "spells/invisibility.wav")
-(make-sound "eye of kilrogg" "spells/eye of kilrogg.wav")
+(make-sound "eye of vision" "spells/eye of kilrogg.wav")
 (make-sound "polymorph" "spells/polymorph.wav")
 (make-sound "slow" "spells/slow.wav")
 (make-sound "unholy armour" "spells/unholy armor.wav")
