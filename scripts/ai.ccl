@@ -708,6 +708,7 @@
   '(
     ;;	Define the main AI script.
     (ai:debug #f)
+    (ai:set-reserve! #( 0  0 0 0  0 0 0))
     (ai:need (ai:city-center))
     (ai:set  (ai:worker) 1)
     (ai:wait (ai:city-center))
