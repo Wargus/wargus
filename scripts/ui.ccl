@@ -21,6 +21,51 @@
 (define color-dark-green	149)	; FIXME: move to central position
 
 ;;=============================================================================
+;;	Define a cursor.
+;;
+;;	(define-cursor 'ident 'race 'image "file-path"
+;;		'hotspot ( x y ) 'size ( width height ))
+;;
+(define-cursor	'cursor-point		'human
+    'image "human gauntlet.png"		'hot-spot '( 3  2) 'size '(28 32) )
+(define-cursor	'cursor-point		'orc
+    'image "orcish claw.png"		'hot-spot '( 3  2) 'size '(26 32) )
+(define-cursor	'cursor-glass		'any
+    'image "magnifying glass.png"	'hot-spot '(11 11) 'size '(34 35) )
+(define-cursor	'cursor-cross		'any
+    'image "small green cross.png"	'hot-spot '( 8  8) 'size '(18 18) )
+(define-cursor	'cursor-yellow-hair	'human
+    'image "yellow eagle.png"		'hot-spot '(15 15) 'size '(32 32) )
+(define-cursor	'cursor-yellow-hair	'orc
+    'image "yellow crosshairs.png"	'hot-spot '(15 15) 'size '(32 32) )
+(define-cursor	'cursor-green-hair	'human
+    'image "green eagle.png"		'hot-spot '(15 15) 'size '(32 32) )
+(define-cursor	'cursor-green-hair	'orc
+    'image "green crosshairs.png"	'hot-spot '(15 15) 'size '(32 32) )
+(define-cursor	'cursor-red-hair	'human
+    'image "red eagle.png"		'hot-spot '(15 15) 'size '(32 32) )
+(define-cursor	'cursor-red-hair	'orc
+    'image "red crosshairs.png"		'hot-spot '(15 15) 'size '(32 32) )
+(define-cursor	'cursor-scroll		'any
+    'image "cross.png"			'hot-spot '(15 15) 'size '(32 32) )
+(define-cursor	'cursor-arrow-e		'any
+    'image "arrow E.png"		'hot-spot '(22 10) 'size '(32 24) )
+(define-cursor	'cursor-arrow-ne	'any
+    'image "arrow NE.png"		'hot-spot '(20  2) 'size '(32 24) )
+(define-cursor	'cursor-arrow-n		'any
+    'image "arrow N.png"		'hot-spot '(12  2) 'size '(32 24) )
+(define-cursor	'cursor-arrow-nw	'any
+    'image "arrow NW.png"		'hot-spot '( 2  2) 'size '(32 24) )
+(define-cursor	'cursor-arrow-w		'any
+    'image "arrow W.png"		'hot-spot '( 4 10) 'size '(32 24) )
+(define-cursor	'cursor-arrow-s		'any
+    'image "arrow S.png"		'hot-spot '(12 22) 'size '(32 24) )
+(define-cursor	'cursor-arrow-sw	'any
+    'image "arrow SW.png"		'hot-spot '( 2 18) 'size '(32 24) )
+(define-cursor	'cursor-arrow-se	'any
+    'image "arrow SE.png"		'hot-spot '(20 18) 'size '(32 24) )
+
+;;=============================================================================
 ;;	Define the user interface
 ;;
 ;;	(define-ui "rasse" screen-width screen-height
@@ -70,7 +115,13 @@
 ;;		(list train-4-x train-4-y width height)
 ;;		(list train-5-x train-5-y width height)
 ;;		(list train-6-x train-6-y width height)
-;;	)
+;;		    ;	Cursors used by engine
+;;		(list
+;;		  'cursor-point 'cursor-glass 'cursor-cross
+;;		  'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+;;		  'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne
+;;		  'cursor-arrow-n 'cursor-arrow-nw 'cursor-arrow-w
+;;		  'cursor-arrow-sw 'cursor-arrow-s 'cursor-arrow-se ) )
 ;;
 ;;	This defines the position and sizes of the different user
 ;;	interface sections.
@@ -164,7 +215,12 @@
     '(118 216  46 38 )
     '(  6 263  46 38 )
     '( 62 263  46 38 )
-    '(118 263  46 38 ) )
+    '(118 263  46 38 )
+    (list 'cursor-point 'cursor-glass 'cursor-cross
+	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	'cursor-arrow-s 'cursor-arrow-se ) )
 
 (define-ui "human" 800 600	; Selector
     ;	Filler 1
@@ -250,7 +306,12 @@
     '(118 216  46 38 )
     '(  6 263  46 38 )
     '( 62 263  46 38 )
-    '(118 263  46 38 ) )
+    '(118 263  46 38 )
+    (list 'cursor-point 'cursor-glass 'cursor-cross
+	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	'cursor-arrow-s 'cursor-arrow-se ) )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race orc.
@@ -340,7 +401,12 @@
     '(118 216  46 38 )
     '(  6 263  46 38 )
     '( 62 263  46 38 )
-    '(118 263  46 38 ) )
+    '(118 263  46 38 )
+    (list 'cursor-point 'cursor-glass 'cursor-cross
+	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	'cursor-arrow-s 'cursor-arrow-se ) )
 
 (define-ui "orc" 800 600	; Selector
     ;	Filler 1
@@ -426,7 +492,12 @@
     '(118 216  46 38 )
     '(  6 263  46 38 )
     '( 62 263  46 38 )
-    '(118 263  46 38 ) )
+    '(118 263  46 38 )
+    (list 'cursor-point 'cursor-glass 'cursor-cross
+	'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw  'cursor-arrow-s
+	'cursor-arrow-se ) )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race alliance.
@@ -531,6 +602,11 @@
       (list   6 (+ map_bottom 103) 46 38 )
       (list  62 (+ map_bottom 103) 46 38 )
       (list 118 (+ map_bottom 103) 46 38 )
+      (list 'cursor-point 'cursor-glass 'cursor-cross
+	  'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	  'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	  'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	  'cursor-arrow-s 'cursor-arrow-se )
       ) ) )
 
 (alliance_screen 640 480)
@@ -639,6 +715,11 @@
       (list   6 (+ map_bottom 103) 46 38 )
       (list  62 (+ map_bottom 103) 46 38 )
       (list 118 (+ map_bottom 103) 46 38 )
+      (list 'cursor-point 'cursor-glass 'cursor-cross
+	  'cursor-yellow-hair 'cursor-green-hair 'cursor-red-hair
+	  'cursor-scroll 'cursor-arrow-e 'cursor-arrow-ne 'cursor-arrow-n
+	  'cursor-arrow-nw 'cursor-arrow-w 'cursor-arrow-sw
+	  'cursor-arrow-s 'cursor-arrow-se )
       ) ) )
 
 (mythical_screen 640 480)
