@@ -233,8 +233,6 @@
   '(
 
     ;;	Define the main AI script.
-
-    (writes nil "AI Started!\n")
     (ai:debug #t)
     (ai:need (unit-type 'unit-great-hall))
     (ai:need 'unit-troll-lumber-mill)
@@ -242,13 +240,47 @@
     (ai:set  'unit-peon 1)
     (ai:wait 'unit-peon)
     (ai:set  'unit-peon 9)
-    (ai:set  'unit-grunt 3)
-    (ai:wait  'unit-grunt 3)
+    (ai:force 0 'unit-grunt 2)
+    (ai:force 1 'unit-grunt 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
 
-    (writes nil "AI 1!\n")
-    (writes nil "AI 2!\n")
-    (writes nil "AI 3!\n")
-    (writes nil "AI Ended!\n")
+    (ai:sleep	500)
+    (ai:need 'unit-orc-blacksmith)
+    (ai:force 0 'unit-grunt 2 'unit-axethrower 1)
+    (ai:force 1 'unit-grunt 2 'unit-axethrower 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:research 'upgrade-battle-axe1)
+    (ai:research 'upgrade-orc-shield1)
+    (ai:research 'upgrade-throwing-axe1)
+    (ai:research 'upgrade-battle-axe2)
+    (ai:research 'upgrade-orc-shield2)
+    (ai:research 'upgrade-throwing-axe2)
+    (ai:need 'unit-orc-barracks)
+
+    (ai:force 0 'unit-grunt 3 'unit-axethrower 2)
+    (ai:force 1 'unit-grunt 3 'unit-axethrower 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:set  'unit-peon 15)
+    (ai:force 0 'unit-grunt 3 'unit-axethrower 2)
+    (ai:force 1 'unit-grunt 3 'unit-axethrower 1 'unit-catapult 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:upgrade-to 'unit-stronghold)
+    (ai:wait 'unit-stronghold)
+
+    (ai:force 1 'unit-grunt 3 'unit-axethrower 1 'unit-catapult 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
     ))
 
 
