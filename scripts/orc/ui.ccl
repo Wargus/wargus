@@ -98,7 +98,8 @@
             (list 'pos '(118 220) 'size icon_size)
             (list 'pos '(  6 274) 'size icon_size)
             (list 'pos '( 62 274) 'size icon_size)
-            (list 'pos '(118 274) 'size icon_size)))
+            (list 'pos '(118 274) 'size icon_size))
+	  'max-text-pos (list (+ info_panel_x 10) (+ info_panel_y 10)))
       )
       'training (list
         'single (list
