@@ -35,7 +35,6 @@
 --
 DefineTileset("tileset-summer",	"class", "summer", "name", "Forest",
   "image", "tilesets/summer/terrain/summer.png",
-  "palette", "tilesets/summer/summer.rgb",
   -- Slots descriptions
   "slots", { "special", {		-- Can't be in pud
     "top-one-tree", 121, "mid-one-tree", 122, "bot-one-tree", 123,

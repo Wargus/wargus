@@ -35,7 +35,6 @@
 --
 DefineTileset("tileset-winter", "class", "winter", "name", "Winter",
   "image", "tilesets/winter/terrain/winter.png",
-  "palette", "tilesets/winter/winter.rgb",
   -- Slots descriptions
   "slots", { "special", {	-- Can't be in pud
     "top-one-tree", 121, "mid-one-tree", 122, "bot-one-tree", 123,

@@ -35,7 +35,6 @@
 --
 DefineTileset("tileset-wasteland", "class", "wasteland", "name", "Wasteland",
   "image", "tilesets/wasteland/terrain/wasteland.png",
-  "palette", "tilesets/wasteland/wasteland.rgb",
   -- Slots descriptions
   "slots", { "special", {
     "top-one-tree", 121, "mid-one-tree", 122, "bot-one-tree", 123,
