@@ -363,9 +363,9 @@ else
 	  Class = "missile-class-hit", Sleep = 1, Speed = 16, Range = 2,
 	  ImpactMissile = "missile-impact", CanHitOwner = true } )
 
+end
 	DefineBurningBuilding(
 	  {"percent", 0, "missile", "missile-big-fire"},
 	  {"percent", 50, "missile", "missile-small-fire"},
 	  {"percent", 75 } -- no missile
 	)
-end
