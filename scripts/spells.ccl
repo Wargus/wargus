@@ -143,7 +143,7 @@
 	'showname "eye of vision"
 	'manacost 70
 	'range	6
-	'target 'none
+	'target 'position
 	'action '(summon unit-type unit-eye-of-vision time-to-live 5000)
 	'sound-when-cast "eye of vision"
 	'missile-when-cast "missile-normal-spell"
@@ -317,8 +317,8 @@
 	'showname "raise dead"
 	'manacost 50
 	'range	6
-	'target 'none
-	'action '(raise-dead unit-raised unit-skeleton time-to-live 100)
+	'target 'position
+	'action '(summon unit-type unit-skeleton time-to-live 100 require-corpse)
 	'sound-when-cast "raise dead"
 	'missile-when-cast "missile-normal-spell"
 ;;	'autocast '(range 6)
