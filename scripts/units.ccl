@@ -411,6 +411,7 @@
   'decay-rate 1
   'type-land
   'building
+  'revealer
   'critter
   'can-see-submarine
   'sounds '())
