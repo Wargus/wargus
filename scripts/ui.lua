@@ -51,8 +51,6 @@ DefinePanelContents(
 			Component1 = "Value", Component2 = "Max", Centered = true}}
 	},
 	{ Pos = {114, 25}, More = {"Text", {ShowName = true}} }, -- FIXME:split for long name
-	{ Pos = {10, 158}, More = {"Text", {Variable = "Slot"}},
-		Condition = {Slot = "only"} }, -- DEBUG ONLY.
 -- Ressource Left
 	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
 		More = {"FormattedText2", {Format = "%s Left:%d", Variable = "GiveResource",
