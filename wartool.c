@@ -98,7 +98,7 @@ static inline unsigned int Swap32(unsigned int D) {
 	return ((D << 24) | ((D << 8) & 0x00FF0000) | ((D >> 8) & 0x0000FF00) | (D >> 24));
 }
 #define FetchLE16(p) Swap16(*((unsigned short*)(p))); p += 2
-#define FetchLE32(p) Swap32(*((unsigned int*)(p))) p += 4
+#define FetchLE32(p) Swap32(*((unsigned int*)(p))); p += 4
 #define AccessLE16(p) Swap16((*((unsigned short*)(p))))
 #define AccessLE32(p) Swap32(*((unsigned int*)(p)))
 #define ConvertLE16(v) Swap16(v)
