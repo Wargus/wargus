@@ -74,6 +74,9 @@ function OrcScreen(screen_width, screen_height)
     "filler", {
       "file", "graphics/ui/orc/menubutton.png",
       "pos", {0, 0}},
+    "filler", {
+      "file", "graphics/ui/orc/minimap.png",
+      "pos", {0, 24}},
 
     "resources", {
       "gold", { "file", "graphics/ui/gold,wood,oil,mana.png", "frame", 0,
@@ -209,8 +212,6 @@ function OrcScreen(screen_width, screen_height)
     },
 
     "minimap", {
-      "file", "graphics/ui/orc/minimap.png",
-      "panel-pos", {0, 24},
       "pos", {0 + 24, 24 + 2},
       "size", {128, 128}},
 

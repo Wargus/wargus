@@ -74,6 +74,9 @@ function HumanScreen(screen_width, screen_height)
     "filler", {
       "file", "graphics/ui/human/menubutton.png",
       "pos", {0, 0}},
+    "filler", {
+      "file", "graphics/ui/human/minimap.png",
+      "pos", {0, 24}},
 
     "resources", {
       "gold", { "file", "graphics/ui/gold,wood,oil,mana.png", "frame", 0,
@@ -209,8 +212,6 @@ function HumanScreen(screen_width, screen_height)
     },
 
     "minimap", {
-      "file", "graphics/ui/human/minimap.png",
-      "panel-pos", {0, 24},
       "pos", {0 + 24, 24 + 2},
       "size", {128, 128}},
 
