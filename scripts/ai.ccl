@@ -624,10 +624,10 @@
     (lambda (script)
 	(let
 	    ((gauges (cdadr script)))
-	    ;; (force-mini-gauges (cdadr script))	
+	    ;; (force-mini-gauges (cdadr script))
 	    ;; (units_pct (cddr script)))
 	    
-	    (if	(ai:check-gauges gauges)	
+	    (if	(ai:check-gauges gauges)
 		(let
 		    ((result 0))
 		   
@@ -640,9 +640,11 @@
 		    (ai:force-complete (ai:own-force))
 		    ;; compute cost to complete the tmp force
 		    (set! result (ai:evaluate-force-cost (ai:own-force)))
-		    		    
-		    ;; return the computed value
-		    result
+		    
+		    ;; return the computed value if can transport
+		    (if (ai:can-reach-hotspot 'lazy)
+			result
+			-1)
 		)
 		;; can't, return -1
 		-1
@@ -651,25 +653,18 @@
 
 (define ai:ground-get-needs
     (lambda (script)
-	;; Check if hotspot is accessible by ground 
-	(if (ai:can-reach-hotspot 'ground)
-	    (ai:default-get-needs script)
-	    -1)))
-
+	;; Check if hotspot is accessible by ground
+	(ai:default-get-needs script)))
+	    
 (define ai:sea-get-needs
     (lambda (script)
-	;; Check if hotspot is accessible by ground 
-	(if (ai:can-reach-hotspot 'sea)
-	    (ai:default-get-needs script)
-	    -1)))
-
+	;; Check if hotspot is accessible by ground
+	(ai:default-get-needs script)))
+	
 (define ai:sea-only-get-needs
     (lambda (script)
-	(if (> (ai:get-gauge 'enemy-hotspot-sea-force) 0)
-	    ;; Check if hotspot is accessible by ground 
-	    (ai:sea-get-needs script)
-	    -1)))
-    
+	(ai:default-get-needs script)))
+	
 ;;
 ;; This script is used in the simplest case when : 
 ;;	- a force ( defend-force ) is ready
