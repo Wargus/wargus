@@ -823,7 +823,7 @@ Control Todo[] = {
 {G,0,"missiles/daemon fire",					 2, 351 },
 {G,0,"missiles/green cross",					 2, 352 },
 {G,0,"missiles/unit shadow",					 2, 353 },
-{U,0,"ui/orc/infopanel",					 2, 354 },
+{U,0,"ui/human/infopanel",					 2, 354 },
 {U,0,"ui/orc/infopanel",					 2, 355 },
 {G,0,"tilesets/summer/icons",					 2, 356 },
 {G,0,"tilesets/winter/icons",					18, 357 },
