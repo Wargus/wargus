@@ -91,7 +91,13 @@
     (list "graphics/ui/orc/infopanel.png" 0 160 176 176)
 
     ; Completed bar
-    (list color-dark-green  12 313 50 313)
+    'completed-bar '(
+      color 149
+      pos ( 12 313)
+      size (152 14)
+      text "% Complete"
+      font game
+      text-pos ( 50 313))
 
     ; Command button panel
     (list
