@@ -10,12 +10,11 @@
 ;;
 ;;	anim.ccl	-	The unit animation definitions.
 ;;
-;;	(c) Copyright 2000,2001 by Josh Cogliati
+;;	(c) Copyright 2000-2002 by Josh Cogliati, Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
-;;	by the Free Software Foundation; either version 2 of the License,
-;;	or (at your option) any later version.
+;;	by the Free Software Foundation; only version 2 of the License.
 ;;
 ;;	FreeCraft is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -46,7 +45,7 @@
 
 ;;------
 ;;	Footman, Grunt, Grom Hellscream, Danath, Korgath Bladefist
-(define-animations "animations-footman"
+(define-animations 'animations-footman
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #16 P32
@@ -61,7 +60,7 @@
 
 ;;------
 ;;	Peasant, Peon, Peasant, Peon, Peasant, Peon, Peasant, Peon
-(define-animations "animations-peasant"
+(define-animations 'animations-peasant
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #16 P32
@@ -76,7 +75,7 @@
 
 ;;------
 ;;	Ballista
-(define-animations "animations-ballista"
+(define-animations 'animations-ballista
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #32 P32
@@ -91,7 +90,7 @@
 
 ;;------
 ;;	Catapult
-(define-animations "animations-catapult"
+(define-animations 'animations-catapult
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #32 P32
@@ -107,7 +106,7 @@
 
 ;;------
 ;;	Knight, Paladin, Turalyon, Lothar, Uther Lightbringer
-(define-animations "animations-knight"
+(define-animations 'animations-knight
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #12 P32
@@ -123,7 +122,7 @@
 
 ;;------
 ;;	Ogre, Ogre Mage, Dentarg, Cho'gall
-(define-animations "animations-ogre"
+(define-animations 'animations-ogre
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #12 P32
@@ -139,7 +138,7 @@
 
 ;;------
 ;;	Archer, Ranger, Alleria
-(define-animations "animations-archer"
+(define-animations 'animations-archer
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #16 P32
@@ -153,7 +152,7 @@
 
 ;;------
 ;;	Troll Axethrower, Berserker, Zuljin
-(define-animations "animations-axethrower"
+(define-animations 'animations-axethrower
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #16 P32
@@ -168,7 +167,7 @@
 
 ;;------
 ;;	Mage, Khadgar
-(define-animations "animations-mage"
+(define-animations 'animations-mage
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #18 P32
@@ -184,7 +183,7 @@
 
 ;;------
 ;;	Death Knight, Teron Gorefiend, Gul'dan
-(define-animations "animations-death-knight"
+(define-animations 'animations-death-knight
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #19 P33
@@ -200,7 +199,7 @@
 
 ;;------
 ;;	Dwarves
-(define-animations "animations-dwarves"
+(define-animations 'animations-dwarves
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #14 P32
@@ -216,7 +215,7 @@
 
 ;;------
 ;;	Goblin Sappers
-(define-animations "animations-goblin-sappers"
+(define-animations 'animations-goblin-sappers
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #14 P32
@@ -233,7 +232,7 @@
 ;;------
 ;;	Kurdan and Sky'ree, Gryphon Rider
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-kurdan-and-sky-ree"
+(define-animations 'animations-kurdan-and-sky-ree
   'still '(	; #24
     #( 2 0   6   0) #( 2 0   6   5) #( 2 0   6  10) #( 3 0   6  15))
   'move '(	; #24 P32
@@ -262,7 +261,7 @@
   'die '(	; #31
     #( 0 0   5  35) #( 0 0   5  40) #( 0 0   5  45) #( 0 0   5  50)
     #( 0 0   5  55) #( 0 0   5  60) #( 3 0   1  60)))
-(define-animations "animations-kurdan-and-sky-ree"
+(define-animations 'animations-kurdan-and-sky-ree
   'still '(	; #24
     #( 2 0   6   0) #( 2 0   6   5) #( 2 0   6  10) #( 3 0   6  15))
   'move '(	; #12 P32
@@ -294,7 +293,7 @@
 ;;------
 ;;	Oil tanker, Oil tanker, Oil tanker, Oil tanker
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-human-oil-tanker"
+(define-animations 'animations-human-oil-tanker
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #32 P32
@@ -310,7 +309,7 @@
     #(12 0  30   0) #( 0 0  99   0) #( 3 0   1   0))
   'die '(	; #101
     #( 0 0  50   5) #( 0 0  50  10) #( 3 0   1  10)))
-(define-animations "animations-human-oil-tanker"
+(define-animations 'animations-human-oil-tanker
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #16 P32
@@ -326,7 +325,7 @@
 ;;------
 ;;	Transport, Transport
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-human-transport"
+(define-animations 'animations-human-transport
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #32 P32
@@ -342,7 +341,7 @@
     #(12 0 119   0) #( 3 0   1   0))
   'die '(	; #101
     #( 0 0  50   5) #( 0 0  50  10) #( 3 0   1  10)))
-(define-animations "animations-human-transport"
+(define-animations 'animations-human-transport
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #16 P32
@@ -358,7 +357,7 @@
 ;;------
 ;;	Elven Destroyer, Troll Destroyer
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-elven-destroyer"
+(define-animations 'animations-elven-destroyer
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #32 P32
@@ -374,7 +373,7 @@
     #(12 0 119   0) #( 3 0   1   0))
   'die '(	; #101
     #( 0 0  50   5) #( 0 0  50  10) #( 3 0   1  10)))
-(define-animations "animations-elven-destroyer"
+(define-animations 'animations-elven-destroyer
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #16 P32
@@ -390,7 +389,7 @@
 ;;------
 ;;	Battleship, Ogre Juggernaught
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-battleship"
+(define-animations 'animations-battleship
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #53 P32
@@ -406,7 +405,7 @@
     #(12 0 127   0) #( 0 0 102   0) #( 3 0   1   0))
   'die '(	; #101
     #( 0 0  50   5) #( 0 0  50  10) #( 3 0   1  10)))
-(define-animations "animations-battleship"
+(define-animations 'animations-battleship
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #26 P32
@@ -422,7 +421,7 @@
 ;;------
 ;;	Deathwing, Dragon
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-deathwing"
+(define-animations 'animations-deathwing
   'still '(	; #24
     #( 2 0   6   0) #( 2 0   6   5) #( 2 0   6  10) #( 3 0   6  15))
   'move '(	; #24 P32
@@ -442,7 +441,7 @@
   'die '(	; #26
     #( 0 0   5  25) #( 0 0   5  30) #( 0 0   5  35) #( 0 0   5  40)
     #( 0 0   5  45) #( 3 0   1  45)))
-(define-animations "animations-deathwing"
+(define-animations 'animations-deathwing
   'still '(	; #24
     #( 2 0   6   0) #( 2 0   6   5) #( 2 0   6  10) #( 3 0   6  15))
   'move '(	; #12 P32
@@ -465,7 +464,7 @@
 ;;------
 ;;	Gnomish Submarine, Giant Turtle
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-gnomish-submarine"
+(define-animations 'animations-gnomish-submarine
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #43 P32
@@ -482,7 +481,7 @@
     #( 0 0  29   0) #( 3 0   1   0))
   'die '(	; #1
     #( 3 0   1   0)))
-(define-animations "animations-gnomish-submarine"
+(define-animations 'animations-gnomish-submarine
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #21 P32
@@ -499,7 +498,7 @@
 ;;------
 ;;	Gnomish Flying Machine
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-gnomish-flying-machine"
+(define-animations 'animations-gnomish-flying-machine
   'still '(	; #4
     #( 2 0   1   0) #( 2 0   1   5) #( 2 0   1   5) #( 3 0   1   0))
   'move '(	; #20 P32
@@ -512,7 +511,7 @@
     #( 3 0   1   0))
   'die '(	; #1
     #( 3 0   1   0)))
-(define-animations "animations-gnomish-flying-machine"
+(define-animations 'animations-gnomish-flying-machine
   'still '(	; #4
     #( 2 0   1   0) #( 2 0   1   5) #( 2 0   1   5) #( 3 0   1   0))
   'move '(	; #10 P32
@@ -527,7 +526,7 @@
 ;;------
 ;;	Goblin Zeppelin
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-goblin-zeppelin"
+(define-animations 'animations-goblin-zeppelin
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #20 P32
@@ -538,7 +537,7 @@
     #( 0 1   1   0) #( 0 2   1   0) #( 0 2   1   0) #( 3 1   1   0))
   'attack '(	; #1
     #( 3 0   1   0)))
-(define-animations "animations-goblin-zeppelin"
+(define-animations 'animations-goblin-zeppelin
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #10 P32
@@ -551,7 +550,7 @@
 ;;------
 ;;	Eye of Kilrogg
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-eye-of-kilrogg"
+(define-animations 'animations-eye-of-vision
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #8 P32
@@ -559,7 +558,7 @@
     #( 0 4   1   0) #( 0 4   1   0) #( 0 4   1   0) #( 3 4   1   0))
   'attack '(	; #1
     #( 3 0   1   0)))
-(define-animations "animations-eye-of-kilrogg"
+(define-animations 'animations-eye-of-vision
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #4 P32
@@ -569,7 +568,7 @@
 
 ;;------
 ;;	Skeleton
-(define-animations "animations-skeleton"
+(define-animations 'animations-skeleton
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #21 P32
@@ -586,7 +585,7 @@
 ;;------
 ;;	Daemon
 (if (symbol-bound? 'freecraft-feature-new-ships ())
-(define-animations "animations-daemon"
+(define-animations 'animations-daemon
   'still '(	; #16
     #( 2 0   4   0) #( 2 0   4   5) #( 2 0   4  10) #( 3 0   4  15))
   'move '(	; #24 P32
@@ -602,7 +601,7 @@
   'die '(	; #21
     #( 0 0   5  50) #( 0 0   5  55) #( 0 0   5  60) #( 0 0   5  65)
     #( 3 0   1  65)))
-(define-animations "animations-daemon"
+(define-animations 'animations-daemon
   'still '(	; #16
     #( 2 0   4   0) #( 2 0   4   5) #( 2 0   4  10) #( 3 0   4  15))
   'move '(	; #12 P32
@@ -620,7 +619,7 @@
 
 ;;------
 ;;	Critter
-(define-animations "animations-critter"
+(define-animations 'animations-critter
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'move '(	; #48 P32
@@ -643,13 +642,13 @@
 ;;	Refinery, Refinery, Oil Platform, Oil Platform, Keep, Stronghold,
 ;;	Castle, Fortress, Gold Mine, Oil Patch, Start Location, Start Location,
 ;;	Circle of Power, Dark Portal, Runestone, Wall, Wall
-(define-animations "animations-building"
+(define-animations 'animations-building
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0)))
 
 ;;------
 ;;	Guard Tower, Guard Tower
-(define-animations "animations-human-guard-tower"
+(define-animations 'animations-human-guard-tower
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'attack '(	; #60
@@ -657,7 +656,7 @@
 
 ;;------
 ;;	Cannon Tower, Cannon Tower
-(define-animations "animations-human-cannon-tower"
+(define-animations 'animations-human-cannon-tower
   'still '(	; #5
     #( 0 0   4   0) #( 3 0   1   0))
   'attack '(	; #151
@@ -665,7 +664,7 @@
 
 ;;------
 ;;	Dead Body
-(define-animations "animations-dead-body"
+(define-animations 'animations-dead-body
   'die '(	; #201
     ;;	Corpse:		Orcish
     #( 0 0 200   5) #(16 0 200  10) #( 0 0 200  15) #( 0 0 200  20)
@@ -679,7 +678,7 @@
 ;;------
 ;;	Destroyed 1x1 Place, Destroyed 2x2 Place,
 ;;	Destroyed 3x3 Place, Destroyed 4x4 Place
-(define-animations "animations-destroyed-place"
+(define-animations 'animations-destroyed-place
   'die '(	; #401
     ;;	Destroyed land site
     #( 0 0 200   0) #(16 0 200   1) #( 3 0   1   1)

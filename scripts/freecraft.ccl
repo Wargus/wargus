@@ -353,7 +353,7 @@
 ;;	Tables-Part
 ;;-----------------------------------------------------------------------------
 
-(define define-unit-type define-old-unit-type)
+(define define-unit-type define-new-unit-type)
 
 ;;; Uses FreeCraft Library path!
 (load "ccl/wc2.ccl" #f #t)

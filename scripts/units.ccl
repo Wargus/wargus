@@ -10,12 +10,11 @@
 ;;
 ;;	units.ccl	-	Define the used unit-types.
 ;;
-;;	(c) Copyright 1998,2000,2001 by Lutz Sammer
+;;	(c) Copyright 1998,2000-2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
-;;	by the Free Software Foundation; either version 2 of the License,
-;;	or (at your option) any later version.
+;;	by the Free Software Foundation; only version 2 of the License.
 ;;
 ;;	FreeCraft is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -36,565 +35,361 @@
 ;;
 ;;	NOTE: Save can generate this table.
 ;;
-(define-unit-type "unit-nothing-22"		"Nothing 22"
-  ;; graphic data
-  #(()
-    ()
-    ()
-    () )
-  '(   0   0 )			;; graphic size
-  "animations-nothing-22"
-  "icon-cancel"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      99      0      0      0     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 0 0 ) '(   0   0 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0       0     0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-nothing-22 'name "Nothing 22"
+  'files '()
+  'size '(0 0)
+  'animations 'animations-building 'icon 'icon-cancel
+  'speed 99
+  'hit-points 0
+  'tile-size '(0 0) 'box-size '(0 0)
+  'sight-range 0
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
   'type-land
-  'right-none
-  ;; flags
-  ;; sounds
-  #(()
-    ()
-    ()
-    ()
-    () )
-  () )
+  'sounds '())
 
-(define-unit-type "unit-nothing-24"		"Nothing 24"
-  ;; graphic data
-  #(()
-    ()
-    ()
-    () )
-  '(  32  32 )			;; graphic size
-  "animations-nothing-22"
-  "icon-cancel"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      99      0      4     60     0 #(  60   400     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      0       1     20      10
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       2    40      9      1       0       0
-  ;;Decay Annoy	Points  Food
-      0      0       0     0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-nothing-24 'name "Nothing 24"
+  'files '()
+  'size '(32 32)
+  'animations 'animations-building 'icon 'icon-cancel
+  'costs '(time 60 gold 400)
+  'speed 99
+  'hit-points 60
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 4 'computer-reaction-range 20 'person-reaction-range 10
+  'armor 2 'basic-damage 9 'piercing-damage 1 'missile 'missile-none
+  'max-attack-range 1
+  'priority 40
   'type-naval
   'right-attack
-  ;; flags
   'sea-unit
   'selectable-by-rectangle
-  ;; sounds
-  #(()
-    ()
-    ()
-    ()
-    () )
-  () )
+  'sounds '())
 
-(define-unit-type "unit-nothing-25"		"Nothing 25"
-  ;; graphic data
-  #(()
-    ()
-    ()
-    () )
-  '(  32  32 )			;; graphic size
-  "animations-nothing-22"
-  "icon-cancel"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      99      0      4     60     0 #(  60   400     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      0       1     20      10
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       2    40      9      1       0       0
-  ;;Decay Annoy	Points  Food
-      0      0       0     0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-nothing-25 'name "Nothing 25"
+  'files '()
+  'size '(32 32)
+  'animations 'animations-building 'icon 'icon-cancel
+  'costs '(time 60 gold 400)
+  'speed 99
+  'hit-points 60
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 4 'computer-reaction-range 20 'person-reaction-range 10
+  'armor 2 'basic-damage 9 'piercing-damage 1 'missile 'missile-none
+  'max-attack-range 1
+  'priority 40
   'type-naval
   'right-attack
-  ;; flags
   'sea-unit
   'selectable-by-rectangle
-  ;; sounds
-  #(()
-    ()
-    ()
-    ()
-    () )
-  () )
+  'sounds '())
 
-(define-unit-type "unit-nothing-30"		"Nothing 30"
-  ;; graphic data
-  #(()
-    ()
-    ()
-    () )
-  '(   0   0 )			;; graphic size
-  "animations-nothing-22"
-  "icon-cancel"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      99      0      0      0     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 0 0 ) '(   0   0 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0       0     0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-nothing-30 'name "Nothing 30"
+  'files '()
+  'size '(0 0)
+  'animations 'animations-building 'icon 'icon-cancel
+  'speed 99
+  'hit-points 0
+  'tile-size '(0 0) 'box-size '(0 0)
+  'sight-range 0
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
   'type-land
-  'right-none
-  ;; flags
-  ;; sounds
-  #(()
-    ()
-    ()
-    ()
-    () )
-  () )
+  'sounds '())
 
-(define-unit-type "unit-nothing-36"		"Nothing 36"
-  ;; graphic data
-  #(()
-    ()
-    ()
-    () )
-  '(   0   0 )			;; graphic size
-  "animations-nothing-22"
-  "icon-cancel"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      99      0      0      0     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 0 0 ) '(   0   0 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0       0     0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-nothing-36 'name "Nothing 36"
+  'files '()
+  'size '(0 0)
+  'animations 'animations-building 'icon 'icon-cancel
+  'speed 99
+  'hit-points 0
+  'tile-size '(0 0) 'box-size '(0 0)
+  'sight-range 0
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
   'type-land
-  'right-none
-  ;; flags
-  ;; sounds
-  #(()
-    ()
-    ()
-    ()
-    () )
-  () )
+  'sounds '())
 
-(define-unit-type "unit-daemon"			"Daemon"
-  ;; graphic data
-  #("neutral/units/daemon.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-daemon"
-  "icon-daemon"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      14      0      5     60     0 #(  70   500     0     50    0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       3      7       5
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       3    63     10      2       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     100     1       0
-  "missile-daemon-fire"
-  '()
+(define-unit-type 'unit-daemon 'name "Daemon"
+  'files '(tileset-summer "neutral/units/daemon.png")
+  'size '(72 72)
+  'animations 'animations-daemon 'icon 'icon-daemon
+  'costs '(time 70 gold 500 oil 50)
+  'speed 14
+  'hit-points 60
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
+  'armor 3 'basic-damage 10 'piercing-damage 2 'missile 'missile-daemon-fire
+  'max-attack-range 3
+  'priority 63
+  'points 100
+  'demand 1
   'type-fly
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
+  'can-attack
+  'can-target-land 'can-target-sea 'can-target-air
   'air-unit
   'critter
   'can-see-submarine
-  'can-attack
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("daemon-selected"
-    "daemon-acknowledge"
-    "daemon-ready"
-    "basic orc voices help 1"
-    "basic orc voices dead" )
-  "daemon-attack" )
+  'sounds '(
+    selected "daemon-selected"
+    acknowledge "daemon-acknowledge"
+    ready "daemon-ready"
+    help "basic orc voices help 1"
+    dead "basic orc voices dead"
+    attack "daemon-attack"))
 
-(define-unit-type "unit-critter"		"Critter"
-  ;; graphic data
-  #("tilesets/summer/neutral/units/critter.png"
-    "tilesets/winter/neutral/units/critter.png"
-    "tilesets/wasteland/neutral/units/critter.png"
-    "tilesets/swamp/neutral/units/critter.png" )
-  '(  32  32 )			;; graphic size
-  "animations-critter"
-  "icon-critter"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       3      0      2      5     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       1     20      10
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    37      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     1       0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-critter 'name "Critter"
+  'files '(tileset-summer "tilesets/summer/neutral/units/critter.png"
+    tileset-winter "tilesets/winter/neutral/units/critter.png"
+    tileset-wasteland "tilesets/wasteland/neutral/units/critter.png"
+    tileset-swamp "tilesets/swamp/neutral/units/critter.png")
+  'size '(32 32)
+  'animations 'animations-critter 'icon 'icon-critter
+  'speed 3
+  'hit-points 5
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 2 'computer-reaction-range 20 'person-reaction-range 10
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'max-attack-range 1
+  'priority 37
+  'points 1
   'type-land
   'right-move
-  ;; flags
   'land-unit
   'critter
   'organic
-  ;; sounds
-  #("critter-selected"
-    "critter-acknowledge"
-    "critter-ready"
-    "critter-help"
-    "critter-dead" )
-  "critter-attack" )
+  'sounds '(
+    selected "critter-selected"
+    acknowledge "critter-acknowledge"
+    ready "critter-ready"
+    help "critter-help"
+    dead "critter-dead"
+    attack "critter-attack"))
 
-(define-unit-type "unit-gold-mine"		"Gold Mine"
-  ;; graphic data
-  #("tilesets/summer/neutral/buildings/gold mine.png"
-    "tilesets/winter/neutral/buildings/gold mine.png"
-    "tilesets/wasteland/neutral/buildings/gold mine.png"
-    "tilesets/swamp/neutral/buildings/gold mine.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-gold-mine"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      3  25500     0 #( 150     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     0       0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 0)
+(define-unit-type 'unit-gold-mine 'name "Gold Mine"
+  'files '(tileset-summer "tilesets/summer/neutral/buildings/gold mine.png"
+    tileset-winter "tilesets/winter/neutral/buildings/gold mine.png"
+    tileset-wasteland "tilesets/wasteland/neutral/buildings/gold mine.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/gold mine.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-gold-mine
+  'costs '(time 150)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 25500
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
+  'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
   'gives-gold
-  ;; sounds
-  #("gold-mine-selected"
-    "gold-mine-acknowledge"
-    "gold-mine-ready"
-    "gold-mine-help"
-    "building destroyed" )
-  "gold-mine-attack" )
+  'sounds '(
+    selected "gold-mine-selected"
+    acknowledge "gold-mine-acknowledge"
+    ready "gold-mine-ready"
+    help "gold-mine-help"
+    dead "building destroyed"
+    attack "gold-mine-attack"))
 
-(define-unit-type "unit-oil-patch"		"Oil Patch"
-  ;; graphic data
-  #("tilesets/summer/neutral/buildings/oil patch.png"
-    ()
-    "tilesets/wasteland/neutral/buildings/oil patch.png"
-    "tilesets/swamp/neutral/buildings/oil patch.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-oil-patch"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      0      0      0     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     0       0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-oil-patch 'name "Oil Patch"
+  'files '(tileset-summer "tilesets/summer/neutral/buildings/oil patch.png"
+    tileset-wasteland "tilesets/wasteland/neutral/buildings/oil patch.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/oil patch.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-oil-patch
+  'speed 0
+  'hit-points 0
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 0
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
   'type-naval
-  'right-none
-  ;; flags
   'building
   'oil-patch
-  ;; sounds
-  #("oil-patch-selected"
-    "oil-patch-acknowledge"
-    "oil-patch-ready"
-    "oil-patch-help"
-    "building destroyed" )
-  "oil-patch-attack" )
+  'sounds '(
+    selected "oil-patch-selected"
+    acknowledge "oil-patch-acknowledge"
+    ready "oil-patch-ready"
+    help "oil-patch-help"
+    dead "building destroyed"
+    attack "oil-patch-attack"))
 
-(define-unit-type "unit-circle-of-power"	"Circle of Power"
-  ;; graphic data
-  #("neutral/buildings/circle of power.png"
-    ()
-    ()
-    () )
-  '(  64  64 )			;; graphic size
-  "animations-building"
-  "icon-circle-of-power"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      0      0      0     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 2 2 ) '(  63  63 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     0       0       0
-  "missile-none"
-  '("unit-destroyed-2x2-place" 0)
+(define-unit-type 'unit-circle-of-power 'name "Circle of Power"
+  'files '(tileset-summer "neutral/buildings/circle of power.png")
+  'size '(64 64)
+  'animations 'animations-building 'icon 'icon-circle-of-power
+  'speed 0
+  'hit-points 0
+  'tile-size '(2 2) 'box-size '(63 63)
+  'sight-range 0
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
+  'corpse '(unit-destroyed-2x2-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
-  ;; sounds
-  #("circle-of-power-selected"
-    "circle-of-power-acknowledge"
-    "circle-of-power-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "circle-of-power-attack" )
+  'sounds '(
+    selected "circle-of-power-selected"
+    acknowledge "circle-of-power-acknowledge"
+    ready "circle-of-power-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "circle-of-power-attack"))
 
-(define-unit-type "unit-dark-portal"		"Dark Portal"
-  ;; graphic data
-  #("tilesets/summer/neutral/buildings/dark portal.png"
-    "tilesets/winter/neutral/buildings/dark portal.png"
-    "tilesets/wasteland/neutral/buildings/dark portal.png"
-    "tilesets/swamp/neutral/buildings/dark portal.png" )
-  '( 128 128 )			;; graphic size
-  "animations-building"
-  "icon-dark-portal"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      4   5000     0 #( 100  3000  3000  1000     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 4 4 ) '( 127 127 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     0       0       0
-  "missile-none"
-  '("unit-destroyed-4x4-place" 0)
+(define-unit-type 'unit-dark-portal 'name "Dark Portal"
+  'files '(tileset-summer "tilesets/summer/neutral/buildings/dark portal.png"
+    tileset-winter "tilesets/winter/neutral/buildings/dark portal.png"
+    tileset-wasteland "tilesets/wasteland/neutral/buildings/dark portal.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/dark portal.png")
+  'size '(128 128)
+  'animations 'animations-building 'icon 'icon-dark-portal
+  'costs '(time 100 gold 3000 wood 3000 oil 1000)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 5000
+  'tile-size '(4 4) 'box-size '(127 127)
+  'sight-range 4
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
+  'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'right-none
+  'building
   'can-cast-spell
-  ;; flags
-  'building
   'teleporter
-  ;; sounds
-  #("dark-portal-selected"
-    "dark-portal-acknowledge"
-    "dark-portal-ready"
-    "basic orc voices help 2"
-    "building destroyed" )
-  "dark-portal-attack" )
+  'sounds '(
+    selected "dark-portal-selected"
+    acknowledge "dark-portal-acknowledge"
+    ready "dark-portal-ready"
+    help "basic orc voices help 2"
+    dead "building destroyed"
+    attack "dark-portal-attack"))
 
-(define-unit-type "unit-runestone"		"Runestone"
-  ;; graphic data
-  #("neutral/buildings/runestone.png"
-    "tilesets/winter/neutral/buildings/runestone.png"
-    ()
-    "tilesets/swamp/neutral/buildings/runestone.png" )
-  '(  64  64 )			;; graphic size
-  "animations-building"
-  "icon-runestone"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      4   5000     0 #( 175   900   500     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 2 2 ) '(  63  63 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    15      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0     35     150     0       0
-  "missile-none"
-  '("unit-destroyed-2x2-place" 0)
+(define-unit-type 'unit-runestone 'name "Runestone"
+  'files '(tileset-summer "neutral/buildings/runestone.png"
+    tileset-winter "tilesets/winter/neutral/buildings/runestone.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/runestone.png")
+  'size '(64 64)
+  'animations 'animations-building 'icon 'icon-runestone
+  'costs '(time 175 gold 900 wood 500)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 5000
+  'tile-size '(2 2) 'box-size '(63 63)
+  'sight-range 4
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 15 'annoy-computer-factor 35
+  'points 150
+  'corpse '(unit-destroyed-2x2-place 0)
   'type-land
+  'building
   'can-cast-spell
-  'right-none
-  ;; flags
-  'building
-  ;; sounds
-  #("runestone-selected"
-    "runestone-acknowledge"
-    "runestone-ready"
-    "basic orc voices help 2"
-    "building destroyed" )
-  "runestone-attack" )
+  'sounds '(
+    selected "runestone-selected"
+    acknowledge "runestone-acknowledge"
+    ready "runestone-ready"
+    help "basic orc voices help 2"
+    dead "building destroyed"
+    attack "runestone-attack"))
 
-(define-unit-type "unit-dead-body"		"Dead Body"
-  ;; graphic data
-  #("neutral/units/corpses.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-dead-body"
-  "icon-peasant"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      0      1    255     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     0       0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-dead-body 'name "Dead Body"
+  'files '(tileset-summer "neutral/units/corpses.png")
+  'size '(72 72)
+  'animations 'animations-dead-body 'icon 'icon-peasant
+  'speed 0
+  'hit-points 255
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 1
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
   'type-land
-  'right-none
-  ;; flags
   'vanishes
-  ;; sounds
-  #(()
-    ()
-    ()
-    ()
-    () )
-  () )
+  'sounds '())
 
-(define-unit-type "unit-destroyed-1x1-place"	"Destroyed 1x1 Place"
-  ;; graphic data
-  #("tilesets/summer/neutral/buildings/small destroyed site.png"
-    "tilesets/winter/neutral/buildings/small destroyed site.png"
-    "tilesets/wasteland/neutral/buildings/small destroyed site.png"
-    "tilesets/swamp/neutral/buildings/small destroyed site.png" )
-  '(  32  32 )			;; graphic size
-  "animations-destroyed-place"
-  "icon-peasant"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      0      2    255     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     0       0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-destroyed-1x1-place 'name "Destroyed 1x1 Place"
+  'files '(
+    tileset-summer "tilesets/summer/neutral/buildings/small destroyed site.png"
+    tileset-winter "tilesets/winter/neutral/buildings/small destroyed site.png"
+    tileset-wasteland
+      "tilesets/wasteland/neutral/buildings/small destroyed site.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/small destroyed site.png")
+  'size '(32 32)
+  'animations 'animations-destroyed-place 'icon 'icon-peasant
+  'speed 0
+  'hit-points 255
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 2
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
   'type-land
-  'right-none
-  ;; flags
   'building
   'vanishes
-  ;; sounds
-  #(()
-    ()
-    ()
-    ()
-    () )
-  () )
+  'sounds '())
 
-(define-unit-type "unit-destroyed-2x2-place"	"Destroyed 2x2 Place"
-  ;; graphic data
-  #("tilesets/summer/neutral/buildings/destroyed site.png"
-    "tilesets/winter/neutral/buildings/destroyed site.png"
-    "tilesets/wasteland/neutral/buildings/destroyed site.png"
-    "tilesets/swamp/neutral/buildings/destroyed site.png" )
-  '(  64  64 )			;; graphic size
-  "animations-destroyed-place"
-  "icon-peasant"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      0      2    255     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 2 2 ) '(  63  63 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     0       0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-destroyed-2x2-place 'name "Destroyed 2x2 Place"
+  'files '(tileset-summer "tilesets/summer/neutral/buildings/destroyed site.png"
+    tileset-winter "tilesets/winter/neutral/buildings/destroyed site.png"
+    tileset-wasteland "tilesets/wasteland/neutral/buildings/destroyed site.png"
+    tileset-swamp "tilesets/swamp/neutral/buildings/destroyed site.png")
+  'size '(64 64)
+  'animations 'animations-destroyed-place 'icon 'icon-peasant
+  'speed 0
+  'hit-points 255
+  'tile-size '(2 2) 'box-size '(63 63)
+  'sight-range 2
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
   'type-land
-  'right-none
-  ;; flags
   'building
   'vanishes
-  ;; sounds
-  #(()
-    ()
-    ()
-    ()
-    () )
-  () )
+  'sounds '())
 
-(define-unit-type "unit-destroyed-3x3-place"	"Destroyed 3x3 Place"
-  ;; graphic data
-  "unit-destroyed-2x2-place"
-  '(  96  96 )			;; graphic size
-  "animations-destroyed-place"
-  "icon-peasant"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      0      3    255     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     0       0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-destroyed-3x3-place 'name "Destroyed 3x3 Place"
+  'use 'unit-destroyed-2x2-place
+  'size '(96 96)
+  'animations 'animations-destroyed-place 'icon 'icon-peasant
+  'speed 0
+  'hit-points 255
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
   'type-land
-  'right-none
-  ;; flags
   'building
   'vanishes
-  ;; sounds
-  #(()
-    ()
-    ()
-    ()
-    () )
-  () )
+  'sounds '())
 
-(define-unit-type "unit-destroyed-4x4-place"	"Destroyed 4x4 Place"
-  ;; graphic data
-  "unit-destroyed-2x2-place"
-  '( 128 128 )			;; graphic size
-  "animations-destroyed-place"
-  "icon-peasant"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      0      3    255     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 4 4 ) '( 127 127 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      0      0     0       0       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-destroyed-4x4-place 'name "Destroyed 4x4 Place"
+  'use 'unit-destroyed-2x2-place
+  'size '(128 128)
+  'animations 'animations-destroyed-place 'icon 'icon-peasant
+  'speed 0
+  'hit-points 255
+  'tile-size '(4 4) 'box-size '(127 127)
+  'sight-range 3
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
   'type-land
-  'right-none
-  ;; flags
   'building
   'vanishes
-  ;; sounds
-  #(()
-    ()
-    ()
-    ()
-    () )
-  () )
+  'sounds '())
 
-(define-unit-type "unit-revealer"		"Dummy unit"
-  ;; graphic data
-  #("neutral/units/daemon.png"
-    ()
-    ()
-    () )
-  '(  2  2 )			;; graphic size
-  "animations-building"
-  "icon-holy-vision"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      0     12      0     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  1  1 )        0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points  Food
-      1      0     0       0       0
-  "missile-none"
-  '()
-  ;; flags
+(define-unit-type 'unit-revealer 'name "Dummy unit"
+  'files '(tileset-summer "neutral/units/daemon.png")
+  'size '(2 2)
+  'animations 'animations-building 'icon 'icon-holy-vision
+  'speed 0
+  'hit-points 0
+  'tile-size '(1 1) 'box-size '(1 1)
+  'sight-range 12
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
+  'decay-rate 1
+  'type-land
+  'building
   'critter
-  'building
   'can-see-submarine
-  ;; sounds
-  #(() () () () () ) '() )
+  'sounds '())

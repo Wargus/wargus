@@ -10,12 +10,11 @@
 ;;
 ;;	units.ccl	-	Define the used human unit-types.
 ;;
-;;	(c) Copyright 2001 by Lutz Sammer
+;;	(c) Copyright 2001,2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
-;;	by the Free Software Foundation; either version 2 of the License,
-;;	or (at your option) any later version.
+;;	by the Free Software Foundation; only version 2 of the License.
 ;;
 ;;	FreeCraft is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,1594 +26,1402 @@
 ;;=============================================================================
 ;;	Define unit-types.
 ;;
-(define-unit-type "unit-footman"		"Footman"
-  ;; graphic data
-  #("human/units/footman.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-footman"
-  "icon-footman"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      4     60     0 #(  60   600     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       1      6       4
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       2    60      6      3       1       1
-  ;;Decay Annoy	Points Food
-      0      0      50     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+;;	NOTE: Save can generate this table.
+;;
+(define-unit-type 'unit-footman 'name "Footman"
+  'files '(tileset-summer "human/units/footman.png")
+  'size '(72 72)
+  'animations 'animations-footman 'icon 'icon-footman
+  'costs '(time 60 gold 600)
+  'speed 10
+  'hit-points 60
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
+  'armor 2 'basic-damage 6 'piercing-damage 3 'missile 'missile-none
+  'max-attack-range 1
+  'weapons-upgradable 1 'armor-upgradable 1
+  'priority 60
+  'points 50
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 
-  ;; flags
-  'land-unit
   'can-attack
+  'can-target-land
+  'land-unit
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("footman-selected"
-    "footman-acknowledge"
-    "footman-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "footman-attack" )
+  'sounds '(
+    selected "footman-selected"
+    acknowledge "footman-acknowledge"
+    ready "footman-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "footman-attack"))
 
-(define-unit-type "unit-peasant"		"Peasant"
-  ;; graphic data
-  #("human/units/peasant.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-peasant"
-  "icon-peasant"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      4     30     0 #(  45   400     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       1      6       4
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    50      3      2       0       0
-  ;;Decay Annoy	Points Food
-      0      0      30     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-peasant 'name "Peasant"
+  'files '(tileset-summer "human/units/peasant.png")
+  'size '(72 72)
+  'animations 'animations-peasant 'icon 'icon-peasant
+  'costs '(time 45 gold 400)
+  'speed 10
+  'hit-points 30
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
+  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50
+  'points 30
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-harvest
-  'can-target-land 
-  ;; flags
+  'can-attack
+  'can-target-land
   'land-unit
   'cower-worker
-  'can-attack
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("peasant-selected"
-    "peasant-acknowledge"
-    "peasant-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "peasant-attack" )
+  'sounds '(
+    selected "peasant-selected"
+    acknowledge "peasant-acknowledge"
+    ready "peasant-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "peasant-attack"))
 
-(define-unit-type "unit-ballista"		"Ballista"
-  ;; graphic data
-  #("human/units/ballista.png"
-    ()
-    ()
-    () )
-  '(  64  64 )			;; graphic size
-  "animations-ballista"
-  "icon-ballista"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       5      0      9    110     0 #( 250   900   300     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      1       8     11       9
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    70     80      0       1       0
-  ;;Decay Annoy	Points Food
-      0      0     100     1       0
-  "missile-ballista-bolt"
-  '()
+(define-unit-type 'unit-ballista 'name "Ballista"
+  'files '(tileset-summer "human/units/ballista.png")
+  'size '(64 64)
+  'animations 'animations-ballista 'icon 'icon-ballista
+  'costs '(time 250 gold 900 wood 300)
+  'speed 5
+  'hit-points 110
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
+  'basic-damage 80 'piercing-damage 0 'missile 'missile-ballista-bolt
+  'min-attack-range 1 'max-attack-range 8
+  'weapons-upgradable 1
+  'priority 70
+  'points 100
+  'demand 1
+  'explode-when-killed
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 
-  ;; flags
-  'explode-when-killed
   'can-ground-attack
   'can-attack
+  'can-target-land 'can-target-sea
   'selectable-by-rectangle
-  ;; sounds
-  #("ballista-selected"
-    "ballista-acknowledge"
-    "ballista-ready"
-    "basic human voices help 1"
-    "explosion" )
-  "ballista-attack" )
+  'sounds '(
+    selected "ballista-selected"
+    acknowledge "ballista-acknowledge"
+    ready "ballista-ready"
+    help "basic human voices help 1"
+    dead "explosion"
+    attack "ballista-attack"))
 
-(define-unit-type "unit-knight"			"Knight"
-  ;; graphic data
-  #("human/units/knight.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-knight"
-  "icon-knight"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      13      0      4     90     0 #(  90   800   100     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  42  42 )      0       1      6       4
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       4    63      8      4       1       1
-  ;;Decay Annoy	Points Food
-      0      0     100     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-knight 'name "Knight"
+  'files '(tileset-summer "human/units/knight.png")
+  'size '(72 72)
+  'animations 'animations-knight 'icon 'icon-knight
+  'costs '(time 90 gold 800 wood 100)
+  'speed 13
+  'hit-points 90
+  'tile-size '(1 1) 'box-size '(42 42)
+  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
+  'armor 4 'basic-damage 8 'piercing-damage 4 'missile 'missile-none
+  'max-attack-range 1
+  'weapons-upgradable 1 'armor-upgradable 1
+  'priority 63
+  'points 100
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 
-  ;; flags
-  'land-unit
   'can-attack
+  'can-target-land
+  'land-unit
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("knight-selected"
-    "knight-acknowledge"
-    "knight-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "knight-attack" )
+  'sounds '(
+    selected "knight-selected"
+    acknowledge "knight-acknowledge"
+    ready "knight-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "knight-attack"))
 
-(define-unit-type "unit-archer"			"Archer"
-  ;; graphic data
-  #("human/units/elven archer.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-archer"
-  "icon-archer"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      5     40     0 #(  70   500    50     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  33  33 )      0       4      7       5
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    55      3      6       1       0
-  ;;Decay Annoy	Points Food
-      0      0      60     1       0
-  "missile-arrow"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-archer 'name "Archer"
+  'files '(tileset-summer "human/units/elven archer.png")
+  'size '(72 72)
+  'animations 'animations-archer 'icon 'icon-archer
+  'costs '(time 70 gold 500 wood 50)
+  'speed 10
+  'hit-points 40
+  'tile-size '(1 1) 'box-size '(33 33)
+  'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
+  'basic-damage 3 'piercing-damage 6 'missile 'missile-arrow
+  'max-attack-range 4
+  'weapons-upgradable 1
+  'priority 55
+  'points 60
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
-  'land-unit
   'can-attack
+  'can-target-land 'can-target-sea 'can-target-air
+  'land-unit
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("archer-selected"
-    "archer-acknowledge"
-    "archer-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "archer-attack" )
+  'sounds '(
+    selected "archer-selected"
+    acknowledge "archer-acknowledge"
+    ready "archer-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "archer-attack"))
 
-(define-unit-type "unit-mage"			"Mage"
-  ;; graphic data
-  #("human/units/mage.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-mage"
-  "icon-mage"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       8      0      9     60     1 #( 120  1200     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  33  33 )      0       2     11       9
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    70      0      9       0       0
-  ;;Decay Annoy	Points Food
-      0      0     100     1       0
-  "missile-lightning"
-  '()
+(define-unit-type 'unit-mage 'name "Mage"
+  'files '(tileset-summer "human/units/mage.png")
+  'size '(72 72)
+  'animations 'animations-mage 'icon 'icon-mage
+  'costs '(time 120 gold 1200)
+  'speed 8
+  'hit-points 60
+  'magic 1
+  'tile-size '(1 1) 'box-size '(33 33)
+  'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
+  'basic-damage 0 'piercing-damage 9 'missile 'missile-lightning
+  'max-attack-range 2
+  'priority 70
+  'points 100
+  'demand 1
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
-  'land-unit
-  'can-cast-spell
   'can-attack
+  'can-target-land 'can-target-sea 'can-target-air
+  'land-unit
   'cower-mage
+  'can-cast-spell
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("mage-selected"
-    "mage-acknowledge"
-    "mage-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "mage-attack" )
+  'sounds '(
+    selected "mage-selected"
+    acknowledge "mage-acknowledge"
+    ready "mage-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "mage-attack"))
 
-(define-unit-type "unit-paladin"		"Paladin"
-  ;; graphic data
-  "unit-knight"
-  '(  72  72 )			;; graphic size
-  "animations-knight"
-  "icon-paladin"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      13      0      5     90     0 #(  90   800   100     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  42  42 )      0       1      7       5
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       4    65      8      4       1       1
-  ;;Decay Annoy	Points Food
-      0      0     110     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-paladin 'name "Paladin"
+  'use 'unit-knight
+  'size '(72 72)
+  'animations 'animations-knight 'icon 'icon-paladin
+  'costs '(time 90 gold 800 wood 100)
+  'speed 13
+  'hit-points 90
+  'tile-size '(1 1) 'box-size '(42 42)
+  'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
+  'armor 4 'basic-damage 8 'piercing-damage 4 'missile 'missile-none
+  'max-attack-range 1
+  'weapons-upgradable 1 'armor-upgradable 1
+  'priority 65
+  'points 110
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 
-  ;; flags
+  'can-attack
+  'can-target-land
   'land-unit
   'can-cast-spell
-  'can-attack
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("paladin-selected"
-    "paladin-acknowledge"
-    "paladin-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "paladin-attack" )
+  'sounds '(
+    selected "paladin-selected"
+    acknowledge "paladin-acknowledge"
+    ready "paladin-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "paladin-attack"))
 
-(define-unit-type "unit-dwarves"		"Dwarves"
-  ;; graphic data
-  #("human/units/dwarven demolition squad.png"
-    ()
-    ()
-    () )
-  '(  56  56 )			;; graphic size
-  "animations-dwarves"
-  "icon-dwarves"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      11      0      4     40     0 #( 200   700   250     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  32  32 )      0       1      4       2
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    55      4      2       1       0
-  ;;Decay Annoy	Points Food
-      0      0     100     1       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-dwarves 'name "Dwarves"
+  'files '(tileset-summer "human/units/dwarven demolition squad.png")
+  'size '(56 56)
+  'animations 'animations-dwarves 'icon 'icon-dwarves
+  'costs '(time 200 gold 700 wood 250)
+  'speed 11
+  'hit-points 40
+  'tile-size '(1 1) 'box-size '(32 32)
+  'sight-range 4 'computer-reaction-range 4 'person-reaction-range 2
+  'basic-damage 4 'piercing-damage 2 'missile 'missile-none
+  'max-attack-range 1
+  'weapons-upgradable 1
+  'priority 55
+  'points 100
+  'demand 1
   'type-land
   'right-demolish
-  'can-target-land 
-  ;; flags
-  'land-unit
   'can-attack
+  'can-target-land
+  'land-unit
   'volatile
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("dwarves-selected"
-    "dwarves-acknowledge"
-    "dwarves-ready"
-    "basic human voices help 1"
-    "explosion" )
-  "dwarves-attack" )
+  'sounds '(
+    selected "dwarves-selected"
+    acknowledge "dwarves-acknowledge"
+    ready "dwarves-ready"
+    help "basic human voices help 1"
+    dead "explosion"
+    attack "dwarves-attack"))
 
-(define-unit-type "unit-attack-peasant"		"Peasant"
-  ;; graphic data
-  "unit-peasant"
-  '(  72  72 )			;; graphic size
-  "animations-peasant"
-  "icon-peasant"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      4     30     0 #(  45   400     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       1      6       4
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    50      3      2       0       0
-  ;;Decay Annoy	Points Food
-      0      0      30     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-attack-peasant 'name "Peasant"
+  'use 'unit-peasant
+  'size '(72 72)
+  'animations 'animations-peasant 'icon 'icon-peasant
+  'costs '(time 45 gold 400)
+  'speed 10
+  'hit-points 30
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
+  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50
+  'points 30
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 
-  ;; flags
-  'land-unit
   'can-attack
+  'can-target-land
+  'land-unit
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("peasant-selected"
-    "peasant-acknowledge"
-    "peasant-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "peasant-attack" )
+  'sounds '(
+    selected "peasant-selected"
+    acknowledge "peasant-acknowledge"
+    ready "peasant-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "peasant-attack"))
 
-(define-unit-type "unit-ranger"			"Ranger"
-  ;; graphic data
-  "unit-archer"
-  '(  72  72 )			;; graphic size
-  "animations-archer"
-  "icon-ranger"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      6     50     0 #(  70   500    50     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  33  33 )      0       4      9       6
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    57      3      6       1       0
-  ;;Decay Annoy	Points Food
-      0      0      70     1       0
-  "missile-arrow"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-ranger 'name "Ranger"
+  'use 'unit-archer
+  'size '(72 72)
+  'animations 'animations-archer 'icon 'icon-ranger
+  'costs '(time 70 gold 500 wood 50)
+  'speed 10
+  'hit-points 50
+  'tile-size '(1 1) 'box-size '(33 33)
+  'sight-range 6 'computer-reaction-range 9 'person-reaction-range 6
+  'basic-damage 3 'piercing-damage 6 'missile 'missile-arrow
+  'max-attack-range 4
+  'weapons-upgradable 1
+  'priority 57
+  'points 70
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
-  'land-unit
   'can-attack
+  'can-target-land 'can-target-sea 'can-target-air
+  'land-unit
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("ranger-selected"
-    "ranger-acknowledge"
-    "ranger-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "ranger-attack" )
+  'sounds '(
+    selected "ranger-selected"
+    acknowledge "ranger-acknowledge"
+    ready "ranger-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "ranger-attack"))
 
-(define-unit-type "unit-alleria"		"Alleria"
-  ;; graphic data
-  "unit-archer"
-  '(  72  72 )			;; graphic size
-  "animations-archer"
-  "icon-alleria"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      9    120     0 #(  70   500    50     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  33  33 )      0       7      7       5
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       5    55     10     18       1       0
-  ;;Decay Annoy	Points Food
-      0      0      60     1       0
-  "missile-arrow"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-alleria 'name "Alleria"
+  'use 'unit-archer
+  'size '(72 72)
+  'animations 'animations-archer 'icon 'icon-alleria
+  'costs '(time 70 gold 500 wood 50)
+  'speed 10
+  'hit-points 120
+  'tile-size '(1 1) 'box-size '(33 33)
+  'sight-range 9 'computer-reaction-range 7 'person-reaction-range 5
+  'armor 5 'basic-damage 10 'piercing-damage 18 'missile 'missile-arrow
+  'max-attack-range 7
+  'weapons-upgradable 1
+  'priority 55
+  'points 60
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
-  'land-unit
   'can-attack
+  'can-target-land 'can-target-sea 'can-target-air
+  'land-unit
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("alleria-selected"
-    "alleria-acknowledge"
-    "alleria-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "alleria-attack" )
+  'sounds '(
+    selected "alleria-selected"
+    acknowledge "alleria-acknowledge"
+    ready "alleria-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "alleria-attack"))
 
-(define-unit-type "unit-kurdan-and-sky-ree"	"Kurdan and Sky'ree"
-  ;; graphic data
-  #("human/units/gryphon rider.png"
-    ()
-    ()
-    () )
-  '(  80  80 )			;; graphic size
-  "animations-kurdan-and-sky-ree"
-  "icon-kurdan-and-sky-ree"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      14      0      9    250     0 #( 250  2500     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      0       5      8       6
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       6    65      0     25       0       0
-  ;;Decay Annoy	Points Food
-      0      0     150     1       0
-  "missile-griffon-hammer"
-  '()
+(define-unit-type 'unit-kurdan-and-sky-ree 'name "Kurdan and Sky'ree"
+  'files '(tileset-summer "human/units/gryphon rider.png")
+  'size '(80 80)
+  'animations 'animations-kurdan-and-sky-ree 'icon 'icon-kurdan-and-sky-ree
+  'costs '(time 250 gold 2500)
+  'speed 14
+  'hit-points 250
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 9 'computer-reaction-range 8 'person-reaction-range 6
+  'armor 6 'basic-damage 0 'piercing-damage 25 'missile 'missile-griffon-hammer
+  'max-attack-range 5
+  'priority 65
+  'points 150
+  'demand 1
   'type-fly
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
+  'can-attack
+  'can-target-land 'can-target-sea 'can-target-air
   'air-unit
   'can-see-submarine
-  'can-attack
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("kurdan-and-sky-ree-selected"
-    "kurdan-and-sky-ree-acknowledge"
-    "kurdan-and-sky-ree-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "kurdan-and-sky-ree-attack" )
+  'sounds '(
+    selected "kurdan-and-sky-ree-selected"
+    acknowledge "kurdan-and-sky-ree-acknowledge"
+    ready "kurdan-and-sky-ree-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "kurdan-and-sky-ree-attack"))
 
-(define-unit-type "unit-khadgar"		"Khadgar"
-  ;; graphic data
-  "unit-mage"
-  '(  72  72 )			;; graphic size
-  "animations-mage"
-  "icon-khadgar"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       8      0      9    120     1 #( 120  1200     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  33  33 )      0       6     11       9
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       3    70      0     16       0       0
-  ;;Decay Annoy	Points Food
-      0      0     100     1       0
-  "missile-lightning"
-  '()
+(define-unit-type 'unit-khadgar 'name "Khadgar"
+  'use 'unit-mage
+  'size '(72 72)
+  'animations 'animations-mage 'icon 'icon-khadgar
+  'costs '(time 120 gold 1200)
+  'speed 8
+  'hit-points 120
+  'magic 1
+  'tile-size '(1 1) 'box-size '(33 33)
+  'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
+  'armor 3 'basic-damage 0 'piercing-damage 16 'missile 'missile-lightning
+  'max-attack-range 6
+  'priority 70
+  'points 100
+  'demand 1
   'type-land
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
-  'land-unit
-  'can-cast-spell
   'can-attack
+  'can-target-land 'can-target-sea 'can-target-air
+  'land-unit
   'cower-mage
+  'can-cast-spell
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("khadgar-selected"
-    "khadgar-acknowledge"
-    "khadgar-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "khadgar-attack" )
+  'sounds '(
+    selected "khadgar-selected"
+    acknowledge "khadgar-acknowledge"
+    ready "khadgar-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "khadgar-attack"))
 
-(define-unit-type "unit-human-oil-tanker"	"Oil tanker"
-  ;; graphic data
-  #("human/units/oil tanker empty.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-human-oil-tanker"
-  "icon-human-oil-tanker"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      4     90     0 #(  50   400   200     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      0       1      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      10    50      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     10      40     1       0
-  "missile-none"
-  '("unit-dead-body" 12)
+(define-unit-type 'unit-human-oil-tanker 'name "Oil tanker"
+  'files '(tileset-summer "human/units/oil tanker empty.png")
+  'size '(72 72)
+  'animations 'animations-human-oil-tanker 'icon 'icon-human-oil-tanker
+  'costs '(time 50 gold 400 wood 200)
+  'speed 10
+  'hit-points 90
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 4
+  'armor 10 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50 'annoy-computer-factor 10
+  'points 40
+  'demand 1
+  'corpse '(unit-dead-body 12)
   'type-naval
   'right-haul-oil
-  ;; flags
   'sea-unit
   'tanker
   'selectable-by-rectangle
-  ;; sounds
-  #("human-oil-tanker-selected"
-    "human-oil-tanker-acknowledge"
-    "human-oil-tanker-ready"
-    "basic human voices help 1"
-    "ship sinking" )
-  "human-oil-tanker-attack" )
+  'sounds '(
+    selected "human-oil-tanker-selected"
+    acknowledge "human-oil-tanker-acknowledge"
+    ready "human-oil-tanker-ready"
+    help "basic human voices help 1"
+    dead "ship sinking"
+    attack "human-oil-tanker-attack"))
 
-(define-unit-type "unit-human-transport"	"Transport"
-  ;; graphic data
-  #("human/units/transport.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-human-transport"
-  "icon-human-transport"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      4    150     0 #(  70   600   200   500     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      0       1      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    70      0      0       0       1
-  ;;Decay Annoy	Points Food
-      0     15      50     1       0
-  "missile-none"
-  '("unit-dead-body" 12)
+(define-unit-type 'unit-human-transport 'name "Transport"
+  'files '(tileset-summer "human/units/transport.png")
+  'size '(72 72)
+  'animations 'animations-human-transport 'icon 'icon-human-transport
+  'costs '(time 70 gold 600 wood 200 oil 500)
+  'speed 10
+  'hit-points 150
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 4
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'max-attack-range 1
+  'armor-upgradable 1
+  'priority 70 'annoy-computer-factor 15
+  'points 50
+  'demand 1
+  'corpse '(unit-dead-body 12)
   'type-naval
   'right-sail
-  ;; flags
   'sea-unit
   'transporter
   'selectable-by-rectangle
-  ;; sounds
-  #("human-transport-selected"
-    "human-transport-acknowledge"
-    "human-transport-ready"
-    "basic human voices help 1"
-    "ship sinking" )
-  "human-transport-attack" )
+  'sounds '(
+    selected "human-transport-selected"
+    acknowledge "human-transport-acknowledge"
+    ready "human-transport-ready"
+    help "basic human voices help 1"
+    dead "ship sinking"
+    attack "human-transport-attack"))
 
-(define-unit-type "unit-elven-destroyer"	"Elven Destroyer"
-  ;; graphic data
-  #("human/units/elven destroyer.png"
-    ()
-    ()
-    () )
-  '(  80  88 )			;; graphic size
-  "animations-elven-destroyer"
-  "icon-elven-destroyer"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      8    100     0 #(  90   700   350   700     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      0       4     10       8
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      10    65     35      0       1       1
-  ;;Decay Annoy	Points Food
-      0     20     150     1       0
-  "missile-small-cannon"
-  '("unit-dead-body" 12)
+(define-unit-type 'unit-elven-destroyer 'name "Elven Destroyer"
+  'files '(tileset-summer "human/units/elven destroyer.png")
+  'size '(80 88)
+  'animations 'animations-elven-destroyer 'icon 'icon-elven-destroyer
+  'costs '(time 90 gold 700 wood 350 oil 700)
+  'speed 10
+  'hit-points 100
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 8 'computer-reaction-range 10 'person-reaction-range 8
+  'armor 10 'basic-damage 35 'piercing-damage 0 'missile 'missile-small-cannon
+  'max-attack-range 4
+  'weapons-upgradable 1 'armor-upgradable 1
+  'priority 65 'annoy-computer-factor 20
+  'points 150
+  'demand 1
+  'corpse '(unit-dead-body 12)
   'type-naval
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
-  'sea-unit
   'can-attack
+  'can-target-land 'can-target-sea 'can-target-air
+  'sea-unit
   'selectable-by-rectangle
-  ;; sounds
-  #("elven-destroyer-selected"
-    "elven-destroyer-acknowledge"
-    "elven-destroyer-ready"
-    "basic human voices help 1"
-    "ship sinking" )
-  "elven-destroyer-attack" )
+  'sounds '(
+    selected "elven-destroyer-selected"
+    acknowledge "elven-destroyer-acknowledge"
+    ready "elven-destroyer-ready"
+    help "basic human voices help 1"
+    dead "ship sinking"
+    attack "elven-destroyer-attack"))
 
-(define-unit-type "unit-battleship"		"Battleship"
-  ;; graphic data
-  #("human/units/battleship.png"
-    ()
-    ()
-    () )
-  '(  88  88 )			;; graphic size
-  "animations-battleship"
-  "icon-battleship"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       6      0      8    150     0 #( 140  1000   500  1000     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  70  70 )      0       6     10       8
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      15    63    130      0       1       1
-  ;;Decay Annoy	Points Food
-      0     25     300     1       0
-  "missile-big-cannon"
-  '("unit-dead-body" 12)
+(define-unit-type 'unit-battleship 'name "Battleship"
+  'files '(tileset-summer "human/units/battleship.png")
+  'size '(88 88)
+  'animations 'animations-battleship 'icon 'icon-battleship
+  'costs '(time 140 gold 1000 wood 500 oil 1000)
+  'speed 6
+  'hit-points 150
+  'tile-size '(1 1) 'box-size '(70 70)
+  'sight-range 8 'computer-reaction-range 10 'person-reaction-range 8
+  'armor 15 'basic-damage 130 'piercing-damage 0 'missile 'missile-big-cannon
+  'max-attack-range 6
+  'weapons-upgradable 1 'armor-upgradable 1
+  'priority 63 'annoy-computer-factor 25
+  'points 300
+  'demand 1
+  'corpse '(unit-dead-body 12)
   'type-naval
   'right-attack
-  'can-target-land 'can-target-sea 
-  ;; flags
-  'sea-unit
   'can-ground-attack
   'can-attack
+  'can-target-land 'can-target-sea
+  'sea-unit
   'selectable-by-rectangle
-  ;; sounds
-  #("battleship-selected"
-    "battleship-acknowledge"
-    "battleship-ready"
-    "basic human voices help 1"
-    "ship sinking" )
-  "battleship-attack" )
+  'sounds '(
+    selected "battleship-selected"
+    acknowledge "battleship-acknowledge"
+    ready "battleship-ready"
+    help "basic human voices help 1"
+    dead "ship sinking"
+    attack "battleship-attack"))
 
-(define-unit-type "unit-gnomish-submarine"	"Gnomish Submarine"
-  ;; graphic data
-  #("human/units/gnomish submarine.png"
-    ()
-    "tilesets/wasteland/human/units/gnomish submarine.png"
-    "tilesets/swamp/human/units/gnomish submarine.png" )
-  '(  72  72 )			;; graphic size
-  "animations-gnomish-submarine"
-  "icon-gnomish-submarine"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       7      0      5     60     0 #( 100   800   150   900     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      0       4      7       5
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    60     50      0       0       0
-  ;;Decay Annoy	Points Food
-      0     20     120     1       0
-  "missile-submarine-missile"
-  '("unit-dead-body" 12)
+(define-unit-type 'unit-gnomish-submarine 'name "Gnomish Submarine"
+  'files '(tileset-summer "human/units/gnomish submarine.png"
+    tileset-wasteland "tilesets/wasteland/human/units/gnomish submarine.png"
+    tileset-swamp "tilesets/swamp/human/units/gnomish submarine.png")
+  'size '(72 72)
+  'animations 'animations-gnomish-submarine 'icon 'icon-gnomish-submarine
+  'costs '(time 100 gold 800 wood 150 oil 900)
+  'speed 7
+  'hit-points 60
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
+  'basic-damage 50 'piercing-damage 0 'missile 'missile-submarine-missile
+  'max-attack-range 4
+  'priority 60 'annoy-computer-factor 20
+  'points 120
+  'demand 1
+  'corpse '(unit-dead-body 12)
   'type-naval
   'right-attack
-  'can-target-sea 
-  ;; flags
+  'can-attack
+  'can-target-sea
   'sea-unit
   'submarine
   'can-see-submarine
-  'can-attack
   'selectable-by-rectangle
-  ;; sounds
-  #("gnomish-submarine-selected"
-    "gnomish-submarine-acknowledge"
-    "gnomish-submarine-ready"
-    "basic human voices help 1"
-    "ship sinking" )
-  "gnomish-submarine-attack" )
+  'sounds '(
+    selected "gnomish-submarine-selected"
+    acknowledge "gnomish-submarine-acknowledge"
+    ready "gnomish-submarine-ready"
+    help "basic human voices help 1"
+    dead "ship sinking"
+    attack "gnomish-submarine-attack"))
 
-(define-unit-type "unit-gnomish-flying-machine"	"Gnomish Flying Machine"
-  ;; graphic data
-  #("human/units/gnomish flying machine.png"
-    ()
-    ()
-    () )
-  '(  80  80 )			;; graphic size
-  "animations-gnomish-flying-machine"
-  "icon-gnomish-flying-machine"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      17      0      9    150     0 #(  65   500   100     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      0       1     19      15
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       2    40      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0      0      40     1       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-gnomish-flying-machine 'name "Gnomish Flying Machine"
+  'files '(tileset-summer "human/units/gnomish flying machine.png")
+  'size '(80 80)
+  'animations 'animations-gnomish-flying-machine 'icon 'icon-gnomish-flying-machine
+  'costs '(time 65 gold 500 wood 100)
+  'speed 17
+  'hit-points 150
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 9 'computer-reaction-range 19 'person-reaction-range 15
+  'armor 2 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'max-attack-range 1
+  'priority 40
+  'points 40
+  'demand 1
   'type-fly
   'right-move
-  ;; flags
   'air-unit
   'can-see-submarine
   'selectable-by-rectangle
-  ;; sounds
-  #("gnomish-flying-machine-selected"
-    "gnomish-flying-machine-acknowledge"
-    "gnomish-flying-machine-ready"
-    "basic human voices help 1"
-    "explosion" )
-  "gnomish-flying-machine-attack" )
+  'sounds '(
+    selected "gnomish-flying-machine-selected"
+    acknowledge "gnomish-flying-machine-acknowledge"
+    ready "gnomish-flying-machine-ready"
+    help "basic human voices help 1"
+    dead "explosion"
+    attack "gnomish-flying-machine-attack"))
 
-(define-unit-type "unit-gryphon-rider"		"Gryphon Rider"
-  ;; graphic data
-  "unit-kurdan-and-sky-ree"
-  '(  80  80 )			;; graphic size
-  "animations-kurdan-and-sky-ree"
-  "icon-gryphon-rider"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      14      0      6    100     0 #( 250  2500     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      0       4      8       6
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       5    65      0     16       0       0
-  ;;Decay Annoy	Points Food
-      0      0     150     1       0
-  "missile-griffon-hammer"
-  '()
+(define-unit-type 'unit-gryphon-rider 'name "Gryphon Rider"
+  'use 'unit-kurdan-and-sky-ree
+  'size '(80 80)
+  'animations 'animations-kurdan-and-sky-ree 'icon 'icon-gryphon-rider
+  'costs '(time 250 gold 2500)
+  'speed 14
+  'hit-points 100
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 6 'computer-reaction-range 8 'person-reaction-range 6
+  'armor 5 'basic-damage 0 'piercing-damage 16 'missile 'missile-griffon-hammer
+  'max-attack-range 4
+  'priority 65
+  'points 150
+  'demand 1
   'type-fly
   'right-attack
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
+  'can-attack
+  'can-target-land 'can-target-sea 'can-target-air
   'air-unit
   'can-see-submarine
-  'can-attack
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("gryphon-rider-selected"
-    "gryphon-rider-acknowledge"
-    "gryphon-rider-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "gryphon-rider-attack" )
+  'sounds '(
+    selected "gryphon-rider-selected"
+    acknowledge "gryphon-rider-acknowledge"
+    ready "gryphon-rider-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "gryphon-rider-attack"))
 
-(define-unit-type "unit-turalyon"		"Turalyon"
-  ;; graphic data
-  "unit-knight"
-  '(  72  72 )			;; graphic size
-  "animations-knight"
-  "icon-turalyon"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      13      0      6    180     0 #(  90   800   100     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  42  42 )      0       1      7       5
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      10    65     14      5       1       1
-  ;;Decay Annoy	Points Food
-      0      0     110     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-turalyon 'name "Turalyon"
+  'use 'unit-knight
+  'size '(72 72)
+  'animations 'animations-knight 'icon 'icon-turalyon
+  'costs '(time 90 gold 800 wood 100)
+  'speed 13
+  'hit-points 180
+  'tile-size '(1 1) 'box-size '(42 42)
+  'sight-range 6 'computer-reaction-range 7 'person-reaction-range 5
+  'armor 10 'basic-damage 14 'piercing-damage 5 'missile 'missile-none
+  'max-attack-range 1
+  'weapons-upgradable 1 'armor-upgradable 1
+  'priority 65
+  'points 110
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 
-  ;; flags
+  'can-attack
+  'can-target-land
   'land-unit
   'can-cast-spell
-  'can-attack
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("turalyon-selected"
-    "turalyon-acknowledge"
-    "turalyon-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "turalyon-attack" )
+  'sounds '(
+    selected "turalyon-selected"
+    acknowledge "turalyon-acknowledge"
+    ready "turalyon-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "turalyon-attack"))
 
-(define-unit-type "unit-danath"			"Danath"
-  ;; graphic data
-  "unit-footman"
-  '(  72  72 )			;; graphic size
-  "animations-footman"
-  "icon-danath"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      6    220     0 #(  60   600     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       1      6       4
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       8    60     15      8       1       1
-  ;;Decay Annoy	Points Food
-      0      0      50     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-danath 'name "Danath"
+  'use 'unit-footman
+  'size '(72 72)
+  'animations 'animations-footman 'icon 'icon-danath
+  'costs '(time 60 gold 600)
+  'speed 10
+  'hit-points 220
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 6 'computer-reaction-range 6 'person-reaction-range 4
+  'armor 8 'basic-damage 15 'piercing-damage 8 'missile 'missile-none
+  'max-attack-range 1
+  'weapons-upgradable 1 'armor-upgradable 1
+  'priority 60
+  'points 50
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 
-  ;; flags
-  'land-unit
   'can-attack
+  'can-target-land
+  'land-unit
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("danath-selected"
-    "danath-acknowledge"
-    "danath-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "danath-attack" )
+  'sounds '(
+    selected "danath-selected"
+    acknowledge "danath-acknowledge"
+    ready "danath-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "danath-attack"))
 
-(define-unit-type "unit-lothar"			"Lothar"
-  ;; graphic data
-  "unit-knight"
-  '(  72  72 )			;; graphic size
-  "animations-knight"
-  "icon-lothar"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      13      0      5     90     0 #( 100   900   100     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  42  42 )      0       1      7       5
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       4    65      8      4       1       1
-  ;;Decay Annoy	Points Food
-      0      0     120     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-lothar 'name "Lothar"
+  'use 'unit-knight
+  'size '(72 72)
+  'animations 'animations-knight 'icon 'icon-lothar
+  'costs '(time 100 gold 900 wood 100)
+  'speed 13
+  'hit-points 90
+  'tile-size '(1 1) 'box-size '(42 42)
+  'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
+  'armor 4 'basic-damage 8 'piercing-damage 4 'missile 'missile-none
+  'max-attack-range 1
+  'weapons-upgradable 1 'armor-upgradable 1
+  'priority 65
+  'points 120
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 
-  ;; flags
-  'land-unit
   'can-attack
+  'can-target-land
+  'land-unit
   'hero
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("lothar-selected"
-    "lothar-acknowledge"
-    "lothar-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "lothar-attack" )
+  'sounds '(
+    selected "lothar-selected"
+    acknowledge "lothar-acknowledge"
+    ready "lothar-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "lothar-attack"))
 
-(define-unit-type "unit-uther-lightbringer"	"Uther Lightbringer"
-  ;; graphic data
-  "unit-knight"
-  '(  72  72 )			;; graphic size
-  "animations-knight"
-  "icon-uther-lightbringer"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      13      0      5     90     0 #( 100   900   100     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  42  42 )      0       1      7       5
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       4    65      8      4       1       1
-  ;;Decay Annoy	Points Food
-      0      0     120     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-uther-lightbringer 'name "Uther Lightbringer"
+  'use 'unit-knight
+  'size '(72 72)
+  'animations 'animations-knight 'icon 'icon-uther-lightbringer
+  'costs '(time 100 gold 900 wood 100)
+  'speed 13
+  'hit-points 90
+  'tile-size '(1 1) 'box-size '(42 42)
+  'sight-range 5 'computer-reaction-range 7 'person-reaction-range 5
+  'armor 4 'basic-damage 8 'piercing-damage 4 'missile 'missile-none
+  'max-attack-range 1
+  'weapons-upgradable 1 'armor-upgradable 1
+  'priority 65
+  'points 120
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-attack
-  'can-target-land 
-  ;; flags
-  'land-unit
-  'can-cast-spell
   'can-attack
+  'can-target-land
+  'land-unit
   'hero
+  'can-cast-spell
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("uther-lightbringer-selected"
-    "uther-lightbringer-acknowledge"
-    "uther-lightbringer-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "uther-lightbringer-attack" )
+  'sounds '(
+    selected "uther-lightbringer-selected"
+    acknowledge "uther-lightbringer-acknowledge"
+    ready "uther-lightbringer-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "uther-lightbringer-attack"))
 
-(define-unit-type "unit-farm"			"Farm"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/farm.png"
-    "tilesets/winter/human/buildings/farm.png"
-    "tilesets/wasteland/human/buildings/farm.png"
-    "tilesets/swamp/human/buildings/farm.png" )
-  '(  64  64 )			;; graphic size
-  "animations-building"
-  "icon-farm"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      3    400     0 #( 100   500   250     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 2 2 ) '(  63  63 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    20      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     45     100     0       4
-  "missile-none"
-  '("unit-destroyed-2x2-place" 0)
+(define-unit-type 'unit-farm 'name "Farm"
+  'files '(tileset-summer "tilesets/summer/human/buildings/farm.png"
+    tileset-winter "tilesets/winter/human/buildings/farm.png"
+    tileset-wasteland "tilesets/wasteland/human/buildings/farm.png"
+    tileset-swamp "tilesets/swamp/human/buildings/farm.png")
+  'size '(64 64)
+  'animations 'animations-building 'icon 'icon-farm
+  'costs '(time 100 gold 500 wood 250)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 400
+  'tile-size '(2 2) 'box-size '(63 63)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 20 'annoy-computer-factor 45
+  'points 100
+  'supply 4
+  'corpse '(unit-destroyed-2x2-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
-  ;; sounds
-  #("farm-selected"
-    "farm-acknowledge"
-    "farm-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "farm-attack" )
+  'sounds '(
+    selected "farm-selected"
+    acknowledge "farm-acknowledge"
+    ready "farm-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "farm-attack"))
 
-(define-unit-type "unit-human-barracks"		"Barracks"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/barracks.png"
-    "tilesets/winter/human/buildings/barracks.png"
-    ()
-    "tilesets/swamp/human/buildings/barracks.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-human-barracks"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      3    800     0 #( 200   700   450     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    30      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     35     160     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 0)
+(define-unit-type 'unit-human-barracks 'name "Barracks"
+  'files '(tileset-summer "tilesets/summer/human/buildings/barracks.png"
+    tileset-winter "tilesets/winter/human/buildings/barracks.png"
+    tileset-swamp "tilesets/swamp/human/buildings/barracks.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-human-barracks
+  'costs '(time 200 gold 700 wood 450)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 800
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 30 'annoy-computer-factor 35
+  'points 160
+  'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
-  ;; sounds
-  #("human-barracks-selected"
-    "human-barracks-acknowledge"
-    "human-barracks-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-barracks-attack" )
+  'sounds '(
+    selected "human-barracks-selected"
+    acknowledge "human-barracks-acknowledge"
+    ready "human-barracks-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-barracks-attack"))
 
-(define-unit-type "unit-church"			"Church"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/church.png"
-    "tilesets/winter/human/buildings/church.png"
-    ()
-    "tilesets/swamp/human/buildings/church.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-church"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      3    700     0 #( 175   900   500     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    15      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     35     240     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 0)
+(define-unit-type 'unit-church 'name "Church"
+  'files '(tileset-summer "tilesets/summer/human/buildings/church.png"
+    tileset-winter "tilesets/winter/human/buildings/church.png"
+    tileset-swamp "tilesets/swamp/human/buildings/church.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-church
+  'costs '(time 175 gold 900 wood 500)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 700
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 15 'annoy-computer-factor 35
+  'points 240
+  'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
-  ;; sounds
-  #("church-selected"
-    "church-acknowledge"
-    "church-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "church-attack" )
+  'sounds '(
+    selected "church-selected"
+    acknowledge "church-acknowledge"
+    ready "church-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "church-attack"))
 
-(define-unit-type "unit-human-watch-tower"	"Scout Tower"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/scout tower.png"
-    "tilesets/winter/human/buildings/scout tower.png"
-    ()
-    "tilesets/swamp/human/buildings/scout tower.png" )
-  '(  64  64 )			;; graphic size
-  "animations-building"
-  "icon-human-watch-tower"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      9    100     0 #(  60   550   200     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 2 2 ) '(  63  63 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    55      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     50      95     0       0
-  "missile-none"
-  '("unit-destroyed-2x2-place" 0)
+(define-unit-type 'unit-human-watch-tower 'name "Scout Tower"
+  'files '(tileset-summer "tilesets/summer/human/buildings/scout tower.png"
+    tileset-winter "tilesets/winter/human/buildings/scout tower.png"
+    tileset-swamp "tilesets/swamp/human/buildings/scout tower.png")
+  'size '(64 64)
+  'animations 'animations-building 'icon 'icon-human-watch-tower
+  'costs '(time 60 gold 550 wood 200)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 100
+  'tile-size '(2 2) 'box-size '(63 63)
+  'sight-range 9
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 55 'annoy-computer-factor 50
+  'points 95
+  'corpse '(unit-destroyed-2x2-place 0)
   'type-land
-  'right-none
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
+  'can-target-land 'can-target-sea 'can-target-air
   'building
   'can-see-submarine
-  ;; sounds
-  #("human-watch-tower-selected"
-    "human-watch-tower-acknowledge"
-    "human-watch-tower-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-watch-tower-attack" )
+  'sounds '(
+    selected "human-watch-tower-selected"
+    acknowledge "human-watch-tower-acknowledge"
+    ready "human-watch-tower-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-watch-tower-attack"))
 
-(define-unit-type "unit-stables"		"Stables"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/stables.png"
-    "tilesets/winter/human/buildings/stables.png"
-    ()
-    "tilesets/swamp/human/buildings/stables.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-stables"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      3    500     0 #( 150  1000   300     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    15      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     15     210     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 0)
+(define-unit-type 'unit-stables 'name "Stables"
+  'files '(tileset-summer "tilesets/summer/human/buildings/stables.png"
+    tileset-winter "tilesets/winter/human/buildings/stables.png"
+    tileset-swamp "tilesets/swamp/human/buildings/stables.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-stables
+  'costs '(time 150 gold 1000 wood 300)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 500
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 15 'annoy-computer-factor 15
+  'points 210
+  'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
-  ;; sounds
-  #("stables-selected"
-    "stables-acknowledge"
-    "stables-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "stables-attack" )
+  'sounds '(
+    selected "stables-selected"
+    acknowledge "stables-acknowledge"
+    ready "stables-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "stables-attack"))
 
-(define-unit-type "unit-gnomish-inventor"	"Gnomish Inventor"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/gnomish inventor.png"
-    "tilesets/winter/human/buildings/gnomish inventor.png"
-    ()
-    "tilesets/swamp/human/buildings/gnomish inventor.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-gnomish-inventor"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      3    500     0 #( 150  1000   400     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    15      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     20     230     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 0)
+(define-unit-type 'unit-gnomish-inventor 'name "Gnomish Inventor"
+  'files '(tileset-summer "tilesets/summer/human/buildings/gnomish inventor.png"
+    tileset-winter "tilesets/winter/human/buildings/gnomish inventor.png"
+    tileset-swamp "tilesets/swamp/human/buildings/gnomish inventor.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-gnomish-inventor
+  'costs '(time 150 gold 1000 wood 400)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 500
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 15 'annoy-computer-factor 20
+  'points 230
+  'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
-  ;; sounds
-  #("gnomish-inventor-selected"
-    "gnomish-inventor-acknowledge"
-    "gnomish-inventor-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "gnomish-inventor-attack" )
+  'sounds '(
+    selected "gnomish-inventor-selected"
+    acknowledge "gnomish-inventor-acknowledge"
+    ready "gnomish-inventor-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "gnomish-inventor-attack"))
 
-(define-unit-type "unit-gryphon-aviary"		"Gryphon Aviary"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/gryphon aviary.png"
-    "tilesets/winter/human/buildings/gryphon aviary.png"
-    ()
-    "tilesets/swamp/human/buildings/gryphon aviary.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-gryphon-aviary"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      3    500     0 #( 150  1000   400     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    15      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     20     280     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 0)
+(define-unit-type 'unit-gryphon-aviary 'name "Gryphon Aviary"
+  'files '(tileset-summer "tilesets/summer/human/buildings/gryphon aviary.png"
+    tileset-winter "tilesets/winter/human/buildings/gryphon aviary.png"
+    tileset-swamp "tilesets/swamp/human/buildings/gryphon aviary.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-gryphon-aviary
+  'costs '(time 150 gold 1000 wood 400)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 500
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 15 'annoy-computer-factor 20
+  'points 280
+  'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
-  ;; sounds
-  #("gryphon-aviary-selected"
-    "gryphon-aviary-acknowledge"
-    "gryphon-aviary-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "gryphon-aviary-attack" )
+  'sounds '(
+    selected "gryphon-aviary-selected"
+    acknowledge "gryphon-aviary-acknowledge"
+    ready "gryphon-aviary-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "gryphon-aviary-attack"))
 
-(define-unit-type "unit-human-shipyard"		"Shipyard"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/shipyard.png"
-    "tilesets/winter/human/buildings/shipyard.png"
-    ()
-    "tilesets/swamp/human/buildings/shipyard.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-human-shipyard"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      7      3   1100     0 #( 200   800   450     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    30      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     20     170     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 3)
+(define-unit-type 'unit-human-shipyard 'name "Shipyard"
+  'files '(tileset-summer "tilesets/summer/human/buildings/shipyard.png"
+    tileset-winter "tilesets/winter/human/buildings/shipyard.png"
+    tileset-swamp "tilesets/swamp/human/buildings/shipyard.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-human-shipyard
+  'costs '(time 200 gold 800 wood 450)
+  'construction 'construction-human-shipyard
+  'speed 0
+  'hit-points 1100
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 30 'annoy-computer-factor 20
+  'points 170
+  'corpse '(unit-destroyed-3x3-place 3)
   'type-land
-  'right-none
-  ;; flags
   'building
   'shore-building
   'stores-oil
-  ;; sounds
-  #("human-shipyard-selected"
-    "human-shipyard-acknowledge"
-    "human-shipyard-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-shipyard-attack" )
+  'sounds '(
+    selected "human-shipyard-selected"
+    acknowledge "human-shipyard-acknowledge"
+    ready "human-shipyard-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-shipyard-attack"))
 
-(define-unit-type "unit-elven-lumber-mill"	"Elven Lumber Mill"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/elven lumber mill.png"
-    "tilesets/winter/human/buildings/elven lumber mill.png"
-    "tilesets/wasteland/human/buildings/elven lumber mill.png"
-    "tilesets/swamp/human/buildings/elven lumber mill.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-elven-lumber-mill"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      3    600     0 #( 150   600   450     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    25      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     15     150     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 0)
+(define-unit-type 'unit-elven-lumber-mill 'name "Elven Lumber Mill"
+  'files '(tileset-summer "tilesets/summer/human/buildings/elven lumber mill.png"
+    tileset-winter "tilesets/winter/human/buildings/elven lumber mill.png"
+    tileset-wasteland "tilesets/wasteland/human/buildings/elven lumber mill.png"
+    tileset-swamp "tilesets/swamp/human/buildings/elven lumber mill.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-elven-lumber-mill
+  'costs '(time 150 gold 600 wood 450)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 600
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 25 'annoy-computer-factor 15
+  'points 150
+  'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
   'stores-wood
-  ;; sounds
-  #("elven-lumber-mill-selected"
-    "elven-lumber-mill-acknowledge"
-    "elven-lumber-mill-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "elven-lumber-mill-attack" )
+  'sounds '(
+    selected "elven-lumber-mill-selected"
+    acknowledge "elven-lumber-mill-acknowledge"
+    ready "elven-lumber-mill-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "elven-lumber-mill-attack"))
 
-(define-unit-type "unit-human-foundry"		"Foundry"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/foundry.png"
-    "tilesets/winter/human/buildings/foundry.png"
-    ()
-    "tilesets/swamp/human/buildings/foundry.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-human-foundry"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0     13      3    750     0 #( 175   700   400   400     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    15      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     20     200     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 3)
+(define-unit-type 'unit-human-foundry 'name "Foundry"
+  'files '(tileset-summer "tilesets/summer/human/buildings/foundry.png"
+    tileset-winter "tilesets/winter/human/buildings/foundry.png"
+    tileset-swamp "tilesets/swamp/human/buildings/foundry.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-human-foundry
+  'costs '(time 175 gold 700 wood 400 oil 400)
+  'construction 'construction-human-foundry
+  'speed 0
+  'hit-points 750
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 15 'annoy-computer-factor 20
+  'points 200
+  'corpse '(unit-destroyed-3x3-place 3)
   'type-land
-  'right-none
-  ;; flags
   'building
   'shore-building
-  ;; sounds
-  #("human-foundry-selected"
-    "human-foundry-acknowledge"
-    "human-foundry-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-foundry-attack" )
+  'sounds '(
+    selected "human-foundry-selected"
+    acknowledge "human-foundry-acknowledge"
+    ready "human-foundry-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-foundry-attack"))
 
-(define-unit-type "unit-town-hall"		"Town Hall"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/town hall.png"
-    "tilesets/winter/human/buildings/town hall.png"
-    ()
-    "tilesets/swamp/human/buildings/town hall.png" )
-  '( 128 128 )			;; graphic size
-  "animations-building"
-  "icon-town-hall"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      4   1200     0 #( 255  1200   800     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 4 4 ) '( 126 126 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    35      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     45     200     0       1
-  "missile-none"
-  '("unit-destroyed-4x4-place" 0)
+(define-unit-type 'unit-town-hall 'name "Town Hall"
+  'files '(tileset-summer "tilesets/summer/human/buildings/town hall.png"
+    tileset-winter "tilesets/winter/human/buildings/town hall.png"
+    tileset-swamp "tilesets/swamp/human/buildings/town hall.png")
+  'size '(128 128)
+  'animations 'animations-building 'icon 'icon-town-hall
+  'costs '(time 255 gold 1200 wood 800)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 1200
+  'tile-size '(4 4) 'box-size '(126 126)
+  'sight-range 4
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 35 'annoy-computer-factor 45
+  'points 200
+  'supply 1
+  'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
   'stores-gold
-  ;; sounds
-  #("town-hall-selected"
-    "town-hall-acknowledge"
-    "town-hall-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "town-hall-attack" )
+  'sounds '(
+    selected "town-hall-selected"
+    acknowledge "town-hall-acknowledge"
+    ready "town-hall-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "town-hall-attack"))
 
-(define-unit-type "unit-mage-tower"		"Mage Tower"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/mage tower.png"
-    "tilesets/winter/human/buildings/mage tower.png"
-    ()
-    "tilesets/swamp/human/buildings/mage tower.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-mage-tower"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      3    500     0 #( 125  1000   200     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    35      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     20     240     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 0)
+(define-unit-type 'unit-mage-tower 'name "Mage Tower"
+  'files '(tileset-summer "tilesets/summer/human/buildings/mage tower.png"
+    tileset-winter "tilesets/winter/human/buildings/mage tower.png"
+    tileset-swamp "tilesets/swamp/human/buildings/mage tower.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-mage-tower
+  'costs '(time 125 gold 1000 wood 200)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 500
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 35 'annoy-computer-factor 20
+  'points 240
+  'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
-  ;; sounds
-  #("mage-tower-selected"
-    "mage-tower-acknowledge"
-    "mage-tower-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "mage-tower-attack" )
+  'sounds '(
+    selected "mage-tower-selected"
+    acknowledge "mage-tower-acknowledge"
+    ready "mage-tower-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "mage-tower-attack"))
 
-(define-unit-type "unit-human-blacksmith"	"Blacksmith"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/blacksmith.png"
-    "tilesets/winter/human/buildings/blacksmith.png"
-    ()
-    "tilesets/swamp/human/buildings/blacksmith.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-human-blacksmith"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      3    775     0 #( 200   800   450   100     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    15      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     20     170     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 0)
+(define-unit-type 'unit-human-blacksmith 'name "Blacksmith"
+  'files '(tileset-summer "tilesets/summer/human/buildings/blacksmith.png"
+    tileset-winter "tilesets/winter/human/buildings/blacksmith.png"
+    tileset-swamp "tilesets/swamp/human/buildings/blacksmith.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-human-blacksmith
+  'costs '(time 200 gold 800 wood 450 oil 100)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 775
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 15 'annoy-computer-factor 20
+  'points 170
+  'corpse '(unit-destroyed-3x3-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
-  ;; sounds
-  #("human-blacksmith-selected"
-    "human-blacksmith-acknowledge"
-    "human-blacksmith-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-blacksmith-attack" )
+  'sounds '(
+    selected "human-blacksmith-selected"
+    acknowledge "human-blacksmith-acknowledge"
+    ready "human-blacksmith-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-blacksmith-attack"))
 
-(define-unit-type "unit-human-refinery"		"Refinery"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/refinery.png"
-    "tilesets/winter/human/buildings/refinery.png"
-    ()
-    "tilesets/swamp/human/buildings/refinery.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-human-refinery"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0     11      3    600     0 #( 225   800   350   200     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    25      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     20     200     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 3)
+(define-unit-type 'unit-human-refinery 'name "Refinery"
+  'files '(tileset-summer "tilesets/summer/human/buildings/refinery.png"
+    tileset-winter "tilesets/winter/human/buildings/refinery.png"
+    tileset-swamp "tilesets/swamp/human/buildings/refinery.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-human-refinery
+  'costs '(time 225 gold 800 wood 350 oil 200)
+  'construction 'construction-human-refinery
+  'speed 0
+  'hit-points 600
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 25 'annoy-computer-factor 20
+  'points 200
+  'corpse '(unit-destroyed-3x3-place 3)
   'type-land
-  'right-none
-  ;; flags
   'building
   'shore-building
   'stores-oil
-  ;; sounds
-  #("human-refinery-selected"
-    "human-refinery-acknowledge"
-    "human-refinery-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-refinery-attack" )
+  'sounds '(
+    selected "human-refinery-selected"
+    acknowledge "human-refinery-acknowledge"
+    ready "human-refinery-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-refinery-attack"))
 
-(define-unit-type "unit-human-oil-platform"	"Oil Platform"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/oil platform.png"
-    "tilesets/winter/human/buildings/oil platform.png"
-    "tilesets/wasteland/human/buildings/oil platform.png"
-    "tilesets/swamp/human/buildings/oil platform.png" )
-  '(  96  96 )			;; graphic size
-  "animations-building"
-  "icon-human-oil-platform"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      9      3    650     0 #( 200   700   450     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 3 3 ) '(  95  95 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    20      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     20     160     0       0
-  "missile-none"
-  '("unit-destroyed-3x3-place" 3)
+(define-unit-type 'unit-human-oil-platform 'name "Oil Platform"
+  'files '(tileset-summer "tilesets/summer/human/buildings/oil platform.png"
+    tileset-winter "tilesets/winter/human/buildings/oil platform.png"
+    tileset-wasteland "tilesets/wasteland/human/buildings/oil platform.png"
+    tileset-swamp "tilesets/swamp/human/buildings/oil platform.png")
+  'size '(96 96)
+  'animations 'animations-building 'icon 'icon-human-oil-platform
+  'costs '(time 200 gold 700 wood 450)
+  'construction 'construction-human-oil-well
+  'speed 0
+  'hit-points 650
+  'tile-size '(3 3) 'box-size '(95 95)
+  'sight-range 3
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 20 'annoy-computer-factor 20
+  'points 160
+  'corpse '(unit-destroyed-3x3-place 3)
   'type-naval
-  'right-none
-  ;; flags
   'building
   'gives-oil
-  ;; sounds
-  #("human-oil-platform-selected"
-    "human-oil-platform-acknowledge"
-    "human-oil-platform-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-oil-platform-attack" )
+  'sounds '(
+    selected "human-oil-platform-selected"
+    acknowledge "human-oil-platform-acknowledge"
+    ready "human-oil-platform-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-oil-platform-attack"))
 
-(define-unit-type "unit-keep"			"Keep"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/keep.png"
-    "tilesets/winter/human/buildings/keep.png"
-    ()
-    "tilesets/swamp/human/buildings/keep.png" )
-  '( 128 128 )			;; graphic size
-  "animations-building"
-  "icon-keep"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      6   1400     0 #( 200  2000  1000   200     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 4 4 ) '( 127 127 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    37      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     40     600     0       1
-  "missile-none"
-  '("unit-destroyed-4x4-place" 0)
+(define-unit-type 'unit-keep 'name "Keep"
+  'files '(tileset-summer "tilesets/summer/human/buildings/keep.png"
+    tileset-winter "tilesets/winter/human/buildings/keep.png"
+    tileset-swamp "tilesets/swamp/human/buildings/keep.png")
+  'size '(128 128)
+  'animations 'animations-building 'icon 'icon-keep
+  'costs '(time 200 gold 2000 wood 1000 oil 200)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 1400
+  'tile-size '(4 4) 'box-size '(127 127)
+  'sight-range 6
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 37 'annoy-computer-factor 40
+  'points 600
+  'supply 1
+  'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
   'stores-gold
-  ;; sounds
-  #("keep-selected"
-    "keep-acknowledge"
-    "keep-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "keep-attack" )
+  'sounds '(
+    selected "keep-selected"
+    acknowledge "keep-acknowledge"
+    ready "keep-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "keep-attack"))
 
-(define-unit-type "unit-castle"			"Castle"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/castle.png"
-    "tilesets/winter/human/buildings/castle.png"
-    ()
-    "tilesets/swamp/human/buildings/castle.png" )
-  '( 128 128 )			;; graphic size
-  "animations-building"
-  "icon-castle"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      9   1600     0 #( 200  2500  1200   500     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 4 4 ) '( 127 127 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    40      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     50    1500     0       1
-  "missile-none"
-  '("unit-destroyed-4x4-place" 0)
+(define-unit-type 'unit-castle 'name "Castle"
+  'files '(tileset-summer "tilesets/summer/human/buildings/castle.png"
+    tileset-winter "tilesets/winter/human/buildings/castle.png"
+    tileset-swamp "tilesets/swamp/human/buildings/castle.png")
+  'size '(128 128)
+  'animations 'animations-building 'icon 'icon-castle
+  'costs '(time 200 gold 2500 wood 1200 oil 500)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 1600
+  'tile-size '(4 4) 'box-size '(127 127)
+  'sight-range 9
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 40 'annoy-computer-factor 50
+  'points 1500
+  'supply 1
+  'corpse '(unit-destroyed-4x4-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
   'stores-gold
-  ;; sounds
-  #("castle-selected"
-    "castle-acknowledge"
-    "castle-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "castle-attack" )
+  'sounds '(
+    selected "castle-selected"
+    acknowledge "castle-acknowledge"
+    ready "castle-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "castle-attack"))
 
-(define-unit-type "unit-human-start-location"	"Start Location"
-  ;; graphic data
-  #("human/x startpoint.png"
-    ()
-    ()
-    () )
-  '(  32  32 )			;; graphic size
-  "animations-building"
-  "icon-cancel"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      0      0      0     0 #(   0     0     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0     0      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0      0       0     1       0
-  "missile-none"
-  '()
+(define-unit-type 'unit-human-start-location 'name "Start Location"
+  'files '(tileset-summer "human/x startpoint.png")
+  'size '(32 32)
+  'animations 'animations-building 'icon 'icon-cancel
+  'speed 0
+  'hit-points 0
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 0
+  'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0
+  'demand 1
   'type-land
-  'right-none
-  ;; flags
-  ;; sounds
-  #("human-start-location-selected"
-    "human-start-location-acknowledge"
-    "human-start-location-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-start-location-attack" )
+  'sounds '(
+    selected "human-start-location-selected"
+    acknowledge "human-start-location-acknowledge"
+    ready "human-start-location-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-start-location-attack"))
 
-(define-unit-type "unit-human-guard-tower"	"Guard Tower"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/guard tower.png"
-    "tilesets/winter/human/buildings/guard tower.png"
-    ()
-    "tilesets/swamp/human/buildings/guard tower.png" )
-  '(  64  64 )			;; graphic size
-  "animations-human-guard-tower"
-  "icon-human-guard-tower"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      9    130     0 #( 140   500   150     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 2 2 ) '(  63  63 )      0       6      6       6
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    40      4     12       0       0
-  ;;Decay Annoy	Points Food
-      0     50     200     0       0
-  "missile-arrow"
-  '("unit-destroyed-2x2-place" 0)
+(define-unit-type 'unit-human-guard-tower 'name "Guard Tower"
+  'files '(tileset-summer "tilesets/summer/human/buildings/guard tower.png"
+    tileset-winter "tilesets/winter/human/buildings/guard tower.png"
+    tileset-swamp "tilesets/swamp/human/buildings/guard tower.png")
+  'size '(64 64)
+  'animations 'animations-human-guard-tower 'icon 'icon-human-guard-tower
+  'costs '(time 140 gold 500 wood 150)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 130
+  'tile-size '(2 2) 'box-size '(63 63)
+  'sight-range 9 'computer-reaction-range 6 'person-reaction-range 6
+  'armor 20 'basic-damage 4 'piercing-damage 12 'missile 'missile-arrow
+  'max-attack-range 6
+  'priority 40 'annoy-computer-factor 50
+  'points 200
+  'corpse '(unit-destroyed-2x2-place 0)
   'type-land
-  'right-none
-  'can-target-land 'can-target-sea 'can-target-air 
-  ;; flags
+  'can-attack
+  'can-target-land 'can-target-sea 'can-target-air
   'building
   'can-see-submarine
-  'can-attack
   'tower
-  ;; sounds
-  #("human-guard-tower-selected"
-    "human-guard-tower-acknowledge"
-    "human-guard-tower-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-guard-tower-attack" )
+  'sounds '(
+    selected "human-guard-tower-selected"
+    acknowledge "human-guard-tower-acknowledge"
+    ready "human-guard-tower-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-guard-tower-attack"))
 
-(define-unit-type "unit-human-cannon-tower"	"Cannon Tower"
-  ;; graphic data
-  #("tilesets/summer/human/buildings/cannon tower.png"
-    "tilesets/winter/human/buildings/cannon tower.png"
-    ()
-    "tilesets/swamp/human/buildings/cannon tower.png" )
-  '(  64  64 )			;; graphic size
-  "animations-human-cannon-tower"
-  "icon-human-cannon-tower"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0      6      9    160     0 #( 190  1000   300     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 2 2 ) '(  63  63 )      1       7      7       7
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20    40     50      0       0       0
-  ;;Decay Annoy	Points Food
-      0     50     250     0       0
-  "missile-small-cannon"
-  '("unit-destroyed-2x2-place" 0)
+(define-unit-type 'unit-human-cannon-tower 'name "Cannon Tower"
+  'files '(tileset-summer "tilesets/summer/human/buildings/cannon tower.png"
+    tileset-winter "tilesets/winter/human/buildings/cannon tower.png"
+    tileset-swamp "tilesets/swamp/human/buildings/cannon tower.png")
+  'size '(64 64)
+  'animations 'animations-human-cannon-tower 'icon 'icon-human-cannon-tower
+  'costs '(time 190 gold 1000 wood 300)
+  'construction 'construction-land
+  'speed 0
+  'hit-points 160
+  'tile-size '(2 2) 'box-size '(63 63)
+  'sight-range 9 'computer-reaction-range 7 'person-reaction-range 7
+  'armor 20 'basic-damage 50 'piercing-damage 0 'missile 'missile-small-cannon
+  'min-attack-range 1 'max-attack-range 7
+  'priority 40 'annoy-computer-factor 50
+  'points 250
+  'corpse '(unit-destroyed-2x2-place 0)
   'type-land
-  'right-none
-  'can-target-land 'can-target-sea 
-  ;; flags
+  'can-attack
+  'can-target-land 'can-target-sea
   'building
   'can-see-submarine
-  'can-attack
   'tower
-  ;; sounds
-  #("human-cannon-tower-selected"
-    "human-cannon-tower-acknowledge"
-    "human-cannon-tower-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-cannon-tower-attack" )
+  'sounds '(
+    selected "human-cannon-tower-selected"
+    acknowledge "human-cannon-tower-acknowledge"
+    ready "human-cannon-tower-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-cannon-tower-attack"))
 
-(define-unit-type "unit-human-wall"		"Wall"
-  ;; graphic data
-  #("tilesets/summer/neutral/buildings/wall.png"
-    "tilesets/winter/neutral/buildings/wall.png"
-    "tilesets/wasteland/neutral/buildings/wall.png"
-    () )
-  '(  32  32 )			;; graphic size
-  "animations-building"
-  "icon-human-wall"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-       0     15      1     40     0 #(  30    20    10     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       0      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      20     0      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     45       1     0       0
-  "missile-none"
-  '("unit-destroyed-1x1-place" 0)
+(define-unit-type 'unit-human-wall 'name "Wall"
+  'files '(tileset-summer "tilesets/summer/neutral/buildings/wall.png"
+    tileset-winter "tilesets/winter/neutral/buildings/wall.png"
+    tileset-wasteland "tilesets/wasteland/neutral/buildings/wall.png")
+  'size '(32 32)
+  'animations 'animations-building 'icon 'icon-human-wall
+  'costs '(time 30 gold 20 wood 10)
+  'construction 'construction-wall
+  'speed 0
+  'hit-points 40
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 1
+  'armor 20 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'priority 0 'annoy-computer-factor 45
+  'points 1
+  'corpse '(unit-destroyed-1x1-place 0)
   'type-land
-  'right-none
-  ;; flags
   'building
-  ;; sounds
-  #("human-wall-selected"
-    "human-wall-acknowledge"
-    "human-wall-ready"
-    "basic human voices help 2"
-    "building destroyed" )
-  "human-wall-attack" )
+  'sounds '(
+    selected "human-wall-selected"
+    acknowledge "human-wall-acknowledge"
+    ready "human-wall-ready"
+    help "basic human voices help 2"
+    dead "building destroyed"
+    attack "human-wall-attack"))
 
-(define-unit-type "unit-peasant-with-gold"	"Peasant"
-  ;; graphic data
-  #("human/units/peasant with gold.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-peasant"
-  "icon-peasant"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      4     30     0 #(  45   400     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       1      6       4
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    50      3      2       0       0
-  ;;Decay Annoy	Points Food
-      0      0      30     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-peasant-with-gold 'name "Peasant"
+  'files '(tileset-summer "human/units/peasant with gold.png")
+  'size '(72 72)
+  'animations 'animations-peasant 'icon 'icon-peasant
+  'costs '(time 45 gold 400)
+  'speed 10
+  'hit-points 30
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
+  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50
+  'points 30
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-harvest
-  'can-target-land 
-  ;; flags
+  'can-attack
+  'can-target-land
   'land-unit
   'cower-worker
-  'can-attack
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("peasant-with-gold-selected"
-    "peasant-with-gold-acknowledge"
-    "peasant-with-gold-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "peasant-with-gold-attack" )
+  'sounds '(
+    selected "peasant-with-gold-selected"
+    acknowledge "peasant-with-gold-acknowledge"
+    ready "peasant-with-gold-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "peasant-with-gold-attack"))
 
-(define-unit-type "unit-peasant-with-wood"	"Peasant"
-  ;; graphic data
-  #("human/units/peasant with wood.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-peasant"
-  "icon-peasant"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      4     30     0 #(  45   400     0     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )      0       1      6       4
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-       0    50      3      2       0       0
-  ;;Decay Annoy	Points Food
-      0      0      30     1       0
-  "missile-none"
-  '("unit-dead-body" 6)
+(define-unit-type 'unit-peasant-with-wood 'name "Peasant"
+  'files '(tileset-summer "human/units/peasant with wood.png")
+  'size '(72 72)
+  'animations 'animations-peasant 'icon 'icon-peasant
+  'costs '(time 45 gold 400)
+  'speed 10
+  'hit-points 30
+  'tile-size '(1 1) 'box-size '(31 31)
+  'sight-range 4 'computer-reaction-range 6 'person-reaction-range 4
+  'basic-damage 3 'piercing-damage 2 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50
+  'points 30
+  'demand 1
+  'corpse '(unit-dead-body 6)
   'type-land
   'right-harvest
-  'can-target-land 
-  ;; flags
+  'can-attack
+  'can-target-land
   'land-unit
   'cower-worker
-  'can-attack
   'organic
   'selectable-by-rectangle
-  ;; sounds
-  #("peasant-with-wood-selected"
-    "peasant-with-wood-acknowledge"
-    "peasant-with-wood-ready"
-    "basic human voices help 1"
-    "basic human voices dead" )
-  "peasant-with-wood-attack" )
+  'sounds '(
+    selected "peasant-with-wood-selected"
+    acknowledge "peasant-with-wood-acknowledge"
+    ready "peasant-with-wood-ready"
+    help "basic human voices help 1"
+    dead "basic human voices dead"
+    attack "peasant-with-wood-attack"))
 
-(define-unit-type "unit-human-oil-tanker-full"	"Oil tanker"
-  ;; graphic data
-  #("human/units/oil tanker full.png"
-    ()
-    ()
-    () )
-  '(  72  72 )			;; graphic size
-  "animations-human-oil-tanker"
-  "icon-human-oil-tanker"
-  ;;Speed Constr SightR Hitpnt Magic  BTime  Gold  Wood   Oil   Ore Stone  Coal
-      10      0      4     90     0 #(  50   400   200     0     0     0     0)
-  ;;Tile    Box Size    >Attack	<Attack	ReactC	ReactH
-  '( 1 1 ) '(  63  63 )      0       1      0       0
-  ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
-      10    50      0      0       0       0
-  ;;Decay Annoy	Points Food
-      0     10      40     1       0
-  "missile-none"
-  '("unit-dead-body" 12)
+(define-unit-type 'unit-human-oil-tanker-full 'name "Oil tanker"
+  'files '(tileset-summer "human/units/oil tanker full.png")
+  'size '(72 72)
+  'animations 'animations-human-oil-tanker 'icon 'icon-human-oil-tanker
+  'costs '(time 50 gold 400 wood 200)
+  'speed 10
+  'hit-points 90
+  'tile-size '(1 1) 'box-size '(63 63)
+  'sight-range 4
+  'armor 10 'basic-damage 0 'piercing-damage 0 'missile 'missile-none
+  'max-attack-range 1
+  'priority 50 'annoy-computer-factor 10
+  'points 40
+  'demand 1
+  'corpse '(unit-dead-body 12)
   'type-naval
   'right-haul-oil
-  ;; flags
   'sea-unit
   'tanker
   'selectable-by-rectangle
-  ;; sounds
-  #("human-oil-tanker-full-selected"
-    "human-oil-tanker-full-acknowledge"
-    "human-oil-tanker-full-ready"
-    "basic human voices help 1"
-    "ship sinking" )
-  "human-oil-tanker-full-attack" )
+  'sounds '(
+    selected "human-oil-tanker-full-selected"
+    acknowledge "human-oil-tanker-full-acknowledge"
+    ready "human-oil-tanker-full-ready"
+    help "basic human voices help 1"
+    dead "ship sinking"
+    attack "human-oil-tanker-full-attack"))
