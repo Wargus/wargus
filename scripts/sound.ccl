@@ -10,7 +10,7 @@
 ;;
 ;;	sound.ccl	-	Define the used sounds.
 ;;
-;;	(c) Copyright 1999-2002 by Fabrice Rossi and Lutz Sammer
+;;	(c) Copyright 1999-2003 by Fabrice Rossi and Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
@@ -41,11 +41,11 @@
 
 ;;----------------------------------------------------------------------------
 ;;	(set-cd-mode!) set how your CD is played.
-;;		:all	plays all tracks
-;;		:random plays random tracks
-;;		:off	turns cd player off
-(set-cd-mode! ":all") 
-;(set-cd-mode! ":random") 
+;;		all	plays all tracks
+;;		random plays random tracks
+;;		off	turns cd player off
+(set-cd-mode! 'all)
+;(set-cd-mode! 'random) 
 
 ;;----------------------------------------------------------------------------
 ;;	Define sounds later used
