@@ -411,14 +411,6 @@
 
 ;;-----------------------------------------------------------------------------
 
-;;	Change the global sound volume (from 0 min to 256 max)
-(set-sound-volume! 128)
-
-;;	Change the music volume (from 0 min to 256 max)
-(set-music-volume! 128)
-
-;;-----------------------------------------------------------------------------
-
 ;;	A* configuration, FIXME: currently not correct supported.
 (no-a-star)
 ;(a-star)
