@@ -2311,6 +2311,9 @@
 ;;
 (define-menu 'name 'menu-editor-select 'geometry '(0 0 640 480)
     'image 'none 'default '0)
+(define-menu-item 'pos (list 0 0) 'font 'game
+    'drawfunc 'editor-new-draw-func
+    'menu 'menu-editor-select)
 (define-menu-item 'pos (list 208 (+ 320 (* 36 0))) 'font 'large
     'button '(size (224 27)
             caption "~!New Map"
