@@ -77,6 +77,7 @@
 
 ;;	FIXME: documentation
 (set-game-name! "wc2")
+(set-default-map! "puds/default2.pud")
 
 ;;-----------------------------------------------------------------------------
 ;;	Music play list -	Insert your titles here
@@ -132,7 +133,7 @@
 ;;
 (set-show-sight-range! #f)
 ;(set-show-sight-range! #t)
-
+;(set-show-sight-range! 'circle)
 ;;	Enable/disable display of attack range of the selected unit on map.
 (set-show-attack-range! #f)
 ;(set-show-attack-range! #t)
