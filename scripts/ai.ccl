@@ -10,12 +10,11 @@
 ;;
 ;;	ai.ccl		-	Define the AI.
 ;;
-;;	(c) Copyright 2000,2001 by Lutz Sammer
+;;	(c) Copyright 2000-2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
-;;	by the Free Software Foundation; either version 2 of the License,
-;;	or (at your option) any later version.
+;;	by the Free Software Foundation; only version 2 of the License.
 ;;
 ;;	FreeCraft is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -1397,4 +1396,28 @@
     ;; Everything researched...
 
     (ai:script ai:orc-land-attack-endloop) ))
+
+;;=============================================================================
+;;
+;;	Define an AI engine.
+;;
+;;	(define-ai name race class script)
+;;
+;;	name	name of the AI for selection.
+;;	class	class of the AI for map editor.
+;;	script	Main AI script.
+;;
+(define ai:orc3-attack-endloop
+  '((writes nil "Looping !\n")
+    (ai:sleep 65535)
+    (ai:script ai:orc3-attack-endloop) ) )
+
+(define-ai 'my-ai race2 "orc-03"
+  '(
+    ;;	Define the main AI script.
+    (ai:debug #f)
+    (ai:set  'unit-peon 2)
+    (ai:set  'unit-orc-oil-tanker 1)
+    (ai:wait 'unit-peon)	;; start hangs if nothing available
+    (ai:script ai:orc3-attack-endloop) ))
 
