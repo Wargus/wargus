@@ -98,6 +98,33 @@
 	'upgrade-human-ship-cannon1 'upgrade-human-ship-cannon2
 	'upgrade-human-ship-armor1 'upgrade-human-ship-armor2)
     ;;
+    ;;	Unit can repair which units.
+    ;;
+    (list 'repair 'unit-peasant
+	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-keep 'unit-castle
+	'unit-elven-lumber-mill 'unit-human-blacksmith 'unit-human-watch-tower
+	'unit-human-guard-tower 'unit-human-cannon-tower 'unit-human-wall
+	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
+	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone
+	'unit-human-transport)
+    (list 'repair 'unit-peasant-with-gold
+	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-keep 'unit-castle
+	'unit-elven-lumber-mill 'unit-human-blacksmith 'unit-human-watch-tower
+	'unit-human-guard-tower 'unit-human-cannon-tower 'unit-human-wall
+	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
+	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone
+	'unit-human-transport)
+    (list 'repair 'unit-peasant-with-wood
+	'unit-farm 'unit-human-barracks 'unit-town-hall 'unit-keep 'unit-castle
+	'unit-elven-lumber-mill 'unit-human-blacksmith 'unit-human-watch-tower
+	'unit-human-guard-tower 'unit-human-cannon-tower 'unit-human-wall
+	'unit-human-shipyard 'unit-human-foundry 'unit-human-refinery
+	'unit-gnomish-inventor 'unit-stables 'unit-mage-tower 'unit-church
+	'unit-gryphon-aviary 'unit-dark-portal 'unit-runestone
+	'unit-human-transport)
+    ;;
     ;;	Workers can collect which resource.
     ;;
     (list 'collect 'unit-peasant 'gold 'wood 'ore 'stone 'coal)
@@ -200,6 +227,33 @@
     (list 'research 'unit-orc-foundry
 	'upgrade-orc-ship-cannon1 'upgrade-orc-ship-cannon2
 	'upgrade-orc-ship-armor1 'upgrade-orc-ship-armor2)
+    ;;
+    ;;	Unit can build which units.
+    ;;
+    (list 'repair 'unit-peon
+	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall 'unit-stronghold
+	'unit-fortress 'unit-troll-lumber-mill 'unit-orc-blacksmith
+	'unit-orc-watch-tower 'unit-orc-guard-tower 'unit-orc-cannon-tower
+	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
+	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-altar-of-storms 'unit-dragon-roost 'unit-dark-portal
+	'unit-runestone 'unit-orc-transport)
+    (list 'repair 'unit-peon-with-gold
+	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall 'unit-stronghold
+	'unit-fortress 'unit-troll-lumber-mill 'unit-orc-blacksmith
+	'unit-orc-watch-tower 'unit-orc-guard-tower 'unit-orc-cannon-tower
+	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
+	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-altar-of-storms 'unit-dragon-roost 'unit-dark-portal
+	'unit-runestone 'unit-orc-transport)
+    (list 'repair 'unit-peon-with-wood
+	'unit-pig-farm 'unit-orc-barracks 'unit-great-hall 'unit-stronghold
+	'unit-fortress 'unit-troll-lumber-mill 'unit-orc-blacksmith
+	'unit-orc-watch-tower 'unit-orc-guard-tower 'unit-orc-cannon-tower
+	'unit-orc-wall 'unit-orc-shipyard 'unit-orc-foundry 'unit-orc-refinery
+	'unit-goblin-alchemist 'unit-ogre-mound 'unit-temple-of-the-damned
+	'unit-altar-of-storms 'unit-dragon-roost 'unit-dark-portal
+	'unit-runestone 'unit-orc-transport)
     ;;
     ;;	Workers can collect which resource.
     ;;
