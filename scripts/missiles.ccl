@@ -58,7 +58,8 @@
 (define-missile-type 'missile-fireball
   'file "missiles/fireball.png" 'size '(32 32) 'frames 5
   'impact-sound "fireball hit"
-  'draw-level 50 'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1)
+  'draw-level 50 'class 'missile-class-point-to-point 'sleep 1 'speed 16 'range 1
+  'impact-missile 'missile-explosion)
 
 (define-missile-type 'missile-flame-shield
   'file "missiles/flame_shield.png" 'size '(32 48) 'frames 6
@@ -93,7 +94,8 @@
 
 (define-missile-type 'missile-rune
   'file "missiles/rune.png" 'size '(16 16) 'frames 4
-  'draw-level 20 'class 'missile-class-stay-with-delay 'sleep 5 'speed 16 'range 1)
+  'draw-level 20 'class 'missile-class-land-mine 'sleep 5 'speed 16 'range 1
+  'impact-missile 'missile-explosion)
 
 (define-missile-type 'missile-whirlwind
   'file "missiles/tornado.png" 'size '(56 56) 'frames 4

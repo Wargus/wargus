@@ -228,7 +228,7 @@
 	'manacost 50
 	'range	6
 	'target 'unit
-	'action '(flame-shield duration 600)
+	'action '(flame-shield duration 600 damage 1)
 	;; I think it's better if we can cast it multiple times and the effects stack.
 	;; Can be casted, and is effective on both allies and enemies
 	'condition '(building false)
