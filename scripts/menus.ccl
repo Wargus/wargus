@@ -1494,7 +1494,7 @@
 ;; menu-sound-options
 ;;
 (define-menu 'name 'menu-sound-options 'geometry '(224 64 352 352)
-    'image 'panel5 'default '24)
+    'image 'panel5 'default '23)
 (define-menu-item 'pos (list 176 11) 'font 'large 'init 'init-sound-options
     'text '("Sound Options" center)
     'menu 'menu-sound-options)
@@ -1598,7 +1598,7 @@
 ;; menu-preferences
 ;;
 (define-menu 'name 'menu-preferences 'geometry '(272 96 256 288)
-    'image 'panel1 'default '6)
+    'image 'panel1 'default '5)
 (define-menu-item 'pos (list 128 11) 'font 'large
     'text '("Preferences" center)
     'menu 'menu-preferences)
@@ -1633,7 +1633,7 @@
 ;; menu-settings-speed
 ;;
 (define-menu 'name 'menu-settings-speed 'geometry '(272 96 256 288)
-    'image 'panel1 'default '14)
+    'image 'panel1 'default '13)
 (define-menu-item 'pos (list 128 11) 'font 'large
     'text '("Speed Settings" center)
     'menu 'menu-settings-speed)
