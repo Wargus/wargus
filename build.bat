@@ -64,19 +64,36 @@ REM -----------------------------------------------
 REM	Convert '/' to '\' and remove trailing '\'
 REM ----------------------------------------------- 
 
+REM for CDROM
 set OLDCD=%CDROM%
 set CDROM=
 
-:slashloop
+:slashloopc
 set C=%OLDCD:~0,1%
 if %C% == / set C=\
 set CDROM=%CDROM%%C%
 set OLDCD=%OLDCD:~1%
-if defined OLDCD goto slashloop
+if defined OLDCD goto slashloopc
 
 set C=%CDROM:~-1%
 if %C% == \ set C=
 set CDROM=%CDROM:~0,-1%%C%
+
+REM for DIR
+set OLDDIR=%DIR%
+set DIR=
+
+:slashloopd
+set C=%OLDDIR:~0,1%
+if %C% == / set C=\
+set DIR=%DIR%%C%
+set OLDDIR=%OLDDIR:~1%
+if defined OLDDIR goto slashloopd
+
+set C=%DIR:~-1%
+if %C% == \ set C=
+set DIR=%DIR:~0,-1%%C%
+
 
 REM ----------------------------------------------- 
 REM	End slash conversion
