@@ -42,18 +42,20 @@ Load("ccl/orc/buttons.lua")
 
 -- neutral --------------------------------------------------------------------
 
---(if extensions
+if (extensions) then
 DefineButton("pos", 1, "level", 0, "icon", "icon-circle-of-power",
   "action", "cast-spell", "value", "spell-circle-of-power",
   "allowed", "check-true",
   "key", "d", "hint", "SET ~!DESTINATION",
-  "for-unit", {"unit-dark-portal"}) --)
+  "for-unit", {"unit-dark-portal"})
+end
 
---(if extensions
+if (extensions) then
 DefineButton("pos", 2, "level", 0, "icon", "icon-daemon",
   "action", "train-unit", "value", "unit-daemon",
   "key", "d", "hint", "SUMMON ~!DAEMON",
-  "for-unit", {"unit-dark-portal"}) --)
+  "for-unit", {"unit-dark-portal"})
+end
 
 -- general cancel button ------------------------------------------------------
 

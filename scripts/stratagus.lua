@@ -210,8 +210,8 @@ SetXPDamage(false)
 
 --	Edit this to enable/disable extended features.
 --		Currently enables some additional buttons.
---(define extensions #t)
---(define extensions #f)
+extensions = true
+--extensions = false
 
 --	Edit this to enable/disable the training queues.
 SetTrainingQueue(true)

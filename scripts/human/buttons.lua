@@ -117,7 +117,7 @@ DefineButton("pos", 3, "level", 0, "icon", "icon-arrow3",
   "key", "a", "hint", "~!ATTACK",
   "for-unit", {"unit-archer", "unit-ranger", "unit-female-hero"})
 
---(if extensions
+if (extensions) then
 DefineButton("pos", 4, "level", 0, "icon", "icon-alliance-patrol-land",
   "action", "patrol",
   "key", "p", "hint", "~!PATROL",
@@ -126,13 +126,15 @@ DefineButton("pos", 4, "level", 0, "icon", "icon-alliance-patrol-land",
     "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-gryphon-rider human-group",
     "unit-balloon"})
+else
 DefineButton("pos", 4, "level", 0, "icon", "icon-alliance-patrol-land",
   "action", "patrol",
   "key", "p", "hint", "~!PATROL",
   "for-unit", {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-female-hero",
     "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
-    "unit-man-of-light", "unit-gryphon-rider human-group"}) --)
+    "unit-man-of-light", "unit-gryphon-rider human-group"})
+end
 
 DefineButton("pos", 5, "level", 0, "icon", "icon-alliance-stand-ground",
   "action", "stand-ground",
@@ -260,12 +262,13 @@ DefineButton("pos", 8, "level", 0, "icon", "icon-build-advanced",
   "key", "v", "hint", "BUILD AD~!VANCED STRUCTURE",
   "for-unit", {"unit-peasant"})
 
---(if extensions
+if (extensions) then
 DefineButton("pos", 9, "level", 0, "icon", "icon-build-advanced",
   "action", "button", "value", 3,
   "allowed", "check-units-and", "allow-arg", {"unit-castle", "unit-mage-tower", "unit-church"},
   "key", "e", "hint", "BUILD SP~!ECIAL STRUCTURE",
-  "for-unit", {"unit-peasant"}) --)
+  "for-unit", {"unit-peasant"})
+end
 
 -- simple buildings human -----------------------------------------------------
 
@@ -378,11 +381,12 @@ DefineButton("pos", 9, "level", 3, "icon", "icon-cancel",
 
 -- buildings commands ---------------------------------------------------------
 
---(if extensions
+if (extensions) then
 DefineButton("pos", 1, "level", 0, "icon", "icon-critter",
   "action", "train-unit", "value", "unit-critter",
   "key", "c", "hint", "TRAIN ~!CRITTER",
-  "for-unit", {"unit-farm"}) --)
+  "for-unit", {"unit-farm"})
+end
 
 DefineButton("pos", 1, "level", 0, "icon", "icon-peasant",
   "action", "train-unit", "value", "unit-peasant",
@@ -404,7 +408,8 @@ DefineButton("pos", 2, "level", 0, "icon", "icon-castle-upgrade",
   "key", "c", "hint", "UPGRADE TO ~!CASTLE",
   "for-unit", {"unit-keep"})
 
---(if extensions (begin
+if (extensions) then
+do
 DefineButton("pos", 5, "level", 0, "icon", "icon-harvest",
   "action", "harvest",
   "key", "h", "hint", "SET ~!HARVEST LUMBER/MINE GOLD",
@@ -426,7 +431,9 @@ DefineButton("pos", 9, "level", 0, "icon", "icon-sword1",
   "action", "attack",
   "key", "e", "hint", "S~!ET ATTACK",
   "for-unit", {"unit-town-hall", "unit-keep", "unit-castle", "unit-alliance-barracks",
-    "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"}) --))
+    "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"})
+end
+end
 
 DefineButton("pos", 1, "level", 0, "icon", "icon-footman",
   "action", "train-unit", "value", "unit-footman",
@@ -503,14 +510,14 @@ DefineButton("pos", 5, "level", 0, "icon", "icon-battleship",
   "key", "b", "hint", "BUILD ~!BATTLESHIP",
   "for-unit", {"unit-alliance-shipyard"})
 
---(if extensions (begin
+if (extensions) then
 -----------------------------------------------------
 DefineButton("pos", 6, "level", 0, "icon", "icon-alliance-ship-haul-oil",
   "action", "harvest",
   "key", "h", "hint", "SET ~!HAUL OIL",
   "for-unit", {"unit-alliance-shipyard"})
 -----------------------------------------------------
---  "})
+end
 
 DefineButton("pos", 1, "level", 0, "icon", "icon-alliance-guard-tower",
   "action", "upgrade-to", "value", "unit-alliance-guard-tower",
@@ -580,7 +587,8 @@ DefineButton("pos", 4, "level", 0, "icon", "icon-alliance-patrol-naval",
   "key", "p", "hint", "~!PATROL",
   "for-unit", {"unit-alliance-submarine", "unit-battleship", "unit-alliance-destroyer"})
 
---(if extensions (begin
+if (extensions) then
+do
 DefineButton("pos", 7, "level", 0, "icon", "icon-alliance-ship-move",
   "action", "move",
   "key", "m", "hint", "SET ~!MOVE",
@@ -594,7 +602,9 @@ DefineButton("pos", 8, "level", 0, "icon", "icon-alliance-ship-armor1",
 DefineButton("pos", 9, "level", 0, "icon", "icon-alliance-ship-cannon1",
   "action", "attack",
   "key", "e", "hint", "S~!ET ATTACK",
-  "for-unit", {"unit-alliance-shipyard"}) --))
+  "for-unit", {"unit-alliance-shipyard"})
+end
+end
 
 -- upgrades -------------------------------------------------------------------
 
@@ -688,13 +698,13 @@ DefineButton("pos", 3, "level", 0, "icon", "icon-exorcism",
   "key", "e", "hint", "RESEARCH ~!EXORCISM",
   "for-unit", {"unit-church"})
 
---(if extensions
+if (extensions) then
 DefineButton("pos", 5, "level", 0, "icon", "icon-heal",
   "action", "research", "value", "upgrade-area-healing",
   "allowed", "check-single-research",
   "key", "l", "hint", "RESEARCH AREA HEA~!LING",
   "for-unit", {"unit-church"})
---)
+end
 
 DefineButton("pos", 2, "level", 0, "icon", "icon-slow",
   "action", "research", "value", "upgrade-slow",
