@@ -162,6 +162,8 @@ enum _archive_type_ {
 #endif
 };
 
+char* ArchiveDir;
+
 /**
 **	What, where, how to extract.
 **
@@ -3483,6 +3485,8 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
     unsigned char *current, *next, *nextobj, *currentobj;
     FILE *inlevel, *outlevel;
     int l, levelno, noobjs, race;
+    struct stat s;
+    char rezdat[1024];
 
     //Campaign data is in different spots on the original and
     //expansion CD's, have to take care of this at runtime.
@@ -3491,7 +3495,13 @@ int CampaignsCreate(char *file __attribute__((unused)), int txte, int ofs,
       txte=54;
     } else {
       ofs=140;
-      txte=53;
+      sprintf(rezdat, "%s/rezdat.war", ArchiveDir);
+      stat(rezdat, &s);
+      if (s.st_size == 1894026) {
+        txte=54;
+      } else {
+        txte=53;
+      }
     }
 
     objectives = ExtractEntry(ArchiveOffsets[txte], &l);
@@ -3641,7 +3651,6 @@ destination-directory\tDirectory where the extracted files are placed.\n"
 int main(int argc,char** argv)
 {
     unsigned u;
-    char* archivedir;
     char buf[1024];
     struct stat stat_buf;
     int expansion_cd;
@@ -3690,7 +3699,7 @@ int main(int argc,char** argv)
 	exit(-1);
     }
 
-    archivedir=argv[a];
+    ArchiveDir=argv[a];
     if( argc==3 ) {
 	Dir=argv[a+1];
     } else {
@@ -3698,14 +3707,14 @@ int main(int argc,char** argv)
     }
 
     // alamo.pud is not on Expansion CD
-    sprintf(buf,"%s/../alamo.pud",archivedir);
+    sprintf(buf,"%s/../alamo.pud",ArchiveDir);
     if ( expansion_cd==-1 || (expansion_cd!=1 && !stat(buf,&stat_buf)) ) {
 	expansion_cd=0;
     } else {
 	expansion_cd=1;
     }
 
-    DebugLevel2("Extract from \"%s\" to \"%s\"\n" _C_ archivedir _C_ Dir);
+    DebugLevel2("Extract from \"%s\" to \"%s\"\n" _C_ ArchiveDir _C_ Dir);
     for( u=0; u<sizeof(Todo)/sizeof(*Todo); ++u ) {
 	if (UseMacCd) {
 	    strcpy(filename,Todo[u].File);
@@ -3720,7 +3729,7 @@ int main(int argc,char** argv)
 	switch( Todo[u].Type ) {
 		
 	    case F:
-		sprintf(buf,"%s/%s",archivedir,Todo[u].File);
+		sprintf(buf,"%s/%s",ArchiveDir,Todo[u].File);
 		DebugLevel2("Archive \"%s\"\n" _C_ buf);
 		if( ArchiveBuffer ) {
 		    CloseArchive();
