@@ -178,16 +178,16 @@ function OrcScreen(screen_width, screen_height)
           "/buttonpanel.png",
         "pos", {0, 336}},
       "icons", {
-        { "pos", {  6, 337}, "size", icon_size},
-        { "pos", { 62, 337}, "size", icon_size},
-        { "pos", {118, 337}, "size", icon_size},
-        { "pos", {  6, 384}, "size", icon_size},
-        { "pos", { 62, 384}, "size", icon_size},
-        { "pos", {118, 384}, "size", icon_size},
-        { "pos", {  6, 431}, "size", icon_size},
-        { "pos", { 62, 431}, "size", icon_size},
-        { "pos", {118, 431}, "size", icon_size}},
-      "command-key-font", "game"
+        { "pos", {  9, 340}, "style", "icon"},
+        { "pos", { 65, 340}, "style", "icon"},
+        { "pos", {121, 340}, "style", "icon"},
+        { "pos", {  9, 387}, "style", "icon"},
+        { "pos", { 65, 387}, "style", "icon"},
+        { "pos", {121, 387}, "style", "icon"},
+        { "pos", {  9, 434}, "style", "icon"},
+        { "pos", { 65, 434}, "style", "icon"},
+        { "pos", {121, 434}, "style", "icon"}},
+      "auto-cast-border-color", {0, 0, 252},
     },
 
     "map-area", {
