@@ -177,6 +177,9 @@
 (set-fancy-buildings! #t)
 ;(set-fancy-buildings! #f)
 
+;;	Show tips at the start of a level
+(show-tips)
+
 ;;-----------------------------------------------------------------------------
 ;;	Game modification
 
@@ -356,6 +359,7 @@
 (load "ccl/ai.ccl" #f #t)
 (load "ccl/campaigns.ccl" #f #t)
 (load "ccl/credits.ccl" #f #t)
+(load "ccl/tips.ccl" #f #t)
 
 ;;-----------------------------------------------------------------------------
 
