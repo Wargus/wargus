@@ -36,8 +36,10 @@
 ;;
 ;;		This is a random music player demo
 ;;
+(if (not (= (length play-list) 0)) (
 (define (music-stopped)
   (play-music (nth (rand (length play-list)) play-list)) )
+))
 
 ;;----------------------------------------------------------------------------
 ;;	(set-cd-mode!) set how your CD is played.
