@@ -112,30 +112,34 @@
 (define-modifier 'upgrade-sword1
   '(piercing-damage 2)
   '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
-  '(apply-to unit-dwarves))
+  '(apply-to unit-dwarves) '(apply-to unit-danath) '(apply-to unit-lothar)
+  '(apply-to unit-uther-lightbringer) '(apply-to unit-turalyon))
 
 (define-modifier 'upgrade-sword2
   '(piercing-damage 2)
   '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
-  '(apply-to unit-dwarves))
+  '(apply-to unit-dwarves) '(apply-to unit-danath) '(apply-to unit-lothar)
+  '(apply-to unit-uther-lightbringer) '(apply-to unit-turalyon))
 
 (define-modifier 'upgrade-arrow1
   '(piercing-damage 1)
-  '(apply-to unit-archer) '(apply-to unit-ranger))
+  '(apply-to unit-archer) '(apply-to unit-ranger) '(apply-to unit-alleria))
 
 (define-modifier 'upgrade-arrow2
   '(piercing-damage 1)
-  '(apply-to unit-archer) '(apply-to unit-ranger))
+  '(apply-to unit-archer) '(apply-to unit-ranger) '(apply-to unit-alleria))
 
 (define-modifier 'upgrade-human-shield1
   '(armor 2)
   '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
-  '(apply-to unit-dwarves))
+  '(apply-to unit-dwarves) '(apply-to unit-danath) '(apply-to unit-lothar)
+  '(apply-to unit-uther-lightbringer) '(apply-to unit-turalyon))
 
 (define-modifier 'upgrade-human-shield2
   '(armor 2)
   '(apply-to unit-footman) '(apply-to unit-knight) '(apply-to unit-paladin)
-  '(apply-to unit-dwarves))
+  '(apply-to unit-dwarves) '(apply-to unit-danath) '(apply-to unit-lothar)
+  '(apply-to unit-uther-lightbringer) '(apply-to unit-turalyon))
 
 (define-modifier 'upgrade-human-ship-cannon1
   '(piercing-damage 5)
@@ -194,17 +198,23 @@
 (define-modifier 'upgrade-exorcism
   '(apply-to unit-paladin))
 
-(define-modifier 'upgrade-flame-shield)
+(define-modifier 'upgrade-flame-shield
+  '(apply-to unit-mage) '(apply-to unit-khadgar))
 
-(define-modifier 'upgrade-fireball)
+(define-modifier 'upgrade-fireball
+  '(apply-to unit-mage) '(apply-to unit-khadgar))
 
-(define-modifier 'upgrade-slow)
+(define-modifier 'upgrade-slow
+  '(apply-to unit-mage) '(apply-to unit-khadgar))
 
-(define-modifier 'upgrade-invisibility)
+(define-modifier 'upgrade-invisibility
+  '(apply-to unit-mage) '(apply-to unit-khadgar))
 
-(define-modifier 'upgrade-polymorph)
+(define-modifier 'upgrade-polymorph
+  '(apply-to unit-mage) '(apply-to unit-khadgar))
 
-(define-modifier 'upgrade-blizzard)
+(define-modifier 'upgrade-blizzard
+  '(apply-to unit-mage) '(apply-to unit-khadgar))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;=============================================================================

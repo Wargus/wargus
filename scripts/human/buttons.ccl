@@ -60,14 +60,16 @@
   'allowed 'check-upgrade 'allow-arg '(upgrade-human-shield1)
   'key "s" 'hint "~!STOP"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista))
+    unit-dwarves unit-ranger unit-ballista unit-danath unit-turalyon
+    unit-lothar unit-uther-lightbringer))
 
 (define-button 'pos 2 'level 0 'icon 'icon-human-shield3
   'action 'stop
   'allowed 'check-upgrade 'allow-arg '(upgrade-human-shield2)
   'key "s" 'hint "~!STOP"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista))
+    unit-dwarves unit-ranger unit-ballista unit-danath unit-turalyon
+    unit-lothar unit-uther-lightbringer))
 
 (define-button 'pos 3 'level 0 'icon 'icon-sword1
   'action 'attack
@@ -83,14 +85,16 @@
   'allowed 'check-upgrade 'allow-arg '(upgrade-sword1)
   'key "a" 'hint "~!ATTACK"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista))
+    unit-dwarves unit-ranger unit-ballista unit-danath unit-turalyon
+    unit-lothar unit-uther-lightbringer))
 
 (define-button 'pos 3 'level 0 'icon 'icon-sword3
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-sword2)
   'key "a" 'hint "~!ATTACK"
   'for-unit '(unit-footman unit-knight unit-archer unit-paladin
-    unit-dwarves unit-ranger unit-ballista))
+    unit-dwarves unit-ranger unit-ballista unit-danath unit-turalyon
+    unit-lothar unit-uther-lightbringer))
 
 (define-button 'pos 3 'level 0 'icon 'icon-arrow1
   'action 'attack
@@ -101,13 +105,13 @@
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-arrow1)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-archer unit-ranger))
+  'for-unit '(unit-archer unit-ranger unit-alleria))
 
 (define-button 'pos 3 'level 0 'icon 'icon-arrow3
   'action 'attack
   'allowed 'check-upgrade 'allow-arg '(upgrade-arrow2)
   'key "a" 'hint "~!ATTACK"
-  'for-unit '(unit-archer unit-ranger))
+  'for-unit '(unit-archer unit-ranger unit-alleria))
 
 (define-button 'pos 4 'level 0 'icon 'icon-human-patrol-land
   'action 'patrol
@@ -141,21 +145,24 @@
 
 (define-button 'pos 7 'level 0 'icon 'icon-holy-vision
   'action 'cast-spell 'value 'spell-holy-vision
-  'allowed 'check-upgrade 'allow-arg '(upgrade-holy-vision)
+  'allowed 'check-upgrade 'allow-arg '(upgrade-paladin)
   'key "v" 'hint "HOLY ~!VISION"
-  'for-unit '(unit-paladin))
+  'for-unit '(unit-paladin unit-turalyon unit-lothar
+    unit-uther-lightbringer))
 
 (define-button 'pos 8 'level 0 'icon 'icon-heal
   'action 'cast-spell 'value 'spell-healing
   'allowed 'check-upgrade 'allow-arg '(upgrade-healing)
   'key "h" 'hint "~!HEALING (per 1 HP)"
-  'for-unit '(unit-paladin))
+  'for-unit '(unit-paladin unit-turalyon unit-lothar
+    unit-uther-lightbringer))
 
 (define-button 'pos 9 'level 0 'icon 'icon-exorcism
   'action 'cast-spell 'value 'spell-exorcism
   'allowed 'check-upgrade 'allow-arg '(upgrade-exorcism)
   'key "e" 'hint "~!EXORCISM"
-  'for-unit '(unit-paladin))
+  'for-unit '(unit-paladin unit-turalyon unit-lothar
+    unit-uther-lightbringer))
 
 ;; mage specific actions ------------------------------------------------------
 
@@ -174,31 +181,31 @@
   'action 'cast-spell 'value 'spell-slow
   'allowed 'check-upgrade 'allow-arg '(upgrade-slow)
   'key "o" 'hint "SL~!OW"
-  'for-unit '(unit-mage))
+  'for-unit '(unit-mage unit-khadgar))
 
 (define-button 'pos 6 'level 0 'icon 'icon-flame-shield
   'action 'cast-spell 'value 'spell-flame-shield
   'allowed 'check-upgrade 'allow-arg '(upgrade-flame-shield)
   'key "l" 'hint "F~!LAME SHIELD"
-  'for-unit '(unit-mage))
+  'for-unit '(unit-mage unit-khadgar))
 
 (define-button 'pos 7 'level 0 'icon 'icon-invisibility
   'action 'cast-spell 'value 'spell-invisibility
   'allowed 'check-upgrade 'allow-arg '(upgrade-invisibility)
   'key "i" 'hint "~!INVISIBILITY"
-  'for-unit '(unit-mage))
+  'for-unit '(unit-mage unit-khadgar))
 
 (define-button 'pos 8 'level 0 'icon 'icon-polymorph
   'action 'cast-spell 'value 'spell-polymorph
   'allowed 'check-upgrade 'allow-arg '(upgrade-polymorph)
   'key "p" 'hint "~!POLYMORPH"
-  'for-unit '(unit-mage))
+  'for-unit '(unit-mage unit-khadgar))
 
 (define-button 'pos 9 'level 0 'icon 'icon-blizzard
   'action 'cast-spell 'value 'spell-blizzard
   'allowed 'check-upgrade 'allow-arg '(upgrade-blizzard)
   'key "b" 'hint "~!BLIZZARD"
-  'for-unit '(unit-mage))
+  'for-unit '(unit-mage unit-khadgar))
 
 ;; peasant specific actions ---------------------------------------------------
 
