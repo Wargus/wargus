@@ -379,6 +379,7 @@
   'can-cast-spell
   ;; flags
   'building
+  'teleporter
   ;; sounds
   #("dark-portal-selected"
     "dark-portal-acknowledge"
