@@ -37,12 +37,12 @@
 (set-contrast! 110) (set-brightness! 15) (set-saturation! 100)
 
 ;;	Enter your default title screen.
-(title-screen "graphics/ui/freecraft.png")
+(set-title-screen! "graphics/ui/freecraft.png")
 
 ;;	If color-cycle-all is off only the tileset and global palettes are
-;;	color cycled.  Otherwise all palettes are
-;(no-color-cycle-all)
-(color-cycle-all)
+;;	color cycled.  Otherwise all palettes are color cycled.
+(set-color-cycle-all! #t)
+;(set-color-cycle-all! #f)
 
 ;;-----------------------------------------------------------------------------
 
@@ -121,7 +121,8 @@
 ;(set-original-resources! #t)
 
 ;;	Uncomment next, to enable fancy building (random mirrowing buildings)
-(fancy-buildings)
+(set-fancy-buildings! #t)
+;(set-fancy-buildings! #f)
 
 ;;	Uncomment next, to get extended features.
 ;;		Currently enables some additional buttons.
