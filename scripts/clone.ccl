@@ -135,12 +135,6 @@
 ;;	Definitions-Part
 ;;-----------------------------------------------------------------------------
 
-;;	Tileset names for slots
-(define TilesetSummer		0)
-(define TilesetWinter		1)
-(define TilesetWasteland	2)
-(define TilesetSwamp		3)
-
 ;;	Missile names for slots
 (define	MissileLightning	0)
 (define	MissileGriffonHammer	1)
