@@ -34,7 +34,7 @@
 -- grunt, beast-cry, and quick-blade
 --
 
-local GruntStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
+local GruntStill = UnitStill
 local GruntMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "frame 5", "move 3", "wait 1",
     "frame 5", "move 3", "wait 2", "frame 10", "move 2", "wait 1",
     "frame 10", "move 3", "wait 1", "frame 0", "move 2", "wait 1",
@@ -73,7 +73,7 @@ DefineNewAnimations("animations-quick-blade", {
 
 
 DefineNewAnimations("animations-peon", {
-  Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
+  Still = UnitStill,
   Move = {"unbreakable begin", "frame 0", "move 3", "wait 2", "frame 5", "move 3", "wait 1",
     "frame 5", "move 3", "wait 2", "frame 10", "move 2", "wait 1",
     "frame 10", "move 3", "wait 1", "frame 0", "move 2", "wait 1",
@@ -115,7 +115,7 @@ DefineNewAnimations("animations-catapult", {
 -- ogre, ogre-mage, fad-man, and double-head
 --
 
-local OgreStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
+local OgreStill = UnitStill
 local OgreMove = {"unbreakable begin","frame 0", "move 3", "wait 1", "frame 5", "move 3", "wait 1",
     "frame 5", "move 3", "wait 1", "frame 10", "move 2", "wait 1",
     "frame 10", "move 3", "wait 1", "frame 0", "move 2", "wait 1",
@@ -166,7 +166,7 @@ DefineNewAnimations("animations-double-head", {
 -- axethrower, berserker, and sharp-axe
 --
 
-local AxeThrowerStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
+local AxeThrowerStill = UnitStill
 local AxeThrowerMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "frame 5", "move 3", "wait 1",
     "frame 5", "move 3", "wait 2", "frame 10", "move 2", "wait 1",
     "frame 10", "move 3", "wait 1", "frame 0", "move 2", "wait 1",
@@ -208,7 +208,7 @@ DefineNewAnimations("animations-sharp-axe", {
 -- death-knight, evil-knight, and ice-bringer
 --
 
-local DeathKnightStill = {"frame 0", "wait 4", "frame 0", "wait 1",}
+local DeathKnightStill = UnitStill
 local DeathKnightMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "frame 5", "move 3", "wait 2",
     "frame 5", "move 4", "wait 2", "frame 10", "move 3", "wait 2",
     "frame 10", "move 3", "wait 2", "frame 15", "move 3", "wait 2",
@@ -246,7 +246,7 @@ DefineNewAnimations("animations-ice-bringer", {
 
 
 DefineNewAnimations("animations-goblin-sappers", {
-  Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
+  Still = UnitStill,
   Move = {"unbreakable begin", "frame 0", "move 3", "wait 1", "frame 10", "move 3", "wait 1",
     "frame 10", "move 2", "wait 1", "frame 25", "move 3", "wait 2",
     "frame 25", "move 3", "wait 1", "frame 40", "move 2", "wait 1",
