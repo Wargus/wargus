@@ -30,6 +30,8 @@
 (define-campaign 'human-exp 'name "The human expansion campaign"
   'campaign (list
 	'show-picture
+	  "Act I"
+	  "A Time for Heroes"
 	  "campaigns/human-exp/interface/Act I  - A Time for Heroes.png"
 	'play-level "campaigns/human-exp/levelx01h.pud"
 	'play-level "campaigns/human-exp/levelx02h.pud"
