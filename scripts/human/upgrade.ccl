@@ -220,7 +220,7 @@
 ;;=============================================================================
 ;;
 ;;	Define which units/upgrades are allowed.
-;;		A: allowed, E: enabled F: forbiden, R: researched
+;;		A: allowed, E: enabled, F: forbidden, R: researched
 ;;
 ;;	(define-allow unit/upgrade "AAAAAAAAAAAAAAAA")
 ;;				    ^- player 0 ... 15
