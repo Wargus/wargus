@@ -10,12 +10,11 @@
 ;;
 ;;	winter.ccl		-	Define the winter tileset.
 ;;
-;;	(c) Copyright 2000,2001 by Lutz Sammer
+;;	(c) Copyright 2000-2002 by Lutz Sammer
 ;;
 ;;	FreeCraft is free software; you can redistribute it and/or modify
 ;;	it under the terms of the GNU General Public License as published
-;;	by the Free Software Foundation; either version 2 of the License,
-;;	or (at your option) any later version.
+;;	by the Free Software Foundation; only version 2 of the License.
 ;;
 ;;	FreeCraft is distributed in the hope that it will be useful,
 ;;	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -48,25 +47,25 @@
     #( 319 320 320 321   0 322 323 324))				; 010
   'solid (list "dark-water" 'water
     #( 325 326 326 327   0 328 329 330))				; 020
-  'solid (list "light-coast" 'no-building
+  'solid (list "light-ice" 'land 'no-building
     #( 331 332 333   0 334 335 336 337 338 339 334 338))		; 030
-  'solid (list "dark-coast" 'no-building
+  'solid (list "dark-ice" 'land 'no-building
     #( 340 341 342   0 343 344 345 346 347 348 343 347))		; 040
-  'solid (list "light-grass"
+  'solid (list "light-snow" 'land
     #( 349 350 351   0 352 353 354 355 356 357 358 359 360 361 362 363)); 050
-  'solid (list "dark-grass"
+  'solid (list "dark-snow" 'land
     #( 364 365 366   0 367 368 369 370 371 372 373 374 375 376 377 378)); 060
-  'solid (list "forest" 'forest
+  'solid (list "forest" 'land 'forest 'unpassable
     #( 125 135 136))							; 070
-  'solid (list "rocks" 'rock
+  'solid (list "rocks" 'land 'rock 'unpassable
     #( 160 172 173 174))						; 080
-  'solid (list "human-closed-wall" 'wall
+  'solid (list "human-closed-wall" 'land 'human 'wall 'unpassable
     #(  16   0  52   0  88))						; 090
-  'solid (list "orc-closed-wall" 'wall
+  'solid (list "orc-closed-wall" 'land 'wall 'unpassable
     #(  34   0  70   0  88))						; 0A0
-  'solid (list "human-open-wall" 'wall
+  'solid (list "human-open-wall" 'land 'human 'wall 'unpassable
     #(  33   0  69   0 101))						; 0B0
-  'solid (list "orc-open-wall" 'wall
+  'solid (list "orc-open-wall" 'land 'wall 'unpassable
     #(  51   0  87   0 101))						; 0C0
   'solid (list "unused"
     #())								; 0D0
@@ -91,7 +90,7 @@
     #( 318 318)								; 1D0
     #()									; 1E0
     #())								; 1F0
-  'mixed (list "light-water" "light-coast" 'coast
+  'mixed (list "light-water" "light-ice" 'coast
     #( 199 200)								; 200
     #( 201 202)								; 210
     #( 203 204 205)							; 220
@@ -108,7 +107,7 @@
     #( 227 228)								; 2D0
     #()									; 2E0
     #())								; 2F0
-  'mixed (list "dark-coast" "light-coast" 'no-building
+  'mixed (list "dark-ice" "light-ice" 'land 'no-building
     #( 175 176)								; 300
     #( 177 178)								; 310
     #( 179 180 179)							; 320
@@ -125,7 +124,7 @@
     #( 198 198)								; 3D0
     #()									; 3E0
     #())								; 3F0
-  'mixed (list "rocks" "light-coast" 'rock
+  'mixed (list "rocks" "light-ice" 'land 'rock 'unpassable
     #( 145 168)								; 400
     #( 137 162)								; 410
     #( 159 171)								; 420
@@ -142,7 +141,7 @@
     #( 140)								; 4D0
     #()									; 4E0
     #())								; 4F0
-  'mixed (list "light-coast" "light-ground" 'no-building
+  'mixed (list "light-ice" "light-snow" 'land 'no-building
     #( 259 260)								; 500
     #( 261 262)								; 510
     #( 263 264 265)							; 520
@@ -159,7 +158,7 @@
     #( 289 290)								; 5D0
     #()									; 5E0
     #())								; 5F0
-  'mixed (list "dark-ground" "light-ground"
+  'mixed (list "dark-snow" "light-snow" 'land
     #( 231 232)								; 600
     #( 233 234)								; 610
     #( 235 236 237)							; 620
@@ -176,7 +175,7 @@
     #( 258 258)								; 6D0
     #()									; 6E0
     #())								; 6F0
-  'mixed (list "forest" "light-ground" 'forest
+  'mixed (list "forest" "light-snow" 'land 'forest 'unpassable
     #( 110 133)								; 700
     #( 102 127)								; 710
     #( 124 134)								; 720
@@ -193,7 +192,7 @@
     #( 105 105)								; 7D0
     #()									; 7E0
     #())								; 7F0
-  'mixed (list "human-wall" "dark-ground" 'wall
+  'mixed (list "human-wall" "dark-snow" 'land 'human 'wall 'unpassable
     #(  17   0  53   0  89)						; 800
     #(  18   0  54   0  90)						; 810
     #(  19   0  55   0  91)						; 820
@@ -210,7 +209,7 @@
     #(  32   0  68   0 100)						; 8D0
     #()									; 8E0
     #())								; 8F0
-  'mixed (list "orc-wall" "dark-ground" 'wall
+  'mixed (list "orc-wall" "dark-snow" 'land 'wall 'unpassable
     #(  35   0  71   0  89)						; 900
     #(  36   0  72   0  90)						; 910
     #(  37   0  73   0  91)						; 920
