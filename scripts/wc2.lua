@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -91,20 +91,6 @@ DefineUnitTypeWcNames(
     "unit-destroyed-1x1-place", "unit-destroyed-2x2-place",
     "unit-destroyed-3x3-place", "unit-destroyed-4x4-place",
     "unit-peasant", "unit-peon", "unit-peasant", "unit-peon", "unit-human-oil-tanker", "unit-orc-oil-tanker")
-
-DefineMissileTypeWcNames(
-    "missile-lightning", "missile-griffon-hammer", "missile-dragon-breath",
-    "missile-fireball", "missile-flame-shield", "missile-blizzard",
-    "missile-death-and-decay", "missile-big-cannon", "missile-exorcism",
-    "missile-heal-effect", "missile-touch-of-death", "missile-rune",
-    "missile-whirlwind", "missile-catapult-rock", "missile-ballista-bolt",
-    "missile-arrow", "missile-axe", "missile-submarine-missile",
-    "missile-turtle-missile", "missile-small-fire", "missile-big-fire",
-    "missile-impact", "missile-normal-spell", "missile-explosion",
-    "missile-small-cannon", "missile-cannon-explosion",
-    "missile-cannon-tower-explosion", "missile-daemon-fire",
-    "missile-green-cross", "missile-none", "missile-blizzard-hit",
-    "missile-death-coil", "missile-none")
 
 DefineIconWcNames(
     "icon-peasant", "icon-peon", "icon-footman", "icon-grunt", "icon-archer",
