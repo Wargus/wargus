@@ -28,13 +28,13 @@
 
 ;; FIXME: it is not necessary to preload the campaings.
 
-;(define-campaign 'human 'name "The human campaign"
+;(define-campaign 'human 'name "~!Human campaign"
 ;  'file "ccl/ccl/human/campaign1.ccl")
-;(define-campaign 'human-exp 'name "The human expansion campaign"
+;(define-campaign 'human-exp 'name "H~!uman expansion levels"
 ;  'file "ccl/ccl/human/campaign2.ccl")
-;(define-campaign 'orc 'name "The orc campaign"
+;(define-campaign 'orc 'name "~!Orc campaign"
 ;  'file "ccl/ccl/orc/campaign1.ccl")
-;(define-campaign 'orc-exp 'name "The orc expansion campaign"
+;(define-campaign 'orc-exp 'name "O~!rc expansion levels"
 ;  'file "ccl/ccl/orc/campaign2.ccl")
 
 ;;=============================================================================
