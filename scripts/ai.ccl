@@ -108,7 +108,17 @@
     (list 'with-goods 'unit-peasant-with-gold 'gold)
     (list 'with-goods 'unit-peasant-with-wood 'wood)
     (list 'with-goods 'unit-human-oil-tanker-full 'oil )
-    (list 'unit-limit 'unit-pig-farm 'food) )
+    ;;
+    ;;	Reduce unit limits.
+    ;;
+    (list 'unit-limit 'unit-pig-farm 'food)
+    ;;
+    ;;	Equivalence of units for the resource manager.
+    ;;
+    (list 'unit-equiv 'unit-town-hall 'unit-keep 'unit-castle)
+    (list 'unit-equiv 'unit-peasant
+	'unit-peasant-with-gold 'unit-peasant-with-wood)
+    (list 'unit-equiv 'unit-human-oil-tanker 'unit-human-oil-tanker-full) )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race orc.
@@ -195,7 +205,17 @@
     (list 'with-goods 'unit-peon-with-gold 'gold)
     (list 'with-goods 'unit-peon-with-wood 'wood)
     (list 'with-goods 'unit-orc-oil-tanker-full 'oil )
-    (list 'unit-limit 'unit-pig-farm 'food) )
+    ;;
+    ;;	Reduce unit limits.
+    ;;
+    (list 'unit-limit 'unit-pig-farm 'food)
+    ;;
+    ;;	Equivalence of units for the resource manager.
+    ;;
+    (list 'unit-equiv 'unit-great-hall 'unit-stronghold 'unit-fortress)
+    (list 'unit-equiv 'unit-peon
+	'unit-peon-with-gold 'unit-peon-with-wood)
+    (list 'unit-equiv 'unit-orc-oil-tanker 'unit-orc-oil-tanker-full) )
 
 ;;=============================================================================
 ;;
@@ -211,21 +231,55 @@
   '(
 
     ;;	Define the main AI script.
-
-    (writes nil "AI Started!\n")
     (ai:debug #t)
     (ai:need (unit-type 'unit-town-hall))
-    (ai:need 'unit-elven-lumber-mill)
-    (ai:need 'unit-human-barracks)
     (ai:set  'unit-peasant 1)
     (ai:wait 'unit-peasant)
-    (ai:set  'unit-peasant 9)
-    (ai:set  'unit-footmen 3)
-    (ai:wait  'unit-footmen 3)
+    (ai:set  'unit-peasant 4)
+    (ai:need 'unit-elven-lumber-mill)
+    (ai:need 'unit-human-barracks)
+    (ai:force 0  'unit-footman 2)
+    (ai:force 1  'unit-footman 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
 
-    (writes nil "AI 1!\n")
-    (writes nil "AI 2!\n")
-    (writes nil "AI 3!\n")
+    (ai:set  'unit-peasant 9)
+    (ai:sleep	500)
+    (ai:need 'unit-human-blacksmith)
+    (ai:force 0 'unit-footman 2 'unit-archer 1)
+    (ai:force 1 'unit-footman 2 'unit-archer 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:research 'upgrade-sword1)
+    (ai:research 'upgrade-human-shield1)
+    (ai:research 'upgrade-arrow1)
+    (ai:research 'upgrade-sword2)
+    (ai:research 'upgrade-human-shield2)
+    (ai:research 'upgrade-arrow2)
+    (ai:need 'unit-human-barracks)
+
+    (ai:force 0 'unit-footman 3 'unit-archer 2)
+    (ai:force 1 'unit-footman 3 'unit-archer 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:set  'unit-peasant 15)
+    (ai:force 0 'unit-footman 3 'unit-archer 2)
+    (ai:force 1 'unit-footman 3 'unit-archer 1 'unit-ballista 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
+    (ai:sleep	500)
+    (ai:upgrade-to 'unit-keep)
+    (ai:wait 'unit-keep)
+
+    (ai:force 1 'unit-footman 3 'unit-archer 1 'unit-ballista 1)
+    (ai:wait-force 1)		;; wait until attack party is completed
+    (ai:attack-with-force 1)
+
     (writes nil "AI Ended!\n")
     ))
 
@@ -235,16 +289,17 @@
     ;;	Define the main AI script.
     (ai:debug #t)
     (ai:need (unit-type 'unit-great-hall))
-    (ai:need 'unit-troll-lumber-mill)
-    (ai:need 'unit-orc-barracks)
     (ai:set  'unit-peon 1)
     (ai:wait 'unit-peon)
-    (ai:set  'unit-peon 9)
+    (ai:set  'unit-peon 4)
+    (ai:need 'unit-troll-lumber-mill)
+    (ai:need 'unit-orc-barracks)
     (ai:force 0 'unit-grunt 2)
     (ai:force 1 'unit-grunt 1)
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
+    (ai:set  'unit-peon 9)
     (ai:sleep	500)
     (ai:need 'unit-orc-blacksmith)
     (ai:force 0 'unit-grunt 2 'unit-axethrower 1)
@@ -281,6 +336,7 @@
     (ai:wait-force 1)		;; wait until attack party is completed
     (ai:attack-with-force 1)
 
+    (writes nil "AI Ended!\n")
     ))
 
 
