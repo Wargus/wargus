@@ -122,7 +122,7 @@
 ;(show-attack-range)
 
 ;;	Uncomment next, to show the orders of the selected unit on map.
-;(show-orders)
+(show-orders)
 
 ;;	Uncomment next to enable hit point regeneration for all units
 ;(set-hitpoint-regeneration! #t)
