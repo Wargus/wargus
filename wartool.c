@@ -2822,7 +2822,8 @@ int ConvertText(char* file,int txte,int ofs)
 #endif
     stat(strdat, &st);
     // check for German or UK CD's respectively, else US CD
-    if (st.st_size == 55724 || st.st_size == 51451) {
+//    if (st.st_size == 55724 || st.st_size == 51451) {
+    if (!expansion && st.st_size != 51550) {
 	--txte;
     }
 
