@@ -1125,7 +1125,7 @@ Control Todo[] = {
 // 1 description
 #ifdef NEW_NAMES
 {W,0,"ui/placement error",					  2	},
-{W,0,"ui/placement sucess",					  3	},
+{W,0,"ui/placement success",					  3	},
 {W,0,"misc/building construction",				  4	},
 {W,0,"human/basic_voices/selected/1",				  5	},
 {W,0,"orc/basic_voices/selected/1",				  6	},
