@@ -162,11 +162,11 @@
 
     (writes nil "AI Started!\n")
     (ai:debug #t)
-    (ai:need 'unit-townhall)
-    (ai:need 'unit-human-lumbermill)
+    (ai:need (unit-type 'unit-town-hall))
+    (ai:need 'unit-elven-lumber-mill)
     (ai:need 'unit-human-barracks)
-    (ai:set  'unit-peasants 1)
-    (ai:wait 'unit-peasants)
+    (ai:set  'unit-peasant 1)
+    (ai:wait 'unit-peasant)
 
     (writes nil "AI 1!\n")
     (writes nil "AI 2!\n")
