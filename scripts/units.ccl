@@ -381,8 +381,7 @@
   'sounds '())
 
 (define-unit-type 'unit-revealer 'name "Dummy unit"
-  'files '(tileset-summer "neutral/units/daemon.png")
-  'size '(2 2)
+  'size '(0 0)
   'animations 'animations-building 'icon 'icon-holy-vision
   'speed 0
   'hit-points 0
