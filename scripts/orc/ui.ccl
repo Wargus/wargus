@@ -164,7 +164,7 @@
 
     ;	Defines position and size of the different buttons.
     ; Menu button
-    '( 24   2 128 17 )
+    '( 24   2 128 19 )
     ; 9 Character portraits
     '(  6 166  46 38 )
     '( 62 166  46 38 )
@@ -263,7 +263,7 @@
 
     ;	Defines position and size of the different buttons.
     ; Menu button
-    '( 24   2 128 17 )
+    '( 24   2 128 19 )
     ; 9 Character portraits
     '(  6 166  46 38 )
     '( 62 166  46 38 )
@@ -362,7 +362,7 @@
 
     ;	Defines position and size of the different buttons.
     ; Menu button
-    '( 24   2 128 17 )
+    '( 24   2 128 19 )
     ; 9 Character portraits
     '(  6 166  46 38 )
     '( 62 166  46 38 )
@@ -461,7 +461,7 @@
 
     ;	Defines position and size of the different buttons.
     ; Menu button
-    '( 24   2 128 17 )
+    '( 24   2 128 19 )
     ; 9 Character portraits
     '(  6 166  46 38 )
     '( 62 166  46 38 )
@@ -560,7 +560,7 @@
 
     ;	Defines position and size of the different buttons.
     ; Menu button
-    '( 24   2 128 17 )
+    '( 24   2 128 19 )
     ; 9 Character portraits
     '(  6 166  46 38 )
     '( 62 166  46 38 )
