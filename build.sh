@@ -11,12 +11,11 @@
 ##
 ##	build.sh	-	The graphics and sound extractor.
 ##
-##	(c) Copyright 1999-2001 by Lutz Sammer
+##	(c) Copyright 1999-2002 by Lutz Sammer
 ##
 ##	FreeCraft is free software; you can redistribute it and/or modify
 ##	it under the terms of the GNU General Public License as published
-##	by the Free Software Foundation; either version 2 of the License,
-##	or (at your option) any later version.
+##	by the Free Software Foundation; only version 2 of the License.
 ##
 ##	FreeCraft is distributed in the hope that it will be useful,
 ##	but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -33,6 +32,7 @@
 # -o DIR = /usr/share/games/freecraft/warii
 # -T path : BINPATH = /usr/lib/freecraft/tools
 # -C CONTRIB = /usr/lib/freecraft/contrib
+# -v : Extract also videos
 
 #	compress parameters
 GZIP="gzip --force --best"
@@ -100,6 +100,8 @@ while [ $# -gt 0 ]; do
 		-T)	BINPATH="$2"; shift ;;
 		-C)	CONTRIB="$2"; shift ;;
 
+		-v)	VIDEO="-v"; shift ;;
+
 		-h)	cat << EOF
 build.sh
  -z / -I : COMPRESS = gzip --force --best / bzip2 --force
@@ -107,6 +109,7 @@ build.sh
  -o DIR = /usr/share/games/freecraft/warii
  -T path : BINPATH = /usr/lib/freecraft/tools
  -C CONTRIB = /usr/lib/freecraft/contrib
+ -v : Also extract video
 EOF
 			exit 0;;
 
@@ -136,7 +139,7 @@ fi
 
 # ADD -e      To force that the archive is expansion compatible
 # ADD -n      To force that the archive is not expansion compatible
-$BINPATH/wartool "$DATADIR" "$DIR"
+$BINPATH/wartool "$VIDEO" "$DATADIR" "$DIR"
 
 # copy own supplied files
 
