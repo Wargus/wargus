@@ -2082,7 +2082,10 @@
 ;;
 (define-menu 'name 'menu-editor-player-properties 'geometry '(0 0 640 480)
     'image 'none 'default '0)
-(define-menu-item 'pos (list 128 11) 'font 'large
+(define-menu-item 'pos (list 0 0) 'font 'game  'init 'program-start
+    'drawfunc 'editor-player-properties-draw-func
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list (/ 640 2) 11) 'font 'large
     'text '("Player Properties" center)
     'menu 'menu-editor-player-properties)
 (define-menu-item 'pos (list 455 440) 'font 'large
@@ -2092,52 +2095,704 @@
             func editor-end-menu
             style gm-half)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 0))) 'font 'game
+;; 3
+(define-menu-item 'pos (list 12 (+ 40 (* 22 0))) 'font 'game
+    'text '("#" left)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 12 (+ 40 (* 22 1))) 'font 'game
     'text '("0" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 1))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 2))) 'font 'game
     'text '("1" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 2))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 3))) 'font 'game
     'text '("2" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 3))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 4))) 'font 'game
     'text '("3" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 4))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 5))) 'font 'game
     'text '("4" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 5))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 6))) 'font 'game
     'text '("5" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 6))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 7))) 'font 'game
     'text '("6" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 7))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 8))) 'font 'game
     'text '("7" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 8))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 9))) 'font 'game
     'text '("8" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 9))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 10))) 'font 'game
     'text '("9" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 10))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 11))) 'font 'game
     'text '("10" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 11))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 12))) 'font 'game
     'text '("11" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 12))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 13))) 'font 'game
     'text '("12" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 13))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 14))) 'font 'game
     'text '("13" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 14))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 15))) 'font 'game
     'text '("14" left)
     'menu 'menu-editor-player-properties)
-(define-menu-item 'pos (list 128 (+ 40 (* 22 15))) 'font 'game
+(define-menu-item 'pos (list 12 (+ 40 (* 22 16))) 'font 'game
     'text '("15" left)
+    'menu 'menu-editor-player-properties)
+;; 20
+(define-menu-item 'pos (list 40 (+ 40 (* 22 0))) 'font 'game
+    'text '("Race" left)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 1))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 2))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 3))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 4))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 5))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 6))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 7))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 8))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 9))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 10))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 11))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 12))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 13))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 14))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 15))) 'font 'game
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 40 (+ 40 (* 22 16))) 'font 'game 'flags '(disabled)
+    'pulldown '(size (80 20)
+              style pulldown
+              func null
+              options ("Human" "Orc" "Neutral" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+;; 37
+(define-menu-item 'pos (list 130 (+ 40 (* 22 0))) 'font 'game
+    'text '("Type" left)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 1))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 2))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 3))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 4))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 5))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 6))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 7))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 8))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 9))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 10))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 11))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 12))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 13))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 14))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 15))) 'font 'game
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 130 (+ 40 (* 22 16))) 'font 'game 'flags '(disabled)
+    'pulldown '(size (150 20)
+              style pulldown
+              func null
+              options ("Human" "Computer" "Rescue (Passive)" "Rescue (Active)" "Neutral" "Nobody" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+;; 54
+(define-menu-item 'pos (list 290 (+ 40 (* 22 0))) 'font 'game
+    'text '("AI" left)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 1))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 2))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 3))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 4))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 5))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 6))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 7))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 8))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 9))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 10))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 11))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 12))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 13))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 14))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 15))) 'font 'game
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 290 (+ 40 (* 22 16))) 'font 'game 'flags '(disabled)
+    'pulldown '(size (120 20)
+              style pulldown
+              func null
+              options ("Land Attack" "Passive" "Sea Attack" "Air Attack" )
+              default 0
+              current 0)
+    'menu 'menu-editor-player-properties)
+;; 71
+(define-menu-item 'pos (list 420 (+ 40 (* 22 0))) 'font 'game
+    'text '("Gold" left)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 1))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 2))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 3))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 4))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 5))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 6))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 7))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 8))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 9))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 10))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 11))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 12))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 13))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 14))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 15))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 420 (+ 40 (* 22 16))) 'font 'game 'flags '(disabled)
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+;; 88
+(define-menu-item 'pos (list 490 (+ 40 (* 22 0))) 'font 'game
+    'text '("Lumber" left)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 1))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 2))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 3))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 4))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 5))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 6))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 7))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 8))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 9))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 10))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 11))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 12))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 13))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 14))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 15))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 490 (+ 40 (* 22 16))) 'font 'game 'flags '(disabled)
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+;; 105
+(define-menu-item 'pos (list 560 (+ 40 (* 22 0))) 'font 'game
+    'text '("Oil" left)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 1))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 2))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 3))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 4))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 5))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 6))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 7))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 8))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 9))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 10))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 11))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 12))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 13))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 14))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 15))) 'font 'game
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
+    'menu 'menu-editor-player-properties)
+(define-menu-item 'pos (list 560 (+ 40 (* 22 16))) 'font 'game 'flags '(disabled)
+    'input '(size (60 20)
+           func editor-player-properties-enter-action
+           style pulldown)
     'menu 'menu-editor-player-properties)
 
