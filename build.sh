@@ -190,10 +190,10 @@ cp $CONTRIB/puds/multi/* $DIR/puds/multiple
 ##	The default pud.
 #
 [ -f "$DIR/puds/multi/(2)mysterious-dragon-isle.pud.gz" ] \
-	&& ln -s "puds/multi/(2)mysterious-dragon-isle.pud.gz" \
+	&& ln -s "multi/(2)mysterious-dragon-isle.pud.gz" \
 	    $DIR/puds/default.pud.gz
 [ -f "$DIR/puds/multi/(2)mysterious-dragon-isle.pud.bz2" ] \
-	&& ln -s "puds/multi/(2)mysterious-dragon-isle.pud.bz2" \
+	&& ln -s "multi/(2)mysterious-dragon-isle.pud.bz2" \
 	    $DIR/puds/default.pud.bz2
 
 exit 0
