@@ -71,7 +71,7 @@
 (mana-sprite	"graphics/ui/mana.png"	-7 -7 7 7)
 (mana-sprite	"mana.png"	-7 -7 7 7)
 )
-;(mana-sprite	"mana2.png"	-12 -2 13 4)
+;(mana-sprite	"mana2.png"	0 -2 31 4)
 
 ;;	Define health-sprite.
 ;;
@@ -81,19 +81,19 @@
 (health-sprite	"graphics/ui/health.png"	0 -7 7 7)
 (health-sprite	"health.png"	0 -7 7 7)
 )
-;(health-sprite	"health2.png"	0 -2 23 3)
+;(health-sprite	"health2.png"	0 -5 31 4)
 
 ;;	Uncomment next, to get a health bar to the left of the unit
-(show-health-bar)
+;(show-health-bar)
 
 ;;	Uncomment next, to get a health dot to the left of the unit
-;(show-health-dot)
+(show-health-dot)
 
 ;;	Uncomment next, to get a mana bar to the right of the unit
-(show-mana-bar)
+;(show-mana-bar)
 
 ;;	Uncomment next, to get a mana dot to the right of the unit
-;(show-mana-dot)
+(show-mana-dot)
 
 ;;	Uncomment next, to get no full bars or dots.
 (show-no-full)
@@ -105,13 +105,13 @@
 ;(show-health-vertical)
 
 ;;	Uncomment next, to show health bars horizontal.
-(show-health-horizontal)
+;(show-health-horizontal)
 
 ;;	Uncomment next, to show mana bars vertical.
 ;(show-mana-vertical)
 
 ;;	Uncomment next, to show mana bars horizontal.
-(show-mana-horizontal)
+;(show-mana-horizontal)
 
 ;;	Uncomment next, to show energy bars and dots only for selected units
 ;(show-energy-selected-only)
