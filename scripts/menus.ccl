@@ -498,6 +498,7 @@
               current 0)
     'menu 'menu-custom-game)
 (define-menu-item 'pos (list (- 640 224 16) (+ 10 300)) 'font 'game
+    'flags '(disabled)
     'pulldown '(size (190 20)
               style pulldown
               func game-gat-action
