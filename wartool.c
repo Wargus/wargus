@@ -225,7 +225,6 @@ Control Todo[] = {
 {X,0,"orc/level13o",						 90 ,4	_2},
 {X,0,"human/level14h",						 91 ,4	_2},
 {X,0,"orc/level14o",						 92 ,4	_2},
-#ifdef HAVE_EXPANSION
 {X,2,"human-exp/levelx01h",						 99 ,4	_2},
 {X,2,"orc-exp/levelx01o",						100 ,4	_2},
 {X,2,"human-exp/levelx02h",						101 ,4	_2},
@@ -252,7 +251,6 @@ Control Todo[] = {
 {X,2,"orc-exp/levelx12o",						122 ,4	_2},
 {X,2,"credits2",						123 ,4	_2},
 {X,2,"credits-ext.txt",						124	__},
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 //	MOST THINGS
@@ -675,12 +673,9 @@ Control Todo[] = {
 
 {V,0,"videos/gameintro",					429	__},
 
-#ifdef HAVE_EXPANSION
 {R,2,"swamp/swamp",						438	__},
 {T,2,"swamp/terrain/swamp",			438,	439,	440,	441 },
-#endif
 
-#ifdef HAVE_EXPANSION
 // --------------------------------------------------
 {P,2,"campaigns/human-exp/levelx01h",				 446	__},
 {P,2,"campaigns/orc-exp/levelx01o",				 447	__},
@@ -707,8 +702,6 @@ Control Todo[] = {
 {P,2,"campaigns/human-exp/levelx12h",				 468	__},
 {P,2,"campaigns/orc-exp/levelx12o",				 469	__},
 // ------------------------------------------
-#endif
-#ifdef HAVE_EXPANSION
 {G,2,"tilesets/swamp/neutral/units/%59",			438, 470 _2},
 {G,2,"tilesets/swamp/icons",					438, 471 _2},
 // 472: default UDTA for expansion PUDs
@@ -767,7 +760,6 @@ Control Todo[] = {
 {G,2,"tilesets/swamp/neutral/buildings/%102",			438, 525 _2},
 {G,2,"tilesets/swamp/human/units/%40",				438, 526 _2},
 {G,2,"tilesets/swamp/orc/units/%41",				438, 527 _2},
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 //	SOUNDS
@@ -1072,7 +1064,6 @@ Control Todo[] = {
 {W,0,"neutral/units/pig/selected/1",				290	__},
 {W,0,"neutral/units/pig/annoyed/1",				291	__},
 {W,0,"units/catapult-ballista/acknowledgement/1",		292	__},
-#ifdef HAVE_EXPANSION
 {W,2,"human/units/alleria/annoyed/1",				293	__},
 {W,2,"human/units/alleria/annoyed/2",				294	__},
 {W,2,"human/units/alleria/annoyed/3",				295	__},
@@ -1165,7 +1156,6 @@ Control Todo[] = {
 {W,2,"orc/units/teron gorefiend/acknowledgement/3",		382	__},
 {W,2,"neutral/units/warthog/selected/1",			383	__},
 {W,2,"neutral/units/warthog/annoyed/1",				384	__},
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 //	INTERFACE
@@ -1205,7 +1195,6 @@ Control Todo[] = {
 
 {I,0,"ui/human/The End",					27, 29 _2},
 {I,0,"ui/orc/Smashing of Lordaeron scroll",			32, 30 _2},
-#ifdef HAVE_EXPANSION
 {I,2,"ui/Patch",						14, 91 _2},
 {I,2,"ui/Credits for extension background",			93, 94 _2},
 {I,2,"../campaigns/human-exp/interface/Act I  - A Time for Heroes",17,96 _2},
@@ -1216,7 +1205,6 @@ Control Todo[] = {
 {I,2,"../campaigns/orc-exp/interface/Act III- The Great Sea",	17, 101 _2},
 {I,2,"../campaigns/human-exp/interface/Act IV - The Measure of Valor",17,102 _2},
 {I,2,"../campaigns/orc-exp/interface/Act IV - Prelude to New Worlds",17,103 _2},
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 //	SPEACH INTROS
@@ -1276,7 +1264,6 @@ Control Todo[] = {
 {W,0,"../campaigns/orc/level13o-intro2",				44 __},
 {W,0,"../campaigns/orc/level14o-intro1",				45 __},
 
-#ifdef HAVE_EXPANSION
 {W,2,"../campaigns/human-exp/victory",					50 __},
 {W,2,"../campaigns/human-exp/victory-2",				51 __},
 
@@ -1404,7 +1391,6 @@ Control Todo[] = {
 {W,2,"../campaigns/levelx119-intro1",					172 __},
 {W,2,"../campaigns/levelx120-intro1",					173 __},
 #endif
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 //	INTERFACE
@@ -1431,12 +1417,10 @@ Control Todo[] = {
 
 {V,0,"videos/video12",						14	__},
 
-#ifdef HAVE_EXPANSION
 {V,2,"videos/video13",						15	__},
 {V,2,"videos/video14",						16	__},
 {V,2,"videos/video15",						17	__},
 {V,2,"videos/video16",						18	__},
-#endif
 
 #undef __
 };
