@@ -347,7 +347,7 @@
   'speed 8
   'hit-points 180
   'max-mana 255
-  'magic 255
+  'magic 1
   'tile-size '(1 1) 'box-size '(39 39)
   'sight-range 9 'computer-reaction-range 11 'person-reaction-range 9
   'armor 2 'basic-damage 0 'piercing-damage 16 'missile 'missile-touch-of-death
