@@ -1,0 +1,1632 @@
+;;   ___________		     _________		      _____  __
+;;   \_	  _____/______   ____   ____ \_   ___ \____________ _/ ____\/  |_
+;;    |    __) \_  __ \_/ __ \_/ __ \/    \  \/\_  __ \__  \\   __\\   __\ 
+;;    |     \   |  | \/\  ___/\  ___/\     \____|  | \// __ \|  |   |  |
+;;    \___  /   |__|    \___  >\___  >\______  /|__|  (____  /__|   |__|
+;;	  \/		    \/	   \/	     \/		   \/
+;;  ______________________                           ______________________
+;;			  T H E   W A R   B E G I N S
+;;	   FreeCraft - A free fantasy real time strategy game engine
+;;
+;;	icons.ccl	-	Define the icons.
+;;
+;;	(c) Copyright 2001 by Lutz Sammer
+;;
+;;	$Id$
+;;
+
+(define summer-icons-file "icons (summer).png")
+(define winter-icons-file "icons (winter).png")
+(define wasteland-icons-file "icons (wasteland).png")
+(define swamp-icons-file "icons (swamp).png")
+
+;;=============================================================================
+;;	Define an icon.
+;;
+;;	(define-icon ident tileset type index file)
+;;
+;;	ident	is the name of the icon.
+;;	tileset is the name of the tileset
+;;	type	is the 'normal
+;;	index	is the index into the graphic file
+;;	file	is the filename of the graphic file containing the graphics
+;;
+
+;;=============================================================================
+;;	Summer Tileset
+;;=============================================================================
+
+(define-icon 'icon-peasant 'tileset-summer
+  'normal 0 summer-icons-file)
+(define-icon 'icon-peon 'tileset-summer
+  'normal 1 summer-icons-file)
+(define-icon 'icon-footman 'tileset-summer
+  'normal 2 summer-icons-file)
+(define-icon 'icon-grunt 'tileset-summer
+  'normal 3 summer-icons-file)
+(define-icon 'icon-archer 'tileset-summer
+  'normal 4 summer-icons-file)
+(define-icon 'icon-axethrower 'tileset-summer
+  'normal 5 summer-icons-file)
+(define-icon 'icon-ranger 'tileset-summer
+  'normal 6 summer-icons-file)
+(define-icon 'icon-berserker 'tileset-summer
+  'normal 7 summer-icons-file)
+(define-icon 'icon-knight 'tileset-summer
+  'normal 8 summer-icons-file)
+(define-icon 'icon-ogre 'tileset-summer
+  'normal 9 summer-icons-file)
+(define-icon 'icon-paladin 'tileset-summer
+  'normal 10 summer-icons-file)
+(define-icon 'icon-ogre-mage 'tileset-summer
+  'normal 11 summer-icons-file)
+(define-icon 'icon-dwarves 'tileset-summer
+  'normal 12 summer-icons-file)
+(define-icon 'icon-goblin-sappers 'tileset-summer
+  'normal 13 summer-icons-file)
+(define-icon 'icon-mage 'tileset-summer
+  'normal 14 summer-icons-file)
+(define-icon 'icon-death-knight 'tileset-summer
+  'normal 15 summer-icons-file)
+(define-icon 'icon-ballista 'tileset-summer
+  'normal 16 summer-icons-file)
+(define-icon 'icon-catapult 'tileset-summer
+  'normal 17 summer-icons-file)
+(define-icon 'icon-human-oil-tanker 'tileset-summer
+  'normal 18 summer-icons-file)
+(define-icon 'icon-orc-oil-tanker 'tileset-summer
+  'normal 19 summer-icons-file)
+(define-icon 'icon-human-transport 'tileset-summer
+  'normal 20 summer-icons-file)
+(define-icon 'icon-orc-transport 'tileset-summer
+  'normal 21 summer-icons-file)
+(define-icon 'icon-elven-destroyer 'tileset-summer
+  'normal 22 summer-icons-file)
+(define-icon 'icon-troll-destroyer 'tileset-summer
+  'normal 23 summer-icons-file)
+(define-icon 'icon-battleship 'tileset-summer
+  'normal 24 summer-icons-file)
+(define-icon 'icon-ogre-juggernaught 'tileset-summer
+  'normal 25 summer-icons-file)
+(define-icon 'icon-gnomish-submarine 'tileset-summer
+  'normal 26 summer-icons-file)
+(define-icon 'icon-giant-turtle 'tileset-summer
+  'normal 27 summer-icons-file)
+(define-icon 'icon-gnomish-flying-machine 'tileset-summer
+  'normal 28 summer-icons-file)
+(define-icon 'icon-goblin-zeppelin 'tileset-summer
+  'normal 29 summer-icons-file)
+(define-icon 'icon-gryphon-rider 'tileset-summer
+  'normal 30 summer-icons-file)
+(define-icon 'icon-dragon 'tileset-summer
+  'normal 31 summer-icons-file)
+(define-icon 'icon-lothar 'tileset-summer
+  'normal 32 summer-icons-file)
+(define-icon 'icon-gul-dan 'tileset-summer
+  'normal 33 summer-icons-file)
+(define-icon 'icon-uther-lightbringer 'tileset-summer
+  'normal 34 summer-icons-file)
+(define-icon 'icon-zuljin 'tileset-summer
+  'normal 35 summer-icons-file)
+(define-icon 'icon-cho-gall 'tileset-summer
+  'normal 36 summer-icons-file)
+(define-icon 'icon-daemon 'tileset-summer
+  'normal 37 summer-icons-file)
+(define-icon 'icon-farm 'tileset-summer
+  'normal 38 summer-icons-file)
+(define-icon 'icon-pig-farm 'tileset-summer
+  'normal 39 summer-icons-file)
+(define-icon 'icon-town-hall 'tileset-summer
+  'normal 40 summer-icons-file)
+(define-icon 'icon-great-hall 'tileset-summer
+  'normal 41 summer-icons-file)
+(define-icon 'icon-human-barracks 'tileset-summer
+  'normal 42 summer-icons-file)
+(define-icon 'icon-orc-barracks 'tileset-summer
+  'normal 43 summer-icons-file)
+(define-icon 'icon-elven-lumber-mill 'tileset-summer
+  'normal 44 summer-icons-file)
+(define-icon 'icon-troll-lumber-mill 'tileset-summer
+  'normal 45 summer-icons-file)
+(define-icon 'icon-human-blacksmith 'tileset-summer
+  'normal 46 summer-icons-file)
+(define-icon 'icon-orc-blacksmith 'tileset-summer
+  'normal 47 summer-icons-file)
+(define-icon 'icon-human-shipyard 'tileset-summer
+  'normal 48 summer-icons-file)
+(define-icon 'icon-orc-shipyard 'tileset-summer
+  'normal 49 summer-icons-file)
+(define-icon 'icon-human-refinery 'tileset-summer
+  'normal 50 summer-icons-file)
+(define-icon 'icon-orc-refinery 'tileset-summer
+  'normal 51 summer-icons-file)
+(define-icon 'icon-human-foundry 'tileset-summer
+  'normal 52 summer-icons-file)
+(define-icon 'icon-orc-foundry 'tileset-summer
+  'normal 53 summer-icons-file)
+(define-icon 'icon-human-oil-platform 'tileset-summer
+  'normal 54 summer-icons-file)
+(define-icon 'icon-orc-oil-platform 'tileset-summer
+  'normal 55 summer-icons-file)
+(define-icon 'icon-stables 'tileset-summer
+  'normal 56 summer-icons-file)
+(define-icon 'icon-ogre-mound 'tileset-summer
+  'normal 57 summer-icons-file)
+(define-icon 'icon-gnomish-inventor 'tileset-summer
+  'normal 58 summer-icons-file)
+(define-icon 'icon-goblin-alchemist 'tileset-summer
+  'normal 59 summer-icons-file)
+(define-icon 'icon-human-watch-tower 'tileset-summer
+  'normal 60 summer-icons-file)
+(define-icon 'icon-orc-watch-tower 'tileset-summer
+  'normal 61 summer-icons-file)
+(define-icon 'icon-church 'tileset-summer
+  'normal 62 summer-icons-file)
+(define-icon 'icon-altar-of-storms 'tileset-summer
+  'normal 63 summer-icons-file)
+(define-icon 'icon-mage-tower 'tileset-summer
+  'normal 64 summer-icons-file)
+(define-icon 'icon-temple-of-the-damned 'tileset-summer
+  'normal 65 summer-icons-file)
+(define-icon 'icon-keep 'tileset-summer
+  'normal 66 summer-icons-file)
+(define-icon 'icon-stronghold 'tileset-summer
+  'normal 67 summer-icons-file)
+(define-icon 'icon-castle-upgrade 'tileset-summer
+  'normal 68 summer-icons-file)
+(define-icon 'icon-fortress-upgrade 'tileset-summer
+  'normal 69 summer-icons-file)
+(define-icon 'icon-castle 'tileset-summer
+  'normal 70 summer-icons-file)
+(define-icon 'icon-fortress 'tileset-summer
+  'normal 71 summer-icons-file)
+(define-icon 'icon-gryphon-aviary 'tileset-summer
+  'normal 72 summer-icons-file)
+(define-icon 'icon-dragon-roost 'tileset-summer
+  'normal 73 summer-icons-file)
+(define-icon 'icon-gold-mine 'tileset-summer
+  'normal 74 summer-icons-file)
+(define-icon 'icon-human-guard-tower 'tileset-summer
+  'normal 75 summer-icons-file)
+(define-icon 'icon-human-cannon-tower 'tileset-summer
+  'normal 76 summer-icons-file)
+(define-icon 'icon-orc-guard-tower 'tileset-summer
+  'normal 77 summer-icons-file)
+(define-icon 'icon-orc-cannon-tower 'tileset-summer
+  'normal 78 summer-icons-file)
+(define-icon 'icon-oil-patch 'tileset-summer
+  'normal 79 summer-icons-file)
+(define-icon 'icon-dark-portal 'tileset-summer
+  'normal 80 summer-icons-file)
+(define-icon 'icon-circle-of-power 'tileset-summer
+  'normal 81 summer-icons-file)
+(define-icon 'icon-runestone 'tileset-summer
+  'normal 82 summer-icons-file)
+(define-icon 'icon-move-peasant 'tileset-summer
+  'normal 83 summer-icons-file)
+(define-icon 'icon-move-peon 'tileset-summer
+  'normal 84 summer-icons-file)
+(define-icon 'icon-repair 'tileset-summer
+  'normal 85 summer-icons-file)
+(define-icon 'icon-harvest 'tileset-summer
+  'normal 86 summer-icons-file)
+(define-icon 'icon-build-basic 'tileset-summer
+  'normal 87 summer-icons-file)
+(define-icon 'icon-build-advanced 'tileset-summer
+  'normal 88 summer-icons-file)
+(define-icon 'icon-return-goods-peasant 'tileset-summer
+  'normal 89 summer-icons-file)
+(define-icon 'icon-return-goods-peon 'tileset-summer
+  'normal 90 summer-icons-file)
+(define-icon 'icon-cancel 'tileset-summer
+  'normal 91 summer-icons-file)
+(define-icon 'icon-human-wall 'tileset-summer
+  'normal 92 summer-icons-file)
+(define-icon 'icon-orc-wall 'tileset-summer
+  'normal 93 summer-icons-file)
+(define-icon 'icon-slow 'tileset-summer
+  'normal 94 summer-icons-file)
+(define-icon 'icon-invisibility 'tileset-summer
+  'normal 95 summer-icons-file)
+(define-icon 'icon-haste 'tileset-summer
+  'normal 96 summer-icons-file)
+(define-icon 'icon-runes 'tileset-summer
+  'normal 97 summer-icons-file)
+(define-icon 'icon-unholy-armor 'tileset-summer
+  'normal 98 summer-icons-file)
+(define-icon 'icon-lightning 'tileset-summer
+  'normal 99 summer-icons-file)
+(define-icon 'icon-flame-shield 'tileset-summer
+  'normal 100 summer-icons-file)
+(define-icon 'icon-fireball 'tileset-summer
+  'normal 101 summer-icons-file)
+(define-icon 'icon-touch-of-darkness 'tileset-summer
+  'normal 102 summer-icons-file)
+(define-icon 'icon-death-coil 'tileset-summer
+  'normal 103 summer-icons-file)
+(define-icon 'icon-whirlwind 'tileset-summer
+  'normal 104 summer-icons-file)
+(define-icon 'icon-blizzard 'tileset-summer
+  'normal 105 summer-icons-file)
+(define-icon 'icon-holy-vision 'tileset-summer
+  'normal 106 summer-icons-file)
+(define-icon 'icon-heal 'tileset-summer
+  'normal 107 summer-icons-file)
+(define-icon 'icon-death-and-decay 'tileset-summer
+  'normal 108 summer-icons-file)
+(define-icon 'icon-109 'tileset-summer
+  'normal 109 summer-icons-file)
+(define-icon 'icon-exorcism 'tileset-summer
+  'normal 110 summer-icons-file)
+(define-icon 'icon-eye-of-kilrogg 'tileset-summer
+  'normal 111 summer-icons-file)
+(define-icon 'icon-bloodlust 'tileset-summer
+  'normal 112 summer-icons-file)
+(define-icon 'icon-unknown113 'tileset-summer
+  'normal 113 summer-icons-file)
+(define-icon 'icon-skeleton 'tileset-summer
+  'normal 114 summer-icons-file)
+(define-icon 'icon-critter 'tileset-summer
+  'normal 115 summer-icons-file)
+(define-icon 'icon-sword1 'tileset-summer
+  'normal 116 summer-icons-file)
+(define-icon 'icon-sword2 'tileset-summer
+  'normal 117 summer-icons-file)
+(define-icon 'icon-sword3 'tileset-summer
+  'normal 118 summer-icons-file)
+(define-icon 'icon-battle-axe1 'tileset-summer
+  'normal 119 summer-icons-file)
+(define-icon 'icon-battle-axe2 'tileset-summer
+  'normal 120 summer-icons-file)
+(define-icon 'icon-battle-axe3 'tileset-summer
+  'normal 121 summer-icons-file)
+(define-icon 'icon-122 'tileset-summer
+  'normal 122 summer-icons-file)
+(define-icon 'icon-123 'tileset-summer
+  'normal 123 summer-icons-file)
+(define-icon 'icon-arrow1 'tileset-summer
+  'normal 124 summer-icons-file)
+(define-icon 'icon-arrow2 'tileset-summer
+  'normal 125 summer-icons-file)
+(define-icon 'icon-arrow3 'tileset-summer
+  'normal 126 summer-icons-file)
+(define-icon 'icon-throwing-axe1 'tileset-summer
+  'normal 127 summer-icons-file)
+(define-icon 'icon-throwing-axe2 'tileset-summer
+  'normal 128 summer-icons-file)
+(define-icon 'icon-throwing-axe3 'tileset-summer
+  'normal 129 summer-icons-file)
+(define-icon 'icon-horse1 'tileset-summer
+  'normal 130 summer-icons-file)
+(define-icon 'icon-horse2 'tileset-summer
+  'normal 131 summer-icons-file)
+(define-icon 'icon-longbow 'tileset-summer
+  'normal 132 summer-icons-file)
+(define-icon 'icon-ranger-scouting 'tileset-summer
+  'normal 133 summer-icons-file)
+(define-icon 'icon-ranger-marksmanship 'tileset-summer
+  'normal 134 summer-icons-file)
+(define-icon 'icon-light-axes 'tileset-summer
+  'normal 135 summer-icons-file)
+(define-icon 'icon-berserker-scouting 'tileset-summer
+  'normal 136 summer-icons-file)
+(define-icon 'icon-berserker-regeneration 'tileset-summer
+  'normal 137 summer-icons-file)
+(define-icon 'icon-catapult1 'tileset-summer
+  'normal 138 summer-icons-file)
+(define-icon 'icon-catapult2 'tileset-summer
+  'normal 139 summer-icons-file)
+(define-icon 'icon-ballista1 'tileset-summer
+  'normal 140 summer-icons-file)
+(define-icon 'icon-ballista2 'tileset-summer
+  'normal 141 summer-icons-file)
+(define-icon 'icon-human-demolish 'tileset-summer
+  'normal 142 summer-icons-file)
+(define-icon 'icon-orc-demolish 'tileset-summer
+  'normal 143 summer-icons-file)
+(define-icon 'icon-human-ship-cannon1 'tileset-summer
+  'normal 144 summer-icons-file)
+(define-icon 'icon-human-ship-cannon2 'tileset-summer
+  'normal 145 summer-icons-file)
+(define-icon 'icon-human-ship-cannon3 'tileset-summer
+  'normal 146 summer-icons-file)
+(define-icon 'icon-orc-ship-cannon1 'tileset-summer
+  'normal 147 summer-icons-file)
+(define-icon 'icon-orc-ship-cannon2 'tileset-summer
+  'normal 148 summer-icons-file)
+(define-icon 'icon-orc-ship-cannon3 'tileset-summer
+  'normal 149 summer-icons-file)
+(define-icon 'icon-orc-ship-armor1 'tileset-summer
+  'normal 150 summer-icons-file)
+(define-icon 'icon-orc-ship-armor2 'tileset-summer
+  'normal 151 summer-icons-file)
+(define-icon 'icon-orc-ship-armor3 'tileset-summer
+  'normal 152 summer-icons-file)
+(define-icon 'icon-human-ship-armor1 'tileset-summer
+  'normal 153 summer-icons-file)
+(define-icon 'icon-human-ship-armor2 'tileset-summer
+  'normal 154 summer-icons-file)
+(define-icon 'icon-human-ship-armor3 'tileset-summer
+  'normal 155 summer-icons-file)
+(define-icon 'icon-orc-ship-move 'tileset-summer
+  'normal 156 summer-icons-file)
+(define-icon 'icon-human-ship-move 'tileset-summer
+  'normal 157 summer-icons-file)
+(define-icon 'icon-orc-ship-return-oil 'tileset-summer
+  'normal 158 summer-icons-file)
+(define-icon 'icon-human-ship-return-oil 'tileset-summer
+  'normal 159 summer-icons-file)
+(define-icon 'icon-orc-ship-haul-oil 'tileset-summer
+  'normal 160 summer-icons-file)
+(define-icon 'icon-human-ship-haul-oil 'tileset-summer
+  'normal 161 summer-icons-file)
+(define-icon 'icon-human-unload 'tileset-summer
+  'normal 162 summer-icons-file)
+(define-icon 'icon-orc-unload 'tileset-summer
+  'normal 163 summer-icons-file)
+(define-icon 'icon-human-shield1 'tileset-summer
+  'normal 164 summer-icons-file)
+(define-icon 'icon-human-shield2 'tileset-summer
+  'normal 165 summer-icons-file)
+(define-icon 'icon-human-shield3 'tileset-summer
+  'normal 166 summer-icons-file)
+(define-icon 'icon-orc-shield1 'tileset-summer
+  'normal 167 summer-icons-file)
+(define-icon 'icon-orc-shield2 'tileset-summer
+  'normal 168 summer-icons-file)
+(define-icon 'icon-orc-shield3 'tileset-summer
+  'normal 169 summer-icons-file)
+(define-icon 'icon-170 'tileset-summer
+  'normal 170 summer-icons-file)
+(define-icon 'icon-171 'tileset-summer
+  'normal 171 summer-icons-file)
+(define-icon 'icon-172 'tileset-summer
+  'normal 172 summer-icons-file)
+(define-icon 'icon-173 'tileset-summer
+  'normal 173 summer-icons-file)
+(define-icon 'icon-174 'tileset-summer
+  'normal 174 summer-icons-file)
+(define-icon 'icon-175 'tileset-summer
+  'normal 175 summer-icons-file)
+(define-icon 'icon-176 'tileset-summer
+  'normal 176 summer-icons-file)
+(define-icon 'icon-177 'tileset-summer
+  'normal 177 summer-icons-file)
+(define-icon 'icon-human-patrol-land 'tileset-summer
+  'normal 178 summer-icons-file)
+(define-icon 'icon-orc-patrol-land 'tileset-summer
+  'normal 179 summer-icons-file)
+(define-icon 'icon-human-stand-ground 'tileset-summer
+  'normal 180 summer-icons-file)
+(define-icon 'icon-orc-stand-ground 'tileset-summer
+  'normal 181 summer-icons-file)
+(define-icon 'icon-human-attack-ground 'tileset-summer
+  'normal 182 summer-icons-file)
+(define-icon 'icon-orc-attack-ground 'tileset-summer
+  'normal 183 summer-icons-file)
+(define-icon 'icon-human-patrol-naval 'tileset-summer
+  'normal 184 summer-icons-file)
+(define-icon 'icon-orc-patrol-naval 'tileset-summer
+  'normal 185 summer-icons-file)
+(define-icon 'icon-korgath-bladefist 'tileset-summer
+  'normal 186 summer-icons-file)
+(define-icon 'icon-alleria 'tileset-summer
+  'normal 187 summer-icons-file)
+(define-icon 'icon-danath 'tileset-summer
+  'normal 188 summer-icons-file)
+(define-icon 'icon-teron-gorefiend 'tileset-summer
+  'normal 189 summer-icons-file)
+(define-icon 'icon-grom-hellscream 'tileset-summer
+  'normal 190 summer-icons-file)
+(define-icon 'icon-kurdan-and-sky-ree 'tileset-summer
+  'normal 191 summer-icons-file)
+(define-icon 'icon-deathwing 'tileset-summer
+  'normal 192 summer-icons-file)
+(define-icon 'icon-khadgar 'tileset-summer
+  'normal 193 summer-icons-file)
+(define-icon 'icon-dentarg 'tileset-summer
+  'normal 194 summer-icons-file)
+(define-icon 'icon-turalyon 'tileset-summer
+  'normal 195 summer-icons-file)
+
+;;=============================================================================
+;;	Winter Tileset
+;;=============================================================================
+
+(define-icon 'icon-peasant 'tileset-winter
+  'normal 0 winter-icons-file)
+(define-icon 'icon-peon 'tileset-winter
+  'normal 1 winter-icons-file)
+(define-icon 'icon-footman 'tileset-winter
+  'normal 2 winter-icons-file)
+(define-icon 'icon-grunt 'tileset-winter
+  'normal 3 winter-icons-file)
+(define-icon 'icon-archer 'tileset-winter
+  'normal 4 winter-icons-file)
+(define-icon 'icon-axethrower 'tileset-winter
+  'normal 5 winter-icons-file)
+(define-icon 'icon-ranger 'tileset-winter
+  'normal 6 winter-icons-file)
+(define-icon 'icon-berserker 'tileset-winter
+  'normal 7 winter-icons-file)
+(define-icon 'icon-knight 'tileset-winter
+  'normal 8 winter-icons-file)
+(define-icon 'icon-ogre 'tileset-winter
+  'normal 9 winter-icons-file)
+(define-icon 'icon-paladin 'tileset-winter
+  'normal 10 winter-icons-file)
+(define-icon 'icon-ogre-mage 'tileset-winter
+  'normal 11 winter-icons-file)
+(define-icon 'icon-dwarves 'tileset-winter
+  'normal 12 winter-icons-file)
+(define-icon 'icon-goblin-sappers 'tileset-winter
+  'normal 13 winter-icons-file)
+(define-icon 'icon-mage 'tileset-winter
+  'normal 14 winter-icons-file)
+(define-icon 'icon-death-knight 'tileset-winter
+  'normal 15 winter-icons-file)
+(define-icon 'icon-ballista 'tileset-winter
+  'normal 16 winter-icons-file)
+(define-icon 'icon-catapult 'tileset-winter
+  'normal 17 winter-icons-file)
+(define-icon 'icon-human-oil-tanker 'tileset-winter
+  'normal 18 winter-icons-file)
+(define-icon 'icon-orc-oil-tanker 'tileset-winter
+  'normal 19 winter-icons-file)
+(define-icon 'icon-human-transport 'tileset-winter
+  'normal 20 winter-icons-file)
+(define-icon 'icon-orc-transport 'tileset-winter
+  'normal 21 winter-icons-file)
+(define-icon 'icon-elven-destroyer 'tileset-winter
+  'normal 22 winter-icons-file)
+(define-icon 'icon-troll-destroyer 'tileset-winter
+  'normal 23 winter-icons-file)
+(define-icon 'icon-battleship 'tileset-winter
+  'normal 24 winter-icons-file)
+(define-icon 'icon-ogre-juggernaught 'tileset-winter
+  'normal 25 winter-icons-file)
+(define-icon 'icon-gnomish-submarine 'tileset-winter
+  'normal 26 winter-icons-file)
+(define-icon 'icon-giant-turtle 'tileset-winter
+  'normal 27 winter-icons-file)
+(define-icon 'icon-gnomish-flying-machine 'tileset-winter
+  'normal 28 winter-icons-file)
+(define-icon 'icon-goblin-zeppelin 'tileset-winter
+  'normal 29 winter-icons-file)
+(define-icon 'icon-gryphon-rider 'tileset-winter
+  'normal 30 winter-icons-file)
+(define-icon 'icon-dragon 'tileset-winter
+  'normal 31 winter-icons-file)
+(define-icon 'icon-lothar 'tileset-winter
+  'normal 32 winter-icons-file)
+(define-icon 'icon-gul-dan 'tileset-winter
+  'normal 33 winter-icons-file)
+(define-icon 'icon-uther-lightbringer 'tileset-winter
+  'normal 34 winter-icons-file)
+(define-icon 'icon-zuljin 'tileset-winter
+  'normal 35 winter-icons-file)
+(define-icon 'icon-cho-gall 'tileset-winter
+  'normal 36 winter-icons-file)
+(define-icon 'icon-daemon 'tileset-winter
+  'normal 37 winter-icons-file)
+(define-icon 'icon-farm 'tileset-winter
+  'normal 38 winter-icons-file)
+(define-icon 'icon-pig-farm 'tileset-winter
+  'normal 39 winter-icons-file)
+(define-icon 'icon-town-hall 'tileset-winter
+  'normal 40 winter-icons-file)
+(define-icon 'icon-great-hall 'tileset-winter
+  'normal 41 winter-icons-file)
+(define-icon 'icon-human-barracks 'tileset-winter
+  'normal 42 winter-icons-file)
+(define-icon 'icon-orc-barracks 'tileset-winter
+  'normal 43 winter-icons-file)
+(define-icon 'icon-elven-lumber-mill 'tileset-winter
+  'normal 44 winter-icons-file)
+(define-icon 'icon-troll-lumber-mill 'tileset-winter
+  'normal 45 winter-icons-file)
+(define-icon 'icon-human-blacksmith 'tileset-winter
+  'normal 46 winter-icons-file)
+(define-icon 'icon-orc-blacksmith 'tileset-winter
+  'normal 47 winter-icons-file)
+(define-icon 'icon-human-shipyard 'tileset-winter
+  'normal 48 winter-icons-file)
+(define-icon 'icon-orc-shipyard 'tileset-winter
+  'normal 49 winter-icons-file)
+(define-icon 'icon-human-refinery 'tileset-winter
+  'normal 50 winter-icons-file)
+(define-icon 'icon-orc-refinery 'tileset-winter
+  'normal 51 winter-icons-file)
+(define-icon 'icon-human-foundry 'tileset-winter
+  'normal 52 winter-icons-file)
+(define-icon 'icon-orc-foundry 'tileset-winter
+  'normal 53 winter-icons-file)
+(define-icon 'icon-human-oil-platform 'tileset-winter
+  'normal 54 winter-icons-file)
+(define-icon 'icon-orc-oil-platform 'tileset-winter
+  'normal 55 winter-icons-file)
+(define-icon 'icon-stables 'tileset-winter
+  'normal 56 winter-icons-file)
+(define-icon 'icon-ogre-mound 'tileset-winter
+  'normal 57 winter-icons-file)
+(define-icon 'icon-gnomish-inventor 'tileset-winter
+  'normal 58 winter-icons-file)
+(define-icon 'icon-goblin-alchemist 'tileset-winter
+  'normal 59 winter-icons-file)
+(define-icon 'icon-human-watch-tower 'tileset-winter
+  'normal 60 winter-icons-file)
+(define-icon 'icon-orc-watch-tower 'tileset-winter
+  'normal 61 winter-icons-file)
+(define-icon 'icon-church 'tileset-winter
+  'normal 62 winter-icons-file)
+(define-icon 'icon-altar-of-storms 'tileset-winter
+  'normal 63 winter-icons-file)
+(define-icon 'icon-mage-tower 'tileset-winter
+  'normal 64 winter-icons-file)
+(define-icon 'icon-temple-of-the-damned 'tileset-winter
+  'normal 65 winter-icons-file)
+(define-icon 'icon-keep 'tileset-winter
+  'normal 66 winter-icons-file)
+(define-icon 'icon-stronghold 'tileset-winter
+  'normal 67 winter-icons-file)
+(define-icon 'icon-castle-upgrade 'tileset-winter
+  'normal 68 winter-icons-file)
+(define-icon 'icon-fortress-upgrade 'tileset-winter
+  'normal 69 winter-icons-file)
+(define-icon 'icon-castle 'tileset-winter
+  'normal 70 winter-icons-file)
+(define-icon 'icon-fortress 'tileset-winter
+  'normal 71 winter-icons-file)
+(define-icon 'icon-gryphon-aviary 'tileset-winter
+  'normal 72 winter-icons-file)
+(define-icon 'icon-dragon-roost 'tileset-winter
+  'normal 73 winter-icons-file)
+(define-icon 'icon-gold-mine 'tileset-winter
+  'normal 74 winter-icons-file)
+(define-icon 'icon-human-guard-tower 'tileset-winter
+  'normal 75 winter-icons-file)
+(define-icon 'icon-human-cannon-tower 'tileset-winter
+  'normal 76 winter-icons-file)
+(define-icon 'icon-orc-guard-tower 'tileset-winter
+  'normal 77 winter-icons-file)
+(define-icon 'icon-orc-cannon-tower 'tileset-winter
+  'normal 78 winter-icons-file)
+(define-icon 'icon-oil-patch 'tileset-winter
+  'normal 79 winter-icons-file)
+(define-icon 'icon-dark-portal 'tileset-winter
+  'normal 80 winter-icons-file)
+(define-icon 'icon-circle-of-power 'tileset-winter
+  'normal 81 winter-icons-file)
+(define-icon 'icon-runestone 'tileset-winter
+  'normal 82 winter-icons-file)
+(define-icon 'icon-move-peasant 'tileset-winter
+  'normal 83 winter-icons-file)
+(define-icon 'icon-move-peon 'tileset-winter
+  'normal 84 winter-icons-file)
+(define-icon 'icon-repair 'tileset-winter
+  'normal 85 winter-icons-file)
+(define-icon 'icon-harvest 'tileset-winter
+  'normal 86 winter-icons-file)
+(define-icon 'icon-build-basic 'tileset-winter
+  'normal 87 winter-icons-file)
+(define-icon 'icon-build-advanced 'tileset-winter
+  'normal 88 winter-icons-file)
+(define-icon 'icon-return-goods-peasant 'tileset-winter
+  'normal 89 winter-icons-file)
+(define-icon 'icon-return-goods-peon 'tileset-winter
+  'normal 90 winter-icons-file)
+(define-icon 'icon-cancel 'tileset-winter
+  'normal 91 winter-icons-file)
+(define-icon 'icon-human-wall 'tileset-winter
+  'normal 92 winter-icons-file)
+(define-icon 'icon-orc-wall 'tileset-winter
+  'normal 93 winter-icons-file)
+(define-icon 'icon-slow 'tileset-winter
+  'normal 94 winter-icons-file)
+(define-icon 'icon-invisibility 'tileset-winter
+  'normal 95 winter-icons-file)
+(define-icon 'icon-haste 'tileset-winter
+  'normal 96 winter-icons-file)
+(define-icon 'icon-runes 'tileset-winter
+  'normal 97 winter-icons-file)
+(define-icon 'icon-unholy-armor 'tileset-winter
+  'normal 98 winter-icons-file)
+(define-icon 'icon-lightning 'tileset-winter
+  'normal 99 winter-icons-file)
+(define-icon 'icon-flame-shield 'tileset-winter
+  'normal 100 winter-icons-file)
+(define-icon 'icon-fireball 'tileset-winter
+  'normal 101 winter-icons-file)
+(define-icon 'icon-touch-of-darkness 'tileset-winter
+  'normal 102 winter-icons-file)
+(define-icon 'icon-death-coil 'tileset-winter
+  'normal 103 winter-icons-file)
+(define-icon 'icon-whirlwind 'tileset-winter
+  'normal 104 winter-icons-file)
+(define-icon 'icon-blizzard 'tileset-winter
+  'normal 105 winter-icons-file)
+(define-icon 'icon-holy-vision 'tileset-winter
+  'normal 106 winter-icons-file)
+(define-icon 'icon-heal 'tileset-winter
+  'normal 107 winter-icons-file)
+(define-icon 'icon-death-and-decay 'tileset-winter
+  'normal 108 winter-icons-file)
+(define-icon 'icon-109 'tileset-winter
+  'normal 109 winter-icons-file)
+(define-icon 'icon-exorcism 'tileset-winter
+  'normal 110 winter-icons-file)
+(define-icon 'icon-eye-of-kilrogg 'tileset-winter
+  'normal 111 winter-icons-file)
+(define-icon 'icon-bloodlust 'tileset-winter
+  'normal 112 winter-icons-file)
+(define-icon 'icon-unknown113 'tileset-winter
+  'normal 113 winter-icons-file)
+(define-icon 'icon-skeleton 'tileset-winter
+  'normal 114 winter-icons-file)
+(define-icon 'icon-critter 'tileset-winter
+  'normal 115 winter-icons-file)
+(define-icon 'icon-sword1 'tileset-winter
+  'normal 116 winter-icons-file)
+(define-icon 'icon-sword2 'tileset-winter
+  'normal 117 winter-icons-file)
+(define-icon 'icon-sword3 'tileset-winter
+  'normal 118 winter-icons-file)
+(define-icon 'icon-battle-axe1 'tileset-winter
+  'normal 119 winter-icons-file)
+(define-icon 'icon-battle-axe2 'tileset-winter
+  'normal 120 winter-icons-file)
+(define-icon 'icon-battle-axe3 'tileset-winter
+  'normal 121 winter-icons-file)
+(define-icon 'icon-122 'tileset-winter
+  'normal 122 winter-icons-file)
+(define-icon 'icon-123 'tileset-winter
+  'normal 123 winter-icons-file)
+(define-icon 'icon-arrow1 'tileset-winter
+  'normal 124 winter-icons-file)
+(define-icon 'icon-arrow2 'tileset-winter
+  'normal 125 winter-icons-file)
+(define-icon 'icon-arrow3 'tileset-winter
+  'normal 126 winter-icons-file)
+(define-icon 'icon-throwing-axe1 'tileset-winter
+  'normal 127 winter-icons-file)
+(define-icon 'icon-throwing-axe2 'tileset-winter
+  'normal 128 winter-icons-file)
+(define-icon 'icon-throwing-axe3 'tileset-winter
+  'normal 129 winter-icons-file)
+(define-icon 'icon-horse1 'tileset-winter
+  'normal 130 winter-icons-file)
+(define-icon 'icon-horse2 'tileset-winter
+  'normal 131 winter-icons-file)
+(define-icon 'icon-longbow 'tileset-winter
+  'normal 132 winter-icons-file)
+(define-icon 'icon-ranger-scouting 'tileset-winter
+  'normal 133 winter-icons-file)
+(define-icon 'icon-ranger-marksmanship 'tileset-winter
+  'normal 134 winter-icons-file)
+(define-icon 'icon-light-axes 'tileset-winter
+  'normal 135 winter-icons-file)
+(define-icon 'icon-berserker-scouting 'tileset-winter
+  'normal 136 winter-icons-file)
+(define-icon 'icon-berserker-regeneration 'tileset-winter
+  'normal 137 winter-icons-file)
+(define-icon 'icon-catapult1 'tileset-winter
+  'normal 138 winter-icons-file)
+(define-icon 'icon-catapult2 'tileset-winter
+  'normal 139 winter-icons-file)
+(define-icon 'icon-ballista1 'tileset-winter
+  'normal 140 winter-icons-file)
+(define-icon 'icon-ballista2 'tileset-winter
+  'normal 141 winter-icons-file)
+(define-icon 'icon-human-demolish 'tileset-winter
+  'normal 142 winter-icons-file)
+(define-icon 'icon-orc-demolish 'tileset-winter
+  'normal 143 winter-icons-file)
+(define-icon 'icon-human-ship-cannon1 'tileset-winter
+  'normal 144 winter-icons-file)
+(define-icon 'icon-human-ship-cannon2 'tileset-winter
+  'normal 145 winter-icons-file)
+(define-icon 'icon-human-ship-cannon3 'tileset-winter
+  'normal 146 winter-icons-file)
+(define-icon 'icon-orc-ship-cannon1 'tileset-winter
+  'normal 147 winter-icons-file)
+(define-icon 'icon-orc-ship-cannon2 'tileset-winter
+  'normal 148 winter-icons-file)
+(define-icon 'icon-orc-ship-cannon3 'tileset-winter
+  'normal 149 winter-icons-file)
+(define-icon 'icon-orc-ship-armor1 'tileset-winter
+  'normal 150 winter-icons-file)
+(define-icon 'icon-orc-ship-armor2 'tileset-winter
+  'normal 151 winter-icons-file)
+(define-icon 'icon-orc-ship-armor3 'tileset-winter
+  'normal 152 winter-icons-file)
+(define-icon 'icon-human-ship-armor1 'tileset-winter
+  'normal 153 winter-icons-file)
+(define-icon 'icon-human-ship-armor2 'tileset-winter
+  'normal 154 winter-icons-file)
+(define-icon 'icon-human-ship-armor3 'tileset-winter
+  'normal 155 winter-icons-file)
+(define-icon 'icon-orc-ship-move 'tileset-winter
+  'normal 156 winter-icons-file)
+(define-icon 'icon-human-ship-move 'tileset-winter
+  'normal 157 winter-icons-file)
+(define-icon 'icon-orc-ship-return-oil 'tileset-winter
+  'normal 158 winter-icons-file)
+(define-icon 'icon-human-ship-return-oil 'tileset-winter
+  'normal 159 winter-icons-file)
+(define-icon 'icon-orc-ship-haul-oil 'tileset-winter
+  'normal 160 winter-icons-file)
+(define-icon 'icon-human-ship-haul-oil 'tileset-winter
+  'normal 161 winter-icons-file)
+(define-icon 'icon-human-unload 'tileset-winter
+  'normal 162 winter-icons-file)
+(define-icon 'icon-orc-unload 'tileset-winter
+  'normal 163 winter-icons-file)
+(define-icon 'icon-human-shield1 'tileset-winter
+  'normal 164 winter-icons-file)
+(define-icon 'icon-human-shield2 'tileset-winter
+  'normal 165 winter-icons-file)
+(define-icon 'icon-human-shield3 'tileset-winter
+  'normal 166 winter-icons-file)
+(define-icon 'icon-orc-shield1 'tileset-winter
+  'normal 167 winter-icons-file)
+(define-icon 'icon-orc-shield2 'tileset-winter
+  'normal 168 winter-icons-file)
+(define-icon 'icon-orc-shield3 'tileset-winter
+  'normal 169 winter-icons-file)
+(define-icon 'icon-170 'tileset-winter
+  'normal 170 winter-icons-file)
+(define-icon 'icon-171 'tileset-winter
+  'normal 171 winter-icons-file)
+(define-icon 'icon-172 'tileset-winter
+  'normal 172 winter-icons-file)
+(define-icon 'icon-173 'tileset-winter
+  'normal 173 winter-icons-file)
+(define-icon 'icon-174 'tileset-winter
+  'normal 174 winter-icons-file)
+(define-icon 'icon-175 'tileset-winter
+  'normal 175 winter-icons-file)
+(define-icon 'icon-176 'tileset-winter
+  'normal 176 winter-icons-file)
+(define-icon 'icon-177 'tileset-winter
+  'normal 177 winter-icons-file)
+(define-icon 'icon-human-patrol-land 'tileset-winter
+  'normal 178 winter-icons-file)
+(define-icon 'icon-orc-patrol-land 'tileset-winter
+  'normal 179 winter-icons-file)
+(define-icon 'icon-human-stand-ground 'tileset-winter
+  'normal 180 winter-icons-file)
+(define-icon 'icon-orc-stand-ground 'tileset-winter
+  'normal 181 winter-icons-file)
+(define-icon 'icon-human-attack-ground 'tileset-winter
+  'normal 182 winter-icons-file)
+(define-icon 'icon-orc-attack-ground 'tileset-winter
+  'normal 183 winter-icons-file)
+(define-icon 'icon-human-patrol-naval 'tileset-winter
+  'normal 184 winter-icons-file)
+(define-icon 'icon-orc-patrol-naval 'tileset-winter
+  'normal 185 winter-icons-file)
+(define-icon 'icon-korgath-bladefist 'tileset-winter
+  'normal 186 winter-icons-file)
+(define-icon 'icon-alleria 'tileset-winter
+  'normal 187 winter-icons-file)
+(define-icon 'icon-danath 'tileset-winter
+  'normal 188 winter-icons-file)
+(define-icon 'icon-teron-gorefiend 'tileset-winter
+  'normal 189 winter-icons-file)
+(define-icon 'icon-grom-hellscream 'tileset-winter
+  'normal 190 winter-icons-file)
+(define-icon 'icon-kurdan-and-sky-ree 'tileset-winter
+  'normal 191 winter-icons-file)
+(define-icon 'icon-deathwing 'tileset-winter
+  'normal 192 winter-icons-file)
+(define-icon 'icon-khadgar 'tileset-winter
+  'normal 193 winter-icons-file)
+(define-icon 'icon-dentarg 'tileset-winter
+  'normal 194 winter-icons-file)
+(define-icon 'icon-turalyon 'tileset-winter
+  'normal 195 winter-icons-file)
+
+;;=============================================================================
+;;	Wasteland Tileset
+;;=============================================================================
+
+(define-icon 'icon-peasant 'tileset-wasteland
+  'normal 0 wasteland-icons-file)
+(define-icon 'icon-peon 'tileset-wasteland
+  'normal 1 wasteland-icons-file)
+(define-icon 'icon-footman 'tileset-wasteland
+  'normal 2 wasteland-icons-file)
+(define-icon 'icon-grunt 'tileset-wasteland
+  'normal 3 wasteland-icons-file)
+(define-icon 'icon-archer 'tileset-wasteland
+  'normal 4 wasteland-icons-file)
+(define-icon 'icon-axethrower 'tileset-wasteland
+  'normal 5 wasteland-icons-file)
+(define-icon 'icon-ranger 'tileset-wasteland
+  'normal 6 wasteland-icons-file)
+(define-icon 'icon-berserker 'tileset-wasteland
+  'normal 7 wasteland-icons-file)
+(define-icon 'icon-knight 'tileset-wasteland
+  'normal 8 wasteland-icons-file)
+(define-icon 'icon-ogre 'tileset-wasteland
+  'normal 9 wasteland-icons-file)
+(define-icon 'icon-paladin 'tileset-wasteland
+  'normal 10 wasteland-icons-file)
+(define-icon 'icon-ogre-mage 'tileset-wasteland
+  'normal 11 wasteland-icons-file)
+(define-icon 'icon-dwarves 'tileset-wasteland
+  'normal 12 wasteland-icons-file)
+(define-icon 'icon-goblin-sappers 'tileset-wasteland
+  'normal 13 wasteland-icons-file)
+(define-icon 'icon-mage 'tileset-wasteland
+  'normal 14 wasteland-icons-file)
+(define-icon 'icon-death-knight 'tileset-wasteland
+  'normal 15 wasteland-icons-file)
+(define-icon 'icon-ballista 'tileset-wasteland
+  'normal 16 wasteland-icons-file)
+(define-icon 'icon-catapult 'tileset-wasteland
+  'normal 17 wasteland-icons-file)
+(define-icon 'icon-human-oil-tanker 'tileset-wasteland
+  'normal 18 wasteland-icons-file)
+(define-icon 'icon-orc-oil-tanker 'tileset-wasteland
+  'normal 19 wasteland-icons-file)
+(define-icon 'icon-human-transport 'tileset-wasteland
+  'normal 20 wasteland-icons-file)
+(define-icon 'icon-orc-transport 'tileset-wasteland
+  'normal 21 wasteland-icons-file)
+(define-icon 'icon-elven-destroyer 'tileset-wasteland
+  'normal 22 wasteland-icons-file)
+(define-icon 'icon-troll-destroyer 'tileset-wasteland
+  'normal 23 wasteland-icons-file)
+(define-icon 'icon-battleship 'tileset-wasteland
+  'normal 24 wasteland-icons-file)
+(define-icon 'icon-ogre-juggernaught 'tileset-wasteland
+  'normal 25 wasteland-icons-file)
+(define-icon 'icon-gnomish-submarine 'tileset-wasteland
+  'normal 26 wasteland-icons-file)
+(define-icon 'icon-giant-turtle 'tileset-wasteland
+  'normal 27 wasteland-icons-file)
+(define-icon 'icon-gnomish-flying-machine 'tileset-wasteland
+  'normal 28 wasteland-icons-file)
+(define-icon 'icon-goblin-zeppelin 'tileset-wasteland
+  'normal 29 wasteland-icons-file)
+(define-icon 'icon-gryphon-rider 'tileset-wasteland
+  'normal 30 wasteland-icons-file)
+(define-icon 'icon-dragon 'tileset-wasteland
+  'normal 31 wasteland-icons-file)
+(define-icon 'icon-lothar 'tileset-wasteland
+  'normal 32 wasteland-icons-file)
+(define-icon 'icon-gul-dan 'tileset-wasteland
+  'normal 33 wasteland-icons-file)
+(define-icon 'icon-uther-lightbringer 'tileset-wasteland
+  'normal 34 wasteland-icons-file)
+(define-icon 'icon-zuljin 'tileset-wasteland
+  'normal 35 wasteland-icons-file)
+(define-icon 'icon-cho-gall 'tileset-wasteland
+  'normal 36 wasteland-icons-file)
+(define-icon 'icon-daemon 'tileset-wasteland
+  'normal 37 wasteland-icons-file)
+(define-icon 'icon-farm 'tileset-wasteland
+  'normal 38 wasteland-icons-file)
+(define-icon 'icon-pig-farm 'tileset-wasteland
+  'normal 39 wasteland-icons-file)
+(define-icon 'icon-town-hall 'tileset-wasteland
+  'normal 40 wasteland-icons-file)
+(define-icon 'icon-great-hall 'tileset-wasteland
+  'normal 41 wasteland-icons-file)
+(define-icon 'icon-human-barracks 'tileset-wasteland
+  'normal 42 wasteland-icons-file)
+(define-icon 'icon-orc-barracks 'tileset-wasteland
+  'normal 43 wasteland-icons-file)
+(define-icon 'icon-elven-lumber-mill 'tileset-wasteland
+  'normal 44 wasteland-icons-file)
+(define-icon 'icon-troll-lumber-mill 'tileset-wasteland
+  'normal 45 wasteland-icons-file)
+(define-icon 'icon-human-blacksmith 'tileset-wasteland
+  'normal 46 wasteland-icons-file)
+(define-icon 'icon-orc-blacksmith 'tileset-wasteland
+  'normal 47 wasteland-icons-file)
+(define-icon 'icon-human-shipyard 'tileset-wasteland
+  'normal 48 wasteland-icons-file)
+(define-icon 'icon-orc-shipyard 'tileset-wasteland
+  'normal 49 wasteland-icons-file)
+(define-icon 'icon-human-refinery 'tileset-wasteland
+  'normal 50 wasteland-icons-file)
+(define-icon 'icon-orc-refinery 'tileset-wasteland
+  'normal 51 wasteland-icons-file)
+(define-icon 'icon-human-foundry 'tileset-wasteland
+  'normal 52 wasteland-icons-file)
+(define-icon 'icon-orc-foundry 'tileset-wasteland
+  'normal 53 wasteland-icons-file)
+(define-icon 'icon-human-oil-platform 'tileset-wasteland
+  'normal 54 wasteland-icons-file)
+(define-icon 'icon-orc-oil-platform 'tileset-wasteland
+  'normal 55 wasteland-icons-file)
+(define-icon 'icon-stables 'tileset-wasteland
+  'normal 56 wasteland-icons-file)
+(define-icon 'icon-ogre-mound 'tileset-wasteland
+  'normal 57 wasteland-icons-file)
+(define-icon 'icon-gnomish-inventor 'tileset-wasteland
+  'normal 58 wasteland-icons-file)
+(define-icon 'icon-goblin-alchemist 'tileset-wasteland
+  'normal 59 wasteland-icons-file)
+(define-icon 'icon-human-watch-tower 'tileset-wasteland
+  'normal 60 wasteland-icons-file)
+(define-icon 'icon-orc-watch-tower 'tileset-wasteland
+  'normal 61 wasteland-icons-file)
+(define-icon 'icon-church 'tileset-wasteland
+  'normal 62 wasteland-icons-file)
+(define-icon 'icon-altar-of-storms 'tileset-wasteland
+  'normal 63 wasteland-icons-file)
+(define-icon 'icon-mage-tower 'tileset-wasteland
+  'normal 64 wasteland-icons-file)
+(define-icon 'icon-temple-of-the-damned 'tileset-wasteland
+  'normal 65 wasteland-icons-file)
+(define-icon 'icon-keep 'tileset-wasteland
+  'normal 66 wasteland-icons-file)
+(define-icon 'icon-stronghold 'tileset-wasteland
+  'normal 67 wasteland-icons-file)
+(define-icon 'icon-castle-upgrade 'tileset-wasteland
+  'normal 68 wasteland-icons-file)
+(define-icon 'icon-fortress-upgrade 'tileset-wasteland
+  'normal 69 wasteland-icons-file)
+(define-icon 'icon-castle 'tileset-wasteland
+  'normal 70 wasteland-icons-file)
+(define-icon 'icon-fortress 'tileset-wasteland
+  'normal 71 wasteland-icons-file)
+(define-icon 'icon-gryphon-aviary 'tileset-wasteland
+  'normal 72 wasteland-icons-file)
+(define-icon 'icon-dragon-roost 'tileset-wasteland
+  'normal 73 wasteland-icons-file)
+(define-icon 'icon-gold-mine 'tileset-wasteland
+  'normal 74 wasteland-icons-file)
+(define-icon 'icon-human-guard-tower 'tileset-wasteland
+  'normal 75 wasteland-icons-file)
+(define-icon 'icon-human-cannon-tower 'tileset-wasteland
+  'normal 76 wasteland-icons-file)
+(define-icon 'icon-orc-guard-tower 'tileset-wasteland
+  'normal 77 wasteland-icons-file)
+(define-icon 'icon-orc-cannon-tower 'tileset-wasteland
+  'normal 78 wasteland-icons-file)
+(define-icon 'icon-oil-patch 'tileset-wasteland
+  'normal 79 wasteland-icons-file)
+(define-icon 'icon-dark-portal 'tileset-wasteland
+  'normal 80 wasteland-icons-file)
+(define-icon 'icon-circle-of-power 'tileset-wasteland
+  'normal 81 wasteland-icons-file)
+(define-icon 'icon-runestone 'tileset-wasteland
+  'normal 82 wasteland-icons-file)
+(define-icon 'icon-move-peasant 'tileset-wasteland
+  'normal 83 wasteland-icons-file)
+(define-icon 'icon-move-peon 'tileset-wasteland
+  'normal 84 wasteland-icons-file)
+(define-icon 'icon-repair 'tileset-wasteland
+  'normal 85 wasteland-icons-file)
+(define-icon 'icon-harvest 'tileset-wasteland
+  'normal 86 wasteland-icons-file)
+(define-icon 'icon-build-basic 'tileset-wasteland
+  'normal 87 wasteland-icons-file)
+(define-icon 'icon-build-advanced 'tileset-wasteland
+  'normal 88 wasteland-icons-file)
+(define-icon 'icon-return-goods-peasant 'tileset-wasteland
+  'normal 89 wasteland-icons-file)
+(define-icon 'icon-return-goods-peon 'tileset-wasteland
+  'normal 90 wasteland-icons-file)
+(define-icon 'icon-cancel 'tileset-wasteland
+  'normal 91 wasteland-icons-file)
+(define-icon 'icon-human-wall 'tileset-wasteland
+  'normal 92 wasteland-icons-file)
+(define-icon 'icon-orc-wall 'tileset-wasteland
+  'normal 93 wasteland-icons-file)
+(define-icon 'icon-slow 'tileset-wasteland
+  'normal 94 wasteland-icons-file)
+(define-icon 'icon-invisibility 'tileset-wasteland
+  'normal 95 wasteland-icons-file)
+(define-icon 'icon-haste 'tileset-wasteland
+  'normal 96 wasteland-icons-file)
+(define-icon 'icon-runes 'tileset-wasteland
+  'normal 97 wasteland-icons-file)
+(define-icon 'icon-unholy-armor 'tileset-wasteland
+  'normal 98 wasteland-icons-file)
+(define-icon 'icon-lightning 'tileset-wasteland
+  'normal 99 wasteland-icons-file)
+(define-icon 'icon-flame-shield 'tileset-wasteland
+  'normal 100 wasteland-icons-file)
+(define-icon 'icon-fireball 'tileset-wasteland
+  'normal 101 wasteland-icons-file)
+(define-icon 'icon-touch-of-darkness 'tileset-wasteland
+  'normal 102 wasteland-icons-file)
+(define-icon 'icon-death-coil 'tileset-wasteland
+  'normal 103 wasteland-icons-file)
+(define-icon 'icon-whirlwind 'tileset-wasteland
+  'normal 104 wasteland-icons-file)
+(define-icon 'icon-blizzard 'tileset-wasteland
+  'normal 105 wasteland-icons-file)
+(define-icon 'icon-holy-vision 'tileset-wasteland
+  'normal 106 wasteland-icons-file)
+(define-icon 'icon-heal 'tileset-wasteland
+  'normal 107 wasteland-icons-file)
+(define-icon 'icon-death-and-decay 'tileset-wasteland
+  'normal 108 wasteland-icons-file)
+(define-icon 'icon-109 'tileset-wasteland
+  'normal 109 wasteland-icons-file)
+(define-icon 'icon-exorcism 'tileset-wasteland
+  'normal 110 wasteland-icons-file)
+(define-icon 'icon-eye-of-kilrogg 'tileset-wasteland
+  'normal 111 wasteland-icons-file)
+(define-icon 'icon-bloodlust 'tileset-wasteland
+  'normal 112 wasteland-icons-file)
+(define-icon 'icon-unknown113 'tileset-wasteland
+  'normal 113 wasteland-icons-file)
+(define-icon 'icon-skeleton 'tileset-wasteland
+  'normal 114 wasteland-icons-file)
+(define-icon 'icon-critter 'tileset-wasteland
+  'normal 115 wasteland-icons-file)
+(define-icon 'icon-sword1 'tileset-wasteland
+  'normal 116 wasteland-icons-file)
+(define-icon 'icon-sword2 'tileset-wasteland
+  'normal 117 wasteland-icons-file)
+(define-icon 'icon-sword3 'tileset-wasteland
+  'normal 118 wasteland-icons-file)
+(define-icon 'icon-battle-axe1 'tileset-wasteland
+  'normal 119 wasteland-icons-file)
+(define-icon 'icon-battle-axe2 'tileset-wasteland
+  'normal 120 wasteland-icons-file)
+(define-icon 'icon-battle-axe3 'tileset-wasteland
+  'normal 121 wasteland-icons-file)
+(define-icon 'icon-122 'tileset-wasteland
+  'normal 122 wasteland-icons-file)
+(define-icon 'icon-123 'tileset-wasteland
+  'normal 123 wasteland-icons-file)
+(define-icon 'icon-arrow1 'tileset-wasteland
+  'normal 124 wasteland-icons-file)
+(define-icon 'icon-arrow2 'tileset-wasteland
+  'normal 125 wasteland-icons-file)
+(define-icon 'icon-arrow3 'tileset-wasteland
+  'normal 126 wasteland-icons-file)
+(define-icon 'icon-throwing-axe1 'tileset-wasteland
+  'normal 127 wasteland-icons-file)
+(define-icon 'icon-throwing-axe2 'tileset-wasteland
+  'normal 128 wasteland-icons-file)
+(define-icon 'icon-throwing-axe3 'tileset-wasteland
+  'normal 129 wasteland-icons-file)
+(define-icon 'icon-horse1 'tileset-wasteland
+  'normal 130 wasteland-icons-file)
+(define-icon 'icon-horse2 'tileset-wasteland
+  'normal 131 wasteland-icons-file)
+(define-icon 'icon-longbow 'tileset-wasteland
+  'normal 132 wasteland-icons-file)
+(define-icon 'icon-ranger-scouting 'tileset-wasteland
+  'normal 133 wasteland-icons-file)
+(define-icon 'icon-ranger-marksmanship 'tileset-wasteland
+  'normal 134 wasteland-icons-file)
+(define-icon 'icon-light-axes 'tileset-wasteland
+  'normal 135 wasteland-icons-file)
+(define-icon 'icon-berserker-scouting 'tileset-wasteland
+  'normal 136 wasteland-icons-file)
+(define-icon 'icon-berserker-regeneration 'tileset-wasteland
+  'normal 137 wasteland-icons-file)
+(define-icon 'icon-catapult1 'tileset-wasteland
+  'normal 138 wasteland-icons-file)
+(define-icon 'icon-catapult2 'tileset-wasteland
+  'normal 139 wasteland-icons-file)
+(define-icon 'icon-ballista1 'tileset-wasteland
+  'normal 140 wasteland-icons-file)
+(define-icon 'icon-ballista2 'tileset-wasteland
+  'normal 141 wasteland-icons-file)
+(define-icon 'icon-human-demolish 'tileset-wasteland
+  'normal 142 wasteland-icons-file)
+(define-icon 'icon-orc-demolish 'tileset-wasteland
+  'normal 143 wasteland-icons-file)
+(define-icon 'icon-human-ship-cannon1 'tileset-wasteland
+  'normal 144 wasteland-icons-file)
+(define-icon 'icon-human-ship-cannon2 'tileset-wasteland
+  'normal 145 wasteland-icons-file)
+(define-icon 'icon-human-ship-cannon3 'tileset-wasteland
+  'normal 146 wasteland-icons-file)
+(define-icon 'icon-orc-ship-cannon1 'tileset-wasteland
+  'normal 147 wasteland-icons-file)
+(define-icon 'icon-orc-ship-cannon2 'tileset-wasteland
+  'normal 148 wasteland-icons-file)
+(define-icon 'icon-orc-ship-cannon3 'tileset-wasteland
+  'normal 149 wasteland-icons-file)
+(define-icon 'icon-orc-ship-armor1 'tileset-wasteland
+  'normal 150 wasteland-icons-file)
+(define-icon 'icon-orc-ship-armor2 'tileset-wasteland
+  'normal 151 wasteland-icons-file)
+(define-icon 'icon-orc-ship-armor3 'tileset-wasteland
+  'normal 152 wasteland-icons-file)
+(define-icon 'icon-human-ship-armor1 'tileset-wasteland
+  'normal 153 wasteland-icons-file)
+(define-icon 'icon-human-ship-armor2 'tileset-wasteland
+  'normal 154 wasteland-icons-file)
+(define-icon 'icon-human-ship-armor3 'tileset-wasteland
+  'normal 155 wasteland-icons-file)
+(define-icon 'icon-orc-ship-move 'tileset-wasteland
+  'normal 156 wasteland-icons-file)
+(define-icon 'icon-human-ship-move 'tileset-wasteland
+  'normal 157 wasteland-icons-file)
+(define-icon 'icon-orc-ship-return-oil 'tileset-wasteland
+  'normal 158 wasteland-icons-file)
+(define-icon 'icon-human-ship-return-oil 'tileset-wasteland
+  'normal 159 wasteland-icons-file)
+(define-icon 'icon-orc-ship-haul-oil 'tileset-wasteland
+  'normal 160 wasteland-icons-file)
+(define-icon 'icon-human-ship-haul-oil 'tileset-wasteland
+  'normal 161 wasteland-icons-file)
+(define-icon 'icon-human-unload 'tileset-wasteland
+  'normal 162 wasteland-icons-file)
+(define-icon 'icon-orc-unload 'tileset-wasteland
+  'normal 163 wasteland-icons-file)
+(define-icon 'icon-human-shield1 'tileset-wasteland
+  'normal 164 wasteland-icons-file)
+(define-icon 'icon-human-shield2 'tileset-wasteland
+  'normal 165 wasteland-icons-file)
+(define-icon 'icon-human-shield3 'tileset-wasteland
+  'normal 166 wasteland-icons-file)
+(define-icon 'icon-orc-shield1 'tileset-wasteland
+  'normal 167 wasteland-icons-file)
+(define-icon 'icon-orc-shield2 'tileset-wasteland
+  'normal 168 wasteland-icons-file)
+(define-icon 'icon-orc-shield3 'tileset-wasteland
+  'normal 169 wasteland-icons-file)
+(define-icon 'icon-170 'tileset-wasteland
+  'normal 170 wasteland-icons-file)
+(define-icon 'icon-171 'tileset-wasteland
+  'normal 171 wasteland-icons-file)
+(define-icon 'icon-172 'tileset-wasteland
+  'normal 172 wasteland-icons-file)
+(define-icon 'icon-173 'tileset-wasteland
+  'normal 173 wasteland-icons-file)
+(define-icon 'icon-174 'tileset-wasteland
+  'normal 174 wasteland-icons-file)
+(define-icon 'icon-175 'tileset-wasteland
+  'normal 175 wasteland-icons-file)
+(define-icon 'icon-176 'tileset-wasteland
+  'normal 176 wasteland-icons-file)
+(define-icon 'icon-177 'tileset-wasteland
+  'normal 177 wasteland-icons-file)
+(define-icon 'icon-human-patrol-land 'tileset-wasteland
+  'normal 178 wasteland-icons-file)
+(define-icon 'icon-orc-patrol-land 'tileset-wasteland
+  'normal 179 wasteland-icons-file)
+(define-icon 'icon-human-stand-ground 'tileset-wasteland
+  'normal 180 wasteland-icons-file)
+(define-icon 'icon-orc-stand-ground 'tileset-wasteland
+  'normal 181 wasteland-icons-file)
+(define-icon 'icon-human-attack-ground 'tileset-wasteland
+  'normal 182 wasteland-icons-file)
+(define-icon 'icon-orc-attack-ground 'tileset-wasteland
+  'normal 183 wasteland-icons-file)
+(define-icon 'icon-human-patrol-naval 'tileset-wasteland
+  'normal 184 wasteland-icons-file)
+(define-icon 'icon-orc-patrol-naval 'tileset-wasteland
+  'normal 185 wasteland-icons-file)
+(define-icon 'icon-korgath-bladefist 'tileset-wasteland
+  'normal 186 wasteland-icons-file)
+(define-icon 'icon-alleria 'tileset-wasteland
+  'normal 187 wasteland-icons-file)
+(define-icon 'icon-danath 'tileset-wasteland
+  'normal 188 wasteland-icons-file)
+(define-icon 'icon-teron-gorefiend 'tileset-wasteland
+  'normal 189 wasteland-icons-file)
+(define-icon 'icon-grom-hellscream 'tileset-wasteland
+  'normal 190 wasteland-icons-file)
+(define-icon 'icon-kurdan-and-sky-ree 'tileset-wasteland
+  'normal 191 wasteland-icons-file)
+(define-icon 'icon-deathwing 'tileset-wasteland
+  'normal 192 wasteland-icons-file)
+(define-icon 'icon-khadgar 'tileset-wasteland
+  'normal 193 wasteland-icons-file)
+(define-icon 'icon-dentarg 'tileset-wasteland
+  'normal 194 wasteland-icons-file)
+(define-icon 'icon-turalyon 'tileset-wasteland
+  'normal 195 wasteland-icons-file)
+
+;;=============================================================================
+;;	Orcish swamp Tileset
+;;=============================================================================
+
+(define-icon 'icon-peasant 'tileset-swamp
+  'normal 0 swamp-icons-file)
+(define-icon 'icon-peon 'tileset-swamp
+  'normal 1 swamp-icons-file)
+(define-icon 'icon-footman 'tileset-swamp
+  'normal 2 swamp-icons-file)
+(define-icon 'icon-grunt 'tileset-swamp
+  'normal 3 swamp-icons-file)
+(define-icon 'icon-archer 'tileset-swamp
+  'normal 4 swamp-icons-file)
+(define-icon 'icon-axethrower 'tileset-swamp
+  'normal 5 swamp-icons-file)
+(define-icon 'icon-ranger 'tileset-swamp
+  'normal 6 swamp-icons-file)
+(define-icon 'icon-berserker 'tileset-swamp
+  'normal 7 swamp-icons-file)
+(define-icon 'icon-knight 'tileset-swamp
+  'normal 8 swamp-icons-file)
+(define-icon 'icon-ogre 'tileset-swamp
+  'normal 9 swamp-icons-file)
+(define-icon 'icon-paladin 'tileset-swamp
+  'normal 10 swamp-icons-file)
+(define-icon 'icon-ogre-mage 'tileset-swamp
+  'normal 11 swamp-icons-file)
+(define-icon 'icon-dwarves 'tileset-swamp
+  'normal 12 swamp-icons-file)
+(define-icon 'icon-goblin-sappers 'tileset-swamp
+  'normal 13 swamp-icons-file)
+(define-icon 'icon-mage 'tileset-swamp
+  'normal 14 swamp-icons-file)
+(define-icon 'icon-death-knight 'tileset-swamp
+  'normal 15 swamp-icons-file)
+(define-icon 'icon-ballista 'tileset-swamp
+  'normal 16 swamp-icons-file)
+(define-icon 'icon-catapult 'tileset-swamp
+  'normal 17 swamp-icons-file)
+(define-icon 'icon-human-oil-tanker 'tileset-swamp
+  'normal 18 swamp-icons-file)
+(define-icon 'icon-orc-oil-tanker 'tileset-swamp
+  'normal 19 swamp-icons-file)
+(define-icon 'icon-human-transport 'tileset-swamp
+  'normal 20 swamp-icons-file)
+(define-icon 'icon-orc-transport 'tileset-swamp
+  'normal 21 swamp-icons-file)
+(define-icon 'icon-elven-destroyer 'tileset-swamp
+  'normal 22 swamp-icons-file)
+(define-icon 'icon-troll-destroyer 'tileset-swamp
+  'normal 23 swamp-icons-file)
+(define-icon 'icon-battleship 'tileset-swamp
+  'normal 24 swamp-icons-file)
+(define-icon 'icon-ogre-juggernaught 'tileset-swamp
+  'normal 25 swamp-icons-file)
+(define-icon 'icon-gnomish-submarine 'tileset-swamp
+  'normal 26 swamp-icons-file)
+(define-icon 'icon-giant-turtle 'tileset-swamp
+  'normal 27 swamp-icons-file)
+(define-icon 'icon-gnomish-flying-machine 'tileset-swamp
+  'normal 28 swamp-icons-file)
+(define-icon 'icon-goblin-zeppelin 'tileset-swamp
+  'normal 29 swamp-icons-file)
+(define-icon 'icon-gryphon-rider 'tileset-swamp
+  'normal 30 swamp-icons-file)
+(define-icon 'icon-dragon 'tileset-swamp
+  'normal 31 swamp-icons-file)
+(define-icon 'icon-lothar 'tileset-swamp
+  'normal 32 swamp-icons-file)
+(define-icon 'icon-gul-dan 'tileset-swamp
+  'normal 33 swamp-icons-file)
+(define-icon 'icon-uther-lightbringer 'tileset-swamp
+  'normal 34 swamp-icons-file)
+(define-icon 'icon-zuljin 'tileset-swamp
+  'normal 35 swamp-icons-file)
+(define-icon 'icon-cho-gall 'tileset-swamp
+  'normal 36 swamp-icons-file)
+(define-icon 'icon-daemon 'tileset-swamp
+  'normal 37 swamp-icons-file)
+(define-icon 'icon-farm 'tileset-swamp
+  'normal 38 swamp-icons-file)
+(define-icon 'icon-pig-farm 'tileset-swamp
+  'normal 39 swamp-icons-file)
+(define-icon 'icon-town-hall 'tileset-swamp
+  'normal 40 swamp-icons-file)
+(define-icon 'icon-great-hall 'tileset-swamp
+  'normal 41 swamp-icons-file)
+(define-icon 'icon-human-barracks 'tileset-swamp
+  'normal 42 swamp-icons-file)
+(define-icon 'icon-orc-barracks 'tileset-swamp
+  'normal 43 swamp-icons-file)
+(define-icon 'icon-elven-lumber-mill 'tileset-swamp
+  'normal 44 swamp-icons-file)
+(define-icon 'icon-troll-lumber-mill 'tileset-swamp
+  'normal 45 swamp-icons-file)
+(define-icon 'icon-human-blacksmith 'tileset-swamp
+  'normal 46 swamp-icons-file)
+(define-icon 'icon-orc-blacksmith 'tileset-swamp
+  'normal 47 swamp-icons-file)
+(define-icon 'icon-human-shipyard 'tileset-swamp
+  'normal 48 swamp-icons-file)
+(define-icon 'icon-orc-shipyard 'tileset-swamp
+  'normal 49 swamp-icons-file)
+(define-icon 'icon-human-refinery 'tileset-swamp
+  'normal 50 swamp-icons-file)
+(define-icon 'icon-orc-refinery 'tileset-swamp
+  'normal 51 swamp-icons-file)
+(define-icon 'icon-human-foundry 'tileset-swamp
+  'normal 52 swamp-icons-file)
+(define-icon 'icon-orc-foundry 'tileset-swamp
+  'normal 53 swamp-icons-file)
+(define-icon 'icon-human-oil-platform 'tileset-swamp
+  'normal 54 swamp-icons-file)
+(define-icon 'icon-orc-oil-platform 'tileset-swamp
+  'normal 55 swamp-icons-file)
+(define-icon 'icon-stables 'tileset-swamp
+  'normal 56 swamp-icons-file)
+(define-icon 'icon-ogre-mound 'tileset-swamp
+  'normal 57 swamp-icons-file)
+(define-icon 'icon-gnomish-inventor 'tileset-swamp
+  'normal 58 swamp-icons-file)
+(define-icon 'icon-goblin-alchemist 'tileset-swamp
+  'normal 59 swamp-icons-file)
+(define-icon 'icon-human-watch-tower 'tileset-swamp
+  'normal 60 swamp-icons-file)
+(define-icon 'icon-orc-watch-tower 'tileset-swamp
+  'normal 61 swamp-icons-file)
+(define-icon 'icon-church 'tileset-swamp
+  'normal 62 swamp-icons-file)
+(define-icon 'icon-altar-of-storms 'tileset-swamp
+  'normal 63 swamp-icons-file)
+(define-icon 'icon-mage-tower 'tileset-swamp
+  'normal 64 swamp-icons-file)
+(define-icon 'icon-temple-of-the-damned 'tileset-swamp
+  'normal 65 swamp-icons-file)
+(define-icon 'icon-keep 'tileset-swamp
+  'normal 66 swamp-icons-file)
+(define-icon 'icon-stronghold 'tileset-swamp
+  'normal 67 swamp-icons-file)
+(define-icon 'icon-castle-upgrade 'tileset-swamp
+  'normal 68 swamp-icons-file)
+(define-icon 'icon-fortress-upgrade 'tileset-swamp
+  'normal 69 swamp-icons-file)
+(define-icon 'icon-castle 'tileset-swamp
+  'normal 70 swamp-icons-file)
+(define-icon 'icon-fortress 'tileset-swamp
+  'normal 71 swamp-icons-file)
+(define-icon 'icon-gryphon-aviary 'tileset-swamp
+  'normal 72 swamp-icons-file)
+(define-icon 'icon-dragon-roost 'tileset-swamp
+  'normal 73 swamp-icons-file)
+(define-icon 'icon-gold-mine 'tileset-swamp
+  'normal 74 swamp-icons-file)
+(define-icon 'icon-human-guard-tower 'tileset-swamp
+  'normal 75 swamp-icons-file)
+(define-icon 'icon-human-cannon-tower 'tileset-swamp
+  'normal 76 swamp-icons-file)
+(define-icon 'icon-orc-guard-tower 'tileset-swamp
+  'normal 77 swamp-icons-file)
+(define-icon 'icon-orc-cannon-tower 'tileset-swamp
+  'normal 78 swamp-icons-file)
+(define-icon 'icon-oil-patch 'tileset-swamp
+  'normal 79 swamp-icons-file)
+(define-icon 'icon-dark-portal 'tileset-swamp
+  'normal 80 swamp-icons-file)
+(define-icon 'icon-circle-of-power 'tileset-swamp
+  'normal 81 swamp-icons-file)
+(define-icon 'icon-runestone 'tileset-swamp
+  'normal 82 swamp-icons-file)
+(define-icon 'icon-move-peasant 'tileset-swamp
+  'normal 83 swamp-icons-file)
+(define-icon 'icon-move-peon 'tileset-swamp
+  'normal 84 swamp-icons-file)
+(define-icon 'icon-repair 'tileset-swamp
+  'normal 85 swamp-icons-file)
+(define-icon 'icon-harvest 'tileset-swamp
+  'normal 86 swamp-icons-file)
+(define-icon 'icon-build-basic 'tileset-swamp
+  'normal 87 swamp-icons-file)
+(define-icon 'icon-build-advanced 'tileset-swamp
+  'normal 88 swamp-icons-file)
+(define-icon 'icon-return-goods-peasant 'tileset-swamp
+  'normal 89 swamp-icons-file)
+(define-icon 'icon-return-goods-peon 'tileset-swamp
+  'normal 90 swamp-icons-file)
+(define-icon 'icon-cancel 'tileset-swamp
+  'normal 91 swamp-icons-file)
+(define-icon 'icon-human-wall 'tileset-swamp
+  'normal 92 swamp-icons-file)
+(define-icon 'icon-orc-wall 'tileset-swamp
+  'normal 93 swamp-icons-file)
+(define-icon 'icon-slow 'tileset-swamp
+  'normal 94 swamp-icons-file)
+(define-icon 'icon-invisibility 'tileset-swamp
+  'normal 95 swamp-icons-file)
+(define-icon 'icon-haste 'tileset-swamp
+  'normal 96 swamp-icons-file)
+(define-icon 'icon-runes 'tileset-swamp
+  'normal 97 swamp-icons-file)
+(define-icon 'icon-unholy-armor 'tileset-swamp
+  'normal 98 swamp-icons-file)
+(define-icon 'icon-lightning 'tileset-swamp
+  'normal 99 swamp-icons-file)
+(define-icon 'icon-flame-shield 'tileset-swamp
+  'normal 100 swamp-icons-file)
+(define-icon 'icon-fireball 'tileset-swamp
+  'normal 101 swamp-icons-file)
+(define-icon 'icon-touch-of-darkness 'tileset-swamp
+  'normal 102 swamp-icons-file)
+(define-icon 'icon-death-coil 'tileset-swamp
+  'normal 103 swamp-icons-file)
+(define-icon 'icon-whirlwind 'tileset-swamp
+  'normal 104 swamp-icons-file)
+(define-icon 'icon-blizzard 'tileset-swamp
+  'normal 105 swamp-icons-file)
+(define-icon 'icon-holy-vision 'tileset-swamp
+  'normal 106 swamp-icons-file)
+(define-icon 'icon-heal 'tileset-swamp
+  'normal 107 swamp-icons-file)
+(define-icon 'icon-death-and-decay 'tileset-swamp
+  'normal 108 swamp-icons-file)
+(define-icon 'icon-109 'tileset-swamp
+  'normal 109 swamp-icons-file)
+(define-icon 'icon-exorcism 'tileset-swamp
+  'normal 110 swamp-icons-file)
+(define-icon 'icon-eye-of-kilrogg 'tileset-swamp
+  'normal 111 swamp-icons-file)
+(define-icon 'icon-bloodlust 'tileset-swamp
+  'normal 112 swamp-icons-file)
+(define-icon 'icon-unknown113 'tileset-swamp
+  'normal 113 swamp-icons-file)
+(define-icon 'icon-skeleton 'tileset-swamp
+  'normal 114 swamp-icons-file)
+(define-icon 'icon-critter 'tileset-swamp
+  'normal 115 swamp-icons-file)
+(define-icon 'icon-sword1 'tileset-swamp
+  'normal 116 swamp-icons-file)
+(define-icon 'icon-sword2 'tileset-swamp
+  'normal 117 swamp-icons-file)
+(define-icon 'icon-sword3 'tileset-swamp
+  'normal 118 swamp-icons-file)
+(define-icon 'icon-battle-axe1 'tileset-swamp
+  'normal 119 swamp-icons-file)
+(define-icon 'icon-battle-axe2 'tileset-swamp
+  'normal 120 swamp-icons-file)
+(define-icon 'icon-battle-axe3 'tileset-swamp
+  'normal 121 swamp-icons-file)
+(define-icon 'icon-122 'tileset-swamp
+  'normal 122 swamp-icons-file)
+(define-icon 'icon-123 'tileset-swamp
+  'normal 123 swamp-icons-file)
+(define-icon 'icon-arrow1 'tileset-swamp
+  'normal 124 swamp-icons-file)
+(define-icon 'icon-arrow2 'tileset-swamp
+  'normal 125 swamp-icons-file)
+(define-icon 'icon-arrow3 'tileset-swamp
+  'normal 126 swamp-icons-file)
+(define-icon 'icon-throwing-axe1 'tileset-swamp
+  'normal 127 swamp-icons-file)
+(define-icon 'icon-throwing-axe2 'tileset-swamp
+  'normal 128 swamp-icons-file)
+(define-icon 'icon-throwing-axe3 'tileset-swamp
+  'normal 129 swamp-icons-file)
+(define-icon 'icon-horse1 'tileset-swamp
+  'normal 130 swamp-icons-file)
+(define-icon 'icon-horse2 'tileset-swamp
+  'normal 131 swamp-icons-file)
+(define-icon 'icon-longbow 'tileset-swamp
+  'normal 132 swamp-icons-file)
+(define-icon 'icon-ranger-scouting 'tileset-swamp
+  'normal 133 swamp-icons-file)
+(define-icon 'icon-ranger-marksmanship 'tileset-swamp
+  'normal 134 swamp-icons-file)
+(define-icon 'icon-light-axes 'tileset-swamp
+  'normal 135 swamp-icons-file)
+(define-icon 'icon-berserker-scouting 'tileset-swamp
+  'normal 136 swamp-icons-file)
+(define-icon 'icon-berserker-regeneration 'tileset-swamp
+  'normal 137 swamp-icons-file)
+(define-icon 'icon-catapult1 'tileset-swamp
+  'normal 138 swamp-icons-file)
+(define-icon 'icon-catapult2 'tileset-swamp
+  'normal 139 swamp-icons-file)
+(define-icon 'icon-ballista1 'tileset-swamp
+  'normal 140 swamp-icons-file)
+(define-icon 'icon-ballista2 'tileset-swamp
+  'normal 141 swamp-icons-file)
+(define-icon 'icon-human-demolish 'tileset-swamp
+  'normal 142 swamp-icons-file)
+(define-icon 'icon-orc-demolish 'tileset-swamp
+  'normal 143 swamp-icons-file)
+(define-icon 'icon-human-ship-cannon1 'tileset-swamp
+  'normal 144 swamp-icons-file)
+(define-icon 'icon-human-ship-cannon2 'tileset-swamp
+  'normal 145 swamp-icons-file)
+(define-icon 'icon-human-ship-cannon3 'tileset-swamp
+  'normal 146 swamp-icons-file)
+(define-icon 'icon-orc-ship-cannon1 'tileset-swamp
+  'normal 147 swamp-icons-file)
+(define-icon 'icon-orc-ship-cannon2 'tileset-swamp
+  'normal 148 swamp-icons-file)
+(define-icon 'icon-orc-ship-cannon3 'tileset-swamp
+  'normal 149 swamp-icons-file)
+(define-icon 'icon-orc-ship-armor1 'tileset-swamp
+  'normal 150 swamp-icons-file)
+(define-icon 'icon-orc-ship-armor2 'tileset-swamp
+  'normal 151 swamp-icons-file)
+(define-icon 'icon-orc-ship-armor3 'tileset-swamp
+  'normal 152 swamp-icons-file)
+(define-icon 'icon-human-ship-armor1 'tileset-swamp
+  'normal 153 swamp-icons-file)
+(define-icon 'icon-human-ship-armor2 'tileset-swamp
+  'normal 154 swamp-icons-file)
+(define-icon 'icon-human-ship-armor3 'tileset-swamp
+  'normal 155 swamp-icons-file)
+(define-icon 'icon-orc-ship-move 'tileset-swamp
+  'normal 156 swamp-icons-file)
+(define-icon 'icon-human-ship-move 'tileset-swamp
+  'normal 157 swamp-icons-file)
+(define-icon 'icon-orc-ship-return-oil 'tileset-swamp
+  'normal 158 swamp-icons-file)
+(define-icon 'icon-human-ship-return-oil 'tileset-swamp
+  'normal 159 swamp-icons-file)
+(define-icon 'icon-orc-ship-haul-oil 'tileset-swamp
+  'normal 160 swamp-icons-file)
+(define-icon 'icon-human-ship-haul-oil 'tileset-swamp
+  'normal 161 swamp-icons-file)
+(define-icon 'icon-human-unload 'tileset-swamp
+  'normal 162 swamp-icons-file)
+(define-icon 'icon-orc-unload 'tileset-swamp
+  'normal 163 swamp-icons-file)
+(define-icon 'icon-human-shield1 'tileset-swamp
+  'normal 164 swamp-icons-file)
+(define-icon 'icon-human-shield2 'tileset-swamp
+  'normal 165 swamp-icons-file)
+(define-icon 'icon-human-shield3 'tileset-swamp
+  'normal 166 swamp-icons-file)
+(define-icon 'icon-orc-shield1 'tileset-swamp
+  'normal 167 swamp-icons-file)
+(define-icon 'icon-orc-shield2 'tileset-swamp
+  'normal 168 swamp-icons-file)
+(define-icon 'icon-orc-shield3 'tileset-swamp
+  'normal 169 swamp-icons-file)
+(define-icon 'icon-170 'tileset-swamp
+  'normal 170 swamp-icons-file)
+(define-icon 'icon-171 'tileset-swamp
+  'normal 171 swamp-icons-file)
+(define-icon 'icon-172 'tileset-swamp
+  'normal 172 swamp-icons-file)
+(define-icon 'icon-173 'tileset-swamp
+  'normal 173 swamp-icons-file)
+(define-icon 'icon-174 'tileset-swamp
+  'normal 174 swamp-icons-file)
+(define-icon 'icon-175 'tileset-swamp
+  'normal 175 swamp-icons-file)
+(define-icon 'icon-176 'tileset-swamp
+  'normal 176 swamp-icons-file)
+(define-icon 'icon-177 'tileset-swamp
+  'normal 177 swamp-icons-file)
+(define-icon 'icon-human-patrol-land 'tileset-swamp
+  'normal 178 swamp-icons-file)
+(define-icon 'icon-orc-patrol-land 'tileset-swamp
+  'normal 179 swamp-icons-file)
+(define-icon 'icon-human-stand-ground 'tileset-swamp
+  'normal 180 swamp-icons-file)
+(define-icon 'icon-orc-stand-ground 'tileset-swamp
+  'normal 181 swamp-icons-file)
+(define-icon 'icon-human-attack-ground 'tileset-swamp
+  'normal 182 swamp-icons-file)
+(define-icon 'icon-orc-attack-ground 'tileset-swamp
+  'normal 183 swamp-icons-file)
+(define-icon 'icon-human-patrol-naval 'tileset-swamp
+  'normal 184 swamp-icons-file)
+(define-icon 'icon-orc-patrol-naval 'tileset-swamp
+  'normal 185 swamp-icons-file)
+(define-icon 'icon-korgath-bladefist 'tileset-swamp
+  'normal 186 swamp-icons-file)
+(define-icon 'icon-alleria 'tileset-swamp
+  'normal 187 swamp-icons-file)
+(define-icon 'icon-danath 'tileset-swamp
+  'normal 188 swamp-icons-file)
+(define-icon 'icon-teron-gorefiend 'tileset-swamp
+  'normal 189 swamp-icons-file)
+(define-icon 'icon-grom-hellscream 'tileset-swamp
+  'normal 190 swamp-icons-file)
+(define-icon 'icon-kurdan-and-sky-ree 'tileset-swamp
+  'normal 191 swamp-icons-file)
+(define-icon 'icon-deathwing 'tileset-swamp
+  'normal 192 swamp-icons-file)
+(define-icon 'icon-khadgar 'tileset-swamp
+  'normal 193 swamp-icons-file)
+(define-icon 'icon-dentarg 'tileset-swamp
+  'normal 194 swamp-icons-file)
+(define-icon 'icon-turalyon 'tileset-swamp
+  'normal 195 swamp-icons-file)
+
+;;=============================================================================
+;;	Define an icon alias.
+;;
+;;	(define-icon-alias alias icon)
+;;
+;;	alias	Is the new alias name.
+;;	icon	Must be an already existing icon name.
+;;
+(define-icon-alias 'icon-raise-dead	'icon-skeleton)
+(define-icon-alias 'icon-polymorph	'icon-critter)
