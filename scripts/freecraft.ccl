@@ -256,6 +256,7 @@
 ;(reveal-map)
 
 ;;	Choose your default fog of war state (enabled #t/disabled #f).
+;;		disabled is a C&C like fog of war.
 (set-fog-of-war! #t)
 ;(set-fog-of-war! #f)
 
