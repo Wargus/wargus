@@ -543,6 +543,35 @@
 
 
 ;;
+;; menu-multi-net-type-menu
+;;
+(define-menu 'name 'menu-multi-net-type-menu 'geometry '(0 0 640 480)
+    'image 'none 'default '2)
+(define-menu-item 'pos (list 208 (+ 320 (* 36 0))) 'font 'large
+    'button '(size (224 27)
+            caption "~!LAN/P2P Game"
+            hotkey "l"
+            func net-lan-game
+            style gm-full)
+    'menu 'menu-multi-net-type-menu)
+(define-menu-item 'pos (list 208 (+ 320 (* 36 1))) 'font 'large
+    'flags '(disabled)
+    'button '(size (224 27)
+            caption "~!Internet Game"
+            hotkey "i"
+            func null
+            style gm-full)
+    'menu 'menu-multi-net-type-menu)
+(define-menu-item 'pos (list 208 (+ 320 (* 36 2))) 'font 'large
+    'button '(size (224 27)
+            caption "~!Previous Menu"
+            hotkey "p"
+            func end-menu
+            style gm-full)
+    'menu 'menu-multi-net-type-menu)
+
+
+;;
 ;; menu-multi-setup
 ;;
 (define-menu 'name 'menu-multi-setup 'geometry '(0 0 640 480)
