@@ -34,106 +34,97 @@
 --	(define-construction ident 'files '(tileset-name filename ..)
 --	    'size '(x y))
 
-DefineConstruction("construction-alliance-shipyard",
-  "file", {
-    "tileset", "summer",
-    "file", "human/buildings/shipyard_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/human/buildings/shipyard_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "swamp",
-    "file", "tilesets/swamp/human/buildings/shipyard_construction_site.png",
-    "size", {96, 96}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-alliance-shipyard", {
+  Files = {
+   {Tileset = "summer",
+    File = "human/buildings/shipyard_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "winter",
+    File = "tilesets/winter/human/buildings/shipyard_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "swamp",
+    File = "tilesets/swamp/human/buildings/shipyard_construction_site.png",
+    Size = {96, 96}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})
 
-DefineConstruction("construction-alliance-oil-well",
-  "file", {
-    "tileset", "summer",
-    "file", "tilesets/summer/human/buildings/oil_well_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/human/buildings/oil_well_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "wasteland",
-    "file", "tilesets/wasteland/human/buildings/oil_well_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "swamp",
-    "file", "tilesets/swamp/human/buildings/oil_platform_construction_site.png",
-    "size", {96, 96}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-alliance-oil-well", {
+  Files = {
+   {Tileset = "summer",
+    File = "tilesets/summer/human/buildings/oil_well_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "winter",
+    File = "tilesets/winter/human/buildings/oil_well_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "wasteland",
+    File = "tilesets/wasteland/human/buildings/oil_well_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "swamp",
+    File = "tilesets/swamp/human/buildings/oil_platform_construction_site.png",
+    Size = {96, 96}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})
 
-DefineConstruction("construction-alliance-refinery",
-  "file", {
-    "tileset", "summer",
-    "file", "human/buildings/refinery_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/human/buildings/refinery_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "swamp",
-    "file", "tilesets/swamp/human/buildings/refinery_construction_site.png",
-    "size", {96, 96}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-alliance-refinery", {
+  Files = {
+   {Tileset = "summer",
+    File = "human/buildings/refinery_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "winter",
+    File = "tilesets/winter/human/buildings/refinery_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "swamp",
+    File = "tilesets/swamp/human/buildings/refinery_construction_site.png",
+    Size = {96, 96}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})
 
-DefineConstruction("construction-alliance-foundry",
-  "file", {
-    "tileset", "summer",
-    "file", "human/buildings/foundry_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/human/buildings/foundry_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "swamp",
-    "file", "tilesets/swamp/human/buildings/foundry_construction_site.png",
-    "size", {96, 96}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-alliance-foundry", {
+  Files = {
+   {Tileset = "summer",
+    File = "human/buildings/foundry_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "winter",
+    File = "tilesets/winter/human/buildings/foundry_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "swamp",
+    File = "tilesets/swamp/human/buildings/foundry_construction_site.png",
+    Size = {96, 96}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})

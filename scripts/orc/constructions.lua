@@ -29,106 +29,97 @@
 --	$Id$
 
 
-DefineConstruction("construction-mythical-shipyard",
-  "file", {
-    "tileset", "summer",
-    "file", "orc/buildings/shipyard_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/orc/buildings/shipyard_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "swamp",
-    "file", "tilesets/swamp/orc/buildings/shipyard_construction_site.png",
-    "size", {96, 96}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-mythical-shipyard", {
+  Files = {
+   {Tileset = "summer",
+    File = "orc/buildings/shipyard_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "winter",
+    File = "tilesets/winter/orc/buildings/shipyard_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "swamp",
+    File = "tilesets/swamp/orc/buildings/shipyard_construction_site.png",
+    Size = {96, 96}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})
 
-DefineConstruction("construction-mythical-oil-well",
-  "file", {
-    "tileset", "summer",
-    "file", "tilesets/summer/orc/buildings/oil_well_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/orc/buildings/oil_well_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "wasteland",
-    "file", "tilesets/wasteland/orc/buildings/oil_well_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "swamp",
-    "file", "tilesets/swamp/orc/buildings/oil_platform_construction_site.png",
-    "size", {96, 96}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-mythical-oil-well", {
+  Files = {
+   {Tileset = "summer",
+    File = "tilesets/summer/orc/buildings/oil_well_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "winter",
+    File = "tilesets/winter/orc/buildings/oil_well_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "wasteland",
+    File = "tilesets/wasteland/orc/buildings/oil_well_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "swamp",
+    File = "tilesets/swamp/orc/buildings/oil_platform_construction_site.png",
+    Size = {96, 96}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})
 
-DefineConstruction("construction-mythical-refinery",
-  "file", {
-    "tileset", "summer",
-    "file", "orc/buildings/refinery_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/orc/buildings/refinery_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "swamp",
-    "file", "tilesets/swamp/orc/buildings/refinery_construction_site.png",
-    "size", {96, 96}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-mythical-refinery", {
+  Files = {
+   {Tileset = "summer",
+    File = "orc/buildings/refinery_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "winter",
+    File = "tilesets/winter/orc/buildings/refinery_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "swamp",
+    File = "tilesets/swamp/orc/buildings/refinery_construction_site.png",
+    Size = {96, 96}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})
 
-DefineConstruction("construction-mythical-foundry",
-  "file", {
-    "tileset", "summer",
-    "file", "orc/buildings/foundry_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "winter",
-    "file", "tilesets/winter/orc/buildings/foundry_construction_site.png",
-    "size", {96, 96}},
-  "file", {
-    "tileset", "swamp",
-    "file", "tilesets/swamp/orc/buildings/foundry_construction_site.png",
-    "size", {96, 96}},
-  "constructions", {
-    {"percent", 0,
-      "file", "construction",
-      "frame", 0},
-    {"percent", 25,
-      "file", "construction",
-      "frame", 1},
-    {"percent", 50,
-      "file", "main",
-      "frame", 1}}
-)
+DefineConstruction("construction-mythical-foundry", {
+  Files = {
+   {Tileset = "summer",
+    File = "orc/buildings/foundry_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "winter",
+    File = "tilesets/winter/orc/buildings/foundry_construction_site.png",
+    Size = {96, 96}},
+   {Tileset = "swamp",
+    File = "tilesets/swamp/orc/buildings/foundry_construction_site.png",
+    Size = {96, 96}}},
+  Constructions = {
+   {Percent = 0,
+    File = "construction",
+    Frame = 0},
+   {Percent = 25,
+    File = "construction",
+    Frame = 1},
+   {Percent = 50,
+    File = "main",
+    Frame = 1}}
+})
