@@ -2810,9 +2810,9 @@ int ConvertText(char* file,int txte,int ofs)
     struct stat st;
 
     // need this for German version of original cd
-    sprintf(strdat, "%s/strdat.war");
+    sprintf(strdat, "%s/strdat.war", Dir);
     stat(strdat, &st);
-    if (st.size == 55724) {
+    if (st.st_size == 55724) {
 	--txte;
     }
 
