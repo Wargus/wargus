@@ -162,6 +162,7 @@
 	'sound-when-cast "haste"
 	'missile-when-cast "missile-normal-spell"
 	'autocast '(range 6 combat only condition (coward false alliance only))
+	'ai-cast '(range 6 condition (coward false alliance only))
 )
 
 (define-spell "spell-slow"
@@ -176,6 +177,7 @@
 	'sound-when-cast "slow"
 	'missile-when-cast "missile-normal-spell"
 	'autocast '(range 10 combat only condition (coward false alliance false))
+	'ai-cast '(range 10 condition (coward false alliance false))
 )
 
 (define-spell "spell-bloodlust"
@@ -189,7 +191,8 @@
 	    max-bloodlust-ticks 10)
 	'sound-when-cast "bloodlust"
 	'missile-when-cast "missile-normal-spell"
-	'autocast '(range 6 combat only condition (coward false alliance only))
+	'autocast '(range 6 condition (coward false alliance only))
+	'ai-cast '(range 6 combat only condition (coward false alliance only))
 )
 
 (define-spell "spell-invisibility"
