@@ -83,7 +83,12 @@
 	'upgrade-polymorph 'upgrade-blizzard)
     (list 'research 'unit-human-foundry
 	'upgrade-human-ship-cannon1 'upgrade-human-ship-cannon2
-	'upgrade-human-ship-armor1 'upgrade-human-ship-armor2) )
+	'upgrade-human-ship-armor1 'upgrade-human-ship-armor2)
+    ;;
+    ;;	Workers can collect which resource.
+    ;;
+    (list 'collect 'unit-peasant 'gold 'wood 'ore 'stone 'coal)
+    (list 'collect 'unit-human-oil-tanker 'oil ) )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race orc.
@@ -143,7 +148,12 @@
 	'upgrade-unholy-armor 'upgrade-death-and-decay)
     (list 'research 'unit-orc-foundry
 	'upgrade-orc-ship-cannon1 'upgrade-orc-ship-cannon2
-	'upgrade-orc-ship-armor1 'upgrade-orc-ship-armor2) )
+	'upgrade-orc-ship-armor1 'upgrade-orc-ship-armor2)
+    ;;
+    ;;	Workers can collect which resource.
+    ;;
+    (list 'collect 'unit-peon 'gold 'wood 'ore 'stone 'coal)
+    (list 'collect 'unit-orc-oil-tanker 'oil ) )
 
 ;;=============================================================================
 ;;
@@ -167,6 +177,25 @@
     (ai:need 'unit-human-barracks)
     (ai:set  'unit-peasant 1)
     (ai:wait 'unit-peasant)
+
+    (writes nil "AI 1!\n")
+    (writes nil "AI 2!\n")
+    (writes nil "AI 3!\n")
+    (writes nil "AI Ended!\n")
+    ))
+
+(define-ai "my-ai" "orc" "land-attack"
+  '(
+
+    ;;	Define the main AI script.
+
+    (writes nil "AI Started!\n")
+    (ai:debug #t)
+    (ai:need (unit-type 'unit-great-hall))
+    (ai:need 'unit-troll-lumber-mill)
+    (ai:need 'unit-orc-barracks)
+    (ai:set  'unit-peon 1)
+    (ai:wait 'unit-peon)
 
     (writes nil "AI 1!\n")
     (writes nil "AI 2!\n")
