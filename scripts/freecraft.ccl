@@ -332,8 +332,8 @@
 ;;-----------------------------------------------------------------------------
 ;;	Default triggers
 (define (single-player-triggers)
-  (add-trigger (lambda () (if-unit 'this 0 'all)) (lambda () (action-defeat)))
-  (add-trigger (lambda () (if-opponents 'this 0)) (lambda () (action-victory)))
+  (add-trigger (lambda () (if-unit 'this '== 0 'all)) (lambda () (action-defeat)))
+  (add-trigger (lambda () (if-opponents 'this '== 0)) (lambda () (action-victory)))
   )
 
 ;;-----------------------------------------------------------------------------
@@ -355,6 +355,7 @@
 (load "ccl/ui.ccl" #f #t)
 (load "ccl/ai.ccl" #f #t)
 (load "ccl/campaigns.ccl" #f #t)
+(load "ccl/credits.ccl" #f #t)
 
 ;;-----------------------------------------------------------------------------
 
