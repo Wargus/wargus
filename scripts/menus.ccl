@@ -26,117 +26,117 @@
 ;;
 ;; game-menu
 ;;
-(define-menu 'name "game-menu" 'geometry '(272 96 256 288)
+(define-menu 'name 'menu-game 'geometry '(272 96 256 288)
     'image 'panel1 'default '7)
 (define-menu-item 'pos '(128 11) 'font 'large  'init 'init-game-menu
     'text '("Game Menu" center)
-    'menu "game-menu")
+    'menu 'menu-game)
 (define-menu-item 'pos '(16 40) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "Save (~<F11~>)"
             hotkey "f11"
             func game-menu-save
             style gm-half)
-    'menu "game-menu")
+    'menu 'menu-game)
 (define-menu-item 'pos '(134 40) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "Load (~<F12~>)"
             hotkey "f12"
             func game-menu-load
             style gm-half)
-    'menu "game-menu")
+    'menu 'menu-game)
 (define-menu-item 'pos '(16 76) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Options (~<F5~>)"
             hotkey "f5"
             func game-options
             style gm-full)
-    'menu "game-menu")
+    'menu 'menu-game)
 (define-menu-item 'pos '(16 112) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Help (~<F1~>)"
             hotkey "f1"
             func help-menu
             style gm-full)
-    'menu "game-menu")
+    'menu 'menu-game)
 (define-menu-item 'pos '(16 148) 'font 'large 
     'button '(size (224 27)
             caption "Scenario ~!Objectives"
             hotkey "o"
             func game-menu-objectives
             style gm-full)
-    'menu "game-menu")
+    'menu 'menu-game)
 (define-menu-item 'pos '(16 184) 'font 'large 
     'button '(size (224 27)
             caption "~!End Scenario"
             hotkey "e"
             func game-menu-end-scenario
             style gm-full)
-    'menu "game-menu")
+    'menu 'menu-game)
 (define-menu-item 'pos '(16 248) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Return to Game (~<Esc~>)"
             hotkey "esc"
             func game-menu-return
             style gm-full)
-    'menu "game-menu")
+    'menu 'menu-game)
 
 
 ;;
 ;; victory-menu
 ;;
-(define-menu 'name "victory-menu" 'geometry '(256 176 288 128)
+(define-menu 'name 'menu-victory 'geometry '(256 176 288 128)
     'image 'panel4 'default '2)
 (define-menu-item 'pos '(144 11) 'font 'large 
     'text '("Congratulations!" center)
-    'menu "victory-menu")
+    'menu 'menu-victory)
 (define-menu-item 'pos '(144 32) 'font 'large 
     'text '("You are victorious!" center)
-    'menu "victory-menu")
+    'menu 'menu-victory)
 (define-menu-item 'pos '(32 90) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "~!Victory"
             hotkey "v"
             func game-menu-end
             style gm-full)
-    'menu "victory-menu")
+    'menu 'menu-victory)
 (define-menu-item 'pos '(32 56) 'font 'large 'flags '(disabled)
     'button '(size (224 27)
             caption "Save Game (~<F11~>)"
             hotkey "f11"
             func null
             style gm-full)
-    'menu "victory-menu")
+    'menu 'menu-victory)
 
 
 ;;
 ;; lost-menu
 ;;
-(define-menu 'name "lost-menu" 'geometry '(256 176 288 128)
+(define-menu 'name 'menu-defeated 'geometry '(256 176 288 128)
     'image 'panel4 'default '2)
 (define-menu-item 'pos '(144 11) 'font 'large 
     'text '("You failed to" center)
-    'menu "lost-menu")
+    'menu 'menu-defeated)
 (define-menu-item 'pos '(144 32) 'font 'large 
     'text '("achieve victory!" center)
-    'menu "lost-menu")
+    'menu 'menu-defeated)
 (define-menu-item 'pos '(32 90) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "~!OK"
             hotkey "o"
             func game-menu-end
             style gm-full)
-    'menu "lost-menu")
+    'menu 'menu-defeated)
 
 
 ;;
 ;; scene-select-menu
 ;;
-(define-menu 'name "scene-select-menu" 'geometry '(144 64 352 352)
+(define-menu 'name 'menu-select-scenario 'geometry '(144 64 352 352)
     'image 'panel5 'default '4)
 (define-menu-item 'pos '(176 8) 'font 'large  'init 'scen-select-init
     'text '("Select scenario" center)
-    'menu "scene-select-menu")
+    'menu 'menu-select-scenario)
 (define-menu-item 'pos '(24 140) 'font 'game  'init 'scen-select-lb-init 'exit 'scen-select-lb-exit
     'listbox '(size (288 108)
              style pulldown
@@ -144,29 +144,29 @@
              retopt scen-select-lb-retrieve
              handler scen-select-ok
              nlines 6)
-    'menu "scene-select-menu")
+    'menu 'menu-select-scenario)
 (define-menu-item 'pos '(312 140) 'font 'small 
     'vslider '(size (18 108)
              func scen-select-vs-action
              handler scen-select-ok)
-    'menu "scene-select-menu")
+    'menu 'menu-select-scenario)
 (define-menu-item 'pos '(48 318) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "OK"
             hotkey ""
             func scen-select-ok
             style gm-half)
-    'menu "scene-select-menu")
+    'menu 'menu-select-scenario)
 (define-menu-item 'pos '(198 318) 'font 'large 
     'button '(size (106 27)
             caption "Cancel"
             hotkey ""
             func scen-select-cancel
             style gm-half)
-    'menu "scene-select-menu")
+    'menu 'menu-select-scenario)
 (define-menu-item 'pos '(132 40) 'font 'large 
     'text '("Type:" right)
-    'menu "scene-select-menu")
+    'menu 'menu-select-scenario)
 (define-menu-item 'pos '(140 40) 'font 'game 
     'pulldown '(size (192 20)
               style pulldown
@@ -174,10 +174,10 @@
               options ("Freecraft scenario (cm)" "Foreign scenario (pud)" )
               default 1
               current 1)
-    'menu "scene-select-menu")
+    'menu 'menu-select-scenario)
 (define-menu-item 'pos '(132 80) 'font 'large 
     'text '("Map size:" right)
-    'menu "scene-select-menu")
+    'menu 'menu-select-scenario)
 (define-menu-item 'pos '(140 80) 'font 'game 
     'pulldown '(size (192 20)
               style pulldown
@@ -185,117 +185,117 @@
               options ("Any size" "32 x 32" "64 x 64" "96 x 96" "128 x 128" "256 x 256" "512 x 512" "1024 x 1024" )
               default 0
               current 0)
-    'menu "scene-select-menu")
+    'menu 'menu-select-scenario)
 (define-menu-item 'pos '(22 112) 'font 'game 
     'button '(size (36 24)
             caption "(null)"
             hotkey ""
             func scen-select-folder
             style folder)
-    'menu "scene-select-menu")
+    'menu 'menu-select-scenario)
 
 
 ;;
 ;; program-start-menu
 ;;
-(define-menu 'name "program-start-menu" 'geometry '(0 0 640 480)
+(define-menu 'name 'menu-program-start 'geometry '(0 0 640 480)
     'image 'none 'default '1)
 (define-menu-item 'pos '(0 0) 'font 'game  'init 'program-start
     'drawfunc 'name-line-draw
-    'menu "program-start-menu")
+    'menu 'menu-program-start)
 (define-menu-item 'pos '(208 145) 'font 'large 
     'button '(size (224 27)
             caption "~!Single Player Game"
             hotkey "s"
             func single-player-game-menu
             style gm-full)
-    'menu "program-start-menu")
+    'menu 'menu-program-start)
 (define-menu-item 'pos '(208 181) 'font 'large 
     'button '(size (224 27)
             caption "~!Multi Player Game"
             hotkey "m"
             func multi-player-game-menu
             style gm-full)
-    'menu "program-start-menu")
+    'menu 'menu-program-start)
 (define-menu-item 'pos '(208 217) 'font 'large 
     'button '(size (224 27)
             caption "~!Campaign Game"
             hotkey "c"
             func campaign-game-menu
             style gm-full)
-    'menu "program-start-menu")
+    'menu 'menu-program-start)
 (define-menu-item 'pos '(208 253) 'font 'large 
     'button '(size (224 27)
             caption "~!Load Game"
             hotkey "l"
             func game-menu-load
             style gm-full)
-    'menu "program-start-menu")
+    'menu 'menu-program-start)
 (define-menu-item 'pos '(208 289) 'font 'large 'flags '(disabled)
     'button '(size (224 27)
             caption "~!Options"
             hotkey "o"
             func game-global-options
             style gm-full)
-    'menu "program-start-menu")
+    'menu 'menu-program-start)
 (define-menu-item 'pos '(208 325) 'font 'large 
     'button '(size (224 27)
             caption "~!Editor"
             hotkey "e"
             func game-start-editor
             style gm-full)
-    'menu "program-start-menu")
+    'menu 'menu-program-start)
 (define-menu-item 'pos '(208 361) 'font 'large 
     'button '(size (224 27)
             caption "S~!how Credits"
             hotkey "h"
             func game-show-credits
             style gm-full)
-    'menu "program-start-menu")
+    'menu 'menu-program-start)
 (define-menu-item 'pos '(208 397) 'font 'large 
     'button '(size (224 27)
             caption "E~!xit Program"
             hotkey "x"
             func game-menu-exit
             style gm-full)
-    'menu "program-start-menu")
+    'menu 'menu-program-start)
 
 
 ;;
 ;; custom-game-menu
 ;;
-(define-menu 'name "custom-game-menu" 'geometry '(0 0 640 480)
+(define-menu 'name 'menu-custom-game 'geometry '(0 0 640 480)
     'image 'none 'default '3)
 (define-menu-item 'pos '(0 0) 'font 'game  'init 'game-setup-init
     'drawfunc 'game-draw-func
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(332 192) 'font 'large 
     'text '("~<Single Player Game Setup~>" center)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(400 360) 'font 'large 
     'button '(size (224 27)
             caption "S~!elect Scenario"
             hotkey "e"
             func scen-select-menu
             style gm-full)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(400 396) 'font 'large 
     'button '(size (224 27)
             caption "~!Start Game"
             hotkey "s"
             func custom-game-start
             style gm-full)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(400 432) 'font 'large 
     'button '(size (224 27)
             caption "~!Cancel Game"
             hotkey "c"
             func game-cancel
             style gm-full)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(40 230) 'font 'game 
     'text '("~<Your Race:~>" none)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(40 250) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -303,10 +303,10 @@
               options ("Human" "Orc" "Map Default" )
               default 2
               current 2)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(220 230) 'font 'game 
     'text '("~<Resources:~>" none)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(220 250) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -314,10 +314,10 @@
               options ("Map Default" "Low" "Medium" "High" )
               default 0
               current 0)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(400 230) 'font 'game 
     'text '("~<Units:~>" none)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(400 250) 'font 'game 
     'pulldown '(size (190 20)
               style pulldown
@@ -325,10 +325,10 @@
               options ("Map Default" "One Peasant Only" )
               default 0
               current 0)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(40 290) 'font 'game 
     'text '("~<Opponents:~>" none)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(40 310) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -336,10 +336,10 @@
               options ("Map Default" "1 Opponent" "2 Opponents" "3 Opponents" "4 Opponents" "5 Opponents" "6 Opponents" "7 Opponents" )
               default 0
               current 0)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(220 290) 'font 'game 
     'text '("~<Map Tileset:~>" none)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(220 310) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -347,10 +347,10 @@
               options ("Map Default" "Forest" "Winter" "Wasteland" "Orc Swamp" )
               default 0
               current 0)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(400 290) 'font 'game 
     'text '("~<Game Type:~>" none)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 (define-menu-item 'pos '(400 310) 'font 'game 
     'pulldown '(size (190 20)
               style pulldown
@@ -358,42 +358,42 @@
               options ("Use map settings" "Melee" "Free for all" "One on one" "Capture the flag" "Greed" "Slaughter" "Sudden death" "Team melee" "Team free for all" "Team capture the flag" "Top vs bottom" "Left vs right" )
               default 0
               current 0)
-    'menu "custom-game-menu")
+    'menu 'menu-custom-game)
 
 
 ;;
 ;; enter-name-menu
 ;;
-(define-menu 'name "enter-name-menu" 'geometry '(176 260 288 128)
+(define-menu 'name 'menu-enter-name 'geometry '(176 260 288 128)
     'image 'panel4 'default '2)
 (define-menu-item 'pos '(144 11) 'font 'game 
     'text '("Enter your name:" center)
-    'menu "enter-name-menu")
+    'menu 'menu-enter-name)
 (define-menu-item 'pos '(40 38) 'font 'game 
     'input '(size (212 20)
            func enter-name-action
            style pulldown)
-    'menu "enter-name-menu")
+    'menu 'menu-enter-name)
 (define-menu-item 'pos '(24 80) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func end-menu
             style gm-half)
-    'menu "enter-name-menu")
+    'menu 'menu-enter-name)
 (define-menu-item 'pos '(154 80) 'font 'large 
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
             func enter-name-cancel
             style gm-half)
-    'menu "enter-name-menu")
+    'menu 'menu-enter-name)
 
 
 ;;
 ;; net-create-join-menu
 ;;
-(define-menu 'name "net-create-join-menu" 'geometry '(0 0 640 480)
+(define-menu 'name 'menu-create-join-menu 'geometry '(0 0 640 480)
     'image 'none 'default '2)
 (define-menu-item 'pos '(208 320) 'font 'large 
     'button '(size (224 27)
@@ -401,55 +401,55 @@
             hotkey "j"
             func net-join-game
             style gm-full)
-    'menu "net-create-join-menu")
+    'menu 'menu-create-join-menu)
 (define-menu-item 'pos '(208 356) 'font 'large 
     'button '(size (224 27)
             caption "~!Create Game"
             hotkey "c"
             func net-create-game
             style gm-full)
-    'menu "net-create-join-menu")
+    'menu 'menu-create-join-menu)
 (define-menu-item 'pos '(208 392) 'font 'large 
     'button '(size (224 27)
             caption "~!Previous Menu"
             hotkey "p"
             func end-menu
             style gm-full)
-    'menu "net-create-join-menu")
+    'menu 'menu-create-join-menu)
 
 
 ;;
 ;; net-multi-setup-menu
 ;;
-(define-menu 'name "net-multi-setup-menu" 'geometry '(0 0 640 480)
+(define-menu 'name 'menu-multi-setup 'geometry '(0 0 640 480)
     'image 'none 'default '3)
 (define-menu-item 'pos '(0 0) 'font 'game  'init 'multi-game-setup-init
     'drawfunc 'multi-game-draw-func
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(332 8) 'font 'large 
     'text '("~<Multi Player Setup~>" center)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(400 360) 'font 'large 
     'button '(size (224 27)
             caption "S~!elect Scenario"
             hotkey "e"
             func multi-scen-select
             style gm-full)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(400 396) 'font 'large 'flags '(disabled)
     'button '(size (224 27)
             caption "~!Start Game"
             hotkey "s"
             func multi-game-start
             style gm-full)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(400 432) 'font 'large 
     'button '(size (224 27)
             caption "~!Cancel Game"
             hotkey "c"
             func multi-game-cancel
             style gm-full)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 32) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -457,7 +457,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 54) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -465,7 +465,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 76) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -473,7 +473,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 98) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -481,7 +481,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 120) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -489,7 +489,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 142) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -497,7 +497,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 164) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -505,7 +505,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 186) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -513,7 +513,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(360 32) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -521,7 +521,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(360 54) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -529,7 +529,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(360 76) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -537,7 +537,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(360 98) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -545,7 +545,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(360 120) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -553,7 +553,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(360 142) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -561,7 +561,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(360 164) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -569,10 +569,10 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 230) 'font 'game 
     'text '("~<Your Race:~>" none)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 250) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -580,10 +580,10 @@
               options ("Human" "Orc" "Map Default" )
               default 2
               current 2)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(220 230) 'font 'game 
     'text '("~<Resources:~>" none)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(220 250) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -591,10 +591,10 @@
               options ("Map Default" "Low" "Medium" "High" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(400 230) 'font 'game 
     'text '("~<Units:~>" none)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(400 250) 'font 'game 
     'pulldown '(size (190 20)
               style pulldown
@@ -602,10 +602,10 @@
               options ("Map Default" "One Peasant Only" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 290) 'font 'game 
     'text '("~<Fog of War:~>" none)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(40 310) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -613,10 +613,10 @@
               options ("On" "Off" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(220 290) 'font 'game 
     'text '("~<Map Tileset:~>" none)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(220 310) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -624,238 +624,238 @@
               options ("Map Default" "Forest" "Winter" "Wasteland" "Orc Swamp" )
               default 0
               current 0)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(10 54) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(10 76) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(10 98) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(10 120) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(10 142) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(10 164) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(10 186) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(330 32) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(330 54) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(330 76) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(330 98) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(330 120) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(330 142) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(330 164) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-square)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(218 54) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(218 76) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(218 98) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(218 120) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(218 142) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(218 164) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(218 186) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(538 32) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(538 54) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(538 76) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(538 98) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(538 120) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(538 142) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 (define-menu-item 'pos '(538 164) 'font 'large 
     'gem '(size (18 18)
          state passive
          func null
          style gem-round)
-    'menu "net-multi-setup-menu")
+    'menu 'menu-multi-setup)
 
 
 ;;
 ;; net-enter-server-menu
 ;;
-(define-menu 'name "net-enter-server-menu" 'geometry '(176 260 288 128)
+(define-menu 'name 'menu-enter-server 'geometry '(176 260 288 128)
     'image 'panel4 'default '3)
 (define-menu-item 'pos '(144 11) 'font 'game 
     'text '("Enter server IP-address:" center)
-    'menu "net-enter-server-menu")
+    'menu 'menu-enter-server)
 (define-menu-item 'pos '(40 38) 'font 'game 
     'input '(size (212 20)
            func enter-server-ip-action
            style pulldown)
-    'menu "net-enter-server-menu")
+    'menu 'menu-enter-server)
 (define-menu-item 'pos '(24 80) 'font 'large 'flags '(disabled)
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func end-menu
             style gm-half)
-    'menu "net-enter-server-menu")
+    'menu 'menu-enter-server)
 (define-menu-item 'pos '(154 80) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
             func enter-server-ip-cancel
             style gm-half)
-    'menu "net-enter-server-menu")
+    'menu 'menu-enter-server)
 
 
 ;;
 ;; net-multi-client-menu
 ;;
-(define-menu 'name "net-multi-client-menu" 'geometry '(0 0 640 480)
+(define-menu 'name 'menu-net-multi-client 'geometry '(0 0 640 480)
     'image 'none 'default '4 'netaction 'terminate-net-connect)
 (define-menu-item 'pos '(0 0) 'font 'game  'init 'multi-game-client-init
     'drawfunc 'multi-client-draw-func
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(332 8) 'font 'large 
     'text '("~<Multi Player Game~>" center)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(400 360) 'font 'large 
     'button '(size (224 27)
             caption "~!Ready"
             hotkey "r"
             func multi-client-ready
             style gm-full)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(400 396) 'font 'large 
     'button '(size (224 27)
             caption "~!Not Ready"
             hotkey "n"
             func multi-client-not-ready
             style gm-full)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(400 432) 'font 'large 
     'button '(size (224 27)
             caption "~!Cancel Game"
             hotkey "c"
             func multi-client-cancel
             style gm-full)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 32) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -863,7 +863,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 54) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -871,7 +871,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 76) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -879,7 +879,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 98) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -887,7 +887,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 120) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -895,7 +895,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 142) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -903,7 +903,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 164) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -911,7 +911,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 186) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -919,7 +919,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(360 32) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -927,7 +927,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(360 54) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -935,7 +935,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(360 76) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -943,7 +943,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(360 98) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -951,7 +951,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(360 120) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -959,7 +959,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(360 142) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -967,7 +967,7 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(360 164) 'font 'game 
     'pulldown '(size (172 20)
               style pulldown
@@ -975,10 +975,10 @@
               options ("Available" "Computer" "Closed" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 230) 'font 'game 
     'text '("~<Your Race:~>" none)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 250) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -986,10 +986,10 @@
               options ("Human" "Orc" "Map Default" )
               default 2
               current 2)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(220 230) 'font 'game 
     'text '("~<Resources:~>" none)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(220 250) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -997,10 +997,10 @@
               options ("Map Default" "Low" "Medium" "High" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(400 230) 'font 'game 
     'text '("~<Units:~>" none)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(400 250) 'font 'game 
     'pulldown '(size (190 20)
               style pulldown
@@ -1008,10 +1008,10 @@
               options ("Map Default" "One Peasant Only" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 290) 'font 'game 
     'text '("~<Fog of War:~>" none)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(40 310) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -1019,10 +1019,10 @@
               options ("On" "Off" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(220 290) 'font 'game 
     'text '("~<Map Tileset:~>" none)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(220 310) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -1030,120 +1030,120 @@
               options ("Map Default" "Forest" "Winter" "Wasteland" "Orc Swamp" )
               default 0
               current 0)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(10 54) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(10 76) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(10 98) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(10 120) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(10 142) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(10 164) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(10 186) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(330 32) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(330 54) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(330 76) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(330 98) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(330 120) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(330 142) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 (define-menu-item 'pos '(330 164) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func multi-client-gem-action
          style gem-square)
-    'menu "net-multi-client-menu")
+    'menu 'menu-net-multi-client)
 
 
 ;;
 ;; net-connecting-menu
 ;;
-(define-menu 'name "net-connecting-menu" 'geometry '(176 260 288 128)
+(define-menu 'name 'menu-net-connecting 'geometry '(176 260 288 128)
     'image 'panel4 'default '2 'netaction 'terminate-net-connect)
 (define-menu-item 'pos '(144 11) 'font 'large 
     'text '("Connecting to server" center)
-    'menu "net-connecting-menu")
+    'menu 'menu-net-connecting)
 (define-menu-item 'pos '(144 32) 'font 'large 
     'text '("" center)
-    'menu "net-connecting-menu")
+    'menu 'menu-net-connecting)
 (define-menu-item 'pos '(144 53) 'font 'large 
     'text '("" center)
-    'menu "net-connecting-menu")
+    'menu 'menu-net-connecting)
 (define-menu-item 'pos '(32 90) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "~!Cancel"
             hotkey "c"
             func net-connecting-cancel
             style gm-full)
-    'menu "net-connecting-menu")
+    'menu 'menu-net-connecting)
 
 
 ;;
 ;; campaign-select-menu
 ;;
-(define-menu 'name "campaign-select-menu" 'geometry '(0 0 640 480)
+(define-menu 'name 'menu-campaign-select 'geometry '(0 0 640 480)
     'image 'none 'default '0)
 (define-menu-item 'pos '(208 212) 'font 'large 
     'button '(size (224 27)
@@ -1151,48 +1151,48 @@
             hotkey "a"
             func campaign-1
             style gm-full)
-    'menu "campaign-select-menu")
+    'menu 'menu-campaign-select)
 (define-menu-item 'pos '(208 248) 'font 'large 
     'button '(size (224 27)
             caption "(null)"
             hotkey "m"
             func campaign-2
             style gm-full)
-    'menu "campaign-select-menu")
+    'menu 'menu-campaign-select)
 (define-menu-item 'pos '(208 284) 'font 'large 
     'button '(size (224 27)
             caption "(null)"
             hotkey "l"
             func campaign-3
             style gm-full)
-    'menu "campaign-select-menu")
+    'menu 'menu-campaign-select)
 (define-menu-item 'pos '(208 320) 'font 'large 
     'button '(size (224 27)
             caption "(null)"
             hotkey "y"
             func campaign-4
             style gm-full)
-    'menu "campaign-select-menu")
+    'menu 'menu-campaign-select)
 (define-menu-item 'pos '(208 356) 'font 'large 'flags '(disabled)
     'button '(size (224 27)
             caption "~!Select Campaign"
             hotkey "s"
             func select-campaign-menu
             style gm-full)
-    'menu "campaign-select-menu")
+    'menu 'menu-campaign-select)
 (define-menu-item 'pos '(208 392) 'font 'large 
     'button '(size (224 27)
             caption "~!Previous Menu"
             hotkey "p"
             func end-menu
             style gm-full)
-    'menu "campaign-select-menu")
+    'menu 'menu-campaign-select)
 
 
 ;;
 ;; campaign-continue-menu
 ;;
-(define-menu 'name "campaign-continue-menu" 'geometry '(0 0 640 480)
+(define-menu 'name 'menu-campaign-continue 'geometry '(0 0 640 480)
     'image 'none 'default '0)
 (define-menu-item 'pos '(508 428) 'font 'large 
     'button '(size (106 27)
@@ -1200,480 +1200,480 @@
             hotkey "c"
             func end-menu
             style gm-half)
-    'menu "campaign-continue-menu")
+    'menu 'menu-campaign-continue)
 
 
 ;;
 ;; objectives-menu
 ;;
-(define-menu 'name "objectives-menu" 'geometry '(272 96 256 288)
+(define-menu 'name 'menu-objectives 'geometry '(272 96 256 288)
     'image 'panel1 'default '10)
 (define-menu-item 'pos '(128 11) 'font 'large 
     'text '("Objectives" center)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 (define-menu-item 'pos '(14 38) 'font 'large 
     'text '("null" none)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 (define-menu-item 'pos '(14 59) 'font 'large 
     'text '("null" none)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 (define-menu-item 'pos '(14 80) 'font 'large 
     'text '("null" none)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 (define-menu-item 'pos '(14 101) 'font 'large 
     'text '("null" none)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 (define-menu-item 'pos '(14 122) 'font 'large 
     'text '("null" none)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 (define-menu-item 'pos '(14 143) 'font 'large 
     'text '("null" none)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 (define-menu-item 'pos '(14 164) 'font 'large 
     'text '("null" none)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 (define-menu-item 'pos '(14 185) 'font 'large 
     'text '("null" none)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 (define-menu-item 'pos '(14 206) 'font 'large 
     'text '("null" none)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 (define-menu-item 'pos '(16 248) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "~!OK"
             hotkey "o"
             func end-menu
             style gm-full)
-    'menu "objectives-menu")
+    'menu 'menu-objectives)
 
 
 ;;
 ;; end-scenario-menu
 ;;
-(define-menu 'name "end-scenario-menu" 'geometry '(272 96 256 288)
+(define-menu 'name 'menu-end-scenario 'geometry '(272 96 256 288)
     'image 'panel1 'default '5)
 (define-menu-item 'pos '(128 11) 'font 'large 
     'text '("End Scenario" center)
-    'menu "end-scenario-menu")
+    'menu 'menu-end-scenario)
 (define-menu-item 'pos '(16 40) 'font 'large 
     'button '(size (224 27)
             caption "~!Restart Scenario"
             hotkey "r"
             func end-scenario-restart
             style gm-full)
-    'menu "end-scenario-menu")
+    'menu 'menu-end-scenario)
 (define-menu-item 'pos '(16 76) 'font 'large 
     'button '(size (224 27)
             caption "~!Surrender"
             hotkey "s"
             func end-scenario-surrender
             style gm-full)
-    'menu "end-scenario-menu")
+    'menu 'menu-end-scenario)
 (define-menu-item 'pos '(16 112) 'font 'large 
     'button '(size (224 27)
             caption "~!Quit to Menu"
             hotkey "q"
             func end-scenario-quit-menu
             style gm-full)
-    'menu "end-scenario-menu")
+    'menu 'menu-end-scenario)
 (define-menu-item 'pos '(16 148) 'font 'large 
     'button '(size (224 27)
             caption "E~!xit Program"
             hotkey "x"
             func game-menu-exit
             style gm-full)
-    'menu "end-scenario-menu")
+    'menu 'menu-end-scenario)
 (define-menu-item 'pos '(16 248) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Previous (~!E~!s~!c)"
             hotkey "esc"
             func end-menu
             style gm-full)
-    'menu "end-scenario-menu")
+    'menu 'menu-end-scenario)
 
 
 ;;
 ;; sound-options-menu
 ;;
-(define-menu 'name "sound-options-menu" 'geometry '(224 64 352 352)
+(define-menu 'name 'menu-sound-options 'geometry '(224 64 352 352)
     'image 'panel5 'default '24)
 (define-menu-item 'pos '(176 11) 'font 'large 
     'text '("Sound Options" center)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(16 36) 'font 'game 
     'text '("Master Volume" left)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(32 54) 'font 'small 
     'hslider '(size (198 18)
              func master-volume-hs-action
              handler scen-select-ok)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(44 78) 'font 'small 
     'text '("min" center)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(218 78) 'font 'small 
     'text '("max" center)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(240 54) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func set-master-power
          style gem-square)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(266 56) 'font 'game 
     'text '("Enabled" left)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(16 108) 'font 'game 
     'text '("Music Volume" left)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(32 126) 'font 'small 
     'hslider '(size (198 18)
              func music-volume-hs-action
              handler scen-select-ok)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(44 150) 'font 'small 
     'text '("min" center)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(218 150) 'font 'small 
     'text '("max" center)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(240 126) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func set-music-power
          style gem-square)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(266 128) 'font 'game 
     'text '("Enabled" left)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(16 180) 'font 'game 
     'text '("CD Volume" left)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(32 198) 'font 'small 
     'hslider '(size (198 18)
              func cd-volume-hs-action
              handler scen-select-ok)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(44 222) 'font 'small 
     'text '("min" center)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(218 222) 'font 'small 
     'text '("max" center)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(240 198) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func set-cd-power
          style gem-square)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(266 200) 'font 'game 
     'text '("Enabled" left)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(32 234) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func set-cd-mode-all
          style gem-round)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(58 236) 'font 'game 
     'text '("All Tracks" left)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(154 234) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func set-cd-mode-random
          style gem-round)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(180 236) 'font 'game 
     'text '("Random Tracks" left)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 (define-menu-item 'pos '(123 314) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func end-menu
             style gm-half)
-    'menu "sound-options-menu")
+    'menu 'menu-sound-options)
 
 
 ;;
 ;; preferences-menu
 ;;
-(define-menu 'name "preferences-menu" 'geometry '(272 96 256 288)
+(define-menu 'name 'menu-preferences 'geometry '(272 96 256 288)
     'image 'panel1 'default '6)
 (define-menu-item 'pos '(128 11) 'font 'large 
     'text '("Preferences" center)
-    'menu "preferences-menu")
+    'menu 'menu-preferences)
 (define-menu-item 'pos '(16 36) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func set-fog-of-war
          style gem-square)
-    'menu "preferences-menu")
+    'menu 'menu-preferences)
 (define-menu-item 'pos '(46 38) 'font 'game 
     'text '("Fog of War Enabled" left)
-    'menu "preferences-menu")
+    'menu 'menu-preferences)
 (define-menu-item 'pos '(16 72) 'font 'large 
     'gem '(size (18 18)
          state unchecked
          func set-command-key
          style gem-square)
-    'menu "preferences-menu")
+    'menu 'menu-preferences)
 (define-menu-item 'pos '(46 74) 'font 'game 
     'text '("Show command key" left)
-    'menu "preferences-menu")
+    'menu 'menu-preferences)
 (define-menu-item 'pos '(75 245) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func end-menu
             style gm-half)
-    'menu "preferences-menu")
+    'menu 'menu-preferences)
 
 
 ;;
 ;; speed-settings-menu
 ;;
-(define-menu 'name "speed-settings-menu" 'geometry '(272 96 256 288)
+(define-menu 'name 'menu-settings-speed 'geometry '(272 96 256 288)
     'image 'panel1 'default '14)
 (define-menu-item 'pos '(128 11) 'font 'large 
     'text '("Speed Settings" center)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(16 36) 'font 'game 
     'text '("Game Speed" left)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(32 54) 'font 'small 
     'hslider '(size (198 18)
              func game-speed-hs-action
              handler scen-select-ok)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(34 78) 'font 'small 
     'text '("slow" left)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(230 78) 'font 'small 
     'text '("fast" right)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(16 108) 'font 'game 
     'text '("Mouse Scroll" left)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(32 126) 'font 'small 
     'hslider '(size (198 18)
              func mouse-scroll-hs-action
              handler scen-select-ok)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(34 150) 'font 'small 
     'text '("off" left)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(230 150) 'font 'small 
     'text '("fast" right)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(16 180) 'font 'game 
     'text '("Keyboard Scroll" left)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(32 198) 'font 'small 
     'hslider '(size (198 18)
              func keyboard-scroll-hs-action
              handler scen-select-ok)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(34 222) 'font 'small 
     'text '("off" left)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(230 222) 'font 'small 
     'text '("fast" right)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 (define-menu-item 'pos '(75 245) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func end-menu
             style gm-half)
-    'menu "speed-settings-menu")
+    'menu 'menu-settings-speed)
 
 
 ;;
 ;; game-options-menu
 ;;
-(define-menu 'name "game-options-menu" 'geometry '(272 96 256 288)
+(define-menu 'name 'menu-game-options 'geometry '(272 96 256 288)
     'image 'panel1 'default '4)
 (define-menu-item 'pos '(128 11) 'font 'large 
     'text '("Game Options" center)
-    'menu "game-options-menu")
+    'menu 'menu-game-options)
 (define-menu-item 'pos '(16 40) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Sound (~!F~!7)"
             hotkey "f7"
             func sound-options
             style gm-full)
-    'menu "game-options-menu")
+    'menu 'menu-game-options)
 (define-menu-item 'pos '(16 76) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Speeds (~!F~!8)"
             hotkey "f8"
             func speed-settings
             style gm-full)
-    'menu "game-options-menu")
+    'menu 'menu-game-options)
 (define-menu-item 'pos '(16 112) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Preferences (~!F~!9)"
             hotkey "f9"
             func preferences
             style gm-full)
-    'menu "game-options-menu")
+    'menu 'menu-game-options)
 (define-menu-item 'pos '(16 245) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Previous (~!E~!s~!c)"
             hotkey "esc"
             func end-menu
             style gm-full)
-    'menu "game-options-menu")
+    'menu 'menu-game-options)
 
 
 ;;
 ;; net-error-menu
 ;;
-(define-menu 'name "net-error-menu" 'geometry '(176 260 288 128)
+(define-menu 'name 'menu-net-error 'geometry '(176 260 288 128)
     'image 'panel4 'default '2)
 (define-menu-item 'pos '(144 11) 'font 'large 
     'text '("Error:" center)
-    'menu "net-error-menu")
+    'menu 'menu-net-error)
 (define-menu-item 'pos '(144 38) 'font 'large 
     'text '("null" center)
-    'menu "net-error-menu")
+    'menu 'menu-net-error)
 (define-menu-item 'pos '(92 80) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!OK"
             hotkey "o"
             func end-menu
             style gm-half)
-    'menu "net-error-menu")
+    'menu 'menu-net-error)
 
 
 ;;
 ;; tips-menu
 ;;
-(define-menu 'name "tips-menu" 'geometry '(256 112 288 256)
+(define-menu 'name 'menu-tips 'geometry '(256 112 288 256)
     'image 'panel2 'default '4)
 (define-menu-item 'pos '(144 11) 'font 'large  'init 'init-tips
     'text '("Freecraft Tips" center)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(14 181) 'font 'game 
     'gem '(size (18 18)
          state checked
          func set-tips
          style gem-square)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(36 185) 'font 'game 
     'text '("Show tips at startup" left)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(14 216) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!Next Tip"
             hotkey "n"
             func show-next-tip
             style gm-half)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(168 216) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!Close"
             hotkey "c"
             func tips-menu-end
             style gm-half)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(14 35) 'font 'game 
     'text '("null" left)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(14 51) 'font 'game 
     'text '("null" left)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(14 67) 'font 'game 
     'text '("null" left)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(14 83) 'font 'game 
     'text '("null" left)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(14 99) 'font 'game 
     'text '("null" left)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(14 115) 'font 'game 
     'text '("null" left)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(14 131) 'font 'game 
     'text '("null" left)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 (define-menu-item 'pos '(14 147) 'font 'game 
     'text '("null" left)
-    'menu "tips-menu")
+    'menu 'menu-tips)
 
 
 ;;
 ;; help-menu
 ;;
-(define-menu 'name "help-menu" 'geometry '(272 96 256 288)
+(define-menu 'name 'menu-help 'geometry '(272 96 256 288)
     'image 'panel1 'default '3)
 (define-menu-item 'pos '(128 11) 'font 'large 
     'text '("Help Menu" center)
-    'menu "help-menu")
+    'menu 'menu-help)
 (define-menu-item 'pos '(16 40) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Keystroke ~!Help"
             hotkey "h"
             func keystroke-help
             style gm-full)
-    'menu "help-menu")
+    'menu 'menu-help)
 (define-menu-item 'pos '(16 76) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Freecraft ~!Tips"
             hotkey "t"
             func show-tips
             style gm-full)
-    'menu "help-menu")
+    'menu 'menu-help)
 (define-menu-item 'pos '(16 248) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Previous (~!E~!s~!c)"
             hotkey "esc"
             func end-menu
             style gm-full)
-    'menu "help-menu")
+    'menu 'menu-help)
 
 
 ;;
 ;; keystroke-help-menu
 ;;
-(define-menu 'name "keystroke-help-menu" 'geometry '(224 64 352 352)
+(define-menu 'name 'menu-keystroke-help 'geometry '(224 64 352 352)
     'image 'panel5 'default '2)
 (define-menu-item 'pos '(176 11) 'font 'large 
     'text '("Keystroke Help Menu" center)
-    'menu "keystroke-help-menu")
+    'menu 'menu-keystroke-help)
 (define-menu-item 'pos '(318 60) 'font 'small 
     'vslider '(size (18 216)
              func keystroke-help-vs-action
              handler null)
-    'menu "keystroke-help-menu")
+    'menu 'menu-keystroke-help)
 (define-menu-item 'pos '(64 312) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Previous (~!E~!s~!c)"
             hotkey "esc"
             func end-menu
             style gm-full)
-    'menu "keystroke-help-menu")
+    'menu 'menu-keystroke-help)
 (define-menu-item 'pos '(16 60) 'font 'game 
     'drawfunc 'keystroke-help-draw-func
-    'menu "keystroke-help-menu")
+    'menu 'menu-keystroke-help)
 
 
 ;;
 ;; save-game-menu
 ;;
-(define-menu 'name "save-game-menu" 'geometry '(208 112 384 256)
+(define-menu 'name 'menu-save-game 'geometry '(208 112 384 256)
     'image 'panel3 'default '6)
 (define-menu-item 'pos '(192 11) 'font 'large  'init 'init-save-game-menu
     'text '("Save Game" center)
-    'menu "save-game-menu")
+    'menu 'menu-save-game)
 (define-menu-item 'pos '(16 47) 'font 'game 
     'input '(size (352 16)
            func enter-save-game-action
            style pulldown)
-    'menu "save-game-menu")
+    'menu 'menu-save-game)
 (define-menu-item 'pos '(16 65) 'font 'game  'init 'save-lb-init 'exit 'save-lb-exit
     'listbox '(size (336 126)
              style pulldown
@@ -1681,43 +1681,43 @@
              retopt save-lb-retrieve
              handler scen-select-ok
              nlines 7)
-    'menu "save-game-menu")
+    'menu 'menu-save-game)
 (define-menu-item 'pos '(352 65) 'font 'small 
     'vslider '(size (18 126)
              func save-vs-action
              handler save-ok)
-    'menu "save-game-menu")
+    'menu 'menu-save-game)
 (define-menu-item 'pos '(12 213) 'font 'large 
     'button '(size (106 27)
             caption "Save (~<F11~>)"
             hotkey "f11"
             func save-action
             style gm-half)
-    'menu "save-game-menu")
+    'menu 'menu-save-game)
 (define-menu-item 'pos '(140 213) 'font 'large 
     'button '(size (106 27)
             caption "Delete (~<F5~>)"
             hotkey "f5"
             func fc-delete-menu
             style gm-half)
-    'menu "save-game-menu")
+    'menu 'menu-save-game)
 (define-menu-item 'pos '(268 213) 'font 'large 
     'button '(size (106 27)
             caption "Cancel (~<Esc~>)"
             hotkey "esc"
             func end-menu
             style gm-half)
-    'menu "save-game-menu")
+    'menu 'menu-save-game)
 
 
 ;;
 ;; load-game-menu
 ;;
-(define-menu 'name "load-game-menu" 'geometry '(208 112 384 256)
+(define-menu 'name 'menu-load-game 'geometry '(208 112 384 256)
     'image 'panel3 'default '4)
 (define-menu-item 'pos '(192 11) 'font 'large  'init 'init-load-game-menu
     'text '("Load Game" center)
-    'menu "load-game-menu")
+    'menu 'menu-load-game)
 (define-menu-item 'pos '(16 65) 'font 'game  'init 'load-lb-init 'exit 'load-lb-exit
     'listbox '(size (336 126)
              style pulldown
@@ -1725,92 +1725,92 @@
              retopt load-lb-retrieve
              handler scen-select-ok
              nlines 7)
-    'menu "load-game-menu")
+    'menu 'menu-load-game)
 (define-menu-item 'pos '(352 65) 'font 'small 
     'vslider '(size (18 126)
              func load-vs-action
              handler load-ok)
-    'menu "load-game-menu")
+    'menu 'menu-load-game)
 (define-menu-item 'pos '(12 213) 'font 'large 
     'button '(size (106 27)
             caption "Load (~<F12~>)"
             hotkey "f12"
             func load-action
             style gm-half)
-    'menu "load-game-menu")
+    'menu 'menu-load-game)
 (define-menu-item 'pos '(268 213) 'font 'large 
     'button '(size (106 27)
             caption "~!Cancel (~<Esc~>)"
             hotkey "esc"
             func end-menu
             style gm-half)
-    'menu "load-game-menu")
+    'menu 'menu-load-game)
 
 
 ;;
 ;; save-confirm-menu
 ;;
-(define-menu 'name "save-confirm-menu" 'geometry '(256 112 288 128)
+(define-menu 'name 'menu-save-confirm 'geometry '(256 112 288 128)
     'image 'panel4 'default '1)
 (define-menu-item 'pos '(144 11) 'font 'large  'init 'confirm-save-init
     'text '("Overwrite File" center)
-    'menu "save-confirm-menu")
+    'menu 'menu-save-confirm)
 (define-menu-item 'pos '(16 41) 'font 'game 
     'text '("Are you sure you want to overwrite" left)
-    'menu "save-confirm-menu")
+    'menu 'menu-save-confirm)
 (define-menu-item 'pos '(16 61) 'font 'game 
     'text '("null" left)
-    'menu "save-confirm-menu")
+    'menu 'menu-save-confirm)
 (define-menu-item 'pos '(16 87) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!Ok"
             hotkey "o"
             func confirm-save-file
             style gm-half)
-    'menu "save-confirm-menu")
+    'menu 'menu-save-confirm)
 (define-menu-item 'pos '(166 87) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
             func end-menu
             style gm-half)
-    'menu "save-confirm-menu")
+    'menu 'menu-save-confirm)
 
 
 ;;
 ;; delete-confirm-menu
 ;;
-(define-menu 'name "delete-confirm-menu" 'geometry '(256 112 288 128)
+(define-menu 'name 'menu-delete-confirm 'geometry '(256 112 288 128)
     'image 'panel4 'default '1)
 (define-menu-item 'pos '(144 11) 'font 'large  'init 'fc-delete-init
     'text '("Delete File" center)
-    'menu "delete-confirm-menu")
+    'menu 'menu-delete-confirm)
 (define-menu-item 'pos '(16 41) 'font 'game 
     'text '("Are you sure you want to delete" left)
-    'menu "delete-confirm-menu")
+    'menu 'menu-delete-confirm)
 (define-menu-item 'pos '(16 61) 'font 'game 
     'text '("null" left)
-    'menu "delete-confirm-menu")
+    'menu 'menu-delete-confirm)
 (define-menu-item 'pos '(16 87) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!Ok"
             hotkey "o"
             func fc-delete-file
             style gm-half)
-    'menu "delete-confirm-menu")
+    'menu 'menu-delete-confirm)
 (define-menu-item 'pos '(166 87) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "~!Cancel"
             hotkey "c"
             func end-menu
             style gm-half)
-    'menu "delete-confirm-menu")
+    'menu 'menu-delete-confirm)
 
 
 ;;
 ;; editor-select-menu
 ;;
-(define-menu 'name "editor-select-menu" 'geometry '(0 0 640 480)
+(define-menu 'name 'menu-editor-select 'geometry '(0 0 640 480)
     'image 'none 'default '0)
 (define-menu-item 'pos '(208 320) 'font 'large 
     'button '(size (224 27)
@@ -1818,21 +1818,21 @@
             hotkey "n"
             func editor-new-map
             style gm-full)
-    'menu "editor-select-menu")
+    'menu 'menu-editor-select)
 (define-menu-item 'pos '(208 356) 'font 'large 
     'button '(size (224 27)
             caption "~!Load Map"
             hotkey "l"
             func editor-load-map
             style gm-full)
-    'menu "editor-select-menu")
+    'menu 'menu-editor-select)
 (define-menu-item 'pos '(208 392) 'font 'large 
     'button '(size (224 27)
             caption "~!Cancel"
             hotkey "c"
             func end-menu
             style gm-full)
-    'menu "editor-select-menu")
+    'menu 'menu-editor-select)
 
 
 ;;
@@ -1882,87 +1882,87 @@
 ;;
 ;; editor-menu
 ;;
-(define-menu 'name "editor-menu" 'geometry '(272 96 256 288)
+(define-menu 'name 'menu-editor 'geometry '(272 96 256 288)
     'image 'panel1 'default '7)
 (define-menu-item 'pos '(128 11) 'font 'large  'init 'init-game-menu
     'text '("Editor Menu" center)
-    'menu "editor-menu")
+    'menu 'menu-editor)
 (define-menu-item 'pos '(16 40) 'font 'large 'flags '(disabled)
     'button '(size (106 27)
             caption "Save (~<F11~>)"
             hotkey "f11"
             func game-menu-save
             style gm-half)
-    'menu "editor-menu")
+    'menu 'menu-editor)
 (define-menu-item 'pos '(134 40) 'font 'large 'flags '(disabled)
     'button '(size (106 27)
             caption "Load (~<F12~>)"
             hotkey "f12"
             func game-menu-load
             style gm-half)
-    'menu "editor-menu")
+    'menu 'menu-editor)
 (define-menu-item 'pos '(16 76) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Map Properties (~<F5~>)"
             hotkey "f5"
             func editor-map-properties
             style gm-full)
-    'menu "editor-menu")
+    'menu 'menu-editor)
 (define-menu-item 'pos '(16 112) 'font 'large 'flags '(disabled)
     'button '(size (224 27)
             caption "Player Properties (~<F6~>)"
             hotkey "f6"
             func editor-player-properties
             style gm-full)
-    'menu "editor-menu")
+    'menu 'menu-editor)
 (define-menu-item 'pos '(16 148) 'font 'large 'flags '(disabled)
     'button '(size (224 27)
             caption ""
             hotkey "o"
             func game-menu-objectives
             style gm-full)
-    'menu "editor-menu")
+    'menu 'menu-editor)
 (define-menu-item 'pos '(16 212) 'font 'large 
     'button '(size (224 27)
             caption "E~!xit to Menu"
             hotkey "x"
             func editor-quit-menu
             style gm-full)
-    'menu "editor-menu")
+    'menu 'menu-editor)
 (define-menu-item 'pos '(16 248) 'font 'large 'flags '(selected)
     'button '(size (224 27)
             caption "Return to Editor (~<Esc~>)"
             hotkey "esc"
             func game-menu-return
             style gm-full)
-    'menu "editor-menu")
+    'menu 'menu-editor)
 
 
 ;;
 ;; editor-map-properties
 ;;
-(define-menu 'name "editor-map-properties" 'geometry '(256 112 288 256)
+(define-menu 'name 'menu-editor-map-properties 'geometry '(256 112 288 256)
     'image 'panel2 'default '10)
 (define-menu-item 'pos '(144 11) 'font 'large 
     'text '("Map Properties" center)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 (define-menu-item 'pos '(14 47) 'font 'game 
     'text '("Map Description:" left)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 (define-menu-item 'pos '(14 69) 'font 'game 
     'input '(size (260 16)
            func editor-map-description-action
            style pulldown)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 (define-menu-item 'pos '(14 105) 'font 'game 
     'text '("Size:" left)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 (define-menu-item 'pos '(122 105) 'font 'game 
     'text '("null" left)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 (define-menu-item 'pos '(14 141) 'font 'game 
     'text '("Tileset:" left)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 (define-menu-item 'pos '(122 141) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -1970,10 +1970,10 @@
               options ("Forest" "Winter" "Wasteland" "Orc Swamp" )
               default 0
               current 0)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 (define-menu-item 'pos '(14 177) 'font 'game 
     'text '("Version:" left)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 (define-menu-item 'pos '(122 177) 'font 'game 
     'pulldown '(size (152 20)
               style pulldown
@@ -1981,28 +1981,28 @@
               options ("Original" "Expansion" "FreeCraft" )
               default 0
               current 0)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 (define-menu-item 'pos '(19 218) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "OK"
             hotkey ""
             func editor-map-properties-ok
             style gm-half)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 (define-menu-item 'pos '(163 218) 'font 'large 'flags '(selected)
     'button '(size (106 27)
             caption "Cancel (~<Esc~>)"
             hotkey "esc"
             func editor-end-menu
             style gm-half)
-    'menu "editor-map-properties")
+    'menu 'menu-editor-map-properties)
 
 
 ;;
 ;; editor-player-properties
 ;;
-(define-menu 'name "editor-player-properties" 'geometry '(272 96 256 288)
+(define-menu 'name 'menu-editor-player-properties 'geometry '(272 96 256 288)
     'image 'panel1 'default '0)
 (define-menu-item 'pos '(128 11) 'font 'large 
     'text '("Player Properties" center)
-    'menu "editor-player-properties")
+    'menu 'menu-editor-player-properties)
