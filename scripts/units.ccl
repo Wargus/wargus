@@ -41,7 +41,7 @@
   ;;Decay Annoy	Points
       0      0      50
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 
@@ -76,7 +76,7 @@
   ;;Decay Annoy	Points
       0      0      50
   "missile-none"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-attack
   'can-target-land 
@@ -105,13 +105,13 @@
   ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
       10       0      4     30      0 #(   45    400       0      0 )
   ;;Tile    Box Size    Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )     1       6       4
+  '( 1 1 ) '(  31  31 )     2       6       4
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0    50      3      2       0       0
   ;;Decay Annoy	Points
       0      0      30
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-harvest
   'can-target-land 
@@ -141,13 +141,13 @@
   ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
       10       0      4     30      0 #(   45    400       0      0 )
   ;;Tile    Box Size    Attack	ReactC	ReactH
-  '( 1 1 ) '(  31  31 )     1       6       4
+  '( 1 1 ) '(  31  31 )     2       6       4
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
        0    50      3      2       0       0
   ;;Decay Annoy	Points
       0      0      30
   "missile-none"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-harvest
   'can-target-land 
@@ -183,7 +183,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-ballista-bolt"
-  'corpse-none
+  '()
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 
@@ -218,7 +218,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-catapult-rock"
-  'corpse-none
+  '()
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 
@@ -253,7 +253,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 
@@ -288,7 +288,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-none"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-attack
   'can-target-land 
@@ -323,7 +323,7 @@
   ;;Decay Annoy	Points
       0      0      60
   "missile-arrow"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -358,7 +358,7 @@
   ;;Decay Annoy	Points
       0      0      60
   "missile-axe"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -393,7 +393,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -430,7 +430,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-touch-of-death"
-  'corpse-none
+  '()
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -465,7 +465,7 @@
   ;;Decay Annoy	Points
       0      0     110
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 
@@ -498,7 +498,7 @@
   ;;Decay Annoy	Points
       0      0     110
   "missile-none"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-attack
   'can-target-land 
@@ -534,7 +534,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-none"
-  'corpse-none
+  '()
   'type-land
   'right-demolish
   'can-target-land 
@@ -570,7 +570,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-none"
-  'corpse-none
+  '()
   'type-land
   'right-demolish
   'can-target-land 
@@ -603,7 +603,7 @@
   ;;Decay Annoy	Points
       0      0      30
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 
@@ -635,7 +635,7 @@
   ;;Decay Annoy	Points
       0      0      30
   "missile-none"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-attack
   'can-target-land 
@@ -667,7 +667,7 @@
   ;;Decay Annoy	Points
       0      0      70
   "missile-arrow"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -699,7 +699,7 @@
   ;;Decay Annoy	Points
       0      0      70
   "missile-axe"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -731,7 +731,7 @@
   ;;Decay Annoy	Points
       0      0      60
   "missile-arrow"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -763,7 +763,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-touch-of-death"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -801,7 +801,7 @@
   ;;Decay Annoy	Points
       0      0     150
   "missile-griffon-hammer"
-  'corpse-none
+  '()
   'type-fly
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -834,7 +834,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-none"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-attack
   'can-target-land 
@@ -867,7 +867,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -901,7 +901,7 @@
   ;;Decay Annoy	Points
       0      0      50
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 
@@ -936,7 +936,7 @@
   ;;Decay Annoy	Points
       0     10      40
   "missile-none"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-haul-oil
   ;; flags
@@ -969,7 +969,7 @@
   ;;Decay Annoy	Points
       0     10      40
   "missile-none"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-haul-oil
   ;; flags
@@ -1002,7 +1002,7 @@
   ;;Decay Annoy	Points
       0     15      50
   "missile-none"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-sail
   ;; flags
@@ -1035,7 +1035,7 @@
   ;;Decay Annoy	Points
       0     15      50
   "missile-none"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-sail
   ;; flags
@@ -1068,7 +1068,7 @@
   ;;Decay Annoy	Points
       0     20     150
   "missile-small-cannon"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -1102,7 +1102,7 @@
   ;;Decay Annoy	Points
       0     20     150
   "missile-small-cannon"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -1136,7 +1136,7 @@
   ;;Decay Annoy	Points
       0     25     300
   "missile-big-cannon"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-attack
   'can-target-land 'can-target-sea 
@@ -1171,7 +1171,7 @@
   ;;Decay Annoy	Points
       0     25     300
   "missile-big-cannon"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-attack
   'can-target-land 'can-target-sea 
@@ -1206,7 +1206,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-none
   ;; flags
@@ -1236,7 +1236,7 @@
   ;;Decay Annoy	Points
       0      0     150
   "missile-dragon-breath"
-  'corpse-none
+  '()
   'type-fly
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -1272,7 +1272,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-none"
-  'corpse-none
+  '()
   'type-naval
   'right-attack
   ;; flags
@@ -1304,7 +1304,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-none"
-  'corpse-none
+  '()
   'type-naval
   'right-attack
   ;; flags
@@ -1336,7 +1336,7 @@
   ;;Decay Annoy	Points
       0     20     120
   "missile-submarine-missile"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-attack
   'can-target-sea 
@@ -1372,7 +1372,7 @@
   ;;Decay Annoy	Points
       0     20     120
   "missile-turtle-missile"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-attack
   'can-target-sea 
@@ -1408,7 +1408,7 @@
   ;;Decay Annoy	Points
       0      0      40
   "missile-none"
-  'corpse-none
+  '()
   'type-fly
   'right-move
   ;; flags
@@ -1441,7 +1441,7 @@
   ;;Decay Annoy	Points
       0      0      40
   "missile-none"
-  'corpse-none
+  '()
   'type-fly
   'right-move
   ;; flags
@@ -1471,7 +1471,7 @@
   ;;Decay Annoy	Points
       0      0     150
   "missile-griffon-hammer"
-  'corpse-none
+  '()
   'type-fly
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -1504,7 +1504,7 @@
   ;;Decay Annoy	Points
       0      0     150
   "missile-dragon-breath"
-  'corpse-none
+  '()
   'type-fly
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -1537,7 +1537,7 @@
   ;;Decay Annoy	Points
       0      0     110
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 
@@ -1573,7 +1573,7 @@
   ;;Decay Annoy	Points
       3      0       0
   "missile-none"
-  'corpse-none
+  '()
   'type-fly
   'right-move
   ;; flags
@@ -1603,7 +1603,7 @@
   ;;Decay Annoy	Points
       0      0      50
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 
@@ -1635,7 +1635,7 @@
   ;;Decay Annoy	Points
       0      0      50
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 
@@ -1670,7 +1670,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-none
   ;; flags
@@ -1697,7 +1697,7 @@
   ;;Decay Annoy	Points
       0      0     120
   "missile-none"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-attack
   'can-target-land 
@@ -1731,7 +1731,7 @@
   ;;Decay Annoy	Points
       0      0     120
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 
@@ -1764,7 +1764,7 @@
   ;;Decay Annoy	Points
       0      0     120
   "missile-touch-of-death"
-  'corpse-none
+  '()
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -1799,7 +1799,7 @@
   ;;Decay Annoy	Points
       0      0     120
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-attack
   'can-target-land 
@@ -1833,7 +1833,7 @@
   ;;Decay Annoy	Points
       0      0     120
   "missile-axe"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -1869,7 +1869,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-none
   ;; flags
@@ -1899,7 +1899,7 @@
   ;;Decay Annoy	Points
     100      0       0
   "missile-none"
-  'corpse-none
+  '()
   'type-land
   'right-attack
   'can-target-land 
@@ -1936,7 +1936,7 @@
   ;;Decay Annoy	Points
       0      0     100
   "missile-daemon-fire"
-  'corpse-none
+  '()
   'type-fly
   'right-attack
   'can-target-land 'can-target-sea 'can-target-air 
@@ -1972,7 +1972,7 @@
   ;;Decay Annoy	Points
       0      0       1
   "missile-none"
-  'corpse-none
+  '()
   'type-land
   'right-move
   ;; flags
@@ -2005,7 +2005,7 @@
   ;;Decay Annoy	Points
       0     45     100
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2036,7 +2036,7 @@
   ;;Decay Annoy	Points
       0     45     100
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2067,7 +2067,7 @@
   ;;Decay Annoy	Points
       0     35     160
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2098,7 +2098,7 @@
   ;;Decay Annoy	Points
       0     35     160
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2129,7 +2129,7 @@
   ;;Decay Annoy	Points
       0     35     240
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2160,7 +2160,7 @@
   ;;Decay Annoy	Points
       0     35     240
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2191,7 +2191,7 @@
   ;;Decay Annoy	Points
       0     50      95
   "missile-none"
-  'corpse-land-site
+  '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
   'can-target-land 'can-target-sea 'can-target-air 
@@ -2224,7 +2224,7 @@
   ;;Decay Annoy	Points
       0     50      95
   "missile-none"
-  'corpse-land-site
+  '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
   'can-target-land 'can-target-sea 'can-target-air 
@@ -2257,7 +2257,7 @@
   ;;Decay Annoy	Points
       0     15     210
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2288,7 +2288,7 @@
   ;;Decay Annoy	Points
       0     15     210
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2319,7 +2319,7 @@
   ;;Decay Annoy	Points
       0     20     230
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2350,7 +2350,7 @@
   ;;Decay Annoy	Points
       0     20     230
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2381,7 +2381,7 @@
   ;;Decay Annoy	Points
       0     20     280
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2412,7 +2412,7 @@
   ;;Decay Annoy	Points
       0     20     280
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2443,7 +2443,7 @@
   ;;Decay Annoy	Points
       0     20     170
   "missile-lightning"
-  'corpse-water-site
+  '("unit-destroyed-3x3-place" 3)
   'type-land
   'right-none
   ;; flags
@@ -2476,7 +2476,7 @@
   ;;Decay Annoy	Points
       0     20     170
   "missile-lightning"
-  'corpse-water-site
+  '("unit-destroyed-3x3-place" 3)
   'type-land
   'right-none
   ;; flags
@@ -2509,7 +2509,7 @@
   ;;Decay Annoy	Points
       0     45     200
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-4x4-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2541,7 +2541,7 @@
   ;;Decay Annoy	Points
       0     45     200
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-4x4-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2573,7 +2573,7 @@
   ;;Decay Annoy	Points
       0     15     150
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2605,7 +2605,7 @@
   ;;Decay Annoy	Points
       0     15     150
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2637,7 +2637,7 @@
   ;;Decay Annoy	Points
       0     20     200
   "missile-lightning"
-  'corpse-water-site
+  '("unit-destroyed-3x3-place" 3)
   'type-land
   'right-none
   ;; flags
@@ -2669,7 +2669,7 @@
   ;;Decay Annoy	Points
       0     20     200
   "missile-lightning"
-  'corpse-water-site
+  '("unit-destroyed-3x3-place" 3)
   'type-land
   'right-none
   ;; flags
@@ -2701,7 +2701,7 @@
   ;;Decay Annoy	Points
       0     20     240
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2732,7 +2732,7 @@
   ;;Decay Annoy	Points
       0     20     240
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2763,7 +2763,7 @@
   ;;Decay Annoy	Points
       0     20     170
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2794,7 +2794,7 @@
   ;;Decay Annoy	Points
       0     20     170
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2825,7 +2825,7 @@
   ;;Decay Annoy	Points
       0     20     200
   "missile-lightning"
-  'corpse-water-site
+  '("unit-destroyed-3x3-place" 3)
   'type-land
   'right-none
   ;; flags
@@ -2858,7 +2858,7 @@
   ;;Decay Annoy	Points
       0     20     200
   "missile-lightning"
-  'corpse-water-site
+  '("unit-destroyed-3x3-place" 3)
   'type-land
   'right-none
   ;; flags
@@ -2891,7 +2891,7 @@
   ;;Decay Annoy	Points
       0     20     160
   "missile-lightning"
-  'corpse-water-site
+  '("unit-destroyed-3x3-place" 3)
   'type-naval
   'right-none
   ;; flags
@@ -2923,7 +2923,7 @@
   ;;Decay Annoy	Points
       0     20     160
   "missile-lightning"
-  'corpse-water-site
+  '("unit-destroyed-3x3-place" 3)
   'type-naval
   'right-none
   ;; flags
@@ -2955,7 +2955,7 @@
   ;;Decay Annoy	Points
       0     40     600
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-4x4-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -2987,7 +2987,7 @@
   ;;Decay Annoy	Points
       0     40     600
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-4x4-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -3019,7 +3019,7 @@
   ;;Decay Annoy	Points
       0     50    1500
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-4x4-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -3051,7 +3051,7 @@
   ;;Decay Annoy	Points
       0     50    1500
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-4x4-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -3083,7 +3083,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-3x3-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -3115,7 +3115,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-naval
   'right-none
   ;; flags
@@ -3147,7 +3147,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-none
   ;; flags
@@ -3177,7 +3177,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-none
   ;; flags
@@ -3207,7 +3207,7 @@
   ;;Decay Annoy	Points
       0     50     200
   "missile-arrow"
-  'corpse-land-site
+  '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
   'can-target-land 'can-target-sea 'can-target-air 
@@ -3242,7 +3242,7 @@
   ;;Decay Annoy	Points
       0     50     200
   "missile-arrow"
-  'corpse-land-site
+  '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
   'can-target-land 'can-target-sea 'can-target-air 
@@ -3277,7 +3277,7 @@
   ;;Decay Annoy	Points
       0     50     250
   "missile-small-cannon"
-  'corpse-land-site
+  '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
   'can-target-land 'can-target-sea 
@@ -3312,7 +3312,7 @@
   ;;Decay Annoy	Points
       0     50     250
   "missile-small-cannon"
-  'corpse-land-site
+  '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
   'can-target-land 'can-target-sea 
@@ -3347,7 +3347,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -3378,7 +3378,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-4x4-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -3409,7 +3409,7 @@
   ;;Decay Annoy	Points
       0     35     150
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-2x2-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -3440,7 +3440,7 @@
   ;;Decay Annoy	Points
       0     45       1
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-1x1-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -3460,7 +3460,7 @@
   "animations-orc-wall"	;; animations
   "icon-orc-wall"
   ;;Speed OvFrame SightR Hitpnt Magic  BTime	Gold	Wood	Oil
-       0      15      1     40      0 #(   30     20      10      0 0 0)
+       0      15      1     40      0 #(   30     20      10      0 )
   ;;Tile    Box Size    Attack	ReactC	ReactH
   '( 1 1 ) '(  31  31 )     0       0       0
   ;;Armor Prior	Damage	Pierc	WUpgr	AUpgr
@@ -3468,7 +3468,7 @@
   ;;Decay Annoy	Points
       0     45       1
   "missile-lightning"
-  'corpse-land-site
+  '("unit-destroyed-1x1-place" 0)
   'type-land
   'right-none
   ;; flags
@@ -3499,7 +3499,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-none
   ;; flags
@@ -3512,7 +3512,7 @@
     "dead-body-dead" )
   "dead-body-attack" )
 
-(define-unit-type "unit-destroyed-1x1-place"	"1x1 Destroyed Place"
+(define-unit-type "unit-destroyed-1x1-place"	"Destroyed 1x1 Place"
   ;; graphic data
   #("small destroyed site (summer).png"
     "small destroyed site (winter).png"
@@ -3530,7 +3530,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-none
   ;; flags
@@ -3544,7 +3544,7 @@
     "destroyed-1x1-place-dead" )
   "destroyed-1x1-place-attack" )
 
-(define-unit-type "unit-destroyed-2x2-place"	"2x2 Destroyed Place"
+(define-unit-type "unit-destroyed-2x2-place"	"Destroyed 2x2 Place"
   ;; graphic data
   #("destroyed site (summer).png"
     "destroyed site (winter).png"
@@ -3562,7 +3562,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-none
   ;; flags
@@ -3576,7 +3576,7 @@
     "destroyed-2x2-place-dead" )
   "destroyed-2x2-place-attack" )
 
-(define-unit-type "unit-destroyed-3x3-place"	"3x3 Destroyed Place"
+(define-unit-type "unit-destroyed-3x3-place"	"Destroyed 3x3 Place"
   ;; graphic data
   "unit-destroyed-2x2-place"
   '(  96  96 )			;; graphic size
@@ -3591,7 +3591,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-none
   ;; flags
@@ -3605,7 +3605,7 @@
     "destroyed-3x3-place-dead" )
   "destroyed-3x3-place-attack" )
 
-(define-unit-type "unit-destroyed-4x4-place"	"4x4 Destroyed Place"
+(define-unit-type "unit-destroyed-4x4-place"	"Destroyed 4x4 Place"
   ;; graphic data
   "unit-destroyed-2x2-place"
   '( 128 128 )			;; graphic size
@@ -3620,7 +3620,7 @@
   ;;Decay Annoy	Points
       0      0       0
   "missile-lightning"
-  'corpse-none
+  '()
   'type-land
   'right-none
   ;; flags
@@ -3652,7 +3652,7 @@
   ;;Decay Annoy	Points
       0      0      30
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-harvest
   'can-target-land 
@@ -3688,7 +3688,7 @@
   ;;Decay Annoy	Points
       0      0      30
   "missile-none"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-harvest
   'can-target-land 
@@ -3724,7 +3724,7 @@
   ;;Decay Annoy	Points
       0      0      30
   "missile-none"
-  'corpse-human
+  '("unit-dead-body" 6)
   'type-land
   'right-harvest
   'can-target-land 
@@ -3760,7 +3760,7 @@
   ;;Decay Annoy	Points
       0      0      30
   "missile-none"
-  'corpse-orc
+  '("unit-dead-body" 0)
   'type-land
   'right-harvest
   'can-target-land 
@@ -3796,7 +3796,7 @@
   ;;Decay Annoy	Points
       0     10      40
   "missile-none"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-haul-oil
   ;; flags
@@ -3829,7 +3829,7 @@
   ;;Decay Annoy	Points
       0     10      40
   "missile-none"
-  'corpse-ship
+  '("unit-dead-body" 12)
   'type-naval
   'right-haul-oil
   ;; flags
