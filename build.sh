@@ -139,7 +139,7 @@ fi
 
 # ADD -e      To force that the archive is expansion compatible
 # ADD -n      To force that the archive is not expansion compatible
-$BINPATH/wartool "$VIDEO" "$DATADIR" "$DIR"
+$BINPATH/wartool $VIDEO "$DATADIR" "$DIR"
 
 # copy own supplied files
 
