@@ -40,147 +40,142 @@ DefineUnitType("unit-critter", {})
 DefineUnitType("unit-skeleton", {})
 DefineUnitType("unit-circle-of-power", {})
 
-function AssignTable(tab1, tab2)
-	function assign(key, value)
-		tab1[key] = value
-	end
-	table.foreach(tab2, assign)
-end
-
 if CompileFeature("META-LUA") then
-
+	print("All your base are belong to us.");
 	AssignTable(Stratagus.Spells.Create("spell-suicide-bomber"), {
-			DisplayName = "Demolish",
+			Name = "Demolish",
 			ManaCost = 0,
 			Range = 0,
 			Target = "TargetSelf" })
 
 	AssignTable(Stratagus.Spells.Create("spell-holy-vision"), {
-			DisplayName = "HolyVision",
+			Name = "HolyVision",
 			ManaCost = 70,
 			Range = 9999, --Infinite
 			Target = "TargetPosition" })
 
 	AssignTable(Stratagus.Spells.Create("spell-healing"), {
-			DisplayName = "Healing",
+			Name = "Healing",
 			ManaCost = 6,
 			Range = 6,
 			Target = "TargetUnit" })
 
 	s = Stratagus.Spells.Create("spell-exorcism")
-	s.DisplayName = "Exorcism"
+	s.Name = "Exorcism"
 	s.ManaCost = 4
 	s.Range = 10
 	s.Target = "TargetUnit"
 
 	s = Stratagus.Spells.Create("spell-eye-of-vision")
-	s.DisplayName = "Eye of vision"
+	s.Name = "Eye of vision"
 	s.ManaCost = 70
 	s.Range = 6
 	s.Target = "TargetPosition"
 	
 	s = Stratagus.Spells.Create("spell-haste")
-	s.DisplayName = "Haste"
+	s.Name = "Haste"
 	s.ManaCost = 50
 	s.Range = 6
 	s.Target = "TargetUnit"
 
 	s = Stratagus.Spells.Create("spell-slow")
-	s.DisplayName = "Slow"
+	s.Name = "Slow"
 	s.ManaCost = 50
 	s.Range = 10
 	s.Target = "TargetUnit"
 	
 	s = Stratagus.Spells.Create("spell-bloodlust")
-	s.DisplayName = "Bloodlust"
+	s.Name = "Bloodlust"
 	s.ManaCost = 50
 	s.Range = 6
 	s.Target = "TargetUnit"
 
 	s = Stratagus.Spells.Create("spell-invisibility")
-	s.DisplayName = "Invisibility"
+	s.Name = "Invisibility"
 	s.ManaCost = 200
 	s.Range = 6
 	s.Target = "TargetUnit"
 
 	s = Stratagus.Spells.Create("spell-unholy-armor")
-	s.DisplayName = "Unholy Armor"
+	s.Name = "Unholy Armor"
 	s.ManaCost = 100
 	s.Range = 6
 	s.Target = "TargetUnit"
 
 	s = Stratagus.Spells.Create("spell-flame-shield")
-	s.DisplayName = "Flame Shield"
+	s.Name = "Flame Shield"
 	s.ManaCost = 50
 	s.Range = 6
 	s.Target = "TargetUnit"
 
 	s = Stratagus.Spells.Create("spell-polymorph")
-	s.DisplayName = "Polymorph"
+	s.Name = "Polymorph"
 	s.ManaCost = 200
 	s.Range = 10
 	s.Target = "TargetUnit"
 
 	s = Stratagus.Spells.Create("spell-blizzard")
-	s.DisplayName = "Blizzard"
+	s.Name = "Blizzard"
 	s.ManaCost = 25
 	s.Range = 12
 	s.Target = "TargetPosition"
 	s.RepeatCast = true;
 
 	s = Stratagus.Spells.Create("spell-death-and-decay")
-	s.DisplayName = "Death and Decay"
+	s.Name = "Death and Decay"
 	s.ManaCost = 25
 	s.Range = 12
 	s.Target = "TargetPosition"
 	s.RepeatCast = true;
 
 	s = Stratagus.Spells.Create("spell-fireball")
-	s.DisplayName = "Fireball"
+	s.Name = "Fireball"
 	s.ManaCost = 100
 	s.Range = 8
 	s.Target = "TargetPosition"
 
 	s = Stratagus.Spells.Create("spell-runes")
-	s.DisplayName = "Runes"
+	s.Name = "Runes"
 	s.ManaCost = 10
 	s.Range = 10
 	s.Target = "TargetPosition"
 
 	s = Stratagus.Spells.Create("spell-death-coil")
-	s.DisplayName = "Death Coil"
+	s.Name = "Death Coil"
 	s.ManaCost = 100
 	s.Range = 10
 	s.Target = "TargetPosition"
 
 	s = Stratagus.Spells.Create("spell-raise-dead")
-	s.DisplayName = "Raise Dead"
+	s.Name = "Raise Dead"
 	s.ManaCost = 50
 	s.Range = 6
 	s.Target = "TargetPosition"
 	s.RepeatCast = true
 	
 	s = Stratagus.Spells.Create("spell-whirlwind")
-	s.DisplayName = "Whirlwind"
+	s.Name = "Whirlwind"
 	s.ManaCost = 50
 	s.Range = 12
 	s.Target = "TargetPosition"
 
 	s = Stratagus.Spells.Create("spell-circle-of-power")
-	s.DisplayName = "Circle of Power"
+	s.Name = "Circle of Power"
 	s.ManaCost = 25
 	s.Range = -1
 	s.Target = "TargetPosition"
 
 	print("There are " .. Stratagus.Spells.n .. " spells.")
 	for i = 0, Stratagus.Spells.n - 1 do
-		print("Name = " .. Stratagus.Spells[i].DisplayName .. "   " ..
+		print("Name = " .. Stratagus.Spells[i].Name .. "   " ..
 				"ManaCost = " .. Stratagus.Spells[i].ManaCost .. "   " ..
 				"Range= " .. Stratagus.Spells[i].Range .. "   " ..
 				"Target= " .. Stratagus.Spells[i].Target)
 	end
 	print("End of spell stats.")
-else
+end
+
+do
 	for i = 1, 10 do
 		print("DEFINE OLD SPELLS")
 	end
