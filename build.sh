@@ -13,9 +13,9 @@
 #
 # -z / -I : COMPRESS = gzip --force --best / bzip2 --force
 # -p path : ARCHIVE = /cdrom / /mnt/cdrom ..
-# -o DIR = /usr/share/games/ale-clone/warii
-# -T path : BINPATH = /usr/lib/ale-clone/tools
-# -C CONTRIB = /usr/lib/ale-clone/contrib
+# -o DIR = /usr/share/games/freecraft/warii
+# -T path : BINPATH = /usr/lib/freecraft/tools
+# -C CONTRIB = /usr/lib/freecraft/contrib
 
 #	compress parameters
 GZIP="gzip --force --best"
@@ -52,13 +52,13 @@ ARCHIVE=$CDROM"/data/"
 #
 BINPATH="tools"
 #BINPATH="/usr/local/lib/clone/bin"
-#BINPATH="/usr/lib/ale-clone/tools"
+#BINPATH="/usr/lib/freecraft/tools"
 
 #
 #       Here are the extra files contributed or -C dir.
 #
 CONTRIB="contrib"
-#CONTRIB="/usr/lib/ale-clone/contrib"
+#CONTRIB="/usr/lib/freecraft/contrib"
 #CONTRIB="/usr/local/lib/clone/contrib"
 
 #
@@ -66,7 +66,7 @@ CONTRIB="contrib"
 #
 DIR="data"
 #DIR="/usr/local/lib/clone/data"
-#DIR="/usr/share/games/ale-clone/WarII"
+#DIR="/usr/share/games/freecraft/WarII"
 
 ###
 ###	Below this point, you should only search bugs. :-)
@@ -87,9 +87,9 @@ while [ $# -gt 0 ]; do
 build.sh
  -z / -I : COMPRESS = gzip --force --best / bzip2 --force
  -p path : ARCHIVE = /cdrom / /mnt/cdrom ..
- -o DIR = /usr/share/games/ale-clone/warii
- -T path : BINPATH = /usr/lib/ale-clone/tools
- -C CONTRIB = /usr/lib/ale-clone/contrib
+ -o DIR = /usr/share/games/freecraft/warii
+ -T path : BINPATH = /usr/lib/freecraft/tools
+ -C CONTRIB = /usr/lib/freecraft/contrib
 EOF
 			exit 0;;
 
@@ -163,7 +163,7 @@ cp $CONTRIB/health.png $DIR
 cp $CONTRIB/food.png $DIR/graphic
 cp $CONTRIB/score.png $DIR/graphic
 cp $CONTRIB/ore,stone,coal.png $DIR/graphic
-cp $CONTRIB/ale-title.png $DIR
+cp $CONTRIB/freecraft.png $DIR
 
 ###############################################################################
 ##	MISC
