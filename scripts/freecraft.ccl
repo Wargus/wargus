@@ -28,6 +28,9 @@
 ; Config file version
 (define media-version (list 'wc2 'class 'wc2 'version '(1 17 99)))
 
+;; FIXME: Needed until new ui code is working
+(define define-old-ui define-ui)
+
 ;;-----------------------------------------------------------------------------
 ;;	Config-Part
 ;;-----------------------------------------------------------------------------
