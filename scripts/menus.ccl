@@ -286,7 +286,7 @@
 ;;
 (define-menu 'name 'menu-global-options 'geometry '(144 64 352 352)
   'image 'panel5 'default '1)
-(define-menu-item 'pos (list 176 11) 'font 'large 'init 'global-options-init
+(define-menu-item 'pos (list 176 11) 'font 'large 'init 'global-options-init 'exit 'global-options-exit
   'text '("Global Options" center)
   'menu 'menu-global-options)
 (define-menu-item 'pos (list 16 44) 'font 'game
@@ -1477,7 +1477,7 @@
 ;;
 (define-menu 'name 'menu-sound-options 'geometry '(224 64 352 352)
   'image 'panel5 'default '23)
-(define-menu-item 'pos (list 176 11) 'font 'large 'init 'sound-options-init
+(define-menu-item 'pos (list 176 11) 'font 'large 'init 'sound-options-init 'exit 'sound-options-exit
   'text '("Sound Options" center)
   'menu 'menu-sound-options)
 (define-menu-item 'pos (list 16 (* 36 1)) 'font 'game
@@ -1581,7 +1581,7 @@
 ;;
 (define-menu 'name 'menu-preferences 'geometry '(272 96 256 288)
   'image 'panel1 'default '5)
-(define-menu-item 'pos (list 128 11) 'font 'large 'init 'preferences-init
+(define-menu-item 'pos (list 128 11) 'font 'large 'init 'preferences-init 'exit 'preferences-exit
   'text '("Preferences" center)
   'menu 'menu-preferences)
 (define-menu-item 'pos (list 16 (* 36 1)) 'font 'large
@@ -1957,7 +1957,7 @@
 ;;
 (define-menu 'name 'menu-speed-options 'geometry '(272 96 256 288)
   'image 'panel1 'default '13)
-(define-menu-item 'pos (list 128 11) 'font 'large
+(define-menu-item 'pos (list 128 11) 'font 'large 'init 'speed-options-init 'exit 'speed-options-exit
   'text '("Speed Settings" center)
   'menu 'menu-speed-options)
 (define-menu-item 'pos (list 16 (* 36 1)) 'font 'game
