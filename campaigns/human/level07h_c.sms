@@ -10,10 +10,10 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfUnit(2, "==", 0, "unit-orc-refinery") end,
+  function() return GetPlayerData(2, "UnitTypesCount", "unit-orc-refinery") == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units

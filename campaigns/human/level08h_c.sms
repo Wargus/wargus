@@ -20,13 +20,13 @@ AddTrigger(
     return false end)
 
 AddTrigger(
-  function() return IfUnit("this", ">=", 1, "unit-castle") and
-    IfUnit(2, "==", 0, "unit-peasant") and
-    IfUnit(4, "==", 0, "unit-peasant") and
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-castle") >= 1 and
+    GetPlayerData(2, "UnitTypesCount", "unit-peasant") == 0 and
+    GetPlayerData(4, "UnitTypesCount", "unit-peasant") == 0 and
     GetNumOpponents(GetThisPlayer()) == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units

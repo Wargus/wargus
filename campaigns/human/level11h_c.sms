@@ -12,12 +12,12 @@ Briefing("type", "wc2",
 -- FIXME: Check if units are freed.
 
 AddTrigger(
-  function() return IfUnit(3, "==", 0, "all") and
+  function() return GetPlayerData(3, "TotalNumUnits") == 0 and
     GetNumOpponents(GetThisPlayer()) == 0 end,
   function() return ActionVictory() end)
 
 AddTrigger(
-  function() return IfUnit("this", "==", 0, "all") end,
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
 
 --Units
