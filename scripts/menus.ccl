@@ -3228,6 +3228,15 @@
             func replay-game-folder
             style folder)
     'menu 'menu-replay-game)
+(define-menu-item 'pos (list 23 264)
+    'gem '(size (18 18)
+         state unchecked
+         func replay-game-disable-fog
+         style gem-square)
+    'menu 'menu-replay-game)
+(define-menu-item 'pos (list 47 (+ 264 2)) 'font 'large
+    'text '("Reveal map" 'left)
+    'menu 'menu-replay-game)
 
 
 ;;
