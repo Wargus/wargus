@@ -34,11 +34,11 @@ DefineBoolFlags("isundead", "organic", "hero", "volatile")
 
 --  Declare some unit types used in spells. This is quite accetable, the other
 --  way would be to define can-cast-spell outside unit definitions, not much of an improvement.
-DefineUnitType("unit-revealer")
-DefineUnitType("unit-eye-of-vision")
-DefineUnitType("unit-critter")
-DefineUnitType("unit-skeleton")
-DefineUnitType("unit-circle-of-power")
+DefineUnitType("unit-revealer", {})
+DefineUnitType("unit-eye-of-vision", {})
+DefineUnitType("unit-critter", {})
+DefineUnitType("unit-skeleton", {})
+DefineUnitType("unit-circle-of-power", {})
 
 DefineSpell("spell-suicide-bomber",
 	"showname", "Demolish",
