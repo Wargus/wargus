@@ -10,7 +10,7 @@
 ;;
 ;;	ai.ccl		-	Define the AI.
 ;;
-;;	(c) Copyright 2000 by Lutz Sammer
+;;	(c) Copyright 2000,2001 by Lutz Sammer
 ;;
 ;;	$Id$
 ;;
@@ -76,15 +76,14 @@
     (list 'research 'unit-elven-lumber-mill
 	'upgrade-arrow1 'upgrade-arrow2 'upgrade-ranger
 	'upgrade-ranger-scouting 'upgrade-longbow 'upgrade-ranger-marksmanship)
-    (list 'research 'church
+    (list 'research 'unit-church
 	'upgrade-paladin 'upgrade-healing 'upgrade-exorcism)
-    (list 'reseach 'unit-mage-tower
+    (list 'research 'unit-mage-tower
 	'upgrade-slow 'upgrade-flame-shield 'upgrade-invisibility
 	'upgrade-polymorph 'upgrade-blizzard)
-    (list 'reseach 'unit-human-foundry
+    (list 'research 'unit-human-foundry
 	'upgrade-human-ship-cannon1 'upgrade-human-ship-cannon2
-	'upgrade-human-ship-armor1 'upgrade-human-ship-armor2)
-    )
+	'upgrade-human-ship-armor1 'upgrade-human-ship-armor2) )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;	* Race orc.
@@ -113,7 +112,7 @@
 	'unit-grunt 'unit-axethrower 'unit-berserker 'unit-catapult 'unit-ogre
 	'unit-ogre-mage)
     (list 'train 'unit-goblin-alchemist
-	'icon-goblin-zeppelin 'unit-goblin-sappers)
+	'unit-goblin-zeppelin 'unit-goblin-sappers)
     (list 'train 'unit-temple-of-the-damned 'unit-death-knight)
     (list 'train 'unit-dragon-roost 'unit-dragon)
     (list 'train 'unit-orc-shipyard
@@ -139,13 +138,12 @@
 	'upgrade-berserker-regeneration)
     (list 'research 'unit-altar-of-storms
 	'upgrade-ogre-mage 'upgrade-bloodlust 'upgrade-runes)
-    (list 'reseach 'unit-altar-of-storms
+    (list 'research 'unit-altar-of-storms
 	'upgrade-haste 'upgrade-raise-dead 'upgrade-whirlwind
 	'upgrade-unholy-armor 'upgrade-death-and-decay)
-    (list 'reseach 'unit-orc-foundry
+    (list 'research 'unit-orc-foundry
 	'upgrade-orc-ship-cannon1 'upgrade-orc-ship-cannon2
-	'upgrade-orc-ship-armor1 'upgrade-orc-ship-armor2)
-    )
+	'upgrade-orc-ship-armor1 'upgrade-orc-ship-armor2) )
 
 ;;=============================================================================
 ;;
@@ -159,7 +157,25 @@
 ;;
 (define-ai "my-ai" "human" "land-attack"
   '(
-    ;;
+
+    ;;	Define the main AI script.
+
+    (writes nil "AI Started!\n")
+    (ai:debug #t)
+    (ai:need 'unit-townhall)
+    (ai:need 'unit-human-lumbermill)
+    (ai:need 'unit-human-barracks)
+    (ai:set  'unit-peasants 1)
+    (ai:wait 'unit-peasants)
+
+    (writes nil "AI 1!\n")
+    (writes nil "AI 2!\n")
+    (writes nil "AI 3!\n")
+    (writes nil "AI Ended!\n")
+    ))
+
+
+'(
     ;;	Enable or disable the AI cheating on unexplored area.
     ;;	    (set-cheat-unexplored! #t)
     ;;		The AI sees all area explored.
@@ -167,7 +183,7 @@
     ;;		The AI sees unexplored area as it is.
     ;;
     (set-cheat-unexplored! #t)
-    ;;
+
     ;;	Enable or disable the AI cheating on visible area.
     ;;	    (set-cheat-visible! #t)
     ;;		The AI sees all area visible.
@@ -175,6 +191,7 @@
     ;;		The AI sees visible area as it is.
     ;;
     (set-cheat-visible! #t)
+
     ;;
     ;;	Need a building.
     ;;	    (need building)
@@ -212,8 +229,9 @@
     ;;	    (train unit count)
     ;;		Train count units.
     (train 'unit-peasant 3)
-    ))
+    )
 
+'(
 (define-ai "orig-air-ai" "human" "air-attack"
   '(
     (need 'unit-town-hall)
@@ -295,3 +313,4 @@
 	(attack-with force 2)
 	(sleep 500)
     (goto loop) ))
+)
