@@ -126,6 +126,7 @@ fi
 # Create the directory structure
 
 [ -d $DIR ] || mkdir $DIR
+[ -d $DIR/music ] || mkdir $DIR/music
 
 # More is now done automatic
 
@@ -148,6 +149,7 @@ cp $CONTRIB/food.png $DIR/graphics/ui
 cp $CONTRIB/score.png $DIR/graphics/ui
 cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
 cp $CONTRIB/freecraft.png $DIR/graphics/ui
+cp $CONTRIB/music/toccata.mod.gz $DIR/music/default.pud.gz
 
 ###############################################################################
 ##	MISC
