@@ -170,7 +170,7 @@
     'icon-orc-stand-ground 'icon-human-attack-ground 'icon-orc-attack-ground
     'icon-human-patrol-naval 'icon-orc-patrol-naval 'icon-korgath-bladefist
     'icon-alleria 'icon-danath 'icon-teron-gorefiend 'icon-grom-hellscream
-    'icon-kurdan-and-sky-ree 'icon-deathwing 'icon-khadgar 'icon-dentar
+    'icon-kurdan-and-sky-ree 'icon-deathwing 'icon-khadgar 'icon-dentarg
     'icon-turalyon)
 
 ;;=============================================================================
