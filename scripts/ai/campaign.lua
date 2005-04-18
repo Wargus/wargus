@@ -258,7 +258,7 @@ hum_08_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 local hum_08_loop_funcs = {
     function() print("Looping !") return false end,
     function() return AiSleep(16000) end,
-    function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 4, AiCavalry(), 3, AiCatapult, 1}) end,
+    function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 4, AiCavalry(), 3, AiCatapult(), 1}) end,
     function() return AiSleep(14000) end,
     function() return AiSleep(12000) end,
     function() hum_08_loop_pos[player] = 0; return false end,
