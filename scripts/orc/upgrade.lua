@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -87,81 +87,81 @@ DefineUpgrade("upgrade-death-and-decay", "icon", "icon-death-and-decay",
 --	NOTE: Save can generate this table.
 
 DefineModifier("upgrade-battle-axe1",
-  {"piercing-damage", 2},
+  {"PiercingDamage", 2},
   {"apply-to", "unit-grunt"}, {"apply-to", "unit-ogre"}, {"apply-to", "unit-ogre-mage"},
   {"apply-to", "unit-goblin-sappers"}, {"apply-to", "unit-quick-blade"},
   {"apply-to", "unit-beast-cry"}, {"apply-to", "unit-fad-man"},
   {"apply-to", "unit-double-head"})
 
 DefineModifier("upgrade-battle-axe2",
-  {"piercing-damage", 2},
+  {"PiercingDamage", 2},
   {"apply-to", "unit-grunt"}, {"apply-to", "unit-ogre"}, {"apply-to", "unit-ogre-mage"},
   {"apply-to", "unit-goblin-sappers"}, {"apply-to", "unit-quick-blade"},
   {"apply-to", "unit-beast-cry"}, {"apply-to", "unit-fad-man"},
   {"apply-to", "unit-double-head"})
 
 DefineModifier("upgrade-throwing-axe1",
-  {"piercing-damage", 1},
+  {"PiercingDamage", 1},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"},
   {"apply-to", "unit-sharp-axe"})
 
 DefineModifier("upgrade-throwing-axe2",
-  {"piercing-damage", 1},
+  {"PiercingDamage", 1},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"},
   {"apply-to", "unit-sharp-axe"})
 
 DefineModifier("upgrade-orc-shield1",
-  {"armor", 2},
+  {"Armor", 2},
   {"apply-to", "unit-grunt"}, {"apply-to", "unit-ogre"}, {"apply-to", "unit-ogre-mage"},
   {"apply-to", "unit-goblin-sappers"}, {"apply-to", "unit-quick-blade"},
   {"apply-to", "unit-beast-cry"}, {"apply-to", "unit-fad-man"},
   {"apply-to", "unit-double-head"})
 
 DefineModifier("upgrade-orc-shield2",
-  {"armor", 2},
+  {"Armor", 2},
   {"apply-to", "unit-grunt"}, {"apply-to", "unit-ogre"}, {"apply-to", "unit-ogre-mage"},
   {"apply-to", "unit-goblin-sappers"}, {"apply-to", "unit-quick-blade"},
   {"apply-to", "unit-beast-cry"}, {"apply-to", "unit-fad-man"},
   {"apply-to", "unit-double-head"})
 
 DefineModifier("upgrade-orc-ship-cannon1",
-  {"piercing-damage", 5},
+  {"PiercingDamage", 5},
   {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
   {"apply-to", "unit-orc-submarine"})
 
 DefineModifier("upgrade-orc-ship-cannon2",
-  {"piercing-damage", 5},
+  {"PiercingDamage", 5},
   {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
   {"apply-to", "unit-orc-submarine"})
 
 DefineModifier("upgrade-orc-ship-armor1",
-  {"armor", 5},
+  {"Armor", 5},
   {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
   {"apply-to", "unit-orc-transport"})
 
 DefineModifier("upgrade-orc-ship-armor2",
-  {"armor", 5},
+  {"Armor", 5},
   {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
   {"apply-to", "unit-orc-transport"})
 
 DefineModifier("upgrade-catapult1",
-  {"piercing-damage", 15},
+  {"PiercingDamage", 15},
   {"apply-to", "unit-catapult"})
 
 DefineModifier("upgrade-catapult2",
-  {"piercing-damage", 15},
+  {"PiercingDamage", 15},
   {"apply-to", "unit-catapult"})
 
 DefineModifier("upgrade-berserker",
   {"apply-to", "unit-axethrower"}, {"convert-to", "unit-berserker"})
 
 DefineModifier("upgrade-light-axes",
-  {"sight-range", 1},
-  {"attack-range", 1},
+  {"SightRange", 1},
+  {"AttackRange", 1},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"})
 
 DefineModifier("upgrade-berserker-scouting",
-  {"sight-range", 3},
+  {"SightRange", 3},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"})
 
 DefineModifier("upgrade-berserker-regeneration",

@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -96,79 +96,79 @@ DefineUpgrade("upgrade-blizzard", "icon", "icon-blizzard",
 --	NOTE: Save can generate this table.
 
 DefineModifier("upgrade-sword1",
-  {"piercing-damage", 2},
+  {"PiercingDamage", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
   {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
 
 DefineModifier("upgrade-sword2",
-  {"piercing-damage", 2},
+  {"PiercingDamage", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
   {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
 
 DefineModifier("upgrade-arrow1",
-  {"piercing-damage", 1},
+  {"PiercingDamage", 1},
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"}, {"apply-to", "unit-female-hero"})
 
 DefineModifier("upgrade-arrow2",
-  {"piercing-damage", 1},
+  {"PiercingDamage", 1},
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"}, {"apply-to", "unit-female-hero"})
 
 DefineModifier("upgrade-human-shield1",
-  {"armor", 2},
+  {"Armor", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
   {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
 
 DefineModifier("upgrade-human-shield2",
-  {"armor", 2},
+  {"Armor", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
   {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
 
 DefineModifier("upgrade-human-ship-cannon1",
-  {"piercing-damage", 5},
+  {"PiercingDamage", 5},
   {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
   {"apply-to", "unit-human-submarine"})
 
 DefineModifier("upgrade-human-ship-cannon2",
-  {"piercing-damage", 5},
+  {"PiercingDamage", 5},
   {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
   {"apply-to", "unit-human-submarine"})
 
 DefineModifier("upgrade-human-ship-armor1",
-  {"armor", 5},
+  {"Armor", 5},
   {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
   {"apply-to", "unit-human-transport"})
 
 DefineModifier("upgrade-human-ship-armor2",
-  {"armor", 5},
+  {"Armor", 5},
   {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
   {"apply-to", "unit-human-transport"})
 
 DefineModifier("upgrade-ballista1",
-  {"piercing-damage", 15},
+  {"PiercingDamage", 15},
   {"apply-to", "unit-ballista"})
 
 DefineModifier("upgrade-ballista2",
-  {"piercing-damage", 15},
+  {"PiercingDamage", 15},
   {"apply-to", "unit-ballista"})
 
 DefineModifier("upgrade-ranger",
   {"apply-to", "unit-archer"}, {"convert-to", "unit-ranger"})
 
 DefineModifier("upgrade-longbow",
-  {"sight-range", 1},
-  {"attack-range", 1},
+  {"SightRange", 1},
+  {"AttackRange", 1},
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"})
 
 DefineModifier("upgrade-ranger-scouting",
-  {"sight-range", 3},
+  {"SightRange", 3},
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"})
 
 DefineModifier("upgrade-ranger-marksmanship",
-  {"piercing-damage", 3},
+  {"PiercingDamage", 3},
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"})
 
 DefineModifier("upgrade-paladin",
