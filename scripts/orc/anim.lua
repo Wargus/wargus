@@ -44,7 +44,7 @@ local GruntMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "frame 5",
 local GruntDeath = {"unbreakable begin", "frame 45", "wait 3", "frame 50", "wait 3", "frame 55", "wait 100",
     "frame 55", "unbreakable end", "wait 1",}
 
-DefineNewAnimations("animations-grunt", {
+DefineAnimations("animations-grunt", {
   Still = GruntStill,
   Move = GruntMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -53,7 +53,7 @@ DefineNewAnimations("animations-grunt", {
   Death = GruntDeath,
 })
 
-DefineNewAnimations("animations-beast-cry", {
+DefineAnimations("animations-beast-cry", {
   Still = GruntStill,
   Move = GruntMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -62,7 +62,7 @@ DefineNewAnimations("animations-beast-cry", {
   Death = GruntDeath,
 })
 
-DefineNewAnimations("animations-quick-blade", {
+DefineAnimations("animations-quick-blade", {
   Still = GruntStill,
   Move = GruntMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -72,7 +72,7 @@ DefineNewAnimations("animations-quick-blade", {
 })
 
 
-DefineNewAnimations("animations-peon", {
+DefineAnimations("animations-peon", {
   Still = UnitStill,
   Move = {"unbreakable begin", "frame 0", "move 3", "wait 2", "frame 5", "move 3", "wait 1",
     "frame 5", "move 3", "wait 2", "frame 10", "move 2", "wait 1",
@@ -94,7 +94,7 @@ DefineNewAnimations("animations-peon", {
 })
 
 
-DefineNewAnimations("animations-catapult", {
+DefineAnimations("animations-catapult", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin","frame 0", "wait 1", "frame 5", "move 2", "wait 2",
     "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
@@ -125,7 +125,7 @@ local OgreMove = {"unbreakable begin","frame 0", "move 3", "wait 1", "frame 5", 
 local OgreDeath = {"unbreakable begin", "frame 45", "wait 3", "frame 50", "wait 3", "frame 55", "wait 100",
     "frame 60", "wait 200", "frame 65", "wait 200", "frame 65", "unbreakable end", "wait 1",}
 
-DefineNewAnimations("animations-ogre", {
+DefineAnimations("animations-ogre", {
   Still = OgreStill,
   Move = OgreMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -134,7 +134,7 @@ DefineNewAnimations("animations-ogre", {
   Death = OgreDeath,
 })
 
-DefineNewAnimations("animations-ogre-mage", {
+DefineAnimations("animations-ogre-mage", {
   Still = OgreStill,
   Move = OgreMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -143,7 +143,7 @@ DefineNewAnimations("animations-ogre-mage", {
   Death = OgreDeath,
 })
 
-DefineNewAnimations("animations-fad-man", {
+DefineAnimations("animations-fad-man", {
   Still = OgreStill,
   Move = OgreMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -152,7 +152,7 @@ DefineNewAnimations("animations-fad-man", {
   Death = OgreDeath,
 })
 
-DefineNewAnimations("animations-double-head", {
+DefineAnimations("animations-double-head", {
   Still = OgreStill,
   Move = OgreMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -176,7 +176,7 @@ local AxeThrowerMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "fram
 local AxeThrowerDeath = {"unbreakable begin", "frame 45", "wait 3", "frame 50", "wait 3", "frame 55", "wait 100",
     "frame 55", "unbreakable end", "wait 1",}
 
-DefineNewAnimations("animations-axethrower", {
+DefineAnimations("animations-axethrower", {
   Still = AxeThrowerStill,
   Move = AxeThrowerMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -185,7 +185,7 @@ DefineNewAnimations("animations-axethrower", {
   Death = AxeThrowerDeath,
 })
 
-DefineNewAnimations("animations-berserker", {
+DefineAnimations("animations-berserker", {
   Still = AxeThrowerStill,
   Move = AxeThrowerMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -194,7 +194,7 @@ DefineNewAnimations("animations-berserker", {
   Death = AxeThrowerDeath,
 })
 
-DefineNewAnimations("animations-sharp-axe", {
+DefineAnimations("animations-sharp-axe", {
   Still = AxeThrowerStill,
   Move = AxeThrowerMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -217,7 +217,7 @@ local DeathKnightMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "fra
 local DeathKnightDeath = {"unbreakable begin", "frame 45", "wait 5", "frame 50", "wait 5", "frame 55", "wait 5",
     "frame 60", "wait 5", "frame 60", "unbreakable end", "wait 1",}
 
-DefineNewAnimations("animations-death-knight", {
+DefineAnimations("animations-death-knight", {
   Still = DeathKnightStill,
   Move = DeathKnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
@@ -226,7 +226,7 @@ DefineNewAnimations("animations-death-knight", {
   Death = DeathKnightDeath,
 })
 
-DefineNewAnimations("animations-evil-knight", {
+DefineAnimations("animations-evil-knight", {
   Still = DeathKnightStill,
   Move = DeathKnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
@@ -235,7 +235,7 @@ DefineNewAnimations("animations-evil-knight", {
   Death = DeathKnightDeath,
 })
 
-DefineNewAnimations("animations-ice-bringer", {
+DefineAnimations("animations-ice-bringer", {
   Still = DeathKnightStill,
   Move = DeathKnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
@@ -245,7 +245,7 @@ DefineNewAnimations("animations-ice-bringer", {
 })
 
 
-DefineNewAnimations("animations-goblin-sappers", {
+DefineAnimations("animations-goblin-sappers", {
   Still = UnitStill,
   Move = {"unbreakable begin", "frame 0", "move 3", "wait 1", "frame 10", "move 3", "wait 1",
     "frame 10", "move 2", "wait 1", "frame 25", "move 3", "wait 2",
@@ -262,7 +262,7 @@ DefineNewAnimations("animations-goblin-sappers", {
 })
 
 
-DefineNewAnimations("animations-orc-oil-tanker", {
+DefineAnimations("animations-orc-oil-tanker", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
@@ -278,7 +278,7 @@ DefineNewAnimations("animations-orc-oil-tanker", {
 })
 
 
-DefineNewAnimations("animations-orc-transport", {
+DefineAnimations("animations-orc-transport", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
@@ -294,7 +294,7 @@ DefineNewAnimations("animations-orc-transport", {
 })
 
 
-DefineNewAnimations("animations-troll-destroyer", {
+DefineAnimations("animations-troll-destroyer", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1", },
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
@@ -310,7 +310,7 @@ DefineNewAnimations("animations-troll-destroyer", {
 })
 
 
-DefineNewAnimations("animations-ogre-juggernaught", {
+DefineAnimations("animations-ogre-juggernaught", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1", },
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 2", "frame 0", "move 2", "wait 2",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 2",
@@ -341,7 +341,7 @@ local DragonMove = {"unbreakable begin", "frame 0", "wait 1", "frame 0", "move 3
 local DragonDeath = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5", "frame 35", "wait 5",
     "frame 40", "wait 5", "frame 45", "wait 5", "frame 45", "unbreakable end", "wait 1",}
 
-DefineNewAnimations("animations-dragon", {
+DefineAnimations("animations-dragon", {
   Still = DragonStill,
   Move = DragonMove,
   Attack = {"unbreakable begin", "frame 0", "wait 6", "frame 5", "wait 6",
@@ -359,7 +359,7 @@ DefineNewAnimations("animations-dragon", {
   Death = DragonDeath
 })
 
-DefineNewAnimations("animations-fire-breeze", {
+DefineAnimations("animations-fire-breeze", {
   Still = DragonStill,
   Move = DragonMove,
   Attack = {"unbreakable begin", "frame 0", "wait 6", "frame 5", "wait 6",
@@ -378,7 +378,7 @@ DefineNewAnimations("animations-fire-breeze", {
 })
 
 
-DefineNewAnimations("animations-orc-submarine", {
+DefineAnimations("animations-orc-submarine", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 2", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 2",
@@ -395,7 +395,7 @@ DefineNewAnimations("animations-orc-submarine", {
 })
 
 
-DefineNewAnimations("animations-goblin-zeppelin", {
+DefineAnimations("animations-goblin-zeppelin", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin", "frame 0", "move 4", "wait 1", "frame 0", "move 3", "wait 1",
     "frame 0", "move 3", "wait 1", "frame 0", "move 3", "wait 1",
@@ -406,7 +406,7 @@ DefineNewAnimations("animations-goblin-zeppelin", {
 })
 
 
-DefineNewAnimations("animations-eye-of-vision", {
+DefineAnimations("animations-eye-of-vision", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1", },
   Move = {"unbreakable begin", "frame 0", "move 8", "wait 1", "frame 0", "move 8", "wait 1",
     "frame 0", "move 8", "wait 1", "frame 0", "move 8", "unbreakable end", "wait 1",},
@@ -414,7 +414,7 @@ DefineNewAnimations("animations-eye-of-vision", {
 })
 
 
-DefineNewAnimations("animations-skeleton", {
+DefineAnimations("animations-skeleton", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1", },
   Move = {"unbreakable begin", "frame 0", "move 3", "wait 2", "frame 10", "move 3", "wait 2",
     "frame 10", "move 3", "wait 1", "frame 25", "move 2", "wait 2",
@@ -430,7 +430,7 @@ DefineNewAnimations("animations-skeleton", {
 })
 
 
-DefineNewAnimations("animations-orc-guard-tower", {
+DefineAnimations("animations-orc-guard-tower", {
   Still = BuildingStill,
   Attack = {"unbreakable begin", "frame 0", "attack", "wait 59",
     "frame 0", "unbreakable end", "wait 1",},
@@ -438,7 +438,7 @@ DefineNewAnimations("animations-orc-guard-tower", {
 
 --------
 --	Cannon Tower, Cannon Tower
-DefineNewAnimations("animations-orc-cannon-tower", {
+DefineAnimations("animations-orc-cannon-tower", {
   Still = BuildingStill,
   Attack = {"unbreakable begin", "frame 0", "attack", "wait 150",
     "frame 0", "unbreakable end", "wait 1",},
