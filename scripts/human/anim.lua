@@ -44,7 +44,7 @@ local FootmanMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "frame 5
 local FootmanDeath = {"unbreakable begin", "frame 45", "wait 3", "frame 50", "wait 3", "frame 55", "wait 100",
     "frame 55", "unbreakable end", "wait 1",}
 
-DefineNewAnimations("animations-footman", {
+DefineAnimations("animations-footman", {
   Still = FootmanStill,
   Move = FootmanMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -53,7 +53,7 @@ DefineNewAnimations("animations-footman", {
   Death = FootmanDeath,
 })
 
-DefineNewAnimations("animations-arthor-literios", {
+DefineAnimations("animations-arthor-literios", {
   Still = FootmanStill,
   Move = FootmanMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -63,7 +63,7 @@ DefineNewAnimations("animations-arthor-literios", {
 })
 
 
-DefineNewAnimations("animations-peasant", {
+DefineAnimations("animations-peasant", {
   Still = UnitStill,
   Move = {"unbreakable begin", "frame 0", "move 3", "wait 2", "frame 5", "move 3", "wait 1",
     "frame 5", "move 3", "wait 2", "frame 10", "move 2", "wait 1",
@@ -85,7 +85,7 @@ DefineNewAnimations("animations-peasant", {
 })
 
 
-DefineNewAnimations("animations-ballista", {
+DefineAnimations("animations-ballista", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin","frame 0", "wait 1", "frame 5", "move 2", "wait 2",
     "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
@@ -115,7 +115,7 @@ local KnightMove = {"unbreakable begin","frame 0", "move 3", "wait 1", "frame 5"
 local KnightDeath = {"unbreakable begin", "frame 45", "wait 3", "frame 50", "wait 3", "frame 55", "wait 100",
     "frame 60", "wait 200", "frame 65", "wait 200", "frame 65", "unbreakable end", "wait 1",}
 
-DefineNewAnimations("animations-knight", {
+DefineAnimations("animations-knight", {
   Still = KnightStill,
   Move = KnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -124,7 +124,7 @@ DefineNewAnimations("animations-knight", {
   Death = KnightDeath,
 })
 
-DefineNewAnimations("animations-paladin", {
+DefineAnimations("animations-paladin", {
   Still = KnightStill,
   Move = KnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -133,7 +133,7 @@ DefineNewAnimations("animations-paladin", {
   Death = KnightDeath,
 })
 
-DefineNewAnimations("animations-knight-rider", {
+DefineAnimations("animations-knight-rider", {
   Still = KnightStill,
   Move = KnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -142,7 +142,7 @@ DefineNewAnimations("animations-knight-rider", {
   Death = KnightDeath,
 })
 
-DefineNewAnimations("animations-wise-man", {
+DefineAnimations("animations-wise-man", {
   Still = KnightStill,
   Move = KnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -151,7 +151,7 @@ DefineNewAnimations("animations-wise-man", {
   Death = KnightDeath,
 })
 
-DefineNewAnimations("animations-man-of-light", {
+DefineAnimations("animations-man-of-light", {
   Still = KnightStill,
   Move = KnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
@@ -175,7 +175,7 @@ local ArcherMove = {"unbreakable begin","frame 0", "move 3", "wait 2", "frame 5"
 local ArcherDeath = {"unbreakable begin", "frame 35", "wait 3", "frame 40", "wait 3", "frame 45", "wait 100",
     "frame 45", "unbreakable end", "wait 1",}
 
-DefineNewAnimations("animations-archer", {
+DefineAnimations("animations-archer", {
   Still = ArcherStill,
   Move = ArcherMove,
   Attack = {"unbreakable begin", "frame 25", "wait 10", "frame 30", "attack", "sound archer-attack", "wait 10",
@@ -183,7 +183,7 @@ DefineNewAnimations("animations-archer", {
   Death = ArcherDeath,
 })
 
-DefineNewAnimations("animations-ranger", {
+DefineAnimations("animations-ranger", {
   Still = ArcherStill,
   Move = ArcherMove,
   Attack = {"unbreakable begin", "frame 25", "wait 10", "frame 30", "attack", "sound ranger-attack", "wait 10",
@@ -191,7 +191,7 @@ DefineNewAnimations("animations-ranger", {
   Death = ArcherDeath,
 })
 
-DefineNewAnimations("animations-female-hero", {
+DefineAnimations("animations-female-hero", {
   Still = ArcherStill,
   Move = ArcherMove,
   Attack = {"unbreakable begin", "frame 25", "wait 10", "frame 30", "attack", "sound alleria-attack", "wait 10",
@@ -215,7 +215,7 @@ local MageDeath = {"unbreakable begin", "frame 45", "wait 5", "frame 50", "wait 
     "frame 60", "wait 5", "frame 65", "wait 5", "frame 70", "wait 5",
     "frame 75", "wait 5", "frame 75", "unbreakable end", "wait 1",}
 
-DefineNewAnimations("animations-mage", {
+DefineAnimations("animations-mage", {
   Still = MageStill,
   Move = MageMove,
   Attack = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
@@ -224,7 +224,7 @@ DefineNewAnimations("animations-mage", {
   Death = MageDeath,
 })
 
-DefineNewAnimations("animations-white-mage", {
+DefineAnimations("animations-white-mage", {
   Still = MageStill,
   Move = MageMove,
   Attack = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
@@ -234,7 +234,7 @@ DefineNewAnimations("animations-white-mage", {
 })
 
 
-DefineNewAnimations("animations-dwarves", {
+DefineAnimations("animations-dwarves", {
   Still = UnitStill,
   Move = {"unbreakable begin", "frame 0", "move 3", "wait 2", "frame 10", "move 3", "wait 1",
     "frame 10", "move 4", "wait 2", "frame 25", "move 3", "wait 1",
@@ -265,7 +265,7 @@ local GryphonRiderDeath = {"unbreakable begin", "frame 35", "wait 5", "frame 40"
     "frame 50", "wait 5", "frame 55", "wait 5", "frame 60", "wait 5",
     "frame 60", "unbreakable end", "wait 1", },
 
-DefineNewAnimations("animations-gryphon-rider", {
+DefineAnimations("animations-gryphon-rider", {
   Still = GryphonRiderStill,
   Move = GryphonRiderMove,
   Attack = {"unbreakable begin", "frame 0", "wait 6", "frame 5", "wait 6",
@@ -284,7 +284,7 @@ DefineNewAnimations("animations-gryphon-rider", {
   Death = GryphonRiderDeath,
 })
 
-DefineNewAnimations("animations-flying-angle", {
+DefineAnimations("animations-flying-angle", {
   Still = GryphonRiderStill,
   Move = GryphonRiderMove,
   Attack = {"unbreakable begin", "frame 0", "wait 6", "frame 5", "wait 6",
@@ -304,7 +304,7 @@ DefineNewAnimations("animations-flying-angle", {
 })
 
 
-DefineNewAnimations("animations-human-oil-tanker", {
+DefineAnimations("animations-human-oil-tanker", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
@@ -320,7 +320,7 @@ DefineNewAnimations("animations-human-oil-tanker", {
 })
 
 
-DefineNewAnimations("animations-human-transport", {
+DefineAnimations("animations-human-transport", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
@@ -336,7 +336,7 @@ DefineNewAnimations("animations-human-transport", {
 })
 
 
-DefineNewAnimations("animations-elven-destroyer", {
+DefineAnimations("animations-elven-destroyer", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1", },
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
@@ -352,7 +352,7 @@ DefineNewAnimations("animations-elven-destroyer", {
 })
 
 
-DefineNewAnimations("animations-battleship", {
+DefineAnimations("animations-battleship", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1", },
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 2", "frame 0", "move 2", "wait 2",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 2",
@@ -368,7 +368,7 @@ DefineNewAnimations("animations-battleship", {
 })
 
 
-DefineNewAnimations("animations-gnomish-submarine", {
+DefineAnimations("animations-gnomish-submarine", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 2", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 2",
@@ -385,7 +385,7 @@ DefineNewAnimations("animations-gnomish-submarine", {
 })
 
 
-DefineNewAnimations("animations-balloon", {
+DefineAnimations("animations-balloon", {
   Still = {"frame 0", "wait 1", "frame 5", "wait 1", "frame 5", "wait 1",
     "frame 0", "wait 1", },
   Move = {"unbreakable begin", "frame 5", "move 4", "wait 1", "frame 5", "move 3", "wait 1",
@@ -398,7 +398,7 @@ DefineNewAnimations("animations-balloon", {
 })
 
 
-DefineNewAnimations("animations-human-guard-tower", {
+DefineAnimations("animations-human-guard-tower", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Attack = {"unbreakable begin", "frame 0", "attack", "wait 59",
     "frame 0", "unbreakable end", "wait 1",},
@@ -406,7 +406,7 @@ DefineNewAnimations("animations-human-guard-tower", {
 
 --------
 --	Cannon Tower, Cannon Tower
-DefineNewAnimations("animations-human-cannon-tower", {
+DefineAnimations("animations-human-cannon-tower", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Attack = {"unbreakable begin", "frame 0", "attack", "wait 150",
     "frame 0", "unbreakable end", "wait 1",},

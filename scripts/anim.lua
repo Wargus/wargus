@@ -37,7 +37,7 @@ Load("scripts/human/anim.lua")
 Load("scripts/orc/anim.lua")
 
 
-DefineNewAnimations("animations-daemon", {
+DefineAnimations("animations-daemon", {
   Still = {"frame 0", "wait 4", "frame 5", "wait 4", "frame 10", "wait 4",
     "frame 15", "wait 4",},
   Move = {"unbreakable begin", "frame 0", "move 3", "wait 1", "frame 0", "move 3", "wait 1",
@@ -56,7 +56,7 @@ DefineNewAnimations("animations-daemon", {
 })
 
 
-DefineNewAnimations("animations-critter", {
+DefineAnimations("animations-critter", {
   Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 2", "frame 0", "move 2", "wait 3",
     "frame 0", "move 2", "wait 3", "frame 0", "move 2", "wait 3",
@@ -72,7 +72,7 @@ DefineNewAnimations("animations-critter", {
 })
 
 
-DefineNewAnimations("animations-building", {
+DefineAnimations("animations-building", {
   Still = BuildingStill,
   Research = BuildingStill,
   Train = BuildingStill,
@@ -80,13 +80,13 @@ DefineNewAnimations("animations-building", {
 })
 
 
-DefineNewAnimations("animations-dead-body", {
+DefineAnimations("animations-dead-body", {
   Death = {"unbreakable begin", "frame 5", "wait 200", "frame 10", "wait 200", "frame 15", "wait 200",
     "frame 20", "wait 200", "frame 25", "wait 200", "frame 25", "unbreakable end", "wait 1",},
 })
 
 
-DefineNewAnimations("animations-destroyed-place", {
+DefineAnimations("animations-destroyed-place", {
   Death = {"unbreakable begin", "frame 0", "wait 200", "frame 1", "wait 200", "frame 1", "unbreakable end", "wait 1", },
 })
 
