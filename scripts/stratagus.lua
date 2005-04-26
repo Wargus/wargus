@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -10,7 +10,7 @@
 --
 --      stratagus.lua - The craft configuration language.
 --
---      (c) Copyright 1998-2003 by Lutz Sammer
+--      (c) Copyright 1998-2005 by Lutz Sammer
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -138,6 +138,17 @@ DecorationOnTop()
 ShadowSprite("missiles/unit_shadow.png", 3, 42, 32, 32)
 SpellSprite("ui/bloodlust,haste,slow,invisible,shield.png",
   1, 1, 16, 16)
+
+DefineDecorations({Index = "Bloodlust", ShowOpponent = true,
+  Offset = {0, 0}, Method = {"static-sprite", {0}}})
+DefineDecorations({Index = "Haste", ShowOpponent = true,
+  Offset = {16, 0}, Method = {"static-sprite", {1}}})
+DefineDecorations({Index = "Slow", ShowOpponent = true,
+  Offset = {16, 0}, Method = {"static-sprite", {2}}})
+DefineDecorations({Index = "Invisible", ShowOpponent = true,
+  Offset = {32, 0}, Method = {"static-sprite", {3}}})
+DefineDecorations({Index = "UnholyArmor", ShowOpponent = true,
+  Offset = {48, 0}, Method = {"static-sprite", {4}}})
 
 --  Uncomment next, to enable fancy building (random mirroring buildings)
 SetFancyBuildings(true)
