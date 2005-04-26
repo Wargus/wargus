@@ -77,7 +77,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 libpng.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"../../stratagus/lib"
 
 !ENDIF 
 
@@ -146,13 +146,5 @@ SOURCE=.\res\warinstall.ico
 SOURCE=.\res\warinstall.rc2
 # End Source File
 # End Group
-# Begin Source File
-
-SOURCE=.\ReadMe.txt
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\stratagus\lib\libpng.lib
-# End Source File
 # End Target
 # End Project
