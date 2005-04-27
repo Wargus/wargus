@@ -1577,9 +1577,6 @@ void CheckPath(const char* path)
 	char* cp;
 	char* s;
 
-	if (*path && path[0] == '.') {  // relative don't work
-		return;
-	}
 	cp = strdup(path);
 	s = strrchr(cp, '/');
 	if (s) {
