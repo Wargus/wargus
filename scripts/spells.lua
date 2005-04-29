@@ -16,7 +16,7 @@
 --      it under the terms of the GNU General Public License as published by
 --      the Free Software Foundation; either version 2 of the License, or
 --      (at your option) any later version.
---  
+--
 --      This program is distributed in the hope that it will be useful,
 --      but WITHOUT ANY WARRANTY; without even the implied warranty of
 --      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -31,7 +31,12 @@
 -- For documentation see stratagus/doc/ccl/ccl.html
 
 DefineBoolFlags("isundead", "organic", "hero", "volatile")
-DefineVariables("Speed")
+
+--
+--  Speed     : just drawing
+--  ShadowFly : Shadow of flying unit (0:big, 1:normal, 2:small)
+--
+DefineVariables("Speed", "ShadowFly", {Max = 2})
 
 --  Declare some unit types used in spells. This is quite accetable, the other
 --  way would be to define can-cast-spell outside unit definitions, not much of an improvement.
@@ -66,16 +71,25 @@ DefineUpgrade("upgrade-unholy-armor")
 DefineUpgrade("upgrade-runes")
 DefineUpgrade("upgrade-death-and-decay")
 
+--[[
+-- better display
+DefineSpell("spell-suicide-bomber", {
+	ShowName = "Demolish", ManaCost = 0, Target = "self",
+	Action = {{"demolish", "range", 1, "damage", 400},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"end-point",   {"base", "caster"}}},
+	SoundWhenCast = "holy vision"
+})
+--]]
 
 DefineSpell("spell-suicide-bomber",
-	"showname", "Demolish",
-	"manacost", 0,
-	"target", "self",
+	"showname", "Demolish", "manacost", 0, "target", "self",
 	"action", {{"demolish", "range", 1, "damage", 400},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"end-point",   {"base", "caster"}}},
 	"sound-when-cast", "holy vision"
 )
+
 
 DefineSpell("spell-holy-vision",
 	"showname", "Holy Vision",

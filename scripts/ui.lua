@@ -34,35 +34,13 @@ Load("scripts/widgets.lua")
 --  Define Decorations.
 --
 
---              file              hotx hoty width height
 --ManaSprite("ui/mana.png", -7, -7, 7, 7)
 ManaSprite("ui/mana2.png", 0, -1, 31, 4)
 --HealthSprite("ui/health.png", 1, -7, 7, 7)
 HealthSprite("ui/health2.png", 0, -4, 31, 4)
 
---ShowHealthBar()
---ShowHealthVertical()
---ShowHealthHorizontal()
-ShowHealthDot()
-
---ShowManaBar()
---ShowManaVertical()
---ShowManaHorizontal()
-ShowManaDot()
-
-ShowNoFull()
---ShowFull()
-
---  Uncomment next, to show bars and dots always on top.
---  FIXME: planned feature
-DecorationOnTop()
-
---  Define shadow-sprite.
---
---  (shadow-sprite file hotx hoty width height)
---
-ShadowSprite("missiles/unit_shadow.png", 3, 42, 32, 32)
-
+DefineSprites({Name = "sprite-shadow", File = "missiles/unit_shadow.png",
+				Offset = {3, 42}, Size = {32, 32}})
 DefineSprites({Name = "sprite-spell", File = "ui/bloodlust,haste,slow,invisible,shield.png",
 				Offset = {1, 1}, Size = {16, 16}})
 
@@ -76,6 +54,26 @@ DefineDecorations({Index = "Invisible", ShowOpponent = true,
   Offset = {32, 0}, Method = {"static-sprite", {"sprite-spell", 3}}})
 DefineDecorations({Index = "UnholyArmor", ShowOpponent = true,
   Offset = {48, 0}, Method = {"static-sprite", {"sprite-spell", 4}}})
+DefineDecorations({Index = "ShadowFly", ShowOpponent = true, ShowWhenMax = true, ShowWhenNull = true,
+  Offset = {0, 0}, Method = {"sprite", {"sprite-shadow"}}})
+
+--ShowHealthBar()
+--ShowHealthVertical()
+--ShowHealthHorizontal()
+ShowHealthDot()
+
+--ShowManaBar()
+--ShowManaVertical()
+--ShowManaHorizontal()
+ShowManaDot()
+
+--ShowNoFull()
+--ShowFull()
+
+--  Uncomment next, to show bars and dots always on top.
+--  FIXME: planned feature
+DecorationOnTop()
+
 
 --
 --  Define Panels
