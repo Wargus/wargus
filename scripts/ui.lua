@@ -31,6 +31,53 @@
 Load("scripts/widgets.lua")
 
 --
+--  Define Decorations.
+--
+
+--              file              hotx hoty width height
+--ManaSprite("ui/mana.png", -7, -7, 7, 7)
+ManaSprite("ui/mana2.png", 0, -1, 31, 4)
+--HealthSprite("ui/health.png", 1, -7, 7, 7)
+HealthSprite("ui/health2.png", 0, -4, 31, 4)
+
+--ShowHealthBar()
+--ShowHealthVertical()
+--ShowHealthHorizontal()
+ShowHealthDot()
+
+--ShowManaBar()
+--ShowManaVertical()
+--ShowManaHorizontal()
+ShowManaDot()
+
+ShowNoFull()
+--ShowFull()
+
+--  Uncomment next, to show bars and dots always on top.
+--  FIXME: planned feature
+DecorationOnTop()
+
+--  Define shadow-sprite.
+--
+--  (shadow-sprite file hotx hoty width height)
+--
+ShadowSprite("missiles/unit_shadow.png", 3, 42, 32, 32)
+
+DefineSprites({Name = "sprite-spell", File = "ui/bloodlust,haste,slow,invisible,shield.png",
+				Offset = {1, 1}, Size = {16, 16}})
+
+DefineDecorations({Index = "Bloodlust", ShowOpponent = true,
+  Offset = {0, 0}, Method = {"static-sprite", {"sprite-spell", 0}}})
+DefineDecorations({Index = "Haste", ShowOpponent = true,
+  Offset = {16, 0}, Method = {"static-sprite", {"sprite-spell", 1}}})
+DefineDecorations({Index = "Slow", ShowOpponent = true,
+  Offset = {16, 0}, Method = {"static-sprite", {"sprite-spell", 2}}})
+DefineDecorations({Index = "Invisible", ShowOpponent = true,
+  Offset = {32, 0}, Method = {"static-sprite", {"sprite-spell", 3}}})
+DefineDecorations({Index = "UnholyArmor", ShowOpponent = true,
+  Offset = {48, 0}, Method = {"static-sprite", {"sprite-spell", 4}}})
+
+--
 --  Define Panels
 --
 local info_panel_x = 0
