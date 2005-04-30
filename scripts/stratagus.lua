@@ -54,11 +54,6 @@ SetTitleScreens({
 --  Enter your menu music.
 SetMenuMusic("music/default.mod")
 
---  If color-cycle-all is off (#f) only the tileset and global palette are
---  color cycled.  Otherwise (#t) all palettes are color cycled.
-SetColorCycleAll(true)
---SetColorCycleAll(false)
-
 --  Set the game name. It's used so we can mantain different savegames
 --  and setting. Might also be used for multiplayer.
 SetGameName("wc2")
@@ -72,6 +67,8 @@ SetShowAttackRange(false)
 SetShowReactionRange(false)
 
 SetShowOrders(2)
+
+SetMetaServer("stratagus.game-host.org", 7775)
 
 --  Enable/disable the short display of the orders after command.
 --  FIXME: planned
