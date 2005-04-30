@@ -190,11 +190,4 @@ DefineAiWcNames(
   "fcm-01", "fcm-02", "fcm-03", "fcm-04", "fcm-05", "fcm-06", "fcm-07", "fcm-08", "fcm-09",
   "fcm-10", "fcm-11", "fcm-12", "fcm-13", "fcm-14", "fcm-15", "fcm-16", "fcm-17", "fcm-18")
 
-SetColorWaterCycleStart(38)
-SetColorWaterCycleEnd(47)
-SetColorIconCycleStart(240)
-SetColorIconCycleEnd(244)
-SetColorBuildingCycleStart(205)
-SetColorBuildingCycleEnd(207)
-
 Load("scripts/wc2-config.lua")
