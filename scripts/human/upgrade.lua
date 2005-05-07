@@ -96,62 +96,74 @@ DefineUpgrade("upgrade-blizzard", "icon", "icon-blizzard",
 --	NOTE: Save can generate this table.
 
 DefineModifier("upgrade-sword1",
+  {"Level", 1},
   {"PiercingDamage", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
   {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
 
 DefineModifier("upgrade-sword2",
+  {"Level", 1},
   {"PiercingDamage", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
   {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
 
 DefineModifier("upgrade-arrow1",
+  {"Level", 1},
   {"PiercingDamage", 1},
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"}, {"apply-to", "unit-female-hero"})
 
 DefineModifier("upgrade-arrow2",
+  {"Level", 1},
   {"PiercingDamage", 1},
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"}, {"apply-to", "unit-female-hero"})
 
 DefineModifier("upgrade-human-shield1",
+  {"Level", 1},
   {"Armor", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
   {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
 
 DefineModifier("upgrade-human-shield2",
+  {"Level", 1},
   {"Armor", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
   {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
 
 DefineModifier("upgrade-human-ship-cannon1",
+  {"Level", 1},
   {"PiercingDamage", 5},
   {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
   {"apply-to", "unit-human-submarine"})
 
 DefineModifier("upgrade-human-ship-cannon2",
+  {"Level", 1},
   {"PiercingDamage", 5},
   {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
   {"apply-to", "unit-human-submarine"})
 
 DefineModifier("upgrade-human-ship-armor1",
+  {"Level", 1},
   {"Armor", 5},
   {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
   {"apply-to", "unit-human-transport"})
 
 DefineModifier("upgrade-human-ship-armor2",
+  {"Level", 1},
   {"Armor", 5},
   {"apply-to", "unit-human-destroyer"}, {"apply-to", "unit-battleship"},
   {"apply-to", "unit-human-transport"})
 
 DefineModifier("upgrade-ballista1",
+  {"Level", 1},
   {"PiercingDamage", 15},
   {"apply-to", "unit-ballista"})
 
 DefineModifier("upgrade-ballista2",
+  {"Level", 1},
   {"PiercingDamage", 15},
   {"apply-to", "unit-ballista"})
 
@@ -159,15 +171,18 @@ DefineModifier("upgrade-ranger",
   {"apply-to", "unit-archer"}, {"convert-to", "unit-ranger"})
 
 DefineModifier("upgrade-longbow",
+  {"Level", 1},
   {"SightRange", 1},
   {"AttackRange", 1},
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"})
 
 DefineModifier("upgrade-ranger-scouting",
+  {"Level", 1},
   {"SightRange", 3},
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"})
 
 DefineModifier("upgrade-ranger-marksmanship",
+  {"Level", 1},
   {"PiercingDamage", 3},
   {"apply-to", "unit-archer"}, {"apply-to", "unit-ranger"})
 
@@ -175,35 +190,45 @@ DefineModifier("upgrade-paladin",
   {"apply-to", "unit-knight"}, {"convert-to", "unit-paladin"})
 
 DefineModifier("upgrade-holy-vision",
+  {"Level", 1},
   {"apply-to", "unit-paladin"})
 
 DefineModifier("upgrade-healing",
+  {"Level", 1},
   {"apply-to", "unit-paladin"})
 
 if (extensions) then
 DefineModifier("upgrade-area-healing",
+  {"Level", 1},
   {"apply-to", "unit-paladin"})
 end
 
 DefineModifier("upgrade-exorcism",
+  {"Level", 1},
   {"apply-to", "unit-paladin"})
 
 DefineModifier("upgrade-flame-shield",
+  {"Level", 1},
   {"apply-to", "unit-mage"}, {"apply-to", "unit-white-mage"})
 
 DefineModifier("upgrade-fireball",
+  {"Level", 1},
   {"apply-to", "unit-mage"}, {"apply-to", "unit-white-mage"})
 
 DefineModifier("upgrade-slow",
+  {"Level", 1},
   {"apply-to", "unit-mage"}, {"apply-to", "unit-white-mage"})
 
 DefineModifier("upgrade-invisibility",
+  {"Level", 1},
   {"apply-to", "unit-mage"}, {"apply-to", "unit-white-mage"})
 
 DefineModifier("upgrade-polymorph",
+  {"Level", 1},
   {"apply-to", "unit-mage"}, {"apply-to", "unit-white-mage"})
 
 DefineModifier("upgrade-blizzard",
+  {"Level", 1},
   {"apply-to", "unit-mage"}, {"apply-to", "unit-white-mage"})
 
 --	NOTE: Save can generate this table.
