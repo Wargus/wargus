@@ -35,8 +35,9 @@ DefineBoolFlags("isundead", "organic", "hero", "volatile")
 --
 --  Speed     : just drawing
 --  ShadowFly : Shadow of flying unit (0:big, 1:normal, 2:small)
+--  Level     : Increase each time an upgrade is applyed to an unit.
 --
-DefineVariables("Speed", "ShadowFly", {Max = 2})
+DefineVariables("Speed", "ShadowFly", {Max = 2}, "Level")
 
 --  Declare some unit types used in spells. This is quite accetable, the other
 --  way would be to define can-cast-spell outside unit definitions, not much of an improvement.

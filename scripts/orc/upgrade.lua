@@ -87,6 +87,7 @@ DefineUpgrade("upgrade-death-and-decay", "icon", "icon-death-and-decay",
 --	NOTE: Save can generate this table.
 
 DefineModifier("upgrade-battle-axe1",
+  {"Level", 1},
   {"PiercingDamage", 2},
   {"apply-to", "unit-grunt"}, {"apply-to", "unit-ogre"}, {"apply-to", "unit-ogre-mage"},
   {"apply-to", "unit-goblin-sappers"}, {"apply-to", "unit-quick-blade"},
@@ -94,6 +95,7 @@ DefineModifier("upgrade-battle-axe1",
   {"apply-to", "unit-double-head"})
 
 DefineModifier("upgrade-battle-axe2",
+  {"Level", 1},
   {"PiercingDamage", 2},
   {"apply-to", "unit-grunt"}, {"apply-to", "unit-ogre"}, {"apply-to", "unit-ogre-mage"},
   {"apply-to", "unit-goblin-sappers"}, {"apply-to", "unit-quick-blade"},
@@ -101,16 +103,19 @@ DefineModifier("upgrade-battle-axe2",
   {"apply-to", "unit-double-head"})
 
 DefineModifier("upgrade-throwing-axe1",
+  {"Level", 1},
   {"PiercingDamage", 1},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"},
   {"apply-to", "unit-sharp-axe"})
 
 DefineModifier("upgrade-throwing-axe2",
+  {"Level", 1},
   {"PiercingDamage", 1},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"},
   {"apply-to", "unit-sharp-axe"})
 
 DefineModifier("upgrade-orc-shield1",
+  {"Level", 1},
   {"Armor", 2},
   {"apply-to", "unit-grunt"}, {"apply-to", "unit-ogre"}, {"apply-to", "unit-ogre-mage"},
   {"apply-to", "unit-goblin-sappers"}, {"apply-to", "unit-quick-blade"},
@@ -118,6 +123,7 @@ DefineModifier("upgrade-orc-shield1",
   {"apply-to", "unit-double-head"})
 
 DefineModifier("upgrade-orc-shield2",
+  {"Level", 1},
   {"Armor", 2},
   {"apply-to", "unit-grunt"}, {"apply-to", "unit-ogre"}, {"apply-to", "unit-ogre-mage"},
   {"apply-to", "unit-goblin-sappers"}, {"apply-to", "unit-quick-blade"},
@@ -125,30 +131,36 @@ DefineModifier("upgrade-orc-shield2",
   {"apply-to", "unit-double-head"})
 
 DefineModifier("upgrade-orc-ship-cannon1",
+  {"Level", 1},
   {"PiercingDamage", 5},
   {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
   {"apply-to", "unit-orc-submarine"})
 
 DefineModifier("upgrade-orc-ship-cannon2",
+  {"Level", 1},
   {"PiercingDamage", 5},
   {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
   {"apply-to", "unit-orc-submarine"})
 
 DefineModifier("upgrade-orc-ship-armor1",
+  {"Level", 1},
   {"Armor", 5},
   {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
   {"apply-to", "unit-orc-transport"})
 
 DefineModifier("upgrade-orc-ship-armor2",
+  {"Level", 1},
   {"Armor", 5},
   {"apply-to", "unit-orc-destroyer"}, {"apply-to", "unit-ogre-juggernaught"},
   {"apply-to", "unit-orc-transport"})
 
 DefineModifier("upgrade-catapult1",
+  {"Level", 1},
   {"PiercingDamage", 15},
   {"apply-to", "unit-catapult"})
 
 DefineModifier("upgrade-catapult2",
+  {"Level", 1},
   {"PiercingDamage", 15},
   {"apply-to", "unit-catapult"})
 
@@ -156,51 +168,64 @@ DefineModifier("upgrade-berserker",
   {"apply-to", "unit-axethrower"}, {"convert-to", "unit-berserker"})
 
 DefineModifier("upgrade-light-axes",
+  {"Level", 1},
   {"SightRange", 1},
   {"AttackRange", 1},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"})
 
 DefineModifier("upgrade-berserker-scouting",
+  {"Level", 1},
   {"SightRange", 3},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"})
 
 DefineModifier("upgrade-berserker-regeneration",
+  {"Level", 1},
   {"regeneration-rate", 1},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"})
 
 DefineModifier("upgrade-ogre-mage",
+  {"Level", 1},
   {"apply-to", "unit-ogre"}, {"convert-to", "unit-ogre-mage"})
 
 DefineModifier("upgrade-eye-of-kilrogg",
+  {"Level", 1},
   {"apply-to", "unit-ogre-mage"})
 
 DefineModifier("upgrade-bloodlust",
+  {"Level", 1},
   {"apply-to", "unit-ogre-mage"})
 
 DefineModifier("upgrade-runes",
+  {"Level", 1},
   {"apply-to", "unit-ogre-mage"})
 
 DefineModifier("upgrade-raise-dead",
+  {"Level", 1},
   {"apply-to", "unit-death-knight"}, {"apply-to", "unit-ice-bringer"},
   {"apply-to", "unit-evil-knight"})
 
 DefineModifier("upgrade-death-coil",
+  {"Level", 1},
   {"apply-to", "unit-death-knight"}, {"apply-to", "unit-ice-bringer"},
   {"apply-to", "unit-evil-knight"})
 
 DefineModifier("upgrade-whirlwind",
+  {"Level", 1},
   {"apply-to", "unit-death-knight"}, {"apply-to", "unit-ice-bringer"},
   {"apply-to", "unit-evil-knight"})
 
 DefineModifier("upgrade-haste",
+  {"Level", 1},
   {"apply-to", "unit-death-knight"}, {"apply-to", "unit-ice-bringer"},
   {"apply-to", "unit-evil-knight"})
 
 DefineModifier("upgrade-unholy-armor",
+  {"Level", 1},
   {"apply-to", "unit-death-knight"}, {"apply-to", "unit-ice-bringer"},
   {"apply-to", "unit-evil-knight"})
 
 DefineModifier("upgrade-death-and-decay",
+  {"Level", 1},
   {"apply-to", "unit-death-knight"}, {"apply-to", "unit-ice-bringer"},
   {"apply-to", "unit-evil-knight"})
 
