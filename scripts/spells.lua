@@ -10,7 +10,7 @@
 --
 --      spells.lua - The spells.
 --
---      (c) Copyright 1998-2004 by Joris Dauphin and Jimmy Salmon.
+--      (c) Copyright 1998-2005 by Joris Dauphin and Jimmy Salmon.
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -115,11 +115,11 @@ DefineSpell("spell-healing",
 	"condition", {
 		"organic", "only",
 		"Building", "false",
-		"max-hp-percent", 100
+		"HitPoints", {MaxValuePercent = 100}
 	},
 	"sound-when-cast", "healing",
 	"depend-upgrade", "upgrade-healing",
-	"autocast", {"range", 6, "condition", {"alliance", "only", "max-hp-percent", 90}}
+	"autocast", {"range", 6, "condition", {"alliance", "only", "HitPoints", {MaxValuePercent = 90}}}
 )
 
 DefineSpell("spell-exorcism",
@@ -161,7 +161,7 @@ DefineSpell("spell-haste",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"Building", "false",
-		"max-haste-ticks", 10 -- FIXME: proper value?
+		"Haste", {MaxValue = 10} -- FIXME: proper value?
 	},
 	"sound-when-cast", "haste",
 	"depend-upgrade", "upgrade-haste",
@@ -179,7 +179,7 @@ DefineSpell("spell-slow",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"Building", "false",
-		"max-slow-ticks", 10},
+		"Slow", {MaxValue = 10}},
 	"sound-when-cast", "slow",
 	"depend-upgrade", "upgrade-slow",
 	"autocast", {"range", 10, "condition", {"Coward", "false", "alliance", "false"}},
@@ -196,7 +196,7 @@ DefineSpell("spell-bloodlust",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"organic", "only",
-		"max-bloodlust-ticks", 10},
+		"Bloodlust", {MaxValue = 10}},
 	"sound-when-cast", "bloodlust",
 	"depend-upgrade", "upgrade-bloodlust",
 	"autocast", {"range", 6, "condition", {"Coward", "false", "alliance", "only"}},
@@ -213,7 +213,7 @@ DefineSpell("spell-invisibility",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"Building", "false",
-		"max-invisibility-ticks", 10},
+		"Invisible", {MaxValue = 10}},
 	"sound-when-cast", "invisibility",
 	"depend-upgrade", "upgrade-invisibility"
 --	"autocast", {"range", 6, "condition", {"Coward", "false"}},
@@ -229,7 +229,7 @@ DefineSpell("spell-unholy-armor",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"Building", "false",
-		"max-invincibility-ticks", 10},
+		"UnholyArmor", {MaxValue = 10}},
 	"sound-when-cast", "unholy armor",
 	"depend-upgrade", "upgrade-unholy-armor"
 --	"autocast", {range 6 condition (Coward false alliance only)},
