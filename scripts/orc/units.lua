@@ -32,7 +32,7 @@
 --	Define unit-types.
 --
 DefineUnitType("unit-grunt", { Name = "Grunt",
-  Files = {"tileset-summer", "orc/units/grunt.png"},
+  Files = {"default", "orc/units/grunt.png"},
   Size = {72, 72},
   Animations = "animations-grunt", Icon = "icon-grunt",
   Costs = {"time", 60, "gold", 600},
@@ -62,7 +62,7 @@ DefineUnitType("unit-grunt", { Name = "Grunt",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-peon", { Name = "Peon",
-  Files = {"tileset-summer", "orc/units/peon.png"},
+  Files = {"default", "orc/units/peon.png"},
   Size = {72, 72},
   Animations = "animations-peon", Icon = "icon-peon",
   Costs = {"time", 45, "gold", 400},
@@ -107,7 +107,7 @@ DefineUnitType("unit-peon", { Name = "Peon",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-catapult", { Name = "Catapult",
-  Files = {"tileset-summer", "orc/units/catapult.png"},
+  Files = {"default", "orc/units/catapult.png"},
   Size = {64, 64},
   Animations = "animations-catapult", Icon = "icon-catapult",
   Costs = {"time", 250, "gold", 900, "wood", 300},
@@ -136,7 +136,7 @@ DefineUnitType("unit-catapult", { Name = "Catapult",
     "dead", "explosion"} } )
 
 DefineUnitType("unit-ogre", { Name = "Ogre",
-  Files = {"tileset-summer", "orc/units/ogre.png"},
+  Files = {"default", "orc/units/ogre.png"},
   Size = {72, 72},
   Animations = "animations-ogre", Icon = "icon-ogre",
   Costs = {"time", 90, "gold", 800, "wood", 100},
@@ -166,7 +166,7 @@ DefineUnitType("unit-ogre", { Name = "Ogre",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-axethrower", { Name = "Troll Axethrower",
-  Files = {"tileset-summer", "orc/units/troll_axethrower.png"},
+  Files = {"default", "orc/units/troll_axethrower.png"},
   Size = {72, 72},
   Animations = "animations-axethrower", Icon = "icon-axethrower",
   Costs = {"time", 70, "gold", 500, "wood", 50},
@@ -196,7 +196,7 @@ DefineUnitType("unit-axethrower", { Name = "Troll Axethrower",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-death-knight", { Name = "Death Knight",
-  Files = {"tileset-summer", "orc/units/death_knight.png"},
+  Files = {"default", "orc/units/death_knight.png"},
   Size = {72, 72},
   Animations = "animations-death-knight", Icon = "icon-death-knight",
   Costs = {"time", 120, "gold", 1200},
@@ -235,7 +235,7 @@ DefineUnitType("unit-death-knight", { Name = "Death Knight",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-ogre-mage", { Name = "Ogre Mage",
-  Files = {"tileset-summer", "orc/units/ogre.png"},
+  Files = {"default", "orc/units/ogre.png"},
   Size = {72, 72},
   Animations = "animations-ogre-mage", Icon = "icon-ogre-mage",
   Costs = {"time", 90, "gold", 800, "wood", 100},
@@ -268,7 +268,7 @@ DefineUnitType("unit-ogre-mage", { Name = "Ogre Mage",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-goblin-sappers", { Name = "Goblin Sappers",
-  Files = {"tileset-summer", "orc/units/goblin_sappers.png"},
+  Files = {"default", "orc/units/goblin_sappers.png"},
   Size = {56, 56},
   Animations = "animations-goblin-sappers", Icon = "icon-goblin-sappers",
   Costs = {"time", 200, "gold", 700, "wood", 250},
@@ -299,7 +299,7 @@ DefineUnitType("unit-goblin-sappers", { Name = "Goblin Sappers",
     "dead", "explosion"} } )
 
 DefineUnitType("unit-berserker", { Name = "Berserker",
-  Files = {"tileset-summer", "orc/units/troll_axethrower.png"},
+  Files = {"default", "orc/units/troll_axethrower.png"},
   Size = {72, 72},
   Animations = "animations-axethrower", Icon = "icon-berserker",
   Costs = {"time", 70, "gold", 500, "wood", 50},
@@ -330,7 +330,7 @@ DefineUnitType("unit-berserker", { Name = "Berserker",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-evil-knight", { Name = "Teron Gorefiend",
-  Files = {"tileset-summer", "orc/units/death_knight.png"},
+  Files = {"default", "orc/units/death_knight.png"},
   Size = {72, 72},
   Animations = "animations-death-knight", Icon = "icon-evil-knight",
   Costs = {"time", 120, "gold", 1200},
@@ -370,7 +370,7 @@ DefineUnitType("unit-evil-knight", { Name = "Teron Gorefiend",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-fad-man", { Name = "Dentarg",
-  Files = {"tileset-summer", "orc/units/ogre.png"},
+  Files = {"default", "orc/units/ogre.png"},
   Size = {72, 72},
   Animations = "animations-ogre", Icon = "icon-fad-man",
   Costs = {"time", 90, "gold", 800, "wood", 100},
@@ -402,7 +402,7 @@ DefineUnitType("unit-fad-man", { Name = "Dentarg",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-beast-cry", { Name = "Grom Hellscream",
-  Files = {"tileset-summer", "orc/units/grunt.png"},
+  Files = {"default", "orc/units/grunt.png"},
   Size = {72, 72},
   Animations = "animations-footman", Icon = "icon-beast-cry",
   Costs = {"time", 60, "gold", 600},
@@ -432,7 +432,7 @@ DefineUnitType("unit-beast-cry", { Name = "Grom Hellscream",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-orc-oil-tanker", { Name = "Oil tanker",
-  Files = {"tileset-summer", "orc/units/oil_tanker_empty.png"},
+  Files = {"default", "orc/units/oil_tanker_empty.png"},
   Size = {72, 72},
   Animations = "animations-orc-oil-tanker", Icon = "icon-orc-oil-tanker",
   Costs = {"time", 50, "gold", 400, "wood", 200},
@@ -466,7 +466,7 @@ DefineUnitType("unit-orc-oil-tanker", { Name = "Oil tanker",
     "dead", "ship sinking"} } )
 
 DefineUnitType("unit-orc-transport", { Name = "Transport",
-  Files = {"tileset-summer", "orc/units/transport.png"},
+  Files = {"default", "orc/units/transport.png"},
   Size = {72, 72},
   Animations = "animations-orc-transport", Icon = "icon-orc-transport",
   Costs = {"time", 70, "gold", 600, "wood", 200, "oil", 500},
@@ -497,7 +497,7 @@ DefineUnitType("unit-orc-transport", { Name = "Transport",
     "dead", "ship sinking"} } )
 
 DefineUnitType("unit-orc-destroyer", { Name = "Troll Destroyer",
-  Files = {"tileset-summer", "orc/units/troll_destroyer.png"},
+  Files = {"default", "orc/units/troll_destroyer.png"},
   Size = {88, 88},
   Animations = "animations-troll-destroyer", Icon = "icon-orc-destroyer",
   Costs = {"time", 90, "gold", 700, "wood", 350, "oil", 700},
@@ -526,7 +526,7 @@ DefineUnitType("unit-orc-destroyer", { Name = "Troll Destroyer",
     "dead", "ship sinking"} } )
 
 DefineUnitType("unit-ogre-juggernaught", { Name = "Ogre Juggernaught",
-  Files = {"tileset-summer", "orc/units/ogre_juggernaught.png"},
+  Files = {"default", "orc/units/ogre_juggernaught.png"},
   Size = {88, 88},
   Animations = "animations-battleship", Icon = "icon-ogre-juggernaught",
   Costs = {"time", 140, "gold", 1000, "wood", 500, "oil", 1000},
@@ -556,7 +556,7 @@ DefineUnitType("unit-ogre-juggernaught", { Name = "Ogre Juggernaught",
     "dead", "ship sinking"} } )
 
 DefineUnitType("unit-dragon", { Name = "Dragon",
-  Files = {"tileset-summer", "orc/units/dragon.png"},
+  Files = {"default", "orc/units/dragon.png"},
   Size = {88, 80},
   Animations = "animations-dragon", Icon = "icon-dragon",
   Costs = {"time", 250, "gold", 2500},
@@ -586,7 +586,7 @@ DefineUnitType("unit-dragon", { Name = "Dragon",
     "dead", "explosion"} } )
 
 DefineUnitType("unit-fire-breeze", { Name = "Deathwing",
-  Files = {"tileset-summer", "orc/units/dragon.png"},
+  Files = {"default", "orc/units/dragon.png"},
   Size = {88, 80},
   Animations = "animations-fire-breeze", Icon = "icon-fire-breeze",
   Costs = {"time", 250, "gold", 2500},
@@ -649,7 +649,7 @@ DefineUnitType("unit-orc-submarine", { Name = "Giant Turtle",
     "dead", "ship sinking"} } )
 
 DefineUnitType("unit-zeppelin", { Name = "Goblin Zeppelin",
-  Files = {"tileset-summer", "orc/units/goblin_zeppelin.png"},
+  Files = {"default", "orc/units/goblin_zeppelin.png"},
   Size = {72, 72},
   Animations = "animations-goblin-zeppelin", Icon = "icon-zeppelin",
   Costs = {"time", 65, "gold", 500, "wood", 100},
@@ -676,7 +676,7 @@ DefineUnitType("unit-zeppelin", { Name = "Goblin Zeppelin",
     "dead", "explosion"} } )
 
 DefineUnitType("unit-eye-of-vision", { Name = "Eye of Kilrogg",
-  Files = {"tileset-summer", "orc/units/eye_of_kilrogg.png"},
+  Files = {"default", "orc/units/eye_of_kilrogg.png"},
   Size = {32, 32},
   Animations = "animations-eye-of-vision", Icon = "icon-eye-of-kilrogg",
   Speed = 42,
@@ -703,7 +703,7 @@ DefineUnitType("unit-eye-of-vision", { Name = "Eye of Kilrogg",
   } } )
 
 DefineUnitType("unit-quick-blade", { Name = "Korgath Bladefist",
-  Files = {"tileset-summer", "orc/units/grunt.png"},
+  Files = {"default", "orc/units/grunt.png"},
   Size = {72, 72},
   Animations = "animations-quick-blade", Icon = "icon-quick-blade",
   Costs = {"time", 60, "gold", 600},
@@ -733,7 +733,7 @@ DefineUnitType("unit-quick-blade", { Name = "Korgath Bladefist",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-double-head", { Name = "Cho'gall",
-  Files = {"tileset-summer", "orc/units/ogre.png"},
+  Files = {"default", "orc/units/ogre.png"},
   Size = {72, 72},
   Animations = "animations-double-head", Icon = "icon-double-head",
   Costs = {"time", 100, "gold", 1100, "wood", 50},
@@ -766,7 +766,7 @@ DefineUnitType("unit-double-head", { Name = "Cho'gall",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-ice-bringer", { Name = "Gul'dan",
-  Files = {"tileset-summer", "orc/units/death_knight.png"},
+  Files = {"default", "orc/units/death_knight.png"},
   Size = {72, 72},
   Animations = "animations-ice-bringer", Icon = "icon-ice-bringer",
   Costs = {"time", 120, "gold", 1200},
@@ -805,7 +805,7 @@ DefineUnitType("unit-ice-bringer", { Name = "Gul'dan",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-sharp-axe", { Name = "Zuljin",
-  Files = {"tileset-summer", "orc/units/troll_axethrower.png"},
+  Files = {"default", "orc/units/troll_axethrower.png"},
   Size = {72, 72},
   Animations = "animations-sharp-axe", Icon = "icon-sharp-axe",
   Costs = {"time", 70, "gold", 500, "wood", 50},
@@ -836,7 +836,7 @@ DefineUnitType("unit-sharp-axe", { Name = "Zuljin",
     "dead", "basic orc voices dead"} } )
 
 DefineUnitType("unit-skeleton", { Name = "Skeleton",
-  Files = {"tileset-summer", "neutral/units/skeleton.png"},
+  Files = {"default", "neutral/units/skeleton.png"},
   Size = {56, 56},
   Animations = "animations-skeleton", Icon = "icon-skeleton",
   Speed = 8,
@@ -1394,7 +1394,7 @@ DefineUnitType("unit-fortress", { Name = "Fortress",
     "dead", "building destroyed"} } )
 
 DefineUnitType("unit-orc-start-location", { Name = "Start Location",
-  Files = {"tileset-summer", "orc/o_startpoint.png"},
+  Files = {"default", "orc/o_startpoint.png"},
   Size = {32, 32},
   NumDirections = 1,
   Animations = "animations-building", Icon = "icon-cancel",

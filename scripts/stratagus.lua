@@ -58,7 +58,7 @@ SetMenuMusic("music/default.mod")
 --  and setting. Might also be used for multiplayer.
 SetGameName("wc2")
 --  set the default map file.
-SetDefaultMap("maps/default.pud")
+SetDefaultMap("maps/default.smp")
 
 
 SetSelectionStyle("corners")

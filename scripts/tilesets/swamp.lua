@@ -230,3 +230,5 @@ DefineTileset("tileset-swamp", "class", "swamp", "name", "Swamp",
   "animations", {{}},
   -- Object tiles
   "objects", {{}})
+
+SelectTileset("tileset-swamp")
