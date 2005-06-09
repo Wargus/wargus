@@ -230,3 +230,5 @@ DefineTileset("tileset-wasteland", "class", "wasteland", "name", "Wasteland",
   "animations", {{}},
   -- Object tiles
   "objects", {{}})
+
+SelectTileset("tileset-wasteland")

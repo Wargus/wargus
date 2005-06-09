@@ -230,3 +230,5 @@ DefineTileset("tileset-summer",	"class", "summer", "name", "Forest",
   "animations", {{}},
   -- Object tiles
   "objects", {{}})
+
+SelectTileset("tileset-summer")

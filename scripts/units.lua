@@ -115,7 +115,7 @@ DefineUnitType("unit-nothing-36", { Name = "Nothing 36",
   Sounds = {} } )
 
 DefineUnitType("unit-daemon", { Name = "Daemon",
-  Files = {"tileset-summer", "neutral/units/daemon.png"},
+  Files = {"default", "neutral/units/daemon.png"},
   Size = {72, 72},
   Animations = "animations-daemon", Icon = "icon-daemon",
   Costs = {"time", 70, "gold", 500, "oil", 50},
@@ -231,7 +231,7 @@ DefineUnitType("unit-oil-patch", { Name = "Oil Patch",
     "dead", "building destroyed"} } )
 
 DefineUnitType("unit-circle-of-power", { Name = "Circle of Power",
-  Files = {"tileset-summer", "neutral/buildings/circle_of_power.png"},
+  Files = {"default", "neutral/buildings/circle_of_power.png"},
   Size = {64, 64},
   Animations = "animations-building", Icon = "icon-circle-of-power",
   NeutralMinimapColor = {128, 128, 0},
@@ -317,7 +317,7 @@ DefineUnitType("unit-runestone", { Name = "Runestone",
     "dead", "building destroyed"} } )
 
 DefineUnitType("unit-dead-body", { Name = "Dead Body",
-  Files = {"tileset-summer", "neutral/units/corpses.png"},
+  Files = {"default", "neutral/units/corpses.png"},
   Size = {72, 72},
   Animations = "animations-dead-body", Icon = "icon-peasant",
   Speed = 0,
