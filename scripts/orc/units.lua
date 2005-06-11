@@ -598,12 +598,12 @@ DefineUnitType("unit-fire-breeze", { Name = "Deathwing",
     "dead", "explosion"} } )
 
 
-local SubmarineFiles = {summer = "orc/units/giant_turtle.png",
+UnitTypeFiles["unit-orc-submarine"] = {summer = "orc/units/giant_turtle.png",
   wasteland = "tilesets/wasteland/orc/units/giant_turtle.png",
   swamp = "tilesets/swamp/orc/units/giant_turtle.png"}
 
 DefineUnitType("unit-orc-submarine", { Name = "Giant Turtle",
-  Image = {"file", SubmarineFiles[tileset], "size", {72, 72}},
+  Image = {"size", {72, 72}},
   Animations = "animations-orc-submarine", Icon = "icon-giant-turtle",
   Costs = {"time", 100, "gold", 800, "wood", 150, "oil", 900},
   Speed = 7,
@@ -842,13 +842,13 @@ DefineUnitType("unit-skeleton", { Name = "Skeleton",
     "dead", "basic orc voices dead"} } )
 
 
-local FarmFiles = {summer = "tilesets/summer/orc/buildings/pig_farm.png",
+UnitTypeFiles["unit-pig-farm"] = {summer = "tilesets/summer/orc/buildings/pig_farm.png",
   winter = "tilesets/winter/orc/buildings/pig_farm.png",
   wasteland = "tilesets/wasteland/orc/buildings/pig_farm.png",
   swamp = "tilesets/swamp/orc/buildings/pig_farm.png"}
 
 DefineUnitType("unit-pig-farm", { Name = "Pig Farm",
-  Image = {"file", FarmFiles[tileset], "size", {64, 64}},
+  Image = {"size", {64, 64}},
   Animations = "animations-building", Icon = "icon-pig-farm",
   Costs = {"time", 100, "gold", 500, "wood", 250},
   RepairHp = 4,
@@ -875,13 +875,13 @@ DefineUnitType("unit-pig-farm", { Name = "Pig Farm",
     "dead", "building destroyed"} } )
 
 
-local BarracksFiles = {summer = "tilesets/summer/orc/buildings/barracks.png",
+UnitTypeFiles["unit-orc-barracks"] = {summer = "tilesets/summer/orc/buildings/barracks.png",
   winter = "tilesets/winter/orc/buildings/barracks.png",
   wasteland = "tilesets/summer/orc/buildings/barracks.png",
   swamp = "tilesets/swamp/orc/buildings/barracks.png"}
 
 DefineUnitType("unit-orc-barracks", { Name = "Barracks",
-  Image = {"file", BarracksFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-barracks",
   Costs = {"time", 200, "gold", 700, "wood", 450},
   RepairHp = 4,
@@ -907,13 +907,13 @@ DefineUnitType("unit-orc-barracks", { Name = "Barracks",
     "dead", "building destroyed"} } )
 
 
-local AltarFiles = {summer = "tilesets/summer/orc/buildings/altar_of_storms.png",
+UnitTypeFiles["unit-altar-of-storms"] = {summer = "tilesets/summer/orc/buildings/altar_of_storms.png",
   winter = "tilesets/winter/orc/buildings/altar_of_storms.png",
   wasteland = "tilesets/summer/orc/buildings/altar_of_storms.png",
   swamp = "tilesets/swamp/orc/buildings/altar_of_storms.png"}
 
 DefineUnitType("unit-altar-of-storms", { Name = "Altar of Storms",
-  Image = {"file", AltarFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-altar-of-storms",
   Costs = {"time", 175, "gold", 900, "wood", 500},
   RepairHp = 4,
@@ -939,13 +939,13 @@ DefineUnitType("unit-altar-of-storms", { Name = "Altar of Storms",
     "dead", "building destroyed"} } )
 
 
-local WatchTowerFiles = {summer = "tilesets/summer/orc/buildings/watch_tower.png",
+UnitTypeFiles["unit-orc-watch-tower"] = {summer = "tilesets/summer/orc/buildings/watch_tower.png",
   winter = "tilesets/winter/orc/buildings/watch_tower.png",
   wasteland = "tilesets/summer/orc/buildings/watch_tower.png",
   swamp = "tilesets/swamp/orc/buildings/watch_tower.png"}
 
 DefineUnitType("unit-orc-watch-tower", { Name = "Watch Tower",
-  Image = {"file", WatchTowerFiles[tileset], "size", {64, 64}},
+  Image = {"size", {64, 64}},
   Animations = "animations-building", Icon = "icon-orc-watch-tower",
   Costs = {"time", 60, "gold", 550, "wood", 200},
   RepairHp = 4,
@@ -973,13 +973,13 @@ DefineUnitType("unit-orc-watch-tower", { Name = "Watch Tower",
     "dead", "building destroyed"} } )
 
 
-local OgreMoundFiles = {summer = "tilesets/summer/orc/buildings/ogre_mound.png",
+UnitTypeFiles["unit-ogre-mound"] = {summer = "tilesets/summer/orc/buildings/ogre_mound.png",
   winter = "tilesets/winter/orc/buildings/ogre_mound.png",
   wasteland = "tilesets/summer/orc/buildings/ogre_mound.png",
   swamp = "tilesets/swamp/orc/buildings/ogre_mound.png"}
 
 DefineUnitType("unit-ogre-mound", { Name = "Ogre Mound",
-  Image = {"file", OgreMoundFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-ogre-mound",
   Costs = {"time", 150, "gold", 1000, "wood", 300},
   RepairHp = 4,
@@ -1005,13 +1005,13 @@ DefineUnitType("unit-ogre-mound", { Name = "Ogre Mound",
     "dead", "building destroyed"} } )
 
 
-local AlchemistFiles = {summer = "tilesets/summer/orc/buildings/goblin_alchemist.png",
+UnitTypeFiles["unit-alchemist"] = {summer = "tilesets/summer/orc/buildings/goblin_alchemist.png",
   winter = "tilesets/winter/orc/buildings/goblin_alchemist.png",
   wasteland = "tilesets/summer/orc/buildings/goblin_alchemist.png",
   swamp = "tilesets/swamp/orc/buildings/goblin_alchemist.png"}
 
 DefineUnitType("unit-alchemist", { Name = "Goblin Alchemist",
-  Image = {"file", AlchemistFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-alchemist",
   Costs = {"time", 150, "gold", 1000, "wood", 400},
   RepairHp = 4,
@@ -1037,13 +1037,13 @@ DefineUnitType("unit-alchemist", { Name = "Goblin Alchemist",
     "dead", "building destroyed"} } )
 
 
-local DragonRoostFiles = {summer = "tilesets/summer/orc/buildings/dragon_roost.png",
+UnitTypeFiles["unit-dragon-roost"] = {summer = "tilesets/summer/orc/buildings/dragon_roost.png",
   winter = "tilesets/winter/orc/buildings/dragon_roost.png",
   wasteland = "tilesets/summer/orc/buildings/dragon_roost.png",
   swamp = "tilesets/swamp/orc/buildings/dragon_roost.png"}
 
 DefineUnitType("unit-dragon-roost", { Name = "Dragon Roost",
-  Image = {"file", DragonRoostFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-dragon-roost",
   Costs = {"time", 150, "gold", 1000, "wood", 400},
   RepairHp = 4,
@@ -1069,13 +1069,13 @@ DefineUnitType("unit-dragon-roost", { Name = "Dragon Roost",
     "dead", "building destroyed"} } )
 
 
-local ShipyardFiles = {summer = "tilesets/summer/orc/buildings/shipyard.png",
+UnitTypeFiles["unit-orc-shipyard"] = {summer = "tilesets/summer/orc/buildings/shipyard.png",
   winter = "tilesets/winter/orc/buildings/shipyard.png",
   wasteland = "tilesets/summer/orc/buildings/shipyard.png",
   swamp = "tilesets/swamp/orc/buildings/shipyard.png"}
 
 DefineUnitType("unit-orc-shipyard", { Name = "Shipyard",
-  Image = {"file", ShipyardFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-shipyard",
   Costs = {"time", 200, "gold", 800, "wood", 450},
   RepairHp = 4,
@@ -1108,13 +1108,13 @@ DefineUnitType("unit-orc-shipyard", { Name = "Shipyard",
     "dead", "building destroyed"} } )
 
 
-local GreatHallFiles = {summer = "tilesets/summer/orc/buildings/great_hall.png",
+UnitTypeFiles["unit-great-hall"] = {summer = "tilesets/summer/orc/buildings/great_hall.png",
   winter = "tilesets/winter/orc/buildings/great_hall.png",
   wasteland = "tilesets/summer/orc/buildings/great_hall.png",
   swamp = "tilesets/swamp/orc/buildings/great_hall.png"}
 
 DefineUnitType("unit-great-hall", { Name = "Great Hall",
-  Image = {"file", GreatHallFiles[tileset], "size", {128, 128}},
+  Image = {"size", {128, 128}},
   Animations = "animations-building", Icon = "icon-great-hall",
   Costs = {"time", 255, "gold", 1200, "wood", 800},
   RepairHp = 4,
@@ -1145,13 +1145,13 @@ DefineUnitType("unit-great-hall", { Name = "Great Hall",
     "dead", "building destroyed"} } )
 
 
-local LumberMillFiles = {summer = "tilesets/summer/orc/buildings/troll_lumber_mill.png",
+UnitTypeFiles["unit-troll-lumber-mill"] = {summer = "tilesets/summer/orc/buildings/troll_lumber_mill.png",
   winter = "tilesets/winter/orc/buildings/troll_lumber_mill.png",
   wasteland = "tilesets/wasteland/orc/buildings/troll_lumber_mill.png",
   swamp = "tilesets/swamp/orc/buildings/troll_lumber_mill.png"}
 
 DefineUnitType("unit-troll-lumber-mill", { Name = "Troll Lumber Mill",
-  Image = {"file", LumberMillFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-troll-lumber-mill",
   Costs = {"time", 150, "gold", 600, "wood", 450},
   RepairHp = 4,
@@ -1179,13 +1179,13 @@ DefineUnitType("unit-troll-lumber-mill", { Name = "Troll Lumber Mill",
     "dead", "building destroyed"} } )
 
 
-local FoundryFiles = {summer = "tilesets/summer/orc/buildings/foundry.png",
+UnitTypeFiles["unit-orc-foundry"] = {summer = "tilesets/summer/orc/buildings/foundry.png",
   winter = "tilesets/winter/orc/buildings/foundry.png",
   wasteland = "tilesets/summer/orc/buildings/foundry.png",
   swamp = "tilesets/swamp/orc/buildings/foundry.png"}
 
 DefineUnitType("unit-orc-foundry", { Name = "Foundry",
-  Image = {"file", FoundryFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-foundry",
   Costs = {"time", 175, "gold", 700, "wood", 400, "oil", 400},
   RepairHp = 4,
@@ -1212,13 +1212,13 @@ DefineUnitType("unit-orc-foundry", { Name = "Foundry",
     "dead", "building destroyed"} } )
 
 
-local TempleFiles = {summer = "tilesets/summer/orc/buildings/temple_of_the_damned.png",
+UnitTypeFiles["unit-temple-of-the-damned"] = {summer = "tilesets/summer/orc/buildings/temple_of_the_damned.png",
   winter = "tilesets/winter/orc/buildings/temple_of_the_damned.png",
   wasteland = "tilesets/summer/orc/buildings/temple_of_the_damned.png",
   swamp = "tilesets/swamp/orc/buildings/temple_of_the_damned.png"}
 
 DefineUnitType("unit-temple-of-the-damned", { Name = "Temple of the Damned",
-  Image = {"file", TempleFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-temple-of-the-damned",
   Costs = {"time", 125, "gold", 1000, "wood", 200},
   RepairHp = 4,
@@ -1244,13 +1244,13 @@ DefineUnitType("unit-temple-of-the-damned", { Name = "Temple of the Damned",
     "dead", "building destroyed"} } )
 
 
-local BlacksmithFiles = {summer = "tilesets/summer/orc/buildings/blacksmith.png",
+UnitTypeFiles["unit-orc-blacksmith"] = {summer = "tilesets/summer/orc/buildings/blacksmith.png",
   winter = "tilesets/winter/orc/buildings/blacksmith.png",
   wasteland = "tilesets/summer/orc/buildings/blacksmith.png",
   swamp = "tilesets/swamp/orc/buildings/blacksmith.png"}
 
 DefineUnitType("unit-orc-blacksmith", { Name = "Blacksmith",
-  Image = {"file", BlacksmithFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-blacksmith",
   Costs = {"time", 200, "gold", 800, "wood", 450, "oil", 100},
   RepairHp = 4,
@@ -1276,13 +1276,13 @@ DefineUnitType("unit-orc-blacksmith", { Name = "Blacksmith",
     "dead", "building destroyed"} } )
 
 
-local RefineryFiles = {summer = "tilesets/summer/orc/buildings/refinery.png",
+UnitTypeFiles["unit-orc-refinery"] = {summer = "tilesets/summer/orc/buildings/refinery.png",
   winter = "tilesets/winter/orc/buildings/refinery.png",
   wasteland = "tilesets/summer/orc/buildings/refinery.png",
   swamp = "tilesets/swamp/orc/buildings/refinery.png"}
 
 DefineUnitType("unit-orc-refinery", { Name = "Refinery",
-  Image = {"file", RefineryFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-refinery",
   Costs = {"time", 225, "gold", 800, "wood", 350, "oil", 200},
   RepairHp = 4,
@@ -1317,13 +1317,13 @@ DefineUnitType("unit-orc-refinery", { Name = "Refinery",
     "dead", "building destroyed"} } )
 
 
-local OilPlatformFiles = {summer = "tilesets/summer/orc/buildings/oil_platform.png",
+UnitTypeFiles["unit-orc-oil-platform"] = {summer = "tilesets/summer/orc/buildings/oil_platform.png",
   winter = "tilesets/winter/orc/buildings/oil_platform.png",
   wasteland = "tilesets/wasteland/orc/buildings/oil_platform.png",
   swamp = "tilesets/swamp/orc/buildings/oil_platform.png"}
 
 DefineUnitType("unit-orc-oil-platform", { Name = "Oil Platform",
-  Image = {"file", OilPlatformFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-oil-platform",
   Costs = {"time", 200, "gold", 700, "wood", 450},
   Construction = "construction-orc-oil-well",
@@ -1349,13 +1349,13 @@ DefineUnitType("unit-orc-oil-platform", { Name = "Oil Platform",
     "dead", "building destroyed"} } )
 
 
-local StrongholdFiles = {summer = "tilesets/summer/orc/buildings/stronghold.png",
+UnitTypeFiles["unit-stronghold"] = {summer = "tilesets/summer/orc/buildings/stronghold.png",
   winter = "tilesets/winter/orc/buildings/stronghold.png",
   wasteland = "tilesets/summer/orc/buildings/stronghold.png",
   swamp = "tilesets/swamp/orc/buildings/stronghold.png"}
 
 DefineUnitType("unit-stronghold", { Name = "Stronghold",
-  Image = {"file", StrongholdFiles[tileset], "size", {128, 128}},
+  Image = {"size", {128, 128}},
   Animations = "animations-building", Icon = "icon-stronghold",
   Costs = {"time", 200, "gold", 2000, "wood", 1000, "oil", 200},
   RepairHp = 4,
@@ -1384,13 +1384,13 @@ DefineUnitType("unit-stronghold", { Name = "Stronghold",
     "dead", "building destroyed"} } )
 
 
-local FortressFiles = {summer = "tilesets/summer/orc/buildings/fortress.png",
+UnitTypeFiles["unit-fortress"] = {summer = "tilesets/summer/orc/buildings/fortress.png",
   winter = "tilesets/winter/orc/buildings/fortress.png",
   wasteland = "tilesets/summer/orc/buildings/fortress.png",
   swamp = "tilesets/swamp/orc/buildings/fortress.png"}
 
 DefineUnitType("unit-fortress", { Name = "Fortress",
-  Image = {"file", FortressFiles[tileset], "size", {128, 128}},
+  Image = {"size", {128, 128}},
   Animations = "animations-building", Icon = "icon-fortress",
   Costs = {"time", 200, "gold", 2500, "wood", 1200, "oil", 500},
   RepairHp = 4,
@@ -1439,13 +1439,13 @@ DefineUnitType("unit-orc-start-location", { Name = "Start Location",
     "dead", "building destroyed"} } )
 
 
-local GuardTowerFiles = {summer = "tilesets/summer/orc/buildings/guard_tower.png",
+UnitTypeFiles["unit-orc-guard-tower"] = {summer = "tilesets/summer/orc/buildings/guard_tower.png",
   winter = "tilesets/winter/orc/buildings/guard_tower.png",
   wasteland = "tilesets/summer/orc/buildings/guard_tower.png",
   swamp = "tilesets/swamp/orc/buildings/guard_tower.png"}
 
 DefineUnitType("unit-orc-guard-tower", { Name = "Guard Tower",
-  Image = {"file", GuardTowerFiles[tileset], "size", {64, 64}},
+  Image = {"size", {64, 64}},
   Animations = "animations-orc-guard-tower", Icon = "icon-orc-guard-tower",
   Costs = {"time", 140, "gold", 500, "wood", 150},
   RepairHp = 4,
@@ -1474,13 +1474,13 @@ DefineUnitType("unit-orc-guard-tower", { Name = "Guard Tower",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
-local CannonTowerFiles = {summer = "tilesets/summer/orc/buildings/cannon_tower.png",
+UnitTypeFiles["unit-orc-cannon-tower"] = {summer = "tilesets/summer/orc/buildings/cannon_tower.png",
   winter = "tilesets/winter/orc/buildings/cannon_tower.png",
   wasteland = "tilesets/summer/orc/buildings/cannon_tower.png",
   swamp = "tilesets/swamp/orc/buildings/cannon_tower.png"}
 
 DefineUnitType("unit-orc-cannon-tower", { Name = "Cannon Tower",
-  Image = {"file", CannonTowerFiles[tileset], "size", {64, 64}},
+  Image = {"size", {64, 64}},
   Animations = "animations-orc-cannon-tower", Icon = "icon-orc-cannon-tower",
   Costs = {"time", 190, "gold", 1000, "wood", 300},
   RepairHp = 4,
@@ -1509,13 +1509,13 @@ DefineUnitType("unit-orc-cannon-tower", { Name = "Cannon Tower",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
-local WallFiles = {summer = "tilesets/summer/neutral/buildings/wall.png",
+UnitTypeFiles["unit-orc-wall"] = {summer = "tilesets/summer/neutral/buildings/wall.png",
   winter = "tilesets/winter/neutral/buildings/wall.png",
   wasteland = "tilesets/wasteland/neutral/buildings/wall.png",
   swamp = "tilesets/summer/neutral/buildings/wall.png"}
 
 DefineUnitType("unit-orc-wall", { Name = "Wall",
-  Image = {"file", WallFiles[tileset], "size", {32, 32}},
+  Image = {"size", {32, 32}},
   Animations = "animations-building", Icon = "icon-orc-wall",
   Costs = {"time", 30, "gold", 20, "wood", 10},
   Construction = "construction-wall",
