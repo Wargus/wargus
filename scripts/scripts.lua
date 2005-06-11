@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -8,9 +8,9 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---      tilesets.lua - Define the used tilesets.
+--      scripts.lua - The craft configuration language.
 --
---      (c) Copyright 1998-2004 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2005 by Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -28,25 +28,13 @@
 --
 --      $Id$
 
---=============================================================================
---	Load the different tileset definitions
---
---	FIXME: need a way to automatic load all available tileset definitions
 
---[[
-Load("scripts/wc2-config.lua")
+-- Set the unit type graphics to the correct tileset
+table.foreach(UnitTypeFiles,
+	function(k, v) DefineUnitType(k, {Image = {"file", v[tileset]}}) end)
 
-DefineTileset("tileset-summer", "class", "summer", "name", "Forest",
-  "file", "scripts/tilesets/summer.lua")
-DefineTileset("tileset-winter", "class", "winter", "name", "Winter",
-  "file", "scripts/tilesets/winter.lua")
-DefineTileset("tileset-wasteland", "class", "wasteland", "name", "Wasteland",
-  "file", "scripts/tilesets/wasteland.lua")
-if (expansion) then
-  DefineTileset("tileset-swamp", "class", "swamp", "name", "Swamp",
-    "file", "scripts/tilesets/swamp.lua")
-else
-  DefineTileset("tileset-swamp", "class", "swamp", "name", "Swamp",
-    "file", "scripts/tilesets/dummy-swamp.lua")
-end
-]]
+-- Icon and construction graphics also depend on the tileset
+
+Load("scripts/icons.lua")
+Load("scripts/constructions.lua")
+

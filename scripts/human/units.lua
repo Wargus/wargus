@@ -571,13 +571,13 @@ DefineUnitType("unit-battleship", { Name = "Battleship",
     "dead", "ship sinking"} } )
 
 
-local SubmarineFiles = {summer = "human/units/gnomish_submarine.png",
+UnitTypeFiles["unit-human-submarine"] = {summer = "human/units/gnomish_submarine.png",
   winter = "human/units/gnomish_submarine.png",
   wasteland = "tilesets/wasteland/human/units/gnomish_submarine.png",
   swamp = "tilesets/swamp/human/units/gnomish_submarine.png"}
 
 DefineUnitType("unit-human-submarine", { Name = "Gnomish Submarine",
-  Image = {"file", SubmarineFiles[tileset], "size", {72, 72}},
+  Image = {"size", {72, 72}},
   Animations = "animations-gnomish-submarine", Icon = "icon-gnomish-submarine",
   Costs = {"time", 100, "gold", 800, "wood", 150, "oil", 900},
   Speed = 7,
@@ -757,13 +757,13 @@ DefineUnitType("unit-man-of-light", { Name = "Uther Lightbringer",
     "dead", "basic human voices dead"} } )
 
 
-local FarmFiles = {summer = "tilesets/summer/human/buildings/farm.png",
+UnitTypeFiles["unit-farm"] = {summer = "tilesets/summer/human/buildings/farm.png",
   winter = "tilesets/winter/human/buildings/farm.png",
   wasteland = "tilesets/wasteland/human/buildings/farm.png",
   swamp = "tilesets/swamp/human/buildings/farm.png"}
 
 DefineUnitType("unit-farm", { Name = "Farm",
-  Image = {"file", FarmFiles[tileset], "size", {64, 64}},
+  Image = {"size", {64, 64}},
   Animations = "animations-building", Icon = "icon-farm",
   Costs = {"time", 100, "gold", 500, "wood", 250},
   RepairHp = 4,
@@ -790,13 +790,13 @@ DefineUnitType("unit-farm", { Name = "Farm",
     "dead", "building destroyed"} } )
 
 
-local BarracksFiles = {summer = "tilesets/summer/human/buildings/barracks.png",
+UnitTypeFiles["unit-human-barracks"] = {summer = "tilesets/summer/human/buildings/barracks.png",
   winter = "tilesets/winter/human/buildings/barracks.png",
   wasteland = "tilesets/summer/human/buildings/barracks.png",
   swamp = "tilesets/swamp/human/buildings/barracks.png"}
 
 DefineUnitType("unit-human-barracks", { Name = "Barracks",
-  Image = {"file", BarracksFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-human-barracks",
   Costs = {"time", 200, "gold", 700, "wood", 450},
   RepairHp = 4,
@@ -822,13 +822,13 @@ DefineUnitType("unit-human-barracks", { Name = "Barracks",
     "dead", "building destroyed"} } )
 
 
-local ChurchFiles = {summer = "tilesets/summer/human/buildings/church.png",
+UnitTypeFiles["unit-church"] = {summer = "tilesets/summer/human/buildings/church.png",
   winter = "tilesets/winter/human/buildings/church.png",
   wasteland = "tilesets/summer/human/buildings/church.png",
   swamp = "tilesets/swamp/human/buildings/church.png"}
 
 DefineUnitType("unit-church", { Name = "Church",
-  Image = {"file", ChurchFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-church",
   Costs = {"time", 175, "gold", 900, "wood", 500},
   RepairHp = 4,
@@ -854,13 +854,13 @@ DefineUnitType("unit-church", { Name = "Church",
     "dead", "building destroyed"} } )
 
 
-local TowerFiles = {summer = "tilesets/summer/human/buildings/scout_tower.png",
+UnitTypeFiles["unit-human-watch-tower"] = {summer = "tilesets/summer/human/buildings/scout_tower.png",
   winter = "tilesets/winter/human/buildings/scout_tower.png",
   wasteland = "tilesets/summer/human/buildings/scout_tower.png",
   swamp = "tilesets/swamp/human/buildings/scout_tower.png"}
 
 DefineUnitType("unit-human-watch-tower", { Name = "Scout Tower",
-  Image = {"file", TowerFiles[tileset], "size", {64, 64}},
+  Image = {"size", {64, 64}},
   Animations = "animations-building", Icon = "icon-human-watch-tower",
   Costs = {"time", 60, "gold", 550, "wood", 200},
   RepairHp = 4,
@@ -888,13 +888,13 @@ DefineUnitType("unit-human-watch-tower", { Name = "Scout Tower",
     "dead", "building destroyed"} } )
 
 
-local StablesFiles = {summer = "tilesets/summer/human/buildings/stables.png",
+UnitTypeFiles["unit-stables"] = {summer = "tilesets/summer/human/buildings/stables.png",
   winter = "tilesets/winter/human/buildings/stables.png",
   wasteland = "tilesets/summer/human/buildings/stables.png",
   swamp = "tilesets/swamp/human/buildings/stables.png"}
 
 DefineUnitType("unit-stables", { Name = "Stables",
-  Image = {"file", StablesFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-stables",
   Costs = {"time", 150, "gold", 1000, "wood", 300},
   RepairHp = 4,
@@ -920,13 +920,13 @@ DefineUnitType("unit-stables", { Name = "Stables",
     "dead", "building destroyed"} } )
 
 
-local InventorFiles = {summer = "tilesets/summer/human/buildings/gnomish_inventor.png",
+UnitTypeFiles["unit-inventor"] = {summer = "tilesets/summer/human/buildings/gnomish_inventor.png",
   winter = "tilesets/winter/human/buildings/gnomish_inventor.png",
   wasteland = "tilesets/summer/human/buildings/gnomish_inventor.png",
   swamp = "tilesets/swamp/human/buildings/gnomish_inventor.png"}
 
 DefineUnitType("unit-inventor", { Name = "Gnomish Inventor",
-  Image = {"file", InventorFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-gnomish-inventor",
   Costs = {"time", 150, "gold", 1000, "wood", 400},
   RepairHp = 4,
@@ -952,13 +952,13 @@ DefineUnitType("unit-inventor", { Name = "Gnomish Inventor",
     "dead", "building destroyed"} } )
 
 
-local AviaryFiles = {summer = "tilesets/summer/human/buildings/gryphon_aviary.png",
+UnitTypeFiles["unit-gryphon-aviary"] = {summer = "tilesets/summer/human/buildings/gryphon_aviary.png",
   winter = "tilesets/winter/human/buildings/gryphon_aviary.png",
   wasteland = "tilesets/summer/human/buildings/gryphon_aviary.png",
   swamp = "tilesets/swamp/human/buildings/gryphon_aviary.png"}
 
 DefineUnitType("unit-gryphon-aviary", { Name = "Gryphon Aviary",
-  Image = {"file", AviaryFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-gryphon-aviary",
   Costs = {"time", 150, "gold", 1000, "wood", 400},
   RepairHp = 4,
@@ -984,13 +984,13 @@ DefineUnitType("unit-gryphon-aviary", { Name = "Gryphon Aviary",
     "dead", "building destroyed"} } )
 
 
-local ShipyardFiles = {summer = "tilesets/summer/human/buildings/shipyard.png",
+UnitTypeFiles["unit-human-shipyard"] = {summer = "tilesets/summer/human/buildings/shipyard.png",
   winter = "tilesets/winter/human/buildings/shipyard.png",
   wasteland = "tilesets/summer/human/buildings/shipyard.png",
   swamp = "tilesets/swamp/human/buildings/shipyard.png"}
 
 DefineUnitType("unit-human-shipyard", { Name = "Shipyard",
-  Image = {"file", ShipyardFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-human-shipyard",
   Costs = {"time", 200, "gold", 800, "wood", 450},
   RepairHp = 4,
@@ -1023,13 +1023,13 @@ DefineUnitType("unit-human-shipyard", { Name = "Shipyard",
     "dead", "building destroyed"} } )
 
 
-local LumberMillFiles = {summer = "tilesets/summer/human/buildings/elven_lumber_mill.png",
+UnitTypeFiles["unit-elven-lumber-mill"] = {summer = "tilesets/summer/human/buildings/elven_lumber_mill.png",
   winter = "tilesets/winter/human/buildings/elven_lumber_mill.png",
   wasteland = "tilesets/wasteland/human/buildings/elven_lumber_mill.png",
   swamp = "tilesets/swamp/human/buildings/elven_lumber_mill.png"}
 
 DefineUnitType("unit-elven-lumber-mill", { Name = "Elven Lumber Mill",
-  Image = {"file", LumberMillFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-elven-lumber-mill",
   Costs = {"time", 150, "gold", 600, "wood", 450},
   RepairHp = 4,
@@ -1057,13 +1057,13 @@ DefineUnitType("unit-elven-lumber-mill", { Name = "Elven Lumber Mill",
     "dead", "building destroyed"} } )
 
 
-local FoundryFiles = {summer = "tilesets/summer/human/buildings/foundry.png",
+UnitTypeFiles["unit-human-foundry"] = {summer = "tilesets/summer/human/buildings/foundry.png",
   winter = "tilesets/winter/human/buildings/foundry.png",
   wasteland = "tilesets/summer/human/buildings/foundry.png",
   swamp = "tilesets/swamp/human/buildings/foundry.png"}
 
 DefineUnitType("unit-human-foundry", { Name = "Foundry",
-  Image = {"file", FoundryFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-human-foundry",
   Costs = {"time", 175, "gold", 700, "wood", 400, "oil", 400},
   RepairHp = 4,
@@ -1090,13 +1090,13 @@ DefineUnitType("unit-human-foundry", { Name = "Foundry",
     "dead", "building destroyed"} } )
 
 
-local TownHallFiles = {summer = "tilesets/summer/human/buildings/town_hall.png",
+UnitTypeFiles["unit-town-hall"] = {summer = "tilesets/summer/human/buildings/town_hall.png",
   winter = "tilesets/winter/human/buildings/town_hall.png",
   wasteland = "tilesets/summer/human/buildings/town_hall.png",
   swamp = "tilesets/swamp/human/buildings/town_hall.png"}
 
 DefineUnitType("unit-town-hall", { Name = "Town Hall",
-  Image = {"file", TownHallFiles[tileset], "size", {128, 128}},
+  Image = {"size", {128, 128}},
   Animations = "animations-building", Icon = "icon-town-hall",
   Costs = {"time", 255, "gold", 1200, "wood", 800},
   RepairHp = 4,
@@ -1127,13 +1127,13 @@ DefineUnitType("unit-town-hall", { Name = "Town Hall",
     "dead", "building destroyed"} } )
 
 
-local MageTowerFiles = {summer = "tilesets/summer/human/buildings/mage_tower.png",
+UnitTypeFiles["unit-mage-tower"] = {summer = "tilesets/summer/human/buildings/mage_tower.png",
   winter = "tilesets/winter/human/buildings/mage_tower.png",
   wasteland = "tilesets/summer/human/buildings/mage_tower.png",
   swamp = "tilesets/swamp/human/buildings/mage_tower.png"}
 
 DefineUnitType("unit-mage-tower", { Name = "Mage Tower",
-  Image = {"file", MageTowerFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-mage-tower",
   Costs = {"time", 125, "gold", 1000, "wood", 200},
   RepairHp = 4,
@@ -1158,13 +1158,13 @@ DefineUnitType("unit-mage-tower", { Name = "Mage Tower",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
-local BlacksmithFiles = {summer = "tilesets/summer/human/buildings/blacksmith.png",
+UnitTypeFiles["unit-human-blacksmith"] = {summer = "tilesets/summer/human/buildings/blacksmith.png",
   winter = "tilesets/winter/human/buildings/blacksmith.png",
   wasteland = "tilesets/summer/human/buildings/blacksmith.png",
   swamp = "tilesets/swamp/human/buildings/blacksmith.png"}
 
 DefineUnitType("unit-human-blacksmith", { Name = "Blacksmith",
-  Image = {"file", BlacksmithFiles[tileset], "size",  {96, 96}},
+  Image = {"size",  {96, 96}},
   Animations = "animations-building", Icon = "icon-human-blacksmith",
   Costs = {"time", 200, "gold", 800, "wood", 450, "oil", 100},
   RepairHp = 4,
@@ -1190,13 +1190,13 @@ DefineUnitType("unit-human-blacksmith", { Name = "Blacksmith",
     "dead", "building destroyed"} } )
 
 
-local RefineryFiles = {summer = "tilesets/summer/human/buildings/refinery.png",
+UnitTypeFiles["unit-human-refinery"] = {summer = "tilesets/summer/human/buildings/refinery.png",
   winter = "tilesets/winter/human/buildings/refinery.png",
   wasteland = "tilesets/summer/human/buildings/refinery.png",
   swamp = "tilesets/swamp/human/buildings/refinery.png"}
 
 DefineUnitType("unit-human-refinery", { Name = "Refinery",
-  Image = {"file", RefineryFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-human-refinery",
   Costs = {"time", 225, "gold", 800, "wood", 350, "oil", 200},
   RepairHp = 4,
@@ -1230,13 +1230,13 @@ DefineUnitType("unit-human-refinery", { Name = "Refinery",
     "dead", "building destroyed"} } )
 
 
-OilPlatformFiles = {summer = "tilesets/summer/human/buildings/oil_platform.png",
+UnitTypeFiles["unit-human-oil-platform"] = {summer = "tilesets/summer/human/buildings/oil_platform.png",
   winter = "tilesets/winter/human/buildings/oil_platform.png",
   wasteland = "tilesets/wasteland/human/buildings/oil_platform.png",
   swamp = "tilesets/swamp/human/buildings/oil_platform.png"}
 
 DefineUnitType("unit-human-oil-platform", { Name = "Oil Platform",
-  Image = {"file", OilPlatformFiles[tileset], "size", {96, 96}},
+  Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-human-oil-platform",
   Costs = {"time", 200, "gold", 700, "wood", 450},
   Construction = "construction-human-oil-well",
@@ -1262,13 +1262,13 @@ DefineUnitType("unit-human-oil-platform", { Name = "Oil Platform",
     "dead", "building destroyed"} } )
 
 
-local KeepFiles = {summer = "tilesets/summer/human/buildings/keep.png",
+UnitTypeFiles["unit-keep"] = {summer = "tilesets/summer/human/buildings/keep.png",
   winter = "tilesets/winter/human/buildings/keep.png",
   wasteland = "tilesets/summer/human/buildings/keep.png",
   swamp = "tilesets/swamp/human/buildings/keep.png"}
 
 DefineUnitType("unit-keep", { Name = "Keep",
-  Image = {"file", KeepFiles[tileset], "size", {128, 128}},
+  Image = {"size", {128, 128}},
   Animations = "animations-building", Icon = "icon-keep",
   Costs = {"time", 200, "gold", 2000, "wood", 1000, "oil", 200},
   RepairHp = 4,
@@ -1297,13 +1297,13 @@ DefineUnitType("unit-keep", { Name = "Keep",
     "dead", "building destroyed"} } )
 
 
-local CastleFiles = {summer = "tilesets/summer/human/buildings/castle.png",
+UnitTypeFiles["unit-castle"] = {summer = "tilesets/summer/human/buildings/castle.png",
   winter = "tilesets/winter/human/buildings/castle.png",
   wasteland = "tilesets/summer/human/buildings/castle.png",
   swamp = "tilesets/swamp/human/buildings/castle.png"}
 
 DefineUnitType("unit-castle", { Name = "Castle",
-  Image = {"file", CastleFiles[tileset], "size", {128, 128}},
+  Image = {"size", {128, 128}},
   Animations = "animations-building", Icon = "icon-castle",
   Costs = {"time", 200, "gold", 2500, "wood", 1200, "oil", 500},
   RepairHp = 4,
@@ -1352,13 +1352,13 @@ DefineUnitType("unit-human-start-location", { Name = "Start Location",
     "dead", "building destroyed"} } )
 
 
-local GuardTowerFiles = {summer = "tilesets/summer/human/buildings/guard_tower.png",
+UnitTypeFiles["unit-human-guard-tower"] = {summer = "tilesets/summer/human/buildings/guard_tower.png",
   winter = "tilesets/winter/human/buildings/guard_tower.png",
   wasteland = "tilesets/summer/human/buildings/guard_tower.png",
   swamp = "tilesets/swamp/human/buildings/guard_tower.png"}
 
 DefineUnitType("unit-human-guard-tower", { Name = "Guard Tower",
-  Image = {"file", GuardTowerFiles[tileset], "size", {64, 64}},
+  Image = {"size", {64, 64}},
   Animations = "animations-human-guard-tower", Icon = "icon-human-guard-tower",
   Costs = {"time", 140, "gold", 500, "wood", 150},
   RepairHp = 4,
@@ -1387,13 +1387,13 @@ DefineUnitType("unit-human-guard-tower", { Name = "Guard Tower",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
-local CannonTowerFiles = {summer = "tilesets/summer/human/buildings/cannon_tower.png",
+UnitTypeFiles["unit-human-cannon-tower"] = {summer = "tilesets/summer/human/buildings/cannon_tower.png",
   winter = "tilesets/winter/human/buildings/cannon_tower.png",
   wasteland = "tilesets/summer/human/buildings/cannon_tower.png",
   swamp = "tilesets/swamp/human/buildings/cannon_tower.png"}
 
 DefineUnitType("unit-human-cannon-tower", { Name = "Cannon Tower",
-  Image = {"file", CannonTowerFiles[tileset], "size", {64, 64}},
+  Image = {"size", {64, 64}},
   Animations = "animations-human-cannon-tower", Icon = "icon-human-cannon-tower",
   Costs = {"time", 190, "gold", 1000, "wood", 300},
   RepairHp = 4,
@@ -1423,13 +1423,13 @@ DefineUnitType("unit-human-cannon-tower", { Name = "Cannon Tower",
     "dead", "building destroyed"} } )
 
 
-local WallFiles = {summer = "tilesets/summer/neutral/buildings/wall.png",
+UnitTypeFiles["unit-human-wall"] = {summer = "tilesets/summer/neutral/buildings/wall.png",
   winter = "tilesets/winter/neutral/buildings/wall.png",
   wasteland = "tilesets/wasteland/neutral/buildings/wall.png",
   swamp = "tilesets/summer/neutral/buildings/wall.png"}
 
 DefineUnitType("unit-human-wall", { Name = "Wall",
-  Image = {"file", WallFiles[tileset], "size", {32, 32}},
+  Image = {"size", {32, 32}},
   Animations = "animations-building", Icon = "icon-human-wall",
   Costs = {"time", 30, "gold", 20, "wood", 10},
   Construction = "construction-wall",

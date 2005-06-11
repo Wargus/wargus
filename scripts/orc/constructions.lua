@@ -28,18 +28,15 @@
 --
 --	$Id$
 
+local files = {summer = "orc/buildings/shipyard_construction_site.png",
+  winter = "tilesets/winter/orc/buildings/shipyard_construction_site.png",
+  wasteland = "orc/buildings/shipyard_construction_site.png",
+  swamp = "tilesets/swamp/orc/buildings/shipyard_construction_site.png"}
 
 DefineConstruction("construction-orc-shipyard", {
   Files = {
-   {Tileset = "summer",
-    File = "orc/buildings/shipyard_construction_site.png",
+    File = files[tileset],
     Size = {96, 96}},
-   {Tileset = "winter",
-    File = "tilesets/winter/orc/buildings/shipyard_construction_site.png",
-    Size = {96, 96}},
-   {Tileset = "swamp",
-    File = "tilesets/swamp/orc/buildings/shipyard_construction_site.png",
-    Size = {96, 96}}},
   Constructions = {
    {Percent = 0,
     File = "construction",
@@ -51,21 +48,16 @@ DefineConstruction("construction-orc-shipyard", {
     File = "main",
     Frame = 1}}
 })
+
+local files = {summer = "tilesets/summer/orc/buildings/oil_well_construction_site.png",
+  winter = "tilesets/winter/orc/buildings/oil_well_construction_site.png",
+  wasteland = "tilesets/wasteland/orc/buildings/oil_well_construction_site.png",
+  swamp = "tilesets/swamp/orc/buildings/oil_platform_construction_site.png"}
 
 DefineConstruction("construction-orc-oil-well", {
   Files = {
-   {Tileset = "summer",
-    File = "tilesets/summer/orc/buildings/oil_well_construction_site.png",
+    File = files[tileset],
     Size = {96, 96}},
-   {Tileset = "winter",
-    File = "tilesets/winter/orc/buildings/oil_well_construction_site.png",
-    Size = {96, 96}},
-   {Tileset = "wasteland",
-    File = "tilesets/wasteland/orc/buildings/oil_well_construction_site.png",
-    Size = {96, 96}},
-   {Tileset = "swamp",
-    File = "tilesets/swamp/orc/buildings/oil_platform_construction_site.png",
-    Size = {96, 96}}},
   Constructions = {
    {Percent = 0,
     File = "construction",
@@ -77,18 +69,16 @@ DefineConstruction("construction-orc-oil-well", {
     File = "main",
     Frame = 1}}
 })
+
+local files = {summer = "orc/buildings/refinery_construction_site.png",
+  winter = "tilesets/winter/orc/buildings/refinery_construction_site.png",
+  wasteland = "orc/buildings/refinery_construction_site.png",
+  swamp = "tilesets/swamp/orc/buildings/refinery_construction_site.png"}
 
 DefineConstruction("construction-orc-refinery", {
   Files = {
-   {Tileset = "summer",
-    File = "orc/buildings/refinery_construction_site.png",
+    File = files[tileset],
     Size = {96, 96}},
-   {Tileset = "winter",
-    File = "tilesets/winter/orc/buildings/refinery_construction_site.png",
-    Size = {96, 96}},
-   {Tileset = "swamp",
-    File = "tilesets/swamp/orc/buildings/refinery_construction_site.png",
-    Size = {96, 96}}},
   Constructions = {
    {Percent = 0,
     File = "construction",
@@ -101,17 +91,15 @@ DefineConstruction("construction-orc-refinery", {
     Frame = 1}}
 })
 
+local files = {summer = "orc/buildings/foundry_construction_site.png",
+  winter = "tilesets/winter/orc/buildings/foundry_construction_site.png",
+  wasteland = "orc/buildings/foundry_construction_site.png",
+  swamp = "tilesets/swamp/orc/buildings/foundry_construction_site.png"}
+
 DefineConstruction("construction-orc-foundry", {
   Files = {
-   {Tileset = "summer",
-    File = "orc/buildings/foundry_construction_site.png",
+    File = files[tileset],
     Size = {96, 96}},
-   {Tileset = "winter",
-    File = "tilesets/winter/orc/buildings/foundry_construction_site.png",
-    Size = {96, 96}},
-   {Tileset = "swamp",
-    File = "tilesets/swamp/orc/buildings/foundry_construction_site.png",
-    Size = {96, 96}}},
   Constructions = {
    {Percent = 0,
     File = "construction",

@@ -232,3 +232,7 @@ DefineTileset("tileset-wasteland", "class", "wasteland", "name", "Wasteland",
   "objects", {{}})
 
 SelectTileset("tileset-wasteland")
+
+tileset = "wasteland"
+Load("scripts/scripts.lua")
+

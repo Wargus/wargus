@@ -28,17 +28,22 @@
 --
 --      $Id$
 
+if (tileset == nil) then
+  tileset = "summer"
+end
+
 Load("scripts/human/constructions.lua")
 Load("scripts/orc/constructions.lua")
 
+local files = {summer = "neutral/buildings/land_construction_site.png",
+  winter = "tilesets/winter/neutral/buildings/land_construction_site.png",
+  wasteland = "neutral/buildings/land_construction_site.png",
+  swamp = "neutral/buildings/land_construction_site.png"}
+
 DefineConstruction("construction-none", {
   Files = {
-   {Tileset = "summer",
-    File = "neutral/buildings/land_construction_site.png",
+    File = files[tileset], 
     Size = {64, 64}},
-   {Tileset = "winter",
-    File = "tilesets/winter/neutral/buildings/land_construction_site.png",
-    Size = {64, 64}}},
   Constructions = {
    {Percent = 0,
     File = "construction",
@@ -50,15 +55,16 @@ DefineConstruction("construction-none", {
     File = "main",
     Frame = 1}}
 })
+
+local files = {summer = "neutral/buildings/land_construction_site.png",
+  winter = "tilesets/winter/neutral/buildings/land_construction_site.png",
+  wasteland = "neutral/buildings/land_construction_site.png",
+  swamp = "neutral/buildings/land_construction_site.png"}
 
 DefineConstruction("construction-land", {
   Files = {
-   {Tileset = "summer",
-    File = "neutral/buildings/land_construction_site.png",
+    File = files[tileset],
     Size = {64, 64}},
-   {Tileset = "winter",
-    File = "tilesets/winter/neutral/buildings/land_construction_site.png",
-    Size = {64, 64}}},
   Constructions = {
    {Percent = 0,
     File = "construction",
@@ -71,14 +77,15 @@ DefineConstruction("construction-land", {
     Frame = 1}}
 })
 
+local files = {summer = "neutral/buildings/land_construction_site.png",
+  winter = "tilesets/winter/neutral/buildings/land_construction_site.png",
+  wasteland = "neutral/buildings/land_construction_site.png",
+  swamp = "neutral/buildings/land_construction_site.png"}
+
 DefineConstruction("construction-land2", {
   Files = {
-   {Tileset = "summer",
-    File = "neutral/buildings/land_construction_site.png",
+    File = files[tileset],
     Size = {64, 64}},
-   {Tileset = "winter",
-    File = "tilesets/winter/neutral/buildings/land_construction_site.png",
-    Size = {64, 64}}},
   Constructions = {
    {Percent = 0,
     File = "construction",
@@ -88,17 +95,15 @@ DefineConstruction("construction-land2", {
     Frame = 1}}
 })
 
+local files = {summer = "tilesets/summer/neutral/buildings/wall_construction_site.png",
+  winter = "tilesets/winter/neutral/buildings/wall_construction_site.png",
+  wasteland = "tilesets/wasteland/neutral/buildings/wall_construction_site.png",
+  swamp = "tilesets/summer/neutral/buildings/wall_construction_site.png"}
+
 DefineConstruction("construction-wall", {
   Files = {
-   {Tileset = "summer",
-    File = "tilesets/summer/neutral/buildings/wall_construction_site.png",
+    File = files[tileset],
     Size = {32, 32}},
-   {Tileset = "winter",
-    File = "tilesets/winter/neutral/buildings/wall_construction_site.png",
-    Size = {32, 32}},
-   {Tileset = "wasteland",
-    File = "tilesets/wasteland/neutral/buildings/wall_construction_site.png",
-    Size = {32, 32}}},
   Constructions = {
    {Percent = 0,
     File = "construction",

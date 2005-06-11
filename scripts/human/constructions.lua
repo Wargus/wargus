@@ -34,17 +34,15 @@
 --	(define-construction ident 'files '(tileset-name filename ..)
 --	    'size '(x y))
 
+local files = {summer = "human/buildings/shipyard_construction_site.png",
+  winter = "tilesets/winter/human/buildings/shipyard_construction_site.png",
+  wasteland = "human/buildings/shipyard_construction_site.png",
+  swamp = "tilesets/swamp/human/buildings/shipyard_construction_site.png"}
+
 DefineConstruction("construction-human-shipyard", {
   Files = {
-   {Tileset = "summer",
-    File = "human/buildings/shipyard_construction_site.png",
+    File = files[tileset],
     Size = {96, 96}},
-   {Tileset = "winter",
-    File = "tilesets/winter/human/buildings/shipyard_construction_site.png",
-    Size = {96, 96}},
-   {Tileset = "swamp",
-    File = "tilesets/swamp/human/buildings/shipyard_construction_site.png",
-    Size = {96, 96}}},
   Constructions = {
    {Percent = 0,
     File = "construction",
@@ -56,21 +54,16 @@ DefineConstruction("construction-human-shipyard", {
     File = "main",
     Frame = 1}}
 })
+
+local files = {summer = "tilesets/summer/human/buildings/oil_well_construction_site.png",
+  winter = "tilesets/winter/human/buildings/oil_well_construction_site.png",
+  wasteland = "tilesets/wasteland/human/buildings/oil_well_construction_site.png",
+  swamp = "tilesets/swamp/human/buildings/oil_platform_construction_site.png"}
 
 DefineConstruction("construction-human-oil-well", {
   Files = {
-   {Tileset = "summer",
-    File = "tilesets/summer/human/buildings/oil_well_construction_site.png",
+    File = files[tileset],
     Size = {96, 96}},
-   {Tileset = "winter",
-    File = "tilesets/winter/human/buildings/oil_well_construction_site.png",
-    Size = {96, 96}},
-   {Tileset = "wasteland",
-    File = "tilesets/wasteland/human/buildings/oil_well_construction_site.png",
-    Size = {96, 96}},
-   {Tileset = "swamp",
-    File = "tilesets/swamp/human/buildings/oil_platform_construction_site.png",
-    Size = {96, 96}}},
   Constructions = {
    {Percent = 0,
     File = "construction",
@@ -82,18 +75,16 @@ DefineConstruction("construction-human-oil-well", {
     File = "main",
     Frame = 1}}
 })
+
+local files = {summer = "human/buildings/refinery_construction_site.png",
+  winter = "tilesets/winter/human/buildings/refinery_construction_site.png",
+  wasteland = "human/buildings/refinery_construction_site.png",
+  swamp = "tilesets/swamp/human/buildings/refinery_construction_site.png"}
 
 DefineConstruction("construction-human-refinery", {
   Files = {
-   {Tileset = "summer",
-    File = "human/buildings/refinery_construction_site.png",
+    File = files[tileset],
     Size = {96, 96}},
-   {Tileset = "winter",
-    File = "tilesets/winter/human/buildings/refinery_construction_site.png",
-    Size = {96, 96}},
-   {Tileset = "swamp",
-    File = "tilesets/swamp/human/buildings/refinery_construction_site.png",
-    Size = {96, 96}}},
   Constructions = {
    {Percent = 0,
     File = "construction",
@@ -106,17 +97,15 @@ DefineConstruction("construction-human-refinery", {
     Frame = 1}}
 })
 
+local files = {summer = "human/buildings/foundry_construction_site.png",
+  winter = "tilesets/winter/human/buildings/foundry_construction_site.png",
+  wasteland = "human/buildings/foundry_construction_site.png",
+  swamp = "tilesets/swamp/human/buildings/foundry_construction_site.png"}
+
 DefineConstruction("construction-human-foundry", {
   Files = {
-   {Tileset = "summer",
-    File = "human/buildings/foundry_construction_site.png",
+    File = files[tileset],
     Size = {96, 96}},
-   {Tileset = "winter",
-    File = "tilesets/winter/human/buildings/foundry_construction_site.png",
-    Size = {96, 96}},
-   {Tileset = "swamp",
-    File = "tilesets/swamp/human/buildings/foundry_construction_site.png",
-    Size = {96, 96}}},
   Constructions = {
    {Percent = 0,
     File = "construction",

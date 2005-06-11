@@ -232,3 +232,7 @@ DefineTileset("tileset-winter", "class", "winter", "name", "Winter",
   "objects", {{}})
 
 SelectTileset("tileset-winter")
+
+tileset = "winter"
+Load("scripts/scripts.lua")
+

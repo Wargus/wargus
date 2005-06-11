@@ -232,3 +232,7 @@ DefineTileset("tileset-swamp", "class", "swamp", "name", "Swamp",
   "objects", {{}})
 
 SelectTileset("tileset-swamp")
+
+tileset = "swamp"
+Load("scripts/scripts.lua")
+

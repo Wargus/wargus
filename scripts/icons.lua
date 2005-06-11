@@ -230,14 +230,22 @@ local icons = {
   {"icon-knight-rider", 195},
 }
 
-for i = 1,table.getn(icons) do
-  DefineIcon({
-    Name = icons[i][1],
-    Tileset = "tileset-summer",
-    Size = {46, 38},
-    File = "tilesets/summer/icons.png",
-    Frame = icons[i][2],})
+if (tileset == nil) then
+  for i = 1,table.getn(icons) do
+      DefineIcon({
+      Name = icons[i][1],})
+  end
+else
+  for i = 1,table.getn(icons) do
+      DefineIcon({
+      Name = icons[i][1],
+      Size = {46, 38},
+      File = "tilesets/" .. tileset .. "/icons.png",
+      Frame = icons[i][2],})
+  end
+end
 
+--[[
   DefineIcon({
     Name = icons[i][1],
     Tileset = "tileset-winter",
@@ -258,5 +266,5 @@ for i = 1,table.getn(icons) do
     Size = {46, 38},
     File = "tilesets/swamp/icons.png",
     Frame = icons[i][2],})
-end
+]]
 
