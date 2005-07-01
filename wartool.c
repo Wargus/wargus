@@ -52,6 +52,8 @@
 #include <ctype.h>
 #include <png.h>
 
+#include "endian.h"
+
 #if defined(_MSC_VER) || defined(__MINGW32__) || defined(USE_BEOS)
 typedef unsigned long u_int32_t;
 #endif
@@ -63,48 +65,6 @@ typedef unsigned long u_int32_t;
 #ifndef O_BINARY
 #define O_BINARY 0
 #endif
-
-// From SDL_byteorder.h
-#if  defined(__i386__) || defined(__ia64__) || defined(WIN32) || \
-    (defined(__alpha__) || defined(__alpha)) || \
-     defined(__arm__) || \
-    (defined(__mips__) && defined(__MIPSEL__)) || \
-     defined(__SYMBIAN32__) || \
-     defined(__x86_64__) || \
-     defined(__LITTLE_ENDIAN__)
-#ifdef __cplusplus
-static inline unsigned short FetchLE16(unsigned char*& p) {
-	unsigned short s = *(unsigned short*)p;
-	p += 2;
-	return s;
-}
-static inline unsigned int FetchLE32(unsigned char*& p) {
-	unsigned int s = *(unsigned int*)p;
-	p += 4;
-	return s;
-}
-#else
-#define FetchLE16(p) (*((unsigned short*)(p))); p += 2
-#define FetchLE32(p) (*((unsigned int*)(p))); p += 4
-#endif
-#define AccessLE16(p) (*((unsigned short*)(p)))
-#define AccessLE32(p) (*((unsigned int*)(p)))
-#define ConvertLE16(v) (v)
-#else
-static inline unsigned short Swap16(unsigned short D) {
-	return ((D << 8) | (D >> 8));
-}
-static inline unsigned int Swap32(unsigned int D) {
-	return ((D << 24) | ((D << 8) & 0x00FF0000) | ((D >> 8) & 0x0000FF00) | (D >> 24));
-}
-#define FetchLE16(p) Swap16(*((unsigned short*)(p))); p += 2
-#define FetchLE32(p) Swap32(*((unsigned int*)(p))); p += 4
-#define AccessLE16(p) Swap16((*((unsigned short*)(p))))
-#define AccessLE32(p) Swap32(*((unsigned int*)(p)))
-#define ConvertLE16(v) Swap16(v)
-#endif
-
-#define FetchByte(p) (*((unsigned char*)(p))); ++p
 
 //----------------------------------------------------------------------------
 //  Config
