@@ -28,6 +28,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 
 #include "endian.h"
 #include "pud.h"
@@ -252,9 +253,9 @@ int main(int argc, char **argv)
 	FILE *infile;
 	FILE *smpout;
 	FILE *smsout;
-	char smpname[MAX_PATH];
-	char smsname[MAX_PATH];
-	char base[MAX_PATH];
+	char smpname[PATH_MAX];
+	char smsname[PATH_MAX];
+	char base[PATH_MAX];
 
 	if (argc != 3) {
 		fprintf(stderr, "usage: %s [pudfile] [outputdir]\n", argv[0]);
