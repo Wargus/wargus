@@ -16,7 +16,7 @@ wartool.o:
 	$(CC) -c wartool.c -o $@ $(CFLAGS)
 
 pudconvert$(EXE): pudconvert.o
-	$(CC) -o $@ $^ -static
+	$(CC) -o $@ $^ -static -L/usr/local/lib
 
 win32:
 	export PATH=$(CROSSDIR)/bin:$(CROSSDIR)/i386-mingw32msvc/bin:$$PATH; \
