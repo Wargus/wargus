@@ -193,32 +193,38 @@ find $DIR/campaigns -type f -name "*.txt" -print -exec $COMPRESS {} \;
 #
 echo "Copying maps and compressing"
 [ -d $DIR/puds ] || mkdir $DIR/puds
-[ -d $DATADIR/../puds ] &&
-for i in $DATADIR/../puds/*.pud; do pudconvert $i $DIR; done
-[ -f $DATADIR/../alamo.pud ] &&
-for i in $DATADIR/../*.pud ; do pudconvert $i $DIR/puds; done
+[ -d $DATADIR/../puds ] && \
+mkdir -p $DIR/puds/multi; \
+for i in $DATADIR/../puds/multi/*.pud; do ./pudconvert $i $DIR/puds/multi; done; \
+mkdir -p $DIR/puds/single;
+for i in $DATADIR/../puds/single/*.pud; do ./pudconvert $i $DIR/puds/single; done; \
+mkdir -p $DIR/puds/strange;
+for i in $DATADIR/../puds/strange/*.pud; do ./pudconvert $i $DIR/puds/strange; done;
+[ -f $DATADIR/../alamo.pud ] && \
+for i in $DATADIR/../*.pud ; do ./pudconvert $i $DIR/puds; done
 chmod -R +w $DIR/puds
 
-find $DIR/puds -type f -name "*.pud" -print -exec $COMPRESS {} \ >/dev/null 2>&1;
+find $DIR/puds -type f -name "*.sms" -exec $COMPRESS {} \;
+find $DIR/puds -type f -name "*.smp" -exec $COMPRESS {} \;
 
 #
 ##	Copy contrib puds into data directory
 #
 [ -d $DIR/puds/other ] || mkdir $DIR/puds/other
-for i in maps/multi/*.pud; do pudconvert $i $DIR/puds/other; done
-for i in maps/single/*.pud; do pudconvert $i $DIR/puds/other; done
+cp maps/multi/* $DIR/puds/other >/dev/null 2>&1
+cp maps/single/* $DIR/puds/other >/dev/null 2>&1
 
 #
 ##	The default pud.
 #
 [ -f "$DIR/maps/multi/(2)mysterious-dragon-isle.sms.gz" ] \
 	&& ln -s "multi/(2)mysterious-dragon-isle.sms.gz" \
-	    $DIR/maps/default.sms.gz
+	    $DIR/maps/default.sms.gz \
 	&& ln -s "multi/(2)mysterious-dragon-isle.smp.gz" \
 	    $DIR/maps/default.smp.gz
 [ -f "$DIR/maps/multi/(2)mysterious-dragon-isle.sms.bz2" ] \
 	&& ln -s "multi/(2)mysterious-dragon-isle.sms.bz2" \
-	    $DIR/maps/default.sms.bz2
+	    $DIR/maps/default.sms.bz2 \
 	&& ln -s "multi/(2)mysterious-dragon-isle.smp.bz2" \
 	    $DIR/maps/default.smp.bz2
 
