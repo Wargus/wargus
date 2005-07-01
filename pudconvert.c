@@ -39,7 +39,7 @@
 #endif
 
 
-int WriteSMP(const struct PudData * const pdata, FILE *smpout)
+int WriteSMP(const struct PudData * const pdata, FILE *smpout, const char *smsname)
 {
 	int i;
 	char buf[512];
@@ -64,7 +64,7 @@ int WriteSMP(const struct PudData * const pdata, FILE *smpout)
 		pdata->NumPlayers, pdata->MapSizeX, pdata->MapSizeY, 1);
 	
 	// FIXME: todo
-	fprintf(smpout, "DefineMapSetup(\"%s\")\n", "maps/test.sms");
+	fprintf(smpout, "DefineMapSetup(\"%s\")\n", smsname);
 
 	return 0;
 }
@@ -135,7 +135,7 @@ int PudReadHeader(FILE *pudfile, char *header)
 	return ConvertLE32(len);
 }
 
-int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout)
+int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout, const char *smsname)
 {
 	char header[5];
 	int len;
@@ -246,7 +246,7 @@ int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout)
 		}
 	}
 
-	WriteSMP(&pdata, smpout);
+	WriteSMP(&pdata, smpout, smsname);
 	WriteSMS(&pdata, smsout);
 
 	free(pdata.Units);
@@ -301,7 +301,8 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
-	if (ProcessPud(infile, smsout, smpout)) {
+	strcpy(base, strrchr(smsname, '/') + 1);
+	if (ProcessPud(infile, smsout, smpout, base)) {
 		fprintf(stderr, "%s is not a valid pud file\n", argv[1]);
 		fclose(infile);
 		exit(-1);
