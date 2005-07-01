@@ -26,14 +26,20 @@
 //      Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //      02111-1307, USA.
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <limits.h>
 
 #include "endian.h"
 #include "pud.h"
 
-int WriteSMP(const struct PudData const *pdata, FILE *smpout)
+#ifdef _MSC_VER
+#define PATH_MAX _MAX_PATH
+#endif
+
+
+int WriteSMP(const struct PudData * const pdata, FILE *smpout)
 {
 	int i;
 	char buf[512];
@@ -55,7 +61,7 @@ int WriteSMP(const struct PudData const *pdata, FILE *smpout)
 	fprintf(smpout, buf);
 
 	fprintf(smpout, "PresentMap(\"%s\", %d, %d, %d, %d)\n", pdata->Description,
-	  pdata->NumPlayers, pdata->MapSizeX, pdata->MapSizeY, 1);
+		pdata->NumPlayers, pdata->MapSizeX, pdata->MapSizeY, 1);
 	
 	// FIXME: todo
 	fprintf(smpout, "DefineMapSetup(\"%s\")\n", "maps/test.sms");
@@ -63,7 +69,7 @@ int WriteSMP(const struct PudData const *pdata, FILE *smpout)
 	return 0;
 }
 
-int WriteSMS(const struct PudData const *pdata, FILE *smsout)
+int WriteSMS(const struct PudData * const pdata, FILE *smsout)
 {
 	int i;
 	int num;
@@ -72,13 +78,13 @@ int WriteSMS(const struct PudData const *pdata, FILE *smsout)
 	num = pdata->NumPlayers;
 	for (i = 0; num; ++i) {
 		fprintf(smsout, "SetStartView(%d, %d, %d)\n", i,
-		  pdata->StartX[i], pdata->StartY[i]);
+			pdata->StartX[i], pdata->StartY[i]);
 		fprintf(smsout, "SetPlayerData(%d, \"Resources\", \"gold\", %d)\n",
-		  i, pdata->StartGold[i]);
+			i, pdata->StartGold[i]);
 		fprintf(smsout, "SetPlayerData(%d, \"Resources\", \"wood\", %d)\n",
-		  i, pdata->StartLumber[i]);
+			i, pdata->StartLumber[i]);
 		fprintf(smsout, "SetPlayerData(%d, \"Resources\", \"oil\", %d)\n",
-		  i, pdata->StartOil[i]);
+			i, pdata->StartOil[i]);
 		if (pdata->Players[i] != PlayerNobody) {
 			--num;
 		}
@@ -87,12 +93,12 @@ int WriteSMS(const struct PudData const *pdata, FILE *smsout)
 	fprintf(smsout, "\n");
 
 	fprintf(smsout, "LoadTileModels(\"scripts/tilesets/%s.lua\")\n\n",
-	  TilesetTypeStrings[pdata->Tileset]);
+		TilesetTypeStrings[pdata->Tileset]);
 
 	for (j = 0; j < pdata->MapSizeY; ++j) {
 		for (i = 0; i < pdata->MapSizeX; ++i) {
 			fprintf(smsout, "SetTile(%d, %d, %d)\n",
-			  pdata->Tiles[j * pdata->MapSizeX + i], i, j);
+				pdata->Tiles[j * pdata->MapSizeX + i], i, j);
 		}
 	}
 
@@ -100,15 +106,18 @@ int WriteSMS(const struct PudData const *pdata, FILE *smsout)
 
 	for (i = 0; i < pdata->NumUnits; ++i) {
 		if (pdata->Units[i].Type == UnitHumanStart ||
-		  pdata->Units[i].Type == UnitOrcStart) {
+				pdata->Units[i].Type == UnitOrcStart) {
 			continue;
 		}
 		fprintf(smsout, "unit = CreateUnit(\"%s\", %d, {%d, %d})\n",
-		  UnitNames[pdata->Units[i].Type], pdata->Units[i].Player, pdata->Units[i].X, pdata->Units[i].Y);
+			UnitNames[pdata->Units[i].Type], pdata->Units[i].Player,
+			pdata->Units[i].X, pdata->Units[i].Y);
 		if (pdata->Units[i].Type == UnitGoldMine || pdata->Units[i].Type == UnitOilPatch) {
 			fprintf(smsout, "SetResourcesHeld(unit, %d)\n", pdata->Units[i].Data * 2500);
 		}
 	}
+
+	return 0;
 }
 
 int PudReadHeader(FILE *pudfile, char *header)
@@ -164,7 +173,6 @@ int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout)
 		} else if (!strcmp(header, "ERA ") || !strcmp(header, "ERAX")) {
 			pdata.Tileset = buf[0];
 		} else if (!strcmp(header, "DIM ")) {
-			int tmp;
 			pdata.MapSizeX = buf[0] | (buf[1] << 8);
 			pdata.MapSizeY = buf[2] | (buf[3] << 8);
 		} else if (!strcmp(header, "UDTA")) {
@@ -196,8 +204,8 @@ int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout)
 
 			for (j = 0; j < pdata.MapSizeY; ++j) {
 				for (i = 0; i < pdata.MapSizeX; ++i) {
-					pdata.Tiles[j * pdata.MapSizeX + i] = buf[j * pdata.MapSizeX * 2 + i * 2]
-					  | (buf[j * pdata.MapSizeX * 2 + i * 2 + 1] << 8);
+					pdata.Tiles[j * pdata.MapSizeX + i] = buf[j * pdata.MapSizeX * 2 + i * 2] |
+						(buf[j * pdata.MapSizeX * 2 + i * 2 + 1] << 8);
 				}
 			}
 		} else if (!strcmp(header, "SQM ")) {
@@ -220,7 +228,7 @@ int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout)
 				pdata.Units[i].Data = buf[i * 8 + 6] | (buf[i * 8 + 7] << 8);
 
 				if (pdata.Units[i].Type == UnitHumanStart ||
-				  pdata.Units[i].Type == UnitOrcStart) {
+						pdata.Units[i].Type == UnitOrcStart) {
 					pdata.StartX[pdata.Units[i].Player] = pdata.Units[i].X;
 					pdata.StartY[pdata.Units[i].Player] = pdata.Units[i].Y;
 				}
