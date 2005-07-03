@@ -188,6 +188,93 @@ char *UnitScriptNames[] = {
 	"unit-orc-wall"
 };
 
+char *AiTypeNames[] = {
+	"wc2-land-attack",
+	"wc2-passive",
+	"orc-03",
+	"hum-04",
+	"orc-04",
+	"hum-05",
+	"orc-05",
+	"hum-06",
+	"orc-06",
+	"hum-07",
+	"orc-07",
+	"hum-08",
+	"orc-08",
+	"hum-09",
+	"orc-09",
+	"hum-10",
+	"orc-10",
+	"hum-11",
+	"orc-11",
+	"hum-12",
+	"orc-12",
+	"hum-13",
+	"orc-13",
+	"hum-14-orange",
+	"wc2-land-attack",
+	"wc2-sea-attack",
+	"wc2-air-attack",
+	"hum-14-red",
+	"hum-14-white",
+	"hum-14-black",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	// expansion scenarios
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+	"wc2-land-attack",
+};
+
 struct UnitData {
 	int X;
 	int Y;
@@ -210,6 +297,8 @@ struct PudData {
 
 	struct UnitData *Units;
 	int NumUnits;
+
+	int AiType[PLAYERMAX];
 
 	int StartGold[PLAYERMAX];
 	int StartLumber[PLAYERMAX];
