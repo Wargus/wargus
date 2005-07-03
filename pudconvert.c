@@ -120,61 +120,62 @@ int WriteSMS(const struct PudData * const pdata, FILE *smsout)
 	return 0;
 }
 
-int PudReadHeader(FILE *pudfile, char *header)
+int PudReadHeader(const unsigned char *puddata, char *header, int *len)
 {
-	int len;
+	unsigned int tmp;
 
-	if (!fread(header, 1, 4, pudfile)) {
-		return 0;
-	}
+	memcpy(header, puddata, 4);
 	header[4] = '\0';
-	if (!fread(&len, 1, 4, pudfile)) {
-		return 0;
-	}
 
-	return ConvertLE32(len);
+	memcpy(&tmp, puddata + 4, 4);
+
+	*len = ConvertLE32(tmp);
+
+	return 8;
 }
 
-int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout, const char *smsname)
+int ProcessPud(const unsigned char *puddata, size_t size, FILE *smsout,
+	FILE *smpout, const char *smsname)
 {
 	char header[5];
 	int len;
 	int i;
 	int j;
-	unsigned char *buf;
+	const unsigned char *curp;
 	struct PudData pdata; 
 
-	buf = malloc(131072);
 	pdata.Tiles = NULL;
+	curp = puddata;
 
-	len = PudReadHeader(pudfile, header);
+	curp += PudReadHeader(curp, header, &len);
 	if (strcmp(header, "TYPE")) {
 		return -1;
 	}
-	fread(buf, 1, len, pudfile);
-	if (strcmp(buf, "WAR2 MAP")) {
+
+	if (strcmp(curp, "WAR2 MAP")) {
 		return -1;
 	}
+	curp += len;
 
-	while ((len = PudReadHeader(pudfile, header))) {
-		fread(buf, 1, len, pudfile);
+	while (curp - puddata < size) {
+		curp += PudReadHeader(curp, header, &len);
 		if (!strcmp(header, "VER ")) {
 			// nothing useful here, skip it
 		} else if (!strcmp(header, "DESC")) {
-			strcpy(pdata.Description, buf);
+			strcpy(pdata.Description, curp);
 		} else if (!strcmp(header, "OWNR")) {
 			pdata.NumPlayers = 0;
 			for (i = 0; i < 16; ++i) {
-				pdata.Players[i] = buf[i];
+				pdata.Players[i] = curp[i];
 				if (pdata.Players[i] != PlayerNobody && pdata.Players[i] != PlayerNeutral) {
 					++pdata.NumPlayers;
 				}
 			}
 		} else if (!strcmp(header, "ERA ") || !strcmp(header, "ERAX")) {
-			pdata.Tileset = buf[0];
+			pdata.Tileset = curp[0];
 		} else if (!strcmp(header, "DIM ")) {
-			pdata.MapSizeX = buf[0] | (buf[1] << 8);
-			pdata.MapSizeY = buf[2] | (buf[3] << 8);
+			pdata.MapSizeX = curp[0] | (curp[1] << 8);
+			pdata.MapSizeY = curp[2] | (curp[3] << 8);
 		} else if (!strcmp(header, "UDTA")) {
 			// FIXME: todo
 		} else if (!strcmp(header, "ALOW")) {
@@ -183,19 +184,19 @@ int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout, const char *smsname)
 			// FIXME: todo
 		} else if (!strcmp(header, "SIDE")) {
 			for (i = 0; i < 16; ++i) {
-				pdata.Races[i] = buf[i];
+				pdata.Races[i] = curp[i];
 			}
 		} else if (!strcmp(header, "SGLD")) {
 			for (i = 0; i < 16; ++i) {
-				pdata.StartGold[i] = buf[i * 2] | (buf[i * 2 + 1] << 8);
+				pdata.StartGold[i] = curp[i * 2] | (curp[i * 2 + 1] << 8);
 			}
 		} else if (!strcmp(header, "SLBR")) {
 			for (i = 0; i < 16; ++i) {
-				pdata.StartLumber[i] = buf[i * 2] | (buf[i * 2 + 1] << 8);
+				pdata.StartLumber[i] = curp[i * 2] | (curp[i * 2 + 1] << 8);
 			}
 		} else if (!strcmp(header, "SOIL")) {
 			for (i = 0; i < 16; ++i) {
-				pdata.StartOil[i] = buf[i * 2] | (buf[i * 2 + 1] << 8);
+				pdata.StartOil[i] = curp[i * 2] | (curp[i * 2 + 1] << 8);
 			}
 		} else if (!strcmp(header, "AIPL")) {
 			// FIXME: todo
@@ -204,8 +205,8 @@ int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout, const char *smsname)
 
 			for (j = 0; j < pdata.MapSizeY; ++j) {
 				for (i = 0; i < pdata.MapSizeX; ++i) {
-					pdata.Tiles[j * pdata.MapSizeX + i] = buf[j * pdata.MapSizeX * 2 + i * 2] |
-						(buf[j * pdata.MapSizeX * 2 + i * 2 + 1] << 8);
+					pdata.Tiles[j * pdata.MapSizeX + i] = curp[j * pdata.MapSizeX * 2 + i * 2] |
+						(curp[j * pdata.MapSizeX * 2 + i * 2 + 1] << 8);
 				}
 			}
 		} else if (!strcmp(header, "SQM ")) {
@@ -221,11 +222,11 @@ int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout, const char *smsname)
 			pdata.Units = malloc(sizeof(*pdata.Units) * pdata.NumUnits);
 
 			for (i = 0; i < pdata.NumUnits; ++i) {
-				pdata.Units[i].X = buf[i * 8] | (buf[i * 8 + 1] << 8);
-				pdata.Units[i].Y = buf[i * 8 + 2] | (buf[i * 8 + 3] << 8);
-				pdata.Units[i].Type = buf[i * 8 + 4];
-				pdata.Units[i].Player = buf[i * 8 + 5];
-				pdata.Units[i].Data = buf[i * 8 + 6] | (buf[i * 8 + 7] << 8);
+				pdata.Units[i].X = curp[i * 8] | (curp[i * 8 + 1] << 8);
+				pdata.Units[i].Y = curp[i * 8 + 2] | (curp[i * 8 + 3] << 8);
+				pdata.Units[i].Type = curp[i * 8 + 4];
+				pdata.Units[i].Player = curp[i * 8 + 5];
+				pdata.Units[i].Data = curp[i * 8 + 6] | (curp[i * 8 + 7] << 8);
 
 				if (pdata.Units[i].Type == UnitHumanStart ||
 						pdata.Units[i].Type == UnitOrcStart) {
@@ -241,9 +242,9 @@ int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout, const char *smsname)
 			}
 		} else {
 			printf("unknown section: %s\n", header);
-			free(buf);
 			return -1;
 		}
+		curp += len;
 	}
 
 	WriteSMP(&pdata, smpout, smsname);
@@ -251,45 +252,27 @@ int ProcessPud(FILE *pudfile, FILE *smsout, FILE *smpout, const char *smsname)
 
 	free(pdata.Units);
 	free(pdata.Tiles);
-	free(buf);
 
 	return 0;
 }
 
-int main(int argc, char **argv)
+// Convert pud to native stratagus format
+int PudToStratagus(const unsigned char *puddata, size_t size,
+	const char *name, const char *outdir)
 {
-	FILE *infile;
 	FILE *smpout;
 	FILE *smsout;
 	char smpname[PATH_MAX];
 	char smsname[PATH_MAX];
-	char base[PATH_MAX];
 
-	if (argc != 3) {
-		fprintf(stderr, "usage: %s [pudfile] [outputdir]\n", argv[0]);
-		exit(-1);
-	}
-
-	if ((infile = fopen(argv[1], "rb")) == NULL) {
-		fprintf(stderr, "file %s cannot be opened\n", argv[1]);
-		exit(-1);
-	}
-
-	if (strrchr(argv[1], '/')) {
-		strcpy(base, strrchr(argv[1], '/'));
-	} else {
-		strcpy(base, argv[1]);
-	}
-	*strrchr(base, '.') = '\0';
-
-	strcpy(smpname, argv[2]);
+	strcpy(smpname, outdir);
 	strcat(smpname, "/");
-	strcat(smpname, base);
+	strcat(smpname, name);
 	strcat(smpname, ".smp");
 
-	strcpy(smsname, argv[2]);
+	strcpy(smsname, outdir);
 	strcat(smsname, "/");
-	strcat(smsname, base);
+	strcat(smsname, name);
 	strcat(smsname, ".sms");
 
 	if (!(smpout = fopen(smpname, "wb"))) {
@@ -301,14 +284,10 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
-	strcpy(base, strrchr(smsname, '/') + 1);
-	if (ProcessPud(infile, smsout, smpout, base)) {
-		fprintf(stderr, "%s is not a valid pud file\n", argv[1]);
-		fclose(infile);
+	if (ProcessPud(puddata, size, smsout, smpout, strrchr(smsname, '/') + 1)) {
+		fprintf(stderr, "invalid pud data\n");
 		exit(-1);
 	}
-
-	fclose(infile);
 
 	return 0;
 }

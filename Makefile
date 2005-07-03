@@ -7,21 +7,10 @@ STRATAGUSPATH = ../stratagus/
 CFLAGS = -I/usr/local/include
 LDFLAGS = -lz -lpng -lm -static -L/usr/local/lib
 
-all: cleanobj wartool$(EXE) pudconvert$(EXE)
+all: cleanobj wartool
 
-wartool$(EXE): wartool.o
+wartool: wartool.o pudconvert.o
 	$(CC) -o $@ $^ $(LDFLAGS)
-
-wartool.o:
-	$(CC) -c wartool.c -o $@ $(CFLAGS)
-
-pudconvert$(EXE): pudconvert.o
-	$(CC) -o $@ $^ -static -L/usr/local/lib
-
-win32:
-	export PATH=$(CROSSDIR)/bin:$(CROSSDIR)/i386-mingw32msvc/bin:$$PATH; \
-	export EXE=.exe; \
-	$(MAKE) $(WIN32)
 
 cleanobj:
 	rm -f wartool.o pudconvert.o

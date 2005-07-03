@@ -2533,21 +2533,13 @@ void ConvertPud(char* file, int pude)
 
 	pudp = ExtractEntry(ArchiveOffsets[pude], &l);
 
-	sprintf(buf, "%s/%s/%s.pud.gz", Dir, PUD_PATH, file);
+	sprintf(buf, "%s/%s/%s", Dir, PUD_PATH, file);
 	CheckPath(buf);
-	gf = gzopen(buf, "wb9");
-	if (!gf) {
-		perror("");
-		printf("Can't open %s\n", buf);
-		exit(-1);
-	}
-	if (l != (size_t)gzwrite(gf, pudp, l)) {
-		printf("Can't write %d bytes\n", l);
-	}
+
+	*strrchr(buf, '/') = '\0';
+	PudToStratagus(pudp, l, strrchr(file, '/') + 1, buf);
 
 	free(pudp);
-
-	gzclose(gf);
 }
 
 //----------------------------------------------------------------------------
