@@ -85,6 +85,9 @@ int WriteSMS(const struct PudData * const pdata, FILE *smsout)
 		if (pdata->Players[i] != PlayerNobody) {
 			--num;
 		}
+		if (pdata->Players[i] != PlayerNeutral) {
+			fprintf(smsout, "SetAiType(%d, \"%s\")\n", i, AiTypeNames[pdata->AiType[i]]);
+		}
 	}
 
 	fprintf(smsout, "\n");
@@ -160,10 +163,14 @@ int ProcessPud(const unsigned char *puddata, size_t size, FILE *smsout,
 		if (!strcmp(header, "VER ")) {
 			// nothing useful here, skip it
 		} else if (!strcmp(header, "DESC")) {
-			strcpy(pdata.Description, curp);
+			if (curp[0] != '\0') {
+				strcpy(pdata.Description, curp);
+			} else {
+				strcpy(pdata.Description, "(unnamed)");
+			}
 		} else if (!strcmp(header, "OWNR")) {
 			pdata.NumPlayers = 0;
-			for (i = 0; i < 16; ++i) {
+			for (i = 0; i < PLAYERMAX; ++i) {
 				pdata.Players[i] = curp[i];
 				if (pdata.Players[i] != PlayerNobody && pdata.Players[i] != PlayerNeutral) {
 					++pdata.NumPlayers;
@@ -181,23 +188,25 @@ int ProcessPud(const unsigned char *puddata, size_t size, FILE *smsout,
 		} else if (!strcmp(header, "UGRD")) {
 			// FIXME: todo
 		} else if (!strcmp(header, "SIDE")) {
-			for (i = 0; i < 16; ++i) {
+			for (i = 0; i < PLAYERMAX; ++i) {
 				pdata.Races[i] = curp[i];
 			}
 		} else if (!strcmp(header, "SGLD")) {
-			for (i = 0; i < 16; ++i) {
+			for (i = 0; i < PLAYERMAX; ++i) {
 				pdata.StartGold[i] = curp[i * 2] | (curp[i * 2 + 1] << 8);
 			}
 		} else if (!strcmp(header, "SLBR")) {
-			for (i = 0; i < 16; ++i) {
+			for (i = 0; i < PLAYERMAX; ++i) {
 				pdata.StartLumber[i] = curp[i * 2] | (curp[i * 2 + 1] << 8);
 			}
 		} else if (!strcmp(header, "SOIL")) {
-			for (i = 0; i < 16; ++i) {
+			for (i = 0; i < PLAYERMAX; ++i) {
 				pdata.StartOil[i] = curp[i * 2] | (curp[i * 2 + 1] << 8);
 			}
 		} else if (!strcmp(header, "AIPL")) {
-			// FIXME: todo
+			for (i = 0; i < PLAYERMAX; ++i) {
+				pdata.AiType[i] = curp[i];
+			}
 		} else if (!strcmp(header, "MTXM")) {
 			pdata.Tiles = malloc(sizeof(*pdata.Tiles) * pdata.MapSizeX * pdata.MapSizeY);
 
