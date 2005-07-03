@@ -79,8 +79,8 @@ enum UnitTypes {
 	UnitOrcStart
 };
 
-// unit names that correspond to the unit types
-char *UnitNames[] = {
+// unit script names that correspond to the unit types
+char *UnitScriptNames[] = {
 	"unit-footman",
 	"unit-grunt",
 	"unit-peasant",
@@ -198,18 +198,19 @@ struct UnitData {
 
 struct PudData {
 	char Description[32];
+
+	int NumPlayers;
 	enum PlayerTypes Players[PLAYERMAX];
 	enum RaceTypes Races[PLAYERMAX];
+
 	enum TilesetTypes Tileset;
 	int MapSizeX;
 	int MapSizeY;
 	int *Tiles;
-	int NumPlayers;
 
 	struct UnitData *Units;
 	int NumUnits;
 
-	// Starting resources
 	int StartGold[PLAYERMAX];
 	int StartLumber[PLAYERMAX];
 	int StartOil[PLAYERMAX];

@@ -63,9 +63,6 @@ int WriteSMP(const struct PudData * const pdata, FILE *smpout, const char *smsna
 	fprintf(smpout, "PresentMap(\"%s\", %d, %d, %d, %d)\n", pdata->Description,
 		pdata->NumPlayers, pdata->MapSizeX, pdata->MapSizeY, 1);
 	
-	// FIXME: todo
-	fprintf(smpout, "DefineMapSetup(\"%s\")\n", smsname);
-
 	return 0;
 }
 
@@ -109,8 +106,9 @@ int WriteSMS(const struct PudData * const pdata, FILE *smsout)
 				pdata->Units[i].Type == UnitOrcStart) {
 			continue;
 		}
+
 		fprintf(smsout, "unit = CreateUnit(\"%s\", %d, {%d, %d})\n",
-			UnitNames[pdata->Units[i].Type], pdata->Units[i].Player,
+			UnitScriptNames[pdata->Units[i].Type], pdata->Units[i].Player,
 			pdata->Units[i].X, pdata->Units[i].Y);
 		if (pdata->Units[i].Type == UnitGoldMine || pdata->Units[i].Type == UnitOilPatch) {
 			fprintf(smsout, "SetResourcesHeld(unit, %d)\n", pdata->Units[i].Data * 2500);
@@ -216,7 +214,6 @@ int ProcessPud(const unsigned char *puddata, size_t size, FILE *smsout,
 		} else if (!strcmp(header, "REGM")) {
 			// FIXME: todo
 		} else if (!strcmp(header, "UNIT")) {
-			// FIXME: todo
 			pdata.NumUnits = len / 8;
 
 			pdata.Units = malloc(sizeof(*pdata.Units) * pdata.NumUnits);
@@ -288,6 +285,9 @@ int PudToStratagus(const unsigned char *puddata, size_t size,
 		fprintf(stderr, "invalid pud data\n");
 		exit(-1);
 	}
+
+	fclose(smpout);
+	fclose(smsout);
 
 	return 0;
 }
