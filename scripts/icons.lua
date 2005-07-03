@@ -223,7 +223,7 @@ local icons = {
   {"icon-ugly-guy", 188},
   {"icon-evil-knight", 189},
   {"icon-beast-cry", 190},
-  {"icon-flying-angle", 191},
+  {"icon-flying-angel", 191},
   {"icon-fire-breeze", 192},
   {"icon-white-mage", 193},
   {"icon-fad-man", 194},

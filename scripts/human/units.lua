@@ -383,10 +383,10 @@ DefineUnitType("unit-gryphon-rider", { Name = "Gryphon Rider",
     "help", "basic human voices help 1",
     "dead", "basic human voices dead"} } )
 
-DefineUnitType("unit-flying-angle", { Name = "Kurdan and Sky'ree",
+DefineUnitType("unit-flying-angel", { Name = "Kurdan and Sky'ree",
   Image = {"file", "human/units/gryphon_rider.png", "size", {80, 80}},
   DrawLevel = 45,
-  Animations = "animations-flying-angle", Icon = "icon-flying-angle",
+  Animations = "animations-flying-angel", Icon = "icon-flying-angel",
   Costs = {"time", 250, "gold", 2500},
   Speed = 14,
   HitPoints = 250,

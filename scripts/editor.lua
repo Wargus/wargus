@@ -82,7 +82,7 @@ DefineEditorUnitTypes(
    "unit-human-oil-platform",
 
    "unit-female-hero",
-   "unit-flying-angle",
+   "unit-flying-angel",
    "unit-white-mage",
    "unit-knight-rider",
    "unit-arthor-literios",
