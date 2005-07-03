@@ -599,6 +599,7 @@ DefineUnitType("unit-fire-breeze", { Name = "Deathwing",
 
 
 UnitTypeFiles["unit-orc-submarine"] = {summer = "orc/units/giant_turtle.png",
+  winter = "orc/units/giant_turtle.png",
   wasteland = "tilesets/wasteland/orc/units/giant_turtle.png",
   swamp = "tilesets/swamp/orc/units/giant_turtle.png"}
 
