@@ -43,7 +43,7 @@ DefineButton( { Pos = 1, Level = 0, Icon = "icon-move-peasant",
   ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-peasant",
     "unit-female-hero",
-    "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
+    "unit-flying-angel", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-white-mage", "unit-balloon",
     "unit-gryphon-rider", "unit-mage", "unit-critter",
     "human-group"} } )
@@ -54,7 +54,7 @@ DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-shield1",
   ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-peasant",
     "unit-female-hero",
-    "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
+    "unit-flying-angel", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-white-mage", "unit-balloon",
     "unit-gryphon-rider", "unit-mage", "unit-critter",
     "human-group"} } )
@@ -81,7 +81,7 @@ DefineButton( { Pos = 3, Level = 0, Icon = "icon-sword1",
   ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-peasant",
     "unit-female-hero",
-    "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
+    "unit-flying-angel", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-white-mage", "unit-gryphon-rider", "human-group"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-sword2",
@@ -123,7 +123,7 @@ DefineButton( { Pos = 4, Level = 0, Icon = "icon-human-patrol-land",
   Key = "p", Hint = "~!PATROL",
   ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-female-hero",
-    "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
+    "unit-flying-angel", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-gryphon-rider", "human-group",
     "unit-balloon"} } )
 else
@@ -132,7 +132,7 @@ DefineButton( { Pos = 4, Level = 0, Icon = "icon-human-patrol-land",
   Key = "p", Hint = "~!PATROL",
   ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-female-hero",
-    "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
+    "unit-flying-angel", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-gryphon-rider", "human-group"} } )
 end
 
@@ -141,7 +141,7 @@ DefineButton( { Pos = 5, Level = 0, Icon = "icon-human-stand-ground",
   Key = "t", Hint = "S~!TAND GROUND",
   ForUnit = {"unit-footman", "unit-knight", "unit-archer", "unit-paladin",
     "unit-dwarves", "unit-ranger", "unit-ballista", "unit-female-hero",
-    "unit-flying-angle", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
+    "unit-flying-angel", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-gryphon-rider", "human-group",
     "unit-human-submarine", "unit-battleship", "unit-human-destroyer"} } )
 

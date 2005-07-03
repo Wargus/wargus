@@ -250,7 +250,7 @@ DefineAnimations("animations-dwarves", {
 
 
 --
--- gryphon-rider and flying-angle
+-- gryphon-rider and flying-angel
 --
 
 local GryphonRiderStill = {"frame 0", "wait 6", "frame 5", "wait 6", "frame 10", "wait 6",
@@ -284,7 +284,7 @@ DefineAnimations("animations-gryphon-rider", {
   Death = GryphonRiderDeath,
 })
 
-DefineAnimations("animations-flying-angle", {
+DefineAnimations("animations-flying-angel", {
   Still = GryphonRiderStill,
   Move = GryphonRiderMove,
   Attack = {"unbreakable begin", "frame 0", "wait 6", "frame 5", "wait 6",
