@@ -189,33 +189,7 @@ find $DIR/sounds -type f -name "*.wav" -print -exec $COMPRESS {} \;
 find $DIR/campaigns -type f -name "*.txt" -print -exec $COMPRESS {} \;
 
 #
-##	Copy original puds into data directory
-#
-echo "Copying maps and compressing"
-[ -d $DIR/puds ] || mkdir $DIR/puds
-[ -d $DATADIR/../puds ] && \
-mkdir -p $DIR/puds/multi; \
-for i in $DATADIR/../puds/multi/*.pud; do ./pudconvert $i $DIR/puds/multi; done; \
-mkdir -p $DIR/puds/single;
-for i in $DATADIR/../puds/single/*.pud; do ./pudconvert $i $DIR/puds/single; done; \
-mkdir -p $DIR/puds/strange;
-for i in $DATADIR/../puds/strange/*.pud; do ./pudconvert $i $DIR/puds/strange; done;
-[ -f $DATADIR/../alamo.pud ] && \
-for i in $DATADIR/../*.pud ; do ./pudconvert $i $DIR/puds; done
-chmod -R +w $DIR/puds
-
-find $DIR/puds -type f -name "*.sms" -exec $COMPRESS {} \;
-find $DIR/puds -type f -name "*.smp" -exec $COMPRESS {} \;
-
-#
-##	Copy contrib puds into data directory
-#
-[ -d $DIR/puds/other ] || mkdir $DIR/puds/other
-cp maps/multi/* $DIR/puds/other >/dev/null 2>&1
-cp maps/single/* $DIR/puds/other >/dev/null 2>&1
-
-#
-##	The default pud.
+##	The default map.
 #
 [ -f "$DIR/maps/multi/(2)mysterious-dragon-isle.sms.gz" ] \
 	&& ln -s "multi/(2)mysterious-dragon-isle.sms.gz" \
@@ -227,12 +201,6 @@ cp maps/single/* $DIR/puds/other >/dev/null 2>&1
 	    $DIR/maps/default.sms.bz2 \
 	&& ln -s "multi/(2)mysterious-dragon-isle.smp.bz2" \
 	    $DIR/maps/default.smp.bz2
-
-#
-##  Rename puds to maps for consistancy
-#
-cp -R $DIR/puds/. $DIR/maps
-rm -rf $DIR/maps/my_puds $DIR/puds
 
 echo "WC2 data setup is now complete"
 echo "NOTE: you do not need to run this script again"

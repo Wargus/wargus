@@ -2674,7 +2674,7 @@ void ConvertFilePuds(char **pudlist)
 		strcat(pudname, "/dummy");
 		CheckPath(pudname);
 
-		PudToStratagus(puddata, sb.st_size, base, outdir);
+		PudToStratagus(puddata, (size_t)(sb.st_size), base, outdir);
 		free(puddata);
 	}
 }
