@@ -30,6 +30,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
+#include <zlib.h>
 
 #include "endian.h"
 #include "pud.h"
@@ -39,15 +40,15 @@
 #endif
 
 
-int WriteSMP(const struct PudData * const pdata, FILE *smpout, const char *smsname)
+int WriteSMP(const struct PudData * const pdata, gzFile *smpout, const char *smsname)
 {
 	int i;
 	char buf[512];
 	int num;
 
-	fprintf(smpout, "-- Stratagus Map Presentation\n");
-	fprintf(smpout, "-- File generated automatically from pudconvert.\n");
-	fprintf(smpout, "\n");
+	gzprintf(smpout, "-- Stratagus Map Presentation\n");
+	gzprintf(smpout, "-- File generated automatically from pudconvert.\n");
+	gzprintf(smpout, "\n");
 
 	strcpy(buf, "DefinePlayerTypes(");
 	num = pdata->NumPlayers;
@@ -58,15 +59,15 @@ int WriteSMP(const struct PudData * const pdata, FILE *smpout, const char *smsna
 		}
 	}
 	strcpy(&buf[strlen(buf) - 1], ")\n");
-	fprintf(smpout, buf);
+	gzprintf(smpout, buf);
 
-	fprintf(smpout, "PresentMap(\"%s\", %d, %d, %d, %d)\n", pdata->Description,
+	gzprintf(smpout, "PresentMap(\"%s\", %d, %d, %d, %d)\n", pdata->Description,
 		pdata->NumPlayers, pdata->MapSizeX, pdata->MapSizeY, 1);
 	
 	return 0;
 }
 
-int WriteSMS(const struct PudData * const pdata, FILE *smsout)
+int WriteSMS(const struct PudData * const pdata, gzFile *smsout)
 {
 	int i;
 	int num;
@@ -74,35 +75,35 @@ int WriteSMS(const struct PudData * const pdata, FILE *smsout)
 
 	num = pdata->NumPlayers;
 	for (i = 0; num; ++i) {
-		fprintf(smsout, "SetStartView(%d, %d, %d)\n", i,
+		gzprintf(smsout, "SetStartView(%d, %d, %d)\n", i,
 			pdata->StartX[i], pdata->StartY[i]);
-		fprintf(smsout, "SetPlayerData(%d, \"Resources\", \"gold\", %d)\n",
+		gzprintf(smsout, "SetPlayerData(%d, \"Resources\", \"gold\", %d)\n",
 			i, pdata->StartGold[i]);
-		fprintf(smsout, "SetPlayerData(%d, \"Resources\", \"wood\", %d)\n",
+		gzprintf(smsout, "SetPlayerData(%d, \"Resources\", \"wood\", %d)\n",
 			i, pdata->StartLumber[i]);
-		fprintf(smsout, "SetPlayerData(%d, \"Resources\", \"oil\", %d)\n",
+		gzprintf(smsout, "SetPlayerData(%d, \"Resources\", \"oil\", %d)\n",
 			i, pdata->StartOil[i]);
 		if (pdata->Players[i] != PlayerNobody) {
 			--num;
 		}
 		if (pdata->Players[i] != PlayerNeutral) {
-			fprintf(smsout, "SetAiType(%d, \"%s\")\n", i, AiTypeNames[pdata->AiType[i]]);
+			gzprintf(smsout, "SetAiType(%d, \"%s\")\n", i, AiTypeNames[pdata->AiType[i]]);
 		}
 	}
 
-	fprintf(smsout, "\n");
+	gzprintf(smsout, "\n");
 
-	fprintf(smsout, "LoadTileModels(\"scripts/tilesets/%s.lua\")\n\n",
+	gzprintf(smsout, "LoadTileModels(\"scripts/tilesets/%s.lua\")\n\n",
 		TilesetTypeStrings[pdata->Tileset]);
 
 	for (j = 0; j < pdata->MapSizeY; ++j) {
 		for (i = 0; i < pdata->MapSizeX; ++i) {
-			fprintf(smsout, "SetTile(%d, %d, %d)\n",
+			gzprintf(smsout, "SetTile(%d, %d, %d)\n",
 				pdata->Tiles[j * pdata->MapSizeX + i], i, j);
 		}
 	}
 
-	fprintf(smsout, "\n");
+	gzprintf(smsout, "\n");
 
 	for (i = 0; i < pdata->NumUnits; ++i) {
 		if (pdata->Units[i].Type == UnitHumanStart ||
@@ -110,11 +111,11 @@ int WriteSMS(const struct PudData * const pdata, FILE *smsout)
 			continue;
 		}
 
-		fprintf(smsout, "unit = CreateUnit(\"%s\", %d, {%d, %d})\n",
+		gzprintf(smsout, "unit = CreateUnit(\"%s\", %d, {%d, %d})\n",
 			UnitScriptNames[pdata->Units[i].Type], pdata->Units[i].Player,
 			pdata->Units[i].X, pdata->Units[i].Y);
 		if (pdata->Units[i].Type == UnitGoldMine || pdata->Units[i].Type == UnitOilPatch) {
-			fprintf(smsout, "SetResourcesHeld(unit, %d)\n", pdata->Units[i].Data * 2500);
+			gzprintf(smsout, "SetResourcesHeld(unit, %d)\n", pdata->Units[i].Data * 2500);
 		}
 	}
 
@@ -135,8 +136,8 @@ int PudReadHeader(const unsigned char *puddata, char *header, int *len)
 	return 8;
 }
 
-int ProcessPud(const unsigned char *puddata, size_t size, FILE *smsout,
-	FILE *smpout, const char *smsname)
+int ProcessPud(const unsigned char *puddata, size_t size, gzFile *smsout,
+	gzFile *smpout, const char *smsname)
 {
 	char header[5];
 	int len;
@@ -266,26 +267,26 @@ int ProcessPud(const unsigned char *puddata, size_t size, FILE *smsout,
 int PudToStratagus(const unsigned char *puddata, size_t size,
 	const char *name, const char *outdir)
 {
-	FILE *smpout;
-	FILE *smsout;
+	gzFile *smpout;
+	gzFile *smsout;
 	char smpname[PATH_MAX];
 	char smsname[PATH_MAX];
 
 	strcpy(smpname, outdir);
 	strcat(smpname, "/");
 	strcat(smpname, name);
-	strcat(smpname, ".smp");
+	strcat(smpname, ".smp.gz");
 
 	strcpy(smsname, outdir);
 	strcat(smsname, "/");
 	strcat(smsname, name);
-	strcat(smsname, ".sms");
+	strcat(smsname, ".sms.gz");
 
-	if (!(smpout = fopen(smpname, "wb"))) {
+	if (!(smpout = gzopen(smpname, "wb"))) {
 		fprintf(stderr, "cannot open smpfile\n");
 		return -1;
 	}
-	if (!(smsout = fopen(smsname, "wb"))) {
+	if (!(smsout = gzopen(smsname, "wb"))) {
 		fprintf(stderr, "cannot open smsfile\n");
 		return -1;
 	}
@@ -295,8 +296,8 @@ int PudToStratagus(const unsigned char *puddata, size_t size,
 		exit(-1);
 	}
 
-	fclose(smpout);
-	fclose(smsout);
+	gzclose(smpout);
+	gzclose(smsout);
 
 	return 0;
 }

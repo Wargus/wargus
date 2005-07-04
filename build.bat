@@ -155,7 +155,8 @@ copy /b maps\multi\* %DIR%\maps\other >nul
 REM copy /b maps\single\* %DIR%\maps\other >nul
 
 REM	*** Setup the default pud ***
-copy /b %DIR%\maps\multi\(2)mysterious-dragon-isle.pud.gz %DIR%\maps\default.pud.gz >nul
+copy /b %DIR%\maps\multi\(2)mysterious-dragon-isle.smp.gz %DIR%\maps\default.smp.gz >nul
+copy /b %DIR%\maps\multi\(2)mysterious-dragon-isle.sms.gz %DIR%\maps\default.sms.gz >nul
 
 REM	*** Copy script files ***
 md %DIR%\scripts\ai
