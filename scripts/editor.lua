@@ -38,7 +38,7 @@ SetEditorUnitsIcon("icon-footman")
 --	editor-unit-types a sorted list of unit-types for the editor.
 --	FIXME: this is only a temporary hack, for better sorted units.
 --
-DefineEditorUnitTypes(
+DefineEditorUnitTypes({
    "unit-human-start-location",
 
    "unit-peasant",
@@ -161,4 +161,4 @@ DefineEditorUnitTypes(
 --   "unit-destroyed-2x2-place",
 --   "unit-destroyed-3x3-place",
 --   "unit-destroyed-4x4-place",
-)
+})
