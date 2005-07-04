@@ -135,25 +135,6 @@ REM ###########################################################################
 REM ##      MISC
 REM ###########################################################################
 
-REM Compress HOW-TODO ?
-
-REM	*** Copy original maps into data directory ***
-REM	for the expansion cd,
-if not exist %ARCHIVE%\..\puds\multi\* goto NOEXP
-md %DIR%\maps\single
-md %DIR%\maps\strange
-copy /b %ARCHIVE%\..\puds\multi\*.pud %DIR%\maps\multi >nul
-copy /b %ARCHIVE%\..\puds\single\*.pud %DIR%\maps\single >nul
-copy /b %ARCHIVE%\..\puds\strange\*.pud %DIR%\maps\strange >nul
-:NOEXP
-REM	for the original cd,
-if exist %ARCHIVE%\..\*.pud copy /b %ARCHIVE%\..\*.pud %DIR%\maps >nul
-
-REM	*** Copy contrib maps into data directory ***
-md %DIR%\maps\other
-copy /b maps\multi\* %DIR%\maps\other >nul
-REM copy /b maps\single\* %DIR%\maps\other >nul
-
 REM	*** Setup the default pud ***
 copy /b %DIR%\maps\multi\(2)mysterious-dragon-isle.smp.gz %DIR%\maps\default.smp.gz >nul
 copy /b %DIR%\maps\multi\(2)mysterious-dragon-isle.sms.gz %DIR%\maps\default.sms.gz >nul
