@@ -1520,6 +1520,93 @@ Control Todo[] = {
 #undef __
 };
 
+// puds that are in their own file
+char *OriginalPuds[] = {
+	"../alamo.pud",
+	"../channel.pud",
+	"../death.pud",
+	"../dragon.pud",
+	"../icebrdge.pud",
+	"../islands.pud",
+	"../land_sea.pud",
+	"../mutton.pud",
+	""
+};
+
+char *ExpansionPuds[] = {
+	"../puds/multi/3vs3.pud",
+	"../puds/multi/3vs5.pud",
+	"../puds/multi/arena.pud",
+	"../puds/multi/atols.pud",
+	"../puds/multi/battle_1.pud",
+	"../puds/multi/battle_2.pud",
+	"../puds/multi/blackgld.pud",
+	"../puds/multi/collapse.pud",
+	"../puds/multi/crowded.pud",
+	"../puds/multi/diamond.pud",
+	"../puds/multi/dup.pud",
+	"../puds/multi/ears.pud",
+	"../puds/multi/friends.pud",
+	"../puds/multi/funfor3.pud",
+	"../puds/multi/gauntlet.pud",
+	"../puds/multi/hell.pud",
+	"../puds/multi/hourglas.pud",
+	"../puds/multi/icewall.pud",
+	"../puds/multi/ironcros.pud",
+	"../puds/multi/isles.pud",
+	"../puds/multi/jimland.pud",
+	"../puds/multi/kanthar.pud",
+	"../puds/multi/king.pud",
+	"../puds/multi/mntnpass.pud",
+	"../puds/multi/passes.pud",
+	"../puds/multi/plots.pud",
+	"../puds/multi/raiders.pud",
+	"../puds/multi/ring.pud",
+	"../puds/multi/riverx.pud",
+	"../puds/multi/rockmaze.pud",
+	"../puds/multi/shared.pud",
+	"../puds/multi/siege.pud",
+	"../puds/multi/tandalos.pud",
+	"../puds/multi/theriver.pud",
+	"../puds/multi/tourney.pud",
+	"../puds/multi/twinhrbr.pud",
+	"../puds/multi/up4grabs.pud",
+	"../puds/multi/us.pud",
+	"../puds/multi/waratsea.pud",
+	"../puds/multi/web.pud",
+	"../puds/multi/wizard.pud",
+	"../puds/single/4_step.pud",
+	"../puds/single/anarchy.pud",
+	"../puds/single/burn_it.pud",
+	"../puds/single/deadmeat.pud",
+	"../puds/single/falsie.pud",
+	"../puds/single/firering.pud",
+	"../puds/single/fortress.pud",
+	"../puds/single/grtwall.pud",
+	"../puds/single/heroes1.pud",
+	"../puds/single/heroes2.pud",
+	"../puds/single/invasion.pud",
+	"../puds/single/magisle.pud",
+	"../puds/single/massacre.pud",
+	"../puds/single/midland.pud",
+	"../puds/single/minastir.pud",
+	"../puds/single/onslaugh.pud",
+	"../puds/single/rescue.pud",
+	"../puds/single/sacrific.pud",
+	"../puds/single/sparta.pud",
+	"../puds/single/s_stone.pud",
+	"../puds/single/trench.pud",
+	"../puds/single/tym.pud",
+	"../puds/single/waterres.pud",
+	"../puds/single/wish.pud",
+	"../puds/strange/chess.pud",
+	"../puds/strange/football.pud",
+	"../puds/strange/jail.pud",
+	"../puds/strange/suicide.pud",
+	""
+};
+
+
 /**
 **  File names.
 */
@@ -2540,6 +2627,56 @@ void ConvertPud(char* file, int pude)
 	PudToStratagus(pudp, l, strrchr(file, '/') + 1, buf);
 
 	free(pudp);
+}
+
+/**
+**	Convert puds that are in their own file
+*/
+void ConvertFilePuds(char **pudlist)
+{
+	char pudname[1024];
+	char base[1024];
+	char outdir[1024];
+	char *puddata;
+	char *d;
+	struct stat sb;
+	FILE *f;
+	int i;
+
+	for (i = 0; pudlist[i][0] != '\0'; ++i) {
+		sprintf(pudname, "%s/%s", ArchiveDir, pudlist[i]);
+		if (stat(pudname, &sb)) {
+			continue;
+		}
+		if (!(f = fopen(pudname, "rb"))) {
+			return;
+		}
+		puddata = malloc(sb.st_size);
+		if (!puddata) {
+			return;
+		}
+		if (!fread(puddata, 1, sb.st_size, f)) {
+			return;
+		}
+		fclose(f);
+
+		strcpy(base, strrchr(pudlist[i], '/') + 1);
+		*strstr(base, ".pud") = '\0';
+
+		if (strstr(pudlist[i], "puds/")) {
+			sprintf(outdir, "%s/maps/%s", Dir, strstr(pudlist[i], "puds/") + 5);
+			*strrchr(outdir, '/') = '\0';
+		} else {
+			sprintf(outdir, "%s/maps", Dir);
+		}
+
+		strcpy(pudname, outdir);
+		strcat(pudname, "/dummy");
+		CheckPath(pudname);
+
+		PudToStratagus(puddata, sb.st_size, base, outdir);
+		free(puddata);
+	}
 }
 
 //----------------------------------------------------------------------------
@@ -4031,6 +4168,8 @@ int main(int argc, char** argv)
 				break;
 		}
 	}
+
+	ConvertFilePuds(expansion_cd ? ExpansionPuds : OriginalPuds);
 
 	return 0;
 }
