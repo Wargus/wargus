@@ -83,6 +83,7 @@ int WriteSMS(const struct PudData * const pdata, gzFile *smsout)
 			i, pdata->StartLumber[i]);
 		gzprintf(smsout, "SetPlayerData(%d, \"Resources\", \"oil\", %d)\n",
 			i, pdata->StartOil[i]);
+		gzprintf(smsout, "SetPlayerData(%d, \"RaceName\", \"%s\")\n", i, RaceNames[pdata->Races[i]]);
 		if (pdata->Players[i] != PlayerNobody) {
 			--num;
 		}
@@ -90,7 +91,7 @@ int WriteSMS(const struct PudData * const pdata, gzFile *smsout)
 			gzprintf(smsout, "SetAiType(%d, \"%s\")\n", i, AiTypeNames[pdata->AiType[i]]);
 		}
 	}
-
+	gzprintf(smsout, "SetPlayerData(%d, \"RaceName\", \"neutral\")\n", PLAYERMAX - 1);
 	gzprintf(smsout, "\n");
 
 	gzprintf(smsout, "LoadTileModels(\"scripts/tilesets/%s.lua\")\n\n",

@@ -57,6 +57,12 @@ enum RaceTypes {
 	RaceNeutral
 };
 
+char *RaceNames[] = {
+	"human",
+	"orc",
+	"neutral"
+};
+
 enum TilesetTypes {
 	TilesetForest,
 	TilesetWinter,
