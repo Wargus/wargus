@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--
+----	$Id$
+
+----	(c) Copyright 2005 by The Stratagus Team.
+
+----    This program is free software; you can redistribute it and/or modify
+----    it under the terms of the GNU General Public License as published by
+----    the Free Software Foundation; only version 2 of the License.
+----
+----    This program is distributed in the hope that it will be useful,
+----    but WITHOUT ANY WARRANTY; without even the implied warranty of
+----    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+----    GNU General Public License for more details.
+----
+----    You should have received a copy of the GNU General Public License
+----    along with this program; if not, write to the Free Software
+----    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+----    02111-1307, USA.
+-->
+    <title>Wargus Installation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+
+<h1>Installation instructions for Wargus 2.1</h1><p>
+<hr>
+
+    <h2>Software Requirements</h2>
+    <ul>
+	<li><a href="http://stratagus.sourceforge.net/index.shtml">Stratagus 2.1</a> 
+(the Wargus version MUST match the stratagus version) (required).<p>
+	<li><a href="http://www.libpng.org/pub/png/">libpng</a> (required).<p>
+	<li><a href="http://www.gzip.org/zlib/">zlib</a> (required).<p>
+
+	<li>Either the original or expansion wc2 CD (not Battle.net edition).<br>
+    </ul>
+
+    <h2>Installation</h2>
+
+    Mac OS X users: Extract the "contrib/macosx.tgz" file to the 
+    top-level directory and read "Read Me.rtf".<p>
+
+    <ul>
+	<li><b>Step 1, Windows:</b><p>
+
+	<ul>
+	    <li>run:
+	    <pre>build.bat [cdpath] [outputdir]</pre>
+	    NOTE: outputdir is optional, the default is 'data.wc2'<br>
+	    This will extract the data to outputdir.
+	</ul>
+
+	<br>
+	<li><b>Step 1, Unix/POSIX:</b><p>
+
+	<ul>
+	    <li>run:
+	    <pre>./build.sh -p [cdpath] [outputdir]</pre>
+	    NOTE: outputdir is optional, the default is 'data.wc2'<br>
+	    This will extract the data to outputdir.
+	</ul>
+
+	<br>
+	<li><b>Step 2, Run:</b><p>
+
+	You may now start wargus by running the command:
+	<pre>stratagus -d outputdir</pre>
+    </ul>
+
+<hr>
+(C) Copyright 2005 by The <a href="http://stratagus.sf.net">Stratagus</a> Project 
+under the <a href="gpl.html">GNU General Public License</a>.<br>
+All trademarks and copyrights on this page are owned by their respective owners.<br>
+</body>
+</html>
