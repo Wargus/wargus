@@ -183,6 +183,8 @@ char* ArchiveDir;
 #define CD_SPANISH    (1 << 5)
 #define CD_GERMAN     (1 << 6)
 #define CD_UK         (1 << 7)  // also Australian
+#define CD_ITALIAN    (1 << 8)
+
 /**
 **  What CD Type is it?
 */
@@ -3803,8 +3805,8 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 		txte = 54;
 	} else {
 		expansion = 0;
-		// 54 for Mac or US/Spanish CD, 53 for UK and German CD
-		if ((CD_US | CD_SPANISH) & CDType) {
+		// 54 for Mac or US/Spanish/Italian CD, 53 for UK and German CD
+		if ((CD_US | CD_SPANISH | CD_ITALIAN) & CDType) {
 			txte = 54;
 		} else {
 			txte = 53;
@@ -4044,6 +4046,10 @@ int main(int argc, char** argv)
 				case 51550:
 					printf("Detected US original DOS CD\n");
 					CDType |= CD_US;
+					break;
+				case 53874:
+					printf("Detected Italian original DOS CD\n");
+					CDType |= CD_ITALIAN;
 					break;
 				case 55014:
 					printf("Detected Spanish original DOS CD\n");
