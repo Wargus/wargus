@@ -30,17 +30,14 @@
 
 DefineRaceNames(
   "race", {
-    "race", 0,
     "name", "human",
     "display", "Human",
     "visible"},
   "race", {
-    "race", 1,
     "name", "orc",
     "display", "Orc",
     "visible"},
   "race", {
-    "race", 2,
     "name", "neutral",
     "display", "Neutral"})
 
