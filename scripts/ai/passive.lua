@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -42,5 +42,5 @@ end
 --  class   class of the AI for map editor.
 --  script  Main AI script.
 --
-DefineAi("wc2-passive", "*", "passive", AiPassive)
+DefineAi("wc2-passive", "*", "Passive", AiPassive)
 
