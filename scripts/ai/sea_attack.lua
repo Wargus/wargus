@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -181,4 +181,4 @@ function AiSeaAttack()
   end
 end
 
-DefineAi("wc2-sea-attack", "*", "sea-attack", AiSeaAttack)
+DefineAi("wc2-sea-attack", "*", "Sea Attack", AiSeaAttack)

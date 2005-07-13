@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -250,5 +250,5 @@ function AiLandAttack()
   end
 end
 
-DefineAi("wc2-land-attack", "*", "land-attack", AiLandAttack)
+DefineAi("wc2-land-attack", "*", "Land Attack", AiLandAttack)
 

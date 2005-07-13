@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -201,5 +201,5 @@ function AiAirAttack()
   end
 end
 
-DefineAi("wc2-air-attack", "*", "air-attack", AiAirAttack)
+DefineAi("wc2-air-attack", "*", "Air Attack", AiAirAttack)
 
