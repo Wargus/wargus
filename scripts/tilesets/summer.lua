@@ -33,7 +33,7 @@
 --
 --	(define-tileset ident class name image palette slots animations)
 --
-DefineTileset("tileset-summer",	"class", "summer", "name", "Forest",
+DefineTileset("name", "Forest",
   "image", "tilesets/summer/terrain/summer.png",
   -- Slots descriptions
   "slots", { "special", {		-- Can't be in pud
@@ -225,13 +225,7 @@ DefineTileset("tileset-summer",	"class", "summer", "name", "Forest",
     {  48,   0,  84,   0, 100},						-- 9B0
     {  49,   0,  85,   0,  95},						-- 9C0
     {  50,   0,  86,   0,  99}}						-- 9D0
-  },
-  -- Animated tiles
-  "animations", {{}},
-  -- Object tiles
-  "objects", {{}})
-
-SelectTileset("tileset-summer")
+  })
 
 tileset = "summer"
 Load("scripts/scripts.lua")

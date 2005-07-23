@@ -33,7 +33,7 @@
 --
 --	(define-tileset ident class name image palette slots animations)
 --
-DefineTileset("tileset-winter", "class", "winter", "name", "Winter",
+DefineTileset("name", "Winter",
   "image", "tilesets/winter/terrain/winter.png",
   -- Slots descriptions
   "slots", { "special", {	-- Can't be in pud
@@ -225,13 +225,7 @@ DefineTileset("tileset-winter", "class", "winter", "name", "Winter",
     {  48,   0,  84,   0,  98},						-- 9B0
     {  49,   0,  85,   0,  99},						-- 9C0
     {  50,   0,  86,   0, 100}},						-- 9D0
-  },
-  -- Animated tiles
-  "animations", {{}},
-  -- Object tiles
-  "objects", {{}})
-
-SelectTileset("tileset-winter")
+  })
 
 tileset = "winter"
 Load("scripts/scripts.lua")
