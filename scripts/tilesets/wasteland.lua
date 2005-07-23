@@ -33,7 +33,7 @@
 --
 --	(define-tileset ident class name image palette slots animations)
 --
-DefineTileset("tileset-wasteland", "class", "wasteland", "name", "Wasteland",
+DefineTileset("name", "Wasteland",
   "image", "tilesets/wasteland/terrain/wasteland.png",
   -- Slots descriptions
   "slots", { "special", {
@@ -225,13 +225,7 @@ DefineTileset("tileset-wasteland", "class", "wasteland", "name", "Wasteland",
     {  48,   0,  84,   0, 100},						-- 9B0
     {  49,   0,  85,   0,  95},						-- 9C0
     {  50,   0,  86,   0,  99}}						-- 9D0
-  },
-  -- Animated tiles
-  "animations", {{}},
-  -- Object tiles
-  "objects", {{}})
-
-SelectTileset("tileset-wasteland")
+  })
 
 tileset = "wasteland"
 Load("scripts/scripts.lua")
