@@ -5,12 +5,12 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/ 
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	campaign1.ccl	-	Define the human campaign 1.
+--      campaign1.ccl - Define the human campaign 1.
 --
---	(c) Copyright 2002 by Lutz Sammer
+--      (c) Copyright 2002-2005 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,15 +26,14 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
+--      $Id$
 
 --=============================================================================
 --	Define the campaign
---
---	(define-campagin 'ident 'name "name" 'campaign (list elements)
+
 DefineCampaign("human", "name", "~!Human campaign",
   "campaign", {
-	--"play-movie", "movie/splash2.avi" {"full-screen", "zoom-screen"},
+	--"play-movie", "movie/splash2.avi",
 	"show-picture", {
 	  "image", "../campaigns/human/interface/Act_I_-_Shores_of_Lordareon.png",
 	  "fade-in",  30 * 2,
