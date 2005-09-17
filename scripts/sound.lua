@@ -815,6 +815,7 @@ MapSound("skeleton-attack", "fist")
 --	MapSound("human-cannon-tower-attack")
 --	MapSound("orc-cannon-tower-attack")
 
+MapSound("gold-mine-help", "basic orc voices help 1")
 MapSound("critter-help", "basic orc voices help 1")
 MapSound("critter-dead", "explosion")
 
