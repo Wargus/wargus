@@ -250,5 +250,5 @@ function AiLandAttack()
   end
 end
 
-DefineAi("wc2-land-attack", "*", "Land Attack", AiLandAttack)
+DefineAi("wc2-land-attack", "*", "wc2-land-attack", AiLandAttack)
 
