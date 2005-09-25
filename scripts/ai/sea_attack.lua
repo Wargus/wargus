@@ -181,4 +181,4 @@ function AiSeaAttack()
   end
 end
 
-DefineAi("wc2-sea-attack", "*", "Sea Attack", AiSeaAttack)
+DefineAi("wc2-sea-attack", "*", "wc2-sea-attack", AiSeaAttack)

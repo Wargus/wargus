@@ -201,5 +201,5 @@ function AiAirAttack()
   end
 end
 
-DefineAi("wc2-air-attack", "*", "Air Attack", AiAirAttack)
+DefineAi("wc2-air-attack", "*", "wc2-air-attack", AiAirAttack)
 
