@@ -232,39 +232,13 @@ local icons = {
 
 if (tileset == nil) then
   for i = 1,table.getn(icons) do
-      DefineIcon({
-      Name = icons[i][1],})
+    icon = CIcon:New(icons[i][1])
   end
 else
   for i = 1,table.getn(icons) do
-      DefineIcon({
-      Name = icons[i][1],
-      Size = {46, 38},
-      File = "tilesets/" .. tileset .. "/icons.png",
-      Frame = icons[i][2],})
+    icon = CIcon:New(icons[i][1])
+    icon.G = CGraphic:New("tilesets/" .. tileset .. "/icons.png", 46, 38)
+    icon.Frame = icons[i][2]
   end
 end
-
---[[
-  DefineIcon({
-    Name = icons[i][1],
-    Tileset = "tileset-winter",
-    Size = {46, 38},
-    File = "tilesets/winter/icons.png",
-    Frame = icons[i][2],})
-
-  DefineIcon({
-    Name = icons[i][1],
-    Tileset = "tileset-wasteland",
-    Size = {46, 38},
-    File = "tilesets/wasteland/icons.png",
-    Frame = icons[i][2],})
-
-  DefineIcon({
-    Name = icons[i][1],
-    Tileset = "tileset-swamp",
-    Size = {46, 38},
-    File = "tilesets/swamp/icons.png",
-    Frame = icons[i][2],})
-]]
 
