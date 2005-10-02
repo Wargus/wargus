@@ -51,9 +51,6 @@ DefineUnitType("unit-circle-of-power", {})
 -- For human
 DefineUpgrade("upgrade-holy-vision")
 DefineUpgrade("upgrade-healing")
-if (extensions) then
-	DefineUpgrade("upgrade-area-healing")
-end
 DefineUpgrade("upgrade-exorcism")
 DefineUpgrade("upgrade-flame-shield")
 DefineUpgrade("upgrade-fireball")

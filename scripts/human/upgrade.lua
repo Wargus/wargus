@@ -30,68 +30,69 @@
 
 --	NOTE: Save can generate this table.
 
-DefineUpgrade("upgrade-sword1", "icon", "icon-sword2",
-  "costs", {   200,   800,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-sword2", "icon", "icon-sword3",
-  "costs", {   250,  2400,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-arrow1", "icon", "icon-arrow2",
-  "costs", {   200,   300,   300,     0,     0,     0,     0})
-DefineUpgrade("upgrade-arrow2", "icon", "icon-arrow3",
-  "costs", {   250,   900,   500,     0,     0,     0,     0})
+upgrades = {
+  {"upgrade-sword1", "icon-sword2",
+    {   200,   800,     0,     0,     0,     0,     0}},
+  {"upgrade-sword2", "icon-sword3",
+    {   250,  2400,     0,     0,     0,     0,     0}},
+  {"upgrade-arrow1", "icon-arrow2",
+    {   200,   300,   300,     0,     0,     0,     0}},
+  {"upgrade-arrow2", "icon-arrow3",
+    {   250,   900,   500,     0,     0,     0,     0}},
+  {"upgrade-human-shield1", "icon-human-shield2",
+    {   200,   300,   300,     0,     0,     0,     0}},
+  {"upgrade-human-shield2", "icon-human-shield3",
+    {   250,   900,   500,     0,     0,     0,     0}},
+  {"upgrade-human-ship-cannon1", "icon-human-ship-cannon2",
+    {   200,   700,   100,  1000,     0,     0,     0}},
+  {"upgrade-human-ship-cannon2", "icon-human-ship-cannon3",
+    {   250,  2000,   250,  3000,     0,     0,     0}},
+  {"upgrade-human-ship-armor1", "icon-human-ship-armor2",
+    {   200,   500,   500,     0,     0,     0,     0}},
+  {"upgrade-human-ship-armor2", "icon-human-ship-armor3",
+    {   250,  1500,   900,     0,     0,     0,     0}},
+  {"upgrade-ballista1", "icon-ballista1",
+    {   250,  1500,     0,     0,     0,     0,     0}},
+  {"upgrade-ballista2", "icon-ballista2",
+    {   250,  4000,     0,     0,     0,     0,     0}},
+  {"upgrade-ranger", "icon-ranger",
+    {   250,  1500,     0,     0,     0,     0,     0}},
+  {"upgrade-longbow", "icon-longbow",
+    {   250,  2000,     0,     0,     0,     0,     0}},
+  {"upgrade-ranger-scouting", "icon-ranger-scouting",
+    {   250,  1500,     0,     0,     0,     0,     0}},
+  {"upgrade-ranger-marksmanship", "icon-ranger-marksmanship",
+    {   250,  2500,     0,     0,     0,     0,     0}},
+  {"upgrade-paladin", "icon-paladin",
+    {   250,  1000,     0,     0,     0,     0,     0}},
+  {"upgrade-holy-vision", "icon-holy-vision",
+    {     0,     0,     0,     0,     0,     0,     0}},
+  {"upgrade-healing", "icon-heal",
+    {   200,  1000,     0,     0,     0,     0,     0}},
+  {"upgrade-exorcism", "icon-exorcism",
+    {   200,  2000,     0,     0,     0,     0,     0}},
+  {"upgrade-flame-shield", "icon-flame-shield",
+    {   100,  1000,     0,     0,     0,     0,     0}},
+  {"upgrade-fireball", "icon-fireball",
+    {     0,     0,     0,     0,     0,     0,     0}},
+  {"upgrade-slow", "icon-slow",
+    {   100,   500,     0,     0,     0,     0,     0}},
+  {"upgrade-invisibility", "icon-invisibility",
+    {   200,  2500,     0,     0,     0,     0,     0}},
+  {"upgrade-polymorph", "icon-critter",
+    {   200,  2000,     0,     0,     0,     0,     0}},
+  {"upgrade-blizzard", "icon-blizzard",
+    {   200,  2000,     0,     0,     0,     0,     0}},
+}
 
-DefineUpgrade("upgrade-human-shield1", "icon", "icon-human-shield2",
-  "costs", {   200,   300,   300,     0,     0,     0,     0})
-DefineUpgrade("upgrade-human-shield2", "icon", "icon-human-shield3",
-  "costs", {   250,   900,   500,     0,     0,     0,     0})
-
-DefineUpgrade("upgrade-human-ship-cannon1", "icon", "icon-human-ship-cannon2",
-  "costs", {   200,   700,   100,  1000,     0,     0,     0})
-DefineUpgrade("upgrade-human-ship-cannon2", "icon", "icon-human-ship-cannon3",
-  "costs", {   250,  2000,   250,  3000,     0,     0,     0})
-DefineUpgrade("upgrade-human-ship-armor1", "icon", "icon-human-ship-armor2",
-  "costs", {   200,   500,   500,     0,     0,     0,     0})
-DefineUpgrade("upgrade-human-ship-armor2", "icon", "icon-human-ship-armor3",
-  "costs", {   250,  1500,   900,     0,     0,     0,     0})
-
-DefineUpgrade("upgrade-ballista1", "icon", "icon-ballista1",
-  "costs", {   250,  1500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-ballista2", "icon", "icon-ballista2",
-  "costs", {   250,  4000,     0,     0,     0,     0,     0})
-
-DefineUpgrade("upgrade-ranger", "icon", "icon-ranger",
-  "costs", {   250,  1500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-longbow", "icon", "icon-longbow",
-  "costs", {   250,  2000,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-ranger-scouting", "icon", "icon-ranger-scouting",
-  "costs", {   250,  1500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-ranger-marksmanship", "icon", "icon-ranger-marksmanship",
-  "costs", {   250,  2500,     0,     0,     0,     0,     0})
-
-DefineUpgrade("upgrade-paladin", "icon", "icon-paladin",
-  "costs", {   250,  1000,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-holy-vision", "icon", "icon-holy-vision",
-  "costs", {     0,     0,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-healing", "icon", "icon-heal",
-  "costs", {   200,  1000,     0,     0,     0,     0,     0})
-if (extensions) then
-DefineUpgrade("upgrade-area-healing", "icon", "icon-heal",
-  "costs", {   400,  2000,     0,     0,     0,     0,     0})
+for i = 1,table.getn(upgrades) do
+  u = CUpgrade:New(upgrades[i][1])
+  u.Icon = Icons[upgrades[i][2]]
+  for j = 1,table.getn(upgrades[i][3]) do
+    u.Costs[j - 1] = upgrades[i][3][j]
+  end
 end
-DefineUpgrade("upgrade-exorcism", "icon", "icon-exorcism",
-  "costs", {   200,  2000,     0,     0,     0,     0,     0})
 
-DefineUpgrade("upgrade-flame-shield", "icon", "icon-flame-shield",
-  "costs", {   100,  1000,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-fireball", "icon", "icon-fireball",
-  "costs", {     0,     0,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-slow", "icon", "icon-slow",
-  "costs", {   100,   500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-invisibility", "icon", "icon-invisibility",
-  "costs", {   200,  2500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-polymorph", "icon", "icon-critter",
-  "costs", {   200,  2000,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-blizzard", "icon", "icon-blizzard",
-  "costs", {   200,  2000,     0,     0,     0,     0,     0})
 
 --	NOTE: Save can generate this table.
 
@@ -197,12 +198,6 @@ DefineModifier("upgrade-healing",
   {"Level", 1},
   {"apply-to", "unit-paladin"})
 
-if (extensions) then
-DefineModifier("upgrade-area-healing",
-  {"Level", 1},
-  {"apply-to", "unit-paladin"})
-end
-
 DefineModifier("upgrade-exorcism",
   {"Level", 1},
   {"apply-to", "unit-paladin"})
@@ -301,11 +296,6 @@ DefineAllow("upgrade-ranger-marksmanship",	"AAAAAAAAAAAAAAAA")
 DefineAllow("upgrade-paladin",			"AAAAAAAAAAAAAAAA")
 DefineAllow("upgrade-holy-vision",		"RRRRRRRRRRRRRRRR")
 DefineAllow("upgrade-healing",			"AAAAAAAAAAAAAAAA")
-if (extensions) then
-DefineAllow("upgrade-area-healing",		"FFFFFFFFFFFFFFFF")
--- JOHNS: engine didn't support it yet
---DefineAllow("upgrade-area-healing",		"AAAAAAAAAAAAAAAA")
-end
 DefineAllow("upgrade-exorcism",			"AAAAAAAAAAAAAAAA")
 DefineAllow("upgrade-flame-shield",		"AAAAAAAAAAAAAAAA")
 DefineAllow("upgrade-fireball",			"RRRRRRRRRRRRRRRR")
@@ -396,9 +386,6 @@ DefineDependency("upgrade-holy-vision",
   {"upgrade-paladin"})
 DefineDependency("upgrade-healing",
   {"upgrade-paladin"})
-if (extensions) then
-DefineDependency("upgrade-area-healing",
-  {"upgrade-paladin", "upgrade-healing"})
-end
 DefineDependency("upgrade-exorcism",
   {"upgrade-paladin"})
+

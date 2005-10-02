@@ -158,15 +158,6 @@ DefineButton( { Pos = 9, Level = 0, Icon = "icon-human-demolish",
 
 -- paladin specific actions ---------------------------------------------------
 
---(if extensions
---DefineButton( { Pos = 6, Level = 0, Icon = "icon-heal
---  Action = "cast-spell", Value = "spell-area-healing
---  Allowed = "check-upgrade", AllowArg = {"upgrade-area-healing)
---  Key = "l", Hint = "AREA HEA~!LING (per 1 HP)",
---  ForUnit = {"unit-paladin", "unit-knight-rider 
---    "unit-man-of-light"} } )
---)
-
 DefineButton( { Pos = 7, Level = 0, Icon = "icon-holy-vision",
   Action = "cast-spell", Value = "spell-holy-vision",
   Allowed = "check-upgrade", AllowArg = {"upgrade-holy-vision"},
@@ -670,14 +661,6 @@ DefineButton( { Pos = 3, Level = 0, Icon = "icon-exorcism",
   Allowed = "check-single-research",
   Key = "e", Hint = "RESEARCH ~!EXORCISM",
   ForUnit = {"unit-church"} } )
-
-if (extensions) then
-DefineButton( { Pos = 5, Level = 0, Icon = "icon-heal",
-  Action = "research", Value = "upgrade-area-healing",
-  Allowed = "check-single-research",
-  Key = "l", Hint = "RESEARCH AREA HEA~!LING",
-  ForUnit = {"unit-church"} } )
-end
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-slow",
   Action = "research", Value = "upgrade-slow",
