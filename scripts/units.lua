@@ -228,6 +228,11 @@ DefineUnitType("unit-oil-patch", { Name = "Oil Patch",
   Priority = 0,
   Type = "naval",
   Building = true, VisibleUnderFog = true,
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-human-shipyard"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-human-refinery"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-orc-shipyard"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-orc-refinery"}}
+				  },
   GivesResource = "oil",
   Sounds = {
     "selected", "oil-patch-selected",
