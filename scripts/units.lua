@@ -193,6 +193,14 @@ DefineUnitType("unit-gold-mine", { Name = "Gold Mine",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true,
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-town-hall"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-keep"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-castle"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-great-hall"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-stronghold"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-fortress"}}
+				  },
+
   GivesResource = "gold", CanHarvest = true,
   Sounds = {
     "selected", "gold-mine-selected",

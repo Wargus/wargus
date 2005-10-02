@@ -1288,6 +1288,9 @@ DefineUnitType("unit-keep", { Name = "Keep",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true, 
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+				  },
   CanStore = {"gold", "wood"},
   Sounds = {
     "selected", "keep-selected",
@@ -1324,6 +1327,9 @@ DefineUnitType("unit-castle", { Name = "Castle",
   Type = "land",
   Building = true, VisibleUnderFog = true, 
   CanStore = {"gold", "wood"},
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+				  },
   Sounds = {
     "selected", "castle-selected",
 --    "acknowledge", "castle-acknowledge",

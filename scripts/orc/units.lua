@@ -1376,6 +1376,9 @@ DefineUnitType("unit-stronghold", { Name = "Stronghold",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true, 
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+				  },
   CanStore = {"gold", "wood"},
   Sounds = {
     "selected", "stronghold-selected",
@@ -1411,6 +1414,9 @@ DefineUnitType("unit-fortress", { Name = "Fortress",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true, 
+  BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+				  },
   CanStore = {"gold", "wood"},
   Sounds = {
     "selected", "fortress-selected",
