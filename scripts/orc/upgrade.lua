@@ -30,59 +30,69 @@
 
 --	NOTE: Save can generate this table.
 
-DefineUpgrade("upgrade-battle-axe1", "icon", "icon-battle-axe2",
-  "costs", {   200,   500,   100,     0,     0,     0,     0})
-DefineUpgrade("upgrade-battle-axe2", "icon", "icon-battle-axe3",
-  "costs", {   250,  1500,   300,     0,     0,     0,     0})
-DefineUpgrade("upgrade-throwing-axe1", "icon", "icon-throwing-axe2",
-  "costs", {   200,   300,   300,     0,     0,     0,     0})
-DefineUpgrade("upgrade-throwing-axe2", "icon", "icon-throwing-axe3",
-  "costs", {   250,   900,   500,     0,     0,     0,     0})
-DefineUpgrade("upgrade-orc-shield1", "icon", "icon-orc-shield2",
-  "costs", {   200,   300,   300,     0,     0,     0,     0})
-DefineUpgrade("upgrade-orc-shield2", "icon", "icon-orc-shield3",
-  "costs", {   250,   900,   500,     0,     0,     0,     0})
-DefineUpgrade("upgrade-orc-ship-cannon1", "icon", "icon-orc-ship-cannon2",
-  "costs", {   200,   700,   100,  1000,     0,     0,     0})
-DefineUpgrade("upgrade-orc-ship-cannon2", "icon", "icon-orc-ship-cannon3",
-  "costs", {   250,  2000,   250,  3000,     0,     0,     0})
-DefineUpgrade("upgrade-orc-ship-armor1", "icon", "icon-orc-ship-armor2",
-  "costs", {   200,   500,   500,     0,     0,     0,     0})
-DefineUpgrade("upgrade-orc-ship-armor2", "icon", "icon-orc-ship-armor3",
-  "costs", {   250,  1500,   900,     0,     0,     0,     0})
-DefineUpgrade("upgrade-catapult1", "icon", "icon-catapult1",
-  "costs", {   250,  1500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-catapult2", "icon", "icon-catapult2",
-  "costs", {   250,  4000,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-berserker", "icon", "icon-berserker",
-  "costs", {   250,  1500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-light-axes", "icon", "icon-light-axes",
-  "costs", {   250,  2000,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-berserker-scouting", "icon", "icon-berserker-scouting",
-  "costs", {   250,  1500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-berserker-regeneration",
-  "icon", "icon-berserker-regeneration",
-  "costs", {   250,  3000,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-ogre-mage", "icon", "icon-ogre-mage",
-  "costs", {   250,  1000,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-eye-of-kilrogg", "icon", "icon-eye-of-kilrogg",
-  "costs", {     0,     0,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-bloodlust", "icon", "icon-bloodlust",
-  "costs", {   100,  1000,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-raise-dead", "icon", "icon-skeleton",
-  "costs", {   100,  1500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-death-coil", "icon", "icon-death-coil",
-  "costs", {   100,     0,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-whirlwind", "icon", "icon-whirlwind",
-  "costs", {   150,  1500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-haste", "icon", "icon-haste",
-  "costs", {   100,   500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-unholy-armor", "icon", "icon-unholy-armor",
-  "costs", {   200,  2500,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-runes", "icon", "icon-runes",
-  "costs", {   150,  1000,     0,     0,     0,     0,     0})
-DefineUpgrade("upgrade-death-and-decay", "icon", "icon-death-and-decay",
-  "costs", {   200,  2000,     0,     0,     0,     0,     0})
+upgrades = {
+  {"upgrade-battle-axe1", "icon-battle-axe2",
+    {   200,   500,   100,     0,     0,     0,     0}},
+  {"upgrade-battle-axe2", "icon-battle-axe3",
+    {   250,  1500,   300,     0,     0,     0,     0}},
+  {"upgrade-throwing-axe1", "icon-throwing-axe2",
+    {   200,   300,   300,     0,     0,     0,     0}},
+  {"upgrade-throwing-axe2", "icon-throwing-axe3",
+    {   250,   900,   500,     0,     0,     0,     0}},
+  {"upgrade-orc-shield1", "icon-orc-shield2",
+    {   200,   300,   300,     0,     0,     0,     0}},
+  {"upgrade-orc-shield2", "icon-orc-shield3",
+    {   250,   900,   500,     0,     0,     0,     0}},
+  {"upgrade-orc-ship-cannon1", "icon-orc-ship-cannon2",
+    {   200,   700,   100,  1000,     0,     0,     0}},
+  {"upgrade-orc-ship-cannon2", "icon-orc-ship-cannon3",
+    {   250,  2000,   250,  3000,     0,     0,     0}},
+  {"upgrade-orc-ship-armor1", "icon-orc-ship-armor2",
+    {   200,   500,   500,     0,     0,     0,     0}},
+  {"upgrade-orc-ship-armor2", "icon-orc-ship-armor3",
+    {   250,  1500,   900,     0,     0,     0,     0}},
+  {"upgrade-catapult1", "icon-catapult1",
+    {   250,  1500,     0,     0,     0,     0,     0}},
+  {"upgrade-catapult2", "icon-catapult2",
+    {   250,  4000,     0,     0,     0,     0,     0}},
+  {"upgrade-berserker", "icon-berserker",
+    {   250,  1500,     0,     0,     0,     0,     0}},
+  {"upgrade-light-axes", "icon-light-axes",
+    {   250,  2000,     0,     0,     0,     0,     0}},
+  {"upgrade-berserker-scouting", "icon-berserker-scouting",
+    {   250,  1500,     0,     0,     0,     0,     0}},
+  {"upgrade-berserker-regeneration", "icon-berserker-regeneration",
+    {   250,  3000,     0,     0,     0,     0,     0}},
+  {"upgrade-ogre-mage", "icon-ogre-mage",
+    {   250,  1000,     0,     0,     0,     0,     0}},
+  {"upgrade-eye-of-kilrogg", "icon-eye-of-kilrogg",
+    {     0,     0,     0,     0,     0,     0,     0}},
+  {"upgrade-bloodlust", "icon-bloodlust",
+    {   100,  1000,     0,     0,     0,     0,     0}},
+  {"upgrade-raise-dead", "icon-skeleton",
+    {   100,  1500,     0,     0,     0,     0,     0}},
+  {"upgrade-death-coil", "icon-death-coil",
+    {   100,     0,     0,     0,     0,     0,     0}},
+  {"upgrade-whirlwind", "icon-whirlwind",
+    {   150,  1500,     0,     0,     0,     0,     0}},
+  {"upgrade-haste", "icon-haste",
+    {   100,   500,     0,     0,     0,     0,     0}},
+  {"upgrade-unholy-armor", "icon-unholy-armor",
+    {   200,  2500,     0,     0,     0,     0,     0}},
+  {"upgrade-runes", "icon-runes",
+    {   150,  1000,     0,     0,     0,     0,     0}},
+  {"upgrade-death-and-decay", "icon-death-and-decay",
+    {   200,  2000,     0,     0,     0,     0,     0}},
+}
+
+for i = 1,table.getn(upgrades) do
+  u = CUpgrade:New(upgrades[i][1])
+  u.Icon = Icons[upgrades[i][2]]
+  for j = 1,table.getn(upgrades[i][3]) do
+    u.Costs[j - 1] = upgrades[i][3][j]
+  end
+end
+
 
 --	NOTE: Save can generate this table.
 
@@ -391,3 +401,4 @@ DefineDependency("upgrade-bloodlust",
   {"upgrade-ogre-mage"})
 DefineDependency("upgrade-runes",
   {"upgrade-ogre-mage"})
+
