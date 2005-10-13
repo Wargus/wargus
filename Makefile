@@ -5,7 +5,7 @@ CROSSDIR = /usr/local/cross
 STRATAGUSPATH = ../stratagus/
 
 CFLAGS = -I/usr/local/include
-LDFLAGS = -lz -lpng -lm -static -L/usr/local/lib
+LDFLAGS = -lz -lpng -lm -L/usr/local/lib
 
 all: cleanobj wartool
 
