@@ -27,8 +27,8 @@ AddTrigger(
     GetPlayerData(0, "UnitTypesCount", "unit-female-hero") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
-  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-flying-angle") == 0 and
-    GetPlayerData(0, "UnitTypesCount", "unit-flying-angle") == 0 end,
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-flying-angel") == 0 and
+    GetPlayerData(0, "UnitTypesCount", "unit-flying-angel") == 0 end,
   function() return ActionDefeat() end)
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-arthor-literios") == 0 and
@@ -90,7 +90,7 @@ DefineAllow("unit-skeleton",			"AAAAAAAAAAAAAAAA")
 
 --Human Specials
 DefineAllow("unit-female-hero",			"FFFFFFFFFFFFFFFF")
-DefineAllow("unit-flying-angle",		"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-flying-angel",		"FFFFFFFFFFFFFFFF")
 DefineAllow("unit-white-mage",			"FFFFFFFFFFFFFFFF")
 DefineAllow("unit-knight-rider",			"FFFFFFFFFFFFFFFF")
 DefineAllow("unit-arthor-literios",			"FFFFFFFFFFFFFFFF")

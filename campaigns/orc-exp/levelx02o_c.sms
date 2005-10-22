@@ -80,7 +80,7 @@ DefineAllow("unit-skeleton",			"AAAAAAAAAAAAAAAA")
 
 --Human Specials
 DefineAllow("unit-female-hero",			"FFFFFFFFFFFFFFFF")
-DefineAllow("unit-flying-angle",		"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-flying-angel",		"FFFFFFFFFFFFFFFF")
 DefineAllow("unit-white-mage",			"FFFFFFFFFFFFFFFF")
 DefineAllow("unit-knight-rider",			"FFFFFFFFFFFFFFFF")
 DefineAllow("unit-arthor-literios",			"FFFFFFFFFFFFFFFF")
