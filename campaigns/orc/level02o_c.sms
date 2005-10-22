@@ -194,4 +194,4 @@ DefineAllow("unit-destroyed-2x2-place", "FFFFFFFFFFFFFFFF")
 DefineAllow("unit-destroyed-3x3-place", "FFFFFFFFFFFFFFFF")
 DefineAllow("unit-destroyed-4x4-place", "FFFFFFFFFFFFFFFF")
 
-LoadPud("campaigns/orc/level02o.pud")
+Load("campaigns/orc/level02o.sms")
