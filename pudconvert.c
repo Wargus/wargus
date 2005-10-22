@@ -63,7 +63,22 @@ int WriteSMP(const struct PudData * const pdata, gzFile *smpout, const char *sms
 
 	gzprintf(smpout, "PresentMap(\"%s\", %d, %d, %d, %d)\n", pdata->Description,
 		pdata->NumPlayers, pdata->MapSizeX, pdata->MapSizeY, 1);
-	
+
+	// hack for campaigns
+	if (smsname) {
+		const char *c;
+		buf[0] = '\0';
+		for (c = smsname; *c != '\0'; ++c) {
+			if (*c == '\\') {
+				strcat(buf, "/");
+			} else {
+				strncat(buf, c, 1);
+			}
+		}
+		strcpy(strstr(buf, ".sms"), "_c.sms");
+		gzprintf(smpout, "DefineMapSetup(\"%s\")\n", buf);
+	}
+
 	return 0;
 }
 
@@ -292,7 +307,8 @@ int PudToStratagus(const unsigned char *puddata, size_t size,
 		return -1;
 	}
 
-	if (ProcessPud(puddata, size, smsout, smpout, strrchr(smsname, '/') + 1)) {
+	if (ProcessPud(puddata, size, smsout, smpout,
+			(strstr(smsname, "campaigns") ? smsname : NULL))) {
 		fprintf(stderr, "invalid pud data\n");
 		exit(-1);
 	}
