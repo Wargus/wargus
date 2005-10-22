@@ -194,4 +194,4 @@ DefineAllow("unit-destroyed-2x2-place",		"FFFFFFFFFFFFFFFF")
 DefineAllow("unit-destroyed-3x3-place",		"FFFFFFFFFFFFFFFF")
 DefineAllow("unit-destroyed-4x4-place",		"FFFFFFFFFFFFFFFF")
 
-LoadPud("campaigns/human-exp/levelx09h.pud")
+Load("campaigns/human-exp/levelx09h.sms")
