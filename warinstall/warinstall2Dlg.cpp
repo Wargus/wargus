@@ -265,19 +265,21 @@ UINT MyControllingFunction(LPVOID pParam)
 	sprintf(buf, "maps\\multi\\*", dlg->m_folder);
 	CopyFiles(buf, _T("data\\maps\\other"));
 
-	Copy(_T("data\\maps\\multi\\(2)mysterious-dragon-isle.pud.gz"),
-		_T("data\\maps\\default.pud.gz"));
+	Copy(_T("data\\maps\\multi\\(2)mysterious-dragon-isle.smp.gz"),
+		_T("data\\maps\\default.smp.gz"));
+	Copy(_T("data\\maps\\multi\\(2)mysterious-dragon-isle.sms.gz"),
+		_T("data\\maps\\default.sms.gz"));
 
 	MakeDir(_T("data\\scripts"));
 	MakeDir(_T("data\\scripts\\ai"));
 	MakeDir(_T("data\\scripts\\human"));
 	MakeDir(_T("data\\scripts\\orc"));
 	MakeDir(_T("data\\scripts\\tilesets"));
-	CopyFiles("scripts\\*.lua", _T("data\\scripts"));
-	CopyFiles("scripts\\ai\\*.lua", _T("data\\scripts\\ai"));
-	CopyFiles("scripts\\human\\*.lua", _T("data\\scripts\\human"));
-	CopyFiles("scripts\\orc\\*.lua", _T("data\\scripts\\orc"));
-	CopyFiles("scripts\\tilesets\\*.lua", _T("data\\scripts\\tilesets"));
+	CopyFiles(_T("scripts\\*.lua"), _T("data\\scripts"));
+	CopyFiles(_T("scripts\\ai\\*.lua"), _T("data\\scripts\\ai"));
+	CopyFiles(_T("scripts\\human\\*.lua"), _T("data\\scripts\\human"));
+	CopyFiles(_T("scripts\\orc\\*.lua"), _T("data\\scripts\\orc"));
+	CopyFiles(_T("scripts\\tilesets\\*.lua"), _T("data\\scripts\\tilesets"));
 
 	dlg->AddProgress(_T("Done."));
 	dlg->AddProgress(NULL);
