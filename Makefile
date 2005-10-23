@@ -4,7 +4,7 @@ CC = gcc
 CROSSDIR = /usr/local/cross
 STRATAGUSPATH = ../stratagus/
 
-CFLAGS = -I/usr/local/include
+CFLAGS = -I/usr/local/include -Wall -Wsign-compare
 LDFLAGS = -lz -lpng -lm -L/usr/local/lib
 
 all: cleanobj wartool
