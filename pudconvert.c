@@ -40,7 +40,7 @@
 #endif
 
 
-int WriteSMP(const struct PudData * const pdata, gzFile *smpout, const char *smsname)
+int WriteSMP(const struct PudData * const pdata, gzFile smpout, const char *smsname)
 {
 	int i;
 	char buf[512];
@@ -68,7 +68,7 @@ int WriteSMP(const struct PudData * const pdata, gzFile *smpout, const char *sms
 	if (smsname) {
 		const char *c;
 		buf[0] = '\0';
-		for (c = smsname; *c != '\0'; ++c) {
+		for (c = strstr(smsname, "./campaigns"); *c != '\0'; ++c) {
 			if (*c == '\\') {
 				strcat(buf, "/");
 			} else {
@@ -82,7 +82,7 @@ int WriteSMP(const struct PudData * const pdata, gzFile *smpout, const char *sms
 	return 0;
 }
 
-int WriteSMS(const struct PudData * const pdata, gzFile *smsout)
+int WriteSMS(const struct PudData * const pdata, gzFile smsout)
 {
 	int i;
 	int num;
@@ -152,8 +152,8 @@ int PudReadHeader(const unsigned char *puddata, char *header, int *len)
 	return 8;
 }
 
-int ProcessPud(const unsigned char *puddata, size_t size, gzFile *smsout,
-	gzFile *smpout, const char *smsname)
+int ProcessPud(const unsigned char *puddata, size_t size, gzFile smsout,
+	gzFile smpout, const char *smsname)
 {
 	char header[5];
 	int len;
@@ -170,31 +170,31 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile *smsout,
 		return -1;
 	}
 
-	if (strcmp(curp, "WAR2 MAP")) {
+	if (strcmp((const char *)curp, "WAR2 MAP")) {
 		return -1;
 	}
 	curp += len;
 
-	while (curp - puddata < size) {
+	while ((size_t)(curp - puddata) < size) {
 		curp += PudReadHeader(curp, header, &len);
 		if (!strcmp(header, "VER ")) {
 			// nothing useful here, skip it
 		} else if (!strcmp(header, "DESC")) {
 			if (curp[0] != '\0') {
-				strcpy(pdata.Description, curp);
+				strcpy(pdata.Description, (const char *)curp);
 			} else {
 				strcpy(pdata.Description, "(unnamed)");
 			}
 		} else if (!strcmp(header, "OWNR")) {
 			pdata.NumPlayers = 0;
 			for (i = 0; i < PLAYERMAX; ++i) {
-				pdata.Players[i] = curp[i];
+				pdata.Players[i] = (enum PlayerTypes)curp[i];
 				if (pdata.Players[i] != PlayerNobody && pdata.Players[i] != PlayerNeutral) {
 					++pdata.NumPlayers;
 				}
 			}
 		} else if (!strcmp(header, "ERA ") || !strcmp(header, "ERAX")) {
-			pdata.Tileset = curp[0];
+			pdata.Tileset = (enum TilesetTypes)curp[0];
 		} else if (!strcmp(header, "DIM ")) {
 			pdata.MapSizeX = curp[0] | (curp[1] << 8);
 			pdata.MapSizeY = curp[2] | (curp[3] << 8);
@@ -206,7 +206,7 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile *smsout,
 			// FIXME: todo
 		} else if (!strcmp(header, "SIDE")) {
 			for (i = 0; i < PLAYERMAX; ++i) {
-				pdata.Races[i] = curp[i];
+				pdata.Races[i] = (enum RaceTypes)curp[i];
 			}
 		} else if (!strcmp(header, "SGLD")) {
 			for (i = 0; i < PLAYERMAX; ++i) {
@@ -225,7 +225,7 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile *smsout,
 				pdata.AiType[i] = curp[i];
 			}
 		} else if (!strcmp(header, "MTXM")) {
-			pdata.Tiles = malloc(sizeof(*pdata.Tiles) * pdata.MapSizeX * pdata.MapSizeY);
+			pdata.Tiles = (int *)malloc(sizeof(*pdata.Tiles) * pdata.MapSizeX * pdata.MapSizeY);
 
 			for (j = 0; j < pdata.MapSizeY; ++j) {
 				for (i = 0; i < pdata.MapSizeX; ++i) {
@@ -242,7 +242,7 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile *smsout,
 		} else if (!strcmp(header, "UNIT")) {
 			pdata.NumUnits = len / 8;
 
-			pdata.Units = malloc(sizeof(*pdata.Units) * pdata.NumUnits);
+			pdata.Units = (struct UnitData *)malloc(sizeof(*pdata.Units) * pdata.NumUnits);
 
 			for (i = 0; i < pdata.NumUnits; ++i) {
 				pdata.Units[i].X = curp[i * 8] | (curp[i * 8 + 1] << 8);
@@ -283,8 +283,8 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile *smsout,
 int PudToStratagus(const unsigned char *puddata, size_t size,
 	const char *name, const char *outdir)
 {
-	gzFile *smpout;
-	gzFile *smsout;
+	gzFile smpout;
+	gzFile smsout;
 	char smpname[PATH_MAX];
 	char smsname[PATH_MAX];
 

@@ -216,6 +216,7 @@ int myprintf(const char *fmt, ...)
 #define _DEBUG
 #define DEFINED_DEBUG
 #endif
+#include "../pudconvert.c"
 #include "../wartool.c"
 #undef printf
 #ifdef DEFINED_DEBUG

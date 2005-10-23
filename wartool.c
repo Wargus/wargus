@@ -10,7 +10,7 @@
 //
 /**@name wartool.c - Extract files from war archives. */
 //
-//      (c) Copyright 1999-2004 by Lutz Sammer & Nehal Mistry
+//      (c) Copyright 1999-2005 by Lutz Sammer & Nehal Mistry
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -1773,7 +1773,7 @@ int SavePNG(const char* name, unsigned char* image, int w, int h,
 	// set transformation
 
 	// prepare image
-	lines = malloc(h * sizeof(*lines));
+	lines = (unsigned char **)malloc(h * sizeof(*lines));
 	if (!lines) {
 		png_destroy_write_struct(&png_ptr, &info_ptr);
 		fclose(fp);
@@ -1833,7 +1833,7 @@ int OpenArchive(const char* file, int type)
 	//
 	//  Read in the archive
 	//
-	buf = malloc(stat_buf.st_size);
+	buf = (unsigned char *)malloc(stat_buf.st_size);
 	if (!buf) {
 		printf("Can't malloc %ld\n", (long)stat_buf.st_size);
 		exit(-1);
@@ -1863,7 +1863,7 @@ int OpenArchive(const char* file, int type)
 	//
 	//  Read offsets.
 	//
-	op = malloc((entries + 1) * sizeof(unsigned char*));
+	op = (unsigned char **)malloc((entries + 1) * sizeof(unsigned char*));
 	if (!op) {
 		printf("Can't malloc %d entries\n", entries);
 		exit(-1);
@@ -1900,7 +1900,7 @@ unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
 	uncompressed_length &= 0x00FFFFFF;
 //	printf("Entry length %8d flags %02x\t", uncompressed_length, flags);
 
-	dp = dest = malloc(uncompressed_length);
+	dp = dest = (unsigned char *)malloc(uncompressed_length);
 	if (!dest) {
 		printf("Can't malloc %d\n", uncompressed_length);
 		exit(-1);
@@ -2219,7 +2219,7 @@ unsigned char* ConvertTile(unsigned char* mini, const unsigned char* mega, int m
 	width = TILE_PER_ROW * 32;
 	height = ((numtiles + TILE_PER_ROW - 1) / TILE_PER_ROW) * 32;
 //	printf("Image %dx%d\n", width, height);
-	image = malloc(height * width);
+	image = (unsigned char *)malloc(height * width);
 	memset(image, 0, height * width);
 
 	for (i = 0; i < numtiles; ++i) {
@@ -2505,7 +2505,7 @@ unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
 		length = count;
 	}
 
-	image = malloc(best_width * best_height * length);
+	image = (unsigned char *)malloc(best_width * best_height * length);
 
 	//  Image: 0, 1, 2, 3, 4,
 	//         5, 6, 7, 8, 9, ...
@@ -2654,7 +2654,7 @@ void ConvertFilePuds(char **pudlist)
 		if (!(f = fopen(pudname, "rb"))) {
 			return;
 		}
-		puddata = malloc(sb.st_size);
+		puddata = (unsigned char *)malloc(sb.st_size);
 		if (!puddata) {
 			return;
 		}
@@ -2722,13 +2722,13 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 //	printf("Font: count %d max-width %2d max-height %2d\n",
 //		count, max_width, max_height);
 
-	offsets = malloc(count * sizeof(u_int32_t));
+	offsets = (unsigned *)malloc(count * sizeof(u_int32_t));
 	for (i = 0; i < count; ++i) {
 		offsets[i] = FetchLE32(bp);
 //		printf("%03d: offset %d\n", i, offsets[i]);
 	}
 
-	image = malloc(image_width * image_height);
+	image = (unsigned char *)malloc(image_width * image_height);
 	if (!image) {
 		printf("Can't allocate image\n");
 		exit(-1);
@@ -2835,7 +2835,7 @@ unsigned char* ConvertImg(unsigned char* bp, int* wp, int* hp)
 
 //	printf("Image: width %3d height %3d\n", width, height);
 
-	image = malloc(width * height);
+	image = (unsigned char *)malloc(width * height);
 	if (!image) {
 		printf("Can't allocate image\n");
 		exit(-1);
@@ -2872,7 +2872,7 @@ void ResizeImage(unsigned char** image, int ow, int oh, int nw, int nh)
 		return;
 	}
 
-	data = malloc(nw * nh);
+	data = (unsigned char *)malloc(nw * nh);
 	x = 0;
 	for (i = 0; i < nh; ++i) {
 		for (j = 0; j < nw; ++j) {
@@ -2966,7 +2966,7 @@ unsigned char* ConvertCur(unsigned char* bp, int* wp, int* hp)
 //	printf("Cursor: hotx %d hoty %d width %d height %d\n",
 //		hotx, hoty, width, height);
 
-	image = malloc(width * height);
+	image = (unsigned char *)malloc(width * height);
 	if (!image) {
 		printf("Can't allocate image\n");
 		exit(-1);
@@ -3825,7 +3825,7 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 		printf("Objectives allocation failed\n");
 		exit(-1);
 	}
-	objectives = realloc(objectives, l + 1);
+	objectives = (unsigned char *)realloc(objectives, l + 1);
 	if (!objectives) {
 		printf("Objectives allocation failed\n");
 		exit(-1);
