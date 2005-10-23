@@ -226,7 +226,7 @@ int myprintf(const char *fmt, ...)
 UINT MyControllingFunction(LPVOID pParam)
 {
 	char *argv[] = {"warinstall", NULL, NULL};
-	TCHAR buf[MAX_PATH];
+//	TCHAR buf[MAX_PATH];
 
 	MakeDir(_T("data"));
 
@@ -250,20 +250,9 @@ UINT MyControllingFunction(LPVOID pParam)
 	MakeDir(_T("data\\music"));
 	Copy(_T("contrib\\toccata.mod.gz"), _T("data\\music\\default.mod.gz"));
 
-	MakeDir(_T("data\\maps\\single"));
-	MakeDir(_T("data\\maps\\strange"));
-	sprintf(buf, "%s\\..\\puds\\multi\\*.pud", dlg->m_folder);
-	CopyFiles(buf, _T("data\\maps\\multi"));
-	sprintf(buf, "%s\\..\\puds\\single\\*.pud", dlg->m_folder);
-	CopyFiles(buf, _T("data\\maps\\single"));
-	sprintf(buf, "%s\\..\\puds\\strange\\*.pud", dlg->m_folder);
-	CopyFiles(buf, _T("data\\maps\\strange"));
-	sprintf(buf, "%s\\..\\puds\\*.pud", dlg->m_folder);
-	CopyFiles(buf, _T("data\\maps"));
-
-	MakeDir(_T("data\\maps\\other"));
-	sprintf(buf, "maps\\multi\\*", dlg->m_folder);
-	CopyFiles(buf, _T("data\\maps\\other"));
+//	MakeDir(_T("data\\maps\\other"));
+//	sprintf(buf, "maps\\multi\\*", dlg->m_folder);
+//	CopyFiles(buf, _T("data\\maps\\other"));
 
 	Copy(_T("data\\maps\\multi\\(2)mysterious-dragon-isle.smp.gz"),
 		_T("data\\maps\\default.smp.gz"));
