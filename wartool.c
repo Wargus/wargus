@@ -1505,6 +1505,7 @@ Control Todo[] = {
 {V,2,"videos/video16",                                 18 __},
 
 #undef __
+#undef _2
 };
 
 // puds that are in their own file
