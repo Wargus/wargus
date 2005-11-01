@@ -1629,14 +1629,14 @@ GroupedGraphic GroupedGraphicsList[][60] = {
 		{ 0, 17 * 144, 224, 28, "17" },
 		{ 0, 18 * 144, 19, 19, "radio-grayed" },
 		{ 0, 19 * 144, 19, 19, "radio-normal-unselected" },
-		{ 0, 20 * 144, 19, 19, "radio-clicked-unselected" },
+		{ 0, 20 * 144, 19, 19, "radio-pressed-unselected" },
 		{ 0, 21 * 144, 19, 19, "radio-normal-selected" },
-		{ 0, 22 * 144, 19, 19, "radio-clicked-selected" },
+		{ 0, 22 * 144, 19, 19, "radio-pressed-selected" },
 		{ 0, 23 * 144, 17, 17, "checkbox-grayed" },
 		{ 0, 24 * 144, 17, 17, "checkbox-normal-unselected" },
-		{ 0, 25 * 144, 17, 17, "checkbox-clicked-unselected" },
+		{ 0, 25 * 144, 17, 17, "checkbox-pressed-unselected" },
 		{ 0, 26 * 144, 17, 20, "checkbox-normal-selected" },
-		{ 0, 27 * 144, 17, 20, "checkbox-clicked-unselected" },
+		{ 0, 27 * 144, 17, 20, "checkbox-pressed-selected" },
 		{ 0, 28 * 144, 19, 20, "up-arrow-grayed" },
 		{ 0, 29 * 144, 19, 20, "up-arrow-normal" },
 		{ 0, 30 * 144, 19, 20, "up-arrow-pressed" },
@@ -2687,15 +2687,16 @@ int ConvertGroupedGfu(char *path, int pale, int gfue, int glist)
 	free(gfup);
 	ConvertPalette(palp);
 
-
 	for (i = 0; GroupedGraphicsList[glist][i].Name[0]; ++i) {
 		gg = &GroupedGraphicsList[glist][i];
-		sprintf(buf, "%s/%s/%s/%s.png", Dir, UNIT_PATH, path, gg->Name);
-		CheckPath(buf);
+
 		// hack for expansion/original difference
 		if (gg->Y + gg->Height > h) {
 			break;
 		}
+
+		sprintf(buf, "%s/%s/%s/%s.png", Dir, UNIT_PATH, path, gg->Name);
+		CheckPath(buf);
 		SavePNG(buf, image, gg->X, gg->Y, gg->Width, gg->Height, w, palp, 1);
 	}
 
