@@ -163,18 +163,19 @@ unsigned char** ArchiveOffsets;
 */
 enum _archive_type_ {
 	S,    // Setup
-	F,    // File                   (name)
-	T,    // Tileset                (name,pal,mega,mini,map)
-	R,    // RGB -> gimp            (name,rgb)
-	G,    // Graphics               (name,pal,gfx)
-	U,    // Uncompressed Graphics  (name,pal,gfu)
-	P,    // Pud                    (name,idx)
-	N,    // Font                   (name,idx)
-	I,    // Image                  (name,pal,img)
-	W,    // Wav                    (name,wav)
-	X,    // Text                   (name,text,ofs)
-	C,    // Cursor                 (name,cursor)
-	V,    // Video                  (name)
+	F,    // File                          (name)
+	T,    // Tileset                       (name,pal,mega,mini,map)
+	R,    // RGB -> gimp                   (name,rgb)
+	G,    // Graphics                      (name,pal,gfx)
+	U,    // Uncompressed Graphics         (name,pal,gfu)
+	D,    // Grouped Uncompressed Graphic  (name,pal,gfu,glist)
+	P,    // Pud                           (name,idx)
+	N,    // Font                          (name,idx)
+	I,    // Image                         (name,pal,img)
+	W,    // Wav                           (name,wav)
+	X,    // Text                          (name,text,ofs)
+	C,    // Cursor                        (name,cursor)
+	V,    // Video                         (name)
 	L,    // Campaign Levels
 };
 
@@ -1303,6 +1304,8 @@ Control Todo[] = {
 {F,0,"rezdat.war",                                     3000 __},
 #endif
 
+{D,0,"ui/human/widgets",                               14, 0, 0, 0},
+{D,0,"ui/orc/widgets",                                 14, 1, 0, 0},
 // (correct palette is #2 in maindat)
 {U,0,"ui/buttons_1",                                   14, 0 _2},
 // (correct palette is #2 in maindat)
@@ -1342,21 +1345,21 @@ Control Todo[] = {
 {I,2,"ui/Patch",                                       14, 91 _2},
 {I,2,"ui/Credits_for_extension_background",            93, 94 _2},
 {I,2,"../campaigns/human-exp/interface/Act_I_-_A_Time_for_Heroes",
-                                                       17,96 _2},
+                                                       17, 96 _2},
 {I,2,"../campaigns/orc-exp/interface/Act_I_-_Draenor,_the_Red_World",
-                                                       17,97 _2},
+                                                       17, 97 _2},
 {I,2,"../campaigns/human-exp/interface/Act_II_-_Draenor,_the_Red_World",
-                                                       17,98 _2},
+                                                       17, 98 _2},
 {I,2,"../campaigns/orc-exp/interface/Act_II_-_The_Burning_of_Azeroth",
-                                                       17,99 _2},
+                                                       17, 99 _2},
 {I,2,"../campaigns/human-exp/interface/Act_III_-_War_in_the_Shadows",
                                                        17, 100 _2},
 {I,2,"../campaigns/orc-exp/interface/Act_III_-_The_Great_Sea",
                                                        17, 101 _2},
 {I,2,"../campaigns/human-exp/interface/Act_IV_-_The_Measure_of_Valor",
-                                                       17,102 _2},
+                                                       17, 102 _2},
 {I,2,"../campaigns/orc-exp/interface/Act_IV_-_Prelude_to_New_Worlds",
-                                                       17,103 _2},
+                                                       17, 103 _2},
 
 ///////////////////////////////////////////////////////////////////////////////
 //		SPEACH INTROS
@@ -1594,6 +1597,75 @@ char *ExpansionPuds[] = {
 	""
 };
 
+typedef struct _grouped_graphic_ {
+	int X;               // X offset
+	int Y;               // Y offset
+	int Width;           // width of image
+	int Height;          // height of image
+	char Name[100];      // name
+} GroupedGraphic;
+
+GroupedGraphic GroupedGraphicsList[][60] = {
+	// group 0 (widgets)
+	// FIXME: fill in missing names
+	{
+		{ 0, 0 * 144, 106, 28, "00" },
+		{ 0, 1 * 144, 106, 28, "01" },
+		{ 0, 2 * 144, 106, 28, "02" },
+		{ 0, 3 * 144, 128, 20, "03" },
+		{ 0, 4 * 144, 128, 20, "04" },
+		{ 0, 5 * 144, 128, 20, "05" },
+		{ 0, 6 * 144, 80, 20, "06" },
+		{ 0, 7 * 144, 80, 20, "07" },
+		{ 0, 8 * 144, 80, 20, "08" },
+		{ 0, 9 * 144, 106, 28, "09" },
+		{ 0, 10 * 144, 106, 28, "10" },
+		{ 0, 11 * 144, 106, 28, "11" },
+		{ 0, 12 * 144, 164, 28, "12" },
+		{ 0, 13 * 144, 164, 28, "13" },
+		{ 0, 14 * 144, 164, 28, "14" },
+		{ 0, 15 * 144, 224, 28, "15" },
+		{ 0, 16 * 144, 224, 28, "16" },
+		{ 0, 17 * 144, 224, 28, "17" },
+		{ 0, 18 * 144, 19, 19, "radio-grayed" },
+		{ 0, 19 * 144, 19, 19, "radio-normal-unselected" },
+		{ 0, 20 * 144, 19, 19, "radio-clicked-unselected" },
+		{ 0, 21 * 144, 19, 19, "radio-normal-selected" },
+		{ 0, 22 * 144, 19, 19, "radio-clicked-selected" },
+		{ 0, 23 * 144, 17, 17, "checkbox-grayed" },
+		{ 0, 24 * 144, 17, 17, "checkbox-normal-unselected" },
+		{ 0, 25 * 144, 17, 17, "checkbox-clicked-unselected" },
+		{ 0, 26 * 144, 17, 20, "checkbox-normal-selected" },
+		{ 0, 27 * 144, 17, 20, "checkbox-clicked-unselected" },
+		{ 0, 28 * 144, 19, 20, "up-arrow-grayed" },
+		{ 0, 29 * 144, 19, 20, "up-arrow-normal" },
+		{ 0, 30 * 144, 19, 20, "up-arrow-pressed" },
+		{ 0, 31 * 144, 19, 20, "down-arrow-grayed" },
+		{ 0, 32 * 144, 19, 20, "down-arrow-normal" },
+		{ 0, 33 * 144, 19, 20, "down-arrow-pressed" },
+		{ 0, 34 * 144, 20, 19, "left-arrow-grayed" },
+		{ 0, 35 * 144, 20, 19, "left-arrow-normal" },
+		{ 0, 36 * 144, 20, 19, "left-arrow-pressed" },
+		{ 0, 37 * 144, 20, 19, "right-arrow-grayed" },
+		{ 0, 38 * 144, 20, 19, "right-arrow-normal" },
+		{ 0, 39 * 144, 20, 19, "right-arrow-pressed" },
+		{ 0, 40 * 144, 17, 17, "slider-knob" },
+		{ 0, 41 * 144 + 20, 19, 124, "vslider-bar-grayed" },
+		{ 0, 42 * 144 + 20, 19, 124, "vslider-bar-normal" },
+		{ 20, 43 * 144, 172, 19, "hslider-bg-grayed" },
+		{ 20, 44 * 144, 172, 19, "hslider-bg-normal" },
+		{ 0, 45 * 144, 300, 18, "pulldown-bar-grayed" },
+		{ 0, 46 * 144, 300, 18, "pulldown-bar-normal" },
+		{ 0, 47 * 144, 80, 15, "47" },
+		{ 0, 48 * 144, 80, 15, "48" },
+		{ 0, 49 * 144, 80, 15, "49" },
+		// FIXME: last 3 not consistent sizes between human and orc
+		{ 0, 50 * 144, 39, 22, "folder-up-grayed" },
+		{ 0, 51 * 144, 39, 22, "folder-up-normal" },
+		{ 0, 52 * 144, 39, 22, "folder-up-pressed" },
+		{ 0, 0, 0, 0, "" },
+	}
+};
 
 /**
 **  File names.
@@ -1683,8 +1755,8 @@ void ConvertToMac(char* filename)
 **  @param pal          Palette
 **  @param transparent  Image uses transparency
 */
-int SavePNG(const char* name, unsigned char* image, int w, int h,
-	unsigned char* pal, int transparent)
+int SavePNG(const char* name, unsigned char* image, int x, int y, int w,
+	int h, int pitch, unsigned char* pal, int transparent)
 {
 	FILE* fp;
 	png_structp png_ptr;
@@ -1736,8 +1808,8 @@ int SavePNG(const char* name, unsigned char* image, int w, int h,
 		unsigned char* end;
 		png_byte trans[256];
 
-		p = image;
-		end = image + w * h;
+		p = image + y * pitch + x;
+		end = image + (y + h) * pitch + x;
 		while (p < end) {
 			if (!*p) {
 				*p = 0xFF;
@@ -1764,7 +1836,7 @@ int SavePNG(const char* name, unsigned char* image, int w, int h,
 	}
 
 	for (i = 0; i < h; ++i) {
-		lines[i] = image + i * w;
+		lines[i] = image + (i + y) * pitch + x;
 	}
 
 	png_write_image(png_ptr, lines);
@@ -2264,7 +2336,7 @@ int ConvertTileset(char* file, int pale, int mege, int mine, int mape)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, TILESET_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, w, h, palp, 1);
+	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
 	free(image);
 	free(palp);
@@ -2554,7 +2626,7 @@ int ConvertGfx(char* file, int pale, int gfxe, int gfxe2, int start2)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, UNIT_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, w, h, palp, 1);
+	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
 	free(image);
 	free(palp);
@@ -2584,7 +2656,48 @@ int ConvertGfu(char* file,int pale,int gfue)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, UNIT_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, w, h, palp, 1);
+	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
+
+	free(image);
+	free(palp);
+
+	return 0;
+}
+
+/**
+**  Split up and convert uncompressed graphics to seperate PNGs
+*/
+int ConvertGroupedGfu(char *path, int pale, int gfue, int glist)
+{
+
+	unsigned char* palp;
+	unsigned char* gfup;
+	unsigned char* image;
+	int w;
+	int h;
+	char buf[1024];
+	int i;
+	GroupedGraphic *gg;
+
+	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
+	gfup = ExtractEntry(ArchiveOffsets[gfue], NULL);
+
+	image = ConvertGraphic(0, gfup, &w, &h, NULL, 0);
+
+	free(gfup);
+	ConvertPalette(palp);
+
+
+	for (i = 0; GroupedGraphicsList[glist][i].Name[0]; ++i) {
+		gg = &GroupedGraphicsList[glist][i];
+		sprintf(buf, "%s/%s/%s/%s.png", Dir, UNIT_PATH, path, gg->Name);
+		CheckPath(buf);
+		// hack for expansion/original difference
+		if (gg->Y + gg->Height > h) {
+			break;
+		}
+		SavePNG(buf, image, gg->X, gg->Y, gg->Width, gg->Height, w, palp, 1);
+	}
 
 	free(image);
 	free(palp);
@@ -2792,7 +2905,7 @@ int ConvertFont(char* file, int pale, int fnte)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, FONT_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, w, h, palp, 1);
+	SavePNG(buf, image, 0, 0, w, h, 0, palp, 1);
 
 	free(image);
 	free(palp);
@@ -2915,7 +3028,7 @@ int ConvertImage(char* file, int pale, int imge, int nw, int nh)
 		w = nw;
 		h = nh;
 	}
-	SavePNG(buf, image, w, h, palp, 0);
+	SavePNG(buf, image, 0, 0, w, h, 0, palp, 0);
 
 	free(image);
 	if (pale != 27 && imge != 28) {
@@ -2990,7 +3103,7 @@ int ConvertCursor(char* file, int pale, int cure)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, CURSOR_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, w, h, palp, 1);
+	SavePNG(buf, image, 0, 0, w, h, 0, palp, 1);
 
 	free(image);
 	if (pale != 27 && cure != 314) {
@@ -4127,6 +4240,10 @@ int main(int argc, char** argv)
 				break;
 			case U:
 				ConvertGfu(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+				break;
+			case D:
+				ConvertGroupedGfu(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2,
+					Todo[u].Arg3);
 				break;
 			case P:
 				ConvertPud(Todo[u].File, Todo[u].Arg1);
