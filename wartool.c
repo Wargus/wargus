@@ -2905,7 +2905,7 @@ int ConvertFont(char* file, int pale, int fnte)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, FONT_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, 0, 0, w, h, 0, palp, 1);
+	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
 	free(image);
 	free(palp);
@@ -3028,7 +3028,7 @@ int ConvertImage(char* file, int pale, int imge, int nw, int nh)
 		w = nw;
 		h = nh;
 	}
-	SavePNG(buf, image, 0, 0, w, h, 0, palp, 0);
+	SavePNG(buf, image, 0, 0, w, h, w, palp, 0);
 
 	free(image);
 	if (pale != 27 && imge != 28) {
@@ -3103,7 +3103,7 @@ int ConvertCursor(char* file, int pale, int cure)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, CURSOR_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, 0, 0, w, h, 0, palp, 1);
+	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
 	free(image);
 	if (pale != 27 && cure != 314) {
