@@ -1611,9 +1611,9 @@ GroupedGraphic GroupedGraphicsList[][60] = {
 	// FIXME: fill in missing names
 	{
 		// 0 and 1 are the same
-		{ 0, 0 * 144, 106, 28, "button-credits-grayed" },
-		{ 0, 1 * 144, 106, 28, "button-credits-normal" },
-		{ 0, 2 * 144, 106, 28, "button-credits-pressed" },
+		{ 0, 0 * 144, 106, 28, "button-grayscale-grayed" },
+		{ 0, 1 * 144, 106, 28, "button-grayscale-normal" },
+		{ 0, 2 * 144, 106, 28, "button-grayscale-pressed" },
 		// 3 and 4 are the same
 		{ 0, 3 * 144, 128, 20, "button-thin-medium-grayed" }, 
 		{ 0, 4 * 144, 128, 20, "button-thin-medium-normal" },
