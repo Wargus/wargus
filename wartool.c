@@ -83,7 +83,7 @@ char* Dir;
 /**
 **		Path to the unit graphics. (default=$DIR/graphics)
 */
-#define UNIT_PATH		"graphics"
+#define GRAPHICS_PATH		"graphics"
 
 /**
 **		Path the pud files. (default=$DIR)
@@ -1362,7 +1362,7 @@ Control Todo[] = {
                                                        17, 103 _2},
 
 ///////////////////////////////////////////////////////////////////////////////
-//		SPEACH INTROS
+//		SPEECH INTROS
 ///////////////////////////////////////////////////////////////////////////////
 
 		// FIXME: this file contains different data, if expansion or not.
@@ -2628,7 +2628,7 @@ int ConvertGfx(char* file, int pale, int gfxe, int gfxe2, int start2)
 	free(gfxp);
 	ConvertPalette(palp);
 
-	sprintf(buf, "%s/%s/%s.png", Dir, UNIT_PATH, file);
+	sprintf(buf, "%s/%s/%s.png", Dir, GRAPHICS_PATH, file);
 	CheckPath(buf);
 	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
@@ -2658,7 +2658,7 @@ int ConvertGfu(char* file,int pale,int gfue)
 	free(gfup);
 	ConvertPalette(palp);
 
-	sprintf(buf, "%s/%s/%s.png", Dir, UNIT_PATH, file);
+	sprintf(buf, "%s/%s/%s.png", Dir, GRAPHICS_PATH, file);
 	CheckPath(buf);
 	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
@@ -2699,7 +2699,7 @@ int ConvertGroupedGfu(char *path, int pale, int gfue, int glist)
 			break;
 		}
 
-		sprintf(buf, "%s/%s/%s/%s.png", Dir, UNIT_PATH, path, gg->Name);
+		sprintf(buf, "%s/%s/%s/%s.png", Dir, GRAPHICS_PATH, path, gg->Name);
 		CheckPath(buf);
 		SavePNG(buf, image, gg->X, gg->Y, gg->Width, gg->Height, w, palp, 1);
 	}
