@@ -1304,8 +1304,9 @@ Control Todo[] = {
 {F,0,"rezdat.war",                                     3000 __},
 #endif
 
-{D,0,"ui/human/widgets",                               14, 0, 0, 0},
-{D,0,"ui/orc/widgets",                                 14, 1, 0, 0},
+// palette 27 for the first 3 frames, 14 for the rest
+{D,0,"ui/human/widgets",                               27, 0, 0, 0},
+{D,0,"ui/orc/widgets",                                 27, 1, 0, 0},
 // (correct palette is #2 in maindat)
 {U,0,"ui/buttons_1",                                   14, 0 _2},
 // (correct palette is #2 in maindat)
@@ -2673,7 +2674,6 @@ int ConvertGfu(char* file,int pale,int gfue)
 */
 int ConvertGroupedGfu(char *path, int pale, int gfue, int glist)
 {
-
 	unsigned char* palp;
 	unsigned char* gfup;
 	unsigned char* image;
@@ -2697,6 +2697,13 @@ int ConvertGroupedGfu(char *path, int pale, int gfue, int glist)
 		// hack for expansion/original difference
 		if (gg->Y + gg->Height > h) {
 			break;
+		}
+
+		// hack for multiple palettes
+		if (i == 3 && strstr(path, "widgets")) {
+			free(palp);
+			palp = ExtractEntry(ArchiveOffsets[14], NULL);
+			ConvertPalette(palp);
 		}
 
 		sprintf(buf, "%s/%s/%s/%s.png", Dir, GRAPHICS_PATH, path, gg->Name);
