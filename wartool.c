@@ -1608,7 +1608,6 @@ typedef struct _grouped_graphic_ {
 
 GroupedGraphic GroupedGraphicsList[][60] = {
 	// group 0 (widgets)
-	// FIXME: fill in missing names
 	{
 		// 0 and 1 are the same
 		{ 0, 0 * 144, 106, 28, "button-grayscale-grayed" },
@@ -1664,10 +1663,10 @@ GroupedGraphic GroupedGraphicsList[][60] = {
 		{ 0, 47 * 144, 80, 15, "button-verythin-grayed" },
 		{ 0, 48 * 144, 80, 15, "button-verythin-normal" },
 		{ 0, 49 * 144, 80, 15, "button-verythin-pressed" },
-		// FIXME: last 3 not consistent sizes between human and orc
-		{ 0, 50 * 144, 39, 22, "folder-up-grayed" },
-		{ 0, 51 * 144, 39, 22, "folder-up-normal" },
-		{ 0, 52 * 144, 39, 22, "folder-up-pressed" },
+		// NB: the following 3 sizes are incorrect for human
+		{ 0, 50 * 144, 37, 24, "folder-up-grayed" },
+		{ 0, 51 * 144, 37, 24, "folder-up-normal" },
+		{ 0, 52 * 144, 37, 24, "folder-up-pressed" },
 		{ 0, 0, 0, 0, "" },
 	}
 };

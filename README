@@ -1,0 +1,21 @@
+Installation Instructions
+=========================
+
+NOTE: stratagus ( http://stratagus.sourceforge.net ) is required.
+wargus and stratagus version must match
+(same version or CVS from the same date)
+
+NOTE: 
+
+Windows:
+1. extract data: 'build.bat /path/to/cd [ /path/to/outputdir ]'
+    eg: build.bat d:\
+
+2. start stratagus: '/path/to/stratagus -d /path/to/outputdir'
+    eg: c:\stratagus\stratagus.exe -d data.wc2
+
+Unix:
+1. extract data: './build.sh -p /path/to/cd [ -o /path/to/outputdir ]'
+    eg: ./build.sh -p /cdrom
+
+2. start stratagus: 'stratagus -d data.wc2'
