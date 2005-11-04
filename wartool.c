@@ -3117,7 +3117,7 @@ int ConvertCursor(char* file, int pale, int cure)
 	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
 	free(image);
-	if (pale != 27 && cure != 314) {
+	if (pale != 27 && cure != 314 && !Pal27) {
 		free(palp);
 	}
 
@@ -4292,6 +4292,13 @@ int main(int argc, char** argv)
 	}
 
 	ConvertFilePuds(expansion_cd ? ExpansionPuds : OriginalPuds);
+
+	if (ArchiveBuffer) {
+		CloseArchive();
+	}
+	if (Pal27) {
+		free(Pal27);
+	}
 
 	return 0;
 }
