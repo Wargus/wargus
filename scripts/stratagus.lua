@@ -75,10 +75,6 @@ SetMetaServer("stratagus.game-host.org", 7775)
 --(set-order-feedback! #t)
 --(set-order-feedback! #f)
 
---  Uncomment next, to enable fancy building (random mirroring buildings)
-SetFancyBuildings(true)
---SetFancyBuildings(false)
-
 --  Edit this to enable/disable show tips at the start of a level
 SetShowTips(true)
 
