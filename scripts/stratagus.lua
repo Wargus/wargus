@@ -62,11 +62,11 @@ SetDefaultMap("maps/default.smp")
 
 
 SetSelectionStyle("corners")
-SetShowSightRange(false)
-SetShowAttackRange(false)
-SetShowReactionRange(false)
+Preference.ShowSightRange = false
+Preference.ShowAttackRange = false
+Preference.ShowReactionRange = false
 
-SetShowOrders(2)
+Preference.ShowOrders = 2
 
 SetMetaServer("stratagus.game-host.org", 7775)
 
