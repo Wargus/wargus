@@ -25,98 +25,37 @@
 ##	$Id$
 ##
 
-# parameters
-#
-# -z / -I : COMPRESS = gzip --force --best / bzip2 --force
-# -p path : ARCHIVE = /cdrom / /mnt/cdrom ..
-# -o DIR = /usr/share/games/stratagus/warii
-# -T path : BINPATH = /usr/lib/stratagus/tools
-# -C CONTRIB = /usr/lib/stratagus/contrib
-# -v : Extract also videos
-
-#	compress parameters
-GZIP="gzip --force --best"
-BZIP2="bzip2 --force"
-
 #       cdrom autodetection
 CDROM="/cdrom"
 [ -d "/mnt/cdrom" ] && CDROM="/mnt/cdrom"
 
-###
-### Change the next, to meet your requirements:
-###
+#       location of data files
+ARCHIVE="$CDROM/data/"
 
-#
-#       Choose your default compression or use -z or -I.
-#
-COMPRESS=$GZIP
-#COMPRESS=$BZIP2
-
-#
-#       Here are the input files for sounds, graphics and texts.
-#       WARNING: If not from CD, choose below expansion/no-expansion
-#               First choice:   installed on dos parition
-#               Second choise:  installed in current directory
-#               Third choise:   uninstalled on original cdrom
-#		or use -p dir
-#
-#ARCHIVE="/dos/c/games/war2/data/"
-#ARCHIVE="./"
-ARCHIVE=$CDROM"/data/"
-
-#
-#       Here are my executeables or -T dir.
-#
-BINPATH="."
-#BINPATH="/usr/local/lib/stratagus/bin"
-#BINPATH="/usr/lib/stratagus/tools"
-
-#
-#       Here are the extra files contributed or -C dir.
-#
-CONTRIB="contrib"
-#CONTRIB="/usr/lib/stratagus/contrib"
-#CONTRIB="/usr/local/lib/stratagus/contrib"
-
-#
-#       Here is the destination for the generated files
-#
+#	output dir
 DIR="data.wc2"
-#DIR="/usr/local/lib/stratagus/data"
-#DIR="/usr/share/games/stratagus/WarII"
 
-###
-###	Below this point, you should only search bugs. :-)
-###
+#       extra files to be copied.
+CONTRIB="contrib"
+
+####	Do not modify anything below this point.
 
 while [ $# -gt 0 ]; do
 	case "$1" in
 		-p)	ARCHIVE="$2"; shift ;;
 		-o)	DIR="$2"; shift ;;
 
-		-z)	COMPRESS="$GZIP" ;;
-		-I)	COMPRESS="$BZIP2" ;;
-
-		-T)	BINPATH="$2"; shift ;;
-		-C)	CONTRIB="$2"; shift ;;
-
 		-v)	VIDEO="-v"; shift ;;
 
-		--help) $0 -h; exit 0;;
 		-h)	cat << EOF
-build.sh
- -z / -I : COMPRESS = gzip --force --best / bzip2 --force
- -p path : ARCHIVE = /cdrom / /mnt/cdrom ..
- -o DIR = /usr/share/games/stratagus/warii
- -T path : BINPATH = /usr/lib/stratagus/tools
- -C CONTRIB = /usr/lib/stratagus/contrib
- -v : Also extract video
-EOF
-			exit 0;;
 
-		*)
-			echo 2>&1 "Unknown option: $1"
-			exit 1
+build.sh [-v] [-o output] -p path 
+ -v extract videos
+ -o output directory (default 'data.wc2')
+ -p path to data files
+EOF
+			exit 1;;
+		*)	$0 -h; exit 1;;
 	esac
 	shift
 done
@@ -145,10 +84,8 @@ fi
 [ -d $DIR ] || mkdir $DIR
 [ -d $DIR/music ] || mkdir $DIR/music
 
-# More is now done automatic
-
 ###############################################################################
-##	Extract
+##	Extract and Copy
 ###############################################################################
 
 # copy script files
@@ -156,9 +93,7 @@ cp -R scripts $DIR/scripts
 rm -Rf `find $DIR/scripts | grep CVS`
 rm -Rf `find $DIR/scripts | grep cvsignore`
 
-# ADD -e      To force that the archive is expansion compatible
-# ADD -n      To force that the archive is not expansion compatible
-$BINPATH/wartool $VIDEO "$DATADIR" "$DIR"
+wartool $VIDEO "$DATADIR" "$DIR"
 
 # copy own supplied files
 
@@ -174,35 +109,20 @@ cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
 cp $CONTRIB/stratagus.png $DIR/graphics/ui
 cp $CONTRIB/toccata.mod.gz $DIR/music/default.mod.gz
 
-###############################################################################
-##	MISC
-###############################################################################
+#	Compress the sounds
+find $DIR/sounds -type f -name "*.wav" -print -exec gzip -f {} \;
 
-#
-##	Compress the sounds
-#
-find $DIR/sounds -type f -name "*.wav" -print -exec $COMPRESS {} \;
+#	Compress the texts
+find $DIR/campaigns -type f -name "*.txt" -print -exec gzip -f {} \;
 
-#
-##	Compress the texts
-#
-find $DIR/campaigns -type f -name "*.txt" -print -exec $COMPRESS {} \;
-
-#
-##	The default map.
-#
+#	Setup the default map
 [ -f "$DIR/maps/multi/(2)mysterious-dragon-isle.sms.gz" ] \
-	&& ln -s "multi/(2)mysterious-dragon-isle.sms.gz" \
+	&& ln -s "$DIR/maps/multi/(2)mysterious-dragon-isle.sms.gz" \
 	    $DIR/maps/default.sms.gz \
-	&& ln -s "multi/(2)mysterious-dragon-isle.smp.gz" \
+	&& ln -s "$DIR/maps/multi/(2)mysterious-dragon-isle.smp.gz" \
 	    $DIR/maps/default.smp.gz
-[ -f "$DIR/maps/multi/(2)mysterious-dragon-isle.sms.bz2" ] \
-	&& ln -s "multi/(2)mysterious-dragon-isle.sms.bz2" \
-	    $DIR/maps/default.sms.bz2 \
-	&& ln -s "multi/(2)mysterious-dragon-isle.smp.bz2" \
-	    $DIR/maps/default.smp.bz2
 
-echo "WC2 data setup is now complete"
-echo "NOTE: you do not need to run this script again"
+echo "Wargus data setup is now complete"
+echo "Note: you do not need to run this script again"
 
 exit 0
