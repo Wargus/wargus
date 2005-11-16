@@ -51,20 +51,10 @@ function MusicStopped()
 end
 
 ------------------------------------------------------------------------------
---	(set-cd-mode!) set how your CD is played.
---		all	plays all tracks
---		random	plays random tracks
---		defined	play according to playlist below
---		off	turns cd player off
---SetCdMode("all")
---SetCdMode("random") 
-SetCdMode("defined")
---SetCdMode("off")
-
-------------------------------------------------------------------------------
 --	(define-play-sections) set the playlist for different 
 --			       sections of the game
 --
+--[[
 DefinePlaySections("type", "main-menu",
     "cd", {"order", "all", "tracks", {15}})
 DefinePlaySections("race", "human", "type", "game",
@@ -83,6 +73,7 @@ DefinePlaySections("race", "orc", "type", "stats-victory",
     "cd", {"order", "all", "tracks", {16}})
 DefinePlaySections("race", "orc", "type", "stats-defeat",
     "cd", {"order", "all", "tracks", {17}})
+]]
 
 ------------------------------------------------------------------------------
 --	Define sounds later used
