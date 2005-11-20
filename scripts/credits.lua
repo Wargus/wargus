@@ -1,4 +1,4 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 --      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
@@ -10,7 +10,7 @@
 --
 --      credits.lua - The credits of the engine.
 --
---      (c) Copyright 2002-2004 by Jimmy Salmon.
+--      (c) Copyright 2002-2005 by Jimmy Salmon.
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@ Credits(
 	"name", "  Jimmy Salmon",
 	"name", "  Russell Smith",
 	"name", "  Nehal Mistry",
+	"name", "  Joris Dauphin",
 	"title", "Patches",
 	"name", "  Martin Renold",
 	"name", "  Carlos Perello Marin",
@@ -110,6 +111,8 @@ Credits(
 	"name", "  OGG/Vorbis Copyright by Xiph.org Foundation",
 	"name", "  FLAC Copyright by Josh Coalson",
 	"name", "  VP3 codec Copyright by On2 Technologies Inc.",
+	"name", "  Guichan Copyright by Per Larsson and Olof Naessen",
+	"name", "  tolua++ Copyright by Codenix",
 	"name", "",
 	"name", "",
 	"comment", "The Stratagus Team thanks all the people who have contributed",
