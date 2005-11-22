@@ -38,6 +38,9 @@ DIR="data.wc2"
 #       extra files to be copied.
 CONTRIB="contrib"
 
+#	location of the wartool binary
+BINPATH="."
+
 ####	Do not modify anything below this point.
 
 while [ $# -gt 0 ]; do
@@ -93,7 +96,7 @@ cp -R scripts $DIR/scripts
 rm -Rf `find $DIR/scripts | grep CVS`
 rm -Rf `find $DIR/scripts | grep cvsignore`
 
-wartool $VIDEO "$DATADIR" "$DIR"
+$BINPATH/wartool $VIDEO "$DATADIR" "$DIR"
 
 # copy own supplied files
 
