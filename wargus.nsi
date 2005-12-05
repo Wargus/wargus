@@ -1,6 +1,12 @@
 !include "MUI.nsh"
 
+;*** edit these defines to point to their correct locations ***;
+!define STRATEXE "..\stratagus\stratagus.exe"
+!define SDLDLL "c:\winnt\system32\SDL.dll"
+!define WARINSTEXE "warinstall\Release\warinstall.exe"
+
 !define NAME "Wargus"
+!define WGTMP "wargustemp"
 
 Name "${NAME}"
 OutFile "Wargus-2.1.exe"
@@ -14,8 +20,19 @@ InstallDirRegKey HKCU "Software\${NAME}" ""
 Var MUI_TEMP
 Var STARTMENU_FOLDER
 
-!define MUI_ABORTWARNING
+; pre-compilation tasks
+!system "echo CVS>exc.txt"
+!system "rmdir /Q /S ${WGTMP}"
+!system "mkdir ${WGTMP}"
+!system "mkdir ${WGTMP}\scripts"
+!system "mkdir ${WGTMP}\contrib"
+!system "mkdir ${WGTMP}\campaigns"
+!system "xcopy /E scripts ${WGTMP}\scripts /EXCLUDE:exc.txt"
+!system "xcopy /E contrib ${WGTMP}\contrib /EXCLUDE:exc.txt"
+!system "xcopy /E campaigns ${WGTMP}\campaigns /EXCLUDE:exc.txt"
+!system "erase exc.txt"
 
+!define MUI_ABORTWARNING
 
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_DIRECTORY
@@ -35,14 +52,16 @@ Var STARTMENU_FOLDER
 !insertmacro MUI_UNPAGE_CONFIRM
 !insertmacro MUI_UNPAGE_INSTFILES
 
-
 !insertmacro MUI_LANGUAGE "English"
 
 
 Section "${NAME}" SecDummy
   SectionIn RO
   SetOutPath "$INSTDIR"
-  File /r "wargus\*.*"
+  File /r "${WGTMP}\*.*"
+  File "${STRATEXE}"
+  File "${SDLDLL}"
+  File "${WARINSTEXE}"
   WriteRegStr HKCU "Software\${NAME}" "" $INSTDIR
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
