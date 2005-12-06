@@ -1,8 +1,8 @@
 !include "MUI.nsh"
 
 ;*** edit these defines to point to their correct locations ***;
-!define STRATEXE "..\stratagus\stratagus.exe"
-!define SDLDLL "c:\winnt\system32\SDL.dll"
+!define STRATEXE "..\stratagus\Release\stratagus.exe"
+!define SDLDLL "..\stratagus\SDL.dll"
 !define WARINSTEXE "warinstall\Release\warinstall.exe"
 
 !define NAME "Wargus"
@@ -31,6 +31,7 @@ Var STARTMENU_FOLDER
 !system "xcopy /E contrib ${WGTMP}\contrib /EXCLUDE:exc.txt"
 !system "xcopy /E campaigns ${WGTMP}\campaigns /EXCLUDE:exc.txt"
 !system "erase exc.txt"
+
 
 !define MUI_ABORTWARNING
 
@@ -86,3 +87,4 @@ Section "Uninstall"
   DeleteRegKey /ifempty HKCU "Software\${NAME}"
 SectionEnd
 
+!system "rmdir /Q /S ${WGTMP}"
