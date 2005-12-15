@@ -9,8 +9,24 @@ Briefing("type", "wc2",
 )
 
 AddTrigger(
-  function() return IfNearUnit("this", ">=", 1, "unit-fortress", "unit-circle-of-power") and
-    IfNearUnit("this", ">=", 1, "unit-shipyard", "unit-circle-of-power") end,
+  function() return GetNumUnitsAt(GetThisPlayer(), "unit-fortress", {52, 15}, {72, 40}) >0 and
+    GetNumUnitsAt(GetThisPlayer(), "unit-orc-shipyard", {48, 20}, {69, 42}) >0 end,
+  function() return ActionVictory() end)
+AddTrigger(
+  function() return (GetNumUnitsAt(GetThisPlayer(), "unit-fortress", {52, 15}, {72, 40}) >0) and
+    (GetNumUnitsAt(GetThisPlayer(), "unit-orc-shipyard", {69, 31}, {74, 39}) >0 ) end,
+  function() return ActionVictory() end)
+AddTrigger(
+  function() return (GetNumUnitsAt(GetThisPlayer(), "unit-fortress", {52, 15}, {72, 40}) >0) and
+    (GetNumUnitsAt(GetThisPlayer(), "unit-orc-shipyard", {73, 13}, {76, 34}) >0 ) end,
+  function() return ActionVictory() end)
+AddTrigger(
+  function() return (GetNumUnitsAt(GetThisPlayer(), "unit-fortress", {52, 15}, {72, 40}) >0) and
+    (GetNumUnitsAt(GetThisPlayer(), "unit-orc-shipyard", {51, 16}, {58, 20}) >0 ) end,
+  function() return ActionVictory() end)
+AddTrigger(
+  function() return (GetNumUnitsAt(GetThisPlayer(), "unit-fortress", {52, 15}, {72, 40}) >0) and
+    (GetNumUnitsAt(GetThisPlayer(), "unit-orc-shipyard", {55, 12}, {75, 16}) >0 ) end,
   function() return ActionVictory() end)
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
