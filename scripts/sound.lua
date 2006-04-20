@@ -10,7 +10,7 @@
 --
 --      sound.lua - Define the used sounds.
 --
---      (c) Copyright 1999-2005 by Fabrice Rossi, Lutz Sammer, and Jimmy Salmon
+--      (c) Copyright 1999-2006 by Fabrice Rossi, Lutz Sammer, and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -49,31 +49,6 @@ function MusicStopped()
     PlayMusic(playlist[math.random(table.getn(playlist))])
   end
 end
-
-------------------------------------------------------------------------------
---	(define-play-sections) set the playlist for different 
---			       sections of the game
---
---[[
-DefinePlaySections("type", "main-menu",
-    "cd", {"order", "all", "tracks", {15}})
-DefinePlaySections("race", "human", "type", "game",
-    "cd", {"order", "random", "tracks", {3, 4, 5, 6}})
-DefinePlaySections("race", "human", "type", "briefing",
-    "cd", {"order", "all", "tracks", {7}})
-DefinePlaySections("race", "human", "type", "stats-victory",
-    "cd", {"order", "all", "tracks", {8}})
-DefinePlaySections("race", "human", "type", "stats-defeat",
-    "cd", {"order", "all", "tracks", {9}})
-DefinePlaySections("race", "orc", "type", "game",
-    "cd", {"order", "random", "tracks", {10, 11, 12, 13, 14}})
-DefinePlaySections("race", "orc", "type", "briefing",
-    "cd", {"order", "all", "tracks", {15}})
-DefinePlaySections("race", "orc", "type", "stats-victory",
-    "cd", {"order", "all", "tracks", {16}})
-DefinePlaySections("race", "orc", "type", "stats-defeat",
-    "cd", {"order", "all", "tracks", {17}})
-]]
 
 ------------------------------------------------------------------------------
 --	Define sounds later used
