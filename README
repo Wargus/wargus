@@ -3,7 +3,7 @@ Installation Instructions
 
 NOTE: stratagus ( http://stratagus.sourceforge.net ) is required.
 wargus and stratagus version must match
-(same version or CVS from the same date)
+(same version or svn from the same date)
 
 The Battle.Net version is NOT supported, you must use the DOS version.
 
