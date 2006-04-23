@@ -119,11 +119,9 @@ find $DIR/sounds -type f -name "*.wav" -print -exec gzip -f {} \;
 find $DIR/campaigns -type f -name "*.txt" -print -exec gzip -f {} \;
 
 #	Setup the default map
-[ -f "$DIR/maps/multi/(2)mysterious-dragon-isle.sms.gz" ] \
-	&& ln -s "$DIR/maps/multi/(2)mysterious-dragon-isle.sms.gz" \
-	    $DIR/maps/default.sms.gz \
-	&& ln -s "$DIR/maps/multi/(2)mysterious-dragon-isle.smp.gz" \
-	    $DIR/maps/default.smp.gz
+[ -f "$DIR/maps/multi/(2)mysterious-dragon-isle.sms.gz" ] && cd $DIR/maps \
+	&& ln -s "multi/(2)mysterious-dragon-isle.sms.gz" default.sms.gz \
+	&& ln -s "multi/(2)mysterious-dragon-isle.smp.gz" default.smp.gz
 
 echo "Wargus data setup is now complete"
 echo "Note: you do not need to run this script again"
