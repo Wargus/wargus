@@ -12,7 +12,7 @@ Do not extract from both. Extract from one CD only.
 
 1. extract data: './build.sh -p /path/to/cd [ -o /path/to/outputdir ]'
 	eg:
-	./build.sh d:/
+	./build.sh -p d:/
 	./build.sh -p /cdrom
 
 2. start stratagus: '/path/to/stratagus -d /path/to/outputdir'
