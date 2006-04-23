@@ -73,13 +73,13 @@ if [ ! -f "$DATADIR/rezdat.war" ] && [ ! -f "$DATADIR/REZDAT.WAR" ] && [ ! -f "$
     echo "error: '$DATADIR/rezdat.war' does not exist"
     echo "error: '$DATADIR/War Resources' does not exist"
     echo "Specify the location of the data files with the '-p' option"
-    exit -1
+    exit 1
 fi
 
 if [ ! -d "$CONTRIB" ]; then
     echo "error: $CONTRIB does not exist; try running $0" 
     echo "	from the toplevel stratagus directory."
-    exit -1
+    exit 1
 fi
 
 # Create the directory structure
