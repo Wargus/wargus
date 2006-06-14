@@ -75,6 +75,12 @@ end
 UI.NormalFontColor = "white"
 UI.ReverseFontColor = "yellow"
 
+b = CFiller:new_local()
+b.G = CGraphic:New("ui/human/infopanel.png", 176, 176)
+b.X = 0
+b.Y = 160
+UI.Fillers:push_back(b)
+
 function AddFiller(file, x, y)
 	b = CFiller:new_local()
 	b.G = CGraphic:New(file)
@@ -83,7 +89,6 @@ function AddFiller(file, x, y)
 	UI.Fillers:push_back(b)
 end
 
-AddFiller("ui/human/infopanel.png", 0, -16)
 AddFiller("ui/human/" .. Video.Width .. "x" .. Video.Height  .. "/filler-right.png", Video.Width - 16, 0)
 AddFiller("ui/human/" .. Video.Width  .. "x" .. Video.Height .. "/resource.png", 176, 0)
 AddFiller("ui/human/" .. Video.Width  .. "x" .. Video.Height .. "/statusline.png", 176, Video.Height - 16)
