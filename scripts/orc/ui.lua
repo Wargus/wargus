@@ -61,186 +61,219 @@ function OrcScreen(screen_width, screen_height)
   local info_panel_x = 0
   local info_panel_y = 160
 
-  DefineUI("orc", screen_width, screen_height,
-    "normal-font-color", "yellow",
-    "reverse-font-color", "white",
-
-    "filler", {
-      File = "ui/orc/" .. screen_width .. "x" .. screen_height .. "/filler-right.png",
-      Pos = { screen_width - 16, 0}},
-    "filler", {
-      File = "ui/orc/" .. screen_width .. "x" .. screen_height .. "/resource.png",
-      Pos = {176, 0}},
-    "filler", {
-      File = "ui/orc/" .. screen_width .. "x" .. screen_height .. "/statusline.png",
-      Pos = {176, screen_height - 16}},
-    "filler", {
-      File = "ui/orc/menubutton.png",
-      Pos = {0, 0}},
-    "filler", {
-      File = "ui/orc/minimap.png",
-      Pos = {0, 24}},
-
-    "resources", {
-      "gold", { File = "ui/gold,wood,oil,mana.png", Frame = 0,
-        Pos = { 176 + 0, 0}, Size = {14, 14}, TextPos = { 176 + 0 + 18, 1}},
-      "wood", { File = "ui/gold,wood,oil,mana.png", Frame = 1,
-        Pos = { 176 + 75, 0}, Size = {14, 14}, TextPos = { 176 + 75 + 18, 1}},
-      "oil", { File = "ui/gold,wood,oil,mana.png", Frame = 2,
-        Pos = { 176 + 150, 0}, Size = {14, 14}, TextPos = { 176 + 150 + 18, 1}},
-      "food", { File = "ui/food.png", Frame = 0,
-        Pos = { screen_width - 16 - 138, 0}, Size = {14, 14}, TextPos = { (screen_width - 16 - 138) + 18, 1}},
-      "score", { File = "ui/score.png", Frame = 0,
-        Pos = { screen_width - 16 - 68, 0}, Size = {14, 14}, TextPos = { (screen_width - 16 - 68) + 18, 1}}},
-
+  local ui = {
     "info-panel", {
-      "panel", {
-        "file", "ui/orc/infopanel.png",
-        "pos", { info_panel_x, info_panel_y},
-        "size", {176, 176}
-      },
       "panels", {"panel-general-contents", "panel-attack-unit-contents",
                 "panel-all-unit-contents", "panel-building-contents"},
-      "selected", {
-        "single", {
-          "icon", {
-            "pos", {  9, 169}, "style", "icon"}},
-        "multiple", {
-          "icons", {
-            { "pos", {  9, 169}, "style", "icon"},
-            { "pos", { 65, 169}, "style", "icon"},
-            { "pos", {121, 169}, "style", "icon"},
-            { "pos", {  9, 223}, "style", "icon"},
-            { "pos", { 65, 223}, "style", "icon"},
-            { "pos", {121, 223}, "style", "icon"},
-            { "pos", {  9, 277}, "style", "icon"},
-            { "pos", { 65, 277}, "style", "icon"},
-            { "pos", {121, 277}, "style", "icon"}},
-          "max-text", {
-            "font", "game",
-            "pos", { info_panel_x + 10, info_panel_y + 10}}}
-      },
-      "training", {
-        "single", {
-          "text", {
-            "text", "Training:",
-            "font", "game",
-            "pos", { info_panel_x + 37, info_panel_y + 8 + 78}},
-          "icon", {
-            "pos", { info_panel_x + 110, info_panel_y + 11 + 70},
-            "style", "icon"}},
-        "multiple", {
-          "icons", {
-            { "pos", {  9, 219}, "style", "icon"},
-            { "pos", { 65, 219}, "style", "icon"},
-            { "pos", {121, 219}, "style", "icon"},
-            { "pos", {  9, 266}, "style", "icon"},
-            { "pos", { 65, 266}, "style", "icon"},
-            { "pos", {121, 266}, "style", "icon"}}}
-      },
-      "upgrading", {
-        "icon", {
-          "pos", { info_panel_x + 110, info_panel_y + 11 + 70},
-          "style", "icon"}
-      },
-      "researching", {
-        "icon", {
-          "pos", { info_panel_x + 110, info_panel_y + 11 + 70},
-          "style", "icon"}
-      },
-      "transporting", {
-        "icons", {
-          { "pos", {  9, 223}, "style", "icon"},
-          { "pos", { 65, 223}, "style", "icon"},
-          { "pos", {121, 223}, "style", "icon"},
-          { "pos", {  9, 277}, "style", "icon"},
-          { "pos", { 65, 277}, "style", "icon"},
-          { "pos", {121, 277}, "style", "icon"}}
-      },
       "completed-bar", {
         "color", {48, 100, 4}
       }
-    },
-
-    "button-panel", {
-      "panel", {
-        "file", "ui/orc/" ..
-          screen_width .. "x" .. screen_height ..
-          "/buttonpanel.png",
-        "pos", {0, 336}},
-      "icons", {
-        { "pos", {  9, 340}, "style", "icon"},
-        { "pos", { 65, 340}, "style", "icon"},
-        { "pos", {121, 340}, "style", "icon"},
-        { "pos", {  9, 387}, "style", "icon"},
-        { "pos", { 65, 387}, "style", "icon"},
-        { "pos", {121, 387}, "style", "icon"},
-        { "pos", {  9, 434}, "style", "icon"},
-        { "pos", { 65, 434}, "style", "icon"},
-        { "pos", {121, 434}, "style", "icon"}},
-      "auto-cast-border-color", {0, 0, 252},
-    },
-
-    "map-area", {
-      Pos = {176, 16},
-      Size = {
-        screen_width - 176 - 16,
-        screen_height - 16 - 16}},
-
-    "menu-panel", {
-      "menu-button", {
-        Pos = {24, 2},
-        Caption = "Menu (~<F10~>)",
-        Style = "main"},
-      "network-menu-button", {
-        Pos = {6, 2},
-        Caption = "Menu",
-        Style = "network"},
-      "network-diplomacy-button", {
-        Pos = {90, 2},
-        Caption = "Diplomacy",
-        Style = "network"},
-    },
-
-    "minimap", {
-      Pos = {0 + 24, 24 + 2},
-      Size = {128, 128}},
-
-    "status-line", {
-      TextPos = {2 + 176, 2 + screen_height - 16},
-      Font = "game",
-      Width = screen_width - 16 - 2 - 176},
-
-    "cursors", {
-      Point = "cursor-point",
-      Glass = "cursor-glass",
-      Cross = "cursor-cross",
-      Yellow = "cursor-yellow-hair",
-      Green = "cursor-green-hair",
-      Red = "cursor-red-hair",
-      Scroll = "cursor-scroll",
-      ArrowE = "cursor-arrow-e",
-      ArrowNE = "cursor-arrow-ne",
-      ArrowN = "cursor-arrow-n",
-      ArrowNW = "cursor-arrow-nw",
-      ArrowW = "cursor-arrow-w",
-      ArrowSW = "cursor-arrow-sw",
-      ArrowS = "cursor-arrow-s",
-      ArrowSE = "cursor-arrow-se"},
-
-    "menu-panels", {
-      "panel1", "ui/orc/panel_1.png",
-      "panel2", "ui/orc/panel_2.png",
-      "panel3", "ui/orc/panel_3.png",
-      "panel4", "ui/orc/panel_4.png",
-      "panel5", "ui/orc/panel_5.png"},
-
-    "victory-background", "ui/orc/victory.png",
-    "defeat-background", "ui/orc/defeat.png")
+    }
+  }
 end
 
-OrcScreen(640, 480)
-OrcScreen(800, 600)
-OrcScreen(1024, 768)
-OrcScreen(1280, 960)
-OrcScreen(1600, 1200)
+UI.NormalFontColor = "yellow"
+UI.ReverseFontColor = "white"
+
+function AddFiller(file, x, y)
+	b = CFiller:new_local()
+	b.G = CGraphic:New(file)
+	b.X = x
+	b.Y = y
+	UI.Fillers:push_back(b)
+end
+
+AddFiller("ui/orc/infopanel.png", 0, -16)
+AddFiller("ui/orc/" .. Video.Width .. "x" .. Video.Height  .. "/filler-right.png", Video.Width - 16, 0)
+AddFiller("ui/orc/" .. Video.Width  .. "x" .. Video.Height .. "/resource.png", 176, 0)
+AddFiller("ui/orc/" .. Video.Width  .. "x" .. Video.Height .. "/statusline.png", 176, Video.Height - 16)
+AddFiller("ui/orc/" .. Video.Width .. "x" .. Video.Height .. "/buttonpanel.png", 0, 336)
+AddFiller("ui/orc/menubutton.png", 0, 0)
+AddFiller("ui/orc/minimap.png", 0, 24)
+
+UI.InfoPanel.X = 0
+UI.InfoPanel.Y = 160
+
+b = CUIButton:new()
+b.X = 9
+b.Y = 160 + 9
+b.Style = FindButtonStyle("icon")
+UI.SingleSelectedButton = b
+
+function AddSelectedButton(x, y)
+	b = CUIButton:new_local()
+	b.X = x
+	b.Y = y
+	b.Style = FindButtonStyle("icon")
+	UI.SelectedButtons:push_back(b)
+end
+
+AddSelectedButton(9, 160 + 9)
+AddSelectedButton(65, 160 + 9)
+AddSelectedButton(121, 160 + 9)
+AddSelectedButton(9, 160 + 63)
+AddSelectedButton(65, 160 + 63)
+AddSelectedButton(121, 160 + 63)
+AddSelectedButton(9, 160 + 17)
+AddSelectedButton(65, 160 + 17)
+AddSelectedButton(121, 160 + 17)
+
+UI.MaxSelectedFont = Fonts["game"]
+UI.MaxSelectedTextX = 10
+UI.MaxSelectedTextY = 160 + 10
+
+b = CUIButton:new()
+b.X = 110
+b.Y = 160 + 11 + 70
+b.Style = FindButtonStyle("icon")
+UI.SingleTrainingButton = b
+
+function AddTrainingButton(x, y)
+	b = CUIButton:new_local()
+	b.X = x
+	b.Y = y
+	b.Style = FindButtonStyle("icon")
+	UI.TrainingButtons:push_back(b)
+end
+
+AddTrainingButton(9, 219)
+AddTrainingButton(65, 219)
+AddTrainingButton(121, 219)
+AddTrainingButton(9, 266)
+AddTrainingButton(65, 266)
+AddTrainingButton(121, 266)
+
+b = CUIButton:new()
+b.X = 110
+b.Y = 160 + 11 + 70
+b.Style = FindButtonStyle("icon")
+UI.UpgradingButton = b
+
+b = CUIButton:new()
+b.X = 110
+b.Y = 160 + 11 + 70
+b.Style = FindButtonStyle("icon")
+UI.ResearchingButton = b
+
+function AddTransportingButton(x, y)
+	b = CUIButton:new_local()
+	b.X = x
+	b.Y = y
+	b.Style = FindButtonStyle("icon")
+	UI.TransportingButtons:push_back(b)
+end
+
+AddTransportingButton(9, 223)
+AddTransportingButton(65, 223)
+AddTransportingButton(121, 223)
+AddTransportingButton(9, 277)
+AddTransportingButton(65, 277)
+AddTransportingButton(121, 277)
+
+function AddButtonPanelButton(x, y)
+	b = CUIButton:new_local()
+	b.X = x
+	b.Y = y
+	b.Style = FindButtonStyle("icon")
+	UI.ButtonPanel.Buttons:push_back(b)
+end
+
+AddButtonPanelButton(9, 340)
+AddButtonPanelButton(65, 340)
+AddButtonPanelButton(121, 340)
+AddButtonPanelButton(9, 387)
+AddButtonPanelButton(65, 387)
+AddButtonPanelButton(121, 387)
+AddButtonPanelButton(9, 434)
+AddButtonPanelButton(65, 434)
+AddButtonPanelButton(121, 434)
+
+UI.ButtonPanel.AutoCastBorderColorRGB = CColor(0, 0, 252)
+
+UI.MapArea.X = 176
+UI.MapArea.Y = 16
+UI.MapArea.EndX = Video.Width - 16 - 1
+UI.MapArea.EndY = Video.Height - 16 - 1
+
+UI.MapArea.ScrollPaddingLeft = 192
+UI.MapArea.ScrollPaddingRight = 192
+UI.MapArea.ScrollPaddingTop = 192
+UI.MapArea.ScrollPaddingBottom = 192
+
+UI.Minimap.X = 24
+UI.Minimap.Y = 24 + 2
+UI.Minimap.W = 128
+UI.Minimap.H = 128
+
+UI.StatusLine.TextX = 2 + 176
+UI.StatusLine.TextY = Video.Height + 2 - 16
+UI.StatusLine.Width = Video.Width - 16 - 2 - 176
+UI.StatusLine.Font = Fonts["game"]
+
+-- gold
+UI.Resources[0].G = CGraphic:New("ui/gold,wood,oil,mana.png", 14, 14)
+UI.Resources[0].IconFrame = 0
+UI.Resources[0].IconX = 176 + 0
+UI.Resources[0].IconY = 0
+UI.Resources[0].TextX = 176 + 0 + 18
+UI.Resources[0].TextY = 1
+
+-- wood
+UI.Resources[1].G = CGraphic:New("ui/gold,wood,oil,mana.png", 14, 14)
+UI.Resources[1].IconFrame = 1
+UI.Resources[1].IconX = 176 + 75
+UI.Resources[1].IconY = 0
+UI.Resources[1].TextX = 176 + 75 + 18
+UI.Resources[1].TextY = 1
+
+-- oil
+UI.Resources[2].G = CGraphic:New("ui/gold,wood,oil,mana.png", 14, 14)
+UI.Resources[2].IconFrame = 2
+UI.Resources[2].IconX = 176 + 150
+UI.Resources[2].IconY = 0
+UI.Resources[2].TextX = 176 + 150 + 18
+UI.Resources[2].TextY = 1
+
+-- food
+UI.Resources[FoodCost].G = CGraphic:New("ui/food.png", 14, 14)
+UI.Resources[FoodCost].IconFrame = 0
+UI.Resources[FoodCost].IconX = Video.Width - 16 - 138
+UI.Resources[FoodCost].IconY = 0
+UI.Resources[FoodCost].TextX = Video.Width - 16 - 138 + 18
+UI.Resources[FoodCost].TextY = 1
+
+-- score
+UI.Resources[ScoreCost].G = CGraphic:New("ui/score.png", 14, 14)
+UI.Resources[ScoreCost].IconFrame = 0
+UI.Resources[ScoreCost].IconX = Video.Width - 16 - 68
+UI.Resources[ScoreCost].IconY = 0
+UI.Resources[ScoreCost].TextX = Video.Width - 16 - 68 + 18
+UI.Resources[ScoreCost].TextY = 1
+
+UI.MenuButton.X = 24
+UI.MenuButton.Y = 2
+UI.MenuButton.Text = "Menu (~<F10~>)"
+UI.MenuButton.Style = FindButtonStyle("main")
+
+UI.NetworkMenuButton.X = 6
+UI.NetworkMenuButton.Y = 2
+UI.NetworkMenuButton.Text = "Menu"
+UI.NetworkMenuButton.Style = FindButtonStyle("network")
+
+UI.NetworkDiplomacyButton.X = 90
+UI.NetworkDiplomacyButton.Y = 2
+UI.NetworkDiplomacyButton.Text = "Diplomacy"
+UI.NetworkDiplomacyButton.Style = FindButtonStyle("network")
+
+function AddMenuPanel(ident, file)
+	b = CMenuPanel:new_local()
+	b.Ident = ident
+	b.G = CGraphic:New(file)
+	UI.MenuPanels:push_back(b)
+end
+
+AddMenuPanel("panel1", "ui/orc/panel_1.png")
+AddMenuPanel("panel2", "ui/orc/panel_2.png")
+AddMenuPanel("panel3", "ui/orc/panel_3.png")
+AddMenuPanel("panel4", "ui/orc/panel_4.png")
+AddMenuPanel("panel5", "ui/orc/panel_5.png")
