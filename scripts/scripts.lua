@@ -38,3 +38,8 @@ table.foreach(UnitTypeFiles,
 Load("scripts/icons.lua")
 Load("scripts/constructions.lua")
 
+if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+	Load("scripts/human/ui.lua")
+elseif (GetPlayerData(GetThisPlayer(), "RaceName") == "orc") then
+	Load("scripts/orc/ui.lua")
+end
