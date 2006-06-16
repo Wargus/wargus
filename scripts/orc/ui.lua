@@ -193,6 +193,8 @@ AddButtonPanelButton(9, 434)
 AddButtonPanelButton(65, 434)
 AddButtonPanelButton(121, 434)
 
+UI.ButtonPanel.X = 0
+UI.ButtonPanel.Y = 336
 UI.ButtonPanel.AutoCastBorderColorRGB = CColor(0, 0, 252)
 
 UI.MapArea.X = 176
