@@ -302,6 +302,10 @@ end
 
 Load("preferences1.lua")
 
+if (Video.Width == 0) then
+    SetVideoResolution(640, 480)
+end
+
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")
 
