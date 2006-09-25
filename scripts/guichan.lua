@@ -8,6 +8,20 @@ bckground:Load()
 bckground:Resize(Video.Width, Video.Height)
 backgroundWidget = ImageWidget(bckground)
 
+g_hbln = CGraphic:New("ui/human/widgets/button-large-normal.png")
+g_hbln:Load()
+g_hblp = CGraphic:New("ui/human/widgets/button-large-pressed.png")
+g_hblp:Load()
+g_hblg = CGraphic:New("ui/human/widgets/button-large-grayed.png")
+g_hblg:Load()
+
+g_hbsn = CGraphic:New("ui/human/widgets/button-small-normal.png")
+g_hbsn:Load()
+g_hbsp = CGraphic:New("ui/human/widgets/button-small-pressed.png")
+g_hbsp:Load()
+g_hbsg = CGraphic:New("ui/human/widgets/button-small-grayed.png")
+g_hbsg:Load()
+
 function AddMenuHelpers(menu)
   function menu:addCentered(widget, x, y)
     self:add(widget, x - widget:getWidth() / 2, y)
@@ -46,14 +60,30 @@ function AddMenuHelpers(menu)
     return b
   end
 
-  function menu:addFullButton(caption, hotkey, x, y, callback, size)
-    -- FIXME: use ImageButton
-    return self:addButton(caption, hotkey, x, y, callback, {224, 28})
+  function menu:addImageButton(caption, hotkey, x, y, callback)
+    local b = ImageButton(caption)
+    b:setHotKey(hotkey)
+    b:setActionCallback(callback)
+    self:add(b, x, y)
+    return b
+  end
+
+  function menu:addFullButton(caption, hotkey, x, y, callback)
+    local b = self:addImageButton(caption, hotkey, x, y, callback)
+    b:setNormalImage(g_hbln)
+    b:setPressedImage(g_hblp)
+    b:setDisabledImage(g_hblg)
+    b:setSize(224, 28)
+    return b
   end
 
   function menu:addHalfButton(caption, hotkey, x, y, callback)
-    -- FIXME: use ImageButton
-    return self:addButton(caption, hotkey, x, y, callback, {106, 28})
+    local b = self:addImageButton(caption, hotkey, x, y, callback)
+    b:setNormalImage(g_hbsn)
+    b:setPressedImage(g_hbsp)
+    b:setDisabledImage(g_hbsg)
+    b:setSize(106, 28)
+    return b
   end
 
   function menu:addSlider(min, max, w, h, x, y, callback)
