@@ -1,5 +1,5 @@
 -- Global useful objects for menus  ----------
-dark = Color(38, 38, 78, 130)
+dark = Color(38, 38, 78)
 clear = Color(200, 200, 120)
 black = Color(0, 0, 0)
 
@@ -217,12 +217,6 @@ Widget:setGlobalFont(Fonts["large"])
 
 -- Define the different menus ----------
 
-function RunSubMenu(s)
-  local menu
-  menu = WarMenu(_("Empty sub menu"))
-  menu:run()
-end
-
 function RunResultsMenu()
   local menu
   local background = "graphics/screens/menu.png"
@@ -291,6 +285,44 @@ mapresources = 5
 startingresources = 5
 
 function RunSinglePlayerGameMenu()
+  local menu = WarMenu()
+  local offx = (Video.Width - 640) / 2
+  local offy = (Video.Height - 480) / 2
+  local d
+
+  menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
+  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0, function() end)
+  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1, function() end)
+  menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() menu:stop() end)
+
+  menu:addLabel("~<Your Race:~>", offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
+  d = menu:addDropDown({"Map Default", "Human", "Orc"}, offx + 40, offy + 10 + 240,
+    function(dd) end)
+  d:setSize(152, 20)
+
+  menu:addLabel("~<Resources:~>", offx + 220, offy + (10 + 240) - 20, Fonts["game"], false)
+  d = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, offx + 220, offy + 10 + 240,
+    function(dd) end)
+  d:setSize(152, 20)
+
+  menu:addLabel("~<Units:~>", offx + 640 - 224 - 16, offy + (10 + 240) - 20, Fonts["game"], false)
+  d = menu:addDropDown({"Map Default", "One Peasant Only"}, offx + 640 - 224 - 16, offy + 10 + 240,
+    function(dd) end)
+  d:setSize(190, 20)
+
+  menu:addLabel("~<Opponents:~>", offx + 40, offy + (10 + 300) - 20, Fonts["game"], false)
+  d = menu:addDropDown({"Map Default", "1 Opponent", "2 Opponents", "3 Opponents", "4 Opponents", "5 Opponents", "6 Opponents", "7 Opponents"}, offx + 40, offy + 10 + 300,
+    function(dd) end)
+  d:setSize(152, 20)
+
+  menu:addLabel("~<Game Type:~>", offx + 220, offy + (10 + 300) - 20, Fonts["game"], false)
+  d = menu:addDropDown({"Use map settings", "Melee", "Free for all", "Top vs bottom", "Left vs right", "Man vs Machine"}, offx + 220, offy + 10 + 300,
+    function(dd) end)
+  d:setSize(152, 20)
+
+  menu:run()
+
+--[[
   local menu
   local maptext
   local descr
@@ -353,6 +385,7 @@ function RunSinglePlayerGameMenu()
 
   menu:run()
   PresentMap = OldPresentMap
+]]
 end
 
 function RunMultiPlayerGameMenu()
