@@ -109,29 +109,75 @@ function AddMenuHelpers(menu)
     return bq
   end
 
-  function menu:addBrowser(path, filter, x, y, w, h, lister)
-    local mapslist = {}
-    local u = 1
-    local fileslist
-    local i
-    local f
-    if lister == nil then
-       lister = ListFilesInDirectory
-    end
-    fileslist = lister(path)
-    for i,f in fileslist do
-      if (string.find(f, filter)) then
-        mapslist[u] = f
+  function menu:addBrowser(path, filter, x, y, w, h)
+    local function listfiles(path)
+      local dirlist = {}
+      local i
+      local f
+      local u = 1
+
+      local dirs = ListDirsInDirectory(path)
+      for i,f in dirs do
+        dirlist[u] = f .. "/"
         u = u + 1
       end
+
+      local fileslist = ListFilesInDirectory(path)
+      for i,f in fileslist do
+        if (string.find(f, filter)) then
+          dirlist[u] = f
+          u = u + 1
+        end
+      end
+
+      return dirlist
     end
 
-    local bq = self:addListBox(x, y, w, h, mapslist)
-    bq.getSelectedItem = function(self)
+    local bq = self:addListBox(x, y, w, h, listfiles(path))
+    function bq:getSelectedItem()
       if (self:getSelected() < 0) then
         return self.itemslist[1]
       end
       return self.itemslist[self:getSelected() + 1]
+    end
+
+    bq.origpath = path
+    bq.path = path
+    bq.actioncb = nil
+
+    local function cb(s)
+      local function updatelist()
+        bq.itemslist = listfiles(bq.path)
+        if (bq.path ~= bq.origpath) then
+          table.insert(bq.itemslist, 1, "../")
+        end
+        bq:setList(bq.itemslist)
+      end
+
+      local f = bq:getSelectedItem()
+      if (f == "../") then
+        local i
+        for i=string.len(bq.path)-1,1,-1 do
+          if (string.sub(bq.path, i, i) == "/") then
+            bq.path = string.sub(bq.path, 1, i)
+            updatelist()
+            break
+          end
+        end
+      elseif (string.sub(f, string.len(f)) == '/') then
+        bq.path = bq.path .. f
+        updatelist()
+      else
+        if (bq.actioncb ~= nil) then
+          bq:actioncb(s)
+        end
+      end
+    end
+    bq:setActionCallback(cb)
+
+    bq.oldSetActionCallback = bq.setActionCallback
+    function bq:setActionCallback(cb)
+      bq.actioncb = cb
     end
 
     return bq
@@ -280,6 +326,32 @@ function RunMap(map, objective, fow, revealmap)
   RunResultsMenu(s)
 end
 
+function RunSelectScenarioMenu()
+  local menu = WarMenu(nil, "ui/human/panel_5.png")
+  menu:setSize(352, 352)
+  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
+
+  menu:addLabel("Select scenario", 176, 8)
+
+  local l = menu:addLabel("", 24, 260, Fonts["game"], false)
+
+  local browser = menu:addBrowser("maps/", "^.*%.smp%.*g*z*$",
+    24, 140, 300, 108)
+  local function cb(s)
+    local f = browser:getSelectedItem()
+    l:setCaption(f)
+    l:adjustSize()
+  end
+  browser:setActionCallback(cb)
+
+  menu:addHalfButton("OK", 0, 48, 318,
+    function() menu:stop() end)
+  menu:addHalfButton("Cancel", 0, 198, 318,
+    function() menu:stop() end)
+
+  menu:run()
+end
+
 difficulty = 5
 mapresources = 5
 startingresources = 5
@@ -291,7 +363,7 @@ function RunSinglePlayerGameMenu()
   local d
 
   menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
-  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0, function() end)
+  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0, function() RunSelectScenarioMenu() end)
   menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1, function() end)
   menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() menu:stop() end)
 
