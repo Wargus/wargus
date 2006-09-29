@@ -392,9 +392,20 @@ function RunSinglePlayerGameMenu()
   local offy = (Video.Height - 480) / 2
   local d
 
+  menu:addLabel("Scenario:", offx + 16, offy + 380, Fonts["game"], false)
+  mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 380 + 24, Fonts["game"], false)
+
   menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
-  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0, function() RunSelectScenarioMenu() end)
-  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1, function() end)
+  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0,
+    function()
+      local oldmapname = mapname
+      RunSelectScenarioMenu()
+      if (mapname ~= oldmapname) then
+        mapl:setCaption(string.sub(mapname, 6))
+        mapl:adjustSize()
+      end
+    end)
+  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1, function() RunMap(mapname) end)
   menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() menu:stop() end)
 
   menu:addLabel("~<Your Race:~>", offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
