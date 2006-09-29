@@ -109,7 +109,8 @@ function AddMenuHelpers(menu)
     return bq
   end
 
-  function menu:addBrowser(path, filter, x, y, w, h)
+  function menu:addBrowser(path, filter, x, y, w, h, default)
+    -- Create a list of all dirs and files in a directory
     local function listfiles(path)
       local dirlist = {}
       local i
@@ -133,7 +134,41 @@ function AddMenuHelpers(menu)
       return dirlist
     end
 
-    local bq = self:addListBox(x, y, w, h, listfiles(path))
+    local bq = self:addListBox(x, y, w, h, {})
+    bq.origpath = path
+    bq.actioncb = nil
+
+    -- The directory changed, update the list
+    local function updatelist()
+      bq.itemslist = listfiles(bq.path)
+      if (bq.path ~= bq.origpath) then
+        table.insert(bq.itemslist, 1, "../")
+      end
+      bq:setList(bq.itemslist)
+    end
+
+    -- Change to the default directory and select the default file
+    if (default == nil) then
+      bq.path = path
+      updatelist()
+    else
+      local i
+      for i=string.len(default)-1,1,-1 do
+        if (string.sub(default, i, i) == "/") then
+          bq.path = string.sub(default, 1, i)
+          updatelist()
+
+          local f = string.sub(default, i + 1)
+          for i=1,table.getn(bq.itemslist) do
+            if (bq.itemslist[i] == f) then
+              bq:setSelected(i - 1)
+            end
+          end
+          break
+        end
+      end
+    end
+
     function bq:getSelectedItem()
       if (self:getSelected() < 0) then
         return self.itemslist[1]
@@ -141,19 +176,9 @@ function AddMenuHelpers(menu)
       return self.itemslist[self:getSelected() + 1]
     end
 
-    bq.origpath = path
-    bq.path = path
-    bq.actioncb = nil
-
+    -- If a directory was clicked change dirs
+    -- Otherwise call the user's callback
     local function cb(s)
-      local function updatelist()
-        bq.itemslist = listfiles(bq.path)
-        if (bq.path ~= bq.origpath) then
-          table.insert(bq.itemslist, 1, "../")
-        end
-        bq:setList(bq.itemslist)
-      end
-
       local f = bq:getSelectedItem()
       if (f == "../") then
         local i
@@ -326,6 +351,8 @@ function RunMap(map, objective, fow, revealmap)
   RunResultsMenu(s)
 end
 
+mapname = "maps/default.smp.gz"
+
 function RunSelectScenarioMenu()
   local menu = WarMenu(nil, "ui/human/panel_5.png")
   menu:setSize(352, 352)
@@ -333,19 +360,22 @@ function RunSelectScenarioMenu()
 
   menu:addLabel("Select scenario", 176, 8)
 
-  local l = menu:addLabel("", 24, 260, Fonts["game"], false)
-
   local browser = menu:addBrowser("maps/", "^.*%.smp%.*g*z*$",
-    24, 140, 300, 108)
+    24, 140, 300, 108, mapname)
+
+  local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
+
   local function cb(s)
-    local f = browser:getSelectedItem()
-    l:setCaption(f)
+    l:setCaption(browser:getSelectedItem())
     l:adjustSize()
   end
   browser:setActionCallback(cb)
 
   menu:addHalfButton("OK", 0, 48, 318,
-    function() menu:stop() end)
+    function()
+      mapname = browser.path .. l:getCaption()
+      menu:stop()
+    end)
   menu:addHalfButton("Cancel", 0, 198, 318,
     function() menu:stop() end)
 
