@@ -37,7 +37,7 @@ function RunGameMenu()
   menu:addHalfButton("Load (~<F12~>)", "f12", 16 + 12 + 106, 40,
     function() end)
   menu:addFullButton("Options (~<F5~>)", "f5", 16, 40 + 36*1,
-    function() end)
+    function() RunGameOptionsMenu() end)
   menu:addFullButton("Help (~<F1~>)", "f1", 16, 40 + 36*2,
     function() RunHelpMenu() end)
   menu:addFullButton("Scenario ~!Objectives", "o", 16, 40 + 36*3,
