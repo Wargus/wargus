@@ -34,6 +34,12 @@ opanel3 = "ui/orc/panel_3.png"
 opanel4 = "ui/orc/panel_4.png"
 opanel5 = "ui/orc/panel_5.png"
 
+hvictory = "ui/human/victory.png"
+hdefeat = "ui/human/defeat.png"
+ovictory = "ui/orc/victory.png"
+odefeat = "ui/orc/defeat.png"
+
+
 function AddMenuHelpers(menu)
   function menu:addCentered(widget, x, y)
     self:add(widget, x - widget:getWidth() / 2, y)
@@ -302,31 +308,31 @@ Widget:setGlobalFont(Fonts["large"])
 
 function RunResultsMenu()
   local menu
-  local background = "graphics/screens/menu.png"
+  local background = hdefeat
   local sx = Video.Width / 20
   local sy = Video.Height / 20
   local result
 
   if GameResult == GameVictory then
-    result = _("Victory !")
-    background = "graphics/screens/victory.png"
+    result = "Victory !"
+    background = hvictory
   elseif GameResult == GameDraw then
-    result = _("Draw !")
+    result = "Draw !"
   elseif GameResult == GameDefeat then
-    result = _("Defeat !")
-    background = "graphics/screens/defeat.png"
+    result = "Defeat !"
+    background = hdefeat
   else 
     return
   end
 
-  menu = WarMenu(_("Results"), background)
+  menu = WarMenu("Results", background)
   menu:writeLargeText(result, sx*6, sy*5)
 
-  menu:writeText(_("Player"), sx*3, sy*7)
-  menu:writeText(_("Units"), sx*6, sy*7)
-  menu:writeText(_("Buildings"), sx*8, sy*7)
-  menu:writeText(_("Kills"), sx*10, sy*7)
-  menu:writeText(_("Razings"), sx*12, sy*7)
+  menu:writeText("Player", sx*3, sy*7)
+  menu:writeText("Units", sx*6, sy*7)
+  menu:writeText("Buildings", sx*8, sy*7)
+  menu:writeText("Kills", sx*10, sy*7)
+  menu:writeText("Razings", sx*12, sy*7)
 
   for i=0,7 do
     if (GetPlayerData(i, "TotalUnits") > 0 ) then
@@ -372,7 +378,7 @@ function RunSelectScenarioMenu()
 
   menu:addLabel("Select scenario", 176, 8)
 
-  local browser = menu:addBrowser("maps/", "^.*%.smp%.*g*z*$",
+  local browser = menu:addBrowser("maps/", "^.*%.smp%.?g?z?$",
     24, 140, 300, 108, mapname)
 
   local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
