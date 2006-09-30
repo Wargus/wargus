@@ -334,6 +334,7 @@ Load("scripts/fonts.lua")
 Load("scripts/buttons.lua")
 Load("scripts/ui.lua")
 Load("scripts/ai.lua")
+Load("scripts/commands.lua")
 Load("scripts/cheats.lua")
 
 print("... ready!\n")
