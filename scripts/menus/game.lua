@@ -26,6 +26,7 @@ function WarGameMenu(background)
 end
 
 
+
 function RunGameMenu()
   local menu = WarGameMenu(hpanel1)
 
@@ -38,7 +39,7 @@ function RunGameMenu()
   menu:addFullButton("Options (~<F5~>)", "f5", 16, 40 + 36*1,
     function() end)
   menu:addFullButton("Help (~<F1~>)", "f1", 16, 40 + 36*2,
-    function() end)
+    function() RunHelpMenu() end)
   menu:addFullButton("Scenario ~!Objectives", "o", 16, 40 + 36*3,
     function() end)
   menu:addFullButton("~!End Scenario", "e", 16, 40 + 36*4,
