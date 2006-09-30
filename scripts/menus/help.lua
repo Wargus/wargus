@@ -55,9 +55,7 @@ local keystrokes = {
 
 function RunKeystrokeHelpMenu()
   local menu = WarGameMenu(hpanel5)
-  menu:setSize(352, 352)
-  menu:setPosition((Video.Width - menu:getWidth()) / 2,
-    (Video.Height - menu:getHeight()) / 2)
+  menu:resize(352, 352)
 
   local c = Container()
   c:setOpaque(false)
@@ -113,9 +111,7 @@ local tips = {
 
 function RunTipsMenu()
   local menu = WarGameMenu(hpanel2)
-  menu:setSize(288, 256)
-  menu:setPosition((Video.Width - menu:getWidth()) / 2,
-    (Video.Height - menu:getHeight()) / 2)
+  menu:resize(288, 256)
 
   menu:addLabel("Tips", 144, 11)
 

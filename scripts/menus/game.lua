@@ -43,7 +43,7 @@ function RunGameMenu()
   menu:addFullButton("Scenario ~!Objectives", "o", 16, 40 + 36*3,
     function() end)
   menu:addFullButton("~!End Scenario", "e", 16, 40 + 36*4,
-    function() end)
+    function() RunEndScenarioMenu() end)
   menu:addFullButton("Return to Game (~<Esc~>)", "escape", 16, 288 - 40,
     function() menu:stop() end)
 
