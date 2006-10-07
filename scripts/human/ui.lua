@@ -202,11 +202,6 @@ UI.MapArea.Y = 16
 UI.MapArea.EndX = Video.Width - 16 - 1
 UI.MapArea.EndY = Video.Height - 16 - 1
 
-UI.MapArea.ScrollPaddingLeft = 192
-UI.MapArea.ScrollPaddingRight = 192
-UI.MapArea.ScrollPaddingTop = 192
-UI.MapArea.ScrollPaddingBottom = 192
-
 UI.Minimap.X = 24
 UI.Minimap.Y = 24 + 2
 UI.Minimap.W = 128
@@ -218,28 +213,28 @@ UI.StatusLine.Width = Video.Width - 16 - 2 - 176
 UI.StatusLine.Font = Fonts["game"]
 
 -- gold
-UI.Resources[0].G = CGraphic:New("ui/gold,wood,oil,mana.png", 14, 14)
-UI.Resources[0].IconFrame = 0
-UI.Resources[0].IconX = 176 + 0
-UI.Resources[0].IconY = 0
-UI.Resources[0].TextX = 176 + 0 + 18
-UI.Resources[0].TextY = 1
-
--- wood
 UI.Resources[1].G = CGraphic:New("ui/gold,wood,oil,mana.png", 14, 14)
-UI.Resources[1].IconFrame = 1
-UI.Resources[1].IconX = 176 + 75
+UI.Resources[1].IconFrame = 0
+UI.Resources[1].IconX = 176 + 0
 UI.Resources[1].IconY = 0
-UI.Resources[1].TextX = 176 + 75 + 18
+UI.Resources[1].TextX = 176 + 0 + 18
 UI.Resources[1].TextY = 1
 
--- oil
+-- wood
 UI.Resources[2].G = CGraphic:New("ui/gold,wood,oil,mana.png", 14, 14)
-UI.Resources[2].IconFrame = 2
-UI.Resources[2].IconX = 176 + 150
+UI.Resources[2].IconFrame = 1
+UI.Resources[2].IconX = 176 + 75
 UI.Resources[2].IconY = 0
-UI.Resources[2].TextX = 176 + 150 + 18
+UI.Resources[2].TextX = 176 + 75 + 18
 UI.Resources[2].TextY = 1
+
+-- oil
+UI.Resources[3].G = CGraphic:New("ui/gold,wood,oil,mana.png", 14, 14)
+UI.Resources[3].IconFrame = 2
+UI.Resources[3].IconX = 176 + 150
+UI.Resources[3].IconY = 0
+UI.Resources[3].TextX = 176 + 150 + 18
+UI.Resources[3].TextY = 1
 
 -- food
 UI.Resources[FoodCost].G = CGraphic:New("ui/food.png", 14, 14)
