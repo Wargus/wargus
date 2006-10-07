@@ -273,7 +273,7 @@ function AddMenuHelpers(menu)
   end
 end
 
-function WarMenu(title, background)
+function WarMenu(title, background, resize)
   local menu
   local exitButton
   local bg
@@ -286,7 +286,9 @@ function WarMenu(title, background)
   else
     bgg = CGraphic:New(background)
     bgg:Load()
-    bgg:Resize(Video.Width, Video.Height)
+    if (resize == nil or resize == true) then
+      bgg:Resize(Video.Width, Video.Height)
+    end
     bg = ImageWidget(bgg)
   end
   menu:add(bg, 0, 0)
@@ -372,9 +374,10 @@ end
 mapname = "maps/default.smp.gz"
 
 function RunSelectScenarioMenu()
-  local menu = WarMenu(nil, hpanel5)
+  local menu = WarMenu(nil, hpanel5, false)
   menu:setSize(352, 352)
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
+  menu:setDrawMenusUnder(true)
 
   menu:addLabel("Select scenario", 176, 8)
 
