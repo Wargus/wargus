@@ -642,27 +642,6 @@ function RunOptionsMenu()
   end
 end
 
-function RunEditorMenu()
---[[
-  local menu
-  menu = WarMenu(_("Editor"))
-
-  local browser = menu:addBrowser("maps/", "^.*%.smp$", 300, 100, 300, 200)
-  function starteditorbutton(s)
-    UI.MenuButton:SetCallback(function() RunEditorIngameMenu() end)
-    HandleCommandKey = HandleEditorIngameCommandKey
-    StartEditor("maps/" .. browser:getSelectedItem())
-    UI.MenuButton:SetCallback(function() RunGameMenu() end)
-    HandleCommandKey = HandleIngameCommandKey
-    menu:stop()
-  end
-
-  menu:addButton(_("Start Editor"), 0, 100, 300, starteditorbutton)
-
-  menu:run()
-]]
-end
-
 function BuildProgramStartMenu()
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
@@ -675,8 +654,7 @@ function BuildProgramStartMenu()
   menu:addFullButton("~!Replay Game", "r", offx + 208, offy + 104 + 36*4, RunReplayGameMenu)
   menu:addFullButton("~!Options", "o", offx + 208, offy + 104 + 36*5,
     function() RunOptionsMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Editor", "e", offx + 208, offy + 104 + 36*6, RunEditorMenu)
-  menu:addFullButton("S~!how Credits", "h", offx + 208, offy + 104 + 36*7, RunShowCreditsMenu)
+  menu:addFullButton("S~!how Credits", "h", offx + 208, offy + 104 + 36*6, RunShowCreditsMenu)
 
   menu:addFullButton("E~!xit Program", "x", offx + 208, offy + 104 + 36*8,
     function() menu:stop() end)
