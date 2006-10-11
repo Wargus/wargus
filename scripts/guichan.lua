@@ -676,6 +676,7 @@ Load("scripts/menus/help.lua")
 Load("scripts/menus/endscenario.lua")
 Load("scripts/menus/options.lua")
 Load("scripts/menus/diplomacy.lua")
+Load("scripts/menus/save.lua")
 
 RunProgramStartMenu()
 
