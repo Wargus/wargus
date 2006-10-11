@@ -34,7 +34,7 @@ function RunGameMenu()
   menu:addLabel("Game Menu", 128, 11)
 
   menu:addHalfButton("Save (~<F11~>)", "f11", 16, 40,
-    function() end)
+    function() RunSaveMenu() end)
   menu:addHalfButton("Load (~<F12~>)", "f12", 16 + 12 + 106, 40,
     function() end)
   menu:addFullButton("Options (~<F5~>)", "f5", 16, 40 + 36*1,
