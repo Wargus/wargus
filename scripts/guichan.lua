@@ -534,7 +534,7 @@ function RunReplayGameMenu()
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
   menu:setDrawMenusUnder(true)
 
-  menu:addLabel("Select game", 352 / 2, 11)
+  menu:addLabel("Select Game", 352 / 2, 11)
 
   local browser = menu:addBrowser("~logs/", ".log$",
     (352 - 18 - 288) / 2, 11 + 98, 306, 108)
@@ -553,12 +553,16 @@ end
 
 
 function RunLoadGameMenu()
---[[
-  local menu
+  local menu = WarMenu(nil, hpanel3, false)
+  menu:setSize(384, 256)
+  menu:setPosition((Video.Width - 384) / 2, (Video.Height - 256) / 2)
+  menu:setDrawMenusUnder(true)
+
+  menu:addLabel("Load Game", 384 / 2, 11)
+
   local b
 
-  menu = WarMenu(_("Load Game"))
-  local browser = menu:addBrowser("~save", ".sav.gz$", 300, 100, 300, 200)
+  local browser = menu:addBrowser("~save", ".sav.gz$", (384 - 300 - 18) / 2, 11 + (36 * 1.5), 318, 126)
     function startgamebutton(s)
       print("Starting saved game")
       currentCampaign = nil
@@ -583,10 +587,12 @@ function RunLoadGameMenu()
       end
     menu:stop()
   end
-  menu:addButton(_("Start"), 0, 100, 300, startgamebutton)
+
+  menu:addHalfButton("~!Load", "l", (384 - 300 - 18) / 2, 256 - 16 - 27, startgamebutton)
+  menu:addHalfButton("~!Cancel", "c", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27,
+    function() menu:stop() end)
 
   menu:run()
-]]
 end
 
 function SetVideoSize(width, height)
@@ -624,7 +630,7 @@ function BuildOptionsMenu()
     function() SetVideoSize(1600, 960) menu:stop(1) end)
   if (Video.Width == 1600) then b:setMarked(true) end
 
-  b = menu:addCheckBox("Fullscreen", offx + 17, offy + 65 + 26*5,
+  b = menu:addCheckBox("Full screen", offx + 17, offy + 65 + 26*5,
     function()
       ToggleFullScreen()
       preferences.VideoFullScreen = Video.FullScreen
