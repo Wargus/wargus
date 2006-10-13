@@ -529,24 +529,26 @@ function RunCampaignGameMenu()
 end
 
 function RunReplayGameMenu()
---[[
-  local menu
-  menu = WarMenu(_("Show a Replay"))
+  local menu = WarMenu(nil, hpanel5, false)
+  menu:setSize(352, 352)
+  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
+  menu:setDrawMenusUnder(true)
 
-  local browser = menu:addBrowser("~logs/", ".log$", 300, 100, 300, 200)
+  menu:addLabel("Select game", 352 / 2, 11)
 
-  local reveal = menu:addCheckBox(_("Reveal map"), 100, 250, function() end)
+  local browser = menu:addBrowser("~logs/", ".log$",
+    (352 - 18 - 288) / 2, 11 + 98, 306, 108)
 
-  function startreplaybutton(s)
-    print("Starting map -------")
-    StartReplay("~logs/" .. browser:getSelectedItem(), reveal:isMarked())
-    menu:stop()
-  end
+  local reveal = menu:addCheckBox("Reveal Map", 23, 264, function() end)
 
-  menu:addButton(_("~!Start"), "s", 100, 300, startreplaybutton)
+  menu:addHalfButton("~!OK", "o", 48, 308,
+    function()
+      StartReplay("~logs/" .. browser:getSelectedItem(), reveal:isMarked())
+      menu:stop()
+    end)
+  menu:addHalfButton("~!Cancel", "c", 198, 308, function() menu:stop() end)
 
   menu:run()
-]]
 end
 
 
