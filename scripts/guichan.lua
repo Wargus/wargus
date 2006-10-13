@@ -536,7 +536,7 @@ function RunReplayGameMenu()
 
   menu:addLabel("Select Game", 352 / 2, 11)
 
-  local browser = menu:addBrowser("~logs/", ".log$",
+  local browser = menu:addBrowser("~logs/", "%.log%.?g?z?$",
     (352 - 18 - 288) / 2, 11 + 98, 306, 108)
 
   local reveal = menu:addCheckBox("Reveal Map", 23, 264, function() end)
@@ -559,32 +559,31 @@ function RunLoadGameMenu()
   menu:setDrawMenusUnder(true)
 
   menu:addLabel("Load Game", 384 / 2, 11)
+  local browser = menu:addBrowser("~save", "^.*%.sav%.?g?z?$",
+    (384 - 300 - 18) / 2, 11 + (36 * 1.5), 318, 126)
 
-  local b
-
-  local browser = menu:addBrowser("~save", ".sav.gz$", (384 - 300 - 18) / 2, 11 + (36 * 1.5), 318, 126)
-    function startgamebutton(s)
-      print("Starting saved game")
-      currentCampaign = nil
-      loop = true
-      while (loop) do
-        StartSavedGame("~save/" .. browser:getSelectedItem())
-        if (GameResult ~= GameRestart) then
-          loop = false
-        end
+  function startgamebutton(s)
+    print("Starting saved game")
+    currentCampaign = nil
+    loop = true
+    while (loop) do
+      StartSavedGame("~save/" .. browser:getSelectedItem())
+      if (GameResult ~= GameRestart) then
+        loop = false
       end
-      RunResultsMenu()
-      if currentCampaign ~= nil then
-         if GameResult == GameVictory then
-            position = position + 1
-         elseif GameResult == GameDefeat then
-            position = position
-         else
-            currentCampaign = nil
-            return
-         end
-         RunCampaign(currentCampaign)
+    end
+    RunResultsMenu()
+    if currentCampaign ~= nil then
+      if GameResult == GameVictory then
+        position = position + 1
+      elseif GameResult == GameDefeat then
+        position = position
+      else
+        currentCampaign = nil
+        return
       end
+      RunCampaign(currentCampaign)
+    end
     menu:stop()
   end
 
@@ -630,7 +629,7 @@ function BuildOptionsMenu()
     function() SetVideoSize(1600, 960) menu:stop(1) end)
   if (Video.Width == 1600) then b:setMarked(true) end
 
-  b = menu:addCheckBox("Full screen", offx + 17, offy + 65 + 26*5,
+  b = menu:addCheckBox("Full Screen", offx + 17, offy + 65 + 26*5 + 14,
     function()
       ToggleFullScreen()
       preferences.VideoFullScreen = Video.FullScreen
