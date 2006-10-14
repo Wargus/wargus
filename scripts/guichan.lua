@@ -308,47 +308,6 @@ Widget:setGlobalFont(Fonts["large"])
 
 -- Define the different menus ----------
 
-function RunResultsMenu()
-  local menu
-  local background = hdefeat
-  local sx = Video.Width / 20
-  local sy = Video.Height / 20
-  local result
-
-  if GameResult == GameVictory then
-    result = "Victory !"
-    background = hvictory
-  elseif GameResult == GameDraw then
-    result = "Draw !"
-  elseif GameResult == GameDefeat then
-    result = "Defeat !"
-    background = hdefeat
-  else 
-    return
-  end
-
-  menu = WarMenu("Results", background)
-  menu:writeLargeText(result, sx*6, sy*5)
-
-  menu:writeText("Player", sx*3, sy*7)
-  menu:writeText("Units", sx*6, sy*7)
-  menu:writeText("Buildings", sx*8, sy*7)
-  menu:writeText("Kills", sx*10, sy*7)
-  menu:writeText("Razings", sx*12, sy*7)
-
-  for i=0,7 do
-    if (GetPlayerData(i, "TotalUnits") > 0 ) then
-      menu:writeText(i .. " ".. GetPlayerData(i, "Name"), sx*3, sy*(8+i))
-      menu:writeText(GetPlayerData(i, "TotalUnits"), sx*6, sy*(8+i))
-      menu:writeText(GetPlayerData(i, "TotalBuildings"), sx*8, sy*(8+i))
-      menu:writeText(GetPlayerData(i, "TotalKills"), sx*10, sy*(8+i))
-      menu:writeText(GetPlayerData(i, "TotalRazings"), sx*12, sy*(8+i))     
-    end
-  end
-
-  menu:run()
-end
-
 function RunMap(map, objective, fow, revealmap)
   if objective == nil then
     current_objective = default_objective
@@ -403,10 +362,6 @@ function RunSelectScenarioMenu()
   menu:run()
 end
 
-difficulty = 5
-mapresources = 5
-startingresources = 5
-
 function RunSinglePlayerGameMenu()
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
@@ -455,198 +410,9 @@ function RunSinglePlayerGameMenu()
   d:setSize(152, 20)
 
   menu:run()
-
---[[
-  local menu
-  local maptext
-  local descr
-  local numplayers = 2
-  local players
-  local sx = Video.Width / 20
-  local sy = Video.Height / 20
-  local map = "islandwar.smp"
-
-  menu = WarMenu(_("Start Game"))
-
-  menu:writeLargeText(_("Map"), sx, sy*3)
-  menu:writeText(_("File:"), sx, sy*3+30)
-  maptext = menu:writeText(map, sx+50, sy*3+30)
-  menu:writeText(_("Players:"), sx, sy*3+50)
-  players = menu:writeText(numplayers, sx+70, sy*3+50)
-  menu:writeText(_("Description:"), sx, sy*3+70)
-  descr = menu:writeText(description, sx+20, sy*3+90)
-
-  local fow = menu:addCheckBox(_("Fog of war"), sx, sy*3+120, function() end)
-  fow:setMarked(preferences.FogOfWar)
-  local revealmap = menu:addCheckBox(_("Reveal map"), sx, sy*3+150, function() end)
-  
-  menu:writeText(_("Difficulty:"), sx, sy*11)
-  menu:addDropDown({_("easy"), _("normal"), _("hard")}, sx + 90, sy*11 + 7,
-    function(dd) difficulty = (5 - dd:getSelected()*2) end)
-  menu:writeText(_("Map richness:"), sx, sy*11+25)
-  menu:addDropDown({_("high"), _("normal"), _("low")}, sx + 110, sy*11+25 + 7,
-    function(dd) mapresources = (5 - dd:getSelected()*2) end)
-  menu:writeText(_("Starting resources:"), sx, sy*11+50)
-  menu:addDropDown({_("high"), _("normal"), _("low")}, sx + 150, sy*11+50 + 7,
-    function(dd) startingresources = (5 - dd:getSelected()*2) end)
-
-  local OldPresentMap = PresentMap
-  PresentMap = function(description, nplayers, w, h, id)
-    print(description)
-    numplayers = nplayers
-    players:setCaption(""..nplayers)
-    descr:setCaption(description)
-    OldPresentMap(description, nplayers, w, h, id)
-  end
- 
-  Load("maps/"..map)
-  local browser = menu:addBrowser("maps/", "^.*%.smp$",  sx*10, sy*2+20, sx*8, sy*11)
-  local function cb(s)
-    print(browser:getSelectedItem())
-    maptext:setCaption(browser:getSelectedItem())
-    Load("maps/" .. browser:getSelectedItem())
-    map = browser:getSelectedItem()
-  end
-  browser:setActionCallback(cb)
-
-  local function startgamebutton(s)
-    print("Starting map -------")
-    RunMap("maps/" .. map, nil, fow:isMarked(), revealmap:isMarked())
-    PresentMap = OldPresentMap
-    menu:stop()
-  end
-  menu:addButton(_("Start"), 0,  sx * 11,  sy*14, startgamebutton)
-
-  menu:run()
-  PresentMap = OldPresentMap
-]]
 end
 
 function RunMultiPlayerGameMenu()
-end
-
-function RunCampaignGameMenu()
-end
-
-function RunReplayGameMenu()
-  local menu = WarMenu(nil, hpanel5, false)
-  menu:setSize(352, 352)
-  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
-  menu:setDrawMenusUnder(true)
-
-  menu:addLabel("Select Game", 352 / 2, 11)
-
-  local browser = menu:addBrowser("~logs/", "%.log%.?g?z?$",
-    (352 - 18 - 288) / 2, 11 + 98, 306, 108)
-
-  local reveal = menu:addCheckBox("Reveal Map", 23, 264, function() end)
-
-  menu:addHalfButton("~!OK", "o", 48, 308,
-    function()
-      StartReplay("~logs/" .. browser:getSelectedItem(), reveal:isMarked())
-      menu:stop()
-    end)
-  menu:addHalfButton("~!Cancel", "c", 198, 308, function() menu:stop() end)
-
-  menu:run()
-end
-
-
-function RunLoadGameMenu()
-  local menu = WarMenu(nil, hpanel3, false)
-  menu:setSize(384, 256)
-  menu:setPosition((Video.Width - 384) / 2, (Video.Height - 256) / 2)
-  menu:setDrawMenusUnder(true)
-
-  menu:addLabel("Load Game", 384 / 2, 11)
-  local browser = menu:addBrowser("~save", "^.*%.sav%.?g?z?$",
-    (384 - 300 - 18) / 2, 11 + (36 * 1.5), 318, 126)
-
-  function startgamebutton(s)
-    print("Starting saved game")
-    currentCampaign = nil
-    loop = true
-    while (loop) do
-      StartSavedGame("~save/" .. browser:getSelectedItem())
-      if (GameResult ~= GameRestart) then
-        loop = false
-      end
-    end
-    RunResultsMenu()
-    if currentCampaign ~= nil then
-      if GameResult == GameVictory then
-        position = position + 1
-      elseif GameResult == GameDefeat then
-        position = position
-      else
-        currentCampaign = nil
-        return
-      end
-      RunCampaign(currentCampaign)
-    end
-    menu:stop()
-  end
-
-  menu:addHalfButton("~!Load", "l", (384 - 300 - 18) / 2, 256 - 16 - 27, startgamebutton)
-  menu:addHalfButton("~!Cancel", "c", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27,
-    function() menu:stop() end)
-
-  menu:run()
-end
-
-function SetVideoSize(width, height)
-  Video:ResizeScreen(width, height)
-  bckground:Resize(Video.Width, Video.Height)
-  backgroundWidget = ImageWidget(bckground)
-  Load("scripts/ui.lua")
-  preferences.VideoWidth = Video.Width
-  preferences.VideoHeight = Video.Height
-  SavePreferences()
-end
-
-function BuildOptionsMenu()
-  local menu = WarMenu()
-  local offx = (Video.Width - 352) / 2
-  local offy = (Video.Height - 352) / 2
-  local b
-
-  menu:addLabel("Global Options", offx + 176, offy + 11)
-  menu:addLabel("Video Resolution", offx + 16, offy + 44, Fonts["game"], false)
-
-  b = menu:addCheckBox("640 x 480", offx + 16, offy + 65 + 26*0,
-    function() SetVideoSize(640, 480) menu:stop(1) end)
-  if (Video.Width == 640) then b:setMarked(true) end
-  b = menu:addCheckBox("800 x 600", offx + 16, offy + 65 + 26*1,
-    function() SetVideoSize(800, 600) menu:stop(1) end)
-  if (Video.Width == 800) then b:setMarked(true) end
-  b = menu:addCheckBox("1024 x 768", offx + 16, offy + 65 + 26*2,
-    function() SetVideoSize(1024, 768) menu:stop(1) end)
-  if (Video.Width == 1024) then b:setMarked(true) end
-  b = menu:addCheckBox("1280 x 960", offx + 16, offy + 65 + 26*3,
-    function() SetVideoSize(1280, 960) menu:stop(1) end)
-  if (Video.Width == 1280) then b:setMarked(true) end
-  b = menu:addCheckBox("1600 x 1200", offx + 16, offy + 65 + 26*4,
-    function() SetVideoSize(1600, 960) menu:stop(1) end)
-  if (Video.Width == 1600) then b:setMarked(true) end
-
-  b = menu:addCheckBox("Full Screen", offx + 17, offy + 65 + 26*5 + 14,
-    function()
-      ToggleFullScreen()
-      preferences.VideoFullScreen = Video.FullScreen
-      SavePreferences()
-    end)
-  b:setMarked(Video.FullScreen)
-
-  menu:addHalfButton("~!OK", "o", offx + 123, offy + 309, function() menu:stop() end)
-
-  return menu:run()
-end
-
-function RunOptionsMenu()
-  local continue = 1
-  while (continue == 1) do
-    continue = BuildOptionsMenu()
-  end
 end
 
 function BuildProgramStartMenu()
@@ -677,13 +443,19 @@ function RunProgramStartMenu()
   end
 end
 
+
+Load("scripts/menus/campaign.lua")
+Load("scripts/menus/load.lua")
+Load("scripts/menus/save.lua")
+Load("scripts/menus/replay.lua")
+Load("scripts/menus/options.lua")
 Load("scripts/menus/credits.lua")
 Load("scripts/menus/game.lua")
 Load("scripts/menus/help.lua")
 Load("scripts/menus/endscenario.lua")
-Load("scripts/menus/options.lua")
 Load("scripts/menus/diplomacy.lua")
-Load("scripts/menus/save.lua")
+Load("scripts/menus/results.lua")
+
 
 RunProgramStartMenu()
 
