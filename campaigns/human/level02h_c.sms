@@ -1,12 +1,12 @@
 --	Stratagus Map - Single player campaign
 
-Briefing("type", "wc2",
+Briefing(
 ^^TITLE^^
 ^^OBJECTIVES^^
-  "background", "../campaigns/human/interface/introscreen1.png",
-  "text", "campaigns/human/level02h.txt",
-  "voice", "campaigns/human/level02h-intro1.wav",
-  "voice", "campaigns/human/level02h-intro2.wav"
+  "../campaigns/human/interface/introscreen1.png",
+  "campaigns/human/level02h.txt",
+  {"campaigns/human/level02h-intro1.wav",
+   "campaigns/human/level02h-intro2.wav"}
 )
 
 AddTrigger(

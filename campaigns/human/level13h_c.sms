@@ -1,12 +1,12 @@
 --	Stratagus Map - Single player campaign
 
-Briefing("type", "wc2",
+Briefing(
 ^^TITLE^^
 ^^OBJECTIVES^^
-  "background", "../campaigns/human/interface/introscreen5.png",
-  "text", "campaigns/human/level13h.txt",
-  "voice", "campaigns/human/level13h-intro1.wav",
-  "voice", "campaigns/human/level13h-intro2.wav"
+  "../campaigns/human/interface/introscreen5.png",
+  "campaigns/human/level13h.txt",
+  {"campaigns/human/level13h-intro1.wav",
+   "campaigns/human/level13h-intro2.wav"}
 )
 
 -- FIXME: Check if units are destroyed.

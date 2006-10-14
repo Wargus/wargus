@@ -2,13 +2,13 @@
 
 -- FIXME: the peasant must attack the others!
 
-Briefing("type", "wc2",
+Briefing(
 ^^TITLE^^
 ^^OBJECTIVES^^
-  "background", "../campaigns/human/interface/introscreen3.png",
-  "text", "campaigns/human/level08h.txt",
-  "voice", "campaigns/human/level08h-intro1.wav",
-  "voice", "campaigns/human/level08h-intro2.wav"
+  "../campaigns/human/interface/introscreen3.png",
+  "campaigns/human/level08h.txt",
+  {"campaigns/human/level08h-intro1.wav",
+   "campaigns/human/level08h-intro2.wav"}
 )
 
 AddTrigger(
