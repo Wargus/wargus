@@ -33,9 +33,19 @@
 
 campaign_steps = {
   CreateMapStep("campaigns/human/level01h.smp"),
-  CreateMapStep("campaigns/human/level02h.smp")
-  CreateMapStep("campaigns/human/level03h.smp")
-  CreateMapStep("campaigns/human/level04h.smp")
+  CreateMapStep("campaigns/human/level02h.smp"),
+  CreateMapStep("campaigns/human/level03h.smp"),
+  CreateMapStep("campaigns/human/level04h.smp"),
+  CreateMapStep("campaigns/human/level05h.smp"),
+  CreateMapStep("campaigns/human/level06h.smp"),
+  CreateMapStep("campaigns/human/level07h.smp"),
+  CreateMapStep("campaigns/human/level08h.smp"),
+  CreateMapStep("campaigns/human/level09h.smp"),
+  CreateMapStep("campaigns/human/level10h.smp"),
+  CreateMapStep("campaigns/human/level11h.smp"),
+  CreateMapStep("campaigns/human/level12h.smp"),
+  CreateMapStep("campaigns/human/level13h.smp"),
+  CreateMapStep("campaigns/human/level14h.smp")
 }
 
 --[[
