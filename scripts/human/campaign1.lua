@@ -31,6 +31,14 @@
 --=============================================================================
 --	Define the campaign
 
+campaign_steps = {
+  CreateMapStep("campaigns/human/level01h.smp"),
+  CreateMapStep("campaigns/human/level02h.smp")
+  CreateMapStep("campaigns/human/level03h.smp")
+  CreateMapStep("campaigns/human/level04h.smp")
+}
+
+--[[
 DefineCampaign("human", "name", "~!Human campaign",
   "campaign", {
 	--"play-movie", "movie/splash2.avi",
@@ -132,3 +140,4 @@ DefineCampaign("human", "name", "~!Human campaign",
 	"play-level", "campaigns/human/level12h.smp",
 	"play-level", "campaigns/human/level13h.smp",
 	"play-level", "campaigns/human/level14h.smp" } )
+]]

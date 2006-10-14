@@ -89,6 +89,61 @@ function RunGameSoundOptionsMenu(s)
   menu:run(false)
 end
 
+function SetVideoSize(width, height)
+  Video:ResizeScreen(width, height)
+  bckground:Resize(Video.Width, Video.Height)
+  backgroundWidget = ImageWidget(bckground)
+  Load("scripts/ui.lua")
+  preferences.VideoWidth = Video.Width
+  preferences.VideoHeight = Video.Height
+  SavePreferences()
+end
+
+function BuildOptionsMenu()
+  local menu = WarMenu()
+  local offx = (Video.Width - 352) / 2
+  local offy = (Video.Height - 352) / 2
+  local b
+
+  menu:addLabel("Global Options", offx + 176, offy + 11)
+  menu:addLabel("Video Resolution", offx + 16, offy + 44, Fonts["game"], false)
+
+  b = menu:addCheckBox("640 x 480", offx + 16, offy + 65 + 26*0,
+    function() SetVideoSize(640, 480) menu:stop(1) end)
+  if (Video.Width == 640) then b:setMarked(true) end
+  b = menu:addCheckBox("800 x 600", offx + 16, offy + 65 + 26*1,
+    function() SetVideoSize(800, 600) menu:stop(1) end)
+  if (Video.Width == 800) then b:setMarked(true) end
+  b = menu:addCheckBox("1024 x 768", offx + 16, offy + 65 + 26*2,
+    function() SetVideoSize(1024, 768) menu:stop(1) end)
+  if (Video.Width == 1024) then b:setMarked(true) end
+  b = menu:addCheckBox("1280 x 960", offx + 16, offy + 65 + 26*3,
+    function() SetVideoSize(1280, 960) menu:stop(1) end)
+  if (Video.Width == 1280) then b:setMarked(true) end
+  b = menu:addCheckBox("1600 x 1200", offx + 16, offy + 65 + 26*4,
+    function() SetVideoSize(1600, 960) menu:stop(1) end)
+  if (Video.Width == 1600) then b:setMarked(true) end
+
+  b = menu:addCheckBox("Full Screen", offx + 17, offy + 65 + 26*5 + 14,
+    function()
+      ToggleFullScreen()
+      preferences.VideoFullScreen = Video.FullScreen
+      SavePreferences()
+    end)
+  b:setMarked(Video.FullScreen)
+
+  menu:addHalfButton("~!OK", "o", offx + 123, offy + 309, function() menu:stop() end)
+
+  return menu:run()
+end
+
+function RunOptionsMenu()
+  local continue = 1
+  while (continue == 1) do
+    continue = BuildOptionsMenu()
+  end
+end
+
 function RunGameOptionsMenu()
   local menu = WarGameMenu(hpanel1)
 
