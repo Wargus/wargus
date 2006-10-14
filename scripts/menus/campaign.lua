@@ -1,4 +1,25 @@
 function Briefing(title, objs, bg, text, voices)
+  local menu = WarMenu(nil, bg)
+
+  menu:addLabel(title, (70 + 340) / 2 * Video.Width / 640, 28 * Video.Height / 480,
+    Fonts["large"], true)
+
+  menu:addLabel("Objectives:", 372 * Video.Width / 640, 306 * Video.Height / 480, Fonts["large"], false)
+
+  objectives = ""
+  table.foreachi(objs, function(k,v) objectives = objectives .. v .. "\n" end)
+
+  local l = MultiLineLabel(objectives)
+  l:setFont(Fonts["large"])
+  l:setAlignment(MultiLineLabel.LEFT)
+  l:setLineWidth(250 * Video.Width / 640)
+  l:adjustSize()
+  menu:add(l, 372 * Video.Width / 640, (306 * Video.Height / 480) + 30)
+
+  menu:addHalfButton("~!Continue", "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
+    function() menu:stop() end)
+
+  menu:run()
 end
 
 function CreateMapStep(map)
