@@ -9,7 +9,7 @@
 !define WGTMP "wargustemp"
 
 Name "${NAME}"
-OutFile "Wargus-2.1.exe"
+OutFile "Wargus-2.2.exe"
 
 ;!define MUI_ICON "stratagus.ico"
 ;!define MUI_UNICON "stratagus.ico"
