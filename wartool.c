@@ -4021,18 +4021,20 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 			// Objectives Key is ^^OBJECTIVES^^
 			while (fgets(buf, 1023, inlevel) != 0) {
 				if (!strncmp(buf, "^^TITLE^^", 9)) {
-					sprintf(buf, "  \"title\", \"%s\",\n",
+					sprintf(buf, "  \"%s\",\n",
 						CampaignData[race][levelno][0]);
 					fputs(buf, outlevel);
 				} else {
 					if (!strncmp(buf, "^^OBJECTIVES^^", 14)) {
+						fputs("  {", outlevel);
 						for (noobjs = 1; noobjs < 10; ++noobjs) {
 							if (CampaignData[race][levelno][noobjs] != NULL) {
-								sprintf(buf, "  \"objective\", \"%s\",\n",
+								sprintf(buf, "%s\"%s\"", (noobjs > 1 ? "," : ""),
 									CampaignData[race][levelno][noobjs]);
 								fputs(buf, outlevel);
 							}
 						}
+						fputs("},\n", outlevel);
 					} else {
 						fputs(buf, outlevel);
 					}
