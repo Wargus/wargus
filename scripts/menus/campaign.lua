@@ -4,6 +4,19 @@ function Briefing(title, objs, bg, text, voices)
   menu:addLabel(title, (70 + 340) / 2 * Video.Width / 640, 28 * Video.Height / 480,
     Fonts["large"], true)
 
+  local t = LoadBuffer(text)
+  t = "\n\n\n\n\n\n\n\n\n\n\n\n\n" .. t .. "\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  local sw = ScrollingWidget(320, 170 * Video.Height / 480)
+  sw:setBackgroundColor(Color(0,0,0,0))
+  sw:setSpeed(0.6)
+  local l = MultiLineLabel(t)
+  l:setFont(Fonts["large"])
+  l:setAlignment(MultiLineLabel.LEFT)
+  l:setLineWidth(320)
+  l:adjustSize()
+  sw:add(l, 0, 0)
+  menu:add(sw, 70 * Video.Width / 640, 80 * Video.Height / 480)
+
   menu:addLabel("Objectives:", 372 * Video.Width / 640, 306 * Video.Height / 480, Fonts["large"], false)
 
   objectives = ""
