@@ -1,6 +1,8 @@
 function Briefing(title, objs, bg, text, voices)
   local menu = WarMenu(nil, bg)
 
+  Objectives = objs
+
   menu:addLabel(title, (70 + 340) / 2 * Video.Width / 640, 28 * Video.Height / 480,
     Fonts["large"], true)
 
@@ -19,7 +21,7 @@ function Briefing(title, objs, bg, text, voices)
 
   menu:addLabel("Objectives:", 372 * Video.Width / 640, 306 * Video.Height / 480, Fonts["large"], false)
 
-  objectives = ""
+  local objectives = ""
   table.foreachi(objs, function(k,v) objectives = objectives .. v .. "\n" end)
 
   local l = MultiLineLabel(objectives)
