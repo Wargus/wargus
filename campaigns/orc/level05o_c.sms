@@ -1,11 +1,11 @@
 --	Stratagus Map - Single player campaign
 
-Briefing("type", "wc2",
+Briefing(
 ^^TITLE^^
 ^^OBJECTIVES^^
-  "background", "../campaigns/orc/interface/introscreen2.png",
-  "text", "campaigns/orc/level05o.txt",
-  "voice", "campaigns/orc/level05o-intro1.wav"
+  "../campaigns/orc/interface/introscreen2.png",
+  "campaigns/orc/level05o.txt",
+  {"campaigns/orc/level05o-intro1.wav"}
 )
 
 AddTrigger(
