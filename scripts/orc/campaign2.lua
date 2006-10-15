@@ -5,12 +5,12 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/ 
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	campaign2.ccl	-	Define the orc campaign 2.
+--      campaign2.ccl - Define the orc campaign 2.
 --
---	(c) Copyright 2002 by Lutz Sammer
+--      (c) Copyright 2002-2006 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,8 +26,29 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
+--      $Id$
 
+--=============================================================================
+--	Define the campaign
+
+campaign_steps = {
+  CreateMapStep("campaigns/orc-exp/levelx01o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx02o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx03o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx04o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx05o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx06o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx07o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx08o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx09o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx10o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx11o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx12o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx13o.smp"),
+  CreateMapStep("campaigns/orc-exp/levelx14o.smp")
+}
+
+--[[
 DefineCampaign("orc-exp", "name", "O~!rc expansion levels",
   "campaign", {
 	"show-picture", {
@@ -126,3 +147,4 @@ DefineCampaign("orc-exp", "name", "O~!rc expansion levels",
 	"play-level", "campaigns/orc-exp/levelx10o.smp",
 	"play-level", "campaigns/orc-exp/levelx11o.smp",
 	"play-level", "campaigns/orc-exp/levelx12o.smp" } )
+]]

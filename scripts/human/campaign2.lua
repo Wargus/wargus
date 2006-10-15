@@ -10,7 +10,7 @@
 --
 --      campaign2.ccl - Define the human campaign 2.
 --
---      (c) Copyright 2002-2005 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2002-2006 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -31,6 +31,24 @@
 --=============================================================================
 --	Define the campaign
 
+campaign_steps = {
+  CreateMapStep("campaigns/human-exp/levelx01h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx02h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx03h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx04h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx05h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx06h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx07h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx08h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx09h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx10h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx11h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx12h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx13h.smp"),
+  CreateMapStep("campaigns/human-exp/levelx14h.smp")
+}
+
+--[[
 DefineCampaign("human-exp", "name", "H~!uman expansion levels",
   "campaign", {
 	"show-picture", {
@@ -129,3 +147,4 @@ DefineCampaign("human-exp", "name", "H~!uman expansion levels",
 	"play-level", "campaigns/human-exp/levelx10h.smp",
 	"play-level", "campaigns/human-exp/levelx11h.smp",
 	"play-level", "campaigns/human-exp/levelx12h.smp" } )
+]]

@@ -10,7 +10,7 @@
 --
 --      campaign1.ccl - Define the human campaign 1.
 --
---      (c) Copyright 2002-2005 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2002-2006 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by

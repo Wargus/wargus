@@ -5,12 +5,12 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/ 
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	campaign1.ccl	-	Define the orc campaign 1.
+--      campaign1.ccl - Define the orc campaign 1.
 --
---	(c) Copyright 2002 by Lutz Sammer
+--      (c) Copyright 2002-2006 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,12 +26,29 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
+--      $Id$
 
 --=============================================================================
 --	Define the campaign
---
---	(define-campagin 'ident 'name "name" 'campaign (list elements)
+
+campaign_steps = {
+  CreateMapStep("campaigns/orc/level01o.smp"),
+  CreateMapStep("campaigns/orc/level02o.smp"),
+  CreateMapStep("campaigns/orc/level03o.smp"),
+  CreateMapStep("campaigns/orc/level04o.smp"),
+  CreateMapStep("campaigns/orc/level05o.smp"),
+  CreateMapStep("campaigns/orc/level06o.smp"),
+  CreateMapStep("campaigns/orc/level07o.smp"),
+  CreateMapStep("campaigns/orc/level08o.smp"),
+  CreateMapStep("campaigns/orc/level09o.smp"),
+  CreateMapStep("campaigns/orc/level10o.smp"),
+  CreateMapStep("campaigns/orc/level11o.smp"),
+  CreateMapStep("campaigns/orc/level12o.smp"),
+  CreateMapStep("campaigns/orc/level13o.smp"),
+  CreateMapStep("campaigns/orc/level14o.smp")
+}
+
+--[[
 DefineCampaign("orc", "name", "~!Orc campaign",
   "campaign", {
 	"show-picture", {
@@ -132,3 +149,4 @@ DefineCampaign("orc", "name", "~!Orc campaign",
 	"play-level", "campaigns/orc/level12o.smp",
 	"play-level", "campaigns/orc/level13o.smp",
 	"play-level", "campaigns/orc/level14o.smp" } )
+]]
