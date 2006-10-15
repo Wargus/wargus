@@ -53,6 +53,10 @@ function RunCampaign(campaign)
     campaign_steps[position]()
     if (GameResult == GameVictory) then
       position = position + 1
+    elseif (GameResult == GameDefeat) then
+    elseif (GameResult == GameDraw) then
+    else
+      break -- quit to menu
     end
   end
 end

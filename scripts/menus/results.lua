@@ -13,9 +13,11 @@ function RunResultsMenu()
   elseif (GameResult == GameDefeat) then
     result = "Defeat!"
     background = hdefeat
-  else
+  elseif (GameResult == GameDraw) then
     result = "Draw!"
     background = hdefeat
+  else
+    return -- quit to menu
   end
 
   local menu = WarMenu(nil, background)
