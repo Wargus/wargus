@@ -1,12 +1,12 @@
 --	Stratagus Map - Single player campaign
 
-Briefing("type", "wc2",
+Briefing(
 ^^TITLE^^
 ^^OBJECTIVES^^
-  "background", "../campaigns/orc/interface/introscreen4.png",
-  "text", "campaigns/orc/level11o.txt",
-  "voice", "campaigns/orc/level11o-intro1.wav",
-  "voice", "campaigns/orc/level11o-intro2.wav"
+  "../campaigns/orc/interface/introscreen4.png",
+  "campaigns/orc/level11o.txt",
+  {"campaigns/orc/level11o-intro1.wav",
+   "campaigns/orc/level11o-intro2.wav"}
 )
 
 -- FIXME: Check if units are freed.
