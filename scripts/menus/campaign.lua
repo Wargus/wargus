@@ -37,6 +37,20 @@ function Briefing(title, objs, bg, text, voices)
   menu:run()
 end
 
+function CreatePictureStep(bg, title, text)
+  return function()
+    local menu = WarMenu(nil, bg)
+    local offx = (Video.Width - 640) / 2
+    local offy  = (Video.Height - 480) / 2
+    menu:addLabel(title, offx + 320, offy + 240 - 67, Fonts["large-title"], true)
+    menu:addLabel(text, offx + 320, offy + 240 - 25, Fonts["small-title"], true)
+    menu:addHalfButton("~!Continue", "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
+      function() menu:stop() end)
+    menu:run()
+    GameResult = GameVictory
+  end
+end
+
 function CreateMapStep(map)
   return function()
     Load(map)
@@ -47,9 +61,11 @@ end
 function RunCampaign(campaign)
   Load(campaign)
 
-  if (position == nil) then
+  if (campaign ~= currentCampaign or position == nil) then
     position = 1
   end
+
+  currentCampaign = campaign
 
   while (position <= table.getn(campaign_steps)) do
     campaign_steps[position]()
@@ -61,6 +77,8 @@ function RunCampaign(campaign)
       break -- quit to menu
     end
   end
+
+  currentCampaign = nil
 end
 
 function RunCampaignGameMenu()

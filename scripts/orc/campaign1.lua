@@ -32,121 +32,26 @@
 --	Define the campaign
 
 campaign_steps = {
+  CreatePictureStep("../campaigns/orc/interface/Act_I_-_Seas_of_Blood.png", "Act I", "Seas of Blood"),
   CreateMapStep("campaigns/orc/level01o.smp"),
   CreateMapStep("campaigns/orc/level02o.smp"),
   CreateMapStep("campaigns/orc/level03o.smp"),
   CreateMapStep("campaigns/orc/level04o.smp"),
+
+  CreatePictureStep("../campaigns/orc/interface/Act_II_-_Khaz_Modan.png", "Act II", "Khaz Modan"),
   CreateMapStep("campaigns/orc/level05o.smp"),
   CreateMapStep("campaigns/orc/level06o.smp"),
   CreateMapStep("campaigns/orc/level07o.smp"),
+
+  CreatePictureStep("../campaigns/orc/interface/Act_III_-_Quel'Thalas.png", "Act III", "Quel'Thalas"),
   CreateMapStep("campaigns/orc/level08o.smp"),
   CreateMapStep("campaigns/orc/level09o.smp"),
   CreateMapStep("campaigns/orc/level10o.smp"),
   CreateMapStep("campaigns/orc/level11o.smp"),
+
+  CreatePictureStep("../campaigns/orc/interface/Act_IV_-_Tides_of_Darkness.png", "Act IV", "Tides of Darkness"),
   CreateMapStep("campaigns/orc/level12o.smp"),
   CreateMapStep("campaigns/orc/level13o.smp"),
   CreateMapStep("campaigns/orc/level14o.smp")
 }
 
---[[
-DefineCampaign("orc", "name", "~!Orc campaign",
-  "campaign", {
-	"show-picture", {
-	  "image", "../campaigns/orc/interface/Act_I_-_Seas_of_Blood.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act I"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Seas of Blood"}},
-	"play-level", "campaigns/orc/level01o.smp",
-	"play-level", "campaigns/orc/level02o.smp",
-	"play-level", "campaigns/orc/level03o.smp",
-	"play-level", "campaigns/orc/level04o.smp",
-	"show-picture", {
-	  "image", "../campaigns/orc/interface/Act_II_-_Khaz_Modan.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act II"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Khaz Modan"}},
-	"play-level", "campaigns/orc/level05o.smp",
-	"play-level", "campaigns/orc/level06o.smp",
-	"play-level", "campaigns/orc/level07o.smp",
-	"show-picture", {
-	  "image", "../campaigns/orc/interface/Act_III_-_Quel'Thalas.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act III"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Quel'Thalas"}},
-	"play-level", "campaigns/orc/level08o.smp",
-	"play-level", "campaigns/orc/level09o.smp",
-	"play-level", "campaigns/orc/level10o.smp",
-	"play-level", "campaigns/orc/level11o.smp",
-	"show-picture", {
-	  "image", "../campaigns/orc/interface/Act_IV_-_Tides_of_Darkness.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "ACT IV"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Tides of Darkness"}},
-	"play-level", "campaigns/orc/level12o.smp",
-	"play-level", "campaigns/orc/level13o.smp",
-	"play-level", "campaigns/orc/level14o.smp" } )
-]]

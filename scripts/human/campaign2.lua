@@ -32,119 +32,24 @@
 --	Define the campaign
 
 campaign_steps = {
+  CreatePictureStep("../campaigns/human-exp/interface/Act_I_-_A_Time_for_Heroes.png", "Act I", "A Time for Heroes"),
   CreateMapStep("campaigns/human-exp/levelx01h.smp"),
   CreateMapStep("campaigns/human-exp/levelx02h.smp"),
   CreateMapStep("campaigns/human-exp/levelx03h.smp"),
+
+  CreatePictureStep("../campaigns/human-exp/interface/Act_II_-_Draenor,_the_Red_World.png", "Act II", "Draenor, The Red World"),
   CreateMapStep("campaigns/human-exp/levelx04h.smp"),
   CreateMapStep("campaigns/human-exp/levelx05h.smp"),
   CreateMapStep("campaigns/human-exp/levelx06h.smp"),
+
+  CreatePictureStep("../campaigns/human-exp/interface/Act_III_-_War_in_the_Shadows.png", "Act III", "War in the Shadows"),
   CreateMapStep("campaigns/human-exp/levelx07h.smp"),
   CreateMapStep("campaigns/human-exp/levelx08h.smp"),
   CreateMapStep("campaigns/human-exp/levelx09h.smp"),
+
+  CreatePictureStep("../campaigns/human-exp/interface/Act_IV_-_The_Measure_of_Valor.png", "Act IV", "The Measure of Valor"),
   CreateMapStep("campaigns/human-exp/levelx10h.smp"),
   CreateMapStep("campaigns/human-exp/levelx11h.smp"),
-  CreateMapStep("campaigns/human-exp/levelx12h.smp"),
-  CreateMapStep("campaigns/human-exp/levelx13h.smp"),
-  CreateMapStep("campaigns/human-exp/levelx14h.smp")
+  CreateMapStep("campaigns/human-exp/levelx12h.smp")
 }
 
---[[
-DefineCampaign("human-exp", "name", "H~!uman expansion levels",
-  "campaign", {
-	"show-picture", {
-	  "image", "../campaigns/human-exp/interface/Act_I_-_A_Time_for_Heroes.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", 480 / 2 - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act I"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", 480 / 2 - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "A Time for Heroes"}},
-	"play-level", "campaigns/human-exp/levelx01h.smp",
-	"play-level", "campaigns/human-exp/levelx02h.smp",
-	"play-level", "campaigns/human-exp/levelx03h.smp",
-	"show-picture", {
-	  "image", "../campaigns/human-exp/interface/Act_II_-_Draenor,_the_Red_World.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", 480 / 2 - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act II"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", 480 / 2 - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Draenor, The Red World"}},
-	"play-level", "campaigns/human-exp/levelx04h.smp",
-	"play-level", "campaigns/human-exp/levelx05h.smp",
-	"play-level", "campaigns/human-exp/levelx06h.smp",
-	"show-picture", {
-	  "image", "../campaigns/human-exp/interface/Act_III_-_War_in_the_Shadows.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", 480 / 2 - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act III"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", 480 / 2 - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "War in the Shadows"}},
-	"play-level", "campaigns/human-exp/levelx07h.smp",
-	"play-level", "campaigns/human-exp/levelx08h.smp",
-	"play-level", "campaigns/human-exp/levelx09h.smp",
-	"show-picture", {
-	  "image", "../campaigns/human-exp/interface/Act_IV_-_The_Measure_of_Valor.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", 480 / 2 - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act IV"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", 480 / 2 - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "The Measure of Valor"}},
-	"play-level", "campaigns/human-exp/levelx10h.smp",
-	"play-level", "campaigns/human-exp/levelx11h.smp",
-	"play-level", "campaigns/human-exp/levelx12h.smp" } )
-]]
