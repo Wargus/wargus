@@ -139,12 +139,12 @@ void CWarinstall2Dlg::AddProgress(LPTSTR msg)
 	this->PostMessage(UWM_ADDPROGRESS);
 }
 
-void MakeDir(const char *path)
+void MakeDir(LPCTSTR path)
 {
 	SECURITY_ATTRIBUTES sa;
 	TCHAR buf[MAX_PATH + 60];
 
-	sprintf(buf, _T("Creating directory: %s"), path);
+	_stprintf(buf, _T("Creating directory: %s"), path);
 	dlg->AddProgress(buf);
 
 	memset(&sa, 0, sizeof(sa));
@@ -155,7 +155,7 @@ void Copy(LPTSTR src, LPTSTR dst)
 {
 	TCHAR buf[4096];
 
-	sprintf(buf, _T("Copying: %s"), src);
+	_stprintf(buf, _T("Copying: %s"), src);
 	dlg->AddProgress(buf);
 
 	CopyFile(src, dst, FALSE);
@@ -170,10 +170,10 @@ void CopyFiles(LPTSTR src, LPTSTR dst)
 	TCHAR dir[MAX_PATH];
 	PTCHAR p;
 
-	strcpy(dir, src);
-	p = dir + strlen(dir) - 1;
+	_tcscpy(dir, src);
+	p = dir + _tcslen(dir) - 1;
 	while (*p != '\\' && p >= dir) {
-		--p;
+		p = CharPrev(dir, p);
 	}
 	if (*p == '\\') {
 		*p = '\0';
@@ -185,8 +185,8 @@ void CopyFiles(LPTSTR src, LPTSTR dst)
 	}
 	do {
 		if (!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
-			sprintf(srcbuf, "%s\\%s", dir, ffd.cFileName);
-			sprintf(dstbuf, "%s\\%s", dst, ffd.cFileName);
+			_stprintf(srcbuf, "%s\\%s", dir, ffd.cFileName);
+			_stprintf(dstbuf, "%s\\%s", dst, ffd.cFileName);
 			Copy(srcbuf, dstbuf);
 		}
 	} while (FindNextFile(hnd, &ffd));
@@ -200,10 +200,10 @@ int myprintf(const char *fmt, ...)
 	va_list va;
 
 	va_start(va, fmt);
-	_vsnprintf(buf, sizeof(buf), fmt, va);
+	_vsntprintf(buf, sizeof(buf), fmt, va);
 	va_end(va);
 
-	p = buf + strlen(buf) - 1;
+	p = buf + _tcslen(buf) - 1;
 	*p = '\0';
 	dlg->AddProgress(buf);
 
