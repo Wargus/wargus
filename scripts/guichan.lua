@@ -306,13 +306,17 @@ end
 Widget:setGlobalFont(Fonts["large"])
 
 
+DefaultObjectives = {"-Destroy the enemy"}
+Objectives = DefaultObjectives
+
+
 -- Define the different menus ----------
 
 function RunMap(map, objective, fow, revealmap)
   if objective == nil then
-    current_objective = default_objective
+    Objectives = DefaultObjectives
   else
-    current_objective = objective
+    Objectives = objective
   end
   loop = true
   while (loop) do
@@ -351,12 +355,12 @@ function RunSelectScenarioMenu()
   end
   browser:setActionCallback(cb)
 
-  menu:addHalfButton("OK", 0, 48, 318,
+  menu:addHalfButton("~!OK", "o", 48, 318,
     function()
       mapname = browser.path .. l:getCaption()
       menu:stop()
     end)
-  menu:addHalfButton("Cancel", 0, 198, 318,
+  menu:addHalfButton("~!Cancel", "c", 198, 318,
     function() menu:stop() end)
 
   menu:run()
@@ -452,6 +456,7 @@ Load("scripts/menus/options.lua")
 Load("scripts/menus/credits.lua")
 Load("scripts/menus/game.lua")
 Load("scripts/menus/help.lua")
+Load("scripts/menus/objectives.lua")
 Load("scripts/menus/endscenario.lua")
 Load("scripts/menus/diplomacy.lua")
 Load("scripts/menus/results.lua")
