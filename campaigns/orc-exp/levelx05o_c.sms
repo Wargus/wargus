@@ -1,12 +1,12 @@
 --	Stratagus Map - Single player campaign
 
-Briefing("type", "wc2",
+Briefing(
 ^^TITLE^^
 ^^OBJECTIVES^^
-  "background", "../campaigns/orc/interface/introscreen5.png",
-  "text", "campaigns/orc-exp/levelx05o.txt",
-  "voice", "campaigns/orc-exp/levelx05o-intro1.wav",
-  "voice", "campaigns/orc-exp/levelx05o-intro2.wav"
+  "../campaigns/orc/interface/introscreen5.png",
+  "campaigns/orc-exp/levelx05o.txt",
+  {"campaigns/orc-exp/levelx05o-intro1.wav",
+   "campaigns/orc-exp/levelx05o-intro2.wav"}
 )
 
 -- FIXME: Check if units are destroyed.
