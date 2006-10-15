@@ -22,10 +22,10 @@ function RunLoadGameMenu()
     if currentCampaign ~= nil then
       if GameResult == GameVictory then
         position = position + 1
-      elseif GameResult == GameDefeat then
-        position = position
+      elseif (GameResult == GameDefeat) then
+      elseif (GameResult == GameDraw) then
       else
-        currentCampaign = nil
+        currentCampaign = nil -- quit to menu
         return
       end
       RunCampaign(currentCampaign)

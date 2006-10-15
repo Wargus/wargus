@@ -32,119 +32,24 @@
 --	Define the campaign
 
 campaign_steps = {
+  CreatePictureStep("../campaigns/orc-exp/interface/Act_I_-_Draenor,_the_Red_World.png", "Act I", "Draenor, the Red World"),
   CreateMapStep("campaigns/orc-exp/levelx01o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx02o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx03o.smp"),
+
+  CreatePictureStep("../campaigns/orc-exp/interface/Act_II_-_The_Burning_of_Azeroth.png", "Act II", "The Burning of Azeroth"),
   CreateMapStep("campaigns/orc-exp/levelx04o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx05o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx06o.smp"),
+
+  CreatePictureStep("../campaigns/orc-exp/interface/Act_III_-_The_Great_Sea.png", "Act III", "The Great Sea"),
   CreateMapStep("campaigns/orc-exp/levelx07o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx08o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx09o.smp"),
+
+  CreatePictureStep("../campaigns/orc-exp/interface/Act_IV_-_Prelude_to_New_Worlds.png", "Act IV", "Prelude to New Worlds"),
   CreateMapStep("campaigns/orc-exp/levelx10o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx11o.smp"),
-  CreateMapStep("campaigns/orc-exp/levelx12o.smp"),
-  CreateMapStep("campaigns/orc-exp/levelx13o.smp"),
-  CreateMapStep("campaigns/orc-exp/levelx14o.smp")
+  CreateMapStep("campaigns/orc-exp/levelx12o.smp")
 }
 
---[[
-DefineCampaign("orc-exp", "name", "O~!rc expansion levels",
-  "campaign", {
-	"show-picture", {
-	  "image", "../campaigns/orc-exp/interface/Act_I_-_Draenor,_the_Red_World.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act I"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Draenor, the Red World"}},
-	"play-level", "campaigns/orc-exp/levelx01o.smp",
-	"play-level", "campaigns/orc-exp/levelx02o.smp",
-	"play-level", "campaigns/orc-exp/levelx03o.smp",
-	"show-picture", {
-	  "image", "../campaigns/orc-exp/interface/Act_II_-_The_Burning_of_Azeroth.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act II"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "The Burning of Azeroth"}},
-	"play-level", "campaigns/orc-exp/levelx04o.smp",
-	"play-level", "campaigns/orc-exp/levelx05o.smp",
-	"play-level", "campaigns/orc-exp/levelx06o.smp",
-	"show-picture", {
-	  "image", "../campaigns/orc-exp/interface/Act_III_-_The_Great_Sea.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act III"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "The Great Sea"}},
-	"play-level", "campaigns/orc-exp/levelx07o.smp",
-	"play-level", "campaigns/orc-exp/levelx08o.smp",
-	"play-level", "campaigns/orc-exp/levelx09o.smp",
-	"show-picture", {
-	  "image", "../campaigns/orc-exp/interface/Act_IV_-_Prelude_to_New_Worlds.png",
-	  "fade-in", 30 * 2,
-	  "fade-out", 30 * 2,
-	  "display-time", 30 * 10,
-	  "text", {
-	    "font", "large-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 67,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Act IV"},
-	  "text", {
-	    "font", "small-title",
-	    "x", 640 / 2,
-	    "y", (480 / 2) - 25,
-	    "width", 640,
-	    "height", 0,
-	    "align", "center",
-	    "text", "Prelude to New Worlds"}},
-	"play-level", "campaigns/orc-exp/levelx10o.smp",
-	"play-level", "campaigns/orc-exp/levelx11o.smp",
-	"play-level", "campaigns/orc-exp/levelx12o.smp" } )
-]]
