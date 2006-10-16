@@ -3005,7 +3005,7 @@ int ConvertImage(char* file, int pale, int imge, int nw, int nh)
 	char buf[1024];
 
 	// Workaround for MAC expansion CD
-	if (1 & CDType) {
+	if (CDType & CD_MAC) {
 		if (imge >= 94 && imge <= 103) {
 			imge += 7;
 		}
@@ -3024,7 +3024,7 @@ int ConvertImage(char* file, int pale, int imge, int nw, int nh)
 
 	if (!image) {
 		fprintf(stderr, "Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n",
-			file, pale, imge, nw, nh, 1 & CDType);
+			file, pale, imge, nw, nh, CDType & CD_MAC);
 		exit(-1);
 	}
 	free(imgp);
@@ -3207,12 +3207,12 @@ int ConvertText(char* file, int txte, int ofs)
 	size_t l;
 
 	// workaround for German/UK/Australian CD's
-	if (!(CD_EXPANSION & CDType) && ((CD_GERMAN | CD_UK) & CDType)) {
+	if (!(CDType & CD_EXPANSION) && (CDType & (CD_GERMAN | CD_UK))) {
 		--txte;
 	}
 
 	// workaround for MAC expansion CD
-	if ((CD_MAC & CDType) && txte >= 99) {
+	if ((CDType & CD_MAC) && txte >= 99) {
 		txte += 6;
 	}
 
@@ -3907,20 +3907,20 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 	int expansion;
 
 	// Campaign data is in different spots for different CD's
-	if (CD_EXPANSION & CDType) {
+	if (CDType & CD_EXPANSION) {
 		expansion = 1;
 		ofs = 236;
 		txte = 54;
 	} else {
 		expansion = 0;
 		// 53 for UK and German CD, else 54
-		if ((CD_UK | CD_GERMAN) & CDType) {
+		if (CDType & (CD_UK | CD_GERMAN)) {
 			txte = 53;
 		} else {
 			txte = 54;
 		}
 		// 172 for Spanish CD, 140 for anything else
-		if (CD_SPANISH & CDType) {
+		if (CDType & CD_SPANISH) {
 			ofs = 172;
 		} else {
 			ofs = 140;
@@ -4212,7 +4212,7 @@ int main(int argc, char** argv)
 #endif
 
 	for (u = 0; u < sizeof(Todo) / sizeof(*Todo); ++u) {
-		if (1 & CDType) {
+		if (CDType & CD_MAC) {
 			strcpy(filename, Todo[u].File);
 			Todo[u].File = filename;
 			ConvertToMac(Todo[u].File);
