@@ -28,7 +28,7 @@ ver = 2.1pre2
 release: release-src release-linux
 
 release-src: clean cleanobj
-	echo `find Makefile build.* contrib campaigns wartool.c wartool.ds* scripts maps | grep -v 'CVS' | grep -v '/\.'` > .list
+	echo `find Makefile build.* contrib campaigns wartool.c wartool.ds* scripts maps README | grep -v '/\.'` > .list
 	mkdir wargus-$(ver); \
 	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
 	rm -rf `find wargus-$(ver) | grep -i cvs`; \
@@ -39,7 +39,7 @@ release-src: clean cleanobj
 release-linux: clean wartool strip cleanobj
 	pwd
 	cp -f $(STRATAGUSPATH)stratagus .
-	echo `find Makefile build.sh contrib campaigns wartool scripts maps stratagus | grep -v 'CVS' | grep -v '/\.'` > .list
+	echo `find Makefile build.sh contrib campaigns wartool scripts maps stratagus README | grep -v '/\.'` > .list
 	mkdir wargus-$(ver); \
 	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
 	rm -rf `find wargus-$(ver) | grep -i cvs`; \
