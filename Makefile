@@ -28,10 +28,9 @@ ver = 2.1pre2
 release: release-src release-linux
 
 release-src: clean cleanobj
-	echo `find Makefile build.* contrib campaigns wartool.c wartool.ds* scripts maps README | grep -v '/\.'` > .list
+	echo `find Makefile build.sh contrib campaigns wartool.c wartool.ds* scripts maps README | grep -v '/\.'` > .list
 	mkdir wargus-$(ver); \
 	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
-	rm -rf `find wargus-$(ver) | grep -i cvs`; \
 	tar -zcf wargus-$(ver)-src.tar.gz wargus-$(ver); \
 	zip -qr wargus-$(ver)-src.zip wargus-$(ver); \
 	rm -rf wargus-$(ver) .list;
@@ -42,6 +41,5 @@ release-linux: clean wartool strip cleanobj
 	echo `find Makefile build.sh contrib campaigns wartool scripts maps stratagus README | grep -v '/\.'` > .list
 	mkdir wargus-$(ver); \
 	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
-	rm -rf `find wargus-$(ver) | grep -i cvs`; \
 	tar -zcf wargus-$(ver)-linux.tar.gz wargus-$(ver); \
 	rm -rf wargus-$(ver) .list stratagus;
