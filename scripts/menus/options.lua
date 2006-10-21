@@ -78,13 +78,56 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
     end)
 end
 
-function RunGameSoundOptionsMenu(s)
+function RunGameSoundOptionsMenu()
   local menu = WarGameMenu(hpanel5)
   menu:setSize(352, 352)
   menu:setPosition((Video.Width - menu:getWidth()) / 2,
     (Video.Height - menu:getHeight()) / 2)
 
   AddSoundOptions(menu, 0, 0, 352/2 - 224/2, 352)
+
+  menu:run(false)
+end
+
+function RunPreferencesMenu()
+  local menu = WarGameMenu(hpanel1)
+
+  menu:addLabel("Preferences", 128, 11)
+
+  local fog = {}
+  fog = menu:addCheckBox("Fog of War", 16, 40 + 36 * 0,
+    function() SetFogOfWar(fog:isMarked()) end)
+  fog:setMarked(GetFogOfWar())
+  if (IsReplayGame() or IsNetworkGame()) then
+    fog:setEnabled(false)
+  end
+
+  local ckey = {}
+  ckey = menu:addCheckBox("Show command key", 16, 40 + 36 * 1,
+    function() UI.ButtonPanel.ShowCommandKey = ckey:isMarked() end)
+  ckey:setMarked(UI.ButtonPanel.ShowCommandKey)
+
+  menu:addLabel("Game Speed", 16, 40 + 36 * 2, Fonts["game"], false)
+
+  local gamespeed = {}
+  gamespeed = menu:addSlider(15, 75, 198, 18, 32, 40 + 36 * 2.5,
+    function() SetGameSpeed(gamespeed:getValue()) end)
+  gamespeed:setValue(GetGameSpeed())
+
+  menu:addLabel("slow", 34, 40 + (36 * 3) + 6, Fonts["small"], false)
+  local l = Label("fast")
+  l:setFont(Fonts["small"])
+  l:adjustSize()
+  menu:add(l, 230 - l:getWidth(), 40 + (36 * 3) + 6)
+
+  menu:addFullButton("~!OK", "o", 128 - (224 / 2), 245,
+    function()
+      preferences.FogOfWar = GetFogOfWar()
+      preferences.ShowCommandKey = UI.ButtonPanel.ShowCommandKey
+      preferences.GameSpeed = GetGameSpeed()
+      SavePreferences()
+      menu:stop()
+    end)
 
   menu:run(false)
 end
@@ -150,11 +193,9 @@ function RunGameOptionsMenu()
   menu:addLabel("Game Options", 128, 11)
   menu:addFullButton("Sound (~<F7~>)", "f7", 16, 40 + 36*0,
     function() RunGameSoundOptionsMenu() end)
-  menu:addFullButton("Speeds (~<F8~>)", "f8", 16, 40 + 36*1,
-    function() end)
-  menu:addFullButton("Preferences (~<F9~>)", "f9", 16, 40 + 36*2,
-    function() end)
-  menu:addFullButton("~!Diplomacy", "d", 16, 40 + 36*3,
+  menu:addFullButton("Preferences (~<F8~>)", "f8", 16, 40 + 36*1,
+    function() RunPreferencesMenu() end)
+  menu:addFullButton("Diplomacy (~<F9~>)", "f9", 16, 40 + 36*2,
     function() RunDiplomacyMenu() end)
   menu:addFullButton("Previous (~<Esc~>", "escape", 128 - (224 / 2), 245,
     function() menu:stop() end)
