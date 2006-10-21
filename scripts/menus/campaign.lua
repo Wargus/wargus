@@ -10,7 +10,7 @@ function Briefing(title, objs, bg, text, voices)
   t = "\n\n\n\n\n\n\n\n\n\n\n\n\n" .. t .. "\n\n\n\n\n\n\n\n\n\n\n\n\n"
   local sw = ScrollingWidget(320, 170 * Video.Height / 480)
   sw:setBackgroundColor(Color(0,0,0,0))
-  sw:setSpeed(0.6)
+  sw:setSpeed(0.45)
   local l = MultiLineLabel(t)
   l:setFont(Fonts["large"])
   l:setAlignment(MultiLineLabel.LEFT)
@@ -31,8 +31,28 @@ function Briefing(title, objs, bg, text, voices)
   l:adjustSize()
   menu:add(l, 372 * Video.Width / 640, (306 * Video.Height / 480) + 30)
 
+  local voice = 0
+  local channel = -1
+
   menu:addHalfButton("~!Continue", "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
-    function() menu:stop() end)
+    function()
+      if (channel ~= -1) then
+        voice = table.getn(voices)
+        StopChannel(channel)
+      end
+      menu:stop()
+    end)
+
+
+  function PlayNextVoice()
+    voice = voice + 1
+    if (voice <= table.getn(voices)) then
+      channel = PlaySoundFile(voices[voice], PlayNextVoice);
+    else
+      channel = -1
+    end
+  end
+  PlayNextVoice()
 
   menu:run()
 end
