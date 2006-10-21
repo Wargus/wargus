@@ -8,9 +8,12 @@ function HandleIngameCommandKey(key, ctrl, alt, shift)
   elseif (key == "f7") then
     if (not IsNetworkGame()) then SetGamePaused(true) end
     RunGameSoundOptionsMenu()
-  elseif (key == "f9") then
+  elseif (key == "f8") then
     if (not IsNetworkGame()) then SetGamePaused(true) end
     RunPreferencesMenu()
+  elseif (key == "f9") then
+    if (not IsNetworkGame()) then SetGamePaused(true) end
+    RunDiplomacyMenu()
   elseif ((key == "m" and alt) or key == "f10") then
     if (not IsNetworkGame()) then SetGamePaused(true) end
     RunGameMenu()
