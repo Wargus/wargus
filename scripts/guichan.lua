@@ -40,6 +40,9 @@ ovictory = "ui/orc/victory.png"
 odefeat = "ui/orc/defeat.png"
 
 
+GameSettings = {}
+
+
 function AddMenuHelpers(menu)
   function menu:addCentered(widget, x, y)
     self:add(widget, x - widget:getWidth() / 2, y)
@@ -371,6 +374,8 @@ function RunSinglePlayerGameMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
   local d
+  local race
+  local resources
 
   menu:addLabel("Scenario:", offx + 16, offy + 380, Fonts["game"], false)
   mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 380 + 24, Fonts["game"], false)
@@ -385,18 +390,23 @@ function RunSinglePlayerGameMenu()
         mapl:adjustSize()
       end
     end)
-  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1, function() RunMap(mapname) end)
+  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
+    function()
+      GameSettings.Race = race:getSelected()
+      GameSettings.Resources = resources:getSelected()
+      RunMap(mapname)
+    end)
   menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() menu:stop() end)
 
   menu:addLabel("~<Your Race:~>", offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
-  d = menu:addDropDown({"Map Default", "Human", "Orc"}, offx + 40, offy + 10 + 240,
+  race = menu:addDropDown({"Map Default", "Human", "Orc"}, offx + 40, offy + 10 + 240,
     function(dd) end)
-  d:setSize(152, 20)
+  race:setSize(152, 20)
 
   menu:addLabel("~<Resources:~>", offx + 220, offy + (10 + 240) - 20, Fonts["game"], false)
-  d = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, offx + 220, offy + 10 + 240,
+  resources = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, offx + 220, offy + 10 + 240,
     function(dd) end)
-  d:setSize(152, 20)
+  resources:setSize(152, 20)
 
   menu:addLabel("~<Units:~>", offx + 640 - 224 - 16, offy + (10 + 240) - 20, Fonts["game"], false)
   d = menu:addDropDown({"Map Default", "One Peasant Only"}, offx + 640 - 224 - 16, offy + 10 + 240,

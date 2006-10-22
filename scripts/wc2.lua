@@ -42,3 +42,119 @@ DefineRaceNames(
     "display", "Neutral"})
 
 Load("scripts/wc2-config.lua")
+
+
+if (OldCreateUnit == nil) then
+  OldCreateUnit = CreateUnit
+
+  local t = {
+    {"unit-town-hall", "unit-great-hall"},
+    {"unit-keep", "unit-stronghold"},
+    {"unit-castle", "unit-fortress"},
+    {"unit-peasant", "unit-peon"},
+    {"unit-elven-lumber-mill", "unit-troll-lumber-mill"},
+    {"unit-human-blacksmith", "unit-orc-blacksmith"},
+    {"unit-inventor", "unit-alchemist"},
+    {"unit-stables", "unit-ogre-mound"},
+    {"unit-church", "unit-altar-of-storms"},
+    {"unit-mage-tower", "unit-temple-of-the-damned"},
+    {"unit-gryphon-aviary", "unit-dragon-roost"},
+    {"unit-human-barracks", "unit-orc-barracks"},
+    {"unit-footman", "unit-grunt"},
+    {"unit-archer", "unit-axethrower"},
+    {"unit-ranger", "unit-berserker"},
+    {"unit-knight", "unit-ogre"},
+    {"unit-paladin", "unit-ogre-mage"},
+    {"unit-mage", "unit-death-knight"},
+    {"unit-ballista", "unit-catapult"},
+    {"unit-balloon", "unit-zeppelin"},
+    {"unit-gryphon-rider", "unit-dragon"},
+    {"unit-human-watch-tower", "unit-orc-watch-tower"},
+    {"unit-human-guard-tower", "unit-orc-guard-tower"},
+    {"unit-human-cannon-tower", "unit-orc-cannon-tower"},
+    {"unit-human-shipyard", "unit-orc-shipyard"},
+    {"unit-human-refinery", "unit-orc-refinery"},
+    {"unit-human-foundry", "unit-orc-foundry"},
+    {"unit-human-oil-platform", "unit-orc-oil-platform"},
+    {"unit-human-oil-tanker", "unit-orc-oil-tanker"},
+    {"unit-human-submarine", "unit-orc-submarine"},
+    {"unit-human-destroyer", "unit-orc-destroyer"},
+    {"unit-battleship", "unit-ogre-juggernaught"},
+    {"unit-human-transport", "unit-orc-transport"}
+  }
+
+  HumanEquivalent = {}
+  OrcEquivalent = {}
+
+  for i=1,table.getn(t) do
+    HumanEquivalent[t[i][2]] = t[i][1]
+    OrcEquivalent[t[i][1]] = t[i][2]
+  end
+end
+
+-- Convert a unit type to the equivalent for a different race
+function ConvertUnitType(unittype, race)
+  local equiv
+
+  if (race == "human") then
+    equiv = HumanEquivalent[unittype]
+  else
+    equiv = OrcEquivalent[unittype]
+  end
+
+  if (equiv ~= nil) then
+    return equiv
+  else
+    return unittype
+  end
+end
+
+-- Convert unit type to the player's race
+function CreateUnit(unittype, player, pos)
+  -- Leave neutral the way it is
+  if (player == 15) then
+    return OldCreateUnit(unittype, player, pos)
+  end
+
+  unittype = ConvertUnitType(unittype, GetPlayerData(player, "RaceName"))
+
+  return OldCreateUnit(unittype, player, pos)
+end
+
+
+if (OldSetPlayerData == nil) then
+  OldSetPlayerData = SetPlayerData
+end
+
+-- Override with game settings
+function SetPlayerData(player, data, arg1, arg2)
+  local res = {arg2, arg2, arg2}
+
+  if (data == "RaceName") then
+    if (ThisPlayer.Index == player) then
+      if (GameSettings.Race == 1) then
+        arg1 = "human"
+      elseif (GameSettings.Race == 2) then
+        arg1 = "orc"
+      end
+    end
+  elseif (data == "Resources") then
+    if (GameSettings.Resources == 1) then
+      res = {2000, 1000, 1000}
+    elseif (GameSettings.Resources == 2) then
+      res = {5000, 2000, 2000}
+    elseif (GameSettings.Resources == 3) then
+      res = {10000, 5000, 5000}
+    end
+    if (arg1 == "gold") then
+      arg2 = res[1]
+    elseif (arg1 == "wood") then
+      arg2 = res[2]
+    elseif (arg1 == "oil") then
+      arg2 = res[3]
+    end
+  end
+
+  OldSetPlayerData(player, data, arg1, arg2)
+end
+
