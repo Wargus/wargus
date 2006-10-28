@@ -1,5 +1,5 @@
 function RunReplayGameMenu()
-  local menu = WarMenu(nil, hpanel5, false)
+  local menu = WarMenu(nil, panel(5), false)
   menu:setSize(352, 352)
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
   menu:setDrawMenusUnder(true)

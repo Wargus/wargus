@@ -29,7 +29,7 @@ end
 
 
 function RunGameMenu()
-  local menu = WarGameMenu(hpanel1)
+  local menu = WarGameMenu(panel(1))
 
   menu:addLabel("Game Menu", 128, 11)
 

@@ -6,16 +6,29 @@ local odefeat =  "ui/orc/defeat.png"
 function RunResultsMenu()
   local background
   local result
+  local human = (GetPlayerData(GetThisPlayer(), "RaceName") == "human")
 
   if (GameResult == GameVictory) then
     result = "Victory!"
-    background = hvictory
+    if (human) then
+      background = hvictory
+    else
+      background = ovictory
+    end
   elseif (GameResult == GameDefeat) then
     result = "Defeat!"
-    background = hdefeat
+    if (human) then
+      background = hdefeat
+    else
+      background = odefeat
+    end
   elseif (GameResult == GameDraw) then
     result = "Draw!"
-    background = hdefeat
+    if (human) then
+      background = hdefeat
+    else
+      background = odefeat
+    end
   else
     return -- quit to menu
   end

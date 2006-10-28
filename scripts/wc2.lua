@@ -131,7 +131,7 @@ function SetPlayerData(player, data, arg1, arg2)
   local res = {arg2, arg2, arg2}
 
   if (data == "RaceName") then
-    if (ThisPlayer.Index == player) then
+    if (ThisPlayer ~= nil and ThisPlayer.Index == player) then
       if (GameSettings.Race == 1) then
         arg1 = "human"
       elseif (GameSettings.Race == 2) then

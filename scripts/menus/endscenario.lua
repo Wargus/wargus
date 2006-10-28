@@ -1,5 +1,5 @@
 function RunEndScenarioMenu()
-  local menu = WarGameMenu(hpanel1)
+  local menu = WarGameMenu(panel(1))
 
   menu:addLabel("End Scenario", 128, 11)
   local b = menu:addFullButton("~!Restart Scenario", "r", 16, 40 + (36 * 0),
@@ -20,7 +20,7 @@ function RunEndScenarioMenu()
 end
 
 function RunRestartConfirmMenu()
-  local menu = WarGameMenu(hpanel1)
+  local menu = WarGameMenu(panel(1))
 
   menu:addLabel("Are you sure you", 128, 11)
   menu:addLabel("want to restart", 128, 11 + (24 * 1))
@@ -34,7 +34,7 @@ function RunRestartConfirmMenu()
 end
 
 function RunSurrenderConfirmMenu()
-  local menu = WarGameMenu(hpanel1)
+  local menu = WarGameMenu(panel(1))
 
   menu:addLabel("Are you sure you", 128, 11)
   menu:addLabel("want to surrender", 128, 11 + (24 * 1))
@@ -48,7 +48,7 @@ function RunSurrenderConfirmMenu()
 end
 
 function RunQuitToMenuConfirmMenu()
-  local menu = WarGameMenu(hpanel1)
+  local menu = WarGameMenu(panel(1))
 
   menu:addLabel("Are you sure you", 128, 11)
   menu:addLabel("want to quit to", 128, 11 + (24 * 1))
@@ -62,7 +62,7 @@ function RunQuitToMenuConfirmMenu()
 end
 
 function RunExitConfirmMenu()
-  local menu = WarGameMenu(hpanel1)
+  local menu = WarGameMenu(panel(1))
 
   menu:addLabel("Are you sure you", 128, 11)
   menu:addLabel("want to exit", 128, 11 + (24 * 1))

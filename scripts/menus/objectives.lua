@@ -1,5 +1,5 @@
 function RunObjectivesMenu()
-  local menu = WarGameMenu(hpanel1)
+  local menu = WarGameMenu(panel(1))
   menu:setSize(256, 288)
 
   menu:addLabel("Objectives", 128, 11, Fonts["large"], true)

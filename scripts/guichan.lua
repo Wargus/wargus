@@ -1,3 +1,5 @@
+SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+
 -- Global useful objects for menus  ----------
 dark = Color(38, 38, 78)
 clear = Color(200, 200, 120)
@@ -22,17 +24,43 @@ g_hbsp:Load()
 g_hbsg = CGraphic:New("ui/human/widgets/button-small-grayed.png")
 g_hbsg:Load()
 
-hpanel1 = "ui/human/panel_1.png"
-hpanel2 = "ui/human/panel_2.png"
-hpanel3 = "ui/human/panel_3.png"
-hpanel4 = "ui/human/panel_4.png"
-hpanel5 = "ui/human/panel_5.png"
+g_obln = CGraphic:New("ui/orc/widgets/button-large-normal.png")
+g_obln:Load()
+g_oblp = CGraphic:New("ui/orc/widgets/button-large-pressed.png")
+g_oblp:Load()
+g_oblg = CGraphic:New("ui/orc/widgets/button-large-grayed.png")
+g_oblg:Load()
 
-opanel1 = "ui/orc/panel_1.png"
-opanel2 = "ui/orc/panel_2.png"
-opanel3 = "ui/orc/panel_3.png"
-opanel4 = "ui/orc/panel_4.png"
-opanel5 = "ui/orc/panel_5.png"
+g_obsn = CGraphic:New("ui/orc/widgets/button-small-normal.png")
+g_obsn:Load()
+g_obsp = CGraphic:New("ui/orc/widgets/button-small-pressed.png")
+g_obsp:Load()
+g_obsg = CGraphic:New("ui/orc/widgets/button-small-grayed.png")
+g_obsg:Load()
+
+local hpanels = {
+  "ui/human/panel_1.png",
+  "ui/human/panel_2.png",
+  "ui/human/panel_3.png",
+  "ui/human/panel_4.png",
+  "ui/human/panel_5.png"
+}
+
+local opanels = {
+  "ui/orc/panel_1.png",
+  "ui/orc/panel_2.png",
+  "ui/orc/panel_3.png",
+  "ui/orc/panel_4.png",
+  "ui/orc/panel_5.png"
+}
+
+function panel(n)
+  if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+    return hpanels[n]
+  else
+    return opanels[n]
+  end
+end
 
 hvictory = "ui/human/victory.png"
 hdefeat = "ui/human/defeat.png"
@@ -91,18 +119,30 @@ function AddMenuHelpers(menu)
 
   function menu:addFullButton(caption, hotkey, x, y, callback)
     local b = self:addImageButton(caption, hotkey, x, y, callback)
-    b:setNormalImage(g_hbln)
-    b:setPressedImage(g_hblp)
-    b:setDisabledImage(g_hblg)
+    if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+      b:setNormalImage(g_hbln)
+      b:setPressedImage(g_hblp)
+      b:setDisabledImage(g_hblg)
+    else
+      b:setNormalImage(g_obln)
+      b:setPressedImage(g_oblp)
+      b:setDisabledImage(g_oblg)
+    end
     b:setSize(224, 28)
     return b
   end
 
   function menu:addHalfButton(caption, hotkey, x, y, callback)
     local b = self:addImageButton(caption, hotkey, x, y, callback)
-    b:setNormalImage(g_hbsn)
-    b:setPressedImage(g_hbsp)
-    b:setDisabledImage(g_hbsg)
+    if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+      b:setNormalImage(g_hbsn)
+      b:setPressedImage(g_hbsp)
+      b:setDisabledImage(g_hbsg)
+    else
+      b:setNormalImage(g_obsn)
+      b:setPressedImage(g_obsp)
+      b:setDisabledImage(g_obsg)
+    end
     b:setSize(106, 28)
     return b
   end
@@ -335,12 +375,15 @@ function RunMap(map, objective, fow, revealmap)
     end
   end
   RunResultsMenu(s)
+
+  GameSettings.Race = 0
+  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 end
 
 mapname = "maps/default.smp.gz"
 
 function RunSelectScenarioMenu()
-  local menu = WarMenu(nil, hpanel5, false)
+  local menu = WarMenu(nil, panel(5), false)
   menu:setSize(352, 352)
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
   menu:setDrawMenusUnder(true)
