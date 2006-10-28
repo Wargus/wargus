@@ -1,5 +1,5 @@
 function RunLoadGameMenu()
-  local menu = WarMenu(nil, hpanel3, false)
+  local menu = WarMenu(nil, panel(3), false)
   menu:setSize(384, 256)
   menu:setPosition((Video.Width - 384) / 2, (Video.Height - 256) / 2)
   menu:setDrawMenusUnder(true)

@@ -79,7 +79,7 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
 end
 
 function RunGameSoundOptionsMenu()
-  local menu = WarGameMenu(hpanel5)
+  local menu = WarGameMenu(panel(5))
   menu:setSize(352, 352)
   menu:setPosition((Video.Width - menu:getWidth()) / 2,
     (Video.Height - menu:getHeight()) / 2)
@@ -90,7 +90,7 @@ function RunGameSoundOptionsMenu()
 end
 
 function RunPreferencesMenu()
-  local menu = WarGameMenu(hpanel1)
+  local menu = WarGameMenu(panel(1))
 
   menu:addLabel("Preferences", 128, 11)
 
@@ -188,7 +188,7 @@ function RunOptionsMenu()
 end
 
 function RunGameOptionsMenu()
-  local menu = WarGameMenu(hpanel1)
+  local menu = WarGameMenu(panel(1))
 
   menu:addLabel("Game Options", 128, 11)
   menu:addFullButton("Sound (~<F7~>)", "f7", 16, 40 + 36*0,

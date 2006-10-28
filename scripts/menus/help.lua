@@ -1,5 +1,5 @@
 function RunHelpMenu()
-  local menu = WarGameMenu(hpanel1)
+  local menu = WarGameMenu(panel(1))
 
   menu:addLabel("Help Menu", 128, 11)
   menu:addFullButton("Keystroke ~!Help", "h", 16, 40 + 36*0,
@@ -54,7 +54,7 @@ local keystrokes = {
 }
 
 function RunKeystrokeHelpMenu()
-  local menu = WarGameMenu(hpanel5)
+  local menu = WarGameMenu(panel(5))
   menu:resize(352, 352)
 
   local c = Container()
@@ -110,7 +110,7 @@ local tips = {
 }
 
 function RunTipsMenu()
-  local menu = WarGameMenu(hpanel2)
+  local menu = WarGameMenu(panel(2))
   menu:resize(288, 256)
 
   menu:addLabel("Tips", 144, 11)
