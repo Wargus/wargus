@@ -118,7 +118,7 @@ function RunPreferencesMenu()
   l:adjustSize()
   menu:add(l, 230 - l:getWidth(), 40 + (36 * 3) + 6)
 
-  menu:addFullButton("~!OK", "o", 128 - (224 / 2), 245,
+  menu:addFullButton("~!OK", "o", 128 - (224 / 2), 288 - 40,
     function()
       preferences.FogOfWar = GetFogOfWar()
       preferences.ShowCommandKey = UI.ButtonPanel.ShowCommandKey
@@ -195,7 +195,7 @@ function RunGameOptionsMenu()
     function() RunPreferencesMenu() end)
   menu:addFullButton("Diplomacy (~<F9~>)", "f9", 16, 40 + 36*2,
     function() RunDiplomacyMenu() end)
-  menu:addFullButton("Previous (~<Esc~>", "escape", 128 - (224 / 2), 245,
+  menu:addFullButton("Previous (~<Esc~>", "escape", 128 - (224 / 2), 288 - 40,
     function() menu:stop() end)
 
   menu:run(false)
