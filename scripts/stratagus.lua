@@ -349,4 +349,8 @@ Load("scripts/ai.lua")
 Load("scripts/commands.lua")
 Load("scripts/cheats.lua")
 
+InitFuncs:add(function()
+  Load("scripts/units.lua")
+end)
+
 print("... ready!\n")
