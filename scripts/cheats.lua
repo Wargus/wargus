@@ -28,8 +28,10 @@
 --
 --      $Id$
 
-speedcheat = false
-godcheat = false
+InitFuncs:add(function()
+  speedcheat = false
+  godcheat = false
+end)
 
 function HandleCheats(str)
   local resources = { "gold", "wood", "oil" }
