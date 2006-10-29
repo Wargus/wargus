@@ -80,9 +80,7 @@ end
 
 function RunGameSoundOptionsMenu()
   local menu = WarGameMenu(panel(5))
-  menu:setSize(352, 352)
-  menu:setPosition((Video.Width - menu:getWidth()) / 2,
-    (Video.Height - menu:getHeight()) / 2)
+  menu:resize(352, 352)
 
   AddSoundOptions(menu, 0, 0, 352/2 - 224/2, 352)
 
