@@ -1,8 +1,6 @@
 function RunSaveMenu()
   local menu = WarGameMenu(panel(3))
-  menu:setSize(384, 256)
-  menu:setPosition((Video.Width - menu:getWidth()) / 2,
-    (Video.Height - menu:getHeight()) / 2)
+  menu:resize(384, 256)
 
   menu:addLabel("Save Game", 384 / 2, 11)
 

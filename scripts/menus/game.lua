@@ -13,7 +13,7 @@ function WarGameMenu(background)
 
   function menu:resize(w, h)
     menu:setSize(w, h)
-    menu:setPosition((Video.Width - menu:getWidth()) / 2,
+    menu:setPosition(176 + (Video.Width - 176 - menu:getWidth()) / 2,
       (Video.Height - menu:getHeight()) / 2)
   end
 
