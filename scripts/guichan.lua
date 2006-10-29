@@ -363,6 +363,7 @@ function RunMap(map, objective, fow, revealmap)
   end
   loop = true
   while (loop) do
+    InitGameVariables()
     if fow ~= nil then
       SetFogOfWar(fow)
     end

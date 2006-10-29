@@ -51,8 +51,10 @@ end
 
 --[[ ORC 03 campaign AI]]--
 
-orc_03_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-orc_03_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  orc_03_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  orc_03_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local orc_03_loop_funcs = {
     function() print("Looping !") return false end,
@@ -77,8 +79,10 @@ DefineAi("orc-03", "*", "orc-03", AiOrc03)
 --		Also if needed a farm.
 --		Attacks with soldier and shooter and destroyer.
 
-hum_04_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_04_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_04_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_04_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_04_loop_funcs = {
     function() print("Looping !") return false end,
@@ -112,8 +116,10 @@ DefineAi("hum-04", "*", "hum-04", AiHuman04)
 --		Also if needed a farm.
 --		Attacks with soldier and shooter and destroyer.
 
-orc_04_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-orc_04_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  orc_04_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  orc_04_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local orc_04_loop_funcs = {
     function() print("Looping !") return false end,
@@ -149,8 +155,10 @@ DefineAi("orc-04", "*", "orc-04", AiOrc04)
 --		Also if needed a farm.
 --		Attacks with soldier, shooter and destroyer.
 
-hum_05_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_05_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_05_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_05_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_05_loop_funcs = {
     function() print("Looping !") return false end,
@@ -190,8 +198,10 @@ DefineAi("hum-05", "*", "hum-05", AiHuman05)
 --		Upgrades weapon and missile.
 --		Attacks with soldier, shooter and cavalrie.
 
-hum_06_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_06_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_06_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_06_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_06_loop_funcs = {
     function() print("Looping !") return false end,
@@ -234,7 +244,9 @@ DefineAi("hum-06", "*", "hum-06", AiHuman06)
 --[[ Human 07 campaign ai]]--
 --	This AI script builds only worker and tanker.
 --
-hum_07_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_07_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_07_funcs = {
     function() AiDebug(false) return false end,
@@ -252,8 +264,10 @@ DefineAi("hum-07", "*", "hum-07", AiHuman07)
 --		Also if needed a farm.
 --		Upgrades weapon and missile.
 --		Attacks with soldier, shooter and cavalrie.
-hum_08_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_08_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_08_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_08_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_08_loop_funcs = {
     function() print("Looping !") return false end,
@@ -292,7 +306,9 @@ DefineAi("hum-08", "*", "hum-08", AiHuman08)
 --=============================================================================
 --	This AI script builds only worker and tanker.
 --
-hum_09_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_09_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_09_funcs = {
     function() AiDebug(false) return false end,
@@ -311,8 +327,10 @@ DefineAi("hum-09", "*", "hum-09", AiHuman09)
 --		Attacks with land units and water units.
 --
 
-hum_10_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_10_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_10_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_10_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_10_loop_funcs = {
     function() print("Looping !") return false end,
@@ -387,8 +405,10 @@ DefineAi("hum-10", "*", "hum-10", AiHuman10)
 --		Upgrades very much.
 --		Attacks with land units.
 
-hum_11_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_11_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_11_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_11_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_11_loop_funcs = {
     function() print("Looping !") return false end,
@@ -452,8 +472,10 @@ DefineAi("hum-11", "*", "hum-11", AiHumam11)
 --		Attacks with land and water units.
 
 
-hum_12_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_12_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_12_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_12_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_12_loop_funcs = {
     function() print("Looping !") return false end,
@@ -532,8 +554,10 @@ DefineAi("hum-12", "*", "hum-12", AiHuman12)
 --		Upgrades very much.
 --		Attacks with land and air units.
 
-hum_13_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_13_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_13_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_13_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_13_loop_funcs = {
     function() print("Looping !") return false end,
@@ -595,8 +619,10 @@ DefineAi("hum-13", "*", "hum-13", AiHuman13)
 --=============================================================================
 --	This AI script builds only workers and ogres.
 
-hum_14_orange_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_14_orange_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_14_orange_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_14_orange_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_14_orange_loop_funcs = {
     function() print("Looping !") return false end,
@@ -622,8 +648,10 @@ DefineAi("hum-14-orange", "*", "hum-14-orange", AiHuman14Orange)
 --	This AI script builds nothing.
 --		Does only upgrades.
 --
-hum_14_red_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_14_red_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_14_red_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_14_red_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_14_red_loop_funcs = {
     function() print("Looping !") return false end,
@@ -654,8 +682,10 @@ DefineAi("hum-14-red", "*", "hum-14-red", AiHuman14Red)
 --		Does only air attacks.
 --
 --	FIXME: This AI should only collect GOLD.
-hum_14_white_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_14_white_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_14_white_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_14_white_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_14_white_loop_funcs = {
     function() print("Looping !") return false end,
@@ -693,8 +723,10 @@ DefineAi("hum-14-white", "*", "hum-14-white", AiHuman14White)
 --	FIXME: This AI should only collect GOLD.
 --
 --
-hum_14_black_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-hum_14_black_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+InitFuncs:add(function()
+  hum_14_black_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_14_black_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+end)
 
 local hum_14_black_loop_funcs = {
     function() print("Looping !") return false end,

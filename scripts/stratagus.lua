@@ -38,10 +38,20 @@ print("Stratagus default config file loading ...\n")
 --  Config-Part
 -------------------------------------------------------------------------------
 
+InitFuncs = {}
+function InitFuncs:add(f)
+  table.insert(self, f)
+end
+
+function InitGameVariables()
+  for i=1,table.getn(InitFuncs) do
+    InitFuncs[i]()
+  end
+end
+
 --  Edit the next sections to get your look and feel.
 --  Note, some of those values are overridden by user preferences,
---  see ~/.stratagus/preferences1.scripts
---  and ~/.stratagus/gamename/preferences2.scripts
+--  see preferences.lua
 
 --  Enter your default title screen.
 SetTitleScreens({
@@ -245,7 +255,9 @@ DefinePlayerColors({
 --SetSpeedResearch(10)
 
 --  You can do all the above with this
-SetSpeeds(1)
+InitFuncs:add(function()
+  SetSpeeds(1)
+end)
 
 -------------------------------------------------------------------------------
 
