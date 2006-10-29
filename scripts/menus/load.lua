@@ -1,6 +1,7 @@
 function RunLoadGameMenu()
   local menu = WarMenu(nil, panel(3), false)
-  menu:resize(384, 256)
+  menu:setSize(384, 256)
+  menu:setPosition((Video.Width - 384) / 2, (Video.Height - 256) / 2)
   menu:setDrawMenusUnder(true)
 
   menu:addLabel("Load Game", 384 / 2, 11)
