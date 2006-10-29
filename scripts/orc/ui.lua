@@ -75,6 +75,8 @@ end
 UI.NormalFontColor = "yellow"
 UI.ReverseFontColor = "white"
 
+UI.Fillers:clear()
+
 b = CFiller:new_local()
 b.G = CGraphic:New("ui/orc/infopanel.png", 176, 176)
 b.X = 0
@@ -105,6 +107,8 @@ b.Y = 160 + 9
 b.Style = FindButtonStyle("icon")
 UI.SingleSelectedButton = b
 
+UI.SelectedButtons:clear()
+
 function AddSelectedButton(x, y)
 	b = CUIButton:new_local()
 	b.X = x
@@ -119,9 +123,9 @@ AddSelectedButton(121, 160 + 9)
 AddSelectedButton(9, 160 + 63)
 AddSelectedButton(65, 160 + 63)
 AddSelectedButton(121, 160 + 63)
-AddSelectedButton(9, 160 + 17)
-AddSelectedButton(65, 160 + 17)
-AddSelectedButton(121, 160 + 17)
+AddSelectedButton(9, 160 + 117)
+AddSelectedButton(65, 160 + 117)
+AddSelectedButton(121, 160 + 117)
 
 UI.MaxSelectedFont = Fonts["game"]
 UI.MaxSelectedTextX = 10
@@ -132,6 +136,8 @@ b.X = 110
 b.Y = 160 + 11 + 70
 b.Style = FindButtonStyle("icon")
 UI.SingleTrainingButton = b
+
+UI.TrainingButtons:clear()
 
 function AddTrainingButton(x, y)
 	b = CUIButton:new_local()
@@ -160,6 +166,8 @@ b.Y = 160 + 11 + 70
 b.Style = FindButtonStyle("icon")
 UI.ResearchingButton = b
 
+UI.TransportingButtons:clear()
+
 function AddTransportingButton(x, y)
 	b = CUIButton:new_local()
 	b.X = x
@@ -174,6 +182,8 @@ AddTransportingButton(121, 223)
 AddTransportingButton(9, 277)
 AddTransportingButton(65, 277)
 AddTransportingButton(121, 277)
+
+UI.ButtonPanel.Buttons:clear()
 
 function AddButtonPanelButton(x, y)
 	b = CUIButton:new_local()
