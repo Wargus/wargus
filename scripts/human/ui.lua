@@ -184,6 +184,7 @@ AddTransportingButton(65, 277)
 AddTransportingButton(121, 277)
 
 UI.CompletedBarColorRGB = CColor(48, 100, 4)
+UI.CompletedBarShadow = true
 
 UI.ButtonPanel.Buttons:clear()
 
