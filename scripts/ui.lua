@@ -113,9 +113,9 @@ DefinePanelContents(
 
 -- Construction
 	{ Pos = {12, 153}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
-		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 12}}
+		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 16}}
 	},
-	{ Pos = {50, 154}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+	{ Pos = {50, 155}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
 		More = {"Text", "% Complete"}},
 	{ Pos = {107, 78}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
 		More = {"Icon", {Unit = "Worker"}}}
@@ -159,21 +159,21 @@ DefinePanelContents(
 	},
 -- Research
 	{ Pos = {12, 153}, Condition = {Research = "only"},
-		More = {"CompleteBar", {Variable = "Research", Width = 152, Height = 12}}
+		More = {"CompleteBar", {Variable = "Research", Width = 152, Height = 16}}
 	},
 	{ Pos = {16, 86}, Condition = {Research = "only"}, More = {"Text", "Researching:"}},
-	{ Pos = {50, 154}, Condition = {Research = "only"}, More = {"Text", "% Complete"}},
+	{ Pos = {50, 155}, Condition = {Research = "only"}, More = {"Text", "% Complete"}},
 -- Training
 	{ Pos = {12, 153}, Condition = {Training = "only"},
-		More = {"CompleteBar", {Variable = "Training", Width = 152, Height = 12}}
+		More = {"CompleteBar", {Variable = "Training", Width = 152, Height = 16}}
 	},
-	{ Pos = {50, 154}, Condition = {Training = "only"}, More = {"Text", "% Complete"}},
+	{ Pos = {50, 155}, Condition = {Training = "only"}, More = {"Text", "% Complete"}},
 -- Upgrading To
 	{ Pos = {12, 153}, Condition = {UpgradeTo = "only"},
-		More = {"CompleteBar", {Variable = "UpgradeTo", Width = 152, Height = 12}}
+		More = {"CompleteBar", {Variable = "UpgradeTo", Width = 152, Height = 16}}
 	},
 	{ Pos = {37,  86}, More = {"Text", "Upgrading:"}, Condition = {UpgradeTo = "only"} },
-	{ Pos = {50, 154}, More = {"Text", "% Complete"}, Condition = {UpgradeTo = "only"} },
+	{ Pos = {50, 155}, More = {"Text", "% Complete"}, Condition = {UpgradeTo = "only"} },
 -- Mana
 	{ Pos = {16, 148}, Condition = {Mana = "only"},
 		More = {"CompleteBar", {Variable = "Mana", Height = 16, Width = 140, Border = true}}
