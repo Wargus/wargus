@@ -355,6 +355,13 @@ Objectives = DefaultObjectives
 
 -- Define the different menus ----------
 
+function InitGameSettings()
+  GameSettings.Race = 0
+  GameSettings.Resources = 0
+  GameSettings.NumPlayers = 0
+end
+InitGameSettings()
+
 function RunMap(map, objective, fow, revealmap)
   if objective == nil then
     Objectives = DefaultObjectives
@@ -377,7 +384,7 @@ function RunMap(map, objective, fow, revealmap)
   end
   RunResultsMenu(s)
 
-  GameSettings.Race = 0
+  InitGameSettings()
   SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 end
 
