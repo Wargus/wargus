@@ -201,7 +201,7 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile smsout,
 		} else if (!strcmp(header, "UDTA")) {
 			// FIXME: todo
 		} else if (!strcmp(header, "ALOW")) {
-			// FIXME: todo
+			// no puds seem to use this, so we'll ignore
 		} else if (!strcmp(header, "UGRD")) {
 			// FIXME: todo
 		} else if (!strcmp(header, "SIDE")) {
@@ -234,11 +234,11 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile smsout,
 				}
 			}
 		} else if (!strcmp(header, "SQM ")) {
-			// FIXME: todo
+			// UNUSED
 		} else if (!strcmp(header, "OILM")) {
 			// UNUSED
 		} else if (!strcmp(header, "REGM")) {
-			// FIXME: todo
+			// UNUSED
 		} else if (!strcmp(header, "UNIT")) {
 			pdata.NumUnits = len / 8;
 
