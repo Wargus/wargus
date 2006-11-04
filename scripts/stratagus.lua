@@ -299,7 +299,7 @@ if (preferences == nil) then
   preferences = {
     VideoWidth = 800,
     VideoHeight = 600,
-    VideoFullScreen = false,
+    VideoFullScreen = true,
     PlayerName = "Player",
     FogOfWar = true,
     ShowCommandKey = true,
