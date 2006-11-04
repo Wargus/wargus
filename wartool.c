@@ -195,6 +195,9 @@ char* ArchiveDir;
 */
 int CDType;
 
+// Width of game font
+int game_font_width;
+
 /**
 **  What, where, how to extract.
 **
@@ -2918,6 +2921,10 @@ int ConvertFont(char* file, int pale, int fnte)
 	CheckPath(buf);
 	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
+	if (!strcmp(file, "game")) {
+		game_font_width = w / 15;
+	}
+
 	free(image);
 	free(palp);
 
@@ -4195,16 +4202,6 @@ int main(int argc, char** argv)
 		expansion_cd = 1;
 	}
 
-	sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
-	CheckPath(buf);
-	f = fopen(buf, "w");
-	if (expansion_cd) {
-		fprintf(f, "expansion = true\n");
-	} else {
-		fprintf(f, "expansion = false\n");
-	}
-	fclose(f);
-
 #ifdef DEBUG
 	printf("Extract from \"%s\" to \"%s\"\n", ArchiveDir, Dir);
 #else
@@ -4301,6 +4298,17 @@ int main(int argc, char** argv)
 	if (Pal27) {
 		free(Pal27);
 	}
+
+	sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
+	CheckPath(buf);
+	f = fopen(buf, "w");
+	if (expansion_cd) {
+		fprintf(f, "expansion = true\n");
+	} else {
+		fprintf(f, "expansion = false\n");
+	}
+	fprintf(f, "game_font_width = %d\n", game_font_width);
+	fclose(f);
 
 	return 0;
 }
