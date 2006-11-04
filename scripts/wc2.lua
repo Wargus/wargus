@@ -116,6 +116,10 @@ function CreateUnit(unittype, player, pos)
     return OldCreateUnit(unittype, player, pos)
   end
 
+  if (Players[player].Type == PlayerNobody) then
+    return nil
+  end
+
   unittype = ConvertUnitType(unittype, GetPlayerData(player, "RaceName"))
 
   return OldCreateUnit(unittype, player, pos)
@@ -156,5 +160,33 @@ function SetPlayerData(player, data, arg1, arg2)
   end
 
   OldSetPlayerData(player, data, arg1, arg2)
+end
+
+if (OldDefinePlayerTypes == nil) then
+  OldDefinePlayerTypes = DefinePlayerTypes
+end
+
+function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8)
+  local p = {p1, p2, p3, p4, p5, p6, p7, p8}
+  local foundperson = false
+  local nump = GameSettings.NumPlayers
+  if (nump == 0) then nump = 8 end
+
+  -- FIXME: should randomly pick players to use
+  for i=1,8 do
+    if (p[i] == "person" or p[i] == "computer") then
+      if (p[i] == "person" and foundperson == false) then
+        foundperson = true
+      else
+        if (nump == 0) then
+          p[i] = "nobody"
+        else
+          nump = nump - 1
+        end
+      end
+    end
+  end
+
+  OldDefinePlayerTypes(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8])
 end
 

@@ -382,6 +382,53 @@ function RunMap(map, objective, fow, revealmap)
 end
 
 mapname = "maps/default.smp.gz"
+local mapinfo = {
+  playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
+  description = "",
+  nplayers = 1,
+  w = 32,
+  h = 32,
+  id = 0
+}
+
+function GetMapInfo(mapname)
+  local OldDefinePlayerTypes = DefinePlayerTypes
+  local OldPresentMap = PresentMap
+
+  function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8)
+    mapinfo.playertypes[1] = p1
+    mapinfo.playertypes[2] = p2
+    mapinfo.playertypes[3] = p3
+    mapinfo.playertypes[4] = p4
+    mapinfo.playertypes[5] = p5
+    mapinfo.playertypes[6] = p6
+    mapinfo.playertypes[7] = p7
+    mapinfo.playertypes[8] = p8
+
+    mapinfo.nplayers = 0
+    for i=0,8 do
+      local t = mapinfo.playertypes[i]
+      if (t == "person" or t == "computer") then
+        mapinfo.nplayers = mapinfo.nplayers + 1
+      end
+    end
+  end
+
+  function PresentMap(description, nplayers, w, h, id)
+    mapinfo.description = description
+    -- nplayers includes rescue-passive and rescue-active
+    -- calculate the real nplayers in DefinePlayerTypes
+    --mapinfo.nplayers = nplayers
+    mapinfo.w = w
+    mapinfo.h = h
+    mapinfo.id = id
+  end
+
+  Load(mapname)
+
+  DefinePlayerTypes = OldDefinePlayerTypes
+  PresentMap = OldPresentMap
+end
 
 function RunSelectScenarioMenu()
   local menu = WarMenu(nil, panel(5), false)
@@ -420,9 +467,13 @@ function RunSinglePlayerGameMenu()
   local d
   local race
   local resources
+  local opponents
+  local mapl
+  local descriptionl
 
-  menu:addLabel("Scenario:", offx + 16, offy + 380, Fonts["game"], false)
-  mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 380 + 24, Fonts["game"], false)
+  menu:addLabel("Scenario:", offx + 16, offy + 360, Fonts["game"], false)
+  mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 360 + 24, Fonts["game"], false)
+  descriptionl = menu:addLabel("descriptionl", offx + 16 + 70, offy + 360, Fonts["game"], false)
 
   menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
   menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0,
@@ -430,14 +481,15 @@ function RunSinglePlayerGameMenu()
       local oldmapname = mapname
       RunSelectScenarioMenu()
       if (mapname ~= oldmapname) then
-        mapl:setCaption(string.sub(mapname, 6))
-        mapl:adjustSize()
+        GetMapInfo(mapname)
+        MapChanged()
       end
     end)
   menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
       GameSettings.Race = race:getSelected()
       GameSettings.Resources = resources:getSelected()
+      GameSettings.NumPlayers = opponents:getSelected()
       RunMap(mapname)
     end)
   menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() menu:stop() end)
@@ -457,15 +509,36 @@ function RunSinglePlayerGameMenu()
     function(dd) end)
   d:setSize(190, 20)
 
+  local opponents_list = {"Map Default", "1 Opponent", "2 Opponents",
+    "3 Opponents", "4 Opponents", "5 Opponents", "6 Opponents", "7 Opponents"}
+
   menu:addLabel("~<Opponents:~>", offx + 40, offy + (10 + 300) - 20, Fonts["game"], false)
-  d = menu:addDropDown({"Map Default", "1 Opponent", "2 Opponents", "3 Opponents", "4 Opponents", "5 Opponents", "6 Opponents", "7 Opponents"}, offx + 40, offy + 10 + 300,
+  opponents = menu:addDropDown(opponents_list, offx + 40, offy + 10 + 300,
     function(dd) end)
-  d:setSize(152, 20)
+  opponents:setSize(152, 20)
 
   menu:addLabel("~<Game Type:~>", offx + 220, offy + (10 + 300) - 20, Fonts["game"], false)
   d = menu:addDropDown({"Use map settings", "Melee", "Free for all", "Top vs bottom", "Left vs right", "Man vs Machine"}, offx + 220, offy + 10 + 300,
     function(dd) end)
   d:setSize(152, 20)
+
+  function MapChanged()
+    mapl:setCaption(string.sub(mapname, 6))
+    mapl:adjustSize()
+
+    descriptionl:setCaption(mapinfo.description ..
+      " (" .. mapinfo.w .. " x " .. mapinfo.h .. ")")
+    descriptionl:adjustSize()
+ 
+    local o = {}
+    for i=1,mapinfo.nplayers do
+      table.insert(o, opponents_list[i])
+    end
+    opponents:setList(o)
+  end
+
+  GetMapInfo(mapname)
+  MapChanged()
 
   menu:run()
 end
