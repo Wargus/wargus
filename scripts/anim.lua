@@ -80,11 +80,20 @@ DefineAnimations("animations-building", {
 })
 
 
-DefineAnimations("animations-dead-body", {
+DefineAnimations("animations-human-dead-body", {
+  Death = {"unbreakable begin", "frame 0", "wait 200", "frame 10", "wait 200", "frame 15", "wait 200",
+    "frame 20", "wait 200", "frame 25", "wait 200", "frame 25", "unbreakable end", "wait 1",},
+})
+
+DefineAnimations("animations-orc-dead-body", {
   Death = {"unbreakable begin", "frame 5", "wait 200", "frame 10", "wait 200", "frame 15", "wait 200",
     "frame 20", "wait 200", "frame 25", "wait 200", "frame 25", "unbreakable end", "wait 1",},
 })
 
+DefineAnimations("animations-dead-sea-body", {
+  Death = {"unbreakable begin", "frame 30", "wait 100", "frame 30", "wait 100",
+    "frame 30", "unbreakable end", "wait 1",},
+})
 
 DefineAnimations("animations-destroyed-place", {
   Death = {"unbreakable begin", "frame 0", "wait 200", "frame 1", "wait 200", "frame 1", "unbreakable end", "wait 1", },
