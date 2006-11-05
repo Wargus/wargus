@@ -62,10 +62,6 @@ function panel(n)
   end
 end
 
-hvictory = "ui/human/victory.png"
-hdefeat = "ui/human/defeat.png"
-ovictory = "ui/orc/victory.png"
-odefeat = "ui/orc/defeat.png"
 
 
 GameSettings = {}
