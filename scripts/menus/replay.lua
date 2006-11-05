@@ -13,6 +13,7 @@ function RunReplayGameMenu()
 
   menu:addHalfButton("~!OK", "o", 48, 308,
     function()
+      InitGameVariables()
       StartReplay("~logs/" .. browser:getSelectedItem(), reveal:isMarked())
       menu:stop()
     end)
