@@ -13,6 +13,7 @@ function RunLoadGameMenu()
     currentCampaign = nil
     loop = true
     while (loop) do
+      InitGameVariables()
       StartSavedGame("~save/" .. browser:getSelectedItem())
       if (GameResult ~= GameRestart) then
         loop = false
