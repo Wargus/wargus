@@ -36,7 +36,7 @@ function RunGameMenu()
   menu:addHalfButton("Save (~<F11~>)", "f11", 16, 40,
     function() RunSaveMenu() end)
   menu:addHalfButton("Load (~<F12~>)", "f12", 16 + 12 + 106, 40,
-    function() end)
+    function() RunGameLoadGameMenu() end)
   menu:addFullButton("Options (~<F5~>)", "f5", 16, 40 + 36*1,
     function() RunGameOptionsMenu() end)
   menu:addFullButton("Help (~<F1~>)", "f1", 16, 40 + 36*2,
