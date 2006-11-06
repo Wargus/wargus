@@ -494,6 +494,7 @@ function RunSinglePlayerGameMenu()
       GameSettings.Resources = resources:getSelected()
       GameSettings.NumPlayers = opponents:getSelected()
       RunMap(mapname)
+      menu:stop()
     end)
   menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() menu:stop() end)
 
@@ -554,11 +555,16 @@ function BuildProgramStartMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
-  menu:addFullButton("~!Single Player Game", "s", offx + 208, offy + 104 + 36*0, RunSinglePlayerGameMenu)
-  menu:addFullButton("~!Multi Player Game", "m", offx + 208, offy + 104 + 36*1, RunMultiPlayerGameMenu)
-  menu:addFullButton("~!Campaign Game", "c", offx + 208, offy + 104 + 36*2, RunCampaignGameMenu)
-  menu:addFullButton("~!Load Game", "l", offx + 208, offy + 104 + 36*3, RunLoadGameMenu)
-  menu:addFullButton("~!Replay Game", "r", offx + 208, offy + 104 + 36*4, RunReplayGameMenu)
+  menu:addFullButton("~!Single Player Game", "s", offx + 208, offy + 104 + 36*0,
+    function() RunSinglePlayerGameMenu(); menu:stop(1) end)
+  menu:addFullButton("~!Multi Player Game", "m", offx + 208, offy + 104 + 36*1,
+    function() RunMultiPlayerGameMenu(); menu:stop(1) end)
+  menu:addFullButton("~!Campaign Game", "c", offx + 208, offy + 104 + 36*2,
+    function() RunCampaignGameMenu(); menu:stop(1) end)
+  menu:addFullButton("~!Load Game", "l", offx + 208, offy + 104 + 36*3,
+    function() RunLoadGameMenu(); menu:stop(1) end)
+  menu:addFullButton("~!Replay Game", "r", offx + 208, offy + 104 + 36*4,
+    function() RunReplayGameMenu(); menu:stop(1) end)
   menu:addFullButton("~!Options", "o", offx + 208, offy + 104 + 36*5,
     function() RunOptionsMenu(); menu:stop(1) end)
   menu:addFullButton("S~!how Credits", "h", offx + 208, offy + 104 + 36*6, RunShowCreditsMenu)
@@ -569,10 +575,15 @@ function BuildProgramStartMenu()
   return menu:run()
 end
 
+LoadGameFile = nil
+
 function RunProgramStartMenu()
   local continue = 1
 
   while continue == 1 do
+    if (LoadGameFile ~= nil) then
+      LoadGame(LoadGameFile)
+    end
     continue = BuildProgramStartMenu(menu)
   end
 end
