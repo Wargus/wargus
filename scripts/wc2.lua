@@ -111,6 +111,11 @@ end
 
 -- Convert unit type to the player's race
 function CreateUnit(unittype, player, pos)
+  -- Don't add any units in 1 peasant only mode
+  if (GameSettings.NumUnits == 1) then
+    return
+  end
+
   -- Leave neutral the way it is
   if (player == 15) then
     return OldCreateUnit(unittype, player, pos)
@@ -135,6 +140,7 @@ function SetPlayerData(player, data, arg1, arg2)
   local res = {arg2, arg2, arg2}
 
   if (data == "RaceName") then
+    -- FIXME: support multiplayer
     if (ThisPlayer ~= nil and ThisPlayer.Index == player) then
       if (GameSettings.Presets[0].Race == 1) then
         arg1 = "human"
@@ -160,6 +166,18 @@ function SetPlayerData(player, data, arg1, arg2)
   end
 
   OldSetPlayerData(player, data, arg1, arg2)
+
+  -- If this is 1 peasant mode add the peasant now
+  if (data == "RaceName") then
+    if (GameSettings.NumUnits == 1) then
+      if (player ~= 15 and Players[player].Type ~= PlayerNobody) then
+        local unittype = ConvertUnitType("unit-peasant",
+          GetPlayerData(player, "RaceName"))
+        OldCreateUnit(unittype, player,
+          {Players[player].StartX, Players[player].StartY})
+      end
+    end
+  end
 end
 
 if (OldDefinePlayerTypes == nil) then
