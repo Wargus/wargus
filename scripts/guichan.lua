@@ -478,6 +478,7 @@ function RunSinglePlayerGameMenu()
   local race
   local resources
   local opponents
+  local numunits
   local gametype
   local mapl
   local descriptionl
@@ -501,6 +502,7 @@ function RunSinglePlayerGameMenu()
       GameSettings.Presets[0].Race = race:getSelected()
       GameSettings.Resources = resources:getSelected()
       GameSettings.Opponents = opponents:getSelected()
+      GameSettings.NumUnits = numunits:getSelected()
       GameSettings.GameType = gametype:getSelected() - 1
       RunMap(mapname)
       menu:stop()
@@ -518,9 +520,9 @@ function RunSinglePlayerGameMenu()
   resources:setSize(152, 20)
 
   menu:addLabel("~<Units:~>", offx + 640 - 224 - 16, offy + (10 + 240) - 20, Fonts["game"], false)
-  d = menu:addDropDown({"Map Default", "One Peasant Only"}, offx + 640 - 224 - 16, offy + 10 + 240,
+  numunits = menu:addDropDown({"Map Default", "One Peasant Only"}, offx + 640 - 224 - 16, offy + 10 + 240,
     function(dd) end)
-  d:setSize(190, 20)
+  numunits:setSize(190, 20)
 
   local opponents_list = {"Map Default", "1 Opponent", "2 Opponents",
     "3 Opponents", "4 Opponents", "5 Opponents", "6 Opponents", "7 Opponents"}
