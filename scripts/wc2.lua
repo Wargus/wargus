@@ -136,9 +136,9 @@ function SetPlayerData(player, data, arg1, arg2)
 
   if (data == "RaceName") then
     if (ThisPlayer ~= nil and ThisPlayer.Index == player) then
-      if (GameSettings.Race == 1) then
+      if (GameSettings.Presets[0].Race == 1) then
         arg1 = "human"
-      elseif (GameSettings.Race == 2) then
+      elseif (GameSettings.Presets[0].Race == 2) then
         arg1 = "orc"
       end
     end
@@ -169,7 +169,7 @@ end
 function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8)
   local p = {p1, p2, p3, p4, p5, p6, p7, p8}
   local foundperson = false
-  local nump = GameSettings.NumPlayers
+  local nump = GameSettings.Opponents
   if (nump == 0) then nump = 8 end
 
   -- FIXME: should randomly pick players to use
