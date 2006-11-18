@@ -64,9 +64,6 @@ end
 
 
 
-GameSettings = {}
-
-
 function AddMenuHelpers(menu)
   function menu:addCentered(widget, x, y)
     self:add(widget, x - widget:getWidth() / 2, y)
@@ -352,9 +349,19 @@ Objectives = DefaultObjectives
 -- Define the different menus ----------
 
 function InitGameSettings()
-  GameSettings.Race = 0
-  GameSettings.Resources = 0
-  GameSettings.NumPlayers = 0
+  GameSettings.NetGameType = 1
+  for i=0,PlayerMax-1 do
+    GameSettings.Presets[i].Race = -1
+    GameSettings.Presets[i].Team = -1
+    GameSettings.Presets[i].Type = -1
+  end
+  GameSettings.Resources = -1
+  GameSettings.NumUnits = -1
+  GameSettings.Opponents = -1
+  GameSettings.Terrain = -1
+  GameSettings.GameType = -1
+  GameSettings.NoFogOfWar = false
+  GameSettings.RevealMap = 0
 end
 InitGameSettings()
 
@@ -490,9 +497,9 @@ function RunSinglePlayerGameMenu()
     end)
   menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
-      GameSettings.Race = race:getSelected()
+      GameSettings.Presets[0].Race = race:getSelected()
       GameSettings.Resources = resources:getSelected()
-      GameSettings.NumPlayers = opponents:getSelected()
+      GameSettings.Opponents = opponents:getSelected()
       RunMap(mapname)
       menu:stop()
     end)
