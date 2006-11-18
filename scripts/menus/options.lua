@@ -131,7 +131,9 @@ function RunPreferencesMenu()
 end
 
 function SetVideoSize(width, height)
-  Video:ResizeScreen(width, height)
+  if (Video:ResizeScreen(width, height) == false) then
+    return
+  end
   bckground:Resize(Video.Width, Video.Height)
   backgroundWidget = ImageWidget(bckground)
   Load("scripts/ui.lua")
