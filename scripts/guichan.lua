@@ -478,6 +478,7 @@ function RunSinglePlayerGameMenu()
   local race
   local resources
   local opponents
+  local gametype
   local mapl
   local descriptionl
 
@@ -500,6 +501,7 @@ function RunSinglePlayerGameMenu()
       GameSettings.Presets[0].Race = race:getSelected()
       GameSettings.Resources = resources:getSelected()
       GameSettings.Opponents = opponents:getSelected()
+      GameSettings.GameType = gametype:getSelected() - 1
       RunMap(mapname)
       menu:stop()
     end)
@@ -529,9 +531,9 @@ function RunSinglePlayerGameMenu()
   opponents:setSize(152, 20)
 
   menu:addLabel("~<Game Type:~>", offx + 220, offy + (10 + 300) - 20, Fonts["game"], false)
-  d = menu:addDropDown({"Use map settings", "Melee", "Free for all", "Top vs bottom", "Left vs right", "Man vs Machine"}, offx + 220, offy + 10 + 300,
+  gametype = menu:addDropDown({"Use map settings", "Melee", "Free for all", "Top vs bottom", "Left vs right", "Man vs Machine"}, offx + 220, offy + 10 + 300,
     function(dd) end)
-  d:setSize(152, 20)
+  gametype:setSize(152, 20)
 
   function MapChanged()
     mapl:setCaption(string.sub(mapname, 6))
