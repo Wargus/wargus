@@ -114,8 +114,8 @@ int WriteSMS(const struct PudData * const pdata, gzFile smsout)
 
 	for (j = 0; j < pdata->MapSizeY; ++j) {
 		for (i = 0; i < pdata->MapSizeX; ++i) {
-			gzprintf(smsout, "SetTile(%d, %d, %d)\n",
-				pdata->Tiles[j * pdata->MapSizeX + i], i, j);
+			gzprintf(smsout, "SetTile(%d, %d, %d, %d)\n",
+				pdata->Tiles[j * pdata->MapSizeX + i], i, j, pdata->Value[j * pdata->MapSizeX + i]);
 		}
 	}
 
@@ -163,6 +163,7 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile smsout,
 	struct PudData pdata; 
 
 	pdata.Tiles = NULL;
+	pdata.Value = NULL;
 	curp = puddata;
 
 	curp += PudReadHeader(curp, header, &len);
@@ -226,11 +227,21 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile smsout,
 			}
 		} else if (!strcmp(header, "MTXM")) {
 			pdata.Tiles = (int *)malloc(sizeof(*pdata.Tiles) * pdata.MapSizeX * pdata.MapSizeY);
+			pdata.Value = (int *)malloc(sizeof(*pdata.Tiles) * pdata.MapSizeX * pdata.MapSizeY);
 
 			for (j = 0; j < pdata.MapSizeY; ++j) {
 				for (i = 0; i < pdata.MapSizeX; ++i) {
-					pdata.Tiles[j * pdata.MapSizeX + i] = curp[j * pdata.MapSizeX * 2 + i * 2] |
-						(curp[j * pdata.MapSizeX * 2 + i * 2 + 1] << 8);
+					int v = curp[j * pdata.MapSizeX * 2 + i * 2] | (curp[j * pdata.MapSizeX * 2 + i * 2 + 1] << 8);
+					pdata.Tiles[j * pdata.MapSizeX + i] = v;
+					if ((v & 0xFFF0) == 0x00A0 || (v & 0xFFF0) == 0x00C0 || (v & 0xFF00) == 0x0900) {
+						// orc wall
+						pdata.Value[j * pdata.MapSizeX + i] = 40;
+					} else if ((v & 0x00F0) == 0x0090 || (v & 0xFFF0) == 0x00B0 || (v & 0xFF00) == 0x0800) {
+						// human wall
+						pdata.Value[j * pdata.MapSizeX + i] = 40;
+					} else {
+						pdata.Value[j * pdata.MapSizeX + i] = 0;
+					}
 				}
 			}
 		} else if (!strcmp(header, "SQM ")) {
@@ -275,6 +286,7 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile smsout,
 
 	free(pdata.Units);
 	free(pdata.Tiles);
+	free(pdata.Value);
 
 	return 0;
 }

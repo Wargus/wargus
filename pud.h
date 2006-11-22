@@ -300,6 +300,7 @@ struct PudData {
 	int MapSizeX;
 	int MapSizeY;
 	int *Tiles;
+	int *Value;
 
 	struct UnitData *Units;
 	int NumUnits;
