@@ -10,7 +10,7 @@ function Briefing(title, objs, bg, text, voices)
   t = "\n\n\n\n\n\n\n\n\n\n\n\n\n" .. t .. "\n\n\n\n\n\n\n\n\n\n\n\n\n"
   local sw = ScrollingWidget(320, 170 * Video.Height / 480)
   sw:setBackgroundColor(Color(0,0,0,0))
-  sw:setSpeed(0.45)
+  sw:setSpeed(0.17)
   local l = MultiLineLabel(t)
   l:setFont(Fonts["large"])
   l:setAlignment(MultiLineLabel.LEFT)
