@@ -115,6 +115,11 @@ function RunShowCreditsMenu()
   menu:addHalfButton("~!Continue", "c", offx + 455, offy + 440,
     function() menu:stop() end)
 
+  local speed = GetGameSpeed()
+  SetGameSpeed(30)
+
   menu:run()
+
+  SetGameSpeed(speed)
 end
 
