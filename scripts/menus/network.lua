@@ -92,6 +92,7 @@ function RunJoiningMapMenu(s)
   local sy = Video.Height / 20
   local numplayers = 3
   local state
+  local d
 
   menu = WarMenu("Joining game: Map")
 
@@ -110,15 +111,15 @@ function RunJoiningMapMenu(s)
   local revealmap = menu:addCheckBox("Reveal map", sx, sy*3+150, function() end)
   
   -- FIXME: only the server can set these settings
-  menu:writeText("Difficulty:", sx, sy*11)
-  menu:addDropDown({"easy", "normal", "hard"}, sx + 90, sy*11 + 7,
-    function(dd) GameSettings.Difficulty = (5 - dd:getSelected()*2) end)
-  menu:writeText("Map richness:", sx, sy*11+25)
-  menu:addDropDown({"high", "normal", "low"}, sx + 110, sy*11+25 + 7,
-    function(dd) GameSettings.MapRichness = (5 - dd:getSelected()*2) end)
-  menu:writeText("Starting resources:", sx, sy*11+50)
-  menu:addDropDown({"high", "normal", "low"}, sx + 150, sy*11+50 + 7,
-    function(dd) GameSettings.Resources = (5 - dd:getSelected()*2) end)
+  menu:writeText("Units:", sx, sy*11)
+  d = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11,
+    function(dd) GameSettings.Units = dd:getSelected() end)
+  d:setSize(190, 20)
+
+  menu:writeText("Resources:", sx, sy*11+25)
+  d = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, sx + 100, sy*11+25,
+    function(dd) GameSettings.Resources = dd:getSelected() end)
+  d:setSize(190, 20)
 
   local OldPresentMap = PresentMap
   PresentMap = function(description, nplayers, w, h, id)
@@ -260,6 +261,7 @@ function RunServerMultiGameMenu(map, description, numplayers)
   local sx = Video.Width / 20
   local sy = Video.Height / 20
   local startgame
+  local d
 
   menu = WarMenu("Create MultiPlayer game")
 
@@ -283,15 +285,15 @@ function RunServerMultiGameMenu(map, description, numplayers)
   end
   local revealmap = menu:addCheckBox("Reveal map", sx, sy*3+150, revealMapCb)
   
-  menu:writeText("Difficulty:", sx, sy*11)
-  menu:addDropDown({"easy", "normal", "hard"}, sx + 90, sy*11 + 7,
-    function(dd) GameSettings.Difficulty = (5 - dd:getSelected()*2) end)
-  menu:writeText("Map richness:", sx, sy*11+25)
-  menu:addDropDown({"high", "normal", "low"}, sx + 110, sy*11+25 + 7,
-    function(dd) GameSettings.MapRichness = (5 - dd:getSelected()*2) end)
-  menu:writeText("Starting resources:", sx, sy*11+50)
-  menu:addDropDown({"high", "normal", "low"}, sx + 150, sy*11+50 + 7,
-    function(dd) GameSettings.Resources = (5 - dd:getSelected()*2) end)
+  menu:writeText("Units:", sx, sy*11)
+  d = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11,
+    function(dd) GameSettings.NumUnits = dd:getSelected() end)
+  d:setSize(190, 20)
+
+  menu:writeText("Resources:", sx, sy*11+25)
+  d = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, sx + 100, sy*11+25,
+    function(dd) GameSettings.Resources = dd:getSelected() end)
+  d:setSize(190, 20)
 
   local updatePlayers = addPlayersList(menu, numplayers)
 
@@ -346,7 +348,6 @@ function RunCreateMultiGameMenu(s)
 
   local OldPresentMap = PresentMap
   PresentMap = function(desc, nplayers, w, h, id)
-    print(description)
     numplayers = nplayers
     players:setCaption(""..numplayers)
     players:adjustSize()
