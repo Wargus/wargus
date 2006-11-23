@@ -558,9 +558,6 @@ function RunSinglePlayerGameMenu()
   menu:run()
 end
 
-function RunMultiPlayerGameMenu()
-end
-
 function BuildProgramStartMenu()
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
@@ -612,6 +609,7 @@ Load("scripts/menus/objectives.lua")
 Load("scripts/menus/endscenario.lua")
 Load("scripts/menus/diplomacy.lua")
 Load("scripts/menus/results.lua")
+Load("scripts/menus/network.lua")
 
 
 RunProgramStartMenu()
