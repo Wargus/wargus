@@ -54,7 +54,12 @@ function Briefing(title, objs, bg, text, voices)
   end
   PlayNextVoice()
 
+  local speed = GetGameSpeed()
+  SetGameSpeed(30)
+
   menu:run()
+
+  SetGameSpeed(speed)
 end
 
 function CreatePictureStep(bg, title, text)
