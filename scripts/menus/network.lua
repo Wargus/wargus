@@ -75,6 +75,7 @@ function addPlayersList(menu, numplayers)
      end
     end
     numplayers_text:setCaption("Open slots : " .. numplayers - 1 - connected_players)
+    numplayers_text:adjustSize()
     return (connected_players > 0 and ready_players == connected_players)
   end
 
@@ -86,7 +87,6 @@ joincounter = 0
 
 function RunJoiningMapMenu(s)
   local menu
-  local server
   local listener  
   local sx = Video.Width / 20
   local sy = Video.Height / 20
@@ -122,12 +122,13 @@ function RunJoiningMapMenu(s)
   d:setSize(190, 20)
 
   local OldPresentMap = PresentMap
-  PresentMap = function(description, nplayers, w, h, id)
-    print(description)
-    players:setCaption(""..nplayers)
-    descr:setCaption(description)
+  PresentMap = function(desc, nplayers, w, h, id)
     numplayers = nplayers
-    OldPresentMap(description, nplayers, w, h, id)
+    players:setCaption(""..nplayers)
+    players:adjustSize()
+    descr:setCaption(desc)
+    descr:adjustSize()
+    OldPresentMap(desc, nplayers, w, h, id)
   end
 
   -- Security: The map name is checked by the stratagus engine.
@@ -162,11 +163,15 @@ function RunJoiningMapMenu(s)
       end
     elseif (state == 10) then -- ccs_unreachable
       ErrorMenu("Cannot reach server")
-      menu:stop(1)
+      menu:stop()
     end
   end
   listener = LuaActionListener(listen)
   menu:addLogicCallback(listener)
+
+  menu:addFullButton("~!Cancel", "c", Video.Width / 2 - 100, Video.Height - 100,
+    function() menu:stop() end)
+
   menu:run()
 end
 
@@ -269,7 +274,7 @@ function RunServerMultiGameMenu(map, description, numplayers)
   menu:writeText("Players:", sx, sy*3+50)
   players = menu:writeText(numplayers, sx+70, sy*3+50)
   menu:writeText("Description:", sx, sy*3+70)
-  descr = menu:writeText(description, sx+20, sy*3+90)
+  descr = menu:writeText("Unknown map", sx+20, sy*3+90)
 
   local function fowCb(dd)
     ServerSetupState.FogOfWar = bool2int(dd:isMarked()) 
@@ -350,9 +355,9 @@ function RunCreateMultiGameMenu(s)
     players:setCaption(""..numplayers)
     players:adjustSize()
     description = desc
-    descr:setCaption(description)
+    descr:setCaption(desc)
     descr:adjustSize()
-    OldPresentMap(description, nplayers, w, h, id)
+    OldPresentMap(desc, nplayers, w, h, id)
   end
 
   Load(mapfile)
