@@ -32,7 +32,7 @@ function ErrorMenu(errmsg)
   l:setWidth(270)
   l:setHeight(41)
   l:setBackgroundColor(dark)
-  menu:add(l, Video.Width / 2 - 135, 38)
+  menu:add(l, 9, 38)
 
   menu:addHalfButton("~!OK", "o", 92, 80, function() menu:stop() end)
 
@@ -171,26 +171,26 @@ function RunJoiningMapMenu(s)
 end
 
 function RunJoiningGameMenu(s)
-  local menu
-  local server
-  local x = Video.Width/2 - 100
-  local listener
-  local state
+  local menu = WarMenu(nil, panel(4), false)
+  menu:setSize(288, 128)
+  menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
+  menu:setDrawMenusUnder(true)
+
+  menu:addLabel("Connecting to server", 144, 11)
+
   local percent = 0
 
-  menu = WarMenu("Joining game")
-
-  local sb = StatBoxWidget(300, 30)
-  sb:setCaption("Connecting ...")
-  sb:setPercent(0)
-  menu:add(sb, x-50, Video.Height/2)
+  local sb = StatBoxWidget(258, 30)
+  sb:setCaption("Connecting...")
+  sb:setPercent(percent)
+  menu:add(sb, 15, 38)
   sb:setBackgroundColor(dark)
 
   local function checkconnection() 
     NetworkProcessClientRequest()
     percent = percent + 100 / (24 * GetGameSpeed()) -- 24 seconds * fps
     sb:setPercent(percent)
-    state = GetNetworkState()
+    local state = GetNetworkState()
     -- FIXME: do not use numbers
     if (state == 3) then -- ccs_mapinfo
       -- got ICMMap => load map
@@ -216,10 +216,10 @@ function RunJoiningGameMenu(s)
       menu:stop(1)
     end
   end
-  listener = LuaActionListener(checkconnection)
+  local listener = LuaActionListener(checkconnection)
   menu:addLogicCallback(listener)
 
-  menu:addFullButton("Cancel (~<Esc~>)", "escape", 32, 90,
+  menu:addHalfButton("Cancel (~<Esc~>)", "escape", 92, 80,
     function() menu:stop(1) end)
 
   menu:run()
@@ -230,8 +230,6 @@ function RunJoinIpMenu()
   menu:setSize(288, 128)
   menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
   menu:setDrawMenusUnder(true)
-
-  local server
 
   menu:addLabel("Enter server IP-address:", 144, 11)
   local server = menu:addTextInputField("localhost", 40, 38, 212)
