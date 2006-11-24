@@ -114,14 +114,14 @@ function RunJoiningMapMenu(s)
   menu:writeText("Units:", sx, sy*11)
   local units = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11,
     function(dd) end)
-  d:setSize(190, 20)
-  d:setEnabled(false)
+  units:setSize(190, 20)
+  units:setEnabled(false)
 
   menu:writeText("Resources:", sx, sy*11+25)
   local resources = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, sx + 100, sy*11+25,
     function(dd) end)
-  d:setSize(190, 20)
-  d:setEnabled(false)
+  resources:setSize(190, 20)
+  resources:setEnabled(false)
 
   local OldPresentMap = PresentMap
   PresentMap = function(desc, nplayers, w, h, id)
@@ -150,7 +150,9 @@ function RunJoiningMapMenu(s)
     revealmap:setMarked(int2bool(ServerSetupState.RevealMap))
     GameSettings.RevealMap = ServerSetupState.RevealMap
     units:setSelected(ServerSetupState.UnitsOption)
+    GameSettings.NumUnits = ServerSetupState.UnitsOption
     resources:setSelected(ServerSetupState.ResourcesOption)
+    GameSettings.Resources = ServerSetupState.ResourcesOption
     updatePlayersList()
     state = GetNetworkState()
     -- FIXME: don't use numbers
