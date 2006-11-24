@@ -164,7 +164,7 @@ function BuildOptionsMenu()
     function() SetVideoSize(1280, 960) menu:stop(1) end)
   if (Video.Width == 1280) then b:setMarked(true) end
   b = menu:addCheckBox("1600 x 1200", offx + 16, offy + 65 + 26*4,
-    function() SetVideoSize(1600, 960) menu:stop(1) end)
+    function() SetVideoSize(1600, 1200) menu:stop(1) end)
   if (Video.Width == 1600) then b:setMarked(true) end
 
   b = menu:addCheckBox("Full Screen", offx + 17, offy + 65 + 26*5 + 14,
