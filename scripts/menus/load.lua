@@ -6,6 +6,8 @@ function LoadGame(s)
   while (loop) do
     InitGameVariables()
     StartSavedGame(s)
+    InitGameSettings()
+    SetPlayerData(GetThisPlayer(), "RaceName", "orc")
     if (GameResult ~= GameRestart) then
       loop = false
     end
