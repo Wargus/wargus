@@ -104,22 +104,24 @@ function RunJoiningMapMenu(s)
   menu:writeText("Description:", sx, sy*3+70)
   descr = menu:writeText(description, sx+20, sy*3+90)
 
-  -- FIXME: only the server can set these settings
   local fow = menu:addCheckBox("Fog of war", sx, sy*3+120, function() end)
   fow:setMarked(true)
   ServerSetupState.FogOfWar = 1
+  fow:setEnabled(false)
   local revealmap = menu:addCheckBox("Reveal map", sx, sy*3+150, function() end)
+  revealmap:setEnabled(false)
   
-  -- FIXME: only the server can set these settings
   menu:writeText("Units:", sx, sy*11)
-  d = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11,
-    function(dd) GameSettings.Units = dd:getSelected() end)
+  local units = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11,
+    function(dd) end)
   d:setSize(190, 20)
+  d:setEnabled(false)
 
   menu:writeText("Resources:", sx, sy*11+25)
-  d = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, sx + 100, sy*11+25,
-    function(dd) GameSettings.Resources = dd:getSelected() end)
+  local resources = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, sx + 100, sy*11+25,
+    function(dd) end)
   d:setSize(190, 20)
+  d:setEnabled(false)
 
   local OldPresentMap = PresentMap
   PresentMap = function(desc, nplayers, w, h, id)
@@ -144,7 +146,11 @@ function RunJoiningMapMenu(s)
   local function listen()
     NetworkProcessClientRequest()
     fow:setMarked(int2bool(ServerSetupState.FogOfWar))
+    GameSettings.NoFogOfWar = not int2bool(ServerSetupState.FogOfWar)
     revealmap:setMarked(int2bool(ServerSetupState.RevealMap))
+    GameSettings.RevealMap = ServerSetupState.RevealMap
+    units:setSelected(ServerSetupState.UnitsOption)
+    resources:setSelected(ServerSetupState.ResourcesOption)
     updatePlayersList()
     state = GetNetworkState()
     -- FIXME: don't use numbers
@@ -279,23 +285,33 @@ function RunServerMultiGameMenu(map, description, numplayers)
   local function fowCb(dd)
     ServerSetupState.FogOfWar = bool2int(dd:isMarked()) 
     NetworkServerResyncClients()
+    GameSettings.NoFogOfWar = not dd:isMarked()
   end
   local fow = menu:addCheckBox("Fog of war", sx, sy*3+120, fowCb)
   fow:setMarked(true)
   local function revealMapCb(dd)
     ServerSetupState.RevealMap = bool2int(dd:isMarked()) 
     NetworkServerResyncClients()
+    GameSettings.RevealMap = bool2int(dd:isMarked())
   end
   local revealmap = menu:addCheckBox("Reveal map", sx, sy*3+150, revealMapCb)
   
   menu:writeText("Units:", sx, sy*11)
   d = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11,
-    function(dd) GameSettings.NumUnits = dd:getSelected() end)
+    function(dd)
+      GameSettings.NumUnits = dd:getSelected()
+      ServerSetupState.UnitsOption = GameSettings.NumUnits
+      NetworkServerResyncClients()
+    end)
   d:setSize(190, 20)
 
   menu:writeText("Resources:", sx, sy*11+25)
   d = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, sx + 100, sy*11+25,
-    function(dd) GameSettings.Resources = dd:getSelected() end)
+    function(dd)
+      GameSettings.Resources = dd:getSelected()
+      ServerSetupState.ResourcesOption = GameSettings.Resources
+      NetworkServerResyncClients()
+    end)
   d:setSize(190, 20)
 
   local updatePlayers = addPlayersList(menu, numplayers)
