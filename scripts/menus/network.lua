@@ -178,7 +178,7 @@ function RunJoiningMapMenu(s)
   menu:addLogicCallback(listener)
 
   menu:addFullButton("~!Cancel", "c", Video.Width / 2 - 100, Video.Height - 100,
-    function() menu:stop() end)
+    function() NetworkDetachFromServer(); menu:stop() end)
 
   menu:run()
 end
@@ -319,7 +319,7 @@ function RunServerMultiGameMenu(map, description, numplayers)
   local updatePlayers = addPlayersList(menu, numplayers)
 
   NetworkMapName = map
-  NetworkInitServerConnect()
+  NetworkInitServerConnect(numplayers)
   ServerSetupState.FogOfWar = 1
   startgame = menu:addFullButton("~!Start Game", "s", sx * 11,  sy*14, 
     function(s)    
