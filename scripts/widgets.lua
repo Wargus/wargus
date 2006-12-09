@@ -42,20 +42,10 @@ DefineButtonStyle("main", {
   Hover = {
     TextNormalColor = "white",
   },
-  Selected = {
-    Border = {
-      Color = {252, 252, 0}, Size = 1,
-    },
-  },
   Clicked = {
     File = "ui/buttons_1.png", Size = {300, 144}, Frame = 5,
     TextNormalColor = "white",
     TextPos = {66, 6},
-  },
-  Disabled = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 3,
-    TextNormalColor = "grey",
-    TextReverseColor = "grey",
   },
 })
 
@@ -72,20 +62,10 @@ DefineButtonStyle("network", {
   Hover = {
     TextNormalColor = "white",
   },
-  Selected = {
-    Border = {
-      Color = {252, 252, 0}, Size = 1,
-    },
-  },
   Clicked = {
     File = "ui/buttons_1.png", Size = {300, 144}, Frame = 8,
     TextNormalColor = "white",
     TextPos = {42, 6},
-  },
-  Disabled = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 6,
-    TextNormalColor = "grey",
-    TextReverseColor = "grey",
   },
 })
 
@@ -102,20 +82,10 @@ DefineButtonStyle("gm-half", {
   Hover = {
     TextNormalColor = "white",
   },
-  Selected = {
-    Border = {
-      Color = {252, 252, 0}, Size = 1,
-    },
-  },
   Clicked = {
     File = "ui/buttons_1.png", Size = {300, 144}, Frame = 11,
     TextNormalColor = "white",
     TextPos = {55, 9},
-  },
-  Disabled = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 9,
-    TextNormalColor = "grey",
-    TextReverseColor = "grey",
   },
 })
 
@@ -132,20 +102,10 @@ DefineButtonStyle("gm-full", {
   Hover = {
     TextNormalColor = "white",
   },
-  Selected = {
-    Border = {
-      Color = {252, 252, 0}, Size = 1,
-    },
-  },
   Clicked = {
     File = "ui/buttons_1.png", Size = {300, 144}, Frame = 17,
     TextNormalColor = "white",
     TextPos = {114, 9},
-  },
-  Disabled = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 15,
-    TextNormalColor = "grey",
-    TextReverseColor = "grey",
   },
 })
 
@@ -162,17 +122,9 @@ DefineButtonStyle("folder", {
   Hover = {
     TextNormalColor = "white",
   },
-  Selected = {
-    Border = {
-      Color = {252, 252, 0}, Size = 1,
-    },
-  },
   Clicked = {
     File = "ui/buttons_1.png", Size = {300, 144}, Frame = 52,
     TextNormalColor = "white",
-  },
-  Disabled = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 50,
   },
 })
 
@@ -194,108 +146,11 @@ DefineButtonStyle("icon", {
       Color = {128, 128, 128}, Size = 1,
     },
   },
-  Selected = {
-    Border = {
-      Color = {0, 252, 0}, Size = 1,
-    },
-  },
   Clicked = {
     TextNormalColor = "white",
     Border = {
       Color = {128, 128, 128}, Size = 1,
     },
   },
-  Disabled = {
-  },
 })
 
-
-DefineCheckboxStyle("round", {
-  Size = {19, 19},
-  Font = "game",
-  TextNormalColor = "yellow",
-  TextReverseColor = "white",
-  TextAlign = "Left",
-  TextPos = {24, 4},
-  Default = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 19,
-  },
-  Hover = {
-    TextNormalColor = "white",
-  },
-  Selected = {
-    Border = {
-      Color = {252, 252, 0}, Size = 1,
-    },
-  },
-  Disabled = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 18,
-  },
-  Clicked = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 20,
-    TextNormalColor = "white",
-  },
-  Checked = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 21,
-  },
-  CheckedHover = {
-    TextNormalColor = "white",
-  },
-  CheckedSelected = {
-    Border = {
-      Color = {252, 252, 0}, Size = 1,
-    },
-  },
-  CheckedClicked = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 22,
-    TextNormalColor = "white",
-  },
-  CheckedDisabled = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 18,
-  },
-})
-
-DefineCheckboxStyle("square", {
-  Size = {19, 19},
-  Font = "game",
-  TextNormalColor = "yellow",
-  TextReverseColor = "white",
-  TextAlign = "Left",
-  TextPos = {24, 4},
-  Default = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 24,
-  },
-  Hover = {
-    TextNormalColor = "white",
-  },
-  Selected = {
-    Border = {
-      Color = {252, 252, 0}, Size = 1,
-    },
-  },
-  Clicked = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 25,
-    TextNormalColor = "white",
-  },
-  Disabled = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 23,
-  },
-  Checked = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 26,
-  },
-  CheckedHover = {
-    TextNormalColor = "white",
-  },
-  CheckedSelected = {
-    Border = {
-      Color = {252, 252, 0}, Size = 1,
-    },
-  },
-  CheckedClicked = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 27,
-    TextNormalColor = "white",
-  },
-  CheckedDisabled = {
-    File = "ui/buttons_1.png", Size = {300, 144}, Frame = 23,
-  },
-})
