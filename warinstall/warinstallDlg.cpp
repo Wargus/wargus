@@ -23,7 +23,7 @@ static CString FindCDRomDrive(void)
 			if (GetDriveType(name) == DRIVE_CDROM) {
 				return CString(name);
 			}
-			name += strlen(name) + 1;
+			name += _tcslen(name) + 1;
 		}
 	}
 	return CString("C:\\");
@@ -118,7 +118,7 @@ int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam, LPARAM lpDa
 	TCHAR szDir[MAX_PATH];
 
 	if (uMsg == BFFM_INITIALIZED) {
-		strcpy(szDir, startFolder.GetBuffer(startFolder.GetLength()));
+		_tcscpy(szDir, startFolder.GetBuffer(startFolder.GetLength()));
 		SendMessage(hwnd, BFFM_SETSELECTION, TRUE, (LPARAM)szDir);
 	}
 	return 0;
@@ -141,7 +141,7 @@ void CWarinstallDlg::OnBrowse()
 	id = SHBrowseForFolder(&bi);
 	if (id) {
 		if (SHGetPathFromIDList(id, path)) {
-			m_folder.Format("%s", path);
+			m_folder.Format(_T("%s"), path);
 			UpdateData(FALSE);
 		}
 	}
