@@ -185,15 +185,15 @@ void CopyFiles(LPTSTR src, LPTSTR dst)
 	}
 	do {
 		if (!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
-			_stprintf(srcbuf, "%s\\%s", dir, ffd.cFileName);
-			_stprintf(dstbuf, "%s\\%s", dst, ffd.cFileName);
+			_stprintf(srcbuf, _T("%s\\%s"), dir, ffd.cFileName);
+			_stprintf(dstbuf, _T("%s\\%s"), dst, ffd.cFileName);
 			Copy(srcbuf, dstbuf);
 		}
 	} while (FindNextFile(hnd, &ffd));
 	FindClose(hnd);
 }
 
-int myprintf(const char *fmt, ...)
+int myprintf(LPCTSTR fmt, ...)
 {
 	TCHAR buf[4096];
 	PTCHAR p;
@@ -225,14 +225,14 @@ int myprintf(const char *fmt, ...)
 
 UINT MyControllingFunction(LPVOID pParam)
 {
-	char *argv[] = {"warinstall", NULL, NULL};
+	TCHAR *argv[] = {_T("warinstall"), NULL, NULL};
 //	TCHAR buf[MAX_PATH];
 
 	MakeDir(_T("data"));
 
 	// Wartool
 	dlg->m_folder += "\\data";
-	argv[1] = strdup(dlg->m_folder.GetBuffer(dlg->m_folder.GetLength()));
+	argv[1] = _tcsdup(dlg->m_folder.GetBuffer(dlg->m_folder.GetLength()));
 	main(2, argv);
 	free(argv[1]);
 
