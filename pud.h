@@ -79,6 +79,8 @@ char *TilesetTypeStrings[] = {
 
 // unit types, we dont need the whole list
 enum UnitTypes {
+	UnitHumanOilPlatform = 0x56,
+	UnitOrcOilPlatform,
 	UnitGoldMine = 0x5C,
 	UnitOilPatch,
 	UnitHumanStart,
