@@ -130,7 +130,8 @@ int WriteSMS(const struct PudData * const pdata, gzFile smsout)
 		gzprintf(smsout, "unit = CreateUnit(\"%s\", %d, {%d, %d})\n",
 			UnitScriptNames[pdata->Units[i].Type], pdata->Units[i].Player,
 			pdata->Units[i].X, pdata->Units[i].Y);
-		if (pdata->Units[i].Type == UnitGoldMine || pdata->Units[i].Type == UnitOilPatch) {
+		if (pdata->Units[i].Type == UnitHumanOilPlatform || pdata->Units[i].Type == UnitOrcOilPlatform ||
+				pdata->Units[i].Type == UnitGoldMine || pdata->Units[i].Type == UnitOilPatch) {
 			gzprintf(smsout, "SetResourcesHeld(unit, %d)\n", pdata->Units[i].Data * 2500);
 		}
 	}
