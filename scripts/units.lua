@@ -437,6 +437,25 @@ DefineUnitType("unit-destroyed-3x3-place", { Name = "Destroyed 3x3 Place",
   Vanishes = true,
   Sounds = {} } )
 
+UnitTypeFiles["unit-destroyed-3x3-place-water"] = {summer = "tilesets/summer/neutral/buildings/destroyed_site.png",
+  winter = "tilesets/winter/neutral/buildings/destroyed_site.png",
+  wasteland = "tilesets/wasteland/neutral/buildings/destroyed_site.png",
+  swamp = "tilesets/swamp/neutral/buildings/destroyed_site.png"}
+
+DefineUnitType("unit-destroyed-3x3-place-water", { Name = "Destroyed 3x3 Place Water",
+  Image = {"size", {64, 64}},
+  Animations = "animations-destroyed-place-water", Icon = "icon-peasant",
+  Speed = 0,
+  HitPoints = 255,
+  DrawLevel = 10,
+  TileSize = {3, 3}, BoxSize = {95, 95},
+  SightRange = 0,
+  BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+  Priority = 0,
+  Type = "naval",
+  Building = true, VisibleUnderFog = true,
+  Vanishes = true,
+  Sounds = {} } )
 
 UnitTypeFiles["unit-destroyed-4x4-place"] = {summer = "tilesets/summer/neutral/buildings/destroyed_site.png",
   winter = "tilesets/winter/neutral/buildings/destroyed_site.png",
