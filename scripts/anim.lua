@@ -99,3 +99,6 @@ DefineAnimations("animations-destroyed-place", {
   Death = {"unbreakable begin", "frame 0", "wait 200", "frame 1", "wait 200", "frame 1", "unbreakable end", "wait 1", },
 })
 
+DefineAnimations("animations-destroyed-place-water", {
+  Death = {"unbreakable begin", "frame 2", "wait 200", "frame 3", "wait 200", "frame 1", "unbreakable end", "wait 1", },
+})
