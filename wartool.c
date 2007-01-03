@@ -3030,7 +3030,7 @@ int ConvertImage(char* file, int pale, int imge, int nw, int nh)
 	image = ConvertImg(imgp, &w, &h);
 
 	if (!image) {
-		fprintf(stderr, "Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n",
+		printf("Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n",
 			file, pale, imge, nw, nh, CDType & CD_MAC);
 		exit(-1);
 	}
@@ -4146,7 +4146,7 @@ int main(int argc, char** argv)
 		CDType |= CD_MAC | CD_US;
 		sprintf(buf, "%s/War Resources", ArchiveDir);
 		if (stat(buf, &st)) {
-			fprintf(stderr, "Could not find Warcraft 2 Data\n");
+			printf("Could not find Warcraft 2 Data\n");
 			exit(-1);
 		}
 		if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2876978)) {
