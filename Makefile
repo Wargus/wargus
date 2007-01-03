@@ -27,12 +27,12 @@ strip:
 #	strip wartool.exe
 
 date = $(shell date +%y%m%d)
-ver = 2.1pre2
+ver = 2.2
 
 release: release-src release-linux
 
 release-src: clean cleanobj
-	echo `find Makefile build.sh contrib campaigns wartool.c wartool.ds* scripts maps README | grep -v '/\.'` > .list
+	echo `find Makefile build.sh contrib campaigns wartool.c pudconvert.c endian.h pud.h wartool.ds* scripts maps README | grep -v '/\.'` > .list
 	mkdir wargus-$(ver); \
 	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
 	tar -zcf wargus-$(ver)-src.tar.gz wargus-$(ver); \
