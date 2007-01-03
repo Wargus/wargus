@@ -7,16 +7,20 @@ STRATAGUSPATH = ../stratagus/
 CFLAGS = -I/usr/local/include -Wall -Wsign-compare
 LDFLAGS = -lz -lpng -lm -L/usr/local/lib
 
-all: cleanobj wartool
+all: wartool pudconvert
 
 wartool: wartool.o pudconvert.o
 	$(CC) -o $@ $^ $(LDFLAGS)
+
+pudconvert: pudconvert.c
+	$(CC) -o $@ -DSTAND_ALONE pudconvert.c $(LDFLAGS)
 
 cleanobj:
 	rm -f wartool.o pudconvert.o
 
 clean:
-	rm -rf wartool wartool.exe wartool.o data.wc2 wargus-* wargus
+	rm -rf wartool wartool.exe wartool.o data.wc2 wargus-* wargus \
+	pudconvert.exe pudconvert
 
 strip:
 	strip wartool

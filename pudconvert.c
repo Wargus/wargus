@@ -26,6 +26,8 @@
 //      Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //      02111-1307, USA.
 
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -331,3 +333,84 @@ int PudToStratagus(const unsigned char *puddata, size_t size,
 
 	return 0;
 }
+
+#ifdef STAND_ALONE
+void usage()
+{
+	fprintf(stderr, "%s\n%s\n",
+	"pudconvert",
+	"usage: pudconvert inputfile [ outputdir ]\n"
+	);
+	exit(-1);
+}
+
+int main(int argc, char **argv)
+{
+	char *infile;
+	char *outdir;
+	FILE *f;
+	char *buf;
+	char *tmp;
+	char newname[PATH_MAX];
+	int len;
+	struct stat sb;
+
+	if (argc < 2 || argc > 3) {
+		usage();
+	}
+
+	infile = argv[1];
+	if (argc == 3) {
+		outdir = argv[2];
+	} else {
+		outdir = ".";
+	}
+
+	if (stat(infile, &sb)) {
+		fprintf(stderr, "error finding file: %s\n", infile);
+		return -1;
+	}
+	len = sb.st_size;
+
+	if (stat(outdir, &sb)) {
+		fprintf(stderr, "error finding directory: %s\n", outdir);
+		return -1;
+	}
+
+	f = fopen(infile, "rb");
+	if (f == NULL) {
+		fprintf(stderr, "error opening file: %s\n", infile);
+		return -1;
+	}
+
+	buf = malloc(len);
+	clearerr(f);
+	fread(buf, 1, len, f);
+	if (ferror(f)) {
+		fprintf(stderr, "error reading from file: %s\n", infile);
+		free(buf);
+		return -1;
+	}
+
+	if (fclose(f)) {
+		fprintf(stderr, "error closing file: %s\n", infile);
+		free(buf);
+		return -1;
+	}
+
+	if ((tmp = strrchr(infile, '/'))) {
+		strcpy(newname, tmp + 1);
+	} else {
+		strcpy(newname, infile);
+	}
+	if ((tmp = strstr(newname, ".pud"))) {
+		tmp[0] = '\0';
+	}
+
+	PudToStratagus(buf, len, newname, outdir);
+
+	free(buf);
+
+	return 0;
+}
+#endif
