@@ -349,7 +349,7 @@ int main(int argc, char **argv)
 	char *infile;
 	char *outdir;
 	FILE *f;
-	char *buf;
+	unsigned char *buf;
 	char *tmp;
 	char newname[PATH_MAX];
 	int len;
