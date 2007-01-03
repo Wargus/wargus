@@ -1,7 +1,7 @@
 !include "MUI.nsh"
 
 ;*** edit these defines to point to their correct locations ***;
-!define STRATEXE "..\stratagus\Release\stratagus.exe"
+!define STRATEXE "stratagus.exe"
 !define SDLDLL "..\stratagus\SDL.dll"
 !define WARINSTEXE "warinstall\Release\warinstall.exe"
 
@@ -30,6 +30,18 @@ Var STARTMENU_FOLDER
 !system "xcopy /E scripts ${WGTMP}\scripts /EXCLUDE:exc.txt"
 !system "xcopy /E contrib ${WGTMP}\contrib /EXCLUDE:exc.txt"
 !system "xcopy /E campaigns ${WGTMP}\campaigns /EXCLUDE:exc.txt"
+!system "rmdir /S /Q ${WGTMP}\scripts\.svn"
+!system "rmdir /S /Q ${WGTMP}\scripts\ai\.svn"
+!system "rmdir /S /Q ${WGTMP}\scripts\human\.svn"
+!system "rmdir /S /Q ${WGTMP}\scripts\menus\.svn"
+!system "rmdir /S /Q ${WGTMP}\scripts\orc\.svn"
+!system "rmdir /S /Q ${WGTMP}\scripts\tilesets\.svn"
+!system "rmdir /S /Q ${WGTMP}\contrib\.svn"
+!system "rmdir /S /Q ${WGTMP}\campaigns\.svn"
+!system "rmdir /S /Q ${WGTMP}\campaigns\human\.svn"
+!system "rmdir /S /Q ${WGTMP}\campaigns\human-exp\.svn"
+!system "rmdir /S /Q ${WGTMP}\campaigns\orc\.svn"
+!system "rmdir /S /Q ${WGTMP}\campaigns\orc-exp\.svn"
 !system "erase exc.txt"
 
 
