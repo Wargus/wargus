@@ -1964,7 +1964,7 @@ unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
 
 	dp = dest = (unsigned char *)malloc(uncompressed_length);
 	if (!dest) {
-		printf("Can't malloc %d\n", uncompressed_length);
+		printf("Can't malloc %d\n", (int)uncompressed_length);
 		exit(-1);
 	}
 
@@ -2093,7 +2093,7 @@ int ConvertRgb(char* file, int rgbe)
 		exit(-1);
 	}
 	if (l != fwrite(rgbp, 1, l, f)) {
-		printf("Can't write %d bytes\n", l);
+		printf("Can't write %d bytes\n", (int)l);
 	}
 
 	fclose(f);
@@ -3156,7 +3156,7 @@ int ConvertWav(char* file, int wave)
 		exit(-1);
 	}
 	if (l != (size_t)gzwrite(gf, wavp, l)) {
-		printf("Can't write %d bytes\n", l);
+		printf("Can't write %d bytes\n", (int)l);
 	}
 
 	free(wavp);
@@ -3190,7 +3190,7 @@ int ConvertVideo(char* file, int video)
 		exit(-1);
 	}
 	if (l != fwrite(vidp, 1, l, gf)) {
-		printf("Can't write %d bytes\n", l);
+		printf("Can't write %d bytes\n", (int)l);
 	}
 
 	free(vidp);
@@ -3234,7 +3234,7 @@ int ConvertText(char* file, int txte, int ofs)
 		exit(-1);
 	}
 	if (l - ofs != (size_t)gzwrite(gf, txtp + ofs, l - ofs)) {
-		printf("Can't write %d bytes\n", l);
+		printf("Can't write %d bytes\n", (int)l);
 	}
 
 	free(txtp);
