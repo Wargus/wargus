@@ -210,8 +210,18 @@ int myprintf(LPCTSTR fmt, ...)
 	return 0;
 }
 
+void myexit(int err)
+{
+	MessageBox(theApp.GetMainWnd()->m_hWnd,
+		_T("An error was encountered while extracting the data.  Click OK to exit."),
+		_T("Error"),
+		MB_OK | MB_ICONERROR);
+	exit(err);
+}
+
 
 #define printf myprintf
+#define exit myexit
 #ifndef _DEBUG
 #define _DEBUG
 #define DEFINED_DEBUG
@@ -219,6 +229,7 @@ int myprintf(LPCTSTR fmt, ...)
 #include "../pudconvert.c"
 #include "../wartool.c"
 #undef printf
+#undef exit
 #ifdef DEFINED_DEBUG
 #undef _DEBUG
 #endif
