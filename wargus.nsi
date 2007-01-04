@@ -4,6 +4,7 @@
 !define STRATEXE "stratagus.exe"
 !define SDLDLL "..\stratagus\SDL.dll"
 !define WARINSTEXE "warinstall\Release\warinstall.exe"
+!define PUDCONVERTEXE "pudconvert.exe"
 
 !define NAME "Wargus"
 !define WGTMP "wargustemp"
@@ -75,6 +76,7 @@ Section "${NAME}" SecDummy
   File "${STRATEXE}"
   File "${SDLDLL}"
   File "${WARINSTEXE}"
+  File "${PUDCONVERTEXE}"
   WriteRegStr HKCU "Software\${NAME}" "" $INSTDIR
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
