@@ -591,8 +591,9 @@ function RunProgramStartMenu()
   while continue == 1 do
     if (LoadGameFile ~= nil) then
       LoadGame(LoadGameFile)
+    else
+      continue = BuildProgramStartMenu(menu)
     end
-    continue = BuildProgramStartMenu(menu)
   end
 end
 
