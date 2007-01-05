@@ -6,13 +6,16 @@ function LoadGame(s)
   while (loop) do
     InitGameVariables()
     StartSavedGame(s)
-    InitGameSettings()
-    SetPlayerData(GetThisPlayer(), "RaceName", "orc")
     if (GameResult ~= GameRestart) then
       loop = false
     end
   end
+
   RunResultsMenu()
+
+  InitGameSettings()
+  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+
   if currentCampaign ~= nil then
     if GameResult == GameVictory then
       position = position + 1
