@@ -24,3 +24,41 @@ function RunReplayGameMenu()
   menu:run()
 end
 
+function RunSaveReplayMenu()
+  local menu = WarGameMenu(panel(3))
+  menu:setSize(384, 256)
+  menu:setPosition((Video.Width - 384) / 2, (Video.Height - 256) / 2)
+
+  menu:addLabel("Save Replay", 384 / 2, 11)
+
+  local t = menu:addTextInputField("game.log",
+    (384 - 300 - 18) / 2, 11 + 36, 318)
+
+  local browser = menu:addBrowser("~logs", ".log$",
+    (384 - 300 - 18) / 2, 11 + 36 + 22, 318, 126)
+  local function cb(s)
+    t:setText(browser:getSelectedItem())
+  end
+  browser:setActionCallback(cb)
+
+  menu:addHalfButton("~!Save", "s", 1 * (384 / 3) - 106 - 10, 256 - 16 - 27,
+    -- FIXME: use a confirm menu if the file exists already
+    function()
+      local name = t:getText()
+      -- append .log
+      if (string.find(name, ".log$") == nil) then
+        name = name .. ".log"
+      end
+      -- replace invalid chars with underscore
+      local t = {"\\", "/", ":", "*", "?", "\"", "<", ">", "|"}
+      table.foreachi(t, function(k,v) name = string.gsub(name, v, "_") end)
+
+      SaveReplay(name)
+      menu:stop()
+    end)
+
+  menu:addHalfButton("~!Cancel", "c", 3 * (384 / 3) - 106 - 10, 256 - 16 - 27,
+    function() menu:stop() end)
+
+  menu:run()
+end

@@ -104,6 +104,9 @@ function RunResultsMenu()
     end
   end
 
+  menu:addFullButton("~!Save Replay", "s", offx + 215, offy + 440,
+    function() RunSaveReplayMenu() end)
+
   menu:addHalfButton("~!Continue", "c", offx + 455, offy + 440,
     function() menu:stop() end)
 
