@@ -766,3 +766,19 @@ local hum_14_black_funcs = {
 
 function AiHuman14Black() return AiLoop(hum_14_black_funcs, hum_14_black_pos) end
 DefineAi("hum-14-black", "*", "hum-14-black", AiHuman14Black)
+
+
+--FIXME: create these ais
+
+Load("ai/land_attack.lua")
+
+DefineAi("orc-05", "*", "orc-05", AiLandAttack)
+DefineAi("orc-06", "*", "orc-06", AiLandAttack)
+DefineAi("orc-07", "*", "orc-07", AiLandAttack)
+DefineAi("orc-08", "*", "orc-08", AiLandAttack)
+DefineAi("orc-09", "*", "orc-09", AiLandAttack)
+DefineAi("orc-10", "*", "orc-10", AiLandAttack)
+DefineAi("orc-11", "*", "orc-11", AiLandAttack)
+DefineAi("orc-12", "*", "orc-12", AiLandAttack)
+DefineAi("orc-13", "*", "orc-13", AiLandAttack)
+
