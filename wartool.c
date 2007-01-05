@@ -10,7 +10,7 @@
 //
 /**@name wartool.c - Extract files from war archives. */
 //
-//      (c) Copyright 1999-2005 by Lutz Sammer & Nehal Mistry
+//      (c) Copyright 1999-2007 by Lutz Sammer & Nehal Mistry
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -2247,14 +2247,16 @@ void SaveCCL(const char* name, unsigned char* map __attribute__((unused)),
 void DecodeMiniTile(unsigned char* image, int ix, int iy, int iadd,
 	unsigned char* mini, int index, int flipx, int flipy)
 {
+	static const int flip[] = {
+		7, 6, 5, 4, 3, 2, 1, 0, 8
+	};
 	int x;
 	int y;
 
-//	printf("index %d\n", index);
 	for (y = 0; y < 8; ++y) {
 		for (x = 0; x < 8; ++x) {
 			image[(y + iy * 8) * iadd + ix * 8 + x] = mini[index +
-				(flipy ? (8 - y) : y) * 8 + (flipx ? (8 - x) : x)];
+				(flipy ? flip[y] : y) * 8 + (flipx ? flip[x] : x)];
 		}
 	}
 }
