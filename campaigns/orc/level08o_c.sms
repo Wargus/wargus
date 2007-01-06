@@ -11,7 +11,7 @@ Briefing(
 )
 
 AddTrigger(
-  function() return GetPlayerData(7, "UnitTypesCount", "unit-rune-stone") == 0 and
+  function() return GetPlayerData(7, "UnitTypesCount", "unit-runestone") == 0 and
     GetPlayerData(1, "UnitTypesCount", "unit-castle") == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
