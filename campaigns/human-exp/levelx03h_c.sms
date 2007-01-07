@@ -5,8 +5,8 @@ Briefing(
 ^^OBJECTIVES^^
   "../campaigns/human/interface/introscreen1.png",
   "campaigns/human-exp/levelx03h.txt",
-  {"campaigns/human-exp/levelx03h-intro1.wav.gz",
-   "campaigns/human-exp/levelx03h-intro2.wav.gz"}
+  {"campaigns/human-exp/levelx03h-intro1.wav",
+   "campaigns/human-exp/levelx03h-intro2.wav"}
 )
 
 AddTrigger(
