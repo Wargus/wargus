@@ -176,12 +176,12 @@ function AddTransportingButton(x, y)
 	UI.TransportingButtons:push_back(b)
 end
 
-AddTransportingButton(9, 223)
-AddTransportingButton(65, 223)
-AddTransportingButton(121, 223)
-AddTransportingButton(9, 277)
-AddTransportingButton(65, 277)
-AddTransportingButton(121, 277)
+AddTransportingButton(9, 387)
+AddTransportingButton(65, 387)
+AddTransportingButton(121, 387)
+AddTransportingButton(9, 434)
+AddTransportingButton(65, 434)
+AddTransportingButton(121, 434)
 
 UI.CompletedBarColorRGB = CColor(48, 100, 4)
 UI.CompletedBarShadow = true
