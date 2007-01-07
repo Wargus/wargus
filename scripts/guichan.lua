@@ -172,13 +172,13 @@ function AddMenuHelpers(menu)
       local u = 1
 
       local dirs = ListDirsInDirectory(path)
-      for i,f in dirs do
+      for i,f in ipairs(dirs) do
         dirlist[u] = f .. "/"
         u = u + 1
       end
 
       local fileslist = ListFilesInDirectory(path)
-      for i,f in fileslist do
+      for i,f in ipairs(fileslist) do
         if (string.find(f, filter)) then
           dirlist[u] = f
           u = u + 1
