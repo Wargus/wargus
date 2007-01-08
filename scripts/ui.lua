@@ -179,7 +179,7 @@ DefinePanelContents(
 		More = {"CompleteBar", {Variable = "Mana", Height = 16, Width = 140, Border = true}}
 	},
 	{ Pos = {86, 150}, More = {"Text", {Variable = "Mana"}}, Condition = {Mana = "only"} },
--- Ressource Carry
+-- Resource Carry
 	{ Pos = {61, 149}, Condition = {CarryResource = "only"},
 		More = {"FormattedText2", {Format = "Carry: %d %s", Variable = "CarryResource",
 				Component1 = "Value", Component2 = "Name"}}
