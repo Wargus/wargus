@@ -13,6 +13,9 @@ function RunReplayGameMenu()
 
   menu:addHalfButton("~!OK", "o", 48, 308,
     function()
+      if (browser:getSelected() < 0) then
+        return
+      end
       InitGameVariables()
       StartReplay("~logs/" .. browser:getSelectedItem(), reveal:isMarked())
       InitGameSettings()
@@ -45,6 +48,10 @@ function RunSaveReplayMenu()
     -- FIXME: use a confirm menu if the file exists already
     function()
       local name = t:getText()
+      -- check for an empty string
+      if (string.len(name) == 0) then
+        return
+      end
       -- append .log
       if (string.find(name, ".log$") == nil) then
         name = name .. ".log"

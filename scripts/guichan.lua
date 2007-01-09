@@ -461,7 +461,13 @@ function RunSelectScenarioMenu()
 
   menu:addHalfButton("~!OK", "o", 48, 318,
     function()
-      mapname = browser.path .. l:getCaption()
+      local cap = l:getCaption()
+
+      if (browser:getSelected() < 0) then
+        return
+      end
+
+      mapname = browser.path .. cap
       menu:stop()
     end)
   menu:addHalfButton("~!Cancel", "c", 198, 318,
