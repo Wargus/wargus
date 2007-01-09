@@ -36,6 +36,9 @@ function AddLoadGameItems(menu)
 
   menu:addHalfButton("~!Load", "l", (384 - 300 - 18) / 2, 256 - 16 - 27,
     function()
+      if (browser:getSelected() < 0) then
+        return
+      end
       LoadGameFile = "~save/" .. browser:getSelectedItem()
       if (menu.ingame) then
         StopGame(GameNoResult)

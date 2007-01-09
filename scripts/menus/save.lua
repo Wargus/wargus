@@ -18,6 +18,10 @@ function RunSaveMenu()
     -- FIXME: use a confirm menu if the file exists already
     function()
       local name = t:getText()
+      -- check for an empty string
+      if (string.len(name) == 0) then
+        return
+      end
       -- strip .gz
       if (string.find(name, ".gz$") ~= nil) then
         name = string.sub(name, 1, string.len(name) - 3)
