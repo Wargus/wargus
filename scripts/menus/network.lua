@@ -390,6 +390,9 @@ function RunCreateMultiGameMenu(s)
   
   menu:addFullButton("~!Create Game", "c", sx,  sy*11, 
     function(s)    
+      if (browser:getSelected() < 0) then
+        return
+      end
       RunServerMultiGameMenu(mapfile, description, numplayers)
       menu:stop()
     end
