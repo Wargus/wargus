@@ -111,20 +111,19 @@ function RunCampaignGameMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
-
-if (expansion == false) then
   menu:addFullButton("~!Human campaign", "h", offx + 208, offy + 212 + (36 * 0),
     function() RunCampaign("scripts/human/campaign1.lua"); menu:stop() end)
   menu:addFullButton("~!Orc campaign", "o", offx + 208, offy + 212 + (36 * 1),
     function() RunCampaign("scripts/orc/campaign1.lua"); menu:stop() end)
-else
-  menu:addFullButton("~!Human expansion levels", "h", offx + 208, offy + 212 + (36 * 0),
-    function() RunCampaign("scripts/human/campaign2.lua"); menu:stop() end)
-  menu:addFullButton("~!Orc expansion levels", "o", offx + 208, offy + 212 + (36 * 1),
-    function() RunCampaign("scripts/orc/campaign2.lua"); menu:stop() end)
-end
 
-  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 212 + (36 * 3),
+  if (expansion == true) then
+    menu:addFullButton("~!Human expansion levels", "h", offx + 208, offy + 212 + (36 * 2),
+      function() RunCampaign("scripts/human/campaign2.lua"); menu:stop() end)
+    menu:addFullButton("~!Orc expansion levels", "o", offx + 208, offy + 212 + (36 * 3),
+      function() RunCampaign("scripts/orc/campaign2.lua"); menu:stop() end)
+  end
+
+  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 212 + (36 * 5),
     function() menu:stop() end)
 
   menu:run()
