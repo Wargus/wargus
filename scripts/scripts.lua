@@ -33,6 +33,24 @@
 table.foreach(UnitTypeFiles,
 	function(k, v) DefineUnitType(k, {Image = {"file", v[tileset]}}) end)
 
+
+-- Fix critters sounds and name
+local CritterNames = {
+  summer = "Pig", winter = "Seal", wasteland = "Pig", swamp = "Warthog",
+}
+
+local CritterSounds = {
+  summer = "sheep-selected", winter = "seal-selected",
+  wasteland = "pig-selected", swamp = "warthog-selected",
+}
+
+DefineUnitType("unit-critter", {
+  Name = CritterNames[tileset]
+})
+
+MapSound("critter-selected", CritterSounds[tileset])
+
+
 -- Icon and construction graphics also depend on the tileset
 
 Load("scripts/icons.lua")

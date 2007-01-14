@@ -633,6 +633,14 @@ MakeSoundGroup("danath-selected",
 	"danath selected", "danath annoyed")
 MakeSoundGroup("korgath-bladefist-selected",
 	"korgath bladefist selected", "korgath bladefist annoyed")
+MakeSoundGroup("sheep-selected",
+	"sheep selected", "sheep annoyed")
+MakeSoundGroup("seal-selected",
+	"seal selected", "seal annoyed")
+MakeSoundGroup("pig-selected",
+	"pig selected", "pig annoyed")
+MakeSoundGroup("warthog-selected",
+	"warthog selected", "warthog annoyed")
 
 ------------------------------------------------------------------------------
 --	Define sound remapping. (FIXME: somebody must clean the order.)
