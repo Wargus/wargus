@@ -391,7 +391,7 @@ function RunMap(map, objective, fow, revealmap)
   SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 end
 
-mapname = "maps/default.smp.gz"
+mapname = "maps/default.smp"
 local mapinfo = {
   playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
   description = "",
