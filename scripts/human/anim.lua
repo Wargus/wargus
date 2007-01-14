@@ -263,7 +263,7 @@ local GryphonRiderMove = {"unbreakable begin", "frame 0", "wait 1", "frame 0", "
     "frame 15", "move 3", "wait 1", "frame 0", "move 3", "unbreakable end", "wait 1",}
 local GryphonRiderDeath = {"unbreakable begin", "frame 35", "wait 5", "frame 40", "wait 5", "frame 45", "wait 5",
     "frame 50", "wait 5", "frame 55", "wait 5", "frame 60", "wait 5",
-    "frame 60", "unbreakable end", "wait 1", },
+    "frame 60", "unbreakable end", "wait 1",}
 
 DefineAnimations("animations-gryphon-rider", {
   Still = GryphonRiderStill,
