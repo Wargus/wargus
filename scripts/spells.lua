@@ -81,10 +81,10 @@ DefineSpell("spell-suicide-bomber", {
 --]]
 
 DefineSpell("spell-suicide-bomber",
-	"showname", "Demolish", "manacost", 0, "target", "position", "range", 1,
+	"showname", "Demolish", "manacost", 0, "target", "self", "range", 1,
 	"action", {{"demolish", "range", 1, "damage", 400},
 		{"spawn-missile", "missile", "missile-normal-spell",
-			"end-point",   {"base", "target"}}},
+			"end-point",   {"base", "caster"}}},
 	"sound-when-cast", "holy vision"
 )
 
