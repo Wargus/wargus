@@ -20,7 +20,7 @@ cleanobj:
 
 clean:
 	rm -rf wartool wartool.exe wartool.o data.wc2 wargus-* wargus \
-	pudconvert.exe pudconvert
+	pudconvert.exe pudconvert pudconvert.o
 
 strip:
 	strip wartool
