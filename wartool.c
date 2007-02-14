@@ -10,7 +10,7 @@
 //
 /**@name wartool.c - Extract files from war archives. */
 //
-//      (c) Copyright 1999-2007 by Lutz Sammer & Nehal Mistry
+//      (c) Copyright 1999-2007 by Lutz Sammer, Nehal Mistry, and Jimmy Salmon
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -189,6 +189,7 @@ char* ArchiveDir;
 #define CD_UK         (1 << 7)  // also Australian
 #define CD_ITALIAN    (1 << 8)
 #define CD_PORTUGUESE (1 << 9)
+#define CD_FRENCH     (1 << 10)
 
 /**
 **  What CD Type is it?
@@ -225,8 +226,8 @@ Control Todo[] = {
 #endif
 {S,0,"unit_names",                                     1 __},
 {L,0,"objectives",                                     54, 236 _2},
-{X,0,"human/dialog",                                   55 __},
-{X,0,"orc/dialog",                                     56 __},
+//{X,0,"human/dialog",                                   55 __},
+//{X,0,"orc/dialog",                                     56 __},
 {X,0,"credits",                                        58, 4 _2},
 
 {X,0,"human/level01h",                                 65, 4 _2},
@@ -282,7 +283,7 @@ Control Todo[] = {
 {X,2,"human-exp/levelx12h",                            121, 4 _2},
 {X,2,"orc-exp/levelx12o",                              122, 4 _2},
 {X,2,"credits2",                                       123, 4 _2},
-{X,2,"credits-ext.txt",                                124 __},
+//{X,2,"credits-ext",                                    124 __},
 
 ///////////////////////////////////////////////////////////////////////////////
 //		MOST THINGS
@@ -3206,6 +3207,34 @@ int ConvertVideo(char* file, int video)
 //----------------------------------------------------------------------------
 
 /**
+**  Convert a string to utf8 format
+**  Note: this isn't a true conversion, buf could be any character set
+*/
+unsigned char *ConvertString(unsigned char *buf, size_t len)
+{
+	unsigned char *str;
+	unsigned char *p;
+	size_t i;
+
+	if (len == 0) {
+		len = strlen(buf);
+	}
+
+	str = (unsigned char *)malloc(2 * len + 1);
+
+	for (i = 0; i < len; ++i, ++buf) {
+		if (*buf > 0x7f) {
+			*p++ = (0xc0 | (*buf >> 6));
+			*p++ = (0x80 | (*buf & 0x1f));
+		} else {
+			*p++ = *buf;
+		}
+	}
+	*p = '\0';
+	return str;
+}
+
+/**
 **  Convert text to my format.
 */
 int ConvertText(char* file, int txte, int ofs)
@@ -3214,6 +3243,7 @@ int ConvertText(char* file, int txte, int ofs)
 	char buf[1024];
 	gzFile gf;
 	size_t l;
+	unsigned char *str;
 
 	// workaround for German/UK/Australian CD's
 	if (!(CDType & CD_EXPANSION) && (CDType & (CD_GERMAN | CD_UK))) {
@@ -3235,7 +3265,8 @@ int ConvertText(char* file, int txte, int ofs)
 		printf("Can't open %s\n", buf);
 		exit(-1);
 	}
-	if (l - ofs != (size_t)gzwrite(gf, txtp + ofs, l - ofs)) {
+	str = ConvertString(txtp + ofs, l - ofs);
+	if (l - ofs != (size_t)gzwrite(gf, str, strlen(str) + 1)) {
 		printf("Can't write %d bytes\n", (int)l);
 	}
 
@@ -4023,24 +4054,27 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 				Todo[2 * levelno + 1 + race + 7].File);
 			CheckPath(buf);
 			if (!(outlevel = fopen(buf, "wb"))) {
-				printf("Cannot Write File (Skipping Level: %s\n", buf);
+				printf("Cannot Write File (Skipping Level: %s)\n", buf);
+				fclose(inlevel);
 				continue;
 			}
 			// Title Key is ^^TITLE^^
 			// Objectives Key is ^^OBJECTIVES^^
 			while (fgets(buf, 1023, inlevel) != 0) {
 				if (!strncmp(buf, "^^TITLE^^", 9)) {
-					sprintf(buf, "  \"%s\",\n",
-						CampaignData[race][levelno][0]);
+					unsigned char *str = ConvertString(CampaignData[race][levelno][0], 0);
+					sprintf(buf, "  \"%s\",\n", str);
 					fputs(buf, outlevel);
+					free(str);
 				} else {
 					if (!strncmp(buf, "^^OBJECTIVES^^", 14)) {
 						fputs("  {", outlevel);
 						for (noobjs = 1; noobjs < 10; ++noobjs) {
 							if (CampaignData[race][levelno][noobjs] != NULL) {
-								sprintf(buf, "%s\"%s\"", (noobjs > 1 ? "," : ""),
-									CampaignData[race][levelno][noobjs]);
+								unsigned char *str = ConvertString(CampaignData[race][levelno][noobjs], 0);
+								sprintf(buf, "%s\"%s\"", (noobjs > 1 ? "," : ""), str);
 								fputs(buf, outlevel);
+								free(str);
 							}
 						}
 						fputs("},\n", outlevel);
@@ -4186,6 +4220,11 @@ int main(int argc, char** argv)
 					printf("Detected Portuguese original DOS CD\n");
 					CDType |= CD_PORTUGUESE;
 					break;
+				case 55079:
+					printf("Detected French original DOS CD\n");
+					CDType |= CD_FRENCH;
+					break;
+
 				default:
 					printf("Could not detect CD version:\n");
 					printf("Defaulting to German original DOS CD\n");
