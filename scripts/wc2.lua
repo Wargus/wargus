@@ -10,7 +10,7 @@
 --
 --      wc2.lua - WC2 compatibility level
 --
---      (c) Copyright 2001-2004 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2001-2007 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -111,6 +111,10 @@ end
 
 -- Convert unit type to the player's race
 function CreateUnit(unittype, player, pos)
+  if (GameCycle() ~= 0) then
+    return OldCreate(unittype, player, pos)
+  end
+
   -- Don't add any units in 1 peasant only mode
   if (GameSettings.NumUnits == 1) then
     return
@@ -137,6 +141,10 @@ end
 
 -- Override with game settings
 function SetPlayerData(player, data, arg1, arg2)
+  if (GameCycle() ~= 0) then
+    return OldSetPlayerData(player, data, arg1, arg2)
+  end
+
   local res = {arg2, arg2, arg2}
 
   if (data == "RaceName") then
