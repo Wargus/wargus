@@ -3217,10 +3217,11 @@ unsigned char *ConvertString(unsigned char *buf, size_t len)
 	size_t i;
 
 	if (len == 0) {
-		len = strlen(buf);
+		len = strlen((char *)buf);
 	}
 
 	str = (unsigned char *)malloc(2 * len + 1);
+	p = str;
 
 	for (i = 0; i < len; ++i, ++buf) {
 		if (*buf > 0x7f) {
@@ -3243,6 +3244,7 @@ int ConvertText(char* file, int txte, int ofs)
 	char buf[1024];
 	gzFile gf;
 	size_t l;
+	size_t l2;
 	unsigned char *str;
 
 	// workaround for German/UK/Australian CD's
@@ -3266,8 +3268,10 @@ int ConvertText(char* file, int txte, int ofs)
 		exit(-1);
 	}
 	str = ConvertString(txtp + ofs, l - ofs);
-	if (l - ofs != (size_t)gzwrite(gf, str, strlen(str) + 1)) {
-		printf("Can't write %d bytes\n", (int)l);
+	l2 = strlen(str) + 1;
+
+	if (l2 != (size_t)gzwrite(gf, str, l2)) {
+		printf("Can't write %d bytes\n", (int)l2);
 	}
 
 	free(txtp);
