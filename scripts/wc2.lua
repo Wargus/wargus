@@ -116,7 +116,7 @@ function CreateUnit(unittype, player, pos)
   end
 
   -- Don't add any units in 1 peasant only mode
-  if (GameSettings.NumUnits == 1) then
+  if (GameSettings.NumUnits == 1 and player ~= 15) then
     return
   end
 
