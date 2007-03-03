@@ -273,11 +273,13 @@ UINT MyControllingFunction(LPVOID pParam)
 	MakeDir(_T("data\\scripts"));
 	MakeDir(_T("data\\scripts\\ai"));
 	MakeDir(_T("data\\scripts\\human"));
+	MakeDir(_T("data\\scripts\\menus"));
 	MakeDir(_T("data\\scripts\\orc"));
 	MakeDir(_T("data\\scripts\\tilesets"));
 	CopyFiles(_T("scripts\\*.lua"), _T("data\\scripts"));
 	CopyFiles(_T("scripts\\ai\\*.lua"), _T("data\\scripts\\ai"));
 	CopyFiles(_T("scripts\\human\\*.lua"), _T("data\\scripts\\human"));
+	CopyFiles(_T("scripts\\menus\\*.lua"), _T("data\\scripts\\menus"));
 	CopyFiles(_T("scripts\\orc\\*.lua"), _T("data\\scripts\\orc"));
 	CopyFiles(_T("scripts\\tilesets\\*.lua"), _T("data\\scripts\\tilesets"));
 
