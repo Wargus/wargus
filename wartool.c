@@ -3268,7 +3268,7 @@ int ConvertText(char* file, int txte, int ofs)
 		exit(-1);
 	}
 	str = ConvertString(txtp + ofs, l - ofs);
-	l2 = strlen(str) + 1;
+	l2 = strlen((char *)str) + 1;
 
 	if (l2 != (size_t)gzwrite(gf, str, l2)) {
 		printf("Can't write %d bytes\n", (int)l2);
