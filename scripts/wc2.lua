@@ -112,7 +112,7 @@ end
 -- Convert unit type to the player's race
 function CreateUnit(unittype, player, pos)
   if (GameCycle() ~= 0) then
-    return OldCreate(unittype, player, pos)
+    return OldCreateUnit(unittype, player, pos)
   end
 
   -- Don't add any units in 1 peasant only mode
