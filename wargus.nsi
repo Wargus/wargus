@@ -5,12 +5,15 @@
 !define SDLDLL "..\stratagus\SDL.dll"
 !define WARINSTEXE "warinstall\Release\warinstall.exe"
 !define PUDCONVERTEXE "pudconvert.exe"
+!define MANIFEST "Microsoft.VC80.CRT.manifest"
+!define MSVCPDLL "msvcp80.dll"
+!define MSVCRDLL "msvcr80.dll"
 
 !define NAME "Wargus"
 !define WGTMP "wargustemp"
 
 Name "${NAME}"
-OutFile "Wargus-2.2.2.exe"
+OutFile "Wargus-2.2.3.exe"
 
 ;!define MUI_ICON "stratagus.ico"
 ;!define MUI_UNICON "stratagus.ico"
@@ -77,6 +80,9 @@ Section "${NAME}" SecDummy
   File "${SDLDLL}"
   File "${WARINSTEXE}"
   File "${PUDCONVERTEXE}"
+  File "${MANIFEST}"
+  File "${MSVCPDLL}"
+  File "${MSVCRDLL}"
   WriteRegStr HKCU "Software\${NAME}" "" $INSTDIR
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
