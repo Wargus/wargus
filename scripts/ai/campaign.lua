@@ -770,7 +770,7 @@ DefineAi("hum-14-black", "*", "hum-14-black", AiHuman14Black)
 
 --FIXME: create these ais
 
-Load("ai/land_attack.lua")
+Load("scripts/ai/land_attack.lua")
 
 DefineAi("orc-05", "*", "orc-05", AiLandAttack)
 DefineAi("orc-06", "*", "orc-06", AiLandAttack)
