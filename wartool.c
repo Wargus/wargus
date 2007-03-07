@@ -4045,7 +4045,7 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 		for (race = 0; race < 2; ++race) {
 			//Open Relevant file, to write stuff too.
 			sprintf(buf, "%s/../%s/%s_c.sms", Dir, TEXT_PATH,
-				Todo[2 * levelno + 1 + race + 7].File);
+				Todo[2 * levelno + 1 + race + 5].File);
 			if (!(inlevel = fopen(buf, "rb"))) {
 				sprintf(buf, "./%s/%s_c.sms", TEXT_PATH,
 					Todo[2 * levelno + 1 + race + 7].File);
@@ -4055,7 +4055,7 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 				}
 			}
 			sprintf(buf, "%s/%s/%s_c.sms", Dir, TEXT_PATH,
-				Todo[2 * levelno + 1 + race + 7].File);
+				Todo[2 * levelno + 1 + race + 5].File);
 			CheckPath(buf);
 			if (!(outlevel = fopen(buf, "wb"))) {
 				printf("Cannot Write File (Skipping Level: %s)\n", buf);
