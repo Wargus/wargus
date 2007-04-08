@@ -4048,7 +4048,7 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 				Todo[2 * levelno + 1 + race + 5].File);
 			if (!(inlevel = fopen(buf, "rb"))) {
 				sprintf(buf, "./%s/%s_c.sms", TEXT_PATH,
-					Todo[2 * levelno + 1 + race + 7].File);
+					Todo[2 * levelno + 1 + race + 5].File);
 				if (!(inlevel = fopen(buf, "rb"))) {
 					printf("Cannot Open File (Skipping Level): %s\n", buf);
 					continue;
