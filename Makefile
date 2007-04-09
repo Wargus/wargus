@@ -27,7 +27,7 @@ strip:
 #	strip wartool.exe
 
 date = $(shell date +%y%m%d)
-ver = 2.2.3
+ver = 2.2.4
 
 release: release-src release-linux
 
