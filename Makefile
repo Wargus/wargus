@@ -32,9 +32,9 @@ ver = 2.2.4
 release: release-src release-linux
 
 release-src: clean cleanobj
-	echo `find Makefile build.sh contrib campaigns wartool.c pudconvert.c endian.h pud.h wartool.ds* scripts maps README | grep -v '/\.'` > .list
+	echo `find Makefile build.sh contrib campaigns wartool.c pudconvert.c endian.h pud.h wartool.ds* scripts maps README -type f | grep -v '/\.'` > .list
 	mkdir wargus-$(ver); \
-	for i in `cat .list`; do echo $$i; done | cpio -pdml --quiet wargus-$(ver);\
+	for i in `cat .list`; do cp --parents $$i wargus-$(ver); done; \
 	tar -zcf wargus-$(ver)-src.tar.gz wargus-$(ver); \
 	zip -qr wargus-$(ver)-src.zip wargus-$(ver); \
 	rm -rf wargus-$(ver) .list;
