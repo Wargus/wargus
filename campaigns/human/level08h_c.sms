@@ -1,7 +1,5 @@
 --	Stratagus Map - Single player campaign
 
--- FIXME: the peasant must attack the others!
-
 Briefing(
 ^^TITLE^^
 ^^OBJECTIVES^^
@@ -13,8 +11,8 @@ Briefing(
 
 AddTrigger(
   function() return true end,
-  function() SetDiplomacy(4, "enemy", 1)
-    SetDiplomacy(1, "enemy", 4)
+  function() SetDiplomacy(4, "enemy", 2)
+    SetDiplomacy(2, "enemy", 4)
     SetDiplomacy(4, "enemy", 6)
     SetDiplomacy(6, "enemy", 4)
     return false end)
@@ -209,3 +207,7 @@ DefineAllow("unit-destroyed-3x3-place",		"FFFFFFFFFFFFFFFF")
 DefineAllow("unit-destroyed-4x4-place",		"FFFFFFFFFFFFFFFF")
 
 Load("campaigns/human/level08h.sms")
+
+DefinePlayerTypes("computer", "computer", "rescue-active", "computer",
+		"computer", "nobody", "person")
+SetAiType(4, "hum-08-peasant")
