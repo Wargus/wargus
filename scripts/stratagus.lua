@@ -83,10 +83,6 @@ SetMetaServer("stratagus.game-host.org", 7775)
 -------------------------------------------------------------------------------
 --  Game modification
 
---  Edit this to enable/disable XP to add more damage to attacks
---SetXPDamage(true)
-SetXPDamage(false)
-
 --  Edit this to enable/disable extended features.
 --    Currently enables some additional buttons.
 extensions = true
