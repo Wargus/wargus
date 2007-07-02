@@ -10,7 +10,7 @@
 --
 --      ai.lua - Define the AI.
 --
---      (c) Copyright 2004 by Jimmy Salmon and Crestez Leonard
+--      (c) Copyright 2004-2007 by Jimmy Salmon and Crestez Leonard
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
 
 local player
 
-function AiLoop(loop_funcs, loop_pos)
+local function AiLoop(loop_funcs, loop_pos)
     local ret
 
     player = AiPlayer() + 1
@@ -267,6 +267,7 @@ DefineAi("hum-07", "*", "hum-07", AiHuman07)
 InitFuncs:add(function()
   hum_08_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
   hum_08_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+  hum_08_peasant_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 end)
 
 local hum_08_loop_funcs = {
@@ -302,6 +303,17 @@ local hum_08_funcs = {
 
 function AiHuman08() return AiLoop(hum_08_funcs, hum_08_pos) end
 DefineAi("hum-08", "*", "hum-08", AiHuman08)
+
+local hum_08_peasant_funcs = {
+    function() return AiForce(0, {AiWorker(), 7}) end,
+    function() return AiWaitForce(0) end,
+    function() return AiAttackWithForce(0) end,
+    function() return AiSleep(12000) end,
+    function() hum_08_peasant_pos[player] = 3; return false end,
+}
+
+function AiHuman08Peasant() return AiLoop(hum_08_peasant_funcs, hum_08_peasant_pos) end
+DefineAi("hum-08-peasant", "*", "hum-08-peasant", AiHuman08Peasant)
 
 --=============================================================================
 --	This AI script builds only worker and tanker.
