@@ -10,7 +10,7 @@
 --
 --      ui.lua - Define the user interface
 --
---      (c) Copyright 2000-2005 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2000-2007 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -34,15 +34,24 @@ Load("scripts/widgets.lua")
 --  Define Decorations.
 --
 
---ManaSprite("ui/mana.png", -7, -7, 7, 7)
-ManaSprite("ui/mana2.png", 0, -1, 31, 4)
---HealthSprite("ui/health.png", 1, -7, 7, 7)
-HealthSprite("ui/health2.png", 0, -4, 31, 4)
-
+DefineSprites({Name = "sprite-mana", File = "ui/mana2.png",
+				Offset = {0, -1}, Size = {31, 4}})
+DefineSprites({Name = "sprite-health", File = "ui/health2.png",
+				Offset = {0, -4}, Size = {31, 4}})
 DefineSprites({Name = "sprite-shadow", File = "missiles/unit_shadow.png",
 				Offset = {3, 42}, Size = {32, 32}})
 DefineSprites({Name = "sprite-spell", File = "ui/bloodlust,haste,slow,invisible,shield.png",
 				Offset = {1, 1}, Size = {16, 16}})
+
+DefineDecorations({Index = "HitPoints", HideNeutral = true, CenterX = true,
+		OffsetPercent = {50, 100}, Method = {"sprite", {"sprite-health"}}})
+DefineDecorations({Index = "Mana", HideNeutral = true, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
+DefineDecorations({Index = "Transport", HideNeutral = true, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
+DefineDecorations({Index = "Research", HideNeutral = true, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
+DefineDecorations({Index = "Training", HideNeutral = true, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
+DefineDecorations({Index = "UpgradeTo", HideNeutral = true, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
+DefineDecorations({Index = "GiveResource", HideNeutral = false, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
+DefineDecorations({Index = "CarryResource", HideNeutral = false, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
 
 DefineDecorations({Index = "Bloodlust", ShowOpponent = true,
   Offset = {0, 0}, Method = {"static-sprite", {"sprite-spell", 0}}})
@@ -56,24 +65,6 @@ DefineDecorations({Index = "UnholyArmor", ShowOpponent = true,
   Offset = {48, 0}, Method = {"static-sprite", {"sprite-spell", 4}}})
 DefineDecorations({Index = "ShadowFly", ShowOpponent = true, ShowWhenMax = true, ShowWhenNull = true,
   Offset = {0, 0}, Method = {"sprite", {"sprite-shadow"}}})
-
---ShowHealthBar()
---ShowHealthVertical()
---ShowHealthHorizontal()
-ShowHealthDot()
-
---ShowManaBar()
---ShowManaVertical()
---ShowManaHorizontal()
-ShowManaDot()
-
---ShowNoFull()
---ShowFull()
-
---  Uncomment next, to show bars and dots always on top.
---  FIXME: planned feature
-DecorationOnTop()
-
 
 --
 --  Define Panels
