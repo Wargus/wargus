@@ -113,3 +113,51 @@ function RunResultsMenu()
   menu:run()
 end
 
+--
+--  TODO : Reenable ranking.
+--  TODO : progress bar instead of label
+--[[
+DefineRanks("human", {
+  0, "Servant",
+  2000, "Peasant",
+  5000, "Squire",
+  8000, "Footman",
+  18000, "Corporal",
+  28000, "Sergeant",
+  40000, "Lieutenant",
+  55000, "Captain",
+  70000, "Major",
+  85000, "Knight",
+  105000, "General",
+  125000, "Admiral",
+  145000, "Marshall",
+  165000, "Lord",
+  185000, "Grand Admiral",
+  205000, "Highlord",
+  230000, "Thundergod",
+  255000, "God",
+  280000, "Designer",
+})
+
+DefineRanks("orc", {
+  0, "Slave",
+  2000, "Peon",
+  5000, "Rogue",
+  8000, "Grunt",
+  18000, "Slasher",
+  28000, "Marauder",
+  40000, "Commander",
+  55000, "Captain",
+  70000, "Major",
+  85000, "Knight",
+  105000, "General",
+  125000, "Master",
+  145000, "Marshall",
+  165000, "Chieftain",
+  185000, "Overlord",
+  205000, "War Chief",
+  230000, "Demigod",
+  255000, "God",
+  280000, "Designer",
+})
+--]]

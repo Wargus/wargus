@@ -1,4 +1,4 @@
-function HandleIngameCommandKey(key, ctrl, alt, shift)
+local function HandleIngameCommandKey(key, ctrl, alt, shift)
   if ((key == "h" and (ctrl or alt)) or key == "f1") then
     if (not IsNetworkGame()) then SetGamePaused(true) end
     RunHelpMenu()
@@ -38,4 +38,35 @@ function HandleIngameCommandKey(key, ctrl, alt, shift)
   return true
 end
 
-HandleCommandKey = HandleIngameCommandKey
+local function HandleIneditorCommandKey(key, ctrl, alt, shift)
+  if ((key == "m" and alt) or key == "f10") then
+    RunInEditorMenu()
+  elseif (key == "f5") then -- Map property
+    RunEditorMapProperties()
+  elseif (key == "f6") then -- Players property
+    RunEditorPlayerProperties()
+  elseif (key == "f11") then -- Save
+    RunEditorSaveMenu()
+  elseif (key == "f12") then -- Load
+    RunEditorLoadMenu()
+  elseif (key == "q" and (ctrl or alt)) then -- Quit to menu
+    RunQuitToMenuConfirmMenu()
+  elseif (key == "x" and (ctrl or alt)) then -- Exit
+    RunExitConfirmMenu()
+  else
+    return false
+  end
+  SetGamePaused(true)
+  return true
+
+end
+
+function HandlewarCommandKey(key, ctrl, alt, shift)
+  if (Editor.Running == EditorNotRunning) then
+    return HandleIngameCommandKey(key, ctrl, alt, shift)
+  else
+    return HandleIneditorCommandKey(key, ctrl, alt, shift)
+  end
+end
+
+HandleCommandKey = HandlewarCommandKey
