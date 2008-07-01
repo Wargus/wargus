@@ -189,6 +189,10 @@ function AddMenuHelpers(menu)
     end
 
     local bq = self:addListBox(x, y, w, h, {})
+    
+    if (string.sub(path, string.len(path)) ~= "/") then
+      path = path .. "/"
+    end
     bq.origpath = path
     bq.actioncb = nil
 
@@ -267,7 +271,7 @@ function AddMenuHelpers(menu)
     b:setBaseColor(clear)
     b:setForegroundColor(clear)
     b:setBackgroundColor(dark)
-    b:setActionCallback(function(s) callback(b, s) end)
+	if (callback ~= nil) then b:setActionCallback(function(s) callback(b, s) end) end
     b:setFont(Fonts["game"])
     self:add(b, x, y)
     return b
@@ -392,7 +396,8 @@ function RunMap(map, objective, fow, revealmap)
 end
 
 mapname = "maps/default.smp"
-local mapinfo = {
+buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
+mapinfo = {
   playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
   description = "",
   nplayers = 1,
@@ -441,6 +446,7 @@ function GetMapInfo(mapname)
 end
 
 function RunSelectScenarioMenu()
+  buttonStatut = 0
   local menu = WarMenu(nil, panel(5), false)
   menu:setSize(352, 352)
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
@@ -466,12 +472,12 @@ function RunSelectScenarioMenu()
       if (browser:getSelected() < 0) then
         return
       end
-
+      buttonStatut = 1
       mapname = browser.path .. cap
       menu:stop()
     end)
   menu:addHalfButton("~!Cancel", "c", 198, 318,
-    function() menu:stop() end)
+    function() buttonStatut = 2; menu:stop() end)
 
   menu:run()
 end
@@ -581,9 +587,11 @@ function BuildProgramStartMenu()
     function() RunReplayGameMenu(); menu:stop(1) end)
   menu:addFullButton("~!Options", "o", offx + 208, offy + 104 + 36*5,
     function() RunOptionsMenu(); menu:stop(1) end)
-  menu:addFullButton("S~!how Credits", "h", offx + 208, offy + 104 + 36*6, RunShowCreditsMenu)
+    menu:addFullButton("~!Editor", "e", offx + 208, offy + 104 + 36*6,
+    function() RunEditorMenu(); menu:stop(1) end)
+  menu:addFullButton("S~!how Credits", "h", offx + 208, offy + 104 + 36*7, RunShowCreditsMenu)
 
-  menu:addFullButton("E~!xit Program", "x", offx + 208, offy + 104 + 36*8,
+  menu:addFullButton("E~!xit Program", "x", offx + 208, offy + 104 + 36*9,
     function() menu:stop() end)
 
   return menu:run()
@@ -609,6 +617,7 @@ Load("scripts/menus/load.lua")
 Load("scripts/menus/save.lua")
 Load("scripts/menus/replay.lua")
 Load("scripts/menus/options.lua")
+Load("scripts/menus/editor.lua")
 Load("scripts/menus/credits.lua")
 Load("scripts/menus/game.lua")
 Load("scripts/menus/help.lua")

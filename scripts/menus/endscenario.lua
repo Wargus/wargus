@@ -54,7 +54,7 @@ function RunQuitToMenuConfirmMenu()
   menu:addLabel("want to quit to", 128, 11 + (24 * 1))
   menu:addLabel("the main menu?", 128, 11 + (24 * 2))
   menu:addFullButton("~!Quit to Menu", "q", 16, 11 + (24 * 3) + 29,
-    function() StopGame(GameQuitToMenu); menu:stopAll() end)
+    function() StopGame(GameQuitToMenu); Editor.Running = EditorNotRunning; menu:stopAll() end)
   menu:addFullButton("Cancel (~<Esc~>)", "escape", 16, 248,
     function() menu:stop() end)
 

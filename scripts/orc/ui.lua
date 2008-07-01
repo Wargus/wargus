@@ -10,7 +10,7 @@
 --
 --      ui.lua - Define the orc user interface
 --
---      (c) Copyright 2001-2004 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2001-2008 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -269,7 +269,14 @@ UI.MenuButton.X = 24
 UI.MenuButton.Y = 2
 UI.MenuButton.Text = "Menu (~<F10~>)"
 UI.MenuButton.Style = FindButtonStyle("main")
-UI.MenuButton:SetCallback(function() RunGameMenu() end)
+UI.MenuButton:SetCallback(
+  function()
+    if (Editor.Running == EditorNotRunning) then
+	  RunGameMenu()
+	else
+	  RunInEditorMenu()
+	end
+  end)
 
 UI.NetworkMenuButton.X = 6
 UI.NetworkMenuButton.Y = 2
