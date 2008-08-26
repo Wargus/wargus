@@ -206,6 +206,9 @@ DefinePanelContents(
 Load("scripts/human/ui.lua")
 Load("scripts/orc/ui.lua")
 
+UI.MessageFont = Fonts["game"]
+UI.MessageScrollSpeed = 5
+
 DefineCursor({
   Name = "cursor-glass",
   Race = "any",

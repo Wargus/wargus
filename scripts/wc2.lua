@@ -111,7 +111,7 @@ end
 
 -- Convert unit type to the player's race
 function CreateUnit(unittype, player, pos)
-  if (GameCycle() ~= 0) then
+  if (GameCycle ~= 0) then
     return OldCreateUnit(unittype, player, pos)
   end
 
@@ -141,7 +141,7 @@ end
 
 -- Override with game settings
 function SetPlayerData(player, data, arg1, arg2)
-  if (GameCycle() ~= 0) then
+  if (GameCycle ~= 0) then
     return OldSetPlayerData(player, data, arg1, arg2)
   end
 
