@@ -29,7 +29,7 @@
 --      $Id$
 
 CFont:New("small", CGraphic:New("ui/fonts/small.png", 7, 6))
-CFont:New("game", CGraphic:New("ui/fonts/game.png", game_font_width, 14))
+CFont:New("game", CGraphic:New("ui/fonts/game.png", 14, 14))
 CFont:New("large", CGraphic:New("ui/fonts/large.png", 17, 17))
 CFont:New("small-title", CGraphic:New("ui/fonts/small_episode_titles.png", 32, 35))
 CFont:New("large-title", CGraphic:New("ui/fonts/large_episode_titles.png", 52, 50))
@@ -43,7 +43,6 @@ function DefineFontColor(id, t)
     fc.Colors[i] = CColor(t[i * 3 + 1], t[i * 3 + 2], t[i * 3 + 3])
   end
 end
-
 
 DefineFontColor("black",
   {    0,   0,   0,	-- 0
