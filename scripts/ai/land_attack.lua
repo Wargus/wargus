@@ -72,6 +72,7 @@ local land_funcs = {
   function() return AiNeed(AiLumberMill()) end,
   function() return AiNeed(AiBarracks()) end,
   function() return AiForce(0, {AiSoldier(), 2}) end,
+  function() return AiForceRole(0, "defend") end,
   function() return AiForce(1, {AiSoldier(), 1}) end,
   function() return AiWaitForce(1) end,
   function() return AiAttackWithForce(1) end,
@@ -161,7 +162,7 @@ local land_funcs = {
   function() return AiResearch(AiMageSpell5()) end,
 
   function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 2, AiCavalryMage(), 6, AiCatapult(), 3, AiMage(), 2}) end,
-  function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 2, AiCavalryMage(), 2, AiCatapult(), 1, AiMage(), 1}) end,
+  function() return AiForce(1, {AiSoldier(), 1, AiShooter(), 2, AiCavalryMage(), 2, AiCatapult(), 1, AiMage(), 1}) end,
   function() return AiWaitForce(1) end,
   function() return AiAttackWithForce(1) end,
 
