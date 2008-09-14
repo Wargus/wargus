@@ -81,6 +81,7 @@ local air_funcs = {
   function() return AiNeed(AiBarracks()) end,
   function() return AiWait(AiBarracks()) end,
   function() return AiForce(0, {AiSoldier(), 2}) end,
+  function() return AiForceRole(0, "defend") end,
   function() return AiWaitForce(0) end,  -- wait until defense is ready
 
   function() return AiNeed(AiBlacksmith()) end,

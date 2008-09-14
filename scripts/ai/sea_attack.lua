@@ -72,6 +72,7 @@ local sea_funcs = {
   function() return AiNeed(AiLumberMill()) end,
   function() return AiNeed(AiBarracks()) end,
   function() return AiForce(0, {AiSoldier(), 3}) end,
+  function() return AiForceRole(0, "defend") end,
   function() return AiWaitForce(0) end,
 
   function() return AiNeed(AiHarbor()) end,
@@ -115,6 +116,7 @@ local sea_funcs = {
 
   function() return AiForce(0, {AiSoldier(), 3, AiCatapult(), 1, AiScout(), 1}) end,
   function() return AiForce(3, {AiDestroyer(), 1, AiScout(), 1}) end,
+  function() return AiForceRole(3, "defend") end,
   function() return AiForce(1, {AiSubmarine(), 1, AiDestroyer(), 2, AiBattleship(), 2, AiScout(), 2}) end,
   function() return AiForce(2, {AiCatapult(), 2, AiTransporter(), 1}) end,
   function() return AiWaitForce(1) end,
