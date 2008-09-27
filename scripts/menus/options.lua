@@ -162,12 +162,21 @@ function BuildOptionsMenu()
   if (Video.Width == 1024) then b:setMarked(true) end
   b = menu:addCheckBox("1280 x 960", offx + 16, offy + 65 + 26*3,
     function() SetVideoSize(1280, 960) menu:stop(1) end)
-  if (Video.Width == 1280) then b:setMarked(true) end
-  b = menu:addCheckBox("1600 x 1200", offx + 16, offy + 65 + 26*4,
+  if (Video.Height == 960) then b:setMarked(true) end
+  b = menu:addCheckBox("1280 x 800", offx + 16, offy + 65 + 26*4,
+    function() SetVideoSize(1280, 800) menu:stop(1) end)
+  if (Video.Height == 800) then b:setMarked(true) end
+  b = menu:addCheckBox("1400 x 1050", offx + 16, offy + 65 + 26*5,
+    function() SetVideoSize(1400, 1050) menu:stop(1) end)
+  if (Video.Width == 1400) then b:setMarked(true) end
+  b = menu:addCheckBox("1600 x 1200", offx + 16, offy + 65 + 26*6,
     function() SetVideoSize(1600, 1200) menu:stop(1) end)
   if (Video.Width == 1600) then b:setMarked(true) end
+  b = menu:addCheckBox("1680 x 1050", offx + 16, offy + 65 + 26*7,
+    function() SetVideoSize(1680, 1050) menu:stop(1) end)
+  if (Video.Width == 1680) then b:setMarked(true) end
 
-  b = menu:addCheckBox("Full Screen", offx + 17, offy + 65 + 26*5 + 14,
+  b = menu:addCheckBox("Full Screen", offx + 17, offy + 65 + 26*8 + 14,
     function()
       ToggleFullScreen()
       preferences.VideoFullScreen = Video.FullScreen

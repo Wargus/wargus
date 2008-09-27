@@ -84,11 +84,13 @@ b.Y = 160
 UI.Fillers:push_back(b)
 
 function AddFiller(file, x, y)
-	b = CFiller:new_local()
-	b.G = CGraphic:New(file)
-	b.X = x
-	b.Y = y
-	UI.Fillers:push_back(b)
+	if CanAccessFile(file) == true then
+		b = CFiller:new_local()
+		b.G = CGraphic:New(file)
+		b.X = x
+		b.Y = y
+		UI.Fillers:push_back(b)
+	end	
 end
 
 AddFiller("ui/human/" .. Video.Width .. "x" .. Video.Height  .. "/filler-right.png", Video.Width - 16, 0)
