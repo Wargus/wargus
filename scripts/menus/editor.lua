@@ -335,7 +335,7 @@ end
 --
 function EditUnitProperties()
 
-  if (UnitUnderCursor == nil) then
+  if (GetUnitUnderCursor() == nil) then
     return;
   end
   local menu = WarGameMenu(panel(1))
@@ -345,21 +345,21 @@ function EditUnitProperties()
   menu:resize(sizeX, sizeY)
   menu:addLabel("Unit properties", sizeX / 2, 11)
   
-  if (UnitUnderCursor.Type.GivesResource == 0) then
+  if (GetUnitUnderCursor().Type.GivesResource == 0) then
     menu:addLabel("Artificial Intelligence", sizeX / 2, 11 + 36)
     local activeCheckBox = menu:addCheckBox("Active", 15, 11 + 72)
-    activeCheckBox:setMarked(UnitUnderCursor.Active)
+    activeCheckBox:setMarked(GetUnitUnderCursor().Active)
 
     menu:addHalfButton("~!Ok", "o", 24, sizeY - 40,
-      function() UnitUnderCursor.Active = activeCheckBox:isMarked();  menu:stop() end)
+      function() GetUnitUnderCursor().Active = activeCheckBox:isMarked();  menu:stop() end)
   else
     local resourceName = {"gold", "lumber", "oil"}
-    local resource = UnitUnderCursor.Type.GivesResource - 1
+    local resource = GetUnitUnderCursor().Type.GivesResource - 1
     menu:addLabel("Amount of " .. resourceName[1 + resource] .. " :", 24, 11 + 36, nil, false)
-	local resourceValue = menu:addTextInputField(UnitUnderCursor.ResourcesHeld, sizeX / 2 - 30, 11 + 36 * 2, 60)
+	local resourceValue = menu:addTextInputField(GetUnitUnderCursor().ResourcesHeld, sizeX / 2 - 30, 11 + 36 * 2, 60)
 
     menu:addHalfButton("~!Ok", "o", 24, sizeY - 40,
-      function() UnitUnderCursor.ResourcesHeld = resourceValue:getText();  menu:stop() end)
+      function() GetUnitUnderCursor().ResourcesHeld = resourceValue:getText();  menu:stop() end)
   end
   menu:addHalfButton("~!Cancel", "c", 134, sizeY - 40,
     function() menu:stop() end)
