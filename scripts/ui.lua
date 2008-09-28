@@ -43,7 +43,7 @@ DefineSprites({Name = "sprite-shadow", File = "missiles/unit_shadow.png",
 DefineSprites({Name = "sprite-spell", File = "ui/bloodlust,haste,slow,invisible,shield.png",
 				Offset = {1, 1}, Size = {16, 16}})
 
-DefineDecorations({Index = "HitPoints", HideNeutral = true, CenterX = true,
+DefineDecorations({Index = "HitPoints", HideNeutral = true, CenterX = true, ShowOpponent=true,
 		OffsetPercent = {50, 100}, Method = {"sprite", {"sprite-health"}}})
 DefineDecorations({Index = "Mana", HideNeutral = true, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
 DefineDecorations({Index = "Transport", HideNeutral = true, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
