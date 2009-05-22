@@ -95,6 +95,7 @@ fi
 cp -R scripts $DIR/scripts
 rm -Rf `find $DIR/scripts | grep CVS`
 rm -Rf `find $DIR/scripts | grep cvsignore`
+rm -Rf `find $DIR/scripts | grep .svn`
 
 $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
 
