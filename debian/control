@@ -7,7 +7,7 @@ Standards-Version: 3.6.1
 
 Package: wargus
 Architecture: any
-Depends: stratagus-gl|stratagus, ${shlibs:Depends}
+Depends: stratagus-gl|stratagus, vorbis-tools, cdparanoia, ${shlibs:Depends}
 Description: Wargus is a game set for the Stratagus engine.
  Wargus can be used to play WarCraft II from Blizzard Entertainment.
  .

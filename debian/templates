@@ -7,3 +7,8 @@ Template: shared/wargusextractvideo
 Type: boolean
 Default: true
 Description: Also extract the video data.
+
+Template: shared/wargusextractmusic
+Type: boolean
+Default: true
+Description: Also extract the audio CD tracks.
