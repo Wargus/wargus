@@ -50,8 +50,8 @@ while [ $# -gt 0 ]; do
 		-p)	ARCHIVE="$2"; shift ;;
 		-o)	DIR="$2"; shift ;;
 
-		-v)	VIDEO="-v"; shift ;;
-		-m)	MUSIC="yes"; shift ;;
+		-v)	VIDEO="-v" ;;
+		-m)	MUSIC="yes" ;;
 
 		-h)	cat << EOF
 
