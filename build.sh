@@ -41,6 +41,8 @@ CONTRIB="contrib"
 #	location of the wartool binary
 BINPATH="."
 
+AUDIO_COMPRESS="oggenc"
+
 ####	Do not modify anything below this point.
 
 while [ $# -gt 0 ]; do
@@ -49,11 +51,13 @@ while [ $# -gt 0 ]; do
 		-o)	DIR="$2"; shift ;;
 
 		-v)	VIDEO="-v"; shift ;;
+		-m)	MUSIC="yes"; shift ;;
 
 		-h)	cat << EOF
 
 build.sh [-v] [-o output] -p path 
  -v extract videos
+ -m extract music
  -o output directory (default 'data.wc2')
  -p path to data files
 EOF
@@ -86,16 +90,27 @@ fi
 
 [ -d $DIR ] || mkdir $DIR
 [ -d $DIR/music ] || mkdir $DIR/music
+[ -d $DIR/puds ] || mkdir $DIR/puds
 
 ###############################################################################
 ##	Extract and Copy
 ###############################################################################
 
 # copy script files
-cp -R scripts $DIR/scripts
+cp -R scripts $DIR/
 rm -Rf `find $DIR/scripts | grep CVS`
 rm -Rf `find $DIR/scripts | grep cvsignore`
 rm -Rf `find $DIR/scripts | grep .svn`
+
+##	Extract audio tracks
+#
+if [ "$MUSIC" = "yes" ] ; then
+	seq -w 3 17 | (while read i ; do cdparanoia ${i} $DIR/music/track_${i}.wav ; \
+		($AUDIO_COMPRESS $DIR/music/track_${i}.wav 2>/dev/null &) ; done)
+else
+	cp $CONTRIB/toccata.mod.gz $DIR/music/default.mod.gz
+fi
+
 
 $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
 
@@ -111,7 +126,6 @@ cp $CONTRIB/food.png $DIR/graphics/ui
 cp $CONTRIB/score.png $DIR/graphics/ui
 cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
 cp $CONTRIB/stratagus.png $DIR/graphics/ui
-cp $CONTRIB/toccata.mod.gz $DIR/music/default.mod.gz
 
 #	Compress the sounds
 find $DIR/sounds -type f -name "*.wav" -print -exec gzip -f {} \;
@@ -121,8 +135,8 @@ find $DIR/campaigns -type f -name "*.txt" -print -exec gzip -f {} \;
 
 #	Setup the default map
 [ -f "$DIR/maps/multi/(2)mysterious-dragon-isle.sms.gz" ] && cd $DIR/maps \
-	&& ln -s "multi/(2)mysterious-dragon-isle.sms.gz" default.sms.gz \
-	&& ln -s "multi/(2)mysterious-dragon-isle.smp.gz" default.smp.gz
+	&& ln -sf "multi/(2)mysterious-dragon-isle.sms.gz" default.sms.gz \
+	&& ln -sf "multi/(2)mysterious-dragon-isle.smp.gz" default.smp.gz
 
 echo "Wargus data setup is now complete"
 echo "Note: you do not need to run this script again"
