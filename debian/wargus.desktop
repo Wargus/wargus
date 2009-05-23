@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Wargus
+Comment=Stratagus WarCraft II data set
+Exec=/usr/games/wargus
+Icon=wargus.png
+Terminal=false
+Type=Application
+Categories=Game;StrategyGame;
+StartupNotify=false
