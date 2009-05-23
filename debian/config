@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+# Source debconf library
+. /usr/share/debconf/confmodule
+
+db_input high shared/warguscdpath || true
+
+db_go || true
+
+db_input medium shared/wargusextractvideo || true
+
+db_go || true
+
+db_stop || true
