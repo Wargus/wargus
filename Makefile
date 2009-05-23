@@ -1,7 +1,8 @@
 
 CC = gcc
 
-CROSSDIR = /usr/local/cross
+PREFIX ?= /usr/local
+CROSSDIR ?= /usr/local/cross
 STRATAGUSPATH = ../stratagus/
 
 CFLAGS = -I/usr/local/include -Wall -Wsign-compare
@@ -14,6 +15,10 @@ wartool: wartool.o pudconvert.o
 
 pudconvert: pudconvert.c
 	$(CC) -o $@ -DSTAND_ALONE pudconvert.c $(LDFLAGS)
+
+install:
+	install -m 755 pudconvert $(PREFIX)/bin/pudconvert
+	install -m 755 wartool $(PREFIX)/bin/wartool
 
 cleanobj:
 	rm -f wartool.o pudconvert.o
