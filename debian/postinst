@@ -18,6 +18,7 @@ case "$1" in
         if [ ${RET} = "true" ]; then
           EXTRACTVIDEO="-v"
         fi
+        echo "Extracting data from ${CDPATH} to /usr/share/games/stratagus/wargus"
         /usr/share/games/stratagus/wargus/build.sh -p ${CDPATH} -o /usr/share/games/stratagus/wargus ${EXTRACTVIDEO}
       else
         echo "${RET} doesn't exist - can't extract WarCraft II data" >&2

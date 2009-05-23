@@ -8,8 +8,8 @@ case "$1" in
         rm -rf /usr/share/games/stratagus/wargus
     ;;
     *)
-        echo "postrm called with unknown argument \`$1'" >&2
-        exit 1
+#        echo "postrm called with unknown argument \`$1'" >&2
+#        exit 1
     ;;
 esac
 
