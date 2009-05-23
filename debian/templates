@@ -1,0 +1,9 @@
+Template: shared/warguscdpath
+Type: string
+Default: /mnt/cdrom
+Description: Path to your WarCraft II CD mount point.
+
+Template: shared/wargusextractvideo
+Type: boolean
+Default: true
+Description: Also extract the video data.

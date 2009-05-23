@@ -1,0 +1,2 @@
+?package(wargus):needs="x11" section="Games/Strategy" title="Wargus" \
+longtitle="Wargus" command="/usr/games/wargus"

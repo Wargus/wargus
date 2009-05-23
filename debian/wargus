@@ -1,0 +1,10 @@
+#!/bin/sh
+
+STRATAGUS_DATA=/usr/share/games/stratagus
+STRATAGUS_BINARY=/usr/games/stratagus-opengl
+if [ ! -e "${STRATAGUS_BINARY}" ]; then
+    STRATAGUS_BINARY=/usr/games/stratagus-no_opengl
+fi
+
+${STRATAGUS_BINARY} -d ${STRATAGUS_DATA}/wargus $*
+

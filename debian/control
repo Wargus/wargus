@@ -1,0 +1,15 @@
+Source: wargus
+Section: games
+Priority: optional
+Maintainer: Martin Gerhardy <tlh2000@users.sf.net>
+Build-Depends: libpng12-dev (>= 1.2.5), libbz2-dev, liblua5.1-dev, debhelper (>> 4.0.0)
+Standards-Version: 3.6.1
+
+Package: wargus
+Architecture: any
+Depends: stratagus-gl|stratagus, ${shlibs:Depends}
+Description: Wargus is a game set for the Stratagus engine.
+ Wargus can be used to play WarCraft II from Blizzard Entertainment.
+ .
+ You need the original WarCraft II CD (Battle.net edition doesn't work)
+ to extract the game data files.

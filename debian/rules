@@ -1,0 +1,66 @@
+#!/usr/bin/make -f
+# debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+# GNU Copyright 2002-2004 by David Martínez Moreno.
+
+# Do you want verbosity...? Uncomment this.
+#export DH_VERBOSE=1
+
+export LC_ALL=C
+
+# We have to honor DEB_BUILD...
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+CONFIGURE_FLAGS += --enable-profile
+endif
+
+DEB_BUILD_GNU_CPU ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_CPU)
+
+export CFLAGS
+
+build: 
+	dh_testdir
+	$(MAKE)
+
+clean: 
+	dh_testdir
+	dh_testroot
+
+	$(MAKE) clean
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	install -m 755 pudconvert $(CURDIR)/debian/wargus/usr/games
+	install -m 755 wartool $(CURDIR)/debian/wargus/usr/games
+	install -m 755 build.sh $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus
+	install -m 755 debian/wargus $(CURDIR)/debian/wargus/usr/games/wargus
+
+# Build architecture-independent files here.
+binary-indep: build install
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdebconf
+	dh_installdocs
+	dh_installmenu
+	dh_installman
+	dh_installchangelogs
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
+
