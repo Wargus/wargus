@@ -16,6 +16,9 @@ wartool: wartool.o pudconvert.o
 pudconvert: pudconvert.c
 	$(CC) -o $@ -DSTAND_ALONE pudconvert.c $(LDFLAGS)
 
+deb-dist:
+	debuild binary
+
 install:
 	install -m 755 pudconvert $(PREFIX)/bin/pudconvert
 	install -m 755 wartool $(PREFIX)/bin/wartool

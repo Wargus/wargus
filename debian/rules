@@ -38,7 +38,9 @@ install: build
 	install -m 755 pudconvert $(CURDIR)/debian/wargus/usr/games
 	install -m 755 wartool $(CURDIR)/debian/wargus/usr/games
 	install -m 755 build.sh $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus
-	install -m 755 debian/wargus $(CURDIR)/debian/wargus/usr/games/wargus
+	install -m 755 debian/wrapper $(CURDIR)/debian/wargus/usr/games
+	install -m 644 contrib/wargus.png $(CURDIR)/debian/wargus/usr/share/icons
+	install -m 644 debian/wargus.desktop $(CURDIR)/debian/wargus/usr/share/applications
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -51,6 +53,7 @@ binary-arch: build install
 	dh_installdocs
 	dh_installmenu
 	dh_installman
+	dh_desktop
 	dh_installchangelogs
 	dh_strip
 	dh_compress
