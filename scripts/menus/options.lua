@@ -184,7 +184,14 @@ function BuildOptionsMenu()
     end)
   b:setMarked(Video.FullScreen)
 
-  menu:addHalfButton("~!OK", "o", offx + 123, offy + 309, function() menu:stop() end)
+  b = menu:addCheckBox(_("Use OpenGL (restart required)"), offx + 17, offy + 65 + 26*9 + 14,
+    function()
+      preferences.UseOpenGL = b:isMarked()
+      SavePreferences()
+    end)
+  b:setMarked(UseOpenGL)
+
+  menu:addHalfButton("~!OK", "o", offx + 123, offy + 339, function() menu:stop() end)
 
   return menu:run()
 end
