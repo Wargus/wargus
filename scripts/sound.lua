@@ -40,10 +40,6 @@
 --		This is a random music player demo
 --
 
-local playlist = {
-  "music/default.mod"
-}
-
 function MusicStopped()
   if (table.getn(playlist) ~= 0) then
     PlayMusic(playlist[math.random(table.getn(playlist))])

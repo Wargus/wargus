@@ -35,6 +35,7 @@ install: build
 	dh_clean -k
 	dh_installdirs
 
+	svn export scripts $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/scripts  --force
 	install -m0755 pudconvert $(CURDIR)/debian/wargus/usr/games
 	install -m0755 wartool $(CURDIR)/debian/wargus/usr/games
 	install -m0755 build.sh $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus
