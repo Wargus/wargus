@@ -397,6 +397,10 @@ function RunCreateMultiGameMenu(s)
       menu:stop()
     end
   )
+
+  menu:addFullButton("~!Cancel", "c", sx,  sy*12,
+    function() menu:stop() end)
+
   menu:run()
   PresentMap = OldPresentMap
 end
