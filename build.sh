@@ -45,11 +45,14 @@ AUDIO_COMPRESS="oggenc"
 
 ####	Do not modify anything below this point.
 
+SKIP_CONTRIB="no"
+
 while [ $# -gt 0 ]; do
 	case "$1" in
 		-p)	ARCHIVE="$2"; shift ;;
 		-o)	DIR="$2"; shift ;;
 
+		-c)	SKIP_CONTRIB="yes";;
 		-v)	VIDEO="-v" ;;
 		-m)	MUSIC="yes" ;;
 
@@ -58,6 +61,7 @@ while [ $# -gt 0 ]; do
 build.sh [-v] [-o output] -p path 
  -v extract videos
  -m extract music
+ -c skip contrib file copy
  -o output directory (default 'data.wc2')
  -p path to data files
 EOF
@@ -116,18 +120,21 @@ $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
 
 # copy own supplied files
 
-cp $CONTRIB/cross.png $DIR/graphics/ui/cursors
-cp $CONTRIB/red_cross.png $DIR/graphics/missiles
-cp $CONTRIB/mana.png $DIR/graphics/ui
-cp $CONTRIB/mana2.png $DIR/graphics/ui
-cp $CONTRIB/health.png $DIR/graphics/ui
-cp $CONTRIB/health2.png $DIR/graphics/ui
-cp $CONTRIB/food.png $DIR/graphics/ui
-cp $CONTRIB/score.png $DIR/graphics/ui
-cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
+if [ "$SKIP_CONTRIB" = "no" ] ; then
+	cp $CONTRIB/cross.png $DIR/graphics/ui/cursors
+	cp $CONTRIB/red_cross.png $DIR/graphics/missiles
+	cp $CONTRIB/mana.png $DIR/graphics/ui
+	cp $CONTRIB/mana2.png $DIR/graphics/ui
+	cp $CONTRIB/health.png $DIR/graphics/ui
+	cp $CONTRIB/health2.png $DIR/graphics/ui
+	cp $CONTRIB/food.png $DIR/graphics/ui
+	cp $CONTRIB/score.png $DIR/graphics/ui
+	cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
+fi
+
 if [ -e $DIR/graphics/ui/title.png ]; then
 	mv $DIR/graphics/ui/title.png $DIR/graphics/ui/stratagus.png
-else
+elif [ "$SKIP_CONTRIB" = "no" ] ; then
 	cp $CONTRIB/stratagus.png $DIR/graphics/ui
 fi
 
