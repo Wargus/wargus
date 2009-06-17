@@ -43,6 +43,16 @@ install: build
 	install -m0644 contrib/wargus.png $(CURDIR)/debian/wargus/usr/share/icons
 	install -m0644 debian/wargus.desktop $(CURDIR)/debian/wargus/usr/share/applications
 
+	install -m0644 contrib/cross.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui/cursors
+	install -m0644 contrib/red_cross.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/missiles
+	install -m0644 contrib/mana.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
+	install -m0644 contrib/mana2.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
+	install -m0644 contrib/health.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
+	install -m0644 contrib/health2.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
+	install -m0644 contrib/food.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
+	install -m0644 contrib/score.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
+	install -m0644 contrib/ore,stone,coal.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
+
 # Build architecture-independent files here.
 binary-indep: build install
 

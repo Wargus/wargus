@@ -2,5 +2,8 @@ usr/games
 usr/share/man/man6
 usr/share/games/stratagus/wargus
 usr/share/games/stratagus/wargus/scripts
+usr/share/games/stratagus/wargus/graphics/ui
+usr/share/games/stratagus/wargus/graphics/ui/cursors
+usr/share/games/stratagus/wargus/graphics/missiles
 usr/share/icons
 usr/share/applications
