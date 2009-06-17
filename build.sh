@@ -125,7 +125,11 @@ cp $CONTRIB/health2.png $DIR/graphics/ui
 cp $CONTRIB/food.png $DIR/graphics/ui
 cp $CONTRIB/score.png $DIR/graphics/ui
 cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
-cp $CONTRIB/stratagus.png $DIR/graphics/ui
+if [ -e $DIR/graphics/ui/title.png ]; then
+	mv $DIR/graphics/ui/title.png $DIR/graphics/ui/stratagus.png
+else
+	cp $CONTRIB/stratagus.png $DIR/graphics/ui
+fi
 
 #	Compress the sounds
 find $DIR/sounds -type f -name "*.wav" -print -exec gzip -f {} \;
