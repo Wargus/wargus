@@ -24,7 +24,7 @@ case "$1" in
           EXTRACTMUSIC="-v"
         fi
         echo "Extracting data from ${CDPATH} to /usr/share/games/stratagus/wargus"
-        /usr/share/games/stratagus/wargus/build.sh -p ${CDPATH} -o /usr/share/games/stratagus/wargus -c ${EXTRACTVIDEO} ${EXTRACTMUSIC}
+        /usr/share/games/stratagus/wargus/build.sh -p ${CDPATH} -m -o /usr/share/games/stratagus/wargus -s -c ${EXTRACTVIDEO} ${EXTRACTMUSIC}
       else
         echo "${RET} doesn't exist - can't extract WarCraft II data" >&2
         exit 1
