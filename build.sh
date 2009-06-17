@@ -46,6 +46,7 @@ AUDIO_COMPRESS="oggenc"
 ####	Do not modify anything below this point.
 
 SKIP_CONTRIB="no"
+SKIP_SCRIPTS="no"
 
 while [ $# -gt 0 ]; do
 	case "$1" in
@@ -53,6 +54,7 @@ while [ $# -gt 0 ]; do
 		-o)	DIR="$2"; shift ;;
 
 		-c)	SKIP_CONTRIB="yes";;
+		-s)	SKIP_SCRIPTS="yes";;
 		-v)	VIDEO="-v" ;;
 		-m)	MUSIC="yes" ;;
 
@@ -62,6 +64,7 @@ build.sh [-v] [-o output] -p path
  -v extract videos
  -m extract music
  -c skip contrib file copy
+ -s skip scripts file copy
  -o output directory (default 'data.wc2')
  -p path to data files
 EOF
@@ -84,10 +87,12 @@ if [ ! -f "$DATADIR/rezdat.war" ] && [ ! -f "$DATADIR/REZDAT.WAR" ] && [ ! -f "$
     exit 1
 fi
 
-if [ ! -d "$CONTRIB" ]; then
-    echo "error: $CONTRIB does not exist; try running $0" 
-    echo "	from the toplevel stratagus directory."
-    exit 1
+if [ "$SKIP_CONTRIB" = "no" ] ; then
+	if [ ! -d "$CONTRIB" ]; then
+		echo "error: $CONTRIB does not exist; try running $0" 
+		echo "	from the toplevel stratagus directory."
+		exit 1
+	fi
 fi
 
 # Create the directory structure
@@ -101,10 +106,12 @@ fi
 ###############################################################################
 
 # copy script files
-cp -R scripts $DIR/
-rm -Rf `find $DIR/scripts | grep CVS`
-rm -Rf `find $DIR/scripts | grep cvsignore`
-rm -Rf `find $DIR/scripts | grep .svn`
+if [ "$SKIP_CONTRIB" = "no" ] ; then
+	cp -R scripts $DIR/
+	rm -Rf `find $DIR/scripts | grep CVS`
+	rm -Rf `find $DIR/scripts | grep cvsignore`
+	rm -Rf `find $DIR/scripts | grep .svn`
+fi
 
 ##	Extract audio tracks
 #
