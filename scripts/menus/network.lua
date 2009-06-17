@@ -225,7 +225,7 @@ function RunJoiningGameMenu(s)
       ErrorMenu("Incompatible engine version")
       menu:stop(1)
     elseif (state == 17) then -- ccs_incompatiblenetwork
-      ErrorMenu("Incompatible netowrk version")
+      ErrorMenu("Incompatible network version")
       menu:stop(1)
     end
   end
@@ -398,28 +398,42 @@ function RunCreateMultiGameMenu(s)
     end
   )
 
-  menu:addFullButton("~!Cancel", "c", sx,  sy*12,
+  menu:addFullButton("Cancel (~<Esc~>)", "escape", sx,  sy*12,
     function() menu:stop() end)
 
   menu:run()
   PresentMap = OldPresentMap
 end
 
-function RunCreateJoinMenu()
+function RunMultiPlayerGameMenu(s)
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
+  local nick
 
   InitGameSettings()
   InitNetwork1()
 
+  menu:writeText(_("Nickname :"), 208 + offx, 264 + offy)
+  nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 260 + offy)
+
   menu:addFullButton("~!Join Game", "j", 208 + offx, 320 + (36 * 0) + offy,
     function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        preferences.PlayerName = nick:getText()
+        SavePreferences()
+      end
       RunJoinIpMenu()
       menu:stop()
     end)
   menu:addFullButton("~!Create Game", "c", 208 + offx, 320 + (36 * 1) + offy,
     function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        preferences.PlayerName = nick:getText()
+        SavePreferences()
+      end
       RunCreateMultiGameMenu()
       menu:stop()
     end)
@@ -430,30 +444,5 @@ function RunCreateJoinMenu()
   menu:run()
 
   ExitNetwork1()
-end
-
-function RunMultiPlayerGameMenu(s)
-  local menu = WarMenu(nil, panel(4), false)
-  menu:setSize(288, 128)
-  menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
-  menu:setDrawMenusUnder(true)
-
-  menu:addLabel("Enter your name:", 288 / 2, 11)
-
-  local nick = menu:addTextInputField(GetLocalPlayerName(), 40, 38, 212)
-
-  menu:addHalfButton("~!OK", "o", 24, 80,
-    function()
-      if nick:getText() ~= GetLocalPlayerName() then
-        SetLocalPlayerName(nick:getText())
-        preferences.PlayerName = nick:getText()
-        SavePreferences()
-      end
-      RunCreateJoinMenu()
-      menu:stop()
-    end)
-  menu:addHalfButton("~!Cancel", "c", 154, 80, function() menu:stop() end)
-
-  menu:run()
 end
 
