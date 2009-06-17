@@ -61,6 +61,18 @@ SetTitleScreens({
 --  {"logo_stratagus.avi"}
 )
 
+-------------------------------------------------------------------------------
+--	Music play list -	Insert your titles here
+-------------------------------------------------------------------------------
+playlist = {}
+local musiclist = ListFilesInDirectory("music/")
+for i,f in ipairs(musiclist) do
+  if(string.find(f, ".ogg$") or string.find(f, ".wav$") or string.find(f, ".mp3$") or string.find(f, ".mod")) then 
+    print("Added music file:" .. f) 
+    playlist[i] = f
+  end
+end
+
 --  Set the game name. It's used so we can mantain different savegames
 --  and setting. Might also be used for multiplayer.
 SetGameName("wc2")
