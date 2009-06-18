@@ -56,12 +56,14 @@ while [ $# -gt 0 ]; do
 		-c)	SKIP_CONTRIB="yes";;
 		-s)	SKIP_SCRIPTS="yes";;
 		-v)	VIDEO="-v" ;;
+		-b)	BINPATH="$2"; shift;;
 		-m)	MUSIC="yes" ;;
 
 		-h)	cat << EOF
 
 build.sh [-v] [-o output] -p path 
  -v extract videos
+ -b binpath
  -m extract music
  -c skip contrib file copy
  -s skip scripts file copy
@@ -137,7 +139,6 @@ if [ "$MUSIC" = "yes" ] ; then
 else
 	cp $CONTRIB/toccata.mod.gz $DIR/music/default.mod.gz
 fi
-
 
 $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
 
