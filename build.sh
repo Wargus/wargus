@@ -117,24 +117,23 @@ fi
 #
 if [ "$MUSIC" = "yes" ] ; then
 	seq -w 2 17 | (while read i ; do cdparanoia ${i} $DIR/music/track_${i}.wav ; \
-		($AUDIO_COMPRESS $DIR/music/track_${i}.wav 2>/dev/null &) ; done)
-	rm -f $DIR/music/track*.wav
-	mv $DIR/music/track_02.ogg $DIR/music/Human Battle 1.ogg
-	mv $DIR/music/track_03.ogg $DIR/music/Human Battle 2.ogg
-	mv $DIR/music/track_04.ogg $DIR/music/Human Battle 3.ogg
-	mv $DIR/music/track_05.ogg $DIR/music/Human Battle 4.ogg
-	mv $DIR/music/track_06.ogg $DIR/music/Human Battle 5.ogg
-	mv $DIR/music/track_07.ogg $DIR/music/Human Briefing.ogg
-	mv $DIR/music/track_08.ogg $DIR/music/Human Victory.ogg
-	mv $DIR/music/track_09.ogg $DIR/music/Human Defeat.ogg
-	mv $DIR/music/track_10.ogg $DIR/music/Orc Battle 1.ogg
-	mv $DIR/music/track_11.ogg $DIR/music/Orc Battle 2.ogg
-	mv $DIR/music/track_12.ogg $DIR/music/Orc Battle 3.ogg
-	mv $DIR/music/track_13.ogg $DIR/music/Orc Battle 4.ogg
-	mv $DIR/music/track_14.ogg $DIR/music/Orc Battle 5.ogg
-	mv $DIR/music/track_15.ogg $DIR/music/Orc Briefing.ogg
-	mv $DIR/music/track_16.ogg $DIR/music/Orc Victory.ogg
-	mv $DIR/music/track_17.ogg $DIR/music/Orc Defeat.ogg
+		($AUDIO_COMPRESS $DIR/music/track_${i}.wav && rm $DIR/music/track_${i}.wav 2>/dev/null &) ; done)
+	mv $DIR/music/track_02.ogg "$DIR/music/Human Battle 1.ogg"
+	mv $DIR/music/track_03.ogg "$DIR/music/Human Battle 2.ogg"
+	mv $DIR/music/track_04.ogg "$DIR/music/Human Battle 3.ogg"
+	mv $DIR/music/track_05.ogg "$DIR/music/Human Battle 4.ogg"
+	mv $DIR/music/track_06.ogg "$DIR/music/Human Battle 5.ogg"
+	mv $DIR/music/track_07.ogg "$DIR/music/Human Briefing.ogg"
+	mv $DIR/music/track_08.ogg "$DIR/music/Human Victory.ogg"
+	mv $DIR/music/track_09.ogg "$DIR/music/Human Defeat.ogg"
+	mv $DIR/music/track_10.ogg "$DIR/music/Orc Battle 1.ogg"
+	mv $DIR/music/track_11.ogg "$DIR/music/Orc Battle 2.ogg"
+	mv $DIR/music/track_12.ogg "$DIR/music/Orc Battle 3.ogg"
+	mv $DIR/music/track_13.ogg "$DIR/music/Orc Battle 4.ogg"
+	mv $DIR/music/track_14.ogg "$DIR/music/Orc Battle 5.ogg"
+	mv $DIR/music/track_15.ogg "$DIR/music/Orc Briefing.ogg"
+	mv $DIR/music/track_16.ogg "$DIR/music/Orc Victory.ogg"
+	mv $DIR/music/track_17.ogg "$DIR/music/Orc Defeat.ogg"
 else
 	cp $CONTRIB/toccata.mod.gz $DIR/music/default.mod.gz
 fi
