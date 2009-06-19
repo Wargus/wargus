@@ -110,15 +110,24 @@ function RunJoiningMapMenu(s)
   fow:setEnabled(false)
   local revealmap = menu:addCheckBox("Reveal map", sx, sy*3+150, function() end)
   revealmap:setEnabled(false)
+
+-- FIXME: Allow to set the race the player want to start the game with
+--  menu:writeText("~<Your Race:~>", sx, sy*11)
+--  local race = menu:addDropDown({"Map Default", "Human", "Orc"}, sx + 100, sy*11,
+--    function(dd) 
+--      GameSettings.Presets[0].Race = race:getSelected()
+--      NetworkServerResyncClients()
+--    end)
+--  race:setSize(190, 20)
   
-  menu:writeText("Units:", sx, sy*11)
-  local units = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11,
+  menu:writeText("Units:", sx, sy*11+25)
+  local units = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11+25,
     function(dd) end)
   units:setSize(190, 20)
   units:setEnabled(false)
 
-  menu:writeText("Resources:", sx, sy*11+25)
-  local resources = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, sx + 100, sy*11+25,
+  menu:writeText("Resources:", sx, sy*11+50)
+  local resources = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, sx + 100, sy*11+50,
     function(dd) end)
   resources:setSize(190, 20)
   resources:setEnabled(false)
@@ -297,9 +306,18 @@ function RunServerMultiGameMenu(map, description, numplayers)
     GameSettings.RevealMap = bool2int(dd:isMarked())
   end
   local revealmap = menu:addCheckBox("Reveal map", sx, sy*3+150, revealMapCb)
-  
-  menu:writeText("Units:", sx, sy*11)
-  d = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11,
+ 
+  menu:writeText("Race:", sx, sy*11)
+  d = menu:addDropDown({"Map Default", "Human", "Orc"}, sx + 100, sy*11,
+    function(dd)
+      GameSettings.Presets[0].Race = race:getSelected()
+      ServerSetupState.Race = race:getSelected()
+      NetworkServerResyncClients()
+    end)
+  d:setSize(190, 20)
+   
+  menu:writeText("Units:", sx, sy*11+25)
+  d = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11+25,
     function(dd)
       GameSettings.NumUnits = dd:getSelected()
       ServerSetupState.UnitsOption = GameSettings.NumUnits
@@ -307,8 +325,8 @@ function RunServerMultiGameMenu(map, description, numplayers)
     end)
   d:setSize(190, 20)
 
-  menu:writeText("Resources:", sx, sy*11+25)
-  d = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, sx + 100, sy*11+25,
+  menu:writeText("Resources:", sx, sy*11+50)
+  d = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, sx + 100, sy*11+50,
     function(dd)
       GameSettings.Resources = dd:getSelected()
       ServerSetupState.ResourcesOption = GameSettings.Resources
@@ -398,7 +416,7 @@ function RunCreateMultiGameMenu(s)
     end
   )
 
-  menu:addFullButton("Cancel (~<Esc~>)", "escape", sx,  sy*12,
+  menu:addFullButton("Cancel (~<Esc~>)", "escape", sx,  sy*12+25,
     function() menu:stop() end)
 
   menu:run()

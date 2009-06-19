@@ -3,12 +3,16 @@
 # Source debconf library
 . /usr/share/debconf/confmodule
 
-db_input high shared/warguscdpath || true
+db_input high shared/wargusextractdata || true
+db_get shared/wargusextractdata
+if [ "$RET" = "true" ]; then
+    db_input high shared/warguscdpath || true
 
-db_go || true
+    db_go || true
 
-db_input medium shared/wargusextractvideo || true
+    db_input medium shared/wargusextractvideo || true
 
-db_go || true
-
+    db_go || true
+fi
 db_stop || true
+
