@@ -47,3 +47,16 @@ Player 4 (Purple) Rescue - Orc
     2 Great Hall
     1 Troll Lumber Mill
     1 Runestone
+
+	This file is part of Stratagus Media Project
+
+	Stratagus Media Project is free media (incl. sounds, voices, music,
+	fonts, graphics, animations, videos or 3d models;
+	you can redistribute it and/or modify it under the terms
+	of the GNU General Public License as published by the Free Software
+	Foundation; only version 2 of the License.
+
+	Stratagus Media Project is distributed in the hope that it will be
+	useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+	of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
