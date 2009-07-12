@@ -1,0 +1,45 @@
+File Name:    (4)gruene-hoelle.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Wasteland
+No Players:   1
+ 
+% Open Land:  26
+% Forest:     45
+% Water:      12
+% Mountains:  17
+ 
+Total Gold:   1,285,000 (14 mines)
+Total Oil:    300,000 (6 patches)
+Total Lumber: 633,700
+Start Mines:  90,000
+Other Mines:  15,000 - 250,000
+ 
+Player 1 (Red) Computer - Human
+  (G=2000  L=1500  O=1000)
+    1 Peasant
+    1 Farm
+ 
+Player 2 (Blue) Computer - Orc
+  (G=2000  L=1500  O=1000)
+    1 Peon
+    1 Pig Farm
+ 
+Player 3 (Green) Person - Human
+  (G=2000  L=1500  O=1000)
+    1 Peasant
+    1 Farm
+ 
+Player 4 (Purple) Computer - Orc
+  (G=2000  L=1500  O=1000)
+    1 Peon
+    1 Pig Farm
+    1 Runestone
+ 
+Player 5 (Orange) Computer - Human
+  (G=65535  L=1500  O=1000)
+    2 Gnomish Flying Machine
+    8 Gryphon Rider
+    1 Gryphon Aviary
+   11 Human Guard Tower
+    8 Human Cannon Tower
