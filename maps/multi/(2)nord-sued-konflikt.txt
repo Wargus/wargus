@@ -1,0 +1,24 @@
+File Name:    (2)nord-sued-konflikt.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Forest
+No Players:   1
+ 
+% Open Land:  36
+% Forest:     33
+% Water:      29
+% Mountains:  2
+ 
+Total Gold:   600,000 (4 mines)
+Total Oil:    60,000 (2 patches)
+Total Lumber: 440,700
+Start Mines:  None
+Other Mines:  150,000
+ 
+Player 1 (Red) Person - Human
+  (G=10000  L=3000  O=1000)
+    1 Peasant
+ 
+Player 2 (Blue) Computer - Orc
+  (G=10000  L=3000  O=1000)
+    1 Peon

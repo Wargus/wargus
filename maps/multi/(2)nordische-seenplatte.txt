@@ -1,0 +1,24 @@
+File Name:    (2)nordische-seenplatte.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Forest
+No Players:   1
+ 
+% Open Land:  46
+% Forest:     30
+% Water:      20
+% Mountains:  4
+ 
+Total Gold:   900,000 (6 mines)
+Total Oil:    60,000 (2 patches)
+Total Lumber: 410,300
+Start Mines:  None
+Other Mines:  150,000
+ 
+Player 1 (Red) Person - Human
+  (G=10000  L=3000  O=1000)
+    1 Peasant
+ 
+Player 2 (Blue) Computer - Orc
+  (G=10000  L=3000  O=1000)
+    1 Peon

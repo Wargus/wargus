@@ -1,0 +1,32 @@
+File Name:    (4)central-park.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Wasteland
+No Players:   4
+ 
+% Open Land:  40
+% Forest:     21
+% Water:      32
+% Mountains:  7
+ 
+Total Gold:   1,050,000 (12 mines)
+Total Oil:    60,000 (4 patches)
+Total Lumber: 263,700
+Start Mines:  None
+Other Mines:  87,500
+ 
+Player 1 (Red) Person - Human
+  (G=10000  L=3000  O=1000)
+    1 Peasant
+ 
+Player 2 (Blue) Person - Orc
+  (G=10000  L=3000  O=1000)
+    1 Peasant
+ 
+Player 3 (Green) Person - Human
+  (G=10000  L=3000  O=1000)
+    1 Peasant
+ 
+Player 4 (Purple) Person - Orc
+  (G=10000  L=3000  O=1000)
+    1 Peasant

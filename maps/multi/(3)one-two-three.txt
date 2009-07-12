@@ -1,0 +1,34 @@
+File Name:    (3)one-two-three.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Forest
+No Players:   1
+ 
+% Open Land:  34
+% Forest:     33
+% Water:      19
+% Mountains:  14
+ 
+Total Gold:   1,575,000 (9 mines)
+Total Oil:    345,000 (9 patches)
+Total Lumber: 462,900
+Start Mines:  None
+Other Mines:  30,000 - 400,000
+ 
+Player 1 (Red) Person - Human
+  (G=5000  L=2000  O=1000)
+    1 Peasant
+    1 Human Tanker
+    1 Farm
+ 
+Player 2 (Blue) Computer - Orc
+  (G=5000  L=2000  O=1000)
+    1 Peon
+    1 Orc Tanker
+    1 Pig Farm
+ 
+Player 3 (Green) Computer - Orc
+  (G=5000  L=2000  O=1000)
+    1 Peon
+    1 Orc Tanker
+    1 Pig Farm

@@ -1,0 +1,49 @@
+File Name:    (3)frosty-rescue.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Winter
+No Players:   1
+ 
+% Open Land:  46
+% Forest:     26
+% Water:      24
+% Mountains:  4
+ 
+Total Gold:   3,275,000 (14 mines)
+Total Oil:    1,600,000 (6 patches)
+Total Lumber: 362,400
+Start Mines:  150,000
+Other Mines:  150,000 - 637,500
+ 
+Player 1 (Red) Person - Human
+  (G=2500  L=1000  O=1000)
+    2 Peasant
+    1 Gnomish Submarine
+    1 Farm
+    1 Town Hall
+ 
+Player 2 (Blue) Computer - Human
+  (G=2500  L=1000  O=1000)
+    2 Peasant
+    1 Gnomish Submarine
+    1 Farm
+    1 Town Hall
+ 
+Player 3 (Green) Computer - Orc
+  (G=2500  L=1000  O=1000)
+    2 Peon
+    1 Giant Turtle
+    1 Pig Farm
+    1 Great Hall
+ 
+Player 4 (Purple) Rescue - Orc
+  (G=2500  L=1000  O=1000)
+    3 Peon
+    1 Giant Turtle
+    1 Cho'gall
+    1 Gul'dan
+    1 Zuljin
+    1 Pig Farm
+    2 Great Hall
+    1 Troll Lumber Mill
+    1 Runestone
