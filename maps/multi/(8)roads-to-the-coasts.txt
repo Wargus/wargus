@@ -1,0 +1,75 @@
+File Name:    (8)roads-to-the-coasts.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Forest
+No Players:   1
+ 
+% Open Land:  31
+% Forest:     39
+% Water:      30
+% Mountains:  0
+ 
+Total Gold:   2,535,000 (15 mines)
+Total Oil:    300,000 (10 patches)
+Total Lumber: 528,100
+Start Mines:  140,000
+Other Mines:  15,000 - 500,000
+ 
+Player 1 (Red) Person - Human
+  (G=2500  L=1500  O=1000)
+    2 Peasant
+    1 Ballista
+    1 Knight
+    1 Archer
+    1 Farm
+ 
+Player 2 (Blue) Computer - Human
+  (G=2500  L=1500  O=700)
+    1 Peasant
+    1 Human Tanker
+    1 Elven Destroyer
+    1 Farm
+ 
+Player 3 (Green) Computer - Human
+  (G=2500  L=1500  O=700)
+    1 Peasant
+    1 Human Tanker
+    1 Elven Destroyer
+    1 Farm
+ 
+Player 4 (Purple) Computer - Human
+  (G=2500  L=1500  O=1000)
+    1 Peasant
+    1 Gnomish Flying Machine
+    1 Gryphon Rider
+    1 Farm
+ 
+Player 5 (Orange) Computer - Orc
+  (G=2500  L=1500  O=700)
+    1 Peon
+    1 Orc Tanker
+    1 Troll Destroyer
+    1 Pig Farm
+ 
+Player 6 (Black) Computer - Orc
+  (G=2500  L=1500  O=700)
+    1 Peon
+    1 Orc Tanker
+    1 Troll Destroyer
+    1 Pig Farm
+ 
+Player 7 (White) Computer - Orc
+  (G=2500  L=1500  O=1000)
+    1 Peon
+    1 Goblin Zepplin
+    1 Dragon
+    1 Pig Farm
+ 
+Player 8 (Yellow) Computer - Orc
+  (G=2500  L=1500  O=1000)
+    2 Peon
+    1 Catapult
+    1 Ogre
+    1 Axethrower
+    1 Pig Farm
+    1 Runestone
