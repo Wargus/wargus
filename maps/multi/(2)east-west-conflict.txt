@@ -1,0 +1,40 @@
+File Name:    (2)east-west-conflict.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Winter
+No Players:   1
+ 
+% Open Land:  18
+% Forest:     52
+% Water:      18
+% Mountains:  12
+ 
+Total Gold:   790,000 (6 mines)
+Total Oil:    150,000 (6 patches)
+Total Lumber: 748,600
+Start Mines:  None
+Other Mines:  65,000 - 190,000
+ 
+Player 1 (Red) Computer - Orc
+  (G=2500  L=1500  O=1000)
+    2 Peon
+    1 Orc Tanker
+    1 Orc Transport
+    2 Troll Destroyer
+    1 Goblin Zepplin
+    2 Dragon
+    2 Pig Farm
+    1 Orc Shipyard
+    1 Great Hall
+ 
+Player 6 (Black) Person - Human
+  (G=2500  L=1500  O=1000)
+    2 Peasant
+    1 Human Tanker
+    1 Human Transport
+    2 Elven Destroyer
+    1 Gnomish Flying Machine
+    2 Gryphon Rider
+    2 Farm
+    1 Human Shipyard
+    1 Town Hall
