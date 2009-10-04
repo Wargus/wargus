@@ -1,0 +1,45 @@
+File Name:    (5)the-pentagon.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Wasteland
+No Players:   2
+ 
+% Open Land:  29
+% Forest:     57
+% Water:      14
+% Mountains:  0
+ 
+Total Gold:   1,150,000 (10 mines)
+Total Oil:    0
+Total Lumber: 820,700
+Start Mines:  115,000
+Other Mines:  115,000
+ 
+Player 1 (Red) Person - Human
+  (G=1500  L=1000  O=1000)
+    1 Runestone
+ 
+Player 4 (Purple) Person - Human
+  (G=1500  L=1000  O=1000)
+    1 Peasant
+    1 Lothar
+    1 Zuljin
+ 
+Player 5 (Orange) Computer - Orc
+  (G=1500  L=1000  O=1000)
+    1 Peon
+    1 Gul'dan
+ 
+Player 6 (Black) Computer - Orc
+  (G=1500  L=1000  O=1000)
+    1 Peon
+    1 Cho'gall
+ 
+Player 7 (White) Computer - Human
+  (G=1500  L=1000  O=1000)
+    1 Peasant
+    1 Uther Lightbringer
+ 
+Player 8 (Yellow) Computer - Orc
+  (G=1500  L=1000  O=1000)
+    1 Peon
