@@ -1,0 +1,46 @@
+File Name:    (6)all-against-the-floods.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Wasteland
+No Players:   1
+ 
+% Open Land:  44
+% Forest:     30
+% Water:      26
+% Mountains:  0
+ 
+Total Gold:   2,160,000 (19 mines)
+Total Oil:    240,000 (9 patches)
+Total Lumber: 412,000
+Start Mines:  None
+Other Mines:  90,000 - 290,000
+ 
+Player 1 (Red) Person - Human
+  (G=2500  L=1500  O=1000)
+    1 Peasant
+    1 Human Tanker
+ 
+Player 2 (Blue) Computer - Human
+  (G=2500  L=1500  O=1000)
+    1 Footman
+    1 Peasant
+ 
+Player 3 (Green) Computer - Human
+  (G=2500  L=1500  O=1000)
+    1 Peasant
+    1 Gnomish Flying Machine
+ 
+Player 6 (Black) Computer - Orc
+  (G=2500  L=1500  O=1000)
+    1 Peon
+    1 Orc Tanker
+ 
+Player 7 (White) Computer - Orc
+  (G=2500  L=1500  O=1000)
+    1 Grunt
+    1 Peon
+ 
+Player 8 (Yellow) Computer - Orc
+  (G=2500  L=1500  O=1000)
+    1 Peon
+    1 Goblin Zepplin
