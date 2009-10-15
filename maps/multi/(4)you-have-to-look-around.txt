@@ -1,0 +1,62 @@
+File Name:    (4)you-have-to-look-around.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Winter
+No Players:   1
+ 
+% Open Land:  21
+% Forest:     30
+% Water:      49
+% Mountains:  0
+ 
+Total Gold:   1,680,000 (12 mines)
+Total Oil:    485,000 (15 patches)
+Total Lumber: 419,000
+Start Mines:  90,000
+Other Mines:  90,000 - 190,000
+ 
+Player 1 (Red) Computer - Orc
+  (G=2500  L=1500  O=1000)
+    1 Peon
+    1 Ogre
+    1 Axethrower
+    1 Pig Farm
+ 
+Player 2 (Blue) Computer - Orc
+  (G=2500  L=1500  O=1000)
+    1 Peon
+    1 Orc Tanker
+    1 Troll Destroyer
+    1 Pig Farm
+ 
+Player 5 (Orange) Computer - Orc
+  (G=10000  L=10000  O=5000)
+    4 Catapult
+    4 Ogre
+    4 Axethrower
+    1 Troll Lumber Mill
+    1 Orc Blacksmith
+ 
+Player 6 (Black) Person - Human
+  (G=2500  L=1500  O=1000)
+    1 Footman
+    1 Peasant
+    1 Human Tanker
+    1 Gnomish Flying Machine
+    1 Farm
+ 
+Player 7 (White) Computer - Human
+  (G=2500  L=1500  O=1000)
+    1 Peasant
+    1 Gnomish Flying Machine
+    1 Gryphon Rider
+    1 Farm
+ 
+Player 8 (Yellow) Computer - Orc
+  (G=10000  L=10000  O=1500)
+    2 Orc Tanker
+    2 Troll Destroyer
+    2 Juggernaught
+    9 Giant Turtle
+    1 Orc Foundry
+    1 Orc Refinery

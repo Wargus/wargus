@@ -1,0 +1,81 @@
+File Name:    (5)venedig.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Forest
+No Players:   1
+ 
+% Open Land:  21
+% Forest:     9
+% Water:      63
+% Mountains:  7
+ 
+Total Gold:   2,300,000 (11 mines)
+Total Oil:    615,000 (21 patches)
+Total Lumber: 107,800
+Start Mines:  250,000
+Other Mines:  150,000 - 250,000
+ 
+Player 1 (Red) Person - Human
+  (G=5000  L=5000  O=1500)
+    2 Peasant
+    1 Archer
+    1 Human Tanker
+    1 Farm
+    1 Human Barracks
+    1 Human Shipyard
+    1 Elven Lumber Mill
+    1 Human Foundry
+    1 Human Refinery
+    2 Human Cannon Tower
+ 
+Player 2 (Blue) Computer - Orc
+  (G=5000  L=5000  O=1500)
+    2 Peon
+    1 Axethrower
+    1 Orc Tanker
+    1 Pig Farm
+    1 Orc Barracks
+    1 Orc Shipyard
+    1 Troll Lumber Mill
+    1 Orc Foundry
+    1 Orc Refinery
+    2 Orc Cannon Tower
+ 
+Player 5 (Orange) Computer - Human
+  (G=5000  L=5000  O=1500)
+    2 Peasant
+    1 Archer
+    1 Gnomish Flying Machine
+    1 Farm
+    1 Human Barracks
+    1 Gnomish Inventor
+    1 Gryphon Aviary
+    1 Elven Lumber Mill
+    3 Human Guard Tower
+    6 Human Cannon Tower
+ 
+Player 7 (White) Computer - Human
+  (G=5000  L=5000  O=1500)
+    2 Peasant
+    1 Archer
+    1 Human Tanker
+    1 Farm
+    1 Human Barracks
+    1 Human Shipyard
+    1 Elven Lumber Mill
+    1 Human Foundry
+    1 Human Refinery
+    2 Human Cannon Tower
+ 
+Player 8 (Yellow) Computer - Orc
+  (G=5000  L=5000  O=1500)
+    2 Peon
+    1 Axethrower
+    1 Orc Tanker
+    1 Pig Farm
+    1 Orc Barracks
+    1 Orc Shipyard
+    1 Troll Lumber Mill
+    1 Orc Foundry
+    1 Orc Refinery
+    2 Orc Cannon Tower
