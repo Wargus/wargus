@@ -36,8 +36,8 @@ install: build
 	dh_installdirs
 
 	svn export scripts $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/scripts  --force
-	svn export campaigns $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/campaigns  --force
 	svn export maps $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/maps  --force
+	find $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/maps -name "*.pud" -print | xargs rm
 	install -m0755 pudconvert $(CURDIR)/debian/wargus/usr/games
 	install -m0755 wartool $(CURDIR)/debian/wargus/usr/games
 	install -m0755 build.sh $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus
