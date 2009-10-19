@@ -1,0 +1,43 @@
+File Name:    (3)calculate.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Forest
+No Players:   1
+ 
+% Open Land:  14
+% Forest:     73
+% Water:      13
+% Mountains:  0
+ 
+Total Gold:   1,535,000 (14 mines)
+Total Oil:    180,000 (6 patches)
+Total Lumber: 1,041,300
+Start Mines:  15,000
+Other Mines:  15,000 - 170,000
+ 
+Player 1 (Red) Person - Human
+  (G=3000  L=1000  O=750)
+    1 Peasant
+    2 Farm
+    1 Town Hall
+ 
+Player 4 (Purple) Computer - Orc
+  (G=3000  L=1000  O=750)
+    1 Peon
+    2 Pig Farm
+    1 Great Hall
+ 
+Player 5 (Orange) Computer - Orc
+  (G=3000  L=1000  O=750)
+   14 Dragon
+ 
+Player 6 (Black) Computer - Human
+  (G=3000  L=1000  O=750)
+    1 Peasant
+    2 Farm
+    1 Town Hall
+ 
+Player 8 (Yellow) Computer - Orc
+  (G=3000  L=1000  O=750)
+    6 Troll Destroyer
+   12 Giant Turtle
