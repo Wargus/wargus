@@ -1,0 +1,56 @@
+File Name:    (4)what-can-you-do.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Forest
+No Players:   1
+ 
+% Open Land:  36
+% Forest:     43
+% Water:      12
+% Mountains:  9
+ 
+Total Gold:   1,585,000 (15 mines)
+Total Oil:    130,000 (6 patches)
+Total Lumber: 599,100
+Start Mines:  90,000
+Other Mines:  70,000 - 140,000
+ 
+Player 1 (Red) Computer - Orc
+  (G=1000  L=1000  O=1000)
+    1 Peon
+    2 Orc Tanker
+    1 Troll Destroyer
+    1 Pig Farm
+ 
+Player 5 (Orange) Computer - Orc
+  (G=1000  L=1000  O=1000)
+    1 Grunt
+    1 Peon
+    1 Catapult
+    1 Axethrower
+    1 Pig Farm
+ 
+Player 6 (Black) Person - Human
+  (G=1000  L=1000  O=1000)
+    1 Footman
+    1 Peasant
+    1 Archer
+    1 Human Tanker
+    1 Gnomish Flying Machine
+    1 Farm
+ 
+Player 7 (White) Rescue - Orc
+  (G=1000  L=1000  O=1000)
+    2 Peon
+    1 Catapult
+    1 Ogre
+    1 Axethrower
+    2 Pig Farm
+    1 Great Hall
+ 
+Player 8 (Yellow) Computer - Orc
+  (G=1000  L=1000  O=1000)
+    1 Peon
+    1 Goblin Zepplin
+    2 Dragon
+    1 Pig Farm
