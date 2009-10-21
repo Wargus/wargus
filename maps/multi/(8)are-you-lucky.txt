@@ -1,0 +1,91 @@
+File Name:    (8)are-you-lucky.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Winter
+No Players:   1
+ 
+% Open Land:  22
+% Forest:     22
+% Water:      56
+% Mountains:  0
+ 
+Total Gold:   1,375,000 (15 mines)
+Total Oil:    630,000 (21 patches)
+Total Lumber: 298,000
+Start Mines:  None
+Other Mines:  90,000 - 115,000
+ 
+Player 1 (Red) Computer - Human
+  (G=2500  L=2000  O=1500)
+    1 Peasant
+    1 Farm
+    1 Human Shipyard
+    1 Human Refinery
+ 
+Player 2 (Blue) Computer - Human
+  (G=5000  L=5000  O=1500)
+    1 Peasant
+    2 Ballista
+    2 Archer
+    3 Elven Destroyer
+    2 Battleship
+    9 Gnomish Submarine
+    1 Farm
+    1 Human Shipyard
+    1 Human Guard Tower
+    1 Human Cannon Tower
+ 
+Player 3 (Green) Computer - Human
+  (G=2500  L=2000  O=1500)
+    1 Peasant
+    1 Farm
+    1 Human Shipyard
+    1 Human Refinery
+ 
+Player 4 (Purple) Computer - Human
+  (G=5000  L=5000  O=1500)
+    1 Peasant
+    2 Ballista
+    2 Knight
+    2 Archer
+    1 Human Transport
+    4 Elven Destroyer
+    2 Battleship
+    4 Gnomish Submarine
+    1 Farm
+    1 Human Shipyard
+    1 Human Guard Tower
+    1 Human Cannon Tower
+ 
+Player 5 (Orange) Person - Orc
+  (G=2500  L=2000  O=1500)
+    1 Peon
+    1 Pig Farm
+    1 Orc Shipyard
+    1 Orc Refinery
+ 
+Player 6 (Black) Computer - Orc
+  (G=5000  L=5000  O=1500)
+    1 Peon
+    2 Troll Destroyer
+    1 Goblin Zepplin
+    2 Dragon
+    1 Pig Farm
+    1 Goblin Alchemist
+    1 Dragon Roost
+    2 Orc Guard Tower
+    2 Orc Cannon Tower
+ 
+Player 7 (White) Computer - Orc
+  (G=2500  L=2000  O=1500)
+    1 Peon
+    1 Pig Farm
+    1 Orc Shipyard
+    1 Orc Refinery
+ 
+Player 8 (Yellow) Computer - Orc
+  (G=2500  L=2000  O=1500)
+    1 Peon
+    1 Pig Farm
+    1 Goblin Alchemist
+    1 Orc Shipyard
