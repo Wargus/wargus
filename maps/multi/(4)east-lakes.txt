@@ -1,0 +1,32 @@
+File Name:    (4)east-lakes.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Wasteland
+No Players:   2
+ 
+% Open Land:  33
+% Forest:     42
+% Water:      24
+% Mountains:  1
+ 
+Total Gold:   800,000 (8 mines)
+Total Oil:    200,000 (4 patches)
+Total Lumber: 566,600
+Start Mines:  None
+Other Mines:  100,000
+ 
+Player 1 (Red) Person - Human
+  (G=10000  L=5000  O=1500)
+    1 Peasant
+ 
+Player 2 (Blue) Person - Human
+  (G=10000  L=3000  O=1000)
+    1 Peasant
+ 
+Player 3 (Green) Computer - Orc
+  (G=10000  L=3000  O=1000)
+    1 Peon
+ 
+Player 4 (Purple) Computer - Orc
+  (G=10000  L=3000  O=1000)
+    1 Peon

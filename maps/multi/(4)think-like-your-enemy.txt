@@ -1,0 +1,45 @@
+File Name:    (4)think-like-your-enemy.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Wasteland
+No Players:   1
+ 
+% Open Land:  45
+% Forest:     35
+% Water:      20
+% Mountains:  0
+ 
+Total Gold:   1,180,000 (12 mines)
+Total Oil:    200,000 (9 patches)
+Total Lumber: 490,900
+Start Mines:  None
+Other Mines:  40,000 - 165,000
+ 
+Player 1 (Red) Computer - Orc
+  (G=3000  L=1500  O=1000)
+    1 Peon
+    1 Cho'gall
+    1 Pig Farm
+    1 Orc Scout Tower
+ 
+Player 2 (Blue) Computer - Orc
+  (G=1000  L=1000  O=1000)
+    1 Peon
+    1 Cho'gall
+    1 Pig Farm
+    1 Orc Scout Tower
+ 
+Player 3 (Green) Computer - Orc
+  (G=1000  L=1000  O=1000)
+    1 Peon
+    1 Zuljin
+    1 Daemon
+    1 Pig Farm
+    1 Orc Scout Tower
+ 
+Player 5 (Orange) Person - Human
+  (G=1000  L=1000  O=1000)
+    1 Peasant
+    1 Lothar
+    1 Farm
+    1 Human Scout Tower
