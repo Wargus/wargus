@@ -1,0 +1,65 @@
+File Name:    (8)everywhere.pud
+Description:  
+Dimensions:   128 x 128
+Terrain:      Forest
+No Players:   1
+ 
+% Open Land:  37
+% Forest:     55
+% Water:      6
+% Mountains:  2
+ 
+Total Gold:   1,620,000 (18 mines)
+Total Oil:    60,000 (4 patches)
+Total Lumber: 769,800
+Start Mines:  None
+Other Mines:  90,000
+ 
+Player 1 (Red) Person - Human
+  (G=1000  L=1000  O=1000)
+    2 Peasant
+    1 Archer
+    1 Farm
+ 
+Player 2 (Blue) Computer - Human
+  (G=1000  L=1000  O=1000)
+    1 Footman
+    2 Peasant
+    1 Farm
+ 
+Player 3 (Green) Computer - Human
+  (G=1000  L=1000  O=1000)
+    2 Peasant
+    1 Archer
+    1 Farm
+    1 Runestone
+ 
+Player 4 (Purple) Computer - Orc
+  (G=1000  L=1000  O=1000)
+    2 Peon
+    1 Troll Destroyer
+    1 Pig Farm
+ 
+Player 5 (Orange) Computer - Orc
+  (G=1000  L=1000  O=1000)
+    1 Grunt
+    2 Peon
+    1 Pig Farm
+ 
+Player 6 (Black) Computer - Human
+  (G=1000  L=1000  O=1000)
+    2 Peasant
+    1 Gryphon Rider
+    1 Farm
+ 
+Player 7 (White) Computer - Orc
+  (G=1000  L=1000  O=1000)
+    2 Peon
+    1 Death Knight
+    1 Pig Farm
+ 
+Player 8 (Yellow) Computer - Orc
+  (G=1000  L=1000  O=1000)
+    2 Peon
+    1 Goblin Zepplin
+    1 Pig Farm
