@@ -30,7 +30,7 @@ CDROM="/cdrom"
 [ -d "/mnt/cdrom" ] && CDROM="/mnt/cdrom"
 
 #       location of data files
-ARCHIVE="$CDROM/data/"
+ARCHIVE="$CDROM/data"
 
 #	output dir
 DIR="data.wc2"
@@ -41,7 +41,7 @@ CONTRIB="contrib"
 #	location of the wartool binary
 BINPATH="."
 
-AUDIO_COMPRESS="oggenc"
+DECODE="ffmpeg2theora"
 
 ####	Do not modify anything below this point.
 
@@ -58,6 +58,7 @@ while [ $# -gt 0 ]; do
 		-v)	VIDEO="-v" ;;
 		-b)	BINPATH="$2"; shift;;
 		-m)	MUSIC="yes" ;;
+		-d)	DRIVE="-d $2"; shift;;
 
 		-h)	cat << EOF
 
@@ -65,6 +66,7 @@ build.sh [-v] [-o output] -p path
  -v extract videos
  -b binpath
  -m extract music
+ -d cd drive for music extract (default /dev/cdrom /dev/scd0)
  -c skip contrib file copy
  -s skip scripts file copy
  -o output directory (default 'data.wc2')
@@ -77,13 +79,16 @@ EOF
 done
 
 if [ -d "$ARCHIVE/data/" ]; then
-	DATADIR="$ARCHIVE/data/"
+	DATADIR="$ARCHIVE/data"
+elif [ -d "$ARCHIVE/DATA/" ]; then
+	DATADIR="$ARCHIVE/DATA"
 else
-	DATADIR="$ARCHIVE/"
+	DATADIR="$ARCHIVE"
 fi
 
 if [ ! -f "$DATADIR/rezdat.war" ] && [ ! -f "$DATADIR/REZDAT.WAR" ] && [ ! -f "$DATADIR/War Resources" ]; then
     echo "error: '$DATADIR/rezdat.war' does not exist"
+    echo "error: '$DATADIR/REZDAT.WAR' does not exist"
     echo "error: '$DATADIR/War Resources' does not exist"
     echo "Specify the location of the data files with the '-p' option"
     exit 1
@@ -118,8 +123,23 @@ fi
 ##	Extract audio tracks
 #
 if [ "$MUSIC" = "yes" ] ; then
-	seq -w 2 17 | (while read i ; do cdparanoia ${i} $DIR/music/track_${i}.wav ; \
-		($AUDIO_COMPRESS $DIR/music/track_${i}.wav && rm $DIR/music/track_${i}.wav 2>/dev/null &) ; done)
+	if [ "$DRIVE" != "" ] ; then
+       		if ! cdparanoia $DRIVE -Q 1>/dev/null 2>&1 ; then
+			MUSIC="no"
+		fi
+	elif ! cdparanoia -Q 1>/dev/null 2>&1 ; then
+		## cdparanoia doesnt check /dev/scd0
+		if cdparanoia -d /dev/scd0 -Q 1>/dev/null 2>&1 ; then
+			DRIVE="-d /dev/scd0"
+		else
+			MUSIC="no"
+		fi
+	fi
+fi
+
+if [ "$MUSIC" = "yes" ] ; then
+	seq -w 2 17 | (while read i ; do cdparanoia $DRIVE ${i} $DIR/music/track_${i}.wav ; \
+		($DECODE $DIR/music/track_${i}.wav -o $DIR/music/track_${i}.ogg && rm $DIR/music/track_${i}.wav 2>/dev/null &) ; done)
 	mv $DIR/music/track_02.ogg "$DIR/music/Human Battle 1.ogg"
 	mv $DIR/music/track_03.ogg "$DIR/music/Human Battle 2.ogg"
 	mv $DIR/music/track_04.ogg "$DIR/music/Human Battle 3.ogg"
@@ -136,11 +156,23 @@ if [ "$MUSIC" = "yes" ] ; then
 	mv $DIR/music/track_15.ogg "$DIR/music/Orc Briefing.ogg"
 	mv $DIR/music/track_16.ogg "$DIR/music/Orc Victory.ogg"
 	mv $DIR/music/track_17.ogg "$DIR/music/Orc Defeat.ogg"
+	cp "$DIR/music/Orc Briefing.ogg" $DIR/music/default.mod
 else
-	cp $CONTRIB/toccata.mod.gz $DIR/music/default.mod.gz
+	echo "warning: Music CD device not found"
+	echo "If you want to extract music, specify CD drive location with the '-d' option"
+	if [ "$SKIP_CONTRIB" = "no" ] ; then
+		echo "Using default music files"
+		cp $CONTRIB/toccata.mod.gz $DIR/music/default.mod.gz
+	fi
 fi
 
 $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
+
+# convert video files to theora format
+for f in $DIR/videos/*.smk ; do
+	$DECODE $f -o ${f%%.smk}.avi
+	rm -f $f
+done
 
 # copy own supplied files
 
@@ -156,10 +188,14 @@ if [ "$SKIP_CONTRIB" = "no" ] ; then
 	cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
 fi
 
-if [ -e $DIR/graphics/ui/title.png ]; then
+if [ -e $DIR/graphics/ui/title.png ] ; then
 	mv $DIR/graphics/ui/title.png $DIR/graphics/ui/stratagus.png
 elif [ "$SKIP_CONTRIB" = "no" ] ; then
 	cp $CONTRIB/stratagus.png $DIR/graphics/ui
+fi
+
+if [ -e $DIR/videos/gameintro.avi ] ; then
+	mv $DIR/videos/gameintro.avi $DIR/videos/logo_stratagus.avi
 fi
 
 #	Compress the sounds

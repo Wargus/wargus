@@ -3,15 +3,28 @@
 # Source debconf library
 . /usr/share/debconf/confmodule
 
+db_get shared/warguscdpath || true
+TEMP=$RET
+db_reset shared/warguscdpath || true
+db_set shared/warguscdpath $TEMP || true
+
+db_get shared/wargusextractvideo || true
+TEMP=$RET
+db_reset shared/wargusextractvideo || true
+db_set shared/wargusextractvideo $TEMP || true
+
+db_get shared/wargusextractmusic || true
+TEMP=$RET
+db_reset shared/wargusextractmusic || true
+db_set shared/wargusextractmusic $TEMP || true
+
+db_reset shared/wargusextractdata || true
 db_input high shared/wargusextractdata || true
 db_get shared/wargusextractdata
 if [ "$RET" = "true" ]; then
     db_input high shared/warguscdpath || true
-
-    db_go || true
-
     db_input medium shared/wargusextractvideo || true
-
+    db_input medium shared/wargusextractmusic || true
     db_go || true
 fi
 db_stop || true

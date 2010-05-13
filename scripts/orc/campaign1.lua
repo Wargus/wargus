@@ -32,24 +32,24 @@
 --	Define the campaign
 
 campaign_steps = {
-  CreatePictureStep("../campaigns/orc/interface/Act_I_-_Seas_of_Blood.png", "Act I", "Seas of Blood"),
+  CreatePictureStep("../campaigns/orc/interface/Act_I_-_Seas_of_Blood.png", "../sounds/orc/act.wav", "Act I", "Seas of Blood"),
   CreateMapStep("campaigns/orc/level01o.smp"),
   CreateMapStep("campaigns/orc/level02o.smp"),
   CreateMapStep("campaigns/orc/level03o.smp"),
   CreateMapStep("campaigns/orc/level04o.smp"),
 
-  CreatePictureStep("../campaigns/orc/interface/Act_II_-_Khaz_Modan.png", "Act II", "Khaz Modan"),
+  CreatePictureStep("../campaigns/orc/interface/Act_II_-_Khaz_Modan.png", "../sounds/orc/act.wav", "Act II", "Khaz Modan"),
   CreateMapStep("campaigns/orc/level05o.smp"),
   CreateMapStep("campaigns/orc/level06o.smp"),
   CreateMapStep("campaigns/orc/level07o.smp"),
 
-  CreatePictureStep("../campaigns/orc/interface/Act_III_-_Quel'Thalas.png", "Act III", "Quel'Thalas"),
+  CreatePictureStep("../campaigns/orc/interface/Act_III_-_Quel'Thalas.png", "../sounds/orc/act.wav", "Act III", "Quel'Thalas"),
   CreateMapStep("campaigns/orc/level08o.smp"),
   CreateMapStep("campaigns/orc/level09o.smp"),
   CreateMapStep("campaigns/orc/level10o.smp"),
   CreateMapStep("campaigns/orc/level11o.smp"),
 
-  CreatePictureStep("../campaigns/orc/interface/Act_IV_-_Tides_of_Darkness.png", "Act IV", "Tides of Darkness"),
+  CreatePictureStep("../campaigns/orc/interface/Act_IV_-_Tides_of_Darkness.png", "../sounds/orc/act.wav", "Act IV", "Tides of Darkness"),
   CreateMapStep("campaigns/orc/level12o.smp"),
   CreateMapStep("campaigns/orc/level13o.smp"),
   CreateMapStep("campaigns/orc/level14o.smp")

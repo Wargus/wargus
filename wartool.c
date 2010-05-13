@@ -191,6 +191,8 @@ char* ArchiveDir;
 #define CD_PORTUGUESE (1 << 9)
 #define CD_FRENCH     (1 << 10)
 
+#define CD_UPPER      (1 << 12) // Filenames on CD are upper
+
 /**
 **  What CD Type is it?
 */
@@ -664,14 +666,23 @@ Control Todo[] = {
 {I,0,"ui/human/640x480/buttonpanel",                   2, 297 _2},
 {I,0,"ui/orc/640x480/buttonpanel",                     2, 298 _2},
 //---------------------------------------------------
-{I,0,"ui/human/800x600/resource",                      2, 287, 608, 16},
-{I,0,"ui/orc/800x600/resource",                        2, 288, 608, 16},
-{I,0,"ui/human/800x600/filler-right",                  2, 289, 16, 600},
-{I,0,"ui/orc/800x600/filler-right",                    2, 290, 16, 600},
-{I,0,"ui/human/800x600/statusline",                    2, 291, 608, 16},
-{I,0,"ui/orc/800x600/statusline",                      2, 292, 608, 16},
-{I,0,"ui/human/800x600/buttonpanel",                   2, 297, 176, 264},
-{I,0,"ui/orc/800x600/buttonpanel",                     2, 298, 176, 264},
+{I,0,"ui/human/800x480/resource",                      2, 287, 608, 16},
+{I,0,"ui/orc/800x480/resource",                        2, 288, 608, 16},
+{I,0,"ui/human/800x480/filler-right",                  2, 289, 16, 480},
+{I,0,"ui/orc/800x480/filler-right",                    2, 290, 16, 480},
+{I,0,"ui/human/800x480/statusline",                    2, 291, 608, 16},
+{I,0,"ui/orc/800x480/statusline",                      2, 292, 608, 16},
+{I,0,"ui/human/800x480/buttonpanel",                   2, 297, 176, 144},
+{I,0,"ui/orc/800x480/buttonpanel",                     2, 298, 176, 144},
+//---------------------------------------------------
+{I,0,"ui/human/800x600/resource",                      2, 287, 608, 16}, //w-192 16
+{I,0,"ui/orc/800x600/resource",                        2, 288, 608, 16}, //w-192 16
+{I,0,"ui/human/800x600/filler-right",                  2, 289, 16, 600}, //16 h
+{I,0,"ui/orc/800x600/filler-right",                    2, 290, 16, 600}, //16 h
+{I,0,"ui/human/800x600/statusline",                    2, 291, 608, 16}, //w-192 16
+{I,0,"ui/orc/800x600/statusline",                      2, 292, 608, 16}, //w-192 16
+{I,0,"ui/human/800x600/buttonpanel",                   2, 297, 176, 264},//176, h-336
+{I,0,"ui/orc/800x600/buttonpanel",                     2, 298, 176, 264},//176, h-336
 //---------------------------------------------------
 {I,0,"ui/human/1024x768/resource",                     2, 287, 832, 16},
 {I,0,"ui/orc/1024x768/resource",                       2, 288, 832, 16},
@@ -682,6 +693,15 @@ Control Todo[] = {
 {I,0,"ui/human/1024x768/buttonpanel",                  2, 297, 176, 432},
 {I,0,"ui/orc/1024x768/buttonpanel",                    2, 298, 176, 432},
 // --------------------------------------------------
+{I,0,"ui/human/1280x800/resource",                     2, 287, 1088, 16},
+{I,0,"ui/orc/1280x800/resource",                       2, 288, 1088, 16},
+{I,0,"ui/human/1280x800/filler-right",                 2, 289, 16, 800},
+{I,0,"ui/orc/1280x800/filler-right",                   2, 290, 16, 800},
+{I,0,"ui/human/1280x800/statusline",                   2, 291, 1088, 16},
+{I,0,"ui/orc/1280x800/statusline",                     2, 292, 1088, 16},
+{I,0,"ui/human/1280x800/buttonpanel",                  2, 297, 176, 464},
+{I,0,"ui/orc/1280x800/buttonpanel",                    2, 298, 176, 464},
+// --------------------------------------------------
 {I,0,"ui/human/1280x960/resource",                     2, 287, 1088, 16},
 {I,0,"ui/orc/1280x960/resource",                       2, 288, 1088, 16},
 {I,0,"ui/human/1280x960/filler-right",                 2, 289, 16, 960},
@@ -691,6 +711,15 @@ Control Todo[] = {
 {I,0,"ui/human/1280x960/buttonpanel",                  2, 297, 176, 624},
 {I,0,"ui/orc/1280x960/buttonpanel",                    2, 298, 176, 624},
 // --------------------------------------------------
+{I,0,"ui/human/1400x1050/resource",                     2, 287, 1208, 16},
+{I,0,"ui/orc/1400x1050/resource",                       2, 288, 1208, 16},
+{I,0,"ui/human/1400x1050/filler-right",                 2, 289, 16, 1050},
+{I,0,"ui/orc/1400x1050/filler-right",                   2, 290, 16, 1050},
+{I,0,"ui/human/1400x1050/statusline",                   2, 291, 1208, 16},
+{I,0,"ui/orc/1400x1050/statusline",                     2, 292, 1208, 16},
+{I,0,"ui/human/1400x1050/buttonpanel",                  2, 297, 176, 714},
+{I,0,"ui/orc/1400x1050/buttonpanel",                    2, 298, 176, 714},
+// --------------------------------------------------
 {I,0,"ui/human/1600x1200/resource",                    2, 287, 1408, 16},
 {I,0,"ui/orc/1600x1200/resource",                      2, 288, 1408, 16},
 {I,0,"ui/human/1600x1200/filler-right",                2, 289, 16, 1200},
@@ -699,6 +728,15 @@ Control Todo[] = {
 {I,0,"ui/orc/1600x1200/statusline",                    2, 292, 1408, 16},
 {I,0,"ui/human/1600x1200/buttonpanel",                 2, 297, 176, 864},
 {I,0,"ui/orc/1600x1200/buttonpanel",                   2, 298, 176, 864},
+// --------------------------------------------------
+{I,0,"ui/human/1680x1050/resource",                    2, 287, 1488, 16},
+{I,0,"ui/orc/1680x1050/resource",                      2, 288, 1488, 16},
+{I,0,"ui/human/1680x1050/filler-right",                2, 289, 16, 1050},
+{I,0,"ui/orc/1680x1050/filler-right",                  2, 290, 16, 1050},
+{I,0,"ui/human/1680x1050/statusline",                  2, 291, 1488, 16},
+{I,0,"ui/orc/1680x1050/statusline",                    2, 292, 1488, 16},
+{I,0,"ui/human/1680x1050/buttonpanel",                 2, 297, 176, 714},
+{I,0,"ui/orc/1680x1050/buttonpanel",                   2, 298, 176, 714},
 // --------------------------------------------------
 {C,0,"human/cursors/human_gauntlet",                   2, 301 _2},
 {C,0,"orc/cursors/orcish_claw",                        2, 302 _2},
@@ -780,10 +818,12 @@ Control Todo[] = {
 {I,0,"../campaigns/human/interface/introscreen5",      367, 378 _2},
 
 {W,0,"ui/click",                                       432 __},
+{W,0,"human/act",                                      433 __},
+{W,0,"orc/act",                                        434 __},
 {W,0,"ui/highclick",                                   435 __},
 {W,0,"ui/statsthump",                                  436 __},
 
-{V,0,"videos/gameintro",                               429 __},
+{V,0,"videos/gameintro",                               430 __},
 
 {R,2,"swamp/swamp",                                    438 __},
 {T,2,"swamp/terrain/swamp",                            438, 439, 440, 441},
@@ -4181,6 +4221,11 @@ int main(int argc, char** argv)
 #else
 	sprintf(buf, "%s/rezdat.war", ArchiveDir);
 	sprintf(filename, "%s/strdat.war", ArchiveDir);
+	if (stat(buf, &st)) {
+		sprintf(buf, "%s/REZDAT.WAR", ArchiveDir);
+		sprintf(filename, "%s/STRDAT.WAR", ArchiveDir);
+		CDType |= CD_UPPER;
+	}
 #endif
 	if (stat(buf, &st)) {
 		CDType |= CD_MAC | CD_US;
@@ -4273,6 +4318,15 @@ int main(int argc, char** argv)
 		switch (Todo[u].Type) {
 
 			case F:
+				if (CDType & CD_UPPER) {
+					int i = 0;
+					strcpy(filename, Todo[u].File);
+					Todo[u].File = filename;
+					while (Todo[u].File[i]) {
+						Todo[u].File[i] = toupper(Todo[u].File[i]);
+						++i;
+					}
+				}
 				sprintf(buf, "%s/%s", ArchiveDir, Todo[u].File);
 #ifdef DEBUG
 				printf("Archive \"%s\"\n", buf);

@@ -32,23 +32,23 @@
 --	Define the campaign
 
 campaign_steps = {
-  CreatePictureStep("../campaigns/human/interface/Act_I_-_Shores_of_Lordareon.png", "Act I", "The Shores of Lordareon"),
+  CreatePictureStep("../campaigns/human/interface/Act_I_-_Shores_of_Lordareon.png", "../sounds/human/act.wav", "Act I", "The Shores of Lordareon"),
   CreateMapStep("campaigns/human/level01h.smp"),
   CreateMapStep("campaigns/human/level02h.smp"),
   CreateMapStep("campaigns/human/level03h.smp"),
   CreateMapStep("campaigns/human/level04h.smp"),
 
-  CreatePictureStep("../campaigns/human/interface/Act_II_-_Khaz_Modan.png", "Act II", "Khaz Modan"),
+  CreatePictureStep("../campaigns/human/interface/Act_II_-_Khaz_Modan.png", "../sounds/human/act.wav", "Act II", "Khaz Modan"),
   CreateMapStep("campaigns/human/level05h.smp"),
   CreateMapStep("campaigns/human/level06h.smp"),
   CreateMapStep("campaigns/human/level07h.smp"),
 
-  CreatePictureStep("../campaigns/human/interface/Act_III_-_The_Northlands.png", "Act III", "The Northlands"),
+  CreatePictureStep("../campaigns/human/interface/Act_III_-_The_Northlands.png", "../sounds/human/act.wav", "Act III", "The Northlands"),
   CreateMapStep("campaigns/human/level08h.smp"),
   CreateMapStep("campaigns/human/level09h.smp"),
   CreateMapStep("campaigns/human/level10h.smp"),
 
-  CreatePictureStep("../campaigns/human/interface/Act_IV_-_Return_to_Azeroth.png", "Act IV", "Return to Azeroth"),
+  CreatePictureStep("../campaigns/human/interface/Act_IV_-_Return_to_Azeroth.png", "../sounds/human/act.wav", "Act IV", "Return to Azeroth"),
   CreateMapStep("campaigns/human/level11h.smp"),
   CreateMapStep("campaigns/human/level12h.smp"),
   CreateMapStep("campaigns/human/level13h.smp"),

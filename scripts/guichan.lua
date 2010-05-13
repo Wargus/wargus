@@ -5,7 +5,7 @@ dark = Color(38, 38, 78)
 clear = Color(200, 200, 120)
 black = Color(0, 0, 0)
 
-bckground = CGraphic:New("ui/Menu_background_without_title.png")
+bckground = CGraphic:New("ui/Menu_background_with_title.png")
 bckground:Load()
 bckground:Resize(Video.Width, Video.Height)
 backgroundWidget = ImageWidget(bckground)

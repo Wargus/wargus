@@ -62,8 +62,9 @@ function Briefing(title, objs, bg, text, voices)
   SetGameSpeed(speed)
 end
 
-function CreatePictureStep(bg, title, text)
+function CreatePictureStep(bg, sound, title, text)
   return function()
+    PlayMusic(sound)
     local menu = WarMenu(nil, bg)
     local offx = (Video.Width - 640) / 2
     local offy  = (Video.Height - 480) / 2

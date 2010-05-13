@@ -35,8 +35,14 @@ install: build
 	dh_clean -k
 	dh_installdirs
 
-	svn export scripts $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/scripts  --force
-	svn export maps $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/maps  --force
+	if [ -d .svn ]; then \
+		svn export scripts $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/scripts  --force; \
+		svn export maps $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/maps  --force; \
+	else \
+		cp -f scripts $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/scripts; \
+		cp -f maps $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/maps; \
+	fi
+
 	find $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/maps -name "*.pud" -print | xargs rm
 	install -m0755 pudconvert $(CURDIR)/debian/wargus/usr/games
 	install -m0755 wartool $(CURDIR)/debian/wargus/usr/games
@@ -54,6 +60,8 @@ install: build
 	install -m0644 contrib/food.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
 	install -m0644 contrib/score.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
 	install -m0644 contrib/ore,stone,coal.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
+
+	install -m0644 contrib/toccata.mod.gz $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/music/default.mod.gz
 
 # Build architecture-independent files here.
 binary-indep: build install

@@ -23,10 +23,10 @@ case "$1" in
           fi
           db_get shared/wargusextractmusic || true
           if [ ${RET} = "true" ]; then
-            EXTRACTMUSIC="-v"
+            EXTRACTMUSIC="-m"
           fi
           echo "Extracting data from ${CDPATH} to /usr/share/games/stratagus/wargus"
-          /usr/share/games/stratagus/wargus/build.sh -p ${CDPATH} -m -b /usr/games -o /usr/share/games/stratagus/wargus -s -c ${EXTRACTVIDEO} ${EXTRACTMUSIC}
+          /usr/share/games/stratagus/wargus/build.sh -p ${CDPATH} -b /usr/games -o /usr/share/games/stratagus/wargus -s -c ${EXTRACTVIDEO} ${EXTRACTMUSIC}
         else
           echo "${RET} doesn't exist - can't extract WarCraft II data" >&2
           exit 1
