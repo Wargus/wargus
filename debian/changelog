@@ -1,3 +1,9 @@
+wargus (2.2.5-2ubuntu1~karmic~palippa1) karmic; urgency=low
+
+  * Build for karmic rev. 4
+
+ -- Pali Rohár <pali.rohar@gmail.com>  Fri, 14 May 2010 17:40:15 +0200
+
 wargus (2.2.5-1) unstable; urgency=low
 
   * New upstream release
