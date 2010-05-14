@@ -48,7 +48,7 @@ install: build
 	install -m0755 wartool $(CURDIR)/debian/wargus/usr/games
 	install -m0755 build.sh $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus
 	install -m0755 debian/wrapper $(CURDIR)/debian/wargus/usr/games/wargus
-	install -m0644 contrib/wargus.png $(CURDIR)/debian/wargus/usr/share/icons
+	install -m0644 contrib/wargus.png $(CURDIR)/debian/wargus/usr/share/pixmaps
 	install -m0644 debian/wargus.desktop $(CURDIR)/debian/wargus/usr/share/applications
 
 	install -m0644 contrib/cross.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui/cursors
@@ -83,6 +83,10 @@ binary-arch: build install
 	
 	# Maemo section - Optify
 	if test "`uname -a | grep -is arm`" && test -f /etc/maemo_version; then \
+		mkdir -p $(CURDIR)/debian/wargus/usr/share/dbus-1/services; \
+		mkdir -p $(CURDIR)/debian/wargus/usr/share/applications/hildon; \
+		install -m0644 debian/com.nokia.wargus.service $(CURDIR)/debian/wargus/usr/share/dbus-1/services/; \
+		mv $(CURDIR)/debian/wargus/usr/share/applications/wargus.desktop $(CURDIR)/debian/wargus/usr/share/applications/hildon/; \
 		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/bin; \
 		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/share; \
 		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/share/doc; \

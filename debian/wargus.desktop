@@ -2,8 +2,10 @@
 Name=Wargus
 Comment=Stratagus WarCraft II data set
 Exec=/usr/games/wargus
-Icon=wargus.png
+Icon=wargus
 Terminal=false
 Type=Application
 Categories=Game;StrategyGame;
 StartupNotify=false
+X-Osso-Type=application/x-executable
+X-Osso-Service=org.stratagus.wargus
