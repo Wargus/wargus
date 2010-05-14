@@ -9,7 +9,7 @@ Vcs-Bzr: lp:~pali.rohar/+junk/wargus
 
 Package: wargus
 Architecture: any
-Depends: stratagus, cdparanoia, ffmpeg2theora, ${shlibs:Depends}
+Depends: stratagus, cdparanoia [!armel], ffmpeg2theora [!armel], ${shlibs:Depends}
 Provides: stratagus-data
 Description: Wargus is a game set for the Stratagus engine.
  Wargus can be used to play WarCraft II from Blizzard Entertainment.

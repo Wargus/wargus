@@ -6,12 +6,17 @@
 set -e
 
 # Maemo section
-if [ "`uname -a | grep -is arm`" ] && [ -f /etc/maemo_version ]; then
+if [ "`uname -a | grep -is arm`" ] && [ -f /etc/maemo_version ] && [ "$1" == "configure" ]; then
+	echo
 	echo "Note: You need the original WarCraft II CD (Battle.net edition doesn't work)"
-       	echo "to extract the game data files. Data files are needed to run wargus"
+       	echo "to extract the game data files. Data files are needed to run wargus."
 	echo
 	echo "Run this script to extract data from dir DATA_PATH :"
-	echo "/usr/share/games/stratagus/wargus/build.sh -p DATA_PATH -b /usr/games -o /home/user/MyDocs/stratagus/wargus -s -c -v -m"
+	echo "/usr/share/games/stratagus/wargus/build.sh -p DATA_PATH -b /usr/games -o /home/user/MyDocs/stratagus/wargus -s -c"
+	echo
+	echo "Or extract data on computer using wargus from"
+        echo "https://code.launchpad.net/~pali.rohar/+junk/wargus"
+	echo "and copy extracted data to /home/user/MyDocs/stratagus/wargus"
 	exit 0
 fi
 
