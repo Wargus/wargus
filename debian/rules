@@ -80,6 +80,29 @@ binary-arch: build install
 	dh_compress
 	dh_fixperms
 	dh_installdeb
+	
+	# Maemo section - Optify
+	if test "`uname -a | grep -is arm`" && test -f /etc/maemo_version; then \
+		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/bin; \
+		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/share; \
+		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/share/doc; \
+		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/share/man; \
+		mv $(CURDIR)/debian/wargus/usr/games/* $(CURDIR)/debian/wargus/opt/stratagus/bin/; \
+		mv $(CURDIR)/debian/wargus/usr/share/doc/wargus $(CURDIR)/debian/wargus/opt/stratagus/share/doc/; \
+		mv $(CURDIR)/debian/wargus/usr/share/games/stratagus $(CURDIR)/debian/wargus/opt/stratagus/share/; \
+		mv $(CURDIR)/debian/wargus/usr/share/man/man6/* $(CURDIR)/debian/wargus/opt/stratagus/share/man/; \
+		ln -s /opt/stratagus/bin/wartool $(CURDIR)/debian/wargus/usr/games/wartool; \
+		ln -s /opt/stratagus/bin/wargus $(CURDIR)/debian/wargus/usr/games/wargus; \
+		ln -s /opt/stratagus/bin/pudconvert $(CURDIR)/debian/wargus/usr/games/pudconvert; \
+		ln -s /opt/stratagus/share/doc/wargus $(CURDIR)/debian/wargus/usr/share/doc/wargus; \
+		ln -s /opt/stratagus/share/man/wargus.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/wargus.6.gz; \
+		ln -s /opt/stratagus/share/man/wartool.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/wartool.6.gz; \
+		ln -s /opt/stratagus/share/man/pudconvert.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/pudconvert.6.gz; \
+		mkdir -p $(CURDIR)/debian/wargus/home/user/MyDocs/stratagus; \
+		mv $(CURDIR)/debian/wargus/opt/stratagus/share/stratagus/wargus $(CURDIR)/debian/wargus/home/user/MyDocs/stratagus/; \
+		ln -s /home/user/MyDocs/stratagus/wargus $(CURDIR)/debian/wargus/opt/stratagus/share/stratagus/wargus; \
+	fi
+
 	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums

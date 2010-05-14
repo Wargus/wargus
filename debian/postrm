@@ -2,6 +2,13 @@
 
 set -e
 
+# Maemo section
+if [ "`uname -a | grep -is arm`" ] && [ -f /etc/maemo_version ]; then
+	echo "To completly remove wargus data, remove dir:"
+	echo "/home/user/MyDocs/stratagus/wargus"
+	exit 0
+fi
+
 case "$1" in 
     abort-install|remove)
         # also remove the extracted warcraft 2 data files

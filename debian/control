@@ -1,9 +1,11 @@
 Source: wargus
 Section: games
 Priority: optional
-Maintainer: Martin Gerhardy <tlh2000@users.sf.net>
-Build-Depends: libpng12-dev (>= 1.2.5), libbz2-dev, liblua5.1-dev, debhelper (>> 4.0.0)
+Maintainer: Pali Rohár <pali.rohar@gmail.com>
+Build-Depends: libpng12-dev (>= 1.2.5), libbz2-dev, liblua5.1-dev | liblua5.1-0-dev, debhelper (>> 4.0.0)
 Standards-Version: 3.6.1
+Homepage: http://wargus.sourceforge.net
+Vcs-Bzr: lp:~pali.rohar/+junk/wargus
 
 Package: wargus
 Architecture: any

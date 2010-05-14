@@ -30,7 +30,7 @@ CDROM="/cdrom"
 [ -d "/mnt/cdrom" ] && CDROM="/mnt/cdrom"
 
 #       location of data files
-ARCHIVE="$CDROM/data"
+ARCHIVE="$CDROM"
 
 #	output dir
 DIR="data.wc2"
