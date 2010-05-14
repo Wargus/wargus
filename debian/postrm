@@ -5,7 +5,7 @@ set -e
 # Maemo section
 if [ "`uname -a | grep -is arm`" ] && [ -f /etc/maemo_version ] && [ "$1" == "remove" ]; then
 	echo "To completly remove wargus data, remove dir:"
-	echo "/home/user/MyDocs/stratagus/wargus"
+	echo "/opt/stratagus/share/wargus"
 	exit 0
 fi
 
