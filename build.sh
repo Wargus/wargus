@@ -108,6 +108,19 @@ fi
 [ -d $DIR/music ] || mkdir $DIR/music
 [ -d $DIR/puds ] || mkdir $DIR/puds
 
+if [ "`which cdparanoia`" == "" ]; then
+	echo "warning: cdparanoia is not installed in system"
+	echo "cdparanoia is needed for extract music"
+	MUSIC="no"
+fi
+
+if [ "`which $DECODE`" == "" ]; then
+	echo "warning: $DECODE is not installed in system"
+	echo "$DECODE is needed for extract music and videos"
+	MUSIC="no"
+	VIDEO=""
+fi
+
 ###############################################################################
 ##	Extract and Copy
 ###############################################################################
@@ -169,10 +182,12 @@ fi
 $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
 
 # convert video files to theora format
-for f in $DIR/videos/*.smk ; do
-	$DECODE $f -o ${f%%.smk}.avi
-	rm -f $f
-done
+if [ "$VIDEO" != "" ]; then
+	for f in $DIR/videos/*.smk ; do
+		$DECODE $f -o ${f%%.smk}.avi
+		rm -f $f
+	done
+fi
 
 # copy own supplied files
 
