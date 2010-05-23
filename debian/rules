@@ -85,7 +85,7 @@ binary-arch: build install
 	if [ -f /etc/maemo_version ]; then \
 		mkdir -p $(CURDIR)/debian/wargus/usr/share/dbus-1/services; \
 		mkdir -p $(CURDIR)/debian/wargus/usr/share/applications/hildon; \
-		install -m0644 debian/com.nokia.wargus.service $(CURDIR)/debian/wargus/usr/share/dbus-1/services/; \
+		install -m0644 debian/org.stratagus.wargus.service $(CURDIR)/debian/wargus/usr/share/dbus-1/services/; \
 		mv $(CURDIR)/debian/wargus/usr/share/applications/wargus.desktop $(CURDIR)/debian/wargus/usr/share/applications/hildon/; \
 		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/bin; \
 		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/share; \
