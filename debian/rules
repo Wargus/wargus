@@ -38,9 +38,11 @@ install: build
 	if [ -d .svn ]; then \
 		svn export scripts $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/scripts  --force; \
 		svn export maps $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/maps  --force; \
+		svn export campaigns $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/campaigns  --force; \
 	else \
 		cp -r scripts $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/; \
 		cp -r maps $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/; \
+		cp -r campaigns $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/; \
 	fi
 
 	find $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/maps -name "*.pud" -print | xargs rm
