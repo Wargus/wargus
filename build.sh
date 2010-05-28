@@ -108,13 +108,13 @@ fi
 [ -d $DIR/music ] || mkdir $DIR/music
 [ -d $DIR/puds ] || mkdir $DIR/puds
 
-if [ "`which cdparanoia`" == "" ]; then
+if which cdparanoia >/dev/null; then
 	echo "warning: cdparanoia is not installed in system"
 	echo "cdparanoia is needed for extract music"
 	MUSIC="no"
 fi
 
-if [ "`which $DECODE`" == "" ]; then
+if which $DECODE >/dev/null; then
 	echo "warning: $DECODE is not installed in system"
 	echo "$DECODE is needed for extract music and videos"
 	MUSIC="no"
