@@ -42,6 +42,7 @@ CONTRIB="contrib"
 BINPATH="."
 
 DECODE="ffmpeg2theora"
+CDPARANOIA="cdparanoia"
 
 ####	Do not modify anything below this point.
 
@@ -108,13 +109,13 @@ fi
 [ -d $DIR/music ] || mkdir $DIR/music
 [ -d $DIR/puds ] || mkdir $DIR/puds
 
-if which cdparanoia >/dev/null; then
-	echo "warning: cdparanoia is not installed in system"
+if ! which $CDPARANOIA >/dev/null; then
+	echo "warning: $CDPARANOIA is not installed in system"
 	echo "cdparanoia is needed for extract music"
 	MUSIC="no"
 fi
 
-if which $DECODE >/dev/null; then
+if ! which $DECODE >/dev/null; then
 	echo "warning: $DECODE is not installed in system"
 	echo "$DECODE is needed for extract music and videos"
 	MUSIC="no"
@@ -137,12 +138,12 @@ fi
 #
 if [ "$MUSIC" = "yes" ] ; then
 	if [ "$DRIVE" != "" ] ; then
-       		if ! cdparanoia $DRIVE -Q 1>/dev/null 2>&1 ; then
+       		if ! $CDPARANOIA $DRIVE -Q 1>/dev/null 2>&1 ; then
 			MUSIC="no"
 		fi
-	elif ! cdparanoia -Q 1>/dev/null 2>&1 ; then
+	elif ! $CDPARANOIA -Q 1>/dev/null 2>&1 ; then
 		## cdparanoia doesnt check /dev/scd0
-		if cdparanoia -d /dev/scd0 -Q 1>/dev/null 2>&1 ; then
+		if $CDPARANOIA -d /dev/scd0 -Q 1>/dev/null 2>&1 ; then
 			DRIVE="-d /dev/scd0"
 		else
 			MUSIC="no"
@@ -151,7 +152,7 @@ if [ "$MUSIC" = "yes" ] ; then
 fi
 
 if [ "$MUSIC" = "yes" ] ; then
-	seq -w 2 17 | (while read i ; do cdparanoia $DRIVE ${i} $DIR/music/track_${i}.wav ; \
+	seq -w 2 17 | (while read i ; do $CDPARANOIA $DRIVE ${i} $DIR/music/track_${i}.wav ; \
 		($DECODE $DIR/music/track_${i}.wav -o $DIR/music/track_${i}.ogg && rm $DIR/music/track_${i}.wav 2>/dev/null &) ; done)
 	mv $DIR/music/track_02.ogg "$DIR/music/Human Battle 1.ogg"
 	mv $DIR/music/track_03.ogg "$DIR/music/Human Battle 2.ogg"
