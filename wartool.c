@@ -4084,15 +4084,11 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 	for (levelno = 0; levelno < expansion / 2; ++levelno) {
 		for (race = 0; race < 2; ++race) {
 			//Open Relevant file, to write stuff too.
-			sprintf(buf, "%s/../%s/%s_c.sms", Dir, TEXT_PATH,
+			sprintf(buf, "%s/%s/%s_c.sms.template", Dir, TEXT_PATH,
 				Todo[2 * levelno + 1 + race + 5].File);
 			if (!(inlevel = fopen(buf, "rb"))) {
-				sprintf(buf, "./%s/%s_c.sms", TEXT_PATH,
-					Todo[2 * levelno + 1 + race + 5].File);
-				if (!(inlevel = fopen(buf, "rb"))) {
-					printf("Cannot Open File (Skipping Level): %s\n", buf);
-					continue;
-				}
+				printf("Cannot Open File (Skipping Level): %s\n", buf);
+				continue;
 			}
 			sprintf(buf, "%s/%s/%s_c.sms", Dir, TEXT_PATH,
 				Todo[2 * levelno + 1 + race + 5].File);
