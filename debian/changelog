@@ -1,3 +1,9 @@
+wargus (2.2.5-2maemo6) fremantle; urgency=low
+
+  * Build for fremantle rev. 30
+
+ -- Pali Rohár <pali.rohar@gmail.com>  Wed, 16 Jun 2010 11:00:35 +0200
+
 wargus (2.2.5-2ubuntu1~lucid~palippa4) lucid; urgency=low
 
   * Build for lucid rev. 30
