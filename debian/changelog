@@ -1,3 +1,9 @@
+wargus (2.2.5-2ubuntu1~karmic~palippa4) karmic; urgency=low
+
+  * Build for karmic rev. 30
+
+ -- Pali Rohár <pali.rohar@gmail.com>  Wed, 16 Jun 2010 10:54:21 +0200
+
 wargus (2.2.5-2maemo5) fremantle; urgency=low
 
   * Build for fremantle rev. 25
