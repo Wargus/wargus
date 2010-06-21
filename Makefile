@@ -5,8 +5,8 @@ PREFIX ?= /usr/local
 CROSSDIR ?= /usr/local/cross
 STRATAGUSPATH = ../stratagus/
 
-CFLAGS = -I/usr/local/include -Wall -Wsign-compare
-LDFLAGS = -lz -lpng -lm -L/usr/local/lib
+CFLAGS = -O2 -Wall -Wsign-compare
+LDFLAGS = -lz -lpng -lm
 
 all: wartool pudconvert
 
@@ -32,7 +32,6 @@ clean:
 
 strip:
 	strip wartool
-#	strip wartool.exe
 
 date = $(shell date +%y%m%d)
 ver = 2.2.4
