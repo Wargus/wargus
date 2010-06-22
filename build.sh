@@ -46,6 +46,7 @@ BINPATH="."
 
 # convert programs
 DECODE="ffmpeg2theora"
+DECODE_ARGS="--optimize"
 CDPARANOIA="cdparanoia"
 
 #### Do not modify anything below this point.
@@ -171,7 +172,7 @@ fi
 # extract audio tracks
 if [ "$MUSIC" = "yes" ] ; then
 	seq -w 2 17 | (while read i ; do $CDPARANOIA $DRIVE ${i} $DIR/music/track_${i}.wav ; \
-		($DECODE $DIR/music/track_${i}.wav -o $DIR/music/track_${i}.ogg && rm -f $DIR/music/track_${i}.wav 2>/dev/null &) ; done)
+		($DECODE $DECODE_ARGS $DIR/music/track_${i}.wav -o $DIR/music/track_${i}.ogg && rm -f $DIR/music/track_${i}.wav 2>/dev/null &) ; done)
 	mv $DIR/music/track_02.ogg "$DIR/music/Human Battle 1.ogg"
 	mv $DIR/music/track_03.ogg "$DIR/music/Human Battle 2.ogg"
 	mv $DIR/music/track_04.ogg "$DIR/music/Human Battle 3.ogg"
@@ -205,7 +206,7 @@ $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
 # convert video files to theora format
 if [ "$VIDEO" != "" ]; then
 	for f in $DIR/videos/*.smk ; do
-		$DECODE $f -o ${f%%.smk}.ogv
+		$DECODE $DECODE_ARGS $f -o ${f%%.smk}.ogv
 		rm -f $f
 	done
 fi
