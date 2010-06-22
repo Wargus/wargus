@@ -1,6 +1,8 @@
 function Briefing(title, objs, bg, text, voices)
   local menu = WarMenu(nil, bg)
 
+  StopMusic()
+
   Objectives = objs
 
   menu:addLabel(title, (70 + 340) / 2 * Video.Width / 640, 28 * Video.Height / 480,
@@ -41,6 +43,7 @@ function Briefing(title, objs, bg, text, voices)
         StopChannel(channel)
       end
       menu:stop()
+      MusicStopped()
     end)
 
 
