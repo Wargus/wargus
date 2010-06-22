@@ -53,3 +53,5 @@ campaign_steps = {
   CreateMapStep("campaigns/orc-exp/levelx12o.smp")
 }
 
+campaign_menu = { 1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15, 16 }
+

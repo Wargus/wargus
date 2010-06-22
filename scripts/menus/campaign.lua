@@ -84,6 +84,33 @@ function CreateMapStep(map)
   end
 end
 
+function RunCampaignSubmenu(campaign)
+  Load(campaign)
+
+  local menu = WarMenu()
+  local offx = (Video.Width - 640) / 2
+  local offy = (Video.Height - 480) / 2
+
+  local show_buttons = table.getn(campaign_menu)
+  local half = math.ceil(show_buttons/2)
+
+  for i=1,half do
+    menu:addHalfButton(i .. ". chapter", ".", offx + 208, offy + 100 + (36 * i),
+      function() position = campaign_menu[i]; currentCampaign = campaign; RunCampaign(campaign); menu:stop(); RunCampaignSubmenu(campaign) end)
+  end
+
+  for i=1+half,show_buttons do
+    menu:addHalfButton(i .. ". chapter", ".", offx + 326, offy + 100 + (36 * (i - half)),
+      function() position = campaign_menu[i]; currentCampaign = campaign; RunCampaign(campaign); menu:stop(); RunCampaignSubmenu(campaign) end)
+  end
+
+  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 212 + (36 * 5),
+    function() menu:stop(); RunCampaignGameMenu() end)
+
+  menu:run()
+
+end
+
 function RunCampaign(campaign)
   Load(campaign)
 
@@ -113,15 +140,15 @@ function RunCampaignGameMenu()
   local offy = (Video.Height - 480) / 2
 
   menu:addFullButton("~!Human campaign", "h", offx + 208, offy + 212 + (36 * 0),
-    function() RunCampaign("scripts/human/campaign1.lua"); menu:stop() end)
+    function() RunCampaignSubmenu("scripts/human/campaign1.lua"); menu:stop() end)
   menu:addFullButton("~!Orc campaign", "o", offx + 208, offy + 212 + (36 * 1),
-    function() RunCampaign("scripts/orc/campaign1.lua"); menu:stop() end)
+    function() RunCampaignSubmenu("scripts/orc/campaign1.lua"); menu:stop() end)
 
   if (expansion == true) then
     menu:addFullButton("~!Human expansion levels", "h", offx + 208, offy + 212 + (36 * 2),
-      function() RunCampaign("scripts/human/campaign2.lua"); menu:stop() end)
+      function() RunCampaignSubmenu("scripts/human/campaign2.lua"); menu:stop() end)
     menu:addFullButton("~!Orc expansion levels", "o", offx + 208, offy + 212 + (36 * 3),
-      function() RunCampaign("scripts/orc/campaign2.lua"); menu:stop() end)
+      function() RunCampaignSubmenu("scripts/orc/campaign2.lua"); menu:stop() end)
   end
 
   menu:addFullButton("~!Cancel", "c", offx + 208, offy + 212 + (36 * 5),
