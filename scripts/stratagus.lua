@@ -55,8 +55,8 @@ end
 
 --  Enter your default title screen.
 SetTitleScreens(
-  {Image = "videos/logo_stratagus.avi"},
-  {Image = "ui/stratagus.png", Music = "music/default.mod", Timeout = 20}
+  {Image = "videos/gameintro.ogv"},
+  {Image = "ui/title.png", Music = "music/Orc Briefing.ogg", Timeout = 20}
 )
 
 -------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ SetTitleScreens(
 playlist = {}
 local musiclist = ListFilesInDirectory("music/")
 for i,f in ipairs(musiclist) do
-  if(string.find(f, ".ogg$") or string.find(f, ".wav$") or string.find(f, ".mp3$") or string.find(f, ".mod")) then 
+  if(string.find(f, ".ogg$") or string.find(f, ".wav$") or string.find(f, ".mod$")) then 
     print("Added music file: music/" .. f) 
     playlist[i] = "music/" .. f
   end
