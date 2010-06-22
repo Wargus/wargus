@@ -145,8 +145,8 @@ fi
 
 # check if audio tracks is not allready extracted
 if [ -e "$DATADIR/music" ]; then
-	echo "note: found extracted audio tracks in $DATADIR/music"
-	cp "$DATADIR/music/*" "$DIR/music/"
+	echo "Note: found extracted audio tracks in $DATADIR/music"
+	cp $DATADIR/music/* $DIR/music/
 	MUSIC="no"
 fi
 
