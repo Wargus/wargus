@@ -711,6 +711,15 @@ Control Todo[] = {
 {I,0,"ui/human/1280x960/buttonpanel",                  2, 297, 176, 624},
 {I,0,"ui/orc/1280x960/buttonpanel",                    2, 298, 176, 624},
 // --------------------------------------------------
+{I,0,"ui/human/1280x1024/resource",                     2, 287, 1088, 16},
+{I,0,"ui/orc/1280x1024/resource",                       2, 288, 1088, 16},
+{I,0,"ui/human/1280x1024/filler-right",                 2, 289, 16, 1024},
+{I,0,"ui/orc/1280x1024/filler-right",                   2, 290, 16, 1024},
+{I,0,"ui/human/1280x1024/statusline",                   2, 291, 1088, 16},
+{I,0,"ui/orc/1280x1024/statusline",                     2, 292, 1088, 16},
+{I,0,"ui/human/1280x1024/buttonpanel",                  2, 297, 176, 688},
+{I,0,"ui/orc/1280x1024/buttonpanel",                    2, 298, 176, 688},
+// --------------------------------------------------
 {I,0,"ui/human/1400x1050/resource",                     2, 287, 1208, 16},
 {I,0,"ui/orc/1400x1050/resource",                       2, 288, 1208, 16},
 {I,0,"ui/human/1400x1050/filler-right",                 2, 289, 16, 1050},

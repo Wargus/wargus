@@ -148,38 +148,41 @@ function BuildOptionsMenu()
   local offy = (Video.Height - 352) / 2
   local b
 
-  menu:addLabel("Global Options", offx + 176, offy + 11)
-  menu:addLabel("Video Resolution", offx + 16, offy + 44, Fonts["game"], false)
+  menu:addLabel("Global Options", offx + 176, offy + 1)
+  menu:addLabel("Video Resolution", offx + 16, offy + 34, Fonts["game"], false)
 
-  b = menu:addCheckBox("640 x 480", offx + 16, offy + 65 + 26*0,
+  b = menu:addCheckBox("640 x 480", offx + 16, offy + 55 + 26*0,
     function() SetVideoSize(640, 480) menu:stop(1) end)
   if (Video.Width == 640) then b:setMarked(true) end
-  b = menu:addCheckBox("800 x 480", offx + 16, offy + 65 + 26*1,
+  b = menu:addCheckBox("800 x 480", offx + 16, offy + 55 + 26*1,
     function() SetVideoSize(800, 480) menu:stop(1) end)
   if (Video.Width == 800 and Video.Height == 480) then b:setMarked(true) end
-  b = menu:addCheckBox("800 x 600", offx + 16, offy + 65 + 26*2,
+  b = menu:addCheckBox("800 x 600", offx + 16, offy + 55 + 26*2,
     function() SetVideoSize(800, 600) menu:stop(1) end)
   if (Video.Width == 800 and Video.Height == 600) then b:setMarked(true) end
-  b = menu:addCheckBox("1024 x 768", offx + 16, offy + 65 + 26*3,
+  b = menu:addCheckBox("1024 x 768", offx + 16, offy + 55 + 26*3,
     function() SetVideoSize(1024, 768) menu:stop(1) end)
   if (Video.Width == 1024) then b:setMarked(true) end
-  b = menu:addCheckBox("1280 x 800", offx + 16, offy + 65 + 26*4,
+  b = menu:addCheckBox("1280 x 800", offx + 16, offy + 55 + 26*4,
     function() SetVideoSize(1280, 800) menu:stop(1) end)
   if (Video.Height == 800) then b:setMarked(true) end
-  b = menu:addCheckBox("1280 x 960", offx + 16, offy + 65 + 26*5,
+  b = menu:addCheckBox("1280 x 960", offx + 16, offy + 55 + 26*5,
     function() SetVideoSize(1280, 960) menu:stop(1) end)
   if (Video.Height == 960) then b:setMarked(true) end
-  b = menu:addCheckBox("1400 x 1050", offx + 16, offy + 65 + 26*6,
+  b = menu:addCheckBox("1280 x 1024", offx + 16, offy + 55 + 26*6,
+    function() SetVideoSize(1280, 1024) menu:stop(1) end)
+  if (Video.Height == 1024) then b:setMarked(true) end
+  b = menu:addCheckBox("1400 x 1050", offx + 16, offy + 55 + 26*7,
     function() SetVideoSize(1400, 1050) menu:stop(1) end)
   if (Video.Width == 1400) then b:setMarked(true) end
-  b = menu:addCheckBox("1600 x 1200", offx + 16, offy + 65 + 26*7,
+  b = menu:addCheckBox("1600 x 1200", offx + 16, offy + 55 + 26*8,
     function() SetVideoSize(1600, 1200) menu:stop(1) end)
   if (Video.Width == 1600) then b:setMarked(true) end
-  b = menu:addCheckBox("1680 x 1050", offx + 16, offy + 65 + 26*8,
+  b = menu:addCheckBox("1680 x 1050", offx + 16, offy + 55 + 26*9,
     function() SetVideoSize(1680, 1050) menu:stop(1) end)
   if (Video.Width == 1680) then b:setMarked(true) end
 
-  b = menu:addCheckBox("Full Screen", offx + 17, offy + 65 + 26*9 + 14,
+  b = menu:addCheckBox("Full Screen", offx + 17, offy + 55 + 26*10 + 14,
     function()
       ToggleFullScreen()
       preferences.VideoFullScreen = Video.FullScreen
@@ -187,14 +190,14 @@ function BuildOptionsMenu()
     end)
   b:setMarked(Video.FullScreen)
 
-  b = menu:addCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 65 + 26*10 + 14,
+  b = menu:addCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*11 + 14,
     function()
       preferences.UseOpenGL = b:isMarked()
       SavePreferences()
     end)
   b:setMarked(UseOpenGL)
 
-  menu:addHalfButton("~!OK", "o", offx + 123, offy + 365, function() menu:stop() end)
+  menu:addHalfButton("~!OK", "o", offx + 123, offy + 55 + 26*12 + 14, function() menu:stop() end)
 
   return menu:run()
 end
