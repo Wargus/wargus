@@ -94,7 +94,40 @@ function CreateVideoStep(video)
   end
 end
 
-function RunCampaignSubmenu(campaign)
+function CampaignButtonTitle(race, exp, i)
+  local name
+
+  name = "campaigns/" .. race
+
+  if (exp == "exp") then
+    name = name .. "-exp"
+  end
+
+  name = name .. "/level"
+
+  if (exp == "exp") then
+    name = name .. "x"
+  end
+
+  if (i<10) then
+    name = name .. "0"
+  end
+
+  name = name .. i
+  
+  if (race == "orc") then
+    name = name .. "o"
+  else
+    name = name .. "h"
+  end
+
+  name = name .. "_c2.sms"
+  title = ""
+  Load(name)
+  return title
+end
+
+function RunCampaignSubmenu(campaign, race, exp)
   Load(campaign)
 
   local menu = WarMenu()
@@ -105,12 +138,12 @@ function RunCampaignSubmenu(campaign)
   local half = math.ceil(show_buttons/2)
 
   for i=1,half do
-    menu:addHalfButton(i .. ". chapter", ".", offx + 208, offy + 100 + (36 * i),
+    menu:addHalfButton(CampaignButtonTitle(race, exp, i), ".", offx + 208, offy + 100 + (36 * i),
       function() position = campaign_menu[i]; currentCampaign = campaign; RunCampaign(campaign); menu:stop(); RunCampaignSubmenu(campaign) end)
   end
 
   for i=1+half,show_buttons do
-    menu:addHalfButton(i .. ". chapter", ".", offx + 326, offy + 100 + (36 * (i - half)),
+    menu:addHalfButton(CampaignButtonTitle(race, exp, i), ".", offx + 326, offy + 100 + (36 * (i - half)),
       function() position = campaign_menu[i]; currentCampaign = campaign; RunCampaign(campaign); menu:stop(); RunCampaignSubmenu(campaign) end)
   end
 
@@ -150,15 +183,15 @@ function RunCampaignGameMenu()
   local offy = (Video.Height - 480) / 2
 
   menu:addFullButton("~!Human campaign", "h", offx + 208, offy + 212 + (36 * 0),
-    function() RunCampaignSubmenu("scripts/human/campaign1.lua"); menu:stop() end)
+    function() RunCampaignSubmenu("scripts/human/campaign1.lua", "human", ""); menu:stop() end)
   menu:addFullButton("~!Orc campaign", "o", offx + 208, offy + 212 + (36 * 1),
-    function() RunCampaignSubmenu("scripts/orc/campaign1.lua"); menu:stop() end)
+    function() RunCampaignSubmenu("scripts/orc/campaign1.lua", "orc", ""); menu:stop() end)
 
   if (expansion == true) then
     menu:addFullButton("~!Human expansion levels", "h", offx + 208, offy + 212 + (36 * 2),
-      function() RunCampaignSubmenu("scripts/human/campaign2.lua"); menu:stop() end)
+      function() RunCampaignSubmenu("scripts/human/campaign2.lua", "human", "exp"); menu:stop() end)
     menu:addFullButton("~!Orc expansion levels", "o", offx + 208, offy + 212 + (36 * 3),
-      function() RunCampaignSubmenu("scripts/orc/campaign2.lua"); menu:stop() end)
+      function() RunCampaignSubmenu("scripts/orc/campaign2.lua", "orc", "exp"); menu:stop() end)
   end
 
   menu:addFullButton("~!Cancel", "c", offx + 208, offy + 212 + (36 * 5),

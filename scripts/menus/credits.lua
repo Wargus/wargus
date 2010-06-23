@@ -6,7 +6,7 @@ function RunShowCreditsMenu()
   local credits = {
 	"Programmers",
 	"  Jimmy Salmon",
-    "  Francois Beerten",
+	"  Francois Beerten",
 	"  Nehal Mistry",
 	"  Joris Dauphin",
 	"  Russell Smith",
@@ -14,6 +14,7 @@ function RunShowCreditsMenu()
 	"  Martin Renold",
 	"  Carlos Perello Marin",
 	"  Pludov",
+	"  Pali Rohar",
 	"Past Programmers",
 	"  Andreas 'Ari' Arens",
 	"  Lutz 'Johns' Sammer",

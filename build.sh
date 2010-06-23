@@ -200,6 +200,15 @@ else
 	fi
 fi
 
+# copy campaigns scripts
+if [ "$SKIP_CONTRIB" = "no" ]; then
+	if [ ! -e "$CONTRIB/../campaigns" ]; then
+		echo "Error: Campaigns scripts not found in $CONTRIB/../campaigns"
+		exit 1
+	fi
+	cp -r "$CONTRIB/../campaigns" "$DIR"
+fi
+
 # extract data using wartool
 $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
 

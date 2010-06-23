@@ -1,0 +1,210 @@
+--	Stratagus Map - Single player campaign
+
+Load("campaigns/orc-exp/levelx07o_c2.sms")
+
+Briefing(
+  title,
+  objectives,
+  "../campaigns/orc/interface/introscreen5.png",
+  "campaigns/orc-exp/levelx07o.txt",
+  {"campaigns/orc-exp/levelx07o-intro1.wav",
+   "campaigns/orc-exp/levelx07o-intro2.wav",
+   "campaigns/orc-exp/levelx07o-intro3.wav"}
+)
+
+-- FIXME: Check if units are destroyed.
+AddTrigger(
+
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-orc-shipyard") >= 5 and
+    GetPlayerData(2, "UnitTypesCount", "unit-battleship") == 0 and
+    GetPlayerData(1, "UnitTypesCount", "unit-battleship") == 0 and
+    GetPlayerData(2, "UnitTypesCount", "unit-human-destroyer") == 0 and
+    GetPlayerData(1, "UnitTypesCount", "unit-human-destroyer") == 0 and
+    GetPlayerData(2, "UnitTypesCount", "unit-human-transport") == 0 and
+    GetPlayerData(1, "UnitTypesCount", "unit-human-transport") == 0 end,
+  function() return ActionVictory() end)
+
+AddTrigger(
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
+  function() return ActionDefeat() end)
+
+--Units
+
+--Townhall - Produces
+DefineAllow("unit-peasant",			"AAAAAAAAAAAAAAAA")
+
+DefineAllow("unit-peon",			"AAAAAAAAAAAAAAAA")
+
+--Barracks - Produces
+DefineAllow("unit-footman",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-archer",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-ranger",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-knight",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-paladin",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-ballista",			"AAAAAAAAAAAAAAAA")
+
+DefineAllow("unit-grunt",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-axethrower",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-berserker",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-ogre",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-ogre-mage",			"AAAAAAAAAAAAAAAA")
+  DefineAllow("unit-eye-of-vision",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-catapult",			"AAAAAAAAAAAAAAAA")
+
+--Shipyard - Produces
+DefineAllow("unit-human-oil-tanker",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-destroyer",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-transport",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-battleship",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-submarine",		"AAAAAAAAAAAAAAAA")
+
+DefineAllow("unit-orc-oil-tanker",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-transport",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-destroyer",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-ogre-juggernaught",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-submarine",		"AAAAAAAAAAAAAAAA")
+
+--Other Buildings
+DefineAllow("unit-balloon",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-gryphon-rider",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-mage",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-dwarves",			"AAAAAAAAAAAAAAAA")
+
+DefineAllow("unit-zeppelin",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-dragon",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-death-knight",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-goblin-sappers",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-skeleton",			"AAAAAAAAAAAAAAAA")
+
+--Human Specials
+DefineAllow("unit-female-hero",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-flying-angel",		"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-white-mage",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-knight-rider",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-arthor-literios",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-wise-man",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-man-of-light",		"FFFFFFFFFFFFFFFF")
+
+--Building Human
+DefineAllow("unit-town-hall",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-keep",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-castle",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-barracks",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-farm",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-blacksmith",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-sword1",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-sword2",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-human-shield1",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-human-shield2",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-ballista1",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-ballista2",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-watch-tower",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-human-guard-tower",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-human-cannon-tower",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-elven-lumber-mill",           "AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-arrow1",                  "AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-arrow2",                  "AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-ranger",                  "AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-longbow",                 "AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-ranger-scouting",         "AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-ranger-marksmanship",     "AAAAAAAAAAAAAAAA")
+DefineAllow("unit-church",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-paladin",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-holy-vision",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-healing",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-exorcism",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-stables",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-inventor",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-gryphon-aviary",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-shipyard",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-refinery",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-oil-platform",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-foundry",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-human-ship-cannon1",	"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-human-ship-cannon2",	"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-human-ship-armor1",	"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-human-ship-armor2",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-mage-tower",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-flame-shield",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-fireball",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-slow",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-invisibility",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-polymorph",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-blizzard",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-human-wall",			"FFFFFFFFFFFFFFFF")
+
+-- Orc Specials
+DefineAllow("unit-evil-knight",		"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-fad-man",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-beast-cry",		"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-fire-breeze",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-quick-blade",		"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-double-head",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-ice-bringer",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-sharp-axe",			"FFFFFFFFFFFFFFFF")
+
+
+DefineAllow("unit-great-hall",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-stronghold",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-fortress",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-barracks",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-pig-farm",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-blacksmith",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-battle-axe1",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-battle-axe2",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-orc-shield1",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-orc-shield2",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-catapult1",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-catapult2",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-watch-tower",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-orc-guard-tower",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("unit-orc-cannon-tower",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-troll-lumber-mill",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-throwing-axe1",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-throwing-axe2",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-berserker",		"AAAAAAAAAAAAAAAA")
+  DefineAllow("upgrade-light-axes",		"AAAAAAAAAAAAAAAA")
+  DefineAllow("upgrade-berserker-scouting",	"AAAAAAAAAAAAAAAA")
+  DefineAllow("upgrade-berserker-regeneration",	"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-altar-of-storms",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-ogre-mound",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-ogre-mage",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-eye-of-kilrogg",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-bloodlust",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-runes",			"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-alchemist",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-dragon-roost",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-shipyard",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-foundry",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-orc-ship-cannon1",	"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-orc-ship-cannon2",	"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-orc-ship-armor1",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-orc-ship-armor2",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-temple-of-the-damned",	"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-death-coil",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-whirlwind",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-haste",			"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-unholy-armor",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-death-and-decay",		"AAAAAAAAAAAAAAAA")
+ DefineAllow("upgrade-raise-dead",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-refinery",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-oil-platform",		"AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-wall",			"FFFFFFFFFFFFFFFF")
+
+-- Specials
+DefineAllow("unit-daemon",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-critter",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-gold-mine",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-oil-patch",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-circle-of-power",		"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-dark-portal",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-runestone",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-human-dead-body",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-orc-dead-body",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-dead-sea-body",			"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-destroyed-1x1-place",		"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-destroyed-2x2-place",		"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-destroyed-3x3-place",		"FFFFFFFFFFFFFFFF")
+DefineAllow("unit-destroyed-4x4-place",		"FFFFFFFFFFFFFFFF")
+
+Load("campaigns/orc-exp/levelx07o.sms")
