@@ -124,6 +124,11 @@ function CampaignButtonTitle(race, exp, i)
   name = name .. "_c2.sms"
   title = ""
   Load(name)
+
+  if ( string.len(title) > 20 ) then
+	  title = string.sub(title, 1, 19) .. "..."
+  end
+
   return title
 end
 
@@ -138,13 +143,13 @@ function RunCampaignSubmenu(campaign, race, exp)
   local half = math.ceil(show_buttons/2)
 
   for i=1,half do
-    menu:addHalfButton(CampaignButtonTitle(race, exp, i), ".", offx + 208, offy + 100 + (36 * i),
-      function() position = campaign_menu[i]; currentCampaign = campaign; RunCampaign(campaign); menu:stop(); RunCampaignSubmenu(campaign) end)
+    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 98, offy + 100 + (36 * i),
+      function() position = campaign_menu[i]; currentCampaign = campaign; RunCampaign(campaign); menu:stop(); RunCampaignSubmenu(campaign, race, exp) end)
   end
 
   for i=1+half,show_buttons do
-    menu:addHalfButton(CampaignButtonTitle(race, exp, i), ".", offx + 326, offy + 100 + (36 * (i - half)),
-      function() position = campaign_menu[i]; currentCampaign = campaign; RunCampaign(campaign); menu:stop(); RunCampaignSubmenu(campaign) end)
+    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 326, offy + 100 + (36 * (i - half)),
+      function() position = campaign_menu[i]; currentCampaign = campaign; RunCampaign(campaign); menu:stop(); RunCampaignSubmenu(campaign, race, exp) end)
   end
 
   menu:addFullButton("~!Cancel", "c", offx + 208, offy + 212 + (36 * 5),
