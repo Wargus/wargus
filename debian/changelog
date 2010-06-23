@@ -1,3 +1,9 @@
+wargus (2.2.5.1-1ubuntu1~lucid~palippa1) lucid; urgency=low
+
+  * Build for lucid rev. 47
+
+ -- Pali Rohár <pali.rohar@gmail.com>  Wed, 23 Jun 2010 16:26:26 +0200
+
 wargus (2.2.5.1-1ubuntu1~karmic~palippa1) karmic; urgency=low
 
   * Build for karmic rev. 47
