@@ -87,6 +87,13 @@ function CreateMapStep(map)
   end
 end
 
+function CreateVideoStep(video)
+  return function()
+    PlayMovie(video)
+    GameResult = GameVictory
+  end
+end
+
 function RunCampaignSubmenu(campaign)
   Load(campaign)
 

@@ -38,11 +38,13 @@ campaign_steps = {
   CreateMapStep("campaigns/orc/level03o.smp"),
   CreateMapStep("campaigns/orc/level04o.smp"),
 
+  CreateVideoStep("../videos/orc-1.ogv"),
   CreatePictureStep("../campaigns/orc/interface/Act_II_-_Khaz_Modan.png", "../sounds/orc/act.wav", "Act II", "Khaz Modan"),
   CreateMapStep("campaigns/orc/level05o.smp"),
   CreateMapStep("campaigns/orc/level06o.smp"),
   CreateMapStep("campaigns/orc/level07o.smp"),
 
+  CreateVideoStep("../videos/orc-2.ogv"),
   CreatePictureStep("../campaigns/orc/interface/Act_III_-_Quel'Thalas.png", "../sounds/orc/act.wav", "Act III", "Quel'Thalas"),
   CreateMapStep("campaigns/orc/level08o.smp"),
   CreateMapStep("campaigns/orc/level09o.smp"),
@@ -55,5 +57,7 @@ campaign_steps = {
   CreateMapStep("campaigns/orc/level14o.smp")
 }
 
-campaign_menu = { 1, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 15, 17, 18 }
+--TODO: fix videos
+
+campaign_menu = { 1, 3, 4, 5, 6, 9, 10, 11, 14, 15, 16, 17, 19, 20 }
 

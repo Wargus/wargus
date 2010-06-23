@@ -832,7 +832,7 @@ Control Todo[] = {
 {W,0,"ui/highclick",                                   435 __},
 {W,0,"ui/statsthump",                                  436 __},
 
-{V,0,"videos/gameintro",                               430 __},
+{V,0,"videos/logo",                                    430 __},
 
 {R,2,"swamp/swamp",                                    438 __},
 {T,2,"swamp/terrain/swamp",                            438, 439, 440, 441},
@@ -1544,20 +1544,20 @@ Control Todo[] = {
 {F,0,"muddat.cud",                                     6000 __},
 #endif
 
-{V,0,"videos/video1",                                  0 __},
-{V,0,"videos/video2",                                  2 __},
-{V,0,"videos/video3",                                  3 __},
+{V,0,"videos/orc-1",                                   0 __},
+{V,0,"videos/orc-2",                                   2 __},
+//{V,0,"videos/video3",                                  3 __},
 {V,0,"videos/video4",                                  4 __},
-{V,0,"videos/video5",                                  5 __},
-{V,0,"videos/video6",                                  6 __},
-{V,0,"videos/video7",                                  8 __},
+//{V,0,"videos/gameintro",                               5 __},
+{V,0,"videos/gameintro",                               6 __},
+//{V,0,"videos/video7",                                  8 __},
 {V,0,"videos/video8",                                  9 __},
 {V,0,"videos/video9",                                  10 __},
 {V,0,"videos/video10",                                 11 __},
 {V,0,"videos/video11",                                 12 __},
 {V,0,"videos/video12",                                 14 __},
-{V,2,"videos/video13",                                 15 __},
-{V,2,"videos/video14",                                 16 __},
+{V,2,"videos/human-exp-1",                             15 __},
+{V,2,"videos/orc-exp-1",                               16 __},
 {V,2,"videos/video15",                                 17 __},
 {V,2,"videos/video16",                                 18 __},
 

@@ -29,7 +29,7 @@
 --      $Id$
 
 -- For documentation see stratagus/doc/scripts/scripts.html
-print("Stratagus default config file loading ...\n")
+--print("Stratagus default config file loading ...\n")
 
 -- Config file version
 --(define media-version (list 'wc2 'class 'wc2 'version '(1 18 0)))
@@ -55,6 +55,7 @@ end
 
 --  Enter your default title screen.
 SetTitleScreens(
+  {Image = "videos/logo.ogv"},
   {Image = "videos/gameintro.ogv"},
   {Image = "ui/title.png", Music = "music/Orc Briefing.ogg", Timeout = 20}
 )
@@ -66,7 +67,7 @@ playlist = {}
 local musiclist = ListFilesInDirectory("music/")
 for i,f in ipairs(musiclist) do
   if(string.find(f, ".ogg$") or string.find(f, ".wav$") or string.find(f, ".mod$")) then 
-    print("Added music file: music/" .. f) 
+--    print("Added music file: music/" .. f) 
     playlist[i] = "music/" .. f
   end
 end
@@ -344,4 +345,4 @@ Load("scripts/ai.lua")
 Load("scripts/commands.lua")
 Load("scripts/cheats.lua")
 
-print("... ready!\n")
+--print("... ready!\n")

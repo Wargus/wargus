@@ -32,6 +32,7 @@
 --	Define the campaign
 
 campaign_steps = {
+  CreateVideoStep("../videos/human-exp-1.ogv"),
   CreatePictureStep("../campaigns/human-exp/interface/Act_I_-_A_Time_for_Heroes.png", "../sounds/human/act.wav", "Act I", "A Time for Heroes"),
   CreateMapStep("campaigns/human-exp/levelx01h.smp"),
   CreateMapStep("campaigns/human-exp/levelx02h.smp"),
@@ -53,5 +54,7 @@ campaign_steps = {
   CreateMapStep("campaigns/human-exp/levelx12h.smp")
 }
 
-campaign_menu = { 1, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15, 16 }
+--TODO: fix videos
+
+campaign_menu = { 1, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17 }
 
