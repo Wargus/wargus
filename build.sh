@@ -53,6 +53,7 @@ CDPARANOIA="cdparanoia"
 
 SKIP_CONTRIB="no"
 SKIP_SCRIPTS="no"
+SKIP_PUDS="no"
 
 while [ $# -gt 0 ]; do
 	case "$1" in
@@ -100,6 +101,17 @@ if [ ! -f "$DATADIR/rezdat.war" ] && [ ! -f "$DATADIR/REZDAT.WAR" ] && [ ! -f "$
 	exit 1
 fi
 
+if [ -d "$DATADIR/../puds" ]; then
+	PUDSDIR="$DATADIR/../puds"
+elif [ -d "$DATADIR/../PUDS" ]; then
+	PUDSDIR="$DATADIR/../PUDS"
+else
+	echo "Warning: PUDS Directory '$DATADIR/../puds' does not exist"
+	echo "Warning: PUDS Directory '$DATADIR/../PUDS' does not exist"
+	echo "Additional maps will not be converted"
+	SKIP_PUDS="yes"
+fi
+
 if [ "$SKIP_CONTRIB" = "no" ] ; then
 	if [ ! -d "$CONTRIB" ]; then
 		echo "Error: $CONTRIB does not exist; try running $0" 
@@ -111,7 +123,16 @@ fi
 # create the directory structure
 [ -d $DIR ] || mkdir $DIR
 [ -d $DIR/music ] || mkdir $DIR/music
-[ -d $DIR/puds ] || mkdir $DIR/puds
+[ -d $DIR/maps ] || mkdir $DIR/maps
+
+# check if audio tracks are not allready extracted
+if [ "$MUSIC" = "yes" ]; then
+	if [ -e "$DATADIR/music" ]; then
+		echo "Note: found extracted audio tracks in $DATADIR/music, only copy them"
+		cp $DATADIR/music/* $DIR/music/
+		MUSIC="no"
+	fi
+fi
 
 # check if $CDPARANOIA is installed
 if ! which "$CDPARANOIA" >/dev/null; then
@@ -142,13 +163,6 @@ if [ "$SKIP_SCRIPTS" = "no" ] ; then
 	rm -Rf `find $DIR/scripts | grep CVS`
 	rm -Rf `find $DIR/scripts | grep cvsignore`
 	rm -Rf `find $DIR/scripts | grep .svn`
-fi
-
-# check if audio tracks is not allready extracted
-if [ -e "$DATADIR/music" ]; then
-	echo "Note: found extracted audio tracks in $DATADIR/music"
-	cp $DATADIR/music/* $DIR/music/
-	MUSIC="no"
 fi
 
 # check if cdparanoia can extract audio tracks from CD
@@ -211,6 +225,17 @@ fi
 
 # extract data using wartool
 $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
+
+# convert maps using pudconvert
+if [ "$SKIP_PUDS" = "no" ]; then
+	for dir in $PUDSDIR/*; do
+		OUTPUTDIR="$DIR/maps/$(echo $dir | sed 's/.*\///' | tr A-Z a-z)/"
+		[ -d "$OUTPUTDIR" ] || mkdir "$OUTPUTDIR"
+		for file in $dir/*; do
+			$BINPATH/pudconvert "$file" "$OUTPUTDIR"
+		done
+	done
+fi
 
 # convert video files to theora format
 if [ "$VIDEO" != "" ]; then
