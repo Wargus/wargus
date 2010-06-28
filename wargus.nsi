@@ -58,8 +58,11 @@
 LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
 LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration files:"
 LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} executable"
-LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration files and directories in ${NAME} install directory created by user or ${NAME}"
+LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration and extracted data files and directories in ${NAME} install directory created by user or ${NAME}"
 LangString NO_STRATAGUS ${LANG_ENGLISH} "Stratagus is not installed. You need Stratagus to run Wargus!"
+
+LangString EXTRACTDATA_PAGE_TITLE ${LANG_ENGLISH} "Title"
+LangString EXTRACTDATA_PAGE_SUBTITLE ${LANG_ENGLISH} "Subtitle"
 
 !ifdef AMD64
 LangString AMD64ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only."
@@ -84,6 +87,7 @@ Var STARTMENU_FOLDER
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_STARTMENU Application $STARTMENU_FOLDER
 !insertmacro MUI_PAGE_INSTFILES
+Page custom PageExtractData PageExtractDataLeave
 !insertmacro MUI_PAGE_FINISH
 
 !insertmacro MUI_UNPAGE_CONFIRM
@@ -136,6 +140,32 @@ FunctionEnd
 
 ;--------------------------------
 
+Function PageExtractData
+
+	ReserveFile "extractdata.ini"
+	!insertmacro MUI_HEADER_TEXT $(EXTRACTDATA_PAGE_TITLE) $(EXTRACTDATA_PAGE_SUBTITLE)
+	!insertmacro MUI_INSTALLOPTIONS_EXTRACT "extractdata.ini"
+	!insertmacro MUI_INSTALLOPTIONS_DISPLAY "extractdata.ini"
+
+FunctionEnd
+
+Function PageExtractDataLeave
+
+	!insertmacro MUI_INSTALLOPTIONS_READ $R0 "extractdata.ini" "Field 2" "State"
+
+	IfFileExists "$R0\data\rezdat.war" extract
+
+	MessageBox MB_OK|MB_ICONSTOP "This is not valid Warcraft II directory.\nFile $R0\data\rezdat.war does not exist."
+	Abort
+
+extract:
+
+; TODO: extract data
+
+FunctionEnd
+
+;--------------------------------
+
 Section "-${NAME}" UninstallPrevious
 
         SectionIn RO
@@ -167,11 +197,11 @@ Section "${NAME}"
 	File /r "scripts"
 	File /r "campaigns"
 
-!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
+	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 	CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
 	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\${NAME}.lnk" "$INSTDIR\${WARGUS}"
 	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk" "$INSTDIR\${UNINSTALL}"
-!insertmacro MUI_STARTMENU_WRITE_END
+	!insertmacro MUI_STARTMENU_WRITE_END
 
 	WriteRegStr HKLM "${REGKEY}" "DisplayName" "${NAME}"
 	WriteRegStr HKLM "${REGKEY}" "UninstallString" "$\"$INSTDIR\${UNINSTALL}$\""
@@ -199,7 +229,7 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${UNINSTALL}"
 	RMDir "$INSTDIR"
 
-!insertmacro MUI_STARTMENU_GETFOLDER Application $STARTMENU_FOLDER
+	!insertmacro MUI_STARTMENU_GETFOLDER Application $STARTMENU_FOLDER
 	Delete "$SMPROGRAMS\$STARTMENU_FOLDER\${NAME}.lnk"
 	Delete "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk"
 	RMDir "$SMPROGRAMS\$STARTMENU_FOLDER"
