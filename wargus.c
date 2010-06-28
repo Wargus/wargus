@@ -21,6 +21,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+
 #include <unistd.h>
 #include <sys/stat.h>
 
@@ -103,7 +104,7 @@ int main(int argc, char * argv[]) {
 #endif
 
 	struct stat st;
-	int ret;
+	int ret, i;
 	char wargus_path[1024];
 	char stratagus_bin[1024];
 	char title_path[1024];
@@ -122,14 +123,14 @@ int main(int argc, char * argv[]) {
                         
 		if ( RegQueryValueEx(key, "InstallLocation", NULL, NULL, (LPBYTE) stratagus_path, &stratagus_path_size) == ERROR_SUCCESS )
 			if ( stratagus_path_size == 0 || strlen(stratagus_path) == 0 )
-				error(TITLE, STRATAGUS_NOT_FOUND " REGKEY");
+				error(TITLE, STRATAGUS_NOT_FOUND);
 
 		RegCloseKey(key);
 
 	}
 
 	if ( chdir(stratagus_path) != 0 )
-		error(TITLE, STRATAGUS_NOT_FOUND " CHDIR");
+		error(TITLE, STRATAGUS_NOT_FOUND);
 
 	sprintf(stratagus_bin, "%s\\stratagus.exe", stratagus_path);
 #else
@@ -152,7 +153,23 @@ int main(int argc, char * argv[]) {
 	if ( stat(title_path, &st) !=0 )
 		error(TITLE, DATA_NOT_EXTRACTED);
 
-	execlp(stratagus_bin, "stratagus", "-d", wargus_path, NULL);
+	char * stratagus_argv[argc + 3];
+
+#ifdef WIN32
+	stratagus_argv[0] = "stratagus.exe";
+#else
+	stratagus_argv[0] = "stratagus";
+#endif
+
+	stratagus_argv[1] = "-d";
+	stratagus_argv[2] = wargus_path;
+
+	for ( i = 3; i < argc + 2; ++i )
+		stratagus_argv[i] = argv[i - 2];
+
+	stratagus_argv[argc + 2] = NULL;
+
+	execvp(stratagus_bin, stratagus_argv);
 	error(TITLE, STRATAGUS_NOT_FOUND);
 
 	return 0;
