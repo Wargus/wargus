@@ -55,7 +55,7 @@
 
 ;--------------------------------
 
-LangString NO_STRATAGUS ${LANG_ENGLISH} "Stratagus is not installed. You need Stratagus to run Wargus!\nFirst install Stratagus, then Wargus."
+LangString NO_STRATAGUS ${LANG_ENGLISH} "Stratagus is not installed. You need Stratagus to run Wargus! First install Stratagus, then Wargus."
 
 LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
 LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data files:"
@@ -221,9 +221,10 @@ Section "${NAME}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
 	File "${FFMPEG2THEORA}"
-	File /r /x .svn /x (8)diablomaze.pud.gz "maps" ; TODO: maps/multi/(8)diablomaze.pud.gz cannot extract Why??
+	File /r /x .svn /x *.pud* "maps"
 	File /r /x .svn "scripts"
 	File /r /x .svn "campaigns"
+	CreateDirectory "$INSTDIR\music"
 	CreateDirectory "$INSTDIR\graphics"
 	CreateDirectory "$INSTDIR\graphics\ui"
 	CreateDirectory "$INSTDIR\graphics\ui\cursors"
@@ -237,6 +238,7 @@ Section "${NAME}"
 	File "/oname=graphics\ui\food.png" "contrib\food.png"
 	File "/oname=graphics\ui\score.png" "contrib\score.png"
 	File "/oname=graphics\ui\ore,stone,coal.png" "contrib\ore,stone,coal.png"
+	File "/oname=music\Orc Briefing.ogg.gz" "contrib\toccata.mod.gz"
 
 	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 	CreateDirectory "$SMPROGRAMS\$STARTMENUDIR"
