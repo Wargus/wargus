@@ -58,20 +58,25 @@
 LangString NO_STRATAGUS ${LANG_ENGLISH} "Stratagus is not installed. You need Stratagus to run Wargus!\nFirst install Stratagus, then Wargus."
 
 LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
-LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration files:"
+LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data files:"
 
 LangString EXTRACTDATA_BASIC ${LANG_ENGLISH} "Extracting Warcraft II basic files..."
 LangString EXTRACTDATA_MAPS ${LANG_ENGLISH} "Extracting Warcraft II map files..."
 LangString EXTRACTDATA_MUSIC ${LANG_ENGLISH} "Extracting Warcraft II music files..."
 LangString EXTRACTDATA_VIDEOS ${LANG_ENGLISH} "Extracting Warcraft II video files..."
 
+LangString EXTRACTDATA_BACIS_FAILED ${LANG_ENGLISH} "Extracting Warcraft II basic files failed."
+LangString EXTRACTDATA_MAPS_FAILED ${LANG_ENGLISH} "Extracting Warcraft II map files failed."
+LangString EXTRACTDATA_MUSIC_FAILED ${LANG_ENGLISH} "Extracting Warcraft II music files failed."
+LangString EXTRACTDATA_VIDEOS_FAILED ${LANG_ENGLISH} "Extracting Warcraft II video files failed."
+
 LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_ENGLISH} "Choose Warcraft II Location"
 LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_ENGLISH} "Choose the folder in which are Warcraft II data files."
-LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder. You can specify location of CD or install location of Warcraft II data files. Note that you need the original Warcraft II CD Dos version (Battle.net edition doesn't work) to extract the game data files."
+LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder. You can specify location of CD or install location of Warcraft II data files. Note that you need the original Warcraft II CD Dos version (Battle.net edition does not work) to extract the game data files."
 LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_ENGLISH} "Source Folder"
 LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory.\nFile $DATADIR\data\rezdat.war does not exist."
 
-LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} executable"
+LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} binary executables"
 LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration and extracted data files and directories in ${NAME} install directory created by user or ${NAME}"
 
 !ifdef AMD64
@@ -219,6 +224,10 @@ Section "${NAME}"
 	File /r /x .svn /x (8)diablomaze.pud.gz "maps" ; TODO: maps/multi/(8)diablomaze.pud.gz cannot extract Why??
 	File /r /x .svn "scripts"
 	File /r /x .svn "campaigns"
+	CreateDirectory "$INSTDIR\graphics"
+	CreateDirectory "$INSTDIR\graphics\ui"
+	CreateDirectory "$INSTDIR\graphics\ui\cursors"
+	CreateDirectory "$INSTDIR\graphics\missiles"
 	File "/oname=graphics\ui\cursors\cross.png" "contrib\cross.png"
 	File "/oname=graphics\missiles\red_cross.png" "contrib\red_cross.png"
 	File "/oname=graphics\ui\mana.png" "contrib\mana.png"
@@ -253,25 +262,49 @@ Section "${NAME}" ExtractData
 
 	DetailPrint "$(EXTRACTDATA_BASIC)"
 	SetDetailsPrint none
-	ExecWait "$\"$INSTDIR\${WARTOOL}$\" -v $\"$DATADIR\data$\" $\"$INSTDIR$\""
+	ExecWait "$\"$INSTDIR\${WARTOOL}$\" -v $\"$DATADIR\data$\" $\"$INSTDIR$\"" $0
 	SetDetailsPrint lastused
+	IntCmp $0 0 maps
+
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_BACIS_FAILED)"
+	Abort
+
+maps:
 
 ; TODO: Convert map files using pudconvert.exe
 	DetailPrint "$(EXTRACTDATA_MAPS)"
 	SetDetailsPrint none
-;	ExecWait ""
+;	ExecWait "" $0
 	SetDetailsPrint lastused
+	IntCmp $0 0 music
+
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_MAPS_FAILED)"
+	Abort
+
+music:
 
 ; TODO: Convert music files using cdparanoia/cdda2wav ??
 	DetailPrint "$(EXTRACTDATA_MUSIC)"
 	SetDetailsPrint none
-;	ExecWait ""
+;	ExecWait "" $0
 	SetDetailsPrint lastused
+	IntCmp $0 0 videos
+
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_MUSIC_FAILED)"
+	Abort
+
+videos:
 
 	DetailPrint "$(EXTRACTDATA_VIDEOS)"
 	SetDetailsPrint none
-	ExecWait "cmd /c $\"cd videos && for %f in (*.smk) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\""
+	ExecWait "cmd /c $\"cd videos && for %f in (*.smk) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
 	SetDetailsPrint lastused
+	IntCmp $0 0 end
+
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_VIDEOS_FAILED)"
+	Abort
+
+end:
 
 SectionEnd
 
