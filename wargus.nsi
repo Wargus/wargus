@@ -65,9 +65,10 @@ LangString EXTRACTDATA_MAPS ${LANG_ENGLISH} "Extracting Warcraft II map files...
 LangString EXTRACTDATA_MUSIC ${LANG_ENGLISH} "Extracting Warcraft II music files..."
 LangString EXTRACTDATA_VIDEOS ${LANG_ENGLISH} "Extracting Warcraft II video files..."
 
-LangString EXTRACTDATA_PAGE_TITLE ${LANG_ENGLISH} "Choose Warcraft II Location"
-LangString EXTRACTDATA_PAGE_SUBTITLE ${LANG_ENGLISH} "Choose the folder in which is Warcraft II data files."
-LangString EXTRACTDATA_PAGE_TEXT ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder to install location. You can specify CD location or install location of Warcraft II data files.\nNote: You need the original WarCraft II CD (Battle.net edition doesn't work) to extract the game data files."
+LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_ENGLISH} "Choose Warcraft II Location"
+LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_ENGLISH} "Choose the folder in which are Warcraft II data files."
+LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder. You can specify location of CD or install location of Warcraft II data files. Note that you need the original Warcraft II CD Dos version (Battle.net edition doesn't work) to extract the game data files."
+LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_ENGLISH} "Source Folder"
 LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory.\nFile $DATADIR\data\rezdat.war does not exist."
 
 LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} executable"
@@ -95,7 +96,17 @@ Var DATADIR
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "COPYING"
 !insertmacro MUI_PAGE_DIRECTORY
-Page custom PageExtractData PageExtractDataLeave
+
+!define MUI_PAGE_HEADER_TEXT "$(EXTRACTDATA_PAGE_HEADER_TEXT)"
+!define MUI_PAGE_HEADER_SUBTEXT "$(EXTRACTDATA_PAGE_HEADER_SUBTEXT)"
+!define MUI_DIRECTORYPAGE_TEXT_TOP "$(EXTRACTDATA_PAGE_TEXT_TOP)"
+!define MUI_DIRECTORYPAGE_TEXT_DESTINATION "$(EXTRACTDATA_PAGE_TEXT_DESTINATION)"
+!define MUI_DIRECTORYPAGE_VARIABLE $DATADIR
+!define MUI_DIRECTORYPAGE_VERIFYONLEAVE
+!define MUI_PAGE_CUSTOMFUNCTION_SHOW PageExtractDataShow
+!define MUI_PAGE_CUSTOMFUNCTION_LEAVE PageExtractDataLeave
+!insertmacro MUI_PAGE_DIRECTORY
+
 !insertmacro MUI_PAGE_STARTMENU Application $STARTMENUDIR
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
@@ -129,40 +140,43 @@ Function .onInit
 
 	System::Call "kernel32::GetCurrentProcess() i .s"
 	System::Call "kernel32::IsWow64Process(i s, *i .r0)"
-	IntCmp $0 0 0 end
+	IntCmp $0 0 0 endcheck
 
 	MessageBox MB_OK|MB_ICONSTOP "$(AMD64ONLY)"
 	Abort
 
-end:
+endcheck:
 
 !endif
 
 	ReadRegStr $R0 HKLM "${STRATAGUS_REGKEY}" "InstallLocation"
-	StrCmp $R0 "" 0 end2
+	StrCmp $R0 "" 0 datadir
 
 	MessageBox MB_OK|MB_ICONSTOP "$(NO_STRATAGUS)"
 	Abort
 
-end2:
+datadir:
+
+	ReadRegStr $DATADIR HKLM "${REGKEY}" "DataDir"
+	StrCmp $DATADIR "" 0 end
+
+	StrCpy $DATADIR "D:\"
+
+end:
 
 FunctionEnd
 
 ;--------------------------------
 
-Function PageExtractData
+Function PageExtractDataShow
 
-	ReserveFile "extractdata.ini"
-	!insertmacro MUI_HEADER_TEXT "$(EXTRACTDATA_PAGE_TITLE)" "$(EXTRACTDATA_PAGE_SUBTITLE)"
-	!insertmacro MUI_INSTALLOPTIONS_EXTRACT "extractdata.ini"
-	!insertmacro MUI_INSTALLOPTIONS_WRITE "extractdata.ini" "Field 1" "Text" "$(EXTRACTDATA_PAGE_TEXT)"
-	!insertmacro MUI_INSTALLOPTIONS_DISPLAY "extractdata.ini"
+	FindWindow $0 "#32770" "" $HWNDPARENT
+	GetDlgItem $1 $0 1023
+	ShowWindow $1 0
 
 FunctionEnd
 
 Function PageExtractDataLeave
-
-	!insertmacro MUI_INSTALLOPTIONS_READ $DATADIR "extractdata.ini" "Field 2" "State"
 
 	IfFileExists "$DATADIR\data\rezdat.war" end
 
@@ -229,6 +243,7 @@ Section "${NAME}"
 	WriteRegStr HKLM "${REGKEY}" "DisplayVersion" "${VERSION}"
 	WriteRegDWORD HKLM "${REGKEY}" "NoModify" 1
 	WriteRegDWORD HKLM "${REGKEY}" "NoRepair" 1
+	WriteRegStr HKLM "${REGKEY}" "DataDir" "$DATADIR"
 
 	WriteUninstaller "$INSTDIR\${UNINSTALL}"
 
@@ -296,8 +311,3 @@ SectionEnd
 
 ;--------------------------------
 
-;!system "wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.27.exe"
-
-;!define MUI_FINISHPAGE_TEXT "Setup now needs to extract the data from Warcraft 2.\r\n\r\nNote: You will not be able to play Wargus until this is complete."
-;!define MUI_FINISHPAGE_RUN "$INSTDIR\warinstall.exe"
-;!define MUI_FINISHPAGE_RUN_TEXT "Extract Warcraft 2 data now"
