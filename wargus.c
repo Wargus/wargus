@@ -17,6 +17,10 @@
 
 */
 
+#if defined (MAEMO_GTK) || defined (MAEMO_CHANGES)
+#define MAEMO
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -104,7 +108,7 @@ int main(int argc, char * argv[]) {
 #endif
 
 	struct stat st;
-	int ret, i;
+	int i;
 	char wargus_path[1024];
 	char stratagus_bin[1024];
 	char title_path[1024];
@@ -146,6 +150,12 @@ int main(int argc, char * argv[]) {
 
 #ifdef WIN32
 	sprintf(title_path, "%s\\graphics\\ui\\title.png", wargus_path);
+	char wargus_path_esc[1024];
+	strcpy(wargus_path_esc+1, wargus_path);
+	wargus_path_esc[0] = '"';
+	wargus_path_esc[strlen(wargus_path)+1] = '"';
+	wargus_path_esc[strlen(wargus_path)+2] = 0;
+	strcpy(wargus_path, wargus_path_esc);
 #else
 	sprintf(title_path, "%s/graphics/ui/title.png", wargus_path);
 #endif

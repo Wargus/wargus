@@ -55,5 +55,5 @@ wargus.rc.o:
 	$(WINDRES) wargus.rc -o wargus.rc.o
 
 wargus.exe: wargus.rc.o
-	$(CC) wargus.c wargus.rc.o $(CFLAGS) -o wargus.exe $(LDFLAGS)
+	$(CC) wargus.c wargus.rc.o $(CFLAGS) -mwindows -o wargus.exe $(LDFLAGS)
 
