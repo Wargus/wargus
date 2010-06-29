@@ -2,6 +2,7 @@
 # debian/rules that uses debhelper.
 # GNU copyright 1997 to 1999 by Joey Hess.
 # GNU Copyright 2002-2004 by David Martínez Moreno.
+# GNU Copyright 2010 by Pali Rohár
 
 # Do you want verbosity...? Uncomment this.
 #export DH_VERBOSE=1
@@ -19,7 +20,12 @@ export CFLAGS
 
 build: 
 	dh_testdir
-	$(MAKE)
+
+	if [ -f /etc/maemo_version ]; then \
+		$(MAKE) GTKFLAGS=$(shell pkg-config --cflags --libs hildon-1 gtk+-2.0); \
+	else \
+		$(MAKE); \
+	fi
 
 clean: 
 	dh_testdir
@@ -45,11 +51,11 @@ install: build
 		cp -r campaigns $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/; \
 	fi
 
-	find $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/maps -name "*.pud" -print | xargs rm
+	find $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/maps -name "*.pud*" -print | xargs rm
 	install -m0755 pudconvert $(CURDIR)/debian/wargus/usr/games
 	install -m0755 wartool $(CURDIR)/debian/wargus/usr/games
+	install -m0755 wargus $(CURDIR)/debian/wargus/usr/games
 	install -m0755 build.sh $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus
-	install -m0755 debian/wrapper $(CURDIR)/debian/wargus/usr/games/wargus
 	install -m0644 contrib/wargus.png $(CURDIR)/debian/wargus/usr/share/pixmaps
 	install -m0644 debian/wargus.desktop $(CURDIR)/debian/wargus/usr/share/applications
 
@@ -63,7 +69,7 @@ install: build
 	install -m0644 contrib/score.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
 	install -m0644 contrib/ore,stone,coal.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
 
-	install -m0644 contrib/toccata.mod.gz $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/music/default.mod.gz
+	install -m0644 contrib/toccata.mod.gz "$(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/music/Orc Briefing.ogg.gz"
 
 # Build architecture-independent files here.
 binary-indep: build install

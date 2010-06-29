@@ -2,7 +2,9 @@ Source: wargus
 Section: games
 Priority: optional
 Maintainer: Pali Rohár <pali.rohar@gmail.com>
-Build-Depends: libpng12-dev (>= 1.2.5), libbz2-dev, liblua5.1-dev | liblua5.1-0-dev, debhelper (>> 4.0.0), imagemagick, sharutils
+Build-Depends: debhelper (>> 4.0.0), pkg-config, imagemagick, sharutils,
+ libpng12-dev (>= 1.2.5), libbz2-dev, liblua5.1-dev | liblua5.1-0-dev,
+ libhildon1-dev, libgtk2.0-dev
 Standards-Version: 3.6.1
 Homepage: http://wargus.sourceforge.net
 Vcs-Browser: https://bazaar.launchpad.net/~pali.rohar/+junk/wargus

@@ -1,7 +1,0 @@
-#!/bin/sh
-
-STRATAGUS_DATA=/usr/share/games/stratagus
-STRATAGUS_BINARY=/usr/games/stratagus
-
-${STRATAGUS_BINARY} -d ${STRATAGUS_DATA}/wargus $*
-
