@@ -395,7 +395,7 @@ function RunMap(map, objective, fow, revealmap)
   SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 end
 
-mapname = "maps/default.smp"
+mapname = "maps/multi/(2)mysterious-dragon-isle.smp.gz"
 buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
 mapinfo = {
   playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
