@@ -55,14 +55,23 @@
 
 ;--------------------------------
 
+LangString NO_STRATAGUS ${LANG_ENGLISH} "Stratagus is not installed. You need Stratagus to run Wargus!\nFirst install Stratagus, then Wargus."
+
 LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
 LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration files:"
+
+LangString EXTRACTDATA_BASIC ${LANG_ENGLISH} "Extracting Warcraft II basic files..."
+LangString EXTRACTDATA_MAPS ${LANG_ENGLISH} "Extracting Warcraft II map files..."
+LangString EXTRACTDATA_MUSIC ${LANG_ENGLISH} "Extracting Warcraft II music files..."
+LangString EXTRACTDATA_VIDEOS ${LANG_ENGLISH} "Extracting Warcraft II video files..."
+
+LangString EXTRACTDATA_PAGE_TITLE ${LANG_ENGLISH} "Choose Warcraft II Location"
+LangString EXTRACTDATA_PAGE_SUBTITLE ${LANG_ENGLISH} "Choose the folder in which is Warcraft II data files."
+LangString EXTRACTDATA_PAGE_TEXT ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder to install location. You can specify CD location or install location of Warcraft II data files.\nNote: You need the original WarCraft II CD (Battle.net edition doesn't work) to extract the game data files."
+LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory.\nFile $DATADIR\data\rezdat.war does not exist."
+
 LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} executable"
 LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration and extracted data files and directories in ${NAME} install directory created by user or ${NAME}"
-LangString NO_STRATAGUS ${LANG_ENGLISH} "Stratagus is not installed. You need Stratagus to run Wargus!"
-
-LangString EXTRACTDATA_PAGE_TITLE ${LANG_ENGLISH} "Title"
-LangString EXTRACTDATA_PAGE_SUBTITLE ${LANG_ENGLISH} "Subtitle"
 
 !ifdef AMD64
 LangString AMD64ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only."
@@ -70,7 +79,8 @@ LangString AMD64ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only
 
 ;--------------------------------
 
-Var STARTMENU_FOLDER
+Var STARTMENUDIR
+Var DATADIR
 
 !define MUI_ICON "${ICON}"
 !define MUI_UNICON "${ICON}"
@@ -85,9 +95,9 @@ Var STARTMENU_FOLDER
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "COPYING"
 !insertmacro MUI_PAGE_DIRECTORY
-!insertmacro MUI_PAGE_STARTMENU Application $STARTMENU_FOLDER
-!insertmacro MUI_PAGE_INSTFILES
 Page custom PageExtractData PageExtractDataLeave
+!insertmacro MUI_PAGE_STARTMENU Application $STARTMENUDIR
+!insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
 
 !insertmacro MUI_UNPAGE_CONFIRM
@@ -143,24 +153,23 @@ FunctionEnd
 Function PageExtractData
 
 	ReserveFile "extractdata.ini"
-	!insertmacro MUI_HEADER_TEXT $(EXTRACTDATA_PAGE_TITLE) $(EXTRACTDATA_PAGE_SUBTITLE)
+	!insertmacro MUI_HEADER_TEXT "$(EXTRACTDATA_PAGE_TITLE)" "$(EXTRACTDATA_PAGE_SUBTITLE)"
 	!insertmacro MUI_INSTALLOPTIONS_EXTRACT "extractdata.ini"
+	!insertmacro MUI_INSTALLOPTIONS_WRITE "extractdata.ini" "Field 1" "Text" "$(EXTRACTDATA_PAGE_TEXT)"
 	!insertmacro MUI_INSTALLOPTIONS_DISPLAY "extractdata.ini"
 
 FunctionEnd
 
 Function PageExtractDataLeave
 
-	!insertmacro MUI_INSTALLOPTIONS_READ $R0 "extractdata.ini" "Field 2" "State"
+	!insertmacro MUI_INSTALLOPTIONS_READ $DATADIR "extractdata.ini" "Field 2" "State"
 
-	IfFileExists "$R0\data\rezdat.war" extract
+	IfFileExists "$DATADIR\data\rezdat.war" end
 
-	MessageBox MB_OK|MB_ICONSTOP "This is not valid Warcraft II directory.\nFile $R0\data\rezdat.war does not exist."
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_PAGE_NOT_VALID)"
 	Abort
 
-extract:
-
-; TODO: extract data
+end:
 
 FunctionEnd
 
@@ -193,14 +202,23 @@ Section "${NAME}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
 	File "${FFMPEG2THEORA}"
-	File /r "maps"
-	File /r "scripts"
-	File /r "campaigns"
+	File /r /x .svn /x (8)diablomaze.pud.gz "maps" ; TODO: maps/multi/(8)diablomaze.pud.gz cannot extract Why??
+	File /r /x .svn "scripts"
+	File /r /x .svn "campaigns"
+	File "/oname=graphics\ui\cursors\cross.png" "contrib\cross.png"
+	File "/oname=graphics\missiles\red_cross.png" "contrib\red_cross.png"
+	File "/oname=graphics\ui\mana.png" "contrib\mana.png"
+	File "/oname=graphics\ui\mana2.png" "contrib\mana2.png"
+	File "/oname=graphics\ui\health.png" "contrib\health.png"
+	File "/oname=graphics\ui\health2.png" "contrib\health2.png"
+	File "/oname=graphics\ui\food.png" "contrib\food.png"
+	File "/oname=graphics\ui\score.png" "contrib\score.png"
+	File "/oname=graphics\ui\ore,stone,coal.png" "contrib\ore,stone,coal.png"
 
 	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
-	CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
-	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\${NAME}.lnk" "$INSTDIR\${WARGUS}"
-	CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk" "$INSTDIR\${UNINSTALL}"
+	CreateDirectory "$SMPROGRAMS\$STARTMENUDIR"
+	CreateShortCut "$SMPROGRAMS\$STARTMENUDIR\${NAME}.lnk" "$INSTDIR\${WARGUS}"
+	CreateShortCut "$SMPROGRAMS\$STARTMENUDIR\Uninstall.lnk" "$INSTDIR\${UNINSTALL}"
 	!insertmacro MUI_STARTMENU_WRITE_END
 
 	WriteRegStr HKLM "${REGKEY}" "DisplayName" "${NAME}"
@@ -213,6 +231,32 @@ Section "${NAME}"
 	WriteRegDWORD HKLM "${REGKEY}" "NoRepair" 1
 
 	WriteUninstaller "$INSTDIR\${UNINSTALL}"
+
+SectionEnd
+
+Section "${NAME}" ExtractData
+
+	DetailPrint "$(EXTRACTDATA_BASIC)"
+	SetDetailsPrint none
+	ExecWait "$\"$INSTDIR\${WARTOOL}$\" -v $\"$DATADIR\data$\" $\"$INSTDIR$\""
+	SetDetailsPrint lastused
+
+; TODO: Convert map files using pudconvert.exe
+	DetailPrint "$(EXTRACTDATA_MAPS)"
+	SetDetailsPrint none
+;	ExecWait ""
+	SetDetailsPrint lastused
+
+; TODO: Convert music files using cdparanoia/cdda2wav ??
+	DetailPrint "$(EXTRACTDATA_MUSIC)"
+	SetDetailsPrint none
+;	ExecWait ""
+	SetDetailsPrint lastused
+
+	DetailPrint "$(EXTRACTDATA_VIDEOS)"
+	SetDetailsPrint none
+	ExecWait "cmd /c $\"cd videos && for %f in (*.smk) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\""
+	SetDetailsPrint lastused
 
 SectionEnd
 
@@ -229,10 +273,10 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${UNINSTALL}"
 	RMDir "$INSTDIR"
 
-	!insertmacro MUI_STARTMENU_GETFOLDER Application $STARTMENU_FOLDER
-	Delete "$SMPROGRAMS\$STARTMENU_FOLDER\${NAME}.lnk"
-	Delete "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk"
-	RMDir "$SMPROGRAMS\$STARTMENU_FOLDER"
+	!insertmacro MUI_STARTMENU_GETFOLDER Application $STARTMENUDIR
+	Delete "$SMPROGRAMS\$STARTMENUDIR\${NAME}.lnk"
+	Delete "$SMPROGRAMS\$STARTMENUDIR\Uninstall.lnk"
+	RMDir "$SMPROGRAMS\$STARTMENUDIR"
 
 	DeleteRegKey /ifempty HKLM "${REGKEY}"
 
@@ -246,8 +290,8 @@ Section /o "un.Configuration" Configuration
 SectionEnd
 
 !insertmacro MUI_UNFUNCTION_DESCRIPTION_BEGIN
-!insertmacro MUI_DESCRIPTION_TEXT ${Executable} $(DESC_REMOVEEXE)
-!insertmacro MUI_DESCRIPTION_TEXT ${Configuration} $(DESC_REMOVECONF)
+!insertmacro MUI_DESCRIPTION_TEXT "${Executable}" "$(DESC_REMOVEEXE)"
+!insertmacro MUI_DESCRIPTION_TEXT "${Configuration}" "$(DESC_REMOVECONF)"
 !insertmacro MUI_UNFUNCTION_DESCRIPTION_END
 
 ;--------------------------------
