@@ -2,24 +2,11 @@
 
 set -e
 
-# Maemo section
-if [ -f /etc/maemo_version ]; then
-	if [ "$1" != "remove" ] || [ "$1" != "abort-install" ]; then
-		exit 0
-	fi
-
-	echo
-	echo "To completly remove wargus data, remove dir:"
-	echo "/opt/stratagus/share/wargus"
-	echo
-
-	exit 0
-fi
-
 case "$1" in 
     abort-install|remove)
         # also remove the extracted warcraft 2 data files
         rm -rf /usr/share/games/stratagus/wargus
+	rm -rf /opt/stratagus/share/wargus
     ;;
     *)
 #        echo "postrm called with unknown argument \`$1'" >&2

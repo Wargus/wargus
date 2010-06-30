@@ -1,11 +1,5 @@
 #!/bin/sh -e
 
-# Maemo section
-if [ "`uname -a | grep -is arm`" ] && [ -f /etc/maemo_version ]; then
-	echo "Note: debconf script was not ported to Maemo"
-	exit 0
-fi
-
 # Source debconf library
 . /usr/share/debconf/confmodule
 

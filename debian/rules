@@ -23,6 +23,7 @@ build:
 
 	if [ -f /etc/maemo_version ]; then \
 		$(MAKE) GTKFLAGS=$(shell pkg-config --cflags --libs hildon-1 gtk+-2.0); \
+		gcc warextract.c -o warextract -W -Wall -O2 $(shell pkg-config --cflags --libs hildon-1 gtk+-2.0)
 	else \
 		$(MAKE); \
 	fi
@@ -32,6 +33,8 @@ clean:
 	dh_testroot
 
 	$(MAKE) clean
+
+	if [ -f /etc/maemo_version ]; then rm -f warextract; fi
 
 	dh_clean
 
@@ -71,6 +74,10 @@ install: build
 
 	install -m0644 contrib/toccata.mod.gz "$(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/music/Orc Briefing.ogg.gz"
 
+	if [ -f /etc/maemo_version ]; then \
+		install -m0644 warextract $(CURDIR)/debian/wargus/usr/games \
+	fi
+
 # Build architecture-independent files here.
 binary-indep: build install
 
@@ -103,6 +110,7 @@ binary-arch: build install
 		mv $(CURDIR)/debian/wargus/usr/share/doc/wargus $(CURDIR)/debian/wargus/opt/stratagus/share/doc/; \
 		mv $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus $(CURDIR)/debian/wargus/opt/stratagus/share/; \
 		mv $(CURDIR)/debian/wargus/usr/share/man/man6/* $(CURDIR)/debian/wargus/opt/stratagus/share/man/; \
+		ln -s /opt/stratagus/bin/warextract $(CURDIR)/debian/wargus/usr/games/warextract; \
 		ln -s /opt/stratagus/bin/wartool $(CURDIR)/debian/wargus/usr/games/wartool; \
 		ln -s /opt/stratagus/bin/wargus $(CURDIR)/debian/wargus/usr/games/wargus; \
 		ln -s /opt/stratagus/bin/pudconvert $(CURDIR)/debian/wargus/usr/games/pudconvert; \
@@ -124,6 +132,8 @@ binary-arch: build install
 		for line in $(shell convert contrib/wargus.png -resize 48x48 png:- | uuencode -m - | tail -n +2 | head -n -1); do \
 			echo " $$line" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		done; \
+		rm -f $(CURDIR)/debian/wargus/DEBIAN/config
+		rm -f $(CURDIR)/debian/wargus/DEBIAN/templates
 	fi
 
 	dh_md5sums

@@ -11,19 +11,7 @@ if [ -f /etc/maemo_version ]; then
 		echo "postinst called with unknown argument \`$1'" >&2
 		exit 1
 	fi
-
-	echo
-	echo "Note: You need the original WarCraft II CD (Battle.net edition doesn't work)"
-       	echo "to extract the game data files. Data files are needed to run wargus."
-	echo
-	echo "Run this script to extract data from dir DATA_PATH :"
-	echo "/opt/stratagus/share/wargus/build.sh -p DATA_PATH -b /opt/stratagus/bin -o /opt/stratagus/share/wargus -s -c"
-	echo
-	echo "Or extract data on computer using wargus from"
-        echo "https://code.launchpad.net/~pali.rohar/+junk/wargus"
-	echo "and copy extracted data to /opt/stratagus/share/wargus"
-	echo
-
+	/usr/games/warextract || exit 1
 	exit 0
 fi
 
