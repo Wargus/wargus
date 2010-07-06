@@ -1,19 +1,27 @@
-Template: shared/wargusextractdata
+Template: wargus/extractdata
 Type: boolean
 Default: true
-Description: Extract the data
+Description: Extract Warcraft II data files now
 
-Template: shared/warguscdpath
+Template: wargus/cdpath
 Type: string
-Default: /mnt/cdrom
-Description: Path to your WarCraft II CD mount point.
+Default: /media/cdrom
+Description: Path to your Warcraft II CD mount point
 
-Template: shared/wargusextractvideo
+Template: wargus/extractvideo
 Type: boolean
 Default: true
-Description: Also extract the video data.
+Description: Extract video files
 
-Template: shared/wargusextractmusic
+Template: wargus/extractmusic
 Type: boolean
 Default: true
-Description: Also extract the audio CD tracks.
+Description: Extract audio CD tracks
+
+Template: wargus/nodata
+Type: error
+Description: Warcraft II data files not found
+
+Template: wargus/noaudio
+Type: error
+Description: Warcraft II audio cd tracks not found

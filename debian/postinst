@@ -19,11 +19,11 @@ extract() {
 		return $?
 	fi
 
-	db_get shared/wargusextractdata || true
+	db_get wargus/extractdata || true
 
 	if [ "$RET" = "true" ]; then
 
-		db_get shared/warguscdpath || true
+		db_get wargus/cdpath || true
 
 		CDPATH=${RET}
 		EXTRACTVIDEO=
@@ -31,12 +31,12 @@ extract() {
 
 		if [ -d "${CDPATH}" ]; then
 
-			db_get shared/wargusextractvideo || true
+			db_get wargus/extractvideo || true
 			if [ ${RET} = "true" ]; then
 				EXTRACTVIDEO="-v"
 			fi
 
-			db_get shared/wargusextractmusic || true
+			db_get wargus/extractmusic || true
 			if [ ${RET} = "true" ]; then
 				EXTRACTMUSIC="-m"
 			fi
