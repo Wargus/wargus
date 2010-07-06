@@ -23,7 +23,7 @@ build:
 
 	if [ -f /etc/maemo_version ]; then \
 		$(MAKE) GTKFLAGS=$(shell pkg-config --cflags --libs hildon-1 gtk+-2.0); \
-		gcc warextract.c -o warextract -W -Wall -O2 $(shell pkg-config --cflags --libs hildon-1 gtk+-2.0)
+		gcc warextract.c -o warextract -W -Wall -O2 $(shell pkg-config --cflags --libs hildon-1 gtk+-2.0); \
 	else \
 		$(MAKE); \
 	fi
@@ -75,7 +75,7 @@ install: build
 	install -m0644 contrib/toccata.mod.gz "$(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/music/Orc Briefing.ogg.gz"
 
 	if [ -f /etc/maemo_version ]; then \
-		install -m0644 warextract $(CURDIR)/debian/wargus/usr/games \
+		install -m0644 warextract $(CURDIR)/debian/wargus/usr/games; \
 	fi
 
 # Build architecture-independent files here.
@@ -119,6 +119,9 @@ binary-arch: build install
 		ln -s /opt/stratagus/share/man/wargus.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/wargus.6.gz; \
 		ln -s /opt/stratagus/share/man/wartool.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/wartool.6.gz; \
 		ln -s /opt/stratagus/share/man/pudconvert.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/pudconvert.6.gz; \
+		echo "X-Osso-Type=application/x-executable" >> $(CURDIR)/debian/wargus/usr/share/applications/hildon/wargus.desktop; \
+		echo "X-Osso-Service=org.stratagus.wargus" >> $(CURDIR)/debian/wargus/usr/share/applications/hildon/wargus.desktop; \
+		sed "s/Exec=.*/Exec=\/opt\/stratagus\/bin\/wargus/" -i $(CURDIR)/debian/wargus/usr/share/applications/hildon/wargus.desktop; \
 	fi
 
 	dh_shlibdeps
@@ -127,13 +130,16 @@ binary-arch: build install
 	# Maemo section - Hildon Application Manager
 	if [ -f /etc/maemo_version ]; then \
 		sed "s/Section: .*/Section: user\/games/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
+		# TODO: Add support for convert video using ffmpeg2theora. Now this package is not in maemo, so remove Pre-Depends section
+		grep -v "Pre-Depends:" $(CURDIR)/debian/wargus/DEBIAN/control > $(CURDIR)/debian/wargus/DEBIAN/control.new; \
+		mv $(CURDIR)/debian/wargus/DEBIAN/control.new $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Display-Name: Wargus - WarCraft II" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Icon-26:" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		for line in $(shell convert contrib/wargus.png -resize 48x48 png:- | uuencode -m - | tail -n +2 | head -n -1); do \
 			echo " $$line" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		done; \
-		rm -f $(CURDIR)/debian/wargus/DEBIAN/config
-		rm -f $(CURDIR)/debian/wargus/DEBIAN/templates
+		rm -f $(CURDIR)/debian/wargus/DEBIAN/config; \
+		rm -f $(CURDIR)/debian/wargus/DEBIAN/templates; \
 	fi
 
 	dh_md5sums

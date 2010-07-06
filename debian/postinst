@@ -5,18 +5,20 @@
 
 set -e
 
+# Source debconf library
+if [ ! -f /etc/maemo_version ]; then
+	. /usr/share/debconf/confmodule
+fi	
+
 extract() {
 
 	# Maemo section
 	if [ -f /etc/maemo_version ]; then
 		cd /opt/stratagus/share/wargus
-		/usr/games/warextract
+		/opt/stratagus/bin/warextract
 		return $?
 	fi
 
-	# Source debconf library
-	. /usr/share/debconf/confmodule
-	
 	db_get shared/wargusextractdata || true
 
 	if [ "$RET" = "true" ]; then
