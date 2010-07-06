@@ -27,11 +27,11 @@
 #include <hildon/hildon.h>
 
 #define TITLE "Wargus"
-#define DATA_NEED_COPY "Note: You need the original Warcraft II CD\n(Battle.net edition doesn't work) to extract the game data files.\nData files are needed to run Wargus.\nFirst copy Warcraft II CD to folder MyDocs/WAR2 in phone,\nthen press OK."
-#define DATA_FOUND "Warcraft II data files was found in folder MyDocs/WAR2\nPress OK to extract data now.\nPlease be patient, the data may take a couple of minutes to extract..."
+#define DATA_NEED_COPY "Note: You need the original Warcraft II CD (Battle.net edition doesn't work)\nto extract the game data files. Data files are needed to run Wargus.\n\nFirst copy Warcraft II CD to folder MyDocs/WAR2 in phone, then press OK."
+#define DATA_FOUND "Warcraft II data files was found in folder MyDocs/WAR2\nPlease be patient, the data may take a couple of minutes to extract...\n\nPress OK to extract data now."
 #define DATA_NOT_FOUND "Error: Warcraft II data files was not found.\nCheck if you have in phone file MyDocs/WAR2/DATA/RESDAT.WAR"
 #define EXTRACT_OK "Warcraft II data files was successfull extracted."
-#define EXTRACT_FAILED "Error: Cannot extract Warcraft II data files,\n extract program crashed."
+#define EXTRACT_FAILED "Error: Cannot extract Warcraft II data files, extract program crashed."
 
 #define EXTRACT_BIN "/opt/stratagus/share/wargus/build.sh"
 #define DATADIR "/home/user/MyDocs/WAR2"
@@ -40,7 +40,7 @@
 #define EXTRACT_VIDEOS "-v"
 #define EXTRACT_MUSIC "-m"
 
-#define EXTRACT_COMMAND = EXTRACT_BIN " -p " DATADIR " -b " BINPATH " -o " EXTRACTDIR " -s -c " EXTRACT_VIDEOS " " EXTRACT_MUSIC
+#define EXTRACT_COMMAND EXTRACT_BIN " -p " DATADIR " -b " BINPATH " -o " EXTRACTDIR " -s -c " EXTRACT_VIDEOS " " EXTRACT_MUSIC
 
 inline void message(char * title, char * text) {
 
@@ -56,7 +56,7 @@ inline void message(char * title, char * text) {
 
 }
 
-int main() {
+int main(int argc, char * argv[]) {
 
 	hildon_gtk_init(&argc, &argv);
 
@@ -72,12 +72,11 @@ int main() {
 	}
 
 	message(TITLE, DATA_FOUND);
-	char extract_command[] = EXTRACT_COMMAND;
-	int ret = system(extract_command, extract_argv);
+	int ret = system(EXTRACT_COMMAND);
 
 	if ( ret != 0 ) {
 
-		error(TITLE, EXTRACT_FAILED);
+		message(TITLE, EXTRACT_FAILED);
 		return -1;
 
 	}
