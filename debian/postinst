@@ -15,7 +15,7 @@ extract() {
 	# Maemo section
 	if [ -f /etc/maemo_version ]; then
 		cd /opt/stratagus/share/wargus
-		/opt/stratagus/bin/warextract
+		run-standalone.sh /opt/stratagus/bin/warextract
 		return $?
 	fi
 
