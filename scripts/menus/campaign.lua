@@ -1,3 +1,5 @@
+--      (c) Copyright 2010      by Pali Rohár
+	
 function Briefing(title, objs, bg, text, voices)
   local menu = WarMenu(nil, bg)
 

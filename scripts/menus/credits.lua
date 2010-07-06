@@ -1,3 +1,5 @@
+--      (c) Copyright 2010      by Pali Rohár
+
 function RunShowCreditsMenu()
   local menu = WarMenu(nil, "ui/Credits_background.png")
   local offx = (Video.Width - 640) / 2

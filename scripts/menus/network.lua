@@ -1,4 +1,5 @@
 --  (c) Copyright 2005-2006 by François Beerten and Jimmy Salmon
+--  (c) Copyright 2010      by Pali Rohár
 
 function bool2int(boolvalue)
   if boolvalue == true then

@@ -1,3 +1,5 @@
+--      (c) Copyright 2010      by Pali Rohár
+
 SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 
 -- Global useful objects for menus  ----------

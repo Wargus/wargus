@@ -12,6 +12,7 @@
 ##	build.sh	-	The graphics and sound extractor.
 ##
 ##	(c) Copyright 1999-2005 by The Stratagus Team
+##	(c) Copyright 2010      by Pali Rohár
 ##
 ##	Stratagus is free software; you can redistribute it and/or modify
 ##	it under the terms of the GNU General Public License as published

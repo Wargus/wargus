@@ -1,3 +1,5 @@
+--      (c) Copyright 2010      by Pali Rohár
+
 function AddSoundOptions(menu, offx, offy, centerx, bottom)
   local b
 
