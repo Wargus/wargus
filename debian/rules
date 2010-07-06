@@ -128,9 +128,9 @@ binary-arch: build install
 	dh_gencontrol
 
 	# Maemo section - Hildon Application Manager
+	# TODO: Add support for convert video using ffmpeg2theora. Now this package is not in maemo, so remove Pre-Depends section
 	if [ -f /etc/maemo_version ]; then \
 		sed "s/Section: .*/Section: user\/games/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
-		# TODO: Add support for convert video using ffmpeg2theora. Now this package is not in maemo, so remove Pre-Depends section
 		grep -v "Pre-Depends:" $(CURDIR)/debian/wargus/DEBIAN/control > $(CURDIR)/debian/wargus/DEBIAN/control.new; \
 		mv $(CURDIR)/debian/wargus/DEBIAN/control.new $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Display-Name: Wargus - WarCraft II" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
