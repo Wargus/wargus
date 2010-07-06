@@ -145,7 +145,7 @@ Function .onInit
 
 	System::Call "kernel32::GetCurrentProcess() i .s"
 	System::Call "kernel32::IsWow64Process(i s, *i .r0)"
-	IntCmp $0 0 0 endcheck
+	IntCmp $0 0 0 0 endcheck
 
 	MessageBox MB_OK|MB_ICONSTOP "$(AMD64ONLY)"
 	Abort
