@@ -52,10 +52,10 @@ campaign_steps = {
   CreatePictureStep("../campaigns/orc-exp/interface/Act_IV_-_Prelude_to_New_Worlds.png", "../sounds/orc/act.wav", "Act IV", "Prelude to New Worlds"),
   CreateMapStep("campaigns/orc-exp/levelx10o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx11o.smp"),
-  CreateMapStep("campaigns/orc-exp/levelx12o.smp")
+  CreateMapStep("campaigns/orc-exp/levelx12o.smp"),
+  CreateVideoStep("../videos/orc-exp-2.ogv")
+--EndText
 }
-
---TODO: fix videos
 
 campaign_menu = { 1, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17 }
 

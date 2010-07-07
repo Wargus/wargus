@@ -1546,21 +1546,21 @@ Control Todo[] = {
 #endif
 
 {V,0,"videos/orc-1",                                   0 __},
-{V,0,"videos/orc-2",                                   2 __},
-//{V,0,"videos/video3",                                  3 __},
-{V,0,"videos/video4",                                  4 __},
-//{V,0,"videos/gameintro",                               5 __},
+{V,0,"videos/orc-3",                                   2 __},
+//{V,0,"videos/human-4",                                 3 __}, //Fixme: 3 and 4 same?
+{V,0,"videos/human-4",                                 4 __},
+//{V,0,"videos/gameintro",                               5 __}, //Fixme: 5 and 6 same?
 {V,0,"videos/gameintro",                               6 __},
-//{V,0,"videos/video7",                                  8 __},
-{V,0,"videos/video8",                                  9 __},
-{V,0,"videos/video9",                                  10 __},
-{V,0,"videos/video10",                                 11 __},
-{V,0,"videos/video11",                                 12 __},
-{V,0,"videos/video12",                                 14 __},
+//{V,0,"videos/orc-4",                                   8 __}, //Fixme: 8 and 9 same?
+{V,0,"videos/orc-4",                                   9 __},
+{V,0,"videos/human-3",                                 10 __},
+{V,0,"videos/human-1",                                 11 __},
+{V,0,"videos/orc-2",                                   12 __},
+{V,0,"videos/human-2",                                 14 __},
 {V,2,"videos/human-exp-1",                             15 __},
 {V,2,"videos/orc-exp-1",                               16 __},
-{V,2,"videos/video15",                                 17 __},
-{V,2,"videos/video16",                                 18 __},
+{V,2,"videos/human-exp-2",                             17 __},
+{V,2,"videos/orc-exp-2",                               18 __},
 
 #undef __
 #undef _2

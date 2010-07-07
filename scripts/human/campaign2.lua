@@ -52,10 +52,10 @@ campaign_steps = {
   CreatePictureStep("../campaigns/human-exp/interface/Act_IV_-_The_Measure_of_Valor.png", "../sounds/human/act.wav", "Act IV", "The Measure of Valor"),
   CreateMapStep("campaigns/human-exp/levelx10h.smp"),
   CreateMapStep("campaigns/human-exp/levelx11h.smp"),
-  CreateMapStep("campaigns/human-exp/levelx12h.smp")
+  CreateMapStep("campaigns/human-exp/levelx12h.smp"),
+  CreateVideoStep("../videos/human-exp-2.ogv")
+--EndText
 }
-
---TODO: fix videos
 
 campaign_menu = { 1, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17 }
 
