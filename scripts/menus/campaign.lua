@@ -174,7 +174,8 @@ function CampaignButtonFunction(campaign, race, exp, i, menu)
     currentState = i
     menu:stop()
     RunCampaign(campaign)
-    RunCampaignSubmenu(campaign, race, exp)
+-- TODO: If user load game when playing another, this show campaign submenu... Temporary fix, commented next line
+--    RunCampaignSubmenu(campaign, race, exp)
   end
 end
 
