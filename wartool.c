@@ -2810,6 +2810,18 @@ void ConvertFilePuds(char **pudlist)
 	int i;
 
 	for (i = 0; pudlist[i][0] != '\0'; ++i) {
+		char origname[1024];
+		if (CDType & CD_UPPER) {
+			char filename[1024];
+			int j = 0;
+			strcpy(filename, pudlist[i]);
+			strcpy(origname, pudlist[i]);
+			pudlist[i] = filename;
+			while (pudlist[i][j]) {
+				pudlist[i][j] = toupper(pudlist[i][j]);
+				++j;
+			}
+		}
 		sprintf(pudname, "%s/%s", ArchiveDir, pudlist[i]);
 		if (stat(pudname, &sb)) {
 			continue;
@@ -2827,7 +2839,13 @@ void ConvertFilePuds(char **pudlist)
 		fclose(f);
 
 		strcpy(base, strrchr(pudlist[i], '/') + 1);
-		*strstr(base, ".pud") = '\0';
+
+		if (CDType & CD_UPPER) {
+			*strstr(base, ".PUD") = '\0';
+			pudlist[i] = origname;
+		} else {
+			*strstr(base, ".pud") = '\0';
+		}
 
 		if (strstr(pudlist[i], "puds/")) {
 			sprintf(outdir, "%s/maps/%s", Dir, strstr(pudlist[i], "puds/") + 5);
@@ -4397,7 +4415,8 @@ int main(int argc, char** argv)
 		}
 	}
 
-	ConvertFilePuds(expansion_cd ? ExpansionPuds : OriginalPuds);
+	ConvertFilePuds(OriginalPuds);
+	ConvertFilePuds(ExpansionPuds);
 
 	if (ArchiveBuffer) {
 		CloseArchive();

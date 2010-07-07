@@ -61,12 +61,10 @@ LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
 LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data files:"
 
 LangString EXTRACTDATA_BASIC ${LANG_ENGLISH} "Extracting Warcraft II basic files..."
-LangString EXTRACTDATA_MAPS ${LANG_ENGLISH} "Extracting Warcraft II map files..."
 LangString EXTRACTDATA_MUSIC ${LANG_ENGLISH} "Extracting Warcraft II music files..."
 LangString EXTRACTDATA_VIDEOS ${LANG_ENGLISH} "Extracting Warcraft II video files..."
 
 LangString EXTRACTDATA_BACIS_FAILED ${LANG_ENGLISH} "Extracting Warcraft II basic files failed."
-LangString EXTRACTDATA_MAPS_FAILED ${LANG_ENGLISH} "Extracting Warcraft II map files failed."
 LangString EXTRACTDATA_MUSIC_FAILED ${LANG_ENGLISH} "Extracting Warcraft II music files failed."
 LangString EXTRACTDATA_VIDEOS_FAILED ${LANG_ENGLISH} "Extracting Warcraft II video files failed."
 
@@ -266,21 +264,9 @@ Section "${NAME}" ExtractData
 	SetDetailsPrint none
 	ExecWait "$\"$INSTDIR\${WARTOOL}$\" -v $\"$DATADIR\data$\" $\"$INSTDIR$\"" $0
 	SetDetailsPrint lastused
-	IntCmp $0 0 maps
-
-	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_BACIS_FAILED)"
-	Abort
-
-maps:
-
-; TODO: Convert map files using pudconvert.exe
-	DetailPrint "$(EXTRACTDATA_MAPS)"
-	SetDetailsPrint none
-;	ExecWait "" $0
-	SetDetailsPrint lastused
 	IntCmp $0 0 music
 
-	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_MAPS_FAILED)"
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_BACIS_FAILED)"
 	Abort
 
 music:

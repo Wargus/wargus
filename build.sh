@@ -54,7 +54,6 @@ CDPARANOIA="cdparanoia"
 
 SKIP_CONTRIB="no"
 SKIP_SCRIPTS="no"
-SKIP_PUDS="no"
 
 while [ $# -gt 0 ]; do
 	case "$1" in
@@ -100,17 +99,6 @@ if [ ! -f "$DATADIR/rezdat.war" ] && [ ! -f "$DATADIR/REZDAT.WAR" ] && [ ! -f "$
 	echo "Error: '$DATADIR/War Resources' does not exist"
 	echo "Specify the location of the data files with the '-p' option"
 	exit 1
-fi
-
-if [ -d "$DATADIR/../puds" ]; then
-	PUDSDIR="$DATADIR/../puds"
-elif [ -d "$DATADIR/../PUDS" ]; then
-	PUDSDIR="$DATADIR/../PUDS"
-else
-	echo "Warning: PUDS Directory '$DATADIR/../puds' does not exist"
-	echo "Warning: PUDS Directory '$DATADIR/../PUDS' does not exist"
-	echo "Additional maps will not be converted"
-	SKIP_PUDS="yes"
 fi
 
 if [ "$SKIP_CONTRIB" = "no" ] ; then
@@ -226,17 +214,6 @@ fi
 
 # extract data using wartool
 $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
-
-# convert maps using pudconvert
-if [ "$SKIP_PUDS" = "no" ]; then
-	for dir in $PUDSDIR/*; do
-		OUTPUTDIR="$DIR/maps/$(echo $dir | sed 's/.*\///' | tr A-Z a-z)/"
-		[ -d "$OUTPUTDIR" ] || mkdir "$OUTPUTDIR"
-		for file in $dir/*; do
-			$BINPATH/pudconvert "$file" "$OUTPUTDIR"
-		done
-	done
-fi
 
 # convert video files to theora format
 if [ "$VIDEO" != "" ]; then
