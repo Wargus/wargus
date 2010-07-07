@@ -7,14 +7,15 @@ function Briefing(title, objs, bg, text, voices)
 
   Objectives = objs
 
-  menu:addLabel(title, (70 + 340) / 2 * Video.Width / 640, 28 * Video.Height / 480,
-    Fonts["large"], true)
+  if (title ~= nil) then
+    menu:addLabel(title, (70 + 340) / 2 * Video.Width / 640, 28 * Video.Height / 480, Fonts["large"], true)
+  end
 
   local t = LoadBuffer(text)
-  t = "\n\n\n\n\n\n\n\n\n\n\n\n\n" .. t .. "\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  t = "\n\n\n\n\n\n" .. t .. "\n\n\n\n\n\n\n\n\n\n\n\n\n"
   local sw = ScrollingWidget(320, 170 * Video.Height / 480)
   sw:setBackgroundColor(Color(0,0,0,0))
-  sw:setSpeed(0.38)
+  sw:setSpeed(0.28)
   local l = MultiLineLabel(t)
   l:setFont(Fonts["large"])
   l:setAlignment(MultiLineLabel.LEFT)
@@ -23,17 +24,19 @@ function Briefing(title, objs, bg, text, voices)
   sw:add(l, 0, 0)
   menu:add(sw, 70 * Video.Width / 640, 80 * Video.Height / 480)
 
-  menu:addLabel("Objectives:", 372 * Video.Width / 640, 306 * Video.Height / 480, Fonts["large"], false)
+  if (objs ~= nil) then
+    menu:addLabel("Objectives:", 372 * Video.Width / 640, 306 * Video.Height / 480, Fonts["large"], false)
 
-  local objectives = ""
-  table.foreachi(objs, function(k,v) objectives = objectives .. v .. "\n" end)
+    local objectives = ""
+    table.foreachi(objs, function(k,v) objectives = objectives .. v .. "\n" end)
 
-  local l = MultiLineLabel(objectives)
-  l:setFont(Fonts["large"])
-  l:setAlignment(MultiLineLabel.LEFT)
-  l:setLineWidth(250 * Video.Width / 640)
-  l:adjustSize()
-  menu:add(l, 372 * Video.Width / 640, (306 * Video.Height / 480) + 30)
+    local l = MultiLineLabel(objectives)
+    l:setFont(Fonts["large"])
+    l:setAlignment(MultiLineLabel.LEFT)
+    l:setLineWidth(250 * Video.Width / 640)
+    l:adjustSize()
+    menu:add(l, 372 * Video.Width / 640, (306 * Video.Height / 480) + 30)
+  end
 
   local voice = 0
   local channel = -1
@@ -67,6 +70,36 @@ function Briefing(title, objs, bg, text, voices)
   SetGameSpeed(speed)
 end
 
+function GetCampaignState(race, exp)
+  if (race == "orc" and exp ~= "exp") then
+    return preferences.CampaignOrc
+  elseif (race == "human" and exp ~= "exp") then
+    return preferences.CampaignHuman
+  elseif (race == "orc" and exp == "exp") then
+    return preferences.CampaignOrcX
+  elseif (race == "human" and exp == "exp") then
+    return preferences.CampaignHumanX
+  end
+  return 1
+end
+
+function IncreaseCampaignState(race, exp, state)
+  if (race == "orc" and exp ~= "exp") then
+    if (state ~= preferences.CampaignOrc) then return end
+    preferences.CampaignOrc = preferences.CampaignOrc + 1
+  elseif (race == "human" and exp ~= "exp") then
+    if (state ~= preferences.CampaignHuman) then return end
+    preferences.CampaignHuman = preferences.CampaignHuman + 1
+  elseif (race == "orc" and exp == "exp") then
+    if (state ~= preferences.CampaignOrcX) then return end
+    preferences.CampaignOrcX = preferences.CampaignOrcX + 1
+  elseif (race == "human" and exp == "exp") then
+    if (state ~= preferences.CampaignHumanX) then return end
+    preferences.CampaignHumanX = preferences.CampaignHumanX + 1
+  end
+  SavePreferences()
+end
+
 function CreatePictureStep(bg, sound, title, text)
   return function()
     PlayMusic(sound)
@@ -86,6 +119,9 @@ function CreateMapStep(map)
   return function()
     Load(map)
     RunMap(map)
+    if (GameResult == GameVictory) then
+      IncreaseCampaignState(currentRace, currentExp, currentState)
+    end
   end
 end
 
@@ -96,27 +132,21 @@ function CreateVideoStep(video)
   end
 end
 
+function CreateVictoryStep(bg, text, voices)
+  return function()
+    Briefing(nil, nil, bg, text, voices)
+    GameResult = GameVictory
+  end
+end
+
 function CampaignButtonTitle(race, exp, i)
-  local name
-
-  name = "campaigns/" .. race
-
-  if (exp == "exp") then
-    name = name .. "-exp"
-  end
-
+  local name = "campaigns/" .. race
+  if (exp == "exp") then name = name .. "-exp" end
   name = name .. "/level"
-
-  if (exp == "exp") then
-    name = name .. "x"
-  end
-
-  if (i<10) then
-    name = name .. "0"
-  end
-
+  if (exp == "exp") then name = name .. "x" end
+  if (i<10) then name = name .. "0" end
   name = name .. i
-  
+
   if (race == "orc") then
     name = name .. "o"
   else
@@ -124,6 +154,7 @@ function CampaignButtonTitle(race, exp, i)
   end
 
   name = name .. "_c2.sms"
+
   title = ""
   Load(name)
 
@@ -134,6 +165,19 @@ function CampaignButtonTitle(race, exp, i)
   return title
 end
 
+function CampaignButtonFunction(campaign, race, exp, i, menu)
+  return function()
+    position = campaign_menu[i]
+    currentCampaign = campaign
+    currentRace = race
+    currentExp = exp
+    currentState = i
+    menu:stop()
+    RunCampaign(campaign)
+    RunCampaignSubmenu(campaign, race, exp)
+  end
+end
+
 function RunCampaignSubmenu(campaign, race, exp)
   Load(campaign)
 
@@ -141,20 +185,18 @@ function RunCampaignSubmenu(campaign, race, exp)
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
-  local show_buttons = table.getn(campaign_menu)
+  local show_buttons = GetCampaignState(race, exp)
   local half = math.ceil(show_buttons/2)
 
   for i=1,half do
-    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 98, offy + 100 + (36 * i),
-      function() position = campaign_menu[i]; currentCampaign = campaign; RunCampaign(campaign); menu:stop(); RunCampaignSubmenu(campaign, race, exp) end)
+    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 98, offy + 100 + (36 * i), CampaignButtonFunction(campaign, race, exp, i, menu))
   end
 
   for i=1+half,show_buttons do
-    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 326, offy + 100 + (36 * (i - half)),
-      function() position = campaign_menu[i]; currentCampaign = campaign; RunCampaign(campaign); menu:stop(); RunCampaignSubmenu(campaign, race, exp) end)
+    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 326, offy + 100 + (36 * (i - half)), CampaignButtonFunction(campaign, race, exp, i, menu))
   end
 
-  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 212 + (36 * 5),
+  menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 212 + (36 * 5),
     function() menu:stop(); RunCampaignGameMenu() end)
 
   menu:run()
@@ -189,19 +231,21 @@ function RunCampaignGameMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
-  menu:addFullButton("~!Human campaign", "h", offx + 208, offy + 212 + (36 * 0),
-    function() RunCampaignSubmenu("scripts/human/campaign1.lua", "human", ""); menu:stop() end)
-  menu:addFullButton("~!Orc campaign", "o", offx + 208, offy + 212 + (36 * 1),
+  menu:addLabel("Tides of Darkness", offx + 320, offy + 212 - 25)
+  menu:addFullButton("~!Orc campaign", "o", offx + 208, offy + 212 + (36 * 0),
     function() RunCampaignSubmenu("scripts/orc/campaign1.lua", "orc", ""); menu:stop() end)
+  menu:addFullButton("~!Human campaign", "h", offx + 208, offy + 212 + (36 * 1),
+    function() RunCampaignSubmenu("scripts/human/campaign1.lua", "human", ""); menu:stop() end)
 
   if (expansion == true) then
-    menu:addFullButton("~!Human expansion levels", "h", offx + 208, offy + 212 + (36 * 2),
-      function() RunCampaignSubmenu("scripts/human/campaign2.lua", "human", "exp"); menu:stop() end)
-    menu:addFullButton("~!Orc expansion levels", "o", offx + 208, offy + 212 + (36 * 3),
+    menu:addLabel("Beyond the Dark Portal", offx + 320, offy + 212 + (36 * 3) - 25)
+    menu:addFullButton("O~!rc expansion levels", "r", offx + 208, offy + 212 + (36 * 3),
       function() RunCampaignSubmenu("scripts/orc/campaign2.lua", "orc", "exp"); menu:stop() end)
+    menu:addFullButton("H~!uman expansion levels", "u", offx + 208, offy + 212 + (36 * 4),
+      function() RunCampaignSubmenu("scripts/human/campaign2.lua", "human", "exp"); menu:stop() end)
   end
 
-  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 212 + (36 * 5),
+  menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 212 + (36 * 5),
     function() menu:stop() end)
 
   menu:run()

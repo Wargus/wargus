@@ -33,32 +33,32 @@
 --	Define the campaign
 
 campaign_steps = {
-  CreatePictureStep("../campaigns/human/interface/Act_I_-_Shores_of_Lordareon.png", "../sounds/human/act.wav", "Act I", "The Shores of Lordareon"),
+  CreatePictureStep("campaigns/human/interface/Act_I_-_Shores_of_Lordareon.png", "sounds/human/act.wav", "Act I", "The Shores of Lordareon"),
   CreateMapStep("campaigns/human/level01h.smp"),
   CreateMapStep("campaigns/human/level02h.smp"),
   CreateMapStep("campaigns/human/level03h.smp"),
   CreateMapStep("campaigns/human/level04h.smp"),
 
-  CreatePictureStep("../campaigns/human/interface/Act_II_-_Khaz_Modan.png", "../sounds/human/act.wav", "Act II", "Khaz Modan"),
-  CreateVideoStep("../videos/human-1.ogv"),
+  CreatePictureStep("campaigns/human/interface/Act_II_-_Khaz_Modan.png", "sounds/human/act.wav", "Act II", "Khaz Modan"),
+  CreateVideoStep("videos/human-1.ogv"),
   CreateMapStep("campaigns/human/level05h.smp"),
   CreateMapStep("campaigns/human/level06h.smp"),
   CreateMapStep("campaigns/human/level07h.smp"),
 
-  CreatePictureStep("../campaigns/human/interface/Act_III_-_The_Northlands.png", "../sounds/human/act.wav", "Act III", "The Northlands"),
-  CreateVideoStep("../videos/human-2.ogv"),
+  CreatePictureStep("campaigns/human/interface/Act_III_-_The_Northlands.png", "sounds/human/act.wav", "Act III", "The Northlands"),
+  CreateVideoStep("videos/human-2.ogv"),
   CreateMapStep("campaigns/human/level08h.smp"),
   CreateMapStep("campaigns/human/level09h.smp"),
   CreateMapStep("campaigns/human/level10h.smp"),
 
-  CreatePictureStep("../campaigns/human/interface/Act_IV_-_Return_to_Azeroth.png", "../sounds/human/act.wav", "Act IV", "Return to Azeroth"),
-  CreateVideoStep("../videos/human-3.ogv"),
+  CreatePictureStep("campaigns/human/interface/Act_IV_-_Return_to_Azeroth.png", "sounds/human/act.wav", "Act IV", "Return to Azeroth"),
+  CreateVideoStep("videos/human-3.ogv"),
   CreateMapStep("campaigns/human/level11h.smp"),
   CreateMapStep("campaigns/human/level12h.smp"),
   CreateMapStep("campaigns/human/level13h.smp"),
   CreateMapStep("campaigns/human/level14h.smp"),
-  CreateVideoStep("../videos/human-4.ogv")
---EndText
+  CreateVideoStep("videos/human-4.ogv"),
+  CreateVictoryStep("graphics/ui/human/The_End.png", "campaigns/human/victory.txt", { "campaigns/human/victory.wav" })
 }
 
 campaign_menu = { 1, 3, 4, 5, 6, 9, 10, 11, 14, 15, 16, 19, 20, 21 }

@@ -312,13 +312,11 @@ if (preferences == nil) then
     GrabMouse = false,
     UseOpenGL = false,
     MaxOpenGLTexture = 0,
+    CampaignOrc = 1,
+    CampaignHuman = 1,
+    CampaignOrcX = 1,
+    CampaignHumanX = 1,
   }
-end
-
--- If the user's preferences.lua does not yet have this setting,
--- then add it, to make it easier to discover.
-if (preferences.MaxOpenGLTexture == nil) then
-    preferences.MaxOpenGLTexture = 0
 end
 
 UseOpenGL = preferences.UseOpenGL

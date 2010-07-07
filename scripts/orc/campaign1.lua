@@ -33,32 +33,32 @@
 --	Define the campaign
 
 campaign_steps = {
-  CreatePictureStep("../campaigns/orc/interface/Act_I_-_Seas_of_Blood.png", "../sounds/orc/act.wav", "Act I", "Seas of Blood"),
+  CreatePictureStep("campaigns/orc/interface/Act_I_-_Seas_of_Blood.png", "sounds/orc/act.wav", "Act I", "Seas of Blood"),
   CreateMapStep("campaigns/orc/level01o.smp"),
   CreateMapStep("campaigns/orc/level02o.smp"),
   CreateMapStep("campaigns/orc/level03o.smp"),
   CreateMapStep("campaigns/orc/level04o.smp"),
 
-  CreatePictureStep("../campaigns/orc/interface/Act_II_-_Khaz_Modan.png", "../sounds/orc/act.wav", "Act II", "Khaz Modan"),
-  CreateVideoStep("../videos/orc-1.ogv"),
+  CreatePictureStep("campaigns/orc/interface/Act_II_-_Khaz_Modan.png", "sounds/orc/act.wav", "Act II", "Khaz Modan"),
+  CreateVideoStep("videos/orc-1.ogv"),
   CreateMapStep("campaigns/orc/level05o.smp"),
   CreateMapStep("campaigns/orc/level06o.smp"),
   CreateMapStep("campaigns/orc/level07o.smp"),
 
-  CreatePictureStep("../campaigns/orc/interface/Act_III_-_Quel'Thalas.png", "../sounds/orc/act.wav", "Act III", "Quel'Thalas"),
-  CreateVideoStep("../videos/orc-2.ogv"),
+  CreatePictureStep("campaigns/orc/interface/Act_III_-_Quel'Thalas.png", "sounds/orc/act.wav", "Act III", "Quel'Thalas"),
+  CreateVideoStep("videos/orc-2.ogv"),
   CreateMapStep("campaigns/orc/level08o.smp"),
   CreateMapStep("campaigns/orc/level09o.smp"),
   CreateMapStep("campaigns/orc/level10o.smp"),
   CreateMapStep("campaigns/orc/level11o.smp"),
 
-  CreatePictureStep("../campaigns/orc/interface/Act_IV_-_Tides_of_Darkness.png", "../sounds/orc/act.wav", "Act IV", "Tides of Darkness"),
-  CreateVideoStep("../videos/orc-3.ogv"),
+  CreatePictureStep("campaigns/orc/interface/Act_IV_-_Tides_of_Darkness.png", "sounds/orc/act.wav", "Act IV", "Tides of Darkness"),
+  CreateVideoStep("videos/orc-3.ogv"),
   CreateMapStep("campaigns/orc/level12o.smp"),
   CreateMapStep("campaigns/orc/level13o.smp"),
   CreateMapStep("campaigns/orc/level14o.smp"),
-  CreateVideoStep("../videos/orc-4.ogv")
---EndText
+  CreateVideoStep("videos/orc-4.ogv"),
+  CreateVictoryStep("graphics/ui/orc/Smashing_of_Lordaeron_scroll.png", "campaigns/orc/victory.txt", { "campaigns/orc/victory.wav" })
 }
 
 campaign_menu = { 1, 3, 4, 5, 6, 9, 10, 11, 14, 15, 16, 17, 20, 21 }

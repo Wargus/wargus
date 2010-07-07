@@ -287,6 +287,10 @@ Control Todo[] = {
 {X,2,"orc-exp/levelx12o",                              122, 4 _2},
 {X,2,"credits2",                                       123, 4 _2},
 //{X,2,"credits-ext",                                    124 __},
+{X,0,"human/victory",                                  93, 10 _2},
+{X,0,"orc/victory",                                    93, 560 _2},
+{X,2,"human-exp/victory",                              93, 1086 _2},
+{X,2,"orc-exp/victory",                                93, 1840 _2},
 
 ///////////////////////////////////////////////////////////////////////////////
 //		MOST THINGS
@@ -1474,7 +1478,7 @@ Control Todo[] = {
 {W,0,"../campaigns/orc/level13o-intro2",               44 __},
 {W,0,"../campaigns/orc/level14o-intro1",               45 __},
 
-{W,2,"../campaigns/human-exp/victory",                 50 __},
+{W,2,"../campaigns/human-exp/victory-1",               50 __},
 {W,2,"../campaigns/human-exp/victory-2",               51 __},
 {W,2,"../campaigns/orc-exp/victory-1",                 52 __},
 {W,2,"../campaigns/orc-exp/victory-2",                 53 __},
