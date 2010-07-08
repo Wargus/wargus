@@ -10,6 +10,7 @@ Briefing(
   {"campaigns/human/level14h-intro1.wav"}
 )
 
+Triggers = [[
 -- FIXME: Check if units are destroyed.
 
 AddTrigger(
@@ -19,6 +20,9 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 --Units
 

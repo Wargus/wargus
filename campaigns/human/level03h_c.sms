@@ -11,6 +11,7 @@ Briefing(
    "campaigns/human/level03h-intro2.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-human-shipyard") >= 1 and
     GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-human-oil-platform") >= 4 end,
@@ -18,6 +19,9 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 --Units
 

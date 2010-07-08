@@ -11,13 +11,16 @@ Briefing(
    "campaigns/human/level05h-intro2.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return GetNumOpponents(GetThisPlayer()) == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
 
+assert(loadstring(Triggers))()
 
 --Units
 

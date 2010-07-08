@@ -11,6 +11,7 @@ Briefing(
    "campaigns/human/level02h-intro2.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return GetPlayerData(6, "UnitTypesCount", "unit-archer") == 0 and
     IfRescuedNearUnit("this", ">=", 1, "unit-archer", "unit-circle-of-power") end,
@@ -19,6 +20,9 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 --Units
 

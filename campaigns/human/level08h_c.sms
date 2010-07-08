@@ -11,6 +11,7 @@ Briefing(
    "campaigns/human/level08h-intro2.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return true end,
   function() SetDiplomacy(4, "enemy", 2)
@@ -28,6 +29,9 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 --Units
 

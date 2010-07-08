@@ -12,6 +12,7 @@ Briefing(
   {"campaigns/orc/level08o-intro1.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return GetPlayerData(7, "UnitTypesCount", "unit-runestone") == 0 and
     GetPlayerData(1, "UnitTypesCount", "unit-castle") == 0 end,
@@ -19,6 +20,9 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 --Units
 

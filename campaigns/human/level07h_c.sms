@@ -11,12 +11,16 @@ Briefing(
    "campaigns/human/level07h-intro2.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return GetPlayerData(2, "UnitTypesCount", "unit-orc-refinery") == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 --Units
 

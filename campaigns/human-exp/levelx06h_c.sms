@@ -12,6 +12,7 @@ Briefing(
    "campaigns/human-exp/levelx06h-intro3.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return GetPlayerData(0, "UnitTypesCount", "unit-orc-shipyard") == 0 and
     GetPlayerData(2, "UnitTypesCount", "unit-orc-shipyard") == 0 and
@@ -31,6 +32,9 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 --Units
 

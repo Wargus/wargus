@@ -11,6 +11,7 @@ Briefing(
    "campaigns/human-exp/levelx08h-intro2.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return GetPlayerData(3, "TotalNumUnits") == 0 and
     GetPlayerData(6, "TotalNumUnits") == 0 and
@@ -19,6 +20,9 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 --Units
 

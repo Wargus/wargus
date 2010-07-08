@@ -10,6 +10,7 @@ Briefing(
   {"campaigns/orc/level01o-intro1.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-pig-farm") >= 4 and
     GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-orc-barracks") >= 1 end,
@@ -17,6 +18,9 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 -- Units
 

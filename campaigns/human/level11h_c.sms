@@ -11,6 +11,7 @@ Briefing(
    "voice", "campaigns/human/level11h-intro2.wav"}
 )
 
+Triggers = [[
 -- FIXME: Check if units are freed.
 
 AddTrigger(
@@ -21,6 +22,9 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 --Units
 

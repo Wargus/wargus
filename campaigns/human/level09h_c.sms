@@ -10,6 +10,7 @@ Briefing(
   {"campaigns/human/level09h-intro1.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return IfNearUnit("this", "==", 1, "unit-man-of-light", "unit-circle-of-power") end,
   function() return ActionVictory() end)
@@ -21,6 +22,9 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
 
 --Units
 

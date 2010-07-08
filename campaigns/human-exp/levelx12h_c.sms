@@ -11,6 +11,7 @@ Briefing(
    "campaigns/human-exp/levelx12h-intro2.wav"}
 )
 
+Triggers = [[
 AddTrigger(
   function() return GetPlayerData(15, "UnitTypesCount", "unit-dark-portal") == 0 end,
   function() return ActionVictory() end)
@@ -21,7 +22,9 @@ AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-white-mage") == 0 and
     GetPlayerData(4, "UnitTypesCount", "unit-white-mage") == 0 end,
   function() return ActionDefeat() end)
+]]
 
+assert(loadstring(Triggers))()
 
 --Units
 
