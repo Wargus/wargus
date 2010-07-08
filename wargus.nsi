@@ -30,6 +30,7 @@
 !define WARGUS "wargus.exe"
 !define WARTOOL "wartool.exe"
 !define PUDCONVERT "pudconvert.exe"
+!define CDDA2WAV "cdda2wav.exe"
 !define FFMPEG2THEORA "ffmpeg2theora.exe"
 !define UNINSTALL "uninstall.exe"
 !define INSTALLER "${NAME}-${VERSION}.exe"
@@ -60,19 +61,23 @@ LangString NO_STRATAGUS ${LANG_ENGLISH} "Stratagus is not installed. You need St
 LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
 LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data files:"
 
-LangString EXTRACTDATA_BASIC ${LANG_ENGLISH} "Extracting Warcraft II basic files..."
-LangString EXTRACTDATA_MUSIC ${LANG_ENGLISH} "Extracting Warcraft II music files..."
-LangString EXTRACTDATA_VIDEOS ${LANG_ENGLISH} "Extracting Warcraft II video files..."
+LangString EXTRACTDATA_FILES ${LANG_ENGLISH} "Extracting Warcraft II data files..."
+LangString EXTRACTDATA_RIP_AUDIO ${LANG_ENGLISH} "Ripping Warcraft II audio tracks..."
+LangString EXTRACTDATA_COPY_AUDIO ${LANG_ENGLISH} "Coping Warcraft II audio tracks..."
+LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_ENGLISH} "Converting Warcraft II audio tracks..."
+LangString EXTRACTDATA_CONVERT_VIDEOS ${LANG_ENGLISH} "Converting Warcraft II video files..."
 
-LangString EXTRACTDATA_BACIS_FAILED ${LANG_ENGLISH} "Extracting Warcraft II basic files failed."
-LangString EXTRACTDATA_MUSIC_FAILED ${LANG_ENGLISH} "Extracting Warcraft II music files failed."
-LangString EXTRACTDATA_VIDEOS_FAILED ${LANG_ENGLISH} "Extracting Warcraft II video files failed."
+LangString EXTRACTDATA_FILES_FAILED ${LANG_ENGLISH} "Extracting Warcraft II data files failed."
+LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_ENGLISH} "Ripping Warcraft II audio tracks failed."
+LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_ENGLISH} "Coping Warcraft II audio tracks failed."
+LangString EXTRACTDATA_CONVERT_AUDIO_FAILED ${LANG_ENGLISH} "Converting Warcraft II audio tracks failed."
+LangString EXTRACTDATA_CONVERT_VIDEOS_FAILED ${LANG_ENGLISH} "Converting Warcraft II video files failed."
 
 LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_ENGLISH} "Choose Warcraft II Location"
 LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_ENGLISH} "Choose the folder in which are Warcraft II data files."
 LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder. You can specify location of CD or install location of Warcraft II data files. Note that you need the original Warcraft II CD Dos version (Battle.net edition does not work) to extract the game data files."
 LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_ENGLISH} "Source Folder"
-LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory.\nFile $DATADIR\data\rezdat.war does not exist."
+LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory. File $DATADIRdata\rezdat.war does not exist."
 
 LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} binary executables"
 LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration and extracted data files and directories in ${NAME} install directory created by user or ${NAME}"
@@ -218,6 +223,7 @@ Section "${NAME}"
 	File "${WARGUS}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
+	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
 	File /r /x .svn /x *.pud* "maps\"
 	File /r /x .svn "scripts\"
@@ -260,36 +266,93 @@ SectionEnd
 
 Section "${NAME}" ExtractData
 
-	DetailPrint "$(EXTRACTDATA_BASIC)"
+	DetailPrint "$(EXTRACTDATA_FILES)"
 	SetDetailsPrint none
 	ExecWait "$\"$INSTDIR\${WARTOOL}$\" -v $\"$DATADIR\data$\" $\"$INSTDIR$\"" $0
 	SetDetailsPrint lastused
-	IntCmp $0 0 music
+	IntCmp $0 0 audio
 
-	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_BACIS_FAILED)"
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_FILES_FAILED)"
 	Abort
 
-music:
+audio:
 
-; TODO: Convert music files using cdparanoia/cdda2wav ??
-	DetailPrint "$(EXTRACTDATA_MUSIC)"
+	IfFileExists "$DATADIR\data\music\*.*" copy_audio rip_audio
+
+rip_audio:
+
+	DetailPrint "$(EXTRACTDATA_RIP_AUDIO)"
 	SetDetailsPrint none
-;	ExecWait "" $0
-	SetDetailsPrint lastused
-	IntCmp $0 0 videos
 
-	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_MUSIC_FAILED)"
+	Var /global i
+	${For} $i 2 17
+
+		ExecWait "${CDDA2WAV} -D $\"$DATADIR$\" -t $i $\"$INSTDIR\music\$i.wav$\"" $0
+		IntCmp $0 0 next
+
+		MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_RIP_AUDIO_FAILED)"
+		goto abord
+
+next:
+
+	${Next}
+
+	Delete "$INSTDIR\music\audio.*"
+	Delete "$INSTDIR\music\*.inf"
+
+	Rename "$INSTDIR\music\2.wav" "$INSTDIR\music\Human Battle 1.wav"
+	Rename "$INSTDIR\music\3.wav" "$INSTDIR\music\Human Battle 2.wav"
+	Rename "$INSTDIR\music\4.wav" "$INSTDIR\music\Human Battle 3.wav"
+	Rename "$INSTDIR\music\5.wav" "$INSTDIR\music\Human Battle 4.wav"
+	Rename "$INSTDIR\music\6.wav" "$INSTDIR\music\Human Battle 5.wav"
+	Rename "$INSTDIR\music\7.wav" "$INSTDIR\music\Human Briefing.wav"
+	Rename "$INSTDIR\music\8.wav" "$INSTDIR\music\Human Victory.wav"
+	Rename "$INSTDIR\music\9.wav" "$INSTDIR\music\Human Defeat.wav"
+	Rename "$INSTDIR\music\10.wav" "$INSTDIR\music\Orc Battle 1.wav"
+	Rename "$INSTDIR\music\11.wav" "$INSTDIR\music\Orc Battle 2.wav"
+	Rename "$INSTDIR\music\12.wav" "$INSTDIR\music\Orc Battle 3.wav"
+	Rename "$INSTDIR\music\13.wav" "$INSTDIR\music\Orc Battle 4.wav"
+	Rename "$INSTDIR\music\14.wav" "$INSTDIR\music\Orc Battle 5.wav"
+	Rename "$INSTDIR\music\15.wav" "$INSTDIR\music\Orc Briefing.wav"
+	Rename "$INSTDIR\music\16.wav" "$INSTDIR\music\Orc Victory.wav"
+	Rename "$INSTDIR\music\17.wav" "$INSTDIR\music\Orc Defeat.wav"
+
+abord:
+
+	SetDetailsPrint lastused
+	goto convert_audio
+
+copy_audio:
+
+	DetailPrint "$(EXTRACTDATA_COPY_AUDIO)"
+	SetDetailsPrint none
+	CopyFiles "$DATADIR\data\music\*.*" "$INSTDIR\music\"
+	SetDetailsPrint lastused
+	IntCmp $0 0 convert_audio
+
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_COPY_AUDIO_FAILED)"
 	Abort
 
-videos:
+convert_audio:
 
-	DetailPrint "$(EXTRACTDATA_VIDEOS)"
+	DetailPrint "$(EXTRACTDATA_CONVERT_AUDIO)"
+	SetDetailsPrint none
+	ExecWait "cmd /c $\"cd music && for %f in (*.wav) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
+	SetDetailsPrint lastused
+	IntCmp $0 0 convert_videos
+
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_AUDIO_FAILED)"
+	Abort
+
+convert_videos:
+
+	DetailPrint "$(EXTRACTDATA_CONVERT_VIDEOS)"
 	SetDetailsPrint none
 	ExecWait "cmd /c $\"cd videos && for %f in (*.smk) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
 	SetDetailsPrint lastused
 	IntCmp $0 0 end
 
-	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_VIDEOS_FAILED)"
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_VIDEOS_FAILED)"
 	Abort
 
 end:
@@ -305,6 +368,7 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${WARGUS}"
 	Delete "$INSTDIR\${WARTOOL}"
 	Delete "$INSTDIR\${PUDCONVERT}"
+	Delete "$INSTDIR\${CDDA2WAV}"
 	Delete "$INSTDIR\${FFMPEG2THEORA}"
 	Delete "$INSTDIR\${UNINSTALL}"
 	RMDir "$INSTDIR"
