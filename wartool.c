@@ -4014,7 +4014,6 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 	unsigned char* next;
 	unsigned char* nextobj;
 	unsigned char* currentobj;
-	FILE* inlevel;
 	FILE* outlevel;
 	size_t l;
 	int levelno;
@@ -4115,50 +4114,29 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 
 	for (levelno = 0; levelno < expansion / 2; ++levelno) {
 		for (race = 0; race < 2; ++race) {
-			sprintf(buf, "%s/%s/sms.template", Dir, TEXT_PATH);
-			if (!(inlevel = fopen(buf, "rb"))) {
-				sprintf(buf, "./%s/sms.template", TEXT_PATH);
-				if (!(inlevel = fopen(buf, "rb"))) {
-					printf("Cannot Open File: %s (Skipping Level: %s)\n", buf, Todo[2 * levelno + 1 + race + 5].File);
-					continue;
-				}
-			}
 			//Open Relevant file, to write stuff too.
 			sprintf(buf, "%s/%s/%s_c2.sms", Dir, TEXT_PATH,
 				Todo[2 * levelno + 1 + race + 5].File);
 			CheckPath(buf);
 			if (!(outlevel = fopen(buf, "wb"))) {
 				printf("Cannot Write File (Skipping Level: %s)\n", buf);
-				fclose(inlevel);
 				continue;
 			}
-			// Title Key is ^^TITLE^^
-			// Objectives Key is ^^OBJECTIVES^^
-			while (fgets(buf, 1023, inlevel) != 0) {
-				if (!strncmp(buf, "^^TITLE^^", 9)) {
-					unsigned char *str = ConvertString(CampaignData[race][levelno][0], 0);
-					sprintf(buf, "  \"%s\",\n", str);
+			unsigned char *str = ConvertString(CampaignData[race][levelno][0], 0);
+			sprintf(buf, "title = \"%s\"\n", str);
+			fputs(buf, outlevel);
+			free(str);
+			fputs("objectives = {", outlevel);
+			for (noobjs = 1; noobjs < 10; ++noobjs) {
+				if (CampaignData[race][levelno][noobjs] != NULL) {
+					unsigned char *str = ConvertString(CampaignData[race][levelno][noobjs], 0);
+					sprintf(buf, "%s\"%s\"", (noobjs > 1 ? "," : ""), str);
 					fputs(buf, outlevel);
 					free(str);
-				} else {
-					if (!strncmp(buf, "^^OBJECTIVES^^", 14)) {
-						fputs("  {", outlevel);
-						for (noobjs = 1; noobjs < 10; ++noobjs) {
-							if (CampaignData[race][levelno][noobjs] != NULL) {
-								unsigned char *str = ConvertString(CampaignData[race][levelno][noobjs], 0);
-								sprintf(buf, "%s\"%s\"", (noobjs > 1 ? "," : ""), str);
-								fputs(buf, outlevel);
-								free(str);
-							}
-						}
-						fputs("},\n", outlevel);
-					} else {
-						fputs(buf, outlevel);
-					}
 				}
 			}
+			fputs("}\n", outlevel);
 			// Close levels and move on.
-			fclose(inlevel);
 			fclose(outlevel);
 		}
 	}

@@ -1,8 +1,0 @@
-info = {
-^^TITLE^^
-^^OBJECTIVES^^
-"end"
-}
-
-title = info[1]
-objectives = info[2]
