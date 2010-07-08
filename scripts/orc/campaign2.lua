@@ -57,5 +57,5 @@ campaign_steps = {
   CreateVictoryStep("graphics/ui/orc/Smashing_of_Lordaeron_scroll.png", "campaigns/orc-exp/victory.txt", { "campaigns/orc-exp/victory-1.wav", "campaigns/orc-exp/victory-2.wav", "campaigns/orc-exp/victory-3.wav" })
 }
 
-campaign_menu = { 1, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17 }
+campaign_menu = { 1, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18 }
 

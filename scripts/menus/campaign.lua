@@ -155,7 +155,7 @@ function CampaignButtonTitle(race, exp, i)
 
   name = name .. "_c2.sms"
 
-  title = ""
+  title = "Ending - Victory"
   Load(name)
 
   if ( string.len(title) > 20 ) then
@@ -190,11 +190,11 @@ function RunCampaignSubmenu(campaign, race, exp)
   local half = math.ceil(show_buttons/2)
 
   for i=1,half do
-    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 98, offy + 100 + (36 * i), CampaignButtonFunction(campaign, race, exp, i, menu))
+    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 98, offy + 64 + (36 * i), CampaignButtonFunction(campaign, race, exp, i, menu))
   end
 
   for i=1+half,show_buttons do
-    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 326, offy + 100 + (36 * (i - half)), CampaignButtonFunction(campaign, race, exp, i, menu))
+    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 326, offy + 64 + (36 * (i - half)), CampaignButtonFunction(campaign, race, exp, i, menu))
   end
 
   menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 212 + (36 * 5),

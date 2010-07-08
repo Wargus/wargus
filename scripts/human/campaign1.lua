@@ -61,5 +61,5 @@ campaign_steps = {
   CreateVictoryStep("graphics/ui/human/The_End.png", "campaigns/human/victory.txt", { "campaigns/human/victory.wav" })
 }
 
-campaign_menu = { 1, 3, 4, 5, 6, 9, 10, 11, 14, 15, 16, 19, 20, 21 }
+campaign_menu = { 1, 3, 4, 5, 6, 9, 10, 11, 14, 15, 16, 19, 20, 21, 22 }
 

@@ -16,6 +16,10 @@ function LoadGame(s)
   InitGameSettings()
   SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 
+  if (GameResult == GameVictory) then
+    IncreaseCampaignState(currentRace, currentExp, currentState)
+  end
+
   if currentCampaign ~= nil then
     if GameResult == GameVictory then
       position = position + 1
