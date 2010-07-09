@@ -225,9 +225,9 @@ Section "${NAME}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
-	File /r /x .svn /x *.pud* "maps\"
-	File /r /x .svn "scripts\"
-	File /r /x .svn "campaigns\"
+	File /r /x .svn /x *.pud* "maps"
+	File /r /x .svn "scripts"
+	File /r /x .svn "campaigns"
 	CreateDirectory "$INSTDIR\music"
 	CreateDirectory "$INSTDIR\graphics"
 	CreateDirectory "$INSTDIR\graphics\ui"
@@ -337,7 +337,7 @@ convert_audio:
 
 	DetailPrint "$(EXTRACTDATA_CONVERT_AUDIO)"
 	SetDetailsPrint none
-	ExecWait "cmd /c $\"cd music && for %f in (*.wav) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
+	ExecWait "cmd /c $\"cd music && if exist *.wav for %f in (*.wav) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
 	SetDetailsPrint lastused
 	IntCmp $0 0 convert_videos
 
