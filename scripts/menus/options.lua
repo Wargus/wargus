@@ -189,15 +189,28 @@ function BuildOptionsMenu()
       ToggleFullScreen()
       preferences.VideoFullScreen = Video.FullScreen
       SavePreferences()
+      menu:stop(1)
     end)
   b:setMarked(Video.FullScreen)
 
-  b = menu:addCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*11 + 14,
+  checkTexture = menu:addCheckBox("Set Maximum OpenGL Texture to 128", offx + 127, offy + 55 + 26*10 + 14,
     function()
-      preferences.UseOpenGL = b:isMarked()
+      if (checkTexture:isMarked()) then
+        preferences.MaxOpenGLTexture = 128
+      else
+        preferences.MaxOpenGLTexture = 0
+      end
+      SetMaxOpenGLTexture(preferences.MaxOpenGLTexture)
       SavePreferences()
     end)
-  b:setMarked(UseOpenGL)
+  if (preferences.MaxOpenGLTexture == 128) then checkTexture:setMarked(true) end
+
+  checkOpenGL = menu:addCheckBox("Use OpenGL / OpenGL ES 1.1 (restart required)", offx + 17, offy + 55 + 26*11 + 14,
+    function()
+      preferences.UseOpenGL = checkOpenGL:isMarked()
+      SavePreferences()
+    end)
+  checkOpenGL:setMarked(UseOpenGL)
 
   menu:addHalfButton("~!OK", "o", offx + 123, offy + 55 + 26*12 + 14, function() menu:stop() end)
 
