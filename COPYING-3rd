@@ -1,0 +1,26 @@
+This software includes 3rd party programs:
+
+
+cdda2wav:
+
+  Cdda2wav is a free compact disc digital audio CDDA grabber originally written for MSDOS, and later ported to Linux. It is distributed under the terms of the GNU GPL. The copyright is held by Heiko Eißfeldt. Cdda2wav has been developed with portability in mind. It runs on a variety of operating systems.
+  Cdda2wav is part of package cdrtools.
+
+  This software use MinGW 32 bit build for Windows from http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip
+
+  License: GNU GPL
+  Homepage: http://www.cdda2wav.de/
+
+
+
+ffmpeg2theora:
+
+  A simple converter to create Ogg Theora files.
+  With ffmpeg2theora you can convert any file that ffmpeg can decode to theora.
+
+  This software use official build for Windows from http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.27.exe
+
+  License: GNU GPL v3
+  Homepage: http://v2v.cc/~j/ffmpeg2theora/
+
+

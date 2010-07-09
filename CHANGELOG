@@ -1,0 +1,46 @@
+2.2.6 UNRELEASED
+ - Unix - Makefile
+   - Rewrited, now support cross-compiling
+ - Unix - build.sh
+   - Added param -d for cdparanoia CD drive
+   - Fixed searching for data path
+   - Fixed file names for extract
+   - Check if cdparanoia and ffmpeg2theora are in system
+   - Do not rip audio tracks if are ripped in data path
+   - For decode audio tracks use ffmpeg2theora instead oggenc
+   - Convert extracted videos from SMK format to theroa (with ffmpeg2theora)
+ - Wartool
+   - Added support for extract data from CD if file names are upper
+   - Fixed extract number of logo video
+   - Fixed extracting videos with correct names
+   - Fixed converting maps PUD files
+   - Removed campaigns template files, instead create new and write title and objectives directly
+   - Extract ending victory campaigns texts
+   - Extract ui graphics for more graphics resolutions
+   - Extract sounds for campaigns acts screen
+ - Game
+   - Added support for more graphics resolutions
+   - Added intro video and correct title screen
+   - Added option for maximum OpenGL textures
+   - Added multiplatform program wargus for searching stratagus and correct start-up
+ - Campaigns
+   - Added missing videos between levels
+   - Added submenu for levels (with act screen and videos)
+   - Added missing ending vicotry screen at end of campaigns
+   - Fixed save/load game (after load triggers - game objectives was not loaded)
+   - Fixed scrolling briefing text
+ - Debian
+   - Rewrited config scripts for better extract game data
+   - Added missing Wargus files do deb package
+ - Maemo
+   - Added optification on Maemo
+   - Added info for Hildon Application Manager
+   - Added program warextract for extracting data on Maemo
+ - Windows
+   - Rewrited NSIS Installer
+     - Added support for AMD64 bit version
+     - Added support for checking if Stratagus is installed
+     - Added support for extracting data
+     - Added support for ripping audio tracks (using cdda2wav)
+     - Added support for converting video files (using ffmpeg2theora)
+   - Removed old Windows extract data programs

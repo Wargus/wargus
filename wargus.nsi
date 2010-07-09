@@ -88,6 +88,14 @@ LangString AMD64ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only
 
 ;--------------------------------
 
+!ifndef NO_DOWNLOAD
+!system "wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.27.exe -O ffmpeg2theora.exe"
+!system "wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -O cdrtools.zip"
+!system "unzip -o cdrtools.zip cdda2wav.exe"
+!endif
+
+;--------------------------------
+
 Var STARTMENUDIR
 Var DATADIR
 
@@ -96,13 +104,17 @@ Var DATADIR
 
 !define MUI_ABORTWARNING
 !define MUI_FINISHPAGE_NOAUTOCLOSE
+!define MUI_FINISHPAGE_NOREBOOTSUPPORT
+!define MUI_FINISHPAGE_RUN "$INSTDIR\${WARGUS}"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
+!define MUI_UNFINISHPAGE_NOREBOOTSUPPORT
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKLM"
 !define MUI_STARTMENUPAGE_REGISTRY_KEY "${REGKEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "StartMenu"
 
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "COPYING"
+!insertmacro MUI_PAGE_LICENSE "COPYING-3rd"
 !insertmacro MUI_PAGE_DIRECTORY
 
 !define MUI_PAGE_HEADER_TEXT "$(EXTRACTDATA_PAGE_HEADER_TEXT)"
@@ -219,15 +231,21 @@ Section "${NAME}"
 
 	SectionIn RO
 
-	SetOutPath $INSTDIR
+	SetOutPath "$INSTDIR"
 	File "${WARGUS}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
-	File /r /x .svn /x *.pud* "maps"
-	File /r /x .svn "scripts"
-	File /r /x .svn "campaigns"
+
+	SetOutPath "$INSTDIR\maps"
+	File /r /x .svn /x *.pud* "maps\"
+	SetOutPath "$INSTDIR\scripts"
+	File /r /x .svn "scripts\"
+	SetOutPath "$INSTDIR\campaigns"
+	File /r /x .svn "campaigns\"
+	SetOutPath "$INSTDIR"
+
 	CreateDirectory "$INSTDIR\music"
 	CreateDirectory "$INSTDIR\graphics"
 	CreateDirectory "$INSTDIR\graphics\ui"
@@ -248,6 +266,7 @@ Section "${NAME}"
 	CreateDirectory "$SMPROGRAMS\$STARTMENUDIR"
 	CreateShortCut "$SMPROGRAMS\$STARTMENUDIR\${NAME}.lnk" "$INSTDIR\${WARGUS}"
 	CreateShortCut "$SMPROGRAMS\$STARTMENUDIR\Uninstall.lnk" "$INSTDIR\${UNINSTALL}"
+	CreateShortcut "$DESKTOP\${NAME}.lnk" "$INSTDIR\${WARGUS}"
 	!insertmacro MUI_STARTMENU_WRITE_END
 
 	WriteRegStr HKLM "${REGKEY}" "DisplayName" "${NAME}"
@@ -287,7 +306,7 @@ rip_audio:
 	Var /global i
 	${For} $i 2 17
 
-		ExecWait "${CDDA2WAV} -D $\"$DATADIR$\" -t $i $\"$INSTDIR\music\$i.wav$\"" $0
+		ExecWait "${CDDA2WAV} -D SPTI:1,2,0 -t $i $\"$INSTDIR\music\$i.wav$\"" $0
 		IntCmp $0 0 next
 
 		MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_RIP_AUDIO_FAILED)"
@@ -335,9 +354,13 @@ copy_audio:
 
 convert_audio:
 
+	IfFileExists "$DATADIR\data\music\*.wav" 0 convert_videos
+
 	DetailPrint "$(EXTRACTDATA_CONVERT_AUDIO)"
 	SetDetailsPrint none
-	ExecWait "cmd /c $\"cd music && if exist *.wav for %f in (*.wav) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
+	SetOutPath "$INSTDIR\music"
+	ExecWait "cmd /c $\"@echo off && for %f in (*.wav) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
+	SetOutPath "$INSTDIR"
 	SetDetailsPrint lastused
 	IntCmp $0 0 convert_videos
 
@@ -348,7 +371,9 @@ convert_videos:
 
 	DetailPrint "$(EXTRACTDATA_CONVERT_VIDEOS)"
 	SetDetailsPrint none
-	ExecWait "cmd /c $\"cd videos && for %f in (*.smk) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
+	SetOutPath "$INSTDIR\videos"
+	ExecWait "cmd /c $\"@echo off && for %f in (*.smk) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
+	SetOutPath "$INSTDIR"
 	SetDetailsPrint lastused
 	IntCmp $0 0 end
 
@@ -377,6 +402,7 @@ Section "un.${NAME}" Executable
 	Delete "$SMPROGRAMS\$STARTMENUDIR\${NAME}.lnk"
 	Delete "$SMPROGRAMS\$STARTMENUDIR\Uninstall.lnk"
 	RMDir "$SMPROGRAMS\$STARTMENUDIR"
+	Delete "$DESKTOP\${NAME}.lnk"
 
 	DeleteRegKey /ifempty HKLM "${REGKEY}"
 
@@ -396,3 +422,8 @@ SectionEnd
 
 ;--------------------------------
 
+!ifndef NO_DOWNLOAD
+!system "rm -f ffmpeg2theora.exe cdda2wav.exe cdrtools.zip || del /q ffmpeg2theora.exe cdda2wav.exe cdrtools.zip"
+!endif
+
+;--------------------------------
