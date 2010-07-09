@@ -287,8 +287,10 @@ Control Todo[] = {
 {X,2,"orc-exp/levelx12o",                              122, 4 _2},
 {X,2,"credits2",                                       123, 4 _2},
 //{X,2,"credits-ext",                                    124 __},
-{X,0,"human/victory",                                  93, 10 _2},
-{X,0,"orc/victory",                                    93, 560 _2},
+{X,3,"human/victory",                                  93, 6 _2},
+{X,3,"orc/victory",                                    93, 556 _2},
+{X,2,"human/victory",                                  93, 10 _2},
+{X,2,"orc/victory",                                    93, 560 _2},
 {X,2,"human-exp/victory",                              93, 1086 _2},
 {X,2,"orc-exp/victory",                                93, 1840 _2},
 
