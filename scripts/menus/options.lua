@@ -207,10 +207,13 @@ function BuildOptionsMenu()
 
   checkOpenGL = menu:addCheckBox("Use OpenGL / OpenGL ES 1.1 (restart required)", offx + 17, offy + 55 + 26*11 + 14,
     function()
+--TODO: Add function for immediately change state of OpenGL
       preferences.UseOpenGL = checkOpenGL:isMarked()
       SavePreferences()
+--      menu:stop(1) --TODO: Enable if we have an OpenGL function
     end)
-  checkOpenGL:setMarked(UseOpenGL)
+  checkOpenGL:setMarked(preferences.UseOpenGL)
+--  checkOpenGL:setMarked(UseOpenGL) --TODO: Enable if we have an OpenGL function
 
   menu:addHalfButton("~!OK", "o", offx + 123, offy + 55 + 26*12 + 14, function() menu:stop() end)
 

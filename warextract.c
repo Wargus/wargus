@@ -58,11 +58,29 @@ inline void message(char * title, char * text) {
 
 int main(int argc, char * argv[]) {
 
+	char buf[1024];
+	char version[20];
+	char VERSION[20];
+	struct stat st;
+	FILE * f;
+
 	hildon_gtk_init(&argc, &argv);
 
-	message(TITLE, DATA_NEED_COPY);
+	sprintf(buf, "%s/extracted", Dir);
+	f = fopen(buf, "r");
+	if (f) {
+		fgets(f, version, 20);
+		fclose(f);
+		f = popen(BINPATH "/wartool -V", "r");
+		if (f) {
+			fgets(f, VERSION, 20);
+			pclose(f);
+			if (strcmp(version, VERSION) == 0)
+				return 0;
+		}
+	}
 
-	struct stat st;
+	message(TITLE, DATA_NEED_COPY);
 
 	if ( stat("/home/user/MyDocs/WAR2/DATA/REZDAT.WAR", &st) != 0 && stat("/home/user/MyDocs/WAR2/data/rezdat.war", &st) != 0 ) {
 

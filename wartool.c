@@ -32,6 +32,14 @@
 //@{
 
 /*----------------------------------------------------------------------------
+--  General
+----------------------------------------------------------------------------*/
+
+#define VERSION "1.0" // Version of extractor wartool
+
+const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2010 by The Stratagus Project.";
+
+/*----------------------------------------------------------------------------
 --  Includes
 ----------------------------------------------------------------------------*/
 
@@ -4157,14 +4165,16 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 */
 void Usage(const char* name)
 {
-	printf("wartool for Stratagus (c) 1999-2004 by the Stratagus Project\n\
+	printf("%s\n\
 Usage: %s [-e] archive-directory [destination-directory]\n\
 \t-e\tThe archive is expansion compatible (default: autodetect)\n\
 \t-n\tThe archive is not expansion compatible (default: autodetect)\n\
 \t-v\tExtract also the videos needs additional 70Mb\n\
+\t-V\tShow version\n\
+\t-h\tShow usage\n\
 archive-directory\tDirectory which includes the archives maindat.war...\n\
 destination-directory\tDirectory where the extracted files are placed.\n"
-	,name);
+	,NameLine, name);
 }
 
 /**
@@ -4203,6 +4213,12 @@ int main(int argc, char** argv)
 			--argc;
 			continue;
 		}
+		if (!strcmp(argv[a], "-V")) {
+			printf(VERSION "\n");
+			++a;
+			--argc;
+			exit(0);
+		}
 		if (!strcmp(argv[a], "-h")) {
 			Usage(argv[0]);
 			++a;
@@ -4222,6 +4238,16 @@ int main(int argc, char** argv)
 		Dir = argv[a + 1];
 	} else {
 		Dir = "data";
+	}
+
+	sprintf(buf, "%s/extracted", Dir);
+	f = fopen(buf, "r");
+	if (f) {
+		char version[20];
+		fgets(f, version, 20);
+		fclose(f);
+		if (strcmp(version, VERSION) == 0)
+			printf("Note: Data is already extracted in Dir %s with this version of wartool\n", Dir);
 	}
 
 	// Detect if CD is Mac/Dos, Expansion/Original, and language
@@ -4418,6 +4444,11 @@ int main(int argc, char** argv)
 		fprintf(f, "expansion = false\n");
 	}
 	fprintf(f, "game_font_width = %d\n", game_font_width);
+	fclose(f);
+
+	sprintf(buf, "%s/extracted", Dir);
+	f = fopen(buf, "w");
+	fprintf(f, VERSION "\n");
 	fclose(f);
 
 	return 0;

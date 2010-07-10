@@ -4,6 +4,12 @@
 . /usr/share/debconf/confmodule
 db_capb backup
 
+if [ "$(cat /usr/share/games/stratagus/wargus/extracted)" = "$(/usr/games/wartool -V)" ]; then
+	db_set wargus/extractdata "false" || true
+	db_stop || true
+	exit 0
+fi
+
 db_get wargus/cdpath || true
 TEMP=$RET
 db_reset wargus/cdpath || true

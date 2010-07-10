@@ -319,7 +319,7 @@ if (preferences == nil) then
   }
 end
 
-UseOpenGL = preferences.UseOpenGL
+SetUseOpenGL(preferences.UseOpenGL)
 SetVideoResolution(preferences.VideoWidth, preferences.VideoHeight)
 SetVideoFullScreen(preferences.VideoFullScreen)
 SetMaxOpenGLTexture(preferences.MaxOpenGLTexture)
