@@ -92,7 +92,11 @@ LangString AMD64ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only
 !system "wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.27.exe -O ffmpeg2theora.exe"
 !system "wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -O cdrtools.zip"
 !system "unzip -o cdrtools.zip cdda2wav.exe"
+!system "wget http://nsis.sourceforge.net/mediawiki/images/0/0f/ExecDos.zip -O ExecDos.zip"
+!system "unzip -j -o ExecDos.zip Plugins/ExecDos.dll"
 !endif
+
+!addplugindir .
 
 ;--------------------------------
 
@@ -169,8 +173,8 @@ endcheck:
 
 !endif
 
-	ReadRegStr $R0 HKLM "${STRATAGUS_REGKEY}" "InstallLocation"
-	StrCmp $R0 "" 0 datadir
+	ReadRegStr $0 HKLM "${STRATAGUS_REGKEY}" "InstallLocation"
+	StrCmp $0 "" 0 datadir
 
 	MessageBox MB_OK|MB_ICONSTOP "$(NO_STRATAGUS)"
 	Abort
@@ -213,14 +217,14 @@ Section "-${NAME}" UninstallPrevious
 
         SectionIn RO
 
-	ReadRegStr $R0 HKLM "${REGKEY}" "InstallLocation"
-	StrCmp $R0 "" end
+	ReadRegStr $0 HKLM "${REGKEY}" "InstallLocation"
+	StrCmp $0 "" end
 
 	DetailPrint "$(REMOVEPREVIOUS)"
 	SetDetailsPrint none
-	ExecWait "$R0\${UNINSTALL} /S _?=$R0"
-	Delete "$R0\${UNINSTALL}"
-	RMDir $R0
+	ExecWait "$0\${UNINSTALL} /S _?=$0"
+	Delete "$0\${UNINSTALL}"
+	RMDir $0
 	SetDetailsPrint lastused
 
 end:
@@ -285,10 +289,26 @@ SectionEnd
 
 Section "${NAME}" ExtractData
 
+	ClearErrors
+	FileOpen $0 "$INSTDIR\extracted" "r"
+	IfErrors extract
+
+	FileRead $0 $1
+	FileClose $0
+
+	ExecDos::exec /TOSTACK "$\"$INSTDIR\${WARTOOL}$\" -V"
+	Pop $0
+	Pop $2
+	IntCmp $0 0 0 0 extract
+	StrCmp $1 $2 end
+
+
+extract:
+
+	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_FILES)"
-	SetDetailsPrint none
-	ExecWait "$\"$INSTDIR\${WARTOOL}$\" -v $\"$DATADIR\data$\" $\"$INSTDIR$\"" $0
-	SetDetailsPrint lastused
+	ExecDos::exec /DETAILED "$\"$INSTDIR\${WARTOOL}$\" -v $\"$DATADIR\data$\" $\"$INSTDIR$\""
+	Pop $0
 	IntCmp $0 0 audio
 
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_FILES_FAILED)"
@@ -300,13 +320,14 @@ audio:
 
 rip_audio:
 
+	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_RIP_AUDIO)"
-	SetDetailsPrint none
 
 	Var /global i
 	${For} $i 2 17
 
-		ExecWait "${CDDA2WAV} -D SPTI:1,2,0 -t $i $\"$INSTDIR\music\$i.wav$\"" $0
+		ExecDos::exec /DETAILED "${CDDA2WAV} -D SPTI:1,2,0 -t $i $\"$INSTDIR\music\$i.wav$\""
+		Pop $0
 		IntCmp $0 0 next
 
 		MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_RIP_AUDIO_FAILED)"
@@ -338,15 +359,13 @@ next:
 
 abord:
 
-	SetDetailsPrint lastused
 	goto convert_audio
 
 copy_audio:
 
+	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_COPY_AUDIO)"
-	SetDetailsPrint none
 	CopyFiles "$DATADIR\data\music\*.*" "$INSTDIR\music\"
-	SetDetailsPrint lastused
 	IntCmp $0 0 convert_audio
 
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_COPY_AUDIO_FAILED)"
@@ -356,12 +375,12 @@ convert_audio:
 
 	IfFileExists "$DATADIR\data\music\*.wav" 0 convert_videos
 
+	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_CONVERT_AUDIO)"
-	SetDetailsPrint none
 	SetOutPath "$INSTDIR\music"
-	ExecWait "cmd /c $\"@echo off && for %f in (*.wav) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
+	ExecDos::exec /DETAILED "cmd /c $\"@echo off && for %f in (*.wav) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\""
+	Pop $0
 	SetOutPath "$INSTDIR"
-	SetDetailsPrint lastused
 	IntCmp $0 0 convert_videos
 
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_AUDIO_FAILED)"
@@ -369,12 +388,12 @@ convert_audio:
 
 convert_videos:
 
+	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_CONVERT_VIDEOS)"
-	SetDetailsPrint none
 	SetOutPath "$INSTDIR\videos"
-	ExecWait "cmd /c $\"@echo off && for %f in (*.smk) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\"" $0
+	ExecDos::exec /DETAILED "cmd /c $\"@echo off && for %f in (*.smk) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\""
+	Pop $0
 	SetOutPath "$INSTDIR"
-	SetDetailsPrint lastused
 	IntCmp $0 0 end
 
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_VIDEOS_FAILED)"
@@ -423,7 +442,11 @@ SectionEnd
 ;--------------------------------
 
 !ifndef NO_DOWNLOAD
-!system "rm -f ffmpeg2theora.exe cdda2wav.exe cdrtools.zip || del /q ffmpeg2theora.exe cdda2wav.exe cdrtools.zip"
+!delfile "ffmpeg2theora.exe"
+!delfile "cdda2wav.exe"
+!delfile "cdrtools.zip"
+!delfile "ExecDos.dll"
+!delfile "ExecDos.zip"
 !endif
 
 ;--------------------------------
