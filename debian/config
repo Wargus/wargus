@@ -4,7 +4,7 @@
 . /usr/share/debconf/confmodule
 db_capb backup
 
-if [ "$(cat /usr/share/games/stratagus/wargus/extracted)" = "$(/usr/games/wartool -V)" ]; then
+if [ "$(cat /usr/share/games/stratagus/wargus/extracted 2>/dev/null)" = "$(/usr/games/wartool -V)" ]; then
 	db_set wargus/extractdata "false" || true
 	db_stop || true
 	exit 0

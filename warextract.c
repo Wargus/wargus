@@ -69,11 +69,12 @@ int main(int argc, char * argv[]) {
 	sprintf(buf, "%s/extracted", Dir);
 	f = fopen(buf, "r");
 	if (f) {
-		fgets(f, version, 20);
+		fgets(version, 20, f);
 		fclose(f);
-		f = popen(BINPATH "/wartool -V", "r");
+		sprintf(buf, "%s/wartool -V", BINPATH);
+		f = popen(buf, "r");
 		if (f) {
-			fgets(f, VERSION, 20);
+			fgets(VERSION, 20, f);
 			pclose(f);
 			if (strcmp(version, VERSION) == 0)
 				return 0;
