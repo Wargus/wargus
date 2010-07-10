@@ -299,9 +299,9 @@ Section "${NAME}" ExtractData
 	ExecDos::exec /TOSTACK "$\"$INSTDIR\${WARTOOL}$\" -V"
 	Pop $0
 	Pop $2
+	StrCpy $2 "$2$\r$\n"
 	IntCmp $0 0 0 0 extract
 	StrCmp $1 $2 end
-
 
 extract:
 
