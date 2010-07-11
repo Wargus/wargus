@@ -165,12 +165,7 @@ int main(int argc, char * argv[]) {
 
 	char * stratagus_argv[argc + 3];
 
-#ifdef WIN32
-	stratagus_argv[0] = "stratagus.exe";
-#else
-	stratagus_argv[0] = "stratagus";
-#endif
-
+	stratagus_argv[0] = argv[0];
 	stratagus_argv[1] = "-d";
 	stratagus_argv[2] = wargus_path;
 

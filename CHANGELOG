@@ -18,6 +18,7 @@
    - Extract ending victory campaigns texts
    - Extract ui graphics for more graphics resolutions
    - Extract sounds for campaigns acts screen
+   - Store version of wartool, in future do not extract data twice
  - Game
    - Added support for more graphics resolutions
    - Added intro video and correct title screen
