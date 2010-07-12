@@ -131,8 +131,7 @@ binary-arch: build install
 	# TODO: Add support for convert video using ffmpeg2theora. Now this package is not in maemo, so remove Pre-Depends section
 	if [ -f /etc/maemo_version ]; then \
 		sed "s/Section: .*/Section: user\/games/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
-		grep -v "Pre-Depends:" $(CURDIR)/debian/wargus/DEBIAN/control > $(CURDIR)/debian/wargus/DEBIAN/control.new; \
-		mv $(CURDIR)/debian/wargus/DEBIAN/control.new $(CURDIR)/debian/wargus/DEBIAN/control; \
+		sed "s/Pre-Depends: .*/Pre-Depends: findutils-gnu/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Display-Name: Wargus - WarCraft II" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Icon-26:" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		for line in $(shell convert contrib/wargus.png -resize 48x48 png:- | uuencode -m - | tail -n +2 | head -n -1); do \

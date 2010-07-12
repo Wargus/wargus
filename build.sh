@@ -28,6 +28,8 @@
 
 set -e
 
+export PATH=/usr/bin/gnu:$PATH
+
 # cdrom autodetection
 CDROM="/cdrom"
 [ -d "/mnt/cdrom" ] && CDROM="/mnt/cdrom"
@@ -237,10 +239,10 @@ if [ "$SKIP_CONTRIB" = "no" ] ; then
 fi
 
 # compress the sounds
-find $DIR/sounds -type f -name "*.wav" -print -exec gzip -f {} \;
+find $DIR/sounds -type f -name "*.wav" -print -exec gzip -f {} \; || true
 
 # compress the texts
-find $DIR/campaigns -type f -name "*.txt" -print -exec gzip -f {} \;
+find $DIR/campaigns -type f -name "*.txt" -print -exec gzip -f {} \; || true
 
 echo "Wargus data setup is now complete"
 echo "Note: you do not need to run this script again"
