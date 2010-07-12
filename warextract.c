@@ -29,7 +29,7 @@
 
 #define TITLE "Wargus"
 #define DATA_NEED_COPY "Note: You need the original Warcraft II CD\n(Battle.net edition doesn't work)\nto extract the game data files.\nData files are needed to run Wargus.\n\nFirst copy Warcraft II CD to folder MyDocs/WAR2\nin phone, then press OK. If you want to add\nmusic support, extract audio tracks from\nWarcraft II CD to folder MyDocs/WAR2/music"
-#define DATA_FOUND "Warcraft II data files was found in folder MyDocs/WAR2\nPlease be patient, the data may take\na couple of minutes to extract...\n\nPress OK to start extracting data now."
+#define DATA_FOUND "Warcraft II data files was found in folder MyDocs/WAR2\n\nPlease be patient, the data may take\na couple of minutes to extract...\n\nPress OK to start extracting data now."
 #define DATA_NOT_FOUND "Error: Warcraft II data files was not found.\n\nCheck if you have in phone file\nMyDocs/WAR2/DATA/REZDAT.WAR"
 #define EXTRACT_OK "Warcraft II data files was successfull extracted."
 #define EXTRACT_FAILED "Error: Cannot extract Warcraft II data files,\nextract program crashed."
