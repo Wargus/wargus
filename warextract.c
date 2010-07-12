@@ -19,6 +19,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <unistd.h>
 #include <sys/stat.h>
@@ -66,7 +67,7 @@ int main(int argc, char * argv[]) {
 
 	hildon_gtk_init(&argc, &argv);
 
-	sprintf(buf, "%s/extracted", Dir);
+	sprintf(buf, "%s/extracted", EXTRACTDIR);
 	f = fopen(buf, "r");
 	if (f) {
 		fgets(version, 20, f);
