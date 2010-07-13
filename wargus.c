@@ -151,6 +151,7 @@ int main(int argc, char * argv[]) {
 #ifdef WIN32
 	sprintf(title_path, "%s\\graphics\\ui\\title.png", wargus_path);
 	char wargus_path_esc[1024];
+	memset(wargus_path_esc, 0, 1024);
 	strcpy(wargus_path_esc+1, wargus_path);
 	wargus_path_esc[0] = '"';
 	wargus_path_esc[strlen(wargus_path)+1] = '"';
@@ -165,7 +166,18 @@ int main(int argc, char * argv[]) {
 
 	char * stratagus_argv[argc + 3];
 
+#ifdef WIN32
+	char stratagus_argv0_esc[1024];
+	memset(stratagus_argv0_esc, 0, 1024);
+	strcpy(stratagus_argv0_esc+1, argv[0]);
+	stratagus_argv0_esc[0] = '"';
+	stratagus_argv0_esc[strlen(argv[0])+1] = '"';
+	stratagus_argv0_esc[strlen(argv[0])+2] = 0;
+	strcpy(stratagus_argv[0], stratagus_argv0_esc);
+#else
 	stratagus_argv[0] = argv[0];
+#endif
+
 	stratagus_argv[1] = "-d";
 	stratagus_argv[2] = wargus_path;
 
