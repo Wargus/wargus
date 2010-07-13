@@ -38,7 +38,7 @@ function HandleCheats(str)
 
   if (str == "there is no aliens level") then
     -- FIXME: no function yet
-    AddMessage("cheat enabled")
+    AddMessage("enabled cheat")
 
   elseif (str == "hatchet") then
     SetSpeedResourcesHarvest("wood", 52 / 2)
@@ -138,6 +138,11 @@ function HandleCheats(str)
     for i = 1,table.getn(t) do
       SetUnitMana(t[i], 255)
     end
+
+  elseif (str == "disco") then
+    StopMusic()
+    PlayMusic("music/I'm a Medieval Man.ogg")
+    AddMessage("enabled cheat")
 
   else
     return false

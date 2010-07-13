@@ -323,10 +323,30 @@ rip_audio:
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_RIP_AUDIO)"
 
-	Var /global i
-	${For} $i 2 17
+	Push "I'm a Medieval Man.wav"
+	Push "Orc Defeat.wav"
+	Push "Orc Victory.wav"
+	Push "Orc Briefing.wav"
+	Push "Orc Battle 5.wav"
+	Push "Orc Battle 4.wav"
+	Push "Orc Battle 3.wav"
+	Push "Orc Battle 2.wav"
+	Push "Orc Battle 1.wav"
+	Push "Human Defeat.wav"
+	Push "Human Victory.wav"
+	Push "Human Briefing.wav"
+	Push "Human Battle 5.wav"
+	Push "Human Battle 4.wav"
+	Push "Human Battle 3.wav"
+	Push "Human Battle 2.wav"
+	Push "Human Battle 1.wav"
 
-		ExecDos::exec /DETAILED "${CDDA2WAV} -D SPTI:1,2,0 -t $i $\"$INSTDIR\music\$i.wav$\""
+	Var /global i
+	${For} $i 2 18
+
+		Pop $0
+		Push 0
+		ExecDos::exec /DETAILED "${CDDA2WAV} -D SPTI:1,2,0 -t $i $\"$INSTDIR\music\$0$\""
 		Pop $0
 		IntCmp $0 0 next
 
@@ -339,23 +359,6 @@ next:
 
 	Delete "$INSTDIR\music\audio.*"
 	Delete "$INSTDIR\music\*.inf"
-
-	Rename "$INSTDIR\music\2.wav" "$INSTDIR\music\Human Battle 1.wav"
-	Rename "$INSTDIR\music\3.wav" "$INSTDIR\music\Human Battle 2.wav"
-	Rename "$INSTDIR\music\4.wav" "$INSTDIR\music\Human Battle 3.wav"
-	Rename "$INSTDIR\music\5.wav" "$INSTDIR\music\Human Battle 4.wav"
-	Rename "$INSTDIR\music\6.wav" "$INSTDIR\music\Human Battle 5.wav"
-	Rename "$INSTDIR\music\7.wav" "$INSTDIR\music\Human Briefing.wav"
-	Rename "$INSTDIR\music\8.wav" "$INSTDIR\music\Human Victory.wav"
-	Rename "$INSTDIR\music\9.wav" "$INSTDIR\music\Human Defeat.wav"
-	Rename "$INSTDIR\music\10.wav" "$INSTDIR\music\Orc Battle 1.wav"
-	Rename "$INSTDIR\music\11.wav" "$INSTDIR\music\Orc Battle 2.wav"
-	Rename "$INSTDIR\music\12.wav" "$INSTDIR\music\Orc Battle 3.wav"
-	Rename "$INSTDIR\music\13.wav" "$INSTDIR\music\Orc Battle 4.wav"
-	Rename "$INSTDIR\music\14.wav" "$INSTDIR\music\Orc Battle 5.wav"
-	Rename "$INSTDIR\music\15.wav" "$INSTDIR\music\Orc Briefing.wav"
-	Rename "$INSTDIR\music\16.wav" "$INSTDIR\music\Orc Victory.wav"
-	Rename "$INSTDIR\music\17.wav" "$INSTDIR\music\Orc Defeat.wav"
 
 abord:
 
