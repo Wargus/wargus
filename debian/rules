@@ -23,7 +23,7 @@ build:
 
 	if [ -f /etc/maemo_version ]; then \
 		$(MAKE) GTKFLAGS="$(shell pkg-config --cflags --libs hildon-1 gtk+-2.0)"; \
-		gcc warextract.c -o warextract -W -Wall -O2 $(shell pkg-config --cflags --libs hildon-1 gtk+-2.0); \
+		gcc warextract.c -o warextract -O2 -W -Wall -Wsign-compare -fsigned-char $(shell pkg-config --cflags --libs hildon-1 gtk+-2.0); \
 	else \
 		$(MAKE); \
 	fi

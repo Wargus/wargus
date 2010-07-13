@@ -18,7 +18,7 @@
 #
 
 CC = gcc
-CFLAGS = -O2 -W -Wall -Wsign-compare
+CFLAGS = -O2 -W -Wall -Wsign-compare -fsigned-char
 WINDRES = windres
 LDFLAGS = 
 GTKFLAGS = $(shell pkg-config --cflags --libs gtk+-2.0)
