@@ -38,7 +38,7 @@
 #define DATADIR "/home/user/MyDocs/WAR2"
 #define EXTRACTDIR "/opt/stratagus/share/wargus"
 #define BINPATH "/opt/stratagus/bin"
-#define EXTRACT_VIDEOS "" // "-v" TODO: uncomment, when package ffmpeg2theora will be in maemo repository
+#define EXTRACT_VIDEOS "-v"
 #define EXTRACT_MUSIC "-m"
 
 #define EXTRACT_COMMAND EXTRACT_BIN " -p " DATADIR " -b " BINPATH " -o " EXTRACTDIR " -s -c " EXTRACT_VIDEOS " " EXTRACT_MUSIC
