@@ -577,6 +577,8 @@ function BuildProgramStartMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
+  menu:addLabel("Wargus " .. Version, offx + 315, offy + 104 - 36)
+
   menu:addFullButton("~!Single Player Game", "s", offx + 208, offy + 104 + 36*0,
     function() RunSinglePlayerGameMenu(); menu:stop(1) end)
   menu:addFullButton("~!Multi Player Game", "m", offx + 208, offy + 104 + 36*1,
