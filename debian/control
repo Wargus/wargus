@@ -6,9 +6,9 @@ Build-Depends: debhelper (>> 4.0.0), pkg-config, imagemagick, sharutils,
  libpng12-dev (>= 1.2.5), libbz2-dev, liblua5.1-dev | liblua5.1-0-dev,
  libhildon1-dev, libgtk2.0-dev
 Standards-Version: 3.6.1
-Homepage: http://wargus.sourceforge.net
-Vcs-Browser: https://bazaar.launchpad.net/~pali.rohar/+junk/wargus
-Vcs-Bzr: https://code.launchpad.net/~pali.rohar/+junk/wargus
+Homepage: https://launchpad.net/wargus
+Vcs-Browser: https://bazaar.launchpad.net/~pali.rohar/wargus/main
+Vcs-Bzr: bzr+ssh://bazaar.launchpad.net/~pali.rohar/wargus/main
 
 Package: wargus
 Architecture: any
