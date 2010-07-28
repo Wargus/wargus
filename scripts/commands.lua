@@ -14,7 +14,7 @@ local function HandleIngameCommandKey(key, ctrl, alt, shift)
   elseif (key == "f9") then
     if (not IsNetworkGame()) then SetGamePaused(true) end
     RunDiplomacyMenu()
-  elseif ((key == "m" and alt) or key == "f10") then
+  elseif ((key == "m" and alt) or key == "f10" or key == "backspace") then
     if (not IsNetworkGame()) then SetGamePaused(true) end
     RunGameMenu()
   elseif ((key == "s" and alt) or key == "f11") then
@@ -39,7 +39,7 @@ local function HandleIngameCommandKey(key, ctrl, alt, shift)
 end
 
 local function HandleIneditorCommandKey(key, ctrl, alt, shift)
-  if ((key == "m" and alt) or key == "f10") then
+  if ((key == "m" and alt) or key == "f10" or key == "backspace") then
     RunInEditorMenu()
   elseif (key == "f5") then -- Map property
     RunEditorMapProperties()

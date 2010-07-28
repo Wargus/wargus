@@ -49,6 +49,7 @@ local keystrokes = {
   {"F8", "- speed options"},
   {"F9", "- preferences"},
   {"F10", "- game menu"},
+  {"BACKSPACE", "- game menu"},
   {"F11", "- save game"},
   {"F12", "- load game"},
 }
