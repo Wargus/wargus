@@ -34,6 +34,7 @@
 #endif
 
 #ifndef WIN32
+#include <X11/Xlib.h>
 #include <gtk/gtk.h>
 #endif
 
@@ -58,6 +59,9 @@
 #define TITLE "Wargus"
 #define STRATAGUS_NOT_FOUND "Stratagus is not installed.\nYou need Stratagus to run Wargus!"
 #define DATA_NOT_EXTRACTED "Wargus data was not extracted yet.\nYou need extract data from original Warcraft II CD first!"
+#define CONSOLE_MODE_NOT_ROOT "You must be root to run Wargus in console framebuffer mode"
+
+bool ConsoleMode = false;
 
 inline void error(char * title, char * text) {
 
@@ -78,20 +82,16 @@ inline void error(char * title, char * text) {
 #endif
 
 #if ! defined(WIN32) && ! defined(MAEMO)
-	GtkWidget * dialog;
-	dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, text, NULL);
-	gtk_window_set_title(GTK_WINDOW(dialog), title);
-	gtk_dialog_run(GTK_DIALOG (dialog));
-	gtk_widget_destroy(dialog);
+	if ( ! ConsoleMode ) {
+		GtkWidget * dialog;
+		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, text, NULL);
+		gtk_window_set_title(GTK_WINDOW(dialog), title);
+		gtk_dialog_run(GTK_DIALOG (dialog));
+		gtk_widget_destroy(dialog);
+	} else {
+		fprintf(stderr, "%s -- Error: %s\n", title, text);
+	}
 #endif
-
-/*
-	execlp("kdialog", "kdialog", "--title", title, "--error", text, NULL);
-	execlp("zenity", "zenity", "--error", "--title", title, "--text", text, "--no-wrap", NULL);
-	execlp("xmessage", "xmessage", "-title", title, "-center", "  Error: ", text, "  ", NULL);
-	execlp("dialog", "dialog", "--title", title, "--backtitle", title, "--msgbox", text, "9", "50", NULL);
-	printf("---------%s----------\nError: %s\n", title, text);
-*/
 
 	exit(-1);
 
@@ -99,12 +99,25 @@ inline void error(char * title, char * text) {
 
 int main(int argc, char * argv[]) {
 
-#ifdef MAEMO
-	hildon_gtk_init(&argc, &argv);
+#ifndef WIN32
+	if ( ! XOpenDisplay(NULL) )
+		ConsoleMode = true;
 #endif
 
-#if ! defined(WIN32) && ! defined(MAEMO)
-	gtk_init(&argc, &argv);
+#ifdef MAEMO
+	if ( ConsoleMode ) {
+		fprintf(stderr, "Cannot open X display\n");
+		return -1;
+	}
+#endif
+
+#ifndef WIN32
+	if ( ! ConsoleMode )
+		gtk_init(&argc, &argv);
+#endif
+
+#ifdef MAEMO
+	hildon_init();
 #endif
 
 	struct stat st;
@@ -161,7 +174,7 @@ int main(int argc, char * argv[]) {
 	sprintf(title_path, "%s/graphics/ui/title.png", wargus_path);
 #endif
 
-	if ( stat(title_path, &st) !=0 )
+	if ( stat(title_path, &st) != 0 )
 		error(TITLE, DATA_NOT_EXTRACTED);
 
 	char * stratagus_argv[argc + 3];
@@ -185,6 +198,11 @@ int main(int argc, char * argv[]) {
 		stratagus_argv[i] = argv[i - 2];
 
 	stratagus_argv[argc + 2] = NULL;
+
+#ifndef WIN32
+	if ( ConsoleMode && getuid() != 0 )
+		error(TITLE, CONSOLE_MODE_NOT_ROOT);
+#endif
 
 	execvp(stratagus_bin, stratagus_argv);
 	error(TITLE, STRATAGUS_NOT_FOUND);
