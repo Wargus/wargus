@@ -1,5 +1,5 @@
 ;
-;    stratagus.nsi - Windows NSIS Installer for Stratragus
+;    wargus.nsi - Windows NSIS Installer for Wargus
 ;    Copyright (C) 2010  Pali Rohár <pali.rohar@gmail.com>
 ;
 ;    This program is free software: you can redistribute it and/or modify

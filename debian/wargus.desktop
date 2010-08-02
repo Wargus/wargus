@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Wargus
-Comment=Stratagus WarCraft II data set
+Name=Wargus - Warcraft II
+Comment=Warcraft II data game set for the Stratagus engine
 Exec=/usr/games/wargus
 Icon=wargus
 Terminal=false
