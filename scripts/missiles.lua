@@ -38,19 +38,19 @@ DefineMissileType("missile-griffon-hammer",
   { File = "missiles/gryphon_hammer.png", Size = {32, 32}, Frames = 15, NumDirections = 9,
   ImpactSound = "fireball hit",
   Class = "missile-class-point-to-point-bounce", NumBounces = 3, Sleep = 1, Speed = 16, Range = 2,
-  DrawLevel = 50, ImpactMissile = "missile-explosion" } )
+  DrawLevel = 50, ImpactMissile = "missile-explosion", SplashFactor = 2 } )
 
 DefineMissileType("missile-dragon-breath",
   { File = "missiles/dragon_breath.png", Size = {32, 32}, Frames = 5, NumDirections = 9,
   ImpactSound = "fireball hit",
   Class = "missile-class-point-to-point-bounce", NumBounces = 3, Sleep = 1, Speed = 16, Range = 2,
-  DrawLevel = 70, ImpactMissile = "missile-explosion" } )
+  DrawLevel = 70, ImpactMissile = "missile-explosion", SplashFactor = 2 } )
 
 DefineMissileType("missile-fireball",
   { File = "missiles/fireball.png", Size = {32, 32}, Frames = 5, NumDirections = 9,
   ImpactSound = "fireball hit",
-  DrawLevel = 50, Class = "missile-class-point-to-point-bounce", NumBounces = 5, Sleep = 1, Speed = 16, Range = 1,
-  ImpactMissile = "missile-explosion" } )
+  DrawLevel = 50, Class = "missile-class-point-to-point-bounce", NumBounces = 5, Sleep = 1, Speed = 16, Range = 2,
+  ImpactMissile = "missile-explosion", SplashFactor = 2 } )
 
 DefineMissileType("missile-flame-shield",
   { File = "missiles/flame_shield.png", Size = {32, 48}, Frames = 6, NumDirections = 1,
@@ -69,7 +69,7 @@ DefineMissileType("missile-big-cannon",
   { File = "missiles/big_cannon.png", Size = {16, 16}, Frames = 20, NumDirections = 9,
   DrawLevel = 50, ImpactSound = "explosion",
   Class = "missile-class-point-to-point", Sleep = 1, Speed = 16, Range = 2,
-  ImpactMissile = "missile-cannon-tower-explosion" } )
+  ImpactMissile = "missile-cannon-tower-explosion", SplashFactor = 4 } )
 
 DefineMissileType("missile-exorcism",
   { File = "missiles/exorcism.png", Size = {48, 48}, Frames = 10, NumDirections = 1,
@@ -95,13 +95,13 @@ DefineMissileType("missile-whirlwind",
 DefineMissileType("missile-catapult-rock",
   { File = "missiles/catapult_rock.png", Size = {32, 32}, Frames = 15, NumDirections = 9,
   ImpactSound = "explosion",
-  DrawLevel = 50, Class = "missile-class-parabolic", Sleep = 1, Speed = 16, Range = 2,
+  DrawLevel = 50, Class = "missile-class-parabolic", Sleep = 1, Speed = 8, Range = 2,
   ImpactMissile = "missile-impact", SplashFactor = 4 } )
 
 DefineMissileType("missile-ballista-bolt",
   { File = "missiles/ballista_bolt.png", Size = {64, 64}, Frames = 5, NumDirections = 9,
   DrawLevel = 50, ImpactSound = "explosion",
-  Class = "missile-class-parabolic", Sleep = 1, Speed = 16, Range = 2,
+  Class = "missile-class-point-to-point", Sleep = 1, Speed = 8, Range = 2,
   ImpactMissile = "missile-impact", SplashFactor = 4 } )
 
 DefineMissileType("missile-arrow",
@@ -149,8 +149,8 @@ DefineMissileType("missile-explosion",
 DefineMissileType("missile-small-cannon",
   { File = "missiles/cannon.png", Size = {32, 32}, Frames = 15, NumDirections = 9,
   DrawLevel = 50, ImpactSound = "explosion",
-  Class = "missile-class-parabolic", Sleep = 1, Speed = 16, Range = 1,
-  ImpactMissile = "missile-cannon-explosion" } )
+  Class = "missile-class-parabolic", Sleep = 1, Speed = 22, Range = 2,
+  ImpactMissile = "missile-cannon-explosion", SplashFactor = 3 } )
 
 DefineMissileType("missile-cannon-explosion",
   { File = "missiles/cannon_explosion.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
