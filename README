@@ -1,20 +1,82 @@
+============================================================================
+About
+============================================================================
+
+Wargus is a Warcraft II data game set for the Stratagus engine.
+
+Wargus can be used to play Warcraft II from Blizzard Entertainment.
+
+You need the original Warcraft II CD (Battle.net edition doesn't work)
+to extract the game data files.
+
+Wargus is developed together for Windows, Linux and Linux Maemo based
+devices (Nokia N900).
+
+Homepage: https://launchpad.net/wargus
+Source Code: https://code.launchpad.net/wargus
+Bugtracker: https://bugs.launchpad.net/wargus
+
+============================================================================
+Build depends
+============================================================================
+
+Stratagus
+	- https://launchpad.net/stratagus
+	- Wargus and Stratagus version must match
+	- Use same version or from bzr branches with the same date
+
+Gtk+
+	- http://www.gtk.org/
+	- Not needed for Windows
+
+Hildon
+	- Only needed for Maemo from Maemo SDK
+
+ffmpeg2theora
+	- http://v2v.cc/~j/ffmpeg2theora/
+	- Needed for convert extracted audio CD tracks and video files
+
+cdparanoia
+	- http://xiph.org/paranoia/
+	- Needed for rip audio CD tracks
+
+cdda2wav
+	- http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip
+	- Needed for rip audio CD tracks only on Windows in NSIS Installer
+
+Original Warcraft II DOS CD
+	- The Battle.Net CD is NOT supported, you must use the DOS version
+	- Either the Expansion or Original CD can be used
+	- Do not extract from both. Extract from one CD only
+
+============================================================================
 Installation Instructions
-=========================
+============================================================================
 
-NOTE: stratagus ( http://stratagus.org ) is required.
-wargus and stratagus version must match
-(same version or svn from the same date)
+On Debian, Ubuntu, Maemo and Debian-like distros use deb packages
 
-The Battle.Net version is NOT supported, you must use the DOS version.
+	1. create deb package: 'dpkg-buildpackage'
+		eg:
+		dpkg-buildpackage -b -rfakeroot
 
-Either the Expansion or Original CD can be used.
-Do not extract from both. Extract from one CD only.
+	2. install deb package: 'sudo dpkg -i /path/to/deb'
+		eg:
+		sudo dpkg -i ../wargus.deb
 
-1. extract data: './build.sh -p /path/to/cd [ -o /path/to/outputdir ]'
-	eg:
-	./build.sh -p d:/
-	./build.sh -p /cdrom
+On other Linux distros:
 
-2. start stratagus: '/path/to/stratagus -d /path/to/outputdir'
-	eg:	
-	./stratagus -d data.wc2
+	1. first download and build Stratagus from
+		https://launchpad.net/stratagus
+
+	2. build sources: 'make'
+		eg:
+		make CC=gcc
+
+	3. extract data: './build.sh -p /path/to/cd [ -o /path/to/outputdir ]'
+		eg:
+		./build.sh -p d:/
+		./build.sh -p /cdrom
+
+	4. start wargus: '/path/to/stratagus -d /path/to/outputdir'
+		eg:
+		../stratagus/stratagus -d data.wc2
