@@ -573,6 +573,9 @@ function RunSinglePlayerGameMenu()
 end
 
 function BuildProgramStartMenu()
+  Load("scripts/ui.lua")
+  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
