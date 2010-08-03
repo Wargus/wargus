@@ -229,6 +229,16 @@ function AddMenuHelpers(menu)
       end
     end
 
+    function bq:exists(name)
+     for i,v in ipairs(self.itemslist) do
+       if(v == name) then
+         return true
+       end
+     end 
+     return false
+    end
+
+
     function bq:getSelectedItem()
       if (self:getSelected() < 0) then
         return self.itemslist[1]
