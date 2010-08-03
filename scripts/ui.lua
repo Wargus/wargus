@@ -206,6 +206,8 @@ DefinePanelContents(
 Load("scripts/human/ui.lua")
 Load("scripts/orc/ui.lua")
 
+playlist = { "music/Orc Briefing.ogg" }
+
 UI.MessageFont = Fonts["game"]
 UI.MessageScrollSpeed = 5
 

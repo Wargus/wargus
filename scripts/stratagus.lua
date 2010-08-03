@@ -70,14 +70,7 @@ SetTitleScreens(
 -------------------------------------------------------------------------------
 --	Music play list -	Insert your titles here
 -------------------------------------------------------------------------------
-playlist = {}
-local musiclist = ListFilesInDirectory("music/")
-for i,f in ipairs(musiclist) do
-  if(string.find(f, ".ogg$") or string.find(f, ".wav$") or string.find(f, ".mod$")) then 
---    print("Added music file: music/" .. f) 
-    playlist[i] = "music/" .. f
-  end
-end
+playlist = { "music/Orc Briefing.ogg" }
 
 --  Set the game name. It's used so we can mantain different savegames
 --  and setting. Might also be used for multiplayer.

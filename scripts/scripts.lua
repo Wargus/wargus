@@ -61,3 +61,6 @@ if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
 elseif (GetPlayerData(GetThisPlayer(), "RaceName") == "orc") then
 	Load("scripts/orc/ui.lua")
 end
+
+StopMusic()
+MusicStopped()

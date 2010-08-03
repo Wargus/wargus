@@ -12,15 +12,19 @@ function RunResultsMenu()
     result = "Victory!"
     if (human) then
       background = hvictory
+      PlayMusic("music/Human Victory.ogg")
     else
       background = ovictory
+      PlayMusic("music/Orc Victory.ogg")
     end
   elseif (GameResult == GameDefeat) then
     result = "Defeat!"
     if (human) then
       background = hdefeat
+      PlayMusic("music/Human Defeat.ogg")
     else
       background = odefeat
+      PlayMusic("music/Orc Defeat.ogg")
     end
   elseif (GameResult == GameDraw) then
     result = "Draw!"
@@ -108,7 +112,7 @@ function RunResultsMenu()
     function() RunSaveReplayMenu() end)
 
   menu:addFullButton("~!Continue", "c", offx + 400, offy + 440,
-    function() menu:stop() end)
+    function() StopMusic(); menu:stop() end)
 
   menu:run()
 end

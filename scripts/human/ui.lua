@@ -57,6 +57,8 @@ DefineCursor({
 --	* Race human.
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+playlist = { "music/Human Battle 1.ogg", "music/Human Battle 2.ogg", "music/Human Battle 3.ogg", "music/Human Battle 4.ogg", "music/Human Battle 5.ogg" }
+
 function HumanScreen(screen_width, screen_height)
   local info_panel_x = 0
   local info_panel_y = 160

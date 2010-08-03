@@ -3,7 +3,15 @@
 function Briefing(title, objs, bg, text, voices)
   local menu = WarMenu(nil, bg)
 
-  StopMusic()
+  if (currentRace == "human") then
+    PlayMusic("music/Human Briefing.ogg")
+    Load("scripts/human/ui.lua")
+  elseif (currentRace == "orc") then
+    PlayMusic("music/Orc Briefing.ogg")
+    Load("scripts/orc/ui.lua")
+  else
+    StopMusic()
+  end
 
   Objectives = objs
 
@@ -48,7 +56,7 @@ function Briefing(title, objs, bg, text, voices)
         StopChannel(channel)
       end
       menu:stop()
-      MusicStopped()
+      StopMusic()
     end)
 
 
