@@ -113,15 +113,15 @@ if [ "$SKIP_CONTRIB" = "no" ] ; then
 fi
 
 # create the directory structure
-[ -d $DIR ] || mkdir $DIR
-[ -d $DIR/music ] || mkdir $DIR/music
-[ -d $DIR/maps ] || mkdir $DIR/maps
+[ -d "$DIR" ] || mkdir "$DIR"
+[ -d "$DIR/music" ] || mkdir "$DIR/music"
+[ -d "$DIR/maps" ] || mkdir "$DIR/maps"
 
 # check if audio tracks are not allready extracted
 if [ "$MUSIC" = "yes" ]; then
 	if [ -e "$DATADIR/music" ]; then
 		echo "Note: found extracted audio tracks in $DATADIR/music, only copy them"
-		cp $DATADIR/music/* $DIR/music/
+		cp $DATADIR/music/* "$DIR/music/"
 		MUSIC="no"
 	fi
 fi
@@ -157,10 +157,10 @@ fi
 
 # copy script files
 if [ "$SKIP_SCRIPTS" = "no" ] ; then
-	cp -R scripts $DIR/
-	rm -Rf `find $DIR/scripts | grep CVS`
-	rm -Rf `find $DIR/scripts | grep cvsignore`
-	rm -Rf `find $DIR/scripts | grep .svn`
+	cp -R scripts "$DIR/"
+	rm -Rf `find "$DIR/scripts" | grep CVS`
+	rm -Rf `find "$DIR/scripts" | grep cvsignore`
+	rm -Rf `find "$DIR/scripts" | grep .svn`
 fi
 
 # check if cdparanoia can extract audio tracks from CD
@@ -183,33 +183,33 @@ fi
 
 # extract audio tracks
 if [ "$MUSIC" = "yes" ] ; then
-	seq -w 2 18 | (while read i ; do $CDPARANOIA $DRIVE ${i} $DIR/music/track_${i}.wav ; \
-		($DECODE $DECODE_ARGS $DIR/music/track_${i}.wav -o $DIR/music/track_${i}.ogg && rm -f $DIR/music/track_${i}.wav 2>/dev/null &) ; done)
-	mv $DIR/music/track_02.ogg "$DIR/music/Human Battle 1.ogg"
-	mv $DIR/music/track_03.ogg "$DIR/music/Human Battle 2.ogg"
-	mv $DIR/music/track_04.ogg "$DIR/music/Human Battle 3.ogg"
-	mv $DIR/music/track_05.ogg "$DIR/music/Human Battle 4.ogg"
-	mv $DIR/music/track_06.ogg "$DIR/music/Human Battle 5.ogg"
-	mv $DIR/music/track_07.ogg "$DIR/music/Human Briefing.ogg"
-	mv $DIR/music/track_08.ogg "$DIR/music/Human Victory.ogg"
-	mv $DIR/music/track_09.ogg "$DIR/music/Human Defeat.ogg"
-	mv $DIR/music/track_10.ogg "$DIR/music/Orc Battle 1.ogg"
-	mv $DIR/music/track_11.ogg "$DIR/music/Orc Battle 2.ogg"
-	mv $DIR/music/track_12.ogg "$DIR/music/Orc Battle 3.ogg"
-	mv $DIR/music/track_13.ogg "$DIR/music/Orc Battle 4.ogg"
-	mv $DIR/music/track_14.ogg "$DIR/music/Orc Battle 5.ogg"
-	mv $DIR/music/track_15.ogg "$DIR/music/Orc Briefing.ogg"
-	mv $DIR/music/track_16.ogg "$DIR/music/Orc Victory.ogg"
-	mv $DIR/music/track_17.ogg "$DIR/music/Orc Defeat.ogg"
-	mv $DIR/music/track_18.ogg "$DIR/music/I'm a Medieval Man.ogg"
+	seq -w 2 18 | (while read i ; do $CDPARANOIA $DRIVE ${i} "$DIR/music/track_${i}.wav" ; \
+		($DECODE $DECODE_ARGS "$DIR/music/track_${i}.wav" -o "$DIR/music/track_${i}.ogg" && rm -f "$DIR/music/track_${i}.wav" 2>/dev/null &) ; done)
+	mv "$DIR/music/track_02.ogg" "$DIR/music/Human Battle 1.ogg"
+	mv "$DIR/music/track_03.ogg" "$DIR/music/Human Battle 2.ogg"
+	mv "$DIR/music/track_04.ogg" "$DIR/music/Human Battle 3.ogg"
+	mv "$DIR/music/track_05.ogg" "$DIR/music/Human Battle 4.ogg"
+	mv "$DIR/music/track_06.ogg" "$DIR/music/Human Battle 5.ogg"
+	mv "$DIR/music/track_07.ogg" "$DIR/music/Human Briefing.ogg"
+	mv "$DIR/music/track_08.ogg" "$DIR/music/Human Victory.ogg"
+	mv "$DIR/music/track_09.ogg" "$DIR/music/Human Defeat.ogg"
+	mv "$DIR/music/track_10.ogg" "$DIR/music/Orc Battle 1.ogg"
+	mv "$DIR/music/track_11.ogg" "$DIR/music/Orc Battle 2.ogg"
+	mv "$DIR/music/track_12.ogg" "$DIR/music/Orc Battle 3.ogg"
+	mv "$DIR/music/track_13.ogg" "$DIR/music/Orc Battle 4.ogg"
+	mv "$DIR/music/track_14.ogg" "$DIR/music/Orc Battle 5.ogg"
+	mv "$DIR/music/track_15.ogg" "$DIR/music/Orc Briefing.ogg"
+	mv "$DIR/music/track_16.ogg" "$DIR/music/Orc Victory.ogg"
+	mv "$DIR/music/track_17.ogg" "$DIR/music/Orc Defeat.ogg"
+	mv "$DIR/music/track_18.ogg" "$DIR/music/I'm a Medieval Man.ogg"
 else
 	if [ "$MUSICCD" = "no" ]; then
 		echo "Warning: Audio CD device not found"
 		echo "If you want to extract music, specify CD drive location with the '-d' param"
 	fi
-	if [ "$SKIP_CONTRIB" = "no" ] && [ ! -f "$DIR/music/Orc Briefing.ogg" ]; then
-		echo "Using default music file"
-		cp $CONTRIB/toccata.mod.gz "$DIR/music/Orc Briefing.ogg.gz"
+	if [ "$SKIP_CONTRIB" = "no" ] && [ ! -f "$DIR/music/Orc Briefing.ogg" ] && [ "$MIDI" = "no" ]; then
+		echo "Using default music file: toccata.mod"
+		cp "$CONTRIB/toccata.mod.gz" "$DIR/music/Orc Briefing.ogg.gz"
 	fi
 fi
 
@@ -228,37 +228,37 @@ $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
 # convert video files to theora format
 if [ "$VIDEO" != "" ]; then
 	for f in $DIR/videos/*.smk ; do
-		$DECODE $DECODE_ARGS $f -o ${f%%.smk}.ogv
-		rm -f $f
+		$DECODE $DECODE_ARGS "$f" -o "${f%%.smk}.ogv"
+		rm -f "$f"
 	done
 fi
 
 # convert midi to ogg
 if [ "$MIDI" != "no" ]; then
 	for f in $DIR/music/*.mid.gz ; do
-		$TIMIDITY -Ow $f -o - | $DECODE $DECODE_ARGS - -o - | gzip > ${f%%.mid.gz}.ogg.gz
-		rm -f $f
+		$TIMIDITY -Ow "$f" -o - | $DECODE $DECODE_ARGS - -o - | gzip > "${f%%.mid.gz}.ogg.gz"
+		rm -f "$f"
 	done
 fi
 
 # copy own supplied files
 if [ "$SKIP_CONTRIB" = "no" ] ; then
-	cp $CONTRIB/cross.png $DIR/graphics/ui/cursors
-	cp $CONTRIB/red_cross.png $DIR/graphics/missiles
-	cp $CONTRIB/mana.png $DIR/graphics/ui
-	cp $CONTRIB/mana2.png $DIR/graphics/ui
-	cp $CONTRIB/health.png $DIR/graphics/ui
-	cp $CONTRIB/health2.png $DIR/graphics/ui
-	cp $CONTRIB/food.png $DIR/graphics/ui
-	cp $CONTRIB/score.png $DIR/graphics/ui
-	cp $CONTRIB/ore,stone,coal.png $DIR/graphics/ui
+	cp "$CONTRIB/cross.png" "$DIR/graphics/ui/cursors"
+	cp "$CONTRIB/red_cross.png" "$DIR/graphics/missiles"
+	cp "$CONTRIB/mana.png" "$DIR/graphics/ui"
+	cp "$CONTRIB/mana2.png" "$DIR/graphics/ui"
+	cp "$CONTRIB/health.png" "$DIR/graphics/ui"
+	cp "$CONTRIB/health2.png" "$DIR/graphics/ui"
+	cp "$CONTRIB/food.png" "$DIR/graphics/ui"
+	cp "$CONTRIB/score.png" "$DIR/graphics/ui"
+	cp "$CONTRIB/ore,stone,coal.png" "$DIR/graphics/ui"
 fi
 
 # compress the sounds
-find $DIR/sounds -type f -name "*.wav" -print -exec gzip -f {} \; || true
+find "$DIR/sounds" -type f -name "*.wav" -print -exec gzip -f {} \; || true
 
 # compress the texts
-find $DIR/campaigns -type f -name "*.txt" -print -exec gzip -f {} \; || true
+find "$DIR/campaigns" -type f -name "*.txt" -print -exec gzip -f {} \; || true
 
 echo "Wargus data setup is now complete"
 echo "Note: you do not need to run this script again"
