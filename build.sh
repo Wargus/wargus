@@ -51,6 +51,7 @@ BINPATH="."
 DECODE="ffmpeg2theora"
 DECODE_ARGS="--optimize"
 CDPARANOIA="cdparanoia"
+TIMIDITY="timidity"
 
 #### Do not modify anything below this point.
 
@@ -142,6 +143,12 @@ if ! which "$DECODE" >/dev/null; then
 	fi
 	MUSIC="no"
 	VIDEO=""
+	MIDI="no"
+fi
+
+# check if $TIMIDITY is installed
+if ! which "$TIMIDITY" >/dev/null; then
+	MIDI="no"
 fi
 
 ###############################################################################
@@ -222,6 +229,14 @@ $BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
 if [ "$VIDEO" != "" ]; then
 	for f in $DIR/videos/*.smk ; do
 		$DECODE $DECODE_ARGS $f -o ${f%%.smk}.ogv
+		rm -f $f
+	done
+fi
+
+# convert midi to ogg
+if [ "$MIDI" != "no" ]; then
+	for f in $DIR/music/*.mid.gz ; do
+		$TIMIDITY -Ow $f -o - | $DECODE $DECODE_ARGS - -o - | gzip > ${f%%.mid.gz}.ogg.gz
 		rm -f $f
 	done
 fi

@@ -18,42 +18,43 @@
 #
 
 CC = gcc
+CXX = g++
 CFLAGS = -O2 -W -Wall -Wsign-compare -fsigned-char
+CXXFLAGS = $(CFLAGS)
 WINDRES = windres
-LDFLAGS = 
+LDFLAGS =
 GTKFLAGS = $(shell pkg-config --cflags --libs gtk+-2.0)
 
-all: unix
-
-clean:
-	rm -f wartool wartool.exe pudconvert pudconvert.exe wargus wargus.exe wargus.rc.o
-
-# Unix
-
-unix: wartool pudconvert wargus
-
-wartool:
-	$(CC) wartool.c pudconvert.c $(CFLAGS) -o wartool $(LDFLAGS) -lz -lpng -lm
-
-pudconvert:
-	$(CC) pudconvert.c $(CFLAGS) -DSTAND_ALONE -o pudconvert $(LDFLAGS) -lz
-
-wargus:
-	$(CC) wargus.c $(CFLAGS) -o wargus $(LDFLAGS) $(GTKFLAGS)
-
-# Win32
+all: wartool pudconvert wargus
 
 win32: wartool.exe pudconvert.exe wargus.exe
 
-wartool.exe:
-	$(CC) wartool.c pudconvert.c $(CFLAGS) -o wartool.exe $(LDFLAGS) -lz -lpng -lm
+clean:
+	rm -f wartool wartool.exe pudconvert pudconvert.exe wargus wargus.exe wargus.rc.o wartool.o pudconvert.o pudconvert-s.o xmi2mid.o warextract
 
-pudconvert.exe:
-	$(CC) pudconvert.c $(CFLAGS) -DSTAND_ALONE -o pudconvert.exe $(LDFLAGS) -lz
+wartool.o: wartool.c
 
-wargus.rc.o:
-	$(WINDRES) wargus.rc -o wargus.rc.o
+pudconvert.o: pudconvert.c
 
-wargus.exe: wargus.rc.o
-	$(CC) wargus.c wargus.rc.o $(CFLAGS) -mwindows -o wargus.exe $(LDFLAGS)
+xmi2mid.o: xmi2mid.cpp
 
+wartool wartool.exe: xmi2mid.o wartool.o pudconvert.o
+	$(CXX) xmi2mid.o wartool.o pudconvert.o $(LDFLAGS) -lz -lpng -lm -o $@
+
+pudconvert-s.o: pudconvert.c
+	$(CC) -c pudconvert.c $(CFLAGS) -DSTAND_ALONE -o $@
+
+pudconvert pudconvert.exe: pudconvert-s.o
+	$(CC) pudconvert-s.o $(LDFLAGS) -lz -o $@
+
+wargus.rc.o: wargus.rc
+	$(WINDRES) wargus.rc -o $@
+
+wargus: wargus.c
+	$(CC) wargus.c $(CFLAGS) $(GTKFLAGS) $(LDFLAGS) -o $@
+
+wargus.exe: wargus.c wargus.rc.o
+	$(CC) wargus.c wargus.rc.o $(CFLAGS) $(LDFLAGS) -mwindows -o $@
+
+warextract: warextract.c
+	$(CC) warextract.c $(CFLAGS) $(GTKFLAGS) $(LDFLAGS) -o $@

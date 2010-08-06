@@ -23,7 +23,6 @@ build:
 
 	if [ -f /etc/maemo_version ]; then \
 		$(MAKE) GTKFLAGS="$(shell pkg-config --cflags --libs hildon-1 gtk+-2.0)"; \
-		gcc warextract.c -o warextract -O2 -W -Wall -Wsign-compare -fsigned-char $(shell pkg-config --cflags --libs hildon-1 gtk+-2.0); \
 	else \
 		$(MAKE); \
 	fi
@@ -33,8 +32,6 @@ clean:
 	dh_testroot
 
 	$(MAKE) clean
-
-	if [ -f /etc/maemo_version ]; then rm -f warextract; fi
 
 	dh_clean
 
@@ -72,9 +69,9 @@ install: build
 	install -m0644 contrib/score.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
 	install -m0644 contrib/ore,stone,coal.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
 
-	install -m0644 contrib/toccata.mod.gz "$(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/music/Orc Briefing.ogg.gz"
-
+	# TODO: If timidity will be on Maemo toccata.mod.gz is not needed anymore
 	if [ -f /etc/maemo_version ]; then \
+		install -m0644 contrib/toccata.mod.gz "$(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/music/Orc Briefing.ogg.gz"
 		install -m0644 warextract $(CURDIR)/debian/wargus/usr/games; \
 	fi
 

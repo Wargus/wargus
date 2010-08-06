@@ -33,7 +33,7 @@
 --	Define the campaign
 
 campaign_steps = {
-  CreateVideoStep("videos/human-exp-1.ogv"),
+  CreateVideoStep("videos/exp-1.ogv"),
   CreatePictureStep("campaigns/human-exp/interface/Act_I_-_A_Time_for_Heroes.png", "sounds/human/act.wav", "Act I", "A Time for Heroes"),
   CreateMapStep("campaigns/human-exp/levelx01h.smp"),
   CreateMapStep("campaigns/human-exp/levelx02h.smp"),

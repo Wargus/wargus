@@ -35,7 +35,7 @@
 --  General
 ----------------------------------------------------------------------------*/
 
-#define VERSION "1.0" // Version of extractor wartool
+#define VERSION "1.1" // Version of extractor wartool
 
 const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2010 by The Stratagus Project.";
 
@@ -62,6 +62,7 @@ const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2010 by Th
 #include <png.h>
 
 #include "endian.h"
+#include "xmi2mid.h"
 
 #if defined(_MSC_VER) || defined(__MINGW32__) || defined(USE_BEOS)
 typedef unsigned long u_int32_t;
@@ -182,9 +183,10 @@ enum _archive_type_ {
 	N,    // Font                          (name,idx)
 	I,    // Image                         (name,pal,img)
 	W,    // Wav                           (name,wav)
+	M,    // XMI Midi Sound                (name,xmi)
 	X,    // Text                          (name,text,ofs)
 	C,    // Cursor                        (name,cursor)
-	V,    // Video                         (name)
+	V,    // Video                         (name,video)
 	L,    // Campaign Levels
 };
 
@@ -846,6 +848,24 @@ Control Todo[] = {
 {W,0,"orc/act",                                        434 __},
 {W,0,"ui/highclick",                                   435 __},
 {W,0,"ui/statsthump",                                  436 __},
+
+{M,0,"Human Battle 1",                                 413 __},
+{M,0,"Human Battle 2",                                 414 __},
+{M,0,"Human Battle 3",                                 415 __},
+{M,0,"Human Battle 4",                                 416 __},
+{M,0,"Orc Battle 1",                                   417 __},
+{M,0,"Orc Battle 2",                                   418 __},
+{M,0,"Orc Battle 3",                                   419 __},
+{M,0,"Orc Battle 4",                                   420 __},
+{M,0,"Human Defeat",                                   421 __},
+{M,0,"Orc Defeat",                                     422 __},
+{M,0,"Human Victory",                                  423 __},
+{M,0,"Orc Victory",                                    424 __},
+{M,0,"Human Briefing",                                 425 __},
+{M,0,"I'm a Medieval Man",                             426 __},
+{M,0,"Human Battle 5",                                 427 __},
+{M,0,"Orc Battle 5",                                   428 __},
+{M,0,"Orc Briefing",                                   429 __},
 
 {V,0,"videos/logo",                                    430 __},
 
@@ -1571,8 +1591,8 @@ Control Todo[] = {
 {V,0,"videos/human-1",                                 11 __},
 {V,0,"videos/orc-2",                                   12 __},
 {V,0,"videos/human-2",                                 14 __},
-{V,2,"videos/human-exp-1",                             15 __},
-{V,2,"videos/orc-exp-1",                               16 __},
+//{V,2,"videos/exp-1",                                   15 __}, //Fixme: 15 and 16 same?
+{V,2,"videos/exp-1",                                   16 __},
 {V,2,"videos/human-exp-2",                             17 __},
 {V,2,"videos/orc-exp-2",                               18 __},
 
@@ -3221,7 +3241,7 @@ int ConvertCursor(char* file, int pale, int cure)
 //----------------------------------------------------------------------------
 
 /**
-**  Convert pud to my format.
+**  Extract Wav
 */
 int ConvertWav(char* file, int wave)
 {
@@ -3251,11 +3271,54 @@ int ConvertWav(char* file, int wave)
 }
 
 //----------------------------------------------------------------------------
+//  XMI Midi
+//----------------------------------------------------------------------------
+
+/**
+**  Convert XMI Midi sound to Midi
+*/
+
+int ConvertXmi(char* file, int xmi)
+{
+	unsigned char* xmip;
+	size_t xmil;
+
+	xmip = ExtractEntry(ArchiveOffsets[xmi], &xmil);
+
+	unsigned char* midp;
+	size_t midl;
+
+	midp = TranscodeXmiToMid(xmip, xmil, &midl);
+
+	free(xmip);
+
+	char buf[1024];
+	gzFile gf;
+
+	sprintf(buf, "%s/%s/%s.mid.gz", Dir, MUSIC_PATH, file);
+	CheckPath(buf);
+	gf = gzopen(buf, "wb9");
+	if (!gf) {
+		perror("");
+		printf("Can't open %s\n", buf);
+		exit(-1);
+	}
+	if (midl != (size_t)gzwrite(gf, midp, midl)) {
+		printf("Can't write %d bytes\n", (int)midl);
+	}
+
+	free(midp);
+
+	gzclose(gf);
+	return 0;
+}
+
+//----------------------------------------------------------------------------
 //  Video
 //----------------------------------------------------------------------------
 
 /**
-**  Convert pud to my format.
+**  Extract video
 */
 int ConvertVideo(char* file, int video)
 {
@@ -4402,6 +4465,9 @@ int main(int argc, char** argv)
 				break;
 			case C:
 				ConvertCursor(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+				break;
+			case M:
+				ConvertXmi(Todo[u].File, Todo[u].Arg1);
 				break;
 			case W:
 				ConvertWav(Todo[u].File, Todo[u].Arg1);

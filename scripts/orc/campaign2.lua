@@ -33,7 +33,7 @@
 --	Define the campaign
 
 campaign_steps = {
-  CreateVideoStep("videos/orc-exp-1.ogv"),
+  CreateVideoStep("videos/exp-1.ogv"),
   CreatePictureStep("campaigns/orc-exp/interface/Act_I_-_Draenor,_the_Red_World.png", "sounds/orc/act.wav", "Act I", "Draenor, the Red World"),
   CreateMapStep("campaigns/orc-exp/levelx01o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx02o.smp"),
