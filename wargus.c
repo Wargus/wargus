@@ -57,7 +57,7 @@
 #endif
 
 #define TITLE "Wargus"
-#define STRATAGUS_NOT_FOUND "Stratagus is not installed.\nYou need Stratagus to run Wargus!"
+#define STRATAGUS_NOT_FOUND "Stratagus is not installed.\nYou need Stratagus to run Wargus!\nFirst install Stratagus from https://launchpad.net/stratagus"
 #define DATA_NOT_EXTRACTED "Wargus data was not extracted yet.\nYou need extract data from original Warcraft II CD first!"
 #define CONSOLE_MODE_NOT_ROOT "You must be root to run Wargus in console framebuffer mode"
 

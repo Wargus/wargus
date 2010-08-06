@@ -35,6 +35,11 @@
 !define UNINSTALL "uninstall.exe"
 !define INSTALLER "${NAME}-${VERSION}.exe"
 !define INSTALLDIR "$PROGRAMFILES\${NAME}\"
+!define HOMEPAGE "https://launchpad.net/wargus"
+!define COPYRIGHT "Copyright © 1998-2010 by The Stratagus Project and Pali Rohar"
+!define STRATAGUS_NAME "Stratagus"
+!define STRATAGUS_HOMEPAGE "https://launchpad.net/stratagus"
+!define LANGUAGE "English"
 
 !ifdef AMD64
 !undef INSTALLER
@@ -43,20 +48,16 @@
 !define INSTALLDIR "$PROGRAMFILES64\${NAME}\"
 !undef NAME
 !define NAME "Wargus (64 bit)"
+!undef STRATAGUS_NAME
+!define STRATAGUS_NAME "Stratagus (64 bit)"
 !endif
 
 !define REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}"
-!define LANGUAGE "English"
-
-!ifdef AMD64
-!define STRATAGUS_REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\Stratagus (64 bit)"
-!else
-!define STRATAGUS_REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\Stratagus"
-!endif
+!define STRATAGUS_REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${STRATAGUS_NAME}"
 
 ;--------------------------------
 
-LangString NO_STRATAGUS ${LANG_ENGLISH} "Stratagus is not installed. You need Stratagus to run Wargus! First install Stratagus, then Wargus."
+LangString NO_STRATAGUS ${LANG_ENGLISH} "${STRATAGUS_NAME} is not installed.$\nYou need ${STRATAGUS_NAME} to run ${NAME}!$\nFirst install ${STRATAGUS_NAME} from ${STRATAGUS_HOMEPAGE}"
 
 LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
 LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data files:"
@@ -150,7 +151,13 @@ OutFile "${INSTALLER}"
 InstallDir "${INSTALLDIR}"
 InstallDirRegKey HKLM "${REGKEY}" "InstallLocation"
 
-BrandingText " "
+VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" "${NAME}"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalCopyright" "${COPYRIGHT}"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "FileDescription" "${NAME}"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${VERSION}"
+VIProductVersion "${VERSION}"
+
+BrandingText "${NAME} - ${VERSION}  ${HOMEPAGE}"
 ShowInstDetails Show
 ShowUnInstDetails Show
 XPStyle on
@@ -279,6 +286,9 @@ Section "${NAME}"
 	WriteRegStr HKLM "${REGKEY}" "InstallLocation" "$INSTDIR"
 	WriteRegStr HKLM "${REGKEY}" "DisplayIcon" "$\"$INSTDIR\${WARGUS}$\",0"
 	WriteRegStr HKLM "${REGKEY}" "DisplayVersion" "${VERSION}"
+	WriteRegStr HKLM "${REGKEY}" "HelpLink" "${HOMEPAGE}"
+	WriteRegStr HKLM "${REGKEY}" "URLUpdateInfo" "${HOMEPAGE}"
+	WriteRegStr HKLM "${REGKEY}" "URLInfoAbout" "${HOMEPAGE}"
 	WriteRegDWORD HKLM "${REGKEY}" "NoModify" 1
 	WriteRegDWORD HKLM "${REGKEY}" "NoRepair" 1
 	WriteRegStr HKLM "${REGKEY}" "DataDir" "$DATADIR"
@@ -288,6 +298,8 @@ Section "${NAME}"
 SectionEnd
 
 Section "${NAME}" ExtractData
+
+	AddSize 110348
 
 	ClearErrors
 	FileOpen $0 "$INSTDIR\extracted" "r"
