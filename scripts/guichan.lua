@@ -583,7 +583,7 @@ function RunSinglePlayerGameMenu()
 end
 
 function BuildProgramStartMenu()
-  Load("scripts/ui.lua")
+  playlist = { "music/Orc Briefing.ogg" }
   SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 
   if not (IsMusicPlaying()) then
@@ -594,7 +594,9 @@ function BuildProgramStartMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
-  menu:addLabel("Wargus " .. Version, offx + 315, offy + 104 - 36)
+  menu:addLabel(Name .. " V" .. Version .. "  " .. Homepage, offx + 320, offy + 390 + 18*0)
+  menu:addLabel("Stratagus V" .. GetStratagusVersion() .. "  " .. GetStratagusHomepage(), offx + 320, offy + 390 + 18*1)
+  menu:addLabel(Copyright, offx + 320, offy + 390 + 18*4)
 
   menu:addFullButton("~!Single Player Game", "s", offx + 208, offy + 104 + 36*0,
     function() RunSinglePlayerGameMenu(); menu:stop(1) end)

@@ -1,1 +1,42 @@
-ICN_INSTALL ICON "contrib/wargus.ico"
+#ifdef _WIN64
+#define NAME "Wargus (64 bit)"
+#else
+#define NAME "Wargus"
+#endif
+
+#define DESCRIPTION NAME
+#define VERSION "2.2.5.2"
+#define VERSION_VS 2,2,5,2
+#define HOMEPAGE "https://launchpad.net/wargus"
+#define LICENSE "GPL v2"
+#define COPYRIGHT "Copyright (c) 1998-2010 by The Stratagus Project and Pali Rohar"
+
+1 ICON "contrib/wargus.ico"
+1 VERSIONINFO
+FILEVERSION	VERSION_VS
+PRODUCTVERSION	VERSION_VS
+FILEOS		4
+FILETYPE	1
+
+BEGIN
+	BLOCK "StringFileInfo"
+	BEGIN
+		BLOCK "040904E4"
+		BEGIN
+			VALUE "FileDescription",        DESCRIPTION
+			VALUE "FileVersion",            VERSION
+			VALUE "InternalName",           NAME
+			VALUE "LegalCopyright",         COPYRIGHT
+			VALUE "License",                LICENSE
+			VALUE "Homepage",               HOMEPAGE
+			VALUE "OriginalFilename",       "wargus.exe"
+			VALUE "ProductName",            NAME
+			VALUE "ProductVersion",         VERSION
+		END
+	END
+
+	BLOCK "VarFileInfo"
+	BEGIN
+		VALUE "Translation", 0x409, 1252
+	END
+END

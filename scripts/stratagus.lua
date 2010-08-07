@@ -39,7 +39,11 @@
 --  Version
 -------------------------------------------------------------------------------
 
+Name = "Wargus"
 Version = "2.2.5.2"
+Homepage = "https://launchpad.net/wargus"
+Licence = "GPL v2"
+Copyright = "Copyright (c) 1998-2010 by The Stratagus Project and Pali Rohar"
 
 -------------------------------------------------------------------------------
 --  Config-Part
@@ -75,7 +79,7 @@ playlist = { "music/Orc Briefing.ogg" }
 --  Set the game name. It's used so we can mantain different savegames
 --  and setting. Might also be used for multiplayer.
 SetGameName("wc2")
-SetFullGameName("Wargus")
+SetFullGameName(Name)
 
 
 SetSelectionStyle("corners")
