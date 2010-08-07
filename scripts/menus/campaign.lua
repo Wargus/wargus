@@ -1,6 +1,8 @@
 --      (c) Copyright 2010      by Pali Rohár
 	
 function Briefing(title, objs, bg, text, voices)
+  SetPlayerData(GetThisPlayer(), "RaceName", currentRace)
+
   local menu = WarMenu(nil, bg)
 
   if (currentRace == "human") then
@@ -79,6 +81,9 @@ function Briefing(title, objs, bg, text, voices)
 end
 
 function GetCampaignState(race, exp)
+  -- Loaded saved game could have other old state
+  -- Make sure that we use saved state from config file
+  Load("preferences.lua")
   if (race == "orc" and exp ~= "exp") then
     return preferences.CampaignOrc
   elseif (race == "human" and exp ~= "exp") then
@@ -92,6 +97,9 @@ function GetCampaignState(race, exp)
 end
 
 function IncreaseCampaignState(race, exp, state)
+  -- Loaded saved game could have other old state
+  -- Make sure that we use saved state from config file
+  Load("preferences.lua")
   if (race == "orc" and exp ~= "exp") then
     if (state ~= preferences.CampaignOrc) then return end
     preferences.CampaignOrc = preferences.CampaignOrc + 1
@@ -105,11 +113,13 @@ function IncreaseCampaignState(race, exp, state)
     if (state ~= preferences.CampaignHumanX) then return end
     preferences.CampaignHumanX = preferences.CampaignHumanX + 1
   end
+  -- Make sure that we immediately save state
   SavePreferences()
 end
 
 function CreatePictureStep(bg, sound, title, text)
   return function()
+    SetPlayerData(GetThisPlayer(), "RaceName", currentRace)
     PlayMusic(sound)
     local menu = WarMenu(nil, bg)
     local offx = (Video.Width - 640) / 2
@@ -182,13 +192,18 @@ function CampaignButtonFunction(campaign, race, exp, i, menu)
     currentState = i
     menu:stop()
     RunCampaign(campaign)
--- TODO: If user load game when playing another, this show campaign submenu... Temporary fix, commented next line
---    RunCampaignSubmenu(campaign, race, exp)
   end
 end
 
 function RunCampaignSubmenu(campaign, race, exp)
   Load(campaign)
+
+  playlist = { "music/Orc Briefing.ogg" }
+  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+
+  if not (IsMusicPlaying()) then
+    PlayMusic("music/Orc Briefing.ogg")
+  end
 
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
@@ -206,7 +221,7 @@ function RunCampaignSubmenu(campaign, race, exp)
   end
 
   menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 212 + (36 * 5),
-    function() menu:stop(); RunCampaignGameMenu() end)
+    function() menu:stop(); currentCampaign = nil; currentRace = nil; currentExp = nil; currentState = nil; RunCampaignGameMenu() end)
 
   menu:run()
 
@@ -227,10 +242,15 @@ function RunCampaign(campaign)
       position = position + 1
     elseif (GameResult == GameDefeat) then
     elseif (GameResult == GameDraw) then
+    elseif (GameResult == GameNoResult) then
+      currentCampaign = nil
+      return
     else
       break -- quit to menu
     end
   end
+
+  RunCampaignSubmenu(currentCampaign, currentRace, currentExp)
 
   currentCampaign = nil
 end

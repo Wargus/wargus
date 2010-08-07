@@ -25,8 +25,10 @@ function LoadGame(s)
       position = position + 1
     elseif (GameResult == GameDefeat) then
     elseif (GameResult == GameDraw) then
+    elseif (GameResult == GameNoResult) then
+      return
     else
-      currentCampaign = nil -- quit to menu
+      RunCampaignSubmenu(currentCampaign, currentRace, currentExp) -- quit to menu
       return
     end
     RunCampaign(currentCampaign)
