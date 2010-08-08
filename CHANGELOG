@@ -19,11 +19,16 @@
    - Extract ui graphics for more graphics resolutions
    - Extract sounds for campaigns acts screen
    - Store version of wartool, in future do not extract data twice
+   - Extract midi version of audio CD tracks from WAR archives
  - Game
    - Added support for more graphics resolutions
    - Added intro video and correct title screen
    - Added option for maximum OpenGL textures
    - Added multiplatform program wargus for searching stratagus and correct start-up
+   - Fixed UI theme in main menu and other menus
+   - Added different music playlist for orc (only orc themes) and for human (only human themes)
+   - Added Briefing, Victory and Defeat music
+   - Added save game confirmation menu
  - Campaigns
    - Added missing videos between levels
    - Added submenu for levels (with act screen and videos)
@@ -37,6 +42,7 @@
    - Added optification on Maemo
    - Added info for Hildon Application Manager
    - Added program warextract for extracting data on Maemo
+   - Used Backspace key for enter game menu
  - Windows
    - Rewrited NSIS Installer
      - Added support for AMD64 bit version
