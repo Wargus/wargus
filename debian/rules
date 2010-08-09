@@ -71,7 +71,7 @@ install: build
 
 	# TODO: If timidity will be on Maemo toccata.mod.gz is not needed anymore
 	if [ -f /etc/maemo_version ]; then \
-		install -m0644 contrib/toccata.mod.gz "$(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/music/Orc Briefing.ogg.gz"
+		install -m0644 contrib/toccata.mod.gz "$(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/music/Orc Briefing.ogg.gz"; \
 		install -m0644 warextract $(CURDIR)/debian/wargus/usr/games; \
 	fi
 
