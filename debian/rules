@@ -69,9 +69,7 @@ install: build
 	install -m0644 contrib/score.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
 	install -m0644 contrib/ore,stone,coal.png $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/graphics/ui
 
-	# TODO: If timidity will be on Maemo toccata.mod.gz is not needed anymore
 	if [ -f /etc/maemo_version ]; then \
-		install -m0644 contrib/toccata.mod.gz "$(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus/music/Orc Briefing.ogg.gz"; \
 		install -m0644 warextract $(CURDIR)/debian/wargus/usr/games; \
 	fi
 
@@ -127,7 +125,7 @@ binary-arch: build install
 	# Maemo section - Hildon Application Manager
 	if [ -f /etc/maemo_version ]; then \
 		sed "s/Section: .*/Section: user\/games/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
-		sed "s/Pre-Depends: .*/Pre-Depends: findutils-gnu, ffmpeg2theora/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
+		sed "s/Pre-Depends: .*/Pre-Depends: findutils-gnu, ffmpeg2theora, wildmidi, freepats/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "XSBC-Bugtracker: https://bugs.launchpad.net/wargus" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Display-Name: Wargus - Warcraft II" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Icon-26:" >> $(CURDIR)/debian/wargus/DEBIAN/control; \

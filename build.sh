@@ -52,6 +52,7 @@ DECODE="ffmpeg2theora"
 DECODE_ARGS="--optimize"
 CDPARANOIA="cdparanoia"
 TIMIDITY="timidity"
+WILDMIDI="wildmidi"
 
 #### Do not modify anything below this point.
 
@@ -135,6 +136,21 @@ if ! which "$CDPARANOIA" >/dev/null; then
 	MUSIC="no"
 fi
 
+# check if $TIMIDITY or $WILDMIDI is installed
+if which "$TIMIDITY" >/dev/null; then
+	MIDI="$TIMIDITY"
+	MIDI_ARGS="-Ow -o -"
+elif which "$WILDMIDI" >/dev/null; then
+	MIDI="$WILDMIDI"
+	MIDI_ARGS="-o /dev/stdout"
+else
+	echo "Warning: $TIMIDITY or $WILDMIDI is not installed in system"
+	echo "$TIMIDITY or $WILDMIDI is needed for extract midi music"
+	echo "Note: Audio CD tracks override midi music files"
+	MIDI=""
+	MIDI_ARGS=""
+fi
+
 # check if $DECODE is installed
 if ! which "$DECODE" >/dev/null; then
 	if [ "$MUSIC" = "yes" ] || [ "$VIDEO" != "" ]; then
@@ -143,12 +159,8 @@ if ! which "$DECODE" >/dev/null; then
 	fi
 	MUSIC="no"
 	VIDEO=""
-	MIDI="no"
-fi
-
-# check if $TIMIDITY is installed
-if ! which "$TIMIDITY" >/dev/null; then
-	MIDI="no"
+	MIDI=""
+	MIDI_ARGS=""
 fi
 
 ###############################################################################
@@ -234,9 +246,9 @@ if [ "$VIDEO" != "" ]; then
 fi
 
 # convert midi to ogg
-if [ "$MIDI" != "no" ]; then
+if [ "$MIDI" != "" ]; then
 	for f in $DIR/music/*.mid.gz ; do
-		$TIMIDITY -Ow "$f" -o - | $DECODE $DECODE_ARGS - -o - | gzip > "${f%%.mid.gz}.ogg.gz"
+		$MIDI $MIDI_ARGS "$f" | $DECODE $DECODE_ARGS - -o - | gzip > "${f%%.mid.gz}.ogg.gz"
 		rm -f "$f"
 	done
 fi
