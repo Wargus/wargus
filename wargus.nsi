@@ -17,7 +17,7 @@
 ;
 ;
 
-!include "MUI.nsh"
+!include "MUI2.nsh"
 
 ;--------------------------------
 
@@ -58,6 +58,7 @@
 
 ;--------------------------------
 
+LangString INSTALLER_RUNNING ${LANG_ENGLISH} "${NAME} Installer is already running."
 LangString NO_STRATAGUS ${LANG_ENGLISH} "${STRATAGUS_NAME} is not installed.$\nYou need ${STRATAGUS_NAME} to run ${NAME}!$\nFirst install ${STRATAGUS_NAME} from ${STRATAGUS_HOMEPAGE}"
 
 LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
@@ -104,6 +105,7 @@ LangString AMD64ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only
 
 Var STARTMENUDIR
 Var DATADIR
+Var EXTRACTNEEDED
 
 !define MUI_ICON "${ICON}"
 !define MUI_UNICON "${ICON}"
@@ -129,6 +131,7 @@ Var DATADIR
 !define MUI_DIRECTORYPAGE_TEXT_DESTINATION "$(EXTRACTDATA_PAGE_TEXT_DESTINATION)"
 !define MUI_DIRECTORYPAGE_VARIABLE $DATADIR
 !define MUI_DIRECTORYPAGE_VERIFYONLEAVE
+!define MUI_PAGE_CUSTOMFUNCTION_PRE PageExtractDataPre
 !define MUI_PAGE_CUSTOMFUNCTION_SHOW PageExtractDataShow
 !define MUI_PAGE_CUSTOMFUNCTION_LEAVE PageExtractDataLeave
 !insertmacro MUI_PAGE_DIRECTORY
@@ -169,58 +172,90 @@ ShowUnInstDetails Show
 XPStyle on
 RequestExecutionLevel admin
 
+ReserveFile "${WARTOOL}"
+
 ;--------------------------------
 
 Function .onInit
+
+	System::Call 'kernel32::CreateMutexA(i 0, i 0, t "${NAME}") i .r1 ?e'
+	Pop $0
+	StrCmp $0 0 +3
+
+	MessageBox MB_OK|MB_ICONEXCLAMATION "$(INSTALLER_RUNNING)"
+	Abort
 
 !ifdef AMD64
 
 	System::Call "kernel32::GetCurrentProcess() i .s"
 	System::Call "kernel32::IsWow64Process(i s, *i .r0)"
-	IntCmp $0 0 0 0 endcheck
+	IntCmp $0 0 0 0 +3
 
 	MessageBox MB_OK|MB_ICONSTOP "$(AMD64ONLY)"
 	Abort
 
-endcheck:
-
 !endif
 
 	ReadRegStr $0 HKLM "${STRATAGUS_REGKEY}" "InstallLocation"
-	StrCmp $0 "" 0 datadir
+	StrCmp $0 "" 0 +3
 
 	MessageBox MB_OK|MB_ICONSTOP "$(NO_STRATAGUS)"
 	Abort
 
-datadir:
-
 	ReadRegStr $DATADIR HKLM "${REGKEY}" "DataDir"
-	StrCmp $DATADIR "" 0 end
+	StrCmp $DATADIR "" 0 +2
 
 	StrCpy $DATADIR "D:\"
-
-end:
 
 FunctionEnd
 
 ;--------------------------------
+
+Function PageExtractDataPre
+
+	File "/oname=$TEMP\${WARTOOL}" "${WARTOOL}"
+
+	ClearErrors
+	FileOpen $0 "$INSTDIR\extracted" "r"
+	IfErrors extract
+
+	FileRead $0 $1
+	FileClose $0
+
+	ExecDos::exec /TOSTACK "$\"$TEMP\${WARTOOL}$\" -V"
+	Pop $0
+	Pop $2
+	Delete "$TEMP\${WARTOOL}"
+
+	StrCpy $2 "$2$\r$\n"
+	IntCmp $0 0 0 0 extract
+	StrCmp $1 $2 0 extract
+
+	StrCpy $EXTRACTNEEDED "no"
+	Abort
+
+extract:
+
+	StrCpy $EXTRACTNEEDED "yes"
+
+FunctionEnd
 
 Function PageExtractDataShow
 
 	FindWindow $0 "#32770" "" $HWNDPARENT
 	GetDlgItem $1 $0 1023
 	ShowWindow $1 0
+	GetDlgItem $1 $0 1024
+	ShowWindow $1 0
 
 FunctionEnd
 
 Function PageExtractDataLeave
 
-	IfFileExists "$DATADIR\data\rezdat.war" end
+	IfFileExists "$DATADIR\data\rezdat.war" +3
 
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_PAGE_NOT_VALID)"
 	Abort
-
-end:
 
 FunctionEnd
 
@@ -231,7 +266,7 @@ Section "-${NAME}" UninstallPrevious
         SectionIn RO
 
 	ReadRegStr $0 HKLM "${REGKEY}" "InstallLocation"
-	StrCmp $0 "" end
+	StrCmp $0 "" +7
 
 	DetailPrint "$(REMOVEPREVIOUS)"
 	SetDetailsPrint none
@@ -239,8 +274,6 @@ Section "-${NAME}" UninstallPrevious
 	Delete "$0\${UNINSTALL}"
 	RMDir $0
 	SetDetailsPrint lastused
-
-end:
 
 SectionEnd
 
@@ -298,6 +331,7 @@ Section "${NAME}"
 	WriteRegDWORD HKLM "${REGKEY}" "NoModify" 1
 	WriteRegDWORD HKLM "${REGKEY}" "NoRepair" 1
 	WriteRegStr HKLM "${REGKEY}" "DataDir" "$DATADIR"
+	WriteRegStr HKLM "${STRATAGUS_REGKEY}\Games" "${NAME}" "${VERSION}"
 
 	WriteUninstaller "$INSTDIR\${UNINSTALL}"
 
@@ -305,32 +339,25 @@ SectionEnd
 
 Section "${NAME}" ExtractData
 
+	StrCmp "$EXTRACTNEEDED" "no" end
+
 	AddSize 110348
-
-	ClearErrors
-	FileOpen $0 "$INSTDIR\extracted" "r"
-	IfErrors extract
-
-	FileRead $0 $1
-	FileClose $0
-
-	ExecDos::exec /TOSTACK "$\"$INSTDIR\${WARTOOL}$\" -V"
-	Pop $0
-	Pop $2
-	StrCpy $2 "$2$\r$\n"
-	IntCmp $0 0 0 0 extract
-	StrCmp $1 $2 end
-
-extract:
 
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_FILES)"
 	ExecDos::exec /DETAILED "$\"$INSTDIR\${WARTOOL}$\" -v $\"$DATADIR\data$\" $\"$INSTDIR$\""
 	Pop $0
-	IntCmp $0 0 audio
+	IntCmp $0 0 midi
 
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_FILES_FAILED)"
 	Abort
+
+midi:
+
+	; TODO: Convert extracted MIDI files in $INSTDIR\music to WAV
+	; TODO: Use timidity?
+
+	goto audio
 
 audio:
 
@@ -444,7 +471,14 @@ Section "un.${NAME}" Executable
 	RMDir "$SMPROGRAMS\$STARTMENUDIR"
 	Delete "$DESKTOP\${NAME}.lnk"
 
-	DeleteRegKey /ifempty HKLM "${REGKEY}"
+	DeleteRegKey HKLM "${REGKEY}"
+	DeleteRegValue HKLM "${STRATAGUS_REGKEY}\Games" "${NAME}"
+
+	ClearErrors
+	EnumRegValue $0 HKLM "${REGKEY}\Games" 0
+	IfErrors +2
+
+	DeleteRegKey /ifempty HKLM "${STRATAGUS_REGKEY}\Games"
 
 SectionEnd
 
