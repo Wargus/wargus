@@ -24,3 +24,36 @@ ffmpeg2theora:
   Homepage: http://v2v.cc/~j/ffmpeg2theora/
 
 
+
+timidity:
+
+  TiMidity++ is a software synthesizer. It can play MIDI files by converting them into PCM waveform data; give it a MIDI data along with digital instrument data files, then it synthesizes them in real-time, and plays. It can not only play sounds, but also can save the generated waveforms into hard disks as various audio file formats.
+
+  This software use official build for Windows from http://downloads.sourceforge.net/project/timidity/TiMidity++/TiMidity++-CVS/TiMidity++-2.13.2-cvs20100605.win32.zip
+
+  License: GNU GPL
+  Homepage: http://timidity.sourceforge.net/
+
+
+
+freepats:
+
+  Freepats is a project to create a free and open set of instrument patches, in any format, that can be used with softsynths. We would like to collect and host samples and instrument patches in any format so if you are interested in contributing to the project then send a message to the freepats mailing list. Needless to say, any uploaded content must either be in the Public Domain or have an open and free redistribution license.
+
+  This software use official build from http://freepats.zenvoid.org/freepats-20060219.tar.bz2
+
+  License: Public Domain and GNU GPL
+  Homepage: http://freepats.zenvoid.org/
+
+
+
+gzip:
+
+  gzip (GNU zip) is a compression utility designed to be a replacement for compress. Its main advantages over compress are much better compression and freedom from patented algorithms.
+
+  This software use official build for Windows from http://www.gzip.org/gzip124xN.zip
+
+  License: GNU GPL
+  Homepage: http://www.gzip.org/
+
+

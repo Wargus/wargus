@@ -37,6 +37,8 @@
 !define PUDCONVERT "pudconvert.exe"
 !define CDDA2WAV "cdda2wav.exe"
 !define FFMPEG2THEORA "ffmpeg2theora.exe"
+!define TIMIDITY "timidity.exe"
+!define GZIP "gzip.exe"
 !define UNINSTALL "uninstall.exe"
 !define INSTALLER "${NAME}-${VERSION}.exe"
 !define INSTALLDIR "$PROGRAMFILES\${NAME}\"
@@ -67,12 +69,14 @@ LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data 
 LangString EXTRACTDATA_FILES ${LANG_ENGLISH} "Extracting Warcraft II data files..."
 LangString EXTRACTDATA_RIP_AUDIO ${LANG_ENGLISH} "Ripping Warcraft II audio tracks..."
 LangString EXTRACTDATA_COPY_AUDIO ${LANG_ENGLISH} "Coping Warcraft II audio tracks..."
+LangString EXTRACTDATA_CONVERT_MIDI ${LANG_ENGLISH} "Converting Warcraft II audio midi tracks..."
 LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_ENGLISH} "Converting Warcraft II audio tracks..."
 LangString EXTRACTDATA_CONVERT_VIDEOS ${LANG_ENGLISH} "Converting Warcraft II video files..."
 
 LangString EXTRACTDATA_FILES_FAILED ${LANG_ENGLISH} "Extracting Warcraft II data files failed."
 LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_ENGLISH} "Ripping Warcraft II audio tracks failed."
 LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_ENGLISH} "Coping Warcraft II audio tracks failed."
+LangString EXTRACTDATA_CONVERT_MIDI_FAILED ${LANG_ENGLISH} "Converting Warcraft II audio midi tracks failed."
 LangString EXTRACTDATA_CONVERT_AUDIO_FAILED ${LANG_ENGLISH} "Converting Warcraft II audio tracks failed."
 LangString EXTRACTDATA_CONVERT_VIDEOS_FAILED ${LANG_ENGLISH} "Converting Warcraft II video files failed."
 
@@ -97,11 +101,19 @@ LangString AMD64ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only
 !system "unzip -o cdrtools.zip cdda2wav.exe"
 !system "wget http://nsis.sourceforge.net/mediawiki/images/0/0f/ExecDos.zip -O ExecDos.zip"
 !system "unzip -j -o ExecDos.zip Plugins/ExecDos.dll"
+!system "wget http://downloads.sourceforge.net/project/timidity/TiMidity++/TiMidity++-CVS/TiMidity++-2.13.2-cvs20100605.win32.zip -O timidity.zip"
+!system "unzip -j -o timidity.zip TiMidity++/timidity.exe"
+!system "wget http://freepats.zenvoid.org/freepats-20060219.tar.bz2 -O freepats.tar.bz2"
+!system "tar -xf freepats.tar.bz2"
+!system "wget http://www.gzip.org/gzip124xN.zip -O gzip.zip"
+!system "unzip -o gzip.zip gzip.exe"
 !endif
 
 !addplugindir .
 
 ;--------------------------------
+
+SetCompressor lzma
 
 Var STARTMENUDIR
 Var DATADIR
@@ -287,6 +299,8 @@ Section "${NAME}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
+	File "${TIMIDITY}"
+	File "${GZIP}"
 
 	SetOutPath "$INSTDIR\maps"
 	File /r /x .svn /x *.pud* "maps\"
@@ -295,6 +309,14 @@ Section "${NAME}"
 	SetOutPath "$INSTDIR\campaigns"
 	File /r /x .svn "campaigns\"
 	SetOutPath "$INSTDIR"
+
+	File /r "freepats"
+	ClearErrors
+	FileOpen $0 "$INSTDIR\timidity.cfg" "w"
+	IfErrors +4
+	FileWrite $0 "dir freepats"
+	FileWrite $0 "source $\"$INSTDIR\freepats\freepats.cfg$\""
+	FileClose $0
 
 	CreateDirectory "$INSTDIR\music"
 	CreateDirectory "$INSTDIR\graphics"
@@ -310,7 +332,6 @@ Section "${NAME}"
 	File "/oname=graphics\ui\food.png" "contrib\food.png"
 	File "/oname=graphics\ui\score.png" "contrib\score.png"
 	File "/oname=graphics\ui\ore,stone,coal.png" "contrib\ore,stone,coal.png"
-	File "/oname=music\Orc Briefing.ogg.gz" "contrib\toccata.mod.gz"
 
 	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 	CreateDirectory "$SMPROGRAMS\$STARTMENUDIR"
@@ -354,10 +375,16 @@ Section "${NAME}" ExtractData
 
 midi:
 
-	; TODO: Convert extracted MIDI files in $INSTDIR\music to WAV
-	; TODO: Use timidity?
+	DetailPrint ""
+	DetailPrint "$(EXTRACTDATA_CONVERT_MIDI)"
+	SetOutPath "$INSTDIR\music"
+	ExecDos::exec /DETAILED "cmd /c $\"@echo off && for %f in (*.mid.gz) do ..\${TIMIDITY} -Ow -o - %f | ..\${FFMPEG2THEORA} --optimize - -o - | ..\${GZIP} > %f:~0,-6% && del /q %f$\""
+	Pop $0
+	SetOutPath "$INSTDIR"
+	IntCmp $0 0 audio
 
-	goto audio
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_MIDI_FAILED)"
+	Abort
 
 audio:
 
@@ -462,7 +489,11 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${PUDCONVERT}"
 	Delete "$INSTDIR\${CDDA2WAV}"
 	Delete "$INSTDIR\${FFMPEG2THEORA}"
+	Delete "$INSTDIR\${TIMIDITY}"
+	Delete "$INSTDIR\${GZIP}"
 	Delete "$INSTDIR\${UNINSTALL}"
+	Delete "$INSTDIR\timidity.cfg"
+	RMDir /r "$INSTDIR\freepats"
 	RMDir "$INSTDIR"
 
 	!insertmacro MUI_STARTMENU_GETFOLDER Application $STARTMENUDIR
@@ -496,12 +527,23 @@ SectionEnd
 
 ;--------------------------------
 
+!packhdr "exehead.tmp" "upx -9 exehead.tmp"
+;!finalize "gpg --armor --sign --detach-sig %1"
+
+;--------------------------------
+
 !ifndef NO_DOWNLOAD
 !delfile "ffmpeg2theora.exe"
 !delfile "cdda2wav.exe"
 !delfile "cdrtools.zip"
 !delfile "ExecDos.dll"
 !delfile "ExecDos.zip"
+!delfile "timidity.exe"
+!delfile "timidity.zip"
+!delfile "freepats.tar.bz2"
+!delfile "freepats"
+!deldile "gzip.zip"
+!deldile "gzip.exe"
 !endif
 
 ;--------------------------------
