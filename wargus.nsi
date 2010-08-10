@@ -314,8 +314,8 @@ Section "${NAME}"
 	ClearErrors
 	FileOpen $0 "$INSTDIR\timidity.cfg" "w"
 	IfErrors +4
-	FileWrite $0 "dir freepats"
-	FileWrite $0 "source $\"$INSTDIR\freepats\freepats.cfg$\""
+	FileWrite $0 "dir $\"$INSTDIR\freepats$\"$\n"
+	FileWrite $0 "source $\"$INSTDIR\freepats\freepats.cfg$\"$\n"
 	FileClose $0
 
 	CreateDirectory "$INSTDIR\music"
@@ -368,25 +368,33 @@ Section "${NAME}" ExtractData
 	DetailPrint "$(EXTRACTDATA_FILES)"
 	ExecDos::exec /DETAILED "$\"$INSTDIR\${WARTOOL}$\" -v $\"$DATADIR\data$\" $\"$INSTDIR$\""
 	Pop $0
-	IntCmp $0 0 midi
+	IntCmp $0 0 +3
 
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_FILES_FAILED)"
 	Abort
 
-midi:
-
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_CONVERT_MIDI)"
 	SetOutPath "$INSTDIR\music"
-	ExecDos::exec /DETAILED "cmd /c $\"@echo off && for %f in (*.mid.gz) do ..\${TIMIDITY} -Ow -o - %f | ..\${FFMPEG2THEORA} --optimize - -o - | ..\${GZIP} > %f:~0,-6% && del /q %f$\""
-	Pop $0
-	SetOutPath "$INSTDIR"
-	IntCmp $0 0 audio
+	ClearErrors
 
+	FindFirst $0 $1 *.mid.gz
+
+	StrCmp $1 "" +10
+	StrCpy $2 $1 -7
+	ExecDos::exec /DETAILED "..\${TIMIDITY} -Ow -o $\"$2.mid.wav$\" $\"$1$\""
+	ExecDos::exec /DETAILED "..\${FFMPEG2THEORA} --optimize $\"$2.mid.wav$\" -o $\"$2.mid.ogg$\""
+	ExecDos::exec /DETAILED "..\${GZIP} $\"$2.mid.ogg$\""
+	Rename "$2.mid.ogg.gz" "$2.ogg.gz"
+	Delete "$2.mid.wav"
+	Delete "$2.mid.gz"
+	FindNext $0 $1
+	Goto -9
+
+	FindClose $0
+
+	IfErrors 0 +2
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_MIDI_FAILED)"
-	Abort
-
-audio:
 
 	IfFileExists "$DATADIR\data\music\*.*" copy_audio rip_audio
 
@@ -420,19 +428,15 @@ rip_audio:
 		Push 0
 		ExecDos::exec /DETAILED "${CDDA2WAV} -D SPTI:1,2,0 -t $i $\"$INSTDIR\music\$0$\""
 		Pop $0
-		IntCmp $0 0 next
+		IntCmp $0 0 +3
 
 		MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_RIP_AUDIO_FAILED)"
-		goto abord
-
-next:
+		goto +2
 
 	${Next}
 
 	Delete "$INSTDIR\music\audio.*"
 	Delete "$INSTDIR\music\*.inf"
-
-abord:
 
 	goto convert_audio
 
@@ -440,39 +444,51 @@ copy_audio:
 
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_COPY_AUDIO)"
+	ClearErrors
 	CopyFiles "$DATADIR\data\music\*.*" "$INSTDIR\music\"
-	IntCmp $0 0 convert_audio
 
+	IfErrors 0 +2
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_COPY_AUDIO_FAILED)"
-	Abort
 
 convert_audio:
-
-	IfFileExists "$DATADIR\data\music\*.wav" 0 convert_videos
 
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_CONVERT_AUDIO)"
 	SetOutPath "$INSTDIR\music"
-	ExecDos::exec /DETAILED "cmd /c $\"@echo off && for %f in (*.wav) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\""
-	Pop $0
-	SetOutPath "$INSTDIR"
-	IntCmp $0 0 convert_videos
+	ClearErrors
 
+	FindFirst $0 $1 *.wav
+
+	StrCmp $1 "" +5
+	ExecDos::exec /DETAILED "..\${FFMPEG2THEORA} --optimize $\"$1$\""
+	Delete "$1"
+	FindNext $0 $1
+	Goto -4
+
+	FindClose $0
+
+	IfErrors 0 +2
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_AUDIO_FAILED)"
-	Abort
-
-convert_videos:
 
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_CONVERT_VIDEOS)"
 	SetOutPath "$INSTDIR\videos"
-	ExecDos::exec /DETAILED "cmd /c $\"@echo off && for %f in (*.smk) do ..\${FFMPEG2THEORA} --optimize %f && del /q %f$\""
-	Pop $0
-	SetOutPath "$INSTDIR"
-	IntCmp $0 0 end
+	ClearErrors
 
+	FindFirst $0 $1 *.smk
+
+	StrCmp $1 "" +5
+	ExecDos::exec /DETAILED "..\${FFMPEG2THEORA} --optimize $\"$1$\""
+	Delete "$1"
+	FindNext $0 $1
+	Goto -4
+
+	FindClose $0
+
+	IfErrors 0 +2
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_VIDEOS_FAILED)"
-	Abort
+
+	SetOutPath "$INSTDIR"
 
 end:
 
