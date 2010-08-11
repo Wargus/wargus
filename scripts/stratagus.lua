@@ -40,7 +40,7 @@
 -------------------------------------------------------------------------------
 
 Name = "Wargus"
-Version = "2.2.5.2"
+Version = "2.2.5.3"
 Homepage = "https://launchpad.net/wargus"
 Licence = "GPL v2"
 Copyright = "Copyright (c) 1998-2010 by The Stratagus Project and Pali Rohar"
