@@ -11,10 +11,21 @@ Briefing(
 )
 
 Triggers = [[
+HaveUnitSharpAxe = nil
+
 AddTrigger( 
   function() return GetPlayerData(2, "UnitTypesCount", "unit-sharp-axe") == 0 and
     IfRescuedNearUnit("this", "==", 1, "unit-sharp-axe", "unit-circle-of-power") end,
   function() return ActionVictory() end)
+  
+AddTrigger( 
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-sharp-axe") == 1 end,
+  function() HaveUnitSharpAxe=true; return false end)
+  
+AddTrigger(
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-sharp-axe") == 0 and
+    HaveUnitSharpAxe ~= nil end,
+  function() return ActionDefeat() end)
 	
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
