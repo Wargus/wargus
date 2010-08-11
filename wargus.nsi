@@ -572,9 +572,10 @@ SectionEnd
 !delfile "timidity.exe"
 !delfile "timidity.zip"
 !delfile "freepats.tar.bz2"
+!system "rm -rf freepats"
 !delfile "freepats"
-!deldile "gzip.zip"
-!deldile "gzip.exe"
+!delfile "gzip.zip"
+!delfile "gzip.exe"
 !endif
 
 ;--------------------------------
