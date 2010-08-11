@@ -22,7 +22,7 @@ build:
 	dh_testdir
 
 	if [ -f /etc/maemo_version ]; then \
-		$(MAKE) GTKFLAGS="$(shell pkg-config --cflags --libs hildon-1 gtk+-2.0)"; \
+		$(MAKE) all warextract GTKFLAGS="$(shell pkg-config --cflags --libs hildon-1 gtk+-2.0)"; \
 	else \
 		$(MAKE); \
 	fi
