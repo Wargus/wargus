@@ -50,4 +50,5 @@
      - Added support for extracting data
      - Added support for ripping audio tracks (using cdda2wav)
      - Added support for converting video files (using ffmpeg2theora)
+     - Added support for converting audio midi files (using timidity and freepats)
    - Removed old Windows extract data programs
