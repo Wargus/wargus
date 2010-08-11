@@ -376,24 +376,33 @@ Section "${NAME}" ExtractData
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_CONVERT_MIDI)"
 	SetOutPath "$INSTDIR\music"
-	ClearErrors
 
+	StrCpy $4 "0"
 	FindFirst $0 $1 *.mid.gz
 
-	StrCmp $1 "" +10
+	StrCmp $1 "" +19
 	StrCpy $2 $1 -7
 	ExecDos::exec /DETAILED "..\${TIMIDITY} -Ow -o $\"$2.mid.wav$\" $\"$1$\""
+	Pop $3
+	IntCmp $3 0 +2
+	StrCpy $4 "1"
 	ExecDos::exec /DETAILED "..\${FFMPEG2THEORA} --optimize $\"$2.mid.wav$\" -o $\"$2.mid.ogg$\""
+	Pop $3
+	IntCmp $3 0 +2
+	StrCpy $4 "1"
 	ExecDos::exec /DETAILED "..\${GZIP} $\"$2.mid.ogg$\""
+	Pop $3
+	IntCmp $3 0 +2
+	StrCpy $4 "1"
 	Rename "$2.mid.ogg.gz" "$2.ogg.gz"
 	Delete "$2.mid.wav"
 	Delete "$2.mid.gz"
 	FindNext $0 $1
-	Goto -9
+	Goto -18
 
 	FindClose $0
 
-	IfErrors 0 +2
+	IntCmp $4 0 +2
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_MIDI_FAILED)"
 
 	IfFileExists "$DATADIR\data\music\*.*" copy_audio rip_audio
@@ -455,37 +464,43 @@ convert_audio:
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_CONVERT_AUDIO)"
 	SetOutPath "$INSTDIR\music"
-	ClearErrors
 
+	StrCpy $3 "0"
 	FindFirst $0 $1 *.wav
 
-	StrCmp $1 "" +5
+	StrCmp $1 "" +8
 	ExecDos::exec /DETAILED "..\${FFMPEG2THEORA} --optimize $\"$1$\""
+	Pop $2
+	IntCmp $2 0 +2
+	StrCpy $3 "1"
 	Delete "$1"
 	FindNext $0 $1
-	Goto -4
+	Goto -7
 
 	FindClose $0
 
-	IfErrors 0 +2
+	IntCmp $3 0 +2
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_AUDIO_FAILED)"
 
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_CONVERT_VIDEOS)"
 	SetOutPath "$INSTDIR\videos"
-	ClearErrors
 
+	StrCpy $3 "0"
 	FindFirst $0 $1 *.smk
 
-	StrCmp $1 "" +5
+	StrCmp $1 "" +8
 	ExecDos::exec /DETAILED "..\${FFMPEG2THEORA} --optimize $\"$1$\""
+	Pop $2
+	IntCmp $2 0 +2
+	StrCpy $3 "1"
 	Delete "$1"
 	FindNext $0 $1
-	Goto -4
+	Goto -7
 
 	FindClose $0
 
-	IfErrors 0 +2
+	IntCmp $3 0 +2
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_VIDEOS_FAILED)"
 
 	SetOutPath "$INSTDIR"
