@@ -5,6 +5,7 @@ function Briefing(title, objs, bg, text, voices)
 
   local menu = WarMenu(nil, bg)
 
+  playlist = {}
   if (currentRace == "human") then
     PlayMusic("music/Human Briefing.ogg")
     Load("scripts/human/ui.lua")
@@ -120,6 +121,7 @@ end
 function CreatePictureStep(bg, sound, title, text)
   return function()
     SetPlayerData(GetThisPlayer(), "RaceName", currentRace)
+    playlist = {}
     PlayMusic(sound)
     local menu = WarMenu(nil, bg)
     local offx = (Video.Width - 640) / 2
