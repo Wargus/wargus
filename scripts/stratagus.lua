@@ -81,6 +81,7 @@ playlist = { "music/Orc Briefing.ogg" }
 SetGameName("wc2")
 SetFullGameName(Name)
 
+SetMenuRace("orc")
 
 SetSelectionStyle("corners")
 Preference.ShowSightRange = false
