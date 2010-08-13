@@ -49,6 +49,26 @@ DefineButtonStyle("main", {
   },
 })
 
+DefineButtonStyle("main-orc", {
+  Size = {128, 20},
+  Font = "game",
+  TextNormalColor = "yellow",
+  TextReverseColor = "white",
+  TextAlign = "Center",
+  TextPos = {64, 4},
+  Default = {
+    File = "ui/buttons_2.png", Size = {300, 144}, Frame = 4,
+  },
+  Hover = {
+    TextNormalColor = "white",
+  },
+  Clicked = {
+    File = "ui/buttons_2.png", Size = {300, 144}, Frame = 5,
+    TextNormalColor = "white",
+    TextPos = {66, 6},
+  },
+})
+
 DefineButtonStyle("network", {
   Size = {80, 20},
   Font = "game",
@@ -64,6 +84,26 @@ DefineButtonStyle("network", {
   },
   Clicked = {
     File = "ui/buttons_1.png", Size = {300, 144}, Frame = 8,
+    TextNormalColor = "white",
+    TextPos = {42, 6},
+  },
+})
+
+DefineButtonStyle("network-orc", {
+  Size = {80, 20},
+  Font = "game",
+  TextNormalColor = "yellow",
+  TextReverseColor = "white",
+  TextAlign = "Center",
+  TextPos = {40, 4},
+  Default = {
+    File = "ui/buttons_2.png", Size = {300, 144}, Frame = 7,
+  },
+  Hover = {
+    TextNormalColor = "white",
+  },
+  Clicked = {
+    File = "ui/buttons_2.png", Size = {300, 144}, Frame = 8,
     TextNormalColor = "white",
     TextPos = {42, 6},
   },
