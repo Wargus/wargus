@@ -193,10 +193,10 @@ function BuildOptionsMenu()
     end)
   b:setMarked(Video.FullScreen)
 
-  checkTexture = menu:addCheckBox("Set Maximum OpenGL Texture to 128", offx + 127, offy + 55 + 26*10 + 14,
+  checkTexture = menu:addCheckBox("Set Maximum OpenGL Texture to 256", offx + 127, offy + 55 + 26*10 + 14,
     function()
       if (checkTexture:isMarked()) then
-        preferences.MaxOpenGLTexture = 128
+        preferences.MaxOpenGLTexture = 256
       else
         preferences.MaxOpenGLTexture = 0
       end
