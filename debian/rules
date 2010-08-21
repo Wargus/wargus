@@ -1,8 +1,8 @@
 #!/usr/bin/make -f
 # debian/rules that uses debhelper.
 # GNU copyright 1997 to 1999 by Joey Hess.
-# GNU Copyright 2002-2004 by David Martínez Moreno.
-# GNU Copyright 2010 by Pali Rohár
+# GNU Copyright 2002-2004 by David MartÃ­nez Moreno.
+# GNU Copyright 2010 by Pali RohÃ¡r
 
 # Do you want verbosity...? Uncomment this.
 #export DH_VERBOSE=1
@@ -93,9 +93,7 @@ binary-arch: build install
 	
 	# Maemo section - Optify
 	if [ -f /etc/maemo_version ]; then \
-		mkdir -p $(CURDIR)/debian/wargus/usr/share/dbus-1/services; \
 		mkdir -p $(CURDIR)/debian/wargus/usr/share/applications/hildon; \
-		install -m0644 debian/org.stratagus.wargus.service $(CURDIR)/debian/wargus/usr/share/dbus-1/services/; \
 		mv $(CURDIR)/debian/wargus/usr/share/applications/wargus.desktop $(CURDIR)/debian/wargus/usr/share/applications/hildon/; \
 		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/bin; \
 		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/share; \
@@ -115,8 +113,8 @@ binary-arch: build install
 		ln -s /opt/stratagus/share/man/wartool.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/wartool.6.gz; \
 		ln -s /opt/stratagus/share/man/pudconvert.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/pudconvert.6.gz; \
 		echo "X-Osso-Type=application/x-executable" >> $(CURDIR)/debian/wargus/usr/share/applications/hildon/wargus.desktop; \
-		echo "X-Osso-Service=org.stratagus.wargus" >> $(CURDIR)/debian/wargus/usr/share/applications/hildon/wargus.desktop; \
 		sed "s/Exec=.*/Exec=\/opt\/stratagus\/bin\/wargus/" -i $(CURDIR)/debian/wargus/usr/share/applications/hildon/wargus.desktop; \
+		sed "s/Name=.*/Name=Wargus/" -i $(CURDIR)/debian/wargus/usr/share/applications/hildon/wargus.desktop; \
 	fi
 
 	dh_shlibdeps
@@ -126,7 +124,7 @@ binary-arch: build install
 	if [ -f /etc/maemo_version ]; then \
 		sed "s/Section: .*/Section: user\/games/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
 		sed "s/Pre-Depends: .*/Pre-Depends: findutils-gnu, ffmpeg2theora, wildmidi, freepats/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
-		echo "XSBC-Bugtracker: https://bugs.launchpad.net/wargus" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
+		echo "Bugtracker: https://bugs.launchpad.net/wargus" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Display-Name: Wargus - Warcraft II" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Icon-26:" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		for line in $(shell convert contrib/wargus.png -resize 48x48 png:- | uuencode -m - | tail -n +2 | head -n -1); do \
