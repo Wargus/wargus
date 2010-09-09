@@ -16,6 +16,8 @@ endif
 
 DEB_BUILD_GNU_CPU ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_CPU)
 
+VERSION := $(shell dpkg-parsechangelog | sed -ne "s/^Version: \(.*\)/\1/p" | sed "s/-[^-]*$$//" )
+
 export CFLAGS
 
 build: 
@@ -30,6 +32,8 @@ build:
 clean: 
 	dh_testdir
 	dh_testroot
+
+	sed "/^Depends:/s/stratagus (.*)/stratagus (>= $(VERSION))/" -i $(CURDIR)/debian/control
 
 	$(MAKE) clean
 
