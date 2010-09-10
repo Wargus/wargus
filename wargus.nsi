@@ -61,7 +61,7 @@
 ;--------------------------------
 
 LangString INSTALLER_RUNNING ${LANG_ENGLISH} "${NAME} Installer is already running."
-LangString NO_STRATAGUS ${LANG_ENGLISH} "${STRATAGUS_NAME} is not installed.$\nYou need ${STRATAGUS_NAME} to run ${NAME}!$\nFirst install ${STRATAGUS_NAME} from ${STRATAGUS_HOMEPAGE}"
+LangString NO_STRATAGUS ${LANG_ENGLISH} "${STRATAGUS_NAME} ${VERSION} is not installed.$\nYou need ${STRATAGUS_NAME} ${VERSION} to run ${NAME}!$\nFirst install ${STRATAGUS_NAME} ${VERSION} from ${STRATAGUS_HOMEPAGE}"
 
 LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
 LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data files:"
@@ -208,8 +208,8 @@ Function .onInit
 
 !endif
 
-	ReadRegStr $0 HKLM "${STRATAGUS_REGKEY}" "InstallLocation"
-	StrCmp $0 "" 0 +3
+	ReadRegStr $0 HKLM "${STRATAGUS_REGKEY}" "DisplayVersion"
+	StrCmp $0 "${VERSION}" +3
 
 	MessageBox MB_OK|MB_ICONSTOP "$(NO_STRATAGUS)"
 	Abort
