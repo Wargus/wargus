@@ -14,27 +14,31 @@
    - Fixed extract number of logo video
    - Fixed extracting videos with correct names
    - Fixed converting maps PUD files
-   - Removed campaigns template files, instead create new and write title and objectives directly
    - Extract ending victory campaigns texts
    - Extract ui graphics for more graphics resolutions
    - Extract sounds for campaigns acts screen
-   - Store version of wartool, in future do not extract data twice
    - Extract midi version of audio CD tracks from WAR archives
+   - Removed campaigns template files, instead create new and write title and objectives directly
+   - Store version of wartool, in future do not extract data twice
  - Game
    - Added support for more graphics resolutions
    - Added intro video and correct title screen
    - Added option for maximum OpenGL textures
    - Added multiplatform program wargus for searching stratagus and correct start-up
-   - Fixed UI theme in main menu and other menus
    - Added different music playlist for orc (only orc themes) and for human (only human themes)
    - Added Briefing, Victory and Defeat music
    - Added save game confirmation menu
+   - Fixed UI theme in main menu and other menus
+   - Fixed color of orc menu button (F10)
+   - Fixed correct cursors for races
  - Campaigns
    - Added missing videos between levels
    - Added submenu for levels (with act screen and videos)
    - Added missing ending vicotry screen at end of campaigns
    - Fixed save/load game (after load triggers - game objectives was not loaded)
    - Fixed scrolling briefing text
+   - Fixed orc campaign level 2
+   - Fixed background music in Briefing and PictureStep
  - Debian
    - Rewrited config scripts for better extract game data
    - Added missing Wargus files do deb package
