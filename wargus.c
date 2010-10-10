@@ -23,7 +23,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 
 #include <unistd.h>
@@ -43,16 +42,13 @@
 #endif
 
 #ifdef _WIN64
-#define REGKEY "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Stratagus (64 bit)"
+#define REGKEY "Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Stratagus (64 bit)"
 #elif defined (WIN32)
 #define REGKEY "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Stratagus"
 #endif
 
 #if ! defined(WIN32) && ! defined(WARGUS_PATH)
 #define WARGUS_PATH "/usr/share/games/stratagus/wargus"
-#endif
-
-#if ! defined(WIN32) && ! defined(STRATAGUS_BIN)
 #define STRATAGUS_BIN "/usr/games/stratagus"
 #endif
 
@@ -61,7 +57,9 @@
 #define DATA_NOT_EXTRACTED "Wargus data was not extracted yet.\nYou need extract data from original Warcraft II CD first!"
 #define CONSOLE_MODE_NOT_ROOT "You must be root to run Wargus in console framebuffer mode"
 
-bool ConsoleMode = false;
+#define BUFF_SIZE 1024
+
+int ConsoleMode = 0;
 
 inline void error(char * title, char * text) {
 
@@ -83,14 +81,15 @@ inline void error(char * title, char * text) {
 
 #if ! defined(WIN32) && ! defined(MAEMO)
 	if ( ! ConsoleMode ) {
+
 		GtkWidget * dialog;
 		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, text, NULL);
 		gtk_window_set_title(GTK_WINDOW(dialog), title);
 		gtk_dialog_run(GTK_DIALOG (dialog));
 		gtk_widget_destroy(dialog);
-	} else {
+
+	} else
 		fprintf(stderr, "%s -- Error: %s\n", title, text);
-	}
 #endif
 
 	exit(-1);
@@ -101,13 +100,15 @@ int main(int argc, char * argv[]) {
 
 #ifndef WIN32
 	if ( ! XOpenDisplay(NULL) )
-		ConsoleMode = true;
+		ConsoleMode = 1;
 #endif
 
 #ifdef MAEMO
 	if ( ConsoleMode ) {
-		fprintf(stderr, "Cannot open X display\n");
+
+		fprintf(stderr, "Error: Cannot open X Display\n");
 		return -1;
+
 	}
 #endif
 
@@ -122,16 +123,16 @@ int main(int argc, char * argv[]) {
 
 	struct stat st;
 	int i;
-	char wargus_path[1024];
-	char stratagus_bin[1024];
-	char title_path[1024];
+	char wargus_path[BUFF_SIZE];
+	char stratagus_bin[BUFF_SIZE];
+	char title_path[BUFF_SIZE];
 
 #ifdef WIN32
 	size_t wargus_path_size = sizeof(wargus_path);
 	memset(wargus_path, 0, wargus_path_size);
 	getcwd(wargus_path, wargus_path_size);
 
-	char stratagus_path[1024];
+	char stratagus_path[BUFF_SIZE];
 	DWORD stratagus_path_size = sizeof(stratagus_path);
 	memset(stratagus_path, 0, stratagus_path_size);
 	HKEY key;
@@ -163,13 +164,15 @@ int main(int argc, char * argv[]) {
 
 #ifdef WIN32
 	sprintf(title_path, "%s\\graphics\\ui\\title.png", wargus_path);
-	char wargus_path_esc[1024];
-	memset(wargus_path_esc, 0, 1024);
-	strcpy(wargus_path_esc+1, wargus_path);
-	wargus_path_esc[0] = '"';
-	wargus_path_esc[strlen(wargus_path)+1] = '"';
-	wargus_path_esc[strlen(wargus_path)+2] = 0;
-	strcpy(wargus_path, wargus_path_esc);
+
+	int wargus_path_len = strlen(wargus_path);
+
+	for ( i = wargus_path_len - 1; i >= 0; --i )
+		wargus_path[i + 1] = wargus_path[i];
+
+	wargus_path[0] = '"';
+	wargus_path[wargus_path_len + 1] = '"';
+	wargus_path[wargus_path_len + 2] = 0;
 #else
 	sprintf(title_path, "%s/graphics/ui/title.png", wargus_path);
 #endif
@@ -180,13 +183,13 @@ int main(int argc, char * argv[]) {
 	char * stratagus_argv[argc + 3];
 
 #ifdef WIN32
-	char stratagus_argv0_esc[1024];
-	memset(stratagus_argv0_esc, 0, 1024);
-	strcpy(stratagus_argv0_esc+1, argv[0]);
+	char stratagus_argv0_esc[BUFF_SIZE];
+	memset(stratagus_argv0_esc, 0, sizeof(stratagus_argv0_esc));
+	strcpy(stratagus_argv0_esc + 1, argv[0]);
 	stratagus_argv0_esc[0] = '"';
-	stratagus_argv0_esc[strlen(argv[0])+1] = '"';
-	stratagus_argv0_esc[strlen(argv[0])+2] = 0;
-	strcpy(stratagus_argv[0], stratagus_argv0_esc);
+	stratagus_argv0_esc[strlen(argv[0]) + 1] = '"';
+	stratagus_argv0_esc[strlen(argv[0]) + 2] = 0;
+	stratagus_argv[0] = stratagus_argv0_esc;
 #else
 	stratagus_argv[0] = argv[0];
 #endif
