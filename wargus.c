@@ -29,7 +29,10 @@
 #include <sys/stat.h>
 
 #ifdef WIN32
+#define WINVER 0x0501
 #include <windows.h>
+#include <wincon.h>
+#include <process.h>
 #endif
 
 #ifndef WIN32
@@ -59,7 +62,13 @@
 
 #define BUFF_SIZE 1024
 
+#ifndef WIN32
 int ConsoleMode = 0;
+#endif
+
+#ifdef WIN32
+extern int errno;
+#endif
 
 inline void error(char * title, char * text) {
 
@@ -121,8 +130,8 @@ int main(int argc, char * argv[]) {
 	hildon_init();
 #endif
 
-	struct stat st;
 	int i;
+	struct stat st;
 	char wargus_path[BUFF_SIZE];
 	char stratagus_bin[BUFF_SIZE];
 	char title_path[BUFF_SIZE];
@@ -207,9 +216,18 @@ int main(int argc, char * argv[]) {
 		error(TITLE, CONSOLE_MODE_NOT_ROOT);
 #endif
 
-	execvp(stratagus_bin, stratagus_argv);
-	error(TITLE, STRATAGUS_NOT_FOUND);
+#ifdef WIN32
+	AttachConsole(ATTACH_PARENT_PROCESS);
 
-	return 0;
+	errno = 0;
+	int ret = _spawnvp(_P_WAIT, stratagus_bin, stratagus_argv);
+
+	if ( errno == 0 )
+		return ret;
+#else
+	execvp(stratagus_bin, stratagus_argv);
+#endif
+
+	error(TITLE, STRATAGUS_NOT_FOUND);
 
 }
