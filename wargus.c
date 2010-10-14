@@ -25,17 +25,28 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <unistd.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 
 #ifdef WIN32
 #define WINVER 0x0501
 #include <windows.h>
 #include <wincon.h>
 #include <process.h>
+#include <errono.h>
+#endif
+
+#ifdef _MSC_VER
+#include <direct.h>
+#define inline __inline
+#define chdir _chdir
+#define getcwd _getcwd
+#define spawnvp _spawnvp
+#define stat _stat
 #endif
 
 #ifndef WIN32
+#include <unistd.h>
 #include <X11/Xlib.h>
 #include <gtk/gtk.h>
 #endif
@@ -52,6 +63,9 @@
 
 #if ! defined(WIN32) && ! defined(WARGUS_PATH)
 #define WARGUS_PATH "/usr/share/games/stratagus/wargus"
+#endif
+
+#if ! defined(WIN32) && ! defined(STRATAGUS_BIN)
 #define STRATAGUS_BIN "/usr/games/stratagus"
 #endif
 
@@ -64,10 +78,6 @@
 
 #ifndef WIN32
 int ConsoleMode = 0;
-#endif
-
-#ifdef WIN32
-extern int errno;
 #endif
 
 inline void error(char * title, char * text) {
@@ -220,7 +230,7 @@ int main(int argc, char * argv[]) {
 	AttachConsole(ATTACH_PARENT_PROCESS);
 
 	errno = 0;
-	int ret = _spawnvp(_P_WAIT, stratagus_bin, stratagus_argv);
+	int ret = spawnvp(_P_WAIT, stratagus_bin, stratagus_argv);
 
 	if ( errno == 0 )
 		return ret;
@@ -229,5 +239,6 @@ int main(int argc, char * argv[]) {
 #endif
 
 	error(TITLE, STRATAGUS_NOT_FOUND);
+	return -1;
 
 }
