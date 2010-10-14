@@ -33,8 +33,6 @@ clean:
 	dh_testdir
 	dh_testroot
 
-	sed "/^Depends:/s/stratagus (.*)/stratagus (>= $(VERSION))/" -i $(CURDIR)/debian/control
-
 	$(MAKE) clean
 
 	dh_clean
@@ -102,20 +100,20 @@ binary-arch: build install
 		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/bin; \
 		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/share; \
 		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/share/doc; \
-		mkdir -p $(CURDIR)/debian/wargus/opt/stratagus/share/man; \
+		mkdir -p $(CURDIR)/debian/wargus/opt/man; \
 		mv $(CURDIR)/debian/wargus/usr/games/* $(CURDIR)/debian/wargus/opt/stratagus/bin/; \
 		mv $(CURDIR)/debian/wargus/usr/share/doc/wargus $(CURDIR)/debian/wargus/opt/stratagus/share/doc/; \
 		mv $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus $(CURDIR)/debian/wargus/opt/stratagus/share/; \
-		mv $(CURDIR)/debian/wargus/usr/share/man/man6/* $(CURDIR)/debian/wargus/opt/stratagus/share/man/; \
+		mv $(CURDIR)/debian/wargus/usr/share/man/man6/* $(CURDIR)/debian/wargus/opt/man/; \
 		ln -s /opt/stratagus/bin/warextract $(CURDIR)/debian/wargus/usr/games/warextract; \
 		ln -s /opt/stratagus/bin/wartool $(CURDIR)/debian/wargus/usr/games/wartool; \
 		ln -s /opt/stratagus/bin/wargus $(CURDIR)/debian/wargus/usr/games/wargus; \
 		ln -s /opt/stratagus/bin/pudconvert $(CURDIR)/debian/wargus/usr/games/pudconvert; \
 		ln -s /opt/stratagus/share/wargus $(CURDIR)/debian/wargus/usr/share/games/stratagus/wargus; \
 		ln -s /opt/stratagus/share/doc/wargus $(CURDIR)/debian/wargus/usr/share/doc/wargus; \
-		ln -s /opt/stratagus/share/man/wargus.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/wargus.6.gz; \
-		ln -s /opt/stratagus/share/man/wartool.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/wartool.6.gz; \
-		ln -s /opt/stratagus/share/man/pudconvert.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/pudconvert.6.gz; \
+		ln -s /opt/stratagus/man/wargus.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/wargus.6.gz; \
+		ln -s /opt/stratagus/man/wartool.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/wartool.6.gz; \
+		ln -s /opt/stratagus/man/pudconvert.6.gz $(CURDIR)/debian/wargus/usr/share/man/man6/pudconvert.6.gz; \
 		echo "X-Osso-Type=application/x-executable" >> $(CURDIR)/debian/wargus/usr/share/applications/hildon/wargus.desktop; \
 		sed "s/Exec=.*/Exec=\/opt\/stratagus\/bin\/wargus/" -i $(CURDIR)/debian/wargus/usr/share/applications/hildon/wargus.desktop; \
 		sed "s/Name=.*/Name=Wargus/" -i $(CURDIR)/debian/wargus/usr/share/applications/hildon/wargus.desktop; \
@@ -123,6 +121,8 @@ binary-arch: build install
 
 	dh_shlibdeps
 	dh_gencontrol
+
+	sed "/^Depends:/s/stratagus (.*)/stratagus (>= $(VERSION))/" -i $(CURDIR)/debian/wargus/DEBIAN/control
 
 	# Maemo section - Hildon Application Manager
 	if [ -f /etc/maemo_version ]; then \

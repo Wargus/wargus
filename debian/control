@@ -12,7 +12,7 @@ Vcs-Bzr: lp:wargus
 
 Package: wargus
 Architecture: any
-Depends: stratagus (>= 2.2.5.4), ${shlibs:Depends}
+Depends: stratagus (>= #VERSION), ${shlibs:Depends}
 Pre-Depends: cdparanoia, ffmpeg2theora, timidity
 Provides: stratagus-data
 Description: Warcraft II data game set for the Stratagus engine
