@@ -20,7 +20,7 @@
 CC = gcc
 CXX = g++
 CFLAGS = -O2 -W -Wall -Wsign-compare -fsigned-char
-CXXFLAGS = $(CFLAGS)
+CXXFLAGS = $(CFLAGS) -Wno-write-strings
 WINDRES = windres
 LDFLAGS =
 GTKFLAGS = $(shell pkg-config --cflags --libs gtk+-2.0)
@@ -30,31 +30,27 @@ all: wartool pudconvert wargus
 win32: wartool.exe pudconvert.exe wargus.exe
 
 clean:
-	rm -f wartool wartool.exe pudconvert pudconvert.exe wargus wargus.exe wargus.rc.o wartool.o pudconvert.o pudconvert-s.o xmi2mid.o warextract
-
-wartool.o: wartool.c
-
-pudconvert.o: pudconvert.c
+	rm -f wartool wartool.exe wartool.o pudconvert pudconvert.exe pudconvert.o pudconvert-s.o wargus wargus.exe wargus.rc.o wargus.o xmi2mid.o warextract
 
 xmi2mid.o: xmi2mid.cpp
 
 wartool wartool.exe: xmi2mid.o wartool.o pudconvert.o
-	$(CXX) xmi2mid.o wartool.o pudconvert.o $(LDFLAGS) -lz -lpng -lm -o $@
+	$(CXX) $^ $(LDFLAGS) -lz -lpng -lm -o $@
 
 pudconvert-s.o: pudconvert.c
-	$(CC) -c pudconvert.c $(CFLAGS) -DSTAND_ALONE -o $@
+	$(CC) -c $^ $(CFLAGS) -DSTAND_ALONE -o $@
 
 pudconvert pudconvert.exe: pudconvert-s.o
-	$(CC) pudconvert-s.o $(LDFLAGS) -lz -o $@
+	$(CC) $^ $(LDFLAGS) -lz -o $@
 
-wargus.rc.o: wargus.rc
-	$(WINDRES) wargus.rc -o $@
+%.rc.o: %.rc
+	$(WINDRES) $^ -O coff -o $@
 
 wargus: wargus.c
-	$(CC) wargus.c $(CFLAGS) $(GTKFLAGS) $(LDFLAGS) -o $@
+	$(CC) $^ $(CFLAGS) $(GTKFLAGS) $(LDFLAGS) -o $@
 
-wargus.exe: wargus.c wargus.rc.o
-	$(CC) wargus.c wargus.rc.o $(CFLAGS) $(LDFLAGS) -mwindows -o $@
+wargus.exe: wargus.o wargus.rc.o
+	$(CC) $^ $(LDFLAGS) -mwindows -o $@
 
 warextract: warextract.c
-	$(CC) warextract.c $(CFLAGS) $(GTKFLAGS) $(LDFLAGS) -o $@
+	$(CC) $^ $(CFLAGS) $(GTKFLAGS) $(LDFLAGS) -o $@
