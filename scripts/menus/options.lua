@@ -148,6 +148,7 @@ function BuildOptionsMenu()
   local menu = WarMenu()
   local offx = (Video.Width - 352) / 2
   local offy = (Video.Height - 352) / 2
+  local checkTexture
   local b
 
   menu:addLabel("Global Options", offx + 176, offy + 1)
