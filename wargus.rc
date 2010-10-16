@@ -6,15 +6,15 @@
 
 #define DESCRIPTION NAME
 #define VERSION "2.2.5.4"
-#define VERSION_VS 2,2,5,4
+#define VIVERSION 2,2,5,4
 #define HOMEPAGE "https://launchpad.net/wargus"
 #define LICENSE "GPL v2"
 #define COPYRIGHT "Copyright (c) 1998-2010 by The Stratagus Project and Pali Rohar"
 
 1 ICON "contrib/wargus.ico"
 1 VERSIONINFO
-FILEVERSION	VERSION_VS
-PRODUCTVERSION	VERSION_VS
+FILEVERSION	VIVERSION
+PRODUCTVERSION	VIVERSION
 FILEOS		4
 FILETYPE	1
 
