@@ -112,14 +112,13 @@ function RunJoiningMapMenu(s)
   local revealmap = menu:addCheckBox("Reveal map", sx, sy*3+150, function() end)
   revealmap:setEnabled(false)
 
--- FIXME: Allow to set the race the player want to start the game with
---  menu:writeText("~<Your Race:~>", sx, sy*11)
---  local race = menu:addDropDown({"Map Default", "Human", "Orc"}, sx + 100, sy*11,
---    function(dd) 
---      GameSettings.Presets[0].Race = race:getSelected()
---      NetworkServerResyncClients()
---    end)
---  race:setSize(190, 20)
+  menu:writeText("~<Your Race:~>", sx, sy*11)
+  local race = menu:addDropDown({"Map Default", "Orc", "Human"}, sx + 100, sy*11,
+    function(dd) 
+      GameSettings.Presets[NetLocalHostsSlot].Race = race:getSelected()
+      LocalSetupState.Race[NetLocalHostsSlot] = race:getSelected()
+    end)
+  race:setSize(190, 20)
   
   menu:writeText("Units:", sx, sy*11+25)
   local units = menu:addDropDown({"Map Default", "One Peasant Only"}, sx + 100, sy*11+25,
@@ -309,10 +308,10 @@ function RunServerMultiGameMenu(map, description, numplayers)
   local revealmap = menu:addCheckBox("Reveal map", sx, sy*3+150, revealMapCb)
  
   menu:writeText("Race:", sx, sy*11)
-  d = menu:addDropDown({"Map Default", "Human", "Orc"}, sx + 100, sy*11,
+  d = menu:addDropDown({"Map Default", "Orc", "Human"}, sx + 100, sy*11,
     function(dd)
-      GameSettings.Presets[0].Race = race:getSelected()
-      ServerSetupState.Race = race:getSelected()
+      GameSettings.Presets[0].Race = dd:getSelected()
+      ServerSetupState.Race[0] = GameSettings.Presets[0].Race
       NetworkServerResyncClients()
     end)
   d:setSize(190, 20)
