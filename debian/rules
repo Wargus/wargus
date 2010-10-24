@@ -127,7 +127,7 @@ binary-arch: build install
 	# Maemo section - Hildon Application Manager
 	if [ -f /etc/maemo_version ]; then \
 		sed "s/Section: .*/Section: user\/games/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
-		sed "s/Pre-Depends: .*/Pre-Depends: findutils-gnu, ffmpeg2theora, wildmidi, freepats/" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
+		sed "/Pre-Depends:/s/cdparanoia, /findutils-gnu, /" -i $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Bugtracker: https://bugs.launchpad.net/wargus" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Display-Name: Wargus - Warcraft II" >> $(CURDIR)/debian/wargus/DEBIAN/control; \
 		echo "Maemo-Icon-26:" >> $(CURDIR)/debian/wargus/DEBIAN/control; \

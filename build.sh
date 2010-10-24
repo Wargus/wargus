@@ -139,10 +139,10 @@ fi
 # check if $TIMIDITY or $WILDMIDI is installed
 if which "$TIMIDITY" >/dev/null; then
 	MIDI="$TIMIDITY"
-	MIDI_ARGS="-Ow -o -"
+	MIDI_ARGS="-Ow"
 elif which "$WILDMIDI" >/dev/null; then
 	MIDI="$WILDMIDI"
-	MIDI_ARGS="-o /dev/stdout"
+	MIDI_ARGS=""
 else
 	echo "Warning: $TIMIDITY or $WILDMIDI is not installed in system"
 	echo "$TIMIDITY or $WILDMIDI is needed for extract midi music"
@@ -248,8 +248,14 @@ fi
 # convert midi to ogg
 if [ "$MIDI" != "" ]; then
 	for f in $DIR/music/*.mid.gz ; do
-		$MIDI $MIDI_ARGS "$f" | $DECODE $DECODE_ARGS - -o - | gzip > "${f%%.mid.gz}.ogg.gz"
-		rm -f "$f"
+		mv "$f" "$DIR/music/convert.mid.gz"
+		gunzip -f "$DIR/music/convert.mid.gz"
+		$MIDI $MIDI_ARGS "$DIR/music/convert.mid" -o "$DIR/music/convert.wav"
+		rm -f "$DIR/music/convert.mid"
+		$DECODE $DECODE_ARGS "$DIR/music/convert.wav" -o "$DIR/music/convert.ogg"
+		rm -f "$DIR/music/convert.wav"
+		gzip -f "$DIR/music/convert.ogg"
+		mv "$DIR/music/convert.ogg.gz" "${f%%.mid.gz}.ogg.gz"
 	done
 fi
 
