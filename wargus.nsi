@@ -526,6 +526,25 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${UNINSTALL}"
 	Delete "$INSTDIR\timidity.cfg"
 	RMDir /r "$INSTDIR\freepats"
+
+	IfFileExists "$INSTDIR\scripts\wc2-config.lua" 0 +2
+	Rename "$INSTDIR\scripts\wc2-config.lua" "$INSTDIR\wc2-config.lua"
+
+	RMDir /r "$INSTDIR\scripts"
+
+	IfFileExists "$INSTDIR\wc2-config.lua" 0 +3
+	CreateDirectory "$INSTDIR\scripts"
+	Rename "$INSTDIR\wc2-config.lua" "$INSTDIR\scripts\wc2-config.lua"
+
+	Delete "$INSTDIR\campaigns\human\level*h_c.sms"
+	Delete "$INSTDIR\campaigns\orc\level*o_c.sms"
+	Delete "$INSTDIR\campaigns\human-exp\levelx*h_c.sms"
+	Delete "$INSTDIR\campaigns\orc-exp\levelx*o_c.sms"
+	RMDir "$INSTDIR\campaigns\human"
+	RMDir "$INSTDIR\campaigns\orc"
+	RMDir "$INSTDIR\campaigns\human-exp"
+	RMDir "$INSTDIR\campaigns\orc-exp"
+	RMDir "$INSTDIR\campaigns"
 	RMDir "$INSTDIR"
 
 	!insertmacro MUI_STARTMENU_GETFOLDER Application $STARTMENUDIR
