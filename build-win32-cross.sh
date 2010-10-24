@@ -1,13 +1,3 @@
 #!/bin/sh
-make clean || exit 1
-make win32 CC=amd64-mingw32msvc-gcc CXX=amd64-mingw32msvc-g++ WINDRES=amd64-mingw32msvc-windres LDFLAGS=-static || exit 1
-amd64-mingw32msvc-strip wartool.exe pudconvert.exe wargus.exe || exit 1
-#upx -9 wartool.exe pudconvert.exe wargus.exe || exit 1
-makensis -DNO_DOWNLOAD -DAMD64 wargus.nsi || exit 1
-
-make clean || exit 1
-make win32 CC=i586-mingw32msvc-gcc CXX=i586-mingw32msvc-g++ WINDRES=i586-mingw32msvc-windres LDFLAGS=-static || exit 1
-i586-mingw32msvc-strip wartool.exe pudconvert.exe wargus.exe || exit 1
-upx -9 wartool.exe pudconvert.exe wargus.exe || exit 1
-makensis -DNO_DOWNLOAD wargus.nsi || exit 1
-
+make clean win32 win32-strip win32-installer CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ WINDRES=x86_64-w64-mingw32-windres STRIP=x86_64-w64-mingw32-strip LDFLAGS=-static NSISFLAGS=-DAMD64
+make clean win32 win32-strip win32-pack win32-installer CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ WINDRES=i686-w64-mingw32-windres STRIP=i686-w64-mingw32-strip LDFLAGS=-static
