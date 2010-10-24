@@ -17,20 +17,23 @@
 #
 #
 
-CC = gcc
-CXX = g++
+STRIP = strip
+UPX = upx
+WINDRES = windres
+NSIS = makensis
 CFLAGS = -O2 -W -Wall -Wsign-compare -fsigned-char
 CXXFLAGS = $(CFLAGS) -Wno-write-strings
-WINDRES = windres
 LDFLAGS =
 GTKFLAGS = $(shell pkg-config --cflags --libs gtk+-2.0)
+UPXFLAGS = -9
+NSISFLAGS =
 
 all: wartool pudconvert wargus
 
 win32: wartool.exe pudconvert.exe wargus.exe
 
 clean:
-	rm -f wartool wartool.exe wartool.o pudconvert pudconvert.exe pudconvert.o pudconvert-s.o wargus wargus.exe wargus.rc.o wargus.o xmi2mid.o warextract
+	$(RM) wartool wartool.exe wartool.o pudconvert pudconvert.exe pudconvert.o pudconvert-s.o wargus wargus.exe wargus.rc.o wargus.o xmi2mid.o warextract
 
 xmi2mid.o: xmi2mid.cpp
 
@@ -54,3 +57,18 @@ wargus.exe: wargus.o wargus.rc.o
 
 warextract: warextract.c
 	$(CC) $^ $(CFLAGS) $(GTKFLAGS) $(LDFLAGS) -o $@
+
+strip: wartool pudconvert wargus
+	$(STRIP) $^
+
+win32-strip: wartool.exe pudconvert.exe wargus.exe
+	$(STRIP) $^
+
+pack: wartool pudconvert wargus
+	$(UPX) $(UPXFLAGS) $^
+
+win32-pack: wartool.exe pudconvert.exe wargus.exe
+	$(UPX) $(UPXFLAGS) $^
+
+win32-installer: wartool.exe pudconvert.exe wargus.exe wargus.nsi
+	$(NSIS) $(NSISFLAGS) wargus.nsi
