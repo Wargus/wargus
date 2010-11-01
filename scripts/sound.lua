@@ -82,7 +82,7 @@ MakeSound("basic orc voices dead", "orc/basic_voices/dead.wav")
 ------------------------------------------------------------------------------
 --	Define simple misc sounds.
 --
-MakeSound("building construction", "misc/building_construction.wav")
+building_construction = MakeSound("building construction", "misc/building_construction.wav")
 MakeSound("ship sinking", "ships/sinking.wav")
 MakeSound("catapult-ballista movement",
 	"units/catapult-ballista/acknowledgement/1.wav")
@@ -100,7 +100,7 @@ MakeSound("shipyard", "buildings/shipyard.wav")
 MakeSound("oil platform", "buildings/oil_platform.wav")
 MakeSound("oil refinery", "buildings/oil_refinery.wav")
 MakeSound("lumbermill", "buildings/lumbermill.wav")
-MakeSound("transport docking", "misc/transport_docking.wav")
+transport_docking = MakeSound("transport docking", "misc/transport_docking.wav")
 MakeSound("burning", "misc/burning.wav")
 MakeSound("gryphon-aviary-selected", "human/buildings/gryphon_aviary.wav")
 MakeSound("dragon-roost-selected", "orc/buildings/dragon_roost.wav")
@@ -794,13 +794,18 @@ MapSound("critter-dead", "explosion")
 --
 DefineGameSounds(
 
-  "placement-error", MakeSound("placement error", "ui/placement_error.wav"),
-  "placement-success", MakeSound("placement success", "ui/placement_success.wav"),
-  "click", sound_click,
+  "placement-error", {"human", MakeSound("placement error", "ui/placement_error.wav")},
+  "placement-error", {"orc", MakeSound("placement error", "ui/placement_error.wav")},
 
--- FIXME: Not ready
---  "transport-docking",
---  "building-construction",
+  "placement-success", {"human", MakeSound("placement success", "ui/placement_success.wav")},
+  "placement-success", {"orc", MakeSound("placement success", "ui/placement_success.wav")},
+
+  "click", sound_click,
+  "transport-docking", transport_docking,
+  "chat-message", sound_click,
+
+  "building-construction", {"human", building_construction},
+  "building-construction", {"orc", building_construction},
 
   "work-complete", {"human", MakeSound("basic human voices work complete", "human/basic_voices/work_complete.wav")},
   "work-complete", {"orc", MakeSound("basic orc voices work complete", "orc/basic_voices/work_complete.wav")},
