@@ -1704,7 +1704,7 @@ GroupedGraphic GroupedGraphicsList[][60] = {
 		{ 0, 1 * 144, 106, 28, "button-grayscale-normal" },
 		{ 0, 2 * 144, 106, 28, "button-grayscale-pressed" },
 		// 3 and 4 are the same
-		{ 0, 3 * 144, 128, 20, "button-thin-medium-grayed" }, 
+		{ 0, 3 * 144, 128, 20, "button-thin-medium-grayed" },
 		{ 0, 4 * 144, 128, 20, "button-thin-medium-normal" },
 		{ 0, 5 * 144, 128, 20, "button-thin-medium-pressed" },
 		// 6 and 7 are the same
@@ -4507,11 +4507,11 @@ int main(int argc, char** argv)
 	CheckPath(buf);
 	f = fopen(buf, "w");
 	if (expansion_cd) {
-		fprintf(f, "expansion = true\n");
+		fprintf(f, "wargus.expansion = true\n");
 	} else {
-		fprintf(f, "expansion = false\n");
+		fprintf(f, "wargus.expansion = false\n");
 	}
-	fprintf(f, "game_font_width = %d\n", game_font_width);
+	fprintf(f, "wargus.game_font_width = %d\n", game_font_width);
 	fclose(f);
 
 	sprintf(buf, "%s/extracted", Dir);

@@ -92,7 +92,7 @@ function RunShowCreditsMenu()
 	"The Stratagus Team thanks all the people who have contributed",
 	"patches, bug reports, and ideas.",
 	"",
-	Name .. " Homepage: ", Homepage,
+	wargus.Name .. " Homepage: ", wargus.Homepage,
 	"Stratagus Homepage: ", GetStratagusHomepage(),
 	"",
 	"",

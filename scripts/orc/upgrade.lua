@@ -30,7 +30,7 @@
 
 --	NOTE: Save can generate this table.
 
-upgrades = {
+local upgrades = {
   {"upgrade-battle-axe1", "icon-battle-axe2",
     {   200,   500,   100,     0,     0,     0,     0}},
   {"upgrade-battle-axe2", "icon-battle-axe3",

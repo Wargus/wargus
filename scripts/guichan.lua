@@ -160,7 +160,7 @@ function AddMenuHelpers(menu)
     bq:setForegroundColor(clear)
     bq:setBackgroundColor(dark)
     bq:setFont(Fonts["game"])
-    self:add(bq, x, y)   
+    self:add(bq, x, y)
     bq.itemslist = list
     return bq
   end
@@ -191,7 +191,7 @@ function AddMenuHelpers(menu)
     end
 
     local bq = self:addListBox(x, y, w, h, {})
-    
+
     if (string.sub(path, string.len(path)) ~= "/") then
       path = path .. "/"
     end
@@ -234,7 +234,7 @@ function AddMenuHelpers(menu)
        if(v == name) then
          return true
        end
-     end 
+     end
      return false
     end
 
@@ -568,7 +568,7 @@ function RunSinglePlayerGameMenu()
     descriptionl:setCaption(mapinfo.description ..
       " (" .. mapinfo.w .. " x " .. mapinfo.h .. ")")
     descriptionl:adjustSize()
- 
+
     local o = {}
     for i=1,mapinfo.nplayers do
       table.insert(o, opponents_list[i])
@@ -583,7 +583,7 @@ function RunSinglePlayerGameMenu()
 end
 
 function BuildProgramStartMenu()
-  playlist = { "music/Orc Briefing.ogg" }
+  wargus.playlist = { "music/Orc Briefing.ogg" }
   SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 
   if not (IsMusicPlaying()) then
@@ -594,9 +594,9 @@ function BuildProgramStartMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
-  menu:addLabel(Name .. " V" .. Version .. "  " .. Homepage, offx + 320, offy + 390 + 18*0)
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. "  " .. wargus.Homepage, offx + 320, offy + 390 + 18*0)
   menu:addLabel("Stratagus V" .. GetStratagusVersion() .. "  " .. GetStratagusHomepage(), offx + 320, offy + 390 + 18*1)
-  menu:addLabel(Copyright, offx + 320, offy + 390 + 18*4)
+  menu:addLabel(wargus.Copyright, offx + 320, offy + 390 + 18*4)
 
   menu:addFullButton("~!Single Player Game", "s", offx + 208, offy + 104 + 36*0,
     function() RunSinglePlayerGameMenu(); menu:stop(1) end)

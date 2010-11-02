@@ -1,9 +1,9 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
---      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
+--      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
---             \/                  \/          \//_____/            \/ 
+--             \/                  \/          \//_____/            \/
 --  ______________________                           ______________________
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
@@ -16,12 +16,12 @@
 --      it under the terms of the GNU General Public License as published by
 --      the Free Software Foundation; either version 2 of the License, or
 --      (at your option) any later version.
---  
+--
 --      This program is distributed in the hope that it will be useful,
 --      but WITHOUT ANY WARRANTY; without even the implied warranty of
 --      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 --      GNU General Public License for more details.
---  
+--
 --      You should have received a copy of the GNU General Public License
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -29,7 +29,7 @@
 --      $Id$
 
 CFont:New("small", CGraphic:New("ui/fonts/small.png", 7, 6))
-CFont:New("game", CGraphic:New("ui/fonts/game.png", game_font_width, 14))
+CFont:New("game", CGraphic:New("ui/fonts/game.png", wargus.game_font_width, 14))
 CFont:New("large", CGraphic:New("ui/fonts/large.png", 17, 17))
 CFont:New("small-title", CGraphic:New("ui/fonts/small_episode_titles.png", 32, 35))
 CFont:New("large-title", CGraphic:New("ui/fonts/large_episode_titles.png", 52, 50))

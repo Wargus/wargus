@@ -1,11 +1,11 @@
 --      (c) Copyright 2010      by Pali Rohár
-	
+
 function Briefing(title, objs, bg, text, voices)
   SetPlayerData(GetThisPlayer(), "RaceName", currentRace)
 
   local menu = WarMenu(nil, bg)
 
-  playlist = {}
+  wargus.playlist = {}
   if (currentRace == "human") then
     PlayMusic("music/Human Briefing.ogg")
     Load("scripts/human/ui.lua")
@@ -121,7 +121,7 @@ end
 function CreatePictureStep(bg, sound, title, text)
   return function()
     SetPlayerData(GetThisPlayer(), "RaceName", currentRace)
-    playlist = {}
+    wargus.playlist = {}
     PlayMusic(sound)
     local menu = WarMenu(nil, bg)
     local offx = (Video.Width - 640) / 2
@@ -200,7 +200,7 @@ end
 function RunCampaignSubmenu(campaign, race, exp)
   Load(campaign)
 
-  playlist = { "music/Orc Briefing.ogg" }
+  wargus.playlist = { "music/Orc Briefing.ogg" }
   SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 
   if not (IsMusicPlaying()) then
@@ -268,7 +268,7 @@ function RunCampaignGameMenu()
   menu:addFullButton("~!Human campaign", "h", offx + 208, offy + 212 + (36 * 1),
     function() RunCampaignSubmenu("scripts/human/campaign1.lua", "human", ""); menu:stop() end)
 
-  if (expansion == true) then
+  if (wargus.expansion == true) then
     menu:addLabel("Beyond the Dark Portal", offx + 320, offy + 212 + (36 * 3) - 25)
     menu:addFullButton("O~!rc expansion levels", "r", offx + 208, offy + 212 + (36 * 3),
       function() RunCampaignSubmenu("scripts/orc/campaign2.lua", "orc", "exp"); menu:stop() end)

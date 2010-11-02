@@ -30,7 +30,7 @@
 
 --	NOTE: Save can generate this table.
 
-upgrades = {
+local upgrades = {
   {"upgrade-sword1", "icon-sword2",
     {   200,   800,     0,     0,     0,     0,     0}},
   {"upgrade-sword2", "icon-sword3",
