@@ -1,7 +1,134 @@
-2.2.6 UNRELEASED
- - Unix - Makefile
-   - Rewrited, now support cross-compiling
- - Unix - build.sh
+UNRELEASED
+ - Game
+   - Fixed loosing wood, when peasant or peon has not full wood limit
+   - Added support for selecting race in multiplayer game
+   - Moved definitions of sound game from stratagus binary to wargus scripts
+ - Makefile
+   - Added strip, pack and installer section
+   - Use $^ instead source files in Makefile
+ - Unix build.sh
+   - Fixed using wildmidi
+ - Debian
+   - Fixed debian scripts
+ - Maemo
+   - Fixed running warextract after install
+   - Fixed install path for manpages
+ - Windows
+   - Fixed compilation on MSVC
+   - Fixed console output
+   - Fixed searching for Wargus in 64 bit Windows registry
+ - Windows NSIS Installer
+   - Fixed removing all installed lua scripts files at uninstall
+
+2.2.5.4
+ - Game
+   - Fixed color of orc menu button (F10) - bug #616486
+   - Fixed correct cursors for races
+ - Campaigns
+   - Fixed orc campaign level 2
+   - Fixed background music in Briefing and PictureStep
+ - Debian
+   - Fixed debian scrips
+ - Maemo
+   - Fixed crashing when starting from menu
+ - Windows NSIS Installer
+   - Check for correct version of Stratagus
+
+2.2.5.3
+ - Game
+   - Fixed UI theme in main menu and other menus
+   - Fixed ballista shooting
+   - Fixed loading saved game from playing camapign game
+   - Added different music playlist for orc (only orc themes) and for human (only human themes)
+   - Added Briefing, Victory and Defeat music
+   - Added save game confirmation menu
+ - Wartool
+   - Extract midi version of audio CD tracks from WAR archives
+ - Wargus
+   - Added support to run Wargus on Linux in console framebuffer mode
+ - Unix build.sh
+   - Fixed paths
+   - Added support for wildmidi (alternative to timidity)
+ - Debian
+   - Fixed build depends
+   - Fixed debian scripts
+ - Maemo
+   - Fixed info for Hildon Application Manager
+   - Fixed debian scripts
+   - Use Backspace key for enter game menu
+ - Windows NSIS Installer
+   - Added support for converting audio midi files (using timidity and freepats)
+   - Do not extract data again after reinstalling
+   - Use MUI2 instead MUI
+ - Documentation
+   - Rewrited README
+
+2.2.5.2
+ - Game
+   - Fixed name of default map
+   - Fixed WM title and icon
+   - Added option for maximum OpenGL textures
+   - Added version info to menu
+   - Added multiplatform program wargus for searching stratagus and correct start-up
+   - Rip hidden track I'm Medieval Man and add cheat disco to run this track
+ - Campaigns
+   - Fixed campaign triggers after loading saved game
+   - Fixed paths of files in campaigns
+   - Fixed speed of scrolling text in briefing
+   - Added ending victory video to campaign menu
+   - Added missing ending vicotry text screen at end of campaigns
+   - Show next campaign level in campaign menu after completed saved game
+   - Show only finished levels in campaign submenu
+   - Play video files in correct order
+ - Wartool
+   - Fixed converting PUD maps on Unix
+   - Fixed extracting videos with correct names
+   - Extract ending victory campaigns texts
+   - Write campaigns title and objectives directly to files without templates
+ - Makefile
+   - Created new Makefile, which support win32 builds and wargus starter
+ - Debian
+   - Fixed debian scripts
+   - Rewrited config scripts for better extract game data
+ - Maemo
+   - Fixed debian scripts for Maemo sections
+   - Fixed using findutils
+   - Added program warextract for extracting data on Maemo
+   - Enable using ffmpeg2theora
+ - Windows
+   - Fixed espace paths
+   - Added missing Windows resource file for Wargus icon
+ - Windows NSIS Installer
+   - Fully rewrited and created new installer
+   - Fixed adding campaigns maps and scripts files
+   - Fixed including data files
+   - Added support for checking if Stratagus is installed
+   - Added support for 64 bit version
+   - Added missing \r\n for string compare if data was extracted
+   - Added support for extracting data
+   - Added support for converting video files (using ffmpeg2theora)
+   - Added support for ripping audio tracks (using cdda2wav)
+   - Added desktop icon
+   - Include default music file
+   - Download ffmpeg2theora and cdrtools when creating installer
+   - Use plugin DosExec instead function ExecWait
+
+2.2.5.1
+ - Game
+   - Added support for more graphics resolutions
+   - Added intro video and correct title screen
+ - Campaigns
+   - Added missing videos between levels
+   - Added submenu for levels (with act screen and videos)
+ - Wartool
+   - Added support for extract data from CD if file names are upper
+   - Fixed extract number of logo video
+   - Fixed converting maps PUD files
+   - Extract ui graphics for more graphics resolutions
+   - Extract sounds for campaigns acts screen
+   - Removed campaigns template files, instead create new and write title and objectives directly
+   - Store version of wartool, in future do not extract data twice
+ - Unix build.sh
    - Added param -d for cdparanoia CD drive
    - Fixed searching for data path
    - Fixed file names for extract
@@ -9,50 +136,10 @@
    - Do not rip audio tracks if are ripped in data path
    - For decode audio tracks use ffmpeg2theora instead oggenc
    - Convert extracted videos from SMK format to theroa (with ffmpeg2theora)
- - Wartool
-   - Added support for extract data from CD if file names are upper
-   - Fixed extract number of logo video
-   - Fixed extracting videos with correct names
-   - Fixed converting maps PUD files
-   - Extract ending victory campaigns texts
-   - Extract ui graphics for more graphics resolutions
-   - Extract sounds for campaigns acts screen
-   - Extract midi version of audio CD tracks from WAR archives
-   - Removed campaigns template files, instead create new and write title and objectives directly
-   - Store version of wartool, in future do not extract data twice
- - Game
-   - Added support for more graphics resolutions
-   - Added intro video and correct title screen
-   - Added option for maximum OpenGL textures
-   - Added multiplatform program wargus for searching stratagus and correct start-up
-   - Added different music playlist for orc (only orc themes) and for human (only human themes)
-   - Added Briefing, Victory and Defeat music
-   - Added save game confirmation menu
-   - Fixed UI theme in main menu and other menus
-   - Fixed color of orc menu button (F10)
-   - Fixed correct cursors for races
- - Campaigns
-   - Added missing videos between levels
-   - Added submenu for levels (with act screen and videos)
-   - Added missing ending vicotry screen at end of campaigns
-   - Fixed save/load game (after load triggers - game objectives was not loaded)
-   - Fixed scrolling briefing text
-   - Fixed orc campaign level 2
-   - Fixed background music in Briefing and PictureStep
  - Debian
-   - Rewrited config scripts for better extract game data
    - Added missing Wargus files do deb package
  - Maemo
    - Added optification on Maemo
    - Added info for Hildon Application Manager
-   - Added program warextract for extracting data on Maemo
-   - Used Backspace key for enter game menu
  - Windows
-   - Rewrited NSIS Installer
-     - Added support for AMD64 bit version
-     - Added support for checking if Stratagus is installed
-     - Added support for extracting data
-     - Added support for ripping audio tracks (using cdda2wav)
-     - Added support for converting video files (using ffmpeg2theora)
-     - Added support for converting audio midi files (using timidity and freepats)
    - Removed old Windows extract data programs
