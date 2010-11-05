@@ -28,8 +28,9 @@ local function RunEditorNewMapMenu()
       Load("scripts/tilesets/" .. tilesets[1 + dropDownTileset:getSelected()] .. ".lua")
       menu:stop()
       StartEditor(nil)
+      RunEditorMenu()
     end)
-  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1) end)
+  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
   return menu:run()
 end
 
@@ -73,8 +74,8 @@ local function RunEditorLoadMapMenu()
       end
     end)
 
-  menu:addFullButton("~!Edit map", "e", offx + 208, offy + 104 + 36 * 5, function() menu:stop(); StartEditor(mapname);  end)
-  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1) end)
+  menu:addFullButton("~!Edit map", "e", offx + 208, offy + 104 + 36 * 5, function() menu:stop(); StartEditor(mapname); RunEditorMenu() end)
+  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
 
   GetMapInfo(mapname)
   MapChanged()
@@ -83,10 +84,18 @@ end
 
 -- root of the editor menu
 function RunEditorMenu()
+  wargus.playlist = { "music/Orc Briefing.ogg" }
+  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+
+  if not (IsMusicPlaying()) then
+    PlayMusic("music/Orc Briefing.ogg")
+  end
+
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
+  menu:addLabel("~<Map Editor~>", offx + 320, offy + 212 - 25)
   local buttonNewMap =
   menu:addFullButton("~!New map", "n", offx + 208, offy + 104 + 36*3, function() RunEditorNewMapMenu(); menu:stop() end)
   menu:addFullButton("~!Load map", "l", offx + 208, offy + 104 + 36*4, function() RunEditorLoadMapMenu(); menu:stop() end)
