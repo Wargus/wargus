@@ -651,5 +651,9 @@ Load("scripts/menus/results.lua")
 Load("scripts/menus/network.lua")
 
 
-RunProgramStartMenu()
+if (Editor.Running == EditorCommandLine) then
+  RunEditorMenu()
+else
+  RunProgramStartMenu()
+end
 
