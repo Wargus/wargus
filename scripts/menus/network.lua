@@ -244,7 +244,7 @@ function RunJoiningGameMenu(s)
   menu:addHalfButton("Cancel (~<Esc~>)", "escape", 92, 80,
     function() menu:stop(1) end)
 
-  menu:run()
+  return menu:run()
 end
 
 function RunJoinIpMenu()
@@ -429,8 +429,19 @@ function RunMultiPlayerGameMenu(s)
   local offy = (Video.Height - 480) / 2
   local nick
 
+  local function FixMusic()
+    wargus.playlist = { "music/Orc Briefing.ogg" }
+    SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+
+    if not (IsMusicPlaying()) then
+        PlayMusic("music/Orc Briefing.ogg")
+    end
+  end
+
   InitGameSettings()
   InitNetwork1()
+
+  menu:addLabel("~<Multiplayer Network Game~>", offx + 640/2 + 12, offy + 192)
 
   menu:writeText(_("Nickname :"), 208 + offx, 264 + offy)
   nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 260 + offy)
@@ -443,7 +454,7 @@ function RunMultiPlayerGameMenu(s)
         SavePreferences()
       end
       RunJoinIpMenu()
-      menu:stop()
+      FixMusic()
     end)
   menu:addFullButton("~!Create Game", "c", 208 + offx, 320 + (36 * 1) + offy,
     function()
@@ -453,7 +464,7 @@ function RunMultiPlayerGameMenu(s)
         SavePreferences()
       end
       RunCreateMultiGameMenu()
-      menu:stop()
+      FixMusic()
     end)
 
   menu:addFullButton("~!Previous Menu", "p", 208 + offx, 320 + (36 * 2) + offy,
