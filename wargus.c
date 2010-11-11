@@ -17,6 +17,10 @@
 
 */
 
+#define GAMENAME "Wargus"
+#define GAMECD "Warcraft II CD"
+#define GAME "wargus"
+
 #if defined (MAEMO_GTK) || defined (MAEMO_CHANGES)
 #define MAEMO
 #endif
@@ -61,18 +65,18 @@
 #define REGKEY "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Stratagus"
 #endif
 
-#if ! defined(WIN32) && ! defined(WARGUS_PATH)
-#define WARGUS_PATH "/usr/share/games/stratagus/wargus"
+#if ! defined(WIN32) && ! defined(DATA_PATH)
+#define DATA_PATH "/usr/share/games/stratagus/" GAME
 #endif
 
 #if ! defined(WIN32) && ! defined(STRATAGUS_BIN)
 #define STRATAGUS_BIN "/usr/games/stratagus"
 #endif
 
-#define TITLE "Wargus"
-#define STRATAGUS_NOT_FOUND "Stratagus is not installed.\nYou need Stratagus to run Wargus!\nFirst install Stratagus from https://launchpad.net/stratagus"
-#define DATA_NOT_EXTRACTED "Wargus data was not extracted yet.\nYou need extract data from original Warcraft II CD first!"
-#define CONSOLE_MODE_NOT_ROOT "You must be root to run Wargus in console framebuffer mode"
+#define TITLE GAMENAME
+#define STRATAGUS_NOT_FOUND "Stratagus is not installed.\nYou need Stratagus to run " GAMENAME "!\nFirst install Stratagus from https://launchpad.net/stratagus"
+#define DATA_NOT_EXTRACTED GAMENAME " data was not extracted yet.\nYou need extract data from original " GAMECD " first!"
+#define CONSOLE_MODE_NOT_ROOT "You must be root to run " GAMENAME " in console framebuffer mode"
 
 #define BUFF_SIZE 1024
 
@@ -142,14 +146,14 @@ int main(int argc, char * argv[]) {
 
 	int i;
 	struct stat st;
-	char wargus_path[BUFF_SIZE];
+	char data_path[BUFF_SIZE];
 	char stratagus_bin[BUFF_SIZE];
 	char title_path[BUFF_SIZE];
 
 #ifdef WIN32
-	size_t wargus_path_size = sizeof(wargus_path);
-	memset(wargus_path, 0, wargus_path_size);
-	getcwd(wargus_path, wargus_path_size);
+	size_t data_path_size = sizeof(data_path);
+	memset(data_path, 0, data_path_size);
+	getcwd(data_path, data_path_size);
 
 	char stratagus_path[BUFF_SIZE];
 	DWORD stratagus_path_size = sizeof(stratagus_path);
@@ -171,29 +175,29 @@ int main(int argc, char * argv[]) {
 
 	sprintf(stratagus_bin, "%s\\stratagus.exe", stratagus_path);
 #else
-	strcpy(wargus_path, WARGUS_PATH);
+	strcpy(data_path, DATA_PATH);
 	strcpy(stratagus_bin, STRATAGUS_BIN);
 #endif
 
 	if ( stat(stratagus_bin, &st) != 0 )
 		error(TITLE, STRATAGUS_NOT_FOUND);
 
-	if ( stat(wargus_path, &st) != 0 )
+	if ( stat(data_path, &st) != 0 )
 		error(TITLE, DATA_NOT_EXTRACTED);
 
 #ifdef WIN32
-	sprintf(title_path, "%s\\graphics\\ui\\title.png", wargus_path);
+	sprintf(title_path, "%s\\graphics\\ui\\title.png", data_path);
 
-	int wargus_path_len = strlen(wargus_path);
+	int data_path_len = strlen(data_path);
 
-	for ( i = wargus_path_len - 1; i >= 0; --i )
-		wargus_path[i + 1] = wargus_path[i];
+	for ( i = data_path_len - 1; i >= 0; --i )
+		data_path[i + 1] = data_path[i];
 
-	wargus_path[0] = '"';
-	wargus_path[wargus_path_len + 1] = '"';
-	wargus_path[wargus_path_len + 2] = 0;
+	data_path[0] = '"';
+	data_path[data_path_len + 1] = '"';
+	data_path[data_path_len + 2] = 0;
 #else
-	sprintf(title_path, "%s/graphics/ui/title.png", wargus_path);
+	sprintf(title_path, "%s/graphics/ui/title.png", data_path);
 #endif
 
 	if ( stat(title_path, &st) != 0 )
@@ -214,7 +218,7 @@ int main(int argc, char * argv[]) {
 #endif
 
 	stratagus_argv[1] = "-d";
-	stratagus_argv[2] = wargus_path;
+	stratagus_argv[2] = data_path;
 
 	for ( i = 3; i < argc + 2; ++i )
 		stratagus_argv[i] = argv[i - 2];
