@@ -48,7 +48,7 @@ char *PlayerTypeStrings[] = {
 	"computer",
 	"person",
 	"rescue-passive",
-	"rescue-active"	
+	"rescue-active"
 };
 
 enum RaceTypes {

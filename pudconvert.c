@@ -163,7 +163,7 @@ int ProcessPud(const unsigned char *puddata, size_t size, gzFile smsout,
 	int i;
 	int j;
 	const unsigned char *curp;
-	struct PudData pdata; 
+	struct PudData pdata;
 
 	pdata.Tiles = NULL;
 	pdata.Value = NULL;

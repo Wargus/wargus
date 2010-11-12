@@ -161,7 +161,7 @@ int main(int argc, char * argv[]) {
 	HKEY key;
 
 	if ( RegOpenKeyEx(HKEY_LOCAL_MACHINE, REGKEY, 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS ) {
-                        
+
 		if ( RegQueryValueEx(key, "InstallLocation", NULL, NULL, (LPBYTE) stratagus_path, &stratagus_path_size) == ERROR_SUCCESS )
 			if ( stratagus_path_size == 0 || strlen(stratagus_path) == 0 )
 				error(TITLE, STRATAGUS_NOT_FOUND);
