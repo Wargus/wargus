@@ -1,9 +1,9 @@
 --       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
---      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
+--      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
---             \/                  \/          \//_____/            \/ 
+--             \/                  \/          \//_____/            \/
 --  ______________________                           ______________________
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
@@ -16,12 +16,12 @@
 --      it under the terms of the GNU General Public License as published by
 --      the Free Software Foundation; either version 2 of the License, or
 --      (at your option) any later version.
---  
+--
 --      This program is distributed in the hope that it will be useful,
 --      but WITHOUT ANY WARRANTY; without even the implied warranty of
 --      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 --      GNU General Public License for more details.
---  
+--
 --      You should have received a copy of the GNU General Public License
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -824,7 +824,7 @@ DefineUnitType("unit-farm", { Name = "Farm",
   Corpse = "unit-destroyed-2x2-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "farm-selected",
 --    "acknowledge", "farm-acknowledge",
@@ -856,7 +856,7 @@ DefineUnitType("unit-human-barracks", { Name = "Barracks",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "human-barracks-selected",
 --    "acknowledge", "human-barracks-acknowledge",
@@ -888,7 +888,7 @@ DefineUnitType("unit-church", { Name = "Church",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "church-selected",
 --    "acknowledge", "church-acknowledge",
@@ -921,7 +921,7 @@ DefineUnitType("unit-human-watch-tower", { Name = "Scout Tower",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   DetectCloak = true,
   Sounds = {
     "selected", "human-watch-tower-selected",
@@ -954,7 +954,7 @@ DefineUnitType("unit-stables", { Name = "Stables",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "stables-selected",
 --    "acknowledge", "stables-acknowledge",
@@ -986,7 +986,7 @@ DefineUnitType("unit-inventor", { Name = "Gnomish Inventor",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "gnomish-inventor-selected",
 --    "acknowledge", "gnomish-inventor-acknowledge",
@@ -1018,7 +1018,7 @@ DefineUnitType("unit-gryphon-aviary", { Name = "Gryphon Aviary",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "gryphon-aviary-selected",
 --    "acknowledge", "gryphon-aviary-acknowledge",
@@ -1050,7 +1050,7 @@ DefineUnitType("unit-human-shipyard", { Name = "Shipyard",
   Corpse = "unit-destroyed-3x3-place-water",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-oil-patch"},
                       "distance", { Distance = 3, DistanceType = ">", Type = "unit-orc-oil-platform"},
 					  "distance", { Distance = 3, DistanceType = ">", Type = "unit-human-oil-platform"}
@@ -1090,7 +1090,7 @@ DefineUnitType("unit-elven-lumber-mill", { Name = "Elven Lumber Mill",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   CanStore = {"wood"},
   Sounds = {
     "selected", "elven-lumber-mill-selected",
@@ -1123,7 +1123,7 @@ DefineUnitType("unit-human-foundry", { Name = "Foundry",
   Corpse = "unit-destroyed-3x3-place-water",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   ShoreBuilding = true,
   Sounds = {
     "selected", "human-foundry-selected",
@@ -1157,7 +1157,7 @@ DefineUnitType("unit-town-hall", { Name = "Town Hall",
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
 				  },
@@ -1193,7 +1193,7 @@ DefineUnitType("unit-mage-tower", { Name = "Mage Tower",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "mage-tower-selected",
 --    "acknowledge", "mage-tower-acknowledge",
@@ -1224,7 +1224,7 @@ DefineUnitType("unit-human-blacksmith", { Name = "Blacksmith",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "human-blacksmith-selected",
 --    "acknowledge", "human-blacksmith-acknowledge",
@@ -1294,7 +1294,7 @@ DefineUnitType("unit-human-oil-platform", { Name = "Oil Platform",
   Corpse = "unit-destroyed-3x3-place-water",
   ExplodeWhenKilled = "missile-explosion",
   Type = "naval",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   BuildingRules = { { "ontop", { Type = "unit-oil-patch", ReplaceOnDie = true, ReplaceOnBuild = true} } },
   GivesResource = "oil", CanHarvest = true,
   Sounds = {
@@ -1330,7 +1330,7 @@ DefineUnitType("unit-keep", { Name = "Keep",
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
 				  },
@@ -1368,7 +1368,7 @@ DefineUnitType("unit-castle", { Name = "Castle",
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   CanStore = {"gold", "wood"},
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
@@ -1427,7 +1427,7 @@ DefineUnitType("unit-human-guard-tower", { Name = "Guard Tower",
   Type = "land",
   CanAttack = true,
   CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   DetectCloak = true,
   Sounds = {
     "selected", "human-guard-tower-selected",
@@ -1462,7 +1462,7 @@ DefineUnitType("unit-human-cannon-tower", { Name = "Cannon Tower",
   Type = "land",
   CanAttack = true,
   CanTargetLand = true, CanTargetSea = true,
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   DetectCloak = true,
   Sounds = {
     "selected", "human-cannon-tower-selected",
@@ -1493,7 +1493,7 @@ DefineUnitType("unit-human-wall", { Name = "Wall",
   Corpse = "unit-destroyed-1x1-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
 --    "selected", "human-wall-selected",
 --    "acknowledge", "human-wall-acknowledge",

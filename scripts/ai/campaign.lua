@@ -1,9 +1,9 @@
---       _________ __                 __                               
+--       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
---      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
+--      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
---             \/                  \/          \//_____/            \/ 
+--             \/                  \/          \//_____/            \/
 --  ______________________                           ______________________
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
@@ -16,12 +16,12 @@
 --      it under the terms of the GNU General Public License as published by
 --      the Free Software Foundation; either version 2 of the License, or
 --      (at your option) any later version.
---  
+--
 --      This program is distributed in the hope that it will be useful,
 --      but WITHOUT ANY WARRANTY; without even the implied warranty of
 --      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 --      GNU General Public License for more details.
---  
+--
 --      You should have received a copy of the GNU General Public License
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -61,7 +61,7 @@ local orc_03_loop_funcs = {
     function() return AiSleep(65535) end,
     function() orc_03_loop_pos[player] = 0; return false end,
 }
-	
+
 local orc_03_funcs = {
     function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 2) end,
@@ -89,7 +89,7 @@ local hum_04_loop_funcs = {
     function() return AiSleep(25000) end,
     function() hum_04_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_04_funcs = {
     function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 4) end,
@@ -126,7 +126,7 @@ local orc_04_loop_funcs = {
     function() return AiSleep(10500) end,
     function() orc_04_loop_pos[player] = 0; return false end,
 }
-	
+
 local orc_04_funcs = {
     function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 4) end,
@@ -168,7 +168,7 @@ local hum_05_loop_funcs = {
     function() return AiSleep(14000) end,
     function() hum_05_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_05_funcs = {
     function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 4) end,
@@ -216,7 +216,7 @@ local hum_06_loop_funcs = {
     function() return AiSleep(9000) end,
     function() hum_06_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_06_funcs = {
     function() AiDebug(false) return false end,
 
@@ -278,7 +278,7 @@ local hum_08_loop_funcs = {
     function() return AiSleep(12000) end,
     function() hum_08_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_08_funcs = {
     function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 3) end,
@@ -355,7 +355,7 @@ local hum_10_loop_funcs = {
     function() return AiSleep(5000) end,
     function() hum_10_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_10_funcs = {
     function()
 	AiDebug(false)
@@ -378,7 +378,7 @@ local hum_10_funcs = {
     function() return AiResearch(AiMageSpell1()) end,
     function() return AiResearch(AiMageSpell2()) end,
     function() return AiResearch(AiUpgradeMissile1()) end,
- 
+
     function() return AiSet(AiTransporter(), 2) end,
     function() return AiForce(0, {AiSoldier(), 4, AiShooter(), 4, AiDestroyer(), 2}) end,
     function() return AiResearch(AiUpgradeWeapon1()) end,
@@ -433,7 +433,7 @@ local hum_11_loop_funcs = {
     function() return AiSleep(13000) end,
     function() hum_11_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_11_funcs = {
     function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 8) end,
@@ -498,10 +498,10 @@ local hum_12_loop_funcs = {
     function() return AiForce(0, {AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 5, AiScout(), 2}) end,
     function() hum_12_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_12_funcs = {
     function()
-	AiDebug(false) 
+	AiDebug(false)
 	AiForceRole(0, "defend")
 	AiForceRole(1, "attack")
 	AiForceRole(2, "defend")
@@ -512,7 +512,7 @@ local hum_12_funcs = {
     function() return AiSet(AiWorker(), 7) end,
     function() return AiWait(AiWorker()) end,
     function() return AiNeed(AiPlatform()) end,
-    
+
     function() return AiSet(AiTransporter(), 2) end,
     function() return AiForce(0, {AiSoldier(), 2}) end,
     function() return AiSleep(2000) end,
@@ -580,7 +580,7 @@ local hum_13_loop_funcs = {
     function() return AiSleep(14000) end,
     function() hum_13_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_13_funcs = {
     function() AiDebug(false) return false end,
     function() return AiSet(AiTanker(), 2) end,
@@ -640,7 +640,7 @@ local hum_14_orange_loop_funcs = {
     function() print("Looping !") return false end,
     function() hum_14_orange_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_14_orange_funcs = {
     function()
 	AiDebug(false)
@@ -671,7 +671,7 @@ local hum_14_red_loop_funcs = {
     function() return AiSleep(30000) end,
     function() hum_14_red_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_14_red_funcs = {
     function()
 	AiDebug(false)
@@ -709,7 +709,7 @@ local hum_14_white_loop_funcs = {
     function() return AiSleep(20000) end,
     function() hum_14_white_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_14_white_funcs = {
     function()
 	AiDebug(false)
@@ -745,7 +745,7 @@ local hum_14_black_loop_funcs = {
     function() return AiSleep(30000) end,
     function() hum_14_black_loop_pos[player] = 0; return false end,
 }
-	
+
 local hum_14_black_funcs = {
     function()
 	AiDebug(false)

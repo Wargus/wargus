@@ -54,7 +54,7 @@ function RunSaveMenu()
       -- replace invalid chars with underscore
       local t = {"\\", "/", ":", "*", "?", "\"", "<", ">", "|"}
       table.foreachi(t, function(k,v) name = string.gsub(name, v, "_") end)
-      
+
       if (browser:exists(name .. ".gz")) then
           RunConfirmErase(name,menu)
       else

@@ -350,10 +350,10 @@ function EditUnitProperties()
   local menu = WarGameMenu(panel(1))
   local sizeX = 256
   local sizeY = 200 -- 288
-  
+
   menu:resize(sizeX, sizeY)
   menu:addLabel("Unit properties", sizeX / 2, 11)
-  
+
   if (GetUnitUnderCursor().Type.GivesResource == 0) then
     menu:addLabel("Artificial Intelligence", sizeX / 2, 11 + 36)
     local activeCheckBox = menu:addCheckBox("Active", 15, 11 + 72)

@@ -1,9 +1,9 @@
 --       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
---      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
+--      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
---             \/                  \/          \//_____/            \/ 
+--             \/                  \/          \//_____/            \/
 --  ______________________                           ______________________
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
@@ -16,12 +16,12 @@
 --      it under the terms of the GNU General Public License as published by
 --      the Free Software Foundation; either version 2 of the License, or
 --      (at your option) any later version.
---  
+--
 --      This program is distributed in the hope that it will be useful,
 --      but WITHOUT ANY WARRANTY; without even the implied warranty of
 --      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 --      GNU General Public License for more details.
---  
+--
 --      You should have received a copy of the GNU General Public License
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -909,7 +909,7 @@ DefineUnitType("unit-pig-farm", { Name = "Pig Farm",
   Corpse = "unit-destroyed-2x2-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "pig-farm-selected",
 --    "acknowledge", "pig-farm-acknowledge",
@@ -941,7 +941,7 @@ DefineUnitType("unit-orc-barracks", { Name = "Barracks",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "orc-barracks-selected",
 --    "acknowledge", "orc-barracks-acknowledge",
@@ -973,7 +973,7 @@ DefineUnitType("unit-altar-of-storms", { Name = "Altar of Storms",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "altar-of-storms-selected",
 --    "acknowledge", "altar-of-storms-acknowledge",
@@ -1006,7 +1006,7 @@ DefineUnitType("unit-orc-watch-tower", { Name = "Watch Tower",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   DetectCloak = true,
   Sounds = {
     "selected", "orc-watch-tower-selected",
@@ -1039,7 +1039,7 @@ DefineUnitType("unit-ogre-mound", { Name = "Ogre Mound",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "ogre-mound-selected",
 --    "acknowledge", "ogre-mound-acknowledge",
@@ -1071,7 +1071,7 @@ DefineUnitType("unit-alchemist", { Name = "Goblin Alchemist",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "goblin-alchemist-selected",
 --    "acknowledge", "goblin-alchemist-acknowledge",
@@ -1103,7 +1103,7 @@ DefineUnitType("unit-dragon-roost", { Name = "Dragon Roost",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "dragon-roost-selected",
 --    "acknowledge", "dragon-roost-acknowledge",
@@ -1135,7 +1135,7 @@ DefineUnitType("unit-orc-shipyard", { Name = "Shipyard",
   Corpse = "unit-destroyed-3x3-place-water",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-oil-patch"},
                       "distance", { Distance = 3, DistanceType = ">", Type = "unit-orc-oil-platform"},
 					  "distance", { Distance = 3, DistanceType = ">", Type = "unit-human-oil-platform"}
@@ -1212,7 +1212,7 @@ DefineUnitType("unit-troll-lumber-mill", { Name = "Troll Lumber Mill",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   CanStore = {"wood"},
   Sounds = {
     "selected", "troll-lumber-mill-selected",
@@ -1245,7 +1245,7 @@ DefineUnitType("unit-orc-foundry", { Name = "Foundry",
   Corpse = "unit-destroyed-3x3-place-water",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   ShoreBuilding = true,
   Sounds = {
     "selected", "orc-foundry-selected",
@@ -1278,7 +1278,7 @@ DefineUnitType("unit-temple-of-the-damned", { Name = "Temple of the Damned",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "temple-of-the-damned-selected",
 --    "acknowledge", "temple-of-the-damned-acknowledge",
@@ -1310,7 +1310,7 @@ DefineUnitType("unit-orc-blacksmith", { Name = "Blacksmith",
   Corpse = "unit-destroyed-3x3-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
     "selected", "orc-blacksmith-selected",
 --    "acknowledge", "orc-blacksmith-acknowledge",
@@ -1343,7 +1343,7 @@ DefineUnitType("unit-orc-refinery", { Name = "Refinery",
   Corpse = "unit-destroyed-3x3-place-water",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-oil-patch"},
                       "distance", { Distance = 3, DistanceType = ">", Type = "unit-orc-oil-platform"},
 					  "distance", { Distance = 3, DistanceType = ">", Type = "unit-human-oil-platform"}
@@ -1381,7 +1381,7 @@ DefineUnitType("unit-orc-oil-platform", { Name = "Oil Platform",
   Corpse = "unit-destroyed-3x3-place-water",
   ExplodeWhenKilled = "missile-explosion",
   Type = "naval",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   BuildingRules = { { "ontop", { Type = "unit-oil-patch", ReplaceOnDie = true, ReplaceOnBuild = true} } },
   GivesResource = "oil", CanHarvest = true,
   Sounds = {
@@ -1417,7 +1417,7 @@ DefineUnitType("unit-stronghold", { Name = "Stronghold",
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
 				  },
@@ -1455,7 +1455,7 @@ DefineUnitType("unit-fortress", { Name = "Fortress",
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
 				  },
@@ -1514,7 +1514,7 @@ DefineUnitType("unit-orc-guard-tower", { Name = "Guard Tower",
   Type = "land",
   CanAttack = true,
   CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   DetectCloak = true,
   Sounds = {
     "selected", "orc-guard-tower-selected",
@@ -1549,7 +1549,7 @@ DefineUnitType("unit-orc-cannon-tower", { Name = "Cannon Tower",
   Type = "land",
   CanAttack = true,
   CanTargetLand = true, CanTargetSea = true,
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   DetectCloak = true,
   Sounds = {
 --    "selected", "orc-cannon-tower-selected",
@@ -1579,7 +1579,7 @@ DefineUnitType("unit-orc-wall", { Name = "Wall",
   Corpse = "unit-destroyed-1x1-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, 
+  Building = true, VisibleUnderFog = true,
   Sounds = {
 --    "selected", "orc-wall-selected",
 --    "acknowledge", "orc-wall-acknowledge",
