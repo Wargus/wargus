@@ -17,16 +17,16 @@
 #
 #
 
-STRIP = strip
-UPX = upx
-WINDRES = windres
-NSIS = makensis
-CFLAGS = -O2 -W -Wall -Wsign-compare -fsigned-char
-CXXFLAGS = $(CFLAGS)
-LDFLAGS =
-GTKFLAGS = $(shell pkg-config --cflags --libs gtk+-2.0)
-UPXFLAGS = -9
-NSISFLAGS =
+STRIP := strip
+UPX := upx
+WINDRES := windres
+NSIS := makensis
+CFLAGS := -O2 -W -Wall -Wsign-compare -fsigned-char
+CXXFLAGS := $(CFLAGS)
+LDFLAGS :=
+GTKFLAGS := $(shell pkg-config --cflags --libs gtk+-2.0)
+UPXFLAGS := -9
+NSISFLAGS :=
 
 all: wartool pudconvert wargus
 
@@ -38,7 +38,7 @@ clean:
 xmi2mid.o: xmi2mid.cpp
 
 wartool wartool.exe: xmi2mid.o wartool.o pudconvert.o
-	$(CXX) $^ $(LDFLAGS) -lz -lpng -lm -o $@
+	$(CXX) $^ $(LDFLAGS) -lz -lpng -o $@
 
 pudconvert-s.o: pudconvert.c
 	$(CC) -c $^ $(CFLAGS) -DSTAND_ALONE -o $@
