@@ -10,7 +10,7 @@
 //
 /**@name pudconvert.c - convert PUD files to native stratagus format. */
 //
-//      (c) Copyright 2005 by The Stratagus Team
+//      (c) Copyright 2005-2010 by The Stratagus Team and Pali Rohár
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -41,6 +41,7 @@
 #define PATH_MAX _MAX_PATH
 #endif
 
+#define VERSION "1.0"
 
 int WriteSMP(const struct PudData * const pdata, gzFile smpout, const char *smsname)
 {
@@ -49,7 +50,7 @@ int WriteSMP(const struct PudData * const pdata, gzFile smpout, const char *smsn
 	int num;
 
 	gzprintf(smpout, "-- Stratagus Map Presentation\n");
-	gzprintf(smpout, "-- File generated automatically from pudconvert.\n");
+	gzprintf(smpout, "-- File generated automatically from pudconvert V" VERSION "\n");
 	gzprintf(smpout, "\n");
 
 	strcpy(buf, "DefinePlayerTypes(");
@@ -90,6 +91,10 @@ int WriteSMS(const struct PudData * const pdata, gzFile smsout)
 	int num;
 	int j;
 
+	gzprintf(smsout, "-- Stratagus Map Setup\n");
+	gzprintf(smsout, "-- File generated automatically from pudconvert V" VERSION "\n");
+	gzprintf(smsout, "\n");
+
 	num = pdata->NumPlayers;
 	for (i = 0; num; ++i) {
 		gzprintf(smsout, "SetStartView(%d, %d, %d)\n", i,
@@ -126,6 +131,11 @@ int WriteSMS(const struct PudData * const pdata, gzFile smsout)
 	for (i = 0; i < pdata->NumUnits; ++i) {
 		if (pdata->Units[i].Type == UnitHumanStart ||
 				pdata->Units[i].Type == UnitOrcStart) {
+			continue;
+		}
+
+		if (strlen(UnitScriptNames[pdata->Units[i].Type]) <= 1) {
+			fprintf(stderr, "Skipping unknown unit type %d for player %d at [%d, %d]\n", pdata->Units[i].Type, pdata->Units[i].Player, pdata->Units[i].X, pdata->Units[i].Y);
 			continue;
 		}
 
@@ -338,7 +348,7 @@ int PudToStratagus(const unsigned char *puddata, size_t size,
 void usage()
 {
 	fprintf(stderr, "%s\n%s\n",
-	"pudconvert",
+	"pudconvert V" VERSION,
 	"usage: pudconvert inputfile [ outputdir ]\n"
 	);
 	exit(-1);
