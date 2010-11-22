@@ -1,8 +1,12 @@
 UNRELEASED
  - Game
    - Fixed loosing wood, when peasant or peon has not full wood limit
+   - Fixed multiplayer network menu
+   - Fixed menus for Map Editor (start editor with param -e)
    - Added support for selecting race in multiplayer game
    - Moved definitions of sound game from stratagus binary to wargus scripts
+ - Pudconvert
+   - Ignore unknow units when converting maps - bug #672845
  - Makefile
    - Added strip, pack and installer section
    - Use $^ instead source files in Makefile
@@ -10,6 +14,7 @@ UNRELEASED
    - Fixed using wildmidi
  - Debian
    - Fixed debian scripts
+   - Rewrited debian/rules to use debhelper 6
  - Maemo
    - Fixed running warextract after install
    - Fixed install path for manpages
@@ -19,6 +24,7 @@ UNRELEASED
    - Fixed searching for Wargus in 64 bit Windows registry
  - Windows NSIS Installer
    - Fixed removing all installed lua scripts files at uninstall
+   - Updated timidity binary
 
 2.2.5.4
  - Game
