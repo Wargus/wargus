@@ -102,7 +102,7 @@ LangString AMD64ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only
 !system "unzip -o cdrtools.zip cdda2wav.exe"
 !system "wget http://nsis.sourceforge.net/mediawiki/images/0/0f/ExecDos.zip -O ExecDos.zip"
 !system "unzip -j -o ExecDos.zip Plugins/ExecDos.dll"
-!system "wget http://downloads.sourceforge.net/project/timidity/TiMidity++/TiMidity++-CVS/TiMidity++-2.13.2-cvs20100605.win32.zip -O timidity.zip"
+!system "wget http://downloads.sourceforge.net/project/timidity/TiMidity++/TiMidity++-CVS/TiMidity++-2.13.2-cvs20100919.win32.zip -O timidity.zip"
 !system "unzip -j -o timidity.zip TiMidity++/timidity.exe"
 !system "wget http://freepats.zenvoid.org/freepats-20060219.tar.bz2 -O freepats.tar.bz2"
 !system "tar -xf freepats.tar.bz2"
