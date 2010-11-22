@@ -42,7 +42,7 @@
 wargus = {}
 
 wargus.Name = "Wargus"
-wargus.Version = "2.2.5.4"
+wargus.Version = "2.2.5.5"
 wargus.Homepage = "https://launchpad.net/wargus"
 wargus.Licence = "GPL v2"
 wargus.Copyright = "Copyright (c) 1998-2010 by The Stratagus Project and Pali Rohar"
