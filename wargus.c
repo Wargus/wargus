@@ -25,19 +25,21 @@
 #define MAEMO
 #endif
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include <sys/stat.h>
-#include <sys/types.h>
-
 #ifdef WIN32
 #define WINVER 0x0501
 #include <windows.h>
 #include <wincon.h>
 #include <process.h>
-#include <errono.h>
+#include <errno.h>
+#endif
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#ifndef _MSC_VER
+#include <sys/stat.h>
+#include <sys/types.h>
 #endif
 
 #ifdef _MSC_VER
