@@ -25,7 +25,7 @@ local function RunEditorNewMapMenu()
       Map.Info.Description = mapDescription:getText()
       Map.Info.MapWidth = mapSizes[1 + mapSizex:getSelected()]
       Map.Info.MapHeight = mapSizes[1 + mapSizey:getSelected()]
-      Load("scripts/tilesets/" .. tilesets[1 + dropDownTileset:getSelected()] .. ".lua")
+      LoadTileModels("scripts/tilesets/" .. tilesets[1 + dropDownTileset:getSelected()] .. ".lua")
       menu:stop()
       StartEditor(nil)
       RunEditorMenu()
