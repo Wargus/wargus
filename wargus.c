@@ -21,8 +21,13 @@
 #define GAMECD "Warcraft II CD"
 #define GAME "wargus"
 
+
 #if defined (MAEMO_GTK) || defined (MAEMO_CHANGES)
 #define MAEMO
+#endif
+
+#if ( defined (_MSC_VER) || defined (_WIN32) || defined (_WIN64) ) && ! defined (WIN32)
+#define WIN32
 #endif
 
 #ifdef WIN32
@@ -67,12 +72,26 @@
 #define REGKEY "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Stratagus"
 #endif
 
-#if ! defined(WIN32) && ! defined(DATA_PATH)
+#ifndef WIN32
+
+#ifdef MAEMO
+#define DATA_PATH "/home/user/MyDocs/stratagus/" GAME
+#define SCRIPTS_PATH "/opt/stratagus/share/" GAME
+#define STRATAGUS_BIN "/opt/stratagus/bin/stratagus"
+#endif
+
+#ifndef DATA_PATH
 #define DATA_PATH "/usr/share/games/stratagus/" GAME
 #endif
 
-#if ! defined(WIN32) && ! defined(STRATAGUS_BIN)
+#ifndef SCRIPTS_PATH
+#define SCRIPTS_PATH "/usr/share/games/stratagus/" GAME
+#endif
+
+#ifndef STRATAGUS_BIN
 #define STRATAGUS_BIN "/usr/games/stratagus"
+#endif
+
 #endif
 
 #define TITLE GAMENAME
@@ -149,6 +168,7 @@ int main(int argc, char * argv[]) {
 	int i;
 	struct stat st;
 	char data_path[BUFF_SIZE];
+	char scripts_path[BUFF_SIZE];
 	char stratagus_bin[BUFF_SIZE];
 	char title_path[BUFF_SIZE];
 
@@ -175,9 +195,11 @@ int main(int argc, char * argv[]) {
 	if ( chdir(stratagus_path) != 0 )
 		error(TITLE, STRATAGUS_NOT_FOUND);
 
+	strcpy(scripts_path, data_path);
 	sprintf(stratagus_bin, "%s\\stratagus.exe", stratagus_path);
 #else
 	strcpy(data_path, DATA_PATH);
+	strcpy(scripts_path, SCRIPTS_PATH);
 	strcpy(stratagus_bin, STRATAGUS_BIN);
 #endif
 
@@ -205,6 +227,12 @@ int main(int argc, char * argv[]) {
 	if ( stat(title_path, &st) != 0 )
 		error(TITLE, DATA_NOT_EXTRACTED);
 
+#ifndef WIN32
+	if ( strcmp(data_path, scripts_path) != 0 )
+		if ( chdir(data_path) != 0 )
+			error(TITLE, DATA_NOT_EXTRACTED);
+#endif
+
 	char * stratagus_argv[argc + 3];
 
 #ifdef WIN32
@@ -220,7 +248,7 @@ int main(int argc, char * argv[]) {
 #endif
 
 	stratagus_argv[1] = "-d";
-	stratagus_argv[2] = data_path;
+	stratagus_argv[2] = scripts_path;
 
 	for ( i = 3; i < argc + 2; ++i )
 		stratagus_argv[i] = argv[i - 2];

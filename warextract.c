@@ -36,7 +36,7 @@
 
 #define EXTRACT_BIN "/opt/stratagus/share/wargus/build.sh"
 #define DATADIR "/home/user/MyDocs/WAR2"
-#define EXTRACTDIR "/opt/stratagus/share/wargus"
+#define EXTRACTDIR "/home/user/MyDocs/stratagus/wargus"
 #define BINPATH "/opt/stratagus/bin"
 #define EXTRACT_VIDEOS "-v"
 #define EXTRACT_MUSIC "-m"
