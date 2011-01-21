@@ -1,0 +1,507 @@
+WarCraft II PUD Specs
+
+This information was compiled by Daniel Lemberg, with a trusty hex editor
+and a copy of WarCraft II. If you find out what any of the unknown
+sections are, let me know at lemberg@bayserve.net, and I'll add your name
+and accomplishments to Appendix E. The most recent version of this file
+can be obtained at http://www.bayserve.net/~lemberg
+
+In the context of this doc, a byte is an 8 bit unsigned value, a word is a
+16 bit unsigned value, and a long is a 32 bit unsigned value. 
+
+Sections:
+
+	4 bytes		header
+	long		length
+	...		data
+
+0: Section 'TYPE', identifies as a PUD file
+
+	9 bytes		null terminated type ('WAR2 MAP')
+	7 bytes		id tag
+
+1: Section 'VER ', identifies PUD version
+
+	word		version ($11)
+
+2: Section 'DESC', PUD description
+
+	32 bytes	null terminated description
+
+3: Section 'OWNR', identifies controller of each side
+
+	8 bytes		the 8 player slots
+	7 bytes		nobody, set to $03
+	byte		neutral, set to $02
+
+	should be:
+
+	$02		neutral
+	$03		nobody
+	$04		computer
+	$05		human
+	$06		rescue (passive)
+	$07		rescue (active)
+
+4: Section 'ERA ', terrain type
+
+	word		terrain
+
+	should be:
+
+	$00		forest
+	$01		winter
+	$02		wasteland
+	$03		swamp
+
+5: Section 'DIM ', map dimensions
+
+	word		x
+	word		y
+
+6: Section 'UDTA', Unit Data (this section is optional)
+
+	word		use default data (0 no, 1 yes)
+	110 bytes	first construction frame
+	110 bytes	second construction frame
+	127 words	terrain independent unit graphics (obsolete)
+	127 words	summer unit graphics (obsolete)
+	127 words	winter unit graphics (obsolete)
+	127 words	wasteland unit graphics (obsolete)
+	110 longs	sight range
+	110 words	hit points
+	110 bytes	magic (0 no, 1 yes)
+	110 bytes	build time
+	110 bytes	1/10 gold cost
+	110 bytes	1/10 lumber cost
+	110 bytes	1/10 oil cost
+	110 longs	unit size (x then y)
+	110 longs	box size (x then y)
+	110 bytes	attack range
+	110 bytes	reaction range
+	110 bytes	unknown
+	110 bytes	armor
+	110 bytes	selectable via rectangle (0 no, 1 yes)
+	110 bytes	priority (the higher, the fewer)
+	110 bytes	basic damage
+	110 bytes	piercing damage
+	110 bytes	weapons upgradable (0 no, 1 yes)
+	110 bytes	armor upgradable (0 no, 1 yes)
+	110 bytes	missile weapon
+
+		0x00	lightning
+		0x01	griffon hammer
+		0x02	dragon breath
+		0x03	flame shield
+		0x04	flame shield (self)
+		0x05	blizzard
+		0x06	death and decay
+		0x07	big cannon
+		0x08	black powder
+		0x09	heal effect
+		0x0a	touch of death
+		0x0b	rune
+		0x0c	tornado
+		0x0d	catapult rock
+		0x0e	ballista bolt
+		0x0f	arrow
+		0x10	axe
+		0x11	submarine missile
+		0x12	turtle missile
+		0x13	dark flame
+		0x14	bright flame
+		0x15	blood
+		0x16	more black powder
+		0x17	explosion
+		0x18	small cannon
+		0x19	metal spark
+		0x1a	mini-explosion
+		0x1b	demon fire
+		0x1c	green cross
+		0x1d	none
+
+	110 bytes	unit type (0 land, 1 fly, 2 naval)
+			only changes appearance
+	110 bytes	decay rate (dies in rate * 6 secs time, 0 never decays)
+			only applies to units you build or create via spell
+	110 bytes	unknown
+	58 bytes	(1: can move, 2: peasant, 4: sapper)
+			only the first 58 units, sometimes crashes if wrong
+	110 words	point value for killing unit
+	110 bytes	can target (1 land, 2 sea, 4 air, OR together)
+			note: some missiles can't hit air units
+	110 longs	flags
+
+	bit     1               2               4               8
+	0       unused (?)
+	1       deposit oil     sapper          mage            hits back
+	2       big tower       oil well        gold mine       hero
+	3       shore building  spells          deposit wood    attack
+	4       deposit gold                    can bombard     is undead
+	5       peaasant        tanker          transport       oil well
+	6       critter         building        is sub          sees subs
+	7       land            fly             corpse explodes naval
+
+	See Appendix A for correct order of units inside the 110 values.
+
+7: Section 'UGRD', Upgrade Data, (this section is optional)
+
+	byte		use default data (0 no, 1 yes)
+	52 bytes	upgrade time
+	52 words	gold cost
+	52 words	lumber cost
+	52 words	oil cost
+	52 words	upgrade icon
+	52 words	group applies to
+	52 longs	unknown
+
+	See Appendix B for correct order of upgrades inside the 52 values.
+
+8: Section 'SIDE', Identifies race of each player
+
+	8 bytes		the 8 player slots
+	7 bytes		garbage, set  to $00
+	1 byte		nuetral, set to $02
+
+	should be:
+
+	$00		human
+	$01		orc
+	$02		neutral
+
+9: Section 'SGLD', Starting gold
+
+	8 words		gold for the 8 players
+	7 words		garbage
+	1 word		gold for neutral
+
+10: Section 'SLBR', Starting lumber
+
+	8 words		lumber for the 8 players
+	7 words		garbage
+	1 word		lumber for neutral
+
+11: Section 'SOIL', Starting oil
+
+	8 words		oil for the 8 players
+	7 words		garbage
+	1 word		oil for neutral
+
+12: Section 'AIPL', AI of each player
+
+	8 bytes		ai for the 8 players
+	7 bytes		garbage ($00)
+	1 byte		ai for neutral ($00)
+
+	See Appendix C for the known AIs.
+
+13: Section 'MTXM', tiles map
+
+	X*Y words	tile
+
+	See Appendix D for general info on map tiles.
+
+14: Section 'SQM ', movement map
+
+	X*Y words
+
+	should be: 
+
+	$0001		land
+	$0002		coast (corner?)
+	$0011		dirt
+	$0040		water
+	$0081		forest and mountains
+	$0082		coast
+	$008d		walls (crashes if not really a wall)
+
+	Other good values:
+
+	$0000		bridge (land, navy, air)
+	$0fxx		space (nothing)
+	$02xx		cave (no birds)
+
+15: Section 'OILM', obsolete oil map
+
+	X*Y bytes	just set it all to $00
+
+16: Section 'REGM', action map
+
+	X*Y words
+
+	should be:
+
+	$0000		water
+	$4000		land
+	$faff		island (no trans, no land)
+	$fbff		wall
+	$fdff		mountains
+	$feff		forest
+
+17: Section 'UNIT', Units
+
+	length/8 units, where a unit is:
+
+	word		x coord
+	word		y coord
+	byte		type
+	byte		owner
+	word		if gold mine or oil well, contains 2500 * this
+			otherwise 0 passive 1 active
+
+Appendix A: Unit Types
+
+	00		infantry
+	01		grunt
+	02		peasant
+	03		peon
+	04		ballista
+	05		catapult
+	06		knight
+	07		ogre
+	08		archer
+	09		axethrower
+	0a		mage
+	0b		death knight
+	0c		paladin
+	0d		ogre-mage
+	0e		dwarves
+	0f		goblin sapper
+	10		attack peasant
+	11		attack peon
+	12		ranger
+	13		berserker
+	14		alleria
+	15		teron gorefiend
+	16		kurdan and sky'ree
+	17		dentarg
+	18		khadgar
+	19		grom hellscream
+	1a		human tanker
+	1b		orc tanker
+	1c		human transport
+	1d		orc transport
+	1e		elven destroyer
+	1f		troll destroyer
+	20		battleship
+	21		juggernaught
+	23		deathwing
+	26		gnomish submarine
+	27		giant turtle
+	28		gnomish flying machine
+	29		goblin zepplin
+	2a		gryphon rider
+	2b		dragon
+	2c		turalyon
+	2d		eye of kilrogg
+	2e		danath
+	2f		khorgath bladefist
+	31		cho'gall
+	32		lothar
+	33		gul'dan
+	34		uther lightbringer
+	35		zuljin
+	37		skeleton
+	38		daemon
+	39		critter
+	3a		farm
+	3b		pig farm
+	3c		human barracks
+	3d		orc barracks
+	3e		church
+	3f		altar of storms
+	40		human scout tower
+	41		orc scout tower
+	42		stables
+	43		ogre mound
+	44		gnomish inventor
+	45		goblin alchemist
+	46		gryphon aviary
+	47		dragon roost
+	48		human shipyard
+	49		orc shipyard
+	4a		town hall
+	4b		great hall
+	4c		elven lumber mill
+	4d		troll lumber mill
+	4e		human foundry
+	4f		orc foundry
+	50		mage tower
+	51		temple of the damned
+	52		human blacksmith
+	53		orc blacksmith
+	54		human refinery
+	55		orc refinery
+	56		human oil well
+	57		orc oil well
+	58		keep
+	59		stronghold
+	5a		castle
+	5b		fortress
+	5c		gold mine
+	5d		oil patch
+	5e		human start
+	5f		orc start
+	60		human guard tower
+	61		orc guard tower
+	62		human cannon tower
+	63		orc cannon tower
+	64		circle of power
+	65		dark portal
+	66		runestone
+	67		human wall
+	68		orc wall
+
+Appendix B: Upgrade types
+
+	00		sword 1
+	01		sword 2
+	02		axe 1
+	03		axe 2
+	04		arrow 1
+	05		arrow 2
+	06		spear 1
+	07		spear 2
+	08		human shield 1
+	09		human shield 2
+	0a		orc shield 1
+	0b		orc shield 2
+	0c		human ship cannon 1
+	0d		human ship cannon 2
+	0e		orc ship cannon 1
+	0f		orc ship cannon 2
+	10		human ship armor 1
+	11		human ship armor 2
+	12		orc ship armor 1
+	13		orc ship armor 2
+	14		catapult 1
+	15		catapult 2
+	16		ballista 1
+	17		ballista 2
+	18		train rangers
+	19		longbow
+	1a		ranger scouting
+	1b		ranger marksmanship
+	1c		train berserkers
+	1d		lighter axes
+	1e		berserker scouting
+	1f		berserker regeneration
+	20		train ogre-mages
+	21		train paladins
+	22		holy vision
+	23		healing
+	24		exorcism
+	25		flame shield
+	26		fireball
+	27		slow
+	28		invisibility
+	29		polymorph
+	2a		blizzard
+	2b		eye of kilrogg
+	2c		bloodlust
+	2d		raise dead
+	2e		death coil
+	2f		whirlwind
+	30		haste
+	31		unholy armor
+	32		runes
+	33		death and decay
+
+Appendix C: Computer AIs
+
+	$00		land attack
+	$01		passive
+	$02		Orc 3
+	$03		Human 4
+	$04		Orc 4
+	$05		Human 5
+	$06		Orc 5
+	$07		Human 6
+	$08		Orc 6
+	$09		Human 7
+	$0A		Orc 7
+	$0B		Human 8
+	$0C		Orc 8
+	$0D		Human 9
+	$0E		Orc 9
+	$0F		Human 10
+	$10		Orc 10
+	$11		Human 11
+	$12		Orc 11
+	$13		Human 12
+	$14		Orc 12
+	$15		Human 13
+	$16		Orc 13
+	$17		Human 14 (Orange)
+	$18		Orc 14 (Blue)
+	$19		sea attack
+	$1a		air attack
+	$1b		Human 14 (Red)
+	$1c		Human 14 (White)
+	$1d		Human 14 (Black)
+	$1e		Orc 14 (Green)
+	$1f		Orc 14 (White)
+	$20		Expansion 1
+	...
+	$52		Expansion 51
+
+Appendix D: General map tiles
+
+	solid tiles
+
+	001x		light water
+	002x		dark water
+	003x		light coast
+	004x		dark coast
+	005x		light ground
+	006x		dark ground
+	007x		forest
+	008x		mountains
+	009x		human wall
+	00ax		orc walls
+	00bx		human walls
+	00cx		orc walls
+
+	boundry tiles
+
+	09..		orc wall
+	08..		human wall
+	07..		forest and grass
+	06..		dark grass and grass
+	05..		coast and grass
+	04..		mount and coast
+	03..		dark coast and coast
+	02..		water and coast
+	01..		dark water and water
+
+	where .. is:
+
+	filled	clear
+	0x	Dx	upper left
+	1x	Cx	upper right
+	2x	Bx	upper half
+	3x	Ax	lower left
+	4x	9x	left half
+	7x	6x	lower right
+	8x	5x	upper left, lower right
+
+	Black Plague tiles: these tiles have no swamp terrain
+	counterpart and must be remapped.
+
+	$003a	$003b	$004a	$004b
+
+Appendix E: Contributers
+
+	Scorpions (guyg2512@ele.etsmtl.ca)
+
+		Found the extended missile types, such as the flame shield
+		and blizzard missiles.
+
+	Alexander Cech (e8900070@student.tuwien.ac.at)
+
+		Discovered the construction frames, and the unit graphics.
+
+	 Mark Kinkead (mok@mars.superlink.net)
+
+		Identified the reaction range section of the UDTA.
+
