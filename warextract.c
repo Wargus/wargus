@@ -23,6 +23,7 @@
 
 #include <unistd.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 
 #include <gtk/gtk.h>
 #include <hildon/hildon.h>
@@ -90,6 +91,12 @@ int main(int argc, char * argv[]) {
 		return -1;
 
 	}
+
+	if ( stat("/home/user/MyDocs/stratagus", &st) != 0 )
+		mkdir("/home/user/MyDocs/stratagus", 0777);
+
+	if ( stat("/home/user/MyDocs/stratagus/wargus", &st) != 0 )
+		mkdir("/home/user/MyDocs/stratagus/wargus", 0777);
 
 	message(TITLE, DATA_FOUND);
 	int ret = system(EXTRACT_COMMAND);

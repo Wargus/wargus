@@ -4,7 +4,6 @@ set -e
 
 if [ "$1" = "abort-install" ] || [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
 	rm -rf /usr/share/games/stratagus/wargus
-	rm -rf /opt/stratagus/share/wargus
 fi
 
 #DEBHELPER#
