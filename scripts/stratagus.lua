@@ -124,6 +124,10 @@ SetForestRegeneration(0)
 --SetRevealAttacker(true)
 SetRevealAttacker(false)
 
+--  Uncomment next, to enable fancy building (random mirroring buildings)
+SetFancyBuildings(true)
+--SetFancyBuildings(false)
+
 -------------------------------------------------------------------------------
 
 --  If you prefer fighters are attacking by right clicking empty space
