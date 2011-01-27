@@ -650,6 +650,9 @@ Load("scripts/menus/diplomacy.lua")
 Load("scripts/menus/results.lua")
 Load("scripts/menus/network.lua")
 
+function GameStarting()
+  if preferences.ShowTips then RunTipsMenu() end
+end
 
 if (Editor.Running == EditorCommandLine) then
   RunEditorMenu()
