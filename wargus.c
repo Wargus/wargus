@@ -205,7 +205,7 @@ int main(int argc, char * argv[]) {
 	if ( stat(title_path, &st) != 0 )
 		error(TITLE, DATA_NOT_EXTRACTED);
 
-	char * stratagus_argv[argc + 3];
+	const char * stratagus_argv[argc + 3];
 
 #ifdef WIN32
 	char stratagus_argv0_esc[BUFF_SIZE];
