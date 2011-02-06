@@ -378,6 +378,7 @@ function InitGameSettings()
   GameSettings.GameType = -1
   GameSettings.NoFogOfWar = false
   GameSettings.RevealMap = 0
+  GameSettings.Tileset = nil
 end
 InitGameSettings()
 
@@ -506,6 +507,7 @@ function RunSinglePlayerGameMenu()
   local gametype
   local mapl
   local descriptionl
+  local tilesetdd
 
   menu:addLabel("Scenario:", offx + 16, offy + 360, Fonts["game"], false)
   mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 360 + 24, Fonts["game"], false)
@@ -523,11 +525,14 @@ function RunSinglePlayerGameMenu()
     end)
   menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
+      local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"};
+
       GameSettings.Presets[0].Race = race:getSelected()
       GameSettings.Resources = resources:getSelected()
       GameSettings.Opponents = opponents:getSelected()
       GameSettings.NumUnits = numunits:getSelected()
       GameSettings.GameType = gametype:getSelected() - 1
+      GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
       RunMap(mapname)
       menu:stop()
     end)
@@ -560,6 +565,11 @@ function RunSinglePlayerGameMenu()
   gametype = menu:addDropDown({"Use map settings", "Melee", "Free for all", "Top vs bottom", "Left vs right", "Man vs Machine"}, offx + 220, offy + 10 + 300,
     function(dd) end)
   gametype:setSize(152, 20)
+
+  menu:addLabel("~<Tileset:~>", offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
+  tilesetdd = menu:addDropDown({"Map Default", "Summer", "Swamp", "Wasteland", "Winter"}, offx + 640 - 224 - 16, offy + 10 + 300,
+    function(dd) end)
+  tilesetdd:setSize(152, 20)
 
   function MapChanged()
     mapl:setCaption(string.sub(mapname, 6))

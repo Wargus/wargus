@@ -216,3 +216,16 @@ function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8)
   OldDefinePlayerTypes(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8])
 end
 
+if OldLoadTileModels == nil then
+	OldLoadTileModels = LoadTileModels
+end
+
+function LoadTileModels(tileset)
+  if (GameCycle ~= 0) then
+    return OldLoadTileModels(tileset)
+  end
+  if (GameSettings.Tileset == nil) then
+    return OldLoadTileModels(tileset)
+  end
+  OldLoadTileModels("scripts/tilesets/" .. GameSettings.Tileset)
+end
