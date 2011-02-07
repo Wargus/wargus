@@ -233,7 +233,7 @@ int main(int argc, char * argv[]) {
 			error(TITLE, DATA_NOT_EXTRACTED);
 #endif
 
-	char * stratagus_argv[argc + 3];
+	const char * stratagus_argv[argc + 3];
 
 #ifdef WIN32
 	char stratagus_argv0_esc[BUFF_SIZE];
