@@ -57,7 +57,7 @@ DefineCursor({
 --	* Race orc.
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-wargus.playlist = { "music/Orc Battle 1.ogg", "music/Orc Battle 2.ogg", "music/Orc Battle 3.ogg", "music/Orc Battle 4.ogg", "music/Orc Battle 5.ogg" }
+wargus.playlist = { "music/Orc Battle 1.ogg", "music/Orc Battle 2.ogg", "music/Orc Battle 3.ogg", "music/Orc Battle 4.ogg", "music/Orc Battle 5.ogg", "music/Orc Battle 6.ogg" }
 
 function OrcScreen(screen_width, screen_height)
   local info_panel_x = 0
