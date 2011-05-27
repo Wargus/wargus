@@ -665,8 +665,16 @@ function GameStarting()
 end
 
 if (Editor.Running == EditorCommandLine) then
-  RunEditorMenu()
+  if (CliMapName and CliMapName ~= "") then
+    StartEditor(CliMapName)
+  else
+    RunEditorMenu()
+  end
 else
-  RunProgramStartMenu()
+  if (CliMapName and CliMapName ~= "") then
+    RunMap(CliMapName)
+  else
+    RunProgramStartMenu()
+  end
 end
 
