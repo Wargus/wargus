@@ -1,4 +1,18 @@
-function RunConfirmErase(name,menu)
+function RunSaveGame(name, menu)
+  if (SaveGame(name) == -1) then
+    local confirm = WarGameMenu(panel(3))
+    confirm:resize(300,120)
+    confirm:addLabel("Cannot save game to file:", 300 / 2, 11)
+    confirm:addLabel(name, 300 / 2, 31)
+    confirm:addHalfButton("~!OK", "o", 1 * (300 / 3), 120 - 16 - 27, function() confirm:stop() end)
+    confirm:run(false)
+  else
+    UI.StatusLine:Set("Saved game to: " .. name)
+    menu:stop()
+  end
+end
+
+function RunConfirmErase(name, menu)
   local confirm = WarGameMenu(panel(3))
 
   confirm:resize(300,120)
@@ -8,10 +22,8 @@ function RunConfirmErase(name,menu)
 
   confirm:addHalfButton("~!Yes", "y", 1 * (300 / 3) - 90, 120 - 16 - 27,
     function()
-        SaveGame(name)
-        UI.StatusLine:Set("Saved game to: " .. name)
         confirm:stop()
-        menu:stop()
+        RunSaveGame(name, menu)
     end)
 
   confirm:addHalfButton("~!No", "n", 3 * (300 / 3) - 116, 120 - 16 - 27,
@@ -56,11 +68,9 @@ function RunSaveMenu()
       table.foreachi(t, function(k,v) name = string.gsub(name, v, "_") end)
 
       if (browser:exists(name .. ".gz")) then
-          RunConfirmErase(name,menu)
+        RunConfirmErase(name, menu)
       else
-        SaveGame(name)
-        UI.StatusLine:Set("Saved game to: " .. name)
-        menu:stop()
+        RunSaveGame(name, menu)
       end
     end)
 
