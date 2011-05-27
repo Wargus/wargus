@@ -103,6 +103,21 @@ function RunEditorMenu()
   return menu:run()
 end
 
+function RunEditorSaveMap(browser, name, menu)
+  local saved = EditorSaveMap(browser.path .. name)
+  if (saved == -1) then
+    local confirm = WarGameMenu(panel(3))
+    confirm:resize(300,120)
+    confirm:addLabel("Cannot save map to file:", 300 / 2, 11)
+    confirm:addLabel(browser.path .. name, 300 / 2, 31)
+    confirm:addHalfButton("~!OK", "o", 1 * (300 / 3), 120 - 16 - 27, function() confirm:stop() end)
+    confirm:run(false)
+  else
+    UI.StatusLine:Set("Saved map to: " .. browser.path .. name)
+    menu:stop()
+  end
+end
+
 --
 --  Save map from the editor
 --
@@ -123,8 +138,8 @@ function RunEditorSaveMenu()
   end
   browser:setActionCallback(cb)
 
-  menu:addHalfButton("~!Save", "s", 1 * (384 / 3) - 106 - 10, 256 - 16 - 27,
-    -- FIXME: use a confirm menu if the file exists already
+  menu:addHalfButton("~!Cancel", "c", 1 * (384 / 3) + 106, 256 - 16 - 27, function() menu:stop() end)
+  menu:addHalfButton("~!Save", "s", 1 * (384 / 3) - 106 + 10, 256 - 16 - 27,
     function()
       local name = t:getText()
       -- check for an empty string
@@ -143,14 +158,22 @@ function RunEditorSaveMenu()
       local t = {"\\", "/", ":", "*", "?", "\"", "<", ">", "|"}
       table.foreachi(t, function(k,v) name = string.gsub(name, v, "_") end)
 
-      --SaveGame(name)
-      EditorSaveMap(browser.path .. name)
-      UI.StatusLine:Set("Saved game to: " .. browser.path .. name)
-      menu:stop()
+      if (browser:exists(name .. ".gz")) then
+        local confirm = WarGameMenu(panel(3))
+        confirm:resize(300,120)
+        confirm:addLabel(name, 300 / 2, 11)
+        confirm:addLabel("File exists, are you sure ?", 300 / 2, 31)
+        confirm:addHalfButton("~!Yes", "y", 1 * (300 / 3) - 90, 120 - 16 - 27,
+          function()
+            confirm:stop()
+            RunEditorSaveMap(browser, name, menu)
+          end)
+        confirm:addHalfButton("~!No", "n", 3 * (300 / 3) - 116, 120 - 16 - 27, function() confirm:stop() end)
+        confirm:run(false)
+      else
+        RunEditorSaveMap(browser, name, menu)
+      end
     end)
-
-  menu:addHalfButton("~!Cancel", "c", 3 * (384 / 3) - 106 - 10, 256 - 16 - 27,
-    function() menu:stop() end)
 
   menu:run(false)
 end
