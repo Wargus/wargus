@@ -80,6 +80,12 @@ DefineAnimations("animations-building", {
 })
 
 
+DefineAnimations("animations-gold-mine", {
+  Still = BuildingStill,
+  Harvest_gold = {"frame 1", "wait 4", "frame 1", "wait 1",},
+})
+
+
 DefineAnimations("animations-human-dead-body", {
   Death = {"unbreakable begin", "frame 0", "wait 200", "frame 10", "wait 200", "frame 15", "wait 200",
     "frame 20", "wait 200", "frame 25", "wait 200", "frame 25", "unbreakable end", "wait 1",},

@@ -178,7 +178,7 @@ UnitTypeFiles["unit-gold-mine"] = {summer = "tilesets/summer/neutral/buildings/g
 
 DefineUnitType("unit-gold-mine", { Name = "Gold Mine",
   Image = {"size", {96, 96}},
-  Animations = "animations-building", Icon = "icon-gold-mine",
+  Animations = "animations-gold-mine", Icon = "icon-gold-mine",
   NeutralMinimapColor = {255, 255, 0},
   Costs = {"time", 150},
   Construction = "construction-land2",
