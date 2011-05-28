@@ -661,7 +661,10 @@ Load("scripts/menus/results.lua")
 Load("scripts/menus/network.lua")
 
 function GameStarting()
-  if preferences.ShowTips then RunTipsMenu() end
+  if (preferences.ShowTips and not IsReplayGame()) then
+    SetGamePaused(true)
+    RunTipsMenu()
+  end
 end
 
 if (Editor.Running == EditorCommandLine) then
