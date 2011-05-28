@@ -496,3 +496,6 @@ DefineUnitType("unit-revealer", { Name = "Dummy unit",
 Load("scripts/human/units.lua")
 Load("scripts/orc/units.lua")
 
+-- Hardcoded unit-types, moved from Stratagus to games
+UnitTypeHumanWall = UnitTypeByIdent("unit-human-wall");
+UnitTypeOrcWall = UnitTypeByIdent("unit-orc-wall");
