@@ -138,8 +138,8 @@ function RunEditorSaveMenu()
   end
   browser:setActionCallback(cb)
 
-  menu:addHalfButton("~!Cancel", "c", 1 * (384 / 3) + 106, 256 - 16 - 27, function() menu:stop() end)
-  menu:addHalfButton("~!Save", "s", 1 * (384 / 3) - 106 + 10, 256 - 16 - 27,
+  menu:addHalfButton("~!Cancel", "c", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27, function() menu:stop() end)
+  menu:addHalfButton("~!Save", "s", (384 - 300 - 18) / 2, 256 - 16 - 27,
     function()
       local name = t:getText()
       -- check for an empty string

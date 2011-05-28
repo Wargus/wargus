@@ -238,7 +238,7 @@ function RunGameOptionsMenu()
     function() RunPreferencesMenu() end)
   menu:addFullButton("Diplomacy (~<F9~>)", "f9", 16, 40 + 36*2,
     function() RunDiplomacyMenu() end)
-  menu:addFullButton("Previous (~<Esc~>", "escape", 128 - (224 / 2), 288 - 40,
+  menu:addFullButton("Previous (~<Esc~>)", "escape", 128 - (224 / 2), 288 - 40,
     function() menu:stop() end)
 
   menu:run(false)
