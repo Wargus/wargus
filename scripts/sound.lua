@@ -87,6 +87,9 @@ MakeSound("ship sinking", "ships/sinking.wav")
 MakeSound("catapult-ballista movement",
 	"units/catapult-ballista/acknowledgement/1.wav")
 
+placement_error = MakeSound("placement error", "ui/placement_error.wav")
+placement_success = MakeSound("placement success", "ui/placement_success.wav")
+
     -- building selection sounds
 MakeSound("blacksmith", "buildings/blacksmith.wav")
 MakeSound("church-selected", "human/buildings/church.wav")
@@ -789,16 +792,15 @@ MapSound("gold-mine-help", "basic orc voices help 1")
 MapSound("critter-help", "basic orc voices help 1")
 MapSound("critter-dead", "explosion")
 
-
 --	Define sounds used by game
 --
 DefineGameSounds(
 
-  "placement-error", {"human", MakeSound("placement error", "ui/placement_error.wav")},
-  "placement-error", {"orc", MakeSound("placement error", "ui/placement_error.wav")},
+  "placement-error", {"human", placement_error},
+  "placement-error", {"orc", placement_error},
 
-  "placement-success", {"human", MakeSound("placement success", "ui/placement_success.wav")},
-  "placement-success", {"orc", MakeSound("placement success", "ui/placement_success.wav")},
+  "placement-success", {"human", placement_success},
+  "placement-success", {"orc", placement_success},
 
   "click", sound_click,
   "transport-docking", transport_docking,
