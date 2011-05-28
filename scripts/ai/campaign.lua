@@ -57,7 +57,7 @@ InitFuncs:add(function()
 end)
 
 local orc_03_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(65535) end,
     function() orc_03_loop_pos[player] = 0; return false end,
 }
@@ -85,7 +85,7 @@ InitFuncs:add(function()
 end)
 
 local hum_04_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(25000) end,
     function() hum_04_loop_pos[player] = 0; return false end,
 }
@@ -122,7 +122,7 @@ InitFuncs:add(function()
 end)
 
 local orc_04_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(10500) end,
     function() orc_04_loop_pos[player] = 0; return false end,
 }
@@ -161,7 +161,7 @@ InitFuncs:add(function()
 end)
 
 local hum_05_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(18000) end,
     function() return AiSleep(12000) end,
     function() return AiSleep(24000) end,
@@ -204,7 +204,7 @@ InitFuncs:add(function()
 end)
 
 local hum_06_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiForce(0, {AiSoldier(), 0, AiShooter(), 1, AiCavalry(), 1}) end,
     function() return AiSleep(14000) end,
     function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 3, AiCavalry(), 2}) end,
@@ -271,7 +271,7 @@ InitFuncs:add(function()
 end)
 
 local hum_08_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(16000) end,
     function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 4, AiCavalry(), 3, AiCatapult(), 1}) end,
     function() return AiSleep(14000) end,
@@ -345,7 +345,7 @@ InitFuncs:add(function()
 end)
 
 local hum_10_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(5000) end,
     function() return AiForce(0, {AiSoldier(), 4, AiShooter(), 4, AiCavalry(), 4,
 	    AiCatapult(), 1}) end,
@@ -423,7 +423,7 @@ InitFuncs:add(function()
 end)
 
 local hum_11_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(12000) end,
     function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 1,
 	    AiCavalry(), 1, AiCatapult(), 1, AiMage(), 3}) end,
@@ -490,7 +490,7 @@ InitFuncs:add(function()
 end)
 
 local hum_12_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(10000) end,
     function() return AiForce(0, {AiSoldier(), 2, AiCavalry(), 10, AiMage(), 2}) end,
     function() return AiSleep(5000) end,
@@ -572,7 +572,7 @@ InitFuncs:add(function()
 end)
 
 local hum_13_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(12000) end,
     function() return AiForce(0, {AiCavalry(), 3, AiMage(), 2, AiShooter(), 1, AiCatapult(), 2}) end,
     function() return AiSleep(14000) end,
@@ -637,7 +637,7 @@ InitFuncs:add(function()
 end)
 
 local hum_14_orange_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() hum_14_orange_loop_pos[player] = 0; return false end,
 }
 
@@ -666,7 +666,7 @@ InitFuncs:add(function()
 end)
 
 local hum_14_red_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(30000) end,
     function() return AiSleep(30000) end,
     function() hum_14_red_loop_pos[player] = 0; return false end,
@@ -700,7 +700,7 @@ InitFuncs:add(function()
 end)
 
 local hum_14_white_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiForce(0, {AiFlyer(), 10}) end,
     function() return AiSleep(19000) end,
     function() return AiSleep(20000) end,
@@ -741,7 +741,7 @@ InitFuncs:add(function()
 end)
 
 local hum_14_black_loop_funcs = {
-    function() print("Looping !") return false end,
+    function() DebugPrint("Looping !\n") return false end,
     function() return AiSleep(30000) end,
     function() hum_14_black_loop_pos[player] = 0; return false end,
 }

@@ -36,7 +36,7 @@ end)
 local player
 
 local end_loop_sea_funcs = {
-  function() print("Looping !"); return false end,
+  function() DebugPrint("Looping !\n"); return false end,
   function() return AiForce(1, {AiDestroyer(), 6, AiBattleship(), 7, AiScout(), 1}) end,
   function() return AiForce(2, {AiSoldier(), 4, AiCavalry(), 4, AiCatapult(), 4, AiTransporter(), 2}) end,
   function() return AiWaitForce(1) end,
@@ -176,7 +176,7 @@ function AiSeaAttack()
   player = AiPlayer() + 1
 
   while (true) do
---    print("Executing sea_funcs[" .. ai_sea_attack_func[player] .. "]")
+    DebugPrint("Executing sea_funcs[" .. ai_sea_attack_func[player] .. "]\n")
     ret = sea_funcs[ai_sea_attack_func[player]]()
     if (ret) then
       break

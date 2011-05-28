@@ -36,7 +36,7 @@ end)
 local player
 
 local end_loop_air_funcs = {
-  function() print("Looping !"); return false end,
+  function() DebugPrint("Looping !\n"); return false end,
   function() return AiForce(1, {AiFlyer(), 2}) end,
   function() return AiForce(2, {AiFlyer(), 2}) end,
   function() return AiForce(3, {AiFlyer(), 2}) end,
@@ -195,7 +195,7 @@ function AiAirAttack()
   player = AiPlayer() + 1
 
   while (true) do
---    print("Executing air_funcs[" .. ai_air_attack_func[player] .. "]")
+    DebugPrint("Executing air_funcs[" .. ai_air_attack_func[player] .. "]\n")
     ret = air_funcs[ai_air_attack_func[player]]()
     if (ret) then
       break

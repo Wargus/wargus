@@ -34,7 +34,7 @@ ai_land_attack_end_loop_func = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 local player
 
 local end_loop_funcs = {
-  function() print("Looping !") return false end,
+  function() DebugPrint("Looping !\n") return false end,
 
 
 -- EXPANSION AND DEFENSE
@@ -357,7 +357,7 @@ function AiLandAttack()
   player = AiPlayer() + 1
 
   while (true) do
---    print("Executing land_funcs[" .. ai_land_attack_func[player] .. "]")
+    DebugPrint("Executing land_funcs[" .. ai_land_attack_func[player] .. "]\n")
     ret = land_funcs[ai_land_attack_func[player]]()
     if (ret) then
       break
