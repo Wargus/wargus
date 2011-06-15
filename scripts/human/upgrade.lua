@@ -377,15 +377,15 @@ DefineDependency("upgrade-ranger",
   {"unit-keep"},
   "or", {"unit-castle"})
 DefineDependency("upgrade-longbow",
-  {"unit-castle", "upgrade-ranger"})
+  {"unit-keep", "upgrade-ranger"}, "or", {"unit-castle", "upgrade-ranger"})
 DefineDependency("upgrade-ranger-scouting",
-  {"unit-castle", "upgrade-ranger"})
+  {"unit-keep", "upgrade-ranger"}, "or", {"unit-castle", "upgrade-ranger"})
 DefineDependency("upgrade-ranger-marksmanship",
-  {"unit-castle", "upgrade-ranger"})
+  {"unit-keep", "upgrade-ranger"}, "or", {"unit-castle", "upgrade-ranger"})
 
 --- human spells
-DefineDependency("upgrade-holy-vision",
-  {"upgrade-paladin"})
+-- DefineDependency("upgrade-holy-vision",
+--   {"upgrade-paladin"})
 DefineDependency("upgrade-healing",
   {"upgrade-paladin"})
 DefineDependency("upgrade-exorcism",

@@ -390,15 +390,15 @@ DefineDependency("upgrade-berserker",
   {"unit-stronghold"},
   "or", {"unit-fortress"})
 DefineDependency("upgrade-berserker-scouting",
-  {"unit-fortress", "upgrade-berserker"})
+  {"unit-stronghol", "upgrade-berserker"}, "or", {"unit-fortress", "upgrade-berserker"})
 DefineDependency("upgrade-berserker-regeneration",
-  {"unit-fortress", "upgrade-berserker"})
+  {"unit-stronghol", "upgrade-berserker"}, "or", {"unit-fortress", "upgrade-berserker"})
 DefineDependency("upgrade-light-axes",
-  {"unit-fortress", "upgrade-berserker"})
+  {"unit-stronghol", "upgrade-berserker"}, "or", {"unit-fortress", "upgrade-berserker"})
 
 --- orc spells
-DefineDependency("upgrade-eye-of-kilrogg",
-  {"upgrade-ogre-mage"})
+-- DefineDependency("upgrade-eye-of-kilrogg",
+--   {"upgrade-ogre-mage"})
 DefineDependency("upgrade-bloodlust",
   {"upgrade-ogre-mage"})
 DefineDependency("upgrade-runes",
