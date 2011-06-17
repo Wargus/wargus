@@ -79,10 +79,15 @@ DefineAnimations("animations-building", {
   Upgrade = BuildingStill,
 })
 
+DefineAnimations("animations-oil-platform", {
+  Still = BuildingStill,
+  Harvest_oil = {"frame 2", "wait 4", "frame 2", "wait 1"}
+})
+
 
 DefineAnimations("animations-gold-mine", {
   Still = BuildingStill,
-  Harvest_gold = {"frame 1", "wait 4", "frame 1", "wait 1",},
+  Harvest_gold = {"frame 1", "wait 4", "frame 1", "wait 1"},
 })
 
 
