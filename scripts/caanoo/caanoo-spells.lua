@@ -42,6 +42,8 @@ DefineSpell("spell-buildpoint-townhall",
 	"depend-upgrade", ""
 )
 
+-- Spawn Human Units
+
 DefineSpell("spell-unit-footman",
 	"showname", "Footman",
 	"manacost", 50,
@@ -138,3 +140,100 @@ DefineSpell("spell-unit-ranger",
 	"depend-upgrade", ""
 )
 
+-- Spawn Orc Units
+
+DefineSpell("spell-unit-grunt",
+	"showname", "Grunt",
+	"manacost", 50,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-grunt", "time-to-live", 55000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision",
+	"depend-upgrade", ""
+)
+
+DefineSpell("spell-unit-axethrower",
+	"showname", "Troll Axethrower",
+	"manacost", 50,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-axethrower", "time-to-live", 55000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision",
+	"depend-upgrade", ""
+)
+
+DefineSpell("spell-unit-catapult",
+	"showname", "Catapult",
+	"manacost", 250,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-catapult", "time-to-live", 55000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision",
+	"depend-upgrade", ""
+)
+
+DefineSpell("spell-unit-ogre",
+	"showname", "Ogre",
+	"manacost", 150,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-ogre", "time-to-live", 55000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision",
+	"depend-upgrade", ""
+)
+
+DefineSpell("spell-unit-death-knight",
+	"showname", "Death Knight",
+	"manacost", 200,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-death-knight", "time-to-live", 55000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision",
+	"depend-upgrade", ""
+)
+
+DefineSpell("spell-unit-ogre-mage",
+	"showname", "Ogre Mage",
+	"manacost", 250,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-ogre-mage", "time-to-live", 55000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision",
+	"depend-upgrade", ""
+)
+
+DefineSpell("spell-unit-goblin-sappers",
+	"showname", "Goblin Sappers",
+	"manacost", 300,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-goblin-sappers", "time-to-live", 55000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision",
+	"depend-upgrade", ""
+)
+
+DefineSpell("spell-unit-berserker",
+	"showname", "Berserker",
+	"manacost", 100,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-berserker", "time-to-live", 55000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision",
+	"depend-upgrade", ""
+)

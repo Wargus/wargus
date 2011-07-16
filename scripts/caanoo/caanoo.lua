@@ -37,3 +37,6 @@ Load("scripts/caanoo/caanoo-unit-heroes.lua")
 Load("scripts/caanoo/caanoo-unit-peasants.lua")
 Load("scripts/caanoo/caanoo-unit-townhall.lua")
 
+-- AI
+Load("scripts/caanoo/caanoo-ai-blueribbon.lua")
+Load("scripts/caanoo/caanoo-ai-redribbon.lua")
