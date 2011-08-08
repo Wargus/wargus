@@ -32,7 +32,7 @@ extract() {
 			echo "Extracting data from ${CDPATH} to /usr/share/games/stratagus/wargus"
 
 			cd /usr/share/games/stratagus/wargus
-			/usr/share/games/stratagus/wargus/build.sh -p ${CDPATH} -b /usr/games -o /usr/share/games/stratagus/wargus -s -c ${EXTRACTVIDEO} ${EXTRACTMUSIC}
+			/usr/share/games/stratagus/wargus/build.sh -p ${CDPATH} -b /usr/bin -o /usr/share/games/stratagus/wargus -s -c ${EXTRACTVIDEO} ${EXTRACTMUSIC}
 			return $?
 
 		else
