@@ -11,7 +11,7 @@
 #define LICENSE "GPL v2"
 #define COPYRIGHT "Copyright (c) 1998-2010 by The Stratagus Project and Pali Rohar"
 
-1 ICON "contrib/wargus.ico"
+1 ICON "wargus.ico"
 1 VERSIONINFO
 FILEVERSION	VIVERSION
 PRODUCTVERSION	VIVERSION

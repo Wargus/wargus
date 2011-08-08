@@ -204,6 +204,14 @@ endif()
 
 install(TARGETS wargus DESTINATION games)
 install(TARGETS pudconvert wartool DESTINATION bin)
+install(FILES wargus.png DESTINATION share/pixmaps)
+install(FILES wargus.desktop DESTINATION share/applications)
+
+install(DIRECTORY campaigns maps scripts DESTINATION share/games/stratagus/wargus)
+install(PROGRAMS build.sh DESTINATION share/games/stratagus/wargus)
+install(FILES contrib/red_cross.png DESTINATION share/games/stratagus/wargus/graphics/missiles)
+install(FILES contrib/cross.png DESTINATION share/games/stratagus/wargus/graphics/ui/cursors)
+install(FILES contrib/food.png contrib/health.png contrib/health2.png contrib/mana.png contrib/mana2.png contrib/ore,stone,coal.png contrib/score.png DESTINATION share/games/stratagus/wargus/graphics/ui)
 
 if(MAEMO)
 	install(TARGETS warextract DESTINATION bin)
