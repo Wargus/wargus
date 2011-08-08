@@ -33,7 +33,6 @@
 #include <string.h>
 #include <limits.h>
 
-#include "endian.h"
 #include "pud.h"
 
 void usage()
