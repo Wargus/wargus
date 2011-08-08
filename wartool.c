@@ -1964,6 +1964,8 @@ int OpenArchive(const char* file, int type)
 	int entries;
 	int i;
 
+	printf("Opening archive: %s\n", file);
+
 	//
 	//  Open the archive file
 	//
