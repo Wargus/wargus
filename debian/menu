@@ -1,1 +1,1 @@
-?package(wargus):needs="x11" section="Games/Strategy" title="Wargus - Warcraft II" command="/usr/games/wargus" icon="/usr/share/pixmaps/wargus.png"
+?package(wargus):needs="x11" section="Games/Strategy" title="Wargus - Warcraft II" command="/usr/games/wargus" icon="/usr/share/pixmaps/wargus.xpm"

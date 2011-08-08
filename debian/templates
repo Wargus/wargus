@@ -1,22 +1,22 @@
 Template: wargus/extractdata
 Type: boolean
 Default: true
-Description: Extract Warcraft II data files now
+Description: Extract Warcraft II data files now?
 
 Template: wargus/cdpath
 Type: string
 Default: /media/cdrom
-Description: Path to your Warcraft II CD mount point
+Description: Path to your Warcraft II CD mount point:
 
 Template: wargus/extractvideo
 Type: boolean
 Default: true
-Description: Extract video files
+Description: Extract video files too?
 
 Template: wargus/extractmusic
 Type: boolean
 Default: true
-Description: Extract audio CD tracks
+Description: Extract audio CD tracks too?
 
 Template: wargus/nodata
 Type: error

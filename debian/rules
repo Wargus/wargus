@@ -34,14 +34,15 @@ MAEMO := $(shell if pkg-config maemo-version 1>/dev/null 2>&1 || test -f "/etc/m
 	dh $@
 
 override_dh_auto_configure:
-	dh_auto_configure -- -DCMAKE_INCLUDE_PATH="/usr/lib/$(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)/"
+	dh_auto_configure -- -DCMAKE_INCLUDE_PATH="/usr/lib/$(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)/"
 
 override_dh_install:
-	dh_install -a
-	find debian/wargus/usr/share/games/stratagus/wargus/maps -name "*.pud*" -print | xargs rm
+	dh_install
+	convert wargus.png -resize 32x32 debian/wargus/usr/share/pixmaps/wargus.xpm
+	find debian/wargus/usr/share/games/stratagus/wargus/maps -name "*.pud*" -exec rm {} ';'
 
 override_dh_shlibdeps:
-	dh_shlibdeps -a
+	dh_shlibdeps
 	echo "stratagus:Depends=stratagus (>= $(VERSION))" >> debian/wargus.substvars
 
 ifdef MAEMO
@@ -69,10 +70,10 @@ override_dh_fixperms:
 	echo "X-Osso-Type=application/x-executable" >> debian/wargus/usr/share/applications/hildon/wargus.desktop
 	sed "s/Exec=.*/Exec=\/opt\/stratagus\/bin\/wargus/" -i debian/wargus/usr/share/applications/hildon/wargus.desktop
 	sed "s/Name=.*/Name=Wargus/" -i debian/wargus/usr/share/applications/hildon/wargus.desktop
-	dh_fixperms -a
+	dh_fixperms
 
 override_dh_gencontrol:
-	dh_gencontrol -a
+	dh_gencontrol
 	cp debian/wargus/DEBIAN/control debian/wargus/DEBIAN/control.orig
 	sed -n -e "1,/^Pre-Depends:.*$$/p" -i debian/wargus/DEBIAN/control
 	sed "s/Section: .*/Section: user\/games/" -i debian/wargus/DEBIAN/control

@@ -5,6 +5,16 @@
    - Animate Gold Mine when workers mining
    - Handle errors when saving game failed
    - Fixed showing tips on startup
+   - Fixed spells and upgrades
+ - Makefile
+   - Rewritted to CMake
+ - Wargus
+   - Rewritted to use Stratagus Game Launcher
+ - Maemo Warextract
+   - Rewritted to use Stratagus Maemo Extractor
+ - Debian
+   - Rewritted control files to debhelper 7
+   - Fixed lintian errors and warnings
 
 2.2.5.5
  - Game
