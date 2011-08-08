@@ -33,17 +33,14 @@ all: wartool pudconvert wargus
 win32: wartool.exe pudconvert.exe wargus.exe
 
 clean:
-	$(RM) wartool wartool.exe wartool.o pudconvert pudconvert.exe pudconvert.o pudconvert-s.o wargus wargus.exe wargus.rc.o wargus.o xmi2mid.o warextract
+	$(RM) wartool wartool.exe wartool.o pudconvert pudconvert.exe pud.o pudconvert.o wargus wargus.exe wargus.rc.o wargus.o xmi2mid.o warextract
 
 xmi2mid.o: xmi2mid.cpp
 
-wartool wartool.exe: xmi2mid.o wartool.o pudconvert.o
+wartool wartool.exe: xmi2mid.o wartool.o pud.o
 	$(CXX) $^ $(LDFLAGS) -lz -lpng -o $@
 
-pudconvert-s.o: pudconvert.c
-	$(CC) -c $^ $(CFLAGS) -DSTAND_ALONE -o $@
-
-pudconvert pudconvert.exe: pudconvert-s.o
+pudconvert pudconvert.exe: pud.o pudconvert.o
 	$(CC) $^ $(LDFLAGS) -lz -o $@
 
 %.rc.o: %.rc

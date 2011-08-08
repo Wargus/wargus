@@ -10,7 +10,7 @@
 //
 /**@name pud.h - pudconvert header. */
 //
-//      (c) Copyright 2005 by The Stratagus Team
+//      (c) Copyright 2005-2011 by The Stratagus Team and Pali Rohár
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -29,6 +29,14 @@
 #ifndef _PUD_H_
 #define _PUD_H_
 
+#include <zlib.h>
+
+#ifdef _MSC_VER
+#define PATH_MAX _MAX_PATH
+#endif
+
+#define VERSION "1.0"
+
 #define PLAYERMAX 16
 
 enum PlayerTypes {
@@ -40,27 +48,10 @@ enum PlayerTypes {
 	PlayerRescueActive,   // active rescue
 };
 
-char *PlayerTypeStrings[] = {
-	"",
-	"",
-	"neutral",
-	"nobody",
-	"computer",
-	"person",
-	"rescue-passive",
-	"rescue-active"
-};
-
 enum RaceTypes {
 	RaceHuman,
 	RaceOrc,
 	RaceNeutral
-};
-
-char *RaceNames[] = {
-	"human",
-	"orc",
-	"neutral"
 };
 
 enum TilesetTypes {
@@ -70,12 +61,7 @@ enum TilesetTypes {
 	TilesetSwamp
 };
 
-char *TilesetTypeStrings[] = {
-	"summer",
-	"winter",
-	"wasteland",
-	"swamp"
-};
+
 
 // unit types, we dont need the whole list
 enum UnitTypes {
@@ -85,202 +71,6 @@ enum UnitTypes {
 	UnitOilPatch,
 	UnitHumanStart,
 	UnitOrcStart
-};
-
-// unit script names that correspond to the unit types
-char *UnitScriptNames[] = {
-	"unit-footman",
-	"unit-grunt",
-	"unit-peasant",
-	"unit-peon",
-	"unit-ballista",
-	"unit-catapult",
-	"unit-knight",
-	"unit-ogre",
-	"unit-archer",
-	"unit-axethrower",
-	"unit-mage",
-	"unit-death-knight",
-	"unit-paladin",
-	"unit-ogre-mage",
-	"unit-dwarves",
-	"unit-goblin-sappers",
-	"unit-attack-peasant",
-	"unit-attack-peon",
-	"unit-ranger",
-	"unit-berserker",
-	"unit-female-hero",
-	"unit-evil-knight",
-	"unit-flying-angel",
-	"unit-fad-man",
-	"unit-white-mage",
-	"unit-beast-cry",
-	"unit-human-oil-tanker",
-	"unit-orc-oil-tanker",
-	"unit-human-transport",
-	"unit-orc-transport",
-	"unit-human-destroyer",
-	"unit-orc-destroyer",
-	"unit-battleship",
-	"unit-ogre-juggernaught",
-	"",
-	"unit-fire-breeze",
-	"",
-	"",
-	"unit-human-submarine",
-	"unit-orc-submarine",
-	"unit-balloon",
-	"unit-zeppelin",
-	"unit-gryphon-rider",
-	"unit-dragon",
-	"unit-knight-rider",
-	"unit-eye-of-vision",
-	"unit-arthor-literios",
-	"unit-quick-blade",
-	"",
-	"unit-double-head",
-	"unit-wise-man",
-	"unit-ice-bringer",
-	"unit-man-of-light",
-	"unit-sharp-axe",
-	"",
-	"unit-skeleton",
-	"unit-daemon",
-	"unit-critter",
-	"unit-farm",
-	"unit-pig-farm",
-	"unit-human-barracks",
-	"unit-orc-barracks",
-	"unit-church",
-	"unit-altar-of-storms",
-	"unit-human-watch-tower",
-	"unit-orc-watch-tower",
-	"unit-stables",
-	"unit-ogre-mound",
-	"unit-inventor",
-	"unit-alchemist",
-	"unit-gryphon-aviary",
-	"unit-dragon-roost",
-	"unit-human-shipyard",
-	"unit-orc-shipyard",
-	"unit-town-hall",
-	"unit-great-hall",
-	"unit-elven-lumber-mill",
-	"unit-troll-lumber-mill",
-	"unit-human-foundry",
-	"unit-orc-foundry",
-	"unit-mage-tower",
-	"unit-temple-of-the-damned",
-	"unit-human-blacksmith",
-	"unit-orc-blacksmith",
-	"unit-human-refinery",
-	"unit-orc-refinery",
-	"unit-human-oil-platform",
-	"unit-orc-oil-platform",
-	"unit-keep",
-	"unit-stronghold",
-	"unit-castle",
-	"unit-fortress",
-	"unit-gold-mine",
-	"unit-oil-patch",
-	"unit-human-start-location",
-	"unit-orc-start-location",
-	"unit-human-guard-tower",
-	"unit-orc-guard-tower",
-	"unit-human-cannon-tower",
-	"unit-orc-cannon-tower",
-	"unit-circle-of-power",
-	"unit-dark-portal",
-	"unit-runestone",
-	"unit-human-wall",
-	"unit-orc-wall"
-};
-
-char *AiTypeNames[] = {
-	"wc2-land-attack",
-	"wc2-passive",
-	"orc-03",
-	"hum-04",
-	"orc-04",
-	"hum-05",
-	"orc-05",
-	"hum-06",
-	"orc-06",
-	"hum-07",
-	"orc-07",
-	"hum-08",
-	"orc-08",
-	"hum-09",
-	"orc-09",
-	"hum-10",
-	"orc-10",
-	"hum-11",
-	"orc-11",
-	"hum-12",
-	"orc-12",
-	"hum-13",
-	"orc-13",
-	"hum-14-orange",
-	"wc2-land-attack",
-	"wc2-sea-attack",
-	"wc2-air-attack",
-	"hum-14-red",
-	"hum-14-white",
-	"hum-14-black",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	// expansion scenarios
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
-	"wc2-land-attack",
 };
 
 struct UnitData {
@@ -315,5 +105,11 @@ struct PudData {
 	int StartX[PLAYERMAX];
 	int StartY[PLAYERMAX];
 };
+
+int WriteSMP(const struct PudData * const pdata, gzFile smpout, const char *smsname);
+int WriteSMS(const struct PudData * const pdata, gzFile smsout);
+int PudReadHeader(const unsigned char *puddata, char *header, int *len);
+int ProcessPud(const unsigned char *puddata, size_t size, gzFile smsout, gzFile smpout, const char *smsname);
+int PudToStratagus(const unsigned char *puddata, size_t size, const char *name, const char *outdir);
 
 #endif
