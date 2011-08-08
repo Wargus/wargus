@@ -1,3 +1,11 @@
+2.2.6
+ - Game
+   - Show error box if saving game/map failed
+   - Added support for starting game with specified map from command line
+   - Animate Gold Mine when workers mining
+   - Handle errors when saving game failed
+   - Fixed showing tips on startup
+
 2.2.5.5
  - Game
    - Fixed loosing wood, when peasant or peon has not full wood limit

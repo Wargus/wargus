@@ -1,7 +1,7 @@
 pudconvert                  usr/games/
 wargus                      usr/games/
 wartool                     usr/games/
-debian/wargus.desktop       usr/share/applications/
+wargus.desktop              usr/share/applications/
 contrib/wargus.png          usr/share/pixmaps/
 build.sh                    usr/share/games/stratagus/wargus/
 campaigns                   usr/share/games/stratagus/wargus/
