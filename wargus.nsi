@@ -97,7 +97,7 @@ LangString AMD64ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only
 ;--------------------------------
 
 !ifndef NO_DOWNLOAD
-!system "wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.27.exe -O ffmpeg2theora.exe"
+!system "wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.28.exe -O ffmpeg2theora.exe"
 !system "wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -O cdrtools.zip"
 !system "unzip -o cdrtools.zip cdda2wav.exe"
 !system "wget http://nsis.sourceforge.net/mediawiki/images/0/0f/ExecDos.zip -O ExecDos.zip"
