@@ -1765,6 +1765,7 @@ GroupedGraphic GroupedGraphicsList[][60] = {
 **  File names.
 */
 char* UnitNames[110];
+int UnitNamesLast = 0;
 
 //----------------------------------------------------------------------------
 //  TOOLS
@@ -2207,6 +2208,7 @@ int ConvertRgb(char* file, int rgbe)
 			rgbp[i * 3], rgbp[i * 3 + 1], rgbp[i * 3 + 2], i);
 	}
 
+	fclose(f);
 	free(rgbp);
 
 	return 0;
@@ -2719,6 +2721,10 @@ int ConvertGfx(char* file, int pale, int gfxe, int gfxe2, int start2)
 
 	image = ConvertGraphic(1, gfxp, &w, &h, gfxp2, start2);
 
+	if (gfxp2) {
+		free(gfxp2);
+	}
+
 	free(gfxp);
 	ConvertPalette(palp);
 
@@ -3158,7 +3164,7 @@ int ConvertImage(char* file, int pale, int imge, int nw, int nh)
 	SavePNG(buf, image, 0, 0, w, h, w, palp, 0);
 
 	free(image);
-	if (pale != 27 && imge != 28) {
+	if (pale != 27 || imge != 28) {
 		free(palp);
 	}
 
@@ -3233,7 +3239,7 @@ int ConvertCursor(char* file, int pale, int cure)
 	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
 	free(image);
-	if (pale != 27 && cure != 314 && !Pal27) {
+	if (pale != 27 || cure != 314 || !Pal27) {
 		free(palp);
 	}
 
@@ -3313,6 +3319,7 @@ int ConvertXmi(char* file, int xmi)
 	}
 
 	free(midp);
+	fclose(f);
 
 	cmd = calloc(strlen("timidity -Ow \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, sizeof(char));
 	if (!cmd) {
@@ -3393,6 +3400,7 @@ int ConvertXmi(char* file, int xmi)
 	}
 
 	gzclose(gf);
+	free(oggp);
 
 	return 0;
 }
@@ -3524,6 +3532,7 @@ int ConvertText(char* file, int txte, int ofs)
 	}
 
 	free(txtp);
+	free(str);
 
 	gzclose(gf);
 	return 0;
@@ -4119,6 +4128,7 @@ int SetupNames(char* file __attribute__((unused)), int txte __attribute__((unuse
 //		printf("%s\n", txtp + ConvertLE16(mp[u]));
 		if (u < sizeof(UnitNames) / sizeof(*UnitNames)) {
 			UnitNames[u] = strdup((char*)txtp + ConvertLE16(mp[u]));
+			UnitNamesLast = u;
 		}
 	}
 
@@ -4603,6 +4613,11 @@ int main(int argc, char** argv)
 	}
 	if (Pal27) {
 		free(Pal27);
+	}
+
+	while (UnitNamesLast > 0) {
+		free(UnitNames[UnitNamesLast]);
+		--UnitNamesLast;
 	}
 
 	sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
