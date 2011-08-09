@@ -3279,27 +3279,107 @@ int ConvertWav(char* file, int wave)
 //----------------------------------------------------------------------------
 
 /**
-**  Convert XMI Midi sound to Midi
+**  Convert XMI Midi sound to OGG
 */
 
 int ConvertXmi(char* file, int xmi)
 {
 	unsigned char* xmip;
+	unsigned char* midp;
+	unsigned char* oggp;
+	char buf[1024];
+	char* cmd;
+	gzFile gf;
+	FILE* f;
 	size_t xmil;
+	size_t midl;
+	size_t oggl;
+	int ret;
 
 	xmip = ExtractEntry(ArchiveOffsets[xmi], &xmil);
-
-	unsigned char* midp;
-	size_t midl;
-
 	midp = TranscodeXmiToMid(xmip, xmil, &midl);
-
 	free(xmip);
 
-	char buf[1024];
-	gzFile gf;
+	sprintf(buf, "%s/%s/%s.mid", Dir, MUSIC_PATH, file);
+	CheckPath(buf);
+	f = fopen(buf, "wb");
+	if (!f) {
+		perror("");
+		printf("Can't open %s\n", buf);
+		exit(-1);
+	}
+	if (midl != fwrite(midp, 1, midl, f)) {
+		printf("Can't write %d bytes\n", (int)midl);
+	}
 
-	sprintf(buf, "%s/%s/%s.mid.gz", Dir, MUSIC_PATH, file);
+	free(midp);
+
+	cmd = calloc(strlen("timidity -Ow \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, sizeof(char));
+	if (!cmd) {
+		fprintf(stderr, "Memory error\n");
+		exit(-1);
+	}
+
+	sprintf(cmd, "timidity -Ow \"%s/%s/%s.mid\" -o \"%s/%s/%s.wav\"", Dir, MUSIC_PATH, file, Dir, MUSIC_PATH, file);
+
+	ret = system(cmd);
+
+	free(cmd);
+	remove(buf);
+
+	if (ret != 0) {
+		printf("Can't convert midi sound %s to wav format. Is timidity installed in PATH?", file);
+		return ret;
+	}
+
+	sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, file);
+	CheckPath(buf);
+
+	cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, sizeof(char));
+	if (!cmd) {
+		fprintf(stderr, "Memory error\n");
+		exit(-1);
+	}
+
+	sprintf(cmd, "ffmpeg2theora --optimize \"%s/%s/%s.wav\" -o \"%s/%s/%s.ogg\"", Dir, MUSIC_PATH, file, Dir, MUSIC_PATH, file);
+
+	ret = system(cmd);
+
+	free(cmd);
+	remove(buf);
+
+	if (ret != 0) {
+		printf("Can't convert wav sound %s to ogv format. Is ffmpeg2theora installed in PATH?", file);
+		return ret;
+	}
+
+	sprintf(buf, "%s/%s/%s.ogg", Dir, MUSIC_PATH, file);
+	CheckPath(buf);
+	f = fopen(buf, "rb");
+	if (!f) {
+		perror("");
+		printf("Can't open %s\n", buf);
+		exit(-1);
+	}
+
+	fseek(f, 0, SEEK_END);
+	oggl = ftell(f);
+	rewind(f);
+
+	oggp = malloc(sizeof(char)*oggl);
+	if (!oggp) {
+		fprintf(stderr, "Memory error\n");
+		exit(-1);
+	}
+
+	if (oggl != (size_t)fread(oggp, 1, oggl, f)) {
+		printf("Can't read %d bytes\n", (int)oggl);
+	}
+
+	fclose(f);
+	remove(buf);
+
+	sprintf(buf, "%s/%s/%s.ogg.gz", Dir, MUSIC_PATH, file);
 	CheckPath(buf);
 	gf = gzopen(buf, "wb9");
 	if (!gf) {
@@ -3307,13 +3387,13 @@ int ConvertXmi(char* file, int xmi)
 		printf("Can't open %s\n", buf);
 		exit(-1);
 	}
-	if (midl != (size_t)gzwrite(gf, midp, midl)) {
-		printf("Can't write %d bytes\n", (int)midl);
+
+	if (oggl != (size_t)gzwrite(gf, oggp, oggl)) {
+		printf("Can't write %d bytes\n", (int)oggl);
 	}
 
-	free(midp);
-
 	gzclose(gf);
+
 	return 0;
 }
 
@@ -3322,32 +3402,52 @@ int ConvertXmi(char* file, int xmi)
 //----------------------------------------------------------------------------
 
 /**
-**  Extract video
+**  Convert SMK video to OGV
 */
 int ConvertVideo(char* file, int video)
 {
 	unsigned char* vidp;
 	char buf[1024];
-	FILE* gf;
+	char* cmd;
+	FILE* f;
 	size_t l;
+	int ret;
 
 	vidp = ExtractEntry(ArchiveOffsets[video], &l);
 
 	sprintf(buf,"%s/%s.smk", Dir, file);
 	CheckPath(buf);
-	gf = fopen(buf, "wb");
-	if (!gf) {
+	f = fopen(buf, "wb");
+	if (!f) {
 		perror("");
 		printf("Can't open %s\n", buf);
 		exit(-1);
 	}
-	if (l != fwrite(vidp, 1, l, gf)) {
+	if (l != fwrite(vidp, 1, l, f)) {
 		printf("Can't write %d bytes\n", (int)l);
 	}
 
 	free(vidp);
+	fclose(f);
 
-	fclose(gf);
+	cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, sizeof(char));
+	if (!cmd) {
+		fprintf(stderr, "Memory error\n");
+		exit(-1);
+	}
+
+	sprintf(cmd, "ffmpeg2theora --optimize \"%s/%s.smk\" -o \"%s/%s.ogv\"", Dir, file, Dir, file);
+
+	ret = system(cmd);
+
+	free(cmd);
+	remove(buf);
+
+	if (ret != 0) {
+		printf("Can't convert video %s to ogv format. Is ffmpeg2theora installed in PATH?", file);
+		return ret;
+	}
+
 	return 0;
 }
 
