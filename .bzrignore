@@ -3,13 +3,4 @@ debian/files
 debian/*.log
 debian/*.substvars
 debian/wargus
-*.dll
-*.exe
-freepats
-pudconvert
-warextract
-wargus
-Wargus-*.exe.asc
-wargus_*.tar.gz
-wargus_*.tar.gz.asc
-wartool
+obj-*
