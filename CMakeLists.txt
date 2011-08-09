@@ -28,7 +28,7 @@
 
 project(wargus)
 cmake_minimum_required(VERSION 2.6)
-set(WARGUS_VERSION 2.2.6)
+set(WARGUS_VERSION 2.2.5.5)
 
 # Wargus sources
 
@@ -57,6 +57,13 @@ set(wartool_HDRS
 set(wargus_SRCS
 	wargus.c
 )
+
+if(WIN32)
+	set(wargus_SRCS
+		${wargus_SRCS}
+		wargus.rc
+	)
+endif()
 
 set(warextract_SRCS
 	warextract.c
@@ -193,11 +200,12 @@ if(WIN32 AND ENABLE_NSIS AND MAKENSIS_FOUND)
 	file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/COPYING-3rd DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 	file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/wargus.ico DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 	add_custom_command(OUTPUT Wargus-${WARGUS_VERSION}${MAKENSIS_SUFFIX}
-		COMMAND ${MAKENSIS} ARGS ${MAKENSIS_FLAGS} ${CMAKE_CURRENT_SOURCE_DIR}/wargus.nsi
-		DEPENDS wargus.nsi pudconvert wargus wartool COPYING COPYING-3rd
+		COMMAND ${MAKENSIS}
+		ARGS ${MAKENSIS_FLAGS} -DCMAKE_CURRENT_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}" -DCMAKE_CURRENT_BINARY_DIR="${CMAKE_CURRENT_BINARY_DIR}" ${CMAKE_CURRENT_SOURCE_DIR}/wargus.nsi
+		DEPENDS wargus.nsi pudconvert wargus wartool COPYING COPYING-3rd wargus.ico
 		COMMENT "Generating Wargus Windows NSIS Installer" VERBATIM
 	)
-	add_custom_target(nsis ALL DEPENDS Wargus-${STRATAGUS_VERSION}${MAKENSIS_SUFFIX})
+	add_custom_target(nsis ALL DEPENDS Wargus-${WARGUS_VERSION}${MAKENSIS_SUFFIX})
 endif()
 
 ########### install files ###############

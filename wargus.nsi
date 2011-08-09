@@ -1,6 +1,15 @@
+;       _________ __                 __
+;      /   _____//  |_____________ _/  |______     ____  __ __  ______
+;      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
+;      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ |
+;     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
+;             \/                  \/          \//_____/            \/
+;  ______________________                           ______________________
+;                        T H E   W A R   B E G I N S
+;         Stratagus - A free fantasy real time strategy game engine
 ;
 ;    wargus.nsi - Windows NSIS Installer for Wargus
-;    Copyright (C) 2010  Pali Rohár <pali.rohar@gmail.com>
+;    Copyright (C) 2010-2011  Pali Rohár <pali.rohar@gmail.com>
 ;
 ;    This program is free software: you can redistribute it and/or modify
 ;    it under the terms of the GNU General Public License as published by
@@ -17,6 +26,18 @@
 ;
 ;
 
+;--------------------------------
+
+!ifdef QUIET
+!verbose 2
+!endif
+
+!define redefine "!insertmacro redefine"
+!macro redefine symbol value
+!undef ${symbol}
+!define ${symbol} "${value}"
+!macroend
+
 !include "MUI2.nsh"
 
 ;--------------------------------
@@ -26,14 +47,14 @@
 !define VIVERSION "${VERSION}"
 !define HOMEPAGE "https://launchpad.net/wargus"
 !define LICENSE "GPL v2"
-!define COPYRIGHT "Copyright (c) 1998-2010 by The Stratagus Project and Pali Rohar"
+!define COPYRIGHT "Copyright (c) 1998-2011 by The Stratagus Project and Pali Rohar"
 !define STRATAGUS_NAME "Stratagus"
 !define STRATAGUS_HOMEPAGE "https://launchpad.net/stratagus"
 
 ;--------------------------------
 
-!define ICON "contrib/wargus.ico"
-!define WARGUS "wargus.exe"
+!define ICON "wargus.ico"
+!define EXE "wargus.exe"
 !define WARTOOL "wartool.exe"
 !define PUDCONVERT "pudconvert.exe"
 !define CDDA2WAV "cdda2wav.exe"
@@ -45,15 +66,11 @@
 !define INSTALLDIR "$PROGRAMFILES\${NAME}\"
 !define LANGUAGE "English"
 
-!ifdef AMD64
-!undef INSTALLER
-!define INSTALLER "${NAME}-${VERSION}-x86_64.exe"
-!undef INSTALLDIR
-!define INSTALLDIR "$PROGRAMFILES64\${NAME}\"
-!undef NAME
-!define NAME "Wargus (64 bit)"
-!undef STRATAGUS_NAME
-!define STRATAGUS_NAME "Stratagus (64 bit)"
+!ifdef x86_64
+${redefine} INSTALLER "${NAME}-${VERSION}-x86_64.exe"
+${redefine} INSTALLDIR "$PROGRAMFILES64\${NAME}\"
+${redefine} NAME "Wargus (64 bit)"
+${redefine} STRATAGUS_NAME "Stratagus (64 bit)"
 !endif
 
 !define REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}"
@@ -61,11 +78,12 @@
 
 ;--------------------------------
 
-LangString INSTALLER_RUNNING ${LANG_ENGLISH} "${NAME} Installer is already running."
+LangString INSTALLER_RUNNING ${LANG_ENGLISH} "${NAME} Installer is already running"
 LangString NO_STRATAGUS ${LANG_ENGLISH} "${STRATAGUS_NAME} ${VERSION} is not installed.$\nYou need ${STRATAGUS_NAME} ${VERSION} to run ${NAME}!$\nFirst install ${STRATAGUS_NAME} ${VERSION} from ${STRATAGUS_HOMEPAGE}"
-
 LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
 LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data files:"
+LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} binary executables"
+LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration and extracted data files and directories in ${NAME} install directory created by user or ${NAME}"
 
 LangString EXTRACTDATA_FILES ${LANG_ENGLISH} "Extracting Warcraft II data files..."
 LangString EXTRACTDATA_RIP_AUDIO ${LANG_ENGLISH} "Ripping Warcraft II audio tracks..."
@@ -87,11 +105,8 @@ LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_ENGLISH} "Setup will extract Warcraf
 LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_ENGLISH} "Source Folder"
 LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory. File $DATADIRdata\rezdat.war does not exist."
 
-LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} binary executables"
-LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration and extracted data files and directories in ${NAME} install directory created by user or ${NAME}"
-
-!ifdef AMD64
-LangString AMD64ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only."
+!ifdef x86_64
+LangString x86_64_ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only"
 !endif
 
 ;--------------------------------
@@ -126,7 +141,7 @@ Var EXTRACTNEEDED
 !define MUI_ABORTWARNING
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_FINISHPAGE_NOREBOOTSUPPORT
-!define MUI_FINISHPAGE_RUN "$INSTDIR\${WARGUS}"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\${EXE}"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 !define MUI_UNFINISHPAGE_NOREBOOTSUPPORT
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKLM"
@@ -179,7 +194,7 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" "${NAME} Installer"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion" "${VERSION}"
 VIProductVersion "${VIVERSION}"
 
-BrandingText "${NAME} - ${VERSION}  ${HOMEPAGE}"
+BrandingText "${NAME}, version ${VERSION}  ${HOMEPAGE}"
 ShowInstDetails Show
 ShowUnInstDetails Show
 XPStyle on
@@ -198,13 +213,13 @@ Function .onInit
 	MessageBox MB_OK|MB_ICONEXCLAMATION "$(INSTALLER_RUNNING)"
 	Abort
 
-!ifdef AMD64
+!ifdef x86_64
 
 	System::Call "kernel32::GetCurrentProcess() i .s"
 	System::Call "kernel32::IsWow64Process(i s, *i .r0)"
 	IntCmp $0 0 0 0 +3
 
-	MessageBox MB_OK|MB_ICONSTOP "$(AMD64ONLY)"
+	MessageBox MB_OK|MB_ICONSTOP "$(x86_64_ONLY)"
 	Abort
 
 !endif
@@ -276,7 +291,7 @@ FunctionEnd
 
 Section "-${NAME}" UninstallPrevious
 
-        SectionIn RO
+	SectionIn RO
 
 	ReadRegStr $0 HKLM "${REGKEY}" "InstallLocation"
 	StrCmp $0 "" +7
@@ -295,13 +310,15 @@ Section "${NAME}"
 	SectionIn RO
 
 	SetOutPath "$INSTDIR"
-	File "${WARGUS}"
+	File "${EXE}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
 	File "${TIMIDITY}"
 	File "${GZIP}"
+
+	!cd ${CMAKE_CURRENT_SOURCE_DIR}
 
 	SetOutPath "$INSTDIR\maps"
 	File /r /x .svn /x *.pud* "maps\"
@@ -334,18 +351,20 @@ Section "${NAME}"
 	File "/oname=graphics\ui\score.png" "contrib\score.png"
 	File "/oname=graphics\ui\ore,stone,coal.png" "contrib\ore,stone,coal.png"
 
+	!cd ${CMAKE_CURRENT_BINARY_DIR}
+
 	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 	CreateDirectory "$SMPROGRAMS\$STARTMENUDIR"
-	CreateShortCut "$SMPROGRAMS\$STARTMENUDIR\${NAME}.lnk" "$INSTDIR\${WARGUS}"
+	CreateShortCut "$SMPROGRAMS\$STARTMENUDIR\${NAME}.lnk" "$INSTDIR\${EXE}"
 	CreateShortCut "$SMPROGRAMS\$STARTMENUDIR\Uninstall.lnk" "$INSTDIR\${UNINSTALL}"
-	CreateShortcut "$DESKTOP\${NAME}.lnk" "$INSTDIR\${WARGUS}"
+	CreateShortcut "$DESKTOP\${NAME}.lnk" "$INSTDIR\${EXE}"
 	!insertmacro MUI_STARTMENU_WRITE_END
 
 	WriteRegStr HKLM "${REGKEY}" "DisplayName" "${NAME}"
 	WriteRegStr HKLM "${REGKEY}" "UninstallString" "$\"$INSTDIR\${UNINSTALL}$\""
 	WriteRegStr HKLM "${REGKEY}" "QuietUninstallString" "$\"$INSTDIR\${UNINSTALL}$\" /S"
 	WriteRegStr HKLM "${REGKEY}" "InstallLocation" "$INSTDIR"
-	WriteRegStr HKLM "${REGKEY}" "DisplayIcon" "$\"$INSTDIR\${WARGUS}$\",0"
+	WriteRegStr HKLM "${REGKEY}" "DisplayIcon" "$\"$INSTDIR\${EXE}$\",0"
 	WriteRegStr HKLM "${REGKEY}" "DisplayVersion" "${VERSION}"
 	WriteRegStr HKLM "${REGKEY}" "HelpLink" "${HOMEPAGE}"
 	WriteRegStr HKLM "${REGKEY}" "URLUpdateInfo" "${HOMEPAGE}"
@@ -516,7 +535,7 @@ Section "un.${NAME}" Executable
 
 	SectionIn RO
 
-	Delete "$INSTDIR\${WARGUS}"
+	Delete "$INSTDIR\${EXE}"
 	Delete "$INSTDIR\${WARTOOL}"
 	Delete "$INSTDIR\${PUDCONVERT}"
 	Delete "$INSTDIR\${CDDA2WAV}"
@@ -578,7 +597,22 @@ SectionEnd
 
 ;--------------------------------
 
-!packhdr "exehead.tmp" "upx -9 exehead.tmp"
+!ifdef UPX
+
+!ifndef UPX_FLAGS
+!define UPX_FLAGS "-9"
+!else
+${redefine} UPX_FLAGS "${UPX_FLAGS} -9"
+!endif
+
+!ifdef QUIET
+${redefine} UPX_FLAGS "${UPX_FLAGS} -q"
+!endif
+
+!packhdr "exehead.tmp" "${UPX} ${UPX_FLAGS} exehead.tmp"
+
+!endif
+
 ;!finalize "gpg --armor --sign --detach-sig %1"
 
 ;--------------------------------
