@@ -273,6 +273,8 @@ unsigned char* TranscodeXmiToMid(const unsigned char* pXmiData,
     bool bTempoSet = false;
     bool bEnd = false;
     uint8_t iTokenType, iExtendedType;
+    unsigned char* buf;
+    unsigned char* data;
 
     while(!bufInput.isEOF() && !bEnd)
     {
@@ -410,7 +412,11 @@ unsigned char* TranscodeXmiToMid(const unsigned char* pXmiData,
     bufOutput.seek(18);
     bufOutput.writeBigEndianUInt32(iLength);
 
-    return bufOutput.takeData(pMidLength);
+    buf = bufOutput.takeData(pMidLength);
+    data = (unsigned char *)malloc(*pMidLength * sizeof(unsigned char));
+    memcpy(data, buf, *pMidLength);
+    delete[] buf;
+    return data;
 }
 
 }
