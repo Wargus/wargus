@@ -76,7 +76,7 @@ override_dh_gencontrol:
 	dh_gencontrol
 	cp debian/wargus/DEBIAN/control debian/wargus/DEBIAN/control.orig
 	sed -n -e "1,/^Pre-Depends:.*$$/p" -i debian/wargus/DEBIAN/control
-	sed "/Pre-Depends:/s/cdparanoia, /findutils-gnu, /" -i debian/wargus/DEBIAN/control
+	sed "/Pre-Depends:/s/cdparanoia, //" -i debian/wargus/DEBIAN/control
 	echo "Bugtracker: https://bugs.launchpad.net/wargus" >> debian/wargus/DEBIAN/control
 	echo "Maemo-Display-Name: Wargus - Warcraft II" >> debian/wargus/DEBIAN/control
 	echo "Maemo-Icon-26:" >> debian/wargus/DEBIAN/control

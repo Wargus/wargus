@@ -28,8 +28,6 @@
 
 set -e
 
-export PATH=/usr/bin/gnu:$PATH
-
 # cdrom autodetection
 CDROM="/cdrom"
 [ -d "/mnt/cdrom" ] && CDROM="/mnt/cdrom"
@@ -51,8 +49,6 @@ BINPATH="."
 DECODE="ffmpeg2theora"
 DECODE_ARGS="--optimize"
 CDPARANOIA="cdparanoia"
-TIMIDITY="timidity"
-WILDMIDI="wildmidi"
 
 #### Do not modify anything below this point.
 
@@ -136,21 +132,6 @@ if ! which "$CDPARANOIA" >/dev/null; then
 	MUSIC="no"
 fi
 
-# check if $TIMIDITY or $WILDMIDI is installed
-if which "$TIMIDITY" >/dev/null; then
-	MIDI="$TIMIDITY"
-	MIDI_ARGS="-Ow"
-elif which "$WILDMIDI" >/dev/null; then
-	MIDI="$WILDMIDI"
-	MIDI_ARGS=""
-else
-	echo "Warning: $TIMIDITY or $WILDMIDI is not installed in system"
-	echo "$TIMIDITY or $WILDMIDI is needed for extract midi music"
-	echo "Note: Audio CD tracks override midi music files"
-	MIDI=""
-	MIDI_ARGS=""
-fi
-
 # check if $DECODE is installed
 if ! which "$DECODE" >/dev/null; then
 	if [ "$MUSIC" = "yes" ] || [ "$VIDEO" != "" ]; then
@@ -159,8 +140,6 @@ if ! which "$DECODE" >/dev/null; then
 	fi
 	MUSIC="no"
 	VIDEO=""
-	MIDI=""
-	MIDI_ARGS=""
 fi
 
 ###############################################################################
@@ -170,9 +149,6 @@ fi
 # copy script files
 if [ "$SKIP_SCRIPTS" = "no" ] ; then
 	cp -R scripts "$DIR/"
-	rm -Rf `find "$DIR/scripts" | grep CVS`
-	rm -Rf `find "$DIR/scripts" | grep cvsignore`
-	rm -Rf `find "$DIR/scripts" | grep .svn`
 fi
 
 # check if cdparanoia can extract audio tracks from CD
@@ -219,7 +195,7 @@ else
 		echo "Warning: Audio CD device not found"
 		echo "If you want to extract music, specify CD drive location with the '-d' param"
 	fi
-	if [ "$SKIP_CONTRIB" = "no" ] && [ ! -f "$DIR/music/Orc Briefing.ogg" ] && [ "$MIDI" = "no" ]; then
+	if [ "$SKIP_CONTRIB" = "no" ] && [ ! -f "$DIR/music/Orc Briefing.ogg" ]; then
 		echo "Using default music file: toccata.mod"
 		cp "$CONTRIB/toccata.mod.gz" "$DIR/music/Orc Briefing.ogg.gz"
 	fi
@@ -234,33 +210,11 @@ if [ "$SKIP_CONTRIB" = "no" ]; then
 	cp -r "$CONTRIB/../campaigns" "$DIR"
 fi
 
-# extract data using wartool
-$BINPATH/wartool $VIDEO "$DATADIR" "$DIR" || exit
-
-# convert video files to theora format
-if [ "$VIDEO" != "" ]; then
-	for f in $DIR/videos/*.smk ; do
-		$DECODE $DECODE_ARGS "$f" -o "${f%%.smk}.ogv"
-		rm -f "$f"
-	done
-fi
-
-# convert midi to ogg
-if [ "$MIDI" != "" ]; then
-	for f in $DIR/music/*.mid.gz ; do
-		mv "$f" "$DIR/music/convert.mid.gz"
-		gunzip -f "$DIR/music/convert.mid.gz"
-		$MIDI $MIDI_ARGS "$DIR/music/convert.mid" -o "$DIR/music/convert.wav"
-		rm -f "$DIR/music/convert.mid"
-		$DECODE $DECODE_ARGS "$DIR/music/convert.wav" -o "$DIR/music/convert.ogg"
-		rm -f "$DIR/music/convert.wav"
-		gzip -f "$DIR/music/convert.ogg"
-		mv "$DIR/music/convert.ogg.gz" "${f%%.mid.gz}.ogg.gz"
-	done
-fi
-
 # copy own supplied files
 if [ "$SKIP_CONTRIB" = "no" ] ; then
+	mkdir -p "$DIR/graphics/ui/cursors"
+	mkdir -p "$DIR/graphics/missiles"
+	mkdir -p "$DIR/graphics/ui"
 	cp "$CONTRIB/cross.png" "$DIR/graphics/ui/cursors"
 	cp "$CONTRIB/red_cross.png" "$DIR/graphics/missiles"
 	cp "$CONTRIB/mana.png" "$DIR/graphics/ui"
@@ -272,13 +226,5 @@ if [ "$SKIP_CONTRIB" = "no" ] ; then
 	cp "$CONTRIB/ore,stone,coal.png" "$DIR/graphics/ui"
 fi
 
-# compress the sounds
-find "$DIR/sounds" -type f -name "*.wav" -print -exec gzip -f {} \; || true
-
-# compress the texts
-find "$DIR/campaigns" -type f -name "*.txt" -print -exec gzip -f {} \; || true
-
-echo "Wargus data setup is now complete"
-echo "Note: you do not need to run this script again"
-
-exit 0
+# extract data using wartool
+$BINPATH/wartool $VIDEO "$DATADIR" "$DIR"

@@ -60,7 +60,6 @@
 !define CDDA2WAV "cdda2wav.exe"
 !define FFMPEG2THEORA "ffmpeg2theora.exe"
 !define TIMIDITY "timidity.exe"
-!define GZIP "gzip.exe"
 !define UNINSTALL "uninstall.exe"
 !define INSTALLER "${NAME}-${VERSION}.exe"
 !define INSTALLDIR "$PROGRAMFILES\${NAME}\"
@@ -88,16 +87,12 @@ LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration and e
 LangString EXTRACTDATA_FILES ${LANG_ENGLISH} "Extracting Warcraft II data files..."
 LangString EXTRACTDATA_RIP_AUDIO ${LANG_ENGLISH} "Ripping Warcraft II audio tracks..."
 LangString EXTRACTDATA_COPY_AUDIO ${LANG_ENGLISH} "Coping Warcraft II audio tracks..."
-LangString EXTRACTDATA_CONVERT_MIDI ${LANG_ENGLISH} "Converting Warcraft II audio midi tracks..."
 LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_ENGLISH} "Converting Warcraft II audio tracks..."
-LangString EXTRACTDATA_CONVERT_VIDEOS ${LANG_ENGLISH} "Converting Warcraft II video files..."
 
 LangString EXTRACTDATA_FILES_FAILED ${LANG_ENGLISH} "Extracting Warcraft II data files failed."
 LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_ENGLISH} "Ripping Warcraft II audio tracks failed."
 LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_ENGLISH} "Coping Warcraft II audio tracks failed."
-LangString EXTRACTDATA_CONVERT_MIDI_FAILED ${LANG_ENGLISH} "Converting Warcraft II audio midi tracks failed."
 LangString EXTRACTDATA_CONVERT_AUDIO_FAILED ${LANG_ENGLISH} "Converting Warcraft II audio tracks failed."
-LangString EXTRACTDATA_CONVERT_VIDEOS_FAILED ${LANG_ENGLISH} "Converting Warcraft II video files failed."
 
 LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_ENGLISH} "Choose Warcraft II Location"
 LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_ENGLISH} "Choose the folder in which are Warcraft II data files."
@@ -121,8 +116,6 @@ LangString x86_64_ONLY ${LANG_ENGLISH} "This version is for 64 bits computers on
 !system "unzip -j -o timidity.zip TiMidity++/timidity.exe"
 !system "wget http://freepats.zenvoid.org/freepats-20060219.tar.bz2 -O freepats.tar.bz2"
 !system "tar -xf freepats.tar.bz2"
-!system "wget http://www.gzip.org/gzip124xN.zip -O gzip.zip"
-!system "unzip -o gzip.zip gzip.exe"
 !endif
 
 !addplugindir .
@@ -316,16 +309,15 @@ Section "${NAME}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
 	File "${TIMIDITY}"
-	File "${GZIP}"
 
 	!cd ${CMAKE_CURRENT_SOURCE_DIR}
 
 	SetOutPath "$INSTDIR\maps"
-	File /r /x .svn /x *.pud* "maps\"
+	File /r /x *.pud* "maps\"
 	SetOutPath "$INSTDIR\scripts"
-	File /r /x .svn "scripts\"
+	File /r "scripts\"
 	SetOutPath "$INSTDIR\campaigns"
-	File /r /x .svn "campaigns\"
+	File /r "campaigns\"
 	SetOutPath "$INSTDIR"
 
 	File /r "freepats"
@@ -392,38 +384,6 @@ Section "${NAME}" ExtractData
 
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_FILES_FAILED)"
 	Abort
-
-	DetailPrint ""
-	DetailPrint "$(EXTRACTDATA_CONVERT_MIDI)"
-	SetOutPath "$INSTDIR\music"
-
-	StrCpy $4 "0"
-	FindFirst $0 $1 *.mid.gz
-
-	StrCmp $1 "" +19
-	StrCpy $2 $1 -7
-	ExecDos::exec /DETAILED "..\${TIMIDITY} -Ow -o $\"$2.mid.wav$\" $\"$1$\""
-	Pop $3
-	IntCmp $3 0 +2
-	StrCpy $4 "1"
-	ExecDos::exec /DETAILED "..\${FFMPEG2THEORA} --optimize $\"$2.mid.wav$\" -o $\"$2.mid.ogg$\""
-	Pop $3
-	IntCmp $3 0 +2
-	StrCpy $4 "1"
-	ExecDos::exec /DETAILED "..\${GZIP} $\"$2.mid.ogg$\""
-	Pop $3
-	IntCmp $3 0 +2
-	StrCpy $4 "1"
-	Rename "$2.mid.ogg.gz" "$2.ogg.gz"
-	Delete "$2.mid.wav"
-	Delete "$2.mid.gz"
-	FindNext $0 $1
-	Goto -18
-
-	FindClose $0
-
-	IntCmp $4 0 +2
-	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_MIDI_FAILED)"
 
 	IfFileExists "$DATADIR\data\music\*.*" copy_audio rip_audio
 
@@ -502,27 +462,6 @@ convert_audio:
 	IntCmp $3 0 +2
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_AUDIO_FAILED)"
 
-	DetailPrint ""
-	DetailPrint "$(EXTRACTDATA_CONVERT_VIDEOS)"
-	SetOutPath "$INSTDIR\videos"
-
-	StrCpy $3 "0"
-	FindFirst $0 $1 *.smk
-
-	StrCmp $1 "" +8
-	ExecDos::exec /DETAILED "..\${FFMPEG2THEORA} --optimize $\"$1$\""
-	Pop $2
-	IntCmp $2 0 +2
-	StrCpy $3 "1"
-	Delete "$1"
-	FindNext $0 $1
-	Goto -7
-
-	FindClose $0
-
-	IntCmp $3 0 +2
-	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_VIDEOS_FAILED)"
-
 	SetOutPath "$INSTDIR"
 
 end:
@@ -541,7 +480,6 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${CDDA2WAV}"
 	Delete "$INSTDIR\${FFMPEG2THEORA}"
 	Delete "$INSTDIR\${TIMIDITY}"
-	Delete "$INSTDIR\${GZIP}"
 	Delete "$INSTDIR\${UNINSTALL}"
 	Delete "$INSTDIR\timidity.cfg"
 	RMDir /r "$INSTDIR\freepats"
@@ -628,8 +566,6 @@ ${redefine} UPX_FLAGS "${UPX_FLAGS} -q"
 !delfile "freepats.tar.bz2"
 !system "rm -rf freepats"
 !delfile "freepats"
-!delfile "gzip.zip"
-!delfile "gzip.exe"
 !endif
 
 ;--------------------------------

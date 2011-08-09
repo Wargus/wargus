@@ -18,7 +18,7 @@ ffmpeg2theora:
   A simple converter to create Ogg Theora files.
   With ffmpeg2theora you can convert any file that ffmpeg can decode to theora.
 
-  This software use official build for Windows from http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.27.exe
+  This software use official build for Windows from http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.28.exe
 
   License: GNU GPL v3
   Homepage: http://v2v.cc/~j/ffmpeg2theora/
@@ -44,16 +44,5 @@ freepats:
 
   License: Public Domain and GNU GPL
   Homepage: http://freepats.zenvoid.org/
-
-
-
-gzip:
-
-  gzip (GNU zip) is a compression utility designed to be a replacement for compress. Its main advantages over compress are much better compression and freedom from patented algorithms.
-
-  This software use official build for Windows from http://www.gzip.org/gzip124xN.zip
-
-  License: GNU GPL
-  Homepage: http://www.gzip.org/
 
 

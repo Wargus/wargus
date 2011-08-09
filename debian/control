@@ -13,7 +13,7 @@ Vcs-Bzr: lp:wargus
 Package: wargus
 Architecture: any
 Depends: ${stratagus:Depends}, ${misc:Depends}, ${shlibs:Depends}
-Pre-Depends: cdparanoia, ffmpeg2theora, timidity | wildmidi, freepats
+Pre-Depends: cdparanoia, ffmpeg2theora, timidity, freepats
 Provides: stratagus-data
 Description: Warcraft II data game set for the Stratagus engine
  Wargus can be used to play Warcraft II from Blizzard Entertainment.
