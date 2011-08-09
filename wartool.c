@@ -1862,6 +1862,7 @@ int SavePNG(const char* name, unsigned char* image, int x, int y, int w,
 	if (!(fp = fopen(name, "wb"))) {
 		printf("%s:", name);
 		perror("Can't open file");
+		fflush(stdout); fflush(stderr);
 		return 1;
 	}
 
@@ -1964,8 +1965,6 @@ int OpenArchive(const char* file, int type)
 	unsigned char** op;
 	int entries;
 	int i;
-
-	printf("Opening archive: %s\n", file);
 
 	//
 	//  Open the archive file
@@ -2184,6 +2183,7 @@ int ConvertRgb(char* file, int rgbe)
 	}
 	if (l != fwrite(rgbp, 1, l, f)) {
 		printf("Can't write %d bytes\n", (int)l);
+		fflush(stdout);
 	}
 
 	fclose(f);
@@ -3272,6 +3272,7 @@ int ConvertWav(char* file, int wave)
 	}
 	if (l != (size_t)gzwrite(gf, wavp, l)) {
 		printf("Can't write %d bytes\n", (int)l);
+		fflush(stdout);
 	}
 
 	free(wavp);
@@ -3316,6 +3317,7 @@ int ConvertXmi(char* file, int xmi)
 	}
 	if (midl != fwrite(midp, 1, midl, f)) {
 		printf("Can't write %d bytes\n", (int)midl);
+		fflush(stdout);
 	}
 
 	free(midp);
@@ -3335,7 +3337,8 @@ int ConvertXmi(char* file, int xmi)
 	remove(buf);
 
 	if (ret != 0) {
-		printf("Can't convert midi sound %s to wav format. Is timidity installed in PATH?", file);
+		printf("Can't convert midi sound %s to wav format. Is timidity installed in PATH?\n", file);
+		fflush(stdout);
 		return ret;
 	}
 
@@ -3356,7 +3359,8 @@ int ConvertXmi(char* file, int xmi)
 	remove(buf);
 
 	if (ret != 0) {
-		printf("Can't convert wav sound %s to ogv format. Is ffmpeg2theora installed in PATH?", file);
+		printf("Can't convert wav sound %s to ogv format. Is ffmpeg2theora installed in PATH?\n", file);
+		fflush(stdout);
 		return ret;
 	}
 
@@ -3381,6 +3385,7 @@ int ConvertXmi(char* file, int xmi)
 
 	if (oggl != (size_t)fread(oggp, 1, oggl, f)) {
 		printf("Can't read %d bytes\n", (int)oggl);
+		fflush(stdout);
 	}
 
 	fclose(f);
@@ -3397,6 +3402,7 @@ int ConvertXmi(char* file, int xmi)
 
 	if (oggl != (size_t)gzwrite(gf, oggp, oggl)) {
 		printf("Can't write %d bytes\n", (int)oggl);
+		fflush(stdout);
 	}
 
 	gzclose(gf);
@@ -3433,6 +3439,7 @@ int ConvertVideo(char* file, int video)
 	}
 	if (l != fwrite(vidp, 1, l, f)) {
 		printf("Can't write %d bytes\n", (int)l);
+		fflush(stdout);
 	}
 
 	free(vidp);
@@ -3452,7 +3459,8 @@ int ConvertVideo(char* file, int video)
 	remove(buf);
 
 	if (ret != 0) {
-		printf("Can't convert video %s to ogv format. Is ffmpeg2theora installed in PATH?", file);
+		printf("Can't convert video %s to ogv format. Is ffmpeg2theora installed in PATH?\n", file);
+		fflush(stdout);
 		return ret;
 	}
 
@@ -3529,6 +3537,7 @@ int ConvertText(char* file, int txte, int ofs)
 
 	if (l2 != (size_t)gzwrite(gf, str, l2)) {
 		printf("Can't write %d bytes\n", (int)l2);
+		fflush(stdout);
 	}
 
 	free(txtp);
@@ -4307,6 +4316,7 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 			CheckPath(buf);
 			if (!(outlevel = fopen(buf, "wb"))) {
 				printf("Cannot Write File (Skipping Level: %s)\n", buf);
+				fflush(stdout);
 				continue;
 			}
 			unsigned char *str = ConvertString(CampaignData[race][levelno][0], 0);
@@ -4352,6 +4362,7 @@ Usage: %s [-e] archive-directory [destination-directory]\n\
 archive-directory\tDirectory which includes the archives maindat.war...\n\
 destination-directory\tDirectory where the extracted files are placed.\n"
 	,NameLine, name);
+	fflush(stdout);
 }
 
 /**
@@ -4423,8 +4434,10 @@ int main(int argc, char** argv)
 		char version[20];
 		fgets(version, 20, f);
 		fclose(f);
-		if (strcmp(version, VERSION) == 0)
-			printf("Note: Data is already extracted in Dir %s with this version of wartool\n", Dir);
+		if (strcmp(version, VERSION) == 0) {
+			printf("Note: Data is already extracted in Dir \"%s\" with this version of wartool\n", Dir);
+			fflush(stdout);
+		}
 	}
 
 	// Detect if CD is Mac/Dos, Expansion/Original, and language
@@ -4449,8 +4462,10 @@ int main(int argc, char** argv)
 		}
 		if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2876978)) {
 			printf("Detected original MAC CD\n");
+			fflush(stdout);
 		} else {
 			printf("Detected expansion MAC CD\n");
+			fflush(stdout);
 			CDType |= CD_EXPANSION;
 		}
 	} else {
@@ -4460,41 +4475,50 @@ int main(int argc, char** argv)
 			switch (st.st_size) {
 				case 51550:
 					printf("Detected US original DOS CD\n");
+					fflush(stdout);
 					CDType |= CD_US;
 					break;
 				case 53874:
 					printf("Detected Italian original DOS CD\n");
+					fflush(stdout);
 					CDType |= CD_ITALIAN;
 					break;
 				case 55014:
 					printf("Detected Spanish original DOS CD\n");
+					fflush(stdout);
 					CDType |= CD_SPANISH;
 					break;
 				case 55724:
 					printf("Detected German original DOS CD\n");
+					fflush(stdout);
 					CDType |= CD_GERMAN;
 					break;
 				case 51451:
 					printf("Detected UK/Australian original DOS CD\n");
+					fflush(stdout);
 					CDType |= CD_UK;
 					break;
 				case 52883:
 					printf("Detected Portuguese original DOS CD\n");
+					fflush(stdout);
 					CDType |= CD_PORTUGUESE;
 					break;
 				case 55079:
 					printf("Detected French original DOS CD\n");
+					fflush(stdout);
 					CDType |= CD_FRENCH;
 					break;
 
 				default:
 					printf("Could not detect CD version:\n");
 					printf("Defaulting to German original DOS CD\n");
+					fflush(stdout);
 					CDType |= CD_GERMAN;
 					break;
 			}
 		} else {
 			printf("Detected expansion DOS CD\n");
+			fflush(stdout);
 			CDType |= CD_EXPANSION | CD_US;
 		}
 	}
@@ -4505,11 +4529,9 @@ int main(int argc, char** argv)
 		expansion_cd = 1;
 	}
 
-#ifdef DEBUG
 	printf("Extract from \"%s\" to \"%s\"\n", ArchiveDir, Dir);
-#else
 	printf("Please be patient, the data may take a couple of minutes to extract...\n");
-#endif
+	fflush(stdout);
 
 	for (u = 0; u < sizeof(Todo) / sizeof(*Todo); ++u) {
 		if (CDType & CD_MAC) {
@@ -4520,6 +4542,7 @@ int main(int argc, char** argv)
 		// Should only be on the expansion cd
 #ifdef DEBUG
 		printf("%s:\n", ParseString(Todo[u].File));
+		fflush(stdout);
 #endif
 		if (!expansion_cd && Todo[u].Version==2 ) {
 			continue;
@@ -4541,9 +4564,8 @@ int main(int argc, char** argv)
 					}
 				}
 				sprintf(buf, "%s/%s", ArchiveDir, Todo[u].File);
-#ifdef DEBUG
 				printf("Archive \"%s\"\n", buf);
-#endif
+				fflush(stdout);
 				if (ArchiveBuffer) {
 					CloseArchive();
 				}
@@ -4623,6 +4645,13 @@ int main(int argc, char** argv)
 	sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
 	CheckPath(buf);
 	f = fopen(buf, "w");
+
+	if (!f) {
+		perror("");
+		printf("Can't open %s\n", buf);
+		exit(-1);
+	}
+
 	if (expansion_cd) {
 		fprintf(f, "wargus.expansion = true\n");
 	} else {
@@ -4633,7 +4662,14 @@ int main(int argc, char** argv)
 
 	sprintf(buf, "%s/extracted", Dir);
 	f = fopen(buf, "w");
-	fprintf(f, VERSION "\n");
+
+	if (!f) {
+		perror("");
+		printf("Can't open %s\n", buf);
+		exit(-1);
+	}
+
+	fprintf(f, VERSION);
 	fclose(f);
 
 	return 0;
