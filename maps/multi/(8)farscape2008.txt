@@ -1,0 +1,14 @@
+
+	(8)farscape2008.pud
+
+	A 128x128 8 player map, named after the tv show. 
+
+	My 2006 pud of a similar name had a number of errors which I hope this one elimiates. 
+
+	I've also balanced the map some more.
+
+	Hopefully this should provide a fresh experiance for fans of (8)farscape.pud
+
+	I recommend playing (8)farscape.pud with a few friends and then going to (8)farscape2008.pud, just to confuse them. :)
+
+	Copyright (c) 2008 by Kyran
