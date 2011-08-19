@@ -6,6 +6,10 @@
    - Handle errors when saving game failed
    - Fixed showing tips on startup
    - Fixed spells and upgrades
+ - Wartool
+   - Fixed all memory leaks and memory erros
+   - Added support for converting videos to ogv format (using ffmpeg2theora)
+   - Added support for converting music files to ogg format (using timidity and ffmpeg2theora)
  - Makefile
    - Rewritted to CMake
  - Wargus
@@ -15,6 +19,8 @@
  - Debian
    - Rewritted control files to debhelper 7
    - Fixed lintian errors and warnings
+ - Windows NSIS Installer
+   - Fixed ripping sound tracks via cdda2wav_wrapper
 
 2.2.5.5
  - Game

@@ -58,6 +58,7 @@
 !define WARTOOL "wartool.exe"
 !define PUDCONVERT "pudconvert.exe"
 !define CDDA2WAV "cdda2wav.exe"
+!define CDDA2WAV_WRAPPER "cdda2wav_wrapper.exe"
 !define FFMPEG2THEORA "ffmpeg2theora.exe"
 !define TIMIDITY "timidity.exe"
 !define UNINSTALL "uninstall.exe"
@@ -307,8 +308,17 @@ Section "${NAME}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
+	File "${CDDA2WAV_WRAPPER}"
 	File "${FFMPEG2THEORA}"
 	File "${TIMIDITY}"
+
+	File /r "freepats"
+	ClearErrors
+	FileOpen $0 "$INSTDIR\timidity.cfg" "w"
+	IfErrors +4
+	FileWrite $0 "dir $\"$INSTDIR\freepats$\"$\n"
+	FileWrite $0 "source $\"$INSTDIR\freepats\freepats.cfg$\"$\n"
+	FileClose $0
 
 	!cd ${CMAKE_CURRENT_SOURCE_DIR}
 
@@ -319,14 +329,6 @@ Section "${NAME}"
 	SetOutPath "$INSTDIR\campaigns"
 	File /r "campaigns\"
 	SetOutPath "$INSTDIR"
-
-	File /r "freepats"
-	ClearErrors
-	FileOpen $0 "$INSTDIR\timidity.cfg" "w"
-	IfErrors +4
-	FileWrite $0 "dir $\"$INSTDIR\freepats$\"$\n"
-	FileWrite $0 "source $\"$INSTDIR\freepats\freepats.cfg$\"$\n"
-	FileClose $0
 
 	CreateDirectory "$INSTDIR\music"
 	CreateDirectory "$INSTDIR\graphics"
@@ -411,11 +413,15 @@ rip_audio:
 	Push "Human Battle 1.wav"
 
 	Var /global i
+	Var /global drive
+
+	StrCpy $drive "$DATADIR" 1
+
 	${For} $i 2 18
 
 		Pop $0
 		Push 0
-		ExecDos::exec /DETAILED "${CDDA2WAV} -D SPTI:1,2,0 -t $i $\"$INSTDIR\music\$0$\""
+		ExecDos::exec /DETAILED "${CDDA2WAV_WRAPPER} $drive $i $\"$INSTDIR\music\$0$\""
 		Pop $0
 		IntCmp $0 0 +3
 
@@ -478,6 +484,7 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${WARTOOL}"
 	Delete "$INSTDIR\${PUDCONVERT}"
 	Delete "$INSTDIR\${CDDA2WAV}"
+	Delete "$INSTDIR\${CDDA2WAV_WRAPPER}"
 	Delete "$INSTDIR\${FFMPEG2THEORA}"
 	Delete "$INSTDIR\${TIMIDITY}"
 	Delete "$INSTDIR\${UNINSTALL}"
