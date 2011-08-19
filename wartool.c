@@ -10,8 +10,8 @@
 //
 /**@name wartool.c - Extract files from war archives. */
 //
-//      (c) Copyright 1999-2007 by Lutz Sammer, Nehal Mistry, and Jimmy Salmon
-//      (c) Copyright 2010      by Pali Rohár
+//      (c) Copyright 1999-2011 by Lutz Sammer, Nehal Mistry, and Jimmy Salmon
+//                              and Pali Rohár
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -35,9 +35,9 @@
 --  General
 ----------------------------------------------------------------------------*/
 
-#define VERSION "1.2" // Version of extractor wartool
+#define VERSION "1.3" // Version of extractor wartool
 
-const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2010 by The Stratagus Project.\n"\
+const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2011 by The Stratagus Project.\n"\
 "  Written by Lutz Sammer, Nehal Mistry, and Jimmy Salmon and Pali Rohar.\n"\
 "  https://launchpad.net/wargus";
 
@@ -65,6 +65,7 @@ const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2010 by Th
 
 #include "endian.h"
 #include "xmi2mid.h"
+#include "rip_music.h"
 
 #if defined(_MSC_VER) || defined(__MINGW32__) || defined(USE_BEOS)
 typedef unsigned long u_int32_t;
@@ -3412,6 +3413,46 @@ int ConvertXmi(char* file, int xmi)
 }
 
 //----------------------------------------------------------------------------
+//  Ripped music
+//----------------------------------------------------------------------------
+
+/**
+**  Convert Ripped WAV music files to OGG
+*/
+
+int ConvertMusic()
+{
+
+	char buf[1024];
+	char *cmd;
+	int ret, i;
+
+	for ( i = 0; MusicNames[i]; ++i ) {
+		sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, MusicNames[i]);
+		CheckPath(buf);
+
+		cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, sizeof(char));
+		if (!cmd) {
+			fprintf(stderr, "Memory error\n");
+			exit(-1);
+		}
+
+		sprintf(cmd, "ffmpeg2theora --optimize \"%s/%s/%s.wav\" -o \"%s/%s/%s.ogg\"", Dir, MUSIC_PATH, MusicNames[i], Dir, MUSIC_PATH, MusicNames[i]);
+
+		ret = system(cmd);
+
+		free(cmd);
+		remove(buf);
+
+		if (ret != 0) {
+			printf("Can't convert wav sound %s to ogv format. Is ffmpeg2theora installed in PATH?\n", MusicNames[i]);
+			fflush(stdout);
+		}
+	}
+
+}
+
+//----------------------------------------------------------------------------
 //  Video
 //----------------------------------------------------------------------------
 
@@ -4353,10 +4394,12 @@ int CampaignsCreate(char* file __attribute__((unused)), int txte, int ofs)
 void Usage(const char* name)
 {
 	printf("%s\n\
-Usage: %s [-e] archive-directory [destination-directory]\n\
+Usage: %s [-e|-n] [-m] [-v] [-r] [-V] [-h] archive-directory [destination-directory]\n\
 \t-e\tThe archive is expansion compatible (default: autodetect)\n\
 \t-n\tThe archive is not expansion compatible (default: autodetect)\n\
-\t-v\tExtract also the videos needs additional 70Mb\n\
+\t-m\tExtract and convert midi sound files\n\
+\t-v\tExtract and convert videos\n\
+\t-r\tRip sound tracks from CD-ROM (needs original CD, no image/emulation)\n\
 \t-V\tShow version\n\
 \t-h\tShow usage\n\
 archive-directory\tDirectory which includes the archives maindat.war...\n\
@@ -4376,15 +4419,29 @@ int main(int argc, char** argv)
 	struct stat st;
 	int expansion_cd;
 	int video;
+	int midi;
+	int rip;
 	int a;
 	char filename[1024];
 	FILE* f;
 
 	a = 1;
-	video = expansion_cd = CDType = 0;
+	video = rip = midi = expansion_cd = CDType = 0;
 	while (argc >= 2) {
 		if (!strcmp(argv[a], "-v")) {
 			video = 1;
+			++a;
+			--argc;
+			continue;
+		}
+		if (!strcmp(argv[a], "-m")) {
+			midi = 1;
+			++a;
+			--argc;
+			continue;
+		}
+		if (!strcmp(argv[a], "-r")) {
+			rip = 1;
 			++a;
 			--argc;
 			continue;
@@ -4603,7 +4660,9 @@ int main(int argc, char** argv)
 				ConvertCursor(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
 				break;
 			case M:
-				ConvertXmi(Todo[u].File, Todo[u].Arg1);
+				if (midi) {
+					ConvertXmi(Todo[u].File, Todo[u].Arg1);
+				}
 				break;
 			case W:
 				ConvertWav(Todo[u].File, Todo[u].Arg1);
@@ -4629,6 +4688,13 @@ int main(int argc, char** argv)
 
 	ConvertFilePuds(OriginalPuds);
 	ConvertFilePuds(ExpansionPuds);
+
+	if (rip) {
+		sprintf(buf, "%s/%s/", Dir, MUSIC_PATH);
+		CheckPath(buf);
+		RipMusic(ArchiveDir, buf);
+		ConvertMusic();
+	}
 
 	if (ArchiveBuffer) {
 		CloseArchive();
@@ -4671,6 +4737,8 @@ int main(int argc, char** argv)
 
 	fprintf(f, VERSION);
 	fclose(f);
+
+	printf("Done.\n");
 
 	return 0;
 }

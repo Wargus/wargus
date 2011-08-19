@@ -63,14 +63,19 @@ if(WIN32)
 		${wargus_SRCS}
 		wargus.rc
 	)
+	set(wartool_SRCS
+		${wartool_SRCS}
+		rip_music_win32.c
+	)
+else()
+	set(wartool_SRCS
+		${wartool_SRCS}
+		rip_music_unix.c
+	)
 endif()
 
 set(warextract_SRCS
 	warextract.c
-)
-
-set(cdda2wav_wrapper_SRCS
-	cdda2wav_wrapper.c
 )
 
 # Additional platform checks
@@ -172,13 +177,6 @@ target_link_libraries(wargus ${wargus_LIBS})
 add_executable(wartool ${wartool_SRCS} ${wartool_HDRS})
 target_link_libraries(wartool ${wartool_LIBS})
 
-if(WIN32 AND ENABLE_NSIS AND MAKENSIS_FOUND)
-	add_executable(cdda2wav_wrapper ${cdda2wav_wrapper_SRCS})
-	if(WIN32 AND MINGW AND ENABLE_STATIC)
-		set_target_properties(cdda2wav_wrapper PROPERTIES LINK_FLAGS "${LINK_FLAGS} -static-libgcc")
-	endif()
-endif()
-
 if(WIN32 AND MINGW AND ENABLE_STATIC)
 	set_target_properties(pudconvert PROPERTIES LINK_FLAGS "${LINK_FLAGS} -static-libgcc")
 	set_target_properties(wargus PROPERTIES LINK_FLAGS "${LINK_FLAGS} -static-libgcc")
@@ -204,10 +202,6 @@ if(ENABLE_UPX AND SELF_PACKER_FOR_EXECUTABLE)
 	self_packer(wartool)
 endif()
 
-if(ENABLE_UPX AND SELF_PACKER_FOR_EXECUTABLE AND WIN32 AND ENABLE_NSIS AND MAKENSIS_FOUND)
-	self_packer(cdda2wav_wrapper)
-endif()
-
 ########### next target ###############
 
 if(WIN32 AND ENABLE_NSIS AND MAKENSIS_FOUND)
@@ -217,7 +211,7 @@ if(WIN32 AND ENABLE_NSIS AND MAKENSIS_FOUND)
 	add_custom_command(OUTPUT Wargus-${WARGUS_VERSION}${MAKENSIS_SUFFIX}
 		COMMAND ${MAKENSIS}
 		ARGS -DNO_DOWNLOAD ${MAKENSIS_FLAGS} -DCMAKE_CURRENT_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}" -DCMAKE_CURRENT_BINARY_DIR="${CMAKE_CURRENT_BINARY_DIR}" ${CMAKE_CURRENT_SOURCE_DIR}/wargus.nsi
-		DEPENDS wargus.nsi pudconvert wargus wartool cdda2wav_wrapper COPYING COPYING-3rd wargus.ico
+		DEPENDS wargus.nsi pudconvert wargus wartool COPYING COPYING-3rd wargus.ico
 		COMMENT "Generating Wargus Windows NSIS Installer" VERBATIM
 	)
 	add_custom_target(nsis ALL DEPENDS Wargus-${WARGUS_VERSION}${MAKENSIS_SUFFIX})

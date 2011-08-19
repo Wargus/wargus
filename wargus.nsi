@@ -58,7 +58,6 @@
 !define WARTOOL "wartool.exe"
 !define PUDCONVERT "pudconvert.exe"
 !define CDDA2WAV "cdda2wav.exe"
-!define CDDA2WAV_WRAPPER "cdda2wav_wrapper.exe"
 !define FFMPEG2THEORA "ffmpeg2theora.exe"
 !define TIMIDITY "timidity.exe"
 !define UNINSTALL "uninstall.exe"
@@ -308,7 +307,6 @@ Section "${NAME}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
-	File "${CDDA2WAV_WRAPPER}"
 	File "${FFMPEG2THEORA}"
 	File "${TIMIDITY}"
 
@@ -387,89 +385,6 @@ Section "${NAME}" ExtractData
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_FILES_FAILED)"
 	Abort
 
-	IfFileExists "$DATADIR\data\music\*.*" copy_audio rip_audio
-
-rip_audio:
-
-	DetailPrint ""
-	DetailPrint "$(EXTRACTDATA_RIP_AUDIO)"
-
-	Push "I'm a Medieval Man.wav"
-	Push "Orc Defeat.wav"
-	Push "Orc Victory.wav"
-	Push "Orc Briefing.wav"
-	Push "Orc Battle 5.wav"
-	Push "Orc Battle 4.wav"
-	Push "Orc Battle 3.wav"
-	Push "Orc Battle 2.wav"
-	Push "Orc Battle 1.wav"
-	Push "Human Defeat.wav"
-	Push "Human Victory.wav"
-	Push "Human Briefing.wav"
-	Push "Human Battle 5.wav"
-	Push "Human Battle 4.wav"
-	Push "Human Battle 3.wav"
-	Push "Human Battle 2.wav"
-	Push "Human Battle 1.wav"
-
-	Var /global i
-	Var /global drive
-
-	StrCpy $drive "$DATADIR" 1
-
-	${For} $i 2 18
-
-		Pop $0
-		Push 0
-		ExecDos::exec /DETAILED "${CDDA2WAV_WRAPPER} $drive $i $\"$INSTDIR\music\$0$\""
-		Pop $0
-		IntCmp $0 0 +3
-
-		MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_RIP_AUDIO_FAILED)"
-		goto +2
-
-	${Next}
-
-	Delete "$INSTDIR\music\audio.*"
-	Delete "$INSTDIR\music\*.inf"
-
-	goto convert_audio
-
-copy_audio:
-
-	DetailPrint ""
-	DetailPrint "$(EXTRACTDATA_COPY_AUDIO)"
-	ClearErrors
-	CopyFiles "$DATADIR\data\music\*.*" "$INSTDIR\music\"
-
-	IfErrors 0 +2
-	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_COPY_AUDIO_FAILED)"
-
-convert_audio:
-
-	DetailPrint ""
-	DetailPrint "$(EXTRACTDATA_CONVERT_AUDIO)"
-	SetOutPath "$INSTDIR\music"
-
-	StrCpy $3 "0"
-	FindFirst $0 $1 *.wav
-
-	StrCmp $1 "" +8
-	ExecDos::exec /DETAILED "..\${FFMPEG2THEORA} --optimize $\"$1$\""
-	Pop $2
-	IntCmp $2 0 +2
-	StrCpy $3 "1"
-	Delete "$1"
-	FindNext $0 $1
-	Goto -7
-
-	FindClose $0
-
-	IntCmp $3 0 +2
-	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_CONVERT_AUDIO_FAILED)"
-
-	SetOutPath "$INSTDIR"
-
 end:
 
 SectionEnd
@@ -484,7 +399,6 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${WARTOOL}"
 	Delete "$INSTDIR\${PUDCONVERT}"
 	Delete "$INSTDIR\${CDDA2WAV}"
-	Delete "$INSTDIR\${CDDA2WAV_WRAPPER}"
 	Delete "$INSTDIR\${FFMPEG2THEORA}"
 	Delete "$INSTDIR\${TIMIDITY}"
 	Delete "$INSTDIR\${UNINSTALL}"
