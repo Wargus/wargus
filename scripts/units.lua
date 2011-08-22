@@ -365,11 +365,11 @@ DefineUnitType("unit-dead-sea-body", { Name = "Dead Body",
   Speed = 0,
   HitPoints = 255,
   DrawLevel = 30,
-  TileSize = {1, 1}, BoxSize = {31, 31},
+  TileSize = {2, 2}, BoxSize = {31, 31},
   SightRange = 1,
   BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
   Priority = 0,
-  Type = "land",
+  Type = "naval",
   Vanishes = true,
   Sounds = {} } )
 
