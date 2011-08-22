@@ -199,7 +199,7 @@ int GetSPTIAddressFromDriveLetter(const char drive_letter, char * spti_address) 
 
 	}
 
-	if ( ! found || count < 26 ) { // cdda2wav caps at 26
+	if ( ! found || count >= 26 ) { // cdda2wav caps at 26
 
 		fprintf(stderr, "Unknown Error\n");
 		return 1;
