@@ -246,7 +246,7 @@ char GetDriveLetterFromPath(const char * path) {
 
 }
 
-int RipMusic(const char * data_dir, const char * dest_dir) {
+int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 
 	char drive;
 	char spti[20];
@@ -281,6 +281,9 @@ int RipMusic(const char * data_dir, const char * dest_dir) {
 
 		char num[3];
 		char file[_MAX_PATH];
+
+		if ( ! expansion_cd && ! MusicNames[i+1] )
+			break;
 
 		snprintf(num, sizeof(num), "%d", i+2);
 		snprintf(file, sizeof(file), "\"%s/%s.wav\"", dest_dir, MusicNames[i]);

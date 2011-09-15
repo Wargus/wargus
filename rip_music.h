@@ -51,6 +51,6 @@ static const char * const MusicNames[] = {
 	NULL
 };
 
-int RipMusic(const char * data_dir, const char * dest_dir);
+int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir);
 
 #endif

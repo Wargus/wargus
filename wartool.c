@@ -10,7 +10,7 @@
 //
 /**@name wartool.c - Extract files from war archives. */
 //
-//      (c) Copyright 1999-2011 by Lutz Sammer, Nehal Mistry, and Jimmy Salmon
+//      (c) Copyright 1999-2011 by Lutz Sammer, Nehal Mistry, Jimmy Salmon
 //                              and Pali Rohár
 //
 //      This program is free software; you can redistribute it and/or modify
@@ -4692,7 +4692,7 @@ int main(int argc, char** argv)
 	if (rip) {
 		sprintf(buf, "%s/%s/", Dir, MUSIC_PATH);
 		CheckPath(buf);
-		RipMusic(ArchiveDir, buf);
+		RipMusic(expansion_cd, ArchiveDir, buf);
 		ConvertMusic();
 	}
 

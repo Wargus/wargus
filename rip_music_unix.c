@@ -197,7 +197,7 @@ int spawnvp(const char * file, char * const argv[]) {
 
 }
 
-int RipMusic(const char * data_dir, const char * dest_dir) {
+int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 
 	struct stat st;
 	char * mnt_dir;
@@ -251,6 +251,9 @@ int RipMusic(const char * data_dir, const char * dest_dir) {
 
 		char num[3];
 		char file[PATH_MAX];
+
+		if ( ! expansion_cd && ! MusicNames[i+1] )
+			break;
 
 		snprintf(num, sizeof(num), "%d", i+2);
 		snprintf(file, sizeof(file), "%s/%s.wav", dest_dir, MusicNames[i]);
