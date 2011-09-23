@@ -240,7 +240,7 @@ DefinePlayerColors({
 
 --  If color-cycle-all is off (#f) only the tileset palette is color cycled. 
 -- Otherwise (#t) all palettes are color cycled.
-SetColorCycleAll(true)
+SetColorCycleAll(false)
 ClearAllColorCyclingRange()
 AddColorCyclingRange(38, 47) -- water
 AddColorCyclingRange(205, 207) -- building
