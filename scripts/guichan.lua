@@ -661,7 +661,7 @@ Load("scripts/menus/results.lua")
 Load("scripts/menus/network.lua")
 
 function GameStarting()
-  if (preferences.ShowTips and not IsReplayGame()) then
+  if (wc2.preferences.ShowTips and not IsReplayGame()) then
     SetGamePaused(true)
     RunTipsMenu()
   end

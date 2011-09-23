@@ -71,10 +71,10 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
 
   b = menu:addFullButton("~!OK", "o", centerx, bottom - 11 - 27,
     function()
-      preferences.EffectsVolume = GetEffectsVolume()
-      preferences.EffectsEnabled = IsEffectsEnabled()
-      preferences.MusicVolume = GetMusicVolume()
-      preferences.MusicEnabled = IsMusicEnabled()
+      wc2.preferences.EffectsVolume = GetEffectsVolume()
+      wc2.preferences.EffectsEnabled = IsEffectsEnabled()
+      wc2.preferences.MusicVolume = GetMusicVolume()
+      wc2.preferences.MusicEnabled = IsMusicEnabled()
       SavePreferences()
       menu:stop()
     end)
@@ -122,9 +122,9 @@ function RunPreferencesMenu()
 
   menu:addFullButton("~!OK", "o", 128 - (224 / 2), 288 - 40,
     function()
-      preferences.FogOfWar = GetFogOfWar()
-      preferences.ShowCommandKey = UI.ButtonPanel.ShowCommandKey
-      preferences.GameSpeed = GetGameSpeed()
+      wc2.preferences.FogOfWar = GetFogOfWar()
+      wc2.preferences.ShowCommandKey = UI.ButtonPanel.ShowCommandKey
+      wc2.preferences.GameSpeed = GetGameSpeed()
       SavePreferences()
       menu:stop()
     end)
@@ -139,8 +139,8 @@ function SetVideoSize(width, height)
   bckground:Resize(Video.Width, Video.Height)
   backgroundWidget = ImageWidget(bckground)
   Load("scripts/ui.lua")
-  preferences.VideoWidth = Video.Width
-  preferences.VideoHeight = Video.Height
+  wc2.preferences.VideoWidth = Video.Width
+  wc2.preferences.VideoHeight = Video.Height
   SavePreferences()
 end
 
@@ -188,7 +188,7 @@ function BuildOptionsMenu()
   b = menu:addCheckBox("Full Screen", offx + 17, offy + 55 + 26*10 + 14,
     function()
       ToggleFullScreen()
-      preferences.VideoFullScreen = Video.FullScreen
+      wc2.preferences.VideoFullScreen = Video.FullScreen
       SavePreferences()
       menu:stop(1)
     end)
@@ -197,23 +197,23 @@ function BuildOptionsMenu()
   checkTexture = menu:addCheckBox("Set Maximum OpenGL Texture to 256", offx + 127, offy + 55 + 26*10 + 14,
     function()
       if (checkTexture:isMarked()) then
-        preferences.MaxOpenGLTexture = 256
+        wc2.preferences.MaxOpenGLTexture = 256
       else
-        preferences.MaxOpenGLTexture = 0
+        wc2.preferences.MaxOpenGLTexture = 0
       end
-      SetMaxOpenGLTexture(preferences.MaxOpenGLTexture)
+      SetMaxOpenGLTexture(wc2.preferences.MaxOpenGLTexture)
       SavePreferences()
     end)
-  if (preferences.MaxOpenGLTexture == 128) then checkTexture:setMarked(true) end
+  if (wc2.preferences.MaxOpenGLTexture == 128) then checkTexture:setMarked(true) end
 
   checkOpenGL = menu:addCheckBox("Use OpenGL / OpenGL ES 1.1 (restart required)", offx + 17, offy + 55 + 26*11 + 14,
     function()
 --TODO: Add function for immediately change state of OpenGL
-      preferences.UseOpenGL = checkOpenGL:isMarked()
+      wc2.preferences.UseOpenGL = checkOpenGL:isMarked()
       SavePreferences()
 --      menu:stop(1) --TODO: Enable if we have an OpenGL function
     end)
-  checkOpenGL:setMarked(preferences.UseOpenGL)
+  checkOpenGL:setMarked(wc2.preferences.UseOpenGL)
 --  checkOpenGL:setMarked(UseOpenGL) --TODO: Enable if we have an OpenGL function
 
   menu:addHalfButton("~!OK", "o", offx + 123, offy + 55 + 26*12 + 14, function() menu:stop() end)

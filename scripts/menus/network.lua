@@ -450,7 +450,7 @@ function RunMultiPlayerGameMenu(s)
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
-        preferences.PlayerName = nick:getText()
+        wc2.preferences.PlayerName = nick:getText()
         SavePreferences()
       end
       RunJoinIpMenu()
@@ -460,7 +460,7 @@ function RunMultiPlayerGameMenu(s)
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
-        preferences.PlayerName = nick:getText()
+        wc2.preferences.PlayerName = nick:getText()
         SavePreferences()
       end
       RunCreateMultiGameMenu()

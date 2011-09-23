@@ -123,24 +123,24 @@ function RunTipsMenu()
   menu:add(l, 14, 35)
 
   function l:prevTip()
-    preferences.TipNumber = preferences.TipNumber - 1
-    if (preferences.TipNumber < 1) then
-      preferences.TipNumber = table.getn(tips)
+    wc2.preferences.TipNumber = wc2.preferences.TipNumber - 1
+    if (wc2.preferences.TipNumber < 1) then
+      wc2.preferences.TipNumber = table.getn(tips)
     end
     SavePreferences()
   end
   function l:nextTip()
-    preferences.TipNumber = preferences.TipNumber + 1
-    if (preferences.TipNumber > table.getn(tips)) then
-      preferences.TipNumber = 1
+    wc2.preferences.TipNumber = wc2.preferences.TipNumber + 1
+    if (wc2.preferences.TipNumber > table.getn(tips)) then
+      wc2.preferences.TipNumber = 1
     end
     SavePreferences()
   end
   function l:updateCaption()
-    self:setCaption(tips[preferences.TipNumber])
+    self:setCaption(tips[wc2.preferences.TipNumber])
   end
 
-  if (preferences.TipNumber == 0) then
+  if (wc2.preferences.TipNumber == 0) then
     l:nextTip()
   end
   l:updateCaption()
@@ -148,10 +148,10 @@ function RunTipsMenu()
   local showtips = {}
   showtips = menu:addCheckBox("Show tips at startup", 14, 256 - 75,
     function()
-      preferences.ShowTips = showtips:isMarked()
+      wc2.preferences.ShowTips = showtips:isMarked()
       SavePreferences()
     end)
-  showtips:setMarked(preferences.ShowTips)
+  showtips:setMarked(wc2.preferences.ShowTips)
 
   menu:addHalfButton("~!Next Tip", "n", 14, 256 - 40,
     function() l:nextTip(); l:updateCaption() end)

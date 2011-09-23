@@ -309,11 +309,11 @@ end
 -------------------------------------------------------------------------------
 --  Tables-Part
 -------------------------------------------------------------------------------
-
+wc2 = {}
 Load("preferences.lua")
 
-if (preferences == nil) then
-  preferences = {
+if (wc2.preferences == nil) then
+  wc2.preferences = {
     VideoWidth = 800,
     VideoHeight = 600,
     VideoFullScreen = true,
@@ -340,21 +340,21 @@ if (preferences == nil) then
   }
 end
 
-SetUseOpenGL(preferences.UseOpenGL)
-SetVideoResolution(preferences.VideoWidth, preferences.VideoHeight)
-SetVideoFullScreen(preferences.VideoFullScreen)
-SetMaxOpenGLTexture(preferences.MaxOpenGLTexture)
-SetLocalPlayerName(preferences.PlayerName)
-SetFogOfWar(preferences.FogOfWar)
-UI.ButtonPanel.ShowCommandKey = preferences.ShowCommandKey
-SetGroupKeys(preferences.GroupKeys)
-SetGameSpeed(preferences.GameSpeed)
-SetEffectsEnabled(preferences.EffectsEnabled)
-SetEffectsVolume(preferences.EffectsVolume)
-SetMusicEnabled(preferences.MusicEnabled)
-SetMusicVolume(preferences.MusicVolume)
-SetTranslationsFiles(preferences.StratagusTranslation, preferences.GameTranslation)
-SetGrabMouse(preferences.GrabMouse)
+SetUseOpenGL(wc2.preferences.UseOpenGL)
+SetVideoResolution(wc2.preferences.VideoWidth, wc2.preferences.VideoHeight)
+SetVideoFullScreen(wc2.preferences.VideoFullScreen)
+SetMaxOpenGLTexture(wc2.preferences.MaxOpenGLTexture)
+SetLocalPlayerName(wc2.preferences.PlayerName)
+SetFogOfWar(wc2.preferences.FogOfWar)
+UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
+SetGroupKeys(wc2.preferences.GroupKeys)
+SetGameSpeed(wc2.preferences.GameSpeed)
+SetEffectsEnabled(wc2.preferences.EffectsEnabled)
+SetEffectsVolume(wc2.preferences.EffectsVolume)
+SetMusicEnabled(wc2.preferences.MusicEnabled)
+SetMusicVolume(wc2.preferences.MusicVolume)
+SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameTranslation)
+SetGrabMouse(wc2.preferences.GrabMouse)
 
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")

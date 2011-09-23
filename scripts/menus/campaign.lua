@@ -86,13 +86,13 @@ function GetCampaignState(race, exp)
   -- Make sure that we use saved state from config file
   Load("preferences.lua")
   if (race == "orc" and exp ~= "exp") then
-    return preferences.CampaignOrc
+    return wc2.preferences.CampaignOrc
   elseif (race == "human" and exp ~= "exp") then
-    return preferences.CampaignHuman
+    return wc2.preferences.CampaignHuman
   elseif (race == "orc" and exp == "exp") then
-    return preferences.CampaignOrcX
+    return wc2.preferences.CampaignOrcX
   elseif (race == "human" and exp == "exp") then
-    return preferences.CampaignHumanX
+    return wc2.preferences.CampaignHumanX
   end
   return 1
 end
@@ -102,17 +102,17 @@ function IncreaseCampaignState(race, exp, state)
   -- Make sure that we use saved state from config file
   Load("preferences.lua")
   if (race == "orc" and exp ~= "exp") then
-    if (state ~= preferences.CampaignOrc) then return end
-    preferences.CampaignOrc = preferences.CampaignOrc + 1
+    if (state ~= wc2.preferences.CampaignOrc) then return end
+    wc2.preferences.CampaignOrc = wc2.preferences.CampaignOrc + 1
   elseif (race == "human" and exp ~= "exp") then
-    if (state ~= preferences.CampaignHuman) then return end
-    preferences.CampaignHuman = preferences.CampaignHuman + 1
+    if (state ~= wc2.preferences.CampaignHuman) then return end
+    wc2.preferences.CampaignHuman = wc2.preferences.CampaignHuman + 1
   elseif (race == "orc" and exp == "exp") then
-    if (state ~= preferences.CampaignOrcX) then return end
-    preferences.CampaignOrcX = preferences.CampaignOrcX + 1
+    if (state ~= wc2.preferences.CampaignOrcX) then return end
+    wc2.preferences.CampaignOrcX = wc2.preferences.CampaignOrcX + 1
   elseif (race == "human" and exp == "exp") then
-    if (state ~= preferences.CampaignHumanX) then return end
-    preferences.CampaignHumanX = preferences.CampaignHumanX + 1
+    if (state ~= wc2.preferences.CampaignHumanX) then return end
+    wc2.preferences.CampaignHumanX = wc2.preferences.CampaignHumanX + 1
   end
   -- Make sure that we immediately save state
   SavePreferences()
