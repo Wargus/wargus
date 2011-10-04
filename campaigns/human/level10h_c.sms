@@ -10,7 +10,7 @@ Briefing(
   {"campaigns/human/level10h-intro1.wav"}
 )
 
-Triggers = [[
+Triggers = [[
 AddTrigger(
   function() return IfRescuedNearUnit("this", ">=", 4, "unit-peasant", "unit-circle-of-power") end,
   function() return ActionVictory() end)
