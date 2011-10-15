@@ -34,7 +34,7 @@
 #define GAME "wargus"
 
 #define EXTRACT_BIN "/opt/stratagus/bin/wartool"
-#define EXTRACT_COMMAND "/opt/stratagus/share/wargus/build.sh -p /home/user/MyDocs/WAR2 -b /opt/stratagus/bin -o /home/user/MyDocs/stratagus/wargus -s -c -v -m"
+#define EXTRACT_COMMAND "/opt/stratagus/bin/wartool -m -v /home/user/MyDocs/WAR2 /home/user/MyDocs/stratagus/wargus"
 #define EXTRACT_INFO "If you want to add music support,\nextract audio tracks from Warcraft II CD\nto folder MyDocs/WAR2/music"
 
 #include <stratagus-maemo-extract.h>
