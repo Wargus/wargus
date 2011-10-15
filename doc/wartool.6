@@ -1,6 +1,44 @@
-.TH WARTOOL 6 "Jul 2004" "Wargus v2.2.5"
+.TH WARTOOL 6 "Aug 2011" "Wargus v2.2.6"
 .SH NAME
 wartool \- Tool to extract the game data from your Warcraft II CD.
 .SH SYNOPSIS
 .B wartool
-.I "[-e] [-n] [-v] archive-directory [destination-directory]"
+.I "[-e|-n] [-m] [-v] [-r] [-V] [-h] archive-directory [destination-directory]"
+.SH OPTIONS
+.TP
+.B \-e
+The archive is expansion compatible (default: autodetect)
+.TP
+.B \-n
+The archive is not expansion compatible (default: autodetect)
+.TP
+.B \-m
+Extract and convert midi sound files
+.TP
+.B \-v
+Extract and convert videos
+.TP
+.B \-r
+Rip and sound tracks from CD-ROM (needs original CD, no image/emulation)
+.TP
+.B \-V
+Show version
+.TP
+.B -h
+Show usage
+.TP
+.B archive-directory
+Directory which includes the archives maindat.war...
+.TP
+.B destination-directory
+Directory where the extracted files are placed
+.SH "SEE ALSO"
+.PD 0
+.TP
+\fIstratagus\fP(6), \fIwargus\fP(6), \fIpudconvert\fP(6)
+.SH NOTES
+Warcraft II is a registered trademark of Blizzard Entertainment.
+.SH AUTHOR
+Wartool is written by Lutz Sammer, Nehal Mistry, Jimmy Salmon, Pali Rohár and others.
+.PP
+This manual page was written by Pali Rohár <pali.rohar@gmail.com> .
