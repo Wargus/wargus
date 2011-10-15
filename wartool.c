@@ -63,6 +63,10 @@ const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2011 by Th
 #include <ctype.h>
 #include <png.h>
 
+#if defined(_MSC_VER) || defined(__MINGW32__) || defined(WIN32)
+#include <windows.h>
+#endif
+
 #include "endian.h"
 #include "xmi2mid.h"
 #include "rip_music.h"
@@ -3416,20 +3420,94 @@ int ConvertXmi(char* file, int xmi)
 //  Ripped music
 //----------------------------------------------------------------------------
 
+
+/**
+**  Copy file
+*/
+
+#if ! defined(_MSC_VER) && ! defined(__MINGW32__) && ! defined(WIN32)
+int CopyFile(char *from, char *to, int overwrite)
+{
+	struct stat st;
+	char *cmd;
+	int ret;
+
+	if (!overwrite && !stat(to, &st))
+		return 0;
+
+	cmd = calloc(strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\""), 1);
+	if (!cmd) {
+		fprintf(stderr, "Memory error\n");
+		exit(-1);
+	}
+
+	sprintf(cmd, "cp \"%s\" \"%s\"", from, to);
+	ret = system(cmd);
+	free(cmd);
+
+	if (ret != 0)
+		return 0;
+	else
+		return 1;
+}
+#endif
+
+/**
+**  Copy ripped music
+*/
+
+int CopyMusic(void)
+{
+	struct stat st;
+	char buf1[1024];
+	char buf2[1024];
+	char ext[4];
+	int i;
+	int count = 0;
+
+	for (i = 0; MusicNames[i]; ++i) {
+		strcpy(ext, "wav");
+		sprintf(buf1, "%s/music/%s.%s", ArchiveDir, MusicNames[i], ext);
+		if (stat(buf1, &st)) {
+			strcpy(ext, "ogg");
+			sprintf(buf1, "%s/music/%s.%s", ArchiveDir, MusicNames[i], ext);
+			if (stat(buf1, &st))
+				continue;
+		}
+
+		printf("Found ripped music file \"%s\"\n", buf1);
+		fflush(stdout);
+
+		sprintf(buf2, "%s/%s/%s.%s", Dir, MUSIC_PATH, MusicNames[i], ext);
+		CheckPath(buf2);
+		if (CopyFile(buf1, buf2, 0))
+			++count;
+	}
+
+	if (count == 0)
+		return 1;
+	else
+		return 0;
+}
+
 /**
 **  Convert Ripped WAV music files to OGG
 */
 
-int ConvertMusic()
+int ConvertMusic(void)
 {
-
+	struct stat st;
 	char buf[1024];
 	char *cmd;
 	int ret, i;
+	int count = 0;
 
 	for ( i = 0; MusicNames[i]; ++i ) {
 		sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, MusicNames[i]);
 		CheckPath(buf);
+
+		if (stat(buf, &st))
+			continue;
 
 		cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, sizeof(char));
 		if (!cmd) {
@@ -3437,7 +3515,7 @@ int ConvertMusic()
 			exit(-1);
 		}
 
-		sprintf(cmd, "ffmpeg2theora --optimize \"%s/%s/%s.wav\" -o \"%s/%s/%s.ogg\"", Dir, MUSIC_PATH, MusicNames[i], Dir, MUSIC_PATH, MusicNames[i]);
+		sprintf(cmd, "ffmpeg2theora --optimize \"%s\" -o \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, MusicNames[i]);
 
 		ret = system(cmd);
 
@@ -3448,8 +3526,14 @@ int ConvertMusic()
 			printf("Can't convert wav sound %s to ogv format. Is ffmpeg2theora installed in PATH?\n", MusicNames[i]);
 			fflush(stdout);
 		}
+
+		++count;
 	}
 
+	if (count == 0)
+		return 1;
+	else
+		return 0;
 }
 
 //----------------------------------------------------------------------------
@@ -4692,6 +4776,7 @@ int main(int argc, char** argv)
 	if (rip) {
 		sprintf(buf, "%s/%s/", Dir, MUSIC_PATH);
 		CheckPath(buf);
+		CopyMusic();
 		RipMusic(expansion_cd, ArchiveDir, buf);
 		ConvertMusic();
 	}
