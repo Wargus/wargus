@@ -4773,13 +4773,15 @@ int main(int argc, char** argv)
 	ConvertFilePuds(OriginalPuds);
 	ConvertFilePuds(ExpansionPuds);
 
+	CopyMusic();
+
 	if (rip) {
 		sprintf(buf, "%s/%s/", Dir, MUSIC_PATH);
 		CheckPath(buf);
-		CopyMusic();
 		RipMusic(expansion_cd, ArchiveDir, buf);
-		ConvertMusic();
 	}
+
+	ConvertMusic();
 
 	if (ArchiveBuffer) {
 		CloseArchive();
