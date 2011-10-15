@@ -47,14 +47,14 @@ typedef struct _SCSI_ADDRESS {
 } SCSI_ADDRESS, *PSCSI_ADDRESS;
 
 typedef struct _SCSI_BUS_DATA {
-    UCHAR NumberOfLogicalUnits;
-    UCHAR InitiatorBusId;
-    ULONG InquiryDataOffset;
+	UCHAR NumberOfLogicalUnits;
+	UCHAR InitiatorBusId;
+	ULONG InquiryDataOffset;
 } SCSI_BUS_DATA, *PSCSI_BUS_DATA;
 
 typedef struct _SCSI_ADAPTER_BUS_INFO {
-    UCHAR NumberOfBuses;
-    SCSI_BUS_DATA BusData[1];
+	UCHAR NumberOfBuses;
+	SCSI_BUS_DATA BusData[1];
 } SCSI_ADAPTER_BUS_INFO, *PSCSI_ADAPTER_BUS_INFO;
 #endif
 
@@ -122,7 +122,7 @@ int GetSPTIAddressFromDriveLetter(const char drive_letter, char * spti_address) 
 	int i;
 
 	// add drives to the list
-	for ( i = 0; i<26; i++ ) {
+	for ( i = 0; i < 26; i++ ) {
 
 		SCSI_ADDRESS scsi_address;
 
@@ -146,7 +146,7 @@ int GetSPTIAddressFromDriveLetter(const char drive_letter, char * spti_address) 
 	}
 
 	// add scsi devices to the list
-	for ( i = 0; 1; i++ ) {
+	for ( i = 0; ; i++ ) {
 
 		static char inquiry_buffer[SCSI_INFO_BUFFER_SIZE];
 		long bytes_returned;
@@ -248,11 +248,11 @@ char GetDriveLetterFromPath(const char * path) {
 
 int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 
-	char drive;
-	char spti[20];
-
 	const char cdda2wav[] = "cdda2wav.exe";
 	const char * args[7] = { cdda2wav, "-D", "", "-J", NULL, NULL, NULL };
+	char drive;
+	char spti[20];
+	int count = 0;
 	int i;
 
 	if ( ! ( drive = GetDriveLetterFromPath(data_dir) ) ) {
@@ -292,10 +292,14 @@ int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 		args[4] = num;
 		args[5] = file;
 
-		_spawnvp(_P_WAIT, cdda2wav, args);
+		if ( _spawnvp(_P_WAIT, cdda2wav, args) == 0 )
+			++count;
 
 	}
 
-	return 0;
+	if ( count == 0 )
+		return 1;
+	else
+		return 0;
 
 }

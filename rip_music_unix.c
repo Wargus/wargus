@@ -200,11 +200,11 @@ int spawnvp(const char * file, char * const argv[]) {
 int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 
 	struct stat st;
-	char * mnt_dir;
-	char * dev;
-
 	char cdparanoia[] = "cdparanoia";
 	char * args[6] = { cdparanoia, "-d", "", "-v", "-Q", NULL };
+	char * mnt_dir;
+	char * dev;
+	int count = 0;
 	int i;
 
 	if ( stat(data_dir, &st) != 0 ) {
@@ -261,11 +261,16 @@ int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 		args[3] = num;
 		args[4] = file;
 
-		spawnvp(cdparanoia, args);
+		if ( spawnvp(cdparanoia, args) == 0 )
+			++count;
 
 	}
 
 	free(dev);
-	return 0;
+
+	if ( count == 0 )
+		return 1;
+	else
+		return 0;
 
 }
