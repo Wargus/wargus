@@ -3328,7 +3328,7 @@ int ConvertXmi(char* file, int xmi)
 	free(midp);
 	fclose(f);
 
-	cmd = calloc(strlen("timidity -Ow \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, sizeof(char));
+	cmd = calloc(strlen("timidity -Ow \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		exit(-1);
@@ -3350,7 +3350,7 @@ int ConvertXmi(char* file, int xmi)
 	sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, file);
 	CheckPath(buf);
 
-	cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, sizeof(char));
+	cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		exit(-1);
@@ -3382,7 +3382,7 @@ int ConvertXmi(char* file, int xmi)
 	oggl = ftell(f);
 	rewind(f);
 
-	oggp = malloc(sizeof(char)*oggl);
+	oggp = malloc(oggl);
 	if (!oggp) {
 		fprintf(stderr, "Memory error\n");
 		exit(-1);
@@ -3509,7 +3509,7 @@ int ConvertMusic(void)
 		if (stat(buf, &st))
 			continue;
 
-		cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, sizeof(char));
+		cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 		if (!cmd) {
 			fprintf(stderr, "Memory error\n");
 			exit(-1);
@@ -3570,7 +3570,7 @@ int ConvertVideo(char* file, int video)
 	free(vidp);
 	fclose(f);
 
-	cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, sizeof(char));
+	cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		exit(-1);
