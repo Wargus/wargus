@@ -12,27 +12,31 @@ extract() {
 
 		db_get wargus/cdpath || true
 
-		CDPATH=${RET}
-		EXTRACTVIDEO=
-		EXTRACTMUSIC=
+		CDPATH="$RET"
+		ARGS=
 
-		if [ -d "${CDPATH}" ]; then
+		if [ -d "$CDPATH" ]; then
 
-			db_get wargus/extractvideo || true
-			if [ ${RET} = "true" ]; then
-				EXTRACTVIDEO="-v"
+			db_get wargus/extractmidi || true
+			if [ "$RET" = "true" ]; then
+				ARGS="$ARGS -m"
 			fi
 
-			db_get wargus/extractmusic || true
-			if [ ${RET} = "true" ]; then
-				EXTRACTMUSIC="-m"
+			db_get wargus/extractvideo || true
+			if [ "$RET" = "true" ]; then
+				ARGS="$ARGS -v"
+			fi
+
+			db_get wargus/ripcd || true
+			if [ "$RET" = "true" ]; then
+				ARGS="$ARGS -r"
 			fi
 
 			db_stop || true
-			echo "Extracting data from ${CDPATH} to /usr/share/games/stratagus/wargus"
+			echo "Extracting data from $CDPATH to /usr/share/games/stratagus/wargus"
 
-			cd /usr/share/games/stratagus/wargus
-			/usr/share/games/stratagus/wargus/build.sh -p ${CDPATH} -b /usr/bin -o /usr/share/games/stratagus/wargus -s -c ${EXTRACTVIDEO} ${EXTRACTMUSIC}
+			echo wartool $ARGS "$CDPATH" /usr/share/games/stratagus/wargus
+			wartool $ARGS "$CDPATH" /usr/share/games/stratagus/wargus
 			return $?
 
 		else

@@ -15,71 +15,74 @@ TEMP=$RET
 db_reset wargus/cdpath || true
 db_set wargus/cdpath $TEMP || true
 
+db_get wargus/extractmidi || true
+TEMP=$RET
+db_reset wargus/extractmidi || true
+db_set wargus/extractmidi $TEMP || true
+
 db_get wargus/extractvideo || true
 TEMP=$RET
 db_reset wargus/extractvideo || true
 db_set wargus/extractvideo $TEMP || true
 
-db_get wargus/extractmusic || true
+db_get wargus/ripcd || true
 TEMP=$RET
-db_reset wargus/extractmusic || true
-db_set wargus/extractmusic $TEMP || true
+db_reset wargus/ripcd || true
+db_set wargus/ripcd $TEMP || true
 
 db_reset wargus/extractdata || true
 
 while true; do
 
 	db_beginblock || true
-	db_input high wargus/extractdata || true
-	db_input high wargus/cdpath || true
-	db_input medium wargus/extractvideo || true
-	db_input medium wargus/extractmusic || true
+	db_input critical wargus/extractdata || true
 	db_endblock || true
 	db_go || exit 10
 
 	db_get wargus/extractdata || true
 	EXTRACTDATA=$RET
 
-	db_get wargus/cdpath || true
-	CDPATH=$RET
-
-	db_get wargus/extractvideo || true
-	EXTRACTVIDEO=$RET
-
-	db_get wargus/extractmusic || true
-	EXTRACTMUSIC=$RET
-
 	if [ "$EXTRACTDATA" = "false" ]; then
 		break
 	fi
 
+	db_beginblock || true
+	db_input critical wargus/cdpath || true
+	db_input medium wargus/extractmidi || true
+	db_input medium wargus/extractvideo || true
+	db_input medium wargus/ripcd || true
+	db_endblock || true
+	db_go || exit 10
+
+	db_get wargus/cdpath || true
+	CDPATH=$RET
+
+	db_get wargus/extractmidi || true
+	EXTRACTMIDI=$RET
+
+	db_get wargus/extractvideo || true
+	EXTRACTVIDEO=$RET
+
+	db_get wargus/ripcd || true
+	RIPCD=$RET
+
 	if [ -d "$CDPATH/data/" ]; then
-	        DATADIR="$CDPATH/data"
+		CDPATH="$CDPATH/data"
 	elif [ -d "$CDPATH/DATA/" ]; then
-		DATADIR="$CDPATH/DATA"
-	else
-		DATADIR="$CDPATH"
+		CDPATH="$CDPATH/DATA"
 	fi
 
-	if [ ! -f "$DATADIR/rezdat.war" ] && [ ! -f "$DATADIR/REZDAT.WAR" ] && [ ! -f "$DATADIR/War Resources" ]; then
-		db_beginblock || true
-		db_input high wargus/nodata || true
-		db_endblock || true
-		db_go || true
-		continue
+	db_set wargus/cdpath $CDPATH || true
+
+	if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ]; then
+		break
 	fi
 
-	if [ "$EXTRACTMUSIC" = "true" ] && [ ! -d "$DATADIR/music" ] && ! cdparanoia 1>/dev/null 2>&1 && ! cdparanoia -d /dev/scd0 -Q 1>/dev/null 2>&1; then
-		db_beginblock || true
-		db_input high wargus/noaudio || true
-		db_endblock || true
-		db_go || true
-		continue
-	fi
-
-	break
+	db_beginblock || true
+	db_input critical wargus/nodata || true
+	db_endblock || true
+	db_go || exit 10
 
 done
 
 db_stop || true
-
