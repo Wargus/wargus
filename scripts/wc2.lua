@@ -192,14 +192,14 @@ if (OldDefinePlayerTypes == nil) then
   OldDefinePlayerTypes = DefinePlayerTypes
 end
 
-function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8)
-  local p = {p1, p2, p3, p4, p5, p6, p7, p8}
+function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
+  local p = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15}
   local foundperson = false
   local nump = GameSettings.Opponents
-  if (nump == 0) then nump = 8 end
+  if (nump == 0) then nump = 15 end
 
   -- FIXME: should randomly pick players to use
-  for i=1,8 do
+  for i=1,15 do
     if (p[i] == "person" or p[i] == "computer") then
       if (p[i] == "person" and foundperson == false) then
         foundperson = true
@@ -213,7 +213,7 @@ function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8)
     end
   end
 
-  OldDefinePlayerTypes(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8])
+  OldDefinePlayerTypes(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15])
 end
 
 if OldLoadTileModels == nil then

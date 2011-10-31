@@ -423,7 +423,7 @@ function GetMapInfo(mapname)
   local OldDefinePlayerTypes = DefinePlayerTypes
   local OldPresentMap = PresentMap
 
-  function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8)
+  function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p12, p13, p14, p15)
     mapinfo.playertypes[1] = p1
     mapinfo.playertypes[2] = p2
     mapinfo.playertypes[3] = p3
@@ -432,9 +432,16 @@ function GetMapInfo(mapname)
     mapinfo.playertypes[6] = p6
     mapinfo.playertypes[7] = p7
     mapinfo.playertypes[8] = p8
+    mapinfo.playertypes[9] = p9
+    mapinfo.playertypes[10] = p10
+    mapinfo.playertypes[11] = p11
+    mapinfo.playertypes[12] = p12
+    mapinfo.playertypes[13] = p13
+    mapinfo.playertypes[14] = p14
+    mapinfo.playertypes[15] = p15
 
     mapinfo.nplayers = 0
-    for i=0,8 do
+    for i=0,15 do
       local t = mapinfo.playertypes[i]
       if (t == "person" or t == "computer") then
         mapinfo.nplayers = mapinfo.nplayers + 1
