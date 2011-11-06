@@ -17,6 +17,12 @@ Source Code: https://code.launchpad.net/wargus
 Bugtracker: https://bugs.launchpad.net/wargus
 
 ============================================================================
+Changelog
+============================================================================
+
+See file doc/changelog
+
+============================================================================
 Build depends
 ============================================================================
 
@@ -24,6 +30,9 @@ Stratagus
 	- https://launchpad.net/stratagus
 	- Wargus and Stratagus version must match
 	- Use same version or from bzr branches with the same date
+
+CMake
+	- http://www.cmake.org/
 
 Gtk+
 	- http://www.gtk.org/
@@ -42,7 +51,7 @@ cdparanoia
 
 cdda2wav
 	- http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip
-	- Needed for rip audio CD tracks only on Windows in NSIS Installer
+	- Needed for rip audio CD tracks (only for Windows)
 
 Original Warcraft II DOS CD
 	- The Battle.Net CD is NOT supported, you must use the DOS version
@@ -53,30 +62,33 @@ Original Warcraft II DOS CD
 Installation Instructions
 ============================================================================
 
-On Debian, Ubuntu, Maemo and Debian-like distros use deb packages
+On Debian, Ubuntu, Maemo and other Debian-like systems use deb packages:
 
-	1. create deb package: 'dpkg-buildpackage'
-		eg:
+	1. create deb package:
 		dpkg-buildpackage -b -rfakeroot
 
-	2. install deb package: 'sudo dpkg -i /path/to/deb'
-		eg:
-		sudo dpkg -i ../wargus.deb
+	2. install deb package:
+		sudo dpkg -i ../wargus_<version>_<arch>.deb
 
-On other Linux distros:
+On other systems:
 
-	1. first download and build Stratagus from
+	1. first download, build and install Stratagus (with game headers) from:
 		https://launchpad.net/stratagus
 
-	2. build sources: 'make'
-		eg:
-		make CC=gcc
+	2. generate Makefile in build dir with cmake:
+		rm -rf build && mkdir build && cd build && cmake ..
 
-	3. extract data: './build.sh -p /path/to/cd [ -o /path/to/outputdir ]'
-		eg:
-		./build.sh -p d:/
-		./build.sh -p /cdrom
+	3. build tools and programs:
+		cd build && make
 
-	4. start wargus: '/path/to/stratagus -d /path/to/outputdir'
-		eg:
-		../stratagus/stratagus -d data.wc2
+	4. install wargus to system
+		cd build && sudo make install
+
+	5. extract data from original CD:
+		sudo wartool -m -v -r /media/cdrom /usr/share/games/stratagus/wargus
+
+	6. start wargus:
+		wargus
+
+On Windows you can replace steps 4-6 by renerating Windows NSIS Installer which
+create classic Windows setup executable. Enable by cmake param -DENABLE_NSIS

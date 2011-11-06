@@ -6,10 +6,13 @@
    - Handle errors when saving game failed
    - Fixed showing tips on startup
    - Fixed spells and upgrades
+   - Reverted back Color Cycling support
+   - Fixed DefinePlayerTypes - bug #736460
  - Wartool
    - Fixed all memory leaks and memory erros
    - Added support for converting videos to ogv format (using ffmpeg2theora)
    - Added support for converting music files to ogg format (using timidity and ffmpeg2theora)
+   - Added support for ripping sound tracks from Audio CD (using cdda2wav or cdparanoia)
  - Makefile
    - Rewritted to CMake
  - Wargus
@@ -18,9 +21,12 @@
    - Rewritted to use Stratagus Maemo Extractor
  - Debian
    - Rewritted control files to debhelper 7
+   - Fixed debconf for dpkg-reconfigure
    - Fixed lintian errors and warnings
+ - Unix build.sh
+   - Script was removed, all functionality moved into wartool
  - Windows NSIS Installer
-   - Fixed ripping sound tracks via cdda2wav_wrapper
+   - Removed all converting processes code (moved into wartool)
 
 2.2.5.5
  - Game
