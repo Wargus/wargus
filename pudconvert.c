@@ -85,7 +85,7 @@ int main(int argc, char **argv)
 
 	buf = malloc(len);
 	clearerr(f);
-	fread(buf, 1, len, f);
+	len = fread(buf, 1, len, f);
 	if (ferror(f)) {
 		fprintf(stderr, "error reading from file: %s\n", infile);
 		free(buf);

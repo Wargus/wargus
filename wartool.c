@@ -4573,9 +4573,11 @@ int main(int argc, char** argv)
 	f = fopen(buf, "r");
 	if (f) {
 		char version[20];
-		fgets(version, 20, f);
+		int len = 0;
+		if (fgets(version, 20, f))
+			len = 1;
 		fclose(f);
-		if (strcmp(version, VERSION) == 0) {
+		if (len != 0 && strcmp(version, VERSION) == 0) {
 			printf("Note: Data is already extracted in Dir \"%s\" with this version of wartool\n", Dir);
 			fflush(stdout);
 		}
@@ -4822,7 +4824,7 @@ int main(int argc, char** argv)
 		exit(-1);
 	}
 
-	fprintf(f, VERSION);
+	fputs(VERSION, f);
 	fclose(f);
 
 	printf("Done.\n");
