@@ -100,6 +100,7 @@ endif()
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
+find_package(Stratagus REQUIRED)
 find_package(PNG REQUIRED)
 find_package(ZLIB REQUIRED)
 
@@ -140,7 +141,7 @@ option(ENABLE_UPX "Compress Stratagus executable binary with UPX packer" OFF)
 # Wargus definitions
 
 add_definitions(${PNG_DEFINITIONS})
-include_directories(${PNG_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
+include_directories(${PNG_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS} ${STRATAGUS_INCLUDE_DIR})
 set(pudconvert_LIBS ${pudconvert_LIBS} ${ZLIB_LIBRARIES})
 set(wartool_LIBS ${pudconvert_LIBS} ${PNG_LIBRARIES} ${ZLIB_LIBRARIES})
 
@@ -151,7 +152,16 @@ if(NOT WIN32)
 	set(wargus_LIBS ${wargus_LIBS} ${GTK2_LIBRARIES})
 endif()
 
+if (NOT WIN32 AND NOT MAEMO)
+	add_definitions(-DDATA_PATH="${CMAKE_INSTALL_PREFIX}/share/games/stratagus/wargus")
+	add_definitions(-DSCRIPTS_PATH="${CMAKE_INSTALL_PREFIX}/share/games/stratagus/wargus")
+	add_definitions(-DSTRATAGUS_BIN="${STRATAGUS}")
+endif()
+
 if(MAEMO)
+	add_definitions(-DDATA_PATH="/home/user/MyDocs/stratagus/wargus")
+	add_definitions(-DSCRIPTS_PATH="/opt/stratagus/share/wargus")
+	add_definitions(-DSTRATAGUS_BIN="/opt/stratagus/bin/stratagus")
 	add_definitions(${HILDON_CFLAGS})
 	include_directories(${HILDON_INCLUDE_DIRS})
 	set(wargus_LIBS ${wargus_LIBS} ${HILDON_LIBRARIES})
