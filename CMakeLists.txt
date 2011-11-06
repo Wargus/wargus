@@ -151,10 +151,6 @@ if(NOT WIN32)
 	set(wargus_LIBS ${wargus_LIBS} ${GTK2_LIBRARIES})
 endif()
 
-if(BEOS)
-	add_definitions(-DUSE_BEOS)
-endif()
-
 if(MAEMO)
 	add_definitions(${HILDON_CFLAGS})
 	include_directories(${HILDON_INCLUDE_DIRS})

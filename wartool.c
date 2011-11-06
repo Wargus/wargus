@@ -51,6 +51,14 @@ const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2011 by Th
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdint.h>
+#include <ctype.h>
+#include <png.h>
+
+#if defined(_MSC_VER) || defined(WIN32)
+#include <windows.h>
+#endif
+
 #ifdef _MSC_VER
 #define inline __inline
 #define strdup _strdup
@@ -60,20 +68,10 @@ const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2011 by Th
 #else
 #include <unistd.h>
 #endif
-#include <ctype.h>
-#include <png.h>
-
-#if defined(_MSC_VER) || defined(__MINGW32__) || defined(WIN32)
-#include <windows.h>
-#endif
 
 #include "endian.h"
 #include "xmi2mid.h"
 #include "rip_music.h"
-
-#if defined(_MSC_VER) || defined(__MINGW32__) || defined(USE_BEOS)
-typedef unsigned long u_int32_t;
-#endif
 
 #ifndef __GNUC__
 #define __attribute__(args)  // Does nothing for non GNU CC
@@ -144,9 +142,6 @@ char* Dir;
 
 //----------------------------------------------------------------------------
 
-extern int PudToStratagus(const unsigned char *puddata, size_t size,
-    const char *name, const char *outdir);
-
 /**
 **  Conversion control sturcture.
 */
@@ -163,17 +158,17 @@ typedef struct _control_ {
 /**
 **  Palette N27, for credits cursor
 */
-unsigned char* Pal27;
+static unsigned char* Pal27;
 
 /**
 **  Original archive buffer.
 */
-unsigned char* ArchiveBuffer;
+static unsigned char* ArchiveBuffer;
 
 /**
 **  Offsets for each entry into original archive buffer.
 */
-unsigned char** ArchiveOffsets;
+static unsigned char** ArchiveOffsets;
 
 /**
 **  Possible entry types of archive file.
@@ -197,7 +192,7 @@ enum _archive_type_ {
 	L,    // Campaign Levels
 };
 
-char* ArchiveDir;
+static char* ArchiveDir;
 
 #define CD_MAC        (1)
 #define CD_EXPANSION  (1 << 1)
@@ -214,17 +209,17 @@ char* ArchiveDir;
 /**
 **  What CD Type is it?
 */
-int CDType;
+static int CDType;
 
 // Width of game font
-int game_font_width;
+static int game_font_width;
 
 /**
 **  What, where, how to extract.
 **
 **  FIXME: version alpha, demo, 1.00, 1.31, 1.40, 1.50 dependend!
 */
-Control Todo[] = {
+static Control Todo[] = {
 #define __ ,0,0,0
 #define _2 ,0,0,
 
@@ -232,18 +227,10 @@ Control Todo[] = {
 //		TEXT		(must be done for all others!)
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifdef USE_BEOS
-{F,0,"REZDAT.WAR",                                     3000 __},
-#else
 {F,0,"rezdat.war",                                     3000 __},
-#endif
 {I,0,"ui/Credits_background",                          27, 28 _2},
 
-#ifdef USE_BEOS
-{F,0,"STRDAT.WAR",                                     4000 __},
-#else
 {F,0,"strdat.war",                                     4000 __},
-#endif
 {S,0,"unit_names",                                     1 __},
 {L,0,"objectives",                                     54, 236 _2},
 //{X,0,"human/dialog",                                   55 __},
@@ -315,11 +302,7 @@ Control Todo[] = {
 //		MOST THINGS
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifdef USE_BEOS
-{F,0,"MAINDAT.WAR",                                    1000 __},
-#else
 {F,0,"maindat.war",                                    1000 __},
-#endif
 
 {R,0,"summer/summer",                                  2 __},
 {T,0,"summer/terrain/summer",                          2, 3, 4, 5},
@@ -978,11 +961,7 @@ Control Todo[] = {
 //		SOUNDS
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifdef USE_BEOS
-{F,0,"SFXDAT.SUD",                                     5000 __},
-#else
 {F,0,"sfxdat.sud",                                     5000 __},
-#endif
 
 // 0 file length
 // 1 description
@@ -1393,11 +1372,7 @@ Control Todo[] = {
 //		INTERFACE
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifdef USE_BEOS
-{F,0,"REZDAT.WAR",                                     3000 __},
-#else
 {F,0,"rezdat.war",                                     3000 __},
-#endif
 
 // palette 27 for the first 3 frames, 14 for the rest
 {D,0,"ui/human/widgets",                               27, 0, 0, 0},
@@ -1464,11 +1439,7 @@ Control Todo[] = {
 		// FIXME: this file contains different data, if expansion or not.
 		// FIXME: Where and what are the expansion entries
 
-#ifdef USE_BEOS
-{F,0,"SNDDAT.WAR",                                     2000 __},
-#else
 {F,0,"snddat.war",                                     2000 __},
-#endif
 {W,0,"../campaigns/human/victory",                     2 __},
 {W,0,"../campaigns/orc/victory",                       3 __},
 {W,0,"../campaigns/human/level01h-intro1",             4 __},
@@ -1580,11 +1551,7 @@ Control Todo[] = {
 //		INTERFACE
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifdef USE_BEOS
-{F,0,"MUDDAT.CUD",                                     6000 __},
-#else
 {F,0,"muddat.cud",                                     6000 __},
-#endif
 
 {V,0,"videos/orc-1",                                   0 __},
 {V,0,"videos/orc-3",                                   2 __},
@@ -1608,7 +1575,7 @@ Control Todo[] = {
 };
 
 // puds that are in their own file
-char *OriginalPuds[] = {
+static char *OriginalPuds[] = {
 	"../alamo.pud",
 	"../channel.pud",
 	"../death.pud",
@@ -1620,7 +1587,7 @@ char *OriginalPuds[] = {
 	""
 };
 
-char *ExpansionPuds[] = {
+static char *ExpansionPuds[] = {
 	"../puds/multi/3vs3.pud",
 	"../puds/multi/3vs5.pud",
 	"../puds/multi/arena.pud",
@@ -1701,7 +1668,7 @@ typedef struct _grouped_graphic_ {
 	char Name[100];      // name
 } GroupedGraphic;
 
-GroupedGraphic GroupedGraphicsList[][60] = {
+static GroupedGraphic GroupedGraphicsList[][60] = {
 	// group 0 (widgets)
 	{
 		// 0 and 1 are the same
@@ -1769,8 +1736,8 @@ GroupedGraphic GroupedGraphicsList[][60] = {
 /**
 **  File names.
 */
-char* UnitNames[110];
-int UnitNamesLast = 0;
+static char* UnitNames[110];
+static int UnitNamesLast = 0;
 
 //----------------------------------------------------------------------------
 //  TOOLS
@@ -1794,7 +1761,7 @@ void CheckPath(const char* path)
 			if (s) {
 				*s = '\0';
 			}
-#ifdef WIN32
+#if defined(_MSC_VER) || defined(WIN32)
 			mkdir(cp);
 #else
 			mkdir(cp, 0777);
@@ -2952,7 +2919,7 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 //	printf("Font: count %d max-width %2d max-height %2d\n",
 //		count, max_width, max_height);
 
-	offsets = (unsigned *)malloc(count * sizeof(u_int32_t));
+	offsets = (unsigned *)malloc(count * sizeof(uint32_t));
 	for (i = 0; i < count; ++i) {
 		offsets[i] = FetchLE32(bp);
 //		printf("%03d: offset %d\n", i, offsets[i]);
@@ -3425,7 +3392,7 @@ int ConvertXmi(char* file, int xmi)
 **  Copy file
 */
 
-#if ! defined(_MSC_VER) && ! defined(__MINGW32__) && ! defined(WIN32)
+#if ! defined(_MSC_VER) && ! defined(WIN32)
 int CopyFile(char *from, char *to, int overwrite)
 {
 	struct stat st;
@@ -4584,10 +4551,6 @@ int main(int argc, char** argv)
 	}
 
 	// Detect if CD is Mac/Dos, Expansion/Original, and language
-#ifdef USE_BEOS
-	sprintf(buf, "%s/REZDAT.WAR", ArchiveDir);
-	sprintf(filename, "%s/STRDAT.WAR", ArchiveDir);
-#else
 	sprintf(buf, "%s/rezdat.war", ArchiveDir);
 	sprintf(filename, "%s/strdat.war", ArchiveDir);
 	if (stat(buf, &st)) {
@@ -4595,7 +4558,6 @@ int main(int argc, char** argv)
 		sprintf(filename, "%s/STRDAT.WAR", ArchiveDir);
 		CDType |= CD_UPPER;
 	}
-#endif
 	if (stat(buf, &st)) {
 		CDType |= CD_MAC | CD_US;
 		sprintf(buf, "%s/War Resources", ArchiveDir);
