@@ -2,27 +2,38 @@ Template: wargus/extractdata
 Type: boolean
 Default: true
 Description: Extract Warcraft II data files now?
+ Wargus needs data files from original Warcraft II CD.
 
 Template: wargus/cdpath
 Type: string
 Default: /media/cdrom
-Description: Path to your Warcraft II CD mount point:
+Description: Warcraft II CD mount point:
+ Enter path to your Warcraft II CD mount point
 
 Template: wargus/extractmidi
 Type: boolean
 Default: true
 Description: Extract and convert MIDI sound files?
+ Warcraft II CD contains also MIDI sounds tracks. But
+ extracting and converting may take a couple of minutes.
 
 Template: wargus/extractvideo
 Type: boolean
 Default: true
 Description: Extract and convert videos?
+ Warcraft II CD contains also videos. But extracting and
+ converting may take a couple of minutes.
 
 Template: wargus/ripcd
 Type: boolean
 Default: true
-Description: Rip sound tracks from CD-ROM (needs original CD, no image/emulation)?
+Description: Rip sound tracks from CD-ROM?
+ Original Warcraft II CD contains additional audio CD tracks.
+ Ripping audio CD may take a couple of minutes and work only with
+ original Warcraft CD, so no any CD image emulation.
 
 Template: wargus/nodata
 Type: error
-Description: Warcraft II data files not found
+Description: Data files not found
+ Warcraft II CD was not found in specified path. Specify another
+ path which contains correct Warcraft II data files.

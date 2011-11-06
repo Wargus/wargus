@@ -7,50 +7,40 @@ set -e
 extract() {
 
 	db_get wargus/extractdata || true
+	if [ "$RET" != "true" ]; then
+		db_stop || true
+		return 0
+	fi
 
+	db_get wargus/cdpath || true
+	if ! [ -d "$RET" ]; then
+		db_stop || true
+		echo "${RET} doesn't exist - can't extract Warcraft II data" >&2
+		return 1
+	fi
+
+	CDPATH="$RET"
+	ARGS=
+
+	db_get wargus/extractmidi || true
 	if [ "$RET" = "true" ]; then
+		ARGS="$ARGS -m"
+	fi
 
-		db_get wargus/cdpath || true
+	db_get wargus/extractvideo || true
+	if [ "$RET" = "true" ]; then
+		ARGS="$ARGS -v"
+	fi
 
-		CDPATH="$RET"
-		ARGS=
-
-		if [ -d "$CDPATH" ]; then
-
-			db_get wargus/extractmidi || true
-			if [ "$RET" = "true" ]; then
-				ARGS="$ARGS -m"
-			fi
-
-			db_get wargus/extractvideo || true
-			if [ "$RET" = "true" ]; then
-				ARGS="$ARGS -v"
-			fi
-
-			db_get wargus/ripcd || true
-			if [ "$RET" = "true" ]; then
-				ARGS="$ARGS -r"
-			fi
-
-			db_stop || true
-			echo "Extracting data from $CDPATH to /usr/share/games/stratagus/wargus"
-
-			echo wartool $ARGS "$CDPATH" /usr/share/games/stratagus/wargus
-			wartool $ARGS "$CDPATH" /usr/share/games/stratagus/wargus
-			return $?
-
-		else
-
-			db_stop || true
-			echo "${RET} doesn't exist - can't extract Warcraft II data" >&2
-			return 1
-
-		fi
-
+	db_get wargus/ripcd || true
+	if [ "$RET" = "true" ]; then
+		ARGS="$ARGS -r"
 	fi
 
 	db_stop || true
-	return 0
+
+	wartool $ARGS "$CDPATH" /usr/share/games/stratagus/wargus
+	return $?
 
 }
 

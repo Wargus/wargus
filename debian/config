@@ -1,36 +1,31 @@
-#!/bin/sh -e
+#!/bin/sh
+
+set -e
 
 # Source debconf library
 . /usr/share/debconf/confmodule
+db_version 2.0
 db_capb backup
 
-if [ "$(cat /usr/share/games/stratagus/wargus/extracted 2>/dev/null)" = "$(wartool -V)" ]; then
+if [ "$1" != "configure" ] && [ "$1" != "reconfigure" ]; then
+	exit 0;
+fi
+
+HAS_VERSION="$(cat /usr/share/games/stratagus/wargus/extracted 2>/dev/null)"
+NEW_VERSION="$(wartool -V 2>/dev/null)"
+
+if [ "$1" = "configure" ] && [ "$HAS_VERSION" = "$NEW_VERSION" ]; then
 	db_set wargus/extractdata "false" || true
 	db_stop || true
 	exit 0
 fi
 
-db_get wargus/cdpath || true
-TEMP=$RET
-db_reset wargus/cdpath || true
-db_set wargus/cdpath $TEMP || true
-
-db_get wargus/extractmidi || true
-TEMP=$RET
-db_reset wargus/extractmidi || true
-db_set wargus/extractmidi $TEMP || true
-
-db_get wargus/extractvideo || true
-TEMP=$RET
-db_reset wargus/extractvideo || true
-db_set wargus/extractvideo $TEMP || true
-
-db_get wargus/ripcd || true
-TEMP=$RET
-db_reset wargus/ripcd || true
-db_set wargus/ripcd $TEMP || true
-
 db_reset wargus/extractdata || true
+db_fset wargus/extractdata seen false || true
+db_fset wargus/cdpath seen false || true
+db_fset wargus/extractmidi seen false || true
+db_fset wargus/extractvideo seen false || true
+db_fset wargus/ripcd seen false || true
 
 while true; do
 
@@ -40,9 +35,7 @@ while true; do
 	db_go || exit 10
 
 	db_get wargus/extractdata || true
-	EXTRACTDATA=$RET
-
-	if [ "$EXTRACTDATA" = "false" ]; then
+	if [ "$RET" = "false" ]; then
 		break
 	fi
 
@@ -52,36 +45,20 @@ while true; do
 	db_input medium wargus/extractvideo || true
 	db_input medium wargus/ripcd || true
 	db_endblock || true
-	db_go || exit 10
+	db_go || continue
 
 	db_get wargus/cdpath || true
-	CDPATH=$RET
-
-	db_get wargus/extractmidi || true
-	EXTRACTMIDI=$RET
-
-	db_get wargus/extractvideo || true
-	EXTRACTVIDEO=$RET
-
-	db_get wargus/ripcd || true
-	RIPCD=$RET
-
-	if [ -d "$CDPATH/data/" ]; then
-		CDPATH="$CDPATH/data"
-	elif [ -d "$CDPATH/DATA/" ]; then
-		CDPATH="$CDPATH/DATA"
-	fi
-
-	db_set wargus/cdpath $CDPATH || true
-
-	if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ]; then
-		break
-	fi
+	for CDPATH in "$RET" "$RET/data" "$RET/DATA"; do
+		if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ]; then
+			db_set wargus/cdpath $CDPATH || true
+			break
+		fi
+	done
 
 	db_beginblock || true
 	db_input critical wargus/nodata || true
 	db_endblock || true
-	db_go || exit 10
+	db_go || continue
 
 done
 
