@@ -13,7 +13,7 @@
 if(STRATAGUS AND STRATAGUS_INCLUDE_DIR)
 	set(STRATAGUS_FOUND true)
 else()
-	find_program(STRATAGUS NAMES stratagus)
+	find_program(STRATAGUS NAMES stratagus PATH_SUFFIXES games)
 	find_path(STRATAGUS_INCLUDE_DIR stratagus-game-launcher.h)
 
 	if(STRATAGUS AND STRATAGUS_INCLUDE_DIR)
