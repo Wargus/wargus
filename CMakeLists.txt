@@ -137,6 +137,7 @@ if(WIN32)
 endif()
 
 option(ENABLE_UPX "Compress Stratagus executable binary with UPX packer" OFF)
+option(ENABLE_STRIP "Strip all symbols from executables" OFF)
 
 # Wargus definitions
 
@@ -165,6 +166,12 @@ if(MAEMO)
 	add_definitions(${HILDON_CFLAGS})
 	include_directories(${HILDON_INCLUDE_DIRS})
 	set(wargus_LIBS ${wargus_LIBS} ${HILDON_LIBRARIES})
+endif()
+
+if(ENABLE_STRIP)
+	set(CMAKE_EXE_LINKER_FLAGS "-s")
+else()
+	set(CMAKE_EXE_LINKER_FLAGS "")
 endif()
 
 # Compile Wargus
