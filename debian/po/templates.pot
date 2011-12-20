@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: wargus@packages.debian.org\n"
+"POT-Creation-Date: 2011-12-20 19:27+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:1001
+msgid "Extract Warcraft II data files now?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../templates:1001
+msgid "Wargus needs data files from original Warcraft II CD."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid "Warcraft II CD mount point:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid "Enter path to your Warcraft II CD mount point"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid "Extract and convert MIDI sound files?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid ""
+"Warcraft II CD contains also MIDI sounds tracks. But extracting and "
+"converting may take a couple of minutes."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid "Extract and convert videos?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"Warcraft II CD contains also videos. But extracting and converting may take "
+"a couple of minutes."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../templates:5001
+msgid "Rip sound tracks from CD-ROM?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../templates:5001
+msgid ""
+"Original Warcraft II CD contains additional audio CD tracks. Ripping audio "
+"CD may take a couple of minutes and work only with original Warcraft CD, so "
+"no any CD image emulation."
+msgstr ""
+
+#. Type: error
+#. Description
+#: ../templates:6001
+msgid "Data files not found"
+msgstr ""
+
+#. Type: error
+#. Description
+#: ../templates:6001
+msgid ""
+"Warcraft II CD was not found in specified path. Specify another path which "
+"contains correct Warcraft II data files."
+msgstr ""
