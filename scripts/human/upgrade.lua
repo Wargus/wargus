@@ -5,12 +5,12 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	upgrade.ccl	-	Define the human dependencies and upgrades.
+--      upgrade.ccl - Define the human dependencies and upgrades.
 --
---	(c) Copyright 2001-2003 by Lutz Sammer
+--      (c) Copyright 2001-2003 by Lutz Sammer
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,9 +26,8 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
 
---	NOTE: Save can generate this table.
+-- NOTE: Save can generate this table.
 
 local upgrades = {
   {"upgrade-sword1", "icon-sword2",
@@ -94,7 +93,7 @@ for i = 1,table.getn(upgrades) do
 end
 
 
---	NOTE: Save can generate this table.
+-- NOTE: Save can generate this table.
 
 DefineModifier("upgrade-sword1",
   {"Level", 1},
@@ -226,7 +225,7 @@ DefineModifier("upgrade-blizzard",
   {"Level", 1},
   {"apply-to", "unit-mage"}, {"apply-to", "unit-white-mage"})
 
---	NOTE: Save can generate this table.
+-- NOTE: Save can generate this table.
 
 --- units
 
@@ -306,7 +305,7 @@ InitFuncs:add(function()
   DefineAllow("upgrade-blizzard",			"AAAAAAAAAAAAAAAA")
 end)
 
---	NOTE: Save can generate this table.
+-- NOTE: Save can generate this table.
 
 --- human land forces
 DefineDependency("unit-archer",
@@ -328,7 +327,7 @@ DefineDependency("unit-human-transport",
 DefineDependency("unit-battleship",
   {"unit-human-foundry"})
 
---	- human air forces
+--- human air forces
 DefineDependency("unit-balloon",
   {"unit-elven-lumber-mill"})
 

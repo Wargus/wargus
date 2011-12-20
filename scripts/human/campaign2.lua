@@ -10,8 +10,7 @@
 --
 --      campaign2.ccl - Define the human campaign 2.
 --
---      (c) Copyright 2002-2006 by Lutz Sammer and Jimmy Salmon
---      (c) Copyright 2010      by Pali Rohár
+--      (c) Copyright 2002-2010 by Lutz Sammer, Jimmy Salmon and Pali Rohár
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -27,7 +26,6 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---      $Id$
 
 --=============================================================================
 --	Define the campaign

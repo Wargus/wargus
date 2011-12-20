@@ -26,10 +26,9 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---      $Id$
 
 --=============================================================================
---	Define unit-types.
+-- Define unit-types.
 --
 DefineUnitType("unit-grunt", { Name = "Grunt",
   Image = {"file", "orc/units/grunt.png", "size", {72, 72}},

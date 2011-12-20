@@ -10,8 +10,7 @@
 --
 --      stratagus.lua - The craft configuration language.
 --
---      (c) Copyright 1998-2005 by Lutz Sammer
---      (c) Copyright 2010      by Pali Rohár
+--      (c) Copyright 1998-2011 by Lutz Sammer and Pali Rohár
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -27,7 +26,6 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---      $Id$
 
 -- For documentation see stratagus/doc/scripts/scripts.html
 DebugPrint("Stratagus default config file loading ...\n")
@@ -42,7 +40,7 @@ wargus.Name = "Wargus"
 wargus.Version = "2.2.5.5"
 wargus.Homepage = "https://launchpad.net/wargus"
 wargus.Licence = "GPL v2"
-wargus.Copyright = "Copyright (c) 1998-2010 by The Stratagus Project and Pali Rohar"
+wargus.Copyright = "Copyright (c) 1998-2011 by The Stratagus Project and Pali Rohar"
 
 -------------------------------------------------------------------------------
 --  Config-Part

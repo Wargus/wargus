@@ -10,7 +10,7 @@
 --
 --      wc2.lua - WC2 compatibility level
 --
---      (c) Copyright 2001-2004 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2001-2011 by Lutz Sammer, Jimmy Salmon and Pali Rohár
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---      $Id$
 
 InitFuncs:add(function()
   speedcheat = false

@@ -5,12 +5,12 @@
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
 --             \/                  \/          \//_____/            \/
 --  ______________________                           ______________________
---			  T H E   W A R   B E G I N S
---	   Stratagus - A free fantasy real time strategy game engine
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
 --
---	upgrade.ccl	-	Define the orcish dependencies and upgrades.
+--      upgrade.ccl - Define the orcish dependencies and upgrades.
 --
---	(c) Copyright 2001-2003 by Lutz Sammer
+--      (c) Copyright 2001-2003 by Lutz Sammer
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -26,9 +26,8 @@
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
---	$Id$
 
---	NOTE: Save can generate this table.
+-- NOTE: Save can generate this table.
 
 local upgrades = {
   {"upgrade-battle-axe1", "icon-battle-axe2",
@@ -94,7 +93,7 @@ for i = 1,table.getn(upgrades) do
 end
 
 
---	NOTE: Save can generate this table.
+-- NOTE: Save can generate this table.
 
 DefineModifier("upgrade-battle-axe1",
   {"Level", 1},
@@ -239,7 +238,7 @@ DefineModifier("upgrade-death-and-decay",
   {"apply-to", "unit-death-knight"}, {"apply-to", "unit-ice-bringer"},
   {"apply-to", "unit-evil-knight"})
 
---	NOTE: Save can generate this table.
+-- NOTE: Save can generate this table.
 
 InitFuncs:add(function()
   DefineAllow("unit-grunt",			"AAAAAAAAAAAAAAAA")
@@ -319,7 +318,7 @@ InitFuncs:add(function()
   DefineAllow("upgrade-death-and-decay",		"AAAAAAAAAAAAAAAA")
 end)
 
---	NOTE: Save can generate this table.
+-- NOTE: Save can generate this table.
 
 --- orc land forces
 DefineDependency("unit-axethrower",
@@ -333,7 +332,7 @@ DefineDependency("unit-ogre",
 DefineDependency("unit-ogre-mage",
   {"upgrade-ogre-mage", "unit-ogre-mound", "unit-orc-blacksmith"})
 
---	- orc naval forces
+--- orc naval forces
 DefineDependency("unit-orc-submarine",
   {"unit-alchemist"})
 DefineDependency("unit-orc-transport",
@@ -341,7 +340,7 @@ DefineDependency("unit-orc-transport",
 DefineDependency("unit-ogre-juggernaught",
   {"unit-orc-foundry"})
 
---	- orc air forces
+--- orc air forces
 DefineDependency("unit-zeppelin",
   {"unit-troll-lumber-mill"})
 
