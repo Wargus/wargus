@@ -378,7 +378,7 @@ Section "${NAME}" ExtractData
 
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_FILES)"
-	ExecDos::exec /DETAILED "$\"$INSTDIR\${WARTOOL}$\" -v $\"$DATADIR\data$\" $\"$INSTDIR$\""
+	ExecDos::exec /DETAILED "$\"$INSTDIR\${WARTOOL}$\" -m -v -r $\"$DATADIR\data$\" $\"$INSTDIR$\""
 	Pop $0
 	IntCmp $0 0 +3
 
