@@ -28,7 +28,7 @@
 
 project(wargus)
 cmake_minimum_required(VERSION 2.6)
-set(WARGUS_VERSION 2.2.5.5)
+set(WARGUS_VERSION 2.2.6)
 
 # Wargus sources
 

@@ -5,8 +5,8 @@
 #endif
 
 #define DESCRIPTION NAME
-#define VERSION "2.2.5.5"
-#define VIVERSION 2,2,5,5
+#define VERSION "2.2.6"
+#define VIVERSION 2,2,6,0
 #define HOMEPAGE "https://launchpad.net/wargus"
 #define LICENSE "GPL v2"
 #define COPYRIGHT "Copyright (c) 1998-2011 by The Stratagus Project and Pali Rohar"

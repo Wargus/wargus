@@ -43,8 +43,8 @@
 ;--------------------------------
 
 !define NAME "Wargus"
-!define VERSION "2.2.5.5"
-!define VIVERSION "${VERSION}"
+!define VERSION "2.2.6"
+!define VIVERSION "${VERSION}.0"
 !define HOMEPAGE "https://launchpad.net/wargus"
 !define LICENSE "GPL v2"
 !define COPYRIGHT "Copyright (c) 1998-2011 by The Stratagus Project and Pali Rohar"
