@@ -109,6 +109,7 @@ if(WIN32)
 endif()
 
 if(NOT WIN32)
+	find_package(X11 REQUIRED)
 	find_package(GTK2 REQUIRED gtk)
 endif()
 
@@ -149,8 +150,8 @@ set(wartool_LIBS ${pudconvert_LIBS} ${PNG_LIBRARIES} ${ZLIB_LIBRARIES})
 # Platform definitions
 
 if(NOT WIN32)
-	include_directories(${GTK2_INCLUDE_DIRS})
-	set(wargus_LIBS ${wargus_LIBS} ${GTK2_LIBRARIES})
+	include_directories(${X11_INCLUDE_DIR} ${GTK2_INCLUDE_DIRS})
+	set(wargus_LIBS ${wargus_LIBS} ${X11_X11_LIB} ${GTK2_LIBRARIES})
 endif()
 
 if (NOT WIN32 AND NOT MAEMO)
