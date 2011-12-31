@@ -167,6 +167,7 @@ if(MAEMO)
 	add_definitions(${HILDON_CFLAGS})
 	include_directories(${HILDON_INCLUDE_DIRS})
 	set(wargus_LIBS ${wargus_LIBS} ${HILDON_LIBRARIES})
+	set(warextract_LIBS ${warextract_LIBS} ${GTK2_LIBRARIES} ${HILDON_LIBRARIES})
 endif()
 
 if(ENABLE_STRIP)
