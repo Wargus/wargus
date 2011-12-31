@@ -34,7 +34,7 @@ MAEMO := $(shell if pkg-config maemo-version 1>/dev/null 2>&1 || test -f "/etc/m
 	dh $@
 
 override_dh_auto_configure:
-	dh_auto_configure -- -DCMAKE_INCLUDE_PATH="/usr/lib/$(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)/"
+	dh_auto_configure -- -DCMAKE_INCLUDE_PATH="/usr/lib/$(shell dpkg-architecture -qDEB_BUILD_MULTIARCH)/"
 
 override_dh_install:
 	dh_install
