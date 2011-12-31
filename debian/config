@@ -11,13 +11,17 @@ if [ "$1" != "configure" ] && [ "$1" != "reconfigure" ]; then
 	exit 0;
 fi
 
-HAS_VERSION="$(cat /usr/share/games/stratagus/wargus/extracted 2>/dev/null)"
-NEW_VERSION="$(wartool -V 2>/dev/null)"
+if [ "$1" = "configure" ] && [ -f /usr/share/games/stratagus/wargus/extracted ] && wartool -V 1>/dev/null 2>&1; then
 
-if [ "$1" = "configure" ] && [ "$HAS_VERSION" = "$NEW_VERSION" ]; then
-	db_set wargus/extractdata "false" || true
-	db_stop || true
-	exit 0
+	HAS_VERSION="$(cat /usr/share/games/stratagus/wargus/extracted 2>/dev/null)"
+	NEW_VERSION="$(wartool -V 2>/dev/null)"
+
+	if [ "$HAS_VERSION" = "$NEW_VERSION" ]; then
+		db_set wargus/extractdata "false" || true
+		db_stop || true
+		exit 0
+	fi
+
 fi
 
 db_reset wargus/extractdata || true
@@ -47,13 +51,19 @@ while true; do
 	db_endblock || true
 	db_go || continue
 
+	found="false"
 	db_get wargus/cdpath || true
 	for CDPATH in "$RET" "$RET/data" "$RET/DATA"; do
 		if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ]; then
 			db_set wargus/cdpath $CDPATH || true
+			found="true"
 			break
 		fi
 	done
+
+	if [ "$found" = "true" ]; then
+		break
+	fi
 
 	db_beginblock || true
 	db_input critical wargus/nodata || true
