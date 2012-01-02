@@ -29,12 +29,12 @@
 
 #define GAME_NAME "Wargus"
 #define GAME_CD "Warcraft II CD"
-#define GAME_CD_DIR "MyDocs/WAR2"
+#define GAME_CD_DIR "MyDocs/WAR2/DATA"
 #define GAME_CD_FILE "rezdat.war"
 #define GAME "wargus"
 
 #define EXTRACT_BIN "/opt/stratagus/bin/wartool"
-#define EXTRACT_COMMAND "/opt/stratagus/bin/wartool -m -v /home/user/MyDocs/WAR2 /home/user/MyDocs/stratagus/wargus"
+#define EXTRACT_COMMAND "/opt/stratagus/bin/wartool -m -v /home/user/MyDocs/WAR2/DATA /home/user/MyDocs/stratagus/wargus"
 #define EXTRACT_INFO "If you want to add music support,\nextract audio tracks from Warcraft II CD\nto folder MyDocs/WAR2/music"
 
 #include <stratagus-maemo-extract.h>
