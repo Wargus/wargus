@@ -76,7 +76,6 @@ function AiLandAttackEndloop()
 end
 
 local land_funcs = {
-  function() AiDebug(false) return false end,
   function() return AiSleep(AiGetSleepCycles()) end,
   function() return AiNeed(AiCityCenter()) end,
   function() return AiSet(AiWorker(), 1) end,

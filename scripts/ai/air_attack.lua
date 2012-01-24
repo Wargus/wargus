@@ -67,7 +67,6 @@ function AiAirAttackEndloop()
 end
 
 local air_funcs = {
-  function() AiDebug(false) return false end,
   function() return AiSleep(AiGetSleepCycles()) end,
   function() AiSetReserve({0,  0, 0, 0,  0, 0, 0}) return false end,
   function() return AiNeed(AiCityCenter()) end,

@@ -60,7 +60,6 @@ function AiSeaAttackEndloop()
 end
 
 local sea_funcs = {
-  function() AiDebug(false) return false end,
   function() return AiSleep(AiGetSleepCycles()) end,
   function() return AiNeed(AiCityCenter()) end,
   function() return AiSet(AiWorker(), 1) end,

@@ -62,7 +62,6 @@ local orc_03_loop_funcs = {
 }
 
 local orc_03_funcs = {
-    function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 2) end,
     function() return AiSet(AiTanker(), 1) end,
     function() return AiWait(AiWorker()) end,
@@ -90,7 +89,6 @@ local hum_04_loop_funcs = {
 }
 
 local hum_04_funcs = {
-    function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 4) end,
     function() return AiSet(AiTanker(), 1) end,
     function() return AiWait(AiWorker()) end,
@@ -127,7 +125,6 @@ local orc_04_loop_funcs = {
 }
 
 local orc_04_funcs = {
-    function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 4) end,
     function() return AiSet(AiTanker(), 1) end,
     function() return AiWait(AiWorker()) end,
@@ -169,7 +166,6 @@ local hum_05_loop_funcs = {
 }
 
 local hum_05_funcs = {
-    function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 4) end,
     function() return AiSet(AiTanker(), 1) end,
     function() return AiSet(AiTransporter(), 1) end,
@@ -217,8 +213,6 @@ local hum_06_loop_funcs = {
 }
 
 local hum_06_funcs = {
-    function() AiDebug(false) return false end,
-
     function() return AiSet(AiWorker(), 4) end,
     function() return AiWait(AiWorker()) end,
     function() return AiForce(0, {AiSoldier(), 3, AiShooter(), 3}) end,
@@ -248,7 +242,6 @@ InitFuncs:add(function()
 end)
 
 local hum_07_funcs = {
-    function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 2) end,
     function() return AiSet(AiTanker(), 1) end,
     function() return AiSleep(10000) end,
@@ -279,7 +272,6 @@ local hum_08_loop_funcs = {
 }
 
 local hum_08_funcs = {
-    function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 3) end,
     function() return AiWait(AiWorker()) end,
     function() return AiForce(0, {AiSoldier(), 5, AiShooter(), 4}) end,
@@ -322,7 +314,6 @@ InitFuncs:add(function()
 end)
 
 local hum_09_funcs = {
-    function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 2) end,
     function() return AiSet(AiTanker(), 1) end,
     function() return AiSleep(10000) end,
@@ -357,7 +348,6 @@ local hum_10_loop_funcs = {
 
 local hum_10_funcs = {
     function()
-	AiDebug(false)
 	AiForceRole(0, "defend")
 	AiForceRole(1, "defend")
 	return false
@@ -434,7 +424,6 @@ local hum_11_loop_funcs = {
 }
 
 local hum_11_funcs = {
-    function() AiDebug(false) return false end,
     function() return AiSet(AiWorker(), 8) end,
     function() return AiWait(AiWorker()) end,
     function() return AiSleep(6000) end,
@@ -500,7 +489,6 @@ local hum_12_loop_funcs = {
 
 local hum_12_funcs = {
     function()
-	AiDebug(false)
 	AiForceRole(0, "defend")
 	AiForceRole(1, "attack")
 	AiForceRole(2, "defend")
@@ -581,7 +569,6 @@ local hum_13_loop_funcs = {
 }
 
 local hum_13_funcs = {
-    function() AiDebug(false) return false end,
     function() return AiSet(AiTanker(), 2) end,
     function() return AiSet(AiWorker(), 5) end,
     function() return AiWait(AiWorker()) end,
@@ -642,7 +629,6 @@ local hum_14_orange_loop_funcs = {
 
 local hum_14_orange_funcs = {
     function()
-	AiDebug(false)
 	AiForceRole(0, "defend");
 	AiForceRole(1, "attack");
 	return false end,
@@ -673,7 +659,6 @@ local hum_14_red_loop_funcs = {
 
 local hum_14_red_funcs = {
     function()
-	AiDebug(false)
 	AiForceRole(0, "defend");
 	AiForceRole(1, "attack");
 	return false end,
@@ -711,7 +696,6 @@ local hum_14_white_loop_funcs = {
 
 local hum_14_white_funcs = {
     function()
-	AiDebug(false)
 	AiForceRole(0, "defend");
 	AiForceRole(1, "attack");
 	return false end,
@@ -747,7 +731,6 @@ local hum_14_black_loop_funcs = {
 
 local hum_14_black_funcs = {
     function()
-	AiDebug(false)
 	AiForceRole(0, "defend");
 	AiForceRole(1, "attack");
 	return false end,
