@@ -28,7 +28,9 @@
 --
 
 function Briefing(title, objs, bg, text, voices)
-  SetPlayerData(GetThisPlayer(), "RaceName", currentRace)
+  if (currentRace ~= nil) then
+    SetPlayerData(GetThisPlayer(), "RaceName", currentRace)
+  end
 
   local menu = WarMenu(nil, bg)
 
