@@ -213,6 +213,8 @@ DefineDefaultResourceAmounts(
   "gold", 100000,
   "oil", 50000)
 
+DefineDefaultResourceMaxAmounts(-1, -1, -1, -1, -1, -1, -1)
+
 -------------------------------------------------------------------------------
 
 DefinePlayerColorIndex(208, 4)
