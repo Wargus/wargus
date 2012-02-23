@@ -242,13 +242,15 @@ function RunCampaignSubmenu(campaign, race, exp)
 
   local show_buttons = GetCampaignState(race, exp)
   local half = math.ceil(show_buttons/2)
+  local floorhalf = math.floor(show_buttons / 2)
 
-  for i=1,half do
-    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 98, offy + 64 + (36 * i), CampaignButtonFunction(campaign, race, exp, i, menu))
+  for it = 1, floorhalf do
+    local i = 2 * it - 1
+    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 98, offy + 64 + (36 * it), CampaignButtonFunction(campaign, race, exp, i, menu))
+    menu:addFullButton(CampaignButtonTitle(race, exp, i + 1), ".", offx + 326, offy + 64 + (36 * it), CampaignButtonFunction(campaign, race, exp, i + 1, menu))
   end
-
-  for i=1+half,show_buttons do
-    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 326, offy + 64 + (36 * (i - half)), CampaignButtonFunction(campaign, race, exp, i, menu))
+  if (floorhalf ~= half) then
+    menu:addFullButton(CampaignButtonTitle(race, exp, show_buttons), ".", offx + 98, offy + 64 + (36 * half), CampaignButtonFunction(campaign, race, exp, show_buttons, menu))
   end
 
   menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 212 + (36 * 5),
