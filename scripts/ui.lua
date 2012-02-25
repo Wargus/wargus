@@ -181,7 +181,7 @@ DefinePanelContents(
   Ident = "panel-attack-unit-contents",
   Pos = {info_panel_x, info_panel_y},
   DefaultFont = "game",
-  Condition = {ShowOpponent = false, HideNeutral = true, Building = "false", Build = "false"},
+  Condition = {ShowOpponent = true, HideNeutral = true, Building = "false", Build = "false"},
   Contents = {
 -- Unit caracteristics
 	{ Pos = {114, 41},
