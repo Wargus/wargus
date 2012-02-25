@@ -84,7 +84,7 @@ override_dh_gencontrol:
 		echo " $$line" >> debian/wargus/DEBIAN/control; \
 	done
 	sed "/^# Source debconf library$$/d;/^. \/usr\/share\/debconf\/confmodule$$/d" -i debian/wargus/DEBIAN/postinst
-	bash -c 'sed -n -e "1,/^extract() {$$/p;/^}$$/,\$$p;/extract()/a\\`echo -e "\n\t"`cd /opt/stratagus/share/wargus\\`echo -e "\n\t"`run-standalone.sh /opt/stratagus/bin/warextract\\`echo -e "\n\t"`return $$\?" -i $(CURDIR)/debian/wargus/DEBIAN/postinst'
+	bash -c 'sed -n -e "1,/^extract() {$$/p;/^}$$/,\$$p;/extract()/a\\`echo -e "\n\t"`cd /opt/stratagus/share/wargus\\`echo -e "\n\t"`run-standalone.sh /opt/stratagus/bin/warextract\\`echo -e "\n\t"`return $$\?" -i debian/wargus/DEBIAN/postinst'
 	sed -n -e "/^Pre-Depends:.*$$/,\$$p" debian/wargus/DEBIAN/control.orig | tail -n +2 >> debian/wargus/DEBIAN/control
 	sed "s/Section: .*/Section: user\/games/" -i debian/wargus/DEBIAN/control
 	rm -f debian/wargus/DEBIAN/config debian/wargus/DEBIAN/templates debian/wargus/DEBIAN/control.orig
