@@ -178,10 +178,8 @@ function SetPlayerData(player, data, arg1, arg2)
   if (data == "RaceName") then
     if (GameSettings.NumUnits == 1) then
       if (player ~= 15 and Players[player].Type ~= PlayerNobody) then
-        local unittype = ConvertUnitType("unit-peasant",
-          GetPlayerData(player, "RaceName"))
-        OldCreateUnit(unittype, player,
-          {Players[player].StartX, Players[player].StartY})
+        local unittype = ConvertUnitType("unit-peasant", GetPlayerData(player, "RaceName"))
+        OldCreateUnit(unittype, player, {Players[player].StartPos.x, Players[player].StartPos.y})
       end
     end
   end
