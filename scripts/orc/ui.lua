@@ -253,7 +253,9 @@ UI.Resources[3].TextX = 176 + 150 + 18
 UI.Resources[3].TextY = 1
 
 -- food
-UI.Resources[FoodCost].G = CGraphic:New("ui/food.png", 14, 14)
+if (CanAccessFile("ui/food.png")) then
+  UI.Resources[FoodCost].G = CGraphic:New("ui/food.png", 14, 14)
+end
 UI.Resources[FoodCost].IconFrame = 0
 UI.Resources[FoodCost].IconX = Video.Width - 16 - 138
 UI.Resources[FoodCost].IconY = 0
@@ -261,7 +263,9 @@ UI.Resources[FoodCost].TextX = Video.Width - 16 - 138 + 18
 UI.Resources[FoodCost].TextY = 1
 
 -- score
-UI.Resources[ScoreCost].G = CGraphic:New("ui/score.png", 14, 14)
+if (CanAccessFile("ui/score.png")) then
+  UI.Resources[ScoreCost].G = CGraphic:New("ui/score.png", 14, 14)
+end
 UI.Resources[ScoreCost].IconFrame = 0
 UI.Resources[ScoreCost].IconX = Video.Width - 16 - 68
 UI.Resources[ScoreCost].IconY = 0

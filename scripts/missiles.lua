@@ -168,9 +168,13 @@ DefineMissileType("missile-green-cross",
   { File = "missiles/green_cross.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
   DrawLevel = 150, Class = "missile-class-cycle-once", Sleep = 1, Speed = 16, Range = 1 } )
 
-DefineMissileType("missile-red-cross",
-  { File = "missiles/red_cross.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
-  DrawLevel = 5, Class = "missile-class-cycle-once", Sleep = 1, Speed = 16, Range = 1 } )
+--[[ -- unused
+if (CanAccessFile("missiles/red_cross.png")) then
+  DefineMissileType("missile-red-cross",
+    { File = "missiles/red_cross.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
+    DrawLevel = 5, Class = "missile-class-cycle-once", Sleep = 1, Speed = 16, Range = 1 } )
+end
+--]]
 
 DefineMissileType("missile-none",
   { Size = {32, 32}, DrawLevel = 50,
