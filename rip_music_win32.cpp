@@ -40,6 +40,7 @@
 
 
 #ifndef _NTDDSCSIH_
+#include <ctype.h>
 #define IOCTL_SCSI_GET_ADDRESS		0x00041018
 #define IOCTL_SCSI_GET_INQUIRY_DATA	0x0004100C
 
