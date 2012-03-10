@@ -33,8 +33,8 @@ set(WARGUS_VERSION 2.2.6)
 # Wargus sources
 
 set(pudconvert_SRCS
-	pud.c
-	pudconvert.c
+	pud.cpp
+	pudconvert.cpp
 )
 
 set(pudconvert_HDRS
@@ -43,8 +43,8 @@ set(pudconvert_HDRS
 )
 
 set(wartool_SRCS
-	pud.c
-	wartool.c
+	pud.cpp
+	wartool.cpp
 	xmi2mid.cpp
 )
 
@@ -65,7 +65,7 @@ if(WIN32)
 	)
 	set(wartool_SRCS
 		${wartool_SRCS}
-		rip_music_win32.c
+		rip_music_win32.cpp
 	)
 else()
 	set(wartool_SRCS

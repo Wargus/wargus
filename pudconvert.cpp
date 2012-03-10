@@ -83,7 +83,7 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
-	buf = malloc(len);
+	buf = (unsigned char*) malloc(len);
 	clearerr(f);
 	len = fread(buf, 1, len, f);
 	if (ferror(f)) {

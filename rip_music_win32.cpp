@@ -34,6 +34,11 @@
 
 #include "rip_music.h"
 
+#if _MSC_VER
+#define snprintf _snprintf
+#endif
+
+
 #ifndef _NTDDSCSIH_
 #define IOCTL_SCSI_GET_ADDRESS		0x00041018
 #define IOCTL_SCSI_GET_INQUIRY_DATA	0x0004100C

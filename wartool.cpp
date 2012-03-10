@@ -71,6 +71,7 @@ const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2011 by Th
 #include "endian.h"
 #include "xmi2mid.h"
 #include "rip_music.h"
+#include "pud.h"
 
 #ifndef __GNUC__
 #define __attribute__(args)  // Does nothing for non GNU CC
@@ -2260,7 +2261,7 @@ int CountUsedTiles(const unsigned char* map, const unsigned char* mega,
 /**
 **  Convert for ccl.
 */
-void SaveCCL(const char* name, unsigned char* map __attribute__((unused)),
+static void SaveCCL(char* name, unsigned char* map __attribute__((unused)),
 	const int* map2tile)
 {
 	int i;
@@ -3294,7 +3295,7 @@ int ConvertXmi(char* file, int xmi)
 	free(midp);
 	fclose(f);
 
-	cmd = calloc(strlen("timidity -Ow \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
+	cmd = (char*) calloc(strlen("timidity -Ow \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		exit(-1);
@@ -3316,7 +3317,7 @@ int ConvertXmi(char* file, int xmi)
 	sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, file);
 	CheckPath(buf);
 
-	cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
+	cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		exit(-1);
@@ -3348,7 +3349,7 @@ int ConvertXmi(char* file, int xmi)
 	oggl = ftell(f);
 	rewind(f);
 
-	oggp = malloc(oggl);
+	oggp = (unsigned char*) malloc(oggl);
 	if (!oggp) {
 		fprintf(stderr, "Memory error\n");
 		exit(-1);
@@ -3475,7 +3476,7 @@ int ConvertMusic(void)
 		if (stat(buf, &st))
 			continue;
 
-		cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
+		cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 		if (!cmd) {
 			fprintf(stderr, "Memory error\n");
 			exit(-1);
@@ -3536,7 +3537,7 @@ int ConvertVideo(char* file, int video)
 	free(vidp);
 	fclose(f);
 
-	cmd = calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
+	cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		exit(-1);
