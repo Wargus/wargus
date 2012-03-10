@@ -55,7 +55,7 @@ set(wartool_HDRS
 )
 
 set(wargus_SRCS
-	wargus.c
+	wargus.cpp
 )
 
 if(WIN32)
@@ -186,7 +186,7 @@ if(MAEMO)
 	target_link_libraries(warextract ${warextract_LIBS})
 endif()
 
-add_executable(wargus WIN32 ${wargus_SRCS} ${wargus_HDRS})
+add_executable(wargus ${wargus_SRCS} ${wargus_HDRS})
 target_link_libraries(wargus ${wargus_LIBS})
 
 add_executable(wartool ${wartool_SRCS} ${wartool_HDRS})
