@@ -171,19 +171,14 @@ SetHoldClickDelay(1000)
 --  Uncomment next, to reveal the complete map.
 --RevealMap()
 
---  Choose your default fog of war state (enabled #t/disabled #f).
---    disabled is a C&C like fog of war.
-SetFogOfWar(true)
---SetFogOfWar(false)
-
 SetFogOfWarGraphics("tilesets/summer/terrain/summer.png")
+
+--  Set Fog of War opacity
+SetFogOfWarOpacity(128)
 
 --  Choose your default for minimap with/without terrain.
 SetMinimapTerrain(true)
 --SetMinimapTerrain(false)
-
---  Set Fog of War opacity
-SetFogOfWarOpacity(128)
 
 -------------------------------------------------------------------------------
 
