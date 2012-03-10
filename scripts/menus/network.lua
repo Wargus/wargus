@@ -388,7 +388,7 @@ function RunServerMultiGameMenu(map, description, numplayers)
   menu:addLogicCallback(listener)
 
   menu:addFullButton("~!Cancel", "c", Video.Width / 2 - 100, Video.Height - 100,
-    function() menu:stop() end)
+    function() InitGameSettings(); menu:stop() end)
 
   menu:run()
 end
