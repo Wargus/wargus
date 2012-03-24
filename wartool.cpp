@@ -53,6 +53,7 @@ const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2011 by Th
 #include <stdint.h>
 #include <ctype.h>
 #include <png.h>
+#include <zlib.h>
 
 #if defined(_MSC_VER) || defined(WIN32)
 #include <windows.h>
@@ -1850,7 +1851,7 @@ int SavePNG(const char* name, unsigned char* image, int x, int y, int w,
 		return 1;
 	}
 
-	if (setjmp(png_ptr->jmpbuf)) {
+	if (setjmp(png_jmpbuf(png_ptr))) {
 		// FIXME: must free buffers!!
 		png_destroy_write_struct(&png_ptr, &info_ptr);
 		fclose(fp);
@@ -1862,6 +1863,11 @@ int SavePNG(const char* name, unsigned char* image, int x, int y, int w,
 	png_set_compression_level(png_ptr, Z_BEST_COMPRESSION);
 
 	// prepare the file information
+#if PNG_LIBPNG_VER >= 10504
+	png_set_IHDR(png_ptr, info_ptr, w, h, 8, PNG_COLOR_TYPE_PALETTE, 0,
+				PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+	png_set_PLTE(png_ptr, info_ptr, (png_colorp)pal, 256);
+#else
 	info_ptr->width = w;
 	info_ptr->height = h;
 	info_ptr->bit_depth = 8;
@@ -1870,6 +1876,7 @@ int SavePNG(const char* name, unsigned char* image, int x, int y, int w,
 	info_ptr->valid |= PNG_INFO_PLTE;
 	info_ptr->palette = (png_colorp)pal;
 	info_ptr->num_palette = 256;
+#endif
 
 	if (transparent) {
 		unsigned char* p;
