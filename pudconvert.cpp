@@ -35,6 +35,8 @@
 
 #include "pud.h"
 
+#define VERSION "1.0"
+
 void usage()
 {
 	fprintf(stderr, "%s\n%s\n",
@@ -47,7 +49,7 @@ void usage()
 int main(int argc, char **argv)
 {
 	char *infile;
-	char *outdir;
+	const char *outdir;
 	FILE *f;
 	unsigned char *buf;
 	char *tmp;

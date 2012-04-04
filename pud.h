@@ -35,8 +35,6 @@
 #define PATH_MAX _MAX_PATH
 #endif
 
-#define VERSION "1.0"
-
 #define PLAYERMAX 16
 
 enum PlayerTypes {

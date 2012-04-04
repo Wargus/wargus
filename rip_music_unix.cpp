@@ -43,7 +43,7 @@
 
 #include "rip_music.h"
 
-char * find_mnt_dir(const char * dir) {
+static char * find_mnt_dir(const char * dir) {
 
 	char save_cwd[PATH_MAX];
 	char last_cwd[PATH_MAX];
@@ -138,7 +138,7 @@ char * find_mnt_dir(const char * dir) {
 
 }
 
-char * find_dev(const char * mnt_dir) {
+static char * find_dev(const char * mnt_dir) {
 
 	struct mntent * mnt;
 	char * dev = NULL;
@@ -170,7 +170,7 @@ char * find_dev(const char * mnt_dir) {
 
 }
 
-int spawnvp(const char * file, char * const argv[]) {
+static int spawnvp(const char * file, char * const argv[]) {
 
 	int status;
 	pid_t pid = fork();
@@ -200,8 +200,7 @@ int spawnvp(const char * file, char * const argv[]) {
 int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 
 	struct stat st;
-	char cdparanoia[] = "cdparanoia";
-	char * args[6] = { cdparanoia, "-d", "", "-v", "-Q", NULL };
+	char * args[6] = { "cdparanoia", "-d", "", "-v", "-Q", NULL };
 	char * mnt_dir;
 	char * dev;
 	int count = 0;
@@ -240,7 +239,7 @@ int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 
 	args[2] = dev;
 
-	if ( spawnvp(cdparanoia, args) != 0 ) {
+	if ( spawnvp(args[0], args) != 0 ) {
 
 		free(dev);
 		return 1;
@@ -261,7 +260,7 @@ int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 		args[3] = num;
 		args[4] = file;
 
-		if ( spawnvp(cdparanoia, args) == 0 )
+		if ( spawnvp(args[0], args) == 0 )
 			++count;
 
 	}

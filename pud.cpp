@@ -37,7 +37,9 @@
 #include "endian.h"
 #include "pud.h"
 
-char *PlayerTypeStrings[] = {
+#define VERSION "1.0"
+
+const char *PlayerTypeStrings[] = {
 	"",
 	"",
 	"neutral",
@@ -48,13 +50,13 @@ char *PlayerTypeStrings[] = {
 	"rescue-active"
 };
 
-char *RaceNames[] = {
+const char *RaceNames[] = {
 	"human",
 	"orc",
 	"neutral"
 };
 
-char *TilesetTypeStrings[] = {
+const char *TilesetTypeStrings[] = {
 	"summer",
 	"winter",
 	"wasteland",
@@ -62,7 +64,7 @@ char *TilesetTypeStrings[] = {
 };
 
 // unit script names that correspond to the unit types
-char *UnitScriptNames[] = {
+const char *UnitScriptNames[] = {
 	"unit-footman",
 	"unit-grunt",
 	"unit-peasant",
@@ -170,7 +172,7 @@ char *UnitScriptNames[] = {
 	"unit-orc-wall"
 };
 
-char *AiTypeNames[] = {
+const char *AiTypeNames[] = {
 	"wc2-land-attack",
 	"wc2-passive",
 	"orc-03",

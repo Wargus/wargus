@@ -89,7 +89,7 @@ const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2011 by Th
 /**
 **		Destination directory of the graphics
 */
-char* Dir;
+const char* Dir;
 
 /**
 **		Path to the tileset graphics. (default=$DIR/graphics/tilesets)
@@ -1669,7 +1669,7 @@ typedef struct _grouped_graphic_ {
 	char Name[100];      // name
 } GroupedGraphic;
 
-static GroupedGraphic GroupedGraphicsList[][60] = {
+static const GroupedGraphic GroupedGraphicsList[][60] = {
 	// group 0 (widgets)
 	{
 		// 0 and 1 are the same
@@ -2759,7 +2759,7 @@ int ConvertGroupedGfu(char *path, int pale, int gfue, int glist)
 	int h;
 	char buf[1024];
 	int i;
-	GroupedGraphic *gg;
+	const GroupedGraphic *gg;
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	gfup = ExtractEntry(ArchiveOffsets[gfue], NULL);
@@ -3409,7 +3409,7 @@ int CopyFile(char *from, char *to, int overwrite)
 	if (!overwrite && !stat(to, &st))
 		return 0;
 
-	cmd = calloc(strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\""), 1);
+	cmd = (char *)calloc(strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\""), 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		exit(-1);

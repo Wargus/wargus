@@ -255,8 +255,6 @@ struct midi_token_list_t : std::vector<midi_token_t>
     }
 };
 
-extern "C" {
-
 unsigned char* TranscodeXmiToMid(const unsigned char* pXmiData,
                                  size_t iXmiLength, size_t* pMidLength)
 {
@@ -417,8 +415,6 @@ unsigned char* TranscodeXmiToMid(const unsigned char* pXmiData,
     memcpy(data, buf, *pMidLength);
     delete[] buf;
     return data;
-}
-
 }
 
 //#endif
