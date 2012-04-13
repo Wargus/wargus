@@ -78,14 +78,15 @@ DefineAnimations("animations-building", {
 })
 
 DefineAnimations("animations-oil-platform", {
-  Still = BuildingStill,
-  Harvest_oil = {"frame 2", "wait 4", "frame 2", "wait 1"}
+  Still = {"label start", "if-var v.ResourceActive.Value >= 1 active",
+			"frame 0", "wait 4", "frame 0", "wait 1", "goto start",
+			"label active", "frame 2", "wait 4", "frame 2", "wait 1"}
 })
 
-
 DefineAnimations("animations-gold-mine", {
-  Still = BuildingStill,
-  Harvest_gold = {"frame 1", "wait 4", "frame 1", "wait 1"},
+  Still = {"label start", "if-var v.ResourceActive.Value >= 1 active",
+			"frame 0", "wait 4", "frame 0", "wait 1", "goto start",
+			"label active", "frame 1", "wait 4", "frame 1", "wait 1"}
 })
 
 
