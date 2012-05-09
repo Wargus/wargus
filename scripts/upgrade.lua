@@ -31,31 +31,17 @@
 Load("scripts/human/upgrade.lua")
 Load("scripts/orc/upgrade.lua")
 
---	NOTE: Save can generate this table.
+function DefineAllowSpecialUnits(flags)
+	local units = {
+		"unit-daemon", "unit-critter", "unit-gold-mine",
+		"unit-oil-patch", "unit-circle-of-power", "unit-dark-portal",
+		"unit-runestone", "unit-human-dead-body", "unit-orc-dead-body", "unit-dead-sea-body",
+		"unit-destroyed-1x1-place", "unit-destroyed-2x2-place",
+		"unit-destroyed-3x3-place", "unit-destroyed-3x3-place-water", "unit-destroyed-4x4-place"
+	}
+	for i, unitName in ipairs(units) do
+		DefineAllow(unitName, flags)
+	end
+end
 
-InitFuncs:add(function()
-  DefineAllow("unit-nothing-22",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-nothing-24",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-nothing-25",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-nothing-30",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-nothing-36",			"AAAAAAAAAAAAAAAA")
-
-  DefineAllow("unit-critter",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-skeleton",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-daemon",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-gold-mine",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-oil-patch",			"AAAAAAAAAAAAAAAA")
-
-  DefineAllow("unit-circle-of-power",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-dark-portal",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-runestone",			"AAAAAAAAAAAAAAAA")
-
-  DefineAllow("unit-human-dead-body",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-dead-body",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-dead-sea-body",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-destroyed-1x1-place",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-destroyed-2x2-place",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-destroyed-3x3-place",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-destroyed-3x3-place-water",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-destroyed-4x4-place",		"AAAAAAAAAAAAAAAA")
-end)
+InitFuncs:add(function() DefineAllowSpecialUnits("AAAAAAAAAAAAAAAA") end)

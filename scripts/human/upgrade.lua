@@ -225,84 +225,49 @@ DefineModifier("upgrade-blizzard",
   {"Level", 1},
   {"apply-to", "unit-mage"}, {"apply-to", "unit-white-mage"})
 
--- NOTE: Save can generate this table.
-
 --- units
 
+function DefineAllowHumanUnits(flags)
+	local units = {
+		"unit-footman", "unit-peasant", "unit-ballista", "unit-knight",
+		"unit-archer", "unit-mage", "unit-paladin", "unit-dwarves", "unit-ranger",
+		"unit-female-hero", "unit-flying-angel", "unit-white-mage", "unit-human-oil-tanker",
+		"unit-human-transport", "unit-human-destroyer", "unit-battleship", "unit-human-submarine",
+		"unit-balloon", "unit-gryphon-rider", "unit-knight-rider", "unit-arthor-literios",
+		"unit-wise-man", "unit-man-of-light", "unit-farm", "unit-human-barracks",
+		"unit-church", "unit-human-watch-tower", "unit-stables", "unit-inventor",
+		"unit-gryphon-aviary", "unit-human-shipyard", "unit-town-hall", "unit-elven-lumber-mill",
+		"unit-human-foundry", "unit-mage-tower", "unit-human-blacksmith", "unit-human-refinery",
+		"unit-human-oil-platform", "unit-keep", "unit-castle", "unit-human-start-location",
+		"unit-human-guard-tower", "unit-human-cannon-tower", "unit-human-wall"
+	}
+	for i, unitName in ipairs(units) do
+		DefineAllow(unitName, flags)
+	end
+end
+
+function DefineAllowHumanUpgrades(flags)
+	local upgrades = {
+		"upgrade-sword1", "upgrade-sword2",
+		"upgrade-arrow1", "upgrade-arrow2", "upgrade-human-shield1", "upgrade-human-shield2",
+		"upgrade-human-ship-cannon1", "upgrade-human-ship-cannon2", "upgrade-human-ship-armor1",
+		"upgrade-human-ship-armor2", "upgrade-ballista1", "upgrade-ballista2",
+		"upgrade-ranger", "upgrade-longbow", "upgrade-ranger-scouting", "upgrade-ranger-marksmanship",
+		"upgrade-paladin", "upgrade-holy-vision", "upgrade-healing", "upgrade-exorcism",
+		"upgrade-flame-shield", "upgrade-fireball", "upgrade-slow", "upgrade-invisibility",
+		"upgrade-polymorph", "upgrade-blizzard"
+	}
+	for i, unitName in ipairs(upgrades) do
+		DefineAllow(unitName, flags)
+	end
+end
+
 InitFuncs:add(function()
-  DefineAllow("unit-footman",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-peasant",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-ballista",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-knight",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-archer",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-mage",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-paladin",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-dwarves",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-ranger",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-female-hero",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-flying-angel",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-white-mage",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-oil-tanker",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-transport",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-destroyer",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-battleship",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-submarine",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-balloon",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-gryphon-rider",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-knight-rider",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-arthor-literios",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-wise-man",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-man-of-light",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-farm",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-barracks",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-church",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-watch-tower",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-stables",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-inventor",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-gryphon-aviary",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-shipyard",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-town-hall",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-elven-lumber-mill",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-foundry",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-mage-tower",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-blacksmith",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-refinery",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-oil-platform",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-keep",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-castle",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-start-location",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-guard-tower",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-cannon-tower",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-human-wall",			"AAAAAAAAAAAAAAAA")
-
-  --- upgrades
-
-  DefineAllow("upgrade-sword1",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-sword2",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-arrow1",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-arrow2",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-human-shield1",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-human-shield2",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-human-ship-cannon1",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-human-ship-cannon2",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-human-ship-armor1",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-human-ship-armor2",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-ballista1",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-ballista2",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-ranger",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-longbow",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-ranger-scouting",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-ranger-marksmanship",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-paladin",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-holy-vision",		"RRRRRRRRRRRRRRRR")
-  DefineAllow("upgrade-healing",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-exorcism",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-flame-shield",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-fireball",			"RRRRRRRRRRRRRRRR")
-  DefineAllow("upgrade-slow",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-invisibility",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-polymorph",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-blizzard",			"AAAAAAAAAAAAAAAA")
+	DefineAllowHumanUnits("AAAAAAAAAAAAAAAA")
+--- upgrades
+	DefineAllowHumanUpgrades("AAAAAAAAAAAAAAAA")
+	DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
+	DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
 end)
 
 -- NOTE: Save can generate this table.

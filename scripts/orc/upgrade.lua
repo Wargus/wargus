@@ -238,84 +238,52 @@ DefineModifier("upgrade-death-and-decay",
   {"apply-to", "unit-death-knight"}, {"apply-to", "unit-ice-bringer"},
   {"apply-to", "unit-evil-knight"})
 
--- NOTE: Save can generate this table.
+function DefineAllowOrcUnits(flags)
+	local units = {
+		"unit-grunt", "unit-peon", "unit-catapult", "unit-ogre", "unit-axethrower",
+		"unit-death-knight", "unit-ogre-mage", "unit-goblin-sappers", "unit-berserker",
+		"unit-evil-knight", "unit-fad-man", "unit-beast-cry", "unit-orc-oil-tanker",
+		"unit-orc-transport", "unit-orc-destroyer", "unit-ogre-juggernaught",
+		"unit-fire-breeze", "unit-orc-submarine", "unit-zeppelin",
+		"unit-dragon", "unit-eye-of-vision", "unit-quick-blade", "unit-double-head",
+		"unit-ice-bringer", "unit-sharp-axe", "unit-pig-farm", "unit-orc-barracks",
+		"unit-altar-of-storms", "unit-orc-watch-tower", "unit-ogre-mound",
+		"unit-alchemist", "unit-dragon-roost", "unit-orc-shipyard",
+		"unit-great-hall", "unit-troll-lumber-mill", "unit-orc-foundry",
+		"unit-temple-of-the-damned", "unit-orc-blacksmith", "unit-orc-refinery",
+		"unit-orc-oil-platform", "unit-stronghold", "unit-fortress", "unit-orc-start-location",
+		"unit-orc-guard-tower", "unit-orc-cannon-tower", "unit-orc-wall"
+	}
+	for i, unitName in ipairs(units) do
+		DefineAllow(unitName, flags)
+	end
+end
+
+function DefineAllowOrcUpgrades(flags)
+	local upgrades = {
+		"upgrade-battle-axe1", "upgrade-battle-axe2",
+		"upgrade-throwing-axe1", "upgrade-throwing-axe2",
+		"upgrade-orc-shield1", "upgrade-orc-shield2",
+		"upgrade-orc-ship-cannon1", "upgrade-orc-ship-cannon2",
+		"upgrade-orc-ship-armor1", "upgrade-orc-ship-armor2",
+		"upgrade-catapult1", "upgrade-catapult2",
+		"upgrade-berserker", "upgrade-light-axes", "upgrade-berserker-scouting",
+		"upgrade-berserker-regeneration",
+		"upgrade-ogre-mage", "upgrade-eye-of-kilrogg", "upgrade-bloodlust",
+		"upgrade-raise-dead", "upgrade-death-coil", "upgrade-whirlwind",
+		"upgrade-haste", "upgrade-unholy-armor", "upgrade-runes", "upgrade-death-and-decay",
+	}
+	for i, unitName in ipairs(upgrades) do
+		DefineAllow(unitName, flags)
+	end
+end
 
 InitFuncs:add(function()
-  DefineAllow("unit-grunt",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-peon",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-catapult",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-ogre",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-axethrower",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-death-knight",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-ogre-mage",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-goblin-sappers",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-berserker",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-evil-knight",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-fad-man",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-beast-cry",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-oil-tanker",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-transport",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-destroyer",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-ogre-juggernaught",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-fire-breeze",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-submarine",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-zeppelin",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-dragon",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-eye-of-vision",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-quick-blade",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-double-head",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-ice-bringer",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-sharp-axe",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-pig-farm",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-barracks",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-altar-of-storms",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-watch-tower",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-ogre-mound",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-alchemist",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-dragon-roost",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-shipyard",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-great-hall",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-troll-lumber-mill",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-foundry",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-temple-of-the-damned",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-blacksmith",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-refinery",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-oil-platform",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-stronghold",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-fortress",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-start-location",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-guard-tower",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-cannon-tower",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("unit-orc-wall",			"AAAAAAAAAAAAAAAA")
-
-  --- upgrades
-
-  DefineAllow("upgrade-battle-axe1",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-battle-axe2",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-throwing-axe1",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-throwing-axe2",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-orc-shield1",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-orc-shield2",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-orc-ship-cannon1",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-orc-ship-cannon2",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-orc-ship-armor1",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-orc-ship-armor2",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-catapult1",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-catapult2",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-berserker",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-light-axes",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-berserker-scouting",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-berserker-regeneration",	"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-ogre-mage",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-eye-of-kilrogg",		"RRRRRRRRRRRRRRRR")
-  DefineAllow("upgrade-bloodlust",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-raise-dead",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-death-coil",		"RRRRRRRRRRRRRRRR")
-  DefineAllow("upgrade-whirlwind",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-haste",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-unholy-armor",		"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-runes",			"AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-death-and-decay",		"AAAAAAAAAAAAAAAA")
+	DefineAllowOrcUnits("AAAAAAAAAAAAAAAA")
+	--- upgrades
+	DefineAllowOrcUpgrades("AAAAAAAAAAAAAAAA")
+	DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
+	DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
 end)
 
 -- NOTE: Save can generate this table.
