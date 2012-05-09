@@ -26,7 +26,7 @@ assert(loadstring(Triggers))()
 
 local allowedHumanUnits = {"unit-farm",
 	"unit-town-hall", "unit-peasant",
-	"unit-human-barracks", "unit-footman",
+	"unit-human-barracks", "unit-footman"
 }
 local allowedOrcUnits = {"unit-pig-farm",
 	"unit-great-hall", "unit-peon",
