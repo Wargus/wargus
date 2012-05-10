@@ -48,30 +48,6 @@ local function AiLoop(loop_funcs, loop_pos)
     return true
 end
 
---[[ ORC 03 campaign AI]]--
-
-InitFuncs:add(function()
-  orc_03_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-  orc_03_loop_pos = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-end)
-
-local orc_03_loop_funcs = {
-    function() DebugPrint("Looping !\n") return false end,
-    function() return AiSleep(65535) end,
-    function() orc_03_loop_pos[player] = 0; return false end,
-}
-
-local orc_03_funcs = {
-    function() return AiSet(AiWorker(), 2) end,
-    function() return AiSet(AiTanker(), 1) end,
-    function() return AiWait(AiWorker()) end,
-    function() return AiNeed(AiPlatform()) end,
-    function() return AiLoop(orc_03_loop_funcs, orc_03_loop_pos) end,
-}
-
-function AiOrc03() return AiLoop(orc_03_funcs, orc_03_pos) end
-DefineAi("orc-03", "*", "orc-03", AiOrc03)
-
 --[[ human 04 campaign AI]]--
 --	This AI script builds only workers and tankers and oil platform.
 --		Also if needed a farm.
@@ -722,17 +698,3 @@ local hum_14_black_funcs = {
 
 function AiHuman14Black() return AiLoop(hum_14_black_funcs, hum_14_black_pos) end
 DefineAi("hum-14-black", "*", "hum-14-black", AiHuman14Black)
-
-
---FIXME: create these ais
-
-DefineAi("orc-05", "*", "orc-05", AiLandAttack)
-DefineAi("orc-06", "*", "orc-06", AiLandAttack)
-DefineAi("orc-07", "*", "orc-07", AiLandAttack)
-DefineAi("orc-08", "*", "orc-08", AiLandAttack)
-DefineAi("orc-09", "*", "orc-09", AiLandAttack)
-DefineAi("orc-10", "*", "orc-10", AiLandAttack)
-DefineAi("orc-11", "*", "orc-11", AiLandAttack)
-DefineAi("orc-12", "*", "orc-12", AiLandAttack)
-DefineAi("orc-13", "*", "orc-13", AiLandAttack)
-

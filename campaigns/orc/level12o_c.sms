@@ -78,6 +78,12 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
+-- AI
+
+--TODO: Write specific AI
+DefineAi("orc-12", "*", "orc-12", AiLandAttack)
+
+-- Map
 
 
 Load("campaigns/orc/level12o.sms")
