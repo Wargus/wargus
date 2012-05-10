@@ -34,11 +34,12 @@ local function DefineAllowTable(table, flags)
 	end
 end
 
-DefineAllowHumanUnits("FFFFFFFFFFFFFFFF")
-DefineAllowHumanUpgrades("FFFFFFFFFFFFFFFF")
-DefineAllowOrcUnits("FFFFFFFFFFFFFFFF")
-DefineAllowOrcUpgrades("FFFFFFFFFFFFFFFF")
+DefineAllowNormalHumanUnits("FFFFFFFFFFFFFFFF")
+DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
+DefineAllowNormalOrcUnits("FFFFFFFFFFFFFFFF")
+DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
+
 
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 

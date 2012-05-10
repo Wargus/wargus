@@ -227,45 +227,49 @@ DefineModifier("upgrade-blizzard",
 
 --- units
 
-function DefineAllowHumanUnits(flags)
-	local units = {
-		"unit-footman", "unit-peasant", "unit-ballista", "unit-knight",
-		"unit-archer", "unit-mage", "unit-paladin", "unit-dwarves", "unit-ranger",
-		"unit-female-hero", "unit-flying-angel", "unit-white-mage", "unit-human-oil-tanker",
-		"unit-human-transport", "unit-human-destroyer", "unit-battleship", "unit-human-submarine",
-		"unit-balloon", "unit-gryphon-rider", "unit-knight-rider", "unit-arthor-literios",
-		"unit-wise-man", "unit-man-of-light", "unit-farm", "unit-human-barracks",
-		"unit-church", "unit-human-watch-tower", "unit-stables", "unit-inventor",
-		"unit-gryphon-aviary", "unit-human-shipyard", "unit-town-hall", "unit-elven-lumber-mill",
-		"unit-human-foundry", "unit-mage-tower", "unit-human-blacksmith", "unit-human-refinery",
-		"unit-human-oil-platform", "unit-keep", "unit-castle", "unit-human-start-location",
-		"unit-human-guard-tower", "unit-human-cannon-tower", "unit-human-wall"
+function DefineAllowNormalHumanUnits(flags)
+	local units = {"unit-farm",
+		"unit-town-hall", "unit-keep", "unit-castle", "unit-peasant",
+		"unit-human-barracks", "unit-footman", "unit-archer", "unit-ranger", "unit-ballista",
+		"unit-elven-lumber-mill", "upgrade-arrow1", "upgrade-arrow2",
+		"upgrade-ranger", "upgrade-longbow", "upgrade-ranger-scouting", "upgrade-ranger-marksmanship",
+		"unit-human-blacksmith", "upgrade-sword1", "upgrade-human-shield1", "upgrade-ballista1",
+		"upgrade-sword2", "upgrade-human-shield2", "upgrade-ballista2",
+		"unit-human-watch-tower", "unit-human-guard-tower", "unit-human-cannon-tower",
+		"unit-human-shipyard", "unit-human-oil-tanker", "unit-human-destroyer", "unit-human-transport",
+		"unit-battleship", "unit-human-submarine",
+		"unit-human-oil-platform", "unit-human-refinery",
+		"unit-human-foundry", "upgrade-human-ship-cannon1", "upgrade-human-ship-armor1",
+		"upgrade-human-ship-cannon2", "upgrade-human-ship-armor2",
+		"unit-inventor", "unit-balloon", "unit-dwarves",
+		"unit-stables", "unit-knight", "unit-paladin",
+		"unit-church", "upgrade-paladin", "upgrade-holy-vision", "upgrade-healing", "upgrade-exorcism",
+		"unit-mage-tower", "unit-mage",
+		"upgrade-flame-shield", "upgrade-fireball", "upgrade-slow",
+		"upgrade-invisibility", "upgrade-polymorph", "upgrade-blizzard",
+		"unit-gryphon-aviary", "unit-gryphon-rider"
 	}
 	for i, unitName in ipairs(units) do
 		DefineAllow(unitName, flags)
 	end
 end
 
-function DefineAllowHumanUpgrades(flags)
-	local upgrades = {
-		"upgrade-sword1", "upgrade-sword2",
-		"upgrade-arrow1", "upgrade-arrow2", "upgrade-human-shield1", "upgrade-human-shield2",
-		"upgrade-human-ship-cannon1", "upgrade-human-ship-cannon2", "upgrade-human-ship-armor1",
-		"upgrade-human-ship-armor2", "upgrade-ballista1", "upgrade-ballista2",
-		"upgrade-ranger", "upgrade-longbow", "upgrade-ranger-scouting", "upgrade-ranger-marksmanship",
-		"upgrade-paladin", "upgrade-holy-vision", "upgrade-healing", "upgrade-exorcism",
-		"upgrade-flame-shield", "upgrade-fireball", "upgrade-slow", "upgrade-invisibility",
-		"upgrade-polymorph", "upgrade-blizzard"
+function DefineAllowExtraHumanUnits(flags)
+	local units = {
+		"unit-female-hero", "unit-flying-angel", "unit-white-mage", "unit-knight-rider",
+		"unit-arthor-literios", "unit-wise-man", "unit-man-of-light",
+		"unit-human-start-location", "unit-human-wall"
 	}
-	for i, unitName in ipairs(upgrades) do
+	for i, unitName in ipairs(units) do
 		DefineAllow(unitName, flags)
 	end
 end
 
 InitFuncs:add(function()
-	DefineAllowHumanUnits("AAAAAAAAAAAAAAAA")
---- upgrades
-	DefineAllowHumanUpgrades("AAAAAAAAAAAAAAAA")
+	DefineAllowNormalHumanUnits("AAAAAAAAAAAAAAAA")
+	DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
+
+	DefineAllow("unit-human-wall", "AAAAAAAAAAAAAAAA")
 	DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
 	DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
 end)
