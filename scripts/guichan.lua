@@ -415,7 +415,7 @@ function RunMap(map, objective, fow, revealmap)
   else
     Objectives = objective
   end
-  loop = true
+  local loop = true
   while (loop) do
     InitGameVariables()
     if fow ~= nil then
@@ -436,7 +436,7 @@ function RunMap(map, objective, fow, revealmap)
 end
 
 mapname = "maps/multi/(2)mysterious-dragon-isle.smp.gz"
-buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
+local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
 mapinfo = {
   playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
   description = "",

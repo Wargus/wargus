@@ -41,7 +41,7 @@
 
 function MusicStopped()
   while (table.getn(wargus.playlist) ~= 0) do
-    num = math.random(table.getn(wargus.playlist))
+    local num = math.random(table.getn(wargus.playlist))
     if (PlayMusic(wargus.playlist[num]) == 0) then return end
     table.remove(wargus.playlist, num)
   end

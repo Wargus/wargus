@@ -1,7 +1,7 @@
 function LoadGame(s)
   LoadGameFile = nil
   currentCampaign = nil
-  loop = true
+  local loop = true
 
   while (loop) do
     InitGameVariables()

@@ -110,8 +110,6 @@ function addPlayersList(menu, numplayers)
 end
 
 
-joincounter = 0
-
 function RunJoiningMapMenu(s)
   local menu
   local listener
@@ -177,7 +175,7 @@ function RunJoiningMapMenu(s)
 
   local updatePlayersList = addPlayersList(menu, numplayers)
 
-  joincounter = 0
+  local joincounter = 0
   local function listen()
     NetworkProcessClientRequest()
     fow:setMarked(int2bool(ServerSetupState.FogOfWar))
