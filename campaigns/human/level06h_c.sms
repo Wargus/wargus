@@ -65,5 +65,50 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
+-- AI
+
+--[[ Human 06 campaign ai ]]--
+--	This AI script builds only workers, blacksmith.
+--		Also if needed a farm.
+--		Upgrades weapon and missile.
+--		Attacks with soldier, shooter and cavalrie.
+
+local hum_06_loop_funcs = {
+    function() DebugPrint("Looping !\n") return false end,
+    function() return AiForce(0, {AiSoldier(), 0, AiShooter(), 1, AiCavalry(), 1}) end,
+    function() return AiSleep(14000) end,
+    function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 3, AiCavalry(), 2}) end,
+    function() return AiSleep(11000) end,
+    function() return AiForce(0, {AiSoldier(), 0, AiShooter(), 3, AiCavalry(), 2}) end,
+    function() return AiSleep(8000) end,
+    function() return AiForce(0, {AiSoldier(), 0, AiShooter(), 2, AiCavalry(), 2}) end,
+    function() return AiSleep(11000) end,
+    function() return AiSleep(9000) end,
+    function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_06_funcs = {
+    function() return AiSet(AiWorker(), 4) end,
+    function() return AiWait(AiWorker()) end,
+    function() return AiForce(0, {AiSoldier(), 3, AiShooter(), 3}) end,
+    function() return AiSleep(4000) end,
+    function() return AiSleep(3000) end,
+    function() return AiSleep(4000) end,
+    function() return AiNeed(AiBlacksmith()) end,
+    function() return AiResearch(AiUpgradeMissile1()) end,
+    function() return AiForce(0, {AiSoldier(), 4, AiShooter(), 4}) end,
+    function() return AiResearch(AiUpgradeWeapon1()) end,
+    function() return AiForce(0, {AiSoldier(), 6, AiShooter(), 4}) end,
+    function() return AiSleep(13000) end,
+    function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 3, AiCavalry(), 3}) end,
+    function() return AiSleep(14000) end,
+    function() return AiResearch(AiUpgradeArmor1()) end,
+    function() return AiLoop(hum_06_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHuman06() return AiLoop(hum_06_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-06", "*", "hum-06", AiHuman06)
+
+-- Map
 
 Load("campaigns/human/level06h.sms")

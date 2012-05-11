@@ -62,6 +62,45 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
+-- AI
 
+--[[ Human 05 campaign ai ]]--
+--	This AI script builds only workers and tankers and oil platform.
+--		Also if needed a farm.
+--		Attacks with soldier, shooter and destroyer.
+
+
+local hum_05_loop_funcs = {
+    function() DebugPrint("Looping !\n") return false end,
+    function() return AiSleep(18000) end,
+    function() return AiSleep(12000) end,
+    function() return AiSleep(24000) end,
+    function() return AiSleep(14000) end,
+    function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_05_funcs = {
+    function() return AiSet(AiWorker(), 4) end,
+    function() return AiSet(AiTanker(), 1) end,
+    function() return AiSet(AiTransporter(), 1) end,
+    function() return AiWait(AiWorker()) end,
+    function() return AiNeed(AiPlatform()) end,
+    function() return AiForce(0, {AiDestroyer(), 3, AiSoldier(), 4, AiShooter(), 3}) end,
+	function() return AiSet(AiTransporter(), 3) end,
+    function() return AiSleep(3000) end,
+    function() return AiSleep(4000) end,
+    function() return AiSleep(4000) end,
+    function() return AiSleep(12000) end,
+    function() return AiForce(0, {AiDestroyer(), 4, AiSoldier(), 12, AiShooter(), 4}) end,
+	function() return AiSet(AiTransporter(), 7) end,
+    function() return AiSleep(14000) end,
+    function() return AiSleep(12000) end,
+    function() return AiLoop(hum_05_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHuman05() return AiLoop(hum_05_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-05", "*", "hum-05", AiHuman05)
+
+-- Map
 
 Load("campaigns/human/level05h.sms")

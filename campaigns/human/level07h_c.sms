@@ -70,5 +70,23 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
+-- AI
+
+--[[ Human 07 campaign ai]]--
+--	This AI script builds only worker and tanker.
+--
+
+local hum_07_funcs = {
+    function() return AiSet(AiWorker(), 2) end,
+    function() return AiSet(AiTanker(), 1) end,
+    function() return AiSleep(10000) end,
+    function() stratagus.gameData.AIState.index[1 + AiPlayer()] = 1; return false end,
+}
+
+function AiHuman07() return AiLoop(hum_07_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-07", "*", "hum-07", AiHuman07)
+
+
+-- Map
 
 Load("campaigns/human/level07h.sms")

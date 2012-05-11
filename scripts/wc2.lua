@@ -226,3 +226,9 @@ function LoadTileModels(tileset)
   end
   OldLoadTileModels("scripts/tilesets/" .. GameSettings.Tileset)
 end
+
+-- Called by stratagus when a game finished
+function CleanGame_Lua()
+	print("game ends")
+	ReInitAiGameData()
+end

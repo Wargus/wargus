@@ -840,11 +840,59 @@ end
 
 
 --
+--  Some functions used by Ai
+--
+
+-- Create some counters used by ai
+local function CreateAiGameData()
+	if stratagus == nil then
+		stratagus = {}
+	end
+	if stratagus.gameData == nil then
+		stratagus.gameData = {}
+	end
+	if stratagus.gameData.AIState == nil then
+		stratagus.gameData.AIState = {}
+		stratagus.gameData.AIState.index = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+		stratagus.gameData.AIState.loop_index = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+	end
+end
+
+local function CleanAiGameData()
+	if stratagus ~= nil and stratagus.gameData ~= nil then
+		stratagus.gameData.AIState = nil
+	end
+end
+
+function ReInitAiGameData()
+	CleanAiGameData()
+	CreateAiGameData()
+end
+
+function DebugMessage(message)
+	message = "Game cycle(" .. GameCycle .. "):".. message
+--	AddMessage(message)
+	DebugPrint(message .. "\n")
+end
+
+function AiLoop(loop_funcs, indexes)
+	local playerIndex = AiPlayer() + 1
+
+	while (true) do
+		local ret = loop_funcs[indexes[playerIndex]]()
+		if (ret) then
+			break
+		end
+		indexes[playerIndex] = indexes[playerIndex] + 1
+	end
+	return true
+end
+
+--
 --  Load the actual individual scripts.
 --
+ReInitAiGameData()
 Load("scripts/ai/passive.lua")
 Load("scripts/ai/air_attack.lua")
 Load("scripts/ai/land_attack.lua")
 Load("scripts/ai/sea_attack.lua")
-Load("scripts/ai/campaign.lua")
-

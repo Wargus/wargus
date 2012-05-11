@@ -82,5 +82,136 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
+-- AI
+
+--=============================================================================
+-- This AI script builds only workers and ogres.
+
+local hum_14_orange_loop_funcs = {
+    function() DebugPrint("Looping !\n") return false end,
+    function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_14_orange_funcs = {
+    function()
+	AiForceRole(0, "defend");
+	AiForceRole(1, "attack");
+	return false end,
+    function() return AiSet(AiWorker(), 5) end,
+    function() return AiWait(AiWorker()) end,
+    function() return AiForce(0, {AiCavalry(), 15}) end,
+    function() return AiLoop(hum_14_orange_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHuman14Orange() return AiLoop(hum_14_orange_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-14-orange", "*", "hum-14-orange", AiHuman14Orange)
+
+--=============================================================================
+--	This AI script builds nothing.
+--		Does only upgrades.
+--
+
+local hum_14_red_loop_funcs = {
+    function() DebugPrint("Looping !\n") return false end,
+    function() return AiSleep(30000) end,
+    function() return AiSleep(30000) end,
+    function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_14_red_funcs = {
+    function()
+	AiForceRole(0, "defend");
+	AiForceRole(1, "attack");
+	return false end,
+    function() return AiResearch(AiMageSpell1()) end,
+    function() return AiResearch(AiMageSpell2()) end,
+    function() return AiResearch(AiMageSpell3()) end,
+    function() return AiResearch(AiMageSpell4()) end,
+    function() return AiResearch(AiMageSpell5()) end,
+    function() return AiLoop(hum_14_red_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHuman14Red() return AiLoop(hum_14_red_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-14-red", "*", "hum-14-red", AiHuman14Red)
+
+--=============================================================================
+--	This AI script builds only workers and dragons.
+--		Does only air attacks.
+--
+--	FIXME: This AI should only collect GOLD.
+local hum_14_white_loop_funcs = {
+    function() DebugPrint("Looping !\n") return false end,
+    function() return AiForce(0, {AiFlyer(), 10}) end,
+    function() return AiSleep(19000) end,
+    function() return AiSleep(20000) end,
+    function() return AiForce(1, {AiFlyer(), 12}) end,
+    function() return AiSleep(21000) end,
+    function() return AiSleep(20000) end,
+    function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_14_white_funcs = {
+    function()
+	AiForceRole(0, "defend");
+	AiForceRole(1, "attack");
+	return false end,
+    function() return AiSet(AiWorker(), 9) end,
+    function() return AiWait(AiWorker()) end,
+    function() return AiForce(1, {AiFlyer(), 10}) end,
+    function() return AiSleep(64000) end,
+    function() return AiSleep(12000) end,
+    function() return AiSleep(18000) end,
+    function() return AiLoop(hum_14_white_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHuman14White() return AiLoop(hum_14_white_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-14-white", "*", "hum-14-white", AiHuman14White)
+
+--=============================================================================
+--	This AI script builds only tanker.
+--		Does only upgrades.
+--
+--	FIXME: This AI should only collect GOLD.
+--
+
+local hum_14_black_loop_funcs = {
+    function() DebugPrint("Looping !\n") return false end,
+    function() return AiSleep(30000) end,
+    function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_14_black_funcs = {
+    function()
+	AiForceRole(0, "defend");
+	AiForceRole(1, "attack");
+	return false end,
+    function() return AiSet(AiTanker(), 1) end,
+    function() return AiResearch(AiUpgradeCavalryMage()) end,
+    function() return AiResearch(AiCavalryMageSpell1()) end,
+    function() return AiResearch(AiCavalryMageSpell2()) end,
+    function() return AiResearch(AiMageSpell1()) end,
+    function() return AiResearch(AiMageSpell2()) end,
+    function() return AiResearch(AiMageSpell3()) end,
+    function() return AiResearch(AiMageSpell4()) end,
+    function() return AiResearch(AiMageSpell5()) end,
+    function() return AiResearch(AiUpgradeWeapon1()) end,
+    function() return AiResearch(AiUpgradeArmor1()) end,
+    function() return AiResearch(AiUpgradeWeapon2()) end,
+    function() return AiResearch(AiUpgradeArmor2()) end,
+    function() return AiResearch(AiUpgradeEliteShooter()) end,
+    function() return AiResearch(AiUpgradeEliteShooter1()) end,
+    function() return AiResearch(AiUpgradeEliteShooter2()) end,
+    function() return AiResearch(AiUpgradeEliteShooter3()) end,
+    function() return AiResearch(AiUpgradeShipCannon1()) end,
+    function() return AiResearch(AiUpgradeShipArmor1()) end,
+    function() return AiResearch(AiUpgradeShipCannon2()) end,
+    function() return AiResearch(AiUpgradeShipArmor2()) end,
+    function() return AiLoop(hum_14_black_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHuman14Black() return AiLoop(hum_14_black_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-14-black", "*", "hum-14-black", AiHuman14Black)
+
+-- Map
 
 Load("campaigns/human/level14h.sms")

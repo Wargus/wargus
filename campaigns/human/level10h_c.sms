@@ -72,5 +72,81 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
+-- AI
+
+--=============================================================================
+--	This AI script builds only worker and tanker.
+--		Upgrades very much.
+--		Attacks with land units and water units.
+--
+
+local hum_10_loop_funcs = {
+    function() DebugPrint("Looping !\n") return false end,
+    function() return AiSleep(5000) end,
+    function() return AiForce(0, {AiSoldier(), 4, AiShooter(), 4, AiCavalry(), 4,
+	    AiCatapult(), 1}) end,
+	function() return AiSet(AiTransporter(), 1) end,
+    function() return AiSleep(6000) end,
+    function() return AiForce(0, {AiDestroyer(), 3, AiBattleship(), 1}) end,
+    function() return AiSleep(5000) end,
+    function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_10_funcs = {
+    function()
+	AiForceRole(0, "defend")
+	AiForceRole(1, "defend")
+	return false
+    end,
+    function() return AiSet(AiWorker(), 7) end,
+    function() return AiSet(AiTanker(), 3) end,
+    function() return AiWait(AiWorker()) end,
+
+    function() return AiSet(AiTransporter(), 1) end,
+    function() return AiForce(0, {AiDestroyer(), 2}) end,
+    function() return AiSleep(6000) end,
+    function() return AiForce(0, {AiSoldier(), 4, AiShooter(), 4,
+	    AiDestroyer(), 2}) end,
+
+    function() return AiResearch(AiUpgradeCavalryMage()) end,
+    function() return AiResearch(AiCavalryMageSpell1()) end,
+    function() return AiResearch(AiMageSpell1()) end,
+    function() return AiResearch(AiMageSpell2()) end,
+    function() return AiResearch(AiUpgradeMissile1()) end,
+
+    function() return AiSet(AiTransporter(), 2) end,
+    function() return AiForce(0, {AiSoldier(), 4, AiShooter(), 4, AiDestroyer(), 2}) end,
+    function() return AiResearch(AiUpgradeWeapon1()) end,
+    function() return AiSleep(4000) end,
+    function() return AiResearch(AiUpgradeArmor1()) end,
+
+    function() return AiSleep(5000) end,
+    function() return AiForce(0, {AiDestroyer(), 3, AiBattleship(), 1}) end,
+    function() return AiResearch(AiUpgradeMissile2()) end,
+    function() return AiResearch(AiUpgradeWeapon2()) end,
+
+    function() return AiResearch(AiUpgradeShipCannon1()) end,
+    function() return AiSleep(3000) end,
+    function() return AiResearch(AiUpgradeArmor2()) end,
+    function() return AiResearch(AiUpgradeShipArmor1()) end,
+    function() return AiResearch(AiUpgradeEliteShooter()) end,
+
+    function() return AiResearch(AiUpgradeCatapult1()) end,
+    function() return AiResearch(AiUpgradeShipCannon2()) end,
+    function() return AiResearch(AiUpgradeShipArmor2()) end,
+    function() return AiResearch(AiUpgradeEliteShooter1()) end,
+    function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 2, AiMage(), 1}) end,
+    function() return AiSleep(5000) end,
+    function() return AiResearch(AiUpgradeEliteShooter2()) end,
+    function() return AiResearch(AiUpgradeEliteShooter3()) end,
+
+    function() return AiSleep(5000) end,
+    function() return AiLoop(hum_10_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHuman10() return AiLoop(hum_10_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-10", "*", "hum-10", AiHuman10)
+
+-- Map
 
 Load("campaigns/human/level10h.sms")

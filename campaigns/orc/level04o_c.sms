@@ -57,38 +57,7 @@ DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
 -- orc 04 campaign AI
 
-if stratagus == nil then
-	stratagus = {}
-end
-if stratagus.gameData == nil then
-	stratagus.gameData = {}
-end
-if stratagus.gameData.campaignOrc4AI == nil then
-	stratagus.gameData.campaignOrc4AI = {}
-	stratagus.gameData.campaignOrc4AI.orc_04_pos = {1}
-	stratagus.gameData.campaignOrc4AI.orc_04_loop_pos = {1}
-end
-
-local function DebugMessage(message)
-	message = "Game cycle(" .. GameCycle .. "):".. message
---	AddMessage(message)
-	DebugPrint(message .. "\n")
-end
-
 local CyclesPerSecond = 30 -- according to stratagus.h
-
-local function AiLoop(loop_funcs, index)
-	local ret
-
-	while (true) do
-		ret = loop_funcs[index[1]]()
-		if (ret) then
-			break
-		end
-		index[1] = index[1] + 1
-	end
-	return true
-end
 
 local orc_04_loop_funcs = {
 	function() DebugMessage("AI looping"); return false end,
@@ -97,7 +66,7 @@ local orc_04_loop_funcs = {
 	function() return AiWaitForce(1) end,
 	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
 	function() return AiSleep(30 * CyclesPerSecond) end,
-	function() stratagus.gameData.campaignOrc4AI.orc_04_loop_pos[1] = 0; return false; end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false; end,
 }
 
 local orc_04_funcs = {
@@ -121,10 +90,10 @@ local orc_04_funcs = {
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	function() return AiSleep(60 * CyclesPerSecond) end,
 
-	function() return AiLoop(orc_04_loop_funcs, stratagus.gameData.campaignOrc4AI.orc_04_loop_pos) end,
+	function() return AiLoop(orc_04_loop_funcs, stratagus.gameData.AIState.loop_index) end,
 }
 
-function AiOrc04() return AiLoop(orc_04_funcs, stratagus.gameData.campaignOrc4AI.orc_04_pos) end
+function AiOrc04() return AiLoop(orc_04_funcs, stratagus.gameData.AIState.index) end
 DefineAi("orc-04", "*", "orc-04", AiOrc04)
 
 

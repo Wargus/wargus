@@ -83,9 +83,61 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
+-- AI
+--=============================================================================
+--	This AI script builds only workers, blacksmith.
+--		Also if needed a farm.
+--		Upgrades weapon and missile.
+--		Attacks with soldier, shooter and cavalrie.
+
+local hum_08_loop_funcs = {
+    function() DebugPrint("Looping !\n") return false end,
+    function() return AiSleep(16000) end,
+    function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 4, AiCavalry(), 3, AiCatapult(), 1}) end,
+    function() return AiSleep(14000) end,
+    function() return AiSleep(12000) end,
+    function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_08_funcs = {
+    function() return AiSet(AiWorker(), 3) end,
+    function() return AiWait(AiWorker()) end,
+    function() return AiForce(0, {AiSoldier(), 5, AiShooter(), 4}) end,
+    function() return AiSleep(14000) end,
+    function() return AiForce(0, {AiSoldier(), 5, AiShooter(), 5, AiCavalry(), 3}) end,
+    function() return AiSleep(10000) end,
+    function() return AiSleep(15000) end,
+    function() return AiResearch(AiUpgradeCavalryMage()) end,
+    function() return AiResearch(AiCavalryMageSpell1()) end,
+    function() return AiResearch(AiUpgradeMissile1()) end,
+    function() return AiForce(0, {AiSoldier(), 2, AiShooter(), 5, AiCavalry(), 4, AiCatapult(), 1}) end,
+    function() return AiSleep(15000) end,
+    function() return AiResearch(AiUpgradeWeapon1()) end,
+    function() return AiResearch(AiUpgradeArmor1()) end,
+    function() return AiSleep(21000) end,
+    function() return AiResearch(AiUpgradeEliteShooter()) end,
+    function() return AiSleep(12000) end,
+    function() return AiLoop(hum_08_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHuman08() return AiLoop(hum_08_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-08", "*", "hum-08", AiHuman08)
+
+local hum_08_peasant_funcs = {
+    function() return AiForce(0, {AiWorker(), 7}) end,
+    function() return AiWaitForce(0) end,
+    function() return AiAttackWithForce(0) end,
+    function() return AiSleep(12000) end,
+    function() stratagus.gameData.AIState.index[1 + AiPlayer()] = 3; return false end,
+}
+
+function AiHuman08Peasant() return AiLoop(hum_08_peasant_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-08-peasant", "*", "hum-08-peasant", AiHuman08Peasant)
+
+
+-- Map
 
 Load("campaigns/human/level08h.sms")
 
-DefinePlayerTypes("computer", "computer", "rescue-active", "computer",
-		"computer", "nobody", "person")
+DefinePlayerTypes("computer", "computer", "rescue-active", "computer", "computer", "nobody", "person")
 SetAiType(4, "hum-08-peasant")
