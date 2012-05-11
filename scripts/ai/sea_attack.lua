@@ -27,13 +27,6 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-InitFuncs:add(function()
-  ai_sea_attack_func = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-  ai_sea_attack_end_loop_func = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-end)
-
-local player
-
 local end_loop_sea_funcs = {
   function() DebugPrint("Looping !\n"); return false end,
   function() return AiForce(1, {AiDestroyer(), 6, AiBattleship(), 7, AiScout(), 1}) end,
@@ -43,21 +36,8 @@ local end_loop_sea_funcs = {
   function() return AiAttackWithForce(1) end,
   function() return AiAttackWithForce(2) end,
   function() return AiSleep(500) end,
-  function() ai_sea_attack_end_loop_func[player] = 0; return false end,
+  function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
 }
-
-function AiSeaAttackEndloop()
-  local ret
-
-  while (true) do
-    ret = end_loop_sea_funcs[ai_sea_attack_end_loop_func[player]]()
-    if (ret) then
-      break
-    end
-    ai_sea_attack_end_loop_func[player] = ai_sea_attack_end_loop_func[player] + 1
-  end
-  return true
-end
 
 local sea_funcs = {
   function() return AiSleep(AiGetSleepCycles()) end,
@@ -165,22 +145,9 @@ local sea_funcs = {
   function() return AiAttackWithForce(2) end,
 
   function() return AiSleep(500) end,
-  function() return AiSeaAttackEndloop() end,
+  function() return AiLoop(end_loop_sea_funcs, stratagus.gameData.AIState.loop_index) end,
 }
 
-function AiSeaAttack()
-  local ret
-
-  player = AiPlayer() + 1
-
-  while (true) do
-    DebugPrint("Executing sea_funcs[" .. ai_sea_attack_func[player] .. "]\n")
-    ret = sea_funcs[ai_sea_attack_func[player]]()
-    if (ret) then
-      break
-    end
-    ai_sea_attack_func[player] = ai_sea_attack_func[player] + 1
-  end
-end
+function AiSeaAttack() AiLoop(sea_funcs, stratagus.gameData.AIState.index) end
 
 DefineAi("wc2-sea-attack", "*", "wc2-sea-attack", AiSeaAttack)

@@ -27,13 +27,6 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-InitFuncs:add(function()
-  ai_air_attack_func = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-  ai_air_attack_end_loop_func = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-end)
-
-local player
-
 local end_loop_air_funcs = {
   function() DebugPrint("Looping !\n"); return false end,
   function() return AiForce(1, {AiFlyer(), 2}) end,
@@ -50,21 +43,8 @@ local end_loop_air_funcs = {
   function() return AiAttackWithForce(4) end,
   function() return AiAttackWithForce(5) end,
   function() return AiSleep(500) end,
-  function() ai_air_attack_end_loop_func[player] = 0; return false end,
+  function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
 }
-
-function AiAirAttackEndloop()
-  local ret
-
-  while (true) do
-    ret = end_loop_air_funcs[ai_air_attack_end_loop_func[player]]()
-    if (ret) then
-      break
-    end
-    ai_air_attack_end_loop_func[player] = ai_air_attack_end_loop_func[player] + 1
-  end
-  return true
-end
 
 local air_funcs = {
   function() return AiSleep(AiGetSleepCycles()) end,
@@ -184,23 +164,10 @@ local air_funcs = {
   function() return AiAttackWithForce(5) end,
 
   function() return AiSleep(500) end,
-  function() return AiAirAttackEndloop() end,
+  function() return AiLoop(end_loop_air_funcs, stratagus.gameData.AIState.loop_index) end,
 }
 
-function AiAirAttack()
-  local ret
-
-  player = AiPlayer() + 1
-
-  while (true) do
-    DebugPrint("Executing air_funcs[" .. ai_air_attack_func[player] .. "]\n")
-    ret = air_funcs[ai_air_attack_func[player]]()
-    if (ret) then
-      break
-    end
-    ai_air_attack_func[player] = ai_air_attack_func[player] + 1
-  end
-end
+function AiAirAttack() AiLoop(air_funcs, stratagus.gameData.AIState.index) end
 
 DefineAi("wc2-air-attack", "*", "wc2-air-attack", AiAirAttack)
 

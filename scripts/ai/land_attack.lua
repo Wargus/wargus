@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---      land_attack.lua - Strong land attack. By José Ignacio Rodríguez and Carlo Almario
+--      land_attack.lua - Strong land attack. By JosÃ© Ignacio RodrÃ­guez and Carlo Almario
 --
 --      (c) Copyright 2000-2004 by Lutz Sammer and Jimmy Salmon
 --
@@ -27,14 +27,8 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-ai_land_attack_func = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-ai_land_attack_end_loop_func = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-
-local player
-
 local end_loop_funcs = {
   function() DebugPrint("Looping !\n") return false end,
-
 
 -- EXPANSION AND DEFENSE
 
@@ -59,21 +53,8 @@ local end_loop_funcs = {
   function() return AiWaitForce(7) end,
   function() return AiAttackWithForce(7) end,
   function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
-  function() ai_land_attack_end_loop_func[player] = 0; return false end,
+  function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
 }
-
-function AiLandAttackEndloop()
-  local ret
-
-  while (true) do
-    ret = end_loop_funcs[ai_land_attack_end_loop_func[player]]()
-    if (ret) then
-      break
-    end
-    ai_land_attack_end_loop_func[player] = ai_land_attack_end_loop_func[player] + 1
-  end
-  return true
-end
 
 local land_funcs = {
   function() return AiSleep(AiGetSleepCycles()) end,
@@ -93,20 +74,16 @@ local land_funcs = {
   function() return AiResearch(AiUpgradeWeapon2()) end,
   function() return AiResearch(AiUpgradeArmor2()) end,
 
-
 -- FAST AND FURIOUS
   function() return AiForce(1, {AiSoldier(), 1}) end,
   function() return AiWaitForce(1) end,
   function() return AiAttackWithForce(1) end,
-
 
 -- SECOND FAST ATTACK
   function() return AiForce(1, {AiSoldier(), 4}) end,
   function() return AiWaitForce(1) end,
   function() return AiSet(AiWorker(), 12) end,
   function() return AiAttackWithForce(1) end,
-
-
 
 -- PREPARING FIRST SERIOUS ATTACK
 
@@ -116,7 +93,6 @@ local land_funcs = {
   function() return AiSet(AiWorker(), 20) end,
   function() return AiWaitForce(1) end,
   function() return AiAttackWithForce(1) end,
-
 
 -- NOW UPGRADING
 
@@ -137,11 +113,9 @@ local land_funcs = {
 
 -- UPGRADING CAVALRY STUFF
 
-
   function() return AiNeed(AiTemple()) end,
   function() return AiResearch(AiUpgradeCavalryMage()) end,
   function() return AiResearch(AiCavalryMageSpell1()) end,
-
 
 -- PREPARING SECOND ATTACK
 
@@ -155,12 +129,10 @@ local land_funcs = {
   function() return AiWaitForce(0) end,
   function() return AiForce(0, {AiSoldier(), 0, AiShooter(), 2, AiCavalry(), 0, AiCavalryMage(), 4, AiCatapult(), 0}) end,
 
-
 -- EXPANSION
 
   function() return AiNeed(AiCityCenter()) end,
   function() return AiNeed(AiBarracks()) end,
-
 
 -- ATTACK!!
 
@@ -200,9 +172,6 @@ local land_funcs = {
   function() return AiForce(6, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
 
 
-
-
-
 -- EXPANSION
 
   function() return AiSet(AiWorker(), 45) end,
@@ -214,7 +183,6 @@ local land_funcs = {
   function() return AiNeed(AiTower()) end,
   function() return AiUpgradeTo(AiCannonTower()) end,
 
-
 -- UPGRADING SHOOTERS
 
   function() return AiResearch(AiUpgradeEliteShooter()) end,
@@ -224,7 +192,6 @@ local land_funcs = {
 
   function() return AiSet(AiWorker(), 40) end,
   function() return AiNeed(AiCityCenter()) end,
-
 
 -- SECOND BIG WAVE
 
@@ -250,7 +217,6 @@ local land_funcs = {
 
   function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
 
-
 -- EXPANSION, AGAIN
 
   function() return AiNeed(AiAirport()) end,
@@ -268,7 +234,6 @@ local land_funcs = {
 
   function() return AiForce(5, {AiFlyer(), 3}) end,
 
-
 -- THIRD ATTACK
 
   function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 10, AiCavalry(), 0, AiCavalryMage(), 15, AiCatapult(), 0}) end,
@@ -284,7 +249,6 @@ local land_funcs = {
   function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
 
 
-
   function() return AiNeed(AiTower()) end,
   function() return AiUpgradeTo(AiCannonTower()) end,
   function() return AiNeed(AiTower()) end,
@@ -301,8 +265,6 @@ local land_funcs = {
   function() return AiUpgradeTo(AiCannonTower()) end,
   function() return AiNeed(AiTower()) end,
   function() return AiUpgradeTo(AiGuardTower()) end,
-
-
 
 -- ANOTHER EXPANSION, ANOTHER BIG ATTACK
 
@@ -321,8 +283,6 @@ local land_funcs = {
   function() return AiWaitForce(7) end,
   function() return AiAttackWithForce(7) end,
   function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
-
-
 
 -- LITTLE DEFENSE
 
@@ -346,23 +306,10 @@ local land_funcs = {
 
   -- Everything researched...
 
-  function() return AiLandAttackEndloop() end,
+  function() return AiLoop(end_loop_funcs, stratagus.gameData.AIState.loop_index) end,
 }
 
-function AiLandAttack()
-  local ret
-
-  player = AiPlayer() + 1
-
-  while (true) do
-    DebugPrint("Executing land_funcs[" .. ai_land_attack_func[player] .. "]\n")
-    ret = land_funcs[ai_land_attack_func[player]]()
-    if (ret) then
-      break
-    end
-    ai_land_attack_func[player] = ai_land_attack_func[player] + 1
-  end
-end
+function AiLandAttack() AiLoop(land_funcs, stratagus.gameData.AIState.index); end
 
 DefineAi("wc2-land-attack", "*", "wc2-land-attack", AiLandAttack)
 
