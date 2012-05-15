@@ -65,10 +65,10 @@ DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 --
 
 local hum_09_funcs = {
-    function() return AiSet(AiWorker(), 2) end,
-    function() return AiSet(AiTanker(), 1) end,
-    function() return AiSleep(10000) end,
-    function() stratagus.gameData.AIState.index[1 + AiPlayer()] = 1; return false end,
+	function() return AiSet(AiWorker(), 2) end,
+	function() return AiSet(AiTanker(), 1) end,
+	function() return AiSleep(10000) end,
+	function() stratagus.gameData.AIState.index[1 + AiPlayer()] = 1; return false end,
 }
 
 function AiHuman09() return AiLoop(hum_09_funcs, stratagus.gameData.AIState.index) end
