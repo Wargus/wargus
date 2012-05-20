@@ -200,7 +200,7 @@ static int spawnvp(const char * file, char * const argv[]) {
 int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 
 	struct stat st;
-	char * args[6] = { "cdparanoia", "-d", "", "-v", "-Q", NULL };
+	char * args[6] = { (char *)"cdparanoia", (char *)"-d", NULL, (char *)"-v", (char *)"-Q", NULL };
 	char * mnt_dir;
 	char * dev;
 	int count = 0;
