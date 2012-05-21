@@ -54,11 +54,6 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
--- AI
--- workers (oil-tanker) should be active
-
-DefineAi("orc-03", "*", "orc-03", AiPassive)
-
 -- Map
 
 Load("campaigns/orc/level03o.sms")

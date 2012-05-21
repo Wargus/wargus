@@ -61,4 +61,8 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
+-- AI
+
+DefineAi("orc-03", "*", "orc-03", AiPassive)
+
 Load("campaigns/orc/level02o.sms")
