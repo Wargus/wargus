@@ -147,11 +147,25 @@ function RunPreferencesMenu()
   l:adjustSize()
   menu:add(l, 230 - l:getWidth(), 40 + (36 * 3) + 6)
 
+  menu:addLabel("Mouse Scroll Speed", 16, 40 + (36 * 4), Fonts["small"], false)
+
+  local mousescrollspeed = {}
+  mousescrollspeed = menu:addSlider(1, 10, 198, 18, 32, 40 + 36 * 4.5,
+    function() SetMouseScrollSpeed(mousescrollspeed:getValue()) end)
+  mousescrollspeed:setValue(GetMouseScrollSpeed())
+
+  menu:addLabel("slow", 34, 40 + (36 * 4) + 6, Fonts["small"], false)
+  local l = Label("fast")
+  l:setFont(Fonts["small"])
+  l:adjustSize()
+  menu:add(l, 230 - l:getWidth(), 40 + (36 * 4) + 6)
+
   menu:addFullButton("~!OK", "o", 128 - (224 / 2), 288 - 40,
     function()
       wc2.preferences.FogOfWar = GetFogOfWar()
       wc2.preferences.ShowCommandKey = UI.ButtonPanel.ShowCommandKey
       wc2.preferences.GameSpeed = GetGameSpeed()
+      wc2.preferences.MouseScrollSpeed = GetMouseScrollSpeed()
       SavePreferences()
       menu:stop()
     end)

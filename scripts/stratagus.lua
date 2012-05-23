@@ -317,6 +317,7 @@ if (wc2.preferences == nil) then
     ShowCommandKey = true,
     GroupKeys = "0123456789`",
     GameSpeed = 30,
+    MouseScrollSpeed = 1,
     EffectsEnabled = true,
     EffectsVolume = 128,
     MusicEnabled = true,
@@ -344,6 +345,7 @@ SetFogOfWar(wc2.preferences.FogOfWar)
 UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
 SetGroupKeys(wc2.preferences.GroupKeys)
 SetGameSpeed(wc2.preferences.GameSpeed)
+SetMouseScrollSpeed(wc2.preferences.MouseScrollSpeed)
 SetEffectsEnabled(wc2.preferences.EffectsEnabled)
 SetEffectsVolume(wc2.preferences.EffectsVolume)
 SetMusicEnabled(wc2.preferences.MusicEnabled)
