@@ -141,7 +141,8 @@ option(ENABLE_UPX "Compress Stratagus executable binary with UPX packer" OFF)
 option(ENABLE_STRIP "Strip all symbols from executables" OFF)
 
 # Install paths
-set(BINDIR "bin" CACHE PATH "Where to install binaries")
+set(BINDIR "bin" CACHE PATH "Where to install user binaries")
+set(GAMEDIR "games" CACHE PATH "Where to install games binaries")
 set(SHAREDIR "share/games/stratagus/wargus" CACHE PATH "Where to install data files")
 set(DATAROOTDIR "${CMAKE_INSTALL_PREFIX}/share" CACHE PATH "Sets the root of data directories to a non-default location")
 set(ICONDIR "${DATAROOTDIR}/pixmaps" CACHE PATH "Sets the icon directory for desktop entry to a non-default location.")
@@ -244,7 +245,7 @@ endif()
 
 ########### install files ###############
 
-install(TARGETS wargus DESTINATION ${BINDIR})
+install(TARGETS wargus DESTINATION ${GAMEDIR})
 install(TARGETS pudconvert wartool DESTINATION ${BINDIR})
 install(FILES wargus.png DESTINATION ${ICONDIR})
 install(FILES wargus.desktop DESTINATION ${DESKTOPDIR})
