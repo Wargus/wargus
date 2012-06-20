@@ -172,6 +172,11 @@ static unsigned char* ArchiveBuffer;
 static unsigned char** ArchiveOffsets;
 
 /**
+**  Fake empty entry
+*/
+static unsigned int EmptyEntry[] = { 1, 1, 1 };
+
+/**
 **  Possible entry types of archive file.
 */
 enum _archive_type_ {
@@ -2000,6 +2005,22 @@ int OpenArchive(const char* file, int type)
 	}
 	for (i = 0; i < entries; ++i) {
 		op[i] = buf + FetchLE32(cp);
+		// check if entry size is not bigger then archive size
+		if (op[i] >= buf + stat_buf.st_size - 4) {
+			op[i] = (unsigned char *)&EmptyEntry;
+			printf("Ignore entry %d in archive (invalid offset)\n", i);
+			fflush(stdout);
+		} else {
+			unsigned char* dp = op[i];
+			size_t length = FetchLE32(dp);
+			int flags = length >> 24;
+			length &= 0x00FFFFFF;
+			if (flags == 0x00 && op[i] + length >= buf + stat_buf.st_size) {
+				op[i] = (unsigned char *)&EmptyEntry;
+				printf("Ignore entry %d in archive (invalid uncompressed length)\n", i);
+				fflush(stdout);
+			}
+		}
 //		printf("Offset\t%d\n", op[i]);
 	}
 	op[i] = buf + stat_buf.st_size;
