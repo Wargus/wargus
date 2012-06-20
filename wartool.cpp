@@ -3430,7 +3430,7 @@ int CopyFile(char *from, char *to, int overwrite)
 	if (!overwrite && !stat(to, &st))
 		return 0;
 
-	cmd = (char *)calloc(strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\""), 1);
+	cmd = (char *)calloc(strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		exit(-1);
