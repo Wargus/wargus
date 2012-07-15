@@ -148,6 +148,12 @@ set(DATAROOTDIR "${CMAKE_INSTALL_PREFIX}/share" CACHE PATH "Sets the root of dat
 set(ICONDIR "${DATAROOTDIR}/pixmaps" CACHE PATH "Sets the icon directory for desktop entry to a non-default location.")
 set(DESKTOPDIR "${DATAROOTDIR}/applications" CACHE PATH "Sets the desktop file directory for desktop entry to a non-default location.")
 
+if(NOT IS_ABSOLUTE "${BINDIR}")
+	set(BINDIRABS "${CMAKE_INSTALL_PREFIX}/${BINDIR}")
+else()
+	set(BINDIRABS "${BINDIR}")
+endif()
+
 # Wargus definitions
 
 add_definitions(${PNG_DEFINITIONS})
@@ -242,6 +248,13 @@ if(WIN32 AND ENABLE_NSIS AND MAKENSIS_FOUND)
 	)
 	add_custom_target(nsis ALL DEPENDS Wargus-${WARGUS_VERSION}${MAKENSIS_SUFFIX})
 endif()
+
+########### next target ###############
+
+configure_file (
+	"${PROJECT_SOURCE_DIR}/wargus.desktop.in"
+	"${PROJECT_BINARY_DIR}/wargus.desktop"
+)
 
 ########### install files ###############
 
