@@ -148,10 +148,10 @@ set(DATAROOTDIR "${CMAKE_INSTALL_PREFIX}/share" CACHE PATH "Sets the root of dat
 set(ICONDIR "${DATAROOTDIR}/pixmaps" CACHE PATH "Sets the icon directory for desktop entry to a non-default location.")
 set(DESKTOPDIR "${DATAROOTDIR}/applications" CACHE PATH "Sets the desktop file directory for desktop entry to a non-default location.")
 
-if(NOT IS_ABSOLUTE "${BINDIR}")
-	set(BINDIRABS "${CMAKE_INSTALL_PREFIX}/${BINDIR}")
+if(NOT IS_ABSOLUTE "${GAMEDIR}")
+	set(GAMEDIRABS "${CMAKE_INSTALL_PREFIX}/${GAMEDIR}")
 else()
-	set(BINDIRABS "${BINDIR}")
+	set(GAMEDIRABS "${GAMEDIR}")
 endif()
 
 # Wargus definitions
@@ -261,7 +261,7 @@ configure_file (
 install(TARGETS wargus DESTINATION ${GAMEDIR})
 install(TARGETS pudconvert wartool DESTINATION ${BINDIR})
 install(FILES wargus.png DESTINATION ${ICONDIR})
-install(FILES wargus.desktop DESTINATION ${DESKTOPDIR})
+install(FILES "${PROJECT_BINARY_DIR}/wargus.desktop" DESTINATION ${DESKTOPDIR})
 
 install(DIRECTORY campaigns maps scripts DESTINATION ${SHAREDIR})
 install(FILES contrib/red_cross.png DESTINATION ${SHAREDIR}/graphics/missiles)
