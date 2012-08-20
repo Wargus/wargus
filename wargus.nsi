@@ -248,9 +248,14 @@ Function PageExtractDataPre
 	Pop $2
 	Delete "$TEMP\${WARTOOL}"
 
-	StrCpy $2 "$2$\r$\n"
 	IntCmp $0 0 0 0 extract
+
+	StrCmp $1 $2 noextract
+
+	StrCpy $2 "$2$\r$\n"
 	StrCmp $1 $2 0 extract
+
+noextract:
 
 	StrCpy $EXTRACTNEEDED "no"
 	Abort
