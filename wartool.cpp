@@ -10,7 +10,7 @@
 //
 /**@name wartool.c - Extract files from war archives. */
 //
-//      (c) Copyright 1999-2011 by Lutz Sammer, Nehal Mistry, Jimmy Salmon
+//      (c) Copyright 1999-2012 by Lutz Sammer, Nehal Mistry, Jimmy Salmon
 //                              and Pali Rohár
 //
 //      This program is free software; you can redistribute it and/or modify
@@ -36,7 +36,7 @@
 
 #define VERSION "1.3" // Version of extractor wartool
 
-const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2011 by The Stratagus Project.\n"\
+const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2012 by The Stratagus Project.\n"\
 "  Written by Lutz Sammer, Nehal Mistry, and Jimmy Salmon and Pali Rohar.\n"\
 "  https://launchpad.net/wargus";
 

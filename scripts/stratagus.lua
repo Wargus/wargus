@@ -37,7 +37,7 @@ DebugPrint("Stratagus default config file loading ...\n")
 wargus = {}
 
 wargus.Name = "Wargus"
-wargus.Version = "2.2.6"
+wargus.Version = "2.2.7"
 wargus.Homepage = "https://launchpad.net/wargus"
 wargus.Licence = "GPL v2"
 wargus.Copyright = "Copyright (c) 1998-2012 by The Stratagus Project and Pali Rohar"

@@ -1,3 +1,19 @@
+wargus (2.2.7-1) unstable; urgency=low
+
+  * Fixed bugs
+   - Link wargus executable directly with X11 library - bug #908789
+   - Fixed Debian installation - bug #909017
+   - Show enemy unit levels - bug #817753
+   - Fix typo by replacing 'stronghol' by 'stronghold' - bug #992273
+   - Added slider for configuring mouse scroll speed to options menu - bug #817089
+   - Do not overwrite CMAKE_EXE_LINKER_FLAGS, make install paths configurable - bug #1005271
+   - Wartool - do not crash if Warcraft WAR archives are corrupted or incomplete - bug #998584
+   - Generating User Preferences file - bug #1015938
+   - Fixed compilation on more platforms
+   - Fixed other problems
+
+ -- Pali Rohár <pali.rohar@gmail.com>  Mon, 20 Aug 2012 13:49:07 +0200
+
 wargus (2.2.6-1) unstable; urgency=low
 
   * Game
