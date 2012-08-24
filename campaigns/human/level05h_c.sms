@@ -105,6 +105,8 @@ local hum_05_funcs = {
 function AiHuman05() return AiLoop(hum_05_funcs, stratagus.gameData.AIState.index) end
 DefineAi("hum-05", "*", "hum-05", AiHuman05)
 
+DefineAi("orc-03", "*", "orc-03", AiPassive)
+
 -- Map
 
 Load("campaigns/human/level05h.sms")
