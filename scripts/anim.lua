@@ -74,7 +74,7 @@ DefineAnimations("animations-building", {
   Still = BuildingStill,
   Research = BuildingStill,
   Train = BuildingStill,
-  Upgrade = BuildingStill,
+  Upgrade = {"frame 1", "wait 4", "frame 1", "wait 1",},
 })
 
 DefineAnimations("animations-oil-platform", {

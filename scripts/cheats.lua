@@ -40,7 +40,9 @@ function HandleCheats(str)
     AddMessage("enabled cheat")
 
   elseif (str == "hatchet") then
-    SetSpeedResourcesHarvest("wood", 52 / 2)
+	for i = 0,PlayerMax - 1 do
+		SetSpeedResourcesHarvest(i, "wood", 52 / 2)
+	end
     AddMessage("Wow -- I got jigsaw!")
 
   elseif (str == "glittering prizes") then
@@ -65,49 +67,57 @@ function HandleCheats(str)
     SetFogOfWar(false)
 
   elseif (str == "fast debug") then
-    for i = 1,table.getn(resources) do
-      SetSpeedResourcesHarvest(resources[i], 10)
-      SetSpeedResourcesReturn(resources[i], 10)
-    end
-    SetSpeedBuild(10)
-    SetSpeedTrain(10)
-    SetSpeedUpgrade(10)
-    SetSpeedResearch(10)
+    for i = 0,PlayerMax - 1 do
+		  for j = 1,table.getn(resources) do
+			SetSpeedResourcesHarvest(i, resources[j], 1000)
+			SetSpeedResourcesReturn(i, resources[j], 1000)
+		  end
+		  SetSpeedBuild(i, 1000)
+		  SetSpeedTrain(i, 1000)
+		  SetSpeedUpgrade(i, 1000)
+		  SetSpeedResearch(i, 1000)
+	  end
     AddMessage("FAST DEBUG SPEED")
 
   elseif (str == "normal debug") then
-    for i = 1,table.getn(resources) do
-      SetSpeedResourcesHarvest(resources[i], 1)
-      SetSpeedResourcesReturn(resources[i], 1)
-    end
-    SetSpeedBuild(1)
-    SetSpeedTrain(1)
-    SetSpeedUpgrade(1)
-    SetSpeedResearch(1)
+    for i = 0,PlayerMax - 1 do
+		  for j = 1,table.getn(resources) do
+			SetSpeedResourcesHarvest(i, resources[j], 100)
+			SetSpeedResourcesReturn(i, resources[j], 100)
+		  end
+		  SetSpeedBuild(i, 100)
+		  SetSpeedTrain(i, 100)
+		  SetSpeedUpgrade(i, 100)
+		  SetSpeedResearch(i, 100)
+	  end
     AddMessage("NORMAL DEBUG SPEED")
 
   elseif (str == "make it so") then
     if (speedcheat) then
       speedcheat = false
-      for i = 1,table.getn(resources) do
-        SetSpeedResourcesHarvest(resources[i], 1)
-        SetSpeedResourcesReturn(resources[i], 1)
-      end
-      SetSpeedBuild(1)
-      SetSpeedTrain(1)
-      SetSpeedUpgrade(1)
-      SetSpeedResearch(1)
+      for i = 0,PlayerMax - 1 do
+		  for j = 1,table.getn(resources) do
+			SetSpeedResourcesHarvest(i, resources[j], 100)
+			SetSpeedResourcesReturn(i, resources[j], 100)
+		  end
+		  SetSpeedBuild(i, 100)
+		  SetSpeedTrain(i, 100)
+		  SetSpeedUpgrade(i, 100)
+		  SetSpeedResearch(i, 100)
+	  end
       AddMessage("NO SO!")
     else
       speedcheat = true
-      for i = 1,table.getn(resources) do
-        SetSpeedResourcesHarvest(resources[i], 10)
-        SetSpeedResourcesReturn(resources[i], 10)
-      end
-      SetSpeedBuild(10)
-      SetSpeedTrain(10)
-      SetSpeedUpgrade(10)
-      SetSpeedResearch(10)
+      for i = 0,PlayerMax - 1 do
+		  for j = 1,table.getn(resources) do
+			SetSpeedResourcesHarvest(i, resources[j], 1000)
+			SetSpeedResourcesReturn(i, resources[j], 1000)
+		  end
+		  SetSpeedBuild(i, 1000)
+		  SetSpeedTrain(i, 1000)
+		  SetSpeedUpgrade(i, 1000)
+		  SetSpeedResearch(i, 1000)
+	  end
       for i = 1,table.getn(resources) do
         SetPlayerData(GetThisPlayer(), "Resources", resources[i],
           GetPlayerData(GetThisPlayer(), "Resources", resources[i]) + 32000)
