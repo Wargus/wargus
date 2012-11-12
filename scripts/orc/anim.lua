@@ -330,12 +330,11 @@ DefineAnimations("animations-ogre-juggernaught", {
 
 local DragonStill = {"frame 0", "wait 6", "frame 5", "wait 6", "frame 10", "wait 6",
     "frame 15", "wait 6",}
-local DragonMove = {"unbreakable begin", "frame 0", "wait 1", "frame 0", "move 3", "wait 1",
-    "frame 0", "move 3", "wait 1", "frame 5", "move 3", "wait 1",
-    "frame 5", "move 3", "wait 1", "frame 5", "move 3", "wait 1",
-    "frame 10", "move 3", "wait 1", "frame 10", "move 2", "wait 1",
-    "frame 10", "move 3", "wait 1", "frame 15", "move 3", "wait 1",
-    "frame 15", "move 3", "wait 1", "frame 0", "move 3", "unbreakable end", "wait 1",}
+local DragonMove = {"unbreakable begin", "frame 0", "wait 1", "frame 0", "move 6", "wait 2",
+    "frame 5", "move 6", "wait 2", "frame 5", "move 3", "wait 1",
+    "frame 10", "move 5", "wait 2", "frame 10", "move 3", "wait 1",
+    "frame 15", "move 6", "wait 2",
+    "frame 0", "move 3", "unbreakable end", "wait 1",}
 local DragonDeath = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5", "frame 35", "wait 5",
     "frame 40", "wait 5", "frame 45", "wait 5", "frame 45", "unbreakable end", "wait 1",}
 
