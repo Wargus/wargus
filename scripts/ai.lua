@@ -10,7 +10,7 @@
 --
 --      ai.lua - Define the AI.
 --
---      (c) Copyright 2000-2004 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2000-2013 by Lutz Sammer, Jimmy Salmon and Joris Dauphin
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -32,184 +32,29 @@
 race1 = "human"
 race2 = "orc"
 
---=============================================================================
---
---  AI helper table, the AI must know where to build units,
---  where to research spells, where to upgrade units.
---  If this is allowed and which dependencies exists, isn't
---  handled here. (see upgrade.lua)
---
---  NOTE: perhaps this could later be used to build the buttons?
---
---  DefineAiHelper(list)
---
-
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 --  * Race human.
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 DefineAiHelper(
-  --
-  -- Unit can build which buildings.
-  --
-  {"build", "unit-peasant",
-  "unit-farm", "unit-human-barracks", "unit-town-hall", "unit-elven-lumber-mill",
-  "unit-human-blacksmith", "unit-human-watch-tower", "unit-human-wall",
-  "unit-human-shipyard", "unit-human-foundry", "unit-human-refinery",
-  "unit-inventor", "unit-stables", "unit-mage-tower", "unit-church",
-  "unit-gryphon-aviary"},
-  {"build", "unit-human-oil-tanker", "unit-human-oil-platform"},
-  --
-  -- Building can train which units.
-  --
-  {"train", "unit-farm", "unit-critter"},
-  {"train", "unit-town-hall", "unit-peasant"},
-  {"train", "unit-keep", "unit-peasant"},
-  {"train", "unit-castle", "unit-peasant"},
-  {"train", "unit-human-barracks",
-  "unit-footman", "unit-archer", "unit-ranger", "unit-ballista", "unit-knight",
-  "unit-paladin"},
-  {"train", "unit-inventor",
-  "unit-balloon", "unit-dwarves"},
-  {"train", "unit-mage-tower", "unit-mage"},
-  {"train", "unit-gryphon-aviary", "unit-gryphon-rider"},
-  {"train", "unit-human-shipyard",
-  "unit-human-oil-tanker", "unit-human-destroyer", "unit-human-transport",
-  "unit-human-submarine", "unit-battleship"},
-  --
-  -- Building can upgrade which upgrades.
-  --
-  {"upgrade", "unit-town-hall", "unit-keep"},
-  {"upgrade", "unit-keep", "unit-castle"},
-  {"upgrade", "unit-human-watch-tower",
-  "unit-human-guard-tower", "unit-human-cannon-tower"},
-  --
-  -- Building can research which spells or upgrades.
-  --
-  {"research", "unit-human-blacksmith",
-  "upgrade-sword1", "upgrade-sword2",
-  "upgrade-human-shield1", "upgrade-human-shield2",
-  "upgrade-ballista1", "upgrade-ballista2"},
-  {"research", "unit-elven-lumber-mill",
-  "upgrade-arrow1", "upgrade-arrow2", "upgrade-ranger",
-  "upgrade-ranger-scouting", "upgrade-longbow", "upgrade-ranger-marksmanship"},
-  {"research", "unit-church",
-  "upgrade-paladin", "upgrade-healing", "upgrade-exorcism"},
-  {"research", "unit-mage-tower",
-  "upgrade-slow", "upgrade-flame-shield", "upgrade-invisibility",
-  "upgrade-polymorph", "upgrade-blizzard"},
-  {"research", "unit-human-foundry",
-  "upgrade-human-ship-cannon1", "upgrade-human-ship-cannon2",
-  "upgrade-human-ship-armor1", "upgrade-human-ship-armor2"},
-  --
-  -- Unit can repair which units.
-  --
-  {"repair", "unit-peasant",
-  "unit-farm", "unit-human-barracks", "unit-town-hall", "unit-keep", "unit-castle",
-  "unit-elven-lumber-mill", "unit-human-blacksmith", "unit-human-watch-tower",
-  "unit-human-guard-tower", "unit-human-cannon-tower", "unit-human-wall",
-  "unit-human-shipyard", "unit-human-foundry", "unit-human-refinery",
-  "unit-inventor", "unit-stables", "unit-mage-tower", "unit-church",
-  "unit-gryphon-aviary", "unit-human-transport"},
-  --
-  -- Reduce unit limits.
-  --
-  {"unit-limit", "unit-farm", "food"},
-  --
   -- Equivalence of units for the resource manager.
-  --
-  {"unit-equiv", "unit-town-hall",
-  "unit-keep", "unit-castle"},
-  {"unit-equiv", "unit-keep",
-  "unit-castle"},
-  {"unit-equiv", "unit-archer",
-  "unit-ranger"},
-  {"unit-equiv", "unit-knight",
-  "unit-paladin"} )
+  {"unit-equiv", "unit-town-hall", "unit-keep", "unit-castle"},
+  {"unit-equiv", "unit-keep", "unit-castle"},
+  {"unit-equiv", "unit-archer", "unit-ranger"},
+  {"unit-equiv", "unit-knight", "unit-paladin"}
+)
 
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 --  * Race orc.
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 DefineAiHelper(
-  --
-  -- Unit can build which buildings.
-  --
-  {"build", "unit-peon",
-  "unit-pig-farm", "unit-orc-barracks", "unit-great-hall",
-  "unit-troll-lumber-mill", "unit-orc-blacksmith", "unit-orc-watch-tower",
-  "unit-orc-wall", "unit-orc-shipyard", "unit-orc-foundry", "unit-orc-refinery",
-  "unit-alchemist", "unit-ogre-mound", "unit-temple-of-the-damned",
-  "unit-altar-of-storms", "unit-dragon-roost"},
-  {"build", "unit-orc-oil-tanker", "unit-orc-oil-platform"},
-  --
-  -- Building can train which units.
-  --
-  {"train", "unit-pig-farm", "unit-critter"},
-  {"train", "unit-great-hall", "unit-peon"},
-  {"train", "unit-stronghold", "unit-peon"},
-  {"train", "unit-fortress", "unit-peon"},
-  {"train", "unit-orc-barracks",
-  "unit-grunt", "unit-axethrower", "unit-berserker", "unit-catapult", "unit-ogre",
-  "unit-ogre-mage"},
-  {"train", "unit-alchemist",
-  "unit-zeppelin", "unit-goblin-sappers"},
-  {"train", "unit-temple-of-the-damned", "unit-death-knight"},
-  {"train", "unit-dragon-roost", "unit-dragon"},
-  {"train", "unit-orc-shipyard",
-  "unit-orc-oil-tanker", "unit-orc-destroyer", "unit-orc-transport",
-  "unit-orc-submarine", "unit-ogre-juggernaught"},
-  --
-  -- Building can upgrade which upgrades.
-  --
-  {"upgrade", "unit-great-hall", "unit-stronghold"},
-  {"upgrade", "unit-stronghold", "unit-fortress"},
-  {"upgrade", "unit-orc-watch-tower",
-  "unit-orc-guard-tower", "unit-orc-cannon-tower"},
-  --
-  -- Building can research which spells or upgrades.
-  --
-  {"research", "unit-orc-blacksmith",
-  "upgrade-battle-axe1", "upgrade-battle-axe2",
-  "upgrade-orc-shield1", "upgrade-orc-shield2",
-  "upgrade-catapult1", "upgrade-catapult2"},
-  {"research", "unit-troll-lumber-mill",
-  "upgrade-throwing-axe1", "upgrade-throwing-axe2", "upgrade-berserker",
-  "upgrade-berserker-scouting", "upgrade-light-axes",
-  "upgrade-berserker-regeneration"},
-  {"research", "unit-altar-of-storms",
-  "upgrade-ogre-mage", "upgrade-bloodlust", "upgrade-runes"},
-  {"research", "unit-temple-of-the-damned",
-  "upgrade-haste", "upgrade-raise-dead", "upgrade-whirlwind",
-  "upgrade-unholy-armor", "upgrade-death-and-decay"},
-  {"research", "unit-orc-foundry",
-  "upgrade-orc-ship-cannon1", "upgrade-orc-ship-cannon2",
-  "upgrade-orc-ship-armor1", "upgrade-orc-ship-armor2"},
-  --
-  -- Unit can build which units.
-  --
-  {"repair", "unit-peon",
-  "unit-pig-farm", "unit-orc-barracks", "unit-great-hall", "unit-stronghold",
-  "unit-fortress", "unit-troll-lumber-mill", "unit-orc-blacksmith",
-  "unit-orc-watch-tower", "unit-orc-guard-tower", "unit-orc-cannon-tower",
-  "unit-orc-wall", "unit-orc-shipyard", "unit-orc-foundry", "unit-orc-refinery",
-  "unit-alchemist", "unit-ogre-mound", "unit-temple-of-the-damned",
-  "unit-altar-of-storms", "unit-dragon-roost", "unit-orc-transport"},
-  --
-  -- Reduce unit limits.
-  --
-  {"unit-limit", "unit-pig-farm", "food"},
-  --
   -- Equivalence of units for the resource manager.
-  --
-  {"unit-equiv", "unit-great-hall",
-  "unit-stronghold", "unit-fortress"},
-  {"unit-equiv", "unit-stronghold",
-  "unit-fortress"},
-  {"unit-equiv", "unit-axethrower",
-  "unit-berserker"},
-  {"unit-equiv", "unit-ogre",
-  "unit-ogre-mage"} )
+  {"unit-equiv", "unit-great-hall", "unit-stronghold", "unit-fortress"},
+  {"unit-equiv", "unit-stronghold", "unit-fortress"},
+  {"unit-equiv", "unit-axethrower", "unit-berserker"},
+  {"unit-equiv", "unit-ogre", "unit-ogre-mage"}
+)
 
 --
 --  City-center of the current race.
