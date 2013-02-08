@@ -229,6 +229,6 @@ end
 
 -- Called by stratagus when a game finished
 function CleanGame_Lua()
-	print("game ends")
-	ReInitAiGameData()
+  DebugPrint("game ends\n")
+  ReInitAiGameData()
 end
