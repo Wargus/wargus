@@ -169,9 +169,9 @@ function RunJoiningMapMenu(s)
   -- Security: The map name is checked by the stratagus engine.
   Load(NetworkMapName)
   local function readycb(dd)
-     LocalSetupState.Ready[NetLocalHostsSlot] = bool2int(dd:isMarked())
+    LocalSetupState.Ready[NetLocalHostsSlot] = bool2int(dd:isMarked())
   end
-  menu:addCheckBox("~!Ready", sx*11,  sy*14, readycb)
+  menu:addCheckBox("~!Ready", sx*11, sy*14, readycb)
 
   local updatePlayersList = addPlayersList(menu, numplayers)
 
@@ -278,15 +278,29 @@ function RunJoinIpMenu()
   menu:setDrawMenusUnder(true)
 
   menu:addLabel("Enter server IP-address:", 144, 11)
-  local server = menu:addTextInputField("localhost", 40, 38, 212)
+  local server = menu:addTextInputField(wc2.preferences.ServerIP, 40, 38, 212)
 
   menu:addHalfButton("~!OK", "o", 24, 80,
     function(s)
-      -- FIXME: allow port ("localhost:1234")
-      if (NetworkSetupServerAddress(server:getText()) ~= 0) then
-        ErrorMenu("Invalid server name")
-        return
+      -- Allow port ("localhost:1234")
+      local sep = ":"
+      local f = string.find(server:getText(), sep)
+      if f then
+        local host = string.sub(server:getText(), 1, f - 1)
+        local port = string.sub(server:getText(), f + 1, string.len(server:getText()))
+        if (NetworkSetupServerAddress(host, port) ~= 0) then
+          ErrorMenu("Invalid server name")
+          return
+        end
+      else
+        if (NetworkSetupServerAddress(server:getText()) ~= 0) then
+          ErrorMenu("Invalid server name")
+          return
+        end
       end
+      wc2.preferences.ServerIP = server:getText()
+      SavePreferences()
+
       NetworkInitClientConnect()
       if (RunJoiningGameMenu() ~= 0) then
         -- connect failed, don't leave this menu

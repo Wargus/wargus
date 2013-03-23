@@ -301,6 +301,7 @@ local defaultPreferences = {
 	MusicEnabled = true,
 	MusicVolume = 128,
 	PlayerName = "Player",
+	ServerIP = "localhost",
 	ShowCommandKey = true,
 	ShowTips = true,
 	StratagusTranslation = "",
