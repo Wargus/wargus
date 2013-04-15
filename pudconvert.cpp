@@ -48,44 +48,35 @@ void usage()
 
 int main(int argc, char **argv)
 {
-	char *infile;
-	const char *outdir;
-	FILE *f;
-	unsigned char *buf;
-	char *tmp;
-	char newname[PATH_MAX];
-	int len;
-	struct stat sb;
-
 	if (argc < 2 || argc > 3) {
 		usage();
 	}
 
-	infile = argv[1];
+	char *infile = argv[1];
+	const char *outdir;
 	if (argc == 3) {
 		outdir = argv[2];
 	} else {
 		outdir = ".";
 	}
 
+	struct stat sb;
 	if (stat(infile, &sb)) {
 		fprintf(stderr, "error finding file: %s\n", infile);
 		return -1;
 	}
-	len = sb.st_size;
+	int len = sb.st_size;
 
 	if (stat(outdir, &sb)) {
 		fprintf(stderr, "error finding directory: %s\n", outdir);
 		return -1;
 	}
-
-	f = fopen(infile, "rb");
+	FILE *f = fopen(infile, "rb");
 	if (f == NULL) {
 		fprintf(stderr, "error opening file: %s\n", infile);
 		return -1;
 	}
-
-	buf = (unsigned char*) malloc(len);
+	unsigned char *buf = (unsigned char*) malloc(len);
 	clearerr(f);
 	len = fread(buf, 1, len, f);
 	if (ferror(f)) {
@@ -93,25 +84,24 @@ int main(int argc, char **argv)
 		free(buf);
 		return -1;
 	}
-
 	if (fclose(f)) {
 		fprintf(stderr, "error closing file: %s\n", infile);
 		free(buf);
 		return -1;
 	}
+	char *tmp= strrchr(infile, '/');
+	char newname[PATH_MAX];
 
-	if ((tmp = strrchr(infile, '/'))) {
+	if (tmp != NULL) {
 		strcpy(newname, tmp + 1);
 	} else {
 		strcpy(newname, infile);
 	}
-	if ((tmp = strstr(newname, ".pud"))) {
+	tmp = strstr(newname, ".pud");
+	if (tmp != NULL) {
 		tmp[0] = '\0';
 	}
-
 	PudToStratagus(buf, len, newname, outdir);
-
 	free(buf);
-
 	return 0;
 }

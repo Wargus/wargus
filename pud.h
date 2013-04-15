@@ -26,10 +26,12 @@
 //      Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //      02111-1307, USA.
 
-#ifndef _PUD_H_
-#define _PUD_H_
+#ifndef PUD_H
+#define PUD_H
 
 #include <zlib.h>
+#include <vector>
+
 
 #ifdef _MSC_VER
 #define PATH_MAX _MAX_PATH
@@ -79,21 +81,28 @@ struct UnitData {
 	int Data;
 };
 
-struct PudData {
+class PudData {
+public:
+	PudData();
+
+	bool Parse(const unsigned char *puddata, size_t size);
+
+	void WriteSMP(gzFile smpout, const char *smsname) const;
+	void WriteSMS(gzFile smsout) const;
+
+private:
 	char Description[32];
 
-	int NumPlayers;
 	enum PlayerTypes Players[PLAYERMAX];
 	enum RaceTypes Races[PLAYERMAX];
 
 	enum TilesetTypes Tileset;
 	int MapSizeX;
 	int MapSizeY;
-	int *Tiles;
-	int *Value;
+	std::vector<int> Tiles;
+	std::vector<int> Value;
 
-	struct UnitData *Units;
-	int NumUnits;
+	std::vector<struct UnitData> Units;
 
 	int AiType[PLAYERMAX];
 
@@ -104,10 +113,6 @@ struct PudData {
 	int StartY[PLAYERMAX];
 };
 
-int WriteSMP(const struct PudData * const pdata, gzFile smpout, const char *smsname);
-int WriteSMS(const struct PudData * const pdata, gzFile smsout);
-int PudReadHeader(const unsigned char *puddata, char *header, int *len);
-int ProcessPud(const unsigned char *puddata, size_t size, gzFile smsout, gzFile smpout, const char *smsname);
 int PudToStratagus(const unsigned char *puddata, size_t size, const char *name, const char *outdir);
 
 #endif
