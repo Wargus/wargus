@@ -38,7 +38,6 @@ DefineTileset("name", "Forest",
   "slots", { "special", {		-- Can't be in pud
     "top-one-tree", 121, "mid-one-tree", 122, "bot-one-tree", 123,
     "removed-tree", 126,
-    "growing-tree", { -1, -1 },
     "top-one-rock", 161, "mid-one-rock", 162, "bot-one-rock", 163,
     "removed-rock", 166 },
   "solid", { "unused",

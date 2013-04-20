@@ -38,7 +38,6 @@ DefineTileset("name", "Wasteland",
   "slots", { "special", {
     "top-one-tree", 121, "mid-one-tree", 122, "bot-one-tree", 123,
     "removed-tree", 126,
-    "growing-tree", { -1, -1, },
     "top-one-rock", 158, "mid-one-rock", 159, "bot-one-rock", 160,
     "removed-rock", 163, },
   "solid", { "unused",

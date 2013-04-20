@@ -38,7 +38,6 @@ DefineTileset("name", "Swamp",
   "slots", { "special", {		-- Can't be in pud
     "top-one-tree", 121, "mid-one-tree", 122, "bot-one-tree", 123,
     "removed-tree", 126,
-    "growing-tree", { -1, -1 },
     "top-one-rock", 155, "mid-one-rock", 156, "bot-one-rock", 157,
     "removed-rock", 161 },
   "solid", { "unused",
