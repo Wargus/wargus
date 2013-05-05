@@ -227,6 +227,12 @@ DefineTileset("name", "Wasteland",
 
 BuildTilesetTables()
 
+SetColorCycleAll(true)
+ClearAllColorCyclingRange()
+AddColorCyclingRange(38, 47) -- water
+AddColorCyclingRange(64, 70) -- water coast boundry
+AddColorCyclingRange(240, 244) -- icon
+
 wargus.tileset = "wasteland"
 Load("scripts/scripts.lua")
 

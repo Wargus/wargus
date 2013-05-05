@@ -227,6 +227,12 @@ DefineTileset("name", "Forest",
 
 BuildTilesetTables()
 
+SetColorCycleAll(true)
+ClearAllColorCyclingRange()
+AddColorCyclingRange(38, 47) -- water
+AddColorCyclingRange(48, 56) -- water coast boundry
+AddColorCyclingRange(240, 244) -- icon
+
 wargus.tileset = "summer"
 Load("scripts/scripts.lua")
 

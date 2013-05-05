@@ -227,6 +227,13 @@ DefineTileset("name", "Swamp",
 
 BuildTilesetTables()
 
+SetColorCycleAll(true)
+ClearAllColorCyclingRange()
+AddColorCyclingRange(5, 9) -- water
+AddColorCyclingRange(38, 47) -- water coast boundry
+AddColorCyclingRange(88, 95) -- building
+AddColorCyclingRange(240, 244) -- icon
+
 wargus.tileset = "swamp"
 Load("scripts/scripts.lua")
 
