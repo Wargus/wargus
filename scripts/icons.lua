@@ -235,7 +235,7 @@ if (wargus.tileset == nil) then
 else
   for i = 1,table.getn(icons) do
     icon = CIcon:New(icons[i][1])
-    icon.G = CGraphic:New("tilesets/" .. wargus.tileset .. "/icons.png", 46, 38)
+    icon.G = CPlayerColorGraphic:New("tilesets/" .. wargus.tileset .. "/icons.png", 46, 38)
     icon.Frame = icons[i][2]
   end
 end
