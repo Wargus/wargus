@@ -375,3 +375,4 @@ DefineSpell("spell-whirlwind",
 --	"autocast", {range 12)
 )
 
+Load("scripts/caanoo/spells.lua")
