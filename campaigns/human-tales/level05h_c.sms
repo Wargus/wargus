@@ -1,0 +1,25 @@
+--	Stratagus Map - Single player campaign
+
+Load("campaigns/human-tales/level05h_c2.sms")
+
+Briefing(
+  title,
+  objectives,
+  "../campaigns/human/interface/introscreen5.png",
+  {}
+)
+
+Load("campaigns/human-tales/level05h_ai.lua")
+
+Triggers = [[
+AddTrigger(
+  function() return GetNumOpponents(GetThisPlayer()) <= 1 end,
+  function() return ActionVictory() end)
+AddTrigger(
+  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
+  function() return ActionDefeat() end)
+]]
+
+assert(loadstring(Triggers))()
+
+Load("campaigns/human-tales/level05h.sms")

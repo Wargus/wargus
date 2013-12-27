@@ -29,7 +29,8 @@ campaign_steps = {
   CreateMapStep("campaigns/human-tales/level01h.smp"),
   CreateMapStep("campaigns/human-tales/level02h.smp"),
   CreateMapStep("campaigns/human-tales/level03h.smp"),
-  CreateMapStep("campaigns/human-tales/level04h.smp")
+  CreateMapStep("campaigns/human-tales/level04h.smp"),
+  CreateMapStep("campaigns/human-tales/level05h.smp")
 }
 
 campaign_menu = { 1, 2, 3, 4, 5 }
