@@ -122,6 +122,8 @@ function GetCampaignState(race, exp)
     return wc2.preferences.CampaignOrcX
   elseif (race == "human" and exp == "exp") then
     return wc2.preferences.CampaignHumanX
+  elseif (race == "human" and exp == "tales") then
+    return wc2.preferences.AleonaCampaignHuman
   end
   return 1
 end
@@ -142,6 +144,9 @@ function IncreaseCampaignState(race, exp, state)
   elseif (race == "human" and exp == "exp") then
     if (state ~= wc2.preferences.CampaignHumanX) then return end
     wc2.preferences.CampaignHumanX = wc2.preferences.CampaignHumanX + 1
+  elseif (race == "human" and exp == "tales") then
+    if (state ~= wc2.preferences.AleonaCampaignHuman) then return end
+    wc2.preferences.AleonaCampaignHuman = wc2.preferences.AleonaCampaignHuman + 1
   end
   -- Make sure that we immediately save state
   SavePreferences()
@@ -191,6 +196,7 @@ end
 function CampaignButtonTitle(race, exp, i)
   local name = "campaigns/" .. race
   if (exp == "exp") then name = name .. "-exp" end
+  if (exp == "tales") then name = name .. "-tales" end
   name = name .. "/level"
   if (exp == "exp") then name = name .. "x" end
   if (i<10) then name = name .. "0" end
@@ -254,7 +260,7 @@ function RunCampaignSubmenu(campaign, race, exp)
   end
 
   menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 212 + (36 * 5),
-    function() menu:stop(); currentCampaign = nil; currentRace = nil; currentExp = nil; currentState = nil; RunCampaignGameMenu() end)
+    function() menu:stop(); currentCampaign = nil; currentRace = nil; currentExp = nil; currentState = nil; end)
 
   menu:run()
 

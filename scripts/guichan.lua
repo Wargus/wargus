@@ -425,14 +425,57 @@ function RunMap(map, objective, fow, revealmap)
        RevealMap()
     end
     StartMap(map)
+    if (not IsNetworkGame()) then
+      SetDefaultPlayerNames()
+    end
     if GameResult ~= GameRestart then
       loop = false
     end
   end
   RunResultsMenu(s)
-
   InitGameSettings()
   SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+end
+
+function SetDefaultPlayerNames()
+-- Add player names according to player color
+	for i=0,7 do
+		if (GetPlayerData(i, "RaceName") == "human") then
+			if (i == 0) then
+				SetPlayerData(i, "Name", "Nation of Stromgarde")
+			elseif (i == 1) then
+				SetPlayerData(i, "Name", "Nation of Azeroth")
+			elseif (i == 2) then
+				SetPlayerData(i, "Name", "Nation of Kul Tiras")
+			elseif (i == 3) then
+				SetPlayerData(i, "Name", "Nation of Dalaran")
+			elseif (i == 4) then
+				SetPlayerData(i, "Name", "Nation of Alterac")
+			elseif (i == 5) then
+				SetPlayerData(i, "Name", "Nation of Gilneas")
+			elseif (i == 6) then
+				SetPlayerData(i, "Name", "Nation of Lordaeron")
+			end
+		elseif  (GetPlayerData(i, "RaceName") == "orc") then
+			if (i == 0) then
+				SetPlayerData(i, "Name", "Blackrock Clan")
+			elseif (i == 1) then
+				SetPlayerData(i, "Name", "Stormreaver Clan")
+			elseif (i == 2) then
+				SetPlayerData(i, "Name", "Bleeding Hollow Clan")
+			elseif (i == 3) then
+				SetPlayerData(i, "Name", "Twilight's Hammer Clan")
+			elseif (i == 4) then
+				SetPlayerData(i, "Name", "Burning Blade Clan")
+			elseif (i == 5) then
+				SetPlayerData(i, "Name", "Black Tooth Grin Clan")
+			elseif (i == 6) then
+				SetPlayerData(i, "Name", "Dragonmaw Clan")
+			elseif (i == 7) then
+				SetPlayerData(i, "Name", "Laughing Skull Clan")
+			end
+		end
+	end
 end
 
 mapname = "maps/multi/(2)mysterious-dragon-isle.smp.gz"
@@ -638,27 +681,31 @@ function BuildProgramStartMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
-  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. "  " .. wargus.Homepage, offx + 320, offy + 390 + 18*0)
-  menu:addLabel("Stratagus V" .. GetStratagusVersion() .. "  " .. GetStratagusHomepage(), offx + 320, offy + 390 + 18*1)
-  menu:addLabel(wargus.Copyright, offx + 320, offy + 390 + 18*4)
+  --menu:addLabel(wargus.Name .. " V" .. wargus.Version .. "  " .. wargus.Homepage, offx + 320, offy + 390 + 18*0)
+  --menu:addLabel("Stratagus V" .. GetStratagusVersion() .. "  " .. GetStratagusHomepage(), offx + 320, offy + 390 + 18*1)
+  --menu:addLabel(wargus.Copyright, offx + 320, offy + 390 + 18*4)
 
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
+  
+  menu:addFullButton("~!Campaign Game", "c", offx + 208, offy + 104 + 36*-1,
+    function() RunModCampaignGameMenu(); menu:stop(1) end)
   menu:addFullButton("~!Single Player Game", "s", offx + 208, offy + 104 + 36*0,
     function() RunSinglePlayerGameMenu(); menu:stop(1) end)
   menu:addFullButton("~!Multi Player Game", "m", offx + 208, offy + 104 + 36*1,
     function() RunMultiPlayerGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Campaign Game", "c", offx + 208, offy + 104 + 36*2,
-    function() RunCampaignGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Load Game", "l", offx + 208, offy + 104 + 36*3,
+  menu:addFullButton("~!Load Game", "l", offx + 208, offy + 104 + 36*2,
     function() RunLoadGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Replay Game", "r", offx + 208, offy + 104 + 36*4,
+  menu:addFullButton("~!Replay Game", "r", offx + 208, offy + 104 + 36*3,
     function() RunReplayGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Options", "o", offx + 208, offy + 104 + 36*5,
+  menu:addFullButton("~!Options", "o", offx + 208, offy + 104 + 36*4,
     function() RunOptionsMenu(); menu:stop(1) end)
-    menu:addFullButton("~!Editor", "e", offx + 208, offy + 104 + 36*6,
+  menu:addFullButton("Load Mo~!d", "d", offx + 208, offy + 104 + 36*5,
+    function() RunLoadModMenu(); menu:stop(1) end)
+  menu:addFullButton("Map ~!Editor", "e", offx + 208, offy + 104 + 36*6,
     function() RunEditorMenu(); menu:stop(1) end)
   menu:addFullButton("S~!how Credits", "h", offx + 208, offy + 104 + 36*7, RunShowCreditsMenu)
 
-  menu:addFullButton("E~!xit Program", "x", offx + 208, offy + 104 + 36*9,
+  menu:addFullButton("E~!xit Program", "x", offx + 208, offy + 104 + 36*8,
     function() menu:stop() end)
 
   return menu:run()
@@ -678,6 +725,61 @@ function RunProgramStartMenu()
   end
 end
 
+function RunLoadModMenu()
+  buttonStatut = 0
+  local menu = WarMenu(nil, panel(5), false)
+  menu:setSize(352, 352)
+  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
+  menu:setDrawMenusUnder(true)
+
+  menu:addLabel("Load Mod", 176, 8)
+
+  local browser = menu:addBrowser("mods/", ".lua$",
+    24, 140, 300, 108)
+
+  local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
+
+  menu:addHalfButton("~!OK", "o", 48, 318,
+    function()
+      if (browser:getSelected() < 0) then
+        return
+      end
+      Load(browser.path .. browser:getSelectedItem())
+      menu:stop()
+    end)
+  menu:addHalfButton("~!Cancel", "c", 198, 318,
+    function() buttonStatut = 2; menu:stop() end)
+
+  menu:run()
+end
+
+function RunModCampaignGameMenu()
+  buttonStatut = 0
+  local menu = WarMenu(nil, panel(5), false)
+  menu:setSize(352, 352)
+  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
+  menu:setDrawMenusUnder(true)
+
+  menu:addLabel("Campaign Game", 176, 8)
+
+  local browser = menu:addBrowser("campaigns/list/", "",
+    24, 140, 300, 108)
+
+  local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
+
+  menu:addHalfButton("~!OK", "o", 48, 318,
+    function()
+      if (browser:getSelected() < 0) then
+        return
+      end
+      Load(browser.path .. browser:getSelectedItem())
+      menu:stop()
+    end)
+  menu:addHalfButton("~!Cancel", "c", 198, 318,
+    function() buttonStatut = 2; menu:stop() end)
+
+  menu:run()
+end
 
 Load("scripts/menus/campaign.lua")
 Load("scripts/menus/load.lua")
@@ -714,4 +816,3 @@ else
     RunProgramStartMenu()
   end
 end
-

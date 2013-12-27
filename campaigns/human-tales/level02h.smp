@@ -1,0 +1,6 @@
+-- Stratagus Map Presentation
+-- File generated automatically from pudconvert V1.0
+
+DefinePlayerTypes("person","computer","nobody","nobody","nobody","nobody","computer")
+PresentMap("2nd Level Mythic Campaign", 2, 32, 32, 1)
+DefineMapSetup("campaigns/human-tales/level02h_c.sms")
