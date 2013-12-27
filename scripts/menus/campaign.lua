@@ -114,9 +114,9 @@ function GetCampaignState(race, exp)
   -- Loaded saved game could have other old state
   -- Make sure that we use saved state from config file
   Load("preferences.lua")
-  if (race == "orc" and exp ~= "exp") then
+  if (race == "orc" and exp == "") then
     return wc2.preferences.CampaignOrc
-  elseif (race == "human" and exp ~= "exp") then
+  elseif (race == "human" and exp == "") then
     return wc2.preferences.CampaignHuman
   elseif (race == "orc" and exp == "exp") then
     return wc2.preferences.CampaignOrcX
@@ -132,10 +132,10 @@ function IncreaseCampaignState(race, exp, state)
   -- Loaded saved game could have other old state
   -- Make sure that we use saved state from config file
   Load("preferences.lua")
-  if (race == "orc" and exp ~= "exp") then
+  if (race == "orc" and exp == "") then
     if (state ~= wc2.preferences.CampaignOrc) then return end
     wc2.preferences.CampaignOrc = wc2.preferences.CampaignOrc + 1
-  elseif (race == "human" and exp ~= "exp") then
+  elseif (race == "human" and exp == "") then
     if (state ~= wc2.preferences.CampaignHuman) then return end
     wc2.preferences.CampaignHuman = wc2.preferences.CampaignHuman + 1
   elseif (race == "orc" and exp == "exp") then
