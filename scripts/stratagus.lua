@@ -293,7 +293,7 @@ local defaultPreferences = {
 	MouseScrollSpeedDefault = 4,    --  While middle-mouse is pressed: Pixels to move per scrolled mouse pixel, negative = reversed
 	MusicEnabled = true,
 	MusicVolume = 128,
-	PlayerName = "Player",
+	PlayerName = "Nameless Hero",
 	ServerIP = "localhost",
 	ShowCommandKey = true,
 	ShowTips = true,

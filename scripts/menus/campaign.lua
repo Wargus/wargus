@@ -110,6 +110,10 @@ function Briefing(title, objs, bg, text, voices)
   SetGameSpeed(speed)
 end
 
+function GetCustomCampaignState(race, exp)
+	return 1
+end
+
 function GetCampaignState(race, exp)
   -- Loaded saved game could have other old state
   -- Make sure that we use saved state from config file
@@ -124,8 +128,12 @@ function GetCampaignState(race, exp)
     return wc2.preferences.CampaignHumanX
   elseif (race == "human" and exp == "tales") then
     return wc2.preferences.AleonaCampaignHuman
+  else
+	return GetCustomCampaignState(race, exp)
   end
-  return 1
+end
+
+function IncreaseCustomCampaignState(race, exp, state)
 end
 
 function IncreaseCampaignState(race, exp, state)
@@ -147,6 +155,8 @@ function IncreaseCampaignState(race, exp, state)
   elseif (race == "human" and exp == "tales") then
     if (state ~= wc2.preferences.AleonaCampaignHuman) then return end
     wc2.preferences.AleonaCampaignHuman = wc2.preferences.AleonaCampaignHuman + 1
+  else
+	IncreaseCustomCampaignState(currentRace, currentExp, currentState)
   end
   -- Make sure that we immediately save state
   SavePreferences()
@@ -195,8 +205,7 @@ end
 
 function CampaignButtonTitle(race, exp, i)
   local name = "campaigns/" .. race
-  if (exp == "exp") then name = name .. "-exp" end
-  if (exp == "tales") then name = name .. "-tales" end
+  if (exp ~= "") then name = name .. "-" .. exp end
   name = name .. "/level"
   if (exp == "exp") then name = name .. "x" end
   if (i<10) then name = name .. "0" end
