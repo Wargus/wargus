@@ -127,22 +127,22 @@ function AiNephrite_Attack_2013()
 		--AddMessage("It is time to attack.")
 		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroRider()) + GetPlayerData(AiPlayer(), "UnitTypesCount", "unit-skeleton") + GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiMage()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())) >= nephrite_attackbuffer) then
 			--AddMessage("Attacking with force 1.")
-			AiForce(nephrite_attackforce, {AiHeroRider(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroRider()), AiHeroSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroSoldier()), AiMage(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiMage()), AiFlyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()), "unit-skeleton", GetPlayerData(AiPlayer(), "UnitTypesCount", "unit-skeleton"), AiHeroShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroShooter()), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()), AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiCavalry(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())), AiShooter(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()))})
+			AiForce(nephrite_attackforce, {AiEliteSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteSoldier()), AiHeroRider(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroRider()), AiHeroSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroSoldier()), AiMage(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiMage()), AiFlyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()), AiBones(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiBones()), AiHeroShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroShooter()), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()), AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiCavalry(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())), AiShooter(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()))})
 			AiAttackWithForce(nephrite_attackforce)
 			nephrite_wait = 150
 			if (nephrite_attackforce >= 8) then
 				nephrite_attackforce = 1
 				nephrite_attackbuffer = nephrite_attackbuffer + nephrite_increment
-				AiForce(0, {AiSoldier(), 0, AiCatapult(), 0, AiCavalry(), 0, AiShooter(), 0})
-				AiForce(1, {AiSoldier(), 0, AiCatapult(), 0, AiCavalry(), 0, AiShooter(), 0})
-				AiForce(2, {AiSoldier(), 0, AiCatapult(), 0, AiCavalry(), 0, AiShooter(), 0})
-				AiForce(3, {AiSoldier(), 0, AiCatapult(), 0, AiCavalry(), 0, AiShooter(), 0})
-				AiForce(4, {AiSoldier(), 0, AiCatapult(), 0, AiCavalry(), 0, AiShooter(), 0})
-				AiForce(5, {AiSoldier(), 0, AiCatapult(), 0, AiCavalry(), 0, AiShooter(), 0})
-				AiForce(6, {AiSoldier(), 0, AiCatapult(), 0, AiCavalry(), 0, AiShooter(), 0})
-				AiForce(7, {AiSoldier(), 0, AiCatapult(), 0, AiCavalry(), 0, AiShooter(), 0})
-				AiForce(8, {AiSoldier(), 0, AiCatapult(), 0, AiCavalry(), 0, AiShooter(), 0})
-				AiForce(9, {AiSoldier(), 0, AiCatapult(), 0, AiCavalry(), 0, AiShooter(), 0})
+				AiForce(0, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
+				AiForce(1, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
+				AiForce(2, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
+				AiForce(3, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
+				AiForce(4, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
+				AiForce(5, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
+				AiForce(6, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
+				AiForce(7, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
+				AiForce(8, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
+				AiForce(9, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
 			else
 				nephrite_attackforce = nephrite_attackforce + 1
 			end
@@ -321,6 +321,7 @@ function AiNephrite_NoCav_2013()
 end
 
 function AiNephrite_Level5()
+	AiSet(AiLumberMill(), 1)
 	if (nephrite_attackforce ~= nil) then
 		if (GetPlayerData(2, "Resources", "gold") > 1000) then
 			AiNephrite_Train_2013()
