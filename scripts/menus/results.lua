@@ -41,7 +41,7 @@ function RunResultsMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
-  local names_font = Fonts["small-title"]
+  local names_font = Fonts["large"]
   local top_offset = 57
   local bottom_offset = 178
   local description_offset = 30
@@ -80,7 +80,7 @@ function RunResultsMenu()
         name = name .. " - Neutral"
       end
       menu:addLabel(name, offx + 320,
-        offy + bottom_offset + description_offset + 26 + line_spacing * c + 5,
+        offy + bottom_offset + description_offset - 15 + line_spacing * c + 5,
         names_font, true)
       menu:addLabel(GetPlayerData(i, "TotalUnits"), offx + 10 + 40,
         offy + bottom_offset + description_offset + line_spacing * c + 5,
