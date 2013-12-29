@@ -444,6 +444,22 @@ function AiSoldier()
   end
 end
 
+function AiEliteSoldier()
+  if (AiGetRace() == race1) then
+    return "unit-order-paladin"
+  else
+    return "unit-order-paladin"
+  end
+end
+
+function AiBones()
+  if (AiGetRace() == race1) then
+    return "unit-skeleton"
+  else
+    return "unit-skeleton"
+  end
+end
+
 --
 --  Shooter of the current race.
 --

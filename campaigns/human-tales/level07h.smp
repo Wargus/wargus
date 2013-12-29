@@ -25,14 +25,6 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-campaign_steps = {
-  CreateMapStep("campaigns/human-tales/level01h.smp"),
-  CreateMapStep("campaigns/human-tales/level02h.smp"),
-  CreateMapStep("campaigns/human-tales/level03h.smp"),
-  CreateMapStep("campaigns/human-tales/level04h.smp"),
-  CreateMapStep("campaigns/human-tales/level05h.smp"),
-  CreateMapStep("campaigns/human-tales/level06h.smp"),
-  CreateMapStep("campaigns/human-tales/level07h.smp")
-}
-
-campaign_menu = { 1, 2, 3, 4, 5, 6, 7 }
+DefinePlayerTypes("computer","computer","person","nobody","computer")
+PresentMap("(unnamed)", 4, 128, 128, 1)
+--DefineMapSetup("campaigns/human-tales/level07h_c.sms")
