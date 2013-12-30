@@ -1,0 +1,217 @@
+--       _________ __                 __
+--      /   _____//  |_____________ _/  |______     ____  __ __  ______
+--      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
+--      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
+--     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
+--             \/                  \/          \//_____/            \/ 
+--  ______________________                           ______________________
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
+--
+--	(c) Copyright 2013 by Kyran Jackson
+--
+--      This program is free software; you can redistribute it and/or modify
+--      it under the terms of the GNU General Public License as published by
+--      the Free Software Foundation; either version 2 of the License, or
+--      (at your option) any later version.
+--  
+--      This program is distributed in the hope that it will be useful,
+--      but WITHOUT ANY WARRANTY; without even the implied warranty of
+--      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--      GNU General Public License for more details.
+--  
+--      You should have received a copy of the GNU General Public License
+--      along with this program; if not, write to the Free Software
+--      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+--
+
+function StartCustomGame_Lua()
+
+	local info_panel_x = 0
+	local info_panel_y = 160
+
+	local min_damage = Div(ActiveUnitVar("PiercingDamage"), 2)
+	local max_damage = Add(ActiveUnitVar("PiercingDamage"), ActiveUnitVar("BasicDamage"))
+	local damage_bonus = Sub(ActiveUnitVar("PiercingDamage", "Value", "Type"),
+							ActiveUnitVar("PiercingDamage", "Value", "Initial"));
+
+
+DefinePanelContents(
+-- Default presentation. ------------------------
+  {
+  Ident = "panel-general-contents",
+  Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
+  Contents = {
+	{ Pos = {10, 48}, Condition = {ShowOpponent = false, HideNeutral = true},
+		More = {"LifeBar", {Variable = "HitPoints", Height = 7, Width = 45}}
+	},
+	{ Pos = {34, 49}, Condition = {ShowOpponent = false, HideNeutral = true},
+		More = {"FormattedText2", {
+			Font = "small", Variable = "HitPoints", Format = "%d/%d",
+			Component1 = "Value", Component2 = "Max", Centered = true}}
+	},
+
+	{ Pos = {114, 11}, More = {"Text", {Text = Line(1, UnitName("Active"), 110, "game"), Centered = true}} },
+	{ Pos = {114, 25}, More = {"Text", {Text = Line(2, UnitName("Active"), 110, "game"), Centered = true}} },
+
+-- Ressource Left
+	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
+		More = {"FormattedText2", {Format = "%s Left:%d", Variable = "GiveResource",
+					Component1 = "Name", Component2 = "Value", Centered = true}}
+	},
+
+-- Construction
+	{ Pos = {12, 153}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 18}}
+	},
+	{ Pos = {50, 156}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+		More = {"Text", "% Complete"}},
+	{ Pos = {107, 78}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+		More = {"Icon", {Unit = "Worker"}}}
+
+
+  } },
+-- Supply Building constructed.----------------
+  {
+  Ident = "panel-building-contents",
+  Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
+  Condition = {ShowOpponent = false, HideNeutral = true, Build = "false", Supply = "only", Training = "false", UpgradeTo = "false"},
+-- FIXME more condition. not town hall.
+  Contents = {
+-- Food building
+	{ Pos = {-9916, -9971}, More = {"Text", "Usage"} },
+	{ Pos = {-9958, -9986}, More = {"Text", {Text = "Supply : ", Variable = "Supply", Component = "Max"}} },
+	{ Pos = {-9951, -99102}, More = { "Text", {Text = Concat("Demand : ",
+									If(GreaterThan(ActiveUnitVar("Demand", "Max"), ActiveUnitVar("Supply", "Max")),
+										InverseVideo(String(ActiveUnitVar("Demand", "Max"))),
+										String(ActiveUnitVar("Demand", "Max")) ))}}
+    }
+
+  } },
+
+-- Attack Unit -----------------------------
+  {
+  Ident = "panel-attack-unit-contents",
+  Pos = {info_panel_x, info_panel_y},
+  DefaultFont = "game",
+  Condition = {ShowOpponent = true, HideNeutral = true, Building = "false", Build = "false"},
+  Contents = {
+-- Unit caracteristics
+	{ Pos = {114, 41},
+		More = {"FormattedText", {Variable = "Level", Format = "Level ~<%d~>"}}
+	},
+	{ Pos = {114, 56},
+		More = {"FormattedText2", {Centered = true,
+			Variable1 = "Xp", Variable2 = "Kill", Format = "XP:~<%d~> Kills:~<%d~>"}}
+	},
+	{ Pos = {47, 71}, Condition = {Armor = "only"},
+		More = {"Text", {
+					Text = "Armor: ", Variable = "Armor", Stat = true}}
+	},
+	{ Pos = {54, 118}, Condition = {SightRange = "only"},
+		More = {"Text", {Text = "Sight: ", Variable = "SightRange", Stat = true}}
+	},
+	{ Pos = {53, 133}, Condition = {Speed = "only"},
+		More = {"Text", {Text = "Speed: ", Variable = "Speed", Stat = true}}
+	} } })
+  
+	SetTrainingQueue(false)
+  
+end
+  
+function CleanCustomGame_Lua()
+
+	local info_panel_x = 0
+	local info_panel_y = 160
+
+	local min_damage = Div(ActiveUnitVar("PiercingDamage"), 2)
+	local max_damage = Add(ActiveUnitVar("PiercingDamage"), ActiveUnitVar("BasicDamage"))
+	local damage_bonus = Sub(ActiveUnitVar("PiercingDamage", "Value", "Type"),
+							ActiveUnitVar("PiercingDamage", "Value", "Initial"));
+
+
+DefinePanelContents(
+-- Default presentation. ------------------------
+  {
+  Ident = "panel-general-contents",
+  Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
+  Contents = {
+	{ Pos = {10, 48}, Condition = {ShowOpponent = false, HideNeutral = true},
+		More = {"LifeBar", {Variable = "HitPoints", Height = 7, Width = 45}}
+	},
+	{ Pos = {34, 49}, Condition = {ShowOpponent = false, HideNeutral = true},
+		More = {"FormattedText2", {
+			Font = "small", Variable = "HitPoints", Format = "%d/%d",
+			Component1 = "Value", Component2 = "Max", Centered = true}}
+	},
+
+	{ Pos = {114, 11}, More = {"Text", {Text = Line(1, UnitName("Active"), 110, "game"), Centered = true}} },
+	{ Pos = {114, 25}, More = {"Text", {Text = Line(2, UnitName("Active"), 110, "game"), Centered = true}} },
+
+-- Ressource Left
+	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
+		More = {"FormattedText2", {Format = "%s Left:%d", Variable = "GiveResource",
+					Component1 = "Name", Component2 = "Value", Centered = true}}
+	},
+
+-- Construction
+	{ Pos = {12, 153}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 18}}
+	},
+	{ Pos = {50, 156}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+		More = {"Text", "% Complete"}},
+	{ Pos = {107, 78}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+		More = {"Icon", {Unit = "Worker"}}}
+
+
+  } },
+-- Supply Building constructed.----------------
+  {
+  Ident = "panel-building-contents",
+  Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
+  Condition = {ShowOpponent = false, HideNeutral = true, Build = "false", Supply = "only", Training = "false", UpgradeTo = "false"},
+-- FIXME more condition. not town hall.
+  Contents = {
+-- Food building
+	{ Pos = {16, 71}, More = {"Text", "Usage"} },
+	{ Pos = {58, 86}, More = {"Text", {Text = "Supply : ", Variable = "Supply", Component = "Max"}} },
+	{ Pos = {51, 102}, More = { "Text", {Text = Concat("Demand : ",
+									If(GreaterThan(ActiveUnitVar("Demand", "Max"), ActiveUnitVar("Supply", "Max")),
+										InverseVideo(String(ActiveUnitVar("Demand", "Max"))),
+										String(ActiveUnitVar("Demand", "Max")) ))}}
+    }
+
+  } },
+
+-- Attack Unit -----------------------------
+  {
+  Ident = "panel-attack-unit-contents",
+  Pos = {info_panel_x, info_panel_y},
+  DefaultFont = "game",
+  Condition = {ShowOpponent = true, HideNeutral = true, Building = "false", Build = "false"},
+  Contents = {
+-- Unit caracteristics
+	{ Pos = {114, 41},
+		More = {"FormattedText", {Variable = "Level", Format = "Level ~<%d~>"}}
+	},
+	{ Pos = {114, 56},
+		More = {"FormattedText2", {Centered = true,
+			Variable1 = "Xp", Variable2 = "Kill", Format = "XP:~<%d~> Kills:~<%d~>"}}
+	},
+	{ Pos = {47, 71}, Condition = {Armor = "only"},
+		More = {"Text", {
+					Text = "Armor: ", Variable = "Armor", Stat = true}}
+	},
+	{ Pos = {54, 118}, Condition = {SightRange = "only"},
+		More = {"Text", {Text = "Sight: ", Variable = "SightRange", Stat = true}}
+	},
+	{ Pos = {53, 133}, Condition = {Speed = "only"},
+		More = {"Text", {Text = "Speed: ", Variable = "Speed", Stat = true}}
+	} } })
+
+	SetTrainingQueue(true)
+end
+  
+StartCustomGame_Lua()
+  
+RunSinglePlayerGameMenu()

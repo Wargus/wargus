@@ -227,7 +227,17 @@ function LoadTileModels(tileset)
   OldLoadTileModels("scripts/tilesets/" .. GameSettings.Tileset)
 end
 
+-- Called by stratagus when a game is restarted
+
+function StartCustomGame_Lua()
+
+end
+
 -- Called by stratagus when a game finished
+function CleanCustomGame_Lua()
+
+end
+
 function CleanGame_Lua()
 	print("game ends")
 	ReInitAiGameData()
@@ -332,4 +342,5 @@ function CleanGame_Lua()
 	RedMageTower_x = nil
 	RedMageTower_y = nil
 	
+	CleanCustomGame_Lua()
 end

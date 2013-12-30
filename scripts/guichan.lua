@@ -430,7 +430,9 @@ function RunMap(map, objective, fow, revealmap)
     end
     if GameResult ~= GameRestart then
       loop = false
-    end
+    else
+		StartCustomGame_Lua()
+	end
   end
   RunResultsMenu(s)
   InitGameSettings()
@@ -478,7 +480,7 @@ function SetDefaultPlayerNames()
 	end
 end
 
-mapname = "maps/multi/(2)mysterious-dragon-isle.smp.gz"
+mapname = "maps/skirmish/(2)mysterious-dragon-isle.smp.gz"
 local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
 mapinfo = {
   playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
@@ -544,7 +546,7 @@ function RunSelectScenarioMenu()
 
   menu:addLabel("Select scenario", 176, 8)
 
-  local browser = menu:addBrowser("maps/", "^.*%.smp%.?g?z?$",
+  local browser = menu:addBrowser("maps/skirmish", "^.*%.smp%.?g?z?$",
     24, 140, 300, 108, mapname)
 
   local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
@@ -570,6 +572,60 @@ function RunSelectScenarioMenu()
     function() buttonStatut = 2; menu:stop() end)
 
   menu:run()
+end
+
+function RunSinglePlayerTypeMenu()
+
+  wargus.playlist = { "music/Orc Briefing.ogg" }
+  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+
+  if not (IsMusicPlaying()) then
+    PlayMusic("music/Orc Briefing.ogg")
+  end
+
+  local menu = WarMenu()
+  local offx = (Video.Width - 640) / 2
+  local offy = (Video.Height - 480) / 2
+
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
+  menu:addLabel("~<Single Player~>", offx + 320, offy + 212 - 25)
+  local buttonNewMap =
+  menu:addFullButton("~!Standard Game", "s", offx + 208, offy + 104 + 36*3,
+    function() RunSinglePlayerGameModeMenu(); menu:stop(1) end)
+  menu:addFullButton("~!Campaign Game", "c", offx + 208, offy + 104 + 36*4,
+    function() RunModCampaignGameMenu(); menu:stop(1) end)
+  menu:addFullButton("~!Load Game", "l", offx + 208, offy + 104 + 36*5,
+    function() RunLoadGameMenu(); menu:stop(1) end)
+  menu:addFullButton("~!Back", "b", offx + 208, offy + 104 + 36*6,
+    function() menu:stop() end)
+  return menu:run()
+end
+
+function RunSinglePlayerGameModeMenu()
+
+  buttonStatut = 0
+  local menu = WarMenu(nil, panel(5), false)
+  menu:setSize(352, 352)
+  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
+  menu:setDrawMenusUnder(true)
+
+  menu:addLabel("Standard Game", 176, 8)
+
+  local browser = menu:addBrowser("maps/list/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
+
+  menu:addHalfButton("~!OK", "o", 48, 318,
+    function()
+      if (browser:getSelected() < 0) then
+        return
+      end
+      Load(browser.path .. browser:getSelectedItem())
+      menu:stop()
+    end)
+  menu:addHalfButton("~!Cancel", "c", 198, 318,
+    function() buttonStatut = 2; menu:stop(1); RunSinglePlayerTypeMenu() end)
+
+  menu:run()
+
 end
 
 function RunSinglePlayerGameMenu()
@@ -687,25 +743,25 @@ function BuildProgramStartMenu()
 
   menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
   
-  menu:addFullButton("~!Campaign Game", "c", offx + 208, offy + 104 + 36*-1,
-    function() RunModCampaignGameMenu(); menu:stop(1) end)
+  --menu:addFullButton("~!Campaign Game", "c", offx + 208, offy + 104 + 36*-1,
+  --  function() RunModCampaignGameMenu(); menu:stop(1) end)
   menu:addFullButton("~!Single Player Game", "s", offx + 208, offy + 104 + 36*0,
-    function() RunSinglePlayerGameMenu(); menu:stop(1) end)
+    function() RunSinglePlayerTypeMenu(); menu:stop(1) end)
   menu:addFullButton("~!Multi Player Game", "m", offx + 208, offy + 104 + 36*1,
     function() RunMultiPlayerGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Load Game", "l", offx + 208, offy + 104 + 36*2,
-    function() RunLoadGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Replay Game", "r", offx + 208, offy + 104 + 36*3,
+  --menu:addFullButton("~!Load Game", "l", offx + 208, offy + 104 + 36*2,
+  --  function() RunLoadGameMenu(); menu:stop(1) end)
+  menu:addFullButton("~!Replay Game", "r", offx + 208, offy + 104 + 36*2,
     function() RunReplayGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Options", "o", offx + 208, offy + 104 + 36*4,
+  menu:addFullButton("~!Options", "o", offx + 208, offy + 104 + 36*3,
     function() RunOptionsMenu(); menu:stop(1) end)
-  menu:addFullButton("Load Mo~!d", "d", offx + 208, offy + 104 + 36*5,
+  menu:addFullButton("~!Load Mod", "l", offx + 208, offy + 104 + 36*4,
     function() RunLoadModMenu(); menu:stop(1) end)
-  menu:addFullButton("Map ~!Editor", "e", offx + 208, offy + 104 + 36*6,
+  menu:addFullButton("Map ~!Editor", "e", offx + 208, offy + 104 + 36*5,
     function() RunEditorMenu(); menu:stop(1) end)
-  menu:addFullButton("S~!how Credits", "h", offx + 208, offy + 104 + 36*7, RunShowCreditsMenu)
+  menu:addFullButton("S~!how Credits", "h", offx + 208, offy + 104 + 36*6, RunShowCreditsMenu)
 
-  menu:addFullButton("E~!xit Program", "x", offx + 208, offy + 104 + 36*8,
+  menu:addFullButton("E~!xit Program", "x", offx + 208, offy + 104 + 36*7,
     function() menu:stop() end)
 
   return menu:run()
@@ -733,11 +789,8 @@ function RunLoadModMenu()
   menu:setDrawMenusUnder(true)
 
   menu:addLabel("Load Mod", 176, 8)
-
-  local browser = menu:addBrowser("mods/", ".lua$",
-    24, 140, 300, 108)
-
-  local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
+  
+  local browser = menu:addBrowser("mods/list/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
 
   menu:addHalfButton("~!OK", "o", 48, 318,
     function()
@@ -762,10 +815,7 @@ function RunModCampaignGameMenu()
 
   menu:addLabel("Campaign Game", 176, 8)
 
-  local browser = menu:addBrowser("campaigns/list/", "",
-    24, 140, 300, 108)
-
-  local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
+  local browser = menu:addBrowser("campaigns/list/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
 
   menu:addHalfButton("~!OK", "o", 48, 318,
     function()
@@ -776,7 +826,7 @@ function RunModCampaignGameMenu()
       menu:stop()
     end)
   menu:addHalfButton("~!Cancel", "c", 198, 318,
-    function() buttonStatut = 2; menu:stop() end)
+    function() buttonStatut = 2; menu:stop(1); RunSinglePlayerTypeMenu() end)
 
   menu:run()
 end

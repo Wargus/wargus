@@ -65,13 +65,7 @@ function AiLevel05a()
 			if (GetNumUnitsAt(AiPlayer(), "unit-ballista", {0, 0}, {256, 256}) < 1) then	
 				CreateUnit("unit-ballista", 0, {1, 1})
 				CreateUnit("unit-ballista", 0, {0, 1})
-				CreateUnit("unit-ballista", 0, {1, 1})
-				CreateUnit("unit-ballista", 0, {0, 1})
-				CreateUnit("unit-ballista", 0, {1, 1})
-				CreateUnit("unit-ballista", 0, {0, 1})
-				CreateUnit("unit-ballista", 0, {1, 1})
-				CreateUnit("unit-ballista", 0, {0, 1})
-				AiForce(5, {"unit-ballista", 8})
+				AiForce(5, {"unit-ballista", 2})
 				AiAttackWithForce(5)
 			end
 			if (GetNumUnitsAt(AiPlayer(), AiSoldier(), {0, 0}, {256, 256}) < 1) then
@@ -178,14 +172,16 @@ function AiLevel05c()
 end
 
 function AiLevel05()
-	if (nephrite_attackforce >= 7) then
-		nephrite_attackforce = 1
+	if (nephrite_attackforce ~= nil) then
+		nephrite_attackforce = 5
 	end
 	if (AiPlayer() == 0) then
 		AiLevel05a()
 	else
 		if (GameCycle > 100000) then
 			AiZoisite_2013()
+		else
+			AiLevel05c()
 		end
 	end
 end
