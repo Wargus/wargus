@@ -269,8 +269,10 @@ function RunCampaignSubmenu(campaign, race, exp)
   end
 
   menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 212 + (36 * 5),
-    function() menu:stop(); currentCampaign = nil; currentRace = nil; currentExp = nil; currentState = nil; end)
+    function()  menu:stop(1); RunSinglePlayerTypeMenu(); currentCampaign = nil; currentRace = nil; currentExp = nil; currentState = nil; end)
 
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+	
   menu:run()
 
 end

@@ -480,7 +480,7 @@ function SetDefaultPlayerNames()
 	end
 end
 
-mapname = "maps/skirmish/(2)mysterious-dragon-isle.smp.gz"
+mapname = "maps/skirmish/(2)timeless-isle.smp.gz"
 local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
 mapinfo = {
   playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
@@ -596,7 +596,7 @@ function RunSinglePlayerTypeMenu()
     function() RunModCampaignGameMenu(); menu:stop(1) end)
   menu:addFullButton("~!Load Game", "l", offx + 208, offy + 104 + 36*5,
     function() RunLoadGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Back", "b", offx + 208, offy + 104 + 36*6,
+  menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 104 + 36*6,
     function() menu:stop() end)
   return menu:run()
 end
@@ -642,6 +642,8 @@ function RunSinglePlayerGameMenu()
   local descriptionl
   local tilesetdd
 
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+  
   menu:addLabel("Scenario:", offx + 16, offy + 360, Fonts["game"], false)
   mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 360 + 24, Fonts["game"], false)
   descriptionl = menu:addLabel("descriptionl", offx + 16 + 70, offy + 360, Fonts["game"], false)
@@ -669,7 +671,7 @@ function RunSinglePlayerGameMenu()
       RunMap(mapname)
       menu:stop()
     end)
-  menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() menu:stop() end)
+  menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function()  menu:stop(1); RunSinglePlayerTypeMenu() end)
 
   menu:addLabel("~<Your Race:~>", offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
   race = menu:addDropDown({"Map Default", "Human", "Orc"}, offx + 40, offy + 10 + 240,
@@ -743,14 +745,10 @@ function BuildProgramStartMenu()
 
   menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
   
-  --menu:addFullButton("~!Campaign Game", "c", offx + 208, offy + 104 + 36*-1,
-  --  function() RunModCampaignGameMenu(); menu:stop(1) end)
   menu:addFullButton("~!Single Player Game", "s", offx + 208, offy + 104 + 36*0,
     function() RunSinglePlayerTypeMenu(); menu:stop(1) end)
   menu:addFullButton("~!Multi Player Game", "m", offx + 208, offy + 104 + 36*1,
     function() RunMultiPlayerGameMenu(); menu:stop(1) end)
-  --menu:addFullButton("~!Load Game", "l", offx + 208, offy + 104 + 36*2,
-  --  function() RunLoadGameMenu(); menu:stop(1) end)
   menu:addFullButton("~!Replay Game", "r", offx + 208, offy + 104 + 36*2,
     function() RunReplayGameMenu(); menu:stop(1) end)
   menu:addFullButton("~!Options", "o", offx + 208, offy + 104 + 36*3,

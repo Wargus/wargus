@@ -197,7 +197,7 @@ end
 --
 function RunEditorPlayerProperties()
 -- TODO : manage edition.
--- TODO : find a correct backgroung menu
+-- TODO : find a correct background menu
   local menu = WarGameMenu()
   local sizeX = 500
   local sizeY = 480

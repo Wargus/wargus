@@ -424,11 +424,12 @@ function RunCreateMultiGameMenu(s)
   local menu
   local map = "No Map"
   local description = "No map"
-  local mapfile = "maps/skirmish/(2)mysterious-dragon-isle.smp.gz"
+  local mapfile = "maps/skirmish/(2)timeless-isle.smp.gz"
   local playerCount = 1
   local sx = Video.Width / 20
   local sy = Video.Height / 20
 
+  
   menu = WarMenu("Create MultiPlayer game")
 
   menu:writeText("File:", sx, sy*3+30)
@@ -505,6 +506,8 @@ function RunMultiPlayerGameMenu(s)
   InitGameSettings()
   InitNetwork1()
 
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+  
   menu:addLabel("~<Multiplayer Network Game~>", offx + 640/2 + 12, offy + 192)
 
   menu:writeText(_("Nickname :"), 208 + offx, 264 + offy)
