@@ -1,0 +1,231 @@
+--       _________ __                 __
+--      /   _____//  |_____________ _/  |______     ____  __ __  ______
+--      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
+--      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
+--     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
+--             \/                  \/          \//_____/            \/ 
+--  ______________________                           ______________________
+--                        T H E   W A R   B E G I N S
+--         Stratagus - A free fantasy real time strategy game engine
+--
+--	(c) Copyright 2013 by Kyran Jackson
+--
+--      This program is free software; you can redistribute it and/or modify
+--      it under the terms of the GNU General Public License as published by
+--      the Free Software Foundation; either version 2 of the License, or
+--      (at your option) any later version.
+--  
+--      This program is distributed in the hope that it will be useful,
+--      but WITHOUT ANY WARRANTY; without even the implied warranty of
+--      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--      GNU General Public License for more details.
+--  
+--      You should have received a copy of the GNU General Public License
+--      along with this program; if not, write to the Free Software
+--      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+--
+
+function CleanCustomGame_Lua()
+	BlueLeader = nil
+	UnitFootmanNum = nil
+	UnitArcherNum = nil
+	UnitRangerNum = nil
+	UnitBallistaNum = nil
+	UnitPaladinNum = nil
+	UnitKnightNum = nil
+	UnitMageNum = nil
+	UnitDwarvesNum = nil
+	
+	Blue2Temp_x = nil
+	Blue2Temp_y = nil
+	Blue2Step = nil
+	Blue2Mana = nil
+	Blue1Temp_x = nil
+	Blue1Temp_y = nil
+	Blue1Step = nil
+	Blue1Mana = nil
+	BlueTemp = nil
+	BlueTeam1 = nil
+	BlueTeam2 = nil
+	BlueTemp_x1 = nil
+	BlueTemp_y1 = nil
+	BlueTemp_x2 = nil
+	BlueTemp_y2 = nil
+	BlueTeam1_x1 = nil
+	BlueTeam1_y1 = nil
+	BlueTeam1_x2 = nil
+	BlueTeam1_y2 = nil
+	BlueTeam2_x1 = nil
+	BlueTeam2_y1 = nil
+	BlueTeam2_x2 = nil
+	BlueTeam2_y2 = nil
+	blueribbon_stepping = nil
+	BlueBarracks1_x = nil
+	BlueBarracks1_y = nil
+	BlueBarracks2_x = nil
+	BlueBarracks2_y = nil
+	BlueBarracks3_x = nil
+	BlueBarracks3_y = nil
+	BlueBarracks4_x = nil
+	BlueBarracks4_y = nil
+	BlueInventor_x = nil
+	BlueInventor_y = nil
+	BlueMageTower_x = nil
+	BlueMageTower_y = nil
+	
+	UnitGruntNum = nil
+	UnitAxethrowerNum = nil
+	UnitBerserkerNum = nil
+	UnitCatapultNum = nil
+	UnitOgreMageNum = nil
+	UnitOgreNum = nil
+	UnitDeathKnightNum = nil
+	UnitGoblinSappersNum = nil
+	
+	redribbon_stepping = nil
+	
+	RedLeader = nil
+	Red1Mana = nil
+	Red1Mana = nil
+	
+	RedTemp = nil
+	RedTemp_x1 = nil
+	RedTemp_y1 = nil
+	RedTemp_x2 = nil
+	RedTemp_y2 = nil		
+	Red2Temp_x = nil
+	Red2Temp_y = nil
+	Red2Step = nil
+	Red2Mana = nil
+	Red1Temp_x = nil
+	Red1Temp_y = nil
+	Red1Step = nil
+	Red1Mana = nil
+	RedTeam1 = nil
+	RedTeam2 = nil
+	RedTeam1_x1 = nil
+	RedTeam1_y1 = nil
+	RedTeam1_x2 = nil
+	RedTeam1_y2 = nil
+	RedTeam2_x1 = nil
+	RedTeam2_y1 = nil
+	RedTeam2_x2 = nil
+	RedTeam2_y2 = nil
+	
+	RedBarracks1_x = nil
+	RedBarracks1_y = nil
+	RedBarracks2_x = nil
+	RedBarracks2_y = nil
+	RedBarracks3_x = nil
+	RedBarracks3_y = nil
+	RedBarracks4_x = nil
+	RedBarracks4_y = nil
+	RedInventor_x = nil
+	RedInventor_y = nil
+	RedMageTower_x = nil
+	RedMageTower_y = nil
+	
+-- Resetting the default map.
+mapname = "maps/skirmish/(2)timeless-isle.smp.gz"
+local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
+mapinfo = {
+  playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
+  description = "",
+  nplayers = 1,
+  w = 32,
+  h = 32,
+  id = 0
+}
+-- Resetting the default map directory.
+function RunSelectScenarioMenu()
+  buttonStatut = 0
+  local menu = WarMenu(nil, panel(5), false)
+  menu:setSize(352, 352)
+  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
+  menu:setDrawMenusUnder(true)
+
+  menu:addLabel("Select scenario", 176, 8)
+
+  local browser = menu:addBrowser("maps/skirmish", "^.*%.smp%.?g?z?$",
+    24, 140, 300, 108, mapname)
+
+  local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
+
+  local function cb(s)
+    l:setCaption(browser:getSelectedItem())
+    l:adjustSize()
+  end
+  browser:setActionCallback(cb)
+
+  menu:addHalfButton("~!OK", "o", 48, 318,
+    function()
+      local cap = l:getCaption()
+
+      if (browser:getSelected() < 0) then
+        return
+      end
+      buttonStatut = 1
+      mapname = browser.path .. cap
+      menu:stop()
+    end)
+  menu:addHalfButton("~!Cancel", "c", 198, 318,
+    function() buttonStatut = 2; menu:stop() end)
+
+  menu:run()
+end
+end
+
+function StartCustomGame_Lua()
+-- Selecting the default map.
+mapname = "maps/ftm/(2)less-than-three.smp"
+local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
+mapinfo = {
+  playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
+  description = "",
+  nplayers = 1,
+  w = 32,
+  h = 32,
+  id = 0
+}
+-- Selecting the map directory.
+function RunSelectScenarioMenu()
+  buttonStatut = 0
+  local menu = WarMenu(nil, panel(5), false)
+  menu:setSize(352, 352)
+  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
+  menu:setDrawMenusUnder(true)
+
+  menu:addLabel("Select scenario", 176, 8)
+
+  local browser = menu:addBrowser("maps/ftm", "^.*%.smp%.?g?z?$",
+    24, 140, 300, 108, mapname)
+
+  local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
+
+  local function cb(s)
+    l:setCaption(browser:getSelectedItem())
+    l:adjustSize()
+  end
+  browser:setActionCallback(cb)
+
+  menu:addHalfButton("~!OK", "o", 48, 318,
+    function()
+      local cap = l:getCaption()
+
+      if (browser:getSelected() < 0) then
+        return
+      end
+      buttonStatut = 1
+      mapname = browser.path .. cap
+      menu:stop()
+    end)
+  menu:addHalfButton("~!Cancel", "c", 198, 318,
+    function() buttonStatut = 2; menu:stop() end)
+
+  menu:run()
+end
+end
+  
+StartCustomGame_Lua()
+  
+RunSinglePlayerGameMenu()
