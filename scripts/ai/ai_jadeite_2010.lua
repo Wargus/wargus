@@ -105,13 +105,13 @@ function AiJadeite_Power_2010()
 							if ((GetPlayerData(AiPlayer(), "Resources", "gold") > 3000) and (GetPlayerData(AiPlayer(), "Resources", "wood") > 1500)) then
 								AiSet(AiBarracks(), 3)
 							end
-							if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) <= 3) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiUpgradeCavalryMage()) <= 3)) then
+							if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) <= 3) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) <= 3)) then
 								AiSet(AiCavalry(), 10)
 							else
-								if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 7) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiUpgradeCavalryMage()) >= 7)) then
-									AiForce(6, {AiCavalry(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiUpgradeCavalryMage())), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult())})
+								if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 7) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) >= 7)) then
+									AiForce(6, {AiCavalry(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage())), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult())})
 									AiAttackWithForce(6)
-								elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiUpgradeCavalryMage()) >= 1)) then
+								elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) >= 1)) then
 									AiForce(6, {AiCavalry(), 1})
 									AiAttackWithForce(6)
 								end
@@ -203,7 +203,7 @@ function AiJadeite_Cavalry_2010()
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) then
 					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
-						if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 4) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiUpgradeCavalryMage()) >= 4)) then
+						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 4) then
 							AiResearch(AiUpgradeWeapon1())
 							AiResearch(AiUpgradeArmor1())
 							AiResearch(AiUpgradeWeapon2())
@@ -215,7 +215,7 @@ function AiJadeite_Cavalry_2010()
 									AiSet(AiLumberMill(), 1)
 								end
 							else
-								if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 8) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiUpgradeCavalryMage()) >= 8)) then
+								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 8) then
 									AiAttackWithForce(4)
 								else
 									AiForce(4, {AiCavalry(), 10})
@@ -228,11 +228,11 @@ function AiJadeite_Cavalry_2010()
 								end
 							end
 						else
-							AiSet(AiSoldier(), 0)
+							--AiSet(AiSoldier(), 1)
 							AiSet(AiCavalry(), 4)
 						end
 					else
-					AiSet(AiStables(), 1)
+						AiSet(AiStables(), 1)
 					end
 				else
 					AiUpgradeTo(AiBetterCityCenter())
@@ -327,10 +327,10 @@ function AiJadeite_Flyer_2010()
 	end
 end
 
---DefineAi("ai_jadeite_2010", "*", "ai_jadeite_2010", AiJadeite_2010)
---DefineAi("ai_jadeite_soldier_2010", "*", "ai_jadeite_soldier_2010", AiJadeite_Soldier_2010)
+DefineAi("ai_jadeite_2010", "*", "ai_jadeite_2010", AiJadeite_2010)
+DefineAi("ai_jadeite_soldier_2010", "*", "ai_jadeite_soldier_2010", AiJadeite_Soldier_2010)
 DefineAi("ai_jadeite_cavalry_2010", "*", "ai_jadeite_cavalry_2010", AiJadeite_Cavalry_2010)
---DefineAi("ai_jadeite_shooter_2010", "*", "ai_jadeite_shooter_2010", AiJadeite_Shooter_2010)
+DefineAi("ai_jadeite_shooter_2010", "*", "ai_jadeite_shooter_2010", AiJadeite_Shooter_2010)
 --DefineAi("ai_jadeite_worker_2010", "*", "ai_jadeite_worker_2010", AiJadeite_Worker_2010())
 DefineAi("ai_jadeite_power_2010", "*", "ai_jadeite_power_2010", AiJadeite_Power_2010)
---DefineAi("ai_jadeite_flyer_2010", "*", "ai_jadeite_flyer_2010", AiJadeite_Flyer_2010)
+DefineAi("ai_jadeite_flyer_2010", "*", "ai_jadeite_flyer_2010", AiJadeite_Flyer_2010)

@@ -189,6 +189,10 @@ if (OldDefinePlayerTypes == nil) then
   OldDefinePlayerTypes = DefinePlayerTypes
 end
 
+function DefineCustomMapRules()
+
+end
+
 function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
   local p = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15}
   local foundperson = false
@@ -209,7 +213,6 @@ function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p1
       end
     end
   end
-
   OldDefinePlayerTypes(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15])
 end
 
@@ -218,6 +221,7 @@ if OldLoadTileModels == nil then
 end
 
 function LoadTileModels(tileset)
+  DefineCustomMapRules()
   if (GameCycle ~= 0) then
     return OldLoadTileModels(tileset)
   end
@@ -227,120 +231,29 @@ function LoadTileModels(tileset)
   OldLoadTileModels("scripts/tilesets/" .. GameSettings.Tileset)
 end
 
--- Called by stratagus when a game is restarted
+-- Called by Stratagus when unloading a mod.
 
+function CleanModGame_Lua()
+
+end
+
+-- Called by Stratagus when a game is restarted
 function StartCustomGame_Lua()
 
 end
 
--- Called by stratagus when a game finished
+-- Called by Stratagus when a game finished
 function CleanCustomGame_Lua()
+
+end
+
+function StartModGame_Lua()
 
 end
 
 function CleanGame_Lua()
 	print("game ends")
-	ReInitAiGameData()
-	
-	BlueLeader = nil
-	UnitFootmanNum = nil
-	UnitArcherNum = nil
-	UnitRangerNum = nil
-	UnitBallistaNum = nil
-	UnitPaladinNum = nil
-	UnitKnightNum = nil
-	UnitMageNum = nil
-	UnitDwarvesNum = nil
-	
-	Blue2Temp_x = nil
-	Blue2Temp_y = nil
-	Blue2Step = nil
-	Blue2Mana = nil
-	Blue1Temp_x = nil
-	Blue1Temp_y = nil
-	Blue1Step = nil
-	Blue1Mana = nil
-	BlueTemp = nil
-	BlueTeam1 = nil
-	BlueTeam2 = nil
-	BlueTemp_x1 = nil
-	BlueTemp_y1 = nil
-	BlueTemp_x2 = nil
-	BlueTemp_y2 = nil
-	BlueTeam1_x1 = nil
-	BlueTeam1_y1 = nil
-	BlueTeam1_x2 = nil
-	BlueTeam1_y2 = nil
-	BlueTeam2_x1 = nil
-	BlueTeam2_y1 = nil
-	BlueTeam2_x2 = nil
-	BlueTeam2_y2 = nil
-	blueribbon_stepping = nil
-	BlueBarracks1_x = nil
-	BlueBarracks1_y = nil
-	BlueBarracks2_x = nil
-	BlueBarracks2_y = nil
-	BlueBarracks3_x = nil
-	BlueBarracks3_y = nil
-	BlueBarracks4_x = nil
-	BlueBarracks4_y = nil
-	BlueInventor_x = nil
-	BlueInventor_y = nil
-	BlueMageTower_x = nil
-	BlueMageTower_y = nil
-	
-	UnitGruntNum = nil
-	UnitAxethrowerNum = nil
-	UnitBerserkerNum = nil
-	UnitCatapultNum = nil
-	UnitOgreMageNum = nil
-	UnitOgreNum = nil
-	UnitDeathKnightNum = nil
-	UnitGoblinSappersNum = nil
-	
-	redribbon_stepping = nil
-	
-	RedLeader = nil
-	--timer = 1
-	Red1Mana = nil
-	Red1Mana = nil
-	
-	RedTemp = nil
-	RedTemp_x1 = nil
-	RedTemp_y1 = nil
-	RedTemp_x2 = nil
-	RedTemp_y2 = nil		
-	Red2Temp_x = nil
-	Red2Temp_y = nil
-	Red2Step = nil
-	Red2Mana = nil
-	Red1Temp_x = nil
-	Red1Temp_y = nil
-	Red1Step = nil
-	Red1Mana = nil
-	RedTeam1 = nil
-	RedTeam2 = nil
-	RedTeam1_x1 = nil
-	RedTeam1_y1 = nil
-	RedTeam1_x2 = nil
-	RedTeam1_y2 = nil
-	RedTeam2_x1 = nil
-	RedTeam2_y1 = nil
-	RedTeam2_x2 = nil
-	RedTeam2_y2 = nil
-	
-	RedBarracks1_x = nil
-	RedBarracks1_y = nil
-	RedBarracks2_x = nil
-	RedBarracks2_y = nil
-	RedBarracks3_x = nil
-	RedBarracks3_y = nil
-	RedBarracks4_x = nil
-	RedBarracks4_y = nil
-	RedInventor_x = nil
-	RedInventor_y = nil
-	RedMageTower_x = nil
-	RedMageTower_y = nil
-	
+	ReInitAiGameData()	
 	CleanCustomGame_Lua()
+	StartModGame_Lua()
 end

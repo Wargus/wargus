@@ -511,7 +511,6 @@ function GetMapInfo(mapname)
     mapinfo.playertypes[13] = p13
     mapinfo.playertypes[14] = p14
     mapinfo.playertypes[15] = p15
-
     mapinfo.nplayers = 0
     for i=0,15 do
       local t = mapinfo.playertypes[i]

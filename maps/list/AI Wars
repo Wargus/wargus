@@ -1,9 +1,9 @@
 --       _________ __                 __
 --      /   _____//  |_____________ _/  |______     ____  __ __  ______
 --      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
---      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \ 
+--      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ \
 --     /_______  /|__|  |__|  (____  /__| (____  /\___  /|____//____  >
---             \/                  \/          \//_____/            \/ 
+--             \/                  \/          \//_____/            \/
 --  ______________________                           ______________________
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
@@ -14,19 +14,25 @@
 --      it under the terms of the GNU General Public License as published by
 --      the Free Software Foundation; either version 2 of the License, or
 --      (at your option) any later version.
---  
+--
 --      This program is distributed in the hope that it will be useful,
 --      but WITHOUT ANY WARRANTY; without even the implied warranty of
 --      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 --      GNU General Public License for more details.
---  
+--
 --      You should have received a copy of the GNU General Public License
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
+function DefineCustomMapRules()
+	-- This will be loaded alongside the map.
+	--OldDefinePlayerTypes("computer", "person", "nobody", "nobody", "nobody", "nobody", "nobody", "nobody", "nobody", "nobody", "nobody", "nobody", "nobody", "nobody", "nobody")
+	RunAIWarsPlayerMenu()
+end
+
 function StartCustomGame_Lua()
-mapname = "maps/aiwars/(2)timeless-isle.smp"
+mapname = "maps/skirmish/(2)timeless-isle.smp"
 local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
 mapinfo = {
   playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
@@ -45,7 +51,7 @@ function RunSelectScenarioMenu()
 
   menu:addLabel("Select scenario", 176, 8)
 
-  local browser = menu:addBrowser("maps/aiwars", "^.*%.smp%.?g?z?$",
+  local browser = menu:addBrowser("maps", "^.*%.smp%.?g?z?$",
     24, 140, 300, 108, mapname)
 
   local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
@@ -87,17 +93,17 @@ function RunSinglePlayerGameMenu()
   local tilesetdd
 
   menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
-  
+
   menu:addLabel("Scenario:", offx + 16, offy + 360, Fonts["game"], false)
   mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 360 + 24, Fonts["game"], false)
   descriptionl = menu:addLabel("descriptionl", offx + 16 + 70, offy + 360, Fonts["game"], false)
 
   menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
-  
-  menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
-  menu:addFullButton("Select ~!Players", "e", offx + 640 - 224 - 16, offy + 360 + 36*0, function() RunAIWarsPlayerMenu() end)
 
-  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*1,
+  menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
+--  menu:addFullButton("Select ~!Players", "e", offx + 640 - 224 - 16, offy + 360 + 36*0, function() RunAIWarsPlayerMenu() end)
+
+  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0,
     function()
       local oldmapname = mapname
       RunSelectScenarioMenu()
@@ -106,7 +112,7 @@ function RunSinglePlayerGameMenu()
         MapChanged()
       end
     end)
-  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*2,
+  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
       local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"};
 
@@ -119,7 +125,7 @@ function RunSinglePlayerGameMenu()
       RunMap(mapname)
       menu:stop()
     end)
-  menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*3, function() menu:stop() end)
+  menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() menu:stop() end)
 
   menu:addLabel("~<Your Race:~>", offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
   race = menu:addDropDown({"Map Default", "Human", "Orc"}, offx + 40, offy + 10 + 240,
@@ -194,19 +200,25 @@ function RunAIWarsPlayerMenu()
   menu:addLabel("Players properties", sizeX / 2, 11)
 
   local offxPlayer = 15
+  
+  
+  
   local offxType = 70
-  local offxRace = 170
-  local offxAI = 285
+  local offxRace = 285
+  local offxAI = 140
+  
+  
+  
+  
   local offxGold = 375
   local offxLumber = 425
   local offxOil = 470
 
   local types = {"neutral", "nobody", "computer", "person", "rescue-passive", "rescue-active"}
   local racenames = {"human", "orc"}
-  local ais = {"wc2-passive", "wc2-sea-attack", "wc2-land-attack", "wc2-air-attack"}
+  local ais = {"wc2-passive", "ai_jadeite_2010", "ai_jadeite_power_2010", "ai_jadeite_soldier_2010", "ai_jadeite_cavalry_2010", "ai_jadeite_shooter_2010", "ai_jadeite_flyer_2010", "ai_nephrite_2012", "ai_nephrite_nocav_2012", "ai_nephrite_2013", "ai_nephrite_nocav_2013", "ai_zoisite_2013", "wc2-sea-attack", "wc2-land-attack", "wc2-air-attack"}
 
   menu:addLabel("#", 15, 36)
-  menu:addLabel("Type", offxType, 36)
   menu:addLabel("Race", offxRace, 36)
   menu:addLabel("AI", offxAI, 36)
   menu:addLabel("Gold", offxGold, 36)
@@ -223,7 +235,7 @@ function RunAIWarsPlayerMenu()
       ai = nil,
       gold = nil,
       lumber = nil,
-      oil = nil
+      oil = nil       
     }
     local offy_i = 36 + 25 * (i + 1)
     local index = i -- use for local function
@@ -231,6 +243,7 @@ function RunAIWarsPlayerMenu()
     local function updateProp(ind)
       local b = (playersProp[1 + ind].type:getSelected() ~= 1) -- != nobody
       playersProp[1 + ind].race:setVisible(b)
+	  playersProp[1 + ind].type:setVisible(b)
       playersProp[1 + ind].ai:setVisible(b)
       playersProp[1 + ind].gold:setVisible(b)
       playersProp[1 + ind].lumber:setVisible(b)
@@ -241,7 +254,7 @@ function RunAIWarsPlayerMenu()
 
     menu:addLabel("p" .. (i + 1), offxPlayer, offy_i)
 
-    playersProp[1 + i].type = menu:addDropDown(types, offxType - 40, offy_i, function() updateProp(index) end)
+    playersProp[1 + i].type = menu:addDropDown(types, offxType - 9940, offy_i, function() end)
     playersProp[1 + i].type:setSelected(Map.Info.PlayerType[i] - 2)
     playersProp[1 + i].type:setWidth(115)
 
@@ -249,11 +262,11 @@ function RunAIWarsPlayerMenu()
     playersProp[1 + i].race:setSelected(Players[i].Race)
     playersProp[1 + i].race:setWidth(65)
 
-    playersProp[1 + i].ai = menu:addDropDown(ais, offxAI - 65, offy_i, function() end)
+    playersProp[1 + i].ai = menu:addDropDown(ais, (offxAI/2 - 30), offy_i, function() end)
     for j = 0,3 do
       if (ais[1 + j] == Players[i].AiName) then playersProp[1 + i].ai:setSelected(j) end
     end
-    playersProp[1 + i].ai:setWidth(130)
+    playersProp[1 + i].ai:setWidth(200)
 
     playersProp[1 + i].gold = menu:addTextInputField(Players[i].Resources[1], offxGold - 20, offy_i, 40)
     playersProp[1 + i].lumber = menu:addTextInputField(Players[i].Resources[2], offxLumber - 20, offy_i, 40)
@@ -264,20 +277,19 @@ function RunAIWarsPlayerMenu()
   menu:addHalfButton("~!Ok", "o", 1 * (sizeX / 4) - 106 - 10, sizeY - 16 - 27,
     function()
       for i = 0, 14 do
-        Map.Info.PlayerType[i] = playersProp[1 + i].type:getSelected() + 2
+        --p[i + 1] = playersProp[1 + i].type:getSelected() + 2
         Players[i].Race = playersProp[1 + i].race:getSelected()
         Players[i].AiName = ais[1 + playersProp[1 + i].ai:getSelected()]
         Players[i].Resources[1] = playersProp[1 + i].gold:getText()
         Players[i].Resources[2] = playersProp[1 + i].lumber:getText()
         Players[i].Resources[3] = playersProp[1 + i].oil:getText()
       end
+	  	  
       menu:stop()
     end)
 
-  menu:addHalfButton("~!Cancel", "c", 3 * (sizeX / 4) - 106 - 10, sizeY - 16 - 27,
-    function() menu:stop() end)
-
-  menu:run(false)
+  menu:run()
+	
 end
 
 
@@ -290,23 +302,23 @@ end
 
 
 end
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function CleanCustomGame_Lua()
 mapname = "maps/skirmish/(2)timeless-isle.smp.gz"
 local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
@@ -369,7 +381,7 @@ function RunSinglePlayerGameMenu()
   local tilesetdd
 
   menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
-  
+
   menu:addLabel("Scenario:", offx + 16, offy + 360, Fonts["game"], false)
   mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 360 + 24, Fonts["game"], false)
   descriptionl = menu:addLabel("descriptionl", offx + 16 + 70, offy + 360, Fonts["game"], false)
@@ -451,7 +463,7 @@ function RunSinglePlayerGameMenu()
   menu:run()
 end
 end
-  
+
 StartCustomGame_Lua()
-  
+
 RunSinglePlayerGameMenu()
