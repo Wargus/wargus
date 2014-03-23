@@ -533,8 +533,17 @@ function RunMultiPlayerGameMenu(s)
       RunCreateMultiGameMenu()
       FixMusic()
     end)
-
-  menu:addFullButton("~!Previous Menu", "p", 208 + offx, 320 + (36 * 2) + offy,
+  menu:addFullButton(_("Meta~!server"), "s", 208 + offx, 320 + (36 * 2) + offy,
+    function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        doom.preferences.PlayerName = nick:getText()
+        SavePreferences()
+      end
+      RunJoiningMetaServerMenu()
+    end)
+	
+  menu:addFullButton("~!Previous Menu", "p", 208 + offx, 320 + (36 * 3) + offy,
     function() menu:stop() end)
 
   menu:run()

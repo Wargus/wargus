@@ -39,6 +39,12 @@ SetEditorUnitsIcon("icon-footman")
 local editor_types = {
    "unit-human-start-location",
 
+--   "unit-bat",
+--   "unit-fox",
+--   "unit-rebels-cabin1",
+--   "unit-rebels-cabin2",
+--   "unit-rebels-cabin3",
+   
    "unit-peasant",
    "unit-footman",
    "unit-archer",

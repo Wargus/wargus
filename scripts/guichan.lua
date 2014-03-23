@@ -842,6 +842,7 @@ Load("scripts/menus/endscenario.lua")
 Load("scripts/menus/diplomacy.lua")
 Load("scripts/menus/results.lua")
 Load("scripts/menus/network.lua")
+Load("scripts/menus/metaserver.lua")
 
 function GameStarting()
   if (wc2.preferences.ShowTips and not IsReplayGame()) then
