@@ -78,12 +78,6 @@ UI.ReverseFontColor = "yellow"
 
 UI.Fillers:clear()
 
-b = CFiller:new_local()
-b.G = CGraphic:New("ui/human/infopanel.png", 176, 176)
-b.X = 0
-b.Y = 160
-UI.Fillers:push_back(b)
-
 function AddFiller(file, x, y)
 	if CanAccessFile(file) == true then
 		b = CFiller:new_local()
@@ -103,6 +97,7 @@ AddFiller("ui/human/minimap.png", 0, 24)
 
 UI.InfoPanel.X = 0
 UI.InfoPanel.Y = 160
+UI.InfoPanel.G = CGraphic:New("ui/human/infopanel.png", 176, 176)
 
 b = CUIButton:new()
 b.X = 9
@@ -187,7 +182,7 @@ AddTransportingButton(65, 434)
 AddTransportingButton(121, 434)
 
 UI.CompletedBarColorRGB = CColor(48, 100, 4)
-UI.CompletedBarShadow = true
+UI.CompletedBarShadow = false
 
 UI.ButtonPanel.Buttons:clear()
 
