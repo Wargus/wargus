@@ -215,20 +215,35 @@ DefineSpell("spell-invisibility",
 --	"autocast", {"range", 6, "condition", {"Coward", "false"}},
 )
 
+local function SpellUnholyArmor(spell, unit, x, y, target)
+	if target ~= -1 then
+		if GetUnitBoolFlag(target, "volatile") == true then
+			DamageUnit(-1, target, 99999)
+		else
+			DamageUnit(-1, target, math.max(1, math.floor(GetUnitVariable(target, "HitPoints", "Value") / 2)))
+			SetUnitVariable(target, "UnholyArmor", 500, "Max")
+			SetUnitVariable(target, "UnholyArmor", 500, "Value")
+			SetUnitVariable(target, "UnholyArmor", 1, "Enable")
+		end
+	end
+	return false
+end
+
 DefineSpell("spell-unholy-armor",
 	"showname", "unholyarmor",
 	"manacost", 100,
 	"range", 6,
 	"target", "unit",
-	"action", {{"adjust-variable", {UnholyArmor = 500}},
+	"action", {{"lua-callback", SpellUnholyArmor},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"Building", "false",
 		"UnholyArmor", {MaxValue = 10}},
 	"sound-when-cast", "unholy armor",
-	"depend-upgrade", "upgrade-unholy-armor"
---	"autocast", {range 6 condition (Coward false alliance only)},
+	"depend-upgrade", "upgrade-unholy-armor",
+	"autocast", {"attacker", "only", "range", 9, "priority", {"Points", true}, "condition", {"Coward", "false", "alliance", "only"}},
+	"ai-cast", {"attacker", "only", "range", 9, "priority", {"Points", true}, "condition", {"Coward", "false", "alliance", "only"}}
 )
 
 DefineSpell("spell-flame-shield",
