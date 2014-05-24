@@ -41,7 +41,7 @@ function HandleCheats(str)
 
   elseif (str == "hatchet") then
 	for i = 0,PlayerMax - 1 do
-		SetSpeedResourcesHarvest(i, "wood", 52 / 2)
+		SetSpeedResourcesHarvest(i, "wood", 5200 / 2)
 	end
     AddMessage("Wow -- I got jigsaw!")
 
@@ -143,9 +143,11 @@ function HandleCheats(str)
     end
 
   elseif (str == "fill mana") then
-    t = GetUnits("this");
+    t = GetUnits("this")
     for i = 1,table.getn(t) do
-      SetUnitMana(t[i], 255)
+		if (GetUnitVariable(t[i], "Mana", "Enable") == 1) then
+			SetUnitVariable(t[i], "Mana", 255, "Value")
+		end
     end
 
   elseif (str == "disco") then
