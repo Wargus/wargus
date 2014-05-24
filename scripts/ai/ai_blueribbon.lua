@@ -245,14 +245,14 @@ function AiBlueRibbon()
 		if (GetNumUnitsAt(BlueLeader, AiCavalryMage(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)}) > 5) then
 			UnitPaladinNum = GetNumUnitsAt(BlueLeader, AiCavalryMage(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)})
 		end
-		AiForce(1, {AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitFootmanNum, AiShooter(), UnitArcherNum, AiEliteShooter(), UnitRangerNum, AiCavalry(), UnitKnightNum, AiCavalryMage(), UnitPaladinNum, AiCatapult(), UnitCatapultNum})
+		AiForce(1, {AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitFootmanNum, AiShooter(), UnitArcherNum, AiEliteShooter(), UnitRangerNum, AiCavalry(), UnitKnightNum, AiCavalryMage(), UnitPaladinNum, AiCatapult(), UnitCatapultNum}, true)
 		if (AiCheckForce(1)) then 
 			AiAttackWithForce(1)
 		end
 		
 		
 		
-		AiForce(1, {AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitMageNum, AiSoldier(), UnitFootmanNum, AiShooter(), (UnitArcherNum + UnitRangerNum), AiEliteShooter(), (UnitArcherNum + UnitRangerNum), AiCavalry(), (UnitPaladinNum + UnitKnightNum), AiCavalryMage(), (UnitKnightNum + UnitPaladinNum), AiCatapult(), UnitBallistaNum})
+		AiForce(1, {AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitMageNum, AiSoldier(), UnitFootmanNum, AiShooter(), (UnitArcherNum + UnitRangerNum), AiEliteShooter(), (UnitArcherNum + UnitRangerNum), AiCavalry(), (UnitPaladinNum + UnitKnightNum), AiCavalryMage(), (UnitKnightNum + UnitPaladinNum), AiCatapult(), UnitBallistaNum}, true)
 		AiAttackWithForce(1)
 	end
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0) then

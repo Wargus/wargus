@@ -251,7 +251,7 @@ function AiRedRibbon()
 		if (GetNumUnitsAt(RedLeader, AiCavalryMage(), {(RedBarracks3_x - 3), (RedBarracks3_y - 3)}, {(RedBarracks3_x + 3), (RedBarracks3_y + 3)}) > 0) then
 			UnitOgreMageNum = GetNumUnitsAt(RedLeader, AiCavalryMage(), {(RedBarracks3_x - 3), (RedBarracks3_y - 3)}, {(RedBarracks3_x + 3), (RedBarracks3_y + 3)})
 		end
-		AiForce(1, {AiSuicideBomber(), UnitGoblinSappersNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitGruntNum, AiShooter(), UnitAxethrowerNum, AiEliteShooter(), UnitBerserkerNum, AiCavalry(), UnitOgreNum, AiCavalryMage(), UnitOgreMageNum, AiCatapult(), UnitCatapultNum})
+		AiForce(1, {AiSuicideBomber(), UnitGoblinSappersNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitGruntNum, AiShooter(), UnitAxethrowerNum, AiEliteShooter(), UnitBerserkerNum, AiCavalry(), UnitOgreNum, AiCavalryMage(), UnitOgreMageNum, AiCatapult(), UnitCatapultNum}, true)
 		if (AiCheckForce(1)) then 
 			AiAttackWithForce(1)
 		end
@@ -397,7 +397,7 @@ function AiRed2()
 	end
 	if (redribbon_stepping > 7) then
 		if (Red2Mana > (150*6)) then
-			AiForce(0, {AiSoldier(), 7})
+			AiForce(0, {AiSoldier(), 7}, true)
 			AiAttackWithForce(0)
 		end 
 		if (Red2Mana > (150*7)) then

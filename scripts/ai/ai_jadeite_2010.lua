@@ -109,10 +109,10 @@ function AiJadeite_Power_2010()
 								AiSet(AiCavalry(), 10)
 							else
 								if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 7) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) >= 7)) then
-									AiForce(6, {AiCavalry(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage())), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult())})
+									AiForce(6, {AiCavalry(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage())), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult())}, true)
 									AiAttackWithForce(6)
 								elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) >= 1)) then
-									AiForce(6, {AiCavalry(), 1})
+									AiForce(6, {AiCavalry(), 1}, true)
 									AiAttackWithForce(6)
 								end
 							end
@@ -157,7 +157,7 @@ function AiJadeite_Shooter_2010()
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
 				if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) >= 4) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) >= 4)) then 
 					AiResearch(AiUpgradeMissile2())
-					AiForce(5, {AiShooter(), 8})
+					AiForce(5, {AiShooter(), 8}, true)
 					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) then
 							AiResearch(AiUpgradeEliteShooter())
@@ -218,7 +218,7 @@ function AiJadeite_Cavalry_2010()
 								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= 8) then
 									AiAttackWithForce(4)
 								else
-									AiForce(4, {AiCavalry(), 10})
+									AiForce(4, {AiCavalry(), 10}, true)
 								end
 								if (GetPlayerData(AiPlayer(), "UnitTypesCount",AiTemple()) >= 1) then
 									AiResearch(AiUpgradeCavalryMage())
@@ -256,7 +256,7 @@ function AiJadeite_Soldier_2010()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) >= 4) then
-				AiForce(3, {AiSoldier(), 12})
+				AiForce(3, {AiSoldier(), 12}, true)
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) >= 8) then
 					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
 						AiResearch(AiUpgradeWeapon1())
@@ -286,10 +286,10 @@ function AiJadeite_Flyer_2010()
 			AiSet(AiFlyer(), 10)
 		else
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) >= 5) then
-				AiForce(2, {AiFlyer(), 12})
+				AiForce(2, {AiFlyer(), 12}, true)
 				AiAttackWithForce(2)
 			else
-				AiForce(2, {AiFlyer(), 2})
+				AiForce(2, {AiFlyer(), 2}, true)
 				AiAttackWithForce(2)
 			end
 		end

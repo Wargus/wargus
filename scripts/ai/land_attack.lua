@@ -44,15 +44,15 @@ local end_loop_funcs = {
   function() return AiUpgradeTo(AiGuardTower()) end,
 
   function() return AiForce(0, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 8, AiCatapult(), 0}) end,
-  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 10, AiCavalry(), 0, AiCavalryMage(), 20, AiCatapult(), 0}) end,
-  function() return AiForce(7, {AiFlyer(), 4}) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 10, AiCavalry(), 0, AiCavalryMage(), 20, AiCatapult(), 0}, true) end,
+  function() return AiForce(7, {AiFlyer(), 4}, true) end,
   function() return AiWaitForce(6) end,
   function() return AiAttackWithForce(6) end,
-  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}, true) end,
 
   function() return AiWaitForce(7) end,
   function() return AiAttackWithForce(7) end,
-  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
+  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}, true) end,
   function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
 }
 
@@ -75,12 +75,12 @@ local land_funcs = {
   function() return AiResearch(AiUpgradeArmor2()) end,
 
 -- FAST AND FURIOUS
-  function() return AiForce(1, {AiSoldier(), 1}) end,
+  function() return AiForce(1, {AiSoldier(), 1}, true) end,
   function() return AiWaitForce(1) end,
   function() return AiAttackWithForce(1) end,
 
 -- SECOND FAST ATTACK
-  function() return AiForce(1, {AiSoldier(), 4}) end,
+  function() return AiForce(1, {AiSoldier(), 4}, true) end,
   function() return AiWaitForce(1) end,
   function() return AiSet(AiWorker(), 12) end,
   function() return AiAttackWithForce(1) end,
@@ -88,7 +88,7 @@ local land_funcs = {
 -- PREPARING FIRST SERIOUS ATTACK
 
   function() return AiSet(AiBarracks(), 2) end,
-  function() return AiForce(1, {AiSoldier(), 16}) end,
+  function() return AiForce(1, {AiSoldier(), 16}, true) end,
   function() return AiForce(0, {AiSoldier(), 4}) end,
   function() return AiSet(AiWorker(), 20) end,
   function() return AiWaitForce(1) end,
@@ -119,11 +119,11 @@ local land_funcs = {
 
 -- PREPARING SECOND ATTACK
 
-  function() return AiForce(4, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 10, AiCatapult(), 0}) end,
-  function() return AiForce(5, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 8, AiCatapult(), 0}) end,
-  function() return AiForce(6, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 6, AiCatapult(), 0}) end,
-  function() return AiForce(7, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 4, AiCatapult(), 0}) end,
-  function() return AiForce(8, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 3, AiCatapult(), 1}) end,
+  function() return AiForce(4, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 10, AiCatapult(), 0}, true) end,
+  function() return AiForce(5, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 8, AiCatapult(), 0}, true) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 6, AiCatapult(), 0}, true) end,
+  function() return AiForce(7, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 4, AiCatapult(), 0}, true) end,
+  function() return AiForce(8, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 3, AiCatapult(), 1}, true) end,
   function() return AiSet(AiWorker(), 35) end,
   function() return AiForce(0, {AiSoldier(), 0}) end,
   function() return AiWaitForce(0) end,
@@ -155,21 +155,21 @@ local land_funcs = {
   function() return AiAttackWithForce(5) end,
   function() return AiAttackWithForce(4) end,
 --  function() return AiForce(4, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
-  function() return AiForce(8, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
-  function() return AiForce(4, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 22, AiCatapult(), 0}) end,
-  function() return AiForce(5, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 18, AiCatapult(), 0}) end,
-  function() return AiForce(6, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 14, AiCatapult(), 0}) end,
+  function() return AiForce(8, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}, true) end,
+  function() return AiForce(4, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 22, AiCatapult(), 0}, true) end,
+  function() return AiForce(5, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 18, AiCatapult(), 0}, true) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 14, AiCatapult(), 0}, true) end,
   function() return AiSet(AiWorker(), 40) end,
 
   function() return AiWaitForce(4) end,
   function() return AiAttackWithForce(4) end,
-  function() return AiForce(4, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
+  function() return AiForce(4, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}, true) end,
   function() return AiWaitForce(5) end,
   function() return AiAttackWithForce(5) end,
-  function() return AiForce(5, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
+  function() return AiForce(5, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}, true) end,
   function() return AiWaitForce(6) end,
   function() return AiAttackWithForce(6) end,
-  function() return AiForce(6, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}, true) end,
 
 
 -- EXPANSION
@@ -195,27 +195,27 @@ local land_funcs = {
 
 -- SECOND BIG WAVE
 
-  function() return AiForce(4, {AiSoldier(), 0, AiEliteShooter(), 5, AiCavalry(), 0, AiCavalryMage(), 12, AiCatapult(), 0}) end,
-  function() return AiForce(5, {AiSoldier(), 0, AiEliteShooter(), 5, AiCavalry(), 0, AiCavalryMage(), 10, AiCatapult(), 0}) end,
-  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 2, AiCavalry(), 0, AiCavalryMage(), 5, AiCatapult(), 0}) end,
-  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 1, AiCavalry(), 0, AiCavalryMage(), 3, AiCatapult(), 0}) end,
+  function() return AiForce(4, {AiSoldier(), 0, AiEliteShooter(), 5, AiCavalry(), 0, AiCavalryMage(), 12, AiCatapult(), 0}, true) end,
+  function() return AiForce(5, {AiSoldier(), 0, AiEliteShooter(), 5, AiCavalry(), 0, AiCavalryMage(), 10, AiCatapult(), 0}, true) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 2, AiCavalry(), 0, AiCavalryMage(), 5, AiCatapult(), 0}, true) end,
+  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 1, AiCavalry(), 0, AiCavalryMage(), 3, AiCatapult(), 0}, true) end,
 
   function() return AiWaitForce(4) end,
   function() return AiAttackWithForce(4) end,
-  function() return AiForce(4, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
+  function() return AiForce(4, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}, true) end,
   function() return AiWaitForce(5) end,
   function() return AiAttackWithForce(5) end,
-  function() return AiForce(5, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
+  function() return AiForce(5, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}, true) end,
   function() return AiWaitForce(6) end,
   function() return AiAttackWithForce(6) end,
-  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}, true) end,
   function() return AiWaitForce(7) end,
   function() return AiAttackWithForce(7) end,
   function() return AiAttackWithForce(6) end,
   function() return AiAttackWithForce(5) end,
   function() return AiAttackWithForce(4) end,
 
-  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}) end,
+  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0}, true) end,
 
 -- EXPANSION, AGAIN
 
@@ -232,21 +232,21 @@ local land_funcs = {
   function() return AiNeed(AiAirport()) end,
   function() return AiWait(AiAirport()) end,
 
-  function() return AiForce(5, {AiFlyer(), 3}) end,
+  function() return AiForce(5, {AiFlyer(), 3}, true) end,
 
 -- THIRD ATTACK
 
-  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 10, AiCavalry(), 0, AiCavalryMage(), 15, AiCatapult(), 0}) end,
-  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 20, AiCatapult(), 0}) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 10, AiCavalry(), 0, AiCavalryMage(), 15, AiCatapult(), 0}, true) end,
+  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 20, AiCatapult(), 0}, true) end,
   function() return AiWaitForce(5) end,
   function() return AiAttackWithForce(5) end,
-  function() return AiForce(5, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
+  function() return AiForce(5, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}, true) end,
   function() return AiWaitForce(6) end,
   function() return AiAttackWithForce(6) end,
-  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}, true) end,
   function() return AiWaitForce(7) end,
   function() return AiAttackWithForce(7) end,
-  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
+  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}, true) end,
 
 
   function() return AiNeed(AiTower()) end,
@@ -271,18 +271,18 @@ local land_funcs = {
   function() return AiNeed(AiBarracks()) end,
   function() return AiNeed(AiBarracks()) end,
 
-  function() return AiForce(5, {AiSoldier(), 0, AiEliteShooter(), 15, AiCavalry(), 0, AiCavalryMage(), 40, AiCatapult(), 0}) end,
-  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 10, AiCavalry(), 0, AiCavalryMage(), 20, AiCatapult(), 0}) end,
-  function() return AiForce(7, {AiFlyer(), 4}) end,
+  function() return AiForce(5, {AiSoldier(), 0, AiEliteShooter(), 15, AiCavalry(), 0, AiCavalryMage(), 40, AiCatapult(), 0}, true) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 10, AiCavalry(), 0, AiCavalryMage(), 20, AiCatapult(), 0}, true) end,
+  function() return AiForce(7, {AiFlyer(), 4}, true) end,
   function() return AiWaitForce(5) end,
   function() return AiAttackWithForce(5) end,
-  function() return AiForce(5, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
+  function() return AiForce(5, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}, true) end,
   function() return AiWaitForce(6) end,
   function() return AiAttackWithForce(6) end,
-  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
+  function() return AiForce(6, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}, true) end,
   function() return AiWaitForce(7) end,
   function() return AiAttackWithForce(7) end,
-  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}) end,
+  function() return AiForce(7, {AiSoldier(), 0, AiEliteShooter(), 0, AiCavalry(), 0, AiCavalryMage(), 0, AiCatapult(), 0, AiFlyer(), 0}, true) end,
 
 -- LITTLE DEFENSE
 

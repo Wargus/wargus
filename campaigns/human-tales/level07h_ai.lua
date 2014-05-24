@@ -69,58 +69,58 @@ function AiLevel07()
 		timer = timer + 1
 		if (gametimer < 800) then
 		if (timer == 50) then
-			CreateUnit(AiSoldier(), 0, {101, 92})
-			CreateUnit(AiSoldier(), 0, {119, 88})
-			CreateUnit(AiSoldier(), 0, {110, 98})
-			CreateUnit(AiSoldier(), 0, {122, 94})
-			CreateUnit(AiSoldier(), 4, {0, 116})
-			CreateUnit(AiSoldier(), 4, {0, 117})
-			CreateUnit(AiSoldier(), 4, {0, 118})
-			CreateUnit(AiSoldier(), 4, {0, 31})
+			CreateUnit("unit-footman", 0, {101, 92})
+			CreateUnit("unit-footman", 0, {119, 88})
+			CreateUnit("unit-footman", 0, {110, 98})
+			CreateUnit("unit-footman", 0, {122, 94})
 			CreateUnit(AiWorker(), 0, {67, 87})
 			CreateUnit(AiWorker(), 0, {67, 87})
-			CreateUnit(AiSoldier(), 4, {0, 30})
-			CreateUnit(AiSoldier(), 4, {0, 31})
-			CreateUnit(AiSoldier(), 0, {67, 87})
-			CreateUnit(AiShooter(), 4, {1, 116})
-			CreateUnit(AiShooter(), 4, {1, 117})
-			CreateUnit(AiShooter(), 4, {1, 118})
-			CreateUnit(AiSoldier(), 4, {0, 30})
-			CreateUnit(AiSoldier(), 4, {0, 29})
-			CreateUnit(AiSoldier(), 4, {0, 28})
-			CreateUnit(AiSoldier(), 4, {0, 27})
-			CreateUnit(AiSoldier(), 4, {0, 26})
+			CreateUnit("unit-footman", 0, {67, 87})
+			CreateUnit("unit-grunt", 4, {0, 116})
+			CreateUnit("unit-grunt", 4, {0, 117})
+			CreateUnit("unit-grunt", 4, {0, 118})
+			CreateUnit("unit-grunt", 4, {0, 31})
+			CreateUnit("unit-grunt", 4, {0, 30})
+			CreateUnit("unit-grunt", 4, {0, 31})
+			CreateUnit("unit-axethrower", 4, {1, 116})
+			CreateUnit("unit-axethrower", 4, {1, 117})
+			CreateUnit("unit-axethrower", 4, {1, 118})
+			CreateUnit("unit-grunt", 4, {0, 30})
+			CreateUnit("unit-grunt", 4, {0, 29})
+			CreateUnit("unit-grunt", 4, {0, 28})
+			CreateUnit("unit-grunt", 4, {0, 27})
+			CreateUnit("unit-grunt", 4, {0, 26})
 		end
 		if (timer == 100) then
-			CreateUnit(AiSoldier(), 0, {95, 94})
-			CreateUnit(AiSoldier(), 0, {113, 89})
-			CreateUnit(AiSoldier(), 0, {67, 87})
+			CreateUnit("unit-footman", 0, {95, 94})
+			CreateUnit("unit-footman", 0, {113, 89})
+			CreateUnit("unit-footman", 0, {67, 87})
 			CreateUnit(AiWorker(), 0, {67, 87})
 			CreateUnit(AiWorker(), 0, {67, 87})		
-			CreateUnit(AiSoldier(), 0, {104, 100})
-			CreateUnit(AiSoldier(), 0, {116, 96})
-			CreateUnit(AiSoldier(), 4, {0, 115})
-			CreateUnit(AiSoldier(), 4, {0, 114})
-			CreateUnit(AiSoldier(), 4, {0, 31})
-			CreateUnit(AiSoldier(), 4, {0, 32})
-			CreateUnit(AiSoldier(), 4, {0, 33})
-			CreateUnit(AiShooter(), 4, {1, 33})
-			CreateUnit(AiShooter(), 4, {1, 34})
-			CreateUnit(AiShooter(), 4, {1, 35})
-			CreateUnit(AiSoldier(), 4, {0, 34})
-			CreateUnit(AiSoldier(), 4, {0, 35})
+			CreateUnit("unit-footman", 0, {104, 100})
+			CreateUnit("unit-footman", 0, {116, 96})
+			CreateUnit("unit-grunt", 4, {0, 115})
+			CreateUnit("unit-grunt", 4, {0, 114})
+			CreateUnit("unit-grunt", 4, {0, 31})
+			CreateUnit("unit-grunt", 4, {0, 32})
+			CreateUnit("unit-grunt", 4, {0, 33})
+			CreateUnit("unit-axethrower", 4, {1, 33})
+			CreateUnit("unit-axethrower", 4, {1, 34})
+			CreateUnit("unit-axethrower", 4, {1, 35})
+			CreateUnit("unit-grunt", 4, {0, 34})
+			CreateUnit("unit-grunt", 4, {0, 35})
 		end
 		end
-		if (timer == 200) then
+		if ((timer > 195) and (timer < 201)) then
 			SetDiplomacy(0, "allied", 1)
 			SetDiplomacy(1, "allied", 0)
 			SetDiplomacy(4, "allied", 1)
 			if (AiPlayer() == 4) then
-				AiForce(forceid, {AiEliteSoldier(), 12})
+				AiForce(forceid, {AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiShooter(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()))}, true)
 				AiAttackWithForce(forceid)
 			end
 			if (AiPlayer() == 0) then
-				AiForce(forceid, {AiSoldier(), 12})
+				AiForce(forceid, {AiSoldier(), 12}, true)
 				AiAttackWithForce(forceid)
 			end
 			SetDiplomacy(0, "enemy", 1)
@@ -129,14 +129,16 @@ function AiLevel07()
 			if (AiPlayer() == 1) then
 				SetDiplomacy(1, "allied", 4)
 				SetDiplomacy(1, "allied", 2)	
-				AiForce(forceid, {AiEliteSoldier(), 12})
+				AiForce(forceid, {AiEliteSoldier(), 12}, true)
 				AiAttackWithForce(forceid)	
 				SetDiplomacy(1, "enemy", 4)
 				SetDiplomacy(1, "enemy", 2)					
 			end
 			forceid = forceid + 1
-			timer = 1
 		end
+		if (timer > 200) then
+			timer = 1
+		end	
 	else
 		timer = 1
 	end
@@ -156,7 +158,7 @@ function AiLevel07()
 	if (AiPlayer() == 0) then
 		if (GetNumUnitsAt(AiPlayer(), AiBarracks(), {0, 0}, {256, 256}) >= 4) then
 			if (GetNumUnitsAt(AiPlayer(), AiSoldier(), {0, 0}, {256, 256}) >= 4) then
-				AiForce(forceid, {AiSoldier(), 20})
+				AiForce(forceid, {AiSoldier(), 20}, true)
 				if (GetNumUnitsAt(AiPlayer(), AiSoldier(), {0, 0}, {256, 256}) >= 20) then
 					if (GetNumUnitsAt(AiPlayer(), AiBlacksmith(), {0, 0}, {256, 256}) >= 1) then
 						AiResearch(AiUpgradeWeapon1())
@@ -181,8 +183,8 @@ function AiLevel07()
 	if (AiPlayer() == 4) then
 		if (GetNumUnitsAt(AiPlayer(), AiBarracks(), {0, 0}, {256, 256}) >= 1) then
 			if (GetNumUnitsAt(AiPlayer(), AiSoldier(), {0, 0}, {256, 256}) >= 4) then
-				AiForce(forceid, {AiSoldier(), 15})
-				AiForce(forceid + 3, {AiShooter(), 10})
+				AiForce(forceid, {AiSoldier(), 15}, true)
+				AiForce(forceid + 3, {AiShooter(), 10}, true)
 				if (GetNumUnitsAt(AiPlayer(), AiSoldier(), {0, 0}, {256, 256}) >= 8) then
 					if (GetNumUnitsAt(AiPlayer(), AiBlacksmith(), {0, 0}, {256, 256}) >= 1) then
 						AiResearch(AiUpgradeWeapon1())
@@ -194,7 +196,7 @@ function AiLevel07()
 					end
 					AiStartAttack()
 					AiAttackWithForce(forceid)
-					AiAttackWithForce(forceid + 3)
+					;AiAttackWithForce(forceid + 3)
 					AiEndAttack()
 				end
 			else
@@ -225,7 +227,7 @@ function AiLevel07()
 			if ((gametimer > 900) and (timer > 190)) then
 				SetDiplomacy(1, "allied", 4)
 				SetDiplomacy(1, "allied", 2)	
-				AiForce(1, {AiEliteSoldier(), 13})
+				AiForce(1, {AiEliteSoldier(), 13}, true)
 				AiAttackWithForce(1)
 				SetDiplomacy(1, "enemy", 4)
 				SetDiplomacy(1, "enemy", 2)				

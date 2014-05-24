@@ -74,11 +74,11 @@ function AiNephrite_2012()
 								else
 									if ((GetNumUnitsAt(AiPlayer(), AiCavalry(), {0, 0}, {256, 256}) >= 7) or (GetNumUnitsAt(AiPlayer(), AiCavalryMage(), {0, 0}, {256, 256}) >= 7)) then
 										--AiForce(6, {AiCavalry(), 12, AiCatapult(), 1})
-										AiForce(6, {AiCavalry(), 12})
+										AiForce(6, {AiCavalry(), 12}, true)
 										AiAttackWithForce(6)
 										nephrite_stepping = 2
 									else
-										AiForce(6, {AiCavalry(), 1})
+										AiForce(6, {AiCavalry(), 1}, true)
 										AiAttackWithForce(6)
 										nephrite_stepping = 2
 									end
@@ -167,18 +167,18 @@ function AiNephrite_2012()
 	end
 	if ((nephrite_stepping == 4) and (nephrite_wait < 1)) then
 		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())) == nephrite_attackbuffer) then
-			AiForce(1, {AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiCavalry(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()), AiShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter())})
+			AiForce(1, {AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiCavalry(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()), AiShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter())}, true)
 			AiAttackWithForce(1)
 			nephrite_wait = 20
 		elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())) >= nephrite_attackbuffer) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) >= nephrite_attackbuffer) then
-				AiForce(2, {AiSoldier(), nephrite_attackbuffer})
+				AiForce(2, {AiSoldier(), nephrite_attackbuffer}, true)
 				AiAttackWithForce(2)
 			elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) >= nephrite_attackbuffer) and (nephrite_modifier_cav > 0)) then
-				AiForce(3, {AiCavalry(), nephrite_attackbuffer})
+				AiForce(3, {AiCavalry(), nephrite_attackbuffer}, true)
 				AiAttackWithForce(3)
 			elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) >= nephrite_attackbuffer) and (nephrite_modifier_archer > 0)) then
-				AiForce(4, {AiShooter(), nephrite_attackbuffer})
+				AiForce(4, {AiShooter(), nephrite_attackbuffer}, true)
 				AiAttackWithForce(4)
 			end
 			nephrite_wait = 20
