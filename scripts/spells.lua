@@ -68,6 +68,10 @@ CUpgrade:New("upgrade-unholy-armor")
 CUpgrade:New("upgrade-runes")
 CUpgrade:New("upgrade-death-and-decay")
 
+CUpgrade:New("upgrade-eye-of-kilrogg-double-head")
+CUpgrade:New("upgrade-bloodlust-double-head")
+CUpgrade:New("upgrade-runes-double-head")
+
 --[[
 -- better display
 DefineSpell("spell-suicide-bomber", {
@@ -147,6 +151,17 @@ DefineSpell("spell-eye-of-vision",
 	"depend-upgrade", "upgrade-eye-of-kilrogg"
 )
 
+DefineSpell("spell-eye-of-vision-double-head",
+	"showname", "eye of vision",
+	"manacost", 70,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-eye-of-vision", "time-to-live", 5000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision"
+)
+
 DefineSpell("spell-haste",
 	"showname", "haste",
 	"manacost", 50,
@@ -195,6 +210,22 @@ DefineSpell("spell-bloodlust",
 		"Bloodlust", {MaxValue = 10}},
 	"sound-when-cast", "bloodlust",
 	"depend-upgrade", "upgrade-bloodlust",
+	"autocast", {"range", 6, "condition", {"Coward", "false", "alliance", "only"}},
+	"ai-cast", {"range", 6, "combat", "only", "condition", {"Coward", "false", "alliance", "only"}}
+)
+
+DefineSpell("spell-bloodlust-double-head",
+	"showname", "bloodlust",
+	"manacost", 50,
+	"range", 6,
+	"target", "unit",
+	"action", {{"adjust-variable", {Bloodlust = 1000}},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"condition", {
+		"organic", "only",
+		"Bloodlust", {MaxValue = 10}},
+	"sound-when-cast", "bloodlust",
 	"autocast", {"range", 6, "condition", {"Coward", "false", "alliance", "only"}},
 	"ai-cast", {"range", 6, "combat", "only", "condition", {"Coward", "false", "alliance", "only"}}
 )
@@ -347,6 +378,32 @@ DefineSpell("spell-runes",
 	},
 	"sound-when-cast", "runes",
 	"depend-upgrade", "upgrade-runes"
+--	"autocast", {range 10)
+)
+
+DefineSpell("spell-runes-double-head",
+	"showname", "runes",
+	"manacost", 200,
+	"range", 10,
+	"target", "position",
+	"action", {
+		{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
+		 "start-point", {"base", "target", "add-x", 0, "add-y", 0},
+		 "end-point",   {"base", "target", "add-x", 0, "add-y", 0}},
+		{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
+		 "start-point", {"base", "target", "add-x", 32, "add-y", 0},
+		 "end-point",   {"base", "target", "add-x", 32, "add-y", 0}},
+		{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
+		 "start-point", {"base", "target", "add-x", 0, "add-y", 32},
+		 "end-point",   {"base", "target", "add-x", 0, "add-y", 32}},
+		{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
+		 "start-point", {"base", "target", "add-x", -32, "add-y", 0},
+		 "end-point",   {"base", "target", "add-x", -32, "add-y", 0}},
+		{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
+		 "start-point", {"base", "target", "add-x", 0, "add-y", -32},
+		 "end-point",   {"base", "target", "add-x", 0, "add-y", -32}},
+	},
+	"sound-when-cast", "runes"
 --	"autocast", {range 10)
 )
 

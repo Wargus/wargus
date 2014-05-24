@@ -184,19 +184,19 @@ DefineButton( { Pos = 9, Level = 0, Icon = "icon-runes",
 -- cho'gall specific actions --- same as ogre mage but it has them always -----
 
 DefineButton( { Pos = 7, Level = 0, Icon = "icon-eye-of-kilrogg",
-  Action = "cast-spell", Value = "spell-eye-of-vision",
+  Action = "cast-spell", Value = "spell-eye-of-vision-double-head",
   Allowed = "check-true",
   Key = "k", Hint = "EYE OF ~!KILROGG",
   ForUnit = {"unit-double-head"} } )
 
 DefineButton( { Pos = 8, Level = 0, Icon = "icon-bloodlust",
-  Action = "cast-spell", Value = "spell-bloodlust",
+  Action = "cast-spell", Value = "spell-bloodlust-double-head",
   Allowed = "check-true",
   Key = "b", Hint = "~!BLOODLUST",
   ForUnit = {"unit-double-head"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-runes",
-  Action = "cast-spell", Value = "spell-runes",
+  Action = "cast-spell", Value = "spell-runes-double-head",
   Allowed = "check-true",
   Key = "r", Hint = "~!RUNES",
   ForUnit = {"unit-double-head"} } )
