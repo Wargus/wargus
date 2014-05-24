@@ -34,7 +34,7 @@ table.foreach(UnitTypeFiles,
 
 -- Fix critters sounds and name
 local CritterNames = {
-  summer = "Pig", winter = "Seal", wasteland = "Pig", swamp = "Warthog",
+  summer = "Sheep", winter = "Seal", wasteland = "Pig", swamp = "Warthog",
 }
 
 local CritterSounds = {
