@@ -56,7 +56,7 @@ DefineCursor({
 --	* Race human.
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-wargus.playlist = { "music/Human Battle 1.ogg", "music/Human Battle 2.ogg", "music/Human Battle 3.ogg", "music/Human Battle 4.ogg", "music/Human Battle 5.ogg", "music/Human Battle 6.ogg" }
+wargus.playlist = { "music/Human Battle 1.ogg", "music/Human Battle 2.ogg", "music/Human Battle 3.ogg", "music/Human Battle 4.ogg", "music/Human Battle 5.ogg"}
 
 function HumanScreen(screen_width, screen_height)
   local info_panel_x = 0
