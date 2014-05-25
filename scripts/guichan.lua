@@ -667,7 +667,7 @@ function RunSinglePlayerGameMenu()
       GameSettings.NumUnits = numunits:getSelected()
       GameSettings.GameType = gametype:getSelected() - 1
       GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
-      RunMap(mapname)
+      RunMap(mapname, nil, wc2.preferences.FogOfWar, false)
       menu:stop()
     end)
   menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function()  menu:stop(1); RunSinglePlayerTypeMenu() end)
