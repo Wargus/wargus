@@ -89,7 +89,7 @@ DefineButton( { Pos = 8, Level = 1, Icon = "icon-sharp-axe",
 	
 DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
 	Action = "button", Value = 0,
-	Key = "\27", Hint = "~<ESC~> CANCEL",
+	Key = "ESC", Hint = "~<ESC~> CANCEL",
 	ForUnit = {"unit-caanoo-wiseskeleton"} } )	
 
 -- Advanced Units
@@ -132,7 +132,7 @@ DefineButton( { Pos = 8, Level = 2, Icon = "icon-dragon",
 	
 DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
 	Action = "button", Value = 0,
-	Key = "\27", Hint = "~<ESC~> CANCEL",
+	Key = "ESC", Hint = "~<ESC~> CANCEL",
 	ForUnit = {"unit-caanoo-wiseskeleton"} } )	
 		
 
@@ -201,7 +201,7 @@ DefineButton( { Pos = 8, Level = 1, Icon = "icon-female-hero",
 	
 DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
 	Action = "button", Value = 0,
-	Key = "\27", Hint = "~<ESC~> CANCEL",
+	Key = "ESC", Hint = "~<ESC~> CANCEL",
 	ForUnit = {"unit-caanoo-wiseman"} } )	
 	
 -- Advanced Units
@@ -241,7 +241,7 @@ DefineButton( { Pos = 8, Level = 2, Icon = "icon-gryphon-rider",
 	
 DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
 	Action = "button", Value = 0,
-	Key = "\27", Hint = "~<ESC~> CANCEL",
+	Key = "ESC", Hint = "~<ESC~> CANCEL",
 	ForUnit = {"unit-caanoo-wiseman"} } )	
 	
 -- Oathbreaker
@@ -426,12 +426,12 @@ DefineButton( { Pos = 8, Level = 2, Icon = "icon-gryphon-aviary",
 
 DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
   Action = "button", Value = 0,
-  Key = "\27", Hint = "~<ESC~> CANCEL",
+  Key = "ESC", Hint = "~<ESC~> CANCEL",
   ForUnit = {"unit-caanoo-pioneer"} } )
 	
 DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
   Action = "button", Value = 0,
-  Key = "\27", Hint = "~<ESC~> CANCEL",
+  Key = "ESC", Hint = "~<ESC~> CANCEL",
   ForUnit = {"unit-caanoo-pioneer"} } )
 
 DefineAllow("unit-caanoo-blacksmith", "AAAAAAAAAAAAAAAA")

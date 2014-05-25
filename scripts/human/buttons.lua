@@ -292,7 +292,7 @@ DefineButton( { Pos = 8, Level = 1, Icon = "icon-human-wall",
 
 DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
   Action = "button", Value = 0,
-  Key = "\27", Hint = "~<ESC~> CANCEL",
+  Key = "ESC", Hint = "~<ESC~> CANCEL",
   ForUnit = {"unit-peasant"} } )
 
 -- human advanced buildings ---------------------------------------------------
@@ -339,7 +339,7 @@ DefineButton( { Pos = 8, Level = 2, Icon = "icon-gryphon-aviary",
 
 DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
   Action = "button", Value = 0,
-  Key = "\27", Hint = "~<ESC~> CANCEL",
+  Key = "ESC", Hint = "~<ESC~> CANCEL",
   ForUnit = {"unit-peasant"} } )
 
 -- buildings commands ---------------------------------------------------------
