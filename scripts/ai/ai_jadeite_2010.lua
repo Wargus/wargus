@@ -30,38 +30,34 @@
 --		This AI currently only works with humans.
 -- 		Currently doesn't support ships.
 
-local jadeite_stepping -- Used to identify where the build order is up to.
+local jadeite_stepping = {} -- Used to identify where the build order is up to.
 
 function AiJadeite_2010()
 	-- Setting up the variables.
-	--if (jadeite_stepping[AiPlayer()] ~= nil) then
-	--	if (jadeite_stepping[AiPlayer()] == 1) then
-			-- Standard worker build.
-	--		AiJadeite_Worker_2010()
-	--	end
-	--	if (jadeite_stepping[AiPlayer()] == 2) then
+	if (jadeite_stepping[AiPlayer()] ~= nil) then
+		if (jadeite_stepping[AiPlayer()] == 1) then
 			-- Standard air attack build.
-	--		AiJadeite_Flyer_2010()
-	--	end
-	--	if (jadeite_stepping[AiPlayer()] == 3) then
+			AiJadeite_Flyer_2010()
+		end
+		if (jadeite_stepping[AiPlayer()] == 2) then
 			-- Standard footsoldier build.
-	--		AiJadeite_Soldier_2010()
-	--	end
-	--	if (jadeite_stepping[AiPlayer()] == 4) then
+			AiJadeite_Soldier_2010()
+		end
+		if (jadeite_stepping[AiPlayer()] == 3) then
 			-- Standard knight build.
-	--		AiJadeite_Cavalry_2010()
-	--	end
-	--	if (jadeite_stepping[AiPlayer()] == 5) then
+			AiJadeite_Cavalry_2010()
+		end
+		if (jadeite_stepping[AiPlayer()] == 4) then
 			-- Standard archer build.
-	--		AiJadeite_Shooter_2010()
-	---	end
-	--	if (jadeite_stepping[AiPlayer()] == 6) then
+			AiJadeite_Shooter_2010()
+		end
+		if (jadeite_stepping[AiPlayer()] == 5) then
 			-- One Hall Power to Keep/Stronghold 
-	--		AiJadeite_Power_2010()
-	--	end
-	--else
-	--	jadeite_stepping[AiPlayer()] = math.random(2, 6)
-   -- end
+			AiJadeite_Power_2010()
+		end
+	else
+		jadeite_stepping[AiPlayer()] = SyncRand(5)
+    end
 end
 
 function AiJadeite_Worker_2010()
@@ -331,6 +327,6 @@ DefineAi("ai_jadeite_2010", "*", "ai_jadeite_2010", AiJadeite_2010)
 DefineAi("ai_jadeite_soldier_2010", "*", "ai_jadeite_soldier_2010", AiJadeite_Soldier_2010)
 DefineAi("ai_jadeite_cavalry_2010", "*", "ai_jadeite_cavalry_2010", AiJadeite_Cavalry_2010)
 DefineAi("ai_jadeite_shooter_2010", "*", "ai_jadeite_shooter_2010", AiJadeite_Shooter_2010)
---DefineAi("ai_jadeite_worker_2010", "*", "ai_jadeite_worker_2010", AiJadeite_Worker_2010())
+DefineAi("ai_jadeite_worker_2010", "*", "ai_jadeite_worker_2010", AiJadeite_Worker_2010)
 DefineAi("ai_jadeite_power_2010", "*", "ai_jadeite_power_2010", AiJadeite_Power_2010)
 DefineAi("ai_jadeite_flyer_2010", "*", "ai_jadeite_flyer_2010", AiJadeite_Flyer_2010)

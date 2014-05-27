@@ -29,25 +29,27 @@
 
 -- This edition was started on 11/11/2013.
 
-local nephrite_build -- What the AI is going to build.
-local nephrite_attackbuffer -- The AI attacks when it has this many units.
-local nephrite_attackforce
-local nephrite_wait -- How long the AI waits for the next attack.
-local nephrite_increment -- How large the attack force is increased by.
+local nephrite_build = {} -- What the AI is going to build.
+local nephrite_attackbuffer = {} -- The AI attacks when it has this many units.
+local nephrite_attackforce = {}
+local nephrite_wait = {} -- How long the AI waits for the next attack.
+local nephrite_increment = {} -- How large the attack force is increased by.
+local nephrite_modifier_cav = {}
+local nephrite_modifier_archer = {}
 
 function AiNephrite_Setup_2013()
-	nephrite_build = "Footman"
-	nephrite_attackbuffer = 8
-	nephrite_wait = 100
-	nephrite_attackforce = 1
-	nephrite_modifier_cav = 1
-	nephrite_modifier_archer = 1
-	nephrite_increment = 0.1
+	nephrite_build[AiPlayer()] = "Footman"
+	nephrite_attackbuffer[AiPlayer()] = 8
+	nephrite_wait[AiPlayer()] = 100
+	nephrite_attackforce[AiPlayer()] = 1
+	nephrite_modifier_cav[AiPlayer()] = 1
+	nephrite_modifier_archer[AiPlayer()] = 1
+	nephrite_increment[AiPlayer()] = 0.1
 end
 
 function AiNephrite_2013()
-	if (nephrite_attackforce ~= nil) then
-		if ((nephrite_wait < 3) or (nephrite_wait == 11) or (nephrite_wait == 21) or (nephrite_wait == 21) or (nephrite_wait == 31) or (nephrite_wait == 41) or (nephrite_wait == 51) or (nephrite_wait == 61) or (nephrite_wait == 71) or (nephrite_wait == 81) or (nephrite_wait == 91) or (nephrite_wait == 101)) then
+	if (nephrite_attackforce[AiPlayer()] ~= nil) then
+		if ((nephrite_wait[AiPlayer()] < 3) or (nephrite_wait[AiPlayer()] == 11) or (nephrite_wait[AiPlayer()] == 21) or (nephrite_wait[AiPlayer()] == 21) or (nephrite_wait[AiPlayer()] == 31) or (nephrite_wait[AiPlayer()] == 41) or (nephrite_wait[AiPlayer()] == 51) or (nephrite_wait[AiPlayer()] == 61) or (nephrite_wait[AiPlayer()] == 71) or (nephrite_wait[AiPlayer()] == 81) or (nephrite_wait[AiPlayer()] == 91) or (nephrite_wait[AiPlayer()] == 101)) then
 			AiNephrite_Flush_2013()
 		end
 		AiNephrite_Pick_2013()
@@ -69,11 +71,11 @@ function AiNephrite_2013()
 				end
 			end
 		end
-		if (nephrite_wait < 2) then
+		if (nephrite_wait[AiPlayer()] < 2) then
 			AiNephrite_Attack_2013()
 			--AiForce(0, {AiSoldier(), 2})
 		else
-			nephrite_wait = nephrite_wait - 1
+			nephrite_wait[AiPlayer()] = nephrite_wait[AiPlayer()] - 1
 		end
 		AiNephrite_Research_2013()
 		AiNephrite_Expand_2013()
@@ -98,22 +100,22 @@ end
 
 function AiNephrite_Pick_2013()
 	-- What am I going to build next?
-	nephrite_build = SyncRand(4)
-	if (nephrite_build == 1) then
-		if ((nephrite_modifier_archer == 0) or ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter())/2) > (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())))) then
-			nephrite_build = "Knight"
+	nephrite_build[AiPlayer()] = SyncRand(4)
+	if (nephrite_build[AiPlayer()] == 1) then
+		if ((nephrite_modifier_archer[AiPlayer()] == 0) or ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter())/2) > (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())))) then
+			nephrite_build[AiPlayer()] = "Knight"
 		else
-			nephrite_build = "Archer"
+			nephrite_build[AiPlayer()] = "Archer"
 		end
-	elseif (nephrite_build == 2) then
-		nephrite_build = "Knight"
-	elseif ((nephrite_build == 3) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 2)) then
-		nephrite_build = "Catapult"
+	elseif (nephrite_build[AiPlayer()] == 2) then
+		nephrite_build[AiPlayer()] = "Knight"
+	elseif ((nephrite_build[AiPlayer()] == 3) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 2)) then
+		nephrite_build[AiPlayer()] = "Catapult"
 	else
-		nephrite_build = "Knight"
+		nephrite_build[AiPlayer()] = "Knight"
 	end
-	if ((nephrite_modifier_cav == 0) and (nephrite_build == "Knight")) then
-		nephrite_build = "Footman"
+	if ((nephrite_modifier_cav[AiPlayer()] == 0) and (nephrite_build[AiPlayer()] == "Knight")) then
+		nephrite_build[AiPlayer()] = "Footman"
 	end
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) > 0) then
 		if ((((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())) > ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker())) * 2)) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 10))) then
@@ -123,16 +125,16 @@ function AiNephrite_Pick_2013()
 end
 
 function AiNephrite_Attack_2013()
-	if (nephrite_attackforce ~= nil) then
+	if (nephrite_attackforce[AiPlayer()] ~= nil) then
 		--AddMessage("It is time to attack.")
-		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroRider()) + GetPlayerData(AiPlayer(), "UnitTypesCount", "unit-skeleton") + GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiMage()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())) >= nephrite_attackbuffer) then
+		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroRider()) + GetPlayerData(AiPlayer(), "UnitTypesCount", "unit-skeleton") + GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiMage()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())) >= nephrite_attackbuffer[AiPlayer()]) then
 			--AddMessage("Attacking with force 1.")
-			AiForce(nephrite_attackforce, {AiEliteSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteSoldier()), AiHeroRider(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroRider()), AiHeroSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroSoldier()), AiMage(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiMage()), AiFlyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()), AiBones(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiBones()), AiHeroShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroShooter()), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()), AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiCavalry(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())), AiShooter(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()))}, true)
-			AiAttackWithForce(nephrite_attackforce)
-			nephrite_wait = 150
-			if (nephrite_attackforce >= 8) then
-				nephrite_attackforce = 1
-				nephrite_attackbuffer = nephrite_attackbuffer + nephrite_increment
+			AiForce(nephrite_attackforce[AiPlayer()], {AiEliteSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteSoldier()), AiHeroRider(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroRider()), AiHeroSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroSoldier()), AiMage(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiMage()), AiFlyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()), AiBones(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiBones()), AiHeroShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroShooter()), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()), AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiCavalry(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())), AiShooter(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()))}, true)
+			AiAttackWithForce(nephrite_attackforce[AiPlayer()])
+			nephrite_wait[AiPlayer()] = 150
+			if (nephrite_attackforce[AiPlayer()] >= 8) then
+				nephrite_attackforce[AiPlayer()] = 1
+				nephrite_attackbuffer[AiPlayer()] = nephrite_attackbuffer[AiPlayer()] + nephrite_increment[AiPlayer()]
 				AiForce(0, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
 				AiForce(1, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0}, true)
 				AiForce(2, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0}, true)
@@ -144,7 +146,7 @@ function AiNephrite_Attack_2013()
 				AiForce(8, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0}, true)
 				AiForce(9, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0}, true)
 			else
-				nephrite_attackforce = nephrite_attackforce + 1
+				nephrite_attackforce[AiPlayer()] = nephrite_attackforce[AiPlayer()] + 1
 			end
 		end
 	else
@@ -262,20 +264,20 @@ end
 
 function AiNephrite_Train_2013()
 	AiSetReserve({0, 400, 0, 0, 0, 0, 0})
-	if (nephrite_build == "Worker") then
+	if (nephrite_build[AiPlayer()] == "Worker") then
 		AiSet(AiWorker(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()))
 	elseif (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 0) then
-		if (nephrite_build == "Footman") then
+		if (nephrite_build[AiPlayer()] == "Footman") then
 			AiSet(AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()))
-		elseif (nephrite_build == "Catapult") then
+		elseif (nephrite_build[AiPlayer()] == "Catapult") then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then
 				AiSet(AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()) + 1)
 			else
 				AiSet(AiBlacksmith(), 1)
 			end
-		elseif (nephrite_build == "Archer") then
+		elseif (nephrite_build[AiPlayer()] == "Archer") then
 			AiSet(AiShooter(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks())))
-		elseif (nephrite_build == "Knight") then
+		elseif (nephrite_build[AiPlayer()] == "Knight") then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
 				AiSet(AiCavalry(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()))
 			else
@@ -304,46 +306,48 @@ function AiNephrite_Train_2013()
 end
 
 function AiNephrite_NoCav_2013()
-	if (nephrite_attackforce ~= nil) then
+	if (nephrite_attackforce[AiPlayer()] ~= nil) then
 		AiNephrite_2013()
-		if (nephrite_attackbuffer > 20) then
-			nephrite_attackbuffer = 10
+		if (nephrite_attackbuffer[AiPlayer()] > 20) then
+			nephrite_attackbuffer[AiPlayer()] = 10
 		end
 	else
-		nephrite_attackforce = 1
-		nephrite_build = "Soldier"
-		nephrite_attackbuffer = 1
-		nephrite_wait = 100
-		nephrite_modifier_cav = 0
-		nephrite_modifier_archer = 1
-		nephrite_increment = 1
+		nephrite_attackforce[AiPlayer()] = 1
+		nephrite_build[AiPlayer()] = "Soldier"
+		nephrite_attackbuffer[AiPlayer()] = 1
+		nephrite_wait[AiPlayer()] = 100
+		nephrite_modifier_cav[AiPlayer()] = 0
+		nephrite_modifier_archer[AiPlayer()] = 1
+		nephrite_increment[AiPlayer()] = 1
 	end
 end
 
 function AiNephrite_Level5()
 	AiSet(AiLumberMill(), 1)
-	if (nephrite_attackforce ~= nil) then
-		if (GetPlayerData(2, "Resources", "gold") > 1000) then
+	if (nephrite_attackforce[AiPlayer()] ~= nil) then
+		if (GetPlayerData(AiPlayer(), "Resources", "gold") > 1000) then
 			AiNephrite_Train_2013()
 			AiNephrite_Pick_2013()
-			if (nephrite_wait < 2) then
+			if (nephrite_wait[AiPlayer()] < 2) then
 				AiNephrite_Attack_2013()
 			else
-				nephrite_wait = nephrite_wait - 1
+				nephrite_wait[AiPlayer()] = nephrite_wait[AiPlayer()] - 1
 			end
 			AiNephrite_Research_2013()
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then
 				AiNephrite_Expand_2013()
 			end
+		else
+			AiNephrite_Attack_2013()
 		end
 	else
-		nephrite_attackforce = 1
-		nephrite_build = "Archer"
-		nephrite_attackbuffer = 6
-		nephrite_wait = 100
-		nephrite_modifier_cav = 0
-		nephrite_modifier_archer = 1
-		nephrite_increment = 0.1
+		nephrite_attackforce[AiPlayer()] = 1
+		nephrite_build[AiPlayer()] = "Archer"
+		nephrite_attackbuffer[AiPlayer()] = 6
+		nephrite_wait[AiPlayer()] = 100
+		nephrite_modifier_cav[AiPlayer()] = 0
+		nephrite_modifier_archer[AiPlayer()] = 1
+		nephrite_increment[AiPlayer()] = 0
 	end
 end
 
