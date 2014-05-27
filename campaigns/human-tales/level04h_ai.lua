@@ -115,7 +115,7 @@ function AiLevel04land()
 		if (GetNumUnitsAt(AiPlayer(), "unit-orc-barracks", {0, 0}, {256, 256}) >= 1) then
 			if (GetNumUnitsAt(AiPlayer(), "unit-grunt", {0, 0}, {256, 256}) >= 4) then
 				if (GetNumUnitsAt(AiPlayer(), "unit-grunt", {0, 0}, {256, 256}) >= 12) then
-					AiForce(3, {AiSoldier(), 12})
+					AiForce(3, {AiSoldier(), 12}, true)
 					AiAttackWithForce(3)
 				else
 					AiSet(AiSoldier(), 14)

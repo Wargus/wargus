@@ -30,14 +30,14 @@
 function AiLevel03()
 	if (GetPlayerData(GetThisPlayer(), "TotalNumUnits") > 0) then
 		if (GetNumUnitsAt(AiPlayer(), "unit-ranger", {0, 0}, {256, 256}) >= 4) then
-			AiForce(2, {AiShooter(), 4})
+			AiForce(2, {AiShooter(), 4}, true)
 			AiAttackWithForce(2)
 		end
 		AiSet(AiWorker(), 3)
 		AiSet(AiHarbor(), 1)
 		if (GetNumUnitsAt(AiPlayer(), "unit-human-barracks", {0, 0}, {256, 256}) >= 1) then
 			if (GetNumUnitsAt(AiPlayer(), "unit-footman", {0, 0}, {256, 256}) >= 4) then
-				AiForce(3, {AiSoldier(), 12})
+				AiForce(3, {AiSoldier(), 12}, true)
 				if (GetNumUnitsAt(AiPlayer(), "unit-footman", {0, 0}, {256, 256}) >= 12) then
 					AiAttackWithForce(3)
 					AiSet(AiWorker(), 12)
