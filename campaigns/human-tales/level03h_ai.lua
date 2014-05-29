@@ -29,27 +29,36 @@
 
 function AiLevel03()
 	if (GetPlayerData(GetThisPlayer(), "TotalNumUnits") > 0) then
-		if (GetNumUnitsAt(AiPlayer(), "unit-ranger", {0, 0}, {256, 256}) >= 4) then
-			AiForce(2, {AiShooter(), 4}, true)
-			AiAttackWithForce(2)
-		end
 		AiSet(AiWorker(), 3)
 		AiSet(AiHarbor(), 1)
-		if (GetNumUnitsAt(AiPlayer(), "unit-human-barracks", {0, 0}, {256, 256}) >= 1) then
-			if (GetNumUnitsAt(AiPlayer(), "unit-footman", {0, 0}, {256, 256}) >= 4) then
-				AiForce(3, {AiSoldier(), 12}, true)
-				if (GetNumUnitsAt(AiPlayer(), "unit-footman", {0, 0}, {256, 256}) >= 12) then
-					AiAttackWithForce(3)
-					AiSet(AiWorker(), 12)
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 20) then
+			AiSet(AiShooter(), 0)
+			Aiset(AiSoldier(), 0)
+			AiNephrite_Attack_2013()
+		else
+			if (GetNumUnitsAt(AiPlayer(), "unit-human-barracks", {0, 0}, {256, 256}) >= 1) then
+				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 3) then
+					AiSet(AiWorker(), 0)
+					AiForce(3, {AiSoldier(), 12, AiShooter(), 6}, true)
+					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 11) then
+						AiAttackWithForce(3)
+						AiSet(AiWorker(), 12)
+					end
+				else
+					AiSet(AiWorker(), 8)
+					AiSet(AiSoldier(), 4)
+					AiSet(AiShooter(), 6)
 				end
 			else
-				AiSet(AiWorker(), 8)
-				AiSet(AiSoldier(), 4)
+				AiSet(AiWorker(), 6)
+				AiSet(AiBarracks(), 1)
+				if (GetNumUnitsAt(AiPlayer(), AiEliteShooter(), {0, 0}, {256, 256}) >= 4) then
+					AiForce(2, {AiShooter(), 4})
+					AiAttackWithForce(2)
+				end
 			end
-		else
-			AiSet(AiWorker(), 6)
-			AiSet(AiBarracks(), 1)
 		end
+
 	end
 end
 
