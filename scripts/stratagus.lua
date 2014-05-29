@@ -57,6 +57,8 @@ function InitGameVariables()
   end
 end
 
+DefineBoolFlags("Center", "WoodImprove", "OilImprove")
+
 --  Edit the next sections to get your look and feel.
 --  Note, some of those values are overridden by user preferences,
 --  see preferences.lua
