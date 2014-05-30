@@ -137,7 +137,7 @@ function RunPreferencesMenu()
   menu:addLabel("Game Speed", 16, 40 + 36 * 2, Fonts["game"], false)
 
   local gamespeed = {}
-  gamespeed = menu:addSlider(15, 75, 198, 18, 32, 40 + 36 * 2.5,
+  gamespeed = menu:addSlider(15, 90, 198, 18, 32, 40 + 36 * 2.5,
     function() SetGameSpeed(gamespeed:getValue()) end)
   gamespeed:setValue(GetGameSpeed())
 
