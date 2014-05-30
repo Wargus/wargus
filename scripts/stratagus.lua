@@ -86,6 +86,7 @@ SetSelectionStyle("corners")
 Preference.ShowSightRange = false
 Preference.ShowAttackRange = false
 Preference.ShowReactionRange = false
+Preference.IconsShift = true
 
 Preference.ShowOrders = 2
 
