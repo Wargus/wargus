@@ -545,7 +545,7 @@ function RunSelectScenarioMenu()
 
   menu:addLabel("Select scenario", 176, 8)
 
-  local browser = menu:addBrowser("maps/skirmish", "^.*%.smp%.?g?z?$",
+  local browser = menu:addBrowser("maps/", "^.*%.smp%.?g?z?$",
     24, 140, 300, 108, mapname)
 
   local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)

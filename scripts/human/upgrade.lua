@@ -243,15 +243,16 @@ function DefineAllowNormalHumanUnits(flags)
 		"upgrade-human-ship-cannon2", "upgrade-human-ship-armor2",
 		"unit-inventor", "unit-balloon", "unit-dwarves",
 		"unit-stables", "unit-knight", "unit-paladin",
-		"unit-church", "upgrade-paladin", "upgrade-holy-vision", "upgrade-healing", "upgrade-exorcism",
+		"unit-church", "upgrade-paladin", "upgrade-healing", "upgrade-exorcism",
 		"unit-mage-tower", "unit-mage",
-		"upgrade-flame-shield", "upgrade-fireball", "upgrade-slow",
+		"upgrade-flame-shield", "upgrade-slow",
 		"upgrade-invisibility", "upgrade-polymorph", "upgrade-blizzard",
 		"unit-gryphon-aviary", "unit-gryphon-rider"
 	}
 	for i, unitName in ipairs(units) do
 		DefineAllow(unitName, flags)
 	end
+	DefineAllowHumanAlways()
 end
 
 function DefineAllowExtraHumanUnits(flags)
@@ -265,13 +266,15 @@ function DefineAllowExtraHumanUnits(flags)
 	end
 end
 
-InitFuncs:add(function()
-	DefineAllowNormalHumanUnits("AAAAAAAAAAAAAAAA")
-	DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
-
+function DefineAllowHumanAlways()
 	DefineAllow("unit-human-wall", "AAAAAAAAAAAAAAAA")
 	DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
 	DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
+end
+
+InitFuncs:add(function()
+	DefineAllowNormalHumanUnits("AAAAAAAAAAAAAAAA")
+	DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
 end)
 
 -- NOTE: Save can generate this table.

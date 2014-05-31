@@ -56,8 +56,8 @@ DefineMissileType("missile-flame-shield",
   DrawLevel = 50, Class = "missile-class-flame-shield", Sleep = 2, Speed = 4, Range = 1 } )
 
 DefineMissileType("missile-blizzard",
-  { File = "missiles/blizzard.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
-  Class = "missile-class-point-to-point-with-hit", Sleep = 2, Speed = 8, Range = 1,
+  { File = "missiles/blizzard.png", Size = {32, 32}, Frames = 4, NumDirections = 1, ImpactSound = "fireball hit",
+  Class = "missile-class-point-to-point-with-hit", Sleep = 1, BlizzardSpeed = 4, Speed = 16, Range = 1,
   DrawLevel = 100 } )
 
 DefineMissileType("missile-death-and-decay",
@@ -168,21 +168,9 @@ DefineMissileType("missile-green-cross",
   { File = "missiles/green_cross.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
   DrawLevel = 150, Class = "missile-class-cycle-once", Sleep = 1, Speed = 16, Range = 1 } )
 
---[[ -- unused
-if (CanAccessFile("missiles/red_cross.png")) then
-  DefineMissileType("missile-red-cross",
-    { File = "missiles/red_cross.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
-    DrawLevel = 5, Class = "missile-class-cycle-once", Sleep = 1, Speed = 16, Range = 1 } )
-end
---]]
-
 DefineMissileType("missile-none",
   { Size = {32, 32}, DrawLevel = 50,
   Class = "missile-class-none", Sleep = 1, Speed = 16, Range = 1 } )
-
-DefineMissileType("missile-blizzard-hit",
-  { File = "missiles/blizzard.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
-  DrawLevel = 60, Class = "missile-class-stay", Sleep = 2, Speed = 8, Range = 1 } )
 
 DefineMissileType("missile-death-coil",
   { File = "missiles/touch_of_death.png", Size = {32, 32}, Frames = 30, NumDirections = 9,

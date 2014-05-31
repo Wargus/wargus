@@ -10,7 +10,7 @@
 --
 --      spells.lua - The spells.
 --
---      (c) Copyright 1998-2005 by Joris Dauphin and Jimmy Salmon.
+--      (c) Copyright 1998-2014 by Joris Dauphin, Jimmy Salmon, cybermind
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -119,8 +119,40 @@ DefineSpell("spell-healing",
 	},
 	"sound-when-cast", "healing",
 	"depend-upgrade", "upgrade-healing",
-	"autocast", {"range", 6, "condition", {"alliance", "only", "HitPoints", {MaxValuePercent = 90}}}
+	"autocast", {"range", 6, "condition", {"alliance", "only", "HitPoints", {MaxValuePercent = 90}}},
+	"ai-cast", {"range", 6, "condition", {"alliance", "only", "HitPoints", {MaxValuePercent = 90}}}
 )
+
+--[[
+local function SpellExorcism(units)	
+	local x = GetUnitVariable(units[1], "PosX")
+	local y = GetUnitVariable(units[1], "PosY")
+	print("aga")
+	Exit(0)
+	local minDist = 999
+	local minUnit = 2
+	if (table.getn(units) > 1) then
+		local function distance(x1, y1, x2, y2)
+			return math.sqrt(x1*x2 + y1*y2)
+		end
+		for i = 2,table.getn(units) do
+			if (units[i] ~= nil) then
+				local x2 = GetUnitVariable(units[i], "PosX")
+				local y2 = GetUnitVariable(units[i], "PosY")
+				local dist = distance(x, y, x2, y2)
+				if (dist < minDist) then
+					minUnit = i
+					minDist = dist
+				end
+			end
+		end
+		local x = GetUnitVariable(units[minUnit], "PosX")
+		local y = GetUnitVariable(units[minUnit], "PosY")
+		return x, y
+	else
+		return -1, -1
+	end
+end]]
 
 DefineSpell("spell-exorcism",
 	"showname", "Exorcism",
@@ -136,7 +168,8 @@ DefineSpell("spell-exorcism",
 	},
 	"sound-when-cast", "exorcism",
 	"depend-upgrade", "upgrade-exorcism",
-	"autocast", {"range", 10, "condition", {"Coward", "false", "alliance", "false"}}
+	"autocast", {"range", 10, "condition", {"alliance", "false"}},
+	"ai-cast", {"range", 10, "condition", {"alliance", "false"}}
 )
 
 DefineSpell("spell-eye-of-vision",
@@ -172,11 +205,11 @@ DefineSpell("spell-haste",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"Building", "false",
-		"Haste", {MaxValue = 10} -- FIXME: proper value?
+		"Haste", {ExactValue = 0}
 	},
 	"sound-when-cast", "haste",
 	"depend-upgrade", "upgrade-haste",
-	"autocast", {"range", 6, "condition", {"Coward", "false", "alliance", "only"}},
+	"autocast", {"range", 6, "combat", "only", "condition", {"Coward", "false", "alliance", "only"}},
 	"ai-cast", {"range", 6, "combat", "only", "condition", {"Coward", "false", "alliance", "only"}}
 )
 
@@ -190,7 +223,7 @@ DefineSpell("spell-slow",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"Building", "false",
-		"Slow", {MaxValue = 10}},
+		"Slow", {ExactValue = 0}},
 	"sound-when-cast", "slow",
 	"depend-upgrade", "upgrade-slow",
 	"autocast", {"range", 10, "condition", {"Coward", "false", "alliance", "false"}},
@@ -207,11 +240,11 @@ DefineSpell("spell-bloodlust",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"organic", "only",
-		"Bloodlust", {MaxValue = 10}},
+		"Bloodlust", {ExactValue = 0}},
 	"sound-when-cast", "bloodlust",
 	"depend-upgrade", "upgrade-bloodlust",
-	"autocast", {"range", 6, "condition", {"Coward", "false", "alliance", "only"}},
-	"ai-cast", {"range", 6, "combat", "only", "condition", {"Coward", "false", "alliance", "only"}}
+	"autocast", {"range", 6, "attacker", "only", "condition", {"Coward", "false", "alliance", "only"}},
+	"ai-cast", {"range", 6, "attacker", "only", "condition", {"Coward", "false", "alliance", "only"}}
 )
 
 DefineSpell("spell-bloodlust-double-head",
@@ -224,10 +257,10 @@ DefineSpell("spell-bloodlust-double-head",
 			"start-point", {"base", "target"}}},
 	"condition", {
 		"organic", "only",
-		"Bloodlust", {MaxValue = 10}},
+		"Bloodlust", {ExactValue = 0}},
 	"sound-when-cast", "bloodlust",
-	"autocast", {"range", 6, "condition", {"Coward", "false", "alliance", "only"}},
-	"ai-cast", {"range", 6, "combat", "only", "condition", {"Coward", "false", "alliance", "only"}}
+	"autocast", {"range", 6, "attacker", "only", "condition", {"Coward", "false", "alliance", "only"}},
+	"ai-cast", {"range", 6, "attacker", "only", "condition", {"Coward", "false", "alliance", "only"}}
 )
 
 DefineSpell("spell-invisibility",
@@ -242,8 +275,9 @@ DefineSpell("spell-invisibility",
 		"Building", "false",
 		"Invisible", {MaxValue = 10}},
 	"sound-when-cast", "invisibility",
-	"depend-upgrade", "upgrade-invisibility"
---	"autocast", {"range", 6, "condition", {"Coward", "false"}},
+	"depend-upgrade", "upgrade-invisibility",
+	"autocast", {"range", 6, "condition", {"AirUnit", "only"}},
+	"ai-cast", {"range", 6, "condition", {"AirUnit", "only"}}
 )
 
 local function SpellUnholyArmor(spell, unit, x, y, target)
@@ -291,10 +325,10 @@ DefineSpell("spell-flame-shield",
 	},
 	-- I think it's better if we can cast it multiple times and the effects stack.
 	-- Can be casted, and is effective on both allies and enemies
-	"condition", {"Building", "false"},
+	"condition", {"Building", "false", "AirUnit", "false"},
 	"sound-when-cast", "flame shield",
-	"depend-upgrade", "upgrade-flame-shield"
---	"autocast", {range 6 condition (Coward false)},
+	"depend-upgrade", "upgrade-flame-shield",
+	"autocast", {"range", 6, "attacker", "only", "condition", {"Coward", "false"}}
 )
 
 DefineSpell("spell-polymorph",
@@ -307,10 +341,21 @@ DefineSpell("spell-polymorph",
 			"start-point", {"base", "target"}}},
 	"condition", {"organic", "only"},
 	"sound-when-cast", "polymorph",
-	"depend-upgrade", "upgrade-polymorph"
+	"depend-upgrade", "upgrade-polymorph",
 	--  Only cast on the strongest units!!!
---	"autocast", {range 10 condition (alliance false min-hp-percent 75)},
+	"autocast", {"range", 10, "priority", {"HitPoints", true}, "condition", {"alliance", "false", "HitPoints", {MinValuePercent = 50}}},
+	"ai-cast", {"range", 10, "priority", {"HitPoints", true}, "condition", {"alliance", "false", "HitPoints", {MinValuePercent = 50}}}
 )
+
+local function SpellBlizzard(units)
+	if (table.getn(units) > 1) then
+		local x = GetUnitVariable(units[2], "PosX")
+		local y = GetUnitVariable(units[2], "PosY")
+		return x, y
+	else
+		return -1, -1
+	end
+end
 
 DefineSpell("spell-blizzard",
 	"showname", "blizzard",
@@ -326,8 +371,9 @@ DefineSpell("spell-blizzard",
 		 "start-offset-x", -128,
 		 "start-offset-y", -128}},
 	"sound-when-cast", "blizzard",
-	"depend-upgrade", "upgrade-blizzard"
---	"autocast", {range 12)
+	"depend-upgrade", "upgrade-blizzard",
+	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard},
+	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard}
 )
 
 DefineSpell("spell-death-and-decay",
@@ -339,8 +385,9 @@ DefineSpell("spell-death-and-decay",
 	"action", {{"area-bombardment", "missile", "missile-death-and-decay",
 		"fields", 5, "shards", 10, "damage", 10}},
 	"sound-when-cast", "death and decay",
-	"depend-upgrade", "upgrade-death-and-decay"
---	"autocast", {range 12)
+	"depend-upgrade", "upgrade-death-and-decay",
+	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard},
+	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard}
 )
 
 DefineSpell("spell-fireball",
@@ -350,8 +397,9 @@ DefineSpell("spell-fireball",
 	"target", "position",
 	"action", {{"spawn-missile", "missile", "missile-fireball", "damage", 20}},
 	"sound-when-cast", "fireball throw",
-	"depend-upgrade", "upgrade-fireball"
---	"autocast", {range 8)
+	"depend-upgrade", "upgrade-fireball",
+	"autocast", {"range", 8, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard},
+	"ai-cast", {"range", 8, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard}
 )
 
 DefineSpell("spell-runes",
@@ -407,16 +455,34 @@ DefineSpell("spell-runes-double-head",
 --	"autocast", {range 10)
 )
 
+local function SpellDeathCoil(units)		
+	if (table.getn(units) > 1) then
+		local maxUnit = 2
+		for i = 2,table.getn(units) do
+			if (units[i] ~= nil and GetUnitVariable(units[i], "HitPoints") > GetUnitVariable(units[maxUnit], "HitPoints")) then
+				maxUnit = i
+			end
+		end
+		
+		local x = GetUnitVariable(units[maxUnit], "PosX")
+		local y = GetUnitVariable(units[maxUnit], "PosY")
+		return x, y
+	else
+		return -1, -1
+	end
+end
+
 DefineSpell("spell-death-coil",
 	"showname", "death coil",
 	"manacost", 100,
 	"range", 10,
-	"target", "position", -- FIXME position or organic target
+	"target", "position",
 	"action", {{"spawn-missile", "missile", "missile-death-coil", "damage", 50}},
---	"condition", {"UnitTypeflag", {"true", "organic"}},
 	"sound-when-cast", "death coil",
-	"depend-upgrade", "upgrade-death-coil"
---	"autocast", {"range", 6}
+	"depend-upgrade", "upgrade-death-coil",
+	
+	"autocast", {"range", 10, "condition", {"organic", "only", "alliance", "false"}, "position-autocast", SpellDeathCoil},
+	"ai-cast", {"range", 10, "condition", {"organic", "only", "alliance", "false"}, "position-autocast", SpellDeathCoil}
 )
 
 DefineSpell("spell-raise-dead",
@@ -443,8 +509,9 @@ DefineSpell("spell-whirlwind",
 		 "start-point", {"base", "target", "add-x", 0, "add-y", 0},
 		 "end-point",   {"base", "target", "add-x", 0, "add-y", 0}}},
 	"sound-when-cast", "whirlwind",
-	"depend-upgrade", "upgrade-whirlwind"
---	"autocast", {range 12)
+	"depend-upgrade", "upgrade-whirlwind",
+	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"Building", "only", "alliance", "false"}, "position-autocast", SpellBlizzard},
+	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"Building", "only", "alliance", "false"}, "position-autocast", SpellBlizzard}
 )
 
 Load("scripts/caanoo/spells.lua")

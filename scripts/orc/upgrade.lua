@@ -254,15 +254,16 @@ function DefineAllowNormalOrcUnits(flags)
 		"upgrade-orc-ship-cannon2", "upgrade-orc-ship-armor2",
 		"unit-alchemist", "unit-zeppelin", "unit-goblin-sappers",
 		"unit-ogre-mound", "unit-ogre", "unit-ogre-mage",
-		"unit-altar-of-storms", "upgrade-ogre-mage", "upgrade-eye-of-kilrogg", "upgrade-bloodlust", "upgrade-runes",
+		"unit-altar-of-storms", "upgrade-ogre-mage", "upgrade-bloodlust", "upgrade-runes",
 		"unit-temple-of-the-damned", "unit-death-knight",
-		"upgrade-death-coil", "upgrade-haste", "upgrade-raise-dead",
+		"upgrade-haste", "upgrade-raise-dead",
 		"upgrade-whirlwind", "upgrade-unholy-armor", "upgrade-death-and-decay",
 		"unit-dragon-roost", "unit-dragon"
 	}
 	for i, unitName in ipairs(units) do
 		DefineAllow(unitName, flags)
 	end
+	DefineAllowOrcAlways()
 end
 
 function DefineAllowExtraOrcUnits(flags)
@@ -277,14 +278,16 @@ function DefineAllowExtraOrcUnits(flags)
 	end
 end
 
+function DefineAllowOrcAlways(flags)
+	DefineAllow("unit-orc-wall", "AAAAAAAAAAAAAAAA")
+	DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
+	DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
+end
+
 
 InitFuncs:add(function()
 	DefineAllowNormalOrcUnits("AAAAAAAAAAAAAAAA")
 	DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
-
-	DefineAllow("unit-orc-wall", "AAAAAAAAAAAAAAAA")
-	DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
-	DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
 end)
 
 -- NOTE: Save can generate this table.

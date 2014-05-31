@@ -143,7 +143,7 @@ function HandleCheats(str)
     end
 
   elseif (str == "fill mana") then
-    t = GetUnits("this")
+    t = GetUnits("any")
     for i = 1,table.getn(t) do
 		if (GetUnitVariable(t[i], "Mana", "Enable") == 1) then
 			SetUnitVariable(t[i], "Mana", 255, "Value")
