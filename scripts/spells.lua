@@ -168,8 +168,8 @@ DefineSpell("spell-exorcism",
 	},
 	"sound-when-cast", "exorcism",
 	"depend-upgrade", "upgrade-exorcism",
-	"autocast", {"range", 10, "condition", {"alliance", "false"}},
-	"ai-cast", {"range", 10, "condition", {"alliance", "false"}}
+	"autocast", {"range", 10, "condition", {"opponent", "only"}},
+	"ai-cast", {"range", 10, "condition", {"opponent", "only"}}
 )
 
 DefineSpell("spell-eye-of-vision",
@@ -226,8 +226,8 @@ DefineSpell("spell-slow",
 		"Slow", {ExactValue = 0}},
 	"sound-when-cast", "slow",
 	"depend-upgrade", "upgrade-slow",
-	"autocast", {"range", 10, "condition", {"Coward", "false", "alliance", "false"}},
-	"ai-cast", {"range", 10, "combat", "only", "condition", {"Coward", "false", "alliance", "false"}}
+	"autocast", {"range", 10, "condition", {"Coward", "false", "opponent", "only"}},
+	"ai-cast", {"range", 10, "combat", "only", "condition", {"Coward", "false", "opponent", "only"}}
 )
 
 DefineSpell("spell-bloodlust",
@@ -343,8 +343,8 @@ DefineSpell("spell-polymorph",
 	"sound-when-cast", "polymorph",
 	"depend-upgrade", "upgrade-polymorph",
 	--  Only cast on the strongest units!!!
-	"autocast", {"range", 10, "priority", {"HitPoints", true}, "condition", {"alliance", "false", "HitPoints", {MinValuePercent = 50}}},
-	"ai-cast", {"range", 10, "priority", {"HitPoints", true}, "condition", {"alliance", "false", "HitPoints", {MinValuePercent = 50}}}
+	"autocast", {"range", 10, "priority", {"HitPoints", true}, "condition", {"opponent", "only", "HitPoints", {MinValuePercent = 50}}},
+	"ai-cast", {"range", 10, "priority", {"HitPoints", true}, "condition", {"opponent", "only", "HitPoints", {MinValuePercent = 50}}}
 )
 
 local function SpellBlizzard(units)
@@ -372,8 +372,8 @@ DefineSpell("spell-blizzard",
 		 "start-offset-y", -128}},
 	"sound-when-cast", "blizzard",
 	"depend-upgrade", "upgrade-blizzard",
-	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard},
-	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard}
+	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"opponent", "only"}, "position-autocast", SpellBlizzard},
+	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"opponent", "only"}, "position-autocast", SpellBlizzard}
 )
 
 DefineSpell("spell-death-and-decay",
@@ -386,8 +386,8 @@ DefineSpell("spell-death-and-decay",
 		"fields", 5, "shards", 10, "damage", 10}},
 	"sound-when-cast", "death and decay",
 	"depend-upgrade", "upgrade-death-and-decay",
-	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard},
-	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard}
+	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"opponent", "only"}, "position-autocast", SpellBlizzard},
+	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"opponent", "only"}, "position-autocast", SpellBlizzard}
 )
 
 DefineSpell("spell-fireball",
@@ -398,8 +398,8 @@ DefineSpell("spell-fireball",
 	"action", {{"spawn-missile", "missile", "missile-fireball", "damage", 20}},
 	"sound-when-cast", "fireball throw",
 	"depend-upgrade", "upgrade-fireball",
-	"autocast", {"range", 8, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard},
-	"ai-cast", {"range", 8, "priority", {"Priority", true}, "condition", {"alliance", "false"}, "position-autocast", SpellBlizzard}
+	"autocast", {"range", 8, "priority", {"Priority", true}, "condition", {"opponent", "only"}, "position-autocast", SpellBlizzard},
+	"ai-cast", {"range", 8, "priority", {"Priority", true}, "condition", {"opponent", "only"}, "position-autocast", SpellBlizzard}
 )
 
 DefineSpell("spell-runes",
@@ -481,8 +481,8 @@ DefineSpell("spell-death-coil",
 	"sound-when-cast", "death coil",
 	"depend-upgrade", "upgrade-death-coil",
 	
-	"autocast", {"range", 10, "condition", {"organic", "only", "alliance", "false"}, "position-autocast", SpellDeathCoil},
-	"ai-cast", {"range", 10, "condition", {"organic", "only", "alliance", "false"}, "position-autocast", SpellDeathCoil}
+	"autocast", {"range", 10, "condition", {"organic", "only", "opponent", "only"}, "position-autocast", SpellDeathCoil},
+	"ai-cast", {"range", 10, "condition", {"organic", "only", "opponent", "only"}, "position-autocast", SpellDeathCoil}
 )
 
 DefineSpell("spell-raise-dead",
@@ -510,8 +510,8 @@ DefineSpell("spell-whirlwind",
 		 "end-point",   {"base", "target", "add-x", 0, "add-y", 0}}},
 	"sound-when-cast", "whirlwind",
 	"depend-upgrade", "upgrade-whirlwind",
-	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"Building", "only", "alliance", "false"}, "position-autocast", SpellBlizzard},
-	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"Building", "only", "alliance", "false"}, "position-autocast", SpellBlizzard}
+	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"Building", "only", "opponent", "only"}, "position-autocast", SpellBlizzard},
+	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"Building", "only", "opponent", "only"}, "position-autocast", SpellBlizzard}
 )
 
 Load("scripts/caanoo/spells.lua")
