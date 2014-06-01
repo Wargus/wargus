@@ -16480,8 +16480,6 @@ unit = CreateUnit("unit-orc-guard-tower", 0, {22, 3})
 unit = CreateUnit("unit-peon", 0, {107, 4})
 unit = CreateUnit("unit-peon", 0, {105, 4})
 unit = CreateUnit("unit-peon", 0, {106, 4})
-unit = CreateUnit("unit-caanoo-wiseskeleton", 7, {68, 4})
-unit = CreateUnit("unit-caanoo-wiseskeleton", 4, {61, 4})
 unit = CreateUnit("unit-nomad", 0, {23, 5})
 unit = CreateUnit("unit-peon", 0, {105, 5})
 unit = CreateUnit("unit-peon", 0, {106, 5})
@@ -16572,15 +16570,14 @@ unit = CreateUnit("unit-human-guard-tower", 1, {110, 120})
 unit = CreateUnit("unit-peasant", 1, {18, 120})
 unit = CreateUnit("unit-peasant", 1, {19, 120})
 unit = CreateUnit("unit-peasant", 1, {20, 120})
-unit = CreateUnit("unit-caanoo-wiseman", 3, {58, 123})
-unit = CreateUnit("unit-caanoo-wiseman", 2, {65, 123})
 unit = CreateUnit("unit-gold-mine", 15, {19, 124})
 SetResourcesHeld(unit, 82500)
 unit = CreateUnit("unit-gold-mine", 15, {124, 105})
 SetResourcesHeld(unit, 82500)
 unit = CreateUnit("unit-elven-lumber-mill", 1, {27, 110})
 unit = CreateUnit("unit-troll-lumber-mill", 0, {90, 5})
-
+unit = CreateUnit("unit-gryphon-aviary", 1, {16, 124})
+unit = CreateUnit("unit-dragon-roost", 0, {108, 0})
 
 -- For the Motherland Variables
 BlueLeader = 1
@@ -16610,6 +16607,10 @@ RedInventor_x = 62
 RedInventor_y = 14
 RedMageTower_x = 70
 RedMageTower_y = 14
+RedFlyerBuilding_x = 109
+RedFlyerBuilding_y = 1
+RedTownHall_x = 106
+RedTownHall_y = 7
 RedLeader = 0
 -- Blue Related
 BlueTeam1 = 3
@@ -16626,70 +16627,6 @@ BlueTemp_x1 = BlueTeam1_x1
 BlueTemp_y1 = BlueTeam1_y1
 BlueTemp_x2 = BlueTeam1_x2
 BlueTemp_y2 = BlueTeam1_y2
--- setup blue enemies
-SetDiplomacy(BlueLeader, "enemy", RedLeader)
-SetDiplomacy(BlueTeam1, "enemy", RedLeader)
-SetDiplomacy(BlueTeam2, "enemy", RedLeader)
-SetSharedVision(BlueLeader, false, RedLeader)
-SetSharedVision(BlueTeam1, false, RedLeader)
-SetSharedVision(BlueTeam2, false, RedLeader)
-SetDiplomacy(BlueLeader, "enemy", RedTeam1)
-SetDiplomacy(BlueTeam1, "enemy", RedTeam1)
-SetDiplomacy(BlueTeam2, "enemy", RedTeam1)
-SetSharedVision(BlueLeader, false, RedTeam1)
-SetSharedVision(BlueTeam1, false, RedTeam1)
-SetSharedVision(BlueTeam2, false, RedTeam1)
-SetDiplomacy(BlueLeader, "enemy", RedTeam2)
-SetDiplomacy(BlueTeam1, "enemy", RedTeam2)
-SetDiplomacy(BlueTeam2, "enemy", RedTeam2)
-SetSharedVision(BlueLeader, false, RedTeam2)
-SetSharedVision(BlueTeam1, false, RedTeam2)
-SetSharedVision(BlueTeam2, false, RedTeam2)
--- setup blue alliances
-SetDiplomacy(BlueLeader, "allied", BlueTeam1)
-SetDiplomacy(BlueTeam1, "allied", BlueLeader)
-SetSharedVision(BlueLeader, true, BlueTeam1)
-SetSharedVision(BlueTeam1, true, BlueLeader)
-SetDiplomacy(BlueLeader, "allied", BlueTeam2)
-SetDiplomacy(BlueTeam2, "allied", BlueLeader)
-SetSharedVision(BlueLeader, true, BlueTeam2)
-SetSharedVision(BlueTeam2, true, BlueLeader)
-SetDiplomacy(BlueTeam1, "allied", BlueTeam2)
-SetDiplomacy(BlueTeam2, "allied", BlueTeam1)
-SetSharedVision(BlueTeam1, true, BlueTeam2)
-SetSharedVision(BlueTeam2, true, BlueTeam1)
--- setup red enemies
-SetDiplomacy(RedLeader, "enemy", BlueLeader)
-SetDiplomacy(RedTeam1, "enemy", BlueLeader)
-SetDiplomacy(RedTeam2, "enemy", BlueLeader)
-SetSharedVision(RedLeader, false, BlueLeader)
-SetSharedVision(RedTeam1, false, BlueLeader)
-SetSharedVision(RedTeam2, false, RedLeader)
-SetDiplomacy(RedLeader, "enemy", BlueTeam1)
-SetDiplomacy(RedTeam1, "enemy", BlueTeam1)
-SetDiplomacy(RedTeam2, "enemy", BlueTeam1)
-SetSharedVision(RedLeader, false, BlueTeam1)
-SetSharedVision(RedTeam1, false, BlueTeam1)
-SetSharedVision(RedTeam2, false, BlueTeam1)
-SetDiplomacy(RedLeader, "enemy", BlueTeam2)
-SetDiplomacy(RedTeam1, "enemy", BlueTeam2)
-SetDiplomacy(RedTeam2, "enemy", BlueTeam2)
-SetSharedVision(RedLeader, false, BlueTeam2)
-SetSharedVision(RedTeam1, false, BlueTeam2)
-SetSharedVision(RedTeam2, false, BlueTeam2)
--- setup red alliances
-SetDiplomacy(RedLeader, "allied", RedTeam1)
-SetDiplomacy(RedTeam1, "allied", RedLeader)
-SetSharedVision(RedLeader, true, RedTeam1)
-SetSharedVision(RedTeam1, true, RedLeader)
-SetDiplomacy(RedLeader, "allied", RedTeam2)
-SetDiplomacy(RedTeam2, "allied", RedLeader)
-SetSharedVision(RedLeader, true, RedTeam2)
-SetSharedVision(RedTeam2, true, RedLeader)
-SetDiplomacy(RedTeam1, "allied", RedTeam2)
-SetDiplomacy(RedTeam2, "allied", RedTeam1)
-SetSharedVision(RedTeam1, true, RedTeam2)
-SetSharedVision(RedTeam2, true, RedTeam1)
 -- Where all the stuff is located.
 BlueBarracks1_x = 72
 BlueBarracks1_y = 111
@@ -16703,16 +16640,141 @@ BlueInventor_x = 48
 BlueInventor_y = 111
 BlueMageTower_x = 56
 BlueMageTower_y = 111
--- Monster
-SetDiplomacy(1, "enemy", 5)
-SetDiplomacy(0, "enemy", 5)
-SetDiplomacy(2, "enemy", 5)
-SetDiplomacy(3, "enemy", 5)
-SetDiplomacy(7, "enemy", 5)
-SetDiplomacy(4, "enemy", 5)
-SetDiplomacy(5, "enemy", 0)
-SetDiplomacy(5, "enemy", 1)
-SetDiplomacy(5, "enemy", 2)
-SetDiplomacy(5, "enemy", 3)
-SetDiplomacy(5, "enemy", 4)
-SetDiplomacy(5, "enemy", 7)
+BlueFlyerBuilding_x = 17
+BlueFlyerBuilding_y = 125
+BlueTownHall_x = 18
+BlueTownHall_y = 116
+AddTrigger(
+	function() return ((GameCycle > 300) and (GameCycle < 310)) end,
+	function()	AddMessage("In the red corner we have Wise Skeleton!")
+	CenterMap(61, 4)
+	SetSharedVision(RedTeam1, true, RedTeam2)
+	SetSharedVision(RedTeam2, true, RedTeam1)
+	SetSharedVision(RedTeam1, true, BlueTeam2)
+	SetSharedVision(BlueTeam2, true, RedTeam1)
+	SetSharedVision(RedTeam2, true, BlueTeam2)
+	SetSharedVision(BlueTeam2, true, RedTeam2)
+	CreateUnit("unit-caanoo-wiseskeleton", 4, {61, 4})
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle > 400) and (GameCycle < 410)) end,
+	function()	CenterMap(68, 4)
+	CreateUnit("unit-caanoo-wiseskeleton", 7, {68, 4})
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle > 100) and (GameCycle < 110)) end,
+	function()	AddMessage("In the blue corner we have Wise Man!")
+	CenterMap(65, 123)
+	SetSharedVision(BlueTeam1, true, RedTeam1)
+	SetSharedVision(RedTeam1, true, BlueTeam1)
+	SetSharedVision(BlueTeam1, true, RedTeam2)
+	SetSharedVision(RedTeam2, true, BlueTeam1)
+	SetSharedVision(BlueTeam1, true, BlueTeam2)
+	SetSharedVision(BlueTeam2, true, BlueTeam1)
+	CreateUnit("unit-caanoo-wiseman", 2, {65, 123})
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle > 200) and (GameCycle < 210)) end,
+	function()	CenterMap(58, 123)
+	CreateUnit("unit-caanoo-wiseman", 3, {58, 123})
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle > 500) and (GameCycle < 510)) end,
+	function()	AddMessage("Begin!")
+	CenterMap(64, 64)
+	SetFogOfWar(true)
+	CreateUnit("unit-footman", 1, {64, 63})
+	CreateUnit("unit-footman", 1, {64, 63})
+	CreateUnit("unit-footman", 1, {64, 63})
+	CreateUnit("unit-footman", 1, {64, 63})
+	CreateUnit("unit-grunt", 0, {64, 65})
+	CreateUnit("unit-grunt", 0, {64, 65})
+	CreateUnit("unit-grunt", 0, {64, 65})
+	CreateUnit("unit-grunt", 0, {64, 65})
+	SetSharedVision(BlueLeader, false, RedLeader)
+	SetSharedVision(BlueTeam1, false, RedLeader)
+	SetSharedVision(BlueTeam2, false, RedLeader)
+	SetSharedVision(BlueLeader, false, RedTeam1)
+	SetSharedVision(BlueTeam1, false, RedTeam1)
+	SetSharedVision(BlueTeam2, false, RedTeam1)
+	SetSharedVision(BlueLeader, false, RedTeam2)
+	SetSharedVision(BlueTeam1, false, RedTeam2)
+	SetSharedVision(BlueTeam2, false, RedTeam2)
+	SetSharedVision(BlueLeader, true, BlueTeam1)
+	SetSharedVision(BlueTeam1, true, BlueLeader)
+	SetSharedVision(BlueLeader, true, BlueTeam2)
+	SetSharedVision(BlueTeam2, true, BlueLeader)
+	SetSharedVision(BlueTeam1, true, BlueTeam2)
+	SetSharedVision(BlueTeam2, true, BlueTeam1)
+	SetSharedVision(RedLeader, false, BlueLeader)
+	SetSharedVision(RedTeam1, false, BlueLeader)
+	SetSharedVision(RedTeam2, false, RedLeader)
+	SetSharedVision(RedLeader, false, BlueTeam1)
+	SetSharedVision(RedTeam1, false, BlueTeam1)
+	SetSharedVision(RedTeam2, false, BlueTeam1)
+	SetSharedVision(RedLeader, false, BlueTeam2)
+	SetSharedVision(RedTeam1, false, BlueTeam2)
+	SetSharedVision(RedTeam2, false, BlueTeam2)
+	SetSharedVision(RedLeader, true, RedTeam1)
+	SetSharedVision(RedTeam1, true, RedLeader)
+	SetSharedVision(RedLeader, true, RedTeam2)
+	SetSharedVision(RedTeam2, true, RedLeader)
+	SetSharedVision(RedTeam1, true, RedTeam2)
+	SetSharedVision(RedTeam2, true, RedTeam1)
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle >= 0) and (GameCycle <= 10)) end,
+	function()	AddMessage("Welcome to For the Motherland: Beethoven Day!")
+	CenterMap(64, 64)
+	SetDiplomacy(BlueLeader, "enemy", RedLeader)
+	SetDiplomacy(BlueTeam1, "enemy", RedLeader)
+	SetDiplomacy(BlueTeam2, "enemy", RedLeader)
+	SetDiplomacy(BlueLeader, "enemy", RedTeam1)
+	SetDiplomacy(BlueTeam1, "enemy", RedTeam1)
+	SetDiplomacy(BlueTeam2, "enemy", RedTeam1)
+	SetDiplomacy(BlueLeader, "enemy", RedTeam2)
+	SetDiplomacy(BlueTeam1, "enemy", RedTeam2)
+	SetDiplomacy(BlueTeam2, "enemy", RedTeam2)
+	-- setup blue alliances
+	SetDiplomacy(BlueLeader, "allied", BlueTeam1)
+	SetDiplomacy(BlueTeam1, "allied", BlueLeader)
+	SetDiplomacy(BlueLeader, "allied", BlueTeam2)
+	SetDiplomacy(BlueTeam2, "allied", BlueLeader)
+	SetDiplomacy(BlueTeam1, "allied", BlueTeam2)
+	SetDiplomacy(BlueTeam2, "allied", BlueTeam1)
+	-- setup red enemies
+	SetDiplomacy(RedLeader, "enemy", BlueLeader)
+	SetDiplomacy(RedTeam1, "enemy", BlueLeader)
+	SetDiplomacy(RedTeam2, "enemy", BlueLeader)
+	SetDiplomacy(RedLeader, "enemy", BlueTeam1)
+	SetDiplomacy(RedTeam1, "enemy", BlueTeam1)
+	SetDiplomacy(RedTeam2, "enemy", BlueTeam1)
+	SetDiplomacy(RedLeader, "enemy", BlueTeam2)
+	SetDiplomacy(RedTeam1, "enemy", BlueTeam2)
+	SetDiplomacy(RedTeam2, "enemy", BlueTeam2)
+	-- setup red alliances
+	SetDiplomacy(RedLeader, "allied", RedTeam1)
+	SetDiplomacy(RedTeam1, "allied", RedLeader)
+	SetDiplomacy(RedLeader, "allied", RedTeam2)
+	SetDiplomacy(RedTeam2, "allied", RedLeader)
+	SetDiplomacy(RedTeam1, "allied", RedTeam2)
+	SetDiplomacy(RedTeam2, "allied", RedTeam1)
+	-- Monster
+	SetDiplomacy(1, "enemy", 5)
+	SetDiplomacy(0, "enemy", 5)
+	SetDiplomacy(2, "enemy", 5)
+	SetDiplomacy(3, "enemy", 5)
+	SetDiplomacy(7, "enemy", 5)
+	SetDiplomacy(4, "enemy", 5)
+	SetDiplomacy(5, "enemy", 0)
+	SetDiplomacy(5, "enemy", 1)
+	SetDiplomacy(5, "enemy", 2)
+	SetDiplomacy(5, "enemy", 3)
+	SetDiplomacy(5, "enemy", 4)
+	SetDiplomacy(5, "enemy", 7)
+return false end)
