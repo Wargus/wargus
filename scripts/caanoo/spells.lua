@@ -251,8 +251,6 @@ DefineSpell("spell-unit-gryphon-rider",
 	"depend-upgrade", ""
 )
 
-
-
 -- Spawn Orc Units
 
 DefineSpell("spell-unit-peon",
