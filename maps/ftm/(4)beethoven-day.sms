@@ -16644,6 +16644,7 @@ BlueFlyerBuilding_x = 17
 BlueFlyerBuilding_y = 125
 BlueTownHall_x = 18
 BlueTownHall_y = 116
+
 AddTrigger(
 	function() return ((GameCycle > 300) and (GameCycle < 310)) end,
 	function()	AddMessage("In the red corner we have Wise Skeleton!")
@@ -16655,12 +16656,12 @@ AddTrigger(
 	SetSharedVision(RedTeam2, true, BlueTeam2)
 	SetSharedVision(BlueTeam2, true, RedTeam2)
 	CreateUnit("unit-caanoo-wiseskeleton", 4, {61, 4})
+	CreateUnit("unit-caanoo-wiseskeleton", 7, {68, 4})
 return false end)
 
 AddTrigger(
 	function() return ((GameCycle > 400) and (GameCycle < 410)) end,
 	function()	CenterMap(68, 4)
-	CreateUnit("unit-caanoo-wiseskeleton", 7, {68, 4})
 return false end)
 
 AddTrigger(
@@ -16674,12 +16675,12 @@ AddTrigger(
 	SetSharedVision(BlueTeam1, true, BlueTeam2)
 	SetSharedVision(BlueTeam2, true, BlueTeam1)
 	CreateUnit("unit-caanoo-wiseman", 2, {65, 123})
+	CreateUnit("unit-caanoo-wiseman", 3, {58, 123})
 return false end)
 
 AddTrigger(
 	function() return ((GameCycle > 200) and (GameCycle < 210)) end,
 	function()	CenterMap(58, 123)
-	CreateUnit("unit-caanoo-wiseman", 3, {58, 123})
 return false end)
 
 AddTrigger(
@@ -16687,14 +16688,14 @@ AddTrigger(
 	function()	AddMessage("Begin!")
 	CenterMap(64, 64)
 	SetFogOfWar(true)
-	CreateUnit("unit-footman", 1, {64, 63})
-	CreateUnit("unit-footman", 1, {64, 63})
-	CreateUnit("unit-footman", 1, {64, 63})
-	CreateUnit("unit-footman", 1, {64, 63})
-	CreateUnit("unit-grunt", 0, {64, 65})
-	CreateUnit("unit-grunt", 0, {64, 65})
-	CreateUnit("unit-grunt", 0, {64, 65})
-	CreateUnit("unit-grunt", 0, {64, 65})
+	CreateUnit("unit-footman", 1, {64, 65})
+	CreateUnit("unit-footman", 1, {64, 65})
+	CreateUnit("unit-footman", 1, {64, 65})
+	CreateUnit("unit-footman", 1, {64, 65})
+	CreateUnit("unit-grunt", 0, {64, 63})
+	CreateUnit("unit-grunt", 0, {64, 63})
+	CreateUnit("unit-grunt", 0, {64, 63})
+	CreateUnit("unit-grunt", 0, {64, 63})
 	SetSharedVision(BlueLeader, false, RedLeader)
 	SetSharedVision(BlueTeam1, false, RedLeader)
 	SetSharedVision(BlueTeam2, false, RedLeader)

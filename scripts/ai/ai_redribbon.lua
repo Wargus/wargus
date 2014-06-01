@@ -222,6 +222,8 @@ function AiRedRibbon()
 		--if (AiCheckForce(0)) then 
 		--	AiAttackWithForce(0)
 		--end
+		AiForce(1, {AiFlyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer())}, true)
+		AiAttackWithForce(1)
 		AiNephrite_Attack_2013()
 	end
 	if ((timer == 75) or (timer == 25)) then
@@ -384,7 +386,19 @@ function AiRedRibbon()
 	end
 end
 
+function AiRed1()
+	if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
+		AiRed1_Basic()
+	end
+end
+
 function AiRed2()
+	if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
+		AiRed2_Basic()
+	end
+end
+
+function AiRed2_Basic()
 	if (Red2Temp_x ~= nil) then
 	else
 		Red2Temp_x = RedTeam2_x1
@@ -476,7 +490,7 @@ function AiRed2()
 	end
 end
 
-function AiRed1()
+function AiRed1_Basic()
 	if (Red1Temp_x ~= nil) then
 	else
 		Red1Temp_x = RedTeam1_x1

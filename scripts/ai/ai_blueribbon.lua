@@ -208,6 +208,8 @@ function AiBlueRibbon()
 		--if (AiCheckForce(0)) then 
 		--	AiAttackWithForce(0)
 		--end
+		AiForce(1, {AiFlyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer())}, true)
+		AiAttackWithForce(1)
 		AiNephrite_Attack_2013()
 	end
 	if (timer == 100) then
@@ -368,13 +370,25 @@ function AiBlueRibbon()
 	end
 end
 
+function AiBlue1()
+	if ((GetPlayerData(BlueTeam1, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
+		AiBlue1_Basic()
+	end
+end
+
 function AiBlue2()
+	if ((GetPlayerData(BlueTeam1, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
+		AiBlue2_Basic()
+	end
+end
+
+function AiBlue2_Basic()
 	if (Blue2Temp_x ~= nil) then
 	else
 		Blue2Temp_x = BlueTeam2_x1
 		Blue2Temp_y = BlueTeam2_y1
 		Blue2Step = 0
-		Blue2Mana = 140
+		Blue2Mana = 150
 	end
 	if ((timer == 25) or (timer == 75)) then
 		Blue2Mana = Blue2Mana + 53
@@ -430,13 +444,13 @@ function AiBlue2()
 	end
 end
 
-function AiBlue1()
+function AiBlue1_Basic()
 	if (Blue1Temp_x ~= nil) then
 	else
 		Blue1Temp_x = BlueTeam1_x1
 		Blue1Temp_y = BlueTeam1_y1
 		Blue1Step = 0
-		Blue1Mana = 140
+		Blue1Mana = 150
 	end
 	if ((timer == 25) or (timer == 75)) then
 		Blue1Mana = Blue1Mana + 55
