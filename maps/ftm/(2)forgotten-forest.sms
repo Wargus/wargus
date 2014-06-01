@@ -16709,7 +16709,6 @@ AddTrigger(
 	SetSharedVision(BlueTeam1, true, RedTeam1)
 	SetSharedVision(RedTeam1, true, BlueTeam1)
 	CreateUnit("unit-caanoo-wiseman", 2, {37, 248})
-	CreateUnit("unit-caanoo-wiseman", 2, {37, 248})
 return false end)
 
 AddTrigger(
