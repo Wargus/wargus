@@ -569,7 +569,6 @@ DefineUnitType("unit-caanoo-wiseskeleton", { Name = "Wise Skeleton",
 	CanAttack = true,
 	CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
 	CanCastSpell = {
-	CanCastSpell = {
 		"spell-unit-peon",
 		"spell-unit-grunt",
 		"spell-unit-axethrower",
