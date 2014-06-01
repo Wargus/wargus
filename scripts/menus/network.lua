@@ -131,11 +131,11 @@ function RunJoiningMapMenu(s)
   menu:writeText("Description:", sx, sy*3+70)
   local descr = menu:writeText("", sx+20, sy*3+90)
 
-  local fow = menu:addCheckBox("Fog of war", sx, sy*3+120, function() end)
+  local fow = menu:addImageCheckBox("Fog of war", sx, sy*3+120, offi, offi2, oni, oni2, function() end)
   fow:setMarked(true)
   ServerSetupState.FogOfWar = 1
   fow:setEnabled(false)
-  local revealmap = menu:addCheckBox("Reveal map", sx, sy*3+150, function() end)
+  local revealmap = menu:addImageCheckBox("Reveal map", sx, sy*3+150, offi, offi2, oni, oni2, function() end)
   revealmap:setEnabled(false)
 
   menu:writeText("~<Your Race:~>", sx, sy*11)
@@ -184,7 +184,7 @@ function RunJoiningMapMenu(s)
   local function readycb(dd)
     LocalSetupState.Ready[NetLocalHostsSlot] = bool2int(dd:isMarked())
   end
-  menu:addCheckBox("~!Ready", sx*11, sy*14, readycb)
+  menu:addImageCheckBox("~!Ready", sx*11, sy*14, offi, offi2, oni, oni2, readycb)
 
   local updatePlayersList = addPlayersList(menu, numplayers)
 
@@ -350,14 +350,14 @@ local function RunServerMultiGameMenu(map, description, numplayers)
     NetworkServerResyncClients()
     GameSettings.NoFogOfWar = not dd:isMarked()
   end
-  local fow = menu:addCheckBox("Fog of war", sx, sy*3+120, fowCb)
+  local fow = menu:addImageCheckBox("Fog of war", sx, sy*3+120, offi, offi2, oni, oni2, fowCb)
   fow:setMarked(true)
   local function revealMapCb(dd)
     ServerSetupState.RevealMap = bool2int(dd:isMarked())
     NetworkServerResyncClients()
     GameSettings.RevealMap = bool2int(dd:isMarked())
   end
-  local revealmap = menu:addCheckBox("Reveal map", sx, sy*3+150, revealMapCb)
+  local revealmap = menu:addImageCheckBox("Reveal map", sx, sy*3+150, offi, offi2, oni, oni2, revealMapCb)
 
   menu:writeText("Race:", sx, sy*11)
   local d = menu:addDropDown({"Map Default", "Orc", "Human"}, sx + 100, sy*11,

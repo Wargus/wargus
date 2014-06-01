@@ -143,7 +143,7 @@ function RunShowCreditsMenu()
     sw:add(Label(f), 0, 24 * (i - 1) + 275)
   end
 
-  menu:addHalfButton("~!Continue", "c", offx + 455, offy + 440,
+  menu:addContinueButton("~!Continue", "c", offx + 455, offy + 440,
     function() menu:stop() end)
 
   local speed = GetGameSpeed()

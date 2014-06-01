@@ -81,7 +81,7 @@ function Briefing(title, objs, bg, text, voices)
   local voice = 0
   local channel = -1
 
-  menu:addHalfButton("~!Continue", "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
+  menu:addContinueButton("~!Continue", "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
     function()
       if (channel ~= -1) then
         voice = table.getn(voices)

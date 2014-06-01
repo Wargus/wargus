@@ -146,7 +146,7 @@ function RunTipsMenu()
   l:updateCaption()
 
   local showtips = {}
-  showtips = menu:addCheckBox("Show tips at startup", 14, 256 - 75,
+  showtips = menu:addImageCheckBox("Show tips at startup", 14, 256 - 75, offi, offi2, oni, oni2,
     function()
       wc2.preferences.ShowTips = showtips:isMarked()
       SavePreferences()

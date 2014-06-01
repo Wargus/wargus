@@ -201,7 +201,7 @@ function RunReplayGameMenu()
   local browser = menu:addBrowser("~logs/", "%.log%.?g?z?$",
     Video.Width/40, Video.Height/5, 306, Video.Height/2)
 	
-  local reveal = menu:addCheckBox("Reveal Map", Video.Width/40, Video.Height - 60, function() end)
+  local reveal = menu:addImageCheckBox("Reveal Map", Video.Width/40, Video.Height - 60, offi, offi2, oni, oni2, function() end)
   
   menu:addHalfButton("~!OK", "o", Video.Width/6 - 3, Video.Height - 33,
     function()

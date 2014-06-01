@@ -67,6 +67,91 @@ g_obsp:Load()
 g_obsg = CGraphic:New("ui/orc/widgets/button-small-grayed.png")
 g_obsg:Load()
 
+g_hcheckbox_off = CGraphic:New("ui/human/widgets/checkbox-normal-unselected.png")
+g_hcheckbox_off:Load()
+g_hcheckbox_off2 = CGraphic:New("ui/human/widgets/checkbox-pressed-unselected.png")
+g_hcheckbox_off2:Load()
+g_hcheckbox_on = CGraphic:New("ui/human/widgets/checkbox-normal-selected.png")
+g_hcheckbox_on:Load()
+g_hcheckbox_on2 = CGraphic:New("ui/human/widgets/checkbox-pressed-selected.png")
+g_hcheckbox_on2:Load()
+
+g_ocheckbox_off = CGraphic:New("ui/orc/widgets/checkbox-normal-unselected.png")
+g_ocheckbox_off:Load()
+g_ocheckbox_off2 = CGraphic:New("ui/orc/widgets/checkbox-pressed-unselected.png")
+g_ocheckbox_off2:Load()
+g_ocheckbox_on = CGraphic:New("ui/orc/widgets/checkbox-normal-selected.png")
+g_ocheckbox_on:Load()
+g_ocheckbox_on2 = CGraphic:New("ui/orc/widgets/checkbox-pressed-selected.png")
+g_ocheckbox_on2:Load()
+
+g_oradio_off = CGraphic:New("ui/orc/widgets/radio-normal-unselected.png")
+g_oradio_off:Load()
+g_oradio_off2 = CGraphic:New("ui/orc/widgets/radio-pressed-unselected.png")
+g_oradio_off2:Load()
+g_oradio_on = CGraphic:New("ui/orc/widgets/radio-normal-selected.png")
+g_oradio_on:Load()
+g_oradio_on2 = CGraphic:New("ui/orc/widgets/radio-pressed-selected.png")
+g_oradio_on2:Load()
+
+g_hradio_off = CGraphic:New("ui/human/widgets/radio-normal-unselected.png")
+g_hradio_off:Load()
+g_hradio_off2 = CGraphic:New("ui/human/widgets/radio-pressed-unselected.png")
+g_hradio_off2:Load()
+g_hradio_on = CGraphic:New("ui/human/widgets/radio-normal-selected.png")
+g_hradio_on:Load()
+g_hradio_on2 = CGraphic:New("ui/human/widgets/radio-pressed-selected.png")
+g_hradio_on2:Load()
+
+-- original continue button for the campaign, chapter and victory/defeat screens
+g_continue_n = CGraphic:New("ui/human/widgets/button-grayscale-normal.png")
+g_continue_n:Load()
+g_continue_p = CGraphic:New("ui/human/widgets/button-grayscale-pressed.png")
+g_continue_p:Load()
+
+-- right slider arrows for human
+g_hrslider_n = CGraphic:New("ui/human/widgets/right-arrow-normal.png")
+g_hrslider_n:Load()
+g_hrslider_p = CGraphic:New("ui/human/widgets/right-arrow-pressed.png")
+g_hrslider_p:Load()
+
+-- left slider arrows for human
+g_hlslider_n = CGraphic:New("ui/human/widgets/left-arrow-normal.png")
+g_hlslider_n:Load()
+g_hlslider_p = CGraphic:New("ui/human/widgets/left-arrow-pressed.png")
+g_hlslider_p:Load()
+
+-- right slider arrows for orc
+g_orslider_n = CGraphic:New("ui/orc/widgets/right-arrow-normal.png")
+g_orslider_n:Load()
+g_orslider_p = CGraphic:New("ui/orc/widgets/right-arrow-pressed.png")
+g_orslider_p:Load()
+
+-- left slider arrows for orc
+g_olslider_n = CGraphic:New("ui/orc/widgets/left-arrow-normal.png")
+g_olslider_n:Load()
+g_olslider_p = CGraphic:New("ui/orc/widgets/left-arrow-pressed.png")
+g_olslider_p:Load()
+
+-- slider marker - so we know the value of the option we're trying to change
+g_hmarker = CGraphic:New("ui/human/widgets/slider-knob.png")
+g_hmarker:Load()
+
+-- slider background image
+g_hslider = CGraphic:New("ui/human/widgets/hslider-bar-normal.png")
+g_hslider:Load()
+
+-- same, but for orc this time.
+g_omarker = CGraphic:New("ui/orc/widgets/slider-knob.png")
+g_omarker:Load()
+
+-- slider image for the orcs
+g_oslider = CGraphic:New("ui/orc/widgets/hslider-bar-normal.png")
+g_oslider:Load()
+
+g_o_dropdown = CGraphic:New("ui/orc/widgets/button-thin-medium-normal.png")
+g_o_dropdown:Load()
+
 local hpanels = {
   "ui/human/panel_1.png",
   "ui/human/panel_2.png",
@@ -83,11 +168,35 @@ local opanels = {
   "ui/orc/panel_5.png"
 }
 
+local wc1_hpanels = {
+  "ui/human_war1/panel_1.png",
+  "ui/human_war1/panel_2.png",
+  "ui/human_war1/panel_3.png",
+  "ui/human_war1/panel_4.png",
+  "ui/human_war1/panel_5.png"
+}
+
+local wc1_opanels = {
+  "ui/orc_war1/panel_1.png",
+  "ui/orc_war1/panel_2.png",
+  "ui/orc_war1/panel_3.png",
+  "ui/orc_war1/panel_4.png",
+  "ui/orc_war1/panel_5.png"
+}
+
 function panel(n)
-  if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
-    return hpanels[n]
+  if (currentExp == "wc1") then
+    if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+      return wc1_hpanels[n]
+    else
+      return wc1_opanels[n]
+    end
   else
-    return opanels[n]
+    if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+      return hpanels[n]
+    else
+      return opanels[n]
+    end
   end
 end
 
@@ -121,28 +230,30 @@ function AddMenuHelpers(menu)
 
   function menu:addButton(caption, hotkey, x, y, callback, size)
     local b = ButtonWidget(caption)
-    b:setHotKey(hotkey)
+	b:setHotKey(hotkey)
     b:setActionCallback(callback)
     if (size == nil) then size = {200, 24} end
     b:setSize(size[1], size[2])
     b:setBackgroundColor(dark)
     b:setBaseColor(dark)
     self:add(b, x, y)
+	b:setBorderSize(0)
     return b
   end
 
   function menu:addImageButton(caption, hotkey, x, y, callback)
     local b = ImageButton(caption)
-    b:setHotKey(hotkey)
+	b:setHotKey(hotkey)
     b:setActionCallback(callback)
     self:add(b, x, y)
+	b:setBorderSize(0)
     return b
   end
 
   function menu:addFullButton(caption, hotkey, x, y, callback)
     local b = self:addImageButton(caption, hotkey, x, y, callback)
     if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
-      b:setNormalImage(g_hbln)
+	  b:setNormalImage(g_hbln)
       b:setPressedImage(g_hblp)
       b:setDisabledImage(g_hblg)
     else
@@ -151,32 +262,77 @@ function AddMenuHelpers(menu)
       b:setDisabledImage(g_oblg)
     end
     b:setSize(224, 28)
+	b:setBorderSize(0)
+    return b
+  end
+  
+  function menu:addContinueButton(caption, hotkey, x, y, callback)
+    local b = self:addImageButton(caption, hotkey, x, y, callback)
+    b:setNormalImage(g_continue_n)
+    b:setPressedImage(g_continue_p)
+    b:setSize(106, 28)
+	b:setBorderSize(0)
     return b
   end
 
   function menu:addHalfButton(caption, hotkey, x, y, callback)
     local b = self:addImageButton(caption, hotkey, x, y, callback)
-    if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+	if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
       b:setNormalImage(g_hbsn)
       b:setPressedImage(g_hbsp)
       b:setDisabledImage(g_hbsg)
-    else
+	else
       b:setNormalImage(g_obsn)
       b:setPressedImage(g_obsp)
       b:setDisabledImage(g_obsg)
     end
     b:setSize(106, 28)
+	b:setBorderSize(0)
     return b
   end
 
-  function menu:addSlider(min, max, w, h, x, y, callback)
-    local b = Slider(min, max)
-    b:setBaseColor(dark)
-    b:setForegroundColor(clear)
-    b:setBackgroundColor(clear)
+  function menu:addImageLeftSliderButton(caption, hotkey, x, y, callback)
+    local b = self:addImageButton(caption, hotkey, x, y, callback)
+    if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+	  b:setNormalImage(g_hlslider_n)
+	  b:setPressedImage(g_hlslider_p)
+	else
+	  b:setNormalImage(g_olslider_n)
+	  b:setPressedImage(g_olslider_p)
+    end
+	b:setSize(20, 19)
+	b:setBorderSize(0)
+    return b
+  end
+  
+  function menu:addImageSlider(min, max, w, h, x, y, mi, bi, callback)
+    local b = ImageSlider(min, max)
+	-- New Slider Functions
+    if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+		b:setMarkerImage(g_hmarker)
+		b:setBackgroundImage(g_hslider)
+    else
+		b:setMarkerImage(g_omarker)
+		b:setBackgroundImage(g_oslider)
+    end
     b:setSize(w, h)
     b:setActionCallback(function(s) callback(b, s) end)
     self:add(b, x, y)
+	b:setBorderSize(0)
+    return b
+  end
+  
+  function menu:addImageRightSliderButton(caption, hotkey, x, y, callback)
+    local b = self:addImageButton(caption, hotkey, x, y, callback)
+    if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+	  b:setNormalImage(g_hrslider_n)
+	  b:setPressedImage(g_hrslider_p)
+	else
+	  b:setNormalImage(g_orslider_n)
+	  b:setPressedImage(g_orslider_p)
+    end	  
+    b:setSize(20, 19)
+	b:setBorderSize(0)
     return b
   end
 
@@ -305,8 +461,8 @@ function AddMenuHelpers(menu)
     return bq
   end
 
-  function menu:addCheckBox(caption, x, y, callback)
-    local b = CheckBox(caption)
+  function menu:addCheckBox(caption, x, y, callback) --my new function
+	local b = ImageCheckBox(caption)
     b:setBaseColor(clear)
     b:setForegroundColor(clear)
     b:setBackgroundColor(dark)
@@ -315,12 +471,57 @@ function AddMenuHelpers(menu)
     self:add(b, x, y)
     return b
   end
-
-  function menu:addRadioButton(caption, group, x, y, callback)
+  
+  function menu:addImageCheckBox(caption, x, y, offi, offi2, oni, oni2, callback) --my new function
+	local b = ImageCheckBox(caption)
+    b:setBaseColor(clear)
+    b:setForegroundColor(clear)
+    b:setBackgroundColor(dark)
+	-- new functions to display checkbox graphics
+	if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+        b:setUncheckedNormalImage(g_hcheckbox_off)
+		b:setUncheckedPressedImage(g_hcheckbox_off2)
+		b:setCheckedNormalImage(g_hcheckbox_on)
+		b:setCheckedPressedImage(g_hcheckbox_on2)
+    else
+		b:setUncheckedNormalImage(g_ocheckbox_off)
+		b:setUncheckedPressedImage(g_ocheckbox_off2)
+		b:setCheckedNormalImage(g_ocheckbox_on)
+		b:setCheckedPressedImage(g_ocheckbox_on2)
+    end
+	if (callback ~= nil) then b:setActionCallback(function(s) callback(b, s) end) end
+    b:setFont(Fonts["game"])
+    self:add(b, x, y)
+    return b
+  end
+  
+ function menu:addRadioButton(caption, group, x, y, callback)
     local b = RadioButton(caption, group)
     b:setBaseColor(dark)
     b:setForegroundColor(clear)
     b:setBackgroundColor(dark)
+    b:setActionCallback(callback)
+    self:add(b, x, y)
+    return b
+  end
+ 
+ function menu:addImageRadioButton(caption, group, x, y, offi, offi2, oni, oni2, callback)
+    local b = ImageRadioButton(caption, group)
+    b:setBaseColor(dark)
+    b:setForegroundColor(clear)
+    b:setBackgroundColor(dark)
+	if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+		b:setUncheckedNormalImage(g_hradio_off)
+		b:setUncheckedPressedImage(g_hradio_off2)
+		b:setCheckedNormalImage(g_hradio_on)
+		b:setCheckedPressedImage(g_hradio_on2)
+    else
+		b:setUncheckedNormalImage(g_oradio_off)
+		b:setUncheckedPressedImage(g_oradio_off2)
+		b:setCheckedNormalImage(g_oradio_on)
+		b:setCheckedPressedImage(g_oradio_on2)
+    end
+	b:setFont(Fonts["game"])
     b:setActionCallback(callback)
     self:add(b, x, y)
     return b
@@ -545,7 +746,7 @@ function RunSelectScenarioMenu()
 
   menu:addLabel("Select scenario", 176, 8)
 
-  local browser = menu:addBrowser("maps/", "^.*%.smp%.?g?z?$",
+  local browser = menu:addBrowser("maps/skirmish", "^.*%.smp%.?g?z?$",
     24, 140, 300, 108, mapname)
 
   local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)

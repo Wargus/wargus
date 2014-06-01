@@ -28,7 +28,7 @@ function RunDiplomacyMenu()
       local enemycb = {}
       local sharedvisioncb = {}
 
-      alliedcb = menu:addCheckBox("", 126, (18 * j) + 23,
+      alliedcb = menu:addImageCheckBox("", 126, (18 * j) + 24, offi, offi2, oni, oni2,
         function()
           if (alliedcb:isMarked() and enemycb:isMarked()) then
             enemycb:setMarked(false)
@@ -38,7 +38,7 @@ function RunDiplomacyMenu()
       allied[j] = alliedcb
       allied[j].index = i
 
-      enemycb = menu:addCheckBox("", 186, (18 * j) + 23,
+      enemycb = menu:addImageCheckBox("", 186, (18 * j) + 24, offi, offi2, oni, oni2,
         function()
           if (alliedcb:isMarked() and enemycb:isMarked()) then
             alliedcb:setMarked(false)
@@ -47,7 +47,7 @@ function RunDiplomacyMenu()
       enemycb:setMarked(ThisPlayer:IsEnemy(Players[i]))
       enemy[j] = enemycb
 
-      sharedvisioncb = menu:addCheckBox("", 276, (18 * j) + 23,
+      sharedvisioncb = menu:addImageCheckBox("", 276, (18 * j) + 24, offi, offi2, oni, oni2,
         function() end)
       sharedvisioncb:setMarked(ThisPlayer:IsSharedVision(Players[i]))
       sharedvision[j] = sharedvisioncb

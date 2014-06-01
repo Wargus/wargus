@@ -9,7 +9,7 @@ function RunReplayGameMenu()
   local browser = menu:addBrowser("~logs/", "%.log%.?g?z?$",
     (352 - 18 - 288) / 2, 11 + 98, 306, 108)
 
-  local reveal = menu:addCheckBox("Reveal Map", 23, 264, function() end)
+  local reveal = menu:addImageCheckBox("Reveal Map", 23, 264, offi, offi2, oni, oni2, function() end)
 
   menu:addHalfButton("~!OK", "o", 48, 308,
     function()
