@@ -495,8 +495,9 @@ DefineSpell("spell-raise-dead",
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
 	"sound-when-cast", "raise dead",
-	"depend-upgrade", "upgrade-raise-dead"
---	"autocast", {"range", 6}
+	"depend-upgrade", "upgrade-raise-dead",
+	"autocast", {"range", 6, "corpse", "only", "priority", {"Distance", false}, "position-autocast", SpellBlizzard},
+	"ai-cast", {"range", 6, "corpse", "only", "priority", {"Distance", false}, "position-autocast", SpellBlizzard}
 )
 
 DefineSpell("spell-whirlwind",
