@@ -379,7 +379,7 @@ function EditUnitProperties()
 
   if (GetUnitUnderCursor().Type.GivesResource == 0) then
     menu:addLabel("Artificial Intelligence", sizeX / 2, 11 + 36)
-    local activeCheckBox = menu:addCheckImageBox("Active", 15, 11 + 72, offi, offi2, oni, oni2)
+    local activeCheckBox = menu:addImageCheckBox("Active", 15, 11 + 72, offi, offi2, oni, oni2)
     activeCheckBox:setMarked(GetUnitUnderCursor().Active)
 
     menu:addHalfButton("~!Ok", "o", 24, sizeY - 40,
