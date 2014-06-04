@@ -296,7 +296,7 @@ local defaultPreferences = {
 	MouseScrollSpeedDefault = 4,    --  While middle-mouse is pressed: Pixels to move per scrolled mouse pixel, negative = reversed
 	MusicEnabled = true,
 	MusicVolume = 128,
-	PlayerName = "Nameless Hero",
+	PlayerName = "Wargustus",
 	ServerIP = "localhost",
 	ShowCommandKey = true,
 	ShowTips = true,
@@ -307,7 +307,18 @@ local defaultPreferences = {
 	VideoFullScreen = true,
 	VideoHeight = 600,
 	VideoWidth = 800,
+	ServerList = {},
+	MetaServer = "localhost",
+	MetaPort = 7775
 }
+
+if (wc2.preferences.ServerList == nil) then 
+	wc2.preferences.ServerList = {}
+	wc2.preferences.ServerList[1] = "25.62.21.197"
+	wc2.preferences.ServerList[2] = "Cybermind"
+	wc2.preferences.ServerList[3] = "25.84.93.185"
+	wc2.preferences.ServerList[4] = "Kyran"
+end
 
 CompleteMissingValues(wc2.preferences, defaultPreferences)
 

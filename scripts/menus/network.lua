@@ -10,7 +10,8 @@
 --
 --      network.lua - Define the menu for network game.
 --
---      (c) Copyright 2005-2010 by François Beerten, Jimmy Salmon and Pali Rohár
+--      (c) Copyright 2005-2014 by François Beerten, Jimmy Salmon, Pali Rohár
+--								   and Cybermind.
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -286,45 +287,98 @@ function RunJoiningGameMenu(s)
 end
 
 function RunJoinIpMenu()
-  local menu = WarMenu(nil, panel(4), false)
-  menu:setSize(288, 128)
-  menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
+  local menu = WarMenu(nil, panel(5), false)
+  local serverlist
+  menu:setSize(352, 352)
+  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
   menu:setDrawMenusUnder(true)
-
-  menu:addLabel("Enter server IP-address:", 144, 11)
-  local server = menu:addTextInputField(wc2.preferences.ServerIP, 40, 38, 212)
-
-  menu:addHalfButton("~!OK", "o", 24, 80,
-    function(s)
-      -- Allow port ("localhost:1234")
-      local sep = ":"
-      local f = string.find(server:getText(), sep)
-      if f then
-        local host = string.sub(server:getText(), 1, f - 1)
-        local port = string.sub(server:getText(), f + 1, string.len(server:getText()))
-        if (NetworkSetupServerAddress(host, port) ~= 0) then
-          ErrorMenu("Invalid server name")
-          return
-        end
-      else
-        if (NetworkSetupServerAddress(server:getText()) ~= 0) then
-          ErrorMenu("Invalid server name")
-          return
-        end
-      end
-      wc2.preferences.ServerIP = server:getText()
-      SavePreferences()
-
-      NetworkInitClientConnect()
-      if (RunJoiningGameMenu() ~= 0) then
+  menu:addLabel(_("Servers: "), 176, 20)
+  local servers = {}
+  local function ServerListUpdate()
+	serverlist = nil
+	servers = {}
+	if (wc2.preferences.ServerList ~= nil) then
+		for i=1,table.getn(wc2.preferences.ServerList)/2 do
+			servers[i]=tostring(wc2.preferences.ServerList[(i-1)*2+1].." | "..tostring(wc2.preferences.ServerList[(i-1)*2+2]))
+		end
+	end
+	serverlist =  menu:addListBox(20, 50, 300, 120, servers)
+  end
+  ServerListUpdate()
+  menu:addFullButton(_("Co~!nnect"), "n", 60, 180, function()
+	NetworkSetupServerAddress(wc2.preferences.ServerList[serverlist:getSelected()*2+1])
+	NetworkInitClientConnect()
+	if (RunJoiningGameMenu() ~= 0) then
         -- connect failed, don't leave this menu
         return
-      end
-      menu:stop()
     end
-  )
-  menu:addHalfButton("~!Cancel", "c", 154, 80, function() menu:stop() end)
+  end)
+  menu:addFullButton(_("~!Add server"), "a", 60, 210, function() RunAddServerMenu(); ServerListUpdate() end)
+  -- We need to stop this from loading when there are no servers.
+  menu:addFullButton(_("~!Edit server"), "a", 60, 240, function() 
+	if serverlist:getSelected() ~= nil then
+		RunEditServerMenu(serverlist:getSelected()); ServerListUpdate()
+	end
+  end)
+  menu:addFullButton(_("~!Delete server"), "d", 60, 270, function() 
+	if serverlist:getSelected() ~= nil then
+		table.remove(wc2.preferences.ServerList, serverlist:getSelected()*2+1)
+		table.remove(wc2.preferences.ServerList, serverlist:getSelected()*2+1)
+		SavePreferences()
+		ServerListUpdate()
+	end
+  end)
+  menu:addFullButton(_("~!Cancel"), "c", 60, 300, function() menu:stop() end)
+  menu:run()
+end
 
+function RunEditServerMenu(number)
+  local menu = WarMenu(nil, panel(2), false)
+  menu:setSize(288, 256)
+  menu:setPosition((Video.Width - 288) / 2, (Video.Height - 256) / 2)
+  menu:setDrawMenusUnder(true)
+  menu:addLabel(_("Edit server"), 144, 11)
+  menu:addLabel(_("Server IP: "), 20, 31, Fonts["game"], false)
+  local serverIp = menu:addTextInputField("localhost", 30, 51, 212)
+  serverIp:setText(wc2.preferences.ServerList[number*2+1])
+  menu:addLabel(_("Description: "), 20, 81, Fonts["game"], false)
+  local serverDescr = menu:addTextInputField("", 30, 101, 212)
+  serverDescr:setText(wc2.preferences.ServerList[number*2+2])
+  menu:addHalfButton("~!OK", "o", 15, 210, function(s) 
+	if (NetworkSetupServerAddress(serverIp:getText()) ~= 0) then
+        ErrorMenu(_("Invalid server name"))
+        return
+    end
+	wc2.preferences.ServerList[number*2+1] = serverIp:getText()
+	wc2.preferences.ServerList[number*2+2] = serverDescr:getText()
+	SavePreferences()
+	menu:stop()
+    end)
+  menu:addHalfButton(_("~!Cancel"), "c", 164, 210, function() menu:stop() end)
+  menu:run()
+end
+
+function RunAddServerMenu()
+  local menu = WarMenu(nil, panel(2), false)
+  menu:setSize(288, 256)
+  menu:setPosition((Video.Width - 288) / 2, (Video.Height - 256) / 2)
+  menu:setDrawMenusUnder(true)
+  menu:addLabel(_("Add server"), 144, 11)
+  menu:addLabel(_("Server IP: "), 20, 31, Fonts["game"], false)
+  local serverIp = menu:addTextInputField("localhost", 30, 51, 212)
+  menu:addLabel(_("Description: "), 20, 81, Fonts["game"], false)
+  local serverDescr = menu:addTextInputField("", 30, 101, 212)
+  menu:addHalfButton("~!OK", "o", 15, 210, function(s) 
+	if (NetworkSetupServerAddress(serverIp:getText()) ~= 0) then
+        ErrorMenu(_("Invalid server name"))
+        return
+    end
+	table.insert(wc2.preferences.ServerList, serverIp:getText())
+	table.insert(wc2.preferences.ServerList, serverDescr:getText())
+	SavePreferences()
+	menu:stop()
+    end)
+  menu:addHalfButton(_("~!Cancel"), "c", 164, 210, function() menu:stop() end)
   menu:run()
 end
 
@@ -537,7 +591,7 @@ function RunMultiPlayerGameMenu(s)
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
-        doom.preferences.PlayerName = nick:getText()
+        wc2.preferences.PlayerName = nick:getText()
         SavePreferences()
       end
       RunJoiningMetaServerMenu()
