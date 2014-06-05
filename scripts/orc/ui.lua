@@ -27,5 +27,8 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-Load("scripts/orc/ui_pandora.lua")
-
+if (wargus.tales == true) then
+	Load("scripts/orc/ui_tales.lua")
+else
+	Load("scripts/orc/ui_pandora.lua")
+end

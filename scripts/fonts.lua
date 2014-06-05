@@ -10,7 +10,7 @@
 --
 --      fonts.lua - Define the used fonts.
 --
---      (c) Copyright 2000-2004 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2000-2014 by Lutz Sammer, Jimmy Salmon and Kyran Jackson.
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -27,12 +27,19 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-CFont:New("small", CGraphic:New("ui/fonts/small.png", 7, 6))
-CFont:New("game", CGraphic:New("ui/fonts/game.png", wargus.game_font_width, 14))
 CFont:New("large", CGraphic:New("ui/fonts/large.png", 17, 17))
-CFont:New("small-title", CGraphic:New("ui/fonts/small_episode_titles.png", 32, 35))
-CFont:New("large-title", CGraphic:New("ui/fonts/large_episode_titles.png", 52, 50))
 
+if (wargus.tales == true) then
+	CFont:New("small", CGraphic:New("ui/fonts/large.png", 17, 17))
+	CFont:New("game", CGraphic:New("ui/fonts/game.png", 14, 14))
+	CFont:New("small-title", CGraphic:New("ui/fonts/large.png", 17, 17))
+	CFont:New("large-title", CGraphic:New("ui/fonts/large.png", 17, 17))
+else
+	CFont:New("small", CGraphic:New("ui/fonts/small.png", 7, 6))
+	CFont:New("game", CGraphic:New("ui/fonts/game.png", wargus.game_font_width, 14))
+	CFont:New("small-title", CGraphic:New("ui/fonts/small_episode_titles.png", 32, 35))
+	CFont:New("large-title", CGraphic:New("ui/fonts/large_episode_titles.png", 52, 50))
+end
 
 --	FIXME: only yellow, white, and grey are correct.
 

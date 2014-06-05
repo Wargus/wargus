@@ -36,11 +36,21 @@ DebugPrint("Stratagus default config file loading ...\n")
 
 wargus = {}
 
-wargus.Name = "Wargus"
+Load("scripts/wc2-config.lua")
+
+if (wargus.tales == true) then
+	wargus.Name = "Aleona's Tales"
+	wargus.Homepage = "stratagus.com"
+	wargus.Copyright = "(c) 2012-2014 by The Stratagus Project."
+else
+	wargus.Name = "Wargus"
+	wargus.Homepage = "wargus.stratagus.com"
+	wargus.Copyright = "(c) 1998-2014 by The Stratagus Project."
+end
+
 wargus.Version = "2.3"
-wargus.Homepage = "wargus.stratagus.com"
 wargus.Licence = "GPL v2"
-wargus.Copyright = "(c) 1998-2014 by The Stratagus Project."
+
 
 -------------------------------------------------------------------------------
 --  Config-Part

@@ -40,9 +40,6 @@ DefineRaceNames(
     "name", "neutral",
     "display", "Neutral"})
 
-Load("scripts/wc2-config.lua")
-
-
 if (OldCreateUnit == nil) then
   OldCreateUnit = CreateUnit
 

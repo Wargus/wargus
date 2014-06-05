@@ -10,7 +10,7 @@
 --
 --      ui.lua - Define the human user interface
 --
---      (c) Copyright 2001-2008 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2014 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -27,4 +27,8 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-Load("scripts/human/ui_pandora.lua")
+if (wargus.tales == true) then
+	Load("scripts/human/ui_tales.lua")
+else
+	Load("scripts/human/ui_pandora.lua")
+end
