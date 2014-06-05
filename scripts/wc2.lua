@@ -27,18 +27,35 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-DefineRaceNames(
-  "race", {
-    "name", "human",
-    "display", "Human",
-    "visible"},
-  "race", {
-    "name", "orc",
-    "display", "Orc",
-    "visible"},
-  "race", {
-    "name", "neutral",
-    "display", "Neutral"})
+if (wargus.tales == true) then
+	DefineRaceNames(
+	"race", {
+		"name", "human",
+		"display", "Freemen",
+		"visible"},
+	"race", {
+		"name", "orc",
+		"display", "Wilds",
+		"visible"},
+	"race", {
+		"name", "neutral",
+		"display", "Neutral"
+	})
+else
+	DefineRaceNames(
+	"race", {
+		"name", "human",
+		"display", "Human",
+		"visible"},
+	"race", {
+		"name", "orc",
+		"display", "Orc",
+		"visible"},
+	"race", {
+		"name", "neutral",
+		"display", "Neutral"
+	})
+end
 
 if (OldCreateUnit == nil) then
   OldCreateUnit = CreateUnit

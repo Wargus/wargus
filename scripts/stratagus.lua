@@ -376,4 +376,8 @@ Load("scripts/ai.lua")
 Load("scripts/commands.lua")
 Load("scripts/cheats.lua")
 
+if (wargus.tales == true) then
+	Load("scripts/caanoo/override.lua")
+end
+
 DebugPrint("... ready!\n")
