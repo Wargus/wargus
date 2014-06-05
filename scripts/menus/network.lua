@@ -545,7 +545,7 @@ end
 function RunMultiPlayerGameMenu(s)
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
-  local offy = (Video.Height - 480) / 2
+  local offy = ((Video.Height - 480) / 2) - 70
   local nick
 
   local function FixMusic()
@@ -564,10 +564,10 @@ function RunMultiPlayerGameMenu(s)
   
   menu:addLabel("~<Multiplayer Network Game~>", offx + 640/2 + 12, offy + 192)
 
-  menu:writeText(_("Nickname :"), 208 + offx, 264 + offy)
-  nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 260 + offy)
+  menu:writeText(_("Nickname :"), 208 + offx, 248 + offy)
+  nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
 
-  menu:addFullButton("~!Join Game", "j", 208 + offx, 320 + (36 * 0) + offy,
+  menu:addFullButton("~!Join Game", "j", 208 + offx, 298 + (36 * 0) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -577,7 +577,7 @@ function RunMultiPlayerGameMenu(s)
       RunJoinIpMenu()
       FixMusic()
     end)
-  menu:addFullButton("~!Create Game", "c", 208 + offx, 320 + (36 * 1) + offy,
+  menu:addFullButton("~!Create Game", "c", 208 + offx, 298 + (36 * 1) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -587,7 +587,7 @@ function RunMultiPlayerGameMenu(s)
       RunCreateMultiGameMenu()
       FixMusic()
     end)
-  menu:addFullButton(_("Meta~!server"), "s", 208 + offx, 320 + (36 * 2) + offy,
+  menu:addFullButton(_("Meta~!server"), "s", 208 + offx, 298 + (36 * 2) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -597,7 +597,7 @@ function RunMultiPlayerGameMenu(s)
       RunJoiningMetaServerMenu()
     end)
 	
-  menu:addFullButton("~!Previous Menu", "p", 208 + offx, 320 + (36 * 3) + offy,
+  menu:addFullButton("~!Previous Menu", "p", 208 + offx, 298 + (36 * 3) + offy,
     function() menu:stop() end)
 
   menu:run()

@@ -39,10 +39,10 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
 
   local soundslider = {}
 		-- slider button to decrease slider value
-		soundslider = menu:addImageLeftSliderButton("", nil, 21, offy + 36 * 1.5, function() soundslider:setValue(soundslider:getValue() - 25.5); SetEffectsVolume(soundslider:getValue()) end)
+		soundslider = menu:addImageLeftSliderButton("", "", 21, offy + 36 * 1.5, function() soundslider:setValue(soundslider:getValue() - 25.5); SetEffectsVolume(soundslider:getValue()) end)
 		
 		-- slider button to increase slider value
-		soundslider = menu:addImageRightSliderButton("", nil, 213, offy + 36 * 1.5, function() soundslider:setValue(soundslider:getValue() + 25.5); SetEffectsVolume(soundslider:getValue()) end)
+		soundslider = menu:addImageRightSliderButton("", "", 213, offy + 36 * 1.5, function() soundslider:setValue(soundslider:getValue() + 25.5); SetEffectsVolume(soundslider:getValue()) end)
 		
 		-- slider itself
 		soundslider = menu:addImageSlider(0, 255, 172, 18, offx + 41, offy + 36 * 1.5, g_marker, g_slider, function() SetEffectsVolume(soundslider:getValue()) end)
@@ -82,10 +82,10 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
   
   local musicslider = {}
 		-- slider button to decrease slider value
-		musicslider = menu:addImageLeftSliderButton("", nil, 21, offy + 36 * 3.25, function() musicslider:setValue(musicslider:getValue() - 25.5); SetMusicVolume(musicslider:getValue()) end)
+		musicslider = menu:addImageLeftSliderButton("", "", 21, offy + 36 * 3.25, function() musicslider:setValue(musicslider:getValue() - 25.5); SetMusicVolume(musicslider:getValue()) end)
 		
 		-- slider button to decrease slider value
-		musicslider = menu:addImageRightSliderButton("", nil, 213, offy + 36 * 3.25, function() musicslider:setValue(musicslider:getValue() + 25.5); SetMusicVolume(musicslider:getValue()) end)
+		musicslider = menu:addImageRightSliderButton("", "", 213, offy + 36 * 3.25, function() musicslider:setValue(musicslider:getValue() + 25.5); SetMusicVolume(musicslider:getValue()) end)
 		
 		-- slider itself
 		musicslider = menu:addImageSlider(0, 255, 172, 18, offx + 41, offy + 36 * 3.25, g_marker, g_slider, function() SetMusicVolume(musicslider:getValue()) end)
@@ -225,10 +225,10 @@ function RunSpeedsMenu()
 
   local gamespeed = {}
 		-- slider button to decrease slider value
-		gamespeed = menu:addImageLeftSliderButton("", nil, 21, 60, function() gamespeed:setValue(gamespeed:getValue() - 5); SetGameSpeed(gamespeed:getValue()) end)
+		gamespeed = menu:addImageLeftSliderButton("", "", 21, 60, function() gamespeed:setValue(gamespeed:getValue() - 5); SetGameSpeed(gamespeed:getValue()) end)
 		
 	    -- slider button to decrease slider value
-		gamespeed = menu:addImageRightSliderButton("", nil, 213, 60, function() gamespeed:setValue(gamespeed:getValue() + 5); SetGameSpeed(gamespeed:getValue()) end)
+		gamespeed = menu:addImageRightSliderButton("", "", 213, 60, function() gamespeed:setValue(gamespeed:getValue() + 5); SetGameSpeed(gamespeed:getValue()) end)
 		
 		-- slider itself
 		gamespeed = menu:addImageSlider(15, 75, 172, 18, 41, 60, g_marker, g_slider, function() SetGameSpeed(gamespeed:getValue()) end)
@@ -246,10 +246,10 @@ function RunSpeedsMenu()
 
   local mousescrollspeed = {}
   		-- slider button to decrease slider value
-		mousescrollspeed = menu:addImageLeftSliderButton("", nil, 21, 128, function() mousescrollspeed:setValue(mousescrollspeed:getValue() - .5); SetMouseScrollSpeed(mousescrollspeed:getValue()) end)
+		mousescrollspeed = menu:addImageLeftSliderButton("", "", 21, 128, function() mousescrollspeed:setValue(mousescrollspeed:getValue() - .5); SetMouseScrollSpeed(mousescrollspeed:getValue()) end)
 		
 	    -- slider button to decrease slider value		
-		mousescrollspeed = menu:addImageRightSliderButton("", nil, 213, 128, function() mousescrollspeed:setValue(mousescrollspeed:getValue() + .5); SetMouseScrollSpeed(mousescrollspeed:getValue()) end)
+		mousescrollspeed = menu:addImageRightSliderButton("", "", 213, 128, function() mousescrollspeed:setValue(mousescrollspeed:getValue() + .5); SetMouseScrollSpeed(mousescrollspeed:getValue()) end)
 		
 		-- slider itself
 		mousescrollspeed = menu:addImageSlider(1, 10, 172, 18, 41, 128, g_marker, g_slider, function() SetMouseScrollSpeed(mousescrollspeed:getValue()) end)
@@ -297,6 +297,8 @@ function BuildOptionsMenu()
   local offy = (Video.Height - 352) / 2
   local checkTexture
   local b
+  
+    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, ((Video.Width - 640) / 2 + 320), (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
   
   if (Video.Width < 640 or Video.Height < 400) then
     -- For ultra small resolutions.

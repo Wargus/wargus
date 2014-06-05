@@ -95,6 +95,8 @@ function RunEditorMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+  
   menu:addLabel("~<Map Editor~>", offx + 320, offy + 212 - 25)
   local buttonNewMap =
   menu:addFullButton("~!New map", "n", offx + 208, offy + 104 + 36*3, function() RunEditorNewMapMenu(); menu:stop() end)
@@ -379,7 +381,7 @@ function EditUnitProperties()
 
   if (GetUnitUnderCursor().Type.GivesResource == 0) then
     menu:addLabel("Artificial Intelligence", sizeX / 2, 11 + 36)
-    local activeCheckBox = menu:addImageCheckBox("Active", 15, 11 + 72, offi, offi2, oni, oni2)
+    local activeCheckBox = menu:addCheckImafeBox("Active", 15, 11 + 72, offi, offi2, oni, oni2)
     activeCheckBox:setMarked(GetUnitUnderCursor().Active)
 
     menu:addHalfButton("~!Ok", "o", 24, sizeY - 40,

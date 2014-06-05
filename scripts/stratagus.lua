@@ -40,7 +40,7 @@ wargus.Name = "Wargus"
 wargus.Version = "2.3"
 wargus.Homepage = "wargus.stratagus.com"
 wargus.Licence = "GPL v2"
-wargus.Copyright = "(c) 1998-2013 by The Stratagus Project."
+wargus.Copyright = "(c) 1998-2014 by The Stratagus Project."
 
 -------------------------------------------------------------------------------
 --  Config-Part
