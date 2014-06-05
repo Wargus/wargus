@@ -26,5 +26,8 @@
 --
 
 if (wargus.expansion == true) then
-	RunCampaignSubmenu("scripts/human/campaign2.lua", "human", "exp")
+	CurrentCampaignRace = "human"
+	CurrentCampaignPath = "campaigns/human-exp/"
+	CampaignMapTitleList = {"levelx01h_c2.sms", "levelx02h_c2.sms", "levelx03h_c2.sms", "levelx04h_c2.sms", "levelx05h_c2.sms", "levelx06h_c2.sms", "levelx07h_c2.sms", "levelx08h_c2.sms", "levelx09h_c2.sms", "levelx10h_c2.sms", "levelx11h_c2.sms", "levelx12h_c2.sms"}
+	RunCampaignSubmenu("scripts/human/campaign2.lua")
 end

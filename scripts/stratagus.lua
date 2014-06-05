@@ -281,11 +281,8 @@ end
 wc2 = {preferences = {}}
 Load("preferences.lua")
 local defaultPreferences = {
-	CampaignHuman = 1,
-	CampaignHumanX = 1,
-	CampaignOrc = 1,
-	CampaignOrcX = 1,
-	AleonaCampaignHuman = 1,
+	CampaignBestScores = {},
+	CampaignProgress = {},
 	DoubleClickDelayInMs = 300,     --  For the wanted double-click delay (in ms).
 	EffectsEnabled = true,
 	EffectsVolume = 128,
@@ -331,6 +328,7 @@ if (wc2.preferences.ServerList == nil) then
 end
 
 CompleteMissingValues(wc2.preferences, defaultPreferences)
+SavePreferences()
 
 SetDoubleClickDelay(wc2.preferences.DoubleClickDelayInMs)
 SetEffectsEnabled(wc2.preferences.EffectsEnabled)

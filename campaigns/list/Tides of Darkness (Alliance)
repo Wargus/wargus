@@ -25,4 +25,7 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-RunCampaignSubmenu("scripts/human/campaign1.lua", "human", "")
+CurrentCampaignRace = "human"
+CurrentCampaignPath = "campaigns/human/"
+CampaignMapTitleList = {"level01h_c2.sms", "level02h_c2.sms", "level03h_c2.sms", "level04h_c2.sms", "level05h_c2.sms", "level06h_c2.sms", "level07h_c2.sms", "level08h_c2.sms", "level09h_c2.sms", "level10h_c2.sms", "level11h_c2.sms", "level12h_c2.sms", "level13h_c2.sms", "level14h_c2.sms"}
+RunCampaignSubmenu("scripts/human/campaign1.lua")

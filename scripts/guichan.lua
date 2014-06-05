@@ -626,9 +626,6 @@ function RunMap(map, objective, fow, revealmap)
        RevealMap()
     end
     StartMap(map)
-    if (not IsNetworkGame()) then
-      SetDefaultPlayerNames()
-    end
     if GameResult ~= GameRestart then
       loop = false
     else

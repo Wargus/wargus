@@ -28,17 +28,17 @@
 --
 
 function Briefing(title, objs, bg, text, voices)
-  if (currentRace ~= nil) then
-    SetPlayerData(GetThisPlayer(), "RaceName", currentRace)
+  if (CurrentCampaignRace ~= nil) then
+    SetPlayerData(GetThisPlayer(), "RaceName", CurrentCampaignRace)
   end
 
   local menu = WarMenu(nil, bg)
 
   wargus.playlist = {}
-  if (currentRace == "human") then
+  if (CurrentCampaignRace == "human") then
     PlayMusic("music/Human Briefing.ogg")
     Load("scripts/human/ui.lua")
-  elseif (currentRace == "orc") then
+  elseif (CurrentCampaignRace == "orc") then
     PlayMusic("music/Orc Briefing.ogg")
     Load("scripts/orc/ui.lua")
   else
@@ -110,61 +110,55 @@ function Briefing(title, objs, bg, text, voices)
   SetGameSpeed(speed)
 end
 
-function GetCustomCampaignState(race, exp)
-	return 1
-end
-
-function GetCampaignState(race, exp)
+function GetCampaignState(campaign)
   -- Loaded saved game could have other old state
   -- Make sure that we use saved state from config file
-  Load("preferences.lua")
-  if (race == "orc" and exp == "") then
-    return wc2.preferences.CampaignOrc
-  elseif (race == "human" and exp == "") then
-    return wc2.preferences.CampaignHuman
-  elseif (race == "orc" and exp == "exp") then
-    return wc2.preferences.CampaignOrcX
-  elseif (race == "human" and exp == "exp") then
-    return wc2.preferences.CampaignHumanX
-  elseif (race == "human" and exp == "tales") then
-    return wc2.preferences.AleonaCampaignHuman
-  else
-	return GetCustomCampaignState(race, exp)
+  if (campaign == nil) then
+	return nil
   end
+  Load("preferences.lua")
+  for i = 1, table.getn(wc2.preferences.CampaignProgress) do
+	if wc2.preferences.CampaignProgress[i*2 - 1] == campaign then
+		return wc2.preferences.CampaignProgress[i*2]
+	end
+  end
+  return nil
 end
 
-function IncreaseCustomCampaignState(race, exp, state)
-end
-
-function IncreaseCampaignState(race, exp, state)
+function IncreaseCampaignState(campaign)
   -- Loaded saved game could have other old state
   -- Make sure that we use saved state from config file
-  Load("preferences.lua")
-  if (race == "orc" and exp == "") then
-    if (state ~= wc2.preferences.CampaignOrc) then return end
-    wc2.preferences.CampaignOrc = wc2.preferences.CampaignOrc + 1
-  elseif (race == "human" and exp == "") then
-    if (state ~= wc2.preferences.CampaignHuman) then return end
-    wc2.preferences.CampaignHuman = wc2.preferences.CampaignHuman + 1
-  elseif (race == "orc" and exp == "exp") then
-    if (state ~= wc2.preferences.CampaignOrcX) then return end
-    wc2.preferences.CampaignOrcX = wc2.preferences.CampaignOrcX + 1
-  elseif (race == "human" and exp == "exp") then
-    if (state ~= wc2.preferences.CampaignHumanX) then return end
-    wc2.preferences.CampaignHumanX = wc2.preferences.CampaignHumanX + 1
-  elseif (race == "human" and exp == "tales") then
-    if (state ~= wc2.preferences.AleonaCampaignHuman) then return end
-    wc2.preferences.AleonaCampaignHuman = wc2.preferences.AleonaCampaignHuman + 1
-  else
-	IncreaseCustomCampaignState(currentRace, currentExp, currentState)
+  if (campaign == nil) then
+	return
   end
+  Load("preferences.lua")
+  if (wc2.preferences.CampaignBestScores ~= nil) then
+	for i = 1, table.getn(wc2.preferences.CampaignBestScores) / 2 do
+		if wc2.preferences.CampaignBestScores[i*2 - 1] == campaign then
+			local subtable = wc2.preferences.CampaignBestScores[i*2]
+			if subtable[currentState] == nil then
+				table.insert(subtable, currentState, GetPlayerData(GetThisPlayer(), "Score"))
+			elseif subtable[currentState] < GetPlayerData(GetThisPlayer(), "Score") then
+				subtable[currentState] = GetPlayerData(GetThisPlayer(), "Score")
+			end					
+		end
+	end
+  end
+  for i = 1, table.getn(wc2.preferences.CampaignProgress) do
+	if wc2.preferences.CampaignProgress[i*2 - 1] == campaign then
+		if (wc2.preferences.CampaignProgress[i*2] == currentState and currentState < table.getn(CampaignMapTitleList)) then
+			wc2.preferences.CampaignProgress[i*2] = wc2.preferences.CampaignProgress[i*2] + 1
+		end
+	end
+  end
+  currentState = currentState + 1
   -- Make sure that we immediately save state
   SavePreferences()
 end
 
 function CreatePictureStep(bg, sound, title, text)
   return function()
-    SetPlayerData(GetThisPlayer(), "RaceName", currentRace)
+    SetPlayerData(GetThisPlayer(), "RaceName", CurrentCampaignRace)
     wargus.playlist = {}
     PlayMusic(sound)
     local menu = WarMenu(nil, bg)
@@ -184,7 +178,7 @@ function CreateMapStep(map)
     Load(map)
     RunMap(map)
     if (GameResult == GameVictory) then
-      IncreaseCampaignState(currentRace, currentExp, currentState)
+      IncreaseCampaignState(currentCampaign)
     end
   end
 end
@@ -203,47 +197,60 @@ function CreateVictoryStep(bg, text, voices)
   end
 end
 
-function CampaignButtonTitle(race, exp, i)
-  local name = "campaigns/" .. race
-  if (exp ~= "") then name = name .. "-" .. exp end
-  name = name .. "/level"
-  if (exp == "exp") then name = name .. "x" end
-  if (i<10) then name = name .. "0" end
-  name = name .. i
-
-  if (race == "orc") then
-    name = name .. "o"
-  else
-    name = name .. "h"
-  end
-
-  name = name .. "_c2.sms"
-
+function CampaignButtonTitle(i)
   title = "Ending - Victory"
-  Load(name)
+  if (CurrentCampaignPath ~= nil and CampaignMapTitleList ~= nil) then
+	
+	Load(CurrentCampaignPath .. CampaignMapTitleList[i])
+	if ( string.len(title) > 22 ) then
+	  title = string.sub(title, 1, 21) .. "..."
+	end
 
-  if ( string.len(title) > 20 ) then
-	  title = string.sub(title, 1, 19) .. "..."
+	return title
   end
-
-  return title
+  return nil
 end
 
-function CampaignButtonFunction(campaign, race, exp, i, menu)
+function CampaignButtonFunction(campaign, i, menu)
   return function()
     position = campaign_menu[i]
     currentCampaign = campaign
-    currentRace = race
-    currentExp = exp
     currentState = i
     menu:stop()
     RunCampaign(campaign)
   end
 end
 
-function RunCampaignSubmenu(campaign, race, exp)
+function RunCampaignSubmenu(campaign)
   Load(campaign)
-
+  
+  -- Add new best scores
+  local inList = false
+  for i = 1, table.getn(wc2.preferences.CampaignBestScores) do
+	if wc2.preferences.CampaignBestScores[i*2 - 1] == campaign then
+		inList = true
+		break
+	end
+  end
+  if not inList then
+	table.insert(wc2.preferences.CampaignBestScores, campaign)
+	table.insert(wc2.preferences.CampaignBestScores, {})
+	SavePreferences()
+  end
+  -- Add new progress
+  inList = false
+  for i = 1, table.getn(wc2.preferences.CampaignProgress) do
+	if wc2.preferences.CampaignProgress[i*2 - 1] == campaign then
+		inList = true
+		break
+	end
+  end
+  if not inList then
+	table.insert(wc2.preferences.CampaignProgress, campaign)
+	table.insert(wc2.preferences.CampaignProgress, 1)
+	SavePreferences()
+  end
+ 
   wargus.playlist = { "music/Orc Briefing.ogg" }
   SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 
@@ -255,21 +262,21 @@ function RunCampaignSubmenu(campaign, race, exp)
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
-  local show_buttons = GetCampaignState(race, exp)
+  local show_buttons = GetCampaignState(campaign)
   local half = math.ceil(show_buttons/2)
   local floorhalf = math.floor(show_buttons / 2)
 
   for it = 1, floorhalf do
     local i = 2 * it - 1
-    menu:addFullButton(CampaignButtonTitle(race, exp, i), ".", offx + 98, offy + 64 + (36 * it), CampaignButtonFunction(campaign, race, exp, i, menu))
-    menu:addFullButton(CampaignButtonTitle(race, exp, i + 1), ".", offx + 326, offy + 64 + (36 * it), CampaignButtonFunction(campaign, race, exp, i + 1, menu))
+    menu:addFullButton(CampaignButtonTitle(i), ".", offx + 98, offy + 64 + (36 * it), CampaignButtonFunction(campaign, i, menu))
+    menu:addFullButton(CampaignButtonTitle(i + 1), ".", offx + 326, offy + 64 + (36 * it), CampaignButtonFunction(campaign, i + 1, menu))
   end
   if (floorhalf ~= half) then
-    menu:addFullButton(CampaignButtonTitle(race, exp, show_buttons), ".", offx + 98, offy + 64 + (36 * half), CampaignButtonFunction(campaign, race, exp, show_buttons, menu))
+    menu:addFullButton(CampaignButtonTitle(show_buttons), ".", offx + 98, offy + 64 + (36 * half), CampaignButtonFunction(campaign, show_buttons, menu))
   end
 
   menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 212 + (36 * 5),
-    function()  menu:stop(1); RunSinglePlayerTypeMenu(); currentCampaign = nil; currentRace = nil; currentExp = nil; currentState = nil; end)
+    function()  menu:stop(1); RunSinglePlayerTypeMenu(); currentCampaign = nil; currentState = nil; end)
 
   if (wargus.tales == false) then
     menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
@@ -302,33 +309,7 @@ function RunCampaign(campaign)
     end
   end
 
-  RunCampaignSubmenu(currentCampaign, currentRace, currentExp)
+  RunCampaignSubmenu(currentCampaign)
 
   currentCampaign = nil
 end
-
-function RunCampaignGameMenu()
-  local menu = WarMenu()
-  local offx = (Video.Width - 640) / 2
-  local offy = (Video.Height - 480) / 2
-
-  menu:addLabel("Tides of Darkness", offx + 320, offy + 212 - 25)
-  menu:addFullButton("~!Orc campaign", "o", offx + 208, offy + 212 + (36 * 0),
-    function() RunCampaignSubmenu("scripts/orc/campaign1.lua", "orc", ""); menu:stop() end)
-  menu:addFullButton("~!Human campaign", "h", offx + 208, offy + 212 + (36 * 1),
-    function() RunCampaignSubmenu("scripts/human/campaign1.lua", "human", ""); menu:stop() end)
-
-  if (wargus.expansion == true) then
-    menu:addLabel("Beyond the Dark Portal", offx + 320, offy + 212 + (36 * 3) - 25)
-    menu:addFullButton("O~!rc expansion levels", "r", offx + 208, offy + 212 + (36 * 3),
-      function() RunCampaignSubmenu("scripts/orc/campaign2.lua", "orc", "exp"); menu:stop() end)
-    menu:addFullButton("H~!uman expansion levels", "u", offx + 208, offy + 212 + (36 * 4),
-      function() RunCampaignSubmenu("scripts/human/campaign2.lua", "human", "exp"); menu:stop() end)
-  end
-
-  menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 212 + (36 * 5),
-    function() menu:stop() end)
-
-  menu:run()
-end
-

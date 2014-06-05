@@ -17,7 +17,7 @@ function LoadGame(s)
   SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 
   if (GameResult == GameVictory) then
-    IncreaseCampaignState(currentRace, currentExp, currentState)
+    IncreaseCampaignState(currentCampaign)
   end
 
   if currentCampaign ~= nil then
