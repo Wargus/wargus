@@ -298,7 +298,9 @@ function BuildOptionsMenu()
   local checkTexture
   local b
   
+  if (wargus.tales == false) then
     menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, ((Video.Width - 640) / 2 + 320), (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+  end
   
   if (Video.Width < 640 or Video.Height < 400) then
     -- For ultra small resolutions.
