@@ -1,0 +1,20 @@
+
+$Id: flame_shield.txt,v 1.2 2001/07/29 19:17:38 rock808 Exp $
+"flame_shield"		-	sound for Flame Shield spell
+44.1 kHz, stereo, 16bit
+
+(c) Copyright 2001 by Ted Lyngmo
+
+This file is part of FreeCraft Sound Project
+
+FreeCraft Sound Project are free sounds; you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2 of
+the License, or (at your option) any later version.
+
+FreeCraft Sound Project is distributed in the hope that it will be
+useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+2001.07.29	-	Ted Lyngmo <ted@lyncon.se> has created a much better version

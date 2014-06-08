@@ -134,7 +134,12 @@ function AiLevel07()
 				SetDiplomacy(1, "enemy", 4)
 				SetDiplomacy(1, "enemy", 2)					
 			end
-			forceid = forceid + 1
+			
+			if (forceid > 8) 
+				forceid = 1
+			else
+				forceid = forceid + 1
+			end
 		end
 		if (timer > 200) then
 			timer = 1

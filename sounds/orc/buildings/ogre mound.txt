@@ -1,0 +1,18 @@
+
+$Id: ogre_mound.txt,v 1.1 2001/07/21 21:46:06 rock808 Exp $
+"ogre_mound"		-	orge munching sounds
+44,1 kHz, stereo, 16bit
+
+(c) Copyright 2001 by David Slimp
+
+This file is part of FreeCraft Sound Project
+
+FreeCraft Sound Project are free sounds; you can redistribute it
+and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2 of
+the License, or (at your option) any later version.
+
+FreeCraft Sound Project is distributed in the hope that it will be
+useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
