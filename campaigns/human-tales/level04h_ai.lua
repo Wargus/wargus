@@ -74,10 +74,13 @@ function AiLevel04sea()
 			AiSet(AiWorker(), 5)
 			if (GetNumUnitsAt(AiPlayer(), "unit-orc-foundry", {0, 0}, {64, 64}) > 0) then
 				if (GetNumUnitsAt(AiPlayer(), "unit-orc-transport", {0, 0}, {64, 64}) > 0) then
-					if (GetNumUnitsAt(AiPlayer(), "unit-grunt", {0, 0}, {64, 64}) < 5) then
+					if (GetNumUnitsAt(AiPlayer(), AiSoldier(), {0, 0}, {64, 64}) < 5) then
 						AiSet(AiSoldier(), 10)
 					else
 						AiSet(AiShooter(), 10)
+					end
+					if (GetNumUnitsAt(AiPlayer(), AiShooter(), {0, 0}, {64, 64}) > 5) then
+						AiNephrite_Attack_2013()
 					end
 				else
 					AiSet(AiTransporter(), 1)
@@ -113,14 +116,14 @@ DefineAi("ai_level04sea", "*", "ai_level04sea", AiLevel04sea)
 function AiLevel04land()
 	if (GetNumUnitsAt(AiPlayer(), "unit-great-hall", {0, 0}, {256, 256}) >= 1) then
 		if (GetNumUnitsAt(AiPlayer(), "unit-orc-barracks", {0, 0}, {256, 256}) >= 1) then
-			if (GetNumUnitsAt(AiPlayer(), "unit-grunt", {0, 0}, {256, 256}) >= 4) then
-				if (GetNumUnitsAt(AiPlayer(), "unit-grunt", {0, 0}, {256, 256}) >= 12) then
+			if (GetNumUnitsAt(AiPlayer(), AiSoldier(), {0, 0}, {256, 256}) >= 4) then
+				if (GetNumUnitsAt(AiPlayer(), AiSoldier(), {0, 0}, {256, 256}) >= 12) then
 					AiForce(3, {AiSoldier(), 12}, true)
 					AiAttackWithForce(3)
 				else
 					AiSet(AiSoldier(), 14)
 				end
-				if (GetNumUnitsAt(AiPlayer(), "unit-grunt", {0, 0}, {256, 256}) >= 8) then
+				if (GetNumUnitsAt(AiPlayer(), AiSoldier(), {0, 0}, {256, 256}) >= 8) then
 					if (GetNumUnitsAt(AiPlayer(), "unit-orc-blacksmith", {0, 0}, {256, 256}) >= 1) then
 						AiResearch(AiUpgradeWeapon1())
 						AiResearch(AiUpgradeArmor1())
