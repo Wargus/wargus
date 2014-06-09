@@ -38,14 +38,19 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
   menu:add(b, offx + 16, offy + 36 * 1)
 
   local soundslider = {}
-		-- slider button to decrease slider value
-		soundslider = menu:addImageLeftSliderButton("", nil, 21, offy + 36 * 1.5, function() soundslider:setValue(soundslider:getValue() - 25.5); SetEffectsVolume(soundslider:getValue()) end)
-		
+  local soundsliderleftbutton = {}
+  local soundsliderrightbutton = {}	
+	-- slider button to decrease slider value
+		soundsliderleftbutton = menu:addImageLeftSliderButton("", nil, 21, offy + 36 * 1.5, 
+		function() soundslider:setValue(soundslider:getValue() - 25.5); SetEffectsVolume(soundslider:getValue()) end)
+  
 		-- slider button to increase slider value
-		soundslider = menu:addImageRightSliderButton("", nil, 213, offy + 36 * 1.5, function() soundslider:setValue(soundslider:getValue() + 25.5); SetEffectsVolume(soundslider:getValue()) end)
-		
+		soundsliderrightbutton = menu:addImageRightSliderButton("", nil, 213, offy + 36 * 1.5, 
+		function() soundslider:setValue(soundslider:getValue() + 25.5); SetEffectsVolume(soundslider:getValue()) end)
+  
 		-- slider itself
-		soundslider = menu:addImageSlider(0, 255, 172, 18, offx + 41, offy + 36 * 1.5, g_marker, g_slider, function() SetEffectsVolume(soundslider:getValue()) end)
+		soundslider = menu:addImageSlider(0, 255, 172, 18, offx + 41, offy + 36 * 1.5, g_marker, g_slider, 
+		function() SetEffectsVolume(soundslider:getValue()) end)
 		
 		-- set the value so the game saves it
 		soundslider:setValue(GetEffectsVolume())
@@ -65,14 +70,30 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
   menu:addLabel("Off", 60, 224, Fonts["game"], false)  
   
   local effectscheckbox = {}
-		effectscheckbox = menu:addImageRadioButton("", "effectscheckbox", 37, 200, offi, offi2, oni, oni2, function() SetEffectsEnabled(true) end)
+		effectscheckbox = menu:addImageRadioButton("", "effectscheckbox", 37, 200, offi, offi2, oni, oni2, function() 
+			SetEffectsEnabled(true)
+			soundslider:setEnabled(true)
+			soundsliderrightbutton:setEnabled(true)
+			soundsliderleftbutton:setEnabled(true)
+		end)
 		effectscheckbox:setMarked(IsEffectsEnabled())
 		
-		effectscheckbox = menu:addImageRadioButton("", "effectscheckbox", 37, 222, offi, offi2, oni, oni2, function() SetEffectsEnabled(false) end)
+		effectscheckbox = menu:addImageRadioButton("", "effectscheckbox", 37, 222, offi, offi2, oni, oni2, function()
+			SetEffectsEnabled(false)
+			soundslider:setEnabled(false)
+			soundsliderrightbutton:setEnabled(false)
+			soundsliderleftbutton:setEnabled(false)
+		end)
 		if (IsEffectsEnabled() == true) then
 			effectscheckbox:setMarked(false)
+			soundslider:setEnabled(true)
+			soundsliderrightbutton:setEnabled(true)
+			soundsliderleftbutton:setEnabled(true)
 		else
 			effectscheckbox:setMarked(true)
+			soundslider:setEnabled(false)
+			soundsliderrightbutton:setEnabled(false)
+			soundsliderleftbutton:setEnabled(false)
 		end
 
   b = Label("Music Volume")
@@ -81,11 +102,13 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
   menu:add(b, offx + 16, offy + 36 * 2.75)
   
   local musicslider = {}
+  local musicsliderleftbutton = {}
+  local musicsliderrightbutton = {}
 		-- slider button to decrease slider value
-		musicslider = menu:addImageLeftSliderButton("", nil, 21, offy + 36 * 3.25, function() musicslider:setValue(musicslider:getValue() - 25.5); SetMusicVolume(musicslider:getValue()) end)
+		musicsliderleftbutton = menu:addImageLeftSliderButton("", nil, 21, offy + 36 * 3.25, function() musicslider:setValue(musicslider:getValue() - 25.5); SetMusicVolume(musicslider:getValue()) end)
 		
 		-- slider button to decrease slider value
-		musicslider = menu:addImageRightSliderButton("", nil, 213, offy + 36 * 3.25, function() musicslider:setValue(musicslider:getValue() + 25.5); SetMusicVolume(musicslider:getValue()) end)
+		musicsliderrightbutton = menu:addImageRightSliderButton("", nil, 213, offy + 36 * 3.25, function() musicslider:setValue(musicslider:getValue() + 25.5); SetMusicVolume(musicslider:getValue()) end)
 		
 		-- slider itself
 		musicslider = menu:addImageSlider(0, 255, 172, 18, offx + 41, offy + 36 * 3.25, g_marker, g_slider, function() SetMusicVolume(musicslider:getValue()) end)
@@ -105,17 +128,33 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
 
   menu:addLabel("Music:", 112, 176, Fonts["game"], false)
   menu:addLabel("On", 160, 202, Fonts["game"], false)
-  menu:addLabel("Off", 160, 224, Fonts["game"], false)  
+  menu:addLabel("Off", 160, 224, Fonts["game"], false)
   
   local musiccheckbox = {}
-		musiccheckbox = menu:addImageRadioButton("", "musiccheckbox", 138, 200, offi, offi2, oni, oni2, function() SetMusicEnabled(true) end)
-		musiccheckbox:setMarked(IsMusicEnabled())
+		musiccheckbox = menu:addImageRadioButton("", "musiccheckbox", 138, 200, offi, offi2, oni, oni2, function() 
+		SetMusicEnabled(true)
+		musicslider:setEnabled(true)
+		musicsliderrightbutton:setEnabled(true)
+		musicsliderleftbutton:setEnabled(true)			
+		end)
+	musiccheckbox:setMarked(IsMusicEnabled())
 		
-		musiccheckbox = menu:addImageRadioButton("", "musiccheckbox", 138, 222, offi, offi2, oni, oni2, function() SetMusicEnabled(false) end)
-		if (IsMusicEnabled() == true) then
+		musiccheckbox = menu:addImageRadioButton("", "musiccheckbox", 138, 222, offi, offi2, oni, oni2, function()
+		SetMusicEnabled(false)
+		musicslider:setEnabled(false)
+		musicsliderrightbutton:setEnabled(false)
+		musicsliderleftbutton:setEnabled(false)
+		end)
+  if (IsMusicEnabled() == true) then
 			musiccheckbox:setMarked(false)
+			musicslider:setEnabled(true)
+			musicsliderrightbutton:setEnabled(true)
+			musicsliderleftbutton:setEnabled(true)			
 		else
 			musiccheckbox:setMarked(true)
+			musicslider:setEnabled(false)
+			musicsliderrightbutton:setEnabled(false)
+			musicsliderleftbutton:setEnabled(false)
 		end
   
   b = menu:addHalfButton("~!OK", "o", 16 + 12 + 106, 288 - 40,

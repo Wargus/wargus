@@ -114,24 +114,32 @@ g_hrslider_n = CGraphic:New("ui/human/widgets/right-arrow-normal.png")
 g_hrslider_n:Load()
 g_hrslider_p = CGraphic:New("ui/human/widgets/right-arrow-pressed.png")
 g_hrslider_p:Load()
+g_hrslider_d = CGraphic:New("ui/human/widgets/right-arrow-grayed.png")
+g_hrslider_d:Load()
 
 -- left slider arrows for human
 g_hlslider_n = CGraphic:New("ui/human/widgets/left-arrow-normal.png")
 g_hlslider_n:Load()
 g_hlslider_p = CGraphic:New("ui/human/widgets/left-arrow-pressed.png")
 g_hlslider_p:Load()
+g_hlslider_d = CGraphic:New("ui/human/widgets/left-arrow-grayed.png")
+g_hlslider_d:Load()
 
 -- right slider arrows for orc
 g_orslider_n = CGraphic:New("ui/orc/widgets/right-arrow-normal.png")
 g_orslider_n:Load()
 g_orslider_p = CGraphic:New("ui/orc/widgets/right-arrow-pressed.png")
 g_orslider_p:Load()
+g_orslider_d = CGraphic:New("ui/orc/widgets/right-arrow-grayed.png")
+g_orslider_d:Load()
 
 -- left slider arrows for orc
 g_olslider_n = CGraphic:New("ui/orc/widgets/left-arrow-normal.png")
 g_olslider_n:Load()
 g_olslider_p = CGraphic:New("ui/orc/widgets/left-arrow-pressed.png")
 g_olslider_p:Load()
+g_olslider_d = CGraphic:New("ui/orc/widgets/left-arrow-grayed.png")
+g_olslider_d:Load()
 
 -- slider marker - so we know the value of the option we're trying to change
 g_hmarker = CGraphic:New("ui/human/widgets/slider-knob.png")
@@ -140,6 +148,8 @@ g_hmarker:Load()
 -- slider background image
 g_hslider = CGraphic:New("ui/human/widgets/hslider-bar-normal.png")
 g_hslider:Load()
+g_hslider_d = CGraphic:New("ui/human/widgets/hslider-bar-grayed.png")
+g_hslider_d:Load()
 
 -- same, but for orc this time.
 g_omarker = CGraphic:New("ui/orc/widgets/slider-knob.png")
@@ -148,9 +158,8 @@ g_omarker:Load()
 -- slider image for the orcs
 g_oslider = CGraphic:New("ui/orc/widgets/hslider-bar-normal.png")
 g_oslider:Load()
-
-g_o_dropdown = CGraphic:New("ui/orc/widgets/button-thin-medium-normal.png")
-g_o_dropdown:Load()
+g_oslider_d = CGraphic:New("ui/orc/widgets/hslider-bar-grayed.png")
+g_oslider_d:Load()
 
 local hpanels = {
   "ui/human/panel_1.png",
@@ -296,9 +305,11 @@ function AddMenuHelpers(menu)
     if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
 	  b:setNormalImage(g_hlslider_n)
 	  b:setPressedImage(g_hlslider_p)
+	  b:setDisabledImage(g_hlslider_d)
 	else
 	  b:setNormalImage(g_olslider_n)
 	  b:setPressedImage(g_olslider_p)
+	  b:setDisabledImage(g_olslider_d)
     end
 	b:setSize(20, 19)
 	b:setBorderSize(0)
@@ -311,9 +322,11 @@ function AddMenuHelpers(menu)
     if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
 		b:setMarkerImage(g_hmarker)
 		b:setBackgroundImage(g_hslider)
+		b:setDisabledBackgroundImage(g_hslider_d)
     else
 		b:setMarkerImage(g_omarker)
 		b:setBackgroundImage(g_oslider)
+		b:setDisabledBackgroundImage(g_oslider_d)
     end
     b:setSize(w, h)
     b:setActionCallback(function(s) callback(b, s) end)
@@ -327,9 +340,11 @@ function AddMenuHelpers(menu)
     if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
 	  b:setNormalImage(g_hrslider_n)
 	  b:setPressedImage(g_hrslider_p)
+	  b:setDisabledImage(g_hrslider_d)
 	else
 	  b:setNormalImage(g_orslider_n)
 	  b:setPressedImage(g_orslider_p)
+	  b:setDisabledImage(g_orslider_d)
     end	  
     b:setSize(20, 19)
 	b:setBorderSize(0)
