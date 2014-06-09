@@ -2,13 +2,23 @@
 
 Load("campaigns/human-tales/level03h_c2.sms")
 
-Briefing(
-  title,
-  objectives,
-  "../campaigns/human/interface/introscreen5.png",
-  "campaigns/human-tales/level03h.txt",
-  {}
-)
+if (wargus.tales == true) then
+	Briefing(
+		title,
+		objectives,
+		"../campaigns/human-tales/interface/introscreen1.png",
+		"campaigns/human-tales/level03h.txt",
+		{}
+	)
+else
+	Briefing(
+		title,
+		objectives,
+		"../campaigns/human/interface/introscreen1.png",
+		"campaigns/human-tales/level03h.txt",
+		{}
+	)
+end
 
 Load("campaigns/human-tales/level03h_ai.lua")
 
