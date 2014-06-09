@@ -268,6 +268,14 @@ UI.Resources[ScoreCost].IconY = 0
 UI.Resources[ScoreCost].TextX = Video.Width - 16 - 68 + 18
 UI.Resources[ScoreCost].TextY = 1
 
+-- mana
+UI.Resources[ManaResCost].G = CGraphic:New("graphics/ui/gold,wood,oil,mana.png", 14, 14)
+UI.Resources[ManaResCost].IconFrame = 3
+UI.Resources[ManaResCost].IconX = -100
+UI.Resources[ManaResCost].IconY = -100
+UI.Resources[ManaResCost].TextX = -100
+UI.Resources[ManaResCost].TextY = -100
+
 UI.MenuButton.X = 176 + 24
 UI.MenuButton.Y = UI.MapArea.EndY + 2 + 16
 UI.MenuButton.Text = "Menu (~<F10~>)"
