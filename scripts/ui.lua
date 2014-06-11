@@ -209,11 +209,6 @@ DefinePanelContents(
 	},
 	{ Pos = {37,  86}, More = {"Text", "Upgrading:"}, Condition = {UpgradeTo = "only"} },
 	{ Pos = {50, 156}, More = {"Text", "% Complete"}, Condition = {UpgradeTo = "only"} },
--- Mana
-	{ Pos = {16, 148}, Condition = {Mana = "only"},
-		More = {"CompleteBar", {Variable = "Mana", Height = 16, Width = 140, Border = false}}
-	},
-	{ Pos = {86, 150}, More = {"Text", {Variable = "Mana"}}, Condition = {Mana = "only"} },
 -- Resource Carry
 	{ Pos = {61, 149}, Condition = {CarryResource = "only"},
 		More = {"FormattedText2", {Format = "Carry: %d %s", Variable = "CarryResource",
@@ -245,7 +240,15 @@ DefinePanelContents(
 	},
 	{ Pos = {53, 133}, Condition = {Speed = "only"},
 		More = {"Text", {Text = "Speed: ", Variable = "Speed", Stat = true}}
-	} } })
+	},
+	-- Mana
+	{ Pos = {53, 148}, Condition = {Mana = "only"},
+		More = {"Text", {Text = "Mana: "}}
+	},
+	{ Pos = {100, 148}, Condition = {Mana = "only"},
+		More = {"CompleteBar", {Variable = "Mana", Height = 14, Width = 63, Border = true}}
+	},
+	{ Pos = {124, 149}, More = {"Text", {Variable = "Mana", Centered = true}}, Condition = {Mana = "only"} }} })
 
 Load("scripts/human/ui.lua")
 Load("scripts/orc/ui.lua")
