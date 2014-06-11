@@ -100,9 +100,10 @@ function RunResultsMenu()
   local offy = (Video.Height - 480) / 2
   
   -- score and rank
+  
   local results_score = GetPlayerData(GetThisPlayer(), "Score")
-  local currentRank = nil
-  local currentRankNumber = 0
+  local currentRank = ranksTable[2]
+  local currentRankNumber = 1
   if (currentCampaign ~= nil and currentState ~= nil) then
 	local subtable = nil
 	for i = 1, table.getn(wc2.preferences.CampaignBestScores) / 2 do
@@ -134,6 +135,7 @@ function RunResultsMenu()
   else
 	currentLevelRanking:setPercent((results_score - ranksTable[currentRankNumber*2-1])*100/(ranksTable[currentRankNumber*2 + 1] - ranksTable[currentRankNumber*2-1]))
   end
+  
   currentLevelRanking:setBackgroundColor(black)
   currentLevelRanking:setForegroundColor(Color(0, 0, 215))
   currentLevelRanking:setVisible(false)
@@ -148,7 +150,6 @@ function RunResultsMenu()
   currentOverallRanking:setVisible(false)
   currentOverallRanking:setBaseColor(Color(215, 215, 215))
   menu:add(currentOverallRanking, offx + 280, offy + top_offset + 50)
-
   -- player label and color setup
   local playerCount = 0      -- overall number of players
   local playerLabels = {}    -- all player name labels
@@ -241,8 +242,9 @@ function RunResultsMenu()
   local r_stage = 0
   local r_stats_stage = 0
   local counter = 0
-  local wait = 30
+  local wait = 24
   local statStageWait = 0 
+  local scoreWait = 24 
   
   local function ResultsShowPlayerStage(stage)
 	captionLabels[stage]:setVisible(true)
@@ -261,7 +263,7 @@ function RunResultsMenu()
   end
   local playerStatData = {}                                   -- All player data
   local maxStagePlayer = {1, 1, 1, 1, 1, 1, 1, 1}             -- hold the player earned maximum score of every stat
-  local defaultStatSpeeds = {2, 2, 457, 457, 457, 2, 2, 123}  -- default statbox speeds
+  local defaultStatSpeeds = {2, 2, 457, 457, 457, 2, 2, 79}  -- default statbox speeds
   local statSpeed = {}       -- speed of stat increasing
   local decrCoeff = 70       -- maximum count of ticks for statbox
   for i=1,table.getn(captionLabels) do
@@ -313,14 +315,14 @@ function RunResultsMenu()
 		menu:addLabel(result, offx + 114, offy + top_offset + 21, Fonts["large-title"])
 		StopAllChannels()
 		PlaySound("statsthump", true)
-		wait = 30
+		wait = 24
 		r_stage = r_stage + 1 -- next stage
 	elseif (r_stage == 1) then -- Rank
 		menu:addLabel("Rank", offx + 330, offy + top_offset)
 		menu:addLabel(currentRank, offx + 330, offy + top_offset + 21)
 		StopAllChannels()
 		PlaySound("statsthump", true)
-		wait = 30
+		wait = 24
 		currentLevelRanking:setVisible(true)
 		currentOverallRanking:setVisible(true)
 		r_stage = r_stage + 1 -- next stage
@@ -336,10 +338,13 @@ function RunResultsMenu()
 				currect_player_score = currect_player_score + results_score / 10
 				currect_player_score_label:setCaption(tostring(math.floor(currect_player_score)))
 				currect_player_score_label:adjustSize()
+				scoreWait = scoreWait - 2
 				wait = 1
 				PlaySound("highclick", true)
 			else
-				wait = 10
+				currect_player_score_label:setCaption(tostring(math.floor(results_score)))
+				currect_player_score_label:adjustSize()
+				wait = math.max(scoreWait, 2)
 				r_stage = r_stage + 1 -- next stage
 				ticking = false
 			end
@@ -356,7 +361,7 @@ function RunResultsMenu()
 			PlaySound("statsthump", true)
 			r_stats_stage = r_stats_stage + 1
 			ResultsShowPlayerStage(r_stats_stage)
-			statStageWait = 30
+			statStageWait = 24
 		end
 		for i=1, r_stats_stage do
 			for j=1,playerCount do
@@ -382,7 +387,7 @@ function RunResultsMenu()
 		end
 		wait = 1
 	elseif (r_stage == 4) then -- just stop
-		wait = 30
+		wait = 24
 	end
   end
 
