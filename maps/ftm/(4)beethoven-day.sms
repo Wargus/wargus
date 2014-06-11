@@ -16795,6 +16795,21 @@ AddTrigger(
 return false end)
 
 AddTrigger(
+	function() return (GameCycle > 800) end, 
+	function()	if (((GetThisPlayer() == BlueTeam1) and (GetPlayerData(BlueTeam1, "AiEnabled") == true) and (GetPlayerData(BlueTeam1, "TotalNumUnits") == 0)) or ((GetThisPlayer() == BlueTeam2) and (GetPlayerData(BlueTeam2, "AiEnabled") == true) and (GetPlayerData(BlueTeam2, "TotalNumUnits") == 0)) or ((GetThisPlayer() == RedTeam1) and (GetPlayerData(RedTeam1, "AiEnabled") == true) and (GetPlayerData(RedTeam1, "TotalNumUnits") == 0)) or ((GetThisPlayer() == RedTeam2) and (GetPlayerData(RedTeam2, "AiEnabled") == true) and (GetPlayerData(RedTeam2, "TotalNumUnits") == 0))) then
+					ActionDefeat() 
+					--Make this work!
+					AddMessage("A computer has finally died!")
+				end
+				if ((((GetThisPlayer() == BlueTeam1) or (GetThisPlayer() == BlueTeam2)) and ((GetPlayerData(BlueLeader, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam1, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam2, "TotalNumUnits") == 0))) or (((GetThisPlayer() == RedTeam1) or (GetThisPlayer() == RedTeam2)) and ((GetPlayerData(RedLeader, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam1, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam2, "TotalNumUnits") == 0)))) then
+					ActionDefeat() 
+				end
+				if (GetNumOpponents(GetThisPlayer()) == 0) then
+					ActionVictory() 
+				end
+return true end)
+				
+AddTrigger(
 	function() return ((GameCycle >= 0) and (GameCycle <= 10)) end,
 	function()	AddMessage("Welcome to For the Motherland: Beethoven Day!")
 	CenterMap(64, 64)
@@ -16844,4 +16859,56 @@ AddTrigger(
 	SetDiplomacy(5, "enemy", 3)
 	SetDiplomacy(5, "enemy", 4)
 	SetDiplomacy(5, "enemy", 7)
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle > 800) and ((GetPlayerData(BlueTeam2, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam1, "TotalNumUnits") > 0))) end,
+	function()	BlueTeam2 = BlueTeam1
+	BlueTeam2_x1 = BlueTeam1_x1
+	BlueTeam2_y1 = BlueTeam1_y1
+	BlueTeam2_x2 = BlueTeam1_x2
+	BlueTeam2_y2 = BlueTeam1_y2
+	BlueTemp_x1 = BlueTeam1_x1
+	BlueTemp_y1 = BlueTeam1_y1
+	BlueTemp_x2 = BlueTeam1_x2
+	BlueTemp_y2 = BlueTeam1_y2
+return false end)
+	
+AddTrigger(
+	function() return ((GameCycle > 800) and ((GetPlayerData(BlueTeam1, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam2, "TotalNumUnits") > 0))) end,
+	function()	BlueTeam1 = BlueTeam2
+	BlueTeam1_x1 = BlueTeam2_x1
+	BlueTeam1_y1 = BlueTeam2_y1
+	BlueTeam1_x2 = BlueTeam2_x2
+	BlueTeam1_y2 = BlueTeam2_y2
+	BlueTemp_x1 = BlueTeam2_x1
+	BlueTemp_y1 = BlueTeam2_y1
+	BlueTemp_x2 = BlueTeam2_x2
+	BlueTemp_y2 = BlueTeam2_y2
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle > 800) and ((GetPlayerData(RedTeam2, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam1, "TotalNumUnits") > 0))) end,
+	function()	RedTeam2 = RedTeam1
+	RedTeam2_x1 = RedTeam1_x1
+	RedTeam2_y1 = RedTeam1_y1
+	RedTeam2_x2 = RedTeam1_x2
+	RedTeam2_y2 = RedTeam1_y2
+	RedTemp_x1 = RedTeam1_x1
+	RedTemp_y1 = RedTeam1_y1
+	RedTemp_x2 = RedTeam1_x2
+	RedTemp_y2 = RedTeam1_y2
+return false end)
+	
+AddTrigger(
+	function() return ((GameCycle > 800) and ((GetPlayerData(RedTeam1, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam2, "TotalNumUnits") > 0))) end,
+	function()	RedTeam1 = RedTeam2
+	RedTeam1_x1 = RedTeam2_x1
+	RedTeam1_y1 = RedTeam2_y1
+	RedTeam1_x2 = RedTeam2_x2
+	RedTeam1_y2 = RedTeam2_y2
+	RedTemp_x1 = RedTeam2_x1
+	RedTemp_y1 = RedTeam2_y1
+	RedTemp_x2 = RedTeam2_x2
+	RedTemp_y2 = RedTeam2_y2
 return false end)
