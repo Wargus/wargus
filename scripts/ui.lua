@@ -246,7 +246,7 @@ DefinePanelContents(
 		More = {"Text", {Text = "Mana: "}}
 	},
 	{ Pos = {100, 148}, Condition = {Mana = "only"},
-		More = {"CompleteBar", {Variable = "Mana", Height = 14, Width = 63, Border = true}}
+		More = {"CompleteBar", {Color = "light-blue", Variable = "Mana", Height = 14, Width = 63, Border = true}}
 	},
 	{ Pos = {124, 149}, More = {"Text", {Variable = "Mana", Centered = true}}, Condition = {Mana = "only"} }} })
 
