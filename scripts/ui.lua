@@ -107,7 +107,7 @@ DefinePanelContents(
 	{ Pos = {12, 152}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
 		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 14, Border = false}}
 	},
-	{ Pos = {50, 156}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+	{ Pos = {50, 155}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
 		More = {"Text", "% Complete"}},
 	{ Pos = {107, 78}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
 		More = {"Icon", {Unit = "Worker"}}}
@@ -181,7 +181,19 @@ DefinePanelContents(
   DefaultFont = "game",
   Condition = {ShowOpponent = false, HideNeutral = true, Build = "false"},
   Contents = {
+	{ Pos = {37, 86}, Condition = {BasicDamage = "only"},
+		More = {"Text", {Text = Concat("Damage: ", String(min_damage), "-", String(max_damage),
+								If(Equal(0, damage_bonus), "",
+									InverseVideo(Concat("+", String(damage_bonus)))) )}}
+
+	},
 	{ Pos = {37, 86}, Condition = {PiercingDamage = "only"},
+		More = {"Text", {Text = Concat("Damage: ", String(min_damage), "-", String(max_damage),
+								If(Equal(0, damage_bonus), "",
+									InverseVideo(Concat("+", String(damage_bonus)))) )}}
+
+	},
+	{ Pos = {37, 86}, Condition = {BasicDamage = "only", PiercingDamage = "only"},
 		More = {"Text", {Text = Concat("Damage: ", String(min_damage), "-", String(max_damage),
 								If(Equal(0, damage_bonus), "",
 									InverseVideo(Concat("+", String(damage_bonus)))) )}}
@@ -197,20 +209,20 @@ DefinePanelContents(
 		More = {"CompleteBar", {Variable = "Research", Width = 152, Height = 14, Border = false}}
 	},
 	{ Pos = {16, 86}, Condition = {Research = "only"}, More = {"Text", "Researching:"}},
-	{ Pos = {50, 156}, Condition = {Research = "only"}, More = {"Text", "% Complete"}},
+	{ Pos = {50, 155}, Condition = {Research = "only"}, More = {"Text", "% Complete"}},
 -- Training
 	{ Pos = {12, 152}, Condition = {Training = "only"},
 		More = {"CompleteBar", {Variable = "Training", Width = 152, Height = 14, Border = false}}
 	},
-	{ Pos = {50, 156}, Condition = {Training = "only"}, More = {"Text", "% Complete"}},
+	{ Pos = {50, 155}, Condition = {Training = "only"}, More = {"Text", "% Complete"}},
 -- Upgrading To
 	{ Pos = {12, 152}, Condition = {UpgradeTo = "only"},
 		More = {"CompleteBar", {Variable = "UpgradeTo", Width = 152, Height = 14, Border = false}}
 	},
 	{ Pos = {37,  86}, More = {"Text", "Upgrading:"}, Condition = {UpgradeTo = "only"} },
-	{ Pos = {50, 156}, More = {"Text", "% Complete"}, Condition = {UpgradeTo = "only"} },
+	{ Pos = {50, 155}, More = {"Text", "% Complete"}, Condition = {UpgradeTo = "only"} },
 -- Resource Carry
-	{ Pos = {61, 149}, Condition = {CarryResource = "only"},
+	{ Pos = {53, 149}, Condition = {CarryResource = "only"},
 		More = {"FormattedText2", {Format = "Carry: %d %s", Variable = "CarryResource",
 				Component1 = "Value", Component2 = "Name"}}
 	}

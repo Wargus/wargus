@@ -128,6 +128,9 @@ DefineAnimations("animations-paladin", {
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
     "frame 40", "attack", "sound paladin-attack", "wait 5", "frame 0", "wait 10",
     "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
+    "frame 40", "attack", "wait 5", "frame 0", "wait 10",
+    "frame 0", "unbreakable end", "wait 1",},
   Death = KnightDeath,
 })
 
@@ -136,6 +139,9 @@ DefineAnimations("animations-knight-rider", {
   Move = KnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
     "frame 40", "attack", "sound turalyon-attack", "wait 5", "frame 0", "wait 10",
+    "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
+    "frame 40", "attack", "wait 5", "frame 0", "wait 10",
     "frame 0", "unbreakable end", "wait 1",},
   Death = KnightDeath,
 })
@@ -146,6 +152,9 @@ DefineAnimations("animations-wise-man", {
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
     "frame 40", "attack", "sound lothar-attack", "wait 5", "frame 0", "wait 10",
     "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
+    "frame 40", "attack", "wait 5", "frame 0", "wait 10",
+    "frame 0", "unbreakable end", "wait 1",},
   Death = KnightDeath,
 })
 
@@ -154,6 +163,9 @@ DefineAnimations("animations-man-of-light", {
   Move = KnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
     "frame 40", "attack", "sound uther-lightbringer-attack", "wait 5", "frame 0", "wait 10",
+    "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
+    "frame 40", "attack", "wait 5", "frame 0", "wait 10",
     "frame 0", "unbreakable end", "wait 1",},
   Death = KnightDeath,
 })
@@ -219,6 +231,9 @@ DefineAnimations("animations-mage", {
   Attack = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
     "frame 35", "attack", "sound mage-attack", "wait 7",
     "frame 40", "wait 5", "frame 0", "wait 17", "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
+    "frame 35", "attack", "wait 7",
+    "frame 40", "wait 5", "frame 0", "wait 17", "frame 0", "unbreakable end", "wait 1",},
   Death = MageDeath,
 })
 
@@ -227,6 +242,9 @@ DefineAnimations("animations-white-mage", {
   Move = MageMove,
   Attack = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
     "frame 35", "attack", "sound khadgar-attack", "wait 7",
+    "frame 40", "wait 5", "frame 0", "wait 17", "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
+    "frame 35", "attack", "wait 7",
     "frame 40", "wait 5", "frame 0", "wait 17", "frame 0", "unbreakable end", "wait 1",},
   Death = MageDeath,
 })

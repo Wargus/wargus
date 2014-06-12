@@ -138,6 +138,9 @@ DefineAnimations("animations-ogre-mage", {
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
     "frame 40", "attack", "sound ogre-mage-attack", "wait 5", "frame 0", "wait 10",
     "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
+    "frame 40", "attack", "wait 5", "frame 0", "wait 10",
+    "frame 0", "unbreakable end", "wait 1",},
   Death = OgreDeath,
 })
 
@@ -147,6 +150,9 @@ DefineAnimations("animations-fad-man", {
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
     "frame 40", "attack", "sound dentarg-attack", "wait 5", "frame 0", "wait 10",
     "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
+    "frame 40", "attack", "wait 5", "frame 0", "wait 10",
+    "frame 0", "unbreakable end", "wait 1",},
   Death = OgreDeath,
 })
 
@@ -155,6 +161,9 @@ DefineAnimations("animations-double-head", {
   Move = OgreMove,
   Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
     "frame 40", "attack", "sound cho-gall-attack", "wait 5", "frame 0", "wait 10",
+    "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
+    "frame 40", "attack", "wait 5", "frame 0", "wait 10",
     "frame 0", "unbreakable end", "wait 1",},
   Death = OgreDeath,
 })
@@ -221,6 +230,9 @@ DefineAnimations("animations-death-knight", {
   Attack = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
     "frame 35", "attack", "sound death-knight-attack", "wait 7",
     "frame 40", "wait 5", "frame 0", "wait 17", "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
+    "frame 35", "attack", "wait 7",
+    "frame 40", "wait 5", "frame 0", "wait 17", "frame 0", "unbreakable end", "wait 1",},
   Death = DeathKnightDeath,
 })
 
@@ -229,6 +241,9 @@ DefineAnimations("animations-evil-knight", {
   Move = DeathKnightMove,
   Attack = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
     "frame 35", "attack", "sound teron-gorefiend-attack", "wait 7",
+    "frame 40", "wait 5", "frame 0", "wait 17", "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 25", "wait 5", "frame 30", "wait 5",
+    "frame 35", "attack", "wait 7",
     "frame 40", "wait 5", "frame 0", "wait 17", "frame 0", "unbreakable end", "wait 1",},
   Death = DeathKnightDeath,
 })

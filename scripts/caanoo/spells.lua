@@ -64,8 +64,7 @@ DefineSpell("spell-buildpoint-townhall",
 		"action", {{"summon", "unit-type", "unit-buildpoint-townhall", "time-to-live", 5000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 
@@ -79,8 +78,7 @@ DefineSpell("spell-unit-footman",
 		"action", {{"summon", "unit-type", "unit-footman", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-archer",
@@ -91,8 +89,7 @@ DefineSpell("spell-unit-archer",
 		"action", {{"summon", "unit-type", "unit-archer", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-ballista",
@@ -103,8 +100,7 @@ DefineSpell("spell-unit-ballista",
 		"action", {{"summon", "unit-type", "unit-ballista", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-knight",
@@ -115,8 +111,7 @@ DefineSpell("spell-unit-knight",
 		"action", {{"summon", "unit-type", "unit-knight", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-female-hero",
@@ -127,8 +122,7 @@ DefineSpell("spell-unit-female-hero",
 		"action", {{"summon", "unit-type", "unit-female-hero", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-knight-rider",
@@ -139,8 +133,7 @@ DefineSpell("spell-unit-knight-rider",
 		"action", {{"summon", "unit-type", "unit-knight-rider", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-fad-man",
@@ -151,8 +144,7 @@ DefineSpell("spell-unit-fad-man",
 		"action", {{"summon", "unit-type", "unit-fad-man", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-arthor-literios",
@@ -163,8 +155,7 @@ DefineSpell("spell-unit-arthor-literios",
 		"action", {{"summon", "unit-type", "unit-arthor-literios", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-sharp-axe",
@@ -175,8 +166,7 @@ DefineSpell("spell-unit-sharp-axe",
 		"action", {{"summon", "unit-type", "unit-sharp-axe", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-mage",
@@ -187,8 +177,7 @@ DefineSpell("spell-unit-mage",
 		"action", {{"summon", "unit-type", "unit-mage", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-paladin",
@@ -199,8 +188,7 @@ DefineSpell("spell-unit-paladin",
 		"action", {{"summon", "unit-type", "unit-paladin", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-dwarves",
@@ -211,8 +199,7 @@ DefineSpell("spell-unit-dwarves",
 		"action", {{"summon", "unit-type", "unit-dwarves", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-peasant",
@@ -223,8 +210,7 @@ DefineSpell("spell-unit-peasant",
 		"action", {{"summon", "unit-type", "unit-peasant", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-ranger",
@@ -235,8 +221,7 @@ DefineSpell("spell-unit-ranger",
 		"action", {{"summon", "unit-type", "unit-ranger", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-gryphon-rider",
@@ -247,8 +232,7 @@ DefineSpell("spell-unit-gryphon-rider",
 		"action", {{"summon", "unit-type", "unit-gryphon-rider", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-attack-peasant",
@@ -259,8 +243,7 @@ DefineSpell("spell-unit-attack-peasant",
 		"action", {{"summon", "unit-type", "unit-attack-peasant", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 -- Spawn Orc Units
@@ -273,8 +256,7 @@ DefineSpell("spell-unit-peon",
 		"action", {{"summon", "unit-type", "unit-peon", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-grunt",
@@ -285,8 +267,7 @@ DefineSpell("spell-unit-grunt",
 		"action", {{"summon", "unit-type", "unit-grunt", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-axethrower",
@@ -297,8 +278,7 @@ DefineSpell("spell-unit-axethrower",
 		"action", {{"summon", "unit-type", "unit-axethrower", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-catapult",
@@ -309,8 +289,7 @@ DefineSpell("spell-unit-catapult",
 		"action", {{"summon", "unit-type", "unit-catapult", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-ogre",
@@ -321,8 +300,7 @@ DefineSpell("spell-unit-ogre",
 		"action", {{"summon", "unit-type", "unit-ogre", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-death-knight",
@@ -333,8 +311,7 @@ DefineSpell("spell-unit-death-knight",
 		"action", {{"summon", "unit-type", "unit-death-knight", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-ogre-mage",
@@ -345,8 +322,7 @@ DefineSpell("spell-unit-ogre-mage",
 		"action", {{"summon", "unit-type", "unit-ogre-mage", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-dragon",
@@ -357,8 +333,7 @@ DefineSpell("spell-unit-dragon",
 		"action", {{"summon", "unit-type", "unit-dragon", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-quick-blade",
@@ -369,8 +344,7 @@ DefineSpell("spell-unit-quick-blade",
 		"action", {{"summon", "unit-type", "unit-quick-blade", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 
@@ -382,8 +356,7 @@ DefineSpell("spell-unit-goblin-sappers",
 		"action", {{"summon", "unit-type", "unit-goblin-sappers", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-berserker",
@@ -394,8 +367,7 @@ DefineSpell("spell-unit-berserker",
 		"action", {{"summon", "unit-type", "unit-berserker", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 DefineSpell("spell-unit-skeleton",
@@ -406,8 +378,7 @@ DefineSpell("spell-unit-skeleton",
 		"action", {{"summon", "unit-type", "unit-skeleton", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
-	"sound-when-cast", "eye of vision",
-	"depend-upgrade", ""
+	"sound-when-cast", "eye of vision"
 )
 
 

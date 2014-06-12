@@ -53,15 +53,15 @@ DefineMissileType("missile-fireball",
 
 DefineMissileType("missile-flame-shield",
   { File = "missiles/flame_shield.png", Size = {32, 48}, Frames = 6, NumDirections = 1,
-  DrawLevel = 50, Class = "missile-class-flame-shield", Sleep = 2, Speed = 4, Range = 1 } )
+  DrawLevel = 50, Class = "missile-class-flame-shield", Sleep = 1, Speed = 4, Range = 1 } )
 
 DefineMissileType("missile-blizzard",
-  { File = "missiles/blizzard.png", Size = {32, 32}, Frames = 4, NumDirections = 1, ImpactSound = "fireball hit",
+  { File = "missiles/blizzard.png", Size = {32, 32}, Damage = Rand(10), Frames = 4, NumDirections = 1, ImpactSound = "fireball hit",
   Class = "missile-class-point-to-point-with-hit", Sleep = 1, BlizzardSpeed = 4, Speed = 16, Range = 1,
   DrawLevel = 100 } )
 
 DefineMissileType("missile-death-and-decay",
-  { File = "missiles/death_and_decay.png", Size = {32, 32}, Frames = 8, NumDirections = 1,
+  { File = "missiles/death_and_decay.png", Size = {32, 32}, Damage = Rand(10), Frames = 8, NumDirections = 1,
   DrawLevel = 100, Class = "missile-class-stay", Sleep = 1, Speed = 0, Range = 1 } )
 
 DefineMissileType("missile-big-cannon",
@@ -127,11 +127,11 @@ DefineMissileType("missile-turtle-missile",
 
 DefineMissileType("missile-small-fire",
   { File = "missiles/small_fire.png", Size = {32, 48}, Frames = 6, NumDirections = 1,
-  DrawLevel = 45, Class = "missile-class-fire", Sleep = 8, Speed = 16, Range = 1 } )
+  DrawLevel = 45, Class = "missile-class-fire", Sleep = 2, Speed = 16, Range = 1 } )
 
 DefineMissileType("missile-big-fire",
   { File = "missiles/big_fire.png", Size = {48, 48}, Frames = 10, NumDirections = 1,
-  DrawLevel = 45, Class = "missile-class-fire", Sleep = 8, Speed = 16, Range = 1 } )
+  DrawLevel = 45, Class = "missile-class-fire", Sleep = 2, Speed = 16, Range = 1 } )
 
 DefineMissileType("missile-impact",
   { File = "missiles/ballista-catapult_impact.png", Size = {48, 48}, Frames = 10, NumDirections = 1,
