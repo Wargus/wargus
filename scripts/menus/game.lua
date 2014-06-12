@@ -18,7 +18,7 @@ function WarGameMenu(background)
   end
 
   menu:resize(256, 288)
-  menu:setBorderSize(1)
+  menu:setBorderSize(0)
   menu:setDrawMenusUnder(true)
 
   AddMenuHelpers(menu)
@@ -50,4 +50,3 @@ function RunGameMenu()
 
   menu:run(false)
 end
-
