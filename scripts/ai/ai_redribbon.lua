@@ -49,14 +49,17 @@ function AiRedRibbon()
 		-- Timer related
 		UnitGruntNum = 0
 		UnitAxethrowerNum = 0
+		UnitSkeletonNum = 0
+		UnitHeroShooterNum = 0
 		UnitBerserkerNum = 0
-		--AddMessage("Setting up the variables.")
 		UnitCatapultNum = 0
+		UnitGoblinSappersNum = 0
+		UnitHeroRiderNum = 0
 		UnitOgreMageNum = 0
+		UnitFlyerNum = 0
+		UnitWorkerNum = 0
 		UnitOgreNum = 0
 		UnitDeathKnightNum = 0
-		UnitHeroRiderNum = 0
-		UnitGoblinSappersNum = 0
 		timer = 1
 		Blue2Mana = 0
 		Blue1Mana = 0
@@ -155,10 +158,10 @@ function AiRedRibbon()
 				CreateUnit(AiMage(), RedLeader, {RedMageTower_x, RedMageTower_y})
 			end
 		end
-		if (GetNumUnitsAt(RedTemp, "unit-skeleton", {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
-			UnitSkeletonNum = GetNumUnitsAt(RedTemp, "unit-skeleton", {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
+		if (GetNumUnitsAt(RedTemp, AiFodder(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
+			UnitSkeletonNum = GetNumUnitsAt(RedTemp, AiFodder(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
 			for UnitUpto = RedLeader,(UnitSkeletonNum - 1) do
-				CreateUnit("unit-skeleton", RedLeader, {RedMageTower_x, RedMageTower_y})
+				CreateUnit(AiFodder(), RedLeader, {RedMageTower_x, RedMageTower_y})
 			end
 		end
 		if (GetNumUnitsAt(RedLeader, AiBarracks(), {(RedBarracks3_x - 3), (RedBarracks3_y - 3)}, {(RedBarracks3_x + 3), (RedBarracks3_y + 3)}) > 0) then
@@ -218,7 +221,7 @@ function AiRedRibbon()
 			end
 		end
 		-- Not having a value for UnitNum will cause a crash.
-		--AiForce(0, {AiFlyer(), UnitFlyerNum, AiHeroShooter(), UnitHeroShooterNum, "unit-skeleton", UnitSkeletonNum, AiSuicideBomber(), UnitGoblinSappersNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitGruntNum, AiShooter(), UnitAxethrowerNum, AiEliteShooter(), UnitBerserkerNum, AiCavalry(), UnitOgreNum, AiCavalryMage(), UnitOgreMageNum, AiCatapult(), UnitCatapultNum})
+		--AiForce(0, {AiFlyer(), UnitFlyerNum, AiHeroShooter(), UnitHeroShooterNum, AiFodder(), UnitSkeletonNum, AiSuicideBomber(), UnitGoblinSappersNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitGruntNum, AiShooter(), UnitAxethrowerNum, AiEliteShooter(), UnitBerserkerNum, AiCavalry(), UnitOgreNum, AiCavalryMage(), UnitOgreMageNum, AiCatapult(), UnitCatapultNum})
 		--if (AiCheckForce(0)) then 
 		--	AiAttackWithForce(0)
 		--end
@@ -253,7 +256,7 @@ function AiRedRibbon()
 		if (GetNumUnitsAt(RedLeader, AiCavalryMage(), {(RedBarracks3_x - 3), (RedBarracks3_y - 3)}, {(RedBarracks3_x + 3), (RedBarracks3_y + 3)}) > 0) then
 			UnitOgreMageNum = GetNumUnitsAt(RedLeader, AiCavalryMage(), {(RedBarracks3_x - 3), (RedBarracks3_y - 3)}, {(RedBarracks3_x + 3), (RedBarracks3_y + 3)})
 		end
-		AiForce(1, {AiSuicideBomber(), UnitGoblinSappersNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitGruntNum, AiShooter(), UnitAxethrowerNum, AiEliteShooter(), UnitBerserkerNum, AiCavalry(), UnitOgreNum, AiCavalryMage(), UnitOgreMageNum, AiCatapult(), UnitCatapultNum}, true)
+		AiForce(1, {AiFodder(), UnitSkeletonNum, AiSuicideBomber(), UnitGoblinSappersNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitGruntNum, AiShooter(), UnitAxethrowerNum, AiEliteShooter(), UnitBerserkerNum, AiCavalry(), UnitOgreNum, AiCavalryMage(), UnitOgreMageNum, AiCatapult(), UnitCatapultNum}, true)
 		if (AiCheckForce(1)) then 
 			AiAttackWithForce(1)
 		end
@@ -505,9 +508,9 @@ function AiRed1_Basic()
 		Red1Mana = Red1Mana + 53
 	end
 	if (((RedTeam1_x2 - RedTeam1_x1)*(RedTeam1_y2 - RedTeam1_y1)) < 19) then
-		if (GetNumUnitsAt(RedTeam1, "unit-skeleton", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) < 4) then
+		if (GetNumUnitsAt(RedTeam1, AiFodder(), {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) < 4) then
 			if ((Red1Mana > 20) and (Red1Mana < 40)) then
-				CreateUnit("unit-skeleton", RedTeam1, {Red1Temp_x, Red1Temp_y})
+				CreateUnit(AiFodder(), RedTeam1, {Red1Temp_x, Red1Temp_y})
 				Red1Mana = Red1Mana - 20
 				Red1Step = 1
 			end

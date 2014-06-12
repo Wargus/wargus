@@ -45,14 +45,16 @@ function AiBlueRibbon()
 		UnitFootmanNum = 0
 		UnitArcherNum = 0
 		UnitRangerNum = 0
+		UnitMinutemanNum = 0
 		UnitBallistaNum = 0
+		UnitDwarvesNum = 0
 		UnitPaladinNum = 0
 		UnitKnightNum = 0
+		UnitHeroRiderNum = 0
 		UnitMageNum = 0
-		UnitSkeletonNum = 0
+		UnitMinutemanNum = 0
 		UnitHeroSoldierNum = 0
 		UnitHeroShooterNum = 0
-		UnitDwarvesNum = 0
 		blueribbon_stepping = 7
 		SetPlayerData(BlueLeader, "Resources", "oil", 5000)
     end
@@ -61,14 +63,14 @@ function AiBlueRibbon()
 		UnitFootmanNum = 0
 		UnitArcherNum = 0
 		UnitRangerNum = 0
-		UnitSkeletonNum = 0
+		UnitMinutemanNum = 0
 		UnitBallistaNum = 0
 		UnitDwarvesNum = 0
 		UnitPaladinNum = 0
 		UnitKnightNum = 0
 		UnitHeroRiderNum = 0
 		UnitMageNum = 0
-		UnitSkeletonNum = 0
+		UnitMinutemanNum = 0
 		UnitHeroSoldierNum = 0
 		UnitHeroShooterNum = 0
 		if (timer == 50) then
@@ -135,11 +137,11 @@ function AiBlueRibbon()
 					CreateUnit("unit-mage", BlueLeader, {BlueMageTower_x, BlueMageTower_y})
 				end
 			end
-			if (GetNumUnitsAt(BlueTemp, "unit-skeleton", {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+			if (GetNumUnitsAt(BlueTemp, AiFodder(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
 				--AddMessage("Spawn Blue Skeletons!")
-				UnitSkeletonNum = (GetNumUnitsAt(BlueTemp, "unit-skeleton", {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) + GetNumUnitsAt(BlueTemp, "unit-mage", {0, 0}, {92, 256}) )
-				for UnitUpto = BlueLeader,UnitSkeletonNum do
-					CreateUnit("unit-skeleton", BlueLeader, {BlueMageTower_x, BlueMageTower_y})
+				UnitMinutemanNum = (GetNumUnitsAt(BlueTemp, AiFodder(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) + GetNumUnitsAt(BlueTemp, "unit-mage", {0, 0}, {92, 256}) )
+				for UnitUpto = BlueLeader,UnitMinutemanNum do
+					CreateUnit(AiFodder(), BlueLeader, {BlueMageTower_x, BlueMageTower_y})
 				end
 			end
 		end
@@ -175,10 +177,6 @@ function AiBlueRibbon()
 				end
 			end
 		end
-		
-		
-		
-		
 		if (GetNumUnitsAt(BlueLeader, AiScientific(), {(BlueInventor_x - 3), (BlueInventor_y - 3)}, {(BlueInventor_x + 3), (BlueInventor_y + 3)}) > 0) then
 			if (GetNumUnitsAt(BlueTemp, AiSuicideBomber(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
 				--AddMessage("Spawn Blue Dwarves!")
@@ -204,7 +202,7 @@ function AiBlueRibbon()
 				end
 			end
 		end
-		--AiForce(0, {AiFlyer(), UnitFlyerNum, AiHeroShooter(), UnitHeroShooterNum, "unit-skeleton", UnitSkeletonNum, AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitMageNum, AiSoldier(), UnitFootmanNum, AiShooter(), (UnitArcherNum + UnitRangerNum), AiEliteShooter(), (UnitArcherNum + UnitRangerNum), AiCavalry(), (UnitPaladinNum + UnitKnightNum), AiCavalryMage(), (UnitKnightNum + UnitPaladinNum), AiCatapult(), UnitBallistaNum})
+		--AiForce(0, {AiFlyer(), UnitFlyerNum, AiHeroShooter(), UnitHeroShooterNum, AiFodder(), UnitMinutemanNum, AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitMageNum, AiSoldier(), UnitFootmanNum, AiShooter(), (UnitArcherNum + UnitRangerNum), AiEliteShooter(), (UnitArcherNum + UnitRangerNum), AiCavalry(), (UnitPaladinNum + UnitKnightNum), AiCavalryMage(), (UnitKnightNum + UnitPaladinNum), AiCatapult(), UnitBallistaNum})
 		--if (AiCheckForce(0)) then 
 		--	AiAttackWithForce(0)
 		--end
@@ -226,7 +224,7 @@ function AiBlueRibbon()
 		UnitPaladinNum = 0
 		UnitKnightNum = 0
 		UnitMageNum = 0
-		UnitSkeletonNum = 0
+		UnitMinutemanNum = 0
 		UnitHeroSoldierNum = 0
 		UnitHeroShooterNum = 0
 		if (GetNumUnitsAt(BlueLeader, AiSoldier(), {(BlueBarracks1_x - 3), (BlueBarracks1_y - 3)}, {(BlueBarracks1_x + 3), (BlueBarracks1_y + 3)}) > 5) then
@@ -247,15 +245,10 @@ function AiBlueRibbon()
 		if (GetNumUnitsAt(BlueLeader, AiCavalryMage(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)}) > 5) then
 			UnitPaladinNum = GetNumUnitsAt(BlueLeader, AiCavalryMage(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)})
 		end
-		AiForce(1, {AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitFootmanNum, AiShooter(), UnitArcherNum, AiEliteShooter(), UnitRangerNum, AiCavalry(), UnitKnightNum, AiCavalryMage(), UnitPaladinNum, AiCatapult(), UnitCatapultNum}, true)
+		AiForce(1, {AiFodder(), UnitMinutemanNum, AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitFootmanNum, AiShooter(), UnitArcherNum, AiEliteShooter(), UnitRangerNum, AiCavalry(), UnitKnightNum, AiCavalryMage(), UnitPaladinNum, AiCatapult(), UnitCatapultNum}, true)
 		if (AiCheckForce(1)) then 
 			AiAttackWithForce(1)
 		end
-		
-		
-		
-		AiForce(1, {AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitMageNum, AiSoldier(), UnitFootmanNum, AiShooter(), (UnitArcherNum + UnitRangerNum), AiEliteShooter(), (UnitArcherNum + UnitRangerNum), AiCavalry(), (UnitPaladinNum + UnitKnightNum), AiCavalryMage(), (UnitKnightNum + UnitPaladinNum), AiCatapult(), UnitBallistaNum}, true)
-		AiAttackWithForce(1)
 	end
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0) then
 		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then

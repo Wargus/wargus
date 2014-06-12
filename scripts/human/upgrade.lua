@@ -100,14 +100,14 @@ DefineModifier("upgrade-sword1",
   {"PiercingDamage", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
-  {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
+  {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"}, {"apply-to", "unit-attack-peasant"})
 
 DefineModifier("upgrade-sword2",
   {"Level", 1},
   {"PiercingDamage", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
-  {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
+  {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"}, {"apply-to", "unit-attack-peasant"})
 
 DefineModifier("upgrade-arrow1",
   {"Level", 1},
@@ -124,14 +124,14 @@ DefineModifier("upgrade-human-shield1",
   {"Armor", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
-  {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
+  {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"}, {"apply-to", "unit-attack-peasant"})
 
 DefineModifier("upgrade-human-shield2",
   {"Level", 1},
   {"Armor", 2},
   {"apply-to", "unit-footman"}, {"apply-to", "unit-knight"}, {"apply-to", "unit-paladin"},
   {"apply-to", "unit-dwarves"}, {"apply-to", "unit-arthor-literios"}, {"apply-to", "unit-wise-man"},
-  {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"})
+  {"apply-to", "unit-man-of-light"}, {"apply-to", "unit-knight-rider"}, {"apply-to", "unit-attack-peasant"})
 
 DefineModifier("upgrade-human-ship-cannon1",
   {"Level", 1},

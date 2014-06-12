@@ -108,7 +108,7 @@ DefineUnitType("unit-peasant", { Name = "Peasant",
     "help", "basic human voices help 1",
     "dead", "basic human voices dead"} } )
 
-DefineUnitType("unit-attack-peasant", { Name = "Peasant",
+DefineUnitType("unit-attack-peasant", { Name = "Minuteman",
   Image = {"file", "human/units/peasant.png", "size", {72, 72}},
   DrawLevel = 19,
   Animations = "animations-peasant", Icon = "icon-peasant",

@@ -54,7 +54,7 @@ DefineUnitType("unit-arthor-literios", {})
 DefineUnitType("unit-quick-blade", {})
 DefineUnitType("unit-knight-rider", {})
 DefineUnitType("unit-fad-man", {})
-
+DefineUnitType("unit-attack-peasant", {})
 
 DefineSpell("spell-buildpoint-townhall",
 	"showname", "Townhall Foundation",
@@ -251,6 +251,18 @@ DefineSpell("spell-unit-gryphon-rider",
 	"depend-upgrade", ""
 )
 
+DefineSpell("spell-unit-attack-peasant",
+	"showname", "Minuteman",
+	"manacost", 10,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-attack-peasant", "time-to-live", 99000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision",
+	"depend-upgrade", ""
+)
+
 -- Spawn Orc Units
 
 DefineSpell("spell-unit-peon",
@@ -385,9 +397,6 @@ DefineSpell("spell-unit-berserker",
 	"sound-when-cast", "eye of vision",
 	"depend-upgrade", ""
 )
-
-
--- Spawn Special Units
 
 DefineSpell("spell-unit-skeleton",
 	"showname", "Skeleton",

@@ -823,6 +823,13 @@ function AiSuicideBomber()
   end
 end
 
+function AiFodder()
+  if (AiGetRace() == race1) then
+    return "unit-attack-peasant"
+  else
+    return "unit-skeleton"
+  end
+end
 
 --
 --  Load the actual individual scripts.

@@ -122,13 +122,13 @@ DefineButton( { Pos = 6, Level = 2, Icon = "icon-skeleton",
 	Action = "cast-spell", Value = "spell-unit-skeleton",
 	Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
 	Key = "u", Hint = "~!UNDEAD",
-	ForUnit = {"unit-caanoo-wiseskeleton", "unit-caanoo-wiseman"} } )	
+	ForUnit = {"unit-caanoo-wiseskeleton"} } )	
 	
 DefineButton( { Pos = 8, Level = 2, Icon = "icon-dragon",
 	Action = "cast-spell", Value = "spell-unit-dragon",
 	Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
 	Key = "d", Hint = "~!DRAGON",
-	ForUnit = {"unit-caanoo-wiseskeleton", "unit-caanoo-wiseman"} } )	
+	ForUnit = {"unit-caanoo-wiseskeleton"} } )	
 	
 DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
 	Action = "button", Value = 0,
@@ -228,6 +228,12 @@ DefineButton( { Pos = 4, Level = 2, Icon = "icon-peasant",
 	Action = "cast-spell", Value = "spell-unit-peasant",
 	Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
 	Key = "p", Hint = "~!PEASANT",
+	ForUnit = {"unit-caanoo-wiseman"} } )	
+	
+DefineButton( { Pos = 6, Level = 2, Icon = "icon-peasant",
+	Action = "cast-spell", Value = "spell-unit-attack-peasant",
+	Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+	Key = "u", Hint = "MIN~!UTEMAN",
 	ForUnit = {"unit-caanoo-wiseman"} } )	
 	
 DefineButton( { Pos = 8, Level = 2, Icon = "icon-gryphon-rider",
