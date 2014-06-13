@@ -34,6 +34,8 @@ DefineUnitType("unit-ballista", {})
 DefineUnitType("unit-knight", {})
 DefineUnitType("unit-mage", {})
 DefineUnitType("unit-paladin", {})
+DefineUnitType("unit-nomad", {})
+DefineUnitType("unit-yeoman", {})
 DefineUnitType("unit-dwarves", {})
 DefineUnitType("unit-dragon", {})
 DefineUnitType("unit-female-hero", {})
@@ -76,6 +78,17 @@ DefineSpell("spell-unit-footman",
 	"range", 6,
 	"target", "position",
 		"action", {{"summon", "unit-type", "unit-footman", "time-to-live", 99000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision"
+)
+
+DefineSpell("spell-unit-yeoman",
+	"showname", "yeoman",
+	"manacost", 50,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-yeoman", "time-to-live", 99000},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
 	"sound-when-cast", "eye of vision"
@@ -237,7 +250,7 @@ DefineSpell("spell-unit-gryphon-rider",
 
 DefineSpell("spell-unit-attack-peasant",
 	"showname", "Minuteman",
-	"manacost", 10,
+	"manacost", 15,
 	"range", 6,
 	"target", "position",
 		"action", {{"summon", "unit-type", "unit-attack-peasant", "time-to-live", 99000},
@@ -381,7 +394,16 @@ DefineSpell("spell-unit-skeleton",
 	"sound-when-cast", "eye of vision"
 )
 
-
+DefineSpell("spell-unit-nomad",
+	"showname", "Nomad",
+	"manacost", 50,
+	"range", 6,
+	"target", "position",
+		"action", {{"summon", "unit-type", "unit-nomad", "time-to-live", 99000},
+		{"spawn-missile", "missile", "missile-normal-spell",
+			"start-point", {"base", "target"}}},
+	"sound-when-cast", "eye of vision"
+)
 
 
 -- Meh

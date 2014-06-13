@@ -831,6 +831,14 @@ function AiFodder()
   end
 end
 
+function AiLonerShooter()
+  if (AiGetRace() == race1) then
+    return "unit-yeoman"
+  else
+    return "unit-nomad"
+  end
+end
+
 --
 --  Load the actual individual scripts.
 --

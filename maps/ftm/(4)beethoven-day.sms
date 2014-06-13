@@ -16651,12 +16651,8 @@ AddTrigger(
 		AddMessage("The red side didn't bother to show up.")
 	else
 		AddMessage("In the red corner we have Wise Skeleton!")
-		if (GetPlayerData(4, "Name") == "Neutral") then
-			CenterMap(68, 4)
-		else
-			CenterMap(61, 4)
-		end
 		if (GetPlayerData(4, "Name") == "Neutral") then 
+			CenterMap(68, 4)
 			RedTeam2 = RedTeam1
 			RedTeam2_x1 = RedTeam1_x1
 			RedTeam2_y1 = RedTeam1_y1
@@ -16664,6 +16660,7 @@ AddTrigger(
 			RedTeam2_y2 = RedTeam1_y2
 		else
 			CreateUnit("unit-caanoo-wiseskeleton", 4, {61, 4})
+			CenterMap(61, 4)
 		end
 		if (GetPlayerData(7, "Name") == "Neutral") then 
 			RedTeam1 = RedTeam2
@@ -16678,12 +16675,6 @@ AddTrigger(
 		else
 			CreateUnit("unit-caanoo-wiseskeleton", 7, {68, 4})
 		end
-		SetSharedVision(RedTeam1, true, RedTeam2)
-		SetSharedVision(RedTeam2, true, RedTeam1)
-		SetSharedVision(RedTeam1, true, BlueTeam2)
-		SetSharedVision(BlueTeam2, true, RedTeam1)
-		SetSharedVision(RedTeam2, true, BlueTeam2)
-		SetSharedVision(BlueTeam2, true, RedTeam2)
 	end
 return false end)
 
@@ -16730,12 +16721,18 @@ AddTrigger(
 		else
 			CreateUnit("unit-caanoo-wiseman", 3, {58, 123})
 		end
-		SetSharedVision(BlueTeam1, true, RedTeam1)
-		SetSharedVision(RedTeam1, true, BlueTeam1)
-		SetSharedVision(BlueTeam1, true, RedTeam2)
+		SetSharedVision(RedTeam1, true, RedTeam2)
+		SetSharedVision(RedTeam2, true, RedTeam1)
+		SetSharedVision(RedTeam1, true, BlueTeam2)
+		SetSharedVision(BlueTeam2, true, RedTeam1)
+		SetSharedVision(RedTeam2, true, BlueTeam2)
+		SetSharedVision(BlueTeam2, true, RedTeam2)
 		SetSharedVision(RedTeam2, true, BlueTeam1)
-		SetSharedVision(BlueTeam1, true, BlueTeam2)
+		SetSharedVision(BlueTeam1, true, RedTeam2)
 		SetSharedVision(BlueTeam2, true, BlueTeam1)
+		SetSharedVision(BlueTeam1, true, BlueTeam2)
+		SetSharedVision(RedTeam1, true, BlueTeam1)
+		SetSharedVision(BlueTeam1, true, RedTeam1)
 	end
 return false end)
 
@@ -16799,7 +16796,6 @@ AddTrigger(
 	function()	if (((GetThisPlayer() == BlueTeam1) and (GetPlayerData(BlueTeam1, "AiEnabled") == true) and (GetPlayerData(BlueTeam1, "TotalNumUnits") == 0)) or ((GetThisPlayer() == BlueTeam2) and (GetPlayerData(BlueTeam2, "AiEnabled") == true) and (GetPlayerData(BlueTeam2, "TotalNumUnits") == 0)) or ((GetThisPlayer() == RedTeam1) and (GetPlayerData(RedTeam1, "AiEnabled") == true) and (GetPlayerData(RedTeam1, "TotalNumUnits") == 0)) or ((GetThisPlayer() == RedTeam2) and (GetPlayerData(RedTeam2, "AiEnabled") == true) and (GetPlayerData(RedTeam2, "TotalNumUnits") == 0))) then
 					ActionDefeat() 
 					--Make this work!
-					AddMessage("A computer has finally died!")
 				end
 				if ((((GetThisPlayer() == BlueTeam1) or (GetThisPlayer() == BlueTeam2)) and ((GetPlayerData(BlueLeader, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam1, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam2, "TotalNumUnits") == 0))) or (((GetThisPlayer() == RedTeam1) or (GetThisPlayer() == RedTeam2)) and ((GetPlayerData(RedLeader, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam1, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam2, "TotalNumUnits") == 0)))) then
 					ActionDefeat() 
@@ -16863,7 +16859,8 @@ return false end)
 
 AddTrigger(
 	function() return ((GameCycle > 800) and ((GetPlayerData(BlueTeam2, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam1, "TotalNumUnits") > 0))) end,
-	function()	BlueTeam2 = BlueTeam1
+	function()	BlueTeam2Dead = true
+	BlueTeam2 = BlueTeam1
 	BlueTeam2_x1 = BlueTeam1_x1
 	BlueTeam2_y1 = BlueTeam1_y1
 	BlueTeam2_x2 = BlueTeam1_x2
@@ -16876,7 +16873,8 @@ return false end)
 	
 AddTrigger(
 	function() return ((GameCycle > 800) and ((GetPlayerData(BlueTeam1, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam2, "TotalNumUnits") > 0))) end,
-	function()	BlueTeam1 = BlueTeam2
+	function()	BlueTeam1Dead = true
+	BlueTeam1 = BlueTeam2
 	BlueTeam1_x1 = BlueTeam2_x1
 	BlueTeam1_y1 = BlueTeam2_y1
 	BlueTeam1_x2 = BlueTeam2_x2
@@ -16889,7 +16887,8 @@ return false end)
 
 AddTrigger(
 	function() return ((GameCycle > 800) and ((GetPlayerData(RedTeam2, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam1, "TotalNumUnits") > 0))) end,
-	function()	RedTeam2 = RedTeam1
+	function()	RedTeam2Dead = true
+	RedTeam2 = RedTeam1
 	RedTeam2_x1 = RedTeam1_x1
 	RedTeam2_y1 = RedTeam1_y1
 	RedTeam2_x2 = RedTeam1_x2
@@ -16902,7 +16901,8 @@ return false end)
 	
 AddTrigger(
 	function() return ((GameCycle > 800) and ((GetPlayerData(RedTeam1, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam2, "TotalNumUnits") > 0))) end,
-	function()	RedTeam1 = RedTeam2
+	function()	RedTeam1Dead = true
+	RedTeam1 = RedTeam2
 	RedTeam1_x1 = RedTeam2_x1
 	RedTeam1_y1 = RedTeam2_y1
 	RedTeam1_x2 = RedTeam2_x2

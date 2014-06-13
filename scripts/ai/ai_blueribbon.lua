@@ -50,6 +50,7 @@ function AiBlueRibbon()
 		UnitDwarvesNum = 0
 		UnitPaladinNum = 0
 		UnitKnightNum = 0
+		UnitYeomanNum = 0
 		UnitHeroRiderNum = 0
 		UnitMageNum = 0
 		UnitMinutemanNum = 0
@@ -68,6 +69,7 @@ function AiBlueRibbon()
 		UnitDwarvesNum = 0
 		UnitPaladinNum = 0
 		UnitKnightNum = 0
+		UnitYeomanNum = 0
 		UnitHeroRiderNum = 0
 		UnitMageNum = 0
 		UnitMinutemanNum = 0
@@ -103,7 +105,7 @@ function AiBlueRibbon()
 		else
 			AddMessage("I can't train any more footmen!")
 		end
-		if ((GetNumUnitsAt(BlueTemp, AiEliteShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, AiShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0)) then
+		if ((GetNumUnitsAt(BlueTemp, AiEliteShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, AiShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, AiLonerShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, AiHeroShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0)) then
 			if (GetNumUnitsAt(BlueLeader, AiBarracks(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)}) > 0) then
 				if (GetNumUnitsAt(BlueTemp, AiEliteShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
 					--AddMessage("Spawn Blue Rangers!")
@@ -123,6 +125,12 @@ function AiBlueRibbon()
 					UnitHeroShooterNum = GetNumUnitsAt(BlueTemp, AiHeroShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
 					for UnitUpto = BlueLeader,(UnitHeroShooterNum) do
 						CreateUnit(AiHeroShooter(), BlueLeader, {BlueBarracks2_x, BlueBarracks2_y})
+					end
+				end
+				if (GetNumUnitsAt(BlueTemp, AiLonerShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+					UnitYeomanNum = GetNumUnitsAt(BlueTemp, AiLonerShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
+					for UnitUpto = BlueLeader,(UnitYeomanNum) do
+						CreateUnit(AiLonerShooter(), BlueLeader, {BlueBarracks2_x, BlueBarracks2_y})
 					end
 				end
 			else
@@ -364,14 +372,20 @@ function AiBlueRibbon()
 end
 
 function AiBlue1()
-	if ((GetPlayerData(BlueTeam1, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
-		AiBlue1_Basic()
+	if (BlueTeam1Dead == true) then
+	else
+		if ((GetPlayerData(BlueTeam1, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
+			AiBlue1_Basic()
+		end
 	end
 end
 
 function AiBlue2()
-	if ((GetPlayerData(BlueTeam1, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
-		AiBlue2_Basic()
+	if (BlueTeam2Dead == true) then
+	else
+		if ((GetPlayerData(BlueTeam1, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
+			AiBlue2_Basic()
+		end
 	end
 end
 

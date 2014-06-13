@@ -50,12 +50,13 @@ function AiRedRibbon()
 		UnitGruntNum = 0
 		UnitAxethrowerNum = 0
 		UnitSkeletonNum = 0
-		UnitHeroShooterNum = 0
+		UnitEliteShooterNum = 0
 		UnitBerserkerNum = 0
 		UnitCatapultNum = 0
 		UnitGoblinSappersNum = 0
-		UnitHeroRiderNum = 0
+		UnitEliteRiderNum = 0
 		UnitOgreMageNum = 0
+		UnitNomadNum = 0
 		UnitFlyerNum = 0
 		UnitWorkerNum = 0
 		UnitOgreNum = 0
@@ -78,11 +79,12 @@ function AiRedRibbon()
 		UnitGruntNum = 0
 		UnitAxethrowerNum = 0
 		UnitSkeletonNum = 0
-		UnitHeroShooterNum = 0
+		UnitEliteShooterNum = 0
 		UnitBerserkerNum = 0
 		UnitCatapultNum = 0
+		UnitNomadNum = 0
 		UnitGoblinSappersNum = 0
-		UnitHeroRiderNum = 0
+		UnitEliteRiderNum = 0
 		UnitOgreMageNum = 0
 		UnitFlyerNum = 0
 		UnitWorkerNum = 0
@@ -123,7 +125,7 @@ function AiRedRibbon()
 		else
 			--AddMessage("I can't train any more grunts!")
 		end
-		if ((GetNumUnitsAt(RedTemp, AiEliteShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) or (GetNumUnitsAt(RedTemp, AiShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0)) then
+		if ((GetNumUnitsAt(RedTemp, AiEliteShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) or (GetNumUnitsAt(RedTemp, AiShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) or (GetNumUnitsAt(RedTemp, AiLonerShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0)  or (GetNumUnitsAt(RedTemp, AiHeroShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0)) then
 			if (GetNumUnitsAt(RedLeader, AiBarracks(), {(RedBarracks2_x - 3), (RedBarracks2_y - 3)}, {(RedBarracks2_x + 3), (RedBarracks2_y + 3)}) > 0) then
 				if (GetNumUnitsAt(RedTemp, AiEliteShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
 					--AddMessage("Spawn Red Rangers!")
@@ -141,12 +143,17 @@ function AiRedRibbon()
 					end
 				end
 				if (GetNumUnitsAt(RedTemp, AiHeroShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
-					UnitHeroShooterNum = GetNumUnitsAt(RedTemp, AiHeroShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
-					for UnitUpto = RedLeader,(UnitHeroShooterNum - 1) do
+					UnitEliteShooterNum = GetNumUnitsAt(RedTemp, AiHeroShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
+					for UnitUpto = RedLeader,(UnitEliteShooterNum - 1) do
 						CreateUnit(AiHeroShooter(), RedLeader, {RedBarracks2_x, RedBarracks2_y})
 					end
 				end
-				
+				if (GetNumUnitsAt(RedTemp, AiLonerShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
+					UnitNomadNum = GetNumUnitsAt(RedTemp, AiLonerShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
+					for UnitUpto = RedLeader,(UnitNomadNum - 1) do
+						CreateUnit(AiLonerShooter(), RedLeader, {RedBarracks2_x, RedBarracks2_y})
+					end
+				end
 			else
 				--AddMessage("I can't train any more axethrowers!")
 			end
@@ -182,8 +189,8 @@ function AiRedRibbon()
 				end
 			end
 			if (GetNumUnitsAt(RedTemp, AiHeroRider(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
-				UnitHeroRiderNum = GetNumUnitsAt(RedTemp, AiHeroRider(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
-				for UnitUpto = RedLeader,(UnitHeroRiderNum - 1) do
+				UnitEliteRiderNum = GetNumUnitsAt(RedTemp, AiHeroRider(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
+				for UnitUpto = RedLeader,(UnitEliteRiderNum - 1) do
 					CreateUnit(AiHeroRider(), RedLeader, {RedBarracks3_x, RedBarracks3_y})
 				end
 			end
@@ -221,7 +228,7 @@ function AiRedRibbon()
 			end
 		end
 		-- Not having a value for UnitNum will cause a crash.
-		--AiForce(0, {AiFlyer(), UnitFlyerNum, AiHeroShooter(), UnitHeroShooterNum, AiFodder(), UnitSkeletonNum, AiSuicideBomber(), UnitGoblinSappersNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitGruntNum, AiShooter(), UnitAxethrowerNum, AiEliteShooter(), UnitBerserkerNum, AiCavalry(), UnitOgreNum, AiCavalryMage(), UnitOgreMageNum, AiCatapult(), UnitCatapultNum})
+		--AiForce(0, {AiFlyer(), UnitFlyerNum, AiHeroShooter(), UnitEliteShooterNum, AiFodder(), UnitSkeletonNum, AiSuicideBomber(), UnitGoblinSappersNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitGruntNum, AiShooter(), UnitAxethrowerNum, AiEliteShooter(), UnitBerserkerNum, AiCavalry(), UnitOgreNum, AiCavalryMage(), UnitOgreMageNum, AiCatapult(), UnitCatapultNum})
 		--if (AiCheckForce(0)) then 
 		--	AiAttackWithForce(0)
 		--end
@@ -248,7 +255,7 @@ function AiRedRibbon()
 			UnitBerserkerNum = GetNumUnitsAt(RedLeader, AiEliteShooter(), {(RedBarracks2_x - 3), (RedBarracks2_y - 3)}, {(RedBarracks2_x + 3), (RedBarracks2_y + 3)})
 		end
 		if (GetNumUnitsAt(RedLeader, AiHeroShooter(), {(RedBarracks2_x - 3), (RedBarracks2_y - 3)}, {(RedBarracks2_x + 3), (RedBarracks2_y + 3)}) > 0) then
-			UnitHeroShooterNum = GetNumUnitsAt(RedLeader, AiHeroShooter(), {(RedBarracks2_x - 3), (RedBarracks2_y - 3)}, {(RedBarracks2_x + 3), (RedBarracks2_y + 3)})
+			UnitEliteShooterNum = GetNumUnitsAt(RedLeader, AiHeroShooter(), {(RedBarracks2_x - 3), (RedBarracks2_y - 3)}, {(RedBarracks2_x + 3), (RedBarracks2_y + 3)})
 		end
 		if (GetNumUnitsAt(RedLeader, AiCavalry(), {(RedBarracks3_x - 3), (RedBarracks3_y - 3)}, {(RedBarracks3_x + 3), (RedBarracks3_y + 3)}) > 0) then
 			UnitOgreNum = GetNumUnitsAt(RedLeader, AiCavalry(), {(RedBarracks3_x - 3), (RedBarracks3_y - 3)}, {(RedBarracks3_x + 3), (RedBarracks3_y + 3)})
@@ -390,14 +397,20 @@ function AiRedRibbon()
 end
 
 function AiRed1()
-	if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
-		AiRed1_Basic()
+	if (RedTeam1Dead == true) then
+	else
+		if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
+			AiRed1_Basic()
+		end
 	end
 end
 
 function AiRed2()
-	if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
-		AiRed2_Basic()
+	if (RedTeam2Dead == true) then
+	else
+		if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
+			AiRed2_Basic()
+		end
 	end
 end
 

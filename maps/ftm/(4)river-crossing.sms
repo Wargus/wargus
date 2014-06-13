@@ -24933,41 +24933,115 @@ BlueMageTower_y = 4
 
 AddTrigger(
 	function() return ((GameCycle > 300) and (GameCycle < 310)) end,
-	function()	AddMessage("In the red corner we have Wise Skeleton!")
-	CenterMap(67, 246)
+	function()	if ((GetPlayerData(RedTeam1, "Name") == "Neutral") and (GetPlayerData(RedTeam2, "Name") == "Neutral")) then 
+		AddMessage("The red side didn't bother to show up.")
+	else
+		AddMessage("In the red corner we have Wise Skeleton!")
+		if (GetPlayerData(RedTeam1, "Name") == "Neutral") then 
+			RedTeam1Dead = true
+			RedTeam1 = RedTeam2
+			RedTeam1_x1 = RedTeam2_x1
+			RedTeam1_y1 = RedTeam2_y1
+			RedTeam1_x2 = RedTeam2_x2
+			RedTeam1_y2 = RedTeam2_y2
+			RedTemp_x1 = RedTeam2_x1
+			RedTemp_y1 = RedTeam2_y1
+			RedTemp_x2 = RedTeam2_x2
+			RedTemp_y2 = RedTeam2_y2
+			CenterMap(29, 243)
+			CreateUnit("unit-caanoo-wiseskeleton", RedTeam2, {29, 243})
+		else
+			CreateUnit("unit-caanoo-wiseskeleton", RedTeam1, {67, 246})
+			CenterMap(67, 246)
+		end
+		if (GetPlayerData(RedTeam2, "Name") == "Neutral") then 
+			RedTeam2Dead = true
+			RedTeam2 = RedTeam1
+			RedTeam2_x1 = RedTeam1_x1
+			RedTeam2_y1 = RedTeam1_y1
+			RedTeam2_x2 = RedTeam1_x2
+			RedTeam2_y2 = RedTeam1_y2
+		end
+	end
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle > 400) and (GameCycle < 410)) end,
+	function()	if (GetPlayerData(RedTeam1, "Name") == "Neutral") then 
+	else
+		CenterMap(29, 243)
+		CreateUnit("unit-caanoo-wiseskeleton", RedTeam2, {29, 243})
+	end
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle > 100) and (GameCycle < 110)) end,
+	function()	if ((GetPlayerData(BlueTeam1, "Name") == "Neutral") and (GetPlayerData(BlueTeam2, "Name") == "Neutral")) then 
+		AddMessage("The blue side didn't bother to show up.")
+	else
+		AddMessage("In the blue corner we have Wise Man!")
+		if (GetPlayerData(BlueTeam1, "Name") == "Neutral") then 
+			BlueTeam1Dead = true
+			BlueTeam1 = BlueTeam2
+			BlueTeam1_x1 = BlueTeam2_x1
+			BlueTeam1_y1 = BlueTeam2_y1
+			BlueTeam1_x2 = BlueTeam2_x2
+			BlueTeam1_y2 = BlueTeam2_y2
+			BlueTemp_x1 = BlueTeam2_x1
+			BlueTemp_y1 = BlueTeam2_y1
+			BlueTemp_x2 = BlueTeam2_x2
+			BlueTemp_y2 = BlueTeam2_y2
+			CenterMap(28, 18)
+			CreateUnit("unit-caanoo-wiseman", BlueTeam2, 5, {28, 18})
+		else
+			CreateUnit("unit-caanoo-wiseman", BlueTeam1, {78, 18})
+			CenterMap(78, 18)
+		end
+		if (GetPlayerData(BlueTeam2, "Name") == "Neutral") then 
+			BlueTeam2Dead = true
+			BlueTeam2 = BlueTeam1
+			BlueTeam2_x1 = BlueTeam1_x1
+			BlueTeam2_y1 = BlueTeam1_y1
+			BlueTeam2_x2 = BlueTeam1_x2
+			BlueTeam2_y2 = BlueTeam1_y2
+		end
+	end
 	SetSharedVision(RedTeam1, true, RedTeam2)
 	SetSharedVision(RedTeam2, true, RedTeam1)
 	SetSharedVision(RedTeam1, true, BlueTeam2)
 	SetSharedVision(BlueTeam2, true, RedTeam1)
 	SetSharedVision(RedTeam2, true, BlueTeam2)
 	SetSharedVision(BlueTeam2, true, RedTeam2)
-	CreateUnit("unit-caanoo-wiseskeleton", 3, {67, 246})
-return false end)
-
-AddTrigger(
-	function() return ((GameCycle > 400) and (GameCycle < 410)) end,
-	function()	CenterMap(29, 243)
-	CreateUnit("unit-caanoo-wiseskeleton", 4, {29, 243})
-return false end)
-
-AddTrigger(
-	function() return ((GameCycle > 100) and (GameCycle < 110)) end,
-	function()	AddMessage("In the blue corner we have Wise Man!")
-	CenterMap(78, 18)
-	SetSharedVision(BlueTeam1, true, RedTeam1)
-	SetSharedVision(RedTeam1, true, BlueTeam1)
-	SetSharedVision(BlueTeam1, true, RedTeam2)
 	SetSharedVision(RedTeam2, true, BlueTeam1)
-	SetSharedVision(BlueTeam1, true, BlueTeam2)
+	SetSharedVision(BlueTeam1, true, RedTeam2)
 	SetSharedVision(BlueTeam2, true, BlueTeam1)
-	CreateUnit("unit-caanoo-wiseman", 2, {78, 18})
+	SetSharedVision(BlueTeam1, true, BlueTeam2)
+	SetSharedVision(RedTeam1, true, BlueTeam1)
+	SetSharedVision(BlueTeam1, true, RedTeam1)
 return false end)
 
 AddTrigger(
 	function() return ((GameCycle > 200) and (GameCycle < 210)) end,
-	function()	CenterMap(28, 18)
-	CreateUnit("unit-caanoo-wiseman", 5, {28, 18})
+	function()	if (GetPlayerData(BlueTeam1, "Name") == "Neutral") then 
+	else
+		CenterMap(28, 18)
+		CreateUnit("unit-caanoo-wiseman", BlueTeam2, {28, 18})
+	end
 return false end)
+
+AddTrigger(
+	function() return (GameCycle > 800) end, 
+	function()	if (((GetThisPlayer() == BlueTeam1) and (GetPlayerData(BlueTeam1, "AiEnabled") == true) and (GetPlayerData(BlueTeam1, "TotalNumUnits") == 0)) or ((GetThisPlayer() == BlueTeam2) and (GetPlayerData(BlueTeam2, "AiEnabled") == true) and (GetPlayerData(BlueTeam2, "TotalNumUnits") == 0)) or ((GetThisPlayer() == RedTeam1) and (GetPlayerData(RedTeam1, "AiEnabled") == true) and (GetPlayerData(RedTeam1, "TotalNumUnits") == 0)) or ((GetThisPlayer() == RedTeam2) and (GetPlayerData(RedTeam2, "AiEnabled") == true) and (GetPlayerData(RedTeam2, "TotalNumUnits") == 0))) then
+					ActionDefeat() 
+					--Make this work!
+				end
+				if ((((GetThisPlayer() == BlueTeam1) or (GetThisPlayer() == BlueTeam2)) and ((GetPlayerData(BlueLeader, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam1, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam2, "TotalNumUnits") == 0))) or (((GetThisPlayer() == RedTeam1) or (GetThisPlayer() == RedTeam2)) and ((GetPlayerData(RedLeader, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam1, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam2, "TotalNumUnits") == 0)))) then
+					ActionDefeat() 
+				end
+				if (GetNumOpponents(GetThisPlayer()) == 0) then
+					ActionVictory() 
+				end
+return true end)
 
 AddTrigger(
 	function() return ((GameCycle > 500) and (GameCycle < 510)) end,
@@ -25059,4 +25133,60 @@ AddTrigger(
 	SetDiplomacy(RedTeam2, "allied", RedLeader)
 	SetDiplomacy(RedTeam1, "allied", RedTeam2)
 	SetDiplomacy(RedTeam2, "allied", RedTeam1)
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle > 800) and ((GetPlayerData(BlueTeam2, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam1, "TotalNumUnits") > 0))) end,
+	function()	BlueTeam2Dead = true
+	BlueTeam2 = BlueTeam1
+	BlueTeam2_x1 = BlueTeam1_x1
+	BlueTeam2_y1 = BlueTeam1_y1
+	BlueTeam2_x2 = BlueTeam1_x2
+	BlueTeam2_y2 = BlueTeam1_y2
+	BlueTemp_x1 = BlueTeam1_x1
+	BlueTemp_y1 = BlueTeam1_y1
+	BlueTemp_x2 = BlueTeam1_x2
+	BlueTemp_y2 = BlueTeam1_y2
+return false end)
+	
+AddTrigger(
+	function() return ((GameCycle > 800) and ((GetPlayerData(BlueTeam1, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam2, "TotalNumUnits") > 0))) end,
+	function()	BlueTeam1Dead = true
+	BlueTeam1 = BlueTeam2
+	BlueTeam1_x1 = BlueTeam2_x1
+	BlueTeam1_y1 = BlueTeam2_y1
+	BlueTeam1_x2 = BlueTeam2_x2
+	BlueTeam1_y2 = BlueTeam2_y2
+	BlueTemp_x1 = BlueTeam2_x1
+	BlueTemp_y1 = BlueTeam2_y1
+	BlueTemp_x2 = BlueTeam2_x2
+	BlueTemp_y2 = BlueTeam2_y2
+return false end)
+
+AddTrigger(
+	function() return ((GameCycle > 800) and ((GetPlayerData(RedTeam2, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam1, "TotalNumUnits") > 0))) end,
+	function()	RedTeam2Dead = true
+	RedTeam2 = RedTeam1
+	RedTeam2_x1 = RedTeam1_x1
+	RedTeam2_y1 = RedTeam1_y1
+	RedTeam2_x2 = RedTeam1_x2
+	RedTeam2_y2 = RedTeam1_y2
+	RedTemp_x1 = RedTeam1_x1
+	RedTemp_y1 = RedTeam1_y1
+	RedTemp_x2 = RedTeam1_x2
+	RedTemp_y2 = RedTeam1_y2
+return false end)
+	
+AddTrigger(
+	function() return ((GameCycle > 800) and ((GetPlayerData(RedTeam1, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam2, "TotalNumUnits") > 0))) end,
+	function()	RedTeam1Dead = true
+	RedTeam1 = RedTeam2
+	RedTeam1_x1 = RedTeam2_x1
+	RedTeam1_y1 = RedTeam2_y1
+	RedTeam1_x2 = RedTeam2_x2
+	RedTeam1_y2 = RedTeam2_y2
+	RedTemp_x1 = RedTeam2_x1
+	RedTemp_y1 = RedTeam2_y1
+	RedTemp_x2 = RedTeam2_x2
+	RedTemp_y2 = RedTeam2_y2
 return false end)

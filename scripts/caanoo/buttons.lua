@@ -118,6 +118,12 @@ DefineButton( { Pos = 4, Level = 2, Icon = "icon-peon",
 	Key = "p", Hint = "~!PEON",
 	ForUnit = {"unit-caanoo-wiseskeleton"} } )	
 	
+DefineButton( { Pos = 5, Level = 2, Icon = "icon-axethrower",
+	Action = "cast-spell", Value = "spell-unit-nomad",
+	Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+	Key = "o", Hint = "N~!OMAD",
+	ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+	
 DefineButton( { Pos = 6, Level = 2, Icon = "icon-skeleton",
 	Action = "cast-spell", Value = "spell-unit-skeleton",
 	Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
@@ -230,6 +236,12 @@ DefineButton( { Pos = 4, Level = 2, Icon = "icon-peasant",
 	Key = "p", Hint = "~!PEASANT",
 	ForUnit = {"unit-caanoo-wiseman"} } )	
 	
+DefineButton( { Pos = 5, Level = 2, Icon = "icon-ranger",
+	Action = "cast-spell", Value = "spell-unit-yeoman",
+	Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+	Key = "o", Hint = "YE~!OMAN",
+	ForUnit = {"unit-caanoo-wiseman"} } )	
+	
 DefineButton( { Pos = 6, Level = 2, Icon = "icon-peasant",
 	Action = "cast-spell", Value = "spell-unit-attack-peasant",
 	Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
@@ -252,8 +264,6 @@ DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
 	
 -- Oathbreaker
 	
-
-
 DefineAllow("unit-caanoo-oathbreaker",	"AAAAAAAAAAAAAAAA")
 		
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-move-peasant",
