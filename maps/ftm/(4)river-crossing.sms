@@ -31,13 +31,13 @@ SetPlayerData(0, "Resources", "wood", 450)
 SetPlayerData(0, "Resources", "gold", 500)
 SetPlayerData(0, "Resources", "oil", 5000)
 SetPlayerData(0, "RaceName", "orc")
-SetAiType(0, "ai_redribbon")
+SetAiType(0, "ai_redribbon_2012")
 SetStartView(1, 50, 68)
 SetPlayerData(1, "Resources", "wood", 450)
 SetPlayerData(1, "Resources", "gold", 500)
 SetPlayerData(1, "Resources", "oil", 5000)
 SetPlayerData(1, "RaceName", "human")
-SetAiType(1, "ai_blueribbon")
+SetAiType(1, "ai_blueribbon_2012")
 SetStartView(2, 82, 12)
 SetPlayerData(2, "Resources", "wood", 1500)
 SetPlayerData(2, "Resources", "gold", 2000)
@@ -50,14 +50,12 @@ SetPlayerData(3, "Resources", "gold", 2000)
 SetPlayerData(3, "Resources", "oil", 5000)
 SetPlayerData(3, "RaceName", "orc")
 SetAiType(3, "ai_red1")
---SetAiType(3, "wc2-air-attack")
 SetStartView(4, 16, 242)
 SetPlayerData(4, "Resources", "wood", 1500)
 SetPlayerData(4, "Resources", "gold", 2000)
 SetPlayerData(4, "Resources", "oil", 5000)
 SetPlayerData(4, "RaceName", "orc")
 SetAiType(4, "ai_red2")
---SetAiType(4, "wc2-air-attack")
 SetStartView(5, 14, 11)
 SetPlayerData(5, "Resources", "wood", 1500)
 SetPlayerData(5, "Resources", "gold", 2000)
@@ -24894,11 +24892,6 @@ RedFlyerBuilding_y = 241
 RedTownHall_x = 18
 RedTownHall_y = 241
 RedLeader = 0
-BlueFlyerBuilding_x = 4
-BlueFlyerBuilding_y = 16
-BlueTownHall_x = 14
-BlueTownHall_y = 14
-
 -- Blue Related
 BlueLeader = 1
 BlueTeam1 = 2
@@ -24915,8 +24908,6 @@ BlueTemp_x1 = BlueTeam1_x1
 BlueTemp_y1 = BlueTeam1_y1
 BlueTemp_x2 = BlueTeam1_x2
 BlueTemp_y2 = BlueTeam1_y2
-RedTeam1 = 3
-RedTeam2 = 4
 -- Where all the stuff is located.
 BlueBarracks1_x = 8
 BlueBarracks1_y = 27
@@ -24930,6 +24921,10 @@ BlueInventor_x = 89
 BlueInventor_y = 10
 BlueMageTower_x = 30
 BlueMageTower_y = 4
+BlueFlyerBuilding_x = 4
+BlueFlyerBuilding_y = 16
+BlueTownHall_x = 14
+BlueTownHall_y = 14
 
 AddTrigger(
 	function() return ((GameCycle > 300) and (GameCycle < 310)) end,

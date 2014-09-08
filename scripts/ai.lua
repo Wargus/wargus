@@ -10,7 +10,7 @@
 --
 --      ai.lua - Define the AI.
 --
---      (c) Copyright 2000-2013 by Lutz Sammer, Jimmy Salmon and Kyran Jackson.
+--      (c) Copyright 2000-2014 by Lutz Sammer, Jimmy Salmon and Kyran Jackson.
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -852,5 +852,5 @@ Load("scripts/ai/ai_jadeite_2010.lua")
 Load("scripts/ai/ai_nephrite_2012.lua")
 Load("scripts/ai/ai_nephrite_2013.lua")
 Load("scripts/ai/ai_zoisite_2013.lua")
-Load("scripts/ai/ai_blueribbon.lua")
-Load("scripts/ai/ai_redribbon.lua")
+Load("scripts/ai/ai_redribbon_2012.lua")
+Load("scripts/ai/ai_redribbon_2014.lua")
