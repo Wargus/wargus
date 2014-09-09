@@ -29,26 +29,26 @@
 SetStartView(0, 49, 165)
 SetPlayerData(0, "Resources", "wood", 4500)
 SetPlayerData(0, "Resources", "gold", 5000)
-SetPlayerData(0, "Resources", "oil", 500)
+SetPlayerData(0, "Resources", "oil", 5000)
 SetPlayerData(0, "RaceName", "human")
 SetAiType(0, "ai_redribbon_2014")
 SetStartView(1, 50, 68)
 SetPlayerData(1, "Resources", "wood", 6500)
 SetPlayerData(1, "Resources", "gold", 7000)
-SetPlayerData(1, "Resources", "oil", 500)
+SetPlayerData(1, "Resources", "oil", 5000)
 SetPlayerData(1, "RaceName", "orc")
 SetAiType(1, "ai_redribbon_2014")
 SetStartView(2, 37, 248)
 SetPlayerData(2, "Resources", "wood", 1500)
 SetPlayerData(2, "Resources", "gold", 2000)
 SetPlayerData(2, "Resources", "oil", 5000)
-SetPlayerData(2, "RaceName", "human")
+SetPlayerData(2, "RaceName", "orc")
 SetAiType(2, "ai-passive")
 SetStartView(3, 36, 8)
 SetPlayerData(3, "Resources", "wood", 1500)
 SetPlayerData(3, "Resources", "gold", 2000)
 SetPlayerData(3, "Resources", "oil", 5000)
-SetPlayerData(3, "RaceName", "orc")
+SetPlayerData(3, "RaceName", "human")
 SetAiType(3, "ai-passive")
 SetStartView(15, 32, 252)
 SetPlayerData(15, "Resources", "wood", 0)
@@ -16613,12 +16613,20 @@ unit = CreateUnit("unit-gryphon-aviary", 1, {21, 249})
 unit = CreateUnit("unit-dragon-roost", 0, {7, 7})
 unit = CreateUnit("unit-caanoo-wiseman", 3, {36, 8})
 unit = CreateUnit("unit-caanoo-wiseskeleton", 2, {37, 248})
+unit = CreateUnit("unit-caanoo-wiseman", 3, {36, 8})
+unit = CreateUnit("unit-caanoo-wiseskeleton", 2, {37, 248})
+unit = CreateUnit("unit-caanoo-wiseman", 3, {36, 8})
+unit = CreateUnit("unit-caanoo-wiseskeleton", 2, {37, 248})
 
 AiRedRibbon_Setup_2014()
 
 ftm_team[0] = 1
 ftm_team[1] = 2
 ftm_team[2] = 2
+ftm_team_x1[2] = 0
+ftm_team_y1[2] = 0
+ftm_team_x2[2] = 64
+ftm_team_y2[2] = 256
 ftm_team[3] = 1
 ftm_team_x1[3] = 0
 ftm_team_y1[3] = 0
@@ -16627,7 +16635,7 @@ ftm_team_y2[3] = 256
 	
 ftm_choice[0] = 3
 ftm_choice[1] = 2
-ftm_index_start[1] = 55
+ftm_index_start[1] = 51
 ftm_index_end[1] = 65
 ftm_index_start[0] = 1
 ftm_index_end[0] = 15
@@ -16662,8 +16670,8 @@ ftm_origin_x[14] = 40
 ftm_origin_y[14] = 48
 ftm_origin_x[15] = 32
 ftm_origin_y[15] = 32
-ftm_origin_x[51] = 42
-ftm_origin_y[51] = 216
+ftm_origin_x[51] = 41
+ftm_origin_y[51] = 215
 ftm_origin_x[52] = 42
 ftm_origin_y[52] = 216
 ftm_origin_x[53] = 28

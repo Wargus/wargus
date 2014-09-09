@@ -36,229 +36,8 @@
 local redribbon_stepping -- Used to identify where the build order is up to.
 local blueribbon_stepping -- Used to identify where the build order is up to.
 
-function AiBlueRibbon_2012()
-	-- Setting up the variables.
-	if (blueribbon_stepping ~= nil) then
-	else
-		-- print ("Setting up the variables.")
-		BlueLeader = AiPlayer()
-		-- Timer related
-		UnitFootmanNum = 0
-		UnitArcherNum = 0
-		UnitRangerNum = 0
-		UnitMinutemanNum = 0
-		UnitBallistaNum = 0
-		UnitDwarvesNum = 0
-		UnitPaladinNum = 0
-		UnitKnightNum = 0
-		UnitYeomanNum = 0
-		UnitHeroRiderNum = 0
-		UnitMageNum = 0
-		UnitMinutemanNum = 0
-		UnitHeroSoldierNum = 0
-		UnitHeroShooterNum = 0
-		blueribbon_stepping = 7
-		SetPlayerData(BlueLeader, "Resources", "oil", 5000)
-    end
-	-- Let's check out our surroundings.
-	if ((timer == 50) or (timer == 99)) then
-		UnitFootmanNum = 0
-		UnitArcherNum = 0
-		UnitRangerNum = 0
-		UnitMinutemanNum = 0
-		UnitBallistaNum = 0
-		UnitDwarvesNum = 0
-		UnitPaladinNum = 0
-		UnitKnightNum = 0
-		UnitYeomanNum = 0
-		UnitHeroRiderNum = 0
-		UnitMageNum = 0
-		UnitMinutemanNum = 0
-		UnitHeroSoldierNum = 0
-		UnitHeroShooterNum = 0
-		if (timer == 50) then
-			BlueTemp = BlueTeam1
-			BlueTemp_x1 = BlueTeam1_x1
-			BlueTemp_y1 = BlueTeam1_y1
-			BlueTemp_x2 = BlueTeam1_x2
-			BlueTemp_y2 = BlueTeam1_y2
-		else
-			BlueTemp = BlueTeam2
-			BlueTemp_x1 = BlueTeam2_x1
-			BlueTemp_y1 = BlueTeam2_y1
-			BlueTemp_x2 = BlueTeam2_x2
-			BlueTemp_y2 = BlueTeam2_y2
-		end
-		if (GetNumUnitsAt(BlueLeader, AiBarracks(), {BlueBarracks1_x - 3, BlueBarracks1_y - 3}, {BlueBarracks1_x + 3, BlueBarracks1_y + 3}) > 0) then
-			if (GetNumUnitsAt(BlueTemp, AiSoldier(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-				--AddMessage("Spawn Blue Footmen!")
-				UnitFootmanNum = GetNumUnitsAt(BlueTemp, AiSoldier(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
-				for UnitUpto = BlueLeader,UnitFootmanNum do
-					CreateUnit(AiSoldier(), BlueLeader, {BlueBarracks1_x, BlueBarracks1_y})
-				end
-			end
-			if (GetNumUnitsAt(BlueTemp, AiHeroSoldier(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-				UnitHeroSoldierNum = GetNumUnitsAt(BlueTemp, AiHeroSoldier(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
-				for UnitUpto = BlueLeader,UnitHeroSoldierNum do
-					CreateUnit(AiHeroSoldier(), BlueLeader, {BlueBarracks1_x, BlueBarracks1_y})
-				end
-			end
-		else
-			AddMessage("I can't train any more footmen!")
-		end
-		if ((GetNumUnitsAt(BlueTemp, AiEliteShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, AiShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, AiLonerShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, AiHeroShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0)) then
-			if (GetNumUnitsAt(BlueLeader, AiBarracks(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)}) > 0) then
-				if (GetNumUnitsAt(BlueTemp, AiEliteShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-					--AddMessage("Spawn Blue Rangers!")
-					UnitRangerNum = GetNumUnitsAt(BlueTemp, AiEliteShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
-					for UnitUpto = BlueLeader,UnitRangerNum do
-						CreateUnit(AiEliteShooter(), BlueLeader, {BlueBarracks2_x, BlueBarracks2_y})
-					end
-				end
-				if (GetNumUnitsAt(BlueTemp, AiShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-					--AddMessage("Spawn Blue Archers!")
-					UnitArcherNum = GetNumUnitsAt(BlueTemp, AiShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
-					for UnitUpto = BlueLeader,UnitArcherNum do
-						CreateUnit(AiShooter(), BlueLeader, {BlueBarracks2_x, BlueBarracks2_y})
-					end
-				end
-				if (GetNumUnitsAt(BlueTemp, AiHeroShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-					UnitHeroShooterNum = GetNumUnitsAt(BlueTemp, AiHeroShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
-					for UnitUpto = BlueLeader,(UnitHeroShooterNum) do
-						CreateUnit(AiHeroShooter(), BlueLeader, {BlueBarracks2_x, BlueBarracks2_y})
-					end
-				end
-				if (GetNumUnitsAt(BlueTemp, AiLonerShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-					UnitYeomanNum = GetNumUnitsAt(BlueTemp, AiLonerShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
-					for UnitUpto = BlueLeader,(UnitYeomanNum) do
-						CreateUnit(AiLonerShooter(), BlueLeader, {BlueBarracks2_x, BlueBarracks2_y})
-					end
-				end
-			else
-				AddMessage("I can't train any more archers!")
-			end
-		end
-		if (GetNumUnitsAt(BlueLeader, AiMageTower(), {(BlueMageTower_x - 3), (BlueMageTower_y - 3)}, {(BlueMageTower_x + 3), (BlueMageTower_y + 3)}) > 0) then
-			if ((GetNumUnitsAt(BlueTemp, "unit-caanoo-wiseman", {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, "unit-mage", {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0)) then
-				--AddMessage("Spawn Blue Mages!")
-				UnitMageNum = (GetNumUnitsAt(BlueTemp, "unit-caanoo-wiseman", {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) + GetNumUnitsAt(BlueTemp, "unit-mage", {0, 0}, {92, 256}) )
-				for UnitUpto = BlueLeader,UnitMageNum do
-					CreateUnit("unit-mage", BlueLeader, {BlueMageTower_x, BlueMageTower_y})
-				end
-			end
-			if (GetNumUnitsAt(BlueTemp, AiFodder(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-				--AddMessage("Spawn Blue Skeletons!")
-				UnitMinutemanNum = (GetNumUnitsAt(BlueTemp, AiFodder(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) + GetNumUnitsAt(BlueTemp, "unit-mage", {0, 0}, {92, 256}) )
-				for UnitUpto = BlueLeader,UnitMinutemanNum do
-					CreateUnit(AiFodder(), BlueLeader, {BlueMageTower_x, BlueMageTower_y})
-				end
-			end
-		end
-		if (GetNumUnitsAt(BlueLeader, AiBarracks(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)}) > 0) then
-			if (GetNumUnitsAt(BlueTemp, AiCavalry(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-				--AddMessage("Spawn Blue Knights!")
-				UnitKnightNum = GetNumUnitsAt(BlueTemp, AiCavalry(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
-				for UnitUpto = BlueLeader,UnitKnightNum do
-					CreateUnit(AiCavalry(), BlueLeader, {BlueBarracks3_x, BlueBarracks3_y})
-				end
-			end
-			if (GetNumUnitsAt(BlueTemp, AiCavalryMage(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-				--AddMessage("Spawn Blue Paladins!")
-				UnitPaladinNum = GetNumUnitsAt(BlueTemp, AiCavalryMage(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
-				for UnitUpto = BlueLeader,UnitPaladinNum do
-					CreateUnit(AiCavalryMage(), BlueLeader, {BlueBarracks3_x, BlueBarracks3_y})
-				end
-			end
-			if (GetNumUnitsAt(BlueTemp, AiHeroRider(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-				UnitHeroRiderNum = GetNumUnitsAt(BlueTemp, AiHeroRider(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
-				for UnitUpto = BlueLeader,(UnitHeroRiderNum) do
-					CreateUnit(AiHeroRider(), BlueLeader, {BlueBarracks3_x, BlueBarracks3_y})
-				end
-			end
-		end
-		
-		if (GetNumUnitsAt(BlueLeader, AiBarracks(), {(BlueBarracks4_x - 3), (BlueBarracks4_y - 3)}, {(BlueBarracks4_x + 3), (BlueBarracks4_y + 3)}) > 0) then
-			if (GetNumUnitsAt(BlueTemp, AiCatapult(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-				--AddMessage("Spawn Blue Ballistas!")
-				UnitBallistaNum = GetNumUnitsAt(BlueTemp, AiCatapult(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
-				for UnitUpto = BlueLeader,UnitBallistaNum do
-					CreateUnit(AiCatapult(), BlueLeader, {BlueBarracks4_x, BlueBarracks4_y})
-				end
-			end
-		end
-		if (GetNumUnitsAt(BlueLeader, AiScientific(), {(BlueInventor_x - 3), (BlueInventor_y - 3)}, {(BlueInventor_x + 3), (BlueInventor_y + 3)}) > 0) then
-			if (GetNumUnitsAt(BlueTemp, AiSuicideBomber(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-				--AddMessage("Spawn Blue Dwarves!")
-				UnitDwarvesNum = GetNumUnitsAt(BlueTemp, AiSuicideBomber(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
-				for UnitUpto = BlueLeader,UnitDwarvesNum do
-					CreateUnit(AiSuicideBomber(), BlueLeader, {BlueInventor_x, BlueInventor_y})
-				end
-			end
-		end
-		if ((GetNumUnitsAt(BlueLeader, AiBestCityCenter(), {(BlueTownHall_x - 3), (BlueTownHall_y - 3)}, {(BlueTownHall_x + 3), (BlueTownHall_y + 3)}) > 0) or (GetNumUnitsAt(BlueLeader, AiBetterCityCenter(), {(BlueTownHall_x - 3), (BlueTownHall_y - 3)}, {(BlueTownHall_x + 3), (BlueTownHall_y + 3)}) > 0) or (GetNumUnitsAt(BlueLeader, AiCityCenter(), {(BlueTownHall_x - 3), (BlueTownHall_y - 3)}, {(BlueTownHall_x + 3), (BlueTownHall_y + 3)}) > 0)) then
-			if (GetNumUnitsAt(BlueTemp, AiWorker(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-				UnitWorkerNum = GetNumUnitsAt(BlueTemp, AiWorker(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
-				for UnitUpto = BlueLeader,(UnitWorkerNum) do
-					CreateUnit(AiWorker(), BlueLeader, {BlueTownHall_x, BlueTownHall_y})
-				end
-			end
-		end
-		if (GetNumUnitsAt(BlueLeader, AiAirport(), {(BlueFlyerBuilding_x - 3), (BlueFlyerBuilding_y - 3)}, {(BlueFlyerBuilding_x + 3), (BlueFlyerBuilding_y + 3)}) > 0) then
-			if (GetNumUnitsAt(BlueTemp, AiFlyer(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
-				UnitFlyerNum = GetNumUnitsAt(BlueTemp, AiFlyer(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
-				for UnitUpto = BlueLeader,(UnitFlyerNum) do
-					CreateUnit(AiFlyer(), BlueLeader, {BlueFlyerBuilding_x, BlueFlyerBuilding_y})
-				end
-			end
-		end
-		--AiForce(0, {AiFlyer(), UnitFlyerNum, AiHeroShooter(), UnitHeroShooterNum, AiFodder(), UnitMinutemanNum, AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitMageNum, AiSoldier(), UnitFootmanNum, AiShooter(), (UnitArcherNum + UnitRangerNum), AiEliteShooter(), (UnitArcherNum + UnitRangerNum), AiCavalry(), (UnitPaladinNum + UnitKnightNum), AiCavalryMage(), (UnitKnightNum + UnitPaladinNum), AiCatapult(), UnitBallistaNum})
-		--if (AiCheckForce(0)) then 
-		--	AiAttackWithForce(0)
-		--end
-		AiForce(1, {AiFlyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer())}, true)
-		AiAttackWithForce(1)
-		AiNephrite_Attack_2013()
-	end
-	if (timer == 100) then
-		timer = 0
-	end
-	if ((timer == 75) or (timer == 25)) then
-		-- TODO: Fix this with the proper variables.
-		--print("hi")
-		UnitFootmanNum = 0
-		UnitArcherNum = 0
-		UnitRangerNum = 0
-		UnitBallistaNum = 0
-		UnitDwarvesNum = 0
-		UnitPaladinNum = 0
-		UnitKnightNum = 0
-		UnitMageNum = 0
-		UnitMinutemanNum = 0
-		UnitHeroSoldierNum = 0
-		UnitHeroShooterNum = 0
-		if (GetNumUnitsAt(BlueLeader, AiSoldier(), {(BlueBarracks1_x - 3), (BlueBarracks1_y - 3)}, {(BlueBarracks1_x + 3), (BlueBarracks1_y + 3)}) > 5) then
-			UnitFootmanNum = GetNumUnitsAt(BlueLeader, AiSoldier(), {(BlueBarracks1_x - 3), (BlueBarracks1_y - 3)}, {(BlueBarracks1_x + 3), (BlueBarracks1_y + 3)})
-		end
-		if (GetNumUnitsAt(BlueLeader, AiShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)}) > 5) then
-			UnitArcherNum = GetNumUnitsAt(BlueLeader, AiShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)})
-		end
-		if (GetNumUnitsAt(BlueLeader, AiEliteShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)}) > 5) then
-			UnitRangerNum = GetNumUnitsAt(BlueLeader, AiEliteShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)})
-		end
-		if (GetNumUnitsAt(BlueLeader, AiHeroShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)}) > 5) then
-			UnitHeroShooterNum = GetNumUnitsAt(BlueLeader, AiHeroShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)})
-		end
-		if (GetNumUnitsAt(BlueLeader, AiCavalry(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)}) > 5) then
-			UnitKnightNum = GetNumUnitsAt(BlueLeader, AiCavalry(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)})
-		end
-		if (GetNumUnitsAt(BlueLeader, AiCavalryMage(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)}) > 5) then
-			UnitPaladinNum = GetNumUnitsAt(BlueLeader, AiCavalryMage(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)})
-		end
-		AiForce(1, {AiFodder(), UnitMinutemanNum, AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitFootmanNum, AiShooter(), UnitArcherNum, AiEliteShooter(), UnitRangerNum, AiCavalry(), UnitKnightNum, AiCavalryMage(), UnitPaladinNum, AiCatapult(), UnitCatapultNum}, true)
-		if (AiCheckForce(1)) then 
-			AiAttackWithForce(1)
-		end
-	end
+
+function AiRedRibbon_Research_2012()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0) then
 		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
@@ -327,15 +106,13 @@ function AiBlueRibbon_2012()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 0) then
 		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) >= 1) then
-				AiUpgradeMissile1()
+				AiResearch(AiUpgradeMissile1())
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
-						AiUpgradeMissile2()
+						AiResearch(AiUpgradeMissile2())
 					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) then
 							AiResearch(AiUpgradeEliteShooter())
 							AiResearch(AiUpgradeEliteShooter1())
-							AiResearch(AiUpgradeMissile1())
-							AiResearch(AiUpgradeMissile2())
 							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
 								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) then
 									AiResearch(AiUpgradeEliteShooter2())
@@ -363,12 +140,217 @@ function AiBlueRibbon_2012()
 			AiSet(AiWorker(), 8)
 		end
 	end
+end
+
+function AiBlueRibbon_2012()
+	-- Setting up the variables.
+	if (blueribbon_stepping ~= nil) then
+	else
+		-- print ("Setting up the variables.")
+		BlueLeader = AiPlayer()
+		-- Timer related
+		UnitFootmanNum = 0
+		UnitArcherNum = 0
+		UnitRangerNum = 0
+		UnitMinutemanNum = 0
+		UnitBallistaNum = 0
+		UnitDwarvesNum = 0
+		UnitPaladinNum = 0
+		UnitKnightNum = 0
+		UnitYeomanNum = 0
+		UnitHeroRiderNum = 0
+		UnitMageNum = 0
+		UnitMinutemanNum = 0
+		UnitHeroSoldierNum = 0
+		UnitHeroShooterNum = 0
+		blueribbon_stepping = 7
+		SetPlayerData(BlueLeader, "Resources", "oil", 5000)
+    end
+	-- Let's check out our surroundings.
+	if ((timer == 50) or (timer == 99)) then
+		UnitFootmanNum = 0
+		UnitArcherNum = 0
+		UnitRangerNum = 0
+		UnitMinutemanNum = 0
+		UnitBallistaNum = 0
+		UnitDwarvesNum = 0
+		UnitPaladinNum = 0
+		UnitKnightNum = 0
+		UnitYeomanNum = 0
+		UnitHeroRiderNum = 0
+		UnitMageNum = 0
+		UnitMinutemanNum = 0
+		UnitHeroSoldierNum = 0
+		UnitHeroShooterNum = 0
+		if (timer == 50) then
+			BlueTemp = BlueTeam1
+			BlueTemp_x1 = BlueTeam1_x1
+			BlueTemp_y1 = BlueTeam1_y1
+			BlueTemp_x2 = BlueTeam1_x2
+			BlueTemp_y2 = BlueTeam1_y2
+		else
+			BlueTemp = BlueTeam2
+			BlueTemp_x1 = BlueTeam2_x1
+			BlueTemp_y1 = BlueTeam2_y1
+			BlueTemp_x2 = BlueTeam2_x2
+			BlueTemp_y2 = BlueTeam2_y2
+		end
+		if (GetNumUnitsAt(BlueLeader, AiBarracks(), {BlueBarracks1_x - 3, BlueBarracks1_y - 3}, {BlueBarracks1_x + 3, BlueBarracks1_y + 3}) > 0) then
+			if (GetNumUnitsAt(BlueTemp, AiSoldier(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+				--AddMessage("Spawn Blue Footmen!")
+				UnitFootmanNum = GetNumUnitsAt(BlueTemp, AiSoldier(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
+				for UnitUpto = BlueLeader,UnitFootmanNum do
+					CreateUnit(AiSoldier(), BlueLeader, {BlueBarracks1_x, BlueBarracks1_y})
+				end
+			end
+			if (GetNumUnitsAt(BlueTemp, AiHeroSoldier(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+				UnitHeroSoldierNum = GetNumUnitsAt(BlueTemp, AiHeroSoldier(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
+				for UnitUpto = BlueLeader,UnitHeroSoldierNum do
+					CreateUnit(AiHeroSoldier(), BlueLeader, {BlueBarracks1_x, BlueBarracks1_y})
+				end
+			end
+		else
+		end
+		if ((GetNumUnitsAt(BlueTemp, AiEliteShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, AiShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, AiLonerShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, AiHeroShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0)) then
+			if (GetNumUnitsAt(BlueLeader, AiBarracks(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)}) > 0) then
+				if (GetNumUnitsAt(BlueTemp, AiEliteShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+					UnitRangerNum = GetNumUnitsAt(BlueTemp, AiEliteShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
+					for UnitUpto = BlueLeader,UnitRangerNum do
+						CreateUnit(AiEliteShooter(), BlueLeader, {BlueBarracks2_x, BlueBarracks2_y})
+					end
+				end
+				if (GetNumUnitsAt(BlueTemp, AiShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+					UnitArcherNum = GetNumUnitsAt(BlueTemp, AiShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
+					for UnitUpto = BlueLeader,UnitArcherNum do
+						CreateUnit(AiShooter(), BlueLeader, {BlueBarracks2_x, BlueBarracks2_y})
+					end
+				end
+				if (GetNumUnitsAt(BlueTemp, AiHeroShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+					UnitHeroShooterNum = GetNumUnitsAt(BlueTemp, AiHeroShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
+					for UnitUpto = BlueLeader,(UnitHeroShooterNum) do
+						CreateUnit(AiHeroShooter(), BlueLeader, {BlueBarracks2_x, BlueBarracks2_y})
+					end
+				end
+				if (GetNumUnitsAt(BlueTemp, AiLonerShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+					UnitYeomanNum = GetNumUnitsAt(BlueTemp, AiLonerShooter(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
+					for UnitUpto = BlueLeader,(UnitYeomanNum) do
+						CreateUnit(AiLonerShooter(), BlueLeader, {BlueBarracks2_x, BlueBarracks2_y})
+					end
+				end
+			end
+		end
+		if (GetNumUnitsAt(BlueLeader, AiMageTower(), {(BlueMageTower_x - 3), (BlueMageTower_y - 3)}, {(BlueMageTower_x + 3), (BlueMageTower_y + 3)}) > 0) then
+			if ((GetNumUnitsAt(BlueTemp, "unit-caanoo-wiseman", {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) or (GetNumUnitsAt(BlueTemp, "unit-mage", {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0)) then
+				UnitMageNum = (GetNumUnitsAt(BlueTemp, "unit-caanoo-wiseman", {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) + GetNumUnitsAt(BlueTemp, "unit-mage", {0, 0}, {92, 256}) )
+				for UnitUpto = BlueLeader,UnitMageNum do
+					CreateUnit("unit-mage", BlueLeader, {BlueMageTower_x, BlueMageTower_y})
+				end
+			end
+			if (GetNumUnitsAt(BlueTemp, AiFodder(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+				UnitMinutemanNum = (GetNumUnitsAt(BlueTemp, AiFodder(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) + GetNumUnitsAt(BlueTemp, "unit-mage", {0, 0}, {92, 256}) )
+				for UnitUpto = BlueLeader,UnitMinutemanNum do
+					CreateUnit(AiFodder(), BlueLeader, {BlueMageTower_x, BlueMageTower_y})
+				end
+			end
+		end
+		if (GetNumUnitsAt(BlueLeader, AiBarracks(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)}) > 0) then
+			if (GetNumUnitsAt(BlueTemp, AiCavalry(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+				UnitKnightNum = GetNumUnitsAt(BlueTemp, AiCavalry(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
+				for UnitUpto = BlueLeader,UnitKnightNum do
+					CreateUnit(AiCavalry(), BlueLeader, {BlueBarracks3_x, BlueBarracks3_y})
+				end
+			end
+			if (GetNumUnitsAt(BlueTemp, AiCavalryMage(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+				UnitPaladinNum = GetNumUnitsAt(BlueTemp, AiCavalryMage(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
+				for UnitUpto = BlueLeader,UnitPaladinNum do
+					CreateUnit(AiCavalryMage(), BlueLeader, {BlueBarracks3_x, BlueBarracks3_y})
+				end
+			end
+			if (GetNumUnitsAt(BlueTemp, AiHeroRider(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+				UnitHeroRiderNum = GetNumUnitsAt(BlueTemp, AiHeroRider(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
+				for UnitUpto = BlueLeader,(UnitHeroRiderNum) do
+					CreateUnit(AiHeroRider(), BlueLeader, {BlueBarracks3_x, BlueBarracks3_y})
+				end
+			end
+		end
+		
+		if (GetNumUnitsAt(BlueLeader, AiBarracks(), {(BlueBarracks4_x - 3), (BlueBarracks4_y - 3)}, {(BlueBarracks4_x + 3), (BlueBarracks4_y + 3)}) > 0) then
+			if (GetNumUnitsAt(BlueTemp, AiCatapult(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+				UnitBallistaNum = GetNumUnitsAt(BlueTemp, AiCatapult(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
+				for UnitUpto = BlueLeader,UnitBallistaNum do
+					CreateUnit(AiCatapult(), BlueLeader, {BlueBarracks4_x, BlueBarracks4_y})
+				end
+			end
+		end
+		if (GetNumUnitsAt(BlueLeader, AiScientific(), {(BlueInventor_x - 3), (BlueInventor_y - 3)}, {(BlueInventor_x + 3), (BlueInventor_y + 3)}) > 0) then
+			if (GetNumUnitsAt(BlueTemp, AiSuicideBomber(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+				UnitDwarvesNum = GetNumUnitsAt(BlueTemp, AiSuicideBomber(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) 
+				for UnitUpto = BlueLeader,UnitDwarvesNum do
+					CreateUnit(AiSuicideBomber(), BlueLeader, {BlueInventor_x, BlueInventor_y})
+				end
+			end
+		end
+		if ((GetNumUnitsAt(BlueLeader, AiBestCityCenter(), {(BlueTownHall_x - 3), (BlueTownHall_y - 3)}, {(BlueTownHall_x + 3), (BlueTownHall_y + 3)}) > 0) or (GetNumUnitsAt(BlueLeader, AiBetterCityCenter(), {(BlueTownHall_x - 3), (BlueTownHall_y - 3)}, {(BlueTownHall_x + 3), (BlueTownHall_y + 3)}) > 0) or (GetNumUnitsAt(BlueLeader, AiCityCenter(), {(BlueTownHall_x - 3), (BlueTownHall_y - 3)}, {(BlueTownHall_x + 3), (BlueTownHall_y + 3)}) > 0)) then
+			if (GetNumUnitsAt(BlueTemp, AiWorker(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+				UnitWorkerNum = GetNumUnitsAt(BlueTemp, AiWorker(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
+				for UnitUpto = BlueLeader,(UnitWorkerNum) do
+					CreateUnit(AiWorker(), BlueLeader, {BlueTownHall_x, BlueTownHall_y})
+				end
+			end
+		end
+		if (GetNumUnitsAt(BlueLeader, AiAirport(), {(BlueFlyerBuilding_x - 3), (BlueFlyerBuilding_y - 3)}, {(BlueFlyerBuilding_x + 3), (BlueFlyerBuilding_y + 3)}) > 0) then
+			if (GetNumUnitsAt(BlueTemp, AiFlyer(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2}) > 0) then
+				UnitFlyerNum = GetNumUnitsAt(BlueTemp, AiFlyer(), {BlueTemp_x1, BlueTemp_y1}, {BlueTemp_x2, BlueTemp_y2})
+				for UnitUpto = BlueLeader,(UnitFlyerNum) do
+					CreateUnit(AiFlyer(), BlueLeader, {BlueFlyerBuilding_x, BlueFlyerBuilding_y})
+				end
+			end
+		end
+		AiForce(1, {AiFlyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer())}, true)
+		AiAttackWithForce(1)
+		AiNephrite_Attack_2013()
+	end
+	if (timer == 100) then
+		timer = 0
+	end
+	if ((timer == 75) or (timer == 25)) then
+		UnitFootmanNum = 0
+		UnitArcherNum = 0
+		UnitRangerNum = 0
+		UnitBallistaNum = 0
+		UnitDwarvesNum = 0
+		UnitPaladinNum = 0
+		UnitKnightNum = 0
+		UnitMageNum = 0
+		UnitMinutemanNum = 0
+		UnitHeroSoldierNum = 0
+		UnitHeroShooterNum = 0
+		if (GetNumUnitsAt(BlueLeader, AiSoldier(), {(BlueBarracks1_x - 3), (BlueBarracks1_y - 3)}, {(BlueBarracks1_x + 3), (BlueBarracks1_y + 3)}) > 5) then
+			UnitFootmanNum = GetNumUnitsAt(BlueLeader, AiSoldier(), {(BlueBarracks1_x - 3), (BlueBarracks1_y - 3)}, {(BlueBarracks1_x + 3), (BlueBarracks1_y + 3)})
+		end
+		if (GetNumUnitsAt(BlueLeader, AiShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)}) > 5) then
+			UnitArcherNum = GetNumUnitsAt(BlueLeader, AiShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)})
+		end
+		if (GetNumUnitsAt(BlueLeader, AiEliteShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)}) > 5) then
+			UnitRangerNum = GetNumUnitsAt(BlueLeader, AiEliteShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)})
+		end
+		if (GetNumUnitsAt(BlueLeader, AiHeroShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)}) > 5) then
+			UnitHeroShooterNum = GetNumUnitsAt(BlueLeader, AiHeroShooter(), {(BlueBarracks2_x - 3), (BlueBarracks2_y - 3)}, {(BlueBarracks2_x + 3), (BlueBarracks2_y + 3)})
+		end
+		if (GetNumUnitsAt(BlueLeader, AiCavalry(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)}) > 5) then
+			UnitKnightNum = GetNumUnitsAt(BlueLeader, AiCavalry(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)})
+		end
+		if (GetNumUnitsAt(BlueLeader, AiCavalryMage(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)}) > 5) then
+			UnitPaladinNum = GetNumUnitsAt(BlueLeader, AiCavalryMage(), {(BlueBarracks3_x - 3), (BlueBarracks3_y - 3)}, {(BlueBarracks3_x + 3), (BlueBarracks3_y + 3)})
+		end
+		AiForce(1, {AiFodder(), UnitMinutemanNum, AiSuicideBomber(), UnitDwarvesNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitFootmanNum, AiShooter(), UnitArcherNum, AiEliteShooter(), UnitRangerNum, AiCavalry(), UnitKnightNum, AiCavalryMage(), UnitPaladinNum, AiCatapult(), UnitCatapultNum}, true)
+		if (AiCheckForce(1)) then 
+			AiAttackWithForce(1)
+		end
+	end
+	AiRedRibbon_Research_2012()
 	if ((timer == 35) or (timer == 85)) then
 		AiNephrite_Flush_2013()
-	end
-	AiNephrite_Expand_2013()
-	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0)) then
-		AiNephrite_Research_2013()
 	end
 end
 
@@ -558,8 +540,6 @@ function AiRedRibbon_2012()
 		SetPlayerData(RedLeader, "Resources", "oil", 5000)
     end
 	timer = timer + 1
-	-- Let's check out our surroundings.
-	
 	if (timer == 100) then
 		timer = 0
 	end
@@ -642,12 +622,9 @@ function AiRedRibbon_2012()
 						CreateUnit(AiLonerShooter(), RedLeader, {RedBarracks2_x, RedBarracks2_y})
 					end
 				end
-			else
-				--AddMessage("I can't train any more axethrowers!")
 			end
 		end
 		if ((GetNumUnitsAt(RedTemp, "unit-caanoo-wiseskeleton", {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) or (GetNumUnitsAt(RedTemp, AiMage(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0)) then
-			--AddMessage("Spawn Red Mages!")
 			UnitDeathKnightNum = (GetNumUnitsAt(RedTemp, "unit-caanoo-wiseskeleton", {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) + GetNumUnitsAt(RedTemp, AiMage(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}))
 			for UnitUpto = RedLeader,(UnitDeathKnightNum - 1) do
 				CreateUnit(AiMage(), RedLeader, {RedMageTower_x, RedMageTower_y})
@@ -772,116 +749,14 @@ function AiRedRibbon_2012()
 			KillUnit(AiPlatform(), BlueLeader)
 		end
 	end
-	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0) then
-		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
-			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
-				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
-					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) then
-						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
-							AiResearch(AiUpgradeWeapon1())
-							AiResearch(AiUpgradeArmor1())
-							AiResearch(AiUpgradeWeapon2())
-							AiResearch(AiUpgradeArmor2())
-							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) == 0) then
-								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) >= 1) then
-									AiUpgradeTo(AiBestCityCenter())
-								else
-									AiSet(AiLumberMill(), 1)
-								end
-							else
-								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTemple()) >= 1) then
-									AiResearch(AiUpgradeCavalryMage())
-									AiResearch(AiCavalryMageSpell1())
-								else
-									AiSet(AiTemple(), 1)
-								end
-							end
-						else
-							AiSet(AiStables(), 1)
-						end
-					else
-						AiUpgradeTo(AiBetterCityCenter())
-					end
-				else
-					AiSet(AiBlacksmith(), 1)
-				end
-			else
-				AiSet(AiBarracks(), 1)
-			end
-		else
-			AiSet(AiCityCenter(), 1)
-			AiSet(AiWorker(), 8)
-		end
-	end
-	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiMage()) > 0) then
-		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiMageTower()) > 0) then
-			AiResearch(AiMageSpell1())
-			AiResearch(AiMageSpell2())
-			AiResearch(AiMageSpell3())
-			AiResearch(AiMageSpell4())
-			AiResearch(AiMageSpell5())
-		else
-			AiSet(AiMageTower(), 1)
-		end
-	end
-	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()) > 0) then
-		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
-			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
-				AiResearch(AiUpgradeCatapult1())
-				AiResearch(AiUpgradeCatapult2())
-			else
-				AiSet(AiBlacksmith(), 1)
-			end
-		else
-			AiSet(AiBarracks(), 1)
-		end
-	end
-	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 0) then
-		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
-			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) >= 1) then
-				AiUpgradeMissile1()
-				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
-						AiUpgradeMissile2()
-					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
-						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) then
-							AiResearch(AiUpgradeEliteShooter())
-							AiResearch(AiUpgradeEliteShooter1())
-							AiResearch(AiUpgradeMissile1())
-							AiResearch(AiUpgradeMissile2())
-							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
-								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) then
-									AiResearch(AiUpgradeEliteShooter2())
-									AiResearch(AiUpgradeEliteShooter3())
-								else
-									AiUpgradeTo(AiBestCityCenter())
-								end
-							else
-								AiSet(AiStables(), 1)
-							end
-						else
-							AiUpgradeTo(AiBetterCityCenter())
-						end	
-					else
-						AiSet(AiBlacksmith(), 1)
-					end
-				else
-					AiSet(AiBarracks(), 1)
-				end
-			else
-				AiSet(AiLumberMill(), 1)
-			end
-		else
-			AiSet(AiCityCenter(), 1)
-			AiSet(AiWorker(), 8)
-		end
-	end
+	AiRedRibbon_Research_2012()
 	if ((timer == 35) or (timer == 85)) then
 		AiNephrite_Flush_2013()
 	end
-	AiNephrite_Expand_2013()
-	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0)) then
-		AiNephrite_Research_2013()
-	end
+	--AiNephrite_Expand_2013()
+	--if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0)) then
+	--	AiNephrite_Research_2013()
+	--end
 end
 
 function AiRed1()

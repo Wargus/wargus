@@ -195,14 +195,14 @@ function AiRedRibbon_Setup_2014()
 	ftm_origin_x[65] = 255
 	ftm_origin_y[65] = 1
 	
-	ftm_team[0] = 1
-	ftm_team[1] = 2
-	ftm_team[2] = 2
+	ftm_team[0] = 1000
+	ftm_team[1] = 2000
+	ftm_team[2] = 3000
 	ftm_team_x1[2] = 0
 	ftm_team_y1[2] = 0
 	ftm_team_x2[2] = 256
 	ftm_team_y2[2] = 256
-	ftm_team[3] = 1
+	ftm_team[3] = 4000
 	ftm_team_x1[3] = 0
 	ftm_team_y1[3] = 0
 	ftm_team_x2[3] = 256
@@ -224,7 +224,6 @@ function AiRedRibbon_2014()
 	--if (ftm_unit ~= {}) then
 		--AiRedRibbon_Setup_2014()
 	--end
-	AiNephrite_Expand_2013()
 	if ((timer[AiPlayer()] == 15) or (timer[AiPlayer()] == 50)) then
 		AddMessage("Time to spawn in.")
 		if (ftm_team[AiPlayer()] == ftm_team[ftm_choice[AiPlayer()]]) then
@@ -240,25 +239,24 @@ function AiRedRibbon_2014()
 			end
 			AiNephrite_Attack_2013()
 		end
-	elseif ((timer[AiPlayer()] == 25) or (timer[AiPlayer()] == 75)) then
-		AiNephrite_Attack_2013()
-	elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0)) then
-		AiNephrite_Research_2013()
+	elseif ((timer == 35) or (timer == 85)) then
+		AiNephrite_Flush_2013()
 	elseif (timer[AiPlayer()] == 1) then	
 		for i=0,3 do
 			if (ftm_team[AiPlayer()] == ftm_team[i]) then
-				SetSharedVision(AiPlayer(), true, ftm_team[i])
-				SetSharedVision(ftm_team[i], true, AiPlayer())
-				SetDiplomacy(AiPlayer(), "allied", ftm_team[i])
-				SetDiplomacy(ftm_team[i], "allied", AiPlayer())
+				SetSharedVision(AiPlayer(), true, i)
+				SetSharedVision(i, true, AiPlayer())
+				SetDiplomacy(AiPlayer(), "allied", i)
+				SetDiplomacy(i, "allied", AiPlayer())
 			else
-				SetSharedVision(AiPlayer(), false, ftm_team[i])
-				SetSharedVision(ftm_team[i], false, AiPlayer())
-				SetDiplomacy(AiPlayer(), "enemy", ftm_team[i])
-				SetDiplomacy(ftm_team[i], "enemy", AiPlayer())
+				SetSharedVision(AiPlayer(), false, i)
+				SetSharedVision(i, false, AiPlayer())
+				SetDiplomacy(AiPlayer(), "enemy", i)
+				SetDiplomacy(i, "enemy", AiPlayer())
 			end
 		end
 	end
+	AiRedRibbon_Research_2012()
 	timer[AiPlayer()] = timer[AiPlayer()] + 1
 	if (timer[AiPlayer()] == 101) then
 		timer[AiPlayer()] = 1
