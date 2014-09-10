@@ -49,7 +49,7 @@ SetPlayerData(3, "Resources", "wood", 1500)
 SetPlayerData(3, "Resources", "gold", 2000)
 SetPlayerData(3, "Resources", "oil", 5000)
 SetPlayerData(3, "RaceName", "human")
-SetAiType(3, "ai-passive")
+SetAiType(3, "ai_blue1")
 SetStartView(15, 32, 252)
 SetPlayerData(15, "Resources", "wood", 0)
 SetPlayerData(15, "Resources", "gold", 0)
@@ -16613,23 +16613,19 @@ unit = CreateUnit("unit-gryphon-aviary", 1, {21, 249})
 unit = CreateUnit("unit-dragon-roost", 0, {7, 7})
 unit = CreateUnit("unit-caanoo-wiseman", 3, {36, 8})
 unit = CreateUnit("unit-caanoo-wiseskeleton", 2, {37, 248})
-unit = CreateUnit("unit-caanoo-wiseman", 3, {36, 8})
-unit = CreateUnit("unit-caanoo-wiseskeleton", 2, {37, 248})
-unit = CreateUnit("unit-caanoo-wiseman", 3, {36, 8})
-unit = CreateUnit("unit-caanoo-wiseskeleton", 2, {37, 248})
 
 AiRedRibbon_Setup_2014()
 
-ftm_team[0] = 1
-ftm_team[1] = 2
-ftm_team[2] = 2
-ftm_team_x1[2] = 0
-ftm_team_y1[2] = 0
+ftm_team[0] = 0
+ftm_team[1] = 1
+ftm_team[2] = 1
+ftm_team_x1[2] = 1
+ftm_team_y1[2] = 1
 ftm_team_x2[2] = 64
 ftm_team_y2[2] = 256
-ftm_team[3] = 1
-ftm_team_x1[3] = 0
-ftm_team_y1[3] = 0
+ftm_team[3] = 0
+ftm_team_x1[3] = 1
+ftm_team_y1[3] = 1
 ftm_team_x2[3] = 64
 ftm_team_y2[3] = 256
 	

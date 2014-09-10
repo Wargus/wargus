@@ -476,7 +476,7 @@ DefineUnitType("unit-nomad", { Name = "Nomad",
   Priority = 57,
   Points = 100,
   Demand = 1,
-  Corpse = "unit-human-dead-body",
+  Corpse = "unit-orc-dead-body",
   Type = "land",
   RightMouseAction = "attack",
   CanAttack = true,
@@ -485,11 +485,11 @@ DefineUnitType("unit-nomad", { Name = "Nomad",
   organic = true,
   SelectableByRectangle = true,
   Sounds = {
-    "selected", "ranger-selected",
-    "acknowledge", "ranger-acknowledge",
-    "ready", "ranger-ready",
-    "help", "basic human voices help 1",
-    "dead", "basic human voices dead"} } )
+    "selected", "axethrower-selected",
+    "acknowledge", "axethrower-acknowledge",
+    "ready", "axethrower-ready",
+    "help", "basic orc voices help 1",
+    "dead", "basic orc voices dead"} } )
 	
 
 -- Foundations

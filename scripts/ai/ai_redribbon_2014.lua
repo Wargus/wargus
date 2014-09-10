@@ -27,9 +27,8 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
-local timer = {}
-
 function AiRedRibbon_Setup_2014()
+	timers = {}
 	ftm_team = {}
 	ftm_team_x1 = {}
 	ftm_team_y1 = {}
@@ -211,8 +210,8 @@ function AiRedRibbon_Setup_2014()
 	ftm_choice[0] = 3
 	ftm_choice[1] = 2
 	
-	timer[0] = 1
-	timer[1] = 1
+	timers[0] = 1
+	timers[1] = 1
 	
 	ftm_index_start[0] = 51
 	ftm_index_end[0] = 65
@@ -224,7 +223,7 @@ function AiRedRibbon_2014()
 	--if (ftm_unit ~= {}) then
 		--AiRedRibbon_Setup_2014()
 	--end
-	if ((timer[AiPlayer()] == 15) or (timer[AiPlayer()] == 50)) then
+	if ((timers[AiPlayer()] == 15) or (timers[AiPlayer()] == 50)) then
 		AddMessage("Time to spawn in.")
 		if (ftm_team[AiPlayer()] == ftm_team[ftm_choice[AiPlayer()]]) then
 			for i=ftm_index_start[AiPlayer()],ftm_index_end[AiPlayer()] do
@@ -239,9 +238,9 @@ function AiRedRibbon_2014()
 			end
 			AiNephrite_Attack_2013()
 		end
-	elseif ((timer == 35) or (timer == 85)) then
+	elseif ((timers[AiPlayer()] == 35) or (timers[AiPlayer()] == 85)) then
 		AiNephrite_Flush_2013()
-	elseif (timer[AiPlayer()] == 1) then	
+	elseif (timers[AiPlayer()] == 1) then	
 		for i=0,3 do
 			if (ftm_team[AiPlayer()] == ftm_team[i]) then
 				SetSharedVision(AiPlayer(), true, i)
@@ -257,9 +256,9 @@ function AiRedRibbon_2014()
 		end
 	end
 	AiRedRibbon_Research_2012()
-	timer[AiPlayer()] = timer[AiPlayer()] + 1
-	if (timer[AiPlayer()] == 101) then
-		timer[AiPlayer()] = 1
+	timers[AiPlayer()] = timers[AiPlayer()] + 1
+	if (timers[AiPlayer()] == 101) then
+		timers[AiPlayer()] = 1
 	end
 end
 

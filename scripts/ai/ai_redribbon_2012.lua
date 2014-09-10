@@ -31,7 +31,7 @@
 --local Red2Temp_x
 --local Red2Temp_y
 
-
+local timer
 
 local redribbon_stepping -- Used to identify where the build order is up to.
 local blueribbon_stepping -- Used to identify where the build order is up to.
@@ -355,10 +355,22 @@ function AiBlueRibbon_2012()
 end
 
 function AiBlue1()
-	if (BlueTeam1Dead == true) then
+	if (BlueTeam1_2014 == true) then
+		timer = timers[ftm_team[AiPlayer()]]
+	end
+	if (BlueTeam1_x1 == nil) then
+		BlueTeam1_2014 = true
+		BlueTeam1 = AiPlayer()
+		BlueTeam1_x1 = ftm_team_x1[AiPlayer()]
+		BlueTeam1_y1 = ftm_team_y1[AiPlayer()]
+		BlueTeam1_x2 = ftm_team_x2[AiPlayer()]
+		BlueTeam1_y2 = ftm_team_y2[AiPlayer()]
+		timer = 1
 	else
-		if ((GetPlayerData(BlueTeam1, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
-			AiBlue1_Basic()
+		if (BlueTeam1Dead ~= true) then
+			if ((GetPlayerData(AiPlayer(), "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
+				AiBlue1_Basic()
+			end
 		end
 	end
 end
@@ -366,7 +378,7 @@ end
 function AiBlue2()
 	if (BlueTeam2Dead == true) then
 	else
-		if ((GetPlayerData(BlueTeam1, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
+		if ((GetPlayerData(BlueTeam2, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
 			AiBlue2_Basic()
 		end
 	end
@@ -444,9 +456,11 @@ function AiBlue1_Basic()
 	end
 	if ((timer == 25) or (timer == 75)) then
 		Blue1Mana = Blue1Mana + 55
+		AddMessage("Manna25")
 	end
 	if ((timer == 50) or (timer == 98)) then
 		Blue1Mana = Blue1Mana + 53
+		AddMessage("Manna50")
 	end
 	if (GetNumUnitsAt(BlueTeam1, "unit-knight", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 8) then
 		if (GetNumUnitsAt(BlueTeam1, "unit-footman", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 12) then
@@ -493,10 +507,12 @@ function AiBlue1_Basic()
 		end
 	end
 	if (Blue1Step == 1) then
+		AddMessage("Blue1Step")
 		if (Blue1Temp_x ~= nil) then
 			if (Blue1Temp_x == BlueTeam1_x2) then
 				if (Blue1Temp_y == BlueTeam1_y2) then
 					-- Oh shit, I've used up all my spaces.
+					AddMessage("Oh shit...")
 				else
 					Blue1Temp_x = BlueTeam1_x1
 					Blue1Temp_y = Blue1Temp_y + 1
