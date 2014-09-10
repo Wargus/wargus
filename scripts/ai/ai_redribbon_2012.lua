@@ -368,7 +368,7 @@ function AiBlue1()
 		timer = 1
 	else
 		if (BlueTeam1Dead ~= true) then
-			if ((GetPlayerData(AiPlayer(), "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
+			if ((GetPlayerData(BlueTeam1, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
 				AiBlue1_Basic()
 			end
 		end
@@ -376,10 +376,22 @@ function AiBlue1()
 end
 
 function AiBlue2()
-	if (BlueTeam2Dead == true) then
+	if (BlueTeam2_2014 == true) then
+		timer = timers[ftm_team[AiPlayer()]]
+	end
+	if (BlueTeam2_x1 == nil) then
+		BlueTeam2_2014 = true
+		BlueTeam2 = AiPlayer()
+		BlueTeam2_x1 = ftm_team_x1[AiPlayer()]
+		BlueTeam2_y1 = ftm_team_y1[AiPlayer()]
+		BlueTeam2_x2 = ftm_team_x2[AiPlayer()]
+		BlueTeam2_y2 = ftm_team_y2[AiPlayer()]
+		timer = 1
 	else
-		if ((GetPlayerData(BlueTeam2, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
-			AiBlue2_Basic()
+		if (BlueTeam1Dead ~= true) then
+			if ((GetPlayerData(BlueTeam2, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
+				AiBlue2_Basic()
+			end
 		end
 	end
 end
