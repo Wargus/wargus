@@ -30,6 +30,8 @@
 function AiRedRibbon_Setup_2014()
 	timers = {}
 	ftm_team = {}
+	ftm_team_startx = {}
+	ftm_team_starty = {}
 	ftm_team_x1 = {}
 	ftm_team_y1 = {}
 	ftm_team_x2 = {}
@@ -206,6 +208,14 @@ function AiRedRibbon_Setup_2014()
 	ftm_team_y1[3] = 0
 	ftm_team_x2[3] = 256
 	ftm_team_y2[3] = 256
+	ftm_team_startx[0] = 1
+	ftm_team_starty[0] = 1
+	ftm_team_startx[1] = 1
+	ftm_team_starty[1] = 1
+	ftm_team_startx[2] = 1
+	ftm_team_starty[2] = 1
+	ftm_team_startx[3] = 1
+	ftm_team_starty[3] = 1
 	
 	ftm_choice[0] = 3
 	ftm_choice[1] = 2
@@ -223,7 +233,7 @@ function AiRedRibbon_2014()
 	--if (ftm_unit ~= {}) then
 		--AiRedRibbon_Setup_2014()
 	--end
-	if ((timers[AiPlayer()] == 15) or (timers[AiPlayer()] == 50)) then
+	if ((timers[AiPlayer()] == 50) or (timers[AiPlayer()] == 100)) then
 		AddMessage("Time to spawn in.")
 		if (ftm_team[AiPlayer()] == ftm_team[ftm_choice[AiPlayer()]]) then
 			for i=ftm_index_start[AiPlayer()],ftm_index_end[AiPlayer()] do

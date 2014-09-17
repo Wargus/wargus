@@ -16807,3 +16807,17 @@ AddTrigger(
 	SetDiplomacy(4, "enemy", 4)
 	SetDiplomacy(4, "enemy", 7)
 return false end)
+
+AddTrigger(
+	function() return (GameCycle > 800) end, 
+	function()	if (((GetThisPlayer() == BlueTeam1) and (GetPlayerData(BlueTeam1, "AiEnabled") == true) and (GetPlayerData(BlueTeam1, "TotalNumUnits") == 0)) or ((GetThisPlayer() == BlueTeam2) and (GetPlayerData(BlueTeam2, "AiEnabled") == true) and (GetPlayerData(BlueTeam2, "TotalNumUnits") == 0)) or ((GetThisPlayer() == RedTeam1) and (GetPlayerData(RedTeam1, "AiEnabled") == true) and (GetPlayerData(RedTeam1, "TotalNumUnits") == 0)) or ((GetThisPlayer() == RedTeam2) and (GetPlayerData(RedTeam2, "AiEnabled") == true) and (GetPlayerData(RedTeam2, "TotalNumUnits") == 0))) then
+					ActionDefeat() 
+					--Make this work!
+				end
+				if ((((GetThisPlayer() == BlueTeam1) or (GetThisPlayer() == BlueTeam2)) and ((GetPlayerData(BlueLeader, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam1, "TotalNumUnits") == 0) and (GetPlayerData(BlueTeam2, "TotalNumUnits") == 0))) or (((GetThisPlayer() == RedTeam1) or (GetThisPlayer() == RedTeam2)) and ((GetPlayerData(RedLeader, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam1, "TotalNumUnits") == 0) and (GetPlayerData(RedTeam2, "TotalNumUnits") == 0)))) then
+					ActionDefeat() 
+				end
+				if (GetNumOpponents(GetThisPlayer()) == 0) then
+					ActionVictory() 
+				end
+return true end)

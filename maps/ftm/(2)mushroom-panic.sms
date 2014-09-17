@@ -16697,3 +16697,13 @@ ftm_origin_y[64] = 237
 ftm_origin_x[65] = 30
 ftm_origin_y[65] = 230
 
+ftm_team_startx[0] = 31
+ftm_team_starty[0] = 31
+ftm_team_startx[1] = 29
+ftm_team_starty[1] = 229
+ftm_team_startx[2] = 37
+ftm_team_starty[2] = 248
+ftm_team_startx[3] = 36
+ftm_team_starty[3] = 8
+
+BlueTeam1_Order = "Wise"

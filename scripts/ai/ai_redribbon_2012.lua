@@ -365,6 +365,8 @@ function AiBlue1()
 		BlueTeam1_y1 = ftm_team_y1[AiPlayer()]
 		BlueTeam1_x2 = ftm_team_x2[AiPlayer()]
 		BlueTeam1_y2 = ftm_team_y2[AiPlayer()]
+		BlueTeam1_xw = ftm_team_startx[AiPlayer()]
+		BlueTeam1_yw = ftm_team_starty[AiPlayer()]
 		timer = 1
 	else
 		if (BlueTeam1Dead ~= true) then
@@ -386,6 +388,8 @@ function AiBlue2()
 		BlueTeam2_y1 = ftm_team_y1[AiPlayer()]
 		BlueTeam2_x2 = ftm_team_x2[AiPlayer()]
 		BlueTeam2_y2 = ftm_team_y2[AiPlayer()]
+		BlueTeam2_xw = ftm_team_startx[AiPlayer()]
+		BlueTeam2_yw = ftm_team_starty[AiPlayer()]
 		timer = 1
 	else
 		if (BlueTeam1Dead ~= true) then
@@ -397,10 +401,27 @@ function AiBlue2()
 end
 
 function AiBlue2_Basic()
-	if (Blue2Temp_x ~= nil) then
-	else
-		Blue2Temp_x = BlueTeam2_x1
-		Blue2Temp_y = BlueTeam2_y1
+	if (Blue2Temp_x ~= nil) then else
+		if (BlueTeam2_Order ~= nil) then else
+			BlueTeam2_Order = "Top-Right"
+		end
+		if (BlueTeam2_Order == "Top-Right") then
+			-- Top-Right means start at top, go right.
+			Blue2Temp_x = BlueTeam2_x1
+			Blue2Temp_y = BlueTeam2_y1
+		elseif (BlueTeam2_Order == "Top-Left") then
+			Blue2Temp_x = BlueTeam2_x2
+			Blue2Temp_y = BlueTeam2_y1
+		elseif (BlueTeam2_Order == "Bottom-Right") then
+			Blue2Temp_x = BlueTeam2_x1
+			Blue2Temp_y = BlueTeam2_y2
+		elseif (BlueTeam2_Order == "Bottom-Left") then
+			Blue2Temp_x = BlueTeam2_x2
+			Blue2Temp_y = BlueTeam2_y2
+		elseif (BlueTeam2_Order == "Wise") then
+			Blue2Temp_x = BlueTeam2_xw
+			Blue2Temp_y = BlueTeam2_yw
+		end
 		Blue2Step = 0
 		Blue2Mana = 150
 	end
@@ -443,15 +464,61 @@ function AiBlue2_Basic()
 	end
 	if (Blue2Step == 1) then
 		if (Blue2Temp_x ~= nil) then
-			if (Blue2Temp_x == BlueTeam2_x2) then
-				if (Blue2Temp_y == BlueTeam2_y2) then
-					-- Oh shit, I've used up all my spaces.
+			if (BlueTeam2_Order == "Top-Right") then
+				if (Blue2Temp_x == BlueTeam2_x2) then
+					if (Blue2Temp_y == BlueTeam2_y2) then
+						-- Oh shit, I've used up all my spaces.
+						Blue2Temp_x = BlueTeam2_x1
+						Blue2Temp_y = BlueTeam2_y1
+					else
+						Blue2Temp_x = BlueTeam2_x1
+						Blue2Temp_y = Blue2Temp_y + 1
+					end
 				else
-					Blue2Temp_x = BlueTeam2_x1
-					Blue2Temp_y = Blue2Temp_y + 1
+					Blue2Temp_x = Blue2Temp_x + 1
 				end
-			else
-				Blue2Temp_x = Blue2Temp_x + 1
+			end
+			if (BlueTeam2_Order == "Top-Left") then
+				if (Blue2Temp_x == BlueTeam2_x1) then
+					if (Blue2Temp_y == BlueTeam2_y2) then
+						-- Oh shit, I've used up all my spaces.
+						Blue2Temp_x = BlueTeam2_x1
+						Blue2Temp_y = BlueTeam2_y1
+					else
+						Blue2Temp_x = BlueTeam2_x2
+						Blue2Temp_y = Blue2Temp_y + 1
+					end
+				else
+					Blue2Temp_x = Blue2Temp_x - 1
+				end
+			end
+			if (BlueTeam2_Order == "Bottom-Right") then
+				if (Blue2Temp_x == BlueTeam2_x2) then
+					if (Blue2Temp_y == BlueTeam2_y1) then
+						-- Oh shit, I've used up all my spaces.
+						Blue2Temp_x = BlueTeam2_x1
+						Blue2Temp_y = BlueTeam2_y2
+					else
+						Blue2Temp_x = BlueTeam2_x1
+						Blue2Temp_y = Blue2Temp_y - 1
+					end
+				else
+					Blue2Temp_x = Blue2Temp_x + 1
+				end
+			end
+			if (BlueTeam2_Order == "Bottom-Left") then
+				if (Blue2Temp_x == BlueTeam2_x1) then
+					if (Blue2Temp_y == BlueTeam2_y1) then
+						-- Oh shit, I've used up all my spaces.
+						Blue2Temp_x = BlueTeam2_x1
+						Blue2Temp_y = BlueTeam2_y2
+					else
+						Blue2Temp_x = BlueTeam2_x2
+						Blue2Temp_y = Blue2Temp_y - 1
+					end
+				else
+					Blue2Temp_x = Blue2Temp_x - 1
+				end
 			end
 		end
 		Blue2Step = 0
@@ -459,20 +526,35 @@ function AiBlue2_Basic()
 end
 
 function AiBlue1_Basic()
-	if (Blue1Temp_x ~= nil) then
-	else
-		Blue1Temp_x = BlueTeam1_x1
-		Blue1Temp_y = BlueTeam1_y1
+	if (Blue1Temp_x ~= nil) then else
+		if (BlueTeam1_Order ~= nil) then else
+			BlueTeam1_Order = "Top-Right"
+		end
+		if (BlueTeam1_Order == "Top-Right") then
+			-- Top-Right means start at top, go right.
+			Blue1Temp_x = BlueTeam1_x1
+			Blue1Temp_y = BlueTeam1_y1
+		elseif (BlueTeam1_Order == "Top-Left") then
+			Blue1Temp_x = BlueTeam1_x2
+			Blue1Temp_y = BlueTeam1_y1
+		elseif (BlueTeam1_Order == "Bottom-Right") then
+			Blue1Temp_x = BlueTeam1_x1
+			Blue1Temp_y = BlueTeam1_y2
+		elseif (BlueTeam1_Order == "Bottom-Left") then
+			Blue1Temp_x = BlueTeam1_x2
+			Blue1Temp_y = BlueTeam1_y2
+		elseif (BlueTeam1_Order == "Wise") then
+			Blue1Temp_x = BlueTeam1_xw
+			Blue1Temp_y = BlueTeam1_yw
+		end
 		Blue1Step = 0
 		Blue1Mana = 150
 	end
 	if ((timer == 25) or (timer == 75)) then
 		Blue1Mana = Blue1Mana + 55
-		AddMessage("Manna25")
 	end
 	if ((timer == 50) or (timer == 98)) then
 		Blue1Mana = Blue1Mana + 53
-		AddMessage("Manna50")
 	end
 	if (GetNumUnitsAt(BlueTeam1, "unit-knight", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 8) then
 		if (GetNumUnitsAt(BlueTeam1, "unit-footman", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 12) then
@@ -519,18 +601,62 @@ function AiBlue1_Basic()
 		end
 	end
 	if (Blue1Step == 1) then
-		AddMessage("Blue1Step")
 		if (Blue1Temp_x ~= nil) then
-			if (Blue1Temp_x == BlueTeam1_x2) then
-				if (Blue1Temp_y == BlueTeam1_y2) then
-					-- Oh shit, I've used up all my spaces.
-					AddMessage("Oh shit...")
+			if (BlueTeam1_Order == "Top-Right") then
+				if (Blue1Temp_x == BlueTeam1_x2) then
+					if (Blue1Temp_y == BlueTeam1_y2) then
+						-- Oh shit, I've used up all my spaces.
+						Blue1Temp_x = BlueTeam1_x1
+						Blue1Temp_y = BlueTeam1_y1
+					else
+						Blue1Temp_x = BlueTeam1_x1
+						Blue1Temp_y = Blue1Temp_y + 1
+					end
 				else
-					Blue1Temp_x = BlueTeam1_x1
-					Blue1Temp_y = Blue1Temp_y + 1
+					Blue1Temp_x = Blue1Temp_x + 1
 				end
-			else
-				Blue1Temp_x = Blue1Temp_x + 1
+			end
+			if (BlueTeam1_Order == "Top-Left") then
+				if (Blue1Temp_x == BlueTeam1_x1) then
+					if (Blue1Temp_y == BlueTeam1_y2) then
+						-- Oh shit, I've used up all my spaces.
+						Blue1Temp_x = BlueTeam1_x1
+						Blue1Temp_y = BlueTeam1_y1
+					else
+						Blue1Temp_x = BlueTeam1_x2
+						Blue1Temp_y = Blue1Temp_y + 1
+					end
+				else
+					Blue1Temp_x = Blue1Temp_x - 1
+				end
+			end
+			if (BlueTeam1_Order == "Bottom-Right") then
+				if (Blue1Temp_x == BlueTeam1_x2) then
+					if (Blue1Temp_y == BlueTeam1_y1) then
+						-- Oh shit, I've used up all my spaces.
+						Blue1Temp_x = BlueTeam1_x1
+						Blue1Temp_y = BlueTeam1_y2
+					else
+						Blue1Temp_x = BlueTeam1_x1
+						Blue1Temp_y = Blue1Temp_y - 1
+					end
+				else
+					Blue1Temp_x = Blue1Temp_x + 1
+				end
+			end
+			if (BlueTeam1_Order == "Bottom-Left") then
+				if (Blue1Temp_x == BlueTeam1_x1) then
+					if (Blue1Temp_y == BlueTeam1_y1) then
+						-- Oh shit, I've used up all my spaces.
+						Blue1Temp_x = BlueTeam1_x1
+						Blue1Temp_y = BlueTeam1_y2
+					else
+						Blue1Temp_x = BlueTeam1_x2
+						Blue1Temp_y = Blue1Temp_y - 1
+					end
+				else
+					Blue1Temp_x = Blue1Temp_x - 1
+				end
 			end
 		end
 		Blue1Step = 0
@@ -787,25 +913,25 @@ function AiRedRibbon_2012()
 	--end
 end
 
-function AiRed1()
+function AiRed1_2012()
 	if (RedTeam1Dead == true) then
 	else
 		if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
-			AiRed1_Basic()
+			AiRed1_Basic_2012()
 		end
 	end
 end
 
-function AiRed2()
+function AiRed2_2012()
 	if (RedTeam2Dead == true) then
 	else
 		if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
-			AiRed2_Basic()
+			AiRed2_Basic_2012()
 		end
 	end
 end
 
-function AiRed2_Basic()
+function AiRed2_Basic_2012()
 	if (Red2Temp_x ~= nil) then
 	else
 		Red2Temp_x = RedTeam2_x1
@@ -897,7 +1023,7 @@ function AiRed2_Basic()
 	end
 end
 
-function AiRed1_Basic()
+function AiRed1_Basic_2012()
 	if (Red1Temp_x ~= nil) then
 	else
 		Red1Temp_x = RedTeam1_x1
@@ -1004,8 +1130,8 @@ function AiRed1_Basic()
 end
 
 DefineAi("ai_redribbon_2012", "*", "ai_redribbon_2012", AiRedRibbon_2012)
-DefineAi("ai_red2", "*", "ai_red2", AiRed2)
-DefineAi("ai_red1", "*", "ai_red1", AiRed1)
+DefineAi("ai_red2", "*", "ai_red2", AiRed2_2012)
+DefineAi("ai_red1", "*", "ai_red1", AiRed1_2012)
 DefineAi("ai_blueribbon_2012", "*", "ai_blueribbon_2012", AiBlueRibbon_2012)
 DefineAi("ai_blue2", "*", "ai_blue2", AiBlue2)
 DefineAi("ai_blue1", "*", "ai_blue1", AiBlue1)
