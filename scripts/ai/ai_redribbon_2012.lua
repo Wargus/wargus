@@ -914,7 +914,19 @@ function AiRedRibbon_2012()
 end
 
 function AiRed1_2012()
-	if (RedTeam1Dead == true) then
+	if (RedTeam1_2014 == true) then
+		timer = timers[ftm_team[AiPlayer()]]
+	end
+	if (RedTeam1_x1 == nil) then
+		RedTeam1_2014 = true
+		RedTeam1 = AiPlayer()
+		RedTeam1_x1 = ftm_team_x1[AiPlayer()]
+		RedTeam1_y1 = ftm_team_y1[AiPlayer()]
+		RedTeam1_x2 = ftm_team_x2[AiPlayer()]
+		RedTeam1_y2 = ftm_team_y2[AiPlayer()]
+		RedTeam1_xw = ftm_team_startx[AiPlayer()]
+		RedTeam1_yw = ftm_team_starty[AiPlayer()]
+		timer = 1
 	else
 		if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
 			AiRed1_Basic_2012()
@@ -923,21 +935,51 @@ function AiRed1_2012()
 end
 
 function AiRed2_2012()
-	if (RedTeam2Dead == true) then
+	if (RedTeam2_2014 == true) then
+		timer = timers[ftm_team[AiPlayer()]]
+	end
+	if (RedTeam2_x1 == nil) then
+		RedTeam2_2014 = true
+		RedTeam2 = AiPlayer()
+		RedTeam2_x1 = ftm_team_x1[AiPlayer()]
+		RedTeam2_y1 = ftm_team_y1[AiPlayer()]
+		RedTeam2_x2 = ftm_team_x2[AiPlayer()]
+		RedTeam2_y2 = ftm_team_y2[AiPlayer()]
+		RedTeam2_xw = ftm_team_startx[AiPlayer()]
+		RedTeam2_yw = ftm_team_starty[AiPlayer()]
+		timer = 1
+		redribbon_stepping = 7
 	else
-		if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
+		if ((GetPlayerData(RedTeam2, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
 			AiRed2_Basic_2012()
 		end
 	end
 end
 
 function AiRed2_Basic_2012()
-	if (Red2Temp_x ~= nil) then
-	else
-		Red2Temp_x = RedTeam2_x1
-		Red2Temp_y = RedTeam2_y1
+	if (Red2Temp_x ~= nil) then else
+		if (RedTeam2_Order ~= nil) then else
+			RedTeam2_Order = "Top-Right"
+		end
+		if (RedTeam2_Order == "Top-Right") then
+			-- Top-Right means start at top, go right.
+			Red2Temp_x = RedTeam2_x1
+			Red2Temp_y = RedTeam2_y1
+		elseif (RedTeam2_Order == "Top-Left") then
+			Red2Temp_x = RedTeam2_x2
+			Red2Temp_y = RedTeam2_y1
+		elseif (RedTeam2_Order == "Bottom-Right") then
+			Red2Temp_x = RedTeam2_x1
+			Red2Temp_y = RedTeam2_y2
+		elseif (RedTeam2_Order == "Bottom-Left") then
+			Red2Temp_x = RedTeam2_x2
+			Red2Temp_y = RedTeam2_y2
+		elseif (RedTeam2_Order == "Wise") then
+			Red2Temp_x = RedTeam2_xw
+			Red2Temp_y = RedTeam2_yw
+		end
 		Red2Step = 0
-		Red2Mana = 140
+		Red2Mana = 150
 	end
 	if ((timer == 25) or (timer == 75)) then
 			Red2Mana = Red2Mana + 105
@@ -1007,16 +1049,61 @@ function AiRed2_Basic_2012()
 	end
 	if (Red2Step == 1) then
 		if (Red2Temp_x ~= nil) then
-			if (Red2Temp_x == RedTeam2_x2) then
-				if (Red2Temp_y == RedTeam2_y2) then
-					-- Oh shit, I've used up all my spaces.
-					redribbon_stepping = 8
+			if (RedTeam2_Order == "Top-Right") then
+				if (Red2Temp_x == RedTeam2_x2) then
+					if (Red2Temp_y == RedTeam2_y2) then
+						-- Oh shit, I've used up all my spaces.
+						Red2Temp_x = RedTeam2_x1
+						Red2Temp_y = RedTeam2_y1
+					else
+						Red2Temp_x = RedTeam2_x1
+						Red2Temp_y = Red2Temp_y + 1
+					end
 				else
-					Red2Temp_x = RedTeam2_x1
-					Red2Temp_y = Red2Temp_y + 1
+					Red2Temp_x = Red2Temp_x + 1
 				end
-			else
-				Red2Temp_x = Red2Temp_x + 1
+			end
+			if (RedTeam2_Order == "Top-Left") then
+				if (Red2Temp_x == RedTeam2_x1) then
+					if (Red2Temp_y == RedTeam2_y2) then
+						-- Oh shit, I've used up all my spaces.
+						Red2Temp_x = RedTeam2_x1
+						Red2Temp_y = RedTeam2_y1
+					else
+						Red2Temp_x = RedTeam2_x2
+						Red2Temp_y = Red2Temp_y + 1
+					end
+				else
+					Red2Temp_x = Red2Temp_x - 1
+				end
+			end
+			if (RedTeam2_Order == "Bottom-Right") then
+				if (Red2Temp_x == RedTeam2_x2) then
+					if (Red2Temp_y == RedTeam2_y1) then
+						-- Oh shit, I've used up all my spaces.
+						Red2Temp_x = RedTeam2_x1
+						Red2Temp_y = RedTeam2_y2
+					else
+						Red2Temp_x = RedTeam2_x1
+						Red2Temp_y = Red2Temp_y - 1
+					end
+				else
+					Red2Temp_x = Red2Temp_x + 1
+				end
+			end
+			if (RedTeam2_Order == "Bottom-Left") then
+				if (Red2Temp_x == RedTeam2_x1) then
+					if (Red2Temp_y == RedTeam2_y1) then
+						-- Oh shit, I've used up all my spaces.
+						Red2Temp_x = RedTeam2_x1
+						Red2Temp_y = RedTeam2_y2
+					else
+						Red2Temp_x = RedTeam2_x2
+						Red2Temp_y = Red2Temp_y - 1
+					end
+				else
+					Red2Temp_x = Red2Temp_x - 1
+				end
 			end
 		end
 		Red2Step = 0
@@ -1024,12 +1111,29 @@ function AiRed2_Basic_2012()
 end
 
 function AiRed1_Basic_2012()
-	if (Red1Temp_x ~= nil) then
-	else
-		Red1Temp_x = RedTeam1_x1
-		Red1Temp_y = RedTeam1_y1
+	if (Red1Temp_x ~= nil) then else
+		if (RedTeam1_Order ~= nil) then else
+			RedTeam1_Order = "Top-Right"
+		end
+		if (RedTeam1_Order == "Top-Right") then
+			-- Top-Right means start at top, go right.
+			Red1Temp_x = RedTeam1_x1
+			Red1Temp_y = RedTeam1_y1
+		elseif (RedTeam1_Order == "Top-Left") then
+			Red1Temp_x = RedTeam1_x2
+			Red1Temp_y = RedTeam1_y1
+		elseif (RedTeam1_Order == "Bottom-Right") then
+			Red1Temp_x = RedTeam1_x1
+			Red1Temp_y = RedTeam1_y2
+		elseif (RedTeam1_Order == "Bottom-Left") then
+			Red1Temp_x = RedTeam1_x2
+			Red1Temp_y = RedTeam1_y2
+		elseif (RedTeam1_Order == "Wise") then
+			Red1Temp_x = RedTeam1_xw
+			Red1Temp_y = RedTeam1_yw
+		end
 		Red1Step = 0
-		Red1Mana = 140
+		Red1Mana = 150
 	end
 	if ((timer == 25) or (timer == 75)) then
 		Red1Mana = Red1Mana + 52
@@ -1070,7 +1174,7 @@ function AiRed1_Basic_2012()
 		if (GetNumUnitsAt(RedTeam1, "unit-grunt", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) < 22) then
 			if ((GetNumUnitsAt(RedTeam1, "unit-grunt", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) < 5) or (GetNumUnitsAt(RedTeam1, AiCavalryMage(), {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) > 0)) then
 				if (Red1Mana > 49) then
-					if ((GetPlayerData(RedLeader, "UnitTypesCount", AiEliteShooter()) == 0) and ((Red1Mana > 90) and (Red1Mana < 190))) then
+					if ((GetPlayerData(RedTeam1, "UnitTypesCount", AiEliteShooter()) == 0) and ((Red1Mana > 90) and (Red1Mana < 190))) then
 						CreateUnit(AiEliteShooter(), RedTeam1, {Red1Temp_x, Red1Temp_y})
 						Red1Mana = Red1Mana - 100
 					else
@@ -1112,17 +1216,61 @@ function AiRed1_Basic_2012()
 	end
 	if (Red1Step == 1) then
 		if (Red1Temp_x ~= nil) then
-			if (Red1Temp_x == RedTeam1_x2) then
-				if (Red1Temp_y == RedTeam1_y2) then
-					-- Oh shit, I've used up all my spaces.
-					Red1Temp_x = RedTeam1_x1
-					Red1Temp_y = RedTeam1_y1
+			if (RedTeam1_Order == "Top-Right") then
+				if (Red1Temp_x == RedTeam1_x2) then
+					if (Red1Temp_y == RedTeam1_y2) then
+						-- Oh shit, I've used up all my spaces.
+						Red1Temp_x = RedTeam1_x1
+						Red1Temp_y = RedTeam1_y1
+					else
+						Red1Temp_x = RedTeam1_x1
+						Red1Temp_y = Red1Temp_y + 1
+					end
 				else
-					Red1Temp_x = RedTeam1_x1
-					Red1Temp_y = Red1Temp_y + 1
+					Red1Temp_x = Red1Temp_x + 1
 				end
-			else
-				Red1Temp_x = Red1Temp_x + 1
+			end
+			if (RedTeam1_Order == "Top-Left") then
+				if (Red1Temp_x == RedTeam1_x1) then
+					if (Red1Temp_y == RedTeam1_y2) then
+						-- Oh shit, I've used up all my spaces.
+						Red1Temp_x = RedTeam1_x1
+						Red1Temp_y = RedTeam1_y1
+					else
+						Red1Temp_x = RedTeam1_x2
+						Red1Temp_y = Red1Temp_y + 1
+					end
+				else
+					Red1Temp_x = Red1Temp_x - 1
+				end
+			end
+			if (RedTeam1_Order == "Bottom-Right") then
+				if (Red1Temp_x == RedTeam1_x2) then
+					if (Red1Temp_y == RedTeam1_y1) then
+						-- Oh shit, I've used up all my spaces.
+						Red1Temp_x = RedTeam1_x1
+						Red1Temp_y = RedTeam1_y2
+					else
+						Red1Temp_x = RedTeam1_x1
+						Red1Temp_y = Red1Temp_y - 1
+					end
+				else
+					Red1Temp_x = Red1Temp_x + 1
+				end
+			end
+			if (RedTeam1_Order == "Bottom-Left") then
+				if (Red1Temp_x == RedTeam1_x1) then
+					if (Red1Temp_y == RedTeam1_y1) then
+						-- Oh shit, I've used up all my spaces.
+						Red1Temp_x = RedTeam1_x1
+						Red1Temp_y = RedTeam1_y2
+					else
+						Red1Temp_x = RedTeam1_x2
+						Red1Temp_y = Red1Temp_y - 1
+					end
+				else
+					Red1Temp_x = Red1Temp_x - 1
+				end
 			end
 		end
 		Red1Step = 0

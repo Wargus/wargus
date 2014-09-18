@@ -73,6 +73,8 @@ if (OldCreateUnit == nil) then
     {"unit-mage-tower", "unit-temple-of-the-damned"},
     {"unit-gryphon-aviary", "unit-dragon-roost"},
     {"unit-human-barracks", "unit-orc-barracks"},
+    {"unit-farm", "unit-pig-farm"},
+    {"unit-yeoman", "unit-nomad"},
     {"unit-footman", "unit-grunt"},
     {"unit-archer", "unit-axethrower"},
     {"unit-ranger", "unit-berserker"},

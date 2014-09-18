@@ -43,7 +43,7 @@ SetPlayerData(2, "Resources", "wood", 1500)
 SetPlayerData(2, "Resources", "gold", 2000)
 SetPlayerData(2, "Resources", "oil", 5000)
 SetPlayerData(2, "RaceName", "orc")
-SetAiType(2, "ai-passive")
+SetAiType(2, "ai_red1")
 SetStartView(3, 36, 8)
 SetPlayerData(3, "Resources", "wood", 1500)
 SetPlayerData(3, "Resources", "gold", 2000)
@@ -16707,3 +16707,4 @@ ftm_team_startx[3] = 36
 ftm_team_starty[3] = 8
 
 BlueTeam1_Order = "Wise"
+RedTeam1_Order = "Wise"
