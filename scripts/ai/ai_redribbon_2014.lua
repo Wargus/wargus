@@ -29,6 +29,7 @@
 
 function AiRedRibbon_Setup_2014()
 	timers = {}
+	ftm_faction = {}
 	ftm_team = {}
 	ftm_team_startx = {}
 	ftm_team_starty = {}
@@ -195,33 +196,23 @@ function AiRedRibbon_Setup_2014()
 	ftm_cost[65] = 25
 	ftm_origin_x[65] = 255
 	ftm_origin_y[65] = 1
-	
-	ftm_team[0] = 1000
-	ftm_team[1] = 2000
-	ftm_team[2] = 3000
-	ftm_team_x1[2] = 0
-	ftm_team_y1[2] = 0
-	ftm_team_x2[2] = 256
-	ftm_team_y2[2] = 256
-	ftm_team[3] = 4000
-	ftm_team_x1[3] = 0
-	ftm_team_y1[3] = 0
-	ftm_team_x2[3] = 256
-	ftm_team_y2[3] = 256
-	ftm_team_startx[0] = 1
-	ftm_team_starty[0] = 1
-	ftm_team_startx[1] = 1
-	ftm_team_starty[1] = 1
-	ftm_team_startx[2] = 1
-	ftm_team_starty[2] = 1
-	ftm_team_startx[3] = 1
-	ftm_team_starty[3] = 1
-	
+		
 	ftm_choice[0] = 3
 	ftm_choice[1] = 2
 	
-	timers[0] = 1
-	timers[1] = 1
+    for i=0, 15 do
+		timers[i] = 1
+		ftm_faction[i] = 10
+		ftm_team[i] = 10
+		ftm_index_start[i] = 1
+		ftm_index_end[i] = 1
+		ftm_team_x1[i] = 0
+		ftm_team_y1[i] = 0
+		ftm_team_x2[i] = 256
+		ftm_team_y2[i] = 256
+		ftm_team_startx[i] = 1
+		ftm_team_starty[i] = 1
+    end
 	
 	ftm_index_start[0] = 51
 	ftm_index_end[0] = 65
@@ -251,8 +242,8 @@ function AiRedRibbon_2014()
 	elseif ((timers[AiPlayer()] == 35) or (timers[AiPlayer()] == 85)) then
 		AiNephrite_Flush_2013()
 	elseif (timers[AiPlayer()] == 1) then	
-		for i=0,3 do
-			if (ftm_team[AiPlayer()] == ftm_team[i]) then
+		for i=0,15 do
+			if (ftm_faction[AiPlayer()] == ftm_faction[i]) then
 				SetSharedVision(AiPlayer(), true, i)
 				SetSharedVision(i, true, AiPlayer())
 				SetDiplomacy(AiPlayer(), "allied", i)
