@@ -552,13 +552,10 @@ function AiBlue1_Basic()
 	end
 	if ((timer == 25) or (timer == 75)) then
 		Blue1Mana = Blue1Mana + 55
-		AddMessage("Add")
 	end
 	if ((timer == 50) or (timer == 98)) then
 		Blue1Mana = Blue1Mana + 53
-		AddMessage("Add")
 	end
-			AddMessage("asdfasdf")
 	if (GetNumUnitsAt(BlueTeam1, "unit-knight", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 8) then
 		if (GetNumUnitsAt(BlueTeam1, "unit-footman", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 12) then
 			if (Blue1Mana > 49) then
