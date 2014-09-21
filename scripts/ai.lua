@@ -721,6 +721,14 @@ function AiMageSpell4()
   end
 end
 
+function AiWise()
+  if (AiGetRace() == race1) then
+    return "unit-caanoo-wiseman"
+  else
+    return "unit-caanoo-wiseskeleton"
+  end
+end
+
 --
 --  5th spell of the mages of the current race.
 --

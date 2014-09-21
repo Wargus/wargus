@@ -43,7 +43,7 @@ SetPlayerData(2, "Resources", "wood", 0)
 SetPlayerData(2, "Resources", "gold", 0)
 SetPlayerData(2, "Resources", "oil", 0)
 SetPlayerData(2, "RaceName", "orc")
-SetAiType(2, "ai_red2")
+SetAiType(2, "ai_red_2014")
 SetStartView(3, 95, 75) -- Top right, Purple.
 SetPlayerData(3, "Resources", "wood", 0)
 SetPlayerData(3, "Resources", "gold", 0)
@@ -73,7 +73,7 @@ SetPlayerData(7, "Resources", "wood", 0)
 SetPlayerData(7, "Resources", "gold", 0)
 SetPlayerData(7, "Resources", "oil", 1000)
 SetPlayerData(7, "RaceName", "human")
-SetAiType(7, "ai_blue1")
+SetAiType(7, "ai_red_2014")
 SetStartView(15, 0, 0)
 SetPlayerData(15, "Resources", "wood", 0)
 SetPlayerData(15, "Resources", "gold", 0)
@@ -9682,3 +9682,65 @@ SetSharedVision(3, false, 7)
 SetSharedVision(7, false, 3)
 SetDiplomacy(3, "enemy", 7)
 SetDiplomacy(7, "enemy", 3)
+
+-- AiRed Player 2
+aiftm_unit[2][0] = "unit-skeleton"
+aiftm_quantity[2][0] = 3
+aiftm_loop[2] = 4
+aiftm_terminate[2] = 14
+aiftm_unit[2][1] = "unit-grunt"
+aiftm_quantity[2][1] = 1
+aiftm_unit[2][2] = "unit-skeleton"
+aiftm_quantity[2][2] = 2
+aiftm_unit[2][3] = "unit-peon"
+aiftm_quantity[2][3] = 2
+aiftm_unit[2][4] = "unit-axethrower"
+aiftm_quantity[2][4] = 2
+aiftm_unit[2][5] = "unit-grunt"
+aiftm_quantity[2][5] = 2
+aiftm_unit[2][6] = "unit-nomad"
+aiftm_quantity[2][6] = 1
+aiftm_unit[2][7] = "unit-skeleton"
+aiftm_quantity[2][7] = 2
+aiftm_unit[2][8] = "unit-grunt"
+aiftm_quantity[2][8] = 2
+aiftm_unit[2][9] = "unit-catapult"
+aiftm_quantity[2][9] = 1
+aiftm_unit[2][10] = "unit-goblin-sappers"
+aiftm_quantity[2][10] = 1
+aiftm_unit[2][11] = "unit-berserker"
+aiftm_quantity[2][11] = 1
+aiftm_unit[2][12] = "unit-ogre"
+aiftm_quantity[2][12] = 1
+aiftm_unit[2][13] = "unit-ogre-mage"
+aiftm_quantity[2][13] = 1
+aiftm_unit[2][14] = "unit-grunt"
+aiftm_quantity[2][14] = 2
+
+
+-- AiRed Player 7
+aiftm_unit[7][0] = "unit-peasant"
+aiftm_quantity[7][0] = 1
+aiftm_loop[7] = 0
+aiftm_terminate[7] = 10
+aiftm_unit[7][1] = "unit-footman"
+aiftm_quantity[7][1] = 6
+aiftm_unit[7][2] = "unit-ranger"
+aiftm_quantity[7][2] = 1
+aiftm_unit[7][3] = "unit-yeoman"
+aiftm_quantity[7][3] = 2
+aiftm_unit[7][4] = "unit-footman"
+aiftm_quantity[7][4] = 4
+aiftm_unit[7][5] = "unit-archer"
+aiftm_quantity[7][5] = 3
+aiftm_unit[7][6] = "unit-footman"
+aiftm_quantity[7][6] = 4
+aiftm_unit[7][7] = "unit-paladin"
+aiftm_quantity[7][7] = 1
+aiftm_unit[7][8] = "unit-yeoman"
+aiftm_quantity[7][8] = 2
+aiftm_unit[7][9] = "unit-archer"
+aiftm_quantity[7][9] = 2
+aiftm_unit[7][10] = "unit-mage"
+aiftm_quantity[7][10] = 1
+
