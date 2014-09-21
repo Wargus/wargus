@@ -49,7 +49,7 @@ SetPlayerData(3, "Resources", "wood", 0)
 SetPlayerData(3, "Resources", "gold", 0)
 SetPlayerData(3, "Resources", "oil", 0)
 SetPlayerData(3, "RaceName", "orc")
-SetAiType(3, "ai_red1")
+SetAiType(3, "ai_red_2014")
 SetStartView(4, 0, 0) -- Top left, Orange.
 SetPlayerData(4, "Resources", "wood", 0)
 SetPlayerData(4, "Resources", "gold", 0)
@@ -9311,7 +9311,7 @@ unit = CreateUnit("unit-gold-mine", 15, {87, 92})
 SetResourcesHeld(unit, 100000)
 unit = CreateUnit("unit-gold-mine", 15, {26, 0})
 SetResourcesHeld(unit, 100000)
-unit = CreateUnit("unit-fortress", 0, {76, 17})
+unit = CreateUnit("unit-great-hall", 0, {76, 17})
 unit = CreateUnit("unit-alchemist", 0, {72, 24})
 unit = CreateUnit("unit-orc-guard-tower", 0, {75, 41})
 unit = CreateUnit("unit-orc-guard-tower", 0, {69, 38})
@@ -9653,11 +9653,6 @@ ftm_cost[95] = 25
 ftm_origin_x[95] = 81
 ftm_origin_y[95] = 86
 
-BlueTeam1_Order = "Wise"
-RedTeam1_Order = "Wise"
-RedTeam2_Order = "Wise"
-BlueTeam2_Order = "Wise"
-
 SetDiplomacy(2, "allied", 3)
 SetDiplomacy(3, "allied", 2)
 SetSharedVision(2, true, 3)
@@ -9685,13 +9680,13 @@ SetDiplomacy(7, "enemy", 3)
 
 -- AiRed Player 2
 aiftm_unit[2][0] = "unit-skeleton"
-aiftm_quantity[2][0] = 3
+aiftm_quantity[2][0] = 10
 aiftm_loop[2] = 4
 aiftm_terminate[2] = 14
-aiftm_unit[2][1] = "unit-grunt"
+aiftm_unit[2][1] = "unit-goblin-sappers"
 aiftm_quantity[2][1] = 1
 aiftm_unit[2][2] = "unit-skeleton"
-aiftm_quantity[2][2] = 2
+aiftm_quantity[2][2] = 5
 aiftm_unit[2][3] = "unit-peon"
 aiftm_quantity[2][3] = 2
 aiftm_unit[2][4] = "unit-axethrower"
@@ -9706,8 +9701,8 @@ aiftm_unit[2][8] = "unit-grunt"
 aiftm_quantity[2][8] = 2
 aiftm_unit[2][9] = "unit-catapult"
 aiftm_quantity[2][9] = 1
-aiftm_unit[2][10] = "unit-goblin-sappers"
-aiftm_quantity[2][10] = 1
+aiftm_unit[2][10] = "unit-grunt"
+aiftm_quantity[2][10] = 4
 aiftm_unit[2][11] = "unit-berserker"
 aiftm_quantity[2][11] = 1
 aiftm_unit[2][12] = "unit-ogre"
@@ -9717,6 +9712,43 @@ aiftm_quantity[2][13] = 1
 aiftm_unit[2][14] = "unit-grunt"
 aiftm_quantity[2][14] = 2
 
+-- AiRed Player 3
+aiftm_unit[3][0] = "unit-grunt"
+aiftm_quantity[3][0] = 6
+aiftm_loop[3] = 4
+aiftm_terminate[3] = 16
+aiftm_unit[3][1] = "unit-peon"
+aiftm_quantity[3][1] = 2
+aiftm_unit[3][2] = "unit-berserker"
+aiftm_quantity[3][2] = 1
+aiftm_unit[3][3] = "unit-ogre-mage"
+aiftm_quantity[3][3] = 1
+aiftm_unit[3][4] = "unit-axethrower"
+aiftm_quantity[3][4] = 2
+aiftm_unit[3][5] = "unit-grunt"
+aiftm_quantity[3][5] = 3
+aiftm_unit[3][6] = "unit-nomad"
+aiftm_quantity[3][6] = 1
+aiftm_unit[3][7] = "unit-axethrower"
+aiftm_quantity[3][7] = 1
+aiftm_unit[3][8] = "unit-ogre"
+aiftm_quantity[3][8] = 1
+aiftm_unit[3][9] = "unit-catapult"
+aiftm_quantity[3][9] = 1
+aiftm_unit[3][10] = "unit-grunt"
+aiftm_quantity[3][10] = 4
+aiftm_unit[3][11] = "unit-grunt"
+aiftm_quantity[3][11] = 3
+aiftm_unit[3][12] = "unit-ogre"
+aiftm_quantity[3][12] = 1
+aiftm_unit[3][13] = "unit-dragon"
+aiftm_quantity[3][13] = 1
+aiftm_unit[3][14] = "unit-grunt"
+aiftm_quantity[3][14] = 4
+aiftm_unit[3][15] = "unit-axethrower"
+aiftm_quantity[3][15] = 1
+aiftm_unit[3][16] = "unit-quick-blade"
+aiftm_quantity[3][16] = 1
 
 -- AiRed Player 7
 aiftm_unit[7][0] = "unit-peasant"
