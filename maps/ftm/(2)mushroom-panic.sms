@@ -16666,6 +16666,7 @@ ftm_origin_x[14] = 40
 ftm_origin_y[14] = 48
 ftm_origin_x[15] = 32
 ftm_origin_y[15] = 32
+
 ftm_origin_x[51] = 41
 ftm_origin_y[51] = 215
 ftm_origin_x[52] = 42
@@ -16706,5 +16707,7 @@ ftm_team_starty[2] = 248
 ftm_team_startx[3] = 36
 ftm_team_starty[3] = 8
 
-BlueTeam1_Order = "Wise"
-RedTeam1_Order = "Wise"
+ftm_faction[0] = "Pechka"
+ftm_faction[1] = "Pechenka"
+ftm_faction[2] = "Pechenka"
+ftm_faction[3] = "Pechka"

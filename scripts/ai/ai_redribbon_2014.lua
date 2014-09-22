@@ -35,6 +35,8 @@ function AiRedRibbon_Setup_2014()
 	ftm_team_starty = {}
 	ftm_team_tempx = {}
 	ftm_team_tempy = {}
+	ftm_team_orderx = {}
+	ftm_team_ordery = {}
 	ftm_team_x1 = {}
 	ftm_team_y1 = {}
 	ftm_team_x2 = {}
@@ -99,7 +101,7 @@ function AiRedRibbon_Setup_2014()
 	ftm_origin_y[10] = 1
 	ftm_unit[11] = "unit-dwarves"
 	ftm_origin[11] = "unit-inventor"
-	ftm_cost[11] = 1
+	ftm_cost[11] = 100
 	ftm_origin_x[11] = 1
 	ftm_origin_y[11] = 1
 	ftm_unit[12] = "unit-yeoman"
@@ -109,7 +111,7 @@ function AiRedRibbon_Setup_2014()
 	ftm_origin_y[12] = 1
 	ftm_unit[13] = "unit-gryphon-rider"
 	ftm_origin[13] = "unit-gryphon-aviary"
-	ftm_cost[13] = 1
+	ftm_cost[13] = 150
 	ftm_origin_x[13] = 1
 	ftm_origin_y[13] = 1
 	ftm_unit[14] = "unit-mage"
@@ -175,7 +177,7 @@ function AiRedRibbon_Setup_2014()
 	ftm_origin_y[60] = 1
 	ftm_unit[61] = "unit-goblin-sappers"
 	ftm_origin[61] = "unit-alchemist"
-	ftm_cost[61] = 1
+	ftm_cost[61] = 100
 	ftm_origin_x[61] = 1
 	ftm_origin_y[61] = 1
 	ftm_unit[62] = "unit-nomad"
@@ -185,7 +187,7 @@ function AiRedRibbon_Setup_2014()
 	ftm_origin_y[62] = 1
 	ftm_unit[63] = "unit-dragon"
 	ftm_origin[63] = "unit-dragon-roost"
-	ftm_cost[63] = 1
+	ftm_cost[63] = 150
 	ftm_origin_x[63] = 1
 	ftm_origin_y[63] = 1
 	ftm_unit[64] = "unit-death-knight"
@@ -216,6 +218,8 @@ function AiRedRibbon_Setup_2014()
 		ftm_team_y2[i] = 256
 		ftm_team_startx[i] = 1
 		ftm_team_starty[i] = 1
+		ftm_team_orderx[i] = "Left"
+		ftm_team_ordery[i] = "Start Location"
     end
 	
 	ftm_index_start[0] = 51
@@ -304,10 +308,52 @@ function AiRed_2014()
 		else 
 			for i=ftm_index_start[ftm_team[AiPlayer()]],ftm_index_end[ftm_team[AiPlayer()]] do
 				if ((aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_unit[i]) and (aiftm_mana[AiPlayer()] > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost[i]))) then
-					for i=1, aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]] do
-						CreateUnit(aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]], AiPlayer(), {ftm_team_tempx[AiPlayer()], ftm_team_tempy[AiPlayer()]})
+					if ((GetNumUnitsAt(ftm_team[AiPlayer()], ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) or (ftm_origin[i] == AiBestCityCenter())) and ((GetNumUnitsAt(ftm_team[AiPlayer()], AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) then
+						for i=1, aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]] do
+							CreateUnit(aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]], AiPlayer(), {ftm_team_tempx[AiPlayer()], ftm_team_tempy[AiPlayer()]})
+							if (ftm_team_orderx[AiPlayer()] == "Right") then
+								if (ftm_team_tempx[AiPlayer()] == ftm_team_x2[AiPlayer()]) then
+									ftm_team_tempx[AiPlayer()] = ftm_team_x1[AiPlayer()]
+									if (ftm_team_ordery[AiPlayer()] == "Down") then
+										if (ftm_team_tempy[AiPlayer()] == ftm_team_y2[AiPlayer()]) then
+											ftm_team_tempy[AiPlayer()] = ftm_team_y1[AiPlayer()]
+										else
+											ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] + 1
+										end
+									elseif (ftm_team_ordery[AiPlayer()] == "Up") then
+										if (ftm_team_tempy[AiPlayer()] == ftm_team_y1[AiPlayer()]) then
+											ftm_team_tempy[AiPlayer()] = ftm_team_y2[AiPlayer()]
+										else
+											ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] - 1
+										end
+									end
+								else
+									ftm_team_tempx[AiPlayer()] = ftm_team_tempx[AiPlayer()] + 1
+								end
+							end
+							if (ftm_team_orderx[AiPlayer()] == "Left") then
+								if (ftm_team_tempx[AiPlayer()] == ftm_team_x1[AiPlayer()]) then
+									ftm_team_tempx[AiPlayer()] = ftm_team_x2[AiPlayer()]
+									if (ftm_team_ordery[AiPlayer()] == "Down") then
+										if (ftm_team_tempy[AiPlayer()] == ftm_team_y2[AiPlayer()]) then
+											ftm_team_tempy[AiPlayer()] = ftm_team_y1[AiPlayer()]
+										else
+											ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] + 1
+										end
+									elseif (ftm_team_ordery[AiPlayer()] == "Up") then
+										if (ftm_team_tempy[AiPlayer()] == ftm_team_y1[AiPlayer()]) then
+											ftm_team_tempy[AiPlayer()] = ftm_team_y2[AiPlayer()]
+										else
+											ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] - 1
+										end
+									end
+								else
+									ftm_team_tempx[AiPlayer()] = ftm_team_tempx[AiPlayer()] - 1
+								end
+							end
+						end
+						aiftm_mana[AiPlayer()] = aiftm_mana[AiPlayer()] - (ftm_cost[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]])
 					end
-					aiftm_mana[AiPlayer()] = aiftm_mana[AiPlayer()] - (ftm_cost[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]])
 					if (aiftm_index[AiPlayer()] == aiftm_terminate[AiPlayer()]) then
 						aiftm_index[AiPlayer()] = aiftm_loop[AiPlayer()]
 					else
@@ -316,9 +362,22 @@ function AiRed_2014()
 				end
 			end
 		end
-	elseif (ftm_team_tempx[AiPlayer()] == 0) then
-		ftm_team_tempx[AiPlayer()] = ftm_team_startx[AiPlayer()]
-		ftm_team_tempy[AiPlayer()] = ftm_team_starty[AiPlayer()]
+	elseif ((ftm_team_tempx[AiPlayer()] < 2) and (GameCycle > 100)) then
+		if (ftm_team_ordery[AiPlayer()] == "Down") then
+			ftm_team_tempy[AiPlayer()] = ftm_team_y1[AiPlayer()]
+		elseif (ftm_team_orderx[AiPlayer()] == "Up") then
+			ftm_team_tempy[AiPlayer()] = ftm_team_y2[AiPlayer()]
+		else
+			ftm_team_tempy[AiPlayer()] = ftm_team_starty[AiPlayer()]
+		end
+		if (ftm_team_orderx[AiPlayer()] == "Right") then
+			ftm_team_tempx[AiPlayer()] = ftm_team_x1[AiPlayer()]
+		elseif (ftm_team_orderx[AiPlayer()] == "Left") then
+			ftm_team_tempx[AiPlayer()] = ftm_team_x2[AiPlayer()]
+		else
+			ftm_team_tempx[AiPlayer()] = ftm_team_startx[AiPlayer()]
+		end	
+	elseif ((GameCycle > 20) and (GameCycle < 30)) then
 		aiftm_mana[AiPlayer()] = 75
 	end
 end

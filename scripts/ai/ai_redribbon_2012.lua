@@ -27,12 +27,7 @@
 
 -- 		Currently doesn't support ships.
 
---local Red2Mana -- Red2's mana.
---local Red2Temp_x
---local Red2Temp_y
-
 local timer
-
 local redribbon_stepping -- Used to identify where the build order is up to.
 local blueribbon_stepping -- Used to identify where the build order is up to.
 
@@ -367,6 +362,23 @@ function AiBlue1()
 		BlueTeam1_y2 = ftm_team_y2[AiPlayer()]
 		BlueTeam1_xw = ftm_team_startx[AiPlayer()]
 		BlueTeam1_yw = ftm_team_starty[AiPlayer()]
+		if (BlueTeam1_Order ~= nil) then else
+			if (ftm_team_ordery[AiPlayer()] == "Down") then 
+				if (ftm_team_orderx[AiPlayer()] == "Right") then
+					BlueTeam1_Order = "Top-Right"
+				elseif (ftm_team_orderx[AiPlayer()] == "Left") then
+					BlueTeam1_Order = "Top-Left"
+				end
+			elseif (ftm_team_ordery[AiPlayer()] == "Up") then 
+				if (ftm_team_orderx[AiPlayer()] == "Right") then
+					BlueTeam1_Order = "Bottom-Right"
+				elseif (ftm_team_orderx[AiPlayer()] == "Left") then
+					BlueTeam1_Order = "Bottom-Left"
+				end
+			else
+				BlueTeam1_Order = "Wise"
+			end
+		end
 		timer = 1
 	else
 		if (BlueTeam1Dead ~= true) then
@@ -390,6 +402,23 @@ function AiBlue2()
 		BlueTeam2_y2 = ftm_team_y2[AiPlayer()]
 		BlueTeam2_xw = ftm_team_startx[AiPlayer()]
 		BlueTeam2_yw = ftm_team_starty[AiPlayer()]
+		if (BlueTeam2_Order ~= nil) then else
+			if (ftm_team_ordery[AiPlayer()] == "Down") then 
+				if (ftm_team_orderx[AiPlayer()] == "Right") then
+					BlueTeam2_Order = "Top-Right"
+				elseif (ftm_team_orderx[AiPlayer()] == "Left") then
+					BlueTeam2_Order = "Top-Left"
+				end
+			elseif (ftm_team_ordery[AiPlayer()] == "Up") then 
+				if (ftm_team_orderx[AiPlayer()] == "Right") then
+					BlueTeam2_Order = "Bottom-Right"
+				elseif (ftm_team_orderx[AiPlayer()] == "Left") then
+					BlueTeam2_Order = "Bottom-Left"
+				end
+			else
+				BlueTeam2_Order = "Wise"
+			end
+		end
 		timer = 1
 	else
 		if (BlueTeam1Dead ~= true) then
@@ -744,21 +773,16 @@ function AiRedRibbon_2012()
 					CreateUnit(AiHeroSoldier(), RedLeader, {RedBarracks1_x, RedBarracks1_y})
 				end
 			end
-		else
-			--AddMessage("I can't train any more grunts!")
 		end
 		if ((GetNumUnitsAt(RedTemp, AiEliteShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) or (GetNumUnitsAt(RedTemp, AiShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) or (GetNumUnitsAt(RedTemp, AiLonerShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0)  or (GetNumUnitsAt(RedTemp, AiHeroShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0)) then
 			if (GetNumUnitsAt(RedLeader, AiBarracks(), {(RedBarracks2_x - 3), (RedBarracks2_y - 3)}, {(RedBarracks2_x + 3), (RedBarracks2_y + 3)}) > 0) then
 				if (GetNumUnitsAt(RedTemp, AiEliteShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
-					--AddMessage("Spawn Red Rangers!")
 					UnitBerserkerNum = GetNumUnitsAt(RedTemp, AiEliteShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
-					--print("Spawning " + UnitBerserkerNum + " berserkers.")
 					for UnitUpto = RedLeader,(UnitBerserkerNum - 1) do
 						CreateUnit(AiEliteShooter(), RedLeader, {RedBarracks2_x, RedBarracks2_y})
 					end
 				end
 				if (GetNumUnitsAt(RedTemp, AiShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
-					--AddMessage("Spawn Red Archers!")
 					UnitAxethrowerNum = GetNumUnitsAt(RedTemp, AiShooter(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
 					for UnitUpto = RedLeader,(UnitAxethrowerNum - 1) do
 						CreateUnit(AiShooter(), RedLeader, {RedBarracks2_x, RedBarracks2_y})
@@ -792,7 +816,6 @@ function AiRedRibbon_2012()
 		end
 		if (GetNumUnitsAt(RedLeader, AiBarracks(), {(RedBarracks3_x - 3), (RedBarracks3_y - 3)}, {(RedBarracks3_x + 3), (RedBarracks3_y + 3)}) > 0) then
 			if (GetNumUnitsAt(RedTemp, AiCavalry(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
-				--AddMessage("Spawn Red Knights!")
 				if (GetNumUnitsAt(RedLeader, "unit-orcbarracks", {RedBarracks3_x - 3, RedBarracks3_y - 3}, {RedBarracks3_x + 3, RedBarracks3_y + 3}) > 0) then
 					UnitOgreNum = GetNumUnitsAt(RedTemp, AiCavalry(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
 					for UnitUpto = RedLeader,(UnitOgreNum - 1) do
@@ -801,7 +824,6 @@ function AiRedRibbon_2012()
 				end
 			end
 			if (GetNumUnitsAt(RedTemp, AiCavalryMage(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
-				--AddMessage("Spawn Red Paladins!")
 				UnitOgreMageNum = GetNumUnitsAt(RedTemp, AiCavalryMage(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
 				for UnitUpto = RedLeader,(UnitOgreMageNum - 1) do
 					CreateUnit(AiCavalryMage(), RedLeader, {RedBarracks3_x, RedBarracks3_y})
@@ -832,7 +854,6 @@ function AiRedRibbon_2012()
 		end
 		if (GetNumUnitsAt(RedLeader, AiBarracks(), {(RedBarracks4_x - 3), (RedBarracks4_y - 3)}, {(RedBarracks4_x + 3), (RedBarracks4_y + 3)}) > 0) then
 			if (GetNumUnitsAt(RedTemp, AiCatapult(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
-				--AddMessage("Spawn Red Ballistas!")
 				UnitCatapultNum = GetNumUnitsAt(RedTemp, AiCatapult(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
 				for UnitUpto = RedLeader,(UnitCatapultNum - 1) do
 					CreateUnit(AiCatapult(), RedLeader, {RedBarracks4_x, RedBarracks4_y})
@@ -840,17 +861,12 @@ function AiRedRibbon_2012()
 			end
 		end
 		if (GetNumUnitsAt(RedTemp, AiSuicideBomber(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2}) > 0) then
-			--AddMessage("Spawn Red Dwarves!")
 			UnitGoblinSappersNum = GetNumUnitsAt(RedTemp, AiSuicideBomber(), {RedTemp_x1, RedTemp_y1}, {RedTemp_x2, RedTemp_y2})
 			for UnitUpto = RedLeader,(UnitGoblinSappersNum - 1) do
 				CreateUnit(AiSuicideBomber(), RedLeader, {RedInventor_x, RedInventor_y})
 			end
 		end
 		-- Not having a value for UnitNum will cause a crash.
-		--AiForce(0, {AiFlyer(), UnitFlyerNum, AiHeroShooter(), UnitEliteShooterNum, AiFodder(), UnitSkeletonNum, AiSuicideBomber(), UnitGoblinSappersNum, AiMage(), UnitDeathKnightNum, AiSoldier(), UnitGruntNum, AiShooter(), UnitAxethrowerNum, AiEliteShooter(), UnitBerserkerNum, AiCavalry(), UnitOgreNum, AiCavalryMage(), UnitOgreMageNum, AiCatapult(), UnitCatapultNum})
-		--if (AiCheckForce(0)) then 
-		--	AiAttackWithForce(0)
-		--end
 		AiForce(1, {AiFlyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer())}, true)
 		AiAttackWithForce(1)
 		AiNephrite_Attack_2013()
@@ -907,10 +923,6 @@ function AiRedRibbon_2012()
 	if ((timer == 35) or (timer == 85)) then
 		AiNephrite_Flush_2013()
 	end
-	--AiNephrite_Expand_2013()
-	--if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0)) then
-	--	AiNephrite_Research_2013()
-	--end
 end
 
 function AiRed1_2012()
@@ -926,6 +938,23 @@ function AiRed1_2012()
 		RedTeam1_y2 = ftm_team_y2[AiPlayer()]
 		RedTeam1_xw = ftm_team_startx[AiPlayer()]
 		RedTeam1_yw = ftm_team_starty[AiPlayer()]
+		if (RedTeam1_Order ~= nil) then else
+			if (ftm_team_ordery[AiPlayer()] == "Down") then 
+				if (ftm_team_orderx[AiPlayer()] == "Right") then
+					RedTeam1_Order = "Top-Right"
+				elseif (ftm_team_orderx[AiPlayer()] == "Left") then
+					RedTeam1_Order = "Top-Left"
+				end
+			elseif (ftm_team_ordery[AiPlayer()] == "Up") then 
+				if (ftm_team_orderx[AiPlayer()] == "Right") then
+					RedTeam1_Order = "Bottom-Right"
+				elseif (ftm_team_orderx[AiPlayer()] == "Left") then
+					RedTeam1_Order = "Bottom-Left"
+				end
+			else
+				RedTeam1_Order = "Wise"
+			end
+		end
 		timer = 1
 	else
 		if ((GetPlayerData(RedTeam1, "UnitTypesCount", "unit-caanoo-wiseskeleton") > 0) and (GameCycle > 500)) then
@@ -947,6 +976,23 @@ function AiRed2_2012()
 		RedTeam2_y2 = ftm_team_y2[AiPlayer()]
 		RedTeam2_xw = ftm_team_startx[AiPlayer()]
 		RedTeam2_yw = ftm_team_starty[AiPlayer()]
+		if (RedTeam2_Order ~= nil) then else
+			if (ftm_team_ordery[AiPlayer()] == "Down") then 
+				if (ftm_team_orderx[AiPlayer()] == "Right") then
+					RedTeam2_Order = "Top-Right"
+				elseif (ftm_team_orderx[AiPlayer()] == "Left") then
+					RedTeam2_Order = "Top-Left"
+				end
+			elseif (ftm_team_ordery[AiPlayer()] == "Up") then 
+				if (ftm_team_orderx[AiPlayer()] == "Right") then
+					RedTeam2_Order = "Bottom-Right"
+				elseif (ftm_team_orderx[AiPlayer()] == "Left") then
+					RedTeam2_Order = "Bottom-Left"
+				end
+			else
+				RedTeam2_Order = "Wise"
+			end
+		end
 		timer = 1
 		redribbon_stepping = 7
 	else

@@ -16821,3 +16821,6 @@ AddTrigger(
 					ActionVictory() 
 				end
 return true end)
+
+BlueTeam1_Order = "Bottom-Right"
+RedTeam1_Order = "Top-Left"
