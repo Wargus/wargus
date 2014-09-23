@@ -8,8 +8,6 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---	ai_redribbon.lua - Define the AI.
---
 --	(c) Copyright 2014 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
@@ -218,7 +216,7 @@ function AiRedRibbon_Setup_2014()
 		ftm_team_y2[i] = 256
 		ftm_team_startx[i] = 1
 		ftm_team_starty[i] = 1
-		ftm_team_orderx[i] = "Left"
+		ftm_team_orderx[i] = "Start Location"
 		ftm_team_ordery[i] = "Start Location"
     end
 	
@@ -254,12 +252,12 @@ function AiRedRibbon_2014()
 		--AiRedRibbon_Setup_2014()
 	--end
 	if ((timers[AiPlayer()] == 50) or (timers[AiPlayer()] == 100)) then
-		AddMessage("Time to spawn in.")
+		--AddMessage("Time to spawn in.")
 		if (ftm_team[AiPlayer()] == ftm_team[ftm_choice[AiPlayer()]]) then
 			for i=ftm_index_start[AiPlayer()],ftm_index_end[AiPlayer()] do
 				if ((GetNumUnitsAt(AiPlayer(), ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) or (ftm_origin[i] == AiBestCityCenter())) and ((GetNumUnitsAt(AiPlayer(), AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(AiPlayer(), AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(AiPlayer(), AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) then
 					if (GetNumUnitsAt(ftm_choice[AiPlayer()], ftm_unit[i], {ftm_team_x1[ftm_choice[AiPlayer()]], ftm_team_y1[ftm_choice[AiPlayer()]]}, {ftm_team_x2[ftm_choice[AiPlayer()]], ftm_team_y2[ftm_choice[AiPlayer()]]}) > 0) then
-						AddMessage(ftm_unit[i])
+						--AddMessage(ftm_unit[i])
 						for j=1,GetNumUnitsAt(ftm_choice[AiPlayer()], ftm_unit[i], {ftm_team_x1[ftm_choice[AiPlayer()]], ftm_team_y1[ftm_choice[AiPlayer()]]}, {ftm_team_x2[ftm_choice[AiPlayer()]], ftm_team_y2[ftm_choice[AiPlayer()]]}) do
 							CreateUnit(ftm_unit[i], AiPlayer(), {ftm_origin_x[i], ftm_origin_y[i]})
 						end
@@ -293,18 +291,9 @@ function AiRedRibbon_2014()
 end
 
 function AiRed_2014()
-
-
---aiftm_unit[i][0] = AiWorker()
---aiftm_quantity[i][0] = 1
---aiftm_loop[i] = 0
---aiftm_terminate[i] = 10
---aiftm_index[i] = 0
-
-
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWise()) > 0) and (GameCycle > 500)) then
-		if ((timers[ftm_team[AiPlayer()]] == 25) or (timers[ftm_team[AiPlayer()]] == 75)) then
-			aiftm_mana[AiPlayer()] = aiftm_mana[AiPlayer()] + 52
+		if ((timers[ftm_team[AiPlayer()]] == 50) or (timers[ftm_team[AiPlayer()]] == 99) or (timers[ftm_team[AiPlayer()]] == 25) or (timers[ftm_team[AiPlayer()]] == 75)) then
+			aiftm_mana[AiPlayer()] = aiftm_mana[AiPlayer()] + 26
 		else 
 			for i=ftm_index_start[ftm_team[AiPlayer()]],ftm_index_end[ftm_team[AiPlayer()]] do
 				if ((aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_unit[i]) and (aiftm_mana[AiPlayer()] > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost[i]))) then
@@ -377,31 +366,10 @@ function AiRed_2014()
 		else
 			ftm_team_tempx[AiPlayer()] = ftm_team_startx[AiPlayer()]
 		end	
-	elseif ((GameCycle > 20) and (GameCycle < 30)) then
-		aiftm_mana[AiPlayer()] = 75
+	elseif ((GameCycle > 20) and (GameCycle < 100)) then
+		aiftm_mana[AiPlayer()] = 101
 	end
 end
-
-
---	ftm_unit[1] = "unit-footman"
---	ftm_origin[1] = "unit-human-barracks"
---	ftm_cost[1] = 25
---	ftm_origin_x[1] = 1
---	ftm_origin_y[1] = 1
-
-
-
-	--	timer = 
-
-
-
-
-
-
-
-
-
-
 
 DefineAi("ai_redribbon_2014", "*", "ai_redribbon_2014", AiRedRibbon_2014)
 DefineAi("ai_red_2014", "*", "ai_red_2014", AiRed_2014)
