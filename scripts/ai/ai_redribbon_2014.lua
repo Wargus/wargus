@@ -25,6 +25,9 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
+local X
+local Y
+
 function AiRedRibbon_Setup_2014()
 	timers = {}
 	ftm_faction = {}
@@ -418,7 +421,12 @@ function AiRedRibbon_2014()
 			end
 			AiNephrite_Attack_2013()
 		end
-	elseif ((timers[AiPlayer()] == 35) or (timers[AiPlayer()] == 85)) then
+	end
+	AiRedRibbon_Common_2014()
+end
+
+function AiRedRibbon_Common_2014()
+	if ((timers[AiPlayer()] == 35) or (timers[AiPlayer()] == 85)) then
 		AiNephrite_Flush_2013()
 	elseif (timers[AiPlayer()] == 1) then	
 		for i=0,15 do
@@ -442,6 +450,36 @@ function AiRedRibbon_2014()
 	end
 end
 
+function AiRedRibbon_Survival_2014()
+	if ((timers[AiPlayer()] >= 36) and (timers[AiPlayer()] <= 39) or (timers[AiPlayer()] >= 86) and (timers[AiPlayer()] <= 89)) then
+		if ((timers[AiPlayer()] == 36) or (timers[AiPlayer()] == 86)) then
+			X = 0
+			Y = 0
+		elseif ((timers[AiPlayer()] == 37) or (timers[AiPlayer()] == 87)) then
+			X = 0
+			Y = 96
+		elseif ((timers[AiPlayer()] == 38) or (timers[AiPlayer()] == 88)) then
+			X = 96
+			Y = 96
+		elseif ((timers[AiPlayer()] == 39) or (timers[AiPlayer()] == 89)) then
+			X = 96
+			Y = 0
+		end
+		if (ftm_team[AiPlayer()] == ftm_team[ftm_choice[AiPlayer()]]) then
+			for i=ftm_index_start[AiPlayer()],ftm_index_end[AiPlayer()] do
+				if (GetNumUnitsAt(ftm_choice[AiPlayer()], ftm_unit[i], {ftm_team_x1[ftm_choice[AiPlayer()]], ftm_team_y1[ftm_choice[AiPlayer()]]}, {ftm_team_x2[ftm_choice[AiPlayer()]], ftm_team_y2[ftm_choice[AiPlayer()]]}) > 0) then
+					for j=1,GetNumUnitsAt(ftm_choice[AiPlayer()], ftm_unit[i], {ftm_team_x1[ftm_choice[AiPlayer()]], ftm_team_y1[ftm_choice[AiPlayer()]]}, {ftm_team_x2[ftm_choice[AiPlayer()]], ftm_team_y2[ftm_choice[AiPlayer()]]}) do
+						CreateUnit(ftm_unit[i], AiPlayer(), {X, Y})
+					end
+				end
+			end
+			AiNephrite_Attack_2013()
+		end
+	end
+	AiRedRibbon_Common_2014()
+	AiNephrite_2013()
+end
+
 function AiRed_2014()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWise()) > 0) and (GameCycle > 500)) then
 		if ((timers[ftm_team[AiPlayer()]] == 50) or (timers[ftm_team[AiPlayer()]] == 99) or (timers[ftm_team[AiPlayer()]] == 25) or (timers[ftm_team[AiPlayer()]] == 75)) then
@@ -449,7 +487,7 @@ function AiRed_2014()
 		else 
 			for i=ftm_index_start[ftm_team[AiPlayer()]],ftm_index_end[ftm_team[AiPlayer()]] do
 				if ((aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_unit[i]) and (aiftm_mana[AiPlayer()] > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost[i]))) then
-					if ((GetNumUnitsAt(ftm_team[AiPlayer()], ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) or (ftm_origin[i] == AiBestCityCenter())) and ((GetNumUnitsAt(ftm_team[AiPlayer()], AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) then
+					if (((GetNumUnitsAt(ftm_team[AiPlayer()], ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) or (ftm_origin[i] == AiBestCityCenter())) and ((GetNumUnitsAt(ftm_team[AiPlayer()], AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) or (ftm_origin[i] == AiWise())) then
 						for i=1, aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]] do
 							CreateUnit(aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]], AiPlayer(), {ftm_team_tempx[AiPlayer()], ftm_team_tempy[AiPlayer()]})
 							if (ftm_team_orderx[AiPlayer()] == "Right") then
@@ -668,4 +706,5 @@ function AiRed_Strategy_Orc_Economy_2014(i)
 end
 
 DefineAi("ai_redribbon_2014", "*", "ai_redribbon_2014", AiRedRibbon_2014)
+DefineAi("ai_redribbon_survival_2014", "*", "ai_redribbon_survival_2014", AiRedRibbon_Survival_2014)
 DefineAi("ai_red_2014", "*", "ai_red_2014", AiRed_2014)

@@ -4,33 +4,33 @@
 
 -- player configuration
 SetStartView(0, 45, 60)
-SetPlayerData(0, "Resources", "wood", 0)
-SetPlayerData(0, "Resources", "gold", 0)
-SetPlayerData(0, "Resources", "oil", 0)
+SetPlayerData(0, "Resources", "wood", 10000)
+SetPlayerData(0, "Resources", "gold", 10000)
+SetPlayerData(0, "Resources", "oil", 10000)
 SetPlayerData(0, "RaceName", "orc")
 SetAiType(0, "ai_redribbon_2014")
 SetStartView(1, 44, 35)
-SetPlayerData(1, "Resources", "wood", 0)
-SetPlayerData(1, "Resources", "gold", 0)
-SetPlayerData(1, "Resources", "oil", 0)
+SetPlayerData(1, "Resources", "wood", 10000)
+SetPlayerData(1, "Resources", "gold", 10000)
+SetPlayerData(1, "Resources", "oil", 10000)
 SetPlayerData(1, "RaceName", "human")
 SetAiType(1, "ai_redribbon_2014")
 SetStartView(2, 59, 45)
-SetPlayerData(2, "Resources", "wood", 0)
-SetPlayerData(2, "Resources", "gold", 0)
-SetPlayerData(2, "Resources", "oil", 0)
+SetPlayerData(2, "Resources", "wood", 10000)
+SetPlayerData(2, "Resources", "gold", 10000)
+SetPlayerData(2, "Resources", "oil", 10000)
 SetPlayerData(2, "RaceName", "orc")
 SetAiType(2, "ai_redribbon_2014")
 SetStartView(5, 93, 93)
-SetPlayerData(5, "Resources", "wood", 0)
-SetPlayerData(5, "Resources", "gold", 0)
-SetPlayerData(5, "Resources", "oil", 0)
+SetPlayerData(5, "Resources", "wood", 100000)
+SetPlayerData(5, "Resources", "gold", 100000)
+SetPlayerData(5, "Resources", "oil", 100000)
 SetPlayerData(5, "RaceName", "orc")
-SetAiType(5, "ai_redribbon_2014")
+SetAiType(5, "ai_redribbon_survival_2014")
 SetStartView(6, 31, 47)
-SetPlayerData(6, "Resources", "wood", 0)
-SetPlayerData(6, "Resources", "gold", 0)
-SetPlayerData(6, "Resources", "oil", 0)
+SetPlayerData(6, "Resources", "wood", 10000)
+SetPlayerData(6, "Resources", "gold", 10000)
+SetPlayerData(6, "Resources", "oil", 10000)
 SetPlayerData(6, "RaceName", "human")
 SetAiType(6, "ai_redribbon_2014")
 SetStartView(8, 46, 47)
@@ -9293,16 +9293,56 @@ SetTile( 80, 95, 95, 0)
 -- place units
 if (MapUnitsInit ~= nil) then MapUnitsInit() end
 unit = CreateUnit("unit-great-hall", 0, {44, 58})
+unit = CreateUnit("unit-nomad", 0, {44, 58})
+unit = CreateUnit("unit-nomad", 0, {44, 58})
+unit = CreateUnit("unit-nomad", 0, {44, 58})
+unit = CreateUnit("unit-nomad", 0, {44, 58})
+unit = CreateUnit("unit-nomad", 0, {44, 58})
+unit = CreateUnit("unit-nomad", 0, {44, 58})
+unit = CreateUnit("unit-nomad", 0, {44, 58})
+unit = CreateUnit("unit-nomad", 0, {44, 58})
+unit = CreateUnit("unit-nomad", 0, {44, 58})
+unit = CreateUnit("unit-nomad", 0, {44, 58})
 unit = CreateUnit("unit-critter", 15, {35, 62})
 unit = CreateUnit("unit-critter", 15, {62, 56})
 unit = CreateUnit("unit-critter", 15, {35, 28})
 unit = CreateUnit("unit-town-hall", 1, {43, 33})
+unit = CreateUnit("unit-yeoman", 1, {43, 33})
+unit = CreateUnit("unit-yeoman", 1, {43, 33})
+unit = CreateUnit("unit-yeoman", 1, {43, 33})
+unit = CreateUnit("unit-yeoman", 1, {43, 33})
+unit = CreateUnit("unit-yeoman", 1, {43, 33})
+unit = CreateUnit("unit-yeoman", 1, {43, 33})
+unit = CreateUnit("unit-yeoman", 1, {43, 33})
+unit = CreateUnit("unit-yeoman", 1, {43, 33})
+unit = CreateUnit("unit-yeoman", 1, {43, 33})
+unit = CreateUnit("unit-yeoman", 1, {43, 33})
 unit = CreateUnit("unit-town-hall", 6, {29, 46})
+unit = CreateUnit("unit-yeoman", 6, {29, 46})
+unit = CreateUnit("unit-yeoman", 6, {29, 46})
+unit = CreateUnit("unit-yeoman", 6, {29, 46})
+unit = CreateUnit("unit-yeoman", 6, {29, 46})
+unit = CreateUnit("unit-yeoman", 6, {29, 46})
+unit = CreateUnit("unit-yeoman", 6, {29, 46})
+unit = CreateUnit("unit-yeoman", 6, {29, 46})
+unit = CreateUnit("unit-yeoman", 6, {29, 46})
+unit = CreateUnit("unit-yeoman", 6, {29, 46})
+unit = CreateUnit("unit-yeoman", 6, {29, 46})
 unit = CreateUnit("unit-caanoo-wiseman", 14, {45, 47})
 unit = CreateUnit("unit-caanoo-wiseman", 9, {43, 47})
 unit = CreateUnit("unit-caanoo-wiseskeleton", 10, {44, 47})
 unit = CreateUnit("unit-caanoo-wiseskeleton", 8, {46, 47})
 unit = CreateUnit("unit-great-hall", 2, {58, 44})
+unit = CreateUnit("unit-nomad", 2, {58, 44})
+unit = CreateUnit("unit-nomad", 2, {58, 44})
+unit = CreateUnit("unit-nomad", 2, {58, 44})
+unit = CreateUnit("unit-nomad", 2, {58, 44})
+unit = CreateUnit("unit-nomad", 2, {58, 44})
+unit = CreateUnit("unit-nomad", 2, {58, 44})
+unit = CreateUnit("unit-nomad", 2, {58, 44})
+unit = CreateUnit("unit-nomad", 2, {58, 44})
+unit = CreateUnit("unit-nomad", 2, {58, 44})
+unit = CreateUnit("unit-nomad", 2, {58, 44})
 unit = CreateUnit("unit-gold-mine", 15, {59, 48})
 SetResourcesHeld(unit, 100000)
 unit = CreateUnit("unit-gold-mine", 15, {48, 58})
@@ -9312,6 +9352,21 @@ SetResourcesHeld(unit, 100000)
 unit = CreateUnit("unit-gold-mine", 15, {40, 34})
 SetResourcesHeld(unit, 100000)
 unit = CreateUnit("unit-caanoo-wiseskeleton", 13, {95, 95})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
+unit = CreateUnit("unit-nomad", 5, {85, 85})
 unit = CreateUnit("unit-skeleton", 5, {94, 90})
 unit = CreateUnit("unit-skeleton", 5, {90, 94})
 unit = CreateUnit("unit-skeleton", 5, {91, 91})
@@ -9348,6 +9403,14 @@ unit = CreateUnit("unit-critter", 13, {4, 91})
 unit = CreateUnit("unit-critter", 13, {4, 5})
 unit = CreateUnit("unit-critter", 13, {3, 51})
 unit = CreateUnit("unit-critter", 13, {47, 4})
+unit = CreateUnit("unit-gold-mine", 15, {0, 45})
+SetResourcesHeld(unit, 100000)
+unit = CreateUnit("unit-gold-mine", 15, {45, 0})
+SetResourcesHeld(unit, 100000)
+unit = CreateUnit("unit-gold-mine", 15, {45, 95})
+SetResourcesHeld(unit, 100000)
+unit = CreateUnit("unit-gold-mine", 15, {95, 45})
+SetResourcesHeld(unit, 100000)
 
 AiRedRibbon_Setup_2014()
 
@@ -9372,8 +9435,8 @@ ftm_faction[2] = "Defenders"
 ftm_index_start[2] = 81
 ftm_index_end[2] = 95
 ftm_faction[5] = "Attackers"
-ftm_index_start[5] = 1
-ftm_index_end[5] = 2
+ftm_index_start[5] = 66
+ftm_index_end[5] = 80
 ftm_faction[6] = "Defenders"
 ftm_index_start[6] = 31
 ftm_index_end[6] = 45
@@ -9398,8 +9461,8 @@ ftm_team_startx[9] = 43
 ftm_team_starty[9] = 47
 ftm_team_startx[10] = 44
 ftm_team_starty[10] = 47
-ftm_team_startx[13] = 93
-ftm_team_starty[13] = 93
+ftm_team_startx[13] = 95
+ftm_team_starty[13] = 95
 ftm_team_startx[14] = 45
 ftm_team_starty[14] = 47
 
@@ -9434,16 +9497,56 @@ for i=81, 95 do
 	ftm_origin[i] = "unit-great-hall"
 end
 
--- AiRed Player 8
+ftm_unit[66] = "unit-grunt"
+ftm_cost[66] = 15
+ftm_unit[67] = "unit-quick-blade"
+ftm_cost[67] = 100
+ftm_unit[68] = "unit-axethrower"
+ftm_cost[68] = 20
+ftm_unit[69] = "unit-berserker"
+ftm_cost[69] = 20
+ftm_unit[70] = "unit-sharp-axe"
+ftm_cost[70] = 100
+ftm_unit[71] = "unit-ogre"
+ftm_cost[71] = 50
+ftm_unit[72] = "unit-ogre-mage"
+ftm_cost[72] = 75
+ftm_unit[73] = "unit-knight-rider"
+ftm_cost[73] = 100
+ftm_unit[74] = "unit-catapult"
+ftm_cost[74] = 80
+ftm_unit[75] = "unit-skeleton"
+ftm_cost[75] = 10
+ftm_unit[76] = "unit-goblin-sappers"
+ftm_cost[76] = 50
+ftm_unit[77] = "unit-nomad"
+ftm_cost[77] = 50
+ftm_unit[78] = "unit-dragon"
+ftm_cost[78] = 100
+ftm_unit[79] = "unit-death-knight"
+ftm_cost[79] = 20
+ftm_unit[80] = "unit-peon"
+ftm_cost[80] = 10
+
+for i=66, 80 do
+	ftm_origin_x[i] = 95
+	ftm_origin_y[i] = 95
+	ftm_origin[i] = "unit-caanoo-wiseskeleton"
+end
+
+-- AiRed Player 8, Red
 AiRed_Strategy_2014(8, 1, 1, 1, "unit-peon", "unit-grunt")
 
--- AiRed Player 9
+-- AiRed Player 9, Blue
 AiRed_Strategy_Human_Support_2014(9)
 
--- AiRed Player 10
-AiRed_Strategy_Orc_Mass_2014(10)
+-- AiRed Player 10, Green
+AiRed_Strategy_2014(10, 2, 8, 1, "unit-peon", "unit-berserker", "unit-grunt", "unit-axethrower", "unit-grunt", "unit-axethrower", "unit-grunt", "unit-axethrower", "unit-nomad")
 
--- AiRed Player 14
+-- AiRed Player 13, Black
+AiRed_Strategy_2014(13, 1, 20, 2, "unit-peon", "unit-skeleton", "unit-nomad", "unit-skeleton", "unit-grunt", "unit-peon", "unit-skeleton", "unit-grunt", "unit-peon", "unit-axethrower", "unit-death-knight", "unit-berserker", "unit-ogre", "unit-dragon", "unit-catapult", "unit-ogre-mage", "unit-sharp-axe", "unit-ogre", "unit-quick-blade", "unit-ogre-mage", "unit-knight-rider")
+
+-- AiRed Player 14, White
 AiRed_Strategy_Human_Support_2014(14)
 
 for i=8, 10 do
