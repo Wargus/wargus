@@ -25,27 +25,14 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
-Load("campaigns/human-ftm/level01h_c2.sms")
+Load("campaigns/human-ftm/level02h_c2.sms")
 
 Briefing(
 	title,
 	objectives,
 	"../campaigns/human/interface/introscreen1.png",
-	"campaigns/human-ftm/level01h.txt",
+	"campaigns/human-ftm/level02h.txt",
 	{}
 )
 
-AddTrigger(
-	function() return (GameCycle > 550) end, 
-	function() if (GameCycle < 560) then
-		AddMessage("Commander, I have established my forces at the forward outpost. I will do my duty and hold them off you for as long as I can.")
-		CenterMap(0, 96)
-	end
-return true end)
-
-AddTrigger(
-	function() return ((GameCycle > 900) and (GameCycle < 910)) end, 
-	function() CenterMap(0, 0)
-return true end)
-
-Load("campaigns/human-ftm/level01h.sms")
+Load("campaigns/human-ftm/level02h.sms")

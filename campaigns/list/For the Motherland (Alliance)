@@ -26,6 +26,6 @@
 --
 
 CurrentCampaignRace = "human"
-CurrentCampaignPath = "campaigns/human-tales/"
-CampaignMapTitleList = {"level01h_c2.sms"}
+CurrentCampaignPath = "campaigns/human-ftm/"
+CampaignMapTitleList = {"level01h_c2.sms", "level02h_c2.sms"}
 RunCampaignSubmenu("campaigns/human-ftm/human-ftm.lua")

@@ -44,7 +44,11 @@ function AiRedRibbon_Setup_2014()
     ftm_team_y2 = {}
 	ftm_unit = {}
 	ftm_origin = {}
+	-- Delete following line.
 	ftm_cost = {}
+	ftm_cost_gold = {}
+	ftm_cost_wood = {}
+	ftm_cost_oil = {}
 	ftm_origin_x = {}
 	ftm_origin_y = {}
 	ftm_choice = {} -- Who gets spawned in next.
@@ -52,83 +56,124 @@ function AiRedRibbon_Setup_2014()
 	ftm_index_end = {}
 	ftm_unit[1] = "unit-footman"
 	ftm_origin[1] = "unit-human-barracks"
-	ftm_cost[1] = 25
+	ftm_cost_gold[1] = 2500
+	ftm_cost_wood[1] = 0
+	ftm_cost_oil[1] = 0
 	ftm_origin_x[1] = 1
 	ftm_origin_y[1] = 1
 	ftm_unit[2] = "unit-arthor-literios"
 	ftm_origin[2] = "unit-human-barracks"
-	ftm_cost[2] = 200
+	ftm_cost_gold[2] = 10000
+	ftm_cost_wood[2] = 0
+	ftm_cost_oil[2] = 10000
 	ftm_origin_x[2] = 1
 	ftm_origin_y[2] = 1
 	ftm_unit[3] = "unit-archer"
 	ftm_origin[3] = "unit-human-barracks"
-	ftm_cost[3] = 25
+	ftm_cost_gold[3] = 2000
+	ftm_cost_wood[3] = 0
+	ftm_cost_oil[3] = 500
 	ftm_origin_x[3] = 1
 	ftm_origin_y[3] = 1
 	ftm_unit[4] = "unit-ranger"
 	ftm_origin[4] = "unit-human-barracks"
-	ftm_cost[4] = 50
+	ftm_cost_gold[4] = 2000
+	ftm_cost_wood[4] = 0
+	ftm_cost_oil[4] = 2500
 	ftm_origin_x[4] = 1
 	ftm_origin_y[4] = 1
 	ftm_unit[5] = "unit-female-hero"
 	ftm_origin[5] = "unit-human-barracks"
-	ftm_cost[5] = 200
+	ftm_cost_gold[5] = 5000
+	ftm_cost_wood[5] = 5000
+	ftm_cost_oil[5] = 10000
 	ftm_origin_x[5] = 1
 	ftm_origin_y[5] = 1
 	ftm_unit[6] = "unit-knight"
 	ftm_origin[6] = "unit-human-barracks"
-	ftm_cost[6] = 75
+	ftm_cost_gold[6] = 7500
+	ftm_cost_wood[6] = 0
+	ftm_cost_oil[6] = 0
 	ftm_origin_x[6] = 1
 	ftm_origin_y[6] = 1
 	ftm_unit[7] = "unit-paladin"
 	ftm_origin[7] = "unit-human-barracks"
-	ftm_cost[7] = 125
+	ftm_cost_gold[7] = 7500
+	ftm_cost_wood[7] = 0
+	ftm_cost_oil[7] = 5000
 	ftm_origin_x[7] = 1
 	ftm_origin_y[7] = 1
 	ftm_unit[8] = "unit-knight-rider"
 	ftm_origin[8] = "unit-human-barracks"
-	ftm_cost[8] = 200
+	ftm_cost_gold[8] = 10000
+	ftm_cost_wood[8] = 0
+	ftm_cost_oil[8] = 10000
 	ftm_origin_x[8] = 1
 	ftm_origin_y[8] = 1
 	ftm_unit[9] = "unit-ballista"
 	ftm_origin[9] = "unit-human-barracks"
-	ftm_cost[9] = 125
+	ftm_cost_gold[9] = 2500
+	ftm_cost_wood[9] = 10000
+	ftm_cost_oil[9] = 0
 	ftm_origin_x[9] = 1
 	ftm_origin_y[9] = 1
 	ftm_unit[10] = "unit-attack-peasant"
 	ftm_origin[10] = "unit-town-hall"
-	ftm_cost[10] = 15
+	ftm_cost_gold[10] = 750
+	ftm_cost_wood[10] = 750
+	ftm_cost_oil[10] = 0
 	ftm_origin_x[10] = 1
 	ftm_origin_y[10] = 1
 	ftm_unit[11] = "unit-dwarves"
 	ftm_origin[11] = "unit-inventor"
-	ftm_cost[11] = 100
+	ftm_cost_gold[11] = 3000
+	ftm_cost_wood[11] = 5000
+	ftm_cost_oil[11] = 3000
 	ftm_origin_x[11] = 1
 	ftm_origin_y[11] = 1
 	ftm_unit[12] = "unit-yeoman"
 	ftm_origin[12] = "unit-town-hall"
-	ftm_cost[12] = 50
+	ftm_cost_gold[12] = 2500
+	ftm_cost_wood[12] = 2500
+	ftm_cost_oil[12] = 0
 	ftm_origin_x[12] = 1
 	ftm_origin_y[12] = 1
 	ftm_unit[13] = "unit-gryphon-rider"
 	ftm_origin[13] = "unit-gryphon-aviary"
-	ftm_cost[13] = 150
+	ftm_cost_gold[13] = 2500
+	ftm_cost_wood[13] = 5000
+	ftm_cost_oil[13] = 5000
 	ftm_origin_x[13] = 1
 	ftm_origin_y[13] = 1
 	ftm_unit[14] = "unit-mage"
 	ftm_origin[14] = "unit-mage-tower"
-	ftm_cost[14] = 100
+	ftm_cost_gold[14] = 2500
+	ftm_cost_wood[14] = 2500
+	ftm_cost_oil[14] = 5000
 	ftm_origin_x[14] = 1
 	ftm_origin_y[14] = 1
 	ftm_unit[15] = "unit-peasant"
 	ftm_origin[15] = "unit-town-hall"
-	ftm_cost[15] = 25
+	ftm_cost_gold[15] = 500
+	ftm_cost_wood[15] = 2000
+	ftm_cost_oil[15] = 0
 	ftm_origin_x[15] = 1
 	ftm_origin_y[15] = 1
 	
+	for i=1, 15 do
+		ftm_cost_gold[30+i] = ftm_cost_gold[0+i]
+		ftm_cost_wood[30+i] = ftm_cost_wood[0+i]
+		ftm_cost_oil[30+i] = ftm_cost_oil[0+i]
+		ftm_cost_gold[50+i] = ftm_cost_gold[0+i]
+		ftm_cost_wood[50+i] = ftm_cost_wood[0+i]
+		ftm_cost_oil[50+i] = ftm_cost_oil[0+i]
+		ftm_cost_gold[80+i] = ftm_cost_gold[0+i]
+		ftm_cost_wood[80+i] = ftm_cost_wood[0+i]
+		ftm_cost_oil[80+i] = ftm_cost_oil[0+i]
+	end
+	
 	ftm_unit[31] = "unit-footman"
 	ftm_origin[31] = "unit-human-barracks"
-	ftm_cost[31] = 25
 	ftm_origin_x[31] = 6
 	ftm_origin_y[31] = 83
 	ftm_unit[32] = "unit-arthor-literios"
@@ -201,7 +246,7 @@ function AiRedRibbon_Setup_2014()
 	ftm_cost[45] = 25
 	ftm_origin_x[45] = 6
 	ftm_origin_y[45] = 89
-
+	
 	ftm_unit[51] = "unit-grunt"
 	ftm_origin[51] = "unit-orc-barracks"
 	ftm_cost[51] = 25
@@ -249,7 +294,9 @@ function AiRedRibbon_Setup_2014()
 	ftm_origin_y[59] = 1
 	ftm_unit[60] = "unit-skeleton"
 	ftm_origin[60] = "unit-great-hall"
-	ftm_cost[60] = 15
+	ftm_cost_gold[60] = 750
+	ftm_cost_wood[60] = 0
+	ftm_cost_oil[60] = 250
 	ftm_origin_x[60] = 1
 	ftm_origin_y[60] = 1
 	ftm_unit[61] = "unit-goblin-sappers"
@@ -325,7 +372,9 @@ function AiRedRibbon_Setup_2014()
 	ftm_origin_y[89] = 55
 	ftm_unit[90] = "unit-skeleton"
 	ftm_origin[90] = "unit-great-hall"
-	ftm_cost[90] = 15
+	ftm_cost_gold[90] = 750
+	ftm_cost_wood[90] = 0
+	ftm_cost_oil[90] = 250
 	ftm_origin_x[90] = 81
 	ftm_origin_y[90] = 86
 	ftm_unit[91] = "unit-goblin-sappers"
@@ -402,17 +451,21 @@ function AiRedRibbon_Setup_2014()
 	end
 end
 
+function AiRed_Resources_2014(t, g, w, o)
+	g = GetPlayerData(t, "Resources", "gold") + g
+	w = GetPlayerData(t, "Resources", "wood") + w
+	o = GetPlayerData(t, "Resources", "oil") + o
+	SetPlayerData(t, "Resources", "gold", g)
+	SetPlayerData(t, "Resources", "wood", w)
+	SetPlayerData(t, "Resources", "oil", o)
+end
+	
 function AiRedRibbon_2014()
-	--if (ftm_unit ~= {}) then
-		--AiRedRibbon_Setup_2014()
-	--end
 	if ((timers[AiPlayer()] == 50) or (timers[AiPlayer()] == 100)) then
-		--AddMessage("Time to spawn in.")
 		if (ftm_team[AiPlayer()] == ftm_team[ftm_choice[AiPlayer()]]) then
 			for i=ftm_index_start[AiPlayer()],ftm_index_end[AiPlayer()] do
 				if ((GetNumUnitsAt(AiPlayer(), ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) or (ftm_origin[i] == AiBestCityCenter())) and ((GetNumUnitsAt(AiPlayer(), AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(AiPlayer(), AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(AiPlayer(), AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) then
 					if (GetNumUnitsAt(ftm_choice[AiPlayer()], ftm_unit[i], {ftm_team_x1[ftm_choice[AiPlayer()]], ftm_team_y1[ftm_choice[AiPlayer()]]}, {ftm_team_x2[ftm_choice[AiPlayer()]], ftm_team_y2[ftm_choice[AiPlayer()]]}) > 0) then
-						--AddMessage(ftm_unit[i])
 						for j=1,GetNumUnitsAt(ftm_choice[AiPlayer()], ftm_unit[i], {ftm_team_x1[ftm_choice[AiPlayer()]], ftm_team_y1[ftm_choice[AiPlayer()]]}, {ftm_team_x2[ftm_choice[AiPlayer()]], ftm_team_y2[ftm_choice[AiPlayer()]]}) do
 							CreateUnit(ftm_unit[i], AiPlayer(), {ftm_origin_x[i], ftm_origin_y[i]})
 						end
@@ -426,6 +479,7 @@ function AiRedRibbon_2014()
 end
 
 function AiRedRibbon_Common_2014()
+	AiRed_Resources_2014(ftm_choice[AiPlayer()], 100, 50, 50)
 	if ((timers[AiPlayer()] == 35) or (timers[AiPlayer()] == 85)) then
 		AiNephrite_Flush_2013()
 	elseif (timers[AiPlayer()] == 1) then	
@@ -455,10 +509,10 @@ function AiRedRibbon_Survival_2014()
 		if ((timers[AiPlayer()] == 36) or (timers[AiPlayer()] == 86)) then
 			X = 0
 			Y = 0
-		elseif ((timers[AiPlayer()] == 37) or (timers[AiPlayer()] == 87)) then
+		elseif ((timers[AiPlayer()] == 38) or (timers[AiPlayer()] == 88)) then
 			X = 0
 			Y = 96
-		elseif ((timers[AiPlayer()] == 38) or (timers[AiPlayer()] == 88)) then
+		elseif ((timers[AiPlayer()] == 37) or (timers[AiPlayer()] == 87)) then
 			X = 96
 			Y = 96
 		elseif ((timers[AiPlayer()] == 39) or (timers[AiPlayer()] == 89)) then
@@ -483,10 +537,9 @@ end
 function AiRed_2014()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWise()) > 0) and (GameCycle > 500)) then
 		if ((timers[ftm_team[AiPlayer()]] == 50) or (timers[ftm_team[AiPlayer()]] == 99) or (timers[ftm_team[AiPlayer()]] == 25) or (timers[ftm_team[AiPlayer()]] == 75)) then
-			aiftm_mana[AiPlayer()] = aiftm_mana[AiPlayer()] + 26
 		else 
 			for i=ftm_index_start[ftm_team[AiPlayer()]],ftm_index_end[ftm_team[AiPlayer()]] do
-				if ((aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_unit[i]) and (aiftm_mana[AiPlayer()] > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost[i]))) then
+				if ((aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_unit[i]) and (GetPlayerData(AiPlayer(), "Resources", "oil") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_oil[i])) and (GetPlayerData(AiPlayer(), "Resources", "wood") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_wood[i])) and (GetPlayerData(AiPlayer(), "Resources", "gold") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_gold[i]))) then
 					if (((GetNumUnitsAt(ftm_team[AiPlayer()], ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) or (ftm_origin[i] == AiBestCityCenter())) and ((GetNumUnitsAt(ftm_team[AiPlayer()], AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) or (ftm_origin[i] == AiWise())) then
 						for i=1, aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]] do
 							CreateUnit(aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]], AiPlayer(), {ftm_team_tempx[AiPlayer()], ftm_team_tempy[AiPlayer()]})
@@ -531,8 +584,10 @@ function AiRed_2014()
 								end
 							end
 						end
-						aiftm_mana[AiPlayer()] = aiftm_mana[AiPlayer()] - (ftm_cost[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]])
-					end
+						SetPlayerData(AiPlayer(), "Resources", "gold", (GetPlayerData(AiPlayer(), "Resources", "gold") - (ftm_cost_gold[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]])))
+						SetPlayerData(AiPlayer(), "Resources", "wood", (GetPlayerData(AiPlayer(), "Resources", "wood") - (ftm_cost_wood[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]])))
+						SetPlayerData(AiPlayer(), "Resources", "oil", (GetPlayerData(AiPlayer(), "Resources", "oil") - (ftm_cost_oil[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]])))
+						end
 					if (aiftm_index[AiPlayer()] == aiftm_terminate[AiPlayer()]) then
 						aiftm_index[AiPlayer()] = aiftm_loop[AiPlayer()]
 					else
@@ -556,8 +611,8 @@ function AiRed_2014()
 		else
 			ftm_team_tempx[AiPlayer()] = ftm_team_startx[AiPlayer()]
 		end	
-	elseif ((GameCycle > 20) and (GameCycle < 100)) then
-		aiftm_mana[AiPlayer()] = 101
+	--elseif ((GameCycle > 20) and (GameCycle < 100)) then
+	--	aiftm_mana[AiPlayer()] = 101
 	end
 end
 
@@ -593,8 +648,8 @@ end
 function AiRed_Strategy_Human_Support_2014(i)
 	aiftm_unit[i][0] = "unit-peasant"
 	aiftm_quantity[i][0] = 1
-	aiftm_loop[9] = 10
-	aiftm_terminate[9] = 17
+	aiftm_loop[i] = 10
+	aiftm_terminate[i] = 17
 	aiftm_unit[i][1] = "unit-footman"
 	aiftm_quantity[i][1] = 3
 	aiftm_unit[i][2] = "unit-footman"
@@ -634,8 +689,8 @@ end
 function AiRed_Strategy_Orc_Mass_2014(i)
 	aiftm_unit[i][0] = "unit-skeleton"
 	aiftm_quantity[i][0] = 10
-	aiftm_loop[2] = 4
-	aiftm_terminate[2] = 14
+	aiftm_loop[i] = 4
+	aiftm_terminate[i] = 14
 	aiftm_unit[i][1] = "unit-goblin-sappers"
 	aiftm_quantity[i][1] = 1
 	aiftm_unit[i][2] = "unit-skeleton"
@@ -669,8 +724,8 @@ end
 function AiRed_Strategy_Orc_Economy_2014(i)
 	aiftm_unit[i][0] = "unit-grunt"
 	aiftm_quantity[i][0] = 6
-	aiftm_loop[3] = 4
-	aiftm_terminate[3] = 16
+	aiftm_loop[i] = 4
+	aiftm_terminate[i] = 16
 	aiftm_unit[i][1] = "unit-peon"
 	aiftm_quantity[i][1] = 2
 	aiftm_unit[i][2] = "unit-berserker"

@@ -26,7 +26,8 @@
 --
 
 campaign_steps = {
-  CreateMapStep("campaigns/human-ftm/level01h.smp")
+  CreateMapStep("campaigns/human-ftm/level01h.smp"),
+  CreateMapStep("campaigns/human-ftm/level02h.smp")
 }
 
-campaign_menu = {1}
+campaign_menu = {1, 2}

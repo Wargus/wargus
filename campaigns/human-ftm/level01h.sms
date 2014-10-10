@@ -26,54 +26,54 @@
 --
 
 -- player configuration
-SetStartView(0, 78, 16) -- Top right, Red.
-SetPlayerData(0, "Resources", "wood", 500)
-SetPlayerData(0, "Resources", "gold", 500)
-SetPlayerData(0, "Resources", "oil", 5000)
+SetStartView(0, 45, 60)
+SetPlayerData(0, "Resources", "wood", 10000)
+SetPlayerData(0, "Resources", "gold", 10000)
+SetPlayerData(0, "Resources", "oil", 10000)
 SetPlayerData(0, "RaceName", "orc")
 SetAiType(0, "ai_redribbon_2014")
-SetStartView(1, 20, 4) -- Top left, Blue.
-SetPlayerData(1, "Resources", "wood", 500)
-SetPlayerData(1, "Resources", "gold", 500)
-SetPlayerData(1, "Resources", "oil", 5000)
+SetStartView(1, 44, 35)
+SetPlayerData(1, "Resources", "wood", 10000)
+SetPlayerData(1, "Resources", "gold", 10000)
+SetPlayerData(1, "Resources", "oil", 10000)
 SetPlayerData(1, "RaceName", "human")
 SetAiType(1, "ai_redribbon_2014")
-SetStartView(2, 95, 75) -- Bottom right, Green.
-SetPlayerData(2, "Resources", "wood", 0)
-SetPlayerData(2, "Resources", "gold", 0)
-SetPlayerData(2, "Resources", "oil", 0)
+SetStartView(2, 59, 45)
+SetPlayerData(2, "Resources", "wood", 10000)
+SetPlayerData(2, "Resources", "gold", 10000)
+SetPlayerData(2, "Resources", "oil", 10000)
 SetPlayerData(2, "RaceName", "orc")
-SetAiType(2, "ai_red_2014")
-SetStartView(3, 95, 75) -- Top right, Purple.
-SetPlayerData(3, "Resources", "wood", 0)
-SetPlayerData(3, "Resources", "gold", 0)
-SetPlayerData(3, "Resources", "oil", 0)
-SetPlayerData(3, "RaceName", "orc")
-SetAiType(3, "ai_red_2014")
-SetStartView(4, 0, 0) -- Top left, Orange.
-SetPlayerData(4, "Resources", "wood", 0)
-SetPlayerData(4, "Resources", "gold", 0)
-SetPlayerData(4, "Resources", "oil", 0)
-SetPlayerData(4, "RaceName", "human")
-SetAiType(4, "ai_blue2")
-SetStartView(5, 0, 95) -- Bottom right, Black.
-SetPlayerData(5, "Resources", "wood", 500)
-SetPlayerData(5, "Resources", "gold", 500)
-SetPlayerData(5, "Resources", "oil", 5000)
-SetPlayerData(5, "RaceName", "orc")
-SetAiType(5, "ai_redribbon_2014")
-SetStartView(6, 6, 90) -- Bottom left, White.
-SetPlayerData(6, "Resources", "wood", 500)
-SetPlayerData(6, "Resources", "gold", 500)
-SetPlayerData(6, "Resources", "oil", 5000)
+SetAiType(2, "ai_redribbon_2014")
+SetStartView(6, 31, 47)
+SetPlayerData(6, "Resources", "wood", 10000)
+SetPlayerData(6, "Resources", "gold", 10000)
+SetPlayerData(6, "Resources", "oil", 10000)
 SetPlayerData(6, "RaceName", "human")
 SetAiType(6, "ai_redribbon_2014")
-SetStartView(7, 0, 95) -- Bottom left, Yellow.
-SetPlayerData(7, "Resources", "wood", 0)
-SetPlayerData(7, "Resources", "gold", 0)
-SetPlayerData(7, "Resources", "oil", 1000)
-SetPlayerData(7, "RaceName", "human")
-SetAiType(7, "ai_red_2014")
+SetStartView(8, 46, 47)
+SetPlayerData(8, "Resources", "wood", 0)
+SetPlayerData(8, "Resources", "gold", 10000)
+SetPlayerData(8, "Resources", "oil", 0)
+SetPlayerData(8, "RaceName", "orc")
+SetAiType(8, "ai_red_2014")
+SetStartView(9, 43, 47)
+SetPlayerData(9, "Resources", "wood", 0)
+SetPlayerData(9, "Resources", "gold", 10000)
+SetPlayerData(9, "Resources", "oil", 0)
+SetPlayerData(9, "RaceName", "human")
+SetAiType(9, "ai_red_2014")
+SetStartView(10, 44, 47)
+SetPlayerData(10, "Resources", "wood", 0)
+SetPlayerData(10, "Resources", "gold", 10000)
+SetPlayerData(10, "Resources", "oil", 0)
+SetPlayerData(10, "RaceName", "orc")
+SetAiType(10, "ai_red_2014")
+SetStartView(14, 45, 47)
+SetPlayerData(14, "Resources", "wood", 0)
+SetPlayerData(14, "Resources", "gold", 10000)
+SetPlayerData(14, "Resources", "oil", 0)
+SetPlayerData(14, "RaceName", "human")
+SetAiType(14, "ai_red_2014")
 SetStartView(15, 0, 0)
 SetPlayerData(15, "Resources", "wood", 0)
 SetPlayerData(15, "Resources", "gold", 0)
@@ -9320,17 +9320,17 @@ unit = CreateUnit("unit-dragon-roost", 0, {76, 24})
 unit = CreateUnit("unit-orc-barracks", 0, {77, 32})
 unit = CreateUnit("unit-peon", 0, {74, 16})
 unit = CreateUnit("unit-peon", 0, {90, 93})
-unit = CreateUnit("unit-peon", 5, {88, 91})
-unit = CreateUnit("unit-peon", 5, {75, 18})
-unit = CreateUnit("unit-great-hall", 5, {81, 86})
-unit = CreateUnit("unit-orc-barracks", 5, {78, 55})
-unit = CreateUnit("unit-temple-of-the-damned", 5, {89, 54})
-unit = CreateUnit("unit-dragon-roost", 5, {89, 58})
-unit = CreateUnit("unit-alchemist", 5, {89, 62})
-unit = CreateUnit("unit-orc-guard-tower", 5, {58, 67})
-unit = CreateUnit("unit-orc-guard-tower", 5, {58, 77})
-unit = CreateUnit("unit-orc-guard-tower", 5, {58, 74})
-unit = CreateUnit("unit-orc-guard-tower", 5, {58, 70})
+unit = CreateUnit("unit-peon", 2, {88, 91})
+unit = CreateUnit("unit-peon", 2, {75, 18})
+unit = CreateUnit("unit-great-hall", 2, {81, 86})
+unit = CreateUnit("unit-orc-barracks", 2, {78, 55})
+unit = CreateUnit("unit-temple-of-the-damned", 2, {89, 54})
+unit = CreateUnit("unit-dragon-roost", 2, {89, 58})
+unit = CreateUnit("unit-alchemist", 2, {89, 62})
+unit = CreateUnit("unit-orc-guard-tower", 2, {58, 67})
+unit = CreateUnit("unit-orc-guard-tower", 2, {58, 77})
+unit = CreateUnit("unit-orc-guard-tower", 2, {58, 74})
+unit = CreateUnit("unit-orc-guard-tower", 2, {58, 70})
 unit = CreateUnit("unit-human-guard-tower", 6, {17, 81})
 unit = CreateUnit("unit-human-guard-tower", 6, {15, 81})
 unit = CreateUnit("unit-human-cannon-tower", 6, {16, 83})
@@ -9338,24 +9338,24 @@ unit = CreateUnit("unit-human-guard-tower", 1, {17, 14})
 unit = CreateUnit("unit-human-guard-tower", 1, {3, 15})
 unit = CreateUnit("unit-human-guard-tower", 1, {6, 15})
 unit = CreateUnit("unit-human-guard-tower", 1, {14, 14})
-unit = CreateUnit("unit-caanoo-wiseskeleton", 3, {95, 19})
+unit = CreateUnit("unit-caanoo-wiseskeleton", 8, {95, 19})
 unit = CreateUnit("unit-gryphon-aviary", 6, {31, 92})
 unit = CreateUnit("unit-mage-tower", 6, {27, 92})
 unit = CreateUnit("unit-inventor", 6, {23, 92})
 unit = CreateUnit("unit-human-barracks", 6, {6, 83})
 unit = CreateUnit("unit-keep", 6, {6, 89})
 unit = CreateUnit("unit-peasant", 6, {2, 92})
-unit = CreateUnit("unit-caanoo-wiseman", 7, {16, 95})
+unit = CreateUnit("unit-caanoo-wiseman", 14, {16, 95})
 unit = CreateUnit("unit-peasant", 1, {1, 92})
 unit = CreateUnit("unit-peasant", 1, {25, 1})
 unit = CreateUnit("unit-peasant", 6, {25, 2})
-unit = CreateUnit("unit-caanoo-wiseskeleton", 2, {95, 75})
+unit = CreateUnit("unit-caanoo-wiseskeleton", 10, {95, 75})
 unit = CreateUnit("unit-mage-tower", 1, {13, 4})
 unit = CreateUnit("unit-human-barracks", 1, {9, 9})
 unit = CreateUnit("unit-inventor", 1, {5, 4})
 unit = CreateUnit("unit-gryphon-aviary", 1, {9, 4})
 unit = CreateUnit("unit-keep", 1, {19, 3})
-unit = CreateUnit("unit-caanoo-wiseman", 4, {0, 0})
+unit = CreateUnit("unit-caanoo-wiseman", 9, {0, 0})
 unit = CreateUnit("unit-critter", 15, {5, 49})
 unit = CreateUnit("unit-critter", 15, {68, 72})
 unit = CreateUnit("unit-critter", 15, {84, 31})
@@ -9375,10 +9375,10 @@ unit = CreateUnit("unit-yeoman", 1, {5, 15})
 unit = CreateUnit("unit-yeoman", 1, {5, 16})
 unit = CreateUnit("unit-yeoman", 1, {16, 14})
 unit = CreateUnit("unit-yeoman", 1, {16, 15})
-unit = CreateUnit("unit-nomad", 5, {59, 69})
-unit = CreateUnit("unit-nomad", 5, {58, 69})
-unit = CreateUnit("unit-nomad", 5, {59, 76})
-unit = CreateUnit("unit-nomad", 5, {58, 76})
+unit = CreateUnit("unit-nomad", 2, {59, 69})
+unit = CreateUnit("unit-nomad", 2, {58, 69})
+unit = CreateUnit("unit-nomad", 2, {59, 76})
+unit = CreateUnit("unit-nomad", 2, {58, 76})
 unit = CreateUnit("unit-nomad", 0, {70, 37})
 unit = CreateUnit("unit-nomad", 0, {69, 37})
 unit = CreateUnit("unit-nomad", 0, {76, 40})
@@ -9387,30 +9387,30 @@ unit = CreateUnit("unit-nomad", 0, {75, 40})
 AiRedRibbon_Setup_2014()
 
 ftm_team[0] = 0
-ftm_team[3] = 0
+ftm_team[8] = 0
 ftm_faction[0] = "SJW"
-ftm_faction[3] = "SJW"
-ftm_choice[0] = 3
+ftm_faction[8] = "SJW"
+ftm_choice[0] = 8
 
 ftm_team[1] = 1
-ftm_team[4] = 1
+ftm_team[9] = 1
 ftm_faction[1] = "Gamers"
-ftm_faction[4] = "Gamers"
-ftm_choice[1] = 4
+ftm_faction[9] = "Gamers"
+ftm_choice[1] = 9
 
-ftm_team[2] = 5
-ftm_team[5] = 5
+ftm_team[2] = 2
+ftm_team[10] = 2
 ftm_faction[2] = "SJW"
-ftm_faction[5] = "SJW"
-ftm_choice[5] = 2
-ftm_index_start[5] = 81
-ftm_index_end[5] = 95
+ftm_faction[10] = "SJW"
+ftm_choice[2] = 10
+ftm_index_start[2] = 81
+ftm_index_end[2] = 95
 
 ftm_team[6] = 6
-ftm_team[7] = 6
+ftm_team[14] = 6
 ftm_faction[6] = "Gamers"
-ftm_faction[7] = "Gamers"
-ftm_choice[6] = 7
+ftm_faction[14] = "Gamers"
+ftm_choice[6] = 14
 ftm_index_start[6] = 31
 ftm_index_end[6] = 45
 
@@ -9418,18 +9418,18 @@ ftm_team_startx[0] = 78
 ftm_team_starty[0] = 16
 ftm_team_startx[1] = 20
 ftm_team_starty[1] = 4
-ftm_team_startx[2] = 95
-ftm_team_starty[2] = 75
-ftm_team_startx[3] = 95
-ftm_team_starty[3] = 19
-ftm_team_startx[4] = 0
-ftm_team_starty[4] = 0
-ftm_team_startx[5] = 0
-ftm_team_starty[5] = 95
+ftm_team_startx[2] = 0
+ftm_team_starty[2] = 95
+ftm_team_startx[8] = 95
+ftm_team_starty[8] = 19
+ftm_team_startx[9] = 0
+ftm_team_starty[9] = 0
+ftm_team_startx[10] = 95
+ftm_team_starty[10] = 75
 ftm_team_startx[6] = 6
 ftm_team_starty[6] = 90
-ftm_team_startx[7] = 16
-ftm_team_starty[7] = 95
+ftm_team_startx[14] = 16
+ftm_team_starty[14] = 95
 
 for i=0, 15 do
 	ftm_team_x1[i] = 0
@@ -9468,7 +9468,6 @@ ftm_origin_x[14] = 13
 ftm_origin_y[14] = 4
 ftm_origin_x[15] = 19
 ftm_origin_y[15] = 3
-
 
 ftm_unit[31] = "unit-footman"
 ftm_origin[31] = "unit-human-barracks"
@@ -9653,36 +9652,45 @@ ftm_cost[95] = 25
 ftm_origin_x[95] = 81
 ftm_origin_y[95] = 86
 
-SetDiplomacy(2, "allied", 3)
-SetDiplomacy(3, "allied", 2)
-SetSharedVision(2, true, 3)
-SetSharedVision(3, true, 2)
-SetDiplomacy(4, "allied", 7)
-SetDiplomacy(7, "allied", 4)
-SetSharedVision(4, true, 7)
-SetSharedVision(7, true, 4)
-SetSharedVision(2, false, 4)
-SetSharedVision(4, false, 2)
-SetDiplomacy(2, "enemy", 4)
-SetDiplomacy(4, "enemy", 2)
-SetSharedVision(2, false, 7)
-SetSharedVision(7, false, 2)
-SetDiplomacy(2, "enemy", 7)
-SetDiplomacy(7, "enemy", 2)
-SetSharedVision(3, false, 4)
-SetSharedVision(4, false, 3)
-SetDiplomacy(3, "enemy", 4)
-SetDiplomacy(4, "enemy", 3)
-SetSharedVision(3, false, 7)
-SetSharedVision(7, false, 3)
-SetDiplomacy(3, "enemy", 7)
-SetDiplomacy(7, "enemy", 3)
+SetDiplomacy(9, "allied", 14)
+SetDiplomacy(14, "allied", 9)
+SetSharedVision(9, true, 14)
+SetSharedVision(14, true, 9)
+SetDiplomacy(10, "allied", 8)
+SetDiplomacy(8, "allied", 10)
+SetSharedVision(10, true, 8)
+SetSharedVision(8, true, 10)
+SetSharedVision(10, false, 14)
+SetSharedVision(14, false, 10)
+SetDiplomacy(10, "enemy", 14)
+SetDiplomacy(14, "enemy", 10)
+SetSharedVision(10, false, 9)
+SetSharedVision(9, false, 10)
+SetDiplomacy(10, "enemy", 9)
+SetDiplomacy(9, "enemy", 10)
+SetSharedVision(8, false, 14)
+SetSharedVision(14, false, 8)
+SetDiplomacy(8, "enemy", 14)
+SetDiplomacy(14, "enemy", 8)
+SetSharedVision(8, false, 9)
+SetSharedVision(9, false, 8)
+SetDiplomacy(8, "enemy", 9)
+SetDiplomacy(9, "enemy", 8)
 
--- AiRed Player 2
-AiRed_Strategy_Orc_Mass_2014(2)
+-- AiRed Player 10
+AiRed_Strategy_Orc_Mass_2014(10)
 
--- AiRed Player 3
-AiRed_Strategy_Orc_Economy_2014(3)
+-- AiRed Player 8
+AiRed_Strategy_Orc_Economy_2014(8)
 
--- AiRed Player 7
-AiRed_Strategy_Human_Support_2014(7)
+-- AiRed Player 14
+AiRed_Strategy_Human_Support_2014(14)
+
+AddTrigger(
+	function() return (GameCycle > 800) end, 
+	function()	if ((GetPlayerData(ftm_team[GetThisPlayer()], "TotalNumUnits") == 0) and (GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0)) then
+					ActionDefeat() 
+				elseif (GetNumOpponents(GetThisPlayer()) == 0) then
+					ActionVictory() 
+				end
+return true end)
