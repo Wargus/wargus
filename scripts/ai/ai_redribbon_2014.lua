@@ -36,175 +36,87 @@ function AiRedRibbon_Setup_Units_2014()
 	ftm_cost_oil = {}
 	ftm_origin_x = {}
 	ftm_origin_y = {}
-	ftm_unit[1] = "unit-footman"
-	ftm_origin[1] = "unit-human-barracks"
-	ftm_cost_gold[1] = 2500
-	ftm_cost_wood[1] = 0
-	ftm_cost_oil[1] = 0
-	ftm_origin_x[1] = 1
-	ftm_origin_y[1] = 1
-	ftm_unit[2] = "unit-arthor-literios"
-	ftm_origin[2] = "unit-human-barracks"
-	ftm_cost_gold[2] = 2500
-	ftm_cost_wood[2] = 0
-	ftm_cost_oil[2] = 17500
-	ftm_origin_x[2] = 1
-	ftm_origin_y[2] = 1
-	ftm_unit[3] = "unit-archer"
-	ftm_origin[3] = "unit-human-barracks"
-	ftm_cost_gold[3] = 1000
-	ftm_cost_wood[3] = 1500
-	ftm_cost_oil[3] = 0
-	ftm_origin_x[3] = 1
-	ftm_origin_y[3] = 1
-	ftm_unit[4] = "unit-ranger"
-	ftm_origin[4] = "unit-human-barracks"
-	ftm_cost_gold[4] = 1000
-	ftm_cost_wood[4] = 1500
-	ftm_cost_oil[4] = 1500
-	ftm_origin_x[4] = 1
-	ftm_origin_y[4] = 1
-	ftm_unit[5] = "unit-female-hero"
-	ftm_origin[5] = "unit-human-barracks"
-	ftm_cost_gold[5] = 1000
-	ftm_cost_wood[5] = 9000
-	ftm_cost_oil[5] = 10000
-	ftm_origin_x[5] = 1
-	ftm_origin_y[5] = 1
-	ftm_unit[6] = "unit-knight"
-	ftm_origin[6] = "unit-human-barracks"
-	ftm_cost_gold[6] = 7500
-	ftm_cost_wood[6] = 0
-	ftm_cost_oil[6] = 0
-	ftm_origin_x[6] = 1
-	ftm_origin_y[6] = 1
-	ftm_unit[7] = "unit-paladin"
-	ftm_origin[7] = "unit-human-barracks"
-	ftm_cost_gold[7] = 7500
-	ftm_cost_wood[7] = 0
-	ftm_cost_oil[7] = 5000
-	ftm_origin_x[7] = 1
-	ftm_origin_y[7] = 1
-	ftm_unit[8] = "unit-knight-rider"
-	ftm_origin[8] = "unit-human-barracks"
-	ftm_cost_gold[8] = 7500
-	ftm_cost_wood[8] = 0
-	ftm_cost_oil[8] = 12500
-	ftm_origin_x[8] = 1
-	ftm_origin_y[8] = 1
-	ftm_unit[9] = "unit-ballista"
-	ftm_origin[9] = "unit-human-barracks"
-	ftm_cost_gold[9] = 2500
-	ftm_cost_wood[9] = 10000
-	ftm_cost_oil[9] = 0
-	ftm_origin_x[9] = 1
-	ftm_origin_y[9] = 1
-	ftm_unit[10] = "unit-attack-peasant"
-	ftm_origin[10] = "unit-town-hall"
-	ftm_cost_gold[10] = 1000
-	ftm_cost_wood[10] = 500
-	ftm_cost_oil[10] = 0
-	ftm_origin_x[10] = 1
-	ftm_origin_y[10] = 1
-	ftm_unit[11] = "unit-dwarves"
-	ftm_origin[11] = "unit-inventor"
-	ftm_cost_gold[11] = 2500
-	ftm_cost_wood[11] = 4000
-	ftm_cost_oil[11] = 2500
-	ftm_origin_x[11] = 1
-	ftm_origin_y[11] = 1
-	ftm_unit[12] = "unit-yeoman"
-	ftm_origin[12] = "unit-town-hall"
-	ftm_cost_gold[12] = 1000
-	ftm_cost_wood[12] = 4000
-	ftm_cost_oil[12] = 0
-	ftm_origin_x[12] = 1
-	ftm_origin_y[12] = 1
-	ftm_unit[13] = "unit-gryphon-rider"
-	ftm_origin[13] = "unit-gryphon-aviary"
-	ftm_cost_gold[13] = 2500
-	ftm_cost_wood[13] = 5000
-	ftm_cost_oil[13] = 5000
-	ftm_origin_x[13] = 1
-	ftm_origin_y[13] = 1
-	ftm_unit[14] = "unit-mage"
-	ftm_origin[14] = "unit-mage-tower"
-	ftm_cost_gold[14] = 2500
-	ftm_cost_wood[14] = 2500
-	ftm_cost_oil[14] = 5000
-	ftm_origin_x[14] = 1
-	ftm_origin_y[14] = 1
-	ftm_unit[15] = "unit-peasant"
-	ftm_origin[15] = "unit-town-hall"
-	ftm_cost_gold[15] = 1000
-	ftm_cost_wood[15] = 1500
-	ftm_cost_oil[15] = 0
-	ftm_origin_x[15] = 1
-	ftm_origin_y[15] = 1
-	ftm_unit[51] = "unit-grunt"
-	ftm_origin[51] = "unit-orc-barracks"
-	ftm_unit[52] = "unit-quick-blade"
-	ftm_origin[52] = "unit-orc-barracks"
-	ftm_unit[53] = "unit-axethrower"
-	ftm_origin[53] = "unit-orc-barracks"
-	ftm_unit[54] = "unit-berserker"
-	ftm_origin[54] = "unit-orc-barracks"
-	ftm_unit[55] = "unit-sharp-axe"
-	ftm_origin[55] = "unit-orc-barracks"
-	ftm_unit[56] = "unit-ogre"
-	ftm_origin[56] = "unit-orc-barracks"
-	ftm_unit[57] = "unit-ogre-mage"
-	ftm_origin[57] = "unit-orc-barracks"
-	ftm_unit[58] = "unit-fad-man"
-	ftm_origin[58] = "unit-orc-barracks"
-	ftm_unit[59] = "unit-catapult"
-	ftm_origin[59] = "unit-orc-barracks"
-	ftm_unit[60] = "unit-skeleton"
-	ftm_origin[60] = "unit-great-hall"
-	ftm_unit[61] = "unit-goblin-sappers"
-	ftm_origin[61] = "unit-alchemist"
-	ftm_unit[62] = "unit-nomad"
-	ftm_origin[62] = "unit-great-hall"
-	ftm_unit[63] = "unit-dragon"
-	ftm_origin[63] = "unit-dragon-roost"
-	ftm_unit[64] = "unit-death-knight"
-	ftm_origin[64] = "unit-temple-of-the-damned"
-	ftm_unit[65] = "unit-peon"
-	ftm_origin[65] = "unit-great-hall"
-	for i = 0, 15 do
-		ftm_unit[31+i] = ftm_unit[1+i]
-		ftm_origin[31+i] = ftm_origin[1+i]	
-		ftm_origin_x[31+i] = ftm_origin_x[1+i]
-		ftm_origin_y[31+i] = ftm_origin_y[1+i]	
-		ftm_cost_gold[31+i] = ftm_cost_gold[1+i]
-		ftm_cost_wood[31+i] = ftm_cost_wood[1+i]
-		ftm_cost_oil[31+i] = ftm_cost_oil[1+i]
-		ftm_origin_x[51+i] = ftm_origin_x[1+i]
-		ftm_origin_y[51+i] = ftm_origin_y[1+i]	
-		ftm_cost_gold[51+i] = ftm_cost_gold[1+i]
-		ftm_cost_wood[51+i] = ftm_cost_wood[1+i]
-		ftm_cost_oil[51+i] = ftm_cost_oil[1+i]
-		ftm_unit[81+i] = ftm_unit[51+i]
-		ftm_origin[81+i] = ftm_origin[51+i]	
-		ftm_origin_x[81+i] = ftm_origin_x[1+i]
-		ftm_origin_y[81+i] = ftm_origin_y[1+i]	
-		ftm_cost_gold[81+i] = ftm_cost_gold[1+i]
-		ftm_cost_wood[81+i] = ftm_cost_wood[1+i]
-		ftm_cost_oil[81+i] = ftm_cost_oil[1+i]
+	AiRedRibbon_Define_Unit_2014(1, "unit-footman", "unit-human-barracks", 2500, 0, 0)
+	AiRedRibbon_Define_Unit_2014(2, "unit-arthor-literios", "unit-human-barracks", 2500, 0, 17500)
+	AiRedRibbon_Define_Unit_2014(3, "unit-archer", "unit-human-barracks", 1000, 1500, 0)
+	AiRedRibbon_Define_Unit_2014(4, "unit-ranger", "unit-human-barracks", 1000, 1500, 2500)
+	AiRedRibbon_Define_Unit_2014(5, "unit-female-hero", "unit-human-barracks", 1000, 9000, 10000)
+	AiRedRibbon_Define_Unit_2014(6, "unit-knight", "unit-human-barracks", 7500, 0, 0)
+	AiRedRibbon_Define_Unit_2014(7, "unit-paladin", "unit-human-barracks", 7500, 0, 5000)
+	AiRedRibbon_Define_Unit_2014(8, "unit-knight-rider", "unit-human-barracks", 7500, 0, 12500)
+	AiRedRibbon_Define_Unit_2014(9, "unit-ballista", "unit-human-barracks", 2500, 10000, 0)
+	AiRedRibbon_Define_Unit_2014(10, "unit-attack-peasant", "unit-town-hall", 1000, 500, 0)
+	AiRedRibbon_Define_Unit_2014(11, "unit-dwarves", "unit-inventor", 2500, 4000, 2500)
+	AiRedRibbon_Define_Unit_2014(12, "unit-yeoman", "unit-town-hall", 1000, 4000, 0)
+	AiRedRibbon_Define_Unit_2014(13, "unit-gryphon-rider", "unit-gryphon-aviary", 2500, 5000, 5000)
+	AiRedRibbon_Define_Unit_2014(14, "unit-mage", "unit-mage-tower", 2500, 2500, 5000)
+	AiRedRibbon_Define_Unit_2014(15, "unit-peasant", "unit-town-hall", 1000, 1500, 0)
+	AiRedRibbon_Define_Unit_2014(51, "unit-grunt", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(52, "unit-quick-blade", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(53, "unit-axethrower", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(54, "unit-berserker", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(55, "unit-sharp-axe", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(56, "unit-ogre", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(57, "unit-ogre-mage", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(58, "unit-fad-man", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(59, "unit-catapult", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(60, "unit-skeleton", "unit-great-hall")
+	AiRedRibbon_Define_Unit_2014(61, "unit-goblin-sappers", "unit-alchemist")
+	AiRedRibbon_Define_Unit_2014(62, "unit-nomad", "unit-great-hall")
+	AiRedRibbon_Define_Unit_2014(63, "unit-dragon", "unit-dragon-roost")
+	AiRedRibbon_Define_Unit_2014(64, "unit-death-knight", "unit-temple-of-the-damned")
+	AiRedRibbon_Define_Unit_2014(65, "unit-peon", "unit-great-hall")
+	for i = 1, 15 do
+		AiRedRibbon_Define_Unit_2014(30+i, ftm_unit[i], ftm_origin[i], ftm_cost_gold[i], ftm_cost_wood[i], ftm_cost_oil[i], ftm_origin_x[i], ftm_origin_y[i])
+		AiRedRibbon_Define_Cost_2014(50+i, ftm_cost_gold[i], ftm_cost_wood[i], ftm_cost_oil[i])
+		AiRedRibbon_Define_Unit_2014(80+i, ftm_unit[50+i], ftm_origin[50+i], ftm_cost_gold[50+i], ftm_cost_wood[50+i], ftm_cost_oil[50+i], ftm_origin_x[50+i], ftm_origin_y[50+i])
 	end
 	-- Cost override.
-	ftm_cost_gold[60] = 750
-	ftm_cost_wood[60] = 0
-	ftm_cost_oil[60] = 250
-	ftm_cost_gold[58] = 7500
-	ftm_cost_wood[58] = 0
-	ftm_cost_oil[58] = 17500
-	ftm_cost_gold[90] = 750
-	ftm_cost_wood[90] = 0
-	ftm_cost_oil[90] = 250
-	ftm_cost_gold[88] = 7500
-	ftm_cost_wood[88] = 0
-	ftm_cost_oil[88] = 17500
+	AiRedRibbon_Define_Cost_2014(58, 7500, 0, 17500)
+	AiRedRibbon_Define_Cost_2014(60, 750, 0, 250)
+	AiRedRibbon_Define_Cost_2014(88, 7500, 0, 17500)
+	AiRedRibbon_Define_Cost_2014(90, 750, 0, 250)
+end
+
+function AiRedRibbon_Define_Unit_2014(i, unit, origin, gold, wood, oil, x, y)
+	ftm_unit[i] = unit
+	ftm_origin[i] = origin
+	if ((gold ~= nil) or (wood ~= nil) or (oil ~= nil)) then
+		AiRedRibbon_Define_Cost_2014(i, gold, wood, oil)
+	end
+	if ((x ~= nil) or (y ~= nil)) then
+		AiRedRibbon_Define_Origin_2014(i, x, y)
+	else
+		ftm_origin_x[i] = 0
+		ftm_origin_y[i] = 0
+	end
+end
+
+function AiRedRibbon_Define_Cost_2014(i, gold, wood, oil)
+	if (gold ~= nil) then
+		ftm_cost_gold[i] = gold
+	else
+		ftm_cost_gold[i] = 0
+	end
+	if (wood ~= nil) then
+		ftm_cost_wood[i] = wood
+	else
+		ftm_cost_wood[i] = 0
+	end
+	if (oil ~= nil) then
+		ftm_cost_oil[i] = oil
+	else
+		ftm_cost_oil[i] = 0
+	end
+end
+
+function AiRedRibbon_Define_Origin_2014(i, x, y)
+	if (x ~= nil) then
+		ftm_origin_x[i] = x
+	end
+	if (y ~= nil) then
+		ftm_origin_y[i] = y
+	end
 end
 
 function AiRedRibbon_Setup_2014()
@@ -228,12 +140,9 @@ function AiRedRibbon_Setup_2014()
 	ftm_choice = {} -- Who gets spawned in next.
 	ftm_index_start = {}
 	ftm_index_end = {}
-	
 	AiRedRibbon_Setup_Units_2014()
-	
 	ftm_choice[0] = 3
 	ftm_choice[1] = 2
-	
 	aiftm_unit = {}
 	aiftm_quantity = {}
 	aiftm_loop = {}
@@ -267,7 +176,6 @@ function AiRedRibbon_Setup_2014()
 		ftm_team_orderx[i] = "Start Location"
 		ftm_team_ordery[i] = "Start Location"
 	end
-	
 	ftm_index_start[0] = 51
 	ftm_index_end[0] = 65
 	ftm_index_start[1] = 1
@@ -434,8 +342,15 @@ function AiRed_2014()
 		else
 			ftm_team_tempx[AiPlayer()] = ftm_team_startx[AiPlayer()]
 		end	
-	--elseif ((GameCycle > 20) and (GameCycle < 100)) then
-	--	aiftm_mana[AiPlayer()] = 101
+	end
+end
+
+function AiRed_Strategy_Insert_2014(i, j, unit, quantity)
+	aiftm_unit[i][j] = unit
+	if (quantity ~= nil) then
+		aiftm_quantity[i][j] = quantity
+	else
+		aiftm_quantity[i][j] = 1
 	end
 end
 
@@ -468,119 +383,59 @@ function AiRed_Strategy_2014(i, Loop, Terminate, Quantity, Unit0, Unit1, Unit2, 
 	aiftm_unit[i][20] = Unit20
 end
 
+function AiRed_Strategy_Extend_2014(i, j, k, Unit0, Quantity0, Unit1, Quantity1, Unit2, Quantity2, Unit3, Quantity3, Unit4, Quantity4, Unit5, Quantity5, Unit6, Quantity6, Unit7, Quantity7, Unit8, Quantity8, Unit9, Quantity9, Unit10, Quantity10)
+	AiRed_Strategy_Insert_2014(i, j, Unit0, Quantity0)
+	AddMessage("0") 
+	if ((j+1 <= k) and (Unit1 ~= nil)) then AddMessage("1") AiRed_Strategy_Insert_2014(i, j+1, Unit1, Quantity1) end
+	if ((j+2 <= k) and (Unit2 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+2, Unit2, Quantity2) end
+	if ((j+3 <= k) and (Unit3 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+3, Unit3, Quantity3) end
+	if ((j+4 <= k) and (Unit4 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+4, Unit4, Quantity4) end
+	if ((j+5 <= k) and (Unit5 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+5, Unit5, Quantity5) end
+	if ((j+6 <= k) and (Unit6 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+6, Unit6, Quantity6) end
+	if ((j+7 <= k) and (Unit7 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+7, Unit7, Quantity7) end
+	if ((j+8 <= k) and (Unit8 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+8, Unit8, Quantity8) end
+	if ((j+9 <= k) and (Unit9 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+9, Unit9, Quantity9) end
+	if ((j+10 <= k) and (Unit10 ~= nil)) then AddMessage("10") AiRed_Strategy_Insert_2014(i, j+10, Unit10, Quantity10) end
+	aiftm_terminate[i] = k
+end
+
 function AiRed_Strategy_Human_Support_2014(i)
-	aiftm_unit[i][0] = "unit-peasant"
-	aiftm_quantity[i][0] = 1
-	aiftm_loop[i] = 10
-	aiftm_terminate[i] = 17
-	aiftm_unit[i][1] = "unit-footman"
-	aiftm_quantity[i][1] = 3
-	aiftm_unit[i][2] = "unit-footman"
-	aiftm_quantity[i][2] = 3
-	aiftm_unit[i][3] = "unit-ranger"
-	aiftm_quantity[i][3] = 1
-	aiftm_unit[i][4] = "unit-knight"
-	aiftm_quantity[i][4] = 1
-	aiftm_unit[i][5] = "unit-arthor-literios"
-	aiftm_quantity[i][5] = 1
-	aiftm_unit[i][6] = "unit-footman"
-	aiftm_quantity[i][6] = 2
-	aiftm_unit[i][7] = "unit-archer"
-	aiftm_quantity[i][7] = 4
-	aiftm_unit[i][8] = "unit-footman"
-	aiftm_quantity[i][8] = 2
-	aiftm_unit[i][9] = "unit-paladin"
-	aiftm_quantity[i][9] = 1
-	aiftm_unit[i][10] = "unit-knight"
-	aiftm_quantity[i][10] = 2
-	aiftm_unit[i][11] = "unit-archer"
-	aiftm_quantity[i][11] = 2
-	aiftm_unit[i][12] = "unit-mage"
-	aiftm_quantity[i][12] = 1
-	aiftm_unit[i][13] = "unit-footman"
-	aiftm_quantity[i][13] = 3
-	aiftm_unit[i][14] = "unit-knight"
-	aiftm_quantity[i][14] = 1
-	aiftm_unit[i][15] = "unit-knight"
-	aiftm_quantity[i][15] = 1
-	aiftm_unit[i][16] = "unit-archer"
-	aiftm_quantity[i][16] = 2
-	aiftm_unit[i][17] = "unit-footman"
-	aiftm_quantity[i][17] = 2
+	AiRed_Strategy_2014(i, 18, 27, 1, "unit-footman", "unit-footman", "unit-footman", "unit-archer", "unit-archer", "unit-peasant", "unit-ranger", "unit-knight", "unit-arthor-literios", "unit-footman", "unit-footman", "unit-archer", "unit-archer", "unit-archer", "unit-archer", "unit-footman", "unit-footman", "unit-paladin", "unit-knight", "unit-knight", "unit-mage")
+	AiRed_Strategy_Extend_2014(i, 21, 27, "unit-archer", 2, "unit-footman", 3, "unit-knight", 1, "unit-knight", 1, "unit-archer", 2, "unit-archer", 2, "unit-footman", 2)
 end
 
 function AiRed_Strategy_Orc_Mass_2014(i)
-	aiftm_unit[i][0] = "unit-skeleton"
-	aiftm_quantity[i][0] = 10
-	aiftm_loop[i] = 4
-	aiftm_terminate[i] = 14
-	aiftm_unit[i][1] = "unit-goblin-sappers"
-	aiftm_quantity[i][1] = 1
-	aiftm_unit[i][2] = "unit-skeleton"
-	aiftm_quantity[i][2] = 5
-	aiftm_unit[i][3] = "unit-peon"
-	aiftm_quantity[i][3] = 2
-	aiftm_unit[i][4] = "unit-axethrower"
-	aiftm_quantity[i][4] = 4
-	aiftm_unit[i][5] = "unit-grunt"
-	aiftm_quantity[i][5] = 2
-	aiftm_unit[i][6] = "unit-nomad"
-	aiftm_quantity[i][6] = 1
-	aiftm_unit[i][7] = "unit-skeleton"
-	aiftm_quantity[i][7] = 2
-	aiftm_unit[i][8] = "unit-grunt"
-	aiftm_quantity[i][8] = 2
-	aiftm_unit[i][9] = "unit-catapult"
-	aiftm_quantity[i][9] = 1
-	aiftm_unit[i][10] = "unit-grunt"
-	aiftm_quantity[i][10] = 4
-	aiftm_unit[i][11] = "unit-berserker"
-	aiftm_quantity[i][11] = 1
-	aiftm_unit[i][12] = "unit-ogre"
-	aiftm_quantity[i][12] = 1
-	aiftm_unit[i][13] = "unit-ogre-mage"
-	aiftm_quantity[i][13] = 1
-	aiftm_unit[i][14] = "unit-grunt"
-	aiftm_quantity[i][14] = 2
+	AiRed_Strategy_2014(i, 1, 4, 3, "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton")
+	AiRed_Strategy_Extend_2014(i, 5, 15, "unit-goblin-sappers", 1, "unit-peon", 2, "unit-axethrower", 4, "unit-grunt", 2, "unit-nomad", 1, "unit-skeleton", 2, "unit-grunt", 2, "unit-catapult", 1, "unit-grunt", 2, "unit-grunt", 2, "unit-berserker", 1)
+	AiRed_Strategy_Extend_2014(i, 16, 18, "unit-ogre-mage", 1, "unit-ogre", 1, "unit-grunt", 2)
 end
 
 function AiRed_Strategy_Orc_Economy_2014(i)
-	aiftm_unit[i][0] = "unit-grunt"
-	aiftm_quantity[i][0] = 6
 	aiftm_loop[i] = 4
 	aiftm_terminate[i] = 16
-	aiftm_unit[i][1] = "unit-peon"
-	aiftm_quantity[i][1] = 2
-	aiftm_unit[i][2] = "unit-berserker"
-	aiftm_quantity[i][2] = 1
-	aiftm_unit[i][3] = "unit-ogre-mage"
-	aiftm_quantity[i][3] = 1
-	aiftm_unit[i][4] = "unit-axethrower"
-	aiftm_quantity[i][4] = 2
-	aiftm_unit[i][5] = "unit-grunt"
-	aiftm_quantity[i][5] = 3
-	aiftm_unit[i][6] = "unit-nomad"
-	aiftm_quantity[i][6] = 1
-	aiftm_unit[i][7] = "unit-axethrower"
-	aiftm_quantity[i][7] = 1
-	aiftm_unit[i][8] = "unit-ogre"
-	aiftm_quantity[i][8] = 1
-	aiftm_unit[i][9] = "unit-catapult"
-	aiftm_quantity[i][9] = 1
-	aiftm_unit[i][10] = "unit-grunt"
-	aiftm_quantity[i][10] = 4
-	aiftm_unit[i][11] = "unit-grunt"
-	aiftm_quantity[i][11] = 3
-	aiftm_unit[i][12] = "unit-ogre"
-	aiftm_quantity[i][12] = 1
-	aiftm_unit[i][13] = "unit-dragon"
-	aiftm_quantity[i][13] = 2
-	aiftm_unit[i][14] = "unit-grunt"
-	aiftm_quantity[i][14] = 4
-	aiftm_unit[i][15] = "unit-axethrower"
-	aiftm_quantity[i][15] = 2
-	aiftm_unit[i][16] = "unit-quick-blade"
-	aiftm_quantity[i][16] = 1
+	AiRed_Strategy_Insert_2014(i, 0, "unit-grunt", 2)
+	AiRed_Strategy_Insert_2014(i, 1, "unit-grunt", 2)
+	AiRed_Strategy_Insert_2014(i, 2, "unit-grunt", 2)
+	AiRed_Strategy_Insert_2014(i, 3, "unit-peon", 2)
+	AiRed_Strategy_Insert_2014(i, 4, "unit-berserker")
+	AiRed_Strategy_Insert_2014(i, 5, "unit-ogre-mage")
+	AiRed_Strategy_Insert_2014(i, 6, "unit-axethrower")
+	AiRed_Strategy_Insert_2014(i, 7, "unit-grunt", 3)
+	AiRed_Strategy_Insert_2014(i, 8, "unit-nomad")
+	AiRed_Strategy_Insert_2014(i, 9, "unit-axethrower")
+	AiRed_Strategy_Insert_2014(i, 10, "unit-ogre")
+	AiRed_Strategy_Insert_2014(i, 11, "unit-catapult")
+	AiRed_Strategy_Insert_2014(i, 12, "unit-grunt", 2)
+	AiRed_Strategy_Insert_2014(i, 13, "unit-axethrower", 2)
+	AiRed_Strategy_Insert_2014(i, 14, "unit-grunt", 2)
+	AiRed_Strategy_Insert_2014(i, 15, "unit-axethrower", 2)
+	AiRed_Strategy_Insert_2014(i, 16, "unit-ogre")
+	AiRed_Strategy_Insert_2014(i, 17, "unit-dragon")
+	AiRed_Strategy_Insert_2014(i, 18, "unit-dragon")
+	AiRed_Strategy_Insert_2014(i, 19, "unit-grunt", 2)
+	AiRed_Strategy_Insert_2014(i, 20, "unit-grunt", 2)
+	AiRed_Strategy_Insert_2014(i, 21, "unit-axethrower", 2)
+	AiRed_Strategy_Insert_2014(i, 22, "unit-quick-blade")
 end
 
 DefineAi("ai_redribbon_2014", "*", "ai_redribbon_2014", AiRedRibbon_2014)
