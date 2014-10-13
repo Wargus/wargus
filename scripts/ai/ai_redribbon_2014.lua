@@ -385,8 +385,7 @@ end
 
 function AiRed_Strategy_Extend_2014(i, j, k, Unit0, Quantity0, Unit1, Quantity1, Unit2, Quantity2, Unit3, Quantity3, Unit4, Quantity4, Unit5, Quantity5, Unit6, Quantity6, Unit7, Quantity7, Unit8, Quantity8, Unit9, Quantity9, Unit10, Quantity10)
 	AiRed_Strategy_Insert_2014(i, j, Unit0, Quantity0)
-	AddMessage("0") 
-	if ((j+1 <= k) and (Unit1 ~= nil)) then AddMessage("1") AiRed_Strategy_Insert_2014(i, j+1, Unit1, Quantity1) end
+	if ((j+1 <= k) and (Unit1 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+1, Unit1, Quantity1) end
 	if ((j+2 <= k) and (Unit2 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+2, Unit2, Quantity2) end
 	if ((j+3 <= k) and (Unit3 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+3, Unit3, Quantity3) end
 	if ((j+4 <= k) and (Unit4 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+4, Unit4, Quantity4) end
@@ -395,7 +394,7 @@ function AiRed_Strategy_Extend_2014(i, j, k, Unit0, Quantity0, Unit1, Quantity1,
 	if ((j+7 <= k) and (Unit7 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+7, Unit7, Quantity7) end
 	if ((j+8 <= k) and (Unit8 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+8, Unit8, Quantity8) end
 	if ((j+9 <= k) and (Unit9 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+9, Unit9, Quantity9) end
-	if ((j+10 <= k) and (Unit10 ~= nil)) then AddMessage("10") AiRed_Strategy_Insert_2014(i, j+10, Unit10, Quantity10) end
+	if ((j+10 <= k) and (Unit10 ~= nil)) then AiRed_Strategy_Insert_2014(i, j+10, Unit10, Quantity10) end
 	aiftm_terminate[i] = k
 end
 
@@ -411,31 +410,9 @@ function AiRed_Strategy_Orc_Mass_2014(i)
 end
 
 function AiRed_Strategy_Orc_Economy_2014(i)
-	aiftm_loop[i] = 4
-	aiftm_terminate[i] = 16
-	AiRed_Strategy_Insert_2014(i, 0, "unit-grunt", 2)
-	AiRed_Strategy_Insert_2014(i, 1, "unit-grunt", 2)
-	AiRed_Strategy_Insert_2014(i, 2, "unit-grunt", 2)
-	AiRed_Strategy_Insert_2014(i, 3, "unit-peon", 2)
-	AiRed_Strategy_Insert_2014(i, 4, "unit-berserker")
-	AiRed_Strategy_Insert_2014(i, 5, "unit-ogre-mage")
-	AiRed_Strategy_Insert_2014(i, 6, "unit-axethrower")
-	AiRed_Strategy_Insert_2014(i, 7, "unit-grunt", 3)
-	AiRed_Strategy_Insert_2014(i, 8, "unit-nomad")
-	AiRed_Strategy_Insert_2014(i, 9, "unit-axethrower")
-	AiRed_Strategy_Insert_2014(i, 10, "unit-ogre")
-	AiRed_Strategy_Insert_2014(i, 11, "unit-catapult")
-	AiRed_Strategy_Insert_2014(i, 12, "unit-grunt", 2)
-	AiRed_Strategy_Insert_2014(i, 13, "unit-axethrower", 2)
-	AiRed_Strategy_Insert_2014(i, 14, "unit-grunt", 2)
-	AiRed_Strategy_Insert_2014(i, 15, "unit-axethrower", 2)
-	AiRed_Strategy_Insert_2014(i, 16, "unit-ogre")
-	AiRed_Strategy_Insert_2014(i, 17, "unit-dragon")
-	AiRed_Strategy_Insert_2014(i, 18, "unit-dragon")
-	AiRed_Strategy_Insert_2014(i, 19, "unit-grunt", 2)
-	AiRed_Strategy_Insert_2014(i, 20, "unit-grunt", 2)
-	AiRed_Strategy_Insert_2014(i, 21, "unit-axethrower", 2)
-	AiRed_Strategy_Insert_2014(i, 22, "unit-quick-blade")
+	AiRed_Strategy_2014(i, 6, 8, 1, "unit-grunt", "unit-grunt", "unit-grunt", "unit-peon", "unit-peon", "unit-berserker", "unit-grunt", "unit-grunt", "unit-grunt")
+	AiRed_Strategy_Extend_2014(i, 9, 17, "unit-ogre-mage", 1, "unit-axethrower", 1, "unit-grunt", 3, "unit-nomad", 1, "unit-axethrower", 1, "unit-ogre", 1, "unit-catapult", 1, "unit-grunt", 2, "unit-axethrower", 2)
+	AiRed_Strategy_Extend_2014(i, 18, 26, "unit-axethrower", 2, "unit-ogre", 1, "unit-dragon", 1, "unit-dragon", 1, "unit-grunt", 2, "unit-axethrower", 2, "unit-grunt", 1, "unit-grunt", 1, "unit-quick-blade", 1)
 end
 
 DefineAi("ai_redribbon_2014", "*", "ai_redribbon_2014", AiRedRibbon_2014)
