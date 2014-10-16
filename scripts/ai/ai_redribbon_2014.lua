@@ -209,24 +209,39 @@ function AiRedRibbon_2014()
 	AiRedRibbon_Common_2014()
 end
 
+function AiRedRibbon_Diplomacy_Neutral_2014(a,b,n)
+	for i=a,b do
+		SetSharedVision(i, false, n)
+		SetSharedVision(n, false, i)
+		SetDiplomacy(n, "allied", i)
+		SetDiplomacy(i, "allied", n)
+	end
+end
+
+function AiRedRibbon_Diplomacy_2014(a, b)
+	for i=a,b do
+		for j=a,b do
+			if (ftm_faction[i] == ftm_faction[j]) then
+				SetSharedVision(j, true, i)
+				SetSharedVision(i, true, j)
+				SetDiplomacy(j, "allied", i)
+				SetDiplomacy(i, "allied", j)
+			else
+				SetSharedVision(j, false, i)
+				SetSharedVision(i, false, j)
+				SetDiplomacy(j, "enemy", i)
+				SetDiplomacy(i, "enemy", j)
+			end
+		end
+	end
+end
+
 function AiRedRibbon_Common_2014()
 	AiRed_Resources_2014(ftm_choice[AiPlayer()], 100, 50, 50)
 	if ((timers[AiPlayer()] == 35) or (timers[AiPlayer()] == 85)) then
 		AiNephrite_Flush_2013()
-	elseif (timers[AiPlayer()] == 1) then	
-		for i=0,15 do
-			if (ftm_faction[AiPlayer()] == ftm_faction[i]) then
-				SetSharedVision(AiPlayer(), true, i)
-				SetSharedVision(i, true, AiPlayer())
-				SetDiplomacy(AiPlayer(), "allied", i)
-				SetDiplomacy(i, "allied", AiPlayer())
-			else
-				SetSharedVision(AiPlayer(), false, i)
-				SetSharedVision(i, false, AiPlayer())
-				SetDiplomacy(AiPlayer(), "enemy", i)
-				SetDiplomacy(i, "enemy", AiPlayer())
-			end
-		end
+	--elseif (ftm_faction[ftm_choice[AiPlayer()]] ~= ftm_faction[AiPlayer()]) then	
+	--	AiRedRibbon_Diplomacy_2014(0, 15)
 	end
 	AiRedRibbon_Research_2012()
 	timers[AiPlayer()] = timers[AiPlayer()] + 1
@@ -235,21 +250,19 @@ function AiRedRibbon_Common_2014()
 	end
 end
 
+function AiRedRibbon_Spawn_2014(a, b, e, n)
+	if ((timers[AiPlayer()] == a) or (timers[AiPlayer()] == b)) then
+		X = e
+		Y = n
+	end
+end
+
 function AiRedRibbon_Survival_2014()
 	if ((timers[AiPlayer()] >= 36) and (timers[AiPlayer()] <= 39) or (timers[AiPlayer()] >= 86) and (timers[AiPlayer()] <= 89)) then
-		if ((timers[AiPlayer()] == 36) or (timers[AiPlayer()] == 86)) then
-			X = 0
-			Y = 0
-		elseif ((timers[AiPlayer()] == 38) or (timers[AiPlayer()] == 88)) then
-			X = 0
-			Y = 96
-		elseif ((timers[AiPlayer()] == 37) or (timers[AiPlayer()] == 87)) then
-			X = 96
-			Y = 96
-		elseif ((timers[AiPlayer()] == 39) or (timers[AiPlayer()] == 89)) then
-			X = 96
-			Y = 0
-		end
+		AiRedRibbon_Spawn_2014(36, 86, 0, 0)
+		AiRedRibbon_Spawn_2014(38, 88, 0, 96)
+		AiRedRibbon_Spawn_2014(37, 87, 96, 96)
+		AiRedRibbon_Spawn_2014(39, 89, 96, 0)
 		if (ftm_team[AiPlayer()] == ftm_team[ftm_choice[AiPlayer()]]) then
 			for i=ftm_index_start[AiPlayer()],ftm_index_end[AiPlayer()] do
 				if (GetNumUnitsAt(ftm_choice[AiPlayer()], ftm_unit[i], {ftm_team_x1[ftm_choice[AiPlayer()]], ftm_team_y1[ftm_choice[AiPlayer()]]}, {ftm_team_x2[ftm_choice[AiPlayer()]], ftm_team_y2[ftm_choice[AiPlayer()]]}) > 0) then
@@ -398,18 +411,24 @@ function AiRed_Strategy_Extend_2014(i, j, k, Unit0, Quantity0, Unit1, Quantity1,
 	aiftm_terminate[i] = k
 end
 
-function AiRed_Strategy_Human_Support_2014(i)
-	AiRed_Strategy_2014(i, 18, 27, 1, "unit-footman", "unit-footman", "unit-footman", "unit-archer", "unit-archer", "unit-peasant", "unit-ranger", "unit-knight", "unit-arthor-literios", "unit-footman", "unit-footman", "unit-archer", "unit-archer", "unit-archer", "unit-archer", "unit-footman", "unit-footman", "unit-paladin", "unit-knight", "unit-knight", "unit-mage")
-	AiRed_Strategy_Extend_2014(i, 21, 27, "unit-archer", 2, "unit-footman", 3, "unit-knight", 1, "unit-knight", 1, "unit-archer", 2, "unit-archer", 2, "unit-footman", 2)
+function AiRed_Strategy_Alliance_Support_2014(i)
+	AiRed_Strategy_2014(i, 18, 27, 1, "unit-footman", "unit-footman", "unit-footman", "unit-archer", "unit-archer", "unit-peasant", "unit-ranger", "unit-footman", "unit-footman", "unit-footman", "unit-archer", "unit-footman", "unit-archer", "unit-archer", "unit-footman", "unit-footman", "unit-paladin", "unit-knight", "unit-knight", "unit-mage", "unit-arthor-literios")
+	AiRed_Strategy_Extend_2014(i, 21, 28, "unit-archer", 1, "unit-footman", 3, "unit-knight", 1, "unit-knight", 1, "unit-archer", 1, "unit-archer", 1, "unit-footman", 2, "unit-female-hero", 1)
 end
 
-function AiRed_Strategy_Orc_Mass_2014(i)
+function AiRed_Strategy_Alliance_Mass_2014(i)
+	AiRed_Strategy_2014(i, 9, 4, 2, "unit-footman", "unit-footman", "unit-footman", "unit-footman", "unit-archer")
+	AiRed_Strategy_Extend_2014(i, 5, 15, "unit-ranger", 1, "unit-peasant", 1, "unit-archer", 1, "unit-footman", 1, "unit-yeoman", 1, "unit-footman", 2, "unit-knight", 1, "unit-footman", 1, "unit-archer", 1, "unit-footman", 1, "unit-paladin", 1)
+	AiRed_Strategy_Extend_2014(i, 16, 18, "unit-mage", 1, "unit-female-hero", 1, "unit-footman", 2)
+end
+
+function AiRed_Strategy_Horde_Mass_2014(i)
 	AiRed_Strategy_2014(i, 1, 4, 3, "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton")
 	AiRed_Strategy_Extend_2014(i, 5, 15, "unit-goblin-sappers", 1, "unit-peon", 2, "unit-axethrower", 4, "unit-grunt", 2, "unit-nomad", 1, "unit-skeleton", 2, "unit-grunt", 2, "unit-catapult", 1, "unit-grunt", 2, "unit-grunt", 2, "unit-berserker", 1)
 	AiRed_Strategy_Extend_2014(i, 16, 18, "unit-ogre-mage", 1, "unit-ogre", 1, "unit-grunt", 2)
 end
 
-function AiRed_Strategy_Orc_Economy_2014(i)
+function AiRed_Strategy_Horde_Economy_2014(i)
 	AiRed_Strategy_2014(i, 6, 8, 1, "unit-grunt", "unit-grunt", "unit-grunt", "unit-peon", "unit-peon", "unit-berserker", "unit-grunt", "unit-grunt", "unit-grunt")
 	AiRed_Strategy_Extend_2014(i, 9, 17, "unit-ogre-mage", 1, "unit-axethrower", 1, "unit-grunt", 3, "unit-nomad", 1, "unit-axethrower", 1, "unit-ogre", 1, "unit-catapult", 1, "unit-grunt", 2, "unit-axethrower", 2)
 	AiRed_Strategy_Extend_2014(i, 18, 26, "unit-axethrower", 2, "unit-ogre", 1, "unit-dragon", 1, "unit-dragon", 1, "unit-grunt", 2, "unit-axethrower", 2, "unit-grunt", 1, "unit-grunt", 1, "unit-quick-blade", 1)

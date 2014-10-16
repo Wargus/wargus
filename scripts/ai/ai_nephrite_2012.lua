@@ -147,7 +147,7 @@ function AiNephrite_2012()
 	end
 	if (nephrite_stepping == 3) then
 		-- What am I going to build next?
-		nephrite_build = math.random(3)
+		nephrite_build = SyncRand(3)
 		if (nephrite_build == 3) then
 			nephrite_build = "Footman"
 		elseif (nephrite_build == 2) then

@@ -9488,6 +9488,9 @@ ftm_team_starty[13] = 95
 ftm_team_startx[14] = 45
 ftm_team_starty[14] = 47
 
+AiRedRibbon_Diplomacy_2014(0, 14)
+AiRedRibbon_Diplomacy_Neutral_2014(0, 14, 15)
+
 for i=1, 15 do
 	ftm_team_x1[i-1] = 0
 	ftm_team_y1[i-1] = 0
@@ -9524,7 +9527,7 @@ ftm_unit[71] = "unit-ogre"
 ftm_cost[71] = 75
 ftm_unit[72] = "unit-ogre-mage"
 ftm_cost[72] = 125
-ftm_unit[73] = "unit-knight-rider"
+ftm_unit[73] = "unit-fad-man"
 ftm_cost[73] = 200
 ftm_unit[74] = "unit-catapult"
 ftm_cost[74] = 125
@@ -9551,34 +9554,17 @@ end
 AiRed_Strategy_2014(8, 1, 1, 1, "unit-peon", "unit-grunt")
 
 -- AiRed Player 9, Blue
-AiRed_Strategy_Human_Support_2014(9)
+AiRed_Strategy_Alliance_Mass_2014(9)
 
 -- AiRed Player 10, Green
 --AiRed_Strategy_2014(10, 2, 19, 1, "unit-peon", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-grunt", "unit-axethrower", "unit-grunt", "unit-axethrower", "unit-grunt", "unit-axethrower", "unit-nomad", "unit-berserker")
 AiRed_Strategy_2014(10, 0, 0, 1, "unit-skeleton")
 
 -- AiRed Player 13, Black
-AiRed_Strategy_2014(13, 1, 20, 1, "unit-skeleton", "unit-ogre", "unit-ogre", "unit-skeleton", "unit-grunt", "unit-peon", "unit-skeleton", "unit-grunt", "unit-peon", "unit-axethrower", "unit-death-knight", "unit-berserker", "unit-ogre", "unit-dragon", "unit-catapult", "unit-ogre-mage", "unit-sharp-axe", "unit-ogre", "unit-quick-blade", "unit-ogre-mage", "unit-knight-rider")
+AiRed_Strategy_2014(13, 1, 20, 1, "unit-skeleton", "unit-ogre", "unit-ogre", "unit-skeleton", "unit-grunt", "unit-peon", "unit-skeleton", "unit-grunt", "unit-peon", "unit-axethrower", "unit-death-knight", "unit-berserker", "unit-ogre", "unit-dragon", "unit-catapult", "unit-ogre-mage", "unit-sharp-axe", "unit-ogre", "unit-quick-blade", "unit-ogre-mage", "unit-fad-man")
 
 -- AiRed Player 14, White
 AiRed_Strategy_2014(14, 2, 9, 1, "unit-peasant", "unit-ranger", "unit-attack-peasant", "unit-footman", "unit-archer", "unit-footman", "unit-archer", "unit-footman", "unit-archer", "unit-yeoman")
-
-for i=8, 10 do
-	for j=8, 10 do
-		SetDiplomacy(i, "allied", j)
-		SetDiplomacy(j, "allied", i)
-		SetSharedVision(i, true, j)
-		SetSharedVision(j, true, i)
-	end
-	SetDiplomacy(14, "allied", i)
-	SetDiplomacy(i, "allied", 14)
-	SetSharedVision(i, true, 14)
-	SetSharedVision(14, true, i)
-	SetDiplomacy(13, "enemy", i)
-	SetDiplomacy(i, "enemy", 13)
-	SetSharedVision(i, false, 13)
-	SetSharedVision(13, false, i)
-end
 
 AddTrigger(
 	function() return (GameCycle == 5) end,

@@ -51,27 +51,27 @@ SetPlayerData(6, "Resources", "oil", 10000)
 SetPlayerData(6, "RaceName", "human")
 SetAiType(6, "ai_redribbon_2014")
 SetStartView(8, 46, 47)
-SetPlayerData(8, "Resources", "wood", 0)
+SetPlayerData(8, "Resources", "wood", 2500)
 SetPlayerData(8, "Resources", "gold", 10000)
-SetPlayerData(8, "Resources", "oil", 0)
+SetPlayerData(8, "Resources", "oil", 2500)
 SetPlayerData(8, "RaceName", "orc")
 SetAiType(8, "ai_red_2014")
-SetStartView(9, 43, 47)
-SetPlayerData(9, "Resources", "wood", 0)
+SetStartView(0, 0, 0)
+SetPlayerData(9, "Resources", "wood", 2500)
 SetPlayerData(9, "Resources", "gold", 10000)
-SetPlayerData(9, "Resources", "oil", 0)
+SetPlayerData(9, "Resources", "oil", 2500)
 SetPlayerData(9, "RaceName", "human")
 SetAiType(9, "ai_red_2014")
 SetStartView(10, 44, 47)
-SetPlayerData(10, "Resources", "wood", 0)
+SetPlayerData(10, "Resources", "wood", 2500)
 SetPlayerData(10, "Resources", "gold", 10000)
-SetPlayerData(10, "Resources", "oil", 0)
+SetPlayerData(10, "Resources", "oil", 2500)
 SetPlayerData(10, "RaceName", "orc")
 SetAiType(10, "ai_red_2014")
 SetStartView(14, 45, 47)
-SetPlayerData(14, "Resources", "wood", 0)
+SetPlayerData(14, "Resources", "wood", 2500)
 SetPlayerData(14, "Resources", "gold", 10000)
-SetPlayerData(14, "Resources", "oil", 0)
+SetPlayerData(14, "Resources", "oil", 2500)
 SetPlayerData(14, "RaceName", "human")
 SetAiType(14, "ai_red_2014")
 SetStartView(15, 0, 0)
@@ -9414,6 +9414,9 @@ ftm_choice[6] = 14
 ftm_index_start[6] = 31
 ftm_index_end[6] = 45
 
+AiRedRibbon_Diplomacy_2014(0, 14)
+AiRedRibbon_Diplomacy_Neutral_2014(0, 14, 15)
+
 ftm_team_startx[0] = 78
 ftm_team_starty[0] = 16
 ftm_team_startx[1] = 20
@@ -9469,79 +9472,35 @@ ftm_origin_y[14] = 4
 ftm_origin_x[15] = 19
 ftm_origin_y[15] = 3
 
-ftm_unit[31] = "unit-footman"
-ftm_origin[31] = "unit-human-barracks"
-ftm_cost[31] = 25
+
 ftm_origin_x[31] = 6
 ftm_origin_y[31] = 83
-ftm_unit[32] = "unit-arthor-literios"
-ftm_origin[32] = "unit-human-barracks"
-ftm_cost[32] = 200
 ftm_origin_x[32] = 6
 ftm_origin_y[32] = 83
-ftm_unit[33] = "unit-archer"
-ftm_origin[33] = "unit-human-barracks"
-ftm_cost[33] = 25
 ftm_origin_x[33] = 6
 ftm_origin_y[33] = 83
-ftm_unit[34] = "unit-ranger"
-ftm_origin[34] = "unit-human-barracks"
-ftm_cost[34] = 50
 ftm_origin_x[34] = 6
 ftm_origin_y[34] = 83
-ftm_unit[35] = "unit-female-hero"
-ftm_origin[35] = "unit-human-barracks"
-ftm_cost[35] = 200
 ftm_origin_x[35] = 6
 ftm_origin_y[35] = 83
-ftm_unit[36] = "unit-knight"
-ftm_origin[36] = "unit-human-barracks"
-ftm_cost[36] = 75
 ftm_origin_x[36] = 6
 ftm_origin_y[36] = 83
-ftm_unit[37] = "unit-paladin"
-ftm_origin[37] = "unit-human-barracks"
-ftm_cost[37] = 125
 ftm_origin_x[37] = 6
 ftm_origin_y[37] = 83
-ftm_unit[38] = "unit-knight-rider"
-ftm_origin[38] = "unit-human-barracks"
-ftm_cost[38] = 200
 ftm_origin_x[38] = 6
 ftm_origin_y[38] = 83
-ftm_unit[39] = "unit-ballista"
-ftm_origin[39] = "unit-human-barracks"
-ftm_cost[39] = 125
 ftm_origin_x[39] = 6
 ftm_origin_y[39] = 83
-ftm_unit[40] = "unit-attack-peasant"
-ftm_origin[40] = "unit-town-hall"
-ftm_cost[40] = 15
 ftm_origin_x[40] = 6
 ftm_origin_y[40] = 89
-ftm_unit[41] = "unit-dwarves"
-ftm_origin[41] = "unit-inventor"
-ftm_cost[41] = 1
 ftm_origin_x[41] = 23
 ftm_origin_y[41] = 92
-ftm_unit[42] = "unit-yeoman"
-ftm_origin[42] = "unit-town-hall"
-ftm_cost[42] = 50
 ftm_origin_x[42] = 6
 ftm_origin_y[42] = 89
-ftm_unit[43] = "unit-gryphon-rider"
-ftm_origin[43] = "unit-gryphon-aviary"
-ftm_cost[43] = 1
 ftm_origin_x[43] = 31
 ftm_origin_y[43] = 92
-ftm_unit[44] = "unit-mage"
-ftm_origin[44] = "unit-mage-tower"
-ftm_cost[44] = 100
 ftm_origin_x[44] = 27
 ftm_origin_y[44] = 92
-ftm_unit[45] = "unit-peasant"
-ftm_origin[45] = "unit-town-hall"
-ftm_cost[45] = 25
 ftm_origin_x[45] = 6
 ftm_origin_y[45] = 89
 
@@ -9576,115 +9535,51 @@ ftm_origin_y[64] = 24
 ftm_origin_x[65] = 76
 ftm_origin_y[65] = 17
 
-ftm_unit[81] = "unit-grunt"
-ftm_origin[81] = "unit-orc-barracks"
-ftm_cost[81] = 25
+
 ftm_origin_x[81] = 78
 ftm_origin_y[81] = 55
-ftm_unit[82] = "unit-quick-blade"
-ftm_origin[82] = "unit-orc-barracks"
-ftm_cost[82] = 200
 ftm_origin_x[82] = 78
 ftm_origin_y[82] = 55
-ftm_unit[83] = "unit-axethrower"
-ftm_origin[83] = "unit-orc-barracks"
-ftm_cost[83] = 25
 ftm_origin_x[83] = 78
 ftm_origin_y[83] = 55
-ftm_unit[84] = "unit-berserker"
-ftm_origin[84] = "unit-orc-barracks"
-ftm_cost[84] = 50
 ftm_origin_x[84] = 78
 ftm_origin_y[84] = 55
-ftm_unit[85] = "unit-sharp-axe"
-ftm_origin[85] = "unit-orc-barracks"
-ftm_cost[85] = 200
 ftm_origin_x[85] = 78
 ftm_origin_y[85] = 55
-ftm_unit[86] = "unit-ogre"
-ftm_origin[86] = "unit-orc-barracks"
-ftm_cost[86] = 75
 ftm_origin_x[86] = 78
 ftm_origin_y[86] = 55
-ftm_unit[87] = "unit-ogre-mage"
-ftm_origin[87] = "unit-orc-barracks"
-ftm_cost[87] = 125
 ftm_origin_x[87] = 78
 ftm_origin_y[87] = 55
-ftm_unit[88] = "unit-knight-rider"
-ftm_origin[88] = "unit-orc-barracks"
-ftm_cost[88] = 200
 ftm_origin_x[88] = 78
 ftm_origin_y[88] = 55
-ftm_unit[89] = "unit-catapult"
-ftm_origin[89] = "unit-orc-barracks"
-ftm_cost[89] = 125
 ftm_origin_x[89] = 78
 ftm_origin_y[89] = 55
-ftm_unit[90] = "unit-skeleton"
-ftm_origin[90] = "unit-great-hall"
-ftm_cost[90] = 15
 ftm_origin_x[90] = 81
 ftm_origin_y[90] = 86
-ftm_unit[91] = "unit-goblin-sappers"
-ftm_origin[91] = "unit-alchemist"
-ftm_cost[91] = 1
 ftm_origin_x[91] = 89
 ftm_origin_y[91] = 62
-ftm_unit[92] = "unit-nomad"
-ftm_origin[92] = "unit-great-hall"
-ftm_cost[92] = 50
 ftm_origin_x[92] = 81
 ftm_origin_y[92] = 86
-ftm_unit[93] = "unit-dragon"
-ftm_origin[93] = "unit-dragon-roost"
-ftm_cost[93] = 1
 ftm_origin_x[93] = 89
 ftm_origin_y[93] = 58
-ftm_unit[94] = "unit-death-knight"
-ftm_origin[94] = "unit-temple-of-the-damned"
-ftm_cost[94] = 100
 ftm_origin_x[94] = 89
 ftm_origin_y[94] = 54
-ftm_unit[95] = "unit-peon"
-ftm_origin[95] = "unit-great-hall"
-ftm_cost[95] = 25
 ftm_origin_x[95] = 81
 ftm_origin_y[95] = 86
 
-SetDiplomacy(9, "allied", 14)
-SetDiplomacy(14, "allied", 9)
-SetSharedVision(9, true, 14)
-SetSharedVision(14, true, 9)
-SetDiplomacy(10, "allied", 8)
-SetDiplomacy(8, "allied", 10)
-SetSharedVision(10, true, 8)
-SetSharedVision(8, true, 10)
-SetSharedVision(10, false, 14)
-SetSharedVision(14, false, 10)
-SetDiplomacy(10, "enemy", 14)
-SetDiplomacy(14, "enemy", 10)
-SetSharedVision(10, false, 9)
-SetSharedVision(9, false, 10)
-SetDiplomacy(10, "enemy", 9)
-SetDiplomacy(9, "enemy", 10)
-SetSharedVision(8, false, 14)
-SetSharedVision(14, false, 8)
-SetDiplomacy(8, "enemy", 14)
-SetDiplomacy(14, "enemy", 8)
-SetSharedVision(8, false, 9)
-SetSharedVision(9, false, 8)
-SetDiplomacy(8, "enemy", 9)
-SetDiplomacy(9, "enemy", 8)
-
 -- AiRed Player 10
-AiRed_Strategy_Orc_Mass_2014(10)
+AiRed_Strategy_Horde_Mass_2014(10)
 
 -- AiRed Player 8
-AiRed_Strategy_Orc_Economy_2014(8)
+AiRed_Strategy_Horde_Economy_2014(8)
 
 -- AiRed Player 14
-AiRed_Strategy_Human_Support_2014(14)
+
+if (SyncRand(2) == 1) then
+	AiRed_Strategy_Alliance_Support_2014(14)
+else
+	AiRed_Strategy_Alliance_Mass_2014(14)
+end
 
 AddTrigger(
 	function() return (GameCycle > 800) end, 
