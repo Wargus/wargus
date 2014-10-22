@@ -47,6 +47,7 @@ static const char * const MusicNames[] = {
 	"Orc Briefing",
 	"Orc Victory",
 	"Orc Defeat",
+	"Main Menu",
 	"I'm a Medieval Man",
 	NULL
 };
