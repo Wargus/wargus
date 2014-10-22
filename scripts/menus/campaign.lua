@@ -36,10 +36,10 @@ function Briefing(title, objs, bg, text, voices)
 
   wargus.playlist = {}
   if (CurrentCampaignRace == "human") then
-    PlayMusic("music/Human Briefing.ogg")
+    PlayMusic("music/Human Briefing" .. wargus.music_extension)
     Load("scripts/human/ui.lua")
   elseif (CurrentCampaignRace == "orc") then
-    PlayMusic("music/Orc Briefing.ogg")
+    PlayMusic("music/Orc Briefing" .. wargus.music_extension)
     Load("scripts/orc/ui.lua")
   else
     StopMusic()
@@ -251,11 +251,11 @@ function RunCampaignSubmenu(campaign)
 	SavePreferences()
   end
  
-  wargus.playlist = { "music/Orc Briefing.ogg" }
-  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+  wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+  SetDefaultRaceView()
 
   if not (IsMusicPlaying()) then
-    PlayMusic("music/Orc Briefing.ogg")
+    PlayMusic("music/Main Menu" .. wargus.music_extension)
   end
 
   local menu = WarMenu()
@@ -288,6 +288,12 @@ end
 
 function RunCampaign(campaign)
   Load(campaign)
+
+  if (CurrentCampaignRace == "human") then
+    Load("scripts/human/ui.lua")
+  elseif (CurrentCampaignRace == "orc") then
+    Load("scripts/orc/ui.lua")
+  end
 
   if (campaign ~= currentCampaign or position == nil) then
     position = 1

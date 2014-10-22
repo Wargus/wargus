@@ -211,7 +211,7 @@ function RunReplayGameMenu()
       InitGameVariables()
       StartReplay("~logs/" .. browser:getSelectedItem(), reveal:isMarked())
       InitGameSettings()
-      SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+      SetDefaultRaceView()
       menu:stop()
     end)
   menu:addHalfButton("~!Cancel", "c", Video.Width/2 + 3, Video.Height - 33, function() menu:stop() end)
@@ -226,11 +226,11 @@ function RunMultiPlayerGameMenu(s)
   local nick
 
   local function FixMusic()
-    wargus.playlist = { "music/Orc Briefing.ogg" }
-    SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+    wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+    SetDefaultRaceView()
 
     if not (IsMusicPlaying()) then
-        PlayMusic("music/Orc Briefing.ogg")
+        PlayMusic("music/Main Menu" .. wargus.music_extension)
     end
   end
 

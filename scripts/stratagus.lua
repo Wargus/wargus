@@ -67,6 +67,13 @@ function InitGameVariables()
   end
 end
 
+function SetDefaultRaceView()
+  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+  UI.NormalFontColor = "yellow"
+  UI.ReverseFontColor = "white"
+  SetDefaultTextColors(UI.NormalFontColor, UI.ReverseFontColor)
+end
+
 DefineBoolFlags("Center", "WoodImprove", "OilImprove")
 
 --  Edit the next sections to get your look and feel.
@@ -77,13 +84,13 @@ DefineBoolFlags("Center", "WoodImprove", "OilImprove")
 SetTitleScreens(
   {Image = "videos/logo.ogv"},
   {Image = "videos/gameintro.ogv"},
-  {Image = "ui/title.png", Music = "music/Orc Briefing.ogg", Timeout = 20}
+  {Image = "ui/title.png", Music = "music/Main Menu" .. wargus.music_extension, Timeout = 20}
 )
 
 -------------------------------------------------------------------------------
 --	Music play list -	Insert your titles here
 -------------------------------------------------------------------------------
-wargus.playlist = { "music/Orc Briefing.ogg" }
+wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
 
 --  Set the game name. It's used so we can mantain different savegames
 --  and setting. Might also be used for multiplayer.
@@ -97,6 +104,8 @@ Preference.ShowSightRange = false
 Preference.ShowAttackRange = false
 Preference.ShowReactionRange = false
 Preference.IconsShift = true
+
+Preference.SF2Soundfont = "music/TimGM6mb.sf2"
 
 Preference.ShowOrders = 2
 
@@ -290,7 +299,7 @@ local defaultPreferences = {
 	EnableMouseScrolling = true,    --  Enable/disable mouse scrolling.
 	FogOfWar = true,
 	FogOfWarOpacity = 128,
-	GameSpeed = 70,
+	GameSpeed = 30,
 	GameTranslation = "",
 	GrabMouse = false,              --  Enable/disable grabbing the mouse.
 	GroupKeys = "0123456789`",

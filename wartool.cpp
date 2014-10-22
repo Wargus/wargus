@@ -209,8 +209,9 @@ static char* ArchiveDir;
 #define CD_ITALIAN    (1 << 8)
 #define CD_PORTUGUESE (1 << 9)
 #define CD_FRENCH     (1 << 10)
+#define CD_RUSSIAN    (1 << 11)
 
-#define CD_UPPER      (1 << 12) // Filenames on CD are upper
+#define CD_UPPER      (1 << 13) // Filenames on CD are upper
 
 /**
 **  What CD Type is it?
@@ -857,11 +858,12 @@ static Control Todo[] = {
 {M,0,"Orc Defeat",                                     422 __},
 {M,0,"Human Victory",                                  423 __},
 {M,0,"Orc Victory",                                    424 __},
-{M,0,"Human Briefing",                                 425 __},
+{M,0,"Orc Battle 5",                                   425 __},
 {M,0,"I'm a Medieval Man",                             426 __},
 {M,0,"Human Battle 5",                                 427 __},
-{M,0,"Orc Battle 5",                                   428 __},
-{M,0,"Orc Briefing",                                   429 __},
+{M,0,"Human Briefing",                                 428 __},
+{M,0,"Orc Briefing",                                   428 __},
+{M,0,"Main Menu",                                      429 __},
 
 {V,0,"videos/logo",                                    430 __},
 
@@ -1958,8 +1960,8 @@ int OpenArchive(const char* file, int type)
 		printf("Can't open %s\n", file);
 		exit(-1);
 	}
-	if (fstat(f, &stat_buf)) {
-		printf("Can't fstat %s\n", file);
+	if (stat(file, &stat_buf)) {
+		printf("Can't stat %s\n", file);
 		exit(-1);
 	}
 //	printf("Filesize %ld %ldk\n",
@@ -2936,7 +2938,13 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 
 	bp = start + 5;  // skip "FONT "
 	count = FetchByte(bp);
-	count -= 32;
+	if (CDType & CD_RUSSIAN) {
+		// hack to show last letter in font
+		count -= 31;
+	} else {
+		count -= 32;
+	}
+	
 	max_width = FetchByte(bp);
 	max_height = FetchByte(bp);
 
@@ -3013,6 +3021,39 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 }
 
 /**
+**  Fix fonts for Russian SPK version.
+*/
+void FixFont(const char* file, unsigned char* image, int w,	int h)
+{
+	const int fontWidth = w / 15;
+	const int fontHeight = h / 14;
+	// First block of 3 lowercase letters at 168,168
+	for (int i = 0; i < fontHeight; ++i) {
+		unsigned char *pi = &image[w*(12*fontHeight + i) + fontWidth * 12];
+		unsigned char *po = &image[w *(9*fontHeight + i) + fontWidth * 9];
+		for (int j = 0; j < 3 * fontWidth; ++j) {
+			*po++ = *pi++;
+		}
+	}
+	// Second block of 3 lowercase letters at 0,182
+	for (int i = 0; i < fontHeight; ++i) {
+		unsigned char *pi = &image[w*(13*fontHeight + i) + fontWidth * 0];
+		unsigned char *po = &image[w *(9*fontHeight + i) + fontWidth * 12];
+		for (int j = 0; j < 3 * fontWidth; ++j) {
+			*po++ = *pi++;
+		}
+	}
+	// Third block of 7 lowercase letters at 42,182
+	for (int i = 0; i < fontHeight; ++i) {
+		unsigned char *pi = &image[w*(13*fontHeight + i) + fontWidth * 3];
+		unsigned char *po = &image[w *(10*fontHeight + i) + fontWidth * 0];
+		for (int j = 0; j < 10 * fontWidth; ++j) {
+			*po++ = *pi++;
+		}
+	}
+}
+
+/**
 **  Convert a font to my format.
 */
 int ConvertFont(const char* file, int pale, int fnte)
@@ -3034,11 +3075,13 @@ int ConvertFont(const char* file, int pale, int fnte)
 
 	sprintf(buf, "%s/%s/%s.png", Dir, FONT_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
-
 	if (!strcmp(file, "game")) {
 		game_font_width = w / 15;
 	}
+	if (CDType & CD_RUSSIAN) {
+		FixFont(file, image, w, h);
+	}
+	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
 	free(image);
 	free(palp);
@@ -3286,21 +3329,18 @@ int ConvertWav(const char* file, int wave)
 //----------------------------------------------------------------------------
 
 /**
-**  Convert XMI Midi sound to OGG
+**  Convert XMI Midi sound to GM MIDI
 */
 
 int ConvertXmi(const char* file, int xmi)
 {
 	unsigned char* xmip;
 	unsigned char* midp;
-	unsigned char* oggp;
 	char buf[1024];
 	char* cmd;
-	gzFile gf;
-	FILE* f;
+	FILE *f;
 	size_t xmil;
 	size_t midl;
-	size_t oggl;
 	int ret;
 
 	xmip = ExtractEntry(ArchiveOffsets[xmi], &xmil);
@@ -3322,91 +3362,6 @@ int ConvertXmi(const char* file, int xmi)
 
 	free(midp);
 	fclose(f);
-
-	cmd = (char*) calloc(strlen("timidity -Ow \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
-	if (!cmd) {
-		fprintf(stderr, "Memory error\n");
-		exit(-1);
-	}
-
-	sprintf(cmd, "timidity -Ow \"%s/%s/%s.mid\" -o \"%s/%s/%s.wav\"", Dir, MUSIC_PATH, file, Dir, MUSIC_PATH, file);
-
-	ret = system(cmd);
-
-	free(cmd);
-	remove(buf);
-
-	if (ret != 0) {
-		printf("Can't convert midi sound %s to wav format. Is timidity installed in PATH?\n", file);
-		fflush(stdout);
-		return ret;
-	}
-
-	sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, file);
-	CheckPath(buf);
-
-	cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
-	if (!cmd) {
-		fprintf(stderr, "Memory error\n");
-		exit(-1);
-	}
-
-	sprintf(cmd, "ffmpeg2theora --optimize \"%s/%s/%s.wav\" -o \"%s/%s/%s.ogg\"", Dir, MUSIC_PATH, file, Dir, MUSIC_PATH, file);
-
-	ret = system(cmd);
-
-	free(cmd);
-	remove(buf);
-
-	if (ret != 0) {
-		printf("Can't convert wav sound %s to ogv format. Is ffmpeg2theora installed in PATH?\n", file);
-		fflush(stdout);
-		return ret;
-	}
-
-	sprintf(buf, "%s/%s/%s.ogg", Dir, MUSIC_PATH, file);
-	CheckPath(buf);
-	f = fopen(buf, "rb");
-	if (!f) {
-		perror("");
-		printf("Can't open %s\n", buf);
-		exit(-1);
-	}
-
-	fseek(f, 0, SEEK_END);
-	oggl = ftell(f);
-	rewind(f);
-
-	oggp = (unsigned char*) malloc(oggl);
-	if (!oggp) {
-		fprintf(stderr, "Memory error\n");
-		exit(-1);
-	}
-
-	if (oggl != (size_t)fread(oggp, 1, oggl, f)) {
-		printf("Can't read %d bytes\n", (int)oggl);
-		fflush(stdout);
-	}
-
-	fclose(f);
-	remove(buf);
-
-	sprintf(buf, "%s/%s/%s.ogg.gz", Dir, MUSIC_PATH, file);
-	CheckPath(buf);
-	gf = gzopen(buf, "wb9");
-	if (!gf) {
-		perror("");
-		printf("Can't open %s\n", buf);
-		exit(-1);
-	}
-
-	if (oggl != (size_t)gzwrite(gf, oggp, oggl)) {
-		printf("Can't write %d bytes\n", (int)oggl);
-		fflush(stdout);
-	}
-
-	gzclose(gf);
-	free(oggp);
 
 	return 0;
 }
@@ -3604,19 +3559,30 @@ unsigned char *ConvertString(unsigned char *buf, size_t len)
 	if (len == 0) {
 		len = strlen((char *)buf);
 	}
-
+		
 	str = (unsigned char *)malloc(2 * len + 1);
 	p = str;
 
 	for (i = 0; i < len; ++i, ++buf) {
 		if (*buf > 0x7f) {
-			*p++ = (0xc0 | (*buf >> 6));
-			*p++ = (0x80 | (*buf & 0x1f));
+			if (CDType & (CD_RUSSIAN)) { 
+				// Special cp866 hack for SPK version
+				*p++ = 0xc2;
+				if (*buf >= 0xE0 && *buf < 0xF0) {
+					*p++ = *buf - 0x30;
+				} else {
+					*p++ = *buf;
+				}
+			} else {
+				*p++ = (0xc0 | (*buf >> 6));
+				*p++ = (0x80 | (*buf & 0x1f));
+			}
 		} else {
 			*p++ = *buf;
 		}
 	}
 	*p = '\0';
+
 	return str;
 }
 
@@ -3633,7 +3599,7 @@ int ConvertText(const char* file, int txte, int ofs)
 	unsigned char *str;
 
 	// workaround for German/UK/Australian CD's
-	if (!(CDType & CD_EXPANSION) && (CDType & (CD_GERMAN | CD_UK))) {
+	if (!(CDType & CD_EXPANSION) && (CDType & (CD_GERMAN | CD_UK | CD_RUSSIAN))) {
 		--txte;
 	}
 
@@ -4347,7 +4313,7 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 	} else {
 		expansion = 0;
 		// 53 for UK and German CD, else 54
-		if (CDType & (CD_UK | CD_GERMAN)) {
+		if (CDType & (CD_UK | CD_GERMAN | CD_RUSSIAN)) {
 			txte = 53;
 		} else {
 			txte = 54;
@@ -4478,7 +4444,6 @@ void Usage(const char* name)
 Usage: %s [-e|-n] [-m] [-v] [-r] [-V] [-h] archive-directory [destination-directory]\n\
 \t-e\tThe archive is expansion compatible (default: autodetect)\n\
 \t-n\tThe archive is not expansion compatible (default: autodetect)\n\
-\t-m\tExtract and convert midi sound files\n\
 \t-v\tExtract and convert videos\n\
 \t-r\tRip sound tracks from CD-ROM (needs original CD, no image/emulation)\n\
 \t-V\tShow version\n\
@@ -4500,23 +4465,16 @@ int main(int argc, char** argv)
 	struct stat st;
 	int expansion_cd;
 	int video;
-	int midi;
 	int rip;
 	int a;
 	char filename[1024];
 	FILE* f;
 
 	a = 1;
-	video = rip = midi = expansion_cd = CDType = 0;
+	video = rip = expansion_cd = CDType = 0;
 	while (argc >= 2) {
 		if (!strcmp(argv[a], "-v")) {
 			video = 1;
-			++a;
-			--argc;
-			continue;
-		}
-		if (!strcmp(argv[a], "-m")) {
-			midi = 1;
 			++a;
 			--argc;
 			continue;
@@ -4643,6 +4601,11 @@ int main(int argc, char** argv)
 					fflush(stdout);
 					CDType |= CD_FRENCH;
 					break;
+				case 52152:
+					printf("Detected Russian SPK DOS CD\n");
+					fflush(stdout);
+					CDType |= CD_RUSSIAN;
+					break;
 
 				default:
 					printf("Could not detect CD version:\n");
@@ -4738,9 +4701,7 @@ int main(int argc, char** argv)
 				ConvertCursor(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
 				break;
 			case M:
-				if (midi) {
-					ConvertXmi(Todo[u].File, Todo[u].Arg1);
-				}
+				ConvertXmi(Todo[u].File, Todo[u].Arg1);
 				break;
 			case W:
 				ConvertWav(Todo[u].File, Todo[u].Arg1);
@@ -4772,7 +4733,7 @@ int main(int argc, char** argv)
 	if (rip) {
 		sprintf(buf, "%s/%s/", Dir, MUSIC_PATH);
 		CheckPath(buf);
-		RipMusic(expansion_cd, ArchiveDir, buf);
+		rip = (RipMusic(expansion_cd, ArchiveDir, buf) == 0);
 	}
 
 	ConvertMusic();
@@ -4803,6 +4764,11 @@ int main(int argc, char** argv)
 		fprintf(f, "wargus.expansion = true\n");
 	} else {
 		fprintf(f, "wargus.expansion = false\n");
+	}
+	if (rip) {
+		fprintf(f, "wargus.music_extension = \".ogg\"\n");
+	} else {
+		fprintf(f, "wargus.music_extension = \".mid\"\n");
 	}
 	fprintf(f, "wargus.game_font_width = %d\n", game_font_width);
 	fclose(f);

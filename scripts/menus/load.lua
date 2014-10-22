@@ -14,7 +14,7 @@ function LoadGame(s)
   RunResultsMenu()
 
   InitGameSettings()
-  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+  SetDefaultRaceView()
 
   if (GameResult == GameVictory) then
     IncreaseCampaignState(currentCampaign)

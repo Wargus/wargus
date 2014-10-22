@@ -265,7 +265,7 @@ DefinePanelContents(
 Load("scripts/human/ui.lua")
 Load("scripts/orc/ui.lua")
 
-wargus.playlist = { "music/Orc Briefing.ogg" }
+wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
 
 UI.MessageFont = Fonts["game"]
 UI.MessageScrollSpeed = 5

@@ -152,7 +152,7 @@ function HandleCheats(str)
 
   elseif (str == "disco") then
     StopMusic()
-    PlayMusic("music/I'm a Medieval Man.ogg")
+    PlayMusic("music/I'm a Medieval Man" .. wargus.music_extension)
     AddMessage("enabled cheat")
 
   else

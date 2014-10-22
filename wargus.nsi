@@ -9,7 +9,7 @@
 ;         Stratagus - A free fantasy real time strategy game engine
 ;
 ;    wargus.nsi - Windows NSIS Installer for Wargus
-;    Copyright (C) 2010-2012  Pali RohГЎr <pali.rohar@gmail.com>
+;    Copyright (C) 2010-2014  Pali Rohar <pali.rohar@gmail.com>, cybermind <cybermindid@gmail.com>
 ;
 ;    This program is free software: you can redistribute it and/or modify
 ;    it under the terms of the GNU General Public License as published by
@@ -39,15 +39,17 @@
 !macroend
 
 !include "MUI2.nsh"
+!include "Sections.nsh"
 
 ;--------------------------------
 
+; General variables
 !define NAME "Wargus"
 !define VERSION "2.2.7"
 !define VIVERSION "${VERSION}.0"
 !define HOMEPAGE "https://launchpad.net/wargus"
 !define LICENSE "GPL v2"
-!define COPYRIGHT "Copyright (c) 1998-2012 by The Stratagus Project and Pali Rohar"
+!define COPYRIGHT "Copyright (c) 1998-2014 by The Stratagus Project"
 !define STRATAGUS_NAME "Stratagus"
 !define STRATAGUS_HOMEPAGE "https://launchpad.net/stratagus"
 
@@ -59,12 +61,12 @@
 !define PUDCONVERT "pudconvert.exe"
 !define CDDA2WAV "cdda2wav.exe"
 !define FFMPEG2THEORA "ffmpeg2theora.exe"
-!define TIMIDITY "timidity.exe"
+!define SF2BANK "TimGM6mb.sf2"
 !define UNINSTALL "uninstall.exe"
 !define INSTALLER "${NAME}-${VERSION}.exe"
 !define INSTALLDIR "$PROGRAMFILES\${NAME}\"
-!define LANGUAGE "English"
 
+; Installer for x86-64 systems
 !ifdef x86_64
 ${redefine} INSTALLER "${NAME}-${VERSION}-x86_64.exe"
 ${redefine} INSTALLDIR "$PROGRAMFILES64\${NAME}\"
@@ -72,66 +74,40 @@ ${redefine} NAME "Wargus (64 bit)"
 ${redefine} STRATAGUS_NAME "Stratagus (64 bit)"
 !endif
 
+; Registry paths
 !define REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}"
 !define STRATAGUS_REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${STRATAGUS_NAME}"
 
 ;--------------------------------
 
-LangString INSTALLER_RUNNING ${LANG_ENGLISH} "${NAME} Installer is already running"
-LangString NO_STRATAGUS ${LANG_ENGLISH} "${STRATAGUS_NAME} ${VERSION} is not installed.$\nYou need ${STRATAGUS_NAME} ${VERSION} to run ${NAME}!$\nFirst install ${STRATAGUS_NAME} ${VERSION} from ${STRATAGUS_HOMEPAGE}"
-LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
-LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data files:"
-LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} binary executables"
-LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration and extracted data files and directories in ${NAME} install directory created by user or ${NAME}"
-
-LangString EXTRACTDATA_FILES ${LANG_ENGLISH} "Extracting Warcraft II data files..."
-LangString EXTRACTDATA_RIP_AUDIO ${LANG_ENGLISH} "Ripping Warcraft II audio tracks..."
-LangString EXTRACTDATA_COPY_AUDIO ${LANG_ENGLISH} "Coping Warcraft II audio tracks..."
-LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_ENGLISH} "Converting Warcraft II audio tracks..."
-
-LangString EXTRACTDATA_FILES_FAILED ${LANG_ENGLISH} "Extracting Warcraft II data files failed."
-LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_ENGLISH} "Ripping Warcraft II audio tracks failed."
-LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_ENGLISH} "Coping Warcraft II audio tracks failed."
-LangString EXTRACTDATA_CONVERT_AUDIO_FAILED ${LANG_ENGLISH} "Converting Warcraft II audio tracks failed."
-
-LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_ENGLISH} "Choose Warcraft II Location"
-LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_ENGLISH} "Choose the folder in which are Warcraft II data files."
-LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder. You can specify location of CD or install location of Warcraft II data files. Note that you need the original Warcraft II CD Dos version (Battle.net edition does not work) to extract the game data files."
-LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_ENGLISH} "Source Folder"
-LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory. File $DATADIRdata\rezdat.war does not exist."
-
-!ifdef x86_64
-LangString x86_64_ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only"
-!endif
-
-;--------------------------------
-
+; Download and extract nessesary 3rd party programs
 !ifndef NO_DOWNLOAD
 !system "wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.28.exe -O ffmpeg2theora.exe"
 !system "wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -O cdrtools.zip"
 !system "unzip -o cdrtools.zip cdda2wav.exe"
 !system "wget http://nsis.sourceforge.net/mediawiki/images/0/0f/ExecDos.zip -O ExecDos.zip"
 !system "unzip -j -o ExecDos.zip Plugins/ExecDos.dll"
-!system "wget http://downloads.sourceforge.net/project/timidity/TiMidity++/TiMidity++-CVS/TiMidity++-2.13.2-cvs20100919.win32.zip -O timidity.zip"
-!system "unzip -j -o timidity.zip TiMidity++/timidity.exe"
-!system "wget http://freepats.zenvoid.org/freepats-20060219.tar.bz2 -O freepats.tar.bz2"
-!system "tar -xf freepats.tar.bz2"
+!system "wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -O TimGM6mb.sf2"
 !endif
 
 !addplugindir .
 
 ;--------------------------------
 
-SetCompressor lzma
-
 Var STARTMENUDIR
 Var DATADIR
 Var EXTRACTNEEDED
 
+Var OptDataset
+Var OptMusic
+
 !define MUI_ICON "${ICON}"
 !define MUI_UNICON "${ICON}"
 
+; Installer pages
+
 !define MUI_ABORTWARNING
+!define MUI_LANGDLL_ALLLANGUAGES
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_FINISHPAGE_NOREBOOTSUPPORT
 !define MUI_FINISHPAGE_RUN "$INSTDIR\${EXE}"
@@ -144,6 +120,7 @@ Var EXTRACTNEEDED
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "COPYING"
 !insertmacro MUI_PAGE_LICENSE "COPYING-3rd"
+!insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 
 !define MUI_PAGE_HEADER_TEXT "$(EXTRACTDATA_PAGE_HEADER_TEXT)"
@@ -166,7 +143,63 @@ Var EXTRACTNEEDED
 !insertmacro MUI_UNPAGE_INSTFILES
 !insertmacro MUI_UNPAGE_FINISH
 
-!insertmacro MUI_LANGUAGE "${LANGUAGE}"
+;--------------------------------
+; Available languages
+!insertmacro MUI_LANGUAGE "English"
+!insertmacro MUI_LANGUAGE "Russian"
+
+!insertmacro MUI_RESERVEFILE_LANGDLL
+
+; Language-dependent strings
+LangString INSTALLER_RUNNING ${LANG_ENGLISH} "${NAME} Installer is already running"
+LangString INSTALLER_RUNNING ${LANG_RUSSIAN} "Установщик ${NAME} уже запущен"
+LangString NO_STRATAGUS ${LANG_ENGLISH} "${STRATAGUS_NAME} ${VERSION} is not installed.$\nYou need ${STRATAGUS_NAME} ${VERSION} to run ${NAME}!$\nFirst install ${STRATAGUS_NAME} ${VERSION} from ${STRATAGUS_HOMEPAGE}"
+LangString NO_STRATAGUS ${LANG_RUSSIAN} "${STRATAGUS_NAME} ${VERSION} is not installed.$\nYou need ${STRATAGUS_NAME} ${VERSION} to run ${NAME}!$\nFirst install ${STRATAGUS_NAME} ${VERSION} from ${STRATAGUS_HOMEPAGE}"
+LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
+LangString REMOVEPREVIOUS ${LANG_RUSSIAN} "Удаляются файлы из предыдущей установки"
+LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data files:"
+LangString REMOVECONFIGURATION ${LANG_RUSSIAN} "Удаляются данные и файлы конфигураций:"
+LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} binary executables"
+LangString DESC_REMOVEEXE ${LANG_RUSSIAN} "Удаляются исполняемые файлы ${NAME}"
+LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration and extracted data files and directories in ${NAME} install directory created by user or ${NAME}"
+LangString DESC_REMOVECONF ${LANG_RUSSIAN} "Удалить все прочие файлы и директории в установочной папке ${NAME}, созданные пользователем ${NAME}"
+
+LangString EXTRACTDATA_FILES ${LANG_ENGLISH} "Extracting Warcraft II data files..."
+LangString EXTRACTDATA_FILES ${LANG_RUSSIAN} "Извлекаются файлы Warcraft II..."
+LangString EXTRACTDATA_RIP_AUDIO ${LANG_ENGLISH} "Ripping Warcraft II audio tracks..."
+LangString EXTRACTDATA_RIP_AUDIO ${LANG_RUSSIAN} "Копируется CD-музыка Warcraft II..."
+LangString EXTRACTDATA_COPY_AUDIO ${LANG_ENGLISH} "Coping Warcraft II audio tracks..."
+LangString EXTRACTDATA_COPY_AUDIO ${LANG_RUSSIAN} "Копируется музыка Warcraft II..."
+LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_ENGLISH} "Converting Warcraft II audio tracks..."
+LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_RUSSIAN} "Конвертируется музыка Warcraft II..."
+
+LangString EXTRACTDATA_FILES_FAILED ${LANG_ENGLISH} "Extracting Warcraft II data files failed."
+LangString EXTRACTDATA_FILES_FAILED ${LANG_RUSSIAN} "Не удалось извлечь файлы Warcraft II."
+LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_ENGLISH} "Ripping Warcraft II audio tracks failed."
+LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_RUSSIAN} "Не удалось скопировать CD-музыку Warcraft II."
+LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_ENGLISH} "Coping Warcraft II audio tracks failed."
+LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_RUSSIAN} "Не удалось скопировать музыку Warcraft II."
+LangString EXTRACTDATA_CONVERT_AUDIO_FAILED ${LANG_ENGLISH} "Converting Warcraft II audio tracks failed."
+LangString EXTRACTDATA_CONVERT_AUDIO_FAILED ${LANG_RUSSIAN} "Не удалось сконвертировать музыку Warcraft II."
+
+LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_ENGLISH} "Choose Warcraft II Location"
+LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_RUSSIAN} "Укажите местоположение Warcraft II"
+LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_ENGLISH} "Choose the folder in which are Warcraft II data files."
+LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_RUSSIAN} "Укажите папку, в которой содержатся файлы Warcraft II."
+LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder. You can specify location of CD or install location of Warcraft II data files. Note that you need the original Warcraft II CD Dos version (Battle.net edition does not work) to extract the game data files."
+LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_RUSSIAN} "Программа установки извлечет файлы Warcraft II из указанной папки. Вы можете указать либо CD-диск с игрой, либо указать папку с установленным Warcraft II. Note that you need the original Warcraft II CD Dos version (Battle.net edition does not work) to extract the game data files."
+LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_ENGLISH} "Source Folder"
+LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_RUSSIAN} "Папка с файлами Warcraft II"
+LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory. File $DATADIRdata\rezdat.war does not exist."
+LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_RUSSIAN} "Программа установки не обнаружила Warcraft II в указанной папке: необходимый файл $DATADIRdata\rezdat.war не найден."
+
+LangString STR_VERSION ${LANG_ENGLISH} "version"
+LangString STR_VERSION ${LANG_RUSSIAN} "версия"
+
+!ifdef x86_64
+LangString x86_64_ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only"
+LangString x86_64_ONLY ${LANG_RUSSIAN} "Эта версия предназначена для 64-битных систем"
+!endif
 
 ;--------------------------------
 
@@ -187,7 +220,7 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" "${NAME} Installer"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion" "${VERSION}"
 VIProductVersion "${VIVERSION}"
 
-BrandingText "${NAME}, version ${VERSION}  ${HOMEPAGE}"
+BrandingText "${NAME}, $(STR_VERSION) ${VERSION}  ${HOMEPAGE}"
 ShowInstDetails Show
 ShowUnInstDetails Show
 XPStyle on
@@ -197,95 +230,25 @@ ReserveFile "${WARTOOL}"
 
 ;--------------------------------
 
-Function .onInit
+Section "${NAME}"
+	SectionIn RO
+SectionEnd
 
-	System::Call 'kernel32::CreateMutexA(i 0, i 0, t "${NAME}") i .r1 ?e'
-	Pop $0
-	StrCmp $0 0 +3
+SectionGroup "Data set" dataset
+	Section "Warcraft 2" opt1Warcraft
+	SectionEnd
 
-	MessageBox MB_OK|MB_ICONEXCLAMATION "$(INSTALLER_RUNNING)"
-	Abort
+	Section /o "Aleona Tales" opt1AT
+	SectionEnd
+SectionGroupEnd
 
-!ifdef x86_64
+SectionGroup "Music" music
+	Section  "MIDI music" opt2MIDI
+	SectionEnd
 
-	System::Call "kernel32::GetCurrentProcess() i .s"
-	System::Call "kernel32::IsWow64Process(i s, *i .r0)"
-	IntCmp $0 0 0 0 +3
-
-	MessageBox MB_OK|MB_ICONSTOP "$(x86_64_ONLY)"
-	Abort
-
-!endif
-
-	ReadRegStr $0 HKLM "${STRATAGUS_REGKEY}" "DisplayVersion"
-	StrCmp $0 "${VERSION}" +3
-
-	MessageBox MB_OK|MB_ICONSTOP "$(NO_STRATAGUS)"
-	Abort
-
-	ReadRegStr $DATADIR HKLM "${REGKEY}" "DataDir"
-	StrCmp $DATADIR "" 0 +2
-
-	StrCpy $DATADIR "D:\"
-
-FunctionEnd
-
-;--------------------------------
-
-Function PageExtractDataPre
-
-	File "/oname=$TEMP\${WARTOOL}" "${WARTOOL}"
-
-	ClearErrors
-	FileOpen $0 "$INSTDIR\extracted" "r"
-	IfErrors extract
-
-	FileRead $0 $1
-	FileClose $0
-
-	ExecDos::exec /TOSTACK "$\"$TEMP\${WARTOOL}$\" -V"
-	Pop $0
-	Pop $2
-	Delete "$TEMP\${WARTOOL}"
-
-	IntCmp $0 0 0 0 extract
-
-	StrCmp $1 $2 noextract
-
-	StrCpy $2 "$2$\r$\n"
-	StrCmp $1 $2 0 extract
-
-noextract:
-
-	StrCpy $EXTRACTNEEDED "no"
-	Abort
-
-extract:
-
-	StrCpy $EXTRACTNEEDED "yes"
-
-FunctionEnd
-
-Function PageExtractDataShow
-
-	FindWindow $0 "#32770" "" $HWNDPARENT
-	GetDlgItem $1 $0 1023
-	ShowWindow $1 0
-	GetDlgItem $1 $0 1024
-	ShowWindow $1 0
-
-FunctionEnd
-
-Function PageExtractDataLeave
-
-	IfFileExists "$DATADIR\data\rezdat.war" +3
-
-	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_PAGE_NOT_VALID)"
-	Abort
-
-FunctionEnd
-
-;--------------------------------
+	Section /o "CD Music" opt2CD
+	SectionEnd
+SectionGroupEnd
 
 Section "-${NAME}" UninstallPrevious
 
@@ -303,7 +266,7 @@ Section "-${NAME}" UninstallPrevious
 
 SectionEnd
 
-Section "${NAME}"
+Section "-${NAME}"
 
 	SectionIn RO
 
@@ -313,15 +276,8 @@ Section "${NAME}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
-	File "${TIMIDITY}"
 
-	File /r "freepats"
 	ClearErrors
-	FileOpen $0 "$INSTDIR\timidity.cfg" "w"
-	IfErrors +4
-	FileWrite $0 "dir $\"$INSTDIR\freepats$\"$\n"
-	FileWrite $0 "source $\"$INSTDIR\freepats\freepats.cfg$\"$\n"
-	FileClose $0
 
 	!cd ${CMAKE_CURRENT_SOURCE_DIR}
 
@@ -331,6 +287,14 @@ Section "${NAME}"
 	File /r "scripts\"
 	SetOutPath "$INSTDIR\campaigns"
 	File /r "campaigns\"
+	StrCmp $OptDataset  ${opt1Warcraft} optwar2
+	SetOutPath "$INSTDIR\graphics"
+	File /r "graphics\"
+	SetOutPath "$INSTDIR\music"
+	File /r "music\"
+	SetOutPath "$INSTDIR\sounds"
+	File /r "sounds\"
+optwar2:
 	SetOutPath "$INSTDIR"
 
 	CreateDirectory "$INSTDIR\music"
@@ -338,6 +302,8 @@ Section "${NAME}"
 	CreateDirectory "$INSTDIR\graphics\ui"
 	CreateDirectory "$INSTDIR\graphics\ui\cursors"
 	CreateDirectory "$INSTDIR\graphics\missiles"
+	
+	File "/oname=music\${SF2BANK}" "${SF2BANK}"
 	File "/oname=graphics\ui\cursors\cross.png" "contrib\cross.png"
 	File "/oname=graphics\missiles\red_cross.png" "contrib\red_cross.png"
 	File "/oname=graphics\ui\mana.png" "contrib\mana.png"
@@ -375,15 +341,76 @@ Section "${NAME}"
 
 SectionEnd
 
-Section "${NAME}" ExtractData
+;--------------------------------
 
+Function PageExtractDataPre
+
+    ; Checks if Wargus has been already extracted and skips the extraction stage
+	StrCmp $OptDataset  ${opt1AT} noextract
+	File "/oname=$TEMP\${WARTOOL}" "${WARTOOL}"
+
+	ClearErrors
+	FileOpen $0 "$INSTDIR\extracted" "r"
+	IfErrors extract
+
+	FileRead $0 $1
+	FileClose $0
+
+	ExecDos::exec /TOSTACK "$\"$TEMP\${WARTOOL}$\" -V"
+	Pop $0
+	Pop $2
+	Delete "$TEMP\${WARTOOL}"
+
+	IntCmp $0 0 0 0 extract
+
+	StrCmp $1 $2 noextract
+
+	StrCpy $2 "$2$\r$\n"
+	StrCmp $1 $2 0 extract
+
+
+noextract:
+
+	StrCpy $EXTRACTNEEDED "no"
+	Abort
+
+extract:
+
+	StrCpy $EXTRACTNEEDED "yes"
+
+FunctionEnd
+
+Function PageExtractDataShow
+
+	FindWindow $0 "#32770" "" $HWNDPARENT
+	GetDlgItem $1 $0 1023
+	ShowWindow $1 0
+	GetDlgItem $1 $0 1024
+	ShowWindow $1 0
+
+FunctionEnd
+
+Function PageExtractDataLeave
+
+	IfFileExists "$DATADIR\data\rezdat.war" +3
+
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_PAGE_NOT_VALID)"
+	Abort
+
+FunctionEnd
+
+Var KeyStr
+Section "-${NAME}" ExtractData
+	
 	StrCmp "$EXTRACTNEEDED" "no" end
 
 	AddSize 110348
 
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_FILES)"
-	ExecDos::exec /DETAILED "$\"$INSTDIR\${WARTOOL}$\" -m -v -r $\"$DATADIR\data$\" $\"$INSTDIR$\""
+	StrCmp $OptMusic "${opt2CD}" 0 +2
+	StrCpy $KeyStr "$KeyStr -r"
+	ExecDos::exec /DETAILED "$\"$INSTDIR\${WARTOOL}$\" $KeyStr -v $\"$DATADIR\data$\" $\"$INSTDIR$\""
 	Pop $0
 	IntCmp $0 0 +3
 
@@ -405,10 +432,7 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${PUDCONVERT}"
 	Delete "$INSTDIR\${CDDA2WAV}"
 	Delete "$INSTDIR\${FFMPEG2THEORA}"
-	Delete "$INSTDIR\${TIMIDITY}"
 	Delete "$INSTDIR\${UNINSTALL}"
-	Delete "$INSTDIR\timidity.cfg"
-	RMDir /r "$INSTDIR\freepats"
 
 	IfFileExists "$INSTDIR\scripts\wc2-config.lua" 0 +2
 	Rename "$INSTDIR\scripts\wc2-config.lua" "$INSTDIR\wc2-config.lua"
@@ -461,6 +485,59 @@ SectionEnd
 
 ;--------------------------------
 
+Function .onInit
+	; Set default components options
+	StrCpy $OptDataset ${opt1Warcraft}
+	StrCpy $OptMusic ${opt2MIDI}
+
+	; Check if Wargus installer is already running
+	System::Call 'kernel32::CreateMutexA(i 0, i 0, t "${NAME}") i .r1 ?e'
+	Pop $0
+	StrCmp $0 0 +3
+
+	MessageBox MB_OK|MB_ICONEXCLAMATION "$(INSTALLER_RUNNING)"
+	Abort
+
+!ifdef x86_64
+
+	System::Call "kernel32::GetCurrentProcess() i .s"
+	System::Call "kernel32::IsWow64Process(i s, *i .r0)"
+	IntCmp $0 0 0 0 +3
+
+	MessageBox MB_OK|MB_ICONSTOP "$(x86_64_ONLY)"
+	Abort
+
+!endif
+
+	ReadRegStr $0 HKLM "${STRATAGUS_REGKEY}" "DisplayVersion"
+	StrCmp $0 "${VERSION}" +3
+
+	MessageBox MB_OK|MB_ICONSTOP "$(NO_STRATAGUS)"
+	Abort
+
+	ReadRegStr $DATADIR HKLM "${REGKEY}" "DataDir"
+	StrCmp $DATADIR "" 0 +2
+
+	StrCpy $DATADIR "D:\"
+	!insertmacro MUI_LANGDLL_DISPLAY
+FunctionEnd
+
+Function .onSelChange
+
+  !insertmacro StartRadioButtons $OptDataset
+    !insertmacro RadioButton ${opt1Warcraft}
+    !insertmacro RadioButton ${opt1AT}
+  !insertmacro EndRadioButtons
+	
+  !insertmacro StartRadioButtons $OptMusic
+    !insertmacro RadioButton ${opt2CD}
+    !insertmacro RadioButton ${opt2MIDI}
+  !insertmacro EndRadioButtons
+	
+FunctionEnd
+
+;--------------------------------
+
 !ifdef UPX
 
 !ifndef UPX_FLAGS
@@ -487,11 +564,6 @@ ${redefine} UPX_FLAGS "${UPX_FLAGS} -q"
 !delfile "cdrtools.zip"
 !delfile "ExecDos.dll"
 !delfile "ExecDos.zip"
-!delfile "timidity.exe"
-!delfile "timidity.zip"
-!delfile "freepats.tar.bz2"
-!system "rm -rf freepats"
-!delfile "freepats"
 !endif
 
 ;--------------------------------

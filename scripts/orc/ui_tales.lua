@@ -56,7 +56,8 @@ DefineCursor({
 --	* Mythic/human race
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-wargus.playlist = { "music/Human Battle 1.ogg", "music/Human Battle 2.ogg", "music/Human Battle 3.ogg", "music/Human Battle 4.ogg", "music/Human Battle 5.ogg", "music/Human Battle 6.ogg" }
+wargus.playlist = { "music/Human Battle 1" .. wargus.music_extension, "music/Human Battle 2" .. wargus.music_extension, "music/Human Battle 3" .. wargus.music_extension,
+ "music/Human Battle 4" .. wargus.music_extension, "music/Human Battle 5" .. wargus.music_extension }
 
 function OrcScreen(screen_width, screen_height)
   local info_panel_x = 0

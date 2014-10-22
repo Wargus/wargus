@@ -27,7 +27,7 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+SetDefaultRaceView()
 
 -- Global useful objects for menus  ----------
 dark = Color(38, 38, 78)
@@ -649,7 +649,7 @@ function RunMap(map, objective, fow, revealmap)
   end
   RunResultsMenu(s)
   InitGameSettings()
-  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+  SetDefaultRaceView()
 end
 
 function SetDefaultPlayerNames()
@@ -788,11 +788,11 @@ end
 
 function RunSinglePlayerTypeMenu()
 
-  wargus.playlist = { "music/Orc Briefing.ogg" }
-  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+  wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+  SetDefaultRaceView()
 
   if not (IsMusicPlaying()) then
-    PlayMusic("music/Orc Briefing.ogg")
+    PlayMusic("music/Main Menu" .. wargus.music_extension)
   end
 
   local menu = WarMenu()
@@ -944,11 +944,11 @@ function RunSinglePlayerGameMenu()
 end
 
 function BuildProgramStartMenu()
-  wargus.playlist = { "music/Orc Briefing.ogg" }
-  SetPlayerData(GetThisPlayer(), "RaceName", "orc")
+  wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+  SetDefaultRaceView()
 
   if not (IsMusicPlaying()) then
-    PlayMusic("music/Orc Briefing.ogg")
+    PlayMusic("music/Main Menu" .. wargus.music_extension)
   end
 
   local menu = WarMenu()

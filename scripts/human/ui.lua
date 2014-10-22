@@ -32,3 +32,4 @@ if (wargus.tales == true) then
 else
 	Load("scripts/human/ui_pandora.lua")
 end
+SetDefaultTextColors(UI.NormalFontColor, UI.ReverseFontColor)

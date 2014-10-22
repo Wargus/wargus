@@ -111,6 +111,7 @@ function RunShowCreditsMenu()
 	"  BZ2LIB Copyright by Julian Seward",
 	"  PNG Copyright by Glenn Randers-Pehrson",
 	"  OGG/Vorbis Copyright by Xiph.org Foundation",
+	"  FluidSynth Copyright by Josh Green, Pedro Lopez-Cabanillas, David Henningsson",
 	"  VP3 codec Copyright by On2 Technologies Inc.",
 	"  Guichan Copyright by Per Larsson and Olof Naessen",
 	"  tolua++ Copyright by Codenix",

@@ -65,19 +65,19 @@ function RunResultsMenu()
     result = "Victory!"
     if (human) then
       background = hvictory
-      PlayMusic("music/Human Victory.ogg")
+      PlayMusic("music/Human Victory" .. wargus.music_extension)
     else
       background = ovictory
-      PlayMusic("music/Orc Victory.ogg")
+      PlayMusic("music/Orc Victory" .. wargus.music_extension)
     end
   elseif (GameResult == GameDefeat) then
     result = "Defeat!"
     if (human) then
       background = hdefeat
-      PlayMusic("music/Human Defeat.ogg")
+      PlayMusic("music/Human Defeat" .. wargus.music_extension)
     else
       background = odefeat
-      PlayMusic("music/Orc Defeat.ogg")
+      PlayMusic("music/Orc Defeat" .. wargus.music_extension)
     end
   elseif (GameResult == GameDraw) then
     result = "Draw!"
