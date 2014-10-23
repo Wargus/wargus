@@ -191,6 +191,12 @@ function AiRed_Resources_2014(t, g, w, o)
 	SetPlayerData(t, "Resources", "oil", o)
 end
 	
+function AiRed_Resources_Remove_2014(i, gold, wood, oil)
+	SetPlayerData(i, "Resources", "gold", (GetPlayerData(AiPlayer(), "Resources", "gold") - gold))
+	SetPlayerData(i, "Resources", "wood", (GetPlayerData(AiPlayer(), "Resources", "wood") - wood))
+	SetPlayerData(i, "Resources", "oil", (GetPlayerData(AiPlayer(), "Resources", "oil") - oil))
+end
+	
 function AiRedRibbon_2014()
 	if ((timers[AiPlayer()] == 50) or (timers[AiPlayer()] == 100)) then
 		if (ftm_team[AiPlayer()] == ftm_team[ftm_choice[AiPlayer()]]) then
@@ -328,10 +334,8 @@ function AiRed_2014()
 								end
 							end
 						end
-						SetPlayerData(AiPlayer(), "Resources", "gold", (GetPlayerData(AiPlayer(), "Resources", "gold") - (ftm_cost_gold[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]])))
-						SetPlayerData(AiPlayer(), "Resources", "wood", (GetPlayerData(AiPlayer(), "Resources", "wood") - (ftm_cost_wood[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]])))
-						SetPlayerData(AiPlayer(), "Resources", "oil", (GetPlayerData(AiPlayer(), "Resources", "oil") - (ftm_cost_oil[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]])))
-						end
+						AiRed_Resources_Remove_2014(AiPlayer(), (ftm_cost_gold[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]), (ftm_cost_wood[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]), (ftm_cost_oil[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]))
+					end
 					if (aiftm_index[AiPlayer()] == aiftm_terminate[AiPlayer()]) then
 						aiftm_index[AiPlayer()] = aiftm_loop[AiPlayer()]
 					else

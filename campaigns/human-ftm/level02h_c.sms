@@ -27,12 +27,21 @@
 
 Load("campaigns/human-ftm/level02h_c2.sms")
 
-Briefing(
-	title,
-	objectives,
-	"../campaigns/human/interface/introscreen1.png",
-	"campaigns/human-ftm/level02h.txt",
-	{}
-)
+if (wargus.tales == true) then
+	Briefing(
+		title,
+		objectives,
+		"../campaigns/human-tales/interface/introscreen1.png",
+		"campaigns/human-ftm/level02h.txt",
+		{}
+	)
+else
+		title,
+		objectives,
+		"../campaigns/human/interface/introscreen1.png",
+		"campaigns/human-ftm/level02h.txt",
+		{}
+	)
+end
 
 Load("campaigns/human-ftm/level02h.sms")

@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---	(c) Copyright 2011-2012 by Kyran Jackson
+--	(c) Copyright 2011 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -30,7 +30,6 @@
 local timer
 local redribbon_stepping -- Used to identify where the build order is up to.
 local blueribbon_stepping -- Used to identify where the build order is up to.
-
 
 function AiRedRibbon_Research_2012()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0) then
@@ -140,6 +139,10 @@ end
 function AiBlueRibbon_2012()
 	-- Setting up the variables.
 	if (blueribbon_stepping ~= nil) then
+		AiRed_Resources_2014(BlueTeam1, 100, 50, 50)
+		if (BlueTeam1 ~= BlueTeam2) then
+			AiRed_Resources_2014(BlueTeam2, 100, 50, 50)
+		end
 	else
 		-- print ("Setting up the variables.")
 		BlueLeader = AiPlayer()
@@ -347,9 +350,127 @@ function AiBlueRibbon_2012()
 	if ((timer == 35) or (timer == 85)) then
 		AiNephrite_Flush_2013()
 	end
+end			
+
+function AiRed1_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit)
+	AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, RedTeam1, Red1Temp_x, Red1Temp_y)
+	AiRed1_Location_2012()
 end
 
-function AiBlue1()
+function AiRed2_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit)
+	AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, RedTeam2, Red2Temp_x, Red2Temp_y)
+	AiRed2_Location_2012()
+end
+
+function AiBlue1_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit)
+	AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, BlueTeam1, Blue1Temp_x, Blue1Temp_y)
+	AiBlue1_Location_2012()
+end
+
+function AiBlue2_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit)
+	AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, BlueTeam2, Blue2Temp_x, Blue2Temp_y)
+	AiBlue2_Location_2012()
+end
+
+function AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, xTeamx, xxTemp_x, xxTemp_y)
+	if ((GetPlayerData(i, "Resources", "gold") >= gold) and ((GetPlayerData(i, "Resources", "gold") < goldmax) or (goldmax == 0))) then
+		if ((GetPlayerData(i, "Resources", "wood") >= wood) and ((GetPlayerData(i, "Resources", "wood") < woodmax) or (woodmax == 0))) then
+			if ((GetPlayerData(i, "Resources", "oil") >= oil) and ((GetPlayerData(i, "Resources", "oil") < oilmax) or (oilmax == 0))) then
+				CreateUnit(unit, xTeamx, {xxTemp_x, xxTemp_y})
+				AiRed_Resources_Remove_2014(i, gold, wood, oil)
+			end
+		end
+	end
+end
+
+function AiRed1_Location_2012()
+	Red1Temp_x = AiRed_Location_2012(RedTeam1_Order, Red1Temp_x, Red1Temp_y, RedTeam1_x1, RedTeam1_x2, RedTeam1_y1, RedTeam1_y2, 'x')
+	Red1Temp_y = AiRed_Location_2012(RedTeam1_Order, Red1Temp_x, Red1Temp_y, RedTeam1_x1, RedTeam1_x2, RedTeam1_y1, RedTeam1_y2, 'y')
+end
+
+function AiRed2_Location_2012()
+	Red2Temp_x = AiRed_Location_2012(RedTeam2_Order, Red2Temp_x, Red2Temp_y, RedTeam2_x1, RedTeam2_x2, RedTeam2_y1, RedTeam2_y2, 'x')
+	Red2Temp_y = AiRed_Location_2012(RedTeam2_Order, Red2Temp_x, Red2Temp_y, RedTeam2_x1, RedTeam2_x2, RedTeam2_y1, RedTeam2_y2, 'y')
+end
+
+function AiBlue1_Location_2012()
+	Blue1Temp_x = AiRed_Location_2012(BlueTeam1_Order, Blue1Temp_x, Blue1Temp_y, BlueTeam1_x1, BlueTeam1_x2, BlueTeam1_y1, BlueTeam1_y2, 'x')
+	Blue1Temp_y = AiRed_Location_2012(BlueTeam1_Order, Blue1Temp_x, Blue1Temp_y, BlueTeam1_x1, BlueTeam1_x2, BlueTeam1_y1, BlueTeam1_y2, 'y')
+end
+
+function AiBlue2_Location_2012()
+	Blue2Temp_x = AiRed_Location_2012(BlueTeam2_Order, Blue2Temp_x, Blue2Temp_y, BlueTeam2_x1, BlueTeam2_x2, BlueTeam2_y1, BlueTeam2_y2, 'x')
+	Blue2Temp_y = AiRed_Location_2012(BlueTeam2_Order, Blue2Temp_x, Blue2Temp_y, BlueTeam2_x1, BlueTeam2_x2, BlueTeam2_y1, BlueTeam2_y2, 'y')
+end
+
+function AiRed_Location_2012(xTeamx_Order, xxTemp_x, xxTemp_y, xTeamx_x1, xTeamx_x2, xTeamx_y1, xTeamx_y2, a)
+	if (xxTemp_x ~= nil) then
+		if (xTeamx_Order == "Top-Right") then
+			if (xxTemp_x == xTeamx_x2) then
+				if (xxTemp_y == xTeamx_y2) then
+					-- Oh shit, I've used up all my spaces.
+					xxTemp_x = xTeamx_x1
+					xxTemp_y = xTeamx_y1
+				else
+					xxTemp_x = xTeamx_x1
+					xxTemp_y = xxTemp_y + 1
+				end
+			else
+				xxTemp_x = xxTemp_x + 1
+			end
+		end
+		if (xTeamx_Order == "Top-Left") then
+			if (xxTemp_x == xTeamx_x1) then
+				if (xxTemp_y == xTeamx_y2) then
+					-- Oh shit, I've used up all my spaces.
+					xxTemp_x = xTeamx_x1
+					xxTemp_y = xTeamx_y1
+				else
+					xxTemp_x = xTeamx_x2
+					xxTemp_y = xxTemp_y + 1
+				end
+			else
+				xxTemp_x = xxTemp_x - 1
+			end
+		end
+		if (xTeamx_Order == "Bottom-Right") then
+			if (xxTemp_x == xTeamx_x2) then
+				if (xxTemp_y == xTeamx_y1) then
+					-- Oh shit, I've used up all my spaces.
+					xxTemp_x = xTeamx_x1
+					xxTemp_y = xTeamx_y2
+				else
+					xxTemp_x = xTeamx_x1
+					xxTemp_y = xxTemp_y - 1
+				end
+			else
+				xxTemp_x = xxTemp_x + 1
+			end
+		end
+		if (xTeamx_Order == "Bottom-Left") then
+			if (xxTemp_x == xTeamx_x1) then
+				if (xxTemp_y == xTeamx_y1) then
+					-- Oh shit, I've used up all my spaces.
+					xxTemp_x = xTeamx_x1
+					xxTemp_y = xTeamx_y2
+				else
+					xxTemp_x = xTeamx_x2
+					xxTemp_y = xxTemp_y - 1
+				end
+			else
+				xxTemp_x = xxTemp_x - 1
+			end
+		end
+	end
+	if (a == 'x') then
+		a = xxTemp_x
+	elseif (a == 'y') then
+		a = xxTemp_y
+	end
+	return a
+end
+
+function AiBlue1_2012()
 	if (BlueTeam1_2014 == true) then
 		timer = timers[ftm_team[AiPlayer()]]
 	end
@@ -383,13 +504,13 @@ function AiBlue1()
 	else
 		if (BlueTeam1Dead ~= true) then
 			if ((GetPlayerData(BlueTeam1, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
-				AiBlue1_Basic()
+				AiBlue1_Basic_2012()
 			end
 		end
 	end
 end
 
-function AiBlue2()
+function AiBlue2_2012()
 	if (BlueTeam2_2014 == true) then
 		timer = timers[ftm_team[AiPlayer()]]
 	end
@@ -423,138 +544,13 @@ function AiBlue2()
 	else
 		if (BlueTeam1Dead ~= true) then
 			if ((GetPlayerData(BlueTeam2, "UnitTypesCount", "unit-caanoo-wiseman") > 0) and (GameCycle > 500)) then
-				AiBlue2_Basic()
+				AiBlue2_Basic_2012()
 			end
 		end
 	end
 end
 
-function AiBlue2_Basic()
-	if (Blue2Temp_x ~= nil) then else
-		if (BlueTeam2_Order ~= nil) then else
-			BlueTeam2_Order = "Top-Right"
-		end
-		if (BlueTeam2_Order == "Top-Right") then
-			-- Top-Right means start at top, go right.
-			Blue2Temp_x = BlueTeam2_x1
-			Blue2Temp_y = BlueTeam2_y1
-		elseif (BlueTeam2_Order == "Top-Left") then
-			Blue2Temp_x = BlueTeam2_x2
-			Blue2Temp_y = BlueTeam2_y1
-		elseif (BlueTeam2_Order == "Bottom-Right") then
-			Blue2Temp_x = BlueTeam2_x1
-			Blue2Temp_y = BlueTeam2_y2
-		elseif (BlueTeam2_Order == "Bottom-Left") then
-			Blue2Temp_x = BlueTeam2_x2
-			Blue2Temp_y = BlueTeam2_y2
-		elseif (BlueTeam2_Order == "Wise") then
-			Blue2Temp_x = BlueTeam2_xw
-			Blue2Temp_y = BlueTeam2_yw
-		end
-		Blue2Step = 0
-		Blue2Mana = 150
-	end
-	if ((timer == 25) or (timer == 75)) then
-		Blue2Mana = Blue2Mana + 53
-	end
-	if ((timer == 50) or (timer == 98)) then
-		Blue2Mana = Blue2Mana + 52
-	end
-	if (GetNumUnitsAt(BlueTeam2, "unit-knight", {BlueTeam2_x1, BlueTeam2_y1}, {BlueTeam2_x2, BlueTeam2_y2}) < 8) then
-		if (GetNumUnitsAt(BlueTeam2, "unit-footman", {BlueTeam2_x1, BlueTeam2_y1}, {BlueTeam2_x2, BlueTeam2_y2}) < 22) then
-			if (Blue2Mana > 49) then
-				if ((Blue2Mana > 75) and (Blue2Mana < 95)) then
-					CreateUnit("unit-archer", BlueTeam2, {Blue2Temp_x, Blue2Temp_y})
-				else
-					CreateUnit("unit-footman", BlueTeam2, {Blue2Temp_x, Blue2Temp_y})
-				end
-				Blue2Mana = Blue2Mana - 50
-				Blue2Step = 1
-			end
-		else
-			if (Blue2Mana > 149) then
-				CreateUnit("unit-knight", BlueTeam2, {Blue2Temp_x, Blue2Temp_y})
-				Blue2Mana = Blue2Mana - 150
-				Blue2Step = 1
-			end
-		end
-	else
-		if ((Blue2Mana > 289) and (Blue2Mana < 599)) then
-			CreateUnit("unit-paladin", BlueTeam2, {Blue2Temp_x, Blue2Temp_y})
-			Blue2Mana = Blue2Mana - 250
-			Blue2Step = 1
-		else
-			if (Blue2Mana > 249) then
-				CreateUnit("unit-ballista", BlueTeam2, {Blue2Temp_x, Blue2Temp_y})
-				Blue2Mana = Blue2Mana - 250
-				Blue2Step = 1
-			end
-		end
-	end
-	if (Blue2Step == 1) then
-		if (Blue2Temp_x ~= nil) then
-			if (BlueTeam2_Order == "Top-Right") then
-				if (Blue2Temp_x == BlueTeam2_x2) then
-					if (Blue2Temp_y == BlueTeam2_y2) then
-						-- Oh shit, I've used up all my spaces.
-						Blue2Temp_x = BlueTeam2_x1
-						Blue2Temp_y = BlueTeam2_y1
-					else
-						Blue2Temp_x = BlueTeam2_x1
-						Blue2Temp_y = Blue2Temp_y + 1
-					end
-				else
-					Blue2Temp_x = Blue2Temp_x + 1
-				end
-			end
-			if (BlueTeam2_Order == "Top-Left") then
-				if (Blue2Temp_x == BlueTeam2_x1) then
-					if (Blue2Temp_y == BlueTeam2_y2) then
-						-- Oh shit, I've used up all my spaces.
-						Blue2Temp_x = BlueTeam2_x1
-						Blue2Temp_y = BlueTeam2_y1
-					else
-						Blue2Temp_x = BlueTeam2_x2
-						Blue2Temp_y = Blue2Temp_y + 1
-					end
-				else
-					Blue2Temp_x = Blue2Temp_x - 1
-				end
-			end
-			if (BlueTeam2_Order == "Bottom-Right") then
-				if (Blue2Temp_x == BlueTeam2_x2) then
-					if (Blue2Temp_y == BlueTeam2_y1) then
-						-- Oh shit, I've used up all my spaces.
-						Blue2Temp_x = BlueTeam2_x1
-						Blue2Temp_y = BlueTeam2_y2
-					else
-						Blue2Temp_x = BlueTeam2_x1
-						Blue2Temp_y = Blue2Temp_y - 1
-					end
-				else
-					Blue2Temp_x = Blue2Temp_x + 1
-				end
-			end
-			if (BlueTeam2_Order == "Bottom-Left") then
-				if (Blue2Temp_x == BlueTeam2_x1) then
-					if (Blue2Temp_y == BlueTeam2_y1) then
-						-- Oh shit, I've used up all my spaces.
-						Blue2Temp_x = BlueTeam2_x1
-						Blue2Temp_y = BlueTeam2_y2
-					else
-						Blue2Temp_x = BlueTeam2_x2
-						Blue2Temp_y = Blue2Temp_y - 1
-					end
-				else
-					Blue2Temp_x = Blue2Temp_x - 1
-				end
-			end
-		end
-		Blue2Step = 0
-	end
-end
-
-function AiBlue1_Basic()
+function AiBlue1_Basic_2012()
 	if (Blue1Temp_x ~= nil) then else
 		if (BlueTeam1_Order ~= nil) then else
 			BlueTeam1_Order = "Top-Right"
@@ -576,126 +572,72 @@ function AiBlue1_Basic()
 			Blue1Temp_x = BlueTeam1_xw
 			Blue1Temp_y = BlueTeam1_yw
 		end
-		Blue1Step = 0
-		Blue1Mana = 150
-	end
-	if ((timer == 25) or (timer == 75)) then
-		Blue1Mana = Blue1Mana + 55
-	end
-	if ((timer == 50) or (timer == 98)) then
-		Blue1Mana = Blue1Mana + 53
 	end
 	if (GetNumUnitsAt(BlueTeam1, "unit-knight", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 8) then
-		if (GetNumUnitsAt(BlueTeam1, "unit-footman", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 12) then
-			if (Blue1Mana > 49) then
-				if ((GetPlayerData(BlueTeam1, "UnitTypesCount", AiEliteShooter()) == 0) and ((Blue1Mana > 90) and (Blue1Mana < 190))) then
-					CreateUnit(AiEliteShooter(), BlueTeam1, {Blue1Temp_x, Blue1Temp_y})
-					Blue1Mana = Blue1Mana - 100
-				else
-					if ((Blue1Mana > 80) and (Blue1Mana < 95)) then
-						CreateUnit("unit-archer", BlueTeam1, {Blue1Temp_x, Blue1Temp_y})
-					else
-						CreateUnit("unit-footman", BlueTeam1, {Blue1Temp_x, Blue1Temp_y})
-					end
-					Blue1Mana = Blue1Mana - 50
-				end
-				Blue1Step = 1
+		if (GetNumUnitsAt(BlueTeam1, "unit-footman", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 8) then
+			if (GetPlayerData(BlueTeam1, "UnitTypesCount", AiEliteShooter()) == 0) then
+				AiBlue1_Spawn_2012(AiPlayer(), 1000, 1500, 2500, 0, 0, 0, "unit-ranger")
+			else
+				AiBlue1_Spawn_2012(AiPlayer(), 2500, 0, 0, 0, 0, 0, "unit-footman")
+				AiBlue1_Spawn_2012(AiPlayer(), 1000, 1500, 0, 2500, 0, 0, "unit-archer")
 			end
 		else
-			if ((GetNumUnitsAt(BlueTeam1, "unit-grunt", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 5) or (GetNumUnitsAt(BlueTeam1, AiCavalryMage(), {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) > 0)) then
-				if (Blue1Mana > 149) then
-					CreateUnit("unit-knight", BlueTeam1, {Blue1Temp_x, Blue1Temp_y})
-					Blue1Mana = Blue1Mana - 150
-					Blue1Step = 1
-				end
+			if ((GetNumUnitsAt(BlueTeam1, "unit-knight", {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) < 5) or (GetNumUnitsAt(BlueTeam1, AiCavalryMage(), {BlueTeam1_x1, BlueTeam1_y1}, {BlueTeam1_x2, BlueTeam1_y2}) > 0)) then
+				AiBlue1_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-knight")
 			else
-				if (Blue1Mana > 250) then
-					CreateUnit(AiCavalryMage(), BlueTeam1, {Blue1Temp_x, Blue1Temp_y})
-					Blue1Mana = Blue1Mana - 250
-					Blue1Step = 1
-				end
+				AiBlue1_Spawn_2012(AiPlayer(), 7500, 0, 5000, 0, 0, 0, "unit-paladin")
 			end
 		end
 	else
-		if ((Blue1Mana > 289) and (Blue1Mana < 599)) then
-			CreateUnit("unit-paladin", BlueTeam1, {Blue1Temp_x, Blue1Temp_y})
-			Blue1Mana = Blue1Mana - 250
-			Blue1Step = 1
-		else
-			if (Blue1Mana > 249) then
-				CreateUnit("unit-ballista", BlueTeam1, {Blue1Temp_x, Blue1Temp_y})
-				Blue1Mana = Blue1Mana - 250
-				Blue1Step = 1
-			end
+		AiBlue1_Spawn_2012(AiPlayer(), 2500, 10000, 0, 0, 0, 0, "unit-ballista")
+		AiBlue1_Spawn_2012(AiPlayer(), 7500, 0, 5000, 0, 0, 0, "unit-paladin")
+	end
+end
+
+function AiBlue2_Basic_2012()
+	if (Blue2Temp_x ~= nil) then else
+		if (BlueTeam2_Order ~= nil) then else
+			BlueTeam2_Order = "Top-Right"
+		end
+		if (BlueTeam2_Order == "Top-Right") then
+			-- Top-Right means start at top, go right.
+			Blue2Temp_x = BlueTeam2_x1
+			Blue2Temp_y = BlueTeam2_y1
+		elseif (BlueTeam2_Order == "Top-Left") then
+			Blue2Temp_x = BlueTeam2_x2
+			Blue2Temp_y = BlueTeam2_y1
+		elseif (BlueTeam2_Order == "Bottom-Right") then
+			Blue2Temp_x = BlueTeam2_x1
+			Blue2Temp_y = BlueTeam2_y2
+		elseif (BlueTeam2_Order == "Bottom-Left") then
+			Blue2Temp_x = BlueTeam2_x2
+			Blue2Temp_y = BlueTeam2_y2
+		elseif (BlueTeam2_Order == "Wise") then
+			Blue2Temp_x = BlueTeam2_xw
+			Blue2Temp_y = BlueTeam2_yw
 		end
 	end
-	if (Blue1Step == 1) then
-		if (Blue1Temp_x ~= nil) then
-			if (BlueTeam1_Order == "Top-Right") then
-				if (Blue1Temp_x == BlueTeam1_x2) then
-					if (Blue1Temp_y == BlueTeam1_y2) then
-						-- Oh shit, I've used up all my spaces.
-						Blue1Temp_x = BlueTeam1_x1
-						Blue1Temp_y = BlueTeam1_y1
-					else
-						Blue1Temp_x = BlueTeam1_x1
-						Blue1Temp_y = Blue1Temp_y + 1
-					end
-				else
-					Blue1Temp_x = Blue1Temp_x + 1
-				end
-			end
-			if (BlueTeam1_Order == "Top-Left") then
-				if (Blue1Temp_x == BlueTeam1_x1) then
-					if (Blue1Temp_y == BlueTeam1_y2) then
-						-- Oh shit, I've used up all my spaces.
-						Blue1Temp_x = BlueTeam1_x1
-						Blue1Temp_y = BlueTeam1_y1
-					else
-						Blue1Temp_x = BlueTeam1_x2
-						Blue1Temp_y = Blue1Temp_y + 1
-					end
-				else
-					Blue1Temp_x = Blue1Temp_x - 1
-				end
-			end
-			if (BlueTeam1_Order == "Bottom-Right") then
-				if (Blue1Temp_x == BlueTeam1_x2) then
-					if (Blue1Temp_y == BlueTeam1_y1) then
-						-- Oh shit, I've used up all my spaces.
-						Blue1Temp_x = BlueTeam1_x1
-						Blue1Temp_y = BlueTeam1_y2
-					else
-						Blue1Temp_x = BlueTeam1_x1
-						Blue1Temp_y = Blue1Temp_y - 1
-					end
-				else
-					Blue1Temp_x = Blue1Temp_x + 1
-				end
-			end
-			if (BlueTeam1_Order == "Bottom-Left") then
-				if (Blue1Temp_x == BlueTeam1_x1) then
-					if (Blue1Temp_y == BlueTeam1_y1) then
-						-- Oh shit, I've used up all my spaces.
-						Blue1Temp_x = BlueTeam1_x1
-						Blue1Temp_y = BlueTeam1_y2
-					else
-						Blue1Temp_x = BlueTeam1_x2
-						Blue1Temp_y = Blue1Temp_y - 1
-					end
-				else
-					Blue1Temp_x = Blue1Temp_x - 1
-				end
-			end
+	if (GetNumUnitsAt(BlueTeam2, "unit-knight", {BlueTeam2_x1, BlueTeam2_y1}, {BlueTeam2_x2, BlueTeam2_y2}) < 8) then
+		if (GetNumUnitsAt(BlueTeam2, "unit-footman", {BlueTeam2_x1, BlueTeam2_y1}, {BlueTeam2_x2, BlueTeam2_y2}) < 22) then
+			AiBlue2_Spawn_2012(AiPlayer(), 2500, 0, 0, 0, 0, 0, "unit-footman")
+			AiBlue2_Spawn_2012(AiPlayer(), 1000, 1500, 0, 2000, 0, 0, "unit-archer")
+		else
+			AiBlue2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-knight")
 		end
-		Blue1Step = 0
+	else
+		AiBlue2_Spawn_2012(AiPlayer(), 1000, 9000, 10000, 0, 0, 0, "unit-female-hero")
+		AiBlue2_Spawn_2012(AiPlayer(), 2500, 10000, 0, 0, 0, 0, "unit-ballista")
+		AiBlue2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-knight")
 	end
 end
 
 function AiRedRibbon_2012()
 	-- Setting up the variables.
 	if (redribbon_stepping ~= nil) then
-		--AddMessage("Stepping is nill.")
+		AiRed_Resources_2014(RedTeam1, 100, 50, 50)
+		if (RedTeam1 ~= RedTeam2) then
+			AiRed_Resources_2014(RedTeam2, 100, 50, 50)
+		end
 	else
 		-- print ("Setting up the variables.")
 		RedLeader = AiPlayer()
@@ -1024,135 +966,46 @@ function AiRed2_Basic_2012()
 			Red2Temp_x = RedTeam2_xw
 			Red2Temp_y = RedTeam2_yw
 		end
-		Red2Step = 0
-		Red2Mana = 150
 	end
-	if ((timer == 25) or (timer == 75)) then
-			Red2Mana = Red2Mana + 105
-	end
-	if (redribbon_stepping > 7) then
-		if (Red2Mana > (150*6)) then
+	if ((redribbon_stepping > 7) and (redribbon_stepping < 10)) then
+		if (GetPlayerData(AiPlayer(), "Resources", "gold") > (7500*6)) then
 			AiForce(0, {AiSoldier(), 7}, true)
 			AiAttackWithForce(0)
 		end 
-		if (Red2Mana > (150*7)) then
+		if (GetPlayerData(AiPlayer(), "Resources", "gold") > (7500*7)) then
 			if (redribbon_stepping == 8) then
-				CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1, RedTeam2_y1})
-				CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 1, RedTeam2_y1})
-				CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 2, RedTeam2_y1})
-				CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 3, RedTeam2_y1})
-				CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 4, RedTeam2_y1})
-				CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 5, RedTeam2_y1})
-				CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 6, RedTeam2_y1})
-				Red2Mana = (Red2Mana - (150 * 7))
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
 				redribbon_stepping = 9
-			else
-				if (redribbon_stepping == 9) then
-					CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 7, RedTeam2_y1})
-					CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 1, RedTeam2_y1 + 1})
-					CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 2, RedTeam2_y1 + 1})
-					CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 3, RedTeam2_y1 + 1})
-					CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 4, RedTeam2_y1 + 1})
-					CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 5, RedTeam2_y1 + 1})
-					CreateUnit("unit-ogre", AiPlayer(), {RedTeam2_x1 + 6, RedTeam2_y1 + 1})
-					Red2Mana = (Red2Mana - (150 * 7))
-					redribbon_stepping = 10
-				end
+			elseif (redribbon_stepping == 9) then
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
+				redribbon_stepping = 10
 			end
 		end
 	else
 		if (GetNumUnitsAt(RedTeam2, "unit-ogre", {RedTeam2_x1, RedTeam2_y1}, {RedTeam2_x2, RedTeam2_y2}) < 8) then
 			if (GetNumUnitsAt(RedTeam2, "unit-grunt", {RedTeam2_x1, RedTeam2_y1}, {RedTeam2_x2, RedTeam2_y2}) < 16) then
-				if (Red2Mana > 49) then
-					if ((Red2Mana > 75) and (Red2Mana < 95)) then
-						CreateUnit("unit-axethrower", RedTeam2, {Red2Temp_x, Red2Temp_y})
-					else
-						CreateUnit("unit-grunt", RedTeam2, {Red2Temp_x, Red2Temp_y})
-					end
-					Red2Mana = Red2Mana - 50
-					Red2Step = 1
-				end
+				AiRed2_Spawn_2012(AiPlayer(), 2500, 0, 0, 0, 0, 0, "unit-grunt")	
+				AiRed2_Spawn_2012(AiPlayer(), 1000, 1500, 0, 2500, 0, 0, "unit-axethrower")	
 			else
-				if (Red2Mana > 149) then
-					CreateUnit("unit-ogre", RedTeam2, {Red2Temp_x, Red2Temp_y})
-					Red2Mana = Red2Mana - 150
-					Red2Step = 1
-				end
+				AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")
 			end
 		else
-			if ((Red2Mana > 289) and (Red2Mana < 599)) then
-				CreateUnit("unit-ogre-mage", RedTeam2, {Red2Temp_x, Red2Temp_y})
-				Red2Mana = Red2Mana - 250
-				Red2Step = 1
-			else
-				if (Red2Mana > 249) then
-					CreateUnit("unit-catapult", RedTeam2, {Red2Temp_x, Red2Temp_y})
-					Red2Mana = Red2Mana - 250
-					Red2Step = 1
-				end
-			end
+			AiRed2_Spawn_2012(AiPlayer(), 2500, 5000, 5000, 0, 0, 0, "unit-dragon")		
+			AiRed2_Spawn_2012(AiPlayer(), 7500, 0, 5000, 0, 0, 0, "unit-ogre-mage")
+			AiRed2_Spawn_2012(AiPlayer(), 2500, 10000, 0, 0, 0, 0, "unit-catapult")
 		end
-	end
-	if (Red2Step == 1) then
-		if (Red2Temp_x ~= nil) then
-			if (RedTeam2_Order == "Top-Right") then
-				if (Red2Temp_x == RedTeam2_x2) then
-					if (Red2Temp_y == RedTeam2_y2) then
-						-- Oh shit, I've used up all my spaces.
-						Red2Temp_x = RedTeam2_x1
-						Red2Temp_y = RedTeam2_y1
-					else
-						Red2Temp_x = RedTeam2_x1
-						Red2Temp_y = Red2Temp_y + 1
-					end
-				else
-					Red2Temp_x = Red2Temp_x + 1
-				end
-			end
-			if (RedTeam2_Order == "Top-Left") then
-				if (Red2Temp_x == RedTeam2_x1) then
-					if (Red2Temp_y == RedTeam2_y2) then
-						-- Oh shit, I've used up all my spaces.
-						Red2Temp_x = RedTeam2_x1
-						Red2Temp_y = RedTeam2_y1
-					else
-						Red2Temp_x = RedTeam2_x2
-						Red2Temp_y = Red2Temp_y + 1
-					end
-				else
-					Red2Temp_x = Red2Temp_x - 1
-				end
-			end
-			if (RedTeam2_Order == "Bottom-Right") then
-				if (Red2Temp_x == RedTeam2_x2) then
-					if (Red2Temp_y == RedTeam2_y1) then
-						-- Oh shit, I've used up all my spaces.
-						Red2Temp_x = RedTeam2_x1
-						Red2Temp_y = RedTeam2_y2
-					else
-						Red2Temp_x = RedTeam2_x1
-						Red2Temp_y = Red2Temp_y - 1
-					end
-				else
-					Red2Temp_x = Red2Temp_x + 1
-				end
-			end
-			if (RedTeam2_Order == "Bottom-Left") then
-				if (Red2Temp_x == RedTeam2_x1) then
-					if (Red2Temp_y == RedTeam2_y1) then
-						-- Oh shit, I've used up all my spaces.
-						Red2Temp_x = RedTeam2_x1
-						Red2Temp_y = RedTeam2_y2
-					else
-						Red2Temp_x = RedTeam2_x2
-						Red2Temp_y = Red2Temp_y - 1
-					end
-				else
-					Red2Temp_x = Red2Temp_x - 1
-				end
-			end
-		end
-		Red2Step = 0
 	end
 end
 
@@ -1178,154 +1031,46 @@ function AiRed1_Basic_2012()
 			Red1Temp_x = RedTeam1_xw
 			Red1Temp_y = RedTeam1_yw
 		end
-		Red1Step = 0
-		Red1Mana = 150
-	end
-	if ((timer == 25) or (timer == 75)) then
-		Red1Mana = Red1Mana + 52
-	end
-	if ((timer == 50) or (timer == 98)) then
-		Red1Mana = Red1Mana + 53
 	end
 	if (((RedTeam1_x2 - RedTeam1_x1)*(RedTeam1_y2 - RedTeam1_y1)) < 19) then
 		if (GetNumUnitsAt(RedTeam1, AiFodder(), {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) < 4) then
-			if ((Red1Mana > 20) and (Red1Mana < 40)) then
-				CreateUnit(AiFodder(), RedTeam1, {Red1Temp_x, Red1Temp_y})
-				Red1Mana = Red1Mana - 20
-				Red1Step = 1
-			end
+			AiRed1_Spawn_2012(AiPlayer(), 750, 0, 250, 1500, 0, 0, "unit-skeleton")	
 		end
 		if (GetNumUnitsAt(RedTeam1, "unit-catapult", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) > 4) then
-			if (Red1Mana > 250) then
-				CreateUnit(AiCavalryMage(), RedTeam1, {Red1Temp_x, Red1Temp_y})
-				Red1Mana = Red1Mana - 250
-				Red1Step = 1
-			elseif ((Red1Mana > 100) and (Red1Mana < 120) and (GetPlayerData(RedTeam1, "UnitTypesCount", AiEliteShooter()) == 0)) then
-				CreateUnit(AiEliteShooter(), RedTeam1, {Red1Temp_x, Red1Temp_y})
-				Red1Mana = Red1Mana - 100
-				Red1Step = 1
-			elseif ((Red1Mana > 50) and (Red1Mana < 70) and (GetPlayerData(RedTeam1, "UnitTypesCount", AiShooter()) < 4)) then
-				CreateUnit("unit-axethrower", RedTeam1, {Red1Temp_x, Red1Temp_y})
-				Red1Mana = Red1Mana - 50
-				Red1Step = 1
+			if (SetPlayerData(t, "Resources", "oil", o) > 4500) then
+				AiRed1_Spawn_2012(AiPlayer(), 7500, 0, 5000, 0, 0, 0, "unit-ogre-mage")	
+			elseif (GetPlayerData(RedTeam1, "UnitTypesCount", AiEliteShooter()) == 0) then
+				AiRed1_Spawn_2012(AiPlayer(), 1000, 1500, 2500, 0, 0, 0, "unit-berserker")	
+			elseif (GetPlayerData(RedTeam1, "UnitTypesCount", AiShooter()) < 4) then
+				AiRed1_Spawn_2012(AiPlayer(), 1000, 1500, 0, 2500, 0, 0, "unit-axethrower")	
 			end
 		else
-			if (Red1Mana > 250) then
-				CreateUnit("unit-catapult", RedTeam1, {Red1Temp_x, Red1Temp_y})
-				Red1Mana = Red1Mana - 250
-				Red1Step = 1
-			end
+			AiRed1_Spawn_2012(AiPlayer(), 2500, 10000, 0, 0, 0, 0, "unit-catapult")	
 		end
 	elseif (GetNumUnitsAt(RedTeam1, "unit-ogre", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) < 8) then
 		if (GetNumUnitsAt(RedTeam1, "unit-grunt", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) < 22) then
 			if ((GetNumUnitsAt(RedTeam1, "unit-grunt", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) < 5) or (GetNumUnitsAt(RedTeam1, AiCavalryMage(), {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) > 0)) then
-				if (Red1Mana > 49) then
-					if ((GetPlayerData(RedTeam1, "UnitTypesCount", AiEliteShooter()) == 0) and ((Red1Mana > 90) and (Red1Mana < 190))) then
-						CreateUnit(AiEliteShooter(), RedTeam1, {Red1Temp_x, Red1Temp_y})
-						Red1Mana = Red1Mana - 100
-					else
-						if ((Red1Mana > 75) and (Red1Mana < 95)) then
-							CreateUnit("unit-axethrower", RedTeam1, {Red1Temp_x, Red1Temp_y})
-						else
-							CreateUnit("unit-grunt", RedTeam1, {Red1Temp_x, Red1Temp_y})
-						end
-						Red1Mana = Red1Mana - 50
-					end
-					Red1Step = 1
+				if (GetPlayerData(RedTeam1, "UnitTypesCount", AiEliteShooter()) == 0) then
+					AiRed1_Spawn_2012(AiPlayer(), 1000, 1500, 2500, 5000, 0, 0, "unit-berserker")	
+				else
+					AiRed1_Spawn_2012(AiPlayer(), 1000, 1500, 0, 2500, 0, 0, "unit-axethrower")
+					AiRed1_Spawn_2012(AiPlayer(), 2500, 0, 0, 0, 0, 0, "unit-grunt")
 				end
 			else
-				if (Red1Mana > 250) then
-					CreateUnit(AiCavalryMage(), RedTeam1, {Red1Temp_x, Red1Temp_y})
-					Red1Mana = Red1Mana - 250
-					Red1Step = 1
-				end
+				AiRed1_Spawn_2012(AiPlayer(), 7500, 0, 5000, 0, 0, 0, "unit-ogre-mage")	
 			end
 		else
-			if (Red1Mana > 149) then
-				CreateUnit("unit-ogre", RedTeam1, {Red1Temp_x, Red1Temp_y})
-				Red1Mana = Red1Mana - 150
-				Red1Step = 1
-			end
+			AiRed1_Spawn_2012(AiPlayer(), 7500, 0, 0, 0, 0, 0, "unit-ogre")	
 		end
 	else
-		if ((Red1Mana > 289) and (Red1Mana < 599)) then
-			CreateUnit("unit-ogre-mage", RedTeam1, {Red1Temp_x, Red1Temp_y})
-			Red1Mana = Red1Mana - 250
-			Red1Step = 1
-		else
-			if (Red1Mana > 249) then
-				CreateUnit("unit-catapult", RedTeam1, {Red1Temp_x, Red1Temp_y})
-				Red1Mana = Red1Mana - 250
-				Red1Step = 1
-			end
-		end
-	end
-	if (Red1Step == 1) then
-		if (Red1Temp_x ~= nil) then
-			if (RedTeam1_Order == "Top-Right") then
-				if (Red1Temp_x == RedTeam1_x2) then
-					if (Red1Temp_y == RedTeam1_y2) then
-						-- Oh shit, I've used up all my spaces.
-						Red1Temp_x = RedTeam1_x1
-						Red1Temp_y = RedTeam1_y1
-					else
-						Red1Temp_x = RedTeam1_x1
-						Red1Temp_y = Red1Temp_y + 1
-					end
-				else
-					Red1Temp_x = Red1Temp_x + 1
-				end
-			end
-			if (RedTeam1_Order == "Top-Left") then
-				if (Red1Temp_x == RedTeam1_x1) then
-					if (Red1Temp_y == RedTeam1_y2) then
-						-- Oh shit, I've used up all my spaces.
-						Red1Temp_x = RedTeam1_x1
-						Red1Temp_y = RedTeam1_y1
-					else
-						Red1Temp_x = RedTeam1_x2
-						Red1Temp_y = Red1Temp_y + 1
-					end
-				else
-					Red1Temp_x = Red1Temp_x - 1
-				end
-			end
-			if (RedTeam1_Order == "Bottom-Right") then
-				if (Red1Temp_x == RedTeam1_x2) then
-					if (Red1Temp_y == RedTeam1_y1) then
-						-- Oh shit, I've used up all my spaces.
-						Red1Temp_x = RedTeam1_x1
-						Red1Temp_y = RedTeam1_y2
-					else
-						Red1Temp_x = RedTeam1_x1
-						Red1Temp_y = Red1Temp_y - 1
-					end
-				else
-					Red1Temp_x = Red1Temp_x + 1
-				end
-			end
-			if (RedTeam1_Order == "Bottom-Left") then
-				if (Red1Temp_x == RedTeam1_x1) then
-					if (Red1Temp_y == RedTeam1_y1) then
-						-- Oh shit, I've used up all my spaces.
-						Red1Temp_x = RedTeam1_x1
-						Red1Temp_y = RedTeam1_y2
-					else
-						Red1Temp_x = RedTeam1_x2
-						Red1Temp_y = Red1Temp_y - 1
-					end
-				else
-					Red1Temp_x = Red1Temp_x - 1
-				end
-			end
-		end
-		Red1Step = 0
+		AiRed1_Spawn_2012(AiPlayer(), 7500, 0, 5000, 0, 0, 0, "unit-ogre-mage")	
+		AiRed1_Spawn_2012(AiPlayer(), 2500, 10000, 0, 0, 0, 0, "unit-catapult")	
 	end
 end
 
 DefineAi("ai_redribbon_2012", "*", "ai_redribbon_2012", AiRedRibbon_2012)
-DefineAi("ai_red2", "*", "ai_red2", AiRed2_2012)
-DefineAi("ai_red1", "*", "ai_red1", AiRed1_2012)
+DefineAi("ai_red2_2012", "*", "ai_red2_2012", AiRed2_2012)
+DefineAi("ai_red1_2012", "*", "ai_red1_2012", AiRed1_2012)
 DefineAi("ai_blueribbon_2012", "*", "ai_blueribbon_2012", AiBlueRibbon_2012)
-DefineAi("ai_blue2", "*", "ai_blue2", AiBlue2)
-DefineAi("ai_blue1", "*", "ai_blue1", AiBlue1)
+DefineAi("ai_blue2_2012", "*", "ai_blue2_2012", AiBlue2_2012)
+DefineAi("ai_blue1_2012", "*", "ai_blue1_2012", AiBlue1_2012)
