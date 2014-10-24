@@ -60,19 +60,19 @@ SetAiType(1, "ai_blueribbon_2012")
 SetStartView(2, 66, 123)
 SetPlayerData(2, "Resources", "gold", 0)
 SetPlayerData(2, "Resources", "wood", 0)
-SetPlayerData(2, "Resources", "oil", 0)
+SetPlayerData(2, "Resources", "oil", 5000)
 SetPlayerData(2, "RaceName", "human")
 SetAiType(2, "ai_blue2_2012")
 SetStartView(3, 59, 123)
 SetPlayerData(3, "Resources", "gold", 0)
 SetPlayerData(3, "Resources", "wood", 0)
-SetPlayerData(3, "Resources", "oil", 0)
+SetPlayerData(3, "Resources", "oil", 5000)
 SetPlayerData(3, "RaceName", "human")
 SetAiType(3, "ai_blue1_2012")
 SetStartView(4, 62, 4)
 SetPlayerData(4, "Resources", "gold", 0)
 SetPlayerData(4, "Resources", "wood", 0)
-SetPlayerData(4, "Resources", "oil", 0)
+SetPlayerData(4, "Resources", "oil", 5000)
 SetPlayerData(4, "RaceName", "orc")
 SetAiType(4, "ai_red2_2012")
 SetStartView(5, 0, 0)
@@ -84,7 +84,7 @@ SetAiType(5, "ai_evildragon")
 SetStartView(7, 69, 4)
 SetPlayerData(7, "Resources", "gold", 0)
 SetPlayerData(7, "Resources", "wood", 0)
-SetPlayerData(7, "Resources", "oil", 0)
+SetPlayerData(7, "Resources", "oil", 5000)
 SetPlayerData(7, "RaceName", "orc")
 SetAiType(7, "ai_red1_2012")
 SetPlayerData(15, "RaceName", "neutral")
@@ -16595,6 +16595,8 @@ RedTemp_x1 = RedTeam1_x1
 RedTemp_y1 = RedTeam1_y1
 RedTemp_x2 = RedTeam1_x2
 RedTemp_y2 = RedTeam1_y2
+RedTeam1_Order = "Top-Right"
+RedTeam2_Order = "Top-Left"
 RedBarracks1_x = 46
 RedBarracks1_y = 14
 RedBarracks2_x = 54
@@ -16627,6 +16629,8 @@ BlueTemp_x1 = BlueTeam1_x1
 BlueTemp_y1 = BlueTeam1_y1
 BlueTemp_x2 = BlueTeam1_x2
 BlueTemp_y2 = BlueTeam1_y2
+BlueTeam1_Order = "Bottom-Left"
+BlueTeam2_Order = "Bottom-Right"
 -- Where all the stuff is located.
 BlueBarracks1_x = 72
 BlueBarracks1_y = 111
@@ -16648,7 +16652,7 @@ BlueTownHall_y = 116
 AddTrigger(
 	function() return ((GameCycle > 300) and (GameCycle < 310)) end,
 	function()	if ((GetPlayerData(4, "Name") == "Neutral") and (GetPlayerData(7, "Name") == "Neutral")) then 
-		AddMessage("The red side didn't bother to show up.")
+		AddMessage("The red team hasn't bother showing up.")
 	else
 		AddMessage("In the red corner we have Wise Skeleton!")
 		if (GetPlayerData(4, "Name") == "Neutral") then 

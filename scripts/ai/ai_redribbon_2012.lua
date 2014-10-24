@@ -353,34 +353,46 @@ function AiBlueRibbon_2012()
 end			
 
 function AiRed1_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit)
-	AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, RedTeam1, Red1Temp_x, Red1Temp_y)
-	AiRed1_Location_2012()
+	Spawn = AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, RedTeam1, Red1Temp_x, Red1Temp_y)
+	if (Spawn == 1) then
+		AiRed1_Location_2012()
+	end
 end
 
 function AiRed2_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit)
-	AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, RedTeam2, Red2Temp_x, Red2Temp_y)
-	AiRed2_Location_2012()
+	Spawn = AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, RedTeam2, Red2Temp_x, Red2Temp_y)
+	if (Spawn == 1) then
+		AiRed2_Location_2012()
+	end
 end
 
 function AiBlue1_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit)
-	AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, BlueTeam1, Blue1Temp_x, Blue1Temp_y)
-	AiBlue1_Location_2012()
+	Spawn = AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, BlueTeam1, Blue1Temp_x, Blue1Temp_y)
+	if (Spawn == 1) then
+		AiBlue1_Location_2012()
+	end
 end
 
 function AiBlue2_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit)
-	AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, BlueTeam2, Blue2Temp_x, Blue2Temp_y)
-	AiBlue2_Location_2012()
+	Spawn = AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, BlueTeam2, Blue2Temp_x, Blue2Temp_y)
+	if (Spawn == 1) then
+		AiBlue2_Location_2012()
+		Spawn = 0
+	end
 end
 
 function AiRed_Spawn_2012(i, gold, wood, oil, goldmax, woodmax, oilmax, unit, xTeamx, xxTemp_x, xxTemp_y)
+	Spawn = 0
 	if ((GetPlayerData(i, "Resources", "gold") >= gold) and ((GetPlayerData(i, "Resources", "gold") < goldmax) or (goldmax == 0))) then
 		if ((GetPlayerData(i, "Resources", "wood") >= wood) and ((GetPlayerData(i, "Resources", "wood") < woodmax) or (woodmax == 0))) then
 			if ((GetPlayerData(i, "Resources", "oil") >= oil) and ((GetPlayerData(i, "Resources", "oil") < oilmax) or (oilmax == 0))) then
 				CreateUnit(unit, xTeamx, {xxTemp_x, xxTemp_y})
 				AiRed_Resources_Remove_2014(i, gold, wood, oil)
+				Spawn = 1
 			end
 		end
 	end
+	return Spawn
 end
 
 function AiRed1_Location_2012()
@@ -1037,7 +1049,7 @@ function AiRed1_Basic_2012()
 			AiRed1_Spawn_2012(AiPlayer(), 750, 0, 250, 1500, 0, 0, "unit-skeleton")	
 		end
 		if (GetNumUnitsAt(RedTeam1, "unit-catapult", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) > 4) then
-			if (SetPlayerData(t, "Resources", "oil", o) > 4500) then
+			if (SetPlayerData(RedTeam1, "Resources", "oil", o) > 4500) then
 				AiRed1_Spawn_2012(AiPlayer(), 7500, 0, 5000, 0, 0, 0, "unit-ogre-mage")	
 			elseif (GetPlayerData(RedTeam1, "UnitTypesCount", AiEliteShooter()) == 0) then
 				AiRed1_Spawn_2012(AiPlayer(), 1000, 1500, 2500, 0, 0, 0, "unit-berserker")	
@@ -1051,7 +1063,7 @@ function AiRed1_Basic_2012()
 		if (GetNumUnitsAt(RedTeam1, "unit-grunt", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) < 22) then
 			if ((GetNumUnitsAt(RedTeam1, "unit-grunt", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) < 5) or (GetNumUnitsAt(RedTeam1, AiCavalryMage(), {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) > 0)) then
 				if (GetPlayerData(RedTeam1, "UnitTypesCount", AiEliteShooter()) == 0) then
-					AiRed1_Spawn_2012(AiPlayer(), 1000, 1500, 2500, 5000, 0, 0, "unit-berserker")	
+					AiRed1_Spawn_2012(AiPlayer(), 1000, 1500, 2500, 0, 0, 0, "unit-berserker")	
 				else
 					AiRed1_Spawn_2012(AiPlayer(), 1000, 1500, 0, 2500, 0, 0, "unit-axethrower")
 					AiRed1_Spawn_2012(AiPlayer(), 2500, 0, 0, 0, 0, 0, "unit-grunt")

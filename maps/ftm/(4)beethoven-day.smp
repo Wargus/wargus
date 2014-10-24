@@ -25,5 +25,5 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
-DefinePlayerTypes("computer","computer","person","person","person","computer","nobody","person")
+DefinePlayerTypes("computer","computer","computer","computer","person","computer","nobody","person")
 PresentMap("Beethoven Day", 7, 128, 128, 1)
