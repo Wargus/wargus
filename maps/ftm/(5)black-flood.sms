@@ -9376,8 +9376,6 @@ SetResourcesHeld(unit, 100000)
 unit = CreateUnit("unit-gold-mine", 15, {95, 45})
 SetResourcesHeld(unit, 100000)
 
-
-
 for i=1, 15 do
 	AiRedRibbon_Define_Origin_2014(i, 43, 33, "unit-town-hall")
 	AiRedRibbon_Define_Origin_2014(i+30, 31, 45, "unit-town-hall")
@@ -9385,7 +9383,6 @@ for i=1, 15 do
 	AiRedRibbon_Define_Origin_2014(i+80, 58, 44, "unit-great-hall")
 	AiRedRibbon_Define_Unit_2014(i+65, ftm_unit[i+50], "unit-caanoo-wiseskeleton", ftm_cost_gold[i+50], ftm_cost_wood[i+50], ftm_cost_oil[i+50], 95, 95)
 end
-
 
 -- AiRed Player 8, Red
 AiRed_Strategy_2014(8, 1, 1, 1, "unit-peon", "unit-grunt")
