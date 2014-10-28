@@ -36,6 +36,7 @@ if (wargus.tales == true) then
 		{}
 	)
 else
+	Briefing(
 		title,
 		objectives,
 		"../campaigns/human/interface/introscreen1.png",

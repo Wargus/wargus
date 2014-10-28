@@ -28,6 +28,43 @@
 local X
 local Y
 
+function SetPlayerFtM2014(player, race, faction, gold, wood, oil, startx, starty, istart, iend, teamx1, teamy1, teamx2, teamy2, match, aispawner, aibot)
+	if (match == nil) then match = 8 end
+	if (aispawner == nil) then aispawner = "ai_redribbon_2014" end
+	if (aibot == nil) then aibot = "ai_red_2014" end
+	SetupPlayer(player, race, aispawner, gold, wood, oil, startx, starty)
+	SetupPlayer(player+match, race, aibot, gold, wood, oil, startx, starty)
+	ftm_faction[player] = faction
+	ftm_faction[player+match] = faction
+	ftm_team[player] = player
+	ftm_team[player+match] = player
+	ftm_team_x1[player+match] = 0
+	ftm_team_y1[player+match] = 0
+	ftm_team_x2[player+match] = 1024
+	ftm_team_y2[player+match] = 1024
+	if (teamx1 ~= nil) then
+		ftm_team_x1[player+match] = teamx1
+		if (teamy1 ~= nil) then
+			ftm_team_y1[player+match] = teamy1
+			if (teamx2 ~= nil) then
+				ftm_team_x2[player+match] = teamx2
+				if (teamy2 ~= nil) then
+					ftm_team_y2[player+match] = teamy2
+				end
+			end
+		end
+	end
+	ftm_choice[player] = player + match
+	if (istart ~= nil) then
+		ftm_index_start[player] = istart
+		if (iend ~= nil) then
+			ftm_index_end[player] = iend
+		end
+	end
+	ftm_team_startx[player+match] = startx
+	ftm_team_starty[player+match] = starty
+end
+
 function AiRedRibbon_Setup_Units_2014()
 	ftm_unit = {}
 	ftm_origin = {}
@@ -80,12 +117,11 @@ end
 
 function AiRedRibbon_Define_Unit_2014(i, unit, origin, gold, wood, oil, x, y)
 	ftm_unit[i] = unit
-	ftm_origin[i] = origin
 	if ((gold ~= nil) or (wood ~= nil) or (oil ~= nil)) then
 		AiRedRibbon_Define_Cost_2014(i, gold, wood, oil)
 	end
-	if ((x ~= nil) or (y ~= nil)) then
-		AiRedRibbon_Define_Origin_2014(i, x, y)
+	if ((x ~= nil) or (y ~= nil) or (origin ~= nil)) then
+		AiRedRibbon_Define_Origin_2014(i, x, y, origin)
 	else
 		ftm_origin_x[i] = 0
 		ftm_origin_y[i] = 0
@@ -110,12 +146,15 @@ function AiRedRibbon_Define_Cost_2014(i, gold, wood, oil)
 	end
 end
 
-function AiRedRibbon_Define_Origin_2014(i, x, y)
+function AiRedRibbon_Define_Origin_2014(i, x, y, building)
 	if (x ~= nil) then
 		ftm_origin_x[i] = x
 	end
 	if (y ~= nil) then
 		ftm_origin_y[i] = y
+	end
+	if (building ~= nil) then
+		ftm_origin[i] = building
 	end
 end
 

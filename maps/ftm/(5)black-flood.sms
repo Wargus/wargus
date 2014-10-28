@@ -26,72 +26,14 @@
 --
 
 -- player configuration
-SetStartView(0, 45, 60)
-SetPlayerData(0, "Resources", "wood", 10000)
-SetPlayerData(0, "Resources", "gold", 10000)
-SetPlayerData(0, "Resources", "oil", 10000)
-SetPlayerData(0, "RaceName", "orc")
-SetAiType(0, "ai_redribbon_2014")
-SetStartView(1, 44, 35)
-SetPlayerData(1, "Resources", "wood", 10000)
-SetPlayerData(1, "Resources", "gold", 10000)
-SetPlayerData(1, "Resources", "oil", 10000)
-SetPlayerData(1, "RaceName", "human")
-SetAiType(1, "ai_redribbon_2014")
-SetStartView(2, 59, 45)
-SetPlayerData(2, "Resources", "wood", 10000)
-SetPlayerData(2, "Resources", "gold", 10000)
-SetPlayerData(2, "Resources", "oil", 10000)
-SetPlayerData(2, "RaceName", "orc")
-SetAiType(2, "ai_redribbon_2014")
-SetStartView(5, 93, 93)
-SetPlayerData(5, "Resources", "wood", 100000)
-SetPlayerData(5, "Resources", "gold", 100000)
-SetPlayerData(5, "Resources", "oil", 100000)
-SetPlayerData(5, "RaceName", "orc")
-SetAiType(5, "ai_redribbon_survival_2014")
-SetStartView(6, 31, 47)
-SetPlayerData(6, "Resources", "wood", 10000)
-SetPlayerData(6, "Resources", "gold", 10000)
-SetPlayerData(6, "Resources", "oil", 10000)
-SetPlayerData(6, "RaceName", "human")
-SetAiType(6, "ai_redribbon_2014")
-SetStartView(8, 46, 47)
-SetPlayerData(8, "Resources", "wood", 10000)
-SetPlayerData(8, "Resources", "gold", 10000)
-SetPlayerData(8, "Resources", "oil", 10000)
-SetPlayerData(8, "RaceName", "orc")
-SetAiType(8, "ai_red_2014")
-SetStartView(9, 43, 47)
-SetPlayerData(9, "Resources", "wood", 10000)
-SetPlayerData(9, "Resources", "gold", 10000)
-SetPlayerData(9, "Resources", "oil", 10000)
-SetPlayerData(9, "RaceName", "human")
-SetAiType(9, "ai_red_2014")
-SetStartView(10, 44, 47)
-SetPlayerData(10, "Resources", "wood", 10000)
-SetPlayerData(10, "Resources", "gold", 10000)
-SetPlayerData(10, "Resources", "oil", 10000)
-SetPlayerData(10, "RaceName", "orc")
-SetAiType(10, "ai_red_2014")
-SetStartView(13, 93, 93)
-SetPlayerData(13, "Resources", "wood", 10000)
-SetPlayerData(13, "Resources", "gold", 10000)
-SetPlayerData(13, "Resources", "oil", 50000)
-SetPlayerData(13, "RaceName", "orc")
-SetAiType(13, "ai_red_2014")
-SetStartView(14, 45, 47)
-SetPlayerData(14, "Resources", "wood", 10000)
-SetPlayerData(14, "Resources", "gold", 10000)
-SetPlayerData(14, "Resources", "oil", 10000)
-SetPlayerData(14, "RaceName", "human")
-SetAiType(14, "ai_red_2014")
-SetStartView(15, 0, 0)
-SetPlayerData(15, "Resources", "wood", 0)
-SetPlayerData(15, "Resources", "gold", 0)
-SetPlayerData(15, "Resources", "oil", 0)
-SetPlayerData(15, "RaceName", "human")
-SetAiType(15, "ai-passive")
+AiRedRibbon_Setup_2014()
+SetPlayerFtM2014(0, "orc", "Defenders", 10000, 10000, 10000, 46, 47, 51, 65, 0, 0, 96, 96)
+SetPlayerFtM2014(1, "man", "Defenders", 10000, 10000, 10000, 43, 47, 1, 15, 0, 0, 96, 96)
+SetPlayerFtM2014(2, "orc", "Defenders", 10000, 10000, 10000, 44, 47, 81, 95, 0, 0, 96, 96)
+SetPlayerFtM2014(5, "orc", "Attackers", 10000, 10000, 10000, 93, 93, 66, 80, 0, 0, 96, 96, 8, "ai_redribbon_survival_2014", "ai_red_2014")
+SetPlayerFtM2014(6, "man", "Defenders", 10000, 10000, 10000, 45, 47, 31, 45, 0, 0, 96, 96)
+AiRedRibbon_Diplomacy_2014(0, 14)
+AiRedRibbon_Diplomacy_Neutral_2014(0, 14, 15)
 
 -- load tilesets
 LoadTileModels("scripts/tilesets/wasteland.lua")
@@ -9409,22 +9351,22 @@ unit = CreateUnit("unit-skeleton", 5, {6, 90})
 unit = CreateUnit("unit-skeleton", 5, {4, 89})
 unit = CreateUnit("unit-skeleton", 5, {3, 89})
 unit = CreateUnit("unit-skeleton", 5, {1, 89})
-unit = CreateUnit("unit-critter", 13, {46, 62})
-unit = CreateUnit("unit-critter", 13, {62, 47})
-unit = CreateUnit("unit-critter", 13, {42, 33})
-unit = CreateUnit("unit-critter", 13, {29, 45})
-unit = CreateUnit("unit-critter", 13, {21, 71})
-unit = CreateUnit("unit-critter", 13, {72, 74})
-unit = CreateUnit("unit-critter", 13, {69, 20})
-unit = CreateUnit("unit-critter", 13, {15, 20})
-unit = CreateUnit("unit-critter", 13, {89, 4})
-unit = CreateUnit("unit-critter", 13, {89, 41})
-unit = CreateUnit("unit-critter", 13, {47, 90})
-unit = CreateUnit("unit-critter", 13, {92, 92})
-unit = CreateUnit("unit-critter", 13, {4, 91})
-unit = CreateUnit("unit-critter", 13, {4, 5})
-unit = CreateUnit("unit-critter", 13, {3, 51})
-unit = CreateUnit("unit-critter", 13, {47, 4})
+unit = CreateUnit("unit-critter", 15, {46, 62})
+unit = CreateUnit("unit-critter", 15, {62, 47})
+unit = CreateUnit("unit-critter", 15, {42, 33})
+unit = CreateUnit("unit-critter", 15, {29, 45})
+unit = CreateUnit("unit-critter", 15, {21, 71})
+unit = CreateUnit("unit-critter", 15, {72, 74})
+unit = CreateUnit("unit-critter", 15, {69, 20})
+unit = CreateUnit("unit-critter", 15, {15, 20})
+unit = CreateUnit("unit-critter", 15, {89, 4})
+unit = CreateUnit("unit-critter", 15, {89, 41})
+unit = CreateUnit("unit-critter", 15, {47, 90})
+unit = CreateUnit("unit-critter", 15, {92, 92})
+unit = CreateUnit("unit-critter", 15, {4, 91})
+unit = CreateUnit("unit-critter", 15, {4, 5})
+unit = CreateUnit("unit-critter", 15, {3, 51})
+unit = CreateUnit("unit-critter", 15, {47, 4})
 unit = CreateUnit("unit-gold-mine", 15, {0, 45})
 SetResourcesHeld(unit, 100000)
 unit = CreateUnit("unit-gold-mine", 15, {45, 0})
@@ -9434,121 +9376,16 @@ SetResourcesHeld(unit, 100000)
 unit = CreateUnit("unit-gold-mine", 15, {95, 45})
 SetResourcesHeld(unit, 100000)
 
-AiRedRibbon_Setup_2014()
 
-ftm_team[0] = 0
-ftm_choice[0] = 8
-ftm_team[8] = 0
-ftm_team[1] = 1
-ftm_choice[1] = 9
-ftm_team[9] = 1
-ftm_team[2] = 2
-ftm_choice[2] = 10
-ftm_team[10] = 2
-ftm_team[5] = 5
-ftm_choice[5] = 13
-ftm_team[13] = 5
-ftm_team[6] = 6
-ftm_choice[6] = 14
-ftm_team[14] = 6
-ftm_faction[0] = "Defenders"
-ftm_faction[1] = "Defenders"
-ftm_faction[2] = "Defenders"
-ftm_index_start[2] = 81
-ftm_index_end[2] = 95
-ftm_faction[5] = "Attackers"
-ftm_index_start[5] = 66
-ftm_index_end[5] = 80
-ftm_faction[6] = "Defenders"
-ftm_index_start[6] = 31
-ftm_index_end[6] = 45
-ftm_faction[8] = "Defenders"
-ftm_faction[9] = "Defenders"
-ftm_faction[10] = "Defenders"
-ftm_faction[13] = "Attackers"
-ftm_faction[14] = "Defenders"
-ftm_team_startx[0] = 45
-ftm_team_starty[0] = 60
-ftm_team_startx[1] = 44
-ftm_team_starty[1] = 35
-ftm_team_startx[2] = 59
-ftm_team_starty[2] = 45
-ftm_team_startx[5] = 93
-ftm_team_starty[5] = 93
-ftm_team_startx[6] = 31
-ftm_team_starty[6] = 47
-ftm_team_startx[8] = 46
-ftm_team_starty[8] = 47
-ftm_team_startx[9] = 43
-ftm_team_starty[9] = 47
-ftm_team_startx[10] = 44
-ftm_team_starty[10] = 47
-ftm_team_startx[13] = 95
-ftm_team_starty[13] = 95
-ftm_team_startx[14] = 45
-ftm_team_starty[14] = 47
-
-AiRedRibbon_Diplomacy_2014(0, 14)
-AiRedRibbon_Diplomacy_Neutral_2014(0, 14, 15)
 
 for i=1, 15 do
-	ftm_team_x1[i-1] = 0
-	ftm_team_y1[i-1] = 0
-	ftm_team_x2[i-1] = 96
-	ftm_team_y2[i-1] = 96
-	ftm_origin_x[i] = 43
-	ftm_origin_y[i] = 33
-	ftm_origin[i] = "unit-town-hall"
-	ftm_origin_x[30+i] = 31
-	ftm_origin_y[30+i] = 45
-	ftm_origin[30+i] = "unit-town-hall"
-	ftm_origin_x[50+i] = 44
-	ftm_origin_y[50+i] = 58
-	ftm_origin[50+i] = "unit-great-hall"
-	ftm_origin_x[80+i] = 58
-	ftm_origin_y[80+i] = 44
-	ftm_origin[80+i] = "unit-great-hall"
-	ftm_cost_gold[65+i] = ftm_cost_gold[50+i]
-	ftm_cost_wood[65+i] = ftm_cost_wood[50+i]
-	ftm_cost_oil[65+i] = ftm_cost_oil[50+i]
+	AiRedRibbon_Define_Origin_2014(i, 43, 33, "unit-town-hall")
+	AiRedRibbon_Define_Origin_2014(i+30, 31, 45, "unit-town-hall")
+	AiRedRibbon_Define_Origin_2014(i+50, 44, 58, "unit-great-hall")
+	AiRedRibbon_Define_Origin_2014(i+80, 58, 44, "unit-great-hall")
+	AiRedRibbon_Define_Unit_2014(i+65, ftm_unit[i+50], "unit-caanoo-wiseskeleton", ftm_cost_gold[i+50], ftm_cost_wood[i+50], ftm_cost_oil[i+50], 95, 95)
 end
 
-ftm_unit[66] = "unit-grunt"
-ftm_cost[66] = 25
-ftm_unit[67] = "unit-quick-blade"
-ftm_cost[67] = 200
-ftm_unit[68] = "unit-axethrower"
-ftm_cost[68] = 25
-ftm_unit[69] = "unit-berserker"
-ftm_cost[69] = 50
-ftm_unit[70] = "unit-sharp-axe"
-ftm_cost[70] = 200
-ftm_unit[71] = "unit-ogre"
-ftm_cost[71] = 75
-ftm_unit[72] = "unit-ogre-mage"
-ftm_cost[72] = 125
-ftm_unit[73] = "unit-fad-man"
-ftm_cost[73] = 200
-ftm_unit[74] = "unit-catapult"
-ftm_cost[74] = 125
-ftm_unit[75] = "unit-skeleton"
-ftm_cost[75] = 10
-ftm_unit[76] = "unit-goblin-sappers"
-ftm_cost[76] = 100
-ftm_unit[77] = "unit-nomad"
-ftm_cost[77] = 50
-ftm_unit[78] = "unit-dragon"
-ftm_cost[78] = 150
-ftm_unit[79] = "unit-death-knight"
-ftm_cost[79] = 100
-ftm_unit[80] = "unit-peon"
-ftm_cost[80] = 25
-
-for i=66, 80 do
-	ftm_origin_x[i] = 95
-	ftm_origin_y[i] = 95
-	ftm_origin[i] = "unit-caanoo-wiseskeleton"
-end
 
 -- AiRed Player 8, Red
 AiRed_Strategy_2014(8, 1, 1, 1, "unit-peon", "unit-grunt")
@@ -9557,8 +9394,9 @@ AiRed_Strategy_2014(8, 1, 1, 1, "unit-peon", "unit-grunt")
 AiRed_Strategy_Alliance_Mass_2014(9)
 
 -- AiRed Player 10, Green
---AiRed_Strategy_2014(10, 2, 19, 1, "unit-peon", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-grunt", "unit-axethrower", "unit-grunt", "unit-axethrower", "unit-grunt", "unit-axethrower", "unit-nomad", "unit-berserker")
-AiRed_Strategy_2014(10, 0, 0, 1, "unit-skeleton")
+AiRed_Strategy_2014(10, 1, 1, 1, "unit-peon", "unit-grunt")
+--AiRed_Strategy_2014(10, 2, 19, 1, "unit-peon", "unit-grunt", "unit-axethrower", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-grunt", "unit-axethrower", "unit-grunt", "unit-axethrower", "unit-grunt", "unit-axethrower", "unit-nomad", "unit-berserker")
+--AiRed_Strategy_2014(10, 0, 0, 1, "unit-skeleton")
 
 -- AiRed Player 13, Black
 AiRed_Strategy_2014(13, 1, 20, 1, "unit-skeleton", "unit-ogre", "unit-ogre", "unit-skeleton", "unit-grunt", "unit-peon", "unit-skeleton", "unit-grunt", "unit-peon", "unit-axethrower", "unit-death-knight", "unit-berserker", "unit-ogre", "unit-dragon", "unit-catapult", "unit-ogre-mage", "unit-sharp-axe", "unit-ogre", "unit-quick-blade", "unit-ogre-mage", "unit-fad-man")
