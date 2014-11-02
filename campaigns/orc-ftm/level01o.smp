@@ -27,5 +27,6 @@
 
 --=============================================================================
 
-DefinePlayerTypes("computer","person","computer","computer","computer","computer","computer")
+--DefinePlayerTypes("computer",	"computer",	"nobody",	"computer",	"nobody",	"nobody",	"computer",	"computer",	"computer",	"computer",	"nobody",	"computer",	"nobody",	"nobody",	"computer",		"person")
+DefinePlayerTypes("computer", 	"computer", "computer", "nobody", 	"nobody", 	"computer", "computer", "nobody", 	"computer", 	"computer", 	"computer", 	"nobody", 	"nobody", 	"computer", 	"person")
 PresentMap("Order Mission 1", 7, 256, 256, 1)

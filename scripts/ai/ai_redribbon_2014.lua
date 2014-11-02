@@ -68,26 +68,29 @@ end
 function AiRedRibbon_Setup_Units_2014()
 	ftm_unit = {}
 	ftm_origin = {}
+	ftm_category = {}
+	ftm_class = {}
+	ftm_rank = {}
 	ftm_cost_gold = {}
 	ftm_cost_wood = {}
 	ftm_cost_oil = {}
 	ftm_origin_x = {}
 	ftm_origin_y = {}
-	AiRedRibbon_Define_Unit_2014(1, "unit-footman", "unit-human-barracks", 2500, 0, 0)
-	AiRedRibbon_Define_Unit_2014(2, "unit-arthor-literios", "unit-human-barracks", 2500, 0, 17500)
-	AiRedRibbon_Define_Unit_2014(3, "unit-archer", "unit-human-barracks", 1000, 1500, 0)
-	AiRedRibbon_Define_Unit_2014(4, "unit-ranger", "unit-human-barracks", 1000, 1500, 2500)
-	AiRedRibbon_Define_Unit_2014(5, "unit-female-hero", "unit-human-barracks", 1000, 9000, 10000)
-	AiRedRibbon_Define_Unit_2014(6, "unit-knight", "unit-human-barracks", 7500, 0, 0)
-	AiRedRibbon_Define_Unit_2014(7, "unit-paladin", "unit-human-barracks", 7500, 0, 5000)
-	AiRedRibbon_Define_Unit_2014(8, "unit-knight-rider", "unit-human-barracks", 7500, 0, 12500)
-	AiRedRibbon_Define_Unit_2014(9, "unit-ballista", "unit-human-barracks", 2500, 10000, 0)
-	AiRedRibbon_Define_Unit_2014(10, "unit-attack-peasant", "unit-town-hall", 1000, 500, 0)
-	AiRedRibbon_Define_Unit_2014(11, "unit-dwarves", "unit-inventor", 2500, 4000, 2500)
-	AiRedRibbon_Define_Unit_2014(12, "unit-yeoman", "unit-town-hall", 1000, 4000, 0)
-	AiRedRibbon_Define_Unit_2014(13, "unit-gryphon-rider", "unit-gryphon-aviary", 2500, 5000, 5000)
-	AiRedRibbon_Define_Unit_2014(14, "unit-mage", "unit-mage-tower", 2500, 2500, 5000)
-	AiRedRibbon_Define_Unit_2014(15, "unit-peasant", "unit-town-hall", 1000, 1500, 0)
+	AiRedRibbon_Define_Unit_2014(1, "unit-footman", "unit-human-barracks", "ground", "melee", "standard", 2500, 0, 0)
+	AiRedRibbon_Define_Unit_2014(2, "unit-arthor-literios", "unit-human-barracks", "ground", "melee", "hero", 2500, 0, 17500)
+	AiRedRibbon_Define_Unit_2014(3, "unit-archer", "unit-human-barracks", "ground", "ranged", "standard", 1000, 1500, 0)
+	AiRedRibbon_Define_Unit_2014(4, "unit-ranger", "unit-human-barracks", "ground", "ranged", "elite", 1000, 1500, 2500)
+	AiRedRibbon_Define_Unit_2014(5, "unit-female-hero", "unit-human-barracks", "ground", "ranged", "hero", 1000, 9000, 10000)
+	AiRedRibbon_Define_Unit_2014(6, "unit-knight", "unit-human-barracks", "ground", "melee", "standard", 7500, 0, 0)
+	AiRedRibbon_Define_Unit_2014(7, "unit-paladin", "unit-human-barracks", "ground", "melee", "elite", 7500, 0, 5000)
+	AiRedRibbon_Define_Unit_2014(8, "unit-knight-rider", "unit-human-barracks", "ground", "melee", "hero", 7500, 0, 12500)
+	AiRedRibbon_Define_Unit_2014(9, "unit-ballista", "unit-human-barracks", "ground", "ranged", "elite", 2500, 10000, 0)
+	AiRedRibbon_Define_Unit_2014(10, "unit-attack-peasant", "unit-town-hall", "ground", "melee", "fodder", 1000, 500, 0)
+	AiRedRibbon_Define_Unit_2014(11, "unit-dwarves", "unit-inventor", "ground", "melee", "attacker", 2500, 4000, 2500)
+	AiRedRibbon_Define_Unit_2014(12, "unit-yeoman", "unit-town-hall", "ground", "ranged", "defender", 1000, 4000, 0)
+	AiRedRibbon_Define_Unit_2014(13, "unit-gryphon-rider", "unit-gryphon-aviary", "air", "ranged", "attacker", 2500, 5000, 5000)
+	AiRedRibbon_Define_Unit_2014(14, "unit-mage", "unit-mage-tower", "ground", "ranged", "attacker", 2500, 2500, 5000)
+	AiRedRibbon_Define_Unit_2014(15, "unit-peasant", "unit-town-hall", "ground", "worker", "defender", 1000, 1500, 0)
 	AiRedRibbon_Define_Unit_2014(51, "unit-grunt", "unit-orc-barracks")
 	AiRedRibbon_Define_Unit_2014(52, "unit-quick-blade", "unit-orc-barracks")
 	AiRedRibbon_Define_Unit_2014(53, "unit-axethrower", "unit-orc-barracks")
@@ -104,9 +107,12 @@ function AiRedRibbon_Setup_Units_2014()
 	AiRedRibbon_Define_Unit_2014(64, "unit-death-knight", "unit-temple-of-the-damned")
 	AiRedRibbon_Define_Unit_2014(65, "unit-peon", "unit-great-hall")
 	for i = 1, 15 do
-		AiRedRibbon_Define_Unit_2014(30+i, ftm_unit[i], ftm_origin[i], ftm_cost_gold[i], ftm_cost_wood[i], ftm_cost_oil[i], ftm_origin_x[i], ftm_origin_y[i])
+		AiRedRibbon_Define_Origin_2014(i, 0, 0)
+		AiRedRibbon_Define_Unit_2014(30+i, ftm_unit[i], ftm_origin[i], ftm_category[i], ftm_class[i], ftm_rank[i], ftm_cost_gold[i], ftm_cost_wood[i], ftm_cost_oil[i], ftm_origin_x[i], ftm_origin_y[i])
+		AiRedRibbon_Define_Origin_2014(50+i, 0, 0)
+		AiRedRibbon_Define_Attributes_2014(50+i, ftm_category[i], ftm_class[i], ftm_rank[i])
 		AiRedRibbon_Define_Cost_2014(50+i, ftm_cost_gold[i], ftm_cost_wood[i], ftm_cost_oil[i])
-		AiRedRibbon_Define_Unit_2014(80+i, ftm_unit[50+i], ftm_origin[50+i], ftm_cost_gold[50+i], ftm_cost_wood[50+i], ftm_cost_oil[50+i], ftm_origin_x[50+i], ftm_origin_y[50+i])
+		AiRedRibbon_Define_Unit_2014(80+i, ftm_unit[50+i], ftm_origin[50+i], ftm_category[50+i], ftm_class[50+i], ftm_rank[50+i], ftm_cost_gold[50+i], ftm_cost_wood[50+i], ftm_cost_oil[50+i], ftm_origin_x[50+i], ftm_origin_y[50+i])
 	end
 	-- Cost override.
 	AiRedRibbon_Define_Cost_2014(58, 7500, 0, 17500)
@@ -115,7 +121,22 @@ function AiRedRibbon_Setup_Units_2014()
 	AiRedRibbon_Define_Cost_2014(90, 750, 0, 250)
 end
 
-function AiRedRibbon_Define_Unit_2014(i, unit, origin, gold, wood, oil, x, y)
+function AiRedRibbon_Define_Unit_2014(i, unit, origin, category, class, rank, gold, wood, oil, x, y)
+	if (category ~= nil) then
+		ftm_category[i] = category
+	else
+		ftm_category[i] = ""
+	end
+	if (class ~= nil) then
+		ftm_class[i] = class
+	else
+		ftm_class[i] = ""
+	end
+	if (rank ~= nil) then
+		ftm_rank[i] = rank
+	else
+		ftm_rank[i] = ""
+	end
 	ftm_unit[i] = unit
 	if ((gold ~= nil) or (wood ~= nil) or (oil ~= nil)) then
 		AiRedRibbon_Define_Cost_2014(i, gold, wood, oil)
@@ -143,6 +164,30 @@ function AiRedRibbon_Define_Cost_2014(i, gold, wood, oil)
 		ftm_cost_oil[i] = oil
 	else
 		ftm_cost_oil[i] = 0
+	end
+end
+
+function AiRedRibbon_Auto_Origin_2014(player, target, x, y, class)
+	-- Class will be something like ground, air, etcetera.
+	for i=ftm_index_start[player], ftm_index_end[player] do
+		if (ftm_origin[i] == target) then
+			AiRedRibbon_Define_Origin_2014(i, x, y)
+		end
+		if ((target == "all") or (ftm_unit[i] == target) or (ftm_class[i] == target) or (ftm_rank[i] == target) or (ftm_category[i] == target)) then
+			AiRedRibbon_Define_Origin_2014(i, x, y, class)
+		end
+	end
+end
+
+function AiRedRibbon_Define_Attributes_2014(i, category, class, rank)
+	if (category ~= nil) then
+		ftm_category[i] = category
+	end
+	if (class ~= nil) then
+		ftm_class[i] = class
+	end
+	if (rank ~= nil) then
+		ftm_rank[i] = rank
 	end
 end
 
@@ -328,10 +373,10 @@ function AiRed_2014()
 		if ((timers[ftm_team[AiPlayer()]] == 50) or (timers[ftm_team[AiPlayer()]] == 99) or (timers[ftm_team[AiPlayer()]] == 25) or (timers[ftm_team[AiPlayer()]] == 75)) then
 		else 
 			for i=ftm_index_start[ftm_team[AiPlayer()]],ftm_index_end[ftm_team[AiPlayer()]] do
-				if ((aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_unit[i]) and (GetPlayerData(AiPlayer(), "Resources", "oil") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_oil[i])) and (GetPlayerData(AiPlayer(), "Resources", "wood") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_wood[i])) and (GetPlayerData(AiPlayer(), "Resources", "gold") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_gold[i]))) then
-					if (((GetNumUnitsAt(ftm_team[AiPlayer()], ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) or (ftm_origin[i] == AiBestCityCenter())) and ((GetNumUnitsAt(ftm_team[AiPlayer()], AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) or (ftm_origin[i] == AiWise())) then
-						for i=1, aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]] do
-							CreateUnit(aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]], AiPlayer(), {ftm_team_tempx[AiPlayer()], ftm_team_tempy[AiPlayer()]})
+				if (((aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_unit[i]) or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_rank[i]) or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_category[i]) or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_category[i])) and (GetPlayerData(AiPlayer(), "Resources", "oil") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_oil[i])) and (GetPlayerData(AiPlayer(), "Resources", "wood") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_wood[i])) and (GetPlayerData(AiPlayer(), "Resources", "gold") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_gold[i]))) then
+				if (((GetNumUnitsAt(ftm_team[AiPlayer()], ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) or (ftm_origin[i] == AiBestCityCenter())) and ((GetNumUnitsAt(ftm_team[AiPlayer()], AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) or (ftm_origin[i] == AiWise())) then
+						for j=1, aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]] do
+							CreateUnit(ftm_unit[i], AiPlayer(), {ftm_team_tempx[AiPlayer()], ftm_team_tempy[AiPlayer()]})
 							if (ftm_team_orderx[AiPlayer()] == "Right") then
 								if (ftm_team_tempx[AiPlayer()] == ftm_team_x2[AiPlayer()]) then
 									ftm_team_tempx[AiPlayer()] = ftm_team_x1[AiPlayer()]
