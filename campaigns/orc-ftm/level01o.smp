@@ -28,4 +28,4 @@
 --=============================================================================
 
 DefinePlayerTypes("computer", 	"computer", "computer", "nobody", 	"nobody", 	"computer", "computer", "nobody", 	"computer", 	"computer", 	"computer", 	"nobody", 	"nobody", 	"person", 	"computer")
-PresentMap("Order Mission 1", 7, 256, 256, 1)
+PresentMap("Wild Mission 1", 7, 256, 256, 1)
