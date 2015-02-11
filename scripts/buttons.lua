@@ -47,20 +47,20 @@ Load("scripts/caanoo/buttons.lua")
 
 DefineButton( { Pos = 9, Level = 9, Icon = "icon-cancel",
   Action = "cancel",
-  Key = "ESC", Hint = "~<ESC~> CANCEL",
+  Key = "ESC", Hint = _("~<ESC~> CANCEL"),
   ForUnit = {"*"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-cancel",
   Action = "cancel-upgrade",
-  Key = "ESC", Hint = "~<ESC~> CANCEL UPGRADE",
+  Key = "ESC", Hint = _("~<ESC~> CANCEL UPGRADE"),
   ForUnit = {"cancel-upgrade"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-cancel",
   Action = "cancel-train-unit",
-  Key = "ESC", Hint = "~<ESC~> CANCEL UNIT TRAINING",
+  Key = "ESC", Hint = _("~<ESC~> CANCEL UNIT TRAINING"),
   ForUnit = {"*"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-cancel",
   Action = "cancel-build",
-  Key = "ESC", Hint = "~<ESC~> CANCEL CONSTRUCTION",
+  Key = "ESC", Hint = _("~<ESC~> CANCEL CONSTRUCTION"),
   ForUnit = {"cancel-build"} } )

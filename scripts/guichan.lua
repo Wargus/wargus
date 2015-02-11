@@ -918,7 +918,7 @@ function RunSinglePlayerGameMenu()
   gametype:setSize(152, 20)
 
   menu:addLabel("~<Tileset:~>", offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
-  tilesetdd = menu:addDropDown({"Map Default", "Summer", "Swamp", "Wasteland", "Winter"}, offx + 640 - 224 - 16, offy + 10 + 300,
+  tilesetdd = menu:addDropDown({_("Map Default"), _("Summer"), _("Swamp"), "Wasteland", "Winter"}, offx + 640 - 224 - 16, offy + 10 + 300,
     function(dd) end)
   tilesetdd:setSize(152, 20)
 
@@ -958,19 +958,19 @@ function BuildProgramStartMenu()
   if (Video.Width < 640 or Video.Height < 400) then
     -- Compact Mode: GP2X, Wiz, Caanoo.
 
-    menu:addHalfButton("~!Singleplayer", "s", Video.Width/2 - 110, 40*2,
+    menu:addHalfButton(_("~!Singleplayer"), "s", Video.Width/2 - 110, 40*2,
       function() RunSinglePlayerGameMenu(); menu:stop(1) end)
-    menu:addHalfButton("~!Multiplayer", "m", Video.Width/2 + 4, 40*2,
+    menu:addHalfButton(_("~!Multiplayer"), "m", Video.Width/2 + 4, 40*2,
       function() RunMultiPlayerGameMenu(); menu:stop(1) end)
-    menu:addHalfButton("~!Campaign", "c", Video.Width/2 - 110, 40*3,
+    menu:addHalfButton(_("~!Campaign"), "c", Video.Width/2 - 110, 40*3,
       function() RunCampaignGameMenu(); menu:stop(1) end)
-    menu:addHalfButton("~!Load", "l", Video.Width/2 + 4, 40*3,
+    menu:addHalfButton(_("~!Load"), "l", Video.Width/2 + 4, 40*3,
       function() RunLoadGameMenu(); menu:stop(1) end)
-    menu:addHalfButton("~!Replay", "r", Video.Width/2 - 110, 40*4,
+    menu:addHalfButton(_("~!Replay"), "r", Video.Width/2 - 110, 40*4,
       function() RunReplayGameMenu(); menu:stop(1) end)
-    menu:addHalfButton("~!Options", "o", Video.Width/2 + 4, 40*4,
+    menu:addHalfButton(_("~!Options"), "o", Video.Width/2 + 4, 40*4,
       function() RunOptionsMenu(); menu:stop(1) end)
-    menu:addHalfButton("~!Editor", "e", Video.Width/2 - 110, 40*5,
+    menu:addHalfButton(_("~!Editor"), "e", Video.Width/2 - 110, 40*5,
       function() RunEditorMenu(); menu:stop(1) end)
     --menu:addHalfButton("S~!how Credits", "h", Video.Width/2, 36*7, RunShowCreditsMenu)
 
@@ -984,24 +984,24 @@ function BuildProgramStartMenu()
   --menu:addLabel(wargus.Copyright, offx + 320, offy + 390 + 18*4)
 
   if (wargus.tales == false) then
-    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
+    menu:addLabel(wargus.Name .. _(" V") .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
   end
   
-  menu:addFullButton("~!Single Player Game", "s", offx + 208, offy + 104 + 36*0,
+  menu:addFullButton(_("~!Single Player Game"), "s", offx + 208, offy + 104 + 36*0,
     function() RunSinglePlayerTypeMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Multi Player Game", "m", offx + 208, offy + 104 + 36*1,
+  menu:addFullButton(_("~!Multi Player Game"), "m", offx + 208, offy + 104 + 36*1,
     function() RunMultiPlayerGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Replay Game", "r", offx + 208, offy + 104 + 36*2,
+  menu:addFullButton(_("~!Replay Game"), "r", offx + 208, offy + 104 + 36*2,
     function() RunReplayGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Options", "o", offx + 208, offy + 104 + 36*3,
+  menu:addFullButton(_("~!Options"), "o", offx + 208, offy + 104 + 36*3,
     function() RunOptionsMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Load Mod", "l", offx + 208, offy + 104 + 36*4,
+  menu:addFullButton(_("~!Load Mod"), "l", offx + 208, offy + 104 + 36*4,
     function() RunLoadModMenu(); menu:stop(1) end)
-  menu:addFullButton("Map ~!Editor", "e", offx + 208, offy + 104 + 36*5,
+  menu:addFullButton(_("Map ~!Editor"), "e", offx + 208, offy + 104 + 36*5,
     function() RunEditorMenu(); menu:stop(1) end)
-  menu:addFullButton("S~!how Credits", "h", offx + 208, offy + 104 + 36*6, RunShowCreditsMenu)
+  menu:addFullButton(_("S~!how Credits"), "h", offx + 208, offy + 104 + 36*6, RunShowCreditsMenu)
 
-  menu:addFullButton("E~!xit Program", "x", offx + 208, offy + 104 + 36*7,
+  menu:addFullButton(_("E~!xit Program"), "x", offx + 208, offy + 104 + 36*7,
     function() menu:stop() end)
 
   end
@@ -1030,7 +1030,7 @@ function RunLoadModMenu()
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
   menu:setDrawMenusUnder(true)
 
-  menu:addLabel("Load Mod", 176, 8)
+  menu:addLabel(_("Load Mod"), 176, 8)
   
   local browser = menu:addBrowser("mods/list/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
 
@@ -1042,7 +1042,7 @@ function RunLoadModMenu()
       Load(browser.path .. browser:getSelectedItem())
       menu:stop()
     end)
-  menu:addHalfButton("~!Cancel", "c", 198, 318,
+  menu:addHalfButton(_("~!Cancel"), "c", 198, 318,
     function() buttonStatut = 2; menu:stop() end)
 
   menu:run()
@@ -1055,11 +1055,11 @@ function RunModCampaignGameMenu()
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
   menu:setDrawMenusUnder(true)
 
-  menu:addLabel("Campaign Game", 176, 8)
+  menu:addLabel(_("Campaign Game"), 176, 8)
 
   local browser = menu:addBrowser("campaigns/list/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
 
-  menu:addHalfButton("~!OK", "o", 48, 318,
+  menu:addHalfButton(_("~!OK"), "o", 48, 318,
     function()
       if (browser:getSelected() < 0) then
         return
@@ -1067,7 +1067,7 @@ function RunModCampaignGameMenu()
       Load(browser.path .. browser:getSelectedItem())
       menu:stop()
     end)
-  menu:addHalfButton("~!Cancel", "c", 198, 318,
+  menu:addHalfButton(_("~!Cancel"), "c", 198, 318,
     function() buttonStatut = 2; menu:stop(1); RunSinglePlayerTypeMenu() end)
 
   menu:run()

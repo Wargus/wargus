@@ -65,7 +65,7 @@ function Briefing(title, objs, bg, text, voices)
   menu:add(sw, 70 * Video.Width / 640, 80 * Video.Height / 480)
 
   if (objs ~= nil) then
-    menu:addLabel("Objectives:", 372 * Video.Width / 640, 306 * Video.Height / 480, Fonts["large"], false)
+    menu:addLabel(_("Objectives:"), 372 * Video.Width / 640, 306 * Video.Height / 480, Fonts["large"], false)
 
     local objectives = ""
     table.foreachi(objs, function(k,v) objectives = objectives .. v .. "\n" end)
@@ -81,7 +81,7 @@ function Briefing(title, objs, bg, text, voices)
   local voice = 0
   local channel = -1
 
-  menu:addContinueButton("~!Continue", "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
+  menu:addContinueButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
     function()
       if (channel ~= -1) then
         voice = table.getn(voices)
@@ -166,7 +166,7 @@ function CreatePictureStep(bg, sound, title, text)
     local offy  = (Video.Height - 480) / 2
     menu:addLabel(title, offx + 320, offy + 240 - 67, Fonts["large-title"], true)
     menu:addLabel(text, offx + 320, offy + 240 - 25, Fonts["small-title"], true)
-    menu:addHalfButton("~!Continue", "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
+    menu:addHalfButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
       function() menu:stop() end)
     menu:run()
     GameResult = GameVictory
@@ -275,7 +275,7 @@ function RunCampaignSubmenu(campaign)
     menu:addFullButton(CampaignButtonTitle(show_buttons), ".", offx + 98, offy + 64 + (36 * half), CampaignButtonFunction(campaign, show_buttons, menu))
   end
 
-  menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 212 + (36 * 5),
+  menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 212 + (36 * 5),
     function()  menu:stop(1); RunSinglePlayerTypeMenu(); currentCampaign = nil; currentState = nil; end)
 
   if (wargus.tales == false) then

@@ -45,15 +45,15 @@ else
 	DefineRaceNames(
 	"race", {
 		"name", "human",
-		"display", "Human",
+		"display", _("Human"),
 		"visible"},
 	"race", {
 		"name", "orc",
-		"display", "Orc",
+		"display", _("Orc"),
 		"visible"},
 	"race", {
 		"name", "neutral",
-		"display", "Neutral"
+		"display", _("Neutral")
 	})
 end
 

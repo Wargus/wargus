@@ -363,7 +363,7 @@ UI.Resources[ManaResCost].TextY = -100
 
 UI.MenuButton.X = 24
 UI.MenuButton.Y = 2
-UI.MenuButton.Text = "Menu (~<F10~>)"
+UI.MenuButton.Text = _("Menu (~<F10~>)")
 UI.MenuButton.Style = FindButtonStyle("main-orc")
 UI.MenuButton:SetCallback(
   function()
@@ -376,12 +376,12 @@ UI.MenuButton:SetCallback(
 
 UI.NetworkMenuButton.X = 6
 UI.NetworkMenuButton.Y = 2
-UI.NetworkMenuButton.Text = "Menu"
+UI.NetworkMenuButton.Text = _("Menu")
 UI.NetworkMenuButton.Style = FindButtonStyle("network-orc")
 UI.NetworkMenuButton:SetCallback(function() RunGameMenu() end)
 
 UI.NetworkDiplomacyButton.X = 90
 UI.NetworkDiplomacyButton.Y = 2
-UI.NetworkDiplomacyButton.Text = "Diplomacy"
+UI.NetworkDiplomacyButton.Text = _("Diplomacy")
 UI.NetworkDiplomacyButton.Style = FindButtonStyle("network-orc")
 UI.NetworkDiplomacyButton:SetCallback(function() RunDiplomacyMenu() end)

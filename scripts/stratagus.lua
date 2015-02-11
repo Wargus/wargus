@@ -39,13 +39,13 @@ wargus = {}
 Load("scripts/wc2-config.lua")
 
 if (wargus.tales == true) then
-	wargus.Name = "Aleona's Tales"
+	wargus.Name = _("Aleona's Tales")
 	wargus.Homepage = "stratagus.com"
-	wargus.Copyright = "(c) 2012-2014 by The Stratagus Project."
+	wargus.Copyright = _("(c) 2012-2014 by The Stratagus Project.")
 else
-	wargus.Name = "Wargus"
+	wargus.Name = _("Wargus")
 	wargus.Homepage = "wargus.stratagus.com"
-	wargus.Copyright = "(c) 1998-2014 by The Stratagus Project."
+	wargus.Copyright = _("(c) 1998-2014 by The Stratagus Project.")
 end
 
 wargus.Version = "2.3"
@@ -183,10 +183,10 @@ DefineDefaultIncomes(
   0, 100, 100, 100, 100, 100, 100)
 
 DefineDefaultActions(
-  "stop", "mine", "chop", "drill", "mine", "mine", "mine")
+  _("stop"), _("mine"), _("chop"), _("drill"), _("mine"), _("mine"), _("mine"))
 
 DefineDefaultResourceNames(
-  "time", "gold", "wood", "oil", "ore", "stone", "coal")
+  _("time"), _("gold"), _("wood"), _("oil"), _("ore"), _("stone"), _("coal"))
 
 DefineDefaultResourceAmounts(
   "gold", 100000,

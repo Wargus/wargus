@@ -99,7 +99,7 @@ DefinePanelContents(
 
 -- Ressource Left
 	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
-		More = {"FormattedText2", {Format = "%s Left:%d", Variable = "GiveResource",
+		More = {"FormattedText2", {Format = _("%s Left~|:%d"), Variable = "GiveResource",
 					Component1 = "Name", Component2 = "Value", Centered = true}}
 	},
 
@@ -108,7 +108,7 @@ DefinePanelContents(
 		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 14, Border = false}}
 	},
 	{ Pos = {50, 155}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
-		More = {"Text", "% Complete"}},
+		More = {"Text", _("% Complete")}},
 	{ Pos = {107, 78}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
 		More = {"Icon", {Unit = "Worker"}}}
 
@@ -121,9 +121,9 @@ DefinePanelContents(
   Condition = {ShowOpponent = false, HideNeutral = true, Center = "false", Build = "false", Supply = "only", Training = "false", UpgradeTo = "false"},
   Contents = {
 -- Food building
-	{ Pos = {16, 71}, More = {"Text", "Usage"} },
-	{ Pos = {58, 86}, More = {"Text", {Text = "Supply : ", Variable = "Supply", Component = "Max"}} },
-	{ Pos = {51, 102}, More = { "Text", {Text = Concat("Demand : ",
+	{ Pos = {16, 71}, More = {"Text", _("Usage")} },
+	{ Pos = {85, 86}, More = {"Text", {Text = _("Supply ~|: "), Variable = "Supply", Component = "Max"}} },
+	{ Pos = {85, 102}, More = { "Text", {Text = Concat(_("Demand ~|: "),
 									If(GreaterThan(ActiveUnitVar("Demand", "Max"), ActiveUnitVar("Supply", "Max")),
 										InverseVideo(String(ActiveUnitVar("Demand", "Max"))),
 										String(ActiveUnitVar("Demand", "Max")) ))}}
@@ -136,18 +136,18 @@ DefinePanelContents(
   Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
   Condition = {ShowOpponent = false, HideNeutral = true, Center = "only", Build = "false", Supply = "only", Training = "false", UpgradeTo = "false"},
   Contents = {
-	{ Pos = {16, 71}, More = {"Text", "Production"} },
-	{ Pos = {74, 86}, More = { "Text", {Text = Concat("Gold: 100", 
+	{ Pos = {16, 71}, More = {"Text", _("Production")} },
+	{ Pos = {85, 86}, More = { "Text", {Text = Concat(_("Gold~|: 100"), 
 									If(GreaterThan(PlayerData(ActiveUnitVar("Player", "Value"), "Incomes", "gold"), 100),
 										InverseVideo(Concat("+", String(Sub(PlayerData(ActiveUnitVar("Player", "Value"), "Incomes", "gold"), 100)))),
 										"" ))}}
     },
-	{ Pos = {53, 102}, Condition = {WoodImprove = "only"}, More = { "Text", {Text = Concat("Lumber: 100", 
+	{ Pos = {85, 102}, Condition = {WoodImprove = "only"}, More = { "Text", {Text = Concat(_("Lumber~|: 100"), 
 									If(GreaterThan(PlayerData(ActiveUnitVar("Player", "Value"), "Incomes", "wood"), 100),
 										InverseVideo(Concat("+", String(Sub(PlayerData(ActiveUnitVar("Player", "Value"), "Incomes", "wood"), 100)))),
 										"" ))}}
     },
-	{ Pos = {84, 118}, Condition = {OilImprove = "only"}, More = { "Text", {Text = Concat("Oil: 100", 
+	{ Pos = {85, 118}, Condition = {OilImprove = "only"}, More = { "Text", {Text = Concat(_("Oil~|: 100"), 
 									If(GreaterThan(PlayerData(ActiveUnitVar("Player", "Value"), "Incomes", "oil"), 100),
 										InverseVideo(Concat("+", String(Sub(PlayerData(ActiveUnitVar("Player", "Value"), "Incomes", "oil"), 100)))),
 										"" ))}}
@@ -160,14 +160,14 @@ DefinePanelContents(
   Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
   Condition = {ShowOpponent = false, HideNeutral = true, Center = "false", Build = "false", Training = "false", UpgradeTo = "false", Research = "false"},
   Contents = {
-	{ Pos = {16, 86}, Condition = {WoodImprove = "only"}, More = {"Text", "Production"} },
-	{ Pos = {16, 86}, Condition = {OilImprove = "only"}, More = {"Text", "Production"} },
-	{ Pos = {53, 102}, Condition = {WoodImprove = "only"}, More = { "Text", {Text = Concat("Lumber: 100", 
+	{ Pos = {16, 86}, Condition = {WoodImprove = "only"}, More = {"Text", _("Production")} },
+	{ Pos = {16, 86}, Condition = {OilImprove = "only"}, More = {"Text", _("Production")} },
+	{ Pos = {85, 102}, Condition = {WoodImprove = "only"}, More = { "Text", {Text = Concat(_("Lumber~|: 100"), 
 									If(GreaterThan(PlayerData(ActiveUnitVar("Player", "Value"), "Incomes", "wood"), 100),
 										InverseVideo(Concat("+", String(Sub(PlayerData(ActiveUnitVar("Player", "Value"), "Incomes", "wood"), 100)))),
 										"" ))}}
     },
-	{ Pos = {84, 102}, Condition = {OilImprove = "only"}, More = { "Text", {Text = Concat("Oil: 100", 
+	{ Pos = {85, 102}, Condition = {OilImprove = "only"}, More = { "Text", {Text = Concat(_("Oil~|: 100"), 
 									If(GreaterThan(PlayerData(ActiveUnitVar("Player", "Value"), "Incomes", "oil"), 100),
 										InverseVideo(Concat("+", String(Sub(PlayerData(ActiveUnitVar("Player", "Value"), "Incomes", "oil"), 100)))),
 										"" ))}}
@@ -181,49 +181,49 @@ DefinePanelContents(
   DefaultFont = "game",
   Condition = {ShowOpponent = false, HideNeutral = true, Build = "false"},
   Contents = {
-	{ Pos = {37, 86}, Condition = {BasicDamage = "only"},
-		More = {"Text", {Text = Concat("Damage: ", String(min_damage), "-", String(max_damage),
+	{ Pos = {100, 86}, Condition = {BasicDamage = "only"},
+		More = {"Text", {Text = Concat(_("Damage~|: "), String(min_damage), "-", String(max_damage),
 								If(Equal(0, damage_bonus), "",
 									InverseVideo(Concat("+", String(damage_bonus)))) )}}
 
 	},
-	{ Pos = {37, 86}, Condition = {PiercingDamage = "only"},
-		More = {"Text", {Text = Concat("Damage: ", String(min_damage), "-", String(max_damage),
+	{ Pos = {100, 86}, Condition = {PiercingDamage = "only"},
+		More = {"Text", {Text = Concat(_("Damage~|: "), String(min_damage), "-", String(max_damage),
 								If(Equal(0, damage_bonus), "",
 									InverseVideo(Concat("+", String(damage_bonus)))) )}}
 
 	},
-	{ Pos = {37, 86}, Condition = {BasicDamage = "only", PiercingDamage = "only"},
-		More = {"Text", {Text = Concat("Damage: ", String(min_damage), "-", String(max_damage),
+	{ Pos = {100, 86}, Condition = {BasicDamage = "only", PiercingDamage = "only"},
+		More = {"Text", {Text = Concat(_("Damage~|: "), String(min_damage), "-", String(max_damage),
 								If(Equal(0, damage_bonus), "",
 									InverseVideo(Concat("+", String(damage_bonus)))) )}}
 
 	},
 
-	{ Pos = {47, 102}, Condition = {AttackRange = "only"},
+	{ Pos = {100, 102}, Condition = {AttackRange = "only"},
 		More = {"Text", {
-					Text = "Range: ", Variable = "AttackRange" , Stat = true}}
+					Text = _("Range~!: "), Variable = "AttackRange" , Stat = true}}
 	},
 -- Research
 	{ Pos = {12, 152}, Condition = {Research = "only"},
 		More = {"CompleteBar", {Variable = "Research", Width = 152, Height = 14, Border = false}}
 	},
-	{ Pos = {16, 86}, Condition = {Research = "only"}, More = {"Text", "Researching:"}},
-	{ Pos = {50, 155}, Condition = {Research = "only"}, More = {"Text", "% Complete"}},
+	{ Pos = {80, 86}, Condition = {Research = "only"}, More = {"Text", _("Researching~|:")}},
+	{ Pos = {50, 155}, Condition = {Research = "only"}, More = {"Text", _("% Complete")}},
 -- Training
 	{ Pos = {12, 152}, Condition = {Training = "only"},
 		More = {"CompleteBar", {Variable = "Training", Width = 152, Height = 14, Border = false}}
 	},
-	{ Pos = {50, 155}, Condition = {Training = "only"}, More = {"Text", "% Complete"}},
+	{ Pos = {50, 155}, Condition = {Training = "only"}, More = {"Text", _("% Complete")}},
 -- Upgrading To
 	{ Pos = {12, 152}, Condition = {UpgradeTo = "only"},
 		More = {"CompleteBar", {Variable = "UpgradeTo", Width = 152, Height = 14, Border = false}}
 	},
-	{ Pos = {37,  86}, More = {"Text", "Upgrading:"}, Condition = {UpgradeTo = "only"} },
-	{ Pos = {50, 155}, More = {"Text", "% Complete"}, Condition = {UpgradeTo = "only"} },
+	{ Pos = {80,  86}, More = {"Text", _("Upgrading~|:")}, Condition = {UpgradeTo = "only"} },
+	{ Pos = {50, 155}, More = {"Text", _("% Complete")}, Condition = {UpgradeTo = "only"} },
 -- Resource Carry
 	{ Pos = {53, 149}, Condition = {CarryResource = "only"},
-		More = {"FormattedText2", {Format = "Carry: %d %s", Variable = "CarryResource",
+		More = {"FormattedText2", {Format = _("Carry~|: %d %s"), Variable = "CarryResource",
 				Component1 = "Value", Component2 = "Name"}}
 	}
 
@@ -236,26 +236,26 @@ DefinePanelContents(
   Condition = {ShowOpponent = true, HideNeutral = true, Building = "false", Build = "false"},
   Contents = {
 -- Unit caracteristics
-	{ Pos = {114, 41},
-		More = {"FormattedText", {Variable = "Level", Format = "Level ~<%d~>"}}
+	{ Pos = {80, 41},
+		More = {"FormattedText", {Variable = "Level", Format = _("Level ~<%d~>")}}
 	},
-	{ Pos = {114, 56},
+	{ Pos = {85, 56},
 		More = {"FormattedText2", {Centered = true,
-			Variable1 = "Xp", Variable2 = "Kill", Format = "XP:~<%d~> Kills:~<%d~>"}}
+			Variable1 = "Xp", Variable2 = "Kill", Format = _("XP:~<%d~> Kills:~<%d~>")}}
 	},
-	{ Pos = {47, 71}, Condition = {Armor = "only"},
+	{ Pos = {100, 71}, Condition = {Armor = "only"},
 		More = {"Text", {
-					Text = "Armor: ", Variable = "Armor", Stat = true}}
+					Text = _("Armor~|: "), Variable = "Armor", Stat = true}}
 	},
-	{ Pos = {54, 118}, Condition = {SightRange = "only"},
-		More = {"Text", {Text = "Sight: ", Variable = "SightRange", Stat = true}}
+	{ Pos = {100, 118}, Condition = {SightRange = "only"},
+		More = {"Text", {Text = _("Sight~|: "), Variable = "SightRange", Stat = true}}
 	},
-	{ Pos = {53, 133}, Condition = {Speed = "only"},
-		More = {"Text", {Text = "Speed: ", Variable = "Speed", Stat = true}}
+	{ Pos = {100, 133}, Condition = {Speed = "only"},
+		More = {"Text", {Text = _("Speed~|: "), Variable = "Speed", Stat = true}}
 	},
 	-- Mana
-	{ Pos = {53, 148}, Condition = {Mana = "only"},
-		More = {"Text", {Text = "Mana: "}}
+	{ Pos = {100, 148}, Condition = {Mana = "only"},
+		More = {"Text", {Text = _("Mana~|: ")}}
 	},
 	{ Pos = {100, 148}, Condition = {Mana = "only"},
 		More = {"CompleteBar", {Color = "light-blue", Variable = "Mana", Height = 14, Width = 63, Border = true}}

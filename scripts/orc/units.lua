@@ -30,7 +30,7 @@
 --=============================================================================
 -- Define unit-types.
 --
-DefineUnitType("unit-grunt", { Name = "Grunt",
+DefineUnitType("unit-grunt", { Name = _("Grunt"),
   Image = {"file", "orc/units/grunt.png", "size", {72, 72}},
   Animations = "animations-grunt", Icon = "icon-grunt",
   Costs = {"time", 60, "gold", 600},
@@ -59,7 +59,7 @@ DefineUnitType("unit-grunt", { Name = "Grunt",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-peon", { Name = "Peon",
+DefineUnitType("unit-peon", { Name = _("Peon"),
   Image = {"file", "orc/units/peon.png", "size", {72, 72}},
   Animations = "animations-peon", Icon = "icon-peon",
   Costs = {"time", 45, "gold", 400},
@@ -103,7 +103,7 @@ DefineUnitType("unit-peon", { Name = "Peon",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-attack-peon", { Name = "Peon",
+DefineUnitType("unit-attack-peon", { Name = _("Peon"),
   Image = {"file", "orc/units/peon.png", "size", {72, 72}},
   Animations = "animations-peon", Icon = "icon-peon",
   Costs = {"time", 45, "gold", 400},
@@ -145,7 +145,7 @@ DefineUnitType("unit-attack-peon", { Name = "Peon",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-catapult", { Name = "Catapult",
+DefineUnitType("unit-catapult", { Name = _("Catapult"),
   Image = {"file", "orc/units/catapult.png", "size", {64, 64}},
   Animations = "animations-catapult", Icon = "icon-catapult",
   Costs = {"time", 250, "gold", 900, "wood", 300},
@@ -174,7 +174,7 @@ DefineUnitType("unit-catapult", { Name = "Catapult",
     "help", "basic orc voices help 1",
     "dead", "explosion"} } )
 
-DefineUnitType("unit-ogre", { Name = "Ogre",
+DefineUnitType("unit-ogre", { Name = _("Ogre"),
   Image = {"file", "orc/units/ogre.png", "size", {72, 72}},
   Animations = "animations-ogre", Icon = "icon-ogre",
   Costs = {"time", 90, "gold", 800, "wood", 100},
@@ -203,7 +203,7 @@ DefineUnitType("unit-ogre", { Name = "Ogre",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-axethrower", { Name = "Troll Axethrower",
+DefineUnitType("unit-axethrower", { Name = _("Troll Axethrower"),
   Image = {"file", "orc/units/troll_axethrower.png", "size", {72, 72}},
   Animations = "animations-axethrower", Icon = "icon-axethrower",
   Costs = {"time", 70, "gold", 500, "wood", 50},
@@ -232,7 +232,7 @@ DefineUnitType("unit-axethrower", { Name = "Troll Axethrower",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-death-knight", { Name = "Death Knight",
+DefineUnitType("unit-death-knight", { Name = _("Death Knight"),
   Image = {"file", "orc/units/death_knight.png", "size", {72, 72}},
   Animations = "animations-death-knight", Icon = "icon-death-knight",
   Costs = {"time", 120, "gold", 1200},
@@ -270,7 +270,7 @@ DefineUnitType("unit-death-knight", { Name = "Death Knight",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-ogre-mage", { Name = "Ogre Mage",
+DefineUnitType("unit-ogre-mage", { Name = _("Ogre Mage"),
   Image = {"file", "orc/units/ogre.png", "size", {72, 72}},
   Animations = "animations-ogre-mage", Icon = "icon-ogre-mage",
   Costs = {"time", 90, "gold", 800, "wood", 100},
@@ -302,7 +302,7 @@ DefineUnitType("unit-ogre-mage", { Name = "Ogre Mage",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-goblin-sappers", { Name = "Goblin Sappers",
+DefineUnitType("unit-goblin-sappers", { Name = _("Goblin Sappers"),
   Image = {"file", "orc/units/goblin_sappers.png", "size", {56, 56}},
   Animations = "animations-goblin-sappers", Icon = "icon-goblin-sappers",
   Costs = {"time", 200, "gold", 700, "wood", 250},
@@ -332,7 +332,7 @@ DefineUnitType("unit-goblin-sappers", { Name = "Goblin Sappers",
     "help", "basic orc voices help 1",
     "dead", "explosion"} } )
 
-DefineUnitType("unit-berserker", { Name = "Berserker",
+DefineUnitType("unit-berserker", { Name = _("Berserker"),
   Image = {"file", "orc/units/troll_axethrower.png", "size", {72, 72}},
   Animations = "animations-axethrower", Icon = "icon-berserker",
   Costs = {"time", 70, "gold", 500, "wood", 50},
@@ -362,7 +362,7 @@ DefineUnitType("unit-berserker", { Name = "Berserker",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-evil-knight", { Name = "Teron Gorefiend",
+DefineUnitType("unit-evil-knight", { Name = _("Teron Gorefiend"),
   Image = {"file", "orc/units/death_knight.png", "size", {72, 72}},
   Animations = "animations-death-knight", Icon = "icon-evil-knight",
   Costs = {"time", 120, "gold", 1200},
@@ -401,7 +401,7 @@ DefineUnitType("unit-evil-knight", { Name = "Teron Gorefiend",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-fad-man", { Name = "Dentarg",
+DefineUnitType("unit-fad-man", { Name = _("Dentarg"),
   Image = {"file", "orc/units/ogre.png", "size", {72, 72}},
   Animations = "animations-ogre", Icon = "icon-fad-man",
   Costs = {"time", 90, "gold", 800, "wood", 100},
@@ -432,7 +432,7 @@ DefineUnitType("unit-fad-man", { Name = "Dentarg",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-beast-cry", { Name = "Grom Hellscream",
+DefineUnitType("unit-beast-cry", { Name = _("Grom Hellscream"),
   Image = {"file", "orc/units/grunt.png", "size", {72, 72}},
   Animations = "animations-footman", Icon = "icon-beast-cry",
   Costs = {"time", 60, "gold", 600},
@@ -461,7 +461,7 @@ DefineUnitType("unit-beast-cry", { Name = "Grom Hellscream",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-orc-oil-tanker", { Name = "Oil tanker",
+DefineUnitType("unit-orc-oil-tanker", { Name = _("Oil tanker"),
   Image = {"file", "orc/units/oil_tanker_empty.png", "size", {72, 72}},
   Animations = "animations-orc-oil-tanker", Icon = "icon-orc-oil-tanker",
   Costs = {"time", 50, "gold", 400, "wood", 200},
@@ -495,7 +495,7 @@ DefineUnitType("unit-orc-oil-tanker", { Name = "Oil tanker",
     "help", "basic orc voices help 1",
     "dead", "ship sinking"} } )
 
-DefineUnitType("unit-orc-transport", { Name = "Transport",
+DefineUnitType("unit-orc-transport", { Name = _("Transport"),
   Image = {"file", "orc/units/transport.png", "size", {72, 72}},
   Animations = "animations-orc-transport", Icon = "icon-orc-transport",
   Costs = {"time", 70, "gold", 600, "wood", 200, "oil", 500},
@@ -525,7 +525,7 @@ DefineUnitType("unit-orc-transport", { Name = "Transport",
     "help", "basic orc voices help 1",
     "dead", "ship sinking"} } )
 
-DefineUnitType("unit-orc-destroyer", { Name = "Troll Destroyer",
+DefineUnitType("unit-orc-destroyer", { Name = _("Troll Destroyer"),
   Image = {"file", "orc/units/troll_destroyer.png", "size", {88, 88}},
   Animations = "animations-troll-destroyer", Icon = "icon-orc-destroyer",
   Costs = {"time", 90, "gold", 700, "wood", 350, "oil", 700},
@@ -553,7 +553,7 @@ DefineUnitType("unit-orc-destroyer", { Name = "Troll Destroyer",
     "help", "basic orc voices help 1",
     "dead", "ship sinking"} } )
 
-DefineUnitType("unit-ogre-juggernaught", { Name = "Ogre Juggernaught",
+DefineUnitType("unit-ogre-juggernaught", { Name = _("Ogre Juggernaught"),
   Image = {"file", "orc/units/ogre_juggernaught.png", "size", {88, 88}},
   Animations = "animations-battleship", Icon = "icon-ogre-juggernaught",
   Costs = {"time", 140, "gold", 1000, "wood", 500, "oil", 1000},
@@ -582,7 +582,7 @@ DefineUnitType("unit-ogre-juggernaught", { Name = "Ogre Juggernaught",
     "help", "basic orc voices help 1",
     "dead", "ship sinking"} } )
 
-DefineUnitType("unit-dragon", { Name = "Dragon",
+DefineUnitType("unit-dragon", { Name = _("Dragon"),
   Image = {"file", "orc/units/dragon.png", "size", {88, 80}},
   Animations = "animations-dragon", Icon = "icon-dragon",
   Costs = {"time", 250, "gold", 2500},
@@ -611,7 +611,7 @@ DefineUnitType("unit-dragon", { Name = "Dragon",
     "help", "basic orc voices help 1",
     "dead", "explosion"} } )
 
-DefineUnitType("unit-fire-breeze", { Name = "Deathwing",
+DefineUnitType("unit-fire-breeze", { Name = _("Deathwing"),
   Image = {"file", "orc/units/dragon.png", "size", {88, 80}},
   Animations = "animations-fire-breeze", Icon = "icon-fire-breeze",
   Costs = {"time", 250, "gold", 2500},
@@ -646,7 +646,7 @@ UnitTypeFiles["unit-orc-submarine"] = {summer = "orc/units/giant_turtle.png",
   wasteland = "tilesets/wasteland/orc/units/giant_turtle.png",
   swamp = "tilesets/swamp/orc/units/giant_turtle.png"}
 
-DefineUnitType("unit-orc-submarine", { Name = "Giant Turtle",
+DefineUnitType("unit-orc-submarine", { Name = _("Giant Turtle"),
   Image = {"size", {72, 72}},
   Animations = "animations-orc-submarine", Icon = "icon-giant-turtle",
   Costs = {"time", 100, "gold", 800, "wood", 150, "oil", 900},
@@ -676,7 +676,7 @@ DefineUnitType("unit-orc-submarine", { Name = "Giant Turtle",
     "help", "basic orc voices help 1",
     "dead", "ship sinking"} } )
 
-DefineUnitType("unit-zeppelin", { Name = "Goblin Zeppelin",
+DefineUnitType("unit-zeppelin", { Name = _("Goblin Zeppelin"),
   Image = {"file", "orc/units/goblin_zeppelin.png", "size", {72, 72}},
   Animations = "animations-goblin-zeppelin", Icon = "icon-zeppelin",
   Costs = {"time", 65, "gold", 500, "wood", 100},
@@ -702,7 +702,7 @@ DefineUnitType("unit-zeppelin", { Name = "Goblin Zeppelin",
     "help", "basic orc voices help 1",
     "dead", "explosion"} } )
 
-DefineUnitType("unit-eye-of-vision", { Name = "Eye of Kilrogg",
+DefineUnitType("unit-eye-of-vision", { Name = _("Eye of Kilrogg"),
   Image = {"file", "orc/units/eye_of_kilrogg.png", "size", {32, 32}},
   Animations = "animations-eye-of-vision", Icon = "icon-eye-of-kilrogg",
   Speed = 42,
@@ -728,7 +728,7 @@ DefineUnitType("unit-eye-of-vision", { Name = "Eye of Kilrogg",
 --    "dead", "eye-of-kilrogg-dead"
   } } )
 
-DefineUnitType("unit-quick-blade", { Name = "Korgath Bladefist",
+DefineUnitType("unit-quick-blade", { Name = _("Korgath Bladefist"),
   Image = {"file", "orc/units/grunt.png", "size", {72, 72}},
   Animations = "animations-quick-blade", Icon = "icon-quick-blade",
   Costs = {"time", 60, "gold", 600},
@@ -827,7 +827,7 @@ DefineUnitType("unit-ice-bringer", { Name = "Gul'dan",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-sharp-axe", { Name = "Zuljin",
+DefineUnitType("unit-sharp-axe", { Name = _("Zuljin"),
   Image = {"file", "orc/units/troll_axethrower.png", "size", {72, 72}},
   Animations = "animations-sharp-axe", Icon = "icon-sharp-axe",
   Costs = {"time", 70, "gold", 500, "wood", 50},
@@ -857,7 +857,7 @@ DefineUnitType("unit-sharp-axe", { Name = "Zuljin",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-skeleton", { Name = "Skeleton",
+DefineUnitType("unit-skeleton", { Name = _("Skeleton"),
   Image = {"file", "neutral/units/skeleton.png", "size", {56, 56}},
   Animations = "animations-skeleton", Icon = "icon-skeleton",
   Speed = 8,
@@ -891,7 +891,7 @@ UnitTypeFiles["unit-pig-farm"] = {summer = "tilesets/summer/orc/buildings/pig_fa
   wasteland = "tilesets/wasteland/orc/buildings/pig_farm.png",
   swamp = "tilesets/swamp/orc/buildings/pig_farm.png"}
 
-DefineUnitType("unit-pig-farm", { Name = "Pig Farm",
+DefineUnitType("unit-pig-farm", { Name = _("Pig Farm"),
   Image = {"size", {64, 64}},
   Animations = "animations-building", Icon = "icon-pig-farm",
   Costs = {"time", 100, "gold", 500, "wood", 250},
@@ -924,7 +924,7 @@ UnitTypeFiles["unit-orc-barracks"] = {summer = "tilesets/summer/orc/buildings/ba
   wasteland = "tilesets/summer/orc/buildings/barracks.png",
   swamp = "tilesets/swamp/orc/buildings/barracks.png"}
 
-DefineUnitType("unit-orc-barracks", { Name = "Barracks",
+DefineUnitType("unit-orc-barracks", { Name = _("Barracks"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-barracks",
   Costs = {"time", 200, "gold", 700, "wood", 450},
@@ -956,7 +956,7 @@ UnitTypeFiles["unit-altar-of-storms"] = {summer = "tilesets/summer/orc/buildings
   wasteland = "tilesets/summer/orc/buildings/altar_of_storms.png",
   swamp = "tilesets/swamp/orc/buildings/altar_of_storms.png"}
 
-DefineUnitType("unit-altar-of-storms", { Name = "Altar of Storms",
+DefineUnitType("unit-altar-of-storms", { Name = _("Altar of Storms"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-altar-of-storms",
   Costs = {"time", 175, "gold", 900, "wood", 500},
@@ -988,7 +988,7 @@ UnitTypeFiles["unit-orc-watch-tower"] = {summer = "tilesets/summer/orc/buildings
   wasteland = "tilesets/summer/orc/buildings/watch_tower.png",
   swamp = "tilesets/swamp/orc/buildings/watch_tower.png"}
 
-DefineUnitType("unit-orc-watch-tower", { Name = "Watch Tower",
+DefineUnitType("unit-orc-watch-tower", { Name = _("Watch Tower"),
   Image = {"size", {64, 64}},
   Animations = "animations-building", Icon = "icon-orc-watch-tower",
   Costs = {"time", 60, "gold", 550, "wood", 200},
@@ -1022,7 +1022,7 @@ UnitTypeFiles["unit-ogre-mound"] = {summer = "tilesets/summer/orc/buildings/ogre
   wasteland = "tilesets/summer/orc/buildings/ogre_mound.png",
   swamp = "tilesets/swamp/orc/buildings/ogre_mound.png"}
 
-DefineUnitType("unit-ogre-mound", { Name = "Ogre Mound",
+DefineUnitType("unit-ogre-mound", { Name = _("Ogre Mound"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-ogre-mound",
   Costs = {"time", 150, "gold", 1000, "wood", 300},
@@ -1054,7 +1054,7 @@ UnitTypeFiles["unit-alchemist"] = {summer = "tilesets/summer/orc/buildings/gobli
   wasteland = "tilesets/summer/orc/buildings/goblin_alchemist.png",
   swamp = "tilesets/swamp/orc/buildings/goblin_alchemist.png"}
 
-DefineUnitType("unit-alchemist", { Name = "Goblin Alchemist",
+DefineUnitType("unit-alchemist", { Name = _("Goblin Alchemist"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-alchemist",
   Costs = {"time", 150, "gold", 1000, "wood", 400},
@@ -1086,7 +1086,7 @@ UnitTypeFiles["unit-dragon-roost"] = {summer = "tilesets/summer/orc/buildings/dr
   wasteland = "tilesets/summer/orc/buildings/dragon_roost.png",
   swamp = "tilesets/swamp/orc/buildings/dragon_roost.png"}
 
-DefineUnitType("unit-dragon-roost", { Name = "Dragon Roost",
+DefineUnitType("unit-dragon-roost", { Name = _("Dragon Roost"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-dragon-roost",
   Costs = {"time", 150, "gold", 1000, "wood", 400},
@@ -1118,7 +1118,7 @@ UnitTypeFiles["unit-orc-shipyard"] = {summer = "tilesets/summer/orc/buildings/sh
   wasteland = "tilesets/summer/orc/buildings/shipyard.png",
   swamp = "tilesets/swamp/orc/buildings/shipyard.png"}
 
-DefineUnitType("unit-orc-shipyard", { Name = "Shipyard",
+DefineUnitType("unit-orc-shipyard", { Name = _("Shipyard"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-shipyard",
   Costs = {"time", 200, "gold", 800, "wood", 450},
@@ -1157,7 +1157,7 @@ UnitTypeFiles["unit-great-hall"] = {summer = "tilesets/summer/orc/buildings/grea
   wasteland = "tilesets/summer/orc/buildings/great_hall.png",
   swamp = "tilesets/swamp/orc/buildings/great_hall.png"}
 
-DefineUnitType("unit-great-hall", { Name = "Great Hall",
+DefineUnitType("unit-great-hall", { Name = _("Great Hall"),
   Image = {"size", {128, 128}},
   Animations = "animations-building", Icon = "icon-great-hall",
   Costs = {"time", 255, "gold", 1200, "wood", 800},
@@ -1194,7 +1194,7 @@ UnitTypeFiles["unit-troll-lumber-mill"] = {summer = "tilesets/summer/orc/buildin
   wasteland = "tilesets/wasteland/orc/buildings/troll_lumber_mill.png",
   swamp = "tilesets/swamp/orc/buildings/troll_lumber_mill.png"}
 
-DefineUnitType("unit-troll-lumber-mill", { Name = "Troll Lumber Mill",
+DefineUnitType("unit-troll-lumber-mill", { Name = _("Troll Lumber Mill"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-troll-lumber-mill",
   Costs = {"time", 150, "gold", 600, "wood", 450},
@@ -1228,7 +1228,7 @@ UnitTypeFiles["unit-orc-foundry"] = {summer = "tilesets/summer/orc/buildings/fou
   wasteland = "tilesets/summer/orc/buildings/foundry.png",
   swamp = "tilesets/swamp/orc/buildings/foundry.png"}
 
-DefineUnitType("unit-orc-foundry", { Name = "Foundry",
+DefineUnitType("unit-orc-foundry", { Name = _("Foundry"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-foundry",
   Costs = {"time", 175, "gold", 700, "wood", 400, "oil", 400},
@@ -1261,7 +1261,7 @@ UnitTypeFiles["unit-temple-of-the-damned"] = {summer = "tilesets/summer/orc/buil
   wasteland = "tilesets/summer/orc/buildings/temple_of_the_damned.png",
   swamp = "tilesets/swamp/orc/buildings/temple_of_the_damned.png"}
 
-DefineUnitType("unit-temple-of-the-damned", { Name = "Temple of the Damned",
+DefineUnitType("unit-temple-of-the-damned", { Name = _("Temple of the Damned"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-temple-of-the-damned",
   Costs = {"time", 125, "gold", 1000, "wood", 200},
@@ -1293,7 +1293,7 @@ UnitTypeFiles["unit-orc-blacksmith"] = {summer = "tilesets/summer/orc/buildings/
   wasteland = "tilesets/summer/orc/buildings/blacksmith.png",
   swamp = "tilesets/swamp/orc/buildings/blacksmith.png"}
 
-DefineUnitType("unit-orc-blacksmith", { Name = "Blacksmith",
+DefineUnitType("unit-orc-blacksmith", { Name = _("Blacksmith"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-blacksmith",
   Costs = {"time", 200, "gold", 800, "wood", 450, "oil", 100},
@@ -1325,7 +1325,7 @@ UnitTypeFiles["unit-orc-refinery"] = {summer = "tilesets/summer/orc/buildings/re
   wasteland = "tilesets/summer/orc/buildings/refinery.png",
   swamp = "tilesets/swamp/orc/buildings/refinery.png"}
 
-DefineUnitType("unit-orc-refinery", { Name = "Refinery",
+DefineUnitType("unit-orc-refinery", { Name = _("Refinery"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-orc-refinery",
   Costs = {"time", 225, "gold", 800, "wood", 350, "oil", 200},
@@ -1366,7 +1366,7 @@ UnitTypeFiles["unit-orc-oil-platform"] = {summer = "tilesets/summer/orc/building
   wasteland = "tilesets/wasteland/orc/buildings/oil_platform.png",
   swamp = "tilesets/swamp/orc/buildings/oil_platform.png"}
 
-DefineUnitType("unit-orc-oil-platform", { Name = "Oil Platform",
+DefineUnitType("unit-orc-oil-platform", { Name = _("Oil Platform"),
   Image = {"size", {96, 96}},
   Animations = "animations-oil-platform", Icon = "icon-orc-oil-platform",
   Costs = {"time", 200, "gold", 700, "wood", 450},
@@ -1398,7 +1398,7 @@ UnitTypeFiles["unit-stronghold"] = {summer = "tilesets/summer/orc/buildings/stro
   wasteland = "tilesets/summer/orc/buildings/stronghold.png",
   swamp = "tilesets/swamp/orc/buildings/stronghold.png"}
 
-DefineUnitType("unit-stronghold", { Name = "Stronghold",
+DefineUnitType("unit-stronghold", { Name = _("Stronghold"),
   Image = {"size", {128, 128}},
   Animations = "animations-building", Icon = "icon-stronghold",
   Costs = {"time", 200, "gold", 2000, "wood", 1000, "oil", 200},
@@ -1436,7 +1436,7 @@ UnitTypeFiles["unit-fortress"] = {summer = "tilesets/summer/orc/buildings/fortre
   wasteland = "tilesets/summer/orc/buildings/fortress.png",
   swamp = "tilesets/swamp/orc/buildings/fortress.png"}
 
-DefineUnitType("unit-fortress", { Name = "Fortress",
+DefineUnitType("unit-fortress", { Name = _("Fortress"),
   Image = {"size", {128, 128}},
   Animations = "animations-building", Icon = "icon-fortress",
   Costs = {"time", 200, "gold", 2500, "wood", 1200, "oil", 500},
@@ -1468,7 +1468,7 @@ DefineUnitType("unit-fortress", { Name = "Fortress",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
-DefineUnitType("unit-orc-start-location", { Name = "Start Location",
+DefineUnitType("unit-orc-start-location", { Name = _("Start Location"),
   Image = {"file", "orc/o_startpoint.png", "size", {32, 32}},
   NumDirections = 1,
   Animations = "animations-building", Icon = "icon-cancel",
@@ -1495,7 +1495,7 @@ UnitTypeFiles["unit-orc-guard-tower"] = {summer = "tilesets/summer/orc/buildings
   wasteland = "tilesets/summer/orc/buildings/guard_tower.png",
   swamp = "tilesets/swamp/orc/buildings/guard_tower.png"}
 
-DefineUnitType("unit-orc-guard-tower", { Name = "Guard Tower",
+DefineUnitType("unit-orc-guard-tower", { Name = _("Guard Tower"),
   Image = {"size", {64, 64}},
   Animations = "animations-orc-guard-tower", Icon = "icon-orc-guard-tower",
   Costs = {"time", 140, "gold", 500, "wood", 150},
@@ -1530,7 +1530,7 @@ UnitTypeFiles["unit-orc-cannon-tower"] = {summer = "tilesets/summer/orc/building
   wasteland = "tilesets/summer/orc/buildings/cannon_tower.png",
   swamp = "tilesets/swamp/orc/buildings/cannon_tower.png"}
 
-DefineUnitType("unit-orc-cannon-tower", { Name = "Cannon Tower",
+DefineUnitType("unit-orc-cannon-tower", { Name = _("Cannon Tower"),
   Image = {"size", {64, 64}},
   Animations = "animations-orc-cannon-tower", Icon = "icon-orc-cannon-tower",
   Costs = {"time", 190, "gold", 1000, "wood", 300},
@@ -1565,7 +1565,7 @@ UnitTypeFiles["unit-orc-wall"] = {summer = "tilesets/summer/neutral/buildings/wa
   wasteland = "tilesets/wasteland/neutral/buildings/wall.png",
   swamp = "tilesets/summer/neutral/buildings/wall.png"}
 
-DefineUnitType("unit-orc-wall", { Name = "Wall",
+DefineUnitType("unit-orc-wall", { Name = _("Wall"),
   Image = {"size", {32, 32}},
   Animations = "animations-building", Icon = "icon-orc-wall",
   Costs = {"time", 30, "gold", 20, "wood", 10},

@@ -279,7 +279,7 @@ UI.Resources[ManaResCost].TextY = -100
 
 UI.MenuButton.X = 176 + 24
 UI.MenuButton.Y = UI.MapArea.EndY + 2 + 16
-UI.MenuButton.Text = "Menu (~<F10~>)"
+UI.MenuButton.Text = _("Menu (~<F10~>)")
 UI.MenuButton.Style = FindButtonStyle("main")
 UI.MenuButton:SetCallback(
   function()
@@ -292,13 +292,13 @@ UI.MenuButton:SetCallback(
 
 UI.NetworkMenuButton.X = 6
 UI.NetworkMenuButton.Y = 2
-UI.NetworkMenuButton.Text = "Menu"
+UI.NetworkMenuButton.Text = _("Menu")
 UI.NetworkMenuButton.Style = FindButtonStyle("network")
 UI.NetworkMenuButton:SetCallback(function() RunGameMenu() end)
 
 UI.NetworkDiplomacyButton.X = 90
 UI.NetworkDiplomacyButton.Y = 2
-UI.NetworkDiplomacyButton.Text = "Diplomacy"
+UI.NetworkDiplomacyButton.Text = _("Diplomacy")
 UI.NetworkDiplomacyButton.Style = FindButtonStyle("network")
 UI.NetworkDiplomacyButton:SetCallback(function() RunDiplomacyMenu() end)
 

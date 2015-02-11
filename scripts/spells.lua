@@ -84,7 +84,7 @@ DefineSpell("spell-suicide-bomber", {
 --]]
 
 DefineSpell("spell-suicide-bomber",
-	"showname", "Demolish", "manacost", 0, "target", "self", "range", 1,
+	"showname", _("Demolish"), "manacost", 0, "target", "self", "range", 1,
 	"action", {{"demolish", "range", 1, "damage", 400},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"end-point",   {"base", "caster"}}},
@@ -93,7 +93,7 @@ DefineSpell("spell-suicide-bomber",
 
 
 DefineSpell("spell-holy-vision",
-	"showname", "Holy Vision",
+	"showname", _("Holy Vision"),
 	"manacost", 70,
 	"range", "infinite",
 	"target", "position",
@@ -105,7 +105,7 @@ DefineSpell("spell-holy-vision",
 )
 
 DefineSpell("spell-healing",
-	"showname", "Healing",
+	"showname", _("Healing"),
 	"manacost", 6,
 	"range", 6,
 	"target", "unit",
@@ -155,7 +155,7 @@ local function SpellExorcism(units)
 end]]
 
 DefineSpell("spell-exorcism",
-	"showname", "Exorcism",
+	"showname", _("Exorcism"),
 	"manacost", 4,
 	"range", 10,
 	"target", "unit",
@@ -173,7 +173,7 @@ DefineSpell("spell-exorcism",
 )
 
 DefineSpell("spell-eye-of-vision",
-	"showname", "eye of vision",
+	"showname", _("eye of vision"),
 	"manacost", 70,
 	"range", 6,
 	"target", "position",
@@ -185,7 +185,7 @@ DefineSpell("spell-eye-of-vision",
 )
 
 DefineSpell("spell-eye-of-vision-double-head",
-	"showname", "eye of vision",
+	"showname", _("eye of vision"),
 	"manacost", 70,
 	"range", 6,
 	"target", "position",
@@ -196,7 +196,7 @@ DefineSpell("spell-eye-of-vision-double-head",
 )
 
 DefineSpell("spell-haste",
-	"showname", "haste",
+	"showname", _("haste"),
 	"manacost", 50,
 	"range", 6,
 	"target", "unit",
@@ -214,7 +214,7 @@ DefineSpell("spell-haste",
 )
 
 DefineSpell("spell-slow",
-	"showname", "slow",
+	"showname", _("slow"),
 	"manacost", 50,
 	"range", 10,
 	"target", "unit",
@@ -231,7 +231,7 @@ DefineSpell("spell-slow",
 )
 
 DefineSpell("spell-bloodlust",
-	"showname", "bloodlust",
+	"showname", _("bloodlust"),
 	"manacost", 50,
 	"range", 6,
 	"target", "unit",
@@ -248,7 +248,7 @@ DefineSpell("spell-bloodlust",
 )
 
 DefineSpell("spell-bloodlust-double-head",
-	"showname", "bloodlust",
+	"showname", _("bloodlust"),
 	"manacost", 50,
 	"range", 6,
 	"target", "unit",
@@ -264,7 +264,7 @@ DefineSpell("spell-bloodlust-double-head",
 )
 
 DefineSpell("spell-invisibility",
-	"showname", "invisibility",
+	"showname", _("invisibility"),
 	"manacost", 200,
 	"range", 6,
 	"target", "unit",
@@ -295,7 +295,7 @@ local function SpellUnholyArmor(spell, unit, x, y, target)
 end
 
 DefineSpell("spell-unholy-armor",
-	"showname", "unholyarmor",
+	"showname", _("unholyarmor"),
 	"manacost", 100,
 	"range", 6,
 	"target", "unit",
@@ -312,7 +312,7 @@ DefineSpell("spell-unholy-armor",
 )
 
 DefineSpell("spell-flame-shield",
-	"showname", "flame shield",
+	"showname", _("flame shield"),
 	"manacost", 50,
 	"range", 6,
 	"target", "unit",
@@ -332,7 +332,7 @@ DefineSpell("spell-flame-shield",
 )
 
 DefineSpell("spell-polymorph",
-	"showname", "polymorph",
+	"showname", _("polymorph"),
 	"manacost", 200,
 	"range", 10,
 	"target", "unit",
@@ -358,7 +358,7 @@ local function SpellBlizzard(units)
 end
 
 DefineSpell("spell-blizzard",
-	"showname", "blizzard",
+	"showname", _("blizzard"),
 	"manacost", 25,
 	"range", 12,
 	"repeat-cast",
@@ -376,7 +376,7 @@ DefineSpell("spell-blizzard",
 )
 
 DefineSpell("spell-death-and-decay",
-	"showname", "death and decay",
+	"showname", _("death and decay"),
 	"manacost", 25,
 	"range", 12,
 	"repeat-cast",
@@ -390,7 +390,7 @@ DefineSpell("spell-death-and-decay",
 )
 
 DefineSpell("spell-fireball",
-	"showname", "fireball",
+	"showname", _("fireball"),
 	"manacost", 100,
 	"range", 8,
 	"target", "position",
@@ -402,7 +402,7 @@ DefineSpell("spell-fireball",
 )
 
 DefineSpell("spell-runes",
-	"showname", "runes",
+	"showname", _("runes"),
 	"manacost", 200,
 	"range", 10,
 	"target", "position",
@@ -429,7 +429,7 @@ DefineSpell("spell-runes",
 )
 
 DefineSpell("spell-runes-double-head",
-	"showname", "runes",
+	"showname", _("runes"),
 	"manacost", 200,
 	"range", 10,
 	"target", "position",
@@ -472,7 +472,7 @@ local function SpellDeathCoil(units)
 end
 
 DefineSpell("spell-death-coil",
-	"showname", "death coil",
+	"showname", _("death coil"),
 	"manacost", 100,
 	"range", 10,
 	"target", "position",
@@ -485,7 +485,7 @@ DefineSpell("spell-death-coil",
 )
 
 DefineSpell("spell-raise-dead",
-	"showname", "raise dead",
+	"showname", _("raise dead"),
 	"manacost", 50,
 	"range", 6,
 	"repeat-cast",
@@ -499,7 +499,7 @@ DefineSpell("spell-raise-dead",
 )
 
 DefineSpell("spell-whirlwind",
-	"showname", "whirlwind",
+	"showname", _("whirlwind"),
 	"manacost", 100,
 	"range", 12,
 	"target", "position",
