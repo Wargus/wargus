@@ -509,12 +509,6 @@ Function .onInit
 
 !endif
 
-	ReadRegStr $0 HKLM "${STRATAGUS_REGKEY}" "DisplayVersion"
-	StrCmp $0 "${VERSION}" +3
-
-	MessageBox MB_OK|MB_ICONSTOP "$(NO_STRATAGUS)"
-	Abort
-
 	ReadRegStr $DATADIR HKLM "${REGKEY}" "DataDir"
 	StrCmp $DATADIR "" 0 +2
 
