@@ -202,7 +202,7 @@ DefinePanelContents(
 
 	{ Pos = {100, 102}, Condition = {AttackRange = "only"},
 		More = {"Text", {
-					Text = _("Range~!: "), Variable = "AttackRange" , Stat = true}}
+					Text = _("Range~|: "), Variable = "AttackRange" , Stat = true}}
 	},
 -- Research
 	{ Pos = {12, 152}, Condition = {Research = "only"},
