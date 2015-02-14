@@ -4615,9 +4615,19 @@ int main(int argc, char** argv)
 					break;
 			}
 		} else {
-			printf("Detected expansion DOS CD\n");
-			fflush(stdout);
-			CDType |= CD_EXPANSION | CD_US;
+			stat(filename, &st);
+			switch (st.st_size) {
+				case 74422:
+					printf("Detected Russian expansion DOS CD\n");
+					fflush(stdout);
+					CDType |= CD_EXPANSION | CD_RUSSIAN;
+					break;
+				default:
+					printf("Detected expansion DOS CD\n");
+					fflush(stdout);
+					CDType |= CD_EXPANSION | CD_US;
+					break;
+			}
 		}
 	}
 
