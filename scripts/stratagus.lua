@@ -105,8 +105,6 @@ Preference.ShowAttackRange = false
 Preference.ShowReactionRange = false
 Preference.IconsShift = true
 
-Preference.SF2Soundfont = "music/TimGM6mb.sf2"
-
 Preference.ShowOrders = 2
 
 --  Enable/disable the short display of the orders after command.
@@ -323,7 +321,8 @@ local defaultPreferences = {
 	VideoWidth = 800,
 	ServerList = {},
 	MetaServer = "localhost",
-	MetaPort = 7775
+	MetaPort = 7775,
+	SF2SoundFont = "music/TimGM6mb.sf2"
 }
 
 if (wc2.preferences.ServerList == nil) then 
@@ -363,6 +362,7 @@ SetUseOpenGL(wc2.preferences.UseOpenGL)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
 SetVideoResolution(wc2.preferences.VideoWidth, wc2.preferences.VideoHeight)
 UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
+Preference.SF2Soundfont = wc2.preferences.SF2SoundFont
 
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")
