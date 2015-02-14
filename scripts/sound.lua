@@ -813,8 +813,8 @@ DefineGameSounds(
   "work-complete", {"human", MakeSound("basic human voices work complete", "human/basic_voices/work_complete.wav")},
   "work-complete", {"orc", MakeSound("basic orc voices work complete", "orc/basic_voices/work_complete.wav")},
 
-  "rescue", {"human", MakeSound("human rescue", "human/rescue.wav")},
-  "rescue", {"orc", MakeSound("orc rescue", "orc/rescue.wav")} )
+  "rescue", {"human", MakeSound("human rescue", "human/capture.wav")},
+  "rescue", {"orc", MakeSound("orc rescue", "orc/capture.wav")} )
 
 MakeSound("highclick", "ui/highclick.wav")
 MakeSound("statsthump", "ui/statsthump.wav")

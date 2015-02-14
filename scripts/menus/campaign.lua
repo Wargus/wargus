@@ -52,7 +52,7 @@ function Briefing(title, objs, bg, text, voices)
   end
 
   local t = LoadBuffer(text)
-  t = "\n\n\n\n\n\n" .. t .. "\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  t = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" .. t .. "\n\n\n\n\n\n\n\n\n\n\n\n\n"
   local sw = ScrollingWidget(320, 170 * Video.Height / 480)
   sw:setBackgroundColor(Color(0,0,0,0))
   sw:setSpeed(0.28)
