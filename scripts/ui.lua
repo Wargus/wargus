@@ -208,19 +208,19 @@ DefinePanelContents(
 	{ Pos = {12, 152}, Condition = {Research = "only"},
 		More = {"CompleteBar", {Variable = "Research", Width = 152, Height = 14, Border = false}}
 	},
-	{ Pos = {80, 86}, Condition = {Research = "only"}, More = {"Text", _("Researching~|:")}},
-	{ Pos = {50, 155}, Condition = {Research = "only"}, More = {"Text", _("% Complete")}},
+	{ Pos = {100, 86}, Condition = {Research = "only"}, More = {"Text", _("Researching~|:")}},
+	{ Pos = {50, 154}, Condition = {Research = "only"}, More = {"Text", _("% Complete")}},
 -- Training
 	{ Pos = {12, 152}, Condition = {Training = "only"},
 		More = {"CompleteBar", {Variable = "Training", Width = 152, Height = 14, Border = false}}
 	},
-	{ Pos = {50, 155}, Condition = {Training = "only"}, More = {"Text", _("% Complete")}},
+	{ Pos = {50, 154}, Condition = {Training = "only"}, More = {"Text", _("% Complete")}},
 -- Upgrading To
 	{ Pos = {12, 152}, Condition = {UpgradeTo = "only"},
 		More = {"CompleteBar", {Variable = "UpgradeTo", Width = 152, Height = 14, Border = false}}
 	},
-	{ Pos = {80,  86}, More = {"Text", _("Upgrading~|:")}, Condition = {UpgradeTo = "only"} },
-	{ Pos = {50, 155}, More = {"Text", _("% Complete")}, Condition = {UpgradeTo = "only"} },
+	{ Pos = {100,  86}, More = {"Text", _("Upgrading~|:")}, Condition = {UpgradeTo = "only"} },
+	{ Pos = {50, 154}, More = {"Text", _("% Complete")}, Condition = {UpgradeTo = "only"} },
 -- Resource Carry
 	{ Pos = {53, 149}, Condition = {CarryResource = "only"},
 		More = {"FormattedText2", {Format = _("Carry~|: %d %s"), Variable = "CarryResource",
@@ -239,8 +239,8 @@ DefinePanelContents(
 	{ Pos = {150, 41},
 		More = {"FormattedText", {Variable = "Level", Format = _("Level ~|~<%d~>")}}
 	},
-	{ Pos = {150, 56},
-		More = {"FormattedText2", {Centered = true,
+	{ Pos = {150, 56}, Condition = {ShowOpponent = false},
+		More = {"FormattedText2", {Centered = true, 
 			Variable1 = "Xp", Variable2 = "Kill", Format = _("XP:~<%d~> Kills:~|~<%d~>")}}
 	},
 	{ Pos = {100, 71}, Condition = {Armor = "only"},
@@ -257,10 +257,10 @@ DefinePanelContents(
 	{ Pos = {100, 148}, Condition = {Mana = "only"},
 		More = {"Text", {Text = _("Mana~|: ")}}
 	},
-	{ Pos = {100, 148}, Condition = {Mana = "only"},
-		More = {"CompleteBar", {Color = "light-blue", Variable = "Mana", Height = 14, Width = 63, Border = true}}
+	{ Pos = {103, 148}, Condition = {Mana = "only"},
+		More = {"CompleteBar", {Color = "light-blue", Variable = "Mana", Height = 14, Width = 60, Border = true}}
 	},
-	{ Pos = {124, 149}, More = {"Text", {Variable = "Mana", Centered = true}}, Condition = {Mana = "only"} }} })
+	{ Pos = {126, 149}, More = {"Text", {Variable = "Mana", Centered = true}}, Condition = {Mana = "only"} }} })
 
 Load("scripts/human/ui.lua")
 Load("scripts/orc/ui.lua")
