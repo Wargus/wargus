@@ -641,6 +641,8 @@ MakeSoundGroup("pig-selected",
 	"pig selected", "pig annoyed")
 MakeSoundGroup("warthog-selected",
 	"warthog selected", "warthog annoyed")
+MakeSoundGroup("ranger-selected", "elven archer-ranger selected", "elven archer-ranger annoyed")
+MakeSoundGroup("berserker-selected", "troll axethrower-berserker selected", "troll axethrower-berserker annoyed")
 
 ------------------------------------------------------------------------------
 --	Define sound remapping. (FIXME: somebody must clean the order.)
@@ -693,8 +695,6 @@ MapSound("giant-turtle-ready", "ships orc ready")
 MapSound("peon-selected", "grunt-selected")
 MapSound("ballista-selected", "click")
 MapSound("catapult-selected", "click")
-MapSound("ranger-selected", "elven archer-ranger selected")
-MapSound("berserker-selected", "troll axethrower-berserker selected")
 MapSound("human-transport-selected", "human-oil-tanker-selected")
 MapSound("orc-transport-selected", "orc-oil-tanker-selected")
 MapSound("elven-destroyer-selected", "human-oil-tanker-selected")
