@@ -5,46 +5,46 @@ local odefeat =  "ui/orc/defeat.png"
 
 local humanRanks = {
   0, "Servant",
-  2000, "Peasant",
-  5000, "Squire",
-  8000, "Footman",
-  18000, "Corporal",
-  28000, "Sergeant",
-  40000, "Lieutenant",
-  55000, "Captain",
-  70000, "Major",
-  85000, "Knight",
-  105000, "General",
-  125000, "Admiral",
-  145000, "Marshall",
-  165000, "Lord",
-  185000, "Grand Admiral",
-  205000, "Highlord",
-  230000, "Thundergod",
-  255000, "God",
-  280000, "Designer",
+  2000, _("Peasant"),
+  5000, _("Squire"),
+  8000, _("Footman"),
+  18000, _("Corporal"),
+  28000, _("Sergeant"),
+  40000, _("Lieutenant"),
+  55000, _("Captain"),
+  70000, _("Major"),
+  85000, _("Knight"),
+  105000, _("General"),
+  125000, _("Admiral"),
+  145000, _("Marshall"),
+  165000, _("Lord"),
+  185000, _("Grand Admiral"),
+  205000, _("Highlord"),
+  230000, _("Thundergod"),
+  255000, _("God"),
+  280000, _("Designer"),
 }
 
 local orcRanks = {
-  0, "Slave",
-  2000, "Peon",
-  5000, "Rogue",
-  8000, "Grunt",
-  18000, "Slasher",
-  28000, "Marauder",
-  40000, "Commander",
-  55000, "Captain",
-  70000, "Major",
-  85000, "Knight",
-  105000, "General",
-  125000, "Master",
-  145000, "Marshall",
-  165000, "Chieftain",
-  185000, "Overlord",
-  205000, "War Chief",
-  230000, "Demigod",
-  255000, "God",
-  280000, "Designer",
+  0, _("Slave"),
+  2000, _("Peon"),
+  5000, _("Rogue"),
+  8000, _("Grunt"),
+  18000, _("Slasher"),
+  28000, _("Marauder"),
+  40000, _("Commander"),
+  55000, _("Captain"),
+  70000, _("Major"),
+  85000, _("Knight"),
+  105000, _("General"),
+  125000, _("Master"),
+  145000, _("Marshall"),
+  165000, _("Chieftain"),
+  185000, _("Overlord"),
+  205000, _("War Chief"),
+  230000, _("Demigod"),
+  255000, _("God"),
+  280000, _("Designer"),
 }
 
 function RunResultsMenu()
@@ -62,7 +62,7 @@ function RunResultsMenu()
   -- background and music
   if (GameResult == GameVictory) then
 	SetPlayerData(GetThisPlayer(), "Score", GetPlayerData(GetThisPlayer(), "Score") + 500)
-    result = "Victory!"
+    result = _("Victory!")
     if (human) then
       background = hvictory
       PlayMusic("music/Human Victory" .. wargus.music_extension)
@@ -71,7 +71,7 @@ function RunResultsMenu()
       PlayMusic("music/Orc Victory" .. wargus.music_extension)
     end
   elseif (GameResult == GameDefeat) then
-    result = "Defeat!"
+    result = _("Defeat!")
     if (human) then
       background = hdefeat
       PlayMusic("music/Human Defeat" .. wargus.music_extension)
@@ -80,7 +80,7 @@ function RunResultsMenu()
       PlayMusic("music/Orc Defeat" .. wargus.music_extension)
     end
   elseif (GameResult == GameDraw) then
-    result = "Draw!"
+    result = _("Draw!")
     if (human) then
       background = hdefeat
     else
@@ -130,7 +130,7 @@ function RunResultsMenu()
   local currentLevelRanking = StatBoxWidget(100, 10)
   currentLevelRanking:setCaption("")
   
-  if (currentRank == "Designer") then
+  if (currentRank == _("Designer")) then
 	currentLevelRanking:setPercent(100)
   else
 	currentLevelRanking:setPercent((results_score - ranksTable[currentRankNumber*2-1])*100/(ranksTable[currentRankNumber*2 + 1] - ranksTable[currentRankNumber*2-1]))
@@ -174,13 +174,13 @@ function RunResultsMenu()
 		playerCount = playerCount + 1
 		local name = GetPlayerData(i, "Name")
 		if (ThisPlayer.Index == i) then
-			name = name .. " - You"
+			name = name .. _(" - You")
 		  elseif (ThisPlayer:IsAllied(Players[i])) then
-			name = name .. " - Ally"
+			name = name .. _(" - Ally")
 		  elseif (ThisPlayer:IsEnemy(Players[i])) then
-			name = name .. " - Enemy"
+			name = name .. _(" - Enemy")
 		  else
-			name = name .. " - Neutral"
+			name = name .. _(" - Neutral")
 		  end 
 		playerLabels[playerCount] = menu:addLabel(name, offx + 320, offy + 82 + playerCount*42, Fonts["game"], true)
 		playerLabels[playerCount]:setVisible(false)
@@ -311,14 +311,14 @@ function RunResultsMenu()
 		return
 	end
 	if (r_stage == 0) then -- Results
-		menu:addLabel("Outcome", offx + 114, offy + top_offset)
+		menu:addLabel(_("Outcome"), offx + 114, offy + top_offset)
 		menu:addLabel(result, offx + 114, offy + top_offset + 21, Fonts["large-title"])
 		StopAllChannels()
 		PlaySound("statsthump", true)
 		wait = 24
 		r_stage = r_stage + 1 -- next stage
 	elseif (r_stage == 1) then -- Rank
-		menu:addLabel("Rank", offx + 330, offy + top_offset)
+		menu:addLabel(_("Rank"), offx + 330, offy + top_offset)
 		menu:addLabel(currentRank, offx + 330, offy + top_offset + 21)
 		StopAllChannels()
 		PlaySound("statsthump", true)
@@ -328,7 +328,7 @@ function RunResultsMenu()
 		r_stage = r_stage + 1 -- next stage
 	elseif (r_stage == 2) then -- Your score
 		if (ticking == false) then
-			menu:addLabel("Score", offx + 546, offy + top_offset)
+			menu:addLabel(_("Score"), offx + 546, offy + top_offset)
 			StopAllChannels()
 			PlaySound("statsthump", true)
 			currect_player_score_label:setVisible(true)
@@ -395,10 +395,10 @@ function RunResultsMenu()
 
   menu:addLogicCallback(screenUpdate)
 
-  menu:addFullButton("~!Save Replay", "s", offx + 150, offy + 440,
+  menu:addFullButton(_("~!Save Replay"), "s", offx + 150, offy + 440,
     function() RunSaveReplayMenu() end)
 
-  menu:addContinueButton("~!Continue", "c", offx + 400, offy + 440,
+  menu:addContinueButton(_("~!Continue"), "c", offx + 400, offy + 440,
     function() 
 		StopMusic()
 		menu:stop() 

@@ -37,7 +37,7 @@ Load("scripts/anim.lua")
 --
 --	NOTE: Save can generate this table.
 --
-DefineUnitType("unit-nothing-22", { Name = "Nothing 22",
+DefineUnitType("unit-nothing-22", { Name = _("Nothing 22"),
   Animations = "animations-building", Icon = "icon-cancel",
   Speed = 99,
   HitPoints = 10,
@@ -49,7 +49,7 @@ DefineUnitType("unit-nothing-22", { Name = "Nothing 22",
   Type = "land",
   Sounds = {} } )
 
-DefineUnitType("unit-nothing-24", { Name = "Nothing 24",
+DefineUnitType("unit-nothing-24", { Name = _("Nothing 24"),
   Animations = "animations-building", Icon = "icon-cancel",
   Costs = {"time", 60, "gold", 400},
   Speed = 99,
@@ -65,7 +65,7 @@ DefineUnitType("unit-nothing-24", { Name = "Nothing 24",
   SelectableByRectangle = true,
   Sounds = {} } )
 
-DefineUnitType("unit-nothing-25", { Name = "Nothing 25",
+DefineUnitType("unit-nothing-25", { Name = _("Nothing 25"),
   Animations = "animations-building", Icon = "icon-cancel",
   Costs = {"time", 60, "gold", 400},
   Speed = 99,
@@ -81,7 +81,7 @@ DefineUnitType("unit-nothing-25", { Name = "Nothing 25",
   SelectableByRectangle = true,
   Sounds = {} } )
 
-DefineUnitType("unit-nothing-30", { Name = "Nothing 30",
+DefineUnitType("unit-nothing-30", { Name = _("Nothing 30"),
   Animations = "animations-building", Icon = "icon-cancel",
   Speed = 99,
   HitPoints = 0,
@@ -94,7 +94,7 @@ DefineUnitType("unit-nothing-30", { Name = "Nothing 30",
   Type = "land",
   Sounds = {} } )
 
-DefineUnitType("unit-nothing-36", { Name = "Nothing 36",
+DefineUnitType("unit-nothing-36", { Name = _("Nothing 36"),
   Animations = "animations-building", Icon = "icon-cancel",
   Speed = 99,
   HitPoints = 0,
@@ -107,7 +107,7 @@ DefineUnitType("unit-nothing-36", { Name = "Nothing 36",
   Type = "land",
   Sounds = {} } )
 
-DefineUnitType("unit-daemon", { Name = "Daemon",
+DefineUnitType("unit-daemon", { Name = _("Daemon"),
   Image = {"file", "neutral/units/daemon.png", "size", {72, 72}},
   Animations = "animations-daemon", Icon = "icon-daemon",
   Costs = {"time", 70, "gold", 500, "oil", 50},
@@ -143,7 +143,7 @@ UnitTypeFiles["unit-critter"] = {summer = "tilesets/summer/neutral/units/critter
   wasteland = "tilesets/wasteland/neutral/units/critter.png",
   swamp = "tilesets/swamp/neutral/units/critter.png"}
 
-DefineUnitType("unit-critter", { Name = "Critter",
+DefineUnitType("unit-critter", { Name = _("Critter"),
   Image = {"size", {32, 32}},
   Animations = "animations-critter", Icon = "icon-critter",
   NeutralMinimapColor = {192, 192, 192},
@@ -177,7 +177,7 @@ UnitTypeFiles["unit-gold-mine"] = {summer = "tilesets/summer/neutral/buildings/g
   wasteland = "tilesets/wasteland/neutral/buildings/gold_mine.png",
   swamp = "tilesets/swamp/neutral/buildings/gold_mine.png"}
 
-DefineUnitType("unit-gold-mine", { Name = "Gold Mine",
+DefineUnitType("unit-gold-mine", { Name = _("Gold Mine"),
   Image = {"size", {96, 96}},
   Animations = "animations-gold-mine", Icon = "icon-gold-mine",
   NeutralMinimapColor = {255, 255, 0},
@@ -216,7 +216,7 @@ UnitTypeFiles["unit-oil-patch"] = {summer = "tilesets/summer/neutral/buildings/o
   wasteland = "tilesets/wasteland/neutral/buildings/oil_patch.png",
   swamp = "tilesets/swamp/neutral/buildings/oil_patch.png"}
 
-DefineUnitType("unit-oil-patch", { Name = "Oil Patch",
+DefineUnitType("unit-oil-patch", { Name = _("Oil Patch"),
   Image = {"size", {96, 96}},
   Animations = "animations-building", Icon = "icon-oil-patch",
   NeutralMinimapColor = {0, 0, 0},
@@ -243,7 +243,7 @@ DefineUnitType("unit-oil-patch", { Name = "Oil Patch",
 --    "help", "oil-patch-help",
     "dead", "building destroyed"} } )
 
-DefineUnitType("unit-circle-of-power", { Name = "Circle of Power",
+DefineUnitType("unit-circle-of-power", { Name = _("Circle of Power"),
   Image = {"file", "neutral/buildings/circle_of_power.png", "size", {64, 64}},
   Animations = "animations-building", Icon = "icon-circle-of-power",
   NeutralMinimapColor = {128, 128, 0},
@@ -272,7 +272,7 @@ UnitTypeFiles["unit-dark-portal"] = {summer = "tilesets/summer/neutral/buildings
   wasteland = "tilesets/wasteland/neutral/buildings/dark_portal.png",
   swamp = "tilesets/swamp/neutral/buildings/dark_portal.png"}
 
-DefineUnitType("unit-dark-portal", { Name = "Dark Portal",
+DefineUnitType("unit-dark-portal", { Name = _("Dark Portal"),
   Image = {"size", {128, 128}},
   Animations = "animations-building", Icon = "icon-dark-portal",
   NeutralMinimapColor = {255, 255, 0},
@@ -306,7 +306,7 @@ UnitTypeFiles["unit-runestone"] = {summer = "neutral/buildings/runestone.png",
   wasteland = "neutral/buildings/runestone.png",
   swamp = "tilesets/swamp/neutral/buildings/runestone.png"}
 
-DefineUnitType("unit-runestone", { Name = "Runestone",
+DefineUnitType("unit-runestone", { Name = _("Runestone"),
   Image = {"size", {64, 64}},
   Animations = "animations-building", Icon = "icon-runestone",
   NeutralMinimapColor = {255, 255, 0},
@@ -334,7 +334,7 @@ DefineUnitType("unit-runestone", { Name = "Runestone",
     "help", "basic orc voices help 2",
     "dead", "building destroyed"} } )
 
-DefineUnitType("unit-human-dead-body", { Name = "Dead Body",
+DefineUnitType("unit-human-dead-body", { Name = _("Dead Body"),
   Image = {"file", "neutral/units/corpses.png", "size", {72, 72}},
   Animations = "animations-human-dead-body", Icon = "icon-peasant",
   Speed = 0,
@@ -348,7 +348,7 @@ DefineUnitType("unit-human-dead-body", { Name = "Dead Body",
   Vanishes = true,
   Sounds = {} } )
 
-DefineUnitType("unit-orc-dead-body", { Name = "Dead Body",
+DefineUnitType("unit-orc-dead-body", { Name = _("Dead Body"),
   Image = {"file", "neutral/units/corpses.png", "size", {72, 72}},
   Animations = "animations-orc-dead-body", Icon = "icon-peasant",
   Speed = 0,
@@ -362,7 +362,7 @@ DefineUnitType("unit-orc-dead-body", { Name = "Dead Body",
   Vanishes = true,
   Sounds = {} } )
 
-DefineUnitType("unit-dead-sea-body", { Name = "Dead Body",
+DefineUnitType("unit-dead-sea-body", { Name = _("Dead Body"),
   Image = {"file", "neutral/units/corpses.png", "size", {72, 72}},
   Animations = "animations-dead-sea-body", Icon = "icon-peasant",
   Speed = 0,
@@ -383,7 +383,7 @@ UnitTypeFiles["unit-destroyed-1x1-place"] = {
   wasteland = "tilesets/wasteland/neutral/buildings/small_destroyed_site.png",
   swamp = "tilesets/swamp/neutral/buildings/small_destroyed_site.png"}
 
-DefineUnitType("unit-destroyed-1x1-place", { Name = "Destroyed 1x1 Place",
+DefineUnitType("unit-destroyed-1x1-place", { Name = _("Destroyed 1x1 Place"),
   Image = {"size", {32, 32}},
   Animations = "animations-destroyed-place", Icon = "icon-peasant",
   Speed = 0,
@@ -404,7 +404,7 @@ UnitTypeFiles["unit-destroyed-2x2-place"] = {summer = "tilesets/summer/neutral/b
   wasteland = "tilesets/wasteland/neutral/buildings/destroyed_site.png",
   swamp = "tilesets/swamp/neutral/buildings/destroyed_site.png"}
 
-DefineUnitType("unit-destroyed-2x2-place", { Name = "Destroyed 2x2 Place",
+DefineUnitType("unit-destroyed-2x2-place", { Name = _("Destroyed 2x2 Place"),
   Image = {"size", {64, 64}},
   Animations = "animations-destroyed-place", Icon = "icon-peasant",
   Speed = 0,
@@ -425,7 +425,7 @@ UnitTypeFiles["unit-destroyed-3x3-place"] = {summer = "tilesets/summer/neutral/b
   wasteland = "tilesets/wasteland/neutral/buildings/destroyed_site.png",
   swamp = "tilesets/swamp/neutral/buildings/destroyed_site.png"}
 
-DefineUnitType("unit-destroyed-3x3-place", { Name = "Destroyed 3x3 Place",
+DefineUnitType("unit-destroyed-3x3-place", { Name = _("Destroyed 3x3 Place"),
   Image = {"size", {64, 64}},
   Animations = "animations-destroyed-place", Icon = "icon-peasant",
   Speed = 0,
@@ -445,7 +445,7 @@ UnitTypeFiles["unit-destroyed-3x3-place-water"] = {summer = "tilesets/summer/neu
   wasteland = "tilesets/wasteland/neutral/buildings/destroyed_site.png",
   swamp = "tilesets/swamp/neutral/buildings/destroyed_site.png"}
 
-DefineUnitType("unit-destroyed-3x3-place-water", { Name = "Destroyed 3x3 Place Water",
+DefineUnitType("unit-destroyed-3x3-place-water", { Name = _("Destroyed 3x3 Place Water"),
   Image = {"size", {64, 64}},
   Animations = "animations-destroyed-place-water", Icon = "icon-peasant",
   Speed = 0,
@@ -465,7 +465,7 @@ UnitTypeFiles["unit-destroyed-4x4-place"] = {summer = "tilesets/summer/neutral/b
   wasteland = "tilesets/wasteland/neutral/buildings/destroyed_site.png",
   swamp = "tilesets/swamp/neutral/buildings/destroyed_site.png"}
 
-DefineUnitType("unit-destroyed-4x4-place", { Name = "Destroyed 4x4 Place",
+DefineUnitType("unit-destroyed-4x4-place", { Name = _("Destroyed 4x4 Place"),
   Image = {"size", {64, 64}},
   Animations = "animations-destroyed-place", Icon = "icon-peasant",
   Speed = 0,
@@ -480,7 +480,7 @@ DefineUnitType("unit-destroyed-4x4-place", { Name = "Destroyed 4x4 Place",
   Vanishes = true,
   Sounds = {} } )
 
-DefineUnitType("unit-revealer", { Name = "Dummy unit",
+DefineUnitType("unit-revealer", { Name = _("Dummy unit"),
   Animations = "animations-building", Icon = "icon-holy-vision",
   Speed = 0,
   HitPoints = 1,

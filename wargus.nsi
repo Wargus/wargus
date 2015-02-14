@@ -558,6 +558,7 @@ ${redefine} UPX_FLAGS "${UPX_FLAGS} -q"
 !delfile "cdrtools.zip"
 !delfile "ExecDos.dll"
 !delfile "ExecDos.zip"
+!delfile "TimGM6mb.sf2"
 !endif
 
 ;--------------------------------

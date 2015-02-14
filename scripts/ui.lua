@@ -121,9 +121,9 @@ DefinePanelContents(
   Condition = {ShowOpponent = false, HideNeutral = true, Center = "false", Build = "false", Supply = "only", Training = "false", UpgradeTo = "false"},
   Contents = {
 -- Food building
-	{ Pos = {16, 71}, More = {"Text", _("Usage")} },
-	{ Pos = {85, 86}, More = {"Text", {Text = _("Supply ~|: "), Variable = "Supply", Component = "Max"}} },
-	{ Pos = {85, 102}, More = { "Text", {Text = Concat(_("Demand ~|: "),
+	{ Pos = {100, 71}, More = {"Text", _("Usage~|")} },
+	{ Pos = {100, 86}, More = {"Text", {Text = _("Supply~|: "), Variable = "Supply", Component = "Max"}} },
+	{ Pos = {100, 102}, More = { "Text", {Text = Concat(_("Demand~|: "),
 									If(GreaterThan(ActiveUnitVar("Demand", "Max"), ActiveUnitVar("Supply", "Max")),
 										InverseVideo(String(ActiveUnitVar("Demand", "Max"))),
 										String(ActiveUnitVar("Demand", "Max")) ))}}
@@ -222,7 +222,7 @@ DefinePanelContents(
 	{ Pos = {100,  86}, More = {"Text", _("Upgrading~|:")}, Condition = {UpgradeTo = "only"} },
 	{ Pos = {50, 154}, More = {"Text", _("% Complete")}, Condition = {UpgradeTo = "only"} },
 -- Resource Carry
-	{ Pos = {53, 149}, Condition = {CarryResource = "only"},
+	{ Pos = {100, 149}, Condition = {CarryResource = "only"},
 		More = {"FormattedText2", {Format = _("Carry~|: %d %s"), Variable = "CarryResource",
 				Component1 = "Value", Component2 = "Name"}}
 	}
@@ -338,3 +338,113 @@ DefineCursor({
   File = "ui/cursors/arrow_SE.png",
   HotSpot = {20, 18},
   Size = {32, 24}})
+
+function GetRGBA(r, g, b, a)
+	if (wc2.preferences.UseOpenGL == false) then
+		return b + g*0x100 + r*0x10000 + a*0x1000000
+	else
+		return r + g*0x100 + b*0x10000 + a*0x1000000
+	end
+end
+
+DefinePopup({
+	Ident = "popup-commands",
+	BackgroundColor = GetRGBA(128,128,128, 160),
+	BorderColor = GetRGBA(192,192,255, 160),
+	Contents = {
+			{ 	Margin = {1, 1}, 
+				More = {"ButtonInfo", {InfoType = "Hint"}}
+			}, 
+			-- Description
+			{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
+				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+			}, 
+			{ 	Condition = {HasDescription = true}, Margin = {1, 1},
+				More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+			}, 
+	}	
+})
+
+DefinePopup({
+	Ident = "popup-human-commands",
+	BackgroundColor = GetRGBA(0,64,160, 160),
+	BorderColor = GetRGBA(192,192,255, 160),
+	Contents = {
+			{ 	Margin = {1, 1}, HighlightColor = "full-red",
+				More = {"ButtonInfo", {InfoType = "Hint"}}
+			}, 
+			-- Description
+			{ 	Margin = {1, 1}, Condition = {HasDescription = true},
+				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+			}, 
+			{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
+				More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+			}, 
+			-- Move  hint
+			{ 	Margin = {1, 1}, Condition = {ButtonAction = "move"},
+				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+			},
+			{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+				More = {"Text", {Text = _("~<ALT~>-click to defend unit."), MaxWidth = Video.Width / 5}}
+			},
+			{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+				More = {"Text", {Text = _("~<SHIFT~>-click to make waypoints."), MaxWidth = Video.Width / 5}}
+			},
+			-- Repair hint
+			{ 	Margin = {1, 1}, Condition = {ButtonAction = "repair"},
+				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+			},
+			{ 	Condition = {ButtonAction = "repair"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+				More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."), MaxWidth = Video.Width / 5}}
+			},
+			-- Heal hint
+			{ 	Margin = {1, 1}, Condition = {ButtonValue = "spell-medic-heal"},
+				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+			},
+			{ 	Condition = {ButtonValue = "spell-healing"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+				More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables autoheal ability."), MaxWidth = Video.Width / 5}}
+			}
+	}	
+})
+
+DefinePopup({
+	Ident = "popup-orc-commands",
+	BackgroundColor = GetRGBA(0,64,160, 160),
+	BorderColor = GetRGBA(192,192,255, 160),
+	Contents = {
+			{ 	Margin = {1, 1}, HighlightColor = "full-red",
+				More = {"ButtonInfo", {InfoType = "Hint"}}
+			}, 
+			-- Description
+			{ 	Margin = {1, 1}, Condition = {HasDescription = true},
+				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+			}, 
+			{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
+				More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+			}, 
+			-- Move  hint
+			{ 	Margin = {1, 1}, Condition = {ButtonAction = "move"},
+				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+			},
+			{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+				More = {"Text", {Text = _("~<ALT~>-click to defend unit."), MaxWidth = Video.Width / 5}}
+			},
+			{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+				More = {"Text", {Text = _("~<SHIFT~>-click to make waypoints."), MaxWidth = Video.Width / 5}}
+			},
+			-- Repair hint
+			{ 	Margin = {1, 1}, Condition = {ButtonAction = "repair"},
+				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+			},
+			{ 	Condition = {ButtonAction = "repair"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+				More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."), MaxWidth = Video.Width / 5}}
+			},
+			-- Heal hint
+			{ 	Margin = {1, 1}, Condition = {ButtonValue = "spell-medic-heal"},
+				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+			},
+			{ 	Condition = {ButtonValue = "spell-healing"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+				More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables autoheal ability."), MaxWidth = Video.Width / 5}}
+			}
+	}	
+})

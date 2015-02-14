@@ -757,7 +757,7 @@ DefineUnitType("unit-quick-blade", { Name = _("Korgath Bladefist"),
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-double-head", { Name = "Cho'gall",
+DefineUnitType("unit-double-head", { Name = _("Cho'gall"),
   Image = {"file", "orc/units/ogre.png", "size", {72, 72}},
   Animations = "animations-double-head", Icon = "icon-double-head",
   Costs = {"time", 100, "gold", 1100, "wood", 50},
@@ -789,7 +789,7 @@ DefineUnitType("unit-double-head", { Name = "Cho'gall",
     "help", "basic orc voices help 1",
     "dead", "basic orc voices dead"} } )
 
-DefineUnitType("unit-ice-bringer", { Name = "Gul'dan",
+DefineUnitType("unit-ice-bringer", { Name = _("Gul'dan"),
   Image = {"file", "orc/units/death_knight.png", "size", {72, 72}},
   Animations = "animations-ice-bringer", Icon = "icon-ice-bringer",
   Costs = {"time", 120, "gold", 1200},

@@ -253,7 +253,7 @@ DefineButton( { Pos = 4, Level = 0, Icon = "icon-repair",
 
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-harvest",
   Action = "harvest",
-  Key = "h", Hint = "~!HARVEST LUMBER/MINE GOLD",
+  Key = "h", Hint = _("~!HARVEST LUMBER/MINE GOLD"),
   ForUnit = {"unit-peon"} } )
 
 DefineButton( { Pos = 6, Level = 0, Icon = "icon-return-goods-peon",
@@ -314,7 +314,7 @@ DefineButton( { Pos = 8, Level = 1, Icon = "icon-orc-wall",
 
 DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
   Action = "button", Value = 0,
-  Key = "ESC", Hint = "~<ESC~> CANCEL",
+  Key = "ESC", Hint = _("~<ESC~> CANCEL"),
   ForUnit = {"unit-peon"} } )
 
 -- orc advanced buildings -----------------------------------------------------
@@ -361,7 +361,7 @@ DefineButton( { Pos = 8, Level = 2, Icon = "icon-dragon-roost",
 
 DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
   Action = "button", Value = 0,
-  Key = "ESC", Hint = "~<ESC~> CANCEL",
+  Key = "ESC", Hint = _("~<ESC~> CANCEL"),
   ForUnit = {"unit-peon"} } )
 
 -- orc buildings commands -----------------------------------------------------
@@ -397,7 +397,7 @@ if (wargus.extensions) then
 do
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-harvest",
   Action = "harvest",
-  Key = "h", Hint = "SET ~!HARVEST LUMBER/MINE GOLD",
+  Key = "h", Hint = _("SET ~!HARVEST LUMBER/MINE GOLD"),
   ForUnit = {"unit-great-hall", "unit-stronghold", "unit-fortress"} } )
 
 DefineButton( { Pos = 7, Level = 0, Icon = "icon-move-peon",
@@ -445,7 +445,7 @@ DefineButton( { Pos = 3, Level = 0, Icon = "icon-catapult",
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-ogre",
   Action = "train-unit", Value = "unit-ogre",
-  Key = "o", Hint = "TRAIN TWO-HEADED ~!OGRE",
+  Key = "o", Hint = _("TRAIN TWO-HEADED ~!OGRE"),
   ForUnit = {"unit-orc-barracks"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-ogre-mage",
@@ -597,49 +597,49 @@ end
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-battle-axe2",
   Action = "research", Value = "upgrade-battle-axe1",
   Allowed = "check-single-research",
-  Key = "w", Hint = "UPGRADE ~!WEAPONS (Damage +2)",
+  Key = "w", Hint = _("UPGRADE ~!WEAPONS (Damage +2)"),
   ForUnit = {"unit-orc-blacksmith"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-battle-axe3",
   Action = "research", Value = "upgrade-battle-axe2",
   Allowed = "check-single-research",
-  Key = "w", Hint = "UPGRADE ~!WEAPONS (Damage +2)",
+  Key = "w", Hint = _("UPGRADE ~!WEAPONS (Damage +2)"),
   ForUnit = {"unit-orc-blacksmith"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-shield2",
   Action = "research", Value = "upgrade-orc-shield1",
   Allowed = "check-single-research",
-  Key = "s", Hint = "UPGRADE ~!SHIELDS (Armor +2)",
+  Key = "s", Hint = _("UPGRADE ~!SHIELDS (Armor +2)"),
   ForUnit = {"unit-orc-blacksmith"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-shield3",
   Action = "research", Value = "upgrade-orc-shield2",
   Allowed = "check-single-research",
-  Key = "s", Hint = "UPGRADE ~!SHIELDS (Armor +2)",
+  Key = "s", Hint = _("UPGRADE ~!SHIELDS (Armor +2)"),
   ForUnit = {"unit-orc-blacksmith"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-catapult1",
   Action = "research", Value = "upgrade-catapult1",
   Allowed = "check-single-research",
-  Key = "c", Hint = "UPGRADE ~!CATAPULT (Damage +15)",
+  Key = "c", Hint = _("UPGRADE ~!CATAPULT (Damage +15)"),
   ForUnit = {"unit-orc-blacksmith"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-catapult2",
   Action = "research", Value = "upgrade-catapult2",
   Allowed = "check-single-research",
-  Key = "c", Hint = "UPGRADE ~!CATAPULT (Damage +15)",
+  Key = "c", Hint = _("UPGRADE ~!CATAPULT (Damage +15)"),
   ForUnit = {"unit-orc-blacksmith"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-throwing-axe2",
   Action = "research", Value = "upgrade-throwing-axe1",
   Allowed = "check-single-research",
-  Key = "u", Hint = "~!UPGRADE THROWING AXE (Damage +1)",
+  Key = "u", Hint = _("~!UPGRADE THROWING AXE (Damage +1)"),
   ForUnit = {"unit-troll-lumber-mill"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-throwing-axe3",
   Action = "research", Value = "upgrade-throwing-axe2",
   Allowed = "check-single-research",
-  Key = "u", Hint = "~!UPGRADE THROWING AXE (Damage +1)",
+  Key = "u", Hint = _("~!UPGRADE THROWING AXE (Damage +1)"),
   ForUnit = {"unit-troll-lumber-mill"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-berserker",
@@ -651,13 +651,13 @@ DefineButton( { Pos = 4, Level = 0, Icon = "icon-berserker",
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-berserker-scouting",
   Action = "research", Value = "upgrade-berserker-scouting",
   Allowed = "check-single-research",
-  Key = "s", Hint = "BERSERKER ~!SCOUTING (Sight:9)",
+  Key = "s", Hint = _("BERSERKER ~!SCOUTING (Sight:9)"),
   ForUnit = {"unit-troll-lumber-mill"} } )
 
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-light-axes",
   Action = "research", Value = "upgrade-light-axes",
   Allowed = "check-single-research",
-  Key = "a", Hint = "RESEARCH LIGHTER ~!AXES (Range +1)",
+  Key = "a", Hint = _("RESEARCH LIGHTER ~!AXES (Range +1)"),
   ForUnit = {"unit-troll-lumber-mill"} } )
 
 DefineButton( { Pos = 6, Level = 0, Icon = "icon-berserker-regeneration",
@@ -717,23 +717,23 @@ DefineButton( { Pos = 6, Level = 0, Icon = "icon-death-and-decay",
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-orc-ship-cannon2",
   Action = "research", Value = "upgrade-orc-ship-cannon1",
   Allowed = "check-single-research",
-  Key = "c", Hint = "UPGRADE ~!CANNONS (Damage +5)",
+  Key = "c", Hint = _("UPGRADE ~!CANNONS (Damage +5)"),
   ForUnit = {"unit-orc-foundry"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-orc-ship-cannon3",
   Action = "research", Value = "upgrade-orc-ship-cannon2",
   Allowed = "check-single-research",
-  Key = "c", Hint = "UPGRADE ~!CANNONS (Damage +5)",
+  Key = "c", Hint = _("UPGRADE ~!CANNONS (Damage +5)"),
   ForUnit = {"unit-orc-foundry"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-ship-armor2",
   Action = "research", Value = "upgrade-orc-ship-armor1",
   Allowed = "check-single-research",
-  Key = "a", Hint = "UPGRADE SHIP ~!ARMOR (Armor +5)",
+  Key = "a", Hint = _("UPGRADE SHIP ~!ARMOR (Armor +5)"),
   ForUnit = {"unit-orc-foundry"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-ship-armor3",
   Action = "research", Value = "upgrade-orc-ship-armor2",
   Allowed = "check-single-research",
-  Key = "a", Hint = "UPGRADE SHIP ~!ARMOR (Armor +5)",
+  Key = "a", Hint = _("UPGRADE SHIP ~!ARMOR (Armor +5)"),
   ForUnit = {"unit-orc-foundry"} } )

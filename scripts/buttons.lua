@@ -46,21 +46,21 @@ Load("scripts/caanoo/buttons.lua")
 -- general cancel button ------------------------------------------------------
 
 DefineButton( { Pos = 9, Level = 9, Icon = "icon-cancel",
-  Action = "cancel",
+  Action = "cancel", Popup = "popup-commands",
   Key = "ESC", Hint = _("~<ESC~> CANCEL"),
   ForUnit = {"*"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-cancel",
-  Action = "cancel-upgrade",
+  Action = "cancel-upgrade", Popup = "popup-commands",
   Key = "ESC", Hint = _("~<ESC~> CANCEL UPGRADE"),
   ForUnit = {"cancel-upgrade"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-cancel",
-  Action = "cancel-train-unit",
+  Action = "cancel-train-unit", Popup = "popup-commands",
   Key = "ESC", Hint = _("~<ESC~> CANCEL UNIT TRAINING"),
   ForUnit = {"*"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-cancel",
-  Action = "cancel-build",
+  Action = "cancel-build", Popup = "popup-commands",
   Key = "ESC", Hint = _("~<ESC~> CANCEL CONSTRUCTION"),
   ForUnit = {"cancel-build"} } )
