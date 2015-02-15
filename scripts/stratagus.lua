@@ -263,6 +263,48 @@ SetAllPlayersTotalUnitLimit(400)
 --  Default triggers for single player
 --    (FIXME: must be combined with game types)
 
+OldActionDefeat = ActionDefeat
+function ActionDefeat()
+	local confirm = WarGameMenu(panel(4))
+
+	confirm:resize(288,128)
+
+	confirm:addLabel(_("You failed to"), 288 / 2, 22)
+	confirm:addLabel(_("achieve victory!"), 288 / 2, 44)
+
+  confirm:addFullButton("~!Ok", "o", (288 - 224 ) / 2, 128 - 27 - 10,
+    function()
+        confirm:stop()
+        OldActionDefeat()
+    end)
+  SetGamePaused(true)
+  confirm:run(false)
+end
+
+OldActionVictory = ActionVictory
+function ActionVictory()
+	local confirm = WarGameMenu(panel(4))
+
+	confirm:resize(288,128)
+
+	confirm:addLabel(_("Congratulations!"), 288 / 2, 20)
+	confirm:addLabel(_("You are victorious!"), 288 / 2, 40)
+
+  confirm:addFullButton(_("Save Game (~<F11~>)"), "f11", (288 - 224 ) / 2, 128 - 2 * 27 - 2 * 8,
+    function()
+		RunSaveMenu(true)
+        confirm:stop()
+        OldActionVictory()
+    end)
+  confirm:addFullButton(_("~!Victory"), "v", (288 - 224 ) / 2, 128 - 27 - 8,
+    function()
+        confirm:stop()
+        OldActionVictory()
+    end)
+  SetGamePaused(true)
+  confirm:run(false)
+end
+
 function SinglePlayerTriggers()
   AddTrigger(
     function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,

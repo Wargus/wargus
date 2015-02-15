@@ -32,7 +32,7 @@ function RunConfirmErase(name, menu)
   confirm:run(false)
 end
 
-function RunSaveMenu()
+function RunSaveMenu(isreturn)
   local menu = WarGameMenu(panel(3))
   menu:resize(384, 256)
 
@@ -76,7 +76,10 @@ function RunSaveMenu()
 
   menu:addHalfButton("~!Cancel", "c", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27,
     function() menu:stop() end)
-
-  menu:run(false)
+  if (isreturn == nil) then
+	menu:run(false)
+  else 
+	return menu:run()
+  end
 end
 

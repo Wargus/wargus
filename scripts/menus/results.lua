@@ -4,7 +4,7 @@ local ovictory = "ui/orc/victory.png"
 local odefeat =  "ui/orc/defeat.png"
 
 local humanRanks = {
-  0, "Servant",
+  0, _("Servant"),
   2000, _("Peasant"),
   5000, _("Squire"),
   8000, _("Footman"),
@@ -119,19 +119,26 @@ function RunResultsMenu()
 		end
 	end
   end
-  for i = 1, table.getn(ranksTable) / 2 do
-	if results_score > ranksTable[i*2 - 1] then
-		currentRank = ranksTable[i*2]
-		currentRankNumber = i
-	else
-		break
-	end
+  if (ischeater == false) then
+	  for i = 1, table.getn(ranksTable) / 2 do
+		if results_score > ranksTable[i*2 - 1] then
+			currentRank = ranksTable[i*2]
+			currentRankNumber = i
+		else
+			break
+		end
+	  end
+  else 
+	currentRank = _("Cheater!")
+	currentRankNumber = 1
   end
   local currentLevelRanking = StatBoxWidget(100, 10)
   currentLevelRanking:setCaption("")
   
   if (currentRank == _("Designer")) then
 	currentLevelRanking:setPercent(100)
+  elseif currentRank == _("Cheater!") then
+	currentLevelRanking:setPercent(0)
   else
 	currentLevelRanking:setPercent((results_score - ranksTable[currentRankNumber*2-1])*100/(ranksTable[currentRankNumber*2 + 1] - ranksTable[currentRankNumber*2-1]))
   end
