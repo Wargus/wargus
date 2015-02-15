@@ -41,3 +41,9 @@ DefineAllow("unit-dragon", "FFFFFFFFFFFFFFFF")
 DefineAllow("unit-dragon-roost", "FFFFFFFFFFFFFFFF")
 
 Load("campaigns/orc-exp/levelx04o.sms")
+
+-- Default Spells Researched
+DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR") 

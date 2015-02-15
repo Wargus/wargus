@@ -48,10 +48,10 @@ campaign_steps = {
   CreateMapStep("campaigns/human/level08h.smp"),
   CreateMapStep("campaigns/human/level09h.smp"),
   CreateMapStep("campaigns/human/level10h.smp"),
+  CreateMapStep("campaigns/human/level11h.smp"),
 
   CreatePictureStep("campaigns/human/interface/Act_IV_-_Return_to_Azeroth.png", "sounds/human/act.wav", "Act IV", "Return to Azeroth"),
   CreateVideoStep("videos/human-3.ogv"),
-  CreateMapStep("campaigns/human/level11h.smp"),
   CreateMapStep("campaigns/human/level12h.smp"),
   CreateMapStep("campaigns/human/level13h.smp"),
   CreateMapStep("campaigns/human/level14h.smp"),

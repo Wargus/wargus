@@ -34,5 +34,10 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllow("unit-dragon", "FFFFFFFFFFFFFFFF")
 DefineAllow("unit-dragon-roost", "FFFFFFFFFFFFFFFF")
 
+-- Default Spells Researched
+DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
 
 Load("campaigns/orc-exp/levelx05o.sms")

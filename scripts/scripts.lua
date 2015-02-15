@@ -47,6 +47,7 @@ DefineUnitType("unit-critter", {
 })
 
 MapSound("critter-selected", CritterSounds[wargus.tileset])
+MapSound("critter-dead", CritterSounds[wargus.tileset]) 
 
 
 -- Icon and construction graphics also depend on the tileset

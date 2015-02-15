@@ -242,12 +242,12 @@ DefineButton( { Pos = 6, Level = 0, Icon = "icon-return-goods-peasant",
 -- build basic/advanced structs -----------------------------------------------
 
 DefineButton( { Pos = 7, Level = 0, Icon = "icon-build-basic",
-  Action = "button", Value = 1,
+  Action = "button", Value = 1, Popup = "popup-human-commands",
   Key = "b", Hint = _("~!BUILD BASIC STRUCTURE"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 8, Level = 0, Icon = "icon-build-advanced",
-  Action = "button", Value = 2,
+  Action = "button", Value = 2, Popup = "popup-human-commands",
   Allowed = "check-units-or", AllowArg = {"unit-elven-lumber-mill", "unit-keep"},
   Key = "v", Hint = _("BUILD AD~!VANCED STRUCTURE"),
   ForUnit = {"unit-peasant"} } )
@@ -291,7 +291,7 @@ DefineButton( { Pos = 8, Level = 1, Icon = "icon-human-wall",
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
-  Action = "button", Value = 0,
+  Action = "button", Value = 0, Popup = "popup-human-commands",
   Key = "ESC", Hint = _("~<ESC~> CANCEL"),
   ForUnit = {"unit-peasant"} } )
 
@@ -338,7 +338,7 @@ DefineButton( { Pos = 8, Level = 2, Icon = "icon-gryphon-aviary",
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
-  Action = "button", Value = 0,
+  Action = "button", Value = 0, Popup = "popup-human-commands",
   Key = "ESC", Hint = _("~<ESC~> CANCEL"),
   ForUnit = {"unit-peasant"} } )
 
@@ -374,25 +374,25 @@ DefineButton( { Pos = 2, Level = 0, Icon = "icon-castle-upgrade",
 if (wargus.extensions) then
 do
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-harvest",
-  Action = "harvest",
+  Action = "harvest", Popup = "popup-human-commands",
   Key = "h", Hint = _("SET ~!HARVEST LUMBER/MINE GOLD"),
   ForUnit = {"unit-town-hall", "unit-keep", "unit-castle"} } )
 
 DefineButton( { Pos = 7, Level = 0, Icon = "icon-move-peasant",
   Action = "move",
-  Key = "m", Hint = _("SET ~!MOVE"),
+  Key = "m", Hint = _("SET ~!MOVE"), Popup = "popup-human-commands",
   ForUnit = {"unit-town-hall", "unit-keep", "unit-castle", "unit-human-barracks",
     "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"} } )
 
 DefineButton( { Pos = 8, Level = 0, Icon = "icon-human-shield1",
   Action = "stop",
-  Key = "z", Hint = _("SET ~!ZTOP"),
+  Key = "z", Hint = _("SET ~!ZTOP"), Popup = "popup-human-commands",
   ForUnit = {"unit-town-hall", "unit-keep", "unit-castle", "unit-human-barracks",
     "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-sword1",
   Action = "attack",
-  Key = "e", Hint = _("S~!ET ATTACK"),
+  Key = "e", Hint = _("S~!ET ATTACK"), Popup = "popup-human-commands",
   ForUnit = {"unit-town-hall", "unit-keep", "unit-castle", "unit-human-barracks",
     "unit-mage-tower", "unit-gryphon-aviary", "unit-inventor"} } )
 end
@@ -476,7 +476,7 @@ DefineButton( { Pos = 5, Level = 0, Icon = "icon-battleship",
 if (wargus.extensions) then
 -----------------------------------------------------
 DefineButton( { Pos = 6, Level = 0, Icon = "icon-human-ship-haul-oil",
-  Action = "harvest",
+  Action = "harvest", Popup = "popup-human-commands",
   Key = "h", Hint = _("SET ~!HAUL OIL"),
   ForUnit = {"unit-human-shipyard"} } )
 -----------------------------------------------------
@@ -496,21 +496,21 @@ DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-cannon-tower",
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-human-ship-move",
   Action = "move",
-  Key = "m", Hint = _("~!MOVE"),
+  Key = "m", Hint = _("~!MOVE"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-oil-tanker",
     "unit-human-submarine", "unit-battleship", "unit-human-destroyer",
     "unit-human-transport"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-ship-armor1",
   Action = "stop",
-  Key = "s", Hint = _("~!STOP"),
+  Key = "s", Hint = _("~!STOP"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-oil-tanker",
     "unit-human-submarine", "unit-battleship", "unit-human-destroyer",
     "unit-human-transport"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-human-unload",
   Action = "unload",
-  Key = "u", Hint = _("~!UNLOAD"),
+  Key = "u", Hint = _("~!UNLOAD"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-transport"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-human-oil-platform",
@@ -520,51 +520,51 @@ DefineButton( { Pos = 4, Level = 0, Icon = "icon-human-oil-platform",
 
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-human-ship-haul-oil",
   Action = "harvest",
-  Key = "h", Hint = _("~!HAUL OIL"),
+  Key = "h", Hint = _("~!HAUL OIL"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-oil-tanker"} } )
 
 DefineButton( { Pos = 6, Level = 0, Icon = "icon-human-ship-return-oil",
   Action = "return-goods",
-  Key = "g", Hint = _("RETURN WITH ~!GOODS"),
+  Key = "g", Hint = _("RETURN WITH ~!GOODS"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-oil-tanker"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-human-ship-cannon1",
   Action = "attack",
-  Key = "a", Hint = _("~!ATTACK"),
+  Key = "a", Hint = _("~!ATTACK"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-submarine", "unit-battleship", "unit-human-destroyer"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-human-ship-cannon2",
   Action = "attack",
   Allowed = "check-upgrade", AllowArg = {"upgrade-human-ship-cannon1"},
-  Key = "a", Hint = _("~!ATTACK"),
+  Key = "a", Hint = _("~!ATTACK"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-submarine", "unit-battleship", "unit-human-destroyer"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-human-ship-cannon3",
   Action = "attack",
   Allowed = "check-upgrade", AllowArg = {"upgrade-human-ship-cannon2"},
-  Key = "a", Hint = _("~!ATTACK"),
+  Key = "a", Hint = _("~!ATTACK"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-submarine", "unit-battleship", "unit-human-destroyer"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-human-patrol-naval",
   Action = "patrol",
-  Key = "p", Hint = _("~!PATROL"),
+  Key = "p", Hint = _("~!PATROL"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-submarine", "unit-battleship", "unit-human-destroyer"} } )
 
 if (wargus.extensions) then
 do
 DefineButton( { Pos = 7, Level = 0, Icon = "icon-human-ship-move",
   Action = "move",
-  Key = "m", Hint = _("SET ~!MOVE"),
+  Key = "m", Hint = _("SET ~!MOVE"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-shipyard"} } )
 
 DefineButton( { Pos = 8, Level = 0, Icon = "icon-human-ship-armor1",
   Action = "stop",
-  Key = "z", Hint = _("SET ~!ZTOP"),
+  Key = "z", Hint = _("SET ~!ZTOP"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-shipyard"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-human-ship-cannon1",
   Action = "attack",
-  Key = "e", Hint = _("S~!ET ATTACK"),
+  Key = "e", Hint = _("S~!ET ATTACK"), Popup = "popup-human-commands",
   ForUnit = {"unit-human-shipyard"} } )
 end
 end

@@ -36,7 +36,8 @@ DefineBoolFlags("isundead", "organic", "hero", "volatile")
 --  ShadowFly : Shadow of flying unit (0:big, 1:normal, 2:small)
 --  Level     : Increase each time an upgrade is applyed to an unit.
 --
-DefineVariables("Mana", {Max = 255, Value = 84, Increase = 1, Enable = false}, "Speed", "ShadowFly", {Max = 2}, "Level")
+DefineVariables("Mana", {Max = 255, Value = 84, Increase = 1, Enable = false}, "Speed", "ShadowFly", {Max = 2},
+	"Level", {Max = 255, Value = 1, Increase = 0, Enable = true})
 
 --  Declare some unit types used in spells. This is quite accetable, the other
 --  way would be to define can-cast-spell outside unit definitions, not much of an improvement.
@@ -79,7 +80,7 @@ DefineSpell("spell-suicide-bomber", {
 	Action = {{"demolish", "range", 1, "damage", 400},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"end-point",   {"base", "caster"}}},
-	SoundWhenCast = "holy vision"
+	"sound-when-cast", "explosion"
 })
 --]]
 
@@ -88,7 +89,7 @@ DefineSpell("spell-suicide-bomber",
 	"action", {{"demolish", "range", 1, "damage", 400},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"end-point",   {"base", "caster"}}},
-	"sound-when-cast", "holy vision"
+	"sound-when-cast", "explosion"
 )
 
 

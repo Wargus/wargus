@@ -32,5 +32,19 @@ DefineAllowNormalOrcUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 
-
 Load("campaigns/orc-exp/levelx12o.sms")
+
+-- Default Spells Researched
+DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
+
+-- Extra Spells Begin Researched in this Mission
+DefineAllow("upgrade-bloodlust", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-runes", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-raise-dead", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-whirlwind", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-haste", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-unholy-armor", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-death-and-decay", "RRRRRRRRRRRRRRRR") 

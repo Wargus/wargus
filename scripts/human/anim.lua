@@ -260,6 +260,9 @@ DefineAnimations("animations-dwarves", {
   Attack = {"unbreakable begin", "frame 15", "wait 3",
     "frame 30", "attack", "sound dwarves-attack", "wait 5",
     "frame 45", "wait 3", "frame 0", "wait 13", "frame 0", "unbreakable end", "wait 1",},
+  SpellCast = {"unbreakable begin", "frame 15", "wait 3",
+    "frame 30", "attack", "wait 5",
+    "frame 45", "wait 3", "frame 0", "wait 13", "frame 0", "unbreakable end", "wait 1",},
   Death = {"unbreakable begin", "frame 5", "wait 3", "frame 20", "wait 3", "frame 35", "wait 3",
     "frame 50", "wait 3", "frame 60", "wait 3", "frame 60", "unbreakable end", "wait 1",},
 })

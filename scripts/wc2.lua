@@ -81,6 +81,7 @@ if (OldCreateUnit == nil) then
     {"unit-knight", "unit-ogre"},
     {"unit-paladin", "unit-ogre-mage"},
     {"unit-mage", "unit-death-knight"},
+    {"unit-dwarves", "unit-goblin-sappers"},
     {"unit-ballista", "unit-catapult"},
     {"unit-balloon", "unit-zeppelin"},
     {"unit-gryphon-rider", "unit-dragon"},

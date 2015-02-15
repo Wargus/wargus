@@ -170,7 +170,7 @@ function RunResultsMenu()
       SetDefaultPlayerNames()
     end
   for i = 0,7 do
-    if (GetPlayerData(i, "TotalUnits") > 0 ) then
+    if (GetPlayerData(i, "TotalUnits") > 0 and Players[i].Type ~= PlayerRescuePassive and Players[i].Type ~= PlayerRescueActive) then
 		playerCount = playerCount + 1
 		local name = GetPlayerData(i, "Name")
 		if (ThisPlayer.Index == i) then
