@@ -12,10 +12,21 @@ Briefing(
 )
 
 Triggers = [[
+local cycle2Win = 120
 AddTrigger(
   function() return GetPlayerData(6, "UnitTypesCount", "unit-archer") == 0 and
     IfRescuedNearUnit("this", ">=", 1, "unit-archer", "unit-circle-of-power") end,
-  function() return ActionVictory() end)
+  function()
+	if (cycle2Win == 120) then
+		PlaySound("rescue (human)")
+	end
+	cycle2Win = cycle2Win - 1
+	if (cycle2Win <= 0) then
+		ActionVictory() 
+		return false
+	end
+	
+  return true end)
 
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
