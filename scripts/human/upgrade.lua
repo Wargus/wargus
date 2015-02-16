@@ -252,7 +252,6 @@ function DefineAllowNormalHumanUnits(flags)
 	for i, unitName in ipairs(units) do
 		DefineAllow(unitName, flags)
 	end
-	DefineAllowHumanAlways()
 end
 
 function DefineAllowExtraHumanUnits(flags)
