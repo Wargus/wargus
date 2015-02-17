@@ -85,6 +85,9 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
+DefineAllowHumanAlways()
+DefineAllowOrcAlways()
+
 -- AI
 
 --=============================================================================
@@ -96,38 +99,38 @@ DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 local hum_12_loop_funcs = {
 	function() DebugPrint("Looping !\n") return false end,
 	function() return AiSleep(10000) end,
-	function() return AiForce(1, {AiSoldier(), 2, AiCavalry(), 10, AiMage(), 2}) end,
+	function() return AiForce(1, {AiTransporter(), 1, AiCavalry(), 6}) end,
+	function() return AiForce(2, {AiTransporter(), 1, AiCavalry(), 4, AiMage(), 2}) end,
 	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
-	function() return AiSleep(5000) end,
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
 	function() return AiSleep(7000) end,
-	function() return AiForce(1, {AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 5, AiScout(), 2}) end,
-	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
+	function() return AiForce(3, {AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 5, AiScout(), 2}) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
 	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
 }
 
 local hum_12_funcs = {
 	function() AiForceRole(0, "defend"); AiForceRole(1, "attack");
-				AiForceRole(2, "defend"); AiForceRole(3, "attack"); return false; end,
+				AiForceRole(2, "attack"); AiForceRole(3, "attack"); return false; end,
 	function() return AiSet(AiTanker(), 3) end,
 	function() return AiSet(AiWorker(), 7) end,
 	function() return AiWait(AiWorker()) end,
 	function() return AiNeed(AiPlatform()) end,
 
-	function() return AiSet(AiTransporter(), 2) end,
-	function() return AiForce(1, {AiSoldier(), 2}) end,
+	function() return AiForce(1, {AiTransporter(), 1, AiSoldier(), 2}) end,
 	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
+	function() DebugMessage("Attacking..."); return  AiAttackWithForce(1) end,
 	function() return AiSleep(2000) end,
+	function() return AiNeed(AiStables()) end,
 	function() return AiForce(1, {AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 4}) end,
-	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
 	function() return AiSleep(3000) end,
-	function() return AiForce(1, {AiSoldier(), 1, AiCavalry(), 10, AiMage(), 2}) end,
 	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
-
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiForce(1, {AiTransporter(), 1, AiCavalry(), 6}) end,
+	function() return AiForce(2, {AiTransporter(), 1, AiCavalry(), 4, AiMage(), 2}) end,
 	function() return AiResearch(AiMageSpell1()) end,
 	function() return AiResearch(AiUpgradeCavalryMage()) end,
 	function() return AiResearch(AiCavalryMageSpell1()) end,
@@ -140,25 +143,24 @@ local hum_12_funcs = {
 	function() return AiResearch(AiUpgradeShipArmor1()) end,
 	function() return AiSleep(4000) end,
 
-	function() return AiForce(1, {AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 4}) end,
-	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
+	function() return AiForce(3, {AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 4}) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
 	function() return AiResearch(AiUpgradeShipCannon2()) end,
 	function() return AiResearch(AiUpgradeShipArmor2()) end,
 	function() return AiResearch(AiUpgradeCatapult1()) end,
 	function() return AiResearch(AiUpgradeCatapult2()) end,
 	function() return AiSleep(6000) end,
 
-	function() return AiForce(1, {AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 5}) end,
-	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
+	function() return AiForce(3, {AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 5}) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
 	function() return AiSleep(7000) end,
+	function() return AiForce(3, {AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 5}) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
 	function() return AiSleep(5000) end,
-	function() return AiForce(1, {AiSoldier(), 1, AiCavalry(), 10, AiMage(), 2, AiCatapult(), 1,
-		AiDestroyer(), 2, AiBattleship(), 2, AiSubmarine(), 5, AiScout(), 2}) end,
-	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
-
+	function() return AiForce(3, {AiTransporter(), 1, AiSoldier(), 1, AiCavalry(), 3, AiCatapult(), 2}) end,
 	function() return AiResearch(AiUpgradeMissile1()) end,
 	function() return AiResearch(AiUpgradeWeapon1()) end,
 	function() return AiResearch(AiUpgradeArmor1()) end,
@@ -169,6 +171,14 @@ local hum_12_funcs = {
 	function() return AiResearch(AiUpgradeEliteShooter3()) end,
 	function() return AiResearch(AiUpgradeWeapon2()) end,
 	function() return AiResearch(AiUpgradeArmor2()) end,
+	function() return AiSleep(10000) end,
+	function() return AiWaitForce(1) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+
 	function() return AiLoop(hum_12_loop_funcs, stratagus.gameData.AIState.loop_index) end,
 }
 

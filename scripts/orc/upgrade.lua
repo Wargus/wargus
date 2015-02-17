@@ -263,7 +263,6 @@ function DefineAllowNormalOrcUnits(flags)
 	for i, unitName in ipairs(units) do
 		DefineAllow(unitName, flags)
 	end
-	DefineAllowOrcAlways()
 end
 
 function DefineAllowExtraOrcUnits(flags)
@@ -288,6 +287,7 @@ end
 InitFuncs:add(function()
 	DefineAllowNormalOrcUnits("AAAAAAAAAAAAAAAA")
 	DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
+	DefineAllowOrcAlways()
 end)
 
 -- NOTE: Save can generate this table.

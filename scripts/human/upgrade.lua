@@ -274,6 +274,7 @@ end
 InitFuncs:add(function()
 	DefineAllowNormalHumanUnits("AAAAAAAAAAAAAAAA")
 	DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
+	DefineAllowHumanAlways()
 end)
 
 -- NOTE: Save can generate this table.

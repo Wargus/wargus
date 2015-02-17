@@ -83,10 +83,8 @@ DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
 -- Default Spells Researched
-DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
+DefineAllowHumanAlways()
+DefineAllowOrcAlways()
 
 -- AI
 
@@ -95,6 +93,7 @@ DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
 
 local hum_14_orange_loop_funcs = {
 	function() DebugPrint("Looping !\n") return false end,
+	function() return AiSleep(30000) end,
 	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
 }
 
@@ -143,13 +142,21 @@ DefineAi("hum-14-red", "*", "hum-14-red", AiHuman14Red)
 --	FIXME: This AI should only collect GOLD.
 local hum_14_white_loop_funcs = {
 	function() DebugPrint("Looping !\n") return false end,
-	function() return AiForce(0, {AiFlyer(), 10}) end,
+	function() return AiForce(1, {AiFlyer(), 10}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	function() return AiSleep(19000) end,
+	function() return AiForce(1, {AiFlyer(), 10}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	function() return AiSleep(20000) end,
 	function() return AiForce(1, {AiFlyer(), 12}) end,
 	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	function() return AiSleep(21000) end,
+	function() return AiForce(1, {AiFlyer(), 12}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	function() return AiSleep(20000) end,
 	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
 }
@@ -157,12 +164,16 @@ local hum_14_white_loop_funcs = {
 local hum_14_white_funcs = {
 	function() AiForceRole(0, "defend"); AiForceRole(1, "attack"); return false end,
 	function() return AiSet(AiWorker(), 9) end,
+	function() return AiSetCollect({0, 100, 0, 0, 0, 0, 0}) end,
 	function() return AiWait(AiWorker()) end,
 	function() return AiForce(1, {AiFlyer(), 10}) end,
-	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
 	function() return AiSleep(64000) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	function() return AiSleep(12000) end,
+	function() return AiForce(1, {AiFlyer(), 10}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	function() return AiSleep(18000) end,
 	function() return AiLoop(hum_14_white_loop_funcs, stratagus.gameData.AIState.loop_index) end,
 }
@@ -186,6 +197,7 @@ local hum_14_black_loop_funcs = {
 local hum_14_black_funcs = {
 	function() AiForceRole(0, "defend"); AiForceRole(1, "attack"); return false end,
 	function() return AiSet(AiTanker(), 1) end,
+	function() return AiSetCollect({0, 100, 0, 0, 0, 0, 0}) end,
 	function() return AiResearch(AiUpgradeCavalryMage()) end,
 	function() return AiResearch(AiCavalryMageSpell1()) end,
 	function() return AiResearch(AiCavalryMageSpell2()) end,
