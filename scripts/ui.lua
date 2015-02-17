@@ -242,10 +242,10 @@ DefinePanelContents(
   Condition = {ShowOpponent = true, HideNeutral = true, Building = "false", Build = "false"},
   Contents = {
 -- Unit caracteristics
-	{ Pos = {150, 41},
+	{ Pos = {154, 41},
 		More = {"FormattedText", {Variable = "Level", Format = _("Level ~|~<%d~>")}}
 	},
-	{ Pos = {150, 56}, Condition = {ShowOpponent = false},
+	{ Pos = {154, 56}, Condition = {ShowOpponent = false},
 		More = {"FormattedText2", {Centered = true, 
 			Variable1 = "Xp", Variable2 = "Kill", Format = _("XP:~<%d~> Kills:~|~<%d~>")}}
 	},
