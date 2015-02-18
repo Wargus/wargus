@@ -2985,19 +2985,24 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 		dp = image + (i % IPR) * max_width + (i / IPR) * image_width * max_height;
 		dp += xoff + yoff * image_width;
 		h = w = 0;
+		bool toBreak = false;
 		for (;;) {
 			int ctrl;
 
 			ctrl = FetchByte(bp);
 //			printf("%d,%d ", ctrl >> 3, ctrl & 7);
 			w += (ctrl >> 3) & 0x1F;
-			if (w >= width) {
+			while (w >= width) {
 //				printf("\n");
 				w -= width;
 				++h;
 				if (h >= height) {
+					toBreak = true;
 					break;
 				}
+			}
+			if (toBreak) {
+				break;
 			}
 			dp[h * image_width + w] = ctrl & 0x07;
 			++w;
