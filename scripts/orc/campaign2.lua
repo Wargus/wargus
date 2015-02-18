@@ -32,22 +32,22 @@
 
 campaign_steps = {
   CreateVideoStep("videos/exp-1.ogv"),
-  CreatePictureStep("campaigns/orc-exp/interface/Act_I_-_Draenor,_the_Red_World.png", "sounds/orc/act.wav", "Act I", "Draenor, the Red World"),
+  CreatePictureStep("campaigns/orc-exp/interface/Act_I_-_Draenor,_the_Red_World.png", "sounds/orc/act.wav", "Act I", _("Draenor, the Red World")),
   CreateMapStep("campaigns/orc-exp/levelx01o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx02o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx03o.smp"),
 
-  CreatePictureStep("campaigns/orc-exp/interface/Act_II_-_The_Burning_of_Azeroth.png", "sounds/orc/act.wav", "Act II", "The Burning of Azeroth"),
+  CreatePictureStep("campaigns/orc-exp/interface/Act_II_-_The_Burning_of_Azeroth.png", "sounds/orc/act.wav", "Act II", _("The Burning of Azeroth")),
   CreateMapStep("campaigns/orc-exp/levelx04o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx05o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx06o.smp"),
 
-  CreatePictureStep("campaigns/orc-exp/interface/Act_III_-_The_Great_Sea.png", "sounds/orc/act.wav", "Act III", "The Great Sea"),
+  CreatePictureStep("campaigns/orc-exp/interface/Act_III_-_The_Great_Sea.png", "sounds/orc/act.wav", "Act III", _("The Great Sea")),
   CreateMapStep("campaigns/orc-exp/levelx07o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx08o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx09o.smp"),
 
-  CreatePictureStep("campaigns/orc-exp/interface/Act_IV_-_Prelude_to_New_Worlds.png", "sounds/orc/act.wav", "Act IV", "Prelude to New Worlds"),
+  CreatePictureStep("campaigns/orc-exp/interface/Act_IV_-_Prelude_to_New_Worlds.png", "sounds/orc/act.wav", "Act IV", _("Prelude to New Worlds")),
   CreateMapStep("campaigns/orc-exp/levelx10o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx11o.smp"),
   CreateMapStep("campaigns/orc-exp/levelx12o.smp"),

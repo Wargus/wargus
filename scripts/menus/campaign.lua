@@ -52,13 +52,14 @@ function Briefing(title, objs, bg, text, voices)
   end
 
   local t = LoadBuffer(text)
-  t = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" .. t .. "\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  t = "\n\n\n\n\n\n\n\n\n\n" .. t .. "\n\n\n\n\n\n\n\n\n\n\n\n\n"
   local sw = ScrollingWidget(320, 170 * Video.Height / 480)
   sw:setBackgroundColor(Color(0,0,0,0))
   sw:setSpeed(0.28)
   local l = MultiLineLabel(t)
   l:setFont(Fonts["large"])
   l:setAlignment(MultiLineLabel.LEFT)
+  l:setVerticalAlignment(MultiLineLabel.TOP)
   l:setLineWidth(320)
   l:adjustSize()
   sw:add(l, 0, 0)
@@ -164,8 +165,8 @@ function CreatePictureStep(bg, sound, title, text)
     local menu = WarMenu(nil, bg)
     local offx = (Video.Width - 640) / 2
     local offy  = (Video.Height - 480) / 2
-    menu:addLabel(title, offx + 320, offy + 240 - 67, Fonts["large-title"], true)
-    menu:addLabel(text, offx + 320, offy + 240 - 25, Fonts["small-title"], true)
+    menu:addLabel(title, offx + 320, offy + 240 - 67, Fonts["small-title"], true)
+    menu:addLabel(text, offx + 320, offy + 240 - 25, Fonts["large-title"], true)
     menu:addHalfButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
       function() menu:stop() end)
     menu:run()
@@ -202,8 +203,8 @@ function CampaignButtonTitle(i)
   if (CurrentCampaignPath ~= nil and CampaignMapTitleList ~= nil) then
 	
 	Load(CurrentCampaignPath .. CampaignMapTitleList[i])
-	if ( string.len(title) > 22 ) then
-	  title = string.sub(title, 1, 21) .. "..."
+	if ( string.len(title) > 80 ) then
+	  title = string.sub(title, 1, 80) .. "..."
 	end
 
 	return title
@@ -261,20 +262,28 @@ function RunCampaignSubmenu(campaign)
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
+  
+  menu:addLabel(_("~<Mission list~>"), offx + 640/2 + 12, offy + 45)
 
-  local show_buttons = GetCampaignState(campaign)
-  local half = math.ceil(show_buttons/2)
-  local floorhalf = math.floor(show_buttons / 2)
-
-  for it = 1, floorhalf do
-    local i = 2 * it - 1
-    menu:addFullButton(CampaignButtonTitle(i), ".", offx + 98, offy + 64 + (36 * it), CampaignButtonFunction(campaign, i, menu))
-    menu:addFullButton(CampaignButtonTitle(i + 1), ".", offx + 326, offy + 64 + (36 * it), CampaignButtonFunction(campaign, i + 1, menu))
+  local missionList = {}
+  for i = 1, GetCampaignState(campaign) do
+	missionList[i] = CampaignButtonTitle(i)
   end
-  if (floorhalf ~= half) then
-    menu:addFullButton(CampaignButtonTitle(show_buttons), ".", offx + 98, offy + 64 + (36 * half), CampaignButtonFunction(campaign, show_buttons, menu))
-  end
+  local missionListBox = menu:addListBox(80, 70, 480, 250, missionList)
 
+  local goButton = menu:addFullButton(_("~!Play mission"), "p", offx + 208, offy + 212 + (36 * 4),
+    CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu))
+  local function UpdateGo()
+	if missionListBox:getSelected() ~= -1 then
+		goButton:setVisible(true)
+	else
+		goButton:setVisible(false)
+	end
+  end
+  goButton:setVisible(false)
+  CampaignButtonFunction(campaign, 1, menu)
+  local listener = LuaActionListener(UpdateGo)
+  menu:addLogicCallback(listener)
   menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 212 + (36 * 5),
     function()  menu:stop(1); RunSinglePlayerTypeMenu(); currentCampaign = nil; currentState = nil; end)
 
