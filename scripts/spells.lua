@@ -350,9 +350,46 @@ DefineSpell("spell-polymorph",
 
 local function SpellBlizzard(units)
 	if (table.getn(units) > 1) then
-		local x = GetUnitVariable(units[2], "PosX")
-		local y = GetUnitVariable(units[2], "PosY")
-		return x, y
+		local p2 = Players[GetUnitVariable(units[1], "Player")]
+		local arunits = {}
+		local enemy = 2
+		local costs = {}
+		for i = 2,table.getn(units) do
+			costs[i] = 0
+			local p1 = Players[GetUnitVariable(units[i], "Player")]
+			if (p1.Index == p2.Index or p1:IsAllied(p2)) then
+			else
+				costs[i] = costs[i] + GetUnitVariable(units[i], "Priority")
+				arunits = GetUnitsAroundUnit(units[i], 5, true)
+				for j = 1,table.getn(arunits) do
+					if (arunits[j] ~= units[1]) then
+						local p3 = Players[GetUnitVariable(arunits[j], "Player")]
+						if (p3.Index == p2.Index or p3:IsAllied(p2)) then
+							costs[i] = costs[i] - GetUnitVariable(arunits[j], "Priority")
+						else
+							costs[i] = costs[i] + GetUnitVariable(arunits[j], "Priority")
+						end
+					end
+				end
+			end
+		end
+		for i = 3,table.getn(costs) do
+			print(tostring(GetUnitVariable(units[i], "Ident")) .. tostring(costs[i]).."\n")
+			if costs[i] > costs[enemy] then
+				enemy = i
+			end
+		end
+		print("end\n")
+		if (costs[enemy] > 0) then
+			print(tostring(costs[enemy]).."\n")
+			local x = GetUnitVariable(units[enemy], "PosX")
+			local y = GetUnitVariable(units[enemy], "PosY")
+			x = x + math.floor(UnitManager:GetSlotUnit(units[enemy]).Type.TileWidth / 2)
+			y = y + math.floor(UnitManager:GetSlotUnit(units[enemy]).Type.TileHeight / 2)
+			return x, y
+		else 
+			return -1, -1
+		end
 	else
 		return -1, -1
 	end
@@ -372,8 +409,8 @@ DefineSpell("spell-blizzard",
 		 "start-offset-y", -128}},
 	"sound-when-cast", "blizzard",
 	"depend-upgrade", "upgrade-blizzard",
-	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"opponent", "only"}, "position-autocast", SpellBlizzard},
-	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"opponent", "only"}, "position-autocast", SpellBlizzard}
+	"autocast", {"range", 12, "priority", {"Priority", true}, "combat", "only", "position-autocast", SpellBlizzard},
+	"ai-cast", {"range", 12, "priority", {"Priority", true}, "combat", "only", "position-autocast", SpellBlizzard}
 )
 
 DefineSpell("spell-death-and-decay",
