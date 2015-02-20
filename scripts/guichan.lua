@@ -996,7 +996,7 @@ function BuildProgramStartMenu()
   menu:addFullButton(_("~!Replay Game"), "r", offx + 208, offy + 104 + 36*2,
     function() RunReplayGameMenu(); menu:stop(1) end)
   menu:addFullButton(_("~!Options"), "o", offx + 208, offy + 104 + 36*3,
-    function() RunOptionsMenu(); menu:stop(1) end)
+    function() RunGameOptionsMenu(); menu:stop(1) end)
   menu:addFullButton(_("~!Load Mod"), "l", offx + 208, offy + 104 + 36*4,
     function() RunLoadModMenu(); menu:stop(1) end)
   menu:addFullButton(_("Map ~!Editor"), "e", offx + 208, offy + 104 + 36*5,

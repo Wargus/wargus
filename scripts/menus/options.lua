@@ -180,7 +180,11 @@ function RunGameSoundOptionsMenu()
 
   AddSoundOptions(menu, 0, 0, 256/2 - 192/2, 256)
 
-  menu:run(false)
+  if GameCycle > 0 then
+	menu:run(false)
+  else
+	menu:run()
+  end
 end
 
 function RunPreferencesMenu()
@@ -253,8 +257,11 @@ function RunPreferencesMenu()
     function() 
 	  menu:stop()
 	end)
-	
+  if GameCycle > 0 then
 	menu:run(false)
+  else
+	menu:run()
+  end
 end
 
 function RunSpeedsMenu()
@@ -316,7 +323,11 @@ function RunSpeedsMenu()
 	  menu:stop()
 	end)
 	
-	menu:run(false)
+	if GameCycle > 0 then
+	  menu:run(false)
+    else
+	  menu:run()
+    end
 end
 
 function SetVideoSize(width, height)
@@ -580,11 +591,19 @@ function RunGameOptionsMenu()
     function() RunGameSoundOptionsMenu() end) 
 	menu:addFullButton("Preferences (~<F8~>)", "f8", 16, 40 + 36*2,
     function() RunPreferencesMenu() end)
-  menu:addFullButton("Diplomacy (~<F9~>)", "f9", 16, 40 + 36*3,
+  if (GameCycle > 0) then
+	menu:addFullButton("Diplomacy (~<F9~>)", "f9", 16, 40 + 36*3,
     function() RunDiplomacyMenu() end)
+  else
+	menu:addFullButton("Video (~<F9~>)", "f9", 16, 40 + 36*3,
+    function() RunOptionsMenu(); menu:stopAll(1) end)
+  end
   menu:addFullButton("Previous (~<Esc~>)", "escape", 128 - (224 / 2), 288 - 40,
     function() menu:stop() end)
-
-  menu:run(false)
+  if (GameCycle > 0) then
+	menu:run(false)
+  else
+    menu:run()
+  end
 end
 
