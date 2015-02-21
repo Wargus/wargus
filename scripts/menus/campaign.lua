@@ -213,13 +213,11 @@ function CampaignButtonTitle(i)
 end
 
 function CampaignButtonFunction(campaign, i, menu)
-  return function()
     position = campaign_menu[i]
     currentCampaign = campaign
     currentState = i
-    menu:stop()
+	menu:stop()
     RunCampaign(campaign)
-  end
 end
 
 function RunCampaignSubmenu(campaign)
@@ -270,18 +268,15 @@ function RunCampaignSubmenu(campaign)
 	missionList[i] = CampaignButtonTitle(i)
   end
   local missionListBox = menu:addListBox(80, 70, 480, 250, missionList)
-
-  local goButton = menu:addFullButton(_("~!Play mission"), "p", offx + 208, offy + 212 + (36 * 4),
-    CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu))
+  local missionNum = 1
+  local goButton = menu:addFullButton(_("~!Play mission"), "p", offx + 208, offy + 212 + (36 * 4),  
+			function() return CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu) end)
   local function UpdateGo()
 	if missionListBox:getSelected() ~= -1 then
-		goButton:setVisible(true)
-	else
-		goButton:setVisible(false)
+		 
 	end
   end
-  goButton:setVisible(false)
-  CampaignButtonFunction(campaign, 1, menu)
+
   local listener = LuaActionListener(UpdateGo)
   menu:addLogicCallback(listener)
   menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 212 + (36 * 5),
@@ -323,8 +318,8 @@ function RunCampaign(campaign)
       break -- quit to menu
     end
   end
-
-  RunCampaignSubmenu(currentCampaign)
+  
+  RunCampaignSubmenu()
 
   currentCampaign = nil
 end
