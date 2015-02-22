@@ -610,6 +610,7 @@ Objectives = DefaultObjectives
 function InitGameSettings()
   GameSettings.NetGameType = 1
   for i=0,PlayerMax-1 do
+    GameSettings.Presets[i].PlayerColor = i
     GameSettings.Presets[i].Race = -1
     GameSettings.Presets[i].Team = -1
     GameSettings.Presets[i].Type = -1
@@ -706,6 +707,8 @@ mapname = "maps/skirmish/(2)timeless-isle.smp.gz"
 local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
 mapinfo = {
   playertypes = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+  playerais = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+  playerrace = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
   description = "",
   nplayers = 1,
   w = 32,
@@ -716,7 +719,16 @@ mapinfo = {
 function GetMapInfo(mapname)
   local OldDefinePlayerTypes = DefinePlayerTypes
   local OldPresentMap = PresentMap
+  local OldSetAiType = SetAiType
+  local OldSetStartView = SetStartView
+  local OldSetPlayerData = SetPlayerData
+  local OldLoadTileModels = LoadTileModels
+  local OldSetTile = SetTile
+  local OldCreateUnit = CreateUnit
+  local OldSetResourcesHeld = SetResourcesHeld
 
+  mapinfo.playerais = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil}
+  mapinfo.playerrace = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil}
   function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
     mapinfo.playertypes[1] = p1
     mapinfo.playertypes[2] = p2
@@ -736,11 +748,11 @@ function GetMapInfo(mapname)
     mapinfo.nplayers = 0
     for i=0,15 do
       local t = mapinfo.playertypes[i]
-	  if (t~= nil)then
-	  print(tostring(i)..tostring(t).."\n")end
-      if (t == "person" or t == "computer") then
-        mapinfo.nplayers = mapinfo.nplayers + 1
-      end
+	  if (t~= nil) then
+		  if (t == "person" or t == "computer") then
+			mapinfo.nplayers = mapinfo.nplayers + 1
+		  end
+	  end
     end
   end
 
@@ -753,9 +765,59 @@ function GetMapInfo(mapname)
     mapinfo.h = h
     mapinfo.id = id
   end
+  
+  -- to load data from sms file, we shouldn't execute commands within it
+  function SetAiType(player, aitype)
+    mapinfo.playerais[player + 1] = aitype
+  end
+
+  function SetPlayerData(player, data, arg1, arg2)
+    if (data == "RaceName") then
+		mapinfo.playerrace[player + 1] = arg1
+	end
+  end
+
+  function SetStartView(player, x, y)
+   return
+  end
+
+  function LoadTileModels(model)
+   return
+  end
+
+  function SetTile(tile, x, y, value)
+   return
+  end
+
+  function SetTile(tile, x, y, value)
+   return
+  end
+
+  function CreateUnit(unittype, player, pos)
+   return
+  end
+
+  function SetResourcesHeld(unit, value)
+   return
+  end
 
   Load(mapname)
 
+  local smsmapfile = mapname
+  if (string.find(smsmapfile, ".gz$") ~= nil) then
+      smsmapfile = string.sub(smsmapfile, 1, string.len(smsmapfile) - 3)
+  end
+  smsmapfile = string.sub(smsmapfile, 1, string.len(smsmapfile) - 4)
+  smsmapfile = smsmapfile..".sms"
+  Load(smsmapfile)
+
+  SetStartView = OldSetStartView
+  SetPlayerData = OldSetPlayerData
+  LoadTileModels = OldLoadTileModels
+  SetTile = OldSetTile
+  CreateUnit = OldCreateUnit
+  SetResourcesHeld = OldSetResourcesHeld
+  SetAiType = OldSetAiType
   DefinePlayerTypes = OldDefinePlayerTypes
   PresentMap = OldPresentMap
 end
@@ -813,15 +875,15 @@ function RunSinglePlayerTypeMenu()
   if (wargus.tales == false) then
     menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
   end
-  menu:addLabel("~<Single Player~>", offx + 320, offy + 212 - 25)
+  menu:addLabel(_("~<Single Player~>"), offx + 320, offy + 212 - 25)
   local buttonNewMap =
-  menu:addFullButton("~!Standard Game", "s", offx + 208, offy + 104 + 36*3,
+  menu:addFullButton(_("~!Standard Game"), "s", offx + 208, offy + 104 + 36*3,
     function() RunSinglePlayerGameModeMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Campaign Game", "c", offx + 208, offy + 104 + 36*4,
+  menu:addFullButton(_("~!Campaign Game"), "c", offx + 208, offy + 104 + 36*4,
     function() RunModCampaignGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Load Game", "l", offx + 208, offy + 104 + 36*5,
+  menu:addFullButton(_("~!Load Game"), "l", offx + 208, offy + 104 + 36*5,
     function() RunLoadGameMenu(); menu:stop(1) end)
-  menu:addFullButton("~!Previous Menu", "p", offx + 208, offy + 104 + 36*6,
+  menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 104 + 36*6,
     function() menu:stop() end)
   return menu:run()
 end
@@ -834,7 +896,7 @@ function RunSinglePlayerGameModeMenu()
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
   menu:setDrawMenusUnder(true)
 
-  menu:addLabel("Standard Game", 176, 8)
+  menu:addLabel(_("Standard Game"), 176, 8)
 
   local browser = menu:addBrowser("maps/list/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
 
@@ -846,7 +908,7 @@ function RunSinglePlayerGameModeMenu()
       Load(browser.path .. browser:getSelectedItem())
       menu:stop()
     end)
-  menu:addHalfButton("~!Cancel", "c", 198, 318,
+  menu:addHalfButton(_("~!Cancel"), "c", 198, 318,
     function() buttonStatut = 2; menu:stop(1); RunSinglePlayerTypeMenu() end)
 
   menu:run()
@@ -868,12 +930,12 @@ function RunSinglePlayerGameMenu()
   local tilesetdd
   
   -- Setup variables
-  local nameslist = {_("~red~1:Red"),_("~blue~2:Blue"),_("~green~3:Green"),_("~violet~4:Violet"),_("~orange~5:Orange"),_("~black~6:Black"),
-	_("~white~7:White"),_("~yellow~8:Yellow"), _("~red~9:Red"),_("~blue~10:Blue"),_("~green~11:Green"),_("~violet~12:Violet"),_("~orange~13:Orange"),_("~black~14:Black"),
-	_("~white~15:White"),_("~yellow~16:Yellow")}
+  local nameslist = {"1:","2:","3:","4:","5:","6:","7:","8:","9:","10:","11:","12:","13:","14:","15:"}
+  local colorlist = {_("~red~Red"),_("~blue~Blue"),_("~green~Green"),_("~violet~Violet"),_("~orange~Orange"),_("~black~Black"),
+	_("~white~White"),_("~yellow~Yellow")}
   local sidelist = {_("Random"),_("Human"),_("Orc")}
   local teamlist = {"-","1","2","3","4"}
-  local playerlist = {_("Player"),_("Computer"),_("None")}
+  local playerlist = {_("Player"),_("Computer"),_("Rescue-passive"),_("Rescue-active"),_("None")}
   local reveal_list = {_("Default"),_("Explored"),_("Revealed")}
   local game_types = {_("Use map settings"), _("Melee"), _("Free for all"), _("Top vs bottom"), _("Left vs right"), _("Man vs Machine")}
   local tileset_names = {_("Map Default"), _("Summer"), _("Swamp"), "Wasteland", "Winter"}
@@ -881,7 +943,9 @@ function RunSinglePlayerGameMenu()
   local difficulty_types = {_("Easy"), _("Normal"), _("Hard"),_("Nightmare"),_("Hell")}
   local resource_types = {_("High"), _("Medium"), _("Low"),_("Quick Start")}
   local nms = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
+  local pcolor = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
   local ptype = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
+  local paitype = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
   local pside = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
   local teams = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
   local rescount = nil
@@ -891,7 +955,7 @@ function RunSinglePlayerGameMenu()
   local reveal_type = nil
 
   -- Logo
-  menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 35)
+  menu:addLabel(_("~<Single Player Game Setup~>"), offx + 640/2 + 12, offy + 35)
   -- Copyright information.
   if (wargus.tales == false) then
     menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
@@ -981,7 +1045,7 @@ function RunSinglePlayerGameMenu()
   descriptionl = menu:addLabel("descriptionl", offx + 16 + 70, offy + 360, Fonts["game"], false)
 
   
-  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0,
+  menu:addFullButton(_("S~!elect Scenario"), "e", offx + 640 - 224 - 16, offy + 360 + 36*0,
     function()
       local oldmapname = mapname
       RunSelectScenarioMenu()
@@ -990,7 +1054,7 @@ function RunSinglePlayerGameMenu()
         MapChanged()
       end
     end)
-  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
+  menu:addFullButton(_("~!Start Game"), "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
       local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"}
 	  InitGameSettings()
@@ -1032,6 +1096,12 @@ function RunSinglePlayerGameMenu()
 				elseif ptype[i+1]:getSelected()==2 then
 					GameSettings.Presets[i].Type = -1
 				end
+				if pcolor[i+1]==nil then
+					GameSettings.Presets[i].PlayerColor = i
+				else
+					GameSettings.Presets[i].PlayerColor = pcolor[i+1]:getSelected()
+				end
+				--Players[i].AiName = ais[1 + playersProp[1 + i].ai:getSelected()]
 			end
 			GameSettings.Difficulty = difficulty:getSelected() + 1
 			GameSettings.GameType = game_type:getSelected()
@@ -1059,8 +1129,14 @@ function RunSinglePlayerGameMenu()
 		if pside[i+1]~=nil then
 			pside[i+1]:setVisible(false)
 		end
+		if pcolor[i+1]~=nil then
+			pcolor[i+1]:setVisible(false)
+		end
 		if teams[i+1]~=nil then
 			teams[i+1]:setVisible(false)
+		end
+		if paitype[i+1]~=nil then
+			paitype[i+1]:setVisible(false)
 		end
 	  end
 	  for i=0,15 do
@@ -1070,10 +1146,38 @@ function RunSinglePlayerGameMenu()
 	    end
 	  end
 	  offset=0
-	  menu:addLabel(_("~<Type:~>"), offx+80, offy +10+60,Fonts["game"], false)
+	  menu:addLabel(_("~<Color:~>"), offx+25, offy +10+60,Fonts["game"], false)
+	  for i=0,15 do
+	    if mapinfo.playertypes[i+1] ~= "nobody" and mapinfo.playertypes[i+1] ~= nil then
+		  pcolor[i+1] = menu:addDropDown(colorlist, offx + 20, offy + 10 + 80+ offset, function(dd) end)
+		  if (i > 7) then
+		    pcolor[i+1]:setSelected(i-8)
+		  else
+		    pcolor[i+1]:setSelected(i)
+		  end
+		  pcolor[i+1]:setSize(60, 20)
+		  pcolor[i+1]:setActionCallback(
+		  function()
+		  	sk_pcolor[i+1] = pcolor[i+1]:getSelected()
+		  end)
+		  if sk_pcolor[i+1]~=-1 then
+			pcolor[i+1]:setSelected(sk_pcolor[i+1])
+		  end
+		  offset=offset+25
+	    end
+	  end
+	  offset=0
+	  menu:addLabel(_("~<Type:~>"), offx+100, offy +10+60,Fonts["game"], false)
 	  for i=0,15 do
 		if mapinfo.playertypes[i+1] ~= "nobody" and mapinfo.playertypes[i+1] ~= nil  then
-			ptype[i+1] = menu:addDropDown(playerlist, offx + 65, offy + 10 + 80+ offset, function(dd) end)
+			ptype[i+1] = menu:addDropDown(playerlist, offx + 85, offy + 10 + 80+ offset, function(dd) end)
+			if mapinfo.playertypes[i+1] == "computer" then
+				ptype[i+1]:setSelected(1)
+			elseif mapinfo.playertypes[i+1] == "rescue-passive" then
+				ptype[i+1]:setSelected(2)
+			elseif mapinfo.playertypes[i+1] == "rescue-active" then
+				ptype[i+1]:setSelected(3)
+			end
 			ptype[i+1]:setSize(80, 20)
 			ptype[i+1]:setActionCallback(
 			function()
@@ -1083,16 +1187,18 @@ function RunSinglePlayerGameMenu()
 				ptype[i+1]:setSelected(sk_ptype[i+1])
 			end
 			offset=offset+25
-			if mapinfo.playertypes[i+1] == "computer" then
-				ptype[i+1]:setSelected(1)
-			end
 		end
 	  end
 	  offset=0
-	  menu:addLabel(_("~<Side:~>"), offx+150, offy +10+60,Fonts["game"], false)
+	  menu:addLabel(_("~<Race:~>"), offx+170, offy +10+60,Fonts["game"], false)
 	  for i=0,15 do
 		if mapinfo.playertypes[i+1] ~= "nobody" and mapinfo.playertypes[i+1] ~= nil  then
-		pside[i+1] = menu:addDropDown(sidelist, offx + 150, offy + 10 + 80+ offset, function(dd) end)
+		pside[i+1] = menu:addDropDown(sidelist, offx + 170, offy + 10 + 80+ offset, function(dd) end)
+		if mapinfo.playerrace[i+1] == "human" then
+			pside[i+1]:setSelected(1)
+		elseif mapinfo.playerrace[i+1] == "orc" then
+			pside[i+1]:setSelected(2)
+		end
 		pside[i+1]:setSize(70, 20)
 		pside[i+1]:setActionCallback(
 		function()
@@ -1105,10 +1211,10 @@ function RunSinglePlayerGameMenu()
 		end
 	  end
 	  offset=0
-	  menu:addLabel(_("~<Teams:~>"), offx+218, offy +10+60,Fonts["game"], false)
+	  menu:addLabel(_("~<Teams:~>"), offx+238, offy +10+60,Fonts["game"], false)
 	  for i=0,15 do
 		if mapinfo.playertypes[i+1] ~= "nobody" and mapinfo.playertypes[i+1] ~= nil  then
-		teams[i+1] = menu:addDropDown(teamlist, offx + 225, offy + 10 + 80 +offset, function(dd) end)
+		teams[i+1] = menu:addDropDown(teamlist, offx + 245, offy + 10 + 80 +offset, function(dd) end)
 		teams[i+1]:setSize(40, 20)
 		teams[i+1]:setActionCallback(
 		function()
@@ -1120,10 +1226,37 @@ function RunSinglePlayerGameMenu()
 		offset=offset+25
 		end
 	  end
+	  offset=0
+	  menu:addLabel(_("~<AI Script:~>"), offx+320, offy +10+60,Fonts["game"], false)
+	  for i=0,15 do
+		if mapinfo.playertypes[i+1] ~= "nobody" and mapinfo.playertypes[i+1] ~= nil  then
+		paitype[i+1] = menu:addDropDown(AIStrategyTypes, offx + 290, offy + 10 + 80 +offset, function(dd) end)
+		for cc = 1, table.getn(AIStrategyTypes) do
+			if mapinfo.playerais[i+1] == AIStrategyTypes[cc] then
+				
+				paitype[i+1]:setSelected(cc-1)
+				break
+			end
+		end
+		paitype[i+1]:setSize(130, 20)
+		paitype[i+1]:setActionCallback(
+		function()
+			sk_paitype[i+1] = paitype[i+1]:getSelected()
+		end)
+		if sk_paitype[i+1]~=-1 then
+			paitype[i+1]:setSelected(sk_paitype[i+1])
+		end
+		offset=offset+25
+		end
+	  end
+	  
 	  for i=0,15 do
 		if mapinfo.playertypes[i+1] == "nobody" or mapinfo.playertypes[i+1] == nil then
 			if nms[i+1] ~= nil then
 				nms[i+1]:setVisible(false) 
+			end
+			if pcolor[i+1] ~= nil then
+				pcolor[i+1]:setVisible(false) 
 			end
 			if ptype[i+1] ~= nil then
 				ptype[i+1]:setVisible(false) 
@@ -1135,14 +1268,17 @@ function RunSinglePlayerGameMenu()
 			if teams[i+1] ~= nil then
 				teams[i+1]:setVisible(false) 
 			end
+			if paitype[i+1] ~= nil then
+				paitype[i+1]:setVisible(false) 
+			end
 		end
 	  end
   end
   
   menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function()  menu:stop(1); RunSinglePlayerTypeMenu() end)
 
-  menu:addLabel(_("~<Reveal Map:~>"), offx + 300, offy + 74, Fonts["game"], false)
-  reveal_type = menu:addDropDown(reveal_list, offx + 300, offy + 90,
+  menu:addLabel(_("~<Reveal Map:~>"), offx + 450, offy + 74, Fonts["game"], false)
+  reveal_type = menu:addDropDown(reveal_list, offx + 450, offy + 90,
     function(dd) end)
   reveal_type:setSize(170, 20)
   reveal_type:setActionCallback(
@@ -1153,8 +1289,8 @@ function RunSinglePlayerGameMenu()
 		reveal_type:setSelected(sk_reveal_type)
 	end
 
-  menu:addLabel(_("~<Game Type:~>"), offx + 300, offy + 114, Fonts["game"], false)
-  game_type = menu:addDropDown(game_types, offx + 300, offy + 130,
+  menu:addLabel(_("~<Game Type:~>"), offx + 450, offy + 114, Fonts["game"], false)
+  game_type = menu:addDropDown(game_types, offx + 450, offy + 130,
    function(dd) TimerRedraw() end)
   game_type:setSize(170, 20)
   game_type:setActionCallback(
@@ -1165,8 +1301,8 @@ function RunSinglePlayerGameMenu()
 		game_type:setSelected(sk_game_type)
 	end
 
-  menu:addLabel(_("~<Resources:~>"), offx + 300, offy + 154, Fonts["game"], false)
-  rescount = menu:addDropDown(resource_types, offx + 300, offy + 170,
+  menu:addLabel(_("~<Resources:~>"), offx + 450, offy + 154, Fonts["game"], false)
+  rescount = menu:addDropDown(resource_types, offx + 450, offy + 170,
     function(dd) end)
   rescount:setSize(170, 20)
   rescount:setActionCallback(
@@ -1177,8 +1313,8 @@ function RunSinglePlayerGameMenu()
 		rescount:setSelected(sk_rescount)
 	end
 
-  menu:addLabel(_("~<AI Difficulty:~>"), offx + 300, offy + 194, Fonts["game"], false)
-  difficulty = menu:addDropDown(difficulty_types, offx + 300, offy + 210,
+  menu:addLabel(_("~<AI Difficulty:~>"), offx + 450, offy + 194, Fonts["game"], false)
+  difficulty = menu:addDropDown(difficulty_types, offx + 450, offy + 210,
     function(dd) end)
   difficulty:setSize(170, 20)
   difficulty:setSelected(2)
@@ -1190,8 +1326,8 @@ function RunSinglePlayerGameMenu()
 		difficulty:setSelected(sk_difficulty)
 	end
 
-  menu:addLabel("~<Tileset:~>", offx + 300, offy + 234, Fonts["game"], false)
-  tilesetdd = menu:addDropDown(tileset_names, offx + 300, offy + 250,
+  menu:addLabel("~<Tileset:~>", offx + 450, offy + 234, Fonts["game"], false)
+  tilesetdd = menu:addDropDown(tileset_names, offx + 450, offy + 250,
     function(dd) end)
   tilesetdd:setSize(170, 20)
   tilesetdd:setActionCallback(
@@ -1201,8 +1337,8 @@ function RunSinglePlayerGameMenu()
 	if sk_tileset~=-1 then
 		tilesetdd:setSelected(sk_tileset)
 	end
-  menu:addLabel("~<Units:~>", offx + 300, offy + 274, Fonts["game"], false)
-  numunits = menu:addDropDown(numunit_types, offx + 300, offy + 290,
+  menu:addLabel("~<Units:~>", offx + 450, offy + 274, Fonts["game"], false)
+  numunits = menu:addDropDown(numunit_types, offx + 450, offy + 290,
     function(dd) end)
   numunits:setSize(170, 20)
   numunits:setActionCallback(
@@ -1386,6 +1522,29 @@ function GameStarting()
     SetGamePaused(true)
     RunTipsMenu()
   end
+  if GameSettings.NetGameType == 1 then
+		if GameSettings.GameType==0 then
+			for plrs=0,7 do
+				for plrs2=0,7 do
+					if plrs==plrs2 then
+					else
+						if GameSettings.Presets[plrs].Team == 0 then
+							SetDiplomacy(plrs, "enemy" , plrs2)
+							SetSharedVision(plrs, false, plrs2)
+						else
+							if GameSettings.Presets[plrs].Team == GameSettings.Presets[plrs2].Team then
+								SetDiplomacy(plrs, "allied" , plrs2)
+								SetSharedVision(plrs, true, plrs2)
+							else
+								SetDiplomacy(plrs, "enemy" , plrs2)
+								SetSharedVision(plrs, false, plrs2)
+							end
+						end
+					end
+				end
+			end
+		end
+	end
 end
 
 if (Editor.Running == EditorCommandLine) then

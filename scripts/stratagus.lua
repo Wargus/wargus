@@ -74,6 +74,14 @@ function SetDefaultRaceView()
   SetDefaultTextColors(UI.NormalFontColor, UI.ReverseFontColor)
 end
 
+AIStrategyTypes = {}
+OldDefineAi = DefineAi
+function DefineAi(name, race, class, script)
+	table.insert(AIStrategyTypes, name)
+	OldDefineAi(name, race, class, script)
+end
+
+
 DefineBoolFlags("Center", "WoodImprove", "OilImprove")
 
 --  Edit the next sections to get your look and feel.
@@ -371,6 +379,8 @@ local defaultPreferences = {
 sk_ptype = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
 sk_pside = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
 sk_teams = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+sk_pcolor = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+sk_paitype = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
 sk_rescount = -1
 sk_game_type = -1
 sk_difficulty = -1

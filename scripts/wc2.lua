@@ -175,14 +175,11 @@ function SetPlayerData(player, data, arg1, arg2)
   local res = {arg2, arg2, arg2}
 
   if (data == "RaceName") then
-    -- FIXME: support multiplayer
-    if (ThisPlayer ~= nil and ThisPlayer.Index == player) then
-      if (GameSettings.Presets[0].Race == 1) then
+    if (GameSettings.Presets[player].Race == 0) then
         arg1 = "human"
-      elseif (GameSettings.Presets[0].Race == 2) then
+      elseif (GameSettings.Presets[player].Race == 1) then
         arg1 = "orc"
       end
-    end
   elseif (data == "Resources") then
     if (GameSettings.Resources == 1) then
       res = {2000, 1000, 1000}
