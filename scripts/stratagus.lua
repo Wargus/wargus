@@ -273,6 +273,7 @@ SetAllPlayersTotalUnitLimit(400)
 
 OldActionDefeat = ActionDefeat
 function ActionDefeat()
+	FastForwardCycle = 0
 	local confirm = WarGameMenu(panel(4))
 
 	confirm:resize(288,128)
@@ -291,6 +292,7 @@ end
 
 OldActionVictory = ActionVictory
 function ActionVictory()
+	FastForwardCycle = 0
 	local confirm = WarGameMenu(panel(4))
 
 	confirm:resize(288,128)
