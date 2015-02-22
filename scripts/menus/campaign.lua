@@ -268,15 +268,16 @@ function RunCampaignSubmenu(campaign)
 	missionList[i] = CampaignButtonTitle(i)
   end
   local missionListBox = menu:addListBox(80, 70, 480, 250, missionList)
-  local missionNum = 1
   local goButton = menu:addFullButton(_("~!Play mission"), "p", offx + 208, offy + 212 + (36 * 4),  
 			function() return CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu) end)
   local function UpdateGo()
 	if missionListBox:getSelected() ~= -1 then
-		 
+		 goButton:setVisible(true)
+	else
+		goButton:setVisible(false)
 	end
   end
-
+  goButton:setVisible(false)
   local listener = LuaActionListener(UpdateGo)
   menu:addLogicCallback(listener)
   menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 212 + (36 * 5),

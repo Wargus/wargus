@@ -16693,6 +16693,7 @@ BlueFlyerBuilding_y = 250
 BlueTownHall_x = 30
 BlueTownHall_y = 230
 
+Triggers = [[
 AddTrigger(
 	function() return ((GameCycle > 300) and (GameCycle < 310)) end,
 	function()	AddMessage("In the red corner we have Wise Skeleton!")
@@ -16821,6 +16822,8 @@ AddTrigger(
 					ActionVictory() 
 				end
 return true end)
+]]
+assert(loadstring(Triggers))()
 
 BlueTeam1_Order = "Bottom-Right"
 RedTeam1_Order = "Top-Left"

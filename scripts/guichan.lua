@@ -640,6 +640,13 @@ function RunMap(map, objective, fow, revealmap)
     if revealmap == true then
        RevealMap()
     end
+	if GameSettings.RevealMap == 2 then
+      SetFogOfWar(false)
+	  RevealMap()
+    end
+    if GameSettings.RevealMap == 1 then
+       RevealMap()
+    end
     StartMap(map)
     if GameResult ~= GameRestart then
       loop = false
@@ -698,7 +705,7 @@ end
 mapname = "maps/skirmish/(2)timeless-isle.smp.gz"
 local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
 mapinfo = {
-  playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
+  playertypes = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
   description = "",
   nplayers = 1,
   w = 32,
@@ -710,7 +717,7 @@ function GetMapInfo(mapname)
   local OldDefinePlayerTypes = DefinePlayerTypes
   local OldPresentMap = PresentMap
 
-  function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p12, p13, p14, p15)
+  function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
     mapinfo.playertypes[1] = p1
     mapinfo.playertypes[2] = p2
     mapinfo.playertypes[3] = p3
@@ -729,6 +736,8 @@ function GetMapInfo(mapname)
     mapinfo.nplayers = 0
     for i=0,15 do
       local t = mapinfo.playertypes[i]
+	  if (t~= nil)then
+	  print(tostring(i)..tostring(t).."\n")end
       if (t == "person" or t == "computer") then
         mapinfo.nplayers = mapinfo.nplayers + 1
       end
@@ -857,16 +866,121 @@ function RunSinglePlayerGameMenu()
   local mapl
   local descriptionl
   local tilesetdd
+  
+  -- Setup variables
+  local nameslist = {_("~red~1:Red"),_("~blue~2:Blue"),_("~green~3:Green"),_("~violet~4:Violet"),_("~orange~5:Orange"),_("~black~6:Black"),
+	_("~white~7:White"),_("~yellow~8:Yellow"), _("~red~9:Red"),_("~blue~10:Blue"),_("~green~11:Green"),_("~violet~12:Violet"),_("~orange~13:Orange"),_("~black~14:Black"),
+	_("~white~15:White"),_("~yellow~16:Yellow")}
+  local sidelist = {_("Random"),_("Human"),_("Orc")}
+  local teamlist = {"-","1","2","3","4"}
+  local playerlist = {_("Player"),_("Computer"),_("None")}
+  local reveal_list = {_("Default"),_("Explored"),_("Revealed")}
+  local game_types = {_("Use map settings"), _("Melee"), _("Free for all"), _("Top vs bottom"), _("Left vs right"), _("Man vs Machine")}
+  local tileset_names = {_("Map Default"), _("Summer"), _("Swamp"), "Wasteland", "Winter"}
+  local numunit_types = {_("Map Default"), _("One Peasant Only")}
+  local difficulty_types = {_("Easy"), _("Normal"), _("Hard"),_("Nightmare"),_("Hell")}
+  local resource_types = {_("High"), _("Medium"), _("Low"),_("Quick Start")}
+  local nms = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
+  local ptype = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
+  local pside = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
+  local teams = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
+  local rescount = nil
+  local game_type = nil
+  local difficulty = nil
+  local max_score = nil
+  local reveal_type = nil
 
+  -- Logo
+  menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 35)
+  -- Copyright information.
   if (wargus.tales == false) then
-    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
+  end
+  
+  -- Error handling function
+  function ErrorMessage(errmsg)
+	  local menu = WarMenu(nil, panel(4), false)
+	  menu:setSize(288, 128)
+	  menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
+	  menu:setDrawMenusUnder(true)
+
+	  menu:addLabel(_("Error:"), 144, 11)
+
+	  local l = MultiLineLabel(errmsg)
+	  l:setFont(Fonts["large"])
+	  l:setAlignment(MultiLineLabel.CENTER)
+	  l:setVerticalAlignment(MultiLineLabel.CENTER)
+	  l:setLineWidth(270)
+	  l:setWidth(270)
+	  l:setHeight(41)
+	  l:setBackgroundColor(dark)
+	  menu:add(l, 9, 38)
+
+	  menu:addHalfButton("~!OK", "o", 92, 80, function() menu:stop() end)
+
+	  menu:run()
+  end 
+  
+  -- Check for correct data before start
+  function CheckCorrect()
+	local firstTeam=0
+	local firstTeam2=0
+	--Team Check
+	for i=0,15 do
+		if teams[i+1]~=nil then
+			if teams[i+1]:isVisible() and teams[i+1]:getSelected()~=0 then
+				firstTeam = teams[i+1]:getSelected()
+				break
+			elseif teams[i+1]:getSelected()==0 then
+				firstTeam = -1
+				firstTeam2 = i
+				break
+			end
+		end
+	end
+	if firstTeam > -1 then
+		for j=firstTeam2+1,15 do
+			if teams[j+1]~=nil then
+				if teams[j+1]:isVisible() and teams[j+1]:getSelected()~=firstTeam then
+					break
+				elseif j==15 then
+					return 1 -- only 1 team
+				end
+			end
+		end
+	end
+	--PlayerCheck
+	local personcount = 0
+	local compcount = 0
+	for i=0,15 do
+		if ptype[i+1]~=nil then
+			if ptype[i+1]:isVisible() and ptype[i+1]:getSelected()==0 then
+				personcount = personcount + 1
+			elseif ptype[i+1]:isVisible() and ptype[i+1]:getSelected()==1 then
+				compcount = compcount + 1
+			end
+		end
+	end
+	if compcount == 0 and personcount == 0 then
+		return 2 -- no players or computers
+	elseif compcount>0 and personcount == 0 then
+		return 3 -- only computers and no player
+	elseif compcount+personcount < 2 then
+		return 4 -- only one player
+	end
+	--Success 
+	return 0
+  end
+  
+  if mapname == nil then
+	mapname = "maps/skirmish/(2)timeless-isle.sms.gz"
   end
   
   menu:addLabel("Scenario:", offx + 16, offy + 360, Fonts["game"], false)
   mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 360 + 24, Fonts["game"], false)
   descriptionl = menu:addLabel("descriptionl", offx + 16 + 70, offy + 360, Fonts["game"], false)
 
-  menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
+  
   menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0,
     function()
       local oldmapname = mapname
@@ -878,51 +992,226 @@ function RunSinglePlayerGameMenu()
     end)
   menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
-      local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"};
-
-      GameSettings.Presets[0].Race = race:getSelected()
-      GameSettings.Resources = resources:getSelected()
-      GameSettings.Opponents = opponents:getSelected()
-      GameSettings.NumUnits = numunits:getSelected()
-      GameSettings.GameType = gametype:getSelected() - 1
-      GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
-      RunMap(mapname, nil, wc2.preferences.FogOfWar, false)
-      menu:stop()
+      local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"}
+	  InitGameSettings()
+		local errorlevel = CheckCorrect()
+		if errorlevel==1 then
+			ErrorMessage("Need more than 1 team")
+		elseif errorlevel==2 then
+			ErrorMessage("No players selected")
+		elseif errorlevel==3 then
+			ErrorMessage("Need at least 1 person player")
+		elseif errorlevel==4 then
+			ErrorMessage("Need at least 2 players")
+		else
+			for i=0,15 do
+				local foundperson = false
+				if pside[i+1]==nil then
+					GameSettings.Presets[i].Race = 0
+				elseif (pside[i+1]:getSelected() == 0) then
+					GameSettings.Presets[i].Race = math.random(0, 1)
+				else
+					GameSettings.Presets[i].Race = pside[i+1]:getSelected() - 1
+				end
+				if teams[i+1]==nil then
+					GameSettings.Presets[i].Team = -1
+				else
+					GameSettings.Presets[i].Team = teams[i+1]:getSelected()
+				end
+				if ptype[i+1]==nil then
+					GameSettings.Presets[i].Type = -1
+				elseif ptype[i+1]:getSelected()==0 then
+					if foundperson==false then
+						foundperson=true
+						GameSettings.Presets[i].Type = PlayerPerson
+					else
+						GameSettings.Presets[i].Type = PlayerComputer
+					end
+				elseif ptype[i+1]:getSelected()==1 then
+					GameSettings.Presets[i].Type = PlayerComputer
+				elseif ptype[i+1]:getSelected()==2 then
+					GameSettings.Presets[i].Type = -1
+				end
+			end
+			GameSettings.Difficulty = difficulty:getSelected() + 1
+			GameSettings.GameType = game_type:getSelected()
+			GameSettings.Resources = rescount:getSelected()+1
+			GameSettings.RevealMap = reveal_type:getSelected()
+			GameSettings.NumUnits = numunits:getSelected()
+			GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
+			GameSettings.NetGameType = 1
+			Load(mapname)
+			RunMap(mapname)
+			menu:stop()
+		end
     end)
+	
+  -- Player redrawing function
+  function PlayersRedraw()
+	local offset=0
+	  for i=0,15 do
+		if nms[i+1]~=nil then
+			nms[i+1]:setVisible(false)
+		end
+		if ptype[i+1]~=nil then
+			ptype[i+1]:setVisible(false)
+		end
+		if pside[i+1]~=nil then
+			pside[i+1]:setVisible(false)
+		end
+		if teams[i+1]~=nil then
+			teams[i+1]:setVisible(false)
+		end
+	  end
+	  for i=0,15 do
+	    if mapinfo.playertypes[i+1] ~= "nobody" and mapinfo.playertypes[i+1] ~= nil then
+		  nms[i+1] = menu:addLabel(nameslist[i+1], offx + 2 , offy + 80+offset+15,Fonts["game"], false)
+		  offset=offset+25
+	    end
+	  end
+	  offset=0
+	  menu:addLabel(_("~<Type:~>"), offx+80, offy +10+60,Fonts["game"], false)
+	  for i=0,15 do
+		if mapinfo.playertypes[i+1] ~= "nobody" and mapinfo.playertypes[i+1] ~= nil  then
+			ptype[i+1] = menu:addDropDown(playerlist, offx + 65, offy + 10 + 80+ offset, function(dd) end)
+			ptype[i+1]:setSize(80, 20)
+			ptype[i+1]:setActionCallback(
+			function()
+				sk_ptype[i+1] = ptype[i+1]:getSelected()
+			end)
+			if sk_ptype[i+1]~=-1 then
+				ptype[i+1]:setSelected(sk_ptype[i+1])
+			end
+			offset=offset+25
+			if mapinfo.playertypes[i+1] == "computer" then
+				ptype[i+1]:setSelected(1)
+			end
+		end
+	  end
+	  offset=0
+	  menu:addLabel(_("~<Side:~>"), offx+150, offy +10+60,Fonts["game"], false)
+	  for i=0,15 do
+		if mapinfo.playertypes[i+1] ~= "nobody" and mapinfo.playertypes[i+1] ~= nil  then
+		pside[i+1] = menu:addDropDown(sidelist, offx + 150, offy + 10 + 80+ offset, function(dd) end)
+		pside[i+1]:setSize(70, 20)
+		pside[i+1]:setActionCallback(
+		function()
+			sk_pside[i+1] = pside[i+1]:getSelected()
+		end)
+		if sk_pside[i+1]~=-1 then
+			pside[i+1]:setSelected(sk_pside[i+1])
+		end
+		offset=offset+25
+		end
+	  end
+	  offset=0
+	  menu:addLabel(_("~<Teams:~>"), offx+218, offy +10+60,Fonts["game"], false)
+	  for i=0,15 do
+		if mapinfo.playertypes[i+1] ~= "nobody" and mapinfo.playertypes[i+1] ~= nil  then
+		teams[i+1] = menu:addDropDown(teamlist, offx + 225, offy + 10 + 80 +offset, function(dd) end)
+		teams[i+1]:setSize(40, 20)
+		teams[i+1]:setActionCallback(
+		function()
+			sk_teams[i+1] = teams[i+1]:getSelected()
+		end)
+		if sk_teams[i+1]~=-1 then
+			teams[i+1]:setSelected(sk_teams[i+1])
+		end
+		offset=offset+25
+		end
+	  end
+	  for i=0,15 do
+		if mapinfo.playertypes[i+1] == "nobody" or mapinfo.playertypes[i+1] == nil then
+			if nms[i+1] ~= nil then
+				nms[i+1]:setVisible(false) 
+			end
+			if ptype[i+1] ~= nil then
+				ptype[i+1]:setVisible(false) 
+				ptype[i+1]:setSelected(2)
+			end
+			if pside[i+1] ~= nil then
+				pside[i+1]:setVisible(false) 
+			end
+			if teams[i+1] ~= nil then
+				teams[i+1]:setVisible(false) 
+			end
+		end
+	  end
+  end
+  
   menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function()  menu:stop(1); RunSinglePlayerTypeMenu() end)
 
-  menu:addLabel("~<Your Race:~>", offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
-  race = menu:addDropDown({"Map Default", "Human", "Orc"}, offx + 40, offy + 10 + 240,
+  menu:addLabel(_("~<Reveal Map:~>"), offx + 300, offy + 74, Fonts["game"], false)
+  reveal_type = menu:addDropDown(reveal_list, offx + 300, offy + 90,
     function(dd) end)
-  race:setSize(152, 20)
+  reveal_type:setSize(170, 20)
+  reveal_type:setActionCallback(
+	function()
+		sk_reveal_type = reveal_type:getSelected()
+	end)
+	if sk_reveal_type~=-1 then
+		reveal_type:setSelected(sk_reveal_type)
+	end
 
-  menu:addLabel("~<Resources:~>", offx + 220, offy + (10 + 240) - 20, Fonts["game"], false)
-  resources = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, offx + 220, offy + 10 + 240,
+  menu:addLabel(_("~<Game Type:~>"), offx + 300, offy + 114, Fonts["game"], false)
+  game_type = menu:addDropDown(game_types, offx + 300, offy + 130,
+   function(dd) TimerRedraw() end)
+  game_type:setSize(170, 20)
+  game_type:setActionCallback(
+	function()
+		sk_game_type = game_type:getSelected()
+	end)
+	if sk_game_type~=-1 then
+		game_type:setSelected(sk_game_type)
+	end
+
+  menu:addLabel(_("~<Resources:~>"), offx + 300, offy + 154, Fonts["game"], false)
+  rescount = menu:addDropDown(resource_types, offx + 300, offy + 170,
     function(dd) end)
-  resources:setSize(152, 20)
+  rescount:setSize(170, 20)
+  rescount:setActionCallback(
+	function()
+		sk_rescount = rescount:getSelected()
+	end)
+	if sk_rescount~=-1 then
+		rescount:setSelected(sk_rescount)
+	end
 
-  menu:addLabel("~<Units:~>", offx + 640 - 224 - 16, offy + (10 + 240) - 20, Fonts["game"], false)
-  numunits = menu:addDropDown({"Map Default", "One Peasant Only"}, offx + 640 - 224 - 16, offy + 10 + 240,
+  menu:addLabel(_("~<AI Difficulty:~>"), offx + 300, offy + 194, Fonts["game"], false)
+  difficulty = menu:addDropDown(difficulty_types, offx + 300, offy + 210,
     function(dd) end)
-  numunits:setSize(190, 20)
+  difficulty:setSize(170, 20)
+  difficulty:setSelected(2)
+  difficulty:setActionCallback(
+	function()
+		sk_difficulty = difficulty:getSelected()
+	end)
+	if sk_difficulty~=-1 then
+		difficulty:setSelected(sk_difficulty)
+	end
 
-  local opponents_list = {"Map Default", "1 Opponent", "2 Opponents",
-    "3 Opponents", "4 Opponents", "5 Opponents", "6 Opponents", "7 Opponents"}
-
-  menu:addLabel("~<Opponents:~>", offx + 40, offy + (10 + 300) - 20, Fonts["game"], false)
-  opponents = menu:addDropDown(opponents_list, offx + 40, offy + 10 + 300,
+  menu:addLabel("~<Tileset:~>", offx + 300, offy + 234, Fonts["game"], false)
+  tilesetdd = menu:addDropDown(tileset_names, offx + 300, offy + 250,
     function(dd) end)
-  opponents:setSize(152, 20)
-
-  menu:addLabel("~<Game Type:~>", offx + 220, offy + (10 + 300) - 20, Fonts["game"], false)
-  gametype = menu:addDropDown({"Use map settings", "Melee", "Free for all", "Top vs bottom", "Left vs right", "Man vs Machine"}, offx + 220, offy + 10 + 300,
+  tilesetdd:setSize(170, 20)
+  tilesetdd:setActionCallback(
+	function()
+		sk_tileset = tilesetdd:getSelected()
+	end)
+	if sk_tileset~=-1 then
+		tilesetdd:setSelected(sk_tileset)
+	end
+  menu:addLabel("~<Units:~>", offx + 300, offy + 274, Fonts["game"], false)
+  numunits = menu:addDropDown(numunit_types, offx + 300, offy + 290,
     function(dd) end)
-  gametype:setSize(152, 20)
-
-  menu:addLabel("~<Tileset:~>", offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
-  tilesetdd = menu:addDropDown({_("Map Default"), _("Summer"), _("Swamp"), "Wasteland", "Winter"}, offx + 640 - 224 - 16, offy + 10 + 300,
-    function(dd) end)
-  tilesetdd:setSize(152, 20)
+  numunits:setSize(170, 20)
+  numunits:setActionCallback(
+	function()
+		sk_numunits = numunits:getSelected()
+	end)
+	if sk_numunits~=-1 then
+		numunits:setSelected(sk_numunits)
+	end
 
   function MapChanged()
     mapl:setCaption(string.sub(mapname, 6))
@@ -932,11 +1221,7 @@ function RunSinglePlayerGameMenu()
       " (" .. mapinfo.w .. " x " .. mapinfo.h .. ")")
     descriptionl:adjustSize()
 
-    local o = {}
-    for i=1,mapinfo.nplayers do
-      table.insert(o, opponents_list[i])
-    end
-    opponents:setList(o)
+    PlayersRedraw()
   end
 
   GetMapInfo(mapname)

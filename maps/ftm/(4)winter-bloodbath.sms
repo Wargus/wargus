@@ -24822,6 +24822,7 @@ BlueFlyerBuilding_y = 16
 BlueTownHall_x = 45
 BlueTownHall_y = 45
 
+Triggers = [[
 AddTrigger(
 	function() return ((GameCycle > 300) and (GameCycle < 310)) end,
 	function()	if ((GetPlayerData(RedTeam1, "Name") == "Neutral") and (GetPlayerData(RedTeam2, "Name") == "Neutral")) then 
@@ -25081,3 +25082,6 @@ AddTrigger(
 	RedTemp_x2 = RedTeam2_x2
 	RedTemp_y2 = RedTeam2_y2
 return false end)
+]]
+
+assert(loadstring(Triggers))()

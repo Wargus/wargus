@@ -367,6 +367,17 @@ local defaultPreferences = {
 	SF2SoundFont = "music/TimGM6mb.sf2"
 }
 
+--- Skirmish Setup --------------
+sk_ptype = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+sk_pside = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+sk_teams = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+sk_rescount = -1
+sk_game_type = -1
+sk_difficulty = -1
+sk_reveal_type = -1
+sk_tileset = -1
+sk_numunits = -1
+
 if (wc2.preferences.ServerList == nil) then 
 	wc2.preferences.ServerList = {}
 	wc2.preferences.ServerList[1] = "25.62.21.197"

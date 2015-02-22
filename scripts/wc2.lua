@@ -222,26 +222,60 @@ function DefineCustomMapRules()
 end
 
 function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
-  local p = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15}
-  local foundperson = false
-  local nump = GameSettings.Opponents
-  if (nump == 0) then nump = 15 end
+  if (IsNetworkGame()==true or GameSettings.NetGameType == 2 or Editor.Running==4 or currentCampaign ~= nil) then
+	  local p = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15}
+	  local foundperson = false
+	  local nump = GameSettings.Opponents
+	  if (nump == 0) then nump = 15 end
+	  
 
-  -- FIXME: should randomly pick players to use
-  for i=1,15 do
-    if (p[i] == "person" or p[i] == "computer") then
-      if (p[i] == "person" and foundperson == false) then
-        foundperson = true
-      else
-        if (nump == 0) then
-          p[i] = "nobody"
-        else
-          nump = nump - 1
-        end
-      end
-    end
-  end
-  OldDefinePlayerTypes(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15])
+	  -- FIXME: should randomly pick players to use
+	  for i=1,15 do
+		if (p[i] == "person" or p[i] == "computer") then
+		  if (p[i] == "person" and foundperson == false) then
+			foundperson = true
+		  else
+			if (nump == 0) then
+			  p[i] = "nobody"
+			else
+			  nump = nump - 1
+			end
+		  end
+		end
+	  end
+	  OldDefinePlayerTypes(p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15])
+  else
+	local plrsnmb = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
+		for i=0,15 do
+			if GameSettings.Presets[i].Type == PlayerPerson then
+				plrsnmb[i+1]="person"
+			elseif GameSettings.Presets[i].Type == PlayerComputer then
+				plrsnmb[i+1]="computer"
+			elseif GameSettings.Presets[i].Type == PlayerNeutral then
+				plrsnmb[i+1]="nobody"
+			elseif GameSettings.Presets[i].Type == -1 then
+				plrsnmb[i+1]=nil
+			end
+		end
+		OldDefinePlayerTypes(plrsnmb[1], plrsnmb[2], plrsnmb[3], plrsnmb[4], plrsnmb[5], plrsnmb[6], plrsnmb[7], plrsnmb[8],
+			plrsnmb[9], plrsnmb[10], plrsnmb[11], plrsnmb[12], plrsnmb[13], plrsnmb[14], plrsnmb[15])
+		mapinfo.playertypes[1] = plrsnmb[1]
+		mapinfo.playertypes[2] = plrsnmb[2]
+		mapinfo.playertypes[3] = plrsnmb[3]
+		mapinfo.playertypes[4] = plrsnmb[4]
+		mapinfo.playertypes[5] = plrsnmb[5]
+		mapinfo.playertypes[6] = plrsnmb[6]
+		mapinfo.playertypes[7] = plrsnmb[7]
+		mapinfo.playertypes[8] = plrsnmb[8]
+		mapinfo.playertypes[9] = plrsnmb[9]
+		mapinfo.playertypes[10] = plrsnmb[10]
+		mapinfo.playertypes[11] = plrsnmb[11]
+		mapinfo.playertypes[12] = plrsnmb[12]
+		mapinfo.playertypes[13] = plrsnmb[13]
+		mapinfo.playertypes[14] = plrsnmb[14]
+		mapinfo.playertypes[15] = plrsnmb[15]
+	end
+	
 end
 
 if OldLoadTileModels == nil then

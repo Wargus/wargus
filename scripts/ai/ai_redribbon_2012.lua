@@ -1049,7 +1049,7 @@ function AiRed1_Basic_2012()
 			AiRed1_Spawn_2012(AiPlayer(), 750, 0, 250, 1500, 0, 0, "unit-skeleton")	
 		end
 		if (GetNumUnitsAt(RedTeam1, "unit-catapult", {RedTeam1_x1, RedTeam1_y1}, {RedTeam1_x2, RedTeam1_y2}) > 4) then
-			if (SetPlayerData(RedTeam1, "Resources", "oil", o) > 4500) then
+			if (GetPlayerData(RedTeam1, "Resources", "oil") > 4500) then
 				AiRed1_Spawn_2012(AiPlayer(), 7500, 0, 5000, 0, 0, 0, "unit-ogre-mage")	
 			elseif (GetPlayerData(RedTeam1, "UnitTypesCount", AiEliteShooter()) == 0) then
 				AiRed1_Spawn_2012(AiPlayer(), 1000, 1500, 2500, 0, 0, 0, "unit-berserker")	

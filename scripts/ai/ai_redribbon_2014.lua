@@ -373,53 +373,66 @@ function AiRed_2014()
 		if ((timers[ftm_team[AiPlayer()]] == 50) or (timers[ftm_team[AiPlayer()]] == 99) or (timers[ftm_team[AiPlayer()]] == 25) or (timers[ftm_team[AiPlayer()]] == 75)) then
 		else 
 			for i=ftm_index_start[ftm_team[AiPlayer()]],ftm_index_end[ftm_team[AiPlayer()]] do
-				if (((aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_unit[i]) or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_rank[i]) or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_category[i]) or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_category[i])) and (GetPlayerData(AiPlayer(), "Resources", "oil") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_oil[i])) and (GetPlayerData(AiPlayer(), "Resources", "wood") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_wood[i])) and (GetPlayerData(AiPlayer(), "Resources", "gold") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_gold[i]))) then
-				if (((GetNumUnitsAt(ftm_team[AiPlayer()], ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) or (ftm_origin[i] == AiBestCityCenter())) and ((GetNumUnitsAt(ftm_team[AiPlayer()], AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) or (ftm_origin[i] == AiWise())) then
-						for j=1, aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]] do
-							CreateUnit(ftm_unit[i], AiPlayer(), {ftm_team_tempx[AiPlayer()], ftm_team_tempy[AiPlayer()]})
-							if (ftm_team_orderx[AiPlayer()] == "Right") then
-								if (ftm_team_tempx[AiPlayer()] == ftm_team_x2[AiPlayer()]) then
-									ftm_team_tempx[AiPlayer()] = ftm_team_x1[AiPlayer()]
-									if (ftm_team_ordery[AiPlayer()] == "Down") then
-										if (ftm_team_tempy[AiPlayer()] == ftm_team_y2[AiPlayer()]) then
-											ftm_team_tempy[AiPlayer()] = ftm_team_y1[AiPlayer()]
+				if (((aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_unit[i]) 
+					or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_rank[i]) 
+					or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_category[i]) 
+					or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_category[i])) 
+					and (GetPlayerData(AiPlayer(), "Resources", "oil") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_oil[i])) 
+					and (GetPlayerData(AiPlayer(), "Resources", "wood") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_wood[i])) 
+					and (GetPlayerData(AiPlayer(), "Resources", "gold") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_gold[i]))) then
+						print(tostring(i)..(ftm_origin_x[i] - 3).."\n")
+						if (((GetNumUnitsAt(ftm_team[AiPlayer()], ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) 
+							or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) 
+							or (ftm_origin[i] == AiBestCityCenter())) 
+							and ((GetNumUnitsAt(ftm_team[AiPlayer()], AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) 
+							or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) 
+							or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) 
+							or (ftm_origin[i] == AiWise())) then
+								for j=1, aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]] do
+									CreateUnit(ftm_unit[i], AiPlayer(), {ftm_team_tempx[AiPlayer()], ftm_team_tempy[AiPlayer()]})
+									if (ftm_team_orderx[AiPlayer()] == "Right") then
+										if (ftm_team_tempx[AiPlayer()] == ftm_team_x2[AiPlayer()]) then
+											ftm_team_tempx[AiPlayer()] = ftm_team_x1[AiPlayer()]
+											if (ftm_team_ordery[AiPlayer()] == "Down") then
+												if (ftm_team_tempy[AiPlayer()] == ftm_team_y2[AiPlayer()]) then
+													ftm_team_tempy[AiPlayer()] = ftm_team_y1[AiPlayer()]
+												else
+													ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] + 1
+												end
+											elseif (ftm_team_ordery[AiPlayer()] == "Up") then
+												if (ftm_team_tempy[AiPlayer()] == ftm_team_y1[AiPlayer()]) then
+													ftm_team_tempy[AiPlayer()] = ftm_team_y2[AiPlayer()]
+												else
+													ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] - 1
+												end
+											end
 										else
-											ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] + 1
-										end
-									elseif (ftm_team_ordery[AiPlayer()] == "Up") then
-										if (ftm_team_tempy[AiPlayer()] == ftm_team_y1[AiPlayer()]) then
-											ftm_team_tempy[AiPlayer()] = ftm_team_y2[AiPlayer()]
-										else
-											ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] - 1
-										end
-									end
-								else
-									ftm_team_tempx[AiPlayer()] = ftm_team_tempx[AiPlayer()] + 1
-								end
-							end
-							if (ftm_team_orderx[AiPlayer()] == "Left") then
-								if (ftm_team_tempx[AiPlayer()] == ftm_team_x1[AiPlayer()]) then
-									ftm_team_tempx[AiPlayer()] = ftm_team_x2[AiPlayer()]
-									if (ftm_team_ordery[AiPlayer()] == "Down") then
-										if (ftm_team_tempy[AiPlayer()] == ftm_team_y2[AiPlayer()]) then
-											ftm_team_tempy[AiPlayer()] = ftm_team_y1[AiPlayer()]
-										else
-											ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] + 1
-										end
-									elseif (ftm_team_ordery[AiPlayer()] == "Up") then
-										if (ftm_team_tempy[AiPlayer()] == ftm_team_y1[AiPlayer()]) then
-											ftm_team_tempy[AiPlayer()] = ftm_team_y2[AiPlayer()]
-										else
-											ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] - 1
+											ftm_team_tempx[AiPlayer()] = ftm_team_tempx[AiPlayer()] + 1
 										end
 									end
-								else
-									ftm_team_tempx[AiPlayer()] = ftm_team_tempx[AiPlayer()] - 1
+									if (ftm_team_orderx[AiPlayer()] == "Left") then
+										if (ftm_team_tempx[AiPlayer()] == ftm_team_x1[AiPlayer()]) then
+											ftm_team_tempx[AiPlayer()] = ftm_team_x2[AiPlayer()]
+											if (ftm_team_ordery[AiPlayer()] == "Down") then
+												if (ftm_team_tempy[AiPlayer()] == ftm_team_y2[AiPlayer()]) then
+													ftm_team_tempy[AiPlayer()] = ftm_team_y1[AiPlayer()]
+												else
+													ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] + 1
+												end
+											elseif (ftm_team_ordery[AiPlayer()] == "Up") then
+												if (ftm_team_tempy[AiPlayer()] == ftm_team_y1[AiPlayer()]) then
+													ftm_team_tempy[AiPlayer()] = ftm_team_y2[AiPlayer()]
+												else
+													ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] - 1
+												end
+											end
+										else
+											ftm_team_tempx[AiPlayer()] = ftm_team_tempx[AiPlayer()] - 1
+										end
+									end
 								end
-							end
+							AiRed_Resources_Remove_2014(AiPlayer(), (ftm_cost_gold[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]), (ftm_cost_wood[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]), (ftm_cost_oil[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]))
 						end
-						AiRed_Resources_Remove_2014(AiPlayer(), (ftm_cost_gold[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]), (ftm_cost_wood[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]), (ftm_cost_oil[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]))
-					end
 					if (aiftm_index[AiPlayer()] == aiftm_terminate[AiPlayer()]) then
 						aiftm_index[AiPlayer()] = aiftm_loop[AiPlayer()]
 					else
