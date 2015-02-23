@@ -31,15 +31,15 @@ if (wargus.tales == true) then
 	DefineRaceNames(
 	"race", {
 		"name", "human",
-		"display", "Freemen",
+		"display", _("Freemen"),
 		"visible"},
 	"race", {
 		"name", "orc",
-		"display", "Wilds",
+		"display", _("Wilds"),
 		"visible"},
 	"race", {
 		"name", "neutral",
-		"display", "Neutral"
+		"display", _("Neutral")
 	})
 else
 	DefineRaceNames(

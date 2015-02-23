@@ -10,7 +10,7 @@
 --
 --      options.lua - Define the menu for options.
 --
---      (c) Copyright 2006-2011 by Jimmy Salmon, Pali Rohár and Kyran Jackson.
+--      (c) Copyright 2006-2015 by Jimmy Salmon, Pali Rohár, Kyran Jackson and cybermind
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -30,9 +30,9 @@
 function AddSoundOptions(menu, offx, offy, centerx, bottom)
   local b
 
-  b = menu:addLabel("Sound Options", 128, 11, Fonts["game"])
+  b = menu:addLabel(_("Sound Options"), 128, 11, Fonts["game"])
 
-  b = Label("Effects Volume")
+  b = Label(_("Effects Volume"))
   b:setFont(CFont:Get("game"))
   b:adjustSize();
   menu:add(b, offx + 16, offy + 36 * 1)
@@ -65,9 +65,9 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
   b:adjustSize();
   menu:addCentered(b, offx + 224, offy + 36 * 2 + 2)
 
-  menu:addLabel("Sound:", 12, 176, Fonts["game"], false)
-  menu:addLabel("On", 60, 202, Fonts["game"], false)
-  menu:addLabel("Off", 60, 224, Fonts["game"], false)  
+  menu:addLabel(_("Sound:"), 12, 176, Fonts["game"], false)
+  menu:addLabel(_("On"), 60, 202, Fonts["game"], false)
+  menu:addLabel(_("Off"), 60, 224, Fonts["game"], false)  
   
   local effectscheckbox = {}
 		effectscheckbox = menu:addImageRadioButton("", "effectscheckbox", 37, 200, offi, offi2, oni, oni2, function() 
@@ -96,7 +96,7 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
 			soundsliderleftbutton:setEnabled(false)
 		end
 
-  b = Label("Music Volume")
+  b = Label(_("Music Volume"))
   b:setFont(CFont:Get("game"))
   b:adjustSize();
   menu:add(b, offx + 16, offy + 36 * 2.75)
@@ -126,9 +126,9 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
   b:adjustSize();
   menu:addCentered(b, offx + 224, 137)
 
-  menu:addLabel("Music:", 112, 176, Fonts["game"], false)
-  menu:addLabel("On", 160, 202, Fonts["game"], false)
-  menu:addLabel("Off", 160, 224, Fonts["game"], false)
+  menu:addLabel(_("Music:"), 112, 176, Fonts["game"], false)
+  menu:addLabel(_("On"), 160, 202, Fonts["game"], false)
+  menu:addLabel(_("Off"), 160, 224, Fonts["game"], false)
   
   local musiccheckbox = {}
 		musiccheckbox = menu:addImageRadioButton("", "musiccheckbox", 138, 200, offi, offi2, oni, oni2, function() 
@@ -168,7 +168,7 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
 		menu:stop()
     end)
 
-  b = menu:addHalfButton("~!Cancel", "c", 16, 288 - 40,
+  b = menu:addHalfButton(_("~!Cancel"), "c", 16, 288 - 40,
     function() 
 	  menu:stop() 
 	end)
@@ -190,7 +190,7 @@ end
 function RunPreferencesMenu()
   local menu = WarGameMenu(panel(1))
 
-  menu:addLabel("Preferences", 128, 11)
+  menu:addLabel(_("Preferences"), 128, 11)
 
 -- To fog of war? Or not to fog of war?
   menu:addLabel("Show Hotkeys:", 16, 40, Fonts["large"], false)
@@ -267,8 +267,8 @@ end
 function RunSpeedsMenu()
   local menu = WarGameMenu(panel(1))
 
-  menu:addLabel("Speed Settings", 128, 8, Fonts["game"])
-  menu:addLabel("Game Speed", 12, 44, Fonts["game"], false)
+  menu:addLabel(_("Speed Settings"), 128, 8, Fonts["game"])
+  menu:addLabel(_("Game Speed"), 12, 44, Fonts["game"], false)
 
   local gamespeed = {}
 		-- slider button to decrease slider value
@@ -289,7 +289,7 @@ function RunSpeedsMenu()
   l:adjustSize()
   menu:add(l, 234 - l:getWidth(), 80)
 
-  menu:addLabel("Mouse Scroll Speed", 12, 112, Fonts["game"], false)
+  menu:addLabel(_("Mouse Scroll Speed"), 12, 112, Fonts["game"], false)
 
   local mousescrollspeed = {}
   		-- slider button to decrease slider value
@@ -318,7 +318,7 @@ function RunSpeedsMenu()
       menu:stop(1)
   end)
 
-  menu:addHalfButton("~!Cancel", "c", 16, 288 - 40,
+  menu:addHalfButton(_("~!Cancel"), "c", 16, 288 - 40,
     function() 
 	  menu:stop()
 	end)
@@ -536,7 +536,7 @@ function BuildOptionsMenu()
       function() SetVideoSize(2560, 1600) menu:stop(1) end)
     if (Video.Width == 2560 and Video.Height == 1600) then b:setMarked(true) end
 
-    b = menu:addCheckBox("Full Screen", offx + 17, offy + 55 + 26*10 + 14,
+    b = menu:addCheckBox(_("Full Screen"), offx + 17, offy + 55 + 26*10 + 14,
       function()
         ToggleFullScreen()
         wc2.preferences.VideoFullScreen = Video.FullScreen
@@ -545,7 +545,7 @@ function BuildOptionsMenu()
       end)
     b:setMarked(Video.FullScreen)
 
-    checkTexture = menu:addCheckBox("Set Maximum OpenGL Texture to 256", offx + 127, offy + 55 + 26*10 + 14,
+    checkTexture = menu:addCheckBox(_("Set Maximum OpenGL Texture to 256"), offx + 127, offy + 55 + 26*10 + 14,
       function()
         if (checkTexture:isMarked()) then
           wc2.preferences.MaxOpenGLTexture = 256
@@ -557,7 +557,7 @@ function BuildOptionsMenu()
       end)
     if (wc2.preferences.MaxOpenGLTexture == 256) then checkTexture:setMarked(true) end
 
-    checkOpenGL = menu:addCheckBox("Use OpenGL / OpenGL ES 1.1 (restart required)", offx + 17, offy + 55 + 26*11 + 14,
+    checkOpenGL = menu:addCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*11 + 14,
       function()
 --TODO: Add function for immediately change state of OpenGL
         wc2.preferences.UseOpenGL = checkOpenGL:isMarked()
@@ -584,21 +584,21 @@ end
 function RunGameOptionsMenu()
   local menu = WarGameMenu(panel(1))
 
-  menu:addLabel("Game Options", 128, 11)
-  menu:addFullButton("Speeds (~<F6~>)", "f6", 16, 40 + 36*0,
+  menu:addLabel(_("Game Options"), 128, 11)
+  menu:addFullButton(_("Speeds (~<F6~>)"), "f6", 16, 40 + 36*0,
     function() RunSpeedsMenu() end)
-  menu:addFullButton("Sound (~<F7~>)", "f7", 16, 40 + 36*1,
+  menu:addFullButton(_("Sound (~<F7~>)"), "f7", 16, 40 + 36*1,
     function() RunGameSoundOptionsMenu() end) 
-	menu:addFullButton("Preferences (~<F8~>)", "f8", 16, 40 + 36*2,
+	menu:addFullButton(_("Preferences (~<F8~>)"), "f8", 16, 40 + 36*2,
     function() RunPreferencesMenu() end)
   if (GameCycle > 0) then
-	menu:addFullButton("Diplomacy (~<F9~>)", "f9", 16, 40 + 36*3,
+	menu:addFullButton(_("Diplomacy (~<F9~>)"), "f9", 16, 40 + 36*3,
     function() RunDiplomacyMenu() end)
   else
-	menu:addFullButton("Video (~<F9~>)", "f9", 16, 40 + 36*3,
+	menu:addFullButton(_("Video (~<F9~>)"), "f9", 16, 40 + 36*3,
     function() RunOptionsMenu(); menu:stopAll(1) end)
   end
-  menu:addFullButton("Previous (~<Esc~>)", "escape", 128 - (224 / 2), 288 - 40,
+  menu:addFullButton(_("Previous (~<Esc~>)"), "escape", 128 - (224 / 2), 288 - 40,
     function() menu:stop() end)
   if (GameCycle > 0) then
 	menu:run(false)

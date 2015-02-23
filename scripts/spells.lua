@@ -374,14 +374,11 @@ local function SpellBlizzard(units)
 			end
 		end
 		for i = 3,table.getn(costs) do
-			print(tostring(GetUnitVariable(units[i], "Ident")) .. tostring(costs[i]).."\n")
 			if costs[i] > costs[enemy] then
 				enemy = i
 			end
 		end
-		print("end\n")
 		if (costs[enemy] > 0) then
-			print(tostring(costs[enemy]).."\n")
 			local x = GetUnitVariable(units[enemy], "PosX")
 			local y = GetUnitVariable(units[enemy], "PosY")
 			x = x + math.floor(UnitManager:GetSlotUnit(units[enemy]).Type.TileWidth / 2)

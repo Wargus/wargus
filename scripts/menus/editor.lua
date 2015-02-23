@@ -46,16 +46,16 @@ local function RunEditorLoadMapMenu()
 
   -- update label content
   local function MapChanged()
-    labelMapName:setCaption("File      : " .. string.sub(mapname, 6))
+    labelMapName:setCaption(_("File      : ") .. string.sub(mapname, 6))
     labelMapName:adjustSize()
 
-    labelNbPlayer:setCaption("Players  : " .. mapinfo.nplayers)
+    labelNbPlayer:setCaption(_("Players  : ") .. mapinfo.nplayers)
     labelNbPlayer:adjustSize()
 
-    labelDescription:setCaption("Scenario : " .. mapinfo.description)
+    labelDescription:setCaption(_("Scenario : ") .. mapinfo.description)
     labelDescription:adjustSize()
 
-    labelMapSize:setCaption("Size      : " .. mapinfo.w .. " x " .. mapinfo.h)
+    labelMapSize:setCaption(_("Size      : ") .. mapinfo.w .. " x " .. mapinfo.h)
     labelMapSize:adjustSize()
   end
 
@@ -64,7 +64,7 @@ local function RunEditorLoadMapMenu()
   labelNbPlayer = menu:addLabel("", offx + 208, offy + 104 + 32 * 2, Fonts["game"], false)
   labelMapSize = menu:addLabel("", offx + 208, offy + 104 + 32 * 3, Fonts["game"], false)
 
-  menu:addFullButton("~!Select map", "s", offx + 208, offy + 104 + 36 * 4,
+  menu:addFullButton(_("~!Select map"), "s", offx + 208, offy + 104 + 36 * 4,
     function()
       local oldmapname = mapname
       RunSelectScenarioMenu()
@@ -74,8 +74,8 @@ local function RunEditorLoadMapMenu()
       end
     end)
 
-  menu:addFullButton("~!Edit map", "e", offx + 208, offy + 104 + 36 * 5, function() menu:stop(); StartEditor(mapname); RunEditorMenu() end)
-  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
+  menu:addFullButton(_("~!Edit map"), "e", offx + 208, offy + 104 + 36 * 5, function() menu:stop(); StartEditor(mapname); RunEditorMenu() end)
+  menu:addFullButton(_("~!Cancel"), "c", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
 
   GetMapInfo(mapname)
   MapChanged()
@@ -99,11 +99,11 @@ function RunEditorMenu()
     menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
   end
   
-  menu:addLabel("~<Map Editor~>", offx + 320, offy + 212 - 25)
+  menu:addLabel(_("~<Map Editor~>"), offx + 320, offy + 212 - 25)
   local buttonNewMap =
-  menu:addFullButton("~!New map", "n", offx + 208, offy + 104 + 36*3, function() RunEditorNewMapMenu(); menu:stop() end)
-  menu:addFullButton("~!Load map", "l", offx + 208, offy + 104 + 36*4, function() RunEditorLoadMapMenu(); menu:stop() end)
-  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 104 + 36*5, function() menu:stop() end)
+  menu:addFullButton(_("~!New map"), "n", offx + 208, offy + 104 + 36*3, function() RunEditorNewMapMenu(); menu:stop() end)
+  menu:addFullButton(_("~!Load map"), "l", offx + 208, offy + 104 + 36*4, function() RunEditorLoadMapMenu(); menu:stop() end)
+  menu:addFullButton(_("~!Cancel"), "c", offx + 208, offy + 104 + 36*5, function() menu:stop() end)
   return menu:run()
 end
 
@@ -112,12 +112,12 @@ function RunEditorSaveMap(browser, name, menu)
   if (saved == -1) then
     local confirm = WarGameMenu(panel(3))
     confirm:resize(300,120)
-    confirm:addLabel("Cannot save map to file:", 300 / 2, 11)
+    confirm:addLabel(_("Cannot save map to file:"), 300 / 2, 11)
     confirm:addLabel(browser.path .. name, 300 / 2, 31)
     confirm:addHalfButton("~!OK", "o", 1 * (300 / 3), 120 - 16 - 27, function() confirm:stop() end)
     confirm:run(false)
   else
-    UI.StatusLine:Set("Saved map to: " .. browser.path .. name)
+    UI.StatusLine:Set(_("Saved map to: ") .. browser.path .. name)
     menu:stop()
   end
 end
@@ -130,7 +130,7 @@ function RunEditorSaveMenu()
 
   menu:resize(384, 256)
 
-  menu:addLabel("Save Game", 384 / 2, 11)
+  menu:addLabel(_("Save Game"), 384 / 2, 11)
 
   local t = menu:addTextInputField("game.smp",
     (384 - 300 - 18) / 2, 11 + 36, 318)
@@ -142,8 +142,8 @@ function RunEditorSaveMenu()
   end
   browser:setActionCallback(cb)
 
-  menu:addHalfButton("~!Cancel", "c", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27, function() menu:stop() end)
-  menu:addHalfButton("~!Save", "s", (384 - 300 - 18) / 2, 256 - 16 - 27,
+  menu:addHalfButton(_("~!Cancel"), "c", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27, function() menu:stop() end)
+  menu:addHalfButton(_("~!Save"), "s", (384 - 300 - 18) / 2, 256 - 16 - 27,
     function()
       local name = t:getText()
       -- check for an empty string
@@ -166,7 +166,7 @@ function RunEditorSaveMenu()
         local confirm = WarGameMenu(panel(3))
         confirm:resize(300,120)
         confirm:addLabel(name, 300 / 2, 11)
-        confirm:addLabel("File exists, are you sure ?", 300 / 2, 31)
+        confirm:addLabel(_("File exists, are you sure ?"), 300 / 2, 31)
         confirm:addHalfButton("~!Yes", "y", 1 * (300 / 3) - 90, 120 - 16 - 27,
           function()
             confirm:stop()
@@ -207,7 +207,7 @@ function RunEditorPlayerProperties()
   local sizeY = 480
 
   menu:resize(sizeX, sizeY)
-  menu:addLabel("Players properties", sizeX / 2, 11)
+  menu:addLabel(_("Players properties"), sizeX / 2, 11)
 
   local offxPlayer = 15
   local offxType = 70
@@ -290,7 +290,7 @@ function RunEditorPlayerProperties()
       menu:stop()
     end)
 
-  menu:addHalfButton("~!Cancel", "c", 3 * (sizeX / 4) - 106 - 10, sizeY - 16 - 27,
+  menu:addHalfButton(_("~!Cancel"), "c", 3 * (sizeX / 4) - 106 - 10, sizeY - 16 - 27,
     function() menu:stop() end)
 
   menu:run(false)
@@ -307,20 +307,20 @@ function RunEditorMapProperties()
   local sizeY = 256
 
   menu:resize(sizeX, sizeY)
-  menu:addLabel("Map properties", sizeX / 2, 11)
+  menu:addLabel(_("Map properties"), sizeX / 2, 11)
 
-  menu:addLabel("Map descritption : ", 45, 11 + 36, nil, false)
+  menu:addLabel(_("Map descritption : "), 45, 11 + 36, nil, false)
   local desc = menu:addTextInputField(Map.Info.Description, 15, 36 * 2, 350)
 
-  menu:addLabel("Size    : " .. Map.Info.MapWidth .. " x " .. Map.Info.MapHeight, 45, 36 * 3, nil, false)
+  menu:addLabel(_("Size    : ") .. Map.Info.MapWidth .. " x " .. Map.Info.MapHeight, 45, 36 * 3, nil, false)
 --  menu:addLabel("Size : ", 15, 36 * 3, nil, false)
 --  local sizeX = menu:addTextInputField(Map.Info.MapWidth, 75, 36 * 3, 50)
 --  menu:addLabel(" x ", 130, 36 * 3, nil, false)
 --  local sizeY = menu:addTextInputField(Map.Info.MapHeight, 160, 36 * 3, 50)
 
-  menu:addLabel("Tileset : ", 45, 36 * 4, nil, false)
+  menu:addLabel(_("Tileset : "), 45, 36 * 4, nil, false)
 
-  local list = { "Summer", "Swamp", "Wasteland", "Winter"}
+  local list = { _("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}
   local dropDownTileset = menu:addDropDown(list, 130, 36 * 4, function() end)
   for i = 0,3 do
     if (list[1 + i] == Map.Tileset.Name) then dropDownTileset:setSelected(i)
@@ -336,7 +336,7 @@ function RunEditorMapProperties()
     end
     )
 
-  menu:addHalfButton("~!Cancel", "c", 3 * (sizeX / 3) - 106 - 10, sizeY - 16 - 27,
+  menu:addHalfButton(_("~!Cancel"), "c", 3 * (sizeX / 3) - 106 - 10, sizeY - 16 - 27,
     function() menu:stop() end)
 
   menu:run(false)
@@ -348,19 +348,19 @@ end
 function RunInEditorMenu()
   local menu = WarGameMenu(panel(1))
 
-  menu:addLabel("Editor Menu", 128, 11)
+  menu:addLabel(_("Editor Menu"), 128, 11)
 
-  menu:addHalfButton("Save (~<F11~>)", "f11", 16, 40, RunEditorSaveMenu)
+  menu:addHalfButton(_("Save (~<F11~>)"), "f11", 16, 40, RunEditorSaveMenu)
   local buttonEditorLoad = -- To be removed when enabled.
-  menu:addHalfButton("Load (~<F12~>)", "f12", 16 + 118, 40, RunEditorLoadMenu)
-  menu:addFullButton("Map Properties (~<F5~>)", "f5", 16, 40 + 36 * 1, RunEditorMapProperties)
-  menu:addFullButton("Player Properties (~<F6~>)", "f6", 16, 40 + 36 * 2, RunEditorPlayerProperties)
+  menu:addHalfButton(_("Load (~<F12~>)"), "f12", 16 + 118, 40, RunEditorLoadMenu)
+  menu:addFullButton(_("Map Properties (~<F5~>)"), "f5", 16, 40 + 36 * 1, RunEditorMapProperties)
+  menu:addFullButton(_("Player Properties (~<F6~>)"), "f6", 16, 40 + 36 * 2, RunEditorPlayerProperties)
 
   buttonEditorLoad:setEnabled(false) -- To be removed when enabled.
 
-  menu:addFullButton("E~!xit to Menu", "x", 16, 40 + 36 * 4,
+  menu:addFullButton(_("E~!xit to Menu"), "x", 16, 40 + 36 * 4,
     function() Editor.Running = EditorNotRunning; menu:stopAll(); end)
-  menu:addFullButton("Return to Editor (~<Esc~>)", "escape", 16, 288 - 40,
+  menu:addFullButton(_("Return to Editor (~<Esc~>)"), "escape", 16, 288 - 40,
     function() menu:stop() end)
 
   menu:run(false)
@@ -379,10 +379,10 @@ function EditUnitProperties()
   local sizeY = 200 -- 288
 
   menu:resize(sizeX, sizeY)
-  menu:addLabel("Unit properties", sizeX / 2, 11)
+  menu:addLabel(_("Unit properties"), sizeX / 2, 11)
 
   if (GetUnitUnderCursor().Type.GivesResource == 0) then
-    menu:addLabel("Artificial Intelligence", sizeX / 2, 11 + 36)
+    menu:addLabel(_("Artificial Intelligence"), sizeX / 2, 11 + 36)
     local activeCheckBox = menu:addImageCheckBox("Active", 15, 11 + 72, offi, offi2, oni, oni2)
     activeCheckBox:setMarked(GetUnitUnderCursor().Active)
 
@@ -391,13 +391,13 @@ function EditUnitProperties()
   else
     local resourceName = {"gold", "lumber", "oil"}
     local resource = GetUnitUnderCursor().Type.GivesResource - 1
-    menu:addLabel("Amount of " .. resourceName[1 + resource] .. " :", 24, 11 + 36, nil, false)
+    menu:addLabel(_("Amount of ") .. resourceName[1 + resource] .. " :", 24, 11 + 36, nil, false)
 	local resourceValue = menu:addTextInputField(GetUnitUnderCursor().ResourcesHeld, sizeX / 2 - 30, 11 + 36 * 2, 60)
 
     menu:addHalfButton("~!Ok", "o", 24, sizeY - 40,
       function() GetUnitUnderCursor().ResourcesHeld = resourceValue:getText();  menu:stop() end)
   end
-  menu:addHalfButton("~!Cancel", "c", 134, sizeY - 40,
+  menu:addHalfButton(_("~!Cancel"), "c", 134, sizeY - 40,
     function() menu:stop() end)
   menu:run(false)
 end

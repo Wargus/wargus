@@ -42,12 +42,17 @@ local CritterSounds = {
   wasteland = "pig-selected", swamp = "warthog-selected",
 }
 
+local CritterSoundsDeath = {
+  summer = "sheep-selected", winter = "seal annoyed",
+  wasteland = "pig annoyed", swamp = "warthog annoyed",
+}
+
 DefineUnitType("unit-critter", {
   Name = CritterNames[wargus.tileset]
 })
 
 MapSound("critter-selected", CritterSounds[wargus.tileset])
-MapSound("critter-dead", CritterSounds[wargus.tileset]) 
+MapSound("critter-dead", CritterSoundsDeath[wargus.tileset]) 
 
 
 -- Icon and construction graphics also depend on the tileset

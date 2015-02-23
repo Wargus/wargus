@@ -10,7 +10,7 @@
 --
 --      guichan.lua - Define the main guichan menu.
 --
---      (c) Copyright 2006-2010 by Jimmy Salmon and Pali Rohár
+--      (c) Copyright 2006-2015 by Jimmy Salmon, Pali Rohár and cybermind
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -601,7 +601,7 @@ end
 Widget:setGlobalFont(Fonts["large"])
 
 
-DefaultObjectives = {"-Destroy the enemy"}
+DefaultObjectives = {_("-Destroy the enemy")}
 Objectives = DefaultObjectives
 
 
@@ -829,7 +829,7 @@ function RunSelectScenarioMenu()
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
   menu:setDrawMenusUnder(true)
 
-  menu:addLabel("Select scenario", 176, 8)
+  menu:addLabel(_("Select scenario"), 176, 8)
 
   local browser = menu:addBrowser("maps/", "^.*%.smp%.?g?z?$",
     24, 140, 300, 108, mapname)
@@ -853,7 +853,7 @@ function RunSelectScenarioMenu()
       mapname = browser.path .. cap
       menu:stop()
     end)
-  menu:addHalfButton("~!Cancel", "c", 198, 318,
+  menu:addHalfButton(_("~!Cancel"), "c", 198, 318,
     function() buttonStatut = 2; menu:stop() end)
 
   menu:run()
@@ -938,10 +938,10 @@ function RunSinglePlayerGameMenu()
   local playerlist = {_("Player"),_("Computer"),_("Rescue-passive"),_("Rescue-active"),_("None")}
   local reveal_list = {_("Default"),_("Explored"),_("Revealed")}
   local game_types = {_("Use map settings"), _("Melee"), _("Free for all"), _("Top vs bottom"), _("Left vs right"), _("Man vs Machine")}
-  local tileset_names = {_("Map Default"), _("Summer"), _("Swamp"), "Wasteland", "Winter"}
+  local tileset_names = {_("Map Default"), _("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}
   local numunit_types = {_("Map Default"), _("One Peasant Only")}
   local difficulty_types = {_("Easy"), _("Normal"), _("Hard"),_("Nightmare"),_("Hell")}
-  local resource_types = {_("High"), _("Medium"), _("Low"),_("Quick Start")}
+  local resource_types = {_("Map Default"), _("High"), _("Medium"), _("Low"),_("Quick Start")}
   local nms = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
   local pcolor = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
   local ptype = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
@@ -1040,7 +1040,7 @@ function RunSinglePlayerGameMenu()
 	mapname = "maps/skirmish/(2)timeless-isle.sms.gz"
   end
   
-  menu:addLabel("Scenario:", offx + 16, offy + 360, Fonts["game"], false)
+  menu:addLabel(_("Scenario:"), offx + 16, offy + 360, Fonts["game"], false)
   mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 360 + 24, Fonts["game"], false)
   descriptionl = menu:addLabel("descriptionl", offx + 16 + 70, offy + 360, Fonts["game"], false)
 
@@ -1060,13 +1060,13 @@ function RunSinglePlayerGameMenu()
 	  InitGameSettings()
 		local errorlevel = CheckCorrect()
 		if errorlevel==1 then
-			ErrorMessage("Need more than 1 team")
+			ErrorMessage(_("Need more than 1 team"))
 		elseif errorlevel==2 then
-			ErrorMessage("No players selected")
+			ErrorMessage(_("No players selected"))
 		elseif errorlevel==3 then
-			ErrorMessage("Need at least 1 person player")
+			ErrorMessage(_("Need at least 1 person player"))
 		elseif errorlevel==4 then
-			ErrorMessage("Need at least 2 players")
+			ErrorMessage(_("Need at least 2 players"))
 		else
 			for i=0,15 do
 				local foundperson = false
@@ -1275,9 +1275,9 @@ function RunSinglePlayerGameMenu()
 	  end
   end
   
-  menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function()  menu:stop(1); RunSinglePlayerTypeMenu() end)
+  menu:addFullButton(_("~!Cancel Game"), "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function()  menu:stop(1); RunSinglePlayerTypeMenu() end)
 
-  menu:addLabel(_("~<Reveal Map:~>"), offx + 450, offy + 74, Fonts["game"], false)
+  menu:addLabel(_("~<Fog of War:~>"), offx + 450, offy + 74, Fonts["game"], false)
   reveal_type = menu:addDropDown(reveal_list, offx + 450, offy + 90,
     function(dd) end)
   reveal_type:setSize(170, 20)
@@ -1326,7 +1326,7 @@ function RunSinglePlayerGameMenu()
 		difficulty:setSelected(sk_difficulty)
 	end
 
-  menu:addLabel("~<Tileset:~>", offx + 450, offy + 234, Fonts["game"], false)
+  menu:addLabel(_("~<Tileset:~>"), offx + 450, offy + 234, Fonts["game"], false)
   tilesetdd = menu:addDropDown(tileset_names, offx + 450, offy + 250,
     function(dd) end)
   tilesetdd:setSize(170, 20)
@@ -1337,7 +1337,7 @@ function RunSinglePlayerGameMenu()
 	if sk_tileset~=-1 then
 		tilesetdd:setSelected(sk_tileset)
 	end
-  menu:addLabel("~<Units:~>", offx + 450, offy + 274, Fonts["game"], false)
+  menu:addLabel(_("~<Units:~>"), offx + 450, offy + 274, Fonts["game"], false)
   numunits = menu:addDropDown(numunit_types, offx + 450, offy + 290,
     function(dd) end)
   numunits:setSize(170, 20)
@@ -1397,7 +1397,7 @@ function BuildProgramStartMenu()
       function() RunEditorMenu(); menu:stop(1) end)
     --menu:addHalfButton("S~!how Credits", "h", Video.Width/2, 36*7, RunShowCreditsMenu)
 
-    menu:addHalfButton("E~!xit", "x", Video.Width/2 + 4, 40*5,
+    menu:addHalfButton(_("E~!xit"), "x", Video.Width/2 + 4, 40*5,
       function() menu:stop() end)
   
   else

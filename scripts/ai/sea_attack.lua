@@ -63,7 +63,7 @@ local sea_funcs = {
   function() return AiWait(AiBetterCityCenter()) end,
 
   function() return AiSet(AiTanker(), 3) end,
-  function() return AiForce(1, {AiSubmarine(), 3}, true) end,
+  function() return AiForce(1, {AiSubmarine(), GameSettings.Difficulty}, true) end,
   function() return AiWaitForce(1) end,  -- wait until attack force is ready
   function() return AiAttackWithForce(1) end,
 
@@ -72,14 +72,14 @@ local sea_funcs = {
   function() return AiResearch(AiUpgradeShipArmor1()) end,
   function() return AiResearch(AiUpgradeShipArmor2()) end,
   function() return AiSet(AiTanker(), 4) end,
-  function() return AiForce(1, {AiSubmarine(), 4}, true) end,
+  function() return AiForce(1, {AiSubmarine(), GameSettings.Difficulty + 1}, true) end,
   function() return AiWaitForce(1) end,
   function() return AiAttackWithForce(1) end,
 
   function() return AiSleep(500) end,
   function() return AiNeed(AiHarbor()) end,
   function() return AiNeed(AiBlacksmith()) end,
-  function() return AiForce(1, {AiSubmarine(), 5, AiScout(), 1}, true) end,
+  function() return AiForce(1, {AiSubmarine(), GameSettings.Difficulty + 2, AiScout(), 1}, true) end,
   function() return AiWaitForce(1) end,  -- wait until attack force is ready
   function() return AiAttackWithForce(1) end,
 
@@ -87,7 +87,8 @@ local sea_funcs = {
   function() return AiResearch(AiUpgradeCatapult1()) end,
   function() return AiNeed(AiStables()) end,
   function() return AiForce(0, {AiSoldier(), 3, AiCatapult(), 1, AiScout(), 1}) end,
-  function() return AiForce(1, {AiSubmarine(), 1, AiDestroyer(), 2, AiBattleship(), 1, AiScout(), 2}, true) end,
+  function() return AiForce(1, {AiSubmarine(), 1, AiDestroyer(), 1 + math.floor(GameSettings.Difficulty / 2), 
+	AiBattleship(), 1 + math.floor(GameSettings.Difficulty / 5), AiScout(), 2}, true) end,
   function() return AiSleep(3000) end,
   function() return AiWaitForce(1) end,
   function() return AiAttackWithForce(1) end,
