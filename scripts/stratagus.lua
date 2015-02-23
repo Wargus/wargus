@@ -374,7 +374,8 @@ local defaultPreferences = {
 	ServerList = {},
 	MetaServer = "localhost",
 	MetaPort = 7775,
-	SF2SoundFont = "music/TimGM6mb.sf2"
+	SF2SoundFont = "music/TimGM6mb.sf2",
+	MineNotifications = false
 }
 
 --- Skirmish Setup --------------
@@ -428,6 +429,7 @@ SetVideoFullScreen(wc2.preferences.VideoFullScreen)
 SetVideoResolution(wc2.preferences.VideoWidth, wc2.preferences.VideoHeight)
 UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
 Preference.SF2Soundfont = wc2.preferences.SF2SoundFont
+Preference.MineNotifications = wc2.preferences.MineNotifications
 
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")
