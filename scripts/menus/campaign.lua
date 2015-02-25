@@ -267,7 +267,7 @@ function RunCampaignSubmenu(campaign)
   for i = 1, GetCampaignState(campaign) do
 	missionList[i] = CampaignButtonTitle(i)
   end
-  local missionListBox = menu:addListBox(80, 70, 480, 250, missionList)
+  local missionListBox = menu:addListBox(offx + 80, offy + 100, 480, 250, missionList)
   local goButton = menu:addFullButton(_("~!Play mission"), "p", offx + 208, offy + 212 + (36 * 4),  
 			function() return CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu) end)
   local function UpdateGo()
