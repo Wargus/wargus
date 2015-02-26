@@ -745,6 +745,52 @@ end
 --  Some functions used by Ai
 --
 
+function AiCalc(num, coeff)
+	return math.max(1, num + (GameSettings.Difficulty - 5))
+end
+
+OldAiForce = AiForce
+
+function AiForce(num, units)
+	if (num == 0) then
+		return
+	end
+	local transporter = false
+	for i = 1, table.getn(units)/2 do
+		if units[i*2 - 1] == AiTransporter() then
+			transporter = true
+			break
+		end
+	end
+	local add
+	if transporter == true then
+		add = math.min(0, GameSettings.Difficulty - 3)
+	else
+		add = GameSettings.Difficulty - 3
+	end
+
+	for i = 1, table.getn(units)/2 do
+		units[i*2] = math.max(1, units[i*2] + add)
+	end
+	return OldAiForce(num, units)
+end
+
+OldAiSleep = AiSleep
+function AiSleep(cycles)
+	if (GameSettings.Difficulty == 1) then
+		return OldAiSleep(3 * cycles)
+	elseif (GameSettings.Difficulty == 2) then
+		return OldAiSleep(cycles)
+	elseif (GameSettings.Difficulty == 3) then
+		return OldAiSleep(math.floor(cycles / 1.5))
+	elseif (GameSettings.Difficulty == 4) then
+		return OldAiSleep(math.floor(cycles / 2))
+	elseif (GameSettings.Difficulty == 5) then
+		return OldAiSleep(math.floor(cycles / 3))
+	end
+	return OldAiSleep(cycles)
+end
+
 -- Create some counters used by ai
 local function CreateAiGameData()
 	if stratagus == nil then

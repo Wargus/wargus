@@ -305,6 +305,7 @@ function RunCampaign(campaign)
   end
 
   currentCampaign = campaign
+  GameSettings.Difficulty = 5
 
   while (position <= table.getn(campaign_steps)) do
     campaign_steps[position]()

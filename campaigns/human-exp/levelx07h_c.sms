@@ -38,6 +38,76 @@ AddTrigger(
 
 assert(loadstring(Triggers))()
 
+local hum_exp_07a_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiSleep(4000) end,
+	function() return AiForce(0, {AiFlyer(), 2}) end,
+	function() return AiForce(1, {AiFlyer(), 2}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(10000) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_exp_07b_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiSleep(8000) end,
+	function() return AiForce(1, {AiDestroyer(), 2, AiBattleship(), 1, AiSubmarine(), 1}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_exp_07c_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiSleep(4000) end,
+	function() return AiForce(0, {AiFlyer(), 2}) end,
+	function() return AiForce(1, {AiFlyer(), 2}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(10000) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+
+local hum_exp_07a_funcs = {
+	
+	function() return AiLoop(hum_exp_07a_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+local hum_exp_07b_funcs = {
+	function() return AiSet(AiWorker(), 1) end,
+	function() return AiSet(AiTanker(), 1) end,
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiLumberMill()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiNeed(AiHarbor()) end,
+	function() return AiNeed(AiBlacksmith()) end,
+	function() return AiNeed(AiFoundry()) end,
+	function() return AiNeed(AiRefinery()) end,
+	function() return AiNeed(AiScientific()) end,
+	
+	function() return AiSet(AiWorker(), 5) end,
+	function() return AiWait(AiWorker()) end,
+	function() return AiSet(AiTanker(), 2) end,
+	
+	function() return AiForce(0, {AiSoldier(), 5, AiShooter(), 3, AiCatapult(), 1}) end,	
+
+	function() return AiLoop(hum_exp_07b_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+local hum_exp_07c_funcs = {
+	
+	function() return AiLoop(hum_exp_07c_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHumanExp07a() return AiLoop(hum_exp_07a_funcs, stratagus.gameData.AIState.index) end
+function AiHumanExp07b() return AiLoop(hum_exp_07b_funcs, stratagus.gameData.AIState.index) end
+function AiHumanExp07c() return AiLoop(hum_exp_07c_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-exp-7a", "*", "hum-exp-7a", AiHumanExp07a)
+DefineAi("hum-exp-7b", "*", "hum-exp-7b", AiHumanExp07b)
+DefineAi("hum-exp-7c", "*", "hum-exp-7c", AiHumanExp07c)
+
 --Units
 DefineAllowNormalHumanUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")

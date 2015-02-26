@@ -36,6 +36,208 @@ AddTrigger(
 
 assert(loadstring(Triggers))()
 
+local hum_exp_06a_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiSleep(4000) end,
+	function() return AiForce(1, {AiSoldier(), 3, AiShooter(), 3, AiTransporter(), 1}) end,
+	function() return AiForce(2, {AiShooter(), 1, AiSoldier(), 3, AiCatapult(), 1, AiTransporter(), 1}) end,
+	function() return AiWaitForce(1) end,
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_exp_06b_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiSleep(6000) end,
+	function() return AiForce(1, {AiFlyer(), 2}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_exp_06c_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiSleep(2000) end,
+	function() return AiForce(1, {AiSoldier(), 5, AiShooter(), 5,  AiCavalry(), 3, AiCatapult(), 1}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_exp_06d_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiSleep(5000) end,
+	function() return AiForce(2, {AiSoldier(), 2, AiShooter(), 4, AiTransporter(), 1}) end,
+	function() return AiForce(3, {AiShooter(), 2, AiCavalry(), 2, AiCatapult(), 2, AiTransporter(), 1}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	function() return AiSleep(5000) end,
+	function() return AiForce(1, {AiDestroyer(), 3, AiBattleship(), 3, AiSubmarine(), 2}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_exp_06a_funcs = {
+	function() return AiSet(AiWorker(), 1) end,
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiLumberMill()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiBlacksmith()) end,
+	function() return AiNeed(AiHarbor()) end,
+	
+	function() return AiSet(AiWorker(), 6) end,
+	function() return AiWait(AiWorker()) end,
+	function() return AiSet(AiTanker(), 2) end,
+	function() return AiForce(0, {AiDestroyer(), 2}) end,
+	function() return AiForce(1, {AiSoldier(), 3, AiShooter(), 3, AiTransporter(), 1}) end,
+	function() return AiForce(2, {AiShooter(), 1, AiSoldier(), 3, AiCatapult(), 1, AiTransporter(), 1}) end,
+	function() return AiSleep(2000) end,
+	function() return AiWaitForce(1) end,
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() return AiResearch(AiUpgradeWeapon1()) end,
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiResearch(AiUpgradeMissile1()) end,
+	
+	function() return AiLoop(hum_exp_06a_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+local hum_exp_06b_funcs = {
+	function() return AiSet(AiWorker(), 1) end,
+	function() return AiSet(AiTanker(), 1) end,
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiLumberMill()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiUpgradeTo(AiBetterCityCenter()) end,
+	
+	function() return AiNeed(AiBlacksmith()) end,
+	function() return AiNeed(AiStables()) end,
+	function() return AiUpgradeTo(AiBestCityCenter()) end,
+	function() return AiNeed(AiMageTower()) end,
+	function() return AiNeed(AiAirport()) end,
+	function() return AiNeed(AiTemple()) end,
+	function() return AiNeed(AiScientific()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiResearch(AiUpgradeWeapon1()) end,
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiResearch(AiUpgradeWeapon2()) end,
+	function() return AiResearch(AiUpgradeArmor2()) end,
+	
+	function() return AiResearch(AiMageSpell3()) end,
+	function() return AiResearch(AiUpgradeCavalryMage()) end,
+	function() return AiResearch(AiMageSpell1()) end,
+	function() return AiResearch(AiCavalryMageSpell1()) end,
+	function() return AiResearch(AiMageSpell4()) end,
+	function() return AiResearch(AiUpgradeCatapult1()) end,
+	function() return AiResearch(AiUpgradeEliteShooter()) end,
+	function() return AiResearch(AiUpgradeEliteShooter1()) end,
+	function() return AiResearch(AiUpgradeEliteShooter2()) end,
+	function() return AiResearch(AiUpgradeEliteShooter3()) end,
+	
+	function() return AiSet(AiWorker(), 11) end,
+	function() return AiWait(AiWorker()) end,
+	function() return AiForce(0, {AiSoldier(), 4, AiShooter(), 5, AiCavalry(), 5, AiCatapult(), 2, AiMage(), 5}) end,
+
+	function() return AiLoop(hum_exp_06b_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+local hum_exp_06c_funcs = {
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiLumberMill()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiNeed(AiBlacksmith()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiResearch(AiUpgradeWeapon1()) end,
+	function() return AiUpgradeTo(AiBetterCityCenter()) end,
+	
+	function() return AiResearch(AiUpgradeMissile1()) end,
+	function() return AiNeed(AiStables()) end,
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiNeed(AiBarracks()) end,
+	
+	function() return AiSet(AiWorker(), 5) end,
+	function() return AiWait(AiWorker()) end,
+	function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 1}) end,
+	function() return AiForce(1, {AiSoldier(), 3, AiShooter(), 2}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+	function() return AiWait(AiBetterCityCenter()) end,
+	function() return AiForce(1, {AiSoldier(), 3, AiShooter(), 2}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+
+	function() return AiLoop(hum_exp_06c_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+local hum_exp_06d_funcs = {
+	function() return AiSet(AiWorker(), 1) end,
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiLumberMill()) end,
+	function() return AiNeed(AiBlacksmith()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiNeed(AiHarbor()) end,
+	function() return AiNeed(AiHarbor()) end,
+	function() return AiUpgradeTo(AiBetterCityCenter()) end,
+	
+	function() return AiNeed(AiStables()) end,
+	function() return AiNeed(AiFoundry()) end,
+	function() return AiResearch(AiUpgradeWeapon1()) end,
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiResearch(AiUpgradeMissile1()) end,
+	function() return AiResearch(AiUpgradeShipArmor1()) end,
+	function() return AiResearch(AiUpgradeShipCannon1()) end,
+	function() return AiResearch(AiUpgradeWeapon2()) end,
+	function() return AiResearch(AiUpgradeArmor2()) end,
+	
+	function() return AiSet(AiWorker(), 10) end,
+	function() return AiSet(AiTanker(), 3) end,
+	function() return AiWait(AiWorker()) end,
+	function() return AiForce(0, {AiSoldier(), 4, AiShooter(), 2, AiCavalry(), 2}) end,
+	function() return AiForce(1, {AiDestroyer(), 3, AiBattleship(), 3, AiSubmarine(), 2}) end,
+	function() return AiForce(2, {AiSoldier(), 2, AiShooter(), 4, AiTransporter(), 1}) end,
+	function() return AiForce(3, {AiShooter(), 2, AiCavalry(), 2, AiCatapult(), 2, AiTransporter(), 1}) end,
+	function() return AiSleep(10000) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+
+	function() return AiLoop(hum_exp_06d_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHumanExp06a() return AiLoop(hum_exp_06a_funcs, stratagus.gameData.AIState.index) end
+function AiHumanExp06b() return AiLoop(hum_exp_06b_funcs, stratagus.gameData.AIState.index) end
+function AiHumanExp06c() return AiLoop(hum_exp_06c_funcs, stratagus.gameData.AIState.index) end
+function AiHumanExp06d() return AiLoop(hum_exp_06d_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-exp-6a", "*", "hum-exp-6a", AiHumanExp06a) 
+DefineAi("hum-exp-6b", "*", "hum-exp-6b", AiHumanExp06b)
+DefineAi("hum-exp-6c", "*", "hum-exp-6c", AiHumanExp06c)
+DefineAi("hum-exp-6d", "*", "hum-exp-6d", AiHumanExp06d)
+
 --Units
 DefineAllowNormalHumanUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")

@@ -228,8 +228,8 @@ local hum_exp_03c_funcs = {
 function AiHumanExp03a() return AiLoop(hum_exp_03a_funcs, stratagus.gameData.AIState.index) end
 function AiHumanExp03b() return AiLoop(hum_exp_03b_funcs, stratagus.gameData.AIState.index) end
 function AiHumanExp03c() return AiLoop(hum_exp_03c_funcs, stratagus.gameData.AIState.index) end
-DefineAi("hum-exp-3a", "*", "hum-exp-2a", AiHumanExp03a) 
-DefineAi("hum-exp-3b", "*", "hum-exp-2b", AiHumanExp03b)
-DefineAi("hum-exp-3c", "*", "hum-exp-2c", AiHumanExp03c)
+DefineAi("hum-exp-3a", "*", "hum-exp-3a", AiHumanExp03a) 
+DefineAi("hum-exp-3b", "*", "hum-exp-3b", AiHumanExp03b)
+DefineAi("hum-exp-3c", "*", "hum-exp-3c", AiHumanExp03c)
 
 Load("campaigns/human-exp/levelx03h.sms")

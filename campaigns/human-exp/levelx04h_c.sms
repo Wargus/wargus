@@ -24,6 +24,150 @@ AddTrigger(
 
 assert(loadstring(Triggers))()
 
+local hum_exp_04a_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiForce(1, {AiFlyer(), 2}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(1000) end,
+	function() return AiForce(1, {AiFlyer(), 2}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(3000) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_exp_04b_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiForce(1, {AiSoldier(), 5, AiShooter(), 5, AiCavalry(), 3, AiCatapult(), 1}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(4000) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_exp_04c_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiForce(1, {AiSoldier(), 4, AiShooter(), 5, 
+		AiCavalry(), 3, AiCatapult(), 2, AiMage(), 4}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(6000) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local hum_exp_04a_funcs = {
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiNeed(AiLumberMill()) end,
+	function() return AiSet(AiWorker(), 12) end,
+	function() return AiWait(AiWorker()) end,
+	function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 1}) end,
+	function() return AiNeed(AiBlacksmith()) end,
+	function() return AiUpgradeTo(AiBetterCityCenter()) end,
+	function() return AiWait(AiBetterCityCenter()) end,
+	function() return AiNeed(AiStables()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiUpgradeTo(AiBestCityCenter()) end,
+	
+	function() return AiNeed(AiAirport()) end,
+	function() return AiSleep(16000) end,
+	
+	function() return AiForce(1, {AiFlyer(), 1}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(2000) end,
+	
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	
+	function() return AiForce(1, {AiFlyer(), 2}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+	function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 1, AiFlyer(), 1}) end,
+	function() return AiNeed(AiAirport()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiSleep(1000) end,
+
+	function() return AiLoop(hum_exp_04a_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+local hum_exp_04b_funcs = {
+	function() return AiNeed(AiCityCenter()) end,
+	
+	function() return AiNeed(AiLumberMill()) end,
+	function() return AiNeed(AiBlacksmith()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	
+	function() return AiResearch(AiUpgradeWeapon1()) end,
+	function() return AiUpgradeTo(AiBetterCityCenter()) end,
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiNeed(AiStables()) end,
+	function() return AiResearch(AiUpgradeMissile1()) end,
+	
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiSet(AiWorker(), 8) end,
+	function() return AiWait(AiWorker()) end,
+	
+	function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 1}) end,
+	function() return AiForce(1, {AiSoldier(), 1, AiShooter(), 1}) end,
+	function() return AiWaitForce(0) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(500) end,
+	function() return AiForce(1, {AiSoldier(), 2, AiShooter(), 1}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+	function() return AiSleep(2000) end,
+	function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 1, AiCavalry(), 1, AiCatapult(), 1}) end,
+
+	function() return AiLoop(hum_exp_04b_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+local hum_exp_04c_funcs = {
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiLumberMill()) end,
+	function() return AiNeed(AiBlacksmith()) end,
+	function() return AiUpgradeTo(AiBetterCityCenter()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiNeed(AiStables()) end,
+	function() return AiUpgradeTo(AiBestCityCenter()) end,
+	function() return AiNeed(AiMageTower()) end,
+	function() return AiNeed(AiMageTower()) end,
+	function() return AiResearch(AiMageSpell5()) end,
+	function() return AiResearch(AiMageSpell4()) end,
+	function() return AiResearch(AiUpgradeWeapon1()) end,
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiResearch(AiUpgradeWeapon2()) end,
+	function() return AiResearch(AiUpgradeArmor2()) end,
+	
+	function() return AiSet(AiWorker(), 10) end,
+	function() return AiWait(AiWorker()) end,
+	function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 1, AiCatapult(), 1}) end,
+	function() return AiWait(AiBetterCityCenter()) end,
+	function() return AiSet(AiWorker(), 12) end,
+	function() return AiForce(0, {AiSoldier(), 1, AiShooter(), 1, AiCavalry(), 1, AiCatapult(), 1, AiMage(), 1}) end,	
+
+	function() return AiLoop(hum_exp_04c_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiHumanExp04a() return AiLoop(hum_exp_04a_funcs, stratagus.gameData.AIState.index) end
+function AiHumanExp04b() return AiLoop(hum_exp_04b_funcs, stratagus.gameData.AIState.index) end
+function AiHumanExp04c() return AiLoop(hum_exp_04c_funcs, stratagus.gameData.AIState.index) end
+DefineAi("hum-exp-4a", "*", "hum-exp-4a", AiHumanExp04a) 
+DefineAi("hum-exp-4b", "*", "hum-exp-4b", AiHumanExp04b)
+DefineAi("hum-exp-4c", "*", "hum-exp-4c", AiHumanExp04c)
+
 --Units
 DefineAllowNormalHumanUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")

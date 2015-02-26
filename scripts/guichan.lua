@@ -615,6 +615,7 @@ function InitGameSettings()
     GameSettings.Presets[i].Team = -1
     GameSettings.Presets[i].Type = -1
   end
+  GameSettings.Difficulty = -1
   GameSettings.Resources = -1
   GameSettings.NumUnits = -1
   GameSettings.Opponents = -1
