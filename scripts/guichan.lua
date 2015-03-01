@@ -1378,30 +1378,6 @@ function BuildProgramStartMenu()
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
-
-  if (Video.Width < 640 or Video.Height < 400) then
-    -- Compact Mode: GP2X, Wiz, Caanoo.
-
-    menu:addHalfButton(_("~!Singleplayer"), "s", Video.Width/2 - 110, 40*2,
-      function() RunSinglePlayerGameMenu(); menu:stop(1) end)
-    menu:addHalfButton(_("~!Multiplayer"), "m", Video.Width/2 + 4, 40*2,
-      function() RunMultiPlayerGameMenu(); menu:stop(1) end)
-    menu:addHalfButton(_("~!Campaign"), "c", Video.Width/2 - 110, 40*3,
-      function() RunCampaignGameMenu(); menu:stop(1) end)
-    menu:addHalfButton(_("~!Load"), "l", Video.Width/2 + 4, 40*3,
-      function() RunLoadGameMenu(); menu:stop(1) end)
-    menu:addHalfButton(_("~!Replay"), "r", Video.Width/2 - 110, 40*4,
-      function() RunReplayGameMenu(); menu:stop(1) end)
-    menu:addHalfButton(_("~!Options"), "o", Video.Width/2 + 4, 40*4,
-      function() RunOptionsMenu(); menu:stop(1) end)
-    menu:addHalfButton(_("~!Editor"), "e", Video.Width/2 - 110, 40*5,
-      function() RunEditorMenu(); menu:stop(1) end)
-    --menu:addHalfButton("S~!how Credits", "h", Video.Width/2, 36*7, RunShowCreditsMenu)
-
-    menu:addHalfButton(_("E~!xit"), "x", Video.Width/2 + 4, 40*5,
-      function() menu:stop() end)
-  
-  else
   
   --menu:addLabel(wargus.Name .. " V" .. wargus.Version .. "  " .. wargus.Homepage, offx + 320, offy + 390 + 18*0)
   --menu:addLabel("Stratagus V" .. GetStratagusVersion() .. "  " .. GetStratagusHomepage(), offx + 320, offy + 390 + 18*1)
@@ -1427,8 +1403,6 @@ function BuildProgramStartMenu()
 
   menu:addFullButton(_("E~!xit Program"), "x", offx + 208, offy + 104 + 36*7,
     function() menu:stop() end)
-
-  end
 	
   return menu:run()
 end
@@ -1512,11 +1486,6 @@ Load("scripts/menus/diplomacy.lua")
 Load("scripts/menus/results.lua")
 Load("scripts/menus/network.lua")
 Load("scripts/menus/metaserver.lua")
-
-if (Video.Width < 640 and Video.Height < 400) then
-  -- Compact Mode: GP2X, Wiz, Caanoo.
-  Load("scripts/menus/compactmode.lua")
-end
 
 function GameStarting()
   if (wc2.preferences.ShowTips and not IsReplayGame()) then

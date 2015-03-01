@@ -45,8 +45,8 @@
 
 ; General variables
 !define NAME "Wargus"
-!define VERSION "2.2.7"
-!define VIVERSION "${VERSION}.0"
+!define VERSION "2.3"
+!define VIVERSION "${VERSION}.0.0"
 !define HOMEPAGE "https://launchpad.net/wargus"
 !define LICENSE "GPL v2"
 !define COPYRIGHT "Copyright (c) 1998-2014 by The Stratagus Project"
@@ -100,6 +100,7 @@ Var EXTRACTNEEDED
 
 Var OptDataset
 Var OptMusic
+Var DataDirectory
 
 !define MUI_ICON "${ICON}"
 !define MUI_UNICON "${ICON}"
@@ -186,12 +187,12 @@ LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_ENGLISH} "Choose Warcraft II Loca
 LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_RUSSIAN} "Укажите местоположение Warcraft II"
 LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_ENGLISH} "Choose the folder in which are Warcraft II data files."
 LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_RUSSIAN} "Укажите папку, в которой содержатся файлы Warcraft II."
-LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder. You can specify location of CD or install location of Warcraft II data files. Note that you need the original Warcraft II CD Dos version (Battle.net edition does not work) to extract the game data files."
-LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_RUSSIAN} "Программа установки извлечет файлы Warcraft II из указанной папки. Вы можете указать либо CD-диск с игрой, либо указать папку с установленным Warcraft II. Note that you need the original Warcraft II CD Dos version (Battle.net edition does not work) to extract the game data files."
+LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder. You can specify location of CD or install location of Warcraft II data files (doesn't work for Battle.net edition)."
+LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_RUSSIAN} "Программа установки извлечет файлы Warcraft II из указанной папки. Вы можете указать либо CD-диск с игрой, либо указать папку с установленным Warcraft II (не подходит для версии Battle.net)."
 LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_ENGLISH} "Source Folder"
 LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_RUSSIAN} "Папка с файлами Warcraft II"
-LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory. File $DATADIRdata\rezdat.war does not exist."
-LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_RUSSIAN} "Программа установки не обнаружила Warcraft II в указанной папке: необходимый файл $DATADIRdata\rezdat.war не найден."
+LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory."
+LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_RUSSIAN} "Программа установки не обнаружила Warcraft II в указанной папке."
 
 LangString STR_VERSION ${LANG_ENGLISH} "version"
 LangString STR_VERSION ${LANG_RUSSIAN} "версия"
@@ -392,7 +393,8 @@ FunctionEnd
 
 Function PageExtractDataLeave
 
-	IfFileExists "$DATADIR\data\rezdat.war" +3
+	IfFileExists "$DATADIR\data\rezdat.war" +4
+	IfFileExists "$DATADIR\SUPPORT\TOMES\TOME.1" +3
 
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_PAGE_NOT_VALID)"
 	Abort
@@ -408,9 +410,14 @@ Section "-${NAME}" ExtractData
 
 	DetailPrint ""
 	DetailPrint "$(EXTRACTDATA_FILES)"
+	StrCpy $DataDirectory "$DATADIR"
+	IfFileExists "$DATADIR\SUPPORT\TOMES\TOME.1" +2
+	StrCpy $DataDirectory "$\"$DATADIR\data$\""
+	
+	DetailPrint "$DataDirectory"
 	StrCmp $OptMusic "${opt2CD}" 0 +2
 	StrCpy $KeyStr "$KeyStr -r"
-	ExecDos::exec /DETAILED "$\"$INSTDIR\${WARTOOL}$\" $KeyStr -v $\"$DATADIR\data$\" $\"$INSTDIR$\""
+	ExecDos::exec /DETAILED "$\"$INSTDIR\${WARTOOL}$\" $KeyStr -v $\"$DataDirectory$\" $\"$INSTDIR$\""
 	Pop $0
 	IntCmp $0 0 +3
 

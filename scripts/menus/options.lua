@@ -357,10 +357,6 @@ function BuildOptionsMenu()
     -- For ultra small resolutions.
     menu:addLabel("Global Options", Video.Width - Video.Width/4, Video.Height/6)
     -- menu:addLabel("Video Resolution", Video.Width/8 - 4, Video.Height/3, Fonts["game"], false)
-  
-    b = menu:addCheckBox("320 x 240", Video.Width/8 + 12, Video.Height/6.5 + 26*1.8,
-      function() SetVideoSize(320, 240) menu:stop(1) end)
-    if (Video.Width == 320 and Video.Height == 240) then b:setMarked(true) end
 	
 	b = menu:addCheckBox("640 x 480", Video.Width/8 + 12, Video.Height/6.5 + 26*2.6,
       function() SetVideoSize(640, 480) menu:stop(1) end)
@@ -425,10 +421,6 @@ function BuildOptionsMenu()
     menu:addLabel("Global Options", offx + 176, offy + 1 + 26*-2)
     menu:addLabel("Video Resolution", offx + 16, offy + 34 + 26*-2, Fonts["game"], false)
     -- Normal (4:3 and 5:4)
-  
-    b = menu:addCheckBox("320 x 240", offx + 16, offy + 55 + 26*-1, -- 320 x 240, for Caanoo, Wiz, and GP2X. - Kyran Jackson.
-      function() SetVideoSize(320, 240) menu:stop(1) end)
-    if (Video.Width == 320 and Video.Height == 240) then b:setMarked(true) end
     
     b = menu:addCheckBox("640 x 480", offx + 16, offy + 55 + 26*-0.2,
       function() SetVideoSize(640, 480) menu:stop(1) end)
