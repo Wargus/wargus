@@ -272,7 +272,6 @@ function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p1
 		mapinfo.playertypes[14] = plrsnmb[14]
 		mapinfo.playertypes[15] = plrsnmb[15]
 	end
-	
 end
 
 if OldLoadTileModels == nil then

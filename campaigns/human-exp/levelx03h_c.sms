@@ -159,7 +159,7 @@ local hum_exp_03b_funcs = {
 	function() return AiForce(4, {AiShooter(), 1, AiCavalry(), 3, AiCatapult(), 2, AiTransporter(), 1}) end,
 	function() return AiSet(AiWorker(), 9) end,
 	function() return AiWait(AiWorker()) end,
-	function() return AiForce(3, {AiFlyer(), 1}) end,
+	function() return AiForce(3, {AiScout(), 1}) end,
 	function() return AiSleep(15000) end,
 	function() return AiWaitForce(1) end,
 	function() return AiWaitForce(4) end,
