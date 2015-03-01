@@ -9,7 +9,8 @@
 #         Stratagus - A free fantasy real time strategy game engine
 #
 #    CMakeLists.txt
-#    Copyright (C) 2011-2012  Pali Rohár <pali.rohar@gmail.com>
+#    Copyright (C) 2011-2015  Pali Rohár <pali.rohar@gmail.com>
+#                             cybermind <cybermindid@gmail.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -28,7 +29,7 @@
 
 project(wargus)
 cmake_minimum_required(VERSION 2.6)
-set(WARGUS_VERSION 2.2.7)
+set(WARGUS_VERSION 2.3)
 
 # Wargus sources
 
@@ -49,6 +50,7 @@ set(wartool_SRCS
 )
 
 set(wartool_HDRS
+	wartool.h
 	endian.h
 	pud.h
 	xmi2mid.h
@@ -103,6 +105,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_P
 find_package(Stratagus REQUIRED)
 find_package(PNG REQUIRED)
 find_package(ZLIB REQUIRED)
+find_package(StormLib)
 
 if(WIN32)
 	find_package(MakeNSIS)
@@ -140,6 +143,8 @@ endif()
 option(ENABLE_UPX "Compress Stratagus executable binary with UPX packer" OFF)
 option(ENABLE_STRIP "Strip all symbols from executables" OFF)
 
+option(WITH_STORMLIB "Compile wartool with StormLib support" ON)
+
 # Install paths
 set(BINDIR "bin" CACHE PATH "Where to install user binaries")
 set(GAMEDIR "games" CACHE PATH "Where to install games binaries")
@@ -162,6 +167,10 @@ set(pudconvert_LIBS ${pudconvert_LIBS} ${ZLIB_LIBRARIES})
 set(wartool_LIBS ${pudconvert_LIBS} ${PNG_LIBRARIES} ${ZLIB_LIBRARIES})
 
 # Platform definitions
+
+if (WIN32 AND MSVC)
+	add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE=1)
+endif()
 
 if(NOT WIN32)
 	include_directories(${X11_INCLUDE_DIR} ${GTK2_INCLUDE_DIRS})
@@ -191,6 +200,12 @@ endif()
 
 if(ENABLE_STRIP)
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s")
+endif()
+
+if(WITH_STORMLIB AND STORMLIB_FOUND)
+	add_definitions(-DUSE_STORMLIB ${STORMLIB_DEFINITIONS})
+	include_directories(${STORMLIB_INCLUDE_DIR})
+	set(wartool_LIBS ${wartool_LIBS} ${STORMLIB_LIBRARY})
 endif()
 
 # Compile Wargus

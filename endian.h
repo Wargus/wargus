@@ -27,8 +27,8 @@
 //      02111-1307, USA.
 //
 
-#ifndef __WARTOOL_H__
-#define __WARTOOL_H__
+#ifndef __WENDIAN_H__
+#define __WENDIAN_H__
 
 
 // From SDL_byteorder.h
@@ -75,4 +75,4 @@ static inline unsigned int Swap32(unsigned int D) {
 
 #define FetchByte(p) (*((unsigned char*)(p))); ++p
 
-#endif /* __WARTOOL_H__ */
+#endif /* __WENDIAN_H__ */
