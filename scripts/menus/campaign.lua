@@ -260,6 +260,7 @@ function RunCampaignSubmenu(campaign)
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
+  local difficulty_types = {_("Easy"), _("Normal"), _("Hard"),_("Nightmare"),_("Hell")}
   
   menu:addLabel(_("~<Mission list~>"), offx + 640/2 + 12, offy + 45)
 
@@ -268,8 +269,14 @@ function RunCampaignSubmenu(campaign)
 	missionList[i] = CampaignButtonTitle(i)
   end
   local missionListBox = menu:addListBox(offx + 80, offy + 100, 480, 250, missionList)
-  local goButton = menu:addFullButton(_("~!Play mission"), "p", offx + 208, offy + 212 + (36 * 4),  
-			function() return CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu) end)
+  menu:addLabel(_("~<AI Difficulty:~>"), offx + 80, offy + 214 + (36 * 4), Fonts["game"], false)
+  difficulty = menu:addDropDown(difficulty_types, offx + 200, offy + 212 + (36 * 4),
+    function(dd) end)
+  difficulty:setSize(170, 20)
+  difficulty:setSelected(1)
+  
+  local goButton = menu:addFullButton(_("~!Play mission"), "p", offx + 208, offy + 212 + (36 * 5),  
+			function() GameSettings.Difficulty = difficulty:getSelected() + 1; return CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu) end)
   local function UpdateGo()
 	if missionListBox:getSelected() ~= -1 then
 		 goButton:setVisible(true)
@@ -280,7 +287,7 @@ function RunCampaignSubmenu(campaign)
   goButton:setVisible(false)
   local listener = LuaActionListener(UpdateGo)
   menu:addLogicCallback(listener)
-  menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 212 + (36 * 5),
+  menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 212 + (36 * 6),
     function()  menu:stop(1); RunSinglePlayerTypeMenu(); currentCampaign = nil; currentState = nil; end)
 
   if (wargus.tales == false) then
@@ -305,7 +312,6 @@ function RunCampaign(campaign)
   end
 
   currentCampaign = campaign
-  GameSettings.Difficulty = 5
 
   while (position <= table.getn(campaign_steps)) do
     campaign_steps[position]()
