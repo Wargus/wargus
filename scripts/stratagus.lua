@@ -74,7 +74,7 @@ function SetDefaultRaceView()
   SetDefaultTextColors(UI.NormalFontColor, UI.ReverseFontColor)
 end
 
-AIStrategyTypes = {}
+AIStrategyTypes = {_("Map Default")}
 OldDefineAi = DefineAi
 function DefineAi(name, race, class, script)
 	table.insert(AIStrategyTypes, name)

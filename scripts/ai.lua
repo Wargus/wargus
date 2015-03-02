@@ -834,6 +834,51 @@ end
 
 function AiLoop(loop_funcs, indexes)
 	local playerIndex = AiPlayer() + 1
+	-- Some AI checting for harder levels
+	if (GameSettings.Difficulty == 4) then
+		SetPlayerData(AiPlayer(), "Resources", "gold",
+		  GetPlayerData(AiPlayer(), "Resources", "gold") + 50)
+		SetPlayerData(AiPlayer(), "Resources", "wood",
+		  GetPlayerData(AiPlayer(), "Resources", "wood") + 35)
+		SetPlayerData(AiPlayer(), "Resources", "oil",
+		  GetPlayerData(AiPlayer(), "Resources", "oil") + 25)
+		local resources = { "gold", "wood", "oil" }
+		for j = 1,table.getn(resources) do
+			SetSpeedResourcesHarvest(AiPlayer(), resources[j], 120)
+			SetSpeedResourcesReturn(AiPlayer(), resources[j], 120)
+		  end
+		  SetSpeedBuild(AiPlayer(), 120)
+		  SetSpeedTrain(AiPlayer(), 120)
+		  SetSpeedUpgrade(AiPlayer(), 120)
+		  SetSpeedResearch(AiPlayer(), 120)
+	elseif (GameSettings.Difficulty == 5) then
+		SetPlayerData(AiPlayer(), "Resources", "gold",
+		  GetPlayerData(AiPlayer(), "Resources", "gold") + 100)
+		SetPlayerData(AiPlayer(), "Resources", "wood",
+		  GetPlayerData(AiPlayer(), "Resources", "wood") + 75)
+		SetPlayerData(AiPlayer(), "Resources", "oil",
+		  GetPlayerData(AiPlayer(), "Resources", "oil") + 50)
+		local resources = { "gold", "wood", "oil" }
+		for j = 1,table.getn(resources) do
+			SetSpeedResourcesHarvest(AiPlayer(), resources[j], 150)
+			SetSpeedResourcesReturn(AiPlayer(), resources[j], 150)
+		  end
+		  SetSpeedBuild(AiPlayer(), 150)
+		  SetSpeedTrain(AiPlayer(), 150)
+		  SetSpeedUpgrade(AiPlayer(), 150)
+		  SetSpeedResearch(AiPlayer(), 150)
+	elseif (GameSettings.Difficulty == 1) then
+		local resources = { "gold", "wood", "oil" }
+		for j = 1,table.getn(resources) do
+			SetSpeedResourcesHarvest(AiPlayer(), resources[j], 75)
+			SetSpeedResourcesReturn(AiPlayer(), resources[j], 75)
+		  end
+		  SetSpeedBuild(AiPlayer(), 75)
+		  SetSpeedTrain(AiPlayer(), 75)
+		  SetSpeedUpgrade(AiPlayer(), 75)
+		  SetSpeedResearch(AiPlayer(), 75)
+	end
+	
 
 	while (true) do
 		local ret = loop_funcs[indexes[playerIndex]]()

@@ -175,9 +175,9 @@ function SetPlayerData(player, data, arg1, arg2)
   local res = {arg2, arg2, arg2}
 
   if (data == "RaceName") then
-    if (GameSettings.Presets[player].Race == 0) then
+    if (GameSettings.Presets[player].Race == 1) then
         arg1 = "human"
-      elseif (GameSettings.Presets[player].Race == 1) then
+      elseif (GameSettings.Presets[player].Race == 2) then
         arg1 = "orc"
       end
   elseif (data == "Resources") then
@@ -187,6 +187,8 @@ function SetPlayerData(player, data, arg1, arg2)
       res = {5000, 2000, 2000}
     elseif (GameSettings.Resources == 3) then
       res = {10000, 5000, 5000}
+	 elseif (GameSettings.Resources == 4) then
+      res = {30000, 15000, 10000}
     end
     if (arg1 == "gold") then
       arg2 = res[1]
@@ -248,6 +250,10 @@ function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p1
 				plrsnmb[i+1]="person"
 			elseif GameSettings.Presets[i].Type == PlayerComputer then
 				plrsnmb[i+1]="computer"
+			elseif GameSettings.Presets[i].Type == PlayerRescuePassive then
+				plrsnmb[i+1]="rescue-passive"
+			elseif GameSettings.Presets[i].Type == PlayerRescueActive then
+				plrsnmb[i+1]="rescue-active"
 			elseif GameSettings.Presets[i].Type == PlayerNeutral then
 				plrsnmb[i+1]="nobody"
 			elseif GameSettings.Presets[i].Type == -1 then

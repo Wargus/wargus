@@ -608,22 +608,33 @@ Objectives = DefaultObjectives
 -- Define the different menus ----------
 
 function InitGameSettings()
-  GameSettings.NetGameType = 1
-  for i=0,PlayerMax-1 do
-    GameSettings.Presets[i].PlayerColor = i
-    GameSettings.Presets[i].Race = -1
-    GameSettings.Presets[i].Team = -1
-    GameSettings.Presets[i].Type = -1
-  end
-  GameSettings.Difficulty = -1
-  GameSettings.Resources = -1
-  GameSettings.NumUnits = -1
-  GameSettings.Opponents = -1
-  GameSettings.Terrain = -1
-  GameSettings.GameType = -1
-  GameSettings.NoFogOfWar = false
-  GameSettings.RevealMap = 0
-  GameSettings.Tileset = nil
+	local resources = { "gold", "wood", "oil" }
+	for i=0, PlayerMax-1 do
+		for j = 1,table.getn(resources) do
+			SetSpeedResourcesHarvest(i, resources[j], 100)
+			SetSpeedResourcesReturn(i, resources[j], 100)
+		end
+		SetSpeedBuild(i, 100)
+		SetSpeedTrain(i, 100)
+		SetSpeedUpgrade(i, 100)
+		SetSpeedResearch(i, 100)
+	end
+	GameSettings.NetGameType = 1
+	for i=0, PlayerMax-1 do
+		GameSettings.Presets[i].PlayerColor = i
+		GameSettings.Presets[i].Race = -1
+		GameSettings.Presets[i].Team = -1
+		GameSettings.Presets[i].Type = -1
+	end
+	GameSettings.Difficulty = -1
+	GameSettings.Resources = -1
+	GameSettings.NumUnits = -1
+	GameSettings.Opponents = -1
+	GameSettings.Terrain = -1
+	GameSettings.GameType = -1
+	GameSettings.NoFogOfWar = false
+	GameSettings.RevealMap = 0
+	GameSettings.Tileset = nil
 end
 InitGameSettings()
 
@@ -766,59 +777,9 @@ function GetMapInfo(mapname)
     mapinfo.h = h
     mapinfo.id = id
   end
-  
-  -- to load data from sms file, we shouldn't execute commands within it
-  function SetAiType(player, aitype)
-    mapinfo.playerais[player + 1] = aitype
-  end
-
-  function SetPlayerData(player, data, arg1, arg2)
-    if (data == "RaceName") then
-		mapinfo.playerrace[player + 1] = arg1
-	end
-  end
-
-  function SetStartView(player, x, y)
-   return
-  end
-
-  function LoadTileModels(model)
-   return
-  end
-
-  function SetTile(tile, x, y, value)
-   return
-  end
-
-  function SetTile(tile, x, y, value)
-   return
-  end
-
-  function CreateUnit(unittype, player, pos)
-   return
-  end
-
-  function SetResourcesHeld(unit, value)
-   return
-  end
 
   Load(mapname)
 
-  local smsmapfile = mapname
-  if (string.find(smsmapfile, ".gz$") ~= nil) then
-      smsmapfile = string.sub(smsmapfile, 1, string.len(smsmapfile) - 3)
-  end
-  smsmapfile = string.sub(smsmapfile, 1, string.len(smsmapfile) - 4)
-  smsmapfile = smsmapfile..".sms"
-  Load(smsmapfile)
-
-  SetStartView = OldSetStartView
-  SetPlayerData = OldSetPlayerData
-  LoadTileModels = OldLoadTileModels
-  SetTile = OldSetTile
-  CreateUnit = OldCreateUnit
-  SetResourcesHeld = OldSetResourcesHeld
-  SetAiType = OldSetAiType
   DefinePlayerTypes = OldDefinePlayerTypes
   PresentMap = OldPresentMap
 end
@@ -934,7 +895,7 @@ function RunSinglePlayerGameMenu()
   local nameslist = {"1:","2:","3:","4:","5:","6:","7:","8:","9:","10:","11:","12:","13:","14:","15:"}
   local colorlist = {_("~red~Red"),_("~blue~Blue"),_("~green~Green"),_("~violet~Violet"),_("~orange~Orange"),_("~black~Black"),
 	_("~white~White"),_("~yellow~Yellow")}
-  local sidelist = {_("Random"),_("Human"),_("Orc")}
+  local sidelist = {_("Map Default"), _("Human"),_("Orc"),_("Random")}
   local teamlist = {"-","1","2","3","4"}
   local playerlist = {_("Player"),_("Computer"),_("Rescue-passive"),_("Rescue-active"),_("None")}
   local reveal_list = {_("Default"),_("Explored"),_("Revealed")}
@@ -1069,14 +1030,14 @@ function RunSinglePlayerGameMenu()
 		elseif errorlevel==4 then
 			ErrorMessage(_("Need at least 2 players"))
 		else
+			local wefoundperson = false
 			for i=0,15 do
-				local foundperson = false
 				if pside[i+1]==nil then
 					GameSettings.Presets[i].Race = 0
-				elseif (pside[i+1]:getSelected() == 0) then
+				elseif (pside[i+1]:getSelected() == 3) then
 					GameSettings.Presets[i].Race = math.random(0, 1)
 				else
-					GameSettings.Presets[i].Race = pside[i+1]:getSelected() - 1
+					GameSettings.Presets[i].Race = pside[i+1]:getSelected()
 				end
 				if teams[i+1]==nil then
 					GameSettings.Presets[i].Team = -1
@@ -1086,8 +1047,8 @@ function RunSinglePlayerGameMenu()
 				if ptype[i+1]==nil then
 					GameSettings.Presets[i].Type = -1
 				elseif ptype[i+1]:getSelected()==0 then
-					if foundperson==false then
-						foundperson=true
+					if wefoundperson == false then
+						wefoundperson = true
 						GameSettings.Presets[i].Type = PlayerPerson
 					else
 						GameSettings.Presets[i].Type = PlayerComputer
@@ -1095,6 +1056,10 @@ function RunSinglePlayerGameMenu()
 				elseif ptype[i+1]:getSelected()==1 then
 					GameSettings.Presets[i].Type = PlayerComputer
 				elseif ptype[i+1]:getSelected()==2 then
+					GameSettings.Presets[i].Type = PlayerRescuePassive
+				elseif ptype[i+1]:getSelected()==3 then
+					GameSettings.Presets[i].Type = PlayerRescueActive
+				elseif ptype[i+1]:getSelected()==4 then
 					GameSettings.Presets[i].Type = -1
 				end
 				if pcolor[i+1]==nil then
@@ -1102,11 +1067,13 @@ function RunSinglePlayerGameMenu()
 				else
 					GameSettings.Presets[i].PlayerColor = pcolor[i+1]:getSelected()
 				end
-				--Players[i].AiName = ais[1 + playersProp[1 + i].ai:getSelected()]
+				if paitype[i+1] ~= nil and paitype[i+1]:getSelected() > 0 then
+					Players[i].AiName = AIStrategyTypes[paitype[i+1]:getSelected()]
+				end
 			end
 			GameSettings.Difficulty = difficulty:getSelected() + 1
 			GameSettings.GameType = game_type:getSelected()
-			GameSettings.Resources = rescount:getSelected()+1
+			GameSettings.Resources = rescount:getSelected()
 			GameSettings.RevealMap = reveal_type:getSelected()
 			GameSettings.NumUnits = numunits:getSelected()
 			GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
@@ -1493,14 +1460,20 @@ function GameStarting()
     RunTipsMenu()
   end
   if GameSettings.NetGameType == 1 then
-		if GameSettings.GameType==0 then
-			for plrs=0,7 do
-				for plrs2=0,7 do
+		if GameSettings.GameType==0 or GameSettings.GameType==1 then
+			for plrs=0,15 do
+				for plrs2=0,15 do
 					if plrs==plrs2 then
 					else
-						if GameSettings.Presets[plrs].Team == 0 then
-							SetDiplomacy(plrs, "enemy" , plrs2)
-							SetSharedVision(plrs, false, plrs2)
+						if GameSettings.Presets[plrs].Team == -1 then
+						elseif GameSettings.Presets[plrs].Team == 0 then
+							if GameSettings.Presets[plrs].Type == PlayerComputer and GameSettings.Presets[plrs2].Type == PlayerComputer then
+								SetDiplomacy(plrs, "allied" , plrs2)
+								SetSharedVision(plrs, true, plrs2)
+							else
+								SetDiplomacy(plrs, "enemy" , plrs2)
+								SetSharedVision(plrs, false, plrs2)
+							end
 						else
 							if GameSettings.Presets[plrs].Team == GameSettings.Presets[plrs2].Team then
 								SetDiplomacy(plrs, "allied" , plrs2)
