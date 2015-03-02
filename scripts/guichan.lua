@@ -1031,7 +1031,7 @@ function RunSinglePlayerGameMenu()
 			ErrorMessage(_("Need at least 2 players"))
 		else
 			local wefoundperson = false
-			for i=0,15 do
+			for i=0,14 do
 				if pside[i+1]==nil then
 					GameSettings.Presets[i].Race = 0
 				elseif (pside[i+1]:getSelected() == 3) then
@@ -1461,8 +1461,8 @@ function GameStarting()
   end
   if GameSettings.NetGameType == 1 then
 		if GameSettings.GameType==0 or GameSettings.GameType==1 then
-			for plrs=0,15 do
-				for plrs2=0,15 do
+			for plrs=0,14 do
+				for plrs2=0,14 do
 					if plrs==plrs2 then
 					else
 						if GameSettings.Presets[plrs].Team == -1 then
