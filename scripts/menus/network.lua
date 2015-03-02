@@ -204,7 +204,7 @@ function RunJoiningMapMenu(s)
     state = GetNetworkState()
     -- FIXME: don't use numbers
     if (state == 15) then -- ccs_started, server started the game
-      --SetThisPlayer(1)
+      SetThisPlayer(1)
       joincounter = joincounter + 1
       if (joincounter == 30) then
         SetFogOfWar(fow:isMarked())
