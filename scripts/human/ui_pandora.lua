@@ -89,93 +89,23 @@ function AddFiller(file, x, y)
 	end
 end
 
-if (((Video.Width == 640) and (Video.Height == 480)) or
-   ((Video.Width == 800) and (Video.Height == 480)) or
-   ((Video.Width == 800) and (Video.Height == 600)) or
-   ((Video.Width == 1024) and (Video.Height == 768)) or
-   ((Video.Width == 1280) and (Video.Height == 800)) or
-   ((Video.Width == 1280) and (Video.Height == 960)) or
-   ((Video.Width == 1280) and (Video.Height == 1024)) or
-   ((Video.Width == 1400) and (Video.Height == 1050)) or
-   ((Video.Width == 1600) and (Video.Height == 1200)) or
-   ((Video.Width == 1680) and (Video.Height == 1050))) then
-	  -- A dirty hack to make the hud show up for custom resolutions.
-	  -- In response to #685144. - Kyran, 27/01/2011
-	  AddFiller("ui/human/" .. Video.Width .. "x" .. Video.Height  .. "/filler-right.png", Video.Width - 16, 0)
-	  AddFiller("ui/human/" .. Video.Width  .. "x" .. Video.Height .. "/resource.png", 176, 0)
-	  AddFiller("ui/human/" .. Video.Width  .. "x" .. Video.Height .. "/statusline.png", 176, Video.Height - 16)
-	  AddFiller("ui/human/" .. Video.Width .. "x" .. Video.Height .. "/buttonpanel.png", 0, 336)
-else
-	if (Video.Width <= 640) then
-		AddFiller("ui/human/640x480/resource.png", 176, 0)
-		AddFiller("ui/human/640x480/statusline.png", 176, Video.Height - 16)
-	else
-		if (Video.Width <= 800) then
-			AddFiller("ui/human/800x480/resource.png", 176, 0)
-			AddFiller("ui/human/800x480/statusline.png", 176, Video.Height - 16)
-		else
-			if (Video.Width <= 1024) then
-				AddFiller("ui/human/1024x768/resource.png", 176, 0)
-				AddFiller("ui/human/1024x768/statusline.png", 176, Video.Height - 16)
-			else
-				if (Video.Width <= 1280) then
-					AddFiller("ui/human/1280x800/resource.png", 176, 0)
-					AddFiller("ui/human/1280x800/statusline.png", 176, Video.Height - 16)
-				else
-					if (Video.Width <= 1400) then
-						AddFiller("ui/human/1400x1050/resource.png", 176, 0)
-						AddFiller("ui/human/1400x1050/statusline.png", 176, Video.Height - 16)
-					else
-						if (Video.Width <= 1600) then
-							AddFiller("ui/human/1600x1200/resource.png", 176, 0)
-							AddFiller("ui/human/1600x1200/statusline.png", 176, Video.Height - 16)
-						else
-							AddFiller("ui/human/1680x1050/resource.png", 176, 0)
-							AddFiller("ui/human/1680x1050/statusline.png", 176, Video.Height - 16)
-						end
-					end
-				end
-			end
-		end
+function AddResizedFiller(file, x, y, width, height)
+	if CanAccessFile(file) == true then
+		b = CFiller:new_local()
+		b.G = CGraphic:New(file)
+		b.G:Load()
+		b.G:Resize(width, height)
+		b.X = x
+		b.Y = y
+		UI.Fillers:push_back(b)
 	end
-	if (Video.Height <= 480) then
-		AddFiller("ui/human/640x480/filler-right.png", Video.Width - 16, 0)
-		AddFiller("ui/human/640x480/buttonpanel.png", 0, 336)
-	else
-		if (Video.Height <= 600) then
-			AddFiller("ui/human/800x600/filler-right.png", Video.Width - 16, 0)
-			AddFiller("ui/human/800x600/buttonpanel.png", 0, 336)
-		else
-			if (Video.Height <= 768) then
-				AddFiller("ui/human/1024x768/filler-right.png", Video.Width - 16, 0)
-				AddFiller("ui/human/1024x768/buttonpanel.png", 0, 336)
-			else
-				if (Video.Height <= 800) then
-					AddFiller("ui/human/1280x800/filler-right.png", Video.Width - 16, 0)
-					AddFiller("ui/human/1280x800/buttonpanel.png", 0, 336)
-				else
-					if (Video.Height <= 960) then
-						AddFiller("ui/human/1280x960/filler-right.png", Video.Width - 16, 0)
-						AddFiller("ui/human/1280x960/buttonpanel.png", 0, 336)
-					else
-						if (Video.Height <= 1024) then
-							AddFiller("ui/human/1280x1024/filler-right.png", Video.Width - 16, 0)
-							AddFiller("ui/human/1280x1024/buttonpanel.png", 0, 336)
-						else
-							if (Video.Height <= 1050) then
-								AddFiller("ui/human/1400x1050/filler-right.png", Video.Width - 16, 0)
-								AddFiller("ui/human/1400x1050/buttonpanel.png", 0, 336)
-							else
-								AddFiller("ui/human/1600x1200/filler-right.png", Video.Width - 16, 0)
-								AddFiller("ui/human/1600x1200/buttonpanel.png", 0, 336)
-							end
-						end
-					end
-				end
-			end
-		end
-	end	
 end
+
+AddResizedFiller("ui/human/filler-right.png", Video.Width - 16, 0, 16, Video.Height)
+AddResizedFiller("ui/human/resource.png", 176, 0, Video.Width - 192, 16)
+AddResizedFiller("ui/human/statusline.png", 176, Video.Height - 16, Video.Width - 192, 16)
+AddResizedFiller("ui/human/buttonpanel.png", 0, 336, 176, 144 + Video.Height - 480)
+
 AddFiller("ui/human/menubutton.png", 0, 0)
 AddFiller("ui/human/minimap.png", 0, 24)
 

@@ -629,95 +629,14 @@ static Control Todo[] = {
 {I,0,"ui/title",                                       300, 299 _2},
 // 284-286 unknown
 // --------------------------------------------------
-{I,0,"ui/human/640x480/resource",                      2, 287 _2},
-{I,0,"ui/orc/640x480/resource",                        2, 288 _2},
-{I,0,"ui/human/640x480/filler-right",                  2, 289 _2},
-{I,0,"ui/orc/640x480/filler-right",                    2, 290 _2},
-{I,0,"ui/human/640x480/statusline",                    2, 291 _2},
-{I,0,"ui/orc/640x480/statusline",                      2, 292 _2},
-{I,0,"ui/human/640x480/buttonpanel",                   2, 297 _2},
-{I,0,"ui/orc/640x480/buttonpanel",                     2, 298 _2},
-//---------------------------------------------------
-{I,0,"ui/human/800x480/resource",                      2, 287, 608, 16},
-{I,0,"ui/orc/800x480/resource",                        2, 288, 608, 16},
-{I,0,"ui/human/800x480/filler-right",                  2, 289, 16, 480},
-{I,0,"ui/orc/800x480/filler-right",                    2, 290, 16, 480},
-{I,0,"ui/human/800x480/statusline",                    2, 291, 608, 16},
-{I,0,"ui/orc/800x480/statusline",                      2, 292, 608, 16},
-{I,0,"ui/human/800x480/buttonpanel",                   2, 297, 176, 144},
-{I,0,"ui/orc/800x480/buttonpanel",                     2, 298, 176, 144},
-//---------------------------------------------------
-{I,0,"ui/human/800x600/resource",                      2, 287, 608, 16}, //w-192 16
-{I,0,"ui/orc/800x600/resource",                        2, 288, 608, 16}, //w-192 16
-{I,0,"ui/human/800x600/filler-right",                  2, 289, 16, 600}, //16 h
-{I,0,"ui/orc/800x600/filler-right",                    2, 290, 16, 600}, //16 h
-{I,0,"ui/human/800x600/statusline",                    2, 291, 608, 16}, //w-192 16
-{I,0,"ui/orc/800x600/statusline",                      2, 292, 608, 16}, //w-192 16
-{I,0,"ui/human/800x600/buttonpanel",                   2, 297, 176, 264},//176, h-336
-{I,0,"ui/orc/800x600/buttonpanel",                     2, 298, 176, 264},//176, h-336
-//---------------------------------------------------
-{I,0,"ui/human/1024x768/resource",                     2, 287, 832, 16},
-{I,0,"ui/orc/1024x768/resource",                       2, 288, 832, 16},
-{I,0,"ui/human/1024x768/filler-right",                 2, 289, 16, 768},
-{I,0,"ui/orc/1024x768/filler-right",                   2, 290, 16, 768},
-{I,0,"ui/human/1024x768/statusline",                   2, 291, 832, 16},
-{I,0,"ui/orc/1024x768/statusline",                     2, 292, 832, 16},
-{I,0,"ui/human/1024x768/buttonpanel",                  2, 297, 176, 432},
-{I,0,"ui/orc/1024x768/buttonpanel",                    2, 298, 176, 432},
-// --------------------------------------------------
-{I,0,"ui/human/1280x800/resource",                     2, 287, 1088, 16},
-{I,0,"ui/orc/1280x800/resource",                       2, 288, 1088, 16},
-{I,0,"ui/human/1280x800/filler-right",                 2, 289, 16, 800},
-{I,0,"ui/orc/1280x800/filler-right",                   2, 290, 16, 800},
-{I,0,"ui/human/1280x800/statusline",                   2, 291, 1088, 16},
-{I,0,"ui/orc/1280x800/statusline",                     2, 292, 1088, 16},
-{I,0,"ui/human/1280x800/buttonpanel",                  2, 297, 176, 464},
-{I,0,"ui/orc/1280x800/buttonpanel",                    2, 298, 176, 464},
-// --------------------------------------------------
-{I,0,"ui/human/1280x960/resource",                     2, 287, 1088, 16},
-{I,0,"ui/orc/1280x960/resource",                       2, 288, 1088, 16},
-{I,0,"ui/human/1280x960/filler-right",                 2, 289, 16, 960},
-{I,0,"ui/orc/1280x960/filler-right",                   2, 290, 16, 960},
-{I,0,"ui/human/1280x960/statusline",                   2, 291, 1088, 16},
-{I,0,"ui/orc/1280x960/statusline",                     2, 292, 1088, 16},
-{I,0,"ui/human/1280x960/buttonpanel",                  2, 297, 176, 624},
-{I,0,"ui/orc/1280x960/buttonpanel",                    2, 298, 176, 624},
-// --------------------------------------------------
-{I,0,"ui/human/1280x1024/resource",                     2, 287, 1088, 16},
-{I,0,"ui/orc/1280x1024/resource",                       2, 288, 1088, 16},
-{I,0,"ui/human/1280x1024/filler-right",                 2, 289, 16, 1024},
-{I,0,"ui/orc/1280x1024/filler-right",                   2, 290, 16, 1024},
-{I,0,"ui/human/1280x1024/statusline",                   2, 291, 1088, 16},
-{I,0,"ui/orc/1280x1024/statusline",                     2, 292, 1088, 16},
-{I,0,"ui/human/1280x1024/buttonpanel",                  2, 297, 176, 688},
-{I,0,"ui/orc/1280x1024/buttonpanel",                    2, 298, 176, 688},
-// --------------------------------------------------
-{I,0,"ui/human/1400x1050/resource",                     2, 287, 1208, 16},
-{I,0,"ui/orc/1400x1050/resource",                       2, 288, 1208, 16},
-{I,0,"ui/human/1400x1050/filler-right",                 2, 289, 16, 1050},
-{I,0,"ui/orc/1400x1050/filler-right",                   2, 290, 16, 1050},
-{I,0,"ui/human/1400x1050/statusline",                   2, 291, 1208, 16},
-{I,0,"ui/orc/1400x1050/statusline",                     2, 292, 1208, 16},
-{I,0,"ui/human/1400x1050/buttonpanel",                  2, 297, 176, 714},
-{I,0,"ui/orc/1400x1050/buttonpanel",                    2, 298, 176, 714},
-// --------------------------------------------------
-{I,0,"ui/human/1600x1200/resource",                    2, 287, 1408, 16},
-{I,0,"ui/orc/1600x1200/resource",                      2, 288, 1408, 16},
-{I,0,"ui/human/1600x1200/filler-right",                2, 289, 16, 1200},
-{I,0,"ui/orc/1600x1200/filler-right",                  2, 290, 16, 1200},
-{I,0,"ui/human/1600x1200/statusline",                  2, 291, 1408, 16},
-{I,0,"ui/orc/1600x1200/statusline",                    2, 292, 1408, 16},
-{I,0,"ui/human/1600x1200/buttonpanel",                 2, 297, 176, 864},
-{I,0,"ui/orc/1600x1200/buttonpanel",                   2, 298, 176, 864},
-// --------------------------------------------------
-{I,0,"ui/human/1680x1050/resource",                    2, 287, 1488, 16},
-{I,0,"ui/orc/1680x1050/resource",                      2, 288, 1488, 16},
-{I,0,"ui/human/1680x1050/filler-right",                2, 289, 16, 1050},
-{I,0,"ui/orc/1680x1050/filler-right",                  2, 290, 16, 1050},
-{I,0,"ui/human/1680x1050/statusline",                  2, 291, 1488, 16},
-{I,0,"ui/orc/1680x1050/statusline",                    2, 292, 1488, 16},
-{I,0,"ui/human/1680x1050/buttonpanel",                 2, 297, 176, 714},
-{I,0,"ui/orc/1680x1050/buttonpanel",                   2, 298, 176, 714},
+{I,0,"ui/human/resource",                              2, 287 _2},
+{I,0,"ui/orc/resource",                                2, 288 _2},
+{I,0,"ui/human/filler-right",                          2, 289 _2},
+{I,0,"ui/orc/filler-right",                            2, 290 _2},
+{I,0,"ui/human/statusline",                            2, 291 _2},
+{I,0,"ui/orc/statusline",                              2, 292 _2},
+{I,0,"ui/human/buttonpanel",                           2, 297 _2},
+{I,0,"ui/orc/buttonpanel",                             2, 298 _2},
 // --------------------------------------------------
 {C,0,"human/cursors/human_gauntlet",                   2, 301 _2},
 {C,0,"orc/cursors/orcish_claw",                        2, 302 _2},
