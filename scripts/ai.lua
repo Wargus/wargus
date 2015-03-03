@@ -778,11 +778,11 @@ end
 OldAiSleep = AiSleep
 function AiSleep(cycles)
 	if (GameSettings.Difficulty == 1) then
-		return OldAiSleep(3 * cycles)
+		return OldAiSleep(5 * cycles)
 	elseif (GameSettings.Difficulty == 2) then
-		return OldAiSleep(cycles)
+		return OldAiSleep(math.floor(1.5 * cycles))
 	elseif (GameSettings.Difficulty == 3) then
-		return OldAiSleep(math.floor(cycles / 1.5))
+		return OldAiSleep(math.floor(cycles))
 	elseif (GameSettings.Difficulty == 4) then
 		return OldAiSleep(math.floor(cycles / 2))
 	elseif (GameSettings.Difficulty == 5) then

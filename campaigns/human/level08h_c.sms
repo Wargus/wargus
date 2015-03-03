@@ -132,9 +132,9 @@ function AiHuman08() return AiLoop(hum_08_funcs, stratagus.gameData.AIState.inde
 DefineAi("hum-08", "*", "hum-08", AiHuman08)
 
 local hum_08_peasant_funcs = {
-    function() return AiForce(0, {AiWorker(), 7}) end,
-    function() return AiWaitForce(0) end,
-    function() return AiAttackWithForce(0) end,
+    function() return AiForce(1, {AiWorker(), 7}) end,
+    function() return AiWaitForce(1) end,
+    function() return AiAttackWithForce(1) end,
     function() return AiSleep(12000) end,
     function() stratagus.gameData.AIState.index[1 + AiPlayer()] = 3; return false end,
 }
