@@ -68,16 +68,80 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
--- Default Spells Researched
-DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
-
 -- AI
 
---TODO: Write specific AI
-DefineAi("orc-07", "*", "orc-07", AiLandAttack)
+local orc_07_loop_funcs = {
+	function() DebugMessage("AI looping"); return false end,
+	function() return AiSleep(20000) end,
+	function() return AiForce(2, {AiTransporter(), 1,  AiShooter(), 4, AiCatapult(), 4}) end,
+	function() return AiForce(3, {AiTransporter(), 1,  AiSoldier(), 6}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	function() return AiSleep(15000) end,
+	function() return AiForce(1, {AiDestroyer(), 3}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false; end,
+}
+
+local orc_07_funcs = {
+	function() return AiSet(AiWorker(), 4) end,
+    function() return AiSet(AiTanker(), 2) end,
+	function() return AiSleep(1800) end,
+	
+    function() return AiForce(1, {AiDestroyer(), 3}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(24000) end,
+	
+	function() return AiForce(2, {AiTransporter(), 1, AiSoldier(), 3, AiShooter(), 3}) end,
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	
+	function() return AiResearch(AiUpgradeMissile1()) end,
+	function() return AiForce(1, {AiDestroyer(), 3}) end,
+	function() return AiWaitForce(1) end,
+	function() return AiSleep(19000) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(16000) end,
+	
+	function() return AiForce(2, {AiTransporter(), 1,  AiShooter(), 6}) end,
+	function() return AiForce(3, {AiTransporter(), 1,  AiSoldier(), 3}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	
+	function() return AiSleep(18000) end,
+	function() return AiForce(2, {AiTransporter(), 1,  AiShooter(), 4}) end,
+	function() return AiForce(3, {AiTransporter(), 1,  AiSoldier(), 6}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	function() return AiSleep(24000) end,
+	 function() return AiForce(1, {AiDestroyer(), 3}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+	function() return AiResearch(AiUpgradeWeapon1()) end,
+	function() return AiForce(2, {AiTransporter(), 1,  AiShooter(), 4, AiCatapult(), 4}) end,
+	function() return AiForce(3, {AiTransporter(), 1,  AiSoldier(), 6}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiResearch(AiUpgradeMissile2()) end,
+
+	function() return AiLoop(orc_07_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiOrc07() return AiLoop(orc_07_funcs, stratagus.gameData.AIState.index) end
+DefineAi("orc-07", "*", "orc-07", AiOrc07)
 
 -- Map
 

@@ -62,8 +62,45 @@ DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
 -- AI
 
---TODO: Write specific AI
-DefineAi("orc-05", "*", "orc-05", AiLandAttack)
+local orc_05_loop_funcs = {
+	function() DebugMessage("AI looping"); return false end,
+	function() return AiSleep(12000) end,
+	function() return AiForce(2, {AiTransporter(), 1, AiSoldier(), 3, AiShooter(), 3}) end,
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() return AiSleep(12000) end,
+	function() return AiForce(1, {AiDestroyer(), 3}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false; end,
+}
+
+local orc_05_funcs = {
+	function() return AiSet(AiWorker(), 4) end,
+    function() return AiSet(AiTanker(), 1) end,
+    function() return AiForce(1, {AiDestroyer(), 3}) end,
+	function() return AiForce(2, {AiTransporter(), 1, AiSoldier(), 3, AiShooter(), 3}) end,
+	function() return AiSleep(6000) end,
+	
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(3000) end,
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() return AiSleep(4000) end,
+	function() return AiForce(2, {AiTransporter(), 1, AiSoldier(), 3, AiShooter(), 3}) end,
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() return AiSleep(4000) end,
+	function() return AiForce(2, {AiTransporter(), 1, AiSoldier(), 3, AiShooter(), 3}) end,
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+
+	function() return AiLoop(orc_05_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiOrc05() return AiLoop(orc_05_funcs, stratagus.gameData.AIState.index) end
+DefineAi("orc-05", "*", "orc-05", AiOrc05)
 
 -- Map
 

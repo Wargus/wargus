@@ -57,38 +57,52 @@ DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
 -- orc 04 campaign AI
 
-local CyclesPerSecond = 30 -- according to stratagus.h
-
 local orc_04_loop_funcs = {
 	function() DebugMessage("AI looping"); return false end,
-	function() AiSet(AiTransporter(), 3); AiSet(AiWorker(), 12); AiSet(AiTanker(), 4); return false end,
-	function() AiForce(1, {AiSoldier(), 6, AiShooter(), 6, AiDestroyer(), 2}); return false end,
+	function() return AiSleep(19500) end,
 	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
-	function() return AiSleep(30 * CyclesPerSecond) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(19500) end,
+	function() return AiForce(2, {AiTransporter(), 1, AiSoldier(), 5, AiShooter(), 1}) end,
+	function() return AiForce(3, {AiTransporter(), 1, AiShooter(), 4}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
 	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false; end,
 }
 
 local orc_04_funcs = {
-	function() DebugMessage("Campaign orc 4"); AiForceRole(0, "attack"); AiForceRole(1, "attack"); return false end,
-	function() return AiForce(0, {AiSoldier(), 4, AiShooter(), 6, AiDestroyer(), 3}) end, -- initial troop
-	function() AiSet(AiWorker(), 4); AiSet(AiTanker(), 1); return false; end,
-	function() return AiWait(AiWorker()) end,
-	function() AiSet(AiTransporter(), 1); AiForce(1, {AiSoldier(), 2, AiShooter(), 2}) return false; end,
+	function() return AiSetBuildDepots(false) end,
+	function() return AiSet(AiWorker(), 4) end,
+    function() return AiSet(AiTanker(), 1) end,
+    function() return AiForce(1, {AiDestroyer(), 2}) end,
+	function() return AiForce(2, {AiTransporter(), 1, AiSoldier(), 5, AiShooter(), 1}) end,
+	function() return AiForce(3, {AiTransporter(), 1, AiShooter(), 4}) end,
+	function() return AiSleep(27000) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	function() return AiSleep(15000) end,
+	function() return AiForce(2, {AiTransporter(), 1, AiSoldier(), 5, AiShooter(), 1}) end,
+	function() return AiForce(3, {AiTransporter(), 1, AiShooter(), 4}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	function() return AiSleep(15000) end,
+	
 	function() return AiWaitForce(1) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
-	function() return AiSleep(60 * CyclesPerSecond) end,
-	function() AiSet(AiTransporter(), 2); AiForce(1, {AiSoldier(), 2, AiShooter(), 2}) return false; end,
-	function() return AiWaitForce(1) end,
-	function() return AiSleep(30 * CyclesPerSecond) end,
-	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
---	function() return AiSleep(60 * CyclesPerSecond) end,
-	function() AiSet(AiWorker(), 8); AiSet(AiTanker(), 3); AiNeed(AiPlatform()); return false; end,
-	function() return AiWait(AiTanker()); end,
-	function() AiForce(1, {AiSoldier(), 4, AiShooter(), 4, AiDestroyer(), 1}) return false; end,
-	function() return AiWaitForce(1) end,
-	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
-	function() return AiSleep(60 * CyclesPerSecond) end,
+	function() return AiSleep(19500) end,
+
+	function() return AiForce(2, {AiTransporter(), 1, AiSoldier(), 5, AiShooter(), 1}) end,
+	function() return AiForce(3, {AiTransporter(), 1, AiShooter(), 4}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
 
 	function() return AiLoop(orc_04_loop_funcs, stratagus.gameData.AIState.loop_index) end,
 }

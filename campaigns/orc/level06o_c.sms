@@ -71,8 +71,20 @@ DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
 -- AI
 
---TODO: Write specific AI
-DefineAi("orc-06", "*", "orc-06", AiLandAttack)
+local orc_06_loop_funcs = {
+	function() DebugMessage("AI looping"); return false end,
+	function() return AiSleep(65535) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false; end,
+}
+
+local orc_06_funcs = {
+	function() return AiSet(AiWorker(), 2) end,
+	function() return AiSet(AiTanker(), 1) end,
+	function() return AiLoop(orc_06_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiOrc06() return AiLoop(orc_06_funcs, stratagus.gameData.AIState.index) end
+DefineAi("orc-06", "*", "orc-06", AiOrc06)
 
 -- Map
 
