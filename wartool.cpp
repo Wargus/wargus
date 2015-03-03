@@ -2275,6 +2275,40 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 	return 0;
 }
 
+//----------------------------------------------------------------------------
+//  Fix SPK translation
+//----------------------------------------------------------------------------
+
+void FixTranslation(const char *translation)
+{
+	struct stat st;
+	
+	if (!stat(translation, &st)) {
+		FILE *iFile = fopen(translation, "rb");
+		unsigned char *buf = new unsigned char[st.st_size];
+		unsigned char *p = buf;
+		while (!feof(iFile)) {
+			*p++ = fgetc(iFile);
+		}
+		fclose(iFile);
+
+		FILE *oFile = fopen(translation, "wb");
+		p = buf;
+		for (size_t i = 0; i < st.st_size; ++i, ++p) {
+			unsigned char c = *p;
+			if (c >= 0x80) {
+				if (c >= 0xE0 && c < 0xF0) {
+					c -= 0x30;
+				}
+				fputc(0xC2, oFile);
+				fputc(c, oFile);
+			} else {
+				fputc(c, oFile);
+			}
+		}
+	}
+}
+
 
 //----------------------------------------------------------------------------
 //  Main loop
@@ -2671,6 +2705,11 @@ int main(int argc, char** argv)
 
 	fputs(VERSION, f);
 	fclose(f);
+
+	sprintf(buf, "%s/scripts/translate/ru_RU.po", Dir);
+	FixTranslation(buf);
+	sprintf(buf, "%s/scripts/translate/stratagus-ru.po", Dir);
+	FixTranslation(buf);
 
 	printf("Done.\n");
 

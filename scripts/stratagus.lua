@@ -352,6 +352,7 @@ local defaultPreferences = {
 	GrabMouse = false,              --  Enable/disable grabbing the mouse.
 	GroupKeys = "0123456789`",
 	HoldClickDelayInMs = 1000,      --  For the wanted hold-click delay (in ms).
+	KeyScrollSpeed = 4,
 	LeaveStopScrolling = true,      --  Enable/disable stopping scrolling when mouse leave.
 	MaxOpenGLTexture = 0,
 	MinimapWithTerrain = true,      --  Choose your default for minimap with/without terrain.
@@ -393,10 +394,6 @@ sk_numunits = -1
 
 if (wc2.preferences.ServerList == nil) then 
 	wc2.preferences.ServerList = {}
-	wc2.preferences.ServerList[1] = "25.62.21.197"
-	wc2.preferences.ServerList[2] = "Cybermind"
-	wc2.preferences.ServerList[3] = "25.84.93.185"
-	wc2.preferences.ServerList[4] = "Kyran"
 end
 
 CompleteMissingValues(wc2.preferences, defaultPreferences)
@@ -418,6 +415,7 @@ SetLocalPlayerName(wc2.preferences.PlayerName)
 SetMaxOpenGLTexture(wc2.preferences.MaxOpenGLTexture)
 SetMinimapTerrain(wc2.preferences.MinimapWithTerrain)
 SetMouseScroll(wc2.preferences.EnableMouseScrolling)
+SetKeyScrollSpeed(wc2.preferences.KeyScrollSpeed)
 SetMouseScrollSpeed(wc2.preferences.MouseScrollSpeed)
 SetMouseScrollSpeedControl(wc2.preferences.MouseScrollSpeedControl)
 SetMouseScrollSpeedDefault(wc2.preferences.MouseScrollSpeedDefault)
@@ -434,6 +432,7 @@ Preference.MineNotifications = wc2.preferences.MineNotifications
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")
 
+Load("scripts/translate/translate.lua")
 Load("scripts/icons.lua")
 Load("scripts/sound.lua")
 Load("scripts/missiles.lua")

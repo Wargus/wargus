@@ -1,0 +1,403 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: stratagus-ru\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-12-12 21:22-0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: cybermind <cybermindid@gmail.com>\n"
+"Language-Team: cybermind <iddqd_mail@mail.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP866\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: f:/Programming/Projects/stratag/trunk/src/\n"
+"X-Poedit-SearchPath-0: f:/Programming/Projects/stratag/trunk/src\n"
+
+#: src/action/action_build.cpp:119
+msgid "You cannot reach building place"
+msgstr "Невозможно достигнуть места строительства"
+
+#: src/action/action_build.cpp:177
+#, c-format
+msgid "You cannot build %s here"
+msgstr "Невозможно построить здесь %s"
+
+#: src/action/action_build.cpp:197
+#, c-format
+msgid "Not enough resources to build %s"
+msgstr "Недостаточно ресурсов для постройки %s"
+
+#: src/action/action_build.cpp:215
+#, c-format
+msgid "Can't build more units %s"
+msgstr "Нельзя создать еще %s"
+
+#: src/action/action_build.cpp:255
+#, c-format
+msgid "Unable to create building %s"
+msgstr "Нельзя построить здание: %s"
+
+#: src/action/action_build.cpp:515
+#, c-format
+msgid "New %s done"
+msgstr "Готова новая постройка: %s"
+
+#: src/action/action_repair.cpp:84
+#, c-format
+msgid "We need more %s for repair!"
+msgstr "Нам нужно больше %s для ремонта!"
+
+#: src/action/action_research.cpp:103
+#, c-format
+msgid "%s: research complete"
+msgstr "%s: исследование завершено"
+
+#: src/action/action_resource.cpp:769
+#, c-format
+msgid "%s has collapsed!"
+msgstr "%s обрушился!"
+
+#: src/action/action_resource.cpp:842
+#, c-format
+msgid "%s is running low!"
+msgstr "%s скоро иссякнет!"
+
+#: src/action/action_returngoods.cpp:68
+msgid "No Resources to Return."
+msgstr "Нету возвращаемых ресурсов."
+
+#: src/action/action_spellcast.cpp:181
+#, c-format
+msgid "%s: not enough mana for spell: %s"
+msgstr "%s: не хватает маны для заклинания: %s"
+
+#: src/action/action_spellcast.cpp:185
+#, c-format
+msgid "%s: can't cast spell: %s"
+msgstr "%s: невозможно использовать заклинание : %s"
+
+#: src/action/action_train.cpp:170
+#, c-format
+msgid "New %s ready"
+msgstr "Готов новый юнит %s"
+
+#: src/action/action_train.cpp:217
+#, c-format
+msgid "Unable to train %s"
+msgstr "Невозможно тренировать юнит %s"
+
+#: src/action/action_upgradeto.cpp:199
+#, c-format
+msgid "Upgrade to %s canceled"
+msgstr "Вы отменили модернизацию до %s"
+
+#: src/action/action_upgradeto.cpp:207
+#, c-format
+msgid "Upgrade to %s complete"
+msgstr "Модернизация до %s завершена"
+
+#: src/action/command.cpp:1319
+#, c-format
+msgid "Player \"%s\" has left the game"
+msgstr "Игрок %s покинул игру"
+
+#: src/action/command.cpp:1321
+#, c-format
+msgid "Player \"%s\" has been killed"
+msgstr "Игрок \"%s\" был побежден"
+
+#: src/editor/editloop.cpp:508 src/editor/editloop.cpp:592
+msgid "~!OK"
+msgstr "ОК"
+
+#: src/editor/editloop.cpp:516 src/editor/editloop.cpp:600
+msgid "~!Cancel"
+msgstr "Отмена"
+
+#: src/editor/editloop.cpp:583
+msgid "Artificial Intelligence"
+msgstr "Искусственный интеллект"
+
+#: src/editor/editloop.cpp:1376
+msgid "Unit can't be placed here."
+msgstr "Вы не можете создать здесь этот юнит"
+
+#: src/editor/editloop.cpp:1448
+msgid "Mirror editing enabled: 2-side"
+msgstr "Включен 2-стороний режим зеркального редактирования"
+
+#: src/editor/editloop.cpp:1451
+msgid "Mirror editing enabled: 4-side"
+msgstr "Включен 4-стороний режим зеркального редактирования"
+
+#: src/editor/editloop.cpp:1454
+msgid "Mirror editing disabled"
+msgstr "Режим зеркального редактирования выключен"
+
+#: src/editor/editloop.cpp:1474
+msgid "Unit deleted"
+msgstr "Юнит удален"
+
+#: src/editor/editloop.cpp:1497 src/editor/editloop.cpp:1506
+msgid "Unit owner modified"
+msgstr "Изменен владелец юнита"
+
+#: src/editor/editloop.cpp:1831
+msgid "Select mode"
+msgstr "Режим выбора"
+
+#: src/editor/editloop.cpp:1841
+msgid "Unit mode"
+msgstr "Режим юнитов"
+
+#: src/editor/editloop.cpp:1852
+msgid "Tile mode"
+msgstr "Режим ландшафта"
+
+#: src/editor/editloop.cpp:1863
+msgid "Set start location mode"
+msgstr "Режим стартовых позиций"
+
+#: src/network/commands.cpp:824
+msgid "No sync info for this replay !"
+msgstr "Отсутствуют данные синхронизации!"
+
+#: src/network/commands.cpp:826
+#, c-format
+msgid "Replay got out of sync (%lu) !"
+msgstr "Нарушена синхронизация переигровки (%lu)!"
+
+#: src/network/commands.cpp:835
+msgid "Replay got out of sync !"
+msgstr "Нарушена синхронизация переигровки!"
+
+#: src/network/commands.cpp:946 src/network/commands.cpp:961
+msgid "End of replay"
+msgstr "Конец переигровки"
+
+#: src/network/network.cpp:928
+#, c-format
+msgid "%s sent bad command"
+msgstr "%s отослал команду с ошибкой"
+
+#: src/network/network.cpp:1022
+msgid "Network out of sync"
+msgstr "Нарушена синхронизация сети"
+
+#: src/network/network.cpp:1256
+#, c-format
+msgid "Waiting for player \"%s\": %d:%02d"
+msgstr "Ожидание игрока \"%s\": %d:%02d"
+
+#: src/network/network.cpp:1272
+msgid "Timed out"
+msgstr "Время вышло"
+
+#: src/stratagus/player.cpp:553
+msgid "Building Limit Reached"
+msgstr "Достигнут лимит построке"
+
+#: src/stratagus/player.cpp:557
+msgid "Unit Limit Reached"
+msgstr "Достигнут лимит юнитов"
+
+#: src/stratagus/player.cpp:561
+msgid "Insufficient Supply, increase Supply."
+msgstr "Требуется больше пищи для юнитов"
+
+#: src/stratagus/player.cpp:565
+msgid "Total Unit Limit Reached"
+msgstr "Достигнут общий лимит юнитов"
+
+#: src/stratagus/player.cpp:569
+#, c-format
+msgid "Limit of %d reached for this unit type"
+msgstr "Достигнут предел в %d единиц для данного юнита"
+
+#: src/stratagus/player.cpp:575
+msgid "Cannot create more units."
+msgstr "Невозможно создать больше юнитов."
+
+#: src/stratagus/stratagus.cpp:548 src/stratagus/stratagus.cpp:681
+msgid "Do it! Do it now!"
+msgstr "Вперед! Давай же!"
+
+#: src/stratagus/stratagus.cpp:812
+#, c-format
+msgid "Thanks for playing Stratagus.\n"
+msgstr "Спасибо за то, что сыграли в Wargus.\n"
+
+#: src/ui/botpanel.cpp:724 src/ui/botpanel.cpp:789
+msgid "Select Target"
+msgstr "Выберите цель"
+
+#: src/ui/botpanel.cpp:852
+msgid "Select Location"
+msgstr "Выберите позицию"
+
+#: src/ui/botpanel.cpp:871
+msgid "Unit training queue is full"
+msgstr "Очередь строительства заполнена"
+
+#: src/ui/interface.cpp:95
+#, c-format
+msgid "MESSAGE:%s~!_"
+msgstr "СООБЩЕНИЕ:%s~!_"
+
+#: src/ui/interface.cpp:247
+msgid "Sound is on."
+msgstr "Звук включен"
+
+#: src/ui/interface.cpp:249
+msgid "Sound is off."
+msgstr "Звук выключен"
+
+#: src/ui/interface.cpp:264
+msgid "Music is off."
+msgstr "Музыка включена"
+
+#: src/ui/interface.cpp:267
+msgid "Music is on."
+msgstr "Музыка выключена"
+
+#: src/ui/interface.cpp:280 src/ui/mouse.cpp:1736
+msgid "Game Paused"
+msgstr "Игра приостановлена"
+
+#: src/ui/interface.cpp:282
+msgid "Game Resumed"
+msgstr "Игра возобновлена"
+
+#: src/ui/interface.cpp:313
+msgid "Big map enabled"
+msgstr "Включена большая карта"
+
+#: src/ui/interface.cpp:322
+msgid "Returning to old map"
+msgstr "Большая карта выключена"
+
+#: src/ui/interface.cpp:333
+msgid "Faster"
+msgstr "Быстрее"
+
+#: src/ui/interface.cpp:349
+msgid "Slower"
+msgstr "Медленнее"
+
+#: src/ui/interface.cpp:404
+msgid "Terrain displayed."
+msgstr "Показ ландшафта включен"
+
+#: src/ui/interface.cpp:406
+msgid "Terrain hidden."
+msgstr "Показ ландшафта выключен"
+
+#: src/ui/interface.cpp:439
+msgid "Grab mouse toggled."
+msgstr "Захват мыши переключен"
+
+#: src/ui/interface.cpp:914
+msgid "Screenshot made."
+msgstr "Получен снимок экрана"
+
+#: src/ui/mainscr.cpp:971
+#, c-format
+msgid "Last message repeated ~<%d~> times"
+msgstr "Вы получили последнее сообщение ~<%d~> раз"
+
+#: src/ui/mainscr.cpp:1047
+#, c-format
+msgid "~<Event: %s~>"
+msgstr "~<Событие: %s~>"
+
+#: src/ui/mouse.cpp:1904
+#, c-format
+msgid "You have ~<%d~> %ss"
+msgstr "У вас есть ~<%d~> %s"
+
+#: src/ui/mouse.cpp:1908
+#, c-format
+msgid "You have ~<%d~> %s(s)"
+msgstr "У вас есть ~<%d~> %s"
+
+#: src/unit/unit.cpp:2990
+#, c-format
+msgid "%s attacked"
+msgstr "%s под огнем"
+
+#~ msgid "%s: complete"
+#~ msgstr "%s: завершено"
+
+#~ msgid "%s: spell is not ready yet: %s"
+#~ msgstr "%s: заклинание еще не готово: %s"
+
+#~ msgid "%s: not enough resources to cast spell: %s"
+#~ msgstr "%s: недостаточно ресурсов для заклинания: %s"
+
+#~ msgid "Editor (%d %d)"
+#~ msgstr "Редактор (%d %d)"
+
+#~ msgid "#%d '%s' Player:#%d %s"
+#~ msgstr "#%d '%s' Игрок:#%d %s"
+
+#~ msgid " Amount %d"
+#~ msgstr "Ресурсы %d"
+
+#~ msgid "Select player #%d"
+#~ msgstr "Выбор игрока #%d"
+
+#~ msgid "Script %s"
+#~ msgstr "Скрипт %s"
+
+#~ msgid "Tileset `%s'"
+#~ msgstr "Тайлсет `%s'"
+
+#~ msgid "Missile %s"
+#~ msgstr "Снаряд %s"
+
+#~ msgid "Can't find missile %s\n"
+#~ msgstr "Снаряд не найден: %s\n"
+
+#~ msgid "Construction %s"
+#~ msgstr "Конструкция %s"
+
+#~ msgid "Not enough %s...%s more %s."
+#~ msgstr "Недостаточно %s...%s больше %s."
+
+#~ msgid "Script %s\n"
+#~ msgstr "Скрипт %s\n"
+
+#~ msgid "Icon %s"
+#~ msgstr "Иконка %s"
+
+#~ msgid "Can't find icon %s\n"
+#~ msgstr "Иконка не найдена: %s\n"
+
+#~ msgid "Icons %s"
+#~ msgstr "Иконка %s"
+
+#~ msgid "Set default game speed"
+#~ msgstr "Установлена стандартная скорость игры"
+
+#~ msgid "Cycle:"
+#~ msgstr "Цикл:"
+
+#~ msgid "Requirements:\n"
+#~ msgstr "Необходимо:\n"
+
+#~ msgid "unit-type '%s' without animations, ignored.\n"
+#~ msgstr "юнит '%s' не имеет анимаций, пропускается.\n"
+
+#~ msgid "Unit \"%s\""
+#~ msgstr "Юнит \"%s\""
+
+#~ msgid "Decorations `%s'"
+#~ msgstr "Декорация `%s'"
+
+#~ msgid "Cursor %s"
+#~ msgstr "Курсор %s"
+
+#~ msgid "esc"
+#~ msgstr "esc"

@@ -188,7 +188,7 @@ function RunGameSoundOptionsMenu()
 end
 
 function RunPreferencesMenu()
-  local menu = WarGameMenu(panel(1))
+  local menu = WarGameMenu(panel(5))
 
   menu:addLabel(_("Preferences"), 128, 11)
 
@@ -283,8 +283,8 @@ function RunSpeedsMenu()
 		-- set the value so the game saves it
 		gamespeed:setValue(GetGameSpeed())
 
-  menu:addLabel("slow", 22, 80, Fonts["small"], false)
-  local l = Label("fast")
+  menu:addLabel(_("slow "), 22, 80, Fonts["small"], false)
+  local l = Label(_("fast"))
   l:setFont(Fonts["small"])
   l:adjustSize()
   menu:add(l, 234 - l:getWidth(), 80)
@@ -304,16 +304,41 @@ function RunSpeedsMenu()
 		-- set the value so the game saves it
 		mousescrollspeed:setValue(GetMouseScrollSpeed())
 
-  menu:addLabel("slow", 22, 148, Fonts["small"], false)
-  local l = Label("fast")
+  menu:addLabel(_("slow "), 22, 148, Fonts["small"], false)
+  local l = Label(_("fast"))
   l:setFont(Fonts["small"])
   l:adjustSize()
   menu:add(l, 228 - l:getWidth() + 6, 148)
+  
+  menu:addLabel(_("Key Scroll Speed"), 12, 180, Fonts["game"], false)
+
+  local keyscrollspeed = {}
+  		-- slider button to decrease slider value
+		keyscrollspeed = menu:addImageLeftSliderButton("", nil, 21, 196, function() keyscrollspeed:setValue(keyscrollspeed:getValue() - .5); SetMouseScrollSpeed(keyscrollspeed:getValue()) end)
+		
+	    -- slider button to decrease slider value		
+		keyscrollspeed = menu:addImageRightSliderButton("", nil, 213, 196, function() keyscrollspeed:setValue(keyscrollspeed:getValue() + .5); SetMouseScrollSpeed(keyscrollspeed:getValue()) end)
+		
+		-- slider itself
+		keyscrollspeed = menu:addImageSlider(1, 10, 172, 18, 41, 196, g_marker, g_slider, 
+		function() 
+			SetKeyScrollSpeed(keyscrollspeed:getValue())
+		end)
+		
+		-- set the value so the game saves it
+		keyscrollspeed:setValue(GetKeyScrollSpeed())
+
+  menu:addLabel(_("slow "), 22, 216, Fonts["small"], false)
+  local l = Label(_("fast"))
+  l:setFont(Fonts["small"])
+  l:adjustSize()
+  menu:add(l, 228 - l:getWidth() + 6, 216)
   
   menu:addHalfButton("~!OK", "o", 16 + 12 + 106, 288 - 40,
   function()
 	  wc2.preferences.GameSpeed = GetGameSpeed()
       wc2.preferences.MouseScrollSpeed = GetMouseScrollSpeed()
+	  wc2.preferences.KeyScrollSpeed = GetKeyScrollSpeed()
       SavePreferences()
       menu:stop(1)
   end)
@@ -349,195 +374,65 @@ function BuildOptionsMenu()
   local checkTexture
   local b
   
+  local videoModes = {
+  640, 480,
+  800, 480,
+  720, 480,
+  720, 576,
+  800, 600,
+  1024, 600,
+  1024, 768,
+  1152, 864,
+  1280, 720,
+  1280, 768,
+  1280, 800,
+  1280, 960,
+  1280, 1024,
+  1360, 768,
+  1366, 768,
+  1440, 900,
+  1400, 1050,
+  1600, 900,
+  1600, 1200,
+  1600, 1280,
+  1680, 1050,
+  1920, 1080,
+  1920, 1200,
+  1920, 1440,
+  2560, 1600
+  }
+  
+   local vlist = {}
+	for i=1,table.getn(videoModes)/2 do
+		vlist[i]=""..tostring(videoModes[i*2-1]).." x "..tostring(videoModes[i*2])..""
+	end	
+  
   if (wargus.tales == false) then
     menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, ((Video.Width - 640) / 2 + 320), (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
   end
   
-  if (Video.Width < 640 or Video.Height < 400) then
-    -- For ultra small resolutions.
-    menu:addLabel("Global Options", Video.Width - Video.Width/4, Video.Height/6)
-    -- menu:addLabel("Video Resolution", Video.Width/8 - 4, Video.Height/3, Fonts["game"], false)
+	menu:addLabel(_("Video Options"), offx + 176, offy + 1 + 26*-2)
+	menu:addLabel(_("Video Resolution"), offx + 16, offy + 34 , Fonts["game"], false)
 	
-	b = menu:addCheckBox("640 x 480", Video.Width/8 + 12, Video.Height/6.5 + 26*2.6,
-      function() SetVideoSize(640, 480) menu:stop(1) end)
-	if (Video.Width == 640 and Video.Height == 480) then b:setMarked(true) end
+	videoList = menu:addListBox(offx + 16, offy + 50, 200, 8*(table.getn(videoModes)/2+1), vlist)
   
-  	b = menu:addCheckBox("720 x 480", Video.Width/8 + 12, Video.Height/6.5 + 26*3.4,
-	  function() SetVideoSize(720, 480) menu:stop(1) end)
-	if (Video.Width == 720 and Video.Height == 480) then b:setMarked(true) end
+	  local function cb(s)
+		SetVideoSize(videoModes[videoList:getSelected()*2+1], videoModes[videoList:getSelected()*2+2])
+		menu:stop(1)
+	  end
+	  videoList:setActionCallback(cb)
 	
-    b = menu:addCheckBox("720 x 576", Video.Width/8 + 12, Video.Height/6.5 + 26*4.2,
-	  function() SetVideoSize(720, 576) menu:stop(1) end)
-	if (Video.Width == 720 and Video.Height ==756) then b:setMarked(true) end
-  
-	b = menu:addCheckBox("800 x 480", Video.Width/8 + 12, Video.Height/6.5 + 26*5,
-	  function() SetVideoSize(800, 480) menu:stop(1) end)
-	if (Video.Width == 800 and Video.Height == 480) then b:setMarked(true) end
-	
-	b = menu:addCheckBox("1024 x 768", Video.Width/8 + 12, Video.Height/6.5 + 26*5.8,
-      function() SetVideoSize(1024, 768) menu:stop(1) end)
-    if (Video.Width == 1024 and Video.Height == 768) then b:setMarked(true) end
-	
-	b = menu:addCheckBox("Full Screen", Video.Width/2 + 16, Video.Height/6.5 + 26*1.8,
-      function()
-        ToggleFullScreen()
+
+	b = menu:addCheckBox(_("Full Screen"), offx + 17, offy + 55 + 26*8 + 14,
+	  function()
+		ToggleFullScreen()
 		wc2.preferences.VideoFullScreen = Video.FullScreen
-        SavePreferences()
-        menu:stop(1)
-      end)
-    b:setMarked(Video.FullScreen)
-
-    checkOpenGL = menu:addCheckBox("OpenGL", Video.Width/2 + 16, Video.Height/6.5 + 26*2.6,
-      function()
-		wc2.preferences.UseOpenGL = checkOpenGL:isMarked()
 		SavePreferences()
-      end)
-	checkOpenGL:setMarked(wc2.preferences.UseOpenGL)
-
-    menu:addHalfButton("~!OK", "o", Video.Width/2 + 16, Video.Height/6.5 + 26*5.8, 
-	  function() 
-		wc2.preferences.EffectsVolume = GetEffectsVolume()
-		wc2.preferences.EffectsEnabled = IsEffectsEnabled()
-		wc2.preferences.MusicVolume = GetMusicVolume()
-		wc2.preferences.MusicEnabled = IsMusicEnabled()
-        SavePreferences()
-	    menu:stop() 
+		menu:stop(1)
 	  end)
+	b:setMarked(Video.FullScreen)
 
-    effectscheckbox = menu:addCheckBox("Sound", Video.Width/2 + 16, Video.Height/6.5 + 26*3.4,
-      function() 
-	    SetEffectsEnabled(effectscheckbox:isMarked()) 
-      end)
-    effectscheckbox:setMarked(IsEffectsEnabled())
-
-    musiccheckbox = menu:addCheckBox("Music", Video.Width/2 + 16, Video.Height/6.5 + 26*4.2,
-      function() 
-	    SetMusicEnabled(musiccheckbox:isMarked()); MusicStopped() 
-	  end)
-    musiccheckbox:setMarked(IsMusicEnabled())
-	
-  else
-  
-    menu:addLabel("Global Options", offx + 176, offy + 1 + 26*-2)
-    menu:addLabel("Video Resolution", offx + 16, offy + 34 + 26*-2, Fonts["game"], false)
-    -- Normal (4:3 and 5:4)
-    
-    b = menu:addCheckBox("640 x 480", offx + 16, offy + 55 + 26*-0.2,
-      function() SetVideoSize(640, 480) menu:stop(1) end)
-    if (Video.Width == 640 and Video.Height == 480) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("800 x 480", offx + 16, offy + 55 + 26*0.6,
-      function() SetVideoSize(800, 480) menu:stop(1) end)
-    if (Video.Width == 800 and Video.Height == 480) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("720 x 576", offx + 16, offy + 55 + 26*1.4,
-      function() SetVideoSize(720, 576) menu:stop(1) end)
-    if (Video.Width == 720 and Video.Height == 576) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("800 x 600", offx + 16, offy + 55 + 26*2.2,
-      function() SetVideoSize(800, 600) menu:stop(1) end)
-    if (Video.Width == 800 and Video.Height == 600) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1024 x 768", offx + 16, offy + 55 + 26*3,
-      function() SetVideoSize(1024, 768) menu:stop(1) end)
-    if (Video.Width == 1024 and Video.Height == 768) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1152 x 864", offx + 16, offy + 55 + 26*3.8,
-      function() SetVideoSize(1152, 864) menu:stop(1) end)
-    if (Video.Width == 1152 and Video.Height == 864) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1280 x 960", offx + 16, offy + 55 + 26*4.6,
-      function() SetVideoSize(1280, 960) menu:stop(1) end)
-    if (Video.Height == 960) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1280 x 1024", offx + 16, offy + 55 + 26*5.4,
-      function() SetVideoSize(1280, 1024) menu:stop(1) end)
-    if (Video.Height == 1024) then b:setMarked(true) end  
-  
-    b = menu:addCheckBox("1400 x 1050", offx + 16, offy + 55 + 26*6.2,
-      function() SetVideoSize(1400, 1050) menu:stop(1) end)
-    if (Video.Width == 1400) then b:setMarked(true) end
-
-    b = menu:addCheckBox("1600 x 1200", offx + 16, offy + 55 + 26*7, 
-      function() SetVideoSize(1600, 1200) menu:stop(1) end)
-    if (Video.Width == 1600 and Video.Height == 1200) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1600 x 1280", offx + 16, offy + 55 + 26*7.8, 
-      function() SetVideoSize(1600, 1280) menu:stop(1) end)
-    if (Video.Width == 1600 and Video.Height == 1280) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1920 x 1440", offx + 16, offy + 55 + 26*8.6, 
-      function() SetVideoSize(1920, 1440) menu:stop(1) end)
-    if (Video.Width == 1920 and Video.Height == 1440) then b:setMarked(true) end
-  
-    -- Widescreen 10:6
-  
-    b = menu:addCheckBox("1024 x 600", offx + 16*15, offy + 55 + 26*-1, -- Adding netbook resolution in response to #685144. - Kyran Jackson.
-      function() SetVideoSize(1024, 600) menu:stop(1) end)
-    if (Video.Width == 1024 and Video.Height == 600) then b:setMarked(true) end
-  
-    -- Widescreen 16:9
-  
-    b = menu:addCheckBox("1280 x 720", offx + 16*15, offy + 55 + 26*-0.2,
-      function() SetVideoSize(1280, 720) menu:stop(1) end)
-    if (Video.Width == 1280 and Video.Height == 720) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1360 x 768", offx + 16*15, offy + 55 + 26*0.6,
-      function() SetVideoSize(1360, 768) menu:stop(1) end)
-    if (Video.Width == 1360 and Video.Height == 768) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1366 x 768", offx + 16*15, offy + 55 + 26*1.4,
-      function() SetVideoSize(1366, 768) menu:stop(1) end)
-    if (Video.Width == 1366 and Video.Height == 768) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1600 x 900", offx + 16*15, offy + 55 + 26*2.2,
-      function() SetVideoSize(1600, 900) menu:stop(1) end)
-    if (Video.Width == 1600 and Video.Height == 900) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1920 x 1080", offx + 16*15, offy + 55 + 26*3,
-      function() SetVideoSize(1920, 1080) menu:stop(1) end)
-    if (Video.Width == 1920 and Video.Height == 1080) then b:setMarked(true) end
-  
-    -- Widescreen 16:10
-  
-    b = menu:addCheckBox("720 x 480", offx + 16*15, offy + 55 + 26*3.8,
-      function() SetVideoSize(720, 480) menu:stop(1) end)
-    if (Video.Width == 720 and Video.Height == 480) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1280 x 768", offx + 16*15, offy + 55 + 26*4.6,
-      function() SetVideoSize(1280, 768) menu:stop(1) end)
-    if (Video.Width == 1280 and Video.Height == 768) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1280 x 800", offx + 16*15, offy + 55 + 26*5.4,
-      function() SetVideoSize(1280, 800) menu:stop(1) end)
-    if (Video.Width ==1280 and Video.Height == 800) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1440 x 900", offx + 16*15, offy + 55 + 26*6.2,
-      function() SetVideoSize(1440, 900) menu:stop(1) end)
-    if (Video.Width == 1440 and Video.Height == 900) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1680 x 1050", offx + 16*15, offy + 55 + 26*7,
-      function() SetVideoSize(1680, 1050) menu:stop(1) end)
-    if (Video.Width == 1680 and Video.Height == 1050) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("1920 x 1200", offx + 16*15, offy + 55 + 26*7.8,
-      function() SetVideoSize(1920, 1200) menu:stop(1) end)
-    if (Video.Width == 1920 and Video.Height == 1200) then b:setMarked(true) end
-  
-    b = menu:addCheckBox("2560 x 1600", offx + 16*15, offy + 55 + 26*8.6,
-      function() SetVideoSize(2560, 1600) menu:stop(1) end)
-    if (Video.Width == 2560 and Video.Height == 1600) then b:setMarked(true) end
-
-    b = menu:addCheckBox(_("Full Screen"), offx + 17, offy + 55 + 26*10 + 14,
-      function()
-        ToggleFullScreen()
-        wc2.preferences.VideoFullScreen = Video.FullScreen
-        SavePreferences()
-        menu:stop(1)
-      end)
-    b:setMarked(Video.FullScreen)
-
-    checkTexture = menu:addCheckBox(_("Set Maximum OpenGL Texture to 256"), offx + 127, offy + 55 + 26*10 + 14,
+    checkTexture = menu:addCheckBox(_("Set Maximum OpenGL Texture to 256"), offx + 17, offy + 55 + 26*9 + 14,
       function()
         if (checkTexture:isMarked()) then
           wc2.preferences.MaxOpenGLTexture = 256
@@ -549,7 +444,7 @@ function BuildOptionsMenu()
       end)
     if (wc2.preferences.MaxOpenGLTexture == 256) then checkTexture:setMarked(true) end
 
-    checkOpenGL = menu:addCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*11 + 14,
+    checkOpenGL = menu:addCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*10 + 14,
       function()
 --TODO: Add function for immediately change state of OpenGL
         wc2.preferences.UseOpenGL = checkOpenGL:isMarked()
@@ -559,11 +454,77 @@ function BuildOptionsMenu()
     checkOpenGL:setMarked(wc2.preferences.UseOpenGL)
 --  checkOpenGL:setMarked(UseOpenGL) --TODO: Enable if we have an OpenGL function
 
-    menu:addHalfButton("~!OK", "o", offx + 123, offy + 55 + 26*12 + 14, function() menu:stop() end)
+    menu:addHalfButton("~!OK", "o", offx + 123, offy + 55 + 26*11 + 14, function() menu:stop() end)
 
-    end
   return menu:run()
 end
+
+function RunConfirmRestart(menu)
+  local confirm = WarGameMenu(panel(4))
+  confirm:resize(288, 128)
+
+  local mes = MultiLineLabel(_("You need to restart game to apply changes, exit now?"))
+  mes:setFont(Fonts["game"])
+  mes:setAlignment(MultiLineLabel.CENTER)
+  mes:setVerticalAlignment(MultiLineLabel.TOP)
+  mes:setLineWidth(250)
+  mes:setWidth(288)
+  mes:setHeight(48)
+  mes:setBackgroundColor(dark)
+  confirm:add(mes, 0, 25)
+
+  confirm:addHalfButton(_("~!Yes"), "y", 1 * (300 / 3) - 90, 120 - 16 - 27,
+    function()
+        confirm:stop()
+        menu:stop()
+		Exit(0)
+    end)
+
+  confirm:addHalfButton(_("~!No"), "n", 3 * (300 / 3) - 130, 120 - 16 - 27,
+    function() confirm:stop() end)
+
+  return confirm:run()
+end
+
+function RunLanguageMenu()
+  local menu = WarGameMenu(panel(5))
+  menu:resize(352, 352)
+  local b
+  local languageList
+  
+  local langlist = {}
+  if (LanguageTable ~= nil) then
+	for i=1,table.getn(LanguageTable)/3 do
+		langlist[i]=tostring(LanguageTable[(i-1)*3+1])
+	end
+  end
+
+  menu:addLabel(_("Language Options"), 176, 10)
+  
+  menu:addLabel(_("Available languages:"), 16, 34, Fonts["game"], false)
+  languageList = menu:addListBox(16, 50, 300, math.max(250, 8*(table.getn(LanguageTable)/3+1)), langlist)
+
+  menu:addHalfButton("~!OK", "o", 40, 320, function()
+    if (languageList:getSelected() >= 0) then
+		wc2.preferences.StratagusTranslation = LanguageTable[languageList:getSelected()*3 + 2]
+		wc2.preferences.GameTranslation = LanguageTable[languageList:getSelected()*3 + 3]
+		SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameTranslation)
+		SavePreferences()
+		RunConfirmRestart(menu)
+	end
+	menu:stop() 
+	end)
+
+  menu:addHalfButton(_("~!Cancel"), "c", 206, 320, function() 
+	menu:stop() 
+	end)
+
+  if GameCycle > 0 then
+	  menu:run(false)
+    else
+	  menu:run()
+    end
+end 
 
 
 function RunOptionsMenu()
@@ -589,6 +550,8 @@ function RunGameOptionsMenu()
   else
 	menu:addFullButton(_("Video (~<F9~>)"), "f9", 16, 40 + 36*3,
     function() RunOptionsMenu(); menu:stopAll(1) end)
+	menu:addFullButton(_("Language"), "f13", 16, 40 + 36*4,
+    function() RunLanguageMenu(); menu:stopAll(1) end)
   end
   menu:addFullButton(_("Previous (~<Esc~>)"), "escape", 128 - (224 / 2), 288 - 40,
     function() menu:stop() end)
