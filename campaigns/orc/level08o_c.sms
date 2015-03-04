@@ -95,6 +95,7 @@ local orc_08_loop_funcs = {
 local orc_08_funcs = {
 	function() return AiSet(AiWorker(), 7) end,
     function() return AiSet(AiTanker(), 2) end,
+	function() return AiNeed(AiPlatform()) end,
 	function() return AiWait(AiWorker()) end,
 	
     function() return AiForce(2, {AiTransporter(), 1,  AiSoldier(), 3, AiShooter(), 3}) end,

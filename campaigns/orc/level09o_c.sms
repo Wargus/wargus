@@ -39,7 +39,22 @@ AddTrigger(
 assert(loadstring(Triggers))()
 
 --Units
-
+local allowedHumanUnits = {"unit-farm",
+	"unit-town-hall", "unit-keep", "unit-castle", "unit-peasant",
+	"unit-human-barracks", "unit-footman", "unit-archer", "unit-ranger", "unit-ballista",
+	"unit-elven-lumber-mill", "upgrade-arrow1", "upgrade-arrow2",
+	"upgrade-ranger", "upgrade-longbow", "upgrade-ranger-scouting", "upgrade-ranger-marksmanship",
+	"unit-human-blacksmith", "upgrade-sword1", "upgrade-human-shield1", "upgrade-ballista1",
+	"upgrade-sword2", "upgrade-human-shield2", "upgrade-ballista2",
+	"unit-human-watch-tower", "unit-human-guard-tower", "unit-human-cannon-tower",
+	"unit-human-shipyard", "unit-human-oil-tanker", "unit-human-destroyer", "unit-human-transport", "unit-battleship",
+	"unit-human-oil-platform", "unit-human-refinery",
+	"unit-human-foundry", "upgrade-human-ship-cannon1", "upgrade-human-ship-armor1",
+	"upgrade-human-ship-cannon2", "upgrade-human-ship-armor2",
+	"unit-inventor", "unit-balloon",
+	"unit-stables", "unit-knight", "unit-paladin",
+	"unit-church", "upgrade-paladin", "upgrade-holy-vision", "upgrade-healing", "upgrade-exorcism"
+}
 local allowedOrcUnits = {"unit-pig-farm",
 	"unit-great-hall", "unit-stronghold", "unit-fortress", "unit-peon",
 	"unit-orc-barracks", "unit-grunt", "unit-axethrower", "unit-berserker", "unit-catapult",
@@ -67,12 +82,107 @@ DefineAllowNormalOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 
+DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
 -- AI
 
---TODO: Write specific AI
-DefineAi("orc-09", "*", "orc-09", AiLandAttack)
+local orc_09_loop_funcs = {
+	function() DebugMessage("AI looping"); return false end,
+	function() return AiSleep(7000) end,
+	function() return AiForce(1, {AiDestroyer(), 4, AiBattleship(), 2, AiSubmarine(), 2}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiForce(2, {AiTransporter(), 1,  AiSoldier(), 6}) end,
+	function() return AiForce(3, {AiTransporter(), 1,  AiShooter(), 6}) end,
+	function() return AiForce(4, {AiTransporter(), 1,  AiCavalry(), 4, AiCatapult(), 2}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() return AiWaitForce(4) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(4) end,
+	function() return AiSleep(8000) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false; end,
+}
+
+local orc_09_funcs = {
+	function() return AiSet(AiWorker(), 7) end,
+    function() return AiSet(AiTanker(), 2) end,
+	function() return AiNeed(AiPlatform()) end,
+	function() return AiWait(AiWorker()) end,
+	
+	function() return AiForce(1, {AiDestroyer(), 1}) end,
+	function() return AiSleep(1000) end,
+    function() return AiForce(2, {AiTransporter(), 1,  AiSoldier(), 3, AiShooter(), 3}) end,
+	function() return AiForce(3, {AiTransporter(), 1,  AiCavalry(), 3}) end,
+	function() return AiResearch(AiUpgradeCavalryMage()) end,
+	function() return AiSleep(2000) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+	function() return AiResearch(AiCavalryMageSpell1()) end,
+	function() return AiResearch(AiUpgradeMissile1()) end,
+	function() return AiSleep(4000) end,	
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	
+	function() return AiResearch(AiUpgradeWeapon1()) end,
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiSleep(6000) end,
+	function() return AiForce(2, {AiTransporter(), 1,  AiSoldier(), 3, AiShooter(), 3}) end,
+	function() return AiForce(3, {AiTransporter(), 1,  AiCavalry(), 3}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	
+	function() return AiResearch(AiUpgradeMissile2()) end,
+	function() return AiResearch(AiUpgradeWeapon2()) end,
+	function() return AiResearch(AiUpgradeShipCannon1()) end,
+	function() return AiSleep(7000) end,
+	
+	function() return AiForce(2, {AiTransporter(), 1,  AiSoldier(), 3, AiShooter(), 3}) end,
+	function() return AiForce(3, {AiTransporter(), 1,  AiCavalry(), 3}) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	
+	function() return AiForce(2, {AiTransporter(), 1,  AiSoldier(), 6}) end,
+	function() return AiForce(3, {AiTransporter(), 1,  AiShooter(), 6}) end,
+	function() return AiForce(4, {AiTransporter(), 1,  AiCavalry(), 4, AiCatapult(), 1}) end,
+	function() return AiResearch(AiUpgradeArmor2()) end,
+	function() return AiResearch(AiUpgradeShipArmor1()) end,
+	function() return AiResearch(AiUpgradeEliteShooter()) end,
+	function() return AiSleep(11000) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	
+	function() return AiResearch(AiUpgradeCatapult1()) end,
+	function() return AiResearch(AiUpgradeShipArmor2()) end,
+	function() return AiResearch(AiUpgradeShipCannon2()) end,
+	function() return AiForce(1, {AiDestroyer(), 4, AiBattleship(), 3, AiSubmarine(), 2}) end,
+	function() return AiResearch(AiUpgradeEliteShooter1()) end,
+	function() return AiResearch(AiUpgradeEliteShooter2()) end,
+	function() return AiResearch(AiUpgradeEliteShooter3()) end,
+	function() return AiSleep(9000) end,
+	function() return AiWaitForce(2) end,
+	function() return AiWaitForce(3) end,
+	function() return AiWaitForce(4) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(4) end,
+
+	function() return AiLoop(orc_09_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiOrc09() return AiLoop(orc_09_funcs, stratagus.gameData.AIState.index) end
+DefineAi("orc-09", "*", "orc-09", AiOrc09)
 
 -- Map
 

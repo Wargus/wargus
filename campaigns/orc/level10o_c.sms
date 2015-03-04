@@ -76,8 +76,48 @@ DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
 
 -- AI
 
---TODO: Write specific AI
-DefineAi("orc-10", "*", "orc-10", AiLandAttack)
+local orc_10_loop_funcs = {
+	function() DebugMessage("AI looping"); return false end,
+	function() return AiSleep(30000) end,
+	function() return AiForce(2, {AiTransporter(), 1,  AiMage(), 2, AiCavalry(), 1, AiCatapult(), 1}) end,	
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false; end,
+}
+
+local orc_10_funcs = {
+	function() return AiSet(AiWorker(), 7) end,
+    function() return AiSet(AiTanker(), 2) end,
+	function() return AiNeed(AiPlatform()) end,
+	function() return AiWait(AiWorker()) end,
+	
+	function() return AiResearch(AiUpgradeMissile1()) end,
+	function() return AiResearch(AiUpgradeWeapon1()) end,
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiResearch(AiUpgradeMissile2()) end,
+	function() return AiResearch(AiMageSpell1()) end,
+	function() return AiResearch(AiUpgradeCavalryMage()) end,
+	function() return AiResearch(AiCavalryMageSpell1()) end,
+	function() return AiResearch(AiMageSpell2()) end,
+	function() return AiResearch(AiUpgradeWeapon2()) end,
+	function() return AiResearch(AiUpgradeArmor2()) end,
+	function() return AiResearch(AiUpgradeShipArmor1()) end,
+	function() return AiResearch(AiUpgradeShipCannon1()) end,
+	function() return AiResearch(AiUpgradeEliteShooter()) end,
+	function() return AiResearch(AiUpgradeCatapult1()) end,
+	function() return AiResearch(AiUpgradeShipArmor2()) end,
+	function() return AiResearch(AiUpgradeShipCannon2()) end,
+	function() return AiResearch(AiUpgradeEliteShooter1()) end,
+	function() return AiResearch(AiUpgradeEliteShooter2()) end,
+	function() return AiResearch(AiUpgradeEliteShooter3()) end,
+	
+	function() return AiForce(1, {AiDestroyer(), 1, AiBattleship(), 2}) end,
+
+	function() return AiLoop(orc_10_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiOrc10() return AiLoop(orc_10_funcs, stratagus.gameData.AIState.index) end
+DefineAi("orc-10", "*", "orc-10", AiOrc10)
 
 -- Map
 

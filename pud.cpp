@@ -154,7 +154,7 @@ const char *AiTypeNames[] = {
 	"hum-13",
 	"orc-13",
 	"hum-14-orange",
-	"wc2-land-attack",
+	"orc-14-blue",
 	"wc2-sea-attack",
 	"wc2-air-attack",
 	"hum-14-red",
