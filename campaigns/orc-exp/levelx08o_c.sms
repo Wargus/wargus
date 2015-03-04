@@ -30,6 +30,85 @@ DefineAllowNormalOrcUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 
+local orc_exp_09_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiSleep(5000) end,
+	function() return AiForce(3, {AiSoldier(), 3, AiShooter(), 4, AiCavalry(), 5, AiMage(), 1, AiCatapult(), 2}) end,
+	function() return AiForce(2, {AiFlyer(), 2}) end,
+	function() return AiWaitForce(3) end,
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
 
+local orc_exp_09_funcs = {
+	function() return AiSet(AiWorker(), 9) end,
+	function() return AiResearch(AiUpgradeMissile1()) end,
+	function() return AiResearch(AiUpgradeWeapon1()) end,
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiResearch(AiUpgradeMissile2()) end,
+	function() return AiResearch(AiUpgradeWeapon2()) end,
+	function() return AiResearch(AiUpgradeArmor2()) end,
+	
+	function() return AiForce(1, {AiDestroyer(), 3}) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(1500) end,
+	function() return AiForce(1, {AiSubmarine(), 3}, true) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(1500) end,
+	function() return AiForce(1, {AiDestroyer(), 6}, true) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() return AiSleep(1500) end,
+	
+	function() return AiForce(2, {AiFlyer(), 1}) end,
+	function() return AiWaitForce(2) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() return AiForce(1, {AiDestroyer(), 3, AiSubmarine(), 3}, true) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+	function() return AiSet(AiWorker(), 20) end,
+	function() return AiWait(AiWorker()) end,
+	function() return AiResearch(AiUpgradeEliteShooter()) end,
+	function() return AiResearch(AiUpgradeCatapult1()) end,
+	function() return AiResearch(AiUpgradeEliteShooter1()) end,
+	function() return AiResearch(AiUpgradeCatapult2()) end,
+	function() return AiResearch(AiUpgradeCatapult3()) end,
+	function() return AiSleep(6000) end,
+	
+	function() return AiForce(3, {AiSoldier(), 3, AiShooter(), 4, AiCavalry(), 5}) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	
+	function() return AiSleep(3000) end,
+	function() return AiForce(2, {AiFlyer(), 2}) end,
+	function() return AiSleep(5000) end,
+	function() return AiForce(3, {AiSoldier(), 3, AiShooter(), 4, AiCavalry(), 5, AiMage(), 1}) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	function() return AiSleep(5000) end,
+	function() return AiForce(3, {AiSoldier(), 3, AiShooter(), 4, AiCavalry(), 5, AiMage(), 1}) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	
+	function() return AiSleep(2000) end,
+	function() return AiResearch(AiUpgradeCavalryMage()) end,
+	function() return AiResearch(AiCavalryMageSpell1()) end,
+	function() return AiResearch(AiMageSpell5()) end,
+	function() return AiResearch(AiMageSpell4()) end,
+	function() return AiResearch(AiMageSpell3()) end,
+	function() return AiResearch(AiMageSpell2()) end,
+	function() return AiResearch(AiMageSpell1()) end,
+	function() return AiSleep(8500) end,
+	
+	function() return AiForce(3, {AiSoldier(), 3, AiShooter(), 4, AiCavalry(), 5, AiMage(), 1}) end,
+	function() return AiWaitForce(3) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
+	
+	function() return AiLoop(orc_exp_09_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiOrcExp09() return AiLoop(orc_exp_09_funcs, stratagus.gameData.AIState.index) end
+DefineAi("orc-exp-9", "*", "orc-exp-9", AiOrcExp09)
 
 Load("campaigns/orc-exp/levelx08o.sms")

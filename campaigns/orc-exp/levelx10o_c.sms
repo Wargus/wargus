@@ -33,5 +33,95 @@ DefineAllowNormalOrcUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 
+local orc_exp_10_loop_funcs = {
+	function() DebugPrint("Looping !\n") return false end,
+	function() return AiSleep(5500) end,
+	function() return AiForce(1, {AiSoldier(), 8, AiShooter(), 8, AiCatapult(), 3}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
+}
+
+local orc_exp_10_funcs = {
+	function() return AiSet(AiWorker(), 6) end,
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiLumberMill()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiResearch(AiUpgradeMissile1()) end,
+	function() return AiUpgradeTo(AiBetterCityCenter()) end,
+	function() return AiWait(AiBetterCityCenter()) end,
+	function() return AiNeed(AiBlacksmith()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiResearch(AiUpgradeMissile2()) end,
+	
+	function() return AiSleep(1500) end,
+	function() return AiSet(AiWorker(), 8) end,
+	function() return AiForce(1, {AiSoldier(), 5, AiShooter(), 3}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiBarracks()) end,
+	function() return AiResearch(AiUpgradeArmor1()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	
+	function() return AiSleep(1500) end,
+	function() return AiSet(AiWorker(), 11) end,
+	function() return AiForce(1, {AiSoldier(), 6, AiShooter(), 6}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+	function() return AiNeed(AiCityCenter()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiNeed(AiTower()) end,
+	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiResearch(AiUpgradeArmor2()) end,
+	function() return AiResearch(AiUpgradeWeapon1()) end,	
+	function() return AiResearch(AiUpgradeEliteShooter()) end,
+	
+	function() return AiSleep(1500) end,
+	function() return AiSet(AiWorker(), 13) end,
+	function() return AiForce(1, {AiSoldier(), 8, AiShooter(), 8}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+	function() return AiResearch(AiUpgradeWeapon2()) end,
+	function() return AiResearch(AiUpgradeEliteShooter1()) end,
+	function() return AiResearch(AiUpgradeEliteShooter2()) end,
+	function() return AiResearch(AiUpgradeEliteShooter3()) end,
+	
+	function() return AiSleep(2000) end,
+	function() return AiSet(AiWorker(), 14) end,
+	function() return AiForce(1, {AiSoldier(), 8, AiShooter(), 8, AiCatapult(), 3}) end,
+	function() return AiWaitForce(1) end,
+	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
+	
+	function() return AiLoop(orc_exp_10_loop_funcs, stratagus.gameData.AIState.loop_index) end,
+}
+
+function AiOrcExp10() return AiLoop(orc_exp_10_funcs, stratagus.gameData.AIState.index) end
+DefineAi("orc-exp-10", "*", "orc-exp-10", AiOrcExp10)
 
 Load("campaigns/orc-exp/levelx10o.sms")

@@ -32,14 +32,3 @@ DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 
 Load("campaigns/orc-exp/levelx09o.sms")
-
--- Default Spells Researched
-DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
-
--- Extra Upgrades Begin Researched in this Mission
-DefineAllow("upgrade-paladin", "RRRFRRRRRRRRRRRR")
-DefineAllow("upgrade-healing", "RRRFRRRRRRRRRRRR")
-DefineAllow("upgrade-exorcism", "RRRFRRRRRRRRRRRR")
