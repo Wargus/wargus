@@ -125,6 +125,13 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
   b:setFont(CFont:Get("small"))
   b:adjustSize();
   menu:addCentered(b, offx + 224, 137)
+  
+  local stereoSound = menu:addImageCheckBox("Stereo Sound", offx + 16, offy + 36 * 4.25, offi, offi2, oni, oni2, function() end)
+  stereoSound:setMarked(Preference.StereoSound)
+  stereoSound:setActionCallback(
+  function()
+		Preference.StereoSound = stereoSound:isMarked()
+  end)
 
   menu:addLabel(_("Music:"), 112, 176, Fonts["game"], false)
   menu:addLabel(_("On"), 160, 202, Fonts["game"], false)
@@ -189,71 +196,141 @@ end
 
 function RunPreferencesMenu()
   local menu = WarGameMenu(panel(5))
+  menu:resize(352, 352)
+  menu:addLabel(_("Preferences"), 352 / 2, 11, Fonts["large"], true)
+  
+  local showHotkeys = menu:addImageCheckBox(_("Show Hotkeys"), 10, 10 + 18,  offi, offi2, oni, oni2,
+	function()
+	end)
+  showHotkeys:setMarked(UI.ButtonPanel.ShowCommandKey)
+  showHotkeys:setActionCallback(
+  function()
+		UI.ButtonPanel.ShowCommandKey = showHotkeys:isMarked()
+  end)
+  
+  local grabMouse = menu:addImageCheckBox(_("Grab Mouse"), 10, 10 + 18 * 2, offi, offi2, oni, oni2, function()end)
+  grabMouse:setMarked(GetGrabMouse())
+  grabMouse:setActionCallback(
+  function()
+		SetGrabMouse(grabMouse:isMarked())
+  end)
+  
+  local showDamage = menu:addImageCheckBox(_("~!*Show damage"), 10, 10 + 18 * 3, offi, offi2, oni, oni2, function() end)
+  showDamage:setActionCallback(
+	function()
+		if showDamage:isMarked() == true then
+			SetDamageMissile("missile-hit")
+		else
+			SetDamageMissile(nil)
+		end
+	end)
+  showDamage:setMarked(wc2.preferences.ShowDamage)
+  
+  local showButtonPopups = menu:addImageCheckBox(_("~!*Show button popups"), 10, 10 + 18 * 4, offi, offi2, oni, oni2,
+	function()
+	end)
+  showButtonPopups:setMarked(wc2.preferences.ShowButtonPopups)
 
-  menu:addLabel(_("Preferences"), 128, 11)
+  local mineNotifications = menu:addImageCheckBox(_("Mine notifications"), 10, 10 + 18 * 5,  offi, offi2, oni, oni2, function() end)
+  mineNotifications:setActionCallback(
+	function()
+		Preference.MineNotifications = mineNotifications:isMarked()
+	end)
+  mineNotifications:setMarked(Preference.MineNotifications)
 
--- To fog of war? Or not to fog of war?
-  menu:addLabel("Show Hotkeys:", 16, 40, Fonts["large"], false)
-  menu:addLabel("On", 79, 65, Fonts["large"], false)
-  menu:addLabel("Off", 79, 87, Fonts["large"], false)
+  local showOrders = menu:addImageCheckBox(_("Show orders"), 10, 10 + 18 * 6,  offi, offi2, oni, oni2, function() end)
+  showOrders:setActionCallback(
+  function()
+		if showOrders:isMarked() == true then
+			Preference.ShowOrders = 1
+		else 
+			Preference.ShowOrders = 0
+		end
+	end)
+  if Preference.ShowOrders > 0 then
+	showOrders:setMarked(true)
+  else
+	showOrders:setMarked(false)
+  end
   
-  local ckey = {}
-        ckey = menu:addImageRadioButton("", "ckey", 56, 63, offi, offi2, oni, oni2, function() UI.ButtonPanel.ShowCommandKey = true end)
-        ckey:setMarked(UI.ButtonPanel.ShowCommandKey)
+  local useFancyBuildings = menu:addImageCheckBox(_("Mirrored buildings"), 10, 10 + 18 * 7,  offi, offi2, oni, oni2, function() end)
+  useFancyBuildings:setActionCallback(
+	function()
+		SetFancyBuildings(useFancyBuildings:isMarked())
+	end)
+  useFancyBuildings:setMarked(wc2.preferences.UseFancyBuildings)
   
-        ckey = menu:addImageRadioButton("", "ckey", 56, 85, offi, offi2, oni, oni2, function() UI.ButtonPanel.ShowCommandKey = false end)
-        if (UI.ButtonPanel.ShowCommandKey == true) then
-          ckey:setMarked(false)
-        else
-          ckey:setMarked(true)
-        end
+  local showMessages = menu:addImageCheckBox(_("Show messages"), 10, 10 + 18 * 8,  offi, offi2, oni, oni2, function() end)
+  showMessages:setActionCallback(
+	function()
+		Preference.ShowMessages = showMessages:isMarked()
+	end)
+  showMessages:setMarked(wc2.preferences.ShowMessages)
   
-  -- To fog of war? Or not to fog of war?
-  menu:addLabel("Fog of War:", 16, 108, Fonts["large"], false)
-  menu:addLabel("On", 79, 132, Fonts["large"], false)
-  menu:addLabel("Off", 79, 154, Fonts["large"], false)
+  local pauseOnLeave = menu:addImageCheckBox(_("Pause on leave"), 10, 10 + 18 * 9, offi, offi2, oni, oni2, function() end)
+  pauseOnLeave:setActionCallback(
+	function()
+		Preference.PauseOnLeave = pauseOnLeave:isMarked()
+	end)
+  pauseOnLeave:setMarked(wc2.preferences.PauseOnLeave)
+ 
+  local enhancedEffects = menu:addImageCheckBox(_("~!*Enhanced effects"), 10, 10 + 18 * 10, offi, offi2, oni, oni2, function() end)
+  enhancedEffects:setMarked(wc2.preferences.EnhancedEffects)
   
-  local fog = {}
-        fog = menu:addImageRadioButton("", "fog", 56, 130, offi, offi2, oni, oni2, function() SetFogOfWar(true) end)
-        fog:setMarked(GetFogOfWar())
+  local deselectInMine = menu:addImageCheckBox(_("Deselect in mines"), 10, 10 + 18 * 11, offi, offi2, oni, oni2, function() end)
+  deselectInMine:setActionCallback(
+	function()
+		Preference.DeselectInMine = deselectInMine:isMarked()
+	end)
+  deselectInMine:setMarked(wc2.preferences.DeselectInMine)
   
-        fog = menu:addImageRadioButton("", "fog", 56, 152, offi, offi2, oni, oni2, function() SetFogOfWar(false) end)
-        if (GetFogOfWar() == true) then
-          fog:setMarked(false)
-        else
-          fog:setMarked(true)
-        end
-		
-  if (IsReplayGame() or IsNetworkGame()) then
-		fog:setEnabled(false)
-  end  
+  local selectionStyleList = {"rectangle", "alpha-rectangle", "circle", "alpha-circle", "corners"}
+  menu:addLabel(_("Selection style:"), 225, 28 + 19 * 0, Fonts["game"], false)
+  local selectionStyle = menu:addDropDown(selectionStyleList, 225, 28 + 19 * 1, function(dd) end)
+  selectionStyle:setSelected(tableindex(selectionStyleList, wc2.preferences.SelectionStyle) - 1)
+  selectionStyle:setActionCallback(
+  function()
+		SetSelectionStyle(selectionStyleList[selectionStyle:getSelected() + 1])
+  end)
+  selectionStyle:setSize(120, 16)
   
-  -- Grab the mouse, so it doesn't go outside the window in "windowed" mode (Has no effect in fullscreen mode though)
-  menu:addLabel("Grab Mouse:", 12, 176, Fonts["large"], false)
-  menu:addLabel("On", 79, 202, Fonts["large"], false)
-  menu:addLabel("Off", 79, 224, Fonts["large"], false)
+  local viewportModeList = {_("single"), _("horizontal 1 + 1"), _("horizontal 1 + 2"), _("vertical 1 + 1"), _("quad")}
+  menu:addLabel(_("Viewport mode:"), 225, 28 + 19 * 2, Fonts["game"], false)
+  local viewportMode = menu:addDropDown(viewportModeList, 225, 28 + 19 * 3, function(dd) end)
+  viewportMode:setSelected(wc2.preferences.ViewportMode)
+  viewportMode:setActionCallback(
+  function()
+		SetNewViewportMode(viewportMode:getSelected())
+  end)
+  viewportMode:setSize(120, 16)
   
-  local gmouse = {}
-	    gmouse = menu:addImageRadioButton("", "gmouse", 56, 200, offi, offi2, oni, oni2, function() SetGrabMouse(true) end)
-		gmouse:setMarked(GetGrabMouse())
-  	
-		gmouse = menu:addImageRadioButton("", "gmouse", 56, 222, offi, offi2, oni, oni2, function() SetGrabMouse(false) end)
-        if (GetGrabMouse() == true) then
-          gmouse:setMarked(false)
-        else
-          gmouse:setMarked(true)
-        end
+  menu:addLabel(_("~!* - requires restart"), 10, 10 + 18 * 12, Fonts["game"], false)
+  
 	
-  menu:addHalfButton("~!OK", "o", 16 + 12 + 106, 288 - 40,
+  menu:addHalfButton("~!OK", "o", 206, 352 - 40,
     function()
 	  wc2.preferences.GrabMouse = GetGrabMouse()
-      wc2.preferences.FogOfWar = GetFogOfWar()
       wc2.preferences.ShowCommandKey = UI.ButtonPanel.ShowCommandKey
+	  wc2.preferences.MineNotifications = Preference.MineNotifications
+	  wc2.preferences.ShowDamage = showDamage:isMarked()
+	  wc2.preferences.ShowButtonPopups = showButtonPopups:isMarked()
+	  wc2.preferences.UseFancyBuildings = useFancyBuildings:isMarked()
+	  wc2.preferences.ShowMessages = Preference.ShowMessages
+	  wc2.preferences.PauseOnLeave = Preference.PauseOnLeave
+	  wc2.preferences.EnhancedEffects = enhancedEffects:isMarked()
+	  wc2.preferences.DeselectInMine = Preference.DeselectInMine
+	  if Preference.ShowOrders > 0 then
+		wc2.preferences.ShowOrders = true
+	  else
+		wc2.preferences.ShowOrders = false
+	  end
+	  wc2.preferences.SelectionStyle = selectionStyleList[selectionStyle:getSelected() + 1]
+	  wc2.preferences.ViewportMode = viewportMode:getSelected()
       SavePreferences()
       menu:stop(1)
     end)
 
-  menu:addHalfButton("~!Cancel", "c", 16, 288 - 40,
+  menu:addHalfButton("~!Cancel", "c", 40, 352 - 40,
     function() 
 	  menu:stop()
 	end)
@@ -543,7 +620,12 @@ function RunGameOptionsMenu()
   menu:addFullButton(_("Sound (~<F7~>)"), "f7", 16, 40 + 36*1,
     function() RunGameSoundOptionsMenu() end) 
 	menu:addFullButton(_("Preferences (~<F8~>)"), "f8", 16, 40 + 36*2,
-    function() RunPreferencesMenu() end)
+    function() 
+		RunPreferencesMenu()
+		if (GameCycle == 0) then
+			menu:stopAll(1)
+		end
+	end)
   if (GameCycle > 0) then
 	menu:addFullButton(_("Diplomacy (~<F9~>)"), "f9", 16, 40 + 36*3,
     function() RunDiplomacyMenu() end)

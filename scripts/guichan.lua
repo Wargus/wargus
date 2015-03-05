@@ -28,6 +28,7 @@
 --
 
 SetDefaultRaceView()
+SetGrabMouse(wc2.preferences.GrabMouse)
 
 -- Global useful objects for menus  ----------
 dark = Color(38, 38, 78)

@@ -74,6 +74,15 @@ function SetDefaultRaceView()
   SetDefaultTextColors(UI.NormalFontColor, UI.ReverseFontColor)
 end
 
+function tableindex(tbl, item)
+	for i = 1, table.getn(tbl) do
+		if tbl[i] == item then
+			return i
+		end
+	end
+	return -1
+end
+
 AIStrategyTypes = {_("Map Default")}
 OldDefineAi = DefineAi
 function DefineAi(name, race, class, script)
@@ -107,13 +116,10 @@ SetFullGameName(wargus.Name)
 
 SetMenuRace("orc")
 
-SetSelectionStyle("corners")
 Preference.ShowSightRange = false
 Preference.ShowAttackRange = false
 Preference.ShowReactionRange = false
 Preference.IconsShift = true
-
-Preference.ShowOrders = 2
 
 --  Enable/disable the short display of the orders after command.
 --  FIXME: planned
@@ -138,7 +144,9 @@ SetBuildingCapture(false)
 
 --  Set forest regeneration speed. (n* seconds, 0 = disabled)
 --  (Auf allgemeinen Wunsch eines einzelnen Herrn :)
-SetForestRegeneration(0)
+InitFuncs:add(function()
+	SetForestRegeneration(0)
+end)
 --SetForestRegeneration(5)
 
 --  Edit this to enable/disable the reveal of the attacker.
@@ -159,9 +167,6 @@ RightButtonMoves()
 
 --  Set the name of the missile to use when clicking
 SetClickMissile("missile-green-cross")
-
---  Set the name of the missile to use when displaying damage
-SetDamageMissile("missile-hit")
 
 --  Uncomment next, to reveal the complete map.
 --RevealMap()
@@ -340,11 +345,13 @@ Load("preferences.lua")
 local defaultPreferences = {
 	CampaignBestScores = {},
 	CampaignProgress = {},
+	DeselectInMine = false,
 	DoubleClickDelayInMs = 300,     --  For the wanted double-click delay (in ms).
 	EffectsEnabled = true,
 	EffectsVolume = 128,
 	EnableKeyboardScrolling = true, --  Enable/disable keyboard scrolling.
 	EnableMouseScrolling = true,    --  Enable/disable mouse scrolling.
+	EnhancedEffects = true,
 	FogOfWar = true,
 	FogOfWarOpacity = 128,
 	GameSpeed = 30,
@@ -355,28 +362,36 @@ local defaultPreferences = {
 	KeyScrollSpeed = 4,
 	LeaveStopScrolling = true,      --  Enable/disable stopping scrolling when mouse leave.
 	MaxOpenGLTexture = 0,
+	MineNotifications = false,
 	MinimapWithTerrain = true,      --  Choose your default for minimap with/without terrain.
 	MouseScrollSpeed = 1,
 	MouseScrollSpeedControl = 15,   --  Same as above if Control is pressed
 	MouseScrollSpeedDefault = 4,    --  While middle-mouse is pressed: Pixels to move per scrolled mouse pixel, negative = reversed
 	MusicEnabled = true,
 	MusicVolume = 128,
+	PauseOnLeave = true,
 	PlayerName = "Wargustus",
+	SelectionStyle = "corners",
 	ServerIP = "localhost",
 	ShowCommandKey = true,
+	ShowButtonPopups = true,
+	ShowDamage = true,
+	ShowMessages = true,
+	ShowOrders = true,
 	ShowTips = true,
+	StereoSound = true,
 	StratagusTranslation = "",
 	TipNumber = 0,
-	UseFancyBuildings = true,       --  Enable/disable fancy building (random mirroring buildings)
+	UseFancyBuildings = false,      --  Enable/disable fancy building (random mirroring buildings)
 	UseOpenGL = false,
 	VideoFullScreen = true,
 	VideoHeight = 600,
 	VideoWidth = 800,
+	ViewportMode = 0,
 	ServerList = {},
 	MetaServer = "localhost",
 	MetaPort = 7775,
-	SF2SoundFont = "music/TimGM6mb.sf2",
-	MineNotifications = false
+	SF2SoundFont = "music/TimGM6mb.sf2"
 }
 
 --- Skirmish Setup --------------
@@ -399,14 +414,26 @@ end
 CompleteMissingValues(wc2.preferences, defaultPreferences)
 SavePreferences()
 
+InitFuncs:add(function()
+  if wc2.preferences.ShowDamage == true then
+	SetDamageMissile("missile-hit")
+  else
+	SetDamageMissile(nil)
+  end 
+  if wc2.preferences.ShowOrders == true then
+	Preference.ShowOrders = 1
+  else 
+	Preference.ShowOrders = 0
+  end
+end)
+
 SetDoubleClickDelay(wc2.preferences.DoubleClickDelayInMs)
 SetEffectsEnabled(wc2.preferences.EffectsEnabled)
 SetEffectsVolume(wc2.preferences.EffectsVolume)
 SetFancyBuildings(wc2.preferences.UseFancyBuildings)
-SetFogOfWar(wc2.preferences.FogOfWar)
+SetFogOfWar(true)
 SetFogOfWarOpacity(wc2.preferences.FogOfWarOpacity)
 SetGameSpeed(wc2.preferences.GameSpeed)
-SetGrabMouse(wc2.preferences.GrabMouse)
 SetGroupKeys(wc2.preferences.GroupKeys)
 SetHoldClickDelay(wc2.preferences.HoldClickDelayInMs)
 SetKeyScroll(wc2.preferences.EnableKeyboardScrolling)
@@ -425,9 +452,15 @@ SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameT
 SetUseOpenGL(wc2.preferences.UseOpenGL)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
 SetVideoResolution(wc2.preferences.VideoWidth, wc2.preferences.VideoHeight)
+
 UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
 Preference.SF2Soundfont = wc2.preferences.SF2SoundFont
 Preference.MineNotifications = wc2.preferences.MineNotifications
+Preference.ShowMessages = wc2.preferences.ShowMessages
+Preference.PauseOnLeave = wc2.preferences.PauseOnLeave
+SetSelectionStyle(wc2.preferences.SelectionStyle)
+SetNewViewportMode(wc2.preferences.ViewportMode)
+Preference.DeselectInMine = wc2.preferences.DeselectInMine
 
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")

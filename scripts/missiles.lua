@@ -28,6 +28,11 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
+MissileParabolicClass = "missile-class-point-to-point"
+if (wc2.preferences.EnhancedEffects) then
+	MissileParabolicClass = "missile-class-parabolic"
+end
+
 DefineMissileType("missile-lightning",
   { File = "missiles/lightning.png", Size = {32, 32}, Frames = 30, NumDirections = 9,
   Class = "missile-class-point-to-point-with-hit", Sleep = 1, Speed = 16, Range = 1,
@@ -94,7 +99,7 @@ DefineMissileType("missile-whirlwind",
 DefineMissileType("missile-catapult-rock",
   { File = "missiles/catapult_rock.png", Size = {32, 32}, Frames = 15, NumDirections = 9,
   ImpactSound = "explosion",
-  DrawLevel = 50, Class = "missile-class-parabolic", Sleep = 1, Speed = 8, Range = 2,
+  DrawLevel = 50, Class = MissileParabolicClass, Sleep = 1, Speed = 8, Range = 2,
   ImpactMissile = "missile-impact", SplashFactor = 4 } )
 
 DefineMissileType("missile-ballista-bolt",
@@ -148,7 +153,7 @@ DefineMissileType("missile-explosion",
 DefineMissileType("missile-small-cannon",
   { File = "missiles/cannon.png", Size = {32, 32}, Frames = 15, NumDirections = 9,
   DrawLevel = 50, ImpactSound = "explosion",
-  Class = "missile-class-parabolic", Sleep = 1, Speed = 22, Range = 2,
+  Class = MissileParabolicClass, Sleep = 1, Speed = 22, Range = 2,
   ImpactMissile = "missile-cannon-explosion", SplashFactor = 3 } )
 
 DefineMissileType("missile-cannon-explosion",

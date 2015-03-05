@@ -255,37 +255,37 @@ DefineButton( { Pos = 8, Level = 0, Icon = "icon-build-advanced",
 -- simple buildings human -----------------------------------------------------
 
 DefineButton( { Pos = 1, Level = 1, Icon = "icon-farm",
-  Action = "build", Value = "unit-farm",
+  Action = "build", Value = "unit-farm", Popup = "popup-human-building",
   Key = "f", Hint = _("BUILD ~!FARM"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 2, Level = 1, Icon = "icon-human-barracks",
-  Action = "build", Value = "unit-human-barracks",
+  Action = "build", Value = "unit-human-barracks", Popup = "popup-human-building",
   Key = "b", Hint = _("BUILD ~!BARRACKS"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 3, Level = 1, Icon = "icon-town-hall",
-  Action = "build", Value = "unit-town-hall",
+  Action = "build", Value = "unit-town-hall", Popup = "popup-human-building",
   Key = "h", Hint = _("BUILD TOWN ~!HALL"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 4, Level = 1, Icon = "icon-elven-lumber-mill",
-  Action = "build", Value = "unit-elven-lumber-mill",
+  Action = "build", Value = "unit-elven-lumber-mill", Popup = "popup-human-building",
   Key = "l", Hint = _("BUILD ELVEN ~!LUMBER MILL"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 5, Level = 1, Icon = "icon-human-blacksmith",
-  Action = "build", Value = "unit-human-blacksmith",
+  Action = "build", Value = "unit-human-blacksmith", Popup = "popup-human-building",
   Key = "s", Hint = _("BUILD BLACK~!SMITH"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 7, Level = 1, Icon = "icon-human-watch-tower",
-  Action = "build", Value = "unit-human-watch-tower",
+  Action = "build", Value = "unit-human-watch-tower", Popup = "popup-human-building",
   Key = "t", Hint = _("BUILD ~!TOWER"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 8, Level = 1, Icon = "icon-human-wall",
-  Action = "build", Value = "unit-human-wall",
+  Action = "build", Value = "unit-human-wall", Popup = "popup-human-building",
   Allowed = "check-network",
   Key = "w", Hint = _("BUILD ~!WALL"),
   ForUnit = {"unit-peasant"} } )
@@ -298,42 +298,42 @@ DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
 -- human advanced buildings ---------------------------------------------------
 
 DefineButton( { Pos = 1, Level = 2, Icon = "icon-human-shipyard",
-  Action = "build", Value = "unit-human-shipyard",
+  Action = "build", Value = "unit-human-shipyard", Popup = "popup-human-building",
   Key = "s", Hint = _("BUILD ~!SHIPYARD"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 2, Level = 2, Icon = "icon-human-foundry",
-  Action = "build", Value = "unit-human-foundry",
+  Action = "build", Value = "unit-human-foundry", Popup = "popup-human-building",
   Key = "f", Hint = _("BUILD ~!FOUNDRY"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 3, Level = 2, Icon = "icon-human-refinery",
-  Action = "build", Value = "unit-human-refinery",
+  Action = "build", Value = "unit-human-refinery", Popup = "popup-human-building",
   Key = "r", Hint = _("BUILD ~!REFINERY"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 4, Level = 2, Icon = "icon-gnomish-inventor",
-  Action = "build", Value = "unit-inventor",
+  Action = "build", Value = "unit-inventor", Popup = "popup-human-building",
   Key = "i", Hint = _("BUILD GNOMISH ~!INVENTOR"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 5, Level = 2, Icon = "icon-stables",
-  Action = "build", Value = "unit-stables",
+  Action = "build", Value = "unit-stables", Popup = "popup-human-building",
   Key = "a", Hint = _("BUILD ST~!ABLES"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 6, Level = 2, Icon = "icon-mage-tower",
-  Action = "build", Value = "unit-mage-tower",
+  Action = "build", Value = "unit-mage-tower", Popup = "popup-human-building",
   Key = "m", Hint = _("BUILD ~!MAGE TOWER"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 7, Level = 2, Icon = "icon-church",
-  Action = "build", Value = "unit-church",
+  Action = "build", Value = "unit-church", Popup = "popup-human-building",
   Key = "c", Hint = _("BUILD ~!CHURCH"),
   ForUnit = {"unit-peasant"} } )
 
 DefineButton( { Pos = 8, Level = 2, Icon = "icon-gryphon-aviary",
-  Action = "build", Value = "unit-gryphon-aviary",
+  Action = "build", Value = "unit-gryphon-aviary", Popup = "popup-human-building",
   Key = "g", Hint = _("BUILD ~!GRYPHON AVIARY"),
   ForUnit = {"unit-peasant"} } )
 
@@ -360,13 +360,13 @@ DefineButton( { Pos = 1, Level = 0, Icon = "icon-peasant",
 -- town hall upgrades ---------------------------------------------------------
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-keep",
-  Action = "upgrade-to", Value = "unit-keep",
+  Action = "upgrade-to", Value = "unit-keep", Popup = "popup-human-building",
   Allowed = "check-upgrade-to",
   Key = "k", Hint = _("UPGRADE TO ~!KEEP"),
   ForUnit = {"unit-town-hall"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-castle-upgrade",
-  Action = "upgrade-to", Value = "unit-castle",
+  Action = "upgrade-to", Value = "unit-castle", Popup = "popup-human-building",
   Allowed = "check-upgrade-to",
   Key = "c", Hint = _("UPGRADE TO ~!CASTLE"),
   ForUnit = {"unit-keep"} } )
@@ -514,7 +514,7 @@ DefineButton( { Pos = 3, Level = 0, Icon = "icon-human-unload",
   ForUnit = {"unit-human-transport"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-human-oil-platform",
-  Action = "build", Value = "unit-human-oil-platform",
+  Action = "build", Value = "unit-human-oil-platform", Popup = "popup-human-building",
   Key = "b", Hint = _("~!BUILD OIL PLATFORM"),
   ForUnit = {"unit-human-oil-tanker"} } )
 

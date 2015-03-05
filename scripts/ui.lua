@@ -360,104 +360,161 @@ else
 	PopupFont = "small"
 end
 
-DefinePopup({
-	Ident = "popup-commands",
-	BackgroundColor = GetRGBA(128,128,128, 160),
-	BorderColor = GetRGBA(192,192,255, 160),
-	Contents = {
-			{ 	Margin = {1, 1}, 
-				More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
-			}, 
-			-- Description
-			{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
-				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
-			}, 
-			{ 	Condition = {HasDescription = true}, Margin = {1, 1},
-				More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
-			}, 
-	}	
-})
+local HumanPopupBackgroundColor = GetRGBA(0,32,96, 208)
+local HumanPopupBorderColor = GetRGBA(192,192,255, 160)
 
-DefinePopup({
-	Ident = "popup-human-commands",
-	BackgroundColor = GetRGBA(0,64,160, 160),
-	BorderColor = GetRGBA(192,192,255, 160),
-	Contents = {
-			{ 	Margin = {1, 1}, HighlightColor = "full-red",
-				More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
-			}, 
-			-- Description
-			{ 	Margin = {1, 1}, Condition = {HasDescription = true},
-				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
-			}, 
-			{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
-				More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
-			}, 
-			-- Move  hint
-			{ 	Margin = {1, 1}, Condition = {ButtonAction = "move"},
-				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
-			},
-			{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
-				More = {"Text", {Text = _("~<ALT~>-click to defend unit."), MaxWidth = Video.Width / 5, Font = PopupFont}}
-			},
-			{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
-				More = {"Text", {Text = _("~<SHIFT~>-click to make waypoints."), MaxWidth = Video.Width / 5, Font = PopupFont}}
-			},
-			-- Repair hint
-			{ 	Margin = {1, 1}, Condition = {ButtonAction = "repair"},
-				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
-			},
-			{ 	Condition = {ButtonAction = "repair"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
-				More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."), MaxWidth = Video.Width / 5, Font = PopupFont}}
-			},
-			-- Heal hint
-			{ 	Margin = {1, 1}, Condition = {ButtonValue = "spell-medic-heal"},
-				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
-			},
-			{ 	Condition = {ButtonValue = "spell-healing"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
-				More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables autoheal ability."), MaxWidth = Video.Width / 5, Font = PopupFont}}
-			}
-	}	
-})
+if (wc2.preferences.ShowButtonPopups) then
+	DefinePopup({
+		Ident = "popup-commands",
+		BackgroundColor = GetRGBA(128,128,128, 160),
+		BorderColor = GetRGBA(192,192,255, 160),
+		Contents = {
+				{ 	Margin = {1, 1}, 
+					More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
+				}, 
+				-- Description
+				{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
+					More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+				}, 
+				{ 	Condition = {HasDescription = true}, Margin = {1, 1},
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
+				}, 
+		}	
+	})
 
-DefinePopup({
-	Ident = "popup-orc-commands",
-	BackgroundColor = GetRGBA(0,64,160, 160),
-	BorderColor = GetRGBA(192,192,255, 160),
-	Contents = {
-			{ 	Margin = {1, 1}, HighlightColor = "full-red",
-				More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
-			}, 
-			-- Description
-			{ 	Margin = {1, 1}, Condition = {HasDescription = true},
-				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
-			}, 
-			{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
-				More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
-			}, 
-			-- Move  hint
-			{ 	Margin = {1, 1}, Condition = {ButtonAction = "move"},
-				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
-			},
-			{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
-				More = {"Text", {Text = _("~<ALT~>-click to defend unit."), MaxWidth = Video.Width / 5, Font = PopupFont}}
-			},
-			{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
-				More = {"Text", {Text = _("~<SHIFT~>-click to make waypoints."), MaxWidth = Video.Width / 5, Font = PopupFont}}
-			},
-			-- Repair hint
-			{ 	Margin = {1, 1}, Condition = {ButtonAction = "repair"},
-				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
-			},
-			{ 	Condition = {ButtonAction = "repair"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
-				More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."), MaxWidth = Video.Width / 5, Font = PopupFont}}
-			},
-			-- Heal hint
-			{ 	Margin = {1, 1}, Condition = {ButtonValue = "spell-medic-heal"},
-				More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
-			},
-			{ 	Condition = {ButtonValue = "spell-healing"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
-				More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables autoheal ability."), MaxWidth = Video.Width / 5, Font = PopupFont}}
-			}
-	}	
-})
+	DefinePopup({
+		Ident = "popup-human-commands",
+		BackgroundColor = HumanPopupBackgroundColor,
+		BorderColor = HumanPopupBorderColor,
+		Contents = {
+				{ 	Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
+				}, 
+				-- Description
+				{ 	Margin = {1, 1}, Condition = {HasDescription = true},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				}, 
+				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
+				}, 
+				-- Move  hint
+				{ 	Margin = {1, 1}, Condition = {ButtonAction = "move"},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				},
+				{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<ALT~>-click to defend unit."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				},
+				{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<SHIFT~>-click to make waypoints."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				},
+				-- Repair hint
+				{ 	Margin = {1, 1}, Condition = {ButtonAction = "repair"},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				},
+				{ 	Condition = {ButtonAction = "repair"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				},
+				-- Heal hint
+				{ 	Margin = {1, 1}, Condition = {ButtonValue = "spell-medic-heal"},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				},
+				{ 	Condition = {ButtonValue = "spell-healing"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables autoheal ability."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				}
+		}	
+	})
+
+	DefinePopup({
+		Ident = "popup-human-building",
+		BackgroundColor = HumanPopupBackgroundColor,
+		BorderColor = HumanPopupBorderColor,
+		Contents = {
+				{	Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Hint"}}
+				}, 
+				{ 	Margin = {1, 1},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				}, 
+				{ 	More = {"Costs"}, HighlightColor = "full-red",
+				}, 
+				{ 	Condition = {HitPoints = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints"}}
+				}, 
+				-- Description
+				{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				}, 
+				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+				},
+		}	
+	})
+
+	DefinePopup({
+		Ident = "popup-human-unit",
+		BackgroundColor = HumanPopupBackgroundColor,
+		BorderColor = HumanPopupBorderColor,
+		Contents = {
+				{	Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Hint"}}
+				}, 
+				{ 	Margin = {1, 1},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				}, 
+				{ 	More = {"Costs"}, HighlightColor = "full-red",
+				}, 
+				{ 	Condition = {HitPoints = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints"}}
+				}, 
+				-- Description
+				{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				}, 
+				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+				},
+		}	
+	})
+
+	DefinePopup({
+		Ident = "popup-orc-commands",
+		BackgroundColor = GetRGBA(0,64,160, 160),
+		BorderColor = GetRGBA(192,192,255, 160),
+		Contents = {
+				{ 	Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
+				}, 
+				-- Description
+				{ 	Margin = {1, 1}, Condition = {HasDescription = true},
+					More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+				}, 
+				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
+				}, 
+				-- Move  hint
+				{ 	Margin = {1, 1}, Condition = {ButtonAction = "move"},
+					More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+				},
+				{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<ALT~>-click to defend unit."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				},
+				{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<SHIFT~>-click to make waypoints."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				},
+				-- Repair hint
+				{ 	Margin = {1, 1}, Condition = {ButtonAction = "repair"},
+					More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+				},
+				{ 	Condition = {ButtonAction = "repair"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				},
+				-- Heal hint
+				{ 	Margin = {1, 1}, Condition = {ButtonValue = "spell-medic-heal"},
+					More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+				},
+				{ 	Condition = {ButtonValue = "spell-healing"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables autoheal ability."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				}
+		}	
+	})
+end
