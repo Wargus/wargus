@@ -463,9 +463,26 @@ if (wc2.preferences.ShowButtonPopups) then
 				}, 
 				{ 	More = {"Costs"}, HighlightColor = "full-red",
 				}, 
+				{ 	Margin = {1, 1},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				}, 
 				{ 	Condition = {HitPoints = "only"}, HighlightColor = "full-red",
 					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints"}}
-				}, 
+				},
+				{ 	HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Armor: "), Variable = "Armor"}}
+				},
+				{ 	Condition = {SightRange = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Sight: "), Variable = "SightRange"}}
+				},
+				{ 	HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Range: "), Variable = "AttackRange"}}
+				},
+				{ 	Condition = {BasicDamage = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = Concat(_("Damage: "), String(Div(TypeVar("PiercingDamage","Value"), 2)), "-",
+						String(Add(TypeVar("PiercingDamage","Value"), TypeVar("BasicDamage","Value"))))}}
+				},
+				
 				-- Description
 				{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}

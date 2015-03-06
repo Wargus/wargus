@@ -327,77 +327,77 @@ msgstr "У вас есть ~<%d~> %s"
 msgid "%s attacked"
 msgstr "%s под огнем"
 
-#~ msgid "%s: complete"
-#~ msgstr "%s: завершено"
+msgid "%s: complete"
+msgstr "%s: завершено"
 
-#~ msgid "%s: spell is not ready yet: %s"
-#~ msgstr "%s: заклинание еще не готово: %s"
+msgid "%s: spell is not ready yet: %s"
+msgstr "%s: заклинание еще не готово: %s"
 
-#~ msgid "%s: not enough resources to cast spell: %s"
-#~ msgstr "%s: недостаточно ресурсов для заклинания: %s"
+msgid "%s: not enough resources to cast spell: %s"
+msgstr "%s: недостаточно ресурсов для заклинания: %s"
 
-#~ msgid "Editor (%d %d)"
-#~ msgstr "Редактор (%d %d)"
+msgid "Editor (%d %d)"
+msgstr "Редактор (%d %d)"
 
-#~ msgid "#%d '%s' Player:#%d %s"
-#~ msgstr "#%d '%s' Игрок:#%d %s"
+msgid "#%d '%s' Player:#%d %s"
+msgstr "#%d '%s' Игрок:#%d %s"
 
-#~ msgid " Amount %d"
-#~ msgstr "Ресурсы %d"
+msgid " Amount %d"
+msgstr "Ресурсы %d"
 
-#~ msgid "Select player #%d"
-#~ msgstr "Выбор игрока #%d"
+msgid "Select player #%d"
+msgstr "Выбор игрока #%d"
 
-#~ msgid "Script %s"
-#~ msgstr "Скрипт %s"
+msgid "Script %s"
+msgstr "Скрипт %s"
 
-#~ msgid "Tileset `%s'"
-#~ msgstr "Тайлсет `%s'"
+msgid "Tileset `%s'"
+msgstr "Тайлсет `%s'"
 
-#~ msgid "Missile %s"
-#~ msgstr "Снаряд %s"
+msgid "Missile %s"
+msgstr "Снаряд %s"
 
-#~ msgid "Can't find missile %s\n"
-#~ msgstr "Снаряд не найден: %s\n"
+msgid "Can't find missile %s\n"
+msgstr "Снаряд не найден: %s\n"
 
-#~ msgid "Construction %s"
-#~ msgstr "Конструкция %s"
+msgid "Construction %s"
+msgstr "Конструкция %s"
 
-#~ msgid "Not enough %s...%s more %s."
-#~ msgstr "Недостаточно %s...%s больше %s."
+msgid "Not enough %s...%s more %s."
+msgstr "Недостаточно %s...%s больше %s."
 
-#~ msgid "Script %s\n"
-#~ msgstr "Скрипт %s\n"
+msgid "Script %s\n"
+msgstr "Скрипт %s\n"
 
-#~ msgid "Icon %s"
-#~ msgstr "Иконка %s"
+msgid "Icon %s"
+msgstr "Иконка %s"
 
-#~ msgid "Can't find icon %s\n"
-#~ msgstr "Иконка не найдена: %s\n"
+msgid "Can't find icon %s\n"
+msgstr "Иконка не найдена: %s\n"
 
-#~ msgid "Icons %s"
-#~ msgstr "Иконка %s"
+msgid "Icons %s"
+msgstr "Иконка %s"
 
-#~ msgid "Set default game speed"
-#~ msgstr "Установлена стандартная скорость игры"
+msgid "Set default game speed"
+msgstr "Установлена стандартная скорость игры"
 
-#~ msgid "Cycle:"
-#~ msgstr "Цикл:"
+msgid "Cycle:"
+msgstr "Цикл:"
 
-#~ msgid "Requirements:\n"
-#~ msgstr "Необходимо:\n"
+msgid "Requirements:\n"
+msgstr "Необходимо:\n"
 
-#~ msgid "unit-type '%s' without animations, ignored.\n"
-#~ msgstr "юнит '%s' не имеет анимаций, пропускается.\n"
+msgid "unit-type '%s' without animations, ignored.\n"
+msgstr "юнит '%s' не имеет анимаций, пропускается.\n"
 
-#~ msgid "Unit \"%s\""
-#~ msgstr "Юнит \"%s\""
+msgid "Unit \"%s\""
+msgstr "Юнит \"%s\""
 
-#~ msgid "Decorations `%s'"
-#~ msgstr "Декорация `%s'"
+msgid "Decorations `%s'"
+msgstr "Декорация `%s'"
 
-#~ msgid "Cursor %s"
-#~ msgstr "Курсор %s"
+msgid "Cursor %s"
+msgstr "Курсор %s"
 
-#~ msgid "esc"
-#~ msgstr "esc"
+msgid "esc"
+msgstr "esc"

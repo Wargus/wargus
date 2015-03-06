@@ -25,191 +25,121 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
+OldRunSinglePlayerGameMenu = RunSinglePlayerGameMenu
+
 function StartCustomGame_Lua()
-
-	local info_panel_x = 0
-	local info_panel_y = 160
-
-	local min_damage = Div(ActiveUnitVar("PiercingDamage"), 2)
-	local max_damage = Add(ActiveUnitVar("PiercingDamage"), ActiveUnitVar("BasicDamage"))
-	local damage_bonus = Sub(ActiveUnitVar("PiercingDamage", "Value", "Type"),
-							ActiveUnitVar("PiercingDamage", "Value", "Initial"));
-
-
-DefinePanelContents(
--- Default presentation. ------------------------
-  {
-  Ident = "panel-general-contents",
-  Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
-  Contents = {
-	{ Pos = {10, 48}, Condition = {ShowOpponent = false, HideNeutral = true},
-		More = {"LifeBar", {Variable = "HitPoints", Height = 7, Width = 45}}
-	},
-	{ Pos = {34, 49}, Condition = {ShowOpponent = false, HideNeutral = true},
-		More = {"FormattedText2", {
-			Font = "small", Variable = "HitPoints", Format = "%d/%d",
-			Component1 = "Value", Component2 = "Max", Centered = true}}
-	},
-
-	{ Pos = {114, 11}, More = {"Text", {Text = Line(1, UnitName("Active"), 110, "game"), Centered = true}} },
-	{ Pos = {114, 25}, More = {"Text", {Text = Line(2, UnitName("Active"), 110, "game"), Centered = true}} },
-
--- Ressource Left
-	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
-		More = {"FormattedText2", {Format = "%s Left:%d", Variable = "GiveResource",
-					Component1 = "Name", Component2 = "Value", Centered = true}}
-	},
-
--- Construction
-	{ Pos = {12, 153}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
-		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 14}}
-	},
-	{ Pos = {50, 156}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
-		More = {"Text", "% Complete"}},
-	{ Pos = {107, 78}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
-		More = {"Icon", {Unit = "Worker"}}}
-
-
-  } },
--- Supply Building constructed.----------------
-  {
-  Ident = "panel-building-contents",
-  Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
-  Condition = {ShowOpponent = false, HideNeutral = true, Build = "false", Supply = "only", Training = "false", UpgradeTo = "false"},
--- FIXME more condition. not town hall.
-  Contents = {
--- Food building
-	{ Pos = {16, 71}, More = {"Text", "Food Usage"} },
-	{ Pos = {58, 86}, More = {"Text", {Text = "Grown: ", Variable = "Supply", Component = "Max"}} },
-	{ Pos = {51, 102}, More = {"Text", {Text = Concat("   Used: ",
-									If(GreaterThan(ActiveUnitVar("Demand", "Max"), ActiveUnitVar("Supply", "Max")),
-										InverseVideo(String(ActiveUnitVar("Demand", "Max"))),
-										String(ActiveUnitVar("Demand", "Max")) ))}}
-    }
-
-  } },
-
--- Attack Unit -----------------------------
-  {
-  Ident = "panel-attack-unit-contents",
-  Pos = {info_panel_x, info_panel_y},
-  DefaultFont = "game",
-  Condition = {ShowOpponent = true, HideNeutral = true, Building = "false", Build = "false"},
-  Contents = {
--- Unit caracteristics
-	{ Pos = {114, 41},
-		More = {"FormattedText", {Variable = "Level", Format = "Level ~<%d~>"}}
-	},
-	{ Pos = {114, 56},
-		More = {"FormattedText2", {Centered = true,
-			Variable1 = "Xp", Variable2 = "Kill", Format = "XP:~<%d~> Kills:~<%d~>"}}
-	},
-	{ Pos = {47, 71}, Condition = {Armor = "only"},
-		More = {"Text", {
-					Text = "Armor: ", Variable = "Armor", Stat = true}}
-	},
-	{ Pos = {54, 118}, Condition = {SightRange = "only"},
-		More = {"Text", {Text = "Sight: ", Variable = "SightRange", Stat = true}}
-	},
-	{ Pos = {53, 133}, Condition = {Speed = "only"},
-		More = {"Text", {Text = "Speed: ", Variable = "Speed", Stat = true}}
-	} } })
+	RunSinglePlayerGameMenu = NewRunSinglePlayerGameMenu
   
 	SetTrainingQueue(false)
   
 end
   
 function CleanCustomGame_Lua()
-
-	local info_panel_x = 0
-	local info_panel_y = 160
-
-	local min_damage = Div(ActiveUnitVar("PiercingDamage"), 2)
-	local max_damage = Add(ActiveUnitVar("PiercingDamage"), ActiveUnitVar("BasicDamage"))
-	local damage_bonus = Sub(ActiveUnitVar("PiercingDamage", "Value", "Type"),
-							ActiveUnitVar("PiercingDamage", "Value", "Initial"));
-
-
-DefinePanelContents(
--- Default presentation. ------------------------
-  {
-  Ident = "panel-general-contents",
-  Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
-  Contents = {
-	{ Pos = {10, 48}, Condition = {ShowOpponent = false, HideNeutral = true},
-		More = {"LifeBar", {Variable = "HitPoints", Height = 7, Width = 45}}
-	},
-	{ Pos = {34, 49}, Condition = {ShowOpponent = false, HideNeutral = true},
-		More = {"FormattedText2", {
-			Font = "small", Variable = "HitPoints", Format = "%d/%d",
-			Component1 = "Value", Component2 = "Max", Centered = true}}
-	},
-
-	{ Pos = {114, 11}, More = {"Text", {Text = Line(1, UnitName("Active"), 110, "game"), Centered = true}} },
-	{ Pos = {114, 25}, More = {"Text", {Text = Line(2, UnitName("Active"), 110, "game"), Centered = true}} },
-
--- Ressource Left
-	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
-		More = {"FormattedText2", {Format = "%s Left:%d", Variable = "GiveResource",
-					Component1 = "Name", Component2 = "Value", Centered = true}}
-	},
-
--- Construction
-	{ Pos = {12, 153}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
-		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 14}}
-	},
-	{ Pos = {50, 156}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
-		More = {"Text", "% Complete"}},
-	{ Pos = {107, 78}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
-		More = {"Icon", {Unit = "Worker"}}}
-
-
-  } },
--- Supply Building constructed.----------------
-  {
-  Ident = "panel-building-contents",
-  Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
-  Condition = {ShowOpponent = false, HideNeutral = true, Build = "false", Supply = "only", Training = "false", UpgradeTo = "false"},
--- FIXME more condition. not town hall.
-  Contents = {
--- Food building
-	{ Pos = {16, 71}, More = {"Text", "Usage"} },
-	{ Pos = {58, 86}, More = {"Text", {Text = "Supply : ", Variable = "Supply", Component = "Max"}} },
-	{ Pos = {51, 102}, More = { "Text", {Text = Concat("Demand : ",
-									If(GreaterThan(ActiveUnitVar("Demand", "Max"), ActiveUnitVar("Supply", "Max")),
-										InverseVideo(String(ActiveUnitVar("Demand", "Max"))),
-										String(ActiveUnitVar("Demand", "Max")) ))}}
-    }
-
-  } },
-
--- Attack Unit -----------------------------
-  {
-  Ident = "panel-attack-unit-contents",
-  Pos = {info_panel_x, info_panel_y},
-  DefaultFont = "game",
-  Condition = {ShowOpponent = true, HideNeutral = true, Building = "false", Build = "false"},
-  Contents = {
--- Unit caracteristics
-	{ Pos = {114, 41},
-		More = {"FormattedText", {Variable = "Level", Format = "Level ~<%d~>"}}
-	},
-	{ Pos = {114, 56},
-		More = {"FormattedText2", {Centered = true,
-			Variable1 = "Xp", Variable2 = "Kill", Format = "XP:~<%d~> Kills:~<%d~>"}}
-	},
-	{ Pos = {47, 71}, Condition = {Armor = "only"},
-		More = {"Text", {
-					Text = "Armor: ", Variable = "Armor", Stat = true}}
-	},
-	{ Pos = {54, 118}, Condition = {SightRange = "only"},
-		More = {"Text", {Text = "Sight: ", Variable = "SightRange", Stat = true}}
-	},
-	{ Pos = {53, 133}, Condition = {Speed = "only"},
-		More = {"Text", {Text = "Speed: ", Variable = "Speed", Stat = true}}
-	} } })
+	RunSinglePlayerGameMenu = OldRunSinglePlayerGameMenu
 
 	SetTrainingQueue(true)
+end
+
+function NewRunSinglePlayerGameMenu()
+  local menu = WarMenu()
+  local offx = (Video.Width - 640) / 2
+  local offy = (Video.Height - 480) / 2
+  local d
+  local race
+  local resources
+  local opponents
+  local numunits
+  local gametype
+  local mapl
+  local descriptionl
+  local tilesetdd
+
+  if (wargus.tales == false) then
+    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+  end
+  
+  menu:addLabel("Scenario:", offx + 16, offy + 360, Fonts["game"], false)
+  mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 360 + 24, Fonts["game"], false)
+  descriptionl = menu:addLabel("descriptionl", offx + 16 + 70, offy + 360, Fonts["game"], false)
+
+  menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
+  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0,
+    function()
+      local oldmapname = mapname
+      RunSelectScenarioMenu()
+      if (mapname ~= oldmapname) then
+        GetMapInfo(mapname)
+        MapChanged()
+      end
+    end)
+  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
+    function()
+      local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"};
+
+      GameSettings.Presets[0].Race = race:getSelected()
+      GameSettings.Resources = resources:getSelected()
+      GameSettings.Opponents = opponents:getSelected()
+      GameSettings.NumUnits = numunits:getSelected()
+      GameSettings.GameType = gametype:getSelected() - 1
+      GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
+	  IsSkirmishClassic = true
+      RunMap(mapname, nil, wc2.preferences.FogOfWar, false)
+      menu:stop()
+    end)
+  menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() CleanCustomGame_Lua(); menu:stop(1); RunSinglePlayerTypeMenu() end)
+
+  menu:addLabel("~<Your Race:~>", offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
+  race = menu:addDropDown({"Map Default", "Human", "Orc"}, offx + 40, offy + 10 + 240,
+    function(dd) end)
+  race:setSize(152, 20)
+
+  menu:addLabel("~<Resources:~>", offx + 220, offy + (10 + 240) - 20, Fonts["game"], false)
+  resources = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, offx + 220, offy + 10 + 240,
+    function(dd) end)
+  resources:setSize(152, 20)
+
+  menu:addLabel("~<Units:~>", offx + 640 - 224 - 16, offy + (10 + 240) - 20, Fonts["game"], false)
+  numunits = menu:addDropDown({"Map Default", "One Peasant Only"}, offx + 640 - 224 - 16, offy + 10 + 240,
+    function(dd) end)
+  numunits:setSize(190, 20)
+
+  local opponents_list = {"Map Default", "1 Opponent", "2 Opponents",
+    "3 Opponents", "4 Opponents", "5 Opponents", "6 Opponents", "7 Opponents"}
+
+  menu:addLabel("~<Opponents:~>", offx + 40, offy + (10 + 300) - 20, Fonts["game"], false)
+  opponents = menu:addDropDown(opponents_list, offx + 40, offy + 10 + 300,
+    function(dd) end)
+  opponents:setSize(152, 20)
+
+  menu:addLabel("~<Game Type:~>", offx + 220, offy + (10 + 300) - 20, Fonts["game"], false)
+  gametype = menu:addDropDown({"Use map settings", "Melee", "Free for all", "Top vs bottom", "Left vs right", "Man vs Machine"}, offx + 220, offy + 10 + 300,
+    function(dd) end)
+  gametype:setSize(152, 20)
+
+  menu:addLabel("~<Tileset:~>", offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
+  tilesetdd = menu:addDropDown({_("Map Default"), _("Summer"), _("Swamp"), "Wasteland", "Winter"}, offx + 640 - 224 - 16, offy + 10 + 300,
+    function(dd) end)
+  tilesetdd:setSize(152, 20)
+
+  function MapChanged()
+    mapl:setCaption(string.sub(mapname, 6))
+    mapl:adjustSize()
+
+    descriptionl:setCaption(mapinfo.description ..
+      " (" .. mapinfo.w .. " x " .. mapinfo.h .. ")")
+    descriptionl:adjustSize()
+
+    local o = {}
+    for i=1,mapinfo.nplayers do
+      table.insert(o, opponents_list[i])
+    end
+    opponents:setList(o)
+  end
+
+  GetMapInfo(mapname)
+  MapChanged()
+
+  menu:run()
 end
   
 StartCustomGame_Lua()

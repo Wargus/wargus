@@ -86,7 +86,9 @@ end
 AIStrategyTypes = {_("Map Default")}
 OldDefineAi = DefineAi
 function DefineAi(name, race, class, script)
-	table.insert(AIStrategyTypes, name)
+	if class == "wc2-skirmish" then
+		table.insert(AIStrategyTypes, name)
+	end
 	OldDefineAi(name, race, class, script)
 end
 
@@ -371,7 +373,7 @@ local defaultPreferences = {
 	MusicVolume = 128,
 	PauseOnLeave = true,
 	PlayerName = "Wargustus",
-	SelectionStyle = "corners",
+	SelectionStyle = _("corners"),
 	ServerIP = "localhost",
 	ShowCommandKey = true,
 	ShowButtonPopups = true,

@@ -126,7 +126,7 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
   b:adjustSize();
   menu:addCentered(b, offx + 224, 137)
   
-  local stereoSound = menu:addImageCheckBox("Stereo Sound", offx + 16, offy + 36 * 4.25, offi, offi2, oni, oni2, function() end)
+  local stereoSound = menu:addImageCheckBox(_("Stereo Sound"), offx + 16, offy + 36 * 4.25, offi, offi2, oni, oni2, function() end)
   stereoSound:setMarked(Preference.StereoSound)
   stereoSound:setActionCallback(
   function()
@@ -171,6 +171,7 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
 		wc2.preferences.EffectsEnabled = IsEffectsEnabled()
 		wc2.preferences.MusicVolume = GetMusicVolume()
 		wc2.preferences.MusicEnabled = IsMusicEnabled()
+		wc2.preferences.StereoSound = Preference.StereoSound
 		SavePreferences()
 		menu:stop()
     end)
@@ -285,8 +286,9 @@ function RunPreferencesMenu()
   deselectInMine:setMarked(wc2.preferences.DeselectInMine)
   
   local selectionStyleList = {"rectangle", "alpha-rectangle", "circle", "alpha-circle", "corners"}
+  local selectionStyleList1 = {_("rectangle"), _("alpha-rectangle"), _("circle"), _("alpha-circle"), _("corners")}
   menu:addLabel(_("Selection style:"), 225, 28 + 19 * 0, Fonts["game"], false)
-  local selectionStyle = menu:addDropDown(selectionStyleList, 225, 28 + 19 * 1, function(dd) end)
+  local selectionStyle = menu:addDropDown(selectionStyleList1, 225, 28 + 19 * 1, function(dd) end)
   selectionStyle:setSelected(tableindex(selectionStyleList, wc2.preferences.SelectionStyle) - 1)
   selectionStyle:setActionCallback(
   function()
@@ -330,7 +332,7 @@ function RunPreferencesMenu()
       menu:stop(1)
     end)
 
-  menu:addHalfButton("~!Cancel", "c", 40, 352 - 40,
+  menu:addHalfButton(_("~!Cancel"), "c", 40, 352 - 40,
     function() 
 	  menu:stop()
 	end)

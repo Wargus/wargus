@@ -1,4 +1,4 @@
-function WarGameMenu(background)
+function WarGameMenu(background, w, h)
   local menu = MenuScreen()
 
   if (background == nil) then
@@ -7,13 +7,16 @@ function WarGameMenu(background)
   else
     local bgg = CGraphic:New(background)
     bgg:Load()
+	if (w ~= nil and h ~= nil) then
+		bgg:Resize(w, h)
+	end
     local bg = ImageWidget(bgg)
     menu:add(bg, 0, 0)
   end
 
   function menu:resize(w, h)
     menu:setSize(w, h)
-    menu:setPosition(176 + (Video.Width - 176 - menu:getWidth()) / 2,
+    menu:setPosition((Video.Width - menu:getWidth()) / 2,
       (Video.Height - menu:getHeight()) / 2)
   end
 

@@ -10,7 +10,7 @@
 --
 --      credits.lua - Define the menu for credits.
 --
---      (c) Copyright 2006-2010 by Jimmy Salmon and Pali Rohár
+--      (c) Copyright 2006-2015 by Jimmy Salmon, Pali Rohár and cybermind
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -33,18 +33,23 @@ function RunShowCreditsMenu()
   local offy = (Video.Height - 480) / 2
 
   local credits = {
-	"Programmers",
+	"Wargus developers",
+	"  cybermind aka Mistranger",
+	"  Kyran Jackson",
+	"  Andre Novellino Gouvea",
+	"Stratagus programmers",
+	"  cybermind aka Mistranger",
+	"  Andre Novellino Gouvêa",
+	"  Joris Dauphin",
+	"  Pali Rohar",
+	"Patches",
+	"  Tim Felgentreff",
+	"  Bradley Clemetson ",
+	"Past Programmers",
 	"  Jimmy Salmon",
 	"  Francois Beerten",
 	"  Nehal Mistry",
-	"  Joris Dauphin",
-	"  Russell Smith",
-	"  Pali Rohar",
-	"Patches",
-	"  Martin Renold",
-	"  Carlos Perello Marin",
-	"  Pludov",
-	"Past Programmers",
+	"  Russell Smith",	
 	"  Andreas 'Ari' Arens",
 	"  Lutz 'Johns' Sammer",
 	"  Edgar 'Froese' Toernig",
@@ -98,6 +103,9 @@ function RunShowCreditsMenu()
 	"  Ben Hines",
 	"  Kachalov Anton",
 	"Past Patch Contributors",
+	"  Martin Renold",
+	"  Carlos Perello Marin",
+	"  Pludov",
 	"  Martin Hajduch",
 	"  Jeff Binder",
 	"  Ludovic",
@@ -112,9 +120,13 @@ function RunShowCreditsMenu()
 	"  PNG Copyright by Glenn Randers-Pehrson",
 	"  OGG/Vorbis Copyright by Xiph.org Foundation",
 	"  FluidSynth Copyright by Josh Green, Pedro Lopez-Cabanillas, David Henningsson",
-	"  VP3 codec Copyright by On2 Technologies Inc.",
+	"  Theora codec Copyright by Xiph.org Foundation.",
 	"  Guichan Copyright by Per Larsson and Olof Naessen",
 	"  tolua++ Copyright by Codenix",
+	"  Stacktrace Copyright by Ethan Tira-Thompson and Fredrik Orderud",
+	"  MikMod Copyright by Jean-Paul Mikkers (MikMak), Jake Stine (Air Richter) and Frank Loemker",
+	"  StormLib Copyright by Ladislav Zezula",
+	
 	"",
 	"",
 	"The Stratagus Team thanks all the people who have contributed",
@@ -144,7 +156,7 @@ function RunShowCreditsMenu()
     sw:add(Label(f), 0, 24 * (i - 1) + 275)
   end
 
-  menu:addContinueButton("~!Continue", "c", offx + 455, offy + 440,
+  menu:addContinueButton(_("~!Continue"), "c", offx + 455, offy + 440,
     function() menu:stop() end)
 
   local speed = GetGameSpeed()

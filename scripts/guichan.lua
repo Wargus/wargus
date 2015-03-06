@@ -623,6 +623,7 @@ function InitGameSettings()
 	GameSettings.NetGameType = 1
 	for i=0, PlayerMax-1 do
 		GameSettings.Presets[i].PlayerColor = i
+		GameSettings.Presets[i].AIScript = _("Map Default")
 		GameSettings.Presets[i].Race = -1
 		GameSettings.Presets[i].Team = -1
 		GameSettings.Presets[i].Type = -1
@@ -636,6 +637,7 @@ function InitGameSettings()
 	GameSettings.NoFogOfWar = false
 	GameSettings.RevealMap = 0
 	GameSettings.Tileset = nil
+	IsSkirmishClassic = false
 end
 InitGameSettings()
 
@@ -1069,7 +1071,7 @@ function RunSinglePlayerGameMenu()
 					GameSettings.Presets[i].PlayerColor = pcolor[i+1]:getSelected()
 				end
 				if paitype[i+1] ~= nil and paitype[i+1]:getSelected() > 0 then
-					Players[i].AiName = AIStrategyTypes[paitype[i+1]:getSelected()]
+					GameSettings.Presets[i].AIScript = AIStrategyTypes[paitype[i+1]:getSelected() + 1]
 				end
 			end
 			GameSettings.Difficulty = difficulty:getSelected() + 1

@@ -5,21 +5,24 @@ local function RunEditorNewMapMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
   local tilesets = { "summer", "swamp", "wasteland", "winter"}
-  local mapSizes = {"32", "64", "96", "128", "256"}
+  local tilesets1 = {_("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}
+  local mapSizes = {"32", "64", "96", "128", "160", "192", "224", "256"}
+  local tilesetLabel = _("TileSet : ")
+  local sizeLabel = _("Size :")
 
-  menu:addLabel("Map description :", offx + 208, offy + 104 + 32 * 0, Fonts["game"], false)
+  menu:addLabel(_("Map description :"), offx + 208, offy + 104 + 32 * 0, Fonts["game"], false)
   local mapDescription = menu:addTextInputField("", offx + 208, offy + 104 + 32 * 1, 200)
-  menu:addLabel("TileSet : ", offx + 208, offy + 104 + 32 * 2, Fonts["game"], false)
-  local dropDownTileset = menu:addDropDown(tilesets, offx + 208 + 60, offy + 104 + 32 * 2, function() end)
+  menu:addLabel(tilesetLabel, offx + 208, offy + 104 + 32 * 2, Fonts["game"], false)
+  local dropDownTileset = menu:addDropDown(tilesets1, offx + 208 + CFont:Get("game"):Width(tilesetLabel) + 10, offy + 104 + 32 * 2, function() end)
 
-  menu:addLabel("Size :", offx + 208, offy + 104 + 32 * 3, Fonts["game"], false)
-  local mapSizex = menu:addDropDown(mapSizes, offx + 208 + 50, offy + 104 + 32 * 3, function() end)
+  menu:addLabel(sizeLabel, offx + 208, offy + 104 + 32 * 3, Fonts["game"], false)
+  local mapSizex = menu:addDropDown(mapSizes, offx + 208 + CFont:Get("game"):Width(sizeLabel) + 10, offy + 104 + 32 * 3, function() end)
   mapSizex:setWidth(50)
-  menu:addLabel("x", offx + 208 + 110, offy + 104 + 32 * 3, Fonts["game"], false)
-  local mapSizey = menu:addDropDown(mapSizes, offx + 208 + 125, offy + 104 + 32 * 3, function() end)
+  menu:addLabel("x", offx + 208 + CFont:Get("game"):Width(sizeLabel) + 70, offy + 104 + 32 * 3, Fonts["game"], false)
+  local mapSizey = menu:addDropDown(mapSizes, offx + 208 + CFont:Get("game"):Width(sizeLabel) + 90, offy + 104 + 32 * 3, function() end)
   mapSizey:setWidth(50)
 
-  menu:addFullButton("~!New map", "n", offx + 208, offy + 104 + 36 * 5,
+  menu:addFullButton(_("~!New map"), "n", offx + 208, offy + 104 + 36 * 5,
     function()
       -- TODO : check value
       Map.Info.Description = mapDescription:getText()
@@ -30,7 +33,7 @@ local function RunEditorNewMapMenu()
       StartEditor(nil)
       RunEditorMenu()
     end)
-  menu:addFullButton("~!Cancel", "c", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
+  menu:addFullButton(_("~!Cancel"), "c", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
   return menu:run()
 end
 
@@ -46,16 +49,16 @@ local function RunEditorLoadMapMenu()
 
   -- update label content
   local function MapChanged()
-    labelMapName:setCaption(_("File      : ") .. string.sub(mapname, 6))
+    labelMapName:setCaption(_("File : ") .. string.sub(mapname, 6))
     labelMapName:adjustSize()
 
-    labelNbPlayer:setCaption(_("Players  : ") .. mapinfo.nplayers)
+    labelNbPlayer:setCaption(_("Players : ") .. mapinfo.nplayers)
     labelNbPlayer:adjustSize()
 
     labelDescription:setCaption(_("Scenario : ") .. mapinfo.description)
     labelDescription:adjustSize()
 
-    labelMapSize:setCaption(_("Size      : ") .. mapinfo.w .. " x " .. mapinfo.h)
+    labelMapSize:setCaption(_("Size : ") .. mapinfo.w .. " x " .. mapinfo.h)
     labelMapSize:adjustSize()
   end
 
@@ -201,10 +204,9 @@ end
 --
 function RunEditorPlayerProperties()
 -- TODO : manage edition.
--- TODO : find a correct background menu
-  local menu = WarGameMenu()
   local sizeX = 500
   local sizeY = 480
+  local menu = WarGameMenu(panel(5), 500, 480)
 
   menu:resize(sizeX, sizeY)
   menu:addLabel(_("Players properties"), sizeX / 2, 11)
@@ -218,16 +220,17 @@ function RunEditorPlayerProperties()
   local offxOil = 470
 
   local types = {"neutral", "nobody", "computer", "person", "rescue-passive", "rescue-active"}
+  local types1 = {_("Neutral"), _("Nobody"), _("Computer"), _("Person"), _("Rescue-passive"), _("Rescue-active")}
   local racenames = {"human", "orc"}
-  local ais = {"wc2-passive", "wc2-sea-attack", "wc2-land-attack", "wc2-air-attack"}
+  local racenames1 = {_("Human"),_("Orc")}
 
   menu:addLabel("#", 15, 36)
-  menu:addLabel("Type", offxType, 36)
-  menu:addLabel("Race", offxRace, 36)
-  menu:addLabel("AI", offxAI, 36)
-  menu:addLabel("Gold", offxGold, 36)
-  menu:addLabel("Lumber", offxLumber, 36)
-  menu:addLabel("Oil", offxOil, 36)
+  menu:addLabel(_("Type"), offxType, 36)
+  menu:addLabel(_("Race"), offxRace, 36)
+  menu:addLabel(_("AI"), offxAI, 36)
+  menu:addLabel(_("Gold"), offxGold, 36)
+  menu:addLabel(_("Lumber"), offxLumber, 36)
+  menu:addLabel(_("Oil"), offxOil, 36)
 
   local playersProp = {nil, nil, nil, nil, nil,
                        nil, nil, nil, nil, nil,
@@ -257,17 +260,17 @@ function RunEditorPlayerProperties()
 
     menu:addLabel("p" .. (i + 1), offxPlayer, offy_i)
 
-    playersProp[1 + i].type = menu:addDropDown(types, offxType - 40, offy_i, function() updateProp(index) end)
+    playersProp[1 + i].type = menu:addDropDown(types1, offxType - 40, offy_i, function() updateProp(index) end)
     playersProp[1 + i].type:setSelected(Map.Info.PlayerType[i] - 2)
     playersProp[1 + i].type:setWidth(115)
 
-    playersProp[1 + i].race = menu:addDropDown(racenames, offxRace - 20, offy_i, function() end)
+    playersProp[1 + i].race = menu:addDropDown(racenames1, offxRace - 20, offy_i, function() end)
     playersProp[1 + i].race:setSelected(Players[i].Race)
     playersProp[1 + i].race:setWidth(65)
 
-    playersProp[1 + i].ai = menu:addDropDown(ais, offxAI - 65, offy_i, function() end)
-    for j = 0,3 do
-      if (ais[1 + j] == Players[i].AiName) then playersProp[1 + i].ai:setSelected(j) end
+    playersProp[1 + i].ai = menu:addDropDown(AIStrategyTypes, offxAI - 65, offy_i, function() end)
+    for j = 1,table.getn(AIStrategyTypes) do
+      if (AIStrategyTypes[j] == Players[i].AiName) then playersProp[1 + i].ai:setSelected(j - 1) end
     end
     playersProp[1 + i].ai:setWidth(130)
 
@@ -282,7 +285,7 @@ function RunEditorPlayerProperties()
       for i = 0, 14 do
         Map.Info.PlayerType[i] = playersProp[1 + i].type:getSelected() + 2
         Players[i].Race = playersProp[1 + i].race:getSelected()
-        Players[i].AiName = ais[1 + playersProp[1 + i].ai:getSelected()]
+        Players[i].AiName = AIStrategyTypes[1 + playersProp[1 + i].ai:getSelected()]
         Players[i].Resources[1] = playersProp[1 + i].gold:getText()
         Players[i].Resources[2] = playersProp[1 + i].lumber:getText()
         Players[i].Resources[3] = playersProp[1 + i].oil:getText()
@@ -321,7 +324,7 @@ function RunEditorMapProperties()
   menu:addLabel(_("Tileset : "), 45, 36 * 4, nil, false)
 
   local list = { _("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}
-  local dropDownTileset = menu:addDropDown(list, 130, 36 * 4, function() end)
+  local dropDownTileset = menu:addDropDown(list, 145, 36 * 4, function() end)
   for i = 0,3 do
     if (list[1 + i] == Map.Tileset.Name) then dropDownTileset:setSelected(i)
     end
@@ -389,7 +392,7 @@ function EditUnitProperties()
     menu:addHalfButton("~!Ok", "o", 24, sizeY - 40,
       function() GetUnitUnderCursor().Active = activeCheckBox:isMarked();  menu:stop() end)
   else
-    local resourceName = {"gold", "lumber", "oil"}
+    local resourceName = {_("gold"), _("wood"), _("oil")}
     local resource = GetUnitUnderCursor().Type.GivesResource - 1
     menu:addLabel(_("Amount of ") .. resourceName[1 + resource] .. " :", 24, 11 + 36, nil, false)
 	local resourceValue = menu:addTextInputField(GetUnitUnderCursor().ResourcesHeld, sizeX / 2 - 30, 11 + 36 * 2, 60)

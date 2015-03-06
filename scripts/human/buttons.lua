@@ -346,7 +346,7 @@ DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
 
 if (wargus.extensions) then
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-critter",
-  Action = "train-unit", Value = "unit-critter",
+  Action = "train-unit", Value = "unit-critter", Popup = "popup-human-unit",
   Key = "c", Hint = _("TRAIN ~!CRITTER"),
   ForUnit = {"unit-farm"} } )
 end
@@ -354,7 +354,7 @@ end
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-peasant",
   Action = "train-unit", Value = "unit-peasant",
   Allowed = "check-no-research",
-  Key = "p", Hint = _("TRAIN ~!PEASANT"),
+  Key = "p", Hint = _("TRAIN ~!PEASANT"), Popup = "popup-human-unit",
   ForUnit = {"unit-town-hall", "unit-keep", "unit-castle"} } )
 
 -- town hall upgrades ---------------------------------------------------------
@@ -399,77 +399,77 @@ end
 end
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-footman",
-  Action = "train-unit", Value = "unit-footman",
+  Action = "train-unit", Value = "unit-footman", Popup = "popup-human-unit",
   Key = "f", Hint = _("TRAIN ~!FOOTMAN"),
   ForUnit = {"unit-human-barracks"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-archer",
-  Action = "train-unit", Value = "unit-archer",
+  Action = "train-unit", Value = "unit-archer", Popup = "popup-human-unit",
   Key = "a", Hint = _("TRAIN ~!ARCHER"),
   ForUnit = {"unit-human-barracks"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-ranger",
-  Action = "train-unit", Value = "unit-ranger",
+  Action = "train-unit", Value = "unit-ranger", Popup = "popup-human-unit",
   Key = "r", Hint = _("TRAIN ~!RANGER"),
   ForUnit = {"unit-human-barracks"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-ballista",
-  Action = "train-unit", Value = "unit-ballista",
+  Action = "train-unit", Value = "unit-ballista", Popup = "popup-human-unit",
   Key = "b", Hint = _("BUILD ~!BALLISTA"),
   ForUnit = {"unit-human-barracks"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-knight",
-  Action = "train-unit", Value = "unit-knight",
+  Action = "train-unit", Value = "unit-knight", Popup = "popup-human-unit",
   Key = "k", Hint = _("TRAIN ~!KNIGHT"),
   ForUnit = {"unit-human-barracks"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-paladin",
-  Action = "train-unit", Value = "unit-paladin",
+  Action = "train-unit", Value = "unit-paladin", Popup = "popup-human-unit",
   Key = "p", Hint = _("TRAIN ~!PALADIN"),
   ForUnit = {"unit-human-barracks"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-gnomish-flying-machine",
-  Action = "train-unit", Value = "unit-balloon",
+  Action = "train-unit", Value = "unit-balloon", Popup = "popup-human-unit",
   Key = "f", Hint = _("BUILD GNOMISH ~!FLYING MACHINE"),
   ForUnit = {"unit-inventor"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-dwarves",
-  Action = "train-unit", Value = "unit-dwarves",
+  Action = "train-unit", Value = "unit-dwarves", Popup = "popup-human-unit",
   Key = "d", Hint = _("TRAIN ~!DWARVEN DEMOLITION SQUAD"),
   ForUnit = {"unit-inventor"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-mage",
-  Action = "train-unit", Value = "unit-mage",
+  Action = "train-unit", Value = "unit-mage", Popup = "popup-human-unit",
   Key = "t", Hint = _("~!TRAIN MAGE"),
   ForUnit = {"unit-mage-tower"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-gryphon-rider",
-  Action = "train-unit", Value = "unit-gryphon-rider",
+  Action = "train-unit", Value = "unit-gryphon-rider", Popup = "popup-human-unit",
   Key = "g", Hint = _("TRAIN ~!GRYPHON RIDER"),
   ForUnit = {"unit-gryphon-aviary"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-human-oil-tanker",
-  Action = "train-unit", Value = "unit-human-oil-tanker",
+  Action = "train-unit", Value = "unit-human-oil-tanker", Popup = "popup-human-unit",
   Key = "o", Hint = _("BUILD ~!OIL TANKER"),
   ForUnit = {"unit-human-shipyard"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-destroyer",
-  Action = "train-unit", Value = "unit-human-destroyer",
+  Action = "train-unit", Value = "unit-human-destroyer", Popup = "popup-human-unit",
   Key = "d", Hint = _("BUILD ~!DESTROYER"),
   ForUnit = {"unit-human-shipyard"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-human-transport",
-  Action = "train-unit", Value = "unit-human-transport",
+  Action = "train-unit", Value = "unit-human-transport", Popup = "popup-human-unit",
   Key = "t", Hint = _("BUILD ~!TRANSPORT"),
   ForUnit = {"unit-human-shipyard"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-gnomish-submarine",
-  Action = "train-unit", Value = "unit-human-submarine",
+  Action = "train-unit", Value = "unit-human-submarine", Popup = "popup-human-unit",
   Key = "s", Hint = _("BUILD GNOMISH ~!SUBMARINE"),
   ForUnit = {"unit-human-shipyard"} } )
 
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-battleship",
-  Action = "train-unit", Value = "unit-battleship",
+  Action = "train-unit", Value = "unit-battleship", Popup = "popup-human-unit",
   Key = "b", Hint = _("BUILD ~!BATTLESHIP"),
   ForUnit = {"unit-human-shipyard"} } )
 
@@ -483,12 +483,12 @@ DefineButton( { Pos = 6, Level = 0, Icon = "icon-human-ship-haul-oil",
 end
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-human-guard-tower",
-  Action = "upgrade-to", Value = "unit-human-guard-tower",
+  Action = "upgrade-to", Value = "unit-human-guard-tower", Popup = "popup-human-building",
   Key = "g", Hint = _("UPGRADE TO ~!GUARD TOWER"),
   ForUnit = {"unit-human-watch-tower"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-cannon-tower",
-  Action = "upgrade-to", Value = "unit-human-cannon-tower",
+  Action = "upgrade-to", Value = "unit-human-cannon-tower", Popup = "popup-human-building",
   Key = "c", Hint = _("UPGRADE TO ~!CANNON TOWER"),
   ForUnit = {"unit-human-watch-tower"} } )
 
