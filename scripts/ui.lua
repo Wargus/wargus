@@ -104,7 +104,7 @@ DefinePanelContents(
 	{ Pos = {114, 25}, More = {"Text", {Text = Line(2, UnitName("Active"), 110, "game"), Centered = true}} },
 
 -- Ressource Left
-	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only"},
+	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only", Build = "false"},
 		More = {"FormattedText2", {Format = _("%s Left~|:%d"), Variable = "GiveResource",
 					Component1 = "Name", Component2 = "Value", Centered = true}}
 	},
