@@ -1,10 +1,10 @@
 Source: wargus
 Section: games
 Priority: optional
-Maintainer: cybermind <cybermindid@gmail.com>
+Maintainer: cybermind <iddqd_mail@mail.ru>
 Build-Depends: debhelper (>= 7), cmake (>= 2.6), pkg-config, imagemagick,
  po-debconf, sharutils, zlib1g-dev, libbz2-dev, libx11-dev,
- libpng12-dev (>= 1.2.5), libhildon1-dev | libgtk2.0-dev, stratagus-dev
+ libpng12-dev (>= 1.2.5), libhildon1-dev | libgtk2.0-dev
 Standards-Version: 3.9.2
 Homepage: https://launchpad.net/wargus
 Vcs-Browser: https://code.launchpad.net/wargus
@@ -12,9 +12,8 @@ Vcs-Bzr: lp:wargus
 
 Package: wargus
 Architecture: any
-Depends: ${stratagus:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: cdparanoia, ffmpeg2theora
-Provides: stratagus-data
 Description: Warcraft II data game set for the Stratagus engine
  Wargus can be used to play Warcraft II from Blizzard Entertainment.
  .

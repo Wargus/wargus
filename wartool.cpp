@@ -2349,11 +2349,6 @@ int main(int argc, char** argv)
 	char filename[1024];
 	FILE* f;
 
-	if (argc != 2 && argc != 3) {
-		Usage(argv[0]);
-		exit(-1);
-	}
-
 	while (argc >= 2) {
 		if (!strcmp(argv[a], "-v")) {
 			video = 1;
