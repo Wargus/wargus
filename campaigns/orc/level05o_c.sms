@@ -37,14 +37,12 @@ local allowedOrcUnits = {"unit-pig-farm",
 	"unit-great-hall", "unit-stronghold", "unit-peon",
 	"unit-orc-barracks", "unit-grunt", "unit-axethrower", "unit-berserker", "unit-catapult",
 	"unit-troll-lumber-mill", "upgrade-throwing-axe1", "upgrade-throwing-axe2",
-	"upgrade-berserker", "upgrade-light-axes", "upgrade-berserker-scouting", "upgrade-berserker-regeneration",
 	"unit-orc-blacksmith", "upgrade-battle-axe1", "upgrade-orc-shield1", "upgrade-catapult1",
 	"unit-orc-watch-tower", "unit-orc-guard-tower", "unit-orc-cannon-tower",
 	"unit-orc-shipyard", "unit-orc-oil-tanker", "unit-orc-destroyer", "unit-orc-transport",
 	"unit-orc-oil-platform", "unit-orc-refinery",
 	"unit-orc-foundry", "upgrade-orc-ship-cannon1", "upgrade-orc-ship-armor1",
-	"unit-alchemist", "unit-zeppelin",
-	"unit-ogre-mound", "unit-ogre"
+	"unit-alchemist", "unit-zeppelin"
 }
 local function DefineAllowTable(table, flags)
 	for i, unitName in ipairs(table) do

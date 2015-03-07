@@ -752,6 +752,9 @@ end
 OldAiForce = AiForce
 
 function AiForce(num, units)
+	if (GameSettings.Difficulty == -1) then
+		return OldAiForce(num, units)
+	end
 	if (num == 0) then
 		return
 	end
@@ -772,7 +775,7 @@ function AiForce(num, units)
 	for i = 1, table.getn(units)/2 do
 		units[i*2] = math.max(1, units[i*2] + add)
 	end
-	return OldAiForce(num, units)
+	
 end
 
 OldAiSleep = AiSleep
@@ -780,7 +783,7 @@ function AiSleep(cycles)
 	if (GameSettings.Difficulty == 1) then
 		return OldAiSleep(5 * cycles)
 	elseif (GameSettings.Difficulty == 2) then
-		return OldAiSleep(math.floor(1.5 * cycles))
+		return OldAiSleep(math.floor(1.25 * cycles))
 	elseif (GameSettings.Difficulty == 3) then
 		return OldAiSleep(math.floor(cycles))
 	elseif (GameSettings.Difficulty == 4) then

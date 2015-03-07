@@ -162,13 +162,13 @@ function CreatePictureStep(bg, sound, title, text)
     SetPlayerData(GetThisPlayer(), "RaceName", CurrentCampaignRace)
     wargus.playlist = {}
     PlayMusic(sound)
-    local menu = WarMenu(nil, bg)
+    local menu = WarMenu(nil, bg, false)
     local offx = (Video.Width - 640) / 2
     local offy  = (Video.Height - 480) / 2
     menu:addLabel(title, offx + 320, offy + 240 - 67, Fonts["small-title"], true)
     menu:addLabel(text, offx + 320, offy + 240 - 25, Fonts["large-title"], true)
     menu:addHalfButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
-      function() menu:stop() end)
+      function()  menu:stop() end)
     menu:run()
     GameResult = GameVictory
   end
@@ -186,7 +186,9 @@ end
 
 function CreateVideoStep(video)
   return function()
+	local menu = WarMenu(nil, nil, false)
     PlayMovie(video)
+	menu:run(false)
     GameResult = GameVictory
   end
 end
@@ -221,6 +223,9 @@ function CampaignButtonFunction(campaign, i, menu)
 end
 
 function RunCampaignSubmenu(campaign)
+  if (campaign == nil) then
+	return
+  end
   Load(campaign)
   
   -- Add new best scores
@@ -276,7 +281,12 @@ function RunCampaignSubmenu(campaign)
   difficulty:setSelected(1)
   
   local goButton = menu:addFullButton(_("~!Play mission"), "p", offx + 208, offy + 212 + (36 * 5),  
-			function() GameSettings.Difficulty = difficulty:getSelected() + 1; return CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu) end)
+			function() 
+				GameSettings.Difficulty = difficulty:getSelected() + 1
+				wc2.preferences.LastDifficulty = GameSettings.Difficulty
+				SavePreferences()
+				return CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu) 
+			end)
   local function UpdateGo()
 	if missionListBox:getSelected() ~= -1 then
 		 goButton:setVisible(true)
@@ -314,6 +324,7 @@ function RunCampaign(campaign)
   currentCampaign = campaign
 
   while (position <= table.getn(campaign_steps)) do
+	GameSettings.Difficulty = wc2.preferences.LastDifficulty
     campaign_steps[position]()
     if (GameResult == GameVictory) then
       position = position + 1

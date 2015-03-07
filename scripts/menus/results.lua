@@ -270,7 +270,7 @@ function RunResultsMenu()
   end
   local playerStatData = {}                                   -- All player data
   local maxStagePlayer = {1, 1, 1, 1, 1, 1, 1, 1}             -- hold the player earned maximum score of every stat
-  local defaultStatSpeeds = {2, 2, 457, 457, 457, 2, 2, 79}  -- default statbox speeds
+  local defaultStatSpeeds = {2, 2, 457, 457, 457, 2, 2, 123}  -- default statbox speeds
   local statSpeed = {}       -- speed of stat increasing
   local decrCoeff = 70       -- maximum count of ticks for statbox
   for i=1,table.getn(captionLabels) do

@@ -463,6 +463,7 @@ Preference.PauseOnLeave = wc2.preferences.PauseOnLeave
 SetSelectionStyle(wc2.preferences.SelectionStyle)
 SetNewViewportMode(wc2.preferences.ViewportMode)
 Preference.DeselectInMine = wc2.preferences.DeselectInMine
+Preference.StereoSound = wc2.preferences.StereoSound
 
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")

@@ -232,7 +232,7 @@ function DefineCustomMapRules()
 end
 
 function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
-  if (IsSkirmishClassic == true or IsNetworkGame()==true or GameSettings.NetGameType == 2 or Editor.Running==4 or currentCampaign ~= nil) then
+  if (IsSkirmishClassic == true or IsNetworkGame()==true or GameSettings.NetGameType == 2 or Editor.Running==4 or GameSettings.GameType==-1 or currentCampaign ~= nil) then
 	  local p = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15}
 	  local foundperson = false
 	  local nump = GameSettings.Opponents
