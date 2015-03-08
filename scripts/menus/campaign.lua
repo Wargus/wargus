@@ -168,7 +168,7 @@ function CreatePictureStep(bg, sound, title, text)
     menu:addLabel(title, offx + 320, offy + 240 - 67, Fonts["small-title"], true)
     menu:addLabel(text, offx + 320, offy + 240 - 25, Fonts["large-title"], true)
     menu:addHalfButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
-      function()  menu:stop() end)
+      function()  menu:stop(1) end)
     menu:run()
     GameResult = GameVictory
   end
@@ -189,6 +189,7 @@ function CreateVideoStep(video)
 	local menu = WarMenu(nil, nil, false)
     PlayMovie(video)
 	menu:run(false)
+	menu:stop(1)
     GameResult = GameVictory
   end
 end
