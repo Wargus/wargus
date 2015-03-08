@@ -37,7 +37,7 @@ DefineBoolFlags("isundead", "organic", "hero", "volatile")
 --  Level     : Increase each time an upgrade is applyed to an unit.
 --
 DefineVariables("Mana", {Max = 255, Value = 84, Increase = 1, Enable = false}, "Speed", "ShadowFly", {Max = 2},
-	"Level", {Max = 255, Value = 1, Increase = 0, Enable = true})
+	"Level", {Max = 1, Value = 1, Increase = 0, Enable = true})
 
 --  Declare some unit types used in spells. This is quite accetable, the other
 --  way would be to define can-cast-spell outside unit definitions, not much of an improvement.
@@ -178,7 +178,7 @@ DefineSpell("spell-eye-of-vision",
 	"manacost", 70,
 	"range", 6,
 	"target", "position",
-		"action", {{"summon", "unit-type", "unit-eye-of-vision", "time-to-live", 5000},
+		"action", {{"summon", "unit-type", "unit-eye-of-vision", "time-to-live", 765},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
 	"sound-when-cast", "eye of vision",
@@ -190,7 +190,7 @@ DefineSpell("spell-eye-of-vision-double-head",
 	"manacost", 70,
 	"range", 6,
 	"target", "position",
-		"action", {{"summon", "unit-type", "unit-eye-of-vision", "time-to-live", 5000},
+		"action", {{"summon", "unit-type", "unit-eye-of-vision", "time-to-live", 765},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
 	"sound-when-cast", "eye of vision"

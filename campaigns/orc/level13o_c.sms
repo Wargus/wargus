@@ -82,10 +82,8 @@ DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 
 -- Default Spells Researched
-DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
-DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
+DefineAllowHumanAlways()
+DefineAllowOrcAlways()
 
 -- AI
 

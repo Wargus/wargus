@@ -174,11 +174,11 @@ DefineModifier("upgrade-catapult2",
   {"apply-to", "unit-catapult"})
 
 DefineModifier("upgrade-berserker",
+  {"Level", 1},
   {"apply-to", "unit-axethrower"}, {"convert-to", "unit-berserker"})
 
 DefineModifier("upgrade-light-axes",
   {"Level", 1},
-  {"SightRange", 1},
   {"AttackRange", 1},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"})
 

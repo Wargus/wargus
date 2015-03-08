@@ -244,6 +244,7 @@ DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
 DefineAllowNormalOrcUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
-
+DefineAllowHumanAlways()
+DefineAllowOrcAlways()
 
 Load("campaigns/human-exp/levelx06h.sms")

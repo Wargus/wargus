@@ -76,7 +76,6 @@ DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
 DefineAllowNormalOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
-
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowHumanAlways()

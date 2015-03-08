@@ -111,7 +111,7 @@ DefineButton( { Pos = 3, Level = 0, Icon = "icon-arrow2",
   ForUnit = {"unit-archer", "unit-ranger", "unit-female-hero"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-arrow3",
-  Action = "attack",
+  Action = "attack", Popup = "popup-human-commands",
   Allowed = "check-upgrade", AllowArg = {"upgrade-arrow2"},
   Key = "a", Hint = _("~!ATTACK"),
   ForUnit = {"unit-archer", "unit-ranger", "unit-female-hero"} } )
@@ -158,21 +158,21 @@ DefineButton( { Pos = 9, Level = 0, Icon = "icon-human-demolish",
 -- paladin specific actions ---------------------------------------------------
 
 DefineButton( { Pos = 7, Level = 0, Icon = "icon-holy-vision",
-  Action = "cast-spell", Value = "spell-holy-vision",
+  Action = "cast-spell", Value = "spell-holy-vision", Popup = "popup-human-upgrade",
   Allowed = "check-upgrade", AllowArg = {"upgrade-holy-vision"},
   Key = "v", Hint = _("HOLY ~!VISION"),
   ForUnit = {"unit-paladin", "unit-knight-rider",
     "unit-man-of-light"} } )
 
 DefineButton( { Pos = 8, Level = 0, Icon = "icon-heal",
-  Action = "cast-spell", Value = "spell-healing",
+  Action = "cast-spell", Value = "spell-healing", Popup = "popup-human-upgrade",
   Allowed = "check-upgrade", AllowArg = {"upgrade-healing"},
   Key = "h", Hint = _("~!HEALING (per 1 HP)"),
   ForUnit = {"unit-paladin", "unit-knight-rider",
     "unit-man-of-light"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-exorcism",
-  Action = "cast-spell", Value = "spell-exorcism",
+  Action = "cast-spell", Value = "spell-exorcism", Popup = "popup-human-upgrade",
   Allowed = "check-upgrade", AllowArg = {"upgrade-exorcism"},
   Key = "e", Hint = _("~!EXORCISM"),
   ForUnit = {"unit-paladin", "unit-knight-rider",
@@ -186,38 +186,37 @@ DefineButton( { Pos = 3, Level = 0, Icon = "icon-lightning",
   ForUnit = {"unit-mage", "unit-white-mage"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-fireball",
-  Action = "cast-spell", Value = "spell-fireball",
+  Action = "cast-spell", Value = "spell-fireball", Popup = "popup-human-upgrade",
   Allowed = "check-upgrade", AllowArg = {"upgrade-fireball"},
   Key = "f", Hint = _("~!FIREBALL"),
   ForUnit = {"unit-mage", "unit-white-mage"} } )
 
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-slow",
-  Action = "cast-spell", Value = "spell-slow",
+  Action = "cast-spell", Value = "spell-slow", Popup = "popup-human-upgrade",
   Allowed = "check-upgrade", AllowArg = {"upgrade-slow"},
   Key = "o", Hint = _("SL~!OW"),
   ForUnit = {"unit-mage", "unit-white-mage"} } )
 
 DefineButton( { Pos = 6, Level = 0, Icon = "icon-flame-shield",
-  Action = "cast-spell", Value = "spell-flame-shield",
+  Action = "cast-spell", Value = "spell-flame-shield", Popup = "popup-human-upgrade",
   Allowed = "check-upgrade", AllowArg = {"upgrade-flame-shield"},
   Key = "l", Hint = _("F~!LAME SHIELD"),
   ForUnit = {"unit-mage", "unit-white-mage"} } )
 
 DefineButton( { Pos = 7, Level = 0, Icon = "icon-invisibility",
-  Action = "cast-spell", Value = "spell-invisibility",
+  Action = "cast-spell", Value = "spell-invisibility", Popup = "popup-human-upgrade",
   Allowed = "check-upgrade", AllowArg = {"upgrade-invisibility"},
   Key = "i", Hint = _("~!INVISIBILITY"),
   ForUnit = {"unit-mage", "unit-white-mage"} } )
 
 DefineButton( { Pos = 8, Level = 0, Icon = "icon-polymorph",
-  Action = "cast-spell", Value = "spell-polymorph",
---  Action = "cast-spell", Value = "spell-suicide-bomber",
+  Action = "cast-spell", Value = "spell-polymorph", Popup = "popup-human-upgrade",
   Allowed = "check-upgrade", AllowArg = {"upgrade-polymorph"},
   Key = "p", Hint = _("~!POLYMORPH"),
   ForUnit = {"unit-mage", "unit-white-mage"} } )
 
 DefineButton( { Pos = 9, Level = 0, Icon = "icon-blizzard",
-  Action = "cast-spell", Value = "spell-blizzard",
+  Action = "cast-spell", Value = "spell-blizzard", Popup = "popup-human-upgrade",
   Allowed = "check-upgrade", AllowArg = {"upgrade-blizzard"},
   Key = "b", Hint = _("~!BLIZZARD"),
   ForUnit = {"unit-mage", "unit-white-mage"} } )
@@ -572,145 +571,145 @@ end
 -- upgrades -------------------------------------------------------------------
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-sword2",
-  Action = "research", Value = "upgrade-sword1",
+  Action = "research", Value = "upgrade-sword1", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "w", Hint = _("UPGRADE S~!WORDS (Damage +2)"),
   ForUnit = {"unit-human-blacksmith"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-sword3",
-  Action = "research", Value = "upgrade-sword2",
+  Action = "research", Value = "upgrade-sword2", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "w", Hint = _("UPGRADE S~!WORDS (Damage +2)"),
   ForUnit = {"unit-human-blacksmith"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-shield2",
-  Action = "research", Value = "upgrade-human-shield1",
+  Action = "research", Value = "upgrade-human-shield1", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "s", Hint = _("UPGRADE ~!SHIELDS (Armor +2)"),
   ForUnit = {"unit-human-blacksmith"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-shield3",
-  Action = "research", Value = "upgrade-human-shield2",
+  Action = "research", Value = "upgrade-human-shield2", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "s", Hint = _("UPGRADE ~!SHIELDS (Armor +2)"),
   ForUnit = {"unit-human-blacksmith"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-ballista1",
-  Action = "research", Value = "upgrade-ballista1",
+  Action = "research", Value = "upgrade-ballista1", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "b", Hint = _("UPGRADE ~!BALLISTA (Damage +15)"),
   ForUnit = {"unit-human-blacksmith"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-ballista2",
-  Action = "research", Value = "upgrade-ballista2",
+  Action = "research", Value = "upgrade-ballista2", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "b", Hint = _("UPGRADE ~!BALLISTA (Damage +15)"),
   ForUnit = {"unit-human-blacksmith"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-arrow2",
-  Action = "research", Value = "upgrade-arrow1",
+  Action = "research", Value = "upgrade-arrow1", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "u", Hint = _("~!UPGRADE ARROWS (Damage +1)"),
   ForUnit = {"unit-elven-lumber-mill"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-arrow3",
-  Action = "research", Value = "upgrade-arrow2",
+  Action = "research", Value = "upgrade-arrow2", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "u", Hint = _("~!UPGRADE ARROWS (Damage +1)"),
   ForUnit = {"unit-elven-lumber-mill"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-ranger",
-  Action = "research", Value = "upgrade-ranger",
+  Action = "research", Value = "upgrade-ranger", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "r", Hint = _("ELVEN ~!RANGER TRAINING"),
   ForUnit = {"unit-elven-lumber-mill"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-ranger-scouting",
-  Action = "research", Value = "upgrade-ranger-scouting",
+  Action = "research", Value = "upgrade-ranger-scouting", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "s", Hint = _("RANGER ~!SCOUTING (Sight:9)"),
   ForUnit = {"unit-elven-lumber-mill"} } )
 
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-longbow",
-  Action = "research", Value = "upgrade-longbow",
+  Action = "research", Value = "upgrade-longbow", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "l", Hint = _("RESEARCH ~!LONGBOW (Range +1)"),
   ForUnit = {"unit-elven-lumber-mill"} } )
 
 DefineButton( { Pos = 6, Level = 0, Icon = "icon-ranger-marksmanship",
-  Action = "research", Value = "upgrade-ranger-marksmanship",
+  Action = "research", Value = "upgrade-ranger-marksmanship", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "m", Hint = _("RANGER ~!MARKSMANSHIP (Damage +3)"),
   ForUnit = {"unit-elven-lumber-mill"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-paladin",
-  Action = "research", Value = "upgrade-paladin",
+  Action = "research", Value = "upgrade-paladin", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "p", Hint = _("UPGRADES KNIGHTS TO ~!PALADINS"),
   ForUnit = {"unit-church"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-heal",
-  Action = "research", Value = "upgrade-healing",
+  Action = "research", Value = "upgrade-healing", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "h", Hint = _("RESEARCH ~!HEALING"),
   ForUnit = {"unit-church"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-exorcism",
-  Action = "research", Value = "upgrade-exorcism",
+  Action = "research", Value = "upgrade-exorcism", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "e", Hint = _("RESEARCH ~!EXORCISM"),
   ForUnit = {"unit-church"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-slow",
-  Action = "research", Value = "upgrade-slow",
+  Action = "research", Value = "upgrade-slow", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "o", Hint = _("RESEARCH SL~!OW"),
   ForUnit = {"unit-mage-tower"} } )
 
 DefineButton( { Pos = 3, Level = 0, Icon = "icon-flame-shield",
-  Action = "research", Value = "upgrade-flame-shield",
+  Action = "research", Value = "upgrade-flame-shield", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "l", Hint = _("RESEARCH F~!LAME SHIELD"),
   ForUnit = {"unit-mage-tower"} } )
 
 DefineButton( { Pos = 4, Level = 0, Icon = "icon-invisibility",
-  Action = "research", Value = "upgrade-invisibility",
+  Action = "research", Value = "upgrade-invisibility", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "i", Hint = _("RESEARCH ~!INVISIBILITY"),
   ForUnit = {"unit-mage-tower"} } )
 
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-polymorph",
-  Action = "research", Value = "upgrade-polymorph",
+  Action = "research", Value = "upgrade-polymorph", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "p", Hint = _("RESEARCH ~!POLYMORPH"),
   ForUnit = {"unit-mage-tower"} } )
 
 DefineButton( { Pos = 6, Level = 0, Icon = "icon-blizzard",
-  Action = "research", Value = "upgrade-blizzard",
+  Action = "research", Value = "upgrade-blizzard", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "b", Hint = _("RESEARCH ~!BLIZZARD"),
   ForUnit = {"unit-mage-tower"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-human-ship-cannon2",
-  Action = "research", Value = "upgrade-human-ship-cannon1",
+  Action = "research", Value = "upgrade-human-ship-cannon1", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "c", Hint = _("UPGRADE ~!CANNONS (Damage +5)"),
   ForUnit = {"unit-human-foundry"} } )
 
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-human-ship-cannon3",
-  Action = "research", Value = "upgrade-human-ship-cannon2",
+  Action = "research", Value = "upgrade-human-ship-cannon2", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "c", Hint = _("UPGRADE ~!CANNONS (Damage +5)"),
   ForUnit = {"unit-human-foundry"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-ship-armor2",
-  Action = "research", Value = "upgrade-human-ship-armor1",
+  Action = "research", Value = "upgrade-human-ship-armor1", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "a", Hint = _("UPGRADE SHIP ~!ARMOR (Armor +5)"),
   ForUnit = {"unit-human-foundry"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-ship-armor3",
-  Action = "research", Value = "upgrade-human-ship-armor2",
+  Action = "research", Value = "upgrade-human-ship-armor2", Popup = "popup-human-upgrade",
   Allowed = "check-single-research",
   Key = "a", Hint = _("UPGRADE SHIP ~!ARMOR (Armor +5)"),
   ForUnit = {"unit-human-foundry"} } )

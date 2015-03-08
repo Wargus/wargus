@@ -114,6 +114,8 @@ DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
 DefineAllowNormalOrcUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
+DefineAllowHumanAlways()
+DefineAllowOrcAlways()
 
 
 --Building Human

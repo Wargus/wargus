@@ -79,8 +79,8 @@ else
 end
 
 
-local min_damage = Div(ActiveUnitVar("PiercingDamage"), 2)
-local max_damage = Add(ActiveUnitVar("PiercingDamage"), ActiveUnitVar("BasicDamage"))
+local min_damage = Div(ActiveUnitVar("PiercingDamage", "Value", "Initial"), 2)
+local max_damage = Add(ActiveUnitVar("PiercingDamage", "Value", "Initial"), ActiveUnitVar("BasicDamage", "Value", "Initial"))
 local damage_bonus = Sub(ActiveUnitVar("PiercingDamage", "Value", "Type"),
 							ActiveUnitVar("PiercingDamage", "Value", "Initial"));
 
@@ -205,7 +205,13 @@ DefinePanelContents(
 									InverseVideo(Concat("+", String(damage_bonus)))) )}}
 
 	},
-
+	{ Pos = {100, 71}, Condition = {PiercingDamage = "only", Armor = "only", Building = "only"},
+		More = {"Text", {
+					Text = _("Armor~|: "), Variable = "Armor", Stat = true}}
+	},
+	{ Pos = {100, 118}, Condition = {SightRange = "only", PiercingDamage = "only", Armor = "only", Building = "only"},
+		More = {"Text", {Text = _("Sight~|: "), Variable = "SightRange", Stat = true}}
+	},
 	{ Pos = {100, 102}, Condition = {AttackRange = "only"},
 		More = {"Text", {
 					Text = _("Range~|: "), Variable = "AttackRange" , Stat = true}}
@@ -362,6 +368,8 @@ end
 
 local HumanPopupBackgroundColor = GetRGBA(0,32,96, 208)
 local HumanPopupBorderColor = GetRGBA(192,192,255, 160)
+local OrcPopupBackgroundColor = GetRGBA(96,0,0, 192)
+local OrcPopupBorderColor = GetRGBA(168,140,16, 160)
 
 if (wc2.preferences.ShowButtonPopups) then
 	DefinePopup({
@@ -440,6 +448,18 @@ if (wc2.preferences.ShowButtonPopups) then
 				{ 	Condition = {HitPoints = "only"}, HighlightColor = "full-red",
 					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints"}}
 				}, 
+				{ 	Condition = {Armor = "only", AttackRange = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Armor: "), Variable = "Armor"}}
+				},
+				{ 	Condition = {BasicDamage = "only", AttackRange = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = Concat(_("Damage~|: "), 
+								String(Div(TypeVar("PiercingDamage", "Value", "Initial"), 2)), "-", 
+								String(Add(TypeVar("PiercingDamage", "Value", "Initial"), TypeVar("BasicDamage", "Value", "Initial"))),
+								If(Equal(0, Sub(TypeVar("PiercingDamage", "Value", "Type"),
+							TypeVar("PiercingDamage", "Value", "Initial"))), "",
+									InverseVideo(Concat("+", String(Sub(TypeVar("PiercingDamage", "Value", "Type"),
+							TypeVar("PiercingDamage", "Value", "Initial")))))) )}}
+				}, 
 				-- Description
 				{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
@@ -479,10 +499,38 @@ if (wc2.preferences.ShowButtonPopups) then
 					More = {"Variable", {Text = _("Range: "), Variable = "AttackRange"}}
 				},
 				{ 	Condition = {BasicDamage = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = Concat(_("Damage: "), String(Div(TypeVar("PiercingDamage","Value"), 2)), "-",
-						String(Add(TypeVar("PiercingDamage","Value"), TypeVar("BasicDamage","Value"))))}}
+					More = {"Variable", {Text = Concat(_("Damage~|: "), 
+								String(Div(TypeVar("PiercingDamage", "Value", "Initial"), 2)), "-", 
+								String(Add(TypeVar("PiercingDamage", "Value", "Initial"), TypeVar("BasicDamage", "Value", "Initial"))),
+								If(Equal(0, Sub(TypeVar("PiercingDamage", "Value", "Type"),
+							TypeVar("PiercingDamage", "Value", "Initial"))), "",
+									InverseVideo(Concat("+", String(Sub(TypeVar("PiercingDamage", "Value", "Type"),
+							TypeVar("PiercingDamage", "Value", "Initial")))))) )}}
 				},
 				
+				-- Description
+				{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				}, 
+				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+				},
+		}	
+	})
+	
+	DefinePopup({
+		Ident = "popup-human-upgrade",
+		BackgroundColor = HumanPopupBackgroundColor,
+		BorderColor = HumanPopupBorderColor,
+		Contents = {
+				{	Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Hint"}}
+				}, 
+				{ 	Margin = {1, 1},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				}, 
+				{ 	More = {"Costs"}, HighlightColor = "full-red",
+				},
 				-- Description
 				{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
@@ -495,22 +543,22 @@ if (wc2.preferences.ShowButtonPopups) then
 
 	DefinePopup({
 		Ident = "popup-orc-commands",
-		BackgroundColor = GetRGBA(0,64,160, 160),
-		BorderColor = GetRGBA(192,192,255, 160),
+		BackgroundColor = OrcPopupBackgroundColor,
+		BorderColor = OrcPopupBorderColor,
 		Contents = {
 				{ 	Margin = {1, 1}, HighlightColor = "full-red",
 					More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
 				}, 
 				-- Description
 				{ 	Margin = {1, 1}, Condition = {HasDescription = true},
-					More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
 				}, 
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
 					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
 				}, 
 				-- Move  hint
 				{ 	Margin = {1, 1}, Condition = {ButtonAction = "move"},
-					More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
 				},
 				{ 	Condition = {ButtonAction = "move"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
 					More = {"Text", {Text = _("~<ALT~>-click to defend unit."), MaxWidth = Video.Width / 5, Font = PopupFont}}
@@ -520,18 +568,127 @@ if (wc2.preferences.ShowButtonPopups) then
 				},
 				-- Repair hint
 				{ 	Margin = {1, 1}, Condition = {ButtonAction = "repair"},
-					More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
 				},
 				{ 	Condition = {ButtonAction = "repair"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
 					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."), MaxWidth = Video.Width / 5, Font = PopupFont}}
 				},
 				-- Heal hint
 				{ 	Margin = {1, 1}, Condition = {ButtonValue = "spell-medic-heal"},
-					More = {"Line", {Width = 0, Height = 1, Color = GetRGBA(192,192,255, 160)}}
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
 				},
 				{ 	Condition = {ButtonValue = "spell-healing"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
 					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables autoheal ability."), MaxWidth = Video.Width / 5, Font = PopupFont}}
 				}
+		}	
+	})
+	
+	DefinePopup({
+		Ident = "popup-orc-building",
+		BackgroundColor = OrcPopupBackgroundColor,
+		BorderColor = OrcPopupBorderColor,
+		Contents = {
+				{	Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Hint"}}
+				}, 
+				{ 	Margin = {1, 1},
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
+				}, 
+				{ 	More = {"Costs"}, HighlightColor = "full-red",
+				}, 
+				{ 	Condition = {HitPoints = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints"}}
+				}, 
+				{ 	Condition = {Armor = "only", AttackRange = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Armor: "), Variable = "Armor"}}
+				},
+				{ 	Condition = {BasicDamage = "only", AttackRange = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = Concat(_("Damage~|: "), 
+								String(Div(TypeVar("PiercingDamage", "Value", "Initial"), 2)), "-", 
+								String(Add(TypeVar("PiercingDamage", "Value", "Initial"), TypeVar("BasicDamage", "Value", "Initial"))),
+								If(Equal(0, Sub(TypeVar("PiercingDamage", "Value", "Type"),
+							TypeVar("PiercingDamage", "Value", "Initial"))), "",
+									InverseVideo(Concat("+", String(Sub(TypeVar("PiercingDamage", "Value", "Type"),
+							TypeVar("PiercingDamage", "Value", "Initial")))))) )}}
+				}, 
+				-- Description
+				{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
+				}, 
+				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+				},
+		}	
+	})
+	
+	DefinePopup({
+		Ident = "popup-orc-unit",
+		BackgroundColor = OrcPopupBackgroundColor,
+		BorderColor = OrcPopupBorderColor,
+		Contents = {
+				{	Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Hint"}}
+				}, 
+				{ 	Margin = {1, 1},
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
+				}, 
+				{ 	More = {"Costs"}, HighlightColor = "full-red",
+				}, 
+				{ 	Margin = {1, 1},
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
+				}, 
+				{ 	Condition = {HitPoints = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints"}}
+				},
+				{ 	HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Armor: "), Variable = "Armor"}}
+				},
+				{ 	Condition = {SightRange = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Sight: "), Variable = "SightRange"}}
+				},
+				{ 	HighlightColor = "full-red",
+					More = {"Variable", {Text = _("Range: "), Variable = "AttackRange"}}
+				},
+				{ 	Condition = {BasicDamage = "only"}, HighlightColor = "full-red",
+					More = {"Variable", {Text = Concat(_("Damage~|: "), 
+								String(Div(TypeVar("PiercingDamage", "Value", "Initial"), 2)), "-", 
+								String(Add(TypeVar("PiercingDamage", "Value", "Initial"), TypeVar("BasicDamage", "Value", "Initial"))),
+								If(Equal(0, Sub(TypeVar("PiercingDamage", "Value", "Type"),
+							TypeVar("PiercingDamage", "Value", "Initial"))), "",
+									InverseVideo(Concat("+", String(Sub(TypeVar("PiercingDamage", "Value", "Type"),
+							TypeVar("PiercingDamage", "Value", "Initial")))))) )}}
+				},
+				
+				-- Description
+				{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
+				}, 
+				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+				},
+		}	
+	})
+	
+	DefinePopup({
+		Ident = "popup-orc-upgrade",
+		BackgroundColor = OrcPopupBackgroundColor,
+		BorderColor = OrcPopupBorderColor,
+		Contents = {
+				{	Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Hint"}}
+				}, 
+				{ 	Margin = {1, 1},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				}, 
+				{ 	More = {"Costs"}, HighlightColor = "full-red",
+				},
+				-- Description
+				{ 	Margin = {1, 1}, Condition = {HasDescription = true}, 
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				}, 
+				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+				},
 		}	
 	})
 end

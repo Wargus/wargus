@@ -30,5 +30,7 @@ DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
 DefineAllowNormalOrcUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
+DefineAllowHumanAlways()
+DefineAllowOrcAlways()
 
 Load("campaigns/orc-exp/levelx09o.sms")

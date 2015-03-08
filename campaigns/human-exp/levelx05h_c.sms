@@ -190,6 +190,8 @@ DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
 DefineAllowNormalOrcUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
+DefineAllowHumanAlways()
+DefineAllowOrcAlways()
 
 DefineAllow("unit-gryphon-rider", "FFFFFFFFFFFFFFFF")
 DefineAllow("unit-gryphon-aviary", "FFFFFFFFFFFFFFFF")

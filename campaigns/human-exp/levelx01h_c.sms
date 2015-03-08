@@ -41,6 +41,9 @@ DefineAllowNormalOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 
+DefineAllowHumanAlways()
+DefineAllowOrcAlways()
+
 DefineAllow("unit-human-transport", "AAAAAAAAAAAAAAAA")
 DefineAllow("upgrade-arrow1", "AAAAAAAAAAAAAAAA")
 DefineAllow("upgrade-arrow2", "AAAAAAAAAAAAAAAA")

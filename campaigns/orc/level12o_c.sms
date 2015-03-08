@@ -77,6 +77,8 @@ DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
 
 DefineAllowTable(allowedHumanUnits, "AAAAAAAAAAAAAAAA")
 DefineAllowTable(allowedOrcUnits, "AAAAAAAAAAAAAAAA")
+DefineAllowHumanAlways()
+DefineAllowOrcAlways()
 
 -- AI
 

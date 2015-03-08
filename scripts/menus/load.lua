@@ -21,6 +21,7 @@ function LoadGame(s)
   end
 
   if currentCampaign ~= nil then
+	GameSettings.Difficulty = wc2.preferences.LastDifficulty
     if GameResult == GameVictory then
       position = position + 1
     elseif (GameResult == GameDefeat) then

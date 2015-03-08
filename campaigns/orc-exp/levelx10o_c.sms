@@ -32,6 +32,8 @@ DefineAllowExtraHumanUnits("FFFFFFFFFFFFFFFF")
 DefineAllowNormalOrcUnits("AAAAAAAAAAAAAAAA")
 DefineAllowExtraOrcUnits("FFFFFFFFFFFFFFFF")
 DefineAllowSpecialUnits("FFFFFFFFFFFFFFFF")
+DefineAllowHumanAlways()
+DefineAllowOrcAlways()
 
 local orc_exp_10_loop_funcs = {
 	function() DebugPrint("Looping !\n") return false end,
