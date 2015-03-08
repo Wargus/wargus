@@ -775,7 +775,7 @@ function AiForce(num, units)
 	for i = 1, table.getn(units)/2 do
 		units[i*2] = math.max(1, units[i*2] + add)
 	end
-	
+	return OldAiForce(num, units)
 end
 
 OldAiSleep = AiSleep
