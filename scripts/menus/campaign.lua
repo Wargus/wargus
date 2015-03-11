@@ -274,7 +274,7 @@ function RunCampaignSubmenu(campaign)
   for i = 1, GetCampaignState(campaign) do
 	missionList[i] = CampaignButtonTitle(i)
   end
-  local missionListBox = menu:addListBox(offx + 80, offy + 100, 480, 250, missionList)
+  local missionListBox = menu:addImageListBox(offx + 80, offy + 100, 480, 250, missionList)
   menu:addLabel(_("~<AI Difficulty:~>"), offx + 80, offy + 214 + (36 * 4), Fonts["game"], false)
   difficulty = menu:addDropDown(difficulty_types, offx + 200, offy + 212 + (36 * 4),
     function(dd) end)

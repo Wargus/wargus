@@ -302,7 +302,7 @@ function RunJoinIpMenu()
 			servers[i]=tostring(wc2.preferences.ServerList[(i-1)*2+1].." | "..tostring(wc2.preferences.ServerList[(i-1)*2+2]))
 		end
 	end
-	serverlist =  menu:addListBox(20, 50, 300, 120, servers)
+	serverlist =  menu:addImageListBox(20, 50, 300, 120, servers)
   end
   ServerListUpdate()
   menu:addFullButton(_("Co~!nnect"), "n", 60, 180, function()

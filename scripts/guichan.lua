@@ -126,6 +126,22 @@ g_hlslider_p:Load()
 g_hlslider_d = CGraphic:New("ui/human/widgets/left-arrow-grayed.png")
 g_hlslider_d:Load()
 
+-- up slider arrows for human
+g_huslider_n = CGraphic:New("ui/human/widgets/up-arrow-normal.png")
+g_huslider_n:Load()
+g_huslider_p = CGraphic:New("ui/human/widgets/up-arrow-pressed.png")
+g_huslider_p:Load()
+g_huslider_d = CGraphic:New("ui/human/widgets/up-arrow-grayed.png")
+g_huslider_d:Load()
+
+-- down slider arrows for human
+g_hdslider_n = CGraphic:New("ui/human/widgets/down-arrow-normal.png")
+g_hdslider_n:Load()
+g_hdslider_p = CGraphic:New("ui/human/widgets/down-arrow-pressed.png")
+g_hdslider_p:Load()
+g_hdslider_d = CGraphic:New("ui/human/widgets/down-arrow-grayed.png")
+g_hdslider_d:Load()
+
 -- right slider arrows for orc
 g_orslider_n = CGraphic:New("ui/orc/widgets/right-arrow-normal.png")
 g_orslider_n:Load()
@@ -142,6 +158,22 @@ g_olslider_p:Load()
 g_olslider_d = CGraphic:New("ui/orc/widgets/left-arrow-grayed.png")
 g_olslider_d:Load()
 
+-- up slider arrows for orc
+g_ouslider_n = CGraphic:New("ui/orc/widgets/up-arrow-normal.png")
+g_ouslider_n:Load()
+g_ouslider_p = CGraphic:New("ui/orc/widgets/up-arrow-pressed.png")
+g_ouslider_p:Load()
+g_ouslider_d = CGraphic:New("ui/orc/widgets/up-arrow-grayed.png")
+g_ouslider_d:Load()
+
+-- down slider arrows for orc
+g_odslider_n = CGraphic:New("ui/orc/widgets/down-arrow-normal.png")
+g_odslider_n:Load()
+g_odslider_p = CGraphic:New("ui/orc/widgets/down-arrow-pressed.png")
+g_odslider_p:Load()
+g_odslider_d = CGraphic:New("ui/orc/widgets/down-arrow-grayed.png")
+g_odslider_d:Load()
+
 -- slider marker - so we know the value of the option we're trying to change
 g_hmarker = CGraphic:New("ui/human/widgets/slider-knob.png")
 g_hmarker:Load()
@@ -152,6 +184,12 @@ g_hslider:Load()
 g_hslider_d = CGraphic:New("ui/human/widgets/hslider-bar-grayed.png")
 g_hslider_d:Load()
 
+-- vertical slider background image
+g_hvslider = CGraphic:New("ui/human/widgets/vslider-bar-normal.png")
+g_hvslider:Load()
+g_hvslider_d = CGraphic:New("ui/human/widgets/vslider-bar-grayed.png")
+g_hvslider_d:Load()
+
 -- same, but for orc this time.
 g_omarker = CGraphic:New("ui/orc/widgets/slider-knob.png")
 g_omarker:Load()
@@ -161,6 +199,20 @@ g_oslider = CGraphic:New("ui/orc/widgets/hslider-bar-normal.png")
 g_oslider:Load()
 g_oslider_d = CGraphic:New("ui/orc/widgets/hslider-bar-grayed.png")
 g_oslider_d:Load()
+
+-- vertical slider image for the orcs
+g_ovslider = CGraphic:New("ui/orc/widgets/vslider-bar-normal.png")
+g_ovslider:Load()
+g_ovslider_d = CGraphic:New("ui/orc/widgets/vslider-bar-grayed.png")
+g_ovslider_d:Load()
+
+-- human list box item bar
+g_hibar = CGraphic:New("ui/human/widgets/pulldown-bar-normal.png")
+g_hibar:Load()
+
+-- orc list box item bar
+g_oibar = CGraphic:New("ui/orc/widgets/pulldown-bar-normal.png")
+g_oibar:Load()
 
 local hpanels = {
   "ui/human/panel_1.png",
@@ -363,6 +415,41 @@ function AddMenuHelpers(menu)
     bq.itemslist = list
     return bq
   end
+  
+  function menu:addImageListBox(x, y, w, h, list)
+    local bq = ImageListBoxWidget(w, h)
+    bq:setList(list)
+    bq:setBaseColor(black)
+    bq:setForegroundColor(clear)
+    bq:setBackgroundColor(dark)
+    bq:setFont(Fonts["game"])
+	if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+		bq:setItemImage(g_hibar)
+		bq:setUpButtonImage(g_huslider_n)
+		bq:setDownButtonImage(g_hdslider_n)
+		bq:setLeftButtonImage(g_hlslider_n)
+		bq:setRightButtonImage(g_hrslider_n)
+		bq:setMarkerImage(g_hmarker)
+		bq:setHBarImage(g_hslider)
+		bq:setVBarImage(g_hvslider)
+	else
+		bq:setItemImage(g_oibar)
+		bq:setUpButtonImage(g_ouslider_n)
+		bq:setDownButtonImage(g_odslider_n)
+		bq:setLeftButtonImage(g_olslider_n)
+		bq:setRightButtonImage(g_orslider_n)
+		bq:setMarkerImage(g_omarker)
+		bq:setHBarImage(g_oslider)
+		bq:setVBarImage(g_ovslider)
+	end
+
+	
+	
+	
+    self:add(bq, x, y)
+    bq.itemslist = list
+    return bq
+  end
 
   function menu:addBrowser(path, filter, x, y, w, h, default)
     -- Create a list of all dirs and files in a directory
@@ -389,7 +476,7 @@ function AddMenuHelpers(menu)
       return dirlist
     end
 
-    local bq = self:addListBox(x, y, w, h, {})
+    local bq = self:addImageListBox(x, y, w, h, {})
 
     if (string.sub(path, string.len(path)) ~= "/") then
       path = path .. "/"

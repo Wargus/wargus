@@ -493,7 +493,7 @@ function BuildOptionsMenu()
 	menu:addLabel(_("Video Options"), offx + 176, offy + 1 + 26*-2)
 	menu:addLabel(_("Video Resolution"), offx + 16, offy + 34 , Fonts["game"], false)
 	
-	videoList = menu:addListBox(offx + 16, offy + 50, 200, 8*(table.getn(videoModes)/2+1), vlist)
+	videoList = menu:addImageListBox(offx + 16, offy + 50, 200, 8*(table.getn(videoModes)/2+1), vlist)
   
 	  local function cb(s)
 		SetVideoSize(videoModes[videoList:getSelected()*2+1], videoModes[videoList:getSelected()*2+2])
@@ -502,7 +502,7 @@ function BuildOptionsMenu()
 	  videoList:setActionCallback(cb)
 	
 
-	b = menu:addCheckBox(_("Full Screen"), offx + 17, offy + 55 + 26*8 + 14,
+	b = menu:addImageCheckBox(_("Full Screen"), offx + 17, offy + 55 + 26*8 + 14, offi, offi2, oni, oni2,
 	  function()
 		ToggleFullScreen()
 		wc2.preferences.VideoFullScreen = Video.FullScreen
@@ -511,7 +511,7 @@ function BuildOptionsMenu()
 	  end)
 	b:setMarked(Video.FullScreen)
 
-    checkTexture = menu:addCheckBox(_("Set Maximum OpenGL Texture to 256"), offx + 17, offy + 55 + 26*9 + 14,
+    checkTexture = menu:addImageCheckBox(_("Set Maximum OpenGL Texture to 256"), offx + 17, offy + 55 + 26*9 + 14, offi, offi2, oni, oni2,
       function()
         if (checkTexture:isMarked()) then
           wc2.preferences.MaxOpenGLTexture = 256
@@ -523,7 +523,7 @@ function BuildOptionsMenu()
       end)
     if (wc2.preferences.MaxOpenGLTexture == 256) then checkTexture:setMarked(true) end
 
-    checkOpenGL = menu:addCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*10 + 14,
+    checkOpenGL = menu:addImageCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*10 + 14, offi, offi2, oni, oni2,
       function()
 --TODO: Add function for immediately change state of OpenGL
         wc2.preferences.UseOpenGL = checkOpenGL:isMarked()
@@ -581,7 +581,7 @@ function RunLanguageMenu()
   menu:addLabel(_("Language Options"), 176, 10)
   
   menu:addLabel(_("Available languages:"), 16, 34, Fonts["game"], false)
-  languageList = menu:addListBox(16, 50, 300, math.max(250, 8*(table.getn(LanguageTable)/3+1)), langlist)
+  languageList = menu:addImageListBox(16, 50, 300, math.max(250, 8*(table.getn(LanguageTable)/3+1)), langlist)
 
   menu:addHalfButton("~!OK", "o", 40, 320, function()
     if (languageList:getSelected() >= 0) then
