@@ -25,7 +25,11 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
+OldRunSinglePlayerGameMenu = RunSinglePlayerGameMenu
+
 function CleanCustomGame_Lua()
+	RunSinglePlayerGameMenu = OldRunSinglePlayerGameMenu
+
 	BlueLeader = nil
 	UnitFootmanNum = nil
 	UnitArcherNum = nil
@@ -125,16 +129,16 @@ function CleanCustomGame_Lua()
 	RedMageTower_x = nil
 	RedMageTower_y = nil
 	
--- Resetting the default map.
-mapname = "maps/skirmish/(2)timeless-isle.smp.gz"
-local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
-mapinfo = {
-  playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
-  description = "",
-  nplayers = 1,
-  w = 32,
-  h = 32,
-  id = 0
+	-- Resetting the default map.
+	mapname = "maps/skirmish/(2)timeless-isle.smp.gz"
+	local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
+	mapinfo = {
+		playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
+		description = "",
+		nplayers = 1,
+		w = 32,
+		h = 32,
+		id = 0
 }
 -- Resetting the default map directory.
 function RunSelectScenarioMenu()
@@ -176,16 +180,18 @@ end
 end
 
 function StartCustomGame_Lua()
--- Selecting the default map.
-mapname = "maps/ftm/(2)less-than-three.smp"
-local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
-mapinfo = {
-  playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
-  description = "",
-  nplayers = 1,
-  w = 32,
-  h = 32,
-  id = 0
+	RunSinglePlayerGameMenu = NewRunSinglePlayerGameMenu
+	
+	-- Selecting the default map.
+	mapname = "maps/ftm/(2)less-than-three.smp"
+	local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
+	mapinfo = {
+		playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
+		description = "",
+		nplayers = 1,
+		w = 32,
+		h = 32,
+		id = 0
 }
 -- Selecting the map directory.
 function RunSelectScenarioMenu()
@@ -225,6 +231,109 @@ function RunSelectScenarioMenu()
   menu:run()
 end
 end
+  
+function NewRunSinglePlayerGameMenu()
+  local menu = WarMenu()
+  local offx = (Video.Width - 640) / 2
+  local offy = (Video.Height - 480) / 2
+  local d
+  local race
+  local resources
+  local opponents
+  local numunits
+  local gametype
+  local mapl
+  local descriptionl
+  local tilesetdd
+
+  if (wargus.tales == false) then
+    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+  end
+  
+  menu:addLabel("Scenario:", offx + 16, offy + 360, Fonts["game"], false)
+  mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 360 + 24, Fonts["game"], false)
+  descriptionl = menu:addLabel("descriptionl", offx + 16 + 70, offy + 360, Fonts["game"], false)
+
+  menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
+  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0,
+    function()
+      local oldmapname = mapname
+      RunSelectScenarioMenu()
+      if (mapname ~= oldmapname) then
+        GetMapInfo(mapname)
+        MapChanged()
+      end
+    end)
+  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
+    function()
+      local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"};
+
+      GameSettings.Presets[0].Race = race:getSelected()
+      GameSettings.Resources = resources:getSelected()
+      GameSettings.Opponents = opponents:getSelected()
+      GameSettings.NumUnits = numunits:getSelected()
+      GameSettings.GameType = gametype:getSelected() - 1
+      GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
+	  IsSkirmishClassic = true
+      RunMap(mapname, nil, wc2.preferences.FogOfWar, false)
+      menu:stop()
+    end)
+  menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() CleanCustomGame_Lua(); menu:stop(1); RunSinglePlayerTypeMenu() end)
+
+  menu:addLabel("~<Your Race:~>", offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
+  race = menu:addDropDown({"Map Default", "Human", "Orc"}, offx + 40, offy + 10 + 240,
+    function(dd) end)
+  race:setSize(152, 20)
+
+  menu:addLabel("~<Resources:~>", offx + 220, offy + (10 + 240) - 20, Fonts["game"], false)
+  resources = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, offx + 220, offy + 10 + 240,
+    function(dd) end)
+  resources:setSize(152, 20)
+
+  menu:addLabel("~<Units:~>", offx + 640 - 224 - 16, offy + (10 + 240) - 20, Fonts["game"], false)
+  numunits = menu:addDropDown({"Map Default", "One Peasant Only"}, offx + 640 - 224 - 16, offy + 10 + 240,
+    function(dd) end)
+  numunits:setSize(190, 20)
+
+  local opponents_list = {"Map Default", "1 Opponent", "2 Opponents",
+    "3 Opponents", "4 Opponents", "5 Opponents", "6 Opponents", "7 Opponents"}
+
+  menu:addLabel("~<Opponents:~>", offx + 40, offy + (10 + 300) - 20, Fonts["game"], false)
+  opponents = menu:addDropDown(opponents_list, offx + 40, offy + 10 + 300,
+    function(dd) end)
+  opponents:setSize(152, 20)
+
+  menu:addLabel("~<Game Type:~>", offx + 220, offy + (10 + 300) - 20, Fonts["game"], false)
+  gametype = menu:addDropDown({"Use map settings", "Melee", "Free for all", "Top vs bottom", "Left vs right", "Man vs Machine"}, offx + 220, offy + 10 + 300,
+    function(dd) end)
+  gametype:setSize(152, 20)
+
+  menu:addLabel("~<Tileset:~>", offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
+  tilesetdd = menu:addDropDown({_("Map Default"), _("Summer"), _("Swamp"), "Wasteland", "Winter"}, offx + 640 - 224 - 16, offy + 10 + 300,
+    function(dd) end)
+  tilesetdd:setSize(152, 20)
+
+  function MapChanged()
+    mapl:setCaption(string.sub(mapname, 6))
+    mapl:adjustSize()
+
+    descriptionl:setCaption(mapinfo.description ..
+      " (" .. mapinfo.w .. " x " .. mapinfo.h .. ")")
+    descriptionl:adjustSize()
+
+    local o = {}
+    for i=1,mapinfo.nplayers do
+      table.insert(o, opponents_list[i])
+    end
+    opponents:setList(o)
+  end
+
+  GetMapInfo(mapname)
+  MapChanged()
+
+  menu:run()
+end
+  
   
 StartCustomGame_Lua()
   
