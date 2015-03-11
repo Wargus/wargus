@@ -362,6 +362,7 @@ local defaultPreferences = {
 	GroupKeys = "0123456789`",
 	HoldClickDelayInMs = 1000,      --  For the wanted hold-click delay (in ms).
 	KeyScrollSpeed = 4,
+	LastDifficulty = 2,
 	LeaveStopScrolling = true,      --  Enable/disable stopping scrolling when mouse leave.
 	MaxOpenGLTexture = 0,
 	MineNotifications = false,

@@ -30,11 +30,13 @@
 InitFuncs:add(function()
   speedcheat = false
   godcheat = false
+  ischeater = false
 end)
 
 function HandleCheats(str)
   local resources = { "gold", "wood", "oil" }
 
+  ischeater = true
   if (str == "there is no aliens level") then
     -- FIXME: no function yet
     AddMessage("enabled cheat")
@@ -156,6 +158,7 @@ function HandleCheats(str)
     AddMessage("enabled cheat")
 
   else
+	ischeater = false
     return false
   end
   return true
