@@ -643,7 +643,12 @@ function AddMenuHelpers(menu)
   end
 
   function menu:addTextInputField(text, x, y, w)
-    local b = TextField(text)
+    local b = ImageTextField(text)
+	if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+		b:setItemImage(g_hibar)
+	else
+		b:setItemImage(g_oibar)
+	end
     b:setActionCallback(function() end) --FIXME: remove this?
     b:setFont(Fonts["game"])
     b:setBaseColor(clear)
