@@ -121,7 +121,7 @@ function AiRedRibbon_Setup_Units_2014()
 	AiRedRibbon_Define_Cost_2014(90, 750, 0, 250)
 end
 
-function AiRedRibbon_Define_Unit_2014(i, unit, origin, category, class, rank, gold, wood, oil, x, y)
+function AiRedRibbon_Define_Unit_2014(i, unit, origin, category, class, rank, gold, wood, oil, ax, ay)
 	if (category ~= nil) then
 		ftm_category[i] = category
 	else
@@ -142,7 +142,7 @@ function AiRedRibbon_Define_Unit_2014(i, unit, origin, category, class, rank, go
 		AiRedRibbon_Define_Cost_2014(i, gold, wood, oil)
 	end
 	if ((x ~= nil) or (y ~= nil) or (origin ~= nil)) then
-		AiRedRibbon_Define_Origin_2014(i, x, y, origin)
+		AiRedRibbon_Define_Origin_2014(i, 93, 93, origin)
 	else
 		ftm_origin_x[i] = 0
 		ftm_origin_y[i] = 0
