@@ -196,6 +196,7 @@ DefineDefaultIncomes(
 DefineDefaultActions(
   _("stop"), _("mine"), _("chop"), _("drill"), _("mine"), _("mine"), _("mine"))
 
+ResourcesOnUI =  {_("Time Left: "), _("Gold Left: "), _("Wood Left: "), _("Oil Left: "), _("Ore Left: "), _("Stone Left: "), _("Coal Left: ")}
 DefineDefaultResourceNames(
   _("time"), _("gold"), _("wood"), _("oil"), _("ore"), _("stone"), _("coal"))
 

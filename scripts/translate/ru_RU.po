@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wargus\n"
-"POT-Creation-Date: 2015-03-06 23:31+0500\n"
-"PO-Revision-Date: 2015-03-06 23:56+0500\n"
+"POT-Creation-Date: 2015-03-12 10:24+0500\n"
+"PO-Revision-Date: 2015-03-12 10:25+0500\n"
 "Last-Translator: cybermind <iddqd_mail@mail.ru>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -17,8 +17,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: f:\\Temp\\Wargus\\trunk\\scripts\n"
 
 #: f:\Temp\Wargus\trunk\scripts/buttons.lua:50
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:295
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:342
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:294
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:341
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:317
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:364
 msgid "~<ESC~> CANCEL"
@@ -36,15 +36,15 @@ msgstr "~<ESC~> - ’Œ…€ “—…ˆŸ …„ˆˆ–›"
 msgid "~<ESC~> CANCEL CONSTRUCTION"
 msgstr "~<ESC~> - ’Œ…€ ‘’ˆ’…‹œ‘’‚€"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:605
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:692
 msgid "-Destroy the enemy"
 msgstr "-“­¨çâ®¦¨âì ¢á¥å ¢à £®¢"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:626
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:901
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:906
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:907
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:909
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:713
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:988
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:993
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:994
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:996
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:151
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:157
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:417
@@ -55,78 +55,78 @@ msgstr "-“­¨çâ®¦¨âì ¢á¥å ¢à £®¢"
 msgid "Map Default"
 msgstr "® ã¬®«ç ­¨î"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:683
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:770
 msgid "Nation of Stromgarde"
 msgstr " æ¨ï ‘âà®¬£ à¤¥"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:685
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:772
 msgid "Nation of Azeroth"
 msgstr " æ¨ï €§¥à®â "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:687
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:774
 msgid "Nation of Kul Tiras"
 msgstr " æ¨ï Šã«ì ’¨à á "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:689
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:776
 msgid "Nation of Dalaran"
 msgstr " æ¨ï „ « à ­ "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:691
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:778
 msgid "Nation of Alterac"
 msgstr " æ¨ï €«ìâ¥à ª "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:693
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:780
 msgid "Nation of Gilneas"
 msgstr " æ¨ï ƒ¨«­¥ á "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:695
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:782
 msgid "Nation of Lordaeron"
 msgstr " æ¨ï ‹®à¤¥à®­ "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:697
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:784
 msgid "Alliance Traitors"
 msgstr "à¥¤ â¥«¨ €«ìï­á "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:701
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:788
 msgid "Blackrock Clan"
 msgstr "Š« ­ —¥à­®© ‘ª «ë"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:703
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:790
 msgid "Stormreaver Clan"
 msgstr "Š« ­ ®å¨â¨â¥«¥©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:705
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:792
 msgid "Bleeding Hollow Clan"
 msgstr "Š« ­ Šà®¢®â®ç é¨å „¥á¥­"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:707
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:794
 msgid "Twilight's Hammer Clan"
 msgstr "Š« ­ ‘ã¬¥à¥ç­®£® Œ®«®â "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:709
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:796
 msgid "Burning Blade Clan"
 msgstr "Š« ­ ƒ®àïé¥£® Š«¨­ª "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:711
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:798
 msgid "Black Tooth Grin Clan"
 msgstr "Š« ­ ƒ­¨«®§ã¡ëå"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:713
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:800
 msgid "Dragonmaw Clan"
 msgstr "Š« ­ „à ª®­ì¥© “âà®¡ë"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:715
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:802
 msgid "Laughing Skull Clan"
 msgstr "Š« ­ ‘¬¥îé¥£®áï —¥à¥¯ "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:797
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:884
 msgid "Select scenario"
 msgstr "‚ë¡®à ¬¨áá¨¨"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:821
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:876
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1413
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1438
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:908
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:963
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1500
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1525
 #: f:\Temp\Wargus\trunk\scripts/menus/diplomacy.lua:107
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:36
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:81
@@ -135,7 +135,7 @@ msgstr "‚ë¡®à ¬¨áá¨¨"
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:296
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:342
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:403
-#: f:\Temp\Wargus\trunk\scripts/menus/load.lua:56
+#: f:\Temp\Wargus\trunk\scripts/menus/load.lua:57
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:228
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:331
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:357
@@ -151,357 +151,357 @@ msgstr "‚ë¡®à ¬¨áá¨¨"
 msgid "~!Cancel"
 msgstr "â¬¥­ "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:843
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:930
 msgid "~<Single Player~>"
 msgstr "~<¤¨­®ç­ ï ¨£à ~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:845
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:932
 msgid "~!Standard Game"
 msgstr "Œ¨áá¨ï ¯®«ì§®¢ â¥«ï"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:847
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:934
 msgid "~!Campaign Game"
 msgstr "Š ¬¯ ­¨ï"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:849
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:936
 msgid "~!Load Game"
 msgstr "~!à®ç¨â âì ¨£àã"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:851
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:290
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:938
+#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:301
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:602
 msgid "~!Previous Menu"
 msgstr " § ¤"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:864
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:951
 msgid "Standard Game"
 msgstr "Œ¨áá¨ï ¯®«ì§®¢ â¥«ï"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:899
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:986
 msgid "~red~Red"
 msgstr "~red~Šà á­ë©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:899
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:986
 msgid "~blue~Blue"
 msgstr "~blue~‘¨­¨©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:899
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:986
 msgid "~green~Green"
 msgstr "~green~‡¥«¥­ë©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:899
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:986
 msgid "~violet~Violet"
 msgstr "~violet~‹¨«®¢ë©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:899
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:986
 msgid "~orange~Orange"
 msgstr "~orange~à ­¦¥¢ë©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:899
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:986
 msgid "~black~Black"
 msgstr "~black~—¥à­ë©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:900
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:987
 msgid "~white~White"
 msgstr "~white~¥«ë©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:900
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:987
 msgid "~yellow~Yellow"
 msgstr "~yellow~†¥«âë©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:901
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:988
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:225
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:417
 #: f:\Temp\Wargus\trunk\scripts/wc2.lua:48
 msgid "Human"
 msgstr "‹î¤¨"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:901
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:988
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:225
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:417
 #: f:\Temp\Wargus\trunk\scripts/wc2.lua:52
 msgid "Orc"
 msgstr "àª¨"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:901
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:988
 msgid "Random"
 msgstr "‘«ãç."
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:903
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:990
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:80
 msgid "Player"
 msgstr "ˆ£à®ª"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:903
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:990
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:223
 msgid "Computer"
 msgstr "Š®¬¯ìîâ¥à"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:903
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:990
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:223
 msgid "Rescue-passive"
 msgstr " áá¨¢­ë© á®î§­¨ª"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:903
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:990
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:223
 msgid "Rescue-active"
 msgstr "€ªâ¨¢­ë© á®î§­¨ª"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:903
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:990
 msgid "None"
 msgstr "¥â"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:904
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:991
 msgid "Default"
 msgstr "® ã¬®«ç ­¨î"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:904
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:991
 msgid "Explored"
 msgstr "ˆáá«¥¤®¢ ­ "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:904
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:991
 msgid "Revealed"
 msgstr "âªàëâ "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:905
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:992
 msgid "Use map settings"
 msgstr " áâà®©ª¨ ª àâë"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:905
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:992
 msgid "Melee"
 msgstr "®©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:905
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:992
 msgid "Free for all"
 msgstr "Š ¦¤ë© á ¬ §  á¥¡ï"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:905
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:992
 msgid "Top vs bottom"
 msgstr "‘¢¥àåã ¯à®â¨¢ á­¨§ã"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:905
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:992
 msgid "Left vs right"
 msgstr "‘«¥¢  ¯à®â¨¢ á¯à ¢ "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:905
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:992
 msgid "Man vs Machine"
 msgstr "‹î¤¨ ¯à®â¨¢ CPU"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:906
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:993
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:8
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:326
 msgid "Summer"
 msgstr "‹¥á"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:906
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:993
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:8
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:326
 msgid "Swamp"
 msgstr "®«®â®"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:906
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:993
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:8
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:326
 msgid "Wasteland"
 msgstr "ãáâë­ï"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:906
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:993
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:8
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:326
 msgid "Winter"
 msgstr "‡¨¬ "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:907
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:994
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:151
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:426
 msgid "One Peasant Only"
 msgstr "¤¨­ ªà¥áâìï­¨­"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:908
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:263
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:995
+#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:269
 msgid "Easy"
 msgstr "‹¥£ª¨©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:908
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:263
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:995
+#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:269
 msgid "Normal"
 msgstr "‘à¥¤­¨©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:908
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:263
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:995
+#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:269
 msgid "Hard"
 msgstr "‘«®¦­ë©"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:908
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:263
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:995
+#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:269
 msgid "Nightmare"
 msgstr "Š®è¬ à"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:908
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:263
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:995
+#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:269
 msgid "Hell"
 msgstr "€¤"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:909
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:996
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:157
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:435
 msgid "High"
 msgstr "¡è¨à­ë¥"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:909
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:996
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:157
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:435
 msgid "Medium"
 msgstr "‘à¥¤­¨¥"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:909
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:996
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:157
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:435
 msgid "Low"
 msgstr "‘ªã¤­ë¥"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:909
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:996
 msgid "Quick Start"
 msgstr "ëáâàë© áâ àâ"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:923
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1010
 msgid "~<Single Player Game Setup~>"
 msgstr "~<“áâ ­®¢ª¨ ¯®«ì§®¢ â¥«ìáª®© ¨£àë~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:936
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1023
 msgid "Error:"
 msgstr "è¨¡ª :"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1008
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1095
 msgid "Scenario:"
 msgstr "Œ¨áá¨ï:"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1013
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1100
 msgid "S~!elect Scenario"
 msgstr "~!‚ë¡®à ¬¨áá¨¨"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1022
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1109
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:448
 msgid "~!Start Game"
 msgstr "~! ç âì ¨£àã"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1028
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1115
 msgid "Need more than 1 team"
 msgstr "ã¦­® ¡®«¥¥ 1 ª®¬ ­¤ë"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1030
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1117
 msgid "No players selected"
 msgstr "¥â ¨£à®ª®¢"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1032
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1119
 msgid "Need at least 1 person player"
 msgstr "ã¦¥­ 1 ¨£à®ª-ç¥«®¢¥ª"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1034
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1121
 msgid "Need at least 2 players"
 msgstr "ã¦­® ¬¨­¨¬ã¬ 2 ¨£à®ª "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1120
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1207
 msgid "~<Color:~>"
 msgstr "~<–¢¥â:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1141
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1228
 msgid "~<Type:~>"
 msgstr "~<’¨¯:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1164
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1251
 msgid "~<Race:~>"
 msgstr "~< á :~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1185
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1272
 msgid "~<Teams:~>"
 msgstr "~<Š®¬ ­¤ :~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1201
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1288
 msgid "~<AI Script:~>"
 msgstr "~<‘ªà¨¯â ˆˆ:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1249
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1336
 msgid "~!Cancel Game"
 msgstr "~!â¬¥­  ¨£àë"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1251
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1338
 msgid "~<Fog of War:~>"
 msgstr "~<Š àâ :~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1263
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1350
 msgid "~<Game Type:~>"
 msgstr "~<’¨¯ ¨£àë:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1275
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1362
 msgid "~<Resources:~>"
 msgstr "~<¥áãàáë:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1287
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:272
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1374
+#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:278
 msgid "~<AI Difficulty:~>"
 msgstr "~<‘«®¦­®áâì ˆˆ:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1300
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1387
 msgid "~<Tileset:~>"
 msgstr "~<Œ¥áâ­®áâì:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1311
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1398
 msgid "~<Units:~>"
 msgstr "~<…¤¥­¨æë:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1357
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1444
 msgid " V"
 msgstr " V"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1360
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1447
 msgid "~!Single Player Game"
 msgstr "¤¨­®ç­ ï ¨£à "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1362
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1449
 msgid "~!Multi Player Game"
 msgstr "‘¥â¥¢ ï ¨£à "
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1364
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1451
 msgid "~!Replay Game"
 msgstr "¥à¥á¬®âà¥âì ¨£àã"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1366
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1453
 msgid "~!Options"
 msgstr "¯æ¨¨"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1368
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1455
 msgid "~!Load Mod"
 msgstr "‡ £àã§¨âì ¬®¤"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1370
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1457
 msgid "Map ~!Editor"
 msgstr "¥¤ ªâ®à"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1372
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1459
 msgid "S~!how Credits"
 msgstr "€¢â®àë"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1374
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1461
 #: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:14
 #: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:70
 msgid "E~!xit Program"
 msgstr "‚ë©â¨ ¨§ ¯à®£à ¬¬ë"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1401
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1488
 msgid "Load Mod"
 msgstr "‡ £àã§¨âì ¬®¤"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1426
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1513
 msgid "Campaign Game"
 msgstr "®¢ ï ª ¬¯ ­¨ï"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1430
+#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1517
 msgid "~!OK"
 msgstr "~!OK"
 
 #: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:41
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:499
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:498
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:34
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:524
 msgid "~!MOVE"
@@ -510,7 +510,7 @@ msgstr "~!ˆ„’ˆ"
 #: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:52
 #: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:64
 #: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:72
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:506
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:505
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:45
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:57
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:65
@@ -524,9 +524,9 @@ msgstr "~!‘’"
 #: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:104
 #: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:110
 #: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:116
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:533
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:539
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:545
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:532
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:538
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:544
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:72
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:83
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:91
@@ -543,7 +543,7 @@ msgstr "~!€’€Š‚€’œ"
 
 #: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:122
 #: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:131
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:550
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:549
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:128
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:137
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:573
@@ -597,323 +597,323 @@ msgstr "‡€~!™ˆ’€ ƒ…Œ"
 msgid "~!INVISIBILITY"
 msgstr "~!…‚ˆ„ˆŒ‘’œ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:216
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:215
 msgid "~!POLYMORPH"
 msgstr "~!…‚€™…ˆ…"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:222
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:221
 msgid "~!BLIZZARD"
 msgstr "~!“€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:229
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:228
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:251
 msgid "~!REPAIR"
 msgstr "~!—ˆˆ’œ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:234
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:233
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:256
 msgid "~!HARVEST LUMBER/MINE GOLD"
 msgstr "„›~!‚€’œ ‡‹’/“ˆ’œ ‹…‘"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:239
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:528
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:238
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:527
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:261
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:551
 msgid "RETURN WITH ~!GOODS"
 msgstr "~!‚…“’œ‘Ÿ ‘ „›—…‰"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:246
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:245
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:268
 msgid "~!BUILD BASIC STRUCTURE"
 msgstr "‚‡‚„ˆ’œ ~!‘‚›… ‘“†…ˆŸ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:252
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:251
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:274
 msgid "BUILD AD~!VANCED STRUCTURE"
 msgstr "‚‡‚„ˆ’œ ~!„‚ˆ“’›… ‘“†…ˆŸ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:259
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:258
 msgid "BUILD ~!FARM"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!”…Œ›"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:264
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:263
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:286
 msgid "BUILD ~!BARRACKS"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!Š€‡€Œ›"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:269
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:268
 msgid "BUILD TOWN ~!HALL"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!€’“˜ˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:274
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:273
 msgid "BUILD ELVEN ~!LUMBER MILL"
 msgstr "‘’ˆ’…‹œ‘’‚ ”~!€ˆŠˆ/ˆ‹€Œ›"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:279
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:278
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:301
 msgid "BUILD BLACK~!SMITH"
 msgstr "‘’ˆ’…‹œ‘’‚ Š“‡~!ˆ–›"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:284
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:283
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:306
 msgid "BUILD ~!TOWER"
 msgstr "‘’ˆ’…‹œ‘’‚~! €˜ˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:290
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:289
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:312
 msgid "BUILD ~!WALL"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!‘’…›"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:302
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:301
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:324
 msgid "BUILD ~!SHIPYARD"
 msgstr "‘’ˆ’…‹œ‘’‚ ‘“„~!‚…”ˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:307
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:306
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:329
 msgid "BUILD ~!FOUNDRY"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!‹ˆ’…‰‰"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:312
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:311
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:334
 msgid "BUILD ~!REFINERY"
 msgstr "‘’ˆ’…‹œ‘’‚ —ˆ‘’ƒ ~!‡€‚„€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:317
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:316
 msgid "BUILD GNOMISH ~!INVENTOR"
 msgstr "•ˆ†ˆ€ ƒŒ€ ~!ˆ‡…’€’…‹Ÿ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:322
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:321
 msgid "BUILD ST~!ABLES"
 msgstr "‘’ˆ’…‹œ‘’‚ Š~!˜ˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:327
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:326
 msgid "BUILD ~!MAGE TOWER"
 msgstr "‘’ˆ’…‹œ‘’‚ €˜ˆ ~!Œ€ƒ‚"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:332
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:331
 msgid "BUILD ~!CHURCH"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!–…Š‚ˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:337
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:336
 msgid "BUILD ~!GRYPHON AVIARY"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!‚‹œ…› ƒˆ”‚"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:350
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:349
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:372
 msgid "TRAIN ~!CRITTER"
 msgstr "“—…ˆ… ‘“™…‘’‚€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:357
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:356
 msgid "TRAIN ~!PEASANT"
 msgstr "“—…ˆ… ~!Š…‘’œŸˆ€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:365
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:364
 msgid "UPGRADE TO ~!KEEP"
 msgstr "‚‡‚…„…ˆ… ~!„‚–€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:371
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:370
 msgid "UPGRADE TO ~!CASTLE"
 msgstr "‚‡‚…„…ˆ… ~!‡€ŒŠ€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:378
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:377
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:400
 msgid "SET ~!HARVEST LUMBER/MINE GOLD"
 msgstr "’—Š€ ‘€ …‘“‘‚"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:383
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:557
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:382
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:556
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:405
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:580
 msgid "SET ~!MOVE"
 msgstr "’—Š€ ‘€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:389
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:562
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:388
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:561
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:412
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:585
 msgid "SET ~!ZTOP"
 msgstr "“„€‹ˆ’œ ’—Š“ ‘€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:395
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:567
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:394
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:566
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:419
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:590
 msgid "S~!ET ATTACK"
 msgstr "’—Š€ €’€Šˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:403
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:402
 msgid "TRAIN ~!FOOTMAN"
 msgstr "“—…ˆ… ‘‹„€’€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:408
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:407
 msgid "TRAIN ~!ARCHER"
 msgstr "“—…ˆ… ‹“—ˆŠ€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:413
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:412
 msgid "TRAIN ~!RANGER"
 msgstr "“—…ˆ… ~!€‡‚…„—ˆŠ€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:418
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:417
 msgid "BUILD ~!BALLISTA"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!€‹‹ˆ‘’›"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:423
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:422
 msgid "TRAIN ~!KNIGHT"
 msgstr "“—…ˆ… ~!›–€Ÿ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:428
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:427
 msgid "TRAIN ~!PALADIN"
 msgstr "“—…ˆ… ~!€‹€„ˆ€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:433
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:432
 msgid "BUILD GNOMISH ~!FLYING MACHINE"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!‚…’‹…’€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:438
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:437
 msgid "TRAIN ~!DWARVEN DEMOLITION SQUAD"
 msgstr "“—…ˆ… ~!’Ÿ„€ „›‚ˆŠ‚"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:443
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:442
 msgid "~!TRAIN MAGE"
 msgstr "“—…ˆ… ~!Œ€ƒ€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:448
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:447
 msgid "TRAIN ~!GRYPHON RIDER"
 msgstr "“—…ˆ… ~!‚‘€„ˆŠ€ ƒˆ”€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:453
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:452
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:478
 msgid "BUILD ~!OIL TANKER"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!…”’Ÿƒ ’€Š…€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:458
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:457
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:483
 msgid "BUILD ~!DESTROYER"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!€‡“˜ˆ’…‹Ÿ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:463
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:462
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:488
 msgid "BUILD ~!TRANSPORT"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!’€‘’€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:468
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:467
 msgid "BUILD GNOMISH ~!SUBMARINE"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!‘“Œ€ˆ› ƒŒ‚"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:473
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:472
 msgid "BUILD ~!BATTLESHIP"
 msgstr "‘’ˆ’…‹œ‘’‚ ~!‹ˆŠ€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:480
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:479
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:505
 msgid "SET ~!HAUL OIL"
 msgstr "’—Š€ ‘€ …”’ˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:487
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:486
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:512
 msgid "UPGRADE TO ~!GUARD TOWER"
 msgstr "Œ„…ˆ‡€–ˆŸ „ ~!„‡‰ €˜ˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:492
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:491
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:517
 msgid "UPGRADE TO ~!CANNON TOWER"
 msgstr "Œ„…ˆ‡€–ˆŸ „ “„ˆ‰‰ €˜ˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:513
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:512
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:536
 msgid "~!UNLOAD"
 msgstr "~!‚›‘€„ˆ’œ ‹„…‰"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:518
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:517
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:541
 msgid "~!BUILD OIL PLATFORM"
 msgstr "‘~!’ˆ’…‹œ‘’‚ …”’Ÿ‰ ‚›˜Šˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:523
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:522
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:546
 msgid "~!HAUL OIL"
 msgstr "„›~!‚€’œ …”’œ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:577
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:583
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:576
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:582
 msgid "UPGRADE S~!WORDS (Damage +2)"
 msgstr "Œ„…ˆ‡€–ˆŸ Œ…~!—…‰ (®¢à¥¦¤.+2)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:589
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:595
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:588
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:594
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:612
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:618
 msgid "UPGRADE ~!SHIELDS (Armor +2)"
 msgstr "Œ„…ˆ‡€–ˆŸ ~!™ˆ’‚ (à®­ï +2)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:601
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:607
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:600
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:606
 msgid "UPGRADE ~!BALLISTA (Damage +15)"
 msgstr "Œ™œ ~!€‹‹ˆ‘’› (®¢à¥¦¤.+15)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:613
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:619
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:612
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:618
 msgid "~!UPGRADE ARROWS (Damage +1)"
 msgstr "Œ„…ˆ‡€–ˆŸ ‘’…‹ (®¢à¥¦¤.+1)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:625
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:624
 msgid "ELVEN ~!RANGER TRAINING"
 msgstr "˜Š‹€ ‹œ”€-~!€‡‚…„—ˆŠ€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:631
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:630
 msgid "RANGER ~!SCOUTING (Sight:9)"
 msgstr "~!‡Š‘’œ €‡‚…„—ˆŠ€ (‡à¥­¨¥:9)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:637
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:636
 msgid "RESEARCH ~!LONGBOW (Range +1)"
 msgstr "„‹ˆ›‰ ~!‹“Š („ «ì­®áâì +1)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:643
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:642
 msgid "RANGER ~!MARKSMANSHIP (Damage +3)"
 msgstr "~!Œ…’Š‘’œ €‡‚…„—ˆŠ€ (®¢à¥¦¤.+3)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:649
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:648
 msgid "UPGRADES KNIGHTS TO ~!PALADINS"
 msgstr "“—…ˆ… ~!€‹€„ˆ‚"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:655
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:654
 msgid "RESEARCH ~!HEALING"
 msgstr "ˆ‡“—…ˆ… ~!‹…—…ˆŸ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:661
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:660
 msgid "RESEARCH ~!EXORCISM"
 msgstr "ˆ‡“—…ˆ… ~!Š‡–ˆ‡Œ€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:667
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:666
 msgid "RESEARCH SL~!OW"
 msgstr "ˆ‡“—…ˆ… ‡€~!Œ…„‹…ˆŸ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:673
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:672
 msgid "RESEARCH F~!LAME SHIELD"
 msgstr "ˆ‡“—…ˆ… ‡€~!™ˆ’› ƒ…Œ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:679
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:678
 msgid "RESEARCH ~!INVISIBILITY"
 msgstr "ˆ‡“—…ˆ… ~!…‚ˆ„ˆŒ‘’ˆ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:685
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:684
 msgid "RESEARCH ~!POLYMORPH"
 msgstr "ˆ‡“—…ˆ… ~!…‚€™…ˆŸ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:691
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:690
 msgid "RESEARCH ~!BLIZZARD"
 msgstr "ˆ‡“—…ˆ… ~!“€€"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:697
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:703
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:696
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:702
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:720
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:726
 msgid "UPGRADE ~!CANNONS (Damage +5)"
 msgstr "Œ„…ˆ‡€–ˆŸ ~!“˜…Š (®¢à¥¦¤.+5)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:709
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:715
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:708
+#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:714
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:732
 #: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:738
 msgid "UPGRADE SHIP ~!ARMOR (Armor +5)"
@@ -1201,13 +1201,18 @@ msgstr "–¥«ì:"
 msgid "~!Continue"
 msgstr "„ «ìè¥"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:265
+#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:271
 msgid "~<Mission list~>"
 msgstr "‘¯¨á®ª ¬¨áá¨©"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:278
+#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:284
 msgid "~!Play mission"
 msgstr " ç âì ¬¨áá¨î"
+
+#: f:\Temp\Wargus\trunk\scripts/menus/compactmode.lua:242
+#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:569
+msgid "Nickname :"
+msgstr "¨ª"
 
 #: f:\Temp\Wargus\trunk\scripts/menus/diplomacy.lua:7
 msgid "Allied"
@@ -1391,17 +1396,17 @@ msgid "Artificial Intelligence"
 msgstr "ˆ­â¥««¥ªâ"
 
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:395
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:200
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
 msgid "gold"
 msgstr "§®«®â "
 
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:395
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:200
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
 msgid "wood"
 msgstr "«¥á "
 
 #: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:395
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:200
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
 msgid "oil"
 msgstr "­¥äâ¨"
 
@@ -1504,11 +1509,11 @@ msgstr "~!à¥à¢ âì ¬¨áá¨î"
 msgid "Return to Game (~<Esc~>)"
 msgstr "‚¥à­ãâìáï ¢ ¨£àã (~<Esc~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/load.lua:39
+#: f:\Temp\Wargus\trunk\scripts/menus/load.lua:40
 msgid "Load Game"
 msgstr "à®ç¨â âì ¨£àã"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/load.lua:43
+#: f:\Temp\Wargus\trunk\scripts/menus/load.lua:44
 msgid "~!Load"
 msgstr "~!à®ç¨â âì"
 
@@ -1688,10 +1693,6 @@ msgstr "~!‘®§¤ âì ¨£àã"
 msgid "~<Multiplayer Network Game~>"
 msgstr "~<‘¥â¥¢ ï ¨£à ~>"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:569
-msgid "Nickname :"
-msgstr "¨ª"
-
 #: f:\Temp\Wargus\trunk\scripts/menus/network.lua:572
 msgid "~!Join Game"
 msgstr "~!à¨á®¥¤¨­¨âìáï"
@@ -1803,7 +1804,7 @@ msgid "alpha-circle"
 msgstr "¯à®§à. ªàã£"
 
 #: f:\Temp\Wargus\trunk\scripts/menus/options.lua:289
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:376
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:378
 msgid "corners"
 msgstr "ã£®«ª¨"
 
@@ -2641,182 +2642,214 @@ msgstr "àã¡¨â¥"
 msgid "drill"
 msgstr "¤®¡ë¢ ©â¥"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:200
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+msgid "Time Left: "
+msgstr "‚à¥¬ï: "
+
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+msgid "Gold Left: "
+msgstr "‡®«®â®: "
+
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+msgid "Wood Left: "
+msgstr "‹¥á: "
+
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+msgid "Oil Left: "
+msgstr "¥äâì: "
+
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+msgid "Ore Left: "
+msgstr "ã¤ : "
+
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+msgid "Stone Left: "
+msgstr "Š ¬¥­ì: "
+
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+msgid "Coal Left: "
+msgstr "“£®«ì: "
+
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
 msgid "time"
 msgstr "¢à¥¬ï"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:200
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
 msgid "ore"
 msgstr "àã¤ "
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:200
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
 msgid "stone"
 msgstr "ª ¬¥­ì"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:200
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
 msgid "coal"
 msgstr "ã£®«ì"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:288
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:289
 msgid "You failed to"
 msgstr "‚ë ¯à®¨£à «¨"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:289
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:290
 msgid "achieve victory!"
 msgstr "¢ íâ®© ¡¨â¢¥!"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:307
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:308
 msgid "Congratulations!"
 msgstr "®§¤à ¢«ï¥¬!"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:308
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:309
 msgid "You are victorious!"
 msgstr "‚ë ¯®¡¥¤¨â¥«ì!"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:310
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:311
 msgid "Save Game (~<F11~>)"
 msgstr "‘®åà ­¨âì (~<F11~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:316
+#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:317
 msgid "~!Victory"
 msgstr "~!®¡¥¤ "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:108
-#, lua-format
-msgid "%s Left~|:%d"
-msgstr "%s: %d"
-
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:117
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:218
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:116
 #: f:\Temp\Wargus\trunk\scripts/ui.lua:223
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:229
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:228
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:234
 msgid "% Complete"
 msgstr "% § ¢¥àè¥­®"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:130
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:129
 msgid "Usage~|"
 msgstr "¨é ~|"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:131
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:130
 msgid "Supply~|: "
 msgstr "‚ëà é¥­®~|:"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:132
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:131
 msgid "Demand~|: "
 msgstr " áå®¤~|:"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:145
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:144
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:168
 #: f:\Temp\Wargus\trunk\scripts/ui.lua:169
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:170
 msgid "Production"
 msgstr "„®¡ëç :"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:146
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:145
 msgid "Gold~|: 100"
 msgstr "‡®«®â®~|: 100"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:151
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:171
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:150
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:170
 msgid "Lumber~|: 100"
 msgstr "‹¥á~|: 100"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:156
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:176
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:155
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:175
 msgid "Oil~|: 100"
 msgstr "¥äâì~|: 100"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:191
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:197
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:203
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:190
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:196
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:202
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:454
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:501
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:605
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:652
 msgid "Damage~|: "
 msgstr "®¢à¥¦¤¥­¨¥~|: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:211
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:209
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:259
+msgid "Armor~|: "
+msgstr "à®­ï~|: "
+
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:212
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:262
+msgid "Sight~|: "
+msgstr "‚¨¤¨¬®áâì~|: "
+
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:216
 msgid "Range~|: "
 msgstr "„ «ì­®áâì~|: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:217
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:222
 msgid "Researching~|:"
 msgstr "ˆ§ãç ¥âáï~|:"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:228
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:233
 msgid "Upgrading~|:"
 msgstr "“«ãçè ¥âáï~|:"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:232
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:237
 #, lua-format
 msgid "Carry~|: %d %s"
 msgstr "¥á¥â~|: %d %s"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:246
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:251
 #, lua-format
 msgid "Level ~|~<%d~>"
 msgstr "“à®¢¥­ì ~|~<%d~>"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:250
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:255
 #, lua-format
 msgid "XP:~<%d~> Kills:~|~<%d~>"
 msgstr "XP:~<%d~> “¡¨«:~|~<%d~>"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:254
-msgid "Armor~|: "
-msgstr "à®­ï~|: "
-
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:257
-msgid "Sight~|: "
-msgstr "‚¨¤¨¬®áâì~|: "
-
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:260
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:265
 msgid "Speed~|: "
 msgstr "‘ª®à®áâì~|: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:264
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:269
 msgid "Mana~|: "
 msgstr "Œ £¨ï~|: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:405
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:516
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:412
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:563
 msgid "~<ALT~>-click to defend unit."
 msgstr "~<ALT~>-ª«¨ª, çâ®¡ë § é¨é âì î­¨â."
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:408
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:519
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:415
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:566
 msgid "~<SHIFT~>-click to make waypoints."
 msgstr "~<SHIFT~>-ª«¨ª, çâ®¡ë á®§¤ ¢ âì â®çª¨ á«¥¤®¢ ­¨ï."
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:415
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:526
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:422
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:573
 msgid ""
 "~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."
 msgstr ""
 "~<CTRL~>-ª«¨ª ­  ª­®¯ªã ¢ª«îç ¥â/®âª«îç ¥â  ¢â®à¥¬®­â ¯®¢à¥¦¤¥­­ëå §¤ ­¨©."
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:422
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:533
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:429
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:580
 msgid "~<CTRL~>-click on button enables/disables autoheal ability."
 msgstr ""
 "~<CTRL~>-ª«¨ª ­  ª­®¯ªã ¢ª«îç ¥â/¢ëª«îç ¥â à¥¦¨¬  ¢â®¬ â¨ç¥áª®£® «¥ç¥­¨ï."
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:441
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:470
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:448
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:489
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:599
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:640
 msgid "Hit Points: "
 msgstr "çª¨ ¦¨§­¨: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:473
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:451
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:492
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:602
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:643
 msgid "Armor: "
 msgstr "à®­ï: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:476
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:495
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:646
 msgid "Sight: "
 msgstr "‚¨¤¨¬®áâì: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:479
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:498
+#: f:\Temp\Wargus\trunk\scripts/ui.lua:649
 msgid "Range: "
 msgstr "„ «ì­®áâì: "
-
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:482
-msgid "Damage: "
-msgstr "®¢à¥¦¤¥­¨¥: "
 
 #: f:\Temp\Wargus\trunk\scripts/units.lua:40
 msgid "Nothing 22"
@@ -2903,6 +2936,33 @@ msgstr "‹î¤¨"
 #: f:\Temp\Wargus\trunk\scripts/wc2.lua:38
 msgid "Wilds"
 msgstr "„¨ª à¨"
+
+#~ msgid "Time Left~|: "
+#~ msgstr "‚à¥¬ï~|:"
+
+#~ msgid "Gold Left~|: "
+#~ msgstr "‡®«®â®~|:"
+
+#~ msgid "Wood Left~|: "
+#~ msgstr "‹¥á~|:"
+
+#~ msgid "Oil Left~|: "
+#~ msgstr "¥äâì~|:"
+
+#~ msgid "Ore Left~|: "
+#~ msgstr "ã¤ ~|:"
+
+#~ msgid "Stone Left~|: "
+#~ msgstr "Š ¬¥­ì~|:"
+
+#~ msgid "Coal Left~|: "
+#~ msgstr "“£®«ì~|:"
+
+#~ msgid "%s Left~|:%d"
+#~ msgstr "%s: %d"
+
+#~ msgid "Damage: "
+#~ msgstr "®¢à¥¦¤¥­¨¥: "
 
 #~ msgid "File      : "
 #~ msgstr "” ©«      : "

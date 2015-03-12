@@ -105,8 +105,7 @@ DefinePanelContents(
 
 -- Ressource Left
 	{ Pos = {88, 86}, Condition = {ShowOpponent = false, GiveResource = "only", Build = "false"},
-		More = {"FormattedText2", {Format = _("%s Left~|:%d"), Variable = "GiveResource",
-					Component1 = "Name", Component2 = "Value", Centered = true}}
+		More = {"Text", {Text = Concat(function() return _(ResourcesOnUI[GetUnitVariable(-1, "GiveResourceType", "Value") + 1]) end, String(ActiveUnitVar("GiveResource", "Value"))), Centered = true}}
 	},
 
 -- Construction
