@@ -58,12 +58,12 @@ function NewRunSinglePlayerGameMenu()
     menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
   end
   
-  menu:addLabel("Scenario:", offx + 16, offy + 360, Fonts["game"], false)
+  menu:addLabel(_("Scenario:"), offx + 16, offy + 360, Fonts["game"], false)
   mapl = menu:addLabel(string.sub(mapname, 6), offx + 16, offy + 360 + 24, Fonts["game"], false)
   descriptionl = menu:addLabel("descriptionl", offx + 16 + 70, offy + 360, Fonts["game"], false)
 
-  menu:addLabel("~<Single Player Game Setup~>", offx + 640/2 + 12, offy + 192)
-  menu:addFullButton("S~!elect Scenario", "e", offx + 640 - 224 - 16, offy + 360 + 36*0,
+  menu:addLabel(_("~<Single Player Game Setup~>"), offx + 640/2 + 12, offy + 192)
+  menu:addFullButton(_("S~!elect Scenario"), "e", offx + 640 - 224 - 16, offy + 360 + 36*0,
     function()
       local oldmapname = mapname
       RunSelectScenarioMenu()
@@ -72,7 +72,7 @@ function NewRunSinglePlayerGameMenu()
         MapChanged()
       end
     end)
-  menu:addFullButton("~!Start Game", "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
+  menu:addFullButton(_("~!Start Game"), "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
       local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"};
 
@@ -86,40 +86,40 @@ function NewRunSinglePlayerGameMenu()
       RunMap(mapname, nil, wc2.preferences.FogOfWar, false)
       menu:stop()
     end)
-  menu:addFullButton("~!Cancel Game", "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() CleanCustomGame_Lua(); menu:stop(1); RunSinglePlayerTypeMenu() end)
+  menu:addFullButton(_("~!Cancel Game"), "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() CleanCustomGame_Lua(); menu:stop(1); RunSinglePlayerTypeMenu() end)
 
-  menu:addLabel("~<Your Race:~>", offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
-  race = menu:addDropDown({"Map Default", "Human", "Orc"}, offx + 40, offy + 10 + 240,
+  menu:addLabel(_("~<Your Race:~>"), offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
+  race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, offx + 40, offy + 10 + 240,
     function(dd) end)
   race:setSize(152, 20)
 
-  menu:addLabel("~<Resources:~>", offx + 220, offy + (10 + 240) - 20, Fonts["game"], false)
-  resources = menu:addDropDown({"Map Default", "Low", "Medium", "High"}, offx + 220, offy + 10 + 240,
+  menu:addLabel(_("~<Resources:~>"), offx + 220, offy + (10 + 240) - 20, Fonts["game"], false)
+  resources = menu:addDropDown({_("Map Default"), _("Low"), _("Medium"), _("High")}, offx + 220, offy + 10 + 240,
     function(dd) end)
   resources:setSize(152, 20)
 
-  menu:addLabel("~<Units:~>", offx + 640 - 224 - 16, offy + (10 + 240) - 20, Fonts["game"], false)
-  numunits = menu:addDropDown({"Map Default", "One Peasant Only"}, offx + 640 - 224 - 16, offy + 10 + 240,
+  menu:addLabel(_("~<Units:~>"), offx + 640 - 224 - 16, offy + (10 + 240) - 20, Fonts["game"], false)
+  numunits = menu:addDropDown({_("Map Default"), _("One Peasant Only")}, offx + 640 - 224 - 16, offy + 10 + 240,
     function(dd) end)
   numunits:setSize(190, 20)
 
-  local opponents_list = {"Map Default", "1 Opponent", "2 Opponents",
-    "3 Opponents", "4 Opponents", "5 Opponents", "6 Opponents", "7 Opponents"}
+  local opponents_list = {_("Map Default"), _("1 Opponent"), _("2 Opponents"),
+    _("3 Opponents"), _("4 Opponents"), _("5 Opponents"), _("6 Opponents"), _("7 Opponents")}
 
-  menu:addLabel("~<Opponents:~>", offx + 40, offy + (10 + 300) - 20, Fonts["game"], false)
+  menu:addLabel(_("~<Opponents:~>"), offx + 40, offy + (10 + 300) - 20, Fonts["game"], false)
   opponents = menu:addDropDown(opponents_list, offx + 40, offy + 10 + 300,
     function(dd) end)
   opponents:setSize(152, 20)
 
   menu:addLabel("~<Game Type:~>", offx + 220, offy + (10 + 300) - 20, Fonts["game"], false)
-  gametype = menu:addDropDown({"Use map settings", "Melee", "Free for all", "Top vs bottom", "Left vs right", "Man vs Machine"}, offx + 220, offy + 10 + 300,
+  gametype = menu:addDropDown({_("Use map settings"), _("Melee"), _("Free for all"), _("Top vs bottom"), _("Left vs right"), _("Man vs Machine")}, offx + 220, offy + 10 + 300,
     function(dd) end)
   gametype:setSize(152, 20)
 
-  menu:addLabel("~<Tileset:~>", offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
-  tilesetdd = menu:addDropDown({_("Map Default"), _("Summer"), _("Swamp"), "Wasteland", "Winter"}, offx + 640 - 224 - 16, offy + 10 + 300,
+  menu:addLabel(_("~<Tileset:~>"), offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
+  tilesetdd = menu:addDropDown({_("Map Default"), _("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}, offx + 640 - 224 - 16, offy + 10 + 300,
     function(dd) end)
-  tilesetdd:setSize(152, 20)
+  tilesetdd:setSize(190, 20)
 
   function MapChanged()
     mapl:setCaption(string.sub(mapname, 6))
@@ -134,6 +134,7 @@ function NewRunSinglePlayerGameMenu()
       table.insert(o, opponents_list[i])
     end
     opponents:setList(o)
+	opponents:setSize(152, 20)
   end
 
   GetMapInfo(mapname)
