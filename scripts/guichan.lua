@@ -429,6 +429,10 @@ function AddMenuHelpers(menu)
 		bq:setDownButtonImage(g_hdslider_n)
 		bq:setLeftButtonImage(g_hlslider_n)
 		bq:setRightButtonImage(g_hrslider_n)
+		bq:setUpPressedButtonImage(g_huslider_p)
+		bq:setDownPressedButtonImage(g_hdslider_p)
+		bq:setLeftPressedButtonImage(g_hlslider_p)
+		bq:setRightPressedButtonImage(g_hrslider_p)
 		bq:setMarkerImage(g_hmarker)
 		bq:setHBarImage(g_hslider)
 		bq:setVBarImage(g_hvslider)
@@ -438,14 +442,14 @@ function AddMenuHelpers(menu)
 		bq:setDownButtonImage(g_odslider_n)
 		bq:setLeftButtonImage(g_olslider_n)
 		bq:setRightButtonImage(g_orslider_n)
+		bq:setUpPressedButtonImage(g_ouslider_p)
+		bq:setDownPressedButtonImage(g_odslider_p)
+		bq:setLeftPressedButtonImage(g_olslider_p)
+		bq:setRightPressedButtonImage(g_orslider_p)
 		bq:setMarkerImage(g_omarker)
 		bq:setHBarImage(g_oslider)
 		bq:setVBarImage(g_ovslider)
-	end
-
-	
-	
-	
+	end	
     self:add(bq, x, y)
     bq.itemslist = list
     return bq
@@ -631,13 +635,21 @@ function AddMenuHelpers(menu)
   end
 
   function menu:addDropDown(list, x, y, callback)
-    local dd = DropDownWidget()
+    local dd = ImageDropDownWidget()
     dd:setFont(Fonts["game"])
+	if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+		dd:setItemImage(g_hibar)
+		dd:setDownNormalImage(g_hdslider_n)
+		dd:setDownPressedImage(g_hdslider_p)
+	else
+		dd:setItemImage(g_oibar)
+		dd:setDownNormalImage(g_odslider_n)
+		dd:setDownPressedImage(g_odslider_p)
+	end
     dd:setList(list)
     dd:setActionCallback(function(s) callback(dd, s) end)
-    dd:setBaseColor(dark)
-    dd:setForegroundColor(clear)
-    dd:setBackgroundColor(dark)
+
+   
     self:add(dd, x, y)
     return dd
   end
