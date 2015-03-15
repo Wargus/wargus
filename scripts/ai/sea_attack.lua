@@ -151,4 +151,4 @@ local sea_funcs = {
 
 function AiSeaAttack() AiLoop(sea_funcs, stratagus.gameData.AIState.index) end
 
-DefineAi("wc2-sea-attack", "*", "wc2-sea-attack", AiSeaAttack)
+DefineAi("wc2-sea-attack", "*", "wc2-skirmish", AiSeaAttack)

@@ -52,6 +52,12 @@ static const char * const MusicNames[] = {
 	NULL
 };
 
+static const char * const BNEMusicNames[] = {
+	"Human Battle 6",
+	"Orc Battle 6",
+	NULL
+};
+
 int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir);
 
 #endif

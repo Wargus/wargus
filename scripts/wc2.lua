@@ -155,7 +155,8 @@ if (OldSetAiType == nil) then
 end
 
 function SetAiType(player, aiscript)
-	if (GameSettings.Presets[player].AIScript == _("Map Default") or GameSettings.Presets[player].AIScript == "") then
+	if (GameSettings.Presets[player].AIScript == "Map Default" or
+		GameSettings.Presets[player].AIScript == _("Map Default") or GameSettings.Presets[player].AIScript == "") then
 		OldSetAiType(player, aiscript)
 	else
 		OldSetAiType(player, GameSettings.Presets[player].AIScript)

@@ -223,6 +223,8 @@ function RunEditorPlayerProperties()
   local types1 = {_("Neutral"), _("Nobody"), _("Computer"), _("Person"), _("Rescue-passive"), _("Rescue-active")}
   local racenames = {"human", "orc"}
   local racenames1 = {_("Human"),_("Orc")}
+  local aiList = AIStrategyTypes
+  table.remove(aiList, 1)
 
   menu:addLabel("#", 15, 36)
   menu:addLabel(_("Type"), offxType, 36)
@@ -268,9 +270,9 @@ function RunEditorPlayerProperties()
     playersProp[1 + i].race:setSelected(Players[i].Race)
     playersProp[1 + i].race:setWidth(65)
 
-    playersProp[1 + i].ai = menu:addDropDown(AIStrategyTypes, offxAI - 65, offy_i, function() end)
-    for j = 1,table.getn(AIStrategyTypes) do
-      if (AIStrategyTypes[j] == Players[i].AiName) then playersProp[1 + i].ai:setSelected(j - 1) end
+    playersProp[1 + i].ai = menu:addDropDown(aiList, offxAI - 65, offy_i, function() end)
+    for j = 1,table.getn(aiList) do
+      if (aiList[j] == Players[i].AiName) then playersProp[1 + i].ai:setSelected(j - 1) end
     end
     playersProp[1 + i].ai:setWidth(130)
 
@@ -285,7 +287,7 @@ function RunEditorPlayerProperties()
       for i = 0, 14 do
         Map.Info.PlayerType[i] = playersProp[1 + i].type:getSelected() + 2
         Players[i].Race = playersProp[1 + i].race:getSelected()
-        Players[i].AiName = AIStrategyTypes[1 + playersProp[1 + i].ai:getSelected()]
+        Players[i].AiName = aiList[1 + playersProp[1 + i].ai:getSelected()]
         Players[i].Resources[1] = playersProp[1 + i].gold:getText()
         Players[i].Resources[2] = playersProp[1 + i].lumber:getText()
         Players[i].Resources[3] = playersProp[1 + i].oil:getText()

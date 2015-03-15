@@ -41,6 +41,7 @@
 #endif
 
 #ifdef _MSC_VER
+#define unlink _unlink
 #define inline __inline
 #define strdup _strdup
 #define DEBUG _DEBUG
@@ -490,52 +491,60 @@ int CloseArchive(void)
 }
 
 #ifdef USE_STORMLIB
-int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName)
+int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName, bool compress)
 {
 	HANDLE hMpq   = NULL;          // Open archive handle
 	HANDLE hFile  = NULL;          // Archived file handle
-	HANDLE handle = NULL;          // Disk file handle
+	FILE   *file  = NULL;          // Disk file handle
+	gzFile gzfile = NULL;          // Compressed file handle
 	int    nError = ERROR_SUCCESS; // Result value
 
 	// Open an archive, e.g. "d2music.mpq"
-	if(nError == ERROR_SUCCESS)
-	{
-		if(!SFileOpenArchive(szArchiveName, 0, 0, &hMpq))
+	if(nError == ERROR_SUCCESS) {
+		if(!SFileOpenArchive(szArchiveName, 0, STREAM_FLAG_READ_ONLY | MPQ_OPEN_FORCE_MPQ_V1, &hMpq))
 			nError = GetLastError();
 	}
 
 	// Open a file in the archive, e.g. "data\global\music\Act1\tristram.wav"
-	if(nError == ERROR_SUCCESS)            
-	{
+	if(nError == ERROR_SUCCESS) {
 		if(!SFileOpenFileEx(hMpq, szArchivedFile, 0, &hFile))
 			nError = GetLastError();
 	}
 
 	// Create the target file
-	if(nError == ERROR_SUCCESS)
-	{
-		handle = CreateFile(szFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
-		if(handle == INVALID_HANDLE_VALUE)
-			nError = GetLastError();
+	if(nError == ERROR_SUCCESS) {
+		CheckPath(szFileName);
+		if (compress) {
+			gzfile = gzopen(szFileName, "wb9");
+		} else {
+			file = fopen(szFileName, "wb");
+		}
 	}
 
 	// Read the file from the archive
-	if(nError == ERROR_SUCCESS)
-	{
+	if(nError == ERROR_SUCCESS) {
 		char  szBuffer[0x10000];
 		DWORD dwBytes = 1;
 
-		while(dwBytes > 0)
-		{
+		while(dwBytes > 0) {
 			SFileReadFile(hFile, szBuffer, sizeof(szBuffer), &dwBytes, NULL);
-			if(dwBytes > 0)
-				WriteFile(handle, szBuffer, dwBytes, &dwBytes, NULL);
+			if(dwBytes > 0) {
+				if (compress) {
+					gzwrite(gzfile, szBuffer, dwBytes);
+				} else {
+					fwrite(szBuffer, 1, dwBytes, file);
+				}
+			}
 		}
 	}        
 
 	// Cleanup and exit
-	if(handle != NULL)
-		CloseHandle(handle);
+	if(file != NULL) {
+		fclose(file);
+	}
+	if(gzfile != NULL) {
+		gzclose(gzfile);
+	}
 	if(hFile != NULL)
 		SFileCloseFile(hFile);
 	if(hMpq != NULL)
@@ -1235,20 +1244,52 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 /**
 **  Convert pud to my format.
 */
-void ConvertPud(const char* file, int pude)
+void ConvertPud(const char* file, int pude, bool justconvert = false)
 {
-	unsigned char* pudp;
+	unsigned char* pudp = NULL;
 	char buf[1024];
 	size_t l;
 
-	pudp = ExtractEntry(ArchiveOffsets[pude], &l);
+	if (justconvert == false) {
+		pudp = ExtractEntry(ArchiveOffsets[pude], &l);
 
-	sprintf(buf, "%s/%s/%s", Dir, PUD_PATH, file);
-	CheckPath(buf);
+		sprintf(buf, "%s/%s/%s", Dir, PUD_PATH, file);
+		CheckPath(buf);
 
-	*strrchr(buf, '/') = '\0';
-	PudToStratagus(pudp, l, strrchr(file, '/') + 1, buf);
+		*strrchr(buf, '/') = '\0';
 
+		PudToStratagus(pudp, l, strrchr(file, '/') + 1, buf);
+	} else {
+		char pudfile[1024];
+		struct stat sb;
+		size_t filesize = 0;
+		FILE *f = NULL;
+
+		sprintf(buf, "%s/%s", Dir, file);
+		strcpy(pudfile, buf);
+		CheckPath(buf);
+		if (stat(buf, &sb)) {
+			printf("Can't open pud file: %s\n", buf);
+			return;
+		}
+		filesize = sb.st_size;
+		f = fopen(buf, "rb");
+		if (!f) {
+			printf("Can't open pud file: %s\n", buf);
+			return;
+		}
+		pudp = (unsigned char*)malloc(filesize);
+		if (fread(pudp, 1, filesize, f) != filesize) {
+			printf("Error reading pud file: %s\n", buf);
+			free(pudp);
+			return;
+		}
+		fclose(f);
+		*strrchr(buf, '/') = '\0';
+
+		PudToStratagus(pudp, filesize, strrchr(file, '/') + 1, buf);
+		unlink(pudfile);
+	}
 	free(pudp);
 }
 
@@ -1892,6 +1933,35 @@ int ConvertMusic(void)
 
 		++count;
 	}
+	if (CDType & CD_BNE) {
+		for ( i = 0; BNEMusicNames[i]; ++i ) {
+			sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, BNEMusicNames[i]);
+			CheckPath(buf);
+
+			if (stat(buf, &st))
+				continue;
+
+			cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
+			if (!cmd) {
+				fprintf(stderr, "Memory error\n");
+				exit(-1);
+			}
+
+			sprintf(cmd, "ffmpeg2theora --optimize \"%s\" -o \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, BNEMusicNames[i]);
+
+			ret = system(cmd);
+
+			free(cmd);
+			remove(buf);
+
+			if (ret != 0) {
+				printf("Can't convert wav sound %s to ogv format. Is ffmpeg2theora installed in PATH?\n", BNEMusicNames[i]);
+				fflush(stdout);
+			}
+
+			++count;
+		}
+	}
 
 	if (count == 0)
 		return 1;
@@ -1906,7 +1976,7 @@ int ConvertMusic(void)
 /**
 **  Convert SMK video to OGV
 */
-int ConvertVideo(const char* file, int video)
+int ConvertVideo(const char* file, int video, bool justconvert = false)
 {
 	unsigned char* vidp;
 	char buf[1024];
@@ -1915,23 +1985,25 @@ int ConvertVideo(const char* file, int video)
 	size_t l;
 	int ret;
 
-	vidp = ExtractEntry(ArchiveOffsets[video], &l);
-
 	sprintf(buf,"%s/%s.smk", Dir, file);
 	CheckPath(buf);
-	f = fopen(buf, "wb");
-	if (!f) {
-		perror("");
-		printf("Can't open %s\n", buf);
-		exit(-1);
-	}
-	if (l != fwrite(vidp, 1, l, f)) {
-		printf("Can't write %d bytes\n", (int)l);
-		fflush(stdout);
-	}
+	if (justconvert == false) {
+		vidp = ExtractEntry(ArchiveOffsets[video], &l);
 
-	free(vidp);
-	fclose(f);
+		f = fopen(buf, "wb");
+		if (!f) {
+			perror("");
+			printf("Can't open %s\n", buf);
+			exit(-1);
+		}
+		if (l != fwrite(vidp, 1, l, f)) {
+			printf("Can't write %d bytes\n", (int)l);
+			fflush(stdout);
+		}
+
+		free(vidp);
+		fclose(f);
+	}
 
 	cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 	if (!cmd) {
@@ -2285,6 +2357,9 @@ void FixTranslation(const char *translation)
 	
 	if (!stat(translation, &st)) {
 		FILE *iFile = fopen(translation, "rb");
+		if (iFile == NULL) {
+			return;
+		}
 		unsigned char *buf = new unsigned char[st.st_size];
 		unsigned char *p = buf;
 		while (!feof(iFile)) {
@@ -2293,8 +2368,11 @@ void FixTranslation(const char *translation)
 		fclose(iFile);
 
 		FILE *oFile = fopen(translation, "wb");
+		if (oFile == NULL) {
+			return;
+		}
 		p = buf;
-		for (size_t i = 0; i < st.st_size; ++i, ++p) {
+		for (long i = 0; i < st.st_size; ++i, ++p) {
 			unsigned char c = *p;
 			if (c >= 0x80) {
 				if (c >= 0xE0 && c < 0xF0) {
@@ -2516,6 +2594,12 @@ int main(int argc, char** argv)
 	} else {
 		expansion_cd = 1;
 	}
+	if (CDType & CD_BNE) {
+#ifndef USE_STORMLIB
+		printf("Please compile wartool with StormLib library to extract the data.\n");
+		exit(-1);
+#endif
+	}
 
 	printf("Extract from \"%s\" to \"%s\"\n", ArchiveDir, Dir);
 	printf("Please be patient, the data may take a couple of minutes to extract...\n");
@@ -2578,11 +2662,38 @@ int main(int argc, char** argv)
 					printf("Error - not a BNE disk\n");
 					exit(-1);
 				}
-#ifndef USE_STORMLIB
-				printf("Please compile wartool with StormLib library\n");
-				exit(-1);
-#else
-
+#ifdef USE_STORMLIB
+				char mpqfile[256];
+				char extract[256];
+				if (Todo[u].Arg1 == 1) { // local archive
+					sprintf(mpqfile, "%s/%s", Dir, Todo[u].MPQFile);
+					printf("%s from MPQ file \"%s\"\n", Todo[u].ArcFile, mpqfile);
+				} else {
+					sprintf(mpqfile, "%s/%s", ArchiveDir, Todo[u].MPQFile);
+					printf("MPQ file \"%s\"\n", mpqfile);
+				}
+				sprintf(extract, "%s/%s", Dir, Todo[u].File);
+				if (Todo[u].Arg2 == 1) { // compress
+					sprintf(extract, "%s.gz", extract);
+				}
+				if (Todo[u].Arg2 == 2) { // video file
+					sprintf(extract, "%s.smk", extract);
+				}
+				if (Todo[u].Arg2 == 8 && !rip) { // wav audio
+					continue;
+				}
+				
+				if (ExtractMPQFile(mpqfile, (char*)Todo[u].ArcFile, extract, Todo[u].Arg2 == 1)) {
+					printf("Failed to extract \"%s\"\n", (char*)Todo[u].ArcFile);
+				}
+				if (Todo[u].Arg2 == 2) { // convert videos
+					if (video) {
+						ConvertVideo(Todo[u].File, Todo[u].Arg1, true);
+					}
+				}
+				if (Todo[u].Arg2 == 4) { // convert videos
+					ConvertPud(Todo[u].File, 0, true);
+				}
 #endif
 				break;
 			case R:
@@ -2646,7 +2757,7 @@ int main(int argc, char** argv)
 
 	CopyMusic();
 
-	if (rip) {
+	if (rip && !(CDType & CD_BNE)) {
 		sprintf(buf, "%s/%s/", Dir, MUSIC_PATH);
 		CheckPath(buf);
 		rip = (RipMusic(expansion_cd, ArchiveDir, buf) == 0);
@@ -2676,6 +2787,7 @@ int main(int argc, char** argv)
 		exit(-1);
 	}
 
+	fprintf(f, "wargus.tales = false\n");
 	if (expansion_cd) {
 		fprintf(f, "wargus.expansion = true\n");
 	} else {
@@ -2685,6 +2797,11 @@ int main(int argc, char** argv)
 		fprintf(f, "wargus.music_extension = \".ogg\"\n");
 	} else {
 		fprintf(f, "wargus.music_extension = \".mid\"\n");
+	}
+	if (CDType & CD_BNE) {
+		fprintf(f, "wargus.bne = true\n");
+	} else {
+		fprintf(f, "wargus.bne = false\n");
 	}
 	fprintf(f, "wargus.game_font_width = %d\n", game_font_width);
 	fclose(f);

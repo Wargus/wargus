@@ -56,8 +56,12 @@ DefineCursor({
 --	* Mythic/human race
 --;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-wargus.playlist = { "music/Human Battle 1" .. wargus.music_extension, "music/Human Battle 2" .. wargus.music_extension, "music/Human Battle 3" .. wargus.music_extension,
- "music/Human Battle 4" .. wargus.music_extension, "music/Human Battle 5" .. wargus.music_extension }
+wargus.playlist = { "music/Orc Battle 1" .. wargus.music_extension, "music/Orc Battle 2" .. wargus.music_extension, "music/Orc Battle 3" .. wargus.music_extension,
+ "music/Orc Battle 4" .. wargus.music_extension, "music/Orc Battle 5" .. wargus.music_extension }
+
+if (wargus.bne == true) then
+	table.insert(wargus.playlist, "music/Orc Battle 6" .. wargus.music_extension)
+end
 
 function OrcScreen(screen_width, screen_height)
   local info_panel_x = 0

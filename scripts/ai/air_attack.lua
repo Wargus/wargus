@@ -169,5 +169,5 @@ local air_funcs = {
 
 function AiAirAttack() AiLoop(air_funcs, stratagus.gameData.AIState.index) end
 
-DefineAi("wc2-air-attack", "*", "wc2-air-attack", AiAirAttack)
+DefineAi("wc2-air-attack", "*", "wc2-skirmish", AiAirAttack)
 

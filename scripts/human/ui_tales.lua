@@ -59,6 +59,10 @@ DefineCursor({
 wargus.playlist = { "music/Human Battle 1" .. wargus.music_extension, "music/Human Battle 2" .. wargus.music_extension, 
 	"music/Human Battle 3" .. wargus.music_extension, "music/Human Battle 4" .. wargus.music_extension, "music/Human Battle 5" .. wargus.music_extension}
 
+if (wargus.bne == true) then
+	table.insert(wargus.playlist, "music/Human Battle 6" .. wargus.music_extension)
+end
+
 function HumanScreen(screen_width, screen_height)
   local info_panel_x = 0
   local info_panel_y = Video.Height - 136 - 24 - 16

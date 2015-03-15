@@ -422,6 +422,7 @@ bool PudData::Parse(const unsigned char *puddata, size_t size)
 		} else if (!strcmp(header, "SQM ")) { // movement map
 		} else if (!strcmp(header, "OILM")) { // oil map
 		} else if (!strcmp(header, "REGM")) { // action map
+		} else if (!strcmp(header, "SIGN")) {
 		} else if (!strcmp(header, "UNIT")) {
 			pdata.Units.resize(len / 8);
 
