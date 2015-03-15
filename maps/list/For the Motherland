@@ -272,7 +272,7 @@ function NewRunSinglePlayerGameMenu()
       GameSettings.Resources = resources:getSelected()
       GameSettings.Opponents = opponents:getSelected()
       GameSettings.NumUnits = numunits:getSelected()
-      GameSettings.GameType = gametype:getSelected() - 1
+      GameSettings.GameType = gametype:getSelected() + 100
       GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
 	  IsSkirmishClassic = true
       RunMap(mapname, nil, wc2.preferences.FogOfWar, false)

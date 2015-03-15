@@ -10,7 +10,7 @@
 --
 --      network.lua - Define the menu for network game.
 --
---      (c) Copyright 2005-2014 by François Beerten, Jimmy Salmon, Pali Rohár
+--      (c) Copyright 2005-2015 by François Beerten, Jimmy Salmon, Pali Rohár
 --								   and Cybermind.
 --
 --      This program is free software; you can redistribute it and/or modify
@@ -135,6 +135,8 @@ function RunJoiningMapMenu(s)
   local fow = menu:addImageCheckBox(_("Fog of war"), sx, sy*3+120, offi, offi2, oni, oni2, function() end)
   fow:setMarked(true)
   ServerSetupState.FogOfWar = 1
+  ServerSetupState.Opponents = 15
+  GameSettings.Opponents = 15
   fow:setEnabled(false)
   local revealmap = menu:addImageCheckBox(_("Reveal map"), sx, sy*3+150, offi, offi2, oni, oni2, function() end)
   revealmap:setEnabled(false)
@@ -445,6 +447,8 @@ local function RunServerMultiGameMenu(map, description, numplayers)
   NetworkMapName = map
   NetworkInitServerConnect(numplayers)
   ServerSetupState.FogOfWar = 1
+  ServerSetupState.Opponents = 15
+  GameSettings.Opponents = 15
   local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11,  sy*14,
     function(s)
       SetFogOfWar(fow:isMarked())

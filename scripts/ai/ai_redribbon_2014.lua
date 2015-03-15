@@ -326,6 +326,37 @@ function AiRedRibbon_Diplomacy_2014(a, b)
 	end
 end
 
+function AiRedRibbon_Pickers_Add_2014(a, b)
+	if (b == nil) then
+		if (a ~= nil) then
+			b = a
+		else
+			a = 8
+			b = 15
+		end
+	end
+	for i=a,b do
+		if (GetPlayerData(i, "Name") ~= "Neutral") then
+			if ((GetPlayerData(i, "RaceName") == "orc")) then
+				CreateUnit("unit-caanoo-wiseskeleton", i, {ftm_team_startx[i], ftm_team_starty[i]})
+			else
+				CreateUnit("unit-caanoo-wiseman", i, {ftm_team_startx[i], ftm_team_starty[i]})
+			end
+		end
+	end
+	
+	
+	--ftm_team_startx[i]
+	--ftm_team_starty[i]
+	
+	
+	--CreateUnit("unit-caanoo-wiseman", 14, {45, 47})
+	--CreateUnit("unit-caanoo-wiseman", 9, {43, 47})
+	--CreateUnit("unit-caanoo-wiseskeleton", 10, {44, 47})
+	--CreateUnit("unit-caanoo-wiseskeleton", 8, {46, 47})
+	--CreateUnit("unit-caanoo-wiseskeleton", 13, {95, 95})
+end
+
 function AiRedRibbon_Common_2014()
 	AiRed_Resources_2014(ftm_choice[AiPlayer()], 100, 50, 50)
 	if ((timers[AiPlayer()] == 35) or (timers[AiPlayer()] == 85)) then

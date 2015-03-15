@@ -33,8 +33,6 @@ SetPlayerFtM2014(1, "man", "Defenders", 10000, 10000, 10000, 43, 47, 1, 15, 0, 0
 SetPlayerFtM2014(2, "orc", "Defenders", 10000, 10000, 10000, 44, 47, 81, 95, 0, 0, 96, 96)
 SetPlayerFtM2014(5, "orc", "Attackers", 10000, 10000, 10000, 93, 93, 66, 80, 0, 0, 96, 96, 8, "ai_redribbon_survival_2014", "ai_red_2014")
 SetPlayerFtM2014(6, "man", "Defenders", 10000, 10000, 10000, 45, 47, 31, 45, 0, 0, 96, 96)
-AiRedRibbon_Diplomacy_2014(0, 14)
-AiRedRibbon_Diplomacy_Neutral_2014(0, 14, 15)
 
 -- load tilesets
 LoadTileModels("scripts/tilesets/wasteland.lua")
@@ -9294,10 +9292,6 @@ unit = CreateUnit("unit-yeoman", 6, {29, 46})
 unit = CreateUnit("unit-yeoman", 6, {29, 46})
 unit = CreateUnit("unit-yeoman", 6, {29, 46})
 unit = CreateUnit("unit-yeoman", 6, {29, 46})
-unit = CreateUnit("unit-caanoo-wiseman", 14, {45, 47})
-unit = CreateUnit("unit-caanoo-wiseman", 9, {43, 47})
-unit = CreateUnit("unit-caanoo-wiseskeleton", 10, {44, 47})
-unit = CreateUnit("unit-caanoo-wiseskeleton", 8, {46, 47})
 unit = CreateUnit("unit-great-hall", 2, {58, 44})
 unit = CreateUnit("unit-nomad", 2, {58, 44})
 unit = CreateUnit("unit-nomad", 2, {58, 44})
@@ -9403,11 +9397,22 @@ AiRed_Strategy_2014(13, 1, 20, 1, "unit-skeleton", "unit-ogre", "unit-ogre", "un
 
 -- AiRed Player 14, White
 AiRed_Strategy_2014(14, 2, 9, 1, "unit-peasant", "unit-ranger", "unit-attack-peasant", "unit-footman", "unit-archer", "unit-footman", "unit-archer", "unit-footman", "unit-archer", "unit-yeoman")
+
+if (not IsNetworkGame()) then
+	AiRedRibbon_Diplomacy_2014(0, 14)
+	AiRedRibbon_Diplomacy_Neutral_2014(0, 14, 15)
+	AiRedRibbon_Pickers_Add_2014(8, 14)
+end
+
 Triggers = [[
 AddTrigger(
-	function() return (GameCycle == 5) end,
-	function()	CreateUnit("unit-caanoo-wiseskeleton", 13, {95, 95})
-return false end)
+	function() return (IsNetworkGame()) end, 
+	function()	if (GameCycle == 5) then
+					AiRedRibbon_Diplomacy_2014(0, 14)
+					AiRedRibbon_Diplomacy_Neutral_2014(0, 14, 15)
+					AiRedRibbon_Pickers_Add_2014(8, 14)
+				end
+return true end)
 
 AddTrigger(
 	function() return (GameCycle > 800) end, 
@@ -9419,3 +9424,4 @@ AddTrigger(
 return true end)
 ]]
 assert(loadstring(Triggers))()
+

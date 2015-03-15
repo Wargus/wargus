@@ -25,5 +25,5 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
-DefinePlayerTypes("computer", "computer", "computer", "nobody", "nobody", "computer", "computer", "nobody", "person", "person", "person", "nobody", "nobody", "person", "computer")
+DefinePlayerTypes("computer", "computer", "computer", "nobody", "nobody", "computer", "computer", "nobody", "person", "person", "person", "nobody", "nobody", "nobody", "person", "computer")
 PresentMap("Coastal Crusade", 1, 96, 96, 8)
