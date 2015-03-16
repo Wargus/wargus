@@ -1,4 +1,4 @@
-wargus (2.3.0.1) unstable; urgency=low
+wargus (2.3.0-1) unstable; urgency=low
 
   * Game
    - Merge Wargus with Aleona's Tales (if you don't have WC2 data, wargus will install AT data)
