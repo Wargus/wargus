@@ -278,7 +278,7 @@ install(TARGETS pudconvert wartool DESTINATION ${BINDIR})
 install(FILES wargus.png DESTINATION ${ICONDIR})
 install(FILES "${PROJECT_BINARY_DIR}/wargus.desktop" DESTINATION ${DESKTOPDIR})
 
-install(DIRECTORY campaigns maps scripts DESTINATION ${SHAREDIR})
+install(DIRECTORY campaigns graphics maps mods music scripts sounds DESTINATION ${SHAREDIR})
 install(FILES contrib/red_cross.png DESTINATION ${SHAREDIR}/graphics/missiles)
 install(FILES contrib/cross.png DESTINATION ${SHAREDIR}/graphics/ui/cursors)
 install(FILES contrib/food.png contrib/health.png contrib/health2.png contrib/mana.png contrib/mana2.png contrib/ore,stone,coal.png contrib/score.png DESTINATION ${SHAREDIR}/graphics/ui)
