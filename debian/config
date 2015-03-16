@@ -27,7 +27,6 @@ fi
 db_reset wargus/extractdata || true
 db_fset wargus/extractdata seen false || true
 db_fset wargus/cdpath seen false || true
-db_fset wargus/extractmidi seen false || true
 db_fset wargus/extractvideo seen false || true
 db_fset wargus/ripcd seen false || true
 
@@ -45,7 +44,6 @@ while true; do
 
 	db_beginblock || true
 	db_input critical wargus/cdpath || true
-	db_input medium wargus/extractmidi || true
 	db_input medium wargus/extractvideo || true
 	db_input medium wargus/ripcd || true
 	db_endblock || true
@@ -54,7 +52,7 @@ while true; do
 	found="false"
 	db_get wargus/cdpath || true
 	for CDPATH in "$RET" "$RET/data" "$RET/DATA"; do
-		if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ]; then
+		if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ] || [ -f "$CDPATH/SUPPORT/TOMES/TOME.1" ]; then
 			db_set wargus/cdpath $CDPATH || true
 			found="true"
 			break
