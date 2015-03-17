@@ -14,6 +14,7 @@ Package: wargus
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: cdparanoia, ffmpeg2theora
+Recommends: musescore-soundfont-gm
 Description: Warcraft II data game set for the Stratagus engine
  Wargus can be used to play Warcraft II from Blizzard Entertainment.
  .

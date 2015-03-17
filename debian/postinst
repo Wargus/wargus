@@ -36,6 +36,9 @@ extract() {
         echo $ARGS
         echo "$CDPATH"
 	wartool $ARGS "$CDPATH" /usr/share/games/stratagus/wargus
+	if [ $(dpkg-query -W -f='${Status}' musescore-soundfont-gm 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
+		cp /usr/share/sounds/sf2/TimGM6mb.sf2 /usr/share/games/stratagus/wargus/music
+	fi
 	return $?
 
 }

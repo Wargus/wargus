@@ -1,6 +1,7 @@
 This work was packaged for Debian by:
 
     Pali Rohár <pali.rohar@gmail.com> on Mon, 08 Aug 2011 19:49:46 +0200
+    cybermind <iddqd_mail@mail.ru>  Mon, 16 Mar 2015 18:51:27 +0500
 
 It was downloaded from:
 
@@ -37,6 +38,7 @@ License:
 The Debian packaging is:
 
     Copyright (C) 2010-2011 Pali Rohár <pali.rohar@gmail.com>
+    Copyright (C) 2015 cybermind <iddqd_mail@mail.ru>
 
 and is licensed under the GPL version 2,
 see "/usr/share/common-licenses/GPL-2".
