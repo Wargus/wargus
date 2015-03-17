@@ -205,7 +205,7 @@ endif()
 if(WITH_STORMLIB AND STORMLIB_FOUND)
 	add_definitions(-DUSE_STORMLIB ${STORMLIB_DEFINITIONS})
 	include_directories(${STORMLIB_INCLUDE_DIR})
-	set(wartool_LIBS ${wartool_LIBS} ${STORMLIB_LIBRARY})
+	set(wartool_LIBS ${wartool_LIBS} ${STORMLIB_LIBRARY} ${BZIP2_LIBRARIES})
 endif()
 
 # Compile Wargus
