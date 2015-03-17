@@ -16586,8 +16586,6 @@ unit = CreateUnit("unit-peon", 0, {50, 115})
 unit = CreateUnit("unit-peon", 0, {49, 115})
 unit = CreateUnit("unit-gryphon-aviary", 1, {21, 249})
 unit = CreateUnit("unit-dragon-roost", 0, {7, 7})
-unit = CreateUnit("unit-caanoo-wiseman", 3, {36, 8})
-unit = CreateUnit("unit-caanoo-wiseskeleton", 2, {37, 248})
 
 AiRedRibbon_Setup_2014()
 
@@ -16595,9 +16593,6 @@ ftm_faction[0] = "Pechka"
 ftm_faction[1] = "Pechenka"
 ftm_faction[2] = "Pechenka"
 ftm_faction[3] = "Pechka"
-
-AiRedRibbon_Diplomacy_2014(0, 3)
-AiRedRibbon_Diplomacy_Neutral_2014(0, 3, 15)
 
 ftm_team[0] = 0
 ftm_team[1] = 1
@@ -16691,3 +16686,30 @@ ftm_team_startx[3] = 36
 ftm_team_starty[3] = 8
 
 AiRed_Strategy_Alliance_Mass_2014(3)
+
+if (not IsNetworkGame()) then
+	AiRedRibbon_Diplomacy_2014(0, 14)
+	AiRedRibbon_Diplomacy_Neutral_2014(0, 14, 15)
+	AiRedRibbon_Pickers_Add_2014(2, 3)
+end
+
+Triggers = [[
+AddTrigger(
+	function() return (IsNetworkGame()) end, 
+	function()	if (GameCycle == 5) then
+					AiRedRibbon_Diplomacy_2014(0, 14)
+					AiRedRibbon_Diplomacy_Neutral_2014(0, 14, 15)
+					AiRedRibbon_Pickers_Add_2014(8, 14)
+				end
+return true end)
+
+AddTrigger(
+	function() return (GameCycle > 800) end, 
+	function()	if ((GetPlayerData(ftm_team[GetThisPlayer()], "TotalNumUnits") == 0) and (GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0)) then
+					ActionDefeat() 
+				elseif (GetNumOpponents(GetThisPlayer()) == 0) then
+					ActionVictory() 
+				end
+return true end)
+]]
+assert(loadstring(Triggers))()
