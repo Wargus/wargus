@@ -32,35 +32,62 @@
 
 local jadeite_stepping = {} -- Used to identify where the build order is up to.
 
+function AiJadeite_Intermittent_2010()
+	AiJadeite_Clear_Build_2010()
+	if ((GameCycle < 1000) and (jadeite_stepping[AiPlayer()] ~= 5)) then
+		jadeite_stepping[AiPlayer()] = 5
+	elseif (((GameCycle > 4000) and (GameCycle < 4050)) or ((GameCycle > 6000) and (GameCycle < 6050)) or ((GameCycle > 8000) and (GameCycle < 8050)) or ((GameCycle > 10000) and (GameCycle < 10050)) or ((GameCycle > 15000) and (GameCycle < 15050)) or ((GameCycle > 20000) and (GameCycle < 20050)) or ((GameCycle > 25000) and (GameCycle < 25050)) or ((GameCycle > 30000) and (GameCycle < 30050)) or ((GameCycle > 40000) and (GameCycle < 40050)) or ((GameCycle > 50000) and (GameCycle < 50050)) or ((GameCycle > 60000) and (GameCycle < 60050)) or ((GameCycle > 70000) and (GameCycle < 70050)) or ((GameCycle > 80000) and (GameCycle < 80050)) or ((GameCycle > 90000) and (GameCycle < 90050)) or ((GameCycle > 100000) and (GameCycle < 100050)) or ((GameCycle > 110000) and (GameCycle < 120050)) or ((GameCycle > 130000) and (GameCycle < 130050)) or ((GameCycle > 140000) and (GameCycle < 140050)) or ((GameCycle > 150000) and (GameCycle < 150050)) or ((GameCycle > 160000) and (GameCycle < 160050))) then
+		jadeite_stepping[AiPlayer()] = SyncRand(6)
+		AiNephrite_Attack_2013("force")
+		if (jadeite_stepping[AiPlayer()] == 1) then
+			jadeite_stepping[AiPlayer()] = SyncRand(6)
+		end
+		AiNephrite_Attack_2013("force")
+	end
+end
+
 function AiJadeite_2010()
 	-- Setting up the variables.
+	if (GameCycle < 200) then
+		SetPlayerData(AiPlayer(), "Name", "Jadeite")
+	end
 	if (jadeite_stepping[AiPlayer()] ~= nil) then
 		if (jadeite_stepping[AiPlayer()] == 1) then
 			-- Standard air attack build.
 			AiJadeite_Flyer_2010()
-		end
-		if (jadeite_stepping[AiPlayer()] == 2) then
+				AddMessage("One")
+		elseif (jadeite_stepping[AiPlayer()] == 2) then
 			-- Standard footsoldier build.
 			AiJadeite_Soldier_2010()
-		end
-		if (jadeite_stepping[AiPlayer()] == 3) then
+				AddMessage("two")
+		elseif (jadeite_stepping[AiPlayer()] == 3) then
 			-- Standard knight build.
 			AiJadeite_Cavalry_2010()
-		end
-		if (jadeite_stepping[AiPlayer()] == 4) then
+				AddMessage("three")
+		elseif (jadeite_stepping[AiPlayer()] == 4) then
 			-- Standard archer build.
 			AiJadeite_Shooter_2010()
-		end
-		if (jadeite_stepping[AiPlayer()] == 5) then
+				AddMessage("four")
+		elseif (jadeite_stepping[AiPlayer()] == 5) then
 			-- One Hall Power to Keep/Stronghold 
 			AiJadeite_Power_2010()
+				AddMessage("five")
+		elseif (jadeite_stepping[AiPlayer()] == 6) then
+			-- Peasant build.
+			AiJadeite_Worker_2010()
+				AddMessage("six")
+		else
+			AddMessage("shit")
+			jadeite_stepping[AiPlayer()] = SyncRand(5)
 		end
 	else
 		jadeite_stepping[AiPlayer()] = SyncRand(5)
+		SetPlayerData(AiPlayer(), "Name", "Jadeite")
     end
 end
 
 function AiJadeite_Worker_2010()
+	AiJadeite_Intermittent_2010()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 		AiSet(AiWorker(), 20)
 	else
@@ -69,6 +96,7 @@ function AiJadeite_Worker_2010()
 end
 
 function AiJadeite_Power_2010()
+	AiJadeite_Intermittent_2010()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFarm()) >= 1) then
 			AiSet(AiWorker(), 8)
@@ -144,6 +172,7 @@ function AiJadeite_Power_2010()
 end
 		
 function AiJadeite_Shooter_2010()
+	AiJadeite_Intermittent_2010()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 5) then
 		AiSet(AiWorker(), 8)
 	end
@@ -191,6 +220,7 @@ function AiJadeite_Shooter_2010()
 end
 
 function AiJadeite_Cavalry_2010()
+	AiJadeite_Intermittent_2010()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 5) then
 		AiSet(AiWorker(), 8)
 	end
@@ -224,7 +254,6 @@ function AiJadeite_Cavalry_2010()
 								end
 							end
 						else
-							--AiSet(AiSoldier(), 1)
 							AiSet(AiCavalry(), 4)
 						end
 					else
@@ -244,8 +273,8 @@ function AiJadeite_Cavalry_2010()
 	end
 end
 
-
 function AiJadeite_Soldier_2010()
+	AiJadeite_Intermittent_2010()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 5) then
 		AiSet(AiWorker(), 8)
 	end
@@ -276,6 +305,7 @@ function AiJadeite_Soldier_2010()
 end
 
 function AiJadeite_Flyer_2010()
+	AiJadeite_Intermittent_2010()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiAirport()) >= 1) then
 		AiSet(AiAirport(), 3)
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) <= 3) then
@@ -297,7 +327,10 @@ function AiJadeite_Flyer_2010()
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) >= 1) then
 							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
 								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) then
-									AiSet(AiAirport(), 1)
+									if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiAirport()) >= 1) then
+									else
+										AiSet(AiAirport(), 1)
+									end
 								else
 									AiUpgradeTo(AiBestCityCenter())
 								end
@@ -323,10 +356,26 @@ function AiJadeite_Flyer_2010()
 	end
 end
 
-DefineAi("ai_jadeite_2010", "*", "ai_jadeite_2010", AiJadeite_2010)
-DefineAi("ai_jadeite_soldier_2010", "*", "ai_jadeite_soldier_2010", AiJadeite_Soldier_2010)
-DefineAi("ai_jadeite_cavalry_2010", "*", "ai_jadeite_cavalry_2010", AiJadeite_Cavalry_2010)
-DefineAi("ai_jadeite_shooter_2010", "*", "ai_jadeite_shooter_2010", AiJadeite_Shooter_2010)
-DefineAi("ai_jadeite_worker_2010", "*", "ai_jadeite_worker_2010", AiJadeite_Worker_2010)
-DefineAi("ai_jadeite_power_2010", "*", "ai_jadeite_power_2010", AiJadeite_Power_2010)
-DefineAi("ai_jadeite_flyer_2010", "*", "ai_jadeite_flyer_2010", AiJadeite_Flyer_2010)
+function AiJadeite_Clear_Build_2010()
+	AiSet(AiCatapult(), 0)
+	AiSet(AiFlyer(), 0)
+	AiSet(AiFarm(), 0)
+	AiSet(AiWorker(), 0)
+	AiSet(AiSoldier(), 0)
+	AiSet(AiCavalry(), 0)
+	AiSet(AiTemple(), 0)
+	AiSet(AiStables(), 0)
+	AiSet(AiBlacksmith(), 0)
+	AiSet(AiShooter(), 0)
+	AiSet(AiBarracks(), 0)
+	AiSet(AiLumberMill(), 0)
+	AiSet(AiCityCenter(), 0)
+end
+
+DefineAi("ai_jadeite_2010", "*", "wc2-skirmish", AiJadeite_2010)
+DefineAi("ai_jadeite_soldier_2010", "*", "wc2-skirmish", AiJadeite_Soldier_2010)
+DefineAi("ai_jadeite_cavalry_2010", "*", "wc2-skirmish", AiJadeite_Cavalry_2010)
+DefineAi("ai_jadeite_shooter_2010", "*", "wc2-skirmish", AiJadeite_Shooter_2010)
+DefineAi("ai_jadeite_worker_2010", "*", "", AiJadeite_Worker_2010)
+DefineAi("ai_jadeite_power_2010", "*", "wc2-skirmish", AiJadeite_Power_2010)
+DefineAi("ai_jadeite_flyer_2010", "*", "wc2-skirmish", AiJadeite_Flyer_2010)

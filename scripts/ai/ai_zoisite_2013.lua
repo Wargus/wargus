@@ -50,6 +50,9 @@ function AiZoisite_2013()
 			end
 		end
 	end
+	if (GameCycle < 200) then
+		SetPlayerData(AiPlayer(), "Name", "Zoisite")
+	end
 end
 
-DefineAi("ai_zoisite_2013", "*", "ai_zoisite_2013", AiZoisite_2013)
+DefineAi("ai_zoisite_2013", "*", "wc2-skirmish", AiZoisite_2013)
