@@ -501,7 +501,7 @@ int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName, 
 
 	// Open an archive, e.g. "d2music.mpq"
 	if(nError == ERROR_SUCCESS) {
-		if(!SFileOpenArchive(szArchiveName, 0, STREAM_FLAG_READ_ONLY | MPQ_OPEN_FORCE_MPQ_V1, &hMpq))
+		if(!SFileOpenArchive(szArchiveName, 0, STREAM_FLAG_READ_ONLY, &hMpq))
 			nError = GetLastError();
 	}
 
@@ -536,7 +536,7 @@ int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName, 
 				}
 			}
 		}
-	}        
+	}
 
 	// Cleanup and exit
 	if(file != NULL) {
@@ -1395,7 +1395,7 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 	} else {
 		count -= 32;
 	}
-	
+
 	max_width = FetchByte(bp);
 	max_height = FetchByte(bp);
 
@@ -2044,13 +2044,13 @@ unsigned char *ConvertString(unsigned char *buf, size_t len)
 	if (len == 0) {
 		len = strlen((char *)buf);
 	}
-		
+
 	str = (unsigned char *)malloc(2 * len + 1);
 	p = str;
 
 	for (i = 0; i < len; ++i, ++buf) {
 		if (*buf > 0x7f) {
-			if (CDType & (CD_RUSSIAN)) { 
+			if (CDType & (CD_RUSSIAN)) {
 				// Special cp866 hack for SPK version
 				*p++ = 0xc2;
 				if (*buf >= 0xE0 && *buf < 0xF0) {
@@ -2354,7 +2354,7 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 void FixTranslation(const char *translation)
 {
 	struct stat st;
-	
+
 	if (!stat(translation, &st)) {
 		FILE *iFile = fopen(translation, "rb");
 		if (iFile == NULL) {
@@ -2633,7 +2633,7 @@ int main(int argc, char** argv)
 		}
 		switch (Todo[u].Type) {
 			case F:
-				if (CDType & CD_BNE) { 
+				if (CDType & CD_BNE) {
 					for (int i = 0; i < sizeof(BNEReplaceTable) / sizeof(*BNEReplaceTable) ; i += 2) {
 						if (!strcmp(BNEReplaceTable[i], Todo[u].File)) {
 							Todo[u].File = BNEReplaceTable[i + 1];
@@ -2682,7 +2682,7 @@ int main(int argc, char** argv)
 				if (Todo[u].Arg2 == 8 && !rip) { // wav audio
 					continue;
 				}
-				
+
 				if (ExtractMPQFile(mpqfile, (char*)Todo[u].ArcFile, extract, Todo[u].Arg2 == 1)) {
 					printf("Failed to extract \"%s\"\n", (char*)Todo[u].ArcFile);
 				}
