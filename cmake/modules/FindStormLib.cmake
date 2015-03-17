@@ -10,7 +10,7 @@
 # Redistribution and use is allowed according to the terms of the BSD license.
 # For details see the accompanying COPYING-CMAKE-SCRIPTS file.
 
-if(STORMLIB_INCLUDE_DIR AND STORMLIB_LIBRARY)
+if(STORMLIB_INCLUDE_DIR AND STORMLIB_LIBRARY AND (NOT UNIX OR BZIP2_FOUND))
 	set(STORMLIB_FOUND true)
 else()
 	find_path(STORMLIB_INCLUDE_DIR StormLib.h)
@@ -19,10 +19,10 @@ else()
 		find_package(BZip2)
 	endif()
 
-	if(STORMLIB_INCLUDE_DIR AND STORMLIB_LIBRARY AND (not UNIX OR BZIP2_FOUND))
+	if(STORMLIB_INCLUDE_DIR AND STORMLIB_LIBRARY AND (NOT UNIX OR BZIP2_FOUND))
 		set(STORMLIB_FOUND true)
 		message(STATUS "Found StormLib: ${STORMLIB_LIBRARY}")
-	elseif(UNIX AND not BZIP2_FOUND)
+	elseif(UNIX AND NOT BZIP2_FOUND)
 		set(STORMLIB_FOUND false)
 		message(STATUS "Could not find BZip2 required for StormLib")
 	else()
