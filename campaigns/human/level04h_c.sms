@@ -86,6 +86,7 @@ local hum_04_funcs = {
 	function() return AiForce(2, {AiTransporter(), 2, AiSoldier(), 5, AiShooter(), 5}) end,
 	function() return AiWaitForce(1) end,
 	function() return AiWaitForce(2) end,
+	function() return AiSleep(4000) end,
 	function() DebugMessage("Attacking..."); AiAttackWithForce(1); AiAttackWithForce(2); return false; end,
     function() return AiSleep(27000) end,
     function() return AiLoop(hum_04_loop_funcs, stratagus.gameData.AIState.loop_index) end,

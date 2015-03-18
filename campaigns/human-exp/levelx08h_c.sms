@@ -189,6 +189,7 @@ local hum_exp_08c_funcs = {
 	
 	function() return AiForce(1, {AiDestroyer(), 2, AiBattleship(), 1}) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	
 	function() return AiSet(AiWorker(), 12) end,

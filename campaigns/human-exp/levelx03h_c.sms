@@ -92,6 +92,7 @@ local hum_exp_03a_funcs = {
 	function() return AiSet(AiWorker(), 7) end,
 	function() return AiForce(0, {AiSoldier(), 2, AiShooter(), 2, AiCavalry(), 2}) end,
 	function() return AiForce(1, {AiSoldier(), 4, AiShooter(), 4, AiCavalry(), 3, AiCatapult(), 1}) end,
+	function() return AiSleep(2000) end,
 	function() return AiWaitForce(1) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	

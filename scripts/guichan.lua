@@ -767,6 +767,9 @@ function RunMap(map, objective, fow, revealmap)
     if GameSettings.RevealMap == 1 then
        RevealMap()
     end
+	if GameSettings.RevealMap == 0 and not IsNetworkGame() then
+		SetFogOfWar(wc2.preferences.FogOfWar)
+	end
     StartMap(map)
     if GameResult ~= GameRestart then
       loop = false

@@ -69,6 +69,7 @@ local orc_exp_06a_funcs = {
 	function() return AiNeed(AiBlacksmith()) end,
 	function() return AiForce(1, {AiSoldier(), 5, AiShooter(), 4}) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(1500) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	
 	function() return AiResearch(AiUpgradeArmor1()) end,
@@ -76,6 +77,7 @@ local orc_exp_06a_funcs = {
 	function() return AiWait(AiBetterCityCenter()) end,
 	function() return AiForce(1, {AiSoldier(), 5, AiShooter(), 4}) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	
 	function() return AiResearch(AiUpgradeWeapon1()) end,

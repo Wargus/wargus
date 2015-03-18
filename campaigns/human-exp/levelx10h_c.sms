@@ -100,6 +100,7 @@ local hum_exp_10a_funcs = {
 	
 	function() return AiForce(1, {AiFlyer(), 1}) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(1000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	
 	function() return AiResearch(AiUpgradeWeapon1()) end,
@@ -135,10 +136,12 @@ local hum_exp_10b_funcs = {
 	function() return AiWait(AiWorker()) end,
 	function() return AiForce(1, {AiSoldier(), 8, AiShooter(), 7}) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	
 	function() return AiForce(1, {AiSoldier(), 5, AiShooter(), 5, AiCatapult(), 2}, true) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	
 	function() return AiLoop(hum_exp_10b_loop_funcs, stratagus.gameData.AIState.loop_index) end,
@@ -179,9 +182,11 @@ local hum_exp_10c_funcs = {
 	function() return AiForce(0, {AiScout(), 1}) end,
 	function() return AiForce(1, {AiSoldier(), 3, AiShooter(), 4, AiCavalry(), 4, AiCatapult(), 1}) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	function() return AiForce(1, {AiSoldier(), 3, AiShooter(), 4, AiCavalry(), 4, AiCatapult(), 1}) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	
 	function() return AiLoop(hum_exp_10c_loop_funcs, stratagus.gameData.AIState.loop_index) end,

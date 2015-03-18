@@ -67,6 +67,7 @@ local orc_exp_02_funcs = {
 	function() return AiWait(AiWorker()) end,
 	
 	function() return AiForce(1, {AiSoldier(), 8, AiShooter(), 7}) end,
+	function() return AiSleep(3000) end,
 	function() return AiWaitForce(1) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	
@@ -86,6 +87,7 @@ local orc_exp_02_funcs = {
 	function() return AiNeed(AiBarracks()) end,
 	
 	function() return AiForce(1, {AiSoldier(), 5, AiShooter(), 5, AiCatapult(), 2}, true) end,
+	function() return AiSleep(3000) end,
 	function() return AiWaitForce(1) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	

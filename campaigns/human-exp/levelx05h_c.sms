@@ -98,6 +98,7 @@ local hum_exp_05b_funcs = {
 	function() return AiWait(AiBetterCityCenter()) end,
 	function() return AiForce(1, {AiSoldier(), 2, AiShooter(), 1}) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(1000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 
 	function() return AiSleep(2000) end,

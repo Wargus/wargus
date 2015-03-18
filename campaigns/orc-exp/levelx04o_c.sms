@@ -62,6 +62,7 @@ local orc_exp_04_funcs = {
 	
 	function() return AiSet(AiWorker(), 7) end,	
 	function() return AiForce(1, {AiSoldier(), 5}) end,
+	function() return AiSleep(1000) end,
 	function() return AiWaitForce(1) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	

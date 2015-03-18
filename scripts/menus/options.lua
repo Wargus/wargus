@@ -285,6 +285,16 @@ function RunPreferencesMenu()
 	end)
   deselectInMine:setMarked(wc2.preferences.DeselectInMine)
   
+  local fogOfWar
+  if (not IsNetworkGame()) then
+	  fogOfWar = menu:addImageCheckBox(_("For of War"), 10, 10 + 18 * 12, offi, offi2, oni, oni2, function() end)
+	  fogOfWar:setActionCallback(
+		function()
+			SetFogOfWar(fogOfWar:isMarked())
+		end)
+	  fogOfWar:setMarked(wc2.preferences.FogOfWar)
+  end
+  
   local selectionStyleList = {"rectangle", "alpha-rectangle", "circle", "alpha-circle", "corners"}
   local selectionStyleList1 = {_("rectangle"), _("alpha-rectangle"), _("circle"), _("alpha-circle"), _("corners")}
   menu:addLabel(_("Selection style:"), 225, 28 + 19 * 0, Fonts["game"], false)
@@ -306,7 +316,10 @@ function RunPreferencesMenu()
   end)
   viewportMode:setSize(120, 16)
   
-  menu:addLabel(_("~!* - requires restart"), 10, 10 + 18 * 12, Fonts["game"], false)
+  menu:addLabel(_("~!*SF2 soundfont path :"), 10, 10 + 18 * 13, Fonts["game"], false)
+  local sf2SoundfontPath = menu:addTextInputField(Preference.SF2Soundfont, 10, 10 + 18 * 14, 200)
+  
+    menu:addLabel(_("~!* - requires restart"), 10, 10 + 18 * 16, Fonts["game"], false)
   
 	
   menu:addHalfButton("~!OK", "o", 206, 352 - 40,
@@ -321,6 +334,11 @@ function RunPreferencesMenu()
 	  wc2.preferences.PauseOnLeave = Preference.PauseOnLeave
 	  wc2.preferences.EnhancedEffects = enhancedEffects:isMarked()
 	  wc2.preferences.DeselectInMine = Preference.DeselectInMine
+	  Preference.SF2SoundFont = sf2SoundfontPath:getText()
+	  wc2.preferences.SF2SoundFont = sf2SoundfontPath:getText()
+	  if (not IsNetworkGame()) then
+		wc2.preferences.FogOfWar = fogOfWar:isMarked()
+	  end
 	  if Preference.ShowOrders > 0 then
 		wc2.preferences.ShowOrders = true
 	  else

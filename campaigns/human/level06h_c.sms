@@ -101,6 +101,7 @@ local hum_06_funcs = {
 	function() return AiWait(AiWorker()) end,
 	function() return AiForce(1, {AiSoldier(), 4, AiShooter(), 4}) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); AiAttackWithForce(1); return false; end,
 	function() return AiSleep(4000) end,
 	function() return AiForce(1, {AiSoldier(), 4, AiShooter(), 4}) end,

@@ -93,6 +93,7 @@ local hum_exp_10c_funcs = {
 	function() return AiForce(0, {AiScout(), 1}) end,
 	function() return AiForce(1, {AiSoldier(), 3, AiShooter(), 4, AiCavalry(), 4, AiCatapult(), 1}) end,
 	function() return AiWaitForce(1) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	function() return AiForce(1, {AiSoldier(), 3, AiShooter(), 4, AiCavalry(), 4, AiCatapult(), 1}) end,
 	function() return AiWaitForce(1) end,

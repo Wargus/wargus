@@ -10,7 +10,7 @@
 --
 --      ai.lua - Define the AI.
 --
---      (c) Copyright 2000-2014 by Lutz Sammer, Jimmy Salmon and Kyran Jackson.
+--      (c) Copyright 2000-2015 by Lutz Sammer, Jimmy Salmon, cybermind and Kyran Jackson.
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -881,7 +881,6 @@ function AiLoop(loop_funcs, indexes)
 		  SetSpeedUpgrade(AiPlayer(), 75)
 		  SetSpeedResearch(AiPlayer(), 75)
 	end
-	
 
 	while (true) do
 		local ret = loop_funcs[indexes[playerIndex]]()

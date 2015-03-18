@@ -211,6 +211,7 @@ local orc_exp_12d_funcs = {
 	
 	function() return AiForce(3, {AiFlyer(), 3}) end,
 	function() return AiWaitForce(3) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(3) end,
 	
 	function() return AiLoop(orc_exp_12d_loop_funcs, stratagus.gameData.AIState.loop_index) end,

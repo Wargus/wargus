@@ -519,7 +519,7 @@ Function .onInit
 	ReadRegStr $DATADIR HKLM "${REGKEY}" "DataDir"
 	StrCmp $DATADIR "" 0 +2
 
-	StrCpy $DATADIR "D:\"
+	StrCpy $DATADIR "D:"
 	!insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
 

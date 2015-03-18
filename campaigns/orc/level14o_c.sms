@@ -156,7 +156,7 @@ local orc_14_white_funcs = {
 	function() return AiWait(AiWorker()) end,
 	
 	function() return AiForce(2, {AiTransporter(), 1,  AiCavalry(), 2}) end,
-	function() return AiSleep(2000) end,
+	function() return AiSleep(3000) end,
 	function() return AiWaitForce(2) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
 	

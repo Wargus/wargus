@@ -162,7 +162,7 @@ function CreatePictureStep(bg, sound, title, text)
     SetPlayerData(GetThisPlayer(), "RaceName", CurrentCampaignRace)
     wargus.playlist = {}
     PlayMusic(sound)
-    local menu = WarMenu(nil, bg, false)
+    local menu = WarMenu(nil, bg, true)
     local offx = (Video.Width - 640) / 2
     local offy  = (Video.Height - 480) / 2
     menu:addLabel(title, offx + 320, offy + 240 - 67, Fonts["small-title"], true)

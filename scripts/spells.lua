@@ -277,8 +277,8 @@ DefineSpell("spell-invisibility",
 		"Invisible", {MaxValue = 10}},
 	"sound-when-cast", "invisibility",
 	"depend-upgrade", "upgrade-invisibility",
-	"autocast", {"range", 6, "condition", {"AirUnit", "only"}},
-	"ai-cast", {"range", 6, "condition", {"AirUnit", "only"}}
+	"autocast", {"range", 6, "condition", {"AirUnit", "only", "alliance", "only"}},
+	"ai-cast", {"range", 6, "combat", "false", "condition", {"LandUnit", "false", "alliance", "only"}}
 )
 
 local function SpellUnholyArmor(spell, unit, x, y, target)
@@ -378,7 +378,7 @@ local function SpellBlizzard(units)
 				enemy = i
 			end
 		end
-		if (costs[enemy] > 0) then
+		if (costs[enemy] > 20) then
 			local x = GetUnitVariable(units[enemy], "PosX")
 			local y = GetUnitVariable(units[enemy], "PosY")
 			x = x + math.floor(UnitManager:GetSlotUnit(units[enemy]).Type.TileWidth / 2)
