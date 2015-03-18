@@ -420,13 +420,6 @@ if (wc2.preferences.ShowButtonPopups) then
 				},
 				{ 	Condition = {ButtonAction = "repair"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
 					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."), MaxWidth = Video.Width / 5, Font = PopupFont}}
-				},
-				-- Heal hint
-				{ 	Margin = {1, 1}, Condition = {ButtonValue = "spell-medic-heal"},
-					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
-				},
-				{ 	Condition = {ButtonValue = "spell-healing"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
-					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables autoheal ability."), MaxWidth = Video.Width / 5, Font = PopupFont}}
 				}
 		}	
 	})
@@ -466,6 +459,13 @@ if (wc2.preferences.ShowButtonPopups) then
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
 					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
 				},
+				-- Multi-build hint
+				{ 	Margin = {1, 1}, Condition = {ButtonAction = "build"},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				},
+				{ 	Condition = {ButtonAction = "build"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<SHIFT~>-click could be used to make a building queue."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				}
 		}	
 	})
 
@@ -537,6 +537,13 @@ if (wc2.preferences.ShowButtonPopups) then
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
 					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
 				},
+				-- Auto-cast hint
+				{ 	Margin = {1, 1}, Condition = {ButtonAction = "cast-spell"},
+					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
+				},
+				{ 	Condition = {ButtonAction = "cast-spell"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-cast ability."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				}
 		}	
 	})
 
@@ -571,13 +578,6 @@ if (wc2.preferences.ShowButtonPopups) then
 				},
 				{ 	Condition = {ButtonAction = "repair"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
 					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."), MaxWidth = Video.Width / 5, Font = PopupFont}}
-				},
-				-- Heal hint
-				{ 	Margin = {1, 1}, Condition = {ButtonValue = "spell-medic-heal"},
-					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
-				},
-				{ 	Condition = {ButtonValue = "spell-healing"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
-					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables autoheal ability."), MaxWidth = Video.Width / 5, Font = PopupFont}}
 				}
 		}	
 	})
@@ -617,6 +617,13 @@ if (wc2.preferences.ShowButtonPopups) then
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
 					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
 				},
+				-- Multi-build hint
+				{ 	Margin = {1, 1}, Condition = {ButtonAction = "build"},
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
+				},
+				{ 	Condition = {ButtonAction = "build"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<SHIFT~>-click could be used to make a building queue."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				}
 		}	
 	})
 	
@@ -688,6 +695,13 @@ if (wc2.preferences.ShowButtonPopups) then
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
 					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
 				},
+				-- Auto-cast hint
+				{ 	Margin = {1, 1}, Condition = {ButtonAction = "cast-spell"},
+					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
+				},
+				{ 	Condition = {ButtonAction = "cast-spell"}, Margin = {1, 1}, TextColor = "yellow", HighlightColor = "cyan",
+					More = {"Text", {Text = _("~<CTRL~>-click on button enables/disables auto-cast ability."), MaxWidth = Video.Width / 5, Font = PopupFont}}
+				}
 		}	
 	})
 end

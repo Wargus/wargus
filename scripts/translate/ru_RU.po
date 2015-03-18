@@ -1,2948 +1,2955 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wargus\n"
-"POT-Creation-Date: 2015-03-18 14:29+0500\n"
-"PO-Revision-Date: 2015-03-18 14:30+0500\n"
+"POT-Creation-Date: 2015-03-18 22:05+0500\n"
+"PO-Revision-Date: 2015-03-18 22:06+0500\n"
 "Last-Translator: cybermind <iddqd_mail@mail.ru>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP866\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
-"X-Poedit-Basepath: f:\\Temp\\Wargus\\trunk\\scripts\\\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: /media/l_disk/programming/wwargus/wargus/scripts/\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: f:\\Temp\\Wargus\\trunk\\scripts\n"
-"X-Poedit-SearchPath-1: f:\\Temp\\Wargus\\trunk\\maps\\list\n"
+"X-Poedit-SearchPath-0: /media/l_disk/programming/wwargus/wargus/scripts\n"
 
-#: f:\Temp\Wargus\trunk\scripts/buttons.lua:50
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:294
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:341
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:317
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:364
+#: /media/l_disk/programming/wwargus/wargus/scripts/buttons.lua:50
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:294
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:341
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:317
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:364
 msgid "~<ESC~> CANCEL"
 msgstr "~<ESC~> ОТМЕНА"
 
-#: f:\Temp\Wargus\trunk\scripts/buttons.lua:55
+#: /media/l_disk/programming/wwargus/wargus/scripts/buttons.lua:55
 msgid "~<ESC~> CANCEL UPGRADE"
 msgstr "~<ESC~> - ОТМЕНА МОДЕРНИЗАЦИИ"
 
-#: f:\Temp\Wargus\trunk\scripts/buttons.lua:60
+#: /media/l_disk/programming/wwargus/wargus/scripts/buttons.lua:60
 msgid "~<ESC~> CANCEL UNIT TRAINING"
 msgstr "~<ESC~> - ОТМЕНА ОБУЧЕНИЯ ЕДИНИЦЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/buttons.lua:65
+#: /media/l_disk/programming/wwargus/wargus/scripts/buttons.lua:65
 msgid "~<ESC~> CANCEL CONSTRUCTION"
 msgstr "~<ESC~> - ОТМЕНА СТРОИТЕЛЬСТВА"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:709
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:709
 msgid "-Destroy the enemy"
 msgstr "-Уничтожить всех врагов"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:730
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1008
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1013
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1014
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1016
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:153
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:159
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:419
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:428
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:437
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:86
-#: f:\Temp\Wargus\trunk\scripts/wc2.lua:159
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:730
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1008
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1013
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1014
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1016
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:145
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:153
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:159
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:419
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:429
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:438
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:86
+#: /media/l_disk/programming/wwargus/wargus/scripts/wc2.lua:159
 msgid "Map Default"
 msgstr "По умолчанию"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:790
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:790
 msgid "Nation of Stromgarde"
 msgstr "Нация Стромгарде"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:792
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:792
 msgid "Nation of Azeroth"
 msgstr "Нация Азерота"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:794
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:794
 msgid "Nation of Kul Tiras"
 msgstr "Нация Куль Тираса"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:796
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:796
 msgid "Nation of Dalaran"
 msgstr "Нация Даларана"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:798
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:798
 msgid "Nation of Alterac"
 msgstr "Нация Альтерака"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:800
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:800
 msgid "Nation of Gilneas"
 msgstr "Нация Гилнеаса"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:802
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:802
 msgid "Nation of Lordaeron"
 msgstr "Нация Лордерона"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:804
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:804
 msgid "Alliance Traitors"
 msgstr "Предатели Альянса"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:808
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:808
 msgid "Blackrock Clan"
 msgstr "Клан Черной Скалы"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:810
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:810
 msgid "Stormreaver Clan"
 msgstr "Клан Похитителей"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:812
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:812
 msgid "Bleeding Hollow Clan"
 msgstr "Клан Кровоточащих Десен"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:814
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:814
 msgid "Twilight's Hammer Clan"
 msgstr "Клан Сумеречного Молота"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:816
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:816
 msgid "Burning Blade Clan"
 msgstr "Клан Горящего Клинка"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:818
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:818
 msgid "Black Tooth Grin Clan"
 msgstr "Клан Гнилозубых"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:820
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:820
 msgid "Dragonmaw Clan"
 msgstr "Клан Драконьей Утробы"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:822
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:822
 msgid "Laughing Skull Clan"
 msgstr "Клан Смеющегося Черепа"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:904
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:904
 msgid "Select scenario"
 msgstr "Выбор миссии"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:928
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:983
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1520
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1545
-#: f:\Temp\Wargus\trunk\scripts/menus/diplomacy.lua:107
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:36
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:81
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:109
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:148
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:298
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:344
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:405
-#: f:\Temp\Wargus\trunk\scripts/menus/load.lua:57
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:230
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:333
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:359
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:383
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:475
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:179
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:353
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:443
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:615
-#: f:\Temp\Wargus\trunk\scripts/menus/replay.lua:25
-#: f:\Temp\Wargus\trunk\scripts/menus/replay.lua:67
-#: f:\Temp\Wargus\trunk\scripts/menus/save.lua:77
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:928
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:983
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1520
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1545
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/diplomacy.lua:107
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:36
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:81
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:109
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:148
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:298
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:344
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:405
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/load.lua:57
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:230
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:333
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:359
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:383
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:476
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:179
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:353
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:443
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:615
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/replay.lua:25
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/replay.lua:67
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/save.lua:77
 msgid "~!Cancel"
 msgstr "Отмена"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:950
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:950
 msgid "~<Single Player~>"
 msgstr "~<Одиночная игра~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:952
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:952
 msgid "~!Standard Game"
 msgstr "Миссия пользователя"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:954
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:954
 msgid "~!Campaign Game"
 msgstr "Кампания"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:956
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:956
 msgid "~!Load Game"
 msgstr "~!Прочитать игру"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:958
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:301
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:606
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:958
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:300
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:607
 msgid "~!Previous Menu"
 msgstr "Назад"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:971
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:971
 msgid "Standard Game"
 msgstr "Миссия пользователя"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1006
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1006
 msgid "~red~Red"
 msgstr "~red~Красный"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1006
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1006
 msgid "~blue~Blue"
 msgstr "~blue~Синий"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1006
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1006
 msgid "~green~Green"
 msgstr "~green~Зеленый"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1006
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1006
 msgid "~violet~Violet"
 msgstr "~violet~Лиловый"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1006
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1006
 msgid "~orange~Orange"
 msgstr "~orange~Оранжевый"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1006
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1006
 msgid "~black~Black"
 msgstr "~black~Черный"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1007
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1007
 msgid "~white~White"
 msgstr "~white~Белый"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1007
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1007
 msgid "~yellow~Yellow"
 msgstr "~yellow~Желтый"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1008
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:225
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:419
-#: f:\Temp\Wargus\trunk\scripts/wc2.lua:48
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1008
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:225
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:145
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:419
+#: /media/l_disk/programming/wwargus/wargus/scripts/wc2.lua:48
 msgid "Human"
 msgstr "Люди"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1008
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:225
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:419
-#: f:\Temp\Wargus\trunk\scripts/wc2.lua:52
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1008
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:225
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:145
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:419
+#: /media/l_disk/programming/wwargus/wargus/scripts/wc2.lua:52
 msgid "Orc"
 msgstr "Орки"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1008
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1008
 msgid "Random"
 msgstr "Случ."
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1010
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:80
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1010
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:80
 msgid "Player"
 msgstr "Игрок"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1010
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:223
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1010
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:223
 msgid "Computer"
 msgstr "Компьютер"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1010
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:223
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1010
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:223
 msgid "Rescue-passive"
 msgstr "Пассивный союзник"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1010
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:223
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1010
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:223
 msgid "Rescue-active"
 msgstr "Активный союзник"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1010
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1010
 msgid "None"
 msgstr "Нет"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1011
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1011
 msgid "Default"
 msgstr "По умолчанию"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1011
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1011
 msgid "Explored"
 msgstr "Исследована"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1011
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1011
 msgid "Revealed"
 msgstr "Открыта"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1012
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1012
 msgid "Use map settings"
 msgstr "Настройки карты"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1012
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1012
 msgid "Melee"
 msgstr "Бой"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1012
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1012
 msgid "Free for all"
 msgstr "Каждый сам за себя"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1012
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1012
 msgid "Top vs bottom"
 msgstr "Сверху против снизу"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1012
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1012
 msgid "Left vs right"
 msgstr "Слева против справа"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1012
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1012
 msgid "Man vs Machine"
 msgstr "Люди против CPU"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1013
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:8
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:328
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1013
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:8
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:328
 msgid "Summer"
 msgstr "Лес"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1013
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:8
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:328
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1013
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:8
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:328
 msgid "Swamp"
 msgstr "Болото"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1013
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:8
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:328
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1013
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:8
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:328
 msgid "Wasteland"
 msgstr "Пустыня"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1013
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:8
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:328
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1013
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:8
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:328
 msgid "Winter"
 msgstr "Зима"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1014
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:153
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:428
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1014
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:153
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:429
 msgid "One Peasant Only"
 msgstr "Один крестьянин"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1015
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:269
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1015
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:268
 msgid "Easy"
 msgstr "Легкий"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1015
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:269
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1015
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:268
 msgid "Normal"
 msgstr "Средний"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1015
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:269
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1015
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:268
 msgid "Hard"
 msgstr "Сложный"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1015
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:269
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1015
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:268
 msgid "Nightmare"
 msgstr "Кошмар"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1015
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:269
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1015
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:268
 msgid "Hell"
 msgstr "Ад"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1016
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:159
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:437
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1016
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:159
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:438
 msgid "High"
 msgstr "Обширные"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1016
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:159
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:437
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1016
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:159
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:438
 msgid "Medium"
 msgstr "Средние"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1016
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:159
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:437
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1016
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:159
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:438
 msgid "Low"
 msgstr "Скудные"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1016
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1016
 msgid "Quick Start"
 msgstr "Быстрый старт"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1030
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1030
 msgid "~<Single Player Game Setup~>"
 msgstr "~<Установки пользовательской игры~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1043
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1043
 msgid "Error:"
 msgstr "Ошибка:"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1115
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1115
 msgid "Scenario:"
 msgstr "Миссия:"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1120
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1120
 msgid "S~!elect Scenario"
 msgstr "~!Выбор миссии"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1129
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:452
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1129
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:453
 msgid "~!Start Game"
 msgstr "~!Начать игру"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1135
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1135
 msgid "Need more than 1 team"
 msgstr "Нужно более 1 команды"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1137
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1137
 msgid "No players selected"
 msgstr "Нет игроков"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1139
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1139
 msgid "Need at least 1 person player"
 msgstr "Нужен 1 игрок-человек"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1141
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1141
 msgid "Need at least 2 players"
 msgstr "Нужно минимум 2 игрока"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1227
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1227
 msgid "~<Color:~>"
 msgstr "~<Цвет:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1248
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1248
 msgid "~<Type:~>"
 msgstr "~<Тип:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1271
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1271
 msgid "~<Race:~>"
 msgstr "~<Раса:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1292
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1292
 msgid "~<Teams:~>"
 msgstr "~<Команда:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1308
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1308
 msgid "~<AI Script:~>"
 msgstr "~<Скрипт ИИ:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1356
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1356
 msgid "~!Cancel Game"
 msgstr "~!Отмена игры"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1358
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1358
 msgid "~<Fog of War:~>"
 msgstr "~<Карта:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1370
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1370
 msgid "~<Game Type:~>"
 msgstr "~<Тип игры:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1382
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1382
 msgid "~<Resources:~>"
 msgstr "~<Ресурсы:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1394
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:278
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1394
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:277
 msgid "~<AI Difficulty:~>"
 msgstr "~<Сложность ИИ:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1407
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1407
 msgid "~<Tileset:~>"
 msgstr "~<Местность:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1418
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1418
 msgid "~<Units:~>"
 msgstr "~<Еденицы:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1464
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1464
 msgid " V"
 msgstr " V"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1467
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1467
 msgid "~!Single Player Game"
 msgstr "Одиночная игра"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1469
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1469
 msgid "~!Multi Player Game"
 msgstr "Сетевая игра"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1471
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1471
 msgid "~!Replay Game"
 msgstr "Пересмотреть игру"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1473
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1473
 msgid "~!Options"
 msgstr "Опции"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1475
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1475
 msgid "~!Load Mod"
 msgstr "Загрузить мод"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1477
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1477
 msgid "Map ~!Editor"
 msgstr "Редактор"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1479
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1479
 msgid "S~!how Credits"
 msgstr "Авторы"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1481
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:14
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:70
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1481
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:14
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:70
 msgid "E~!xit Program"
 msgstr "Выйти из программы"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1508
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1508
 msgid "Load Mod"
 msgstr "Загрузить мод"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1533
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1533
 msgid "Campaign Game"
 msgstr "Новая кампания"
 
-#: f:\Temp\Wargus\trunk\scripts/guichan.lua:1537
+#: /media/l_disk/programming/wwargus/wargus/scripts/guichan.lua:1537
 msgid "~!OK"
 msgstr "~!OK"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:41
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:498
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:34
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:524
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:41
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:498
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:34
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:524
 msgid "~!MOVE"
 msgstr "~!ИДТИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:52
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:64
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:72
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:505
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:45
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:57
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:65
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:530
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:52
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:64
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:72
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:505
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:45
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:57
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:65
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:530
 msgid "~!STOP"
 msgstr "~!СТОП"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:79
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:89
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:97
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:104
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:110
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:116
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:532
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:538
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:544
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:72
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:83
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:91
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:98
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:104
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:110
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:116
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:122
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:556
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:562
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:568
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:79
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:89
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:97
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:104
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:110
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:116
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:532
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:538
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:544
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:72
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:83
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:91
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:98
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:104
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:110
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:116
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:122
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:556
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:562
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:568
 msgid "~!ATTACK"
 msgstr "~!АТАКОВАТЬ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:122
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:131
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:549
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:128
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:137
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:573
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:122
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:131
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:549
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:128
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:137
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:573
 msgid "~!PATROL"
 msgstr "ПАТ~!РУЛИРОВАТЬ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:140
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:146
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:140
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:146
 msgid "S~!TAND GROUND"
 msgstr "ДЕРЖАТЬ М~!ЕСТНОСТЬ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:149
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:155
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:149
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:155
 msgid "ATTACK ~!GROUND"
 msgstr "АТАКОВАТЬ ~!МЕСТНОСТЬ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:155
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:161
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:155
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:161
 msgid "~!DEMOLISH"
 msgstr "~!РАЗРУШИТЬ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:163
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:163
 msgid "HOLY ~!VISION"
 msgstr "СВЯТОЕ ~!ЗРЕНИЕ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:170
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:170
 msgid "~!HEALING (per 1 HP)"
 msgstr "ЛЕЧЕНИЕ (1 ед. энергии)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:177
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:177
 msgid "~!EXORCISM"
 msgstr "~!ЭКЗОРЦИЗМ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:185
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:185
 msgid "LIGHTNING ~!ATTACK"
 msgstr "~!АТАКОВАТЬ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:191
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:191
 msgid "~!FIREBALL"
 msgstr "О~!ГНЕННОЕ ЯДРО"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:197
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:197
 msgid "SL~!OW"
 msgstr "ЗА~!МЕДЛЕНИЕ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:203
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:203
 msgid "F~!LAME SHIELD"
 msgstr "ЗА~!ЩИТА ОГНЕМ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:209
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:209
 msgid "~!INVISIBILITY"
 msgstr "~!НЕВИДИМОСТЬ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:215
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:215
 msgid "~!POLYMORPH"
 msgstr "~!ПРЕВРАЩЕНИЕ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:221
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:221
 msgid "~!BLIZZARD"
 msgstr "~!БУРАН"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:228
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:251
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:228
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:251
 msgid "~!REPAIR"
 msgstr "~!ЧИНИТЬ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:233
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:256
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:233
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:256
 msgid "~!HARVEST LUMBER/MINE GOLD"
 msgstr "ДОБЫ~!ВАТЬ ЗОЛОТО/РУБИТЬ ЛЕС"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:238
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:527
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:261
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:551
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:238
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:527
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:261
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:551
 msgid "RETURN WITH ~!GOODS"
 msgstr "~!ВЕРНУТЬСЯ С ДОБЫЧЕЙ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:245
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:268
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:245
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:268
 msgid "~!BUILD BASIC STRUCTURE"
 msgstr "ВОЗВОДИТЬ ~!ОСНОВНЫЕ СООРУЖЕНИЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:251
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:274
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:251
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:274
 msgid "BUILD AD~!VANCED STRUCTURE"
 msgstr "ВОЗВОДИТЬ ~!ПРОДВИНУТЫЕ СООРУЖЕНИЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:258
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:258
 msgid "BUILD ~!FARM"
 msgstr "СТРОИТЕЛЬСТВО ~!ФЕРМЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:263
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:286
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:263
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:286
 msgid "BUILD ~!BARRACKS"
 msgstr "СТРОИТЕЛЬСТВО ~!КАЗАРМЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:268
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:268
 msgid "BUILD TOWN ~!HALL"
 msgstr "СТРОИТЕЛЬСТВО ~!РАТУШИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:273
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:273
 msgid "BUILD ELVEN ~!LUMBER MILL"
 msgstr "СТРОИТЕЛЬСТВО Ф~!АБРИКИ/ПИЛОРАМЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:278
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:301
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:278
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:301
 msgid "BUILD BLACK~!SMITH"
 msgstr "СТРОИТЕЛЬСТВО КУЗ~!НИЦЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:283
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:306
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:283
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:306
 msgid "BUILD ~!TOWER"
 msgstr "СТРОИТЕЛЬСТВО~! БАШНИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:289
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:312
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:289
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:312
 msgid "BUILD ~!WALL"
 msgstr "СТРОИТЕЛЬСТВО ~!СТЕНЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:301
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:324
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:301
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:324
 msgid "BUILD ~!SHIPYARD"
 msgstr "СТРОИТЕЛЬСТВО СУДО~!ВЕРФИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:306
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:329
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:306
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:329
 msgid "BUILD ~!FOUNDRY"
 msgstr "СТРОИТЕЛЬСТВО ~!ЛИТЕЙНОЙ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:311
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:334
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:311
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:334
 msgid "BUILD ~!REFINERY"
 msgstr "СТРОИТЕЛЬСТВО ОЧИСТНОГО ~!ЗАВОДА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:316
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:316
 msgid "BUILD GNOMISH ~!INVENTOR"
 msgstr "ХИЖИНА ГНОМА ~!ИЗОБРЕТАТЕЛЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:321
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:321
 msgid "BUILD ST~!ABLES"
 msgstr "СТРОИТЕЛЬСТВО КО~!НЮШНИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:326
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:326
 msgid "BUILD ~!MAGE TOWER"
 msgstr "СТРОИТЕЛЬСТВО БАШНИ ~!МАГОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:331
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:331
 msgid "BUILD ~!CHURCH"
 msgstr "СТРОИТЕЛЬСТВО ~!ЦЕРКВИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:336
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:336
 msgid "BUILD ~!GRYPHON AVIARY"
 msgstr "СТРОИТЕЛЬСТВО ~!ВОЛЬЕРЫ ГРИФОНОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:349
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:372
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:349
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:372
 msgid "TRAIN ~!CRITTER"
 msgstr "ОБУЧЕНИЕ СУЩЕСТВА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:356
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:356
 msgid "TRAIN ~!PEASANT"
 msgstr "ОБУЧЕНИЕ ~!КРЕСТЬЯНИНА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:364
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:364
 msgid "UPGRADE TO ~!KEEP"
 msgstr "ВОЗВЕДЕНИЕ ~!ДВОРЦА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:370
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:370
 msgid "UPGRADE TO ~!CASTLE"
 msgstr "ВОЗВЕДЕНИЕ ~!ЗАМКА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:377
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:400
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:377
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:400
 msgid "SET ~!HARVEST LUMBER/MINE GOLD"
 msgstr "ТОЧКА СБОРА РЕСУРСОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:382
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:556
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:405
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:580
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:382
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:556
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:405
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:580
 msgid "SET ~!MOVE"
 msgstr "ТОЧКА СБОРА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:388
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:561
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:412
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:585
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:388
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:561
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:412
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:585
 msgid "SET ~!ZTOP"
 msgstr "УДАЛИТЬ ТОЧКУ СБОРА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:394
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:566
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:419
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:590
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:394
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:566
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:419
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:590
 msgid "S~!ET ATTACK"
 msgstr "ТОЧКА АТАКИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:402
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:402
 msgid "TRAIN ~!FOOTMAN"
 msgstr "ОБУЧЕНИЕ СОЛДАТА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:407
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:407
 msgid "TRAIN ~!ARCHER"
 msgstr "ОБУЧЕНИЕ ЛУЧНИКА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:412
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:412
 msgid "TRAIN ~!RANGER"
 msgstr "ОБУЧЕНИЕ ~!РАЗВЕДЧИКА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:417
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:417
 msgid "BUILD ~!BALLISTA"
 msgstr "СТРОИТЕЛЬСТВО ~!БАЛЛИСТЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:422
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:422
 msgid "TRAIN ~!KNIGHT"
 msgstr "ОБУЧЕНИЕ Р~!ЫЦАРЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:427
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:427
 msgid "TRAIN ~!PALADIN"
 msgstr "ОБУЧЕНИЕ ~!ПАЛАДИНА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:432
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:432
 msgid "BUILD GNOMISH ~!FLYING MACHINE"
 msgstr "СТРОИТЕЛЬСТВО ~!ВЕРТОЛЕТА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:437
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:437
 msgid "TRAIN ~!DWARVEN DEMOLITION SQUAD"
 msgstr "ОБУЧЕНИЕ ~!ОТРЯДА ПОДРЫВНИКОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:442
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:442
 msgid "~!TRAIN MAGE"
 msgstr "ОБУЧЕНИЕ ~!МАГА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:447
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:447
 msgid "TRAIN ~!GRYPHON RIDER"
 msgstr "ОБУЧЕНИЕ ~!ВСАДНИКА ГРИФОНА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:452
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:478
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:452
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:478
 msgid "BUILD ~!OIL TANKER"
 msgstr "СТРОИТЕЛЬСТВО ~!НЕФТЯНОГО ТАНКЕРА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:457
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:483
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:457
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:483
 msgid "BUILD ~!DESTROYER"
 msgstr "СТРОИТЕЛЬСТВО ~!РАЗРУШИТЕЛЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:462
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:488
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:462
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:488
 msgid "BUILD ~!TRANSPORT"
 msgstr "СТРОИТЕЛЬСТВО ~!ТРАНСПОРТА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:467
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:467
 msgid "BUILD GNOMISH ~!SUBMARINE"
 msgstr "СТРОИТЕЛЬСТВО ~!СУБМАРИНЫ ГНОМОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:472
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:472
 msgid "BUILD ~!BATTLESHIP"
 msgstr "СТРОИТЕЛЬСТВО ~!ЛИНКОРА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:479
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:505
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:479
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:505
 msgid "SET ~!HAUL OIL"
 msgstr "ТОЧКА СБОРА НЕФТИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:486
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:512
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:486
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:512
 msgid "UPGRADE TO ~!GUARD TOWER"
 msgstr "МОДЕРНИЗАЦИЯ ДО ~!ДОЗОРНОЙ БАШНИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:491
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:517
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:491
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:517
 msgid "UPGRADE TO ~!CANNON TOWER"
 msgstr "МОДЕРНИЗАЦИЯ ДО ОРУДИЙНОЙ БАШНИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:512
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:536
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:512
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:536
 msgid "~!UNLOAD"
 msgstr "~!ВЫСАДИТЬ ЛЮДЕЙ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:517
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:541
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:517
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:541
 msgid "~!BUILD OIL PLATFORM"
 msgstr "С~!ТРОИТЕЛЬСТВО НЕФТЯНОЙ ВЫШКИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:522
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:546
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:522
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:546
 msgid "~!HAUL OIL"
 msgstr "ДОБЫ~!ВАТЬ НЕФТЬ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:576
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:582
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:576
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:582
 msgid "UPGRADE S~!WORDS (Damage +2)"
 msgstr "МОДЕРНИЗАЦИЯ МЕ~!ЧЕЙ (Поврежд.+2)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:588
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:594
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:612
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:618
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:588
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:594
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:612
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:618
 msgid "UPGRADE ~!SHIELDS (Armor +2)"
 msgstr "МОДЕРНИЗАЦИЯ ~!ЩИТОВ (Броня +2)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:600
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:606
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:600
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:606
 msgid "UPGRADE ~!BALLISTA (Damage +15)"
 msgstr "МОЩЬ ~!БАЛЛИСТЫ (Поврежд.+15)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:612
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:618
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:612
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:618
 msgid "~!UPGRADE ARROWS (Damage +1)"
 msgstr "МОДЕРНИЗАЦИЯ СТРЕЛ (Поврежд.+1)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:624
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:624
 msgid "ELVEN ~!RANGER TRAINING"
 msgstr "ШКОЛА ЭЛЬФА-~!РАЗВЕДЧИКА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:630
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:630
 msgid "RANGER ~!SCOUTING (Sight:9)"
 msgstr "~!ЗОРКОСТЬ РАЗВЕДЧИКА (Зрение:9)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:636
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:636
 msgid "RESEARCH ~!LONGBOW (Range +1)"
 msgstr "ДЛИННЫЙ ~!ЛУК (Дальность +1)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:642
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:642
 msgid "RANGER ~!MARKSMANSHIP (Damage +3)"
 msgstr "~!МЕТКОСТЬ РАЗВЕДЧИКА (Поврежд.+3)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:648
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:648
 msgid "UPGRADES KNIGHTS TO ~!PALADINS"
 msgstr "ОБУЧЕНИЕ ~!ПАЛАДИНОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:654
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:654
 msgid "RESEARCH ~!HEALING"
 msgstr "ИЗУЧЕНИЕ ~!ЛЕЧЕНИЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:660
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:660
 msgid "RESEARCH ~!EXORCISM"
 msgstr "ИЗУЧЕНИЕ ~!ЭКЗОРЦИЗМА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:666
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:666
 msgid "RESEARCH SL~!OW"
 msgstr "ИЗУЧЕНИЕ ЗА~!МЕДЛЕНИЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:672
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:672
 msgid "RESEARCH F~!LAME SHIELD"
 msgstr "ИЗУЧЕНИЕ ЗА~!ЩИТЫ ОГНЕМ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:678
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:678
 msgid "RESEARCH ~!INVISIBILITY"
 msgstr "ИЗУЧЕНИЕ ~!НЕВИДИМОСТИ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:684
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:684
 msgid "RESEARCH ~!POLYMORPH"
 msgstr "ИЗУЧЕНИЕ ~!ПРЕВРАЩЕНИЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:690
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:690
 msgid "RESEARCH ~!BLIZZARD"
 msgstr "ИЗУЧЕНИЕ ~!БУРАНА"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:696
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:702
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:720
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:726
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:696
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:702
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:720
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:726
 msgid "UPGRADE ~!CANNONS (Damage +5)"
 msgstr "МОДЕРНИЗАЦИЯ ~!ПУШЕК (Поврежд.+5)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:708
-#: f:\Temp\Wargus\trunk\scripts/human/buttons.lua:714
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:732
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:738
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:708
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/buttons.lua:714
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:732
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:738
 msgid "UPGRADE SHIP ~!ARMOR (Armor +5)"
 msgstr "МОДЕРНИЗАЦИЯ ~!БРОНИ (Броня +5)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign1.lua:34
-#: f:\Temp\Wargus\trunk\scripts/human/campaign2.lua:35
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign1.lua:34
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign2.lua:35
 msgid "Act I"
 msgstr "Действие I"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign1.lua:34
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign1.lua:34
 msgid "The Shores of Lordareon"
 msgstr "Берега Лордерона"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign1.lua:40
-#: f:\Temp\Wargus\trunk\scripts/human/campaign2.lua:40
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign1.lua:40
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign2.lua:40
 msgid "Act II"
 msgstr "Действие II"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign1.lua:40
-#: f:\Temp\Wargus\trunk\scripts/orc/campaign1.lua:40
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign1.lua:40
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/campaign1.lua:40
 msgid "Khaz Modan"
 msgstr "Хаз Модан"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign1.lua:46
-#: f:\Temp\Wargus\trunk\scripts/human/campaign2.lua:45
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign1.lua:46
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign2.lua:45
 msgid "Act III"
 msgstr "Действие III"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign1.lua:46
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign1.lua:46
 msgid "The Northlands"
 msgstr "Северные земли"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign1.lua:53
-#: f:\Temp\Wargus\trunk\scripts/human/campaign2.lua:50
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign1.lua:53
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign2.lua:50
 msgid "Act IV"
 msgstr "Действие IV"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign1.lua:53
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign1.lua:53
 msgid "Return to Azeroth"
 msgstr "Возвращение в Азерот"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign2.lua:35
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign2.lua:35
 msgid "A Time for Heroes"
 msgstr "Время Героев"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign2.lua:40
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign2.lua:40
 msgid "Draenor, The Red World"
 msgstr "Дренор, Красный Мир"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign2.lua:45
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign2.lua:45
 msgid "War in the Shadows"
 msgstr "Война во Мраке"
 
-#: f:\Temp\Wargus\trunk\scripts/human/campaign2.lua:50
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/campaign2.lua:50
 msgid "The Measure of Valor"
 msgstr "Мера доблести"
 
-#: f:\Temp\Wargus\trunk\scripts/human/ui_pandora.lua:300
-#: f:\Temp\Wargus\trunk\scripts/human/ui_tales.lua:286
-#: f:\Temp\Wargus\trunk\scripts/orc/ui_pandora.lua:300
-#: f:\Temp\Wargus\trunk\scripts/orc/ui_tales.lua:286
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/ui_pandora.lua:300
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/ui_tales.lua:286
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/ui_pandora.lua:300
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/ui_tales.lua:286
 msgid "Menu (~<F10~>)"
 msgstr "Меню (~<F10~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/human/ui_pandora.lua:313
-#: f:\Temp\Wargus\trunk\scripts/human/ui_tales.lua:299
-#: f:\Temp\Wargus\trunk\scripts/orc/ui_pandora.lua:313
-#: f:\Temp\Wargus\trunk\scripts/orc/ui_tales.lua:299
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/ui_pandora.lua:313
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/ui_tales.lua:299
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/ui_pandora.lua:313
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/ui_tales.lua:299
 msgid "Menu"
 msgstr "Меню"
 
-#: f:\Temp\Wargus\trunk\scripts/human/ui_pandora.lua:319
-#: f:\Temp\Wargus\trunk\scripts/human/ui_tales.lua:305
-#: f:\Temp\Wargus\trunk\scripts/menus/diplomacy.lua:5
-#: f:\Temp\Wargus\trunk\scripts/orc/ui_pandora.lua:319
-#: f:\Temp\Wargus\trunk\scripts/orc/ui_tales.lua:305
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/ui_pandora.lua:319
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/ui_tales.lua:305
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/diplomacy.lua:5
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/ui_pandora.lua:319
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/ui_tales.lua:305
 msgid "Diplomacy"
 msgstr "Дипломатия"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:36
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:10
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:36
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:10
 msgid "Footman"
 msgstr "Солдат"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:65
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:8
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:65
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:8
 msgid "Peasant"
 msgstr "Крестьянин"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:111
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:111
 msgid "Minuteman"
 msgstr "Крестьянин"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:154
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:154
 msgid "Ballista"
 msgstr "Баллиста"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:183
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:16
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:38
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:183
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:16
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:38
 msgid "Knight"
 msgstr "Рыцарь"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:212
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:212
 msgid "Archer"
 msgstr "Эльф лучник"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:241
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:241
 msgid "Mage"
 msgstr "Маг"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:278
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:278
 msgid "Paladin"
 msgstr "Паладин"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:310
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:310
 msgid "Dwarves"
 msgstr "Взвод подрывников"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:340
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:340
 msgid "Ranger"
 msgstr "Разведчик"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:370
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:370
 msgid "Alleria"
 msgstr "Аллерия"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:399
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:399
 msgid "Gryphon Rider"
 msgstr "Всадник грифона"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:429
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:429
 msgid "Kurdan and Sky'ree"
 msgstr "Курдран и Скай'ри"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:459
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:459
 msgid "Khadgar"
 msgstr "Хэдгар"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:496
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:464
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:496
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:464
 msgid "Oil tanker"
 msgstr "Нефтяной танкер"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:530
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:498
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:530
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:498
 msgid "Transport"
 msgstr "Транспорт"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:560
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:560
 msgid "Elven Destroyer"
 msgstr "Разрушитель Эльфов"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:588
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:589
 msgid "Battleship"
 msgstr "Линкор"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:623
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:625
 msgid "Gnomish Submarine"
 msgstr "Субмарина Гномов"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:653
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:655
 msgid "Gnomish Flying Machine"
 msgstr "Вертолет Гномов"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:679
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:681
 msgid "Turalyon"
 msgstr "Туральон"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:710
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:712
 msgid "Danath"
 msgstr "Данат"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:739
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:741
 msgid "Lothar"
 msgstr "Лотар"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:771
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:773
 msgid "Uther Lightbringer"
 msgstr "Уттер Просветитель"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:809
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:811
 msgid "Farm"
 msgstr "Ферма"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:842
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:927
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:844
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:929
 msgid "Barracks"
 msgstr "Казарма"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:874
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:876
 msgid "Church"
 msgstr "Церковь"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:906
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:908
 msgid "Scout Tower"
 msgstr "Смотровая башня"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:940
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:942
 msgid "Stables"
 msgstr "Конюшня"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:972
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:974
 msgid "Gnomish Inventor"
 msgstr "Гном Изобретатель"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1004
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1006
 msgid "Gryphon Aviary"
 msgstr "Вольера грифонов"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1036
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1121
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1038
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1123
 msgid "Shipyard"
 msgstr "Верфь"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1075
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1077
 msgid "Elven Lumber Mill"
 msgstr "Фабрика Эльфов"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1109
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1231
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1111
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1233
 msgid "Foundry"
 msgstr "Литейная"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1142
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1144
 msgid "Town Hall"
 msgstr "Ратуша"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1179
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1181
 msgid "Mage Tower"
 msgstr "Башня Магов"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1210
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1296
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1212
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1298
 msgid "Blacksmith"
 msgstr "Кузница"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1242
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1328
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1244
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1330
 msgid "Refinery"
 msgstr "Очистной завод"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1282
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1369
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1284
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1371
 msgid "Oil Platform"
 msgstr "Нефтяная вышка"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1314
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1316
 msgid "Keep"
 msgstr "Дворец"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1352
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1354
 msgid "Castle"
 msgstr "Замок"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1384
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1471
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1386
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1473
 msgid "Start Location"
 msgstr "Стартовая локация"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1411
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1498
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1413
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1500
 msgid "Guard Tower"
 msgstr "Дозорная башня"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1446
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1533
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1448
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1535
 msgid "Cannon Tower"
 msgstr "Орудийная башня"
 
-#: f:\Temp\Wargus\trunk\scripts/human/units.lua:1482
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1568
+#: /media/l_disk/programming/wwargus/wargus/scripts/human/units.lua:1484
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1570
 msgid "Wall"
 msgstr "Стена"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:69
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:68
 msgid "Objectives:"
 msgstr "Цель:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:85
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:170
-#: f:\Temp\Wargus\trunk\scripts/menus/credits.lua:160
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:408
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:84
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:169
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/credits.lua:160
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:408
 msgid "~!Continue"
 msgstr "Дальше"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:271
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:270
 msgid "~<Mission list~>"
 msgstr "Список миссий"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/campaign.lua:284
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/campaign.lua:283
 msgid "~!Play mission"
 msgstr "Начать миссию"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/compactmode.lua:242
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:573
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/compactmode.lua:242
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:574
 msgid "Nickname :"
 msgstr "Ник"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/diplomacy.lua:7
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/diplomacy.lua:7
 msgid "Allied"
 msgstr "Союзник"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/diplomacy.lua:8
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/diplomacy.lua:8
 msgid "Enemy"
 msgstr "Враг"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/diplomacy.lua:9
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/diplomacy.lua:9
 msgid "Shared Vision"
 msgstr "Общий обзор"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:10
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:10
 msgid "TileSet : "
 msgstr "Местность :"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:11
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:11
 msgid "Size :"
 msgstr "Размер :"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:13
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:13
 msgid "Map description :"
 msgstr "Описание :"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:25
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:107
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:25
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:107
 msgid "~!New map"
 msgstr "~!Новая карта"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:52
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:52
 msgid "File : "
 msgstr "Файл : "
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:55
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:55
 msgid "Players : "
 msgstr "Игроков : "
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:58
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:58
 msgid "Scenario : "
 msgstr "Карта : "
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:61
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:61
 msgid "Size : "
 msgstr "Размер : "
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:70
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:70
 msgid "~!Select map"
 msgstr "~!Выбор карты"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:80
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:80
 msgid "~!Edit map"
 msgstr "~!Редактировать"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:105
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:105
 msgid "~<Map Editor~>"
 msgstr "~<Редактор карт~>"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:108
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:108
 msgid "~!Load map"
 msgstr "~!Прочитать карту"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:118
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:118
 msgid "Cannot save map to file:"
 msgstr "Нельзя сохранить в файл:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:123
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:123
 msgid "Saved map to: "
 msgstr "Сохранено в: "
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:136
-#: f:\Temp\Wargus\trunk\scripts/menus/save.lua:39
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:136
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/save.lua:39
 msgid "Save Game"
 msgstr "Сохранить игру"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:149
-#: f:\Temp\Wargus\trunk\scripts/menus/replay.lua:47
-#: f:\Temp\Wargus\trunk\scripts/menus/save.lua:51
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:149
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/replay.lua:47
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/save.lua:51
 msgid "~!Save"
 msgstr "~!Сохранить"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:172
-#: f:\Temp\Wargus\trunk\scripts/menus/save.lua:21
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:172
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/save.lua:21
 msgid "File exists, are you sure ?"
 msgstr "Файл существует, продолжить?"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:212
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:212
 msgid "Players properties"
 msgstr "Параметры игроков"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:223
-#: f:\Temp\Wargus\trunk\scripts/wc2.lua:42
-#: f:\Temp\Wargus\trunk\scripts/wc2.lua:56
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:223
+#: /media/l_disk/programming/wwargus/wargus/scripts/wc2.lua:42
+#: /media/l_disk/programming/wwargus/wargus/scripts/wc2.lua:56
 msgid "Neutral"
 msgstr "Нейтрал"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:223
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:223
 msgid "Nobody"
 msgstr "Нет"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:223
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:223
 msgid "Person"
 msgstr "Человек"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:230
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:230
 msgid "Type"
 msgstr "Тип"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:231
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:231
 msgid "Race"
 msgstr "Раса"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:232
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:232
 msgid "AI"
 msgstr "ИИ"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:233
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:233
 msgid "Gold"
 msgstr "Золото"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:234
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:234
 msgid "Lumber"
 msgstr "Лес"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:235
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:235
 msgid "Oil"
 msgstr "Нефть"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:315
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:315
 msgid "Map properties"
 msgstr "Параметры карты"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:317
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:317
 msgid "Map descritption : "
 msgstr "Описание карты :"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:320
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:320
 msgid "Size    : "
 msgstr "Размер   : "
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:326
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:326
 msgid "Tileset : "
 msgstr "Местность :"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:356
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:356
 msgid "Editor Menu"
 msgstr "Меню редактора"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:358
-#: f:\Temp\Wargus\trunk\scripts/menus/game.lua:39
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:358
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/game.lua:39
 msgid "Save (~<F11~>)"
 msgstr "Сохр.(~<F11~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:360
-#: f:\Temp\Wargus\trunk\scripts/menus/game.lua:41
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:360
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/game.lua:41
 msgid "Load (~<F12~>)"
 msgstr "Чтен.(~<F12~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:361
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:361
 msgid "Map Properties (~<F5~>)"
 msgstr "Параметры карты (~<F5~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:362
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:362
 msgid "Player Properties (~<F6~>)"
 msgstr "Параметры игроков (~<F6~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:366
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:366
 msgid "E~!xit to Menu"
 msgstr "~!Выйти в меню"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:368
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:368
 msgid "Return to Editor (~<Esc~>)"
 msgstr "Вернуться в редактор (~<Esc~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:387
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:387
 msgid "Unit properties"
 msgstr "Параметры юнита"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:390
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:390
 msgid "Artificial Intelligence"
 msgstr "Интеллект"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:397
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:397
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:201
 msgid "gold"
 msgstr "золота"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:397
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:397
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:201
 msgid "wood"
 msgstr "леса"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:397
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:397
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:201
 msgid "oil"
 msgstr "нефти"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/editor.lua:399
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/editor.lua:399
 msgid "Amount of "
 msgstr "Количество"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:4
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:4
 msgid "End Scenario"
 msgstr "Прервать миссию"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:5
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:28
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:5
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:28
 msgid "~!Restart Scenario"
 msgstr "~!Начало миссии"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:10
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:42
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:10
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:42
 msgid "~!Surrender"
 msgstr "~!Сдаться"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:12
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:56
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:12
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:56
 msgid "~!Quit to Menu"
 msgstr "~!Выйти в меню"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:16
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:658
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:16
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:658
 msgid "Previous (~<Esc~>)"
 msgstr "Предыдущее (~<Esc~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:25
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:39
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:53
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:67
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:25
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:39
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:53
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:67
 msgid "Are you sure you"
 msgstr "Вы уверены, что"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:26
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:26
 msgid "want to restart"
 msgstr "хотите начать"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:27
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:27
 msgid "the scenario?"
 msgstr "миссию снова?"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:30
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:44
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:58
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:72
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:541
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:30
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:44
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:58
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:72
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:542
 msgid "Cancel (~<Esc~>)"
 msgstr "Отмена (~<Esc~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:40
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:40
 msgid "want to surrender"
 msgstr "хотите сдаться"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:41
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:41
 msgid "to your enemies?"
 msgstr "врагу в плен?"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:54
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:54
 msgid "want to quit to"
 msgstr "хотите выйти"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:55
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:55
 msgid "the main menu?"
 msgstr "в главное меню?"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:68
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:68
 msgid "want to exit"
 msgstr "хотите выйти из"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/endscenario.lua:69
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/endscenario.lua:69
 msgid "Stratagus?"
 msgstr "программы Wargus?"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/game.lua:37
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/game.lua:37
 msgid "Game Menu"
 msgstr "Игровое меню"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/game.lua:43
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/game.lua:43
 msgid "Options (~<F5~>)"
 msgstr "Опции (~<F5~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/game.lua:45
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/game.lua:45
 msgid "Help (~<F1~>)"
 msgstr "Помощь (~<F1~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/game.lua:47
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/game.lua:47
 msgid "Scenario ~!Objectives"
 msgstr "~!Цели миссии"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/game.lua:49
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/game.lua:49
 msgid "~!End Scenario"
 msgstr "~!Прервать миссию"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/game.lua:51
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/game.lua:51
 msgid "Return to Game (~<Esc~>)"
 msgstr "Вернуться в игру (~<Esc~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/load.lua:40
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/load.lua:40
 msgid "Load Game"
 msgstr "Прочитать игру"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/load.lua:44
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/load.lua:44
 msgid "~!Load"
 msgstr "~!Прочитать"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:78
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:78
 msgid "Players"
 msgstr "Игроки"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:81
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:101
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:81
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:101
 msgid "Preparing"
 msgstr "Готовится"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:83
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:107
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:83
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:107
 msgid "Open slots : "
 msgstr "Свободно : "
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:88
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:88
 msgid "Creator"
 msgstr "Сервер"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:99
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:99
 msgid "Ready"
 msgstr "Готов"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:125
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:125
 msgid "Joining game: Map"
 msgstr "Подключение к игре : Карта"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:127
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:396
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:127
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:396
 msgid "Map"
 msgstr "Карта"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:128
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:397
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:493
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:128
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:397
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:494
 msgid "File:"
 msgstr "Файл:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:130
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:399
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:495
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:130
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:399
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:496
 msgid "Players:"
 msgstr "Игроков:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:132
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:401
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:497
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:132
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:401
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:498
 msgid "Description:"
 msgstr "Описание:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:135
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:409
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:135
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:409
 msgid "Fog of war"
 msgstr "Туман войны"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:141
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:416
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:141
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:416
 msgid "Reveal map"
 msgstr "Открыть карту"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:144
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:144
 msgid "~<Your Race:~>"
 msgstr "~<Ваша раса:~>"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:152
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:427
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:203
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:152
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:428
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:203
 msgid "Units:"
 msgstr "Воины:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:158
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:436
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:158
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:437
 msgid "Resources:"
 msgstr "Ресурсы:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:190
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:190
 msgid "~!Ready"
 msgstr "~!Готов"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:223
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:266
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:223
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:266
 msgid "Cannot reach server"
 msgstr "Сервер недоступен"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:242
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:242
 msgid "Connecting to server"
 msgstr "Подключение к серверу"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:247
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:247
 msgid "Connecting..."
 msgstr "Подключение..."
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:263
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:263
 msgid "Map not available"
 msgstr "Карта недоступна"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:269
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:269
 msgid "Server is full"
 msgstr "Сервер полон"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:272
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:272
 msgid "Server gone"
 msgstr "Связь с сервером потеряна"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:275
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:275
 msgid "Incompatible engine version"
 msgstr "Другая версия игры"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:278
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:278
 msgid "Incompatible network version"
 msgstr "Другая версия игры"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:297
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:297
 msgid "Servers: "
 msgstr "Сервера"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:310
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:310
 msgid "Co~!nnect"
 msgstr "Соединиться"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:318
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:318
 msgid "~!Add server"
 msgstr "Добавить сервер"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:320
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:320
 msgid "~!Edit server"
 msgstr "Редактировать"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:325
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:325
 msgid "~!Delete server"
 msgstr "Удалить"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:342
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:342
 msgid "Edit server"
 msgstr "Редактировать сервер"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:343
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:369
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:343
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:369
 msgid "Server IP: "
 msgstr "IP сервера:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:346
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:371
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:346
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:371
 msgid "Description: "
 msgstr "Описание"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:351
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:375
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:351
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:375
 msgid "Invalid server name"
 msgstr "Неверное имя сервера"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:368
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:368
 msgid "Add server"
 msgstr "Добавить сервер"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:394
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:491
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:394
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:492
 msgid "Create MultiPlayer game"
 msgstr "Создать многопользовательскую игру"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:418
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:418
 msgid "Race:"
 msgstr "Раса:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:465
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:466
 msgid "Waiting for players"
 msgstr "Ожидание игроков"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:531
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:586
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:532
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:587
 msgid "~!Create Game"
 msgstr "~!Создать игру"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:571
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:572
 msgid "~<Multiplayer Network Game~>"
 msgstr "~<Сетевая игра~>"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:576
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:577
 msgid "~!Join Game"
 msgstr "~!Присоединиться"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/network.lua:596
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/network.lua:597
 msgid "Meta~!server"
 msgstr "Метасервер"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/objectives.lua:4
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/objectives.lua:4
 msgid "Objectives"
 msgstr "ЦЕЛЬ МИССИИ:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:33
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:33
 msgid "Sound Options"
 msgstr "Звуковые опции"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:35
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:35
 msgid "Effects Volume"
 msgstr "Громкость эффектов"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:68
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:68
 msgid "Sound:"
 msgstr "Звук:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:69
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:137
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:69
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:137
 msgid "On"
 msgstr "Вкл."
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:70
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:138
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:70
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:138
 msgid "Off"
 msgstr "Выкл."
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:99
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:99
 msgid "Music Volume"
 msgstr "Громкость музыки"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:129
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:129
 msgid "Stereo Sound"
 msgstr "Стереозвук"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:136
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:136
 msgid "Music:"
 msgstr "Музыка:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:201
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:201
 msgid "Preferences"
 msgstr "Настройка"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:203
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:203
 msgid "Show Hotkeys"
 msgstr "Гор. клавиши"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:212
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:212
 msgid "Grab Mouse"
 msgstr "Захват мыши"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:219
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:219
 msgid "~!*Show damage"
 msgstr "~!*Показывать урон"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:230
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:230
 msgid "~!*Show button popups"
 msgstr "~!*Всплыв. подсказки"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:235
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:235
 msgid "Mine notifications"
 msgstr "Уведомл. о рудниках"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:242
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:242
 msgid "Show orders"
 msgstr "Показ. приказы"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:257
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:257
 msgid "Mirrored buildings"
 msgstr "Отражать постройки"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:264
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:264
 msgid "Show messages"
 msgstr "Показ. сообщения"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:271
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:271
 msgid "Pause on leave"
 msgstr "Пауза при перекл."
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:278
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:278
 msgid "~!*Enhanced effects"
 msgstr "~!*Улучш. эффекты"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:281
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:281
 msgid "Deselect in mines"
 msgstr "Снимать выдел. при добыче"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:290
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:290
 msgid "For of War"
 msgstr "Туман войны"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:299
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:299
 msgid "rectangle"
 msgstr "квадрат"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:299
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:299
 msgid "alpha-rectangle"
 msgstr "прозр. квадрат"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:299
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:299
 msgid "circle"
 msgstr "круг"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:299
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:299
 msgid "alpha-circle"
 msgstr "прозр. круг"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:299
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:378
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:299
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:378
 msgid "corners"
 msgstr "уголки"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:300
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:300
 msgid "Selection style:"
 msgstr "Тип выделения:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:309
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:309
 msgid "single"
 msgstr "один"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:309
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:309
 msgid "horizontal 1 + 1"
 msgstr "гориз. 1 + 1"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:309
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:309
 msgid "horizontal 1 + 2"
 msgstr "гориз. 1 + 2"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:309
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:309
 msgid "vertical 1 + 1"
 msgstr "верт. 1 + 1"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:309
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:309
 msgid "quad"
 msgstr "четыре"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:310
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:310
 msgid "Viewport mode:"
 msgstr "Кол-во экранов:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:319
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:319
 msgid "~!*SF2 soundfont path :"
 msgstr "~!*SF2 банк :"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:322
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:322
 msgid "~!* - requires restart"
 msgstr "~!* - после рестарта"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:367
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:367
 msgid "Speed Settings"
 msgstr "Установка скорости"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:368
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:368
 msgid "Game Speed"
 msgstr "Скорость игры"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:383
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:404
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:428
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:383
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:404
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:428
 msgid "slow "
 msgstr "медленно"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:384
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:405
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:429
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:384
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:405
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:429
 msgid "fast"
 msgstr "быстро"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:389
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:389
 msgid "Mouse Scroll Speed"
 msgstr "Скорость мыши"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:410
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:410
 msgid "Key Scroll Speed"
 msgstr "Скорость клавиатуры"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:511
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:511
 msgid "Video Options"
 msgstr "Опции видео"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:512
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:512
 msgid "Video Resolution"
 msgstr "Разрешение экрана"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:523
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:523
 msgid "Full Screen"
 msgstr "Полноэкранный режим"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:532
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:532
 msgid "Set Maximum OpenGL Texture to 256"
 msgstr "Ограничить размер OpenGL текстуры в 256"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:544
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:544
 msgid "Use OpenGL / OpenGL ES 1.1 (restart required)"
 msgstr "Включить OpenGL / OpenGL ES 1.1 (нужен перезапуск)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:563
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:563
 msgid "You need to restart game to apply changes, exit now?"
 msgstr "Нужно перезагрузить игру для принятия изменений, продолжить?"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:573
-#: f:\Temp\Wargus\trunk\scripts/menus/save.lua:23
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:573
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/save.lua:23
 msgid "~!Yes"
 msgstr "~!Да"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:580
-#: f:\Temp\Wargus\trunk\scripts/menus/save.lua:29
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:580
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/save.lua:29
 msgid "~!No"
 msgstr "~!Нет"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:599
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:599
 msgid "Language Options"
 msgstr "Настройки перевода"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:601
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:601
 msgid "Available languages:"
 msgstr "Доступные переводы:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:637
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:637
 msgid "Game Options"
 msgstr "Игровые опции"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:638
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:638
 msgid "Speeds (~<F6~>)"
 msgstr "Скорость (~<F6~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:640
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:640
 msgid "Sound (~<F7~>)"
 msgstr "Звук (~<F7~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:642
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:642
 msgid "Preferences (~<F8~>)"
 msgstr "Настройка (~<F8~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:650
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:650
 msgid "Diplomacy (~<F9~>)"
 msgstr "Дипломатия (~<F9~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:653
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:653
 msgid "Video (~<F9~>)"
 msgstr "Видео (~<F9~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/options.lua:655
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:655
 msgid "Language"
 msgstr "Перевод"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/replay.lua:7
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/replay.lua:7
 msgid "Select Game"
 msgstr "Выбор игры"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/replay.lua:12
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/replay.lua:12
 msgid "Reveal Map"
 msgstr "Открыть карту"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/replay.lua:35
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/replay.lua:35
 msgid "Save Replay"
 msgstr "Сохранить"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:7
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:7
 msgid "Servant"
 msgstr "Слуга"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:9
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:9
 msgid "Squire"
 msgstr "Оруженосец"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:11
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:11
 msgid "Corporal"
 msgstr "Капрал"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:12
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:12
 msgid "Sergeant"
 msgstr "Сержант"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:13
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:13
 msgid "Lieutenant"
 msgstr "Лейтенант"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:14
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:36
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:14
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:36
 msgid "Captain"
 msgstr "Капитан"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:15
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:37
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:15
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:37
 msgid "Major"
 msgstr "Майор"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:17
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:39
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:17
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:39
 msgid "General"
 msgstr "Генерал"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:18
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:18
 msgid "Admiral"
 msgstr "Адмирал"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:19
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:41
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:19
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:41
 msgid "Marshall"
 msgstr "Маршал"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:20
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:20
 msgid "Lord"
 msgstr "Повелитель"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:21
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:21
 msgid "Grand Admiral"
 msgstr "Адмирал Флота"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:22
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:22
 msgid "Highlord"
 msgstr "Сюзерен"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:23
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:23
 msgid "Thundergod"
 msgstr "Громовержец"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:24
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:46
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:24
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:46
 msgid "God"
 msgstr "Бог"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:25
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:47
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:138
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:25
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:47
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:138
 msgid "Designer"
 msgstr "Программист"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:29
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:29
 msgid "Slave"
 msgstr "Раб"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:30
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:62
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:106
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:30
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:62
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:106
 msgid "Peon"
 msgstr "Батрак"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:31
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:31
 msgid "Rogue"
 msgstr "Негодяй"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:32
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:33
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:32
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:33
 msgid "Grunt"
 msgstr "Пехотинец"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:33
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:33
 msgid "Slasher"
 msgstr "Старшина"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:34
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:34
 msgid "Marauder"
 msgstr "Мородер"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:35
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:35
 msgid "Commander"
 msgstr "Командир"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:40
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:40
 msgid "Master"
 msgstr "Захватчик"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:42
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:42
 msgid "Chieftain"
 msgstr "Вождь"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:43
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:43
 msgid "Overlord"
 msgstr "Владыка"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:44
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:44
 msgid "War Chief"
 msgstr "Военный Вождь"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:45
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:45
 msgid "Demigod"
 msgstr "Полубог"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:65
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:65
 msgid "Victory!"
 msgstr "Победа"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:74
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:74
 msgid "Defeat!"
 msgstr "Разгром"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:83
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:83
 msgid "Draw!"
 msgstr "Ничья"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:132
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:140
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:132
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:140
 msgid "Cheater!"
 msgstr "Обманщик!"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:184
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:184
 msgid " - You"
 msgstr " - Вы"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:186
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:186
 msgid " - Ally"
 msgstr " - Союзник"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:188
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:188
 msgid " - Enemy"
 msgstr " - Враг"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:190
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:190
 msgid " - Neutral"
 msgstr " - Нейтрал"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:207
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:207
 msgid "Buildings:"
 msgstr "Здания:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:210
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:210
 msgid "Gold:"
 msgstr "Золото:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:213
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:213
 msgid "Lumber:"
 msgstr "Лес:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:216
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:216
 msgid "Oil:"
 msgstr "Нефть:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:219
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:219
 msgid "Kills:"
 msgstr "Убито:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:222
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:222
 msgid "Razings:"
 msgstr "Снесено:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:225
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:225
 msgid "Score:"
 msgstr "Очки:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:321
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:321
 msgid "Outcome"
 msgstr "Результат"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:328
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:328
 msgid "Rank"
 msgstr "Звание"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:338
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:338
 msgid "Score"
 msgstr "Очки"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/results.lua:405
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/results.lua:405
 msgid "~!Save Replay"
 msgstr "~!Сохранить"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/save.lua:5
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/save.lua:5
 msgid "Cannot save game to file:"
 msgstr "Нельзя сохранить игру в файл:"
 
-#: f:\Temp\Wargus\trunk\scripts/menus/save.lua:10
+#: /media/l_disk/programming/wwargus/wargus/scripts/menus/save.lua:10
 msgid "Saved game to: "
 msgstr "Сохранено в: "
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:169
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:189
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:169
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:189
 msgid "EYE OF ~!KILROGG"
 msgstr "~!ГЛАЗ КИЛЬРОГА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:175
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:195
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:175
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:195
 msgid "~!BLOODLUST"
 msgstr "ЖАЖДА ~!КРОВИ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:181
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:201
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:181
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:201
 msgid "~!RUNES"
 msgstr "~!РУНЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:208
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:208
 msgid "TOUCH OF D~!ARKNESS"
 msgstr "~!АТАКОВАТЬ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:214
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:214
 msgid "DEATH ~!COIL"
 msgstr "КОЛЬ~!ЦО СМЕРТИ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:220
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:220
 msgid "~!HASTE"
 msgstr "УС~!КОРЕНИЕ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:226
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:226
 msgid "~!RAISE DEAD"
 msgstr "~!ВОСКРЕШЕНИЕ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:232
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:232
 msgid "~!WHIRLWIND"
 msgstr "СМЕР~!Ч"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:238
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:238
 msgid "~!UNHOLY ARMOR"
 msgstr "~!ДОСПЕХИ ЗЛА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:244
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:244
 msgid "~!DEATH AND DECAY"
 msgstr "~!УМРИ И РАЗЛОЖИСЬ!"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:281
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:281
 msgid "BUILD PIG ~!FARM"
 msgstr "СТРОИТЕЛЬСТВО ~!ФЕРМЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:291
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:291
 msgid "BUILD GREAT ~!HALL"
 msgstr "СТРОИТЕЛЬСТВО ~!ЗАЛА ВОЖДЕЙ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:296
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:296
 msgid "BUILD TROLL ~!LUMBER MILL"
 msgstr "СТРОИТЕЛЬСТВО Ф~!АБРИКИ/ПИЛОРАМЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:339
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:339
 msgid "BUILD GOBLIN ~!ALCHEMIST"
 msgstr "СТРОИТЕЛЬСТВО ГОБЛИНА ~!АЛХИМИКА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:344
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:344
 msgid "BUILD ~!OGRE MOUND"
 msgstr "СТРОИТЕЛЬСТВО ХОЛМА ~!ОГРОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:349
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:349
 msgid "BUILD ~!TEMPLE OF THE DAMNED"
 msgstr "СТРОИТЕЛЬСТВО ~!ХРАМА ПРОКЛЯТЫХ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:354
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:354
 msgid "BUILD A~!LTAR OF STORMS"
 msgstr "СТРОИТЕЛЬСТВО А~!ЛТАРЯ ВСЕХ ВЕТРОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:359
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:359
 msgid "BUILD ~!DRAGON ROOST"
 msgstr "СТРОИТЕЛЬСТВО ~!ДРАКОНЬЕГО ЛОГОВА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:379
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:379
 msgid "TRAIN ~!PEON"
 msgstr "ОБУЧЕНИЕ ~!БАТРАКА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:387
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:387
 msgid "UPGRADE TO ~!STRONGHOLD"
 msgstr "ВОЗВЕДЕНИЕ ~!ЦИТАДЕЛИ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:393
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:393
 msgid "UPGRADE TO ~!FORTRESS"
 msgstr "ВОЗВЕДЕНИЕ ~!КРЕПОСТИ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:428
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:428
 msgid "TRAIN ~!GRUNT"
 msgstr "ОБУЧЕНИЕ ~!ПЕХОТИНЦА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:433
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:433
 msgid "TRAIN ~!AXETHROWER"
 msgstr "ОБУЧЕНИЕ ~!ТОПОРОМЕТАТЕЛЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:438
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:438
 msgid "TRAIN ~!BERSERKER"
 msgstr "ОБУ~!ЧЕНИЕ ЛУЧНИКА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:443
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:443
 msgid "BUILD ~!CATAPULT"
 msgstr "СТРОИТЕЛЬСТВО ~!КАТАПУЛЬТЫ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:448
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:448
 msgid "TRAIN TWO-HEADED ~!OGRE"
 msgstr "ОБУЧЕНИЕ ДВУГЛАВОГО ~!ОГРА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:453
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:453
 msgid "TRAIN ~!OGRE MAGE"
 msgstr "ОБУЧЕНИЕ ~!ОГРА-МАГА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:458
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:458
 msgid "BUILD GOBLIN ~!ZEPPELIN"
 msgstr "СТРОИТЕЛЬСТВО ~!ДИРИЖАБЛЯ ГОБЛИНОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:463
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:463
 msgid "TRAIN GOBLIN ~!SAPPERS"
 msgstr "ОБУЧЕНИЕ ГОБЛИНОВ-~!САПЕРОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:468
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:468
 msgid "~!TRAIN DEATH KNIGHT"
 msgstr "~!ОБУЧЕНИЕ РЫЦАРЯ СМЕРТИ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:473
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:473
 msgid "BUILD ~!DRAGON"
 msgstr "ОБУЧЕНИЕ ~!ДРАКОНА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:493
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:493
 msgid "BUILD ~!GIANT TURTLE"
 msgstr "ОБУЧЕНИЕ ~!ГИГАНТСКОЙ ЧЕРЕПАХИ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:498
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:498
 msgid "BUILD ~!JUGGERNAUHGT"
 msgstr "СТРОИТЕЛЬСТВО ~!ДЖАГГЕРНАУТА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:600
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:606
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:600
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:606
 msgid "UPGRADE ~!WEAPONS (Damage +2)"
 msgstr "МОДЕРНИЗАЦИЯ ~!ОРУЖИЯ (Поврежд.+2)"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:624
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:630
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:624
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:630
 msgid "UPGRADE ~!CATAPULT (Damage +15)"
 msgstr "МОЩЬ ~!КАТАПУЛЬТЫ (Поврежд.+15)"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:636
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:642
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:636
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:642
 msgid "~!UPGRADE THROWING AXE (Damage +1)"
 msgstr "МОДЕРНИЗАЦИЯ ТОПОРА (Поврежд.+1)"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:648
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:648
 msgid "TROLL ~!BERSERKER TRAINING"
 msgstr "ШКОЛА ТРОЛЛЯ-~!БЕРСЕРКА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:654
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:654
 msgid "BERSERKER ~!SCOUTING (Sight:9)"
 msgstr "~!ЗОРКОСТЬ БЕРСЕРКА (Зрение:9)"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:660
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:660
 msgid "RESEARCH LIGHTER ~!AXES (Range +1)"
 msgstr "ЛЕГКИЙ ~!ЛУК (Дальность +1)"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:666
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:666
 msgid "BERSERKER ~!REGENERATION"
 msgstr "РЕ~!ГЕНЕРАЦИЯ ТРОЛЛЯ-БЕРСЕРКА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:672
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:672
 msgid "UPGRADES OGRES TO ~!MAGES"
 msgstr "ОБУЧЕНИЕ ~!МАГОВ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:678
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:678
 msgid "RESEARCH ~!BLOODLUST"
 msgstr "ИЗУЧЕНИЕ ЖАЖДЫ ~!КРОВИ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:684
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:684
 msgid "RESEARCH ~!RUNES"
 msgstr "ИЗУЧЕНИЕ ~!РУН"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:690
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:690
 msgid "RESEARCH ~!HASTE"
 msgstr "ИЗУЧЕНИЕ УС~!КОРЕНИЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:696
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:696
 msgid "RESEARCH ~!RAISE DEAD"
 msgstr "ИЗУЧЕНИЕ ~!ВОСКРЕШЕНИЯ"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:702
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:702
 msgid "RESEARCH ~!WHIRLWIND"
 msgstr "ИЗУЧЕНИЕ СМЕР~!ЧА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:708
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:708
 msgid "RESEARCH ~!UNHOLY ARMOR"
 msgstr "ИЗУЧЕНИЕ ~!ДОСПЕХОВ ЗЛА"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/buttons.lua:714
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/buttons.lua:714
 msgid "RESEARCH ~!DEATH AND DECAY"
 msgstr "ИЗУЧЕНИЕ ~!УМРИ И РАЗЛОЖИСЬ!"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/campaign1.lua:34
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/campaign1.lua:34
 msgid "Seas of Blood"
 msgstr "Моря крови"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/campaign1.lua:46
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/campaign1.lua:46
 msgid "Quel'Thalas"
 msgstr "Квель-Талас"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/campaign1.lua:53
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/campaign1.lua:53
 msgid "Tides of Darkness"
 msgstr "Под покровом ночи"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/campaign2.lua:35
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/campaign2.lua:35
 msgid "Draenor, the Red World"
 msgstr "Дренор, Красный Мир"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/campaign2.lua:40
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/campaign2.lua:40
 msgid "The Burning of Azeroth"
 msgstr "Пламя Азерота"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/campaign2.lua:45
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/campaign2.lua:45
 msgid "The Great Sea"
 msgstr "Великое Море"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/campaign2.lua:50
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/campaign2.lua:50
 msgid "Prelude to New Worlds"
 msgstr "Пред Новыми Мирами"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:148
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:148
 msgid "Catapult"
 msgstr "Катапульта"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:177
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:177
 msgid "Ogre"
 msgstr "Огр"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:206
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:206
 msgid "Troll Axethrower"
 msgstr "Тролль метатель"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:235
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:235
 msgid "Death Knight"
 msgstr "Рыцарь Смерти"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:273
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:273
 msgid "Ogre Mage"
 msgstr "Огр-маг"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:305
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:305
 msgid "Goblin Sappers"
 msgstr "Гоблины саперы"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:335
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:335
 msgid "Berserker"
 msgstr "Берсерк"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:365
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:365
 msgid "Teron Gorefiend"
 msgstr "Тирон Гоофинд"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:404
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:404
 msgid "Dentarg"
 msgstr "Дентарг"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:435
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:435
 msgid "Grom Hellscream"
 msgstr "Гром Хэллскрим"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:528
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:528
 msgid "Troll Destroyer"
 msgstr "Разрушитель Троллей"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:556
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:557
 msgid "Ogre Juggernaught"
 msgstr "Джаггернаут Огров"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:585
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:587
 msgid "Dragon"
 msgstr "Дракон"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:614
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:616
 msgid "Deathwing"
 msgstr "Крыло Смерти"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:649
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:651
 msgid "Giant Turtle"
 msgstr "Гигантская черепаха"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:679
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:681
 msgid "Goblin Zeppelin"
 msgstr "Дирижабль Гномов"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:705
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:707
 msgid "Eye of Kilrogg"
 msgstr "Глаз Кильрога"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:731
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:733
 msgid "Korgath Bladefist"
 msgstr "Коргат Блэйдфист"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:760
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:762
 msgid "Cho'gall"
 msgstr "Шогал"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:792
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:794
 msgid "Gul'dan"
 msgstr "Гул'дан"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:830
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:832
 msgid "Zuljin"
 msgstr "Зулин"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:860
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:862
 msgid "Skeleton"
 msgstr "Скелет"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:894
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:896
 msgid "Pig Farm"
 msgstr "Свиноферма"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:959
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:961
 msgid "Altar of Storms"
 msgstr "Алтарь Всех Ветров"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:991
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:993
 msgid "Watch Tower"
 msgstr "Смотровая башня"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1025
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1027
 msgid "Ogre Mound"
 msgstr "Холм Огров"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1057
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1059
 msgid "Goblin Alchemist"
 msgstr "Гоблин Алхимик"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1089
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1091
 msgid "Dragon Roost"
 msgstr "Драконье Логово"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1160
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1162
 msgid "Great Hall"
 msgstr "Зал Вождей"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1197
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1199
 msgid "Troll Lumber Mill"
 msgstr "Пилорама Троллей"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1264
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1266
 msgid "Temple of the Damned"
 msgstr "Храм Проклятых"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1401
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1403
 msgid "Stronghold"
 msgstr "Цитадель"
 
-#: f:\Temp\Wargus\trunk\scripts/orc/units.lua:1439
+#: /media/l_disk/programming/wwargus/wargus/scripts/orc/units.lua:1441
 msgid "Fortress"
 msgstr "Крепость"
 
-#: f:\Temp\Wargus\trunk\scripts/scripts.lua:37
+#: /media/l_disk/programming/wwargus/wargus/scripts/scripts.lua:37
 msgid "Sheep"
 msgstr "Тварь"
 
-#: f:\Temp\Wargus\trunk\scripts/scripts.lua:37
+#: /media/l_disk/programming/wwargus/wargus/scripts/scripts.lua:37
 msgid "Seal"
 msgstr "Тварь"
 
-#: f:\Temp\Wargus\trunk\scripts/scripts.lua:37
+#: /media/l_disk/programming/wwargus/wargus/scripts/scripts.lua:37
 msgid "Pig"
 msgstr "Тварь"
 
-#: f:\Temp\Wargus\trunk\scripts/scripts.lua:37
+#: /media/l_disk/programming/wwargus/wargus/scripts/scripts.lua:37
 msgid "Warthog"
 msgstr "Тварь"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:88
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:88
 msgid "Demolish"
 msgstr "Разрушить"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:97
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:97
 msgid "Holy Vision"
 msgstr "Святое зрение"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:109
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:109
 msgid "Healing"
 msgstr "Лечение"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:159
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:159
 msgid "Exorcism"
 msgstr "Экзорцизм"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:177
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:189
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:177
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:189
 msgid "eye of vision"
 msgstr "глаз кильрога"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:200
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:200
 msgid "haste"
 msgstr "ускорение"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:218
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:218
 msgid "slow"
 msgstr "замедление"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:235
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:252
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:235
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:252
 msgid "bloodlust"
 msgstr "жажда крови"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:268
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:268
 msgid "invisibility"
 msgstr "невидимость"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:299
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:299
 msgid "unholyarmor"
 msgstr "доспехи зла"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:316
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:316
 msgid "flame shield"
 msgstr "защита огнем"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:336
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:336
 msgid "polymorph"
 msgstr "превращение"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:396
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:396
 msgid "blizzard"
 msgstr "буран"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:414
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:414
 msgid "death and decay"
 msgstr "умри и разложись!"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:428
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:428
 msgid "fireball"
 msgstr "огненное ядро"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:440
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:467
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:440
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:467
 msgid "runes"
 msgstr "руны"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:510
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:510
 msgid "death coil"
 msgstr "кольцо смерти"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:523
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:523
 msgid "raise dead"
 msgstr "воскрешение"
 
-#: f:\Temp\Wargus\trunk\scripts/spells.lua:537
+#: /media/l_disk/programming/wwargus/wargus/scripts/spells.lua:537
 msgid "whirlwind"
 msgstr "смерч"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:42
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:42
 msgid "Aleona's Tales"
 msgstr "Сказания Алеоны"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:44
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:44
 msgid "(c) 2012-2015 by The Stratagus Project."
 msgstr "(c) 2012-2015 by The Stratagus Project."
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:46
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:46
 msgid "Wargus"
 msgstr "Wargus"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:48
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:48
 msgid "(c) 1998-2015 by The Stratagus Project."
 msgstr "(c) 1998-2015 by The Stratagus Project."
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:197
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:197
 msgid "stop"
 msgstr "стоп"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:197
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:197
 msgid "mine"
 msgstr "добывайте"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:197
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:197
 msgid "chop"
 msgstr "рубите"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:197
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:197
 msgid "drill"
 msgstr "добывайте"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:199
 msgid "Time Left: "
 msgstr "Время: "
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:199
 msgid "Gold Left: "
 msgstr "Золото: "
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:199
 msgid "Wood Left: "
 msgstr "Лес: "
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:199
 msgid "Oil Left: "
 msgstr "Нефть: "
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:199
 msgid "Ore Left: "
 msgstr "Руда: "
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:199
 msgid "Stone Left: "
 msgstr "Камень: "
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:199
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:199
 msgid "Coal Left: "
 msgstr "Уголь: "
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:201
 msgid "time"
 msgstr "время"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:201
 msgid "ore"
 msgstr "руда"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:201
 msgid "stone"
 msgstr "камень"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:201
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:201
 msgid "coal"
 msgstr "уголь"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:289
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:289
 msgid "You failed to"
 msgstr "Вы проиграли"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:290
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:290
 msgid "achieve victory!"
 msgstr "в этой битве!"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:308
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:308
 msgid "Congratulations!"
 msgstr "Поздравляем!"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:309
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:309
 msgid "You are victorious!"
 msgstr "Вы победитель!"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:311
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:311
 msgid "Save Game (~<F11~>)"
 msgstr "Сохранить (~<F11~>)"
 
-#: f:\Temp\Wargus\trunk\scripts/stratagus.lua:317
+#: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:317
 msgid "~!Victory"
 msgstr "~!Победа"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:116
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:223
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:228
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:234
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:116
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:223
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:228
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:234
 msgid "% Complete"
 msgstr "% завершено"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:129
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:129
 msgid "Usage~|"
 msgstr "Пища~|"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:130
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:130
 msgid "Supply~|: "
 msgstr "Выращено~|:"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:131
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:131
 msgid "Demand~|: "
 msgstr "Расход~|:"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:144
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:168
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:169
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:144
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:168
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:169
 msgid "Production"
 msgstr "Добыча:"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:145
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:145
 msgid "Gold~|: 100"
 msgstr "Золото~|: 100"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:150
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:170
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:150
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:170
 msgid "Lumber~|: 100"
 msgstr "Лес~|: 100"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:155
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:175
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:155
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:175
 msgid "Oil~|: 100"
 msgstr "Нефть~|: 100"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:190
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:196
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:202
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:454
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:501
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:605
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:652
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:190
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:196
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:202
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:447
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:501
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:605
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:659
 msgid "Damage~|: "
 msgstr "Повреждение~|: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:209
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:259
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:209
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:259
 msgid "Armor~|: "
 msgstr "Броня~|: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:212
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:262
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:212
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:262
 msgid "Sight~|: "
 msgstr "Видимость~|: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:216
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:216
 msgid "Range~|: "
 msgstr "Дальность~|: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:222
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:222
 msgid "Researching~|:"
 msgstr "Изучается~|:"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:233
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:233
 msgid "Upgrading~|:"
 msgstr "Улучшается~|:"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:237
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:237
 #, lua-format
 msgid "Carry~|: %d %s"
 msgstr "Несет~|: %d %s"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:251
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:251
 #, lua-format
 msgid "Level ~|~<%d~>"
 msgstr "Уровень ~|~<%d~>"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:255
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:255
 #, lua-format
 msgid "XP:~<%d~> Kills:~|~<%d~>"
 msgstr "XP:~<%d~> Убил:~|~<%d~>"
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:265
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:265
 msgid "Speed~|: "
 msgstr "Скорость~|: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:269
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:269
 msgid "Mana~|: "
 msgstr "Магия~|: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:412
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:563
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:412
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:570
 msgid "~<ALT~>-click to defend unit."
 msgstr "~<ALT~>-клик, чтобы защищать юнит."
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:415
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:566
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:415
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:573
 msgid "~<SHIFT~>-click to make waypoints."
 msgstr "~<SHIFT~>-клик, чтобы создавать точки следования."
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:422
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:573
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:422
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:580
 msgid ""
 "~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."
 msgstr ""
 "~<CTRL~>-клик на кнопку включает/отключает авторемонт поврежденных зданий."
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:429
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:580
-msgid "~<CTRL~>-click on button enables/disables autoheal ability."
-msgstr ""
-"~<CTRL~>-клик на кнопку включает/выключает режим автоматического лечения."
-
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:448
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:489
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:599
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:640
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:441
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:489
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:599
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:647
 msgid "Hit Points: "
 msgstr "Очки жизни: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:451
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:492
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:602
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:643
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:444
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:492
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:602
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:650
 msgid "Armor: "
 msgstr "Броня: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:495
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:646
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:467
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:625
+msgid "~<SHIFT~>-click could be used to make a building queue."
+msgstr ""
+"Можно использовать ~<SHIFT~>-клик, чтобы создать очередь строительства."
+
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:495
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:653
 msgid "Sight: "
 msgstr "Видимость: "
 
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:498
-#: f:\Temp\Wargus\trunk\scripts/ui.lua:649
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:498
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:656
 msgid "Range: "
 msgstr "Дальность: "
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:40
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:545
+#: /media/l_disk/programming/wwargus/wargus/scripts/ui.lua:703
+msgid "~<CTRL~>-click on button enables/disables auto-cast ability."
+msgstr "~<CTRL~>-клик на кнопку включает/выключает автоматическое колдовство."
+
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:40
 msgid "Nothing 22"
 msgstr "Ничего"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:52
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:52
 msgid "Nothing 24"
 msgstr "Ничего"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:68
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:68
 msgid "Nothing 25"
 msgstr "Ничего"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:84
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:84
 msgid "Nothing 30"
 msgstr "Ничего"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:97
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:97
 msgid "Nothing 36"
 msgstr "Ничего"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:110
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:110
 msgid "Daemon"
 msgstr "Демон"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:146
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:146
 msgid "Critter"
 msgstr "Тварь"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:180
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:180
 msgid "Gold Mine"
 msgstr "Золотой рудник"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:219
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:219
 msgid "Oil Patch"
 msgstr "Нефтяное пятно"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:246
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:246
 msgid "Circle of Power"
 msgstr "Круг Власти"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:275
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:275
 msgid "Dark Portal"
 msgstr "Портал Тьмы"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:309
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:309
 msgid "Runestone"
 msgstr "Рунный камень"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:337
-#: f:\Temp\Wargus\trunk\scripts/units.lua:351
-#: f:\Temp\Wargus\trunk\scripts/units.lua:365
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:337
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:351
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:365
 msgid "Dead Body"
 msgstr "Тело"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:386
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:386
 msgid "Destroyed 1x1 Place"
 msgstr "Разрушенное место"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:407
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:407
 msgid "Destroyed 2x2 Place"
 msgstr "Разрушенное место"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:428
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:428
 msgid "Destroyed 3x3 Place"
 msgstr "Разрушенное место"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:448
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:448
 msgid "Destroyed 3x3 Place Water"
 msgstr "Разрушенное место"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:468
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:468
 msgid "Destroyed 4x4 Place"
 msgstr "Разрушенное место"
 
-#: f:\Temp\Wargus\trunk\scripts/units.lua:483
+#: /media/l_disk/programming/wwargus/wargus/scripts/units.lua:483
 msgid "Dummy unit"
 msgstr "Не юнит"
 
-#: f:\Temp\Wargus\trunk\scripts/wc2.lua:34
+#: /media/l_disk/programming/wwargus/wargus/scripts/wc2.lua:34
 msgid "Freemen"
 msgstr "Люди"
 
-#: f:\Temp\Wargus\trunk\scripts/wc2.lua:38
+#: /media/l_disk/programming/wwargus/wargus/scripts/wc2.lua:38
 msgid "Wilds"
 msgstr "Дикари"
 
@@ -2951,11 +2958,13 @@ msgstr "1 Оппонент"
 
 msgid "2 Opponents"
 msgstr "2 Оппонента"
+
 msgid "3 Opponents"
 msgstr "3 Оппонента"
 
 msgid "4 Opponents"
 msgstr "4 Оппонента"
+
 msgid "5 Opponents"
 msgstr "5 Оппонентов"
 
@@ -2970,6 +2979,7 @@ msgstr "~<Оппоненты:~>"
 
 msgid "Time Left~|: "
 msgstr "Время~|:"
+
 msgid "Gold Left~|: "
 msgstr "Золото~|:"
 
