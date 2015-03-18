@@ -8,9 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---	ai_zoisite_2013.lua - Define the Jadeite AI series.
---
---	(c) Copyright 2013 by Kyran Jackson
+--	(c) Copyright 2015 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -27,30 +25,25 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
--- THIS IS CRASHING STILL, must be Cav one...
-function AiZoisite_2013()
-	AiJadeite_Set_Name_2010("Zoisite")
-	if ((GameCycle >= 100000) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1)) then
-		AiNephrite_2013()
-	else
-		if ((GameCycle >= 500) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1)) then
-			AiJadeite_Cavalry_2010()
-		end
-		if ((GetPlayerData(AiPlayer(), "Resources", "gold") < 2500) and (GetPlayerData(AiPlayer(), "Resources", "wood") < 1500) and (GameCycle < 1000)) then
-			AiNephrite_Flush_2013()
-			AiJadeite_Soldier_2010()
-		else
-			AiJadeite_Power_2010()
-		end
-		if ((GetPlayerData(AiPlayer(), "Resources", "gold") > 800000) and (GetPlayerData(AiPlayer(), "Resources", "wood") > 400000)) then
-			if (GameCycle > 8000) then
-				AiNephrite_Expand_2013()
-				if (GameCycle > 10000) then
-					AiNephrite_Research_2013()
-				end
-			end
-		end
-	end
-end
+-- Classic Ais
+DefineAi("Passive", "*", "wc2-skirmish", AiPassive)
+DefineAi("Land Attack", "*", "wc2-skirmish", AiLandAttack)
+DefineAi("Sea Attack", "*", "wc2-skirmish", AiSeaAttack)
+DefineAi("Air Attack", "*", "wc2-skirmish", AiAirAttack)
 
-DefineAi("ai_zoisite_2013", "*", "ai_zoisite_2013", AiZoisite_2013)
+-- Jadeite Ais
+DefineAi("Jadeite", "*", "wc2-skirmish", AiJadeite_2010)
+DefineAi("Morga", "*", "wc2-skirmish", AiJadeite_Soldier_2010)
+DefineAi("Balm", "*", "wc2-skirmish", AiJadeite_Power_2010)
+DefineAi("Flau", "*", "wc2-skirmish", AiJadeite_Cavalry_2010)
+DefineAi("Iguara", "*", "wc2-skirmish", AiJadeite_Flyer_2010)
+DefineAi("Kyurene", "*", "wc2-skirmish", AiJadeite_Shooter_2010)
+
+-- Nephrite Ais
+DefineAi("Nephrite", "*", "wc2-skirmish", AiNephrite_2013)
+DefineAi("Tesuni", "*", "wc2-skirmish", AiNephrite_NoCav_2013)
+DefineAi("Regulus", "*", "wc2-skirmish", AiNephrite_2012)
+DefineAi("Soul", "*", "wc2-skirmish", AiNephrite_NoCav_2012)
+
+-- Zoisite Ais
+DefineAi("Zoisite", "*", "wc2-skirmish", AiZoisite_2013)

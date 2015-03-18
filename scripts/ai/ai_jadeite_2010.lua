@@ -48,41 +48,31 @@ end
 
 function AiJadeite_2010()
 	-- Setting up the variables.
-	if (GameCycle < 200) then
-		SetPlayerData(AiPlayer(), "Name", "Jadeite")
-	end
+	AiJadeite_Set_Name_2010("Jadeite")
 	if (jadeite_stepping[AiPlayer()] ~= nil) then
 		if (jadeite_stepping[AiPlayer()] == 1) then
 			-- Standard air attack build.
 			AiJadeite_Flyer_2010()
-				AddMessage("One")
 		elseif (jadeite_stepping[AiPlayer()] == 2) then
 			-- Standard footsoldier build.
 			AiJadeite_Soldier_2010()
-				AddMessage("two")
 		elseif (jadeite_stepping[AiPlayer()] == 3) then
 			-- Standard knight build.
 			AiJadeite_Cavalry_2010()
-				AddMessage("three")
 		elseif (jadeite_stepping[AiPlayer()] == 4) then
 			-- Standard archer build.
 			AiJadeite_Shooter_2010()
-				AddMessage("four")
 		elseif (jadeite_stepping[AiPlayer()] == 5) then
 			-- One Hall Power to Keep/Stronghold 
 			AiJadeite_Power_2010()
-				AddMessage("five")
 		elseif (jadeite_stepping[AiPlayer()] == 6) then
 			-- Peasant build.
 			AiJadeite_Worker_2010()
-				AddMessage("six")
 		else
-			AddMessage("shit")
 			jadeite_stepping[AiPlayer()] = SyncRand(5)
 		end
 	else
 		jadeite_stepping[AiPlayer()] = SyncRand(5)
-		SetPlayerData(AiPlayer(), "Name", "Jadeite")
     end
 end
 
@@ -96,6 +86,7 @@ function AiJadeite_Worker_2010()
 end
 
 function AiJadeite_Power_2010()
+	AiJadeite_Set_Name_2010("Balm")
 	AiJadeite_Intermittent_2010()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFarm()) >= 1) then
@@ -172,6 +163,7 @@ function AiJadeite_Power_2010()
 end
 		
 function AiJadeite_Shooter_2010()
+	AiJadeite_Set_Name_2010("Kyurene")
 	AiJadeite_Intermittent_2010()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 5) then
 		AiSet(AiWorker(), 8)
@@ -220,6 +212,7 @@ function AiJadeite_Shooter_2010()
 end
 
 function AiJadeite_Cavalry_2010()
+	AiJadeite_Set_Name_2010("Flau")
 	AiJadeite_Intermittent_2010()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 5) then
 		AiSet(AiWorker(), 8)
@@ -274,6 +267,7 @@ function AiJadeite_Cavalry_2010()
 end
 
 function AiJadeite_Soldier_2010()
+	AiJadeite_Set_Name_2010("Morga")
 	AiJadeite_Intermittent_2010()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 5) then
 		AiSet(AiWorker(), 8)
@@ -305,6 +299,7 @@ function AiJadeite_Soldier_2010()
 end
 
 function AiJadeite_Flyer_2010()
+	AiJadeite_Set_Name_2010("Iguara")
 	AiJadeite_Intermittent_2010()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiAirport()) >= 1) then
 		AiSet(AiAirport(), 3)
@@ -372,10 +367,16 @@ function AiJadeite_Clear_Build_2010()
 	AiSet(AiCityCenter(), 0)
 end
 
-DefineAi("ai_jadeite_2010", "*", "wc2-skirmish", AiJadeite_2010)
-DefineAi("ai_jadeite_soldier_2010", "*", "wc2-skirmish", AiJadeite_Soldier_2010)
-DefineAi("ai_jadeite_cavalry_2010", "*", "wc2-skirmish", AiJadeite_Cavalry_2010)
-DefineAi("ai_jadeite_shooter_2010", "*", "wc2-skirmish", AiJadeite_Shooter_2010)
-DefineAi("ai_jadeite_worker_2010", "*", "", AiJadeite_Worker_2010)
-DefineAi("ai_jadeite_power_2010", "*", "wc2-skirmish", AiJadeite_Power_2010)
-DefineAi("ai_jadeite_flyer_2010", "*", "wc2-skirmish", AiJadeite_Flyer_2010)
+function AiJadeite_Set_Name_2010(name)
+	if ((GameCycle < 300) and (GetPlayerData(AiPlayer(), "Name") == "Computer")) then
+		SetPlayerData(AiPlayer(), "Name", name)
+	end
+end
+
+DefineAi("ai_jadeite_2010", "*", "ai_jadeite_2010", AiJadeite_2010)
+DefineAi("ai_jadeite_soldier_2010", "*", "ai_jadeite_soldier_2010", AiJadeite_Soldier_2010)
+DefineAi("ai_jadeite_cavalry_2010", "*", "ai_jadeite_cavalry_2010", AiJadeite_Cavalry_2010)
+DefineAi("ai_jadeite_shooter_2010", "*", "ai_jadeite_shooter_2010", AiJadeite_Shooter_2010)
+DefineAi("ai_jadeite_worker_2010", "*", "ai_jadeite_worker_2010", AiJadeite_Worker_2010)
+DefineAi("ai_jadeite_power_2010", "*", "ai_jadeite_power_2010", AiJadeite_Power_2010)
+DefineAi("ai_jadeite_flyer_2010", "*", "ai_jadeite_flyer_2010", AiJadeite_Flyer_2010)

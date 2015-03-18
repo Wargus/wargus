@@ -299,7 +299,10 @@ function AiRedRibbon_2014()
 	AiRedRibbon_Common_2014()
 end
 
-function AiRedRibbon_Diplomacy_Neutral_2014(a,b,n)
+function AiRedRibbon_Diplomacy_Neutral_2014(a,b,n,s)
+	if (s ~= "enemy") then
+		s = "allied"
+	end
 	for i=a,b do
 		SetSharedVision(i, false, n)
 		SetSharedVision(n, false, i)

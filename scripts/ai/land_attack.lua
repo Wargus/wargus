@@ -320,5 +320,4 @@ local land_funcs = {
 
 function AiLandAttack() AiLoop(land_funcs, stratagus.gameData.AIState.index); end
 
-DefineAi("wc2-land-attack", "*", "wc2-skirmish", AiLandAttack)
-
+DefineAi("wc2-land-attack", "*", "wc2-land-attack", AiLandAttack)

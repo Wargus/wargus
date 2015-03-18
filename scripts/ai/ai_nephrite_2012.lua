@@ -35,6 +35,7 @@ local nephrite_attackbuffer -- The AI attacks when it has this many units.
 local nephrite_wait -- How long the AI waits for the next attack.
 
 function AiNephrite_2012()
+	AiJadeite_Set_Name_2010("Regulus")
 	if (nephrite_stepping ~= nil) then
 	else
 		nephrite_stepping = 1
@@ -190,6 +191,7 @@ function AiNephrite_2012()
 end
 
 function AiNephrite_NoCav_2012()
+	AiJadeite_Set_Name_2010("Soul")
 	if (nephrite_stepping ~= nil) then
 		AiNephrite_2012()
 	else
@@ -204,4 +206,3 @@ end
 
 DefineAi("ai_nephrite_2012", "*", "ai_nephrite_2012", AiNephrite_2012)
 DefineAi("ai_nephrite_nocav_2012", "*", "ai_nephrite_nocav_2012", AiNephrite_NoCav_2012)
-

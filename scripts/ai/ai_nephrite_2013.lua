@@ -48,6 +48,7 @@ function AiNephrite_Setup_2013()
 end
 
 function AiNephrite_2013()
+	AiJadeite_Set_Name_2010("Nephrite")
 	if (nephrite_attackforce[AiPlayer()] ~= nil) then
 		if ((nephrite_wait[AiPlayer()] < 3) or (nephrite_wait[AiPlayer()] == 11) or (nephrite_wait[AiPlayer()] == 21) or (nephrite_wait[AiPlayer()] == 21) or (nephrite_wait[AiPlayer()] == 31) or (nephrite_wait[AiPlayer()] == 41) or (nephrite_wait[AiPlayer()] == 51) or (nephrite_wait[AiPlayer()] == 61) or (nephrite_wait[AiPlayer()] == 71) or (nephrite_wait[AiPlayer()] == 81) or (nephrite_wait[AiPlayer()] == 91) or (nephrite_wait[AiPlayer()] == 101)) then
 			AiNephrite_Flush_2013()
@@ -306,6 +307,7 @@ function AiNephrite_Train_2013()
 end
 
 function AiNephrite_NoCav_2013()
+	AiJadeite_Set_Name_2010("Tesuni")
 	if (nephrite_attackforce[AiPlayer()] ~= nil) then
 		AiNephrite_2013()
 		if (nephrite_attackbuffer[AiPlayer()] > 20) then
