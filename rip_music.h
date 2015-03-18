@@ -44,7 +44,7 @@ static const char * const MusicNames[] = {
 	"Orc Battle 3",
 	"Orc Battle 4",
 	"Orc Battle 5",
-	"Orc Briefing",
+	"Main Menu",
 	"Orc Victory",
 	"Orc Defeat",
 	"Main Menu",
