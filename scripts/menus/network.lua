@@ -142,8 +142,8 @@ function RunJoiningMapMenu(s)
   revealmap:setEnabled(false)
 
   menu:writeText(_("~<Your Race:~>"), sx, sy*11)
-  local race = menu:addDropDown({"Map Default", "Orc", "Human"}, sx + 100, sy*11,
-    function(dd)
+  local race = menu:addDropDown({_("Map Default"), _("Orc"), _("Human")}, sx + 100, sy*11, function(dd) end)
+  race:setActionCallback(function(dd)
       GameSettings.Presets[NetLocalHostsSlot].Race = race:getSelected()
       LocalSetupState.Race[NetLocalHostsSlot] = race:getSelected()
     end)
@@ -416,31 +416,32 @@ local function RunServerMultiGameMenu(map, description, numplayers)
   local revealmap = menu:addImageCheckBox(_("Reveal map"), sx, sy*3+150, offi, offi2, oni, oni2, revealMapCb)
 
   menu:writeText(_("Race:"), sx, sy*11)
-  local d = menu:addDropDown({_("Map Default"), _("Orc"), _("Human")}, sx + 100, sy*11,
-    function(dd)
+  local dd = menu:addDropDown({_("Map Default"), _("Orc"), _("Human")}, sx + 100, sy*11, function(dd) end)
+  dd:setActionCallback(
+  function(d)
       GameSettings.Presets[0].Race = dd:getSelected()
       ServerSetupState.Race[0] = GameSettings.Presets[0].Race
       NetworkServerResyncClients()
     end)
-  d:setSize(190, 20)
+  dd:setSize(190, 20)
 
   menu:writeText(_("Units:"), sx, sy*11+25)
-  d = menu:addDropDown({_("Map Default"), _("One Peasant Only")}, sx + 100, sy*11+25,
-    function(dd)
+  dd = menu:addDropDown({_("Map Default"), _("One Peasant Only")}, sx + 100, sy*11+25,
+    function(d)
       GameSettings.NumUnits = dd:getSelected()
       ServerSetupState.UnitsOption = GameSettings.NumUnits
       NetworkServerResyncClients()
     end)
-  d:setSize(190, 20)
+  dd:setSize(190, 20)
 
   menu:writeText(_("Resources:"), sx, sy*11+50)
-  d = menu:addDropDown({_("Map Default"), _("Low"), _("Medium"), _("High")}, sx + 100, sy*11+50,
-    function(dd)
+  dd = menu:addDropDown({_("Map Default"), _("Low"), _("Medium"), _("High")}, sx + 100, sy*11+50,
+    function(d)
       GameSettings.Resources = dd:getSelected()
       ServerSetupState.ResourcesOption = GameSettings.Resources
       NetworkServerResyncClients()
     end)
-  d:setSize(190, 20)
+  dd:setSize(190, 20)
 
   local updatePlayers = addPlayersList(menu, numplayers)
 
