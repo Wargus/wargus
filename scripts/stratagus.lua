@@ -431,6 +431,11 @@ InitFuncs:add(function()
   end
 end)
 
+if wc2.preferences.ShowOrders == true then
+	Preference.ShowOrders = 1
+  else 
+	Preference.ShowOrders = 0
+  end
 SetDoubleClickDelay(wc2.preferences.DoubleClickDelayInMs)
 SetEffectsEnabled(wc2.preferences.EffectsEnabled)
 SetEffectsVolume(wc2.preferences.EffectsVolume)

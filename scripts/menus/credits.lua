@@ -38,7 +38,7 @@ function RunShowCreditsMenu()
 	"  Kyran Jackson",
 	"Stratagus programmers",
 	"  cybermind aka Mistranger",
-	"  Andre Novellino Gouvêa",
+	"  Andrettin",
 	"  Joris Dauphin",
 	"  Pali Rohar",
 	"Code used from Wargus Improvement project by Andrettin",
@@ -149,7 +149,7 @@ function RunShowCreditsMenu()
 	"",
   }
 
-  local sw = ScrollingWidget(320, 275)
+  local sw = ScrollingWidget(480, 275)
   menu:add(sw, offx + 140, offy + 80)
   sw:setBackgroundColor(Color(0,0,0,0))
   sw:setActionCallback(function() sw:restart() end)
