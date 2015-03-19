@@ -183,7 +183,7 @@ function StartCustomGame_Lua()
 	RunSinglePlayerGameMenu = NewRunSinglePlayerGameMenu
 	
 	-- Selecting the default map.
-	mapname = "maps/ftm/(2)less-than-three.smp"
+	mapname = "maps/ftm/(4)beethoven-day.smp"
 	local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
 	mapinfo = {
 		playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},

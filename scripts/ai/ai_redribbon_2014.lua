@@ -306,8 +306,8 @@ function AiRedRibbon_Diplomacy_Neutral_2014(a,b,n,s)
 	for i=a,b do
 		SetSharedVision(i, false, n)
 		SetSharedVision(n, false, i)
-		SetDiplomacy(n, "allied", i)
-		SetDiplomacy(i, "allied", n)
+		SetDiplomacy(n, s, i)
+		SetDiplomacy(i, s, n)
 	end
 end
 
