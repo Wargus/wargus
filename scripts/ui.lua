@@ -430,7 +430,7 @@ if (wc2.preferences.ShowButtonPopups) then
 		BorderColor = HumanPopupBorderColor,
 		Contents = {
 				{	Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Hint"}}
+					More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
 				}, 
 				{ 	Margin = {1, 1},
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
@@ -438,13 +438,13 @@ if (wc2.preferences.ShowButtonPopups) then
 				{ 	More = {"Costs"}, HighlightColor = "full-red",
 				}, 
 				{ 	Condition = {HitPoints = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints"}}
+					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints", Font = PopupFont}}
 				}, 
 				{ 	Condition = {Armor = "only", AttackRange = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Armor: "), Variable = "Armor"}}
+					More = {"Variable", {Text = _("Armor: "), Variable = "Armor", Font = PopupFont}}
 				},
 				{ 	Condition = {BasicDamage = "only", AttackRange = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = Concat(_("Damage~|: "), 
+					More = {"Variable", {Font = PopupFont, Text = Concat(_("Damage~|: "), 
 								String(Div(TypeVar("PiercingDamage", "Value", "Initial"), 2)), "-", 
 								String(Add(TypeVar("PiercingDamage", "Value", "Initial"), TypeVar("BasicDamage", "Value", "Initial"))),
 								If(Equal(0, Sub(TypeVar("PiercingDamage", "Value", "Type"),
@@ -457,7 +457,7 @@ if (wc2.preferences.ShowButtonPopups) then
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
 				}, 
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
 				},
 				-- Multi-build hint
 				{ 	Margin = {1, 1}, Condition = {ButtonAction = "build"},
@@ -475,7 +475,7 @@ if (wc2.preferences.ShowButtonPopups) then
 		BorderColor = HumanPopupBorderColor,
 		Contents = {
 				{	Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Hint"}}
+					More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
 				}, 
 				{ 	Margin = {1, 1},
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
@@ -486,19 +486,19 @@ if (wc2.preferences.ShowButtonPopups) then
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
 				}, 
 				{ 	Condition = {HitPoints = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints"}}
+					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints", Font = PopupFont}}
 				},
 				{ 	HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Armor: "), Variable = "Armor"}}
+					More = {"Variable", {Text = _("Armor: "), Variable = "Armor", Font = PopupFont}}
 				},
 				{ 	Condition = {SightRange = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Sight: "), Variable = "SightRange"}}
+					More = {"Variable", {Text = _("Sight: "), Variable = "SightRange", Font = PopupFont}}
 				},
 				{ 	HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Range: "), Variable = "AttackRange"}}
+					More = {"Variable", {Text = _("Range: "), Variable = "AttackRange", Font = PopupFont}}
 				},
 				{ 	Condition = {BasicDamage = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = Concat(_("Damage~|: "), 
+					More = {"Variable", {Font = PopupFont, Text = Concat(_("Damage~|: "), 
 								String(Div(TypeVar("PiercingDamage", "Value", "Initial"), 2)), "-", 
 								String(Add(TypeVar("PiercingDamage", "Value", "Initial"), TypeVar("BasicDamage", "Value", "Initial"))),
 								If(Equal(0, Sub(TypeVar("PiercingDamage", "Value", "Type"),
@@ -512,7 +512,7 @@ if (wc2.preferences.ShowButtonPopups) then
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
 				}, 
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
 				},
 		}	
 	})
@@ -523,7 +523,7 @@ if (wc2.preferences.ShowButtonPopups) then
 		BorderColor = HumanPopupBorderColor,
 		Contents = {
 				{	Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Hint"}}
+					More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
 				}, 
 				{ 	Margin = {1, 1},
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
@@ -535,7 +535,7 @@ if (wc2.preferences.ShowButtonPopups) then
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
 				}, 
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
 				},
 				-- Auto-cast hint
 				{ 	Margin = {1, 1}, Condition = {ButtonAction = "cast-spell"},
@@ -588,7 +588,7 @@ if (wc2.preferences.ShowButtonPopups) then
 		BorderColor = OrcPopupBorderColor,
 		Contents = {
 				{	Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Hint"}}
+					More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
 				}, 
 				{ 	Margin = {1, 1},
 					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
@@ -596,13 +596,13 @@ if (wc2.preferences.ShowButtonPopups) then
 				{ 	More = {"Costs"}, HighlightColor = "full-red",
 				}, 
 				{ 	Condition = {HitPoints = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints"}}
+					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints", Font = PopupFont}}
 				}, 
 				{ 	Condition = {Armor = "only", AttackRange = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Armor: "), Variable = "Armor"}}
+					More = {"Variable", {Text = _("Armor: "), Variable = "Armor", Font = PopupFont}}
 				},
 				{ 	Condition = {BasicDamage = "only", AttackRange = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = Concat(_("Damage~|: "), 
+					More = {"Variable", {Font = PopupFont, Text = Concat(_("Damage~|: "), 
 								String(Div(TypeVar("PiercingDamage", "Value", "Initial"), 2)), "-", 
 								String(Add(TypeVar("PiercingDamage", "Value", "Initial"), TypeVar("BasicDamage", "Value", "Initial"))),
 								If(Equal(0, Sub(TypeVar("PiercingDamage", "Value", "Type"),
@@ -615,7 +615,7 @@ if (wc2.preferences.ShowButtonPopups) then
 					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
 				}, 
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
 				},
 				-- Multi-build hint
 				{ 	Margin = {1, 1}, Condition = {ButtonAction = "build"},
@@ -633,7 +633,7 @@ if (wc2.preferences.ShowButtonPopups) then
 		BorderColor = OrcPopupBorderColor,
 		Contents = {
 				{	Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Hint"}}
+					More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
 				}, 
 				{ 	Margin = {1, 1},
 					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
@@ -644,19 +644,19 @@ if (wc2.preferences.ShowButtonPopups) then
 					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
 				}, 
 				{ 	Condition = {HitPoints = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints"}}
+					More = {"Variable", {Text = _("Hit Points: "), Variable = "HitPoints", Font = PopupFont}}
 				},
 				{ 	HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Armor: "), Variable = "Armor"}}
+					More = {"Variable", {Text = _("Armor: "), Variable = "Armor", Font = PopupFont}}
 				},
 				{ 	Condition = {SightRange = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Sight: "), Variable = "SightRange"}}
+					More = {"Variable", {Text = _("Sight: "), Variable = "SightRange", Font = PopupFont}}
 				},
 				{ 	HighlightColor = "full-red",
-					More = {"Variable", {Text = _("Range: "), Variable = "AttackRange"}}
+					More = {"Variable", {Text = _("Range: "), Variable = "AttackRange", Font = PopupFont}}
 				},
 				{ 	Condition = {BasicDamage = "only"}, HighlightColor = "full-red",
-					More = {"Variable", {Text = Concat(_("Damage~|: "), 
+					More = {"Variable", {Font = PopupFont, Text = Concat(_("Damage~|: "), 
 								String(Div(TypeVar("PiercingDamage", "Value", "Initial"), 2)), "-", 
 								String(Add(TypeVar("PiercingDamage", "Value", "Initial"), TypeVar("BasicDamage", "Value", "Initial"))),
 								If(Equal(0, Sub(TypeVar("PiercingDamage", "Value", "Type"),
@@ -670,7 +670,7 @@ if (wc2.preferences.ShowButtonPopups) then
 					More = {"Line", {Width = 0, Height = 1, Color = OrcPopupBorderColor}}
 				}, 
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
 				},
 		}	
 	})
@@ -681,7 +681,7 @@ if (wc2.preferences.ShowButtonPopups) then
 		BorderColor = OrcPopupBorderColor,
 		Contents = {
 				{	Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Hint"}}
+					More = {"ButtonInfo", {InfoType = "Hint", Font = PopupFont}}
 				}, 
 				{ 	Margin = {1, 1},
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
@@ -693,7 +693,7 @@ if (wc2.preferences.ShowButtonPopups) then
 					More = {"Line", {Width = 0, Height = 1, Color = HumanPopupBorderColor}}
 				}, 
 				{ 	Condition = {HasDescription = true}, Margin = {1, 1}, HighlightColor = "full-red",
-					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5}}
+					More = {"ButtonInfo", {InfoType = "Description", MaxWidth = Video.Width / 5, Font = PopupFont}}
 				},
 				-- Auto-cast hint
 				{ 	Margin = {1, 1}, Condition = {ButtonAction = "cast-spell"},

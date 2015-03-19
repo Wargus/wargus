@@ -89,7 +89,9 @@ DefineSpell("spell-suicide-bomber",
 	"action", {{"demolish", "range", 1, "damage", 400},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"end-point",   {"base", "caster"}}},
-	"sound-when-cast", "explosion"
+	"sound-when-cast", "explosion",
+	"autocast", {"range", 6, "condition", {"opponent", "only"}},
+	"ai-cast", {"range", 6, "condition", {"opponent", "only"}}
 )
 
 
