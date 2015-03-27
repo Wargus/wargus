@@ -264,7 +264,6 @@ function AiNephrite_Research_2013()
 end
 
 function AiNephrite_Train_2013()
-	AiSetReserve({0, 400, 0, 0, 0, 0, 0})
 	if (nephrite_build[AiPlayer()] == "Worker") then
 		AiSet(AiWorker(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) + GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()))
 	elseif (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 0) then
@@ -303,7 +302,6 @@ function AiNephrite_Train_2013()
 	else
 		AiSet(AiBarracks(), 1)
 	end
-	AiSetReserve({0, 0, 0, 0, 0, 0, 0})
 end
 
 function AiNephrite_NoCav_2013()

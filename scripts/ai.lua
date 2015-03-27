@@ -10,7 +10,8 @@
 --
 --      ai.lua - Define the AI.
 --
---      (c) Copyright 2000-2015 by Lutz Sammer, Jimmy Salmon, cybermind and Kyran Jackson.
+--      (c) Copyright 2000-2015 by Lutz Sammer, Jimmy Salmon, 
+--											cybermind and Kyran Jackson.
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -835,53 +836,54 @@ function DebugMessage(message)
 	DebugPrint(message .. "\n")
 end
 
+function AiSpeed(build, train, upgrade, research)
+	if (research == nil) then research = build end
+	if (upgrade == nil) then upgrade = build end
+	if (train == nil) then train = build end
+	if (build ~= nil) then
+		SetSpeedBuild(AiPlayer(), build)
+		SetSpeedTrain(AiPlayer(), train)
+		SetSpeedUpgrade(AiPlayer(), upgrade)
+		SetSpeedResearch(AiPlayer(), research)
+	end
+end
+
+function AiCheat(gold, wood, oil)
+	if (oil == nil) then oil = 0 end
+	if (wood == nil) then wood = 0 end
+	if (gold == nil) then gold = 0 end
+	SetPlayerData(AiPlayer(), "Resources", "gold", GetPlayerData(AiPlayer(), "Resources", "gold") + gold)
+	SetPlayerData(AiPlayer(), "Resources", "wood", GetPlayerData(AiPlayer(), "Resources", "wood") + wood)
+	SetPlayerData(AiPlayer(), "Resources", "oil", GetPlayerData(AiPlayer(), "Resources", "oil") + oil)
+end
+
 function AiLoop(loop_funcs, indexes)
 	local playerIndex = AiPlayer() + 1
-	-- Some AI checting for harder levels
+	-- Some AI cheating for harder levels
 	if (GameSettings.Difficulty == 4) then
-		SetPlayerData(AiPlayer(), "Resources", "gold",
-		  GetPlayerData(AiPlayer(), "Resources", "gold") + 50)
-		SetPlayerData(AiPlayer(), "Resources", "wood",
-		  GetPlayerData(AiPlayer(), "Resources", "wood") + 35)
-		SetPlayerData(AiPlayer(), "Resources", "oil",
-		  GetPlayerData(AiPlayer(), "Resources", "oil") + 25)
+		AiCheat(50, 35, 25)
 		local resources = { "gold", "wood", "oil" }
 		for j = 1,table.getn(resources) do
 			SetSpeedResourcesHarvest(AiPlayer(), resources[j], 120)
 			SetSpeedResourcesReturn(AiPlayer(), resources[j], 120)
 		  end
-		  SetSpeedBuild(AiPlayer(), 120)
-		  SetSpeedTrain(AiPlayer(), 120)
-		  SetSpeedUpgrade(AiPlayer(), 120)
-		  SetSpeedResearch(AiPlayer(), 120)
+		  AiSpeed(120)
 	elseif (GameSettings.Difficulty == 5) then
-		SetPlayerData(AiPlayer(), "Resources", "gold",
-		  GetPlayerData(AiPlayer(), "Resources", "gold") + 100)
-		SetPlayerData(AiPlayer(), "Resources", "wood",
-		  GetPlayerData(AiPlayer(), "Resources", "wood") + 75)
-		SetPlayerData(AiPlayer(), "Resources", "oil",
-		  GetPlayerData(AiPlayer(), "Resources", "oil") + 50)
+		AiCheat(100, 75, 50)
 		local resources = { "gold", "wood", "oil" }
 		for j = 1,table.getn(resources) do
 			SetSpeedResourcesHarvest(AiPlayer(), resources[j], 150)
 			SetSpeedResourcesReturn(AiPlayer(), resources[j], 150)
 		  end
-		  SetSpeedBuild(AiPlayer(), 150)
-		  SetSpeedTrain(AiPlayer(), 150)
-		  SetSpeedUpgrade(AiPlayer(), 150)
-		  SetSpeedResearch(AiPlayer(), 150)
+		  AiSpeed(150)
 	elseif (GameSettings.Difficulty == 1) then
 		local resources = { "gold", "wood", "oil" }
 		for j = 1,table.getn(resources) do
 			SetSpeedResourcesHarvest(AiPlayer(), resources[j], 75)
 			SetSpeedResourcesReturn(AiPlayer(), resources[j], 75)
 		  end
-		  SetSpeedBuild(AiPlayer(), 75)
-		  SetSpeedTrain(AiPlayer(), 75)
-		  SetSpeedUpgrade(AiPlayer(), 75)
-		  SetSpeedResearch(AiPlayer(), 75)
+		  AiSpeed(75)
 	end
-
 	while (true) do
 		local ret = loop_funcs[indexes[playerIndex]]()
 		if (ret) then

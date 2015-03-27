@@ -207,6 +207,9 @@ function AiRedRibbon_Setup_2014()
 	timers = {}
 	ftm_faction = {}
 	ftm_team = {}
+	ftm_gold = {}
+	ftm_wood = {}
+	ftm_oil = {}
 	ftm_team_startx = {}
 	ftm_team_starty = {}
 	ftm_team_tempx = {}
@@ -220,7 +223,7 @@ function AiRedRibbon_Setup_2014()
 	ftm_unit = {}
 	ftm_origin = {}
 	-- Delete following line.
-	ftm_cost = {}
+	--ftm_cost = {}
 	ftm_choice = {} -- Who gets spawned in next.
 	ftm_index_start = {}
 	ftm_index_end = {}
@@ -234,6 +237,11 @@ function AiRedRibbon_Setup_2014()
 	aiftm_index = {}
 	aiftm_mana = {}
 	for i = 0, 15 do
+		if (i < 8) then
+			AiRed_Resources_Set_2014(i, 0, 0, 0)
+		else
+			AiRed_Resources_Set_2014(i, 100, 50, 50)
+		end
 		aiftm_unit[i] = {}
 		aiftm_quantity[i] = {}
 		aiftm_index[i] = 0
@@ -273,6 +281,28 @@ function AiRed_Resources_2014(t, g, w, o)
 	SetPlayerData(t, "Resources", "gold", g)
 	SetPlayerData(t, "Resources", "wood", w)
 	SetPlayerData(t, "Resources", "oil", o)
+end
+	
+function AiRed_Resources_Set_2014(i, g, w, o)
+	ftm_gold[i] = g
+	ftm_wood[i] = w
+	ftm_oil[i]  = o
+end
+	
+function AiRed_Resources_Setup_2014(a, g, w, o, b, t)
+	if (b == nil) then
+		AiRed_Resources_Set_2014(a, g, w, o)
+	else
+		for i = a, b do
+			if ((t == nil) or (t== "All")) then
+				AiRed_Resources_Set_2014(i, g, w, o)
+			elseif (((t == "Spawner") or (t == "Spawners")) and (i < 8)) then
+				AiRed_Resources_Set_2014(i, g, w, o)
+			elseif (((t == "Picker") or (t == "Pickers")) and (i >= 8)) then
+				AiRed_Resources_Set_2014(i, g, w, o)
+			end
+		end
+	end
 end
 	
 function AiRed_Resources_Remove_2014(i, gold, wood, oil)
@@ -347,25 +377,13 @@ function AiRedRibbon_Pickers_Add_2014(a, b)
 			end
 		end
 	end
-	
-	
-	--ftm_team_startx[i]
-	--ftm_team_starty[i]
-	
-	
-	--CreateUnit("unit-caanoo-wiseman", 14, {45, 47})
-	--CreateUnit("unit-caanoo-wiseman", 9, {43, 47})
-	--CreateUnit("unit-caanoo-wiseskeleton", 10, {44, 47})
-	--CreateUnit("unit-caanoo-wiseskeleton", 8, {46, 47})
-	--CreateUnit("unit-caanoo-wiseskeleton", 13, {95, 95})
 end
 
 function AiRedRibbon_Common_2014()
-	AiRed_Resources_2014(ftm_choice[AiPlayer()], 100, 50, 50)
+	AiRed_Resources_2014(ftm_choice[AiPlayer()], ftm_gold[ftm_choice[AiPlayer()]], ftm_wood[ftm_choice[AiPlayer()]], ftm_oil[ftm_choice[AiPlayer()]])
+	AiRed_Resources_2014(AiPlayer(), ftm_gold[AiPlayer()], ftm_wood[AiPlayer()], ftm_oil[AiPlayer()])
 	if ((timers[AiPlayer()] == 35) or (timers[AiPlayer()] == 85)) then
 		AiNephrite_Flush_2013()
-	--elseif (ftm_faction[ftm_choice[AiPlayer()]] ~= ftm_faction[AiPlayer()]) then	
-	--	AiRedRibbon_Diplomacy_2014(0, 15)
 	end
 	AiRedRibbon_Research_2012()
 	timers[AiPlayer()] = timers[AiPlayer()] + 1
