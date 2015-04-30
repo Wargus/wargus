@@ -38,6 +38,7 @@ function SetPlayerFtM2014(player, race, faction, gold, wood, oil, startx, starty
 	ftm_faction[player+match] = faction
 	ftm_team[player] = player
 	ftm_team[player+match] = player
+	-- replace with maps x and y
 	ftm_team_x1[player+match] = 0
 	ftm_team_y1[player+match] = 0
 	ftm_team_x2[player+match] = 1024
@@ -76,14 +77,14 @@ function AiRedRibbon_Setup_Units_2014()
 	ftm_cost_oil = {}
 	ftm_origin_x = {}
 	ftm_origin_y = {}
-	AiRedRibbon_Define_Unit_2014(1, "unit-footman", "unit-human-barracks", "ground", "melee", "standard", 2500, 0, 0)
+	AiRedRibbon_Define_Unit_2014(1, "unit-knight-rider", "unit-human-barracks", "ground", "melee", "hero", 7500, 0, 12500)
 	AiRedRibbon_Define_Unit_2014(2, "unit-arthor-literios", "unit-human-barracks", "ground", "melee", "hero", 2500, 0, 17500)
-	AiRedRibbon_Define_Unit_2014(3, "unit-archer", "unit-human-barracks", "ground", "ranged", "standard", 1000, 1500, 0)
-	AiRedRibbon_Define_Unit_2014(4, "unit-ranger", "unit-human-barracks", "ground", "ranged", "elite", 1000, 1500, 2500)
-	AiRedRibbon_Define_Unit_2014(5, "unit-female-hero", "unit-human-barracks", "ground", "ranged", "hero", 1000, 9000, 10000)
-	AiRedRibbon_Define_Unit_2014(6, "unit-knight", "unit-human-barracks", "ground", "melee", "standard", 7500, 0, 0)
+	AiRedRibbon_Define_Unit_2014(3, "unit-female-hero", "unit-human-barracks", "ground", "ranged", "hero", 1000, 9000, 10000)
+	AiRedRibbon_Define_Unit_2014(4, "unit-footman", "unit-human-barracks", "ground", "melee", "standard", 2500, 0, 0)
+	AiRedRibbon_Define_Unit_2014(5, "unit-archer", "unit-human-barracks", "ground", "ranged", "standard", 1000, 1500, 0)
+	AiRedRibbon_Define_Unit_2014(6, "unit-ranger", "unit-human-barracks", "ground", "ranged", "elite", 1000, 1500, 2500)
 	AiRedRibbon_Define_Unit_2014(7, "unit-paladin", "unit-human-barracks", "ground", "melee", "elite", 7500, 0, 5000)
-	AiRedRibbon_Define_Unit_2014(8, "unit-knight-rider", "unit-human-barracks", "ground", "melee", "hero", 7500, 0, 12500)
+	AiRedRibbon_Define_Unit_2014(8, "unit-knight", "unit-human-barracks", "ground", "melee", "standard", 7500, 0, 0)
 	AiRedRibbon_Define_Unit_2014(9, "unit-ballista", "unit-human-barracks", "ground", "ranged", "elite", 2500, 10000, 0)
 	AiRedRibbon_Define_Unit_2014(10, "unit-attack-peasant", "unit-town-hall", "ground", "melee", "fodder", 1000, 500, 0)
 	AiRedRibbon_Define_Unit_2014(11, "unit-dwarves", "unit-inventor", "ground", "melee", "attacker", 2500, 4000, 2500)
@@ -91,14 +92,14 @@ function AiRedRibbon_Setup_Units_2014()
 	AiRedRibbon_Define_Unit_2014(13, "unit-gryphon-rider", "unit-gryphon-aviary", "air", "ranged", "attacker", 2500, 5000, 5000)
 	AiRedRibbon_Define_Unit_2014(14, "unit-mage", "unit-mage-tower", "ground", "ranged", "attacker", 2500, 2500, 5000)
 	AiRedRibbon_Define_Unit_2014(15, "unit-peasant", "unit-town-hall", "ground", "worker", "defender", 1000, 1500, 0)
-	AiRedRibbon_Define_Unit_2014(51, "unit-grunt", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(51, "unit-fad-man", "unit-orc-barracks")
 	AiRedRibbon_Define_Unit_2014(52, "unit-quick-blade", "unit-orc-barracks")
-	AiRedRibbon_Define_Unit_2014(53, "unit-axethrower", "unit-orc-barracks")
-	AiRedRibbon_Define_Unit_2014(54, "unit-berserker", "unit-orc-barracks")
-	AiRedRibbon_Define_Unit_2014(55, "unit-sharp-axe", "unit-orc-barracks")
-	AiRedRibbon_Define_Unit_2014(56, "unit-ogre", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(53, "unit-sharp-axe", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(54, "unit-grunt", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(55, "unit-axethrower", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(56, "unit-berserker", "unit-orc-barracks")
 	AiRedRibbon_Define_Unit_2014(57, "unit-ogre-mage", "unit-orc-barracks")
-	AiRedRibbon_Define_Unit_2014(58, "unit-fad-man", "unit-orc-barracks")
+	AiRedRibbon_Define_Unit_2014(58, "unit-ogre", "unit-orc-barracks")
 	AiRedRibbon_Define_Unit_2014(59, "unit-catapult", "unit-orc-barracks")
 	AiRedRibbon_Define_Unit_2014(60, "unit-skeleton", "unit-great-hall")
 	AiRedRibbon_Define_Unit_2014(61, "unit-goblin-sappers", "unit-alchemist")
@@ -230,27 +231,66 @@ function AiRedRibbon_Setup_2014()
 	AiRedRibbon_Setup_Units_2014()
 	ftm_choice[0] = 3
 	ftm_choice[1] = 2
+	aiftm_action = {}
 	aiftm_unit = {}
 	aiftm_quantity = {}
+	aiftm_x_to = {}
+	aiftm_y_to = {}
+	aiftm_x_from = {}
+	aiftm_y_from = {}
+	aiftm_unit_option1 = {}
+	aiftm_unit_option2 = {}
+	aiftm_unit2 = {}
+	aiftm_unit2_option1 = {}
+	aiftm_unit2_option2 = {}
+	aiftm_unit3 = {}
+	aiftm_unit3_option1 = {}
+	aiftm_unit3_option2 = {}
 	aiftm_loop = {}
 	aiftm_terminate = {}
 	aiftm_index = {}
 	aiftm_mana = {}
 	for i = 0, 15 do
 		if (i < 8) then
-			AiRed_Resources_Set_2014(i, 0, 0, 0)
+			AiRed_Resources_Set_2014(i, 1, 1, 10)
 		else
-			AiRed_Resources_Set_2014(i, 100, 50, 50)
+			AiRed_Resources_Set_2014(i, 100, 50, 100)
 		end
+		aiftm_action[i] = {}
 		aiftm_unit[i] = {}
 		aiftm_quantity[i] = {}
+		aiftm_x_to[i] = {}
+		aiftm_y_to[i] = {}
+		aiftm_x_from[i] = {}
+		aiftm_y_from[i] = {}
+		aiftm_unit_option1[i] = {}
+		aiftm_unit_option2[i] = {}
+		aiftm_unit2[i] = {}
+		aiftm_unit2_option1[i] = {}
+		aiftm_unit2_option2[i] = {}
+		aiftm_unit3[i] = {}
+		aiftm_unit3_option1[i] = {}
+		aiftm_unit3_option2[i] = {}
 		aiftm_index[i] = 0
 		aiftm_terminate[i] = 15
 		aiftm_loop[i] = 0
 		aiftm_mana[i] = 0
 		for j = 0, 15 do
+			aiftm_action[i][j] = 0
 			aiftm_unit[i][j] = 0
 			aiftm_quantity[i][j] = 0
+			aiftm_x_to[i][j] = 0
+			aiftm_y_to[i][j] = 0
+			aiftm_x_from[i][j] = 0
+			aiftm_y_from[i][j] = 0
+			aiftm_unit_option1[i][j] = 0
+			aiftm_unit_option2[i][j] = 0
+			aiftm_unit2[i][j] = 0
+			aiftm_unit2_option1[i][j] = 0
+			aiftm_unit2_option2[i][j] = 0
+			aiftm_unit3[i][j] = 0
+			aiftm_unit3_option1[i][j] = 0
+			aiftm_unit3_option2[i][j] = 0
 		end
 		timers[i] = 1
 		ftm_faction[i] = 10
@@ -312,7 +352,7 @@ function AiRed_Resources_Remove_2014(i, gold, wood, oil)
 end
 	
 function AiRedRibbon_2014()
-	if ((timers[AiPlayer()] == 50) or (timers[AiPlayer()] == 100)) then
+	if ((timers[AiPlayer()] == (50 - AiPlayer())) or (timers[AiPlayer()] == (100 - AiPlayer()))) then
 		if (ftm_team[AiPlayer()] == ftm_team[ftm_choice[AiPlayer()]]) then
 			for i=ftm_index_start[AiPlayer()],ftm_index_end[AiPlayer()] do
 				if ((GetNumUnitsAt(AiPlayer(), ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) or (ftm_origin[i] == AiBestCityCenter())) and ((GetNumUnitsAt(AiPlayer(), AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(AiPlayer(), AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) or (GetNumUnitsAt(AiPlayer(), AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) then
@@ -323,21 +363,24 @@ function AiRedRibbon_2014()
 					end
 				end
 			end
-			AiNephrite_Attack_2013()
+			AiNephrite_Attack_2013("force")
 		end
 	end
 	AiRedRibbon_Common_2014()
 end
 
-function AiRedRibbon_Diplomacy_Neutral_2014(a,b,n,s)
-	if (s ~= "enemy") then
-		s = "allied"
-	end
+function AiRedRibbon_Diplomacy_Neutral_2014(a,b,n,s,w)
+	if (s ~= "enemy") then s = "allied" end
+	if (w == nil) then w = "both" end
 	for i=a,b do
-		SetSharedVision(i, false, n)
-		SetSharedVision(n, false, i)
-		SetDiplomacy(n, s, i)
-		SetDiplomacy(i, s, n)
+		if ((w == "right") or (w == "both")) then
+			SetSharedVision(i, false, n)
+			SetDiplomacy(i, s, n)
+		end
+		if ((w == "left") or (w == "both")) then
+			SetSharedVision(n, false, i)
+			SetDiplomacy(n, s, i)
+		end
 	end
 end
 
@@ -420,94 +463,133 @@ function AiRedRibbon_Survival_2014()
 	AiNephrite_2013()
 end
 
+function AiRed_Check_Unit_2014(player, i)
+	if (((aiftm_unit[player][aiftm_index[player]] == ftm_unit[i]) 
+		or (aiftm_unit[player][aiftm_index[player]] == ftm_rank[i]) 
+		or (aiftm_unit[player][aiftm_index[player]] == ftm_class[i]) 
+		or (aiftm_unit[player][aiftm_index[player]] == ftm_category[i])) 
+		and (GetPlayerData(player, "Resources", "oil") > (aiftm_quantity[player][aiftm_index[player]]*ftm_cost_oil[i])) 
+		and (GetPlayerData(player, "Resources", "wood") > (aiftm_quantity[player][aiftm_index[player]]*ftm_cost_wood[i])) 
+		and (GetPlayerData(player, "Resources", "gold") > (aiftm_quantity[player][aiftm_index[player]]*ftm_cost_gold[i]))) then
+		print("AiRed_Check_Unit_2014(AiPlayer(), i) == true")
+		return true
+	end
+end
+
+function AiRed_Check_Building_2014(player, i)
+	if (((GetNumUnitsAt(ftm_team[player], ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) 
+		or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) 
+		or (ftm_origin[i] == AiBestCityCenter())) 
+		and ((GetNumUnitsAt(ftm_team[player], AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) 
+		or (GetNumUnitsAt(ftm_team[player], AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) 
+		or (GetNumUnitsAt(ftm_team[player], AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) 
+		or (ftm_origin[i] == AiWise())) then
+		print("AiRed_Check_Building_2014(AiPlayer(), i) == true")
+		return true
+	end
+end
+
 function AiRed_2014()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWise()) > 0) and (GameCycle > 500)) then
 		if ((timers[ftm_team[AiPlayer()]] == 50) or (timers[ftm_team[AiPlayer()]] == 99) or (timers[ftm_team[AiPlayer()]] == 25) or (timers[ftm_team[AiPlayer()]] == 75)) then
 		else 
 			for i=ftm_index_start[ftm_team[AiPlayer()]],ftm_index_end[ftm_team[AiPlayer()]] do
-				if (((aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_unit[i]) 
-					or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_rank[i]) 
-					or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_category[i]) 
-					or (aiftm_unit[AiPlayer()][aiftm_index[AiPlayer()]] == ftm_category[i])) 
-					and (GetPlayerData(AiPlayer(), "Resources", "oil") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_oil[i])) 
-					and (GetPlayerData(AiPlayer(), "Resources", "wood") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_wood[i])) 
-					and (GetPlayerData(AiPlayer(), "Resources", "gold") > (aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]*ftm_cost_gold[i]))) then
-						if (((GetNumUnitsAt(ftm_team[AiPlayer()], ftm_origin[i], {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) 
-							or (((ftm_origin[i] == AiCityCenter()) or (ftm_origin[i] == AiBetterCityCenter()) 
-							or (ftm_origin[i] == AiBestCityCenter())) 
-							and ((GetNumUnitsAt(ftm_team[AiPlayer()], AiCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) 
-							or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBetterCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0) 
-							or (GetNumUnitsAt(ftm_team[AiPlayer()], AiBestCityCenter(), {(ftm_origin_x[i] - 3), (ftm_origin_y[i] - 3)}, {(ftm_origin_x[i] + 3), (ftm_origin_y[i] + 3)}) > 0)))) 
-							or (ftm_origin[i] == AiWise())) then
-								for j=1, aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]] do
-									CreateUnit(ftm_unit[i], AiPlayer(), {ftm_team_tempx[AiPlayer()], ftm_team_tempy[AiPlayer()]})
-									if (ftm_team_orderx[AiPlayer()] == "Right") then
-										if (ftm_team_tempx[AiPlayer()] == ftm_team_x2[AiPlayer()]) then
-											ftm_team_tempx[AiPlayer()] = ftm_team_x1[AiPlayer()]
-											if (ftm_team_ordery[AiPlayer()] == "Down") then
-												if (ftm_team_tempy[AiPlayer()] == ftm_team_y2[AiPlayer()]) then
-													ftm_team_tempy[AiPlayer()] = ftm_team_y1[AiPlayer()]
-												else
-													ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] + 1
-												end
-											elseif (ftm_team_ordery[AiPlayer()] == "Up") then
-												if (ftm_team_tempy[AiPlayer()] == ftm_team_y1[AiPlayer()]) then
-													ftm_team_tempy[AiPlayer()] = ftm_team_y2[AiPlayer()]
-												else
-													ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] - 1
-												end
-											end
-										else
-											ftm_team_tempx[AiPlayer()] = ftm_team_tempx[AiPlayer()] + 1
-										end
-									end
-									if (ftm_team_orderx[AiPlayer()] == "Left") then
-										if (ftm_team_tempx[AiPlayer()] == ftm_team_x1[AiPlayer()]) then
-											ftm_team_tempx[AiPlayer()] = ftm_team_x2[AiPlayer()]
-											if (ftm_team_ordery[AiPlayer()] == "Down") then
-												if (ftm_team_tempy[AiPlayer()] == ftm_team_y2[AiPlayer()]) then
-													ftm_team_tempy[AiPlayer()] = ftm_team_y1[AiPlayer()]
-												else
-													ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] + 1
-												end
-											elseif (ftm_team_ordery[AiPlayer()] == "Up") then
-												if (ftm_team_tempy[AiPlayer()] == ftm_team_y1[AiPlayer()]) then
-													ftm_team_tempy[AiPlayer()] = ftm_team_y2[AiPlayer()]
-												else
-													ftm_team_tempy[AiPlayer()] = ftm_team_tempy[AiPlayer()] - 1
-												end
-											end
-										else
-											ftm_team_tempx[AiPlayer()] = ftm_team_tempx[AiPlayer()] - 1
-										end
-									end
-								end
-							AiRed_Resources_Remove_2014(AiPlayer(), (ftm_cost_gold[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]), (ftm_cost_wood[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]), (ftm_cost_oil[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]))
+				if (AiRed_Check_Unit_2014(AiPlayer(), i) == true) then
+					if (AiRed_Check_Building_2014(AiPlayer(), i) == true) then
+						for j=1, aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]] do
+							AiRed_Spawn_2014(AiPlayer(), i)
+							AiRed_GridChange_2014(AiPlayer())
 						end
-					if (aiftm_index[AiPlayer()] == aiftm_terminate[AiPlayer()]) then
-						aiftm_index[AiPlayer()] = aiftm_loop[AiPlayer()]
-					else
-						aiftm_index[AiPlayer()] = aiftm_index[AiPlayer()] + 1
+						AiRed_Resources_Remove_2014(AiPlayer(), (ftm_cost_gold[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]), (ftm_cost_wood[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]), (ftm_cost_oil[i]*aiftm_quantity[AiPlayer()][aiftm_index[AiPlayer()]]))
 					end
+					AiRed_Increment_2014(AiPlayer())
 				end
 			end
 		end
 	elseif ((ftm_team_tempx[AiPlayer()] < 2) and (GameCycle > 100)) then
-		if (ftm_team_ordery[AiPlayer()] == "Down") then
-			ftm_team_tempy[AiPlayer()] = ftm_team_y1[AiPlayer()]
-		elseif (ftm_team_orderx[AiPlayer()] == "Up") then
-			ftm_team_tempy[AiPlayer()] = ftm_team_y2[AiPlayer()]
-		else
-			ftm_team_tempy[AiPlayer()] = ftm_team_starty[AiPlayer()]
-		end
-		if (ftm_team_orderx[AiPlayer()] == "Right") then
-			ftm_team_tempx[AiPlayer()] = ftm_team_x1[AiPlayer()]
-		elseif (ftm_team_orderx[AiPlayer()] == "Left") then
-			ftm_team_tempx[AiPlayer()] = ftm_team_x2[AiPlayer()]
-		else
-			ftm_team_tempx[AiPlayer()] = ftm_team_startx[AiPlayer()]
-		end	
+		AiRed_GridSetup_2014(AiPlayer())
 	end
+end
+
+function AiRed_Increment_2014(player)
+	if (aiftm_index[player] == aiftm_terminate[player]) then
+		aiftm_index[player] = aiftm_loop[player]
+	else
+		aiftm_index[player] = aiftm_index[player] + 1
+	end
+end
+
+function AiRed_GridSetup_2014(player)
+	if (ftm_team_ordery[player] == "Down") then
+		ftm_team_tempy[player] = ftm_team_y1[player]
+	elseif (ftm_team_orderx[player] == "Up") then
+		ftm_team_tempy[player] = ftm_team_y2[player]
+	else
+		ftm_team_tempy[player] = ftm_team_starty[player]
+	end
+	if (ftm_team_orderx[player] == "Right") then
+		ftm_team_tempx[player] = ftm_team_x1[player]
+	elseif (ftm_team_orderx[player] == "Left") then
+		ftm_team_tempx[player] = ftm_team_x2[player]
+	else
+		ftm_team_tempx[player] = ftm_team_startx[player]
+	end
+end
+
+function AiRed_GridChange_2014(player)
+	if (ftm_team_orderx[player] == "Right") then
+		if (ftm_team_tempx[player] == ftm_team_x2[player]) then
+			ftm_team_tempx[player] = ftm_team_x1[player]
+			if (ftm_team_ordery[player] == "Down") then
+				if (ftm_team_tempy[player] == ftm_team_y2[player]) then
+					ftm_team_tempy[player] = ftm_team_y1[player]
+				else
+					ftm_team_tempy[player] = ftm_team_tempy[player] + 1
+				end
+			elseif (ftm_team_ordery[player] == "Up") then
+				if (ftm_team_tempy[player] == ftm_team_y1[player]) then
+					ftm_team_tempy[player] = ftm_team_y2[player]
+				else
+					ftm_team_tempy[player] = ftm_team_tempy[player] - 1
+				end
+			end
+		else
+			ftm_team_tempx[player] = ftm_team_tempx[player] + 1
+		end
+	end
+	if (ftm_team_orderx[player] == "Left") then
+		if (ftm_team_tempx[player] == ftm_team_x1[player]) then
+			ftm_team_tempx[player] = ftm_team_x2[player]
+			if (ftm_team_ordery[player] == "Down") then
+				if (ftm_team_tempy[player] == ftm_team_y2[player]) then
+					ftm_team_tempy[player] = ftm_team_y1[player]
+				else
+					ftm_team_tempy[player] = ftm_team_tempy[player] + 1
+				end
+			elseif (ftm_team_ordery[player] == "Up") then
+				if (ftm_team_tempy[player] == ftm_team_y1[player]) then
+					ftm_team_tempy[player] = ftm_team_y2[player]
+				else
+					ftm_team_tempy[player] = ftm_team_tempy[player] - 1
+				end
+			end
+		else
+			ftm_team_tempx[player] = ftm_team_tempx[player] - 1
+		end
+	end
+end
+
+function AiRed_Spawn_2014(player, i, unit, x, y)
+	if (x == nil) then
+		x = ftm_team_tempx[player]
+	end
+	if (y == nil) then
+		y = ftm_team_tempy[player]
+	end
+	if (unit == nil) then
+		unit = ftm_unit[i]
+	end
+	CreateUnit(unit, player, {x, y})
 end
 
 function AiRed_Strategy_Insert_2014(i, j, unit, quantity)
@@ -565,25 +647,25 @@ end
 
 function AiRed_Strategy_Alliance_Support_2014(i)
 	AiRed_Strategy_2014(i, 18, 27, 1, "unit-footman", "unit-footman", "unit-footman", "unit-archer", "unit-archer", "unit-peasant", "unit-ranger", "unit-footman", "unit-footman", "unit-footman", "unit-archer", "unit-footman", "unit-archer", "unit-archer", "unit-footman", "unit-footman", "unit-paladin", "unit-knight", "unit-knight", "unit-mage", "unit-arthor-literios")
-	AiRed_Strategy_Extend_2014(i, 21, 28, "unit-archer", 1, "unit-footman", 3, "unit-knight", 1, "unit-knight", 1, "unit-archer", 1, "unit-archer", 1, "unit-footman", 2, "unit-female-hero", 1)
+	AiRed_Strategy_Extend_2014(i, 21, 28, "ranged", 1, "ground", 3, "melee", 1, "unit-knight", 1, "ranged", 1, "ranged", 1, "melee", 2, "unit-female-hero", 1)
 end
 
 function AiRed_Strategy_Alliance_Mass_2014(i)
-	AiRed_Strategy_2014(i, 9, 4, 2, "unit-footman", "unit-footman", "unit-footman", "unit-footman", "unit-archer")
-	AiRed_Strategy_Extend_2014(i, 5, 15, "unit-ranger", 1, "unit-peasant", 1, "unit-archer", 1, "unit-footman", 1, "unit-yeoman", 1, "unit-footman", 2, "unit-knight", 1, "unit-footman", 1, "unit-archer", 1, "unit-footman", 1, "unit-paladin", 1)
-	AiRed_Strategy_Extend_2014(i, 16, 18, "unit-mage", 1, "unit-female-hero", 1, "unit-footman", 2)
+	AiRed_Strategy_2014(i, 9, 4, 2, "unit-footman", "unit-footman", "unit-footman", "melee", "ranged")
+	AiRed_Strategy_Extend_2014(i, 5, 15, "unit-ranger", 1, "unit-peasant", 1, "ranged", 1, "melee", 1, "unit-yeoman", 1, "melee", 2, "unit-knight", 1, "unit-footman", 1, "unit-archer", 1, "unit-footman", 1, "unit-paladin", 1)
+	AiRed_Strategy_Extend_2014(i, 16, 18, "unit-mage", 1, "unit-female-hero", 1, "melee", 2)
 end
 
 function AiRed_Strategy_Horde_Mass_2014(i)
-	AiRed_Strategy_2014(i, 1, 4, 3, "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton", "unit-skeleton")
-	AiRed_Strategy_Extend_2014(i, 5, 15, "unit-goblin-sappers", 1, "unit-peon", 2, "unit-axethrower", 4, "unit-grunt", 2, "unit-nomad", 1, "unit-skeleton", 2, "unit-grunt", 2, "unit-catapult", 1, "unit-grunt", 2, "unit-grunt", 2, "unit-berserker", 1)
-	AiRed_Strategy_Extend_2014(i, 16, 18, "unit-ogre-mage", 1, "unit-ogre", 1, "unit-grunt", 2)
+	AiRed_Strategy_2014(i, 1, 4, 3, "unit-skeleton", "melee", "unit-skeleton", "ground", "unit-skeleton")
+	AiRed_Strategy_Extend_2014(i, 5, 15, "unit-goblin-sappers", 1, "unit-peon", 2, "unit-axethrower", 4, "unit-grunt", 2, "unit-nomad", 1, "attacker", 2, "unit-grunt", 2, "unit-catapult", 1, "unit-grunt", 2, "unit-grunt", 2, "unit-berserker", 1)
+	AiRed_Strategy_Extend_2014(i, 16, 18, "elite", 1, "ranged", 1, "melee", 2)
 end
 
 function AiRed_Strategy_Horde_Economy_2014(i)
 	AiRed_Strategy_2014(i, 6, 8, 1, "unit-grunt", "unit-grunt", "unit-grunt", "unit-peon", "unit-peon", "unit-berserker", "unit-grunt", "unit-grunt", "unit-grunt")
-	AiRed_Strategy_Extend_2014(i, 9, 17, "unit-ogre-mage", 1, "unit-axethrower", 1, "unit-grunt", 3, "unit-nomad", 1, "unit-axethrower", 1, "unit-ogre", 1, "unit-catapult", 1, "unit-grunt", 2, "unit-axethrower", 2)
-	AiRed_Strategy_Extend_2014(i, 18, 26, "unit-axethrower", 2, "unit-ogre", 1, "unit-dragon", 1, "unit-dragon", 1, "unit-grunt", 2, "unit-axethrower", 2, "unit-grunt", 1, "unit-grunt", 1, "unit-quick-blade", 1)
+	AiRed_Strategy_Extend_2014(i, 9, 17, "unit-ogre-mage", 1, "unit-axethrower", 1, "unit-grunt", 3, "defender", 1, "unit-axethrower", 1, "unit-ogre", 1, "unit-catapult", 1, "unit-grunt", 2, "unit-axethrower", 2)
+	AiRed_Strategy_Extend_2014(i, 18, 26, "ranged", 2, "unit-ogre", 1, "unit-dragon", 1, "attacker", 1, "unit-grunt", 2, "unit-axethrower", 2, "melee", 1, "melee", 1, "unit-quick-blade", 1)
 end
 
 DefineAi("ai_redribbon_2014", "*", "ai_redribbon_2014", AiRedRibbon_2014)

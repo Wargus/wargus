@@ -1435,8 +1435,39 @@ DefineUnitType("unit-human-guard-tower", { Name = _("Guard Tower"),
   DetectCloak = true,
   Sounds = {
     "selected", "human-guard-tower-selected",
---    "acknowledge", "human-guard-tower-acknowledge",
---    "ready", "human-guard-tower-ready",
+    "help", "basic human voices help 2",
+    "dead", "building destroyed"} } )
+	
+UnitTypeFiles["unit-human-guard-tower-super"] = {summer = "tilesets/summer/human/buildings/guard_tower.png",
+  winter = "tilesets/winter/human/buildings/guard_tower.png",
+  wasteland = "tilesets/summer/human/buildings/guard_tower.png",
+  swamp = "tilesets/swamp/human/buildings/guard_tower.png"}
+	
+DefineUnitType("unit-human-guard-tower-super", { Name = _("Guard Tower"),
+  Image = {"size", {64, 64}},
+  Animations = "animations-human-guard-tower", Icon = "icon-human-guard-tower",
+  Costs = {"time", 1400, "gold", 5000, "wood", 1500},
+  RepairHp = 4,
+  RepairCosts = {"gold", 1, "wood", 1},
+  Construction = "construction-land",
+  Speed = 0,
+  HitPoints = 650,
+  DrawLevel = 40,
+  TileSize = {2, 2}, BoxSize = {63, 63},
+  SightRange = 9, ComputerReactionRange = 6, PersonReactionRange = 6,
+  Armor = 20, BasicDamage = 4, PiercingDamage = 12, Missile = "missile-arrow-super",
+  MaxAttackRange = 6,
+  Priority = 50, AnnoyComputerFactor = 60,
+  Points = 2000,
+  Corpse = "unit-destroyed-2x2-place",
+  ExplodeWhenKilled = "missile-explosion",
+  Type = "land",
+  CanAttack = true,
+  CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
+  Building = true, VisibleUnderFog = true,
+  DetectCloak = true,
+  Sounds = {
+    "selected", "human-guard-tower-selected",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -1475,7 +1506,39 @@ DefineUnitType("unit-human-cannon-tower", { Name = _("Cannon Tower"),
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
-
+UnitTypeFiles["unit-human-cannon-tower-super"] = {summer = "tilesets/summer/human/buildings/cannon_tower.png",
+  winter = "tilesets/winter/human/buildings/cannon_tower.png",
+  wasteland = "tilesets/summer/human/buildings/cannon_tower.png",
+  swamp = "tilesets/swamp/human/buildings/cannon_tower.png"}
+	
+DefineUnitType("unit-human-cannon-tower-super", { Name = _("Cannon Tower"),
+  Image = {"size", {64, 64}},
+  Animations = "animations-human-cannon-tower", Icon = "icon-human-cannon-tower",
+  Costs = {"time", 1900, "gold", 6000, "wood", 1500},
+  RepairHp = 4,
+  RepairCosts = {"gold", 1, "wood", 1},
+  Construction = "construction-land",
+  Speed = 0,
+  HitPoints = 800,
+  DrawLevel = 40,
+  TileSize = {2, 2}, BoxSize = {63, 63},
+  SightRange = 9, ComputerReactionRange = 7, PersonReactionRange = 7,
+  Armor = 20, BasicDamage = 50, PiercingDamage = 0, Missile = "missile-small-cannon-super",
+  MinAttackRange = 2, MaxAttackRange = 7,
+  Priority = 60, AnnoyComputerFactor = 70,
+  Points = 250,
+  Corpse = "unit-destroyed-2x2-place",
+  ExplodeWhenKilled = "missile-explosion",
+  Type = "land",
+  CanAttack = true,
+  CanTargetLand = true, CanTargetSea = true,
+  Building = true, VisibleUnderFog = true,
+  DetectCloak = true,
+  Sounds = {
+    "selected", "human-cannon-tower-selected",
+    "help", "basic human voices help 2",
+    "dead", "building destroyed"} } )
+	
 UnitTypeFiles["unit-human-wall"] = {summer = "tilesets/summer/neutral/buildings/wall.png",
   winter = "tilesets/winter/neutral/buildings/wall.png",
   wasteland = "tilesets/wasteland/neutral/buildings/wall.png",

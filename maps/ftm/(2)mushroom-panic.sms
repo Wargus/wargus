@@ -16685,7 +16685,10 @@ ftm_team_starty[2] = 248
 ftm_team_startx[3] = 36
 ftm_team_starty[3] = 8
 
+AiRed_Strategy_Horde_Mass_2014(2)
 AiRed_Strategy_Alliance_Mass_2014(3)
+AiRed_Resources_Set_2014(2, 100, 50, 100)
+AiRed_Resources_Set_2014(3, 100, 50, 100)
 
 if (not IsNetworkGame()) then
 	AiRedRibbon_Diplomacy_2014(0, 14)

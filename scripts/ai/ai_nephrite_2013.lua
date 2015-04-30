@@ -64,7 +64,7 @@ function AiNephrite_2013()
 					AiNephrite_Train_2013()
 				end
 			elseif (GameCycle >= 5000) then
-				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 20) then
+				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 10) then
 					AiSet(AiWorker(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) + 1)
 				end
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0) then
@@ -73,7 +73,7 @@ function AiNephrite_2013()
 			end
 		end
 		if (nephrite_wait[AiPlayer()] < 2) then
-			AiNephrite_Attack_2013()
+			AiNephrite_Attack_2013("force")
 			--AiForce(0, {AiSoldier(), 2})
 		else
 			nephrite_wait[AiPlayer()] = nephrite_wait[AiPlayer()] - 1
@@ -86,9 +86,10 @@ function AiNephrite_2013()
 end
 
 function AiNephrite_Flush_2013()
-	AiSet(AiBarracks(), 0)
+--[[	AiSet(AiBarracks(), 0)
+	AiSet(AiMageTower(), 0)
 	AiSet(AiCityCenter(), 0)
-	AiSet(AiFarm(), 1)
+	--AiSet(AiFarm(), 1)
 	AiSet(AiBlacksmith(), 0)
 	AiSet(AiLumberMill(), 0)
 	AiSet(AiStables(), 0)
@@ -96,7 +97,8 @@ function AiNephrite_Flush_2013()
 	AiSet(AiCatapult(), 0)
 	AiSet(AiShooter(), 0)
 	AiSet(AiCavalry(), 0)
-	AiSet(AiSoldier(), 0)
+	AiSet(AiSoldier(), 0)]]
+	ReInitAiGameData()
 end
 
 function AiNephrite_Pick_2013()

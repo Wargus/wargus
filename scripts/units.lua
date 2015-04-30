@@ -480,21 +480,6 @@ DefineUnitType("unit-destroyed-4x4-place", { Name = _("Destroyed 4x4 Place"),
   Vanishes = true,
   Sounds = {} } )
 
-DefineUnitType("unit-revealer", { Name = _("Dummy unit"),
-  Animations = "animations-building", Icon = "icon-holy-vision",
-  Speed = 0,
-  HitPoints = 1,
-  TileSize = {1, 1}, BoxSize = {1, 1},
-  SightRange = 12,
-  BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
-  Priority = 0,
-  DecayRate = 1,
-  Type = "land",
-  Building = true, VisibleUnderFog = true,
-  Revealer = true,
-  DetectCloak = true,
-  Sounds = {} } )
-
 -- Load the different races
 Load("scripts/human/units.lua")
 Load("scripts/orc/units.lua")

@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---	(c) Copyright 2014 by Kyran Jackson
+--		(c) Copyright 2014 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 -- player configuration
 
 AiRedRibbon_Setup_2014()
+-- SetPlayerFtM2014(player, race, faction, gold, wood, oil, startx, starty, istart, iend, teamx1, teamy1, teamx2, teamy2, match, aispawner, aibot)
 SetPlayerFtM2014(0, "orc", "SJW", 10000, 2500, 5000, 95, 19, 51, 65, 0, 0, 96, 96)
 SetPlayerFtM2014(1, "man", "Gamers", 10000, 2500, 5000, 0, 0, 1, 15, 0, 0, 96, 96, 8, "ai_redribbon_2014", "ai_blue1_2012")
 SetPlayerFtM2014(2, "orc", "SJW", 10000, 2500, 5000, 95, 75, 81, 95, 0, 0, 96, 96)

@@ -113,6 +113,11 @@ DefineMissileType("missile-arrow",
   DrawLevel = 50, ImpactSound = "bow hit",
   Class = "missile-class-point-to-point", Sleep = 1, Speed = 32, Range = 0 } )
 
+DefineMissileType("missile-arrow-super",
+  { File = "missiles/arrow.png", Size = {40, 40}, Frames = 5, NumDirections = 9,
+  DrawLevel = 50, ImpactSound = "bow hit",
+  Class = "missile-class-point-to-point", Sleep = 1, Speed = 64, Range = 0 } )
+  
 DefineMissileType("missile-axe",
   { File = "missiles/axe.png", Size = {32, 32}, Frames = 15, NumDirections = 9,
   ImpactSound = "bow hit",
@@ -156,6 +161,12 @@ DefineMissileType("missile-small-cannon",
   Class = MissileParabolicClass, Sleep = 1, Speed = 22, Range = 2,
   ImpactMissile = "missile-cannon-explosion", SplashFactor = 3 } )
 
+DefineMissileType("missile-small-cannon-super",
+  { File = "missiles/cannon.png", Size = {32, 32}, Frames = 15, NumDirections = 9,
+  DrawLevel = 50, ImpactSound = "explosion",
+  Class = MissileParabolicClass, Sleep = 1, Speed = 44, Range = 2,
+  ImpactMissile = "missile-cannon-explosion", SplashFactor = 3 } )
+  
 DefineMissileType("missile-cannon-explosion",
   { File = "missiles/cannon_explosion.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
   DrawLevel = 50, Class = "missile-class-stay", Sleep = 1, Speed = 16, Range = 1 } )

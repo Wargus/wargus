@@ -32,16 +32,41 @@ local redribbon_stepping -- Used to identify where the build order is up to.
 local blueribbon_stepping -- Used to identify where the build order is up to.
 
 function AiRedRibbon_Research_2012()
+	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiMage()) > 0) then
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiMageTower()) > 0) then
+			AiResearch(AiMageSpell1())
+			AiResearch(AiMageSpell2())
+			AiResearch(AiMageSpell3())
+			AiResearch(AiMageSpell4())
+			AiResearch(AiMageSpell5())
+		else
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
+				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
+					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) then
+						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
+							AiUpgradeTo(AiBestCityCenter())
+							AiSet(AiMageTower(), 1)
+							AiSet(AiLumberMill(), 1)
+						else
+							AiSet(AiStables(), 1)
+						end
+					else
+						AiUpgradeTo(AiBetterCityCenter())
+					end
+				else
+					AiSet(AiBlacksmith(), 1)
+				end
+			else
+				AiSet(AiBarracks(), 1)
+			end
+		end
+	end
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0) then
 		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
 					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) then
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
-							AiResearch(AiUpgradeWeapon1())
-							AiResearch(AiUpgradeArmor1())
-							AiResearch(AiUpgradeWeapon2())
-							AiResearch(AiUpgradeArmor2())
 							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) == 0) then
 								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) >= 1) then
 									AiUpgradeTo(AiBestCityCenter())
@@ -63,6 +88,10 @@ function AiRedRibbon_Research_2012()
 					else
 						AiUpgradeTo(AiBetterCityCenter())
 					end
+					AiResearch(AiUpgradeWeapon1())
+					AiResearch(AiUpgradeArmor1())
+					AiResearch(AiUpgradeWeapon2())
+					AiResearch(AiUpgradeArmor2())
 				else
 					AiSet(AiBlacksmith(), 1)
 				end
@@ -71,18 +100,6 @@ function AiRedRibbon_Research_2012()
 			end
 		else
 			AiSet(AiCityCenter(), 1)
-			AiSet(AiWorker(), 8)
-		end
-	end
-	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiMage()) > 0) then
-		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiMageTower()) > 0) then
-			AiResearch(AiMageSpell1())
-			AiResearch(AiMageSpell2())
-			AiResearch(AiMageSpell3())
-			AiResearch(AiMageSpell4())
-			AiResearch(AiMageSpell5())
-		else
-			AiSet(AiMageTower(), 1)
 		end
 	end
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()) > 0) then
@@ -131,7 +148,6 @@ function AiRedRibbon_Research_2012()
 			end
 		else
 			AiSet(AiCityCenter(), 1)
-			AiSet(AiWorker(), 8)
 		end
 	end
 end
