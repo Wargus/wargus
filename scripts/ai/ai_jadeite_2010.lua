@@ -63,6 +63,121 @@ function AiJadeite_Reset_2010(timer)
 	jadeite_attacker[AiPlayer()] = timer
 end
 
+function AiJadeite_Upgrade_2010(unit)
+	if ((unit == AiCavalry()) and (jadeite_cavalry[AiPlayer()] == nil)) then
+		AiResearch(AiUpgradeCavalryMage())
+		AiJadeite_Attack_2010(4)
+		AiJadeite_Reset_2010(300)
+		jadeite_cavalry[AiPlayer()] = true
+	end
+	if ((unit == AiShooter()) and (jadeite_archers[AiPlayer()] == nil)) then
+		AiResearch(AiUpgradeEliteShooter())
+		AiJadeite_Attack_2010(5)
+		AiJadeite_Reset_2010(300)
+		jadeite_archers[AiPlayer()] = true
+	end
+end
+
+function AiJadeite_Attack_2010(force)
+	if (jadeite_attacker[AiPlayer()] == 0) then
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 2) then
+			AiJadeite_Reset_2010(25)
+		else
+			AiJadeite_Reset_2010(50)
+		end
+		AiAttackWithForce(force)
+	end
+end
+
+function AiJadeite_Force_2010(force, unit1, quantity1, unit2, quantity2, unit3, quantity3)
+	if (jadeite_attacker[AiPlayer()] == 0) then
+		if (((unit1 == AiSoldier()) or (unit2 == AiSoldier()) or (unit3 == AiSoldier())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) == 0)) then AiJadeite_Build_2010(AiBarracks()) end
+		if (((unit1 == AiCavalry()) or (unit2 == AiCavalry()) or (unit3 == AiCavalry())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) == 0)) then AiJadeite_Build_2010(AiStables()) end
+		if (((unit1 == AiCavalryMage()) or (unit2 == AiCavalryMage()) or (unit3 == AiCavalryMage())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTemple()) == 0)) then AiJadeite_Build_2010(AiTemple()) end
+		if (((unit1 == AiShooter()) or (unit2 == AiShooter()) or (unit3 == AiShooter())) and ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) == 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) == 0))) then AiJadeite_Build_2010(AiLumberMill(), 1, false, AiBarracks()) end
+		if (((unit1 == AiEliteShooter()) or (unit2 == AiEliteShooter()) or (unit3 == AiEliteShooter())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) == 0)) then AiJadeite_Build_2010(AiBestCityCenter()) end
+		if (quantity1 == nil) then quantity1 = 1 end
+		if (quantity2 == nil) then quantity2 = 1 end
+		if (quantity3 == nil) then quantity3 = 1 end
+		if (jadeite_cavalry[AiPlayer()] ~= nil) then
+			if (unit1 == AiCavalry()) then unit1 = AiCavalryMage() end
+			if (unit2 == AiCavalry()) then unit2 = AiCavalryMage() end
+			if (unit3 == AiCavalry()) then unit3 = AiCavalryMage() end
+			if (unit1 == AiShooter()) then unit1 = AiEliteShooter() end
+			if (unit2 == AiShooter()) then unit2 = AiEliteShooter() end
+			if (unit3 == AiShooter()) then unit3 = AiEliteShooter() end
+		else
+			if (unit1 == AiCavalryMage()) then unit1 = AiCavalry() end
+			if (unit2 == AiCavalryMage()) then unit2 = AiCavalry() end
+			if (unit3 == AiCavalryMage()) then unit3 = AiCavalry() end
+			if (unit1 == AiEliteShooter()) then unit1 = AiShooter() end
+			if (unit2 == AiEliteShooter()) then unit2 = AiShooter() end
+			if (unit3 == AiEliteShooter()) then unit3 = AiShooter() end
+		end		
+		if (unit2 == nil) then
+			AiForce(force, {unit1, quantity1})
+		elseif (unit3 == nil) then
+			AiForce(force, {unit1, quantity1, unit2, quantity2})
+		else
+			AiForce(force, {unit1, quantity1, unit2, quantity2, unit3, quantity3})
+		end
+		AiJadeite_Reset_2010(1)
+	end
+end
+
+function AiJadeite_Build_2010(unit, quantity, force, unit2)
+	if (quantity == nil) then quantity = 1 end
+	if (force ~= true) then
+		if (unit == AiCityCenter()) then
+			force = true
+		else 
+			if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0)) then
+				if (((unit == AiFarm()) or  unit == AiBarracks()) or (unit == AiLumberMill()) or (unit == AiBlacksmith())) then
+					force = true
+				else
+					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 0) then
+						if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0) or ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0) and (unit ~= AiBetterCityCenter()))) then
+							if ((unit == AiStables()) or (unit == AiScientific())) then
+								force = true
+							else
+								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
+									if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) > 0)) then
+										if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0) and (unit ~= AiBestCityCenter())) then
+											force = true
+										else
+											AiUpgradeTo(AiBestCityCenter())
+										end
+									else
+										AiSet(AiBlacksmith(), 1)
+										AiSet(AiLumberMill(), 1)
+									end
+								
+								else
+									if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFarm()) < 2) then
+										AiSet(AiFarm(), 2)
+									else
+										AiSet(AiStables(), 1)
+									end
+								end
+							end
+						else
+							AiUpgradeTo(AiBetterCityCenter())
+						end
+					else
+						AiSet(AiBarracks(), 1)
+					end
+				end
+			else
+				AiSet(AiCityCenter(), 1)
+			end
+		end
+	end
+	if (force == true) then
+		AiSet(unit, quantity)
+		if (unit2 ~= nil) then AiSet(unit2, 1) end
+	end
+end
+
 function AiJadeite_2010()
 	-- Setting up the variables.
 	AiJadeite_Set_Name_2010("Jadeite")
@@ -96,9 +211,16 @@ end
 function AiJadeite_Worker_2010()
 	AiJadeite_Intermittent_2010()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
-		AiSet(AiWorker(), 20)
+		if (GameCycle > 5000) then
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 20) then
+				AiSet(AiWorker(), 20)
+				AiJadeite_Build_2010(AiFarm(), 5)
+			end
+		else
+			AiSet(AiWorker(), 5)
+		end
 	else
-		AiSet(AiCityCenter(), 1)
+		AiJadeite_Build_2010(AiCityCenter(), 1)
 	end
 end
 
@@ -114,7 +236,7 @@ function AiJadeite_Power_2010()
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) < 5) then
 							AiForce(0, {AiSoldier(), 12})
 							AddMessage("defend with 12 footmen")
-							AiSet(AiFarm(), 8)
+							AiJadeite_Build_2010(AiFarm(), 8)
 							AiJadeite_Reset_2010(25)
 						end
 					else
@@ -126,9 +248,9 @@ function AiJadeite_Power_2010()
 					end
 				end
 				if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) > 3) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) == 0)) then
-					AiSet(AiBlacksmith(), 1)
+					AiJadeite_Build_2010(AiBlacksmith(), 1)
 					AiSet(AiWorker(), 15)
-					AiSet(AiFarm(), 5)
+					AiJadeite_Build_2010(AiFarm(), 5)
 				else
 					if (jadeite_attacker[AiPlayer()] == 5) then
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 2) then
@@ -142,7 +264,7 @@ function AiJadeite_Power_2010()
 						AiResearch(AiUpgradeWeapon2())
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
 							if ((GetPlayerData(AiPlayer(), "Resources", "gold") > 3000) and (GetPlayerData(AiPlayer(), "Resources", "wood") > 1500)) then
-								AiSet(AiBarracks(), 3)
+								AiJadeite_Build_2010(AiBarracks(), 3)
 							end
 							if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) < 2) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) < 2)) then
 								if (jadeite_cavalry[AiPlayer()] == nil) then
@@ -150,7 +272,6 @@ function AiJadeite_Power_2010()
 								else
 									AiForce(6, {AiCavalryMage(), 10}, true)
 								end
-								AddMessage("Build 10 cav")
 							else
 								if (jadeite_attacker[AiPlayer()] == 0) then
 									if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) > 6) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 6)) then
@@ -171,107 +292,101 @@ function AiJadeite_Power_2010()
 								end
 							end
 						else
-							AiSet(AiStables(), 1)
-							AiSet(AiLumberMill(), 1)
+							AiJadeite_Build_2010(AiStables(), 1)
+							AiJadeite_Build_2010(AiLumberMill(), 1)
 							if ((GetPlayerData(AiPlayer(), "Resources", "gold") > 3000) and (GetPlayerData(AiPlayer(), "Resources", "wood") > 1500)) then
-								AiSet(AiFarm(), 6)
+								AiJadeite_Build_2010(AiFarm(), 6)
 							end
 						end
 					else
 						if ((GetPlayerData(AiPlayer(), "Resources", "gold") > 3000) and (GetPlayerData(AiPlayer(), "Resources", "wood") > 1500)) then
-							AiSet(AiBarracks(), 2)
+							AiJadeite_Build_2010(AiBarracks(), 2)
 						end
 						AiUpgradeTo(AiBetterCityCenter())
 					end
 				end
 			else
-				AiSet(AiBarracks(), 1)
+				AiJadeite_Build_2010(AiBarracks(), 1)
 				if ((GetPlayerData(AiPlayer(), "Resources", "gold") > 3000) and (GetPlayerData(AiPlayer(), "Resources", "wood") > 1500)) then
-					AiSet(AiBlacksmith(), 1)
+					AiJadeite_Build_2010(AiBlacksmith(), 1)
 					AiResearch(AiUpgradeWeapon1())
 					AiResearch(AiUpgradeArmor1())
 					AiResearch(AiUpgradeArmor2())
 				end
 			end
 		else
-			AiSet(AiFarm(), 1)
+			AiJadeite_Build_2010(AiFarm(), 1)
 		end
 	else
-		AiSet(AiCityCenter(), 1)
+		AiJadeite_Build_2010(AiCityCenter(), 1)
 	end
 end
 		
 function AiJadeite_Shooter_2010()
-	AiJadeite_Set_Name_2010("Kyurene")
+	AiJadeite_Set_Name_2010("Ranger Attack Ai")
 	AiJadeite_Intermittent_2010()
+	--[[
+	jadeite_attacker[AiPlayer()] = 0
+	AiJadeite_Build_2010(AiBetterCityCenter())
+	--AiJadeite_Force_2010(5, AiCavalry(), 10)
+	]]
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) >= 1) then
 			AiResearch(AiUpgradeMissile1())
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
-				if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) >= 4) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) >= 4)) then 
-					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then
-						if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0)) then
-							AiResearch(AiUpgradeEliteShooter())
-							if (jadeite_archers[AiPlayer()] == nil) then
-								AiAttackWithForce(5)
-								jadeite_archers[AiPlayer()] = true
-								AiSet(AiBarracks(), 3)
-							end
-							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
-								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) then
-									AiResearch(AiUpgradeEliteShooter2())
-									AiResearch(AiUpgradeEliteShooter3())
-								else
-									AiUpgradeTo(AiBestCityCenter())
-								end
+				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then
+					if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0)) then
+						AiJadeite_Upgrade_2010(AiShooter())
+						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
+							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) then
+								AiResearch(AiUpgradeEliteShooter2())
+								AiResearch(AiUpgradeEliteShooter3())
 							else
-								AiSet(AiStables(), 1)
+								AiUpgradeTo(AiBestCityCenter())
 							end
 						else
-							AiUpgradeTo(AiBetterCityCenter())
-						end	
-					else
-						AiSet(AiBlacksmith(), 1)
-					end
-					if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) > 11) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 12)) then 
-						if (jadeite_attacker[AiPlayer()] == 0) then
-							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 2) then
-								AiJadeite_Reset_2010(25)
-							else
-								AiJadeite_Reset_2010(50)
-							end
-							AiAttackWithForce(5)
+							AiJadeite_Build_2010(AiStables(), 1)
 						end
+					else
+						AiUpgradeTo(AiBetterCityCenter())
+					end	
+				else
+					AiJadeite_Build_2010(AiBlacksmith(), 1)
+				end
+				if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) >= 6) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) >= 6)) then 
+					if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) > 11) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 15)) then 
+						AiJadeite_Attack_2010(5)
 					elseif (jadeite_attacker[AiPlayer()] == 0) then
 						AiJadeite_Reset_2010(25)
 						if (jadeite_archers[AiPlayer()] ~= nil) then
 							AiForce(5, {AiEliteShooter(), 10}, true)
 						else
-							AiForce(5, {AiShooter(), 8}, true)
-							AiSet(AiFarm(), 6)
+							AiForce(5, {AiShooter(), 6}, true)
+							AiJadeite_Build_2010(AiFarm(), 5)
 						end
 					end
 				else
 					if (jadeite_attacker[AiPlayer()] == 0) then
 						if (jadeite_archers[AiPlayer()] ~= nil) then
-							AiForce(0, {AiEliteShooter(), 4}, true)
+							AiForce(0, {AiEliteShooter(), 6}, true)
 						else
-							AiForce(0, {AiShooter(), 4}, true)
+							AiForce(0, {AiShooter(), 6}, true)
 						end
-						AiJadeite_Reset_2010(25)
-						AiSet(AiFarm(), 4)
+						AiJadeite_Reset_2010(2525)
+						AiJadeite_Build_2010(AiFarm(), 4)
 						AiResearch(AiUpgradeMissile2())
 					end
 				end
 			else
-				AiSet(AiBarracks(), 1)
+				AiJadeite_Build_2010(AiBarracks(), 1)
 			end
 		else
-			AiSet(AiLumberMill(), 1)
-			AiSet(AiFarm(), 2)
+			AiJadeite_Build_2010(AiBarracks(), 1)
+			AiJadeite_Build_2010(AiLumberMill(), 1)
+			AiJadeite_Build_2010(AiFarm(), 2)
 		end
 	else
-		AiSet(AiCityCenter(), 1)
+		AiJadeite_Build_2010(AiCityCenter(), 1)
 	end
 end
 
@@ -283,135 +398,81 @@ function AiJadeite_Cavalry_2010()
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then
 				if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0)) then
 					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
-						if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) > 3) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 3)) then	
+						if ((GameCycle > 10000) or ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) > 3) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 3))) then	
 							AiResearch(AiUpgradeWeapon1())
 							AiResearch(AiUpgradeArmor1())
 							AiResearch(AiUpgradeWeapon2())
 							AiResearch(AiUpgradeArmor2())
 							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0) then
 								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTemple()) > 0) then
-									if (jadeite_cavalry[AiPlayer()] == true) then
-										if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 11) then
-											AiForce(4, {AiCavalryMage(), 10}, true)
-											jadeite_cavalry[AiPlayer()] = false
-										end
-									else
-										AiResearch(AiUpgradeCavalryMage())
-										if (jadeite_cavalry[AiPlayer()] == nil) then
-											AiAttackWithForce(4)
-											jadeite_cavalry[AiPlayer()] = true
-											AiSet(AiBarracks(), 3)
-											AiJadeite_Reset_2010(300)
-										end
-									end
+									AiJadeite_Upgrade_2010(AiCavalry())
 									AiResearch(AiCavalryMageSpell1())
 									AiResearch(AiCavalryMageSpell2())
 								else
-									AiSet(AiTemple(), 1)
-									AiSet(AiFarm(), 7)
+									AiJadeite_Build_2010(AiTemple(), 1)
+									AiJadeite_Build_2010(AiFarm(), 7)
 								end
 							else
-								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) > 0) then
-									AiUpgradeTo(AiBestCityCenter())
-									AiSet(AiBarracks(), 2)
-								else
-									AiSet(AiLumberMill(), 1)
-								end
+								AiJadeite_Build_2010(AiBestCityCenter())
 							end
 							if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) > 11) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 11)) then	
-								if (jadeite_attacker[AiPlayer()] == 0) then
-									if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 2) then
-										AiJadeite_Reset_2010(25)
-									else
-										AiJadeite_Reset_2010(50)
-									end
-									AiAttackWithForce(4)
-								end
+								AiJadeite_Attack_2010(4)
 							else
-								if (jadeite_attacker[AiPlayer()] == 0) then
-									AiJadeite_Reset_2010(25)
-									if (jadeite_cavalry[AiPlayer()] ~= nil) then
-										AiForce(4, {AiCavalryMage(), 10}, true)
-									else
-										AiForce(4, {AiCavalry(), 8}, true)
-									end
-								end
+								AiJadeite_Force_2010(4, AiCavalry(), 12)
 							end
 						else
-							if (jadeite_attacker[AiPlayer()] == 0) then
-								if (jadeite_cavalry[AiPlayer()] ~= nil) then
-									AiForce(0, {AiCavalryMage(), 4}, true)
-								else
-									AiForce(0, {AiCavalry(), 4}, true)
-								end
-								AiJadeite_Reset_2010(25)
-								AiSet(AiFarm(), 4)
-							end
+							AiJadeite_Force_2010(0, AiCavalry(), 4)
+							AiJadeite_Build_2010(AiFarm(), 4)
 						end
 					else
-						AiSet(AiStables(), 1)
+						AiJadeite_Build_2010(AiStables(), 1)
 					end
 				else
 					AiUpgradeTo(AiBetterCityCenter())
 				end
 			else
-				AiSet(AiBlacksmith(), 1)
+				AiJadeite_Build_2010(AiBlacksmith(), 1)
 			end
 		else
-			AiSet(AiBarracks(), 1)
+			AiJadeite_Build_2010(AiBarracks(), 1)
 		end
 	else
-		AiSet(AiCityCenter(), 1)
+		AiJadeite_Build_2010(AiCityCenter(), 1)
 	end
 end
 
 function AiJadeite_Soldier_2010()
 	AiJadeite_Set_Name_2010("Morga")
 	AiJadeite_Intermittent_2010()
-	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
-		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
-			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) >= 4) then
+	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0)) then
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 0) then
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 3) then
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 12) then
-					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
+					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then
 						AiResearch(AiUpgradeWeapon1())
 						AiResearch(AiUpgradeArmor1())
 						AiResearch(AiUpgradeWeapon2())
 						AiResearch(AiUpgradeArmor2())
-						AiSet(AiBarracks(), 3)
-						AiSet(AiFarm(), 8)
+						AiJadeite_Build_2010(AiBarracks(), 3)
+						AiJadeite_Build_2010(AiFarm(), 8)
 					else
-						AiSet(AiBlacksmith(), 1)
-						AiSet(AiBarracks(), 2)
+						AiJadeite_Build_2010(AiBlacksmith(), 1)
+						AiJadeite_Build_2010(AiBarracks(), 2)
 					end
-					if (jadeite_attacker[AiPlayer()] == 0) then
-						AiAttackWithForce(3)
-						AiJadeite_Reset_2010(25)
-					end
-				else
-					if (jadeite_attacker[AiPlayer()] == 0) then
-						AiForce(3, {AiSoldier(), 10}, true)
-						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 2) then
-							AiJadeite_Reset_2010(25)
-						else
-							AiJadeite_Reset_2010(50)
-						end
-						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFarm()) < 7) then
-							AiSet(AiFarm(), 6)
-						end
-					end
+					AiJadeite_Attack_2010(3)
+				else	
+					AiJadeite_Force_2010(3, AiSoldier(), 10)
+					AiJadeite_Build_2010(AiFarm(), 6)
 				end
 			else
-				if (jadeite_attacker[AiPlayer()] == 0) then
-					AiForce(0, {AiSoldier(), 4}, true)
-					AiJadeite_Reset_2010(25)
-					AiSet(AiFarm(), 4)
-				end
+				AiJadeite_Force_2010(0, AiSoldier(), 4)
+				AiJadeite_Build_2010(AiFarm(), 4)
 			end
 		else
-			AiSet(AiBarracks(), 1)
+			AiJadeite_Build_2010(AiBarracks(), 1)
 		end
 	else
-		AiSet(AiCityCenter(), 1)
+		AiJadeite_Build_2010(AiCityCenter(), 1)
 	end
 end
 
@@ -423,7 +484,7 @@ function AiJadeite_Flyer_2010()
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) <= 3) then
 				AiSet(AiFlyer(), 12)
 				AiJadeite_Reset_2010(25)
-				AiSet(AiAirport(), 3)
+				AiJadeite_Build_2010(AiAirport(), 3)
 			else
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) > 8) then
 					AiForce(2, {AiFlyer(), 12}, true)
@@ -446,33 +507,33 @@ function AiJadeite_Flyer_2010()
 								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) then
 									if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiAirport()) >= 1) then
 									else
-										AiSet(AiAirport(), 1)
+										AiJadeite_Build_2010(AiAirport(), 1)
 									end
 								else
 									AiUpgradeTo(AiBestCityCenter())
-									AiSet(AiFarm(), 5)
+									AiJadeite_Build_2010(AiFarm(), 5)
 								end
 							else
-								AiSet(AiBlacksmith(), 1)
-								AiSet(AiFarm(), 4)
+								AiJadeite_Build_2010(AiBlacksmith(), 1)
+								AiJadeite_Build_2010(AiFarm(), 4)
 							end	
 						else
-							AiSet(AiLumberMill(), 1)
+							AiJadeite_Build_2010(AiLumberMill(), 1)
 						end
 					else
-						AiSet(AiStables(), 1)
-						AiSet(AiFarm(), 3)
+						AiJadeite_Build_2010(AiStables(), 1)
+						AiJadeite_Build_2010(AiFarm(), 3)
 					end
 				else
 					AiUpgradeTo(AiBetterCityCenter())
 				end
 			else
-				AiSet(AiBarracks(), 1)
+				AiJadeite_Build_2010(AiBarracks(), 1)
 			end
 		else
-			AiSet(AiCityCenter(), 1)
+			AiJadeite_Build_2010(AiCityCenter(), 1)
 			AiSet(AiWorker(), 8)
-			AiSet(AiFarm(), 2)
+			AiJadeite_Build_2010(AiFarm(), 2)
 		end
 	end
 end
