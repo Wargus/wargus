@@ -140,7 +140,15 @@ function AiJadeite_Attack_2010(force)
 		else
 			AiJadeite_Reset_2010(50)
 		end
-		AiAttackWithForce(force)
+		if (GameDefinition["Name"] == "Front Lines") then
+			if (timers[ftm_team[AiPlayer()]] > 10) then
+				OrderUnit(AiPlayer(), AiSoldier(), {ftm_team_x1[ftm_team[AiPlayer()]],ftm_team_y1[ftm_team[AiPlayer()]],ftm_team_x2[ftm_team[AiPlayer()]],ftm_team_y2[ftm_team[AiPlayer()]]}, {ftm_team_x1[AiPlayer()], ftm_team_y1[AiPlayer()], ftm_team_x2[AiPlayer()], ftm_team_y2[AiPlayer()]}, "move")
+			else
+				AiJadeite_Reset_2010(10)
+			end
+		else
+			AiAttackWithForce(force)
+		end
 	end
 end
 

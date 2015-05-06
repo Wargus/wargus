@@ -25,15 +25,17 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
+GameDefinitionSetup("Front Lines", "Simple", 1)
+
 AiRedRibbon_Setup_2014()
-SetPlayerGame2015(0, "human", "ai_frontlines_2015", "Red", 0, 0, 0, 62, 127, 0, 0, 127, 127)
-SetPlayerGame2015(1, "human", "ai_frontlines_2015", "Blue", 0, 0, 0, 61, 0, 0, 0, 127, 127)
-SetPlayerGame2015(2, "human", "surprise", "Blue", 10000, 3000, 2000, 0, 0, 43, 0, 80, 127)
-SetPlayerGame2015(3, "human", "Iguara", "Blue", 10000, 3000, 2000, 0, 1, 43, 0, 80, 127)
-SetPlayerGame2015(4, "human", "surprise", "Blue", 10000, 3000, 2000, 0, 2, 43, 0, 80, 127)
-SetPlayerGame2015(5, "human", "surprise", "Red", 10000, 3000, 2000, 127, 127, 43, 0, 80, 127)
-SetPlayerGame2015(6, "human", "surprise", "Red", 10000, 3000, 2000, 127, 126, 43, 0, 80, 127)
-SetPlayerGame2015(7, "human", "surprise", "Red", 10000, 3000, 2000, 127, 125, 43, 0, 80, 127)
+SetPlayerGame2015(0, "human", "ai_frontlines_2015", "Red", 0, 0, 0, 62, 127, 0, 0, 127, 127, 0)
+SetPlayerGame2015(1, "human", "ai_frontlines_2015", "Blue", 0, 0, 0, 61, 0, 0, 0, 127, 127, 1)
+SetPlayerGame2015(2, "human", "surprise", "Blue", 10000, 3000, 2000, 0, 0, 43, 0, 80, 127, 1)
+SetPlayerGame2015(3, "human", "surprise", "Blue", 10000, 3000, 2000, 0, 1, 43, 0, 80, 127, 1)
+SetPlayerGame2015(4, "human", "surprise", "Blue", 10000, 3000, 2000, 0, 2, 43, 0, 80, 127, 1)
+SetPlayerGame2015(5, "human", "surprise", "Red", 10000, 3000, 2000, 127, 127, 43, 0, 80, 127, 0)
+SetPlayerGame2015(6, "human", "surprise", "Red", 10000, 3000, 2000, 127, 126, 43, 0, 80, 127, 0)
+SetPlayerGame2015(7, "human", "surprise", "Red", 10000, 3000, 2000, 127, 125, 43, 0, 80, 127, 0)
 SetPlayerData(15, "RaceName", "neutral")
 
 LoadTileModels("scripts/tilesets/summer.lua")

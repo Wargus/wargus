@@ -178,6 +178,25 @@ function SetupPlayer(player, race, ai, gold, wood, oil, x, y)
 	SetAiType(player, ai)
 end
 
+function GameDefinitionSetup(name, version, revision)
+	if (name == "initialise") then
+		GameDefinition = {}
+		action = "reset"
+	end
+	if (name == "reset") then
+		GameDefinition["Name"] = "Skirmish"
+		GameDefinition["Version"] = "Modern"
+		GameDefinition["Revision"] = 1
+	elseif (version ~= nil) then
+		if (revision == nil) then revision = 1 end
+		GameDefinition["Name"] = name
+		GameDefinition["Version"] = version
+		GameDefinition["Revision"] = revision
+	end
+end
+
+GameDefinitionSetup("initialise")
+
 -- Override with game settings
 function SetPlayerData(player, data, arg1, arg2)
   if (GameCycle ~= 0) then

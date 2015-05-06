@@ -243,6 +243,26 @@ DefineUnitType("unit-oil-patch", { Name = _("Oil Patch"),
 --    "help", "oil-patch-help",
     "dead", "building destroyed"} } )
 
+DefineUnitType("unit-pile-circle", { Name = _("The Pile"),
+  Image = {"file", "neutral/buildings/circle_of_power.png", "size", {64, 64}},
+  Animations = "animations-building", Icon = "icon-circle-of-power",
+  NeutralMinimapColor = {128, 128, 0},
+  Speed = 0,
+  HitPoints = 0,
+  Indestructible = 1,
+  DrawLevel = 5,
+  TileSize = {3, 3}, BoxSize = {95, 95},
+  SightRange = 0,
+  BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+  Priority = 0,
+  Corpse = "unit-destroyed-2x2-place",
+  ExplodeWhenKilled = "missile-explosion",
+  Type = "land",
+  Building = true, VisibleUnderFog = true,
+  Sounds = {
+    "help", "basic human voices help 2",
+    "dead", "building destroyed"} } )
+	
 DefineUnitType("unit-circle-of-power", { Name = _("Circle of Power"),
   Image = {"file", "neutral/buildings/circle_of_power.png", "size", {64, 64}},
   Animations = "animations-building", Icon = "icon-circle-of-power",
@@ -260,9 +280,6 @@ DefineUnitType("unit-circle-of-power", { Name = _("Circle of Power"),
   Type = "land",
   Building = true, VisibleUnderFog = true,
   Sounds = {
---    "selected", "circle-of-power-selected",
---    "acknowledge", "circle-of-power-acknowledge",
- --   "ready", "circle-of-power-ready",
     "help", "basic human voices help 2",
     "dead", "building destroyed"} } )
 
@@ -478,6 +495,21 @@ DefineUnitType("unit-destroyed-4x4-place", { Name = _("Destroyed 4x4 Place"),
   Type = "land",
   Building = true, VisibleUnderFog = true,
   Vanishes = true,
+  Sounds = {} } )
+
+DefineUnitType("unit-revealer", { Name = _("Dummy unit"),
+  Animations = "animations-building", Icon = "icon-holy-vision",
+  Speed = 0,
+  HitPoints = 1,
+  TileSize = {1, 1}, BoxSize = {1, 1},
+  SightRange = 12,
+  BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+  Priority = 0,
+  DecayRate = 1,
+  Type = "land",
+  Building = true, VisibleUnderFog = true,
+  Revealer = true,
+  DetectCloak = true,
   Sounds = {} } )
 
 -- Load the different races

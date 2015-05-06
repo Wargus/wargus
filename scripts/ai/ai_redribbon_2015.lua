@@ -47,7 +47,7 @@ function SetPlayerGame2015(player, race, ai, faction, gold, wood, oil, startx, s
 				ai = "Flau"
 			end
 		until (ai ~= "surprise")
-		--ai = "Kyurene"
+		ai = "Morga"
 	end
 	SetupPlayer(player, race, ai, gold, wood, oil, startx, starty)
 	-- Check game type.
@@ -69,6 +69,7 @@ function SetPlayerGame2015(player, race, ai, faction, gold, wood, oil, startx, s
 				end
 			end
 		end
+		ftm_team[player] = varC1
 		ftm_team_startx[player] = startx
 		ftm_team_starty[player] = starty
 		ftm_faction[player] = faction
@@ -77,40 +78,49 @@ end
 
 function AiFrontlines_2015()
 	for player = 0, 15 do
-		if (ftm_faction[player] ~= nil) then
-			if ((ftm_faction[AiPlayer()] == ftm_faction[player]) and (player ~= AiPlayer())) then
-				if (player == AiPlayer()) then
-					-- Teleport the unit!
-					if ((timers[AiPlayer()] == 1) or (timers[AiPlayer()] == 11) or (timers[AiPlayer()] == 21) or (timers[AiPlayer()] == 31) or (timers[AiPlayer()] == 41) or (timers[AiPlayer()] == 51) or (timers[AiPlayer()] == 61) or (timers[AiPlayer()] == 71) or (timers[AiPlayer()] == 81) or (timers[AiPlayer()] == 91) or (timers[AiPlayer()] == 101) or (timers[AiPlayer()] == 111) or (timers[AiPlayer()] == 121) or (timers[AiPlayer()] == 131) or (timers[AiPlayer()] == 141) or (timers[AiPlayer()] == 151) or (timers[AiPlayer()] == 161) or (timers[AiPlayer()] == 171) or (timers[AiPlayer()] == 181) or (timers[AiPlayer()] == 191) or
-						(timers[AiPlayer()] == 6) or (timers[AiPlayer()] == 16) or (timers[AiPlayer()] == 26) or (timers[AiPlayer()] == 36) or (timers[AiPlayer()] == 46) or (timers[AiPlayer()] == 56) or (timers[AiPlayer()] == 66) or (timers[AiPlayer()] == 76) or (timers[AiPlayer()] == 86) or (timers[AiPlayer()] == 96) or (timers[AiPlayer()] == 106) or (timers[AiPlayer()] == 116) or (timers[AiPlayer()] == 126) or (timers[AiPlayer()] == 136) or (timers[AiPlayer()] == 146) or (timers[AiPlayer()] == 156) or (timers[AiPlayer()] == 166) or (timers[AiPlayer()] == 176) or (timers[AiPlayer()] == 186) or (timers[AiPlayer()] == 196)) then
-						for index = 1, 15 do
-							if ((GetPlayerData(player, "RaceName") == "orc") or (GetPlayerData(player, "RaceName") == "wild")) then temp = 50 else temp = 0 end
-							if (GetNumUnitsAt(player, ftm_unit[index+temp], {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]}) > 0) then
-								KillUnitAt(ftm_unit[index+temp], player, 1, {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]})
-								CreateUnit(ftm_unit[index+temp], AiPlayer(), {ftm_team_startx[AiPlayer()], ftm_team_starty[AiPlayer()]})
-							elseif ((GetNumUnitsAt(player, ftm_unit[index+temp], {ftm_team_x1[AiPlayer()],ftm_team_y1[AiPlayer()]}, {ftm_team_x2[AiPlayer()],ftm_team_y2[AiPlayer()]}) > 0) and (ftm_unit[index+temp] ~= AiWorker())) then
-								if (AiPlayer_Check_2015(player) == true) then
-									if ((GameCycle > 1000) and ((timers[AiPlayer()] == 11) or (timers[AiPlayer()] == 31) or (timers[AiPlayer()] == 51) or (timers[AiPlayer()] == 71) or (timers[AiPlayer()] == 91) or (timers[AiPlayer()] == 111) or (timers[AiPlayer()] == 131) or (timers[AiPlayer()] == 151) or (timers[AiPlayer()] == 171) or (timers[AiPlayer()] == 191))) then
-										OrderUnit(player, ftm_unit[index+temp], {ftm_team_x1[AiPlayer()],ftm_team_y1[AiPlayer()],ftm_team_x2[AiPlayer()],ftm_team_y2[AiPlayer()]}, {ftm_team_x1[player], ftm_team_y1[player], ftm_team_x2[player], ftm_team_y2[player]}, "move")
-									end
-								end
-							end
+		if ((ftm_faction[AiPlayer()] == ftm_faction[player]) and (player ~= AiPlayer())) then
+			if (GameDefinition["Version"] == "Advanced") then
+				-- Teleport the unit!
+				if ((timers[AiPlayer()] == 1) or (timers[AiPlayer()] == 11) or (timers[AiPlayer()] == 21) or (timers[AiPlayer()] == 31) or (timers[AiPlayer()] == 41) or (timers[AiPlayer()] == 51) or (timers[AiPlayer()] == 61) or (timers[AiPlayer()] == 71) or (timers[AiPlayer()] == 81) or (timers[AiPlayer()] == 91) or (timers[AiPlayer()] == 101) or (timers[AiPlayer()] == 111) or (timers[AiPlayer()] == 121) or (timers[AiPlayer()] == 131) or (timers[AiPlayer()] == 141) or (timers[AiPlayer()] == 151) or (timers[AiPlayer()] == 161) or (timers[AiPlayer()] == 171) or (timers[AiPlayer()] == 181) or (timers[AiPlayer()] == 191) or
+				(timers[AiPlayer()] == 6) or (timers[AiPlayer()] == 16) or (timers[AiPlayer()] == 26) or (timers[AiPlayer()] == 36) or (timers[AiPlayer()] == 46) or (timers[AiPlayer()] == 56) or (timers[AiPlayer()] == 66) or (timers[AiPlayer()] == 76) or (timers[AiPlayer()] == 86) or (timers[AiPlayer()] == 96) or (timers[AiPlayer()] == 106) or (timers[AiPlayer()] == 116) or (timers[AiPlayer()] == 126) or (timers[AiPlayer()] == 136) or (timers[AiPlayer()] == 146) or (timers[AiPlayer()] == 156) or (timers[AiPlayer()] == 166) or (timers[AiPlayer()] == 176) or (timers[AiPlayer()] == 186) or (timers[AiPlayer()] == 196)) then
+					for index = 1, 15 do
+						if ((GetPlayerData(player, "RaceName") == "orc") or (GetPlayerData(player, "RaceName") == "wild")) then temp = 50 else temp = 0 end
+						if (GetNumUnitsAt(player, ftm_unit[index+temp], {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]}) > 0) then
+							KillUnitAt(ftm_unit[index+temp], player, 1, {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]})
+							CreateUnit(ftm_unit[index+temp], AiPlayer(), {ftm_team_startx[AiPlayer()], ftm_team_starty[AiPlayer()]})
+							break
 						end
 					end
-				else
-					-- Change unit ownership!
-					ChangeUnitsOwner({ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]}, player, AiPlayer())
 				end
+			else
+				-- Change unit ownership!
+				ChangeUnitsOwner({ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]}, player, AiPlayer())
 			end
 		end
 	end
 	if ((timers[AiPlayer()] == nil) or (timers[AiPlayer()] < 1)) then
 		timers[AiPlayer()] = 50
-	elseif (timers[AiPlayer()] == 1) then
+	elseif (timers[AiPlayer()] == 23) then
 		if (GetPlayerData(AiPlayer(), "TotalNumUnits") > 0) then
-			AiNephrite_Attack_2013("force")
+			for player = 0, 15 do
+				if (ftm_faction[AiPlayer()] ~= ftm_faction[player]) then
+					for index = 1, 15 do
+						if (GetNumUnitsAt(AiPlayer(), ftm_unit[index], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
+							OrderUnit(AiPlayer(), ftm_unit[index], {0,0,mapinfo.w,mapinfo.h}, {ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]],ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]]}, "attack")
+						end
+						if (GetNumUnitsAt(AiPlayer(), ftm_unit[index+50], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
+							OrderUnit(AiPlayer(), ftm_unit[index+50], {0,0,mapinfo.w,mapinfo.h}, {ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]],ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]]}, "attack")
+						end
+					end
+					break
+				end
+			end
 		end
-		timers[AiPlayer()] = SyncRand(25) + SyncRand(25)
+		timers[AiPlayer()] = timers[AiPlayer()] - 1
+	elseif (timers[AiPlayer()] == 1) then
+		repeat
+			timers[AiPlayer()] = SyncRand(25) + SyncRand(25)
+		until timers[AiPlayer()] > 25
 	else
 		timers[AiPlayer()] = timers[AiPlayer()] - 1
 	end
