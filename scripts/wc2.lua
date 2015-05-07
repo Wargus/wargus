@@ -10,7 +10,7 @@
 --
 --      wc2.lua - WC2 compatibility level
 --
---      (c) Copyright 2001-2013 by Lutz Sammer, Jimmy Salmon and Kyran Jackson.
+--      (c) Copyright 2001-2015 by Lutz Sammer, Jimmy Salmon and Kyran Jackson.
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -176,6 +176,28 @@ function SetupPlayer(player, race, ai, gold, wood, oil, x, y)
 	SetPlayerData(player, "Resources", "oil", oil)
 	SetPlayerData(player, "RaceName", race)
 	SetAiType(player, ai)
+end
+
+function SpawnUnits(player, unit, x, y, width, height)
+	for loopx = 0, width-1 do
+		for loopy = 0, height-1 do
+			CreateUnit(unit, player, {(x+loopx), (y+loopy)})
+		end
+	end
+end
+
+function OrderUnits(player, unit, fromx, fromy, width, height, tox, toy, order)
+	if (order == nil) then order = "attack" end
+	if (height == nil) then height = 1 end
+	if (width == nil) then width = 1 end
+	for loopx = 0, width-1 do
+		for loopy = 0, height-1 do
+			if (GetNumUnitsAt(player, unit, {fromx+loopx,fromy+loopy}, {fromx+loopx,fromy+loopy}) > 0) then
+				AddMessage("Lookin good!")
+				OrderUnit(player, unit, {fromx+loopx,fromy+loopy,fromx+loopx,fromy+loopy}, {tox+width,toy+loopy,tox+width,toy+loopy}, order)
+			end
+		end
+	end
 end
 
 function GameDefinitionSetup(name, version, revision)
