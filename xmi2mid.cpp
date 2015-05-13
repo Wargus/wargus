@@ -27,6 +27,7 @@ SOFTWARE.
 #include <iterator>
 #include <new>
 #include <vector>
+#include <cstdlib>
 
 #include <stdint.h>
 
