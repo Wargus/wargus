@@ -189,6 +189,9 @@ function AiRed_Action_2015(player)
 			OrderUnit(player, aiftm_unit[player][aiftm_index[player]], {aiftm_x_from[player][aiftm_index[player]],aiftm_y_from[player][aiftm_index[player]],aiftm_x_from[player][aiftm_index[player]],aiftm_y_from[player][aiftm_index[player]]}, {aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]],aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]]}, aiftm_action[player][aiftm_index[player]])
 		end
 		aiftm_action[player][aiftm_index[player]] = "skip"
+	--elseif ((aiftm_action[player][aiftm_index[player]] == "attack all") or (aiftm_action[player][aiftm_index[player]] == "move all") or (aiftm_action[player][aiftm_index[player]] == "patrol all")) then
+	--	OrderUnit(player, aiftm_unit[player][aiftm_index[player]], {0,0,mapinfo.w,mapinfo.h}, {aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]],aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]]}, aiftm_action[player][aiftm_index[player]])
+	--	aiftm_action[player][aiftm_index[player]] = "skip"
 	elseif (aiftm_action[player][aiftm_index[player]] == "loop") then
 		aiftm_index[player] = aiftm_quantity[player][aiftm_index[player]]
 	end
@@ -284,45 +287,63 @@ end
 
 function AiShane_FtM_One_Way_Through_2015(player)
 	aiftm_terminate[player] = 1000
-	if (player == 13) then
-		x = 60
-		y = 60
-	end
+	x = ftm_team_x1[player]
+	y = ftm_team_y1[player]
 	AiRed_Strategy_Action_2015(player, 0, "summon", 1, AiEliteShooter(), x, y+1)
-	AiRed_Strategy_Action_2015(player, 1, "summon", 1, AiShooter(), x+1, y+1)
-	AiRed_Strategy_Action_2015(player, 2, "summon", 1, AiSoldier(), x, y)
-	AiRed_Strategy_Action_2015(player, 3, "summon", 1, AiSoldier(), x+1, y)
-	AiRed_Strategy_Action_2015(player, 4, "summon", 1, AiSoldier(), x+2, y)
+	-- 1
+	AiRed_Strategy_Action_2015(player, 2, "summon", 1, AiSoldier(), x+1, y)
+	AiRed_Strategy_Action_2015(player, 3, "summon", 1, AiSoldier(), x+2, y)
+	AiRed_Strategy_Action_2015(player, 4, "summon", 1, AiCavalryMage(), x, y)
 	AiRed_Strategy_Action_2015(player, 5, "summon", 1, AiEliteShooter(), x+2, y+1)
 	AiRed_Strategy_Action_2015(player, 6, "summon", 1, AiMage(), x+2, y+2)
 	AiRed_Strategy_Action_2015(player, 7, "summon", 1, AiHeroRider(), x+1, y+2)
 	AiRed_Strategy_Action_2015(player, 8, "summon", 1, AiCatapult(), x, y+2)
 	AiRed_Strategy_Action_2015(player, 9, "summon", 1, AiFlyer(), x+2, y+2)
-	if (player == 13) then
-		AiRed_Strategy_Action_2015(player, 10, "move", 1, AiSoldier(), 58, 51, x+2, y)
-		AiRed_Strategy_Action_2015(player, 11, "move", 1, AiEliteShooter(), x+2, y, x+2, y+1)
-		AiRed_Strategy_Action_2015(player, 12, "summon", 1, AiHeroRider(), x+2, y+1)
-		-- 13
-		AiRed_Strategy_Action_2015(player, 14, "move", 1, AiSoldier(), 57, 51, x+1, y)
-		AiRed_Strategy_Action_2015(player, 15, "move", 1, AiShooter(), x+1, y, x+1, y+1)
-		AiRed_Strategy_Action_2015(player, 16, "summon", 1, AiHeroRider(), x+1, y+1)
-		AiRed_Strategy_Action_2015(player, 17, "move", 1, AiSoldier(), 56, 51, x, y)
-		AiRed_Strategy_Action_2015(player, 18, "move", 1, AiEliteShooter(), x, y, x, y+1)
-		AiRed_Strategy_Action_2015(player, 19, "summon", 1, AiCatapult(), x, y+1)
-		-- 20
-		AiRed_Strategy_Action_2015(player, 21, "move", 1, AiShooter(), 58, 52, x+1, y)
-		AiRed_Strategy_Action_2015(player, 22, "summon", 1, AiHeroRider(), x+1, y)
-		AiRed_Strategy_Action_2015(player, 23, "move", 1, AiEliteShooter(), 57, 52, x+2, y)
-		AiRed_Strategy_Action_2015(player, 24, "summon", 1, AiHeroRider(), x+2, y)
-		AiRed_Strategy_Action_2015(player, 25, "move", 1, AiEliteShooter(), 56, 52, x, y)
-		AiRed_Strategy_Action_2015(player, 26, "summon", 1, AiHeroShooter(), x, y)
-		-- 27
+	if (player == 14) then
+		AiRed_Strategy_Action_2015(player, 1, "attack", 1, AiEliteShooter(), x-1, y-1, x, y+1)
+		AiRed_Strategy_Action_2015(player, 10, "attack", 1, AiSoldier(), x+3, y-1, x+2, y)
+		AiRed_Strategy_Action_2015(player, 11, "attack", 1, AiSoldier(), x+2, y-1, x+1, y)
+		AiRed_Strategy_Action_2015(player, 12, "attack", 1, AiCavalryMage(), x+1, y-1, x, y)
+		AiRed_Strategy_Action_2015(player, 19, "skip", 1)
+		AiRed_Strategy_Action_2015(player, 33, "summon", 5, AiLonerShooter(), 4, 15)
+		AiRed_Strategy_Action_2015(player, 34, "summon", 10, AiShooter(), 0, 12)
+		AiRed_Strategy_Action_2015(player, 35, "summon", 5, AiSoldier(), 0, 17)
+		AiRed_Strategy_Action_2015(player, 36, "attack", 10, AiShooter(), 60, 45)
+		AiRed_Strategy_Action_2015(player, 37, "attack", 5, AiSoldier(), 61, 46)
+		AiRed_Strategy_Action_2015(player, 38, "summon", 1, "hero", x+1, y+1)
+	elseif (player == 13) then
+		AiRed_Strategy_Action_2015(player, 1, "summon", 1, AiShooter(), x+1, y+1)
+		AiRed_Strategy_Action_2015(player, 10, "skip", 1)
+		AiRed_Strategy_Action_2015(player, 11, "skip", 1)
+		AiRed_Strategy_Action_2015(player, 12, "skip", 1)
+		AiRed_Strategy_Action_2015(player, 19, "move", 1, AiShooter(), x+1, y, x+1, y+1)
+		AiRed_Strategy_Action_2015(player, 33, "summon", 5, AiLonerShooter(), 50, 60)
+		AiRed_Strategy_Action_2015(player, 34, "summon", 5, AiShooter(), 50, 60)
+		AiRed_Strategy_Action_2015(player, 35, "summon", 5, AiSoldier(), 50, 60)
+		AiRed_Strategy_Action_2015(player, 36, "attack", 5, AiShooter(), 1, 23)
+		AiRed_Strategy_Action_2015(player, 37, "attack", 5, AiSoldier(), 2, 24)
+		AiRed_Strategy_Action_2015(player, 38, "summon", 1, "hero", 50, 60)
 	end
-	AiRed_Strategy_Action_2015(player, 13, "summon", 1, AiFlyer(), x, y+2)
-	AiRed_Strategy_Action_2015(player, 20, "summon", 1, AiFlyer(), x+2, y)
-	AiRed_Strategy_Action_2015(player, 27, "summon", 1, AiFlyer(), x, y)
-	AiRed_Strategy_Action_2015(player, 28, "skip", 10000)
-	AiRed_Strategy_Action_2015(player, 29, "loop", 28)
+	AiRed_Strategy_Action_2015(player, 13, "skip", 15)
+	AiRed_Strategy_Action_2015(player, 14, "move", 1, AiSoldier(), 35, 33, x+2, y)
+	AiRed_Strategy_Action_2015(player, 15, "move", 1, AiEliteShooter(), x+2, y, x+2, y+1)
+	AiRed_Strategy_Action_2015(player, 16, "summon", 1, AiHeroRider(), x+2, y+1)
+	AiRed_Strategy_Action_2015(player, 17, "summon", 1, AiFlyer(), x, y+2)
+	AiRed_Strategy_Action_2015(player, 18, "move", 1, AiSoldier(), 33, 35, x+1, y)
+	AiRed_Strategy_Action_2015(player, 20, "summon", 1, AiHeroRider(), x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 21, "move", 1, AiCavalryMage(), 34, 34, x, y)
+	AiRed_Strategy_Action_2015(player, 22, "move", 1, AiEliteShooter(), x, y, x, y+1)
+	AiRed_Strategy_Action_2015(player, 23, "summon", 1, AiCatapult(), x, y+1)
+	AiRed_Strategy_Action_2015(player, 24, "summon", 1, AiFlyer(), x+2, y)
+	AiRed_Strategy_Action_2015(player, 25, "move", 1, AiShooter(), 50, 41, x+1, y)
+	AiRed_Strategy_Action_2015(player, 26, "summon", 1, AiHeroRider(), x+1, y)
+	AiRed_Strategy_Action_2015(player, 27, "move", 1, AiEliteShooter(), 41, 50, x+2, y)
+	AiRed_Strategy_Action_2015(player, 28, "summon", 1, AiHeroRider(), x+2, y)
+	AiRed_Strategy_Action_2015(player, 29, "move", 1, AiEliteShooter(), 40, 51, x, y)
+	AiRed_Strategy_Action_2015(player, 30, "summon", 1, AiHeroShooter(), x, y)
+	AiRed_Strategy_Action_2015(player, 31, "summon", 1, AiFlyer(), x, y)
+	AiRed_Strategy_Action_2015(player, 32, "skip", 10)
+	AiRed_Strategy_Action_2015(player, 39, "loop", 28)
 end
 
 function AiShane_FtM_Rockfort_Arena_2015(player)
