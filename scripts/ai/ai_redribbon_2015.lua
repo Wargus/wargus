@@ -265,15 +265,64 @@ end
 
 function AiShane_2015()
 	--Check game type.
-	AiShane_FtM_2015(AiPlayer())
+	if (GameDefinition["Name"] == "For the Motherland") then
+		AiShane_FtM_2015(AiPlayer())
+	end
 end
 
 function AiShane_FtM_2015(player)
 	if ((GameCycle < 50) or (aiftm_action[player][aiftm_index[player]] == "loop")) then
 		--Check map.
-		AiShane_FtM_Rockfort_Arena_2015(player)
+		if (GameDefinition["Map"]["Name"] == "Rockfort Arena") then
+			AiShane_FtM_Rockfort_Arena_2015(player)
+		elseif (GameDefinition["Map"]["Name"] == "One Way Through") then
+			AiShane_FtM_One_Way_Through_2015(player)
+		end
 	end
 	AiRed_2015()
+end
+
+function AiShane_FtM_One_Way_Through_2015(player)
+	aiftm_terminate[player] = 1000
+	if (player == 13) then
+		x = 60
+		y = 60
+	end
+	AiRed_Strategy_Action_2015(player, 0, "summon", 1, AiEliteShooter(), x, y+1)
+	AiRed_Strategy_Action_2015(player, 1, "summon", 1, AiShooter(), x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 2, "summon", 1, AiSoldier(), x, y)
+	AiRed_Strategy_Action_2015(player, 3, "summon", 1, AiSoldier(), x+1, y)
+	AiRed_Strategy_Action_2015(player, 4, "summon", 1, AiSoldier(), x+2, y)
+	AiRed_Strategy_Action_2015(player, 5, "summon", 1, AiEliteShooter(), x+2, y+1)
+	AiRed_Strategy_Action_2015(player, 6, "summon", 1, AiMage(), x+2, y+2)
+	AiRed_Strategy_Action_2015(player, 7, "summon", 1, AiHeroRider(), x+1, y+2)
+	AiRed_Strategy_Action_2015(player, 8, "summon", 1, AiCatapult(), x, y+2)
+	AiRed_Strategy_Action_2015(player, 9, "summon", 1, AiFlyer(), x+2, y+2)
+	if (player == 13) then
+		AiRed_Strategy_Action_2015(player, 10, "move", 1, AiSoldier(), 58, 51, x+2, y)
+		AiRed_Strategy_Action_2015(player, 11, "move", 1, AiEliteShooter(), x+2, y, x+2, y+1)
+		AiRed_Strategy_Action_2015(player, 12, "summon", 1, AiHeroRider(), x+2, y+1)
+		-- 13
+		AiRed_Strategy_Action_2015(player, 14, "move", 1, AiSoldier(), 57, 51, x+1, y)
+		AiRed_Strategy_Action_2015(player, 15, "move", 1, AiShooter(), x+1, y, x+1, y+1)
+		AiRed_Strategy_Action_2015(player, 16, "summon", 1, AiHeroRider(), x+1, y+1)
+		AiRed_Strategy_Action_2015(player, 17, "move", 1, AiSoldier(), 56, 51, x, y)
+		AiRed_Strategy_Action_2015(player, 18, "move", 1, AiEliteShooter(), x, y, x, y+1)
+		AiRed_Strategy_Action_2015(player, 19, "summon", 1, AiCatapult(), x, y+1)
+		-- 20
+		AiRed_Strategy_Action_2015(player, 21, "move", 1, AiShooter(), 58, 52, x+1, y)
+		AiRed_Strategy_Action_2015(player, 22, "summon", 1, AiHeroRider(), x+1, y)
+		AiRed_Strategy_Action_2015(player, 23, "move", 1, AiEliteShooter(), 57, 52, x+2, y)
+		AiRed_Strategy_Action_2015(player, 24, "summon", 1, AiHeroRider(), x+2, y)
+		AiRed_Strategy_Action_2015(player, 25, "move", 1, AiEliteShooter(), 56, 52, x, y)
+		AiRed_Strategy_Action_2015(player, 26, "summon", 1, AiHeroShooter(), x, y)
+		-- 27
+	end
+	AiRed_Strategy_Action_2015(player, 13, "summon", 1, AiFlyer(), x, y+2)
+	AiRed_Strategy_Action_2015(player, 20, "summon", 1, AiFlyer(), x+2, y)
+	AiRed_Strategy_Action_2015(player, 27, "summon", 1, AiFlyer(), x, y)
+	AiRed_Strategy_Action_2015(player, 28, "skip", 10000)
+	AiRed_Strategy_Action_2015(player, 29, "loop", 28)
 end
 
 function AiShane_FtM_Rockfort_Arena_2015(player)

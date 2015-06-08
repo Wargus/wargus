@@ -187,33 +187,58 @@ function SpawnUnits(player, unit, x, y, width, height)
 end
 
 function OrderUnits(player, unit, fromx, fromy, width, height, tox, toy, order)
-	if (order == nil) then order = "attack" end
+	if (order == nil) then order = "move" end
 	if (height == nil) then height = 1 end
 	if (width == nil) then width = 1 end
 	for loopx = 0, width-1 do
 		for loopy = 0, height-1 do
 			if (GetNumUnitsAt(player, unit, {fromx+loopx,fromy+loopy}, {fromx+loopx,fromy+loopy}) > 0) then
-				AddMessage("Lookin good!")
 				OrderUnit(player, unit, {fromx+loopx,fromy+loopy,fromx+loopx,fromy+loopy}, {tox+width,toy+loopy,tox+width,toy+loopy}, order)
 			end
 		end
 	end
 end
 
-function GameDefinitionSetup(name, version, revision)
+function GameDefinitionSetup(name, version, revision, map, path)
 	if (name == "initialise") then
 		GameDefinition = {}
-		action = "reset"
+		GameDefinition["Briefing"] = {}
+		GameDefinition["Map"] = {}
 	end
-	if (name == "reset") then
+	if ((name == "reset") or (name == "initialise")) then
 		GameDefinition["Name"] = "Skirmish"
 		GameDefinition["Version"] = "Modern"
 		GameDefinition["Revision"] = 1
+		GameDefinition["Map"]["Name"] = "None"
+		GameDefinition["Map"]["Path"] = "None"
+		GameDefinition["Briefing"]["Active"] = true
+		GameDefinition["Briefing"]["Width"] = 800
+		GameDefinition["Briefing"]["Height"] = 600
+		GameDefinition["Briefing"]["Objectives"] = {"No", "Objectives"}
+		GameDefinition["Briefing"]["Title"] = "No Title"
+		GameDefinition["Briefing"]["Character"] = " "
+		GameDefinition["Briefing"]["Sync"] = " "
+		if (Video.Width > GameDefinition["Briefing"]["Width"]) then
+			GameDefinition["Briefing"]["X"] = (Video.Width / 2) - (GameDefinition["Briefing"]["Width"] / 2)
+		else
+			GameDefinition["Briefing"]["X"] = 0
+		end
+		if (Video.Height > GameDefinition["Briefing"]["Height"]) then
+			GameDefinition["Briefing"]["Y"] = (Video.Height / 2) - (GameDefinition["Briefing"]["Height"] / 2)
+		else
+			GameDefinition["Briefing"]["Y"] = 0
+		end
 	elseif (version ~= nil) then
 		if (revision == nil) then revision = 1 end
 		GameDefinition["Name"] = name
 		GameDefinition["Version"] = version
 		GameDefinition["Revision"] = revision
+		if (map ~= nil) then
+			GameDefinition["Map"]["Name"] = map
+			if (map ~= nil) then
+				GameDefinition["Map"]["Path"] = path
+			end
+		end
 	end
 end
 

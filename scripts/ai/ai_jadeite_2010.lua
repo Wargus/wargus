@@ -178,17 +178,20 @@ function AiJadeite_Force_2010(force, unit1, quantity1, unit2, quantity2, unit3, 
 			if (unit1 == AiCavalry()) then unit1 = AiCavalryMage() end
 			if (unit2 == AiCavalry()) then unit2 = AiCavalryMage() end
 			if (unit3 == AiCavalry()) then unit3 = AiCavalryMage() end
-			if (unit1 == AiShooter()) then unit1 = AiEliteShooter() end
-			if (unit2 == AiShooter()) then unit2 = AiEliteShooter() end
-			if (unit3 == AiShooter()) then unit3 = AiEliteShooter() end
 		else
 			if (unit1 == AiCavalryMage()) then unit1 = AiCavalry() end
 			if (unit2 == AiCavalryMage()) then unit2 = AiCavalry() end
 			if (unit3 == AiCavalryMage()) then unit3 = AiCavalry() end
+		end		
+		if (jadeite_archers[AiPlayer()] ~= nil) then
+			if (unit1 == AiShooter()) then unit1 = AiEliteShooter() end
+			if (unit2 == AiShooter()) then unit2 = AiEliteShooter() end
+			if (unit3 == AiShooter()) then unit3 = AiEliteShooter() end
+		else
 			if (unit1 == AiEliteShooter()) then unit1 = AiShooter() end
 			if (unit2 == AiEliteShooter()) then unit2 = AiShooter() end
 			if (unit3 == AiEliteShooter()) then unit3 = AiShooter() end
-		end		
+		end
 		if (unit2 == nil) then
 			AiForce(force, {unit1, quantity1})
 		elseif (unit3 == nil) then

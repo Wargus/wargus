@@ -282,8 +282,9 @@ function AddMenuHelpers(menu)
     return label
   end
 
-  function menu:writeText(text, x, y)
-    return self:addLabel(text, x, y, Fonts["game"], false)
+  function menu:writeText(text, x, y, font)
+	if (font == nil) then font = Fonts["game"] end
+    return self:addLabel(text, x, y, font, false)
   end
 
   function menu:writeLargeText(text, x, y)
@@ -337,6 +338,30 @@ function AddMenuHelpers(menu)
     return b
   end
 
+  function menu:addMenuButton(caption, hotkey, x, y, callback)
+	local b = self:addImageButton(caption, hotkey, x, y, callback)
+	b:setBaseColor(Color(0,0,0,0))
+	b:setForegroundColor(Color(0,0,0,0))
+	b:setBackgroundColor(Color(0,0,0,0))
+	local g_bln
+	local g_blp
+	local g_blg
+	g_bln = CGraphic:New("graphics/ui/kindland.png")
+	g_blp = CGraphic:New("graphics/ui/kindland.png")
+	g_blg = CGraphic:New("graphics/ui/kindland.png") -- greyed
+	g_bln:Load()
+	g_blp:Load()
+	g_blg:Load()
+	b:setNormalImage(g_bln)
+	b:setPressedImage(g_blp)
+	b:setDisabledImage(g_blg)
+	b:setSize(132, 50)
+	if (string.len(caption) > 24) then
+		b:setFont(Fonts["game"])
+	end
+	return b
+  end
+  
   function menu:addHalfButton(caption, hotkey, x, y, callback)
     local b = self:addImageButton(caption, hotkey, x, y, callback)
 	if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then

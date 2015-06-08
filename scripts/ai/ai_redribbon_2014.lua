@@ -519,10 +519,12 @@ function AiRed_Increment_2014(player)
 	end
 end
 
-function AiRed_GridSetup_2014(player)
+function AiRed_GridSetup_2014(player, x, y)
+	if (x ~= nil) then ftm_team_orderx[player] = x end
+	if (y ~= nil) then ftm_team_ordery[player] = y end
 	if (ftm_team_ordery[player] == "Down") then
 		ftm_team_tempy[player] = ftm_team_y1[player]
-	elseif (ftm_team_orderx[player] == "Up") then
+	elseif (ftm_team_ordery[player] == "Up") then
 		ftm_team_tempy[player] = ftm_team_y2[player]
 	else
 		ftm_team_tempy[player] = ftm_team_starty[player]
