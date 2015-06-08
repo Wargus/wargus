@@ -42,7 +42,7 @@ function AiRedRibbon_Research_2012()
 		else
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
-					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) then
+					if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1)) then
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
 							AiUpgradeTo(AiBestCityCenter())
 							AiSet(AiMageTower(), 1)
@@ -65,7 +65,7 @@ function AiRedRibbon_Research_2012()
 		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
-					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) then
+					if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1)) then
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
 							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) == 0) then
 								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) >= 1) then
@@ -121,7 +121,7 @@ function AiRedRibbon_Research_2012()
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
 						AiResearch(AiUpgradeMissile2())
 					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
-						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) then
+						if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1)) then
 							AiResearch(AiUpgradeEliteShooter())
 							AiResearch(AiUpgradeEliteShooter1())
 							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
