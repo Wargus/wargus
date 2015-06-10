@@ -182,11 +182,18 @@ function AiRed_Action_2015(player)
 		else
 			AiRed_Increment_2014(player)
 		end
-	elseif ((aiftm_action[player][aiftm_index[player]] == "attack") or (aiftm_action[player][aiftm_index[player]] == "move") or (aiftm_action[player][aiftm_index[player]] == "patrol")) then
+	elseif ((aiftm_action[player][aiftm_index[player]] == "attack") or (aiftm_action[player][aiftm_index[player]] == "move") or (aiftm_action[player][aiftm_index[player]] == "patrol") or (aiftm_action[player][aiftm_index[player]] == "attack area") or (aiftm_action[player][aiftm_index[player]] == "move area") or (aiftm_action[player][aiftm_index[player]] == "patrol area")) then
 		if ((aiftm_y_from[player][aiftm_index[player]] == nil) or (aiftm_x_from[player][aiftm_index[player]] == nil)) then
 			OrderUnit(player, aiftm_unit[player][aiftm_index[player]], {0,0,mapinfo.w,mapinfo.h}, {aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]],aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]]}, aiftm_action[player][aiftm_index[player]])
 		else
-			OrderUnit(player, aiftm_unit[player][aiftm_index[player]], {aiftm_x_from[player][aiftm_index[player]],aiftm_y_from[player][aiftm_index[player]],aiftm_x_from[player][aiftm_index[player]],aiftm_y_from[player][aiftm_index[player]]}, {aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]],aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]]}, aiftm_action[player][aiftm_index[player]])
+			if ((aiftm_action[player][aiftm_index[player]] == "attack area") or (aiftm_action[player][aiftm_index[player]] == "move area") or (aiftm_action[player][aiftm_index[player]] == "patrol area")) then
+				if (aiftm_action[player][aiftm_index[player]] == "attack area") then aiftm_action[player][aiftm_index[player]] = "attack" end
+				if (aiftm_action[player][aiftm_index[player]] == "move area") then aiftm_action[player][aiftm_index[player]] = "move" end
+				if (aiftm_action[player][aiftm_index[player]] == "patrol area") then aiftm_action[player][aiftm_index[player]] = "patrol" end
+				OrderUnit(player, aiftm_unit[player][aiftm_index[player]], {aiftm_x_from[player][aiftm_index[player]]-7,aiftm_y_from[player][aiftm_index[player]]-7,aiftm_x_from[player][aiftm_index[player]]+7,aiftm_y_from[player][aiftm_index[player]]+7}, {aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]],aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]]}, aiftm_action[player][aiftm_index[player]])
+			else
+				OrderUnit(player, aiftm_unit[player][aiftm_index[player]], {aiftm_x_from[player][aiftm_index[player]],aiftm_y_from[player][aiftm_index[player]],aiftm_x_from[player][aiftm_index[player]],aiftm_y_from[player][aiftm_index[player]]}, {aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]],aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]]}, aiftm_action[player][aiftm_index[player]])
+			end
 		end
 		aiftm_action[player][aiftm_index[player]] = "skip"
 	--elseif ((aiftm_action[player][aiftm_index[player]] == "attack all") or (aiftm_action[player][aiftm_index[player]] == "move all") or (aiftm_action[player][aiftm_index[player]] == "patrol all")) then
@@ -273,6 +280,13 @@ function AiShane_2015()
 	end
 end
 
+function AiAya_2015()
+	--Check game type.
+	if (GameDefinition["Name"] == "For the Motherland") then
+		AiAya_FtM_2015(AiPlayer())
+	end
+end
+
 function AiShane_FtM_2015(player)
 	if ((GameCycle < 50) or (aiftm_action[player][aiftm_index[player]] == "loop")) then
 		--Check map.
@@ -280,6 +294,18 @@ function AiShane_FtM_2015(player)
 			AiShane_FtM_Rockfort_Arena_2015(player)
 		elseif (GameDefinition["Map"]["Name"] == "One Way Through") then
 			AiShane_FtM_One_Way_Through_2015(player)
+		end
+	end
+	AiRed_2015()
+end
+
+function AiAya_FtM_2015(player)
+	if ((GameCycle < 50) or (aiftm_action[player][aiftm_index[player]] == "loop")) then
+		--Check map.
+		if (GameDefinition["Map"]["Name"] == "Rockfort Arena") then
+			AiAya_FtM_Rockfort_Arena_2015(player)
+		elseif (GameDefinition["Map"]["Name"] == "One Way Through") then
+			--AiAya_FtM_One_Way_Through_2015(player)
 		end
 	end
 	AiRed_2015()
@@ -344,6 +370,125 @@ function AiShane_FtM_One_Way_Through_2015(player)
 	AiRed_Strategy_Action_2015(player, 31, "summon", 1, AiFlyer(), x, y)
 	AiRed_Strategy_Action_2015(player, 32, "skip", 10)
 	AiRed_Strategy_Action_2015(player, 39, "loop", 28)
+end
+
+function AiAya_FtM_Rockfort_Arena_2015(player)
+	aiftm_terminate[player] = 1000
+	x = ftm_team_x1[player]
+	y = ftm_team_y1[player]
+	if (player == 8) then
+		AiRed_Strategy_Action_2015(player, 0, "move", 1, AiWise(), 4, 2, x+1, y+1)
+		AiRed_Strategy_Action_2015(player, 19, "move", 1, AiWise(), x+4, y+1)
+		AiRed_Strategy_Action_2015(player, 66, "move", 1, AiWise(), x+4, y+1)
+		AiRed_Strategy_Action_2015(player, 67, "move area", 10, AiSoldier(), 47, 47, x+6, y+9)
+		AiRed_Strategy_Action_2015(player, 68, "move area", 10, AiLonerShooter(), 47, 47, x+6, y+9)
+	elseif (player == 9) then
+		AiRed_Strategy_Action_2015(player, 0, "move", 1, AiWise(), x-1, y+1)
+		AiRed_Strategy_Action_2015(player, 19, "move", 1, AiWise(), x-2, y+1)
+		AiRed_Strategy_Action_2015(player, 66, "move", 1, AiWise(), x-2, y+1)
+		AiRed_Strategy_Action_2015(player, 67, "move area", 10, AiSoldier(), 47, 47, x-6, y+9)
+		AiRed_Strategy_Action_2015(player, 68, "move area", 10, AiLonerShooter(), 47, 47, x-6, y+9)
+	elseif (player == 10) then
+		AiRed_Strategy_Action_2015(player, 0, "move", 1, AiWise(), 4, 93, x+1, y+1)
+	elseif (player == 11) then
+		AiRed_Strategy_Action_2015(player, 0, "move", 1, AiWise(), 91, 93, x+1, y+1)
+	end
+	if ((player == 8) or (player == 9)) then
+		AiRed_Strategy_Action_2015(player, 24, "move", 1, AiShooter(), x, y+26, x, y+1)
+		AiRed_Strategy_Action_2015(player, 29, "move", 1, AiShooter(), x+1, y+26, x+1, y)
+		AiRed_Strategy_Action_2015(player, 31, "move", 1, AiShooter(), x+2, y+26, x+2, y)
+		AiRed_Strategy_Action_2015(player, 36, "move", 1, AiShooter(), x-1, y+26, x+1, y+2)
+		AiRed_Strategy_Action_2015(player, 38, "move", 1, AiShooter(), x-2, y+26, x, y+2)
+		AiRed_Strategy_Action_2015(player, 41, "move", 1, AiShooter(), x-3, y+26, x+2, y+2)
+		AiRed_Strategy_Action_2015(player, 48, "move", 1, AiEliteShooter(), x-1, y+25, x+1, y+2)
+		AiRed_Strategy_Action_2015(player, 49, "move", 1, AiEliteShooter(), x-2, y+25, x, y+2)
+		AiRed_Strategy_Action_2015(player, 50, "move", 1, AiEliteShooter(), x-3, y+25, x+2, y+2)
+		AiRed_Strategy_Action_2015(player, 60, "move", 1, AiWise(), x, y+11)
+		AiRed_Strategy_Action_2015(player, 62, "summon", 5, AiLonerShooter(), x, y+10)
+		AiRed_Strategy_Action_2015(player, 63, "summon", 5, AiSoldier(), x, y+10)
+		AiRed_Strategy_Action_2015(player, 65, "summon", 5, AiSoldier(), x, y+10)
+		AiRed_Strategy_Action_2015(player, 71, "attack area", 10, AiSoldier(), 15, 87, 47, 47)
+		AiRed_Strategy_Action_2015(player, 72, "attack area", 5, AiLonerShooter(), 16, 86, 47, 47)
+		AiRed_Strategy_Action_2015(player, 73, "attack area", 10, AiSoldier(), 80, 84, 16, 86)
+		AiRed_Strategy_Action_2015(player, 74, "attack area", 5, AiLonerShooter(), 80, 84, 16, 86)
+	elseif ((player == 10) or (player == 11)) then
+	
+	end
+	AiRed_Strategy_Action_2015(player, 1, "summon", 1, AiCatapult(), x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 2, "summon", 1, AiShooter(), x+1, y+2)
+	AiRed_Strategy_Action_2015(player, 3, "attack", 1, AiShooter(), x+1, y+3, x+1, y+2)
+	AiRed_Strategy_Action_2015(player, 4, "summon", 1, AiShooter(), x, y+2)
+	AiRed_Strategy_Action_2015(player, 5, "attack", 1, AiShooter(), x, y+3, x, y+2)
+	AiRed_Strategy_Action_2015(player, 6, "summon", 1, AiShooter(), x+2, y+2)
+	AiRed_Strategy_Action_2015(player, 7, "attack", 1, AiShooter(), x+2, y+3, x+2, y+2)
+	AiRed_Strategy_Action_2015(player, 8, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 9, "summon", 1, AiEliteShooter(), x, y)
+	AiRed_Strategy_Action_2015(player, 10, "attack", 1, AiEliteShooter(), x-1, y-1, x, y)
+	AiRed_Strategy_Action_2015(player, 11, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 12, "summon", 1, AiShooter(), x, y+1)
+	AiRed_Strategy_Action_2015(player, 13, "attack", 1, AiShooter(), x-1, y, x, y+1)
+	AiRed_Strategy_Action_2015(player, 14, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 15, "summon", 1, AiShooter(), x+1, y)
+	AiRed_Strategy_Action_2015(player, 16, "attack", 1, AiShooter(), x+1, y-1, x+1, y)
+	AiRed_Strategy_Action_2015(player, 17, "summon", 1, AiShooter(), x+2, y)
+	AiRed_Strategy_Action_2015(player, 18, "attack", 1, AiShooter(), x+2, y-1, x+2, y)
+	-- 19
+	AiRed_Strategy_Action_2015(player, 20, "attack", 1, AiEliteShooter(), x, y-1, x, y)
+	AiRed_Strategy_Action_2015(player, 21, "summon", 1, AiHeroRider(), x+2, y+1)
+	AiRed_Strategy_Action_2015(player, 22, "attack", 1, AiHeroRider(), x+3, y, x+2, y+1)
+	AiRed_Strategy_Action_2015(player, 23, "summon", 1, AiFlyer(), x-1, y-1)
+	-- 24
+	AiRed_Strategy_Action_2015(player, 25, "summon", 1, AiHeroShooter(), x, y+1)
+	AiRed_Strategy_Action_2015(player, 26, "oil", 12000)
+	AiRed_Strategy_Action_2015(player, 27, "gold", 4000)
+	AiRed_Strategy_Action_2015(player, 28, "wood", 6000)
+	-- 29
+	AiRed_Strategy_Action_2015(player, 30, "summon", 1, AiFlyer(), x+1, y+1)
+	-- 31
+	AiRed_Strategy_Action_2015(player, 32, "skip", 5)
+	AiRed_Strategy_Action_2015(player, 33, "summon", 1, AiEliteShooter(), x+1, y)
+	AiRed_Strategy_Action_2015(player, 34, "summon", 1, AiEliteShooter(), x+2, y)
+	AiRed_Strategy_Action_2015(player, 35, "move", 1, AiHeroRider(), x+2, y+1)
+	-- 36
+	AiRed_Strategy_Action_2015(player, 37, "skip", 5)
+	-- 38
+	AiRed_Strategy_Action_2015(player, 39, "skip", 5)
+	AiRed_Strategy_Action_2015(player, 40, "summon", 1, AiEliteShooter(), x, y+2)
+	-- 41
+	AiRed_Strategy_Action_2015(player, 42, "summon", 1, AiEliteShooter(), x+2, y+2)
+	AiRed_Strategy_Action_2015(player, 43, "summon", 1, AiEliteShooter(), x+1, y+2)
+	AiRed_Strategy_Action_2015(player, 44, "summon", 1, AiFlyer(), x+1, y-1)
+	AiRed_Strategy_Action_2015(player, 45, "summon", 1, AiFlyer(), x, y+1)
+	AiRed_Strategy_Action_2015(player, 46, "skip", 10)
+	AiRed_Strategy_Action_2015(player, 47, "oil", 25000)
+	-- 48
+	-- 49
+	-- 50
+	AiRed_Strategy_Action_2015(player, 51, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 52, "summon", 1, AiHeroShooter(), x+1, y+2)
+	AiRed_Strategy_Action_2015(player, 53, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 54, "summon", 1, AiHeroShooter(), x, y+2)
+	AiRed_Strategy_Action_2015(player, 55, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 56, "summon", 1, AiHeroShooter(), x+2, y+2)
+	AiRed_Strategy_Action_2015(player, 57, "skip", 10)
+	AiRed_Strategy_Action_2015(player, 58, "summon", 1, "hero", x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 59, "summon", 5, AiLonerShooter(), x+1, y+1)
+	-- 60
+	AiRed_Strategy_Action_2015(player, 61, "skip", 20)
+	-- 62
+	-- 63
+	AiRed_Strategy_Action_2015(player, 64, "skip", 10)
+	-- 65
+	-- 66
+	-- 67
+	-- 68
+	AiRed_Strategy_Action_2015(player, 69, "skip", 20)
+	AiRed_Strategy_Action_2015(player, 70, "summon", 1, "hero", x+1, y+1)
+	-- 71
+	-- 72
+	-- 73
+	-- 74
+	AiRed_Strategy_Action_2015(player, 75, "loop", 58)
 end
 
 function AiShane_FtM_Rockfort_Arena_2015(player)
@@ -472,3 +617,4 @@ end
 DefineAi("ai_red_2015", "*", "ai_red_2015", AiRed_2015)
 DefineAi("ai_frontlines_2015", "*", "ai_frontlines_2015", AiFrontlines_2015)
 DefineAi("Shane Wolfe", "*", "ai_red_2015", AiShane_2015)
+DefineAi("Aya Kalang", "*", "ai_red_2015", AiAya_2015)

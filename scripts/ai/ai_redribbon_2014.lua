@@ -116,7 +116,8 @@ function AiRedRibbon_Setup_Units_2014()
 		AiRedRibbon_Define_Unit_2014(80+i, ftm_unit[50+i], ftm_origin[50+i], ftm_category[50+i], ftm_class[50+i], ftm_rank[50+i], ftm_cost_gold[50+i], ftm_cost_wood[50+i], ftm_cost_oil[50+i], ftm_origin_x[50+i], ftm_origin_y[50+i])
 	end
 	-- Cost override.
-	AiRedRibbon_Define_Cost_2014(58, 7500, 0, 17500)
+	AiRedRibbon_Define_Cost_2014(51, 7500, 0, 17500)
+	AiRedRibbon_Define_Cost_2014(52, 7500, 0, 12500)
 	AiRedRibbon_Define_Cost_2014(60, 750, 0, 250)
 	AiRedRibbon_Define_Cost_2014(88, 7500, 0, 17500)
 	AiRedRibbon_Define_Cost_2014(90, 750, 0, 250)
