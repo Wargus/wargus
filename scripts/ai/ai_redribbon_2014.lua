@@ -255,7 +255,7 @@ function AiRedRibbon_Setup_2014()
 		if (i < 8) then
 			AiRed_Resources_Set_2014(i, 1, 1, 10)
 		else
-			AiRed_Resources_Set_2014(i, 100, 50, 100)
+			AiRed_Resources_Set_2014(i, 100, 50, 50)
 		end
 		aiftm_action[i] = {}
 		aiftm_unit[i] = {}

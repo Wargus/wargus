@@ -294,6 +294,8 @@ function AiShane_FtM_2015(player)
 			AiShane_FtM_Rockfort_Arena_2015(player)
 		elseif (GameDefinition["Map"]["Name"] == "One Way Through") then
 			AiShane_FtM_One_Way_Through_2015(player)
+		elseif (GameDefinition["Map"]["Name"] == "Nick's Duel") then
+			AiShane_FtM_Nicks_Duel_2015(player)
 		end
 	end
 	AiRed_2015()
@@ -306,9 +308,97 @@ function AiAya_FtM_2015(player)
 			AiAya_FtM_Rockfort_Arena_2015(player)
 		elseif (GameDefinition["Map"]["Name"] == "One Way Through") then
 			--AiAya_FtM_One_Way_Through_2015(player)
+		elseif (GameDefinition["Map"]["Name"] == "Nick's Duel") then
+			AiAya_FtM_Nicks_Duel_2015(player)
 		end
 	end
 	AiRed_2015()
+end
+
+function AiShane_FtM_Nicks_Duel_2015(player)
+	aiftm_terminate[player] = 1000
+	-- TODO: This.
+end
+
+function AiAya_FtM_Nicks_Duel_2015(player)
+	aiftm_terminate[player] = 1000
+	x = ftm_team_x1[player]
+	y = ftm_team_y1[player]
+	if (player == 10) then
+		AiRed_Strategy_Action_2015(player, 1, "summon", 1, AiWorker(), x+2, y+1)
+		AiRed_Strategy_Action_2015(player, 2, "move", 1, AiWorker(), x+2, y+1, x+2, y+1)
+		AiRed_Strategy_Action_2015(player, 12, "move", 1, AiWise(), x+3, y+1)
+		AiRed_Strategy_Action_2015(player, 36, "attack", 1, AiSoldier(), 0, 0)
+		AiRed_Strategy_Action_2015(player, 38, "move", 1, AiShooter(), 17, 29, x, y)
+		AiRed_Strategy_Action_2015(player, 41, "move", 1, AiShooter(), 18, 28, x+2, y)
+		AiRed_Strategy_Action_2015(player, 44, "move", 1, AiShooter(), 19, 27, x+2, y+2)
+		AiRed_Strategy_Action_2015(player, 47, "move", 1, AiShooter(), 16, 30, x, y+2)
+		AiRed_Strategy_Action_2015(player, 50, "attack", 1, AiShooter(), 0, 0)
+		AiRed_Strategy_Action_2015(player, 51, "attack", 1, AiCavalryMage(), 0, 0)
+	elseif (player == 11) then
+		AiRed_Strategy_Action_2015(player, 1, "summon", 1, AiWorker(), x, y+1)
+		AiRed_Strategy_Action_2015(player, 2, "move", 1, AiWorker(), x-1, y+1, x, y+1)
+		AiRed_Strategy_Action_2015(player, 12, "move", 1, AiWise(), x-1, y+1)
+		AiRed_Strategy_Action_2015(player, 36, "attack", 1, AiSoldier(), 31, 31)
+		AiRed_Strategy_Action_2015(player, 38, "move", 1, AiShooter(), 14, 1, x, y)
+	end
+	AiRed_Strategy_Action_2015(player, 0, "skip", 1)
+	-- 1
+	-- 2
+	AiRed_Strategy_Action_2015(player, 3, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 4, "summon", 1, AiShooter(), x, y)
+	AiRed_Strategy_Action_2015(player, 5, "attack", 1, AiShooter(), x-1, y-1, x, y)
+	AiRed_Strategy_Action_2015(player, 6, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 7, "summon", 1, AiShooter(), x+2, y)
+	AiRed_Strategy_Action_2015(player, 8, "attack", 1, AiShooter(), x+3, y-1, x+2, y)
+	AiRed_Strategy_Action_2015(player, 9, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 10, "summon", 1, AiCavalryMage(), x, y+2)
+	AiRed_Strategy_Action_2015(player, 11, "attack", 1, AiCavalryMage(), x-1, y+3, x, y+2)
+	-- 12
+	AiRed_Strategy_Action_2015(player, 13, "summon", 1, AiShooter(), x+2, y+2)
+	AiRed_Strategy_Action_2015(player, 14, "attack", 1, AiShooter(), x+3, y+3, x+2, y+2)
+	AiRed_Strategy_Action_2015(player, 15, "skip", 10)
+	AiRed_Strategy_Action_2015(player, 16, "move", 1, AiShooter(), x+2, y+2, x+3, y+3)
+	AiRed_Strategy_Action_2015(player, 17, "move", 1, AiCavalryMage(), x, y+2, x-1, y+3)
+	AiRed_Strategy_Action_2015(player, 18, "move", 1, AiShooter(), x+2, y, x+3, y-1)
+	AiRed_Strategy_Action_2015(player, 19, "move", 1, AiShooter(), x, y, x-1, y-1)
+	AiRed_Strategy_Action_2015(player, 20, "summon", 1, AiHeroRider(), x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 21, "move", 1, AiWorker(), x+4, y+4)
+	AiRed_Strategy_Action_2015(player, 22, "summon", 1, AiShooter(), x+1, y)
+	AiRed_Strategy_Action_2015(player, 23, "move", 1, AiHeroRider(), x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 24, "summon", 1, AiShooter(), x+1, y+2)
+	AiRed_Strategy_Action_2015(player, 25, "summon", 1, AiFodder(), x+1, y-1)
+	AiRed_Strategy_Action_2015(player, 26, "summon", 1, AiFlyer(), x-1, y-1)
+	AiRed_Strategy_Action_2015(player, 27, "summon", 1, AiHeroRider(), x, y+1)
+	AiRed_Strategy_Action_2015(player, 28, "summon", 1, AiFlyer(), x+2, y-1)
+	AiRed_Strategy_Action_2015(player, 29, "summon", 1, AiHeroRider(), x+2, y)
+	AiRed_Strategy_Action_2015(player, 30, "skip", 10)
+	AiRed_Strategy_Action_2015(player, 31, "summon", 9, AiSoldier(), x-4, y+3)
+	AiRed_Strategy_Action_2015(player, 32, "skip", 10)
+	AiRed_Strategy_Action_2015(player, 33, "summon", 1, AiFlyer(), x+2, y+2)
+	AiRed_Strategy_Action_2015(player, 34, "summon", 1, AiFlyer(), x-1, y+2)
+	AiRed_Strategy_Action_2015(player, 35, "skip", 1)
+	-- 36
+	AiRed_Strategy_Action_2015(player, 37, "skip", 1)
+	-- 38
+	AiRed_Strategy_Action_2015(player, 39, "summon", 1, AiHeroShooter(), x, y)
+	AiRed_Strategy_Action_2015(player, 40, "skip", 1)
+	-- 41
+	AiRed_Strategy_Action_2015(player, 42, "summon", 1, AiHeroShooter(), x+2, y)
+	AiRed_Strategy_Action_2015(player, 43, "skip", 1)
+	-- 44
+	AiRed_Strategy_Action_2015(player, 45, "summon", 1, AiHeroShooter(), x+2, y+2)
+	AiRed_Strategy_Action_2015(player, 46, "skip", 1)
+	-- 47
+	AiRed_Strategy_Action_2015(player, 48, "summon", 1, AiHeroShooter(), x, y+2)
+	AiRed_Strategy_Action_2015(player, 49, "skip", 10)
+	-- 50
+	-- 51
+	AiRed_Strategy_Action_2015(player, 52, "summon", 1, "hero", x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 53, "summon", 1,"hero", x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 54, "summon", 1, "hero", x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 55, "skip", 10)
+	AiRed_Strategy_Action_2015(player, 56, "loop", 31)
 end
 
 function AiShane_FtM_One_Way_Through_2015(player)

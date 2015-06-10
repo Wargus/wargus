@@ -26,6 +26,7 @@
 --
 
 AiRedRibbon_Setup_2014()
+AiRed_Resources_Setup_2014(14, 100, 50, 100, 15, "Pickers")
 GameDefinitionSetup("For the Motherland", "Standard", 2014, "One Way Through")
 
 -- SetPlayerFtM2014(player, race, faction, gold, wood, oil, startx, starty, istart, iend, teamx1, teamy1, teamx2, teamy2, match, aispawner, aibot)
