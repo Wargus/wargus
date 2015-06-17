@@ -38,7 +38,7 @@ DefineAi("Balm", "*", "wc2-skirmish", AiJadeite_Power_2010)
 DefineAi("Flau", "*", "wc2-skirmish", AiJadeite_Cavalry_2010)
 DefineAi("Iguara", "*", "wc2-skirmish", AiJadeite_Flyer_2010)
 DefineAi("Kyurene", "*", "wc2-skirmish", AiJadeite_Shooter_2010)
-
+--[[
 -- Nephrite Ais
 DefineAi("Nephrite", "*", "wc2-skirmish", AiNephrite_2013)
 DefineAi("Tesuni", "*", "wc2-skirmish", AiNephrite_NoCav_2013)
@@ -47,3 +47,4 @@ DefineAi("Soul", "*", "wc2-skirmish", AiNephrite_NoCav_2012)
 
 -- Zoisite Ais
 DefineAi("Zoisite", "*", "wc2-skirmish", AiZoisite_2013)
+]]

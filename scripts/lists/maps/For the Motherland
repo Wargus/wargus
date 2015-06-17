@@ -183,7 +183,7 @@ function StartCustomGame_Lua()
 	RunSinglePlayerGameMenu = NewRunSinglePlayerGameMenu
 	
 	-- Selecting the default map.
-	mapname = "maps/fl/(8)rockfort-arena.smp"
+	mapname = "maps/ftm/(4)beethoven-day.smp"
 	local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
 	mapinfo = {
 		playertypes = {nil, nil, nil, nil, nil, nil, nil, nil},
@@ -203,7 +203,7 @@ function RunSelectScenarioMenu()
 
   menu:addLabel(_("Select scenario"), 176, 8)
 
-  local browser = menu:addBrowser("maps/fl", "^.*%.smp%.?g?z?$",
+  local browser = menu:addBrowser("maps/ftm", "^.*%.smp%.?g?z?$",
     24, 140, 300, 108, mapname)
 
   local l = menu:addLabel(browser:getSelectedItem(), 24, 260, Fonts["game"], false)
@@ -266,52 +266,10 @@ function NewRunSinglePlayerGameMenu()
     end)
   menu:addFullButton(_("~!Start Game"), "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
-      local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"};
-
-      GameSettings.Presets[0].Race = race:getSelected()
-      GameSettings.Resources = resources:getSelected()
-      GameSettings.Opponents = opponents:getSelected()
-      GameSettings.NumUnits = numunits:getSelected()
-      GameSettings.GameType = gametype:getSelected() + 100
-      GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
-	  IsSkirmishClassic = true
       RunMap(mapname, nil, wc2.preferences.FogOfWar, false)
       menu:stop()
     end)
   menu:addFullButton(_("~!Cancel Game"), "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() CleanCustomGame_Lua(); menu:stop(1); RunSinglePlayerTypeMenu() end)
-
-  menu:addLabel(_("~<Your Race:~>"), offx + 40, offy + (10 + 240) - 20, Fonts["game"], false)
-  race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, offx + 40, offy + 10 + 240,
-    function(dd) end)
-  race:setSize(152, 20)
-
-  menu:addLabel(_("~<Resources:~>"), offx + 220, offy + (10 + 240) - 20, Fonts["game"], false)
-  resources = menu:addDropDown({_("Map Default"), _("Low"), _("Medium"), _("High")}, offx + 220, offy + 10 + 240,
-    function(dd) end)
-  resources:setSize(152, 20)
-
-  menu:addLabel(_("~<Units:~>"), offx + 640 - 224 - 16, offy + (10 + 240) - 20, Fonts["game"], false)
-  numunits = menu:addDropDown({_("Map Default"), _("One Peasant Only")}, offx + 640 - 224 - 16, offy + 10 + 240,
-    function(dd) end)
-  numunits:setSize(190, 20)
-
-  local opponents_list = {_("Map Default"), _("1 Opponent"), _("2 Opponents"),
-    _("3 Opponents"), _("4 Opponents"), _("5 Opponents"), _("6 Opponents"), _("7 Opponents")}
-
-  menu:addLabel(_("~<Opponents:~>"), offx + 40, offy + (10 + 300) - 20, Fonts["game"], false)
-  opponents = menu:addDropDown(opponents_list, offx + 40, offy + 10 + 300,
-    function(dd) end)
-  opponents:setSize(152, 20)
-
-  menu:addLabel(_("~<Game Type:~>"), offx + 220, offy + (10 + 300) - 20, Fonts["game"], false)
-  gametype = menu:addDropDown({_("Use map settings"), _("Melee"), _("Free for all"), _("Top vs bottom"), _("Left vs right"), _("Man vs Machine")}, offx + 220, offy + 10 + 300,
-    function(dd) end)
-  gametype:setSize(152, 20)
-
-  menu:addLabel(_("~<Tileset:~>"), offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
-  tilesetdd = menu:addDropDown({_("Map Default"), _("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}, offx + 640 - 224 - 16, offy + 10 + 300,
-    function(dd) end)
-  tilesetdd:setSize(190, 20)
 
   function MapChanged()
     mapl:setCaption(string.sub(mapname, 6))
@@ -321,12 +279,6 @@ function NewRunSinglePlayerGameMenu()
       " (" .. mapinfo.w .. " x " .. mapinfo.h .. ")")
     descriptionl:adjustSize()
 
-    local o = {}
-    for i=1,mapinfo.nplayers do
-      table.insert(o, opponents_list[i])
-    end
-    opponents:setList(o)
-	opponents:setSize(152, 20)
   end
 
   GetMapInfo(mapname)

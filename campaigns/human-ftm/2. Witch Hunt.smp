@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---      (c) Copyright 2014 by Kyran Jackson
+--		(c) Copyright 2015 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -25,7 +25,19 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-CurrentCampaignRace = "human"
-CurrentCampaignPath = "campaigns/human-ftm/"
-CampaignMapTitleList = {"level01h_c2.sms", "level02h_c2.sms"}
-RunCampaignSubmenu("campaigns/human-ftm/human-ftm.lua")
+GameDefinition["Briefing"]["Title"] = "Witch Hunt"
+GameDefinition["Briefing"]["Objectives"] = nil
+GameDefinition["Map"]["Name"] = "2. Witch Hunt"
+GameDefinition["Map"]["Type"] = ".smp"
+GameDefinition["Map"]["Path"] = "campaigns/human-ftm/"
+
+if (GameDefinition["Briefing"]["Active"] == true) then
+	local menu = MenuScreen()
+	BriefingAction("Backdrop", "ui/Credits_background.png", menu)
+	BundleAction("Scrolling Text", nil, GameDefinition["Map"]["Path"] .. GameDefinition["Map"]["Name"] .. ".txt")
+elseif (GameDefinition["Briefing"]["Active"] == 1) then
+	BriefingAction("Start")
+else
+	DefinePlayerTypes("computer", "computer", "computer", "nobody", "nobody", "nobody", "computer", "nobody", "computer", "person", "computer", "nobody", "nobody", "nobody", "computer")
+	PresentMap("Witch Hunt", 1, 96, 96, 8)
+end

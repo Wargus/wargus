@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---      (c) Copyright 2014 by Kyran Jackson
+--		(c) Copyright 2014 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -25,9 +25,19 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-campaign_steps = {
-  CreateMapStep("campaigns/human-ftm/level01h.smp"),
-  CreateMapStep("campaigns/human-ftm/level02h.smp")
-}
+GameDefinition["Briefing"]["Title"] = "Desert Survival"
+GameDefinition["Briefing"]["Objectives"] = nil
+GameDefinition["Map"]["Name"] = "3. Desert Survival"
+GameDefinition["Map"]["Type"] = ".smp"
+GameDefinition["Map"]["Path"] = "campaigns/human-ftm/"
 
-campaign_menu = {1, 2}
+if (GameDefinition["Briefing"]["Active"] == true) then
+	local menu = MenuScreen()
+	BriefingAction("Backdrop", "ui/Credits_background.png", menu)
+	BundleAction("Scrolling Text", nil, GameDefinition["Map"]["Path"] .. GameDefinition["Map"]["Name"] .. ".txt")
+elseif (GameDefinition["Briefing"]["Active"] == 1) then
+	BriefingAction("Start")
+else
+	DefinePlayerTypes("computer", "computer", "computer", "nobody", "nobody", "computer", "computer", "nobody", "computer", "person", "computer", "nobody", "nobody", "computer", "computer")
+	PresentMap("Desert Survival", 4, 96, 96, 2)
+end

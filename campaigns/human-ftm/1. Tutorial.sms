@@ -16823,3 +16823,5 @@ return true end)
 
 ]]
 assert(loadstring(Triggers))()
+
+BriefingAction("Terminate")

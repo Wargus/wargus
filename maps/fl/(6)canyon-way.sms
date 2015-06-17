@@ -16479,11 +16479,6 @@ unit = CreateUnit("unit-peasant", 4, {0, 2})
 unit = CreateUnit("unit-peasant", 5, {127, 127})
 unit = CreateUnit("unit-peasant", 6, {127, 126})
 unit = CreateUnit("unit-peasant", 7, {127, 125})
-unit = CreateUnit("unit-farm", 2, {10, 10})
-unit = CreateUnit("unit-farm", 2, {10, 10})
-unit = CreateUnit("unit-farm", 2, {10, 10})
-unit = CreateUnit("unit-farm", 2, {10, 10})
-unit = CreateUnit("unit-town-hall", 2, {10, 10})
 
 if (not IsNetworkGame()) then
 	AiRedRibbon_Diplomacy_2014(0, 7)

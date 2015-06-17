@@ -199,11 +199,28 @@ function OrderUnits(player, unit, fromx, fromy, width, height, tox, toy, order)
 	end
 end
 
+function SetMapTeams(player, team, position)
+	GameDefinition["Map"][player]["Team"] = team
+	GameDefinition["Map"][player]["Player"] = position
+end
+
 function GameDefinitionSetup(name, version, revision, map, path)
 	if (name == "initialise") then
 		GameDefinition = {}
 		GameDefinition["Briefing"] = {}
 		GameDefinition["Map"] = {}
+		for player = 0, 15 do
+			GameDefinition["Map"][player] = {}
+		end
+		GameDefinition["Player"] = {}
+		for team = 1, 4 do
+			GameDefinition["Player"][team] = {}
+			for player = 1, 8 do
+				-- GameDefinition["Player"][1][1]["Name"] = Shane Wolfe
+				-- GameDefinition["Player"][1][1]["Position"] = 8
+				GameDefinition["Player"][team][player] = {}
+			end
+		end
 	end
 	if ((name == "reset") or (name == "initialise")) then
 		GameDefinition["Name"] = "Skirmish"

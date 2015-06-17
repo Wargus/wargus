@@ -25,5 +25,5 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
-DefinePlayerTypes("computer", "computer", "computer", "computer", "nobody", "nobody", "nobody", "nobody", "computer", "computer", "person", "person", "nobody")
+DefinePlayerTypes("computer", "computer", "computer", "computer", "nobody", "nobody", "nobody", "nobody", "person", "person", "person", "person", "nobody")
 PresentMap("Burnout", 6, 96, 96, 6)

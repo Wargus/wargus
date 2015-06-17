@@ -25,5 +25,19 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-DefinePlayerTypes("computer", "computer", "nobody", "computer", "nobody", "nobody", "computer", "nobody", "computer", "person", "nobody", "person", "nobody", "nobody", "computer")
-PresentMap("Scandinavien", 7, 128, 128, 2)
+GameDefinition["Briefing"]["Title"] = "Beachhead"
+GameDefinition["Briefing"]["Objectives"] = nil
+GameDefinition["Map"]["Name"] = "1. Tutorial"
+GameDefinition["Map"]["Type"] = ".smp"
+GameDefinition["Map"]["Path"] = "campaigns/human-ftm/"
+
+if (GameDefinition["Briefing"]["Active"] == true) then
+	local menu = MenuScreen()
+	BriefingAction("Backdrop", "ui/Credits_background.png", menu)
+	BundleAction("Scrolling Text", nil, GameDefinition["Map"]["Path"] .. GameDefinition["Map"]["Name"] .. ".txt")
+elseif (GameDefinition["Briefing"]["Active"] == 1) then
+	BriefingAction("Start")
+else
+	DefinePlayerTypes("computer", "computer", "nobody", "computer", "nobody", "nobody", "computer", "nobody", "computer", "person", "nobody", "person", "nobody", "nobody", "computer")
+	PresentMap("Order Beachhead", 7, 128, 128, 2)
+end

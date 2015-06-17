@@ -29,6 +29,11 @@ AiRedRibbon_Setup_2014()
 AiRed_Resources_Setup_2014(10, 100, 50, 100, 11, "Pickers")
 GameDefinitionSetup("For the Motherland", "Standard", 2014, "Nick's Duel")
 
+-- SetMapTeams(player, team, position)
+SetMapTeams(10, 1, 1)
+SetMapTeams(11, 2, 1)
+
+
 -- SetPlayerFtM2014(player, race, faction, gold, wood, oil, startx, starty, istart, iend, teamx1, teamy1, teamx2, teamy2, match, aispawner, aibot)
 SetPlayerFtM2014(2, "orc", "Hipsters", 5000, 2500, 500, 25, 28, 51, 65, 22, 27, 24, 29, 8, "ai_redribbon_2014", "Aya Kalang")
 SetPlayerFtM2014(3, "man", "Tradies", 5000, 2500, 500, 6, 3, 1, 15, 7, 2, 9, 4, 8, "ai_redribbon_2014", "Aya Kalang")

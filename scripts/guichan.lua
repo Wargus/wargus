@@ -282,6 +282,26 @@ function AddMenuHelpers(menu)
     return label
   end
 
+function menu:addMultiLineLabel(text, x, y, font, center, line_width)
+	local label = MultiLineLabel(text)
+	if (font == nil) then font = Fonts["large"] end
+	label:setFont(font)
+	label:setVerticalAlignment(MultiLineLabel.TOP)
+	if (center == nil or center == false) then -- center text by default
+		label:setAlignment(MultiLineLabel.LEFT)
+	elseif (center == true) then
+		label:setAlignment(MultiLineLabel.CENTER)
+	else
+		label:setAlignment(MultiLineLabel.RIGHT)
+	end
+	label:setLineWidth(line_width)
+	label:setWidth(line_width)
+	label:setHeight(240)
+	label:adjustSize()
+	self:add(label, x, y)
+	return label
+end
+  
   function menu:writeText(text, x, y, font)
 	if (font == nil) then font = Fonts["game"] end
     return self:addLabel(text, x, y, font, false)
@@ -995,7 +1015,7 @@ function RunSinglePlayerGameModeMenu()
 
   menu:addLabel(_("Standard Game"), 176, 8)
 
-  local browser = menu:addBrowser("maps/list/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
+  local browser = menu:addBrowser("scripts/lists/maps/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
 
   menu:addHalfButton("~!OK", "o", 48, 318,
     function()
@@ -1532,7 +1552,7 @@ function RunLoadModMenu()
 
   menu:addLabel(_("Load Mod"), 176, 8)
   
-  local browser = menu:addBrowser("mods/list/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
+  local browser = menu:addBrowser("scripts/lists/mods/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
 
   menu:addHalfButton("~!OK", "o", 48, 318,
     function()
@@ -1557,7 +1577,7 @@ function RunModCampaignGameMenu()
 
   menu:addLabel(_("Campaign Game"), 176, 8)
 
-  local browser = menu:addBrowser("campaigns/list/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
+  local browser = menu:addBrowser("scripts/lists/campaigns/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
 
   menu:addHalfButton(_("~!OK"), "o", 48, 318,
     function()
