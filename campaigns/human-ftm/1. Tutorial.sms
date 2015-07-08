@@ -16619,7 +16619,6 @@ unit = CreateUnit("unit-farm", 6, {97, 123})
 unit = CreateUnit("unit-footman", 0, {97, 123})
 unit = CreateUnit("unit-footman", 0, {97, 123})
 unit = CreateUnit("unit-farm", 14, {101, 123})
-unit = CreateUnit("unit-circle-of-power", 14, {47, 90})
 unit = CreateUnit("unit-human-barracks", 1, {25, 14})
 unit = CreateUnit("unit-elven-lumber-mill", 1, {30, 29})
 unit = CreateUnit("unit-peasant", 1, {13, 9})
@@ -16680,11 +16679,13 @@ unit = CreateUnit("unit-grunt", 3, {95, 95})
 unit = CreateUnit("unit-orc-transport", 3, {91, 94})
 unit = CreateUnit("unit-town-hall", 6, {95, 38})
 
+
+
 for i=1, 15 do
-	-- AiRedRibbon_Define_Origin_2014(i, x, y, building)
-	AiRedRibbon_Define_Origin_2014(i, 123, 81, "unit-human-barracks")
-	AiRedRibbon_Define_Origin_2014(i+30, 26, 15, "unit-human-barracks")
-	AiRedRibbon_Define_Origin_2014(i+50, 26, 118, "unit-great-hall")
+	-- AiRedRibbon_Define_Origin_2014(player, i, x, y, building)
+	AiRedRibbon_Define_Origin_2014(0, i, 123, 81, "unit-human-barracks")
+	AiRedRibbon_Define_Origin_2014(1, i, 26, 15, "unit-human-barracks")
+	AiRedRibbon_Define_Origin_2014(3, i, 26, 118, "unit-great-hall")
 end
 
 AiRed_Strategy_Alliance_Support_2014(8)

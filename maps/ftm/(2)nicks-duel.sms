@@ -29,11 +29,6 @@ AiRedRibbon_Setup_2014()
 AiRed_Resources_Setup_2014(10, 100, 50, 100, 11, "Pickers")
 GameDefinitionSetup("For the Motherland", "Standard", 2014, "Nick's Duel")
 
--- SetMapTeams(player, team, position)
-SetMapTeams(10, 1, 1)
-SetMapTeams(11, 2, 1)
-
-
 -- SetPlayerFtM2014(player, race, faction, gold, wood, oil, startx, starty, istart, iend, teamx1, teamy1, teamx2, teamy2, match, aispawner, aibot)
 SetPlayerFtM2014(2, "orc", "Hipsters", 5000, 2500, 500, 25, 28, 51, 65, 22, 27, 24, 29, 8, "ai_redribbon_2014", "Aya Kalang")
 SetPlayerFtM2014(3, "man", "Tradies", 5000, 2500, 500, 6, 3, 1, 15, 7, 2, 9, 4, 8, "ai_redribbon_2014", "Aya Kalang")
@@ -1069,8 +1064,8 @@ SetTile(1536, 31, 31, 0)
 
 -- place units
 if (MapUnitsInit ~= nil) then MapUnitsInit() end
-unit = CreateUnit("unit-human-barracks", 3, {2, 2})
-unit = CreateUnit("unit-orc-barracks", 2, {27, 27})
+unit = CreateUnit("unit-human-barracks", 3, {0, 9})
+unit = CreateUnit("unit-orc-barracks", 2, {29, 20})
 unit = CreateUnit("unit-orc-cannon-tower", 2, {24, 0})
 unit = CreateUnit("unit-orc-cannon-tower", 2, {26, 0})
 unit = CreateUnit("unit-orc-cannon-tower", 2, {28, 0})
@@ -1093,8 +1088,8 @@ unit = CreateUnit("unit-catapult-super", 2, {17, 23})
 unit = CreateUnit("unit-catapult", 2, {15, 25})
 
 -- AiRedRibbon_Auto_Origin_2014(player, target, x, y, class)
-AiRedRibbon_Auto_Origin_2014(2, "all", 28, 28, "unit-orc-barracks")
-AiRedRibbon_Auto_Origin_2014(3, "all", 3, 3, "unit-human-barracks")
+AiRedRibbon_Auto_Origin_2014(2, "all", 29, 20, AiBarracks(2))
+AiRedRibbon_Auto_Origin_2014(3, "all", 0, 9, AiBarracks(3))
 
 if (not IsNetworkGame()) then
 	AiRedRibbon_Diplomacy_2014(2, 11)

@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---		(c) Copyright 2014 by Kyran Jackson
+--		(c) Copyright 2015 by Nick Dunn
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -25,12 +25,5 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
--- SetMapTeams(player, team, position)
-SetMapTeams(8, 1, 1)
-SetMapTeams(9, 1, 2)
-SetMapTeams(10, 1, 3)
-SetMapTeams(13, 2, 1)
-SetMapTeams(14, 1, 4)
-
-DefinePlayerTypes("computer", "computer", "computer", "nobody", "nobody", "computer", "computer", "nobody", "person", "person", "person", "nobody", "nobody", "person", "person")
-PresentMap("", 4, 96, 96, 2)
+DefinePlayerTypes("computer", "computer", "computer", "computer", "computer", "computer", "computer", "computer", "computer", "computer", "person", "person", "person", "person", "person")
+PresentMap("Darius", 0, 32, 256, 3)

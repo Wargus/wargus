@@ -47,7 +47,6 @@ function SetPlayerGame2015(player, race, ai, faction, gold, wood, oil, startx, s
 				ai = "Flau"
 			end
 		until (ai ~= "surprise")
-		ai = "Morga"
 	end
 	SetupPlayer(player, race, ai, gold, wood, oil, startx, starty)
 	-- Check game type.
@@ -145,17 +144,17 @@ function AiRed_2015()
 				AiRed_Action_2015(AiPlayer())
 			else	
 				-- Spawn
-				for i=ftm_index_start[ftm_team[AiPlayer()]],ftm_index_end[ftm_team[AiPlayer()]] do
+				for i=1,15 do
 					if ((aiftm_action[AiPlayer()][aiftm_index[AiPlayer()]] == 0) or (aiftm_action[AiPlayer()][aiftm_index[AiPlayer()]] == "summon") or (aiftm_action[AiPlayer()][aiftm_index[AiPlayer()]] == "spawn")) then
 						if (AiRed_Check_Unit_2014(AiPlayer(), i) == true) then
-							if (AiRed_Check_Building_2014(AiPlayer(), i) == true) then
+							if (AiRed_Check_Building_2014(ftm_team[AiPlayer()], i) == true) then
 								if ((aiftm_action[AiPlayer()][aiftm_index[AiPlayer()]] ~= "summon") and (aiftm_action[AiPlayer()][aiftm_index[AiPlayer()]] ~= "spawn")) then
 									AiRed_Spawn_2014(AiPlayer(), i)
 									AiRed_GridChange_2014(AiPlayer())
 								else
 									AiRed_Spawn_2014(AiPlayer(), i, nil, aiftm_x_to[AiPlayer()][aiftm_index[AiPlayer()]], aiftm_y_to[AiPlayer()][aiftm_index[AiPlayer()]])
 								end
-								AiRed_Resources_Remove_2014(AiPlayer(), (ftm_cost_gold[i]), (ftm_cost_wood[i]), (ftm_cost_oil[i]))
+								AiRed_Resources_Remove_2014(AiPlayer(), (UnitDatabase[ftm_team[AiPlayer()]][i]["CastGold"]), (UnitDatabase[ftm_team[AiPlayer()]][i]["CastWood"]), (UnitDatabase[ftm_team[AiPlayer()]][i]["CastOil"]))
 							end
 							aiftm_action[AiPlayer()][aiftm_index[AiPlayer()]] = "next"
 						end
@@ -273,11 +272,18 @@ function AiRed_Strategy_Choice_2015(i, j, unit, or1, unit2, or2, unit3, slot)
 	end
 end
 
+function AiCharacter_Set_Name_2015(name)
+	--if ((GameDefinition["Map"][AiPlayer()]["Team"] ~= nil ) and (GameDefinition["Map"][AiPlayer()]["Player"] ~= nil ) and (GameDefinition["Player"][GameDefinition["Map"][AiPlayer()]["Team"]][GameDefinition["Map"][AiPlayer()]["Player"]]["Name"] ~= nil)) then
+		AiJadeite_Set_Name_2010(name)
+	--end
+end
+
 function AiShane_2015()
 	--Check game type.
 	if (GameDefinition["Name"] == "For the Motherland") then
 		AiShane_FtM_2015(AiPlayer())
 	end
+	AiCharacter_Set_Name_2015("Shane Wolfe")
 end
 
 function AiAya_2015()
@@ -285,6 +291,7 @@ function AiAya_2015()
 	if (GameDefinition["Name"] == "For the Motherland") then
 		AiAya_FtM_2015(AiPlayer())
 	end
+	AiCharacter_Set_Name_2015("Aya Kalang")
 end
 
 function AiShane_FtM_2015(player)
@@ -340,7 +347,12 @@ function AiAya_FtM_Nicks_Duel_2015(player)
 		AiRed_Strategy_Action_2015(player, 2, "move", 1, AiWorker(), x-1, y+1, x, y+1)
 		AiRed_Strategy_Action_2015(player, 12, "move", 1, AiWise(), x-1, y+1)
 		AiRed_Strategy_Action_2015(player, 36, "attack", 1, AiSoldier(), 31, 31)
-		AiRed_Strategy_Action_2015(player, 38, "move", 1, AiShooter(), 14, 1, x, y)
+		AiRed_Strategy_Action_2015(player, 38, "move", 1, AiShooter(), 13, 2, x, y)
+		AiRed_Strategy_Action_2015(player, 41, "move", 1, AiShooter(), 16, 0, x+2, y)
+		AiRed_Strategy_Action_2015(player, 44, "move", 1, AiShooter(), 15, 1, x+2, y+2)
+		AiRed_Strategy_Action_2015(player, 47, "move", 1, AiShooter(), 14, 2, x, y+2)
+		AiRed_Strategy_Action_2015(player, 50, "attack", 1, AiShooter(), 31, 31)
+		AiRed_Strategy_Action_2015(player, 51, "attack", 1, AiCavalryMage(), 31, 31)
 	end
 	AiRed_Strategy_Action_2015(player, 0, "skip", 1)
 	-- 1
@@ -480,8 +492,16 @@ function AiAya_FtM_Rockfort_Arena_2015(player)
 		AiRed_Strategy_Action_2015(player, 68, "move area", 10, AiLonerShooter(), 47, 47, x-6, y+9)
 	elseif (player == 10) then
 		AiRed_Strategy_Action_2015(player, 0, "move", 1, AiWise(), 4, 93, x+1, y+1)
+		AiRed_Strategy_Action_2015(player, 19, "move", 1, AiWise(), x+4, y+1)
+		AiRed_Strategy_Action_2015(player, 66, "move", 1, AiWise(), x+4, y+1)
+		AiRed_Strategy_Action_2015(player, 67, "move area", 10, AiSoldier(), 47, 47, x+6, y-9)
+		AiRed_Strategy_Action_2015(player, 68, "move area", 10, AiLonerShooter(), 47, 47, x+6, y-9)
 	elseif (player == 11) then
 		AiRed_Strategy_Action_2015(player, 0, "move", 1, AiWise(), 91, 93, x+1, y+1)
+		AiRed_Strategy_Action_2015(player, 19, "move", 1, AiWise(), x-2, y+1)
+		AiRed_Strategy_Action_2015(player, 66, "move", 1, AiWise(), x-2, y+1)
+		AiRed_Strategy_Action_2015(player, 67, "move area", 10, AiSoldier(), 47, 47, x-6, y-9)
+		AiRed_Strategy_Action_2015(player, 68, "move area", 10, AiLonerShooter(), 47, 47, x-6, y-9)
 	end
 	if ((player == 8) or (player == 9)) then
 		AiRed_Strategy_Action_2015(player, 24, "move", 1, AiShooter(), x, y+26, x, y+1)
@@ -502,7 +522,23 @@ function AiAya_FtM_Rockfort_Arena_2015(player)
 		AiRed_Strategy_Action_2015(player, 73, "attack area", 10, AiSoldier(), 80, 84, 16, 86)
 		AiRed_Strategy_Action_2015(player, 74, "attack area", 5, AiLonerShooter(), 80, 84, 16, 86)
 	elseif ((player == 10) or (player == 11)) then
-	
+		AiRed_Strategy_Action_2015(player, 24, "move", 1, AiShooter(), x, y-26, x, y+1)
+		AiRed_Strategy_Action_2015(player, 29, "move", 1, AiShooter(), x+1, y-26, x+1, y)
+		AiRed_Strategy_Action_2015(player, 31, "move", 1, AiShooter(), x+2, y-26, x+2, y)
+		AiRed_Strategy_Action_2015(player, 36, "move", 1, AiShooter(), x-1, y-26, x+1, y+2)
+		AiRed_Strategy_Action_2015(player, 38, "move", 1, AiShooter(), x-2, y-26, x, y+2)
+		AiRed_Strategy_Action_2015(player, 41, "move", 1, AiShooter(), x-3, y-26, x+2, y+2)
+		AiRed_Strategy_Action_2015(player, 48, "move", 1, AiEliteShooter(), x-1, y-25, x+1, y+2)
+		AiRed_Strategy_Action_2015(player, 49, "move", 1, AiEliteShooter(), x-2, y-25, x, y+2)
+		AiRed_Strategy_Action_2015(player, 50, "move", 1, AiEliteShooter(), x-3, y-25, x+2, y+2)
+		AiRed_Strategy_Action_2015(player, 60, "move", 1, AiWise(), x, y-11)
+		AiRed_Strategy_Action_2015(player, 62, "summon", 5, AiLonerShooter(), x, y-10)
+		AiRed_Strategy_Action_2015(player, 63, "summon", 5, AiSoldier(), x, y-10)
+		AiRed_Strategy_Action_2015(player, 65, "summon", 5, AiSoldier(), x, y-10)
+		AiRed_Strategy_Action_2015(player, 71, "attack area", 10, AiSoldier(), 76, 9, 47, 47)
+		AiRed_Strategy_Action_2015(player, 72, "attack area", 5, AiLonerShooter(), 76, 10, 47, 47)
+		AiRed_Strategy_Action_2015(player, 73, "attack area", 10, AiSoldier(), 19, 10, 76, 9)
+		AiRed_Strategy_Action_2015(player, 74, "attack area", 5, AiLonerShooter(), 19, 9, 76, 10)
 	end
 	AiRed_Strategy_Action_2015(player, 1, "summon", 1, AiCatapult(), x+1, y+1)
 	AiRed_Strategy_Action_2015(player, 2, "summon", 1, AiShooter(), x+1, y+2)
@@ -511,13 +547,14 @@ function AiAya_FtM_Rockfort_Arena_2015(player)
 	AiRed_Strategy_Action_2015(player, 5, "attack", 1, AiShooter(), x, y+3, x, y+2)
 	AiRed_Strategy_Action_2015(player, 6, "summon", 1, AiShooter(), x+2, y+2)
 	AiRed_Strategy_Action_2015(player, 7, "attack", 1, AiShooter(), x+2, y+3, x+2, y+2)
-	AiRed_Strategy_Action_2015(player, 8, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 8, "skip", 10)
 	AiRed_Strategy_Action_2015(player, 9, "summon", 1, AiEliteShooter(), x, y)
 	AiRed_Strategy_Action_2015(player, 10, "attack", 1, AiEliteShooter(), x-1, y-1, x, y)
-	AiRed_Strategy_Action_2015(player, 11, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 10, "attack", 1, AiEliteShooter(), x-1, y-1, x, y)
+	AiRed_Strategy_Action_2015(player, 11, "attack", 1, AiShooter(), x+3, y+3, x+1, y+2)
 	AiRed_Strategy_Action_2015(player, 12, "summon", 1, AiShooter(), x, y+1)
 	AiRed_Strategy_Action_2015(player, 13, "attack", 1, AiShooter(), x-1, y, x, y+1)
-	AiRed_Strategy_Action_2015(player, 14, "skip", 1)
+	AiRed_Strategy_Action_2015(player, 14, "attack", 1, AiShooter(), x-1, y+3, x, y+2)
 	AiRed_Strategy_Action_2015(player, 15, "summon", 1, AiShooter(), x+1, y)
 	AiRed_Strategy_Action_2015(player, 16, "attack", 1, AiShooter(), x+1, y-1, x+1, y)
 	AiRed_Strategy_Action_2015(player, 17, "summon", 1, AiShooter(), x+2, y)
@@ -529,8 +566,8 @@ function AiAya_FtM_Rockfort_Arena_2015(player)
 	AiRed_Strategy_Action_2015(player, 23, "summon", 1, AiFlyer(), x-1, y-1)
 	-- 24
 	AiRed_Strategy_Action_2015(player, 25, "summon", 1, AiHeroShooter(), x, y+1)
-	AiRed_Strategy_Action_2015(player, 26, "oil", 12000)
-	AiRed_Strategy_Action_2015(player, 27, "gold", 4000)
+	AiRed_Strategy_Action_2015(player, 26, "attack", 1, AiShooter(), x+1, y+2, x, y+4)
+	AiRed_Strategy_Action_2015(player, 27, "oil", 12000)
 	AiRed_Strategy_Action_2015(player, 28, "wood", 6000)
 	-- 29
 	AiRed_Strategy_Action_2015(player, 30, "summon", 1, AiFlyer(), x+1, y+1)

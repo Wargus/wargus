@@ -33,57 +33,12 @@
 race1 = "human"
 race2 = "orc"
 
---=============================================================================
---
---  AI helper table, the AI must know where to build units,
---  where to research spells, where to upgrade units.
---  If this is allowed and which dependencies exists, isn't
---  handled here. (see upgrade.lua)
---
---  NOTE: perhaps this could later be used to build the buttons?
---
---  DefineAiHelper(list)
---
-
---;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
---  * Race human.
---;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-DefineAiHelper(
-  --
-  -- Equivalence of units for the resource manager.
-  --
-  {"unit-equiv", "unit-town-hall",
-  "unit-keep", "unit-castle"},
-  {"unit-equiv", "unit-keep",
-  "unit-castle"},
-  {"unit-equiv", "unit-archer",
-  "unit-ranger"},
-  {"unit-equiv", "unit-knight",
-  "unit-paladin"} )
-
---;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
---  * Race orc.
---;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-DefineAiHelper(
-  --
-  -- Equivalence of units for the resource manager.
-  --
-  {"unit-equiv", "unit-great-hall",
-  "unit-stronghold", "unit-fortress"},
-  {"unit-equiv", "unit-stronghold",
-  "unit-fortress"},
-  {"unit-equiv", "unit-axethrower",
-  "unit-berserker"},
-  {"unit-equiv", "unit-ogre",
-  "unit-ogre-mage"} )
-
 --
 --  City-center of the current race.
 --
-function AiCityCenter()
-  if (AiGetRace() == race1) then
+function AiCityCenter(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-town-hall"
   else
     return "unit-great-hall"
@@ -93,8 +48,9 @@ end
 --
 --  Better city-center of the current race.
 --
-function AiBetterCityCenter()
-  if (AiGetRace() == race1) then
+function AiBetterCityCenter(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-keep"
   else
     return "unit-stronghold"
@@ -104,8 +60,9 @@ end
 --
 --  Best city-center of the current race.
 --
-function AiBestCityCenter()
-  if (AiGetRace() == race1) then
+function AiBestCityCenter(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-castle"
   else
     return "unit-fortress"
@@ -115,8 +72,9 @@ end
 --
 --  Worker of the current race.
 --
-function AiWorker()
-  if (AiGetRace() == race1) then
+function AiWorker(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-peasant"
   else
     return "unit-peon"
@@ -126,8 +84,9 @@ end
 --
 --  Lumber mill of the current race.
 --
-function AiLumberMill()
-  if (AiGetRace() == race1) then
+function AiLumberMill(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-elven-lumber-mill"
   else
     return "unit-troll-lumber-mill"
@@ -137,8 +96,9 @@ end
 --
 --  Blacksmith of the current race.
 --
-function AiBlacksmith()
-  if (AiGetRace() == race1) then
+function AiBlacksmith(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-blacksmith"
   else
     return "unit-orc-blacksmith"
@@ -148,8 +108,9 @@ end
 --
 --  Upgrade armor 1 of the current race.
 --
-function AiUpgradeArmor1()
-  if (AiGetRace() == race1) then
+function AiUpgradeArmor1(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-human-shield1"
   else
     return "upgrade-orc-shield1"
@@ -159,8 +120,9 @@ end
 --
 --  Upgrade armor 2 of the current race.
 --
-function AiUpgradeArmor2()
-  if (AiGetRace() == race1) then
+function AiUpgradeArmor2(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-human-shield2"
   else
     return "upgrade-orc-shield2"
@@ -170,8 +132,9 @@ end
 --
 --  Upgrade weapon 1 of the current race.
 --
-function AiUpgradeWeapon1()
-  if (AiGetRace() == race1) then
+function AiUpgradeWeapon1(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-sword1"
   else
     return "upgrade-battle-axe1"
@@ -181,8 +144,9 @@ end
 --
 --  Upgrade weapon 2 of the current race.
 --
-function AiUpgradeWeapon2()
-  if (AiGetRace() == race1) then
+function AiUpgradeWeapon2(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-sword2"
   else
     return "upgrade-battle-axe2"
@@ -192,8 +156,9 @@ end
 --
 --  Upgrade missile 1 of the current race.
 --
-function AiUpgradeMissile1()
-  if (AiGetRace() == race1) then
+function AiUpgradeMissile1(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-arrow1"
   else
     return "upgrade-throwing-axe1"
@@ -203,8 +168,9 @@ end
 --
 --  Upgrade missile 2 of the current race.
 --
-function AiUpgradeMissile2()
-  if (AiGetRace() == race1) then
+function AiUpgradeMissile2(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-arrow2"
   else
     return "upgrade-throwing-axe2"
@@ -214,8 +180,9 @@ end
 --
 --  Upgrade catapult 1 of the current race.
 --
-function AiUpgradeCatapult1()
-  if (AiGetRace() == race1) then
+function AiUpgradeCatapult1(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-ballista1"
   else
     return "upgrade-catapult1"
@@ -225,8 +192,9 @@ end
 --
 --  Upgrade catapult 2 of the current race.
 --
-function AiUpgradeCatapult2()
-  if (AiGetRace() == race1) then
+function AiUpgradeCatapult2(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-ballista2"
   else
     return "upgrade-catapult2"
@@ -236,8 +204,9 @@ end
 --
 --  Research of the current race.
 --
-function AiScientific()
-  if (AiGetRace() == race1) then
+function AiScientific(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-inventor"
   else
     return "unit-alchemist"
@@ -247,8 +216,9 @@ end
 --
 --  Stables of the current race.
 --
-function AiStables()
-  if (AiGetRace() == race1) then
+function AiStables(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-stables"
   else
     return "unit-ogre-mound"
@@ -258,8 +228,9 @@ end
 --
 --  Temple of the current race.
 --
-function AiTemple()
-  if (AiGetRace() == race1) then
+function AiTemple(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-church"
   else
     return "unit-altar-of-storms"
@@ -269,8 +240,9 @@ end
 --
 --  Mage tower of the current race.
 --
-function AiMageTower()
-  if (AiGetRace() == race1) then
+function AiMageTower(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-mage-tower"
   else
     return "unit-temple-of-the-damned"
@@ -280,8 +252,9 @@ end
 --
 --  Airport of the current race.
 --
-function AiAirport()
-  if (AiGetRace() == race1) then
+function AiAirport(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-gryphon-aviary"
   else
     return "unit-dragon-roost"
@@ -291,8 +264,9 @@ end
 --
 --  Barracks of the current race.
 --
-function AiBarracks()
-  if (AiGetRace() == race1) then
+function AiBarracks(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-barracks"
   else
     return "unit-orc-barracks"
@@ -302,24 +276,27 @@ end
 --
 --  Soldier of the current race.
 --
-function AiSoldier()
-  if (AiGetRace() == race1) then
+function AiSoldier(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-footman"
   else
     return "unit-grunt"
   end
 end
 
-function AiEliteSoldier()
-  if (AiGetRace() == race1) then
+function AiEliteSoldier(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-order-paladin"
   else
     return "unit-order-paladin"
   end
 end
 
-function AiBones()
-  if (AiGetRace() == race1) then
+function AiBones(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-skeleton"
   else
     return "unit-skeleton"
@@ -329,8 +306,9 @@ end
 --
 --  Shooter of the current race.
 --
-function AiShooter()
-  if (AiGetRace() == race1) then
+function AiShooter(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-archer"
   else
     return "unit-axethrower"
@@ -340,8 +318,9 @@ end
 --
 --  Elite Shooter of the current race.
 --
-function AiEliteShooter()
-  if (AiGetRace() == race1) then
+function AiEliteShooter(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-ranger"
   else
     return "unit-berserker"
@@ -351,8 +330,9 @@ end
 --
 --  Cavalry of the current race.
 --
-function AiCavalry()
-  if (AiGetRace() == race1) then
+function AiCavalry(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-knight"
   else
     return "unit-ogre"
@@ -362,8 +342,9 @@ end
 --
 --  Cavalry mages of the current race.
 --
-function AiCavalryMage()
-  if (AiGetRace() == race1) then
+function AiCavalryMage(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-paladin"
   else
     return "unit-ogre-mage"
@@ -373,8 +354,9 @@ end
 --
 --  Mage of the current race.
 --
-function AiMage()
-  if (AiGetRace() == race1) then
+function AiMage(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-mage"
   else
     return "unit-death-knight"
@@ -384,8 +366,9 @@ end
 --
 --  Catapult of the current race.
 --
-function AiCatapult()
-  if (AiGetRace() == race1) then
+function AiCatapult(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-ballista"
   else
     return "unit-catapult"
@@ -395,8 +378,9 @@ end
 --
 --  Scout of the current race.
 --
-function AiScout()
-  if (AiGetRace() == race1) then
+function AiScout(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-balloon"
   else
     return "unit-zeppelin"
@@ -406,8 +390,9 @@ end
 --
 --  Flyer of the current race.
 --
-function AiFlyer()
-  if (AiGetRace() == race1) then
+function AiFlyer(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-gryphon-rider"
   else
     return "unit-dragon"
@@ -417,8 +402,9 @@ end
 --
 --  Tower of the current race.
 --
-function AiTower()
-  if (AiGetRace() == race1) then
+function AiTower(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-watch-tower"
   else
     return "unit-orc-watch-tower"
@@ -428,8 +414,9 @@ end
 --
 --  Guard-Tower of the current race.
 --
-function AiGuardTower()
-  if (AiGetRace() == race1) then
+function AiGuardTower(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-guard-tower"
   else
     return "unit-orc-guard-tower"
@@ -439,8 +426,9 @@ end
 --
 --  Cannon-Tower of the current race.
 --
-function AiCannonTower()
-  if (AiGetRace() == race1) then
+function AiCannonTower(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-cannon-tower"
   else
     return "unit-orc-cannon-tower"
@@ -450,8 +438,9 @@ end
 --
 --  Harbor of the current race.
 --
-function AiHarbor()
-  if (AiGetRace() == race1) then
+function AiHarbor(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-shipyard"
   else
     return "unit-orc-shipyard"
@@ -461,8 +450,9 @@ end
 --
 --  Refinery of the current race.
 --
-function AiRefinery()
-  if (AiGetRace() == race1) then
+function AiRefinery(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-refinery"
   else
     return "unit-orc-refinery"
@@ -472,8 +462,9 @@ end
 --
 --  Foundry of the current race.
 --
-function AiFoundry()
-  if (AiGetRace() == race1) then
+function AiFoundry(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-foundry"
   else
     return "unit-orc-foundry"
@@ -483,8 +474,9 @@ end
 --
 --  Farm of the current race.
 --
-function AiFarm()
-  if (AiGetRace() == race1) then
+function AiFarm(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-farm"
   else
     return "unit-pig-farm"
@@ -494,8 +486,9 @@ end
 --
 --  Ship armor 1 of the current race.
 --
-function AiUpgradeShipArmor1()
-  if (AiGetRace() == race1) then
+function AiUpgradeShipArmor1(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-human-ship-armor1"
   else
     return "upgrade-orc-ship-armor1"
@@ -505,8 +498,9 @@ end
 --
 --  Ship armor 2 of the current race.
 --
-function AiUpgradeShipArmor2()
-  if (AiGetRace() == race1) then
+function AiUpgradeShipArmor2(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-human-ship-armor2"
   else
     return "upgrade-orc-ship-armor2"
@@ -516,8 +510,9 @@ end
 --
 --  Ship weapon 1 of the current race.
 --
-function AiUpgradeShipCannon1()
-  if (AiGetRace() == race1) then
+function AiUpgradeShipCannon1(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-human-ship-cannon1"
   else
     return "upgrade-orc-ship-cannon1"
@@ -527,8 +522,9 @@ end
 --
 --  Ship weapon 2 of the current race.
 --
-function AiUpgradeShipCannon2()
-  if (AiGetRace() == race1) then
+function AiUpgradeShipCannon2(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-human-ship-cannon2"
   else
     return "upgrade-orc-ship-cannon2"
@@ -538,8 +534,9 @@ end
 --
 --  Platform of the current race.
 --
-function AiPlatform()
-  if (AiGetRace() == race1) then
+function AiPlatform(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-oil-platform"
   else
     return "unit-orc-oil-platform"
@@ -549,8 +546,9 @@ end
 --
 --  Tanker of the current race.
 --
-function AiTanker()
-  if (AiGetRace() == race1) then
+function AiTanker(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-oil-tanker"
   else
     return "unit-orc-oil-tanker"
@@ -560,8 +558,9 @@ end
 --
 --  Submarine of the current race.
 --
-function AiSubmarine()
-  if (AiGetRace() == race1) then
+function AiSubmarine(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-submarine"
   else
     return "unit-orc-submarine"
@@ -571,8 +570,9 @@ end
 --
 --  Destroyer of the current race.
 --
-function AiDestroyer()
-  if (AiGetRace() == race1) then
+function AiDestroyer(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-destroyer"
   else
     return "unit-orc-destroyer"
@@ -582,8 +582,9 @@ end
 --
 --  Battleship of the current race.
 --
-function AiBattleship()
-  if (AiGetRace() == race1) then
+function AiBattleship(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-battleship"
   else
     return "unit-ogre-juggernaught"
@@ -593,8 +594,9 @@ end
 --
 --  Transporter of the current race.
 --
-function AiTransporter()
-  if (AiGetRace() == race1) then
+function AiTransporter(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-human-transport"
   else
     return "unit-orc-transport"
@@ -604,8 +606,9 @@ end
 --
 --  1st Elite Shooter of the current race.
 --
-function AiUpgradeEliteShooter()
-  if (AiGetRace() == race1) then
+function AiUpgradeEliteShooter(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-ranger"
   else
     return "upgrade-berserker"
@@ -615,8 +618,9 @@ end
 --
 --  1st Upgrade of elite Shooter of the current race.
 --
-function AiUpgradeEliteShooter1()
-  if (AiGetRace() == race1) then
+function AiUpgradeEliteShooter1(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-ranger-scouting"
   else
     return "upgrade-berserker-scouting"
@@ -626,8 +630,9 @@ end
 --
 --  2nd Upgrade of elite Shooter of the current race.
 --
-function AiUpgradeEliteShooter2()
-  if (AiGetRace() == race1) then
+function AiUpgradeEliteShooter2(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-longbow"
   else
     return "upgrade-light-axes"
@@ -637,8 +642,9 @@ end
 --
 --  3th Upgrade of elite Shooter of the current race.
 --
-function AiUpgradeEliteShooter3()
-  if (AiGetRace() == race1) then
+function AiUpgradeEliteShooter3(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-ranger-marksmanship"
   else
     return "upgrade-berserker-regeneration"
@@ -648,8 +654,9 @@ end
 --
 --  Upgrade cavalry to cavalry mages of the current race.
 --
-function AiUpgradeCavalryMage()
-  if (AiGetRace() == race1) then
+function AiUpgradeCavalryMage(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-paladin"
   else
     return "upgrade-ogre-mage"
@@ -659,8 +666,9 @@ end
 --
 --  1st spell of the cavalry mages of the current race.
 --
-function AiCavalryMageSpell1()
-  if (AiGetRace() == race1) then
+function AiCavalryMageSpell1(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-healing"
   else
     return "upgrade-bloodlust"
@@ -670,8 +678,9 @@ end
 --
 --  2nd spell of the cavalry mages of the current race.
 --
-function AiCavalryMageSpell2()
-  if (AiGetRace() == race1) then
+function AiCavalryMageSpell2(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-exorcism"
   else
     return "upgrade-runes"
@@ -681,8 +690,9 @@ end
 --
 --  1st spell of the mages of the current race.
 --
-function AiMageSpell1()
-  if (AiGetRace() == race1) then
+function AiMageSpell1(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-slow"
   else
     return "upgrade-haste"
@@ -692,8 +702,9 @@ end
 --
 --  2nd spell of the mages of the current race.
 --
-function AiMageSpell2()
-  if (AiGetRace() == race1) then
+function AiMageSpell2(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-flame-shield"
   else
     return "upgrade-raise-dead"
@@ -703,8 +714,9 @@ end
 --
 --  3th spell of the mages of the current race.
 --
-function AiMageSpell3()
-  if (AiGetRace() == race1) then
+function AiMageSpell3(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-invisibility"
   else
     return "upgrade-whirlwind"
@@ -714,16 +726,18 @@ end
 --
 --  4th spell of the mages of the current race.
 --
-function AiMageSpell4()
-  if (AiGetRace() == race1) then
+function AiMageSpell4(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-polymorph"
   else
     return "upgrade-unholy-armor"
   end
 end
 
-function AiWise()
-  if (AiGetRace() == race1) then
+function AiWise(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-caanoo-wiseman"
   else
     return "unit-caanoo-wiseskeleton"
@@ -733,8 +747,9 @@ end
 --
 --  5th spell of the mages of the current race.
 --
-function AiMageSpell5()
-  if (AiGetRace() == race1) then
+function AiMageSpell5(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "upgrade-blizzard"
   else
     return "upgrade-death-and-decay"
@@ -894,68 +909,57 @@ function AiLoop(loop_funcs, indexes)
 	return true
 end
 
-function AiHeroRider()
-  if (AiGetRace() == race1) then
+function AiHeroRider(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-knight-rider"
   else
     return "unit-fad-man"
   end
 end
 
-function AiHeroSoldier()
-  if (AiGetRace() == race1) then
+function AiHeroSoldier(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-arthor-literios"
   else
     return "unit-quick-blade"
   end
 end
 
-function AiHeroShooter()
-  if (AiGetRace() == race1) then
+function AiHeroShooter(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-female-hero"
   else
     return "unit-sharp-axe"
   end
 end
 
-function AiSuicideBomber()
-  if (AiGetRace() == race1) then
+function AiSuicideBomber(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-dwarves"
   else
     return "unit-goblin-sappers"
   end
 end
 
-function AiFodder()
-  if (AiGetRace() == race1) then
+function AiFodder(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-attack-peasant"
   else
     return "unit-skeleton"
   end
 end
 
-function AiLonerShooter()
-  if (AiGetRace() == race1) then
+function AiLonerShooter(race)
+  if (race == nil) then race = AiGetRace() elseif (type(race) == "number") then race = GetPlayerData(race, "RaceName") end
+  if (race == race1) then
     return "unit-yeoman"
   else
     return "unit-nomad"
   end
 end
 
---
---  Load the actual individual scripts.
---
-ReInitAiGameData()
-Load("scripts/ai/passive.lua")
-Load("scripts/ai/air_attack.lua")
-Load("scripts/ai/land_attack.lua")
-Load("scripts/ai/sea_attack.lua")
---Load("scripts/ai/soldiers_rush.lua")
-Load("scripts/ai/ai_jadeite_2010.lua")
-Load("scripts/ai/ai_nephrite_2012.lua")
-Load("scripts/ai/ai_nephrite_2013.lua")
-Load("scripts/ai/ai_zoisite_2013.lua")
-Load("scripts/ai/ai_redribbon_2012.lua")
-Load("scripts/ai/ai_redribbon_2014.lua")
-Load("scripts/ai/ai_redribbon_2015.lua")
-Load("scripts/ai/names.lua")

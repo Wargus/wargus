@@ -475,6 +475,8 @@ Preference.StereoSound = wc2.preferences.StereoSound
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")
 
+Load("scripts/ai.lua")
+Load("scripts/database.lua")
 Load("scripts/translate/translate.lua")
 Load("scripts/icons.lua")
 Load("scripts/sound.lua")
@@ -486,10 +488,72 @@ Load("scripts/upgrade.lua")
 Load("scripts/fonts.lua")
 Load("scripts/buttons.lua")
 Load("scripts/ui.lua")
-Load("scripts/ai.lua")
 Load("scripts/commands.lua")
 Load("scripts/cheats.lua")
-Load("scripts/database.lua")
+
+--=============================================================================
+--
+--  AI helper table, the AI must know where to build units,
+--  where to research spells, where to upgrade units.
+--  If this is allowed and which dependencies exists, isn't
+--  handled here. (see upgrade.lua)
+--
+--  NOTE: perhaps this could later be used to build the buttons?
+--
+--  DefineAiHelper(list)
+--
+
+--;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+--  * Race human.
+--;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+DefineAiHelper(
+  --
+  -- Equivalence of units for the resource manager.
+  --
+  {"unit-equiv", "unit-town-hall",
+  "unit-keep", "unit-castle"},
+  {"unit-equiv", "unit-keep",
+  "unit-castle"},
+  {"unit-equiv", "unit-archer",
+  "unit-ranger"},
+  {"unit-equiv", "unit-knight",
+  "unit-paladin"} )
+
+--;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+--  * Race orc.
+--;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+DefineAiHelper(
+  --
+  -- Equivalence of units for the resource manager.
+  --
+  {"unit-equiv", "unit-great-hall",
+  "unit-stronghold", "unit-fortress"},
+  {"unit-equiv", "unit-stronghold",
+  "unit-fortress"},
+  {"unit-equiv", "unit-axethrower",
+  "unit-berserker"},
+  {"unit-equiv", "unit-ogre",
+  "unit-ogre-mage"} )
+
+--
+--  Load the actual individual scripts.
+--
+ReInitAiGameData()
+Load("scripts/ai/passive.lua")
+Load("scripts/ai/air_attack.lua")
+Load("scripts/ai/land_attack.lua")
+Load("scripts/ai/sea_attack.lua")
+--Load("scripts/ai/soldiers_rush.lua")
+Load("scripts/ai/ai_jadeite_2010.lua")
+Load("scripts/ai/ai_nephrite_2012.lua")
+Load("scripts/ai/ai_nephrite_2013.lua")
+Load("scripts/ai/ai_zoisite_2013.lua")
+Load("scripts/ai/ai_redribbon_2012.lua")
+Load("scripts/ai/ai_redribbon_2014.lua")
+Load("scripts/ai/ai_redribbon_2015.lua")
+Load("scripts/ai/names.lua")
 
 if (wargus.tales == true) then
 	Load("scripts/caanoo/override.lua")

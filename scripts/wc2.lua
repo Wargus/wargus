@@ -83,11 +83,15 @@ if (OldCreateUnit == nil) then
     {"unit-mage", "unit-death-knight"},
     {"unit-dwarves", "unit-goblin-sappers"},
     {"unit-ballista", "unit-catapult"},
+    {"unit-ballista-super", "unit-catapult-super"},
     {"unit-balloon", "unit-zeppelin"},
     {"unit-gryphon-rider", "unit-dragon"},
     {"unit-human-watch-tower", "unit-orc-watch-tower"},
     {"unit-human-guard-tower", "unit-orc-guard-tower"},
     {"unit-human-cannon-tower", "unit-orc-cannon-tower"},
+    {"unit-human-guard-tower-super", "unit-orc-guard-tower-super"},
+    {"unit-human-cannon-tower-super", "unit-orc-cannon-tower-super"},
+    {"unit-caanoo-wiseman", "unit-caanoo-wiseskeleton"},
     {"unit-human-shipyard", "unit-orc-shipyard"},
     {"unit-human-refinery", "unit-orc-refinery"},
     {"unit-human-foundry", "unit-orc-foundry"},
@@ -96,7 +100,8 @@ if (OldCreateUnit == nil) then
     {"unit-human-submarine", "unit-orc-submarine"},
     {"unit-human-destroyer", "unit-orc-destroyer"},
     {"unit-battleship", "unit-ogre-juggernaught"},
-    {"unit-human-transport", "unit-orc-transport"}
+    {"unit-human-transport", "unit-orc-transport"},
+    {"unit-attack-peasant", "unit-skeleton"}
   }
 
   HumanEquivalent = {}
@@ -217,6 +222,7 @@ function GameDefinitionSetup(name, version, revision, map, path)
 			GameDefinition["Player"][team] = {}
 			for player = 1, 8 do
 				-- GameDefinition["Player"][1][1]["Name"] = Shane Wolfe
+				-- GameDefinition["Player"][1][1]["Race"] = Human
 				-- GameDefinition["Player"][1][1]["Position"] = 8
 				GameDefinition["Player"][team][player] = {}
 			end

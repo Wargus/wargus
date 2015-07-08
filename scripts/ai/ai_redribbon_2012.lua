@@ -61,7 +61,7 @@ function AiRedRibbon_Research_2012()
 			end
 		end
 	end
-	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0) then
+	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroRider()) > 0)) then
 		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) >= 1) then
@@ -114,7 +114,7 @@ function AiRedRibbon_Research_2012()
 			AiSet(AiBarracks(), 1)
 		end
 	end
-	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 0) then
+	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroShooter()) > 0)) then
 		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) >= 1) then
 				AiResearch(AiUpgradeMissile1())

@@ -511,7 +511,7 @@ DefineUnitType("unit-revealer", { Name = _("Dummy unit"),
   Revealer = true,
   DetectCloak = true,
   Sounds = {} } )
-
+ 
 -- Load the different races
 Load("scripts/human/units.lua")
 Load("scripts/orc/units.lua")

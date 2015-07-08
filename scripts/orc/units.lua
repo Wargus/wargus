@@ -27,6 +27,8 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
+
+
 --=============================================================================
 -- Define unit-types.
 --
@@ -183,7 +185,7 @@ DefineUnitType("unit-catapult-super", { Name = _("Catapult"),
   DrawLevel = 40,
   TileSize = {1, 1}, BoxSize = {63, 63},
   SightRange = 10, ComputerReactionRange = 11, PersonReactionRange = 10,
-  BasicDamage = 80, PiercingDamage = 0, Missile = "missile-ballista-bolt",
+  Armor = 5, BasicDamage = 80, PiercingDamage = 0, Missile = "missile-ballista-bolt",
   MinAttackRange = 4, MaxAttackRange = 10,
   Priority = 72,
   Points = 200,

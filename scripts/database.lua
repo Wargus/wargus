@@ -25,6 +25,120 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
+-- Unit Database
+
+
+function UnitDatabaseSetup(race, unit, origin, category, class, rank)
+	if (race == "man") then race = "human" end
+	if (type(unit) == "number") then
+		for index = 1, 30 do
+			if (UnitDatabase[race][index]["Unit"] ~= nil) then
+				UnitDatabase[unit][index] = {}
+				UnitDatabase[unit][index]["Unit"] =	UnitDatabase[race][index]["Unit"]
+				UnitDatabase[unit][index]["Origin"] = UnitDatabase[race][index]["Origin"]
+				UnitDatabase[unit][index]["Category"] = UnitDatabase[race][index]["Category"]
+				UnitDatabase[unit][index]["Class"] = UnitDatabase[race][index]["Class"]
+				UnitDatabase[unit][index]["Rank"] = UnitDatabase[race][index]["Rank"]
+				UnitDatabase[unit][index]["CastGold"] = UnitDatabase[race][index]["CastGold"]
+				UnitDatabase[unit][index]["CastWood"] = UnitDatabase[race][index]["CastWood"]
+				UnitDatabase[unit][index]["CastOil"] = UnitDatabase[race][index]["CastOil"]
+			else
+				break
+			end
+		end
+	elseif ((race ~= nil) and (type(unit) == "string") and (unit ~= nil) and (origin == nil)) then
+		for index = 1, 30 do
+			if (UnitDatabase[race][index]["Unit"] == unit) then
+				return index
+			end
+		end
+	elseif (origin == "For the Motherland") then
+		-- find unit, add gold
+		-- category = gold, class = wood, rank = oil
+		for index = 1, 30 do
+			if (UnitDatabase[race][index]["Unit"] == unit) then
+				UnitDatabase[race][index]["CastGold"] = category
+				UnitDatabase[race][index]["CastWood"] = class
+				UnitDatabase[race][index]["CastOil"] = rank
+				break
+			end
+		end
+	elseif (race ~= nil) then
+		for index = 1, 30 do
+			if (UnitDatabase[race][index]["Unit"] == nil) then
+				UnitDatabase[race][index]["Unit"] = unit
+				UnitDatabase[race][index]["Origin"] = origin
+				UnitDatabase[race][index]["Category"] = category
+				UnitDatabase[race][index]["Class"] = class
+				UnitDatabase[race][index]["Rank"] = rank
+				break
+			end
+		end
+	end
+end
+
+UnitDatabase = {}
+UnitDatabase["human"] = {}
+UnitDatabase["orc"] = {}
+for index = 1, 30 do
+	UnitDatabase["human"][index] = {}
+	UnitDatabase["orc"][index] = {}
+end
+for player = 0, 15 do
+	UnitDatabase[player] = {}
+end
+
+for index = 1, 2 do
+	if (index == 1) then race = "human" else race = "orc" end
+	UnitDatabaseSetup(race, AiHeroRider(race), AiBarracks(race), "ground", "melee", "hero")
+	UnitDatabaseSetup(race, AiHeroSoldier(race), AiBarracks(race), "ground", "melee", "hero")
+	UnitDatabaseSetup(race, AiHeroShooter(race), AiBarracks(race), "ground", "ranged", "hero")
+	UnitDatabaseSetup(race, AiSoldier(race), AiBarracks(race), "ground", "melee", "standard")
+	UnitDatabaseSetup(race, AiShooter(race), AiBarracks(race), "ground", "ranged", "standard")
+	UnitDatabaseSetup(race, AiEliteShooter(race), AiBarracks(race), "ground", "ranged", "elite")
+	UnitDatabaseSetup(race, AiCavalryMage(race), AiBarracks(race), "ground", "melee", "elite")
+	UnitDatabaseSetup(race, AiCavalry(race), AiBarracks(race), "ground", "melee", "standard")
+	UnitDatabaseSetup(race, AiCatapult(race), AiBarracks(race), "ground", "ranged", "elite")
+	UnitDatabaseSetup(race, AiFodder(race), AiCityCenter(race), "ground", "melee", "fodder")
+	UnitDatabaseSetup(race, AiSuicideBomber(race), AiScientific(race), "ground", "melee", "attacker")
+	UnitDatabaseSetup(race, AiLonerShooter(race), AiCityCenter(race), "ground", "ranged", "defender")
+	UnitDatabaseSetup(race, AiFlyer(race), AiAirport(race), "air", "ranged", "attacker")
+	UnitDatabaseSetup(race, AiMage(race), AiMageTower(race), "ground", "ranged", "attacker")
+	UnitDatabaseSetup(race, AiWorker(race), AiCityCenter(race), "ground", "worker", "defender")
+end
+
+UnitDatabaseSetup("human", "unit-knight-rider", "For the Motherland", 7500, 0, 12500)
+UnitDatabaseSetup("human", "unit-arthor-literios", "For the Motherland", 2500, 0, 12500)
+UnitDatabaseSetup("human", "unit-female-hero", "For the Motherland", 1000, 9000, 10000)
+UnitDatabaseSetup("human", "unit-footman", "For the Motherland", 2500, 0, 0)
+UnitDatabaseSetup("human", "unit-archer", "For the Motherland", 1000, 1500, 0)
+UnitDatabaseSetup("human", "unit-ranger", "For the Motherland", 1000, 1500, 2500)
+UnitDatabaseSetup("human", "unit-paladin", "For the Motherland", 7500, 0, 5000)
+UnitDatabaseSetup("human", "unit-knight", "For the Motherland", 7500, 0, 0)
+UnitDatabaseSetup("human", "unit-ballista", "For the Motherland", 2500, 10000, 0)
+UnitDatabaseSetup("human", "unit-attack-peasant", "For the Motherland", 1000, 500, 0)
+UnitDatabaseSetup("human", "unit-dwarves", "For the Motherland", 2500, 4000, 2500)
+UnitDatabaseSetup("human", "unit-yeoman", "For the Motherland", 1000, 4000, 0)
+UnitDatabaseSetup("human", "unit-gryphon-rider", "For the Motherland", 2500, 5000, 5000)
+UnitDatabaseSetup("human", "unit-mage", "For the Motherland", 2500, 2500, 5000)
+UnitDatabaseSetup("human", "unit-peasant", "For the Motherland", 1000, 1500, 0)
+
+UnitDatabaseSetup("orc", "unit-fad-man", "For the Motherland", 7500, 0, 17500)
+UnitDatabaseSetup("orc", "unit-quick-blade", "For the Motherland", 2500, 0, 12500)
+UnitDatabaseSetup("orc", "unit-sharp-axe", "For the Motherland", 1000, 9000, 10000)
+UnitDatabaseSetup("orc", "unit-grunt", "For the Motherland", 2500, 0, 0)
+UnitDatabaseSetup("orc", "unit-axethrower", "For the Motherland", 1000, 1500, 0)
+UnitDatabaseSetup("orc", "unit-berserker", "For the Motherland", 1000, 1500, 2500)
+UnitDatabaseSetup("orc", "unit-ogre-mage", "For the Motherland", 7500, 0, 5000)
+UnitDatabaseSetup("orc", "unit-ogre", "For the Motherland", 7500, 0, 0)
+UnitDatabaseSetup("orc", "unit-catapult", "For the Motherland", 2500, 10000, 0)
+UnitDatabaseSetup("orc", "unit-skeleton", "For the Motherland", 750, 0, 250)
+UnitDatabaseSetup("orc", "unit-goblin-sappers", "For the Motherland", 2500, 4000, 2500)
+UnitDatabaseSetup("orc", "unit-nomad", "For the Motherland", 1000, 4000, 0)
+UnitDatabaseSetup("orc", "unit-dragon", "For the Motherland", 2500, 5000, 5000)
+UnitDatabaseSetup("orc", "unit-death-knight", "For the Motherland", 2500, 2500, 5000)
+UnitDatabaseSetup("orc", "unit-peon", "For the Motherland", 1000, 1500, 0)
+
 Character = {}
 function CharacterSetup(name, age, house, faction, mouth, eyes, brows)
 	if ((age == "Mood") or (age == "Sync")) then
@@ -55,157 +169,6 @@ function CharacterSetup(name, age, house, faction, mouth, eyes, brows)
 		Character[name]["Mood"] = "Happy"
 	end
 end
-
-CharacterSetup("Sandria Fields", 14, "Red House", "Mythic")
-CharacterSetup("Sandria Fields", "Skin", "Neutral", "char_sandria.png", 0.7)
-CharacterSetup("Sandria Fields", "Skin", "Neutral Bloody", "char_sandria_blood.png", 0.7)
-
-CharacterSetup("Sandria Fields", "Sync", "Neutral", "ai", "char_sandria_mouth_ai.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral", "e", "char_sandria_mouth_e.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral", "etc", "char_sandria_mouth_etc.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral", "l", "char_sandria_mouth_l.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral", "mbp", "char_sandria_mouth_mbp.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral", "o", "char_sandria_mouth_o.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral", "u", "char_sandria_mouth_u.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral", "wq", "char_sandria_mouth_wq.png")
-
-CharacterSetup("Sandria Fields", "Mood", "Neutral", "Grumpy", "char_sandria_mouth_frown.png", "char_sandria_eyes_sly.png")
-CharacterSetup("Sandria Fields", "Mood", "Neutral", "Surprised", "char_sandria_mouth_surprised.png", "char_sandria_eyes_bright.png", "char_sandria_brows_surprised.png")
-CharacterSetup("Sandria Fields", "Mood", "Neutral", "Unsure", "char_sandria_mouth_frown.png", "char_sandria_eyes_bright.png")
-CharacterSetup("Sandria Fields", "Mood", "Neutral", "Happy", "char_sandria_mouth_cat.png", "char_sandria_eyes_bright.png")
-CharacterSetup("Sandria Fields", "Mood", "Neutral", "Sly", "char_sandria_mouth_cat.png", "char_sandria_eyes_sly.png")
-
-CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "ai", "char_sandria_mouth_ai.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "e", "char_sandria_mouth_e.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "etc", "char_sandria_mouth_etc.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "l", "char_sandria_mouth_l.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "mbp", "char_sandria_mouth_mbp.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "o", "char_sandria_mouth_o.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "u", "char_sandria_mouth_u.png")
-CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "wq", "char_sandria_mouth_wq.png")
-
-CharacterSetup("Sandria Fields", "Mood", "Neutral Bloody", "Grumpy", "char_sandria_mouth_frown.png", "char_sandria_eyes_sly.png")
-CharacterSetup("Sandria Fields", "Mood", "Neutral Bloody", "Surprised", "char_sandria_mouth_surprised.png", "char_sandria_eyes_bright.png", "char_sandria_brows_surprised.png")
-CharacterSetup("Sandria Fields", "Mood", "Neutral Bloody", "Unsure", "char_sandria_mouth_frown.png", "char_sandria_eyes_bright.png")
-CharacterSetup("Sandria Fields", "Mood", "Neutral Bloody", "Happy", "char_sandria_mouth_cat.png", "char_sandria_eyes_bright.png")
-CharacterSetup("Sandria Fields", "Mood", "Neutral Bloody", "Sly", "char_sandria_mouth_cat.png", "char_sandria_eyes_sly.png")
-
-CharacterSetup("Kaylin Matzner", 18, "Green House", "Wild")
-CharacterSetup("Kaylin Matzner", "Skin", "Neutral", "char_kaylin.png", 0.7)
-
-CharacterSetup("Kaylin Matzner", "Mood", "Neutral", "Grumpy")
-CharacterSetup("Kaylin Matzner", "Mood", "Neutral", "Surprised")
-CharacterSetup("Kaylin Matzner", "Mood", "Neutral", "Unsure")
-CharacterSetup("Kaylin Matzner", "Mood", "Neutral", "Happy")
-CharacterSetup("Kaylin Matzner", "Mood", "Neutral", "Sly")
-
-CharacterSetup("Lucas Kage", 17, "Red House", "Mythic")
-CharacterSetup("Lucas Kage", "Skin", "Neutral", "char_kaminari_full", 1)
-
-CharacterSetup("Lucas Kage", "Mood", "Neutral", "Grumpy", "char_kaminari_full_annoyed.png")
-CharacterSetup("Lucas Kage", "Mood", "Neutral", "Surprised")
-CharacterSetup("Lucas Kage", "Mood", "Neutral", "Unsure")
-CharacterSetup("Lucas Kage", "Mood", "Neutral", "Happy", "char_kaminari_full_content.png")
-CharacterSetup("Lucas Kage", "Mood", "Neutral", "Sly")
-
-CharacterSetup("Yukiko Robinson", 17, "Yellow House", "Order")
-CharacterSetup("Yukiko Robinson", "Skin", "Neutral", "char_yukiko", 1)
-
-CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "ai", "char_yukiko_ai")
-CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "e", "char_yukiko_e")
-CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "etc", "char_yukiko_etc")
-CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "l", "char_yukiko_l")
-CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "mbp", "char_yukiko_mbp")
-CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "o", "char_yukiko_o")
-CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "u", "char_yukiko_u")
-CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "wq", "char_yukiko_wq")
-
-CharacterSetup("Yukiko Robinson", "Mood", "Neutral", "Grumpy", "char_yukiko_annoyed")
-CharacterSetup("Yukiko Robinson", "Mood", "Neutral", "Surprised", "char_yukiko_surprised")
-CharacterSetup("Yukiko Robinson", "Mood", "Neutral", "Unsure", "char_yukiko_unsure")
-CharacterSetup("Yukiko Robinson", "Mood", "Neutral", "Happy")
-CharacterSetup("Yukiko Robinson", "Mood", "Neutral", "Sly", "char_yukiko_cat")
-
-CharacterSetup("Sky Robinson", 17, "Yellow House", "Order")
-CharacterSetup("Sky Robinson", "Skin", "Neutral", "char_sky_crossed.png", 1)
-
-CharacterSetup("Sky Robinson", "Sync", "Neutral", "ai", "char_sky_ai.png")
-CharacterSetup("Sky Robinson", "Sync", "Neutral", "e", "char_sky_e.png")
-CharacterSetup("Sky Robinson", "Sync", "Neutral", "etc", "char_sky_etc.png")
-CharacterSetup("Sky Robinson", "Sync", "Neutral", "l", "char_sky_l.png")
-CharacterSetup("Sky Robinson", "Sync", "Neutral", "mbp", "char_sky_mbp.png")
-CharacterSetup("Sky Robinson", "Sync", "Neutral", "o", "char_sky_o.png")
-CharacterSetup("Sky Robinson", "Sync", "Neutral", "u", "char_sky_u.png")
-CharacterSetup("Sky Robinson", "Sync", "Neutral", "wq", "char_sky_wq.png")
-
-CharacterSetup("Sky Robinson", "Mood", "Neutral", "Grumpy", "char_sky_annoyed")
-CharacterSetup("Sky Robinson", "Mood", "Neutral", "Surprised", "char_sky_surprised.png")
-CharacterSetup("Sky Robinson", "Mood", "Neutral", "Unsure", "char_sky_unsure.png")
-CharacterSetup("Sky Robinson", "Mood", "Neutral", "Happy")
-CharacterSetup("Sky Robinson", "Mood", "Neutral", "Sly", "char_sky_cat")
-
-CharacterSetup("Aya Kalang", 18, "Red House", "Mythics")
-CharacterSetup("Aya Kalang", "Skin", "Neutral", "char_aya.png", 1)
-
-CharacterSetup("Aya Kalang", "Sync", "Neutral", "ai", "char_aya_ai.png")
-CharacterSetup("Aya Kalang", "Sync", "Neutral", "e", "char_aya_e.png")
-CharacterSetup("Aya Kalang", "Sync", "Neutral", "etc", "char_aya_etc.png")
-CharacterSetup("Aya Kalang", "Sync", "Neutral", "l", "char_aya_l.png")
-CharacterSetup("Aya Kalang", "Sync", "Neutral", "mbp", "char_aya_mbp.png")
-CharacterSetup("Aya Kalang", "Sync", "Neutral", "o", "char_aya_o.png")
-CharacterSetup("Aya Kalang", "Sync", "Neutral", "u", "char_aya_u.png")
-CharacterSetup("Aya Kalang", "Sync", "Neutral", "wq", "char_aya_wq.png")
-
-CharacterSetup("Aya Kalang", "Mood", "Neutral", "Grumpy")
-CharacterSetup("Aya Kalang", "Mood", "Neutral", "Surprised")
-CharacterSetup("Aya Kalang", "Mood", "Neutral", "Unsure")
-CharacterSetup("Aya Kalang", "Mood", "Neutral", "Happy")
-CharacterSetup("Aya Kalang", "Mood", "Neutral", "Sly")
-
-CharacterSetup("Yutaka Nomiya", 17, "White House", "Freemen")
-CharacterSetup("Yutaka Nomiya", "Skin", "Neutral", "char_yutaka", 1)
-
-CharacterSetup("Yutaka Nomiya", "Mood", "Neutral", "Grumpy")
-CharacterSetup("Yutaka Nomiya", "Mood", "Neutral", "Surprised")
-CharacterSetup("Yutaka Nomiya", "Mood", "Neutral", "Unsure")
-CharacterSetup("Yutaka Nomiya", "Mood", "Neutral", "Happy")
-CharacterSetup("Yutaka Nomiya", "Mood", "Neutral", "Sly")
-
-CharacterSetup("Robbie Tater", 18, "White House", "Freemen")
-CharacterSetup("Robbie Tater", "Skin", "Neutral", "char_yellowmalecaptain_full", 1)
-
-CharacterSetup("Robbie Tater", "Mood", "Neutral", "Grumpy")
-CharacterSetup("Robbie Tater", "Mood", "Neutral", "Surprised")
-CharacterSetup("Robbie Tater", "Mood", "Neutral", "Unsure")
-CharacterSetup("Robbie Tater", "Mood", "Neutral", "Happy")
-CharacterSetup("Robbie Tater", "Mood", "Neutral", "Sly")
-
-CharacterSetup("Scott Campbell", 17, "Yellow House", "Order")
-CharacterSetup("Scott Campbell", "Skin", "Neutral", "char_yellow_full", 0.7)
-
-CharacterSetup("Scott Campbell", "Mood", "Neutral", "Grumpy")
-CharacterSetup("Scott Campbell", "Mood", "Neutral", "Surprised")
-CharacterSetup("Scott Campbell", "Mood", "Neutral", "Unsure")
-CharacterSetup("Scott Campbell", "Mood", "Neutral", "Happy")
-CharacterSetup("Scott Campbell", "Mood", "Neutral", "Sly")
-
-CharacterSetup("Shane Wolfe", 17, "White House", "Freeman")
-CharacterSetup("Shane Wolfe", "Skin", "Neutral", "char_shane", 1)
-
-CharacterSetup("Shane Wolfe", "Mood", "Neutral", "Grumpy")
-CharacterSetup("Shane Wolfe", "Mood", "Neutral", "Surprised")
-CharacterSetup("Shane Wolfe", "Mood", "Neutral", "Unsure")
-CharacterSetup("Shane Wolfe", "Mood", "Neutral", "Happy")
-CharacterSetup("Shane Wolfe", "Mood", "Neutral", "Sly")
-
-CharacterSetup("Drago Payne", 17, "Yellow House", "Order")
-CharacterSetup("Drago Payne", "Skin", "Neutral", "char_drago", 1)
-
-CharacterSetup("Drago Payne", "Mood", "Neutral", "Grumpy")
-CharacterSetup("Drago Payne", "Mood", "Neutral", "Surprised")
-CharacterSetup("Drago Payne", "Mood", "Neutral", "Unsure")
-CharacterSetup("Drago Payne", "Mood", "Neutral", "Happy")
-CharacterSetup("Drago Payne", "Mood", "Neutral", "Sly")
 
 function SyncIndex(name, mood, a, b, c, d, e, f)
 	if (a == nil) then
@@ -342,15 +305,13 @@ function BriefingAction(action, text, menu, x, y, z)
 			end
 		  end
 		  PlayNextVoice()
-	elseif ((action == "Chat") and ((text ~= nil) or (x ~= nil))) then
+	elseif ((action == "Chat") and ((text ~= nil))) then
 		local function MultiTextChat()
 			local syncchar
 			local screenchar
 			if (wait == nil) then wait = 1 end
 			if (screentext == nil) then screentext = "" end
 			if (wait == 1) then
-				syncchar = string.sub(x, 1, 1)
-				x = string.sub(x, 2)
 				if (text ~= nil) then
 					screenchar = string.sub(text, 1, 1)
 					if (screenchar ~= "+") then
@@ -359,16 +320,20 @@ function BriefingAction(action, text, menu, x, y, z)
 					end
 					text = string.sub(text, 2)
 				end
-				if (((SyncIndex(name, syncchar, "a", "b", "c", "d", "e", "f") == true) or (SyncIndex(name, syncchar, "g", "h", "i", "j", "k", "l") == true) or
-					(SyncIndex(name, syncchar, "m", "n", "o", "p", "q", "r") == true) or (SyncIndex(name, syncchar, "s", "t", "u", "v", "w", "x") == true) or
-					(SyncIndex(name, syncchar, "y", "z", " ", "") == true)) and (syncchar ~= "+")) then
-					charmouthWidget:setVisible(false)
-					if (syncchar ~= "") then
-						CharacterAction(GameDefinition["Briefing"]["Character"], "Sync", Character[GameDefinition["Briefing"]["Character"]]["Skin"], syncchar)
-					else
-						CharacterAction(GameDefinition["Briefing"]["Character"], "Pose", Character[GameDefinition["Briefing"]["Character"]]["Skin"], Character[GameDefinition["Briefing"]["Character"]]["Mood"])
+				if (x ~= nil) then
+					syncchar = string.sub(x, 1, 1)
+					x = string.sub(x, 2)
+					if (((SyncIndex(name, syncchar, "a", "b", "c", "d", "e", "f") == true) or (SyncIndex(name, syncchar, "g", "h", "i", "j", "k", "l") == true) or
+						(SyncIndex(name, syncchar, "m", "n", "o", "p", "q", "r") == true) or (SyncIndex(name, syncchar, "s", "t", "u", "v", "w", "x") == true) or
+						(SyncIndex(name, syncchar, "y", "z", " ", "") == true)) and (syncchar ~= "+")) then
+						charmouthWidget:setVisible(false)
+						if (syncchar ~= "") then
+							CharacterAction(GameDefinition["Briefing"]["Character"], "Sync", Character[GameDefinition["Briefing"]["Character"]]["Skin"], syncchar)
+						else
+							CharacterAction(GameDefinition["Briefing"]["Character"], "Pose", Character[GameDefinition["Briefing"]["Character"]]["Skin"], Character[GameDefinition["Briefing"]["Character"]]["Mood"])
+						end
+						menu:add(charmouthWidget, GameDefinition["Briefing"]["X"] + GameDefinition["Briefing"]["Width"] - 450, GameDefinition["Briefing"]["Y"] + 10)
 					end
-					menu:add(charmouthWidget, GameDefinition["Briefing"]["X"] + GameDefinition["Briefing"]["Width"] - 450, GameDefinition["Briefing"]["Y"] + 10)
 				end
 			end
 			if (wait > 0) then
@@ -427,12 +392,34 @@ function BundleAction(action, name, displaytext, synctext, voice)
 		if (synctext == nil) then
 			local chartext = ""
 			local looptext = ""
+			local chatboxlength = 34
+			local chatboxcurrent = 1
+			local chatboxtotal = 1
 			synctext = displaytext
 			for index = 1, string.len(displaytext) do
 				chartext = string.sub(displaytext, index, index)
 				string.sub(displaytext, 2)
 				if (chartext ~= "+") then
 					looptext = looptext .. chartext
+				
+					if ((chartext == " ") and (chatboxcurrent > chatboxlength - chatboxlength)) then
+						-- Check the character length of the next word.
+						for chatboxindex = 1, chatboxlength - chatboxcurrent do
+							if (chatboxindex >= chatboxlength - chatboxcurrent) then
+								-- Make the word appear on the next line if no room available.
+								looptext = looptext .. "\n"
+								chatboxcurrent = 1
+							elseif ((string.sub(displaytext, index + chatboxindex, index + chatboxindex) == " ") or (string.len(displaytext) - index < chatboxindex)) then
+								break
+							end
+						end
+					end
+					chatboxtotal = chatboxtotal + 1
+					if (chatboxcurrent ~= chatboxlength) then
+						chatboxcurrent = chatboxcurrent + 1
+					else
+						chatboxcurrent = 1
+					end
 				end
 			end
 			displaytext = looptext
@@ -467,9 +454,9 @@ function RunModCampaignMission(title, objs, bg, text, voices, mapname, menu)
   GameDefinition["Briefing"]["Title"] = title
   GameDefinition["Briefing"]["Objectives"] = objs
   GameDefinition["Map"]["Path"] = mapname
-  if (CurrentCampaignRace ~= nil) then
-    SetPlayerData(GetThisPlayer(), "RaceName", CurrentCampaignRace)
-  end
+  --if (CurrentCampaignRace ~= nil) then
+  --  SetPlayerData(GetThisPlayer(), "RaceName", CurrentCampaignRace)
+  --end
   BriefingAction("Character", "Add", menu)
   BriefingAction("Title", GameDefinition["Briefing"]["Title"], menu)
   BriefingAction("Scrolling Text", text, menu)

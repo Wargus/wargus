@@ -25,5 +25,9 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
+-- SetMapTeams(player, team, position)
+SetMapTeams(13, 1, 1)
+SetMapTeams(14, 2, 1)
+
 DefinePlayerTypes("nobody", "nobody", "nobody", "nobody", "nobody", "computer", "computer", "nobody", "nobody", "nobody", "nobody", "nobody", "nobody", "computer", "person")
 PresentMap("One Way Through", 2, 64, 64, 4)
