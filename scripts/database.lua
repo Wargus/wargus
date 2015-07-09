@@ -170,6 +170,159 @@ function CharacterSetup(name, age, house, faction, mouth, eyes, brows)
 	end
 end
 
+CharacterSetup("Sandria Fields", 14, "Red House", "Mythic")
+CharacterSetup("Sandria Fields", "Skin", "Neutral", "char_sandria.png", 0.7)
+CharacterSetup("Sandria Fields", "Skin", "Neutral Bloody", "char_sandria_blood.png", 0.7)
+
+CharacterSetup("Sandria Fields", "Sync", "Neutral", "ai", "char_sandria_mouth_ai.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral", "e", "char_sandria_mouth_e.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral", "etc", "char_sandria_mouth_etc.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral", "l", "char_sandria_mouth_l.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral", "mbp", "char_sandria_mouth_mbp.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral", "o", "char_sandria_mouth_o.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral", "u", "char_sandria_mouth_u.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral", "wq", "char_sandria_mouth_wq.png")
+
+CharacterSetup("Sandria Fields", "Mood", "Neutral", "Grumpy", "char_sandria_mouth_frown.png", "char_sandria_eyes_sly.png")
+CharacterSetup("Sandria Fields", "Mood", "Neutral", "Surprised", "char_sandria_mouth_surprised.png", "char_sandria_eyes_bright.png", "char_sandria_brows_surprised.png")
+CharacterSetup("Sandria Fields", "Mood", "Neutral", "Unsure", "char_sandria_mouth_frown.png", "char_sandria_eyes_bright.png")
+CharacterSetup("Sandria Fields", "Mood", "Neutral", "Happy", "char_sandria_mouth_cat.png", "char_sandria_eyes_bright.png")
+CharacterSetup("Sandria Fields", "Mood", "Neutral", "Sly", "char_sandria_mouth_cat.png", "char_sandria_eyes_sly.png")
+
+CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "ai", "char_sandria_mouth_ai.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "e", "char_sandria_mouth_e.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "etc", "char_sandria_mouth_etc.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "l", "char_sandria_mouth_l.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "mbp", "char_sandria_mouth_mbp.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "o", "char_sandria_mouth_o.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "u", "char_sandria_mouth_u.png")
+CharacterSetup("Sandria Fields", "Sync", "Neutral Bloody", "wq", "char_sandria_mouth_wq.png")
+
+CharacterSetup("Sandria Fields", "Mood", "Neutral Bloody", "Grumpy", "char_sandria_mouth_frown.png", "char_sandria_eyes_sly.png")
+CharacterSetup("Sandria Fields", "Mood", "Neutral Bloody", "Surprised", "char_sandria_mouth_surprised.png", "char_sandria_eyes_bright.png", "char_sandria_brows_surprised.png")
+CharacterSetup("Sandria Fields", "Mood", "Neutral Bloody", "Unsure", "char_sandria_mouth_frown.png", "char_sandria_eyes_bright.png")
+CharacterSetup("Sandria Fields", "Mood", "Neutral Bloody", "Happy", "char_sandria_mouth_cat.png", "char_sandria_eyes_bright.png")
+CharacterSetup("Sandria Fields", "Mood", "Neutral Bloody", "Sly", "char_sandria_mouth_cat.png", "char_sandria_eyes_sly.png")
+
+CharacterSetup("Kaylin Matzner", 18, "Green House", "Wild")
+CharacterSetup("Kaylin Matzner", "Skin", "Neutral", "char_kaylin.png", 0.7)
+
+CharacterSetup("Kaylin Matzner", "Mood", "Neutral", "Grumpy")
+CharacterSetup("Kaylin Matzner", "Mood", "Neutral", "Surprised")
+CharacterSetup("Kaylin Matzner", "Mood", "Neutral", "Unsure")
+CharacterSetup("Kaylin Matzner", "Mood", "Neutral", "Happy")
+CharacterSetup("Kaylin Matzner", "Mood", "Neutral", "Sly")
+
+CharacterSetup("Lucas Kage", 17, "Red House", "Mythic")
+CharacterSetup("Lucas Kage", "Skin", "Neutral", "char_kaminari_full", 1)
+
+CharacterSetup("Lucas Kage", "Mood", "Neutral", "Grumpy", "char_kaminari_full_annoyed.png")
+CharacterSetup("Lucas Kage", "Mood", "Neutral", "Surprised")
+CharacterSetup("Lucas Kage", "Mood", "Neutral", "Unsure")
+CharacterSetup("Lucas Kage", "Mood", "Neutral", "Happy", "char_kaminari_full_content.png")
+CharacterSetup("Lucas Kage", "Mood", "Neutral", "Sly")
+
+CharacterSetup("Yukiko Robinson", 17, "Yellow House", "Order")
+CharacterSetup("Yukiko Robinson", "Skin", "Neutral", "char_yukiko", 1)
+
+--[[
+CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "ai", "char_yukiko_ai")
+CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "e", "char_yukiko_e")
+CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "etc", "char_yukiko_etc")
+CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "l", "char_yukiko_l")
+CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "mbp", "char_yukiko_mbp")
+CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "o", "char_yukiko_o")
+CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "u", "char_yukiko_u")
+CharacterSetup("Yukiko Robinson", "Sync", "Neutral", "wq", "char_yukiko_wq")
+]]
+
+CharacterSetup("Yukiko Robinson", "Mood", "Neutral", "Grumpy", "char_yukiko_annoyed")
+CharacterSetup("Yukiko Robinson", "Mood", "Neutral", "Surprised", "char_yukiko_surprised")
+CharacterSetup("Yukiko Robinson", "Mood", "Neutral", "Unsure", "char_yukiko_unsure")
+CharacterSetup("Yukiko Robinson", "Mood", "Neutral", "Happy")
+CharacterSetup("Yukiko Robinson", "Mood", "Neutral", "Sly", "char_yukiko_cat")
+
+CharacterSetup("Sky Robinson", 17, "Yellow House", "Order")
+CharacterSetup("Sky Robinson", "Skin", "Neutral", "char_sky_crossed.png", 1)
+
+CharacterSetup("Sky Robinson", "Sync", "Neutral", "ai", "char_sky_ai.png")
+CharacterSetup("Sky Robinson", "Sync", "Neutral", "e", "char_sky_e.png")
+CharacterSetup("Sky Robinson", "Sync", "Neutral", "etc", "char_sky_etc.png")
+CharacterSetup("Sky Robinson", "Sync", "Neutral", "l", "char_sky_l.png")
+CharacterSetup("Sky Robinson", "Sync", "Neutral", "mbp", "char_sky_mbp.png")
+CharacterSetup("Sky Robinson", "Sync", "Neutral", "o", "char_sky_o.png")
+CharacterSetup("Sky Robinson", "Sync", "Neutral", "u", "char_sky_u.png")
+CharacterSetup("Sky Robinson", "Sync", "Neutral", "wq", "char_sky_wq.png")
+
+CharacterSetup("Sky Robinson", "Mood", "Neutral", "Grumpy", "char_sky_annoyed")
+CharacterSetup("Sky Robinson", "Mood", "Neutral", "Surprised", "char_sky_surprised.png")
+CharacterSetup("Sky Robinson", "Mood", "Neutral", "Unsure", "char_sky_unsure.png")
+CharacterSetup("Sky Robinson", "Mood", "Neutral", "Happy")
+CharacterSetup("Sky Robinson", "Mood", "Neutral", "Sly", "char_sky_cat")
+
+CharacterSetup("Aya Kalang", 18, "Red House", "Mythics")
+CharacterSetup("Aya Kalang", "Skin", "Neutral", "char_aya.png", 1)
+
+CharacterSetup("Aya Kalang", "Sync", "Neutral", "ai", "char_aya_ai.png")
+CharacterSetup("Aya Kalang", "Sync", "Neutral", "e", "char_aya_e.png")
+CharacterSetup("Aya Kalang", "Sync", "Neutral", "etc", "char_aya_etc.png")
+CharacterSetup("Aya Kalang", "Sync", "Neutral", "l", "char_aya_l.png")
+CharacterSetup("Aya Kalang", "Sync", "Neutral", "mbp", "char_aya_mbp.png")
+CharacterSetup("Aya Kalang", "Sync", "Neutral", "o", "char_aya_o.png")
+CharacterSetup("Aya Kalang", "Sync", "Neutral", "u", "char_aya_u.png")
+CharacterSetup("Aya Kalang", "Sync", "Neutral", "wq", "char_aya_wq.png")
+
+CharacterSetup("Aya Kalang", "Mood", "Neutral", "Grumpy")
+CharacterSetup("Aya Kalang", "Mood", "Neutral", "Surprised")
+CharacterSetup("Aya Kalang", "Mood", "Neutral", "Unsure")
+CharacterSetup("Aya Kalang", "Mood", "Neutral", "Happy")
+CharacterSetup("Aya Kalang", "Mood", "Neutral", "Sly")
+
+CharacterSetup("Yutaka Nomiya", 17, "White House", "Freemen")
+CharacterSetup("Yutaka Nomiya", "Skin", "Neutral", "char_yutaka", 1)
+
+CharacterSetup("Yutaka Nomiya", "Mood", "Neutral", "Grumpy")
+CharacterSetup("Yutaka Nomiya", "Mood", "Neutral", "Surprised")
+CharacterSetup("Yutaka Nomiya", "Mood", "Neutral", "Unsure")
+CharacterSetup("Yutaka Nomiya", "Mood", "Neutral", "Happy")
+CharacterSetup("Yutaka Nomiya", "Mood", "Neutral", "Sly")
+
+CharacterSetup("Robbie Tater", 18, "White House", "Freemen")
+CharacterSetup("Robbie Tater", "Skin", "Neutral", "char_yellowmalecaptain_full", 1)
+
+CharacterSetup("Robbie Tater", "Mood", "Neutral", "Grumpy")
+CharacterSetup("Robbie Tater", "Mood", "Neutral", "Surprised")
+CharacterSetup("Robbie Tater", "Mood", "Neutral", "Unsure")
+CharacterSetup("Robbie Tater", "Mood", "Neutral", "Happy")
+CharacterSetup("Robbie Tater", "Mood", "Neutral", "Sly")
+
+CharacterSetup("Scott Campbell", 17, "Yellow House", "Order")
+CharacterSetup("Scott Campbell", "Skin", "Neutral", "char_yellow_full", 0.7)
+
+CharacterSetup("Scott Campbell", "Mood", "Neutral", "Grumpy")
+CharacterSetup("Scott Campbell", "Mood", "Neutral", "Surprised")
+CharacterSetup("Scott Campbell", "Mood", "Neutral", "Unsure")
+CharacterSetup("Scott Campbell", "Mood", "Neutral", "Happy")
+CharacterSetup("Scott Campbell", "Mood", "Neutral", "Sly")
+
+CharacterSetup("Shane Wolfe", 17, "White House", "Freeman")
+CharacterSetup("Shane Wolfe", "Skin", "Neutral", "char_shane", 1)
+
+CharacterSetup("Shane Wolfe", "Mood", "Neutral", "Grumpy")
+CharacterSetup("Shane Wolfe", "Mood", "Neutral", "Surprised")
+CharacterSetup("Shane Wolfe", "Mood", "Neutral", "Unsure")
+CharacterSetup("Shane Wolfe", "Mood", "Neutral", "Happy")
+CharacterSetup("Shane Wolfe", "Mood", "Neutral", "Sly")
+
+CharacterSetup("Drago Payne", 17, "Yellow House", "Order")
+CharacterSetup("Drago Payne", "Skin", "Neutral", "char_drago", 1)
+
+CharacterSetup("Drago Payne", "Mood", "Neutral", "Grumpy")
+CharacterSetup("Drago Payne", "Mood", "Neutral", "Surprised")
+CharacterSetup("Drago Payne", "Mood", "Neutral", "Unsure")
+CharacterSetup("Drago Payne", "Mood", "Neutral", "Happy")
+CharacterSetup("Drago Payne", "Mood", "Neutral", "Sly")
+
 function SyncIndex(name, mood, a, b, c, d, e, f)
 	if (a == nil) then
 		if (SyncIndex(name, mood, "ai", "a", "i") == true) then mood = "ai"

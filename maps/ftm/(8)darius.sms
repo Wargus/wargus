@@ -31,27 +31,18 @@ AiRedRibbon_Setup_2014()
 AiRed_Resources_Setup_2014(8, 50, 50, 50, 11, "Pickers")
 GameDefinitionSetup("For the Motherland", "Standard", 2014, "Darius")
 
--- SetMapTeams(player, team, position)
-SetMapTeams(8,  1, 1)
-SetMapTeams(10, 1, 2)
-SetMapTeams(12, 1, 3)
-SetMapTeams(13, 1, 4)
-SetMapTeams(9,  2, 1)
-SetMapTeams(11, 2, 2)
-SetMapTeams(14, 2, 3)
-SetMapTeams(15, 2, 4)
-
 -- SetPlayerFtM2014(player, race, faction, gold, wood, oil, startx, starty, istart, iend, teamx1, teamy1, teamx2, teamy2, match, aispawner, aibot)
+
 SetPlayerFtM2014(0, "orc", "Confederates", 50000, 25000, 5000, 23, 253, 51, 65, 19, 249, 27, 251) --, 8, "ai_redribbon_2014", "Aya Kalang")
-SetPlayerFtM2014(1, "man", "Yankees",      50000, 25000, 5000, 23, 2,   1,  15, 19, 4,   27, 6) --, 8, "ai_redribbon_2014", "Aya Kalang")
 SetPlayerFtM2014(2, "orc", "Confederates", 50000, 25000, 5000, 8,  242, 81, 95, 4,  238, 12, 240) --, 8, "ai_redribbon_2014", "Aya Kalang")
+SetPlayerFtM2014(4, "orc", "Confederates", 50000, 25000, 5000, 23, 242, 49, 49, 19, 238, 27, 240) --, 8, "ai_redribbon_2014", "Aya Kalang")
+SetPlayerFtM2014(5, "orc", "Confederates", 50000, 25000, 5000, 8,  253, 49, 49, 4,  249, 12, 251) --, 8, "ai_redribbon_2014", "Aya Kalang")
+
+SetPlayerFtM2014(1, "man", "Yankees",      50000, 25000, 5000, 23, 2,   1,  15, 19, 4,   27, 6) --, 8, "ai_redribbon_2014", "Aya Kalang")
 SetPlayerFtM2014(3, "man", "Yankees",      50000, 25000, 5000, 8,  13,  31, 45, 4,  15,  12, 17) --, 8, "ai_redribbon_2014", "Aya Kalang")
---[[
-SetPlayerFtM2014(4, "orc", "Confederates",    5000, 2500, 500, 23, 242, 49, 49, 19, 238, 27, 240) --, 8, "ai_redribbon_2014", "Aya Kalang")
-SetPlayerFtM2014(5, "orc", "Confederates",    5000, 2500, 500, 8,  253, 49, 49, 4,  249, 12, 251) --, 8, "ai_redribbon_2014", "Aya Kalang")
-SetPlayerFtM2014(6, "man", "Yankees",         5000, 2500, 500, 8,  2,   49, 49, 4,  4,   12, 6) --, 8, "ai_redribbon_2014", "Aya Kalang")
-SetPlayerFtM2014(7, "man", "Yankees",         5000, 2500, 500, 23, 13,  49, 49, 19, 15,  27, 17) --, 8, "ai_redribbon_2014", "Aya Kalang")
-]]
+SetPlayerFtM2014(6, "man", "Yankees",      50000, 25000, 5000, 8,  2,   49, 49, 4,  4,   12, 6) --, 8, "ai_redribbon_2014", "Aya Kalang")
+SetPlayerFtM2014(7, "man", "Yankees",      50000, 25000, 5000, 23, 13,  49, 49, 19, 15,  27, 17) --, 8, "ai_redribbon_2014", "Aya Kalang")
+
 
 -- load tilesets
 LoadTileModels("scripts/tilesets/summer.lua")
@@ -8620,47 +8611,33 @@ for i = 0, 7 do
 		mainx = -8
 	elseif ((i == 2) or (i == 3)) then 
 		mainx = 9
-	elseif ((i == 5) or (i == 6)) then 
-		mainx = 16
+	elseif ((i == 4) or (i == 7)) then 
+		mainx = 15
 	end
 	if ((i == 0) or (i == 2) or (i == 4) or (i == 5)) then 
-		AiRedRibbon_Auto_Origin_2014(i, "standard", 11+mainx, 169)
-		AiRedRibbon_Auto_Origin_2014(i, "elite", 11+mainx, 169)
-		AiRedRibbon_Auto_Origin_2014(i, "hero", 11+mainx, 169)
-		if (GetPlayerData(i, "RaceName") == "orc") then
-			AiRedRibbon_Auto_Origin_2014(i, "worker", 11+mainx, 187, "unit-pig-farm")
-			AiRedRibbon_Auto_Origin_2014(i, "fodder", 11+mainx, 187, "unit-pig-farm")
-			AiRedRibbon_Auto_Origin_2014(i, "unit-goblin-sappers", 11+mainx, 172, "unit-alchemist")
-			AiRedRibbon_Auto_Origin_2014(i, "air", 11+mainx, 178, "unit-dragon-roost")
-			AiRedRibbon_Auto_Origin_2014(i, "unit-death-knight", 11+mainx, 175, "unit-temple-of-the-damned")
-		else
-			AiRedRibbon_Auto_Origin_2014(i, "worker", 11+mainx, 187, "unit-farm")
-			AiRedRibbon_Auto_Origin_2014(i, "fodder", 11+mainx, 187, "unit-farm")
-			AiRedRibbon_Auto_Origin_2014(i, "unit-goblin-sappers", 20+mainx, 175, "unit-inventor")
-			AiRedRibbon_Auto_Origin_2014(i, "air", 11+mainx, 178, "unit-gryphon-aviary")
-			AiRedRibbon_Auto_Origin_2014(i, "unit-death-knight", 11+mainx, 175, "unit-mage-tower")
-		end
+		AiRedRibbon_Auto_Origin_2014(i, "standard", 11+mainx, 169, AiBarracks(i))
+		AiRedRibbon_Auto_Origin_2014(i, "elite", 11+mainx, 169, AiBarracks(i))
+		AiRedRibbon_Auto_Origin_2014(i, "hero", 11+mainx, 169, AiBarracks(i))
+		AiRedRibbon_Auto_Origin_2014(i, "defender", 11+mainx, 169, AiBarracks(i))
+		AiRedRibbon_Auto_Origin_2014(i, "worker", 11+mainx, 187, AiFarm(i))
+		AiRedRibbon_Auto_Origin_2014(i, "fodder", 11+mainx, 187, AiFarm(i))
+		AiRedRibbon_Auto_Origin_2014(i, AiSuicideBomber(i), 20+mainx, 175, AiScientific(i))
+		AiRedRibbon_Auto_Origin_2014(i, "air", 11+mainx, 178, AiAirport(i))
+		AiRedRibbon_Auto_Origin_2014(i, AiMage(i), 11+mainx, 175, AiMageTower(i))
 	else
 		-- i is causing player 1 not to spawn.
-		AiRedRibbon_Auto_Origin_2014(i, "standard", 11+mainx, 86)
-		AiRedRibbon_Auto_Origin_2014(i, "elite", 11+mainx, 86)
-		AiRedRibbon_Auto_Origin_2014(i, "hero", 11+mainx, 86)
-		if (GetPlayerData(i, "RaceName") == "orc") then
-			AiRedRibbon_Auto_Origin_2014(i, "worker", 11+mainx, 67, "unit-pig-farm")
-			AiRedRibbon_Auto_Origin_2014(i, "fodder", 11+mainx, 67, "unit-pig-farm")
-			AiRedRibbon_Auto_Origin_2014(i, "unit-goblin-sappers", 11+mainx, 83, "unit-alchemist")
-			AiRedRibbon_Auto_Origin_2014(i, "air", 11+mainx, 77, "unit-dragon-roost")
-			AiRedRibbon_Auto_Origin_2014(i, "unit-death-knight", 11+mainx, 80, "unit-temple-of-the-damned")
-		else
-			AiRedRibbon_Auto_Origin_2014(i, "worker", 11+mainx, 67, "unit-farm")
-			AiRedRibbon_Auto_Origin_2014(i, "fodder", 11+mainx, 67, "unit-farm")
-			AiRedRibbon_Auto_Origin_2014(i, "unit-goblin-sappers", 11+mainx, 83, "unit-inventor")
-			AiRedRibbon_Auto_Origin_2014(i, "air", 11+mainx, 77, "unit-gryphon-aviary")
-			AiRedRibbon_Auto_Origin_2014(i, "unit-death-knight", 11+mainx, 80, "unit-mage-tower")
-		end
+		AiRedRibbon_Auto_Origin_2014(i, "standard", 11+mainx, 86, AiBarracks(i))
+		AiRedRibbon_Auto_Origin_2014(i, "elite", 11+mainx, 86, AiBarracks(i))
+		AiRedRibbon_Auto_Origin_2014(i, "hero", 11+mainx, 86, AiBarracks(i))
+		AiRedRibbon_Auto_Origin_2014(i, "defender", 11+mainx, 86, AiBarracks(i))
+		AiRedRibbon_Auto_Origin_2014(i, "worker", 11+mainx, 67, AiFarm(i))
+		AiRedRibbon_Auto_Origin_2014(i, "fodder", 11+mainx, 67, AiFarm(i))
+		AiRedRibbon_Auto_Origin_2014(i, AiSuicideBomber(i), 11+mainx, 83, AiScientific(i))
+		AiRedRibbon_Auto_Origin_2014(i, "air", 11+mainx, 77, AiAirport(i))
+		AiRedRibbon_Auto_Origin_2014(i, AiMage(i), 11+mainx, 80, AiMageTower(i))
 	end
 end
-	
+
 AiRed_Strategy_Horde_Mass_2014(8)
 AiRed_Strategy_Alliance_Mass_2014(9)
 AiRed_Strategy_Horde_Mass_2014(10)

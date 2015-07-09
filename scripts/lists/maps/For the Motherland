@@ -389,19 +389,19 @@ function NewRunSinglePlayerGameMenu()
 				t2p2race:setSize(152, 20)
 			elseif (GameDefinition["Map"][player]["Player"] == 3) then
 				menu:addLabel(_("~<Team 1~>"), team1x, team1y - 25, Fonts["game"], true)
-				t2p3char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team1x - 152, team1y + 25*2,
+				t2p3char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team2x - 152, team2y + 25*2,
 					function(dd) end)
 				t2p3char:setSize(152, 20)
 
-				t2p3race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, team1x, team1y + 25*2,
+				t2p3race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, team2x, team2y + 25*2,
 					function(dd) end)
 				t2p3race:setSize(152, 20)
 			elseif (GameDefinition["Map"][player]["Player"] == 4) then
-				t2p4char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team1x - 152, team1y + 25*3,
+				t2p4char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team2x - 152, team2y + 25*3,
 					function(dd) end)
 				t2p4char:setSize(152, 20)
 				  
-				t2p4race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, team1x, team1y + 25*3,
+				t2p4race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, team2x, team2y + 25*3,
 					function(dd) end)
 				t2p4race:setSize(152, 20)
 			end

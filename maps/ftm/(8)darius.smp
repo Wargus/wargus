@@ -25,5 +25,15 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
-DefinePlayerTypes("computer", "computer", "computer", "computer", "computer", "computer", "computer", "computer", "computer", "computer", "person", "person", "person", "person", "person")
+DefinePlayerTypes("computer", "computer", "computer", "computer", "computer", "computer", "computer", "computer", "person", "person", "person", "person", "person", "person", "person", "person")
 PresentMap("Darius", 0, 32, 256, 3)
+
+-- SetMapTeams(player, team, position)
+SetMapTeams(8,  1, 1)
+SetMapTeams(10, 1, 2)
+SetMapTeams(12, 1, 3)
+SetMapTeams(13, 1, 4)
+SetMapTeams(9,  2, 1)
+SetMapTeams(11, 2, 2)
+SetMapTeams(14, 2, 3)
+SetMapTeams(15, 2, 4)
