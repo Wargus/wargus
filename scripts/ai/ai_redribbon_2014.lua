@@ -72,16 +72,16 @@ function SetPlayerFtM2014(player, race, faction, gold, wood, oil, startx, starty
 end
 
 function AiRedRibbon_Setup_Units_2014()
-	ftm_unit = {}
-	ftm_origin = {}
-	ftm_category = {}
-	ftm_class = {}
-	ftm_rank = {}
-	ftm_cost_gold = {}
-	ftm_cost_wood = {}
-	ftm_cost_oil = {}
-	ftm_origin_x = {}
-	ftm_origin_y = {}
+	--ftm_unit = {}
+	--ftm_origin = {}
+	--ftm_category = {}
+	--ftm_class = {}
+	--ftm_rank = {}
+	--ftm_cost_gold = {}
+	--ftm_cost_wood = {}
+	--ftm_cost_oil = {}
+	--ftm_origin_x = {}
+	--ftm_origin_y = {}
 end
 --[[
 function AiRedRibbon_Define_Unit_2014(i, unit, origin, category, class, rank, gold, wood, oil, x, y)
@@ -186,14 +186,14 @@ function AiRedRibbon_Setup_2014()
 	ftm_team_y1 = {}
 	ftm_team_x2 = {}
     ftm_team_y2 = {}
-	ftm_unit = {}
-	ftm_origin = {}
+	--ftm_unit = {}
+	--ftm_origin = {}
 	-- Delete following line.
 	--ftm_cost = {}
 	ftm_choice = {} -- Who gets spawned in next.
-	ftm_index_start = {}
-	ftm_index_end = {}
-	AiRedRibbon_Setup_Units_2014()
+	--ftm_index_start = {}
+	--ftm_index_end = {}
+	--AiRedRibbon_Setup_Units_2014()
 	ftm_choice[0] = 3
 	ftm_choice[1] = 2
 	aiftm_action = {}
@@ -260,8 +260,8 @@ function AiRedRibbon_Setup_2014()
 		timers[i] = 1
 		ftm_faction[i] = 10
 		ftm_team[i] = 10
-		ftm_index_start[i] = 1
-		ftm_index_end[i] = 1
+		--ftm_index_start[i] = 1
+		--ftm_index_end[i] = 1
 		ftm_team_tempx[i] = 0
 		ftm_team_tempy[i] = 0
 		ftm_team_x1[i] = 0
@@ -273,10 +273,10 @@ function AiRedRibbon_Setup_2014()
 		ftm_team_orderx[i] = "Start Location"
 		ftm_team_ordery[i] = "Start Location"
 	end
-	ftm_index_start[0] = 51
-	ftm_index_end[0] = 65
-	ftm_index_start[1] = 1
-	ftm_index_end[1] = 15
+	--ftm_index_start[0] = 51
+	--ftm_index_end[0] = 65
+	--ftm_index_start[1] = 1
+	--ftm_index_end[1] = 15
 end
 
 function AiRed_Resources_2014(t, g, w, o)

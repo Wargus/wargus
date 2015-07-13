@@ -30,6 +30,50 @@ OldRunSinglePlayerGameMenu = RunSinglePlayerGameMenu
 function CleanCustomGame_Lua()
 	RunSinglePlayerGameMenu = OldRunSinglePlayerGameMenu
 
+	GameDefinitionSetup("initialise")
+
+	for i=0,15 do
+		timers[i] = nil
+		SetMapTeams(i, nil, nil)
+		ftm_choice[i] = nil
+		ftm_gold[i] = nil
+		ftm_wood[i] = nil
+		ftm_oil[i] = nil
+		aiftm_index[i] = nil
+		aiftm_terminate[i] = nil
+		aiftm_loop[i] = nil
+		aiftm_mana[i] = nil
+		ftm_faction[i] = nil
+		ftm_team[i] = nil
+		ftm_team_tempx[i] = nil
+		ftm_team_tempy[i] = nil
+		ftm_team_x1[i] = nil
+		ftm_team_y1[i] = nil
+		ftm_team_x2[i] = nil
+		ftm_team_y2[i] = nil
+		ftm_team_startx[i] = nil
+		ftm_team_starty[i] = nil
+		ftm_team_orderx[i] = nil
+		ftm_team_ordery[i] = nil
+		for j = 0, 15 do
+			aiftm_action[i][j] = nil
+			aiftm_unit[i][j] = nil
+			aiftm_quantity[i][j] = nil
+			aiftm_x_to[i][j] = nil
+			aiftm_y_to[i][j] = nil
+			aiftm_x_from[i][j] = nil
+			aiftm_y_from[i][j] = nil
+			aiftm_unit_option1[i][j] = nil
+			aiftm_unit_option2[i][j] = nil
+			aiftm_unit2[i][j] = nil
+			aiftm_unit2_option1[i][j] = nil
+			aiftm_unit2_option2[i][j] = nil
+			aiftm_unit3[i][j] = nil
+			aiftm_unit3_option1[i][j] = nil
+			aiftm_unit3_option2[i][j] = nil
+		end
+	end
+	
 	BlueLeader = nil
 	UnitFootmanNum = nil
 	UnitArcherNum = nil
@@ -272,34 +316,33 @@ function NewRunSinglePlayerGameMenu()
   menu:addFullButton(_("~!Start Game"), "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
 
-	
 	for player=0,15 do
 		if (GameDefinition["Map"][player]["Team"] == 1) then
 			if (GameDefinition["Map"][player]["Player"] == 1) then
-				if (t1p1char:getSelected() == 1) then GameDefinition["Player"][1][1]["Name"] = "Aya Kalang" elseif (t1p1char:getSelected() == 2) then GameDefinition["Player"][1][1]["Race"] = "Shane Wolfe" 	elseif (t1p1char:getSelected() == 3) then GameDefinition["Player"][1][1]["Name"] = "Aya Kalang" end
+				if (t1p1char:getSelected() == 1) then GameDefinition["Player"][1][1]["Name"] = "Aya Kalang" elseif (t1p1char:getSelected() == 2) then GameDefinition["Player"][1][1]["Name"] = "Shane Wolfe" 	elseif (t1p1char:getSelected() == 3) then GameDefinition["Player"][1][1]["Name"] = "Sandria Fields" end
 				if (t1p1race:getSelected() == 1) then GameDefinition["Player"][1][1]["Race"] = "human" 		elseif (t1p1race:getSelected() == 2) then GameDefinition["Player"][1][1]["Race"] = "orc" 			end
 			elseif (GameDefinition["Map"][player]["Player"] == 2) then
-				if (t1p2char:getSelected() == 1) then GameDefinition["Player"][1][2]["Name"] = "Aya Kalang" elseif (t1p2char:getSelected() == 2) then GameDefinition["Player"][1][2]["Race"] = "Shane Wolfe" 	elseif (t1p1char:getSelected() == 3) then GameDefinition["Player"][1][2]["Name"] = "Aya Kalang" end
+				if (t1p2char:getSelected() == 1) then GameDefinition["Player"][1][2]["Name"] = "Aya Kalang" elseif (t1p2char:getSelected() == 2) then GameDefinition["Player"][1][2]["Name"] = "Shane Wolfe" 	elseif (t1p1char:getSelected() == 3) then GameDefinition["Player"][1][2]["Name"] = "Sandria Fields" end
 				if (t1p2race:getSelected() == 1) then GameDefinition["Player"][1][2]["Race"] = "human" 		elseif (t1p2race:getSelected() == 2) then GameDefinition["Player"][1][2]["Race"] = "orc" 			end
 			elseif (GameDefinition["Map"][player]["Player"] == 3) then
-				if (t1p3char:getSelected() == 1) then GameDefinition["Player"][1][3]["Name"] = "Aya Kalang" elseif (t1p3char:getSelected() == 2) then GameDefinition["Player"][1][3]["Race"] = "Shane Wolfe" 	elseif (t1p3char:getSelected() == 3) then GameDefinition["Player"][1][3]["Name"] = "Aya Kalang" end
+				if (t1p3char:getSelected() == 1) then GameDefinition["Player"][1][3]["Name"] = "Aya Kalang" elseif (t1p3char:getSelected() == 2) then GameDefinition["Player"][1][3]["Name"] = "Shane Wolfe" 	elseif (t1p3char:getSelected() == 3) then GameDefinition["Player"][1][3]["Name"] = "Sandria Fields" end
 				if (t1p3race:getSelected() == 1) then GameDefinition["Player"][1][3]["Race"] = "human" 		elseif (t1p3race:getSelected() == 2) then GameDefinition["Player"][1][3]["Race"] = "orc" 			end
 			elseif (GameDefinition["Map"][player]["Player"] == 4) then
-				if (t1p4char:getSelected() == 1) then GameDefinition["Player"][1][4]["Name"] = "Aya Kalang" elseif (t1p4char:getSelected() == 2) then GameDefinition["Player"][1][4]["Race"] = "Shane Wolfe" 	elseif (t1p4char:getSelected() == 3) then GameDefinition["Player"][1][4]["Name"] = "Aya Kalang" end
+				if (t1p4char:getSelected() == 1) then GameDefinition["Player"][1][4]["Name"] = "Aya Kalang" elseif (t1p4char:getSelected() == 2) then GameDefinition["Player"][1][4]["Name"] = "Shane Wolfe" 	elseif (t1p4char:getSelected() == 3) then GameDefinition["Player"][1][4]["Name"] = "Sandria Fields" end
 				if (t1p4race:getSelected() == 1) then GameDefinition["Player"][1][4]["Race"] = "human" 		elseif (t1p4race:getSelected() == 2) then GameDefinition["Player"][1][4]["Race"] = "orc" 			end
 			end
 		elseif (GameDefinition["Map"][player]["Team"] == 2) then
 			if (GameDefinition["Map"][player]["Player"] == 1) then
-				if (t2p1char:getSelected() == 1) then GameDefinition["Player"][2][1]["Name"] = "Aya Kalang" elseif (t2p1char:getSelected() == 2) then GameDefinition["Player"][2][1]["Race"] = "Shane Wolfe" 	elseif (t2p1char:getSelected() == 3) then GameDefinition["Player"][2][1]["Name"] = "Aya Kalang" end
+				if (t2p1char:getSelected() == 1) then GameDefinition["Player"][2][1]["Name"] = "Aya Kalang" elseif (t2p1char:getSelected() == 2) then GameDefinition["Player"][2][1]["Name"] = "Shane Wolfe" 	elseif (t2p1char:getSelected() == 3) then GameDefinition["Player"][2][1]["Name"] = "Sandria Fields" end
 				if (t2p1race:getSelected() == 1) then GameDefinition["Player"][2][1]["Race"] = "human" 		elseif (t2p1race:getSelected() == 2) then GameDefinition["Player"][2][1]["Race"] = "orc" 			end
 			elseif (GameDefinition["Map"][player]["Player"] == 2) then
-				if (t2p2char:getSelected() == 1) then GameDefinition["Player"][2][2]["Name"] = "Aya Kalang" elseif (t2p2char:getSelected() == 2) then GameDefinition["Player"][2][2]["Race"] = "Shane Wolfe" 	elseif (t2p1char:getSelected() == 3) then GameDefinition["Player"][2][2]["Name"] = "Aya Kalang" end
+				if (t2p2char:getSelected() == 1) then GameDefinition["Player"][2][2]["Name"] = "Aya Kalang" elseif (t2p2char:getSelected() == 2) then GameDefinition["Player"][2][2]["Name"] = "Shane Wolfe" 	elseif (t2p1char:getSelected() == 3) then GameDefinition["Player"][2][2]["Name"] = "Sandria Fields" end
 				if (t2p2race:getSelected() == 1) then GameDefinition["Player"][2][2]["Race"] = "human" 		elseif (t2p2race:getSelected() == 2) then GameDefinition["Player"][2][2]["Race"] = "orc" 			end
 			elseif (GameDefinition["Map"][player]["Player"] == 3) then
-				if (t2p3char:getSelected() == 1) then GameDefinition["Player"][2][3]["Name"] = "Aya Kalang" elseif (t1p3char:getSelected() == 2) then GameDefinition["Player"][1][3]["Race"] = "Shane Wolfe" 	elseif (t1p3char:getSelected() == 3) then GameDefinition["Player"][1][3]["Name"] = "Aya Kalang" end
+				if (t2p3char:getSelected() == 1) then GameDefinition["Player"][2][3]["Name"] = "Aya Kalang" elseif (t1p3char:getSelected() == 2) then GameDefinition["Player"][1][3]["Name"] = "Shane Wolfe" 	elseif (t1p3char:getSelected() == 3) then GameDefinition["Player"][1][3]["Name"] = "Sandria Fields" end
 				if (t2p3race:getSelected() == 1) then GameDefinition["Player"][2][3]["Race"] = "human" 		elseif (t1p3race:getSelected() == 2) then GameDefinition["Player"][1][3]["Race"] = "orc" 			end
 			elseif (GameDefinition["Map"][player]["Player"] == 4) then
-				if (t2p4char:getSelected() == 1) then GameDefinition["Player"][2][4]["Name"] = "Aya Kalang" elseif (t2p4char:getSelected() == 2) then GameDefinition["Player"][2][4]["Race"] = "Shane Wolfe" 	elseif (t2p4char:getSelected() == 3) then GameDefinition["Player"][2][4]["Name"] = "Aya Kalang" end
+				if (t2p4char:getSelected() == 1) then GameDefinition["Player"][2][4]["Name"] = "Aya Kalang" elseif (t2p4char:getSelected() == 2) then GameDefinition["Player"][2][4]["Name"] = "Shane Wolfe" 	elseif (t2p4char:getSelected() == 3) then GameDefinition["Player"][2][4]["Name"] = "Sandria Fields" end
 				if (t2p4race:getSelected() == 1) then GameDefinition["Player"][2][4]["Race"] = "human" 		elseif (t2p4race:getSelected() == 2) then GameDefinition["Player"][2][4]["Race"] = "orc" 			end
 			end
 		end
@@ -307,12 +350,8 @@ function NewRunSinglePlayerGameMenu()
       RunMap(mapname, nil, wc2.preferences.FogOfWar, false)
       menu:stop()
     end)
-  menu:addFullButton(_("~!Cancel Game"), "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() CleanCustomGame_Lua(); menu:stop(1); RunSinglePlayerTypeMenu() end)
-
-
-  
-
-				
+	--TODO: Cancel Game button doesn't work.
+  menu:addFullButton(_("~!Cancel Game"), "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() menu:stop(1); RunSinglePlayerTypeMenu(); CleanCustomGame_Lua(); end)		
 				
   local team1x = (Video.Width / 2) - 175
   local team1y = offy + 10 + 240
@@ -323,20 +362,12 @@ function NewRunSinglePlayerGameMenu()
   local team4x = offx + 40 + 300
   local team4y = offy + (10 + 240) - 20 + 400
   
-  
-  
-  
-  
   for player=0,15 do
-	  
-	  
-	  
-	  
 	if (GameDefinition["Map"][player]["Team"] ~= nil) then
 		if (GameDefinition["Map"][player]["Team"] == 1) then
 			if (GameDefinition["Map"][player]["Player"] == 1) then
 				menu:addLabel(_("~<Team 1~>"), team1x, team1y - 25, Fonts["game"], true)
-				t1p1char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team1x - 152, team1y + 25*0,
+				t1p1char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Sandria Fields")}, team1x - 152, team1y + 25*0,
 					function(dd) end)
 				t1p1char:setSize(152, 20)
 
@@ -344,7 +375,7 @@ function NewRunSinglePlayerGameMenu()
 					function(dd) end)
 				t1p1race:setSize(152, 20)
 			elseif (GameDefinition["Map"][player]["Player"] == 2) then
-				t1p2char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team1x - 152, team1y + 25*1,
+				t1p2char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Sandria Fields")}, team1x - 152, team1y + 25*1,
 					function(dd) end)
 				t1p2char:setSize(152, 20)
 				  
@@ -353,7 +384,7 @@ function NewRunSinglePlayerGameMenu()
 				t1p2race:setSize(152, 20)
 			elseif (GameDefinition["Map"][player]["Player"] == 3) then
 				menu:addLabel(_("~<Team 1~>"), team1x, team1y - 25, Fonts["game"], true)
-				t1p3char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team1x - 152, team1y + 25*2,
+				t1p3char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Sandria Fields")}, team1x - 152, team1y + 25*2,
 					function(dd) end)
 				t1p3char:setSize(152, 20)
 
@@ -361,7 +392,7 @@ function NewRunSinglePlayerGameMenu()
 					function(dd) end)
 				t1p3race:setSize(152, 20)
 			elseif (GameDefinition["Map"][player]["Player"] == 4) then
-				t1p4char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team1x - 152, team1y + 25*3,
+				t1p4char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Sandria Fields")}, team1x - 152, team1y + 25*3,
 					function(dd) end)
 				t1p4char:setSize(152, 20)
 				  
@@ -372,7 +403,7 @@ function NewRunSinglePlayerGameMenu()
 		elseif (GameDefinition["Map"][player]["Team"] == 2) then
 			if (GameDefinition["Map"][player]["Player"] == 1) then
 				menu:addLabel(_("~<Team 2~>"), team2x, team2y - 25, Fonts["game"], true)
-				t2p1char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team2x - 152, team2y + 25*0,
+				t2p1char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Sandria Fields")}, team2x - 152, team2y + 25*0,
 					function(dd) end)
 				t2p1char:setSize(152, 20)
 
@@ -380,7 +411,7 @@ function NewRunSinglePlayerGameMenu()
 					function(dd) end)
 				t2p1race:setSize(152, 20)
 			elseif (GameDefinition["Map"][player]["Player"] == 2) then
-				t2p2char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team2x - 152, team2y + 25*1,
+				t2p2char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Sandria Fields")}, team2x - 152, team2y + 25*1,
 					function(dd) end)
 				t2p2char:setSize(152, 20)
 				  
@@ -389,7 +420,7 @@ function NewRunSinglePlayerGameMenu()
 				t2p2race:setSize(152, 20)
 			elseif (GameDefinition["Map"][player]["Player"] == 3) then
 				menu:addLabel(_("~<Team 1~>"), team1x, team1y - 25, Fonts["game"], true)
-				t2p3char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team2x - 152, team2y + 25*2,
+				t2p3char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Sandria Fields")}, team2x - 152, team2y + 25*2,
 					function(dd) end)
 				t2p3char:setSize(152, 20)
 
@@ -397,7 +428,7 @@ function NewRunSinglePlayerGameMenu()
 					function(dd) end)
 				t2p3race:setSize(152, 20)
 			elseif (GameDefinition["Map"][player]["Player"] == 4) then
-				t2p4char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Aya Kalang")}, team2x - 152, team2y + 25*3,
+				t2p4char = menu:addDropDown({_("Map Default"), _("Aya Kalang"), _("Shane Wolfe"), _("Sandria Fields")}, team2x - 152, team2y + 25*3,
 					function(dd) end)
 				t2p4char:setSize(152, 20)
 				  

@@ -136,6 +136,7 @@ function AiPlayer_Check_2015(player, ai)
 end
 
 function AiRed_2015()
+	AiCharacter_Set_Name_2015()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWise()) > 0) and (GameCycle > 500)) then
 		if ((timers[ftm_team[AiPlayer()]] == 50) or (timers[ftm_team[AiPlayer()]] == 99) or (timers[ftm_team[AiPlayer()]] == 25) or (timers[ftm_team[AiPlayer()]] == 75)) then
 		else
@@ -181,6 +182,8 @@ function AiRed_Action_2015(player)
 		else
 			AiRed_Increment_2014(player)
 		end
+	elseif ((aiftm_action[player][aiftm_index[player]] == "ai_red_2014") or (aiftm_action[player][0] == "ai_red_2014") or ((aiftm_action[player][10] == "ai_red_2014") and( aiftm_index[player] > 9))) then
+		AiRed_2014()
 	elseif ((aiftm_action[player][aiftm_index[player]] == "attack") or (aiftm_action[player][aiftm_index[player]] == "move") or (aiftm_action[player][aiftm_index[player]] == "patrol") or (aiftm_action[player][aiftm_index[player]] == "attack area") or (aiftm_action[player][aiftm_index[player]] == "move area") or (aiftm_action[player][aiftm_index[player]] == "patrol area")) then
 		if ((aiftm_y_from[player][aiftm_index[player]] == nil) or (aiftm_x_from[player][aiftm_index[player]] == nil)) then
 			OrderUnit(player, aiftm_unit[player][aiftm_index[player]], {0,0,mapinfo.w,mapinfo.h}, {aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]],aiftm_x_to[player][aiftm_index[player]],aiftm_y_to[player][aiftm_index[player]]}, aiftm_action[player][aiftm_index[player]])
@@ -273,9 +276,13 @@ function AiRed_Strategy_Choice_2015(i, j, unit, or1, unit2, or2, unit3, slot)
 end
 
 function AiCharacter_Set_Name_2015(name)
-	--if ((GameDefinition["Map"][AiPlayer()]["Team"] ~= nil ) and (GameDefinition["Map"][AiPlayer()]["Player"] ~= nil ) and (GameDefinition["Player"][GameDefinition["Map"][AiPlayer()]["Team"]][GameDefinition["Map"][AiPlayer()]["Player"]]["Name"] ~= nil)) then
+	if (name == nil) then
+		if (GameDefinition["Player"][GameDefinition["Map"][AiPlayer()]["Team"]][GameDefinition["Map"][AiPlayer()]["Player"]]["Name"] ~= nil) then
+			AiJadeite_Set_Name_2010(GameDefinition["Player"][GameDefinition["Map"][AiPlayer()]["Team"]][GameDefinition["Map"][AiPlayer()]["Player"]]["Name"])
+		end
+	else
 		AiJadeite_Set_Name_2010(name)
-	--end
+	end
 end
 
 function AiShane_2015()
@@ -283,7 +290,6 @@ function AiShane_2015()
 	if (GameDefinition["Name"] == "For the Motherland") then
 		AiShane_FtM_2015(AiPlayer())
 	end
-	AiCharacter_Set_Name_2015("Shane Wolfe")
 end
 
 function AiAya_2015()
@@ -291,7 +297,13 @@ function AiAya_2015()
 	if (GameDefinition["Name"] == "For the Motherland") then
 		AiAya_FtM_2015(AiPlayer())
 	end
-	AiCharacter_Set_Name_2015("Aya Kalang")
+end
+
+function AiSandria_2015()
+	--Check game type.
+	if (GameDefinition["Name"] == "For the Motherland") then
+		AiAya_FtM_2015(AiPlayer())
+	end
 end
 
 function AiShane_FtM_2015(player)
@@ -303,6 +315,8 @@ function AiShane_FtM_2015(player)
 			AiShane_FtM_One_Way_Through_2015(player)
 		elseif (GameDefinition["Map"]["Name"] == "Nick's Duel") then
 			AiShane_FtM_Nicks_Duel_2015(player)
+		else
+			AiRed_Strategy_Action_2015(player, 0, "ai_red_2014")
 		end
 	end
 	AiRed_2015()
@@ -314,7 +328,7 @@ function AiAya_FtM_2015(player)
 		if (GameDefinition["Map"]["Name"] == "Rockfort Arena") then
 			AiAya_FtM_Rockfort_Arena_2015(player)
 		elseif (GameDefinition["Map"]["Name"] == "One Way Through") then
-			--AiAya_FtM_One_Way_Through_2015(player)
+			AiAya_FtM_One_Way_Through_2015(player)
 		elseif (GameDefinition["Map"]["Name"] == "Nick's Duel") then
 			AiAya_FtM_Nicks_Duel_2015(player)
 		end
@@ -323,7 +337,7 @@ function AiAya_FtM_2015(player)
 end
 
 function AiShane_FtM_Nicks_Duel_2015(player)
-	aiftm_terminate[player] = 1000
+	AiAya_FtM_Nicks_Duel_2015(player)
 	-- TODO: This.
 end
 
@@ -411,6 +425,11 @@ function AiAya_FtM_Nicks_Duel_2015(player)
 	AiRed_Strategy_Action_2015(player, 54, "summon", 1, "hero", x+1, y+1)
 	AiRed_Strategy_Action_2015(player, 55, "skip", 10)
 	AiRed_Strategy_Action_2015(player, 56, "loop", 31)
+end
+
+function AiAya_FtM_One_Way_Through_2015(player)
+	AiShane_FtM_One_Way_Through_2015(player)
+	-- TODO: This!
 end
 
 function AiShane_FtM_One_Way_Through_2015(player)
@@ -745,3 +764,4 @@ DefineAi("ai_red_2015", "*", "ai_red_2015", AiRed_2015)
 DefineAi("ai_frontlines_2015", "*", "ai_frontlines_2015", AiFrontlines_2015)
 DefineAi("Shane Wolfe", "*", "ai_red_2015", AiShane_2015)
 DefineAi("Aya Kalang", "*", "ai_red_2015", AiAya_2015)
+DefineAi("Sandria Fields", "*", "ai_red_2015", AiSandria_2015)

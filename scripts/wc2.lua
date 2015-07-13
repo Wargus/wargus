@@ -209,7 +209,7 @@ function SetMapTeams(player, team, position)
 	GameDefinition["Map"][player]["Player"] = position
 end
 
-function GameDefinitionSetup(name, version, revision, map, path)
+function GameDefinitionSetup(name, version, revision, map, path, topography)
 	if (name == "initialise") then
 		GameDefinition = {}
 		GameDefinition["Briefing"] = {}
@@ -225,6 +225,9 @@ function GameDefinitionSetup(name, version, revision, map, path)
 				-- GameDefinition["Player"][1][1]["Race"] = Human
 				-- GameDefinition["Player"][1][1]["Position"] = 8
 				GameDefinition["Player"][team][player] = {}
+				GameDefinition["Player"][team][player]["Name"] = nil
+				GameDefinition["Player"][team][player]["Race"] = nil
+				GameDefinition["Player"][team][player]["Position"] = nil
 			end
 		end
 	end
@@ -234,6 +237,7 @@ function GameDefinitionSetup(name, version, revision, map, path)
 		GameDefinition["Revision"] = 1
 		GameDefinition["Map"]["Name"] = "None"
 		GameDefinition["Map"]["Path"] = "None"
+		GameDefinition["Map"]["Type"] = "None"
 		GameDefinition["Briefing"]["Active"] = true
 		GameDefinition["Briefing"]["Width"] = 800
 		GameDefinition["Briefing"]["Height"] = 600
@@ -254,12 +258,18 @@ function GameDefinitionSetup(name, version, revision, map, path)
 	elseif (version ~= nil) then
 		if (revision == nil) then revision = 1 end
 		GameDefinition["Name"] = name
-		GameDefinition["Version"] = version
+		if ((GameDefinition["Version"] == "Classic") and (version == "Modern")) then else
+			GameDefinition["Version"] = version
+		end
 		GameDefinition["Revision"] = revision
 		if (map ~= nil) then
 			GameDefinition["Map"]["Name"] = map
 			if (map ~= nil) then
 				GameDefinition["Map"]["Path"] = path
+			end
+			if (topography ~= nil) then
+				-- Land, Coastal, Islands
+				GameDefinition["Map"]["Type"] = topography
 			end
 		end
 	end

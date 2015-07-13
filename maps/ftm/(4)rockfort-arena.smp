@@ -31,4 +31,4 @@ SetMapTeams(10, 2, 1)
 SetMapTeams(11, 2, 2)
 
 DefinePlayerTypes("computer", "computer", "computer", "computer", "nobody", "nobody", "nobody", "nobody", "person", "person", "person", "person", "nobody")
-PresentMap("Burnout", 6, 96, 96, 6)
+PresentMap("Rockfort Arena", 6, 96, 96, 6)
