@@ -31,11 +31,45 @@ local jadeite_stepping = {} -- Used to identify where the build order is up to.
 local jadeite_cavalry = {} -- Used to identify if cavalry have been upgraded.
 local jadeite_archers = {} -- Used to identify if archers have been upgraded.
 local jadeite_attacker = {} -- Used to make sure the attack command isn't called too often.
+local jadeite_builder = {} -- Used to make sure the build command isn't called too often.
+
+function AiJadeite_Ticker_2010(timer)
+	if (timer ~= nil) then
+		jadeite_builder[AiPlayer()] = timer
+	end
+	if ((jadeite_attacker[AiPlayer()] == nil) or (jadeite_attacker[AiPlayer()] < 0)) then
+		AiJadeite_Reset_2010(0)
+	elseif (jadeite_attacker[AiPlayer()] > 0) then
+		AiJadeite_Reset_2010(jadeite_attacker[AiPlayer()] - 1)
+	end
+	if ((jadeite_builder[AiPlayer()] == nil) or (jadeite_builder[AiPlayer()] < 0)) then
+		AiJadeite_Ticker_2010(0)
+	elseif (jadeite_builder[AiPlayer()] > 0) then
+		AiJadeite_Ticker_2010(jadeite_builder[AiPlayer()] - 1)
+	end
+end
+
+function AiJadeite_Reset_2010(timer)
+	if (timer == nil) then
+		timer = 10
+	end
+	jadeite_attacker[AiPlayer()] = timer
+end
 
 function AiJadeite_Intermittent_2010()
 	if (GameDefinition["Map"]["Type"] == "Land") then
 	
 	elseif (GameDefinition["Map"]["Type"] == "Coastal") then
+		if (GameCycle > 10000) then
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiHarbor()) == 0) then
+				AiJadeite_Build_2010(AiHarbor())
+			end
+		elseif (GameCycle > 15000) then
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFoundry()) == 0) then
+				AiJadeite_Build_2010(AiFoundry())
+			end
+		end
+	elseif ((GameDefinition["Map"]["Type"] == "Islands") or (GameDefinition["Map"]["Type"] == "Island")) then
 		if (GameCycle > 5000) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiHarbor()) == 0) then
 				AiJadeite_Build_2010(AiHarbor())
@@ -43,31 +77,26 @@ function AiJadeite_Intermittent_2010()
 		elseif (GameCycle > 10000) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFoundry()) == 0) then
 				AiJadeite_Build_2010(AiFoundry())
-			end
-		end
-	elseif ((GameDefinition["Map"]["Type"] == "Islands") or (GameDefinition["Map"]["Type"] == "Island")) then
-		if (GameCycle > 2500) then
-			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiHarbor()) == 0) then
-				AiJadeite_Build_2010(AiHarbor())
-			end
-		elseif (GameCycle > 5000) then
-			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFoundry()) == 0) then
-				AiJadeite_Build_2010(AiFoundry())
+				AiJadeite_Build_2010(AiHarbor(), 2)
 			end
 		end
 	end
-	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 5) and (GameCycle > 2000)) then
+	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 5) and ((GameCycle > 500) and (GameCycle < 5000))) then
 		AiSet(AiWorker(), 8)
+		if (GameCycle > 4500) then
+			AiSet(AiFarm(), 8)
+		end
+		
+	elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 10) and ((GameCycle > 5000) and (GameCycle < 6000)) and (GetPlayerData(AiPlayer(), "Resources", "gold") > 2000)) then
+		AiSet(AiWorker(), 12)
+	elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) < 15) and ((GameCycle > 10000) and (GameCycle < 11000))) then
+		AiSet(AiWorker(), 20)
 	end
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiTanker()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiPlatform()) == 0)) then
 		AiJadeite_Build_2010(AiPlatform(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiTanker()))
 		AiJadeite_Build_2010(AiRefinery())
 	end
-	if ((jadeite_attacker[AiPlayer()] == nil) or (jadeite_attacker[AiPlayer()] < 0)) then
-		jadeite_attacker[AiPlayer()] = 0
-	elseif (jadeite_attacker[AiPlayer()] > 0) then
-		jadeite_attacker[AiPlayer()] = jadeite_attacker[AiPlayer()] - 1
-	end
+	AiJadeite_Ticker_2010()
 	if ((GameCycle < 1000) and (jadeite_stepping[AiPlayer()] ~= 5)) then
 		jadeite_stepping[AiPlayer()] = 5
 	elseif (((GameCycle > 4000) and (GameCycle < 4050)) or ((GameCycle > 6000) and (GameCycle < 6050)) or ((GameCycle > 8000) and (GameCycle < 8050)) or ((GameCycle > 10000) and (GameCycle < 10050)) or ((GameCycle > 15000) and (GameCycle < 15050)) or ((GameCycle > 20000) and (GameCycle < 20050)) or ((GameCycle > 25000) and (GameCycle < 25050)) or ((GameCycle > 30000) and (GameCycle < 30050)) or ((GameCycle > 40000) and (GameCycle < 40050)) or ((GameCycle > 50000) and (GameCycle < 50050)) or ((GameCycle > 60000) and (GameCycle < 60050)) or ((GameCycle > 70000) and (GameCycle < 70050)) or ((GameCycle > 80000) and (GameCycle < 80050)) or ((GameCycle > 90000) and (GameCycle < 90050)) or ((GameCycle > 100000) and (GameCycle < 100050)) or ((GameCycle > 110000) and (GameCycle < 120050)) or ((GameCycle > 130000) and (GameCycle < 130050)) or ((GameCycle > 140000) and (GameCycle < 140050)) or ((GameCycle > 150000) and (GameCycle < 150050)) or ((GameCycle > 160000) and (GameCycle < 160050))) then
@@ -80,21 +109,15 @@ function AiJadeite_Intermittent_2010()
 	end
 end
 
-function AiJadeite_Reset_2010(timer)
-	if (timer == nil) then
-		timer = 10
-	end
-	jadeite_attacker[AiPlayer()] = timer
-end
-
-function AiJadeite_Upgrade_2010(unit)
+function AiJadeite_Upgrade_2010(unit, number)
+	if (number == nil) then number = 0 else number = number - 1 end
 	if ((unit == AiEliteShooter()) and (jadeite_archers[AiPlayer()] == nil)) then unit = AiShooter() end
 	if ((unit == AiCavalryMage()) and (jadeite_cavalry[AiPlayer()] == nil)) then unit = AiCavalry() end
 	if ((unit == AiUpgradeCavalryMage()) and (jadeite_cavalry[AiPlayer()] == nil)) then
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTemple()) > 0) then
 			AiResearch(AiUpgradeCavalryMage())
 			AiJadeite_Attack_2010(4)
-			AiJadeite_Reset_2010(300)
+			AiJadeite_Ticker_2010(10)
 			jadeite_cavalry[AiPlayer()] = true
 		else
 			AiJadeite_Build_2010(AiTemple())
@@ -103,7 +126,7 @@ function AiJadeite_Upgrade_2010(unit)
 		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) > 0)) then
 			AiResearch(AiUpgradeEliteShooter())
 			AiJadeite_Attack_2010(5)
-			AiJadeite_Reset_2010(300)
+			AiJadeite_Ticker_2010(10)
 			jadeite_archers[AiPlayer()] = true
 		else
 			AiJadeite_Build_2010(AiBetterCityCenter(), 1, false, AiLumberMill())
@@ -137,7 +160,11 @@ function AiJadeite_Upgrade_2010(unit)
 		end
 	elseif (unit == AiCavalry()) then
 		AiJadeite_Upgrade_2010(AiSoldier())
-		AiJadeite_Upgrade_2010(AiUpgradeCavalryMage())
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
+			AiJadeite_Upgrade_2010(AiUpgradeCavalryMage())
+		else
+			AiJadeite_Build_2010(AiStables())
+		end
 	elseif (unit == AiCavalryMage()) then
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTemple()) > 0) then
 			AiJadeite_Upgrade_2010(AiCavalryMageSpell1())
@@ -161,63 +188,90 @@ function AiJadeite_Upgrade_2010(unit)
 		else
 			AiJadeite_Build_2010(AiFoundry())
 		end
+	elseif ((unit == AiGuardTower()) or (unit == AiCannonTower)) then
+		AiUpgradeTo(unit)
 	else
 		AiResearch(unit)
 	end
 end
 
-function AiJadeite_Attack_2010(force)
-	if (jadeite_attacker[AiPlayer()] == 0) then
-		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 2) then
-			AiJadeite_Reset_2010(25)
-		else
-			AiJadeite_Reset_2010(50)
+function AiJadeite_Attack_2010(force, coerce)
+	if (force == nil) then
+		for i=1, 7 do
+			AiJadeite_Attack_2010(i, true)
 		end
-		if (GameDefinition["Name"] == "Front Lines") then
-			if (timers[ftm_team[AiPlayer()]] > 10) then
-				OrderUnit(AiPlayer(), AiSoldier(), {ftm_team_x1[ftm_team[AiPlayer()]],ftm_team_y1[ftm_team[AiPlayer()]],ftm_team_x2[ftm_team[AiPlayer()]],ftm_team_y2[ftm_team[AiPlayer()]]}, {ftm_team_x1[AiPlayer()], ftm_team_y1[AiPlayer()], ftm_team_x2[AiPlayer()], ftm_team_y2[AiPlayer()]}, "move")
+	else
+		if (coerce == nil) then coerce = false end
+		if ((jadeite_attacker[AiPlayer()] == 0) and (((coerce == false) and (AiWaitForce(force) == false)) or (coerce == true))) then
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 2) then
+				AiJadeite_Reset_2010(50)
 			else
-				AiJadeite_Reset_2010(10)
+				AiJadeite_Reset_2010(100)
 			end
-		else
-			AiAttackWithForce(force)
+			if (GameDefinition["Name"] == "Front Lines") then
+				if (timers[ftm_team[AiPlayer()]] > 10) then
+					OrderUnit(AiPlayer(), AiSoldier(), {ftm_team_x1[ftm_team[AiPlayer()]],ftm_team_y1[ftm_team[AiPlayer()]],ftm_team_x2[ftm_team[AiPlayer()]],ftm_team_y2[ftm_team[AiPlayer()]]}, {ftm_team_x1[AiPlayer()], ftm_team_y1[AiPlayer()], ftm_team_x2[AiPlayer()], ftm_team_y2[AiPlayer()]}, "move")
+				else
+					AiJadeite_Reset_2010(50)
+				end
+			else
+				AiAttackWithForce(force)
+				if (force ~= 7) then
+					AiJadeite_Attack_2010(7)
+				end
+			end
 		end
 	end
 end
 
 function AiJadeite_Force_2010(force, unit1, quantity1, unit2, quantity2, unit3, quantity3)
-	if (((GameDefinition["Map"]["Type"] == "Islands") or (GameDefinition["Map"]["Type"] == "Island")) or ((GameDefinition["Map"]["Type"] == "Coastal") and (GameCycle > 25000) and (GameCycle < 30000))) then
-		if ((unit1 == AiTransporter()) or (unit2 == AiTransporter()) or (unit3 == AiTransporter())) then else
+	if (quantity1 == nil) then quantity1 = 1 end
+	if (quantity2 == nil) then quantity2 = 1 end
+	if (quantity3 == nil) then quantity3 = 1 end
+	if (((GameDefinition["Map"]["Topography"] == "Islands") or (GameDefinition["Map"]["Topography"] == "Island")) or ((GameDefinition["Map"]["Topography"] == "Coastal") and (GameCycle > 25000) and (GameCycle < 30000))) then
+		if (((unit1 == AiBattleship()) or (unit2 == AiBattleship()) or (unit3 == AiBattleship())) or ((unit1 == AiTransporter()) or (unit2 == AiTransporter()) or (unit3 == AiTransporter())) or ((unit1 == AiDestroyer()) or (unit2 == AiDestroyer()) or (unit3 == AiDestroyer()))) then elseif (force ~= 0) then
 			if (unit2 == nil) then
 				unit2 = AiTransporter()
-				unit3 = AiDestroyer()
 				if (quantity1 > 8) then
 					quantity2 = 2
-					quantity3 = 2
-				elseif (quantity1 > 15) then
-					quantity2 = 3
-					quantity3 = 3
 				else
 					quantity2 = 1
-					quantity3 = 1
 				end
 			elseif (unit3 == nil) then
 				unit3 = AiTransporter()
 				if (quantity1 + quantity2 > 6) then
 					quantity3 = 2
-				elseif (quantity1 + quantity2 > 12) then
-					quantity3 = 3
 				else
 					quantity3 = 1
+				end
+			else
+				unit4 = AiTransporter()
+				if (quantity1 + quantity2 > 6) then
+					quantity4 = 2
+				else
+					quantity4 = 1
+				end
+			end
+			if ((jadeite_builder[AiPlayer()] == 0) and (force ~= 7) and (GetPlayerData(AiPlayer(), "UnitTypesCount", unit1) > 6)) then
+				if (GameCycle > 30000) then
+					AiJadeite_Force_2010(7, AiDestroyer(), 4, AiBattleship(), 1, AiScout(), 1)
+				elseif (GameCycle > 25000) then
+					AiJadeite_Force_2010(7, AiDestroyer(), 4, AiScout(), 1)
+				elseif (GameCycle > 10000) then
+					AiJadeite_Force_2010(7, AiDestroyer(), 2)
+				elseif (GameCycle > 5000) then
+					AiJadeite_Force_2010(7, AiDestroyer(), 1)
 				end
 			end
 		end
 	end
-	if (((unit1 == AiBattleship()) or (unit2 == AiBattleship()) or (unit3 == AiBattleship()) or (unit1 == AiTransporter()) or (unit2 == AiTransporter()) or (unit3 == AiTransporter())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFoundry()) == 0)) then AiJadeite_Build_2010(AiFoundry()) end
-	if (jadeite_attacker[AiPlayer()] == 0) then
+	if (((unit1 == AiBattleship()) or (unit2 == AiBattleship()) or (unit3 == AiBattleship()) or (unit1 == AiTransporter()) or (unit2 == AiTransporter()) or (unit3 == AiTransporter()) or (unit4 == AiTransporter())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFoundry()) == 0)) then AiJadeite_Build_2010(AiFoundry()) end
+	if (jadeite_builder[AiPlayer()] == 0) then
+		if (((unit1 == AiCatapult()) or (unit2 == AiCatapult()) or (unit3 == AiCatapult())) and ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) == 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) == 0))) then AiJadeite_Build_2010(AiBlacksmith(), 1, false, AiBarracks()) end
+		if (((unit1 == AiScout()) or (unit2 == AiScout()) or (unit3 == AiScout())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiScientific()) == 0)) then AiJadeite_Build_2010(AiScientific()) end
 		if (((unit1 == AiDestroyer()) or (unit2 == AiDestroyer()) or (unit3 == AiDestroyer())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiHarbor()) == 0)) then AiJadeite_Build_2010(AiHarbor()) end
 		if (((unit1 == AiSoldier()) or (unit2 == AiSoldier()) or (unit3 == AiSoldier())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) == 0)) then AiJadeite_Build_2010(AiBarracks()) end
-		if (((unit1 == AiCavalry()) or (unit2 == AiCavalry()) or (unit3 == AiCavalry())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) == 0)) then AiJadeite_Build_2010(AiStables()) end
+		if (((unit1 == AiCavalry()) or (unit2 == AiCavalry()) or (unit3 == AiCavalry())) and ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) == 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) == 0))) then AiJadeite_Build_2010(AiStables(), 1, false, AiBlacksmith()) end
 		if ((unit1 == AiCavalryMage()) or (unit2 == AiCavalryMage()) or (unit3 == AiCavalryMage())) then 
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTemple()) == 0) then
 				AiJadeite_Build_2010(AiTemple()) 
@@ -233,9 +287,6 @@ function AiJadeite_Force_2010(force, unit1, quantity1, unit2, quantity2, unit3, 
 				AiJadeite_Upgrade_2010(AiUpgradeEliteShooter()) 
 			end
 		end
-		if (quantity1 == nil) then quantity1 = 1 end
-		if (quantity2 == nil) then quantity2 = 1 end
-		if (quantity3 == nil) then quantity3 = 1 end
 		if (jadeite_cavalry[AiPlayer()] ~= nil) then
 			if (unit1 == AiCavalry()) then unit1 = AiCavalryMage() end
 			if (unit2 == AiCavalry()) then unit2 = AiCavalryMage() end
@@ -255,13 +306,15 @@ function AiJadeite_Force_2010(force, unit1, quantity1, unit2, quantity2, unit3, 
 			if (unit3 == AiEliteShooter()) then unit3 = AiShooter() end
 		end
 		if (unit2 == nil) then
-			AiForce(force, {unit1, quantity1})
+			AiForce(force, {unit1, quantity1}, true)
 		elseif (unit3 == nil) then
-			AiForce(force, {unit1, quantity1, unit2, quantity2})
+			AiForce(force, {unit1, quantity1, unit2, quantity2}, true)
+		elseif (unit4 == nil) then
+			AiForce(force, {unit1, quantity1, unit2, quantity2, unit3, quantity3}, true)
 		else
-			AiForce(force, {unit1, quantity1, unit2, quantity2, unit3, quantity3})
+			AiForce(force, {unit1, quantity1, unit2, quantity2, unit3, quantity3, unit4, quantity4}, true)
 		end
-		AiJadeite_Reset_2010(25)
+		AiJadeite_Ticker_2010(5)
 	end
 end
 
@@ -274,6 +327,33 @@ function AiJadeite_Build_2010(unit, quantity, force, unit2)
 			if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0)) then
 				if ((unit == AiFarm()) or (unit == AiBarracks()) or (unit == AiLumberMill()) or (unit == AiBlacksmith())) then
 					force = true
+				elseif ((unit == AiTower()) or (unit == AiGuardTower()) or (unit == AiCannonTower())) then
+					if (unit == AiTower()) then
+						unit = AiTower()
+						force = true
+					elseif ((unit == AiGuardTower()) and (GetNumUnitsAt(AiPlayer(), AiGuardTower(), {0, 0}, {mapinfo.w, mapinfo.h}) < quantity)) then	
+						if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTower()) > 0)) then
+							AiSet(AiTower(), 0)
+							AiJadeite_Upgrade_2010(AiGuardTower())
+						else	
+							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) > 0) then
+								AiSet(AiTower(), 1)
+							else
+								AiSet(AiLumberMill(), 1)
+							end
+						end
+					elseif ((unit == AiCannonTower()) and (GetNumUnitsAt(AiPlayer(), AiCannonTower(), {0, 0}, {mapinfo.w, mapinfo.h}) < quantity)) then
+						if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTower()) > 0)) then
+							AiJadeite_Upgrade_2010(AiCannonTower())
+							AiSet(AiTower(), 0)
+						else
+							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then
+								AiSet(AiTower(), 1)
+							else
+								AiSet(AiBlacksmith(), 1)
+							end
+						end
+					end
 				else
 					if ((unit == AiPlatform()) or (unit == AiHarbor()) or (unit == AiRefinery()) or (unit == AiFoundry())) then
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) > 0) then
@@ -390,17 +470,17 @@ function AiJadeite_Power_2010()
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFarm()) >= 1) then
 			AiSet(AiWorker(), 8)
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
-				if (jadeite_attacker[AiPlayer()] == 0) then
+				if (jadeite_builder[AiPlayer()] == 0) then
 					if ((GetPlayerData(AiPlayer(), "Resources", "gold") > 5000) and (GetPlayerData(AiPlayer(), "Resources", "wood") > 1000)) then
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) < 5) then
-							AiForce(0, {AiSoldier(), 12})
+							AiJadeite_Force_2010(0, AiSoldier(), 12)
 							AiJadeite_Build_2010(AiFarm(), 8)
-							AiJadeite_Reset_2010(25)
+							AiJadeite_Ticker_2010(25)
 						end
 					else
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) < 2) then
-							AiForce(0, {AiSoldier(), 4})
-							AiJadeite_Reset_2010(50)
+							AiJadeite_Force_2010(0, AiSoldier(), 4)
+							AiJadeite_Ticker_2010(50)
 						end
 					end
 				end
@@ -409,9 +489,9 @@ function AiJadeite_Power_2010()
 					AiSet(AiWorker(), 15)
 					AiJadeite_Build_2010(AiFarm(), 5)
 				else
-					if (jadeite_attacker[AiPlayer()] == 5) then
+					if (jadeite_builder[AiPlayer()] == 5) then
 						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 2) then
-							AiForce(6, {AiCatapult(), 1}, true)
+							AiJadeite_Force_2010(6, AiCatapult(), 1)
 						end
 						AiResearch(AiUpgradeWeapon1())
 						AiResearch(AiUpgradeArmor1())
@@ -424,26 +504,17 @@ function AiJadeite_Power_2010()
 								AiJadeite_Build_2010(AiBarracks(), 3)
 							end
 							if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) < 2) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) < 2)) then
-								if (jadeite_cavalry[AiPlayer()] == nil) then
-									AiForce(6, {AiCavalry(), 10}, true)
-								else
-									AiForce(6, {AiCavalryMage(), 10}, true)
-								end
+								AiJadeite_Force_2010(6, AiCavalry(), 2)
 							else
-								if (jadeite_attacker[AiPlayer()] == 0) then
+								if (jadeite_builder[AiPlayer()] == 0) then
 									if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) > 6) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 6)) then
-										AiForce(6, {AiCavalryMage(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage())), AiCavalry(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult())}, true)
-										AiAttackWithForce(6)
+										AiJadeite_Force_2010(6, AiCavalry(), (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage())) + (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry())), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()))
+										AiJadeite_Attack_2010(6)
 										AiJadeite_Cavalry_2010()
 									elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalry()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiCavalryMage()) > 0)) then
-										if (jadeite_cavalry[AiPlayer()] == nil) then
-											AiForce(6, {AiCavalry(), 1}, true)
-										else
-											AiForce(6, {AiCavalryMage(), 1}, true)
-										end
-										AiAttackWithForce(6)
+										AiJadeite_Force_2010(6, AiCavalry(), 7)
 									end
-									AiJadeite_Reset_2010(50)
+									AiJadeite_Ticker_2010(50)
 								end
 							end
 						else
@@ -480,51 +551,63 @@ end
 function AiJadeite_Shooter_2010()
 	AiJadeite_Set_Name_2010("Kyurene")
 	AiJadeite_Intermittent_2010()
-	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
-		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) >= 1) then
-			AiJadeite_Upgrade_2010(AiUpgradeMissile1())
-			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
-				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then
-					if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0)) then
-						AiJadeite_Upgrade_2010(AiUpgradeEliteShooter())
-						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
-							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) then
-								AiJadeite_Upgrade_2010(AiUpgradeEliteShooter2())
-								AiJadeite_Upgrade_2010(AiUpgradeEliteShooter3())
+	if (GameCycle < 20000) then
+		if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) >= 1)) then
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiLumberMill()) >= 1) then
+				AiJadeite_Upgrade_2010(AiUpgradeMissile1())
+				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) >= 1) then
+					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then
+						if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0)) then
+							if (GameCycle > 5000) then
+								AiJadeite_Upgrade_2010(AiUpgradeEliteShooter())
+							end
+							if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) >= 1) then
+								if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) >= 1) then
+									AiJadeite_Upgrade_2010(AiUpgradeEliteShooter2())
+									AiJadeite_Upgrade_2010(AiUpgradeEliteShooter3())
+								else
+									AiJadeite_Build_2010(AiBestCityCenter())
+								end
 							else
-								AiJadeite_Build_2010(AiBestCityCenter())
+								AiJadeite_Build_2010(AiStables(), 1)
 							end
 						else
-							AiJadeite_Build_2010(AiStables(), 1)
+							AiJadeite_Build_2010(AiBetterCityCenter())
+						end	
+					else
+						AiJadeite_Build_2010(AiBlacksmith(), 1)
+					end
+					if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) > 3) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 3)) then 
+						if (((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) > 10) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 10)) and ((GameDefinition["Map"]["Type"] ~= "Islands") or ((GameDefinition["Map"]["Type"] == "Islands") and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTransporter()) > 0)))) then
+							AiJadeite_Attack_2010(5)
+						else
+							AiJadeite_Force_2010(5, AiShooter(), 10)
+							AiJadeite_Build_2010(AiFarm(), 5)
 						end
 					else
-						AiJadeite_Build_2010(AiBetterCityCenter())
-					end	
-				else
-					AiJadeite_Build_2010(AiBlacksmith(), 1)
-				end
-				if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) >= 4) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) >= 4)) then 
-					if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) > 11) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 15)) then 
-						AiJadeite_Attack_2010(5)
-					else
-						AiJadeite_Force_2010(5, AiShooter(), 6)
-						AiJadeite_Build_2010(AiFarm(), 5)
+						AiJadeite_Force_2010(0, AiShooter(), 4)
+						if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFarm()) < 4) then
+							AiJadeite_Build_2010(AiFarm(), 4)
+						end
+						AiJadeite_Upgrade_2010(AiUpgradeMissile2())
 					end
 				else
-					AiJadeite_Force_2010(0, AiShooter(), 4)
-					AiJadeite_Build_2010(AiFarm(), 4)
-					AiJadeite_Upgrade_2010(AiUpgradeMissile2())
+					AiJadeite_Build_2010(AiBarracks(), 1)
 				end
 			else
-				AiJadeite_Build_2010(AiBarracks(), 1)
+				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFarm()) < 2) then
+					AiJadeite_Build_2010(AiFarm(), 2)
+				end
+				AiJadeite_Build_2010(AiLumberMill(), 1)
 			end
 		else
-			AiJadeite_Build_2010(AiFarm(), 2)
-			AiJadeite_Build_2010(AiBarracks(), 1)
-			AiJadeite_Build_2010(AiLumberMill(), 1)
+			AiJadeite_Build_2010(AiCityCenter(), 1)
 		end
+	elseif (GameCycle < 20100) then
+		AiJadeite_Attack_2010()
 	else
-		AiJadeite_Build_2010(AiCityCenter(), 1)
+		AiJadeite_Force_2010(6, AiShooter(), 10, AiSoldier(), 5, AiCatapult(), 2)
+		AiJadeite_Attack_2010()
 	end
 end
 
@@ -584,8 +667,11 @@ function AiJadeite_Soldier_2010()
 	AiJadeite_Intermittent_2010()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBestCityCenter()) > 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBetterCityCenter()) > 0)) then
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 0) then
+			AiJadeite_Force_2010(0, AiSoldier(), 4)
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 3) then
-				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 12) then
+				AiJadeite_Force_2010(3, AiSoldier(), 12)
+				if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 12) and ((GameDefinition["Map"]["Type"] ~= "Islands") or ((GameDefinition["Map"]["Type"] == "Islands") and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTransporter()) > 0)))) then
+					AiJadeite_Attack_2010(3)
 					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then
 						AiJadeite_Upgrade_2010(AiSoldier())
 						AiJadeite_Build_2010(AiBarracks(), 3)
@@ -594,13 +680,10 @@ function AiJadeite_Soldier_2010()
 						AiJadeite_Build_2010(AiBlacksmith(), 1)
 						AiJadeite_Build_2010(AiBarracks(), 2)
 					end
-					AiJadeite_Attack_2010(3)
 				elseif (GetPlayerData(AiPlayer(), "Resources", "gold") > 2000) then
-					AiJadeite_Force_2010(3, AiSoldier(), 10)
 					AiJadeite_Build_2010(AiFarm(), 6)
 				end
 			else
-				AiJadeite_Force_2010(0, AiSoldier(), 4)
 				AiJadeite_Build_2010(AiFarm(), 4)
 			end
 		else
@@ -615,20 +698,20 @@ function AiJadeite_Flyer_2010()
 	AiJadeite_Set_Name_2010("Iguara")
 	AiJadeite_Intermittent_2010()
 	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiAirport()) >= 1) then
-		if (jadeite_attacker[AiPlayer()] == 0) then
+		if (jadeite_builder[AiPlayer()] == 0) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) <= 3) then
 				AiSet(AiFlyer(), 12)
-				AiJadeite_Reset_2010(25)
+				AiJadeite_Ticker_2010(25)
 				AiJadeite_Build_2010(AiAirport(), 3)
 			else
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) > 8) then
 					AiForce(2, {AiFlyer(), 12}, true)
 					AiAttackWithForce(2)
-					AiJadeite_Reset_2010(50)
+					AiJadeite_Ticker_2010(50)
 				else
 					AiForce(2, {AiFlyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer())}, true)
 					AiAttackWithForce(2)
-					AiJadeite_Reset_2010(100)
+					AiJadeite_Ticker_2010(100)
 				end
 			end
 		end
@@ -673,6 +756,67 @@ function AiJadeite_Flyer_2010()
 	end
 end
 
+function Test()
+	AiJadeite_Set_Name_2010("Test")
+	-- Defend
+	if (AiWaitForce(0) == true) then
+		if ((GameCycle > 15000) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0)) then
+			AiJadeite_Force_2010(0, AiCavalry(), 4, AiShooter(), 1)
+		elseif (GameCycle > 7500) then
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
+				AiJadeite_Force_2010(0, AiCavalry(), 4, AiShooter(), 1, AiSoldier(), 0)
+			else
+				AiJadeite_Force_2010(0, AiSoldier(), 4, AiShooter(), 1)
+			end
+		elseif (GameCycle > 2500) then
+			AiJadeite_Build_2010(AiGuardTower())
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
+				AiJadeite_Force_2010(0, AiCavalry(), 4)
+			else
+				AiJadeite_Force_2010(0, AiSoldier(), 4)
+			end
+		end
+	end
+	-- Attack
+	if ((AiWaitForce(0) == false) and ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) or (GetPlayerData(AiPlayer(), "Resources", "gold") > 5000))) then
+		if (GameCycle > 15000) then
+			AiJadeite_Force_2010(3, AiCavalry(), 10, AiShooter(), 4, AiCatapult(), 1)
+		elseif (GameCycle > 7500) then
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
+				AiJadeite_Force_2010(3, AiCavalry(), 10, AiShooter(), 4, AiCatapult(), 1)
+			else
+				AiJadeite_Force_2010(3, AiSoldier(), 6, AiShooter(), 2)
+			end
+		else
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
+				AiJadeite_Force_2010(3, AiCavalry(), 10)
+			else
+				AiJadeite_Force_2010(3, AiSoldier(), 10)
+			end
+		end
+		AiJadeite_Attack_2010(3)
+	end
+	-- Buildings and Upgrades
+	AiJadeite_Intermittent_2010()
+	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 2) then 
+		if ((GetPlayerData(AiPlayer(), "Resources", "gold") > 5000) or (GameCycle > 5000)) then
+			AiJadeite_Upgrade_2010(AiCavalryMage())
+		else
+			AiJadeite_Upgrade_2010(AiSoldier())
+		end
+	end
+	if ((GameCycle > 15000) and (GetPlayerData(AiPlayer(), "Resources", "gold") > 3000)) then
+		AiJadeite_Upgrade_2010(AiShooter())
+		AiJadeite_Upgrade_2010(AiCatapult())
+	elseif (GameCycle > 2500) then
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then 
+			AiJadeite_Build_2010(AiBarracks(), 2)
+		end
+	elseif (GameCycle < 500) then
+		AiJadeite_Force_2010(0, AiSoldier(), 2)
+	end
+end
+
 function AiJadeite_Set_Name_2010(name)
 	if ((GameCycle < 100) and (GetPlayerData(AiPlayer(), "Name") == "Computer")) then
 		SetPlayerData(AiPlayer(), "Name", name)
@@ -686,3 +830,4 @@ DefineAi("ai_jadeite_shooter_2010", "*", "ai_jadeite_shooter_2010", AiJadeite_Sh
 DefineAi("ai_jadeite_worker_2010", "*", "ai_jadeite_worker_2010", AiJadeite_Worker_2010)
 DefineAi("ai_jadeite_power_2010", "*", "ai_jadeite_power_2010", AiJadeite_Power_2010)
 DefineAi("ai_jadeite_flyer_2010", "*", "ai_jadeite_flyer_2010", AiJadeite_Flyer_2010)
+DefineAi("test", "*", "test", Test)
