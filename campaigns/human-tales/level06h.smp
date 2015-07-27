@@ -26,5 +26,5 @@
 --
 
 DefinePlayerTypes("computer","computer","person","nobody","computer")
-PresentMap("(unnamed)", 4, 128, 128, 1)
---DefineMapSetup("campaigns/human-tales/level07h_c.sms")
+PresentMap("Defence of Genesis Castle", 4, 128, 128, 1)
+--DefineMapSetup("campaigns/human-tales/level06h_c.sms")

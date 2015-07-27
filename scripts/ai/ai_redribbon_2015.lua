@@ -136,7 +136,6 @@ function AiPlayer_Check_2015(player, ai)
 end
 
 function AiRed_2015()
-	AiCharacter_Set_Name_2015()
 	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiWise()) > 0) and (GameCycle > 500)) then
 		if ((timers[ftm_team[AiPlayer()]] == 50) or (timers[ftm_team[AiPlayer()]] == 99) or (timers[ftm_team[AiPlayer()]] == 25) or (timers[ftm_team[AiPlayer()]] == 75)) then
 		else
@@ -285,7 +284,18 @@ function AiCharacter_Set_Name_2015(name)
 	end
 end
 
+function AiLucas_2015()
+	AiCharacter_Set_Name_2015("Lucas Kage")
+	--Check game type.
+	if (GameDefinition["Name"] == "For the Motherland") then
+		AiShane_FtM_2015(AiPlayer())
+	elseif (GameDefinition["Name"] == "Skirmish") then
+		AiLucas_Skirmish_2015()
+	end
+end
+
 function AiShane_2015()
+	AiCharacter_Set_Name_2015("Shane Wolfe")
 	--Check game type.
 	if (GameDefinition["Name"] == "For the Motherland") then
 		AiShane_FtM_2015(AiPlayer())
@@ -293,16 +303,243 @@ function AiShane_2015()
 end
 
 function AiAya_2015()
+	AiCharacter_Set_Name_2015("Aya Kalang")
 	--Check game type.
 	if (GameDefinition["Name"] == "For the Motherland") then
 		AiAya_FtM_2015(AiPlayer())
 	end
 end
 
-function AiSandria_2015()
+function AiNathan_2015()
+	AiCharacter_Set_Name_2015("Nathan Withers")
 	--Check game type.
 	if (GameDefinition["Name"] == "For the Motherland") then
 		AiAya_FtM_2015(AiPlayer())
+	elseif (GameDefinition["Name"] == "Skirmish") then
+		AiNathan_Skirmish_2015()
+	end
+end
+
+function AiKiah_2015()
+	AiCharacter_Set_Name_2015("Kiah Stone")
+	--Check game type.
+	if (GameDefinition["Name"] == "For the Motherland") then
+		AiAya_FtM_2015(AiPlayer())
+	elseif (GameDefinition["Name"] == "Skirmish") then
+		AiLucas_Skirmish_2015()
+	end
+end
+
+function AiSandria_2015()
+	AiCharacter_Set_Name_2015("Sandria Fields")
+	-- Sandria will be an easy, archer player.
+	--Check game type.
+	if (GameDefinition["Name"] == "For the Motherland") then
+		AiAya_FtM_2015(AiPlayer())
+	else -- if skirmish
+		if (GameCycle > 100) then
+			AiJadeite_Shooter_2010()
+		end
+	end
+end
+
+function AiLucas_Skirmish_2015()
+	if (GameDefinition["Map"]["Name"] == "Northern Swamp") then
+		AiLucas_Skirmish_Northern_Swamp_2015()
+	else
+		AiLucas_Skirmish_Standard_2015()
+	end
+end
+
+function AiNathan_Skirmish_2015()
+	if (GameDefinition["Map"]["Name"] == "Northern Swamp") then
+		AiNathan_Skirmish_Northern_Swamp_2015()
+	else
+		AiLucas_Skirmish_Standard_2015()
+	end
+end
+
+function AiSandria_Skirmish_2015()
+
+end
+
+function UnitNear(player, unit, x, y)
+	if (GetNumUnitsAt(player, unit, {x-3, y-3}, {x+3, y+3}) > 0) then 
+		return true
+	else
+		return false
+	end
+end
+
+function MoveUnitQuick(player, unit, tox, toy, fromx, fromy, area)
+	if (UnitNear(player, unit, fromx, fromy) == true) then 
+		if (area == nil) then area = SyncRand(3) end
+		OrderUnit(player, unit, {fromx-area,fromy-area,fromx+area,fromy+area}, {tox-area,toy-area,tox+area,toy+area}, "move")
+		return true
+	else
+		return false
+	end
+end
+
+function AiNathan_Skirmish_Northern_Swamp_2015()
+	if ((GameCycle < 2500) and (GetPlayerData(0, "Name") == "Computer")) then
+		if (GameCycle < 200) then
+			OrderUnitSquare(AiPlayer(), AiSoldier(), 11, 68, 1, 3, 96, 45, "attack")
+			OrderUnitSquare(AiPlayer(), AiSoldier(), 18, 72, 3, 1, 97, 46, "attack")
+			OrderUnitSquare(AiPlayer(), AiSoldier(), 24, 74, 3, 1, 102, 46, "attack")
+			OrderUnitSquare(AiPlayer(), AiSoldier(), 29, 74, 3, 1, 107, 46, "attack")
+			OrderUnitSquare(AiPlayer(), AiShooter(), 10, 68, 1, 3, 95, 45, "move")
+			OrderUnitSquare(AiPlayer(), AiShooter(), 18, 73, 3, 1, 98, 46, "move")
+			OrderUnitSquare(AiPlayer(), AiShooter(), 24, 75, 3, 1, 103, 46, "move")
+			OrderUnitSquare(AiPlayer(), AiShooter(), 29, 75, 3, 1, 108, 46, "move")
+		elseif ((GameCycle > 1100) and (GameCycle < 1800)) then
+			MoveUnitQuick(AiPlayer(), AiCavalry(), 108, 28, 3, 92, 3)
+			MoveUnitQuick(AiPlayer(), AiCavalry(), 104, 28, 15, 100, 3)
+		elseif ((GameCycle > 1800) and (GameCycle < 2500)) then
+			MoveUnitQuick(AiPlayer(), AiSoldier(), 108, 27, 96, 45, 3)
+			MoveUnitQuick(AiPlayer(), AiSoldier(), 104, 27, 97, 46, 3)
+			MoveUnitQuick(AiPlayer(), AiSoldier(), 101, 27, 102, 46, 3)
+			MoveUnitQuick(AiPlayer(), AiSoldier(), 98, 27, 107, 46, 3)
+			if (GameCycle > 1900) then
+				MoveUnitQuick(AiPlayer(), AiShooter(), 108, 28, 96, 46, 3)
+				MoveUnitQuick(AiPlayer(), AiShooter(), 104, 28, 97, 47, 3)
+				MoveUnitQuick(AiPlayer(), AiShooter(), 101, 28, 102, 47, 3)
+				MoveUnitQuick(AiPlayer(), AiShooter(), 98, 28, 107, 47, 3)
+			end
+		end
+	end
+	AiJadeite_Cavalry_2010()
+end
+
+function AiLucas_Skirmish_Northern_Swamp_2015()
+	-- We should make it that if Sandria has Lucas playing, the Wilds attack Sandria instead.
+	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiScout()) > 0) then
+		if (MoveUnitQuick(AiPlayer(), AiScout(), 121, 32, 105, 8) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 19, 43, 121, 32) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 16, 58, 19, 43) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 57, 62, 16, 58) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 64, 112, 57, 62) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 8, 116, 64, 112) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 22, 102, 8, 116) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 121, 123, 22, 102) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 118, 7, 121, 123) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 6, 47, 118, 7) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 39, 8, 6, 47) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 39, 3, 39, 8) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 44, 3, 39, 3) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 67, 99, 44, 3) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 105, 8, 67, 99) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 67, 8, 105, 8) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 115, 80, 67, 8) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 13, 77, 115, 80) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 91, 50, 13, 77) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 113, 6, 91, 50) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 105, 8, 113, 6) == true) then 
+		elseif (MoveUnitQuick(AiPlayer(), AiScout(), 19, 43, 122, 114) == true) then 
+		end
+	elseif ((GetPlayerData(AiPlayer(), "Resources", "gold") > 2000) and (GameCycle > 2250) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiScientific()) > 0)) then
+		if (AiPlayer() == 0) then
+			CreateUnit(AiScout(), AiPlayer(), {105, 8})
+			SetPlayerData(AiPlayer(), "Resources", "gold", GetPlayerData(AiPlayer(), "Resources", "gold") - 500)
+			SetPlayerData(AiPlayer(), "Resources", "wood", GetPlayerData(AiPlayer(), "Resources", "wood") - 100)
+		elseif (AiPlayer() == 2) then
+			CreateUnit(AiScout(), AiPlayer(), {122, 114})
+			SetPlayerData(AiPlayer(), "Resources", "gold", GetPlayerData(AiPlayer(), "Resources", "gold") - 500)
+			SetPlayerData(AiPlayer(), "Resources", "wood", GetPlayerData(AiPlayer(), "Resources", "wood") - 100)
+		end
+	end
+	if (GetPlayerData(AiPlayer(), "Name") == "Kiah Stone") then
+		if ((GameCycle < 2500) and (GetPlayerData(0, "Name") == "Computer")) then
+			if (GameCycle < 200) then
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 112, 70, 3, 1, 108, 47, "attack")
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 98, 75, 3, 1, 104, 47, "attack")
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 94, 75, 3, 1, 101, 47, "attack")
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 82, 73, 3, 1, 98, 47, "attack")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 112, 71, 3, 1, 108, 48, "move")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 98, 76, 3, 1, 104, 48, "move")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 94, 76, 3, 1, 101, 48, "move")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 82, 74, 3, 1, 98, 48, "move")
+			elseif ((GameCycle > 1300) and (GameCycle < 1800)) then
+				MoveUnitQuick(AiPlayer(), AiCavalry(), 108, 26, 112, 95, 5)
+				MoveUnitQuick(AiPlayer(), AiCavalry(), 104, 26, 106, 87, 5)
+			elseif ((GameCycle > 1800) and (GameCycle < 2500)) then
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 108, 27, 108, 47, 5)
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 104, 27, 104, 47, 5)
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 101, 27, 101, 47, 5)
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 98, 27, 98, 47, 5)
+				if (GameCycle > 1900) then
+					MoveUnitQuick(AiPlayer(), AiShooter(), 108, 28, 108, 48, 5)
+					MoveUnitQuick(AiPlayer(), AiShooter(), 104, 28, 104, 48, 5)
+					MoveUnitQuick(AiPlayer(), AiShooter(), 101, 28, 101, 48, 5)
+					MoveUnitQuick(AiPlayer(), AiShooter(), 98, 28, 98, 48, 5)
+				end
+			end
+		elseif (GameCycle > 2500) then
+			AiJadeite_Shooter_2010()
+		else
+			AiJadeite_Cavalry_2010()
+		end
+	else
+		AiLucas_Skirmish_Standard_2015()
+	end
+end
+
+-- May stop the other Ais from working!
+function AiLucas_Skirmish_Standard_2015()
+	-- Defend
+	if ((GameCycle > 15000) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0)) then
+		AiJadeite_Force_2010(0, AiCavalry(), 4, AiShooter(), 1)
+	elseif (GameCycle > 7500) then
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
+			AiJadeite_Force_2010(0, AiCavalry(), 4, AiShooter(), 1, AiSoldier(), 0)
+		else
+			AiJadeite_Force_2010(0, AiSoldier(), 4, AiShooter(), 1)
+		end
+	elseif (GameCycle > 2500) then
+		AiJadeite_Build_2010(AiGuardTower())
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
+			AiJadeite_Force_2010(0, AiCavalry(), 4)
+		else
+			AiJadeite_Force_2010(0, AiSoldier(), 4)
+		end
+	end
+	-- Attack
+	if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) or (GetPlayerData(AiPlayer(), "Resources", "gold") > 5000)) then
+		if (GameCycle > 15000) then
+			AiJadeite_Force_2010(3, AiCavalry(), 10, AiShooter(), 4, AiCatapult(), 1)
+		elseif (GameCycle > 7500) then
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
+				AiJadeite_Force_2010(3, AiCavalry(), 10, AiShooter(), 4, AiCatapult(), 1)
+			else
+				AiJadeite_Force_2010(3, AiSoldier(), 6, AiShooter(), 2)
+			end
+		else
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
+				AiJadeite_Force_2010(3, AiCavalry(), 10)
+			else
+				AiJadeite_Force_2010(3, AiSoldier(), 10)
+			end
+		end
+		AiJadeite_Attack_2010(3)
+	end
+	-- Buildings and Upgrades
+	AiJadeite_Intermittent_2010()
+	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 2) then 
+		if ((GetPlayerData(AiPlayer(), "Resources", "gold") > 5000) or (GameCycle > 5000)) then
+			AiJadeite_Upgrade_2010(AiCavalryMage())
+		else
+			AiJadeite_Upgrade_2010(AiSoldier())
+		end
+	end
+	if ((GameCycle > 15000) and (GetPlayerData(AiPlayer(), "Resources", "gold") > 3000)) then
+		AiJadeite_Upgrade_2010(AiShooter())
+		AiJadeite_Upgrade_2010(AiCatapult())
+	elseif (GameCycle > 2500) then
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) > 0) then 
+			AiJadeite_Build_2010(AiBarracks(), 2)
+		end
+	elseif (GameCycle < 500) then
+		AiJadeite_Force_2010(0, AiSoldier(), 2)
 	end
 end
 
@@ -323,6 +560,7 @@ function AiShane_FtM_2015(player)
 end
 
 function AiAya_FtM_2015(player)
+	-- Sandria will be a hard, archer player.
 	if ((GameCycle < 50) or (aiftm_action[player][aiftm_index[player]] == "loop")) then
 		--Check map.
 		if (GameDefinition["Map"]["Name"] == "Rockfort Arena") then
@@ -765,3 +1003,6 @@ DefineAi("ai_frontlines_2015", "*", "ai_frontlines_2015", AiFrontlines_2015)
 DefineAi("Shane Wolfe", "*", "ai_red_2015", AiShane_2015)
 DefineAi("Aya Kalang", "*", "ai_red_2015", AiAya_2015)
 DefineAi("Sandria Fields", "*", "ai_red_2015", AiSandria_2015)
+DefineAi("Lucas Kage", "*", "ai_red_2015", AiLucas_2015)
+DefineAi("Kiah Stone", "*", "ai_red_2015", AiKiah_2015)
+DefineAi("Nathan Withers", "*", "ai_red_2015", AiNathan_2015)

@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---      (c) Copyright 2013 by Kyran Jackson
+--      (c) Copyright 2015 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -23,15 +23,7 @@
 --      You should have received a copy of the GNU General Public License
 --      along with this program; if not, write to the Free Software
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
---
+-- 
 
-campaign_steps = {
-  CreateMapStep("campaigns/human-tales/level01h.smp"),
-  CreateMapStep("campaigns/human-tales/level02h.smp"),
-  CreateMapStep("campaigns/human-tales/level03h.smp"),
-  CreateMapStep("campaigns/human-tales/level04h.smp"),
-  CreateMapStep("campaigns/human-tales/level05h.smp"),
-  CreateMapStep("campaigns/human-tales/level06h.smp")
-}
-
-campaign_menu = { 1, 2, 3, 4, 5, 6}
+DefinePlayerTypes("rescue-active","nobody","computer","computer","person")
+PresentMap("Northern Swamp", 4, 128, 128, 1)

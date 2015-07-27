@@ -8,7 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---	level05o_ai.lua 
+--	level06h_ai.lua 
 --
 --	(c) Copyright 2012 by Kyran Jackson
 --
@@ -261,4 +261,4 @@ function AiLevel07()
 	end
 end
 
-DefineAi("ai_level07", "*", "ai_level07", AiLevel07)
+DefineAi("ai_level06", "*", "ai_level06", AiLevel06)

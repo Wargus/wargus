@@ -25,7 +25,7 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-Load("campaigns/human-tales/level07h_ai.lua")
+Load("campaigns/human-tales/level06h_ai.lua")
 
 SetStartView(0, 74, 77)
 SetPlayerData(0, "Resources", "gold", 10000)
@@ -38,7 +38,7 @@ SetPlayerData(1, "Resources", "gold", 10000)
 SetPlayerData(1, "Resources", "wood", 10000)
 SetPlayerData(1, "Resources", "oil", 1000)
 SetPlayerData(1, "RaceName", "human")
-SetAiType(1, "ai_level07")
+SetAiType(1, "ai_level06")
 SetStartView(2, 107, 118)
 SetPlayerData(2, "Resources", "gold", 10000)
 SetPlayerData(2, "Resources", "wood", 10000)

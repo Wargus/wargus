@@ -27,5 +27,5 @@
 
 CurrentCampaignRace = "human"
 CurrentCampaignPath = "campaigns/human-tales/"
-CampaignMapTitleList = {"level01h_c2.sms", "level02h_c2.sms", "level03h_c2.sms", "level04h_c2.sms", "level05h_c2.sms", "level07h_c2.sms"}
+CampaignMapTitleList = {"level01h_c2.sms", "level02h_c2.sms", "level03h_c2.sms", "level04h_c2.sms", "level05h_c2.sms", "level06h_c2.sms"}
 RunCampaignSubmenu("campaigns/human-tales/human-tales.lua")
