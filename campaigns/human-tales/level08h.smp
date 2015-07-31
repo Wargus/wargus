@@ -25,5 +25,10 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -- 
 
-DefinePlayerTypes("rescue-active","nobody","computer","computer","person")
+DefinePlayerTypes("computer","nobody","computer","computer","person")
 PresentMap("Northern Swamp", 4, 128, 128, 1)
+
+SetMapTeams(0, 1, 1)
+SetMapTeams(4, 1, 2)
+SetMapTeams(2, 2, 1)
+SetMapTeams(3, 2, 2)

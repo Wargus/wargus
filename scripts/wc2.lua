@@ -184,6 +184,10 @@ function SetupPlayer(player, race, ai, gold, wood, oil, x, y)
 end
 
 function SpawnUnits(player, unit, x, y, width, height)
+	SpawnUnitSquare(player, unit, x, y, width, height)
+end
+
+function SpawnUnitSquare(player, unit, x, y, width, height)
 	for loopx = 0, width-1 do
 		for loopy = 0, height-1 do
 			CreateUnit(unit, player, {(x+loopx), (y+loopy)})
@@ -192,6 +196,10 @@ function SpawnUnits(player, unit, x, y, width, height)
 end
 
 function OrderUnits(player, unit, fromx, fromy, width, height, tox, toy, order)
+	OrderUnitSquare(player, unit, fromx, fromy, width, height, tox, toy, order)
+end
+
+function OrderUnitSquare(player, unit, fromx, fromy, width, height, tox, toy, order)
 	if (order == nil) then order = "move" end
 	if (height == nil) then height = 1 end
 	if (width == nil) then width = 1 end
@@ -209,7 +217,7 @@ function SetMapTeams(player, team, position)
 	GameDefinition["Map"][player]["Player"] = position
 end
 
-function GameDefinitionSetup(name, version, revision, map, path, topography)
+function GameDefinitionSetup(name, version, revision, map, topography)
 	if (name == "initialise") then
 		GameDefinition = {}
 		GameDefinition["Briefing"] = {}
@@ -236,8 +244,7 @@ function GameDefinitionSetup(name, version, revision, map, path, topography)
 		GameDefinition["Version"] = "Modern"
 		GameDefinition["Revision"] = 1
 		GameDefinition["Map"]["Name"] = "None"
-		GameDefinition["Map"]["Path"] = "None"
-		GameDefinition["Map"]["Type"] = "None"
+		GameDefinition["Map"]["Topography"] = "None"
 		GameDefinition["Briefing"]["Active"] = true
 		GameDefinition["Briefing"]["Width"] = 800
 		GameDefinition["Briefing"]["Height"] = 600
@@ -269,7 +276,7 @@ function GameDefinitionSetup(name, version, revision, map, path, topography)
 			end
 			if (topography ~= nil) then
 				-- Land, Coastal, Islands
-				GameDefinition["Map"]["Type"] = topography
+				GameDefinition["Map"]["Topography"] = topography
 			end
 		end
 	end

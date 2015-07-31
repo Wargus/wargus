@@ -138,7 +138,7 @@ function AiNephrite_Attack_2013(command)
 			if (nephrite_attackforce[AiPlayer()] >= 8) then
 				nephrite_attackforce[AiPlayer()] = 1
 				nephrite_attackbuffer[AiPlayer()] = nephrite_attackbuffer[AiPlayer()] + nephrite_increment[AiPlayer()]
-				AiForce(0, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
+				--AiForce(0, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0})
 				AiForce(1, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0}, true)
 				AiForce(2, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0}, true)
 				AiForce(3, {AiEliteSoldier(), 0, AiHeroRider(), 0, AiHeroSoldier(), 0, AiMage(), 0, AiFlyer(), 0, AiBones(), 0, AiHeroShooter(), 0, AiCatapult(), 0, AiSoldier(), 0, AiCavalry(), 0, AiShooter(), 0}, true)
