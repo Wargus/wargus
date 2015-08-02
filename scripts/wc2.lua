@@ -181,6 +181,17 @@ function SetupPlayer(player, race, ai, gold, wood, oil, x, y)
 	SetPlayerData(player, "Resources", "oil", oil)
 	SetPlayerData(player, "RaceName", race)
 	SetAiType(player, ai)
+	if (GameDefinition["Map"][player]["Team"] ~= nil) then
+		for index = 0, 15 do
+			if ((GameDefinition["Map"][index]["Team"] ~= nil) and (GameDefinition["Map"][player]["Team"] == GameDefinition["Map"][index]["Team"])) then
+				SetSharedVision(player, true, index)
+				SetDiplomacy(player, "allied", index)
+			else
+				SetSharedVision(player, false, index)
+				SetDiplomacy(player, "enemy", index)
+			end
+		end
+	end
 end
 
 function SpawnUnits(player, unit, x, y, width, height)
