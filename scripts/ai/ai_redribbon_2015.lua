@@ -423,6 +423,16 @@ function AiNathan_Skirmish_Northern_Swamp_2015()
 			elseif ((GameCycle > 2400) and (GameCycle < 2500)) then
 				MoveUnitQuick(AiPlayer(), AiCavalry(), 26, 64, 48, 96, 5)
 			end
+		elseif ((GetPlayerData(4, "UnitTypesCount", AiBetterCityCenter(4)) == 0) and (GetPlayerData(0, "UnitTypesCount", AiBetterCityCenter(0)) == 0)) then
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiAirport()) ~= 0) then
+				if (GetPlayerData(AiPlayer(), "Resources", "gold") > 2499) then
+					CreateUnit(AiFlyer(), AiPlayer(), {39, 120})
+					SetPlayerData(AiPlayer(), "Resources", "gold", GetPlayerData(AiPlayer(), "Resources", "gold") - 2500)
+					if (GetPlayerData(AiPlayer(), "Resources", "gold") < 5000) then
+						AiNephrite_Attack_2013("force")
+					end
+				end
+			end
 		elseif (UnitNear(AiPlayer(), AiGuardTower(), 30, 62, 2) == true) then 
 			-- First line of defence.
 			if ((UnitNear(0, AiWorker(0), 70, 88, 10) == true) or (UnitNear(4, AiWorker(4), 70, 88, 10) == true)) then 
@@ -444,7 +454,7 @@ function AiNathan_Skirmish_Northern_Swamp_2015()
 				elseif (MoveUnitQuick(AiPlayer(), AiFlyer(), 53, 18, 69, 32) == true) then 
 				elseif (MoveUnitQuick(AiPlayer(), AiFlyer(), 57, 0, 53, 18) == true) then 
 				end
-			elseif (GetPlayerData(AiPlayer(), "Resources", "gold") > 2500) then
+			elseif ((GetPlayerData(AiPlayer(), "Resources", "gold") > 2500) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiAirport()) > 0)) then
 				CreateUnit(AiFlyer(), AiPlayer(), {39, 120})
 				SetPlayerData(AiPlayer(), "Resources", "gold", GetPlayerData(AiPlayer(), "Resources", "gold") - 2500)
 			end
@@ -544,6 +554,16 @@ function AiLucas_Skirmish_Northern_Swamp_2015()
 				end
 			elseif (GameCycle < 5000) then
 				AiJadeite_Cavalry_2010()
+			elseif ((GetPlayerData(4, "UnitTypesCount", AiBetterCityCenter(4)) == 0) and (GetPlayerData(0, "UnitTypesCount", AiBetterCityCenter(0)) == 0)) then
+				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiAirport()) ~= 0) then
+					if (GetPlayerData(AiPlayer(), "Resources", "gold") > 2499) then
+						CreateUnit(AiFlyer(), AiPlayer(), {102, 90})
+						SetPlayerData(AiPlayer(), "Resources", "gold", GetPlayerData(AiPlayer(), "Resources", "gold") - 2500)
+						if (GetPlayerData(AiPlayer(), "Resources", "gold") < 5000) then
+							AiNephrite_Attack_2013("force")
+						end
+					end
+				end
 			elseif (GetPlayerData(15, "UnitTypesCount", "unit-gold-mine") == 1) then
 				-- Only one mine left.
 				if (GetPlayerData(0, "UnitTypesCount", AiBarracks(0)) == 0) then
@@ -587,34 +607,95 @@ function AiLucas_Skirmish_Northern_Swamp_2015()
 		end
 	else
 		if ((GetPlayerData(2, "UnitTypesCount", AiFlyer(2)) > 0) or (GetPlayerData(3, "UnitTypesCount", AiFlyer(3)) > 0)) then 
-			AiJadeite_Shooter_2010()
-			if ((UnitNear(3, AiFlyer(3), 66, 5, 5) == true) or (UnitNear(2, AiFlyer(2), 66, 5, 5) == true)) then 
+			if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) < 6) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) < 6)) then
+				AiJadeite_Force_2010(0, AiShooter(), 6, AiSoldier(), 1)
+				AiJadeite_Upgrade_2010(AiShooter())
+			else
+				AiJadeite_Upgrade_2010(AiEliteShooter())
+			end
+			if ((UnitNear(3, AiFlyer(3), 59, 5, 5) == true) or (UnitNear(2, AiFlyer(2), 59, 5, 5) == true)) then 
 				MoveUnitQuick(AiPlayer(), AiShooter(), 62, 7, 109, 20, 6)
 				MoveUnitQuick(AiPlayer(), AiShooter(), 67, 3, 103, 40, 2)
+				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) == 0) then
+					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiAirport()) > 0) then
+						CreateUnit(AiFlyer(), AiPlayer(), {123, 19})
+						SetPlayerData(AiPlayer(), "Resources", "gold", GetPlayerData(AiPlayer(), "Resources", "gold") - 2500)
+					end
+				else
+					MoveUnitQuick(AiPlayer(), AiFlyer(), 66, 5, 123, 19, 4)
+					MoveUnitQuick(AiPlayer(), AiFlyer(), 66, 5, 123, 3, 4)
+				end
 			end
 		else
-			AiLucas_Skirmish_Standard_2015()
+			if (GameDefinition["Map"]["Name"] == "Southern Swamp") then
+				if (GameCycle < 100) then
+					OrderUnitSquare(AiPlayer(), AiSoldier(), 108, 26, 2, 1, 101, 42, "move")
+				elseif (GameCycle < 200) then
+					OrderUnitSquare(AiPlayer(), AiSoldier(), 114, 26, 2, 1, 107, 43, "move")
+				elseif (GameCycle < 300) then
+					OrderUnitSquare(AiPlayer(), AiSoldier(), 108, 25, 2, 1, 94, 41, "move")
+				elseif (GameCycle < 400) then
+					OrderUnitSquare(AiPlayer(), AiSoldier(), 113, 25, 2, 1, 109, 43, "move")
+				elseif (GameCycle < 500) then
+					OrderUnitSquare(AiPlayer(), AiSoldier(), 110, 25, 1, 2, 112, 46, "move")
+				elseif (GameCycle < 600) then
+					OrderUnitSquare(AiPlayer(), AiSoldier(), 115, 25, 1, 2, 111, 46, "move")
+				elseif (UnitNear(AiPlayer(), AiWorker(), 106, 58, 15)) then 
+					-- Workers are leaving the base.
+					if ((UnitNear(2, AiGuardTower(2), 95, 62, 2) == true) or (UnitNear(2, AiGuardTower(2), 80, 70, 2) == true)) then 
+						-- First or second enemy line of defence is still up.
+						MoveUnitQuick(AiPlayer(), AiWorker(), 101, 13, 106, 58, 15)
+					elseif (UnitNear(2, AiSoldier(2), 80, 70, 2) == true) then 
+						-- Enemy grunts defending middle gold mine.
+						MoveUnitQuick(AiPlayer(), AiWorker(), 87, 19, 106, 68, 20)
+						AiNephrite_Attack_2013("force")
+					end
+				elseif (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFlyer()) > 0) then
+					if (MoveUnitQuick(AiPlayer(), AiFlyer(), 123, 3, 66, 5, 5) == true) then 
+					elseif (MoveUnitQuick(AiPlayer(), AiFlyer(), 124, 20, 123, 3, 5) == true) then 
+					elseif (MoveUnitQuick(AiPlayer(), AiFlyer(), 127, 127, 124, 20, 5) == true) then 
+					elseif (UnitNear(2, AiFarm(2), 122, 126, 1)) then 
+					else
+					end
+				elseif (UnitNear(AiPlayer(), AiCatapult(), 112, 43, 8)) then 
+					MoveUnitQuick(AiPlayer(), AiSoldier(), 97, 45, 110, 43, 4)
+				elseif (UnitNear(AiPlayer(), AiCavalry(), 103, 45, 4)) then 
+					MoveUnitQuick(AiPlayer(), AiSoldier(), 102, 57, 97, 45, 4)
+				elseif (UnitNear(AiPlayer(), AiCavalry(), 112, 20, 1)) then 
+					MoveUnitQuick(AiPlayer(), AiCavalry(), 108, 35, 112, 20, 5)
+					MoveUnitQuick(AiPlayer(), AiCatapult(), 108, 35, 112, 20, 5)
+				end
+			end
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 14) then
+				AiLucas_Skirmish_Standard_2015(0, 0, 7, 2)
+			else
+				AiLucas_Skirmish_Standard_2015(1, 0, 10, 2)
+			end
 		end
 	end
 end
 
 -- May stop the other Ais from working!
-function AiLucas_Skirmish_Standard_2015()
+function AiLucas_Skirmish_Standard_2015(defendmelee, defendrange, attackmelee, attackrange)
+	if (defendmelee == nil) then defendmelee = 2 end
+	if (defendrange == nil) then defendrange = 0 end
+	if (attackmelee == nil) then attackmelee = 5 end
+	if (attackrange == nil) then attackrange = 1 end
 	-- Defend
 	if ((GameCycle > 15000) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0)) then
-		AiJadeite_Force_2010(0, AiCavalry(), 4, AiShooter(), 1)
+		AiJadeite_Force_2010(0, AiCavalry(), 2 + defendmelee, AiShooter(), 1 + defendrange)
 	elseif (GameCycle > 7500) then
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
-			AiJadeite_Force_2010(0, AiCavalry(), 4, AiShooter(), 1, AiSoldier(), 0)
+			AiJadeite_Force_2010(0, AiCavalry(), 2 + defendmelee, AiShooter(), 1 + defendrange, AiSoldier(), 0)
 		else
-			AiJadeite_Force_2010(0, AiSoldier(), 4, AiShooter(), 1)
+			AiJadeite_Force_2010(0, AiSoldier(), 2 + defendmelee, AiShooter(), 1 + defendrange)
 		end
 	elseif (GameCycle > 2500) then
 		AiJadeite_Build_2010(AiGuardTower())
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
-			AiJadeite_Force_2010(0, AiCavalry(), 4)
+			AiJadeite_Force_2010(0, AiCavalry(), 2 + defendmelee, AiShooter(), 0 + defendrange)
 		else
-			AiJadeite_Force_2010(0, AiSoldier(), 4)
+			AiJadeite_Force_2010(0, AiSoldier(), 2 + defendmelee, AiShooter(), 0 + defendrange)
 		end
 	end
 	-- Attack
@@ -623,15 +704,19 @@ function AiLucas_Skirmish_Standard_2015()
 			AiJadeite_Force_2010(3, AiCavalry(), 10, AiShooter(), 4, AiCatapult(), 1)
 		elseif (GameCycle > 7500) then
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
-				AiJadeite_Force_2010(3, AiCavalry(), 10, AiShooter(), 4, AiCatapult(), 1)
+				AiJadeite_Force_2010(3, AiCavalry(), 5 + attackmelee, AiShooter(), 3 + attackrange, AiCatapult(), attackrange)
 			else
-				AiJadeite_Force_2010(3, AiSoldier(), 6, AiShooter(), 2)
+				if (attackrange < 2) then
+					AiJadeite_Force_2010(3, AiSoldier(), 1 + attackmelee, AiShooter(), 2 + attackrange)
+				else
+					AiJadeite_Force_2010(3, AiSoldier(), 1 + attackmelee, AiShooter(), 1 + attackrange, AiCatapult(), attackrange)
+				end
 			end
 		else
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) > 0) then
-				AiJadeite_Force_2010(3, AiCavalry(), 10)
+				AiJadeite_Force_2010(3, AiCavalry(), 5 + attackmelee, AiShooter(), attackrange, AiCatapult(), attackrange)
 			else
-				AiJadeite_Force_2010(3, AiSoldier(), 10)
+				AiJadeite_Force_2010(3, AiSoldier(), 5 + attackmelee, AiShooter(), attackrange)
 			end
 		end
 		AiJadeite_Attack_2010(3)
@@ -645,7 +730,7 @@ function AiLucas_Skirmish_Standard_2015()
 			AiJadeite_Upgrade_2010(AiSoldier())
 		end
 	end
-	if ((GameCycle > 15000) and (GetPlayerData(AiPlayer(), "Resources", "gold") > 3000)) then
+	if (((GameCycle > 15000) and (GetPlayerData(AiPlayer(), "Resources", "gold") > 3000)) or (attackrange > 1)) then
 		AiJadeite_Upgrade_2010(AiShooter())
 		AiJadeite_Upgrade_2010(AiCatapult())
 	elseif (GameCycle > 2500) then
