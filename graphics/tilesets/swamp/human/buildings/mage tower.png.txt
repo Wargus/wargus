@@ -1,3 +1,6 @@
-copyright by ?? & Carlo Almario 
+Authors: ?? & Carlo Almario 
 
-
+, Nikita Sadkov 2015
+License: GPL2
+Origin: http://stratagus.com/games/aleonas-tales/
+fixed shading

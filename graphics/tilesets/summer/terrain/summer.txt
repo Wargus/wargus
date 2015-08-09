@@ -1,0 +1,9 @@
+Authors: Nikita Sadkov, Daniel Cook, Jinn
+License: CC-BY-SA
+Origin: https://github.com/saniv/free-game-art
+Intended as a replacement for Aleona Tales' tileset.
+Rock tiles are by Daniel Cook: http://www.lostgarden.com/2007/04/free-game-graphics-tyrian-ships-and.html
+Trees are from Surt public domain dawn_of_power.png: http://opengameart.org/forumtopic/cc0-scraps?page=1
+Wood wall tiles are from Aleona Tales
+Stone wall is by Nikita Sadkov
+Grass, mud, water, coast and transition tiles are by Nikita Sadkov
