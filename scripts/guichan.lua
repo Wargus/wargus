@@ -790,7 +790,7 @@ function InitGameSettings()
 end
 InitGameSettings()
 
-function RunMap(map, objective, fow, revealmap)
+function RunMap(map, objective, fow, revealmap, results)
   if objective == nil then
     Objectives = DefaultObjectives
   else
@@ -822,7 +822,9 @@ function RunMap(map, objective, fow, revealmap)
 		StartCustomGame_Lua()
 	end
   end
-  RunResultsMenu(s)
+  if (results ~= false) then
+	RunResultsMenu(s)
+  end
   InitGameSettings()
   SetDefaultRaceView()
 end

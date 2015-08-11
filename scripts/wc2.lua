@@ -233,6 +233,7 @@ function GameDefinitionSetup(name, version, revision, map, topography)
 		GameDefinition = {}
 		GameDefinition["Briefing"] = {}
 		GameDefinition["Map"] = {}
+		GameDefinition["Results"] = {}
 		for player = 0, 15 do
 			GameDefinition["Map"][player] = {}
 		end
@@ -263,6 +264,18 @@ function GameDefinitionSetup(name, version, revision, map, topography)
 		GameDefinition["Briefing"]["Title"] = "No Title"
 		GameDefinition["Briefing"]["Character"] = " "
 		GameDefinition["Briefing"]["Sync"] = " "
+		GameDefinition["Results"]["Player"] = "Mythic"
+		GameDefinition["Results"]["Enemy"] = "Wild"
+		local races = {'Mythic', 'Wild'}
+		for racesCount = 1, #races do
+			GameDefinition["Results"][races[racesCount]] = {}
+			GameDefinition["Results"][races[racesCount]]["InfantryCurrent"]  = 0
+			GameDefinition["Results"][races[racesCount]]["InfantryTotal"]    = 0
+			GameDefinition["Results"][races[racesCount]]["ArtilleryCurrent"] = 0
+			GameDefinition["Results"][races[racesCount]]["ArtilleryTotal"]   = 0
+			GameDefinition["Results"][races[racesCount]]["CavalryCurrent"]   = 0
+			GameDefinition["Results"][races[racesCount]]["CavalryTotal"]     = 0
+		end
 		if (Video.Width > GameDefinition["Briefing"]["Width"]) then
 			GameDefinition["Briefing"]["X"] = (Video.Width / 2) - (GameDefinition["Briefing"]["Width"] / 2)
 		else

@@ -127,7 +127,7 @@ function HandleCheats(str)
       AddMessage("SO!")
     end
 
-  elseif (str == "unite the clans") then
+  elseif ((str == "unite the clans") or (str == "monkey sweats on a tuesday")) then
     ActionVictory()
 
   elseif (str == "you pitiful worm") then

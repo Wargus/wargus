@@ -37,10 +37,10 @@ function RunSurrenderConfirmMenu()
   local menu = WarGameMenu(panel(1))
 
   menu:addLabel(_("Are you sure you"), 128, 11)
-  menu:addLabel(_("want to surrender"), 128, 11 + (24 * 1))
-  menu:addLabel(_("to your enemies?"), 128, 11 + (24 * 2))
+  menu:addLabel(_("want to withdraw"), 128, 11 + (24 * 1))
+  menu:addLabel(_("from the battle?"), 128, 11 + (24 * 2))
   menu:addFullButton(_("~!Surrender"), "s", 16, 11 + (24 * 3) + 29,
-    function() ActionDefeat(); end)
+    function() ActionDraw(); end)
   menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", 16, 248,
     function() menu:stop() end)
 

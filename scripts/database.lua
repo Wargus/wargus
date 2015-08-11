@@ -396,6 +396,89 @@ end
 function RunModCampaignOptions()
 end
 
+function LoadScript(script)
+	if (script ~= nil) then
+		Load(script)
+	else
+		Load(GameDefinition["Map"]["Path"] .. GameDefinition["Map"]["Name"] .. GameDefinition["Map"]["Type"])
+	end
+end
+
+function GatherResults(battle, race1, race2, friend1, enemy1, friend2, enemy2)
+	if (battle == "Land") then
+		local InfantryCurrentTemp = 0
+		local CavalryCurrentTemp = 0
+		local ArtilleryCurrentTemp = 0
+		local friend
+		local race
+		local infnames 
+		local cavnames
+		local artnames
+		for raceCount = 1, 2 do
+			if (raceCount == 1) then race = race1 else race = race2 end
+			for friendCount = 1, 2 do
+				if (friendCount == 1) then 
+					if (raceCount == 1) then 
+						friend = friend1 
+					else 
+						friend = enemy1 
+						InfantryCurrentTemp = 0
+						CavalryCurrentTemp = 0
+						ArtilleryCurrentTemp = 0
+					end
+				else
+					if (raceCount == 1) then 
+						if (friend2 ~= nil) then
+							friend = friend2 
+						else
+							friend = -1
+						end
+					else 
+						if (enemy2 ~= nil) then
+							friend = enemy2
+						else
+							friend = -1
+						end
+					end
+				end
+				if (friend ~= -1) then
+					infnames = {AiWorker(friend), AiSoldier(friend), AiShooter(friend), AiEliteShooter(friend), AiHeroRider(friend), AiHeroSoldier(friend), AiHeroShooter(friend), AiFodder(friend), AiSuicideBomber(friend), AiLonerShooter(friend)}
+					for infnamesCount = 1, #infnames do
+						if (GetPlayerData(friend, "UnitTypesCount", infnames[infnamesCount]) > 0) then
+							InfantryCurrentTemp = InfantryCurrentTemp + GetPlayerData(friend, "UnitTypesCount", infnames[infnamesCount])
+						end
+					end
+					cavnames = {AiCavalryMage(friend), AiCavalry(friend)}
+					for cavnamesCount = 1, #cavnames do
+						if (GetPlayerData(friend, "UnitTypesCount", cavnames[cavnamesCount]) > 0) then
+							CavalryCurrentTemp = CavalryCurrentTemp + GetPlayerData(friend, "UnitTypesCount", cavnames[cavnamesCount])
+						end
+					end
+					artnames = {AiCatapult(friend), AiFlyer(friend), AiMage(friend), AiScout(friend)}
+					for artnamesCount = 1, #artnames do
+						if (GetPlayerData(friend, "UnitTypesCount", artnames[artnamesCount]) > 0) then
+							ArtilleryCurrentTemp = ArtilleryCurrentTemp + GetPlayerData(friend, "UnitTypesCount", artnames[artnamesCount])
+						end
+					end
+				end
+			end
+			GameDefinition["Results"][race]["InfantryCurrent"] = InfantryCurrentTemp
+			if (GameDefinition["Results"][race]["InfantryTotal"] < GameDefinition["Results"][race]["InfantryCurrent"]) then
+				GameDefinition["Results"][race]["InfantryTotal"] = GameDefinition["Results"][race]["InfantryCurrent"]
+			end
+			
+			GameDefinition["Results"][race]["CavalryCurrent"] = CavalryCurrentTemp
+			if (GameDefinition["Results"][race]["CavalryTotal"] < GameDefinition["Results"][race]["CavalryCurrent"]) then
+				GameDefinition["Results"][race]["CavalryTotal"] = GameDefinition["Results"][race]["CavalryCurrent"]
+			end
+			GameDefinition["Results"][race]["ArtilleryCurrent"] = ArtilleryCurrentTemp
+			if (GameDefinition["Results"][race]["ArtilleryTotal"] < GameDefinition["Results"][race]["ArtilleryCurrent"]) then
+				GameDefinition["Results"][race]["ArtilleryTotal"] = GameDefinition["Results"][race]["ArtilleryCurrent"]
+			end
+		end
+	end
+end
+
 function BriefingAction(action, text, menu, x, y, z)
 	if (menu ~= nil) then AddMenuHelpers(menu) end
 	if ((action == "Objectives") and (text ~= nil)) then
@@ -419,7 +502,9 @@ function BriefingAction(action, text, menu, x, y, z)
 		GameDefinition["Briefing"]["Active"] = true
 	elseif (action == "Start") then
 		GameDefinition["Briefing"]["Active"] = false
-		RunMap(GameDefinition["Map"]["Path"] .. GameDefinition["Map"]["Name"] .. GameDefinition["Map"]["Type"])
+		RunMap(text, nil, nil, nil, false)
+		GameDefinition["Briefing"]["Active"] = 2
+		Load(GameDefinition["Map"]["Path"] .. GameDefinition["Map"]["File"] .. GameDefinition["Map"]["Type"])
 	elseif (action == "Character") then
 		local charx = GameDefinition["Briefing"]["X"] + GameDefinition["Briefing"]["Width"] - 450
 		local chary = GameDefinition["Briefing"]["Y"] + 10
@@ -434,14 +519,15 @@ function BriefingAction(action, text, menu, x, y, z)
 	elseif ((action == "Scrolling Text") and (text ~= nil)) then
 		local t = LoadBuffer(text)
 		t = "\n\n\n\n\n\n\n\n\n\n" .. t .. "\n\n\n\n\n\n\n\n\n\n\n\n\n"
-		local sw = ScrollingWidget(320, 170 * GameDefinition["Briefing"]["Height"] / 480)
+		--local sw = ScrollingWidget(320, 170 * GameDefinition["Briefing"]["Height"] / 480)
+		local sw = ScrollingWidget(288, 170)
 		sw:setBackgroundColor(Color(0,0,0,0))
 		sw:setSpeed(0.28)
 		local l = MultiLineLabel(t)
 		l:setFont(Fonts["large"])
 		l:setAlignment(MultiLineLabel.LEFT)
 		l:setVerticalAlignment(MultiLineLabel.TOP)
-		l:setLineWidth(319)
+		l:setLineWidth(286)
 		l:adjustSize()
 		sw:add(l, 0, 0)
 		menu:add(sw, GameDefinition["Briefing"]["X"] + 70 * GameDefinition["Briefing"]["Width"] / 640, GameDefinition["Briefing"]["Y"] + 80 * GameDefinition["Briefing"]["Height"] / 480)
@@ -451,42 +537,125 @@ function BriefingAction(action, text, menu, x, y, z)
 		function PlayNextVoice()
 			voice = voice + 1
 			if (voice <= table.getn(text)) then
-				text[voice] = "sounds/characters/" .. GameDefinition["Briefing"]["Character"] .. "/" .. GameDefinition["Map"]["Name"] .. "/" .. text[voice] .. ".wav"
+				text[voice] = "sounds/characters/" .. GameDefinition["Briefing"]["Character"] .. "/" .. GameDefinition["Map"]["File"] .. "/" .. text[voice] .. ".wav"
 				channel = PlaySoundFile(text[voice], PlayNextVoice);
 			else
 			  channel = -1
 			end
 		  end
 		  PlayNextVoice()
+	elseif (action == "Results") then
+		local resultx = 70 * GameDefinition["Briefing"]["Width"] / 640
+		local resulty = GameDefinition["Briefing"]["Y"] + 80 * GameDefinition["Briefing"]["Height"] / 480 + 300
+		-- Add Box
+		resultsdrop = CGraphic:New("ui/scroll.png")
+		resultsdrop:Load()
+		resultsdropWidget = ImageWidget(scrolldrop)
+		BriefingAction("Widget", resultsdropWidget, menu, resultx, resulty)
+		-- Add Labels
+		menu:addLabel(_("Combat Casualties"), resultx + 160, resulty + 6, nil, true)
+		menu:addLabel(_("Infantry"), resultx + 17, resulty + 2 + 32*1, Fonts["game"], false)
+		menu:addLabel(_("Artillery"), resultx + 17, resulty + 2 + 32*2, Fonts["game"], false)
+		menu:addLabel(_("Cavalry"), resultx + 17, resulty + 2 + 32*3, Fonts["game"], false)
+		-- Counter Widget Stats
+		infantryWidget = StatBoxWidget(80, 20)
+		artilleryWidget = StatBoxWidget(80, 20)
+		cavalryWidget = StatBoxWidget(80, 20)
+		infantryenemyWidget = StatBoxWidget(80, 20)
+		artilleryenemyWidget = StatBoxWidget(80, 20)
+		cavalryenemyWidget = StatBoxWidget(80, 20)
+		infantryWidget:setFont(Fonts["game"])
+		artilleryWidget:setFont(Fonts["game"])
+		cavalryWidget:setFont(Fonts["game"])
+		infantryenemyWidget:setFont(Fonts["game"])
+		artilleryenemyWidget:setFont(Fonts["game"])
+		cavalryenemyWidget:setFont(Fonts["game"])
+		-- Friendly Counter Widget Stats
+		local infantryStrength    = GameDefinition["Results"][GameDefinition["Results"]["Player"]]["InfantryTotal"]
+		local artilleryStrength   = GameDefinition["Results"][GameDefinition["Results"]["Player"]]["ArtilleryTotal"]
+		local cavalryStrength     = GameDefinition["Results"][GameDefinition["Results"]["Player"]]["CavalryTotal"]
+		local infantryCasualties  = infantryStrength  - GameDefinition["Results"][GameDefinition["Results"]["Player"]]["InfantryCurrent"]
+		local artilleryCasualties = artilleryStrength - GameDefinition["Results"][GameDefinition["Results"]["Player"]]["ArtilleryCurrent"]
+		local cavalryCasualties   = cavalryStrength   - GameDefinition["Results"][GameDefinition["Results"]["Player"]]["CavalryCurrent"]
+		infantryWidget:setCaption(infantryCasualties .. " of " .. infantryStrength)
+		artilleryWidget:setCaption(artilleryCasualties .. " of " .. artilleryStrength)
+		cavalryWidget:setCaption(cavalryCasualties .. " of " .. cavalryStrength)
+		infantryWidget:setPercent((infantryCasualties / infantryStrength)*100)
+		artilleryWidget:setPercent((artilleryCasualties / artilleryStrength)*100)
+		cavalryWidget:setPercent((cavalryCasualties / cavalryStrength)*100)
+		infantryWidget:setBackgroundColor(black)
+		artilleryWidget:setBackgroundColor(black)
+		cavalryWidget:setBackgroundColor(black)
+		infantryWidget:setForegroundColor(Color(0, 0, 215))
+		artilleryWidget:setForegroundColor(Color(0, 0, 215))
+		cavalryWidget:setForegroundColor(Color(0, 0, 215))
+		infantryWidget:setBaseColor(Color(215, 215, 0))
+		artilleryWidget:setBaseColor(Color(215, 215, 0))	
+		cavalryWidget:setBaseColor(Color(215, 215, 0))
+		-- Enemy Counter Widget Stats
+		local infantryenemyStrength    = GameDefinition["Results"][GameDefinition["Results"]["Enemy"]]["InfantryTotal"]
+		local artilleryenemyStrength   = GameDefinition["Results"][GameDefinition["Results"]["Enemy"]]["ArtilleryTotal"]
+		local cavalryenemyStrength     = GameDefinition["Results"][GameDefinition["Results"]["Enemy"]]["CavalryTotal"]
+		local infantryenemyCasualties  = infantryenemyStrength  - GameDefinition["Results"][GameDefinition["Results"]["Enemy"]]["InfantryCurrent"]
+		local artilleryenemyCasualties = artilleryenemyStrength - GameDefinition["Results"][GameDefinition["Results"]["Enemy"]]["ArtilleryCurrent"]
+		local cavalryenemyCasualties   = cavalryenemyStrength   - GameDefinition["Results"][GameDefinition["Results"]["Enemy"]]["CavalryCurrent"]
+		infantryenemyWidget:setCaption(infantryenemyCasualties .. " of " .. infantryenemyStrength)
+		artilleryenemyWidget:setCaption(artilleryenemyCasualties .. " of " .. artilleryenemyStrength)
+		cavalryenemyWidget:setCaption(cavalryenemyCasualties .. " of " .. cavalryenemyStrength)
+		infantryenemyWidget:setPercent((infantryenemyCasualties / infantryenemyStrength)*100)
+		artilleryenemyWidget:setPercent((artilleryenemyCasualties / artilleryenemyStrength)*100)
+		cavalryenemyWidget:setPercent((cavalryenemyCasualties / cavalryenemyStrength)*100)
+		infantryenemyWidget:setBackgroundColor(black)
+		artilleryenemyWidget:setBackgroundColor(black)
+		cavalryenemyWidget:setBackgroundColor(black)
+		infantryenemyWidget:setForegroundColor(Color(0, 0, 215))
+		artilleryenemyWidget:setForegroundColor(Color(0, 0, 215))
+		cavalryenemyWidget:setForegroundColor(Color(0, 0, 215))
+		infantryenemyWidget:setBaseColor(Color(215, 215, 0))
+		artilleryenemyWidget:setBaseColor(Color(215, 215, 0))	
+		cavalryenemyWidget:setBaseColor(Color(215, 215, 0))
+		-- Add Friendly Counter Widgets
+		menu:add(infantryWidget, resultx + 17 + 80, resulty + 32*1)
+		menu:add(artilleryWidget, resultx + 17 + 80, resulty + 32*2)
+		menu:add(cavalryWidget, resultx + 17 + 80, resulty + 32*3)
+		-- Add Enemy Counter Widgets
+		menu:add(infantryenemyWidget, resultx + (17 + 80)*2, resulty + 32*1)
+		menu:add(artilleryenemyWidget, resultx + (17 + 80)*2, resulty + 32*2)
+		menu:add(cavalryenemyWidget, resultx + (17 + 80)*2, resulty + 32*3)
 	elseif ((action == "Chat") and ((text ~= nil))) then
 		local function MultiTextChat()
 			local syncchar
+			local synccharold
 			local screenchar
 			if (wait == nil) then wait = 1 end
 			if (screentext == nil) then screentext = "" end
 			if (wait == 1) then
+				if (x ~= nil) then
+					syncchar = string.sub(x, 1, 1)
+					if (syncchar ~= synccharold) then
+						x = string.sub(x, 2)
+						if (((SyncIndex(name, syncchar, "a", "b", "c", "d", "e", "f") == true) or (SyncIndex(name, syncchar, "g", "h", "i", "j", "k", "l") == true) or
+							(SyncIndex(name, syncchar, "m", "n", "o", "p", "q", "r") == true) or (SyncIndex(name, syncchar, "s", "t", "u", "v", "w", "x") == true) or
+							(SyncIndex(name, syncchar, "y", "z", " ", "") == true)) and (syncchar ~= "+")) then
+							charmouthWidget:setVisible(false)
+							if (syncchar ~= "") then
+								CharacterAction(GameDefinition["Briefing"]["Character"], "Sync", Character[GameDefinition["Briefing"]["Character"]]["Skin"], syncchar)
+							else
+								CharacterAction(GameDefinition["Briefing"]["Character"], "Pose", Character[GameDefinition["Briefing"]["Character"]]["Skin"], Character[GameDefinition["Briefing"]["Character"]]["Mood"])
+							end
+							menu:add(charmouthWidget, GameDefinition["Briefing"]["X"] + GameDefinition["Briefing"]["Width"] - 450, GameDefinition["Briefing"]["Y"] + 10)
+						end
+						synccharold = syncchar
+					end
+				end
 				if (text ~= nil) then
 					screenchar = string.sub(text, 1, 1)
 					if (screenchar ~= "+") then
 						screentext = screentext .. screenchar		
 						menu:addMultiLineLabel(screentext, GameDefinition["Briefing"]["X"] + 70 * GameDefinition["Briefing"]["Width"] / 640, GameDefinition["Briefing"]["Y"] + 80 * GameDefinition["Briefing"]["Height"] / 480, Fonts["large"], false, 320)
 					end
+					if (text == "") then text = nil end
 					text = string.sub(text, 2)
-				end
-				if (x ~= nil) then
-					syncchar = string.sub(x, 1, 1)
-					x = string.sub(x, 2)
-					if (((SyncIndex(name, syncchar, "a", "b", "c", "d", "e", "f") == true) or (SyncIndex(name, syncchar, "g", "h", "i", "j", "k", "l") == true) or
-						(SyncIndex(name, syncchar, "m", "n", "o", "p", "q", "r") == true) or (SyncIndex(name, syncchar, "s", "t", "u", "v", "w", "x") == true) or
-						(SyncIndex(name, syncchar, "y", "z", " ", "") == true)) and (syncchar ~= "+")) then
-						charmouthWidget:setVisible(false)
-						if (syncchar ~= "") then
-							CharacterAction(GameDefinition["Briefing"]["Character"], "Sync", Character[GameDefinition["Briefing"]["Character"]]["Skin"], syncchar)
-						else
-							CharacterAction(GameDefinition["Briefing"]["Character"], "Pose", Character[GameDefinition["Briefing"]["Character"]]["Skin"], Character[GameDefinition["Briefing"]["Character"]]["Mood"])
-						end
-						menu:add(charmouthWidget, GameDefinition["Briefing"]["X"] + GameDefinition["Briefing"]["Width"] - 450, GameDefinition["Briefing"]["Y"] + 10)
-					end
 				end
 			end
 			if (wait > 0) then
@@ -500,6 +669,9 @@ function BriefingAction(action, text, menu, x, y, z)
 		screentext = ""
 		menu:addLogicCallback(LuaActionListener(MultiTextChat))
 	elseif (action == "Backdrop") then
+		if (x == nil) then x = 0 end
+		if (y == nil) then y = 0 end
+		if (z == nil) then z = "scroll.png" end
 		if (text ~= nil) then
 			backdrop = CGraphic:New(text)
 			backdrop:Load()
@@ -507,6 +679,10 @@ function BriefingAction(action, text, menu, x, y, z)
 			backdropWidget = ImageWidget(backdrop)
 		end
 		BriefingAction("Widget", backdropWidget, menu, x, y)
+		scrolldrop = CGraphic:New("ui/" .. z)
+		scrolldrop:Load()
+		scrolldropWidget = ImageWidget(scrolldrop)
+		BriefingAction("Widget", scrolldropWidget, menu, 70 + x, 80 + y)
 	elseif (action == "Sleep") then
 		return menu:stop()
 	elseif ((action == "Refresh") or (action == "Load")) then
@@ -539,8 +715,12 @@ end
 
 function BundleAction(action, name, displaytext, synctext, voice)
 	local menu = MenuScreen()
-	BriefingAction("Backdrop", nil, menu)
+	if (action == "Scrolling Text") then BriefingAction("Backdrop", nil, menu, 0, 0, "scrolltall.png") else BriefingAction("Backdrop", nil, menu) end
 	GameDefinition["Briefing"]["Character"] = name
+	if (action == "Results") then
+			BriefingAction("Results", nil, menu)
+			action = "Chat"
+	end
 	if (action == "Chat") then
 		if (synctext == nil) then
 			local chartext = ""
@@ -554,7 +734,6 @@ function BundleAction(action, name, displaytext, synctext, voice)
 				string.sub(displaytext, 2)
 				if (chartext ~= "+") then
 					looptext = looptext .. chartext
-				
 					if ((chartext == " ") and (chatboxcurrent > chatboxlength - chatboxlength)) then
 						-- Check the character length of the next word.
 						for chatboxindex = 1, chatboxlength - chatboxcurrent do
@@ -596,7 +775,7 @@ function BundleAction(action, name, displaytext, synctext, voice)
 		end
 		BriefingAction("Title", GameDefinition["Briefing"]["Title"], menu)
 		BriefingAction("Objectives", GameDefinition["Briefing"]["Objectives"], menu)
-		BriefingAction("Button", "Continue", menu, GameDefinition["Map"]["Path"], GameDefinition["Map"]["Name"], GameDefinition["Map"]["Type"])
+		BriefingAction("Button", "Continue", menu, GameDefinition["Map"]["Path"], GameDefinition["Map"]["File"], GameDefinition["Map"]["Type"])
 		BriefingAction("Button", "Exit", menu)
 		BriefingAction("Load", 0, menu)
 	end
@@ -614,7 +793,7 @@ function RunModCampaignMission(title, objs, bg, text, voices, mapname, menu)
   BriefingAction("Title", GameDefinition["Briefing"]["Title"], menu)
   BriefingAction("Scrolling Text", text, menu)
   BriefingAction("Objectives", GameDefinition["Briefing"]["Objectives"], menu)
-  BriefingAction("Button", "Continue", menu, GameDefinition["Map"]["Path"], GameDefinition["Map"]["Name"], GameDefinition["Map"]["Type"])
+  BriefingAction("Button", "Continue", menu, GameDefinition["Map"]["Path"], GameDefinition["Map"]["File"], GameDefinition["Map"]["Type"])
   BriefingAction("Button", "Exit", menu)
   BriefingAction("Refresh", 0, menu)
 end
