@@ -8,9 +8,9 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---	ai_nephrite_2013.lua - Nephrite AI 2013
+--		ai_nephrite_2013.lua - Nephrite AI 2013
 --
---	(c) Copyright 2012-2013 by Kyran Jackson
+--		(c) Copyright 2012-2013 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by

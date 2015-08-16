@@ -1,23 +1,24 @@
 --	Stratagus Map - Single player campaign
 
-Load("campaigns/human-tales/level05h_c2.sms")
-
-if (wargus.tales == true) then
-	Briefing(
-		title,
-		objectives,
-		"../campaigns/human-tales/interface/introscreen1.png",
-		"campaigns/human-tales/level05h.txt",
-		{}
-	)
-else
-	Briefing(
-		title,
-		objectives,
-		"../campaigns/human/interface/introscreen1.png",
-		"campaigns/human-tales/level05h.txt",
-		{}
-	)
+if (GameDefinition["Briefing"]["Active"] ~= false) then
+	Load("campaigns/human-tales/level05h_c2.sms")
+	if (wargus.tales == true) then
+		Briefing(
+			title,
+			objectives,
+			"../campaigns/human-tales/interface/introscreen1.png",
+			"campaigns/human-tales/level05h.txt",
+			{}
+		)
+	else
+		Briefing(
+			title,
+			objectives,
+			"../campaigns/human/interface/introscreen1.png",
+			"campaigns/human-tales/level05h.txt",
+			{}
+		)
+	end
 end
 
 Load("campaigns/human-tales/level05h_ai.lua")

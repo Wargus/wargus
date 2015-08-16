@@ -8,9 +8,7 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---	level03o_ai.lua 
---
---	(c) Copyright 2012 by Kyran Jackson
+--		(c) Copyright 2012 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -28,33 +26,33 @@
 --
 
 function AiLevel03()
-	if (GetPlayerData(GetThisPlayer(), "TotalNumUnits") > 0) then
+	if ((GetPlayerData(GetThisPlayer(), "TotalNumUnits") > 0) and (GameCycle > 300)) then
 		AiSet(AiWorker(), 3)
-		AiSet(AiHarbor(), 1)
 		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 20) then
-			AiSet(AiShooter(), 0)
-			Aiset(AiSoldier(), 0)
 			AiNephrite_Attack_2013()
 		else
 			if (GetNumUnitsAt(AiPlayer(), "unit-human-barracks", {0, 0}, {256, 256}) >= 1) then
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 3) then
 					AiSet(AiWorker(), 0)
 					AiForce(3, {AiSoldier(), 12, AiShooter(), 6}, true)
+					AiJadeite_Force_2010(3, AiSoldier(), 12, AiShooter(), 6)
 					if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 11) then
-						AiAttackWithForce(3)
+						AiJadeite_Attack_2010(3)
 						AiSet(AiWorker(), 12)
 					end
 				else
+					AiJadeite_Force_2010(0, AiSoldier(), 4, AiShooter(), 6)
 					AiSet(AiWorker(), 8)
-					AiSet(AiSoldier(), 4)
-					AiSet(AiShooter(), 6)
+					AiSet(AiHarbor(), 1)
 				end
 			else
 				AiSet(AiWorker(), 6)
-				AiSet(AiBarracks(), 1)
-				if (GetNumUnitsAt(AiPlayer(), AiEliteShooter(), {0, 0}, {256, 256}) >= 4) then
-					AiForce(2, {AiShooter(), 4})
-					AiAttackWithForce(2)
+				AiJadeite_Build_2010(AiBarracks(), 1)
+				if ((GetNumUnitsAt(AiPlayer(), AiEliteShooter(), {0, 0}, {256, 256}) >= 4) and (GameCycle < 500)) then
+					OrderUnits(AiPlayer(), "unit-ranger", 2, 60, 1, 1, 27, 34, "attack")
+					OrderUnits(AiPlayer(), "unit-ranger", 2, 61, 1, 1, 27, 35, "attack")
+					OrderUnits(AiPlayer(), "unit-ranger", 0, 58, 1, 1, 27, 31, "attack")
+					OrderUnits(AiPlayer(), "unit-ranger", 0, 62, 1, 1, 27, 32, "attack")
 				end
 			end
 		end

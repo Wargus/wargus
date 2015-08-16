@@ -8,9 +8,9 @@
 --                        T H E   W A R   B E G I N S
 --         Stratagus - A free fantasy real time strategy game engine
 --
---	ai_nephrite.lua - Define the Nephrite AI.
+--		ai_nephrite.lua - Define the Nephrite AI.
 --
---	(c) Copyright 2012 by Kyran Jackson
+--		(c) Copyright 2012 by Kyran Jackson
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by

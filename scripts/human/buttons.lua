@@ -397,6 +397,11 @@ DefineButton( { Pos = 9, Level = 0, Icon = "icon-sword1",
 end
 end
 
+DefineButton( { Pos = 1, Level = 0, Icon = "icon-peasant",
+  Action = "train-unit", Value = "unit-attack-peasant", Popup = "popup-human-unit",
+  Key = "m", Hint = _("TRAIN ~!MINUTEMAN"),
+  ForUnit = {"unit-human-barracks"} } )
+
 DefineButton( { Pos = 1, Level = 0, Icon = "icon-footman",
   Action = "train-unit", Value = "unit-footman", Popup = "popup-human-unit",
   Key = "f", Hint = _("TRAIN ~!FOOTMAN"),

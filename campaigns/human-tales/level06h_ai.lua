@@ -46,7 +46,7 @@ function AiEndAttack()
 	SetDiplomacy(4, "enemy", 1)
 end
 
-function AiLevel07()
+function AiLevel06()
 	if (GetNumUnitsAt(1, "unit-castle", {60, 70}, {70, 80}) < 1) then
 	--	if (GetNumUnitsAt(4, AiEliteSoldier(), {65, 85}, {70, 80}) > 0) then
 			
@@ -177,10 +177,8 @@ function AiLevel07()
 					AiEndAttack()
 				end
 			else
-				AiSet(AiSoldier(), 4)
+				AiForce(0, {AiSoldier(), 4}, true)
 			end
-		else
-			AiSet(AiBarracks(), 1)
 		end
 	end
 	-- Wild Attacker
@@ -204,10 +202,8 @@ function AiLevel07()
 					AiEndAttack()
 				end
 			else
-				AiSet(AiSoldier(), 4)
+				AiForce(0, {AiSoldier(), 4}, true)
 			end
-		else
-			AiSet(AiBarracks(), 1)
 		end
 	end
 	end

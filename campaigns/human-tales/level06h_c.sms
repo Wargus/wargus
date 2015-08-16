@@ -25,24 +25,25 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-Load("campaigns/human-tales/level06h_c2.sms")
-
-if (wargus.tales == true) then
-	Briefing(
-		title,
-		objectives,
-		"../campaigns/human-tales/interface/introscreen1.png",
-		"campaigns/human-tales/level06h.txt",
-		{}
-	)
-else
-	Briefing(
-		title,
-		objectives,
-		"../campaigns/human/interface/introscreen1.png",
-		"campaigns/human-tales/level06h.txt",
-		{}
-	)
+if (GameDefinition["Briefing"]["Active"] ~= false) then
+	Load("campaigns/human-tales/level06h_c2.sms")
+	if (wargus.tales == true) then
+		Briefing(
+			title,
+			objectives,
+			"../campaigns/human-tales/interface/introscreen1.png",
+			"campaigns/human-tales/level06h.txt",
+			{}
+		)
+	else
+		Briefing(
+			title,
+			objectives,
+			"../campaigns/human/interface/introscreen1.png",
+			"campaigns/human-tales/level06h.txt",
+			{}
+		)
+	end
 end
 
 Load("campaigns/human-tales/level06h_ai.lua")

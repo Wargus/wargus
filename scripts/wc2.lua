@@ -296,7 +296,7 @@ function GameDefinitionSetup(name, version, revision, map, topography)
 		if (map ~= nil) then
 			GameDefinition["Map"]["Name"] = map
 			if (map ~= nil) then
-				GameDefinition["Map"]["Path"] = path
+			--	GameDefinition["Map"]["Path"] = path
 			end
 			if (topography ~= nil) then
 				-- Land, Coastal, Islands

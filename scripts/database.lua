@@ -501,9 +501,9 @@ function BriefingAction(action, text, menu, x, y, z)
 	elseif (action == "Terminate") then
 		GameDefinition["Briefing"]["Active"] = true
 	elseif (action == "Start") then
-		GameDefinition["Briefing"]["Active"] = false
+		--GameDefinition["Briefing"]["Active"] = false
 		RunMap(text, nil, nil, nil, false)
-		GameDefinition["Briefing"]["Active"] = 2
+		BriefingAction("Increment")
 		Load(GameDefinition["Map"]["Path"] .. GameDefinition["Map"]["File"] .. GameDefinition["Map"]["Type"])
 	elseif (action == "Character") then
 		local charx = GameDefinition["Briefing"]["X"] + GameDefinition["Briefing"]["Width"] - 450

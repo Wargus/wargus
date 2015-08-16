@@ -1,23 +1,24 @@
 -- 	Stratagus Map - Single player campaign
 
-Load("campaigns/human-tales/level02h_c2.sms")
-
-if (wargus.tales == true) then
-	Briefing(
-		title,
-		objectives,
-		"../campaigns/human-tales/interface/introscreen1.png",
-		"campaigns/human-tales/level02h.txt",
-		{}
-	)
-else
-	Briefing(
-		title,
-		objectives,
-		"../campaigns/human/interface/introscreen1.png",
-		"campaigns/human-tales/level02h.txt",
-		{}
-	)
+if (GameDefinition["Briefing"]["Active"] ~= false) then
+	Load("campaigns/human-tales/level02h_c2.sms")
+	if (wargus.tales == true) then
+		Briefing(
+			title,
+			objectives,
+			"../campaigns/human-tales/interface/introscreen1.png",
+			"campaigns/human-tales/level02h.txt",
+			{}
+		)
+	else
+		Briefing(
+			title,
+			objectives,
+			"../campaigns/human/interface/introscreen1.png",
+			"campaigns/human-tales/level02h.txt",
+			{}
+		)
+	end
 end
 
 Triggers = [[
@@ -28,7 +29,7 @@ SetSharedVision(0, true, 6)
 SetDiplomacy(1, "enemy", 6) 
 SetDiplomacy(6, "enemy", 1) 
 AddTrigger(
-  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-footman") > 4 and
+  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-attack-peasant") > 4 and
     GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-human-barracks") >= 1 end,
   function() return ActionVictory() end)
 AddTrigger(
@@ -50,7 +51,8 @@ DefineAllow("unit-peasant", "AAAAAAAAAAAAAAAA")
 DefineAllow("unit-peon", "AAAAAAAAAAAAAAAA")
 
 -- Barracks - Produces
-DefineAllow("unit-footman", "AAAAAAAAAAAAAAAA")
+DefineAllow("unit-footman", "FFFFFFFFFFFFFFFF")
+DefineAllow("unit-attack-peasant", "AAAAAAAAAAAAAAAA")
 DefineAllow("unit-archer", "FFFFFFFFFFFFFFFF")
   DefineAllow("unit-ranger", "AAAAAAAAAAAAAAAA")
 DefineAllow("unit-knight", "FFFFFFFFFFFFFFFF")

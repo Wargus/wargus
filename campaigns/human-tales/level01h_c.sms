@@ -1,38 +1,38 @@
 --	Stratagus Map - Single player campaign
 
-Load("campaigns/human-tales/level01h_c2.sms")
-
-if (wargus.tales == true) then
-	Briefing(
-		title,
-		objectives,
-		"../campaigns/human-tales/interface/introscreen1.png",
-		"campaigns/human-tales/level01h.txt",
-		{}
-	)
-else
-	Briefing(
-		title,
-		objectives,
-		"../campaigns/human/interface/introscreen1.png",
-		"campaigns/human-tales/level01h.txt",
-		{}
-	)
+if (GameDefinition["Briefing"]["Active"] ~= false) then
+	Load("campaigns/human-tales/level01h_c2.sms")
+	if (wargus.tales == true) then
+		Briefing(
+			title,
+			objectives,
+			"../campaigns/human-tales/interface/introscreen1.png",
+			"campaigns/human-tales/level01h.txt",
+			{}
+		)
+	else
+		Briefing(
+			title,
+			objectives,
+			"../campaigns/human/interface/introscreen1.png",
+			"campaigns/human-tales/level01h.txt",
+			{}
+		)
+	end
 end
 
 Triggers = [[
 AddTrigger(
-  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") > 0 end,
-  function() return SetDiplomacy(6, "allied", 0) end)
-AddTrigger(
-  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") > 0 end,
-  function() return SetDiplomacy(0, "allied", 6) end)
-AddTrigger(
-  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") > 0 end,
-  function() return SetDiplomacy(1, "enemy", 6) end)
-AddTrigger(
-  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") > 0 end,
-  function() return SetDiplomacy(6, "enemy", 1) end)
+	function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") > 0 end, 
+	function()	if (GameCycle < 20) then
+					SetDiplomacy(6, "allied", 0)
+					SetDiplomacy(0, "allied", 6)
+					SetDiplomacy(3, "enemy", 6)
+					SetDiplomacy(6, "enemy", 3)
+				else
+					GatherResults("Land", "Mythic", "Wild", 0, 3, nil, nil)
+				end
+return true end)
 AddTrigger(
   function() return GetNumUnitsAt(ThisPlayer.Index, "unit-arthor-literios", 
                                    {0, 16}, {5, 22}) > 0 end,

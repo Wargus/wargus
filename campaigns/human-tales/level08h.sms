@@ -32,7 +32,6 @@ SetupPlayer(3, "orc", "Nathan Withers", 12000, 5100, 0, 25, 110)
 SetupPlayer(4, "man", "wc2-land-attack", 10000, 5000, 0, 33, 0)
 SetPlayerData(15, "RaceName", "neutral")
 
-
 --Units
 local allowedHumanUnits = {"unit-gryphon-rider",
 	"unit-footman", "unit-archer", "unit-ranger", "unit-ballista",

@@ -28,22 +28,22 @@
 if (GameDefinition["Briefing"]["Active"] == true) then
 	GameDefinition["Briefing"]["Title"] = ""
 	GameDefinition["Briefing"]["Objectives"] = nil
-	GameDefinition["Map"]["Name"] = "Mission 6"
-	GameDefinition["Map"]["File"] = "SN6A1"
+	GameDefinition["Map"]["Name"] = "Mission 10"
+	GameDefinition["Map"]["File"] = "SO1A1"
 	GameDefinition["Map"]["Type"] = ".lua"
 	GameDefinition["Map"]["Path"] = "scripts/lists/campaigns/Adventure/"
 	local menu = MenuScreen()
 	BriefingAction("Backdrop", "backdrops/seichan.png", menu)
 	BundleAction("Scrolling Text", "Sandria Fields", "campaigns/human-tales/level06h.txt")
 elseif (GameDefinition["Briefing"]["Active"] == 1) then
-	BriefingAction("Start", "campaigns/human-tales/level06h.smp")
+	BriefingAction("Start", "campaigns/human-tales/level10h.smp")
 elseif (GameDefinition["Briefing"]["Active"] == 2) then
 	if ((GameResult == GameDefeat) or (GameResult == GameDraw)) then
 	-- monkey sweats on a tuesday
 		GameDefinition["Map"]["Name"] = "SN5D1"
 		BundleAction("Chat", "Sandria Fields", "Defeat!")
 	else
-		GameDefinition["Map"]["Name"] = "SN7A1"
+		GameDefinition["Map"]["Name"] = "SN6A1"
 		BundleAction("Chat", "Sandria Fields", "Victory!")
 	end
 elseif (GameDefinition["Briefing"]["Active"] == 3) then
