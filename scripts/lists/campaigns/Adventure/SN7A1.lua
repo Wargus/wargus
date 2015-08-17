@@ -38,13 +38,16 @@ if (GameDefinition["Briefing"]["Active"] == true) then
 elseif (GameDefinition["Briefing"]["Active"] == 1) then
 	BriefingAction("Start", "campaigns/human-tales/level07h.smp")
 elseif (GameDefinition["Briefing"]["Active"] == 2) then
-	if ((GameResult == GameDefeat) or (GameResult == GameDraw)) then
+	if (GameResult == GameDefeat) then
 	-- monkey sweats on a tuesday
 		GameDefinition["Map"]["Name"] = "SN5D1"
-		BundleAction("Chat", "Sandria Fields", "Defeat!")
+		BundleAction("Results", "Sandria Fields", "Defeat!")
+	elseif (GameResult == GameDraw) then
+		GameDefinition["Map"]["Name"] = "SN8A1"
+		BundleAction("Results", "Sandria Fields", "Draw!")
 	else
 		GameDefinition["Map"]["Name"] = "SN8A1"
-		BundleAction("Chat", "Sandria Fields", "Victory!")
+		BundleAction("Results", "Sandria Fields", "Victory!")
 	end
 elseif (GameDefinition["Briefing"]["Active"] == 3) then
 	GameDefinition["Briefing"]["Active"] = true

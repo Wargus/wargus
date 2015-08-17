@@ -194,6 +194,11 @@ function SetupPlayer(player, race, ai, gold, wood, oil, x, y)
 	end
 end
 
+function SetMapTeams(player, team, position)
+	GameDefinition["Map"][player]["Team"] = team
+	GameDefinition["Map"][player]["Player"] = position	
+end
+
 function SpawnUnits(player, unit, x, y, width, height)
 	SpawnUnitSquare(player, unit, x, y, width, height)
 end
@@ -221,11 +226,6 @@ function OrderUnitSquare(player, unit, fromx, fromy, width, height, tox, toy, or
 			end
 		end
 	end
-end
-
-function SetMapTeams(player, team, position)
-	GameDefinition["Map"][player]["Team"] = team
-	GameDefinition["Map"][player]["Player"] = position
 end
 
 function GameDefinitionSetup(name, version, revision, map, topography)
