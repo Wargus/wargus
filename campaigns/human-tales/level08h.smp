@@ -25,7 +25,11 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -- 
 
-DefinePlayerTypes("computer","nobody","computer","computer","person")
+if (GameDefinition["Map"]["File"] == "SN8M1") then
+	DefinePlayerTypes("rescue-passive","nobody","computer","computer","person")
+else
+	DefinePlayerTypes("computer","nobody","computer","computer","person")
+end
 PresentMap("Northern Swamp", 4, 128, 128, 1)
 
 SetMapTeams(0, 1, 1)

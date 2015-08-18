@@ -448,178 +448,285 @@ function MoveUnitQuick(player, unit, tox, toy, fromx, fromy, area, action)
 end
 
 function AiLucas_Escape_Shameful_Display_2015()
-	if (LucasTimer == nil) then 
-		LucasTimer = 5 
-		AiForce(0, {AiShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()), AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier())})
-	elseif (LucasTimer < 1) then 
-		LucasTimer = 16
-	else 
-		LucasTimer = LucasTimer - 1 
-	end
-	if (LucasTimer == 1) then
-		if (MoveArmySafe(AiPlayer(), 6, 55, 1, 68, 1, 2) == true) then 
-		-- Move forward!
-		elseif (MoveArmySafe(AiPlayer(), 4, 2, 41, 3, 1, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 41, 3, 35, 34, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 116, 76, 107, 100, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 107, 100, 105, 116, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 60, 86, 79, 84, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 83, 76, 79, 84, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 79, 84, 80, 93, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 91, 76, 80, 93, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 0, 0, 8, 91, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 125, 1, 102, 41, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 49, 18, 53, 30, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 2, 1, 11, 25, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 11, 25, 7, 36, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 7, 36, 6, 57, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 6, 57, 20, 78, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 40, 35, 35, 64, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 45, 91, 91, 77, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 84, 109, 9, 91, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 107, 100, 107, 78, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 107, 78, 116, 77, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 116, 77, 105, 64, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 105, 64, 102, 41, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 102, 41, 90, 33, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 90, 33, 75, 17, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 4, 102, 9, 91, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 124, 44, 119, 61, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 123, 5, 104, 40, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 104, 40, 125, 43, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 36, 35, 40, 53, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 33, 24, 10, 26, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 49, 16, 33, 24, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 53, 30, 36, 35, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 20, 78, 10, 91, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 35, 64, 20, 78, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 124, 41, 116, 61, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 116, 61, 116, 76, 5, 2) == true) then 
-		-- Move back!
-		elseif (MoveArmySafe(AiPlayer(), 107, 100, 80, 93, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 80, 93, 79, 110, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 79, 110, 43, 102, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 43, 102, 8, 91, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 104, 115, 81, 108, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 44, 101, 12, 90, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 34, 35, 36, 35, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 41, 3, 49, 16, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 1, 2, 49, 16, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 8, 91, 10, 90, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 34, 64, 45, 91, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 91, 77, 90, 90, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 61, 87, 90, 90, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 90, 90, 107, 100, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 90, 77, 105, 64, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 75, 17, 49, 20, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 10, 90, 28, 101, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 28, 101, 28, 112, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 28, 112, 17, 123, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 2, 2, 49, 18, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 13, 89, 4, 91, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 4, 91, 3, 102, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 3, 102, 17, 112, 5, 2) == true) then 
-		elseif (MoveArmySafe(AiPlayer(), 104, 115, 10, 90, 5, 2) == true) then
-		elseif (MoveArmySafe(AiPlayer(), 6, 56, 1, 75, 5, 2) == true) then
-		elseif (MoveArmySafe(AiPlayer(), 11, 90, 6, 55, 1, 2) == true) then 
+	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroSoldier()) > 0) then
+		if (LucasTimer == nil) then 
+			LucasTimer = 30
+			AiForce(0, {AiShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()), AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier())})
+		elseif (LucasTimer < 1) then 
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) == 0) then
+				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) == 0) then
+					LucasTimer = 5
+				else
+					LucasTimer = 10
+				end
+			else
+				LucasTimer = 16
+			end
+		else 
+			LucasTimer = LucasTimer - 1 
+		end
+		if (LucasTimer == 1) then
+			if (MoveArmySafe(AiPlayer(), 6, 55, 1, 68, 1, 2) == true) then 
+			-- Move forward!
+			elseif (MoveArmySafe(AiPlayer(), 36, 35, 40, 53, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 4, 2, 41, 3, 1, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 41, 3, 35, 34, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 116, 76, 107, 100, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 100, 105, 116, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 60, 86, 79, 84, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 83, 76, 79, 84, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 79, 84, 80, 93, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 91, 76, 80, 93, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 0, 0, 8, 91, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 125, 1, 102, 41, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 49, 18, 53, 30, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 2, 1, 11, 25, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 119, 77, 107, 99, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 120, 61, 119, 77, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 124, 42, 120, 61, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 123, 2, 124, 42, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 11, 25, 7, 36, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 7, 36, 6, 57, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 6, 57, 20, 78, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 40, 35, 35, 64, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 45, 91, 91, 77, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 84, 109, 9, 91, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 100, 107, 78, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 78, 116, 77, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 116, 77, 105, 64, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 105, 64, 102, 41, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 102, 41, 90, 33, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 90, 33, 75, 17, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 4, 102, 9, 91, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 124, 44, 119, 61, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 123, 5, 104, 40, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 104, 40, 125, 43, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 33, 24, 10, 26, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 49, 16, 33, 24, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 53, 30, 36, 35, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 20, 78, 10, 91, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 35, 64, 20, 78, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 124, 41, 116, 61, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 116, 61, 116, 76, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 91, 77, 79, 84, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 105, 62, 91, 77, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 115, 76, 119, 94, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 54, 67, 58, 79, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 67, 58, 54, 67, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 41, 54, 54, 67, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 45, 91, 62, 88, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 35, 81, 45, 91, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 39, 54, 35, 81, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 13, 69, 35, 81, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 116, 78, 91, 89, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 120, 61, 116, 71, 3, 2) == true) then 
+			-- Move back!
+			elseif (MoveArmySafe(AiPlayer(), 107, 100, 80, 93, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 80, 93, 79, 110, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 79, 110, 43, 102, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 43, 102, 8, 91, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 104, 115, 81, 108, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 44, 101, 12, 90, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 34, 35, 36, 35, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 41, 3, 49, 16, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 1, 2, 49, 16, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 8, 91, 10, 90, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 34, 64, 45, 91, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 91, 77, 90, 90, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 61, 87, 90, 90, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 90, 90, 107, 100, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 90, 77, 105, 64, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 75, 17, 49, 20, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 10, 90, 28, 101, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 28, 101, 28, 112, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 28, 112, 17, 123, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 2, 2, 49, 18, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 13, 89, 4, 91, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 4, 91, 3, 102, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 3, 102, 17, 112, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 104, 115, 10, 90, 5, 2) == true) then
+			elseif (MoveArmySafe(AiPlayer(), 6, 56, 1, 75, 5, 2) == true) then
+			elseif (MoveArmySafe(AiPlayer(), 11, 90, 6, 55, 1, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 86, 92, 79, 85, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 100, 86, 92, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 79, 84, 53, 107, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 91, 91, 82, 77, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 119, 94, 82, 77, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 42, 123, 17, 122, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 54, 108, 42, 123, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 83, 107, 54, 108, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 62, 88, 54, 67, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 13, 89, 35, 81, 3, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 105, 114, 83, 107, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 100, 105, 114, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 35, 64, 34, 81, 2, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 41, 54, 35, 64, 2, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 60, 88, 11, 90, 2, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 54, 72, 60, 87, 2, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 34, 81, 60, 87, 2, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 46, 91, 34, 81, 2, 2) == true) then 
+			end
+		elseif ((UnitNear(4, AiHeroSoldier(4), 35, 82, 2)) or (UnitNear(4, AiSoldier(4), 32, 75, 2)) or (UnitNear(4, AiShooter(4), 35, 64, 2))) then
+			if (MoveArmyQuick(AiPlayer(), 35, 65, 25, 87, 25) == true) then 
+			elseif (MoveArmyQuick(AiPlayer(), 35, 65, 25, 107, 25) == true) then 
+			end
+		elseif (UnitNear(4, AiHeroSoldier(4), 62, 87, 6)) then
+			if (MoveArmyQuick(AiPlayer(), 62, 87, 25, 107, 25) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 54, 68, 62, 87, 5, 2) == true) then 
+			elseif (MoveArmyQuick(AiPlayer(), 62, 87, 25, 87, 25) == true) then 
+			end
+		elseif ((LucasTimer > 14) and ((UnitNear(4, AiHeroSoldier(4), 35, 64, 8)) or (UnitNear(4, AiHeroSoldier(4), 32, 75, 8)) or (UnitNear(4, AiHeroSoldier(4), 61, 88, 8)) or (UnitNear(4, AiHeroSoldier(4), 56, 77, 8)))) then
+			if (MoveArmySafe(AiPlayer(), 60, 88, 17, 122, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 36, 82, 20, 78, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 35, 64, 34, 81, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 41, 53, 54, 73, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 66, 59, 54, 73, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 41, 54, 35, 64, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 60, 88, 11, 90, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 54, 72, 60, 87, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 34, 81, 60, 87, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 46, 91, 34, 81, 4, 2) == true) then 
+			end
+		elseif ((UnitNear(4, AiHeroSoldier(4), 57, 111, 3)) or (UnitNear(4, AiHeroSoldier(4), 70, 114, 4)) or (UnitNear(4, AiHeroSoldier(4), 105, 115, 8)) or (UnitNear(4, AiHeroSoldier(4), 24, 24, 25))) then
+			if (MoveArmySafe(AiPlayer(), 42, 123, 17, 122, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 79, 84, 54, 73, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 104, 114, 11, 89, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 104, 114, 28, 102, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 54, 108, 42, 123, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 83, 107, 54, 108, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 105, 114, 83, 107, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 100, 105, 114, 4, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 100, 80, 88, 5, 2) == true) then 
+			end
 		end
 	end
 end
 
 function AiKiah_Escape_Shameful_Display_2015()
-	if (MoveArmyQuick(AiPlayer(), 7, 55, 7, 7, 9) == true) then 
-	elseif (MoveArmyQuick(AiPlayer(), 105, 40, 118, 7, 9) == true) then 
-	elseif ((UnitNear(0, AiHeroSoldier(0), 2, 2, 3) == true) or (UnitNear(0, AiHeroSoldier(0), 124, 124, 3) == true) or (UnitNear(4, AiHeroSoldier(4), 2, 2, 3) == true) or (UnitNear(4, AiHeroSoldier(4), 124, 124, 3) == true)) then
-		SetDiplomacy(2, "allied", 0)
-		SetDiplomacy(0, "allied", 2)
-		SetDiplomacy(2, "allied", 8)
-		SetDiplomacy(8, "allied", 2)
+	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiHeroSoldier()) > 0) then
+		if (MoveArmyQuick(AiPlayer(), 7, 55, 7, 7, 9) == true) then 
+		--elseif (MoveArmyQuick(AiPlayer(), 105, 40, 118, 7, 9) == true) then 
+		elseif ((UnitNear(0, AiHeroSoldier(0), 2, 2, 5) == true) or (UnitNear(0, AiHeroSoldier(0), 124, 2, 5) == true) or (UnitNear(4, AiHeroSoldier(4), 2, 2, 3) == true) or (UnitNear(4, AiHeroSoldier(4), 124, 2, 3) == true)) then
+			if (LucasTimer == 5) then
+				SetDiplomacy(2, "allied", 0)
+				SetDiplomacy(0, "allied", 2)
+				SetDiplomacy(2, "allied", 8)
+				SetDiplomacy(8, "allied", 2)
+			elseif (LucasTimer == 4) then
+				AiForce(1, {AiEliteSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteSoldier()), AiShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()), AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult())}, true)
+				AiAttackWithForce(1)
+				AiAttackWithForce(0)
+			elseif (LucasTimer < 4) then
+				SetDiplomacy(2, "enemy", 0)
+				SetDiplomacy(0, "enemy", 2)
+				SetDiplomacy(2, "enemy", 8)
+				SetDiplomacy(8, "enemy", 2)
+				MoveArmyQuick(AiPlayer(), 113, 28, 78, 112, 3, "patrol")
+			end
+		elseif ((GameCycle > 5000) and (GameCycle < 5100)) then
+			AiForce(0, {AiEliteSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteSoldier()), AiShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()), AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult())}, true)
+		elseif (GameCycle < 1000) then
+			-- South Left Pass
+			if (GameCycle < 100) then
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 0, 71, 53, 55, 0)
+				MoveUnitQuick(AiPlayer(), AiCatapult(), 3, 70, 56, 53, 1)
+			elseif (GameCycle < 200) then
+				OrderUnitSquare(AiPlayer(), AiShooter(), 53, 54, 2, 1, 0, 70, "move")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 55, 54, 2, 1, 14, 70, "move")
+			elseif (GameCycle < 300) then
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 54, 55, 2, 1, 13, 72, "move")
+			elseif (GameCycle < 400) then
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 0, 70, 56, 55, 0)
+			end
+			-- South Middle Pass
+			if (GameCycle < 100) then
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 51, 77, 61, 57, 0)
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 58, 76, 64, 57, 0)
+				MoveUnitQuick(AiPlayer(), AiCatapult(), 54, 74, 64, 55, 1)
+			elseif ((GameCycle > 300) and (GameCycle < 330)) then
+				OrderUnitSquare(AiPlayer(), AiShooter(), 61, 56, 2, 1, 50, 76, "move")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 63, 56, 2, 1, 57, 74, "move")
+			elseif ((GameCycle > 600) and (GameCycle < 700)) then
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 41, 53, 60, 55, 8)
+			end
+			-- Middle Island Pass
+			if ((GameCycle > 500) and (GameCycle < 550)) then
+				OrderUnitSquare(AiPlayer(), AiShooter(), 70, 64, 4, 1, 63, 59, "move")
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 77, 69, 4, 1, 102, 63, "move")
+			elseif ((GameCycle > 600) and (GameCycle < 650)) then
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 70, 65, 4, 1, 63, 60, "move")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 77, 68, 4, 1, 102, 62, "move")
+				MoveUnitQuick(AiPlayer(), AiCatapult(), 68, 57, 74, 64, 1)
+				MoveUnitQuick(AiPlayer(), AiCatapult(), 105, 61, 81, 68, 1)
+			end
+		else
+			if ((UnitNear(0, AiHeroSoldier(0), 100, 100, 25) == true) or (UnitNear(4, AiHeroSoldier(4), 100, 100, 25) == true)) then
+				if (LucasTimer == 6) then
+					MoveArmyQuick(AiPlayer(), 114, 68, 105, 64, 1, "move")
+				elseif (LucasTimer == 4) then
+					MoveArmyQuick(AiPlayer(), 114, 27, 100, 67, 1, "move")
+				elseif (LucasTimer == 3) then
+					MoveArmyQuick(AiPlayer(), 72, 54, 99, 72, 1, "move")
+				elseif (LucasTimer == 2) then
+					MoveArmyQuick(AiPlayer(), 104, 44, 102, 64, 1, "move")
+				elseif (LucasTimer == 5) then
+					MoveArmyQuick(AiPlayer(), 115, 76, 103, 67, 1, "move")
+				end
+			end
+			if ((UnitNear(0, AiHeroSoldier(0), 119, 61, 5) == true) or (UnitNear(4, AiHeroSoldier(4), 119, 61, 5) == true)) then
+				MoveArmyQuick(AiPlayer(), 119, 26, 65, 56, 5, "patrol")
+			end
+			if ((UnitNear(4, AiSoldier(4), 10, 26, 11) == true) or (UnitNear(4, AiHeroSoldier(4), 10, 26, 11) == true) or (UnitNear(0, AiSoldier(0), 10, 37, 11) == true) or (UnitNear(0, AiHeroSoldier(0), 10, 26, 11) == true)) then
+				MoveUnitQuick(AiPlayer(), AiShooter(), 8, 21, 8, 54, 8, "attack")
+				MoveUnitQuick(AiPlayer(), AiCatapult(), 9, 20, 8, 54, 8, "attack")
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 10, 23, 8, 54, 8, "attack")
+				MoveUnitQuick(AiPlayer(), AiHeroSoldier(), 11, 21, 8, 54, 8, "attack")
+				MoveUnitQuick(AiPlayer(), AiShooter(), 8, 25, 14, 71, 3, "attack")
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 11, 24, 14, 71, 3, "attack")
+				MoveUnitQuick(AiPlayer(), AiShooter(), 9, 22, 1, 76, 3, "attack")
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 10, 21, 1, 76, 3, "attack")
+				MoveUnitQuick(AiPlayer(), AiCatapult(), 9, 23, 1, 76, 3, "attack")
+			elseif ((UnitNear(4, AiHeroSoldier(4), 32, 25, 8) == true) or (UnitNear(4, AiHeroSoldier(4), 50, 15, 8) == true) or (UnitNear(4, AiHeroSoldier(4), 39, 3, 3) == true) or (UnitNear(0, AiSoldier(0), 50, 15, 8) == true) or (UnitNear(0, AiHeroSoldier(0), 39, 3, 3) == true)) then
+				MoveArmyQuick(AiPlayer(), 7, 55, 9, 22, 9, "attack")
+				MoveArmyQuick(AiPlayer(), 48, 10, 68, 59, 9, "attack")
+			elseif ((UnitNear(4, AiSoldier(4), 3, 76, 3) == true) or (UnitNear(4, AiShooter(4), 3, 76, 3) == true) or (UnitNear(0, AiSoldier(0), 17, 72, 5) == true) or (UnitNear(0, AiShooter(0), 17, 72, 5) == true)) then 
+				-- Left Paths
+				if ((UnitNear(4, AiSoldier(4), 3, 76, 3) == true) or (UnitNear(4, AiShooter(4), 3, 76, 3) == true) or (UnitNear(0, AiSoldier(0), 3, 76, 3) == true) or (UnitNear(0, AiShooter(0), 3, 76, 3) == true)) then 
+					-- South Left 1 Path
+					if ((UnitNear(AiPlayer(), AiSoldier(), 3, 69, 3) == true) or (UnitNear(AiPlayer(), AiShooter(), 3, 69, 3) == true)) then 
+						MoveUnitQuick(AiPlayer(), AiShooter(), 1, 74, 14, 71, 3, "attack")
+						MoveUnitQuick(AiPlayer(), AiSoldier(), 1, 76, 14, 71, 3, "attack")
+					end
+				elseif ((UnitNear(4, AiSoldier(4), 17, 72, 5) == true) or (UnitNear(4, AiShooter(4), 17, 72, 5) == true) or (UnitNear(0, AiSoldier(0), 17, 72, 5) == true) or (UnitNear(0, AiShooter(0), 17, 72, 5) == true)) then 
+					-- South Left 2 Path
+					MoveUnitQuick(AiPlayer(), AiShooter(), 14, 69, 1, 76, 3, "attack")
+					MoveUnitQuick(AiPlayer(), AiCatapult(), 14, 71, 1, 76, 3, "attack")
+				end
+				if ((UnitNear(AiPlayer(), AiHeroSoldier(), 92, 45, 35) == true) or (UnitNear(AiPlayer(), AiHeroSoldier(), 87, 87, 35) == true)) then 
+					MoveUnitQuick(AiPlayer(), AiShooter(), 8, 52, 106, 62, 3, "attack")
+					MoveUnitQuick(AiPlayer(), AiCatapult(), 8, 50, 106, 62, 3, "attack")
+					MoveUnitQuick(AiPlayer(), AiSoldier(), 6, 56, 106, 62, 3, "attack")
+				end
+				if ((UnitNear(4, AiHeroSoldier(4), 10, 76, 11) == true) and (GameCycle < 5000)) then
+					MoveUnitQuick(AiPlayer(), AiShooter(), 9, 52, 66, 59, 5, "attack")
+					MoveUnitQuick(AiPlayer(), AiCatapult(), 7, 50, 66, 59, 5, "attack")
+					MoveUnitQuick(AiPlayer(), AiSoldier(), 6, 56, 66, 59, 5, "attack")
+					MoveUnitQuick(AiPlayer(), AiHeroSoldier(), 8, 53, 66, 59, 5, "attack")
+				end
+			else 
+				SetDiplomacy(2, "enemy", 0)
+				SetDiplomacy(0, "enemy", 2)
+				SetDiplomacy(2, "enemy", 8)
+				SetDiplomacy(8, "enemy", 2)
+			end
+		end
+	else
 		AiForce(1, {AiEliteSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteSoldier()), AiShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()), AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult())}, true)
 		AiAttackWithForce(1)
 		AiAttackWithForce(0)
-	elseif ((GameCycle > 5000) and (GameCycle < 5100)) then
-		AiForce(0, {AiEliteSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteSoldier()), AiShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()), AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()), AiCatapult(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult())}, true)
-	elseif (GameCycle < 1000) then
-		-- South Left Pass
-		if (GameCycle < 100) then
-			MoveUnitQuick(AiPlayer(), AiSoldier(), 0, 71, 53, 55, 0)
-			MoveUnitQuick(AiPlayer(), AiCatapult(), 3, 70, 56, 53, 1)
-		elseif (GameCycle < 200) then
-			OrderUnitSquare(AiPlayer(), AiShooter(), 53, 54, 2, 1, 0, 70, "move")
-			OrderUnitSquare(AiPlayer(), AiShooter(), 55, 54, 2, 1, 14, 70, "move")
-		elseif (GameCycle < 300) then
-			OrderUnitSquare(AiPlayer(), AiSoldier(), 54, 55, 2, 1, 13, 72, "move")
-		elseif (GameCycle < 400) then
-			MoveUnitQuick(AiPlayer(), AiSoldier(), 0, 70, 56, 55, 0)
-		end
-		-- South Middle Pass
-		if (GameCycle < 100) then
-			MoveUnitQuick(AiPlayer(), AiSoldier(), 51, 77, 61, 57, 0)
-			MoveUnitQuick(AiPlayer(), AiSoldier(), 58, 76, 64, 57, 0)
-			MoveUnitQuick(AiPlayer(), AiCatapult(), 54, 74, 64, 55, 1)
-		elseif ((GameCycle > 300) and (GameCycle < 330)) then
-			OrderUnitSquare(AiPlayer(), AiShooter(), 61, 56, 2, 1, 50, 76, "move")
-			OrderUnitSquare(AiPlayer(), AiShooter(), 63, 56, 2, 1, 57, 74, "move")
-		elseif ((GameCycle > 600) and (GameCycle < 700)) then
-			MoveUnitQuick(AiPlayer(), AiSoldier(), 41, 53, 60, 55, 8)
-		end
-		-- Middle Island Pass
-		if ((GameCycle > 500) and (GameCycle < 550)) then
-			OrderUnitSquare(AiPlayer(), AiShooter(), 70, 64, 4, 1, 63, 59, "move")
-			OrderUnitSquare(AiPlayer(), AiSoldier(), 77, 69, 4, 1, 102, 63, "move")
-		elseif ((GameCycle > 600) and (GameCycle < 650)) then
-			OrderUnitSquare(AiPlayer(), AiSoldier(), 70, 65, 4, 1, 63, 60, "move")
-			OrderUnitSquare(AiPlayer(), AiShooter(), 77, 68, 4, 1, 102, 62, "move")
-			MoveUnitQuick(AiPlayer(), AiCatapult(), 68, 57, 74, 64, 1)
-			MoveUnitQuick(AiPlayer(), AiCatapult(), 105, 61, 81, 68, 1)
-		end
-	else
-		if ((UnitNear(4, AiSoldier(4), 10, 26, 11) == true) or (UnitNear(4, AiHeroSoldier(4), 10, 26, 11) == true) or (UnitNear(0, AiSoldier(0), 10, 37, 11) == true) or (UnitNear(0, AiHeroSoldier(0), 10, 26, 11) == true)) then
-			MoveUnitQuick(AiPlayer(), AiShooter(), 9, 22, 8, 54, 8, "attack")
-			MoveUnitQuick(AiPlayer(), AiCatapult(), 9, 22, 8, 54, 8, "attack")
-			MoveUnitQuick(AiPlayer(), AiSoldier(), 9, 22, 8, 54, 8, "attack")
-			MoveUnitQuick(AiPlayer(), AiHeroSoldier(), 9, 22, 8, 54, 8, "attack")
-			MoveUnitQuick(AiPlayer(), AiShooter(), 9, 22, 14, 71, 3, "attack")
-			MoveUnitQuick(AiPlayer(), AiSoldier(), 9, 22, 14, 71, 3, "attack")
-			MoveUnitQuick(AiPlayer(), AiShooter(), 9, 22, 1, 76, 3, "attack")
-			MoveUnitQuick(AiPlayer(), AiSoldier(), 9, 22, 1, 76, 3, "attack")
-			MoveUnitQuick(AiPlayer(), AiCatapult(), 9, 22, 1, 76, 3, "attack")
-		elseif ((UnitNear(4, AiHeroSoldier(4), 32, 25, 8) == true) or (UnitNear(4, AiHeroSoldier(4), 50, 15, 8) == true) or (UnitNear(4, AiHeroSoldier(4), 39, 3, 3) == true) or (UnitNear(0, AiSoldier(0), 50, 15, 8) == true) or (UnitNear(0, AiHeroSoldier(0), 39, 3, 3) == true)) then
-			MoveArmyQuick(AiPlayer(), 7, 55, 9, 22, 9, "attack")
-			MoveArmyQuick(AiPlayer(), 48, 10, 68, 59, 9, "attack")
-		elseif ((UnitNear(4, AiSoldier(4), 3, 76, 3) == true) or (UnitNear(4, AiShooter(4), 3, 76, 3) == true) or (UnitNear(0, AiSoldier(0), 17, 72, 5) == true) or (UnitNear(0, AiShooter(0), 17, 72, 5) == true)) then 
-			-- Left Paths
-			if ((UnitNear(4, AiSoldier(4), 3, 76, 3) == true) or (UnitNear(4, AiShooter(4), 3, 76, 3) == true) or (UnitNear(0, AiSoldier(0), 3, 76, 3) == true) or (UnitNear(0, AiShooter(0), 3, 76, 3) == true)) then 
-				-- South Left 1 Path
-				if ((UnitNear(AiPlayer(), AiSoldier(), 3, 69, 3) == true) or (UnitNear(AiPlayer(), AiShooter(), 3, 69, 3) == true)) then 
-					MoveUnitQuick(AiPlayer(), AiShooter(), 1, 76, 14, 71, 3, "attack")
-					MoveUnitQuick(AiPlayer(), AiSoldier(), 1, 76, 14, 71, 3, "attack")
-				end
-			elseif ((UnitNear(4, AiSoldier(4), 17, 72, 5) == true) or (UnitNear(4, AiShooter(4), 17, 72, 5) == true) or (UnitNear(0, AiSoldier(0), 17, 72, 5) == true) or (UnitNear(0, AiShooter(0), 17, 72, 5) == true)) then 
-				-- South Left 2 Path
-				MoveUnitQuick(AiPlayer(), AiShooter(), 14, 71, 1, 76, 3, "attack")
-				MoveUnitQuick(AiPlayer(), AiCatapult(), 14, 71, 1, 76, 3, "attack")
-			end
-			if ((UnitNear(AiPlayer(), AiHeroSoldier(), 92, 45, 35) == true) or (UnitNear(AiPlayer(), AiHeroSoldier(), 87, 87, 35) == true)) then 
-				MoveUnitQuick(AiPlayer(), AiShooter(), 8, 54, 106, 62, 3, "attack")
-				MoveUnitQuick(AiPlayer(), AiCatapult(), 8, 54, 106, 62, 3, "attack")
-				MoveUnitQuick(AiPlayer(), AiSoldier(), 6, 56, 106, 62, 3, "attack")
-			end
-			if ((UnitNear(4, AiHeroSoldier(4), 10, 76, 11) == true) and (GameCycle < 5000)) then
-				MoveUnitQuick(AiPlayer(), AiShooter(), 8, 54, 66, 59, 5, "attack")
-				MoveUnitQuick(AiPlayer(), AiCatapult(), 8, 54, 66, 59, 5, "attack")
-				MoveUnitQuick(AiPlayer(), AiSoldier(), 6, 56, 66, 59, 5, "attack")
-				MoveUnitQuick(AiPlayer(), AiHeroSoldier(), 8, 53, 66, 59, 5, "attack")
-			end
-		else
-			SetDiplomacy(2, "enemy", 0)
-			SetDiplomacy(0, "enemy", 2)
-			SetDiplomacy(2, "enemy", 8)
-			SetDiplomacy(8, "enemy", 2)
-		end
 	end
 end
 
