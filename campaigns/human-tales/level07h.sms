@@ -16533,6 +16533,8 @@ AddTrigger(
 					ActionDefeat()
 				elseif (((GetPlayerData(0, "UnitTypesCount", AiSoldier(0)) > 0) or (GetPlayerData(0, "UnitTypesCount", AiShooter(0)) > 0)) and (GetPlayerData(0, "UnitTypesCount", AiHeroSoldier(0)) == 0)) then
 					ChangeUnitsOwner({0, 0}, {127, 127}, 0, 4)
+				elseif (((GetPlayerData(4, "UnitTypesCount", AiSoldier(4)) > 0) or (GetPlayerData(4, "UnitTypesCount", AiShooter(4)) > 0)) and (GetPlayerData(4, "UnitTypesCount", AiHeroSoldier(4)) == 0)) then
+					ChangeUnitsOwner({0, 0}, {127, 127}, 4, 0)
 				end
 return true end)
 ]]
