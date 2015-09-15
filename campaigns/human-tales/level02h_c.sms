@@ -22,23 +22,26 @@ if (GameDefinition["Briefing"]["Active"] ~= false) then
 end
 
 Triggers = [[
-SetDiplomacy(0, "allied", 6)
-SetDiplomacy(6, "allied", 0)
-SetSharedVision(6, true, 0)
-SetSharedVision(0, true, 6)
+SetDiplomacy(4, "allied", 6)
+SetDiplomacy(6, "allied", 4)
+SetDiplomacy(14, "allied", 6)
+SetDiplomacy(6, "allied", 14)
+SetDiplomacy(14, "allied", 4)
+SetDiplomacy(4, "allied", 14)
+SetSharedVision(6, false, 4)
+SetSharedVision(4, false, 6)
 SetDiplomacy(1, "enemy", 6) 
 SetDiplomacy(6, "enemy", 1) 
+
+AddTrigger(
+  function() return GetNumUnitsAt(6, "unit-peasant", {0, 0}, {30, 30}) > 0 and
+    ChangeUnitsOwner({0, 0}, {30, 30}, 6, 14) end,
+  function() return end)
+  
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-attack-peasant") > 4 and
     GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-human-barracks") >= 1 end,
-  function() return ActionVictory() end)
-AddTrigger(
-  function() return GetNumUnitsAt(ThisPlayer.Index, "unit-arthor-literios", 
-                                   {0, 0}, {92, 92}) < 1 end,
-  function() return ActionDefeat() end)
-AddTrigger(
-  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
-  function() return ActionDefeat() end)
+  function() return end)
 ]]
 
 assert(loadstring(Triggers))()
@@ -53,7 +56,7 @@ DefineAllow("unit-peon", "AAAAAAAAAAAAAAAA")
 -- Barracks - Produces
 DefineAllow("unit-footman", "FFFFFFFFFFFFFFFF")
 DefineAllow("unit-attack-peasant", "AAAAAAAAAAAAAAAA")
-DefineAllow("unit-archer", "FFFFFFFFFFFFFFFF")
+DefineAllow("unit-archer", "FFFFFFAFFFFFFFFF")
   DefineAllow("unit-ranger", "AAAAAAAAAAAAAAAA")
 DefineAllow("unit-knight", "FFFFFFFFFFFFFFFF")
   DefineAllow("unit-paladin", "AAAAAAAAAAAAAAAA")
@@ -107,10 +110,10 @@ DefineAllow("unit-town-hall", "FFFFFFFFFFFFFFFF")
   DefineAllow("unit-castle", "FFFFFFFFFFFFFFFF")
 DefineAllow("unit-human-barracks", "AAAAAAAAAAAAAAAA")
 DefineAllow("unit-farm", "AAAAAAAAAAAAAAAA")
-DefineAllow("unit-human-blacksmith", "FFFFFFFFFFFFFFFF")
-  DefineAllow("upgrade-sword1", "FFFFFFFFFFFFFFFF")
+DefineAllow("unit-human-blacksmith", "FFFFAFAFFFFFFFFF")
+  DefineAllow("upgrade-sword1", "FFFFAFAFFFFFFFFF")
   DefineAllow("upgrade-sword2", "FFFFFFFFFFFFFFFF")
-  DefineAllow("upgrade-human-shield1", "FFFFFFFFFFFFFFFF")
+  DefineAllow("upgrade-human-shield1", "FFFFAFAFFFFFFFFF")
   DefineAllow("upgrade-human-shield2", "FFFFFFFFFFFFFFFF")
   DefineAllow("upgrade-ballista1", "FFFFFFFFFFFFFFFF")
   DefineAllow("upgrade-ballista2", "FFFFFFFFFFFFFFFF")
@@ -118,12 +121,12 @@ DefineAllow("unit-human-watch-tower", "AAAAAAAAAAAAAAAA")
   DefineAllow("unit-human-guard-tower", "FFFFFFFFFFFFFFFF")
   DefineAllow("unit-human-cannon-tower", "FFFFFFFFFFFFFFFF")
 DefineAllow("unit-elven-lumber-mill", "AAAAAAAAAAAAAAAA")
-  DefineAllow("upgrade-arrow1", "FFFFFFFFFFFFFFFF")
-  DefineAllow("upgrade-arrow2", "FFFFFFFFFFFFFFFF")
-  DefineAllow("upgrade-ranger", "FFFFFFFFFFFFFFFF")
-  DefineAllow("upgrade-longbow", "FFFFFFFFFFFFFFFF")
-  DefineAllow("upgrade-ranger-scouting", "FFFFFFFFFFFFFFFF")
-  DefineAllow("upgrade-ranger-marksmanship", "FFFFFFFFFFFFFFFF")
+  DefineAllow("upgrade-arrow1", "FFFFFFAFFFFFFFFF")
+  DefineAllow("upgrade-arrow2", "FFFFFFAFFFFFFFFF")
+  DefineAllow("upgrade-ranger", "FFFFFFAFFFFFFFFF")
+  DefineAllow("upgrade-longbow", "FFFFFFAFFFFFFFFF")
+  DefineAllow("upgrade-ranger-scouting", "FFFFFFAFFFFFFFFF")
+  DefineAllow("upgrade-ranger-marksmanship", "FFFFFFAFFFFFFFFF")
 DefineAllow("unit-church", "FFFFFFFFFFFFFFFF")
   DefineAllow("upgrade-paladin", "FFFFFFFFFFFFFFFF")
 -- DefineAllow("upgrade-holy-vision", "FFFFFFFFFFFFFFFF")
@@ -165,7 +168,7 @@ DefineAllow("unit-great-hall", "AAAAAAAAAAAAAAAA")
   DefineAllow("unit-fortress", "AAAAAAAAAAAAAAAA")
 DefineAllow("unit-orc-barracks", "AAAAAAAAAAAAAAAA")
 DefineAllow("unit-pig-farm", "AAAAAAAAAAAAAAAA")
-DefineAllow("unit-orc-blacksmith", "AAAAAAAAAAAAAAAA")
+DefineAllow("unit-orc-blacksmith", "FFFFFFFFFFFFFFFF")
   DefineAllow("upgrade-battle-axe1", "FFFFFFFFFFFFFFFF")
   DefineAllow("upgrade-battle-axe2", "FFFFFFFFFFFFFFFF")
   DefineAllow("upgrade-orc-shield1", "FFFFFFFFFFFFFFFF")

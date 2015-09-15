@@ -208,11 +208,12 @@ function AiJadeite_Attack_2010(force, coerce)
 				AiJadeite_Reset_2010(100)
 			end
 			if (GameDefinition["Name"] == "Front Lines") then
-				if (timers[ftm_team[AiPlayer()]] > 10) then
-					OrderUnit(AiPlayer(), AiSoldier(), {ftm_team_x1[ftm_team[AiPlayer()]],ftm_team_y1[ftm_team[AiPlayer()]],ftm_team_x2[ftm_team[AiPlayer()]],ftm_team_y2[ftm_team[AiPlayer()]]}, {ftm_team_x1[AiPlayer()], ftm_team_y1[AiPlayer()], ftm_team_x2[AiPlayer()], ftm_team_y2[AiPlayer()]}, "move")
-				else
-					AiJadeite_Reset_2010(50)
+				for index = 1, 15 do
+					if (GetNumUnitsAt(AiPlayer(), UnitDatabase[GetPlayerData(AiPlayer(), "RaceName")][index]["Unit"], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
+						OrderUnit(AiPlayer(), UnitDatabase[GetPlayerData(AiPlayer(), "RaceName")][index]["Unit"], {ftm_team_x1[ftm_team[AiPlayer()]],ftm_team_y1[ftm_team[AiPlayer()]],ftm_team_x2[ftm_team[AiPlayer()]],ftm_team_y2[ftm_team[AiPlayer()]]}, {ftm_team_x1[AiPlayer()], ftm_team_y1[AiPlayer()], ftm_team_x2[AiPlayer()], ftm_team_y2[AiPlayer()]}, "move")
+					end
 				end
+				--OrderUnit(AiPlayer(), AiSoldier(), {ftm_team_x1[ftm_team[AiPlayer()]],ftm_team_y1[ftm_team[AiPlayer()]],ftm_team_x2[ftm_team[AiPlayer()]],ftm_team_y2[ftm_team[AiPlayer()]]}, {ftm_team_x1[AiPlayer()], ftm_team_y1[AiPlayer()], ftm_team_x2[AiPlayer()], ftm_team_y2[AiPlayer()]}, "move")
 			else
 				AiAttackWithForce(force)
 				if (force ~= 7) then
@@ -269,7 +270,7 @@ function AiJadeite_Force_2010(force, unit1, quantity1, unit2, quantity2, unit3, 
 		if (((unit1 == AiCatapult()) or (unit2 == AiCatapult()) or (unit3 == AiCatapult())) and ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) == 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) == 0))) then AiJadeite_Build_2010(AiBlacksmith(), 1, false, AiBarracks()) end
 		if (((unit1 == AiScout()) or (unit2 == AiScout()) or (unit3 == AiScout())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiScientific()) == 0)) then AiJadeite_Build_2010(AiScientific()) end
 		if (((unit1 == AiDestroyer()) or (unit2 == AiDestroyer()) or (unit3 == AiDestroyer())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiHarbor()) == 0)) then AiJadeite_Build_2010(AiHarbor()) end
-		if (((unit1 == AiSoldier()) or (unit2 == AiSoldier()) or (unit3 == AiSoldier())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) == 0)) then AiJadeite_Build_2010(AiBarracks()) end
+		if (((unit1 == AiSoldier()) or (unit2 == AiSoldier()) or (unit3 == AiSoldier()) or (unit1 == AiFodder()) or (unit2 == AiFodder()) or (unit3 == AiFodder())) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) == 0)) then AiJadeite_Build_2010(AiBarracks()) end
 		if (((unit1 == AiCavalry()) or (unit2 == AiCavalry()) or (unit3 == AiCavalry())) and ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiBlacksmith()) == 0) or (GetPlayerData(AiPlayer(), "UnitTypesCount", AiStables()) == 0))) then AiJadeite_Build_2010(AiStables(), 1, false, AiBlacksmith()) end
 		if ((unit1 == AiCavalryMage()) or (unit2 == AiCavalryMage()) or (unit3 == AiCavalryMage())) then 
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiTemple()) == 0) then

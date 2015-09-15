@@ -26,7 +26,7 @@
 --
 
 function SetPlayerGame2015(player, race, ai, faction, gold, wood, oil, startx, starty, varA1, varA2, varB1, varB2, varC1, varC2)
-	AiRedRibbon_Setup_2014()
+	if (ftm_choice == nil) then AiRedRibbon_Setup_2014() end
 	if (ai == "surprise") then
 		repeat
 			temp = SyncRand(5) + SyncRand(5)
@@ -52,11 +52,16 @@ function SetPlayerGame2015(player, race, ai, faction, gold, wood, oil, startx, s
 	SetupPlayer(player, race, ai, gold, wood, oil, startx, starty)
 	-- Check game type.
 	if (player ~= nil) then
-		if (GameDefinition["Name"] == "Frontlines") then
-			ftm_team_x1[player] = 0
+		if ((GameDefinition["Name"] == "Frontlines") or (GameDefinition["Name"] == "Front Lines")) then
+			--ftm_team_x1[player] = 0
+			--ftm_team_y1[player] = 0
+			--ftm_team_x2[player] = 255
+			--ftm_team_y2[player] = 255
+			
+			ftm_team_x1[player] = 43
 			ftm_team_y1[player] = 0
-			ftm_team_x2[player] = 255
-			ftm_team_y2[player] = 255
+			ftm_team_x2[player] = 80
+			ftm_team_y2[player] = 127
 			if (varA1 ~= nil) then
 				ftm_team_x1[player] = varA1
 				if (varA2 ~= nil) then
@@ -94,10 +99,9 @@ function AiFrontlines_2015()
 				if ((timers[AiPlayer()] == 1) or (timers[AiPlayer()] == 11) or (timers[AiPlayer()] == 21) or (timers[AiPlayer()] == 31) or (timers[AiPlayer()] == 41) or (timers[AiPlayer()] == 51) or (timers[AiPlayer()] == 61) or (timers[AiPlayer()] == 71) or (timers[AiPlayer()] == 81) or (timers[AiPlayer()] == 91) or (timers[AiPlayer()] == 101) or (timers[AiPlayer()] == 111) or (timers[AiPlayer()] == 121) or (timers[AiPlayer()] == 131) or (timers[AiPlayer()] == 141) or (timers[AiPlayer()] == 151) or (timers[AiPlayer()] == 161) or (timers[AiPlayer()] == 171) or (timers[AiPlayer()] == 181) or (timers[AiPlayer()] == 191) or
 				(timers[AiPlayer()] == 6) or (timers[AiPlayer()] == 16) or (timers[AiPlayer()] == 26) or (timers[AiPlayer()] == 36) or (timers[AiPlayer()] == 46) or (timers[AiPlayer()] == 56) or (timers[AiPlayer()] == 66) or (timers[AiPlayer()] == 76) or (timers[AiPlayer()] == 86) or (timers[AiPlayer()] == 96) or (timers[AiPlayer()] == 106) or (timers[AiPlayer()] == 116) or (timers[AiPlayer()] == 126) or (timers[AiPlayer()] == 136) or (timers[AiPlayer()] == 146) or (timers[AiPlayer()] == 156) or (timers[AiPlayer()] == 166) or (timers[AiPlayer()] == 176) or (timers[AiPlayer()] == 186) or (timers[AiPlayer()] == 196)) then
 					for index = 1, 15 do
-						if ((GetPlayerData(player, "RaceName") == "orc") or (GetPlayerData(player, "RaceName") == "wild")) then temp = 50 else temp = 0 end
-						if (GetNumUnitsAt(player, ftm_unit[index+temp], {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]}) > 0) then
-							KillUnitAt(ftm_unit[index+temp], player, 1, {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]})
-							CreateUnit(ftm_unit[index+temp], AiPlayer(), {ftm_team_startx[AiPlayer()], ftm_team_starty[AiPlayer()]})
+						if (GetNumUnitsAt(player, UnitDatabase[GetPlayerData(player, "RaceName")][index]["Unit"], {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]}) > 0) then
+							KillUnitAt(UnitDatabase[GetPlayerData(player, "RaceName")][index]["Unit"], player, 1, {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]})
+							CreateUnit(UnitDatabase[GetPlayerData(player, "RaceName")][index]["Unit"], AiPlayer(), {ftm_team_startx[AiPlayer()], ftm_team_starty[AiPlayer()]})
 							break
 						end
 					end
@@ -115,11 +119,11 @@ function AiFrontlines_2015()
 			for player = 0, 15 do
 				if (ftm_faction[AiPlayer()] ~= ftm_faction[player]) then
 					for index = 1, 15 do
-						if (GetNumUnitsAt(AiPlayer(), ftm_unit[index], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
-							OrderUnit(AiPlayer(), ftm_unit[index], {0,0,mapinfo.w,mapinfo.h}, {ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]],ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]]}, "attack")
+						if (GetNumUnitsAt(AiPlayer(), UnitDatabase["human"][index]["Unit"], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
+							OrderUnit(AiPlayer(), UnitDatabase["human"][index]["Unit"], {0,0,mapinfo.w,mapinfo.h}, {ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]],ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]]}, "attack")
 						end
-						if (GetNumUnitsAt(AiPlayer(), ftm_unit[index+50], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
-							OrderUnit(AiPlayer(), ftm_unit[index+50], {0,0,mapinfo.w,mapinfo.h}, {ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]],ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]]}, "attack")
+						if (GetNumUnitsAt(AiPlayer(), UnitDatabase["orc"][index]["Unit"], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
+							OrderUnit(AiPlayer(), UnitDatabase["orc"][index]["Unit"], {0,0,mapinfo.w,mapinfo.h}, {ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]],ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]]}, "attack")
 						end
 					end
 					break
@@ -314,6 +318,10 @@ function AiShane_2015()
 		AiShane_FtM_2015(AiPlayer())
 	elseif (GameDefinition["Name"] == "Escape") then
 		AiShane_Escape_2015()
+	else
+		AiJadeite_Force_2010(0, AiFodder(), 10, AiShooter(), 20)
+		AiJadeite_Upgrade_2010(AiSoldier())
+		AiJadeite_Intermittent_2010()
 	end
 end
 

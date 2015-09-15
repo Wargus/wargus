@@ -31,16 +31,12 @@ AddTrigger(
 					SetDiplomacy(6, "enemy", 3)
 				elseif ((GetPlayerData(0, "TotalNumUnits") == 0) and ((GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0) or (GetPlayerData(GetThisPlayer(), "UnitTypesCount", AiHeroSoldier(GetThisPlayer())) == 0))) then
 					ActionDefeat()
+				elseif ((GetNumUnitsAt(ThisPlayer.Index, AiHeroSoldier(ThisPlayer.Index), {0, 16}, {5, 22}) > 0) or (GetNumUnitsAt(ThisPlayer.Index, AiHeroSoldier(ThisPlayer.Index), {118-3, 6-3}, {118+3, 6+3}) > 0)) then
+					ActionVictory()
 				else
 					GatherResults("Land", "Mythic", "Wild", 4, 3, nil, nil)
 				end
 return true end)
-
---AddTrigger(
---  function() return GetNumUnitsAt(ThisPlayer.Index, "unit-arthor-literios", 
---                                   {0, 16}, {5, 22}) > 0 end,
---  function() return ActionVictory() end)
-
 ]]
 
 assert(loadstring(Triggers))()
