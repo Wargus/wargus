@@ -170,6 +170,59 @@ function CharacterSetup(name, age, house, faction, mouth, eyes, brows)
 	end
 end
 
+function CharacterAction(name, action, skin, mood)
+	if (((action == "Sync") or (action == "Pose")) and (name ~= nil) and (Character[name] ~= nil)) then
+		if (skin ~= nil) then
+			if (action == "Pose") then
+				character_skin = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin]["Skin"])
+				Character[name]["Skin"] = skin
+				character_skin:Load()
+				if ((mood ~= nil) and (Character[name][skin][mood]["Mouth"] ~= nil)) then
+					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Mouth"])
+					character_eyes = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Eyes"])
+					character_brows = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Brows"])
+					Character[name]["Mood"] = mood
+				else
+					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Mouth"])
+					character_eyes = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Eyes"])
+					character_brows = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Brows"])
+				end
+			elseif (action == "Sync") then
+				mood = string.lower(mood)
+				mood = SyncIndex(name, mood)
+				if (Character[name][skin][mood]["Mouth"] ~= nil) then
+					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Mouth"])
+				end
+			end
+			character_eyes:Load()
+			character_brows:Load()
+			character_mouth:Load()
+		end
+		if (Character[name][skin]["Scale"] ~= 1) then
+			if ((Character[name]["Graphic"][Character[name][skin]["Skin"]] == nil) or (Character[name]["Graphic"][Character[name][skin]["Skin"]] == 1)) then
+				character_skin:Resize(ImageWidget(character_skin):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_skin):getHeight()*Character[name][skin]["Scale"])
+				Character[name]["Graphic"][Character[name][skin]["Skin"]] = Character[name][skin]["Scale"]
+			end
+			if ((Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] == 1)) then
+				Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] = Character[name][skin]["Scale"]
+				character_eyes:Resize(ImageWidget(character_eyes):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_eyes):getHeight()*Character[name][skin]["Scale"])
+			end
+			if ((Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] == 1)) then
+				Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] = Character[name][skin]["Scale"]
+				character_brows:Resize(ImageWidget(character_brows):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_brows):getHeight()*Character[name][skin]["Scale"])
+			end
+			if ((Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] == 1)) then
+				Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] = Character[name][skin]["Scale"]
+				character_mouth:Resize(ImageWidget(character_mouth):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_mouth):getHeight()*Character[name][skin]["Scale"])
+			end
+		end
+		charskinWidget = ImageWidget(character_skin)
+		charmouthWidget = ImageWidget(character_mouth)
+		chareyesWidget = ImageWidget(character_eyes)
+		charbrowsWidget = ImageWidget(character_brows)
+	end
+end
+
 CharacterSetup("Sandria Fields", 14, "Red House", "Mythic")
 CharacterSetup("Sandria Fields", "Skin", "Neutral", "char_sandria.png", 0.7)
 CharacterSetup("Sandria Fields", "Skin", "Neutral Bloody", "char_sandria_blood.png", 0.7)
@@ -221,6 +274,8 @@ CharacterSetup("Lucas Kage", "Mood", "Neutral", "Surprised")
 CharacterSetup("Lucas Kage", "Mood", "Neutral", "Unsure")
 CharacterSetup("Lucas Kage", "Mood", "Neutral", "Happy", "char_kaminari_full_content.png")
 CharacterSetup("Lucas Kage", "Mood", "Neutral", "Sly")
+
+CharacterAction("Lucas Kage", "Pose", "Neutral", "Unsure")
 
 CharacterSetup("Yukiko Robinson", 17, "Yellow House", "Order")
 CharacterSetup("Yukiko Robinson", "Skin", "Neutral", "char_yukiko", 1)
@@ -337,59 +392,6 @@ function SyncIndex(name, mood, a, b, c, d, e, f)
 		return true
 	else
 		return false
-	end
-end
-
-function CharacterAction(name, action, skin, mood)
-	if (((action == "Sync") or (action == "Pose")) and (name ~= nil) and (Character[name] ~= nil)) then
-		if (skin ~= nil) then
-			if (action == "Pose") then
-				character_skin = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin]["Skin"])
-				Character[name]["Skin"] = skin
-				character_skin:Load()
-				if ((mood ~= nil) and (Character[name][skin][mood]["Mouth"] ~= nil)) then
-					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Mouth"])
-					character_eyes = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Eyes"])
-					character_brows = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Brows"])
-					Character[name]["Mood"] = mood
-				else
-					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Mouth"])
-					character_eyes = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Eyes"])
-					character_brows = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Brows"])
-				end
-			elseif (action == "Sync") then
-				mood = string.lower(mood)
-				mood = SyncIndex(name, mood)
-				if (Character[name][skin][mood]["Mouth"] ~= nil) then
-					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Mouth"])
-				end
-			end
-			character_eyes:Load()
-			character_brows:Load()
-			character_mouth:Load()
-		end
-		if (Character[name][skin]["Scale"] ~= 1) then
-			if ((Character[name]["Graphic"][Character[name][skin]["Skin"]] == nil) or (Character[name]["Graphic"][Character[name][skin]["Skin"]] == 1)) then
-				character_skin:Resize(ImageWidget(character_skin):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_skin):getHeight()*Character[name][skin]["Scale"])
-				Character[name]["Graphic"][Character[name][skin]["Skin"]] = Character[name][skin]["Scale"]
-			end
-			if ((Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] == 1)) then
-				Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] = Character[name][skin]["Scale"]
-				character_eyes:Resize(ImageWidget(character_eyes):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_eyes):getHeight()*Character[name][skin]["Scale"])
-			end
-			if ((Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] == 1)) then
-				Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] = Character[name][skin]["Scale"]
-				character_brows:Resize(ImageWidget(character_brows):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_brows):getHeight()*Character[name][skin]["Scale"])
-			end
-			if ((Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] == 1)) then
-				Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] = Character[name][skin]["Scale"]
-				character_mouth:Resize(ImageWidget(character_mouth):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_mouth):getHeight()*Character[name][skin]["Scale"])
-			end
-		end
-		charskinWidget = ImageWidget(character_skin)
-		charmouthWidget = ImageWidget(character_mouth)
-		chareyesWidget = ImageWidget(character_eyes)
-		charbrowsWidget = ImageWidget(character_brows)
 	end
 end
 
@@ -718,10 +720,10 @@ function BundleAction(action, name, displaytext, synctext, voice)
 	if (action == "Scrolling Text") then BriefingAction("Backdrop", nil, menu, 0, 0, "scrolltall.png") else BriefingAction("Backdrop", nil, menu) end
 	GameDefinition["Briefing"]["Character"] = name
 	if (action == "Results") then
-			BriefingAction("Results", nil, menu)
-			action = "Chat"
+		BriefingAction("Results", nil, menu)
+		action = "Chat"
 	end
-	if (action == "Chat") then
+	if ((action == "Chat") or (action == "Game")) then
 		if (synctext == nil) then
 			local chartext = ""
 			local looptext = ""
@@ -758,7 +760,11 @@ function BundleAction(action, name, displaytext, synctext, voice)
 		end
 		BriefingAction("Voice", voice, menu)
 		BriefingAction("Chat", displaytext, menu, synctext)
-		action = "Start"
+		if (action == "Game") then
+			action = "Next"
+		else
+			action = "Start"
+		end
 	elseif (action == "Scrolling Text") then
 		BriefingAction("Scrolling Text", displaytext, menu)
 		if (synctext ~= nil) then
@@ -768,14 +774,16 @@ function BundleAction(action, name, displaytext, synctext, voice)
 		end
 		action = "Start"
 	end
-	if (action == "Start") then
+	if ((action == "Start") or (action == "Next")) then
 		if ((name ~= nil) and (Character[name] ~= nil)) then
 			CharacterAction(name, "Pose", Character[name]["Skin"], Character[name]["Mood"])
 			BriefingAction("Character", "Add", menu)
 		end
 		BriefingAction("Title", GameDefinition["Briefing"]["Title"], menu)
 		BriefingAction("Objectives", GameDefinition["Briefing"]["Objectives"], menu)
-		BriefingAction("Button", "Continue", menu, GameDefinition["Map"]["Path"], GameDefinition["Map"]["File"], GameDefinition["Map"]["Type"])
+		if (action == "Start") then
+			BriefingAction("Button", "Continue", menu, GameDefinition["Map"]["Path"], GameDefinition["Map"]["File"], GameDefinition["Map"]["Type"])
+		end
 		BriefingAction("Button", "Exit", menu)
 		BriefingAction("Load", 0, menu)
 	end

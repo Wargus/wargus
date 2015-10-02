@@ -319,9 +319,7 @@ function AiShane_2015()
 	elseif (GameDefinition["Name"] == "Escape") then
 		AiShane_Escape_2015()
 	else
-		AiJadeite_Force_2010(0, AiFodder(), 10, AiShooter(), 20)
-		AiJadeite_Upgrade_2010(AiSoldier())
-		AiJadeite_Intermittent_2010()
+		AiShane_Skirmish_2015()
 	end
 end
 
@@ -417,6 +415,117 @@ function AiLucas_Skirmish_2015()
 	end
 end
 
+function TransferResource(from, to, resource)
+	if ((resource ~= nil) and (from ~= nil) and (to ~= nil)) then
+		if (resource[2] == nil) then resource[2] = GetPlayerData(from, "Resources", resource[1]) end
+		if (resource[2] <= GetPlayerData(from, "Resources", resource[1])) then
+			SetPlayerData(to, "Resources", resource[1], GetPlayerData(to, "Resources", resource[1]) + resource[2])
+			SetPlayerData(from, "Resources", resource[1], GetPlayerData(from, "Resources", resource[1]) - resource[2])
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function TransferResources(from, to, resource1, resource2, resource3)
+	if (resource1 ~= nil) then
+		TransferResource(from, to, resource1)
+	end
+	if (resource2 ~= nil) then
+		TransferResource(from, to, resource2)
+	end
+	if (resource3 ~= nil) then
+		TransferResource(from, to, resource3)
+	end
+end
+
+function AiShane_Skirmish_2015()
+	if (GameDefinition["Map"]["Name"] == "Dunath Plains") then
+		if ((UnitNear(14, AiCityCenter(14), 9, 6, 5)) and (UnitNear(4, AiHeroSoldier(4), 111, 25, 5)) and (UnitNear(6, AiCityCenter(6), 111, 25, 5)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 0)) then
+			SetGamePaused(true)
+			if (GameCycle < 10000) then
+				BundleAction("Game", "Lucas Kage", "Hello Mythic. Good of you to come.")
+				BundleAction("Game", "Lucas Kage", "Together we'll be able about to drive these Wild scum out of Dunath.")
+				BundleAction("Game", "Lucas Kage", "If you need a headquarters, there is one you can use to the west.")
+			else
+				BundleAction("Game", "Lucas Kage", "Oh, hi Myth.")
+				BundleAction("Game", "Lucas Kage", "Nice of you to finally arrive.")
+				BundleAction("Game", "Lucas Kage", "The townsfolk are waiting for you at the town hall to the west.")
+			end
+			SetGamePaused(false)
+			CampaignDataSetup("Lucas Kage", 1)
+		elseif ((UnitNear(4, AiCityCenter(4), 9, 6, 5)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 5) and (ArmyNear(4, 100, 100, 25) == false)) then
+			SetGamePaused(true)
+			if (GameCycle < 15000) then
+				BundleAction("Game", "Lucas Kage", "Those Wild marauders have been tearing our farms and stealing our supplies.")
+				BundleAction("Game", "Lucas Kage", "The first thing you are going to want to do is constructing four additional farmsteads to replace those lost.")
+				BundleAction("Game", "Lucas Kage", "Without them you wont have the supplies needed to mount an decent raid.")
+			else
+				BundleAction("Game", "Lucas Kage", "You made it, finally.")
+				BundleAction("Game", "Lucas Kage", "I don't have time to explain the situation.")
+				BundleAction("Game", "Lucas Kage", "Just build a barracks and four farmsteads.")
+				BundleAction("Game", "Lucas Kage", "You'll need them to gather minutemen.")
+			end
+			BundleAction("Game", "Lucas Kage", "Assign three workers to collect lumber. Tell the remaining ones mine gold.")
+			SetGamePaused(false)
+			CampaignDataSetup("Lucas Kage", 5)
+		elseif ((GetPlayerData(4, "UnitTypesCount", AiFarm(4)) > 2) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 5)) then
+			SetGamePaused(true)
+			if (GetPlayerData(4, "UnitTypesCount", AiBarracks(4)) == 0) then
+				BundleAction("Game", "Lucas Kage", "Think about building a barracks. That would allow you to recruit minutemen.")
+				CampaignDataSetup("Lucas Kage", 6)
+			else
+				BundleAction("Game", "Lucas Kage", "Minutemen are townsfolk who have undergone combat training, and can be equiped with improved weapons from the blacksmith.")
+				CampaignDataSetup("Lucas Kage", 8)
+			end
+			SetGamePaused(false)
+		elseif ((GetPlayerData(4, "UnitTypesCount", AiBarracks(4)) > 0) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 6)) then
+			BundleAction("Game", "Lucas Kage", "You can train minutemen at this barracks. It shouldn't take more than a minute.")
+			CampaignDataSetup("Lucas Kage", 7)
+		elseif ((GetPlayerData(4, "UnitTypesCount", AiFodder(4)) > 5) and (GetPlayerData(4, "UnitTypesCount", AiBlacksmith(4)) == 0) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 7)) then
+			BundleAction("Game", "Lucas Kage", "Think about building a blacksmith. You'll be able to equip your minutemen with better weapons and armour.")
+			CampaignDataSetup("Lucas Kage", 8)
+		end
+		if (GameCycle < 1500) then
+			AiSet(AiFarm(), 10)
+			AiSet(AiWorker(), 5)
+			AiSet(AiBarracks(), 1)
+			AiJadeite_Variable_2010("archers", true)
+		else
+			AiJadeite_Force_2010(0, AiEliteShooter(), 5)
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFodder()) > 4) then
+				AiJadeite_Upgrade_2010(AiSoldier())
+			end
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 4) then
+				AiJadeite_Upgrade_2010(AiShooter())
+			end
+			if (ArmyNear(4, 100, 100, 25) == true) then
+				AiJadeite_Attack_2010(3, true)
+				if ((ArmyNear(4, 100, 100, 10) == true) and (UnitNear(4, AiCityCenter(4), 9, 6, 5)) and (UnitNear(6, AiCityCenter(6), 111, 25, 5)) and ((GetPlayerData(6, "UnitTypesCount", AiFodder(6)) > 4) or (GetPlayerData(6, "UnitTypesCount", AiEliteShooter(6)) > 6)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 10)) then
+					SetGamePaused(true)
+					if ((CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] > 0) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 9)) then
+						BundleAction("Game", "Lucas Kage", "Now is the time, Mythic.")
+						BundleAction("Game", "Lucas Kage", "Let us assault the enemy fortifications.")
+					else
+						BundleAction("Game", "Lucas Kage", "The calvary has arrived.")
+						BundleAction("Game", "Lucas Kage", "Let's crush these Wild scum together.")
+					end
+					BundleAction("Game", "Lucas Kage", "Stick close to the rangers.")
+					SetGamePaused(false)
+					CampaignDataSetup("Lucas Kage", 10)
+				end
+			end
+			AiJadeite_Intermittent_2010()
+			AiSet(AiWorker(), 5)
+			AiJadeite_Force_2010(3, AiFodder(), 20, AiShooter(), 10)
+			TransferResources(14, 6, {"gold"}, {"wood"}, {"oil"})
+		end
+	end
+end
+
 function AiLucas_Escape_2015()
 	if (GameDefinition["Map"]["Name"] == "Shameful Display") then
 		AiLucas_Escape_Shameful_Display_2015()
@@ -445,8 +554,8 @@ function UnitNear(player, unit, x, y, area)
 end
 
 function ArmyNear(player, x, y, area)
-	local t = {AiHeroSoldier(player), AiShooter(player), AiEliteShooter(player), AiSoldier(player), AiCatapult(player)}
-	for i=1, 5 do
+	local t = {AiHeroSoldier(player), AiShooter(player), AiEliteShooter(player), AiSoldier(player), AiCatapult(player), AiFodder(player)}
+	for i=1, 6 do
 		if (UnitNear(player, t[i], x, y, area) == true) then
 			return true
 		end
