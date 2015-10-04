@@ -624,7 +624,7 @@ function BriefingAction(action, text, menu, x, y, z)
 		menu:add(infantryenemyWidget, resultx + (17 + 80)*2, resulty + 32*1)
 		menu:add(artilleryenemyWidget, resultx + (17 + 80)*2, resulty + 32*2)
 		menu:add(cavalryenemyWidget, resultx + (17 + 80)*2, resulty + 32*3)
-	elseif ((action == "Chat") and ((text ~= nil))) then
+	elseif ((action == "Chat") and ((text ~= nil) or (x ~= nil))) then
 		local function MultiTextChat()
 			local syncchar
 			local synccharold
@@ -660,14 +660,25 @@ function BriefingAction(action, text, menu, x, y, z)
 					text = string.sub(text, 2)
 				end
 			end
-			if (wait > 0) then
-				wait = wait - 1
-				return
+			if ((wait < -100) and (text == nil)) then
+				menu:stop() 
+				wait = nil
 			elseif (wait == 0) then
-				wait = 2
+				if ((string.len(x) == 0) and (wait > -1)) then
+					charmouthWidget:setVisible(false)
+					CharacterAction(GameDefinition["Briefing"]["Character"], "Pose", Character[GameDefinition["Briefing"]["Character"]]["Skin"], Character[GameDefinition["Briefing"]["Character"]]["Mood"])
+					menu:add(charmouthWidget, GameDefinition["Briefing"]["X"] + GameDefinition["Briefing"]["Width"] - 450, GameDefinition["Briefing"]["Y"] + 10)
+					wait = -1
+				elseif (string.len(x) > 0) then
+					wait = 2
+					return
+				end	
+			else
+				wait = wait - 1
 				return
 			end
 		end
+		
 		screentext = ""
 		menu:addLogicCallback(LuaActionListener(MultiTextChat))
 	elseif (action == "Backdrop") then
@@ -717,13 +728,16 @@ end
 
 function BundleAction(action, name, displaytext, synctext, voice)
 	local menu = MenuScreen()
-	if (action == "Scrolling Text") then BriefingAction("Backdrop", nil, menu, 0, 0, "scrolltall.png") else BriefingAction("Backdrop", nil, menu) end
+	if (action == "Scrolling Text") then BriefingAction("Backdrop", nil, menu, 0, 0, "scrolltall.png") elseif (action ~= "Game") then BriefingAction("Backdrop", nil, menu) end
 	GameDefinition["Briefing"]["Character"] = name
 	if (action == "Results") then
 		BriefingAction("Results", nil, menu)
 		action = "Chat"
 	end
 	if ((action == "Chat") or (action == "Game")) then
+		if (action == "Game") then
+			AddMessage("<" .. GetPlayerData(AiPlayer(), "Name") .. "> " .. displaytext)
+		end
 		if (synctext == nil) then
 			local chartext = ""
 			local looptext = ""
@@ -734,7 +748,7 @@ function BundleAction(action, name, displaytext, synctext, voice)
 			for index = 1, string.len(displaytext) do
 				chartext = string.sub(displaytext, index, index)
 				string.sub(displaytext, 2)
-				if (chartext ~= "+") then
+				if ((action ~= "Game") and (chartext ~= "+")) then
 					looptext = looptext .. chartext
 					if ((chartext == " ") and (chatboxcurrent > chatboxlength - chatboxlength)) then
 						-- Check the character length of the next word.
@@ -759,10 +773,11 @@ function BundleAction(action, name, displaytext, synctext, voice)
 			displaytext = looptext
 		end
 		BriefingAction("Voice", voice, menu)
-		BriefingAction("Chat", displaytext, menu, synctext)
 		if (action == "Game") then
+			BriefingAction("Chat", nil, menu, synctext)
 			action = "Next"
 		else
+			BriefingAction("Chat", displaytext, menu, synctext)
 			action = "Start"
 		end
 	elseif (action == "Scrolling Text") then
