@@ -35,8 +35,7 @@ GameDefinition["Map"]["Path"] = "scripts/lists/campaigns/Adventure/"
 if (GameDefinition["Briefing"]["Active"] == true) then
 	-- Friendly match with Red House.
 	-- TODO: Allow the player to bring allies to this match.
-	local menu = MenuScreen()
-	BriefingAction("Backdrop", "backdrops/seichan.png", menu)
+	GameDefinition["Briefing"]["Backdrop"] = "magickomplex"
 	CharacterAction("Aya Kalang", "Pose", "Neutral", "Happy")
 	BundleAction("Chat", "Aya Kalang", "What is it?")
 elseif (GameDefinition["Briefing"]["Active"] == 1) then

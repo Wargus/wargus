@@ -224,8 +224,8 @@ function CharacterAction(name, action, skin, mood)
 end
 
 CharacterSetup("Sandria Fields", 14, "Red House", "Mythic")
-CharacterSetup("Sandria Fields", "Skin", "Neutral", "char_sandria.png", 0.7)
-CharacterSetup("Sandria Fields", "Skin", "Neutral Bloody", "char_sandria_blood.png", 0.7)
+CharacterSetup("Sandria Fields", "Skin", "Neutral", "char_sandria.png", 0.7) --0.7
+CharacterSetup("Sandria Fields", "Skin", "Neutral Bloody", "char_sandria_blood.png", 0.7) --0.7
 
 CharacterSetup("Sandria Fields", "Sync", "Neutral", "ai", "char_sandria_mouth_ai.png")
 CharacterSetup("Sandria Fields", "Sync", "Neutral", "e", "char_sandria_mouth_e.png")
@@ -547,14 +547,15 @@ function BriefingAction(action, text, menu, x, y, z)
 		  end
 		  PlayNextVoice()
 	elseif (action == "Results") then
-		local resultx = 70 * GameDefinition["Briefing"]["Width"] / 640
-		local resulty = GameDefinition["Briefing"]["Y"] + 80 * GameDefinition["Briefing"]["Height"] / 480 + 300
+		local resultx = GameDefinition["Briefing"]["X"] + 70 + (GameDefinition["Briefing"]["Width"] / 640)
+		local resulty = GameDefinition["Briefing"]["Y"] + 80 + (GameDefinition["Briefing"]["Height"] / 480) + 300
 		-- Add Box
 		resultsdrop = CGraphic:New("ui/scroll.png")
 		resultsdrop:Load()
 		resultsdropWidget = ImageWidget(scrolldrop)
-		BriefingAction("Widget", resultsdropWidget, menu, resultx, resulty)
-		-- Add Labels
+		if (Video.Width == 800) then
+			BriefingAction("Widget", resultsdropWidget, menu, resultx, resulty)
+		end
 		menu:addLabel(_("Combat Casualties"), resultx + 160, resulty + 6, nil, true)
 		menu:addLabel(_("Infantry"), resultx + 17, resulty + 2 + 32*1, Fonts["game"], false)
 		menu:addLabel(_("Artillery"), resultx + 17, resulty + 2 + 32*2, Fonts["game"], false)
@@ -629,7 +630,7 @@ function BriefingAction(action, text, menu, x, y, z)
 			local syncchar
 			local synccharold
 			local screenchar
-			if (wait == nil) then wait = 1 end
+			if ((wait == nil) or ((wait < 0) and (string.len(x) > 0))) then wait = 1 end
 			if (screentext == nil) then screentext = "" end
 			if (wait == 1) then
 				if (x ~= nil) then
@@ -660,16 +661,17 @@ function BriefingAction(action, text, menu, x, y, z)
 					text = string.sub(text, 2)
 				end
 			end
-			if ((wait < -100) and (text == nil)) then
+			if ((wait < -100) and (text == nil) and (GameDefinition["Briefing"]["Active"] ~= true)) then
+				-- Active must not be true as the game would skip scroll text briefings.
 				menu:stop() 
 				wait = nil
 			elseif (wait == 0) then
-				if ((string.len(x) == 0) and (wait > -1)) then
+				if ((string.len(x) == 0) and ((text == nil) or (string.len(text) == 0))) then
 					charmouthWidget:setVisible(false)
 					CharacterAction(GameDefinition["Briefing"]["Character"], "Pose", Character[GameDefinition["Briefing"]["Character"]]["Skin"], Character[GameDefinition["Briefing"]["Character"]]["Mood"])
 					menu:add(charmouthWidget, GameDefinition["Briefing"]["X"] + GameDefinition["Briefing"]["Width"] - 450, GameDefinition["Briefing"]["Y"] + 10)
 					wait = -1
-				elseif (string.len(x) > 0) then
+				elseif ((string.len(x) > 0) or (string.len(text) > 0)) then
 					wait = 2
 					return
 				end	
@@ -678,13 +680,13 @@ function BriefingAction(action, text, menu, x, y, z)
 				return
 			end
 		end
-		
 		screentext = ""
 		menu:addLogicCallback(LuaActionListener(MultiTextChat))
 	elseif (action == "Backdrop") then
 		if (x == nil) then x = 0 end
 		if (y == nil) then y = 0 end
 		if (z == nil) then z = "scroll.png" end
+		if ((text == nil) and (GameDefinition["Briefing"]["Backdrop"] ~= nil)) then text = "backdrops/" .. GameDefinition["Briefing"]["Backdrop"] .. ".png" end
 		if (text ~= nil) then
 			backdrop = CGraphic:New(text)
 			backdrop:Load()
@@ -709,7 +711,6 @@ function BriefingAction(action, text, menu, x, y, z)
 			if (text == "Continue") then
 				menu:addMenuButton(_("~!Continue"), "c", GameDefinition["Briefing"]["X"] + 455 * GameDefinition["Briefing"]["Width"] / 640, GameDefinition["Briefing"]["Y"] + 440 * GameDefinition["Briefing"]["Height"] / 480,
 				function()
-				  menu:stop()
 				  menu:stop()
 				  StopMusic()
 				  BriefingAction("Increment")
@@ -798,8 +799,8 @@ function BundleAction(action, name, displaytext, synctext, voice)
 		BriefingAction("Objectives", GameDefinition["Briefing"]["Objectives"], menu)
 		if (action == "Start") then
 			BriefingAction("Button", "Continue", menu, GameDefinition["Map"]["Path"], GameDefinition["Map"]["File"], GameDefinition["Map"]["Type"])
+			BriefingAction("Button", "Exit", menu)
 		end
-		BriefingAction("Button", "Exit", menu)
 		BriefingAction("Load", 0, menu)
 	end
 end

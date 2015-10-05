@@ -32,8 +32,7 @@ GameDefinition["Map"]["Type"] = ".lua"
 GameDefinition["Map"]["Path"] = "scripts/lists/campaigns/Adventure/"
 
 if (GameDefinition["Briefing"]["Active"] == true) then
-	local menu = MenuScreen()
-	BriefingAction("Backdrop", "backdrops/seichan.png", menu)
+	GameDefinition["Briefing"]["Backdrop"] = "magickomplex"
 	CharacterAction("Drago Payne", "Pose", "Neutral", "Happy")
 	BundleAction("Chat", "Drago Payne", "What's that?")
 --	BundleAction("Chat", "Drago Payne", "Apple Carrot Cheese Cake Money Bags Microphone Double Triple Five Six Seven Two This Is A Fantastic Song Hello Hello")

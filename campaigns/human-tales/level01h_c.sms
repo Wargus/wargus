@@ -1,6 +1,6 @@
 --	Stratagus Map - Single player campaign
 
-if (GameDefinition["Briefing"]["Active"] ~= false) then
+if (GameDefinition["Briefing"]["Active"] == true) then
 	Load("campaigns/human-tales/level01h_c2.sms")
 	if (wargus.tales == true) then
 		Briefing(

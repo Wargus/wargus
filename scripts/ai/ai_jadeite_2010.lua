@@ -33,6 +33,15 @@ local jadeite_archers = {} -- Used to identify if archers have been upgraded.
 local jadeite_attacker = {} -- Used to make sure the attack command isn't called too often.
 local jadeite_builder = {} -- Used to make sure the build command isn't called too often.
 
+function AiJadeite_Variable_2010(variable, value)
+	if (value == nil) then value = true end
+	if (variable == "archers") then
+		jadeite_archers[AiPlayer()] = value
+	elseif (variable == "cavalry") then
+		jadeite_cavalry[AiPlayer()] = value
+	end
+end
+
 function AiJadeite_Ticker_2010(timer)
 	if (timer ~= nil) then
 		jadeite_builder[AiPlayer()] = timer

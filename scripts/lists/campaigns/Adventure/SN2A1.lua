@@ -28,12 +28,11 @@
 if (GameDefinition["Briefing"]["Active"] == true) then
 	GameDefinition["Briefing"]["Title"] = ""
 	GameDefinition["Briefing"]["Objectives"] = nil
+	GameDefinition["Briefing"]["Backdrop"] = "magickomplex"
 	GameDefinition["Map"]["Name"] = "Mission 2"
 	GameDefinition["Map"]["File"] = "SN2A1"
 	GameDefinition["Map"]["Type"] = ".lua"
 	GameDefinition["Map"]["Path"] = "scripts/lists/campaigns/Adventure/"
-	local menu = MenuScreen()
-	BriefingAction("Backdrop", "backdrops/seichan.png", menu)
 	BundleAction("Scrolling Text", "Sandria Fields", "campaigns/human-tales/level02h.txt")
 elseif (GameDefinition["Briefing"]["Active"] == 1) then
 	BriefingAction("Start", "campaigns/human-tales/level02h.smp")

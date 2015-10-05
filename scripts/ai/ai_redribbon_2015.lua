@@ -444,51 +444,6 @@ end
 
 function AiShane_Skirmish_2015()
 	if (GameDefinition["Map"]["Name"] == "Dunath Plains") then
-		if ((UnitNear(14, AiCityCenter(14), 9, 6, 5)) and (UnitNear(4, AiHeroSoldier(4), 111, 25, 5)) and (UnitNear(6, AiCityCenter(6), 111, 25, 5)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 0)) then
-			SetGamePaused(true)
-			if (GameCycle < 10000) then
-				BundleAction("Game", "Lucas Kage", "Hello Mythic. Good of you to come.")
-				BundleAction("Game", "Lucas Kage", "Together we'll be able about to drive these Wild scum out of Dunath.")
-				BundleAction("Game", "Lucas Kage", "If you need a headquarters, there is one you can use to the west.")
-			else
-				BundleAction("Game", "Lucas Kage", "Oh, hi Myth.")
-				BundleAction("Game", "Lucas Kage", "Nice of you to finally arrive.")
-				BundleAction("Game", "Lucas Kage", "The townsfolk are waiting for you at the town hall to the west.")
-			end
-			SetGamePaused(false)
-			CampaignDataSetup("Lucas Kage", 1)
-		elseif ((UnitNear(4, AiCityCenter(4), 9, 6, 5)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 5) and (ArmyNear(4, 100, 100, 25) == false)) then
-			SetGamePaused(true)
-			if (GameCycle < 15000) then
-				BundleAction("Game", "Lucas Kage", "Those Wild marauders have been tearing our farms and stealing our supplies.")
-				BundleAction("Game", "Lucas Kage", "The first thing you are going to want to do is constructing four additional farmsteads to replace those lost.")
-				BundleAction("Game", "Lucas Kage", "Without them you wont have the supplies needed to mount an decent raid.")
-			else
-				BundleAction("Game", "Lucas Kage", "You made it, finally.")
-				BundleAction("Game", "Lucas Kage", "I don't have time to explain the situation.")
-				BundleAction("Game", "Lucas Kage", "Just build a barracks and four farmsteads.")
-				BundleAction("Game", "Lucas Kage", "You'll need them to gather minutemen.")
-			end
-			BundleAction("Game", "Lucas Kage", "Assign three workers to collect lumber. Tell the remaining ones mine gold.")
-			SetGamePaused(false)
-			CampaignDataSetup("Lucas Kage", 5)
-		elseif ((GetPlayerData(4, "UnitTypesCount", AiFarm(4)) > 2) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 5)) then
-			SetGamePaused(true)
-			if (GetPlayerData(4, "UnitTypesCount", AiBarracks(4)) == 0) then
-				BundleAction("Game", "Lucas Kage", "Think about building a barracks. That would allow you to recruit minutemen.")
-				CampaignDataSetup("Lucas Kage", 6)
-			else
-				BundleAction("Game", "Lucas Kage", "Minutemen are townsfolk who have undergone combat training, and can be equiped with improved weapons from the blacksmith.")
-				CampaignDataSetup("Lucas Kage", 8)
-			end
-			SetGamePaused(false)
-		elseif ((GetPlayerData(4, "UnitTypesCount", AiBarracks(4)) > 0) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 6)) then
-			BundleAction("Game", "Lucas Kage", "You can train minutemen at this barracks. It shouldn't take more than a minute.")
-			CampaignDataSetup("Lucas Kage", 7)
-		elseif ((GetPlayerData(4, "UnitTypesCount", AiFodder(4)) > 5) and (GetPlayerData(4, "UnitTypesCount", AiBlacksmith(4)) == 0) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 7)) then
-			BundleAction("Game", "Lucas Kage", "Think about building a blacksmith. You'll be able to equip your minutemen with better weapons and armour.")
-			CampaignDataSetup("Lucas Kage", 8)
-		end
 		if (GameCycle < 1500) then
 			AiSet(AiFarm(), 10)
 			AiSet(AiWorker(), 5)
@@ -502,7 +457,17 @@ function AiShane_Skirmish_2015()
 			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 4) then
 				AiJadeite_Upgrade_2010(AiShooter())
 			end
-			if (ArmyNear(4, 100, 100, 25) == true) then
+			if (ArmyNear(1, 9, 6, 5) == true) then
+				AiJadeite_Attack_2010(3, true)
+				if ((CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 9) and (GetPlayerData(1, "UnitTypesCount", AiSoldier(1)) > 6) and (UnitNear(4, AiCityCenter(4), 9, 6, 5)) and ((GetPlayerData(1, "UnitTypesCount", AiSoldier(1)) > GetPlayerData(4, "UnitTypesCount", AiSoldier(4)) + GetPlayerData(4, "UnitTypesCount", AiFodder(4))))) then
+					if ((GetPlayerData(6, "UnitTypesCount", AiEliteShooter(6)) > 6) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 10)) then
+						BundleAction("Game", "Lucas Kage", "Sit tight, I'm sending help.")
+					else
+						BundleAction("Game", "Lucas Kage", "I'm sorry, I can't help you. My forces have been decimated.")
+					end
+					CampaignDataSetup("Lucas Kage", 9)
+				end
+			elseif (ArmyNear(4, 100, 100, 25) == true) then
 				AiJadeite_Attack_2010(3, true)
 				if ((ArmyNear(4, 100, 100, 10) == true) and (UnitNear(4, AiCityCenter(4), 9, 6, 5)) and (UnitNear(6, AiCityCenter(6), 111, 25, 5)) and ((GetPlayerData(6, "UnitTypesCount", AiFodder(6)) > 4) or (GetPlayerData(6, "UnitTypesCount", AiEliteShooter(6)) > 6)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 10)) then
 					SetGamePaused(true)
@@ -522,6 +487,51 @@ function AiShane_Skirmish_2015()
 			AiSet(AiWorker(), 5)
 			AiJadeite_Force_2010(3, AiFodder(), 20, AiShooter(), 10)
 			TransferResources(14, 6, {"gold"}, {"wood"}, {"oil"})
+		end
+		if ((UnitNear(14, AiCityCenter(14), 9, 6, 5)) and (UnitNear(4, AiHeroSoldier(4), 111, 25, 115)) and (UnitNear(6, AiCityCenter(6), 111, 25, 5)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 0)) then
+			if (GameCycle < 10000) then
+				BundleAction("Game", "Sandria Fields", "Hello Mythic. Good of you to come.")
+				BundleAction("Game", "Sandria Fields", "Together we'll be able about to drive these Wild scum out of Dunath.")
+				BundleAction("Game", "Sandria Fields", "If you need a headquarters, there is one you can use to the west.")
+			else
+				BundleAction("Game", "Lucas Kage", "Oh, hi Myth.")
+				BundleAction("Game", "Lucas Kage", "Nice of you to finally arrive.")
+				BundleAction("Game", "Lucas Kage", "The townsfolk are waiting for you at the town hall to the west.")
+			end
+			CampaignDataSetup("Lucas Kage", 1)
+		elseif ((UnitNear(4, AiCityCenter(4), 9, 6, 5)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 5) and (ArmyNear(4, 100, 100, 25) ~= true)) then
+			if (GameCycle < 15000) then
+				if (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 0) then
+					BundleAction("Game", "Lucas Kage", "Greetings Mythic. It is good you have finally arrived.")
+					BundleAction("Game", "Lucas Kage", "Together we'll be able about to drive these Wild scum out of Dunath.")
+					BundleAction("Game", "Lucas Kage", "They have been tearing our stores down and raiding our supplies.")
+				else
+					BundleAction("Game", "Lucas Kage", "Those Wild marauders have been tearing our farms and stealing our supplies.")
+				end
+				BundleAction("Game", "Lucas Kage", "The first thing you are going to want to do is to replace the four farmsteads that were lost.")
+				BundleAction("Game", "Lucas Kage", "Without them you wont have the supplies needed to fight back.")
+			else
+				BundleAction("Game", "Lucas Kage", "You made it, finally.")
+				BundleAction("Game", "Lucas Kage", "I don't have time to explain the situation.")
+				BundleAction("Game", "Lucas Kage", "Just build a barracks and four farmsteads.")
+				BundleAction("Game", "Lucas Kage", "You'll need them to gather minutemen.")
+			end
+			BundleAction("Game", "Lucas Kage", "Assign three workers to collect lumber. Tell the remaining ones mine gold.")
+			CampaignDataSetup("Lucas Kage", 5)
+		elseif ((GetPlayerData(4, "UnitTypesCount", AiFarm(4)) > 2) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 5)) then
+			if (GetPlayerData(4, "UnitTypesCount", AiBarracks(4)) == 0) then
+				BundleAction("Game", "Lucas Kage", "Think about building a barracks. That would allow you to recruit minutemen.")
+				CampaignDataSetup("Lucas Kage", 6)
+			else
+				BundleAction("Game", "Lucas Kage", "Minutemen are townsfolk who have undergone combat training, and can be equiped with improved weapons from the blacksmith.")
+				CampaignDataSetup("Lucas Kage", 8)
+			end
+		elseif ((GetPlayerData(4, "UnitTypesCount", AiBarracks(4)) > 0) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 6)) then
+			BundleAction("Game", "Lucas Kage", "You can train minutemen at this barracks. It shouldn't take more than a minute.")
+			CampaignDataSetup("Lucas Kage", 7)
+		elseif ((GetPlayerData(4, "UnitTypesCount", AiFodder(4)) > 5) and (GetPlayerData(4, "UnitTypesCount", AiBlacksmith(4)) == 0) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 7)) then
+			BundleAction("Game", "Lucas Kage", "Think about building a blacksmith. You'll be able to equip your minutemen with better weapons and armour.")
+			CampaignDataSetup("Lucas Kage", 8)
 		end
 	end
 end
