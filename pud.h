@@ -35,6 +35,11 @@
 
 #ifdef _MSC_VER
 #define PATH_MAX _MAX_PATH
+#if _MSC_VER >= 1800
+#define open _open
+#define read _read
+#define close _close
+#endif
 #endif
 
 #define PLAYERMAX 16

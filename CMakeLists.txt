@@ -81,8 +81,9 @@ set(warextract_SRCS
 )
 
 # Additional platform checks
-
-find_package(PkgConfig QUIET REQUIRED)
+if(NOT (WIN32 AND MSVC))
+	find_package(PkgConfig QUIET REQUIRED)
+endif()
 
 # Check if platform is Maemo
 if(UNIX AND CMAKE_SYSTEM_NAME MATCHES Linux)
@@ -102,7 +103,12 @@ endif()
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
-find_package(Stratagus REQUIRED)
+find_package(Stratagus)
+if(NOT STRATAGUS_FOUND)
+	# Just means we won't build the launcher ...
+	set(STRATAGUS_INCLUDE_DIR ".")
+endif()
+	
 find_package(PNG REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(StormLib)
@@ -218,8 +224,10 @@ if(MAEMO)
 	target_link_libraries(warextract ${warextract_LIBS})
 endif()
 
-add_executable(wargus WIN32 ${wargus_SRCS} ${wargus_HDRS})
-target_link_libraries(wargus ${wargus_LIBS})
+if(STRATAGUS_FOUND)
+	add_executable(wargus WIN32 ${wargus_SRCS} ${wargus_HDRS})
+	target_link_libraries(wargus ${wargus_LIBS})
+endif()
 
 add_executable(wartool ${wartool_SRCS} ${wartool_HDRS})
 target_link_libraries(wartool ${wartool_LIBS})
@@ -264,6 +272,20 @@ if(WIN32 AND ENABLE_NSIS AND MAKENSIS_FOUND)
 	add_custom_target(nsis ALL DEPENDS Wargus-${WARGUS_VERSION}${MAKENSIS_SUFFIX})
 endif()
 
+if (WIN32 AND MSVC)
+	if(MSVC_VERSION GREATER 1800)       # if > VC13 
+		message("The project must be compiled with VS2013 or older.") 
+		set(CMAKE_GENERATOR_TOOLSET "v120" CACHE STRING "Platform Toolset" FORCE) 
+	endif()
+
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SAFESEH:NO")
+	set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SAFESEH:NO")
+	set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} /SAFESEH:NO")
+	add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE=1)
+	set_target_properties(pudconvert PROPERTIES LINK_FLAGS "${LINK_FLAGS} /NODEFAULTLIB:MSVCRT")
+	set_target_properties(wartool PROPERTIES LINK_FLAGS "${LINK_FLAGS} /NODEFAULTLIB:MSVCRT")
+endif()
+
 ########### next target ###############
 
 configure_file (
@@ -273,7 +295,9 @@ configure_file (
 
 ########### install files ###############
 
-install(TARGETS wargus DESTINATION ${GAMEDIR})
+if(STRATAGUS_FOUND)
+	install(TARGETS wargus DESTINATION ${GAMEDIR})
+endif()
 install(TARGETS pudconvert wartool DESTINATION ${BINDIR})
 install(FILES wargus.png DESTINATION ${ICONDIR})
 install(FILES "${PROJECT_BINARY_DIR}/wargus.desktop" DESTINATION ${DESKTOPDIR})
