@@ -26,7 +26,7 @@
 --
 
 function SetPlayerGame2015(player, race, ai, faction, gold, wood, oil, startx, starty, varA1, varA2, varB1, varB2, varC1, varC2)
-	AiRedRibbon_Setup_2014()
+	if (ftm_choice == nil) then AiRedRibbon_Setup_2014() end
 	if (ai == "surprise") then
 		repeat
 			temp = SyncRand(5) + SyncRand(5)
@@ -52,11 +52,16 @@ function SetPlayerGame2015(player, race, ai, faction, gold, wood, oil, startx, s
 	SetupPlayer(player, race, ai, gold, wood, oil, startx, starty)
 	-- Check game type.
 	if (player ~= nil) then
-		if (GameDefinition["Name"] == "Frontlines") then
-			ftm_team_x1[player] = 0
+		if ((GameDefinition["Name"] == "Frontlines") or (GameDefinition["Name"] == "Front Lines")) then
+			--ftm_team_x1[player] = 0
+			--ftm_team_y1[player] = 0
+			--ftm_team_x2[player] = 255
+			--ftm_team_y2[player] = 255
+			
+			ftm_team_x1[player] = 43
 			ftm_team_y1[player] = 0
-			ftm_team_x2[player] = 255
-			ftm_team_y2[player] = 255
+			ftm_team_x2[player] = 80
+			ftm_team_y2[player] = 127
 			if (varA1 ~= nil) then
 				ftm_team_x1[player] = varA1
 				if (varA2 ~= nil) then
@@ -94,10 +99,9 @@ function AiFrontlines_2015()
 				if ((timers[AiPlayer()] == 1) or (timers[AiPlayer()] == 11) or (timers[AiPlayer()] == 21) or (timers[AiPlayer()] == 31) or (timers[AiPlayer()] == 41) or (timers[AiPlayer()] == 51) or (timers[AiPlayer()] == 61) or (timers[AiPlayer()] == 71) or (timers[AiPlayer()] == 81) or (timers[AiPlayer()] == 91) or (timers[AiPlayer()] == 101) or (timers[AiPlayer()] == 111) or (timers[AiPlayer()] == 121) or (timers[AiPlayer()] == 131) or (timers[AiPlayer()] == 141) or (timers[AiPlayer()] == 151) or (timers[AiPlayer()] == 161) or (timers[AiPlayer()] == 171) or (timers[AiPlayer()] == 181) or (timers[AiPlayer()] == 191) or
 				(timers[AiPlayer()] == 6) or (timers[AiPlayer()] == 16) or (timers[AiPlayer()] == 26) or (timers[AiPlayer()] == 36) or (timers[AiPlayer()] == 46) or (timers[AiPlayer()] == 56) or (timers[AiPlayer()] == 66) or (timers[AiPlayer()] == 76) or (timers[AiPlayer()] == 86) or (timers[AiPlayer()] == 96) or (timers[AiPlayer()] == 106) or (timers[AiPlayer()] == 116) or (timers[AiPlayer()] == 126) or (timers[AiPlayer()] == 136) or (timers[AiPlayer()] == 146) or (timers[AiPlayer()] == 156) or (timers[AiPlayer()] == 166) or (timers[AiPlayer()] == 176) or (timers[AiPlayer()] == 186) or (timers[AiPlayer()] == 196)) then
 					for index = 1, 15 do
-						if ((GetPlayerData(player, "RaceName") == "orc") or (GetPlayerData(player, "RaceName") == "wild")) then temp = 50 else temp = 0 end
-						if (GetNumUnitsAt(player, ftm_unit[index+temp], {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]}) > 0) then
-							KillUnitAt(ftm_unit[index+temp], player, 1, {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]})
-							CreateUnit(ftm_unit[index+temp], AiPlayer(), {ftm_team_startx[AiPlayer()], ftm_team_starty[AiPlayer()]})
+						if (GetNumUnitsAt(player, UnitDatabase[GetPlayerData(player, "RaceName")][index]["Unit"], {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]}) > 0) then
+							KillUnitAt(UnitDatabase[GetPlayerData(player, "RaceName")][index]["Unit"], player, 1, {ftm_team_x1[player], ftm_team_y1[player]}, {ftm_team_x2[player], ftm_team_y2[player]})
+							CreateUnit(UnitDatabase[GetPlayerData(player, "RaceName")][index]["Unit"], AiPlayer(), {ftm_team_startx[AiPlayer()], ftm_team_starty[AiPlayer()]})
 							break
 						end
 					end
@@ -115,11 +119,11 @@ function AiFrontlines_2015()
 			for player = 0, 15 do
 				if (ftm_faction[AiPlayer()] ~= ftm_faction[player]) then
 					for index = 1, 15 do
-						if (GetNumUnitsAt(AiPlayer(), ftm_unit[index], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
-							OrderUnit(AiPlayer(), ftm_unit[index], {0,0,mapinfo.w,mapinfo.h}, {ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]],ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]]}, "attack")
+						if (GetNumUnitsAt(AiPlayer(), UnitDatabase["human"][index]["Unit"], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
+							OrderUnit(AiPlayer(), UnitDatabase["human"][index]["Unit"], {0,0,mapinfo.w,mapinfo.h}, {ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]],ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]]}, "attack")
 						end
-						if (GetNumUnitsAt(AiPlayer(), ftm_unit[index+50], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
-							OrderUnit(AiPlayer(), ftm_unit[index+50], {0,0,mapinfo.w,mapinfo.h}, {ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]],ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]]}, "attack")
+						if (GetNumUnitsAt(AiPlayer(), UnitDatabase["orc"][index]["Unit"], {0,0}, {mapinfo.w,mapinfo.h}) > 0) then
+							OrderUnit(AiPlayer(), UnitDatabase["orc"][index]["Unit"], {0,0,mapinfo.w,mapinfo.h}, {ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]],ftm_team_startx[ftm_team[player]],ftm_team_starty[ftm_team[player]]}, "attack")
 						end
 					end
 					break
@@ -314,6 +318,8 @@ function AiShane_2015()
 		AiShane_FtM_2015(AiPlayer())
 	elseif (GameDefinition["Name"] == "Escape") then
 		AiShane_Escape_2015()
+	else
+		AiShane_Skirmish_2015()
 	end
 end
 
@@ -332,6 +338,15 @@ function AiNathan_2015()
 		AiAya_FtM_2015(AiPlayer())
 	elseif (GameDefinition["Name"] == "Skirmish") then
 		AiNathan_Skirmish_2015()
+	elseif (GameDefinition["Name"] == "Escape") then
+		AiNathan_Escape_2015()
+	end
+end
+
+function AiRufus_2015()
+	AiCharacter_Set_Name_2015("Rufus Norcross")
+	if (GameDefinition["Name"] == "Escape") then
+		AiRufus_Escape_2015()
 	end
 end
 
@@ -357,6 +372,18 @@ function AiSandria_2015()
 		if (GameCycle > 100) then
 			AiJadeite_Shooter_2010()
 		end
+	end
+end
+
+function AiNathan_Escape_2015()
+	if (GameDefinition["Map"]["Name"] == "Seawill Forests") then
+		AiNathan_Escape_Seawill_Forests_2015()
+	end
+end
+
+function AiRufus_Escape_2015()
+	if (GameDefinition["Map"]["Name"] == "Seawill Forests") then
+		AiRufus_Escape_Seawill_Forests_2015()
 	end
 end
 
@@ -388,6 +415,127 @@ function AiLucas_Skirmish_2015()
 	end
 end
 
+function TransferResource(from, to, resource)
+	if ((resource ~= nil) and (from ~= nil) and (to ~= nil)) then
+		if (resource[2] == nil) then resource[2] = GetPlayerData(from, "Resources", resource[1]) end
+		if (resource[2] <= GetPlayerData(from, "Resources", resource[1])) then
+			SetPlayerData(to, "Resources", resource[1], GetPlayerData(to, "Resources", resource[1]) + resource[2])
+			SetPlayerData(from, "Resources", resource[1], GetPlayerData(from, "Resources", resource[1]) - resource[2])
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function TransferResources(from, to, resource1, resource2, resource3)
+	if (resource1 ~= nil) then
+		TransferResource(from, to, resource1)
+	end
+	if (resource2 ~= nil) then
+		TransferResource(from, to, resource2)
+	end
+	if (resource3 ~= nil) then
+		TransferResource(from, to, resource3)
+	end
+end
+
+function AiShane_Skirmish_2015()
+	if (GameDefinition["Map"]["Name"] == "Dunath Plains") then
+		if (GameCycle < 1500) then
+			AiSet(AiFarm(), 10)
+			AiSet(AiWorker(), 5)
+			AiSet(AiBarracks(), 1)
+			AiJadeite_Variable_2010("archers", true)
+		else
+			AiJadeite_Force_2010(0, AiEliteShooter(), 5)
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiFodder()) > 4) then
+				AiJadeite_Upgrade_2010(AiSoldier())
+			end
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiEliteShooter()) > 4) then
+				AiJadeite_Upgrade_2010(AiShooter())
+			end
+			if (ArmyNear(1, 9, 6, 5) == true) then
+				AiJadeite_Attack_2010(3, true)
+				if ((CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 9) and (GetPlayerData(1, "UnitTypesCount", AiSoldier(1)) > 6) and (UnitNear(4, AiCityCenter(4), 9, 6, 5)) and ((GetPlayerData(1, "UnitTypesCount", AiSoldier(1)) > GetPlayerData(4, "UnitTypesCount", AiSoldier(4)) + GetPlayerData(4, "UnitTypesCount", AiFodder(4))))) then
+					if ((GetPlayerData(6, "UnitTypesCount", AiEliteShooter(6)) > 6) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 10)) then
+						BundleAction("Game", "Lucas Kage", "Sit tight, I'm sending help.")
+					else
+						BundleAction("Game", "Lucas Kage", "I'm sorry, I can't help you. My forces have been decimated.")
+					end
+					CampaignDataSetup("Lucas Kage", 9)
+				end
+			elseif (ArmyNear(4, 100, 100, 25) == true) then
+				AiJadeite_Attack_2010(3, true)
+				if ((ArmyNear(4, 100, 100, 10) == true) and (UnitNear(4, AiCityCenter(4), 9, 6, 5)) and (UnitNear(6, AiCityCenter(6), 111, 25, 5)) and ((GetPlayerData(6, "UnitTypesCount", AiFodder(6)) > 4) or (GetPlayerData(6, "UnitTypesCount", AiEliteShooter(6)) > 6)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 10)) then
+					SetGamePaused(true)
+					if ((CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] > 0) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 9)) then
+						BundleAction("Game", "Lucas Kage", "Now is the time, Mythic.")
+						BundleAction("Game", "Lucas Kage", "Let us assault the enemy fortifications.")
+					else
+						BundleAction("Game", "Lucas Kage", "The calvary has arrived.")
+						BundleAction("Game", "Lucas Kage", "Let's crush these Wild scum together.")
+					end
+					BundleAction("Game", "Lucas Kage", "Stick close to the rangers.")
+					SetGamePaused(false)
+					CampaignDataSetup("Lucas Kage", 10)
+				end
+			end
+			AiJadeite_Intermittent_2010()
+			AiSet(AiWorker(), 5)
+			AiJadeite_Force_2010(3, AiFodder(), 20, AiShooter(), 10)
+			TransferResources(14, 6, {"gold"}, {"wood"}, {"oil"})
+		end
+		if ((UnitNear(14, AiCityCenter(14), 9, 6, 5)) and (UnitNear(4, AiHeroSoldier(4), 111, 25, 115)) and (UnitNear(6, AiCityCenter(6), 111, 25, 5)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 0)) then
+			if (GameCycle < 10000) then
+				BundleAction("Game", "Sandria Fields", "Hello Mythic. Good of you to come.")
+				BundleAction("Game", "Sandria Fields", "Together we'll be able about to drive these Wild scum out of Dunath.")
+				BundleAction("Game", "Sandria Fields", "If you need a headquarters, there is one you can use to the west.")
+			else
+				BundleAction("Game", "Lucas Kage", "Oh, hi Myth.")
+				BundleAction("Game", "Lucas Kage", "Nice of you to finally arrive.")
+				BundleAction("Game", "Lucas Kage", "The townsfolk are waiting for you at the town hall to the west.")
+			end
+			CampaignDataSetup("Lucas Kage", 1)
+		elseif ((UnitNear(4, AiCityCenter(4), 9, 6, 5)) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] < 5) and (ArmyNear(4, 100, 100, 25) ~= true)) then
+			if (GameCycle < 15000) then
+				if (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 0) then
+					BundleAction("Game", "Lucas Kage", "Greetings Mythic. It is good you have finally arrived.")
+					BundleAction("Game", "Lucas Kage", "Together we'll be able about to drive these Wild scum out of Dunath.")
+					BundleAction("Game", "Lucas Kage", "They have been tearing our stores down and raiding our supplies.")
+				else
+					BundleAction("Game", "Lucas Kage", "Those Wild marauders have been tearing our farms and stealing our supplies.")
+				end
+				BundleAction("Game", "Lucas Kage", "The first thing you are going to want to do is to replace the four farmsteads that were lost.")
+				BundleAction("Game", "Lucas Kage", "Without them you wont have the supplies needed to fight back.")
+			else
+				BundleAction("Game", "Lucas Kage", "You made it, finally.")
+				BundleAction("Game", "Lucas Kage", "I don't have time to explain the situation.")
+				BundleAction("Game", "Lucas Kage", "Just build a barracks and four farmsteads.")
+				BundleAction("Game", "Lucas Kage", "You'll need them to gather minutemen.")
+			end
+			BundleAction("Game", "Lucas Kage", "Assign three workers to collect lumber. Tell the remaining ones mine gold.")
+			CampaignDataSetup("Lucas Kage", 5)
+		elseif ((GetPlayerData(4, "UnitTypesCount", AiFarm(4)) > 2) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 5)) then
+			if (GetPlayerData(4, "UnitTypesCount", AiBarracks(4)) == 0) then
+				BundleAction("Game", "Lucas Kage", "Think about building a barracks. That would allow you to recruit minutemen.")
+				CampaignDataSetup("Lucas Kage", 6)
+			else
+				BundleAction("Game", "Lucas Kage", "Minutemen are townsfolk who have undergone combat training, and can be equiped with improved weapons from the blacksmith.")
+				CampaignDataSetup("Lucas Kage", 8)
+			end
+		elseif ((GetPlayerData(4, "UnitTypesCount", AiBarracks(4)) > 0) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 6)) then
+			BundleAction("Game", "Lucas Kage", "You can train minutemen at this barracks. It shouldn't take more than a minute.")
+			CampaignDataSetup("Lucas Kage", 7)
+		elseif ((GetPlayerData(4, "UnitTypesCount", AiFodder(4)) > 5) and (GetPlayerData(4, "UnitTypesCount", AiBlacksmith(4)) == 0) and (CampaignData["Lucas Kage"]["Dunath Plains"]["Magic"] == 7)) then
+			BundleAction("Game", "Lucas Kage", "Think about building a blacksmith. You'll be able to equip your minutemen with better weapons and armour.")
+			CampaignDataSetup("Lucas Kage", 8)
+		end
+	end
+end
+
 function AiLucas_Escape_2015()
 	if (GameDefinition["Map"]["Name"] == "Shameful Display") then
 		AiLucas_Escape_Shameful_Display_2015()
@@ -416,18 +564,47 @@ function UnitNear(player, unit, x, y, area)
 end
 
 function ArmyNear(player, x, y, area)
-	local t = {AiHeroSoldier(player), AiShooter(player), AiEliteShooter(player), AiSoldier(player), AiCatapult(player)}
-	for i=1, 5 do
+	local t = {AiHeroSoldier(player), AiShooter(player), AiEliteShooter(player), AiSoldier(player), AiCatapult(player), AiFodder(player)}
+	for i=1, 6 do
 		if (UnitNear(player, t[i], x, y, area) == true) then
 			return true
 		end
 	end
 end
 
+function MoveNavySafe(player, tox, toy, fromx, fromy, area, enemy, action)
+	if ((enemy == nil) or (((GetNumUnitsAt(enemy, AiBattleship(enemy), {tox-area-10, toy-area-10}, {tox+area+10, toy+area+10}) == 0) or (GetNumUnitsAt(player, AiBattleship(player), {fromx-area, fromy-area}, {fromx+area, fromy+area}) > 1)) and (GetNumUnitsAt(enemy, AiTransporter(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2) and (GetNumUnitsAt(enemy, AiDestroyer(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2) and (GetNumUnitsAt(enemy, AiSubmarine(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) == 0))) then
+		if (MoveNavyQuick(player, tox, toy, fromx, fromy, area, action) == true) then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
 function MoveArmySafe(player, tox, toy, fromx, fromy, area, enemy, action)
-	if ((GetNumUnitsAt(enemy, AiSoldier(enemy), {tox-area-10, toy-area-10}, {tox+area+10, toy+area+10}) < 2) and (GetNumUnitsAt(enemy, AiCavalryMage(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2) and (GetNumUnitsAt(enemy, AiEliteShooter(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2) and (GetNumUnitsAt(enemy, AiShooter(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2) and (GetNumUnitsAt(enemy, AiCatapult(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2) and (GetNumUnitsAt(enemy, AiCavalry(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2)) then
+	if (((GetNumUnitsAt(enemy, AiSoldier(enemy), {tox-area-10, toy-area-10}, {tox+area+10, toy+area+10}) == 0) or (GetNumUnitsAt(player, AiSoldier(player), {fromx-area, fromy-area}, {fromx+area, fromy+area}) > 2)) and (GetNumUnitsAt(enemy, AiCavalryMage(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2) and (GetNumUnitsAt(enemy, AiEliteShooter(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2) and (GetNumUnitsAt(enemy, AiShooter(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2) and (GetNumUnitsAt(enemy, AiCatapult(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2) and (GetNumUnitsAt(enemy, AiCavalry(enemy), {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) < 2)) then
 		if (MoveArmyQuick(player, tox, toy, fromx, fromy, area, action) == true) then
 			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function FollowNavyQuick(player, tox, toy, fromx, fromy, area, ally, action)
+	if (ally ~= nil) then
+		local n = {AiDestroyer(ally), AiTransporter(ally), AiSubmarine(ally), AiBattleship(ally)}
+		if ((GetNumUnitsAt(ally, n[1], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, n[2], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, n[3], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, n[4], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0)) then
+			if (MoveNavyQuick(player, tox, toy, fromx, fromy, area, action) == true) then
+				return true
+			else
+				return false
+			end
 		else
 			return false
 		end
@@ -437,10 +614,14 @@ function MoveArmySafe(player, tox, toy, fromx, fromy, area, enemy, action)
 end
 
 function FollowArmyQuick(player, tox, toy, fromx, fromy, area, ally, action)
-	local t = {AiHeroSoldier(ally), AiShooter(ally), AiEliteShooter(ally), AiSoldier(ally), AiCatapult(ally)}
-	if ((GetNumUnitsAt(ally, t[1], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, t[2], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, t[3], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, t[4], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, t[5], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0)) then
-		if (MoveArmyQuick(player, tox, toy, fromx, fromy, area, action) == true) then
-			return true
+	if (ally ~= nil) then
+		local a = {AiHeroSoldier(ally), AiShooter(ally), AiEliteShooter(ally), AiSoldier(ally), AiCatapult(ally)}
+		if ((GetNumUnitsAt(ally, a[1], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, a[2], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, a[3], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, a[4], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0) or (GetNumUnitsAt(ally, a[5], {tox-area-5, toy-area-5}, {tox+area+5, toy+area+5}) > 0)) then
+			if (MoveArmyQuick(player, tox, toy, fromx, fromy, area, action) == true) then
+				return true
+			else
+				return false
+			end
 		else
 			return false
 		end
@@ -449,12 +630,24 @@ function FollowArmyQuick(player, tox, toy, fromx, fromy, area, ally, action)
 	end
 end
 
-function MoveArmyQuick(player, tox, toy, fromx, fromy, area, action)
-	local t = {AiHeroSoldier(player), AiShooter(player), AiEliteShooter(player), AiSoldier(player), AiCatapult(player)}
-	for i=1, 5 do
-		MoveUnitQuick(player, t[i], tox, toy, fromx, fromy, area, action)
+function MoveNavyQuick(player, tox, toy, fromx, fromy, area, action)
+	local n = {AiDestroyer(player), AiTransporter(player), AiSubmarine(player), AiBattleship(player)}
+	for i=1, 4 do
+		MoveUnitQuick(player, n[i], tox, toy, fromx, fromy, area, action)
 	end
-	if ((UnitNear(player, AiHeroSoldier(player), fromx, fromy, area) == true) or (UnitNear(player, AiEliteShooter(), fromx, fromy, area) == true) or (UnitNear(player, AiSoldier(), fromx, fromy, area) == true) or (UnitNear(player, AiShooter(), fromx, fromy, area) == true) or (UnitNear(player, AiCatapult(), fromx, fromy, area) == true))	then 
+	if ((UnitNear(player, n[1], fromx, fromy, area) == true) or (UnitNear(player, n[2], fromx, fromy, area) == true) or (UnitNear(player, n[3], fromx, fromy, area) == true) or (UnitNear(player, n[4], fromx, fromy, area) == true))	then 
+		return true
+	else
+		return false
+	end
+end
+
+function MoveArmyQuick(player, tox, toy, fromx, fromy, area, action)
+	local a = {AiHeroSoldier(player), AiShooter(player), AiEliteShooter(player), AiSoldier(player), AiCatapult(player)}
+	for i=1, 5 do
+		MoveUnitQuick(player, a[i], tox, toy, fromx, fromy, area, action)
+	end
+		if ((UnitNear(player, a[1], fromx, fromy, area) == true) or (UnitNear(player, a[2], fromx, fromy, area) == true) or (UnitNear(player, a[3], fromx, fromy, area) == true) or (UnitNear(player, a[4], fromx, fromy, area) == true) or (UnitNear(player, a[5], fromx, fromy, area) == true))	then 
 		return true
 	else
 		return false
@@ -462,59 +655,285 @@ function MoveArmyQuick(player, tox, toy, fromx, fromy, area, action)
 end
 
 function MoveUnitQuick(player, unit, tox, toy, fromx, fromy, area, action)
-	if (action == nil) then action = "move" end
+	if (area ~= 1) then 
+	--	tox = tox + SyncRand(3) - SyncRand(3) 
+	--	toy = toy + SyncRand(3) - SyncRand(3) 
+	end
+	if (unit == AiTransporter(player)) then action = "move" end
+	if (action == nil) then 
+		for j=0, 15 do
+			if (GetPlayerData(j, "TotalNumUnits") > 0) then
+				local t = {AiHeroSoldier(j), AiShooter(j), AiEliteShooter(j), AiSoldier(j), AiCatapult(j)}
+				local b = {AiFarm(j)}
+				local n = {AiDestroyer(player), AiTransporter(player), AiSubmarine(player), AiBattleship(player)}
+				for i=1, 5 do
+					if (((t[i] ~= nil) and (GetNumUnitsAt(j, t[i], {tox, toy}, {tox, toy}) > 0)) or ((b[i] ~= nil) and (GetNumUnitsAt(j, b[i], {tox, toy}, {tox, toy}) > 0)) or ((n[i] ~= nil) and (GetNumUnitsAt(j, n[i], {tox, toy}, {tox, toy}) > 0))) then
+						action = "move"
+						break
+					end
+				end
+			end
+		end
+		if (action == nil) then 
+			action = "attack" 
+		end
+	end
 	if (UnitNear(player, unit, fromx, fromy, area) == true) then 
 		if (area == nil) then area = SyncRand(3) end
-		OrderUnit(player, unit, {fromx-area,fromy-area,fromx+area,fromy+area}, {tox-area,toy-area,tox+area,toy+area}, action)
+		OrderUnit(player, unit, {fromx-area,fromy-area,fromx+area,fromy+area}, {tox,toy,tox,toy}, action)
 		return true
 	else
 		return false
 	end
 end
 
-function MoveArmyGrid(player, to, from, area, enemy, ally, action)
+function MoveNavyGrid(player, to, from, area, enemy, ally, action)
 	for j=1, 4 do
-		if     (FollowArmyQuick(AiPlayer(), to[1][1], to[1][2], from[j][1], from[j][2], area, ally) == true) then return true
-		elseif (FollowArmyQuick(AiPlayer(), to[2][1], to[2][2], from[j][1], from[j][2], area, ally) == true) then return true
-		elseif (FollowArmyQuick(AiPlayer(), to[3][1], to[3][2], from[j][1], from[j][2], area, ally) == true) then return true
-		elseif (FollowArmyQuick(AiPlayer(), to[4][1], to[4][2], from[j][1], from[j][2], area, ally) == true) then return true
-		elseif (FollowArmyQuick(AiPlayer(), from[j][1], from[j][2], from[j][1], from[j][2], area, ally) == true) then return false
-		-- go back
-		elseif (FollowArmyQuick(AiPlayer(), from[1][1], from[1][2], to[j][1], to[j][2], area, ally) == true) then return true
-		elseif (FollowArmyQuick(AiPlayer(), from[2][1], from[2][2], to[j][1], to[j][2], area, ally) == true) then return true
-		elseif (FollowArmyQuick(AiPlayer(), from[3][1], from[3][2], to[j][1], to[j][2], area, ally) == true) then return true
-		elseif (FollowArmyQuick(AiPlayer(), from[4][1], from[4][2], to[j][1], to[j][2], area, ally) == true) then return true
-		elseif (FollowArmyQuick(AiPlayer(), to[j][1], to[j][2], to[j][1], to[j][2], area, ally) == true) then return false
-		else
-			for i=1, 4 do
-				if (MoveArmySafe(AiPlayer(), to[j][1], to[j][2], from[i][1], from[i][2], area, enemy) == true) then 
-					break
+		if ((from[j] ~= nil) and (from[j][1] ~= nil) and (from[j][2] ~= nil)) then
+			if     (((ally ~= nil) and (to[1] ~= nil) and (to[1][1] ~= nil) and (to[1][2] ~= nil)) and (FollowNavyQuick(AiPlayer(), to[1][1], to[1][2], from[j][1], from[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[2] ~= nil) and (to[2][1] ~= nil) and (to[2][2] ~= nil)) and (FollowNavyQuick(AiPlayer(), to[2][1], to[2][2], from[j][1], from[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[3] ~= nil) and (to[3][1] ~= nil) and (to[3][2] ~= nil)) and (FollowNavyQuick(AiPlayer(), to[3][1], to[3][2], from[j][1], from[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[4] ~= nil) and (to[4][1] ~= nil) and (to[4][2] ~= nil)) and (FollowNavyQuick(AiPlayer(), to[4][1], to[4][2], from[j][1], from[j][2], area + 2, ally) == true)) then return true
+			elseif (FollowNavyQuick(AiPlayer(), from[j][1], from[j][2], from[j][1], from[j][2], area, ally) == true) then return false
+			-- go back
+			elseif (((ally ~= nil) and (to[j] ~= nil) and (from[1] ~= nil) and (from[1][1] ~= nil) and (from[1][2] ~= nil)) and (FollowNavyQuick(AiPlayer(), from[1][1], from[1][2], to[j][1], to[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[j] ~= nil) and (from[2] ~= nil) and (from[2][1] ~= nil) and (from[2][2] ~= nil)) and (FollowNavyQuick(AiPlayer(), from[2][1], from[2][2], to[j][1], to[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[j] ~= nil) and (from[3] ~= nil) and (from[3][1] ~= nil) and (from[3][2] ~= nil)) and (FollowNavyQuick(AiPlayer(), from[3][1], from[3][2], to[j][1], to[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[j] ~= nil) and (from[4] ~= nil) and (from[4][1] ~= nil) and (from[4][2] ~= nil)) and (FollowNavyQuick(AiPlayer(), from[4][1], from[4][2], to[j][1], to[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[j] ~= nil) and (to[j][1] ~= nil) and (to[j][2] ~= nil)) and (FollowNavyQuick(AiPlayer(), to[j][1], to[j][2], to[j][1], to[j][2], area, ally) == true)) then return false
+			else
+				for i=1, 4 do
+					if (((from[i] ~= nil) and (to[j] ~= nil) and (from[i][1] ~= nil) and (from[i][2] ~= nil)  and (to[j][1] ~= nil) and (to[j][2] ~= nil)) and (MoveNavySafe(AiPlayer(), to[j][1], to[j][2], from[i][1], from[i][2], area, enemy, action) == true)) then 
+						break
+					end
 				end
 			end
 		end
 	end
 end
 
+function MoveArmyGrid(player, to, from, area, enemy, ally, action)
+	local ji = {}
+	repeat ji[1] = SyncRand(4) + 1 until (ji[1] ~= 0)
+	repeat ji[2] = SyncRand(4) + 1 until ((ji[1] ~= ji[2]) and (ji[2] ~= 0))
+	repeat ji[3] = SyncRand(4) + 1 until ((ji[1] ~= ji[3]) and (ji[2] ~= ji[3]) and (ji[3] ~= 0))
+	repeat ji[4] = SyncRand(4) + 1 until ((ji[1] ~= ji[4]) and (ji[2] ~= ji[4]) and (ji[3] ~= ji[4]) and (ji[4] ~= 0))
+	for j=1, 4 do
+		if ((from[j] ~= nil) and (from[j][1] ~= nil) and (from[j][2] ~= nil)) then
+			if     (((ally ~= nil) and (to[ji[1]] ~= nil) and (to[ji[1]][1] ~= nil) and (to[ji[1]][2] ~= nil)) and (FollowArmyQuick(AiPlayer(), to[ji[1]][1], to[ji[1]][2], from[j][1], from[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[ji[2]] ~= nil) and (to[ji[2]][1] ~= nil) and (to[ji[2]][2] ~= nil)) and (FollowArmyQuick(AiPlayer(), to[ji[2]][1], to[ji[2]][2], from[j][1], from[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[ji[3]] ~= nil) and (to[ji[3]][1] ~= nil) and (to[ji[3]][2] ~= nil)) and (FollowArmyQuick(AiPlayer(), to[ji[3]][1], to[ji[3]][2], from[j][1], from[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[ji[4]] ~= nil) and (to[ji[4]][1] ~= nil) and (to[ji[4]][2] ~= nil)) and (FollowArmyQuick(AiPlayer(), to[ji[4]][1], to[ji[4]][2], from[j][1], from[j][2], area + 2, ally) == true)) then return true
+			elseif (FollowArmyQuick(AiPlayer(), from[j][1], from[j][2], from[j][1], from[j][2], area, ally) == true) then return false
+			-- go back
+			elseif (((ally ~= nil) and (to[j] ~= nil) and (from[ji[1]] ~= nil) and (from[ji[1]][1] ~= nil) and (from[ji[1]][2] ~= nil)) and (FollowArmyQuick(AiPlayer(), from[ji[1]][1], from[ji[1]][2], to[j][1], to[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[j] ~= nil) and (from[ji[2]] ~= nil) and (from[ji[2]][1] ~= nil) and (from[ji[2]][2] ~= nil)) and (FollowArmyQuick(AiPlayer(), from[ji[2]][1], from[ji[2]][2], to[j][1], to[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[j] ~= nil) and (from[ji[3]] ~= nil) and (from[ji[3]][1] ~= nil) and (from[ji[3]][2] ~= nil)) and (FollowArmyQuick(AiPlayer(), from[ji[3]][1], from[ji[3]][2], to[j][1], to[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[j] ~= nil) and (from[ji[4]] ~= nil) and (from[ji[4]][1] ~= nil) and (from[ji[4]][2] ~= nil)) and (FollowArmyQuick(AiPlayer(), from[ji[4]][1], from[ji[4]][2], to[j][1], to[j][2], area + 2, ally) == true)) then return true
+			elseif (((ally ~= nil) and (to[j] ~= nil) and (to[j][1] ~= nil) and (to[j][2] ~= nil)) and (FollowArmyQuick(AiPlayer(), to[j][1], to[j][2], to[j][1], to[j][2], area, ally) == true)) then return false
+			else
+				for i=1, 4 do
+					if (((from[ji[i]] ~= nil) and (to[j] ~= nil) and (from[ji[i]][1] ~= nil) and (from[ji[i]][2] ~= nil)  and (to[j][1] ~= nil) and (to[j][2] ~= nil)) and (MoveArmySafe(AiPlayer(), to[j][1], to[j][2], from[ji[i]][1], from[ji[i]][2], area, enemy, action) == true)) then 
+						break
+					end
+				end
+			end
+		end
+	end
+end
+
+function TeleportUnit(toplayer, tounit, topos, fromplayer, fromunit, frompos, fromdelete, area)
+	if (GetNumUnitsAt(toplayer, tounit, {topos[1], topos[2]}, {topos[1], topos[2]}) == 0) then 
+		if (GetPlayerData(fromplayer, "UnitTypesCount", fromunit) > 0) then
+			if (GetNumUnitsAt(fromplayer, fromunit, {frompos[1], frompos[2]}, {frompos[1], frompos[2]}) > 0) then 
+				CreateUnit(tounit, toplayer, {topos[1], topos[2]})
+				if (fromdelete == true) then
+					KillUnitAt(fromunit, fromplayer, 1, frompos[1], frompos[2])
+				end
+				return true
+			elseif (GetNumUnitsAt(fromplayer, fromunit, {frompos[1] - 1, frompos[2] - 1}, {frompos[1] + 1, frompos[2] + 1}) > 0) then
+				if (area == nil) then area = 1 end
+				MoveUnitQuick(fromplayer, fromunit, frompos[1], frompos[2], frompos[1], frompos[2], area, "move")
+			end
+		end
+	end
+end
+
+function AiNathan_Escape_Seawill_Forests_2015()
+	local NathanEnemy = 4 -- Who we want to avoid.
+	local NathanAlly = 0 -- Who we want to follow.
+	if (NathanTimer == nil) then 
+		NathanTimer = 20
+	elseif (NathanTimer < 1) then 
+		NathanTimer = 40
+	else 
+		NathanTimer = NathanTimer - 1 
+	end
+	if (GameCycle < 50) then
+		OrderUnitSquare(AiPlayer(), AiDestroyer(), 7, 184, 1, 3, 4, 125)
+		OrderUnitSquare(AiPlayer(), AiDestroyer(), 10, 184, 1, 3, 75, 180)
+		OrderUnitSquare(AiPlayer(), AiHeroSoldier(), 28, 32, 1, 1, 60, 92)
+	elseif (GameCycle < 100) then
+		OrderUnitSquare(AiPlayer(), AiSoldier(), 29, 34, 1, 3, 50, 93)
+		OrderUnitSquare(AiPlayer(), AiSoldier(), 27, 37, 1, 3, 107, 71)
+	elseif ((GameCycle > 200) and (GameCycle < 300)) then
+		OrderUnitSquare(AiPlayer(), AiSoldier(), 27, 31, 3, 1, 53, 79)
+	elseif ((UnitNear(4, AiHeroSoldier(4), 61, 91, 6) == true) and (GetPlayerData(4, "UnitTypesCount", AiSoldier(4)) == 0)) then
+		SetDiplomacy(3, "allied", 6)
+		AiForce(3, {AiHeroSoldier(AiPlayer()), 1, AiSoldier(AiPlayer()), 3}, false)
+		AiAttackWithForce(3)
+		NathanTimer = 40
+		SetDiplomacy(3, "enemy", 6)
+	elseif ArmyNear(4, 61, 91, 7) then
+		MoveUnitQuick(AiPlayer(), AiHeroSoldier(), 28, 32, 60, 92, 15, "move")
+		if (UnitNear(4, AiHeroSoldier(4), 61, 91, 6) == true) then
+			MoveUnitQuick(AiPlayer(), AiSoldier(), 61, 91, 61, 91, 30)
+		else
+			MoveUnitQuick(AiPlayer(), AiSoldier(), 61, 91, 61, 91, 15)
+		end
+	elseif ArmyNear(4, 45, 96, 3) then
+		MoveUnitQuick(AiPlayer(), AiSoldier(), 45, 96, 61, 91, 20)
+	elseif ArmyNear(4, 70, 105, 6) then
+		MoveUnitQuick(AiPlayer(), AiSoldier(), 70, 105, 64, 91, 3)
+	elseif ((GameCycle > 400) and (GameCycle < 500)) then
+		OrderUnitSquare(AiPlayer(), AiSoldier(), 28, 34, 1, 3, 72, 86, "move")
+	elseif ((GameCycle > 600) and (GameCycle < 700)) then
+		OrderUnitSquare(AiPlayer(), AiSoldier(), 28, 34, 1, 3, 37, 24)
+		OrderUnitSquare(AiPlayer(), AiSoldier(), 27, 30, 3, 1, 99, 104)
+	elseif ((GameCycle > 800) and (GameCycle < 900)) then
+		MoveUnitQuick(AiPlayer(), AiSoldier(), 25, 80, 27, 35, 1, "move")
+	elseif ((GameCycle > 900) and (GameCycle < 1000)) then
+		OrderUnitSquare(AiPlayer(), AiSoldier(), 29, 34, 1, 3, 50, 93)
+		OrderUnitSquare(AiPlayer(), AiSoldier(), 27, 31, 3, 1, 53, 79)
+		OrderUnitSquare(AiPlayer(), AiSoldier(), 28, 34, 1, 3, 72, 86, "move")
+		OrderUnitSquare(AiPlayer(), AiSoldier(), 27, 29, 3, 1, 91, 42)
+	elseif (NathanTimer == 40) then
+		if (MoveNavyGrid(AiPlayer(), {{7, 157},{51, 166},{74, 156},{108, 157}}, {{14, 133},{50, 137},{83, 134},{117, 132}}, 20, NathanEnemy, NathanAlly) == true) then
+		elseif (MoveNavyGrid(AiPlayer(), {{14, 133},{50, 137},{83, 134},{117, 132}}, {{7, 157},{51, 166},{74, 156},{108, 157}}, 20, NathanEnemy, NathanAlly) == true) then
+		end
+	elseif (NathanTimer == 30) then
+		if (MoveNavyGrid(AiPlayer(), {{9, 180},{52, 179},{81, 178},{115, 175}}, {{7, 157},{51, 166},{74, 156},{108, 157}}, 20, NathanEnemy, NathanAlly) == true) then
+		elseif (MoveNavyGrid(AiPlayer(), {{7, 157},{51, 166},{74, 156},{108, 157}}, {{9, 180},{52, 179},{81, 178},{115, 175}}, 20, NathanEnemy, NathanAlly) == true) then
+		end
+	elseif ((NathanTimer == 1) and (GameCycle > 6000)) then
+		for NathanX=1,4 do
+			if (MoveArmyGrid(AiPlayer(), {{NathanX*25, 25},{NathanX*25, 50},{NathanX*25, 75},{NathanX*25, 100}}, {{NathanX*25+100, 25},{NathanX*25+75, 50},{NathanX*25+50, 75},{NathanX*25+25, 25}}, 40, NathanAlly, NathanEnemy) == true) then
+			end
+		end
+	elseif ((NathanTimer == 20) and (GameCycle > 6000)) then
+		for NathanX=1,4 do
+			if (MoveArmyGrid(AiPlayer(), {{NathanX*25+25, 100},{NathanX*25+25, 75},{NathanX*25+25, 50},{NathanX*25+25, 25}}, {{NathanX*25, 25},{NathanX*25, 50},{NathanX*25, 75},{NathanX*25, 100}}, 40, NathanAlly, NathanEnemy) == true) then
+			end
+		end
+	end
+end
+
+function AiRufus_Escape_Seawill_Forests_2015()
+	local RufusEnemy = 3
+	local RufusAlly = 4
+	if (RufusTimer == nil) then 
+		RufusTimer = 30
+	elseif (RufusTimer < 1) then 
+		RufusTimer = 15
+	else 
+		RufusTimer = RufusTimer - 1 
+	end
+	if ((GameCycle > 0) and (GameCycle < 150)) then
+		AiForce(0, {AiDestroyer(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiDestroyer()), AiTransporter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiTransporter())})
+		if (MoveUnitQuick(AiPlayer(), AiDestroyer(AiPlayer()), 84, 125, 96, 188, 0, "move") == true) then
+		elseif (MoveUnitQuick(AiPlayer(), AiTransporter(AiPlayer()), 89, 123, 99, 188, 0, "move") == true) then
+		elseif (MoveUnitQuick(AiPlayer(), AiDestroyer(AiPlayer()), 90, 125, 102, 188, 0, "move") == true) then
+		end
+	elseif ((UnitNear(AiPlayer(), AiTransporter(AiPlayer()), 90, 123, 5) == true) and (GameCycle > 1000) and (GameCycle < 1500)) then
+		if (GetPlayerData(4, "UnitTypesCount", AiSoldier(4)) ~= 3) then
+			for i=1,3 do
+				TeleportUnit(4, AiSoldier(4), {90 - i, 122}, AiPlayer(), AiTransporter(AiPlayer()), {90 - i, 123}, false, 3)
+			end
+		elseif (GetPlayerData(4, "UnitTypesCount", AiHeroSoldier(4)) == 0) then
+			TeleportUnit(4, AiHeroSoldier(4), {90 - 4, 122}, AiPlayer(), AiTransporter(AiPlayer()), {90 - 4, 123}, false, 3)
+		elseif (UnitNear(AiPlayer(), AiTransporter(AiPlayer()), 90-4, 123, 1) == true) then
+			MoveUnitQuick(AiPlayer(), AiTransporter(AiPlayer()), 87, 125, 90-4, 123, 1, "move")
+		elseif (UnitNear(4, AiHeroSoldier(4), 86, 122, 0) == true) then
+			MoveUnitQuick(4, AiHeroSoldier(4), 82+1, 117+0, 86, 122, 0, "move")
+		elseif (UnitNear(4, AiSoldier(4), 87, 122, 0) == true) then
+			MoveUnitQuick(4, AiSoldier(4), 82+0, 117+2, 87, 122, 0, "move")
+		elseif (UnitNear(4, AiSoldier(4), 88, 122, 0) == true) then
+			MoveUnitQuick(4, AiSoldier(4), 82+2, 117+2, 88, 122, 0, "move")
+		elseif (UnitNear(4, AiSoldier(4), 89, 122, 0) == true) then
+			MoveUnitQuick(4, AiSoldier(4), 82+4, 117+2, 89, 122, 0, "move")
+		end
+	elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()) == 0) and (UnitNear(RufusEnemy, AiDestroyer(RufusEnemy), 93, 150, 8) == true) and (TeleportUnit(AiPlayer(), AiCatapult(), {93, 150}, AiPlayer(), AiTransporter(), {93, 150}, false, 3) == true)) then
+	elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()) == 0) and (UnitNear(RufusEnemy, AiDestroyer(RufusEnemy), 108, 151, 8) == true) and (TeleportUnit(AiPlayer(), AiCatapult(), {108, 151}, AiPlayer(), AiTransporter(), {108, 151}, false, 3) == true)) then
+	elseif 	(RufusTimer == 1) then
+		if (GameCycle > 1500) then
+			if (MoveNavyGrid(AiPlayer(), {{120, 133},{101, 145},{86, 144},{68, 129}}, {{88, 126}}, 8, RufusEnemy, RufusAlly) == true) then
+			elseif (MoveNavyGrid(AiPlayer(), {{73, 146},{48, 134},{102, 152}}, {{68, 129}}, 10, RufusEnemy, RufusAlly) == true) then
+			elseif (MoveNavyGrid(AiPlayer(), {{73, 146},{103, 53},{71, 157},{108, 58}}, {{86, 144}}, 10, RufusEnemy, RufusAlly) == true) then
+			elseif (MoveNavyGrid(AiPlayer(), {{78, 153},{106, 157}}, {{101, 145}, {120, 133}}, 10, RufusEnemy, RufusAlly) == true) then
+			elseif (MoveNavyGrid(AiPlayer(), {{64, 171},{81, 171},{69, 156},{44, 149}}, {{78, 153},{106, 157},{73, 146},{103, 53}}, 10, RufusEnemy, RufusAlly) == true) then
+			elseif (MoveNavyGrid(AiPlayer(), {{42, 175},{66, 184},{77, 182}}, {{48, 134},{102, 152},{71, 157},{108, 58}}, 10, RufusEnemy, RufusAlly) == true) then
+			elseif ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiCatapult()) == 1) and (GetPlayerData(AiPlayer(), "UnitTypesCount", AiDestroyer()) == 0)) then
+				 if ((GetPlayerData(AiPlayer(), "UnitTypesCount", AiTransporter()) == 1) and (GameCycle < 3700)) then
+					AiJadeite_Force_2010(0, {AiDestroyer(), 0})
+					AiJadeite_Force_2010(1, {AiTransporter(), 1, AiCatapult(), 1})
+					AiJadeite_Attack_2010(1)
+				 else
+					SetSharedVision(AiPlayer(), false, RufusAlly)
+				 end
+			end
+		end
+	end
+end
+
 function AiShane_Escape_Seawill_Forests_2015()
+	local ShaneEnemy = 3
+	local ShaneAlly = 4
 	if (ShaneTimer == nil) then 
 		ShaneTimer = 15
 	elseif (ShaneTimer < 1) then 
-		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) == 0) then
-			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) == 0) then
-				ShaneTimer = 5
-			else
-				ShaneTimer = 10
-			end
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiShooter()) == 0) then
+			ShaneTimer = 50
 		else
-			ShaneTimer = 16
+			ShaneTimer = 10
 		end
 	else 
 		ShaneTimer = ShaneTimer - 1 
 	end
-	if (ShaneTimer == 1) then 
-		if (MoveArmyGrid(AiPlayer(), {{12, 100},{27, 105},{73, 109},{24, 80}}, {{1, 108},{39, 116},{30, 95},{56, 120}}, 3, 3, 4) == true) then
-		--return
-		elseif MoveArmyGrid(AiPlayer(), {{1, 108},{39, 116},{30, 95},{56, 120}}, {{12, 100},{27, 105},{73, 109},{24, 80}}, 3, 3, 4) then
+	if (GameCycle < 50) then
+		MoveUnitQuick(AiPlayer(), AiEliteShooter(AiPlayer()), 107, 72, 85, 82, 10, "move")
+	elseif (GameCycle < 2000) then
+	elseif ((GameCycle > 3900) and (GameCycle < 4000)) then
+		MoveUnitQuick(AiPlayer(), AiEliteShooter(AiPlayer()), 85, 82, 107, 72, 10)
+	elseif (ShaneTimer == 1) then 
+		if (MoveArmyGrid(AiPlayer(), {{28, 39},{47, 43},{34, 62},{32, 34}}, {{55, 57}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		
+		--76, 63
+		elseif (MoveArmyGrid(AiPlayer(), {{124, 35},{97, 24},{94, 4}}, {{114, 8}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{39, 73},{34, 62},{8, 79},{26, 80}}, {{30, 73}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{67, 3},{67, 18},{94, 4},{89, 20}}, {{75, 8}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{85, 12},{54, 13}}, {{67, 3},{67, 18}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{40, 2},{67, 3},{67, 18},{53, 13}}, {{69, 33}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{55, 57},{32, 35},{69, 33},{53, 13}}, {{47, 43}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{74, 69},{104, 74},{97, 100},{60, 90}}, {{87, 82}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{77, 59},{55, 57},{55, 79},{85, 81}}, {{65, 67},{74, 69}}, 4, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{114, 7},{85, 13},{85, 13}}, {{94, 4},{98, 23}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{105, 57}}, {{123, 58}}, 4, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{123, 58}}, {{121, 72}}, 4, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{107, 73},{87, 79}}, {{116, 83}}, 4, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{116, 82},{102, 105}}, {{103, 97}}, 4, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{78, 111},{106, 115},{113, 97},{86, 79}}, {{102, 101}}, 8, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{2, 2},{49, 11},{37, 3}}, {{26, 3},{13, 16},{17, 7},{37, 3}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{10, 45},{13, 44},{10, 32},{28, 39}}, {{8, 55},{14, 53},{20, 54},{24, 54}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{14, 18},{23, 17},{32, 18},{26, 3}}, {{10, 45},{13, 44},{10, 32},{28, 39}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{27, 106},{72, 109},{80, 119},{19, 102}}, {{35, 114},{43, 116},{56, 119},{69, 112}}, 4, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{30, 95},{12, 100}}, {{19, 102},{27, 104},{32, 108}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{44, 96},{25, 80}}, {{30, 95}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{9, 80},{30, 73},{37, 74}}, {{25, 80}, {23, 77}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{25, 79},{8, 55}}, {{9, 80}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{12, 100},{27, 105},{73, 109},{24, 80}}, {{1, 108},{39, 116},{30, 95},{56, 120}}, 3, ShaneEnemy, ShaneAlly) == true) then
+		elseif (MoveArmyGrid(AiPlayer(), {{12, 100},{30, 95}}, {{2, 108},{26, 104},{19, 102}}, 5, ShaneEnemy, ShaneAlly) == true) then
+		-- go back
+		elseif (MoveArmyGrid(AiPlayer(), {{2, 108},{26, 104},{19, 102}}, {{12, 100},{30, 95}}, 5, ShaneEnemy, ShaneAlly) == true) then
 		end
 	end
 end
@@ -532,59 +951,65 @@ function AiLucas_Escape_Shameful_Display_2015()
 					LucasTimer = 10
 				end
 			else
-				LucasTimer = 16
+				if (GetPlayerData(4, "UnitTypesCount", AiHeroSoldier(4)) == 0) then
+					LucasTimer = 7
+				else
+					LucasTimer = 16
+				end
 			end
 		else 
 			LucasTimer = LucasTimer - 1 
 		end
 		if (LucasTimer == 1) then
+			if (GameCycle < 1000) then LucasSize = 3 elseif (GameCycle < 2000) then LucasSize = 4 elseif (GameCycle < 4000) then LucasSize = 5 elseif (GameCycle < 8000) then LucasSize = 6 elseif (GameCycle < 15000) then LucasSize = 10 elseif (GameCycle < 20000) then LucasSize = 20 end
 			if (MoveArmySafe(AiPlayer(), 6, 55, 1, 68, 1, 2) == true) then 
 			-- Move forward!
-			elseif (MoveArmySafe(AiPlayer(), 36, 35, 40, 53, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 23, 113, 46, 123, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 36, 35, 40, 53, LucasSize, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 4, 2, 41, 3, 1, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 41, 3, 35, 34, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 116, 76, 107, 100, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 107, 100, 105, 116, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 60, 86, 79, 84, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 83, 76, 79, 84, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 79, 84, 80, 93, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 91, 76, 80, 93, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 0, 0, 8, 91, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 125, 1, 102, 41, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 49, 18, 53, 30, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 2, 1, 11, 25, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 41, 3, 35, 34, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 116, 76, 107, 100, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 100, 105, 116, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 60, 86, 79, 84, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 83, 76, 79, 84, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 79, 84, 80, 93, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 91, 76, 80, 93, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 0, 0, 8, 91, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 125, 1, 102, 41, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 49, 18, 53, 30, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 2, 1, 11, 25, LucasSize, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 119, 77, 107, 99, 4, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 120, 61, 119, 77, 4, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 124, 42, 120, 61, 4, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 123, 2, 124, 42, 4, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 11, 25, 7, 36, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 7, 36, 6, 57, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 6, 57, 20, 78, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 40, 35, 35, 64, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 45, 91, 91, 77, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 84, 109, 9, 91, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 107, 100, 107, 78, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 107, 78, 116, 77, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 116, 77, 105, 64, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 105, 64, 102, 41, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 102, 41, 90, 33, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 90, 33, 75, 17, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 4, 102, 9, 91, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 124, 44, 119, 61, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 123, 5, 104, 40, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 104, 40, 125, 43, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 33, 24, 10, 26, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 49, 16, 33, 24, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 53, 30, 36, 35, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 20, 78, 10, 91, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 35, 64, 20, 78, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 124, 41, 116, 61, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 116, 61, 116, 76, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 91, 77, 79, 84, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 105, 62, 91, 77, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 11, 25, 7, 36, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 7, 36, 6, 57, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 6, 57, 20, 78, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 0, 0, 0, 0, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 40, 35, 35, 64, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 45, 91, 91, 77, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 84, 109, 9, 91, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 100, 107, 78, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 78, 116, 77, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 116, 77, 105, 64, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 105, 64, 102, 41, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 102, 41, 90, 33, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 90, 33, 75, 17, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 4, 102, 9, 91, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 124, 44, 119, 61, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 123, 5, 104, 40, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 104, 40, 125, 43, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 33, 24, 10, 26, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 49, 16, 33, 24, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 53, 30, 36, 35, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 20, 78, 10, 91, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 35, 64, 20, 78, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 124, 41, 116, 61, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 116, 61, 116, 76, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 91, 77, 79, 84, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 105, 62, 91, 77, LucasSize, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 115, 76, 119, 94, 3, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 54, 67, 58, 79, 3, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 67, 58, 54, 67, 3, 2) == true) then 
@@ -596,35 +1021,35 @@ function AiLucas_Escape_Shameful_Display_2015()
 			elseif (MoveArmySafe(AiPlayer(), 116, 78, 91, 89, 3, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 120, 61, 116, 71, 3, 2) == true) then 
 			-- Move back!
-			elseif (MoveArmySafe(AiPlayer(), 107, 100, 80, 93, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 80, 93, 79, 110, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 79, 110, 43, 102, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 43, 102, 8, 91, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 104, 115, 81, 108, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 44, 101, 12, 90, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 34, 35, 36, 35, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 41, 3, 49, 16, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 1, 2, 49, 16, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 8, 91, 10, 90, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 34, 64, 45, 91, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 91, 77, 90, 90, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 61, 87, 90, 90, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 90, 90, 107, 100, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 90, 77, 105, 64, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 75, 17, 49, 20, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 10, 90, 28, 101, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 28, 101, 28, 112, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 28, 112, 17, 123, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 2, 2, 49, 18, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 13, 89, 4, 91, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 4, 91, 3, 102, 5, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 3, 102, 17, 112, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 107, 100, 80, 93, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 80, 93, 79, 110, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 79, 110, 43, 102, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 43, 102, 8, 91, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 104, 115, 81, 108, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 44, 101, 12, 90, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 34, 35, 36, 35, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 41, 3, 49, 16, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 1, 2, 49, 16, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 8, 91, 10, 90, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 34, 64, 45, 91, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 91, 77, 90, 90, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 61, 87, 90, 90, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 90, 90, 107, 100, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 90, 77, 105, 64, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 75, 17, 49, 20, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 10, 90, 28, 101, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 28, 101, 28, 112, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 28, 112, 17, 123, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 2, 2, 49, 18, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 13, 89, 4, 91, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 4, 91, 3, 102, LucasSize, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 3, 102, 17, 112, LucasSize, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 104, 115, 10, 90, 5, 2) == true) then
 			elseif (MoveArmySafe(AiPlayer(), 6, 56, 1, 75, 5, 2) == true) then
 			elseif (MoveArmySafe(AiPlayer(), 11, 90, 6, 55, 1, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 86, 92, 79, 85, 3, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 107, 100, 86, 92, 3, 2) == true) then 
-			elseif (MoveArmySafe(AiPlayer(), 79, 84, 53, 107, 5, 2) == true) then 
+			elseif (MoveArmySafe(AiPlayer(), 79, 84, 53, 107, LucasSize, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 91, 91, 82, 77, 3, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 119, 94, 82, 77, 3, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 42, 123, 17, 122, 4, 2) == true) then 
@@ -641,7 +1066,7 @@ function AiLucas_Escape_Shameful_Display_2015()
 			elseif (MoveArmySafe(AiPlayer(), 34, 81, 60, 87, 2, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 46, 91, 34, 81, 2, 2) == true) then 
 			end
-		elseif ((UnitNear(4, AiHeroSoldier(4), 35, 82, 2)) or (UnitNear(4, AiSoldier(4), 32, 75, 2)) or (UnitNear(4, AiShooter(4), 35, 64, 2))) then
+		elseif ((UnitNear(4, AiHeroSoldier(4), 35, 82, 2) == true) or (UnitNear(4, AiSoldier(4), 32, 75, 2) == true) or (UnitNear(4, AiShooter(4), 35, 64, 2) == true)) then
 			if (MoveArmyQuick(AiPlayer(), 35, 65, 25, 87, 25) == true) then 
 			elseif (MoveArmyQuick(AiPlayer(), 35, 65, 25, 107, 25) == true) then 
 			end
@@ -662,7 +1087,7 @@ function AiLucas_Escape_Shameful_Display_2015()
 			elseif (MoveArmySafe(AiPlayer(), 34, 81, 60, 87, 4, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 46, 91, 34, 81, 4, 2) == true) then 
 			end
-		elseif ((UnitNear(4, AiHeroSoldier(4), 57, 111, 3)) or (UnitNear(4, AiHeroSoldier(4), 70, 114, 4)) or (UnitNear(4, AiHeroSoldier(4), 105, 115, 8)) or (UnitNear(4, AiHeroSoldier(4), 24, 24, 25))) then
+		elseif ((UnitNear(4, AiHeroSoldier(4), 57, 111, 3) == true) or (UnitNear(4, AiHeroSoldier(4), 70, 114, 4) == true) or (UnitNear(4, AiHeroSoldier(4), 105, 115, 8) == true) or (UnitNear(4, AiHeroSoldier(4), 24, 24, 25) == true)) then
 			if (MoveArmySafe(AiPlayer(), 42, 123, 17, 122, 4, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 79, 84, 54, 73, 4, 2) == true) then 
 			elseif (MoveArmySafe(AiPlayer(), 104, 114, 11, 89, 4, 2) == true) then 
@@ -706,10 +1131,10 @@ function AiKiah_Escape_Shameful_Display_2015()
 				MoveUnitQuick(AiPlayer(), AiSoldier(), 0, 71, 53, 55, 0)
 				MoveUnitQuick(AiPlayer(), AiCatapult(), 3, 70, 56, 53, 1)
 			elseif (GameCycle < 200) then
-				OrderUnitSquare(AiPlayer(), AiShooter(), 53, 54, 2, 1, 0, 70, "move")
-				OrderUnitSquare(AiPlayer(), AiShooter(), 55, 54, 2, 1, 14, 70, "move")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 53, 54, 2, 1, 0, 70)
+				OrderUnitSquare(AiPlayer(), AiShooter(), 55, 54, 2, 1, 14, 70)
 			elseif (GameCycle < 300) then
-				OrderUnitSquare(AiPlayer(), AiSoldier(), 54, 55, 2, 1, 13, 72, "move")
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 54, 55, 2, 1, 13, 72)
 			elseif (GameCycle < 400) then
 				MoveUnitQuick(AiPlayer(), AiSoldier(), 0, 70, 56, 55, 0)
 			end
@@ -719,74 +1144,74 @@ function AiKiah_Escape_Shameful_Display_2015()
 				MoveUnitQuick(AiPlayer(), AiSoldier(), 58, 76, 64, 57, 0)
 				MoveUnitQuick(AiPlayer(), AiCatapult(), 54, 74, 64, 55, 1)
 			elseif ((GameCycle > 300) and (GameCycle < 330)) then
-				OrderUnitSquare(AiPlayer(), AiShooter(), 61, 56, 2, 1, 50, 76, "move")
-				OrderUnitSquare(AiPlayer(), AiShooter(), 63, 56, 2, 1, 57, 74, "move")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 61, 56, 2, 1, 50, 76)
+				OrderUnitSquare(AiPlayer(), AiShooter(), 63, 56, 2, 1, 57, 74)
 			elseif ((GameCycle > 600) and (GameCycle < 700)) then
 				MoveUnitQuick(AiPlayer(), AiSoldier(), 41, 53, 60, 55, 8)
 			end
 			-- Middle Island Pass
 			if ((GameCycle > 500) and (GameCycle < 550)) then
-				OrderUnitSquare(AiPlayer(), AiShooter(), 70, 64, 4, 1, 63, 59, "move")
-				OrderUnitSquare(AiPlayer(), AiSoldier(), 77, 69, 4, 1, 102, 63, "move")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 70, 64, 4, 1, 63, 59)
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 77, 69, 4, 1, 102, 63)
 			elseif ((GameCycle > 600) and (GameCycle < 650)) then
-				OrderUnitSquare(AiPlayer(), AiSoldier(), 70, 65, 4, 1, 63, 60, "move")
-				OrderUnitSquare(AiPlayer(), AiShooter(), 77, 68, 4, 1, 102, 62, "move")
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 70, 65, 4, 1, 63, 60)
+				OrderUnitSquare(AiPlayer(), AiShooter(), 77, 68, 4, 1, 102, 62)
 				MoveUnitQuick(AiPlayer(), AiCatapult(), 68, 57, 74, 64, 1)
 				MoveUnitQuick(AiPlayer(), AiCatapult(), 105, 61, 81, 68, 1)
 			end
 		else
 			if ((UnitNear(0, AiHeroSoldier(0), 100, 100, 25) == true) or (UnitNear(4, AiHeroSoldier(4), 100, 100, 25) == true)) then
 				if (LucasTimer == 6) then
-					MoveArmyQuick(AiPlayer(), 114, 68, 105, 64, 1, "move")
+					MoveArmyQuick(AiPlayer(), 114, 68, 105, 64, 1)
 				elseif (LucasTimer == 4) then
-					MoveArmyQuick(AiPlayer(), 114, 27, 100, 67, 1, "move")
+					MoveArmyQuick(AiPlayer(), 114, 27, 100, 67, 1)
 				elseif (LucasTimer == 3) then
-					MoveArmyQuick(AiPlayer(), 72, 54, 99, 72, 1, "move")
+					MoveArmyQuick(AiPlayer(), 72, 54, 99, 72, 1)
 				elseif (LucasTimer == 2) then
-					MoveArmyQuick(AiPlayer(), 104, 44, 102, 64, 1, "move")
+					MoveArmyQuick(AiPlayer(), 104, 44, 102, 64, 1)
 				elseif (LucasTimer == 5) then
-					MoveArmyQuick(AiPlayer(), 115, 76, 103, 67, 1, "move")
+					MoveArmyQuick(AiPlayer(), 115, 76, 103, 67, 1)
 				end
 			end
 			if ((UnitNear(0, AiHeroSoldier(0), 119, 61, 5) == true) or (UnitNear(4, AiHeroSoldier(4), 119, 61, 5) == true)) then
 				MoveArmyQuick(AiPlayer(), 119, 26, 65, 56, 5, "patrol")
 			end
 			if ((UnitNear(4, AiSoldier(4), 10, 26, 11) == true) or (UnitNear(4, AiHeroSoldier(4), 10, 26, 11) == true) or (UnitNear(0, AiSoldier(0), 10, 37, 11) == true) or (UnitNear(0, AiHeroSoldier(0), 10, 26, 11) == true)) then
-				MoveUnitQuick(AiPlayer(), AiShooter(), 8, 21, 8, 54, 8, "attack")
-				MoveUnitQuick(AiPlayer(), AiCatapult(), 9, 20, 8, 54, 8, "attack")
-				MoveUnitQuick(AiPlayer(), AiSoldier(), 10, 23, 8, 54, 8, "attack")
-				MoveUnitQuick(AiPlayer(), AiHeroSoldier(), 11, 21, 8, 54, 8, "attack")
-				MoveUnitQuick(AiPlayer(), AiShooter(), 8, 25, 14, 71, 3, "attack")
-				MoveUnitQuick(AiPlayer(), AiSoldier(), 11, 24, 14, 71, 3, "attack")
-				MoveUnitQuick(AiPlayer(), AiShooter(), 9, 22, 1, 76, 3, "attack")
-				MoveUnitQuick(AiPlayer(), AiSoldier(), 10, 21, 1, 76, 3, "attack")
-				MoveUnitQuick(AiPlayer(), AiCatapult(), 9, 23, 1, 76, 3, "attack")
+				MoveUnitQuick(AiPlayer(), AiShooter(), 8, 21, 8, 54, 8)
+				MoveUnitQuick(AiPlayer(), AiCatapult(), 9, 20, 8, 54, 8)
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 10, 23, 8, 54, 8)
+				MoveUnitQuick(AiPlayer(), AiHeroSoldier(), 11, 21, 8, 54, 8)
+				MoveUnitQuick(AiPlayer(), AiShooter(), 8, 25, 14, 71, 3)
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 11, 24, 14, 71, 3)
+				MoveUnitQuick(AiPlayer(), AiShooter(), 9, 22, 1, 76, 3)
+				MoveUnitQuick(AiPlayer(), AiSoldier(), 10, 21, 1, 76, 3)
+				MoveUnitQuick(AiPlayer(), AiCatapult(), 9, 23, 1, 76, 3)
 			elseif ((UnitNear(4, AiHeroSoldier(4), 32, 25, 8) == true) or (UnitNear(4, AiHeroSoldier(4), 50, 15, 8) == true) or (UnitNear(4, AiHeroSoldier(4), 39, 3, 3) == true) or (UnitNear(0, AiSoldier(0), 50, 15, 8) == true) or (UnitNear(0, AiHeroSoldier(0), 39, 3, 3) == true)) then
-				MoveArmyQuick(AiPlayer(), 7, 55, 9, 22, 9, "attack")
-				MoveArmyQuick(AiPlayer(), 48, 10, 68, 59, 9, "attack")
+				MoveArmyQuick(AiPlayer(), 7, 55, 9, 22, 9)
+				MoveArmyQuick(AiPlayer(), 48, 10, 68, 59, 9)
 			elseif ((UnitNear(4, AiSoldier(4), 3, 76, 3) == true) or (UnitNear(4, AiShooter(4), 3, 76, 3) == true) or (UnitNear(0, AiSoldier(0), 17, 72, 5) == true) or (UnitNear(0, AiShooter(0), 17, 72, 5) == true)) then 
 				-- Left Paths
 				if ((UnitNear(4, AiSoldier(4), 3, 76, 3) == true) or (UnitNear(4, AiShooter(4), 3, 76, 3) == true) or (UnitNear(0, AiSoldier(0), 3, 76, 3) == true) or (UnitNear(0, AiShooter(0), 3, 76, 3) == true)) then 
 					-- South Left 1 Path
 					if ((UnitNear(AiPlayer(), AiSoldier(), 3, 69, 3) == true) or (UnitNear(AiPlayer(), AiShooter(), 3, 69, 3) == true)) then 
-						MoveUnitQuick(AiPlayer(), AiShooter(), 1, 74, 14, 71, 3, "attack")
-						MoveUnitQuick(AiPlayer(), AiSoldier(), 1, 76, 14, 71, 3, "attack")
+						MoveUnitQuick(AiPlayer(), AiShooter(), 1, 74, 14, 71, 3)
+						MoveUnitQuick(AiPlayer(), AiSoldier(), 1, 76, 14, 71, 3)
 					end
 				elseif ((UnitNear(4, AiSoldier(4), 17, 72, 5) == true) or (UnitNear(4, AiShooter(4), 17, 72, 5) == true) or (UnitNear(0, AiSoldier(0), 17, 72, 5) == true) or (UnitNear(0, AiShooter(0), 17, 72, 5) == true)) then 
 					-- South Left 2 Path
-					MoveUnitQuick(AiPlayer(), AiShooter(), 14, 69, 1, 76, 3, "attack")
-					MoveUnitQuick(AiPlayer(), AiCatapult(), 14, 71, 1, 76, 3, "attack")
+					MoveUnitQuick(AiPlayer(), AiShooter(), 14, 69, 1, 76, 3)
+					MoveUnitQuick(AiPlayer(), AiCatapult(), 14, 71, 1, 76, 3)
 				end
 				if ((UnitNear(AiPlayer(), AiHeroSoldier(), 92, 45, 35) == true) or (UnitNear(AiPlayer(), AiHeroSoldier(), 87, 87, 35) == true)) then 
-					MoveUnitQuick(AiPlayer(), AiShooter(), 8, 52, 106, 62, 3, "attack")
-					MoveUnitQuick(AiPlayer(), AiCatapult(), 8, 50, 106, 62, 3, "attack")
-					MoveUnitQuick(AiPlayer(), AiSoldier(), 6, 56, 106, 62, 3, "attack")
+					MoveUnitQuick(AiPlayer(), AiShooter(), 8, 52, 106, 62, 3)
+					MoveUnitQuick(AiPlayer(), AiCatapult(), 8, 50, 106, 62, 3)
+					MoveUnitQuick(AiPlayer(), AiSoldier(), 6, 56, 106, 62, 3)
 				end
 				if ((UnitNear(4, AiHeroSoldier(4), 10, 76, 11) == true) and (GameCycle < 5000)) then
-					MoveUnitQuick(AiPlayer(), AiShooter(), 9, 52, 66, 59, 5, "attack")
-					MoveUnitQuick(AiPlayer(), AiCatapult(), 7, 50, 66, 59, 5, "attack")
-					MoveUnitQuick(AiPlayer(), AiSoldier(), 6, 56, 66, 59, 5, "attack")
-					MoveUnitQuick(AiPlayer(), AiHeroSoldier(), 8, 53, 66, 59, 5, "attack")
+					MoveUnitQuick(AiPlayer(), AiShooter(), 9, 52, 66, 59, 5)
+					MoveUnitQuick(AiPlayer(), AiCatapult(), 7, 50, 66, 59, 5)
+					MoveUnitQuick(AiPlayer(), AiSoldier(), 6, 56, 66, 59, 5)
+					MoveUnitQuick(AiPlayer(), AiHeroSoldier(), 8, 53, 66, 59, 5)
 				end
 			else 
 				SetDiplomacy(2, "enemy", 0)
@@ -810,10 +1235,10 @@ function AiNathan_Skirmish_Northern_Swamp_2015()
 				OrderUnitSquare(AiPlayer(), AiSoldier(), 18, 72, 3, 1, 97, 46, "attack")
 				OrderUnitSquare(AiPlayer(), AiSoldier(), 24, 74, 3, 1, 102, 46, "attack")
 				OrderUnitSquare(AiPlayer(), AiSoldier(), 29, 74, 3, 1, 107, 46, "attack")
-				OrderUnitSquare(AiPlayer(), AiShooter(), 10, 68, 1, 3, 95, 45, "move")
-				OrderUnitSquare(AiPlayer(), AiShooter(), 18, 73, 3, 1, 98, 46, "move")
-				OrderUnitSquare(AiPlayer(), AiShooter(), 24, 75, 3, 1, 103, 46, "move")
-				OrderUnitSquare(AiPlayer(), AiShooter(), 29, 75, 3, 1, 108, 46, "move")
+				OrderUnitSquare(AiPlayer(), AiShooter(), 10, 68, 1, 3, 95, 45)
+				OrderUnitSquare(AiPlayer(), AiShooter(), 18, 73, 3, 1, 98, 46)
+				OrderUnitSquare(AiPlayer(), AiShooter(), 24, 75, 3, 1, 103, 46)
+				OrderUnitSquare(AiPlayer(), AiShooter(), 29, 75, 3, 1, 108, 46)
 			elseif ((GameCycle > 1100) and (GameCycle < 1800)) then
 				MoveUnitQuick(AiPlayer(), AiCavalry(), 108, 28, 3, 92, 3)
 				MoveUnitQuick(AiPlayer(), AiCavalry(), 104, 28, 15, 100, 3)
@@ -833,13 +1258,13 @@ function AiNathan_Skirmish_Northern_Swamp_2015()
 	elseif (GameDefinition["Map"]["Name"] == "Southern Swamp") then
 		if (GameCycle < 2500) then
 			if (GameCycle < 100) then
-				OrderUnitSquare(AiPlayer(), AiSoldier(), 44, 95, 1, 3, 26, 62, "move")
-				OrderUnitSquare(AiPlayer(), AiSoldier(), 53, 95, 1, 3, 49, 74, "move")
-				OrderUnitSquare(AiPlayer(), AiSoldier(), 48, 97, 2, 1, 34, 62, "move")
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 44, 95, 1, 3, 26, 62)
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 53, 95, 1, 3, 49, 74)
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 48, 97, 2, 1, 34, 62)
 			elseif ((GameCycle > 400) and (GameCycle < 500)) then
-				OrderUnitSquare(AiPlayer(), AiSoldier(), 48, 96, 2, 1, 61, 62, "move")
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 48, 96, 2, 1, 61, 62)
 			elseif ((GameCycle > 600) and (GameCycle < 700)) then
-				OrderUnitSquare(AiPlayer(), AiSoldier(), 48, 95, 2, 1, 65, 88, "move")
+				OrderUnitSquare(AiPlayer(), AiSoldier(), 48, 95, 2, 1, 65, 88)
 			elseif ((GameCycle > 700) and (GameCycle < 2400)) then
 				if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiScout()) > 0) then
 					if (MoveUnitQuick(AiPlayer(), AiScout(), 30, 59, 48, 90) == true) then 
@@ -961,7 +1386,7 @@ function AiLucas_Skirmish_Reclaiming_Genesis_2015()
 			elseif (MoveUnitQuick(AiPlayer(), AiCavalry(), 112, 23, 61, 1) == true) then 
 			end
 		else
-			MoveArmyQuick(AiPlayer(), 84, 15, 64, 1, 5, "move")
+			MoveArmyQuick(AiPlayer(), 84, 15, 64, 1, 5)
 			AiJadeite_Force_2010(0, AiSoldier(), 4)
 		end
 	else
@@ -1709,6 +2134,7 @@ DefineAi("ai_frontlines_2015", "*", "ai_frontlines_2015", AiFrontlines_2015)
 DefineAi("Shane Wolfe", "*", "ai_red_2015", AiShane_2015)
 DefineAi("Aya Kalang", "*", "ai_red_2015", AiAya_2015)
 DefineAi("Sandria Fields", "*", "ai_red_2015", AiSandria_2015)
+DefineAi("Rufus Norcross", "*", "ai_red_2015", AiRufus_2015)
 DefineAi("Lucas Kage", "*", "ai_red_2015", AiLucas_2015)
 DefineAi("Kiah Stone", "*", "ai_red_2015", AiKiah_2015)
 DefineAi("Nathan Withers", "*", "ai_red_2015", AiNathan_2015)

@@ -306,6 +306,28 @@ function GameDefinitionSetup(name, version, revision, map, topography)
 	end
 end
 
+function CampaignDataSetup(name, map, variable, value)
+	if (name == nil) then
+		CampaignData = {}
+	else
+		if (map == nil) then
+			CampaignData[name] = {}
+		elseif (type(map) == "number") then
+			CampaignData[name][GameDefinition["Map"]["Name"]]["Magic"] = map
+		else
+			if (variable == nil) then
+				CampaignData[name][map] = {}
+				CampaignData[name][map]["Magic"] = 0
+			else
+				CampaignData[name][map][variable] = value
+			end
+		end	
+	end
+end
+
+CampaignDataSetup()
+CampaignDataSetup("Lucas Kage")
+CampaignDataSetup("Lucas Kage", "Dunath Plains")
 GameDefinitionSetup("initialise")
 
 -- Override with game settings

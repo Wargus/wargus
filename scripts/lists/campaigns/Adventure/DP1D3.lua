@@ -26,8 +26,7 @@
 --
 
 if (GameDefinition["Briefing"]["Active"] == true) then
-	local menu = MenuScreen()
-	BriefingAction("Backdrop", "backdrops/seichan.png", menu)
+	GameDefinition["Briefing"]["Backdrop"] = "magickomplex"
 	BundleAction("Chat", "Drago Payne", "What's all this?")
 elseif (GameDefinition["Briefing"]["Active"] == 1) then
 	BundleAction("Chat", "Scott Campbell", "Our recruitment table. You already agreed that we need to recruit more people this term.")

@@ -51,8 +51,8 @@ function SetPlayerFtM2014(player, race, faction, gold, wood, oil, startx, starty
 	-- replace with maps x and y
 	ftm_team_x1[player+match] = 0
 	ftm_team_y1[player+match] = 0
-	ftm_team_x2[player+match] = 1024
-	ftm_team_y2[player+match] = 1024
+	ftm_team_x2[player+match] = mapinfo.w
+	ftm_team_y2[player+match] = mapinfo.h
 	if (teamx1 ~= nil) then
 		ftm_team_x1[player+match] = teamx1
 		if (teamy1 ~= nil) then
@@ -264,10 +264,10 @@ function AiRedRibbon_Setup_2014()
 		--ftm_index_end[i] = 1
 		ftm_team_tempx[i] = 0
 		ftm_team_tempy[i] = 0
-		ftm_team_x1[i] = 0
-		ftm_team_y1[i] = 0
-		ftm_team_x2[i] = 256
-		ftm_team_y2[i] = 256
+		--ftm_team_x1[i] = 0
+		--ftm_team_y1[i] = 0
+		--ftm_team_x2[i] = 256
+		--ftm_team_y2[i] = 256
 		ftm_team_startx[i] = 1
 		ftm_team_starty[i] = 1
 		ftm_team_orderx[i] = "Start Location"

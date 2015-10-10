@@ -25,7 +25,7 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-if (GameDefinition["Briefing"]["Active"] ~= false) then
+if (GameDefinition["Briefing"]["Active"] == true) then
 	Load("campaigns/human-tales/level06h_c2.sms")
 	if (wargus.tales == true) then
 		Briefing(
@@ -49,14 +49,14 @@ end
 Load("campaigns/human-tales/level06h_ai.lua")
 
 Triggers = [[
-SetDiplomacy(0, "allied", 6)
-SetDiplomacy(6, "allied", 0)
-SetSharedVision(6, true, 0)
-SetSharedVision(0, true, 6)
-SetDiplomacy(1, "enemy", 6) 
-SetDiplomacy(6, "enemy", 1) 
-SetDiplomacy(2, "enemy", 6) 
-SetDiplomacy(6, "enemy", 2) 
+SetDiplomacy(0, "allied", 4)
+SetDiplomacy(4, "allied", 0)
+SetSharedVision(4, true, 0)
+SetSharedVision(0, true, 4)
+SetDiplomacy(1, "enemy", 4) 
+SetDiplomacy(4, "enemy", 1) 
+SetDiplomacy(3, "enemy", 4) 
+SetDiplomacy(4, "enemy", 3) 
 AddTrigger(
   function() return GetNumOpponents(GetThisPlayer()) <= 1 end,
   function() return ActionVictory() end)

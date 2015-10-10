@@ -170,9 +170,62 @@ function CharacterSetup(name, age, house, faction, mouth, eyes, brows)
 	end
 end
 
+function CharacterAction(name, action, skin, mood)
+	if (((action == "Sync") or (action == "Pose")) and (name ~= nil) and (Character[name] ~= nil)) then
+		if (skin ~= nil) then
+			if (action == "Pose") then
+				character_skin = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin]["Skin"])
+				Character[name]["Skin"] = skin
+				character_skin:Load()
+				if ((mood ~= nil) and (Character[name][skin][mood]["Mouth"] ~= nil)) then
+					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Mouth"])
+					character_eyes = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Eyes"])
+					character_brows = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Brows"])
+					Character[name]["Mood"] = mood
+				else
+					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Mouth"])
+					character_eyes = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Eyes"])
+					character_brows = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Brows"])
+				end
+			elseif (action == "Sync") then
+				mood = string.lower(mood)
+				mood = SyncIndex(name, mood)
+				if (Character[name][skin][mood]["Mouth"] ~= nil) then
+					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Mouth"])
+				end
+			end
+			character_eyes:Load()
+			character_brows:Load()
+			character_mouth:Load()
+		end
+		if (Character[name][skin]["Scale"] ~= 1) then
+			if ((Character[name]["Graphic"][Character[name][skin]["Skin"]] == nil) or (Character[name]["Graphic"][Character[name][skin]["Skin"]] == 1)) then
+				character_skin:Resize(ImageWidget(character_skin):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_skin):getHeight()*Character[name][skin]["Scale"])
+				Character[name]["Graphic"][Character[name][skin]["Skin"]] = Character[name][skin]["Scale"]
+			end
+			if ((Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] == 1)) then
+				Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] = Character[name][skin]["Scale"]
+				character_eyes:Resize(ImageWidget(character_eyes):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_eyes):getHeight()*Character[name][skin]["Scale"])
+			end
+			if ((Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] == 1)) then
+				Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] = Character[name][skin]["Scale"]
+				character_brows:Resize(ImageWidget(character_brows):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_brows):getHeight()*Character[name][skin]["Scale"])
+			end
+			if ((Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] == 1)) then
+				Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] = Character[name][skin]["Scale"]
+				character_mouth:Resize(ImageWidget(character_mouth):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_mouth):getHeight()*Character[name][skin]["Scale"])
+			end
+		end
+		charskinWidget = ImageWidget(character_skin)
+		charmouthWidget = ImageWidget(character_mouth)
+		chareyesWidget = ImageWidget(character_eyes)
+		charbrowsWidget = ImageWidget(character_brows)
+	end
+end
+
 CharacterSetup("Sandria Fields", 14, "Red House", "Mythic")
-CharacterSetup("Sandria Fields", "Skin", "Neutral", "char_sandria.png", 0.7)
-CharacterSetup("Sandria Fields", "Skin", "Neutral Bloody", "char_sandria_blood.png", 0.7)
+CharacterSetup("Sandria Fields", "Skin", "Neutral", "char_sandria.png", 0.7) --0.7
+CharacterSetup("Sandria Fields", "Skin", "Neutral Bloody", "char_sandria_blood.png", 0.7) --0.7
 
 CharacterSetup("Sandria Fields", "Sync", "Neutral", "ai", "char_sandria_mouth_ai.png")
 CharacterSetup("Sandria Fields", "Sync", "Neutral", "e", "char_sandria_mouth_e.png")
@@ -221,6 +274,8 @@ CharacterSetup("Lucas Kage", "Mood", "Neutral", "Surprised")
 CharacterSetup("Lucas Kage", "Mood", "Neutral", "Unsure")
 CharacterSetup("Lucas Kage", "Mood", "Neutral", "Happy", "char_kaminari_full_content.png")
 CharacterSetup("Lucas Kage", "Mood", "Neutral", "Sly")
+
+CharacterAction("Lucas Kage", "Pose", "Neutral", "Unsure")
 
 CharacterSetup("Yukiko Robinson", 17, "Yellow House", "Order")
 CharacterSetup("Yukiko Robinson", "Skin", "Neutral", "char_yukiko", 1)
@@ -337,59 +392,6 @@ function SyncIndex(name, mood, a, b, c, d, e, f)
 		return true
 	else
 		return false
-	end
-end
-
-function CharacterAction(name, action, skin, mood)
-	if (((action == "Sync") or (action == "Pose")) and (name ~= nil) and (Character[name] ~= nil)) then
-		if (skin ~= nil) then
-			if (action == "Pose") then
-				character_skin = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin]["Skin"])
-				Character[name]["Skin"] = skin
-				character_skin:Load()
-				if ((mood ~= nil) and (Character[name][skin][mood]["Mouth"] ~= nil)) then
-					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Mouth"])
-					character_eyes = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Eyes"])
-					character_brows = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Brows"])
-					Character[name]["Mood"] = mood
-				else
-					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Mouth"])
-					character_eyes = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Eyes"])
-					character_brows = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][Character[name]["Mood"]]["Brows"])
-				end
-			elseif (action == "Sync") then
-				mood = string.lower(mood)
-				mood = SyncIndex(name, mood)
-				if (Character[name][skin][mood]["Mouth"] ~= nil) then
-					character_mouth = CGraphic:New("characters/" .. name .. "/" .. Character[name][skin][mood]["Mouth"])
-				end
-			end
-			character_eyes:Load()
-			character_brows:Load()
-			character_mouth:Load()
-		end
-		if (Character[name][skin]["Scale"] ~= 1) then
-			if ((Character[name]["Graphic"][Character[name][skin]["Skin"]] == nil) or (Character[name]["Graphic"][Character[name][skin]["Skin"]] == 1)) then
-				character_skin:Resize(ImageWidget(character_skin):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_skin):getHeight()*Character[name][skin]["Scale"])
-				Character[name]["Graphic"][Character[name][skin]["Skin"]] = Character[name][skin]["Scale"]
-			end
-			if ((Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] == 1)) then
-				Character[name]["Graphic"][Character[name][skin][mood]["Eyes"]] = Character[name][skin]["Scale"]
-				character_eyes:Resize(ImageWidget(character_eyes):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_eyes):getHeight()*Character[name][skin]["Scale"])
-			end
-			if ((Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] == 1)) then
-				Character[name]["Graphic"][Character[name][skin][mood]["Brows"]] = Character[name][skin]["Scale"]
-				character_brows:Resize(ImageWidget(character_brows):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_brows):getHeight()*Character[name][skin]["Scale"])
-			end
-			if ((Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] == nil) or (Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] == 1)) then
-				Character[name]["Graphic"][Character[name][skin][mood]["Mouth"]] = Character[name][skin]["Scale"]
-				character_mouth:Resize(ImageWidget(character_mouth):getWidth()*Character[name][skin]["Scale"], ImageWidget(character_mouth):getHeight()*Character[name][skin]["Scale"])
-			end
-		end
-		charskinWidget = ImageWidget(character_skin)
-		charmouthWidget = ImageWidget(character_mouth)
-		chareyesWidget = ImageWidget(character_eyes)
-		charbrowsWidget = ImageWidget(character_brows)
 	end
 end
 
@@ -545,14 +547,15 @@ function BriefingAction(action, text, menu, x, y, z)
 		  end
 		  PlayNextVoice()
 	elseif (action == "Results") then
-		local resultx = 70 * GameDefinition["Briefing"]["Width"] / 640
-		local resulty = GameDefinition["Briefing"]["Y"] + 80 * GameDefinition["Briefing"]["Height"] / 480 + 300
+		local resultx = GameDefinition["Briefing"]["X"] + 70 + (GameDefinition["Briefing"]["Width"] / 640)
+		local resulty = GameDefinition["Briefing"]["Y"] + 80 + (GameDefinition["Briefing"]["Height"] / 480) + 300
 		-- Add Box
 		resultsdrop = CGraphic:New("ui/scroll.png")
 		resultsdrop:Load()
 		resultsdropWidget = ImageWidget(scrolldrop)
-		BriefingAction("Widget", resultsdropWidget, menu, resultx, resulty)
-		-- Add Labels
+		if (Video.Width == 800) then
+			BriefingAction("Widget", resultsdropWidget, menu, resultx, resulty)
+		end
 		menu:addLabel(_("Combat Casualties"), resultx + 160, resulty + 6, nil, true)
 		menu:addLabel(_("Infantry"), resultx + 17, resulty + 2 + 32*1, Fonts["game"], false)
 		menu:addLabel(_("Artillery"), resultx + 17, resulty + 2 + 32*2, Fonts["game"], false)
@@ -622,12 +625,12 @@ function BriefingAction(action, text, menu, x, y, z)
 		menu:add(infantryenemyWidget, resultx + (17 + 80)*2, resulty + 32*1)
 		menu:add(artilleryenemyWidget, resultx + (17 + 80)*2, resulty + 32*2)
 		menu:add(cavalryenemyWidget, resultx + (17 + 80)*2, resulty + 32*3)
-	elseif ((action == "Chat") and ((text ~= nil))) then
+	elseif ((action == "Chat") and ((text ~= nil) or (x ~= nil))) then
 		local function MultiTextChat()
 			local syncchar
 			local synccharold
 			local screenchar
-			if (wait == nil) then wait = 1 end
+			if ((wait == nil) or ((wait < 0) and (string.len(x) > 0))) then wait = 1 end
 			if (screentext == nil) then screentext = "" end
 			if (wait == 1) then
 				if (x ~= nil) then
@@ -658,11 +661,22 @@ function BriefingAction(action, text, menu, x, y, z)
 					text = string.sub(text, 2)
 				end
 			end
-			if (wait > 0) then
-				wait = wait - 1
-				return
+			if ((wait < -100) and (text == nil) and (GameDefinition["Briefing"]["Active"] ~= true)) then
+				-- Active must not be true as the game would skip scroll text briefings.
+				menu:stop() 
+				wait = nil
 			elseif (wait == 0) then
-				wait = 2
+				if ((string.len(x) == 0) and ((text == nil) or (string.len(text) == 0))) then
+					charmouthWidget:setVisible(false)
+					CharacterAction(GameDefinition["Briefing"]["Character"], "Pose", Character[GameDefinition["Briefing"]["Character"]]["Skin"], Character[GameDefinition["Briefing"]["Character"]]["Mood"])
+					menu:add(charmouthWidget, GameDefinition["Briefing"]["X"] + GameDefinition["Briefing"]["Width"] - 450, GameDefinition["Briefing"]["Y"] + 10)
+					wait = -1
+				elseif ((string.len(x) > 0) or (string.len(text) > 0)) then
+					wait = 2
+					return
+				end	
+			else
+				wait = wait - 1
 				return
 			end
 		end
@@ -672,6 +686,7 @@ function BriefingAction(action, text, menu, x, y, z)
 		if (x == nil) then x = 0 end
 		if (y == nil) then y = 0 end
 		if (z == nil) then z = "scroll.png" end
+		if ((text == nil) and (GameDefinition["Briefing"]["Backdrop"] ~= nil)) then text = "backdrops/" .. GameDefinition["Briefing"]["Backdrop"] .. ".png" end
 		if (text ~= nil) then
 			backdrop = CGraphic:New(text)
 			backdrop:Load()
@@ -697,7 +712,6 @@ function BriefingAction(action, text, menu, x, y, z)
 				menu:addMenuButton(_("~!Continue"), "c", GameDefinition["Briefing"]["X"] + 455 * GameDefinition["Briefing"]["Width"] / 640, GameDefinition["Briefing"]["Y"] + 440 * GameDefinition["Briefing"]["Height"] / 480,
 				function()
 				  menu:stop()
-				  menu:stop()
 				  StopMusic()
 				  BriefingAction("Increment")
 				  Load(x .. y .. z)
@@ -715,13 +729,16 @@ end
 
 function BundleAction(action, name, displaytext, synctext, voice)
 	local menu = MenuScreen()
-	if (action == "Scrolling Text") then BriefingAction("Backdrop", nil, menu, 0, 0, "scrolltall.png") else BriefingAction("Backdrop", nil, menu) end
+	if (action == "Scrolling Text") then BriefingAction("Backdrop", nil, menu, 0, 0, "scrolltall.png") elseif (action ~= "Game") then BriefingAction("Backdrop", nil, menu) end
 	GameDefinition["Briefing"]["Character"] = name
 	if (action == "Results") then
-			BriefingAction("Results", nil, menu)
-			action = "Chat"
+		BriefingAction("Results", nil, menu)
+		action = "Chat"
 	end
-	if (action == "Chat") then
+	if ((action == "Chat") or (action == "Game")) then
+		if (action == "Game") then
+			AddMessage("<" .. GetPlayerData(AiPlayer(), "Name") .. "> " .. displaytext)
+		end
 		if (synctext == nil) then
 			local chartext = ""
 			local looptext = ""
@@ -732,7 +749,7 @@ function BundleAction(action, name, displaytext, synctext, voice)
 			for index = 1, string.len(displaytext) do
 				chartext = string.sub(displaytext, index, index)
 				string.sub(displaytext, 2)
-				if (chartext ~= "+") then
+				if ((action ~= "Game") and (chartext ~= "+")) then
 					looptext = looptext .. chartext
 					if ((chartext == " ") and (chatboxcurrent > chatboxlength - chatboxlength)) then
 						-- Check the character length of the next word.
@@ -757,8 +774,13 @@ function BundleAction(action, name, displaytext, synctext, voice)
 			displaytext = looptext
 		end
 		BriefingAction("Voice", voice, menu)
-		BriefingAction("Chat", displaytext, menu, synctext)
-		action = "Start"
+		if (action == "Game") then
+			BriefingAction("Chat", nil, menu, synctext)
+			action = "Next"
+		else
+			BriefingAction("Chat", displaytext, menu, synctext)
+			action = "Start"
+		end
 	elseif (action == "Scrolling Text") then
 		BriefingAction("Scrolling Text", displaytext, menu)
 		if (synctext ~= nil) then
@@ -768,15 +790,17 @@ function BundleAction(action, name, displaytext, synctext, voice)
 		end
 		action = "Start"
 	end
-	if (action == "Start") then
+	if ((action == "Start") or (action == "Next")) then
 		if ((name ~= nil) and (Character[name] ~= nil)) then
 			CharacterAction(name, "Pose", Character[name]["Skin"], Character[name]["Mood"])
 			BriefingAction("Character", "Add", menu)
 		end
 		BriefingAction("Title", GameDefinition["Briefing"]["Title"], menu)
 		BriefingAction("Objectives", GameDefinition["Briefing"]["Objectives"], menu)
-		BriefingAction("Button", "Continue", menu, GameDefinition["Map"]["Path"], GameDefinition["Map"]["File"], GameDefinition["Map"]["Type"])
-		BriefingAction("Button", "Exit", menu)
+		if (action == "Start") then
+			BriefingAction("Button", "Continue", menu, GameDefinition["Map"]["Path"], GameDefinition["Map"]["File"], GameDefinition["Map"]["Type"])
+			BriefingAction("Button", "Exit", menu)
+		end
 		BriefingAction("Load", 0, menu)
 	end
 end
