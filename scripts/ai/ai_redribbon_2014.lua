@@ -69,6 +69,10 @@ function SetPlayerFtM2014(player, race, faction, gold, wood, oil, startx, starty
 	UnitDatabaseSetup(race, player)
 	ftm_team_startx[player+match] = startx
 	ftm_team_starty[player+match] = starty
+	SetSharedVision(player, true, player+match)
+	SetSharedVision(player+match, true, player)
+	SetDiplomacy(player, "allied", player+match)
+	SetDiplomacy(player+match, "allied", player)
 end
 
 function AiRedRibbon_Setup_Units_2014()

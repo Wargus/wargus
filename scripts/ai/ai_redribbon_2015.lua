@@ -331,15 +331,25 @@ function AiAya_2015()
 	end
 end
 
+function AiSky_2015()
+	AiCharacter_Set_Name_2015("Sky Robinson")
+	--Check game type.
+	if (GameDefinition["Name"] == "For the Motherland") then
+		AiAya_FtM_2015(AiPlayer())
+	else
+		AiSky_Skirmish_2015()
+	end
+end
+
 function AiNathan_2015()
 	AiCharacter_Set_Name_2015("Nathan Withers")
 	--Check game type.
 	if (GameDefinition["Name"] == "For the Motherland") then
 		AiAya_FtM_2015(AiPlayer())
-	elseif (GameDefinition["Name"] == "Skirmish") then
-		AiNathan_Skirmish_2015()
 	elseif (GameDefinition["Name"] == "Escape") then
 		AiNathan_Escape_2015()
+	else
+		AiNathan_Skirmish_2015()
 	end
 end
 
@@ -410,6 +420,8 @@ function AiLucas_Skirmish_2015()
 		AiLucas_Skirmish_Northern_Swamp_2015()
 	elseif (GameDefinition["Map"]["Name"] == "Reclaiming Genesis Castle") then
 		AiLucas_Skirmish_Reclaiming_Genesis_2015()
+	elseif (GameDefinition["Map"]["Name"] == "Fall of Genesis Castle") then
+		AiLucas_Skirmish_Fall_Genesis_2015()
 	else
 		AiLucas_Skirmish_Standard_2015()
 	end
@@ -542,9 +554,17 @@ function AiLucas_Escape_2015()
 	end
 end
 
+function AiSky_Skirmish_2015()
+	if ((GameDefinition["Map"]["Name"] == "Fall of Genesis Castle") and (AiPlayer() == 9)) then
+		AiAya_FtM_2015(AiPlayer())
+	end
+end
+
 function AiNathan_Skirmish_2015()
 	if ((GameDefinition["Map"]["Name"] == "Northern Swamp") or (GameDefinition["Map"]["Name"] == "Southern Swamp")) then
 		AiNathan_Skirmish_Northern_Swamp_2015()
+	elseif (GameDefinition["Map"]["Name"] == "Fall of Genesis Castle") then
+		AiNathan_Skirmish_Fall_Genesis_2015()
 	else
 		AiLucas_Skirmish_Standard_2015()
 	end
@@ -1371,6 +1391,38 @@ function AiNathan_Skirmish_Northern_Swamp_2015()
 	end
 end
 
+function AiNathan_Skirmish_Fall_Genesis_2015()
+	-- Wild Attacker
+	AiJadeite_Intermittent_2010()
+	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) > 0) then
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 3) then
+			AiJadeite_Force_2010(3, AiSoldier(), 15, AiShooter(), 10)
+			if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 8) then
+				AiJadeite_Upgrade_2010(AiSoldier())
+				AiJadeite_Upgrade_2010(AiShooter())
+				AiJadeite_Attack_2010(3)
+			end
+		else
+			AiJadeite_Force_2010(0, AiSoldier(), 4)
+		end
+	end
+end
+
+function AiLucas_Skirmish_Fall_Genesis_2015()
+	-- Mythic Defender
+	AiJadeite_Intermittent_2010()
+	if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 3) then
+		AiJadeite_Force_2010(3, AiSoldier(), 20)
+		if (GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) > 18) then
+			AiJadeite_Upgrade_2010(AiSoldier())
+			AiJadeite_Upgrade_2010(AiShooter())
+			AiJadeite_Attack_2010(3)
+		end
+	else
+		AiJadeite_Force_2010(0, AiSoldier(), 4)
+	end
+end
+
 function AiLucas_Skirmish_Reclaiming_Genesis_2015()
 	if (GameCycle < 2000) then
 		AiJadeite_Worker_2010()
@@ -1700,6 +1752,8 @@ function AiAya_FtM_2015(player)
 			AiAya_FtM_One_Way_Through_2015(player)
 		elseif (GameDefinition["Map"]["Name"] == "Nick's Duel") then
 			AiAya_FtM_Nicks_Duel_2015(player)
+		elseif (GameDefinition["Map"]["Name"] == "Fall of Genesis Castle") then
+			AiAya_FtM_Fall_Genesis_2015(player)
 		end
 	end
 	AiRed_2015()
@@ -1708,6 +1762,31 @@ end
 function AiShane_FtM_Nicks_Duel_2015(player)
 	AiAya_FtM_Nicks_Duel_2015(player)
 	-- TODO: This.
+end
+
+function AiAya_FtM_Fall_Genesis_2015(player)
+	aiftm_terminate[player] = 1000
+	x = 105
+	y = 2
+	AiRed_Strategy_Action_2015(player, 0, "summon", 5, AiWorker(), x+5, y+5)
+	AiRed_Strategy_Action_2015(player, 1, "summon", 5, AiWorker(), x+5, y+5)
+	for i=0,9 do
+		AiRed_Strategy_Action_2015(player, 2+i, "summon", 1, AiSoldier(), x+i, y)
+	end
+	AiRed_Strategy_Action_2015(player, 3, "summon", 1, AiCavalryMage(), x+1, y)
+	AiRed_Strategy_Action_2015(player, 4, "move", 1, AiSoldier(), x+10, y, x, y)
+	AiRed_Strategy_Action_2015(player, 12, "summon", 1, AiSoldier(), x, y)
+	AiRed_Strategy_Action_2015(player, 13, "summon", 1, AiSoldier(), x+2, y)
+	for i=0,8 do
+		AiRed_Strategy_Action_2015(player, 14+i, "summon", 1, AiShooter(), x+2+i, y+1)
+		AiRed_Strategy_Action_2015(player, 23+i, "summon", 1, AiShooter(), x+2+i, y+2)
+		AiRed_Strategy_Action_2015(player, 32+i, "summon", 1, AiSoldier(), x+2+i, y+3)
+	end
+	AiRed_Strategy_Action_2015(player, 41, "skip", 10)
+	AiRed_Strategy_Action_2015(player, 42, "summon", 1, AiShooter(), x, y+1)
+	AiRed_Strategy_Action_2015(player, 43, "summon", 1, AiShooter(), x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 44, "summon", 4, "hero", x+1, y+1)
+	AiRed_Strategy_Action_2015(player, 45, "loop", 0)
 end
 
 function AiAya_FtM_Nicks_Duel_2015(player)
@@ -2131,10 +2210,15 @@ end
 
 DefineAi("ai_red_2015", "*", "ai_red_2015", AiRed_2015)
 DefineAi("ai_frontlines_2015", "*", "ai_frontlines_2015", AiFrontlines_2015)
+-- Freeman
 DefineAi("Shane Wolfe", "*", "ai_red_2015", AiShane_2015)
+-- Mythics
 DefineAi("Aya Kalang", "*", "ai_red_2015", AiAya_2015)
 DefineAi("Sandria Fields", "*", "ai_red_2015", AiSandria_2015)
 DefineAi("Rufus Norcross", "*", "ai_red_2015", AiRufus_2015)
 DefineAi("Lucas Kage", "*", "ai_red_2015", AiLucas_2015)
+-- Wilds
 DefineAi("Kiah Stone", "*", "ai_red_2015", AiKiah_2015)
 DefineAi("Nathan Withers", "*", "ai_red_2015", AiNathan_2015)
+-- Order
+DefineAi("Sky Robinson", "*", "ai_red_2015", AiSky_2015)
