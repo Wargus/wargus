@@ -48,29 +48,6 @@ end
 
 Load("campaigns/human-tales/level06h_ai.lua")
 
-Triggers = [[
-SetDiplomacy(0, "allied", 4)
-SetDiplomacy(4, "allied", 0)
-SetSharedVision(4, true, 0)
-SetSharedVision(0, true, 4)
-SetDiplomacy(1, "enemy", 4) 
-SetDiplomacy(4, "enemy", 1) 
-SetDiplomacy(3, "enemy", 4) 
-SetDiplomacy(4, "enemy", 3) 
-AddTrigger(
-  function() return GetNumOpponents(GetThisPlayer()) <= 1 end,
-  function() return ActionVictory() end)
-AddTrigger(
-  function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
-  function() return ActionDefeat() end)
-AddTrigger(
-  function() return GetNumUnitsAt(0, "unit-mythic-castle", {65, 85}, {70, 80}) <= 0) end,
-  function() return GetNumUnitsAt(4, "unit-order-paladin", {65, 85}, {70, 80}) >= 1) end,
-  function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
-
 --Units
 
 --Townhall - Produces

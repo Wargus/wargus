@@ -574,6 +574,20 @@ function AiSandria_Skirmish_2015()
 
 end
 
+function QuickTrain(player, unit, x, y)
+	for index = 1, 30 do
+		if (UnitDatabase[GetPlayerData(player, "RaceName")][index]["Unit"] == unit) then
+			if (UnitNear(player, UnitDatabase[GetPlayerData(player, "RaceName")][index]["Origin"], x, y, 2) == true) then
+				CreateUnit(unit, player, {x, y})
+				return true
+			else
+				return false
+			end
+			break
+		end
+	end		
+end
+
 function UnitNear(player, unit, x, y, area)
 	if (area == nil) then area = 3 end
 	if ((GetPlayerData(player, "UnitTypesCount", unit) > 0) and (GetNumUnitsAt(player, unit, {x-area, y-area}, {x+area, y+area}) > 0)) then 
@@ -1768,8 +1782,8 @@ function AiAya_FtM_Fall_Genesis_2015(player)
 	aiftm_terminate[player] = 1000
 	x = 105
 	y = 2
-	AiRed_Strategy_Action_2015(player, 0, "summon", 5, AiWorker(), x+5, y+5)
-	AiRed_Strategy_Action_2015(player, 1, "summon", 5, AiWorker(), x+5, y+5)
+	AiRed_Strategy_Action_2015(player, 0, "summon", 2, AiWorker(), x+5, y+5)
+	AiRed_Strategy_Action_2015(player, 1, "summon", 3, AiWorker(), x+5, y+5)
 	for i=0,9 do
 		AiRed_Strategy_Action_2015(player, 2+i, "summon", 1, AiSoldier(), x+i, y)
 	end

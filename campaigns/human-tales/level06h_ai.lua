@@ -36,13 +36,13 @@ function AiLevel06()
 	if (timer > 0) then
 		timer = timer + 1
 		if (timer == 50) then
-			CreateUnit("unit-footman", 0, {101, 92})
-			CreateUnit("unit-footman", 0, {119, 88})
-			CreateUnit("unit-footman", 0, {110, 98})
-			CreateUnit("unit-footman", 0, {122, 94})
-			CreateUnit(AiWorker(0), 0, {67, 87})
-			CreateUnit(AiWorker(0), 0, {67, 87})
-			CreateUnit("unit-footman", 0, {67, 87})
+			QuickTrain(0, AiSoldier(0), 101, 92)
+			QuickTrain(0, AiSoldier(0), 119, 88)
+			QuickTrain(0, AiSoldier(0), 110, 98)
+			QuickTrain(0, AiSoldier(0), 122, 94)
+			QuickTrain(0, AiWorker(0), 67, 87)
+			QuickTrain(0, AiWorker(0), 67, 87)
+			QuickTrain(0, AiSoldier(0), 67, 87)
 			CreateUnit("unit-grunt", 3, {0, 116})
 			CreateUnit("unit-grunt", 3, {0, 117})
 			CreateUnit("unit-grunt", 3, {0, 118})
@@ -58,13 +58,13 @@ function AiLevel06()
 			CreateUnit("unit-grunt", 3, {0, 27})
 			CreateUnit("unit-grunt", 3, {0, 26})
 		elseif (timer == 100) then
-			CreateUnit("unit-footman", 0, {95, 94})
-			CreateUnit("unit-footman", 0, {113, 89})
-			CreateUnit("unit-footman", 0, {67, 87})
-			CreateUnit(AiWorker(), 0, {67, 87})
-			CreateUnit(AiWorker(), 0, {67, 87})		
-			CreateUnit("unit-footman", 0, {104, 100})
-			CreateUnit("unit-footman", 0, {116, 96})
+			QuickTrain(0, AiSoldier(0), 95, 94)
+			QuickTrain(0, AiSoldier(0), 113, 89)
+			QuickTrain(0, AiSoldier(0), 67, 87)
+			QuickTrain(0, AiWorker(0), 67, 87)
+			QuickTrain(0, AiWorker(0), 67, 87)
+			QuickTrain(0, AiSoldier(0), 104, 100)
+			QuickTrain(0, AiSoldier(0), 116, 96)			
 			CreateUnit("unit-grunt", 3, {0, 115})
 			CreateUnit("unit-grunt", 3, {0, 114})
 			CreateUnit("unit-grunt", 3, {0, 31})
@@ -75,24 +75,14 @@ function AiLevel06()
 			CreateUnit("unit-axethrower", 3, {1, 35})
 			CreateUnit("unit-grunt", 3, {0, 34})
 			CreateUnit("unit-grunt", 3, {0, 35})
-		elseif (timer == 54545475) then
-			CreateUnit(AiEliteSoldier(), 1, {61, 0})
-			CreateUnit(AiEliteSoldier(), 1, {62, 0})
-			CreateUnit(AiEliteSoldier(), 1, {63, 0})
-			CreateUnit(AiEliteSoldier(), 1, {64, 0})
-			CreateUnit(AiEliteSoldier(), 1, {65, 0})
-			CreateUnit(AiEliteSoldier(), 1, {66, 0})
-			CreateUnit(AiEliteSoldier(), 1, {67, 0})
-			CreateUnit(AiEliteSoldier(), 1, {68, 0})
-			CreateUnit(AiEliteSoldier(), 1, {69, 0})
-			CreateUnit(AiEliteSoldier(), 1, {70, 0})
-			CreateUnit(AiEliteSoldier(), 1, {71, 0})
-			CreateUnit(AiEliteSoldier(), 1, {72, 0})
-			CreateUnit(AiEliteSoldier(), 1, {73, 0})
 		end
 	end
 	if (timer > 200) then
 		timer = 1
+	elseif ((timer < 125) and (timer > 75)) then
+		MoveArmyQuick(3, 71, 0, 0, 32, 5)
+		MoveArmyQuick(3, 71, 0, 1, 117, 5)
+		MoveArmyQuick(0, 81, 102, 80, 8, 5)
 	end
 	if ((GetNumUnitsAt(0, AiWorker(), {95, 25}, {111, 34}) > 0) and (GameCycle >= 10000)) then
 		--CenterMap(103, 25)
@@ -104,16 +94,20 @@ function AiLevel06()
 		CreateUnit(AiEliteSoldier(), 1, {105, 23})
 		CreateUnit(AiEliteSoldier(), 1, {104, 24})
 		CreateUnit(AiEliteSoldier(), 1, {105, 22})
-	elseif (GameCycle > 10000) then
+	elseif ((GameCycle > 10000) and (GameCycle < 35000)) then
 		AiRedRibbon_2014()
-		MoveArmyQuick(1, 73, 66, 109, 7, 10)
+		MoveArmyQuick(1, 73, 66, 106, 76, 10)
+		MoveArmyQuick(1, 106, 66, 109, 7, 10)
+		MoveArmyQuick(1, 106, 66, 86, 9, 10)
 		MoveArmyQuick(1, 81, 102, 74, 70, 5)
+	elseif ((GameCycle > 35000) and (GameCycle < 35100)) then
+		CreateUnit(AiEliteSoldier(), 1, {61, 0})
+		CreateUnit(AiEliteSoldier(), 1, {62, 0})
+		CreateUnit(AiEliteSoldier(), 1, {63, 0})
+		CreateUnit(AiEliteSoldier(), 1, {64, 0})
 	else
 		AiRedRibbon_Common_2014()
 	end
-	MoveArmyQuick(3, 71, 0, 0, 32, 5)
-	MoveArmyQuick(3, 71, 0, 1, 117, 5)
-	MoveArmyQuick(0, 81, 102, 80, 8, 5)
 end
 
 DefineAi("ai_level06", "*", "ai_level06", AiLevel06)

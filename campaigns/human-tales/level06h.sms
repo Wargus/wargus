@@ -16642,6 +16642,14 @@ AiRed_Resources_Set_2014(9, 50, 50, 25)
 AiRed_Resources_Set_2014(1, 10, 10, 5)
 
 if (not IsNetworkGame()) then
+	SetDiplomacy(0, "allied", 4)
+	SetDiplomacy(4, "allied", 0)
+	SetSharedVision(4, true, 0)
+	SetSharedVision(0, true, 4)
+	SetDiplomacy(1, "enemy", 4) 
+	SetDiplomacy(4, "enemy", 1) 
+	SetDiplomacy(3, "enemy", 4) 
+	SetDiplomacy(4, "enemy", 3) 
 	AiRedRibbon_Pickers_Add_2014(9)
 	AiRedRibbon_Diplomacy_Neutral_2014(0,15,8)
 	AiRedRibbon_Diplomacy_Neutral_2014(0,15,7)
@@ -16653,3 +16661,16 @@ for i=1, 15 do
 	-- AiRedRibbon_Define_Origin_2014(player, i, x, y, building)
 	AiRedRibbon_Define_Origin_2014(1, i, 109, 7, "unit-order-church")
 end
+
+Triggers = [[
+AddTrigger(
+  function() return GetNumOpponents(GetThisPlayer()) <= 1 end,
+  function() return ActionVictory() end)
+AddTrigger(
+  function() return (((GetPlayerData(0, "UnitTypesCount", AiFarm(0)) == 0) and (GetPlayerData(0, "UnitTypesCount", AiBarracks(0)) == 0) and (GetPlayerData(0, "UnitTypesCount", AiSoldier(0)) == 0) and (GetPlayerData(0, "UnitTypesCount", AiLonerShooter(0)) == 0)) and ((ArmyNear(1, 74, 77, 10) ~= true) and (ArmyNear(3, 90, 100, 20) == true))) end,
+  function() return ActionDraw() end)
+AddTrigger(
+  function() return GetPlayerData(7, "UnitTypesCount", "unit-void-gateway") == 0 end,
+  function() return ActionDefeat() end)
+]]
+assert(loadstring(Triggers))()
