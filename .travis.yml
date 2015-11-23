@@ -1,0 +1,18 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+os:
+  - linux
+  - osx
+addons:
+  apt:
+    packages:
+      - libpng12-dev
+      - libgtk2.0-dev
+      - zlib1g-dev
+before_script:
+  - mkdir build
+  - cd build
+  - cmake ..
+script: make
