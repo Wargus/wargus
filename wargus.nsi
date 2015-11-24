@@ -82,13 +82,17 @@ ${redefine} STRATAGUS_NAME "Stratagus (64 bit)"
 
 ; Download and extract nessesary 3rd party programs
 !ifndef NO_DOWNLOAD
-!system "wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.28.exe -O ffmpeg2theora.exe"
-!system "wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -O cdrtools.zip"
-!system "unzip -o cdrtools.zip cdda2wav.exe"
-!system "wget http://nsis.sourceforge.net/mediawiki/images/0/0f/ExecDos.zip -O ExecDos.zip"
-!system "unzip -j -o ExecDos.zip Plugins/ExecDos.dll"
-!system "wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -O TimGM6mb.sf2"
+!system 'powershell -Command "& {wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.28.exe -O ffmpeg2theora.exe}"'
+!system 'powershell -Command "& {wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -O cdrtools.zip}"'
+!system 'powershell -Command "& {unzip -o cdrtools.zip cdda2wav.exe}"'
+!system 'powershell -Command "& {wget http://nsis.sourceforge.net/mediawiki/images/0/0f/ExecDos.zip -O ExecDos.zip}"'
+!system 'powershell -Command "& {unzip -j -o ExecDos.zip Plugins/x86-unicode/ExecDos.dll}"'
+!system 'powershell -Command "& {wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -O TimGM6mb.sf2}"'
 !endif
+
+!system 'powershell -Command "& {cp **\wartool.exe wartool.exe}"'
+!system 'powershell -Command "& {cp **\wargus.exe wargus.exe}"'
+!system 'powershell -Command "& {cp **\pudconvert.exe pudconvert.exe}"'
 
 !addplugindir .
 
@@ -278,6 +282,8 @@ Section "-${NAME}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
 
+	File "/oname=music\${SF2BANK}" "${SF2BANK}"
+
 	ClearErrors
 
 	!cd ${CMAKE_CURRENT_SOURCE_DIR}
@@ -304,7 +310,6 @@ optwar2:
 	CreateDirectory "$INSTDIR\graphics\ui\cursors"
 	CreateDirectory "$INSTDIR\graphics\missiles"
 	
-	File "/oname=music\${SF2BANK}" "${SF2BANK}"
 	File "/oname=graphics\ui\cursors\cross.png" "contrib\cross.png"
 	File "/oname=graphics\missiles\red_cross.png" "contrib\red_cross.png"
 	File "/oname=graphics\ui\mana.png" "contrib\mana.png"
