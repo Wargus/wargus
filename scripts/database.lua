@@ -275,7 +275,8 @@ CharacterSetup("Lucas Kage", "Mood", "Neutral", "Unsure")
 CharacterSetup("Lucas Kage", "Mood", "Neutral", "Happy", "char_kaminari_full_content.png")
 CharacterSetup("Lucas Kage", "Mood", "Neutral", "Sly")
 
-CharacterAction("Lucas Kage", "Pose", "Neutral", "Unsure")
+-- If the Lucas Kage graphics are not available, the next call fails
+-- CharacterAction("Lucas Kage", "Pose", "Neutral", "Unsure")
 
 CharacterSetup("Yukiko Robinson", 17, "Yellow House", "Order")
 CharacterSetup("Yukiko Robinson", "Skin", "Neutral", "char_yukiko", 1)
