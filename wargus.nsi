@@ -59,6 +59,12 @@
 !define EXE "wargus.exe"
 !define WARTOOL "wartool.exe"
 !define PUDCONVERT "pudconvert.exe"
+
+; -- have to try and copy these, VS might have put them under (Release|Debug)
+!system "powershell -Command $\"& {cp **\${WARTOOL} ${WARTOOL}}$\""
+!system "powershell -Command $\"& {cp **\${EXE} ${EXE}}$\""
+!system "powershell -Command $\"& {cp **\${PUDCONVERT} ${PUDCONVERT}}$\""
+
 !define CDDA2WAV "cdda2wav.exe"
 !define FFMPEG2THEORA "ffmpeg2theora.exe"
 !define SF2BANK "TimGM6mb.sf2"
@@ -89,10 +95,6 @@ ${redefine} STRATAGUS_NAME "Stratagus (64 bit)"
 !system 'powershell -Command "& {unzip -j -o ExecDos.zip Plugins/x86-unicode/ExecDos.dll}"'
 !system 'powershell -Command "& {wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -O TimGM6mb.sf2}"'
 !endif
-
-!system 'powershell -Command "& {cp **\wartool.exe wartool.exe}"'
-!system 'powershell -Command "& {cp **\wargus.exe wargus.exe}"'
-!system 'powershell -Command "& {cp **\pudconvert.exe pudconvert.exe}"'
 
 !addplugindir .
 
