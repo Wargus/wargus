@@ -44,6 +44,9 @@
 #elif defined(__FreeBSD__)
 #	include <sys/param.h>
 #	include <sys/mount.h>
+#elif defined(__APPLE__)
+#       define __dev_t dev_t
+#       define __ino_t ino_t
 #endif
 
 #include "rip_music.h"
