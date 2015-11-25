@@ -30,5 +30,10 @@
 #define GAME_NAME "Wargus"
 #define GAME_CD "Warcraft II CD"
 #define GAME "wargus"
+#ifdef WIN32
+#define TITLE_PNG "%s\\graphics\\ui\\title.png"
+#else
+#define TITLE_PNG "%s/graphics/ui/title.png"
+#endif
 
 #include <stratagus-game-launcher.h>
