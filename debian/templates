@@ -6,11 +6,22 @@ _Description: You may now either extract Warcraft II data files
  If you want to proceed with installation,
  Aleona's Tales data files will be used instead.
 
+Template: wargus/extractdataexp
+Type: boolean
+Default: false
+_Description: Do you also want to extract the expansion CD?
+
 Template: wargus/cdpath
 Type: string
 Default: /media/cdrom
 _Description: Warcraft II CD mount point:
  Enter path to your Warcraft II CD mount point
+
+Template: wargus/expcdpath
+Type: string
+Default: /media/cdrom
+_Description: Warcraft II Expansion CD mount point:
+ Enter path to your Warcraft II Expansion CD mount point
 
 Template: wargus/extractvideo
 Type: boolean

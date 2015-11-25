@@ -25,8 +25,11 @@ if [ "$1" = "configure" ] && [ -f /usr/share/games/stratagus/wargus/extracted ] 
 fi
 
 db_reset wargus/extractdata || true
+db_reset wargus/extractdataexp || false
 db_fset wargus/extractdata seen false || true
+db_fset wargus/extractdataexp seen false || true
 db_fset wargus/cdpath seen false || true
+db_fset wargus/expcdpath seen false || true
 db_fset wargus/extractvideo seen false || true
 db_fset wargus/ripcd seen false || true
 
@@ -37,6 +40,11 @@ while true; do
 	db_endblock || true
 	db_go || exit 10
 
+	db_beginblock || true
+	db_input critical wargus/extractdataexp || true
+	db_endblock || true
+	db_go || continue
+
 	db_get wargus/extractdata || true
 	if [ "$RET" = "false" ]; then
 		break
@@ -44,8 +52,12 @@ while true; do
 
 	db_beginblock || true
 	db_input critical wargus/cdpath || true
-	db_input medium wargus/extractvideo || true
-	db_input medium wargus/ripcd || true
+	db_get wargus/extractdataexp || true
+	if [ "$RET" = "true" ]; then
+		db_input critical wargus/expcdpath || true
+	fi
+	db_input critical wargus/extractvideo || true
+	db_input critical wargus/ripcd || true
 	db_endblock || true
 	db_go || continue
 
@@ -54,6 +66,15 @@ while true; do
 	for CDPATH in "$RET" "$RET/data" "$RET/DATA"; do
 		if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ] || [ -f "$CDPATH/SUPPORT/TOMES/TOME.1" ]; then
 			db_set wargus/cdpath $CDPATH || true
+			found="true"
+			break
+		fi
+	done
+
+	db_get wargus/expcdpath || true
+	for CDPATH in "$RET" "$RET/data" "$RET/DATA"; do
+		if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ] || [ -f "$CDPATH/SUPPORT/TOMES/TOME.1" ]; then
+			db_set wargus/expcdpath $CDPATH || true
 			found="true"
 			break
 		fi

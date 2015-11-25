@@ -20,6 +20,18 @@ extract() {
 	fi
 
 	CDPATH="$RET"
+
+	db_get wargus/extractdataexp || true
+	if [ "$RET" = "true" ]; then
+	    db_get wargus/expcdpath || true
+	    if ! [ -d "$RET" ]; then
+		db_stop || true
+		echo "${RET} doesn't exist - can't extract Warcraft II expansion data" >&2
+		return 1
+	    fi
+	    CDPATHEXP="$RET"
+	fi
+
 	ARGS=
 
 	db_get wargus/extractvideo || true
@@ -35,12 +47,17 @@ extract() {
 	db_stop || true
         echo $ARGS
         echo "$CDPATH"
-	wartool $ARGS "$CDPATH" /usr/share/games/stratagus/wargus
+	wartool $ARGS "$CDPATH" /usr/share/games/stratagus/wargus || return $?
+	if ! [ -z "$CDPATHEXP" ]; then
+            echo "$CDPATHEXP"
+	    wartool $ARGS "$CDPATHEXP" /usr/share/games/stratagus/wargus || return $?
+	fi
 	if [ $(dpkg-query -W -f='${Status}' musescore-soundfont-gm 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
 		cp /usr/share/sounds/sf2/TimGM6mb.sf2 /usr/share/games/stratagus/wargus/music
 	fi
-	return $?
+	db_stop || true
 
+	return $?
 }
 
 if [ "$1" = "configure" ]; then
