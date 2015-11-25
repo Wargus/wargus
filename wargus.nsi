@@ -45,7 +45,7 @@
 
 ; General variables
 !define NAME "Wargus"
-!define VERSION "2.3"
+!define VERSION "2.4"
 !define VIVERSION "${VERSION}.0.0"
 !define HOMEPAGE "https://launchpad.net/wargus"
 !define LICENSE "GPL v2"
@@ -59,6 +59,12 @@
 !define EXE "wargus.exe"
 !define WARTOOL "wartool.exe"
 !define PUDCONVERT "pudconvert.exe"
+
+; -- have to try and copy these, VS might have put them under (Release|Debug)
+!system "powershell -Command $\"& {cp **\${WARTOOL} ${WARTOOL}}$\""
+!system "powershell -Command $\"& {cp **\${EXE} ${EXE}}$\""
+!system "powershell -Command $\"& {cp **\${PUDCONVERT} ${PUDCONVERT}}$\""
+
 !define CDDA2WAV "cdda2wav.exe"
 !define FFMPEG2THEORA "ffmpeg2theora.exe"
 !define SF2BANK "TimGM6mb.sf2"
@@ -82,12 +88,10 @@ ${redefine} STRATAGUS_NAME "Stratagus (64 bit)"
 
 ; Download and extract nessesary 3rd party programs
 !ifndef NO_DOWNLOAD
-!system "wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.28.exe -O ffmpeg2theora.exe"
-!system "wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -O cdrtools.zip"
-!system "unzip -o cdrtools.zip cdda2wav.exe"
-!system "wget http://nsis.sourceforge.net/mediawiki/images/0/0f/ExecDos.zip -O ExecDos.zip"
-!system "unzip -j -o ExecDos.zip Plugins/ExecDos.dll"
-!system "wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -O TimGM6mb.sf2"
+!system 'powershell -Command "& {wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.28.exe -O ffmpeg2theora.exe}"'
+!system 'powershell -Command "& {wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -O cdrtools.zip}"'
+!system 'powershell -Command "& {unzip -o cdrtools.zip cdda2wav.exe}"'
+!system 'powershell -Command "& {wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -O TimGM6mb.sf2}"'
 !endif
 
 !addplugindir .
@@ -96,7 +100,9 @@ ${redefine} STRATAGUS_NAME "Stratagus (64 bit)"
 
 Var STARTMENUDIR
 Var DATADIR
+Var DATADIR2
 Var EXTRACTNEEDED
+Var EXTRACTNEEDED2
 
 Var OptDataset
 Var OptMusic
@@ -131,8 +137,17 @@ Var DataDirectory
 !define MUI_DIRECTORYPAGE_VARIABLE $DATADIR
 !define MUI_DIRECTORYPAGE_VERIFYONLEAVE
 !define MUI_PAGE_CUSTOMFUNCTION_PRE PageExtractDataPre
-!define MUI_PAGE_CUSTOMFUNCTION_SHOW PageExtractDataShow
 !define MUI_PAGE_CUSTOMFUNCTION_LEAVE PageExtractDataLeave
+!insertmacro MUI_PAGE_DIRECTORY
+
+!define MUI_PAGE_HEADER_TEXT "$(EXTRACTDATA_PAGE_HEADER_TEXT2)"
+!define MUI_PAGE_HEADER_SUBTEXT "$(EXTRACTDATA_PAGE_HEADER_SUBTEXT2)"
+!define MUI_DIRECTORYPAGE_TEXT_TOP "$(EXTRACTDATA_PAGE_TEXT_TOP2)"
+!define MUI_DIRECTORYPAGE_TEXT_DESTINATION "$(EXTRACTDATA_PAGE_TEXT_DESTINATION2)"
+!define MUI_DIRECTORYPAGE_VARIABLE $DATADIR2
+!define MUI_DIRECTORYPAGE_VERIFYONLEAVE
+!define MUI_PAGE_CUSTOMFUNCTION_PRE PageExtractDataPre
+!define MUI_PAGE_CUSTOMFUNCTION_LEAVE PageExtractDataLeave2
 !insertmacro MUI_PAGE_DIRECTORY
 
 !insertmacro MUI_PAGE_STARTMENU Application $STARTMENUDIR
@@ -176,6 +191,7 @@ LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_RUSSIAN} "Конвертируется музыка Warc
 
 LangString EXTRACTDATA_FILES_FAILED ${LANG_ENGLISH} "Extracting Warcraft II data files failed."
 LangString EXTRACTDATA_FILES_FAILED ${LANG_RUSSIAN} "Не удалось извлечь файлы Warcraft II."
+LangString EXTRACTDATA_FILES_FAILED2 ${LANG_ENGLISH} "Extracting Warcraft II Expansion data files failed. The game will still be playable without expansion, so not aborting."
 LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_ENGLISH} "Ripping Warcraft II audio tracks failed."
 LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_RUSSIAN} "Не удалось скопировать CD-музыку Warcraft II."
 LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_ENGLISH} "Coping Warcraft II audio tracks failed."
@@ -193,6 +209,16 @@ LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_ENGLISH} "Source Folder"
 LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_RUSSIAN} "Папка с файлами Warcraft II"
 LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory."
 LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_RUSSIAN} "Программа установки не обнаружила Warcraft II в указанной папке."
+
+LangString EXTRACTDATA_PAGE_HEADER_TEXT2 ${LANG_ENGLISH} "Choose Warcraft II Expansion Location (optional)"
+LangString EXTRACTDATA_PAGE_HEADER_TEXT2 ${LANG_RUSSIAN} "Укажите местоположение Warcraft II Expansion"
+LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT2 ${LANG_ENGLISH} "Choose the folder in which are Warcraft II Expansion data files (optional)."
+LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT2 ${LANG_RUSSIAN} "Укажите папку, в которой содержатся файлы Warcraft II Expansion."
+LangString EXTRACTDATA_PAGE_TEXT_TOP2 ${LANG_ENGLISH} "Setup will extract Warcraft II Expansion data files from the following folder. You can specify location of CD or install location of Warcraft II data files (doesn't work for Battle.net edition)."
+LangString EXTRACTDATA_PAGE_TEXT_TOP2 ${LANG_RUSSIAN} "Программа установки извлечет файлы Warcraft II Expansion   из указанной папки. Вы можете указать либо CD-диск с игрой, либо указать папку с установленным Warcraft II (не подходит для версии Battle.net)."
+LangString EXTRACTDATA_PAGE_TEXT_DESTINATION2 ${LANG_ENGLISH} "Source Folder"
+LangString EXTRACTDATA_PAGE_TEXT_DESTINATION2 ${LANG_RUSSIAN} "Папка с файлами Warcraft II Expansion"
+LangString EXTRACTDATA_PAGE_NOT_VALID2 ${LANG_ENGLISH} "This is not valid Warcraft II Expansion data directory. Skipping Expansion extraction."
 
 LangString STR_VERSION ${LANG_ENGLISH} "version"
 LangString STR_VERSION ${LANG_RUSSIAN} "версия"
@@ -278,6 +304,8 @@ Section "-${NAME}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
 
+	File "/oname=music\${SF2BANK}" "${SF2BANK}"
+
 	ClearErrors
 
 	!cd ${CMAKE_CURRENT_SOURCE_DIR}
@@ -304,7 +332,6 @@ optwar2:
 	CreateDirectory "$INSTDIR\graphics\ui\cursors"
 	CreateDirectory "$INSTDIR\graphics\missiles"
 	
-	File "/oname=music\${SF2BANK}" "${SF2BANK}"
 	File "/oname=graphics\ui\cursors\cross.png" "contrib\cross.png"
 	File "/oname=graphics\missiles\red_cross.png" "contrib\red_cross.png"
 	File "/oname=graphics\ui\mana.png" "contrib\mana.png"
@@ -345,30 +372,10 @@ SectionEnd
 ;--------------------------------
 
 Function PageExtractDataPre
-
-    ; Checks if Wargus has been already extracted and skips the extraction stage
+    ; Skips the extraction stage if not needed
 	StrCmp $OptDataset  ${opt1AT} noextract
 	File "/oname=$TEMP\${WARTOOL}" "${WARTOOL}"
-
-	ClearErrors
-	FileOpen $0 "$INSTDIR\extracted" "r"
-	IfErrors extract
-
-	FileRead $0 $1
-	FileClose $0
-
-	ExecDos::exec /TOSTACK "$\"$TEMP\${WARTOOL}$\" -V"
-	Pop $0
-	Pop $2
-	Delete "$TEMP\${WARTOOL}"
-
-	IntCmp $0 0 0 0 extract
-
-	StrCmp $1 $2 noextract
-
-	StrCpy $2 "$2$\r$\n"
-	StrCmp $1 $2 0 extract
-
+	Goto extract
 
 noextract:
 
@@ -381,16 +388,6 @@ extract:
 
 FunctionEnd
 
-Function PageExtractDataShow
-
-	FindWindow $0 "#32770" "" $HWNDPARENT
-	GetDlgItem $1 $0 1023
-	ShowWindow $1 0
-	GetDlgItem $1 $0 1024
-	ShowWindow $1 0
-
-FunctionEnd
-
 Function PageExtractDataLeave
 
 	IfFileExists "$DATADIR\data\rezdat.war" +4
@@ -399,6 +396,14 @@ Function PageExtractDataLeave
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_PAGE_NOT_VALID)"
 	Abort
 
+FunctionEnd
+
+Function PageExtractDataLeave2
+    StrCpy $EXTRACTNEEDED2 "yes"
+	IfFileExists "$DATADIR2\data\rezdat.war" +4
+	IfFileExists "$DATADIR2\SUPPORT\TOMES\TOME.1" +3
+	MessageBox MB_OK|MB_ICONINFORMATION "$(EXTRACTDATA_PAGE_NOT_VALID2)"
+	StrCpy $EXTRACTNEEDED2 "no"
 FunctionEnd
 
 Var KeyStr
@@ -417,13 +422,23 @@ Section "-${NAME}" ExtractData
 	DetailPrint "$DataDirectory"
 	StrCmp $OptMusic "${opt2CD}" 0 +2
 	StrCpy $KeyStr "$KeyStr -r"
-	ExecDos::exec /DETAILED "$\"$INSTDIR\${WARTOOL}$\" $KeyStr -v $\"$DataDirectory$\" $\"$INSTDIR$\""
+	ExecWait "$\"$INSTDIR\${WARTOOL}$\" $KeyStr -v $\"$DataDirectory$\" $\"$INSTDIR$\""
 	Pop $0
 	IntCmp $0 0 +3
 
 	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_FILES_FAILED)"
 	Abort
 
+	StrCmp "$EXTRACTNEEDED2" "no" end
+	StrCpy $DataDirectory "$DATADIR2"
+	IfFileExists "$DATADIR2\SUPPORT\TOMES\TOME.1" +2
+	StrCpy $DataDirectory "$\"$DATADIR2\data$\""
+	DetailPrint "$DataDirectory"
+	ExecWait "$\"$INSTDIR\${WARTOOL}$\" $KeyStr -v $\"$DataDirectory$\" $\"$INSTDIR$\""
+	Pop $0
+	IntCmp $0 0 +3
+	MessageBox MB_OK|MB_ICONSTOP "$(EXTRACTDATA_FILES_FAILED2)"
+	Abort
 end:
 
 SectionEnd
@@ -563,8 +578,6 @@ ${redefine} UPX_FLAGS "${UPX_FLAGS} -q"
 !delfile "ffmpeg2theora.exe"
 !delfile "cdda2wav.exe"
 !delfile "cdrtools.zip"
-!delfile "ExecDos.dll"
-!delfile "ExecDos.zip"
 !delfile "TimGM6mb.sf2"
 !endif
 
