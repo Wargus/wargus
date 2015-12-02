@@ -1,3 +1,10 @@
+wargus (2.3.9-1) unstable; urgency=low
+
+  * Compatability with upcoming Stratagus 2.4
+  * Updates to Timeless Tales and Frontier Force
+
+ -- Tim Felgentreff <timfelgentreff@gmail.com>  Wed, 2 Dec 2015 11:28:27 +0100
+
 wargus (2.3.0-1) unstable; urgency=low
 
   * Game
