@@ -1,11 +1,10 @@
-environment:
-  VisualStudioVersion: 12.0
 before_build:
   - mkdir build
   - cd build
-  - appveyor DownloadFile http://stratagus.sourceforge.net/msvc-libs.zip
+  - appveyor DownloadFile https://github.com/Wargus/stratagus/releases/download/2015-30-11/dependencies.zip
+  - 7z x dependencies.zip
   - appveyor DownloadFile https://github.com/Wargus/stratagus/archive/master.zip
   - 7z x master.zip
-  - 7z x msvc-libs.zip
-  - cmake -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -G "Visual Studio 12 2013" -DCMAKE_PREFIX_PATH="%cd%\\3rd" ..
+  - choco install nsis -pre
+  - cmake -G "Visual Studio 14 2015" -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON ..
   - cd ..
