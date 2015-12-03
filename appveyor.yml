@@ -8,3 +8,16 @@ before_build:
   - choco install nsis -pre
   - cmake -G "Visual Studio 14 2015" -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON ..
   - cd ..
+artifacts:
+  - path: build\Wargus-*.exe
+deploy:
+  release: master-builds
+  description: 'Automatic builds from the master branch'
+  provider: GitHub
+  auth_token:
+    secure: NMy2KE3EpZTjverxNzEAoBnlV+7VLGvwy3e1WEIrliFy3R1oxuT+AgGUDcRwv9y/
+  artifact: /.*exe/
+  draft: false
+  prerelease: true
+  on:
+    branch: master
