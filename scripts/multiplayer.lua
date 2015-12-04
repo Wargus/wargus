@@ -37,14 +37,18 @@ else
 
    if (nickname) then SetLocalPlayerName(nickname) end
 
+   NoRandomPlacementMultiplayer = 1
+
    if (isServer) then
       if (not (mapfile and numplayers)) then
 	 print ("ERROR: Server must at least pass map and number of players\n")
 	 usage()
 	 return
       end
-      
+
       CustomStartup = function()
+	 InitGameSettings()
+	 InitNetwork1()
 	 local OldPresentMap = PresentMap
 	 PresentMap = function(desc, nplayers, w, h, id)
 	    description = desc
@@ -72,6 +76,8 @@ else
 	 return
       end
       CustomStartup = function()
+	 InitGameSettings()
+	 InitNetwork1()
 	 NetworkSetupServerAddress(ip)
 	 NetworkInitClientConnect()
 	 RunJoiningGameMenu(race, true)

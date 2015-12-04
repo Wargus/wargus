@@ -149,9 +149,9 @@ function RunJoiningMapMenu(optRace, optReady)
     end)
   race:setSize(190, 20)
   if (optRace == "orc" or optRace == "Orc") then
-     dd:setSelected(1)
+     race:setSelected(1)
   else if (optRace == "human" or optRace == "Human") then
-     dd:setSelected(2)
+     race:setSelected(2)
   end end
 
   menu:writeText(_("Units:"), sx, sy*11+25)
@@ -233,8 +233,8 @@ function RunJoiningMapMenu(optRace, optReady)
   menu:addLogicCallback(listener)
 
   if (optReady) then
+     LocalSetupState.Ready[NetLocalHostsSlot] = bool2int(true)
      readycheckbox:setMarked(true)
-     readycb()
   end
   
   menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
@@ -487,7 +487,8 @@ function RunServerMultiGameMenu(map, description, numplayers, optRace, optAutost
     startgame:setVisible(ready)
     waitingtext:setVisible(not ready)
     if (optAutostartNum and optAutostartNum >= numplayers and ready) then
-       startFunc(0)
+       NetworkServerResyncClients()
+       startFunc()
     end
   end
 
