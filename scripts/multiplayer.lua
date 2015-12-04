@@ -30,7 +30,7 @@ else
       return
    end
    local ip = string.match(ARGS,"ip=([^,]+)")
-   local racename = string.match(ARGS,"race=([^,]+)")
+   local racename = string.match(ARGS,"race=([^,]+)") or "default"
    local mapfile = string.match(ARGS,"map=([^,]+)")
    local nickname = string.match(ARGS,"player=([^,]+)")
    local numplayers = tonumber(string.match(ARGS,"numplayers=([^,]+)"))
@@ -49,6 +49,7 @@ else
       CustomStartup = function()
 	 InitGameSettings()
 	 InitNetwork1()
+     local playerCount = 0
 	 local OldPresentMap = PresentMap
 	 PresentMap = function(desc, nplayers, w, h, id)
 	    description = desc
@@ -67,6 +68,10 @@ else
 	    oldDefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
 	 end   
 	 Load(mapfile)
+     if (playerCount == 0) then
+       print("ERROR: could not open map " .. mapfile)
+       return
+     end
 	 RunServerMultiGameMenu(mapfile, description, playerCount, racename, numplayers)
       end
    else

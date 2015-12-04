@@ -483,12 +483,30 @@ function RunServerMultiGameMenu(map, description, numplayers, optRace, optAutost
   local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11,  sy*14, startFunc)
   startgame:setVisible(false)
   local waitingtext = menu:writeText(_("Waiting for players"), sx*11, sy*14)
+  local startIn = -1
   local function updateStartButton(ready)
-    startgame:setVisible(ready)
-    waitingtext:setVisible(not ready)
-    if (optAutostartNum and optAutostartNum >= numplayers and ready) then
-       NetworkServerResyncClients()
-       startFunc()
+    local readyplayers = 1
+    for i=2,8 do
+      if ServerSetupState.Ready[i-1] == 1 then
+        readyplayers = readyplayers + 1
+      end
+    end
+    if (optAutostartNum) then
+      if (optAutostartNum <= readyplayers) then
+        if (startIn < 0) then
+          startIn = 100
+        else
+          startIn = startIn - 1
+          if (startIn == 0) then
+            startFunc()
+          end
+        end
+        waitingtext:setCaption("Starting in " .. startIn / 2)
+        print("Starting in " .. startIn / 2)
+      end
+    else
+      startgame:setVisible(ready)
+      waitingtext:setVisible(not ready)
     end
   end
 
