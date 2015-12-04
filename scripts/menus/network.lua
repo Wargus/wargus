@@ -113,7 +113,7 @@ function addPlayersList(menu, numplayers)
 end
 
 
-function RunJoiningMapMenu(s)
+function RunJoiningMapMenu(optRace, optReady)
   local menu
   local listener
   local sx = Video.Width / 20
@@ -148,6 +148,11 @@ function RunJoiningMapMenu(s)
       LocalSetupState.Race[NetLocalHostsSlot] = race:getSelected()
     end)
   race:setSize(190, 20)
+  if (optRace == "orc" or optRace == "Orc") then
+     dd:setSelected(1)
+  else if (optRace == "human" or optRace == "Human") then
+     dd:setSelected(2)
+  end end
 
   menu:writeText(_("Units:"), sx, sy*11+25)
   local units = menu:addDropDown({_("Map Default"), _("One Peasant Only")}, sx + 100, sy*11+25,
@@ -187,7 +192,7 @@ function RunJoiningMapMenu(s)
   local function readycb(dd)
     LocalSetupState.Ready[NetLocalHostsSlot] = bool2int(dd:isMarked())
   end
-  menu:addImageCheckBox(_("~!Ready"), sx*11, sy*14, offi, offi2, oni, oni2, readycb)
+  local readycheckbox = menu:addImageCheckBox(_("~!Ready"), sx*11, sy*14, offi, offi2, oni, oni2, readycb)
 
   local updatePlayersList = addPlayersList(menu, numplayers)
 
@@ -227,17 +232,27 @@ function RunJoiningMapMenu(s)
   listener = LuaActionListener(listen)
   menu:addLogicCallback(listener)
 
+  if (optReady) then
+     readycheckbox:setMarked(true)
+     readycb()
+  end
+  
   menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
     function() NetworkDetachFromServer(); menu:stop() end)
 
   menu:run()
 end
 
-function RunJoiningGameMenu(s)
-  local menu = WarMenu(nil, panel(4), false)
-  menu:setSize(288, 128)
-  menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
-  menu:setDrawMenusUnder(true)
+function RunJoiningGameMenu(optRace, optReady)
+  local menu = nil
+  if (optRace and optReady) then
+     menu = WarMenu(_("Joining Game"))
+  else
+     menu = WarMenu(nil, panel(4), false)
+     menu:setSize(288, 128)
+     menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
+     menu:setDrawMenusUnder(true)
+  end
 
   menu:addLabel(_("Connecting to server"), 144, 11)
 
@@ -257,7 +272,7 @@ function RunJoiningGameMenu(s)
     -- FIXME: do not use numbers
     if (state == 3) then -- ccs_mapinfo
       -- got ICMMap => load map
-      RunJoiningMapMenu()
+      RunJoiningMapMenu(optRace, optReady)
       menu:stop(0)
     elseif (state == 4) then -- ccs_badmap
       ErrorMenu(_("Map not available"))
@@ -384,7 +399,7 @@ function RunAddServerMenu()
   menu:run()
 end
 
-local function RunServerMultiGameMenu(map, description, numplayers)
+function RunServerMultiGameMenu(map, description, numplayers, optRace, optAutostartNum)
   local menu
   local sx = Video.Width / 20
   local sy = Video.Height / 20
@@ -424,6 +439,11 @@ local function RunServerMultiGameMenu(map, description, numplayers)
       NetworkServerResyncClients()
     end)
   dd:setSize(190, 20)
+  if (optRace == "orc" or optRace == "Orc") then
+     dd:setSelected(1)
+  else if (optRace == "human" or optRace == "Human") then
+     dd:setSelected(2)
+  end end
 
   menu:writeText(_("Units:"), sx, sy*11+25)
   dd = menu:addDropDown({_("Map Default"), _("One Peasant Only")}, sx + 100, sy*11+25,
@@ -450,23 +470,25 @@ local function RunServerMultiGameMenu(map, description, numplayers)
   ServerSetupState.FogOfWar = 1
   ServerSetupState.Opponents = 15
   GameSettings.Opponents = 15
-  local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11,  sy*14,
-    function(s)
-      SetFogOfWar(fow:isMarked())
-      if revealmap:isMarked() == true then
-        RevealMap()
-      end
-      NetworkServerStartGame()
-      NetworkGamePrepareGameSettings()
-      RunMap(map)
-      menu:stop()
-    end
-  )
+  local function startFunc(s)
+	SetFogOfWar(fow:isMarked())
+	if revealmap:isMarked() == true then
+	   RevealMap()
+	end
+	NetworkServerStartGame()
+	NetworkGamePrepareGameSettings()
+	RunMap(map)
+	menu:stop()
+  end
+  local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11,  sy*14, startFunc)
   startgame:setVisible(false)
   local waitingtext = menu:writeText(_("Waiting for players"), sx*11, sy*14)
   local function updateStartButton(ready)
     startgame:setVisible(ready)
     waitingtext:setVisible(not ready)
+    if (optAutostartNum and optAutostartNum >= numplayers and ready) then
+       startFunc(0)
+    end
   end
 
   local listener = LuaActionListener(function(s) updateStartButton(updatePlayers()) end)
