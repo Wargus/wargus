@@ -1,3 +1,8 @@
+2.4.0
+ - Compatability with Stratagus 2.4
+ - Updates to Timeless Tales and Frontier Force
+ - Move to Github
+
 2.2.7
  - Fixed bugs
    - Link wargus executable directly with X11 library - bug #908789

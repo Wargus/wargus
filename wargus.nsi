@@ -47,11 +47,11 @@
 !define NAME "Wargus"
 !define VERSION "2.4"
 !define VIVERSION "${VERSION}.0.0"
-!define HOMEPAGE "https://launchpad.net/wargus"
+!define HOMEPAGE "https://github.com/Wargus/wargus"
 !define LICENSE "GPL v2"
-!define COPYRIGHT "Copyright (c) 1998-2014 by The Stratagus Project"
+!define COPYRIGHT "Copyright (c) 1998-2015 by The Stratagus Project"
 !define STRATAGUS_NAME "Stratagus"
-!define STRATAGUS_HOMEPAGE "https://launchpad.net/stratagus"
+!define STRATAGUS_HOMEPAGE "https://github.com/Wargus/stratagus"
 
 ;--------------------------------
 

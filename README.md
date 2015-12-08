@@ -12,12 +12,9 @@ Wargus can be used to play Warcraft II from Blizzard Entertainment.
 
 You need the original Warcraft II CD to extract the game data files.
 
-Wargus is developed together for Windows, Linux and Linux Maemo based
-devices (Nokia N900).
+Wargus is developed together for Windows, Linux and Mac OS X.
 
-Homepage: https://launchpad.net/wargus
-Source Code: https://code.launchpad.net/wargus
-Bugtracker: https://bugs.launchpad.net/wargus
+Homepage: https://github.com/Wargus/wargus
 
 ============================================================================
 Changelog
@@ -30,7 +27,7 @@ Build depends
 ============================================================================
 
 Stratagus
-	- https://launchpad.net/stratagus
+	- https://github.com/Wargus/stratagus
 	- Wargus and Stratagus version must match
 	- Use same version or from bzr branches with the same date
 
@@ -40,9 +37,6 @@ CMake
 Gtk+
 	- http://www.gtk.org/
 	- Not needed for Windows
-
-Hildon
-	- Only needed for Maemo from Maemo SDK
 
 ffmpeg2theora
 	- http://v2v.cc/~j/ffmpeg2theora/
@@ -59,13 +53,16 @@ cdda2wav
 Original Warcraft II DOS CD
 	- The Battle.Net CD is NOT supported, you must use the DOS version
 	- Either the Expansion or Original CD can be used
-	- Do not extract from both. Extract from one CD only
 
 ============================================================================
 Installation Instructions
 ============================================================================
 
-On Debian, Ubuntu, Maemo and other Debian-like systems use deb packages:
+For straight source builds on supported systems, you can always study
+.travis.yml or (for Windows) appveyor.yml, which are used by the automatic
+build system to build each commit.
+
+On Debian, Ubuntu, and other Debian-like systems use deb packages:
 
 	1. create deb package:
 		dpkg-buildpackage -b -rfakeroot
@@ -75,8 +72,7 @@ On Debian, Ubuntu, Maemo and other Debian-like systems use deb packages:
 
 On other systems:
 
-	1. first download, build and install Stratagus (with game headers) from:
-		https://launchpad.net/stratagus
+	1. first download, build, and install Stratagus (with game headers)
 
 	2. generate Makefile in build dir with cmake:
 		rm -rf build && mkdir build && cd build && cmake ..
@@ -93,5 +89,5 @@ On other systems:
 	6. start wargus:
 		wargus
 
-On Windows you can replace steps 4-6 by renerating Windows NSIS Installer which
+On Windows you can replace steps 4-6 by generating Windows NSIS Installer which
 create classic Windows setup executable. Enable by cmake param -DENABLE_NSIS

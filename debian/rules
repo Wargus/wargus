@@ -28,7 +28,6 @@
 #
 
 VERSION := $(shell dpkg-parsechangelog | sed -ne "s/^Version: \(.*\)/\1/p" | sed "s/-[^-]*$$//" )
-MAEMO := $(shell if pkg-config maemo-version 1>/dev/null 2>&1 || test -f "/etc/maemo_version" || osso-product-info -q OSSO_PRODUCT_INFO_RELEASE_NAME 2>/dev/null | grep -q -i maemo; then echo YES; fi)
 
 %:
 	dh $@
@@ -44,51 +43,3 @@ override_dh_install:
 override_dh_shlibdeps:
 	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info
 	echo "stratagus:Depends=stratagus (>= $(VERSION))" >> debian/wargus.substvars
-
-ifdef MAEMO
-
-override_dh_fixperms:
-	mkdir -p debian/wargus/usr/share/applications/hildon
-	mkdir -p debian/wargus/opt/stratagus/bin
-	mkdir -p debian/wargus/opt/stratagus/share/doc
-	mkdir -p debian/wargus/opt/man/man6
-	mv debian/wargus/usr/share/applications/wargus.desktop debian/wargus/usr/share/applications/hildon/wargus.desktop
-	mv debian/wargus/usr/bin/* debian/wargus/opt/stratagus/bin/
-	mv debian/wargus/usr/games/* debian/wargus/opt/stratagus/bin/
-	mv debian/wargus/usr/share/doc/wargus debian/wargus/opt/stratagus/share/doc/
-	mv debian/wargus/usr/share/games/stratagus/wargus debian/wargus/opt/stratagus/share/
-	mv debian/wargus/usr/share/man/man6/* debian/wargus/opt/man/man6/
-	ln -s /opt/stratagus/bin/warextract debian/wargus/usr/bin/warextract
-	ln -s /opt/stratagus/bin/wargus debian/wargus/usr/games/wargus
-	ln -s /opt/stratagus/bin/wartool debian/wargus/usr/bin/wartool
-	ln -s /opt/stratagus/bin/pudconvert debian/wargus/usr/bin/pudconvert
-	ln -s /opt/stratagus/share/wargus debian/wargus/usr/share/games/stratagus/wargus
-	ln -s /opt/stratagus/share/doc/wargus debian/wargus/usr/share/doc/wargus
-	ln -s /opt/man/man6/wargus.6.gz debian/wargus/usr/share/man/man6/wargus.6.gz
-	ln -s /opt/man/man6/wartool.6.gz debian/wargus/usr/share/man/man6/wartool.6.gz
-	ln -s /opt/man/man6/pudconvert.6.gz debian/wargus/usr/share/man/man6/pudconvert.6.gz
-	echo "X-Osso-Type=application/x-executable" >> debian/wargus/usr/share/applications/hildon/wargus.desktop
-	sed "s/Exec=.*/Exec=\/opt\/stratagus\/bin\/wargus/" -i debian/wargus/usr/share/applications/hildon/wargus.desktop
-	sed "s/Name=.*/Name=Wargus/" -i debian/wargus/usr/share/applications/hildon/wargus.desktop
-	dh_fixperms
-
-override_dh_gencontrol:
-	dh_gencontrol
-	cp debian/wargus/DEBIAN/control debian/wargus/DEBIAN/control.orig
-	sed -n -e "1,/^Pre-Depends:.*$$/p" -i debian/wargus/DEBIAN/control
-	sed "/Pre-Depends:/s/cdparanoia, //" -i debian/wargus/DEBIAN/control
-	echo "Bugtracker: https://bugs.launchpad.net/wargus" >> debian/wargus/DEBIAN/control
-	echo "Maemo-Display-Name: Wargus - Warcraft II" >> debian/wargus/DEBIAN/control
-	echo "Maemo-Icon-26:" >> debian/wargus/DEBIAN/control
-	for line in $(shell convert wargus.png -resize 48x48 png:- | uuencode -m - | tail -n +2 | head -n -1); do \
-		echo " $$line" >> debian/wargus/DEBIAN/control; \
-	done
-	sed "/^# Source debconf library$$/d;/^. \/usr\/share\/debconf\/confmodule$$/d" -i debian/wargus/DEBIAN/postinst
-	bash -c 'sed -n -e "1,/^extract() {$$/p;/^}$$/,\$$p;/extract()/a\\`echo -e "\n\t"`cd /opt/stratagus/share/wargus\\`echo -e "\n\t"`run-standalone.sh /opt/stratagus/bin/warextract\\`echo -e "\n\t"`return $$\?" -i debian/wargus/DEBIAN/postinst'
-	sed -n -e "/^Pre-Depends:.*$$/,\$$p" debian/wargus/DEBIAN/control.orig | tail -n +2 >> debian/wargus/DEBIAN/control
-	sed "s/Section: .*/Section: user\/games/" -i debian/wargus/DEBIAN/control
-	rm -f debian/wargus/DEBIAN/config debian/wargus/DEBIAN/templates debian/wargus/DEBIAN/control.orig
-
-override_dh_installdebconf:
-
-endif

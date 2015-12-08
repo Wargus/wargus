@@ -35,11 +35,11 @@
 --  General
 ----------------------------------------------------------------------------*/
 
-#define VERSION "1.3" // Version of extractor wartool
+#define VERSION "2.4" // Version of extractor wartool
 
 const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2015 by The Stratagus Project.\n"\
 "  Written by Lutz Sammer, Nehal Mistry, Jimmy Salmon, Pali Rohar and cybermind.\n"\
-"  https://launchpad.net/wargus";
+"  https://github.com/Wargus/wargus";
 
 /*----------------------------------------------------------------------------
 --  Includes
