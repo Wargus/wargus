@@ -1,45 +1,28 @@
 Template: wargus/extractdata
-Type: boolean
-Default: true
-_Description: You may now either extract Warcraft II data files
- (from install CD or local copy (not applicable for BNE CD),
- If you want to proceed with installation,
- Aleona's Tales data files will be used instead.
-
-Template: wargus/extractdataexp
-Type: boolean
-Default: false
-_Description: Do you also want to extract the expansion CD?
+Type: multiselect
+Choices: extract Warcraft II basic data, extract Warcraft II background music, extract Warcraft II videos, extract Warcraft II basic data + Beyond the Dark Portal data, extract Warcraft II additional sound tracks (original CD-ROM only)
+Default: extract Warcraft II basic data
+Description: 
+ You need to own original Warcraft II data either on a harddisk or a CD-ROM in order for Wargus to use it. Otherwise, Wargus will use the builtin Aleona's Tales dataset. Processing of some of the following options may take a couple of minutes.
 
 Template: wargus/cdpath
 Type: string
 Default: /media/cdrom
-_Description: Warcraft II CD mount point:
- Enter path to your Warcraft II CD mount point
+Description: 
+ Path to Warcraft II data: 
 
 Template: wargus/expcdpath
 Type: string
 Default: /media/cdrom
-_Description: Warcraft II Expansion CD mount point:
- Enter path to your Warcraft II Expansion CD mount point
+Description: 
+ Path to Warcraft II Beyond the Dark Portal data: 
 
-Template: wargus/extractvideo
-Type: boolean
-Default: true
-_Description: Extract and convert videos?
- Warcraft II CD contains also videos. But extracting and
- converting may take a couple of minutes.
-
-Template: wargus/ripcd
-Type: boolean
-Default: true
-_Description: Rip sound tracks from CD-ROM (or just copy them for BNE version)?
- Original Warcraft II CD contains additional audio CD tracks.
- Ripping audio CD may take a couple of minutes and work only with
- original Warcraft CD, so no any CD image emulation.
-
-Template: wargus/nodata
+Template: wargus/nodataBasic
 Type: error
-_Description: Data files not found
- Warcraft II CD was not found in specified path. Specify another
- path which contains correct Warcraft II data files.
+Description: 
+ Couldn't find Warcraft II data on the specified path. Try again.
+
+Template: wargus/nodataExtensionPack
+Type: error
+Description: 
+ Couldn't find Warcraft II Beyond the Dark Portal data on the specified path. Try again.
