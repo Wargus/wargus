@@ -197,6 +197,7 @@ if(WITH_STORMLIB AND STORMLIB_FOUND)
 	  find_library(LIBSTDCXX NAMES stdc++)
 	  add_compile_options(-stdlib=libstdc++)
 	  set(wartool_LIBS ${wartool_LIBS} ${LIBSTDCXX})
+	  set(CMAKE_EXE_LINKER_FLAGS "/usr/local/lib/libtomcrypt.a" "${CMAKE_EXE_LINKER_FLAGS}")
 	endif()
 endif()
 

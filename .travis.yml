@@ -16,6 +16,7 @@ before_script:
   - git clone https://github.com/ladislav-zezula/StormLib.git
   - cd StormLib
   - if [ $TRAVIS_OS_NAME == linux ]; then make -f Makefile.linux; export STORMLIB="$PWD/libStorm.a"; fi
+  - if [ $TRAVIS_OS_NAME == osx ]; then brew install libtomcrypt; fi
   - if [ $TRAVIS_OS_NAME == osx ]; then make -f Makefile.mac; export STORMLIB="$PWD/StormLib.a"; fi
   - find . -name "*.o" | xargs ar rcs "$PWD/StormLib.a"
   - cd ..
