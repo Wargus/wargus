@@ -193,6 +193,11 @@ if(WITH_STORMLIB AND STORMLIB_FOUND)
 	add_definitions(-DUSE_STORMLIB ${STORMLIB_DEFINITIONS})
 	include_directories(${STORMLIB_INCLUDE_DIR})
 	set(wartool_LIBS ${wartool_LIBS} ${STORMLIB_LIBRARY} ${BZIP2_LIBRARIES})
+	if(APPLE)
+	  find_library(LIBSTDCXX NAMES stdc++)
+	  add_compile_options(-stdlib=libstdc++)
+	  set(wartool_LIBS ${wartool_LIBS} ${LIBSTDCXX})
+	endif()
 endif()
 
 # Compile Wargus
