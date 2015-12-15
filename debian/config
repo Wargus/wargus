@@ -17,7 +17,7 @@ if [ "$1" = "configure" ] && [ -f /usr/share/games/stratagus/wargus/extracted ] 
 	NEW_VERSION="$(wartool -V 2>/dev/null)"
 
 	if [ "$HAS_VERSION" = "$NEW_VERSION" ]; then
-		db_set wargus/extractdata "false" || true
+		db_set wargus/extractdata '' || true
 		db_stop || true
 		exit 0
 	fi
@@ -28,29 +28,23 @@ db_reset wargus/extractdata || true
 db_fset wargus/extractdata seen false || true
 db_fset wargus/cdpath seen false || true
 db_fset wargus/expcdpath seen false || true
-db_fset wargus/music seen false || true
-db_fset wargus/videos seen false || true
-db_fset wargus/tracks seen false || true
+db_fset wargus/wartoolOptions seen false || true
 
 while true; do
+
 	db_beginblock || true
 	db_input critical wargus/extractdata || true
 	db_endblock || true
 	db_go || exit 10
 
 	db_get wargus/extractdata || true
-
 	if [ "X$RET" = "X" ]; then break; fi # none selected, we just skip everything
-	foundBasic="false"
-	foundExtensionPack="true"
-	echo "$RET" | grep Portal && { EXTRACT_EXTPACK=1; foundExtensionPack="false"; }
-	echo "$RET" | grep music &&  { MUSIC=1; }
-	echo "$RET" | grep videos && { VIDEOS=1; }
-	echo "$RET" | grep tracks && { TRACKS=1; }
+	wartoolOptions=''
+	echo "$RET" | grep -q Portal && { wartoolOptions="$wartoolOptions exppack"; foundExpansionPack="false"; }  || { foundExpansionPack="true"; }
+	echo "$RET" | grep -q videos && { wartoolOptions="$wartoolOptions videos"; }
+	echo "$RET" | grep -q tracks && { wartoolOptions="$wartoolOptions tracks"; }
 
-	if [ "X$MUSIC" = "X1" ]; then db_set wargus/music 1 || true; fi
-	if [ "X$VIDEOS" = "X1" ]; then db_set wargus/videos 1 || true; fi
-	if [ "X$TRACKS" = "X1" ]; then db_set wargus/tracks 1 || true; fi
+	db_set wargus/wartoolOptions "$wartoolOptions" || true
 
 	db_beginblock || true
 	db_input critical wargus/cdpath || true
@@ -58,12 +52,11 @@ while true; do
 	db_go || continue
 
 	db_beginblock || true
-	if [ "X$EXTRACT_EXTPACK" = "X1" ]; then
-		db_input critical wargus/expcdpath || true
-	fi
+	echo $wartoolOptions | grep -q exppack && { db_input critical wargus/expcdpath || true; }
 	db_endblock || true
 	db_go || continue
 
+	foundBasic="false"
 	db_get wargus/cdpath || true
 	for CDPATH in "$RET" "$RET/data" "$RET/DATA"; do
 		if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ] || [ -f "$CDPATH/SUPPORT/TOMES/TOME.1" ]; then
@@ -77,12 +70,12 @@ while true; do
 	for CDPATH in "$RET" "$RET/data" "$RET/DATA"; do
 		if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ] || [ -f "$CDPATH/SUPPORT/TOMES/TOME.1" ]; then
 			db_set wargus/expcdpath $CDPATH || true
-			foundExtensionPack="true"
+			foundExpansionPack="true"
 			break
 		fi
 	done
 
-	if [ "X$foundBasic" = "Xtrue" ] && [ "X$foundExtensionPack" = "Xtrue" ]; then
+	if [ "X$foundBasic" = "Xtrue" ] && [ "X$foundExpansionPack" = "Xtrue" ]; then
 		break
 	fi
 
@@ -90,8 +83,8 @@ while true; do
 	if [ "X$foundBasic" = "Xfalse" ]; then 
 		db_input critical wargus/nodataBasic || true
 	fi
-	if [ "X$foundExtensionPack" = "Xfalse" ]; then 
-		db_input critical wargus/nodataExtensionPack || true
+	if [ "X$foundBasic" = "Xtrue" ] && [ "X$foundExpansionPack" = "Xfalse" ]; then 
+		db_input critical wargus/nodataExpansionPack || true
 	fi
 	db_endblock || true
 	db_go || continue

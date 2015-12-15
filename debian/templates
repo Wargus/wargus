@@ -1,9 +1,9 @@
 Template: wargus/extractdata
 Type: multiselect
-Choices: extract Warcraft II basic data, extract Warcraft II background music, extract Warcraft II videos, extract Warcraft II basic data + Beyond the Dark Portal data, extract Warcraft II additional sound tracks (original CD-ROM only)
+Choices: extract Warcraft II basic data, extract Warcraft II videos, extract Warcraft II basic data + Beyond the Dark Portal data, extract Warcraft II additional sound tracks (original CD-ROM only)
 Default: extract Warcraft II basic data
 Description: 
- You need to own original Warcraft II data either on a harddisk or a CD-ROM in order for Wargus to use it. Otherwise, Wargus will use the builtin Aleona's Tales dataset. Processing of some of the following options may take a couple of minutes.
+ You need to provide original Warcraft II data for Wargus to use it. If you don't, Wargus will use the builtin Aleona's Tales dataset. Processing of some of the following options may take a couple of minutes.
 
 Template: wargus/cdpath
 Type: string
@@ -22,7 +22,12 @@ Type: error
 Description: 
  Couldn't find Warcraft II data on the specified path. Try again.
 
-Template: wargus/nodataExtensionPack
+Template: wargus/nodataExpansionPack
 Type: error
 Description: 
  Couldn't find Warcraft II Beyond the Dark Portal data on the specified path. Try again.
+
+Template: wargus/wartoolOptions
+Type: note
+Description: 
+ Just a placeholder for 'wartoolOptions' variable.
