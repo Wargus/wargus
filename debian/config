@@ -2,6 +2,15 @@
 
 set -e
 
+# There are two questions open:
+
+# wartool -m  is inconsistently documented. It can be easily added here, but is it still part of wartool?
+
+# how should the Expansion Pack (Beyond the Dark Portal) be handled? I've
+# never seen that CD. Wikipedia says it's an addition, so we need to install
+# basic Warcraft2 + Expansion Pack to have complete data it seems. So is it two CD-ROM drives scenario?
+
+
 # Source debconf library
 . /usr/share/debconf/confmodule
 db_version 2.0
