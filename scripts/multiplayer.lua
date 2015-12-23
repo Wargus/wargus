@@ -19,7 +19,7 @@ local function usage()
    print("\twargus -c multiplayer -G client,race=orc,ip=192.168.1.100")
    print("\t\t... will start a client that connects to 192.168.1.100 and is immediately ready.\n\n\n")
    print("\twargus -c multiplayer -G server,dedicated,map=islands.smp.gz,numplayers=3")
-   print("\t\t... will start a dedicated server with an AI player that waits for two human player clients.")
+   print("\t\t... will start a dedicated server with an AI player that waits for 3 human player clients.")
 end
 
 if (ARGS == "help") then
@@ -84,6 +84,7 @@ else
 	    -- no confirmation on AI-only server, just exit
 	    ActionVictory = OldActionVictory
 	    RunResultsMenu = function() end
+	    numplayers = numplayers + 1
 	 end
 	 RunServerMultiGameMenu(mapfile, description, playerCount,
 				{race = racename,
