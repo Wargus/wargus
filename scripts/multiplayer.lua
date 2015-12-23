@@ -45,8 +45,6 @@ else
 
    if (nickname) then SetLocalPlayerName(nickname) end
 
-   NoRandomPlacementMultiplayer = 1
-
    if (isServer) then
       if (not (mapfile and numplayers)) then
 	 print ("ERROR: Server must at least pass map and number of players\n")
@@ -108,7 +106,7 @@ else
 	 InitNetwork1()
 	 NetworkSetupServerAddress(ip)
 	 NetworkInitClientConnect()
-	 RunJoiningGameMenu(race, true)
+	 RunJoiningGameMenu(racename, true)
       end
    end
 end

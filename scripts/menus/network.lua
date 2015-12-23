@@ -193,6 +193,7 @@ function RunJoiningMapMenu(optRace, optReady)
   local updatePlayersList = addPlayersList(menu, numplayers)
 
   local joincounter = 0
+  local delay = 4
   local function listen()
     NetworkProcessClientRequest()
     fow:setMarked(int2bool(ServerSetupState.FogOfWar))
@@ -207,14 +208,18 @@ function RunJoiningMapMenu(optRace, optReady)
     state = GetNetworkState()
     -- FIXME: don't use numbers
 
-    if (optRace == "orc" or optRace == "Orc") then
-       race:setSelected(2)
-       raceCb(race)
-       optRace = ""
-    elseif (optRace == "human" or optRace == "Human") then
-       race:setSelected(1)
-       raceCb(race)
-       optRace = ""
+    if delay > 0 then
+       delay = delay - 1
+    elseif delay == 0 then
+       if (optRace == "human" or optRace == "Human") then
+	  race:setSelected(1)
+	  raceCb(race)
+	  optRace = ""
+       elseif (optRace == "orc" or optRace == "Orc") then
+	  race:setSelected(2)
+	  raceCb(race)
+	  optRace = ""
+       end
     end
 
     if (state == 15) then -- ccs_started, server started the game
@@ -446,7 +451,8 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, sx + 100, sy*11, function(dd) end)
   local raceCb = function(arg)
      GameSettings.Presets[0].Race = race:getSelected()
-     ServerSetupState.Race[0] = GameSettings.Presets[0].Race
+     ServerSetupState.Race[0] = race:getSelected()
+     LocalSetupState.Race[0] = race:getSelected()
      NetworkServerResyncClients()
   end
   race:setActionCallback(raceCb)
@@ -497,7 +503,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11,  sy*14, startFunc)
   startgame:setVisible(false)
   local waitingtext = menu:writeText(_("Waiting for players"), sx*11, sy*14)
-  local startIn = -1
+  local startIn = -10
   local function updateStartButton(ready)
     local readyplayers = 1
     for i=2,8 do
@@ -505,42 +511,46 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
         readyplayers = readyplayers + 1
       end
     end
-    if optDedicated then
-      dedicated:setMarked(true)
-      dedicatedCb(dedicated)
-      optDedicated = false
-    elseif (optRace == "orc" or optRace == "Orc") then
-       race:setSelected(2)
-       raceCb(race)
-       optRace = ""
-    elseif (optRace == "human" or optRace == "Human") then
-       race:setSelected(1)
-       raceCb(race)
-       optRace = ""
-    elseif (options.fow == 0) then
-       fow:setMarked(false)
-       fowCb(fow)
-       options.fow = -1
-    elseif (options.revealmap == 1) then
-       revealmap:setMarked(true)
-       revealMapCb(revealmap)
-       options.revealmap = -1
-    elseif (optAutostartNum) then
-      if (optAutostartNum <= readyplayers) then
-        if (startIn < 0) then
-          startIn = 100
-        else
-          startIn = startIn - 1
-          if (startIn == 0) then
-            startFunc()
-          end
-        end
-        waitingtext:setCaption("Starting in " .. startIn / 2)
-        print("Starting in " .. startIn / 2)
-      end
+    if startIn < -1 then
+       startIn = startIn + 1
     else
-      startgame:setVisible(ready)
-      waitingtext:setVisible(not ready)
+       if optDedicated then
+	  dedicated:setMarked(true)
+	  dedicatedCb(dedicated)
+	  optDedicated = false
+       elseif (optRace == "human" or optRace == "Human") then
+	  race:setSelected(1)
+	  raceCb(race)
+	  optRace = ""
+       elseif (optRace == "orc" or optRace == "Orc") then
+	  race:setSelected(2)
+	  raceCb(race)
+	  optRace = ""
+       elseif (options.fow == 0) then
+	  fow:setMarked(false)
+	  fowCb(fow)
+	  options.fow = -1
+       elseif (options.revealmap == 1) then
+	  revealmap:setMarked(true)
+	  revealMapCb(revealmap)
+	  options.revealmap = -1
+       elseif (optAutostartNum) then
+	  if (optAutostartNum <= readyplayers) then
+	     if (startIn < 0) then
+		startIn = 100
+	     else
+		startIn = startIn - 1
+		if (startIn == 0) then
+		   startFunc()
+		end
+	     end
+	     waitingtext:setCaption("Starting in " .. startIn / 2)
+	     print("Starting in " .. startIn / 2)
+	  end
+       else
+	  startgame:setVisible(ready)
+	  waitingtext:setVisible(not ready)
+       end
     end
   end
 
@@ -636,7 +646,6 @@ function RunMultiPlayerGameMenu(s)
         PlayMusic("music/Main Menu" .. wargus.music_extension)
     end
   end
-  NoRandomPlacementMultiplayer = 1
   InitGameSettings()
   InitNetwork1()
 
