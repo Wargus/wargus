@@ -143,16 +143,12 @@ function RunJoiningMapMenu(optRace, optReady)
 
   menu:writeText(_("~<Your Race:~>"), sx, sy*11)
   local race = menu:addDropDown({_("Map Default"), _("Orc"), _("Human")}, sx + 100, sy*11, function(dd) end)
-  race:setActionCallback(function(dd)
-      GameSettings.Presets[NetLocalHostsSlot].Race = race:getSelected()
-      LocalSetupState.Race[NetLocalHostsSlot] = race:getSelected()
-    end)
+  local raceCb = function(dd)
+     GameSettings.Presets[NetLocalHostsSlot].Race = race:getSelected()
+     LocalSetupState.Race[NetLocalHostsSlot] = race:getSelected()
+  end
+  race:setActionCallback(raceCb)
   race:setSize(190, 20)
-  if (optRace == "orc" or optRace == "Orc") then
-     race:setSelected(1)
-  else if (optRace == "human" or optRace == "Human") then
-     race:setSelected(2)
-  end end
 
   menu:writeText(_("Units:"), sx, sy*11+25)
   local units = menu:addDropDown({_("Map Default"), _("One Peasant Only")}, sx + 100, sy*11+25,
@@ -210,6 +206,17 @@ function RunJoiningMapMenu(optRace, optReady)
     updatePlayersList()
     state = GetNetworkState()
     -- FIXME: don't use numbers
+
+    if (optRace == "orc" or optRace == "Orc") then
+       race:setSelected(1)
+       raceCb(race)
+       optRace = ""
+    elseif (optRace == "human" or optRace == "Human") then
+       race:setSelected(2)
+       raceCb(race)
+       optRace = ""
+    end
+
     if (state == 15) then -- ccs_started, server started the game
       SetThisPlayer(1)
       joincounter = joincounter + 1
@@ -436,19 +443,14 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local revealmap = menu:addImageCheckBox(_("Reveal map"), sx, sy*3+150, offi, offi2, oni, oni2, revealMapCb)
 
   menu:writeText(_("Race:"), sx, sy*11)
-  local dd = menu:addDropDown({_("Map Default"), _("Orc"), _("Human")}, sx + 100, sy*11, function(dd) end)
-  dd:setActionCallback(
-  function(d)
-      GameSettings.Presets[0].Race = dd:getSelected()
-      ServerSetupState.Race[0] = GameSettings.Presets[0].Race
-      NetworkServerResyncClients()
-    end)
-  dd:setSize(190, 20)
-  if (optRace == "orc" or optRace == "Orc") then
-     dd:setSelected(1)
-  else if (optRace == "human" or optRace == "Human") then
-     dd:setSelected(2)
-  end end
+  local race = menu:addDropDown({_("Map Default"), _("Orc"), _("Human")}, sx + 100, sy*11, function(dd) end)
+  local raceCb = function(arg)
+     GameSettings.Presets[0].Race = race:getSelected()
+     ServerSetupState.Race[0] = GameSettings.Presets[0].Race
+     NetworkServerResyncClients()
+  end
+  race:setActionCallback(raceCb)
+  race:setSize(190, 20)
 
   menu:writeText(_("Units:"), sx, sy*11+25)
   dd = menu:addDropDown({_("Map Default"), _("One Peasant Only")}, sx + 100, sy*11+25,
@@ -507,6 +509,22 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
       dedicated:setMarked(true)
       dedicatedCb(dedicated)
       optDedicated = false
+    elseif (optRace == "orc" or optRace == "Orc") then
+       race:setSelected(1)
+       raceCb(race)
+       optRace = ""
+    elseif (optRace == "human" or optRace == "Human") then
+       race:setSelected(2)
+       raceCb(race)
+       optRace = ""
+    elseif (options.fow == 0) then
+       fow:setMarked(false)
+       fowCb(fow)
+       options.fow = -1
+    elseif (options.revealmap == 1) then
+       revealmap:setMarked(true)
+       revealMapCb(revealmap)
+       options.revealmap = -1
     elseif (optAutostartNum) then
       if (optAutostartNum <= readyplayers) then
         if (startIn < 0) then

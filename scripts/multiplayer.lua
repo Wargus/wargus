@@ -13,6 +13,8 @@ local function usage()
    print("\t[race=(orc|human)]")
    print("\t[map=[map.smp]]")
    print("\t[player=[nickname]]")
+   print("\t[fow=(1|0)]")
+   print("\t[revealmap=(1|0)]")
    print("\nAll options must be passed comma-separated. For example:")
    print("\twargus -c multiplayer -G server,race=human,map=islands.smp.gz,numplayers=2")
    print("\t\t... will start a server that waits for one more player.")
@@ -38,6 +40,8 @@ else
    local mapfile = string.match(ARGS,"map=([^,]+)")
    local nickname = string.match(ARGS,"player=([^,]+)")
    local numplayers = tonumber(string.match(ARGS,"numplayers=([^,]+)"))
+   local fow = tonumber(string.match(ARGS,"fow=([^,]+)"))
+   local reveal = tonumber(string.match(ARGS,"revealmap=([^,]+)"))
 
    if (nickname) then SetLocalPlayerName(nickname) end
 
@@ -89,7 +93,9 @@ else
 	 RunServerMultiGameMenu(mapfile, description, playerCount,
 				{race = racename,
 				 autostartNum = numplayers,
-				 dedicated = isDedicated})
+				 dedicated = isDedicated,
+				 fow = fow,
+				 revealmap = reveal})
       end
    else
       if (not ip) then
