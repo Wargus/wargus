@@ -1192,7 +1192,7 @@ function RunSinglePlayerGameMenu()
 				if pside[i+1]==nil then
 					GameSettings.Presets[i].Race = 0
 				elseif (pside[i+1]:getSelected() == 3) then
-					GameSettings.Presets[i].Race = math.random(0, 1)
+					GameSettings.Presets[i].Race = math.random(1, 2)
 				else
 					GameSettings.Presets[i].Race = pside[i+1]:getSelected()
 				end
