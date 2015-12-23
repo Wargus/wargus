@@ -399,12 +399,17 @@ function RunAddServerMenu()
   menu:run()
 end
 
-function RunServerMultiGameMenu(map, description, numplayers, optRace, optAutostartNum)
+function RunServerMultiGameMenu(map, description, numplayers, options)
   local menu
   local sx = Video.Width / 20
   local sy = Video.Height / 20
   local startgame
   local d
+
+  options = options or {}
+  local optRace = options.race
+  local optAutostartNum = options.autostartNum
+  local optDedicated = options.dedicated
 
   menu = WarMenu(_("Create MultiPlayer game"))
 
@@ -463,6 +468,13 @@ function RunServerMultiGameMenu(map, description, numplayers, optRace, optAutost
     end)
   dd:setSize(190, 20)
 
+  menu:writeText(_("Dedicated AI Server:"), sx, sy*12+75)
+  local dedicatedCb = function (dd)
+    ServerSetupState.CompOpt[0] = bool2int(dd:isMarked())
+    LocalSetupState.CompOpt[0] = bool2int(dd:isMarked())
+  end
+  local dedicated = menu:addImageCheckBox("", sx + 200, sy*12+75, offi, offi2, oni, oni2, dedicatedCb)
+
   local updatePlayers = addPlayersList(menu, numplayers)
 
   NetworkMapName = map
@@ -491,7 +503,11 @@ function RunServerMultiGameMenu(map, description, numplayers, optRace, optAutost
         readyplayers = readyplayers + 1
       end
     end
-    if (optAutostartNum) then
+    if optDedicated then
+      dedicated:setMarked(true)
+      dedicatedCb(dedicated)
+      optDedicated = false
+    elseif (optAutostartNum) then
       if (optAutostartNum <= readyplayers) then
         if (startIn < 0) then
           startIn = 100

@@ -7,6 +7,7 @@ CustomStartup = function() end
 local function usage()
    print("Server startup file for Wargus options. Options are passed as comma-separated pairs")
    print("\t[server|client]")
+   print("\t[dedicated]")
    print("\t[numplayers=[number of connections to wait for before game starts]]")
    print("\t[ip=server-ip]")
    print("\t[race=(orc|human)]")
@@ -17,12 +18,15 @@ local function usage()
    print("\t\t... will start a server that waits for one more player.")
    print("\twargus -c multiplayer -G client,race=orc,ip=192.168.1.100")
    print("\t\t... will start a client that connects to 192.168.1.100 and is immediately ready.\n\n\n")
+   print("\twargus -c multiplayer -G server,dedicated,map=islands.smp.gz,numplayers=3")
+   print("\t\t... will start a dedicated server with an AI player that waits for two human player clients.")
 end
 
 if (ARGS == "help") then
    usage()
 else
    local isServer = string.match(ARGS,"(server)")
+   local isDedicated = string.match(ARGS,"(dedicated)")
    local isClient = string.match(ARGS,"(client)")
    if (not (isClient or isServer)) then
       print("ERROR: Must say if client or server\n")
@@ -49,7 +53,7 @@ else
       CustomStartup = function()
 	 InitGameSettings()
 	 InitNetwork1()
-     local playerCount = 0
+	 local playerCount = 0
 	 local OldPresentMap = PresentMap
 	 PresentMap = function(desc, nplayers, w, h, id)
 	    description = desc
@@ -68,11 +72,23 @@ else
 	    oldDefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
 	 end   
 	 Load(mapfile)
-     if (playerCount == 0) then
-       print("ERROR: could not open map " .. mapfile)
-       return
-     end
-	 RunServerMultiGameMenu(mapfile, description, playerCount, racename, numplayers)
+	 if (playerCount == 0) then
+	    print("ERROR: could not open map " .. mapfile)
+	    return
+	 end
+	 if (playerCount == 1) then
+	    print("ERROR: not a multiplayer map " .. mapfile)
+	    return
+	 end
+	 if isDedicated then
+	    -- no confirmation on AI-only server, just exit
+	    ActionVictory = OldActionVictory
+	    RunResultsMenu = function() end
+	 end
+	 RunServerMultiGameMenu(mapfile, description, playerCount,
+				{race = racename,
+				 autostartNum = numplayers,
+				 dedicated = isDedicated})
       end
    else
       if (not ip) then
