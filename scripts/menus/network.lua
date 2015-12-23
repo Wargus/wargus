@@ -142,7 +142,7 @@ function RunJoiningMapMenu(optRace, optReady)
   revealmap:setEnabled(false)
 
   menu:writeText(_("~<Your Race:~>"), sx, sy*11)
-  local race = menu:addDropDown({_("Map Default"), _("Orc"), _("Human")}, sx + 100, sy*11, function(dd) end)
+  local race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, sx + 100, sy*11, function(dd) end)
   local raceCb = function(dd)
      GameSettings.Presets[NetLocalHostsSlot].Race = race:getSelected()
      LocalSetupState.Race[NetLocalHostsSlot] = race:getSelected()
@@ -208,11 +208,11 @@ function RunJoiningMapMenu(optRace, optReady)
     -- FIXME: don't use numbers
 
     if (optRace == "orc" or optRace == "Orc") then
-       race:setSelected(1)
+       race:setSelected(2)
        raceCb(race)
        optRace = ""
     elseif (optRace == "human" or optRace == "Human") then
-       race:setSelected(2)
+       race:setSelected(1)
        raceCb(race)
        optRace = ""
     end
@@ -443,7 +443,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local revealmap = menu:addImageCheckBox(_("Reveal map"), sx, sy*3+150, offi, offi2, oni, oni2, revealMapCb)
 
   menu:writeText(_("Race:"), sx, sy*11)
-  local race = menu:addDropDown({_("Map Default"), _("Orc"), _("Human")}, sx + 100, sy*11, function(dd) end)
+  local race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, sx + 100, sy*11, function(dd) end)
   local raceCb = function(arg)
      GameSettings.Presets[0].Race = race:getSelected()
      ServerSetupState.Race[0] = GameSettings.Presets[0].Race
@@ -510,11 +510,11 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
       dedicatedCb(dedicated)
       optDedicated = false
     elseif (optRace == "orc" or optRace == "Orc") then
-       race:setSelected(1)
+       race:setSelected(2)
        raceCb(race)
        optRace = ""
     elseif (optRace == "human" or optRace == "Human") then
-       race:setSelected(2)
+       race:setSelected(1)
        raceCb(race)
        optRace = ""
     elseif (options.fow == 0) then
