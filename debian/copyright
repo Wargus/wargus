@@ -1,44 +1,27 @@
-This work was packaged for Debian by:
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://github.com/Wargus/wargus
 
-    Pali Rohár <pali.rohar@gmail.com> on Mon, 08 Aug 2011 19:49:46 +0200
-    cybermind <iddqd_mail@mail.ru>  Mon, 16 Mar 2015 18:51:27 +0500
-
-It was downloaded from:
-
-    https://github.com/Wargus/wargus
-
-Upstream Author(s):
-
-    Jimmy Salmon <jsalmon3@users.sourceforge.net>
-    Russel Smith <mr-russ@users.sourceforge.net>
-    Nehal Mistry <nehalmistry@users.sourceforge.net>
-    Pali Rohár <pali.rohar@gmail.com>
-    cybermind <iddqd_mail@mail.ru>
-
+Files: *
 Copyright:
+ © 1998-2015 by The Stratagus Project
+ © 2002-2007 Jimmy Salmon <jsalmon3@users.sourceforge.net>
+ © 2003-2004 Russel Smith <mr-russ@users.sourceforge.net>
+ © 2002-2007 Nehal Mistry <nehalmistry@users.sourceforge.net>
+ © 2010-2012 Pali Rohár <pali.rohar@gmail.com>
+ © 2012-2015 cybermind <iddqd_mail@mail.ru>
+License: GPL-2+
 
-    (C) 1998-2015 by The Stratagus Project
+Files: debian/*
+Copyright:
+  © 2010-2012 Pali Rohár <pali.rohar@gmail.com>
+  © 2015 cybermind <iddqd_mail@mail.ru>
+  © 2015 mimooh <mimoohowy@gmail.com>
+License: GPL-2+
 
-License:
-
-    This package is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This package is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License along
-    with this package; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-The Debian packaging is:
-
-    Copyright (C) 2010-2011 Pali Rohár <pali.rohar@gmail.com>
-    Copyright (C) 2015 cybermind <iddqd_mail@mail.ru>
-
-and is licensed under the GPL version 2,
-see "/usr/share/common-licenses/GPL-2".
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version. On Debian systems the GNU General Public
+ License (GPL) version 2 is located on the filesystem at
+ /usr/share/common-licenses/GPL-2.
