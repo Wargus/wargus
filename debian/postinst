@@ -5,58 +5,28 @@ set -e
 . /usr/share/debconf/confmodule
 
 extract() {
-
 	db_get wargus/extractdata || true
-	if [ "$RET" != "true" ]; then
-		db_stop || true
-		return 0
-	fi
+	[ "X$RET" = "X" ] && { db_stop || true; return 0; }
 
 	db_get wargus/cdpath || true
-	if ! [ -d "$RET" ]; then
-		db_stop || true
-		echo "${RET} doesn't exist - can't extract Warcraft II data" >&2
-		return 1
-	fi
-
 	CDPATH="$RET"
 
-	db_get wargus/extractdataexp || true
-	if [ "$RET" = "true" ]; then
-	    db_get wargus/expcdpath || true
-	    if ! [ -d "$RET" ]; then
-		db_stop || true
-		echo "${RET} doesn't exist - can't extract Warcraft II expansion data" >&2
-		return 1
-	    fi
-	    CDPATHEXP="$RET"
-	fi
+	db_get wargus/wartoolOptions || true 
+	echo "$RET" | grep -q videos  && { ARGS="$ARGS -v"; }
+	echo "$RET" | grep -q tracks  && { ARGS="$ARGS -r"; }
+	echo "$RET" | grep -q exppack && { db_get wargus/expcdpath || true; CDPATHEXP="$RET"; }
 
-	ARGS=
+	db_stop || true # don't understand this
 
-	db_get wargus/extractvideo || true
-	if [ "$RET" = "true" ]; then
-		ARGS="$ARGS -v"
-	fi
-
-	db_get wargus/ripcd || true
-	if [ "$RET" = "true" ]; then
-		ARGS="$ARGS -r"
-	fi
-
-	db_stop || true
-        echo $ARGS
-        echo "$CDPATH"
+	echo "wartool $ARGS $CDPATH /usr/share/games/stratagus/wargus" 
 	wartool $ARGS "$CDPATH" /usr/share/games/stratagus/wargus || return $?
 	if ! [ -z "$CDPATHEXP" ]; then
-            echo "$CDPATHEXP"
+	    echo "Expansion Pack: wartool $ARGS $CDPATHEXP /usr/share/games/stratagus/wargus"
 	    wartool $ARGS "$CDPATHEXP" /usr/share/games/stratagus/wargus || return $?
 	fi
-	if [ $(dpkg-query -W -f='${Status}' musescore-soundfont-gm 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
-		cp /usr/share/sounds/sf2/TimGM6mb.sf2 /usr/share/games/stratagus/wargus/music
-	fi
-	db_stop || true
+	[ -f /usr/share/sounds/sf2/TimGM6mb.sf2 ] && { cp /usr/share/sounds/sf2/TimGM6mb.sf2 /usr/share/games/stratagus/wargus/music; }
 
+	db_stop || true # don't understand this
 	return $?
 }
 

@@ -2,6 +2,15 @@
 
 set -e
 
+# There are two questions open:
+
+# wartool -m  is inconsistently documented. It can be easily added here, but is it still part of wartool?
+
+# how should the Expansion Pack (Beyond the Dark Portal) be handled? I've
+# never seen that CD. Wikipedia says it's an addition, so we need to install
+# basic Warcraft2 + Expansion Pack to have complete data it seems. So is it two CD-ROM drives scenario?
+
+
 # Source debconf library
 . /usr/share/debconf/confmodule
 db_version 2.0
@@ -17,7 +26,7 @@ if [ "$1" = "configure" ] && [ -f /usr/share/games/stratagus/wargus/extracted ] 
 	NEW_VERSION="$(wartool -V 2>/dev/null)"
 
 	if [ "$HAS_VERSION" = "$NEW_VERSION" ]; then
-		db_set wargus/extractdata "false" || true
+		db_set wargus/extractdata '' || true
 		db_stop || true
 		exit 0
 	fi
@@ -25,13 +34,10 @@ if [ "$1" = "configure" ] && [ -f /usr/share/games/stratagus/wargus/extracted ] 
 fi
 
 db_reset wargus/extractdata || true
-db_reset wargus/extractdataexp || false
 db_fset wargus/extractdata seen false || true
-db_fset wargus/extractdataexp seen false || true
 db_fset wargus/cdpath seen false || true
 db_fset wargus/expcdpath seen false || true
-db_fset wargus/extractvideo seen false || true
-db_fset wargus/ripcd seen false || true
+db_fset wargus/wartoolOptions seen false || true
 
 while true; do
 
@@ -40,33 +46,31 @@ while true; do
 	db_endblock || true
 	db_go || exit 10
 
-	db_beginblock || true
-	db_input critical wargus/extractdataexp || true
-	db_endblock || true
-	db_go || continue
-
 	db_get wargus/extractdata || true
-	if [ "$RET" = "false" ]; then
-		break
-	fi
+	if [ "X$RET" = "X" ]; then break; fi # none selected, we just skip everything
+	wartoolOptions=''
+	echo "$RET" | grep -q Portal && { wartoolOptions="$wartoolOptions exppack"; foundExpansionPack="false"; }  || { foundExpansionPack="true"; }
+	echo "$RET" | grep -q videos && { wartoolOptions="$wartoolOptions videos"; }
+	echo "$RET" | grep -q tracks && { wartoolOptions="$wartoolOptions tracks"; }
+
+	db_set wargus/wartoolOptions "$wartoolOptions" || true
 
 	db_beginblock || true
 	db_input critical wargus/cdpath || true
-	db_get wargus/extractdataexp || true
-	if [ "$RET" = "true" ]; then
-		db_input critical wargus/expcdpath || true
-	fi
-	db_input critical wargus/extractvideo || true
-	db_input critical wargus/ripcd || true
 	db_endblock || true
 	db_go || continue
 
-	found="false"
+	db_beginblock || true
+	echo $wartoolOptions | grep -q exppack && { db_input critical wargus/expcdpath || true; }
+	db_endblock || true
+	db_go || continue
+
+	foundBasic="false"
 	db_get wargus/cdpath || true
 	for CDPATH in "$RET" "$RET/data" "$RET/DATA"; do
 		if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ] || [ -f "$CDPATH/SUPPORT/TOMES/TOME.1" ]; then
 			db_set wargus/cdpath $CDPATH || true
-			found="true"
+			foundBasic="true"
 			break
 		fi
 	done
@@ -75,20 +79,24 @@ while true; do
 	for CDPATH in "$RET" "$RET/data" "$RET/DATA"; do
 		if [ -f "$CDPATH/rezdat.war" ] || [ -f "$CDPATH/REZDAT.WAR" ] || [ -f "$CDPATH/War Resources" ] || [ -f "$CDPATH/SUPPORT/TOMES/TOME.1" ]; then
 			db_set wargus/expcdpath $CDPATH || true
-			found="true"
+			foundExpansionPack="true"
 			break
 		fi
 	done
 
-	if [ "$found" = "true" ]; then
+	if [ "X$foundBasic" = "Xtrue" ] && [ "X$foundExpansionPack" = "Xtrue" ]; then
 		break
 	fi
 
 	db_beginblock || true
-	db_input critical wargus/nodata || true
+	if [ "X$foundBasic" = "Xfalse" ]; then 
+		db_input critical wargus/nodataBasic || true
+	fi
+	if [ "X$foundBasic" = "Xtrue" ] && [ "X$foundExpansionPack" = "Xfalse" ]; then 
+		db_input critical wargus/nodataExpansionPack || true
+	fi
 	db_endblock || true
 	db_go || continue
-
 done
 
 db_stop || true
