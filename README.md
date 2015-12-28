@@ -4,8 +4,8 @@ Linux & OSX: [![Build Status](https://travis-ci.org/Wargus/wargus.svg?branch=mas
 
 Nightly builds are available:
 
-    Windows Installer: https://github.com/Wargus/wargus/releases/tag/master-builds
-    Ubuntu/Debian Packages: https://launchpad.net/~wargus/+archive/ubuntu/ppa
+Windows Installer: https://github.com/Wargus/wargus/releases/tag/master-builds
+Ubuntu/Debian Packages: https://launchpad.net/~stratagus/+archive/ubuntu/ppa
 
 
 ============================================================================
