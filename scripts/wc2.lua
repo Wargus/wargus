@@ -390,7 +390,6 @@ function DefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p1
 	  local foundperson = false
 	  local nump = GameSettings.Opponents
 	  if (nump == 0) then nump = 15 end
-	  
 
 	  -- FIXME: should randomly pick players to use
 	  for i=1,15 do

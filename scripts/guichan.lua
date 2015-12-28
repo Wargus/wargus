@@ -872,7 +872,7 @@ function SetDefaultPlayerNames()
 	end
 end
 
-mapname = "maps/skirmish/(2)timeless-isle.smp.gz"
+mapname = "maps/skirmish/singleplayer/(2)blick-nach-oben.smp.gz"
 local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
 mapinfo = {
   playertypes = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
@@ -1156,7 +1156,7 @@ function RunSinglePlayerGameMenu()
   end
   
   if mapname == nil then
-	mapname = "maps/skirmish/(2)timeless-isle.sms.gz"
+	mapname = "maps/skirmish/singleplayer/(2)blick-nach-oben.sms.gz"
   end
   
   menu:addLabel(_("Scenario:"), offx + 16, offy + 360, Fonts["game"], false)
@@ -1192,7 +1192,7 @@ function RunSinglePlayerGameMenu()
 				if pside[i+1]==nil then
 					GameSettings.Presets[i].Race = 0
 				elseif (pside[i+1]:getSelected() == 3) then
-					GameSettings.Presets[i].Race = math.random(0, 1)
+					GameSettings.Presets[i].Race = math.random(1, 2)
 				else
 					GameSettings.Presets[i].Race = pside[i+1]:getSelected()
 				end

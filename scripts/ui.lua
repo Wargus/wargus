@@ -91,7 +91,7 @@ DefinePanelContents(
   Ident = "panel-general-contents",
   Pos = {info_panel_x, info_panel_y}, DefaultFont = "game",
   Contents = {
-	{ Pos = {8, 51}, Condition = {ShowOpponent = true, HideNeutral = false},
+	{ Pos = {8, 51}, Condition = {ShowOpponent = false, HideNeutral = true},
 		More = {"LifeBar", {Variable = "HitPoints", Height = 7, Width = 50}}
 	},
 	{ Pos = {35, 61}, Condition = {ShowOpponent = false, HideNeutral = true},
@@ -109,7 +109,7 @@ DefinePanelContents(
 	},
 
 -- Construction
-	{ Pos = {12, 152}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
+	{ Pos = {12, 153}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
 		More = {"CompleteBar", {Variable = "Build", Width = 152, Height = 14, Border = false}}
 	},
 	{ Pos = {50, 155}, Condition = {ShowOpponent = false, HideNeutral = true, Build = "only"},
@@ -216,18 +216,18 @@ DefinePanelContents(
 					Text = _("Range~|: "), Variable = "AttackRange" , Stat = true}}
 	},
 -- Research
-	{ Pos = {12, 152}, Condition = {Research = "only"},
+	{ Pos = {12, 153}, Condition = {Research = "only"},
 		More = {"CompleteBar", {Variable = "Research", Width = 152, Height = 14, Border = false}}
 	},
 	{ Pos = {100, 86}, Condition = {Research = "only"}, More = {"Text", _("Researching~|:")}},
 	{ Pos = {50, 154}, Condition = {Research = "only"}, More = {"Text", _("% Complete")}},
 -- Training
-	{ Pos = {12, 152}, Condition = {Training = "only"},
+	{ Pos = {12, 153}, Condition = {Training = "only"},
 		More = {"CompleteBar", {Variable = "Training", Width = 152, Height = 14, Border = false}}
 	},
 	{ Pos = {50, 154}, Condition = {Training = "only"}, More = {"Text", _("% Complete")}},
 -- Upgrading To
-	{ Pos = {12, 152}, Condition = {UpgradeTo = "only"},
+	{ Pos = {12, 153}, Condition = {UpgradeTo = "only"},
 		More = {"CompleteBar", {Variable = "UpgradeTo", Width = 152, Height = 14, Border = false}}
 	},
 	{ Pos = {100,  86}, More = {"Text", _("Upgrading~|:")}, Condition = {UpgradeTo = "only"} },
