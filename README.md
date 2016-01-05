@@ -2,6 +2,12 @@ Windows: <a href="https://ci.appveyor.com/project/timfel/wargus"><img width="100
 
 Linux & OSX: [![Build Status](https://travis-ci.org/Wargus/wargus.svg?branch=master)](https://travis-ci.org/Wargus/wargus)
 
+Nightly builds are available:
+
+- Windows Installer: https://github.com/Wargus/wargus/releases/tag/master-builds
+- Ubuntu/Debian Packages: https://launchpad.net/~stratagus/+archive/ubuntu/ppa
+
+
 ============================================================================
 About
 ============================================================================
