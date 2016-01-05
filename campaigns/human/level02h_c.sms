@@ -14,8 +14,11 @@ Briefing(
 Triggers = [[
 local cycle2Win = 120
 AddTrigger(
-  function() return GetPlayerData(6, "UnitTypesCount", "unit-ranger") == 0 and
-    IfRescuedNearUnit("this", ">=", 1, "unit-ranger", "unit-circle-of-power") end,
+  function()
+    return ((GetPlayerData(6, "UnitTypesCount", "unit-ranger") == 0 and
+             GetPlayerData(6, "UnitTypesCount", "unit-archer") == 0) and
+            (IfRescuedNearUnit("this", ">=", 1, "unit-ranger", "unit-circle-of-power") or
+             IfRescuedNearUnit("this", ">=", 1, "unit-archer", "unit-circle-of-power"))) end,
   function()
 	if (cycle2Win == 120) then
 		PlaySound("rescue (human)")
