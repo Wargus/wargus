@@ -4,6 +4,7 @@ wd="$(pwd)"
 appdir="$(cd "$(dirname "$0")" && pwd -P)"
 cd "$appdir"
 datadir="$HOME/.stratagus/wc2/data"
+mkdir -p "$datadir"
 versionfile="$datadir/extracted"
 extractdata=false
 
