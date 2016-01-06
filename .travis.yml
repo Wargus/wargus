@@ -23,7 +23,7 @@ before_script:
         brew install libtomcrypt;
         make -f Makefile.mac;
         export STORMLIB=\"$PWD/StormLib.a\";
-        find . -name "*.o" | xargs ar rcs \"$PWD/StormLib.a\";
+        find . -name \"*.o\" | xargs ar rcs \"$PWD/StormLib.a\";
     fi"
   - cd ..
   - curl -L https://github.com/Wargus/stratagus/archive/master.zip -O master.zip || true
