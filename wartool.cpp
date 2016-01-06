@@ -2398,7 +2398,7 @@ void FixTranslation(const char *translation)
 void Usage(const char* name)
 {
 	printf("%s\n\
-Usage: %s [-e|-n] [-m] [-v] [-r] [-V] [-h] archive-directory [destination-directory]\n\
+Usage: %s [-e|-n] [-v] [-r] [-V] [-h] archive-directory [destination-directory]\n\
 \t-e\tThe archive is expansion compatible (default: autodetect)\n\
 \t-n\tThe archive is not expansion compatible (default: autodetect)\n\
 \t-v\tExtract and convert videos\n\

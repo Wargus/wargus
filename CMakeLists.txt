@@ -143,7 +143,6 @@ option(ENABLE_STRIP "Strip all symbols from executables" OFF)
 option(WITH_STORMLIB "Compile wartool with StormLib support" ON)
 
 # Install paths
-set(BINDIR "bin" CACHE PATH "Where to install user binaries")
 set(GAMEDIR "games" CACHE PATH "Where to install games binaries")
 set(SHAREDIR "share/games/stratagus/wargus" CACHE PATH "Where to install data files")
 set(DATAROOTDIR "${CMAKE_INSTALL_PREFIX}/share" CACHE PATH "Sets the root of data directories to a non-default location")
@@ -270,7 +269,7 @@ configure_file (
 if(STRATAGUS_FOUND)
 	install(TARGETS wargus DESTINATION ${GAMEDIR})
 endif()
-install(TARGETS pudconvert wartool DESTINATION ${BINDIR})
+install(TARGETS pudconvert wartool DESTINATION ${GAMEDIR})
 install(FILES wargus.png DESTINATION ${ICONDIR})
 install(FILES "${PROJECT_BINARY_DIR}/wargus.desktop" DESTINATION ${DESKTOPDIR})
 
