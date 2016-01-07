@@ -33,7 +33,8 @@ VERSION := $(shell dpkg-parsechangelog | sed -ne "s/^Version: \(.*\)/\1/p" | sed
 	dh $@
 
 override_dh_auto_configure:
-	dh_auto_configure -- -DCMAKE_INCLUDE_PATH="/usr/lib/$(shell dpkg-architecture -qDEB_BUILD_MULTIARCH)/"
+	dh_auto_configure -- -DCMAKE_INCLUDE_PATH="/usr/lib/$(shell dpkg-architecture -qDEB_BUILD_MULTIARCH)/" \
+			     --bindir=/usr/games
 
 override_dh_install:
 	mkdir -p debian/tmp/usr/share/doc
