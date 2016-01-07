@@ -22,7 +22,7 @@ else
     extractdata=true
 fi
 
-if [ extractdata ]; then
+if [ $extractdata == "true" ]; then
     dir=$(osascript -e "tell application \"SystemUIServer\" to return POSIX path of (choose folder with prompt \"Select location of Warcraft II data files\")")
     if [ $? -ne 0 ]; then
 	osascript -e 'display dialog "No folder selected, exiting." buttons {"Exit"} default button 1'
