@@ -33,9 +33,12 @@ VERSION := $(shell dpkg-parsechangelog | sed -ne "s/^Version: \(.*\)/\1/p" | sed
 	dh $@
 
 override_dh_auto_configure:
-	dh_auto_configure -- -DCMAKE_INCLUDE_PATH="/usr/lib/$(shell dpkg-architecture -qDEB_BUILD_MULTIARCH)/"
+	dh_auto_configure -- -DCMAKE_INCLUDE_PATH="/usr/lib/$(shell dpkg-architecture -qDEB_BUILD_MULTIARCH)/" \
+			     --bindir=/usr/games
 
 override_dh_install:
+	mkdir -p debian/tmp/usr/share/doc
+	mkdir -p debian/tmp/usr/include
 	dh_install
 	convert wargus.png -resize 32x32 debian/wargus/usr/share/pixmaps/wargus.xpm
 	find debian/wargus/usr/share/games/stratagus/wargus/maps -name "*.pud*" -exec rm {} ';'
