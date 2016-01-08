@@ -68,6 +68,8 @@
 !define CDDA2WAV "cdda2wav.exe"
 !define FFMPEG2THEORA "ffmpeg2theora.exe"
 !define SF2BANK "TimGM6mb.sf2"
+!define VCREDIST "vc_redist.x86.exe"
+!define VCREDISTREGKEY "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x86"
 !define UNINSTALL "uninstall.exe"
 !define INSTALLER "${NAME}-${VERSION}.exe"
 !define INSTALLDIR "$PROGRAMFILES\${NAME}\"
@@ -78,6 +80,8 @@ ${redefine} INSTALLER "${NAME}-${VERSION}-x86_64.exe"
 ${redefine} INSTALLDIR "$PROGRAMFILES64\${NAME}\"
 ${redefine} NAME "Wargus (64 bit)"
 ${redefine} STRATAGUS_NAME "Stratagus (64 bit)"
+${redefine} VCREDIST "vc_redist.x64.exe"
+${redefine} VCREDISTREGKEY "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x64"
 !endif
 
 ; Registry paths
@@ -92,6 +96,7 @@ ${redefine} STRATAGUS_NAME "Stratagus (64 bit)"
 !system 'powershell -Command "& {wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -OutFile cdrtools.zip}"'
 !system 'powershell -Command "& {unzip -o cdrtools.zip cdda2wav.exe}"'
 !system 'powershell -Command "& {wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -OutFile TimGM6mb.sf2}"'
+!system "powershell -Command $\"& {wget https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/${VCREDIST} -OutFile ${VCREDIST}}$\""
 !endif
 
 !addplugindir .
@@ -303,8 +308,19 @@ Section "-${NAME}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
-
 	File "/oname=music\${SF2BANK}" "${SF2BANK}"
+
+	ClearErrors
+
+	ReadRegDword $R0 HKLM "${VCREDISTREGKEY}" "Installed"
+	IfErrors 0 NoErrors
+	StrCpy $R0 0
+	NoErrors:
+	${If} $R0 == 0
+	  File "${VCREDIST}"
+	  ExecWait "$\"$INSTDIR\${VCREDIST}$\"  /passive /norestart"
+	  Delete "$\"$INSTDIR\${VCREDIST}$\""
+    ${EndIf}
 
 	ClearErrors
 
