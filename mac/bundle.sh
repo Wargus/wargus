@@ -47,6 +47,6 @@ cd ..
 
 cp ../build/wartool Wargus.app/Contents/MacOS
 cp "$STRATAGUS" Wargus.app/Contents/MacOS/stratagus
-cp "$STRATAGUS"/../../libs/* Wargus.app/Contents/libs/
+cp "$(dirname "$STRATAGUS")"/../libs/* Wargus.app/Contents/libs/
 
 macdylibbundler/dylibbundler -cd -of -b -x ./Wargus.app/Contents/MacOS/wartool -d ./Wargus.app/Contents/libs/
