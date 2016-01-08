@@ -32,23 +32,14 @@ before_script:
 script: make
 after_success:
   - "if [ $TRAVIS_OS_NAME == osx ]; then \
-        cd $TRAVIS_BUILD_DIR;
-        ln -s $TRAVIS_BUILD_DIR $TRAVIS_BUILD_DIR/../stratagus;
-        brew install lua51 sdl;
-        git clone https://github.com/LuaDist/toluapp.git;
-        cd toluapp; mkdir build; cd build;
-          cmake ..; make;
-        cd ..; cd ..;
-        curl -L https://github.com/Wargus/stratagus/wiki/osx/stratagus -O stratagus;
-        chmod +x ./stratagus;
-        export STRATAGUS=$(pwd)/stratagus;
-        mac/bundle.sh;
-        tar czvf Wargus.app.tar.gz mac/Wargus.app;
         if [ $TRAVIS_REPO_SLUG == Wargus/wargus -a \
              $TRAVIS_BRANCH == master -a \
              $TRAVIS_PULL_REQUEST == 'false' ]; then \
+           cd $TRAVIS_BUILD_DIR;
            git clone https://${GH_TOKEN}@github.com/Wargus/stratagus.wiki.git;
-           mkdir -p stratagus.wiki/$TRAVIS_OS_NAME;
+           export STRATAGUS=$(pwd)/stratagus.wiki/$TRAVIS_OS_NAME/stratagus;
+           mac/bundle.sh;
+           tar czvf Wargus.app.tar.gz mac/Wargus.app;
            cp Wargus.app.tar.gz stratagus.wiki/$TRAVIS_OS_NAME/;
            cd stratagus.wiki/;
            git config --global user.email \"travis-ci@travis.org\";
