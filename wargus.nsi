@@ -308,7 +308,11 @@ Section "-${NAME}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
-	File "/oname=music\${SF2BANK}" "${SF2BANK}"
+
+	SetOutPath "$INSTDIR\music"
+	File "${SF2BANK}"
+
+        SetOutPath "$INSTDIR"
 
 	ClearErrors
 
