@@ -102,7 +102,7 @@ function addPlayersList(menu, numplayers)
         end
         players_name[i]:setCaption(Hosts[i-1].PlyName)
         players_name[i]:adjustSize()
-     end
+      end
     end
     numplayers_text:setCaption(_("Open slots : ") .. numplayers - 1 - connected_players)
     numplayers_text:adjustSize()
@@ -111,7 +111,6 @@ function addPlayersList(menu, numplayers)
 
   return updatePlayers
 end
-
 
 function RunJoiningMapMenu(optRace, optReady)
   local menu
@@ -144,8 +143,8 @@ function RunJoiningMapMenu(optRace, optReady)
   menu:writeText(_("~<Your Race:~>"), sx, sy*11)
   local race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, sx + 100, sy*11, function(dd) end)
   local raceCb = function(dd)
-     GameSettings.Presets[NetLocalHostsSlot].Race = race:getSelected()
-     LocalSetupState.Race[NetLocalHostsSlot] = race:getSelected()
+    GameSettings.Presets[NetLocalHostsSlot].Race = race:getSelected()
+    LocalSetupState.Race[NetLocalHostsSlot] = race:getSelected()
   end
   race:setActionCallback(raceCb)
   race:setSize(190, 20)
@@ -209,17 +208,17 @@ function RunJoiningMapMenu(optRace, optReady)
     -- FIXME: don't use numbers
 
     if delay > 0 then
-       delay = delay - 1
+      delay = delay - 1
     elseif delay == 0 then
-       if (optRace == "human" or optRace == "Human") then
-	  race:setSelected(1)
-	  raceCb(race)
-	  optRace = ""
-       elseif (optRace == "orc" or optRace == "Orc") then
-	  race:setSelected(2)
-	  raceCb(race)
-	  optRace = ""
-       end
+      if (optRace == "human" or optRace == "Human") then
+        race:setSelected(1)
+        raceCb(race)
+        optRace = ""
+      elseif (optRace == "orc" or optRace == "Orc") then
+        race:setSelected(2)
+        raceCb(race)
+        optRace = ""
+      end
     end
 
     if (state == 15) then -- ccs_started, server started the game
@@ -245,10 +244,10 @@ function RunJoiningMapMenu(optRace, optReady)
   menu:addLogicCallback(listener)
 
   if (optReady) then
-     LocalSetupState.Ready[NetLocalHostsSlot] = bool2int(true)
-     readycheckbox:setMarked(true)
+    LocalSetupState.Ready[NetLocalHostsSlot] = bool2int(true)
+    readycheckbox:setMarked(true)
   end
-  
+
   menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
     function() NetworkDetachFromServer(); menu:stop() end)
 
@@ -258,12 +257,12 @@ end
 function RunJoiningGameMenu(optRace, optReady)
   local menu = nil
   if (optRace and optReady) then
-     menu = WarMenu(_("Joining Game"))
+    menu = WarMenu(_("Joining Game"))
   else
-     menu = WarMenu(nil, panel(4), false)
-     menu:setSize(288, 128)
-     menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
-     menu:setDrawMenusUnder(true)
+    menu = WarMenu(nil, panel(4), false)
+    menu:setSize(288, 128)
+    menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
+    menu:setDrawMenusUnder(true)
   end
 
   menu:addLabel(_("Connecting to server"), 144, 11)
@@ -324,39 +323,39 @@ function RunJoinIpMenu()
   menu:addLabel(_("Servers: "), 176, 20)
   local servers = {}
   local function ServerListUpdate()
-	serverlist = nil
-	servers = {}
-	if (wc2.preferences.ServerList ~= nil) then
-		for i=1,table.getn(wc2.preferences.ServerList)/2 do
-			servers[i]=tostring(wc2.preferences.ServerList[(i-1)*2+1].." | "..tostring(wc2.preferences.ServerList[(i-1)*2+2]))
-		end
-	end
-	serverlist =  menu:addImageListBox(20, 50, 300, 120, servers)
+    serverlist = nil
+    servers = {}
+    if (wc2.preferences.ServerList ~= nil) then
+      for i=1,table.getn(wc2.preferences.ServerList)/2 do
+        servers[i]=tostring(wc2.preferences.ServerList[(i-1)*2+1].." | "..tostring(wc2.preferences.ServerList[(i-1)*2+2]))
+      end
+    end
+    serverlist = menu:addImageListBox(20, 50, 300, 120, servers)
   end
   ServerListUpdate()
   menu:addFullButton(_("Co~!nnect"), "n", 60, 180, function()
-	NetworkSetupServerAddress(wc2.preferences.ServerList[serverlist:getSelected()*2+1])
-	NetworkInitClientConnect()
-	if (RunJoiningGameMenu() ~= 0) then
+      NetworkSetupServerAddress(wc2.preferences.ServerList[serverlist:getSelected()*2+1])
+      NetworkInitClientConnect()
+      if (RunJoiningGameMenu() ~= 0) then
         -- connect failed, don't leave this menu
         return
-    end
-  end)
+      end
+    end)
   menu:addFullButton(_("~!Add server"), "a", 60, 210, function() RunAddServerMenu(); ServerListUpdate() end)
   -- We need to stop this from loading when there are no servers.
-  menu:addFullButton(_("~!Edit server"), "a", 60, 240, function() 
-	if serverlist:getSelected() ~= nil then
-		RunEditServerMenu(serverlist:getSelected()); ServerListUpdate()
-	end
-  end)
-  menu:addFullButton(_("~!Delete server"), "d", 60, 270, function() 
-	if serverlist:getSelected() ~= nil then
-		table.remove(wc2.preferences.ServerList, serverlist:getSelected()*2+1)
-		table.remove(wc2.preferences.ServerList, serverlist:getSelected()*2+1)
-		SavePreferences()
-		ServerListUpdate()
-	end
-  end)
+  menu:addFullButton(_("~!Edit server"), "a", 60, 240, function()
+      if serverlist:getSelected() ~= nil then
+        RunEditServerMenu(serverlist:getSelected()); ServerListUpdate()
+      end
+    end)
+  menu:addFullButton(_("~!Delete server"), "d", 60, 270, function()
+      if serverlist:getSelected() ~= nil then
+        table.remove(wc2.preferences.ServerList, serverlist:getSelected()*2+1)
+        table.remove(wc2.preferences.ServerList, serverlist:getSelected()*2+1)
+        SavePreferences()
+        ServerListUpdate()
+      end
+    end)
   menu:addFullButton(_("~!Cancel"), "c", 60, 300, function() menu:stop() end)
   menu:run()
 end
@@ -373,15 +372,15 @@ function RunEditServerMenu(number)
   menu:addLabel(_("Description: "), 20, 81, Fonts["game"], false)
   local serverDescr = menu:addTextInputField("", 30, 101, 212)
   serverDescr:setText(wc2.preferences.ServerList[number*2+2])
-  menu:addHalfButton("~!OK", "o", 15, 210, function(s) 
-	if (NetworkSetupServerAddress(serverIp:getText()) ~= 0) then
+  menu:addHalfButton("~!OK", "o", 15, 210, function(s)
+      if (NetworkSetupServerAddress(serverIp:getText()) ~= 0) then
         ErrorMenu(_("Invalid server name"))
         return
-    end
-	wc2.preferences.ServerList[number*2+1] = serverIp:getText()
-	wc2.preferences.ServerList[number*2+2] = serverDescr:getText()
-	SavePreferences()
-	menu:stop()
+      end
+      wc2.preferences.ServerList[number*2+1] = serverIp:getText()
+      wc2.preferences.ServerList[number*2+2] = serverDescr:getText()
+      SavePreferences()
+      menu:stop()
     end)
   menu:addHalfButton(_("~!Cancel"), "c", 164, 210, function() menu:stop() end)
   menu:run()
@@ -397,21 +396,22 @@ function RunAddServerMenu()
   local serverIp = menu:addTextInputField("localhost", 30, 51, 212)
   menu:addLabel(_("Description: "), 20, 81, Fonts["game"], false)
   local serverDescr = menu:addTextInputField("", 30, 101, 212)
-  menu:addHalfButton("~!OK", "o", 15, 210, function(s) 
-	if (NetworkSetupServerAddress(serverIp:getText()) ~= 0) then
+  menu:addHalfButton("~!OK", "o", 15, 210, function(s)
+      if (NetworkSetupServerAddress(serverIp:getText()) ~= 0) then
         ErrorMenu(_("Invalid server name"))
         return
-    end
-	table.insert(wc2.preferences.ServerList, serverIp:getText())
-	table.insert(wc2.preferences.ServerList, serverDescr:getText())
-	SavePreferences()
-	menu:stop()
+      end
+      table.insert(wc2.preferences.ServerList, serverIp:getText())
+      table.insert(wc2.preferences.ServerList, serverDescr:getText())
+      SavePreferences()
+      menu:stop()
     end)
   menu:addHalfButton(_("~!Cancel"), "c", 164, 210, function() menu:stop() end)
   menu:run()
 end
 
 function RunServerMultiGameMenu(map, description, numplayers, options)
+
   local menu
   local sx = Video.Width / 20
   local sy = Video.Height / 20
@@ -420,6 +420,8 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
 
   options = options or {}
   local optRace = options.race
+  local optResources = options.resources
+  local optUnits = options.units
   local optAutostartNum = options.autostartNum
   local optDedicated = options.dedicated
 
@@ -448,33 +450,35 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local revealmap = menu:addImageCheckBox(_("Reveal map"), sx, sy*3+150, offi, offi2, oni, oni2, revealMapCb)
 
   menu:writeText(_("Race:"), sx, sy*11)
-  local race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, sx + 100, sy*11, function(dd) end)
-  local raceCb = function(arg)
-     GameSettings.Presets[0].Race = race:getSelected()
-     ServerSetupState.Race[0] = race:getSelected()
-     LocalSetupState.Race[0] = race:getSelected()
-     NetworkServerResyncClients()
+  local race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, sx + 100, sy*11, function() end)
+  local raceCb = function()
+    GameSettings.Presets[0].Race = race:getSelected()
+    ServerSetupState.Race[0] = race:getSelected()
+    LocalSetupState.Race[0] = race:getSelected()
+    NetworkServerResyncClients()
   end
   race:setActionCallback(raceCb)
   race:setSize(190, 20)
 
   menu:writeText(_("Units:"), sx, sy*11+25)
-  dd = menu:addDropDown({_("Map Default"), _("One Peasant Only")}, sx + 100, sy*11+25,
-    function(d)
-      GameSettings.NumUnits = dd:getSelected()
-      ServerSetupState.UnitsOption = GameSettings.NumUnits
-      NetworkServerResyncClients()
-    end)
-  dd:setSize(190, 20)
+  local units=menu:addDropDown({_("Map Default"), _("One Peasant Only")}, sx + 100, sy*11+25, function() end)
+  local unitsCb = function()
+    GameSettings.NumUnits = units:getSelected()
+    ServerSetupState.UnitsOption = GameSettings.NumUnits
+    NetworkServerResyncClients()
+  end
+  units:setActionCallback(unitsCb)
+  units:setSize(190, 20)
 
   menu:writeText(_("Resources:"), sx, sy*11+50)
-  dd = menu:addDropDown({_("Map Default"), _("Low"), _("Medium"), _("High")}, sx + 100, sy*11+50,
-    function(d)
-      GameSettings.Resources = dd:getSelected()
-      ServerSetupState.ResourcesOption = GameSettings.Resources
-      NetworkServerResyncClients()
-    end)
-  dd:setSize(190, 20)
+  local resources=menu:addDropDown({_("Map Default"), _("Low"), _("Medium"), _("High")}, sx + 100, sy*11+50, function() end)
+  local resourcesCb = function()
+    GameSettings.Resources = resources:getSelected()
+    ServerSetupState.ResourcesOption = GameSettings.Resources
+    NetworkServerResyncClients()
+  end
+  resources:setActionCallback(resourcesCb)
+  resources:setSize(190, 20)
 
   menu:writeText(_("Dedicated AI Server:"), sx, sy*12+75)
   local dedicatedCb = function (dd)
@@ -491,16 +495,16 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   ServerSetupState.Opponents = 15
   GameSettings.Opponents = 15
   local function startFunc(s)
-	SetFogOfWar(fow:isMarked())
-	if revealmap:isMarked() == true then
-	   RevealMap()
-	end
-	NetworkServerStartGame()
-	NetworkGamePrepareGameSettings()
-	RunMap(map)
-	menu:stop()
+    SetFogOfWar(fow:isMarked())
+    if revealmap:isMarked() == true then
+      RevealMap()
+    end
+    NetworkServerStartGame()
+    NetworkGamePrepareGameSettings()
+    RunMap(map)
+    menu:stop()
   end
-  local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11,  sy*14, startFunc)
+  local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11, sy*14, startFunc)
   startgame:setVisible(false)
   local waitingtext = menu:writeText(_("Waiting for players"), sx*11, sy*14)
   local startIn = -10
@@ -512,187 +516,205 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
       end
     end
     if startIn < -1 then
-       startIn = startIn + 1
+      startIn = startIn + 1
     else
-       if optDedicated then
-	  dedicated:setMarked(true)
-	  dedicatedCb(dedicated)
-	  optDedicated = false
-       elseif (optRace == "human" or optRace == "Human") then
-	  race:setSelected(1)
-	  raceCb(race)
-	  optRace = ""
-       elseif (optRace == "orc" or optRace == "Orc") then
-	  race:setSelected(2)
-	  raceCb(race)
-	  optRace = ""
-       elseif (options.fow == 0) then
-	  fow:setMarked(false)
-	  fowCb(fow)
-	  options.fow = -1
-       elseif (options.revealmap == 1) then
-	  revealmap:setMarked(true)
-	  revealMapCb(revealmap)
-	  options.revealmap = -1
-       elseif (optAutostartNum) then
-	  if (optAutostartNum <= readyplayers) then
-	     if (startIn < 0) then
-		startIn = 100
-	     else
-		startIn = startIn - 1
-		if (startIn == 0) then
-		   startFunc()
-		end
-	     end
-	     waitingtext:setCaption("Starting in " .. startIn / 2)
-	     print("Starting in " .. startIn / 2)
-	  end
-       else
-	  startgame:setVisible(ready)
-	  waitingtext:setVisible(not ready)
-       end
-    end
-  end
+      if optDedicated then
+        dedicated:setMarked(true)
+        dedicatedCb(dedicated)
+        optDedicated = false
 
-  local listener = LuaActionListener(function(s) updateStartButton(updatePlayers()) end)
-  menu:addLogicCallback(listener)
-  updateStartButton(updatePlayers())
+      elseif (optRace == "human" or optRace == "Human") then
+        race:setSelected(1)
+        raceCb(race)
+        optRace = ""
+      elseif (optRace == "orc" or optRace == "Orc") then
+        race:setSelected(2)
+        raceCb(race)
+        optRace = ""
 
-  menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
-    function() InitGameSettings(); menu:stop() end)
+      elseif (optResources == "low" or optResources == "Low") then
+        resources:setSelected(1)
+        resourcesCb(resources)
+        optResources = ""
+      elseif (optResources == "medium" or optResources == "Medium") then
+        resources:setSelected(2)
+        resourcesCb(resources)
+        optResources = ""
+      elseif (optResources == "high" or optResources == "High") then
+        resources:setSelected(3)
+        resourcesCb(resources)
+        optResources = ""
 
-  menu:run()
-end
+      elseif (optUnits == "1") then
+        units:setSelected(1)
+        unitsCb(resources)
+        optUnits= ""
 
-function RunCreateMultiGameMenu(s)
-  local menu
-  local map = "No Map"
-  local description = "No map"
-  local mapfile = "maps/skirmish/multiplayer/(2)timeless-isle.smp.gz"
-  local playerCount = 1
-  local sx = Video.Width / 20
-  local sy = Video.Height / 20
-
-  
-  menu = WarMenu(_("Create MultiPlayer game"))
-
-  menu:writeText(_("File:"), sx, sy*3+30)
-  local maptext = menu:writeText(mapfile, sx+50, sy*3+30)
-  menu:writeText(_("Players:"), sx, sy*3+50)
-  local players = menu:writeText(playerCount, sx+70, sy*3+50)
-  menu:writeText(_("Description:"), sx, sy*3+70)
-  local descr = menu:writeText(description, sx+20, sy*3+90)
-
-  local OldPresentMap = PresentMap
-  PresentMap = function(desc, nplayers, w, h, id)
-    description = desc
-    descr:setCaption(desc)
-    descr:adjustSize()
-    OldPresentMap(desc, nplayers, w, h, id)
-  end
-  local oldDefinePlayerTypes = DefinePlayerTypes
-  DefinePlayerTypes = function(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
-    local ps = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16}
-    playerCount = 0
-
-    for _, s in pairs(ps) do
-      if s == "person" then
-        playerCount = playerCount + 1
+      elseif (options.fow == 0) then
+        fow:setMarked(false)
+        fowCb(fow)
+        options.fow = -1
+      elseif (options.revealmap == 1) then
+        revealmap:setMarked(true)
+        revealMapCb(revealmap)
+        options.revealmap = -1
+      elseif (optAutostartNum) then
+        if (optAutostartNum <= readyplayers) then
+          if (startIn < 0) then
+            startIn = 100
+          else
+            startIn = startIn - 1
+            if (startIn == 0) then
+              startFunc() end
+            end
+            waitingtext:setCaption("Starting in " .. startIn / 2)
+            print("Starting in " .. startIn / 2)
+          end
+        else
+          startgame:setVisible(ready)
+          waitingtext:setVisible(not ready)
+        end
       end
     end
-    players:setCaption(""..playerCount)
-    players:adjustSize()
-    oldDefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
+
+    local listener = LuaActionListener(function(s) updateStartButton(updatePlayers()) end)
+    menu:addLogicCallback(listener)
+    updateStartButton(updatePlayers())
+
+    menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
+      function() InitGameSettings(); menu:stop() end)
+
+    menu:run()
   end
-  Load(mapfile)
-  local browser = menu:addBrowser("maps/", "^.*%.smp%.?g?z?$", sx*10, sy*2+20, sx*8, sy*11)
-  local function cb(s)
-    mapfile = browser.path .. browser:getSelectedItem()
+
+  function RunCreateMultiGameMenu(s)
+    local menu
+    local map = "No Map"
+    local description = "No map"
+    local mapfile = "maps/skirmish/multiplayer/(2)timeless-isle.smp.gz"
+    local playerCount = 1
+    local sx = Video.Width / 20
+    local sy = Video.Height / 20
+
+    menu = WarMenu(_("Create MultiPlayer game"))
+
+    menu:writeText(_("File:"), sx, sy*3+30)
+    local maptext = menu:writeText(mapfile, sx+50, sy*3+30)
+    menu:writeText(_("Players:"), sx, sy*3+50)
+    local players = menu:writeText(playerCount, sx+70, sy*3+50)
+    menu:writeText(_("Description:"), sx, sy*3+70)
+    local descr = menu:writeText(description, sx+20, sy*3+90)
+
+    local OldPresentMap = PresentMap
+    PresentMap = function(desc, nplayers, w, h, id)
+      description = desc
+      descr:setCaption(desc)
+      descr:adjustSize()
+      OldPresentMap(desc, nplayers, w, h, id)
+    end
+    local oldDefinePlayerTypes = DefinePlayerTypes
+    DefinePlayerTypes = function(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
+      local ps = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16}
+      playerCount = 0
+
+      for _, s in pairs(ps) do
+        if s == "person" then
+          playerCount = playerCount + 1
+        end
+      end
+      players:setCaption(""..playerCount)
+      players:adjustSize()
+      oldDefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
+    end
     Load(mapfile)
-    maptext:setCaption(mapfile)
-    maptext:adjustSize()
-  end
-  browser:setActionCallback(cb)
+    local browser = menu:addBrowser("maps/", "^.*%.smp%.?g?z?$", sx*10, sy*2+20, sx*8, sy*11)
+    local function cb(s)
+      mapfile = browser.path .. browser:getSelectedItem()
+      Load(mapfile)
+      maptext:setCaption(mapfile)
+      maptext:adjustSize()
+    end
+    browser:setActionCallback(cb)
 
-  menu:addFullButton(_("~!Create Game"), "c", sx,  sy*11,
-    function(s)
-      if (browser:getSelected() < 0) then
-        return
+    menu:addFullButton(_("~!Create Game"), "c", sx, sy*11,
+      function(s)
+        if (browser:getSelected() < 0) then
+          return
+        end
+        RunServerMultiGameMenu(mapfile, description, playerCount)
+        menu:stop()
       end
-      RunServerMultiGameMenu(mapfile, description, playerCount)
-      menu:stop()
-    end
-  )
+    )
 
-  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", sx,  sy*12+25,
-    function() menu:stop() end)
+    menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", sx, sy*12+25,
+      function() menu:stop() end)
 
-  menu:run()
-  PresentMap = OldPresentMap
-  DefinePlayerTypes = oldDefinePlayerTypes
-end
-
-function RunMultiPlayerGameMenu(s)
-  local menu = WarMenu()
-  local offx = (Video.Width - 640) / 2
-  local offy = ((Video.Height - 480) / 2) - 70
-  local nick
-
-  local function FixMusic()
-    wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
-    SetDefaultRaceView()
-
-    if not (IsMusicPlaying()) then
-        PlayMusic("music/Main Menu" .. wargus.music_extension)
-    end
+    menu:run()
+    PresentMap = OldPresentMap
+    DefinePlayerTypes = oldDefinePlayerTypes
   end
-  InitGameSettings()
-  InitNetwork1()
 
-  if (wargus.tales == false) then
-    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+  function RunMultiPlayerGameMenu(s)
+    local menu = WarMenu()
+    local offx = (Video.Width - 640) / 2
+    local offy = ((Video.Height - 480) / 2) - 70
+    local nick
+
+    local function FixMusic()
+      wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+      SetDefaultRaceView()
+
+      if not (IsMusicPlaying()) then
+        PlayMusic("music/Main Menu" .. wargus.music_extension)
+      end
+    end
+    InitGameSettings()
+    InitNetwork1()
+
+    if (wargus.tales == false) then
+      menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+    end
+
+    menu:addLabel(_("~<Multiplayer Network Game~>"), offx + 640/2 + 12, offy + 192)
+
+    menu:writeText(_("Nickname :"), 208 + offx, 248 + offy)
+    nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
+
+    menu:addFullButton(_("~!Join Game"), "j", 208 + offx, 298 + (36 * 0) + offy,
+      function()
+        if nick:getText() ~= GetLocalPlayerName() then
+          SetLocalPlayerName(nick:getText())
+          wc2.preferences.PlayerName = nick:getText()
+          SavePreferences()
+        end
+        RunJoinIpMenu()
+        FixMusic()
+      end)
+    menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 1) + offy,
+      function()
+        if nick:getText() ~= GetLocalPlayerName() then
+          SetLocalPlayerName(nick:getText())
+          wc2.preferences.PlayerName = nick:getText()
+          SavePreferences()
+        end
+        RunCreateMultiGameMenu()
+        FixMusic()
+      end)
+    menu:addFullButton(_("Meta~!server"), "s", 208 + offx, 298 + (36 * 2) + offy,
+      function()
+        if nick:getText() ~= GetLocalPlayerName() then
+          SetLocalPlayerName(nick:getText())
+          wc2.preferences.PlayerName = nick:getText()
+          SavePreferences()
+        end
+        RunJoiningMetaServerMenu()
+      end)
+
+    menu:addFullButton(_("~!Previous Menu"), "p", 208 + offx, 298 + (36 * 3) + offy,
+      function() menu:stop() end)
+
+    menu:run()
+
+    ExitNetwork1()
   end
   
-  menu:addLabel(_("~<Multiplayer Network Game~>"), offx + 640/2 + 12, offy + 192)
-
-  menu:writeText(_("Nickname :"), 208 + offx, 248 + offy)
-  nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
-
-  menu:addFullButton(_("~!Join Game"), "j", 208 + offx, 298 + (36 * 0) + offy,
-    function()
-      if nick:getText() ~= GetLocalPlayerName() then
-        SetLocalPlayerName(nick:getText())
-        wc2.preferences.PlayerName = nick:getText()
-        SavePreferences()
-      end
-      RunJoinIpMenu()
-      FixMusic()
-    end)
-  menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 1) + offy,
-    function()
-      if nick:getText() ~= GetLocalPlayerName() then
-        SetLocalPlayerName(nick:getText())
-        wc2.preferences.PlayerName = nick:getText()
-        SavePreferences()
-      end
-      RunCreateMultiGameMenu()
-      FixMusic()
-    end)
-  menu:addFullButton(_("Meta~!server"), "s", 208 + offx, 298 + (36 * 2) + offy,
-    function()
-      if nick:getText() ~= GetLocalPlayerName() then
-        SetLocalPlayerName(nick:getText())
-        wc2.preferences.PlayerName = nick:getText()
-        SavePreferences()
-      end
-      RunJoiningMetaServerMenu()
-    end)
-	
-  menu:addFullButton(_("~!Previous Menu"), "p", 208 + offx, 298 + (36 * 3) + offy,
-    function() menu:stop() end)
-
-  menu:run()
-
-  ExitNetwork1()
-end
-
