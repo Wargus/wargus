@@ -565,156 +565,156 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
           else
             startIn = startIn - 1
             if (startIn == 0) then
-              startFunc() end
+              startFunc()
             end
-            waitingtext:setCaption("Starting in " .. startIn / 2)
-            print("Starting in " .. startIn / 2)
           end
-        else
-          startgame:setVisible(ready)
-          waitingtext:setVisible(not ready)
+          waitingtext:setCaption("Starting in " .. startIn / 2)
+          print("Starting in " .. startIn / 2)
         end
+      else
+        startgame:setVisible(ready)
+        waitingtext:setVisible(not ready)
       end
     end
-
-    local listener = LuaActionListener(function(s) updateStartButton(updatePlayers()) end)
-    menu:addLogicCallback(listener)
-    updateStartButton(updatePlayers())
-
-    menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
-      function() InitGameSettings(); menu:stop() end)
-
-    menu:run()
   end
 
-  function RunCreateMultiGameMenu(s)
-    local menu
-    local map = "No Map"
-    local description = "No map"
-    local mapfile = "maps/skirmish/multiplayer/(2)timeless-isle.smp.gz"
-    local playerCount = 1
-    local sx = Video.Width / 20
-    local sy = Video.Height / 20
+  local listener = LuaActionListener(function(s) updateStartButton(updatePlayers()) end)
+  menu:addLogicCallback(listener)
+  updateStartButton(updatePlayers())
 
-    menu = WarMenu(_("Create MultiPlayer game"))
+  menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
+    function() InitGameSettings(); menu:stop() end)
 
-    menu:writeText(_("File:"), sx, sy*3+30)
-    local maptext = menu:writeText(mapfile, sx+50, sy*3+30)
-    menu:writeText(_("Players:"), sx, sy*3+50)
-    local players = menu:writeText(playerCount, sx+70, sy*3+50)
-    menu:writeText(_("Description:"), sx, sy*3+70)
-    local descr = menu:writeText(description, sx+20, sy*3+90)
+  menu:run()
+end
 
-    local OldPresentMap = PresentMap
-    PresentMap = function(desc, nplayers, w, h, id)
-      description = desc
-      descr:setCaption(desc)
-      descr:adjustSize()
-      OldPresentMap(desc, nplayers, w, h, id)
-    end
-    local oldDefinePlayerTypes = DefinePlayerTypes
-    DefinePlayerTypes = function(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
-      local ps = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16}
-      playerCount = 0
+function RunCreateMultiGameMenu(s)
+  local menu
+  local map = "No Map"
+  local description = "No map"
+  local mapfile = "maps/skirmish/multiplayer/(2)timeless-isle.smp.gz"
+  local playerCount = 1
+  local sx = Video.Width / 20
+  local sy = Video.Height / 20
 
-      for _, s in pairs(ps) do
-        if s == "person" then
-          playerCount = playerCount + 1
-        end
+  menu = WarMenu(_("Create MultiPlayer game"))
+
+  menu:writeText(_("File:"), sx, sy*3+30)
+  local maptext = menu:writeText(mapfile, sx+50, sy*3+30)
+  menu:writeText(_("Players:"), sx, sy*3+50)
+  local players = menu:writeText(playerCount, sx+70, sy*3+50)
+  menu:writeText(_("Description:"), sx, sy*3+70)
+  local descr = menu:writeText(description, sx+20, sy*3+90)
+
+  local OldPresentMap = PresentMap
+  PresentMap = function(desc, nplayers, w, h, id)
+    description = desc
+    descr:setCaption(desc)
+    descr:adjustSize()
+    OldPresentMap(desc, nplayers, w, h, id)
+  end
+  local oldDefinePlayerTypes = DefinePlayerTypes
+  DefinePlayerTypes = function(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
+    local ps = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16}
+    playerCount = 0
+
+    for _, s in pairs(ps) do
+      if s == "person" then
+        playerCount = playerCount + 1
       end
-      players:setCaption(""..playerCount)
-      players:adjustSize()
-      oldDefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
     end
+    players:setCaption(""..playerCount)
+    players:adjustSize()
+    oldDefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
+  end
+  Load(mapfile)
+  local browser = menu:addBrowser("maps/", "^.*%.smp%.?g?z?$", sx*10, sy*2+20, sx*8, sy*11)
+  local function cb(s)
+    mapfile = browser.path .. browser:getSelectedItem()
     Load(mapfile)
-    local browser = menu:addBrowser("maps/", "^.*%.smp%.?g?z?$", sx*10, sy*2+20, sx*8, sy*11)
-    local function cb(s)
-      mapfile = browser.path .. browser:getSelectedItem()
-      Load(mapfile)
-      maptext:setCaption(mapfile)
-      maptext:adjustSize()
-    end
-    browser:setActionCallback(cb)
+    maptext:setCaption(mapfile)
+    maptext:adjustSize()
+  end
+  browser:setActionCallback(cb)
 
-    menu:addFullButton(_("~!Create Game"), "c", sx, sy*11,
-      function(s)
-        if (browser:getSelected() < 0) then
-          return
-        end
-        RunServerMultiGameMenu(mapfile, description, playerCount)
-        menu:stop()
+  menu:addFullButton(_("~!Create Game"), "c", sx, sy*11,
+    function(s)
+      if (browser:getSelected() < 0) then
+        return
       end
-    )
+      RunServerMultiGameMenu(mapfile, description, playerCount)
+      menu:stop()
+    end
+  )
 
-    menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", sx, sy*12+25,
-      function() menu:stop() end)
+  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", sx, sy*12+25,
+    function() menu:stop() end)
 
-    menu:run()
-    PresentMap = OldPresentMap
-    DefinePlayerTypes = oldDefinePlayerTypes
+  menu:run()
+  PresentMap = OldPresentMap
+  DefinePlayerTypes = oldDefinePlayerTypes
+end
+
+function RunMultiPlayerGameMenu(s)
+  local menu = WarMenu()
+  local offx = (Video.Width - 640) / 2
+  local offy = ((Video.Height - 480) / 2) - 70
+  local nick
+
+  local function FixMusic()
+    wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+    SetDefaultRaceView()
+
+    if not (IsMusicPlaying()) then
+      PlayMusic("music/Main Menu" .. wargus.music_extension)
+    end
+  end
+  InitGameSettings()
+  InitNetwork1()
+
+  if (wargus.tales == false) then
+    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
   end
 
-  function RunMultiPlayerGameMenu(s)
-    local menu = WarMenu()
-    local offx = (Video.Width - 640) / 2
-    local offy = ((Video.Height - 480) / 2) - 70
-    local nick
+  menu:addLabel(_("~<Multiplayer Network Game~>"), offx + 640/2 + 12, offy + 192)
 
-    local function FixMusic()
-      wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
-      SetDefaultRaceView()
+  menu:writeText(_("Nickname :"), 208 + offx, 248 + offy)
+  nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
 
-      if not (IsMusicPlaying()) then
-        PlayMusic("music/Main Menu" .. wargus.music_extension)
+  menu:addFullButton(_("~!Join Game"), "j", 208 + offx, 298 + (36 * 0) + offy,
+    function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        wc2.preferences.PlayerName = nick:getText()
+        SavePreferences()
       end
-    end
-    InitGameSettings()
-    InitNetwork1()
+      RunJoinIpMenu()
+      FixMusic()
+    end)
+  menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 1) + offy,
+    function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        wc2.preferences.PlayerName = nick:getText()
+        SavePreferences()
+      end
+      RunCreateMultiGameMenu()
+      FixMusic()
+    end)
+  menu:addFullButton(_("Meta~!server"), "s", 208 + offx, 298 + (36 * 2) + offy,
+    function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        wc2.preferences.PlayerName = nick:getText()
+        SavePreferences()
+      end
+      RunJoiningMetaServerMenu()
+    end)
 
-    if (wargus.tales == false) then
-      menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
-    end
+  menu:addFullButton(_("~!Previous Menu"), "p", 208 + offx, 298 + (36 * 3) + offy,
+    function() menu:stop() end)
 
-    menu:addLabel(_("~<Multiplayer Network Game~>"), offx + 640/2 + 12, offy + 192)
+  menu:run()
 
-    menu:writeText(_("Nickname :"), 208 + offx, 248 + offy)
-    nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
-
-    menu:addFullButton(_("~!Join Game"), "j", 208 + offx, 298 + (36 * 0) + offy,
-      function()
-        if nick:getText() ~= GetLocalPlayerName() then
-          SetLocalPlayerName(nick:getText())
-          wc2.preferences.PlayerName = nick:getText()
-          SavePreferences()
-        end
-        RunJoinIpMenu()
-        FixMusic()
-      end)
-    menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 1) + offy,
-      function()
-        if nick:getText() ~= GetLocalPlayerName() then
-          SetLocalPlayerName(nick:getText())
-          wc2.preferences.PlayerName = nick:getText()
-          SavePreferences()
-        end
-        RunCreateMultiGameMenu()
-        FixMusic()
-      end)
-    menu:addFullButton(_("Meta~!server"), "s", 208 + offx, 298 + (36 * 2) + offy,
-      function()
-        if nick:getText() ~= GetLocalPlayerName() then
-          SetLocalPlayerName(nick:getText())
-          wc2.preferences.PlayerName = nick:getText()
-          SavePreferences()
-        end
-        RunJoiningMetaServerMenu()
-      end)
-
-    menu:addFullButton(_("~!Previous Menu"), "p", 208 + offx, 298 + (36 * 3) + offy,
-      function() menu:stop() end)
-
-    menu:run()
-
-    ExitNetwork1()
-  end
-  
+  ExitNetwork1()
+end
