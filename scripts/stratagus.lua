@@ -48,7 +48,7 @@ else
 	wargus.Copyright = _("(c) 1998-2015 by The Stratagus Project.")
 end
 
-wargus.Version = "2.3"
+wargus.Version = "2.4"
 wargus.Licence = "GPL v2"
 
 
