@@ -701,15 +701,15 @@ function RunMultiPlayerGameMenu(s)
       RunCreateMultiGameMenu()
       FixMusic()
     end)
-  menu:addFullButton(_("Meta~!server"), "s", 208 + offx, 298 + (36 * 2) + offy,
-    function()
-      if nick:getText() ~= GetLocalPlayerName() then
-        SetLocalPlayerName(nick:getText())
-        wc2.preferences.PlayerName = nick:getText()
-        SavePreferences()
-      end
-      RunJoiningMetaServerMenu()
-    end)
+  -- menu:addFullButton(_("Meta~!server"), "s", 208 + offx, 298 + (36 * 2) + offy,
+  --   function()
+  --     if nick:getText() ~= GetLocalPlayerName() then
+  --       SetLocalPlayerName(nick:getText())
+  --       wc2.preferences.PlayerName = nick:getText()
+  --       SavePreferences()
+  --     end
+  --     RunJoiningMetaServerMenu()
+  --   end)
 
   menu:addFullButton(_("~!Previous Menu"), "p", 208 + offx, 298 + (36 * 3) + offy,
     function() menu:stop() end)
