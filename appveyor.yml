@@ -1,5 +1,5 @@
-configuration: 
-  - Release 
+configuration:
+  - Release
 before_build:
   - mkdir build
   - cd build
@@ -7,7 +7,8 @@ before_build:
   - 7z x dependencies.zip
   - appveyor DownloadFile https://github.com/Wargus/stratagus/archive/master.zip
   - 7z x master.zip
-  - choco install nsis -pre
+  - appveyor DownloadFile https://github.com/jimpark/unsis/releases/download/2.50.0/nsis-2.50.0-Unicode-setup.exe
+  - nsis-2.50.0-Unicode-setup.exe /S /D=C:\Program Files (x86)\NSIS
   - cmake -G "Visual Studio 14 2015" -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON ..
   - cd ..
 artifacts:

@@ -70,6 +70,11 @@
 !define SF2BANK "TimGM6mb.sf2"
 !define VCREDIST "vc_redist.x86.exe"
 !define VCREDISTREGKEY "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x86"
+!define STRATAGUSINSTALLER "Stratagus-${VERSION}.0.exe"
+!define STRATAGUSREGKEY "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Stratagus\\HelpLink"
+!ifndef STRATAGUSINSTALLERURL
+!define STRATAGUSINSTALLERURL "https://github.com/Wargus/stratagus/releases/download/master-builds/"
+!endif
 !define UNINSTALL "uninstall.exe"
 !define INSTALLER "${NAME}-${VERSION}.exe"
 !define INSTALLDIR "$PROGRAMFILES\${NAME}\"
@@ -80,6 +85,8 @@ ${redefine} INSTALLER "${NAME}-${VERSION}-x86_64.exe"
 ${redefine} INSTALLDIR "$PROGRAMFILES64\${NAME}\"
 ${redefine} NAME "Wargus (64 bit)"
 ${redefine} STRATAGUS_NAME "Stratagus (64 bit)"
+${redefine} STRATAGUSINSTALLER "Stratagus-${VERSION}.0-x86_64.exe"
+${redefine} STRATAGUSREGKEY "Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Stratagus (64 bit)\\HelpLink"
 ${redefine} VCREDIST "vc_redist.x64.exe"
 ${redefine} VCREDISTREGKEY "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x64"
 !endif
@@ -97,6 +104,7 @@ ${redefine} VCREDISTREGKEY "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\
 !system 'powershell -Command "& {unzip -o cdrtools.zip cdda2wav.exe}"'
 !system 'powershell -Command "& {wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -OutFile TimGM6mb.sf2}"'
 !system "powershell -Command $\"& {wget https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/${VCREDIST} -OutFile ${VCREDIST}}$\""
+!system "powershell -Command $\"& {wget ${STRATAGUSINSTALLERURL}${STRATAGUSINSTALLER} -OutFile ${STRATAGUSINSTALLER}}$\""
 !endif
 
 !addplugindir .
@@ -197,6 +205,7 @@ LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_RUSSIAN} "Конвертируетс
 LangString EXTRACTDATA_FILES_FAILED ${LANG_ENGLISH} "Extracting Warcraft II data files failed."
 LangString EXTRACTDATA_FILES_FAILED ${LANG_RUSSIAN} "Не удалось извлечь файлы Warcraft II."
 LangString EXTRACTDATA_FILES_FAILED2 ${LANG_ENGLISH} "Extracting Warcraft II Expansion data files failed. The game will still be playable without expansion, so not aborting."
+LangString EXTRACTDATA_FILES_FAILED2 ${LANG_RUSSIAN} "Не удалось извлечь файлы Warcraft II Expansion. Игра по-прежнему будет играть без расширения."
 LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_ENGLISH} "Ripping Warcraft II audio tracks failed."
 LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_RUSSIAN} "Не удалось скопировать CD-музыку Warcraft II."
 LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_ENGLISH} "Coping Warcraft II audio tracks failed."
@@ -224,6 +233,7 @@ LangString EXTRACTDATA_PAGE_TEXT_TOP2 ${LANG_RUSSIAN} "Программа уст
 LangString EXTRACTDATA_PAGE_TEXT_DESTINATION2 ${LANG_ENGLISH} "Source Folder"
 LangString EXTRACTDATA_PAGE_TEXT_DESTINATION2 ${LANG_RUSSIAN} "Папка с файлами Warcraft II Expansion"
 LangString EXTRACTDATA_PAGE_NOT_VALID2 ${LANG_ENGLISH} "This is not valid Warcraft II Expansion data directory. Skipping Expansion extraction."
+LangString EXTRACTDATA_PAGE_NOT_VALID2 ${LANG_RUSSIAN} "Программа установки не обнаружила Warcraft II Expansion в указанной папке."
 
 LangString STR_VERSION ${LANG_ENGLISH} "version"
 LangString STR_VERSION ${LANG_RUSSIAN} "версия"
@@ -328,6 +338,18 @@ Section "-${NAME}"
 
 	ClearErrors
 
+	ReadRegDword $R0 HKLM "${STRATAGUSREGKEY}" "${STRATAGUS_HOMEPAGE}"
+	IfErrors 0 NoErrors2
+	StrCpy $R0 0
+	NoErrors2:
+	${If} $R0 == 0
+	  File "${STRATAGUSINSTALLER}"
+	  ExecWait "$\"$INSTDIR\${STRATAGUSINSTALLER}$\" /S"
+	  Delete "$\"$INSTDIR\${STRATAGUSINSTALLER}$\""
+    ${EndIf}
+
+	ClearErrors
+
 	!cd ${CMAKE_CURRENT_SOURCE_DIR}
 
 	SetOutPath "$INSTDIR\maps"
@@ -351,7 +373,7 @@ optwar2:
 	CreateDirectory "$INSTDIR\graphics\ui"
 	CreateDirectory "$INSTDIR\graphics\ui\cursors"
 	CreateDirectory "$INSTDIR\graphics\missiles"
-	
+
 	File "/oname=graphics\ui\cursors\cross.png" "contrib\cross.png"
 	File "/oname=graphics\missiles\red_cross.png" "contrib\red_cross.png"
 	File "/oname=graphics\ui\mana.png" "contrib\mana.png"
@@ -428,7 +450,7 @@ FunctionEnd
 
 Var KeyStr
 Section "-${NAME}" ExtractData
-	
+
 	StrCmp "$EXTRACTNEEDED" "no" end
 
 	AddSize 110348
@@ -438,7 +460,7 @@ Section "-${NAME}" ExtractData
 	StrCpy $DataDirectory "$DATADIR"
 	IfFileExists "$DATADIR\SUPPORT\TOMES\TOME.1" +2
 	StrCpy $DataDirectory "$\"$DATADIR\data$\""
-	
+
 	DetailPrint "$DataDirectory"
 	StrCmp $OptMusic "${opt2CD}" 0 +2
 	StrCpy $KeyStr "$KeyStr -r"
@@ -564,12 +586,12 @@ Function .onSelChange
     !insertmacro RadioButton ${opt1Warcraft}
     !insertmacro RadioButton ${opt1AT}
   !insertmacro EndRadioButtons
-	
+
   !insertmacro StartRadioButtons $OptMusic
     !insertmacro RadioButton ${opt2CD}
     !insertmacro RadioButton ${opt2MIDI}
   !insertmacro EndRadioButtons
-	
+
 FunctionEnd
 
 ;--------------------------------
