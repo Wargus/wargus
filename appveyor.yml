@@ -3,7 +3,7 @@ configuration:
 before_build:
   - mkdir build
   - cd build
-  - appveyor DownloadFile https://github.com/Wargus/stratagus/releases/download/2015-30-11/dependencies.zip
+  - appveyor DownloadFile https://github.com/Wargus/win32-stratagus-dependencies/releases/download/master-builds/dependencies.zip
   - 7z x dependencies.zip
   - appveyor DownloadFile https://github.com/Wargus/stratagus/archive/master.zip
   - 7z x master.zip
