@@ -19,10 +19,6 @@ else()
 		find_package(BZip2)
 	endif()
 
-	if (MSVC)
-	    set(STORMLIB_DEFINITIONS "-D__STORMLIB_SELF__")
-	endif()
-
 	if(STORMLIB_INCLUDE_DIR AND STORMLIB_LIBRARY AND (NOT UNIX OR BZIP2_FOUND))
 		set(STORMLIB_FOUND true)
 		message(STATUS "Found StormLib: ${STORMLIB_LIBRARY}")

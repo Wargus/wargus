@@ -100,7 +100,7 @@ if(NOT STRATAGUS_FOUND)
 	# Just means we won't build the launcher ...
 	set(STRATAGUS_INCLUDE_DIR ".")
 endif()
-	
+
 find_package(PNG REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(StormLib)
@@ -190,8 +190,8 @@ if(ENABLE_STRIP)
 endif()
 
 # For now, doesn't compile on OS X with StormLib
-if(WITH_STORMLIB AND STORMLIB_FOUND AND (NOT APPLE))
-	add_definitions(-DUSE_STORMLIB ${STORMLIB_DEFINITIONS})
+if(WITH_STORMLIB AND STORMLIB_FOUND)
+	add_definitions(-DUSE_STORMLIB -D__STORMLIB_SELF__)
 	include_directories(${STORMLIB_INCLUDE_DIR})
 	set(wartool_LIBS ${wartool_LIBS} ${STORMLIB_LIBRARY} ${BZIP2_LIBRARIES})
 endif()
