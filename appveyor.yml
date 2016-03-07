@@ -1,3 +1,4 @@
+os: Visual Studio 2015
 configuration:
   - Release
 before_build:
@@ -9,18 +10,28 @@ before_build:
   - 7z x master.zip
   - appveyor DownloadFile https://github.com/jimpark/unsis/releases/download/2.50.0/nsis-2.50.0-Unicode-setup.exe
   - nsis-2.50.0-Unicode-setup.exe /S /D=C:\Program Files (x86)\NSIS
-  - cmake -G "Visual Studio 14 2015" -T v120_xp -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON ..
+  - cmake -G "Visual Studio 14 2015" -T v140_xp -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON ..
   - cd ..
 artifacts:
   - path: build\Wargus-*.exe
 deploy:
-  release: master-builds
-  description: 'Automatic builds from the master branch'
-  provider: GitHub
-  auth_token:
-    secure: NMy2KE3EpZTjverxNzEAoBnlV+7VLGvwy3e1WEIrliFy3R1oxuT+AgGUDcRwv9y/
-  artifact: /.*exe/
-  draft: false
-  prerelease: true
-  on:
-    branch: master
+  - provider: GitHub
+    release: master-builds
+    description: 'Automatic builds from the master branch'
+    auth_token:
+      secure: NMy2KE3EpZTjverxNzEAoBnlV+7VLGvwy3e1WEIrliFy3R1oxuT+AgGUDcRwv9y/
+    artifact: /.*exe/
+    draft: false
+    prerelease: true
+    on:
+      branch: master
+  - provider: GitHub
+    release: Wargus-$(APPVEYOR_REPO_TAG_NAME)
+    description: 'Release'
+    auth_token:
+      secure: NMy2KE3EpZTjverxNzEAoBnlV+7VLGvwy3e1WEIrliFy3R1oxuT+AgGUDcRwv9y/
+    artifact: /.*exe/
+    draft: false
+    prerelease: false
+    on:
+	  appveyor_repo_tag: true
