@@ -18,17 +18,22 @@ before_script:
   - cd build
   - git clone https://github.com/ladislav-zezula/StormLib.git
   - cd StormLib
-  - if [ $TRAVIS_OS_NAME == linux ]; then make -f Makefile.linux; export STORMLIB="$PWD/libStorm.a"; fi
+  - "if [ $TRAVIS_OS_NAME == linux ]; then \
+        make -f Makefile.linux;
+        export STORMLIB=\"$PWD/libStorm.a\";
+    fi"
   - "if [ $TRAVIS_OS_NAME == osx ]; then \
         brew install libtomcrypt;
         make -f Makefile.mac;
         export STORMLIB=\"$PWD/StormLib.a\";
         find . -name \"*.o\" | xargs ar rcs \"$PWD/StormLib.a\";
+        ls /usr/local/lib/;
+        export EXTRA_CMAKE_FLAGS='-DCMAKE_EXE_LINKER_FLAGS=/usr/local/lib/libtomcrypt.a';
     fi"
   - cd ..
   - curl -L https://github.com/Wargus/stratagus/archive/master.zip -O master.zip || true
   - unzip master.zip
-  - cmake -DSTORMLIB_INCLUDE_DIR="$PWD/StormLib/src" -DSTORMLIB_LIBRARY="$STORMLIB" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="$PWD/stratagus-master/gameheaders" ..
+  - cmake $EXTRA_CMAKE_FLAGS -DSTORMLIB_INCLUDE_DIR="$PWD/StormLib/src" -DSTORMLIB_LIBRARY="$STORMLIB" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="$PWD/stratagus-master/gameheaders" ..
 script: make
 after_success:
   - "if [ $TRAVIS_OS_NAME == osx ]; then \
