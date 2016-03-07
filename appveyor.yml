@@ -4,13 +4,17 @@ configuration:
 before_build:
   - mkdir build
   - cd build
-  - appveyor DownloadFile https://github.com/Wargus/win32-stratagus-dependencies/releases/download/master-builds/dependencies.zip
+  - IF DEFINED APPVEYOR_REPO_TAG_NAME (SET RELEASE=%APPVEYOR_REPO_TAG_NAME%) ELSE (SET RELEASE=master-builds)
+  - IF DEFINED APPVEYOR_REPO_TAG_NAME (SET SRCTAG=%APPVEYOR_REPO_TAG_NAME%) ELSE (SET SRCTAG=master)
+  - appveyor DownloadFile https://github.com/Wargus/win32-stratagus-dependencies/releases/download/%RELEASE%/dependencies.zip
   - 7z x dependencies.zip
-  - appveyor DownloadFile https://github.com/Wargus/stratagus/archive/master.zip
-  - 7z x master.zip
+  - appveyor DownloadFile https://github.com/Wargus/stratagus/releases/download/%RELEASE%/compiled-binaries.zip
+  - 7z x compiled-binaries.zip
+  - appveyor DownloadFile https://github.com/Wargus/stratagus/archive/%SRCTAG%.zip
+  - 7z x %SRCTAG%.zip
   - appveyor DownloadFile https://github.com/jimpark/unsis/releases/download/2.50.0/nsis-2.50.0-Unicode-setup.exe
   - nsis-2.50.0-Unicode-setup.exe /S /D=C:\Program Files (x86)\NSIS
-  - cmake -G "Visual Studio 14 2015" -T v140_xp -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON ..
+  - cmake -G "Visual Studio 14 2015" -T v140_xp -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-%SRCTAG%\\gameheaders" -DENABLE_NSIS=ON ..
   - cd ..
 artifacts:
   - path: build\Wargus-*.exe

@@ -70,11 +70,6 @@
 !define SF2BANK "TimGM6mb.sf2"
 !define VCREDIST "vc_redist.x86.exe"
 !define VCREDISTREGKEY "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x86"
-!define STRATAGUSINSTALLER "Stratagus-${VERSION}.0.exe"
-!define STRATAGUSREGKEY "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Stratagus\\HelpLink"
-!ifndef STRATAGUSINSTALLERURL
-!define STRATAGUSINSTALLERURL "https://github.com/Wargus/stratagus/releases/download/master-builds/"
-!endif
 !define UNINSTALL "uninstall.exe"
 !define INSTALLER "${NAME}-${VERSION}.exe"
 !define INSTALLDIR "$PROGRAMFILES\${NAME}\"
@@ -85,8 +80,6 @@ ${redefine} INSTALLER "${NAME}-${VERSION}-x86_64.exe"
 ${redefine} INSTALLDIR "$PROGRAMFILES64\${NAME}\"
 ${redefine} NAME "Wargus (64 bit)"
 ${redefine} STRATAGUS_NAME "Stratagus (64 bit)"
-${redefine} STRATAGUSINSTALLER "Stratagus-${VERSION}.0-x86_64.exe"
-${redefine} STRATAGUSREGKEY "Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Stratagus (64 bit)\\HelpLink"
 ${redefine} VCREDIST "vc_redist.x64.exe"
 ${redefine} VCREDISTREGKEY "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x64"
 !endif
@@ -104,7 +97,6 @@ ${redefine} VCREDISTREGKEY "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\
 !system 'powershell -Command "& {unzip -o cdrtools.zip cdda2wav.exe}"'
 !system 'powershell -Command "& {wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -OutFile TimGM6mb.sf2}"'
 !system "powershell -Command $\"& {wget https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/${VCREDIST} -OutFile ${VCREDIST}}$\""
-!system "powershell -Command $\"& {wget ${STRATAGUSINSTALLERURL}${STRATAGUSINSTALLER} -OutFile ${STRATAGUSINSTALLER}}$\""
 !endif
 
 !addplugindir .
@@ -319,6 +311,14 @@ Section "-${NAME}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
 
+	; -- XXX TODO: include Stratagus and dependencies some better way
+	File "stratagus.exe"
+	File "libfluidsynth.dll"
+	File "libglib-2.0-0.dll"
+	File "libgthread-2.0-0.dll"
+	File "lua51.dll"
+	File "SDL.dll"
+
 	SetOutPath "$INSTDIR\music"
 	File "${SF2BANK}"
 
@@ -334,18 +334,6 @@ Section "-${NAME}"
 	  File "${VCREDIST}"
 	  ExecWait "$\"$INSTDIR\${VCREDIST}$\"  /passive /norestart"
 	  Delete "$\"$INSTDIR\${VCREDIST}$\""
-    ${EndIf}
-
-	ClearErrors
-
-	ReadRegDword $R0 HKLM "${STRATAGUSREGKEY}" "${STRATAGUS_HOMEPAGE}"
-	IfErrors 0 NoErrors2
-	StrCpy $R0 0
-	NoErrors2:
-	${If} $R0 == 0
-	  File "${STRATAGUSINSTALLER}"
-	  ExecWait "$\"$INSTDIR\${STRATAGUSINSTALLER}$\" /S"
-	  Delete "$\"$INSTDIR\${STRATAGUSINSTALLER}$\""
     ${EndIf}
 
 	ClearErrors
