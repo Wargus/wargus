@@ -11,8 +11,8 @@ Nightly builds are available:
 ##### Note to Windows XP Users
 * Change your operating system.
 * If that is not possible:
-  * The installer should work on XP
-  * Manually download Visual Studio 2015 Redistributable (just google it) and install it
+  * The installer should work on XP, but extraction of data might not, so extract the data on some other machine and copy it into the installation folder
+  * Manually download and install the Visual Studio 2015 Redistributable from Microsoft
   * Change the shortcut to launch stratagus.exe rather than wargus.exe in the installation folder directly if your game complains that it cannot find Stratagus.
 
 
