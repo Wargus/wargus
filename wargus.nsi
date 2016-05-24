@@ -1,4 +1,4 @@
-;       _________ __                 __
+п»ї;       _________ __                 __
 ;      /   _____//  |_____________ _/  |______     ____  __ __  ______
 ;      \_____  \\   __\_  __ \__  \\   __\__  \   / ___\|  |  \/  ___/
 ;      /        \|  |  |  | \// __ \|  |  / __ \_/ /_/  >  |  /\___ |
@@ -173,64 +173,66 @@ Var DataDirectory
 
 ; Language-dependent strings
 LangString INSTALLER_RUNNING ${LANG_ENGLISH} "${NAME} Installer is already running"
-LangString INSTALLER_RUNNING ${LANG_RUSSIAN} "Установщик ${NAME} уже запущен"
+LangString INSTALLER_RUNNING ${LANG_RUSSIAN} "РЈСЃС‚Р°РЅРѕРІС‰РёРє ${NAME} СѓР¶Рµ Р·Р°РїСѓС‰РµРЅ"
 LangString NO_STRATAGUS ${LANG_ENGLISH} "${STRATAGUS_NAME} ${VERSION} is not installed.$\nYou need ${STRATAGUS_NAME} ${VERSION} to run ${NAME}!$\nFirst install ${STRATAGUS_NAME} ${VERSION} from ${STRATAGUS_HOMEPAGE}"
 LangString NO_STRATAGUS ${LANG_RUSSIAN} "${STRATAGUS_NAME} ${VERSION} is not installed.$\nYou need ${STRATAGUS_NAME} ${VERSION} to run ${NAME}!$\nFirst install ${STRATAGUS_NAME} ${VERSION} from ${STRATAGUS_HOMEPAGE}"
 LangString REMOVEPREVIOUS ${LANG_ENGLISH} "Removing previous installation"
-LangString REMOVEPREVIOUS ${LANG_RUSSIAN} "Удаляются файлы из предыдущей установки"
+LangString REMOVEPREVIOUS ${LANG_RUSSIAN} "РЈРґР°Р»СЏСЋС‚СЃСЏ С„Р°Р№Р»С‹ РёР· РїСЂРµРґС‹РґСѓС‰РµР№ СѓСЃС‚Р°РЅРѕРІРєРё"
 LangString REMOVECONFIGURATION ${LANG_ENGLISH} "Removing configuration and data files:"
-LangString REMOVECONFIGURATION ${LANG_RUSSIAN} "Удаляются данные и файлы конфигураций:"
+LangString REMOVECONFIGURATION ${LANG_RUSSIAN} "РЈРґР°Р»СЏСЋС‚СЃСЏ РґР°РЅРЅС‹Рµ Рё С„Р°Р№Р»С‹ РєРѕРЅС„РёРіСѓСЂР°С†РёР№:"
 LangString DESC_REMOVEEXE ${LANG_ENGLISH} "Remove ${NAME} binary executables"
-LangString DESC_REMOVEEXE ${LANG_RUSSIAN} "Удаляются исполняемые файлы ${NAME}"
+LangString DESC_REMOVEEXE ${LANG_RUSSIAN} "РЈРґР°Р»СЏСЋС‚СЃСЏ РёСЃРїРѕР»РЅСЏРµРјС‹Рµ С„Р°Р№Р»С‹ ${NAME}"
 LangString DESC_REMOVECONF ${LANG_ENGLISH} "Remove all other configuration and extracted data files and directories in ${NAME} install directory created by user or ${NAME}"
-LangString DESC_REMOVECONF ${LANG_RUSSIAN} "Удалить все прочие файлы и директории в установочной папке ${NAME}, созданные пользователем ${NAME}"
+LangString DESC_REMOVECONF ${LANG_RUSSIAN} "РЈРґР°Р»РёС‚СЊ РІСЃРµ РїСЂРѕС‡РёРµ С„Р°Р№Р»С‹ Рё РґРёСЂРµРєС‚РѕСЂРёРё РІ СѓСЃС‚Р°РЅРѕРІРѕС‡РЅРѕР№ РїР°РїРєРµ ${NAME}, СЃРѕР·РґР°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј ${NAME}"
 
 LangString EXTRACTDATA_FILES ${LANG_ENGLISH} "Extracting Warcraft II data files..."
-LangString EXTRACTDATA_FILES ${LANG_RUSSIAN} "Извлекаются файлы Warcraft II..."
+LangString EXTRACTDATA_FILES ${LANG_RUSSIAN} "РР·РІР»РµРєР°СЋС‚СЃСЏ С„Р°Р№Р»С‹ Warcraft II..."
 LangString EXTRACTDATA_RIP_AUDIO ${LANG_ENGLISH} "Ripping Warcraft II audio tracks..."
-LangString EXTRACTDATA_RIP_AUDIO ${LANG_RUSSIAN} "Копируется CD-музыка Warcraft II..."
+LangString EXTRACTDATA_RIP_AUDIO ${LANG_RUSSIAN} "РљРѕРїРёСЂСѓРµС‚СЃСЏ CD-РјСѓР·С‹РєР° Warcraft II..."
 LangString EXTRACTDATA_COPY_AUDIO ${LANG_ENGLISH} "Coping Warcraft II audio tracks..."
-LangString EXTRACTDATA_COPY_AUDIO ${LANG_RUSSIAN} "Копируется музыка Warcraft II..."
+LangString EXTRACTDATA_COPY_AUDIO ${LANG_RUSSIAN} "РљРѕРїРёСЂСѓРµС‚СЃСЏ РјСѓР·С‹РєР° Warcraft II..."
 LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_ENGLISH} "Converting Warcraft II audio tracks..."
-LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_RUSSIAN} "Конвертируется музыка Warcraft II..."
+LangString EXTRACTDATA_CONVERT_AUDIO ${LANG_RUSSIAN} "РљРѕРЅРІРµСЂС‚РёСЂСѓРµС‚СЃСЏ РјСѓР·С‹РєР° Warcraft II..."
 
 LangString EXTRACTDATA_FILES_FAILED ${LANG_ENGLISH} "Extracting Warcraft II data files failed."
-LangString EXTRACTDATA_FILES_FAILED ${LANG_RUSSIAN} "Не удалось извлечь файлы Warcraft II."
+LangString EXTRACTDATA_FILES_FAILED ${LANG_RUSSIAN} "РќРµ СѓРґР°Р»РѕСЃСЊ РёР·РІР»РµС‡СЊ С„Р°Р№Р»С‹ Warcraft II."
 LangString EXTRACTDATA_FILES_FAILED2 ${LANG_ENGLISH} "Extracting Warcraft II Expansion data files failed. The game will still be playable without expansion, so not aborting."
+LangString EXTRACTDATA_FILES_FAILED2 ${LANG_RUSSIAN} "РќРµ СѓРґР°Р»РѕСЃСЊ РёР·РІР»РµС‡СЊ С„Р°Р№Р»С‹ Warcraft II Expansion. РРіСЂР° РїРѕ-РїСЂРµР¶РЅРµРјСѓ Р±СѓРґРµС‚ РёРіСЂР°С‚СЊ Р±РµР· СЂР°СЃС€РёСЂРµРЅРёСЏ."
 LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_ENGLISH} "Ripping Warcraft II audio tracks failed."
-LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_RUSSIAN} "Не удалось скопировать CD-музыку Warcraft II."
+LangString EXTRACTDATA_RIP_AUDIO_FAILED ${LANG_RUSSIAN} "РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ CD-РјСѓР·С‹РєСѓ Warcraft II."
 LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_ENGLISH} "Coping Warcraft II audio tracks failed."
-LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_RUSSIAN} "Не удалось скопировать музыку Warcraft II."
+LangString EXTRACTDATA_COPY_AUDIO_FAILED ${LANG_RUSSIAN} "РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ РјСѓР·С‹РєСѓ Warcraft II."
 LangString EXTRACTDATA_CONVERT_AUDIO_FAILED ${LANG_ENGLISH} "Converting Warcraft II audio tracks failed."
-LangString EXTRACTDATA_CONVERT_AUDIO_FAILED ${LANG_RUSSIAN} "Не удалось сконвертировать музыку Warcraft II."
+LangString EXTRACTDATA_CONVERT_AUDIO_FAILED ${LANG_RUSSIAN} "РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєРѕРЅРІРµСЂС‚РёСЂРѕРІР°С‚СЊ РјСѓР·С‹РєСѓ Warcraft II."
 
 LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_ENGLISH} "Choose Warcraft II Location"
-LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_RUSSIAN} "Укажите местоположение Warcraft II"
+LangString EXTRACTDATA_PAGE_HEADER_TEXT ${LANG_RUSSIAN} "РЈРєР°Р¶РёС‚Рµ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРµ Warcraft II"
 LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_ENGLISH} "Choose the folder in which are Warcraft II data files."
-LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_RUSSIAN} "Укажите папку, в которой содержатся файлы Warcraft II."
+LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT ${LANG_RUSSIAN} "РЈРєР°Р¶РёС‚Рµ РїР°РїРєСѓ, РІ РєРѕС‚РѕСЂРѕР№ СЃРѕРґРµСЂР¶Р°С‚СЃСЏ С„Р°Р№Р»С‹ Warcraft II."
 LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_ENGLISH} "Setup will extract Warcraft II data files from the following folder. You can specify location of CD or install location of Warcraft II data files (doesn't work for Battle.net edition)."
-LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_RUSSIAN} "Программа установки извлечет файлы Warcraft II из указанной папки. Вы можете указать либо CD-диск с игрой, либо указать папку с установленным Warcraft II (не подходит для версии Battle.net)."
+LangString EXTRACTDATA_PAGE_TEXT_TOP ${LANG_RUSSIAN} "РџСЂРѕРіСЂР°РјРјР° СѓСЃС‚Р°РЅРѕРІРєРё РёР·РІР»РµС‡РµС‚ С„Р°Р№Р»С‹ Warcraft II РёР· СѓРєР°Р·Р°РЅРЅРѕР№ РїР°РїРєРё. Р’С‹ РјРѕР¶РµС‚Рµ СѓРєР°Р·Р°С‚СЊ Р»РёР±Рѕ CD-РґРёСЃРє СЃ РёРіСЂРѕР№, Р»РёР±Рѕ СѓРєР°Р·Р°С‚СЊ РїР°РїРєСѓ СЃ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Рј Warcraft II (РЅРµ РїРѕРґС…РѕРґРёС‚ РґР»СЏ РІРµСЂСЃРёРё Battle.net)."
 LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_ENGLISH} "Source Folder"
-LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_RUSSIAN} "Папка с файлами Warcraft II"
+LangString EXTRACTDATA_PAGE_TEXT_DESTINATION ${LANG_RUSSIAN} "РџР°РїРєР° СЃ С„Р°Р№Р»Р°РјРё Warcraft II"
 LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_ENGLISH} "This is not valid Warcraft II data directory."
-LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_RUSSIAN} "Программа установки не обнаружила Warcraft II в указанной папке."
+LangString EXTRACTDATA_PAGE_NOT_VALID ${LANG_RUSSIAN} "РџСЂРѕРіСЂР°РјРјР° СѓСЃС‚Р°РЅРѕРІРєРё РЅРµ РѕР±РЅР°СЂСѓР¶РёР»Р° Warcraft II РІ СѓРєР°Р·Р°РЅРЅРѕР№ РїР°РїРєРµ."
 
 LangString EXTRACTDATA_PAGE_HEADER_TEXT2 ${LANG_ENGLISH} "Choose Warcraft II Expansion Location (optional)"
-LangString EXTRACTDATA_PAGE_HEADER_TEXT2 ${LANG_RUSSIAN} "Укажите местоположение Warcraft II Expansion"
+LangString EXTRACTDATA_PAGE_HEADER_TEXT2 ${LANG_RUSSIAN} "РЈРєР°Р¶РёС‚Рµ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРµ Warcraft II Expansion"
 LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT2 ${LANG_ENGLISH} "Choose the folder in which are Warcraft II Expansion data files (optional)."
-LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT2 ${LANG_RUSSIAN} "Укажите папку, в которой содержатся файлы Warcraft II Expansion."
+LangString EXTRACTDATA_PAGE_HEADER_SUBTEXT2 ${LANG_RUSSIAN} "РЈРєР°Р¶РёС‚Рµ РїР°РїРєСѓ, РІ РєРѕС‚РѕСЂРѕР№ СЃРѕРґРµСЂР¶Р°С‚СЃСЏ С„Р°Р№Р»С‹ Warcraft II Expansion."
 LangString EXTRACTDATA_PAGE_TEXT_TOP2 ${LANG_ENGLISH} "Setup will extract Warcraft II Expansion data files from the following folder. You can specify location of CD or install location of Warcraft II data files (doesn't work for Battle.net edition)."
-LangString EXTRACTDATA_PAGE_TEXT_TOP2 ${LANG_RUSSIAN} "Программа установки извлечет файлы Warcraft II Expansion   из указанной папки. Вы можете указать либо CD-диск с игрой, либо указать папку с установленным Warcraft II (не подходит для версии Battle.net)."
+LangString EXTRACTDATA_PAGE_TEXT_TOP2 ${LANG_RUSSIAN} "РџСЂРѕРіСЂР°РјРјР° СѓСЃС‚Р°РЅРѕРІРєРё РёР·РІР»РµС‡РµС‚ С„Р°Р№Р»С‹ Warcraft II Expansion   РёР· СѓРєР°Р·Р°РЅРЅРѕР№ РїР°РїРєРё. Р’С‹ РјРѕР¶РµС‚Рµ СѓРєР°Р·Р°С‚СЊ Р»РёР±Рѕ CD-РґРёСЃРє СЃ РёРіСЂРѕР№, Р»РёР±Рѕ СѓРєР°Р·Р°С‚СЊ РїР°РїРєСѓ СЃ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Рј Warcraft II (РЅРµ РїРѕРґС…РѕРґРёС‚ РґР»СЏ РІРµСЂСЃРёРё Battle.net)."
 LangString EXTRACTDATA_PAGE_TEXT_DESTINATION2 ${LANG_ENGLISH} "Source Folder"
-LangString EXTRACTDATA_PAGE_TEXT_DESTINATION2 ${LANG_RUSSIAN} "Папка с файлами Warcraft II Expansion"
+LangString EXTRACTDATA_PAGE_TEXT_DESTINATION2 ${LANG_RUSSIAN} "РџР°РїРєР° СЃ С„Р°Р№Р»Р°РјРё Warcraft II Expansion"
 LangString EXTRACTDATA_PAGE_NOT_VALID2 ${LANG_ENGLISH} "This is not valid Warcraft II Expansion data directory. Skipping Expansion extraction."
+LangString EXTRACTDATA_PAGE_NOT_VALID2 ${LANG_RUSSIAN} "РџСЂРѕРіСЂР°РјРјР° СѓСЃС‚Р°РЅРѕРІРєРё РЅРµ РѕР±РЅР°СЂСѓР¶РёР»Р° Warcraft II Expansion РІ СѓРєР°Р·Р°РЅРЅРѕР№ РїР°РїРєРµ."
 
 LangString STR_VERSION ${LANG_ENGLISH} "version"
-LangString STR_VERSION ${LANG_RUSSIAN} "версия"
+LangString STR_VERSION ${LANG_RUSSIAN} "РІРµСЂСЃРёСЏ"
 
 !ifdef x86_64
 LangString x86_64_ONLY ${LANG_ENGLISH} "This version is for 64 bits computers only"
-LangString x86_64_ONLY ${LANG_RUSSIAN} "Эта версия предназначена для 64-битных систем"
+LangString x86_64_ONLY ${LANG_RUSSIAN} "Р­С‚Р° РІРµСЂСЃРёСЏ РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅР° РґР»СЏ 64-Р±РёС‚РЅС‹С… СЃРёСЃС‚РµРј"
 !endif
 
 ;--------------------------------
@@ -308,7 +310,19 @@ Section "-${NAME}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
 	File "${FFMPEG2THEORA}"
-	File "/oname=music\${SF2BANK}" "${SF2BANK}"
+
+	; -- XXX TODO: include Stratagus and dependencies some better way
+	File "stratagus.exe"
+	File "libfluidsynth.dll"
+	File "libglib-2.0-0.dll"
+	File "libgthread-2.0-0.dll"
+	File "lua51.dll"
+	File "SDL.dll"
+
+	SetOutPath "$INSTDIR\music"
+	File "${SF2BANK}"
+
+        SetOutPath "$INSTDIR"
 
 	ClearErrors
 
@@ -347,7 +361,7 @@ optwar2:
 	CreateDirectory "$INSTDIR\graphics\ui"
 	CreateDirectory "$INSTDIR\graphics\ui\cursors"
 	CreateDirectory "$INSTDIR\graphics\missiles"
-	
+
 	File "/oname=graphics\ui\cursors\cross.png" "contrib\cross.png"
 	File "/oname=graphics\missiles\red_cross.png" "contrib\red_cross.png"
 	File "/oname=graphics\ui\mana.png" "contrib\mana.png"
@@ -424,7 +438,7 @@ FunctionEnd
 
 Var KeyStr
 Section "-${NAME}" ExtractData
-	
+
 	StrCmp "$EXTRACTNEEDED" "no" end
 
 	AddSize 110348
@@ -434,7 +448,7 @@ Section "-${NAME}" ExtractData
 	StrCpy $DataDirectory "$DATADIR"
 	IfFileExists "$DATADIR\SUPPORT\TOMES\TOME.1" +2
 	StrCpy $DataDirectory "$\"$DATADIR\data$\""
-	
+
 	DetailPrint "$DataDirectory"
 	StrCmp $OptMusic "${opt2CD}" 0 +2
 	StrCpy $KeyStr "$KeyStr -r"
@@ -560,12 +574,12 @@ Function .onSelChange
     !insertmacro RadioButton ${opt1Warcraft}
     !insertmacro RadioButton ${opt1AT}
   !insertmacro EndRadioButtons
-	
+
   !insertmacro StartRadioButtons $OptMusic
     !insertmacro RadioButton ${opt2CD}
     !insertmacro RadioButton ${opt2MIDI}
   !insertmacro EndRadioButtons
-	
+
 FunctionEnd
 
 ;--------------------------------
