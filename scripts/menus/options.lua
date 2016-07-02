@@ -287,7 +287,7 @@ function RunPreferencesMenu()
   
   local fogOfWar
   if (not IsNetworkGame()) then
-	  fogOfWar = menu:addImageCheckBox(_("For of War"), 10, 10 + 18 * 12, offi, offi2, oni, oni2, function() end)
+	  fogOfWar = menu:addImageCheckBox(_("Fog of War"), 10, 10 + 18 * 12, offi, offi2, oni, oni2, function() end)
 	  fogOfWar:setActionCallback(
 		function()
 			SetFogOfWar(fogOfWar:isMarked())

@@ -1791,7 +1791,7 @@ msgid "Deselect in mines"
 msgstr "Снимать выдел. при добыче"
 
 #: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:290
-msgid "For of War"
+msgid "Fog of War"
 msgstr "Туман войны"
 
 #: /media/l_disk/programming/wwargus/wargus/scripts/menus/options.lua:299
