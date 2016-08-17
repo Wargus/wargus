@@ -2074,7 +2074,7 @@ static Control Todo[] = {
 {Q,8,"music/Orc Battle 5.wav",          8, 0, 0, 0, "INSTALL.EXE", "Music/ORC5.WAV"},
 {Q,8,"music/Orc Battle 6.wav",          8, 0, 0, 0, "INSTALL.EXE", "Music/ORC6.WAV"},
 {Q,8,"music/Human Briefing.wav",        8, 0, 0, 0, "INSTALL.EXE", "Music/HWARROOM.WAV"},
-{Q,8,"music/Orc Briefing.wav",          8, 0, 0, 0, "INSTALL.EXE", "Music/HWARROOM.WAV"},
+{Q,8,"music/Orc Briefing.wav",          8, 0, 0, 0, "INSTALL.EXE", "Music/OWARROOM.WAV"},
 {Q,8,"music/Human Victory.wav",         8, 0, 0, 0, "INSTALL.EXE", "Music/HVICTORY.WAV"},
 {Q,8,"music/Orc Victory.wav",           8, 0, 0, 0, "INSTALL.EXE", "Music/OVICTORY.WAV"},
 {Q,8,"music/Human Defeat.wav",          8, 0, 0, 0, "INSTALL.EXE", "Music/HDEFEAT.WAV"},
