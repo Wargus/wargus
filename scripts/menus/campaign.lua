@@ -37,12 +37,13 @@ function Briefing(title, objs, bg, text, voices)
   wargus.playlist = {}
   if (CurrentCampaignRace == "human") then
     Load("scripts/human/ui.lua")
+    PlayMusic("music/Human Briefing" .. wargus.music_extension)
   elseif (CurrentCampaignRace == "orc") then
     Load("scripts/orc/ui.lua")
+    PlayMusic("music/Main Menu" .. wargus.music_extension) -- orc briefing music is same as main menu
   else
     StopMusic()
   end
-  PlayMusic("music/Human Briefing" .. wargus.music_extension)
 
   Objectives = objs
 
