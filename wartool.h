@@ -741,7 +741,7 @@ static Control Todo[] = {
 {M,0,"I'm a Medieval Man",                             426 __},
 {M,0,"Human Battle 5",                                 427 __},
 {M,0,"Human Briefing",                                 428 __},
-{M,0,"Orc Briefing",                                   428 __},
+{M,0,"Orc Briefing",                                   429 __},
 {M,0,"Main Menu",                                      429 __},
 
 {V,0,"videos/logo",                                    430 __},
