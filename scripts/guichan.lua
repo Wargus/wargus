@@ -324,14 +324,20 @@ end
     return b
   end
 
-  function menu:addImageButton(caption, hotkey, x, y, callback)
-    local b = ImageButton(caption)
-	b:setHotKey(hotkey)
-    b:setActionCallback(callback)
-    self:add(b, x, y)
-	b:setBorderSize(0)
-    return b
-  end
+function menu:addImageButton(caption, hotkey, x, y, callback)
+	local b = ImageButton(caption)
+	if (hotkey ~= "") then
+		b:setHotKey(hotkey)
+	end
+	b:setActionCallback(
+		function()
+			PlaySound("click")
+			callback()
+		end)
+	self:add(b, x, y)
+	b:setBorderSize(0) -- Andrettin: make buttons not have the borders they previously had
+	return b
+end
 
   function menu:addFullButton(caption, hotkey, x, y, callback)
     local b = self:addImageButton(caption, hotkey, x, y, callback)
