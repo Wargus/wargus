@@ -123,6 +123,11 @@ Preference.ShowAttackRange = false
 Preference.ShowReactionRange = false
 Preference.IconsShift = true
 
+--The two lines below allow images to replace the pixel borders for the icons.
+-- You need the images in the "graphics/ui" directory for the code here to work.
+--Preference.IconFrameG = CGraphic:New("ui/icon_frame.png", 54, 46)
+--Preference.PressedIconFrameG = CGraphic:New("ui/icon_frame_pressed.png", 54, 46)
+
 --  Enable/disable the short display of the orders after command.
 --  FIXME: planned
 --(set-order-feedback! #t)
