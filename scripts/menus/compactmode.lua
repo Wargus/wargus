@@ -226,11 +226,11 @@ function RunMultiPlayerGameMenu(s)
   local nick
 
   local function FixMusic()
-    wargus.playlist = { "music/Orc Briefing.ogg" }
+    wargus.playlist = { "music/Main Menu.ogg" }
     SetPlayerData(GetThisPlayer(), "RaceName", "orc")
 
     if not (IsMusicPlaying()) then
-        PlayMusic("music/Orc Briefing.ogg")
+        PlayMusic("music/Main Menu.ogg")
     end
   end
 
