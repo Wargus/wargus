@@ -986,11 +986,11 @@ end
 
 function RunSinglePlayerTypeMenu()
 
-  wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
+  wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
   SetDefaultRaceView()
 
   if not (IsMusicPlaying()) then
-    PlayMusic("music/Orc Briefing" .. wargus.music_extension)
+    PlayMusic("music/Main Menu" .. wargus.music_extension)
   end
 
   local menu = WarMenu()
@@ -1498,11 +1498,11 @@ function RunSinglePlayerGameMenu()
 end
 
 function BuildProgramStartMenu()
-  wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
+  wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
   SetDefaultRaceView()
 
   if not (IsMusicPlaying()) then
-    PlayMusic("music/Orc Briefing" .. wargus.music_extension)
+    PlayMusic("music/Main Menu" .. wargus.music_extension)
   end
 
   local menu = WarMenu()
