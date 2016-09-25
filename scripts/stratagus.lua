@@ -103,13 +103,13 @@ DefineBoolFlags("Center", "WoodImprove", "OilImprove")
 SetTitleScreens(
   {Image = "videos/logo.ogv"},
   {Image = "videos/gameintro.ogv"},
-  {Image = "ui/title.png", Music = "music/Main Menu" .. wargus.music_extension, Timeout = 20}
+  {Image = "ui/title.png", Music = "music/Orc Briefing" .. wargus.music_extension, Timeout = 20}
 )
 
 -------------------------------------------------------------------------------
 --	Music play list -	Insert your titles here
 -------------------------------------------------------------------------------
-wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
 
 --  Set the game name. It's used so we can mantain different savegames
 --  and setting. Might also be used for multiplayer.
