@@ -40,7 +40,7 @@ function Briefing(title, objs, bg, text, voices)
     PlayMusic("music/Human Briefing" .. wargus.music_extension)
   elseif (CurrentCampaignRace == "orc") then
     Load("scripts/orc/ui.lua")
-    PlayMusic("music/Main Menu" .. wargus.music_extension) -- orc briefing music is same as main menu
+    PlayMusic("music/Orc Briefing" .. wargus.music_extension) -- orc briefing music is same as main menu
   else
     StopMusic()
   end
@@ -256,11 +256,11 @@ function RunCampaignSubmenu(campaign)
 	SavePreferences()
   end
  
-  wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+  wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
   SetDefaultRaceView()
 
   if not (IsMusicPlaying()) then
-    PlayMusic("music/Main Menu" .. wargus.music_extension)
+    PlayMusic("music/Orc Briefing" .. wargus.music_extension)
   end
 
   local menu = WarMenu()
