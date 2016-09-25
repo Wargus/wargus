@@ -662,11 +662,11 @@ function RunMultiPlayerGameMenu(s)
   local nick
 
   local function FixMusic()
-    wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+    wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
     SetDefaultRaceView()
 
     if not (IsMusicPlaying()) then
-      PlayMusic("music/Main Menu" .. wargus.music_extension)
+      PlayMusic("music/Orc Briefing" .. wargus.music_extension)
     end
   end
   InitGameSettings()
