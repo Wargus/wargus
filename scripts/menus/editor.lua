@@ -87,11 +87,11 @@ end
 
 -- root of the editor menu
 function RunEditorMenu()
-  wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+  wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
   SetDefaultRaceView()
 
   if not (IsMusicPlaying()) then
-    PlayMusic("music/Main Menu" .. wargus.music_extension)
+    PlayMusic("music/Orc Briefing" .. wargus.music_extension)
   end
 
   local menu = WarMenu()
