@@ -324,14 +324,20 @@ end
     return b
   end
 
-  function menu:addImageButton(caption, hotkey, x, y, callback)
-    local b = ImageButton(caption)
-	b:setHotKey(hotkey)
-    b:setActionCallback(callback)
-    self:add(b, x, y)
-	b:setBorderSize(0)
-    return b
-  end
+function menu:addImageButton(caption, hotkey, x, y, callback)
+	local b = ImageButton(caption)
+	if (hotkey ~= "") then
+		b:setHotKey(hotkey)
+	end
+	b:setActionCallback(
+		function()
+			PlaySound("click")
+			callback()
+		end)
+	self:add(b, x, y)
+	b:setBorderSize(0) -- Andrettin: make buttons not have the borders they previously had
+	return b
+end
 
   function menu:addFullButton(caption, hotkey, x, y, callback)
     local b = self:addImageButton(caption, hotkey, x, y, callback)
@@ -980,11 +986,11 @@ end
 
 function RunSinglePlayerTypeMenu()
 
-  wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+  wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
   SetDefaultRaceView()
 
   if not (IsMusicPlaying()) then
-    PlayMusic("music/Main Menu" .. wargus.music_extension)
+    PlayMusic("music/Orc Briefing" .. wargus.music_extension)
   end
 
   local menu = WarMenu()
@@ -1492,11 +1498,11 @@ function RunSinglePlayerGameMenu()
 end
 
 function BuildProgramStartMenu()
-  wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+  wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
   SetDefaultRaceView()
 
   if not (IsMusicPlaying()) then
-    PlayMusic("music/Main Menu" .. wargus.music_extension)
+    PlayMusic("music/Orc Briefing" .. wargus.music_extension)
   end
 
   local menu = WarMenu()

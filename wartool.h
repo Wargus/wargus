@@ -741,7 +741,7 @@ static Control Todo[] = {
 {M,0,"I'm a Medieval Man",                             426 __},
 {M,0,"Human Battle 5",                                 427 __},
 {M,0,"Human Briefing",                                 428 __},
-{M,0,"Orc Briefing",                                   428 __},
+{M,0,"Orc Briefing",                                   429 __},
 {M,0,"Main Menu",                                      429 __},
 
 {V,0,"videos/logo",                                    430 __},
@@ -2074,7 +2074,7 @@ static Control Todo[] = {
 {Q,8,"music/Orc Battle 5.wav",          8, 0, 0, 0, "INSTALL.EXE", "Music/ORC5.WAV"},
 {Q,8,"music/Orc Battle 6.wav",          8, 0, 0, 0, "INSTALL.EXE", "Music/ORC6.WAV"},
 {Q,8,"music/Human Briefing.wav",        8, 0, 0, 0, "INSTALL.EXE", "Music/HWARROOM.WAV"},
-{Q,8,"music/Orc Briefing.wav",          8, 0, 0, 0, "INSTALL.EXE", "Music/HWARROOM.WAV"},
+{Q,8,"music/Orc Briefing.wav",          8, 0, 0, 0, "INSTALL.EXE", "Music/OWARROOM.WAV"},
 {Q,8,"music/Human Victory.wav",         8, 0, 0, 0, "INSTALL.EXE", "Music/HVICTORY.WAV"},
 {Q,8,"music/Orc Victory.wav",           8, 0, 0, 0, "INSTALL.EXE", "Music/OVICTORY.WAV"},
 {Q,8,"music/Human Defeat.wav",          8, 0, 0, 0, "INSTALL.EXE", "Music/HDEFEAT.WAV"},

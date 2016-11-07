@@ -8,6 +8,13 @@ Nightly builds are available:
 - Ubuntu/Debian Packages: https://launchpad.net/~stratagus/+archive/ubuntu/ppa
 - OS X App Bundle: https://github.com/Wargus/stratagus/wiki/osx/Wargus.app.tar.gz
 
+##### Note to Windows XP Users
+* Change your operating system.
+* If that is not possible:
+  * The installer should work on XP, but extraction of data might not, so extract the data on some other machine and copy it into the installation folder
+  * Manually download and install the Visual Studio 2015 Redistributable from Microsoft
+  * Change the shortcut to launch stratagus.exe rather than wargus.exe in the installation folder directly if your game complains that it cannot find Stratagus.
+
 
 ============================================================================
 About

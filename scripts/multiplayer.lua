@@ -16,7 +16,7 @@ local function usage()
   print("\t[fow=(1|0)] -- only valid for server")
   print("\t[units=1] -- only valid for server (1 is for one peasant only)")
   print("\t[resources=(Low|Medium|High)] -- only valid for server")
-  print("\t[revealmap=(0|1)] -- only valid for server")
+  print("\t[reveal=(0|1)] -- only valid for server")
   print("\nAll options must be passed comma-separated. For example:")
   print("\twargus -c multiplayer -G server,race=human,map=islands.smp.gz,numplayers=2,resources=High,units=1")
   print("\t\t... will start a server that waits for one more player.")
@@ -45,7 +45,7 @@ else
   local nickname = string.match(ARGS,"player=([^,]+)")
   local numplayers = tonumber(string.match(ARGS,"numplayers=([^,]+)"))
   local fow = tonumber(string.match(ARGS,"fow=([^,]+)"))
-  local reveal = tonumber(string.match(ARGS,"revealmap=([^,]+)"))
+  local reveal = tonumber(string.match(ARGS,"reveal=([^,]+)"))
 
   if (nickname) then SetLocalPlayerName(nickname) end
 

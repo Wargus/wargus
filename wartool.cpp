@@ -2398,14 +2398,14 @@ void FixTranslation(const char *translation)
 void Usage(const char* name)
 {
 	printf("%s\n\
-Usage: %s [-e|-n] [-m] [-v] [-r] [-V] [-h] archive-directory [destination-directory]\n\
+Usage: %s [-e|-n] [-v] [-r] [-V] [-h|--help] archive-directory [destination-directory]\n\
 \t-e\tThe archive is expansion compatible (default: autodetect)\n\
 \t-n\tThe archive is not expansion compatible (default: autodetect)\n\
 \t-v\tExtract and convert videos\n\
 \t-r\tRip sound tracks from CD-ROM (needs original CD, no image/emulation)\n\
 \t-V\tShow version\n\
-\t-h\tShow usage\n\
-archive-directory\tDirectory which includes the archives maindat.war...\n\
+\t-h\tShow usage (this text)\n\
+archive-directory\tDirectory which includes the archives maindat.war or the battle.net tomes...\n\
 destination-directory\tDirectory where the extracted files are placed.\n"
 	,NameLine, name);
 	fflush(stdout);
@@ -2458,7 +2458,7 @@ int main(int argc, char** argv)
 			--argc;
 			exit(0);
 		}
-		if (!strcmp(argv[a], "-h")) {
+		if (!strcmp(argv[a], "-h") || !strcmp(argv[a], "--help")) {
 			Usage(argv[0]);
 			++a;
 			--argc;

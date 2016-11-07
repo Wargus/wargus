@@ -873,6 +873,7 @@ DefineUnitType("unit-human-barracks", { Name = _("Barracks"),
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
   Building = true, VisibleUnderFog = true,
+  SelectableByRectangle = true,
   Sounds = {
     "selected", "human-barracks-selected",
 --    "acknowledge", "human-barracks-acknowledge",

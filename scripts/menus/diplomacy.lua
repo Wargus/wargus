@@ -51,6 +51,17 @@ function RunDiplomacyMenu()
         function() end)
       sharedvisioncb:setMarked(ThisPlayer:IsSharedVision(Players[i]))
       sharedvision[j] = sharedvisioncb
+
+      if ((not Players[i]:IsAllied(ThisPlayer)) and Players[i].Type == PlayerComputer) then
+	 -- computer players never change their allegiance to you, so you
+	 -- shouldn't either
+	 alliedcb:setEnabled(false)
+	 enemycb:setEnabled(false)
+	 sharedvisioncb:setEnabled(false)
+	 alliedcb:setDisabledColor(dark)
+	 enemycb:setDisabledColor(clear)
+	 sharedvisioncb:setDisabledColor(dark)
+      end
     end
   end
 

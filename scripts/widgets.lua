@@ -180,15 +180,9 @@ DefineButtonStyle("icon", {
   },
   Hover = {
     TextNormalColor = "white",
-    Border = {
-      Color = {128, 128, 128}, Size = 1,
-    },
   },
   Clicked = {
     TextNormalColor = "white",
-    Border = {
-      Color = {128, 128, 128}, Size = 1,
-    },
   },
 })
 

@@ -103,13 +103,13 @@ DefineBoolFlags("Center", "WoodImprove", "OilImprove")
 SetTitleScreens(
   {Image = "videos/logo.ogv"},
   {Image = "videos/gameintro.ogv"},
-  {Image = "ui/title.png", Music = "music/Main Menu" .. wargus.music_extension, Timeout = 20}
+  {Image = "ui/title.png", Music = "music/Orc Briefing" .. wargus.music_extension, Timeout = 20}
 )
 
 -------------------------------------------------------------------------------
 --	Music play list -	Insert your titles here
 -------------------------------------------------------------------------------
-wargus.playlist = { "music/Main Menu" .. wargus.music_extension }
+wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
 
 --  Set the game name. It's used so we can mantain different savegames
 --  and setting. Might also be used for multiplayer.
@@ -122,6 +122,11 @@ Preference.ShowSightRange = false
 Preference.ShowAttackRange = false
 Preference.ShowReactionRange = false
 Preference.IconsShift = true
+
+--The two lines below allow images to replace the pixel borders for the icons.
+-- You need the images in the "graphics/ui" directory for the code here to work.
+--Preference.IconFrameG = CGraphic:New("ui/icon_frame.png", 54, 46)
+--Preference.PressedIconFrameG = CGraphic:New("ui/icon_frame_pressed.png", 54, 46)
 
 --  Enable/disable the short display of the orders after command.
 --  FIXME: planned
