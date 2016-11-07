@@ -300,8 +300,8 @@ function RunJoiningGameMenu(optRace, optReady)
     elseif (state == 16) then -- ccs_incompatibleengine
       ErrorMenu(_("Incompatible engine version"))
       menu:stop(1)
-    elseif (state == 17) then -- ccs_incompatiblenetwork
-      ErrorMenu(_("Incompatible network version"))
+    elseif (state == 17) then -- ccs_incompatibleluafiles
+      ErrorMenu(_("Incompatible lua files"))
       menu:stop(1)
     end
   end
