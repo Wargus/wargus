@@ -12,6 +12,7 @@ before_build:
   - 7z x compiled-binaries.zip
   - appveyor DownloadFile https://github.com/Wargus/stratagus/archive/%SRCTAG%.zip
   - 7z x %SRCTAG%.zip
+  - IF DEFINED APPVEYOR_REPO_TAG_NAME (move stratagus-* stratagus-master)
   - appveyor DownloadFile https://github.com/jimpark/unsis/releases/download/2.50.0/nsis-2.50.0-Unicode-setup.exe
   - nsis-2.50.0-Unicode-setup.exe /S /D=C:\Program Files (x86)\NSIS
   - cmake -G "Visual Studio 14 2015" -T v140_xp -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-%SRCTAG%\\gameheaders" -DENABLE_NSIS=ON ..
@@ -30,7 +31,7 @@ deploy:
     on:
       branch: master
   - provider: GitHub
-    release: Wargus-$(APPVEYOR_REPO_TAG_NAME)
+    release: $(APPVEYOR_REPO_TAG_NAME)
     description: 'Release'
     auth_token:
       secure: NMy2KE3EpZTjverxNzEAoBnlV+7VLGvwy3e1WEIrliFy3R1oxuT+AgGUDcRwv9y/
