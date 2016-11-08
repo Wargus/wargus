@@ -8,6 +8,7 @@ wargus (2.4.1-1) unstable; urgency=low
     - Make barracks selectable by rectangle
     - Commandline arguments can be passed to directly start or join multiplayer games
   * Bugfixes
+    - Network desyncing
     - All buttons now emit click sounds
     - Sapper demolition range increased to behave as in original game
     - Main menu music should now be correct for all supported versions
@@ -22,6 +23,7 @@ wargus (2.4.0-1) unstable; urgency=low
 
   * Compatibility with Stratagus 2.4
   * Updates to Timeless Tales and Frontier Force
+  * Move to Github
 
  -- Tim Felgentreff <timfelgentreff@gmail.com>  Wed, 2 Dec 2015 11:28:27 +0100
 

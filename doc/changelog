@@ -1,3 +1,21 @@
+2.4.1
+  - Compatibility with Stratagus 2.4.1
+  - Updated installers for debian, windows, mac os x
+  - Remove remaining maemo support code
+  - Features
+    - Support lua checksums and add proper error message for multiplayer
+    - Make barracks selectable by rectangle
+    - Commandline arguments can be passed to directly start or join multiplayer games
+  - Bugfixes
+    - Network desyncing
+    - All buttons now emit click sounds
+    - Sapper demolition range increased to behave as in original game
+    - Main menu music should now be correct for all supported versions
+    - Remove colorcycled border
+    - Disable diplomacy checkboxes for computer players
+    - Remove unfinished metaserver menu
+    - ToD Human mission 4 now rescues rangers, not archers
+
 2.4.0
  - Compatability with Stratagus 2.4
  - Updates to Timeless Tales and Frontier Force
