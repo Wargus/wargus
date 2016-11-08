@@ -29,7 +29,7 @@
 
 project(wargus)
 cmake_minimum_required(VERSION 2.6)
-set(WARGUS_VERSION 2.4)
+set(WARGUS_VERSION 2.4.1)
 
 # Wargus sources
 
