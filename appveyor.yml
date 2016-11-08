@@ -15,7 +15,7 @@ before_build:
   - IF DEFINED APPVEYOR_REPO_TAG_NAME (move stratagus-* stratagus-master)
   - appveyor DownloadFile https://github.com/jimpark/unsis/releases/download/2.50.0/nsis-2.50.0-Unicode-setup.exe
   - nsis-2.50.0-Unicode-setup.exe /S /D=C:\Program Files (x86)\NSIS
-  - cmake -G "Visual Studio 14 2015" -T v140_xp -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-%SRCTAG%\\gameheaders" -DENABLE_NSIS=ON ..
+  - cmake -G "Visual Studio 14 2015" -T v140_xp -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON ..
   - cd ..
 artifacts:
   - path: build\Wargus-*.exe
