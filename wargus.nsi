@@ -45,8 +45,8 @@
 
 ; General variables
 !define NAME "Wargus"
-!define VERSION "2.4"
-!define VIVERSION "${VERSION}.0.0"
+!define VERSION "2.4.1"
+!define VIVERSION "${VERSION}.0"
 !define HOMEPAGE "https://github.com/Wargus/wargus"
 !define LICENSE "GPL v2"
 !define COPYRIGHT "Copyright (c) 1998-2015 by The Stratagus Project"
