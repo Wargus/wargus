@@ -41,11 +41,11 @@ Load("scripts/wc2-config.lua")
 if (wargus.tales == true) then
 	wargus.Name = _("Aleona's Tales")
 	wargus.Homepage = "stratagus.com"
-	wargus.Copyright = _("(c) 2012-2015 by The Stratagus Project.")
+	wargus.Copyright = _("(c) 2012-2016 by The Stratagus Project.")
 else
 	wargus.Name = _("Wargus")
 	wargus.Homepage = "wargus.stratagus.com"
-	wargus.Copyright = _("(c) 1998-2015 by The Stratagus Project.")
+	wargus.Copyright = _("(c) 1998-2016 by The Stratagus Project.")
 end
 
 wargus.Version = "2.4.1"

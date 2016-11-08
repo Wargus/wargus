@@ -10,7 +10,7 @@
 --
 --      wc2.lua - WC2 compatibility level
 --
---      (c) Copyright 2001-2015 by Lutz Sammer, Jimmy Salmon and Kyran Jackson.
+--      (c) Copyright 2001-2016 by Lutz Sammer, Jimmy Salmon and Kyran Jackson.
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by

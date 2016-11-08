@@ -10,7 +10,7 @@
 //
 /**@name wartool.c - Extract files from war archives. */
 //
-//      (c) Copyright 1999-2015 by Lutz Sammer, Nehal Mistry, Jimmy Salmon,
+//      (c) Copyright 1999-2016 by Lutz Sammer, Nehal Mistry, Jimmy Salmon,
 //                                 Pali Rohár and cybermind
 //
 //      This program is free software; you can redistribute it and/or modify

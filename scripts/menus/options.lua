@@ -10,7 +10,7 @@
 --
 --      options.lua - Define the menu for options.
 --
---      (c) Copyright 2006-2015 by Jimmy Salmon, Pali Rohár, Kyran Jackson and cybermind
+--      (c) Copyright 2006-2016 by Jimmy Salmon, Pali Rohár, Kyran Jackson and cybermind
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by

@@ -10,7 +10,7 @@
 --
 --      ai.lua - Define the AI.
 --
---      (c) Copyright 2000-2015 by Lutz Sammer, Jimmy Salmon, 
+--      (c) Copyright 2000-2016 by Lutz Sammer, Jimmy Salmon, 
 --											cybermind and Kyran Jackson.
 --
 --      This program is free software; you can redistribute it and/or modify

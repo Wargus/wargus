@@ -2626,16 +2626,16 @@ msgid "Aleona's Tales"
 msgstr "Сказания Алеоны"
 
 #: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:44
-msgid "(c) 2012-2015 by The Stratagus Project."
-msgstr "(c) 2012-2015 by The Stratagus Project."
+msgid "(c) 2012-2016 by The Stratagus Project."
+msgstr "(c) 2012-2016 by The Stratagus Project."
 
 #: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:46
 msgid "Wargus"
 msgstr "Wargus"
 
 #: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:48
-msgid "(c) 1998-2015 by The Stratagus Project."
-msgstr "(c) 1998-2015 by The Stratagus Project."
+msgid "(c) 1998-2016 by The Stratagus Project."
+msgstr "(c) 1998-2016 by The Stratagus Project."
 
 #: /media/l_disk/programming/wwargus/wargus/scripts/stratagus.lua:197
 msgid "stop"

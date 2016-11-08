@@ -10,7 +10,7 @@
 --
 --      credits.lua - Define the menu for credits.
 --
---      (c) Copyright 2006-2015 by Jimmy Salmon, Pali Rohár and cybermind
+--      (c) Copyright 2006-2016 by Jimmy Salmon, Pali Rohár and cybermind
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
