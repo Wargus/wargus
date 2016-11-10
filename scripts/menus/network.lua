@@ -424,6 +424,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local optUnits = options.units
   local optAutostartNum = options.autostartNum
   local optDedicated = options.dedicated
+  local optOnline = options.online
 
   menu = WarMenu(_("Create MultiPlayer game"))
 
@@ -486,6 +487,29 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
     LocalSetupState.CompOpt[0] = bool2int(dd:isMarked())
   end
   local dedicated = menu:addImageCheckBox("", sx + 200, sy*12+75, offi, offi2, oni, oni2, dedicatedCb)
+  local onlineLabel = menu:writeText(_("Advertise server online:"), sx, sy*13+75)
+  local onlineCb = function (dd)
+     if (dd:isMarked()) then
+	local ip = wc2.preferences.MetaServer
+	local port = wc2.preferences.MetaPort
+	MetaClient:SetMetaServer(ip, port)
+	if (MetaClient:Init() == -1) then
+	   onlineLabel:setCaption(onlineLabel:getText() .. " " .. _c("(unable to connect)"))
+	   onlineLabel:adjustSize()
+	   dd:setMarked(false)
+	else
+	   if (MetaClient:CreateGame(description, map, "" .. numplayers) == -1) then
+	      onlineLabel:setCaption(onlineLabel:getText() .. " " .. _c("(server error)"))
+	      onlineLabel:adjustSize()
+	      dd:setMarked(false)
+	      MetaClient:Close()
+	   end
+	end
+     else
+	MetaClient:Send("CANCELGAME")
+     end
+  end
+  local online = menu:addImageCheckBox("", sx + 200, sy*13+75, offi, offi2, oni, oni2, onlineCb)
 
   local updatePlayers = addPlayersList(menu, numplayers)
 
@@ -522,7 +546,10 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
         dedicated:setMarked(true)
         dedicatedCb(dedicated)
         optDedicated = false
-
+      elseif optOnline then
+        online:setMarked(true)
+        onlineCb(online)
+        optOnline = false
       elseif (optRace == "human" or optRace == "Human") then
         race:setSelected(1)
         raceCb(race)
