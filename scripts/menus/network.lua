@@ -360,6 +360,89 @@ function RunJoinIpMenu()
   menu:run()
 end
 
+function RunJoinOnlineMenu()
+  local menu = WarMenu(nil, panel(5), false)
+  local serverlist
+  menu:setSize(352, 352)
+  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
+  menu:setDrawMenusUnder(true)
+  menu:addLabel(_("Servers: "), 176, 20)
+  local servers = {}
+
+  local ip = wc2.preferences.MetaServer
+  local port = wc2.preferences.MetaPort
+  local isconnected = false
+  MetaClient:SetMetaServer(ip, port)
+  if (MetaClient:Init() == -1) then
+     servers[1] = _c('Cannot connect to metaserver!')
+  else
+     isconnected = true
+  end
+
+  local function ServerListUpdate()
+     if isconnected then
+	serverlist = nil
+	servers = {}
+	local idx = 1
+	MetaClient:Send("LISTGAMES")
+	if (MetaClient:Recv() == -1) then
+	   -- no data
+	else
+	   local log = MetaClient:GetLastMessage()
+	   if string.find(log, "LISTGAMES_OK") then
+	      -- we're done
+	   elseif string.find(log, "LISTGAMES") then
+	      servers[idx] = log
+	   else
+	      -- what?
+	   end
+	end
+     end
+     serverlist = menu:addImageListBox(20, 50, 300, 120, servers)
+  end
+  ServerListUpdate()
+  menu:addFullButton(_("Co~!nnect"), "n", 60, 180, function()
+      local id = nil
+      local i
+      for i in string.gmatch(servers[serverlist:getSelected()], "%S+") do
+	 if id == "LISTGAMES" then
+	    -- skip the LISTGAMES bit
+	 else
+	    -- first thing is ID
+	    id = i
+	    break
+	 end
+      end
+
+      MetaClient:Send("JOINGAME " .. id)
+      local ip = nil
+      local port = nil
+      if (MetaClient:Recv() ~= -1) then
+	 local log = MetaClient:GetLastMessage()
+	 if string.find(log, "JOINGAME_OK") then
+	    for i in string.gmatch(log, "%S+") do
+	       if id == "JOINGAME_OK" then
+		  -- skip that bit
+	       elseif ip == nil then
+		  ip = i
+	       elseif port == nil then
+		  port = tonumber(i)
+		  break
+	       end
+	    end
+	 end
+      end
+      NetworkSetupServerAddress(ip, port)
+      NetworkInitClientConnect()
+      if (RunJoiningGameMenu() ~= 0) then
+        -- connect failed, don't leave this menu
+        return
+      end
+    end)
+  menu:addFullButton(_("~!Cancel"), "c", 60, 300, function() menu:stop() end)
+  menu:run()
+end
+
 function RunEditServerMenu(number)
   local menu = WarMenu(nil, panel(2), false)
   menu:setSize(288, 256)
@@ -708,7 +791,7 @@ function RunMultiPlayerGameMenu(s)
   menu:writeText(_("Nickname :"), 208 + offx, 248 + offy)
   nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
 
-  menu:addFullButton(_("~!Join Game"), "j", 208 + offx, 298 + (36 * 0) + offy,
+  menu:addFullButton(_("~!Join Local Game"), "j", 208 + offx, 298 + (36 * 0) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -716,6 +799,16 @@ function RunMultiPlayerGameMenu(s)
         SavePreferences()
       end
       RunJoinIpMenu()
+      FixMusic()
+    end)
+  menu:addFullButton(_("~!Join Online Game"), "j", 208 + offx, 298 + (36 * 0) + offy,
+    function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        wc2.preferences.PlayerName = nick:getText()
+        SavePreferences()
+      end
+      RunJoinOnlineMenu()
       FixMusic()
     end)
   menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 1) + offy,
