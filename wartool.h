@@ -39,7 +39,7 @@
 
 const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2016 by The Stratagus Project.\n"\
 "  Written by Lutz Sammer, Nehal Mistry, Jimmy Salmon, Pali Rohar and cybermind.\n"\
-"  https://github.com/Wargus/wargus";
+"  https://wargus.github.io";
 
 /*----------------------------------------------------------------------------
 --  Includes
