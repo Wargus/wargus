@@ -385,10 +385,8 @@ function RunJoinOnlineMenu()
 	servers = {}
 	local idx = 1
 	MetaClient:Send("LISTGAMES")
-	if (MetaClient:Recv() == -1) then
-	   -- no data
-	else
-	   local log = MetaClient:GetLastMessage()
+	if (MetaClient:Recv() ~= -1) then
+	   local log = MetaClient:GetLastMessage().entry
 	   if string.find(log, "LISTGAMES_OK") then
 	      -- we're done
 	   elseif string.find(log, "LISTGAMES") then
@@ -404,7 +402,7 @@ function RunJoinOnlineMenu()
   menu:addFullButton(_("Co~!nnect"), "n", 60, 180, function()
       local id = nil
       local i
-      for i in string.gmatch(servers[serverlist:getSelected()], "%S+") do
+      for i in string.gmatch(serverlist:getSelected(), "%S+") do
 	 if id == "LISTGAMES" then
 	    -- skip the LISTGAMES bit
 	 else
@@ -414,32 +412,35 @@ function RunJoinOnlineMenu()
 	 end
       end
 
-      MetaClient:Send("JOINGAME " .. id)
-      local ip = nil
-      local port = nil
-      if (MetaClient:Recv() ~= -1) then
-	 local log = MetaClient:GetLastMessage()
+      MetaClient:Send("JOINGAME " .. tostring(id))
+      local ip = "0.0.0.0"
+      local port = 0
+      while (MetaClient:Recv() ~= -1) do
+	 local log = MetaClient:GetLastMessage().entry
+	 local stringlist = {}
+	 local idx, i	 
 	 if string.find(log, "JOINGAME_OK") then
+	    idx = 1
 	    for i in string.gmatch(log, "%S+") do
-	       if id == "JOINGAME_OK" then
-		  -- skip that bit
-	       elseif ip == nil then
-		  ip = i
-	       elseif port == nil then
-		  port = tonumber(i)
-		  break
-	       end
+	       stringlist[idx] = i
+	       idx = idx + 1
+	    end
+	    ip = stringlist[table.getn(stringlist) - 1]
+	    port = tonumber(stringlist[table.getn(stringlist)])
+	    NetworkSetupServerAddress(ip, port)
+	    NetworkInitClientConnect()
+	    if (RunJoiningGameMenu() ~= 0) then
+	       -- connect failed, don't leave this menu
+	       return
 	    end
 	 end
       end
-      NetworkSetupServerAddress(ip, port)
-      NetworkInitClientConnect()
-      if (RunJoiningGameMenu() ~= 0) then
-        -- connect failed, don't leave this menu
-        return
-      end
+      return
     end)
-  menu:addFullButton(_("~!Cancel"), "c", 60, 300, function() menu:stop() end)
+  menu:addFullButton(_("~!Cancel"), "c", 60, 300, function()
+      MetaClient:Close()
+      menu:stop()
+  end)
   menu:run()
 end
 
@@ -801,7 +802,7 @@ function RunMultiPlayerGameMenu(s)
       RunJoinIpMenu()
       FixMusic()
     end)
-  menu:addFullButton(_("~!Join Online Game"), "j", 208 + offx, 298 + (36 * 0) + offy,
+  menu:addFullButton(_("Join ~!Online Game"), "j", 208 + offx, 298 + (36 * 1) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -811,7 +812,7 @@ function RunMultiPlayerGameMenu(s)
       RunJoinOnlineMenu()
       FixMusic()
     end)
-  menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 1) + offy,
+  menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 2) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())

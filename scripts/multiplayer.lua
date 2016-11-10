@@ -8,6 +8,7 @@ local function usage()
   print("Server startup file for Wargus options. Options are passed as comma-separated pairs")
   print("\t[server|client]")
   print("\t[dedicated] -- only valid for server, computer becomes an extra player")
+  print("\t[online] -- only valid for server, tries to advertise the server on the default metaserver")
   print("\t[numplayers=[number of connections to wait for before game starts]]")
   print("\t[ip=server-ip] -- only valid for client")
   print("\t[race=(orc|human)]")
@@ -31,6 +32,7 @@ if (ARGS == "help") then
 else
   local isServer = string.match(ARGS,"(server)")
   local isDedicated = string.match(ARGS,"(dedicated)")
+  local isOnline = string.match(ARGS,"(online)")
   local isClient = string.match(ARGS,"(client)")
   if (not (isClient or isServer)) then
     print("ERROR: Must say if client or server\n")
@@ -96,6 +98,7 @@ else
         {race = racename,
           autostartNum = numplayers,
           dedicated = isDedicated,
+          online = isOnline,
           resources = resources,
           units = units,
           fow = fow,
