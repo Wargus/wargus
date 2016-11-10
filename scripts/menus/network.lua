@@ -571,22 +571,26 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
     LocalSetupState.CompOpt[0] = bool2int(dd:isMarked())
   end
   local dedicated = menu:addImageCheckBox("", sx + 200, sy*12+75, offi, offi2, oni, oni2, dedicatedCb)
-  local onlineLabel = menu:writeText(_("Advertise server online:"), sx, sy*13+75)
+  local onlineLabelTxt = _("Advertise server online:")
+  local onlineLabel = menu:writeText(onlineLabelTxt, sx, sy*13+75)
   local onlineCb = function (dd)
      if (dd:isMarked()) then
 	local ip = wc2.preferences.MetaServer
 	local port = wc2.preferences.MetaPort
 	MetaClient:SetMetaServer(ip, port)
 	if (MetaClient:Init() == -1) then
-	   onlineLabel:setCaption(onlineLabel:getText() .. " " .. _c("(unable to connect)"))
+	   onlineLabel:setCaption(onlineLabelTxt .. " " .. _("(unable to connect)"))
 	   onlineLabel:adjustSize()
 	   dd:setMarked(false)
 	else
 	   if (MetaClient:CreateGame(description, map, "" .. numplayers) == -1) then
-	      onlineLabel:setCaption(onlineLabel:getText() .. " " .. _c("(server error)"))
+	      onlineLabel:setCaption(onlineLabelTxt .. " " .. _("(server error)"))
 	      onlineLabel:adjustSize()
 	      dd:setMarked(false)
 	      MetaClient:Close()
+	   else
+	      onlineLabel:setCaption(onlineLabelTxt)
+	      onlineLabel:adjustSize()
 	   end
 	end
      else
@@ -802,7 +806,7 @@ function RunMultiPlayerGameMenu(s)
       RunJoinIpMenu()
       FixMusic()
     end)
-  menu:addFullButton(_("Join ~!Online Game"), "j", 208 + offx, 298 + (36 * 1) + offy,
+  menu:addFullButton(_("Join ~!Online Game"), "o", 208 + offx, 298 + (36 * 1) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
