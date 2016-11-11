@@ -17,9 +17,47 @@
     - ToD Human mission 4 now rescues rangers, not archers
 
 2.4.0
- - Compatability with Stratagus 2.4
- - Updates to Timeless Tales and Frontier Force
- - Move to Github
+  - Compatability with Stratagus 2.4
+  - Updates to Timeless Tales and Frontier Force
+  - Move to Github
+
+2.3.0
+  - Game
+   - Merge Wargus with Aleona's Tales (if you don't have WC2 data, wargus will install AT data)
+   - Support for custom game types.
+   - Skirmish Modern setup screen from Doom Wars (custom colors, races, teams, AI scripts for each player)
+   - Custom campaign support
+   - Mod support
+   - All WC2 campaigns now have unique AI scripts (similar to original ones)
+   - 5 difficulty levels for campaigns (affect AI aggressiveness)
+   - Added Russian translation (based on SPK translation)
+   - Support for MIDI playback using FluidSynth library (and so support for custom SF2 soundfonts)
+   - Imported some changes from Andrettin's WIP project
+   - Result screen similar to original WC2
+   - New FtM 2014 game mode (with tutorial campaigns)
+   - Many improvements to the user interface: button popups, network setup, UI elements, preferences menu and a lot more.
+   - ColorCycle by Tileset (patch from DinkyDyeAussie)
+   - Added Frontier Force Mission 5
+   - Added Tales Campaign Mission 7
+   - Added town hall, lumber mill, refinery resource info on panel
+   - Added icon shifting on click
+   - Increased maximum game speed to 90
+   - Added autocast and ai-cast information to spells (now Death Knights are able to cast Death Coil)
+   - Mine low resources notifications
+  - Wartool
+   - Support extraction from WC2 BNE disc
+   - Support extraction from Russian SPK discs (both original and expansion)
+  - Bugfixes
+   - Fix catapult property to allow transporter to transport catapult. - bug #1155799
+   - Fix playerCount calculation in multiplayer. - bug #225514
+   - Add equivalence for some missing units (farm and goblin sapper) - bug #1197963
+   - Fixed Unholy Armor spell: how it works like in original WC2, also added autocast info - bug #1171017
+   - Fixed incorrect critter names - bug #1196860
+   - Fixed cheats - bug #1162392
+   - Fixed Cho'gall spells - bug #1022645
+   - Fixed bug with Fog of War disabling - bug #902658
+   - Fix speed of dragon with Haste Patch from vota (rocadeier)
+   - Correct handling of infopanel.png
 
 2.2.7
  - Fixed bugs
