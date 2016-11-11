@@ -400,26 +400,27 @@ function RunJoinOnlineMenu()
   end
   ServerListUpdate()
   menu:addFullButton(_("Co~!nnect"), "n", 60, 180, function()
-      local id = nil
-      local i
+      local stringlist = {}
+      local idx = 1
       for i in string.gmatch(serverlist:getSelected(), "%S+") do
-	 if id == "LISTGAMES" then
+	 if i == "LISTGAMES" then
 	    -- skip the LISTGAMES bit
 	 else
-	    -- first thing is ID
-	    id = i
-	    break
+	    stringlist[idx] = i
 	 end
       end
+      local id = stringlist[1]
+      local iplocal = stringlist[table.getn(stringlist) - 1]
+      local portlocal = tonumber(stringlist[table.getn(stringlist)])
 
       MetaClient:Send("JOINGAME " .. tostring(id))
       local ip = "0.0.0.0"
       local port = 0
       while (MetaClient:Recv() ~= -1) do
 	 local log = MetaClient:GetLastMessage().entry
-	 local stringlist = {}
-	 local idx, i	 
+	 stringlist = {}
 	 if string.find(log, "JOINGAME_OK") then
+	    local i
 	    idx = 1
 	    for i in string.gmatch(log, "%S+") do
 	       stringlist[idx] = i
@@ -427,11 +428,16 @@ function RunJoinOnlineMenu()
 	    end
 	    ip = stringlist[table.getn(stringlist) - 1]
 	    port = tonumber(stringlist[table.getn(stringlist)])
-	    NetworkSetupServerAddress(ip, port)
+	    NetworkSetupServerAddress(iplocal, portlocal)
 	    NetworkInitClientConnect()
 	    if (RunJoiningGameMenu() ~= 0) then
-	       -- connect failed, don't leave this menu
-	       return
+	       -- cannot connect to server-local ip address, try the metaserver one
+	       NetworkSetupServerAddress(ip, port)
+	       NetworkInitClientConnect()
+	       if (RunJoiningGameMenu() ~= 0) then
+		  -- connect failed, don't leave this menu
+		  return
+	       end
 	    end
 	 end
       end
@@ -509,6 +515,9 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local optAutostartNum = options.autostartNum
   local optDedicated = options.dedicated
   local optOnline = options.online
+  if optOnline == nil then
+     optOnline = true
+  end
 
   menu = WarMenu(_("Create MultiPlayer game"))
 
@@ -579,12 +588,12 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
 	local port = wc2.preferences.MetaPort
 	MetaClient:SetMetaServer(ip, port)
 	if (MetaClient:Init() == -1) then
-	   onlineLabel:setCaption(onlineLabelTxt .. " " .. _("(unable to connect)"))
+	   onlineLabel:setCaption(_("(metaserver down)"))
 	   onlineLabel:adjustSize()
 	   dd:setMarked(false)
 	else
 	   if (MetaClient:CreateGame(description, map, "" .. numplayers) == -1) then
-	      onlineLabel:setCaption(onlineLabelTxt .. " " .. _("(server error)"))
+	      onlineLabel:setCaption(_("(metaserver error)"))
 	      onlineLabel:adjustSize()
 	      dd:setMarked(false)
 	      MetaClient:Close()
