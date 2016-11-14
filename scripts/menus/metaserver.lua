@@ -76,7 +76,7 @@ function RunMetaServerMenu()
 
 end
 
-function RunJoiningMetaServerMenu()
+function RunJoiningMetaServerMenuDirect()
   local menu = WarMenu(nil, panel(4), false)
   menu:setSize(288, 128)
   menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
