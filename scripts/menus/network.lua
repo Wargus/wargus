@@ -360,40 +360,79 @@ function RunJoinIpMenu()
   menu:run()
 end
 
+function RunJoiningMetaServerMenu()
+   local menu = WarMenu(nil, panel(4), false)
+   menu:setSize(288, 128)
+   menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
+   menu:setDrawMenusUnder(true)
+
+   menu:addLabel("Enter meta server address:", 144, 11)
+   local server = menu:addTextInputField(wc2.preferences.MetaServer..":"..tostring(wc2.preferences.MetaPort), 40, 38, 212)
+   local conn_label = menu:addLabel("Connecting...", 40, 60, Fonts["game"], false)
+   conn_label:setVisible(false)
+
+   local ok_button = menu:addHalfButton("~!OK", "o", 24, 80, function(s) end)
+   local cancel_button = menu:addHalfButton("~!Cancel", "c", 154, 80, function() menu:stop() end)
+   ok_button:setActionCallback(
+      function(s)
+	 print(tostring(string.len(server:getText())))
+	 if string.len(server:getText()) > 0 then
+	    conn_label:setVisible(true)
+	    conn_label:setCaption("Connecting...")
+	    conn_label:adjustSize()
+	    local ip = string.find(server:getText(), ":")
+	    if ip ~= nil then
+	       wc2.preferences.MetaServer = string.sub(server:getText(), 1, ip - 1)
+	       wc2.preferences.MetaPort = tonumber(string.sub(server:getText(), ip + 1))
+	       if (wc2.preferences.MetaPort == 0) then wc2.preferences.MetaPort = 7775 end
+	       print(wc2.preferences.MetaServer.." "..tostring(wc2.preferences.MetaPort))
+	    else
+	       wc2.preferences.MetaServer = string.sub(server:getText(), 1)
+	       wc2.preferences.MetaPort = 7775
+	    end
+	    ok_button:setEnabled(false)
+	    cancel_button:setEnabled(false)
+	    MetaClient:SetMetaServer(wc2.preferences.MetaServer, wc2.preferences.MetaPort)
+	    if (MetaClient:Init() == -1) then
+	       conn_label:setCaption("Unable to connect")
+	       conn_label:adjustSize()
+	       ok_button:setEnabled(true)
+	       cancel_button:setEnabled(true)
+	    else
+	       -- connected
+	       RunJoinOnlineMenu()
+	       menu:stop(0)
+	    end
+
+	 end
+      end
+   )
+
+   menu:run()
+end
+
 function RunJoinOnlineMenu()
   local menu = WarMenu(nil, panel(5), false)
   local serverlist
   menu:setSize(352, 352)
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
   menu:setDrawMenusUnder(true)
-  menu:addLabel(_("Servers: "), 176, 20)
+  menu:addLabel(_("Open Games: "), 176, 20)
   local servers = {}
 
-  local ip = wc2.preferences.MetaServer
-  local port = wc2.preferences.MetaPort
-  local isconnected = false
-  MetaClient:SetMetaServer(ip, port)
-  if (MetaClient:Init() == -1) then
-     servers[1] = _c('Cannot connect to metaserver!')
-  else
-     isconnected = true
-  end
-
   local function ServerListUpdate()
-     if isconnected then
-	serverlist = nil
-	servers = {}
-	local idx = 1
-	MetaClient:Send("LISTGAMES")
-	if (MetaClient:Recv() ~= -1) then
-	   local log = MetaClient:GetLastMessage().entry
-	   if string.find(log, "LISTGAMES_OK") then
-	      -- we're done
-	   elseif string.find(log, "LISTGAMES") then
-	      servers[idx] = log
-	   else
-	      -- what?
-	   end
+     serverlist = nil
+     servers = {}
+     local idx = 1
+     MetaClient:Send("LISTGAMES")
+     if (MetaClient:Recv() ~= -1) then
+	local log = MetaClient:GetLastMessage().entry
+	if string.find(log, "LISTGAMES_OK") then
+	   -- we're done
+	elseif string.find(log, "LISTGAMES") then
+	   servers[idx] = log
+	else
+	   -- what?
 	end
      end
      serverlist = menu:addImageListBox(20, 50, 300, 120, servers)
@@ -580,22 +619,41 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
     LocalSetupState.CompOpt[0] = bool2int(dd:isMarked())
   end
   local dedicated = menu:addImageCheckBox("", sx + 200, sy*12+75, offi, offi2, oni, oni2, dedicatedCb)
-  local onlineLabelTxt = _("Advertise server online:")
+  local onlineLabelTxt = _("Meta-Server")
   local onlineLabel = menu:writeText(onlineLabelTxt, sx, sy*13+75)
+  local server = menu:addTextInputField(
+     wc2.preferences.MetaServer..":"..tostring(wc2.preferences.MetaPort), sx, sy*14+75, 200)
+  local serverCb = function (dd)
+     if string.len(server:getText()) > 0 then
+	local ip = string.find(server:getText(), ":")
+	if ip ~= nil then
+	   wc2.preferences.MetaServer = string.sub(server:getText(), 1, ip - 1)
+	   wc2.preferences.MetaPort = tonumber(string.sub(server:getText(), ip + 1))
+	   if (wc2.preferences.MetaPort == 0) then wc2.preferences.MetaPort = 7775 end
+	else
+	   wc2.preferences.MetaServer = string.sub(server:getText(), 1)
+	   wc2.preferences.MetaPort = 7775
+	end
+	SavePreferences()
+	MetaClient:SetMetaServer(wc2.preferences.MetaServer, wc2.preferences.MetaPort)
+     end
+  end
+  serverCb(server)
   local onlineCb = function (dd)
+     serverCb(server)
      if (dd:isMarked()) then
-	local ip = wc2.preferences.MetaServer
-	local port = wc2.preferences.MetaPort
-	MetaClient:SetMetaServer(ip, port)
+	server:setEnabled(false)
 	if (MetaClient:Init() == -1) then
 	   onlineLabel:setCaption(_("(metaserver down)"))
 	   onlineLabel:adjustSize()
 	   dd:setMarked(false)
+	   server:setEnabled(true)
 	else
 	   if (MetaClient:CreateGame(description, map, "" .. numplayers) == -1) then
 	      onlineLabel:setCaption(_("(metaserver error)"))
 	      onlineLabel:adjustSize()
 	      dd:setMarked(false)
+	      server:setEnabled(true)
 	      MetaClient:Close()
 	   else
 	      onlineLabel:setCaption(onlineLabelTxt)
@@ -603,7 +661,9 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
 	   end
 	end
      else
+	server:setEnabled(true)
 	MetaClient:Send("CANCELGAME")
+	MetaClient:Close()
      end
   end
   local online = menu:addImageCheckBox("", sx + 200, sy*13+75, offi, offi2, oni, oni2, onlineCb)
@@ -822,7 +882,7 @@ function RunMultiPlayerGameMenu(s)
         wc2.preferences.PlayerName = nick:getText()
         SavePreferences()
       end
-      RunJoinOnlineMenu()
+      RunJoiningMetaServerMenu()
       FixMusic()
     end)
   menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 2) + offy,
@@ -835,15 +895,6 @@ function RunMultiPlayerGameMenu(s)
       RunCreateMultiGameMenu()
       FixMusic()
     end)
-  -- menu:addFullButton(_("Meta~!server"), "s", 208 + offx, 298 + (36 * 2) + offy,
-  --   function()
-  --     if nick:getText() ~= GetLocalPlayerName() then
-  --       SetLocalPlayerName(nick:getText())
-  --       wc2.preferences.PlayerName = nick:getText()
-  --       SavePreferences()
-  --     end
-  --     RunJoiningMetaServerMenu()
-  --   end)
 
   menu:addFullButton(_("~!Previous Menu"), "p", 208 + offx, 298 + (36 * 3) + offy,
     function() menu:stop() end)
