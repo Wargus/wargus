@@ -28,8 +28,18 @@
 */
 
 #define GAME_NAME "Wargus"
-#define GAME_CD "Warcraft II CD"
+#define GAME_CD "Warcraft II DOS REZDAT.WAR or BNE Battle.snp file"
+#define GAME_CD_FILE_PATTERNS "REZDAT.WAR", "rezdat.war", "War Resources", "Battle.snp"
 #define GAME "wargus"
+#define EXTRACTOR_TOOL "wartool"
+#define EXTRACTOR_ARGS "-v"
+#define CONTRIB_DIRECTORIES { "campaigns", "campaigns", \
+			      "contrib", "graphics/ui", \
+			      "maps", "maps",		\
+			      "scripts", "scripts", NULL }
+
+const char* SRC_PATH() { return __FILE__; }
+
 #ifdef WIN32
 #define TITLE_PNG "%s\\graphics\\ui\\title.png"
 #else
