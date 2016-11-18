@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Wargus - Aleonas Tales
+Comment=Aleonas Tales data game set for the Stratagus engine
+Exec=@GAMEDIRABS@/aleonas_tales
+Icon=wargus
+Terminal=false
+Type=Application
+Categories=Game;StrategyGame;
+StartupNotify=false
