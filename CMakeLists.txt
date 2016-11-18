@@ -60,9 +60,17 @@ set(wargus_SRCS
 	wargus.cpp
 )
 
+set(tales_SRCS
+	aleonas_tales.cpp
+)
+
 if(WIN32)
 	set(wargus_SRCS
 		${wargus_SRCS}
+		wargus.rc
+	)
+	set(tales_SRCS
+		${tales_SRCS}
 		wargus.rc
 	)
 	set(wartool_SRCS
@@ -203,7 +211,9 @@ target_link_libraries(pudconvert ${pudconvert_LIBS})
 
 if(STRATAGUS_FOUND)
 	add_executable(wargus WIN32 ${wargus_SRCS} ${wargus_HDRS})
+	add_executable(aleonas_tales WIN32 ${tales_SRCS} ${wargus_HDRS})
 	target_link_libraries(wargus ${wargus_LIBS})
+	target_link_libraries(aleonas_tales ${wargus_LIBS})
 endif()
 
 add_executable(wartool ${wartool_SRCS} ${wartool_HDRS})
@@ -212,6 +222,7 @@ target_link_libraries(wartool ${wartool_LIBS})
 if(WIN32 AND MINGW AND ENABLE_STATIC)
 	set_target_properties(pudconvert PROPERTIES LINK_FLAGS "${LINK_FLAGS} -static-libgcc -static-libstdc++")
 	set_target_properties(wargus PROPERTIES LINK_FLAGS "${LINK_FLAGS} -static-libgcc -static-libstdc++")
+	set_target_properties(aleonas_tales PROPERTIES LINK_FLAGS "${LINK_FLAGS} -static-libgcc -static-libstdc++")
 	set_target_properties(wartool PROPERTIES LINK_FLAGS "${LINK_FLAGS} -static-libgcc -static-libstdc++")
 endif()
 
@@ -231,6 +242,7 @@ endmacro()
 if(ENABLE_UPX AND SELF_PACKER_FOR_EXECUTABLE)
 	self_packer(pudconvert)
 	self_packer(wargus)
+	self_packer(aleonas_tales)
 	self_packer(wartool)
 endif()
 
@@ -263,16 +275,20 @@ endif()
 configure_file (
 	"${PROJECT_SOURCE_DIR}/wargus.desktop.in"
 	"${PROJECT_BINARY_DIR}/wargus.desktop"
+	"${PROJECT_SOURCE_DIR}/aleonas_tales.desktop.in"
+	"${PROJECT_BINARY_DIR}/aleonas_tales.desktop"
 )
 
 ########### install files ###############
 
 if(STRATAGUS_FOUND)
 	install(TARGETS wargus DESTINATION ${GAMEDIR})
+	install(TARGETS aleonas_tales DESTINATION ${GAMEDIR})
 endif()
 install(TARGETS pudconvert wartool DESTINATION ${BINDIR})
 install(FILES wargus.png DESTINATION ${ICONDIR})
 install(FILES "${PROJECT_BINARY_DIR}/wargus.desktop" DESTINATION ${DESKTOPDIR})
+install(FILES "${PROJECT_BINARY_DIR}/aleonas_tales.desktop" DESTINATION ${DESKTOPDIR})
 
 install(DIRECTORY campaigns graphics maps music scripts sounds DESTINATION ${SHAREDIR})
 install(FILES contrib/red_cross.png DESTINATION ${SHAREDIR}/graphics/missiles)

@@ -9,7 +9,7 @@
                         T H E   W A R   B E G I N S
          Stratagus - A free fantasy real time strategy game engine
 
-    wargus.c - Wargus Game Launcher
+    aleonas_tales.cpp - Wargus Game Launcher with Aleonas Tales data
     Copyright (C) 2010-2011  Pali Rohár <pali.rohar@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
@@ -27,16 +27,21 @@
 
 */
 
-#define GAME_NAME "Wargus"
-#define GAME_CD "Warcraft II DOS REZDAT.WAR or BNE Battle.snp file"
-#define GAME_CD_FILE_PATTERNS "REZDAT.WAR", "rezdat.war", "War Resources", "Battle.snp"
-#define GAME "wargus"
-#define EXTRACTOR_TOOL "wartool"
-#define EXTRACTOR_ARGS "-v"
-#define CONTRIB_DIRECTORIES { "campaigns", "campaigns", \
+#define GAME_NAME "Wargus - Aleonas Tales"
+#define GAME "aleonas_tales"
+
+#define GAME_CD "Aleonas Tales source"
+#define GAME_CD_FILE_PATTERNS "aleonas_tales.cpp"
+#define EXTRACTOR_TOOL "aleonas_tales"
+#define EXTRACTOR_ARGS "-h"
+#define CONTRIB_DIRECTORIES { "graphics", "graphics", \
 			      "contrib", "graphics/ui", \
-			      "maps", "maps",		\
-			      "scripts", "scripts", NULL }
+			      "music", "music", \
+			      "sound", "sound", \
+			      "scripts", "scripts", \
+			      "maps", "maps", \
+			      "campaigns", "campaigns", \
+			      NULL }
 
 const char* SRC_PATH() { return __FILE__; }
 
@@ -45,8 +50,5 @@ const char* SRC_PATH() { return __FILE__; }
 #else
 #define TITLE_PNG "%s/graphics/ui/title.png"
 #endif
-
-#undef DATA_PATH
-#define DATA_PATH "invalid"
 
 #include <stratagus-game-launcher.h>
