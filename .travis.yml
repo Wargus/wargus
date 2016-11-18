@@ -23,7 +23,7 @@ before_script:
         export STORMLIB=\"$PWD/libStorm.a\";
     fi"
   - "if [ $TRAVIS_OS_NAME == osx ]; then \
-        brew install libtomcrypt;
+        brew install homebrew/boneyard/libtomcrypt;
         make -f Makefile.mac;
         export STORMLIB=\"$PWD/StormLib.a\";
         find . -name \"*.o\" | xargs ar rcs \"$PWD/StormLib.a\";
