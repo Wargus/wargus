@@ -309,7 +309,7 @@ Section "-${NAME}"
 
 	SetOutPath "$INSTDIR"
 	File "${EXE}"
-	File "${ALEONAS_TALES}"
+	File "${TALES}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
@@ -518,6 +518,7 @@ Section "un.${NAME}" Executable
 	Delete "$SMPROGRAMS\$STARTMENUDIR\Uninstall.lnk"
 	RMDir "$SMPROGRAMS\$STARTMENUDIR"
 	Delete "$DESKTOP\${NAME}.lnk"
+	Delete "$DESKTOP\${TALE_NAME}.lnk"
 
 	DeleteRegKey HKLM "${REGKEY}"
 	DeleteRegValue HKLM "${STRATAGUS_REGKEY}\Games" "${NAME}"
