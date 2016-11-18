@@ -17,7 +17,6 @@ mkdir -p Wargus.app/Contents/libs
 
 # Copy launchscript and info.plist
 cp Info.plist Wargus.app/Contents/
-cp launchscript.sh Wargus.app/Contents/MacOS
 
 # Generate icons
 mkdir wargus.iconset
@@ -36,7 +35,7 @@ rm -R wargus.iconset
 mv wargus.icns Wargus.app/Contents/Resources/
 
 # Bundle resources
-cp -R ../campaigns ../contrib ../maps ../scripts Wargus.app/Contents/Resources/
+cp -R ../campaigns ../contrib ../maps ../scripts Wargus.app/Contents/MacOS/
 
 # Bundle binaries and their dependencies
 rm -rf macdylibbundler
@@ -45,8 +44,10 @@ cd macdylibbundler
 make
 cd ..
 
-cp ../build/wartool Wargus.app/Contents/MacOS
+cp ../build/wartool Wargus.app/Contents/MacOS/
+cp ../build/wargus Wargus.app/Contents/MacOS/
 cp "$STRATAGUS" Wargus.app/Contents/MacOS/stratagus
 cp "$(dirname "$STRATAGUS")"/../libs/* Wargus.app/Contents/libs/
 
 macdylibbundler/dylibbundler -cd -of -b -x ./Wargus.app/Contents/MacOS/wartool -d ./Wargus.app/Contents/libs/
+macdylibbundler/dylibbundler -cd -of -b -x ./Wargus.app/Contents/MacOS/wargus -d ./Wargus.app/Contents/libs/

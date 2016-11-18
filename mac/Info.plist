@@ -5,7 +5,7 @@
   <key>CFBundleGetInfoString</key>
   <string>Wargus</string>
   <key>CFBundleExecutable</key>
-  <string>launchscript.sh</string>
+  <string>wargus</string>
   <key>CFBundleIdentifier</key>
   <string>wargus.stratagus.com.github.www</string>
   <key>CFBundleName</key>
