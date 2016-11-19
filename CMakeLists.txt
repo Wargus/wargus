@@ -275,6 +275,9 @@ endif()
 configure_file (
 	"${PROJECT_SOURCE_DIR}/wargus.desktop.in"
 	"${PROJECT_BINARY_DIR}/wargus.desktop"
+)
+
+configure_file (
 	"${PROJECT_SOURCE_DIR}/aleonas_tales.desktop.in"
 	"${PROJECT_BINARY_DIR}/aleonas_tales.desktop"
 )
