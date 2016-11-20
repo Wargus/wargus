@@ -358,7 +358,7 @@ Section "un.${NAME}" Executable
 	Delete "$SMPROGRAMS\$STARTMENUDIR\Uninstall.lnk"
 	RMDir "$SMPROGRAMS\$STARTMENUDIR"
 	Delete "$DESKTOP\${NAME}.lnk"
-	Delete "$DESKTOP\${TALE_NAME}.lnk"
+	Delete "$DESKTOP\${TALES_NAME}.lnk"
 
 	DeleteRegKey HKLM "${REGKEY}"
 	DeleteRegValue HKLM "${STRATAGUS_REGKEY}\Games" "${NAME}"
