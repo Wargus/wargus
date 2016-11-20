@@ -3,8 +3,8 @@ Section: games
 Priority: optional
 Maintainer: cybermind <iddqd_mail@mail.ru>
 Build-Depends: debhelper (>= 7), cmake (>= 2.6), pkg-config, imagemagick,
- po-debconf, sharutils, zlib1g-dev, libbz2-dev, libx11-dev,
- libpng12-dev (>= 1.2.5), libhildon1-dev | libgtk2.0-dev, libbz2-dev,
+ po-debconf, sharutils, zlib1g-dev, libbz2-dev,
+ libpng12-dev (>= 1.2.5) | libpng-dev (>= 1.2.5), libbz2-dev,
  stratagus-dev
 Standards-Version: 3.9.2
 Homepage: https://github.com/Wargus/wargus

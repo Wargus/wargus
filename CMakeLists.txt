@@ -117,14 +117,6 @@ if(WIN32)
 	find_package(MakeNSIS)
 endif()
 
-if(NOT WIN32)
-	find_package(X11 REQUIRED)
-	find_package(GTK2 REQUIRED gtk)
-	if (NOT GTK2_FOUND)
-	  add_definitions("-DNOGTK")
-	endif()
-endif()
-
 find_package(SelfPackers)
 
 # Windows RC compiler definitions
@@ -293,7 +285,7 @@ install(FILES wargus.png DESTINATION ${ICONDIR})
 install(FILES "${PROJECT_BINARY_DIR}/wargus.desktop" DESTINATION ${DESKTOPDIR})
 install(FILES "${PROJECT_BINARY_DIR}/aleonas_tales.desktop" DESTINATION ${DESKTOPDIR})
 
-install(DIRECTORY campaigns graphics maps music scripts sounds DESTINATION ${SHAREDIR})
+install(DIRECTORY contrib campaigns graphics maps music scripts sounds DESTINATION ${SHAREDIR})
 install(FILES contrib/red_cross.png DESTINATION ${SHAREDIR}/graphics/missiles)
 install(FILES contrib/cross.png DESTINATION ${SHAREDIR}/graphics/ui/cursors)
 install(FILES contrib/food.png contrib/health.png contrib/health2.png contrib/mana.png contrib/mana2.png contrib/ore,stone,coal.png contrib/score.png DESTINATION ${SHAREDIR}/graphics/ui)
