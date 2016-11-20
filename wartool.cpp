@@ -1984,6 +1984,7 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 	FILE* f;
 	size_t l;
 	int ret;
+	char outputfile[1024];
 
 	sprintf(buf,"%s/%s.smk", Dir, file);
 	CheckPath(buf);
@@ -2019,6 +2020,8 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 	remove(buf);
 
 	if (ret != 0) {
+		sprintf(outputfile, "%s/%s.ogv", Dir, file);
+		unlink(outputfile);
 		printf("Can't convert video %s to ogv format. Is ffmpeg2theora installed in PATH?\n", file);
 		fflush(stdout);
 		return ret;
