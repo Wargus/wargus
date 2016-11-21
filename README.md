@@ -5,7 +5,7 @@ Linux & OSX: [![Build Status](https://travis-ci.org/Wargus/wargus.svg?branch=mas
 Nightly builds are available:
 
 - Windows Installer: https://github.com/Wargus/wargus/releases/tag/master-builds
-- Ubuntu/Debian Packages: https://code.launchpad.net/~timfelgentreff/+archive/ubuntu/stratagus
+- Ubuntu/Debian Packages: https://launchpad.net/~stratagus/+archive/ubuntu/ppa
 - OS X App Bundle: https://github.com/Wargus/stratagus/wiki/osx/Wargus.app.tar.gz
 
 ##### Note to Windows XP Users
