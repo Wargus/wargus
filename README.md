@@ -97,10 +97,8 @@ On other systems:
 	4. install wargus to system
 		cd build && sudo make install
 
-	5. extract data from original CD:
-		sudo wartool -m -v -r /media/cdrom /usr/share/games/stratagus/wargus
-
-	6. start wargus:
+On all systems:
+	X. start wargus:
 		wargus
 
 On Windows you can replace steps 4-6 by generating Windows NSIS Installer which
