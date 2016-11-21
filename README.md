@@ -98,6 +98,7 @@ On other systems:
 		cd build && sudo make install
 
 On all systems:
+
 	X. start wargus:
 		wargus
 
