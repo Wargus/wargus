@@ -33,6 +33,7 @@
 #define GAME "wargus"
 #define EXTRACTOR_TOOL "wartool"
 #define EXTRACTOR_ARGS "-v"
+#define CHECK_EXTRACTED_VERSION 1
 #define CONTRIB_DIRECTORIES { "campaigns", "campaigns", \
 			      "contrib", "graphics/ui", \
 			      "maps", "maps",		\
