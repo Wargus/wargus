@@ -254,7 +254,7 @@ function RunJoiningMapMenu(optRace, optReady)
   menu:run()
 end
 
-function RunJoiningGameMenu(optRace, optReady)
+function RunJoiningGameMenu(optRace, optReady, optExtraLabel, optStopDirect)
   local menu = nil
   if (optRace and optReady) then
     menu = WarMenu(_("Joining Game"))
@@ -265,7 +265,11 @@ function RunJoiningGameMenu(optRace, optReady)
     menu:setDrawMenusUnder(true)
   end
 
-  menu:addLabel(_("Connecting to server"), 144, 11)
+  if optExtraLabel then
+    menu:addLabel(optExtraLabel, 144, 11)
+  else
+    menu:addLabel(_("Connecting to server"), 144, 11)
+  end
 
   local percent = 0
 
@@ -289,8 +293,12 @@ function RunJoiningGameMenu(optRace, optReady)
       ErrorMenu(_("Map not available"))
       menu:stop(1)
     elseif (state == 10) then -- ccs_unreachable
-      ErrorMenu(_("Cannot reach server"))
-      menu:stop(1)
+      if optStopDirect then
+        menu:stop(1)
+      else
+        ErrorMenu(_("Cannot reach server"))
+        menu:stop(1)
+      end
     elseif (state == 12) then -- ccs_nofreeslots
       ErrorMenu(_("Server is full"))
       menu:stop(1)
@@ -375,7 +383,6 @@ function RunJoiningMetaServerMenu()
    local cancel_button = menu:addHalfButton("~!Cancel", "c", 154, 80, function() menu:stop() end)
    ok_button:setActionCallback(
       function(s)
-	 print(tostring(string.len(server:getText())))
 	 if string.len(server:getText()) > 0 then
 	    conn_label:setVisible(true)
 	    conn_label:setCaption("Connecting...")
@@ -385,7 +392,6 @@ function RunJoiningMetaServerMenu()
 	       wc2.preferences.MetaServer = string.sub(server:getText(), 1, ip - 1)
 	       wc2.preferences.MetaPort = tonumber(string.sub(server:getText(), ip + 1))
 	       if (wc2.preferences.MetaPort == 0) then wc2.preferences.MetaPort = 7775 end
-	       print(wc2.preferences.MetaServer.." "..tostring(wc2.preferences.MetaPort))
 	    else
 	       wc2.preferences.MetaServer = string.sub(server:getText(), 1)
 	       wc2.preferences.MetaPort = 7775
@@ -441,17 +447,13 @@ function RunJoinOnlineMenu()
   menu:addFullButton(_("Co~!nnect"), "n", 60, 180, function()
       local stringlist = {}
       local idx = 1
-      for i in string.gmatch(serverlist:getSelected(), "%S+") do
-	 if i == "LISTGAMES" then
-	    -- skip the LISTGAMES bit
-	 else
-	    stringlist[idx] = i
-	 end
+      for i in string.gmatch(servers[serverlist:getSelected() + 1], "%S+") do
+	 stringlist[idx] = i
+	 idx = idx + 1
       end
-      local id = stringlist[1]
+      local id = stringlist[2]
       local iplocal = stringlist[table.getn(stringlist) - 1]
       local portlocal = tonumber(stringlist[table.getn(stringlist)])
-
       MetaClient:Send("JOINGAME " .. tostring(id))
       local ip = "0.0.0.0"
       local port = 0
@@ -469,11 +471,12 @@ function RunJoinOnlineMenu()
 	    port = tonumber(stringlist[table.getn(stringlist)])
 	    NetworkSetupServerAddress(iplocal, portlocal)
 	    NetworkInitClientConnect()
-	    if (RunJoiningGameMenu() ~= 0) then
-	       -- cannot connect to server-local ip address, try the metaserver one
+	    -- try the global ip first, so any clients outside the network may be able to do p2p later on
+	    if (RunJoiningGameMenu(nil, nil, _("Connecting via " .. tostring(ip) .. " (first try)"), true) ~= 0) then
+	       -- cannot connect to server-global ip address, try the local one
 	       NetworkSetupServerAddress(ip, port)
 	       NetworkInitClientConnect()
-	       if (RunJoiningGameMenu() ~= 0) then
+	       if (RunJoiningGameMenu(nil, nil, _("Connecting via " .. tostring(iplocal) .. " (second try)"), false) ~= 0) then
 		  -- connect failed, don't leave this menu
 		  return
 	       end
