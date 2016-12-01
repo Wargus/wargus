@@ -331,7 +331,7 @@ int OpenArchive(const char* file, int type)
 	}
 	if (read(f, buf, stat_buf.st_size) != stat_buf.st_size) {
 		printf("Can't read %ld\n", (long)stat_buf.st_size);
-		error("Memory error", "Could read archive into RAM.");
+		error("Memory error", "Could not read archive into RAM.");
 	}
 	close(f);
 
