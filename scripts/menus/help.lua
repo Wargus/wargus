@@ -52,6 +52,8 @@ local keystrokes = {
   {"BACKSPACE", "- game menu"},
   {"F11", "- save game"},
   {"F12", "- load game"},
+  {"Ctrl-Alt-/", "- next shader (only OpenGL)"},
+  {"Ctrl-Alt-\\", "- prev shader (only OpenGL)"},
 }
 
 function RunKeystrokeHelpMenu()
