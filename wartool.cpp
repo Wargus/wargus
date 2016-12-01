@@ -35,6 +35,7 @@
 ----------------------------------------------------------------------------*/
 
 #include "wartool.h"
+#include <stratagus-gameutils.h>
 
 #if defined(_MSC_VER) || defined(WIN32)
 #include <windows.h>
@@ -312,12 +313,10 @@ int OpenArchive(const char* file, int type)
 	//
 	f = open(file, O_RDONLY | O_BINARY, 0);
 	if (f == -1) {
-		printf("Can't open %s\n", file);
-		exit(-1);
+		error("Can't open file", file);
 	}
 	if (stat(file, &stat_buf)) {
-		printf("Can't stat %s\n", file);
-		exit(-1);
+		error("Can't stat file", file);
 	}
 //	printf("Filesize %ld %ldk\n",
 //		(long)stat_buf.st_size, stat_buf.st_size / 1024);
@@ -328,11 +327,11 @@ int OpenArchive(const char* file, int type)
 	buf = (unsigned char *)malloc(stat_buf.st_size);
 	if (!buf) {
 		printf("Can't malloc %ld\n", (long)stat_buf.st_size);
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	if (read(f, buf, stat_buf.st_size) != stat_buf.st_size) {
 		printf("Can't read %ld\n", (long)stat_buf.st_size);
-		exit(-1);
+		error("Memory error", "Could read archive into RAM.");
 	}
 	close(f);
 
@@ -341,7 +340,7 @@ int OpenArchive(const char* file, int type)
 //	printf("Magic\t%08X\t", i);
 	if (i != 0x19) {
 		printf("Wrong magic %08x, expected %08x\n", i, 0x00000019);
-		exit(-1);
+		error("Archive version error", "This version of the data is not supported");
 	}
 	entries = FetchLE16(cp);
 //	printf("Entries\t%5d\t", entries);
@@ -349,7 +348,7 @@ int OpenArchive(const char* file, int type)
 //	printf("ID\t%d\n", i);
 	if (i != type) {
 		printf("Wrong type %08x, expected %08x\n", i, type);
-		exit(-1);
+		error("Archive version error", "This version of the data is not supported");
 	}
 
 	//
@@ -358,7 +357,7 @@ int OpenArchive(const char* file, int type)
 	op = (unsigned char **)malloc((entries + 1) * sizeof(unsigned char*));
 	if (!op) {
 		printf("Can't malloc %d entries\n", entries);
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	for (i = 0; i < entries; ++i) {
 		op[i] = buf + FetchLE32(cp);
@@ -411,7 +410,7 @@ unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
 	dp = dest = (unsigned char *)malloc(uncompressed_length);
 	if (!dest) {
 		printf("Can't malloc %d\n", (int)uncompressed_length);
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
 	if (flags == 0x20) {
@@ -466,7 +465,7 @@ unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
 		memcpy(dest, cp, uncompressed_length);
 	} else {
 		printf("Unknown flags %x\n", flags);
-		exit(-1);
+		error("Archive version error", "This version of the data is not supported");
 	}
 
 	// return resulting length
@@ -600,7 +599,7 @@ int ConvertRgb(const char* file, int rgbe)
 	if (!f) {
 		perror("");
 		printf("Can't open %s\n", buf);
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	if (l != fwrite(rgbp, 1, l, f)) {
 		printf("Can't write %d bytes\n", (int)l);
@@ -618,7 +617,7 @@ int ConvertRgb(const char* file, int rgbe)
 	if (!f) {
 		perror("");
 		printf("Can't open %s\n", buf);
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	fprintf(f, "GIMP Palette\n# Stratagus %c%s -- GIMP Palette file\n",
 		toupper(*file), file + 1);
@@ -1087,7 +1086,7 @@ unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
 	//         5, 6, 7, 8, 9, ...
 	if (!image) {
 		printf("Can't allocate image\n");
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	// Set all to transparent.
 	memset(image, 255, best_width * best_height * length);
@@ -1415,7 +1414,7 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 	image = (unsigned char *)malloc(image_width * image_height);
 	if (!image) {
 		printf("Can't allocate image\n");
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	memset(image, 255, image_width * image_height);
 
@@ -1566,7 +1565,7 @@ unsigned char* ConvertImg(unsigned char* bp, int* wp, int* hp)
 	image = (unsigned char *)malloc(width * height);
 	if (!image) {
 		printf("Can't allocate image\n");
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	memcpy(image, bp, width * height);
 
@@ -1646,7 +1645,7 @@ int ConvertImage(const char* file, int pale, int imge, int nw, int nh)
 	if (!image) {
 		printf("Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n",
 			file, pale, imge, nw, nh, CDType & CD_MAC);
-		exit(-1);
+		error("Archive version error", "This version of the CD is not supported");
 	}
 	free(imgp);
 	ConvertPalette(palp);
@@ -1697,7 +1696,7 @@ unsigned char* ConvertCur(unsigned char* bp, int* wp, int* hp)
 	image = (unsigned char *)malloc(width * height);
 	if (!image) {
 		printf("Can't allocate image\n");
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	for (i = 0; i < width * height; ++i) {
 		image[i] = bp[i] ? bp[i] : 255;
@@ -1767,7 +1766,7 @@ int ConvertWav(const char* file, int wave)
 	if (!gf) {
 		perror("");
 		printf("Can't open %s\n", buf);
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	if (l != (size_t)gzwrite(gf, wavp, l)) {
 		printf("Can't write %d bytes\n", (int)l);
@@ -1807,7 +1806,7 @@ int ConvertXmi(const char* file, int xmi)
 	if (!f) {
 		perror("");
 		printf("Can't open %s\n", buf);
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	if (midl != fwrite(midp, 1, midl, f)) {
 		printf("Can't write %d bytes\n", (int)midl);
@@ -1842,7 +1841,7 @@ int CopyFile(char *from, char *to, int overwrite)
 	cmd = (char *)calloc(strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
 	sprintf(cmd, "cp \"%s\" \"%s\"", from, to);
@@ -1916,7 +1915,7 @@ int ConvertMusic(void)
 		cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 		if (!cmd) {
 			fprintf(stderr, "Memory error\n");
-			exit(-1);
+			error("Memory error", "Could not allocate enough memory to read archive.");
 		}
 
 		sprintf(cmd, "ffmpeg2theora --optimize \"%s\" -o \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, MusicNames[i]);
@@ -1944,7 +1943,7 @@ int ConvertMusic(void)
 			cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 			if (!cmd) {
 				fprintf(stderr, "Memory error\n");
-				exit(-1);
+				error("Memory error", "Could not allocate enough memory to read archive.");
 			}
 
 			sprintf(cmd, "ffmpeg2theora --optimize \"%s\" -o \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, BNEMusicNames[i]);
@@ -1995,7 +1994,7 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 		if (!f) {
 			perror("");
 			printf("Can't open %s\n", buf);
-			exit(-1);
+			error("Memory error", "Could not allocate enough memory to read archive.");
 		}
 		if (l != fwrite(vidp, 1, l, f)) {
 			printf("Can't write %d bytes\n", (int)l);
@@ -2009,7 +2008,7 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 	cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
 	sprintf(cmd, "ffmpeg2theora --optimize \"%s/%s.smk\" -o \"%s/%s.ogv\"", Dir, file, Dir, file);
@@ -2104,7 +2103,7 @@ int ConvertText(const char* file, int txte, int ofs)
 	if (!gf) {
 		perror("");
 		printf("Can't open %s\n", buf);
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	str = ConvertString(txtp + ofs, l - ofs);
 	l2 = strlen((char *)str) + 1;
@@ -2249,12 +2248,12 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 	objectives = ExtractEntry(ArchiveOffsets[txte], &l);
 	if (!objectives) {
 		printf("Objectives allocation failed\n");
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	objectives = (unsigned char *)realloc(objectives, l + 1);
 	if (!objectives) {
 		printf("Objectives allocation failed\n");
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	objectives[l] = '\0';
 
@@ -2511,7 +2510,9 @@ int main(int argc, char** argv)
 			sprintf(buf, "%s/War Resources", ArchiveDir);
 			if (stat(buf, &st)) {
 				printf("Could not find Warcraft 2 Data\n");
-				exit(-1);
+				error("Data not found", "Could not find Warcraft 2 data in folder. "
+					  "Make sure you have selected the DATA directory of the DOS version, "
+					  "or the root of the Battle.net CD.");
 			}
 			if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2876978)) {
 				printf("Detected original MAC CD\n");
@@ -2600,7 +2601,8 @@ int main(int argc, char** argv)
 	if (CDType & CD_BNE) {
 #ifndef USE_STORMLIB
 		printf("Please compile wartool with StormLib library to extract the data.\n");
-		exit(-1);
+		error("Archive version error", "The Battle.net edition is not supported by this version of "
+			  "the extractor tool. Please compile wartool with StormLib.");
 #endif
 	}
 
@@ -2663,7 +2665,7 @@ int main(int argc, char** argv)
 			case Q:
 				if (!(CDType & CD_BNE)) {
 					printf("Error - not a BNE disk\n");
-					exit(-1);
+					error("Archive version error", "This version of the CD is not supported");
 				}
 #ifdef USE_STORMLIB
 				char mpqfile[256];
@@ -2792,7 +2794,7 @@ int main(int argc, char** argv)
 	if (!f) {
 		perror("");
 		printf("Can't open %s\n", buf);
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
 	fprintf(f, "wargus.tales = false\n");
@@ -2820,7 +2822,7 @@ int main(int argc, char** argv)
 	if (!f) {
 		perror("");
 		printf("Can't open %s\n", buf);
-		exit(-1);
+		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
 	fputs(VERSION, f);

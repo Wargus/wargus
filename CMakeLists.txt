@@ -103,12 +103,7 @@ endif()
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
-find_package(Stratagus)
-if(NOT STRATAGUS_FOUND)
-	# Just means we won't build the launcher ...
-	set(STRATAGUS_INCLUDE_DIR ".")
-endif()
-
+find_package(Stratagus REQUIRED)
 find_package(PNG REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(StormLib)
@@ -201,12 +196,10 @@ endif()
 add_executable(pudconvert ${pudconvert_SRCS} ${pudconvert_HDRS})
 target_link_libraries(pudconvert ${pudconvert_LIBS})
 
-if(STRATAGUS_FOUND)
-	add_executable(wargus WIN32 ${wargus_SRCS} ${wargus_HDRS})
-	add_executable(aleonas_tales WIN32 ${tales_SRCS} ${wargus_HDRS})
-	target_link_libraries(wargus ${wargus_LIBS})
-	target_link_libraries(aleonas_tales ${wargus_LIBS})
-endif()
+add_executable(wargus WIN32 ${wargus_SRCS} ${wargus_HDRS})
+add_executable(aleonas_tales WIN32 ${tales_SRCS} ${wargus_HDRS})
+target_link_libraries(wargus ${wargus_LIBS})
+target_link_libraries(aleonas_tales ${wargus_LIBS})
 
 add_executable(wartool ${wartool_SRCS} ${wartool_HDRS})
 target_link_libraries(wartool ${wartool_LIBS})
@@ -276,10 +269,8 @@ configure_file (
 
 ########### install files ###############
 
-if(STRATAGUS_FOUND)
-	install(TARGETS wargus DESTINATION ${GAMEDIR})
-	install(TARGETS aleonas_tales DESTINATION ${GAMEDIR})
-endif()
+install(TARGETS wargus DESTINATION ${GAMEDIR})
+install(TARGETS aleonas_tales DESTINATION ${GAMEDIR})
 install(TARGETS pudconvert wartool DESTINATION ${BINDIR})
 install(FILES wargus.png DESTINATION ${ICONDIR})
 install(FILES "${PROJECT_BINARY_DIR}/wargus.desktop" DESTINATION ${DESKTOPDIR})
