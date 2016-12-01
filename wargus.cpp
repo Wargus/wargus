@@ -37,6 +37,7 @@
 #define CONTRIB_DIRECTORIES { "campaigns", "campaigns", \
 			      "contrib", "graphics/ui", \
 			      "maps", "maps",		\
+			      "shaders", "shaders",	\
 			      "scripts", "scripts", NULL }
 
 const char* SRC_PATH() { return __FILE__; }

@@ -35,7 +35,7 @@ rm -R wargus.iconset
 mv wargus.icns Wargus.app/Contents/Resources/
 
 # Bundle resources
-cp -R ../campaigns ../contrib ../maps ../scripts Wargus.app/Contents/MacOS/
+cp -R ../shaders ../campaigns ../contrib ../maps ../scripts Wargus.app/Contents/MacOS/
 
 # Bundle binaries and their dependencies
 rm -rf macdylibbundler
