@@ -394,6 +394,7 @@ local defaultPreferences = {
 	VideoFullScreen = false,
 	VideoHeight = 600,
 	VideoWidth = 800,
+	VideoShaderIndex = 0,
 	ViewportMode = 0,
 	ServerList = {},
 	MetaServer = "localhost",
@@ -464,6 +465,8 @@ SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameT
 SetUseOpenGL(wc2.preferences.UseOpenGL)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
 SetVideoResolution(wc2.preferences.VideoWidth, wc2.preferences.VideoHeight)
+Video.ShaderIndex = wc2.preferences.VideoShaderIndex
+SwitchToShader()
 
 UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
 Preference.SF2Soundfont = wc2.preferences.SF2SoundFont
