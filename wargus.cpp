@@ -32,7 +32,7 @@
 #define GAME_CD_FILE_PATTERNS "REZDAT.WAR", "rezdat.war", "War Resources", "WAR2BNE.ICO", "war2bne.ico"
 #define GAME "wargus"
 #define EXTRACTOR_TOOL "wartool"
-#define EXTRACTOR_ARGS "-v"
+#define EXTRACTOR_ARGS "-v -r"
 #define CHECK_EXTRACTED_VERSION 1
 #define CONTRIB_DIRECTORIES { "campaigns", "campaigns", \
 			      "contrib", "graphics/ui", \
