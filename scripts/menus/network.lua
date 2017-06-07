@@ -652,7 +652,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
 	   dd:setMarked(false)
 	   server:setEnabled(true)
 	else
-	   if (MetaClient:CreateGame(description, map, "" .. numplayers) == -1) then
+	   if (MetaClient:CreateGame(description .. ":" .. wc2.preferences.PlayerName, map, "" .. numplayers) == -1) then
 	      onlineLabel:setCaption(_("(metaserver error)"))
 	      onlineLabel:adjustSize()
 	      dd:setMarked(false)
@@ -684,8 +684,10 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
       RevealMap()
     end
     NetworkServerStartGame()
+    MetaClient:Send("STARTGAME") -- only the host's message will actually be processed
     NetworkGamePrepareGameSettings()
     RunMap(map)
+    MetaClient:Send("ENDGAME") -- only the host's message will actually be processed
     menu:stop()
   end
   local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11, sy*14, startFunc)
@@ -770,7 +772,15 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   updateStartButton(updatePlayers())
 
   menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
-    function() InitGameSettings(); menu:stop() end)
+		     function()
+			InitGameSettings()
+			-- the MetaClient message will not be processed if this
+			-- game is not registered. For the host, the server will
+			-- also ensure the entire game is marked as cancelled.
+			MetaClient:Send("PARTGAME")
+			MetaClient:Close()
+			menu:stop()
+  end)
 
   menu:run()
 end
