@@ -67,13 +67,68 @@ function ErrorMenu(errmsg)
   menu:run()
 end
 
-function addPlayersList(menu, numplayers)
+function addPlayersList(menu, numplayers, isserver)
   local i
   local players_name = {}
   local players_state = {}
   local sx = Video.Width / 20
   local sy = Video.Height / 20
   local numplayers_text
+  local ainumber
+  local ainumberCb
+  local ainumberlist = {}
+  local updateAInumberList
+  local requestedNumberOfAI
+
+  menu:writeText(_("AIs:"), sx, sy*11+75)
+
+  if isserver then
+    updateAInumberList = function(connected_players)
+      -- create list with number of available slots for computer players
+      ainumberlist = {}
+      local maxAIplayers = numplayers - 1 - connected_players
+      for i=0,maxAIplayers do
+        table.insert(ainumberlist, tostring(i) .. _(" AI player(s)"))
+      end
+    end
+
+    updateAInumberList(0)
+    ainumber = menu:addDropDown(ainumberlist, sx + 100, sy*11+75, function() end)
+    requestedNumberOfAI = function()
+      -- parse the requested number of AI players as integer
+      return tonumber(string.gmatch(ainumberlist[ainumber:getSelected() + 1], "%d+")())
+    end
+    ainumberCb = function()
+      -- first, reset all computer slots to open
+      for i=0,numplayers-1 do
+        if ServerSetupState.CompOpt[i] == 1 then -- 1 == computer player
+          ServerSetupState.CompOpt[i] = 0
+          LocalSetupState.CompOpt[i] = 0
+        end
+      end
+      -- iterate down from the maximum number of openslots to the number of
+      -- openslots minus the requested number of AI, effectively filling in AI
+      -- from the end
+      for i=numplayers-1,numplayers-requestedNumberOfAI(),-1 do
+        ServerSetupState.CompOpt[i] = 1 -- 1 == computer player
+        LocalSetupState.CompOpt[i] = 1
+      end
+      NetworkServerResyncClients()
+    end
+
+    ainumber:setActionCallback(ainumberCb)
+    ainumber:setSize(190, 20)
+  else
+    ainumberCb = function()
+      local numberOfAI = 0
+      for i=0,numplayers-1 do
+        if ServerSetupState.CompOpt[i] == 1 then
+          numberOfAI = numberOfAI + 1
+        end
+      end
+      ainumber = menu:writeText(tostring(numberOfAI), sx + 100, sy*11+75)
+    end
+  end
 
   menu:writeLargeText(_("Players"), sx * 11, sy*3)
   for i=1,8 do
@@ -93,20 +148,42 @@ function addPlayersList(menu, numplayers)
         players_name[i]:setCaption("")
         players_state[i]:setCaption("")
       else
-        connected_players = connected_players + 1
-        if ServerSetupState.Ready[i-1] == 1 then
-          ready_players = ready_players + 1
-          players_state[i]:setCaption(_("Ready"))
-        else
-          players_state[i]:setCaption(_("Preparing"))
+        if ServerSetupState.CompOpt[i-1] == 0 then
+          connected_players = connected_players + 1
+          if ServerSetupState.Ready[i-1] == 1 then
+            ready_players = ready_players + 1
+            players_state[i]:setCaption(_("Ready"))
+          else
+            players_state[i]:setCaption(_("Preparing"))
+          end
+          players_name[i]:setCaption(Hosts[i-1].PlyName)
+          players_name[i]:adjustSize()
         end
-        players_name[i]:setCaption(Hosts[i-1].PlyName)
-        players_name[i]:adjustSize()
       end
     end
-    numplayers_text:setCaption(_("Open slots : ") .. numplayers - 1 - connected_players)
+    local currentAInumber = 0
+    if isserver then
+      updateAInumberList(connected_players)
+      currentAInumber = requestedNumberOfAI()
+      ainumber:setList(ainumberlist)
+      ainumber:setSelected(currentAInumber)
+      ainumberCb()
+    else
+      ainumberCb()
+    end
+    local openSlots = numplayers - 1 - connected_players
+    for i=1,numplayers-1 do
+      if ServerSetupState.CompOpt[i] == 1 then
+        openSlots = openSlots - 1
+      end
+    end
+    numplayers_text:setCaption(_("Open slots : ") .. openSlots)
     numplayers_text:adjustSize()
-    return numplayers == 1 or (connected_players > 0 and ready_players == connected_players)
+
+    -- only 1 player in this map or
+    -- all connected players are ready or
+    -- we could play against AI
+    return numplayers == 1 or (connected_players > 0 and ready_players == connected_players) or (connected_players == 0 and currentAInumber ~= 0)
   end
 
   return updatePlayers
@@ -189,7 +266,7 @@ function RunJoiningMapMenu(optRace, optReady)
   end
   local readycheckbox = menu:addImageCheckBox(_("~!Ready"), sx*11, sy*14, offi, offi2, oni, oni2, readycb)
 
-  local updatePlayersList = addPlayersList(menu, numplayers)
+  local updatePlayersList = addPlayersList(menu, numplayers, false)
 
   local joincounter = 0
   local delay = 4
@@ -618,8 +695,16 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
 
   menu:writeText(_("Dedicated AI Server:"), sx, sy*12+75)
   local dedicatedCb = function (dd)
-    ServerSetupState.CompOpt[0] = bool2int(dd:isMarked())
-    LocalSetupState.CompOpt[0] = bool2int(dd:isMarked())
+    if dd:isMarked() then
+      -- 2 == closed
+      ServerSetupState.CompOpt[0] = 2
+      LocalSetupState.CompOpt[0] = 2
+    else
+      -- 0 == available
+      ServerSetupState.CompOpt[0] = 0
+      LocalSetupState.CompOpt[0] = 0
+    end
+    NetworkServerResyncClients()
   end
   local dedicated = menu:addImageCheckBox("", sx + 200, sy*12+75, offi, offi2, oni, oni2, dedicatedCb)
   local onlineLabelTxt = _("Meta-Server")
@@ -671,7 +756,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   end
   local online = menu:addImageCheckBox("", sx + 200, sy*13+75, offi, offi2, oni, oni2, onlineCb)
 
-  local updatePlayers = addPlayersList(menu, numplayers)
+  local updatePlayers = addPlayersList(menu, numplayers, true)
 
   NetworkMapName = map
   NetworkInitServerConnect(numplayers)
@@ -683,6 +768,16 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
     if revealmap:isMarked() == true then
       RevealMap()
     end
+    -- now close all slots that are not AI or taken by connected hosts
+    for i=1,numplayers-1 do
+      if Hosts[i].PlyName == "" then
+        if ServerSetupState.CompOpt[i] == 0 then
+          ServerSetupState.CompOpt[i] = 2 -- 2 == closed
+          LocalSetupState.CompOpt[i] = 2 -- 2 == closed
+        end
+      end
+    end
+    NetworkServerResyncClients()
     NetworkServerStartGame()
     MetaClient:Send("STARTGAME") -- only the host's message will actually be processed
     NetworkGamePrepareGameSettings()
