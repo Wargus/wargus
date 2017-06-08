@@ -10,9 +10,6 @@ addons:
       - libpng12-dev
       - libgtk2.0-dev
       - zlib1g-dev
-env:
-  global:
-    secure: "FK2YokpeWWUd1gpPCgPTcH7sbYw1Wam8ImeR1Xjf3mC8VaISOzXvF1DTmHjOKqrIP+xlgsA8XuI9xLU8U1vdFMRA2XfC+a0tozRAknzhkBHC61ysfbxwnv072CBtG6rg6Qw+zvNEixUo7bCMLlPaS8h/UHC7l/1diXBndw435lEpngiIDgiCG2REXpLPkRyIJ9G1VrhTKBWtMqNs4na9glgxLao+AYE1gimLaqq7qraXSP8339hWU0PFGqBnqC/TG5dKJCbciMAqdjs/QPxqnvJR2Eqqpd0Yb+nNn9aRq715cT8Rlck981YOowpHrfer+9YhEimFRJyY8McjQcvRWGT9mCDiwulB/WrveesktWauOGyKJJXMidragfDMELjsShYjsCGUJOmM5MNBWbfkr1iT0Mf2H/sd9Ey2RgUzFAbELBghGdEVisbMeXrKIJhUAzynNNPQRNPJB4yJjXYF6tYIZ/kEYqR4C8ohYq+JzYkEVhl4VngApWJKtZZmtB0t0ND6VcqFDMrBf2L3uyvJkgLDlx6iLDQ8ZNOgWCtAGNOEKZhv/d9fG346nc9Q/RcEZU8jJlJSI0TOgrgCBLNWHNFMrBqSMMj0mngT2jOkKRV+rFlB5Gq9rwCDhp0cev+Ce+1WOYTkl7M+1pABLgsJP1WvGV2MpPxtEpvjaYKwEKM="
 before_script:
   - mkdir build
   - cd build
