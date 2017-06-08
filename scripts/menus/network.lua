@@ -687,7 +687,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
     MetaClient:Send("STARTGAME") -- only the host's message will actually be processed
     NetworkGamePrepareGameSettings()
     RunMap(map)
-    MetaClient:Send("ENDGAME") -- only the host's message will actually be processed
+    MetaClient:Send("ENDGAME finished") -- only the host's message will actually be processed
     menu:stop()
   end
   local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11, sy*14, startFunc)
