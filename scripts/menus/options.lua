@@ -316,7 +316,7 @@ function RunPreferencesMenu()
    end)
    viewportMode:setSize(120, 16)
 
-   if (GetZoomNoResize()) then
+   if (GetUseOpenGL()) then
       local function updateShader()
 	 Video.ShaderIndex = wc2.preferences.VideoShaderIndex
 	 SwitchToShader()
@@ -550,16 +550,20 @@ function BuildOptionsMenu()
    end)
    b:setMarked(Video.FullScreen)
 
+   local isZoomNoResize = GetZoomNoResize()
    local checkZoomNoResize = menu:addImageCheckBox(
       _("Scale original UI (restart required, implies OpenGL)"), offx + 17, offy + 55 + 26*8 + 14, offi, offi2, oni, oni2,
       function()
-	 wc2.preferences.ZoomNoResize = checkZoomNoResize:isMarked()
-	 wc2.preferences.UseOpenGL = wc2.preferences.ZoomNoResize
+	 isZoomNoResize = not isZoomNoResize
+	 wc2.preferences.ZoomNoResize = isZoomNoResize
+	 if (isZoomNoResize) then
+	    wc2.preferences.UseOpenGL = true
+	 end
 	 SavePreferences()
    end)
-   checkZoomNoResize:setMarked(GetZoomNoResize())
+   checkZoomNoResize:setMarked(isZoomNoResize)
 
-   if (GetZoomNoResize()) then
+   if (GetUseOpenGL()) then
       local function updateShader()
 	 Video.ShaderIndex = wc2.preferences.VideoShaderIndex
 	 SwitchToShader()
@@ -574,23 +578,25 @@ function BuildOptionsMenu()
       b = Label("Pixel Shader (for scaling UI)")
       b:setFont(CFont:Get("game"))
       b:adjustSize();
-      menu:addCentered(b, offx + 17 + 20 + 100, offy + 55 + 26*10 + 14)
+      menu:addCentered(b, offx + 17 + 20 + 150, offy + 55 + 26*9 + 14)
       local shadersliderrightbutton = menu:addImageRightSliderButton(
-	 "", nil, offx + 17 + 20 + 200, offy + 55 + 26*10 + 14,
+	 "", nil, offx + 17 + 20 + 300, offy + 55 + 26*9 + 14,
 	 function()
 	    wc2.preferences.VideoShaderIndex = wc2.preferences.VideoShaderIndex + 1
 	    updateShader()
       end)
    end
 
+   local usesOpenGL = GetUseOpenGL()
    checkOpenGL = menu:addImageCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*10 + 14, offi, offi2, oni, oni2,
 				       function()
 					  --TODO: Add function for immediately change state of OpenGL
-					  wc2.preferences.UseOpenGL = checkOpenGL:isMarked()
+					  usesOpenGL = not usesOpenGL
+					  wc2.preferences.UseOpenGL = usesOpenGL
 					  SavePreferences()
-					  --      menu:stop(1) --TODO: Enable if we have an OpenGL function
+					  --menu:stop(1) --TODO: Enable if we have an OpenGL function
    end)
-   checkOpenGL:setMarked(GetUseOpenGL())
+   checkOpenGL:setMarked(usesOpenGL)
 
    menu:addHalfButton("~!OK", "o", offx + 123, offy + 55 + 26*11 + 14, function() menu:stop() end)
 

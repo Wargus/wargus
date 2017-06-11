@@ -466,7 +466,11 @@ SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameT
 SetUseOpenGL(wc2.preferences.UseOpenGL)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
 SetVideoResolution(wc2.preferences.VideoWidth, wc2.preferences.VideoHeight)
-SetZoomNoResize(wc2.preferences.ZoomNoResize)
+if (wc2.preferences.ZoomNoResize) then
+   SetZoomNoResize(640, 480) -- the original Warcraft was 640x480
+else
+   SetZoomNoResize(false) -- disable
+end
 Video.ShaderIndex = wc2.preferences.VideoShaderIndex
 SwitchToShader()
 
