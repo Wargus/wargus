@@ -511,7 +511,7 @@ function BuildOptionsMenu()
    menu:addLabel(_("Video Options"), offx + 176, offy + 1 + 26*-2)
    menu:addLabel(_("Video Resolution"), offx + 16, offy + 34 , Fonts["game"], false)
 
-   videoList = menu:addImageListBox(offx + 16, offy + 50, 200, 8*(table.getn(videoModes)/2+1), vlist)
+   videoList = menu:addImageListBox(offx + 16, offy + 50, 200, 7*(table.getn(videoModes)/2+1), vlist)
 
    local function cb(s)
       SetVideoSize(videoModes[videoList:getSelected()*2+1], videoModes[videoList:getSelected()*2+2])
@@ -520,7 +520,7 @@ function BuildOptionsMenu()
    videoList:setActionCallback(cb)
 
 
-   b = menu:addImageCheckBox(_("Full Screen"), offx + 17, offy + 55 + 26*8 + 14, offi, offi2, oni, oni2,
+   b = menu:addImageCheckBox(_("Full Screen"), offx + 17, offy + 55 + 26*7 + 14, offi, offi2, oni, oni2,
 			     function()
 				ToggleFullScreen()
 				wc2.preferences.VideoFullScreen = Video.FullScreen
@@ -529,12 +529,38 @@ function BuildOptionsMenu()
    end)
    b:setMarked(Video.FullScreen)
 
-   checkZoomNoResize = menu:addImageCheckBox(_("Scale original UI ratio (restart required)"), offx + 17, offy + 55 + 26*9 + 14, offi, offi2, oni, oni2,
-					     function()
-						wc2.preferences.ZoomNoResize = checkZoomNoResize:isMarked()
-						SavePreferences()
+   local checkZoomNoResize = menu:addImageCheckBox(
+      _("Scale original UI (restart required, implies OpenGL)"), offx + 17, offy + 55 + 26*8 + 14, offi, offi2, oni, oni2,
+      function()
+	 wc2.preferences.ZoomNoResize = checkZoomNoResize:isMarked()
+	 wc2.preferences.UseOpenGL = wc2.preferences.ZoomNoResize
+	 SavePreferences()
    end)
    checkZoomNoResize:setMarked(GetZoomNoResize())
+
+   if (GetZoomNoResize()) then
+      local function updateShader()
+	 Video.ShaderIndex = wc2.preferences.VideoShaderIndex
+	 SwitchToShader()
+	 SavePreferences()
+      end
+      local shadersliderleftbutton = menu:addImageLeftSliderButton(
+	 "", nil, offx + 17, offy + 55 + 26*9 + 14,
+	 function()
+	    wc2.preferences.VideoShaderIndex = wc2.preferences.VideoShaderIndex - 1
+	    updateShader()
+      end)
+      b = Label("Pixel Shader (for scaling UI)")
+      b:setFont(CFont:Get("game"))
+      b:adjustSize();
+      menu:addCentered(b, offx + 17 + 20 + 100, offy + 55 + 26*10 + 14)
+      local shadersliderrightbutton = menu:addImageRightSliderButton(
+	 "", nil, offx + 17 + 20 + 200, offy + 55 + 26*10 + 14,
+	 function()
+	    wc2.preferences.VideoShaderIndex = wc2.preferences.VideoShaderIndex + 1
+	    updateShader()
+      end)
+   end
 
    checkOpenGL = menu:addImageCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*10 + 14, offi, offi2, oni, oni2,
 				       function()
