@@ -529,17 +529,12 @@ function BuildOptionsMenu()
 	  end)
 	b:setMarked(Video.FullScreen)
 
-    checkTexture = menu:addImageCheckBox(_("Set Maximum OpenGL Texture to 256"), offx + 17, offy + 55 + 26*9 + 14, offi, offi2, oni, oni2,
+   checkZoomNoResize = menu:addImageCheckBox(_("Scale original UI ratio (restart required)"), offx + 17, offy + 55 + 26*9 + 14, offi, offi2, oni, oni2,
       function()
-        if (checkTexture:isMarked()) then
-          wc2.preferences.MaxOpenGLTexture = 256
-        else
-          wc2.preferences.MaxOpenGLTexture = 0
-        end
-        SetMaxOpenGLTexture(wc2.preferences.MaxOpenGLTexture)
+						wc2.preferences.ZoomNoResize = checkZoomNoResize:isMarked()
         SavePreferences()
       end)
-    if (wc2.preferences.MaxOpenGLTexture == 256) then checkTexture:setMarked(true) end
+   checkZoomNoResize:setMarked(GetZoomNoResize())
 
     checkOpenGL = menu:addImageCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*10 + 14, offi, offi2, oni, oni2,
       function()
@@ -548,8 +543,7 @@ function BuildOptionsMenu()
         SavePreferences()
 --      menu:stop(1) --TODO: Enable if we have an OpenGL function
       end)
-    checkOpenGL:setMarked(wc2.preferences.UseOpenGL)
---  checkOpenGL:setMarked(UseOpenGL) --TODO: Enable if we have an OpenGL function
+   checkOpenGL:setMarked(GetUseOpenGL())
 
     menu:addHalfButton("~!OK", "o", offx + 123, offy + 55 + 26*11 + 14, function() menu:stop() end)
 
@@ -663,4 +657,3 @@ function RunGameOptionsMenu()
     menu:run()
   end
 end
-

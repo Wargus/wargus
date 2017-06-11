@@ -395,6 +395,7 @@ local defaultPreferences = {
 	VideoHeight = 600,
 	VideoWidth = 800,
 	VideoShaderIndex = 0,
+	ZoomNoResize = false,
 	ViewportMode = 0,
 	ServerList = {},
 	MetaServer = "212.59.241.214",
@@ -465,6 +466,7 @@ SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameT
 SetUseOpenGL(wc2.preferences.UseOpenGL)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
 SetVideoResolution(wc2.preferences.VideoWidth, wc2.preferences.VideoHeight)
+SetZoomNoResize(wc2.preferences.ZoomNoResize)
 Video.ShaderIndex = wc2.preferences.VideoShaderIndex
 SwitchToShader()
 
