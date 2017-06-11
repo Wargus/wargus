@@ -392,8 +392,8 @@ local defaultPreferences = {
 	UseFancyBuildings = false,      --  Enable/disable fancy building (random mirroring buildings)
 	UseOpenGL = false,
 	VideoFullScreen = false,
-	VideoHeight = 600,
-	VideoWidth = 800,
+	VideoViewportHeight = 600,
+	VideoViewportWidth = 800,
 	VideoShaderIndex = 0,
 	ZoomNoResize = false,
 	ViewportMode = 0,
@@ -465,7 +465,7 @@ SetMusicVolume(wc2.preferences.MusicVolume)
 SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameTranslation)
 SetUseOpenGL(wc2.preferences.UseOpenGL)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
-SetVideoResolution(wc2.preferences.VideoWidth, wc2.preferences.VideoHeight)
+SetVideoResolution(wc2.preferences.VideoViewportWidth, wc2.preferences.VideoViewportHeight)
 if (wc2.preferences.ZoomNoResize) then
    SetZoomNoResize(640, 480) -- the original Warcraft was 640x480
 else
