@@ -39,6 +39,11 @@
 			      "maps", "maps",		\
 			      "shaders", "shaders",	\
 			      "scripts", "scripts", NULL }
+#define GAME_SHOULD_EXTRACT_AGAIN (tinyfd_messageBox("Extract more?", \
+                                                     "Extract from an additional expansion CD?", \
+                                                     "yesno",           \
+                                                     "question",        \
+                                                     1))
 
 const char* SRC_PATH() { return __FILE__; }
 

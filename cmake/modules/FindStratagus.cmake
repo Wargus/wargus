@@ -21,7 +21,7 @@ else()
 		message(STATUS "Found stratagus: ${STRATAGUS}:${STRATAGUS_INCLUDE_DIR}")
 	else()
 		set(STRATAGUS_FOUND false)
-		message(FATAL_ERROR "Could not find stratagus")
+		message(FATAL_ERROR "Could not find stratagus, please set STRATAGUS_INCLUDE_DIR and STRATAGUS")
 	endif()
 
 	mark_as_advanced(STRATAGUS STRATAGUS_INCLUDE_DIR)
