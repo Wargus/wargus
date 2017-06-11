@@ -46,11 +46,11 @@
 ; General variables
 !define NAME "Wargus"
 !define TALES_NAME "Wargus - Aleonas Tales"
-!define VERSION "2.4.1"
+!define VERSION "2.4.2"
 !define VIVERSION "${VERSION}.0"
 !define HOMEPAGE "https://wargus.github.io"
 !define LICENSE "GPL v2+"
-!define COPYRIGHT "Copyright (c) 1998-2016 by The Stratagus Project"
+!define COPYRIGHT "Copyright (c) 1998-2017 by The Stratagus Project"
 !define STRATAGUS_NAME "Stratagus"
 !define STRATAGUS_HOMEPAGE "https://github.com/Wargus/stratagus"
 

@@ -9,7 +9,7 @@ STRINGS = {
   copyright: "(c) 1998-2017 by The Stratagus Project"
 }
 
-FILES = %w[wargus.rc war1gus.nsi wartool.h mac/Info.plist scripts/stratagus.lua debian/copyright]
+FILES = %w[wargus.rc wargus.nsi wartool.h mac/Info.plist scripts/stratagus.lua debian/copyright]
 FILES << __FILE__
 
 begin
