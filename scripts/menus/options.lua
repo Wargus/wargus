@@ -316,6 +316,27 @@ function RunPreferencesMenu()
    end)
    viewportMode:setSize(120, 16)
 
+   if (GetZoomNoResize()) then
+      local function updateShader()
+	 Video.ShaderIndex = wc2.preferences.VideoShaderIndex
+	 SwitchToShader()
+	 SavePreferences()
+      end
+      menu:addLabel(_("Pixel Shader"), 225, 28 + 19 * 4, Fonts["game"], false)
+      local shadersliderleftbutton = menu:addImageLeftSliderButton(
+	 "", nil, 255, 28 + 19 * 5,
+	 function()
+	    wc2.preferences.VideoShaderIndex = wc2.preferences.VideoShaderIndex - 1
+	    updateShader()
+      end)
+      local shadersliderrightbutton = menu:addImageRightSliderButton(
+	 "", nil, 255 + 50, 28 + 19 * 5,
+	 function()
+	    wc2.preferences.VideoShaderIndex = wc2.preferences.VideoShaderIndex + 1
+	    updateShader()
+      end)
+   end
+
    menu:addLabel(_("~!*SF2 soundfont path :"), 10, 10 + 18 * 13, Fonts["game"], false)
    local sf2SoundfontPath = menu:addTextInputField(Preference.SF2Soundfont, 10, 10 + 18 * 14, 200)
 
