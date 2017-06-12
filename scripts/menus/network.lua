@@ -103,7 +103,6 @@ function addPlayersList(menu, numplayers, isserver)
       for i=0,numplayers-1 do
         if ServerSetupState.CompOpt[i] == 1 then -- 1 == computer player
           ServerSetupState.CompOpt[i] = 0
-          LocalSetupState.CompOpt[i] = 0
         end
       end
       -- iterate down from the maximum number of openslots to the number of
@@ -111,7 +110,6 @@ function addPlayersList(menu, numplayers, isserver)
       -- from the end
       for i=numplayers-1,numplayers-requestedNumberOfAI(),-1 do
         ServerSetupState.CompOpt[i] = 1 -- 1 == computer player
-        LocalSetupState.CompOpt[i] = 1
       end
       NetworkServerResyncClients()
     end
@@ -148,17 +146,17 @@ function addPlayersList(menu, numplayers, isserver)
         players_name[i]:setCaption("")
         players_state[i]:setCaption("")
       else
-        if ServerSetupState.CompOpt[i-1] == 0 then
-          connected_players = connected_players + 1
-          if ServerSetupState.Ready[i-1] == 1 then
-            ready_players = ready_players + 1
-            players_state[i]:setCaption(_("Ready"))
-          else
-            players_state[i]:setCaption(_("Preparing"))
-          end
-          players_name[i]:setCaption(Hosts[i-1].PlyName)
-          players_name[i]:adjustSize()
+	ServerSetupState.CompOpt[i-1] = 0
+	LocalSetupState.CompOpt[i-1] = 0
+	connected_players = connected_players + 1
+	if ServerSetupState.Ready[i-1] == 1 then
+          ready_players = ready_players + 1
+          players_state[i]:setCaption(_("Ready"))
+        else
+          players_state[i]:setCaption(_("Preparing"))
         end
+        players_name[i]:setCaption(Hosts[i-1].PlyName)
+        players_name[i]:adjustSize()
       end
     end
     local currentAInumber = 0
@@ -308,12 +306,14 @@ function RunJoiningMapMenu(optRace, optReady)
         end
         NetworkGamePrepareGameSettings()
         RunMap(NetworkMapName)
-        PresentMap = OldPresentMap
+	PresentMap = OldPresentMap
         DefinePlayerTypes = oldDefinePlayerTypes
+        MetaClient:Close()
         menu:stop()
       end
     elseif (state == 10) then -- ccs_unreachable
       ErrorMenu(_("Cannot reach server"))
+      MetaClient:Close()
       menu:stop()
     end
   end
@@ -326,7 +326,7 @@ function RunJoiningMapMenu(optRace, optReady)
   end
 
   menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
-    function() NetworkDetachFromServer(); menu:stop() end)
+    function() NetworkDetachFromServer(); MetaClient:Close(); menu:stop() end)
 
   menu:run()
 end
@@ -549,11 +549,11 @@ function RunJoinOnlineMenu()
 	    NetworkSetupServerAddress(iplocal, portlocal)
 	    NetworkInitClientConnect()
 	    -- try the global ip first, so any clients outside the network may be able to do p2p later on
-	    if (RunJoiningGameMenu(nil, nil, _("Connecting via " .. tostring(ip) .. " (first try)"), true) ~= 0) then
+	    if (RunJoiningGameMenu(nil, nil, _("Connecting via " .. tostring(iplocal) .. " (first try)"), true) ~= 0) then
 	       -- cannot connect to server-global ip address, try the local one
 	       NetworkSetupServerAddress(ip, port)
 	       NetworkInitClientConnect()
-	       if (RunJoiningGameMenu(nil, nil, _("Connecting via " .. tostring(iplocal) .. " (second try)"), false) ~= 0) then
+	       if (RunJoiningGameMenu(nil, nil, _("Connecting via " .. tostring(ip) .. " (second try)"), false) ~= 0) then
 		  -- connect failed, don't leave this menu
 		  return
 	       end
@@ -698,11 +698,9 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
     if dd:isMarked() then
       -- 2 == closed
       ServerSetupState.CompOpt[0] = 2
-      LocalSetupState.CompOpt[0] = 2
     else
       -- 0 == available
       ServerSetupState.CompOpt[0] = 0
-      LocalSetupState.CompOpt[0] = 0
     end
     NetworkServerResyncClients()
   end
@@ -773,16 +771,18 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
       if Hosts[i].PlyName == "" then
         if ServerSetupState.CompOpt[i] == 0 then
           ServerSetupState.CompOpt[i] = 2 -- 2 == closed
-          LocalSetupState.CompOpt[i] = 2 -- 2 == closed
         end
       end
     end
     NetworkServerResyncClients()
     NetworkServerStartGame()
+    print("Metaserver stargame...")
     MetaClient:Send("STARTGAME") -- only the host's message will actually be processed
+    print("...metaserver game started")
     NetworkGamePrepareGameSettings()
     RunMap(map)
     MetaClient:Send("ENDGAME finished") -- only the host's message will actually be processed
+    MetaClient:Close()
     menu:stop()
   end
   local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11, sy*14, startFunc)
@@ -872,8 +872,10 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
 			-- the MetaClient message will not be processed if this
 			-- game is not registered. For the host, the server will
 			-- also ensure the entire game is marked as cancelled.
+			print("Leaving metaserver...")
 			MetaClient:Send("PARTGAME")
 			MetaClient:Close()
+			print("...left")
 			menu:stop()
   end)
 
