@@ -67,6 +67,8 @@ function ErrorMenu(errmsg)
   menu:run()
 end
 
+
+
 function addPlayersList(menu, numplayers, isserver)
   local i
   local players_name = {}
@@ -99,32 +101,18 @@ function addPlayersList(menu, numplayers, isserver)
       return tonumber(string.gmatch(ainumberlist[ainumber:getSelected() + 1], "%d+")())
     end
     ainumberCb = function()
-      -- first, reset all computer slots to open
-      for i=0,numplayers-1 do
-        if ServerSetupState.CompOpt[i] == 1 then -- 1 == computer player
-          ServerSetupState.CompOpt[i] = 0
-        end
-      end
-      -- iterate down from the maximum number of openslots to the number of
-      -- openslots minus the requested number of AI, effectively filling in AI
-      -- from the end
-      for i=numplayers-1,numplayers-requestedNumberOfAI(),-1 do
-        ServerSetupState.CompOpt[i] = 1 -- 1 == computer player
-      end
+      ServerSetupState.Opponents = requestedNumberOfAI()
+      GameSettings.Opponents = ServerSetupState.Opponents
       NetworkServerResyncClients()
     end
 
     ainumber:setActionCallback(ainumberCb)
     ainumber:setSize(190, 20)
   else
+    ainumber = menu:writeText(tostring(ServerSetupState.Opponents), sx + 100, sy*11+75)
     ainumberCb = function()
-      local numberOfAI = 0
-      for i=0,numplayers-1 do
-        if ServerSetupState.CompOpt[i] == 1 then
-          numberOfAI = numberOfAI + 1
-        end
-      end
-      ainumber = menu:writeText(tostring(numberOfAI), sx + 100, sy*11+75)
+      ainumber:setCaption(tostring(ServerSetupState.Opponents))
+      ainumber:adjustSize()
     end
   end
 
@@ -133,7 +121,9 @@ function addPlayersList(menu, numplayers, isserver)
     players_name[i] = menu:writeText(_("Player")..i, sx * 11, sy*4 + i*18)
     players_state[i] = menu:writeText(_("Preparing"), sx * 11 + 80, sy*4 + i*18)
   end
-  numplayers_text = menu:writeText(_("Open slots : ") .. numplayers - 1, sx *11, sy*4 + 144)
+  if isserver then
+    numplayers_text = menu:writeText(_("Open slots : ") .. numplayers - 1, sx *11, sy*4 + 144)
+  end
 
   local function updatePlayers()
     local connected_players = 0
@@ -146,8 +136,6 @@ function addPlayersList(menu, numplayers, isserver)
         players_name[i]:setCaption("")
         players_state[i]:setCaption("")
       else
-	ServerSetupState.CompOpt[i-1] = 0
-	LocalSetupState.CompOpt[i-1] = 0
 	connected_players = connected_players + 1
 	if ServerSetupState.Ready[i-1] == 1 then
           ready_players = ready_players + 1
@@ -165,18 +153,15 @@ function addPlayersList(menu, numplayers, isserver)
       currentAInumber = requestedNumberOfAI()
       ainumber:setList(ainumberlist)
       ainumber:setSelected(currentAInumber)
-      ainumberCb()
     else
       ainumberCb()
     end
-    local openSlots = numplayers - 1 - connected_players
-    for i=1,numplayers-1 do
-      if ServerSetupState.CompOpt[i] == 1 then
-        openSlots = openSlots - 1
-      end
+    if isserver then
+      local openSlots = numplayers - 1 - connected_players
+      openSlots = openSlots - ServerSetupState.Opponents
+      numplayers_text:setCaption(_("Open slots : ") .. openSlots)
+      numplayers_text:adjustSize()
     end
-    numplayers_text:setCaption(_("Open slots : ") .. openSlots)
-    numplayers_text:adjustSize()
 
     -- only 1 player in this map or
     -- all connected players are ready or
@@ -209,8 +194,8 @@ function RunJoiningMapMenu(optRace, optReady)
   local fow = menu:addImageCheckBox(_("Fog of war"), sx, sy*3+120, offi, offi2, oni, oni2, function() end)
   fow:setMarked(true)
   ServerSetupState.FogOfWar = 1
-  ServerSetupState.Opponents = 15
-  GameSettings.Opponents = 15
+  ServerSetupState.Opponents = 0
+  GameSettings.Opponents = 0
   fow:setEnabled(false)
   local revealmap = menu:addImageCheckBox(_("Reveal map"), sx, sy*3+150, offi, offi2, oni, oni2, function() end)
   revealmap:setEnabled(false)
@@ -278,6 +263,7 @@ function RunJoiningMapMenu(optRace, optReady)
     GameSettings.NumUnits = ServerSetupState.UnitsOption
     resources:setSelected(ServerSetupState.ResourcesOption)
     GameSettings.Resources = ServerSetupState.ResourcesOption
+    GameSettings.Opponents = ServerSetupState.Opponents
     updatePlayersList()
     state = GetNetworkState()
     -- FIXME: don't use numbers
@@ -365,7 +351,11 @@ function RunJoiningGameMenu(optRace, optReady, optExtraLabel, optStopDirect)
     if (state == 3) then -- ccs_mapinfo
       -- got ICMMap => load map
       RunJoiningMapMenu(optRace, optReady)
-      menu:stop(0)
+      if (optExtraLabel ~= nil) then
+	 menu:stop(1) -- joining through metaserver menu
+      else
+	 menu:stop(0) -- joining through local server menu
+      end
     elseif (state == 4) then -- ccs_badmap
       ErrorMenu(_("Map not available"))
       menu:stop(1)
@@ -759,22 +749,13 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   NetworkMapName = map
   NetworkInitServerConnect(numplayers)
   ServerSetupState.FogOfWar = 1
-  ServerSetupState.Opponents = 15
-  GameSettings.Opponents = 15
+  ServerSetupState.Opponents = 0
+  GameSettings.Opponents = 0
   local function startFunc(s)
     SetFogOfWar(fow:isMarked())
     if revealmap:isMarked() == true then
       RevealMap()
     end
-    -- now close all slots that are not AI or taken by connected hosts
-    for i=1,numplayers-1 do
-      if Hosts[i].PlyName == "" then
-        if ServerSetupState.CompOpt[i] == 0 then
-          ServerSetupState.CompOpt[i] = 2 -- 2 == closed
-        end
-      end
-    end
-    NetworkServerResyncClients()
     NetworkServerStartGame()
     print("Metaserver stargame...")
     MetaClient:Send("STARTGAME") -- only the host's message will actually be processed
