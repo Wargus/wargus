@@ -5,6 +5,9 @@ local function HandleIngameCommandKey(key, ctrl, alt, shift)
   elseif (key == "f5") then
     if (not IsNetworkGame()) then SetGamePaused(true) end
     RunGameOptionsMenu()
+  elseif (key == "f6") then
+    if (not IsNetworkGame()) then SetGamePaused(true) end
+    RunSpeedsMenu()
   elseif (key == "f7") then
     if (not IsNetworkGame()) then SetGamePaused(true) end
     RunGameSoundOptionsMenu()
