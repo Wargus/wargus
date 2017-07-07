@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wargus\n"
-"POT-Creation-Date: 2017-07-07 13:33+0300\n"
-"PO-Revision-Date: 2017-07-07 15:02+0300\n"
+"POT-Creation-Date: 2017-07-07 15:57+0300\n"
+"PO-Revision-Date: 2017-07-07 17:32+0300\n"
 "Last-Translator: cybermind <iddqd_mail@mail.ru>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -39,19 +39,19 @@ msgstr "Цель:"
 
 #: database.lua:560
 msgid "Combat Casualties"
-msgstr ""
+msgstr "Боевые потери"
 
 #: database.lua:561
 msgid "Infantry"
-msgstr ""
+msgstr "Пехота"
 
 #: database.lua:562
 msgid "Artillery"
-msgstr ""
+msgstr "Артиллерия"
 
 #: database.lua:563
 msgid "Cavalry"
-msgstr ""
+msgstr "Кавалерия"
 
 #: database.lua:713 menus/campaign.lua:85 menus/campaign.lua:170
 #: menus/credits.lua:160 menus/results.lua:408
@@ -1289,7 +1289,7 @@ msgstr "~!Сдаться"
 msgid "~!Quit to Menu"
 msgstr "~!Выйти в меню"
 
-#: menus/endscenario.lua:16 menus/help.lua:9 menus/help.lua:87
+#: menus/endscenario.lua:16 menus/help.lua:9 menus/help.lua:88
 #: menus/options.lua:705
 msgid "Previous (~<Esc~>)"
 msgstr "Предыдущее (~<Esc~>)"
@@ -1424,7 +1424,7 @@ msgstr "- выход из игры"
 msgid "- toggle expand map"
 msgstr ""
 
-#: menus/help.lua:30 menus/help.lua:51 menus/help.lua:52
+#: menus/help.lua:30 menus/help.lua:52 menus/help.lua:53
 msgid "- game menu"
 msgstr "- игровое меню"
 
@@ -1434,7 +1434,7 @@ msgstr "- написать сообщение"
 
 #: menus/help.lua:32
 msgid "- goto last event"
-msgstr ""
+msgstr "- перейти к последнему событию"
 
 #: menus/help.lua:33
 msgid "- hide/unhide terrain"
@@ -1446,7 +1446,7 @@ msgstr "- следить за юнитом"
 
 #: menus/help.lua:35
 msgid "- find idle peon"
-msgstr "- найти свободного батрака"
+msgstr "- найти свободного рабочего"
 
 #: menus/help.lua:36
 msgid "- center on selected unit"
@@ -1454,11 +1454,11 @@ msgstr "- центрировать на выделенном юните"
 
 #: menus/help.lua:37
 msgid "- next view port"
-msgstr ""
+msgstr "- следующая конфигурация окна просмотра"
 
 #: menus/help.lua:38
 msgid "- previous view port"
-msgstr ""
+msgstr "- предыдущая конфигурация окна просмотра"
 
 #: menus/help.lua:39
 msgid "- select nothing"
@@ -1497,123 +1497,141 @@ msgid "- game options"
 msgstr "- игровые опции"
 
 #: menus/help.lua:48
-msgid "- sound options"
-msgstr "- звуковые опции"
+msgid "- speed options"
+msgstr "- установка скорости"
 
 #: menus/help.lua:49
-msgid "- speed options"
-msgstr ""
+msgid "- sound options"
+msgstr "- звуковые опции"
 
 #: menus/help.lua:50
 msgid "- preferences"
 msgstr "- настройки"
 
-#: menus/help.lua:53
-msgid "- save game"
-msgstr ""
+#: menus/help.lua:51
+msgid "- diplomacy"
+msgstr "- дипломатия"
 
 #: menus/help.lua:54
-msgid "- load game"
-msgstr ""
+msgid "- save game"
+msgstr "- сохранить игру"
 
 #: menus/help.lua:55
-msgid "- next shader (only OpenGL)"
-msgstr ""
+msgid "- load game"
+msgstr "- загрузить игру"
 
 #: menus/help.lua:56
-msgid "- prev shader (only OpenGL)"
-msgstr ""
+msgid "- next shader (only OpenGL)"
+msgstr "- следующий шейдер (только OpenGL)"
 
-#: menus/help.lua:86
+#: menus/help.lua:57
+msgid "- prev shader (only OpenGL)"
+msgstr "- предыдущий шейдер (только OpenGL)"
+
+#: menus/help.lua:87
 msgid "Keystroke Help Menu"
 msgstr "Горячие Клавиши"
 
-#: menus/help.lua:94
+#: menus/help.lua:95
 msgid ""
 "You can select all of your currently visible units of the same type by "
 "holding down the CTRL key and selecting a unit or by \"double clicking\" on "
 "a unit."
 msgstr ""
+"Вы можете выбрать всех видимых в данный момент юнитов одного типа, удерживая "
+"клавишу CTRL и нажав левую кнопку мыши, или дважды щелкнув ЛКМ."
 
-#: menus/help.lua:95
+#: menus/help.lua:96
 msgid ""
 "The more workers you have collecting resources, the faster your economy will "
 "grow."
 msgstr ""
-
-#: menus/help.lua:96
-msgid "Building more than one barracks will let you train more units faster."
-msgstr ""
+"Чем больше работников у вас будет собирать ресурсы, тем быстрее ваша "
+"экономика будет расти."
 
 #: menus/help.lua:97
-msgid "Use your workers to repair damaged buildings."
+msgid "Building more than one barracks will let you train more units faster."
 msgstr ""
+"Строительство более чем одного барака позволит вам быстрее обучать юнитов."
 
 #: menus/help.lua:98
+msgid "Use your workers to repair damaged buildings."
+msgstr "Используйте своих рабочих для ремонта поврежденных зданий."
+
+#: menus/help.lua:99
 msgid "Explore your surroundings early in the game."
 msgstr ""
 
-#: menus/help.lua:100
-msgid "You can demolish trees and rocks."
-msgstr ""
-
 #: menus/help.lua:101
-msgid "Keep all workers working. Use ALT-I to find idle workers."
-msgstr ""
+msgid "You can demolish trees and rocks."
+msgstr "Вы можете сносить деревья и камни."
 
 #: menus/help.lua:102
+msgid "Keep all workers working. Use ALT-I to find idle workers."
+msgstr ""
+"Держите рабочих при работе. Используйте ALT-I для поиска свободных рабочих."
+
+#: menus/help.lua:103
 msgid ""
 "You can make units automatically cast spells by selecting a unit, holding "
 "down CTRL and clicking on the spell icon.  CTRL click again to turn off."
 msgstr ""
 
-#: menus/help.lua:105
+#: menus/help.lua:106
 msgid ""
 "You can give an unit an order which is executed after it finishes the "
 "current work, if you hold the SHIFT key."
 msgstr ""
+"Вы можете дать юниту задание, которое выполнится  после завершения текущего, "
+"если вы удерживаете клавишу SHIFT."
 
-#: menus/help.lua:106
+#: menus/help.lua:107
 msgid ""
 "You can give way points, if you press the SHIFT key, while you click right "
 "for the move command."
 msgstr ""
+"Вы можете указать точки перемещения, если вы зажмете клавишу SHIFT, когда "
+"щелкните правой кнопкой мыши для команды перемещения."
 
-#: menus/help.lua:107
+#: menus/help.lua:108
 msgid ""
 "You can order a worker to build one building after the other, if you hold "
 "the SHIFT key, while you place the building."
 msgstr ""
+"Вы можете приказать работнику построить одно здание за другим, если вы "
+"удерживаете клавишу SHIFT, когда вы размещаете здание."
 
-#: menus/help.lua:108
+#: menus/help.lua:109
 msgid ""
 "You can build many of the same building, if you hold the ALT and SHIFT keys "
 "while you place the buildings."
 msgstr ""
 
-#: menus/help.lua:110
+#: menus/help.lua:111
 msgid ""
 "Use CTRL-V or ALT-V to cycle through the viewport configuration, you can "
 "then monitor your base and lead an attack."
 msgstr ""
+"Используйте CTRL-V или ALT-V для настройки окна просмотра, затем вы можете "
+"вести атаку и наблюдать за базой одновременно."
 
-#: menus/help.lua:112
+#: menus/help.lua:113
 msgid "Know a useful tip?  Then add it here!"
-msgstr ""
+msgstr "Знаете полезный совет? Добавьте его сюда!"
 
-#: menus/help.lua:119
+#: menus/help.lua:120
 msgid "Tips"
 msgstr "Советы"
 
-#: menus/help.lua:151
+#: menus/help.lua:152
 msgid "Show tips at startup"
 msgstr "Показывать при запуске"
 
-#: menus/help.lua:158
+#: menus/help.lua:159
 msgid "~!Next Tip"
 msgstr "~!Еще"
 
-#: menus/help.lua:160
+#: menus/help.lua:161
 msgid "~!Close"
 msgstr "~!Закрыть"
 
@@ -1755,7 +1773,7 @@ msgstr "Удалить"
 
 #: menus/network.lua:493
 msgid "Open Games: "
-msgstr ""
+msgstr "Открытые Игры:"
 
 #: menus/network.lua:542 menus/network.lua:546
 msgid "Connecting via "
@@ -1819,11 +1837,11 @@ msgstr "~<Сетевая игра~>"
 
 #: menus/network.lua:959
 msgid "~!Join Local Game"
-msgstr ""
+msgstr "~!По локальной сети"
 
 #: menus/network.lua:969
 msgid "Join ~!Online Game"
-msgstr ""
+msgstr "~!Онлайн игра"
 
 #: menus/objectives.lua:4
 msgid "Objectives"
