@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wargus\n"
-"POT-Creation-Date: 2017-07-07 15:57+0300\n"
-"PO-Revision-Date: 2017-07-07 17:32+0300\n"
+"POT-Creation-Date: 2017-07-07 18:28+0300\n"
+"PO-Revision-Date: 2017-07-07 18:29+0300\n"
 "Last-Translator: cybermind <iddqd_mail@mail.ru>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -145,11 +145,11 @@ msgstr "Выбор миссии"
 #: menus/diplomacy.lua:118 menus/editor.lua:36 menus/editor.lua:81
 #: menus/editor.lua:109 menus/editor.lua:148 menus/editor.lua:298
 #: menus/editor.lua:344 menus/editor.lua:405 menus/load.lua:57
-#: menus/network.lua:314 menus/network.lua:434 menus/network.lua:555
-#: menus/network.lua:584 menus/network.lua:608 menus/network.lua:850
-#: menus/options.lua:179 menus/options.lua:374 menus/options.lua:464
-#: menus/options.lua:662 menus/replay.lua:25 menus/replay.lua:67
-#: menus/save.lua:77
+#: menus/metaserver.lua:91 menus/network.lua:314 menus/network.lua:434
+#: menus/network.lua:450 menus/network.lua:555 menus/network.lua:584
+#: menus/network.lua:608 menus/network.lua:850 menus/options.lua:179
+#: menus/options.lua:374 menus/options.lua:464 menus/options.lua:662
+#: menus/replay.lua:25 menus/replay.lua:67 menus/save.lua:77
 msgid "~!Cancel"
 msgstr "Отмена"
 
@@ -339,7 +339,7 @@ msgstr "Быстрый старт"
 msgid "~<Single Player Game Setup~>"
 msgstr "~<Установки пользовательской игры~>"
 
-#: guichan.lua:1096
+#: guichan.lua:1096 menus/network.lua:53
 msgid "Error:"
 msgstr "Ошибка:"
 
@@ -1308,7 +1308,7 @@ msgid "the scenario?"
 msgstr "миссию снова?"
 
 #: menus/endscenario.lua:30 menus/endscenario.lua:44 menus/endscenario.lua:58
-#: menus/endscenario.lua:72 menus/network.lua:925
+#: menus/endscenario.lua:72 menus/network.lua:386 menus/network.lua:925
 msgid "Cancel (~<Esc~>)"
 msgstr "Отмена (~<Esc~>)"
 
@@ -1643,6 +1643,35 @@ msgstr "Прочитать игру"
 msgid "~!Load"
 msgstr "~!Прочитать"
 
+#: menus/metaserver.lua:34
+msgid "~<Metaserver~>"
+msgstr ""
+
+#: menus/metaserver.lua:47
+msgid "~!Send"
+msgstr ""
+
+#: menus/metaserver.lua:64
+msgid "~!Clear"
+msgstr ""
+
+#: menus/metaserver.lua:66
+msgid "~!Main Menu"
+msgstr ""
+
+#: menus/metaserver.lua:85 menus/network.lua:444
+msgid "Enter meta server address:"
+msgstr ""
+
+#: menus/metaserver.lua:87 menus/metaserver.lua:97 menus/network.lua:340
+#: menus/network.lua:446 menus/network.lua:455
+msgid "Connecting..."
+msgstr "Подключение..."
+
+#: menus/metaserver.lua:113 menus/network.lua:470
+msgid "Unable to connect"
+msgstr ""
+
 #: menus/network.lua:85
 msgid "AIs:"
 msgstr ""
@@ -1727,10 +1756,6 @@ msgstr ""
 msgid "Connecting to server"
 msgstr "Подключение к серверу"
 
-#: menus/network.lua:340
-msgid "Connecting..."
-msgstr "Подключение..."
-
 #: menus/network.lua:360
 msgid "Map not available"
 msgstr "Карта недоступна"
@@ -1802,6 +1827,10 @@ msgstr "Добавить сервер"
 #: menus/network.lua:631 menus/network.lua:875
 msgid "Create MultiPlayer game"
 msgstr "Создать многопользовательскую игру"
+
+#: menus/network.lua:639
+msgid "Unknown map"
+msgstr ""
 
 #: menus/network.lua:655
 msgid "Race:"
