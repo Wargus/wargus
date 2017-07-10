@@ -31,7 +31,7 @@ function RunMetaServerMenu()
   local offy = (Video.Height - 480) / 2
   local nick
 
-  menu:addLabel("~<Metaserver~>", offx + 640/2 + 12, offy + 192)
+  menu:addLabel(_("~<Metaserver~>"), offx + 640/2 + 12, offy + 192)
   local msgs = ""
   local numplayers_text = MultiLineLabel(msgs)
   numplayers_text:setFont(Fonts["game"])
@@ -44,7 +44,7 @@ function RunMetaServerMenu()
   menu:add(numplayers_text, 9, 38)
   nick = menu:addTextInputField("", offx + 298, 260 + offy)
   
-  menu:addFullButton("~!Send", "s", 208 + offx, 320 + (36 * 1) + offy,
+  menu:addFullButton(_("~!Send"), "s", 208 + offx, 320 + (36 * 1) + offy,
     function()
 		MetaClient:Send(tostring(nick:getText()))
 		local reply
@@ -61,9 +61,9 @@ function RunMetaServerMenu()
 	
   end
 
-  menu:addFullButton("~!Clear", "m", 208 + offx, 320 + (36 * 2) + offy,
+  menu:addFullButton(_("~!Clear"), "m", 208 + offx, 320 + (36 * 2) + offy,
     function() msgs = ""; numplayers_text:setCaption(msgs)  end)
-  menu:addFullButton("~!Main Menu", "m", 208 + offx, 320 + (36 * 3) + offy,
+  menu:addFullButton(_("~!Main Menu"), "m", 208 + offx, 320 + (36 * 3) + offy,
     function()  menu:stopAll() end)
 --[[
   local listener = LuaActionListener(
@@ -82,19 +82,19 @@ function RunJoiningMetaServerMenuDirect()
   menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
   menu:setDrawMenusUnder(true)
 
-  menu:addLabel("Enter meta server address:", 144, 11)
+  menu:addLabel(_("Enter meta server address:"), 144, 11)
   local server = menu:addTextInputField(wc2.preferences.MetaServer..":"..tostring(wc2.preferences.MetaPort), 40, 38, 212)
-  local conn_label = menu:addLabel("Connecting...", 40, 60, Fonts["game"], false)
+  local conn_label = menu:addLabel(_("Connecting..."), 40, 60, Fonts["game"], false)
   conn_label:setVisible(false)
 
   local ok_button = menu:addHalfButton("~!OK", "o", 24, 80, function(s) end)
-  local cancel_button = menu:addHalfButton("~!Cancel", "c", 154, 80, function() menu:stop() end)
+  local cancel_button = menu:addHalfButton(_("~!Cancel"), "c", 154, 80, function() menu:stop() end)
   ok_button:setActionCallback(
   function(s)
 		print(tostring(string.len(server:getText())))
 		if string.len(server:getText()) > 0 then
 			conn_label:setVisible(true)
-			conn_label:setCaption("Connecting...")
+			conn_label:setCaption(_("Connecting..."))
 			conn_label:adjustSize()
 			local ip = string.find(server:getText(), ":")
 			if ip ~= nil then
@@ -110,7 +110,7 @@ function RunJoiningMetaServerMenuDirect()
 			cancel_button:setEnabled(false)
 			MetaClient:SetMetaServer(wc2.preferences.MetaServer, wc2.preferences.MetaPort)
 			if (MetaClient:Init() == -1) then
-				conn_label:setCaption("Unable to connect")
+				conn_label:setCaption(_("Unable to connect"))
 				conn_label:adjustSize()
 				ok_button:setEnabled(true)
 				cancel_button:setEnabled(true)

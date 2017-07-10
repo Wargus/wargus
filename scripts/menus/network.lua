@@ -50,7 +50,7 @@ function ErrorMenu(errmsg)
   menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
   menu:setDrawMenusUnder(true)
 
-  menu:addLabel("Error:", 144, 11)
+  menu:addLabel(_("Error:"), 144, 11)
 
   local l = MultiLineLabel(errmsg)
   l:setFont(Fonts["large"])
@@ -383,7 +383,7 @@ function RunJoiningGameMenu(optRace, optReady, optExtraLabel, optStopDirect)
   local listener = LuaActionListener(checkconnection)
   menu:addLogicCallback(listener)
 
-  menu:addHalfButton("Cancel (~<Esc~>)", "escape", 92, 80,
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 92, 80,
     function() menu:stop(1) end)
 
   return menu:run()
@@ -441,18 +441,18 @@ function RunJoiningMetaServerMenu()
    menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
    menu:setDrawMenusUnder(true)
 
-   menu:addLabel("Enter meta server address:", 144, 11)
+   menu:addLabel(_("Enter meta server address:"), 144, 11)
    local server = menu:addTextInputField(wc2.preferences.MetaServer..":"..tostring(wc2.preferences.MetaPort), 40, 38, 212)
-   local conn_label = menu:addLabel("Connecting...", 40, 60, Fonts["game"], false)
+   local conn_label = menu:addLabel(_("Connecting..."), 40, 60, Fonts["game"], false)
    conn_label:setVisible(false)
 
    local ok_button = menu:addHalfButton("~!OK", "o", 24, 80, function(s) end)
-   local cancel_button = menu:addHalfButton("~!Cancel", "c", 154, 80, function() menu:stop() end)
+   local cancel_button = menu:addHalfButton(_("~!Cancel"), "c", 154, 80, function() menu:stop() end)
    ok_button:setActionCallback(
       function(s)
 	 if string.len(server:getText()) > 0 then
 	    conn_label:setVisible(true)
-	    conn_label:setCaption("Connecting...")
+	    conn_label:setCaption(_("Connecting..."))
 	    conn_label:adjustSize()
 	    local ip = string.find(server:getText(), ":")
 	    if ip ~= nil then
@@ -467,7 +467,7 @@ function RunJoiningMetaServerMenu()
 	    cancel_button:setEnabled(false)
 	    MetaClient:SetMetaServer(wc2.preferences.MetaServer, wc2.preferences.MetaPort)
 	    if (MetaClient:Init() == -1) then
-	       conn_label:setCaption("Unable to connect")
+	       conn_label:setCaption(_("Unable to connect"))
 	       conn_label:adjustSize()
 	       ok_button:setEnabled(true)
 	       cancel_button:setEnabled(true)
@@ -636,7 +636,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   menu:writeText(_("Players:"), sx, sy*3+50)
   local players = menu:writeText(numplayers, sx+70, sy*3+50)
   menu:writeText(_("Description:"), sx, sy*3+70)
-  local descr = menu:writeText("Unknown map", sx+20, sy*3+90)
+  local descr = menu:writeText(_("Unknown map"), sx+20, sy*3+90)
 
   local function fowCb(dd)
     ServerSetupState.FogOfWar = bool2int(dd:isMarked())
