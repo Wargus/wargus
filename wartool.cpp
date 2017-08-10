@@ -1912,13 +1912,13 @@ int ConvertMusic(void)
 		if (stat(buf, &st))
 			continue;
 
-		cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
+		cmd = (char*) calloc(strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\"") + 1, 1);
 		if (!cmd) {
 			fprintf(stderr, "Memory error\n");
 			error("Memory error", "Could not allocate enough memory to read archive.");
 		}
 
-		sprintf(cmd, "ffmpeg2theora --optimize \"%s\" -o \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, MusicNames[i]);
+		sprintf(cmd, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, MusicNames[i]);
 
 		ret = system(cmd);
 
@@ -1926,7 +1926,7 @@ int ConvertMusic(void)
 		remove(buf);
 
 		if (ret != 0) {
-			printf("Can't convert wav sound %s to ogv format. Is ffmpeg2theora installed in PATH?\n", MusicNames[i]);
+			printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", MusicNames[i]);
 			fflush(stdout);
 		}
 
@@ -1940,13 +1940,13 @@ int ConvertMusic(void)
 			if (stat(buf, &st))
 				continue;
 
-			cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
+			cmd = (char*) calloc(strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\"") + 1, 1);
 			if (!cmd) {
 				fprintf(stderr, "Memory error\n");
 				error("Memory error", "Could not allocate enough memory to read archive.");
 			}
 
-			sprintf(cmd, "ffmpeg2theora --optimize \"%s\" -o \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, BNEMusicNames[i]);
+			sprintf(cmd, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, BNEMusicNames[i]);
 
 			ret = system(cmd);
 
@@ -1954,7 +1954,7 @@ int ConvertMusic(void)
 			remove(buf);
 
 			if (ret != 0) {
-				printf("Can't convert wav sound %s to ogv format. Is ffmpeg2theora installed in PATH?\n", BNEMusicNames[i]);
+				printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", BNEMusicNames[i]);
 				fflush(stdout);
 			}
 
@@ -2005,13 +2005,13 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 		fclose(f);
 	}
 
-	cmd = (char*) calloc(strlen("ffmpeg2theora --optimize \"") + strlen(buf) + strlen("\" -o \"") + strlen(buf) + strlen("\"") + 1, 1);
+	cmd = (char*) calloc(strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
-	sprintf(cmd, "ffmpeg2theora --optimize \"%s/%s.smk\" -o \"%s/%s.ogv\"", Dir, file, Dir, file);
+	sprintf(cmd, "ffmpeg -y -i \"%s/%s.smk\" \"%s/%s.ogv\"", Dir, file, Dir, file);
 
 	ret = system(cmd);
 
@@ -2021,7 +2021,7 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 	if (ret != 0) {
 		sprintf(outputfile, "%s/%s.ogv", Dir, file);
 		unlink(outputfile);
-		printf("Can't convert video %s to ogv format. Is ffmpeg2theora installed in PATH?\n", file);
+		printf("Can't convert video %s to ogv format. Is ffmpeg installed in PATH?\n", file);
 		fflush(stdout);
 		return ret;
 	}

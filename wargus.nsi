@@ -69,7 +69,7 @@
 !system "powershell -Command $\"& {cp **\${PUDCONVERT} ${PUDCONVERT}}$\""
 
 !define CDDA2WAV "cdda2wav.exe"
-!define FFMPEG2THEORA "ffmpeg2theora.exe"
+!define FFMPEG "ffmpeg.exe"
 !define SF2BANK "TimGM6mb.sf2"
 !define VCREDIST "vc_redist.x86.exe"
 !define VCREDISTREGKEY "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x86"
@@ -95,7 +95,7 @@ ${redefine} VCREDISTREGKEY "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\
 
 ; Download and extract nessesary 3rd party programs
 !ifndef NO_DOWNLOAD
-!system 'powershell -Command "& {wget http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.28.exe -OutFile ffmpeg2theora.exe}"'
+!system 'powershell -Command "& {wget http://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-3.3.3-win32-static.zip -OutFile ffmpeg.zip}"'
 !system 'powershell -Command "& {wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -OutFile cdrtools.zip}"'
 !system 'powershell -Command "& {unzip -o cdrtools.zip cdda2wav.exe}"'
 !system 'powershell -Command "& {wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -OutFile TimGM6mb.sf2}"'
@@ -227,7 +227,7 @@ Section "-${NAME}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
-	File "${FFMPEG2THEORA}"
+	File "${FFMPEG}"
 
 	; -- XXX TODO: include Stratagus and dependencies some better way
 	File "stratagus.exe"
@@ -331,7 +331,7 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${WARTOOL}"
 	Delete "$INSTDIR\${PUDCONVERT}"
 	Delete "$INSTDIR\${CDDA2WAV}"
-	Delete "$INSTDIR\${FFMPEG2THEORA}"
+	Delete "$INSTDIR\${FFMPEG}"
 	Delete "$INSTDIR\${UNINSTALL}"
 
 	IfFileExists "$INSTDIR\scripts\wc2-config.lua" 0 +2
@@ -437,7 +437,7 @@ ${redefine} UPX_FLAGS "${UPX_FLAGS} -q"
 ;--------------------------------
 
 !ifndef NO_DOWNLOAD
-!delfile "ffmpeg2theora.exe"
+!delfile "ffmpeg.zip"
 !delfile "cdda2wav.exe"
 !delfile "cdrtools.zip"
 !delfile "TimGM6mb.sf2"

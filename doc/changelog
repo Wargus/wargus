@@ -1,3 +1,5 @@
+2.4.3
+  - Switched from ffmpeg2theora to vanilla ffmpeg due to file import/conversion issues
 2.4.2
   - Add support for advertising and joining games on a metaserver
   - Allow selecting the number of AI players in multiplayer games
