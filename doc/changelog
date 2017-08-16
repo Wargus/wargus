@@ -3,7 +3,7 @@
   - Allow selecting the number of AI players in multiplayer games
   - Support new launcher-based extraction from Stratagus 2.4.2
   - Provide a separate launcher for Aleona's Tales
-  - Support Battle.NET edition on OS X
+  - Support Battle.NET edition on OS X, linux, windows 8.1
   - Bundle a selection of libretro shaders
   - Add a preference to store the active shader, if the user selected one
   - Add shader shortcut to help
