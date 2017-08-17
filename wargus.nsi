@@ -438,6 +438,7 @@ ${redefine} UPX_FLAGS "${UPX_FLAGS} -q"
 ;--------------------------------
 
 !ifndef NO_DOWNLOAD
+!delfile "ffmpeg.exe"
 !delfile "ffmpeg.zip"
 !delfile "cdda2wav.exe"
 !delfile "cdrtools.zip"
