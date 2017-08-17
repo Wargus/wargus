@@ -96,7 +96,7 @@ ${redefine} VCREDISTREGKEY "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\
 ; Download and extract nessesary 3rd party programs
 !ifndef NO_DOWNLOAD
 !system 'powershell -Command "& {wget http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-3.3.3-win32-static.zip -OutFile ffmpeg.zip}"'
-!system 'powershell -Command "& {unzip -o ffmpeg.zip bin\ffmpeg.exe}"'
+!system 'powershell -Command "& {unzip -o -j ffmpeg.zip "ffmpeg-3.3.3-win32-static/bin/ffmpeg.exe"}"'
 !system 'powershell -Command "& {wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -OutFile cdrtools.zip}"'
 !system 'powershell -Command "& {unzip -o cdrtools.zip cdda2wav.exe}"'
 !system 'powershell -Command "& {wget http://ocmnet.com/saxguru/TimGM6mb.sf2 -OutFile TimGM6mb.sf2}"'
