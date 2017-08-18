@@ -13,13 +13,12 @@ cdda2wav:
 
 
 
-ffmpeg2theora:
+ffmpeg:
 
-  A simple converter to create Ogg Theora files.
-  With ffmpeg2theora you can convert any file that ffmpeg can decode to theora.
+  ffmpeg is a converter for various multimedia file formats. It is used in this project to convert audio and video files to theora (ogg/ogv)
 
-  This software use official build for Windows from http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.28.exe
+  This software use official build for Windows from http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-3.3.3-win32-static.zip
 
-  License: GNU GPL v3
-  Homepage: http://v2v.cc/~j/ffmpeg2theora/
+  License: GNU LGPL 2.1 (https://www.ffmpeg.org/legal.html)
+  Homepage: https://www.ffmpeg.org
 
