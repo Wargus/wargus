@@ -2491,8 +2491,8 @@ int main(int argc, char** argv)
 	}
 
 	// Detect if CD is Mac/Dos, Expansion/Original/BNE, and language
-	sprintf(buf, "%s/SUPPORT/TOMES/TOME.1", ArchiveDir);
-	sprintf(filename, "%s/SUPPORT/TOMES/TOME.4", ArchiveDir);
+	sprintf(buf, "%s/support/tomes/tome.1", ArchiveDir);
+	sprintf(filename, "%s/support/tomes/tome.4", ArchiveDir);
 	if (!stat(buf, &st)) {
 		printf("Detected BNE CD\n");
 		fflush(stdout);
