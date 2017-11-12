@@ -642,8 +642,8 @@ static Control Todo[] = {
 // --------------------------------------------------
 {C,0,"human/cursors/human_gauntlet",                   2, 301 _2},
 {C,0,"orc/cursors/orcish_claw",                        2, 302 _2},
-{C,0,"human/cursors/human_don't_click_here",           2, 303 _2},
-{C,0,"orc/cursors/orcish_don't_click_here",            2, 304 _2},
+{C,0,"human/cursors/human_dont_click_here",           2, 303 _2},
+{C,0,"orc/cursors/orcish_dont_click_here",            2, 304 _2},
 {C,0,"human/cursors/yellow_eagle",                     2, 305 _2},
 {C,0,"orc/cursors/yellow_crosshairs",                  2, 306 _2},
 {C,0,"human/cursors/red_eagle",                        2, 307 _2},
