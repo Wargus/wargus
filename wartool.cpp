@@ -2011,7 +2011,7 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
-	sprintf(cmd, "ffmpeg -y -i \"%s/%s.smk\" \"%s/%s.ogv\"", Dir, file, Dir, file);
+	sprintf(cmd, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir, file, Dir, file);
 
 	ret = system(cmd);
 
