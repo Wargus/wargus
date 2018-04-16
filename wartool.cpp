@@ -2005,7 +2005,7 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 		fclose(f);
 	}
 
-	cmd = (char*) calloc(strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\"") + 1, 1);
+	cmd = (char*) calloc(strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"") + strlen(buf) + strlen("\"") + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		error("Memory error", "Could not allocate enough memory to read archive.");
