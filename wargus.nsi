@@ -99,7 +99,7 @@ ${redefine} VCREDISTREGKEY "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\
 !system 'powershell -Command "& {unzip -o -j ffmpeg.zip "ffmpeg-3.3.3-win32-static/bin/ffmpeg.exe"}"'
 !system 'powershell -Command "& {wget http://smithii.com/files/cdrtools-2.01-bootcd.ru-w32.zip -OutFile cdrtools.zip}"'
 !system 'powershell -Command "& {unzip -o cdrtools.zip cdda2wav.exe}"'
-!system 'powershell -Command "& {wget http://github.com/craffel/pretty-midi/blob/master/pretty_midi/TimGM6mb.sf2?raw=true -OutFile TimGM6mb.sf2}"'
+!system 'powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; & {wget http://github.com/craffel/pretty-midi/raw/master/pretty_midi/TimGM6mb.sf2 -OutFile TimGM6mb.sf2}"'
 !system "powershell -Command $\"& {wget https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/${VCREDIST} -OutFile ${VCREDIST}}$\""
 !endif
 
