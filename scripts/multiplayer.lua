@@ -23,7 +23,7 @@ local function usage()
   print("\t\t... will start a server that waits for one more player.")
   print("\twargus -c multiplayer -G client,race=orc,ip=192.168.1.100")
   print("\t\t... will start a client that connects to 192.168.1.100 and is immediately ready.\n\n\n")
-  print("\twargus -c multiplayer -G server,dedicated,map=islands.smp.gz,numplayers=3")
+  print("\twargus -c multiplayer -G server,dedicated,map=islands.smp.gz,numplayers=3,aiplayers=1")
   print("\t\t... will start a dedicated server with an AI player that waits for 3 human player clients.")
 end
 
@@ -45,6 +45,7 @@ else
   local units = string.match(ARGS,"units=([^,]+)") or "default"
   local mapfile = string.match(ARGS,"map=([^,]+)")
   local nickname = string.match(ARGS,"player=([^,]+)")
+  local aiPlayerNum = tonumber(string.match(ARGS,"aiplayers=([^,]+)"))
   local numplayers = tonumber(string.match(ARGS,"numplayers=([^,]+)"))
   local fow = tonumber(string.match(ARGS,"fow=([^,]+)"))
   local reveal = tonumber(string.match(ARGS,"reveal=([^,]+)"))
@@ -101,6 +102,7 @@ else
           online = isOnline,
           resources = resources,
           units = units,
+          aiPlayerNum = aiPlayerNum,
           fow = fow,
           revealmap = reveal})
     end
