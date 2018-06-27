@@ -745,13 +745,13 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   end
   local online = menu:addImageCheckBox("", sx + 200, sy*13+75, offi, offi2, oni, oni2, onlineCb)
 
+  GameSettings.Opponents = optAiPlayerNum
   local updatePlayers = addPlayersList(menu, numplayers, true)
 
   NetworkMapName = map
   NetworkInitServerConnect(numplayers)
   ServerSetupState.FogOfWar = 1
   ServerSetupState.Opponents = optAiPlayerNum
-  GameSettings.Opponents = optAiPlayerNum
   local function startFunc(s)
     SetFogOfWar(fow:isMarked())
     if revealmap:isMarked() == true then

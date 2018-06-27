@@ -50,6 +50,10 @@ else
   local fow = tonumber(string.match(ARGS,"fow=([^,]+)"))
   local reveal = tonumber(string.match(ARGS,"reveal=([^,]+)"))
 
+  if (aiPlayerNum == nil) then
+    aiPlayerNum = 0
+  end
+
   if (nickname) then SetLocalPlayerName(nickname) end
 
   if (isServer) then
@@ -68,14 +72,16 @@ else
         description = desc
         OldPresentMap(desc, nplayers, w, h, id)
       end
+      local playerIds = {}
       local oldDefinePlayerTypes = DefinePlayerTypes
       DefinePlayerTypes = function(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
         local ps = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16}
         playerCount = 0
 
-        for _, s in pairs(ps) do
+        for id, s in pairs(ps) do
           if s == "person" then
             playerCount = playerCount + 1
+            playerIds[id] = s
           end
         end
         oldDefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
@@ -91,6 +97,18 @@ else
       end
       if isDedicated then
         -- no confirmation on AI-only server, just exit
+        SinglePlayerTriggers = function()
+          AddTrigger(
+            function()
+              for id, _ in pairs(playerIds) do
+                if GetNumOpponents(id) > 0 and GetPlayerData(id, "TotalNumUnits") > 0 then
+                  return false
+                end
+              end
+              return true
+            end,
+            function() return ActionVictory() end)
+        end
         ActionVictory = OldActionVictory
         RunResultsMenu = function() end
         numplayers = numplayers + 1
