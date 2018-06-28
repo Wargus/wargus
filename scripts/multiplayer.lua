@@ -23,7 +23,7 @@ local function usage()
   print("\t\t... will start a server that waits for one more player.")
   print("\twargus -c multiplayer -G client,race=orc,ip=192.168.1.100")
   print("\t\t... will start a client that connects to 192.168.1.100 and is immediately ready.\n\n\n")
-  print("\twargus -c multiplayer -G server,dedicated,map=islands.smp.gz,numplayers=3")
+  print("\twargus -c multiplayer -G server,dedicated,map=islands.smp.gz,numplayers=3,aiplayers=1")
   print("\t\t... will start a dedicated server with an AI player that waits for 3 human player clients.")
 end
 
@@ -45,9 +45,14 @@ else
   local units = string.match(ARGS,"units=([^,]+)") or "default"
   local mapfile = string.match(ARGS,"map=([^,]+)")
   local nickname = string.match(ARGS,"player=([^,]+)")
+  local aiPlayerNum = tonumber(string.match(ARGS,"aiplayers=([^,]+)"))
   local numplayers = tonumber(string.match(ARGS,"numplayers=([^,]+)"))
   local fow = tonumber(string.match(ARGS,"fow=([^,]+)"))
   local reveal = tonumber(string.match(ARGS,"reveal=([^,]+)"))
+
+  if (aiPlayerNum == nil) then
+    aiPlayerNum = 0
+  end
 
   if (nickname) then SetLocalPlayerName(nickname) end
 
@@ -67,14 +72,16 @@ else
         description = desc
         OldPresentMap(desc, nplayers, w, h, id)
       end
+      local playerIds = {}
       local oldDefinePlayerTypes = DefinePlayerTypes
       DefinePlayerTypes = function(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
         local ps = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16}
         playerCount = 0
 
-        for _, s in pairs(ps) do
+        for id, s in pairs(ps) do
           if s == "person" then
             playerCount = playerCount + 1
+            playerIds[id] = s
           end
         end
         oldDefinePlayerTypes(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16)
@@ -90,6 +97,18 @@ else
       end
       if isDedicated then
         -- no confirmation on AI-only server, just exit
+        SinglePlayerTriggers = function()
+          AddTrigger(
+            function()
+              for id, _ in pairs(playerIds) do
+                if GetNumOpponents(id) > 0 and GetPlayerData(id, "TotalNumUnits") > 0 then
+                  return false
+                end
+              end
+              return true
+            end,
+            function() return ActionVictory() end)
+        end
         ActionVictory = OldActionVictory
         RunResultsMenu = function() end
         numplayers = numplayers + 1
@@ -101,6 +120,7 @@ else
           online = isOnline,
           resources = resources,
           units = units,
+          aiPlayerNum = aiPlayerNum,
           fow = fow,
           revealmap = reveal})
     end

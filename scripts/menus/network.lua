@@ -105,9 +105,9 @@ function addPlayersList(menu, numplayers, isserver)
       GameSettings.Opponents = ServerSetupState.Opponents
       NetworkServerResyncClients()
     end
-
     ainumber:setActionCallback(ainumberCb)
     ainumber:setSize(190, 20)
+    ainumber:setSelected(GameSettings.Opponents)
   else
     ainumber = menu:writeText(tostring(ServerSetupState.Opponents), sx + 100, sy*11+75)
     ainumberCb = function()
@@ -621,6 +621,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local optRace = options.race
   local optResources = options.resources
   local optUnits = options.units
+  local optAiPlayerNum = options.aiPlayerNum
   local optAutostartNum = options.autostartNum
   local optDedicated = options.dedicated
   local optOnline = options.online
@@ -744,13 +745,13 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   end
   local online = menu:addImageCheckBox("", sx + 200, sy*13+75, offi, offi2, oni, oni2, onlineCb)
 
+  GameSettings.Opponents = optAiPlayerNum
   local updatePlayers = addPlayersList(menu, numplayers, true)
 
   NetworkMapName = map
   NetworkInitServerConnect(numplayers)
   ServerSetupState.FogOfWar = 1
-  ServerSetupState.Opponents = 0
-  GameSettings.Opponents = 0
+  ServerSetupState.Opponents = optAiPlayerNum
   local function startFunc(s)
     SetFogOfWar(fow:isMarked())
     if revealmap:isMarked() == true then
