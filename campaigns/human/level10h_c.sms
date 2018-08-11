@@ -12,8 +12,13 @@ Briefing(
 
 Triggers = [[
 AddTrigger(
-  function() return IfRescuedNearUnit("this", ">=", 4, "unit-peasant", "unit-circle-of-power") end,
+  function() return IfRescuedNearUnit("this", ">=", 4, "unit-attack-peasant", "unit-circle-of-power") end,
   function() return ActionVictory() end)
+
+AddTrigger(
+  function() return GetPlayerData(4, "UnitTypesCount", "unit-attack-peasant") <= 3 and
+  GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-attack-peasant") <= 3 end,
+  function() return ActionDefeat() end)
 
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
