@@ -49,6 +49,7 @@ local orc_exp_07a_loop_funcs = {
 	function() return AiWaitForce(2) end,
 	function() return AiWaitForce(1) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(2) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	function() stratagus.gameData.AIState.loop_index[1 + AiPlayer()] = 0; return false end,
 }
@@ -105,6 +106,7 @@ local orc_exp_07b_funcs = {
 	function() return AiNeed(AiTower()) end,
 	function() return AiUpgradeTo(AiGuardTower()) end,
 	function() return AiUpgradeTo(AiGuardTower()) end,
+	function() return AiSleep(2000) end,
 	function() DebugMessage("Attacking..."); return AiAttackWithForce(1) end,
 	
 	function() return AiResearch(AiUpgradeWeapon1()) end,	
