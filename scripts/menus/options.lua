@@ -593,6 +593,10 @@ function BuildOptionsMenu()
 					  --TODO: Add function for immediately change state of OpenGL
 					  usesOpenGL = not usesOpenGL
 					  wc2.preferences.UseOpenGL = usesOpenGL
+					  -- not using OpenGL means we cannot scale the UI. So set the preferences to false if it was true and we disabled OpenGL just now
+					  wc2.preferences.ZoomNoResize = wc2.preferences.ZoomNoResize and usesOpenGL
+					  -- and update the checkbox to whatever the preference is now
+					  checkZoomNoResize:setMarked(wc2.preferences.ZoomNoResize)
 					  SavePreferences()
 					  --menu:stop(1) --TODO: Enable if we have an OpenGL function
    end)
