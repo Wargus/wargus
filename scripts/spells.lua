@@ -460,6 +460,9 @@ DefineSpell("spell-runes",
 		 "start-point", {"base", "target", "add-x", 0, "add-y", -32},
 		 "end-point",   {"base", "target", "add-x", 0, "add-y", -32}},
 	},
+	"condition", {
+		"Building", "false",
+	},
 	"sound-when-cast", "touch of darkness",
 	"depend-upgrade", "upgrade-runes"
 --	"autocast", {range 10)
@@ -486,6 +489,9 @@ DefineSpell("spell-runes-double-head",
 		{"spawn-missile", "ttl", 2000, "damage", 50, "missile", "missile-rune",
 		 "start-point", {"base", "target", "add-x", 0, "add-y", -32},
 		 "end-point",   {"base", "target", "add-x", 0, "add-y", -32}},
+	},
+	"condition", {
+		"Building", "false",
 	},
 	"sound-when-cast", "touch of darkness"
 --	"autocast", {range 10)
