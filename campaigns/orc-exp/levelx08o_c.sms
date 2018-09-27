@@ -75,7 +75,6 @@ local orc_exp_09_funcs = {
 	function() return AiResearch(AiUpgradeCatapult1()) end,
 	function() return AiResearch(AiUpgradeEliteShooter1()) end,
 	function() return AiResearch(AiUpgradeCatapult2()) end,
-	function() return AiResearch(AiUpgradeCatapult3()) end,
 	function() return AiSleep(6000) end,
 	
 	function() return AiForce(3, {AiSoldier(), 3, AiShooter(), 4, AiCavalry(), 5}) end,
