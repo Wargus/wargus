@@ -812,8 +812,11 @@ DefineGameSounds(
   "building-construction", {"human", building_construction},
   "building-construction", {"orc", building_construction},
 
-  "work-complete", {"human", MakeSound("basic human voices work complete", "human/units/peasant/work_complete.wav")},
+  "work-complete", {"human", MakeSound("peasant voice work complete", "human/units/peasant/work_complete.wav")},
   "work-complete", {"orc", MakeSound("basic orc voices work complete", "orc/basic_voices/work_complete.wav")},
+
+  "research-complete", {"human", MakeSound("basic human voices research complete", "human/basic_voices/work_complete.wav")},
+  "research-complete", {"orc", MakeSound("basic orc voices research complete", "orc/basic_voices/work_complete.wav")},
 
   "rescue", {"human", MakeSound("human rescue", "human/capture.wav")},
   "rescue", {"orc", MakeSound("orc rescue", "orc/capture.wav")} )

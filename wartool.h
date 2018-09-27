@@ -1621,6 +1621,7 @@ static Control Todo[] = {
 {Q,8,"sounds/human/basic_voices/selected/5.wav",                   1, 1, 0, 0, "INSTALL.EXE", "Gamesfx\\human\\hwhat5.wav"},
 {Q,8,"sounds/human/basic_voices/selected/6.wav",                   1, 1, 0, 0, "INSTALL.EXE", "Gamesfx\\human\\hwhat6.wav"},
 {Q,8,"sounds/human/basic_voices/work_complete.wav",                1, 1, 0, 0, "INSTALL.EXE", "Gamesfx\\human\\hwrkdone.wav"},
+{Q,8,"sounds/human/units/peasant/work_complete.wav",                1, 1, 0, 0, "INSTALL.EXE", "Gamesfx\\human\\hwrkdone.wav"},
 {Q,8,"sounds/human/basic_voices/acknowledgement/1.wav",            1, 1, 0, 0, "INSTALL.EXE", "Gamesfx\\human\\hyessir1.wav"},
 {Q,8,"sounds/human/basic_voices/acknowledgement/2.wav",            1, 1, 0, 0, "INSTALL.EXE", "Gamesfx\\human\\hyessir2.wav"},
 {Q,8,"sounds/human/basic_voices/acknowledgement/3.wav",            1, 1, 0, 0, "INSTALL.EXE", "Gamesfx\\human\\hyessir3.wav"},
