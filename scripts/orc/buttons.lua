@@ -186,7 +186,7 @@ DefineButton( { Pos = 9, Level = 0, Icon = "icon-runes",
 DefineButton( { Pos = 7, Level = 0, Icon = "icon-eye-of-kilrogg",
   Action = "cast-spell", Value = "spell-eye-of-vision-double-head",
   Allowed = "check-true", Popup = "popup-orc-upgrade",
-  Key = "k", Hint = _("EYE OF ~!KILROGG"),
+  Key = "e", Hint = _("~!EYE OF KILROGG"),
   ForUnit = {"unit-double-head"} } )
 
 DefineButton( { Pos = 8, Level = 0, Icon = "icon-bloodlust",
