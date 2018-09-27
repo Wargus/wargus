@@ -30,6 +30,15 @@
 #ifndef __WENDIAN_H__
 #define __WENDIAN_H__
 
+#ifdef __aarch64__
+#ifdef __AARCH64EB__
+# define __BYTE_ORDER __BIG_ENDIAN
+#define __BIG_ENDIAN__ 4321
+#else
+# define __BYTE_ORDER __LITTLE_ENDIAN
+#define __LITTLE_ENDIAN__ 1234
+#endif
+#endif
 
 // From SDL_byteorder.h
 #if  defined(__i386__) || defined(__ia64__) || defined(WIN32) || \
