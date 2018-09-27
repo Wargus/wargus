@@ -12,8 +12,14 @@ Briefing(
 
 Triggers = [[
 AddTrigger(
-  function() return IfRescuedNearUnit("this", ">=", 4, "unit-peasant", "unit-circle-of-power") end,
-  function() return ActionVictory() end)
+  function() return IfRescuedNearUnit("this", ">=", 4, "unit-attack-peasant", "unit-circle-of-power") end,
+  function() return ActionVictory() end
+
+-- If we one of the attack peasants we should rescue dies, we're done
+AddTrigger(
+  function() return (GetPlayerData(4, "UnitTypesCount", "unit-attack-peasant") +
+  GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-attack-peasant")) <= 3 end,
+  function() return ActionDefeat() end)
 
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
@@ -161,3 +167,10 @@ DefineAi("hum-10", "*", "hum-10", AiHuman10)
 -- Map
 
 Load("campaigns/human/level10h.sms")
+
+-- Make the player 4 units attack peasants
+for i,unit in ipairs(GetUnits(4)) do
+   if GetUnitVariable(unit, "Ident") == "unit-peasant" then
+       TransformUnit(unit, "unit-attack-peasant")
+   end
+end
