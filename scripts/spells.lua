@@ -77,7 +77,7 @@ CUpgrade:New("upgrade-runes-double-head")
 -- better display
 DefineSpell("spell-suicide-bomber", {
 	ShowName = "Demolish", ManaCost = 0, Target = "self",
-	Action = {{"demolish", "range", 1, "damage", 400},
+	Action = {{"demolish", "range", 3, "damage", 400},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"end-point",   {"base", "caster"}}},
 	"sound-when-cast", "explosion"
@@ -86,7 +86,7 @@ DefineSpell("spell-suicide-bomber", {
 
 DefineSpell("spell-suicide-bomber",
 	"showname", _("Demolish"), "manacost", 0, "target", "self", "range", 1,
-	"action", {{"demolish", "range", 2, "damage", 400},
+	"action", {{"demolish", "range", 3, "damage", 400},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"end-point",   {"base", "caster"}}},
 	"sound-when-cast", "explosion",
