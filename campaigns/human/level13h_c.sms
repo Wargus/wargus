@@ -184,3 +184,10 @@ DefineAi("hum-13", "*", "hum-13", AiHuman13)
 -- Map
 
 Load("campaigns/human/level13h.sms")
+
+-- Make sure Lothar dies by reducing his hitpoints
+for i,unit in ipairs(GetUnits(3)) do
+   if GetUnitVariable(unit, "Ident") == "unit-wise-man" then
+       SetUnitVariable(unit, "HitPoints", 25)
+   end
+end
