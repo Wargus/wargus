@@ -414,7 +414,7 @@ unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
 	}
 
 	if (flags == 0x20) {
-		unsigned char buf[4096];
+		unsigned char buf[8192] = {'\0'};
 		unsigned char* ep;
 		int bi;
 
@@ -582,7 +582,7 @@ unsigned char* ConvertPalette(unsigned char* pal)
 int ConvertRgb(const char* file, int rgbe)
 {
 	unsigned char* rgbp;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 	FILE* f;
 	int i;
 	size_t l;
@@ -715,8 +715,8 @@ static void SaveCCL(char* name, unsigned char* map __attribute__((unused)),
 	int i;
 	char* cp;
 	FILE* f;
-	char file[1024];
-	char tileset[1024];
+	char file[8192] = {'\0'};
+	char tileset[8192] = {'\0'};
 
 	f = stdout;
 	// FIXME: open file!
@@ -838,7 +838,7 @@ int ConvertTileset(const char* file, int pale, int mege, int mine, int mape)
 	int w;
 	int h;
 	size_t megl;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	megp = ExtractEntry(ArchiveOffsets[mege], &megl);
@@ -1168,7 +1168,7 @@ int ConvertGfu(const char* file,int pale,int gfue)
 	unsigned char* image;
 	int w;
 	int h;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	gfup = ExtractEntry(ArchiveOffsets[gfue], NULL);
@@ -1198,7 +1198,7 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 	unsigned char* image;
 	int w;
 	int h;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 	int i;
 	const GroupedGraphic *gg;
 
@@ -1246,7 +1246,7 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 void ConvertPud(const char* file, int pude, bool justconvert = false)
 {
 	unsigned char* pudp = NULL;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 	size_t l;
 
 	if (justconvert == false) {
@@ -1259,7 +1259,7 @@ void ConvertPud(const char* file, int pude, bool justconvert = false)
 
 		PudToStratagus(pudp, l, strrchr(file, '/') + 1, buf);
 	} else {
-		char pudfile[1024];
+		char pudfile[8192] = {'\0'};
 		struct stat sb;
 		size_t filesize = 0;
 		FILE *f = NULL;
@@ -1297,18 +1297,18 @@ void ConvertPud(const char* file, int pude, bool justconvert = false)
 */
 void ConvertFilePuds(const char **pudlist)
 {
-	char pudname[1024];
-	char base[1024];
-	char outdir[1024];
+	char pudname[8192] = {'\0'};
+	char base[8192] = {'\0'};
+	char outdir[8192] = {'\0'};
 	unsigned char *puddata;
 	struct stat sb;
 	FILE *f;
 	int i;
 
 	for (i = 0; pudlist[i][0] != '\0'; ++i) {
-		char origname[1024];
+		char origname[8192] = {'\0'};
 		if (CDType & CD_UPPER) {
-			char filename[1024];
+			char filename[8192] = {'\0'};
 			int j = 0;
 			strcpy(filename, pudlist[i]);
 			strcpy(origname, pudlist[i]);
@@ -1518,7 +1518,7 @@ int ConvertFont(const char* file, int pale, int fnte)
 	unsigned char* image;
 	int w;
 	int h;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	fntp = ExtractEntry(ArchiveOffsets[fnte], NULL);
@@ -1622,7 +1622,7 @@ int ConvertImage(const char* file, int pale, int imge, int nw, int nh)
 	unsigned char* image;
 	int w;
 	int h;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 
 	// Workaround for MAC expansion CD
 	if (CDType & CD_MAC) {
@@ -1718,7 +1718,7 @@ int ConvertCursor(const char* file, int pale, int cure)
 	unsigned char* image;
 	int w;
 	int h;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 
 	if (pale == 27 && cure == 314 && Pal27 ) { // Credits arrow (Blue arrow NW)
 		palp = Pal27;
@@ -1754,7 +1754,7 @@ int ConvertCursor(const char* file, int pale, int cure)
 int ConvertWav(const char* file, int wave)
 {
 	unsigned char* wavp;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 	gzFile gf;
 	size_t l;
 
@@ -1791,7 +1791,7 @@ int ConvertXmi(const char* file, int xmi)
 {
 	unsigned char* xmip;
 	unsigned char* midp;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 	FILE *f;
 	size_t xmil;
 	size_t midl;
@@ -1833,18 +1833,20 @@ int CopyFile(char *from, char *to, int overwrite)
 {
 	struct stat st;
 	char *cmd;
+	int cmdlen;
 	int ret;
 
 	if (!overwrite && !stat(to, &st))
 		return 0;
 
-	cmd = (char *)calloc(strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\"") + 1, 1);
+	cmdlen = strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\"");
+	cmd = (char *)calloc(cmdlen + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
-	sprintf(cmd, "cp \"%s\" \"%s\"", from, to);
+	snprintf(cmd, cmdlen, "cp \"%s\" \"%s\"", from, to);
 	ret = system(cmd);
 	free(cmd);
 
@@ -1862,8 +1864,8 @@ int CopyFile(char *from, char *to, int overwrite)
 int CopyMusic(void)
 {
 	struct stat st;
-	char buf1[1024];
-	char buf2[1024];
+	char buf1[8192] = {'\0'};
+	char buf2[8192] = {'\0'};
 	char ext[4];
 	int i;
 	int count = 0;
@@ -1900,25 +1902,27 @@ int CopyMusic(void)
 int ConvertMusic(void)
 {
 	struct stat st;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 	char *cmd;
+	int cmdlen;
 	int ret, i;
 	int count = 0;
 
 	for ( i = 0; MusicNames[i]; ++i ) {
-		sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, MusicNames[i]);
+		snprintf(buf, 4095, "%s/%s/%s.wav", Dir, MUSIC_PATH, MusicNames[i]);
 		CheckPath(buf);
 
 		if (stat(buf, &st))
 			continue;
 
-		cmd = (char*) calloc(strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\"") + 1, 1);
+		cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\"");
+		cmd = (char*) calloc(cmdlen + 1, 1);
 		if (!cmd) {
 			fprintf(stderr, "Memory error\n");
 			error("Memory error", "Could not allocate enough memory to read archive.");
 		}
 
-		sprintf(cmd, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, MusicNames[i]);
+		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, MusicNames[i]);
 
 		ret = system(cmd);
 
@@ -1940,13 +1944,14 @@ int ConvertMusic(void)
 			if (stat(buf, &st))
 				continue;
 
-			cmd = (char*) calloc(strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\"") + 1, 1);
+			cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\"");
+			cmd = (char*) calloc(cmdlen + 1, 1);
 			if (!cmd) {
 				fprintf(stderr, "Memory error\n");
 				error("Memory error", "Could not allocate enough memory to read archive.");
 			}
 
-			sprintf(cmd, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, BNEMusicNames[i]);
+			snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, BNEMusicNames[i]);
 
 			ret = system(cmd);
 
@@ -1978,14 +1983,15 @@ int ConvertMusic(void)
 int ConvertVideo(const char* file, int video, bool justconvert = false)
 {
 	unsigned char* vidp;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 	char* cmd;
 	FILE* f;
 	size_t l;
 	int ret;
-	char outputfile[1024];
+	int cmdlen;
+	char outputfile[8192] = {'\0'};
 
-	sprintf(buf,"%s/%s.smk", Dir, file);
+	snprintf(buf,4095,"%s/%s.smk", Dir, file);
 	CheckPath(buf);
 	if (justconvert == false) {
 		vidp = ExtractEntry(ArchiveOffsets[video], &l);
@@ -2005,13 +2011,14 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 		fclose(f);
 	}
 
-	cmd = (char*) calloc(strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"") + strlen(buf) + strlen("\"") + 1, 1);
+	cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"") + strlen(buf) + strlen("\"");
+	cmd = (char*) calloc(cmdlen + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
-	sprintf(cmd, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir, file, Dir, file);
+	snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir, file, Dir, file);
 
 	ret = system(cmd);
 
@@ -2079,7 +2086,7 @@ unsigned char *ConvertString(unsigned char *buf, size_t len)
 int ConvertText(const char* file, int txte, int ofs)
 {
 	unsigned char* txtp;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 	gzFile gf;
 	size_t l;
 	size_t l2;
@@ -2157,7 +2164,7 @@ int SetupNames(const char* file __attribute__((unused)), int txte __attribute__(
 */
 char* ParseString(const char* input)
 {
-	static char buf[1024];
+	static char buf[8192] = {'\0'};
 	const char* sp;
 	char* strsp;
 	char* dp;
@@ -2211,7 +2218,7 @@ char* ParseString(const char* input)
 int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 {
 	unsigned char* objectives;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 	unsigned char* CampaignData[2][26][10];
 	unsigned char* current;
 	unsigned char* next;
@@ -2420,13 +2427,13 @@ destination-directory\tDirectory where the extracted files are placed.\n"
 int main(int argc, char** argv)
 {
 	unsigned u;
-	char buf[1024];
+	char buf[8192] = {'\0'};
 	struct stat st;
 	int expansion_cd = 0;
 	int video = 0;
 	int rip = 0;
 	int a = 1;
-	char filename[1024];
+	char filename[8192] = {'\0'};
 	FILE* f;
 
 	while (argc >= 2) {
@@ -2668,8 +2675,8 @@ int main(int argc, char** argv)
 					error("Archive version error", "This version of the CD is not supported");
 				}
 #ifdef USE_STORMLIB
-				char mpqfile[256];
-				char extract[256];
+				char mpqfile[8192] = {'\0'};
+				char extract[8192] = {'\0'};
 				if (Todo[u].Arg1 == 1) { // local archive
 					sprintf(mpqfile, "%s/%s", Dir, Todo[u].MPQFile);
 					printf("%s from MPQ file \"%s\"\n", Todo[u].ArcFile, mpqfile);
