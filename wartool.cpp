@@ -1839,7 +1839,7 @@ int CopyFile(char *from, char *to, int overwrite)
 	if (!overwrite && !stat(to, &st))
 		return 0;
 
-	cmdlen = strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\"");
+	cmdlen = strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\" ");
 	cmd = (char *)calloc(cmdlen + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
@@ -1915,7 +1915,7 @@ int ConvertMusic(void)
 		if (stat(buf, &st))
 			continue;
 
-		cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\"");
+		cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\" ");
 		cmd = (char*) calloc(cmdlen + 1, 1);
 		if (!cmd) {
 			fprintf(stderr, "Memory error\n");
@@ -1944,7 +1944,7 @@ int ConvertMusic(void)
 			if (stat(buf, &st))
 				continue;
 
-			cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\"");
+			cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\" ");
 			cmd = (char*) calloc(cmdlen + 1, 1);
 			if (!cmd) {
 				fprintf(stderr, "Memory error\n");
@@ -2011,7 +2011,7 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 		fclose(f);
 	}
 
-	cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"") + strlen(buf) + strlen("\"");
+	cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"") + strlen(buf) + strlen("\" ");
 	cmd = (char*) calloc(cmdlen + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
@@ -2019,7 +2019,7 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 	}
 
 	snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir, file, Dir, file);
-
+	printf("%s\n", cmd);
 	ret = system(cmd);
 
 	free(cmd);
