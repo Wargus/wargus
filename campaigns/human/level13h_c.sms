@@ -189,5 +189,7 @@ Load("campaigns/human/level13h.sms")
 for i,unit in ipairs(GetUnits(3)) do
    if GetUnitVariable(unit, "Ident") == "unit-wise-man" then
        SetUnitVariable(unit, "HitPoints", 25)
+   else
+       SetUnitVariable(unit, "HitPoints", 60)
    end
 end
