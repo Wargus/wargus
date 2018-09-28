@@ -280,3 +280,14 @@ install(DIRECTORY shaders contrib campaigns graphics maps music scripts sounds D
 install(FILES contrib/red_cross.png DESTINATION ${SHAREDIR}/graphics/missiles)
 install(FILES contrib/cross.png DESTINATION ${SHAREDIR}/graphics/ui/cursors)
 install(FILES contrib/food.png contrib/health.png contrib/health2.png contrib/mana.png contrib/mana2.png contrib/ore,stone,coal.png contrib/score.png DESTINATION ${SHAREDIR}/graphics/ui)
+
+# uninstall target
+if(NOT TARGET uninstall)
+    configure_file(
+        "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+        IMMEDIATE @ONLY)
+
+    add_custom_target(uninstall
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+endif()
