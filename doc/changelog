@@ -1,6 +1,17 @@
-2.4.3
-  - Switched from ffmpeg2theora to vanilla ffmpeg due to file import/conversion issues
 2.4.2
+  - fix for extraction on ARM64
+  - When OpenGL is unchecked, also uncheck UI scaling as it implies OpenGL
+  - Demolition range of goblin/gnome sappers increased by one
+  - The ogre mage's runes spell can no longer be placed directly on buildings as attack
+  - The shortcut for the Eye of Killrog is now "E"
+  - ToD human level 13 now decreases the health of Lothar's troops making their rescue impossible without cheating
+  - Enable sounds for research completed
+  - Change sound for human completed buildings to the peasant's "job's done"
+  - Copy the MIDI soundfont to the local Wargus directory to make midi music work
+  - ToD human level 10 now correctly makes the prisoners into Minutemen rather than Peasants
+	- Fixed ToD orc level 8 crash when AI tried to research a non-existing 3rd catapult upgrade
+	- Fix a buffer overflow that could occur
+	- Switched from ffmpeg2theora to vanilla ffmpeg due to file import/conversion issues
   - Add support for advertising and joining games on a metaserver
   - Allow selecting the number of AI players in multiplayer games
   - Support new launcher-based extraction from Stratagus 2.4.2
