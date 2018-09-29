@@ -2675,8 +2675,10 @@ int main(int argc, char** argv)
 					error("Archive version error", "This version of the CD is not supported");
 				}
 #ifdef USE_STORMLIB
-				char mpqfile[8192] = {'\0'};
-				char extract[8192] = {'\0'};
+				char mpqfile[8192];
+				char extract[8192];
+				memset(mpqfile, 0, 8192);
+				memset(extract, 0, 8192);
 				if (Todo[u].Arg1 == 1) { // local archive
 					sprintf(mpqfile, "%s/%s", Dir, Todo[u].MPQFile);
 					printf("%s from MPQ file \"%s\"\n", Todo[u].ArcFile, mpqfile);
