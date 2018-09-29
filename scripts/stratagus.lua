@@ -44,7 +44,7 @@ else
 	wargus.Name = _("Wargus")
 end
 wargus.Homepage = "https://wargus.github.io"
-wargus.Copyright = _("(c) 1998-2017 by The Stratagus Project.")
+wargus.Copyright = _("(c) 1998-2018 by The Stratagus Project.")
 
 wargus.Version = "2.4.2"
 wargus.Licence = "GPL v2+"

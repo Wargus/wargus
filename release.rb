@@ -6,7 +6,7 @@ STRINGS = {
   version: "2.4.2",
   homepage: "https://wargus.github.io",
   license: "GPL v2+",
-  copyright: "(c) 1998-2017 by The Stratagus Project"
+  copyright: "(c) 1998-2018 by The Stratagus Project"
 }
 
 FILES = %w[wargus.rc wargus.nsi wartool.h mac/Info.plist scripts/stratagus.lua debian/copyright]

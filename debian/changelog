@@ -1,5 +1,18 @@
 wargus (2.4.2-1) xenial; urgency=medium
 
+  * Fix for extraction on Arm64
+  * When OpenGL is unchecked, also uncheck UI scaling as it implies OpenGL
+  * Demolition range of goblin/gnome sappers increased by one
+  * The ogre mage's runes spell can no longer be placed directly on buildings as attack
+  * The shortcut for the Eye of Killrog is now "E"
+  * ToD human level 13 now decreases the health of Lothar's troops making their rescue impossible without cheating
+  * Enable sounds for research completed
+  * Change sound for human completed buildings to the peasant's "job's done"
+  * Copy the MIDI soundfont to the local Wargus directory to make midi music work
+  * ToD human level 10 now correctly makes the prisoners into Minutemen rather than Peasants
+  * Fixed ToD orc level 8 crash when the AI tried to research a non-existing 3rd catapult upgrade
+  * Fix a buffer overflow that could occur in ConvertVideo and ConvertMusic
+  * Switched from ffmpeg2theora to vanilla ffmpeg due to file import/conversion issues
   * Add support for advertising and joining games on a metaserver
   * Allow selecting the number of AI players in multiplayer games
   * Support new launcher-based extraction from Stratagus 2.4.2
@@ -9,7 +22,7 @@ wargus (2.4.2-1) xenial; urgency=medium
   * Add a preference to store the active shader, if the user selected one
   * Add shader shortcut to help
 
- -- Tim Felgentreff <timfelgentreff@gmail.com>  Sun, 11 Jun 2017 12:33:12 +0200
+ --  Tim Felgentreff <timfelgentreff@gmail.com>  Sat, 29 Sep 2018 19:08:00 +0000
 
 wargus (2.4.1-1) unstable; urgency=low
 
