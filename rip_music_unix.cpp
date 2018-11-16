@@ -153,11 +153,11 @@ static char * find_dev(const char * mnt_dir) {
 	char * dev = NULL;
 	FILE * file;
 
-	file = setmntent("/etc/mtab", "r");
+	file = setmntent("/proc/self/mounts", "r");
 
 	if ( ! file ) {
 
-		fprintf(stderr, "Error: Cannot open file /etc/mtab: %s\n", strerror(errno));
+		fprintf(stderr, "Error: Cannot open file /proc/self/mounts: %s\n", strerror(errno));
 		return NULL;
 
 	}
