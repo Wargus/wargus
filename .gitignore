@@ -1,2 +1,3 @@
 #Ignore Visual Studio project files
 build/
+.vscode
