@@ -30,6 +30,26 @@
 -- For documentation see stratagus/doc/scripts/scripts.html
 DebugPrint("Stratagus default config file loading ...\n")
 
+if (_VERSION == "Lua 5.2" or _VERSION == "Lua 5.3") then
+
+  function table:getn()
+    return #self
+  end
+
+  function table:foreach(f)
+    for key,value in pairs(self) do
+      f(key, value)
+    end
+  end
+
+  function table:foreachi(f)
+    for k, v in ipairs (self) do
+      f(k, v)
+    end 
+  end
+
+end
+
 -------------------------------------------------------------------------------
 --  Version
 -------------------------------------------------------------------------------
