@@ -2683,8 +2683,58 @@ int main(int argc, char** argv)
 					sprintf(mpqfile, "%s/%s", Dir, Todo[u].MPQFile);
 					printf("%s from MPQ file \"%s\"\n", Todo[u].ArcFile, mpqfile);
 				} else {
-					sprintf(mpqfile, "%s/%s", ArchiveDir, Todo[u].MPQFile);
-					printf("MPQ file \"%s\"\n", mpqfile);
+					char* filename = strdup(Todo[u].MPQFile);
+					// initially all lowercase
+					for (int i = 0; i < strlen(filename); i++) {
+						filename[i] = tolower(filename[i]);
+					}
+					// let's see....
+					sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+					if (stat(mpqfile, &st)) {
+						// try with initial uppercase
+						filename[0] = toupper(filename[0]);
+						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+					}
+					if (stat(mpqfile, &st)) {
+						// try all uppercase
+						for (int i = 0; i < strlen(filename); i++) {
+							filename[i] = toupper(filename[i]);
+						}
+						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+					}
+					if (stat(mpqfile, &st)) {
+						// try with alternative extension (mpq/exe)
+						free(filename);
+						filename = strdup(Todo[u].MPQFile);
+						// initially all lowercase
+						for (int i = 0; i < strlen(filename); i++) {
+							filename[i] = tolower(filename[i]);
+						}
+						// swap extension
+						if (strstr(filename, ".exe")) {
+							strncpy(strstr(filename, ".exe"), ".mpq", 4);
+						} else if (strstr(filename, ".mpq")) {
+							strncpy(strstr(filename, ".mpq"), ".exe", 4);
+						}
+						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+					}
+					if (stat(mpqfile, &st)) {
+						// try with initial uppercase
+						filename[0] = toupper(filename[0]);
+						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+					}
+					if (stat(mpqfile, &st)) {
+						// try all uppercase
+						for (int i = 0; i < strlen(filename); i++) {
+							filename[i] = toupper(filename[i]);
+						}
+						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+					}
+					if (stat(mpqfile, &st)) {
+						sprintf(mpqfile, "%s/%s not found!", ArchiveDir, Todo[u].MPQFile);
+						error(mpqfile, "I also tried different cases and tried both .mpq and .exe extensions\n");
+					}
+					printf("%s from MPQ file \"%s\"\n", Todo[u].File, mpqfile);
 				}
 				sprintf(extract, "%s/%s", Dir, Todo[u].File);
 				if (Todo[u].Arg2 == 1) { // compress
