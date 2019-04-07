@@ -119,7 +119,7 @@ DefineBoolFlags("Center", "WoodImprove", "OilImprove")
 
 --  Enter your default title screen.
 SetTitleScreens(
-  {Image = "ui/title.png", Timeout = 1},
+  {Image = "ui/black_title.png", Timeout = 1},
   {Image = "videos/logo.ogv"},
   {Image = "videos/gameintro.ogv"},
   {Image = "ui/title.png", Music = "music/Orc Briefing" .. wargus.music_extension, Timeout = 20}
