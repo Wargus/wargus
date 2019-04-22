@@ -287,7 +287,7 @@ $(COBJS): %.o: %.c
 $(LIB): $(OBJS) $(COBJS)
 
 all: $(LIB)
-	ranlib -c $(SLIB)
+	ranlib $(SLIB)
 
 install: $(LIB)
 	install $(LIB) /usr/local/lib
