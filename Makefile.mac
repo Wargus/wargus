@@ -18,6 +18,7 @@ AR     = ar
 ARFLAGS= rcs
 
 LIBRARY  = libStorm.dylib
+SLIB = libStorm.a
 
 OBJS  = src/adpcm/adpcm.o \
         src/huffman/huff.o \
@@ -255,7 +256,7 @@ COBJS = src/libtomcrypt/src/hashes/sha1.o \
 	src/lzma/C/LzmaDec.o \
 	src/jenkins/lookup3.o
 
-all: $(LIBRARY)
+all: $(LIBRARY) $(SLIB)
 
 #clean:
 #   rm -f $(OBJS) $(LIBRARY)
@@ -265,6 +266,9 @@ all: $(LIBRARY)
 #   mkdir -p /usr/local/include/StormLib
 #   cp src/StormLib.h /usr/local/include/StormLib
 #   cp src/StormPort.h /usr/local/include/StormLib
+
+$(SLIB): $(COBJS) $(OBJS)
+	$(AR) $(ARFLAGS) $(SLIB) $(COBJS) $(OBJS)
 
 $(LIBRARY): $(COBJS) $(OBJS)
 	$(CPP) $(CFLAGS) $(DFLAGS) $(ARCH) $(LFLAGS) -shared -o $(LIBRARY) $(COBJS) $(OBJS)
