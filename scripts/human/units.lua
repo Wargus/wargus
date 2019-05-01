@@ -537,6 +537,9 @@ DefineUnitType("unit-human-oil-tanker", { Name = _("Oil tanker"),
   Sounds = {
     "selected", "human-oil-tanker-selected",
     "acknowledge", "human-oil-tanker-acknowledge",
+    -- the oil tankers do not use the nasal "work's done" peasant sound for
+    -- completing buildings
+    "work-complete", "basic human voices research complete",
     "ready", "human-oil-tanker-ready",
     "help", "basic human voices help 1",
     "dead", "ship sinking"} } )
