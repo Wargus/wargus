@@ -2499,9 +2499,19 @@ int main(int argc, char** argv)
 
 	// Detect if CD is Mac/Dos, Expansion/Original/BNE, and language
 	sprintf(buf, "%s/support/tomes/tome.1", ArchiveDir);
-	sprintf(filename, "%s/support/tomes/tome.4", ArchiveDir);
 	if (!stat(buf, &st)) {
+		sprintf(filename, "%s/support/tomes/tome.4", ArchiveDir);
 		printf("Detected BNE CD\n");
+		fflush(stdout);
+		CDType |= CD_BNE | CD_EXPANSION | CD_US;
+	} else if (sprintf(buf, "%s/Support/TOMES/TOME.1", ArchiveDir) && !stat(buf, &st)) {
+		sprintf(filename, "%s/Support/TOMES/TOME.4", ArchiveDir);
+		printf("Detected BNE CD Captialized\n");
+		fflush(stdout);
+		CDType |= CD_BNE | CD_EXPANSION | CD_US;
+	} else if (sprintf(buf, "%s/SUPPORT/TOMES/TOME.1", ArchiveDir) && !stat(buf, &st)) {
+		sprintf(filename, "%s/SUPPORT/TOMES/TOME.4", ArchiveDir);
+		printf("Detected BNE CD Uppercase\n");
 		fflush(stdout);
 		CDType |= CD_BNE | CD_EXPANSION | CD_US;
 	} else {
