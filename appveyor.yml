@@ -18,7 +18,7 @@ before_build:
   - cmake -G "Visual Studio 14 2015" -T v140_xp -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON ..
   - cd ..
 build:
-  project: wargus.sln
+  project: build\wargus.sln
 artifacts:
   - path: build\Wargus-*.exe
 deploy:
