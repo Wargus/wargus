@@ -2011,14 +2011,14 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 		fclose(f);
 	}
 
-	cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"") + strlen(buf) + strlen("\" ");
+	cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640x0,setsar=1:1 \"") + strlen(buf) + strlen("\" ");
 	cmd = (char*) calloc(cmdlen + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
-	snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir, file, Dir, file);
+	snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640:0,setsar=1:1 \"%s/%s.ogv\"", Dir, file, Dir, file);
 	printf("%s\n", cmd);
 	ret = system(cmd);
 
