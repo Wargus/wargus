@@ -2508,12 +2508,12 @@ int main(int argc, char** argv)
 		sprintf(filename, "%s/Support/TOMES/TOME.4", ArchiveDir);
 		printf("Detected BNE CD Captialized\n");
 		fflush(stdout);
-		CDType |= CD_BNE | CD_EXPANSION | CD_US;
+		CDType |= CD_BNE | CD_BNE_CAPS | CD_EXPANSION | CD_US;
 	} else if (sprintf(buf, "%s/SUPPORT/TOMES/TOME.1", ArchiveDir) && !stat(buf, &st)) {
 		sprintf(filename, "%s/SUPPORT/TOMES/TOME.4", ArchiveDir);
 		printf("Detected BNE CD Uppercase\n");
 		fflush(stdout);
-		CDType |= CD_BNE | CD_EXPANSION | CD_US;
+		CDType |= CD_BNE | CD_BNE_UPPER | CD_EXPANSION | CD_US;
 	} else {
 		sprintf(buf, "%s/rezdat.war", ArchiveDir);
 		sprintf(filename, "%s/strdat.war", ArchiveDir);
@@ -2659,6 +2659,16 @@ int main(int argc, char** argv)
 					for (int i = 0; i < sizeof(BNEReplaceTable) / sizeof(*BNEReplaceTable) ; i += 2) {
 						if (!strcmp(BNEReplaceTable[i], Todo[u].File)) {
 							Todo[u].File = BNEReplaceTable[i + 1];
+							if (CDType & CD_BNE_CAPS) {
+								Todo[u].File = BNEReplaceTableCaps[i + 1];
+							} else if (CDType & CD_BNE_UPPER) {
+								strcpy(filename, Todo[u].File);
+								while (filename[i]) {
+									filename[i] = toupper(filename[i]);
+									++i;
+								}
+								Todo[u].File = filename;
+							}
 							break;
 						}
 					}

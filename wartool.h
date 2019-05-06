@@ -172,6 +172,8 @@ enum _archive_type_ {
 
 #define CD_UPPER      (1 << 13) // Filenames on CD are upper
 #define CD_BNE        (1 << 14) // This is a BNE version
+#define CD_BNE_CAPS   (1 << 15) // This is a BNE version with capitalized Support folder
+#define CD_BNE_UPPER  (1 << 16) // This is a BNE version with upper Support folder
 
 /**
 **  What, where, how to extract.
@@ -184,6 +186,13 @@ const char *BNEReplaceTable[] = {
 	"rezdat.war",  "support/tomes/tome.2",
 	"snddat.war",  "support/tomes/tome.3",
 	"strdat.war",  "support/tomes/tome.4"
+};
+
+const char *BNEReplaceTableCaps[] = {
+	"maindat.war", "Support/TOMES/TOME.1",
+	"rezdat.war",  "Support/TOMES/TOME.2",
+	"snddat.war",  "Support/TOMES/TOME.3",
+	"strdat.war",  "Support/TOMES/TOME.4"
 };
 
 static Control Todo[] = {
