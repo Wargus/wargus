@@ -28,8 +28,8 @@
 */
 
 #define GAME_NAME "Wargus"
-#define GAME_CD "Warcraft II DOS REZDAT.WAR or BNE Battle.snp file"
-#define GAME_CD_FILE_PATTERNS "REZDAT.WAR", "rezdat.war", "War Resources", "INSTALL.EXE", "Install.exe", "Install.mpq"
+#define GAME_CD "Warcraft II DOS REZDAT.WAR or BNE INSTALL.MPQ/INSTALL.EXE file"
+#define GAME_CD_FILE_PATTERNS "REZDAT.WAR", "rezdat.war", "War Resources", "INSTALL.EXE", "Install.exe", "Install.mpq", "INSTALL.MPQ"
 #define GAME "wargus"
 #define EXTRACTOR_TOOL "wartool"
 #define EXTRACTOR_ARGS "-v -r"
