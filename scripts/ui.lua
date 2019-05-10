@@ -127,13 +127,28 @@ DefinePanelContents(
   Contents = {
 -- Food building
 	{ Pos = {100, 71}, More = {"Text", _("Usage~|")} },
-	{ Pos = {100, 86}, More = {"Text", {Text = _("Supply~|: "), Variable = "Supply", Component = "Max"}} },
-	{ Pos = {100, 102}, More = { "Text", {Text = Concat(_("Demand~|: "),
-									If(GreaterThan(ActiveUnitVar("Demand", "Max"), ActiveUnitVar("Supply", "Max")),
-										InverseVideo(String(ActiveUnitVar("Demand", "Max"))),
-										String(ActiveUnitVar("Demand", "Max")) ))}}
-    }
-
+	{ Pos = {100, 86},
+          More = {
+             "Text",
+             {
+                Text = Concat(_("Supply~|: "),
+                              String(PlayerData(ActiveUnitVar("Player", "Value"), "Supply", "")))
+             }
+          }
+        },
+	{ Pos = {100, 102},
+          More = {
+             "Text",
+             {
+                Text = Concat(_("Demand~|: "),
+                              If(GreaterThan(
+                                    PlayerData(ActiveUnitVar("Player", "Value"), "Demand", ""),
+                                    PlayerData(ActiveUnitVar("Player", "Value"), "Supply", "")),
+                                 InverseVideo(String(PlayerData(ActiveUnitVar("Player", "Value"), "Demand", ""))),
+                                 String(PlayerData(ActiveUnitVar("Player", "Value"), "Demand", ""))))
+             }
+          }
+        }
   } },
   -- Center
   {
