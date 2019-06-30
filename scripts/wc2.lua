@@ -345,7 +345,9 @@ function SetPlayerData(player, data, arg1, arg2)
         arg1 = "orc"
       end
   elseif (data == "Resources") then
-    if (GameSettings.Resources == 1) then
+    if (GameSettings.Presets[player].Type == PlayerNobody) then
+      res = {0, 0, 0}
+    elseif (GameSettings.Resources == 1) then
       res = {2000, 1000, 1000}
     elseif (GameSettings.Resources == 2) then
       res = {5000, 2000, 2000}
