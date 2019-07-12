@@ -159,21 +159,21 @@ DefineMissileType("missile-small-cannon",
   { File = "missiles/cannon.png", Size = {32, 32}, Frames = 15, NumDirections = 9,
   DrawLevel = 50, ImpactSound = "explosion",
   Class = MissileParabolicClass, Sleep = 1, Speed = 22, Range = 2,
-  ImpactMissile = "missile-cannon-explosion", SplashFactor = 3 } )
+  ImpactMissile = "missile-cannon-tower-explosion", SplashFactor = 3 } )
 
 DefineMissileType("missile-small-cannon-super",
   { File = "missiles/cannon.png", Size = {32, 32}, Frames = 15, NumDirections = 9,
   DrawLevel = 50, ImpactSound = "explosion",
   Class = MissileParabolicClass, Sleep = 1, Speed = 44, Range = 2,
-  ImpactMissile = "missile-cannon-explosion", SplashFactor = 3 } )
+  ImpactMissile = "missile-cannon-tower-explosion", SplashFactor = 3 } )
   
 DefineMissileType("missile-cannon-explosion",
   { File = "missiles/cannon_explosion.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
-  DrawLevel = 50, Class = "missile-class-stay", Sleep = 1, Speed = 16, Range = 1 } )
+  DrawLevel = 50, Class = "missile-class-stay", Sleep = 2, Speed = 16, Range = 1 } )
 
 DefineMissileType("missile-cannon-tower-explosion",
   { File = "missiles/cannon-tower_explosion.png", Size = {32, 32}, Frames = 4, NumDirections = 1,
-  DrawLevel = 50, Class = "missile-class-stay", Sleep = 1, Speed = 16, Range = 1 } )
+  DrawLevel = 50, Class = "missile-class-stay", Sleep = 2, Speed = 16, Range = 1 } )
 
 DefineMissileType("missile-daemon-fire",
   { File = "missiles/daemon_fire.png", Size = {32, 32}, Frames = 15, NumDirections = 9,
