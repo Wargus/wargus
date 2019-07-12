@@ -835,6 +835,32 @@ function RunMap(map, objective, fow, revealmap, results)
   SetDefaultRaceView()
 end
 
+function RunDemo()
+  Objectives = DefaultObjectives
+  local mapname = "maps/demo/demo0" .. math.random(1, 4) .. ".smp"
+  InitGameVariables()
+  SetFogOfWar(false)
+  RevealMap()
+  OldShowTips = wc2.preferences.ShowTips
+  wc2.preferences.ShowTips = false
+  OldSinglePlayerTriggers = SinglePlayerTriggers
+  function SinglePlayerTriggers()
+    AddTrigger(
+     function() return GameCycle > 1000 end,
+     function() return ActionDraw() end)
+  end
+  Load(mapname)
+  GameSettings.Presets[0].Team = 1
+  GameSettings.Presets[1].Team = 2
+  GameSettings.Presets[2].Type = 3
+  GameSettings.Presets[2].Race = 2
+  StartMap(mapname)
+  wc2.preferences.ShowTips = OldShowTips
+  SinglePlayerTriggers = OldSinglePlayerTriggers
+  InitGameSettings()
+  SetDefaultRaceView()
+end
+
 function SetDefaultPlayerNames()
 -- Add player names according to player color
 	for i=0,7 do
@@ -1533,6 +1559,19 @@ function BuildProgramStartMenu()
 
   menu:addFullButton(_("E~!xit Program"), "x", offx + 208, offy + 104 + 36*7,
     function() menu:stop() end)
+
+  local time = 0
+  function checkRunDemo()
+    time = time +1
+    if (time > 2000) then
+      time = 0
+      RunDemo()
+      wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
+      PlayMusic("music/Orc Briefing" .. wargus.music_extension)
+    end
+  end
+  local listener = LuaActionListener(function(s) checkRunDemo() end)
+  menu:addLogicCallback(listener)
 	
   return menu:run()
 end
