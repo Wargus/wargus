@@ -512,6 +512,18 @@ DefineUnitType("unit-revealer", { Name = _("Dummy unit"),
   DetectCloak = true,
   Sounds = {} } )
  
+function AiExploreUnit(unit)
+  local unitstruct = UnitManager:GetSlotUnit(unit)
+  local player = unitstruct.Player
+  if (player.AiEnabled) then
+    if (player.Type == PlayerComputer or player.Type == PlayerRescueActive) then
+      -- send those balloons flying
+      local pos = {GetUnitVariable(unit, "PosX"), GetUnitVariable(unit, "PosY")}
+      OrderUnit(player.Index, unitstruct.Type.Ident, pos, {0, 0}, "explore")
+    end
+  end
+end
+
 -- Load the different races
 Load("scripts/human/units.lua")
 Load("scripts/orc/units.lua")

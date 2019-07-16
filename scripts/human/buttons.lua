@@ -134,6 +134,10 @@ DefineButton( { Pos = 4, Level = 0, Icon = "icon-human-patrol-land",
     "unit-flying-angel", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-gryphon-rider", "human-group"} } )
 end
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-human-patrol-naval",
+  Action = "explore",
+  Key = "x", Hint = _("E~!XPLORE"), Popup = "popup-human-commands",
+  ForUnit = {"unit-balloon"} } )
 
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-human-stand-ground",
   Action = "stand-ground",

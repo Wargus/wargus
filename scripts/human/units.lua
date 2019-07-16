@@ -694,6 +694,7 @@ DefineUnitType("unit-balloon", { Name = _("Gnomish Flying Machine"),
   AirUnit = true, Coward = true,
   DetectCloak = true,
   SelectableByRectangle = true,
+  OnReady = AiExploreUnit,
   Sounds = {
     "selected", "gnomish-flying-machine-selected",
     "acknowledge", "gnomish-flying-machine-acknowledge",
