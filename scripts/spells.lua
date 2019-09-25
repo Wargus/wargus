@@ -94,6 +94,11 @@ DefineSpell("spell-suicide-bomber",
 	"ai-cast", {"range", 6, "condition", {"opponent", "only"}}
 )
 
+local function SpellHolyVision(units)
+	local x = SyncRand(Map.Info.MapWidth - 1) + 1
+	local y = SyncRand(Map.Info.MapHeight - 1) + 1
+	return x, y
+end
 
 DefineSpell("spell-holy-vision",
 	"showname", _("Holy Vision"),
@@ -103,6 +108,8 @@ DefineSpell("spell-holy-vision",
 	"action", {{"summon", "unit-type", "unit-revealer", "time-to-live", 25},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
+	-- stupid trick: target self in autocast, then find position in callback
+	"autocast", {"range", 0, "combat", "false", "condition", {"self", "only", "Mana", {MinValuePercent = 99}}, "position-autocast", SpellHolyVision},
 	"sound-when-cast", "holy vision",
 	"depend-upgrade", "upgrade-holy-vision"
 )
@@ -175,14 +182,38 @@ DefineSpell("spell-exorcism",
 	"ai-cast", {"range", 10, "condition", {"opponent", "only"}}
 )
 
+local function PosEyeOfVision(units)
+	local x = GetUnitVariable(units[1], "PosX")
+	local y = GetUnitVariable(units[1], "PosY")
+	return x, y
+end
+
+local function SpellEyeOfVision(spell, unit, x, y, target)
+	local unitstruct = UnitManager:GetSlotUnit(unit)
+	local player = unitstruct.Player
+	local eye = CreateUnit("unit-eye-of-vision", player.Index, {x, y})
+	if eye ~= -1 then
+		SetUnitVariable(eye, "TTL", 765)
+		SetUnitVariable(eye, "Summoned", GameCycle + 1)
+		if x == unitstruct.tilePos.x and y == unitstruct.tilePos.y then
+			-- self is target, assume autocasted => go explore
+			local eyestruct = UnitManager:GetSlotUnit(eye)
+			OrderUnit(player.Index, eyestruct.Type.Ident, {x, y}, {0, 0}, "explore")
+		end
+	end
+	return false
+end
+
 DefineSpell("spell-eye-of-vision",
 	"showname", _("eye of vision"),
 	"manacost", 70,
 	"range", 6,
 	"target", "position",
-		"action", {{"summon", "unit-type", "unit-eye-of-vision", "time-to-live", 765},
+	"action", {{"lua-callback", SpellEyeOfVision},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
+	-- stupid trick: target self in autocast, then find position in callback
+	"autocast", {"range", 0, "combat", "false", "condition", {"self", "only", "Mana", {MinValuePercent = 99}}, "position-autocast", PosEyeOfVision},
 	"sound-when-cast", "eye of vision",
 	"depend-upgrade", "upgrade-eye-of-kilrogg"
 )
@@ -192,9 +223,11 @@ DefineSpell("spell-eye-of-vision-double-head",
 	"manacost", 70,
 	"range", 6,
 	"target", "position",
-		"action", {{"summon", "unit-type", "unit-eye-of-vision", "time-to-live", 765},
+	"action", {{"lua-callback", SpellEyeOfVision},
 		{"spawn-missile", "missile", "missile-normal-spell",
 			"start-point", {"base", "target"}}},
+	-- stupid trick: target self in autocast, then find position in callback
+	"autocast", {"range", 0, "combat", "false", "condition", {"self", "only", "Mana", {MinValuePercent = 99}}, "position-autocast", PosEyeOfVision},
 	"sound-when-cast", "eye of vision"
 )
 

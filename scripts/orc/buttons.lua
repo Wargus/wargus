@@ -140,6 +140,10 @@ DefineButton( { Pos = 4, Level = 0, Icon = "icon-orc-patrol-land",
     "unit-double-head", "unit-sharp-axe", "unit-beast-cry", "unit-quick-blade",
     "unit-skeleton", "unit-dragon", "unit-fire-breeze", "orc-group", "unit-daemon"} } )
 end
+DefineButton( { Pos = 3, Level = 0, Icon = "icon-orc-patrol-naval",
+  Action = "explore",
+  Key = "x", Hint = _("E~!XPLORE"), Popup = "popup-orc-commands",
+  ForUnit = {"unit-zeppelin", "unit-eye-of-vision"} } )
 
 DefineButton( { Pos = 5, Level = 0, Icon = "icon-orc-stand-ground",
   Action = "stand-ground", Popup = "popup-orc-commands",
