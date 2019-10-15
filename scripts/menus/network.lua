@@ -450,7 +450,7 @@ function RunJoiningMetaServerMenu()
    local cancel_button = menu:addHalfButton(_("~!Cancel"), "c", 154, 80, function() menu:stop() end)
    ok_button:setActionCallback(
       function(s)
-	 if string.len(server:getText()) > 0 then
+	 if string.len(server:getText()) > 2 then -- len 2 means :0 -- i.e., no port, no host
 	    conn_label:setVisible(true)
 	    conn_label:setCaption(_("Connecting..."))
 	    conn_label:adjustSize()
@@ -621,7 +621,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local optRace = options.race
   local optResources = options.resources
   local optUnits = options.units
-  local optAiPlayerNum = options.aiPlayerNum
+  local optAiPlayerNum = options.aiPlayerNum or 0
   local optAutostartNum = options.autostartNum
   local optDedicated = options.dedicated
   local optOnline = options.online
@@ -701,7 +701,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local server = menu:addTextInputField(
      wc2.preferences.MetaServer..":"..tostring(wc2.preferences.MetaPort), sx, sy*14+75, 200)
   local serverCb = function (dd)
-     if string.len(server:getText()) > 0 then
+     if string.len(server:getText()) > 2 then -- len 2 means :0 -- i.e., no port, no host
 	local ip = string.find(server:getText(), ":")
 	if ip ~= nil then
 	   wc2.preferences.MetaServer = string.sub(server:getText(), 1, ip - 1)

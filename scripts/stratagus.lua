@@ -419,8 +419,8 @@ local defaultPreferences = {
 	ZoomNoResize = false,
 	ViewportMode = 0,
 	ServerList = {},
-	MetaServer = "212.59.241.214",
-	MetaPort = 7775,
+	MetaServer = "",
+	MetaPort = 0,
 	SF2SoundFont = "music/TimGM6mb.sf2"
 }
 
