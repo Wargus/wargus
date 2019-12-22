@@ -421,7 +421,8 @@ local defaultPreferences = {
 	ServerList = {},
 	MetaServer = "",
 	MetaPort = 0,
-	SF2SoundFont = "music/TimGM6mb.sf2"
+	SF2SoundFont = "music/TimGM6mb.sf2",
+	SimplifiedAutoTargeting = false
 }
 
 --- Skirmish Setup --------------
@@ -504,6 +505,7 @@ SetSelectionStyle(wc2.preferences.SelectionStyle)
 SetNewViewportMode(wc2.preferences.ViewportMode)
 Preference.DeselectInMine = wc2.preferences.DeselectInMine
 Preference.StereoSound = wc2.preferences.StereoSound
+Preference.SimplifiedAutoTargeting = wc2.preferences.SimplifiedAutoTargeting
 
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")

@@ -294,6 +294,16 @@ function RunPreferencesMenu()
       end)
       fogOfWar:setMarked(wc2.preferences.FogOfWar)
    end
+-- TODO: Set same Auto Targeting algorithm for all players in network game
+   local simplifiedAutoTargeting
+   if (not IsNetworkGame()) then
+      simplifiedAutoTargeting = menu:addImageCheckBox(_("Simplified auto targ."),  10, 10 + 18 * 13, offi, offi2, oni, oni2, function() end)
+      simplifiedAutoTargeting:setActionCallback(
+	 function()
+	    Preference.SimplifiedAutoTargeting = simplifiedAutoTargeting:isMarked()
+      end)
+      simplifiedAutoTargeting:setMarked(wc2.preferences.SimplifiedAutoTargeting)
+   end
 
    local selectionStyleList = {"rectangle", "alpha-rectangle", "circle", "alpha-circle", "corners"}
    local selectionStyleList1 = {_("rectangle"), _("alpha-rectangle"), _("circle"), _("alpha-circle"), _("corners")}
@@ -337,8 +347,8 @@ function RunPreferencesMenu()
       end)
    end
 
-   menu:addLabel(_("~!*SF2 soundfont path :"), 10, 10 + 18 * 13, Fonts["game"], false)
-   local sf2SoundfontPath = menu:addTextInputField(Preference.SF2Soundfont, 10, 10 + 18 * 14, 200)
+   menu:addLabel(_("~!*SF2 soundfont path :"), 10, 10 + 18 * 14, Fonts["game"], false)
+   local sf2SoundfontPath = menu:addTextInputField(Preference.SF2Soundfont, 10, 10 + 18 * 15, 200)
 
    menu:addLabel(_("~!* - requires restart"), 10, 10 + 18 * 16, Fonts["game"], false)
 
@@ -355,6 +365,7 @@ function RunPreferencesMenu()
 			 wc2.preferences.PauseOnLeave = Preference.PauseOnLeave
 			 wc2.preferences.EnhancedEffects = enhancedEffects:isMarked()
 			 wc2.preferences.DeselectInMine = Preference.DeselectInMine
+			 wc2.preferences.SimplifiedAutoTargeting = Preference.SimplifiedAutoTargeting
 			 Preference.SF2SoundFont = sf2SoundfontPath:getText()
 			 wc2.preferences.SF2SoundFont = sf2SoundfontPath:getText()
 			 if (not IsNetworkGame()) then
