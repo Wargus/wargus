@@ -422,7 +422,7 @@ local defaultPreferences = {
 	MetaServer = "",
 	MetaPort = 0,
 	SF2SoundFont = "music/TimGM6mb.sf2",
-	SimplifiedAutoTargeting = false
+	SimplifiedAutoTargeting = true 
 }
 
 --- Skirmish Setup --------------
