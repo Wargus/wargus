@@ -1092,7 +1092,7 @@ function RunSinglePlayerGameMenu()
   local tileset_names = {_("Map Default"), _("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}
   local numunit_types = {_("Map Default"), _("One Peasant Only")}
   local difficulty_types = {_("Easy"), _("Normal"), _("Hard"),_("Nightmare"),_("Hell")}
-  local resource_types = {_("Map Default"), _("High"), _("Medium"), _("Low"),_("Quick Start")}
+  local resource_types = {_("Map Default"), _("Low"), _("Medium"), _("High"),_("Quick Start")}
   local nms = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
   local pcolor = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
   local ptype = {nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil}
