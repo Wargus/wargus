@@ -389,7 +389,6 @@ local defaultPreferences = {
 	KeyScrollSpeed = 4,
 	LastDifficulty = 2,
 	LeaveStopScrolling = true,      --  Enable/disable stopping scrolling when mouse leave.
-	MaxOpenGLTexture = 0,
 	MineNotifications = true,
 	MinimapWithTerrain = true,      --  Choose your default for minimap with/without terrain.
 	MouseScrollSpeed = 1,
@@ -411,12 +410,10 @@ local defaultPreferences = {
 	StratagusTranslation = "",
 	TipNumber = 0,
 	UseFancyBuildings = false,      --  Enable/disable fancy building (random mirroring buildings)
-	UseOpenGL = false,
 	VideoFullScreen = false,
 	VideoViewportHeight = 600,
 	VideoViewportWidth = 800,
 	VideoShaderIndex = 0,
-	ZoomNoResize = false,
 	ViewportMode = 0,
 	ServerList = {},
 	MetaServer = "",
@@ -475,7 +472,6 @@ SetHoldClickDelay(wc2.preferences.HoldClickDelayInMs)
 SetKeyScroll(wc2.preferences.EnableKeyboardScrolling)
 SetLeaveStops(wc2.preferences.LeaveStopScrolling)
 SetLocalPlayerName(wc2.preferences.PlayerName)
-SetMaxOpenGLTexture(wc2.preferences.MaxOpenGLTexture)
 SetMinimapTerrain(wc2.preferences.MinimapWithTerrain)
 SetMouseScroll(wc2.preferences.EnableMouseScrolling)
 SetKeyScrollSpeed(wc2.preferences.KeyScrollSpeed)
@@ -485,14 +481,8 @@ SetMouseScrollSpeedDefault(wc2.preferences.MouseScrollSpeedDefault)
 SetMusicEnabled(wc2.preferences.MusicEnabled)
 SetMusicVolume(wc2.preferences.MusicVolume)
 SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameTranslation)
-SetUseOpenGL(wc2.preferences.UseOpenGL)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
 SetVideoResolution(wc2.preferences.VideoViewportWidth, wc2.preferences.VideoViewportHeight)
-if (wc2.preferences.ZoomNoResize) then
-   SetZoomNoResize(640, 480) -- the original Warcraft was 640x480
-else
-   SetZoomNoResize(false) -- disable
-end
 Video.ShaderIndex = wc2.preferences.VideoShaderIndex
 SwitchToShader()
 

@@ -366,11 +366,7 @@ DefineCursor({
   Size = {32, 24}})
 
 function GetRGBA(r, g, b, a)
-	if (wc2.preferences.UseOpenGL == false) then
-		return b + g*0x100 + r*0x10000 + a*0x1000000
-	else
-		return r + g*0x100 + b*0x10000 + a*0x1000000
-	end
+        return b + g*0x100 + r*0x10000 + a*0x1000000
 end
 
 PopupFont = nil
