@@ -5,11 +5,11 @@
 #endif
 
 #define DESCRIPTION NAME
-#define VERSION "2.4.2"
-#define VIVERSION 2,4,2
+#define VERSION "2.4.3"
+#define VIVERSION 2,4,3
 #define HOMEPAGE "https://wargus.github.io"
 #define LICENSE "GPL v2+"
-#define COPYRIGHT "(c) 1998-2018 by The Stratagus Project"
+#define COPYRIGHT "(c) 1998-2020 by The Stratagus Project"
 
 1 ICON "wargus.ico"
 1 VERSIONINFO

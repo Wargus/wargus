@@ -1,3 +1,20 @@
+wargus (2.4.3-1) eoan; urgency=medium
+
+  * Inline StormLib for easier builds
+  * Fix "Job's done" sound path for peasants in Battle.NET edition
+  * Fix bug showing "Supply 4, Demand 0" under some circumstances
+  * Fix aspect ratio of extracted videos
+  * Use auto-cast and auto-explore
+  * Run demo 1-4 when main menu is idle
+  * Fix missile origins and cannon tower animations
+  * Fix issue with "Attack Ground" button for ballistas, catapults, large ships
+  * Fix item order in resources drop-down list
+  * Fix extraction for some more variants of Battle.NET editions
+  * Fix multiplayer startup when the metaserver is not used and
+    optional AI player number was not passed
+
+ -- Tim Felgentreff <timfelgentreff@gmail.com>  Sat, 25 Apr 2020 10:23:37 +0200
+
 wargus (2.4.2-1) xenial; urgency=medium
 
   * Fix for extraction on Arm64
