@@ -2575,6 +2575,21 @@ int main(int argc, char** argv)
 	}
 
 	ArchiveDir = argv[a];
+
+	// if the user selected the install.exe from the DOS CD, be gratious
+	char extraPath[strlen(ArchiveDir) + strlen("/data/rezdat.war")];
+	sprintf(extraPath, "%s/data/rezdat.war", ArchiveDir);
+	if (stat(extraPath, &st) == 0) {
+		sprintf(extraPath, "%s/data", ArchiveDir);
+		ArchiveDir = extraPath;
+	} else {
+		sprintf(extraPath, "%s/DATA/REZDAT.WAR", ArchiveDir);
+		if (stat(extraPath, &st) == 0) {
+			sprintf(extraPath, "%s/DATA", ArchiveDir);
+			ArchiveDir = extraPath;
+		}
+	}
+
 	if (argc == 3) {
 		Dir = argv[a + 1];
 	} else {
