@@ -1261,7 +1261,7 @@ function RunSinglePlayerGameMenu()
 				end
 			end
 			GameSettings.Difficulty = difficulty:getSelected() + 1
-			GameSettings.GameType = game_type:getSelected()
+			GameSettings.GameType = game_type:getSelected() - 1
 			GameSettings.Resources = rescount:getSelected()
 			GameSettings.RevealMap = reveal_type:getSelected()
 			GameSettings.NumUnits = numunits:getSelected()
