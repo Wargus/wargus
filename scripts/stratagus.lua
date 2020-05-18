@@ -180,6 +180,9 @@ SetRevealAttacker(false)
 --SetRevelationType("buildings-only")
 SetRevelationType("all-units")
 
+-- Edit this to enable/disable shadow casting field of view for units
+SetFoVShadowCasting(true)
+
 -------------------------------------------------------------------------------
 
 --  If you prefer fighters are attacking by right clicking empty space
