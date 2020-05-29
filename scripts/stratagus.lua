@@ -181,7 +181,11 @@ SetRevealAttacker(false)
 SetRevelationType("all-units")
 
 -- Edit this to enable/disable shadow casting field of view for units
-SetFoVShadowCasting(true)
+SetFieldOfViewType("shadow-casting")
+--SetFieldOfViewType("simple-radial")
+
+-- Make these tiles opaque. Possible tile-types "forest", "rock" and "wall"
+SetOpaqueFor("forest", "rock", "wall")
 
 -------------------------------------------------------------------------------
 
