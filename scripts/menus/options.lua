@@ -326,8 +326,30 @@ function RunPreferencesMenu()
    end)
    viewportMode:setSize(120, 16)
 
-   menu:addLabel(_("~!*SF2 soundfont path :"), 10, 10 + 18 * 14, Fonts["game"], false)
-   local sf2SoundfontPath = menu:addTextInputField(Preference.SF2Soundfont, 10, 10 + 18 * 15, 200)
+   if GetShaderNames then
+      local shaderNames = GetShaderNames()
+      if #shaderNames > 0 then
+         menu:addLabel(_("Shader:"), 225, 28 + 19 * 4, Fonts["game"], false)
+         local shaderName = menu:addDropDown(shaderNames, 225, 28 + 19 * 5, function(dd) end)
+         local function getCurrentShaderIndex()
+            local currentShader = GetShader()
+            for idx,name in pairs(shaderNames) do
+               if name == currentShader then
+                  return idx
+               end
+            end
+         end
+         shaderName:setSelected(getCurrentShaderIndex() - 1)
+         shaderName:setActionCallback(function()
+               local newShader = shaderNames[shaderName:getSelected() + 1];
+               if SetShader(newShader) then
+                  wc2.preferences.VideoShader = nextShader;
+                  SavePreferences()
+               end
+         end)
+         shaderName:setSize(120, 16)
+      end
+   end
 
    menu:addLabel(_("~!* - requires restart"), 10, 10 + 18 * 16, Fonts["game"], false)
 
@@ -345,8 +367,6 @@ function RunPreferencesMenu()
 			 wc2.preferences.EnhancedEffects = enhancedEffects:isMarked()
 			 wc2.preferences.DeselectInMine = Preference.DeselectInMine
 			 wc2.preferences.SimplifiedAutoTargeting = Preference.SimplifiedAutoTargeting
-			 Preference.SF2SoundFont = sf2SoundfontPath:getText()
-			 wc2.preferences.SF2SoundFont = sf2SoundfontPath:getText()
 			 if (not IsNetworkGame()) then
 			    wc2.preferences.FogOfWar = fogOfWar:isMarked()
 			 end

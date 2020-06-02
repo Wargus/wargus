@@ -413,7 +413,7 @@ local defaultPreferences = {
 	VideoFullScreen = false,
 	VideoViewportHeight = 600,
 	VideoViewportWidth = 800,
-	VideoShaderIndex = 0,
+	VideoShader = "xBRZ",
 	ViewportMode = 0,
 	ServerList = {},
 	MetaServer = "",
@@ -483,8 +483,6 @@ SetMusicVolume(wc2.preferences.MusicVolume)
 SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameTranslation)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
 SetVideoResolution(wc2.preferences.VideoViewportWidth, wc2.preferences.VideoViewportHeight)
-Video.ShaderIndex = wc2.preferences.VideoShaderIndex
-SwitchToShader()
 
 UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
 Preference.SF2Soundfont = wc2.preferences.SF2SoundFont

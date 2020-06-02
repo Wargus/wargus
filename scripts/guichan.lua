@@ -1697,6 +1697,10 @@ if (CustomStartup) then
    return
 end
 
+if SetShader then
+   SetShader(wc2.preferences.VideoShader)
+end
+
 if (Editor.Running == EditorCommandLine) then
   if (CliMapName and CliMapName ~= "") then
     StartEditor(CliMapName)
