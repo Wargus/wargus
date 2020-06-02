@@ -418,7 +418,6 @@ local defaultPreferences = {
 	ServerList = {},
 	MetaServer = "",
 	MetaPort = 0,
-	SF2SoundFont = "music/TimGM6mb.sf2",
 	SimplifiedAutoTargeting = true 
 }
 
@@ -485,7 +484,6 @@ SetVideoFullScreen(wc2.preferences.VideoFullScreen)
 SetVideoResolution(wc2.preferences.VideoViewportWidth, wc2.preferences.VideoViewportHeight)
 
 UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
-Preference.SF2Soundfont = wc2.preferences.SF2SoundFont
 Preference.MineNotifications = wc2.preferences.MineNotifications
 Preference.ShowMessages = wc2.preferences.ShowMessages
 Preference.PauseOnLeave = wc2.preferences.PauseOnLeave
