@@ -50,7 +50,6 @@ if (CanAccessFile("ui/mana2.png")) then
 	DefineDecorations({Index = "GiveResource", ShowWhenMax = true, HideNeutral = false, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
 	DefineDecorations({Index = "CarryResource", HideNeutral = false, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
 end
-DefineSprites({Name = "sprite-shadow", File = "missiles/unit_shadow.png", Offset = {3, 42}, Size = {32, 32}})
 DefineSprites({Name = "sprite-spell", File = "ui/bloodlust,haste,slow,invisible,shield.png", Offset = {1, 1}, Size = {16, 16}})
 
 
@@ -64,8 +63,6 @@ DefineDecorations({Index = "Invisible", ShowOpponent = true,
   Offset = {32, 0}, Method = {"static-sprite", {"sprite-spell", 3}}})
 DefineDecorations({Index = "UnholyArmor", ShowOpponent = true,
   Offset = {48, 0}, Method = {"static-sprite", {"sprite-spell", 4}}})
-DefineDecorations({Index = "ShadowFly", ShowOpponent = true, ShowWhenMax = true, ShowWhenNull = true,
-  Offset = {0, 0}, Method = {"sprite", {"sprite-shadow"}}})
 
 --
 --  Define Panels

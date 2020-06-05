@@ -305,6 +305,15 @@ function RunPreferencesMenu()
       simplifiedAutoTargeting:setMarked(wc2.preferences.SimplifiedAutoTargeting)
    end
 
+   local useFancyShadows = menu:addImageCheckBox(_("~!*Animated shadows"), 10, 10 + 18 * 13,  offi, offi2, oni, oni2, function() end)
+   useFancyShadows:setActionCallback(
+      function()
+	 Preference.UseFancyShadows = useFancyShadows:isMarked()
+         wc2.preferences.UseFancyShadows = useFancyShadows:isMarked()
+         SavePreferences()
+   end)
+   useFancyShadows:setMarked(wc2.preferences.UseFancyShadows)
+
    local selectionStyleList = {"rectangle", "alpha-rectangle", "circle", "alpha-circle", "corners"}
    local selectionStyleList1 = {_("rectangle"), _("alpha-rectangle"), _("circle"), _("alpha-circle"), _("corners")}
    menu:addLabel(_("Selection style:"), 225, 28 + 19 * 0, Fonts["game"], false)
@@ -343,7 +352,8 @@ function RunPreferencesMenu()
          shaderName:setActionCallback(function()
                local newShader = shaderNames[shaderName:getSelected() + 1];
                if SetShader(newShader) then
-                  wc2.preferences.VideoShader = nextShader;
+                  Preference.VideoShader = newShader
+                  wc2.preferences.VideoShader = newShader
                   SavePreferences()
                end
          end)

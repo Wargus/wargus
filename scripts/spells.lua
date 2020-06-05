@@ -33,10 +33,9 @@ DefineBoolFlags("isundead", "organic", "hero", "volatile")
 
 --
 --  Speed     : just drawing
---  ShadowFly : Shadow of flying unit (0:big, 1:normal, 2:small)
 --  Level     : Increase each time an upgrade is applyed to an unit.
 --
-DefineVariables("Mana", {Max = 255, Value = 84, Increase = 1, Enable = false}, "Speed", "ShadowFly", {Max = 2},
+DefineVariables("Mana", {Max = 255, Value = 84, Increase = 1, Enable = false}, "Speed",
 	"Level", {Max = 1, Value = 1, Increase = 0, Enable = true})
 
 --  Declare some unit types used in spells. This is quite accetable, the other
