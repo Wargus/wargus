@@ -25,7 +25,7 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-if ((wargus.tales == false) and (wargus.expansion == true)) then
+if wargus.expansion == true then
 	CurrentCampaignRace = "orc"
 	CurrentCampaignPath = "campaigns/orc-exp/"
 	CampaignMapTitleList = {"levelx01o_c2.sms", "levelx02o_c2.sms", "levelx03o_c2.sms", "levelx04o_c2.sms", "levelx05o_c2.sms", "levelx06o_c2.sms", "levelx07o_c2.sms", "levelx08o_c2.sms", "levelx09o_c2.sms", "levelx10o_c2.sms", "levelx11o_c2.sms", "levelx12o_c2.sms"}

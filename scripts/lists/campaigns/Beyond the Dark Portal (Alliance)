@@ -25,7 +25,7 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-if ((wargus.tales == false) and (wargus.expansion == true)) then
+if wargus.expansion == true then
 	CurrentCampaignRace = "human"
 	CurrentCampaignPath = "campaigns/human-exp/"
 	CampaignMapTitleList = {"levelx01h_c2.sms", "levelx02h_c2.sms", "levelx03h_c2.sms", "levelx04h_c2.sms", "levelx05h_c2.sms", "levelx06h_c2.sms", "levelx07h_c2.sms", "levelx08h_c2.sms", "levelx09h_c2.sms", "levelx10h_c2.sms", "levelx11h_c2.sms", "levelx12h_c2.sms"}

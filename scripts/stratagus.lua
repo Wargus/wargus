@@ -58,11 +58,7 @@ wargus = {}
 
 Load("scripts/wc2-config.lua")
 
-if (wargus.tales == true) then
-	wargus.Name = _("Aleona's Tales")
-else
-	wargus.Name = _("Wargus")
-end
+wargus.Name = _("Wargus")
 wargus.Homepage = "https://wargus.github.io"
 wargus.Copyright = _("(c) 1998-2020 by The Stratagus Project.")
 
@@ -575,9 +571,5 @@ Load("scripts/ai/ai_redribbon_2012.lua")
 Load("scripts/ai/ai_redribbon_2014.lua")
 Load("scripts/ai/ai_redribbon_2015.lua")
 Load("scripts/ai/names.lua")
-
-if (wargus.tales == true) then
-	Load("scripts/caanoo/override.lua")
-end
 
 DebugPrint("... ready!\n")

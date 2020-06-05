@@ -71,12 +71,7 @@ DefineDecorations({Index = "ShadowFly", ShowOpponent = true, ShowWhenMax = true,
 --  Define Panels
 --
 local info_panel_x = 0
-local info_panel_y
-if (wargus.tales == true) then
-	info_panel_y = Video.Height - 136 - 24 - 16
-else
-	info_panel_y = 160
-end
+local info_panel_y = 160
 
 
 local min_damage = Div(ActiveUnitVar("PiercingDamage", "Value", "Initial"), 2)
@@ -369,12 +364,7 @@ function GetRGBA(r, g, b, a)
         return b + g*0x100 + r*0x10000 + a*0x1000000
 end
 
-PopupFont = nil
-if (wargus.tales == true) then
-	PopupFont = "game"
-else
-	PopupFont = "small"
-end
+PopupFont = "small"
 
 local HumanPopupBackgroundColor = GetRGBA(0,32,96, 208)
 local HumanPopupBorderColor = GetRGBA(192,192,255, 160)

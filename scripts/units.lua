@@ -527,7 +527,6 @@ end
 -- Load the different races
 Load("scripts/human/units.lua")
 Load("scripts/orc/units.lua")
-Load("scripts/caanoo/units.lua")
 
 -- Hardcoded unit-types, moved from Stratagus to games
 UnitTypeHumanWall = UnitTypeByIdent("unit-human-wall");

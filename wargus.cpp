@@ -39,17 +39,11 @@
                            "contrib", "graphics/ui", \
                            "maps", "maps", \
                            "shaders", "shaders", \
-                           "scripts", "scripts", \
-                           ":optional:", \
-                           "music/TimGM6mb.sf2", "music/TimGM6mb.sf2"
+                           "scripts", "scripts"
+                           // ":optional:", \
+                           // "music/TimGM6mb.sf2", "music/TimGM6mb.sf2"
 
-#ifdef WIN32
 #define CONTRIB_DIRECTORIES { __wargus_contrib__, NULL }
-#else
-// for convenience during development, we also try to copy the system
-// soundfont to the data directory on linux
-#define CONTRIB_DIRECTORIES { __wargus_contrib__, "/usr/share/sounds/sf2/TimGM6mb.sf2", "music/TimGM6mb.sf2", NULL }
-#endif
 #define GAME_SHOULD_EXTRACT_AGAIN (tinyfd_messageBox("Extract more?", \
                                                      "Extract from an additional expansion CD?", \
                                                      "yesno",           \

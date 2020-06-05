@@ -1,7 +1,0 @@
-DefinePlayerTypes("computer","nobody","nobody","computer","person","nobody","computer")
-PresentMap("Seawill Forests", 3, 128, 192, 1)
-SetMapTeams(0, 1, 1)
-SetMapTeams(4, 1, 2)
-SetMapTeams(3, 2, 1)
-SetMapTeams(6, 3, 1)
-DefineMapSetup("campaigns/human-tales/level01h_c.sms")

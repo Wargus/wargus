@@ -25,9 +25,7 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-if (wargus.tales == false) then
-	CurrentCampaignRace = "orc"
-	CurrentCampaignPath = "campaigns/orc/"
-	CampaignMapTitleList = {"level01o_c2.sms", "level02o_c2.sms", "level03o_c2.sms", "level04o_c2.sms", "level05o_c2.sms", "level06o_c2.sms", "level07o_c2.sms", "level08o_c2.sms", "level09o_c2.sms", "level10o_c2.sms", "level11o_c2.sms", "level12o_c2.sms", "level13o_c2.sms", "level14o_c2.sms"}
-	RunCampaignSubmenu("scripts/orc/campaign1.lua")
-end
+CurrentCampaignRace = "orc"
+CurrentCampaignPath = "campaigns/orc/"
+CampaignMapTitleList = {"level01o_c2.sms", "level02o_c2.sms", "level03o_c2.sms", "level04o_c2.sms", "level05o_c2.sms", "level06o_c2.sms", "level07o_c2.sms", "level08o_c2.sms", "level09o_c2.sms", "level10o_c2.sms", "level11o_c2.sms", "level12o_c2.sms", "level13o_c2.sms", "level14o_c2.sms"}
+RunCampaignSubmenu("scripts/orc/campaign1.lua")

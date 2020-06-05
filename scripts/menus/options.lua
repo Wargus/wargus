@@ -535,9 +535,7 @@ function BuildOptionsMenu()
       vlist[i]=""..tostring(videoModes[i*2-1]).." x "..tostring(videoModes[i*2])..""
    end
 
-   if (wargus.tales == false) then
-      menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, ((Video.Width - 640) / 2 + 320), (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
-   end
+   menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, ((Video.Width - 640) / 2 + 320), (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
 
    menu:addLabel(_("Video Options"), offx + 176, offy + 1 + 26*-2)
    menu:addLabel(_("Video Resolution"), offx + 16, offy + 34 , Fonts["game"], false)

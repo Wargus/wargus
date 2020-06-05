@@ -1023,9 +1023,7 @@ function RunSinglePlayerTypeMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
 
-  if (wargus.tales == false) then
-    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
-  end
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
   menu:addLabel(_("~<Single Player~>"), offx + 320, offy + 212 - 25)
   local buttonNewMap =
   menu:addFullButton(_("~!Standard Game"), "s", offx + 208, offy + 104 + 36*3,
@@ -1108,9 +1106,7 @@ function RunSinglePlayerGameMenu()
   -- Logo
   menu:addLabel(_("~<Single Player Game Setup~>"), offx + 640/2 + 12, offy + 35)
   -- Copyright information.
-  if (wargus.tales == false) then
-    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
-  end
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
   
   -- Error handling function
   function ErrorMessage(errmsg)
@@ -1539,9 +1535,7 @@ function BuildProgramStartMenu()
   --menu:addLabel("Stratagus V" .. GetStratagusVersion() .. "  " .. GetStratagusHomepage(), offx + 320, offy + 390 + 18*1)
   --menu:addLabel(wargus.Copyright, offx + 320, offy + 390 + 18*4)
 
-  if (wargus.tales == false) then
-    menu:addLabel(wargus.Name .. _(" V") .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
-  end
+  menu:addLabel(wargus.Name .. _(" V") .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
   
   menu:addFullButton(_("~!Single Player Game"), "s", offx + 208, offy + 104 + 36*0,
     function() RunSinglePlayerTypeMenu(); menu:stop(1) end)

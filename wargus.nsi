@@ -45,7 +45,6 @@
 
 ; General variables
 !define NAME "Wargus"
-!define TALES_NAME "Wargus - Aleonas Tales"
 !define VERSION "2.4.3"
 !define VIVERSION "${VERSION}.0"
 !define HOMEPAGE "https://wargus.github.io"
@@ -58,14 +57,12 @@
 
 !define ICON "wargus.ico"
 !define EXE "wargus.exe"
-!define TALES "aleonas_tales.exe"
 !define WARTOOL "wartool.exe"
 !define PUDCONVERT "pudconvert.exe"
 
 ; -- have to try and copy these, VS might have put them under (Release|Debug)
 !system "powershell -Command $\"& {cp **\${WARTOOL} ${WARTOOL}}$\""
 !system "powershell -Command $\"& {cp **\${EXE} ${EXE}}$\""
-!system "powershell -Command $\"& {cp **\${TALES} ${TALES}}$\""
 !system "powershell -Command $\"& {cp **\${PUDCONVERT} ${PUDCONVERT}}$\""
 
 !define CDDA2WAV "cdda2wav.exe"
@@ -224,7 +221,6 @@ Section "-${NAME}"
 
 	SetOutPath "$INSTDIR"
 	File "${EXE}"
-	File "${TALES}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
@@ -269,14 +265,6 @@ Section "-${NAME}"
 	File /r "scripts\"
 	SetOutPath "$INSTDIR\campaigns"
 	File /r "campaigns\"
-	SetOutPath "$INSTDIR\graphics"
-	File /r "graphics\"
-	SetOutPath "$INSTDIR\music"
-	File /r "music\"
-	SetOutPath "$INSTDIR\sounds"
-	File /r "sounds\"
-	CreateShortCut "$SMPROGRAMS\$STARTMENUDIR\${TALES_NAME}.lnk" "$INSTDIR\${TALES}"
-	CreateShortcut "$DESKTOP\${TALES_NAME}.lnk" "$INSTDIR\${TALES}"
 
 	SetOutPath "$INSTDIR"
 
@@ -357,11 +345,9 @@ Section "un.${NAME}" Executable
 
 	!insertmacro MUI_STARTMENU_GETFOLDER Application $STARTMENUDIR
 	Delete "$SMPROGRAMS\$STARTMENUDIR\${NAME}.lnk"
-	Delete "$SMPROGRAMS\$STARTMENUDIR\${TALES_NAME}.lnk"
 	Delete "$SMPROGRAMS\$STARTMENUDIR\Uninstall.lnk"
 	RMDir "$SMPROGRAMS\$STARTMENUDIR"
 	Delete "$DESKTOP\${NAME}.lnk"
-	Delete "$DESKTOP\${TALES_NAME}.lnk"
 
 	DeleteRegKey HKLM "${REGKEY}"
 	DeleteRegValue HKLM "${STRATAGUS_REGKEY}\Games" "${NAME}"

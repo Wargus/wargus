@@ -588,5 +588,3 @@ DefineSpell("spell-whirlwind",
 	"autocast", {"range", 12, "priority", {"Priority", true}, "condition", {"Building", "only", "opponent", "only"}, "position-autocast", SpellBlizzard},
 	"ai-cast", {"range", 12, "priority", {"Priority", true}, "condition", {"Building", "only", "opponent", "only"}, "position-autocast", SpellBlizzard}
 )
-
-Load("scripts/caanoo/spells.lua")

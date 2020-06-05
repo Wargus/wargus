@@ -25,6 +25,7 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
+AiRedRibbon_Setup_2014()
 function AiEvilDragon()
 	if ((GameCycle > 15000) and (GameCycle < 16000) and (GetPlayerData(AiPlayer(), "UnitTypesCount", "unit-evildragon") == 0)) then
 		CreateUnit("unit-evildragon", AiPlayer(), {64, 62})

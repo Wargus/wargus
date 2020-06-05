@@ -25,8 +25,4 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-if (wargus.tales == true) then
-	Load("scripts/tilesets/tales/swamp.lua")
-else
-	Load("scripts/tilesets/wargus/swamp.lua")
-end
+Load("scripts/tilesets/wargus/swamp.lua")
