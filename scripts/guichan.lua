@@ -554,19 +554,30 @@ end
       updatelist()
     else
       local i
-      for i=string.len(default)-1,1,-1 do
-        if (string.sub(default, i, i) == "/") then
-          bq.path = string.sub(default, 1, i)
-          updatelist()
+      if string.match(default, "/") then
+         for i=string.len(default)-1,1,-1 do
+            if (string.sub(default, i, i) == "/") then
+               bq.path = string.sub(default, 1, i)
+               updatelist()
 
-          local f = string.sub(default, i + 1)
-          for i=1,table.getn(bq.itemslist) do
-            if (bq.itemslist[i] == f) then
-              bq:setSelected(i - 1)
+               local f = string.sub(default, i + 1)
+               for i=1,table.getn(bq.itemslist) do
+                  if (bq.itemslist[i] == f) then
+                     bq:setSelected(i - 1)
+                  end
+               end
+               break
             end
-          end
-          break
-        end
+         end
+      else
+         bq.path = path
+         updatelist()
+         for i=1,table.getn(bq.itemslist) do
+            if (bq.itemslist[i] == default) then
+               bq:setSelected(i - 1)
+               break
+            end
+         end
       end
     end
 
@@ -1047,7 +1058,7 @@ function RunSinglePlayerGameModeMenu()
 
   menu:addLabel(_("Standard Game"), 176, 8)
 
-  local browser = menu:addBrowser("scripts/lists/maps/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
+  local browser = menu:addBrowser("scripts/lists/maps/", "", 24, (24+8+8), (300+5), (318-24-8-8-24), "Skirmish Modern")
 
   menu:addHalfButton("~!OK", "o", 48, 318,
     function()
@@ -1610,26 +1621,56 @@ function RunLoadModMenu()
 end
 
 function RunModCampaignGameMenu()
-  buttonStatut = 0
-  local menu = WarMenu(nil, panel(5), false)
-  menu:setSize(352, 352)
-  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
-  menu:setDrawMenusUnder(true)
+  local menu = WarMenu()
+  local offx = (Video.Width - 640) / 2
+  local offy = (Video.Height - 480) / 2
 
-  menu:addLabel(_("Campaign Game"), 176, 8)
+  local path = "scripts/lists/campaigns/"
+  local campaignList = ListFilesInDirectory(path)
+  local lastCampaign = 0
+  local currentPrefix = nil
+  local usedAccellerators = {}
 
-  local browser = menu:addBrowser("scripts/lists/campaigns/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
+  for i,f in ipairs(campaignList) do
+     local prefix = string.match(f, "^([%w%s]+%w)")
+     local btn = string.match(f, "%(([%w%s]+%w)%)$")
+     if btn and prefix then
+        if prefix ~= currentPrefix then
+           currentPrefix = prefix
+           local label = menu:addLabel(currentPrefix, Video.Width / 2, offy + 104 + 36*lastCampaign)
+           label:setAlignment(MultiLineLabel.CENTER)
+           lastCampaign = lastCampaign + 0.5
+        end
+     else
+        btn = f
+     end
+     local accell = ""
+     for idx=1,#btn do
+        local used = false
+        accell = string.lower(string.sub(btn, idx, idx))
+        for _,usedAccel in ipairs(usedAccellerators) do
+           if usedAccel == accell then
+              used = true
+              break
+           end
+        end
+        if not used then
+           table.insert(usedAccellerators, accell)
+           btn = string.sub(btn, 1, idx - 1) .. "~!" .. string.sub(btn, idx)
+           break
+        else
+           accell = ""
+        end
+     end
+     menu:addFullButton(btn, accell, offx + 208, offy + 104 + 36*lastCampaign, function()
+                           Load(path .. f)
+                           menu:stop()
+     end)
+     lastCampaign = lastCampaign + 1
+  end
 
-  menu:addHalfButton(_("~!OK"), "o", 48, 318,
-    function()
-      if (browser:getSelected() < 0) then
-        return
-      end
-      Load(browser.path .. browser:getSelectedItem())
-      menu:stop()
-    end)
-  menu:addHalfButton(_("~!Cancel"), "c", 198, 318,
-    function() buttonStatut = 2; menu:stop(1); RunSinglePlayerTypeMenu() end)
+  menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 104 + 36*(lastCampaign + 2),
+    function() menu:stop() end)
 
   menu:run()
 end
