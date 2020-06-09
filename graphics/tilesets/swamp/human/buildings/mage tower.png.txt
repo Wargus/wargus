@@ -1,4 +1,0 @@
-Authors: Chris Hopp, Carlo Almario & Nikita Sadkov
-License: GPL2
-Origin: http://stratagus.com/games/aleonas-tales/
-fixed shading

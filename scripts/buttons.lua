@@ -32,7 +32,6 @@
 
 Load("scripts/human/buttons.lua")
 Load("scripts/orc/buttons.lua")
-Load("scripts/caanoo/buttons.lua")
 
 ------------------------------------------------------------------------------
 --  Define unit-button.

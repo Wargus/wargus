@@ -1520,14 +1520,6 @@ msgstr "- сохранить игру"
 msgid "- load game"
 msgstr "- загрузить игру"
 
-#: menus/help.lua:56
-msgid "- next shader (only OpenGL)"
-msgstr "- следующий шейдер (только OpenGL)"
-
-#: menus/help.lua:57
-msgid "- prev shader (only OpenGL)"
-msgstr "- предыдущий шейдер (только OpenGL)"
-
 #: menus/help.lua:87
 msgid "Keystroke Help Menu"
 msgstr "Горячие Клавиши"
@@ -2055,14 +2047,6 @@ msgstr "Разрешение экрана"
 #: menus/options.lua:544
 msgid "Full Screen"
 msgstr "Полноэкранный режим"
-
-#: menus/options.lua:555
-msgid "Scale original UI (restart required, implies OpenGL)"
-msgstr ""
-
-#: menus/options.lua:591
-msgid "Use OpenGL / OpenGL ES 1.1 (restart required)"
-msgstr "Включить OpenGL / OpenGL ES 1.1 (нужен перезапуск)"
 
 #: menus/options.lua:610
 msgid "You need to restart game to apply changes, exit now?"
@@ -3080,9 +3064,6 @@ msgstr "Дикари"
 
 #~ msgid "Meta~!server"
 #~ msgstr "Метасервер"
-
-#~ msgid "Set Maximum OpenGL Texture to 256"
-#~ msgstr "Ограничить размер OpenGL текстуры в 256"
 
 #~ msgid "(c) 2012-2016 by The Stratagus Project."
 #~ msgstr "(c) 2012-2016 by The Stratagus Project."

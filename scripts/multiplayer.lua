@@ -65,6 +65,7 @@ else
 
     CustomStartup = function()
       InitGameSettings()
+      GameSettings.GameType = 1 -- Free4All, so that AI players also attack each other
       InitNetwork1()
       local playerCount = 0
       local OldPresentMap = PresentMap

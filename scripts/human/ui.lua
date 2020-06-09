@@ -27,9 +27,5 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-if (wargus.tales == true) then
-	Load("scripts/human/ui_tales.lua")
-else
-	Load("scripts/human/ui_pandora.lua")
-end
+Load("scripts/human/ui_pandora.lua")
 SetDefaultTextColors(UI.NormalFontColor, UI.ReverseFontColor)

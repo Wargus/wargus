@@ -1,3 +1,0 @@
-DefinePlayerTypes("nobody", "computer", "nobody", "nobody", "person", "nobody", "computer", "nobody", "nobody", "computer", "nobody", "nobody", "nobody", "nobody", "rescue-passive")
-PresentMap("2nd Level Mythic Campaign", 2, 128, 128, 1)
-DefineMapSetup("campaigns/human-tales/level02h_c.sms")

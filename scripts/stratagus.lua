@@ -58,15 +58,11 @@ wargus = {}
 
 Load("scripts/wc2-config.lua")
 
-if (wargus.tales == true) then
-	wargus.Name = _("Aleona's Tales")
-else
-	wargus.Name = _("Wargus")
-end
+wargus.Name = _("Wargus")
 wargus.Homepage = "https://wargus.github.io"
 wargus.Copyright = _("(c) 1998-2020 by The Stratagus Project.")
 
-wargus.Version = "2.4.3"
+wargus.Version = "3.0.0"
 wargus.Licence = "GPL v2+"
 
 
@@ -389,7 +385,6 @@ local defaultPreferences = {
 	KeyScrollSpeed = 4,
 	LastDifficulty = 2,
 	LeaveStopScrolling = true,      --  Enable/disable stopping scrolling when mouse leave.
-	MaxOpenGLTexture = 0,
 	MineNotifications = true,
 	MinimapWithTerrain = true,      --  Choose your default for minimap with/without terrain.
 	MouseScrollSpeed = 1,
@@ -411,17 +406,14 @@ local defaultPreferences = {
 	StratagusTranslation = "",
 	TipNumber = 0,
 	UseFancyBuildings = false,      --  Enable/disable fancy building (random mirroring buildings)
-	UseOpenGL = false,
 	VideoFullScreen = false,
 	VideoViewportHeight = 600,
 	VideoViewportWidth = 800,
-	VideoShaderIndex = 0,
-	ZoomNoResize = false,
+	VideoShader = "xBRZ",
 	ViewportMode = 0,
 	ServerList = {},
 	MetaServer = "",
 	MetaPort = 0,
-	SF2SoundFont = "music/TimGM6mb.sf2",
 	SimplifiedAutoTargeting = true 
 }
 
@@ -475,7 +467,6 @@ SetHoldClickDelay(wc2.preferences.HoldClickDelayInMs)
 SetKeyScroll(wc2.preferences.EnableKeyboardScrolling)
 SetLeaveStops(wc2.preferences.LeaveStopScrolling)
 SetLocalPlayerName(wc2.preferences.PlayerName)
-SetMaxOpenGLTexture(wc2.preferences.MaxOpenGLTexture)
 SetMinimapTerrain(wc2.preferences.MinimapWithTerrain)
 SetMouseScroll(wc2.preferences.EnableMouseScrolling)
 SetKeyScrollSpeed(wc2.preferences.KeyScrollSpeed)
@@ -485,19 +476,10 @@ SetMouseScrollSpeedDefault(wc2.preferences.MouseScrollSpeedDefault)
 SetMusicEnabled(wc2.preferences.MusicEnabled)
 SetMusicVolume(wc2.preferences.MusicVolume)
 SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameTranslation)
-SetUseOpenGL(wc2.preferences.UseOpenGL)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
 SetVideoResolution(wc2.preferences.VideoViewportWidth, wc2.preferences.VideoViewportHeight)
-if (wc2.preferences.ZoomNoResize) then
-   SetZoomNoResize(640, 480) -- the original Warcraft was 640x480
-else
-   SetZoomNoResize(false) -- disable
-end
-Video.ShaderIndex = wc2.preferences.VideoShaderIndex
-SwitchToShader()
 
 UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
-Preference.SF2Soundfont = wc2.preferences.SF2SoundFont
 Preference.MineNotifications = wc2.preferences.MineNotifications
 Preference.ShowMessages = wc2.preferences.ShowMessages
 Preference.PauseOnLeave = wc2.preferences.PauseOnLeave
@@ -589,9 +571,5 @@ Load("scripts/ai/ai_redribbon_2012.lua")
 Load("scripts/ai/ai_redribbon_2014.lua")
 Load("scripts/ai/ai_redribbon_2015.lua")
 Load("scripts/ai/names.lua")
-
-if (wargus.tales == true) then
-	Load("scripts/caanoo/override.lua")
-end
 
 DebugPrint("... ready!\n")

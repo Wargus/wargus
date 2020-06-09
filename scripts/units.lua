@@ -29,6 +29,14 @@
 
 UnitTypeFiles = {}
 
+function ShadowDefinition(scale)
+   if wc2.preferences.UseFancyShadows then
+      return {"offset", {3, 21}, "scale", 1}
+   else
+      return {"file", "missiles/unit_shadow.png", "size", {32, 32}, "offset", {-3 * (scale + 1), 10 * (scale + 1)}, "sprite-frame", scale}
+   end
+end
+
 -- Load the animations for the units.
 Load("scripts/anim.lua")
 
@@ -109,6 +117,7 @@ DefineUnitType("unit-nothing-36", { Name = _("Nothing 36"),
 
 DefineUnitType("unit-daemon", { Name = _("Daemon"),
   Image = {"file", "neutral/units/daemon.png", "size", {72, 72}},
+  Shadow = ShadowDefinition(1),
   Animations = "animations-daemon", Icon = "icon-daemon",
   Costs = {"time", 70, "gold", 500, "oil", 50},
   NeutralMinimapColor = {192, 0, 0},
@@ -122,7 +131,7 @@ DefineUnitType("unit-daemon", { Name = _("Daemon"),
   Priority = 63,
   Points = 100,
   Demand = 1,
-  Type = "fly", ShadowFly = {Value = 1, Enable = true},
+  Type = "fly",
   RightMouseAction = "attack",
   CanAttack = true,
   CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
@@ -527,7 +536,6 @@ end
 -- Load the different races
 Load("scripts/human/units.lua")
 Load("scripts/orc/units.lua")
-Load("scripts/caanoo/units.lua")
 
 -- Hardcoded unit-types, moved from Stratagus to games
 UnitTypeHumanWall = UnitTypeByIdent("unit-human-wall");

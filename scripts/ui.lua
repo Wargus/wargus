@@ -50,7 +50,6 @@ if (CanAccessFile("ui/mana2.png")) then
 	DefineDecorations({Index = "GiveResource", ShowWhenMax = true, HideNeutral = false, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
 	DefineDecorations({Index = "CarryResource", HideNeutral = false, CenterX = true,OffsetPercent = {50, 100},Method = {"sprite", {"sprite-mana"}}})
 end
-DefineSprites({Name = "sprite-shadow", File = "missiles/unit_shadow.png", Offset = {3, 42}, Size = {32, 32}})
 DefineSprites({Name = "sprite-spell", File = "ui/bloodlust,haste,slow,invisible,shield.png", Offset = {1, 1}, Size = {16, 16}})
 
 
@@ -64,19 +63,12 @@ DefineDecorations({Index = "Invisible", ShowOpponent = true,
   Offset = {32, 0}, Method = {"static-sprite", {"sprite-spell", 3}}})
 DefineDecorations({Index = "UnholyArmor", ShowOpponent = true,
   Offset = {48, 0}, Method = {"static-sprite", {"sprite-spell", 4}}})
-DefineDecorations({Index = "ShadowFly", ShowOpponent = true, ShowWhenMax = true, ShowWhenNull = true,
-  Offset = {0, 0}, Method = {"sprite", {"sprite-shadow"}}})
 
 --
 --  Define Panels
 --
 local info_panel_x = 0
-local info_panel_y
-if (wargus.tales == true) then
-	info_panel_y = Video.Height - 136 - 24 - 16
-else
-	info_panel_y = 160
-end
+local info_panel_y = 160
 
 
 local min_damage = Div(ActiveUnitVar("PiercingDamage", "Value", "Initial"), 2)
@@ -366,19 +358,10 @@ DefineCursor({
   Size = {32, 24}})
 
 function GetRGBA(r, g, b, a)
-	if (wc2.preferences.UseOpenGL == false) then
-		return b + g*0x100 + r*0x10000 + a*0x1000000
-	else
-		return r + g*0x100 + b*0x10000 + a*0x1000000
-	end
+        return b + g*0x100 + r*0x10000 + a*0x1000000
 end
 
-PopupFont = nil
-if (wargus.tales == true) then
-	PopupFont = "game"
-else
-	PopupFont = "small"
-end
+PopupFont = "small"
 
 local HumanPopupBackgroundColor = GetRGBA(0,32,96, 208)
 local HumanPopupBorderColor = GetRGBA(192,192,255, 160)

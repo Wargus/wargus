@@ -305,6 +305,15 @@ function RunPreferencesMenu()
       simplifiedAutoTargeting:setMarked(wc2.preferences.SimplifiedAutoTargeting)
    end
 
+   local useFancyShadows = menu:addImageCheckBox(_("~!*Animated shadows"), 10, 10 + 18 * 13,  offi, offi2, oni, oni2, function() end)
+   useFancyShadows:setActionCallback(
+      function()
+	 Preference.UseFancyShadows = useFancyShadows:isMarked()
+         wc2.preferences.UseFancyShadows = useFancyShadows:isMarked()
+         SavePreferences()
+   end)
+   useFancyShadows:setMarked(wc2.preferences.UseFancyShadows)
+
    local selectionStyleList = {"rectangle", "alpha-rectangle", "circle", "alpha-circle", "corners"}
    local selectionStyleList1 = {_("rectangle"), _("alpha-rectangle"), _("circle"), _("alpha-circle"), _("corners")}
    menu:addLabel(_("Selection style:"), 225, 28 + 19 * 0, Fonts["game"], false)
@@ -326,29 +335,31 @@ function RunPreferencesMenu()
    end)
    viewportMode:setSize(120, 16)
 
-   if (GetUseOpenGL()) then
-      local function updateShader()
-	 Video.ShaderIndex = wc2.preferences.VideoShaderIndex
-	 SwitchToShader()
-	 SavePreferences()
+   if GetShaderNames then
+      local shaderNames = GetShaderNames()
+      if #shaderNames > 0 then
+         menu:addLabel(_("Shader:"), 225, 28 + 19 * 4, Fonts["game"], false)
+         local shaderName = menu:addDropDown(shaderNames, 225, 28 + 19 * 5, function(dd) end)
+         local function getCurrentShaderIndex()
+            local currentShader = GetShader()
+            for idx,name in pairs(shaderNames) do
+               if name == currentShader then
+                  return idx
+               end
+            end
+         end
+         shaderName:setSelected(getCurrentShaderIndex() - 1)
+         shaderName:setActionCallback(function()
+               local newShader = shaderNames[shaderName:getSelected() + 1];
+               if SetShader(newShader) then
+                  Preference.VideoShader = newShader
+                  wc2.preferences.VideoShader = newShader
+                  SavePreferences()
+               end
+         end)
+         shaderName:setSize(120, 16)
       end
-      menu:addLabel(_("Pixel Shader"), 225, 28 + 19 * 4, Fonts["game"], false)
-      local shadersliderleftbutton = menu:addImageLeftSliderButton(
-	 "", nil, 255, 28 + 19 * 5,
-	 function()
-	    wc2.preferences.VideoShaderIndex = wc2.preferences.VideoShaderIndex - 1
-	    updateShader()
-      end)
-      local shadersliderrightbutton = menu:addImageRightSliderButton(
-	 "", nil, 255 + 50, 28 + 19 * 5,
-	 function()
-	    wc2.preferences.VideoShaderIndex = wc2.preferences.VideoShaderIndex + 1
-	    updateShader()
-      end)
    end
-
-   menu:addLabel(_("~!*SF2 soundfont path :"), 10, 10 + 18 * 14, Fonts["game"], false)
-   local sf2SoundfontPath = menu:addTextInputField(Preference.SF2Soundfont, 10, 10 + 18 * 15, 200)
 
    menu:addLabel(_("~!* - requires restart"), 10, 10 + 18 * 16, Fonts["game"], false)
 
@@ -366,8 +377,6 @@ function RunPreferencesMenu()
 			 wc2.preferences.EnhancedEffects = enhancedEffects:isMarked()
 			 wc2.preferences.DeselectInMine = Preference.DeselectInMine
 			 wc2.preferences.SimplifiedAutoTargeting = Preference.SimplifiedAutoTargeting
-			 Preference.SF2SoundFont = sf2SoundfontPath:getText()
-			 wc2.preferences.SF2SoundFont = sf2SoundfontPath:getText()
 			 if (not IsNetworkGame()) then
 			    wc2.preferences.FogOfWar = fogOfWar:isMarked()
 			 end
@@ -536,9 +545,7 @@ function BuildOptionsMenu()
       vlist[i]=""..tostring(videoModes[i*2-1]).." x "..tostring(videoModes[i*2])..""
    end
 
-   if (wargus.tales == false) then
-      menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, ((Video.Width - 640) / 2 + 320), (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
-   end
+   menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, ((Video.Width - 640) / 2 + 320), (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
 
    menu:addLabel(_("Video Options"), offx + 176, offy + 1 + 26*-2)
    menu:addLabel(_("Video Resolution"), offx + 16, offy + 34 , Fonts["game"], false)
@@ -560,58 +567,6 @@ function BuildOptionsMenu()
 				menu:stop(1)
    end)
    b:setMarked(Video.FullScreen)
-
-   local isZoomNoResize = GetZoomNoResize()
-   local checkZoomNoResize = menu:addImageCheckBox(
-      _("Scale original UI (restart required, implies OpenGL)"), offx + 17, offy + 55 + 26*8 + 14, offi, offi2, oni, oni2,
-      function()
-	 isZoomNoResize = not isZoomNoResize
-	 wc2.preferences.ZoomNoResize = isZoomNoResize
-	 if (isZoomNoResize) then
-	    wc2.preferences.UseOpenGL = true
-	 end
-	 SavePreferences()
-   end)
-   checkZoomNoResize:setMarked(isZoomNoResize)
-
-   if (GetUseOpenGL()) then
-      local function updateShader()
-	 Video.ShaderIndex = wc2.preferences.VideoShaderIndex
-	 SwitchToShader()
-	 SavePreferences()
-      end
-      local shadersliderleftbutton = menu:addImageLeftSliderButton(
-	 "", nil, offx + 17, offy + 55 + 26*9 + 14,
-	 function()
-	    wc2.preferences.VideoShaderIndex = wc2.preferences.VideoShaderIndex - 1
-	    updateShader()
-      end)
-      b = Label("Pixel Shader (for scaling UI)")
-      b:setFont(CFont:Get("game"))
-      b:adjustSize();
-      menu:addCentered(b, offx + 17 + 20 + 150, offy + 55 + 26*9 + 14)
-      local shadersliderrightbutton = menu:addImageRightSliderButton(
-	 "", nil, offx + 17 + 20 + 300, offy + 55 + 26*9 + 14,
-	 function()
-	    wc2.preferences.VideoShaderIndex = wc2.preferences.VideoShaderIndex + 1
-	    updateShader()
-      end)
-   end
-
-   local usesOpenGL = GetUseOpenGL()
-   checkOpenGL = menu:addImageCheckBox(_("Use OpenGL / OpenGL ES 1.1 (restart required)"), offx + 17, offy + 55 + 26*10 + 14, offi, offi2, oni, oni2,
-				       function()
-					  --TODO: Add function for immediately change state of OpenGL
-					  usesOpenGL = not usesOpenGL
-					  wc2.preferences.UseOpenGL = usesOpenGL
-					  -- not using OpenGL means we cannot scale the UI. So set the preferences to false if it was true and we disabled OpenGL just now
-					  wc2.preferences.ZoomNoResize = wc2.preferences.ZoomNoResize and usesOpenGL
-					  -- and update the checkbox to whatever the preference is now
-					  checkZoomNoResize:setMarked(wc2.preferences.ZoomNoResize)
-					  SavePreferences()
-					  --menu:stop(1) --TODO: Enable if we have an OpenGL function
-   end)
-   checkOpenGL:setMarked(usesOpenGL)
 
    menu:addHalfButton("~!OK", "o", offx + 123, offy + 55 + 26*11 + 14, function() menu:stop() end)
 

@@ -30,15 +30,9 @@
 CFont:New("large", CGraphic:New("ui/fonts/large.png", 17, 17))
 CFont:New("small", CGraphic:New("ui/fonts/small.png", 7, 6))
 
-if (wargus.tales == true) then
-	CFont:New("game", CGraphic:New("ui/fonts/game.png", 14, 14))
-	CFont:New("small-title", CGraphic:New("ui/fonts/large.png", 17, 17))
-	CFont:New("large-title", CGraphic:New("ui/fonts/large.png", 17, 17))
-else
-	CFont:New("game", CGraphic:New("ui/fonts/game.png", wargus.game_font_width, 14))
-	CFont:New("small-title", CGraphic:New("ui/fonts/small_episode_titles.png", 32, 35))
-	CFont:New("large-title", CGraphic:New("ui/fonts/large_episode_titles.png", 52, 50))
-end
+CFont:New("game", CGraphic:New("ui/fonts/game.png", wargus.game_font_width, 14))
+CFont:New("small-title", CGraphic:New("ui/fonts/small_episode_titles.png", 32, 35))
+CFont:New("large-title", CGraphic:New("ui/fonts/large_episode_titles.png", 52, 50))
 
 --	FIXME: only yellow, white, and grey are correct.
 

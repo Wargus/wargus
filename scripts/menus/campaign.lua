@@ -275,35 +275,24 @@ function RunCampaignSubmenu(campaign)
 	missionList[i] = CampaignButtonTitle(i)
   end
   local missionListBox = menu:addImageListBox(offx + 80, offy + 100, 480, 250, missionList)
+  missionListBox:setSelected(#missionList - 1)
   menu:addLabel(_("~<AI Difficulty:~>"), offx + 80, offy + 214 + (36 * 4), Fonts["game"], false)
   difficulty = menu:addDropDown(difficulty_types, offx + 200, offy + 212 + (36 * 4),
     function(dd) end)
   difficulty:setSize(170, 20)
   difficulty:setSelected(1)
   
-  local goButton = menu:addFullButton(_("~!Play mission"), "p", offx + 208, offy + 212 + (36 * 5),  
+  local goButton = menu:addFullButton(_("~!Start mission"), "s", offx + 208, offy + 212 + (36 * 5),  
 			function() 
 				GameSettings.Difficulty = difficulty:getSelected() + 1
 				wc2.preferences.LastDifficulty = GameSettings.Difficulty
 				SavePreferences()
 				return CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu) 
 			end)
-  local function UpdateGo()
-	if missionListBox:getSelected() ~= -1 then
-		 goButton:setVisible(true)
-	else
-		goButton:setVisible(false)
-	end
-  end
-  goButton:setVisible(false)
-  local listener = LuaActionListener(UpdateGo)
-  menu:addLogicCallback(listener)
   menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 212 + (36 * 6),
     function()  menu:stop(1); RunSinglePlayerTypeMenu(); currentCampaign = nil; currentState = nil; end)
 
-  if (wargus.tales == false) then
-    menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
-  end
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
   
   menu:run()
 

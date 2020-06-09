@@ -1,4 +1,0 @@
-Authors: Jose Plans, Nikita Sadkov 2015
-License: GPL2
-Origin: http://stratagus.com/games/aleonas-tales/
-this edit tries to fix colors
