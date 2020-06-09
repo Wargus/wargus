@@ -49,7 +49,7 @@ function RunDiplomacyMenu()
 
       sharedvisioncb = menu:addImageCheckBox("", 276, (18 * j) + 24, offi, offi2, oni, oni2,
         function() end)
-      sharedvisioncb:setMarked(ThisPlayer:IsSharedVision(Players[i]))
+      sharedvisioncb:setMarked(ThisPlayer:HasSharedVisionWith(Players[i]))
       sharedvision[j] = sharedvisioncb
 
       if ((not Players[i]:IsAllied(ThisPlayer)) and Players[i].Type == PlayerComputer) then
@@ -104,11 +104,11 @@ function RunDiplomacyMenu()
 
         -- shared vision
         if (sharedvision[j]:isMarked()) then
-          if (ThisPlayer:IsSharedVision(Players[i]) == false) then
+          if (ThisPlayer:HasSharedVisionWith(Players[i]) == false) then
             SetSharedVision(ThisPlayer.Index, true, i)
           end
         else
-          if (ThisPlayer:IsSharedVision(Players[i])) then
+          if (ThisPlayer:HasSharedVisionWith(Players[i])) then
             SetSharedVision(ThisPlayer.Index, false, i)
           end
         end
