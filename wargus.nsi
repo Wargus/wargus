@@ -228,11 +228,7 @@ Section "-${NAME}"
 
 	; -- XXX TODO: include Stratagus and dependencies some better way
 	File "stratagus.exe"
-	File "libfluidsynth.dll"
-	File "libglib-2.0-0.dll"
-	File "libgthread-2.0-0.dll"
-	File "lua51.dll"
-	File "SDL.dll"
+	File "*.dll"
 
 	SetOutPath "$INSTDIR\music"
 	File "${SF2BANK}"
