@@ -305,7 +305,7 @@ function RunPreferencesMenu()
       simplifiedAutoTargeting:setMarked(wc2.preferences.SimplifiedAutoTargeting)
    end
 
-   local useFancyShadows = menu:addImageCheckBox(_("~!*Animated shadows"), 10, 10 + 18 * 13,  offi, offi2, oni, oni2, function() end)
+   local useFancyShadows = menu:addImageCheckBox(_("~!*Animated shadows"), 10, 10 + 18 * 14,  offi, offi2, oni, oni2, function() end)
    useFancyShadows:setActionCallback(
       function()
 	 Preference.UseFancyShadows = useFancyShadows:isMarked()
