@@ -199,8 +199,9 @@ function RunPreferencesMenu()
    local menu = WarGameMenu(panel(5))
    menu:resize(352, 352)
    menu:addLabel(_("Preferences"), 352 / 2, 11, Fonts["large"], true)
-
-   local showHotkeys = menu:addImageCheckBox(_("Show Hotkeys"), 10, 10 + 18,  offi, offi2, oni, oni2,
+   
+   local row = 2;
+   local showHotkeys = menu:addImageCheckBox(_("Show Hotkeys"), 10, 10 + 18 * row,  offi, offi2, oni, oni2,
 					     function()
    end)
    showHotkeys:setMarked(UI.ButtonPanel.ShowCommandKey)
@@ -208,15 +209,17 @@ function RunPreferencesMenu()
       function()
 	 UI.ButtonPanel.ShowCommandKey = showHotkeys:isMarked()
    end)
-
-   local grabMouse = menu:addImageCheckBox(_("Grab Mouse"), 10, 10 + 18 * 2, offi, offi2, oni, oni2, function()end)
+   row = row + 1;
+   
+   local grabMouse = menu:addImageCheckBox(_("Grab Mouse"), 10, 10 + 18 * row, offi, offi2, oni, oni2, function()end)
    grabMouse:setMarked(GetGrabMouse())
    grabMouse:setActionCallback(
       function()
 	 SetGrabMouse(grabMouse:isMarked())
    end)
+   row = row + 1;
 
-   local showDamage = menu:addImageCheckBox(_("~!*Show damage"), 10, 10 + 18 * 3, offi, offi2, oni, oni2, function() end)
+   local showDamage = menu:addImageCheckBox(_("~!*Show damage"), 10, 10 + 18 * row, offi, offi2, oni, oni2, function() end)
    showDamage:setActionCallback(
       function()
 	 if showDamage:isMarked() == true then
@@ -226,20 +229,23 @@ function RunPreferencesMenu()
 	 end
    end)
    showDamage:setMarked(wc2.preferences.ShowDamage)
+   row = row + 1;
 
-   local showButtonPopups = menu:addImageCheckBox(_("~!*Show button popups"), 10, 10 + 18 * 4, offi, offi2, oni, oni2,
+   local showButtonPopups = menu:addImageCheckBox(_("~!*Show button popups"), 10, 10 + 18 * row, offi, offi2, oni, oni2,
 						  function()
    end)
    showButtonPopups:setMarked(wc2.preferences.ShowButtonPopups)
+   row = row + 1;
 
-   local mineNotifications = menu:addImageCheckBox(_("Mine notifications"), 10, 10 + 18 * 5,  offi, offi2, oni, oni2, function() end)
+   local mineNotifications = menu:addImageCheckBox(_("Mine notifications"), 10, 10 + 18 * row,  offi, offi2, oni, oni2, function() end)
    mineNotifications:setActionCallback(
       function()
 	 Preference.MineNotifications = mineNotifications:isMarked()
    end)
    mineNotifications:setMarked(Preference.MineNotifications)
+   row = row + 1;
 
-   local showOrders = menu:addImageCheckBox(_("Show orders"), 10, 10 + 18 * 6,  offi, offi2, oni, oni2, function() end)
+   local showOrders = menu:addImageCheckBox(_("Show orders"), 10, 10 + 18 * row,  offi, offi2, oni, oni2, function() end)
    showOrders:setActionCallback(
       function()
 	 if showOrders:isMarked() == true then
@@ -253,59 +259,67 @@ function RunPreferencesMenu()
    else
       showOrders:setMarked(false)
    end
+   row = row + 1;
 
-   local useFancyBuildings = menu:addImageCheckBox(_("Mirrored buildings"), 10, 10 + 18 * 7,  offi, offi2, oni, oni2, function() end)
+   local useFancyBuildings = menu:addImageCheckBox(_("Mirrored buildings"), 10, 10 + 18 * row,  offi, offi2, oni, oni2, function() end)
    useFancyBuildings:setActionCallback(
       function()
 	 SetFancyBuildings(useFancyBuildings:isMarked())
    end)
    useFancyBuildings:setMarked(wc2.preferences.UseFancyBuildings)
+   row = row + 1;
 
-   local showMessages = menu:addImageCheckBox(_("Show messages"), 10, 10 + 18 * 8,  offi, offi2, oni, oni2, function() end)
+   local showMessages = menu:addImageCheckBox(_("Show messages"), 10, 10 + 18 * row,  offi, offi2, oni, oni2, function() end)
    showMessages:setActionCallback(
       function()
 	 Preference.ShowMessages = showMessages:isMarked()
    end)
    showMessages:setMarked(wc2.preferences.ShowMessages)
+   row = row + 1;
 
-   local pauseOnLeave = menu:addImageCheckBox(_("Pause on leave"), 10, 10 + 18 * 9, offi, offi2, oni, oni2, function() end)
+   local pauseOnLeave = menu:addImageCheckBox(_("Pause on leave"), 10, 10 + 18 * row, offi, offi2, oni, oni2, function() end)
    pauseOnLeave:setActionCallback(
       function()
 	 Preference.PauseOnLeave = pauseOnLeave:isMarked()
    end)
    pauseOnLeave:setMarked(wc2.preferences.PauseOnLeave)
+   row = row + 1;
 
-   local enhancedEffects = menu:addImageCheckBox(_("~!*Enhanced effects"), 10, 10 + 18 * 10, offi, offi2, oni, oni2, function() end)
+   local enhancedEffects = menu:addImageCheckBox(_("~!*Enhanced effects"), 10, 10 + 18 * row, offi, offi2, oni, oni2, function() end)
    enhancedEffects:setMarked(wc2.preferences.EnhancedEffects)
+   row = row + 1;
 
-   local deselectInMine = menu:addImageCheckBox(_("Deselect in mines"), 10, 10 + 18 * 11, offi, offi2, oni, oni2, function() end)
+   local deselectInMine = menu:addImageCheckBox(_("Deselect in mines"), 10, 10 + 18 * row, offi, offi2, oni, oni2, function() end)
    deselectInMine:setActionCallback(
       function()
 	 Preference.DeselectInMine = deselectInMine:isMarked()
    end)
    deselectInMine:setMarked(wc2.preferences.DeselectInMine)
+   row = row + 1;
 
    local fogOfWar
    if (not IsNetworkGame()) then
-      fogOfWar = menu:addImageCheckBox(_("Fog of War"), 10, 10 + 18 * 12, offi, offi2, oni, oni2, function() end)
+      fogOfWar = menu:addImageCheckBox(_("Fog of War"), 10, 10 + 18 * row, offi, offi2, oni, oni2, function() end)
       fogOfWar:setActionCallback(
 	 function()
 	    SetFogOfWar(fogOfWar:isMarked())
       end)
       fogOfWar:setMarked(wc2.preferences.FogOfWar)
+      row = row + 1;
    end
 -- TODO: Set same Auto Targeting algorithm for all players in network game
    local simplifiedAutoTargeting
    if (not IsNetworkGame()) then
-      simplifiedAutoTargeting = menu:addImageCheckBox(_("Simplified auto targ."),  10, 10 + 18 * 13, offi, offi2, oni, oni2, function() end)
+      simplifiedAutoTargeting = menu:addImageCheckBox(_("Simplified auto targ."),  10, 10 + 18 * row, offi, offi2, oni, oni2, function() end)
       simplifiedAutoTargeting:setActionCallback(
 	 function()
 	    Preference.SimplifiedAutoTargeting = simplifiedAutoTargeting:isMarked()
       end)
       simplifiedAutoTargeting:setMarked(wc2.preferences.SimplifiedAutoTargeting)
+      row = row + 1;
    end
 
-   local useFancyShadows = menu:addImageCheckBox(_("~!*Animated shadows"), 10, 10 + 18 * 14,  offi, offi2, oni, oni2, function() end)
+   local useFancyShadows = menu:addImageCheckBox(_("~!*Animated shadows"), 10, 10 + 18 * row,  offi, offi2, oni, oni2, function() end)
    useFancyShadows:setActionCallback(
       function()
 	 Preference.UseFancyShadows = useFancyShadows:isMarked()
@@ -313,6 +327,7 @@ function RunPreferencesMenu()
          SavePreferences()
    end)
    useFancyShadows:setMarked(wc2.preferences.UseFancyShadows)
+   row = row + 1;
 
    local selectionStyleList = {"rectangle", "alpha-rectangle", "circle", "alpha-circle", "corners"}
    local selectionStyleList1 = {_("rectangle"), _("alpha-rectangle"), _("circle"), _("alpha-circle"), _("corners")}
