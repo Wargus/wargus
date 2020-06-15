@@ -1184,7 +1184,7 @@ DefineUnitType("unit-town-hall", { Name = _("Town Hall"),
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
+  Building = true, MainFacility = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
 				  },
@@ -1357,7 +1357,7 @@ DefineUnitType("unit-keep", { Name = _("Keep"),
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
+  Building = true, MainFacility = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
 				  },
@@ -1395,7 +1395,7 @@ DefineUnitType("unit-castle", { Name = _("Castle"),
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
+  Building = true, MainFacility = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
   CanStore = {"gold", "wood"},
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}

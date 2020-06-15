@@ -1215,7 +1215,7 @@ DefineUnitType("unit-great-hall", { Name = _("Great Hall"),
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
+  Building = true, MainFacility = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
 				  },
@@ -1457,7 +1457,7 @@ DefineUnitType("unit-stronghold", { Name = _("Stronghold"),
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
+  Building = true, MainFacility = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
 				  },
@@ -1495,7 +1495,7 @@ DefineUnitType("unit-fortress", { Name = _("Fortress"),
   Corpse = "unit-destroyed-4x4-place",
   ExplodeWhenKilled = "missile-explosion",
   Type = "land",
-  Building = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
+  Building = true, MainFacility = true, VisibleUnderFog = true, Center = true, WoodImprove = true, OilImprove = true,
   BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
 					}
 				  },
