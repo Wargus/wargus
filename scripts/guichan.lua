@@ -329,11 +329,17 @@ function menu:addImageButton(caption, hotkey, x, y, callback)
 	if (hotkey ~= "") then
 		b:setHotKey(hotkey)
 	end
+        b:setMouseCallback(
+           function(evtname)
+              if evtname == "mousePress" then
+                 PlaySound("click")
+              end
+        end)
 	b:setActionCallback(
-		function()
-			PlaySound("click")
-			callback()
-		end)
+           function()
+              PlaySound("click")
+              callback()
+        end)
 	self:add(b, x, y)
 	b:setBorderSize(0) -- Andrettin: make buttons not have the borders they previously had
 	return b
