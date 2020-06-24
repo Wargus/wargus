@@ -37,6 +37,76 @@ function ShadowDefinition(scale)
    end
 end
 
+-- animations for units need to spawn the appropriate death revealer when the
+-- death animation starts. These monkey patches on DefineAnimations and
+-- DefineUnitType take care of inserting the appropriate spawn in the Death
+-- animation of each unit
+local OldDefineUnitType = DefineUnitType
+local OldDefineAnimations = DefineAnimations
+
+local animationspecs = {}
+function DefineAnimations(name, tbl)
+   animationspecs[name] = tbl
+end
+local function tableShallowCopy(tbl)
+   res = {}
+   for k,v in pairs(tbl) do
+      res[k] = v
+   end
+   return res
+end
+function DefineUnitType(name, tbl)
+   local sight = tbl["SightRange"]
+   local size = tbl["TileSize"][1]
+   local animName = tbl["Animations"]
+   local animSpec = animationspecs[animName]
+   if animSpec == nil then
+      error("No animation " .. animName .. " defined for unit " .. name)
+   end
+   local animDeath = animSpec["Death"]
+   local corpse = tbl["Corpse"]
+   local explodeWhenKilled = tbl["ExplodeWhenKilled"]
+   local vanishes = tbl["Vanishes"] or tbl["Revealer"]
+   if (animDeath or corpse or explodeWhenKilled) and not vanishes and sight > 0 then
+      -- the unit has a Death animation or a corpse and is not itself a corpse
+      -- that vanishes, so we want to spawn a dead vision revealer.
+      animSpec = tableShallowCopy(animSpec) -- shallow copy of the anim table, because we'll replace the Death anim
+      if animDeath ~= nil then
+         animDeath = tableShallowCopy(animDeath) -- shallow copy of the death animations, because we'll insert the dead vision
+      else
+         animDeath = {"wait 1"} -- we need to wait 1 otherwise we won't finish
+      end
+
+      -- we just redefine always. the existing unit and animation will be
+      -- overridden with the same values
+      local deadVisionName = "unit-dead-vision-" .. size .. "-" .. sight
+      OldDefineAnimations("animations-dead-vision", { Still = { "wait 80", "set-var SightRange.Max = 1", "wait 80", "die" } })
+      OldDefineUnitType(deadVisionName, {
+                           Name = "Reveal Death Location " .. size .. "-" .. sight,
+                           TileSize = {size, size},
+                           BoxSize = {size, size},
+                           SightRange = sight,
+                           Indestructible = true, NonSolid = true, SelectableByRectangle = false,
+                           BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+                           Animations = "animations-dead-vision", Icon = "icon-holy-vision",
+                           Speed = 0, HitPoints = 1, Priority = 0, Type = tbl["Type"], VisibleUnderFog = true,
+                           Revealer = true, Vanishes = true, DetectCloak = false, Sounds = {}})
+
+      table.insert(animDeath, 1, "spawn-unit " .. deadVisionName .. " 0 0 0 l.this")
+      animSpec["Death"] = animDeath
+
+      local unitAnimName = animName .. "-size-" .. size .. "-sight-" .. sight
+      OldDefineAnimations(unitAnimName, animSpec)
+      tbl["Animations"] = unitAnimName
+      -- print("Updating Death animation with revealer " .. deadVisionName .. " for " .. name .. " with " .. unitAnimName)
+   else
+      -- print("NOT updating Death animation with revealer for " .. name)
+      OldDefineAnimations(animName, animSpec)
+   end
+
+   return OldDefineUnitType(name, tbl)
+end
+
 -- Load the animations for the units.
 Load("scripts/anim.lua")
 
@@ -367,7 +437,7 @@ DefineUnitType("unit-human-dead-body", { Name = _("Dead Body"),
   HitPoints = 255,
   DrawLevel = 30,
   TileSize = {1, 1}, BoxSize = {31, 31},
-  SightRange = 1,
+  SightRange = 0,
   BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
   Priority = 0,
   Type = "land",
@@ -381,7 +451,7 @@ DefineUnitType("unit-orc-dead-body", { Name = _("Dead Body"),
   HitPoints = 255,
   DrawLevel = 30,
   TileSize = {1, 1}, BoxSize = {31, 31},
-  SightRange = 1,
+  SightRange = 0,
   BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
   Priority = 0,
   Type = "land",
@@ -395,7 +465,7 @@ DefineUnitType("unit-dead-sea-body", { Name = _("Dead Body"),
   HitPoints = 255,
   DrawLevel = 30,
   TileSize = {2, 2}, BoxSize = {31, 31},
-  SightRange = 1,
+  SightRange = 0,
   BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
   Priority = 0,
   Type = "naval",
@@ -416,7 +486,7 @@ DefineUnitType("unit-destroyed-1x1-place", { Name = _("Destroyed 1x1 Place"),
   HitPoints = 255,
   DrawLevel = 10,
   TileSize = {1, 1}, BoxSize = {31, 31},
-  SightRange = 2,
+  SightRange = 0,
   BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
   Priority = 0,
   Type = "land",
@@ -540,3 +610,6 @@ Load("scripts/orc/units.lua")
 -- Hardcoded unit-types, moved from Stratagus to games
 UnitTypeHumanWall = UnitTypeByIdent("unit-human-wall");
 UnitTypeOrcWall = UnitTypeByIdent("unit-orc-wall");
+
+DefineUnitType = OldDefineUnitType
+DefineAnimations = OldDefineAnimations

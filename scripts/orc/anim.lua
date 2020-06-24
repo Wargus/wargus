@@ -418,6 +418,7 @@ DefineAnimations("animations-goblin-zeppelin", {
     "frame 0", "move 3", "wait 1", "frame 0", "move 3", "wait 1",
     "frame 0", "move 3", "wait 1", "frame 0", "move 3", "unbreakable end", "wait 1",},
   Attack = {"unbreakable begin", "frame 0", "unbreakable end", "wait 1",},
+  Death = {"unbreakable begin", "frame 0", "unbreakable end", "wait 1", },
 })
 
 
