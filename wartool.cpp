@@ -2819,6 +2819,12 @@ int main(int argc, char** argv)
 				memset(extract, 0, 8192);
 				if (Todo[u].Arg1 == 1) { // local archive
 					sprintf(mpqfile, "%s/%s", Dir, Todo[u].MPQFile);
+					if (Todo[u].ArcFile == NULL) {
+						// delete
+						printf("deleting temporary MPQ file \"%s\"\n", mpqfile);
+						unlink(mpqfile);
+						continue;
+					}
 					printf("%s from MPQ file \"%s\"\n", Todo[u].ArcFile, mpqfile);
 				} else {
 					char* filename = strdup(Todo[u].MPQFile);

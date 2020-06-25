@@ -1897,6 +1897,9 @@ static Control Todo[] = {
 {Q,8,"sounds/human/act.wav",            1, 1, 0, 0, "War2Dat.mpq", "Sfx\\hact.wav"},
 {Q,8,"sounds/orc/act.wav",              1, 1, 0, 0, "War2Dat.mpq", "Sfx\\oact.wav"},
 
+// Delete temporary archive
+{Q,8,NULL,                              1, 0, 0, 0, "War2Dat.mpq", NULL},
+
 /////// VIDEOS ////////////////////////////////////////////////////////////////
 
 {Q,8,"videos/human-1",              0, 2, 0, 0, "install.exe", "Smk\\Smoke_M.smk"},
