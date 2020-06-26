@@ -80,7 +80,7 @@ function DefineUnitType(name, tbl)
       -- we just redefine always. the existing unit and animation will be
       -- overridden with the same values
       local deadVisionName = "unit-dead-vision-" .. size .. "-" .. sight
-      OldDefineAnimations("animations-dead-vision", { Still = { "wait 80", "set-var SightRange.Max = 1", "wait 80", "die" } })
+      OldDefineAnimations("animations-dead-vision", { Still = { "frame 0", "wait 80", "set-var SightRange.Max = 1", "wait 80", "die" } })
       OldDefineUnitType(deadVisionName, {
                            Name = "Reveal Death Location " .. size .. "-" .. sight,
                            TileSize = {size, size},
