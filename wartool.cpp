@@ -2443,16 +2443,16 @@ void copyArchive(const char* partialPath) {
 
 	source = fopen(srcname, "r");
 	if (source == NULL) {
-		fclose(target);
 		fprintf(stderr, "Cannot copy %s...\n", srcname);
 		exit(-1);
 	}
 
-	char *tgtname_copy = strdup(tgtname_copy);
+	char *tgtname_copy = strdup(tgtname);
 	parentdir(tgtname_copy);
 	mkdir_p(tgtname_copy);
 	target = fopen(tgtname, "wb");
 	if (target == NULL) {
+		fclose(source);
 		fprintf(stderr, "Cannot open %s for writing.\n", tgtname);
 		exit(-1);
 	}
