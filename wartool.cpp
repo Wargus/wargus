@@ -34,6 +34,7 @@
 --  Includes
 ----------------------------------------------------------------------------*/
 
+#include "wargus.h"
 #include "wartool.h"
 #include <stratagus-gameutils.h>
 
@@ -49,8 +50,12 @@
 #include <direct.h>
 #include <io.h>
 #else
+#define __USE_XOPEN_EXTENDED 1 // to get strdup
 #include <unistd.h>
 #endif
+
+#include <limits.h>
+#include <stdlib.h>
 
 #include "endian.h"
 #include "xmi2mid.h"
@@ -2011,14 +2016,22 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 		fclose(f);
 	}
 
-	cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640x0,setsar=1:1 \"") + strlen(buf) + strlen("\" ");
+	if (CDType & CD_BNE) {
+		cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640x0,setsar=1:1 \"") + strlen(buf) + strlen("\" ");
+	} else {
+		cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"") + strlen(buf) + strlen("\" ");
+	}
 	cmd = (char*) calloc(cmdlen + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
-	snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640:0,setsar=1:1 \"%s/%s.ogv\"", Dir, file, Dir, file);
+	if (CDType & CD_BNE) {
+		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640:0,setsar=1:1 \"%s/%s.ogv\"", Dir, file, Dir, file);
+	} else {
+		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir, file, Dir, file);
+	}
 	printf("%s\n", cmd);
 	ret = system(cmd);
 
@@ -2396,6 +2409,64 @@ void FixTranslation(const char *translation)
 	}
 }
 
+#define OUR_EXPANSION_SUBDIR "wargus.exp.data"
+
+void copyArchive(const char* partialPath) {
+	FILE *source, *target;
+	char ch;
+
+	char srcname[PATH_MAX] = {'\0'};
+	char tgtname[PATH_MAX] = {'\0'};
+
+	strcpy(tgtname, Dir);
+	strcat(tgtname, SLASH);
+	if (CDType & CD_EXPANSION && !(CDType & CD_BNE)) {
+		// expansion CD, copy the archive in a subdir
+		strcat(tgtname, OUR_EXPANSION_SUBDIR);
+		strcat(tgtname, SLASH);
+	}
+	strcat(tgtname, partialPath);
+
+	strcpy(srcname, ArchiveDir);
+	strcat(srcname, SLASH);
+	strcat(srcname, partialPath);
+
+	struct stat st;
+	if (stat(tgtname, &st) == 0) {
+		return;
+	}
+
+	if (!strcmp(srcname, tgtname)) {
+		return;
+	}
+
+
+	source = fopen(srcname, "r");
+	if (source == NULL) {
+		fprintf(stderr, "Cannot copy %s...\n", srcname);
+		exit(-1);
+	}
+
+	char *tgtname_copy = strdup(tgtname);
+	parentdir(tgtname_copy);
+	mkdir_p(tgtname_copy);
+	target = fopen(tgtname, "wb");
+	if (target == NULL) {
+		fclose(source);
+		fprintf(stderr, "Cannot open %s for writing.\n", tgtname);
+		exit(-1);
+	}
+
+	char buf[4096];
+	int c = 0;
+	while (c = fread(buf, sizeof(char), 4096, source)) {
+		fwrite(buf, sizeof(char), c, target);
+	}
+	printf("Copied %s->%s\n", srcname, tgtname);
+
+	fclose(source);
+	fclose(target);
+}
 
 //----------------------------------------------------------------------------
 //  Main loop
@@ -2418,6 +2489,35 @@ archive-directory\tDirectory which includes the archives maindat.war or the batt
 destination-directory\tDirectory where the extracted files are placed.\n"
 	,NameLine, name);
 	fflush(stdout);
+}
+
+int ExtractImplicitExpansion(char** argv, int a) {
+	printf("Extracting from expansion subdir\n");
+	struct stat st;
+	char buf[PATH_MAX] = {'\0'};
+	// detect if the expansion directory is next to the data directory
+	if (strstr(ArchiveDir, OUR_EXPANSION_SUBDIR)) {
+		// we're already trying to extract from our expansion subdir, don't recurse
+		return -1;
+	}
+	sprintf(buf, "%s/%s", ArchiveDir, OUR_EXPANSION_SUBDIR);
+	if (!stat(buf, &st)) {
+		// expansion subdir available, extract from it
+		char ExpansionArchiveDir[PATH_MAX] = {'\0'};
+		strcpy(ExpansionArchiveDir, ArchiveDir);
+		strcat(ExpansionArchiveDir, "/");
+		strcat(ExpansionArchiveDir, OUR_EXPANSION_SUBDIR);
+		if (strcmp(argv[a], ArchiveDir)) {
+			fprintf(stderr, "assertion error: expected argv[a] (%s) to point to ArchiveDir (%s)\n", argv[a], ArchiveDir);
+			exit(-1);
+		}
+		argv[a] = ExpansionArchiveDir;
+		if (execv(argv[0], argv)) {
+			fprintf(stderr, "an error occurred trying to extract from the expansion archives\n");
+			exit(-1);
+		}
+	}
+	return -1;
 }
 
 /**
@@ -2477,6 +2577,21 @@ int main(int argc, char** argv)
 	}
 
 	ArchiveDir = argv[a];
+
+	// if the user selected the install.exe from the DOS CD, be gratious
+	char *extraPath = (char*)calloc(sizeof(char), strlen(ArchiveDir) + strlen("/data/rezdat.war") + 1);
+	sprintf(extraPath, "%s/data/rezdat.war", ArchiveDir);
+	if (stat(extraPath, &st) == 0) {
+		sprintf(extraPath, "%s/data", ArchiveDir);
+		ArchiveDir = extraPath;
+	} else {
+		sprintf(extraPath, "%s/DATA/REZDAT.WAR", ArchiveDir);
+		if (stat(extraPath, &st) == 0) {
+			sprintf(extraPath, "%s/DATA", ArchiveDir);
+			ArchiveDir = extraPath;
+		}
+	}
+
 	if (argc == 3) {
 		Dir = argv[a + 1];
 	} else {
@@ -2526,10 +2641,14 @@ int main(int argc, char** argv)
 			CDType |= CD_MAC | CD_US;
 			sprintf(buf, "%s/War Resources", ArchiveDir);
 			if (stat(buf, &st)) {
-				printf("Could not find Warcraft 2 Data\n");
-				error("Data not found", "Could not find Warcraft 2 data in folder. "
-					  "Make sure you have selected the DATA directory of the DOS version, "
-					  "or the root of the Battle.net CD.");
+				if (ExtractImplicitExpansion(argv, a)) {
+					// try extracting from implicitly copied expansion data from
+					// a previous expansion-only extraction
+					printf("Could not find Warcraft 2 Data\n");
+					error("Data not found", "Could not find Warcraft 2 data in folder. "
+						  "Make sure you have selected the DATA directory of the DOS version, "
+						  "or the root of the Battle.net CD.");
+				}
 			}
 			if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2876978)) {
 				printf("Detected original MAC CD\n");
@@ -2688,6 +2807,7 @@ int main(int argc, char** argv)
 					CloseArchive();
 				}
 				OpenArchive(buf, Todo[u].Arg1);
+				copyArchive(Todo[u].File);
 				break;
 			case Q:
 				if (!(CDType & CD_BNE)) {
@@ -2701,6 +2821,12 @@ int main(int argc, char** argv)
 				memset(extract, 0, 8192);
 				if (Todo[u].Arg1 == 1) { // local archive
 					sprintf(mpqfile, "%s/%s", Dir, Todo[u].MPQFile);
+					if (Todo[u].ArcFile == NULL) {
+						// delete
+						printf("deleting temporary MPQ file \"%s\"\n", mpqfile);
+						unlink(mpqfile);
+						continue;
+					}
 					printf("%s from MPQ file \"%s\"\n", Todo[u].ArcFile, mpqfile);
 				} else {
 					char* filename = strdup(Todo[u].MPQFile);
@@ -2755,6 +2881,10 @@ int main(int argc, char** argv)
 						error(mpqfile, "I also tried different cases and tried both .mpq and .exe extensions\n");
 					}
 					printf("%s from MPQ file \"%s\"\n", Todo[u].File, mpqfile);
+					// strip ArchiveDir and slash before copying
+					char* copyfile = strdup(mpqfile);
+					copyfile = copyfile + strlen(ArchiveDir);
+					copyArchive(copyfile);
 				}
 				sprintf(extract, "%s/%s", Dir, Todo[u].File);
 				if (Todo[u].Arg2 == 1) { // compress
@@ -2766,7 +2896,6 @@ int main(int argc, char** argv)
 				if (Todo[u].Arg2 == 8 && !rip) { // wav audio
 					continue;
 				}
-
 				if (ExtractMPQFile(mpqfile, (char*)Todo[u].ArcFile, extract, Todo[u].Arg2 == 1)) {
 					printf("Failed to extract \"%s\"\n", (char*)Todo[u].ArcFile);
 				}
@@ -2912,7 +3041,14 @@ int main(int argc, char** argv)
 	sprintf(buf, "%s/scripts/translate/stratagus-ru.po", Dir);
 	FixTranslation(buf);
 
+	sprintf(buf, "%s/%s", Dir, REEXTRACT_MARKER_FILE);
+	f = fopen(buf, "w");
+	fputs("data copied for re-extraction", f);
+	fclose(f);
+
 	printf("Done.\n");
+
+	ExtractImplicitExpansion(argv, a);
 
 	return 0;
 }
