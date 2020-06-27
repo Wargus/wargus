@@ -2448,7 +2448,9 @@ void copyArchive(const char* partialPath) {
 		exit(-1);
 	}
 
-	mkdir_p(parentdir(strdup(tgtname)));
+	char *tgtname_copy = strdup(tgtname_copy);
+	parentdir(tgtname_copy);
+	mkdir_p(tgtname_copy);
 	target = fopen(tgtname, "wb");
 	if (target == NULL) {
 		fprintf(stderr, "Cannot open %s for writing.\n", tgtname);
@@ -2577,7 +2579,7 @@ int main(int argc, char** argv)
 	ArchiveDir = argv[a];
 
 	// if the user selected the install.exe from the DOS CD, be gratious
-	char extraPath[strlen(ArchiveDir) + strlen("/data/rezdat.war")];
+	char *extraPath = (char*)calloc(sizeof(char), strlen(ArchiveDir) + strlen("/data/rezdat.war") + 1);
 	sprintf(extraPath, "%s/data/rezdat.war", ArchiveDir);
 	if (stat(extraPath, &st) == 0) {
 		sprintf(extraPath, "%s/data", ArchiveDir);
