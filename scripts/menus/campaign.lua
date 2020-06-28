@@ -159,18 +159,59 @@ end
 
 function CreatePictureStep(bg, sound, title, text)
   return function()
-    SetPlayerData(GetThisPlayer(), "RaceName", CurrentCampaignRace)
-    wargus.playlist = {}
-    PlayMusic(sound)
-    local menu = WarMenu(nil, bg, true)
-    local offx = (Video.Width - 640) / 2
-    local offy  = (Video.Height - 480) / 2
-    menu:addLabel(title, offx + 320, offy + 240 - 67, Fonts["small-title"], true)
-    menu:addLabel(text, offx + 320, offy + 240 - 25, Fonts["large-title"], true)
-    menu:addHalfButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
-      function()  menu:stop(1) end)
-    menu:run()
-    GameResult = GameVictory
+     SetPlayerData(GetThisPlayer(), "RaceName", CurrentCampaignRace)
+     wargus.playlist = {}
+     PlayMusic(sound)
+     local menu = WarMenu(nil, bg, true)
+     local offx = (Video.Width - 640) / 2
+     local offy  = (Video.Height - 480) / 2
+
+     local whiteLabel = menu:addLabel(title, offx + 320, offy + 240 - 67, Fonts["small-title"], true)
+     local whiteLabel2 = menu:addLabel(text, offx + 320, offy + 240 - 25, Fonts["large-title"], true)
+     whiteLabel:setVisible(false)
+     whiteLabel2:setVisible(false)
+
+     local blackScreen = Container()
+     blackScreen:setSize(Video.Width, Video.Height)
+     blackScreen:setBaseColor(Color(0, 0, 0, 255))
+     blackScreen:setOpaque(true)
+     menu:add(blackScreen, 0, 0)
+
+     local redLabel = Label("~full-red~" .. title)
+     redLabel:setFont(Fonts["small-title"])
+     redLabel:adjustSize()
+     blackScreen:add(redLabel, offx + 320 - redLabel:getWidth() / 2, offy + 240 - 67)
+     local redLabel2 = Label("~full-red~" .. text)
+     redLabel2:setFont(Fonts["large-title"])
+     redLabel2:adjustSize()
+     blackScreen:add(redLabel2, offx + 320 - redLabel2:getWidth() / 2, offy + 240 - 25)
+
+     local alpha = 255
+     local time = 0
+     local function fadeBlack()
+        time = time + 1
+        if alpha >= 0 and time > 30 then
+           blackScreen:setBaseColor(Color(0, 0, 0, alpha))
+           redLabel:setCaption("~full-red~" .. title) -- simple way to get container dirty
+           alpha = alpha - 20
+           if alpha < 0 then
+              alpha = 0
+           end
+        end
+        if time > 90 then
+           whiteLabel:setVisible(true)
+           whiteLabel2:setVisible(true)
+           redLabel:setVisible(false)
+           redLabel2:setVisible(false)
+        end
+     end
+     local listener = LuaActionListener(fadeBlack)
+     menu:addLogicCallback(listener)
+     
+     menu:addHalfButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
+                        function()  menu:stop(1) end)
+     menu:run()
+     GameResult = GameVictory
   end
 end
 
