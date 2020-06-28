@@ -204,6 +204,9 @@ function CreatePictureStep(bg, sound, title, text)
            redLabel:setVisible(false)
            redLabel2:setVisible(false)
         end
+        if time > 200 then
+           menu:stop(1)
+        end
      end
      local listener = LuaActionListener(fadeBlack)
      menu:addLogicCallback(listener)
