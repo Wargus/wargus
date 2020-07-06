@@ -2441,7 +2441,7 @@ void copyArchive(const char* partialPath) {
 	}
 
 
-	source = fopen(srcname, "r");
+	source = fopen(srcname, "rb");
 	if (source == NULL) {
 		fprintf(stderr, "Cannot copy %s...\n", srcname);
 		exit(-1);
