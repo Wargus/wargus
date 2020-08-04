@@ -292,15 +292,14 @@ function RunJoiningMapMenu(optRace, optReady)
           RevealMap()
         end
         NetworkGamePrepareGameSettings()
+        MetaClient::NotifyJoin()
         RunMap(NetworkMapName)
 	PresentMap = OldPresentMap
         DefinePlayerTypes = oldDefinePlayerTypes
-        MetaClient:Close()
         menu:stop()
       end
     elseif (state == 10) then -- ccs_unreachable
       ErrorMenu(_("Cannot reach server"))
-      MetaClient:Close()
       menu:stop()
     end
   end

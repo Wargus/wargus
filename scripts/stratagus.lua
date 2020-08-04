@@ -417,8 +417,8 @@ local defaultPreferences = {
 	VideoShader = "xBRZ",
 	ViewportMode = 0,
 	ServerList = {},
-	MetaServer = "",
-	MetaPort = 0,
+	MetaServer = "pvpgn.pro",
+	MetaPort = 6112,
 	SimplifiedAutoTargeting = true 
 }
 
@@ -493,6 +493,8 @@ SetNewViewportMode(wc2.preferences.ViewportMode)
 Preference.DeselectInMine = wc2.preferences.DeselectInMine
 Preference.StereoSound = wc2.preferences.StereoSound
 Preference.SimplifiedAutoTargeting = wc2.preferences.SimplifiedAutoTargeting
+
+MetaClient:SetMetaServer(wc2.preferences.MetaServer, wc2.preferences.MetaPort)
 
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")
