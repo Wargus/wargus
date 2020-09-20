@@ -2520,6 +2520,98 @@ int ExtractImplicitExpansion(char** argv, int a) {
 	return -1;
 }
 
+
+#ifdef WIN32
+#include <tchar.h>
+#include <io.h>
+
+#define BUFSIZE 4096
+#define VARNAME TEXT("APPDATA")
+#define GAMEDIR TEXT("\\Stratagus")
+#define LOGFILE TEXT("\\wartool.txt")
+
+static int stdoutTeeFds[3] = {0, 0, 0};
+static int stderrTeeFds[3] = {0, 0, 0};
+
+DWORD WINAPI ThreadFunc(void* data) {
+	int *fds = (int*) data;
+	int readPipe = fds[0];
+	int oldStd = fds[1];
+	int logfile = fds[2];
+
+	while (1) {
+		char c;
+		_read(readPipe, &c, 1);
+		_write(oldStd, &c, 1);
+		_lseek(logfile, 0, SEEK_END);
+		_write(logfile, &c, 1);
+		if (c == '\n') {
+			_commit(logfile);
+		}
+	}
+}
+
+void teeStdout() {
+	int stdoutPipes[2] = {0, 0};
+	int stderrPipes[2] = {0, 0};
+	int stdDuplicates[2] = {0, 0};
+	stdDuplicates[0] = _dup(1);
+	stdDuplicates[1] = _dup(2);
+	if (_pipe(stdoutPipes, 256, _O_BINARY) != 0) {
+		fprintf(stderr, "Pipe error!\n");
+		exit(1);
+	}
+	if (_pipe(stderrPipes, 256, _O_BINARY) != 0) {
+		fprintf(stderr, "Pipe error!\n");
+		exit(1);
+	}
+
+	LPTSTR appdataVal = (LPTSTR) malloc(BUFSIZE*sizeof(TCHAR));
+    if (appdataVal == NULL) {
+        printf("Out of memory\n");
+        exit(1);
+    }
+    DWORD dwRet = GetEnvironmentVariable(VARNAME, appdataVal, BUFSIZE);
+	if (dwRet > BUFSIZE) {
+		appdataVal = (LPTSTR) realloc(appdataVal, dwRet*sizeof(TCHAR));
+		GetEnvironmentVariable(VARNAME, appdataVal, BUFSIZE);
+	}
+	// assume that %APPDATA% exists
+	LPTSTR stdoutpath = (LPTSTR) calloc(dwRet + _tcslen(GAMEDIR) + _tcslen(LOGFILE) + 1, sizeof(TCHAR));
+	_tcscat(stdoutpath, appdataVal);
+	_tcscat(stdoutpath, GAMEDIR);
+	_tmkdir(stdoutpath);
+	_tcscat(stdoutpath, LOGFILE);
+	int logfilefd = _topen(stdoutpath, _O_WRONLY | _O_CREAT | _O_BINARY, _S_IWRITE);
+
+    // make stdout/stderr write into the write ends of the pipes
+	_dup2(stdoutPipes[1], 1);
+	_dup2(stderrPipes[1], 2);
+	// start a thread to read from the read ends of those pipes, and write to the old stdout/stderr and to a logfile
+
+	stdoutTeeFds[0] = stdoutPipes[0];
+	stdoutTeeFds[1] = stdDuplicates[0];
+	stdoutTeeFds[2] = logfilefd;
+	HANDLE threadStdout = CreateThread(NULL, 0, ThreadFunc, stdoutTeeFds, 0, NULL);
+	if (!threadStdout) {
+		fprintf(stderr, "Thread error!\n");
+		exit(1);
+	}
+
+	stderrTeeFds[0] = stderrPipes[0];
+	stderrTeeFds[1] = stdDuplicates[1];
+	stderrTeeFds[2] = logfilefd;
+	HANDLE threadStderr = CreateThread(NULL, 0, ThreadFunc, stderrTeeFds, 0, NULL);
+	if (!threadStderr) {
+		fprintf(stderr, "Thread error!\n");
+		exit(1);
+	}
+}
+#else
+void teeStdout() {
+}
+#endif
+
 /**
 **		Main
 */
@@ -2535,6 +2627,8 @@ int main(int argc, char** argv)
 	int a = 1;
 	char filename[8192] = {'\0'};
 	FILE* f;
+
+	teeStdout();
 
 	while (argc >= 2) {
 		if (!strcmp(argv[a], "-v")) {
