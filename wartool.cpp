@@ -2426,6 +2426,13 @@ void copyArchive(const char* partialPath) {
 		strcat(tgtname, SLASH);
 	}
 	strcat(tgtname, partialPath);
+#ifdef WIN32
+	for (unsigned int i = 0; i < strlen(tgtname); i++) {
+		if (tgtname[i] == '/') {
+			tgtname[i] = '\\';
+		}
+	}
+#endif
 
 	strcpy(srcname, ArchiveDir);
 	strcat(srcname, SLASH);
@@ -2520,7 +2527,6 @@ int ExtractImplicitExpansion(char** argv, int a) {
 	return -1;
 }
 
-
 #ifdef WIN32
 #include <tchar.h>
 #include <io.h>
@@ -2532,28 +2538,34 @@ int ExtractImplicitExpansion(char** argv, int a) {
 
 static int stdoutTeeFds[3] = {0, 0, 0};
 static int stderrTeeFds[3] = {0, 0, 0};
+static int stdoutPipes[2] = {0, 0};
+static int stderrPipes[2] = {0, 0};
+static HANDLE threadStdout;
+static HANDLE threadStderr;
 
 DWORD WINAPI ThreadFunc(void* data) {
 	int *fds = (int*) data;
 	int readPipe = fds[0];
 	int oldStd = fds[1];
 	int logfile = fds[2];
+	bool eof = false;
 
-	while (1) {
-		char c;
-		_read(readPipe, &c, 1);
-		_write(oldStd, &c, 1);
-		_lseek(logfile, 0, SEEK_END);
-		_write(logfile, &c, 1);
-		if (c == '\n') {
-			_commit(logfile);
+	while (!eof) {
+		char c[256] = {'\0'};
+		int cnt = 0;
+		if ((cnt = _read(readPipe, c, 256)) > 0) {
+			_write(oldStd, c, cnt);
+			_lseek(logfile, 0, SEEK_END);
+			_write(logfile, c, cnt);
+		} else {
+			eof = true;
 		}
 	}
+	_commit(logfile);
+	return 0;
 }
 
 void teeStdout() {
-	int stdoutPipes[2] = {0, 0};
-	int stderrPipes[2] = {0, 0};
 	int stdDuplicates[2] = {0, 0};
 	stdDuplicates[0] = _dup(1);
 	stdDuplicates[1] = _dup(2);
@@ -2582,7 +2594,7 @@ void teeStdout() {
 	_tcscat(stdoutpath, GAMEDIR);
 	_tmkdir(stdoutpath);
 	_tcscat(stdoutpath, LOGFILE);
-	int logfilefd = _topen(stdoutpath, _O_WRONLY | _O_CREAT | _O_BINARY, _S_IWRITE);
+	int logfilefd = _topen(stdoutpath, _O_WRONLY | _O_CREAT | _O_BINARY | _O_TRUNC, _S_IWRITE);
 
     // make stdout/stderr write into the write ends of the pipes
 	_dup2(stdoutPipes[1], 1);
@@ -2592,7 +2604,7 @@ void teeStdout() {
 	stdoutTeeFds[0] = stdoutPipes[0];
 	stdoutTeeFds[1] = stdDuplicates[0];
 	stdoutTeeFds[2] = logfilefd;
-	HANDLE threadStdout = CreateThread(NULL, 0, ThreadFunc, stdoutTeeFds, 0, NULL);
+	threadStdout = CreateThread(NULL, 0, ThreadFunc, stdoutTeeFds, 0, NULL);
 	if (!threadStdout) {
 		fprintf(stderr, "Thread error!\n");
 		exit(1);
@@ -2601,14 +2613,36 @@ void teeStdout() {
 	stderrTeeFds[0] = stderrPipes[0];
 	stderrTeeFds[1] = stdDuplicates[1];
 	stderrTeeFds[2] = logfilefd;
-	HANDLE threadStderr = CreateThread(NULL, 0, ThreadFunc, stderrTeeFds, 0, NULL);
+	threadStderr = CreateThread(NULL, 0, ThreadFunc, stderrTeeFds, 0, NULL);
 	if (!threadStderr) {
 		fprintf(stderr, "Thread error!\n");
 		exit(1);
 	}
 }
+
+void endTee() {
+	// redirect stdout back to the original
+	_dup2(stdoutTeeFds[1], 1);
+	// close write end of pipe
+	_close(stdoutPipes[1]);
+	// redirect stderr back to the original
+	_dup2(stderrTeeFds[1], 2);
+	// close write end of pipe
+	_close(stderrPipes[1]);
+	// join threads
+	WaitForSingleObject(threadStdout, INFINITE);
+	WaitForSingleObject(threadStderr, INFINITE);
+
+	_close(stdoutPipes[0]);
+	_close(stderrPipes[0]);
+
+	CloseHandle(threadStdout);
+	CloseHandle(threadStderr);
+}
 #else
 void teeStdout() {
+}
+void endTee() {
 }
 #endif
 
@@ -2848,7 +2882,7 @@ int main(int argc, char** argv)
 		}
 		// Should only be on the expansion cd
 #ifdef DEBUG
-		printf("%s:\n", ParseString(Todo[u].File));
+		// printf("%s:\n", ParseString(Todo[u].File));
 		fflush(stdout);
 #endif
 		if (!expansion_cd && (Todo[u].Version & 2) ) {
@@ -3143,6 +3177,8 @@ int main(int argc, char** argv)
 	printf("Done.\n");
 
 	ExtractImplicitExpansion(argv, a);
+
+	endTee();
 
 	return 0;
 }

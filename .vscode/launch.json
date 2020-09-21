@@ -5,12 +5,11 @@
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/Debug/wartool.exe",
-            "args": ["-v", "${input:datadir}", "${env:APPDATA}/Stratagus/data.Wargus"],
+            "args": ["-v", "${input:datadir}", "${env:APPDATA}\\Stratagus\\data.Wargus"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [{"name": "PATH", "value": "${workspaceFolder}\\..\\dependencies\\bin;${env:PATH}"}],
-            "externalConsole": true,
-            "preLaunchTask": 
+            "externalConsole": true
         }
     ],
     "inputs": [
