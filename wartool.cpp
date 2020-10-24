@@ -2662,8 +2662,6 @@ int main(int argc, char** argv)
 	char filename[8192] = {'\0'};
 	FILE* f;
 
-	teeStdout();
-
 	while (argc >= 2) {
 		if (!strcmp(argv[a], "-v")) {
 			video = 1;
@@ -2703,6 +2701,8 @@ int main(int argc, char** argv)
 		}
 		break;
 	}
+
+	teeStdout();
 
 	ArchiveDir = argv[a];
 
