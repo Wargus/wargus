@@ -658,19 +658,25 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
     end
   end
 
+  local counter = 60
   local listener = LuaActionListener(function(s)
         updateStartButton(updatePlayers())
-        OnlineService:StartAdvertising()
+        if counter == 0 then
+           -- StartAdvertisingOnlineGame()
+           counter = 60
+        else
+           counter = counter - 1
+        end
         -- info we need is in the C++ globals Map.Info, the GameSettings, and the ServerSetupState
   end)
   menu:addLogicCallback(listener)
-  OnlineService:StartAdvertising()
+  StartAdvertisingOnlineGame()
   updateStartButton(updatePlayers())
 
   menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", Video.Width / 2 - 100, Video.Height - 100,
 		     function()
 			InitGameSettings()
-                        OnlineService:StopAdvertising()
+                        StopAdvertisingOnlineGame()
 			menu:stop()
   end)
 
@@ -750,7 +756,6 @@ function RunMultiPlayerGameMenu(s)
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
   local offy = ((Video.Height - 480) / 2) - 70
-  local nick
 
   local function FixMusic()
     wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
@@ -768,9 +773,28 @@ function RunMultiPlayerGameMenu(s)
   menu:addLabel(_("~<Multiplayer Network Game~>"), offx + 640/2 + 12, offy + 192)
 
   menu:writeText(_("Nickname :"), 208 + offx, 248 + offy)
-  nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
+  local nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
 
-  menu:addFullButton(_("~!Join Local Game"), "j", 208 + offx, 298 + (36 * 0) + offy,
+  menu:writeText(_("Password :"), 208 + offx, 248 + offy + 28)
+  local pass = menu:addTextInputField("", offx + 298, 244 + offy + 28)
+
+  local goonline = false
+  menu:addFullButton(_("Go ~!Online"), "o", 208 + offx, 298 + (36 * 0) + offy,
+    function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        preferences.PlayerName = nick:getText()
+        SavePreferences()
+      end
+      if not goonline then
+         print(GoOnline({
+               host = wc2.preferences.OnlineServer, port = wc2.preferences.OnlinePort,
+               username = nick:getText(), password = pass:getText()
+         }))
+         goonline = true
+      end
+    end)
+  menu:addFullButton(_("~!Join Local Game"), "j", 208 + offx, 298 + (36 * 1) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -794,7 +818,227 @@ function RunMultiPlayerGameMenu(s)
   menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", 208 + offx, 298 + (36 * 3) + offy,
     function() menu:stop() end)
 
+  function checkLogin()
+     if goonline then
+        result = GoOnline({})
+        if result == "online" then
+           goonline = false
+           RunOnlineMenu()
+        elseif result ~= "pending" then
+           if result == nil then
+              goonline = false
+           else
+              ErrorMenu(_(result))
+           end
+        end
+     end
+  end
+  local listener = LuaActionListener(function(s) checkLogin() end)
+  menu:addLogicCallback(listener)
+
   menu:run()
 
   ExitNetwork1()
+end
+
+function RunOnlineMenu()
+   local counter = 0
+
+   local menu = WarMenu("Online")
+
+   local margin = 10
+   local btnHeight = 36
+
+   local userList = {}
+   local users = menu:addImageListBox(
+      margin,
+      margin,
+      100,
+      100,
+      userList
+   )
+   local usersSelectCb = function()
+      GoOnline({userInfo = userList[users:getSelected() + 1]})
+   end
+   users:setActionCallback(usersSelectCb)
+   local friendsList = {}
+   local friends = menu:addImageListBox(
+      margin,
+      users:getHeight() + margin,
+      users:getWidth(),
+      users:getHeight(),
+      friendsList
+   )
+   local channelList = {}
+   local selectedChannelIdx = -1
+   -- local channels = menu:addImageListBox(
+   --    margin,
+   --    users:getHeight() + margin + friends:getHeight() + margin,
+   --    users:getWidth(),
+   --    users:getHeight(),
+   --    channelList
+   -- )
+   local channels = menu:addDropDown(
+      channelList,
+      margin,
+      users:getHeight() + margin + friends:getHeight() + margin,
+      function() end
+   )
+   local channelSelectCb = function()
+      GoOnline({ActiveChannel = channelList[channels:getSelected() + 1]})
+   end
+   channels:setActionCallback(channelSelectCb)
+   local gamesList = {}
+   local gamesHost = {}
+   local games = menu:addImageListBox(
+      users:getX() + users:getWidth() + margin,
+      users:getY(),
+      Video.Width - (users:getX() + users:getWidth() + margin) - margin,
+      100,
+      gamesList
+   )
+   local messageList = {}
+   local messages = menu:addListBox(
+      games:getX(),
+      games:getY() + games:getHeight() + margin,
+      games:getWidth(),
+      Video.Height - (margin + games:getHeight()) - (btnHeight * 2) - (margin * 2),
+      messageList
+   )
+
+   local input = menu:addTextInputField(
+      "",
+      messages:getX(),
+      messages:getY() + messages:getHeight() + margin,
+      messages:getWidth()
+   )
+   input:setActionCallback(function()
+         counter = 1
+         GoOnline({message = input:getText()})
+         input:setText("")
+   end)
+   local createGame = menu:addFullButton(
+      _("~!Create Game"),
+      "c",
+      input:getX(),
+      input:getY() + btnHeight,
+      function()
+         RunCreateMultiGameMenu()
+      end
+   )
+   local joinGame = menu:addFullButton(
+      _("~!Join Game"),
+      "j",
+      createGame:getX() + createGame:getWidth() + margin,
+      createGame:getY(),
+      function()
+         local selectedGame = gamesList[games:getSelected() + 1]
+         if selectedGame then
+            local host = gamesHost[games:getSelected() + 1]
+            local ip, port
+            for k, v in string.gmatch(host, "([0-9\.]+):(%d+)") do
+               ip = k
+               port = tonumber(v)
+            end
+            NetworkSetupServerAddress(ip, port)
+            NetworkInitClientConnect()
+            if (RunJoiningGameMenu() ~= 0) then
+               -- connect failed, don't leave this menu
+               return
+            end
+         else
+            ErrorMenu(_("No game selected"))
+         end
+      end
+   )
+   menu:addFullButton(
+      _("~!Previous Menu"),
+      "p",
+      joinGame:getX() + joinGame:getWidth() + margin,
+      joinGame:getY(),
+      function()
+         GoOnline({host = ""})
+         menu:stop()
+      end
+   )
+
+   local AddMessage = function(s)
+      table.insert(messageList, s)
+   end
+
+   local AddUser = function(s)
+      table.insert(userList, s)
+   end
+
+   local AddFriend = function(name, prod, status)
+      table.insert(friendsList, name .. "|" .. prod .. "(" .. status .. ")")
+   end
+
+   local AddChannel = function(name)
+      table.insert(channelList, name)
+   end
+
+   local ActiveChannel = function(name)
+      local index = {}
+      for k,v in pairs(channelList) do
+         if v == name then
+            selectedChannelIdx = k - 1
+            return
+         end
+      end
+      selectedChannelIdx = -1
+   end
+
+   local AddGame = function(map, creator, gametype, settings, maxPlayers, host)
+      table.insert(gamesList, map .. " " .. creator .. ", type: " .. gametype .. settings .. ", slots: " .. maxPlayers)
+      table.insert(gamesHost, host)
+   end
+
+   function tableEq(a, b)
+      for i,v in ipairs(a) do
+         if b[i] ~= v then
+            return false
+         end
+      end
+      return true
+   end
+
+   function runLogic()
+      if counter == 0 then
+         local messagecnt = table:getn(messageList)
+
+         counter = 60
+         userList = {}
+         gamesList = {}
+         gamesHost = {}
+         friendsList = {}
+         channelList = {}
+
+         result = GoOnline({
+               AddMessage = AddMessage,
+               AddUser = AddUser,
+               AddFriend = AddFriend,
+               AddChannel = AddChannel,
+               ActiveChannel = ActiveChannel,
+               AddGame = AddGame
+         })
+
+         messages:setList(messageList)
+         if table:getn(messageList) > messagecnt then
+            messages:scrollToBottom()
+         end
+         users:setList(userList)
+         games:setList(gamesList)
+         friends:setList(friendsList)
+         local lastChannel = channelList[channels:getSelected()]
+         channels:setList(channelList)
+         channels:setSelected(selectedChannelIdx)
+      else
+         counter = counter - 1
+      end
+   end
+   local listener = LuaActionListener(function(s) runLogic() end)
+   menu:addLogicCallback(listener)
+
+   menu:run()
 end

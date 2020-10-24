@@ -494,8 +494,6 @@ Preference.DeselectInMine = wc2.preferences.DeselectInMine
 Preference.StereoSound = wc2.preferences.StereoSound
 Preference.SimplifiedAutoTargeting = wc2.preferences.SimplifiedAutoTargeting
 
-OnlineService:SetServer(wc2.preferences.OnlineServer, wc2.preferences.OnlinePort)
-
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")
 
