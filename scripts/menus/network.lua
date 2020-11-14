@@ -662,7 +662,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local listener = LuaActionListener(function(s)
         updateStartButton(updatePlayers())
         if counter == 0 then
-           -- StartAdvertisingOnlineGame()
+           -- OnlineService.startadvertising()
            counter = 60
         else
            counter = counter - 1
@@ -670,13 +670,13 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
         -- info we need is in the C++ globals Map.Info, the GameSettings, and the ServerSetupState
   end)
   menu:addLogicCallback(listener)
-  StartAdvertisingOnlineGame()
+  OnlineService.startadvertising()
   updateStartButton(updatePlayers())
 
   menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", Video.Width / 2 - 100, Video.Height - 100,
 		     function()
 			InitGameSettings()
-                        StopAdvertisingOnlineGame()
+                        OnlineService.stopadvertising()
 			menu:stop()
   end)
 
@@ -787,10 +787,9 @@ function RunMultiPlayerGameMenu(s)
         SavePreferences()
       end
       if not goonline then
-         print(GoOnline({
-               host = wc2.preferences.OnlineServer, port = wc2.preferences.OnlinePort,
-               username = nick:getText(), password = pass:getText()
-         }))
+         OnlineService.setup({ ShowError = ErrorMenu })
+         OnlineService.connect(wc2.preferences.OnlineServer, wc2.preferences.OnlinePort)
+         OnlineService.login(nick:getText(), pass:getText())
          goonline = true
       end
     end)
@@ -820,16 +819,12 @@ function RunMultiPlayerGameMenu(s)
 
   function checkLogin()
      if goonline then
-        result = GoOnline({})
-        if result == "online" then
+        result = OnlineService.status()
+        if result == "connected" then
            goonline = false
            RunOnlineMenu()
-        elseif result ~= "pending" then
-           if result == nil then
-              goonline = false
-           else
-              ErrorMenu(_(result))
-           end
+        elseif result ~= "connecting" then
+           goonline = false
         end
      end
   end
@@ -858,16 +853,15 @@ function RunOnlineMenu()
       userList
    )
    local usersSelectCb = function()
-      GoOnline({userInfo = userList[users:getSelected() + 1]})
+      OnlineService.requestuserinfo(userList[users:getSelected() + 1])
    end
    users:setActionCallback(usersSelectCb)
-   local friendsList = {}
    local friends = menu:addImageListBox(
       margin,
       users:getHeight() + margin,
       users:getWidth(),
       users:getHeight(),
-      friendsList
+      {}
    )
    local channelList = {}
    local selectedChannelIdx = -1
@@ -885,7 +879,7 @@ function RunOnlineMenu()
       function() end
    )
    local channelSelectCb = function()
-      GoOnline({ActiveChannel = channelList[channels:getSelected() + 1]})
+      OnlineService.joinchannel(channelList[channels:getSelected() + 1])
    end
    channels:setActionCallback(channelSelectCb)
    local gamesList = {}
@@ -914,7 +908,7 @@ function RunOnlineMenu()
    )
    input:setActionCallback(function()
          counter = 1
-         GoOnline({message = input:getText()})
+         OnlineService.sendmessage(input:getText())
          input:setText("")
    end)
    local createGame = menu:addFullButton(
@@ -957,28 +951,43 @@ function RunOnlineMenu()
       joinGame:getX() + joinGame:getWidth() + margin,
       joinGame:getY(),
       function()
-         GoOnline({host = ""})
+         OnlineService.disconnect()
          menu:stop()
       end
    )
 
-   local AddMessage = function(s)
-      table.insert(messageList, s)
+   local AddUser = function(name)
+      table.insert(userList, name)
+      users:setList(userList)
    end
 
-   local AddUser = function(s)
-      table.insert(userList, s)
+   local RemoveUser = function(name)
+      table.remove(userList, name)
+      users:setList(userList)
    end
 
-   local AddFriend = function(name, prod, status)
-      table.insert(friendsList, name .. "|" .. prod .. "(" .. status .. ")")
+   local SetFriends = function(...)
+      friendsList = {}
+      for i,v in ipairs(arg) do
+         table.insert(friendsList, v.Name .. "|" .. v.Product .. "(" .. v.Status .. ")")
+      end
+      friends:setList(friendsList)
    end
 
-   local AddChannel = function(name)
-      table.insert(channelList, name)
+   local SetGames = function(game)
+      gamesList = {}
+      table.insert(gamesList, game.Map .. " " .. game.Creator .. ", type: " .. game.Type .. game.Settings .. ", slots: " .. game.MaxPlayers)
+      table.insert(gamesHost, game.Host)
+      games:setList(gamesList)
    end
 
-   local ActiveChannel = function(name)
+   local SetChannels = function(...)
+      channelList = { table.unpack(arg) }
+      channels:setList(channelList)
+      channels:setSelected(selectedChannelIdx)
+   end
+
+   local SetActiveChannel = function(name)
       local index = {}
       for k,v in pairs(channelList) do
          if v == name then
@@ -989,56 +998,36 @@ function RunOnlineMenu()
       selectedChannelIdx = -1
    end
 
-   local AddGame = function(map, creator, gametype, settings, maxPlayers, host)
-      table.insert(gamesList, map .. " " .. creator .. ", type: " .. gametype .. settings .. ", slots: " .. maxPlayers)
-      table.insert(gamesHost, host)
+   local AddMessage = function(str)
+      table.insert(messageList, str)
+      messages:setList(str)
+      messages:scrollToBottom()
    end
 
-   function tableEq(a, b)
-      for i,v in ipairs(a) do
-         if b[i] ~= v then
-            return false
-         end
+   local ShowUserInfo = function(info)
+      local s = {"UserInfo"}
+      for k, v in ipairs(info) do
+         s[#s+1] = k
+         s[#s+1] = ": "
+         s[#s+1] = v
+         s[#s+1] = string.char(10)
       end
-      return true
+      s = table.concat(s)
+      ErrorMenu(s)
    end
 
-   function runLogic()
-      if counter == 0 then
-         local messagecnt = table:getn(messageList)
-
-         counter = 60
-         userList = {}
-         gamesList = {}
-         gamesHost = {}
-         friendsList = {}
-         channelList = {}
-
-         result = GoOnline({
-               AddMessage = AddMessage,
-               AddUser = AddUser,
-               AddFriend = AddFriend,
-               AddChannel = AddChannel,
-               ActiveChannel = ActiveChannel,
-               AddGame = AddGame
-         })
-
-         messages:setList(messageList)
-         if table:getn(messageList) > messagecnt then
-            messages:scrollToBottom()
-         end
-         users:setList(userList)
-         games:setList(gamesList)
-         friends:setList(friendsList)
-         local lastChannel = channelList[channels:getSelected()]
-         channels:setList(channelList)
-         channels:setSelected(selectedChannelIdx)
-      else
-         counter = counter - 1
-      end
-   end
-   local listener = LuaActionListener(function(s) runLogic() end)
-   menu:addLogicCallback(listener)
+   OnlineService.setup({
+         AddUser = AddUser,
+         RemoveUser = RemoveUser,
+         SetFriends = SetFriends,
+         SetGames = SetGames,
+         SetChannels = SetChannels,
+         SetActiveChannel = SetActiveChannel,
+         ShowChat = AddMessage,
+         ShowInfo = AddMessage,
+         ShowError = ErrorMenu,
+         ShowUserInfo = ShowUserInfo
+   })
 
    menu:run()
 end
