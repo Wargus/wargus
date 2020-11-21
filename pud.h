@@ -34,7 +34,9 @@
 
 
 #ifdef _MSC_VER
+#ifndef PATH_MAX
 #define PATH_MAX _MAX_PATH
+#endif
 #if _MSC_VER >= 1800
 #define open _open
 #define read _read

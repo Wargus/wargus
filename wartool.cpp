@@ -43,9 +43,6 @@
 #endif
 
 #ifdef _MSC_VER
-#define unlink _unlink
-#define inline __inline
-#define strdup _strdup
 #define DEBUG _DEBUG
 #include <direct.h>
 #include <io.h>
@@ -120,7 +117,11 @@ void CheckPath(const char* path)
 	char* cp;
 	char* s;
 
+#ifdef WIN32
+	cp = _strdup(path);
+#else
 	cp = strdup(path);
+#endif
 	s = strrchr(cp, '/');
 	if (s) {
 		*s = '\0';  // remove file
@@ -1292,7 +1293,11 @@ void ConvertPud(const char* file, int pude, bool justconvert = false)
 		*strrchr(buf, '/') = '\0';
 
 		PudToStratagus(pudp, filesize, strrchr(file, '/') + 1, buf);
+#ifdef WIN32
+		_unlink(pudfile);
+#else
 		unlink(pudfile);
+#endif
 	}
 	free(pudp);
 }
@@ -2040,7 +2045,11 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 
 	if (ret != 0) {
 		sprintf(outputfile, "%s/%s.ogv", Dir, file);
+#ifdef WIN32
+		_unlink(outputfile);
+#else
 		unlink(outputfile);
+#endif
 		printf("Can't convert video %s to ogv format. Is ffmpeg installed in PATH?\n", file);
 		fflush(stdout);
 		return ret;
@@ -2161,7 +2170,11 @@ int SetupNames(const char* file __attribute__((unused)), int txte __attribute__(
 //		printf("%d %x ", u, ConvertLE16(mp[u]));
 //		printf("%s\n", txtp + ConvertLE16(mp[u]));
 		if (u < sizeof(UnitNames) / sizeof(*UnitNames)) {
+#ifdef WIN32
+			UnitNames[u] = _strdup((char*)txtp + ConvertLE16(mp[u]));
+#else
 			UnitNames[u] = strdup((char*)txtp + ConvertLE16(mp[u]));
+#endif
 			UnitNamesLast = u;
 		}
 	}
@@ -2413,8 +2426,6 @@ void FixTranslation(const char *translation)
 
 void copyArchive(const char* partialPath) {
 	FILE *source, *target;
-	char ch;
-
 	char srcname[PATH_MAX] = {'\0'};
 	char tgtname[PATH_MAX] = {'\0'};
 
@@ -2454,7 +2465,11 @@ void copyArchive(const char* partialPath) {
 		exit(-1);
 	}
 
+#ifdef WIN32
+	char *tgtname_copy = _strdup(tgtname);
+#else
 	char *tgtname_copy = strdup(tgtname);
+#endif
 	parentdir(tgtname_copy);
 	mkdir_p(tgtname_copy);
 	target = fopen(tgtname, "wb");
@@ -2519,7 +2534,12 @@ int ExtractImplicitExpansion(char** argv, int a) {
 			exit(-1);
 		}
 		argv[a] = ExpansionArchiveDir;
-		if (execv(argv[0], argv)) {
+#ifdef WIN32
+		int execresult = _execv(argv[0], argv);
+#else
+		int execresult = execv(argv[0], argv);
+#endif
+		if (execresult) {
 			fprintf(stderr, "an error occurred trying to extract from the expansion archives\n");
 			exit(-1);
 		}
@@ -2952,14 +2972,22 @@ int main(int argc, char** argv)
 					if (Todo[u].ArcFile == NULL) {
 						// delete
 						printf("deleting temporary MPQ file \"%s\"\n", mpqfile);
+#ifdef WIN32
+						_unlink(mpqfile);
+#else
 						unlink(mpqfile);
+#endif
 						continue;
 					}
 					printf("%s from MPQ file \"%s\"\n", Todo[u].ArcFile, mpqfile);
 				} else {
+#ifdef WIN32
+					char* filename = _strdup(Todo[u].MPQFile);
+#else
 					char* filename = strdup(Todo[u].MPQFile);
+#endif
 					// initially all lowercase
-					for (int i = 0; i < strlen(filename); i++) {
+					for (unsigned int i = 0; i < strlen(filename); i++) {
 						filename[i] = tolower(filename[i]);
 					}
 					// let's see....
@@ -2971,7 +2999,7 @@ int main(int argc, char** argv)
 					}
 					if (stat(mpqfile, &st)) {
 						// try all uppercase
-						for (int i = 0; i < strlen(filename); i++) {
+						for (unsigned int i = 0; i < strlen(filename); i++) {
 							filename[i] = toupper(filename[i]);
 						}
 						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
@@ -2979,9 +3007,13 @@ int main(int argc, char** argv)
 					if (stat(mpqfile, &st)) {
 						// try with alternative extension (mpq/exe)
 						free(filename);
+#ifdef WIN32
+						filename = _strdup(Todo[u].MPQFile);
+#else
 						filename = strdup(Todo[u].MPQFile);
+#endif
 						// initially all lowercase
-						for (int i = 0; i < strlen(filename); i++) {
+						for (unsigned int i = 0; i < strlen(filename); i++) {
 							filename[i] = tolower(filename[i]);
 						}
 						// swap extension
@@ -2999,7 +3031,7 @@ int main(int argc, char** argv)
 					}
 					if (stat(mpqfile, &st)) {
 						// try all uppercase
-						for (int i = 0; i < strlen(filename); i++) {
+						for (unsigned int i = 0; i < strlen(filename); i++) {
 							filename[i] = toupper(filename[i]);
 						}
 						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
@@ -3010,7 +3042,11 @@ int main(int argc, char** argv)
 					}
 					printf("%s from MPQ file \"%s\"\n", Todo[u].File, mpqfile);
 					// strip ArchiveDir and slash before copying
+#ifdef WIN32
+					char* copyfile = _strdup(mpqfile);
+#else
 					char* copyfile = strdup(mpqfile);
+#endif
 					copyfile = copyfile + strlen(ArchiveDir);
 					copyArchive(copyfile);
 				}

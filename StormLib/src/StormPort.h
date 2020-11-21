@@ -40,7 +40,6 @@
 
   // In MSVC 8.0, there are some functions declared as deprecated.
   #if _MSC_VER >= 1400
-  #define _CRT_SECURE_NO_DEPRECATE
   #define _CRT_NON_CONFORMING_SWPRINTFS
   #endif
 
