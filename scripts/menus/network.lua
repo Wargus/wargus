@@ -778,7 +778,7 @@ function RunMultiPlayerGameMenu(s)
   menu:writeText(_("Password :"), 208 + offx, 248 + offy + 28)
   local pass = menu:addTextInputField("", offx + 298, 244 + offy + 28)
 
-  menu:addFullButton(_("Go ~!Online"), "o", 208 + offx, 298 + (36 * 0) + offy,
+  local loginBtn = menu:addHalfButton(_("Go ~!Online"), "o", 208 + offx, 298 + (36 * 0) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -789,8 +789,28 @@ function RunMultiPlayerGameMenu(s)
       OnlineService.connect(wc2.preferences.OnlineServer, wc2.preferences.OnlinePort)
       OnlineService.login(nick:getText(), pass:getText())
       RunOnlineMenu()
-    end)
-  menu:addFullButton(_("~!Join Local Game"), "j", 208 + offx, 298 + (36 * 1) + offy,
+  end)
+  local signupLabel = menu:addLabel(
+     _("Sign up"),
+     loginBtn:getWidth() + loginBtn:getX() + loginBtn:getWidth() / 2,
+     loginBtn:getY() + loginBtn:getHeight() / 4)
+  local signUpCb = function(evt, btn, cnt)
+     if evt == "mouseClick" then
+        if nick:getText() ~= GetLocalPlayerName() then
+           SetLocalPlayerName(nick:getText())
+           preferences.PlayerName = nick:getText()
+           SavePreferences()
+        end
+        OnlineService.setup({ ShowError = ErrorMenu })
+        OnlineService.connect(wc2.preferences.OnlineServer, wc2.preferences.OnlinePort)
+        OnlineService.signup(nick:getText(), pass:getText())
+        RunOnlineMenu()
+     end
+  end
+  local signUpListener = LuaActionListener(signUpCb)
+  signupLabel:addMouseListener(signUpListener)
+
+  menu:addFullButton(_("~!Join Local Game"), "j", 208 + offx, 298 + (36 * 2) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -800,7 +820,7 @@ function RunMultiPlayerGameMenu(s)
       RunJoinIpMenu()
       FixMusic()
     end)
-  menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 2) + offy,
+  menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 3) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -811,7 +831,7 @@ function RunMultiPlayerGameMenu(s)
       FixMusic()
     end)
 
-  menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", 208 + offx, 298 + (36 * 3) + offy,
+  menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", 208 + offx, 298 + (36 * 5) + offy,
     function() menu:stop() end)
 
   menu:run()
@@ -1040,5 +1060,5 @@ function RunOnlineMenu()
   local listener = LuaActionListener(function(s) checkLogin() end)
   menu:addLogicCallback(listener)
 
-   menu:run()
+  menu:run()
 end
