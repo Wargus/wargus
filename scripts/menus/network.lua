@@ -778,7 +778,6 @@ function RunMultiPlayerGameMenu(s)
   menu:writeText(_("Password :"), 208 + offx, 248 + offy + 28)
   local pass = menu:addTextInputField("", offx + 298, 244 + offy + 28)
 
-  local goonline = false
   menu:addFullButton(_("Go ~!Online"), "o", 208 + offx, 298 + (36 * 0) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
@@ -786,12 +785,10 @@ function RunMultiPlayerGameMenu(s)
         preferences.PlayerName = nick:getText()
         SavePreferences()
       end
-      if not goonline then
-         OnlineService.setup({ ShowError = ErrorMenu })
-         OnlineService.connect(wc2.preferences.OnlineServer, wc2.preferences.OnlinePort)
-         OnlineService.login(nick:getText(), pass:getText())
-         goonline = true
-      end
+      OnlineService.setup({ ShowError = ErrorMenu })
+      OnlineService.connect(wc2.preferences.OnlineServer, wc2.preferences.OnlinePort)
+      OnlineService.login(nick:getText(), pass:getText())
+      RunOnlineMenu()
     end)
   menu:addFullButton(_("~!Join Local Game"), "j", 208 + offx, 298 + (36 * 1) + offy,
     function()
@@ -816,20 +813,6 @@ function RunMultiPlayerGameMenu(s)
 
   menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", 208 + offx, 298 + (36 * 3) + offy,
     function() menu:stop() end)
-
-  function checkLogin()
-     if goonline then
-        result = OnlineService.status()
-        if result == "connected" then
-           goonline = false
-           RunOnlineMenu()
-        elseif result ~= "connecting" then
-           goonline = false
-        end
-     end
-  end
-  local listener = LuaActionListener(function(s) checkLogin() end)
-  menu:addLogicCallback(listener)
 
   menu:run()
 
@@ -961,6 +944,13 @@ function RunOnlineMenu()
       users:setList(userList)
    end
 
+   local ClearUsers = function()
+      for i,v in ipairs(userList) do
+         table.remove(userList, i)
+      end
+      users:setList(userList)
+   end
+
    local RemoveUser = function(name)
       table.remove(userList, name)
       users:setList(userList)
@@ -974,20 +964,26 @@ function RunOnlineMenu()
       friends:setList(friendsList)
    end
 
-   local SetGames = function(game)
+   local SetGames = function(...)
       gamesList = {}
-      table.insert(gamesList, game.Map .. " " .. game.Creator .. ", type: " .. game.Type .. game.Settings .. ", slots: " .. game.MaxPlayers)
-      table.insert(gamesHost, game.Host)
+      for i,v in ipairs(arg) do
+         table.insert(gamesList, game.Map .. " " .. game.Creator .. ", type: " .. game.Type .. game.Settings .. ", slots: " .. game.MaxPlayers)
+         table.insert(gamesHost, game.Host)
+      end
       games:setList(gamesList)
    end
 
    local SetChannels = function(...)
-      channelList = { table.unpack(arg) }
+      channelList = {}
+      for i,v in ipairs(arg) do
+         table.insert(channelList, v)
+      end
       channels:setList(channelList)
       channels:setSelected(selectedChannelIdx)
    end
 
    local SetActiveChannel = function(name)
+      ClearUsers()
       local index = {}
       for k,v in pairs(channelList) do
          if v == name then
@@ -1000,7 +996,7 @@ function RunOnlineMenu()
 
    local AddMessage = function(str)
       table.insert(messageList, str)
-      messages:setList(str)
+      messages:setList(messageList)
       messages:scrollToBottom()
    end
 
@@ -1028,6 +1024,21 @@ function RunOnlineMenu()
          ShowError = ErrorMenu,
          ShowUserInfo = ShowUserInfo
    })
+
+   -- check if we're connected, exit this menu if connection fails
+   local goonline = true
+   function checkLogin()
+     if goonline then
+        result = OnlineService.status()
+        if result == "connected" then
+           goonline = false
+        elseif result ~= "connecting" then
+           menu:stop()
+        end
+     end
+  end
+  local listener = LuaActionListener(function(s) checkLogin() end)
+  menu:addLogicCallback(listener)
 
    menu:run()
 end
