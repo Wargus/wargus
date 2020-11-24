@@ -847,59 +847,58 @@ function RunOnlineMenu()
    local margin = 10
    local btnHeight = 36
 
+   local userLabel = menu:addLabel(_("Users"), margin, margin, nil, false)
    local userList = {}
    local users = menu:addImageListBox(
-      margin,
-      margin,
+      userLabel:getX(),
+      userLabel:getY() + userLabel:getHeight(),
       100,
-      100,
+      Video.Height / 4,
       userList
    )
-   local usersSelectCb = function()
-      OnlineService.requestuserinfo(userList[users:getSelected() + 1])
-   end
-   users:setActionCallback(usersSelectCb)
+
+   local friendLabel = menu:addLabel(_("Friends"), margin, users:getY() + users:getHeight() + margin, nil, false)
    local friends = menu:addImageListBox(
-      margin,
-      users:getHeight() + margin,
+      friendLabel:getX(),
+      friendLabel:getY() + friendLabel:getHeight(),
       users:getWidth(),
       users:getHeight(),
       {}
    )
+
+   local channelLabel = menu:addLabel(_("Channels"), margin, friends:getY() + friends:getHeight() + margin, nil, false)
    local channelList = {}
    local selectedChannelIdx = -1
-   -- local channels = menu:addImageListBox(
-   --    margin,
-   --    users:getHeight() + margin + friends:getHeight() + margin,
-   --    users:getWidth(),
-   --    users:getHeight(),
-   --    channelList
-   -- )
-   local channels = menu:addDropDown(
-      channelList,
-      margin,
-      users:getHeight() + margin + friends:getHeight() + margin,
-      function() end
+   local channels = menu:addImageListBox(
+      channelLabel:getX(),
+      channelLabel:getY() + channelLabel:getHeight(),
+      users:getWidth(),
+      users:getHeight(),
+      channelList
    )
    local channelSelectCb = function()
       OnlineService.joinchannel(channelList[channels:getSelected() + 1])
    end
    channels:setActionCallback(channelSelectCb)
+
+   local gamesLabel = menu:addLabel(_("Games"), users:getX() + users:getWidth() + margin, userLabel:getY(), nil, false)
    local gamesList = {}
    local gamesHost = {}
    local games = menu:addImageListBox(
-      users:getX() + users:getWidth() + margin,
-      users:getY(),
+      gamesLabel:getX(),
+      gamesLabel:getY() + gamesLabel:getHeight(),
       Video.Width - (users:getX() + users:getWidth() + margin) - margin,
       100,
       gamesList
    )
+
+   local messageLabel = menu:addLabel(_("Chat"), games:getX(), games:getY() + games:getHeight() + margin, nil, false)
    local messageList = {}
    local messages = menu:addListBox(
-      games:getX(),
-      games:getY() + games:getHeight() + margin,
+      messageLabel:getX(),
+      messageLabel:getY() + messageLabel:getHeight(),
       games:getWidth(),
-      Video.Height - (margin + games:getHeight()) - (btnHeight * 2) - (margin * 2),
+      Video.Height - (margin + messageLabel:getY() + messageLabel:getHeight()) - (btnHeight * 2) - (margin * 2),
       messageList
    )
 
@@ -1020,16 +1019,38 @@ function RunOnlineMenu()
       messages:scrollToBottom()
    end
 
+   local ShowModal = function(errmsg)
+      local menu = nil
+      menu = WarMenu(nil, panel(4), false)
+      menu:setSize(288, 128)
+      menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
+      menu:addHalfButton("~!OK", "o", 92, 80, function() menu:stop() end)
+      menu:setDrawMenusUnder(true)
+
+      local l = MultiLineLabel(errmsg)
+      l:setFont(Fonts["large"])
+      l:setAlignment(MultiLineLabel.CENTER)
+      l:setVerticalAlignment(MultiLineLabel.CENTER)
+      l:setLineWidth(270)
+      l:setWidth(270)
+
+      l:setHeight(41)
+      l:setBackgroundColor(dark)
+      menu:add(l, 9, 11)
+
+      menu:run()
+   end
+
    local ShowUserInfo = function(info)
-      local s = {"UserInfo"}
-      for k, v in ipairs(info) do
+      local s = {"UserInfo", string.char(10)}
+      for k, v in pairs(info) do
+         s[#s+1] = string.char(10)
          s[#s+1] = k
          s[#s+1] = ": "
          s[#s+1] = v
-         s[#s+1] = string.char(10)
       end
       s = table.concat(s)
-      ErrorMenu(s)
+      ShowModal(s)
    end
 
    OnlineService.setup({
@@ -1041,21 +1062,27 @@ function RunOnlineMenu()
          SetActiveChannel = SetActiveChannel,
          ShowChat = AddMessage,
          ShowInfo = AddMessage,
-         ShowError = ErrorMenu,
+         ShowError = ShowModal,
          ShowUserInfo = ShowUserInfo
    })
 
    -- check if we're connected, exit this menu if connection fails
    local goonline = true
+   local timer = 10
    function checkLogin()
-     if goonline then
-        result = OnlineService.status()
-        if result == "connected" then
-           goonline = false
-        elseif result ~= "connecting" then
-           menu:stop()
-        end
-     end
+      if goonline then
+         if timer > 0 then
+            timer = timer - 1
+         else
+            timer = 10
+            result = OnlineService.status()
+            if result == "connected" then
+               goonline = false
+            elseif result ~= "connecting" then
+               menu:stop()
+            end
+         end
+      end
   end
   local listener = LuaActionListener(function(s) checkLogin() end)
   menu:addLogicCallback(listener)
