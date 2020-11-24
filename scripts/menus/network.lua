@@ -782,7 +782,7 @@ function RunMultiPlayerGameMenu(s)
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
-        preferences.PlayerName = nick:getText()
+        wc2.preferences.PlayerName = nick:getText()
         SavePreferences()
       end
       OnlineService.setup({ ShowError = ErrorMenu })
@@ -798,7 +798,7 @@ function RunMultiPlayerGameMenu(s)
      if evt == "mouseClick" then
         if nick:getText() ~= GetLocalPlayerName() then
            SetLocalPlayerName(nick:getText())
-           preferences.PlayerName = nick:getText()
+           wc2.preferences.PlayerName = nick:getText()
            SavePreferences()
         end
         OnlineService.setup({ ShowError = ErrorMenu })
