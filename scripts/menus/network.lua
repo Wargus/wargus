@@ -985,7 +985,7 @@ function RunOnlineMenu()
 
    local SetGames = function(...)
       gamesList = {}
-      for i,v in ipairs(arg) do
+      for i,game in ipairs(arg) do
          table.insert(gamesList, game.Map .. " " .. game.Creator .. ", type: " .. game.Type .. game.Settings .. ", slots: " .. game.MaxPlayers)
          table.insert(gamesHost, game.Host)
       end
