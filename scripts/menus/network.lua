@@ -882,8 +882,8 @@ function RunOnlineMenu()
    channels:setActionCallback(channelSelectCb)
 
    local gamesLabel = menu:addLabel(_("Games"), users:getX() + users:getWidth() + margin, userLabel:getY(), nil, false)
+   local gamesObjectList = {}
    local gamesList = {}
-   local gamesHost = {}
    local games = menu:addImageListBox(
       gamesLabel:getX(),
       gamesLabel:getY() + gamesLabel:getHeight(),
@@ -928,16 +928,17 @@ function RunOnlineMenu()
       createGame:getX() + createGame:getWidth() + margin,
       createGame:getY(),
       function()
-         local selectedGame = gamesList[games:getSelected() + 1]
+         local selectedGame = gamesObjectList[games:getSelected() + 1]
          if selectedGame then
-            local host = gamesHost[games:getSelected() + 1]
             local ip, port
-            for k, v in string.gmatch(host, "([0-9\.]+):(%d+)") do
+            for k, v in string.gmatch(selectedGame.Host, "([0-9\.]+):(%d+)") do
                ip = k
                port = tonumber(v)
             end
+            print("Attempting to join " .. ip .. ":" .. port)
             NetworkSetupServerAddress(ip, port)
             NetworkInitClientConnect()
+            OnlineService.punchNAT(selectedGame.Creator)
             if (RunJoiningGameMenu() ~= 0) then
                -- connect failed, don't leave this menu
                return
@@ -971,7 +972,11 @@ function RunOnlineMenu()
    end
 
    local RemoveUser = function(name)
-      table.remove(userList, name)
+      for i,v in ipairs(userList) do
+         if v == name then
+            table.remove(userList, i)
+         end
+      end
       users:setList(userList)
    end
 
@@ -985,9 +990,10 @@ function RunOnlineMenu()
 
    local SetGames = function(...)
       gamesList = {}
+      gamesObjectList = {}
       for i,game in ipairs(arg) do
          table.insert(gamesList, game.Map .. " " .. game.Creator .. ", type: " .. game.Type .. game.Settings .. ", slots: " .. game.MaxPlayers)
-         table.insert(gamesHost, game.Host)
+         table.insert(gamesObjectList, game)
       end
       games:setList(gamesList)
    end
