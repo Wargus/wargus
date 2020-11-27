@@ -1025,26 +1025,12 @@ function RunOnlineMenu()
       messages:scrollToBottom()
    end
 
-   local ShowModal = function(errmsg)
-      local menu = nil
-      menu = WarMenu(nil, panel(4), false)
-      menu:setSize(288, 128)
-      menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
-      menu:addHalfButton("~!OK", "o", 92, 80, function() menu:stop() end)
-      menu:setDrawMenusUnder(true)
+   local ShowInfo = function(errmsg)
+      AddMessage("~<" .. errmsg .. "~>")
+   end
 
-      local l = MultiLineLabel(errmsg)
-      l:setFont(Fonts["large"])
-      l:setAlignment(MultiLineLabel.CENTER)
-      l:setVerticalAlignment(MultiLineLabel.CENTER)
-      l:setLineWidth(270)
-      l:setWidth(270)
-
-      l:setHeight(41)
-      l:setBackgroundColor(dark)
-      menu:add(l, 9, 11)
-
-      menu:run()
+   local ShowError = function(errmsg)
+      AddMessage("~red~" .. errmsg .. "~>")
    end
 
    local ShowUserInfo = function(info)
@@ -1056,7 +1042,7 @@ function RunOnlineMenu()
          s[#s+1] = v
       end
       s = table.concat(s)
-      ShowModal(s)
+      ShowError(s)
    end
 
    OnlineService.setup({
@@ -1067,8 +1053,8 @@ function RunOnlineMenu()
          SetChannels = SetChannels,
          SetActiveChannel = SetActiveChannel,
          ShowChat = AddMessage,
-         ShowInfo = AddMessage,
-         ShowError = ShowModal,
+         ShowInfo = ShowInfo,
+         ShowError = ShowError,
          ShowUserInfo = ShowUserInfo
    })
 
