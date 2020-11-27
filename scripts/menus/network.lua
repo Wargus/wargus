@@ -1019,19 +1019,25 @@ function RunOnlineMenu()
       selectedChannelIdx = -1
    end
 
-   local AddMessage = function(str)
-      table.insert(messageList, str)
+   local AddMessage = function(str, pre, suf)
+      for line in string.gmatch(str, "([^".. string.char(10) .."]+)") do
+        if pre and suf then
+          table.insert(messageList, pre .. line .. suf)
+        else
+          table.insert(messageList, line)
+        end
+      end
       messages:setList(messageList)
       messages:scrollToBottom()
    end
 
    local ShowInfo = function(errmsg)
-      AddMessage("~<" .. errmsg .. "~>")
+      AddMessage(errmsg, "~<", "~>")
    end
 
    local lastError = nil
    local ShowError = function(errmsg)
-      AddMessage("~red~" .. errmsg .. "~>")
+      AddMessage(errmsg, "~red~", "~>")
       lastError = errmsg
    end
 
