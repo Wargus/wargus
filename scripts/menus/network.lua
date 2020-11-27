@@ -1029,8 +1029,10 @@ function RunOnlineMenu()
       AddMessage("~<" .. errmsg .. "~>")
    end
 
+   local lastError = nil
    local ShowError = function(errmsg)
       AddMessage("~red~" .. errmsg .. "~>")
+      lastError = errmsg
    end
 
    local ShowUserInfo = function(info)
@@ -1071,6 +1073,9 @@ function RunOnlineMenu()
             if result == "connected" then
                goonline = false
             elseif result ~= "connecting" then
+               if lastError then
+                  ErrorMenu(lastError)
+               end
                menu:stop()
             end
          end
