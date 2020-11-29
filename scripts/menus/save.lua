@@ -20,11 +20,13 @@ function RunConfirmErase(name, menu)
   confirm:addLabel(name, 300 / 2, 11)
   confirm:addLabel(_("File exists, are you sure ?"), 300 / 2, 31)
 
-  confirm:addHalfButton(_("~!Yes"), "y", 1 * (300 / 3) - 90, 120 - 16 - 27,
+  local yesBtn = confirm:addHalfButton(_("~!Yes"), "y", 1 * (300 / 3) - 90, 120 - 16 - 27,
     function()
         confirm:stop()
         RunSaveGame(name, menu)
-    end)
+  end)
+
+  yesBtn:requestFocus()
 
   confirm:addHalfButton(_("~!No"), "n", 3 * (300 / 3) - 116, 120 - 16 - 27,
     function() confirm:stop() end)
@@ -48,7 +50,7 @@ function RunSaveMenu(isreturn)
   end
   browser:setActionCallback(cb)
 
-  menu:addHalfButton(_("~!Save"), "s", (384 - 300 - 18) / 2, 256 - 16 - 27,
+  local saveBtn = menu:addHalfButton(_("~!Save"), "s", (384 - 300 - 18) / 2, 256 - 16 - 27,
     function()
       local name = t:getText()
       -- check for an empty string
@@ -73,6 +75,8 @@ function RunSaveMenu(isreturn)
         RunSaveGame(name, menu)
       end
     end)
+
+  saveBtn:requestFocus()
 
   menu:addHalfButton(_("~!Cancel"), "c", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27,
     function() menu:stop() end)
