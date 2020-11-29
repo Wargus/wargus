@@ -583,6 +583,32 @@ function BuildOptionsMenu()
    end)
    b:setMarked(Video.FullScreen)
 
+   if GetShaderNames then
+      local shaderNames = GetShaderNames()
+      if #shaderNames > 0 then
+         local shaderLbl = menu:addLabel(_("Shader:"), offx + 17, offy + 55 + 26*8 + 14, Fonts["game"], false)
+         local shaderName = menu:addDropDown(shaderNames, shaderLbl:getX() + shaderLbl:getWidth() + 10, shaderLbl:getY(), function(dd) end)
+         local function getCurrentShaderIndex()
+            local currentShader = GetShader()
+            for idx,name in pairs(shaderNames) do
+               if name == currentShader then
+                  return idx
+               end
+            end
+         end
+         shaderName:setSelected(getCurrentShaderIndex() - 1)
+         shaderName:setActionCallback(function()
+               local newShader = shaderNames[shaderName:getSelected() + 1];
+               if SetShader(newShader) then
+                  Preference.VideoShader = newShader
+                  wc2.preferences.VideoShader = newShader
+                  SavePreferences()
+               end
+         end)
+         shaderName:setSize(120, 16)
+      end
+   end
+
    menu:addHalfButton("~!OK", "o", offx + 123, offy + 55 + 26*11 + 14, function() menu:stop() end)
 
    return menu:run()
