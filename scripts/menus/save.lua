@@ -40,8 +40,8 @@ function RunSaveMenu(isreturn)
 
   menu:addLabel(_("Save Game"), 384 / 2, 11)
 
-  local t = menu:addTextInputField("game.sav",
-    (384 - 300 - 18) / 2, 11 + 36, 318)
+  local t = menu:addTextInputField("game.sav", (384 - 300 - 18) / 2, 11 + 36, 318)
+  t:requestFocus()
 
   local browser = menu:addBrowser("~save", ".sav.gz$",
     (384 - 300 - 18) / 2, 11 + 36 + 22, 318, 126)
@@ -50,33 +50,36 @@ function RunSaveMenu(isreturn)
   end
   browser:setActionCallback(cb)
 
-  local saveBtn = menu:addHalfButton(_("~!Save"), "s", (384 - 300 - 18) / 2, 256 - 16 - 27,
-    function()
-      local name = t:getText()
-      -- check for an empty string
-      if (string.len(name) == 0) then
+  local saveFunc = function()
+     local name = t:getText()
+     -- check for an empty string
+     if (string.len(name) == 0) then
         return
-      end
-      -- strip .gz
-      if (string.find(name, ".gz$") ~= nil) then
+     end
+     -- strip .gz
+     if (string.find(name, ".gz$") ~= nil) then
         name = string.sub(name, 1, string.len(name) - 3)
-      end
-      -- append .sav
-      if (string.find(name, ".sav$") == nil) then
+     end
+     -- append .sav
+     if (string.find(name, ".sav$") == nil) then
         name = name .. ".sav"
-      end
-      -- replace invalid chars with underscore
-      local t = {"\\", "/", ":", "*", "?", "\"", "<", ">", "|"}
-      table.foreachi(t, function(k,v) name = string.gsub(name, v, "_") end)
+     end
+     -- replace invalid chars with underscore
+     local t = {"\\", "/", ":", "*", "?", "\"", "<", ">", "|"}
+     table.foreachi(t, function(k,v) name = string.gsub(name, v, "_") end)
 
-      if (browser:exists(name .. ".gz")) then
+     if (browser:exists(name .. ".gz")) then
         RunConfirmErase(name, menu)
-      else
+     else
         RunSaveGame(name, menu)
-      end
-    end)
+     end
+  end
 
-  saveBtn:requestFocus()
+  t:setActionCallback(function()
+        saveFunc()
+  end)
+
+  menu:addHalfButton(_("~!Save"), "s", (384 - 300 - 18) / 2, 256 - 16 - 27, saveFunc)
 
   menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27,
     function() menu:stop() end)
