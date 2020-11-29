@@ -22,7 +22,7 @@ function RunReplayGameMenu()
       SetDefaultRaceView()
       menu:stop()
     end)
-  menu:addHalfButton(_("~!Cancel"), "c", 198, 308, function() menu:stop() end)
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 198, 308, function() menu:stop() end)
 
   menu:run()
 end
@@ -64,7 +64,7 @@ function RunSaveReplayMenu()
       menu:stop()
     end)
 
-  menu:addHalfButton(_("~!Cancel"), "c", 3 * (384 / 3) - 106 - 10, 256 - 16 - 27,
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 3 * (384 / 3) - 106 - 10, 256 - 16 - 27,
     function() menu:stop() end)
 
   menu:run()

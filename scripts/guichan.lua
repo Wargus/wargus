@@ -1021,7 +1021,7 @@ function RunSelectScenarioMenu()
       mapname = browser.path .. cap
       menu:stop()
     end)
-  menu:addHalfButton(_("~!Cancel"), "c", 198, 318,
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 198, 318,
     function() buttonStatut = 2; menu:stop() end)
 
   menu:run()
@@ -1049,7 +1049,7 @@ function RunSinglePlayerTypeMenu()
     function() RunModCampaignGameMenu(); menu:stop(1) end)
   menu:addFullButton(_("~!Load Game"), "l", offx + 208, offy + 104 + 36*5,
     function() RunLoadGameMenu(); menu:stop(1) end)
-  menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 104 + 36*6,
+  menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", offx + 208, offy + 104 + 36*6,
     function() menu:stop() end)
   return menu:run()
 end
@@ -1620,7 +1620,7 @@ function RunLoadModMenu()
       Load(browser.path .. browser:getSelectedItem())
       menu:stop()
     end)
-  menu:addHalfButton(_("~!Cancel"), "c", 198, 318,
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 198, 318,
     function() buttonStatut = 2; menu:stop() end)
 
   menu:run()
@@ -1675,7 +1675,7 @@ function RunModCampaignGameMenu()
      lastCampaign = lastCampaign + 1
   end
 
-  menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 104 + 36*(lastCampaign + 2),
+  menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", offx + 208, offy + 104 + 36*(lastCampaign + 2),
     function() menu:stop() end)
 
   menu:run()

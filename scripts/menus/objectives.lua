@@ -13,7 +13,8 @@ function RunObjectivesMenu()
   l:adjustSize()
   menu:add(l, 14, 38)
 
-  menu:addFullButton("~!OK", "o", 16, 288 - 40, function() menu:stop() end)
+  local btn = menu:addFullButton("~!OK", "o", 16, 288 - 40, function() menu:stop() end)
+  btn:requestFocus()
 
   menu:run()
 end

@@ -82,7 +82,7 @@ function Briefing(title, objs, bg, text, voices)
   local voice = 0
   local channel = -1
 
-  menu:addContinueButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
+  local ctbtn = menu:addContinueButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
     function()
       if (channel ~= -1) then
         voice = table.getn(voices)
@@ -91,7 +91,7 @@ function Briefing(title, objs, bg, text, voices)
       menu:stop()
       StopMusic()
     end)
-
+  ctbtn:requestFocus()
 
   function PlayNextVoice()
     voice = voice + 1
@@ -211,8 +211,9 @@ function CreatePictureStep(bg, sound, title, text)
      local listener = LuaActionListener(fadeBlack)
      menu:addLogicCallback(listener)
      
-     menu:addHalfButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
-                        function()  menu:stop(1) end)
+     local btn = menu:addHalfButton(_("~!Continue"), "c", 455 * Video.Width / 640, 440 * Video.Height / 480,
+                                    function()  menu:stop(1) end)
+     btn:requestFocus()
      menu:run()
      GameResult = GameVictory
   end

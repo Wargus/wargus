@@ -62,7 +62,8 @@ function ErrorMenu(errmsg)
   l:setBackgroundColor(dark)
   menu:add(l, 9, 38)
 
-  menu:addHalfButton("~!OK", "o", 92, 80, function() menu:stop() end)
+  local btn = menu:addHalfButton("~!OK", "o", 92, 80, function() menu:stop() end)
+  btn:requestFocus()
 
   menu:run()
 end
@@ -311,7 +312,7 @@ function RunJoiningMapMenu(optRace, optReady)
     readycheckbox:setMarked(true)
   end
 
-  menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
+  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", Video.Width / 2 - 100, Video.Height - 100,
     function() NetworkDetachFromServer(); MetaClient:Close(); menu:stop() end)
 
   menu:run()
@@ -431,7 +432,7 @@ function RunJoinIpMenu()
         ServerListUpdate()
       end
     end)
-  menu:addFullButton(_("~!Cancel"), "c", 60, 300, function() menu:stop() end)
+  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", 60, 300, function() menu:stop() end)
   menu:run()
 end
 
@@ -447,7 +448,7 @@ function RunJoiningMetaServerMenu()
    conn_label:setVisible(false)
 
    local ok_button = menu:addHalfButton("~!OK", "o", 24, 80, function(s) end)
-   local cancel_button = menu:addHalfButton(_("~!Cancel"), "c", 154, 80, function() menu:stop() end)
+   local cancel_button = menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 154, 80, function() menu:stop() end)
    ok_button:setActionCallback(
       function(s)
 	 if string.len(server:getText()) > 2 then -- len 2 means :0 -- i.e., no port, no host
@@ -552,7 +553,7 @@ function RunJoinOnlineMenu()
       end
       return
     end)
-  menu:addFullButton(_("~!Cancel"), "c", 60, 300, function()
+  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", 60, 300, function()
       MetaClient:Close()
       menu:stop()
   end)
@@ -581,7 +582,7 @@ function RunEditServerMenu(number)
       SavePreferences()
       menu:stop()
     end)
-  menu:addHalfButton(_("~!Cancel"), "c", 164, 210, function() menu:stop() end)
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 164, 210, function() menu:stop() end)
   menu:run()
 end
 
@@ -605,7 +606,7 @@ function RunAddServerMenu()
       SavePreferences()
       menu:stop()
     end)
-  menu:addHalfButton(_("~!Cancel"), "c", 164, 210, function() menu:stop() end)
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 164, 210, function() menu:stop() end)
   menu:run()
 end
 
@@ -848,7 +849,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   menu:addLogicCallback(listener)
   updateStartButton(updatePlayers())
 
-  menu:addFullButton(_("~!Cancel"), "c", Video.Width / 2 - 100, Video.Height - 100,
+  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", Video.Width / 2 - 100, Video.Height - 100,
 		     function()
 			InitGameSettings()
 			-- the MetaClient message will not be processed if this
@@ -986,7 +987,7 @@ function RunMultiPlayerGameMenu(s)
       FixMusic()
     end)
 
-  menu:addFullButton(_("~!Previous Menu"), "p", 208 + offx, 298 + (36 * 3) + offy,
+  menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", 208 + offx, 298 + (36 * 3) + offy,
     function() menu:stop() end)
 
   menu:run()

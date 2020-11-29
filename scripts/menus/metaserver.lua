@@ -88,7 +88,7 @@ function RunJoiningMetaServerMenuDirect()
   conn_label:setVisible(false)
 
   local ok_button = menu:addHalfButton("~!OK", "o", 24, 80, function(s) end)
-  local cancel_button = menu:addHalfButton(_("~!Cancel"), "c", 154, 80, function() menu:stop() end)
+  local cancel_button = menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 154, 80, function() menu:stop() end)
   ok_button:setActionCallback(
   function(s)
 		print(tostring(string.len(server:getText())))

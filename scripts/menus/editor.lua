@@ -33,7 +33,7 @@ local function RunEditorNewMapMenu()
       StartEditor(nil)
       RunEditorMenu()
     end)
-  menu:addFullButton(_("~!Cancel"), "c", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
+  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
   return menu:run()
 end
 
@@ -78,7 +78,7 @@ local function RunEditorLoadMapMenu()
     end)
 
   menu:addFullButton(_("~!Edit map"), "e", offx + 208, offy + 104 + 36 * 5, function() menu:stop(); StartEditor(mapname); RunEditorMenu() end)
-  menu:addFullButton(_("~!Cancel"), "c", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
+  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
 
   GetMapInfo(mapname)
   MapChanged()
@@ -104,7 +104,7 @@ function RunEditorMenu()
   local buttonNewMap =
   menu:addFullButton(_("~!New map"), "n", offx + 208, offy + 104 + 36*3, function() RunEditorNewMapMenu(); menu:stop() end)
   menu:addFullButton(_("~!Load map"), "l", offx + 208, offy + 104 + 36*4, function() RunEditorLoadMapMenu(); menu:stop() end)
-  menu:addFullButton(_("~!Cancel"), "c", offx + 208, offy + 104 + 36*5, function() menu:stop() end)
+  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", offx + 208, offy + 104 + 36*5, function() menu:stop() end)
   return menu:run()
 end
 
@@ -143,7 +143,7 @@ function RunEditorSaveMenu()
   end
   browser:setActionCallback(cb)
 
-  menu:addHalfButton(_("~!Cancel"), "c", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27, function() menu:stop() end)
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27, function() menu:stop() end)
   menu:addHalfButton(_("~!Save"), "s", (384 - 300 - 18) / 2, 256 - 16 - 27,
     function()
       local name = t:getText()
@@ -293,7 +293,7 @@ function RunEditorPlayerProperties()
       menu:stop()
     end)
 
-  menu:addHalfButton(_("~!Cancel"), "c", 3 * (sizeX / 4) - 106 - 10, sizeY - 16 - 27,
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 3 * (sizeX / 4) - 106 - 10, sizeY - 16 - 27,
     function() menu:stop() end)
 
   menu:run(false)
@@ -339,7 +339,7 @@ function RunEditorMapProperties()
     end
     )
 
-  menu:addHalfButton(_("~!Cancel"), "c", 3 * (sizeX / 3) - 106 - 10, sizeY - 16 - 27,
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 3 * (sizeX / 3) - 106 - 10, sizeY - 16 - 27,
     function() menu:stop() end)
 
   menu:run(false)
@@ -400,7 +400,7 @@ function EditUnitProperties()
     menu:addHalfButton("~!Ok", "o", 24, sizeY - 40,
       function() GetUnitUnderCursor().ResourcesHeld = resourceValue:getText();  menu:stop() end)
   end
-  menu:addHalfButton(_("~!Cancel"), "c", 134, sizeY - 40,
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 134, sizeY - 40,
     function() menu:stop() end)
   menu:run(false)
 end

@@ -176,7 +176,7 @@ function AddSoundOptions(menu, offx, offy, centerx, bottom)
 			     menu:stop()
    end)
 
-   b = menu:addHalfButton(_("~!Cancel"), "c", 16, 288 - 40,
+   b = menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 16, 288 - 40,
 			  function()
 			     menu:stop()
    end)
@@ -406,7 +406,7 @@ function RunPreferencesMenu()
 			 menu:stop(1)
    end)
 
-   menu:addHalfButton(_("~!Cancel"), "c", 40, 352 - 40,
+   menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 40, 352 - 40,
 		      function()
 			 menu:stop()
    end)
@@ -496,7 +496,7 @@ function RunSpeedsMenu()
 			 menu:stop(1)
    end)
 
-   menu:addHalfButton(_("~!Cancel"), "c", 16, 288 - 40,
+   menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 16, 288 - 40,
 		      function()
 			 menu:stop()
    end)
@@ -644,7 +644,7 @@ function RunLanguageMenu()
 			 menu:stop()
    end)
 
-   menu:addHalfButton(_("~!Cancel"), "c", 206, 320, function()
+   menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 206, 320, function()
 			 menu:stop()
    end)
 

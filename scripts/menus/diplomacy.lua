@@ -115,7 +115,7 @@ function RunDiplomacyMenu()
       end
       menu:stop()
     end)
-  menu:addHalfButton(_("~!Cancel"), "c", 195, 352 - 40, function() menu:stop() end)
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 195, 352 - 40, function() menu:stop() end)
 
   menu:run(false)
 end

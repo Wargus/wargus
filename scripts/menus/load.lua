@@ -54,7 +54,7 @@ function AddLoadGameItems(menu)
         menu:stop()
       end
     end)
-  menu:addHalfButton(_("~!Cancel"), "c", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27,
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27,
     function() menu:stop(1); end)
 end
 

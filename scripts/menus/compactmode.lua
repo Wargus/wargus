@@ -59,7 +59,7 @@ function RunSelectScenarioMenu()
         mapname = browser.path .. cap
         menu:stop()
       end)
-    menu:addHalfButton("~!Cancel", "c", Video.Width/2 + 3, Video.Height - 33,
+    menu:addHalfButton("Cancel (~<Esc~>)"), "escape", Video.Width/2 + 3, Video.Height - 33,
       function() buttonStatut = 2; menu:stop() end)
 
   menu:run()
@@ -105,7 +105,7 @@ function RunSinglePlayerGameMenu()
         MapChanged()
       end
     end)
-  menu:addHalfButton("~!Cancel", "c", 0 + 107*2, 30 + 55 + 28*4, function() menu:stop() end)
+  menu:addHalfButton("Cancel (~<Esc~>)"), "escape", 0 + 107*2, 30 + 55 + 28*4, function() menu:stop() end)
   
   menu:addLabel("~<Race:~>", 10, 30 + 55 + 28*0, Fonts["game"], false)
   race = menu:addDropDown({"Map Default", "Human", "Orc"}, 95 , 28 + 55 + 28*0,
@@ -174,7 +174,7 @@ function AddLoadGameItems(menu)
         menu:stop()
       end
     end)
-  menu:addHalfButton("~!Cancel", "c", Video.Width/2 + 3, Video.Height - 33, function() menu:stop() end)
+  menu:addHalfButton("Cancel (~<Esc~>)"), "escape", Video.Width/2 + 3, Video.Height - 33, function() menu:stop() end)
 end
 
 function RunLoadGameMenu()
@@ -214,7 +214,7 @@ function RunReplayGameMenu()
       SetPlayerData(GetThisPlayer(), "RaceName", "orc")
       menu:stop()
     end)
-  menu:addHalfButton("~!Cancel", "c", Video.Width/2 + 3, Video.Height - 33, function() menu:stop() end)
+  menu:addHalfButton("Cancel (~<Esc~>)"), "escape", Video.Width/2 + 3, Video.Height - 33, function() menu:stop() end)
   
   menu:run()
 end
@@ -263,7 +263,7 @@ function RunMultiPlayerGameMenu(s)
       FixMusic()
     end)
 
-  menu:addFullButton("~!Previous Menu", "p", 208 + offx, 320 + (36 * 2) + offy - 80,
+  menu:addFullButton("Previous Menu (~<Esc~>)"), "escape", 208 + offx, 320 + (36 * 2) + offy - 80,
     function() menu:stop() end)
 
   menu:run()

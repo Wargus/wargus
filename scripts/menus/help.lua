@@ -156,7 +156,7 @@ function RunTipsMenu()
 
   menu:addHalfButton(_("~!Next Tip"), "n", 14, 256 - 40,
     function() l:nextTip(); l:updateCaption() end)
-  menu:addHalfButton(_("~!Close"), "c", 168, 256 - 40,
+  menu:addHalfButton(_("Close (~<Esc~>)"), "escape", 168, 256 - 40,
     function() l:nextTip(); menu:stop() end)
 
   menu:run(false)
