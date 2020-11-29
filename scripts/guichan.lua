@@ -628,6 +628,19 @@ end
     end
     bq:setActionCallback(cb)
 
+    function bq:setDoubleClickAction(cb)
+       bq:setMouseCallback(function(evt, btn, cnt)
+             if cnt == 2 and btn == 1 and evt == "mouseClick" then
+                cb()
+             end
+       end)
+       bq:setKeyCallback(function(evt, btn, cnt)
+             if cnt == 2 and btn == 1 and evt == "mouseClick" then
+                cb()
+             end
+       end)
+    end
+
     bq.oldSetActionCallback = bq.setActionCallback
     function bq:setActionCallback(cb)
       bq.actioncb = cb
@@ -1010,17 +1023,20 @@ function RunSelectScenarioMenu()
   end
   browser:setActionCallback(cb)
 
-  menu:addHalfButton("~!OK", "o", 48, 318,
-    function()
-      local cap = l:getCaption()
+  local okFunc = function()
+     local cap = l:getCaption()
 
-      if (browser:getSelected() < 0) then
+     if (browser:getSelected() < 0) then
         return
-      end
-      buttonStatut = 1
-      mapname = browser.path .. cap
-      menu:stop()
-    end)
+     end
+     buttonStatut = 1
+     mapname = browser.path .. cap
+     menu:stop()
+  end
+
+  browser:setDoubleClickAction(okFunc)
+
+  menu:addHalfButton("~!OK", "o", 48, 318, okFunc)
   menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 198, 318,
     function() buttonStatut = 2; menu:stop() end)
 
@@ -1066,14 +1082,17 @@ function RunSinglePlayerGameModeMenu()
 
   local browser = menu:addBrowser("scripts/lists/maps/", "", 24, (24+8+8), (300+5), (318-24-8-8-24), "Skirmish Modern")
 
-  menu:addHalfButton("~!OK", "o", 48, 318,
-    function()
-      if (browser:getSelected() < 0) then
+  local okFunc = function()
+     if (browser:getSelected() < 0) then
         return
-      end
-      Load(browser.path .. browser:getSelectedItem())
-      menu:stop()
-    end)
+     end
+     Load(browser.path .. browser:getSelectedItem())
+     menu:stop()
+  end
+
+  browser:setDoubleClickAction(okFunc)
+
+  menu:addHalfButton("~!OK", "o", 48, 318, okFunc)
   menu:addHalfButton(_("~!Cancel"), "c", 198, 318,
     function() buttonStatut = 2; menu:stop(1); RunSinglePlayerTypeMenu() end)
 
@@ -1612,14 +1631,17 @@ function RunLoadModMenu()
   
   local browser = menu:addBrowser("scripts/lists/mods/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
 
-  menu:addHalfButton("~!OK", "o", 48, 318,
-    function()
-      if (browser:getSelected() < 0) then
+  local okFunc = function()
+     if (browser:getSelected() < 0) then
         return
-      end
-      Load(browser.path .. browser:getSelectedItem())
-      menu:stop()
-    end)
+     end
+     Load(browser.path .. browser:getSelectedItem())
+     menu:stop()
+  end
+
+  browser:setDoubleClickAction(okFunc)
+
+  menu:addHalfButton("~!OK", "o", 48, 318, okFunc)
   menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 198, 318,
     function() buttonStatut = 2; menu:stop() end)
 

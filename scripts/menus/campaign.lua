@@ -326,7 +326,7 @@ function RunCampaignSubmenu(campaign)
     function(dd) end)
   difficulty:setSize(170, 20)
   difficulty:setSelected(1)
-  
+
   local goButton = menu:addFullButton(_("~!Start mission"), "s", offx + 208, offy + 212 + (36 * 5),  
 			function() 
 				GameSettings.Difficulty = difficulty:getSelected() + 1
@@ -334,7 +334,7 @@ function RunCampaignSubmenu(campaign)
 				SavePreferences()
 				return CampaignButtonFunction(campaign, missionListBox:getSelected() + 1, menu) 
 			end)
-  menu:addFullButton(_("~!Previous Menu"), "p", offx + 208, offy + 212 + (36 * 6),
+  menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", offx + 208, offy + 212 + (36 * 6),
     function()  menu:stop(1); RunSinglePlayerTypeMenu(); currentCampaign = nil; currentState = nil; end)
 
   menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.

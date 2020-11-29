@@ -39,21 +39,25 @@ end
 function AddLoadGameItems(menu)
   menu:addLabel(_("Load Game"), 384 / 2, 11)
   local browser = menu:addBrowser("~save", "^.*%.sav%.?g?z?$",
-    (384 - 300 - 18) / 2, 11 + (36 * 1.5), 318, 126)
+                                  (384 - 300 - 18) / 2, 11 + (36 * 1.5), 318, 126)
 
-  menu:addHalfButton(_("~!Load"), "l", (384 - 300 - 18) / 2, 256 - 16 - 27,
-    function()
-      if (browser:getSelected() < 0) then
+  local loadFunc = function()
+     if (browser:getSelected() < 0) then
         return
-      end
-      LoadGameFile = "~save/" .. browser:getSelectedItem()
-      if (menu.ingame) then
+     end
+     LoadGameFile = "~save/" .. browser:getSelectedItem()
+     if (menu.ingame) then
         StopGame(GameNoResult)
         menu:stopAll()
-      else
+     else
         menu:stop()
-      end
-    end)
+     end
+  end
+
+  browser:setDoubleClickAction(loadFunc)
+  browser:requestFocus()
+
+  menu:addHalfButton(_("~!Load"), "l", (384 - 300 - 18) / 2, 256 - 16 - 27, loadFunc)
   menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27,
     function() menu:stop(1); end)
 end

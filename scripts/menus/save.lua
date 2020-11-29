@@ -75,6 +75,11 @@ function RunSaveMenu(isreturn)
      end
   end
 
+  browser:setDoubleClickAction(function()
+        -- no confirm
+        RunSaveGame(browser:getSelectedItem(), menu)
+  end)
+
   t:setActionCallback(function()
         saveFunc()
   end)

@@ -914,15 +914,17 @@ function RunCreateMultiGameMenu(s)
   end
   browser:setActionCallback(cb)
 
-  menu:addFullButton(_("~!Create Game"), "c", sx, sy*11,
-    function(s)
-      if (browser:getSelected() < 0) then
+  local createFunc = function(s)
+     if (browser:getSelected() < 0) then
         return
-      end
-      RunServerMultiGameMenu(mapfile, description, playerCount)
-      menu:stop()
-    end
-  )
+     end
+     RunServerMultiGameMenu(mapfile, description, playerCount)
+     menu:stop()
+  end
+
+  browser:setDoubleClickAction(createFunc)
+
+  menu:addFullButton(_("~!Create Game"), "c", sx, sy*11, createFunc)
 
   menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", sx, sy*12+25,
     function() menu:stop() end)

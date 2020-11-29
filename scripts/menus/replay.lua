@@ -11,17 +11,20 @@ function RunReplayGameMenu()
 
   local reveal = menu:addImageCheckBox(_("Reveal Map"), 23, 264, offi, offi2, oni, oni2, function() end)
 
-  menu:addHalfButton("~!OK", "o", 48, 308,
-    function()
-      if (browser:getSelected() < 0) then
+  local okFunc = function()
+     if (browser:getSelected() < 0) then
         return
-      end
-      InitGameVariables()
-      StartReplay("~logs/" .. browser:getSelectedItem(), reveal:isMarked())
-      InitGameSettings()
-      SetDefaultRaceView()
-      menu:stop()
-    end)
+     end
+     InitGameVariables()
+     StartReplay("~logs/" .. browser:getSelectedItem(), reveal:isMarked())
+     InitGameSettings()
+     SetDefaultRaceView()
+     menu:stop()
+  end
+
+  browser:setDoubleClickAction(okFunc)
+
+  menu:addHalfButton("~!OK", "o", 48, 308, okFunc)
   menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 198, 308, function() menu:stop() end)
 
   menu:run()
