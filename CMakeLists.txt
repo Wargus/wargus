@@ -31,6 +31,11 @@ project(wargus)
 cmake_minimum_required(VERSION 2.6)
 set(WARGUS_VERSION 2.4.1)
 
+if(EXISTS ${WIN32_CMAKE_PREFIX_PATH})
+	list(APPEND CMAKE_PREFIX_PATH "${WIN32_CMAKE_PREFIX_PATH}")
+	message("Using prefix path ${CMAKE_PREFIX_PATH}")
+endif()
+
 # Wargus sources
 
 set(pudconvert_SRCS
