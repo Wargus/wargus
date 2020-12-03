@@ -2,14 +2,20 @@
     "configurations": [
         {
             "name": "Wartool",
-            "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/Debug/wartool.exe",
-            "args": ["-v", "${input:datadir}", "${env:APPDATA}\\Stratagus\\data.Wargus"],
+            "type": "cppdbg",
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/build/Debug/wartool.exe",
+                "environment": [{"name": "PATH", "value": "${workspaceFolder}\\..\\dependencies\\bin;${env:PATH}"}],
+                "externalConsole": true
+            },
+            "linux": {
+                "program": "${workspaceRoot}/build/wartool"
+            },
+            "args": ["-v", "${input:datadir}", "${workspaceFolder}/../data.wargus"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
-            "environment": [{"name": "PATH", "value": "${workspaceFolder}\\..\\dependencies\\bin;${env:PATH}"}],
-            "externalConsole": true
         }
     ],
     "inputs": [
