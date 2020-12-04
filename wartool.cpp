@@ -3154,11 +3154,6 @@ int main(int argc, char** argv)
 		--UnitNamesLast;
 	}
 
-	if (CDType & CD_BNE) {
-		sprintf(buf, "%s/%s", Dir, "INSTALL.EXE");
-		remove(buf);
-	}
-
 	sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
 	CheckPath(buf);
 	f = fopen(buf, "w");
