@@ -30,4 +30,6 @@ if wargus.expansion == true then
 	CurrentCampaignPath = "campaigns/orc-exp/"
 	CampaignMapTitleList = {"levelx01o_c2.sms", "levelx02o_c2.sms", "levelx03o_c2.sms", "levelx04o_c2.sms", "levelx05o_c2.sms", "levelx06o_c2.sms", "levelx07o_c2.sms", "levelx08o_c2.sms", "levelx09o_c2.sms", "levelx10o_c2.sms", "levelx11o_c2.sms", "levelx12o_c2.sms"}
 	RunCampaignSubmenu("scripts/orc/campaign2.lua")
+else
+	ErrorMenu("Expansion is not installed")
 end

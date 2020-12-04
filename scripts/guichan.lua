@@ -512,7 +512,7 @@ end
     return bq
   end
 
-  function menu:addBrowser(path, filter, x, y, w, h, default)
+  function menu:addBrowser(path, filter, x, y, w, h, default, relative)
     -- Create a list of all dirs and files in a directory
     local function listfiles(path)
       local dirlist = {}
@@ -520,13 +520,13 @@ end
       local f
       local u = 1
 
-      local dirs = ListDirsInDirectory(path)
+      local dirs = ListDirsInDirectory(path, relative)
       for i,f in ipairs(dirs) do
         dirlist[u] = f .. "/"
         u = u + 1
       end
 
-      local fileslist = ListFilesInDirectory(path)
+      local fileslist = ListFilesInDirectory(path, relative)
       for i,f in ipairs(fileslist) do
         if (string.find(f, filter)) then
           dirlist[u] = f
@@ -1080,7 +1080,7 @@ function RunSinglePlayerGameModeMenu()
 
   menu:addLabel(_("Standard Game"), 176, 8)
 
-  local browser = menu:addBrowser("scripts/lists/maps/", "", 24, (24+8+8), (300+5), (318-24-8-8-24), "Skirmish Modern")
+  local browser = menu:addBrowser("scripts/lists/maps/", "", 24, (24+8+8), (300+5), (318-24-8-8-24), "Skirmish Modern", true)
 
   local okFunc = function()
      if (browser:getSelected() < 0) then
@@ -1629,7 +1629,7 @@ function RunLoadModMenu()
 
   menu:addLabel(_("Load Mod"), 176, 8)
   
-  local browser = menu:addBrowser("scripts/lists/mods/", "", 24, (24+8+8), (300+5), (318-24-8-8-24))
+  local browser = menu:addBrowser("scripts/lists/mods/", "", 24, (24+8+8), (300+5), (318-24-8-8-24), true)
 
   local okFunc = function()
      if (browser:getSelected() < 0) then
@@ -1654,7 +1654,7 @@ function RunModCampaignGameMenu()
   local offy = (Video.Height - 480) / 2
 
   local path = "scripts/lists/campaigns/"
-  local campaignList = ListFilesInDirectory(path)
+  local campaignList = ListFilesInDirectory(path, true)
   local lastCampaign = 0
   local currentPrefix = nil
   local usedAccellerators = {}
