@@ -846,13 +846,14 @@ function RunOnlineMenu()
 
    local margin = 10
    local btnHeight = 36
+   local listWidth = 100
 
    local userLabel = menu:addLabel(_("Users"), margin, margin, nil, false)
    local userList = {}
    local users = menu:addImageListBox(
       userLabel:getX(),
       userLabel:getY() + userLabel:getHeight(),
-      100,
+      listWidth,
       Video.Height / 4,
       userList
    )
@@ -922,6 +923,7 @@ function RunOnlineMenu()
          RunCreateMultiGameMenu()
       end
    )
+   createGame:setWidth((Video.Width - margin * 4 - listWidth) / 3)
    local joinGame = menu:addFullButton(
       _("~!Join Game"),
       "j",
@@ -948,7 +950,8 @@ function RunOnlineMenu()
          end
       end
    )
-   menu:addFullButton(
+   joinGame:setWidth(createGame:getWidth())
+   local prevMenuBtn = menu:addFullButton(
       _("~!Previous Menu"),
       "p",
       joinGame:getX() + joinGame:getWidth() + margin,
@@ -958,6 +961,7 @@ function RunOnlineMenu()
          menu:stop()
       end
    )
+   prevMenuBtn:setWidth(createGame:getWidth())
 
    local AddUser = function(name)
       table.insert(userList, name)

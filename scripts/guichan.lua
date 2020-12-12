@@ -1629,7 +1629,7 @@ function RunLoadModMenu()
 
   menu:addLabel(_("Load Mod"), 176, 8)
   
-  local browser = menu:addBrowser("scripts/lists/mods/", "", 24, (24+8+8), (300+5), (318-24-8-8-24), true)
+  local browser = menu:addBrowser("scripts/lists/mods/", "", 24, (24+8+8), (300+5), (318-24-8-8-24), "", true)
 
   local okFunc = function()
      if (browser:getSelected() < 0) then
