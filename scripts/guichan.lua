@@ -1576,7 +1576,7 @@ function BuildProgramStartMenu()
   menu:addFullButton(_("~!Single Player Game"), "s", offx + 208, offy + 104 + 36*0,
     function() RunSinglePlayerTypeMenu(); menu:stop(1) end)
   menu:addFullButton(_("~!Multi Player Game"), "m", offx + 208, offy + 104 + 36*1,
-    function() RunMultiPlayerGameMenu(); menu:stop(1) end)
+                     function() RunMultiPlayerGameMenu(); menu:stop(1) end)
   menu:addFullButton(_("~!Replay Game"), "r", offx + 208, offy + 104 + 36*2,
     function() RunReplayGameMenu(); menu:stop(1) end)
   menu:addFullButton(_("~!Options"), "o", offx + 208, offy + 104 + 36*3,
@@ -1602,7 +1602,7 @@ function BuildProgramStartMenu()
   end
   local listener = LuaActionListener(function(s) checkRunDemo() end)
   menu:addLogicCallback(listener)
-	
+
   return menu:run()
 end
 
@@ -1717,7 +1717,6 @@ Load("scripts/menus/endscenario.lua")
 Load("scripts/menus/diplomacy.lua")
 Load("scripts/menus/results.lua")
 Load("scripts/menus/network.lua")
-Load("scripts/menus/metaserver.lua")
 
 function GameStarting()
   if (wc2.preferences.ShowTips and not IsReplayGame() and not IsNetworkGame()) then
@@ -1755,6 +1754,7 @@ function GameStarting()
 	end
 end
 
+RunMultiPlayerGameMenu(nil)
 if (CustomStartup) then
    CustomStartup()
    return

@@ -295,12 +295,10 @@ function RunJoiningMapMenu(optRace, optReady)
         RunMap(NetworkMapName)
 	PresentMap = OldPresentMap
         DefinePlayerTypes = oldDefinePlayerTypes
-        MetaClient:Close()
         menu:stop()
       end
     elseif (state == 10) then -- ccs_unreachable
       ErrorMenu(_("Cannot reach server"))
-      MetaClient:Close()
       menu:stop()
     end
   end
@@ -313,7 +311,7 @@ function RunJoiningMapMenu(optRace, optReady)
   end
 
   menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", Video.Width / 2 - 100, Video.Height - 100,
-    function() NetworkDetachFromServer(); MetaClient:Close(); menu:stop() end)
+    function() NetworkDetachFromServer(); menu:stop() end)
 
   menu:run()
 end
@@ -436,130 +434,6 @@ function RunJoinIpMenu()
   menu:run()
 end
 
-function RunJoiningMetaServerMenu()
-   local menu = WarMenu(nil, panel(4), false)
-   menu:setSize(288, 128)
-   menu:setPosition((Video.Width - 288) / 2, (Video.Height - 128) / 2)
-   menu:setDrawMenusUnder(true)
-
-   menu:addLabel(_("Enter meta server address:"), 144, 11)
-   local server = menu:addTextInputField(wc2.preferences.MetaServer..":"..tostring(wc2.preferences.MetaPort), 40, 38, 212)
-   local conn_label = menu:addLabel(_("Connecting..."), 40, 60, Fonts["game"], false)
-   conn_label:setVisible(false)
-
-   local ok_button = menu:addHalfButton("~!OK", "o", 24, 80, function(s) end)
-   local cancel_button = menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 154, 80, function() menu:stop() end)
-   ok_button:setActionCallback(
-      function(s)
-	 if string.len(server:getText()) > 2 then -- len 2 means :0 -- i.e., no port, no host
-	    conn_label:setVisible(true)
-	    conn_label:setCaption(_("Connecting..."))
-	    conn_label:adjustSize()
-	    local ip = string.find(server:getText(), ":")
-	    if ip ~= nil then
-	       wc2.preferences.MetaServer = string.sub(server:getText(), 1, ip - 1)
-	       wc2.preferences.MetaPort = tonumber(string.sub(server:getText(), ip + 1))
-	       if (wc2.preferences.MetaPort == 0) then wc2.preferences.MetaPort = 7775 end
-	    else
-	       wc2.preferences.MetaServer = string.sub(server:getText(), 1)
-	       wc2.preferences.MetaPort = 7775
-	    end
-	    ok_button:setEnabled(false)
-	    cancel_button:setEnabled(false)
-	    MetaClient:SetMetaServer(wc2.preferences.MetaServer, wc2.preferences.MetaPort)
-	    if (MetaClient:Init() == -1) then
-	       conn_label:setCaption(_("Unable to connect"))
-	       conn_label:adjustSize()
-	       ok_button:setEnabled(true)
-	       cancel_button:setEnabled(true)
-	    else
-	       -- connected
-	       RunJoinOnlineMenu()
-	       menu:stop(0)
-	    end
-
-	 end
-      end
-   )
-
-   menu:run()
-end
-
-function RunJoinOnlineMenu()
-  local menu = WarMenu(nil, panel(5), false)
-  local serverlist
-  menu:setSize(352, 352)
-  menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
-  menu:setDrawMenusUnder(true)
-  menu:addLabel(_("Open Games: "), 176, 20)
-  local servers = {}
-
-  local function ServerListUpdate()
-     serverlist = nil
-     servers = {}
-     local idx = 1
-     MetaClient:Send("LISTGAMES")
-     if (MetaClient:Recv() ~= -1) then
-	local log = MetaClient:GetLastMessage().entry
-	if string.find(log, "LISTGAMES_OK") then
-	   -- we're done
-	elseif string.find(log, "LISTGAMES") then
-	   servers[idx] = log
-	else
-	   -- what?
-	end
-     end
-     serverlist = menu:addImageListBox(20, 50, 300, 120, servers)
-  end
-  ServerListUpdate()
-  menu:addFullButton(_("Co~!nnect"), "n", 60, 180, function()
-      local stringlist = {}
-      local idx = 1
-      for i in string.gmatch(servers[serverlist:getSelected() + 1], "%S+") do
-	 stringlist[idx] = i
-	 idx = idx + 1
-      end
-      local id = stringlist[2]
-      local iplocal = stringlist[table.getn(stringlist) - 1]
-      local portlocal = tonumber(stringlist[table.getn(stringlist)])
-      MetaClient:Send("JOINGAME " .. tostring(id))
-      local ip = "0.0.0.0"
-      local port = 0
-      while (MetaClient:Recv() ~= -1) do
-	 local log = MetaClient:GetLastMessage().entry
-	 stringlist = {}
-	 if string.find(log, "JOINGAME_OK") then
-	    local i
-	    idx = 1
-	    for i in string.gmatch(log, "%S+") do
-	       stringlist[idx] = i
-	       idx = idx + 1
-	    end
-	    ip = stringlist[table.getn(stringlist) - 1]
-	    port = tonumber(stringlist[table.getn(stringlist)])
-	    NetworkSetupServerAddress(iplocal, portlocal)
-	    NetworkInitClientConnect()
-	    -- try the global ip first, so any clients outside the network may be able to do p2p later on
-	    if (RunJoiningGameMenu(nil, nil, _("Connecting via " .. tostring(iplocal) .. " (first try)"), true) ~= 0) then
-	       -- cannot connect to server-global ip address, try the local one
-	       NetworkSetupServerAddress(ip, port)
-	       NetworkInitClientConnect()
-	       if (RunJoiningGameMenu(nil, nil, _("Connecting via " .. tostring(ip) .. " (second try)"), false) ~= 0) then
-		  -- connect failed, don't leave this menu
-		  return
-	       end
-	    end
-	 end
-      end
-      return
-    end)
-  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", 60, 300, function()
-      MetaClient:Close()
-      menu:stop()
-  end)
-  menu:run()
-end
-
 function RunEditServerMenu(number)
   local menu = WarMenu(nil, panel(2), false)
   menu:setSize(288, 256)
@@ -625,10 +499,6 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local optAiPlayerNum = options.aiPlayerNum or 0
   local optAutostartNum = options.autostartNum
   local optDedicated = options.dedicated
-  local optOnline = options.online
-  if optOnline == nil then
-     optOnline = true
-  end
 
   menu = WarMenu(_("Create MultiPlayer game"))
 
@@ -697,54 +567,6 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
     NetworkServerResyncClients()
   end
   local dedicated = menu:addImageCheckBox("", sx + 200, sy*12+75, offi, offi2, oni, oni2, dedicatedCb)
-  local onlineLabelTxt = _("Meta-Server")
-  local onlineLabel = menu:writeText(onlineLabelTxt, sx, sy*13+75)
-  local server = menu:addTextInputField(
-     wc2.preferences.MetaServer..":"..tostring(wc2.preferences.MetaPort), sx, sy*14+75, 200)
-  local serverCb = function (dd)
-     if string.len(server:getText()) > 2 then -- len 2 means :0 -- i.e., no port, no host
-	local ip = string.find(server:getText(), ":")
-	if ip ~= nil then
-	   wc2.preferences.MetaServer = string.sub(server:getText(), 1, ip - 1)
-	   wc2.preferences.MetaPort = tonumber(string.sub(server:getText(), ip + 1))
-	   if (wc2.preferences.MetaPort == 0) then wc2.preferences.MetaPort = 7775 end
-	else
-	   wc2.preferences.MetaServer = string.sub(server:getText(), 1)
-	   wc2.preferences.MetaPort = 7775
-	end
-	SavePreferences()
-	MetaClient:SetMetaServer(wc2.preferences.MetaServer, wc2.preferences.MetaPort)
-     end
-  end
-  serverCb(server)
-  local onlineCb = function (dd)
-     serverCb(server)
-     if (dd:isMarked()) then
-	server:setEnabled(false)
-	if (MetaClient:Init() == -1) then
-	   onlineLabel:setCaption(_("(metaserver down)"))
-	   onlineLabel:adjustSize()
-	   dd:setMarked(false)
-	   server:setEnabled(true)
-	else
-	   if (MetaClient:CreateGame(description .. ":" .. wc2.preferences.PlayerName, map, "" .. numplayers) == -1) then
-	      onlineLabel:setCaption(_("(metaserver error)"))
-	      onlineLabel:adjustSize()
-	      dd:setMarked(false)
-	      server:setEnabled(true)
-	      MetaClient:Close()
-	   else
-	      onlineLabel:setCaption(onlineLabelTxt)
-	      onlineLabel:adjustSize()
-	   end
-	end
-     else
-	server:setEnabled(true)
-	MetaClient:Send("CANCELGAME")
-	MetaClient:Close()
-     end
-  end
-  local online = menu:addImageCheckBox("", sx + 200, sy*13+75, offi, offi2, oni, oni2, onlineCb)
 
   GameSettings.Opponents = optAiPlayerNum
   local updatePlayers = addPlayersList(menu, numplayers, true)
@@ -759,13 +581,8 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
       RevealMap()
     end
     NetworkServerStartGame()
-    print("Metaserver stargame...")
-    MetaClient:Send("STARTGAME") -- only the host's message will actually be processed
-    print("...metaserver game started")
     NetworkGamePrepareGameSettings()
     RunMap(map)
-    MetaClient:Send("ENDGAME finished") -- only the host's message will actually be processed
-    MetaClient:Close()
     menu:stop()
   end
   local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11, sy*14, startFunc)
@@ -786,10 +603,6 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
         dedicated:setMarked(true)
         dedicatedCb(dedicated)
         optDedicated = false
-      elseif optOnline then
-        online:setMarked(true)
-        onlineCb(online)
-        optOnline = false
       elseif (optRace == "human" or optRace == "Human") then
         race:setSelected(1)
         raceCb(race)
@@ -845,20 +658,25 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
     end
   end
 
-  local listener = LuaActionListener(function(s) updateStartButton(updatePlayers()) end)
+  local counter = 60
+  local listener = LuaActionListener(function(s)
+        updateStartButton(updatePlayers())
+        if counter == 0 then
+           -- OnlineService.startadvertising()
+           counter = 60
+        else
+           counter = counter - 1
+        end
+        -- info we need is in the C++ globals Map.Info, the GameSettings, and the ServerSetupState
+  end)
   menu:addLogicCallback(listener)
+  OnlineService.startadvertising()
   updateStartButton(updatePlayers())
 
   menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", Video.Width / 2 - 100, Video.Height - 100,
 		     function()
 			InitGameSettings()
-			-- the MetaClient message will not be processed if this
-			-- game is not registered. For the host, the server will
-			-- also ensure the entire game is marked as cancelled.
-			print("Leaving metaserver...")
-			MetaClient:Send("PARTGAME")
-			MetaClient:Close()
-			print("...left")
+                        OnlineService.stopadvertising()
 			menu:stop()
   end)
 
@@ -938,7 +756,6 @@ function RunMultiPlayerGameMenu(s)
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
   local offy = ((Video.Height - 480) / 2) - 70
-  local nick
 
   local function FixMusic()
     wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
@@ -956,9 +773,44 @@ function RunMultiPlayerGameMenu(s)
   menu:addLabel(_("~<Multiplayer Network Game~>"), offx + 640/2 + 12, offy + 192)
 
   menu:writeText(_("Nickname :"), 208 + offx, 248 + offy)
-  nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
+  local nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
 
-  menu:addFullButton(_("~!Join Local Game"), "j", 208 + offx, 298 + (36 * 0) + offy,
+  menu:writeText(_("Password :"), 208 + offx, 248 + offy + 28)
+  local pass = menu:addTextInputField("", offx + 298, 244 + offy + 28)
+
+  local loginBtn = menu:addHalfButton(_("Go ~!Online"), "o", 208 + offx, 298 + (36 * 0) + offy,
+    function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        wc2.preferences.PlayerName = nick:getText()
+        SavePreferences()
+      end
+      OnlineService.setup({ ShowError = ErrorMenu })
+      OnlineService.connect(wc2.preferences.OnlineServer, wc2.preferences.OnlinePort)
+      OnlineService.login(nick:getText(), pass:getText())
+      RunOnlineMenu()
+  end)
+  local signupLabel = menu:addLabel(
+     _("Sign up"),
+     loginBtn:getWidth() + loginBtn:getX() + loginBtn:getWidth() / 2,
+     loginBtn:getY() + loginBtn:getHeight() / 4)
+  local signUpCb = function(evt, btn, cnt)
+     if evt == "mouseClick" then
+        if nick:getText() ~= GetLocalPlayerName() then
+           SetLocalPlayerName(nick:getText())
+           wc2.preferences.PlayerName = nick:getText()
+           SavePreferences()
+        end
+        OnlineService.setup({ ShowError = ErrorMenu })
+        OnlineService.connect(wc2.preferences.OnlineServer, wc2.preferences.OnlinePort)
+        OnlineService.signup(nick:getText(), pass:getText())
+        RunOnlineMenu()
+     end
+  end
+  local signUpListener = LuaActionListener(signUpCb)
+  signupLabel:addMouseListener(signUpListener)
+
+  menu:addFullButton(_("~!Join Local Game"), "j", 208 + offx, 298 + (36 * 2) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -968,17 +820,7 @@ function RunMultiPlayerGameMenu(s)
       RunJoinIpMenu()
       FixMusic()
     end)
-  menu:addFullButton(_("Join ~!Online Game"), "o", 208 + offx, 298 + (36 * 1) + offy,
-    function()
-      if nick:getText() ~= GetLocalPlayerName() then
-        SetLocalPlayerName(nick:getText())
-        wc2.preferences.PlayerName = nick:getText()
-        SavePreferences()
-      end
-      RunJoiningMetaServerMenu()
-      FixMusic()
-    end)
-  menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 2) + offy,
+  menu:addFullButton(_("~!Create Game"), "c", 208 + offx, 298 + (36 * 3) + offy,
     function()
       if nick:getText() ~= GetLocalPlayerName() then
         SetLocalPlayerName(nick:getText())
@@ -989,10 +831,264 @@ function RunMultiPlayerGameMenu(s)
       FixMusic()
     end)
 
-  menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", 208 + offx, 298 + (36 * 3) + offy,
+  menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", 208 + offx, 298 + (36 * 5) + offy,
     function() menu:stop() end)
 
   menu:run()
 
   ExitNetwork1()
+end
+
+function RunOnlineMenu()
+   local counter = 0
+
+   local menu = WarMenu("Online")
+
+   local margin = 10
+   local btnHeight = 36
+
+   local userLabel = menu:addLabel(_("Users"), margin, margin, nil, false)
+   local userList = {}
+   local users = menu:addImageListBox(
+      userLabel:getX(),
+      userLabel:getY() + userLabel:getHeight(),
+      100,
+      Video.Height / 4,
+      userList
+   )
+
+   local friendLabel = menu:addLabel(_("Friends"), margin, users:getY() + users:getHeight() + margin, nil, false)
+   local friends = menu:addImageListBox(
+      friendLabel:getX(),
+      friendLabel:getY() + friendLabel:getHeight(),
+      users:getWidth(),
+      users:getHeight(),
+      {}
+   )
+
+   local channelLabel = menu:addLabel(_("Channels"), margin, friends:getY() + friends:getHeight() + margin, nil, false)
+   local channelList = {}
+   local selectedChannelIdx = -1
+   local channels = menu:addImageListBox(
+      channelLabel:getX(),
+      channelLabel:getY() + channelLabel:getHeight(),
+      users:getWidth(),
+      users:getHeight(),
+      channelList
+   )
+   local channelSelectCb = function()
+      OnlineService.joinchannel(channelList[channels:getSelected() + 1])
+   end
+   channels:setActionCallback(channelSelectCb)
+
+   local gamesLabel = menu:addLabel(_("Games"), users:getX() + users:getWidth() + margin, userLabel:getY(), nil, false)
+   local gamesObjectList = {}
+   local gamesList = {}
+   local games = menu:addImageListBox(
+      gamesLabel:getX(),
+      gamesLabel:getY() + gamesLabel:getHeight(),
+      Video.Width - (users:getX() + users:getWidth() + margin) - margin,
+      100,
+      gamesList
+   )
+
+   local messageLabel = menu:addLabel(_("Chat"), games:getX(), games:getY() + games:getHeight() + margin, nil, false)
+   local messageList = {}
+   local messages = menu:addListBox(
+      messageLabel:getX(),
+      messageLabel:getY() + messageLabel:getHeight(),
+      games:getWidth(),
+      Video.Height - (margin + messageLabel:getY() + messageLabel:getHeight()) - (btnHeight * 2) - (margin * 2),
+      messageList
+   )
+
+   local input = menu:addTextInputField(
+      "",
+      messages:getX(),
+      messages:getY() + messages:getHeight() + margin,
+      messages:getWidth()
+   )
+   input:setActionCallback(function()
+         counter = 1
+         OnlineService.sendmessage(input:getText())
+         input:setText("")
+   end)
+   local createGame = menu:addFullButton(
+      _("~!Create Game"),
+      "c",
+      input:getX(),
+      input:getY() + btnHeight,
+      function()
+         RunCreateMultiGameMenu()
+      end
+   )
+   local joinGame = menu:addFullButton(
+      _("~!Join Game"),
+      "j",
+      createGame:getX() + createGame:getWidth() + margin,
+      createGame:getY(),
+      function()
+         local selectedGame = gamesObjectList[games:getSelected() + 1]
+         if selectedGame then
+            local ip, port
+            for k, v in string.gmatch(selectedGame.Host, "([0-9\.]+):(%d+)") do
+               ip = k
+               port = tonumber(v)
+            end
+            print("Attempting to join " .. ip .. ":" .. port)
+            NetworkSetupServerAddress(ip, port)
+            NetworkInitClientConnect()
+            OnlineService.punchNAT(selectedGame.Creator)
+            if (RunJoiningGameMenu() ~= 0) then
+               -- connect failed, don't leave this menu
+               return
+            end
+         else
+            ErrorMenu(_("No game selected"))
+         end
+      end
+   )
+   menu:addFullButton(
+      _("~!Previous Menu"),
+      "p",
+      joinGame:getX() + joinGame:getWidth() + margin,
+      joinGame:getY(),
+      function()
+         OnlineService.disconnect()
+         menu:stop()
+      end
+   )
+
+   local AddUser = function(name)
+      table.insert(userList, name)
+      users:setList(userList)
+   end
+
+   local ClearUsers = function()
+      for i,v in ipairs(userList) do
+         table.remove(userList, i)
+      end
+      users:setList(userList)
+   end
+
+   local RemoveUser = function(name)
+      for i,v in ipairs(userList) do
+         if v == name then
+            table.remove(userList, i)
+         end
+      end
+      users:setList(userList)
+   end
+
+   local SetFriends = function(...)
+      friendsList = {}
+      for i,v in ipairs(arg) do
+         table.insert(friendsList, v.Name .. "|" .. v.Product .. "(" .. v.Status .. ")")
+      end
+      friends:setList(friendsList)
+   end
+
+   local SetGames = function(...)
+      gamesList = {}
+      gamesObjectList = {}
+      for i,game in ipairs(arg) do
+         table.insert(gamesList, game.Map .. " " .. game.Creator .. ", type: " .. game.Type .. game.Settings .. ", slots: " .. game.MaxPlayers)
+         table.insert(gamesObjectList, game)
+      end
+      games:setList(gamesList)
+   end
+
+   local SetChannels = function(...)
+      channelList = {}
+      for i,v in ipairs(arg) do
+         table.insert(channelList, v)
+      end
+      channels:setList(channelList)
+      channels:setSelected(selectedChannelIdx)
+   end
+
+   local SetActiveChannel = function(name)
+      ClearUsers()
+      local index = {}
+      for k,v in pairs(channelList) do
+         if v == name then
+            selectedChannelIdx = k - 1
+            return
+         end
+      end
+      selectedChannelIdx = -1
+   end
+
+   local AddMessage = function(str, pre, suf)
+      for line in string.gmatch(str, "([^".. string.char(10) .."]+)") do
+        if pre and suf then
+          table.insert(messageList, pre .. line .. suf)
+        else
+          table.insert(messageList, line)
+        end
+      end
+      messages:setList(messageList)
+      messages:scrollToBottom()
+   end
+
+   local ShowInfo = function(errmsg)
+      AddMessage(errmsg, "~<", "~>")
+   end
+
+   local lastError = nil
+   local ShowError = function(errmsg)
+      AddMessage(errmsg, "~red~", "~>")
+      lastError = errmsg
+   end
+
+   local ShowUserInfo = function(info)
+      local s = {"UserInfo", string.char(10)}
+      for k, v in pairs(info) do
+         s[#s+1] = string.char(10)
+         s[#s+1] = k
+         s[#s+1] = ": "
+         s[#s+1] = v
+      end
+      s = table.concat(s)
+      ShowError(s)
+   end
+
+   OnlineService.setup({
+         AddUser = AddUser,
+         RemoveUser = RemoveUser,
+         SetFriends = SetFriends,
+         SetGames = SetGames,
+         SetChannels = SetChannels,
+         SetActiveChannel = SetActiveChannel,
+         ShowChat = AddMessage,
+         ShowInfo = ShowInfo,
+         ShowError = ShowError,
+         ShowUserInfo = ShowUserInfo
+   })
+
+   -- check if we're connected, exit this menu if connection fails
+   local goonline = true
+   local timer = 10
+   function checkLogin()
+      if goonline then
+         if timer > 0 then
+            timer = timer - 1
+         else
+            timer = 10
+            result = OnlineService.status()
+            if result == "connected" then
+               goonline = false
+            elseif result ~= "connecting" then
+               if lastError then
+                  ErrorMenu(lastError)
+               end
+               menu:stop()
+            end
+         end
+      end
+  end
+  local listener = LuaActionListener(function(s) checkLogin() end)
+  menu:addLogicCallback(listener)
+
+  menu:run()
 end

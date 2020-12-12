@@ -417,8 +417,8 @@ local defaultPreferences = {
 	VideoShader = "xBRZ",
 	ViewportMode = 0,
 	ServerList = {},
-	MetaServer = "",
-	MetaPort = 0,
+	OnlineServer = "pvpgn.pro",
+	OnlinePort = 6112,
 	SimplifiedAutoTargeting = true 
 }
 
