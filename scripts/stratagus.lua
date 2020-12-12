@@ -417,7 +417,7 @@ local defaultPreferences = {
 	VideoShader = "xBRZ",
 	ViewportMode = 0,
 	ServerList = {},
-	OnlineServer = "pvpgn.pro",
+	OnlineServer = "network.stratagus.de",
 	OnlinePort = 6112,
 	SimplifiedAutoTargeting = true 
 }
