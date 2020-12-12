@@ -1754,7 +1754,6 @@ function GameStarting()
 	end
 end
 
-RunMultiPlayerGameMenu(nil)
 if (CustomStartup) then
    CustomStartup()
    return
