@@ -390,25 +390,36 @@ end
 
 function RunJoinIpMenu()
   local menu = WarMenu(nil, panel(5), false)
-  local serverlist
+  local serverlist = nil
   menu:setSize(352, 352)
   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
   menu:setDrawMenusUnder(true)
   menu:addLabel(_("Servers: "), 176, 20)
   local servers = {}
   local function ServerListUpdate()
-    serverlist = nil
     servers = {}
     if (wc2.preferences.ServerList ~= nil) then
       for i=1,table.getn(wc2.preferences.ServerList)/2 do
         servers[i]=tostring(wc2.preferences.ServerList[(i-1)*2+1].." | "..tostring(wc2.preferences.ServerList[(i-1)*2+2]))
       end
     end
-    serverlist = menu:addImageListBox(20, 50, 300, 120, servers)
+    local newlyDiscovered = NetworkDiscoverServers(true)
+    for i,v in ipairs(newlyDiscovered) do
+       table.insert(servers, v .. " | (auto-discovered)")
+    end
+    if serverlist == nil then
+       serverlist = menu:addImageListBox(20, 50, 300, 120, servers)
+    else
+       serverlist:setList(servers)
+    end
   end
   ServerListUpdate()
   menu:addFullButton(_("Co~!nnect"), "n", 60, 180, function()
-      NetworkSetupServerAddress(wc2.preferences.ServerList[serverlist:getSelected()*2+1])
+      local selectedserver = servers[serverlist:getSelected() + 1]
+      local ip = string.match(selectedserver, "[0-9\.]+")
+      print("Joining " .. ip)
+      NetworkDiscoverServers(false)
+      NetworkSetupServerAddress(ip)
       NetworkInitClientConnect()
       if (RunJoiningGameMenu() ~= 0) then
         -- connect failed, don't leave this menu
@@ -429,7 +440,19 @@ function RunJoinIpMenu()
         SavePreferences()
         ServerListUpdate()
       end
-    end)
+  end)
+
+  local counter = 30
+  local listener = LuaActionListener(function(s)
+        if counter == 0 then
+           counter = 300
+           ServerListUpdate()
+        else
+           counter = counter - 1
+        end
+  end)
+  menu:addLogicCallback(listener)
+
   menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", 60, 300, function() menu:stop() end)
   menu:run()
 end
