@@ -412,9 +412,9 @@ local defaultPreferences = {
 	TipNumber = 0,
 	UseFancyBuildings = false,      --  Enable/disable fancy building (random mirroring buildings)
 	VideoFullScreen = false,
-	VideoViewportHeight = 600,
-	VideoViewportWidth = 800,
-	VideoShader = "xBRZ",
+	VideoHeight = 480,
+	VideoWidth = 640,
+	VideoShader = "none",
 	ViewportMode = 0,
 	ServerList = {},
 	OnlineServer = "network.stratagus.de",
@@ -482,7 +482,7 @@ SetMusicEnabled(wc2.preferences.MusicEnabled)
 SetMusicVolume(wc2.preferences.MusicVolume)
 SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameTranslation)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
-SetVideoResolution(wc2.preferences.VideoViewportWidth, wc2.preferences.VideoViewportHeight)
+SetVideoResolution(wc2.preferences.VideoWidth, wc2.preferences.VideoHeight)
 
 UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
 Preference.MineNotifications = wc2.preferences.MineNotifications
