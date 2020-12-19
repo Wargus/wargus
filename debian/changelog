@@ -1,9 +1,22 @@
-wargus (3.0.0-1) UNRELEASED; urgency=medium
+wargus (3.0.0-1) focal; urgency=medium
 
   * Migrate to SDL2
   * Remove Aleonas Tales dataset and launcher from Wargus project
+  * Fix ripping of CD audio on newer Linux distros
+  * Enable new auto-targeting algorithm
+  * Add option for new shadows
+  * Reveal player when they lost their main building
+  * Play click sound on mouse down for buttons
+  * Fix sight range given by corpses by using a hidden revealer unit
+  * Fix video aspect ratio to work for both DOS and BNE CDs
+  * Copy data files during extraction so we can re-extract on demand without
+    user intervention
+  * Log wartool output on Windows to a logfile to help debug extraction issues
+  * Improve keyboard navigation throughout the game
+  * Add online gaming menu
+  * Add auto-discovery of local multiplayer games
 
- -- Tim Felgentreff <timfelgentreff@gmail.com>  Sun, 07 Jun 2020 15:30:10 +0200
+ -- Tim Felgentreff <timfelgentreff@gmail.com>  Sat, 19 Dec 2020 08:36:30 +0100
 
 wargus (2.4.3-1) eoan; urgency=medium
 
