@@ -181,8 +181,14 @@ SetRevealAttacker(false)
 SetRevelationType("all-units")
 
 -- Edit this to enable/disable shadow casting field of view for units
-SetFieldOfViewType("shadow-casting")
---SetFieldOfViewType("simple-radial")
+SetFieldOfViewType("shadow-casting") -- Legacy type of FOW doesn't work with shadow casting, so "enhanced" FOW will be activated automaticaly
+--SetFieldOfViewType("simple-radial") 
+
+SetFogOfWarType("enhanced")
+--SetFogOfWarType("legacy") -- Legacy type of FOW doesn't work with shadow casting, so "simple-radial" FOV will be activated automaticaly
+
+-- Actual only for "enhanced" FOW type
+SetFogOfWarBlur(1.5, 3)
 
 -- Make these tiles opaque. Possible tile-types "forest", "rock" and "wall"
 SetOpaqueFor("forest", "rock", "wall")
