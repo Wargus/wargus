@@ -576,5 +576,6 @@ Load("scripts/ai/ai_redribbon_2012.lua")
 Load("scripts/ai/ai_redribbon_2014.lua")
 Load("scripts/ai/ai_redribbon_2015.lua")
 Load("scripts/ai/names.lua")
+Load("scripts/ai/external_ai.lua")
 
 DebugPrint("... ready!\n")
