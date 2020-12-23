@@ -67,47 +67,123 @@ local stateVariables = {
 local actions = {
    {  -- get a worker
       function() return AiNeed(AiCityCenter()) end,
-      function() return AiWait(AiCityCenter()) end,
-      function() return AiSet(AiWorker(), 1) end,
+      function() return AiNeed(AiWorker()) end,
       function() return AiWait(AiCityCenter()) end,
       function() return AiWait(AiWorker()) end,
    },
    -- single buildings?
    {  -- get a soldier
       function() return AiNeed(AiBarracks()) end,
-      function() return AiWait(AiBarracks()) end,
       function() return AiForce(1, {AiSoldier(), 1}) end,
+      function() return AiWaitForce(1) end,
+   },
+   {  -- get a soldier
+      function() return AiNeed(AiBarracks()) end,
+      function() return AiForce(1, {AiSoldier(), 2}) end,
+      function() return AiWaitForce(1) end,
+   },
+   {  -- get a soldier
+      function() return AiNeed(AiBarracks()) end,
+      function() return AiForce(1, {AiSoldier(), 3}) end,
+      function() return AiWaitForce(1) end,
+   },
+   {  -- get a soldier
+      function() return AiNeed(AiBarracks()) end,
+      function() return AiForce(1, {AiSoldier(), 4}) end,
+      function() return AiWaitForce(1) end,
    },
    {  -- get an archer
       function() return AiNeed(AiBarracks()) end,
       function() return AiNeed(AiLumberMill()) end,
-      function() return AiWait(AiBarracks()) end,
-      function() return AiWait(AiLumberMill()) end,
       function() return AiForce(1, {AiShooter(), 1}) end,
+      function() return AiWaitForce(1) end,
+   },
+   {  -- get an archer
+      function() return AiNeed(AiBarracks()) end,
+      function() return AiNeed(AiLumberMill()) end,
+      function() return AiForce(1, {AiShooter(), 2}) end,
+      function() return AiWaitForce(1) end,
+   },
+   {  -- get an archer
+      function() return AiNeed(AiBarracks()) end,
+      function() return AiNeed(AiLumberMill()) end,
+      function() return AiForce(1, {AiShooter(), 3}) end,
+      function() return AiWaitForce(1) end,
+   },
+   {  -- get an archer
+      function() return AiNeed(AiBarracks()) end,
+      function() return AiNeed(AiLumberMill()) end,
+      function() return AiForce(1, {AiShooter(), 4}) end,
+      function() return AiWaitForce(1) end,
+   },
+   {  -- get a knight
+      function() return AiNeed(AiBarracks()) end,
+      function() return AiNeed(AiLumberMill()) end,
+      function() return AiNeed(AiBlacksmith()) end,
+      function() return AiUpgradeTo(AiBetterCityCenter()) end,
+      function() return AiNeed(AiStables()) end,
+      function() return AiForce(1, {AiCavalry(), 1}) end,
+      function() return AiWaitForce(1) end,
+   },
+   {  -- get a knight
+      function() return AiNeed(AiBarracks()) end,
+      function() return AiNeed(AiLumberMill()) end,
+      function() return AiNeed(AiBlacksmith()) end,
+      function() return AiUpgradeTo(AiBetterCityCenter()) end,
+      function() return AiNeed(AiStables()) end,
+      function() return AiForce(1, {AiCavalry(), 2}) end,
+      function() return AiWaitForce(1) end,
+   },
+   {  -- get a knight
+      function() return AiNeed(AiBarracks()) end,
+      function() return AiNeed(AiLumberMill()) end,
+      function() return AiNeed(AiBlacksmith()) end,
+      function() return AiUpgradeTo(AiBetterCityCenter()) end,
+      function() return AiNeed(AiStables()) end,
+      function() return AiForce(1, {AiCavalry(), 3}) end,
+      function() return AiWaitForce(1) end,
+   },
+   {  -- get a knight
+      function() return AiNeed(AiBarracks()) end,
+      function() return AiNeed(AiLumberMill()) end,
+      function() return AiNeed(AiBlacksmith()) end,
+      function() return AiUpgradeTo(AiBetterCityCenter()) end,
+      function() return AiNeed(AiStables()) end,
+      function() return AiForce(1, {AiCavalry(), 4}) end,
+      function() return AiWaitForce(1) end,
    },
    -- more units
-   {  -- so some research
-      function() return AiNeed(AiBlacksmith()) end,
-      function() return AiWait(AiBlacksmith()) end,
-      function() return AiResearch(AiUpgradeWeapon1()) end,
-      function() return AiResearch(AiUpgradeArmor1()) end,
-   },
+   -- {  -- so some research
+   --    function() return AiNeed(AiBlacksmith()) end,
+   --    function() return AiWait(AiBlacksmith()) end,
+   --    function() return AiResearch(AiUpgradeWeapon1()) end,
+   --    function() return AiResearch(AiUpgradeArmor1()) end,
+   -- },
    -- more research?
    { -- attack
       function() return AiWaitForce(1) end,
       function() return AiAttackWithForce(1) end,
-      function() return AiForce(1, {}, true) end, -- reset after sending to attack
    },
 }
 
-local prepareStepArgs = function(idx)
-   local score = GetPlayerData(GetThisPlayer(), "Score")
+local prepareStepArgs = function(playerIndex)
+   idx = stratagus.gameData.AIState.index[playerIndex]
+
+   -- score is the wc2 score and the diff in unit count => building and killing units good, loosing units bad
+   local score = GetPlayerData(playerIndex - 1, "Score")
+   local curUnitCount = GetPlayerData(playerIndex - 1, "TotalNumUnits")
+   local unitDiff = curUnitCount - idx.LastUnitCount
+   idx.LastUnitCount = curUnitCount
+   score = score + (unitDiff * 10)
+
    local next_reward = score - idx.LastReward
    idx.LastReward = score
+
    local env = {}
    for i=1,#stateVariables do
       table.insert(env, stateVariables[i](playerIndex - 1))
    end
+
    return next_reward, env
 end
 
@@ -119,12 +195,13 @@ DefineAi("external-ai", "*", "external-ai", function()
             if type(idx) == "number" then
                -- starting the game, establishing connection to agent
                -- TODO: make configurable
-               socket = AiProcessorSetup("127.0.0.1", 9292, #stateVariables, #actions)
+               socket = AiProcessorSetup("127.0.0.1", 9293, #stateVariables, #actions)
                idx = {
                   Socket = socket,
                   LastReward = 0,
                   ActionIndex = 0,
-                  LoopIndex = 0
+                  LoopIndex = 0,
+                  LastUnitCount = 0,
                }
                stratagus.gameData.AIState.index[playerIndex] = idx
 
@@ -132,11 +209,12 @@ DefineAi("external-ai", "*", "external-ai", function()
                local originalActionVictory = ActionVictory
                local wrapper = function()
                   ActionVictory = originalActionVictory
-                  next_reward, env = prepareStepArgs()
-                  if GetPlayerData(id, "TotalNumUnits") == 0 then
-                     next_reward = next_reward - 1000
+                  next_reward, env = prepareStepArgs(playerIndex)
+                  if GetPlayerData(playerIndex - 1, "TotalNumUnits") == 0 then
+                     -- reward for living longer
+                     next_reward = (next_reward - 1000) + (GameCycle / 1000)
                   else
-                     next_reward = next_reward + 1000
+                     next_reward = next_reward + 5000
                   end
                   AiProcessorEnd(idx.Socket, next_reward, env)
                   return originalActionVictory()
@@ -146,11 +224,12 @@ DefineAi("external-ai", "*", "external-ai", function()
                local originalActionDefeat = ActionDefeat
                local wrapper = function()
                   ActionDefeat = originalActionDefeat
-                  next_reward, env = prepareStepArgs()
-                  if GetPlayerData(id, "TotalNumUnits") == 0 then
-                     next_reward = next_reward - 1000
+                  next_reward, env = prepareStepArgs(playerIndex)
+                  if GetPlayerData(playerIndex - 1, "TotalNumUnits") == 0 then
+                     -- reward for living longer
+                     next_reward = (next_reward - 1000) + (GameCycle / 1000)
                   else
-                     next_reward = next_reward + 1000
+                     next_reward = next_reward + 5000
                   end
                   AiProcessorEnd(idx.Socket, next_reward, env)
                   return originalActionDefeat()
@@ -159,7 +238,7 @@ DefineAi("external-ai", "*", "external-ai", function()
 
             elseif idx.ActionIndex == 0 then
                -- ask agent what to do next
-               next_reward, env = prepareStepArgs()
+               next_reward, env = prepareStepArgs(playerIndex)
                idx.ActionIndex = AiProcessorStep(idx.Socket, next_reward, env) + 1
                idx.LoopIndex = 1
 

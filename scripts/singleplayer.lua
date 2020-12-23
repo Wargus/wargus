@@ -7,6 +7,7 @@ CustomStartup = function() end
 local function usage()
   print("Single player startup file for Wargus. Options are passed as comma-separated pairs")
   print("\t[map=[map.smp]]")
+  print("\t[repeat=cnt] -- repeat the game cnt times")
   print("\t[type=[0,1,2]] -- default, machine vs machine, machine vs machine training")
   print("\t[aiplayers=[number of ai players]]")
   print("\t[aiscripts=[colon-separated list of aiscripts, assigned to AIs in order]]")
@@ -21,6 +22,7 @@ else
   local aiPlayerNum = tonumber(string.match(ARGS,"aiplayers=([^,]+)"))
   local gameType = tonumber(string.match(ARGS,"type=([^,]+)"))
   local aiscripts = string.match(ARGS,"aiscripts=([^,]+)")
+  local rept = tonumber(string.match(ARGS,"repeat=([^,]+)"))
 
   local aiscriptNames = {}
   if aiscripts ~= nil then
@@ -45,13 +47,23 @@ else
      InitGameSettings()
      GameSettings.GameType = gameType
      local playerIds = {}
-     Load(mapfile)
      if gameType ~= SettingsGameTypeMapDefault then
         SinglePlayerTriggers = function()
            AddTrigger(
               function()
                  for id=1,15 do
-                    if GetNumOpponents(id) > 0 and GetPlayerData(id, "TotalNumUnits") > 0 then
+                    if GameCycle < 200000 and -- do not overextend games
+                       (GetNumOpponents(id) > 0 and
+                        (GetPlayerData(id, "UnitTypesCount", "unit-peasant") > 0 or
+                         GetPlayerData(id, "UnitTypesCount", "unit-peon") > 0 or
+                         (GetPlayerData(id, "Resources", "gold") > 600 and
+                          (GetPlayerData(id, "UnitTypesCount", "unit-town-hall") > 0) or
+                          (GetPlayerData(id, "UnitTypesCount", "unit-great-hall") > 0) or
+                          (GetPlayerData(id, "UnitTypesCount", "unit-keep") > 0) or
+                          (GetPlayerData(id, "UnitTypesCount", "unit-stronghold") > 0) or
+                          (GetPlayerData(id, "UnitTypesCount", "unit-castle") > 0) or
+                          (GetPlayerData(id, "UnitTypesCount", "unit-fortress") > 0)))) then
+                       -- players with a worker or a city center and enough money for a worker are alive
                        return false
                     end
                  end
@@ -62,7 +74,6 @@ else
         end
         ActionVictory = OldActionVictory
         RunResultsMenu = function()
-           -- TODO: report to AI server training data?
         end
      end
      GameSettings.Presets[aiPlayerNum + 1].Type = PlayerPerson
@@ -76,9 +87,21 @@ else
            GameSettings.Presets[i].AIScript = aiscriptNames[i + 1]
         end
      end
+     GameSettings.NoFogOfWar = true
+     GameSettings.RevealMap = 2
      GameSettings.GameType = gameType
      GameSettings.NetGameType = 1 -- single player game
      Load(mapname)
      RunMap(mapname)
+  end
+
+  if rept then
+     local actualCustomStartup = CustomStartup
+     CustomStartup = function()
+        for i=1,rept do
+           print("Repeat " .. i)
+           actualCustomStartup()
+        end
+     end
   end
 end
