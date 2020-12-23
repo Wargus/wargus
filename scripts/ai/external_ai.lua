@@ -100,6 +100,17 @@ local actions = {
    },
 }
 
+local prepareStepArgs = function(idx)
+   local score = GetPlayerData(GetThisPlayer(), "Score")
+   local next_reward = score - idx.LastReward
+   idx.LastReward = score
+   local env = {}
+   for i=1,#stateVariables do
+      table.insert(env, stateVariables[i](playerIndex - 1))
+   end
+   return next_reward, env
+end
+
 DefineAi("external-ai", "*", "external-ai", function()
             local playerIndex = AiPlayer() + 1
 
@@ -116,17 +127,42 @@ DefineAi("external-ai", "*", "external-ai", function()
                   LoopIndex = 0
                }
                stratagus.gameData.AIState.index[playerIndex] = idx
+
+               -- make sure we report end of game before quitting
+               local originalActionVictory = ActionVictory
+               local wrapper = function()
+                  ActionVictory = originalActionVictory
+                  next_reward, env = prepareStepArgs()
+                  if GetPlayerData(id, "TotalNumUnits") == 0 then
+                     next_reward = next_reward - 1000
+                  else
+                     next_reward = next_reward + 1000
+                  end
+                  AiProcessorEnd(idx.Socket, next_reward, env)
+                  return originalActionVictory()
+               end
+               ActionVictory = wrapper
+
+               local originalActionDefeat = ActionDefeat
+               local wrapper = function()
+                  ActionDefeat = originalActionDefeat
+                  next_reward, env = prepareStepArgs()
+                  if GetPlayerData(id, "TotalNumUnits") == 0 then
+                     next_reward = next_reward - 1000
+                  else
+                     next_reward = next_reward + 1000
+                  end
+                  AiProcessorEnd(idx.Socket, next_reward, env)
+                  return originalActionDefeat()
+               end
+               ActionDefeat = wrapper
+
             elseif idx.ActionIndex == 0 then
                -- ask agent what to do next
-               local score = GetPlayerData(GetThisPlayer(), "Score")
-               local next_reward = score - idx.LastReward
-               idx.LastReward = score
-               local env = {}
-               for i=1,#stateVariables do
-                  table.insert(env, stateVariables[i](playerIndex - 1))
-               end
+               next_reward, env = prepareStepArgs()
                idx.ActionIndex = AiProcessorStep(idx.Socket, next_reward, env) + 1
                idx.LoopIndex = 1
+
             else
                -- work on action that the agent requested
                local actionLoop = actions[idx.ActionIndex]
