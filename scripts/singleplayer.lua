@@ -52,7 +52,7 @@ else
            AddTrigger(
               function()
                  for id=1,15 do
-                    if GameCycle < 500000 and -- do not overextend games
+                    if GameCycle < 100000 and -- do not overextend games
                        (GetNumOpponents(id) > 0 and
                         (GetPlayerData(id, "UnitTypesCount", "unit-peasant") > 0 or
                          GetPlayerData(id, "UnitTypesCount", "unit-peon") > 0 or
