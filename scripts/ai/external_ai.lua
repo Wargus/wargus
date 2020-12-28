@@ -19,6 +19,19 @@
 --
 -- C2S: E0 / E1 / E2 (defeated, draw, victory)
 
+local countEnemyUnits = function(ply, unitGetter)
+   local cnt = 0
+   local thisPly = Players[ply]
+   for i=0,15 do
+      if i ~= ply then
+         if thisPly:IsEnemy(Players[i]) then
+            cnt = cnt + GetPlayerData(i, "UnitTypesCount", unitGetter(GetPlayerData(i, "RaceName")))
+         end
+      end
+   end
+   return cnt
+end
+
 local stateVariables = {
    function(ply) return GameCycle end,
 
@@ -61,60 +74,39 @@ local stateVariables = {
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiDestroyer()) end,
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiBattleship()) end,
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiTransporter()) end,
+
+   -- for enemies, count only battle units
+   function(ply) return countEnemyUnits(ply, AiSoldier) end,
+   function(ply) return countEnemyUnits(ply, AiShooter) end,
+   function(ply) return countEnemyUnits(ply, AiCavalry) end,
+   function(ply) return countEnemyUnits(ply, AiMage) end,
+   function(ply) return countEnemyUnits(ply, AiCatapult) end,
+   function(ply) return countEnemyUnits(ply, AiFlyer) end,
+   function(ply) return countEnemyUnits(ply, AiSubmarine) end,
+   function(ply) return countEnemyUnits(ply, AiDestroyer) end,
+   function(ply) return countEnemyUnits(ply, AiBattleship) end,
 }
 
 -- each "action" the processor asks for is actually an AI loop to do for a while
 local actions = {
    {  -- get a worker
       function() return AiNeed(AiCityCenter()) end,
-      function() return AiNeed(AiWorker()) end,
+      function() return AiSet(AiWorker(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiWorker()) + 1) end,
       function() return AiWait(AiCityCenter()) end,
       function() return AiWait(AiWorker()) end,
    },
-   -- single buildings?
-   {  -- get a soldier
-      function() return AiNeed(AiBarracks()) end,
-      function() return AiForce(1, {AiSoldier(), 1}) end,
-      function() return AiWaitForce(1) end,
+   {  -- get another barracks
+      function() return AiSet(AiBarracks(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiBarracks()) + 1) end,
    },
+   -- more buildings
    {  -- get a soldier
       function() return AiNeed(AiBarracks()) end,
-      function() return AiForce(1, {AiSoldier(), 2}) end,
-      function() return AiWaitForce(1) end,
-   },
-   {  -- get a soldier
-      function() return AiNeed(AiBarracks()) end,
-      function() return AiForce(1, {AiSoldier(), 3}) end,
-      function() return AiWaitForce(1) end,
-   },
-   {  -- get a soldier
-      function() return AiNeed(AiBarracks()) end,
-      function() return AiForce(1, {AiSoldier(), 4}) end,
-      function() return AiWaitForce(1) end,
+      function() return AiForce(1, {AiSoldier(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + 1}) end,
    },
    {  -- get an archer
       function() return AiNeed(AiBarracks()) end,
       function() return AiNeed(AiLumberMill()) end,
-      function() return AiForce(1, {AiShooter(), 1}) end,
-      function() return AiWaitForce(1) end,
-   },
-   {  -- get an archer
-      function() return AiNeed(AiBarracks()) end,
-      function() return AiNeed(AiLumberMill()) end,
-      function() return AiForce(1, {AiShooter(), 2}) end,
-      function() return AiWaitForce(1) end,
-   },
-   {  -- get an archer
-      function() return AiNeed(AiBarracks()) end,
-      function() return AiNeed(AiLumberMill()) end,
-      function() return AiForce(1, {AiShooter(), 3}) end,
-      function() return AiWaitForce(1) end,
-   },
-   {  -- get an archer
-      function() return AiNeed(AiBarracks()) end,
-      function() return AiNeed(AiLumberMill()) end,
-      function() return AiForce(1, {AiShooter(), 4}) end,
-      function() return AiWaitForce(1) end,
+      function() return AiForce(1, {AiShooter(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + 1}) end,
    },
    {  -- get a knight
       function() return AiNeed(AiBarracks()) end,
@@ -122,35 +114,7 @@ local actions = {
       function() return AiNeed(AiBlacksmith()) end,
       function() return AiUpgradeTo(AiBetterCityCenter()) end,
       function() return AiNeed(AiStables()) end,
-      function() return AiForce(1, {AiCavalry(), 1}) end,
-      function() return AiWaitForce(1) end,
-   },
-   {  -- get a knight
-      function() return AiNeed(AiBarracks()) end,
-      function() return AiNeed(AiLumberMill()) end,
-      function() return AiNeed(AiBlacksmith()) end,
-      function() return AiUpgradeTo(AiBetterCityCenter()) end,
-      function() return AiNeed(AiStables()) end,
-      function() return AiForce(1, {AiCavalry(), 2}) end,
-      function() return AiWaitForce(1) end,
-   },
-   {  -- get a knight
-      function() return AiNeed(AiBarracks()) end,
-      function() return AiNeed(AiLumberMill()) end,
-      function() return AiNeed(AiBlacksmith()) end,
-      function() return AiUpgradeTo(AiBetterCityCenter()) end,
-      function() return AiNeed(AiStables()) end,
-      function() return AiForce(1, {AiCavalry(), 3}) end,
-      function() return AiWaitForce(1) end,
-   },
-   {  -- get a knight
-      function() return AiNeed(AiBarracks()) end,
-      function() return AiNeed(AiLumberMill()) end,
-      function() return AiNeed(AiBlacksmith()) end,
-      function() return AiUpgradeTo(AiBetterCityCenter()) end,
-      function() return AiNeed(AiStables()) end,
-      function() return AiForce(1, {AiCavalry(), 4}) end,
-      function() return AiWaitForce(1) end,
+      function() return AiForce(1, {AiCavalry(), GetPlayerData(AiPlayer(), "UnitTypesCount", AiSoldier()) + 1}) end,
    },
    -- more units
    -- {  -- so some research
@@ -160,6 +124,9 @@ local actions = {
    --    function() return AiResearch(AiUpgradeArmor1()) end,
    -- },
    -- more research?
+   { -- wait a bit
+      function() return AiWaitForce(1) end,
+   },
    { -- attack
       function() return AiWaitForce(1) end,
       function() return AiAttackWithForce(1) end,

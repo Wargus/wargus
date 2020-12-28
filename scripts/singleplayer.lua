@@ -52,7 +52,7 @@ else
            AddTrigger(
               function()
                  for id=1,15 do
-                    if GameCycle < 200000 and -- do not overextend games
+                    if GameCycle < 500000 and -- do not overextend games
                        (GetNumOpponents(id) > 0 and
                         (GetPlayerData(id, "UnitTypesCount", "unit-peasant") > 0 or
                          GetPlayerData(id, "UnitTypesCount", "unit-peon") > 0 or
@@ -87,12 +87,16 @@ else
            GameSettings.Presets[i].AIScript = aiscriptNames[i + 1]
         end
      end
+     GameSettings.Difficulty = 1 -- easy mode
      GameSettings.NoFogOfWar = true
      GameSettings.RevealMap = 2
      GameSettings.GameType = gameType
      GameSettings.NetGameType = 1 -- single player game
-     Load(mapname)
-     RunMap(mapname)
+     print(mapname, mapfile)
+     -- Load(mapname)
+     -- RunMap(mapname)
+     Load(mapfile)
+     RunMap(mapfile)
   end
 
   if rept then

@@ -371,7 +371,7 @@ function AiCatapult(race)
   if (race == race1) then
     return "unit-ballista"
   else
-    return "unit-catapult"
+   return "unit-catapult"
   end
 end
 
