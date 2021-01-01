@@ -68,6 +68,7 @@ else
                     end
                  end
                  -- when there is only AI players left that have units, but no opponents, we're done
+                 print("Game ends at GameCycle", GameCycle)
                  return true
               end,
               function() return ActionVictory() end)
@@ -76,6 +77,9 @@ else
         RunResultsMenu = function()
         end
      end
+     -- for i=0,15 do
+     --    GameSettings.Presets[i].Type = PlayerNobody
+     -- end
      GameSettings.Presets[aiPlayerNum + 1].Type = PlayerPerson
      GameSettings.Presets[aiPlayerNum + 1].PlayerColor = aiPlayerNum + 1
      for i=0,aiPlayerNum do

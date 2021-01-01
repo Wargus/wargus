@@ -36,22 +36,25 @@ local countEnemyUnits = function(ply, unitGetter)
    return cnt
 end
 
-local sumEnemyScores = function(ply)
+sumEnemyScores = function(ply)
    local sum = 0
+   local cntEnemies = 0
    local thisPly = Players[ply]
    for i=0,15 do
       if i ~= ply then
          if thisPly:IsEnemy(Players[i]) then
+            cntEnemies = cntEnemies + 1
             sum = sum + getScore(i)
          end
       end
    end
-   return cnt
+   return sum / cntEnemies
 end
 
-local getScore = function(ply)
+getScore = function(i)
    -- return GetPlayerData(i, "Score") +
-   return GetPlayerData(i, "TotalKills") + GetPlayerData(i, "TotalRazings") + GetPlayerData(i, "TotalUnits") + GetPlayerData(i, "TotalBuildings") + (GetPlayerData(i, "TotalResources") / 10000)
+   return GetPlayerData(i, "TotalKills") * 2 + GetPlayerData(i, "TotalRazings") * 4 + GetPlayerData(i, "TotalUnits") + GetPlayerData(i, "TotalBuildings") +
+      (GetPlayerData(i, "TotalResources", "gold") / 1000) + (GetPlayerData(i, "TotalResources", "wood") / 1000) + (GetPlayerData(i, "TotalResources", "oil") / 1000)
 end
 
 local builderToUnitsMap = {}
@@ -68,7 +71,7 @@ builderToUnitsMap["unit-peasant"] = {
 }
 builderToUnitsMap["unit-peon"] = {
    "unit-great-hall", "unit-troll-lumber-mill", "unit-orc-blacksmith", "unit-alchemist", "unit-ogre-mound",
-   "unit-altar-of-storms", "unit-temple-of-the-damned-tower", "unit-dragon-roost", "unit-orc-barracks",
+   "unit-altar-of-storms", "unit-temple-of-the-damned", "unit-dragon-roost", "unit-orc-barracks",
    "unit-orc-watch-tower", "unit-orc-shipyard", "unit-orc-refinery", "unit-orc-foundry", "unit-pig-farm"
 }
 builderToUnitsMap["unit-town-hall"] = {"unit-peasant", "unit-keep"}
@@ -122,6 +125,14 @@ end
 requestBuild = function(unittype, etaScale, onlyOne, isUpgrade, assignToForce)
    local ply = AiPlayer()
 
+   local totalBuildings = GetPlayerData(ply, "TotalBuildings")
+   if totalBuildings == 0 then
+      -- only allow city center as the first building
+      if unittype ~= AiCityCenter() then
+         return false
+      end
+   end
+
    local idx = stratagus.gameData.AIState.index[ply + 1]
    if idx.buildETA[unittype] ~= nil and idx.buildETA[unittype] ~= 0 then
       -- we only allow the AI to build one unit per type at a time
@@ -166,6 +177,9 @@ requestBuild = function(unittype, etaScale, onlyOne, isUpgrade, assignToForce)
    -- we do not allow queueing for the AI. A production unit must be available
    -- immediately, otherwise our probability for spawning is off
    local producers = unitToBuilderMap[unittype]
+   if producers == nil then
+      return false
+   end
    local availableSlots = 0
    for _,producer in ipairs(producers) do
       availableSlots = availableSlots + GetPlayerData(ply, "UnitTypesCount", producer)
@@ -380,78 +394,84 @@ local prepareStepArgs = function(playerIndex)
    return next_reward, env
 end
 
-DefineAi("delayed-reward-ai", "*", "delayed-reward-ai", function()
-            local playerIndex = AiPlayer() + 1
+function MakeAi(port)
+   return function()
+      local playerIndex = AiPlayer() + 1
 
-            local idx = stratagus.gameData.AIState.index[playerIndex] -- currently active state
+      local idx = stratagus.gameData.AIState.index[playerIndex] -- currently active state
 
-            if type(idx) == "number" then
-               -- starting the game, establishing connection to agent
-               -- TODO: make configurable
-               socket = AiProcessorSetup("127.0.0.1", 9293, #stateVariables, #actions)
-               idx = {
-                  Socket = socket,
-                  LastReward = 0,
-                  ActionIndex = 0,
-                  LoopIndex = 0,
-                  LastKillings = 0,
-                  ForceSize = 0, -- current number of requested units in force
-                  attack = 0, -- current value of underway attack forces
-                  buildETA = {} -- current ETAs for build/train requests
-               }
-               stratagus.gameData.AIState.index[playerIndex] = idx
+      if type(idx) == "number" then
+         -- starting the game, establishing connection to agent
+         -- TODO: make configurable
+         socket = AiProcessorSetup("127.0.0.1", port, #stateVariables, #actions)
+         idx = {
+            Socket = socket,
+            LastReward = 0,
+            ActionIndex = 0,
+            LoopIndex = 0,
+            LastKillings = 0,
+            ForceSize = 0, -- current number of requested units in force
+            attack = 0, -- current value of underway attack forces
+            buildETA = {} -- current ETAs for build/train requests
+         }
+         stratagus.gameData.AIState.index[playerIndex] = idx
 
-               -- make sure we report end of game before quitting
-               local originalActionVictory = ActionVictory
-               local wrapper = function()
-                  ActionVictory = originalActionVictory
-                  next_reward, env = prepareStepArgs(playerIndex)
-                  if GetPlayerData(playerIndex - 1, "TotalNumUnits") > 0 and countEnemyUnits(playerIndex) then
-                     next_reward = next_reward + 100 -- lots bonus for winning
-                  else
-                     next_reward = next_reward - next_reward * 100 -- lots punishment for not winning
-                  end
-                  AiProcessorEnd(idx.Socket, next_reward, env)
-                  return originalActionVictory()
-               end
-               ActionVictory = wrapper
+         -- make sure we report end of game before quitting
+         local originalActionVictory = ActionVictory
+         local wrapper = function()
+            ActionVictory = originalActionVictory
+            next_reward, env = prepareStepArgs(playerIndex)
+            -- if GetPlayerData(playerIndex - 1, "TotalNumUnits") > 0 and countEnemyUnits(playerIndex) == 0 then
+            --    next_reward = next_reward + 4000 -- lots bonus for winning
+            -- else
+            --    next_reward = next_reward - 2000 -- lots punishment for not winning
+            -- end
+            AiProcessorEnd(idx.Socket, next_reward, env)
+            return originalActionVictory()
+         end
+         ActionVictory = wrapper
 
-               local originalActionDefeat = ActionDefeat
-               local wrapper = function()
-                  ActionDefeat = originalActionDefeat
-                  next_reward, env = prepareStepArgs(playerIndex)
-                  if GetPlayerData(playerIndex - 1, "TotalNumUnits") > 0 then
-                     next_reward = next_reward + 8000
-                  else
-                     next_reward = next_reward + (GameCycle / 1000)
-                  end
-                  AiProcessorEnd(idx.Socket, next_reward, env)
-                  return originalActionDefeat()
-               end
-               ActionDefeat = wrapper
+         local originalActionDefeat = ActionDefeat
+         local wrapper = function()
+            ActionDefeat = originalActionDefeat
+            next_reward, env = prepareStepArgs(playerIndex)
+            -- if GetPlayerData(playerIndex - 1, "TotalNumUnits") > 0 and countEnemyUnits(playerIndex) == 0 then
+            --    next_reward = next_reward + 4000 -- lots bonus for winning
+            -- else
+            --    next_reward = next_reward - 2000 -- lots punishment for not winning
+            -- end
+            AiProcessorEnd(idx.Socket, next_reward, env)
+            return originalActionDefeat()
+         end
+         ActionDefeat = wrapper
 
-            elseif idx.ActionIndex == 0 then
-               -- ask agent what to do next
-               next_reward, env = prepareStepArgs(playerIndex)
-               idx.ActionIndex = AiProcessorStep(idx.Socket, next_reward, env) + 1
-               idx.LoopIndex = 1
-            else
-               -- work on action that the agent requested
-               local actionLoop = actions[idx.ActionIndex]
-               local loopIdx = idx.LoopIndex
-               while not actionLoop[loopIdx]() do
-                  loopIdx = loopIdx + 1
-                  if loopIdx > #actionLoop then
-                     break
-                  end
-               end
-               if loopIdx > #actionLoop then
-                  -- done with this action, ask the agent for the next one
-                  idx.ActionIndex = 0
-               else
-                  idx.LoopIndex = loopIdx
-               end
+      elseif idx.ActionIndex == 0 then
+         -- ask agent what to do next
+         next_reward, env = prepareStepArgs(playerIndex)
+         idx.ActionIndex = AiProcessorStep(idx.Socket, next_reward, env) + 1
+         idx.LoopIndex = 1
+      else
+         -- work on action that the agent requested
+         local actionLoop = actions[idx.ActionIndex]
+         local loopIdx = idx.LoopIndex
+         while not actionLoop[loopIdx]() do
+            loopIdx = loopIdx + 1
+            if loopIdx > #actionLoop then
+               break
             end
+         end
+         if loopIdx > #actionLoop then
+            -- done with this action, ask the agent for the next one
+            idx.ActionIndex = 0
+         else
+            idx.LoopIndex = loopIdx
+         end
+      end
 
-            return true
-end)
+      return true
+   end
+end
+
+DefineAi("delayed-reward-ai-9292", "*", "delayed-reward-ai-9292", MakeAi(9292))
+DefineAi("delayed-reward-ai-9293", "*", "delayed-reward-ai-9293", MakeAi(9293))
+DefineAi("delayed-reward-ai-9294", "*", "delayed-reward-ai-9294", MakeAi(9294))
