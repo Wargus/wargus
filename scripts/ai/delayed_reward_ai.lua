@@ -48,13 +48,13 @@ sumEnemyScores = function(ply)
          end
       end
    end
-   return sum / cntEnemies
+   return math.floor(sum / cntEnemies)
 end
 
 getScore = function(i)
    -- return GetPlayerData(i, "Score") +
-   return GetPlayerData(i, "TotalKills") * 2 + GetPlayerData(i, "TotalRazings") * 4 + GetPlayerData(i, "TotalUnits") + GetPlayerData(i, "TotalBuildings") +
-      (GetPlayerData(i, "TotalResources", "gold") / 1000) + (GetPlayerData(i, "TotalResources", "wood") / 1000) + (GetPlayerData(i, "TotalResources", "oil") / 1000)
+   return GetPlayerData(i, "TotalKills") * 2 + GetPlayerData(i, "TotalRazings") * 4 + GetPlayerData(i, "TotalUnits") + GetPlayerData(i, "TotalBuildings") -- +
+      -- (GetPlayerData(i, "TotalResources", "gold") / 1000) + (GetPlayerData(i, "TotalResources", "wood") / 1000) + (GetPlayerData(i, "TotalResources", "oil") / 1000)
 end
 
 local builderToUnitsMap = {}
@@ -98,6 +98,10 @@ for _builder,_units in pairs(builderToUnitsMap) do
    end
 end
 
+function dbg(x, y, z)
+   -- print(x, y, z)
+end
+
 requestResearch = function(name)
    -- TODO
 end
@@ -118,12 +122,22 @@ doAttack = function(force)
    local ply = AiPlayer()
    idx = stratagus.gameData.AIState.index[ply + 1]
    idx.attack = idx.attack + idx.ForceSize + GameCycle
+   dbg(ply, "attack", idx.ForceSize)
    idx.ForceSize = 0
    return AiAttackWithForce(1)
 end
 
+doSleep = function()
+   local ply = AiPlayer()
+   idx = stratagus.gameData.AIState.index[ply + 1]
+   dbg(ply, "sleep")
+   return AiSleep(100)
+end
+
 requestBuild = function(unittype, etaScale, onlyOne, isUpgrade, assignToForce)
    local ply = AiPlayer()
+   local idx = stratagus.gameData.AIState.index[ply + 1]
+   dbg(ply, unittype)
 
    local totalBuildings = GetPlayerData(ply, "TotalBuildings")
    if totalBuildings == 0 then
@@ -133,7 +147,6 @@ requestBuild = function(unittype, etaScale, onlyOne, isUpgrade, assignToForce)
       end
    end
 
-   local idx = stratagus.gameData.AIState.index[ply + 1]
    if idx.buildETA[unittype] ~= nil and idx.buildETA[unittype] ~= 0 then
       -- we only allow the AI to build one unit per type at a time
       return false
@@ -252,20 +265,50 @@ local getRazingsProbability = function(ply)
    end
 end
 
+local getResourceValue = function(ply, resource)
+   local amt = GetPlayerData(ply, "Resources", resource)
+   if amt == 0 then
+      return 0
+   elseif amt <= 1000 then
+      return math.floor(amt / 100) -- 0..10
+   elseif amt <= 3100 then
+      return 10 + math.floor((amt - 1000) / 300) -- 10..17
+   elseif amt <= 4000 then
+      return 18
+   elseif amt <= 5000 then
+      return 19
+   else
+      return 20
+   end
+end
+
+local boxUnitCountValues = function(cnt)
+   if cnt <= 10 then
+      return cnt -- 0..10
+   elseif cnt <= 34 then
+      return 10 + math.floor((cnt - 10) / 4) -- 10..16
+   else
+      return 17
+   end
+end
+
 local stateVariables = {
+   -- return three states for game cycle: late game (2), mid game (1), early game (0)
+   function(ply) if GameCycle > 60000 then return 2 elseif GameCycle > 20000 then return 1 else return 0 end end,
+
    function(ply) return getRazingsProbability(ply) end,
 
-   function(ply) return GetPlayerData(ply, "Resources", "gold") end,
-   function(ply) return GetPlayerData(ply, "Resources", "wood") end,
-   function(ply) return GetPlayerData(ply, "Resources", "oil") end,
+   function(ply) return getResourceValue(ply, "gold") end,
+   function(ply) return getResourceValue(ply, "wood") end,
+   function(ply) return getResourceValue(ply, "oil") end,
 
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiWorker()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiSoldier()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiShooter()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiCavalry()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiMage()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiCatapult()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiFlyer()) end,
+   function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiWorker())) end,
+   function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiSoldier())) end,
+   function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiShooter())) end,
+   function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiCavalry())) end,
+   function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiMage())) end,
+   function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiCatapult())) end,
+   function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiFlyer())) end,
    function(ply) return getSpawnProbability(ply, AiWorker()) end,
    function(ply) return getSpawnProbability(ply, AiSoldier()) end,
    function(ply) return getSpawnProbability(ply, AiShooter()) end,
@@ -274,8 +317,8 @@ local stateVariables = {
    function(ply) return getSpawnProbability(ply, AiCatapult()) end,
    function(ply) return getSpawnProbability(ply, AiFlyer()) end,
 
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiGuardTower()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiCannonTower()) end,
+   function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiGuardTower())) end,
+   function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiCannonTower())) end,
    function(ply) return getSpawnProbability(ply, AiGuardTower()) end,
    function(ply) return getSpawnProbability(ply, AiCannonTower()) end,
 
@@ -283,11 +326,6 @@ local stateVariables = {
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiCityCenter()) end,
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiBetterCityCenter()) end,
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiBestCityCenter()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiLumberMill()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiBlacksmith()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiScientific()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiStables()) end,
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiTemple()) end,
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiMageTower()) end,
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiAirport()) end,
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiBarracks()) end,
@@ -295,14 +333,21 @@ local stateVariables = {
    function(ply) return getSpawnProbability(ply, AiCityCenter()) end,
    function(ply) return getSpawnProbability(ply, AiBetterCityCenter()) end,
    function(ply) return getSpawnProbability(ply, AiBestCityCenter()) end,
+   function(ply) return getSpawnProbability(ply, AiMageTower()) end,
+   function(ply) return getSpawnProbability(ply, AiAirport()) end,
+   function(ply) return getSpawnProbability(ply, AiBarracks()) end,
+
+   -- these buildings are only needed once, so we only return 0 or 1
+   function(ply) return math.min(GetPlayerData(ply, "UnitTypesCount", AiLumberMill()), 1) end,
+   function(ply) return math.min(GetPlayerData(ply, "UnitTypesCount", AiBlacksmith()), 1) end,
+   function(ply) return math.min(GetPlayerData(ply, "UnitTypesCount", AiScientific()), 1) end,
+   function(ply) return math.min(GetPlayerData(ply, "UnitTypesCount", AiStables()), 1) end,
+   function(ply) return math.min(GetPlayerData(ply, "UnitTypesCount", AiTemple()), 1) end,
    function(ply) return getSpawnProbability(ply, AiLumberMill()) end,
    function(ply) return getSpawnProbability(ply, AiBlacksmith()) end,
    function(ply) return getSpawnProbability(ply, AiScientific()) end,
    function(ply) return getSpawnProbability(ply, AiStables()) end,
    function(ply) return getSpawnProbability(ply, AiTemple()) end,
-   function(ply) return getSpawnProbability(ply, AiMageTower()) end,
-   function(ply) return getSpawnProbability(ply, AiAirport()) end,
-   function(ply) return getSpawnProbability(ply, AiBarracks()) end,
 
    -- function(ply) return GetPlayerData(ply, "UnitTypesCount", AiHarbor()) end,
    -- function(ply) return GetPlayerData(ply, "UnitTypesCount", AiRefinery()) end,
@@ -325,12 +370,12 @@ local stateVariables = {
    -- function(ply) return getSpawnProbability(ply, AiTransporter()) end,
 
    -- for enemies, count only battle units
-   function(ply) return countEnemyUnits(ply, AiSoldier) end,
-   function(ply) return countEnemyUnits(ply, AiShooter) end,
-   function(ply) return countEnemyUnits(ply, AiCavalry) end,
-   function(ply) return countEnemyUnits(ply, AiMage) end,
-   function(ply) return countEnemyUnits(ply, AiCatapult) end,
-   function(ply) return countEnemyUnits(ply, AiFlyer) end,
+   function(ply) return boxUnitCountValues(countEnemyUnits(ply, AiSoldier)) end,
+   function(ply) return boxUnitCountValues(countEnemyUnits(ply, AiShooter)) end,
+   function(ply) return boxUnitCountValues(countEnemyUnits(ply, AiCavalry)) end,
+   function(ply) return boxUnitCountValues(countEnemyUnits(ply, AiMage)) end,
+   function(ply) return boxUnitCountValues(countEnemyUnits(ply, AiCatapult)) end,
+   function(ply) return boxUnitCountValues(countEnemyUnits(ply, AiFlyer)) end,
    -- function(ply) return countEnemyUnits(ply, AiSubmarine) end,
    -- function(ply) return countEnemyUnits(ply, AiDestroyer) end,
    -- function(ply) return countEnemyUnits(ply, AiBattleship) end,
@@ -375,23 +420,19 @@ local actions = {
    -- { function() return requestResearch(AiUpgradeEliteShooter2()) end },
    -- { function() return requestResearch(AiUpgradeEliteShooter3()) end },
 
-   { function() return AiSleep(100) end },
+   { function() return doSleep() end },
    { function() return doAttack(1) end },
 }
 
 local prepareStepArgs = function(playerIndex)
    idx = stratagus.gameData.AIState.index[playerIndex]
 
-   local score = getScore(playerIndex - 1) - sumEnemyScores(playerIndex - 1)
-   local next_reward = score - idx.LastReward
-   idx.LastReward = score
-
    local env = {}
    for i=1,#stateVariables do
       table.insert(env, stateVariables[i](playerIndex - 1))
    end
 
-   return next_reward, env
+   return 0, env
 end
 
 function MakeAi(port)
@@ -412,42 +453,43 @@ function MakeAi(port)
             LastKillings = 0,
             ForceSize = 0, -- current number of requested units in force
             attack = 0, -- current value of underway attack forces
+            punishment = 0,
             buildETA = {} -- current ETAs for build/train requests
          }
          stratagus.gameData.AIState.index[playerIndex] = idx
 
          -- make sure we report end of game before quitting
+         local makeWrapper = function(cb)
+            return function()
+               next_reward, env = prepareStepArgs(playerIndex)
+               if GetNumOpponents(playerIndex - 1) == 0 then -- win
+                  print("WIN")
+                  next_reward = next_reward + 1000
+               elseif GetPlayerData(playerIndex - 1, "TotalNumUnits") == 0 then -- loss
+                  -- we punish the AI less if it put up a good fight -- -100..-1
+                  improvement = math.min(GetPlayerData(playerIndex - 1, "TotalKills") + GetPlayerData(playerIndex - 1, "TotalRazings") * 2, 99)
+                  next_reward = next_reward - 100 + improvement
+               else -- draw, reward a little bit for kills and razings -- 0..50
+                  next_reward = next_reward + math.min(GetPlayerData(playerIndex - 1, "TotalKills") + GetPlayerData(playerIndex - 1, "TotalRazings") * 2, 50)
+               end
+               AiProcessorEnd(idx.Socket, next_reward, env)
+               return cb()
+            end
+         end
          local originalActionVictory = ActionVictory
-         local wrapper = function()
-            ActionVictory = originalActionVictory
-            next_reward, env = prepareStepArgs(playerIndex)
-            -- if GetPlayerData(playerIndex - 1, "TotalNumUnits") > 0 and countEnemyUnits(playerIndex) == 0 then
-            --    next_reward = next_reward + 4000 -- lots bonus for winning
-            -- else
-            --    next_reward = next_reward - 2000 -- lots punishment for not winning
-            -- end
-            AiProcessorEnd(idx.Socket, next_reward, env)
-            return originalActionVictory()
-         end
-         ActionVictory = wrapper
-
+         ActionVictory = makeWrapper(function()
+               ActionVictory = originalActionVictory
+               return originalActionVictory()
+         end)
          local originalActionDefeat = ActionDefeat
-         local wrapper = function()
-            ActionDefeat = originalActionDefeat
-            next_reward, env = prepareStepArgs(playerIndex)
-            -- if GetPlayerData(playerIndex - 1, "TotalNumUnits") > 0 and countEnemyUnits(playerIndex) == 0 then
-            --    next_reward = next_reward + 4000 -- lots bonus for winning
-            -- else
-            --    next_reward = next_reward - 2000 -- lots punishment for not winning
-            -- end
-            AiProcessorEnd(idx.Socket, next_reward, env)
-            return originalActionDefeat()
-         end
-         ActionDefeat = wrapper
-
+         ActionDefeat = makeWrapper(function()
+               ActionDefeat = originalActionDefeat
+               return originalActionDefeat()
+         end)
       elseif idx.ActionIndex == 0 then
          -- ask agent what to do next
          next_reward, env = prepareStepArgs(playerIndex)
+         dbg("Reward", next_reward)
          idx.ActionIndex = AiProcessorStep(idx.Socket, next_reward, env) + 1
          idx.LoopIndex = 1
       else

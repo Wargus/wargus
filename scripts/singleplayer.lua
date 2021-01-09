@@ -46,30 +46,52 @@ else
   CustomStartup = function()
      InitGameSettings()
      GameSettings.GameType = gameType
-     local playerIds = {}
+     local playerUnitCounts = {}
      if gameType ~= SettingsGameTypeMapDefault then
         SinglePlayerTriggers = function()
            AddTrigger(
               function()
-                 for id=1,15 do
-                    if GameCycle < 100000 and -- do not overextend games
-                       (GetNumOpponents(id) > 0 and
-                        (GetPlayerData(id, "UnitTypesCount", "unit-peasant") > 0 or
-                         GetPlayerData(id, "UnitTypesCount", "unit-peon") > 0 or
-                         (GetPlayerData(id, "Resources", "gold") > 600 and
-                          (GetPlayerData(id, "UnitTypesCount", "unit-town-hall") > 0) or
-                          (GetPlayerData(id, "UnitTypesCount", "unit-great-hall") > 0) or
-                          (GetPlayerData(id, "UnitTypesCount", "unit-keep") > 0) or
-                          (GetPlayerData(id, "UnitTypesCount", "unit-stronghold") > 0) or
-                          (GetPlayerData(id, "UnitTypesCount", "unit-castle") > 0) or
-                          (GetPlayerData(id, "UnitTypesCount", "unit-fortress") > 0)))) then
+                 local stuckPlayers = true
+                 for id=0,14 do
+                    if GetPlayerData(id, "TotalBuildings") > 0 and GetNumOpponents(id) == 0 then
+                       print("Player " .. id + 1 .. " is stuck with no opponents")
+                       -- no opponents means we don't have anything else to do, we're stuck
+                    elseif (GameCycle >= 60000) and (GameCycle % 20000 == 0) then
+                       local cnts = playerUnitCounts[id +  1]
+                       local newTotals = GetPlayerData(id, "TotalUnits") + GetPlayerData(id, "TotalBuildings")
+                       local newCurrent = GetPlayerData(id, "TotalNumUnits") + GetPlayerData(id, "NumBuildings")
+                       if cnts == nil then
+                          playerUnitCounts[id + 1] = { newTotals, newCurrent }
+                          stuckPlayers = false
+                       elseif newTotals > 0 and newCurrent > 0 then
+                          if newTotals == cnts[1] and newCurrent == cnts[2] then
+                             -- nothing at all happened in the last 20000 cycles, nothing was build and nothing destroyed, this player seems stuck
+                             print("Player " .. id + 1 .. " is stuck")
+                          else
+                             -- if even one of the players is still building or destroying stuff, we're not yet stuck
+                             cnts[1] = newTotals
+                             cnts[2] = newCurrent
+                             stuckPlayers = false
+                          end
+                       end
+                    elseif (GetNumOpponents(id) > 0 and
+                            (GetPlayerData(id, "UnitTypesCount", "unit-peasant") > 0 or
+                             GetPlayerData(id, "UnitTypesCount", "unit-peon") > 0 or
+                             (GetPlayerData(id, "Resources", "gold") > 600 and
+                              (GetPlayerData(id, "UnitTypesCount", "unit-town-hall") > 0) or
+                              (GetPlayerData(id, "UnitTypesCount", "unit-great-hall") > 0) or
+                              (GetPlayerData(id, "UnitTypesCount", "unit-keep") > 0) or
+                              (GetPlayerData(id, "UnitTypesCount", "unit-stronghold") > 0) or
+                              (GetPlayerData(id, "UnitTypesCount", "unit-castle") > 0) or
+                              (GetPlayerData(id, "UnitTypesCount", "unit-fortress") > 0)))) then
                        -- players with a worker or a city center and enough money for a worker are alive
-                       return false
+                       stuckPlayers = false
                     end
                  end
-                 -- when there is only AI players left that have units, but no opponents, we're done
-                 print("Game ends at GameCycle", GameCycle)
-                 return true
+                 if stuckPlayers then
+                    print("Game ends at GameCycle", GameCycle)
+                 end
+                 return stuckPlayers -- game ends only when all players are stuck (i.e., dead, have no opponents left, or cannot build anymore)
               end,
               function() return ActionVictory() end)
         end
@@ -77,9 +99,12 @@ else
         RunResultsMenu = function()
         end
      end
-     -- for i=0,15 do
-     --    GameSettings.Presets[i].Type = PlayerNobody
-     -- end
+
+     -- forcibly disable all players save the required ones
+     for i=0,14 do
+        GameSettings.Presets[i].Type = PlayerNobody
+     end
+
      GameSettings.Presets[aiPlayerNum + 1].Type = PlayerPerson
      GameSettings.Presets[aiPlayerNum + 1].PlayerColor = aiPlayerNum + 1
      for i=0,aiPlayerNum do
