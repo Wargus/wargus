@@ -103,7 +103,7 @@ function dbg(x, y, z)
 end
 
 requestResearch = function(name)
-   -- TODO
+   return AiResearch(name)
 end
 
 requestBuilding = function(unittype, onlyOne, isUpgrade)
@@ -131,11 +131,11 @@ doSleep = function()
    local ply = AiPlayer()
    idx = stratagus.gameData.AIState.index[ply + 1]
    dbg(ply, "sleep")
-   return AiSleep(100)
+   return AiSleep(50)
 end
 
 requestBuild = function(unittype, etaScale, onlyOne, isUpgrade, assignToForce)
-   AiSleep(5)
+   AiSleep(10)
    local ply = AiPlayer()
    local idx = stratagus.gameData.AIState.index[ply + 1]
    dbg(ply, unittype)
@@ -309,7 +309,7 @@ local stateVariables = {
    function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiGuardTower())) end,
    function(ply) return boxUnitCountValues(GetPlayerData(ply, "UnitTypesCount", AiCannonTower())) end,
 
-   function(ply) return GetPlayerData(ply, "UnitTypesCount", AiFarm()) end,
+   -- function(ply) return GetPlayerData(ply, "UnitTypesCount", AiFarm()) end,
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiCityCenter()) end,
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiBetterCityCenter()) end,
    function(ply) return GetPlayerData(ply, "UnitTypesCount", AiBestCityCenter()) end,
@@ -432,7 +432,7 @@ local actions = {
    -- sleep should be action 0, for nothing
    { function() return doSleep() end },
 
-   { function() return requestBuilding(AiFarm()) end },
+   -- { function() return requestBuilding(AiFarm()) end },
    { function() return requestBuilding(AiCityCenter(), true) end },
    { function() return requestBuilding(AiBarracks()) end },
    { function() return requestBuilding(AiLumberMill(), true) end },
@@ -456,18 +456,18 @@ local actions = {
    { function() return requestUnit(AiFlyer(), 1) end },
    { function() return requestUnit(AiMage(), 1) end },
 
-   -- { function() return requestResearch(AiUpgradeArmor1()) end },
-   -- { function() return requestResearch(AiUpgradeArmor2()) end },
-   -- { function() return requestResearch(AiUpgradeWeapon1()) end },
-   -- { function() return requestResearch(AiUpgradeWeapon2()) end },
-   -- { function() return requestResearch(AiUpgradeMissile1()) end },
-   -- { function() return requestResearch(AiUpgradeMissile2()) end },
-   -- { function() return requestResearch(AiUpgradeCatapult1()) end },
-   -- { function() return requestResearch(AiUpgradeCatapult2()) end },
-   -- { function() return requestResearch(AiUpgradeEliteShooter()) end },
-   -- { function() return requestResearch(AiUpgradeEliteShooter1()) end },
-   -- { function() return requestResearch(AiUpgradeEliteShooter2()) end },
-   -- { function() return requestResearch(AiUpgradeEliteShooter3()) end },
+   { function() return requestResearch(AiUpgradeArmor1()) end },
+   { function() return requestResearch(AiUpgradeArmor2()) end },
+   { function() return requestResearch(AiUpgradeWeapon1()) end },
+   { function() return requestResearch(AiUpgradeWeapon2()) end },
+   { function() return requestResearch(AiUpgradeMissile1()) end },
+   { function() return requestResearch(AiUpgradeMissile2()) end },
+   { function() return requestResearch(AiUpgradeCatapult1()) end },
+   { function() return requestResearch(AiUpgradeCatapult2()) end },
+   { function() return requestResearch(AiUpgradeEliteShooter()) end },
+   { function() return requestResearch(AiUpgradeEliteShooter1()) end },
+   { function() return requestResearch(AiUpgradeEliteShooter2()) end },
+   { function() return requestResearch(AiUpgradeEliteShooter3()) end },
 
    { function() return doAttack(1) end },
 }
