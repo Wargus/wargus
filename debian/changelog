@@ -1,5 +1,6 @@
 wargus (3.0.1-1) UNRELEASED; urgency=medium
 
+  * Add a custom startup script for single player or machine vs machine games
  -- Tim Felgentreff <timfelgentreff@gmail.com>  Fri, 05 Feb 2021 10:14:01 +0100
 
 wargus (3.0.0-1) focal; urgency=medium
