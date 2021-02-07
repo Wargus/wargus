@@ -7,6 +7,7 @@ CustomStartup = function() end
 local function usage()
   print("Single player startup file for Wargus. Options are passed as comma-separated pairs")
   print("\t[map=[map.smp]]")
+  print("\t[reveal] -- reveal the map")
   print("\t[repeat=cnt] -- repeat the game cnt times")
   print("\t[type=[0,1,2]] -- default, machine vs machine, machine vs machine training")
   print("\t[aiplayers=[number of ai players]]")
@@ -23,6 +24,7 @@ else
   local gameType = tonumber(string.match(ARGS,"type=([^,]+)"))
   local aiscripts = string.match(ARGS,"aiscripts=([^,]+)")
   local rept = tonumber(string.match(ARGS,"repeat=([^,]+)"))
+  local doReveal = string.match(ARGS,"(reveal)")
 
   local aiscriptNames = {}
   if aiscripts ~= nil then
@@ -32,7 +34,9 @@ else
   end
 
   if (aiPlayerNum == nil) then
-    aiPlayerNum = 2
+     aiPlayerNum = 1
+  else
+     aiPlayerNum = aiPlayerNum - 1
   end
 
   if gameType == 1 then
@@ -48,6 +52,8 @@ else
      GameSettings.GameType = gameType
      local playerUnitCounts = {}
      if gameType ~= SettingsGameTypeMapDefault then
+        -- this is one of the machine vs machine games, so let the AI fight it out
+        doReveal = true
         SinglePlayerTriggers = function()
            AddTrigger(
               function()
@@ -117,15 +123,19 @@ else
         end
      end
      GameSettings.Difficulty = 1 -- easy mode
-     GameSettings.NoFogOfWar = true
-     GameSettings.RevealMap = 2
+     if doReveal then
+        GameSettings.NoFogOfWar = true
+        GameSettings.RevealMap = 2
+     end
      GameSettings.GameType = gameType
      GameSettings.NetGameType = 1 -- single player game
-     print(mapname, mapfile)
-     -- Load(mapname)
-     -- RunMap(mapname)
-     Load(mapfile)
-     RunMap(mapfile)
+     if mapfile then
+        Load(mapfile)
+        RunMap(mapfile)
+     else
+        Load(mapname)
+        RunMap(mapname)
+     end
   end
 
   if rept then
