@@ -5,6 +5,20 @@ wargus \- Warcraft II data game set for the Stratagus engine
 Wargus is data game set for Stratagus engine. This is only launcher and wrapper
 for Stratagus, and shares most of its commandline arguments.
 .TP
+Wargus has specific command line arguments to quickstart a single player game.
+.TP
+.B -c singleplayer -G map=(path-to-map),type=0,aiplayers=1,aiscripts=(wc2-land-attack|wc2-air-attack|...),[reveal]
+These arguments start a single player game with one AI opponent using the
+selected AI script.
+.TP
+.B -c singleplayer -G map=(path-to-map),type=2,aiplayers=2,aiscripts=wc2-land-attack:wc2-air-attack
+These arguments start a quick machine vs machine game, pitting the land attack
+vs the air attack AI. This way of running the game can be very useful for
+evaluating different AIs quickly against each other, as well as for training
+external AI agents that interface through some other means with the game. This
+has been used (for example) to train a reinforcement learning AI to play the
+game.
+.TP
 Wargus has specific command line arguments to start multiplayer games:
 .TP
 .B -c multiplayer -G server,numplayers=(number),map=(path-to-map)[,dedicated,race=(orc|human),player=(nick),fow=(1|0),reveal=(0|1),resources=(low|medium|high),units=1]
