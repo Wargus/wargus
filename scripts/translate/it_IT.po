@@ -1,0 +1,3161 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Wargus\n"
+"POT-Creation-Date: 2021-02-04 19:00\n"
+"PO-Revision-Date: 2021-02-04 19:00\n"
+"Last-Translator: Simone Starace <simone.starace93@gmail.com>\n"
+"Language-Team: \n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP866\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: buttons.lua:50 human/buttons.lua:294 human/buttons.lua:341
+#: orc/buttons.lua:317 orc/buttons.lua:364
+msgid "~<ESC~> CANCEL"
+msgstr "~<ESC~> ANNULLA"
+
+#: buttons.lua:55
+msgid "~<ESC~> CANCEL UPGRADE"
+msgstr "~<ESC~> ANNULLA POTENZIAMENTO"
+
+#: buttons.lua:60
+msgid "~<ESC~> CANCEL UNIT TRAINING"
+msgstr "~<ESC~> - ANNULLA ADDESTRAMENTO UNITA'"
+
+#: buttons.lua:65
+msgid "~<ESC~> CANCEL CONSTRUCTION"
+msgstr "~<ESC~> - ANNULLA COSTRUZIONE"
+
+#: database.lua:489 menus/campaign.lua:69
+msgid "Objectives:"
+msgstr "Obiettivi"
+
+#: database.lua:560
+msgid "Combat Casualties"
+msgstr "Vittime del combattimento"
+
+#: database.lua:561
+msgid "Infantry"
+msgstr "Fanteria"
+
+#: database.lua:562
+msgid "Artillery"
+msgstr "Artiglieria"
+
+#: database.lua:563
+msgid "Cavalry"
+msgstr "Cavalleria"
+
+#: database.lua:713 menus/campaign.lua:85 menus/campaign.lua:170
+#: menus/credits.lua:160 menus/results.lua:408
+msgid "~!Continue"
+msgstr "~!Continua"
+
+#: database.lua:721
+msgid "E~!xit"
+msgstr "Esci"
+
+#: guichan.lua:760
+msgid "-Destroy the enemy"
+msgstr "-Distruggi il nemico"
+
+#: guichan.lua:781 guichan.lua:1061 guichan.lua:1066 guichan.lua:1067
+#: guichan.lua:1069 menus/network.lua:204 menus/network.lua:213
+#: menus/network.lua:219 menus/network.lua:656 menus/network.lua:667
+#: menus/network.lua:677 stratagus.lua:84 wc2.lua:164
+msgid "Map Default"
+msgstr "Predefinita"
+
+#: guichan.lua:843
+msgid "Nation of Stromgarde"
+msgstr "Nazione di Stromgarde"
+
+#: guichan.lua:845
+msgid "Nation of Azeroth"
+msgstr "Nazione di Azeroth"
+
+#: guichan.lua:847
+msgid "Nation of Kul Tiras"
+msgstr "Nazione di Kul Tiras"
+
+#: guichan.lua:849
+msgid "Nation of Dalaran"
+msgstr "Nazione di Dalaran"
+
+#: guichan.lua:851
+msgid "Nation of Alterac"
+msgstr "Nazione di Alterac"
+
+#: guichan.lua:853
+msgid "Nation of Gilneas"
+msgstr "Nazione di Gilneas"
+
+#: guichan.lua:855
+msgid "Nation of Lordaeron"
+msgstr "Nazione di Lordaeron"
+
+#: guichan.lua:857
+msgid "Alliance Traitors"
+msgstr "Traditori dell'Alleanza"
+
+#: guichan.lua:861
+msgid "Blackrock Clan"
+msgstr "Clan Blackrock"
+
+#: guichan.lua:863
+msgid "Stormreaver Clan"
+msgstr "Clan Stormreaver"
+
+#: guichan.lua:865
+msgid "Bleeding Hollow Clan"
+msgstr "Clan Bleeding Hollow­"
+
+#: guichan.lua:867
+msgid "Twilight's Hammer Clan"
+msgstr "Clan Twilight's Hammer"
+
+#: guichan.lua:869
+msgid "Burning Blade Clan"
+msgstr "Clan Burning Blade"
+
+#: guichan.lua:871
+msgid "Black Tooth Grin Clan"
+msgstr "Clan Black Tooth Grin"
+
+#: guichan.lua:873
+msgid "Dragonmaw Clan"
+msgstr "Clan Dragonmaw"
+
+#: guichan.lua:875
+msgid "Laughing Skull Clan"
+msgstr "Clan Laughing Skull"
+
+#: guichan.lua:957
+msgid "Select scenario"
+msgstr "Seleziona scenario"
+
+#: guichan.lua:981 guichan.lua:1036 guichan.lua:1573 guichan.lua:1598
+#: menus/diplomacy.lua:118 menus/editor.lua:36 menus/editor.lua:81
+#: menus/editor.lua:109 menus/editor.lua:148 menus/editor.lua:298
+#: menus/editor.lua:344 menus/editor.lua:405 menus/load.lua:57
+#: menus/metaserver.lua:91 menus/network.lua:314 menus/network.lua:434
+#: menus/network.lua:450 menus/network.lua:555 menus/network.lua:584
+#: menus/network.lua:608 menus/network.lua:850 menus/options.lua:179
+#: menus/options.lua:374 menus/options.lua:464 menus/options.lua:662
+#: menus/replay.lua:25 menus/replay.lua:67 menus/save.lua:77
+msgid "~!Cancel"
+msgstr "Annulla"
+
+#: guichan.lua:1003
+msgid "~<Single Player~>"
+msgstr "~<Giocatore Singolo~>"
+
+#: guichan.lua:1005
+msgid "~!Standard Game"
+msgstr "Partita ~!Standard"
+
+#: guichan.lua:1007
+msgid "~!Campaign Game"
+msgstr "~!Campagna"
+
+#: guichan.lua:1009
+msgid "~!Load Game"
+msgstr "Carica Partita"
+
+#: guichan.lua:1011 menus/campaign.lua:301 menus/network.lua:990
+msgid "~!Previous Menu"
+msgstr "Menu ~!Precedente"
+
+#: guichan.lua:1024
+msgid "Standard Game"
+msgstr "Tipo di partita"
+
+#: guichan.lua:1059
+msgid "~red~Red"
+msgstr "~red~Rosso"
+
+#: guichan.lua:1059
+msgid "~blue~Blue"
+msgstr "~blue~Blu"
+
+#: guichan.lua:1059
+msgid "~green~Green"
+msgstr "~green~Verde"
+
+#: guichan.lua:1059
+msgid "~violet~Violet"
+msgstr "~violet~Viola"
+
+#: guichan.lua:1059
+msgid "~orange~Orange"
+msgstr "~orange~Arancione"
+
+#: guichan.lua:1059
+msgid "~black~Black"
+msgstr "~black~Nero"
+
+#: guichan.lua:1060
+msgid "~white~White"
+msgstr "~white~Bianco"
+
+#: guichan.lua:1060
+msgid "~yellow~Yellow"
+msgstr "~yellow~Giallo"
+
+#: guichan.lua:1061 menus/editor.lua:225 menus/network.lua:204
+#: menus/network.lua:656 wc2.lua:48
+msgid "Human"
+msgstr "Umani"
+
+#: guichan.lua:1061 menus/editor.lua:225 menus/network.lua:204
+#: menus/network.lua:656 wc2.lua:52
+msgid "Orc"
+msgstr "Orchi"
+
+#: guichan.lua:1061
+msgid "Random"
+msgstr "Casuale"
+
+#: guichan.lua:1063 menus/network.lua:121
+msgid "Player"
+msgstr "Giocatore"
+
+#: guichan.lua:1063 menus/editor.lua:223
+msgid "Computer"
+msgstr "Computer"
+
+#: guichan.lua:1063 menus/editor.lua:223
+msgid "Rescue-passive"
+msgstr "Soccorso-passivo"
+
+#: guichan.lua:1063 menus/editor.lua:223
+msgid "Rescue-active"
+msgstr "Soccorso-attivo"
+
+#: guichan.lua:1063
+msgid "None"
+msgstr "Nessuno"
+
+#: guichan.lua:1064
+msgid "Default"
+msgstr "Predefinita"
+
+#: guichan.lua:1064
+msgid "Explored"
+msgstr "Esplorata"
+
+#: guichan.lua:1064
+msgid "Revealed"
+msgstr "Rilevata"
+
+#: guichan.lua:1065
+msgid "Use map settings"
+msgstr "Impostazioni Mappa"
+
+#: guichan.lua:1065
+msgid "Melee"
+msgstr "Mischia"
+
+#: guichan.lua:1065
+msgid "Free for all"
+msgstr "Tutti contro tutti"
+
+#: guichan.lua:1065
+msgid "Top vs bottom"
+msgstr "Sopra contro Sotto"
+
+#: guichan.lua:1065
+msgid "Left vs right"
+msgstr "Sinistra contro Destra"
+
+#: guichan.lua:1065
+msgid "Man vs Machine"
+msgstr "Uomo contro Macchina"
+
+#: guichan.lua:1066 menus/editor.lua:8 menus/editor.lua:328
+msgid "Summer"
+msgstr "Estate"
+
+#: guichan.lua:1066 menus/editor.lua:8 menus/editor.lua:328
+msgid "Swamp"
+msgstr "Palude"
+
+#: guichan.lua:1066 menus/editor.lua:8 menus/editor.lua:328
+msgid "Wasteland"
+msgstr "Terre desolate"
+
+#: guichan.lua:1066 menus/editor.lua:8 menus/editor.lua:328
+msgid "Winter"
+msgstr "Inverno"
+
+#: guichan.lua:1067 menus/network.lua:213 menus/network.lua:667
+msgid "One Peasant Only"
+msgstr "Solo un lavoratore"
+
+#: guichan.lua:1068 menus/campaign.lua:269
+msgid "Easy"
+msgstr "Facile"
+
+#: guichan.lua:1068 menus/campaign.lua:269
+msgid "Normal"
+msgstr "Normale"
+
+#: guichan.lua:1068 menus/campaign.lua:269
+msgid "Hard"
+msgstr "Difficile"
+
+#: guichan.lua:1068 menus/campaign.lua:269
+msgid "Nightmare"
+msgstr "Incubo"
+
+#: guichan.lua:1068 menus/campaign.lua:269
+msgid "Hell"
+msgstr "Inferno"
+
+#: guichan.lua:1069 menus/network.lua:219 menus/network.lua:677
+msgid "High"
+msgstr "Alte"
+
+#: guichan.lua:1069 menus/network.lua:219 menus/network.lua:677
+msgid "Medium"
+msgstr "Medie"
+
+#: guichan.lua:1069 menus/network.lua:219 menus/network.lua:677
+msgid "Low"
+msgstr "Basse"
+
+#: guichan.lua:1069
+msgid "Quick Start"
+msgstr "Molto Alte"
+
+#: guichan.lua:1083
+msgid "~<Single Player Game Setup~>"
+msgstr "~<Impostazioni Partita~>"
+
+#: guichan.lua:1096 menus/network.lua:53
+msgid "Error:"
+msgstr "Errore:"
+
+#: guichan.lua:1168
+msgid "Scenario:"
+msgstr "Scenario:"
+
+#: guichan.lua:1173
+msgid "S~!elect Scenario"
+msgstr "S~!eleziona Scenario"
+
+#: guichan.lua:1182 menus/network.lua:769
+msgid "~!Start Game"
+msgstr "Inizia Partita"
+
+#: guichan.lua:1188
+msgid "Need more than 1 team"
+msgstr "E' necessario piu' di 1 squadra"
+
+#: guichan.lua:1190
+msgid "No players selected"
+msgstr "Nessun giocatore selezionato"
+
+#: guichan.lua:1192
+msgid "Need at least 1 person player"
+msgstr "Deve esserci almeno 1 giocatore"
+
+#: guichan.lua:1194
+msgid "Need at least 2 players"
+msgstr "Devono esserci almeno 2 giocatori"
+
+#: guichan.lua:1280
+msgid "~<Color:~>"
+msgstr "~<Colore:~>"
+
+#: guichan.lua:1301
+msgid "~<Type:~>"
+msgstr "~<Tipo:~>"
+
+#: guichan.lua:1324
+msgid "~<Race:~>"
+msgstr "~<Razza:~>"
+
+#: guichan.lua:1345
+msgid "~<Teams:~>"
+msgstr "~<Squadre:~>"
+
+#: guichan.lua:1361
+msgid "~<AI Script:~>"
+msgstr "~<Script I.A:~>"
+
+#: guichan.lua:1409
+msgid "~!Cancel Game"
+msgstr "~!Cancella Partita"
+
+#: guichan.lua:1411
+msgid "~<Fog of War:~>"
+msgstr "~<Nebbia di Guerra:~>"
+
+#: guichan.lua:1423
+msgid "~<Game Type:~>"
+msgstr "~<Tipo di Partita:~>"
+
+#: guichan.lua:1435
+msgid "~<Resources:~>"
+msgstr "~<Risorse:~>"
+
+#: guichan.lua:1447 menus/campaign.lua:278
+msgid "~<AI Difficulty:~>"
+msgstr "~<Difficolta' I.A:~>"
+
+#: guichan.lua:1460
+msgid "~<Tileset:~>"
+msgstr "~<Terreno:~>"
+
+#: guichan.lua:1471
+msgid "~<Units:~>"
+msgstr "~<Unita':~>"
+
+#: guichan.lua:1517
+msgid " V"
+msgstr " V"
+
+#: guichan.lua:1520
+msgid "~!Single Player Game"
+msgstr "Partita un Giocatore"
+
+#: guichan.lua:1522
+msgid "~!Multi Player Game"
+msgstr "Partita ~!Multigiocatore"
+
+#: guichan.lua:1524
+msgid "~!Replay Game"
+msgstr "~!Replay Partita"
+
+#: guichan.lua:1526
+msgid "~!Options"
+msgstr "~!Opzioni"
+
+#: guichan.lua:1528
+msgid "~!Load Mod"
+msgstr "Carica Modifica"
+
+#: guichan.lua:1530
+msgid "Map ~!Editor"
+msgstr "~!Editor Mappa"
+
+#: guichan.lua:1532
+msgid "S~!how Credits"
+msgstr "Mostra Crediti"
+
+#: guichan.lua:1534 menus/endscenario.lua:14 menus/endscenario.lua:70
+msgid "E~!xit Program"
+msgstr "Esci dal programma"
+
+#: guichan.lua:1561
+msgid "Load Mod"
+msgstr "Carica Modifica"
+
+#: guichan.lua:1586
+msgid "Campaign Game"
+msgstr "Campagna"
+
+#: guichan.lua:1590
+msgid "~!OK"
+msgstr "~!OK"
+
+#: human/buttons.lua:41 human/buttons.lua:503 orc/buttons.lua:34
+#: orc/buttons.lua:524
+msgid "~!MOVE"
+msgstr "~!MUOVI"
+
+#: human/buttons.lua:52 human/buttons.lua:64 human/buttons.lua:72
+#: human/buttons.lua:510 orc/buttons.lua:45 orc/buttons.lua:57
+#: orc/buttons.lua:65 orc/buttons.lua:530
+msgid "~!STOP"
+msgstr "FERMA"
+
+#: human/buttons.lua:79 human/buttons.lua:89 human/buttons.lua:97
+#: human/buttons.lua:104 human/buttons.lua:110 human/buttons.lua:116
+#: human/buttons.lua:537 human/buttons.lua:543 human/buttons.lua:549
+#: orc/buttons.lua:72 orc/buttons.lua:83 orc/buttons.lua:91 orc/buttons.lua:98
+#: orc/buttons.lua:104 orc/buttons.lua:110 orc/buttons.lua:116
+#: orc/buttons.lua:122 orc/buttons.lua:556 orc/buttons.lua:562
+#: orc/buttons.lua:568
+msgid "~!ATTACK"
+msgstr "~!ATTACCA"
+
+#: human/buttons.lua:122 human/buttons.lua:131 human/buttons.lua:554
+#: orc/buttons.lua:128 orc/buttons.lua:137 orc/buttons.lua:573
+msgid "~!PATROL"
+msgstr "~!PATTUGLIA"
+
+#: human/buttons.lua:140 orc/buttons.lua:146
+msgid "S~!TAND GROUND"
+msgstr "RIMANI"
+
+#: human/buttons.lua:149 orc/buttons.lua:155
+msgid "ATTACK ~!GROUND"
+msgstr "ATTACCA IL TERRENO"
+
+#: human/buttons.lua:155 orc/buttons.lua:161
+msgid "~!DEMOLISH"
+msgstr "~!DEMOLISCI"
+
+#: human/buttons.lua:163
+msgid "HOLY ~!VISION"
+msgstr "~!VISIONE SACRA"
+
+#: human/buttons.lua:170
+msgid "~!HEALING (per 1 HP)"
+msgstr "CURA (1 Punto Vita)"
+
+#: human/buttons.lua:177
+msgid "~!EXORCISM"
+msgstr "~!ESORCISMO"
+
+#: human/buttons.lua:185
+msgid "LIGHTNING ~!ATTACK"
+msgstr "LAMPO FULMINEO"
+
+#: human/buttons.lua:191
+msgid "~!FIREBALL"
+msgstr "PALLA DI ~!FUOCO"
+
+#: human/buttons.lua:197
+msgid "SL~!OW"
+msgstr "RALLENTA"
+
+#: human/buttons.lua:203
+msgid "F~!LAME SHIELD"
+msgstr "SCUDO DI FIAMME"
+
+#: human/buttons.lua:209
+msgid "~!INVISIBILITY"
+msgstr "~!INVISIBILITA'"
+
+#: human/buttons.lua:215
+msgid "~!POLYMORPH"
+msgstr "~!POLIMORFISMO"
+
+#: human/buttons.lua:221
+msgid "~!BLIZZARD"
+msgstr "TEMPESTA DI GHIACCIO"
+
+#: human/buttons.lua:228 orc/buttons.lua:251
+msgid "~!REPAIR"
+msgstr "~!RIPARA"
+
+#: human/buttons.lua:233 orc/buttons.lua:256
+msgid "~!HARVEST LUMBER/MINE GOLD"
+msgstr "RACCOGLI LEGNA/ORO"
+
+#: human/buttons.lua:238 human/buttons.lua:532 orc/buttons.lua:261
+#: orc/buttons.lua:551
+msgid "RETURN WITH ~!GOODS"
+msgstr "RITORNA CON I BENI"
+
+#: human/buttons.lua:245 orc/buttons.lua:268
+msgid "~!BUILD BASIC STRUCTURE"
+msgstr "COSTRUISCI STRUTTURE DI ~!BASE"
+
+#: human/buttons.lua:251 orc/buttons.lua:274
+msgid "BUILD AD~!VANCED STRUCTURE"
+msgstr "COSTRUISCI STRUTTURE A~!VANZATE"
+
+#: human/buttons.lua:258
+msgid "BUILD ~!FARM"
+msgstr "COSTRUISCI ~!FATTORIA"
+
+#: human/buttons.lua:263 orc/buttons.lua:286
+msgid "BUILD ~!BARRACKS"
+msgstr "COSTRUISCI CASERMA"
+
+#: human/buttons.lua:268
+msgid "BUILD TOWN ~!HALL"
+msgstr "COSTRUISCI PALAZZO"
+
+#: human/buttons.lua:273
+msgid "BUILD ELVEN ~!LUMBER MILL"
+msgstr "COSTRUISCI SEGHERIA"
+
+#: human/buttons.lua:278 orc/buttons.lua:301
+msgid "BUILD BLACK~!SMITH"
+msgstr "COSTRUISCI FABBRO"
+
+#: human/buttons.lua:283 orc/buttons.lua:306
+msgid "BUILD ~!TOWER"
+msgstr "COSTUISCI ~!TORRE"
+
+#: human/buttons.lua:289 orc/buttons.lua:312
+msgid "BUILD ~!WALL"
+msgstr "COSTRUISCI MURO"
+
+#: human/buttons.lua:301 orc/buttons.lua:324
+msgid "BUILD ~!SHIPYARD"
+msgstr "COSTUISCI CANTIERE NAVALE"
+
+#: human/buttons.lua:306 orc/buttons.lua:329
+msgid "BUILD ~!FOUNDRY"
+msgstr "COSTRUISCI ~!FONDERIA"
+
+#: human/buttons.lua:311 orc/buttons.lua:334
+msgid "BUILD ~!REFINERY"
+msgstr "COSTRUISCI ~!RAFFINERIA"
+
+#: human/buttons.lua:316
+msgid "BUILD GNOMISH ~!INVENTOR"
+msgstr "COSTRUISCI LABORATORIO DEGLI GNOM~!I"
+
+#: human/buttons.lua:321
+msgid "BUILD ST~!ABLES"
+msgstr "COSTRUISCI SCUDERI~!A"
+
+#: human/buttons.lua:326
+msgid "BUILD ~!MAGE TOWER"
+msgstr "COSTRUISCI TORRE DEL ~!MAGO"
+
+#: human/buttons.lua:331
+msgid "BUILD ~!CHURCH"
+msgstr "COSTRUISCI ~!CHIESA"
+
+#: human/buttons.lua:336
+msgid "BUILD ~!GRYPHON AVIARY"
+msgstr "COSTRUISCI SERRAGLIO DEI ~!GRIFONI"
+
+#: human/buttons.lua:349 orc/buttons.lua:372
+msgid "TRAIN ~!CRITTER"
+msgstr "ADDESTRA ANIMALETTO"
+
+#: human/buttons.lua:356
+msgid "TRAIN ~!PEASANT"
+msgstr "ADDESTRA BRACCIANTE"
+
+#: human/buttons.lua:364
+msgid "UPGRADE TO ~!KEEP"
+msgstr "MIGLIORA IN FORTEZZA"
+
+#: human/buttons.lua:370
+msgid "UPGRADE TO ~!CASTLE"
+msgstr "MIGLIORA IN ~!CASTELLO"
+
+#: human/buttons.lua:377 orc/buttons.lua:400
+msgid "SET ~!HARVEST LUMBER/MINE GOLD"
+msgstr "IMPOSTA RACCOLTA LEGNAME/MINIERA D'ORO"
+
+#: human/buttons.lua:382 human/buttons.lua:561 orc/buttons.lua:405
+#: orc/buttons.lua:580
+msgid "SET ~!MOVE"
+msgstr "IMPOSTA DOVE MUOVERE LE UNITA'"
+
+#: human/buttons.lua:388 human/buttons.lua:566 orc/buttons.lua:412
+#: orc/buttons.lua:585
+msgid "SET ~!ZTOP"
+msgstr "IMPOSTA DOVE FERMARE LE UNITA'"
+
+#: human/buttons.lua:394 human/buttons.lua:571 orc/buttons.lua:419
+#: orc/buttons.lua:590
+msgid "S~!ET ATTACK"
+msgstr "IMPOSTA DOVE ATTACCARE"
+
+#: human/buttons.lua:402
+msgid "TRAIN ~!MINUTEMAN"
+msgstr "ADDESTRA ~!MINUTEMAN"
+
+#: human/buttons.lua:407
+msgid "TRAIN ~!FOOTMAN"
+msgstr "ADDESTRA ~!FANTE"
+
+#: human/buttons.lua:412
+msgid "TRAIN ~!ARCHER"
+msgstr "ADDRESTRA ~!ARCIERE ELFICO"
+
+#: human/buttons.lua:417
+msgid "TRAIN ~!RANGER"
+msgstr "ADDESTRA ~!RANGER ELFICO"
+
+#: human/buttons.lua:422
+msgid "BUILD ~!BALLISTA"
+msgstr "COSTRUISCI ~!BALISTA"
+
+#: human/buttons.lua:427
+msgid "TRAIN ~!KNIGHT"
+msgstr "ADDESTRA CAVALIERE"
+
+#: human/buttons.lua:432
+msgid "TRAIN ~!PALADIN"
+msgstr "ADDESTRA ~!PALADINO"
+
+#: human/buttons.lua:437
+msgid "BUILD GNOMISH ~!FLYING MACHINE"
+msgstr "COSTRUISCI MACCHINA VOLANTE DEGLI GNOMI"
+
+#: human/buttons.lua:442
+msgid "TRAIN ~!DWARVEN DEMOLITION SQUAD"
+msgstr "A~!DDESTRA NANI GUASTATORI"
+
+#: human/buttons.lua:447
+msgid "~!TRAIN MAGE"
+msgstr "ADDES~!TRA MAGO"
+
+#: human/buttons.lua:452
+msgid "TRAIN ~!GRYPHON RIDER"
+msgstr "ADDESTRA CAVALCATORE DEI ~!GRIFONI"
+
+#: human/buttons.lua:457 orc/buttons.lua:478
+msgid "BUILD ~!OIL TANKER"
+msgstr "COSTRUISCI UNITA' ESTRATTIVA DI PETROLI~!O"
+
+#: human/buttons.lua:462 orc/buttons.lua:483
+msgid "BUILD ~!DESTROYER"
+msgstr "COSTRUISCI INCROCIATORE"
+
+#: human/buttons.lua:467 orc/buttons.lua:488
+msgid "BUILD ~!TRANSPORT"
+msgstr "COSTRUISCI NAVE DA ~!TRASPORTO"
+
+#: human/buttons.lua:472
+msgid "BUILD GNOMISH ~!SUBMARINE"
+msgstr "COSTRUISCI ~!SOTTOMARINO DEGLI GNOMI"
+
+#: human/buttons.lua:477
+msgid "BUILD ~!BATTLESHIP"
+msgstr "COSTRUISCI NAVE DA GUERRA"
+
+#: human/buttons.lua:484 orc/buttons.lua:505
+msgid "SET ~!HAUL OIL"
+msgstr "IMPOSTA DOVE RACCOGLIERE IL PETROLIO"
+
+#: human/buttons.lua:491 orc/buttons.lua:512
+msgid "UPGRADE TO ~!GUARD TOWER"
+msgstr "MIGLIORA IN TORRE DI ~!GUARIA"
+
+#: human/buttons.lua:496 orc/buttons.lua:517
+msgid "UPGRADE TO ~!CANNON TOWER"
+msgstr "MIGLIORA IN TORRE DI ~!CANNONI"
+
+#: human/buttons.lua:517 orc/buttons.lua:536
+msgid "~!UNLOAD"
+msgstr "SCARICA"
+
+#: human/buttons.lua:522 orc/buttons.lua:541
+msgid "~!BUILD OIL PLATFORM"
+msgstr "COSTRUISCI PIATTAFORMA PETROLIFERA"
+
+#: human/buttons.lua:527 orc/buttons.lua:546
+msgid "~!HAUL OIL"
+msgstr "TRASPORTA IL PETROLIO"
+
+#: human/buttons.lua:581 human/buttons.lua:587
+msgid "UPGRADE S~!WORDS (Damage +2)"
+msgstr "MIGLIORA LE SPADE (Danno +2)"
+
+#: human/buttons.lua:593 human/buttons.lua:599 orc/buttons.lua:612
+#: orc/buttons.lua:618
+msgid "UPGRADE ~!SHIELDS (Armor +2)"
+msgstr "MIGLIORA GLI ~!SCUDI (Armatura +2)"
+
+#: human/buttons.lua:605 human/buttons.lua:611
+msgid "UPGRADE ~!BALLISTA (Damage +15)"
+msgstr "MIGLIORA LA ~!BALISTA (Danno +15)"
+
+#: human/buttons.lua:617 human/buttons.lua:623
+msgid "~!UPGRADE ARROWS (Damage +1)"
+msgstr "MIGLIORA LE FRECCE (Danno +1)"
+
+#: human/buttons.lua:629
+msgid "ELVEN ~!RANGER TRAINING"
+msgstr "ADDESTRAMENTO ~!RANGER ELFICI"
+
+#: human/buttons.lua:635
+msgid "RANGER ~!SCOUTING (Sight:9)"
+msgstr "VI~!STA MIGLIORE PER I RANGER(Vista:9)"
+
+#: human/buttons.lua:641
+msgid "RESEARCH ~!LONGBOW (Range +1)"
+msgstr "RICERCA ARCO ~!LUNGO(Raggio +1)"
+
+#: human/buttons.lua:647
+msgid "RANGER ~!MARKSMANSHIP (Damage +3)"
+msgstr "~!MIGLIORA ABILITA' DI TIRO PER I RANGER (Danno +3)"
+
+#: human/buttons.lua:653
+msgid "UPGRADES KNIGHTS TO ~!PALADINS"
+msgstr "MIGLIORA I CAVALIERI IN ~!PALADINI"
+
+#: human/buttons.lua:659
+msgid "RESEARCH ~!HEALING"
+msgstr "RICERCA CURA"
+
+#: human/buttons.lua:665
+msgid "RESEARCH ~!EXORCISM"
+msgstr "RICERCA ESORCISMO"
+
+#: human/buttons.lua:671
+msgid "RESEARCH SL~!OW"
+msgstr "RICERCA RALLENTAMENT~!O"
+
+#: human/buttons.lua:677
+msgid "RESEARCH F~!LAME SHIELD"
+msgstr "RICERCA SCUDO DI FIAMME"
+
+#: human/buttons.lua:683
+msgid "RESEARCH ~!INVISIBILITY"
+msgstr "RICERCA ~!INVISIBILITA'"
+
+#: human/buttons.lua:689
+msgid "RESEARCH ~!POLYMORPH"
+msgstr "RICERCA ~!POLIMORFISMO"
+
+#: human/buttons.lua:695
+msgid "RESEARCH ~!BLIZZARD"
+msgstr "RICERCA TEMPESTA DI GHIACCIO"
+
+#: human/buttons.lua:701 human/buttons.lua:707 orc/buttons.lua:720
+#: orc/buttons.lua:726
+msgid "UPGRADE ~!CANNONS (Damage +5)"
+msgstr "MIGLIORA I CANNONI (Danno +5)"
+
+#: human/buttons.lua:713 human/buttons.lua:719 orc/buttons.lua:732
+#: orc/buttons.lua:738
+msgid "UPGRADE SHIP ~!ARMOR (Armor +5)"
+msgstr "MIGLIORA LE DIFESE DELLE NAVI (Armatura +5)"
+
+#: human/campaign1.lua:34 human/campaign2.lua:35 orc/campaign1.lua:34
+#: orc/campaign2.lua:35
+msgid "Act I"
+msgstr "Atto I"
+
+#: human/campaign1.lua:34
+msgid "The Shores of Lordareon"
+msgstr "Le Coste di Lordareon"
+
+#: human/campaign1.lua:40 human/campaign2.lua:40 orc/campaign1.lua:40
+#: orc/campaign2.lua:40
+msgid "Act II"
+msgstr "Atto II"
+
+#: human/campaign1.lua:40 orc/campaign1.lua:40
+msgid "Khaz Modan"
+msgstr "Khaz Modan­"
+
+#: human/campaign1.lua:46 human/campaign2.lua:45 orc/campaign1.lua:46
+#: orc/campaign2.lua:45
+msgid "Act III"
+msgstr "Atto III"
+
+#: human/campaign1.lua:46
+msgid "The Northlands"
+msgstr "Northlands"
+
+#: human/campaign1.lua:53 human/campaign2.lua:50 orc/campaign1.lua:53
+#: orc/campaign2.lua:50
+msgid "Act IV"
+msgstr "Atto IV"
+
+#: human/campaign1.lua:53
+msgid "Return to Azeroth"
+msgstr "Ritorno a Azeroth"
+
+#: human/campaign2.lua:35
+msgid "A Time for Heroes"
+msgstr "Un tempo per gli Eroi"
+
+#: human/campaign2.lua:40
+msgid "Draenor, The Red World"
+msgstr "Draenor, Il mondo Rosso"
+
+#: human/campaign2.lua:45
+msgid "War in the Shadows"
+msgstr "Guerra nelle Ombre"
+
+#: human/campaign2.lua:50
+msgid "The Measure of Valor"
+msgstr "La Misura del Valore"
+
+#: human/ui_pandora.lua:300 human/ui_tales.lua:286 orc/ui_pandora.lua:300
+#: orc/ui_tales.lua:286
+msgid "Menu (~<F10~>)"
+msgstr "Menu (~<F10~>)"
+
+#: human/ui_pandora.lua:313 human/ui_tales.lua:299 orc/ui_pandora.lua:313
+#: orc/ui_tales.lua:299
+msgid "Menu"
+msgstr "Menu"
+
+#: human/ui_pandora.lua:319 human/ui_tales.lua:305 menus/diplomacy.lua:5
+#: orc/ui_pandora.lua:319 orc/ui_tales.lua:305
+msgid "Diplomacy"
+msgstr "Diplomazia"
+
+#: human/units.lua:36 menus/results.lua:10
+msgid "Footman"
+msgstr "Fante"
+
+#: human/units.lua:65 menus/results.lua:8
+msgid "Peasant"
+msgstr "Bracciante­"
+
+#: human/units.lua:111
+msgid "Minuteman"
+msgstr "Minuteman"
+
+#: human/units.lua:141 human/units.lua:169
+msgid "Ballista"
+msgstr "Balista"
+
+#: human/units.lua:197 menus/results.lua:16 menus/results.lua:38
+msgid "Knight"
+msgstr "Cavaliere"
+
+#: human/units.lua:226
+msgid "Archer"
+msgstr "Arciere Elfico"
+
+#: human/units.lua:255
+msgid "Mage"
+msgstr "Mago"
+
+#: human/units.lua:292
+msgid "Paladin"
+msgstr "Paladino­"
+
+#: human/units.lua:324
+msgid "Dwarves"
+msgstr "Nani"
+
+#: human/units.lua:354
+msgid "Ranger"
+msgstr "Ranger Elfico"
+
+#: human/units.lua:384
+msgid "Alleria"
+msgstr "Alleria"
+
+#: human/units.lua:413
+msgid "Gryphon Rider"
+msgstr "Cavalcatore del Grifone"
+
+#: human/units.lua:443
+msgid "Kurdan and Sky'ree"
+msgstr "Kurdan and Sky'ree"
+
+#: human/units.lua:473
+msgid "Khadgar"
+msgstr "Khadgar"
+
+#: human/units.lua:510 orc/units.lua:493
+msgid "Oil tanker"
+msgstr "Unita' estrattiva"
+
+#: human/units.lua:544 orc/units.lua:527
+msgid "Transport"
+msgstr "Nave da Trasporto"
+
+#: human/units.lua:574
+msgid "Elven Destroyer"
+msgstr "Incrociatore Elfico"
+
+#: human/units.lua:603
+msgid "Battleship"
+msgstr "Nave da guerra"
+
+#: human/units.lua:638
+msgid "Gnomish Submarine"
+msgstr "Sottomarino degli Gnomi"
+
+#: human/units.lua:668
+msgid "Gnomish Flying Machine"
+msgstr "Macchina volante"
+
+#: human/units.lua:694
+msgid "Turalyon"
+msgstr "Turalyon"
+
+#: human/units.lua:725
+msgid "Danath"
+msgstr "Danath"
+
+#: human/units.lua:754
+msgid "Lothar"
+msgstr "Lothar"
+
+#: human/units.lua:786
+msgid "Uther Lightbringer"
+msgstr "Uther Lightbringer"
+
+#: human/units.lua:824
+msgid "Farm"
+msgstr "Fattoria"
+
+#: human/units.lua:857 orc/units.lua:957
+msgid "Barracks"
+msgstr "Caserma"
+
+#: human/units.lua:890
+msgid "Church"
+msgstr "Chiesa"
+
+#: human/units.lua:922
+msgid "Scout Tower"
+msgstr "Torre di esplorazione degli Umani"
+
+#: human/units.lua:956
+msgid "Stables"
+msgstr "Scuderia"
+
+#: human/units.lua:988
+msgid "Gnomish Inventor"
+msgstr "Laboratorio degli Gnomi"
+
+#: human/units.lua:1020
+msgid "Gryphon Aviary"
+msgstr "Serraglo Dei Grifoni"
+
+#: human/units.lua:1052 orc/units.lua:1152
+msgid "Shipyard"
+msgstr "Cantiere Navale"
+
+#: human/units.lua:1091
+msgid "Elven Lumber Mill"
+msgstr "Segheria Elfica"
+
+#: human/units.lua:1125 orc/units.lua:1262
+msgid "Foundry"
+msgstr "Fonderia"
+
+#: human/units.lua:1158
+msgid "Town Hall"
+msgstr "Palazzo"
+
+#: human/units.lua:1195
+msgid "Mage Tower"
+msgstr "Torre del Mago"
+
+#: human/units.lua:1226 orc/units.lua:1327
+msgid "Blacksmith"
+msgstr "Fabbro"
+
+#: human/units.lua:1258 orc/units.lua:1359
+msgid "Refinery"
+msgstr "Raffineria"
+
+#: human/units.lua:1298 orc/units.lua:1400
+msgid "Oil Platform"
+msgstr "Piattaforma Petrolifera"
+
+#: human/units.lua:1330
+msgid "Keep"
+msgstr "Fortezza"
+
+#: human/units.lua:1368
+msgid "Castle"
+msgstr "Castello"
+
+#: human/units.lua:1400 orc/units.lua:1502
+msgid "Start Location"
+msgstr "Punto di Partenza"
+
+#: human/units.lua:1427 human/units.lua:1460 orc/units.lua:1529
+#: orc/units.lua:1564
+msgid "Guard Tower"
+msgstr "Torre di Guaria"
+
+#: human/units.lua:1493 human/units.lua:1528 orc/units.lua:1599
+#: orc/units.lua:1634
+msgid "Cannon Tower"
+msgstr "Torre di Cannoni"
+
+#: human/units.lua:1561 orc/units.lua:1669
+msgid "Wall"
+msgstr "Muro"
+
+#: menus/campaign.lua:271
+msgid "~<Mission list~>"
+msgstr "~<Lista Missioni~>"
+
+#: menus/campaign.lua:284
+msgid "~!Play mission"
+msgstr "Gioca Missione"
+
+#: menus/compactmode.lua:242 menus/network.lua:956
+msgid "Nickname :"
+msgstr "Soprannome :"
+
+#: menus/diplomacy.lua:7
+msgid "Allied"
+msgstr "Alleato"
+
+#: menus/diplomacy.lua:8
+msgid "Enemy"
+msgstr "Nemico"
+
+#: menus/diplomacy.lua:9
+msgid "Shared Vision"
+msgstr "Visione Cond."
+
+#: menus/editor.lua:10
+msgid "TileSet : "
+msgstr "Terreno :"
+
+#: menus/editor.lua:11
+msgid "Size :"
+msgstr "Dimensione :"
+
+#: menus/editor.lua:13
+msgid "Map description :"
+msgstr "Descrizione mappa:"
+
+#: menus/editor.lua:25 menus/editor.lua:107
+msgid "~!New map"
+msgstr "~!Nuova mappa"
+
+#: menus/editor.lua:52
+msgid "File : "
+msgstr "File : "
+
+#: menus/editor.lua:55
+msgid "Players : "
+msgstr "Giocatori : "
+
+#: menus/editor.lua:58
+msgid "Scenario : "
+msgstr "Scenario : "
+
+#: menus/editor.lua:61
+msgid "Size : "
+msgstr "Dimensione : "
+
+#: menus/editor.lua:70
+msgid "~!Select map"
+msgstr "~!Seleziona mappa"
+
+#: menus/editor.lua:80
+msgid "~!Edit map"
+msgstr "Modifica mappa"
+
+#: menus/editor.lua:105
+msgid "~<Map Editor~>"
+msgstr "~<Editor Mappe~>"
+
+#: menus/editor.lua:108
+msgid "~!Load map"
+msgstr "Carica mappa"
+
+#: menus/editor.lua:118
+msgid "Cannot save map to file:"
+msgstr "Impossibile salvare la mappa nel file:"
+
+#: menus/editor.lua:123
+msgid "Saved map to: "
+msgstr "Mappa salvata in: "
+
+#: menus/editor.lua:136 menus/save.lua:39
+msgid "Save Game"
+msgstr "Salva Partita"
+
+#: menus/editor.lua:149 menus/replay.lua:47 menus/save.lua:51
+msgid "~!Save"
+msgstr "~!Salva"
+
+#: menus/editor.lua:172 menus/save.lua:21
+msgid "File exists, are you sure ?"
+msgstr "Esista gia' un file, sei sicuro di salvare?"
+
+#: menus/editor.lua:212
+msgid "Players properties"
+msgstr "Proprieta' Giocatori"
+
+#: menus/editor.lua:223 wc2.lua:42 wc2.lua:56
+msgid "Neutral"
+msgstr "Neutrale"
+
+#: menus/editor.lua:223
+msgid "Nobody"
+msgstr "Nessuno"
+
+#: menus/editor.lua:223
+msgid "Person"
+msgstr "Persona"
+
+#: menus/editor.lua:230
+msgid "Type"
+msgstr "Tipo"
+
+#: menus/editor.lua:231
+msgid "Race"
+msgstr "Razza"
+
+#: menus/editor.lua:232
+msgid "AI"
+msgstr "I.A"
+
+#: menus/editor.lua:233
+msgid "Gold"
+msgstr "Oro"
+
+#: menus/editor.lua:234
+msgid "Lumber"
+msgstr "Legna"
+
+#: menus/editor.lua:235
+msgid "Oil"
+msgstr "Petrolio"
+
+#: menus/editor.lua:315
+msgid "Map properties"
+msgstr "Proprieta' mappa"
+
+#: menus/editor.lua:317
+msgid "Map descritption : "
+msgstr "Descrizione mappa : "
+
+#: menus/editor.lua:320
+msgid "Size    : "
+msgstr "Dimensione   : "
+
+#: menus/editor.lua:326
+msgid "Tileset : "
+msgstr "Terreno :"
+
+#: menus/editor.lua:356
+msgid "Editor Menu"
+msgstr "Menu Editor"
+
+#: menus/editor.lua:358 menus/game.lua:39
+msgid "Save (~<F11~>)"
+msgstr "Salva (~<F11~>)"
+
+#: menus/editor.lua:360 menus/game.lua:41
+msgid "Load (~<F12~>)"
+msgstr "Carica (~<F12~>)"
+
+#: menus/editor.lua:361
+msgid "Map Properties (~<F5~>)"
+msgstr "Proprieta' Mappa (~<F5~>)"
+
+#: menus/editor.lua:362
+msgid "Player Properties (~<F6~>)"
+msgstr "Proprieta' Giocatore (~<F6~>)"
+
+#: menus/editor.lua:366
+msgid "E~!xit to Menu"
+msgstr "Esci dall'Editor"
+
+#: menus/editor.lua:368
+msgid "Return to Editor (~<Esc~>)"
+msgstr "Ritorna nell'Editor (~<Esc~>)"
+
+#: menus/editor.lua:387
+msgid "Unit properties"
+msgstr "Proprieta' Unita'"
+
+#: menus/editor.lua:390
+msgid "Artificial Intelligence"
+msgstr "Intelligenza Artificiale"
+
+#: menus/editor.lua:397 stratagus.lua:204
+msgid "gold"
+msgstr "oro"
+
+#: menus/editor.lua:397 stratagus.lua:204
+msgid "wood"
+msgstr "legna"
+
+#: menus/editor.lua:397 stratagus.lua:204
+msgid "oil"
+msgstr "petrolio"
+
+#: menus/editor.lua:399
+msgid "Amount of "
+msgstr "Quantita' di "
+
+#: menus/endscenario.lua:4
+msgid "End Scenario"
+msgstr "Termina Scenario"
+
+#: menus/endscenario.lua:5 menus/endscenario.lua:28
+msgid "~!Restart Scenario"
+msgstr "~!Ricomincia lo Scenario"
+
+#: menus/endscenario.lua:10 menus/endscenario.lua:42
+msgid "~!Surrender"
+msgstr "Arrenditi"
+
+#: menus/endscenario.lua:12 menus/endscenario.lua:56
+msgid "~!Quit to Menu"
+msgstr "Esci dalla Partita"
+
+#: menus/endscenario.lua:16 menus/help.lua:9 menus/help.lua:88
+#: menus/options.lua:705
+msgid "Previous (~<Esc~>)"
+msgstr "Precedente (~<Esc~>)"
+
+#: menus/endscenario.lua:25 menus/endscenario.lua:39 menus/endscenario.lua:53
+#: menus/endscenario.lua:67
+msgid "Are you sure you"
+msgstr "Sei sicuro di"
+
+#: menus/endscenario.lua:26
+msgid "want to restart"
+msgstr "voler ricominciare"
+
+#: menus/endscenario.lua:27
+msgid "the scenario?"
+msgstr "lo scenario?"
+
+#: menus/endscenario.lua:30 menus/endscenario.lua:44 menus/endscenario.lua:58
+#: menus/endscenario.lua:72 menus/network.lua:386 menus/network.lua:925
+msgid "Cancel (~<Esc~>)"
+msgstr "Annulla (~<Esc~>)"
+
+#: menus/endscenario.lua:40
+msgid "want to withdraw"
+msgstr "volerti ritirare"
+
+#: menus/endscenario.lua:41
+msgid "from the battle?"
+msgstr "dalla battaglia?"
+
+#: menus/endscenario.lua:54
+msgid "want to quit to"
+msgstr "voler ritornare"
+
+#: menus/endscenario.lua:55
+msgid "the main menu?"
+msgstr "al menu principale?"
+
+#: menus/endscenario.lua:68
+msgid "want to exit"
+msgstr "voler uscire da"
+
+#: menus/endscenario.lua:69
+msgid "Stratagus?"
+msgstr "Wargus?"
+
+#: menus/game.lua:37
+msgid "Game Menu"
+msgstr "Menu di Gioco"
+
+#: menus/game.lua:43
+msgid "Options (~<F5~>)"
+msgstr "Opzioni (~<F5~>)"
+
+#: menus/game.lua:45
+msgid "Help (~<F1~>)"
+msgstr "Aiuto (~<F1~>)"
+
+#: menus/game.lua:47
+msgid "Scenario ~!Objectives"
+msgstr "~!Obiettivi Scenario"
+
+#: menus/game.lua:49
+msgid "~!End Scenario"
+msgstr "Fin~!e Scenario"
+
+#: menus/game.lua:51
+msgid "Return to Game (~<Esc~>)"
+msgstr "Ritorna alla partita (~<Esc~>)"
+
+#: menus/help.lua:4
+msgid "Help Menu"
+msgstr "Menu di Aiuto"
+
+#: menus/help.lua:5
+msgid "Keystroke ~!Help"
+msgstr "Aiuto Scorciatoie"
+
+#: menus/help.lua:7
+msgid "~!Tips"
+msgstr "Suggerimenti"
+
+#: menus/help.lua:16
+msgid "- toggle full screen"
+msgstr "- imposta a schermo intero"
+
+#: menus/help.lua:17
+msgid "- toggle grab mouse"
+msgstr ""
+
+#: menus/help.lua:18
+msgid "- mute sound"
+msgstr "- silenzia suono"
+
+#: menus/help.lua:19
+msgid "- mute music"
+msgstr "- silenzia musica"
+
+#: menus/help.lua:20
+msgid "- increase game speed"
+msgstr "- aumenta velocita' di gioco"
+
+#: menus/help.lua:21
+msgid "- decrease game speed"
+msgstr "- riduci velocita' di gioco"
+
+#: menus/help.lua:22 menus/help.lua:23
+msgid "- pause game"
+msgstr "- ferma gioco"
+
+#: menus/help.lua:24
+msgid "- make screen shot"
+msgstr "- fai una schermata"
+
+#: menus/help.lua:25
+msgid "- help menu"
+msgstr "- menu di aiuto"
+
+#: menus/help.lua:26
+msgid "- restart scenario"
+msgstr "- ricomincia scenario"
+
+#: menus/help.lua:27
+msgid "- quit to main menu"
+msgstr "- ritorna al menu principale"
+
+#: menus/help.lua:28
+msgid "- quit game"
+msgstr "- esci dal gioco"
+
+#: menus/help.lua:29
+msgid "- toggle expand map"
+msgstr "- imposta espandi mappa"
+
+#: menus/help.lua:30 menus/help.lua:52 menus/help.lua:53
+msgid "- game menu"
+msgstr "- menu di gioco"
+
+#: menus/help.lua:31
+msgid "- write a message"
+msgstr "- scrivi un messaggio"
+
+#: menus/help.lua:32
+msgid "- goto last event"
+msgstr "- vai all'ultimo evento"
+
+#: menus/help.lua:33
+msgid "- hide/unhide terrain"
+msgstr "- nascondi/mostra terreno"
+
+#: menus/help.lua:34
+msgid "- track unit"
+msgstr "- traccia unita'"
+
+#: menus/help.lua:35
+msgid "- find idle peon"
+msgstr "- trova peone inattivo"
+
+#: menus/help.lua:36
+msgid "- center on selected unit"
+msgstr "- centra su unita' selezionata"
+
+#: menus/help.lua:37
+msgid "- next view port"
+msgstr "- prossima vista"
+
+#: menus/help.lua:38
+msgid "- previous view port"
+msgstr "- vista precedente"
+
+#: menus/help.lua:39
+msgid "- select nothing"
+msgstr "- seleziona il nulla"
+
+#: menus/help.lua:40
+msgid "- select group"
+msgstr "- seleziona gruppo"
+
+#: menus/help.lua:41
+msgid "- center on group"
+msgstr "- centra sul gruppo"
+
+#: menus/help.lua:42
+msgid "- define group"
+msgstr "- definisci gruppo"
+
+#: menus/help.lua:43
+msgid "- add to group"
+msgstr "- aggiungi al gruppo"
+
+#: menus/help.lua:44
+msgid "- add to alternate group"
+msgstr "- aggiungi a gruppo alternativo"
+
+#: menus/help.lua:45
+msgid "- recall map position"
+msgstr "- richiama posizione mappa"
+
+#: menus/help.lua:46
+msgid "- save map postition"
+msgstr "- salva posizione mappa"
+
+#: menus/help.lua:47
+msgid "- game options"
+msgstr "- opzioni di gioco"
+
+#: menus/help.lua:48
+msgid "- speed options"
+msgstr "- opzioni di velocita'"
+
+#: menus/help.lua:49
+msgid "- sound options"
+msgstr "- opzioni dei suoni"
+
+#: menus/help.lua:50
+msgid "- preferences"
+msgstr "- preferenze"
+
+#: menus/help.lua:51
+msgid "- diplomacy"
+msgstr "- diplomazia"
+
+#: menus/help.lua:54
+msgid "- save game"
+msgstr "- salva partita"
+
+#: menus/help.lua:55
+msgid "- load game"
+msgstr "- carica partita"
+
+#: menus/help.lua:87
+msgid "Keystroke Help Menu"
+msgstr "Menu di aiuto delle Scorciatoie"
+
+#: menus/help.lua:95
+msgid ""
+"You can select all of your currently visible units of the same type by "
+"holding down the CTRL key and selecting a unit or by \"double clicking\" on "
+"a unit."
+msgstr ""
+"Puoi selezionare tutte le tue unita' visibili attuali dello stesso tipo"
+" tenendo premuto CTRL e selezionando un unita' o \"doppio click\" sull'unita'."
+
+#: menus/help.lua:96
+msgid ""
+"The more workers you have collecting resources, the faster your economy will "
+"grow."
+msgstr "Piu' lavoratori mandi a raccogliere le risorse, piu' l'economia cresce velocemente."
+
+#: menus/help.lua:97
+msgid "Building more than one barracks will let you train more units faster."
+msgstr "Costruire piu' di una caserma ti permettera' di addestrare piu' unita' velocemente."
+
+#: menus/help.lua:98
+msgid "Use your workers to repair damaged buildings."
+msgstr "Usa i tuoi lavoratori per riparare le strutture."
+
+#: menus/help.lua:99
+msgid "Explore your surroundings early in the game."
+msgstr "Inizia a esplorare le aree vicine a inizio partita."
+
+#: menus/help.lua:101
+msgid "You can demolish trees and rocks."
+msgstr "Puoi demolire alberi e roccie."
+
+#: menus/help.lua:102
+msgid "Keep all workers working. Use ALT-I to find idle workers."
+msgstr "Mantieni tutti i lavoratori a lavoro. Premi ALT-I per trovare lavoratori inattivi."
+
+#: menus/help.lua:103
+msgid ""
+"You can make units automatically cast spells by selecting a unit, holding "
+"down CTRL and clicking on the spell icon.  CTRL click again to turn off."
+msgstr ""
+"Puoi permettere alle unita' di usare automaticamente gli incantesimi"
+" selezionando un'unita', tenendo premuto CTRL e scegliendo l'icona dell'incantesimo"
+" Ripremi con CTRL per disattivare questa funzionalita'."
+
+#: menus/help.lua:106
+msgid ""
+"You can give an unit an order which is executed after it finishes the "
+"current work, if you hold the SHIFT key."
+msgstr ""
+"Puoi specificare a un'unita' un ordine da eseguire quando ha terminato prima"
+" quella attuale se tieni premuto il tasto SHIFT."
+
+#: menus/help.lua:107
+msgid ""
+"You can give way points, if you press the SHIFT key, while you click right "
+"for the move command."
+msgstr ""
+"Puoi stabilie piu' destinazioni, se tieni premuto il pulsante SHIFT, mentre clicchi"
+" il comando muovi o con il tasto sinistro del mouse."
+
+#: menus/help.lua:108
+msgid ""
+"You can order a worker to build one building after the other, if you hold "
+"the SHIFT key, while you place the building."
+msgstr ""
+"Puoi indicare a un lavoratore di costruire un edificio dopo l'altro, se tieni"
+" premuto il tasto SHIFT, mentre stai costruendo un edificio."
+
+#: menus/help.lua:109
+msgid ""
+"You can build many of the same building, if you hold the ALT and SHIFT keys "
+"while you place the buildings."
+msgstr "Puoi costruire tanti edifici dello stesso tipo, se tieni premuto i tasti"
+" ALT e SHIFT, mentre piazzi gli edifici."
+
+#: menus/help.lua:111
+msgid ""
+"Use CTRL-V or ALT-V to cycle through the viewport configuration, you can "
+"then monitor your base and lead an attack."
+msgstr ""
+"Premi CTRL-V o ALT-V per cambiare le configurazioni di visualizzazione, cosi"
+" potrai gestire la tua base e condurre un attacco."
+
+#: menus/help.lua:113
+msgid "Know a useful tip?  Then add it here!"
+msgstr "Conosci un suggerimento utile? Allora aggiungilo qui!"
+
+#: menus/help.lua:120
+msgid "Tips"
+msgstr "Suggerimenti"
+
+#: menus/help.lua:152
+msgid "Show tips at startup"
+msgstr "Mostra suggerimenti all'avvio"
+
+#: menus/help.lua:159
+msgid "~!Next Tip"
+msgstr "Prossimo"
+
+#: menus/help.lua:161
+msgid "~!Close"
+msgstr "~!Chiudi"
+
+#: menus/load.lua:40
+msgid "Load Game"
+msgstr "Carica Partita"
+
+#: menus/load.lua:44
+msgid "~!Load"
+msgstr "Carica"
+
+#: menus/metaserver.lua:34
+msgid "~<Metaserver~>"
+msgstr ""
+
+#: menus/metaserver.lua:47
+msgid "~!Send"
+msgstr "Invia"
+
+#: menus/metaserver.lua:64
+msgid "~!Clear"
+msgstr "Pulisci"
+
+#: menus/metaserver.lua:66
+msgid "~!Main Menu"
+msgstr "~!Menu Principale"
+
+#: menus/metaserver.lua:85 menus/network.lua:444
+msgid "Enter meta server address:"
+msgstr "Inserisci indirizzo del meta server:"
+
+#: menus/metaserver.lua:87 menus/metaserver.lua:97 menus/network.lua:340
+#: menus/network.lua:446 menus/network.lua:455
+msgid "Connecting..."
+msgstr "Connessione..."
+
+#: menus/metaserver.lua:113 menus/network.lua:470
+msgid "Unable to connect"
+msgstr "Impossibile connettersi"
+
+#: menus/network.lua:85
+msgid "AIs:"
+msgstr "I.A:"
+
+#: menus/network.lua:93
+msgid " AI player(s)"
+msgstr "Giocatore(i) I.A"
+
+#: menus/network.lua:119
+msgid "Players"
+msgstr "Giocatori"
+
+#: menus/network.lua:122 menus/network.lua:144
+msgid "Preparing"
+msgstr "Preparazione"
+
+#: menus/network.lua:125 menus/network.lua:162
+msgid "Open slots : "
+msgstr "Slot aperti : "
+
+#: menus/network.lua:131
+msgid "Creator"
+msgstr "Creatore"
+
+#: menus/network.lua:142
+msgid "Ready"
+msgstr "Pronti"
+
+#: menus/network.lua:184
+msgid "Joining game: Map"
+msgstr "Ti stai unendo alla partita"
+
+#: menus/network.lua:186 menus/network.lua:633
+msgid "Map"
+msgstr "Mappa"
+
+#: menus/network.lua:187 menus/network.lua:634 menus/network.lua:877
+msgid "File:"
+msgstr "File:"
+
+#: menus/network.lua:189 menus/network.lua:636 menus/network.lua:879
+msgid "Players:"
+msgstr "Giocatori:"
+
+#: menus/network.lua:191 menus/network.lua:638 menus/network.lua:881
+msgid "Description:"
+msgstr "Descrizione:"
+
+#: menus/network.lua:194 menus/network.lua:646
+msgid "Fog of war"
+msgstr "Nebbia di guerra"
+
+#: menus/network.lua:200 menus/network.lua:653
+msgid "Reveal map"
+msgstr "Rivela mappa"
+
+#: menus/network.lua:203
+msgid "~<Your Race:~>"
+msgstr "~<Razza:~>"
+
+#: menus/network.lua:212 menus/network.lua:666 menus/results.lua:203
+msgid "Units:"
+msgstr "Unita':"
+
+#: menus/network.lua:218 menus/network.lua:676
+msgid "Resources:"
+msgstr "Risorse:"
+
+#: menus/network.lua:250
+msgid "~!Ready"
+msgstr "Pronti"
+
+#: menus/network.lua:301 menus/network.lua:366
+msgid "Cannot reach server"
+msgstr "Impossibile raggiungere il server"
+
+#: menus/network.lua:323
+msgid "Joining Game"
+msgstr "Partecipa Gioco"
+
+#: menus/network.lua:334
+msgid "Connecting to server"
+msgstr "Connessione al server"
+
+#: menus/network.lua:360
+msgid "Map not available"
+msgstr "Mappa non disponibile"
+
+#: menus/network.lua:370
+msgid "Server is full"
+msgstr "Il server e' pieno"
+
+#: menus/network.lua:373
+msgid "Server gone"
+msgstr "Il server non c'e' piu'"
+
+#: menus/network.lua:376
+msgid "Incompatible engine version"
+msgstr "Versione di gioco incompatibile"
+
+#: menus/network.lua:379
+msgid "Incompatible lua files"
+msgstr "File lua incompatibili"
+
+#: menus/network.lua:398
+msgid "Servers: "
+msgstr "Server:"
+
+#: menus/network.lua:411 menus/network.lua:514
+msgid "Co~!nnect"
+msgstr "Co~!nnettiti"
+
+#: menus/network.lua:419
+msgid "~!Add server"
+msgstr "~!Aggiungi server"
+
+#: menus/network.lua:421
+msgid "~!Edit server"
+msgstr "Modifica Server"
+
+#: menus/network.lua:426
+msgid "~!Delete server"
+msgstr "Cancella Server"
+
+#: menus/network.lua:493
+msgid "Open Games: "
+msgstr "Apri Partite: "
+
+#: menus/network.lua:542 menus/network.lua:546
+msgid "Connecting via "
+msgstr "Connessione via "
+
+#: menus/network.lua:567
+msgid "Edit server"
+msgstr "Modifica server"
+
+#: menus/network.lua:568 menus/network.lua:594
+msgid "Server IP: "
+msgstr "IP Server :"
+
+#: menus/network.lua:571 menus/network.lua:596
+msgid "Description: "
+msgstr "Descrizione: "
+
+#: menus/network.lua:576 menus/network.lua:600
+msgid "Invalid server name"
+msgstr "Nome server invalido"
+
+#: menus/network.lua:593
+msgid "Add server"
+msgstr "Aggiungi server"
+
+#: menus/network.lua:631 menus/network.lua:875
+msgid "Create MultiPlayer game"
+msgstr "Crea partita Multigiocatore"
+
+#: menus/network.lua:639
+msgid "Unknown map"
+msgstr "Mappa sconosciuta"
+
+#: menus/network.lua:655
+msgid "Race:"
+msgstr "Razza:"
+
+#: menus/network.lua:686
+msgid "Dedicated AI Server:"
+msgstr "Server I.A dedicato"
+
+#: menus/network.lua:698
+msgid "Meta-Server"
+msgstr ""
+
+#: menus/network.lua:723
+msgid "(metaserver down)"
+msgstr ""
+
+#: menus/network.lua:729
+msgid "(metaserver error)"
+msgstr ""
+
+#: menus/network.lua:771
+msgid "Waiting for players"
+msgstr "In attesa di giocatori"
+
+#: menus/network.lua:915 menus/network.lua:979
+msgid "~!Create Game"
+msgstr "~!Crea Partita"
+
+#: menus/network.lua:954
+msgid "~<Multiplayer Network Game~>"
+msgstr "~<Partita in rete Multigiocatore~>"
+
+#: menus/network.lua:959
+msgid "~!Join Local Game"
+msgstr "Unisciti a partita locale"
+
+#: menus/network.lua:969
+msgid "Join ~!Online Game"
+msgstr "Unisciti a partita online"
+
+#: menus/objectives.lua:4
+msgid "Objectives"
+msgstr "Obiettivi:"
+
+#: menus/options.lua:33
+msgid "Sound Options"
+msgstr "Opzioni Suono"
+
+#: menus/options.lua:35
+msgid "Effects Volume"
+msgstr "Effetti Volume"
+
+#: menus/options.lua:68
+msgid "Sound:"
+msgstr "Suono:"
+
+#: menus/options.lua:69 menus/options.lua:137
+msgid "On"
+msgstr "Acceso"
+
+#: menus/options.lua:70 menus/options.lua:138
+msgid "Off"
+msgstr "Spento"
+
+#: menus/options.lua:99
+msgid "Music Volume"
+msgstr "Volume Musica"
+
+#: menus/options.lua:129
+msgid "Stereo Sound"
+msgstr "Suono Stereo"
+
+#: menus/options.lua:136
+msgid "Music:"
+msgstr "Musica:"
+
+#: menus/options.lua:201
+msgid "Preferences"
+msgstr "Preferenze"
+
+#: menus/options.lua:203
+msgid "Show Hotkeys"
+msgstr "Mostra scorciatoie"
+
+#: menus/options.lua:212
+msgid "Grab Mouse"
+msgstr ""
+
+#: menus/options.lua:219
+msgid "~!*Show damage"
+msgstr "Mostra danni­"
+
+#: menus/options.lua:230
+msgid "~!*Show button popups"
+msgstr "Mostra i popup dei pulsanti"
+
+#: menus/options.lua:235
+msgid "Mine notifications"
+msgstr "Notifiche"
+
+#: menus/options.lua:242
+msgid "Show orders"
+msgstr "Mostra ordini"
+
+#: menus/options.lua:257
+msgid "Mirrored buildings"
+msgstr "Edifici speculari"
+
+#: menus/options.lua:264
+msgid "Show messages"
+msgstr "Mostra i messaggi"
+
+#: menus/options.lua:271
+msgid "Pause on leave"
+msgstr "Metti in pausa quando esci"
+
+#: menus/options.lua:278
+msgid "~!*Enhanced effects"
+msgstr "~!*Effetti migliori"
+
+#: menus/options.lua:281
+msgid "Deselect in mines"
+msgstr "Deseleziona nelle miniere"
+
+#: menus/options.lua:290
+msgid "Fog of War"
+msgstr "Nebbia di Guerra"
+
+#: menus/options.lua:299
+msgid "rectangle"
+msgstr "rettangolo"
+
+#: menus/options.lua:299
+msgid "alpha-rectangle"
+msgstr "rettangolo-alfa"
+
+#: menus/options.lua:299
+msgid "circle"
+msgstr "cerchio"
+
+#: menus/options.lua:299
+msgid "alpha-circle"
+msgstr "cerchio-alfa"
+
+#: menus/options.lua:299 stratagus.lua:381
+msgid "corners"
+msgstr "cornici"
+
+#: menus/options.lua:300
+msgid "Selection style:"
+msgstr "Seleziona stile:"
+
+#: menus/options.lua:309
+msgid "single"
+msgstr "singolo"
+
+#: menus/options.lua:309
+msgid "horizontal 1 + 1"
+msgstr "orizzontale. 1 + 1"
+
+#: menus/options.lua:309
+msgid "horizontal 1 + 2"
+msgstr "orizzontale. 1 + 2"
+
+#: menus/options.lua:309
+msgid "vertical 1 + 1"
+msgstr "verticale. 1 + 1"
+
+#: menus/options.lua:309
+msgid "quad"
+msgstr "quadrato"
+
+#: menus/options.lua:310
+msgid "Viewport mode:"
+msgstr "Mod. Visuale:"
+
+#: menus/options.lua:325
+msgid "Pixel Shader"
+msgstr "Shader Pixel"
+
+#: menus/options.lua:340
+msgid "~!*SF2 soundfont path :"
+msgstr "~!*SF2 percorso soundfont :"
+
+#: menus/options.lua:343
+msgid "~!* - requires restart"
+msgstr "~!* - richiede il riavvio"
+
+#: menus/options.lua:388
+msgid "Speed Settings"
+msgstr "Impostazioni velocita'"
+
+#: menus/options.lua:389
+msgid "Game Speed"
+msgstr "Velocita' di gioco"
+
+#: menus/options.lua:404 menus/options.lua:425 menus/options.lua:449
+msgid "slow "
+msgstr "lento"
+
+#: menus/options.lua:405 menus/options.lua:426 menus/options.lua:450
+msgid "fast"
+msgstr "veloce"
+
+#: menus/options.lua:410
+msgid "Mouse Scroll Speed"
+msgstr "Velocita' scorr. del mouse"
+
+#: menus/options.lua:431
+msgid "Key Scroll Speed"
+msgstr "Velocita' scorr. tastiera"
+
+#: menus/options.lua:532
+msgid "Video Options"
+msgstr "Opzioni Video"
+
+#: menus/options.lua:533
+msgid "Video Resolution"
+msgstr "Risoluzione Video"
+
+#: menus/options.lua:544
+msgid "Full Screen"
+msgstr "Schermo intero"
+
+#: menus/options.lua:610
+msgid "You need to restart game to apply changes, exit now?"
+msgstr "Devi riavviare il videogioco per effettuare i cambiamenti, vuoi uscire ora?"
+
+#: menus/options.lua:620 menus/save.lua:23
+msgid "~!Yes"
+msgstr "~!Si"
+
+#: menus/options.lua:627 menus/save.lua:29
+msgid "~!No"
+msgstr "~!No"
+
+#: menus/options.lua:646
+msgid "Language Options"
+msgstr "Opzioni Lingue"
+
+#: menus/options.lua:648
+msgid "Available languages:"
+msgstr "Lingue disponibili:"
+
+#: menus/options.lua:684
+msgid "Game Options"
+msgstr "Opzioni di gioco"
+
+#: menus/options.lua:685
+msgid "Speeds (~<F6~>)"
+msgstr "Velocita' (~<F6~>)"
+
+#: menus/options.lua:687
+msgid "Sound (~<F7~>)"
+msgstr "Suono (~<F7~>)"
+
+#: menus/options.lua:689
+msgid "Preferences (~<F8~>)"
+msgstr "Preferenze (~<F8~>)"
+
+#: menus/options.lua:697
+msgid "Diplomacy (~<F9~>)"
+msgstr "Diplomazia (~<F9~>)"
+
+#: menus/options.lua:700
+msgid "Video (~<F9~>)"
+msgstr "Video (~<F9~>)"
+
+#: menus/options.lua:702
+msgid "Language"
+msgstr "Lingue"
+
+#: menus/replay.lua:7
+msgid "Select Game"
+msgstr "Seleziona Partita"
+
+#: menus/replay.lua:12
+msgid "Reveal Map"
+msgstr "Rivela Mappa"
+
+#: menus/replay.lua:35
+msgid "Save Replay"
+msgstr "Salva Replay"
+
+#: menus/results.lua:7
+msgid "Servant"
+msgstr "Servitore"
+
+#: menus/results.lua:9
+msgid "Squire"
+msgstr "Scudiero"
+
+#: menus/results.lua:11
+msgid "Corporal"
+msgstr "Caporale"
+
+#: menus/results.lua:12
+msgid "Sergeant"
+msgstr "Sergente"
+
+#: menus/results.lua:13
+msgid "Lieutenant"
+msgstr "Tenente"
+
+#: menus/results.lua:14 menus/results.lua:36
+msgid "Captain"
+msgstr "Capitano­"
+
+#: menus/results.lua:15 menus/results.lua:37
+msgid "Major"
+msgstr "Maggiore"
+
+#: menus/results.lua:17 menus/results.lua:39
+msgid "General"
+msgstr "Generale"
+
+#: menus/results.lua:18
+msgid "Admiral"
+msgstr "Ammiraglio"
+
+#: menus/results.lua:19 menus/results.lua:41
+msgid "Marshall"
+msgstr "Maresciallo"
+
+#: menus/results.lua:20
+msgid "Lord"
+msgstr "Signore"
+
+#: menus/results.lua:21
+msgid "Grand Admiral"
+msgstr "Grande Ammiraglio"
+
+#: menus/results.lua:22
+msgid "Highlord"
+msgstr "Grande Signore"
+
+#: menus/results.lua:23
+msgid "Thundergod"
+msgstr "Supremo"
+
+#: menus/results.lua:24 menus/results.lua:46
+msgid "God"
+msgstr "Dio"
+
+#: menus/results.lua:25 menus/results.lua:47 menus/results.lua:138
+msgid "Designer"
+msgstr "Designer"
+
+#: menus/results.lua:29
+msgid "Slave"
+msgstr "Schiavo"
+
+#: menus/results.lua:30 orc/units.lua:64 orc/units.lua:108
+msgid "Peon"
+msgstr "Servo"
+
+#: menus/results.lua:31
+msgid "Rogue"
+msgstr "Furfante"
+
+#: menus/results.lua:32 orc/units.lua:35
+msgid "Grunt"
+msgstr "Grunt"
+
+#: menus/results.lua:33
+msgid "Slasher"
+msgstr "Aggressore"
+
+#: menus/results.lua:34
+msgid "Marauder"
+msgstr "Devastatore"
+
+#: menus/results.lua:35
+msgid "Commander"
+msgstr "Comandante"
+
+#: menus/results.lua:40
+msgid "Master"
+msgstr "Maestro"
+
+#: menus/results.lua:42
+msgid "Chieftain"
+msgstr "Capo"
+
+#: menus/results.lua:43
+msgid "Overlord"
+msgstr "Padrone"
+
+#: menus/results.lua:44
+msgid "War Chief"
+msgstr "Capo della Guerra"
+
+#: menus/results.lua:45
+msgid "Demigod"
+msgstr "Semidio"
+
+#: menus/results.lua:65
+msgid "Victory!"
+msgstr "Vittoria!"
+
+#: menus/results.lua:74
+msgid "Defeat!"
+msgstr "Sconfitta!"
+
+#: menus/results.lua:83
+msgid "Draw!"
+msgstr "Pareggio!"
+
+#: menus/results.lua:132 menus/results.lua:140
+msgid "Cheater!"
+msgstr "IMBROGLIONE!"
+
+#: menus/results.lua:184
+msgid " - You"
+msgstr " - Tu"
+
+#: menus/results.lua:186
+msgid " - Ally"
+msgstr " - Alleato"
+
+#: menus/results.lua:188
+msgid " - Enemy"
+msgstr " - Nemico"
+
+#: menus/results.lua:190
+msgid " - Neutral"
+msgstr " - Neutrale"
+
+#: menus/results.lua:207
+msgid "Buildings:"
+msgstr "Edifici:"
+
+#: menus/results.lua:210
+msgid "Gold:"
+msgstr "Oro:"
+
+#: menus/results.lua:213
+msgid "Lumber:"
+msgstr "Legna:"
+
+#: menus/results.lua:216
+msgid "Oil:"
+msgstr "Petrolio:"
+
+#: menus/results.lua:219
+msgid "Kills:"
+msgstr "Uccisioni:"
+
+#: menus/results.lua:222
+msgid "Razings:"
+msgstr "Raziati:"
+
+#: menus/results.lua:225
+msgid "Score:"
+msgstr "Punteggio:"
+
+#: menus/results.lua:321
+msgid "Outcome"
+msgstr "Risultato"
+
+#: menus/results.lua:328
+msgid "Rank"
+msgstr "Rango"
+
+#: menus/results.lua:338
+msgid "Score"
+msgstr "Punteggio"
+
+#: menus/results.lua:405
+msgid "~!Save Replay"
+msgstr "~!Salva Replay"
+
+#: menus/save.lua:5
+msgid "Cannot save game to file:"
+msgstr "Impossibile salvare partita nel file:"
+
+#: menus/save.lua:10
+msgid "Saved game to: "
+msgstr "Partita salvata in: "
+
+#: orc/buttons.lua:169 orc/buttons.lua:189
+msgid "EYE OF ~!KILROGG"
+msgstr "OCCHIO DI ~!KILROGG"
+
+#: orc/buttons.lua:175 orc/buttons.lua:195
+msgid "~!BLOODLUST"
+msgstr "SETE DI SANGUE"
+
+#: orc/buttons.lua:181 orc/buttons.lua:201
+msgid "~!RUNES"
+msgstr "~!RUNE"
+
+#: orc/buttons.lua:208
+msgid "TOUCH OF D~!ARKNESS"
+msgstr "TOCCO DELLE TENEBRE"
+
+#: orc/buttons.lua:214
+msgid "DEATH ~!COIL"
+msgstr "SPIRALE DI MORTE"
+
+#: orc/buttons.lua:220
+msgid "~!HASTE"
+msgstr "RAPIDITA'"
+
+#: orc/buttons.lua:226
+msgid "~!RAISE DEAD"
+msgstr "~!RITORNO DALLA MORTE"
+
+#: orc/buttons.lua:232
+msgid "~!WHIRLWIND"
+msgstr "TORNADO"
+
+#: orc/buttons.lua:238
+msgid "~!UNHOLY ARMOR"
+msgstr "ARMATURA MALEDETTA"
+
+#: orc/buttons.lua:244
+msgid "~!DEATH AND DECAY"
+msgstr "~!DECADIMENTO"
+
+#: orc/buttons.lua:281
+msgid "BUILD PIG ~!FARM"
+msgstr "COSTUISCI ALLEVAMENTO DEI CINGHIALI"
+
+#: orc/buttons.lua:291
+msgid "BUILD GREAT ~!HALL"
+msgstr "COSTRUISCI SALONE DELLE TENEBRE"
+
+#: orc/buttons.lua:296
+msgid "BUILD TROLL ~!LUMBER MILL"
+msgstr "COSTRUISCI SEGHERIA DEI TROLL"
+
+#: orc/buttons.lua:339
+msgid "BUILD GOBLIN ~!ALCHEMIST"
+msgstr "COSTRUISCI ~!ALCHIMISTA GOBLIN"
+
+#: orc/buttons.lua:344
+msgid "BUILD ~!OGRE MOUND"
+msgstr "COSTRUISCI FORTINO DEGLI OGRE"
+
+#: orc/buttons.lua:349
+msgid "BUILD ~!TEMPLE OF THE DAMNED"
+msgstr "COSTRUISCI TEMPIO DEI DANNATI"
+
+#: orc/buttons.lua:354
+msgid "BUILD A~!LTAR OF STORMS"
+msgstr "COSTRUISCI A~!LTARE DELLO TEMPESTE"
+
+#: orc/buttons.lua:359
+msgid "BUILD ~!DRAGON ROOST"
+msgstr "COSTRUISCI ROSTRO DI DRAGHI"
+
+#: orc/buttons.lua:379
+msgid "TRAIN ~!PEON"
+msgstr "ADDESTRA SERVO"
+
+#: orc/buttons.lua:387
+msgid "UPGRADE TO ~!STRONGHOLD"
+msgstr "MIGLIORA IN ROCCAFORTE"
+
+#: orc/buttons.lua:393
+msgid "UPGRADE TO ~!FORTRESS"
+msgstr "MIGLIORA IN BASTIONE OSCURO"
+
+#: orc/buttons.lua:428
+msgid "TRAIN ~!GRUNT"
+msgstr "ADDESTRA ~!GRUNT"
+
+#: orc/buttons.lua:433
+msgid "TRAIN ~!AXETHROWER"
+msgstr "ADDESTRA TROLL LANCIATORE DI ASCE"
+
+#: orc/buttons.lua:438
+msgid "TRAIN ~!BERSERKER"
+msgstr "ADDESTRA TROLL BERSERKER"
+
+#: orc/buttons.lua:443
+msgid "BUILD ~!CATAPULT"
+msgstr "COSTRUISCI ~!CATAPULTA"
+
+#: orc/buttons.lua:448
+msgid "TRAIN TWO-HEADED ~!OGRE"
+msgstr "ADDESTRA ~!OGRE A DUE TESTE"
+
+#: orc/buttons.lua:453
+msgid "TRAIN ~!OGRE MAGE"
+msgstr "ADDESTRA ~!OGRE MAGHI"
+
+#: orc/buttons.lua:458
+msgid "BUILD GOBLIN ~!ZEPPELIN"
+msgstr "COSTRUISCI ~!ZEPPELIN DEI GOBLIN"
+
+#: orc/buttons.lua:463
+msgid "TRAIN GOBLIN ~!SAPPERS"
+msgstr "ADDESTRA GOBLIN GUASTATORI"
+
+#: orc/buttons.lua:468
+msgid "~!TRAIN DEATH KNIGHT"
+msgstr "ADDESTRA CAVALIERE DELLA MORTE"
+
+#: orc/buttons.lua:473
+msgid "BUILD ~!DRAGON"
+msgstr "ADDESTRA ~!DRAGO"
+
+#: orc/buttons.lua:493
+msgid "BUILD ~!GIANT TURTLE"
+msgstr "COSTRUISCI TARTARUGA ~!GIGANTE"
+
+#: orc/buttons.lua:498
+msgid "BUILD ~!JUGGERNAUHGT"
+msgstr "COSTRUISCI ~!JUGGERNAUHGT DEGLI OGRE"
+
+#: orc/buttons.lua:600 orc/buttons.lua:606
+msgid "UPGRADE ~!WEAPONS (Damage +2)"
+msgstr "MIGLIORA LE ARMI (Danno +2)"
+
+#: orc/buttons.lua:624 orc/buttons.lua:630
+msgid "UPGRADE ~!CATAPULT (Damage +15)"
+msgstr "MIGLIORA LA ~!CATAPULTA (Danno +15)"
+
+#: orc/buttons.lua:636 orc/buttons.lua:642
+msgid "~!UPGRADE THROWING AXE (Damage +1)"
+msgstr "MIGLIORA ASCE DEI TROLL (Danno +1)"
+
+#: orc/buttons.lua:648
+msgid "TROLL ~!BERSERKER TRAINING"
+msgstr "ALLENAMENTO TROLL ~!BERSERKER"
+
+#: orc/buttons.lua:654
+msgid "BERSERKER ~!SCOUTING (Sight:9)"
+msgstr "VISUALE MIGLIORE PER I BERSERKER (Vista:9)"
+
+#: orc/buttons.lua:660
+msgid "RESEARCH LIGHTER ~!AXES (Range +1)"
+msgstr "RICERCA ~!ASCE LEGGERE (Raggio +1)"
+
+#: orc/buttons.lua:666
+msgid "BERSERKER ~!REGENERATION"
+msgstr "RIGENERAZIONE DEI BERSERKER"
+
+#: orc/buttons.lua:672
+msgid "UPGRADES OGRES TO ~!MAGES"
+msgstr "MIGLIORA GLI OGRE IN OGRE MAGHI"
+
+#: orc/buttons.lua:678
+msgid "RESEARCH ~!BLOODLUST"
+msgstr "RICERCA SETE DI SANGUE"
+
+#: orc/buttons.lua:684
+msgid "RESEARCH ~!RUNES"
+msgstr "RICERCA ~!RUNE"
+
+#: orc/buttons.lua:690
+msgid "RESEARCH ~!HASTE"
+msgstr "RICERCA RAPIDITA'"
+
+#: orc/buttons.lua:696
+msgid "RESEARCH ~!RAISE DEAD"
+msgstr "RICERCA ~!RITORNO DALLA MORTE"
+
+#: orc/buttons.lua:702
+msgid "RESEARCH ~!WHIRLWIND"
+msgstr "RICERCA TORNADO"
+
+#: orc/buttons.lua:708
+msgid "RESEARCH ~!UNHOLY ARMOR"
+msgstr "RICERCA ARMATURA MALEDETTA"
+
+#: orc/buttons.lua:714
+msgid "RESEARCH ~!DEATH AND DECAY"
+msgstr "RICERCA ~!DECADIMENTO"
+
+#: orc/campaign1.lua:34
+msgid "Seas of Blood"
+msgstr "Mari di Sangue"
+
+#: orc/campaign1.lua:46
+msgid "Quel'Thalas"
+msgstr "Quel'Thalas"
+
+#: orc/campaign1.lua:53
+msgid "Tides of Darkness"
+msgstr "L'assalto dalle Tenebre"
+
+#: orc/campaign2.lua:35
+msgid "Draenor, the Red World"
+msgstr "Draenor, il mondo Rosso"
+
+#: orc/campaign2.lua:40
+msgid "The Burning of Azeroth"
+msgstr "La caduta di Azeroth"
+
+#: orc/campaign2.lua:45
+msgid "The Great Sea"
+msgstr "Il grande Mare"
+
+#: orc/campaign2.lua:50
+msgid "Prelude to New Worlds"
+msgstr "Preludio a Nuovi Mondi"
+
+#: orc/units.lua:150 orc/units.lua:178
+msgid "Catapult"
+msgstr "Catapulta"
+
+#: orc/units.lua:206
+msgid "Ogre"
+msgstr "Ogre"
+
+#: orc/units.lua:235
+msgid "Troll Axethrower"
+msgstr "Troll lanciatore d'asce"
+
+#: orc/units.lua:264
+msgid "Death Knight"
+msgstr "Cavaliere della Morte"
+
+#: orc/units.lua:302
+msgid "Ogre Mage"
+msgstr "Ogre Mago"
+
+#: orc/units.lua:334
+msgid "Goblin Sappers"
+msgstr "Guastatori Goblin"
+
+#: orc/units.lua:364
+msgid "Berserker"
+msgstr "Troll Berserker"
+
+#: orc/units.lua:394
+msgid "Teron Gorefiend"
+msgstr "Teron Gorefiend"
+
+#: orc/units.lua:433
+msgid "Dentarg"
+msgstr "Dentarg"
+
+#: orc/units.lua:464
+msgid "Grom Hellscream"
+msgstr "Grom Hellscream"
+
+#: orc/units.lua:557
+msgid "Troll Destroyer"
+msgstr "Incrociatore dei Troll"
+
+#: orc/units.lua:586
+msgid "Ogre Juggernaught"
+msgstr "Juggernaught degli Ogre"
+
+#: orc/units.lua:615
+msgid "Dragon"
+msgstr "Drago"
+
+#: orc/units.lua:644
+msgid "Deathwing"
+msgstr "Deathwing"
+
+#: orc/units.lua:679
+msgid "Giant Turtle"
+msgstr "Tartatuga Gigante"
+
+#: orc/units.lua:709
+msgid "Goblin Zeppelin"
+msgstr "Zeppelin dei Goblin"
+
+#: orc/units.lua:735
+msgid "Eye of Kilrogg"
+msgstr "Occhio di Kilrogg"
+
+#: orc/units.lua:761
+msgid "Korgath Bladefist"
+msgstr "Korgath Bladefist"
+
+#: orc/units.lua:790
+msgid "Cho'gall"
+msgstr "Cho'gall"
+
+#: orc/units.lua:822
+msgid "Gul'dan"
+msgstr "Gul'dan­"
+
+#: orc/units.lua:860
+msgid "Zuljin"
+msgstr "Zuljin"
+
+#: orc/units.lua:890
+msgid "Skeleton"
+msgstr "Scheletro"
+
+#: orc/units.lua:924
+msgid "Pig Farm"
+msgstr "Allevamento di Cinghiali"
+
+#: orc/units.lua:990
+msgid "Altar of Storms"
+msgstr "Altare delle Tempeste"
+
+#: orc/units.lua:1022
+msgid "Watch Tower"
+msgstr "Torre di esplorazione degli Orchi"
+
+#: orc/units.lua:1056
+msgid "Ogre Mound"
+msgstr "Fortino degli Ogre"
+
+#: orc/units.lua:1088
+msgid "Goblin Alchemist"
+msgstr "Alchimista Goblin"
+
+#: orc/units.lua:1120
+msgid "Dragon Roost"
+msgstr "Rostro di Draghi"
+
+#: orc/units.lua:1191
+msgid "Great Hall"
+msgstr "Salone delle Tenebre"
+
+#: orc/units.lua:1228
+msgid "Troll Lumber Mill"
+msgstr "Segheria dei Troll"
+
+#: orc/units.lua:1295
+msgid "Temple of the Damned"
+msgstr "Tempio dei Dannati"
+
+#: orc/units.lua:1432
+msgid "Stronghold"
+msgstr "Roccaforte"
+
+#: orc/units.lua:1470
+msgid "Fortress"
+msgstr "Bastione Oscuro"
+
+#: scripts.lua:37
+msgid "Sheep"
+msgstr "Pecora"
+
+#: scripts.lua:37
+msgid "Seal"
+msgstr "Foca"
+
+#: scripts.lua:37
+msgid "Pig"
+msgstr "Maiale"
+
+#: scripts.lua:37
+msgid "Warthog"
+msgstr "Facocero"
+
+#: spells.lua:88
+msgid "Demolish"
+msgstr "Demolire"
+
+#: spells.lua:99
+msgid "Holy Vision"
+msgstr "Visione Sacra"
+
+#: spells.lua:111
+msgid "Healing"
+msgstr "Guarigione"
+
+#: spells.lua:161
+msgid "Exorcism"
+msgstr "Esorcismo"
+
+#: spells.lua:179 spells.lua:191
+msgid "eye of vision"
+msgstr "occhio della visione"
+
+#: spells.lua:202
+msgid "haste"
+msgstr "rapidita'"
+
+#: spells.lua:220
+msgid "slow"
+msgstr "rallentamento"
+
+#: spells.lua:237 spells.lua:254
+msgid "bloodlust"
+msgstr "sete di sangue"
+
+#: spells.lua:270
+msgid "invisibility"
+msgstr "invisibilita'"
+
+#: spells.lua:301
+msgid "unholyarmor"
+msgstr "armatura maledetta"
+
+#: spells.lua:318
+msgid "flame shield"
+msgstr "scudo di fiamme"
+
+#: spells.lua:338
+msgid "polymorph"
+msgstr "polimorfismo"
+
+#: spells.lua:398
+msgid "blizzard"
+msgstr "tempesta di ghiaccio"
+
+#: spells.lua:416
+msgid "death and decay"
+msgstr "decadimento"
+
+#: spells.lua:430
+msgid "fireball"
+msgstr "palla di fuoco"
+
+#: spells.lua:442 spells.lua:469
+msgid "runes"
+msgstr "rune"
+
+#: spells.lua:512
+msgid "death coil"
+msgstr "spirale della morte"
+
+#: spells.lua:525
+msgid "raise dead"
+msgstr "ritorno dalla morte"
+
+#: spells.lua:539
+msgid "whirlwind"
+msgstr "tornado"
+
+#: stratagus.lua:42
+msgid "Aleona's Tales"
+msgstr "Storia di Aleona"
+
+#: stratagus.lua:44
+msgid "Wargus"
+msgstr "Wargus"
+
+#: stratagus.lua:47
+msgid "(c) 1998-2017 by The Stratagus Project."
+msgstr "(c) 1998-2017 dal progetto Stratagus."
+
+#: stratagus.lua:200
+msgid "stop"
+msgstr "ferma"
+
+#: stratagus.lua:200
+msgid "mine"
+msgstr "miniera"
+
+#: stratagus.lua:200
+msgid "chop"
+msgstr ""
+
+#: stratagus.lua:200
+msgid "drill"
+msgstr "trapano"
+
+#: stratagus.lua:202
+msgid "Time Left: "
+msgstr "Tempo rimasto: "
+
+#: stratagus.lua:202
+msgid "Gold Left: "
+msgstr "Oro rimasto: "
+
+#: stratagus.lua:202
+msgid "Wood Left: "
+msgstr "Legna rimasta: "
+
+#: stratagus.lua:202
+msgid "Oil Left: "
+msgstr "Petrolio rimasto: "
+
+#: stratagus.lua:202
+msgid "Ore Left: "
+msgstr "Roccie rimaste: "
+
+#: stratagus.lua:202
+msgid "Stone Left: "
+msgstr "Pietra rimasta: "
+
+#: stratagus.lua:202
+msgid "Coal Left: "
+msgstr "Carbone rimasto: "
+
+#: stratagus.lua:204
+msgid "time"
+msgstr "tempo"
+
+#: stratagus.lua:204
+msgid "ore"
+msgstr "roccia"
+
+#: stratagus.lua:204
+msgid "stone"
+msgstr "pietra"
+
+#: stratagus.lua:204
+msgid "coal"
+msgstr "carbone"
+
+#: stratagus.lua:292
+msgid "You failed to"
+msgstr "Hai fallito"
+
+#: stratagus.lua:293
+msgid "achieve victory!"
+msgstr "nella tua impresa!"
+
+#: stratagus.lua:311
+msgid "Congratulations!"
+msgstr "Congratulazioni!"
+
+#: stratagus.lua:312
+msgid "You are victorious!"
+msgstr "Sei il vincitore!"
+
+#: stratagus.lua:314
+msgid "Save Game (~<F11~>)"
+msgstr "Salva Partita (~<F11~>)"
+
+#: stratagus.lua:320
+msgid "~!Victory"
+msgstr "~!Vittoria"
+
+#: ui.lua:116 ui.lua:223 ui.lua:228 ui.lua:234
+msgid "% Complete"
+msgstr "% Completato"
+
+#: ui.lua:129
+msgid "Usage~|"
+msgstr "Utilizzo~|"
+
+#: ui.lua:130
+msgid "Supply~|: "
+msgstr "Scorte~|:"
+
+#: ui.lua:131
+msgid "Demand~|: "
+msgstr "Chiedere~|:"
+
+#: ui.lua:144 ui.lua:168 ui.lua:169
+msgid "Production"
+msgstr "Produzione"
+
+#: ui.lua:145
+msgid "Gold~|: 100"
+msgstr "Oro~|: 100"
+
+#: ui.lua:150 ui.lua:170
+msgid "Lumber~|: 100"
+msgstr "Legna~|: 100"
+
+#: ui.lua:155 ui.lua:175
+msgid "Oil~|: 100"
+msgstr "Petrolio~|: 100"
+
+#: ui.lua:190 ui.lua:196 ui.lua:202 ui.lua:447 ui.lua:501 ui.lua:605 ui.lua:659
+msgid "Damage~|: "
+msgstr "Danno~|: "
+
+#: ui.lua:209 ui.lua:259
+msgid "Armor~|: "
+msgstr "Armatura~|: "
+
+#: ui.lua:212 ui.lua:262
+msgid "Sight~|: "
+msgstr "Vista~|: "
+
+#: ui.lua:216
+msgid "Range~|: "
+msgstr "Raggio~|: "
+
+#: ui.lua:222
+msgid "Researching~|:"
+msgstr "Ricerca~|:"
+
+#: ui.lua:233
+msgid "Upgrading~|:"
+msgstr "Miglioramento~|:"
+
+#: ui.lua:237
+#, lua-format
+msgid "Carry~|: %d %s"
+msgstr "Portare~|: %d %s"
+
+#: ui.lua:251
+#, lua-format
+msgid "Level ~|~<%d~>"
+msgstr "Livello ~|~<%d~>"
+
+#: ui.lua:255
+#, lua-format
+msgid "XP:~<%d~> Kills:~|~<%d~>"
+msgstr "XP:~<%d~> Uccisioni:~|~<%d~>"
+
+#: ui.lua:265
+msgid "Speed~|: "
+msgstr "Velocita'~|: "
+
+#: ui.lua:269
+msgid "Mana~|: "
+msgstr "Magia|: "
+
+#: ui.lua:412 ui.lua:570
+msgid "~<ALT~>-click to defend unit."
+msgstr "~<ALT~>-Clicca per difendere l'unita'."
+
+#: ui.lua:415 ui.lua:573
+msgid "~<SHIFT~>-click to make waypoints."
+msgstr "~<SHIFT~>-Clicca per impostare piu' tappe."
+
+#: ui.lua:422 ui.lua:580
+msgid ""
+"~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."
+msgstr ""
+"~<CTRL~>-Clicca sul pulsante per abilitare/disabilitare l'auto riparazione degli edifici danneggiati."
+
+#: ui.lua:441 ui.lua:489 ui.lua:599 ui.lua:647
+msgid "Hit Points: "
+msgstr "Punti vita: "
+
+#: ui.lua:444 ui.lua:492 ui.lua:602 ui.lua:650
+msgid "Armor: "
+msgstr "Armatura: "
+
+#: ui.lua:467 ui.lua:625
+msgid "~<SHIFT~>-click could be used to make a building queue."
+msgstr "~<SHIFT~>-Tenendo cliccato e' possibile realizzare una pila di costruzioni."
+
+#: ui.lua:495 ui.lua:653
+msgid "Sight: "
+msgstr "Vista: "
+
+#: ui.lua:498 ui.lua:656
+msgid "Range: "
+msgstr "Raggio: "
+
+#: ui.lua:545 ui.lua:703
+msgid "~<CTRL~>-click on button enables/disables auto-cast ability."
+msgstr "~<CTRL~>-Clicca sul pulsante per abilitare/disabilitare l'auto chiamata all'abilita'."
+
+#: units.lua:40
+msgid "Nothing 22"
+msgstr "Niente 22"
+
+#: units.lua:52
+msgid "Nothing 24"
+msgstr "Niente 24"
+
+#: units.lua:68
+msgid "Nothing 25"
+msgstr "Niente 25"
+
+#: units.lua:84
+msgid "Nothing 30"
+msgstr "Niente 30"
+
+#: units.lua:97
+msgid "Nothing 36"
+msgstr "Niente 36"
+
+#: units.lua:110
+msgid "Daemon"
+msgstr "Demone"
+
+#: units.lua:146
+msgid "Critter"
+msgstr "Animaletto"
+
+#: units.lua:180
+msgid "Gold Mine"
+msgstr "Miniera d'oro"
+
+#: units.lua:219
+msgid "Oil Patch"
+msgstr "Giacimento Petrolifero"
+
+#: units.lua:246
+msgid "The Pile"
+msgstr "La Pila"
+
+#: units.lua:266
+msgid "Circle of Power"
+msgstr "Cerchio del Potere"
+
+#: units.lua:292
+msgid "Dark Portal"
+msgstr "Portale Oscuro"
+
+#: units.lua:326
+msgid "Runestone"
+msgstr "Pietra Runica"
+
+#: units.lua:354 units.lua:368 units.lua:382
+msgid "Dead Body"
+msgstr "Cadavere"
+
+#: units.lua:403
+msgid "Destroyed 1x1 Place"
+msgstr "Distrutto Luogo 1x1"
+
+#: units.lua:424
+msgid "Destroyed 2x2 Place"
+msgstr "Distrutto Luogo 2x2"
+
+#: units.lua:445
+msgid "Destroyed 3x3 Place"
+msgstr "Distrutto Luogo 3x3"
+
+#: units.lua:465
+msgid "Destroyed 3x3 Place Water"
+msgstr "Distrutto Luogo d'Acqua 3x3"
+
+#: units.lua:485
+msgid "Destroyed 4x4 Place"
+msgstr "Distrutto Luogo 4x4"
+
+#: units.lua:500
+msgid "Dummy unit"
+msgstr "Unita' stupida"
+
+#: wc2.lua:34
+msgid "Freemen"
+msgstr "Uomini liberi"
+
+#: wc2.lua:38
+msgid "Wilds"
+msgstr "Selvaggi"
+
+#~ msgid "want to surrender"
+#~ msgstr "vuoi arrenderti"
+
+#~ msgid "to your enemies?"
+#~ msgstr "ai tuoi nemici?"
+
+#~ msgid "Incompatible network version"
+#~ msgstr "Versione di rete incompatibile"
+
+#~ msgid "~!Join Game"
+#~ msgstr "Participa al gioco"
+
+#~ msgid "Meta~!server"
+#~ msgstr ""
+
+#~ msgid "(c) 2012-2016 by The Stratagus Project."
+#~ msgstr "(c) 2012-2016 dal progetto Stratagus."
+
+#~ msgid "(c) 1998-2016 by The Stratagus Project."
+#~ msgstr "(c) 1998-2016 dal progetto Stratagus."
+
+#~ msgid "1 Opponent"
+#~ msgstr "1 Avversario"
+
+#~ msgid "2 Opponents"
+#~ msgstr "2 Avversari"
+
+#~ msgid "3 Opponents"
+#~ msgstr "3 Avversari"
+
+#~ msgid "4 Opponents"
+#~ msgstr "4 Avversari"
+
+#~ msgid "5 Opponents"
+#~ msgstr "5 Avversari"
+
+#~ msgid "6 Opponents"
+#~ msgstr "6 Avversari"
+
+#~ msgid "7 Opponents"
+#~ msgstr "7 Avversari"
+
+#~ msgid "~<Opponents:~>"
+#~ msgstr "~<Avversari:~>"
+
+#~ msgid "Time Left~|: "
+#~ msgstr "Tempo rimasto:"
+
+#~ msgid "Gold Left~|: "
+#~ msgstr "Oro rimasto:"
+
+#~ msgid "Wood Left~|: "
+#~ msgstr "Legna rimasta:"
+
+#~ msgid "Oil Left~|: "
+#~ msgstr "Petrolio rimasto:"
+
+#~ msgid "Ore Left~|: "
+#~ msgstr "Minerale rimasto~|:"
+
+#~ msgid "Stone Left~|: "
+#~ msgstr "Pietra rimasta~|:"
+
+#~ msgid "Coal Left~|: "
+#~ msgstr "Carbone rimasto~|:"
+
+#~ msgid "%s Left~|:%d"
+#~ msgstr "%s rimasto~|: %d"
+
+#~ msgid "Damage: "
+#~ msgstr "Danno: "
+
+#~ msgid "File      : "
+#~ msgstr "File      : "
+
+#~ msgid "Players  : "
+#~ msgstr "Giocatori :"
+
+#~ msgid "Size      : "
+#~ msgstr "Dimensione     : "
+
+#~ msgid "lumber"
+#~ msgstr "legna"
+
+#~ msgid "~!Singleplayer"
+#~ msgstr "Un Giocatore"
+
+#~ msgid "~!Multiplayer"
+#~ msgstr "~!Multigiocatore"
+
+#~ msgid "~!Campaign"
+#~ msgstr "~!Campagna"
+
+#~ msgid "~!Replay"
+#~ msgstr "~!Replay"
+
+#~ msgid "~!Editor"
+#~ msgstr "~!Editor"
+
+#~ msgid "~<Reveal Map:~>"
+#~ msgstr "~<Rivela Mappa:~>"
+
+#~ msgid "Usage"
+#~ msgstr "Utilizzo"
+
+#~ msgid "Supply ~|: "
+#~ msgstr "Scorte ~|: "
+
+#~ msgid "Demand ~|: "
+#~ msgstr "Richiede ~|: "
