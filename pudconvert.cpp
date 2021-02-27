@@ -35,6 +35,12 @@
 
 #include "pud.h"
 
+#ifdef WIN32
+#include <shlwapi.h>
+#else
+#include <libgen.h>
+#endif
+
 #define VERSION "1.0"
 
 void usage()
@@ -53,12 +59,7 @@ int main(int argc, char **argv)
 	}
 
 	char *infile = argv[1];
-	const char *outdir;
-	if (argc == 3) {
-		outdir = argv[2];
-	} else {
-		outdir = ".";
-	}
+	char *outdir;
 
 	struct stat sb;
 	if (stat(infile, &sb)) {
@@ -66,6 +67,21 @@ int main(int argc, char **argv)
 		return -1;
 	}
 	int len = sb.st_size;
+
+	if (argc == 3) {
+		outdir = argv[2];
+	} else {
+#ifdef WIN32
+		outdir = (char*)calloc(PATH_MAX, sizeof(char));
+		char dir[PATH_MAX];
+		char drive[PATH_MAX];
+		_splitpath(infile, drive, dir, NULL, NULL);
+		_makepath(outdir, drive, dir, NULL, NULL);
+#else
+		outdir = strdup(infile);
+		outdir = dirname(outdir);
+#endif
+	}
 
 	if (stat(outdir, &sb)) {
 		fprintf(stderr, "error finding directory: %s\n", outdir);
@@ -89,18 +105,17 @@ int main(int argc, char **argv)
 		free(buf);
 		return -1;
 	}
-	char *tmp= strrchr(infile, '/');
-	char newname[PATH_MAX];
-
-	if (tmp != NULL) {
-		strcpy(newname, tmp + 1);
-	} else {
-		strcpy(newname, infile);
-	}
-	tmp = strstr(newname, ".pud");
+#ifdef WIN32
+	char *newname = _strdup(infile);
+	_splitpath(infile, NULL, NULL, newname, NULL);
+#else
+	char *newname = strdup(infile);
+	newname = basename(newname);
+	char *tmp = strstr(newname, ".pud");
 	if (tmp != NULL) {
 		tmp[0] = '\0';
 	}
+#endif
 	PudToStratagus(buf, len, newname, outdir);
 	free(buf);
 	return 0;
