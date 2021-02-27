@@ -515,8 +515,8 @@ function SetVideoSize(width, height)
    bckground:Resize(Video.Width, Video.Height)
    backgroundWidget = ImageWidget(bckground)
    Load("scripts/ui.lua")
-   wc2.preferences.VideoViewportWidth = Video.ViewportWidth
-   wc2.preferences.VideoViewportHeight = Video.ViewportHeight
+   wc2.preferences.VideoWidth = Video.Width
+   wc2.preferences.VideoHeight = Video.Height
    SavePreferences()
 end
 

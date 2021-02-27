@@ -60,9 +60,9 @@ Load("scripts/wc2-config.lua")
 
 wargus.Name = _("Wargus")
 wargus.Homepage = "https://wargus.github.io"
-wargus.Copyright = _("(c) 1998-2020 by The Stratagus Project.")
+wargus.Copyright = _("(c) 1998-2021 by The Stratagus Project.")
 
-wargus.Version = "3.0.0"
+wargus.Version = "3.0.1"
 wargus.Licence = "GPL v2+"
 
 
@@ -412,9 +412,9 @@ local defaultPreferences = {
 	TipNumber = 0,
 	UseFancyBuildings = false,      --  Enable/disable fancy building (random mirroring buildings)
 	VideoFullScreen = false,
-	VideoViewportHeight = 600,
-	VideoViewportWidth = 800,
-	VideoShader = "xBRZ",
+	VideoHeight = 480,
+	VideoWidth = 640,
+	VideoShader = "none",
 	ViewportMode = 0,
 	ServerList = {},
 	OnlineServer = "network.stratagus.de",
@@ -482,7 +482,7 @@ SetMusicEnabled(wc2.preferences.MusicEnabled)
 SetMusicVolume(wc2.preferences.MusicVolume)
 SetTranslationsFiles(wc2.preferences.StratagusTranslation, wc2.preferences.GameTranslation)
 SetVideoFullScreen(wc2.preferences.VideoFullScreen)
-SetVideoResolution(wc2.preferences.VideoViewportWidth, wc2.preferences.VideoViewportHeight)
+SetVideoResolution(wc2.preferences.VideoWidth, wc2.preferences.VideoHeight)
 
 UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
 Preference.MineNotifications = wc2.preferences.MineNotifications

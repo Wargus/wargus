@@ -3,10 +3,10 @@
 require "pp"
 
 STRINGS = {
-  version: "3.0.0",
+  version: "3.0.1",
   homepage: "https://wargus.github.io",
   license: "GPL v2+",
-  copyright: "(c) 1998-2020 by The Stratagus Project"
+  copyright: "(c) 1998-2021 by The Stratagus Project"
 }
 
 FILES = %w[wargus.rc wargus.nsi wartool.h mac/Info.plist scripts/stratagus.lua debian/copyright]
