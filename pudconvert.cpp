@@ -58,6 +58,10 @@ int main(int argc, char **argv)
 		usage();
 	}
 
+	if (!strcmp(argv[1], "-h") || !strcmp(argv[1], "--help") || !strcmp(argv[1], "/?")) {
+		usage();
+	}
+
 	char *infile = argv[1];
 	char *outdir;
 
