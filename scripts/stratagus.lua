@@ -188,7 +188,7 @@ SetFogOfWarType("enhanced")
 --SetFogOfWarType("legacy") -- Legacy type of FOW doesn't work with shadow casting, so "simple-radial" FOV will be activated automaticaly
 
 -- Actual only for "enhanced" FOW type
-SetFogOfWarBlur(1.5, 3)
+SetFogOfWarBlur(2.0, 3)
 
 -- Make these tiles opaque. Possible tile-types "forest", "rock" and "wall"
 SetOpaqueFor("forest", "rock", "wall")
