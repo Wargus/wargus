@@ -157,8 +157,19 @@ function HandleCheats(str)
     PlayMusic("music/I'm a Medieval Man" .. wargus.music_extension)
     AddMessage("enabled cheat")
 
+  elseif (string.find(str, ".lua")) then
+    AddMessage("Reloading " .. str)
+    Load("scripts/" .. str)
+
+  elseif (string.find(str, "eval") == 1) then
+    local code = str:gsub("^eval%s", "")
+    AddMessage("Running: " .. code)
+    local result = loadstring("return " .. code)
+    result = result()
+    AddMessage(" => " .. tostring(result))
+
   else
-	ischeater = false
+	  ischeater = false
     return false
   end
   return true
