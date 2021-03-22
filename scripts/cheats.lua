@@ -186,14 +186,17 @@ function HandleCheats(str)
 
     elseif (string.find(str, ".lua")) then
       AddMessage("Reloading " .. str)
+      print("Force reloading by in-game console cmd " .. str)
       Load("scripts/" .. str)
 
     elseif (string.find(str, "eval") == 1) then
       local code = str:gsub("^eval%s", "")
       AddMessage("Running: " .. code)
+      print("Running by \'eval\' cmd: " .. code)
       local result = loadstring("return " .. code)
       result = result()
       AddMessage(" => " .. tostring(result))
+      print(" => " .. tostring(result))
     end
   else
 	  ischeater = false
