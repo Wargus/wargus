@@ -417,6 +417,108 @@ function RunPreferencesMenu()
    end
 end
 
+function RunDebugMenu()
+   local menu = WarGameMenu(panel(5))
+   menu:resize(352, 352)
+   menu:addLabel(_("Debug"), 352 / 2, 11, Fonts["large"], true)
+   
+   local showGrid = menu:addImageCheckBox(_("Show map grid"), 10, 10 + 19 * 2,  offi, offi2, oni, oni2, function() end)
+   showGrid:setMarked(GetIsMapGridEnabled())
+   showGrid:setActionCallback(
+      function()
+         SetEnableMapGrid(showGrid:isMarked())
+   end)
+
+   -- Declared here because could be upadated by the fog of war type change
+   local fieldOfViewTypeList = {_("shadow-casting"), _("radial")}
+   local fieldOfViewType = menu:addDropDown(fieldOfViewTypeList, 10, 28 + 19 * 7, function(dd) end)
+
+   local fogOfWarTypes    = {"legacy", "enhanced"}
+   local fogOfWarTypeList = {_("legacy"), _("enhanced")}
+   menu:addLabel(_("Fog of War type:"), 10, 28 + 19 * 3, Fonts["game"], false)
+   local fogOfWarType = menu:addDropDown(fogOfWarTypeList, 10, 28 + 19 * 4, function(dd) end)
+   fogOfWarType:setSelected(GetFogOfWarType())
+   fogOfWarType:setActionCallback(
+      function()
+         SetFogOfWarType(fogOfWarTypes[fogOfWarType:getSelected() + 1])
+         fieldOfViewType:setSelected(GetFieldOfViewType())
+   end)
+   fogOfWarType:setSize(130, 16)
+   
+   local fowBilinear = menu:addImageCheckBox(_("Bilinear interp."), 200, 28 + 19 * 4, offi, offi2, oni, oni2, function()end)
+   fowBilinear:setMarked(GetIsFogOfWarBilinear())
+   fowBilinear:setActionCallback(
+      function()
+         SetFogOfWarBilinear(fowBilinear:isMarked())
+   end)
+   
+
+
+   -- if IsNetworkGame() and we are host - send according cmd to clients
+   local fieldOfViewTypes    = {"shadow-casting", "simple-radial"}
+   --   local fieldOfViewTypeList = {_("shadow-casting"), _("radial")} -- declared earlier
+   menu:addLabel(_("Field of View type:"), 10, 28 + 19 * 6, Fonts["game"], false)
+   --   local fieldOfViewType = menu:addDropDown(fieldOfViewTypeList, 10, 28 + 19 * 7, function(dd) end) -- declared earlier
+   fieldOfViewType:setSelected(GetFieldOfViewType())
+   fieldOfViewType:setActionCallback(
+      function()
+         SetFieldOfViewType(fieldOfViewTypes[fieldOfViewType:getSelected() + 1])
+         fogOfWarType:setSelected(GetFogOfWarType())
+   end)
+   fieldOfViewType:setSize(130, 16)
+   
+   menu:addLabel(_("Enable opacity for:"), 200, 28 + 19 * 6, Fonts["game"], false)
+   local opaqueFores = menu:addImageCheckBox(_("Forest"), 200, 28 + 19 * 7,  offi, offi2, oni, oni2, function() end)
+   opaqueFores:setMarked(GetIsOpaqueFor("forest"))
+   opaqueFores:setActionCallback(
+      function()
+         if opaqueFores:isMarked() then
+            SetOpaqueFor("forest")
+         else 
+            RemoveOpaqueFor("forest")
+         end
+   end)
+   local opaqueFores = menu:addImageCheckBox(_("Rocks"), 200, 28 + 19 * 8,  offi, offi2, oni, oni2, function() end)
+   opaqueFores:setMarked(GetIsOpaqueFor("rock"))
+   opaqueFores:setActionCallback(
+      function()
+         if opaqueFores:isMarked() then
+            SetOpaqueFor("rock")
+         else 
+            RemoveOpaqueFor("rock")
+         end
+   end)
+   local opaqueFores = menu:addImageCheckBox(_("Walls"), 200, 28 + 19 * 9,  offi, offi2, oni, oni2, function() end)
+   opaqueFores:setMarked(GetIsOpaqueFor("wall"))
+   opaqueFores:setActionCallback(
+      function()
+         if opaqueFores:isMarked() then
+            SetOpaqueFor("wall")
+         else 
+            RemoveOpaqueFor("wall")
+         end
+   end)
+   
+  
+   menu:addHalfButton("~!OK", "o", 206, 352 - 40,
+		      function()
+               wc2.preferences.MapGrid = GetIsMapGridEnabled()
+               -- Don't save other preferencies because it is just a debug menu
+               SavePreferences()
+               menu:stop(1)
+   end)
+
+   menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 40, 352 - 40,
+         function()
+            menu:stop()
+   end)
+   if GameCycle > 0 then
+      menu:run(false)
+   else
+      menu:run()
+   end
+end
+
 function RunSpeedsMenu()
    local menu = WarGameMenu(panel(1))
 
@@ -679,7 +781,11 @@ function RunGameOptionsMenu()
    end)
    if (GameCycle > 0) then
       menu:addFullButton(_("Diplomacy (~<F9~>)"), "f9", 16, 40 + 36*3,
-			 function() RunDiplomacyMenu() end)
+         function() RunDiplomacyMenu() end)
+      if IsDebugEnabled then
+         menu:addFullButton(_("Debug"), "`", 16, 40 + 36*4,
+            function() RunDebugMenu() end)
+      end
    else
       menu:addFullButton(_("Video (~<F9~>)"), "f9", 16, 40 + 36*3,
 			 function() RunOptionsMenu(); menu:stopAll(1) end)
