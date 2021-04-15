@@ -823,6 +823,8 @@ function InitGameSettings()
 	GameSettings.RevealMap = 0
 	GameSettings.Tileset = nil
 	IsSkirmishClassic = false
+  Load("scripts/fov.lua") -- Reload Default FOV settings because some maps|tilesets could change it
+  SetFogOfWarType(wc2.preferences.FogOfWarType) -- Reload default FOG type because changing fov type may cause to change it too
 end
 InitGameSettings()
 

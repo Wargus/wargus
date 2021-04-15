@@ -180,20 +180,11 @@ SetRevealAttacker(false)
 --SetRevelationType("buildings-only")
 SetRevelationType("all-units")
 
--- Edit this to enable/disable shadow casting field of view for units
-SetFieldOfViewType("shadow-casting") -- Legacy type of FOW doesn't work with shadow casting, so "enhanced" FOW will be activated automaticaly
---SetFieldOfViewType("simple-radial") 
-
--- Make these tiles opaque. Possible tile-types "forest", "rock" and "wall"
-SetOpaqueFor("forest", "rock", "wall")
-
-
-SetFogOfWarType("enhanced")
---SetFogOfWarType("legacy") -- Legacy type of FOW doesn't work with shadow casting, so "simple-radial" FOV will be activated automaticaly
+-- Load default engine settings for field of view
+Load("scripts/fov.lua")
 
 -- Actual only for "enhanced" FOW type
 SetFogOfWarBlur(2.0, 1.5, 3) -- radiuses for simple and bilinear FOW postprocessing, number of blur iterations
-SetFogOfWarBilinear(true) -- activate bilinear post processing for fog of war
 
 
 -------------------------------------------------------------------------------
@@ -435,7 +426,9 @@ local defaultPreferences = {
 	ServerList = {},
 	OnlineServer = "network.stratagus.de",
 	OnlinePort = 6112,
-	SimplifiedAutoTargeting = true 
+	SimplifiedAutoTargeting = true,
+  FogOfWarType = "enhanced",  -- "enhanced" or "legacy". Legacy type of FOW doesn't work with shadow casting FOV.
+  FogOfWarBilinear = false     -- Enable/Disable bilinear filtration for fog of war
 }
 
 --- Skirmish Setup --------------
@@ -510,6 +503,8 @@ Preference.DeselectInMine = wc2.preferences.DeselectInMine
 Preference.StereoSound = wc2.preferences.StereoSound
 Preference.SimplifiedAutoTargeting = wc2.preferences.SimplifiedAutoTargeting
 
+SetFogOfWarType(wc2.preferences.FogOfWarType)
+SetFogOfWarBilinear(wc2.preferences.FogOfWarBilinear)
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")
 
