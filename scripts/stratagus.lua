@@ -428,7 +428,8 @@ local defaultPreferences = {
 	OnlinePort = 6112,
 	SimplifiedAutoTargeting = true,
   FogOfWarType = "enhanced",  -- "enhanced" or "legacy". Legacy type of FOW doesn't work with shadow casting FOV.
-  FogOfWarBilinear = false     -- Enable/Disable bilinear filtration for fog of war
+  FogOfWarBilinear = false,     -- Enable/Disable bilinear filtration for fog of war
+  MapGrid = false
 }
 
 --- Skirmish Setup --------------
@@ -505,6 +506,13 @@ Preference.SimplifiedAutoTargeting = wc2.preferences.SimplifiedAutoTargeting
 
 SetFogOfWarType(wc2.preferences.FogOfWarType)
 SetFogOfWarBilinear(wc2.preferences.FogOfWarBilinear)
+
+if IsDebugEnabled == true then
+  SetEnableMapGrid(wc2.preferences.MapGrid);
+else
+  SetEnableMapGrid(false)
+end
+
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")
 
