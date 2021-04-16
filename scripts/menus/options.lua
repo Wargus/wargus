@@ -430,8 +430,7 @@ function RunDebugMenu()
    end)
 
    -- Declared here because could be upadated by the fog of war type change
-   local fieldOfViewTypeList = {_("shadow-casting"), _("radial")}
-   local fieldOfViewType = menu:addDropDown(fieldOfViewTypeList, 10, 28 + 19 * 7, function(dd) end)
+   local fieldOfViewType
 
    local fogOfWarTypes    = {"legacy", "enhanced"}
    local fogOfWarTypeList = {_("legacy"), _("enhanced")}
@@ -456,9 +455,9 @@ function RunDebugMenu()
 
    -- if IsNetworkGame() and we are host - send according cmd to clients
    local fieldOfViewTypes    = {"shadow-casting", "simple-radial"}
-   --   local fieldOfViewTypeList = {_("shadow-casting"), _("radial")} -- declared earlier
+   local fieldOfViewTypeList = {_("shadow-casting"), _("radial")} -- declared earlier
    menu:addLabel(_("Field of View type:"), 10, 28 + 19 * 6, Fonts["game"], false)
-   --   local fieldOfViewType = menu:addDropDown(fieldOfViewTypeList, 10, 28 + 19 * 7, function(dd) end) -- declared earlier
+   fieldOfViewType = menu:addDropDown(fieldOfViewTypeList, 10, 28 + 19 * 7, function(dd) end) -- declared earlier
    fieldOfViewType:setSelected(GetFieldOfViewType())
    fieldOfViewType:setActionCallback(
       function()
