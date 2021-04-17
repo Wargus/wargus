@@ -788,7 +788,7 @@ function RunGameOptionsMenu()
       menu:addFullButton(_("Diplomacy (~<F9~>)"), "f9", 16, 40 + 36*3,
          function() RunDiplomacyMenu() end)
       if IsDebugEnabled then
-         menu:addFullButton(_("Debug"), "`", 16, 40 + 36*4,
+         menu:addFullButton(_("~<D~>ebug"), "d", 16, 40 + 36*4,
             function() RunDebugMenu() end)
       end
    else
