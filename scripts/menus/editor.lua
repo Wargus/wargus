@@ -183,6 +183,95 @@ function RunEditorSaveMenu()
   menu:run(false)
 end
 
+function RunEditorResizeMap(browser, name, menu, w, h, x, y)
+  local saved = EditorResizeMap(browser.path .. name, w, h, x, y)
+  if (saved == -1) then
+    local confirm = WarGameMenu(panel(3))
+    confirm:resize(300,120)
+    confirm:addLabel(_("Cannot save map to file:"), 300 / 2, 11)
+    confirm:addLabel(browser.path .. name, 300 / 2, 31)
+    confirm:addHalfButton("~!OK", "o", 1 * (300 / 3), 120 - 16 - 27, function() confirm:stop() end)
+    confirm:run(false)
+  else
+    UI.StatusLine:Set(_("Saved map to: ") .. browser.path .. name)
+    menu:stop()
+  end
+end
+
+--
+--  Save map from the editor
+--
+function RunEditorEnlargeMenu()
+  local menu = WarGameMenu(panel(3))
+
+  menu:resize(384, 256)
+
+  menu:addLabel(_("Save Resized Map"), 384 / 2, 11)
+
+  menu:addLabel("Resize:", (384 - 300 - 18) / 2 - 106, 36)
+  local sz = menu:addTextInputField("128x128+0+0", (384 - 300 - 18) / 2, 36)
+
+  local t = menu:addTextInputField("game.smp",
+    (384 - 300 - 18) / 2, 14 + 36, 318)
+
+  local browser = menu:addBrowser("maps", ".smp.gz$",
+    (384 - 300 - 18) / 2, 14 + 36 + 22, 318, 123)
+  local function cb(s)
+    t:setText(browser:getSelectedItem())
+  end
+  browser:setActionCallback(cb)
+
+  menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 384 - ((384 - 300 - 18) / 2) - 106, 256 - 16 - 27, function() menu:stop() end)
+  menu:addHalfButton(_("~!Save"), "s", (384 - 300 - 18) / 2, 256 - 16 - 27,
+    function()
+      local name = t:getText()
+      -- check for an empty string
+      if (string.len(name) == 0) then
+        return
+      end
+      -- strip .gz
+      if (string.find(name, ".gz$") ~= nil) then
+        name = string.sub(name, 1, string.len(name) - 3)
+      end
+      -- append .smp
+      if (string.find(name, ".smp$") == nil) then
+        name = name .. ".smp"
+      end
+      -- replace invalid chars with underscore
+      local t = {"\\", "/", ":", "*", "?", "\"", "<", ">", "|"}
+      table.foreachi(t, function(k,v) name = string.gsub(name, v, "_") end)
+
+      local newWidth = 0
+      local newHeight = 0
+      local xOffset = 0
+      local yOffset = 0
+      for w, h, x, y in string.gmatch(sz:getText(), "(%d+)x(%d+)+(%d+)+(%d+)") do
+         newWidth = tonumber(w)
+         newHeight = tonumber(h)
+         xOffset = tonumber(x)
+         yOffset = tonumber(y)
+      end
+
+      if (browser:exists(name .. ".gz")) then
+        local confirm = WarGameMenu(panel(3))
+        confirm:resize(300,120)
+        confirm:addLabel(name, 300 / 2, 11)
+        confirm:addLabel(_("File exists, are you sure ?"), 300 / 2, 31)
+        confirm:addHalfButton("~!Yes", "y", 1 * (300 / 3) - 90, 120 - 16 - 27,
+          function()
+            confirm:stop()
+            RunEditorResizeMap(browser, name, menu, newWidth, newHeight, xOffset, yOffset)
+          end)
+        confirm:addHalfButton("~!No", "n", 3 * (300 / 3) - 116, 120 - 16 - 27, function() confirm:stop() end)
+        confirm:run(false)
+      else
+        RunEditorResizeMap(browser, name, menu, newWidth, newHeight, xOffset, yOffset)
+      end
+    end)
+
+  menu:run(false)
+end
+
 --
 --  Load a other map to edit.
 --
@@ -358,6 +447,7 @@ function RunInEditorMenu()
   menu:addHalfButton(_("Load (~<F12~>)"), "f12", 16 + 118, 40, RunEditorLoadMenu)
   menu:addFullButton(_("Map Properties (~<F5~>)"), "f5", 16, 40 + 36 * 1, RunEditorMapProperties)
   menu:addFullButton(_("Player Properties (~<F6~>)"), "f6", 16, 40 + 36 * 2, RunEditorPlayerProperties)
+  menu:addFullButton("~!Resize Map", "r", 16, 40 + 36 * 3, RunEditorEnlargeMenu)
 
   buttonEditorLoad:setEnabled(false) -- To be removed when enabled.
 
