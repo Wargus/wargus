@@ -497,7 +497,13 @@ function RunDebugMenu()
             RemoveOpaqueFor("wall")
          end
    end)
-   
+  
+   local enableWalls = menu:addImageCheckBox(_("Enable walls"), 10, 28 + 19 * 10,  offi, offi2, oni, oni2, function() end)
+   enableWalls:setMarked(GetIsWallsEnabledForSP())
+   enableWalls:setActionCallback(
+      function()
+         SetEnableWallsForSP(enableWalls:isMarked())
+   end)
   
    menu:addHalfButton("~!OK", "o", 206, 352 - 40,
 		      function()
