@@ -307,15 +307,16 @@ function RunPreferencesMenu()
       fogOfWar:setMarked(wc2.preferences.FogOfWar)
       row = row + 1;
    end
--- TODO: Set same Auto Targeting algorithm for all players in network game
+
    local simplifiedAutoTargeting
    if (not IsNetworkGame()) then
       simplifiedAutoTargeting = menu:addImageCheckBox(_("Simplified auto targ."),  10, 10 + 18 * row, offi, offi2, oni, oni2, function() end)
+      simplifiedAutoTargeting:setMarked(Preference.SimplifiedAutoTargeting)
       simplifiedAutoTargeting:setActionCallback(
-	 function()
-	    Preference.SimplifiedAutoTargeting = simplifiedAutoTargeting:isMarked()
+	      function()
+	         Preference.SimplifiedAutoTargeting = simplifiedAutoTargeting:isMarked()
+            -- EnableSimplifiedAutoTargeting(simplifiedAutoTargeting:isMarked())
       end)
-      simplifiedAutoTargeting:setMarked(wc2.preferences.SimplifiedAutoTargeting)
       row = row + 1;
    end
 
@@ -505,6 +506,14 @@ function RunDebugMenu()
          SetEnableWallsForSP(enableWalls:isMarked())
    end)
   
+   local simplifiedAutoTargeting = menu:addImageCheckBox(_("Simplified auto targ."),  10, 28 + 19 * 11, offi, offi2, oni, oni2, function() end)
+   simplifiedAutoTargeting:setMarked(Preference.SimplifiedAutoTargeting)
+   simplifiedAutoTargeting:setActionCallback(
+      function()
+         EnableSimplifiedAutoTargeting(simplifiedAutoTargeting:isMarked())
+   end)
+
+
    menu:addHalfButton("~!OK", "o", 206, 352 - 40,
 		      function()
                wc2.preferences.MapGrid = GetIsMapGridEnabled()
