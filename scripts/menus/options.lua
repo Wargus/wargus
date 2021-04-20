@@ -377,6 +377,24 @@ function RunPreferencesMenu()
       end
    end
 
+   local fogOfWarTypes    = {"legacy", "enhanced"}
+   local fogOfWarTypeList = {_("legacy"), _("enhanced")}
+   menu:addLabel(_("Fog of War type:"),  225, 28 + 19 * 6 + 5, Fonts["game"], false)
+   local fogOfWarType = menu:addDropDown(fogOfWarTypeList, 225, 28 + 19 * 7 + 5, function(dd) end)
+   fogOfWarType:setSelected(GetFogOfWarType())
+   fogOfWarType:setActionCallback(
+      function()
+         SetFogOfWarType(fogOfWarTypes[fogOfWarType:getSelected() + 1])
+   end)
+   fogOfWarType:setSize(120, 16)
+   
+   local fowBilinear = menu:addImageCheckBox(_("Bilinear fog"), 225, 28 + 19 * 8 + 10, offi, offi2, oni, oni2, function()end)
+   fowBilinear:setMarked(GetIsFogOfWarBilinear())
+   fowBilinear:setActionCallback(
+      function()
+         SetFogOfWarBilinear(fowBilinear:isMarked())
+   end)
+
    menu:addLabel(_("~!* - requires restart"), 10, 10 + 18 * 16, Fonts["game"], false)
 
 
