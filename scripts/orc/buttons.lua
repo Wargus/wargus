@@ -10,7 +10,7 @@
 --
 --      buttons.ccl - Define the", "unit-buttons of the orc race.
 --
---      (c) Copyright 2001-2003 by Vladi Belperchinov-Shabanski and Lutz Sammer
+--      (c) Copyright 2001-2021 by Vladi Belperchinov-Shabanski and Lutz Sammer
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
