@@ -10,7 +10,7 @@
 --
 --      stratagus.lua - The craft configuration language.
 --
---      (c) Copyright 1998-2021 by Lutz Sammer and Pali Rohár
+--      (c) Copyright 1998-2011 by Lutz Sammer and Pali Rohár
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
