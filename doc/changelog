@@ -5,9 +5,24 @@
   - Added enhanced fog of war preferences. Enhanced type is enabled by default.
   - Added field of view settings. Standard radial is enabled by default and will be reloaded after every game. It allows to change FOV type for certain maps (need to enable required FOV type in the map lua-file).
   - added "eval" cheat which allows to execute lua code from ingame console. Enabled only for debug builds.
+  - Add a custom startup script for single player or machine vs machine games
 
 3.0.0
-  - fixme: to complete
+  - Migrate to SDL2
+  - Remove Aleonas Tales dataset and launcher from Wargus project
+  - Fix ripping of CD audio on newer Linux distros
+  - Enable new auto-targeting algorithm
+  - Add option for new shadows
+  - Reveal player when they lost their main building
+  - Play click sound on mouse down for buttons
+  - Fix sight range given by corpses by using a hidden revealer unit
+  - Fix video aspect ratio to work for both DOS and BNE CDs
+  - Copy data files during extraction so we can re-extract on demand without
+    user intervention
+  - Log wartool output on Windows to a logfile to help debug extraction issues
+  - Improve keyboard navigation throughout the game
+  - Add online gaming menu
+  - Add auto-discovery of local multiplayer games
 
 2.4.2
   - fix for extraction on ARM64
