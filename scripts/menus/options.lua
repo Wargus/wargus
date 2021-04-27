@@ -411,6 +411,9 @@ function RunPreferencesMenu()
 			 wc2.preferences.EnhancedEffects = enhancedEffects:isMarked()
 			 wc2.preferences.DeselectInMine = Preference.DeselectInMine
 			 wc2.preferences.SimplifiedAutoTargeting = Preference.SimplifiedAutoTargeting
+          wc2.preferences.FogOfWarType = fogOfWarTypes[fogOfWarType:getSelected() + 1]
+          wc2.preferences.FogOfWarBilinear = fowBilinear:isMarked()
+          
 			 if (not IsNetworkGame()) then
 			    wc2.preferences.FogOfWar = fogOfWar:isMarked()
 			 end
@@ -474,7 +477,7 @@ function RunDebugMenu()
 
    -- if IsNetworkGame() and we are host - send according cmd to clients
    local fieldOfViewTypes    = {"shadow-casting", "simple-radial"}
-   local fieldOfViewTypeList = {_("shadow-casting"), _("radial")} -- declared earlier
+   local fieldOfViewTypeList = {_("shadow-casting"), _("radial")} 
    menu:addLabel(_("Field of View type:"), 10, 28 + 19 * 6, Fonts["game"], false)
    fieldOfViewType = menu:addDropDown(fieldOfViewTypeList, 10, 28 + 19 * 7, function(dd) end) -- declared earlier
    fieldOfViewType:setSelected(GetFieldOfViewType())
