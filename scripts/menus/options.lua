@@ -657,7 +657,7 @@ function SetVideoSize(width, height)
    SavePreferences()
 end
 
-function BuildOptionsMenu()
+function BuildVideoOptionsMenu()
    local menu = WarMenu()
    local offx = (Video.Width - 352) / 2
    local offy = (Video.Height - 352) / 2
@@ -792,10 +792,10 @@ function RunLanguageMenu()
 end
 
 
-function RunOptionsMenu()
+function RunVideoOptionsMenu()
    local continue = 1
    while (continue == 1) do
-      continue = BuildOptionsMenu()
+      continue = BuildVideoOptionsMenu()
    end
 end
 
@@ -808,12 +808,7 @@ function RunGameOptionsMenu()
    menu:addFullButton(_("Sound (~<F7~>)"), "f7", 16, 40 + 36*1,
 		      function() RunGameSoundOptionsMenu() end)
    menu:addFullButton(_("Preferences (~<F8~>)"), "f8", 16, 40 + 36*2,
-		      function()
-			 RunPreferencesMenu()
-			 if (GameCycle == 0) then
-			    menu:stopAll(1)
-			 end
-   end)
+		      function() RunPreferencesMenu() end)
    if (GameCycle > 0) then
       menu:addFullButton(_("Diplomacy (~<F9~>)"), "f9", 16, 40 + 36*3,
          function() RunDiplomacyMenu() end)
@@ -823,9 +818,9 @@ function RunGameOptionsMenu()
       end
    else
       menu:addFullButton(_("Video (~<F9~>)"), "f9", 16, 40 + 36*3,
-			 function() RunOptionsMenu(); menu:stopAll(1) end)
+			 function() RunVideoOptionsMenu() end)
       menu:addFullButton(_("Language"), "f13", 16, 40 + 36*4,
-			 function() RunLanguageMenu(); menu:stopAll(1) end)
+			 function() RunLanguageMenu() end)
    end
    menu:addFullButton(_("Previous (~<Esc~>)"), "escape", 128 - (224 / 2), 288 - 40,
 		      function() menu:stop() end)
@@ -835,3 +830,35 @@ function RunGameOptionsMenu()
       menu:run()
    end
 end
+
+function RunOptionsSubMenu()
+   wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
+   SetDefaultRaceView()
+ 
+   if not (IsMusicPlaying()) then
+     PlayMusic("music/Orc Briefing" .. wargus.music_extension)
+   end
+ 
+   local menu = WarMenu()
+   local offx = (Video.Width - 640) / 2
+   local offy = (Video.Height - 480) / 2
+   
+   menu:addLabel(wargus.Name .. _(" V") .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
+   
+   menu:addLabel(_("~<Game Options~>"), offx + 640/2, offy + 104 + 10)
+   menu:addFullButton(_("Speeds (~<F6~>)"), "f6", offx + 208, offy + 104 + 36*1,
+     function() RunSpeedsMenu() end)
+   menu:addFullButton(_("Sound (~<F7~>)"), "f7", offx + 208, offy + 104 + 36*2,
+                      function() RunGameSoundOptionsMenu(); end)
+   menu:addFullButton(_("Preferences (~<F8~>)"), "f8", offx + 208, offy + 104 + 36*3,
+     function() RunPreferencesMenu(); end)
+   menu:addFullButton(_("Video (~<F9~>)"), "f9", offx + 208, offy + 104 + 36*4,
+     function() RunVideoOptionsMenu(); end)
+   menu:addFullButton(_("Language"), "f13", offx + 208, offy + 104 + 36*5,
+     function() RunLanguageMenu();  end)
+    
+   menu:addFullButton(_("Previous (~<Esc~>)"), "escape", offx + 208, offy + 104 + 36*7,
+     function() menu:stop() end)
+ 
+   return menu:run()
+ end
