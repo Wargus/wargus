@@ -823,6 +823,8 @@ function InitGameSettings()
 	GameSettings.RevealMap = 0
 	GameSettings.Tileset = nil
 	IsSkirmishClassic = false
+  Load("scripts/fov.lua") -- Reload Default FOV settings because some maps|tilesets could change it
+  SetFogOfWarType(wc2.preferences.FogOfWarType) -- Reload default FOG type because changing fov type may cause to change it too
 end
 InitGameSettings()
 
@@ -1580,7 +1582,7 @@ function BuildProgramStartMenu()
   menu:addFullButton(_("~!Replay Game"), "r", offx + 208, offy + 104 + 36*2,
     function() RunReplayGameMenu(); menu:stop(1) end)
   menu:addFullButton(_("~!Options"), "o", offx + 208, offy + 104 + 36*3,
-    function() RunGameOptionsMenu(); menu:stop(1) end)
+    function() RunOptionsSubMenu(); menu:stop(1) end)
   menu:addFullButton(_("~!Load Mod"), "l", offx + 208, offy + 104 + 36*4,
     function() RunLoadModMenu(); menu:stop(1) end)
   menu:addFullButton(_("Map ~!Editor"), "e", offx + 208, offy + 104 + 36*5,

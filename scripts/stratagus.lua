@@ -180,6 +180,13 @@ SetRevealAttacker(false)
 --SetRevelationType("buildings-only")
 SetRevelationType("all-units")
 
+-- Load default engine settings for field of view
+Load("scripts/fov.lua")
+
+-- Actual only for "enhanced" FOW type
+SetFogOfWarBlur(2.0, 1.5, 3) -- radiuses for simple and bilinear FOW postprocessing, number of blur iterations
+
+
 -------------------------------------------------------------------------------
 
 --  If you prefer fighters are attacking by right clicking empty space
@@ -419,7 +426,10 @@ local defaultPreferences = {
 	ServerList = {},
 	OnlineServer = "network.stratagus.de",
 	OnlinePort = 6112,
-	SimplifiedAutoTargeting = true 
+	SimplifiedAutoTargeting = true,
+  FogOfWarType = "enhanced",  -- "enhanced" or "legacy". Legacy type of FOW doesn't work with shadow casting FOV.
+  FogOfWarBilinear = false,     -- Enable/Disable bilinear filtration for fog of war
+  MapGrid = false
 }
 
 --- Skirmish Setup --------------
@@ -493,6 +503,15 @@ SetNewViewportMode(wc2.preferences.ViewportMode)
 Preference.DeselectInMine = wc2.preferences.DeselectInMine
 Preference.StereoSound = wc2.preferences.StereoSound
 Preference.SimplifiedAutoTargeting = wc2.preferences.SimplifiedAutoTargeting
+
+SetFogOfWarType(wc2.preferences.FogOfWarType)
+SetFogOfWarBilinear(wc2.preferences.FogOfWarBilinear)
+
+if IsDebugEnabled == true then
+  SetEnableMapGrid(wc2.preferences.MapGrid);
+else
+  SetEnableMapGrid(false)
+end
 
 --- Uses Stratagus Library path!
 Load("scripts/wc2.lua")

@@ -316,6 +316,12 @@ DefineButton( { Pos = 8, Level = 1, Icon = "icon-orc-wall",
   Key = "w", Hint = _("BUILD ~!WALL"),
   ForUnit = {"unit-peon"} } )
 
+  DefineButton( { Pos = 8, Level = 1, Icon = "icon-orc-wall",
+  Action = "build", Value = "unit-orc-wall", Popup = "popup-orc-building",
+  Allowed = "check-debug", AllowArg = {"single-player-walls"},
+  Key = "w", Hint = _("BUILD ~!WALL"),
+  ForUnit = {"unit-peon"} } )
+
 DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
   Action = "button", Value = 0, Popup = "popup-orc-commands",
   Key = "ESC", Hint = _("~<ESC~> CANCEL"),
