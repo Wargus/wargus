@@ -2,14 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: stratagus-it\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-02 19:00\n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2021-02-04 19:00+0200\n"
+"PO-Revision-Date: 2021-05-16 17:26+0200\n"
 "Last-Translator: Simone Starace <simone.starace93@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: ITALIAN\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP866\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;"
 "X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: f:/Programming/Projects/stratag/trunk/src/\n"
@@ -42,7 +43,7 @@ msgstr "Impossibile realizzare: %s"
 #: src/action/action_build.cpp:515
 #, c-format
 msgid "New %s done"
-msgstr "%s completato"
+msgstr "Nuovo/a %s completato/a"
 
 #: src/action/action_repair.cpp:84
 #, c-format
@@ -76,12 +77,12 @@ msgstr "%s: non hai abbastanza mana per l'incantesimo: %s"
 #: src/action/action_spellcast.cpp:185
 #, c-format
 msgid "%s: can't cast spell: %s"
-msgstr "%s: non puoi lanciare l'incantesimo: %s"
+msgstr "%s: non puo lanciare l'incantesimo: %s"
 
 #: src/action/action_train.cpp:170
 #, c-format
 msgid "New %s ready"
-msgstr "%s e' pronto"
+msgstr "%s pronto"
 
 #: src/action/action_train.cpp:217
 #, c-format
