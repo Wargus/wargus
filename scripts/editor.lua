@@ -37,7 +37,7 @@ SetEditorUnitsIcon("icon-footman")
 --	FIXME: this is only a temporary hack, for better sorted units.
 --
 local editor_types = {
-   "unit-human-start-location",
+   -- "unit-human-start-location",
 
 --   "unit-bat",
 --   "unit-fox",
@@ -95,7 +95,7 @@ local editor_types = {
 
 --- - - - - - - - - - - - - - - - - - -
 
-   "unit-orc-start-location",
+   -- "unit-orc-start-location",
 
    "unit-peon",
    "unit-grunt",
