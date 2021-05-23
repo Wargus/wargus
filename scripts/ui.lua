@@ -288,6 +288,16 @@ wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
 UI.MessageFont = Fonts["game"]
 UI.MessageScrollSpeed = 5
 
+UI.EditorSettingsAreaTopLeft.x = UI.InfoPanel.X
+UI.EditorSettingsAreaTopLeft.y = UI.InfoPanel.Y
+UI.EditorSettingsAreaBottomRight.x = UI.MapArea.X
+UI.EditorSettingsAreaBottomRight.y = UI.ButtonPanel.Y
+
+UI.EditorButtonAreaTopLeft.x = UI.ButtonPanel.X
+UI.EditorButtonAreaTopLeft.y = UI.ButtonPanel.Y
+UI.EditorButtonAreaBottomRight.x = UI.MapArea.X
+UI.EditorButtonAreaBottomRight.y = UI.MapArea.EndY
+
 DefineCursor({
   Name = "cursor-glass",
   Race = "any",

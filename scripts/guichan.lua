@@ -1765,21 +1765,6 @@ if SetShader then
    SetShader(wc2.preferences.VideoShader)
 end
 
-
-CStartEditor = StartEditor
-function StartEditor(mapname)
-  -- extend the button area all the way to the menu button to use available space 
-  local y = 434 + 47 -- see ui_pandora.lua, this is the next row of buttons
-  while y + 47 < Video.Height - 16 do
-    AddButtonPanelButton(9, y)
-    AddButtonPanelButton(65, y)
-    AddButtonPanelButton(121, y)
-    y = y + 47
-  end
-  CStartEditor(mapname)
-  Load("scripts/ui.lua")
-end
-
 if (Editor.Running == EditorCommandLine) then
   if (CliMapName and CliMapName ~= "") then
     StartEditor(CliMapName)
