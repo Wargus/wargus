@@ -49,6 +49,8 @@ end
 local function HandleIneditorCommandKey(key, ctrl, alt, shift)
   if ((key == "m" and alt) or key == "f10" or key == "backspace") then
     RunInEditorMenu()
+  elseif (key == "f1") then
+    RunEditorHelpMenu()
   elseif (key == "f5") then -- Map property
     RunEditorMapProperties()
   elseif (key == "f6") then -- Players property

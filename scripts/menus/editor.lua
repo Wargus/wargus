@@ -126,6 +126,7 @@ end
 --
 --  Save map from the editor
 --
+editorMapName = "game.smp"
 function RunEditorSaveMenu()
   local menu = WarGameMenu(panel(3))
 
@@ -133,7 +134,7 @@ function RunEditorSaveMenu()
 
   menu:addLabel(_("Save Game"), 384 / 2, 11)
 
-  local t = menu:addTextInputField("game.smp",
+  local t = menu:addTextInputField(editorMapName,
     (384 - 300 - 18) / 2, 11 + 36, 318)
 
   local browser = menu:addBrowser("maps", ".smp.gz$",
@@ -172,11 +173,13 @@ function RunEditorSaveMenu()
           function()
             confirm:stop()
             RunEditorSaveMap(browser, name, menu)
+            editorMapName = name
           end)
         confirm:addHalfButton("~!No", "n", 3 * (300 / 3) - 116, 120 - 16 - 27, function() confirm:stop() end)
         confirm:run(false)
       else
         RunEditorSaveMap(browser, name, menu)
+        editorMapName = name
       end
     end)
 
