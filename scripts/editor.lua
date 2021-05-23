@@ -94,7 +94,7 @@ local editor_types = {
    "unit-man-of-light",
 
 --- - - - - - - - - - - - - - - - - - -
-
+   "", "", "",
    -- "unit-orc-start-location",
 
    "unit-peon",
@@ -147,6 +147,7 @@ local editor_types = {
    "unit-double-head",
    "unit-sharp-axe",
 
+   "", "", "", "",
 --- - - - - - - - - - - - - - - - - - -
 
    "unit-gold-mine",
