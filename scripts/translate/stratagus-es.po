@@ -66,7 +66,7 @@ msgstr "No hay recursos para devolver."
 #: src/action/action_spellcast.cpp:181
 #, c-format
 msgid "%s: not enough mana for spell: %s"
-msgstr "%s: no hay mana suficiente para el hechizo: %s"
+msgstr "%s: no hay maná suficiente para el hechizo: %s"
 
 #: src/action/action_spellcast.cpp:185
 #, c-format
