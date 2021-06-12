@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wargus\n"
 "POT-Creation-Date: 2021-02-04 19:00+0200\n"
-"PO-Revision-Date: 2021-06-12 03:26-0300\n"
+"PO-Revision-Date: 2021-06-12 03:59-0300\n"
 "Last-Translator: Nahuel Medina <pointify@e.email>\n"
 "Language-Team: SPANISH\n"
 "Language: es_ES\n"
@@ -168,8 +168,8 @@ msgid "~!Load Game"
 msgstr "Cargar partida"
 
 #: guichan.lua:1011 menus/campaign.lua:301 menus/network.lua:990
-msgid "~!Previous Menu"
-msgstr "Menu anterior"
+msgid "Previous Menu (~<Esc~>)"
+msgstr "Menú anterior (~<Esc~>)"
 
 #: guichan.lua:1024
 msgid "Standard Game"
@@ -770,7 +770,7 @@ msgstr "ENTRENAMIENTO DE GUA~!RDABOSQUES ELFOS"
 
 #: human/buttons.lua:635
 msgid "RANGER ~!SCOUTING (Sight:9)"
-msgstr "VI~!SIÓN DE GUARDABOSQUES (Visión:9)"
+msgstr "VI~!SIÓN DE GUARDABOSQUES (Vista:9)"
 
 #: human/buttons.lua:641
 msgid "RESEARCH ~!LONGBOW (Range +1)"
@@ -1077,8 +1077,8 @@ msgid "~<Mission list~>"
 msgstr "~<Lista de misiónes~>"
 
 #: menus/campaign.lua:284
-msgid "~!Play mission"
-msgstr "Jugar misión"
+msgid "~!Start mission"
+msgstr "Iniciar misión"
 
 #: menus/compactmode.lua:242 menus/network.lua:956
 msgid "Nickname :"
@@ -1357,7 +1357,7 @@ msgstr "T~!erminar escenario"
 
 #: menus/game.lua:51
 msgid "Return to Game (~<Esc~>)"
-msgstr "Regresar a la partida (~<Esc~>)"
+msgstr "Regresar al juego (~<Esc~>)"
 
 #: menus/help.lua:4
 msgid "Help Menu"
@@ -1623,8 +1623,8 @@ msgid "~!Next Tip"
 msgstr "Siguiente"
 
 #: menus/help.lua:161
-msgid "~!Close"
-msgstr "~!Cerrar"
+msgid "Close (~<Esc~>)"
+msgstr "Cerrar (~<Esc~>)"
 
 #: menus/load.lua:40
 msgid "Load Game"
@@ -1853,7 +1853,7 @@ msgstr "~!Crear partida"
 
 #: menus/network.lua:954
 msgid "~<Multiplayer Network Game~>"
-msgstr "~<Partida de red multijugador~>"
+msgstr "~<Partida en red multijugador~>"
 
 #: menus/network.lua:959
 msgid "~!Join Local Game"
@@ -2453,7 +2453,7 @@ msgstr "ENTRENAMIENTO DE TROLLS ~!BERSERK"
 
 #: orc/buttons.lua:654
 msgid "BERSERK ~!SCOUTING (Sight:9)"
-msgstr "VI~!SIÓN DE BERSERK (Visión:9)"
+msgstr "VI~!SIÓN DE BERSERK (Vista:9)"
 
 #: orc/buttons.lua:660
 msgid "RESEARCH LIGHTER ~!AXES (Range +1)"
@@ -2885,7 +2885,7 @@ msgstr "Armadura~|: "
 
 #: ui.lua:212 ui.lua:262
 msgid "Sight~|: "
-msgstr "Visión~|: "
+msgstr "Vista~|: "
 
 #: ui.lua:216
 msgid "Range~|: "
@@ -2950,7 +2950,7 @@ msgstr "~<SHIFT~>-clic puede usarse para hacer una cola de construcción."
 
 #: ui.lua:495 ui.lua:653
 msgid "Sight: "
-msgstr "Visión: "
+msgstr "Vista: "
 
 #: ui.lua:498 ui.lua:656
 msgid "Range: "
