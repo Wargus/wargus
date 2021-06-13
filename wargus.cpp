@@ -49,7 +49,7 @@
 
 #define CONTRIB_DIRECTORIES { __wargus_contrib__, NULL }
 #define GAME_SHOULD_EXTRACT_AGAIN (tinyfd_messageBox("Extract more?", \
-                                                     "Extract from an additional expansion CD?", \
+                                                     "Extract from the additional DOS expansion CD?", \
                                                      "yesno",           \
                                                      "question",        \
                                                      1))
