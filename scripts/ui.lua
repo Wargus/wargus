@@ -321,7 +321,7 @@ elseif (CanAccessFile("ui/cross.png")) then
   DefineCursor({
 	Name = "cursor-scroll",
 	Race = "any",
-	File = "ui/cursors/cross.png",
+	File = "ui/cross.png",
 	HotSpot = {15, 15},
 	Size = {32, 32}})
 end
