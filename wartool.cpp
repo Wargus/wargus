@@ -2598,23 +2598,8 @@ void teeStdout() {
 		exit(1);
 	}
 
-	LPTSTR appdataVal = (LPTSTR) malloc(BUFSIZE*sizeof(TCHAR));
-    if (appdataVal == NULL) {
-        printf("Out of memory\n");
-        exit(1);
-    }
-    DWORD dwRet = GetEnvironmentVariable(VARNAME, appdataVal, BUFSIZE);
-	if (dwRet > BUFSIZE) {
-		appdataVal = (LPTSTR) realloc(appdataVal, dwRet*sizeof(TCHAR));
-		GetEnvironmentVariable(VARNAME, appdataVal, BUFSIZE);
-	}
-	// assume that %APPDATA% exists
-	LPTSTR stdoutpath = (LPTSTR) calloc(dwRet + _tcslen(GAMEDIR) + _tcslen(LOGFILE) + 1, sizeof(TCHAR));
-	_tcscat(stdoutpath, appdataVal);
-	_tcscat(stdoutpath, GAMEDIR);
-	_tmkdir(stdoutpath);
-	_tcscat(stdoutpath, LOGFILE);
-	int logfilefd = _topen(stdoutpath, _O_WRONLY | _O_CREAT | _O_BINARY | _O_TRUNC, _S_IWRITE);
+	char* stdoutpath = GetExtractionLogPath("Wargus", Dir);
+	int logfilefd = _open(stdoutpath, _O_WRONLY | _O_CREAT | _O_BINARY | _O_TRUNC, _S_IWRITE);
 
     // make stdout/stderr write into the write ends of the pipes
 	_dup2(stdoutPipes[1], 1);
@@ -2722,7 +2707,6 @@ int main(int argc, char** argv)
 		break;
 	}
 
-	teeStdout();
 
 	ArchiveDir = argv[a];
 
@@ -2745,6 +2729,7 @@ int main(int argc, char** argv)
 	} else {
 		Dir = "data";
 	}
+	teeStdout();
 
 	sprintf(buf, "%s/extracted", Dir);
 	f = fopen(buf, "r");
