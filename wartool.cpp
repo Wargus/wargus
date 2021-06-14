@@ -2598,7 +2598,7 @@ void teeStdout() {
 		exit(1);
 	}
 
-	char* stdoutpath = GetExtractionLogPath("Wargus", Dir);
+	char* stdoutpath = GetExtractionLogPath("Wargus", (char*)Dir);
 	int logfilefd = _open(stdoutpath, _O_WRONLY | _O_CREAT | _O_BINARY | _O_TRUNC, _S_IWRITE);
 
     // make stdout/stderr write into the write ends of the pipes

@@ -62,7 +62,4 @@ const char* SRC_PATH() { return __FILE__; }
 #define TITLE_PNG "%s/graphics/ui/title.png"
 #endif
 
-#undef DATA_PATH
-#define DATA_PATH "invalid"
-
 #include <stratagus-game-launcher.h>
