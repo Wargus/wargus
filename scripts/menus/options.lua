@@ -307,15 +307,16 @@ function RunPreferencesMenu()
       fogOfWar:setMarked(wc2.preferences.FogOfWar)
       row = row + 1;
    end
--- TODO: Set same Auto Targeting algorithm for all players in network game
+
    local simplifiedAutoTargeting
    if (not IsNetworkGame()) then
       simplifiedAutoTargeting = menu:addImageCheckBox(_("Simplified auto targ."),  10, 10 + 18 * row, offi, offi2, oni, oni2, function() end)
+      simplifiedAutoTargeting:setMarked(Preference.SimplifiedAutoTargeting)
       simplifiedAutoTargeting:setActionCallback(
-	 function()
-	    Preference.SimplifiedAutoTargeting = simplifiedAutoTargeting:isMarked()
+	      function()
+	         Preference.SimplifiedAutoTargeting = simplifiedAutoTargeting:isMarked()
+            -- EnableSimplifiedAutoTargeting(simplifiedAutoTargeting:isMarked())
       end)
-      simplifiedAutoTargeting:setMarked(wc2.preferences.SimplifiedAutoTargeting)
       row = row + 1;
    end
 
@@ -376,6 +377,24 @@ function RunPreferencesMenu()
       end
    end
 
+   local fogOfWarTypes    = {"legacy", "enhanced"}
+   local fogOfWarTypeList = {_("legacy"), _("enhanced")}
+   menu:addLabel(_("Fog of War type:"),  225, 28 + 19 * 6 + 5, Fonts["game"], false)
+   local fogOfWarType = menu:addDropDown(fogOfWarTypeList, 225, 28 + 19 * 7 + 5, function(dd) end)
+   fogOfWarType:setSelected(GetFogOfWarType())
+   fogOfWarType:setActionCallback(
+      function()
+         SetFogOfWarType(fogOfWarTypes[fogOfWarType:getSelected() + 1])
+   end)
+   fogOfWarType:setSize(120, 16)
+   
+   local fowBilinear = menu:addImageCheckBox(_("Bilinear fog"), 225, 28 + 19 * 8 + 10, offi, offi2, oni, oni2, function()end)
+   fowBilinear:setMarked(GetIsFogOfWarBilinear())
+   fowBilinear:setActionCallback(
+      function()
+         SetFogOfWarBilinear(fowBilinear:isMarked())
+   end)
+
    menu:addLabel(_("~!* - requires restart"), 10, 10 + 18 * 16, Fonts["game"], false)
 
 
@@ -392,6 +411,9 @@ function RunPreferencesMenu()
 			 wc2.preferences.EnhancedEffects = enhancedEffects:isMarked()
 			 wc2.preferences.DeselectInMine = Preference.DeselectInMine
 			 wc2.preferences.SimplifiedAutoTargeting = Preference.SimplifiedAutoTargeting
+          wc2.preferences.FogOfWarType = fogOfWarTypes[fogOfWarType:getSelected() + 1]
+          wc2.preferences.FogOfWarBilinear = fowBilinear:isMarked()
+          
 			 if (not IsNetworkGame()) then
 			    wc2.preferences.FogOfWar = fogOfWar:isMarked()
 			 end
@@ -409,6 +431,121 @@ function RunPreferencesMenu()
    menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 40, 352 - 40,
 		      function()
 			 menu:stop()
+   end)
+   if GameCycle > 0 then
+      menu:run(false)
+   else
+      menu:run()
+   end
+end
+
+function RunDebugMenu()
+   local menu = WarGameMenu(panel(5))
+   menu:resize(352, 352)
+   menu:addLabel(_("Debug"), 352 / 2, 11, Fonts["large"], true)
+   
+   local showGrid = menu:addImageCheckBox(_("Show map grid"), 10, 10 + 19 * 2,  offi, offi2, oni, oni2, function() end)
+   showGrid:setMarked(GetIsMapGridEnabled())
+   showGrid:setActionCallback(
+      function()
+         SetEnableMapGrid(showGrid:isMarked())
+   end)
+
+   -- Declared here because could be upadated by the fog of war type change
+   local fieldOfViewType
+
+   local fogOfWarTypes    = {"legacy", "enhanced"}
+   local fogOfWarTypeList = {_("legacy"), _("enhanced")}
+   menu:addLabel(_("Fog of War type:"), 10, 28 + 19 * 3, Fonts["game"], false)
+   local fogOfWarType = menu:addDropDown(fogOfWarTypeList, 10, 28 + 19 * 4, function(dd) end)
+   fogOfWarType:setSelected(GetFogOfWarType())
+   fogOfWarType:setActionCallback(
+      function()
+         SetFogOfWarType(fogOfWarTypes[fogOfWarType:getSelected() + 1])
+         fieldOfViewType:setSelected(GetFieldOfViewType())
+   end)
+   fogOfWarType:setSize(130, 16)
+   
+   local fowBilinear = menu:addImageCheckBox(_("Bilinear interp."), 200, 28 + 19 * 4, offi, offi2, oni, oni2, function()end)
+   fowBilinear:setMarked(GetIsFogOfWarBilinear())
+   fowBilinear:setActionCallback(
+      function()
+         SetFogOfWarBilinear(fowBilinear:isMarked())
+   end)
+   
+
+
+   -- if IsNetworkGame() and we are host - send according cmd to clients
+   local fieldOfViewTypes    = {"shadow-casting", "simple-radial"}
+   local fieldOfViewTypeList = {_("shadow-casting"), _("radial")} 
+   menu:addLabel(_("Field of View type:"), 10, 28 + 19 * 6, Fonts["game"], false)
+   fieldOfViewType = menu:addDropDown(fieldOfViewTypeList, 10, 28 + 19 * 7, function(dd) end) -- declared earlier
+   fieldOfViewType:setSelected(GetFieldOfViewType())
+   fieldOfViewType:setActionCallback(
+      function()
+         SetFieldOfViewType(fieldOfViewTypes[fieldOfViewType:getSelected() + 1])
+         fogOfWarType:setSelected(GetFogOfWarType())
+   end)
+   fieldOfViewType:setSize(130, 16)
+   
+   menu:addLabel(_("Enable opacity for:"), 200, 28 + 19 * 6, Fonts["game"], false)
+   local opaqueFores = menu:addImageCheckBox(_("Forest"), 200, 28 + 19 * 7,  offi, offi2, oni, oni2, function() end)
+   opaqueFores:setMarked(GetIsOpaqueFor("forest"))
+   opaqueFores:setActionCallback(
+      function()
+         if opaqueFores:isMarked() then
+            SetOpaqueFor("forest")
+         else 
+            RemoveOpaqueFor("forest")
+         end
+   end)
+   local opaqueFores = menu:addImageCheckBox(_("Rocks"), 200, 28 + 19 * 8,  offi, offi2, oni, oni2, function() end)
+   opaqueFores:setMarked(GetIsOpaqueFor("rock"))
+   opaqueFores:setActionCallback(
+      function()
+         if opaqueFores:isMarked() then
+            SetOpaqueFor("rock")
+         else 
+            RemoveOpaqueFor("rock")
+         end
+   end)
+   local opaqueFores = menu:addImageCheckBox(_("Walls"), 200, 28 + 19 * 9,  offi, offi2, oni, oni2, function() end)
+   opaqueFores:setMarked(GetIsOpaqueFor("wall"))
+   opaqueFores:setActionCallback(
+      function()
+         if opaqueFores:isMarked() then
+            SetOpaqueFor("wall")
+         else 
+            RemoveOpaqueFor("wall")
+         end
+   end)
+  
+   local enableWalls = menu:addImageCheckBox(_("Enable walls"), 10, 28 + 19 * 10,  offi, offi2, oni, oni2, function() end)
+   enableWalls:setMarked(GetIsWallsEnabledForSP())
+   enableWalls:setActionCallback(
+      function()
+         SetEnableWallsForSP(enableWalls:isMarked())
+   end)
+  
+   local simplifiedAutoTargeting = menu:addImageCheckBox(_("Simplified auto targ."),  10, 28 + 19 * 11, offi, offi2, oni, oni2, function() end)
+   simplifiedAutoTargeting:setMarked(Preference.SimplifiedAutoTargeting)
+   simplifiedAutoTargeting:setActionCallback(
+      function()
+         EnableSimplifiedAutoTargeting(simplifiedAutoTargeting:isMarked())
+   end)
+
+
+   menu:addHalfButton("~!OK", "o", 206, 352 - 40,
+		      function()
+               wc2.preferences.MapGrid = GetIsMapGridEnabled()
+               -- Don't save other preferencies because it is just a debug menu
+               SavePreferences()
+               menu:stop(1)
+   end)
+
+   menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 40, 352 - 40,
+         function()
+            menu:stop()
    end)
    if GameCycle > 0 then
       menu:run(false)
@@ -520,7 +657,7 @@ function SetVideoSize(width, height)
    SavePreferences()
 end
 
-function BuildOptionsMenu()
+function BuildVideoOptionsMenu()
    local menu = WarMenu()
    local offx = (Video.Width - 352) / 2
    local offy = (Video.Height - 352) / 2
@@ -655,10 +792,10 @@ function RunLanguageMenu()
 end
 
 
-function RunOptionsMenu()
+function RunVideoOptionsMenu()
    local continue = 1
    while (continue == 1) do
-      continue = BuildOptionsMenu()
+      continue = BuildVideoOptionsMenu()
    end
 end
 
@@ -671,20 +808,19 @@ function RunGameOptionsMenu()
    menu:addFullButton(_("Sound (~<F7~>)"), "f7", 16, 40 + 36*1,
 		      function() RunGameSoundOptionsMenu() end)
    menu:addFullButton(_("Preferences (~<F8~>)"), "f8", 16, 40 + 36*2,
-		      function()
-			 RunPreferencesMenu()
-			 if (GameCycle == 0) then
-			    menu:stopAll(1)
-			 end
-   end)
+		      function() RunPreferencesMenu() end)
    if (GameCycle > 0) then
       menu:addFullButton(_("Diplomacy (~<F9~>)"), "f9", 16, 40 + 36*3,
-			 function() RunDiplomacyMenu() end)
+         function() RunDiplomacyMenu() end)
+      if IsDebugEnabled then
+         menu:addFullButton(_("~<D~>ebug"), "d", 16, 40 + 36*4,
+            function() RunDebugMenu() end)
+      end
    else
       menu:addFullButton(_("Video (~<F9~>)"), "f9", 16, 40 + 36*3,
-			 function() RunOptionsMenu(); menu:stopAll(1) end)
+			 function() RunVideoOptionsMenu() end)
       menu:addFullButton(_("Language"), "f13", 16, 40 + 36*4,
-			 function() RunLanguageMenu(); menu:stopAll(1) end)
+			 function() RunLanguageMenu() end)
    end
    menu:addFullButton(_("Previous (~<Esc~>)"), "escape", 128 - (224 / 2), 288 - 40,
 		      function() menu:stop() end)
@@ -694,3 +830,35 @@ function RunGameOptionsMenu()
       menu:run()
    end
 end
+
+function RunOptionsSubMenu()
+   wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
+   SetDefaultRaceView()
+ 
+   if not (IsMusicPlaying()) then
+     PlayMusic("music/Orc Briefing" .. wargus.music_extension)
+   end
+ 
+   local menu = WarMenu()
+   local offx = (Video.Width - 640) / 2
+   local offy = (Video.Height - 480) / 2
+   
+   menu:addLabel(wargus.Name .. _(" V") .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
+   
+   menu:addLabel(_("~<Game Options~>"), offx + 640/2, offy + 104 + 10)
+   menu:addFullButton(_("Speeds (~<F6~>)"), "f6", offx + 208, offy + 104 + 36*1,
+     function() RunSpeedsMenu() end)
+   menu:addFullButton(_("Sound (~<F7~>)"), "f7", offx + 208, offy + 104 + 36*2,
+                      function() RunGameSoundOptionsMenu(); end)
+   menu:addFullButton(_("Preferences (~<F8~>)"), "f8", offx + 208, offy + 104 + 36*3,
+     function() RunPreferencesMenu(); end)
+   menu:addFullButton(_("Video (~<F9~>)"), "f9", offx + 208, offy + 104 + 36*4,
+     function() RunVideoOptionsMenu(); end)
+   menu:addFullButton(_("Language"), "f13", offx + 208, offy + 104 + 36*5,
+     function() RunLanguageMenu();  end)
+    
+   menu:addFullButton(_("Previous (~<Esc~>)"), "escape", offx + 208, offy + 104 + 36*7,
+     function() menu:stop() end)
+ 
+   return menu:run()
+ end

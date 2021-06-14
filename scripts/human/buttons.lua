@@ -293,6 +293,12 @@ DefineButton( { Pos = 8, Level = 1, Icon = "icon-human-wall",
   Key = "w", Hint = _("BUILD ~!WALL"),
   ForUnit = {"unit-peasant"} } )
 
+  DefineButton( { Pos = 8, Level = 1, Icon = "icon-human-wall",
+  Action = "build", Value = "unit-human-wall", Popup = "popup-human-building",
+  Allowed = "check-debug", AllowArg = {"single-player-walls"},
+  Key = "w", Hint = _("BUILD ~!WALL"),
+  ForUnit = {"unit-peasant"} } )
+
 DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
   Action = "button", Value = 0, Popup = "popup-human-commands",
   Key = "ESC", Hint = _("~<ESC~> CANCEL"),

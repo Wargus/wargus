@@ -1,6 +1,12 @@
-wargus (3.0.1-1) UNRELEASED; urgency=medium
-
+wargus (3.1.0-1) UNRELEASED; urgency=medium
+  * Added possibility to enable walls building in the single player games. Useful for debug.
+  * Added ingame "debug menu". Among other things it allows to change FOV parameters on the fly. Enabled only for debug builds.
+  * Added "elevated" flag for towers. It allows them to look over opaque field when shadow caster field of view is enabled.
+  * Added enhanced fog of war preferences. Enhanced type is enabled by default.
+  * Added field of view settings. Standard radial is enabled by default and will be reloaded after every game. It allows to change FOV type for certain maps (need to enable required FOV type in the map lua-file).
+  * added "eval" cheat which allows to execute lua code from ingame console. Enabled only for debug builds.
   * Add a custom startup script for single player or machine vs machine games
+
  -- Tim Felgentreff <timfelgentreff@gmail.com>  Fri, 05 Feb 2021 10:14:01 +0100
 
 wargus (3.0.0-1) focal; urgency=medium
