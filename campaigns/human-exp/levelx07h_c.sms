@@ -14,10 +14,14 @@ Briefing(
 
 Triggers = [[
 AddTrigger(
-  function() return GetPlayerData(0, "TotalNumUnits") == 0 and
-    GetPlayerData(2, "TotalNumUnits") == 0 and
-    GetPlayerData(5, "TotalNumUnits") == 0 and
-    GetPlayerData(6, "TotalNumUnits") == 0 end,
+  function() return
+    GetPlayerData(2, "UnitTypesCount", "unit-fire-breeze") == 0 and
+	GetPlayerData(5, "UnitTypesCount", "unit-fire-breeze") == 0 and
+	GetPlayerData(6, "UnitTypesCount", "unit-fire-breeze") == 0 and
+	GetPlayerData(2, "UnitTypesCount", "unit-dragon-roost") == 0 and
+	GetPlayerData(5, "UnitTypesCount", "unit-dragon-roost") == 0 and
+	GetPlayerData(6, "UnitTypesCount", "unit-dragon-roost") == 0
+  end,
   function() return ActionVictory() end)
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-white-mage") == 0 and

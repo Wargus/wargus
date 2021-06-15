@@ -13,8 +13,15 @@ Briefing(
 
 Triggers = [[
 AddTrigger(
-  function() return GetNumOpponents(GetThisPlayer()) == 0 and
-    GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-knight-rider") == 1 end,
+  function()
+    return GetPlayerData(0, "UnitTypesCount", "unit-fortress") == 0 and
+		   GetPlayerData(0, "UnitTypesCount", "unit-stronghold") == 0 and
+	       GetPlayerData(3, "UnitTypesCount", "unit-fortress") == 0 and
+		   GetPlayerData(3, "UnitTypesCount", "unit-stronghold") == 0 and
+	       GetPlayerData(4, "UnitTypesCount", "unit-fortress") == 0 and
+		   GetPlayerData(4, "UnitTypesCount", "unit-stronghold") == 0 and
+	       IfRescuedNearUnit("this", "==", 1, "unit-knight-rider", "unit-circle-of-power")
+  end,
   function() return ActionVictory() end)
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
