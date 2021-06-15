@@ -16,7 +16,17 @@ function RunReplayGameMenu()
         return
      end
      InitGameVariables()
+     local OldReplayLog = ReplayLog
+     function ReplayLog(tbl)
+        local MapRichness = tbl.MapRichness
+        RestoreSharedSettingsFromBits(MapRichness, function(msg)
+          print(msg)
+          menu:stop()
+        end)
+        return OldReplayLog(tbl)
+     end
      StartReplay("~logs/" .. browser:getSelectedItem(), reveal:isMarked())
+     ReplayLog = OldReplayLog
      InitGameSettings()
      SetDefaultRaceView()
      menu:stop()

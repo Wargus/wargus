@@ -265,6 +265,8 @@ function RunJoiningMapMenu(optRace, optReady)
     resources:setSelected(ServerSetupState.ResourcesOption)
     GameSettings.Resources = ServerSetupState.ResourcesOption
     GameSettings.Opponents = ServerSetupState.Opponents
+    GameSettings.MapRichness = ServerSetupState.MapRichness
+    RestoreSharedSettingsFromBits(ServerSetupState.MapRichness)
     updatePlayersList()
     state = GetNetworkState()
     -- FIXME: don't use numbers
@@ -290,6 +292,14 @@ function RunJoiningMapMenu(optRace, optReady)
         SetFogOfWar(fow:isMarked())
         if revealmap:isMarked() == true then
           RevealMap()
+        end
+        
+        if StoreSharedSettingsInBits() ~= GameSettings.MapRichness then
+          -- try one more time, then give up
+          RestoreSharedSettingsFromBits(GameSettings.MapRichness, function(msg)
+                ErrorMenu(msg)
+                menu:stop()
+          end)
         end
         NetworkGamePrepareGameSettings()
         RunMap(NetworkMapName)
@@ -596,6 +606,8 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
 
   NetworkMapName = map
   NetworkInitServerConnect(numplayers)
+  ServerSetupState.MapRichness = StoreSharedSettingsInBits()
+  GameSettings.MapRichness = StoreSharedSettingsInBits()
   ServerSetupState.FogOfWar = 1
   ServerSetupState.Opponents = optAiPlayerNum
   local function startFunc(s)
