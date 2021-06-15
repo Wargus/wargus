@@ -115,6 +115,8 @@ function RunShowCreditsMenu()
 	"  Alexander MacLean",
 	"Italian Translation",
 	"  Simone Starace",
+	"Spanish Translation",
+	"  Nahuel Medina",
 	"Russian Translation",
 	"  cybermind aka Mistranger",
 	"",
