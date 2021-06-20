@@ -30,7 +30,7 @@
 --	Set which icons to display
 SetEditorSelectIcon("icon-human-patrol-land")
 SetEditorUnitsIcon("icon-footman")
-
+SetEditorStartUnit("unit-human-start-location")
 
 --
 --	editor-unit-types a sorted list of unit-types for the editor.
@@ -44,7 +44,7 @@ local editor_types = {
 --   "unit-rebels-cabin1",
 --   "unit-rebels-cabin2",
 --   "unit-rebels-cabin3",
-   
+   "--" .. _("Human Land Units"),
    "unit-peasant",
    "unit-footman",
    "unit-archer",
@@ -55,15 +55,18 @@ local editor_types = {
    "unit-dwarves",
    "unit-ballista",
 
+   "--" .. _("Human Sea Units"),
    "unit-human-oil-tanker",
    "unit-human-transport",
    "unit-human-destroyer",
    "unit-battleship",
    "unit-human-submarine",
 
+   "--" .. _("Human Air Units"),
    "unit-balloon",
    "unit-gryphon-rider",
 
+   "--" .. _("Human Land Buildings"),
    "unit-town-hall",
    "unit-keep",
    "unit-castle",
@@ -80,11 +83,13 @@ local editor_types = {
    "unit-mage-tower",
    "unit-gryphon-aviary",
 
+   "--" .. _("Human Shore Buildings"),
    "unit-human-shipyard",
    "unit-human-foundry",
    "unit-human-refinery",
    "unit-human-oil-platform",
 
+   "--" .. _("Human Heroes"),
    "unit-female-hero",
    "unit-flying-angel",
    "unit-white-mage",
@@ -94,9 +99,8 @@ local editor_types = {
    "unit-man-of-light",
 
 --- - - - - - - - - - - - - - - - - - -
-   "", "", "",
    -- "unit-orc-start-location",
-
+   "--" .. _("Orc Land Units"), 
    "unit-peon",
    "unit-grunt",
    "unit-axethrower",
@@ -107,16 +111,19 @@ local editor_types = {
    "unit-goblin-sappers",
    "unit-catapult",
 
+   "--" .. _("Orc Sea Units"), 
    "unit-orc-oil-tanker",
    "unit-orc-transport",
    "unit-orc-destroyer",
    "unit-ogre-juggernaught",
    "unit-orc-submarine",
 
+   "--" .. _("Orc Air Units"), 
    "unit-eye-of-vision",
    "unit-zeppelin",
    "unit-dragon",
 
+   "--" .. _("Orc Land Buildings"), 
    "unit-great-hall",
    "unit-stronghold",
    "unit-fortress",
@@ -133,11 +140,13 @@ local editor_types = {
    "unit-temple-of-the-damned",
    "unit-dragon-roost",
 
+   "--" .. _("Orc Shore Buildings"), 
    "unit-orc-shipyard",
    "unit-orc-foundry",
    "unit-orc-refinery",
    "unit-orc-oil-platform",
 
+   "--" .. _("Orc Heroes"), 
    "unit-evil-knight",
    "unit-fad-man",
    "unit-beast-cry",
@@ -147,15 +156,16 @@ local editor_types = {
    "unit-double-head",
    "unit-sharp-axe",
 
-   "", "", "", "",
 --- - - - - - - - - - - - - - - - - - -
 
+   "--" .. _("Neutral Buildings"),
    "unit-gold-mine",
    "unit-oil-patch",
    "unit-dark-portal",
    "unit-circle-of-power",
    "unit-runestone",
 
+   "--" .. _("Neutral Units"),
    "unit-skeleton",
    "unit-daemon",
    "unit-critter"
