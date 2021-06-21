@@ -794,6 +794,7 @@ MapSound("skeleton-attack", "fist")
 MapSound("gold-mine-help", "basic orc voices help 1")
 MapSound("critter-help", "basic orc voices help 1")
 MapSound("critter-dead", "explosion")
+MapSound("daemon-dead", "explosion")
 
 --	Define sounds used by game
 --
@@ -823,3 +824,15 @@ DefineGameSounds(
 
 MakeSound("highclick", "ui/highclick.wav")
 MakeSound("statsthump", "ui/statsthump.wav")
+
+if (CanAccessFile("sounds/neutral/units/skeleton/dead.wav")) then
+	MakeSound("skeleton-dead", "neutral/units/skeleton/dead.wav")
+else
+	MapSound("skeleton-dead", "basic orc voices dead")
+end
+
+if (CanAccessFile("sounds/neutral/units/skeleton/acknowledgement/1.wav")) then
+	MakeSound("skeleton-acknowledge", "sounds/neutral/units/skeleton/acknowledgement/1.wav")
+else
+	MapSound("skeleton-acknowledge", "click")
+end

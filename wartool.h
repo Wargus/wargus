@@ -1717,6 +1717,9 @@ static Control Todo[] = {
 {Q,8,"sounds/misc/tree_chopping/4.wav",                         1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\misc\\tree4.wav"},
 {Q,8,"sounds/neutral/units/warthog/selected/1.wav",             1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\misc\\warthog.wav"},
 {Q,8,"sounds/neutral/units/warthog/annoyed/1.wav",              1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\misc\\wartpisd.wav"},
+// skeleton
+{Q,8,"sounds/neutral/units/skeleton/dead.wav",                  1, 1, 0, 0, "War2Dat.mpq", "Gamefx\\misc\\Skeleton Death.wav"},
+{Q,8,"sounds/neutral/units/skeleton/acknowledgement/1.wav",     1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\misc\\Skeleton Move.wav"},
 // ogre
 {Q,8,"sounds/orc/units/ogre/annoyed/1.wav",         1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\ogre\\ogpissd1.wav"},
 {Q,8,"sounds/orc/units/ogre/annoyed/2.wav",         1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\ogre\\ogpissd2.wav"},

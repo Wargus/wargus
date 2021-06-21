@@ -214,7 +214,7 @@ DefineUnitType("unit-daemon", { Name = _("Daemon"),
 --    "acknowledge", "daemon-acknowledge",
 --    "ready", "daemon-ready",
     "help", "basic orc voices help 1",
-    "dead", "basic orc voices dead"} } )
+    "dead", "daemon-dead"} } )
 
 
 UnitTypeFiles["unit-critter"] = {summer = "tilesets/summer/neutral/units/critter.png",

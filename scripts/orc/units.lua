@@ -918,10 +918,10 @@ DefineUnitType("unit-skeleton", { Name = _("Skeleton"),
   SelectableByRectangle = true,
   Sounds = {
     "selected", "skeleton-selected",
---    "acknowledge", "skeleton-acknowledge",
+    "acknowledge", "skeleton-acknowledge",
 --    "ready", "skeleton-ready",
     "help", "basic orc voices help 1",
-    "dead", "basic orc voices dead"} } )
+    "dead", "skeleton-dead"} } )
 
 
 UnitTypeFiles["unit-pig-farm"] = {summer = "tilesets/summer/orc/buildings/pig_farm.png",

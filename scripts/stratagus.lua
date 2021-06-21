@@ -515,10 +515,10 @@ end
 
 function StoreSharedSettingsInBits()
   local bits = 0
-  if preferences.FieldOfViewType == "simple-radial" then
+  if wc2.preferences.FieldOfViewType == "simple-radial" then
      bits = bits + 1 -- bit 0
   end
-  if preferences.SimplifiedAutoTargeting then
+  if wc2.preferences.SimplifiedAutoTargeting then
      bits = bits + 2 -- bit 1
   end
   return bits
@@ -527,19 +527,19 @@ end
 function RestoreSharedSettingsFromBits(bits, errorCb)
   if bits >= 2 then
       -- bit 1 is set
-      preferences.SimplifiedAutoTargeting = true
+      wc2.preferences.SimplifiedAutoTargeting = true
       Preference.SimplifiedAutoTargeting = true
       bits = bits - 2
   else
-      preferences.SimplifiedAutoTargeting = false
+      wc2.preferences.SimplifiedAutoTargeting = false
       Preference.SimplifiedAutoTargeting = false
   end
   if bits >= 1 then
-      preferences.FieldOfViewType = "simple-radial"
+      wc2.preferences.FieldOfViewType = "simple-radial"
       SetFieldOfViewType("simple-radial")
       bits = bits - 1
   else
-      preferences.FieldOfViewType = "shadow-casting"
+      wc2.preferences.FieldOfViewType = "shadow-casting"
       SetFieldOfViewType("shadow-casting")
       SetFogOfWarType("enhanced")
   end
