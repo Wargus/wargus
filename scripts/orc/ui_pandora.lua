@@ -270,9 +270,9 @@ if (CanAccessFile("ui/food.png")) then
   UI.Resources[FoodCost].G = CGraphic:New("ui/food.png", 14, 14)
 end
 UI.Resources[FoodCost].IconFrame = 0
-UI.Resources[FoodCost].IconX = Video.Width - 16 - 138
+UI.Resources[FoodCost].IconX = Video.Width - 16 - 154
 UI.Resources[FoodCost].IconY = 0
-UI.Resources[FoodCost].TextX = Video.Width - 16 - 138 + 18
+UI.Resources[FoodCost].TextX = Video.Width - 16 - 154 + 18
 UI.Resources[FoodCost].TextY = 1
 
 -- score
@@ -280,9 +280,9 @@ if (CanAccessFile("ui/score.png")) then
   UI.Resources[ScoreCost].G = CGraphic:New("ui/score.png", 14, 14)
 end
 UI.Resources[ScoreCost].IconFrame = 0
-UI.Resources[ScoreCost].IconX = Video.Width - 16 - 68
+UI.Resources[ScoreCost].IconX = Video.Width - 16 - 84
 UI.Resources[ScoreCost].IconY = 0
-UI.Resources[ScoreCost].TextX = Video.Width - 16 - 68 + 18
+UI.Resources[ScoreCost].TextX = Video.Width - 16 - 84 + 18
 UI.Resources[ScoreCost].TextY = 1
 
 -- mana
@@ -294,6 +294,13 @@ UI.Resources[ManaResCost].IconX = -100
 UI.Resources[ManaResCost].IconY = -100
 UI.Resources[ManaResCost].TextX = -100
 UI.Resources[ManaResCost].TextY = -100
+
+UI.Resources[FreeWorkersCount].G = CGraphic:New("ui/workers.png", 14, 14)
+UI.Resources[FreeWorkersCount].IconFrame = 0
+UI.Resources[FreeWorkersCount].IconX = Video.Width - 16 - 24
+UI.Resources[FreeWorkersCount].IconY = 0
+UI.Resources[FreeWorkersCount].TextX = Video.Width - 16 - 24 + 18
+UI.Resources[FreeWorkersCount].TextY = 1
 
 UI.MenuButton.X = 24
 UI.MenuButton.Y = 2
