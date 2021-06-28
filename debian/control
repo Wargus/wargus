@@ -12,7 +12,7 @@ Homepage: https://github.com/Wargus/wargus
 Package: wargus
 Architecture: any
 Depends: ${stratagus:Depends}, ${misc:Depends}, ${shlibs:Depends}
-Pre-Depends: cdparanoia, ffmpeg, xterm, timgm6mb-soundfont | musescore-soundfont-gm
+Pre-Depends: cdparanoia, ffmpeg | libav-tools, timgm6mb-soundfont | musescore-soundfont-gm, innoextract
 Provides: stratagus-data
 Description: Warcraft II data game set for the Stratagus engine
  Wargus can be used to play Warcraft II from Blizzard Entertainment.

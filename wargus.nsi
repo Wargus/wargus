@@ -66,6 +66,7 @@
 !system "powershell -Command $\"& {cp **\${PUDCONVERT} ${PUDCONVERT}}$\""
 
 !define CDDA2WAV "cdda2wav.exe"
+!define INNOEXTRACT "innoextract.exe"
 !define FFMPEG "ffmpeg.exe"
 !define SF2BANK "TimGM6mb.sf2"
 !define VCREDIST "vc_redist.x86.exe"
@@ -99,6 +100,7 @@ ${redefine} VCREDISTREGKEY "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\
 
 ; Download and extract nessesary 3rd party programs
 !ifndef NO_DOWNLOAD
+!system "powershell -Command $\"& {wget https://github.com/Wargus/stratagus/releases/download/2015-30-11/${INNOEXTRACT} -OutFile ${INNOEXTRACT}}$\""
 !system "powershell -Command $\"& {wget https://github.com/Wargus/stratagus/releases/download/2015-30-11/${FFMPEG} -OutFile ${FFMPEG}}$\""
 !system "powershell -Command $\"& {wget https://github.com/Wargus/stratagus/releases/download/2015-30-11/${CDDA2WAV} -OutFile ${CDDA2WAV}}$\""
 !system "powershell -Command $\"& {wget https://github.com/Wargus/stratagus/releases/download/2015-30-11/${SF2BANK} -OutFile ${SF2BANK}}$\""
@@ -241,6 +243,7 @@ Section "-${NAME}"
 	File "${WARTOOL}"
 	File "${PUDCONVERT}"
 	File "${CDDA2WAV}"
+	File "${INNOEXTRACT}"
 	File "${FFMPEG}"
 
 	; -- XXX TODO: include Stratagus and dependencies some better way
@@ -346,6 +349,7 @@ Section "un.${NAME}" Executable
 	Delete "$INSTDIR\${WARTOOL}"
 	Delete "$INSTDIR\${PUDCONVERT}"
 	Delete "$INSTDIR\${CDDA2WAV}"
+	Delete "$INSTDIR\${INNOEXTRACT}"
 	Delete "$INSTDIR\${FFMPEG}"
 	Delete "$INSTDIR\${UNINSTALL}"
 
@@ -451,6 +455,7 @@ ${redefine} UPX_FLAGS "${UPX_FLAGS} -q"
 ;--------------------------------
 
 !ifndef NO_DOWNLOAD
+!delfile "${INNOEXTRACT}"
 !delfile "${FFMPEG}"
 !delfile "${CDDA2WAV}"
 !delfile "${SF2BANK}"
