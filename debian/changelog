@@ -1,4 +1,4 @@
-wargus (3.1.0-1) UNRELEASED; urgency=medium
+wargus (3.1.0-1) focal; urgency=medium
   * Added possibility to enable walls building in the single player games. Useful for debug.
   * Added ingame "debug menu". Among other things it allows to change FOV parameters on the fly. Enabled only for debug builds.
   * Added "elevated" flag for towers. It allows them to look over opaque field when shadow caster field of view is enabled.
@@ -6,8 +6,16 @@ wargus (3.1.0-1) UNRELEASED; urgency=medium
   * Added field of view settings. Standard radial is enabled by default and will be reloaded after every game. It allows to change FOV type for certain maps (need to enable required FOV type in the map lua-file).
   * added "eval" cheat which allows to execute lua code from ingame console. Enabled only for debug builds.
   * Add a custom startup script for single player or machine vs machine games
+  * Update the sign up option for the online server
+  * Improve the editor with help, separate unit sections
+  * Add idle worker count to top panel
+  * Support GOG game installer to extract from directly
+  * Added Spanish and Italian translations
+  * Fix various missions' goals and starting units
+  * Sync more settings that may cause desyncs before multiplayer to improve the experience
+  * Add a portable installer for Windows
 
- -- Tim Felgentreff <timfelgentreff@gmail.com>  Fri, 05 Feb 2021 10:14:01 +0100
+ -- Tim Felgentreff <timfelgentreff@gmail.com>  Sat, 03 Jul 2021 20:23:44 +0200
 
 wargus (3.0.0-1) focal; urgency=medium
 
