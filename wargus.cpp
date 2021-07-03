@@ -34,7 +34,7 @@
 #define GAME_CD_FILE_PATTERNS "REZDAT.WAR", "rezdat.war", "War Resources", "INSTALL.EXE", "Install.exe", "Install.mpq", "INSTALL.MPQ", "install.exe", "install.mpq", "setup*.exe"
 #define GAME "wargus"
 #define EXTRACTOR_TOOL "wartool"
-#define EXTRACTOR_ARGS {"-v, -r", NULL}
+#define EXTRACTOR_ARGS {"-v", "-r", NULL}
 #define CHECK_EXTRACTED_VERSION 1
 
 #define EXTRACTION_FILES REEXTRACT_MARKER_FILE
