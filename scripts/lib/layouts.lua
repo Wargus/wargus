@@ -341,7 +341,7 @@ function LButton:getWidth()
 end
 
 function LButton:getHeight()
-   return 14
+   return 28
 end
 
 function LButton:addWidgetTo(container)
