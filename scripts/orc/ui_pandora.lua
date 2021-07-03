@@ -295,7 +295,9 @@ UI.Resources[ManaResCost].IconY = -100
 UI.Resources[ManaResCost].TextX = -100
 UI.Resources[ManaResCost].TextY = -100
 
-UI.Resources[FreeWorkersCount].G = CGraphic:New("ui/workers.png", 14, 14)
+if (CanAccessFile("ui/workers.png"))then
+   UI.Resources[FreeWorkersCount].G = CGraphic:New("ui/workers.png", 14, 14)
+end
 UI.Resources[FreeWorkersCount].IconFrame = 0
 UI.Resources[FreeWorkersCount].IconX = Video.Width - 16 - 24
 UI.Resources[FreeWorkersCount].IconY = 0
