@@ -835,19 +835,65 @@ function RunMultiPlayerGameMenu(s)
      loginBtn:getY() + loginBtn:getHeight() / 4)
   local signUpCb = function(evt, btn, cnt)
      if evt == "mouseClick" then
-        if nick:getText() ~= GetLocalPlayerName() then
-           SetLocalPlayerName(nick:getText())
-           wc2.preferences.PlayerName = nick:getText()
-           SavePreferences()
-        end
-        if string.len(pass:getText()) == 0 then
-           ErrorMenu("Please choose a password for the new account")
-        else
-           OnlineService.setup({ ShowError = ErrorMenu })
-           OnlineService.connect(wc2.preferences.OnlineServer, wc2.preferences.OnlinePort)
-           OnlineService.signup(nick:getText(), pass:getText())
-           RunOnlineMenu()
-        end
+
+        local signUpMenu
+        signUpMenu = WarMenuWithLayout(panel(1), VBox({
+              LFiller(),
+
+              VBox({
+                    LFiller(),
+                    "Choose a username and password to sign up to",
+                    wc2.preferences.OnlineServer,
+                    "Don't choose a password you are using elsewhere.",
+                    "The password is sent to the server using the same",
+                    "method that the original Battle.net clients used,",
+                    "which can be broken. The server will store your",
+                    "username, password hash, last login time, last IP,",
+                    "and game stats (wins/losses/draws. By signing up,",
+                    "you agree to this data storage.",
+                    LFiller(),
+              }),
+
+              HBox({
+                    "Username:",
+                    LTextInputField(""):expanding():id("newnick"),
+              }):withPadding(5),
+
+              HBox({
+                    "Password:",
+                    LTextInputField(""):expanding():id("newpass"),
+              }):withPadding(5),
+
+              HBox({
+                    LFiller(),
+                    LButton("~!OK", "o", function()
+                               if string.len(signUpMenu.newpass:getText()) == 0 then
+                                  ErrorMenu("Please choose a password for the new account")
+                               else
+                                  if signUpMenu.newnick:getText() ~= GetLocalPlayerName() then
+                                     SetLocalPlayerName(signUpMenu.newnick:getText())
+                                     nick:setText(signUpMenu.newnick:getText())
+                                     wc2.preferences.PlayerName = signUpMenu.newnick:getText()
+                                     SavePreferences()
+                                  end
+                                  OnlineService.setup({ ShowError = ErrorMenu })
+                                  OnlineService.connect(wc2.preferences.OnlineServer, wc2.preferences.OnlinePort)
+                                  OnlineService.signup(signUpMenu.newnick:getText(), signUpMenu.newpass:getText())
+                                  RunOnlineMenu()
+                               end
+                               signUpMenu:stop()
+                    end),
+                    LButton("~!Cancel", "c", function()
+                               signUpMenu:stop()
+                    end),
+                    LFiller()
+              }):withPadding(5),
+
+              LFiller(),
+
+        }):withPadding(5))
+
+        signUpMenu:run()
      end
   end
   local signUpListener = LuaActionListener(signUpCb)

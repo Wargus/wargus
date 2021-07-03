@@ -783,6 +783,16 @@ function WarMenu(title, background, resize)
   return menu
 end
 
+function WarMenuWithLayout(background, box)
+  box:calculateMinExtent()
+  local menu = WarMenu(title, background, {box.width, box.height})
+  menu:setSize(box.width, box.height)
+  menu:setPosition((Video.Width - menu:getWidth()) / 2, (Video.Height - menu:getHeight()) / 2)
+  menu:setDrawMenusUnder(true)
+  box:addWidgetTo(menu)
+  return menu
+end
+
 -- Default configurations -------
 Widget:setGlobalFont(Fonts["large"])
 
@@ -1719,6 +1729,8 @@ Load("scripts/menus/endscenario.lua")
 Load("scripts/menus/diplomacy.lua")
 Load("scripts/menus/results.lua")
 Load("scripts/menus/network.lua")
+
+Load("scripts/lib/layouts.lua")
 
 function GameStarting()
   if (wc2.preferences.ShowTips and not IsReplayGame() and not IsNetworkGame()) then
