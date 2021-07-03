@@ -1,14 +1,15 @@
 language: cpp
 compiler:
   - gcc
-os:
-  - linux
+jobs:
+   include:
+      - os: linux
+        dist: focal
   # - osx
 addons:
   apt:
     packages:
-      - libpng12-dev
-      - libgtk2.0-dev
+      - libpng-dev
       - zlib1g-dev
 before_script:
   - mkdir build
