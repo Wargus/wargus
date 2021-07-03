@@ -30,11 +30,11 @@
 #include "wargus.h"
 
 #define GAME_NAME "Wargus"
-#define GAME_CD "Warcraft II DOS REZDAT.WAR or BNE INSTALL.MPQ/INSTALL.EXE file"
-#define GAME_CD_FILE_PATTERNS "REZDAT.WAR", "rezdat.war", "War Resources", "INSTALL.EXE", "Install.exe", "Install.mpq", "INSTALL.MPQ", "install.exe", "install.mpq"
+#define GAME_CD "Warcraft II DOS REZDAT.WAR, BNE INSTALL.MPQ/INSTALL.EXE file, or GoG installer exe"
+#define GAME_CD_FILE_PATTERNS "REZDAT.WAR", "rezdat.war", "War Resources", "INSTALL.EXE", "Install.exe", "Install.mpq", "INSTALL.MPQ", "install.exe", "install.mpq", "setup*.exe"
 #define GAME "wargus"
 #define EXTRACTOR_TOOL "wartool"
-#define EXTRACTOR_ARGS "-v -r"
+#define EXTRACTOR_ARGS {"-v, -r", NULL}
 #define CHECK_EXTRACTED_VERSION 1
 
 #define EXTRACTION_FILES REEXTRACT_MARKER_FILE
