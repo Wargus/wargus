@@ -1,3 +1,9 @@
+wargus (3.1.1-1) UNRELEASED; urgency=medium
+
+  * 
+
+ -- Tim Felgentreff <timfelgentreff@gmail.com>  Mon, 05 Jul 2021 07:37:07 +0200
+
 wargus (3.1.0-1) focal; urgency=medium
   * Added possibility to enable walls building in the single player games. Useful for debug.
   * Added ingame "debug menu". Among other things it allows to change FOV parameters on the fly. Enabled only for debug builds.
