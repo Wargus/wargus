@@ -172,8 +172,8 @@ end)
 --SetForestRegeneration(5)
 
 --  Edit this to enable/disable the reveal of the attacker.
---SetRevealAttacker(true)
-SetRevealAttacker(false)
+SetRevealAttacker(true)
+-- SetRevealAttacker(false)
 
 --  Edit this to set the type of revelation when a player lost their last main facility
 --SetRevelationType("no-revelation")
