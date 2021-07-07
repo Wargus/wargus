@@ -190,6 +190,7 @@ DefineModifier("upgrade-berserker-scouting",
 DefineModifier("upgrade-berserker-regeneration",
   {"Level", 1},
   {"regeneration-rate", 1},
+  {"regeneration-frequency", 2},
   {"apply-to", "unit-axethrower"}, {"apply-to", "unit-berserker"})
 
 DefineModifier("upgrade-ogre-mage",
