@@ -1,9 +1,9 @@
-wargus (3.1.1-1) UNRELEASED; urgency=medium
+wargus (3.1.1-1) focal; urgency=medium
 
   * Always reveal attackers even when they are attacking from beyond the sight range of a unit
   * Slow down regeneration rate for berserkers to 1hp every 2 seconds
 
- -- Tim Felgentreff <timfelgentreff@gmail.com>  Mon, 05 Jul 2021 07:37:07 +0200
+ -- Tim Felgentreff <timfelgentreff@gmail.com>  Thu, 15 Jul 2021 19:18:56 +0200
 
 wargus (3.1.0-1) focal; urgency=medium
   * Added possibility to enable walls building in the single player games. Useful for debug.
