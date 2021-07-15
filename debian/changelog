@@ -1,6 +1,7 @@
 wargus (3.1.1-1) UNRELEASED; urgency=medium
 
-  * 
+  * Always reveal attackers even when they are attacking from beyond the sight range of a unit
+  * Slow down regeneration rate for berserkers to 1hp every 2 seconds
 
  -- Tim Felgentreff <timfelgentreff@gmail.com>  Mon, 05 Jul 2021 07:37:07 +0200
 
