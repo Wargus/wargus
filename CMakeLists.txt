@@ -28,8 +28,11 @@
 #
 
 project(wargus)
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.10)
+cmake_policy(VERSION 3.10..3.20.2)
 set(WARGUS_VERSION 2.4.1)
+
+set(CMAKE_CXX_STANDARD 17)
 
 if(EXISTS ${WIN32_CMAKE_PREFIX_PATH})
 	list(APPEND CMAKE_PREFIX_PATH "${WIN32_CMAKE_PREFIX_PATH}")
@@ -157,13 +160,40 @@ set(wartool_LIBS ${pudconvert_LIBS} ${PNG_LIBRARIES} ${ZLIB_LIBRARIES})
 
 # Platform definitions
 
-if (WIN32 AND MSVC)
+if(WIN32 AND MSVC)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE=1)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
-endif()
-
-if (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_GNUC)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+else()
+	include(CheckCXXSourceCompiles)
+	set(FS_SRC "
+	#include <experimental/filesystem> 
+	namespace fs = std::experimental::filesystem;
+	int main(int argc, char **argv) {
+		fs::path p = fs::path(\".\");
+		if (fs::absolute(p).is_absolute()) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	")
+	check_cxx_source_compiles("${FS_SRC}" HAS_17_FS)
+	if(NOT HAS_17_FS)
+		set(CMAKE_REQUIRED_LIBRARIES stdc++fs)
+		check_cxx_source_compiles("${FS_SRC}" HAS_EXP_17_FS_WITH_STDC)
+		if(HAS_EXP_17_FS_WITH_STDC)
+			set(wargus_LIBS ${wargus_LIBS} stdc++fs)
+			set(wartool_LIBS ${wartool_LIBS} stdc++fs)
+		else()
+			set(CMAKE_REQUIRED_LIBRARIES c++fs)
+			check_cxx_source_compiles("${FS_SRC}" HAS_EXP_17_FS_WITH_CLIB)
+			if(HAS_EXP_17_FS_WITH_CLIB)
+				set(wargus_LIBS ${wargus_LIBS} c++fs)
+				set(wartool_LIBS ${wartool_LIBS} c++fs)
+			else()
+				message(FATAL_ERROR "I don't know how to compile with C++17 filesystem support on your system")
+			endif()
+		endif()
+	endif()
 endif()
 
 if(NOT WIN32)
