@@ -34,6 +34,8 @@
 --  Includes
 ----------------------------------------------------------------------------*/
 
+#include <fstream>
+
 #include "wargus.h"
 #include "wartool.h"
 #include <stratagus-gameutils.h>
@@ -2240,6 +2242,110 @@ char* ParseString(const char* input)
 //  Import the campaigns
 //----------------------------------------------------------------------------
 
+
+int CampaignsLoadData(unsigned char* objectives, int expansion, int offset) {
+	char buf[8192] = {'\0'};
+	unsigned char* CampaignData[2][26][10];
+	unsigned char* current;
+	unsigned char* next;
+	unsigned char* nextobj;
+	unsigned char* currentobj;
+	FILE* outlevel;
+	int levelno;
+	int noobjs;
+	int race;
+
+	//Now Search from start of objective data
+	levelno = 0;
+	race = 0;
+
+	//Extract all the values for objectives
+	if (expansion) {
+		expansion = 52;
+	} else {
+		expansion = 28;
+	}
+	current = objectives + offset;
+	for (int l = 0; l < (size_t)expansion; ++l) {
+		next = current + strlen((char*)current) + 1;
+
+		noobjs = 1;  // Number of objectives is zero.
+		currentobj = current;
+		while ((nextobj = (unsigned char*)strchr((char*)currentobj, '\n')) != NULL) {
+			*nextobj = '\0';
+			++nextobj;
+			CampaignData[race][levelno][noobjs] = currentobj;
+			currentobj = nextobj;
+			++noobjs;
+		}
+		// Get the final one.
+		CampaignData[race][levelno][noobjs] = currentobj;
+		for (++noobjs; noobjs < 10; ++noobjs) {
+			CampaignData[race][levelno][noobjs] = NULL;
+		}
+		current = next;
+		if (race == 0) {
+			race = 1;
+		} else if (race == 1) {
+			race = 0;
+			++levelno;
+		};
+	}
+
+	// Extract the Level titles now.
+	race = 0;
+	levelno = 0;
+	// Find the start of the Levels
+	while (current[0] && current[0] != 'I' && current[1] != '.') {
+		current = current + strlen((char*)current) + 1;
+	}
+	for (int l = 0; l < (size_t)expansion; ++l) {
+		next = current + strlen((char*)current) + 1;
+		CampaignData[race][levelno][0] = current;
+		current = next;
+		if (race == 0) {
+			race = 1;
+		} else {
+			if (race == 1) {
+				race = 0;
+				++levelno;
+			}
+		}
+	}
+
+	for (levelno = 0; levelno < expansion / 2; ++levelno) {
+		for (race = 0; race < 2; ++race) {
+			//Open Relevant file, to write stuff too.
+			sprintf(buf, "%s/%s/%s_c2.sms", Dir, TEXT_PATH,
+				Todo[2 * levelno + 1 + race + 5].File);
+			CheckPath(buf);
+			if (!(outlevel = fopen(buf, "wb"))) {
+				printf("Cannot Write File (Skipping Level: %s)\n", buf);
+				fflush(stdout);
+				continue;
+			}
+			unsigned char *str = ConvertString(CampaignData[race][levelno][0], 0);
+			sprintf(buf, "title = \"%s\"\n", str);
+			fputs(buf, outlevel);
+			free(str);
+			fputs("objectives = {", outlevel);
+			for (noobjs = 1; noobjs < 10; ++noobjs) {
+				if (CampaignData[race][levelno][noobjs] != NULL) {
+					unsigned char *str = ConvertString(CampaignData[race][levelno][noobjs], 0);
+					sprintf(buf, "%s\"%s\"", (noobjs > 1 ? "," : ""), str);
+					fputs(buf, outlevel);
+					free(str);
+				}
+			}
+			fputs("}\n", outlevel);
+			// Close levels and move on.
+			fclose(outlevel);
+		}
+	}
+
+	return 0;
+}
+
 /**
 **  FIXME: docu
 */
@@ -2292,96 +2398,9 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 	}
 	objectives[l] = '\0';
 
-	//Now Search from start of objective data
-	levelno = 0;
-	race = 0;
-
-	//Extract all the values for objectives
-	if (expansion) {
-		expansion = 52;
-	} else {
-		expansion = 28;
-	}
-	current = objectives + ofs;
-	for (l = 0; l < (size_t)expansion; ++l) {
-		next = current + strlen((char*)current) + 1;
-
-		noobjs = 1;  // Number of objectives is zero.
-		currentobj = current;
-		while ((nextobj = (unsigned char*)strchr((char*)currentobj, '\n')) != NULL) {
-			*nextobj = '\0';
-			++nextobj;
-			CampaignData[race][levelno][noobjs] = currentobj;
-			currentobj = nextobj;
-			++noobjs;
-		}
-		// Get the final one.
-		CampaignData[race][levelno][noobjs] = currentobj;
-		for (++noobjs; noobjs < 10; ++noobjs) {
-			CampaignData[race][levelno][noobjs] = NULL;
-		}
-		current = next;
-		if (race == 0) {
-			race = 1;
-		} else if (race == 1) {
-			race = 0;
-			++levelno;
-		};
-	}
-
-	// Extract the Level titles now.
-	race = 0;
-	levelno = 0;
-	// Find the start of the Levels
-	while (current[0] && current[0] != 'I' && current[1] != '.') {
-		current = current + strlen((char*)current) + 1;
-	}
-	for (l = 0; l < (size_t)expansion; ++l) {
-		next = current + strlen((char*)current) + 1;
-		CampaignData[race][levelno][0] = current;
-		current = next;
-		if (race == 0) {
-			race = 1;
-		} else {
-			if (race == 1) {
-				race = 0;
-				++levelno;
-			}
-		}
-	}
-
-	for (levelno = 0; levelno < expansion / 2; ++levelno) {
-		for (race = 0; race < 2; ++race) {
-			//Open Relevant file, to write stuff too.
-			sprintf(buf, "%s/%s/%s_c2.sms", Dir, TEXT_PATH,
-				Todo[2 * levelno + 1 + race + 5].File);
-			CheckPath(buf);
-			if (!(outlevel = fopen(buf, "wb"))) {
-				printf("Cannot Write File (Skipping Level: %s)\n", buf);
-				fflush(stdout);
-				continue;
-			}
-			unsigned char *str = ConvertString(CampaignData[race][levelno][0], 0);
-			sprintf(buf, "title = \"%s\"\n", str);
-			fputs(buf, outlevel);
-			free(str);
-			fputs("objectives = {", outlevel);
-			for (noobjs = 1; noobjs < 10; ++noobjs) {
-				if (CampaignData[race][levelno][noobjs] != NULL) {
-					unsigned char *str = ConvertString(CampaignData[race][levelno][noobjs], 0);
-					sprintf(buf, "%s\"%s\"", (noobjs > 1 ? "," : ""), str);
-					fputs(buf, outlevel);
-					free(str);
-				}
-			}
-			fputs("}\n", outlevel);
-			// Close levels and move on.
-			fclose(outlevel);
-		}
-	}
-
+	int result = CampaignsLoadData(objectives, expansion, ofs);
 	free(objectives);
-	return 0;
+	return result;
 }
 
 //----------------------------------------------------------------------------
@@ -3037,25 +3056,110 @@ int main(int argc, char** argv)
 					copyArchive(copyfile);
 				}
 				sprintf(extract, "%s/%s", Dir, Todo[u].File);
-				if (Todo[u].Arg2 == 1) { // compress
-					sprintf(extract, "%s.gz", extract);
-				}
-				if (Todo[u].Arg2 == 2) { // video file
-					sprintf(extract, "%s.smk", extract);
-				}
-				if (Todo[u].Arg2 == 8 && !rip) { // wav audio
-					continue;
+				switch (Todo[u].Arg2) {
+					case 1:
+						sprintf(extract, "%s.gz", extract);
+						break;
+					case 'V':
+						sprintf(extract, "%s.smk", extract);
+						break;
+					case 'W':
+						if (!rip) { // wav audio
+							continue;
+						}
+					default:
+						break;
 				}
 				if (ExtractMPQFile(mpqfile, (char*)Todo[u].ArcFile, extract, Todo[u].Arg2 == 1)) {
 					printf("Failed to extract \"%s\"\n", (char*)Todo[u].ArcFile);
 				}
-				if (Todo[u].Arg2 == 2) { // convert videos
-					if (video) {
-						ConvertVideo(Todo[u].File, Todo[u].Arg1, true);
-					}
-				}
-				if (Todo[u].Arg2 == 4) { // convert videos
-					ConvertPud(Todo[u].File, 0, true);
+				switch (Todo[u].Arg2) { // same mapping as outer loop
+					case 'V':
+						if (video) {
+							ConvertVideo(Todo[u].File, Todo[u].Arg1, true);
+						}
+						break;
+					case 'P':
+						ConvertPud(Todo[u].File, 0, true);
+						break;
+				    case 'X':
+						{
+							std::fstream f(extract, std::ios::in|std::ios::out|std::ios::binary);
+							f.seekg(0, std::ios::end);
+							int sz = f.tellg();
+							f.seekg(0, std::ios::beg);
+							unsigned char *buf = new unsigned char[sz];
+							f.read((char*)buf, sz);
+							f.seekg(0, std::ios::beg);
+							unsigned char *str = ConvertString(buf + Todo[u].Arg3, sz - Todo[u].Arg3);
+							f.write((char*)str, strlen((char*)str));
+							free(str);
+							// f.write((char*)buf + Todo[u].Arg3, sz - Todo[u].Arg3);
+							delete[] buf;
+						}
+						break;
+				    case '?':
+						{
+							// 4 victory texts
+							std::ifstream f(extract, std::ios::binary);
+							f.seekg(0, std::ios::end);
+							int sz = f.tellg();
+							f.seekg(0, std::ios::beg);
+							unsigned char *buf = new unsigned char[sz];
+							f.read((char*)buf, sz);
+							unsigned char* currentBuffer = buf + Todo[u].Arg3;
+							std::ofstream of;
+							unsigned char *str;
+							// human
+							of.open(std::string(Dir) + TEXT_PATH "/human/victory.txt", std::ios::binary);
+							str = ConvertString(currentBuffer, 0);
+							of.write((char*)str, strlen((char*)str));
+							of.close();
+							free(str);
+							// orc
+							currentBuffer += strlen((char*)currentBuffer) + 1;
+							of.open(std::string(Dir) + TEXT_PATH "/orc/victory.txt", std::ios::binary);
+							str = ConvertString(currentBuffer, 0);
+							of.write((char*)str, strlen((char*)str));
+							of.close();
+							free(str);
+							// human-exp
+							currentBuffer += strlen((char*)currentBuffer) + 1;
+							of.open(std::string(Dir) + TEXT_PATH "/human-exp/victory.txt", std::ios::binary);
+							str = ConvertString(currentBuffer, 0);
+							of.write((char*)str, strlen((char*)str));
+							of.close();
+							free(str);
+							// orc-exp
+							currentBuffer += strlen((char*)currentBuffer) + 1;
+							of.open(std::string(Dir) + TEXT_PATH "/orc-exp/victory.txt", std::ios::binary);
+							str = ConvertString(currentBuffer, 0);
+							of.write((char*)str, strlen((char*)str));
+							of.close();
+							free(str);
+
+							delete[] buf;
+						}
+						break;
+					case 'L':
+						{
+							std::ifstream objectivesFile(extract, std::ios::binary);
+							objectivesFile.seekg(0, std::ios::end);
+							int fileSize = objectivesFile.tellg();
+							objectivesFile.seekg(0, std::ios::beg);
+							unsigned char *objectivesData = new unsigned char[fileSize];
+							objectivesFile.read((char*)objectivesData, fileSize);
+							CampaignsLoadData(objectivesData, 1, Todo[u].Arg3);
+							delete[] objectivesData;
+#ifdef WIN32
+							_unlink(extract);
+#else
+							unlink(extract);
+#endif							
+						}
+						break;
+					default:
+						break;
 				}
 #endif
 				break;
@@ -3097,7 +3201,9 @@ int main(int argc, char** argv)
 				ConvertWav(Todo[u].File, Todo[u].Arg1);
 				break;
 			case X:
-				ConvertText(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+				if (!(CDType & CD_BNE)) {
+					ConvertText(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+				}
 				break;
 			case S:
 				SetupNames(Todo[u].File, Todo[u].Arg1);
@@ -3108,7 +3214,9 @@ int main(int argc, char** argv)
 				}
 				break;
 			case L:
-				CampaignsCreate(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+				if (!(CDType & CD_BNE)) {
+					CampaignsCreate(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+				}
 				break;
 			default:
 				break;
