@@ -3091,10 +3091,10 @@ int main(int argc, char** argv)
 							unsigned char *buf = new unsigned char[sz];
 							f.read((char*)buf, sz);
 							f.seekg(0, std::ios::beg);
-							unsigned char *str = ConvertString(buf + Todo[u].Arg3, sz - Todo[u].Arg3);
+							unsigned char *str;
+							str = ConvertString(buf + Todo[u].Arg3, sz - Todo[u].Arg3);
 							f.write((char*)str, strlen((char*)str));
 							free(str);
-							// f.write((char*)buf + Todo[u].Arg3, sz - Todo[u].Arg3);
 							delete[] buf;
 						}
 						break;
