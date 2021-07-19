@@ -2917,9 +2917,8 @@ int main(int argc, char** argv)
 								Todo[u].File = BNEReplaceTableCaps[i + 1];
 							} else if (CDType & CD_BNE_UPPER) {
 								strcpy(filename, Todo[u].File);
-								while (filename[i]) {
-									filename[i] = toupper(filename[i]);
-									++i;
+								for (int fileNameIdx = 0; fileNameIdx < strlen(filename); fileNameIdx++) {
+									filename[fileNameIdx] = toupper(filename[fileNameIdx]);
 								}
 								Todo[u].File = filename;
 							}
