@@ -102,7 +102,7 @@ static int game_font_width;
 /**
 **  File names.
 */
-static char* UnitNames[110];
+static char* UnitNames[8192];
 static int UnitNamesLast = 0;
 
 //----------------------------------------------------------------------------
@@ -2176,6 +2176,8 @@ int SetupNames(const char* file __attribute__((unused)), int txte __attribute__(
 			UnitNames[u] = strdup((char*)txtp + ConvertLE16(mp[u]));
 #endif
 			UnitNamesLast = u;
+		} else {
+			fprintf(stderr, "Too many strings: %d\n", u);
 		}
 	}
 
@@ -3134,11 +3136,6 @@ int main(int argc, char** argv)
 		free(Pal27);
 	}
 
-	while (UnitNamesLast > 0) {
-		free(UnitNames[UnitNamesLast]);
-		--UnitNamesLast;
-	}
-
 	sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
 	CheckPath(buf);
 	f = fopen(buf, "w");
@@ -3166,6 +3163,14 @@ int main(int argc, char** argv)
 		fprintf(f, "wargus.bne = false\n");
 	}
 	fprintf(f, "wargus.game_font_width = %d\n", game_font_width);
+
+	fprintf(f, "InGameStrings = {\n");
+	while (UnitNamesLast > 0) {
+		fprintf(f, "   [[%s]],\n", UnitNames[UnitNamesLast]);
+		free(UnitNames[UnitNamesLast]);
+		--UnitNamesLast;
+	}
+	fprintf(f, "}\n");
 	fclose(f);
 
 	sprintf(buf, "%s/extracted", Dir);
