@@ -3198,7 +3198,14 @@ int main(int argc, char** argv)
 				ConvertXmi(Todo[u].File, Todo[u].Arg1);
 				break;
 			case W:
-				ConvertWav(Todo[u].File, Todo[u].Arg1);
+				if (CDType & CD_BNE) {
+					if (strncmp(Todo[u].File, "../campaigns/", strlen("../campaigns/"))) {
+						// the campaign speeches are somewhere else for bnet
+						ConvertWav(Todo[u].File, Todo[u].Arg1);
+					}
+				} else {
+					ConvertWav(Todo[u].File, Todo[u].Arg1);
+				}
 				break;
 			case X:
 				if (!(CDType & CD_BNE)) {
