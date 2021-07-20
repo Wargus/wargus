@@ -183,14 +183,12 @@ enum _archive_type_ {
 
 const char *BNEReplaceTable[] = {
 	"maindat.war", "support/tomes/tome.1",
-	"rezdat.war",  "support/tomes/tome.2",
-	"strdat.war",  "support/tomes/tome.4"
+	"rezdat.war",  "support/tomes/tome.2"
 };
 
 const char *BNEReplaceTableCaps[] = {
 	"maindat.war", "Support/TOMES/TOME.1",
-	"rezdat.war",  "Support/TOMES/TOME.2",
-	"strdat.war",  "Support/TOMES/TOME.4"
+	"rezdat.war",  "Support/TOMES/TOME.2"
 };
 
 static Control Todo[] = {
@@ -1580,6 +1578,7 @@ static Control Todo[] = {
 
 /////// TEXTS ////////////////////////////////////////////////////////////////
 
+{Q,8,"unit_names",                                       1, 'S', 0x3c1, 0, "War2Dat.mpq", "rez\\stat_txt.tbl"},
 {Q,8,"credits",                                          1, 'X', 0x04, 0, "War2Dat.mpq", "rez\\crdt_lst.tbl"},
 {Q,8,"credits-ext",                                      1, 'X', 0x04, 0, "War2Dat.mpq", "rez\\crelst2x.tbl"},
 {Q,8,"credits-bne",                                      1, 'X', 0x0e, 0, "War2Dat.mpq", "rez\\creditsBNE.tbl"},

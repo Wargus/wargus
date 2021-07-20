@@ -2928,9 +2928,11 @@ int main(int argc, char** argv)
 		}
 		switch (Todo[u].Type) {
 			case F:
-				bool used = true;
+				if (ArchiveBuffer) {
+					CloseArchive();
+				}
 				if (CDType & CD_BNE) {
-					used = false;
+					bool skip = true;
 					for (int i = 0; i < sizeof(BNEReplaceTable) / sizeof(*BNEReplaceTable) ; i += 2) {
 						if (!strcmp(BNEReplaceTable[i], Todo[u].File)) {
 							Todo[u].File = BNEReplaceTable[i + 1];
@@ -2943,9 +2945,13 @@ int main(int argc, char** argv)
 								}
 								Todo[u].File = filename;
 							}
-							used = true;
+							skip = false;
 							break;
 						}
+					}
+					if (skip) {
+						printf("Skipping archive \"%s\"\n", Todo[u].File);
+						break;
 					}
 				} else if (CDType & CD_UPPER) {
 					int i = 0;
@@ -2956,16 +2962,11 @@ int main(int argc, char** argv)
 					}
 					Todo[u].File = filename;
 				}
-				if (ArchiveBuffer) {
-					CloseArchive();
-				}
-				if (used) {
-					sprintf(buf, "%s/%s", ArchiveDir, Todo[u].File);
-					printf("Archive \"%s\"\n", buf);
-					fflush(stdout);
-					OpenArchive(buf, Todo[u].Arg1);
-					copyArchive(Todo[u].File);
-				}
+				sprintf(buf, "%s/%s", ArchiveDir, Todo[u].File);
+				printf("Archive \"%s\"\n", buf);
+				fflush(stdout);
+				OpenArchive(buf, Todo[u].Arg1);
+				copyArchive(Todo[u].File);
 				break;
 			case Q:
 				if (!(CDType & CD_BNE)) {
@@ -3079,6 +3080,31 @@ int main(int argc, char** argv)
 					printf("Failed to extract \"%s\"\n", (char*)Todo[u].ArcFile);
 				}
 				switch (Todo[u].Arg2) { // same mapping as outer loop
+					case 'S':
+						{
+							std::ifstream f(extract, std::ios::in|std::ios::out|std::ios::binary);
+							f.seekg(0, std::ios::end);
+							int sz = f.tellg();
+							f.seekg(0, std::ios::beg);
+							char *buf = new char[sz];
+							char *currentBuf = buf + Todo[u].Arg3;
+							f.read(buf, sz);
+							UnitNamesLast = 0;
+							while (UnitNamesLast < (sizeof(UnitNames) / sizeof(*UnitNames))) {
+#ifdef WIN32
+								UnitNames[UnitNamesLast] = _strdup(currentBuf);
+#else
+								UnitNames[UnitNamesLast] = strdup(currentBuf);
+#endif
+								currentBuf += strlen(currentBuf) + 1;
+								if (currentBuf - buf >= sz) {
+									break;
+								}
+								UnitNamesLast++;
+							}
+							delete[] buf;
+						}
+						break;
 					case 'V':
 						if (video) {
 							ConvertVideo(Todo[u].File, Todo[u].Arg1, true);
@@ -3221,7 +3247,7 @@ int main(int argc, char** argv)
 				}
 				break;
 			case L:
-				if (!(CDType & CD_BNE)) {
+				if (ArchiveBuffer) {
 					CampaignsCreate(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
 				}
 				break;
