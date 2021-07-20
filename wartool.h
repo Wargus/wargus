@@ -184,14 +184,12 @@ enum _archive_type_ {
 const char *BNEReplaceTable[] = {
 	"maindat.war", "support/tomes/tome.1",
 	"rezdat.war",  "support/tomes/tome.2",
-	"snddat.war",  "support/tomes/tome.3",
 	"strdat.war",  "support/tomes/tome.4"
 };
 
 const char *BNEReplaceTableCaps[] = {
 	"maindat.war", "Support/TOMES/TOME.1",
 	"rezdat.war",  "Support/TOMES/TOME.2",
-	"snddat.war",  "Support/TOMES/TOME.3",
 	"strdat.war",  "Support/TOMES/TOME.4"
 };
 

@@ -2928,7 +2928,9 @@ int main(int argc, char** argv)
 		}
 		switch (Todo[u].Type) {
 			case F:
+				bool used = true;
 				if (CDType & CD_BNE) {
+					used = false;
 					for (int i = 0; i < sizeof(BNEReplaceTable) / sizeof(*BNEReplaceTable) ; i += 2) {
 						if (!strcmp(BNEReplaceTable[i], Todo[u].File)) {
 							Todo[u].File = BNEReplaceTable[i + 1];
@@ -2941,6 +2943,7 @@ int main(int argc, char** argv)
 								}
 								Todo[u].File = filename;
 							}
+							used = true;
 							break;
 						}
 					}
@@ -2953,14 +2956,16 @@ int main(int argc, char** argv)
 					}
 					Todo[u].File = filename;
 				}
-				sprintf(buf, "%s/%s", ArchiveDir, Todo[u].File);
-				printf("Archive \"%s\"\n", buf);
-				fflush(stdout);
 				if (ArchiveBuffer) {
 					CloseArchive();
 				}
-				OpenArchive(buf, Todo[u].Arg1);
-				copyArchive(Todo[u].File);
+				if (used) {
+					sprintf(buf, "%s/%s", ArchiveDir, Todo[u].File);
+					printf("Archive \"%s\"\n", buf);
+					fflush(stdout);
+					OpenArchive(buf, Todo[u].Arg1);
+					copyArchive(Todo[u].File);
+				}
 				break;
 			case Q:
 				if (!(CDType & CD_BNE)) {
@@ -3198,12 +3203,7 @@ int main(int argc, char** argv)
 				ConvertXmi(Todo[u].File, Todo[u].Arg1);
 				break;
 			case W:
-				if (CDType & CD_BNE) {
-					if (strncmp(Todo[u].File, "../campaigns/", strlen("../campaigns/"))) {
-						// the campaign speeches are somewhere else for bnet
-						ConvertWav(Todo[u].File, Todo[u].Arg1);
-					}
-				} else {
+				if (ArchiveBuffer) {
 					ConvertWav(Todo[u].File, Todo[u].Arg1);
 				}
 				break;
