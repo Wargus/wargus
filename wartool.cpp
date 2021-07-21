@@ -2064,15 +2064,34 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 //  Text
 //----------------------------------------------------------------------------
 
+static const char *CP1252_TABLE[] = {
+	"\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07", "\x08", "\x09", "\x0a", "\x0b", "\x0c", "\x0d", "\x0e", "\x0f",
+	"\x10", "\x11", "\x12", "\x13", "\x14", "\x15", "\x16", "\x17", "\x18", "\x19", "\x1a", "\x1b", "\x1c", "\x1d", "\x1e", "\x1f",
+	"\x20", "\x21", "\x22", "\x23", "\x24", "\x25", "\x26", "\x27", "\x28", "\x29", "\x2a", "\x2b", "\x2c", "\x2d", "\x2e", "\x2f",
+	"\x30", "\x31", "\x32", "\x33", "\x34", "\x35", "\x36", "\x37", "\x38", "\x39", "\x3a", "\x3b", "\x3c", "\x3d", "\x3e", "\x3f",
+	"\x40", "\x41", "\x42", "\x43", "\x44", "\x45", "\x46", "\x47", "\x48", "\x49", "\x4a", "\x4b", "\x4c", "\x4d", "\x4e", "\x4f",
+	"\x50", "\x51", "\x52", "\x53", "\x54", "\x55", "\x56", "\x57", "\x58", "\x59", "\x5a", "\x5b", "\x5c", "\x5d", "\x5e", "\x5f",
+	"\x60", "\x61", "\x62", "\x63", "\x64", "\x65", "\x66", "\x67", "\x68", "\x69", "\x6a", "\x6b", "\x6c", "\x6d", "\x6e", "\x6f",
+	"\x70", "\x71", "\x72", "\x73", "\x74", "\x75", "\x76", "\x77", "\x78", "\x79", "\x7a", "\x7b", "\x7c", "\x7d", "\x7e", "\x7f",
+	"\u20ac", "\u0020", "\u201a", "\u0192", "\u201e", "\u2026", "\u2020", "\u2021", "\u02c6", "\u2030", "\u0160", "\u2039", "\u0152", "\u0020", "\u017d", "\u0020",
+	"\u0020", "\u2018", "\u2019", "\u201c", "\u201d", "\u2022", "\u2013", "\u2014", "\u02dc", "\u2122", "\u0161", "\u203a", "\u0153", "\u0020", "\u017e", "\u0178",
+	"\u00a0", "\u00a1", "\u00a2", "\u00a3", "\u00a4", "\u00a5", "\u00a6", "\u00a7", "\u00a8", "\u00a9", "\u00aa", "\u00ab", "\u00ac", "\u00ad", "\u00ae", "\u00af",
+	"\u00b0", "\u00b1", "\u00b2", "\u00b3", "\u00b4", "\u00b5", "\u00b6", "\u00b7", "\u00b8", "\u00b9", "\u00ba", "\u00bb", "\u00bc", "\u00bd", "\u00be", "\u00bf",
+	"\u00c0", "\u00c1", "\u00c2", "\u00c3", "\u00c4", "\u00c5", "\u00c6", "\u00c7", "\u00c8", "\u00c9", "\u00ca", "\u00cb", "\u00cc", "\u00cd", "\u00ce", "\u00cf",
+	"\u00d0", "\u00d1", "\u00d2", "\u00d3", "\u00d4", "\u00d5", "\u00d6", "\u00d7", "\u00d8", "\u00d9", "\u00da", "\u00db", "\u00dc", "\u00dd", "\u00de", "\u00df",
+	"\u00e0", "\u00e1", "\u00e2", "\u00e3", "\u00e4", "\u00e5", "\u00e6", "\u00e7", "\u00e8", "\u00e9", "\u00ea", "\u00eb", "\u00ec", "\u00ed", "\u00ee", "\u00ef",
+	"\u00f0", "\u00f1", "\u00f2", "\u00f3", "\u00f4", "\u00f5", "\u00f6", "\u00f7", "\u00f8", "\u00f9", "\u00fa", "\u00fb", "\u00fc", "\u00fd", "\u00fe", "\u00ff"
+};
+
 /**
 **  Convert a string to utf8 format
 **  Note: this isn't a true conversion, buf could be any character set
 */
-unsigned char *ConvertString(unsigned char *buf, size_t len)
+unsigned char *ConvertString(unsigned char *inputBuffer, size_t len)
 {
+	unsigned char *buf = inputBuffer;
 	unsigned char *str;
 	unsigned char *p;
-	size_t i;
 
 	if (len == 0) {
 		len = strlen((char *)buf);
@@ -2081,7 +2100,7 @@ unsigned char *ConvertString(unsigned char *buf, size_t len)
 	str = (unsigned char *)malloc(2 * len + 1);
 	p = str;
 
-	for (i = 0; i < len; ++i, ++buf) {
+	for (int i = 0; i < len; ++i, ++buf) {
 		if (*buf > 0x7f) {
 			if (CDType & (CD_RUSSIAN)) {
 				// Special cp866 hack for SPK version
@@ -2092,14 +2111,24 @@ unsigned char *ConvertString(unsigned char *buf, size_t len)
 					*p++ = *buf;
 				}
 			} else {
-				*p++ = (0xc0 | (*buf >> 6));
-				*p++ = (0x80 | (*buf & 0x1f));
+				// assume CP1252 for now
+				const char *replacement = CP1252_TABLE[*buf];
+				for (int i = 0; i < strlen(replacement); i++) {
+					*p++ = replacement[i];
+				}
 			}
 		} else {
 			*p++ = *buf;
 		}
 	}
 	*p = '\0';
+#ifdef DEBUG
+	printf("ConvertString: [0x%02x", inputBuffer[0]);
+	for (int i = 1; i < len; i++) {
+		printf(", 0x%02x", inputBuffer[i]);
+	}
+	printf("] to %s\n", (char*)str);
+#endif
 
 	return str;
 }
