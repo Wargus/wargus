@@ -658,7 +658,7 @@ int CountUsedTiles(const unsigned char* map, const unsigned char* mega,
 	const unsigned char* tp;
 	int img2tile[0x9E0];
 
-	memset(map2tile, 0, sizeof(map2tile));
+	memset(map2tile, 0, sizeof(*map2tile));
 
 	//
 	//  Build conversion table.
@@ -1691,14 +1691,14 @@ int ConvertImage(const char* file, int pale, int imge, int nw, int nh)
 unsigned char* ConvertCur(unsigned char* bp, int* wp, int* hp)
 {
 	int i;
-	int hotx;
-	int hoty;
+	// int hotx;
+	// int hoty;
 	int width;
 	int height;
 	unsigned char* image;
 
-	hotx = FetchLE16(bp);
-	hoty = FetchLE16(bp);
+	FetchLE16(bp); // hotx
+	FetchLE16(bp); // hoty
 	width = FetchLE16(bp);
 	height = FetchLE16(bp);
 
@@ -2100,7 +2100,7 @@ unsigned char *ConvertString(unsigned char *inputBuffer, size_t len)
 	str = (unsigned char *)malloc(2 * len + 1);
 	p = str;
 
-	for (int i = 0; i < len; ++i, ++buf) {
+	for (size_t i = 0; i < len; ++i, ++buf) {
 		if (*buf > 0x7f) {
 			if (CDType & (CD_RUSSIAN)) {
 				// Special cp866 hack for SPK version
@@ -2113,8 +2113,8 @@ unsigned char *ConvertString(unsigned char *inputBuffer, size_t len)
 			} else {
 				// assume CP1252 for now
 				const char *replacement = CP1252_TABLE[*buf];
-				for (int i = 0; i < strlen(replacement); i++) {
-					*p++ = replacement[i];
+				for (size_t j = 0; j < strlen(replacement); j++) {
+					*p++ = replacement[j];
 				}
 			}
 		} else {
@@ -2187,13 +2187,11 @@ int SetupNames(const char* file __attribute__((unused)), int txte __attribute__(
 {
 	unsigned char* txtp;
 	const unsigned short* mp;
-	size_t l;
 	unsigned u;
 	unsigned n;
 
 	//txtp = ExtractEntry(ArchiveOffsets[txte], &l);
 	txtp = Names;
-	l = sizeof(Names);
 	mp = (const unsigned short*)txtp;
 
 	n = ConvertLE16(mp[0]);
@@ -2295,7 +2293,7 @@ int CampaignsLoadData(unsigned char* objectives, int expansion, int offset) {
 		expansion = 28;
 	}
 	current = objectives + offset;
-	for (int l = 0; l < (size_t)expansion; ++l) {
+	for (int l = 0; l < expansion; ++l) {
 		next = current + strlen((char*)current) + 1;
 
 		noobjs = 1;  // Number of objectives is zero.
@@ -2328,7 +2326,7 @@ int CampaignsLoadData(unsigned char* objectives, int expansion, int offset) {
 	while (current[0] && current[0] != 'I' && current[1] != '.') {
 		current = current + strlen((char*)current) + 1;
 	}
-	for (int l = 0; l < (size_t)expansion; ++l) {
+	for (int l = 0; l < expansion; ++l) {
 		next = current + strlen((char*)current) + 1;
 		CampaignData[race][levelno][0] = current;
 		current = next;
@@ -2381,17 +2379,7 @@ int CampaignsLoadData(unsigned char* objectives, int expansion, int offset) {
 int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 {
 	unsigned char* objectives;
-	char buf[8192] = {'\0'};
-	unsigned char* CampaignData[2][26][10];
-	unsigned char* current;
-	unsigned char* next;
-	unsigned char* nextobj;
-	unsigned char* currentobj;
-	FILE* outlevel;
 	size_t l;
-	int levelno;
-	int noobjs;
-	int race;
 	int expansion;
 
 	// Campaign data is in different spots for different CD's
