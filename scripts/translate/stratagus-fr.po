@@ -1,1 +1,438 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: stratagus-fr\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-22 22:06+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Tim Felgentreff <timfelgentreff@gmail.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ../../../stratagus/src\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-SearchPath-0: .\n"
 
+#: action/action_build.cpp:204
+msgid "You cannot reach building place"
+msgstr ""
+
+#: action/action_build.cpp:229
+#, c-format
+msgid "Not enough resources to build %s"
+msgstr ""
+
+#: action/action_build.cpp:236
+#, c-format
+msgid "Can't build more units %s"
+msgstr ""
+
+#: action/action_build.cpp:322
+#, c-format
+msgid "Unable to create building %s"
+msgstr ""
+
+#: action/action_build.cpp:356
+#, c-format
+msgid "%s has rebuilt a base, and will no longer be revealed!"
+msgstr ""
+
+#: action/action_build.cpp:358
+msgid "You have rebuilt a base, and will no longer be revealed!"
+msgstr ""
+
+#: action/action_build.cpp:472
+#, c-format
+msgid "You cannot build %s here"
+msgstr ""
+
+#: action/action_built.cpp:196
+#, c-format
+msgid "New %s done"
+msgstr ""
+
+#: action/action_repair.cpp:178
+#, c-format
+msgid "We need more %s for repair!"
+msgstr ""
+
+#: action/action_research.cpp:137 action/action_research.cpp:139
+#, c-format
+msgid "%s: research complete"
+msgstr ""
+
+#: action/action_resource.cpp:785
+#, c-format
+msgid "%s has collapsed!"
+msgstr ""
+
+#: action/action_resource.cpp:861
+#, c-format
+msgid "%s is running low!"
+msgstr ""
+
+#: action/action_spellcast.cpp:321
+#, c-format
+msgid "%s: not enough mana for spell: %s"
+msgstr ""
+
+#: action/action_spellcast.cpp:325
+#, c-format
+msgid "%s: spell is not ready yet: %s"
+msgstr ""
+
+#: action/action_spellcast.cpp:329
+#, c-format
+msgid "%s: not enough resources to cast spell: %s"
+msgstr ""
+
+#: action/action_spellcast.cpp:333
+#, c-format
+msgid "%s: can't cast spell: %s"
+msgstr ""
+
+#: action/action_train.cpp:208
+#, c-format
+msgid "Unable to train %s"
+msgstr ""
+
+#: action/action_train.cpp:236
+#, c-format
+msgid "New %s ready"
+msgstr ""
+
+#: action/action_upgradeto.cpp:287
+#, c-format
+msgid "Upgrade to %s canceled"
+msgstr ""
+
+#: action/action_upgradeto.cpp:291
+#, c-format
+msgid "Upgrade to %s complete"
+msgstr ""
+
+#: action/command.cpp:987
+#, c-format
+msgid "Player \"%s\" has left the game"
+msgstr ""
+
+#: action/command.cpp:989
+#, c-format
+msgid "Player \"%s\" has been killed"
+msgstr ""
+
+#: editor/editloop.cpp:313
+msgid "Unit deleted"
+msgstr ""
+
+#: editor/editloop.cpp:953
+#, c-format
+msgid "Editor (%d %d)"
+msgstr ""
+
+#: editor/editloop.cpp:1000
+#, c-format
+msgid "#%d '%s' Player:#%d %s"
+msgstr ""
+
+#: editor/editloop.cpp:1004
+#, c-format
+msgid " Amount %d"
+msgstr ""
+
+#: editor/editloop.cpp:1238
+msgid "Unit cannot be placed here."
+msgstr ""
+
+#: editor/editloop.cpp:1328
+msgid "Mirror editing enabled: 2-side"
+msgstr ""
+
+#: editor/editloop.cpp:1331
+msgid "Mirror editing enabled: 4-side"
+msgstr ""
+
+#: editor/editloop.cpp:1334
+msgid "Mirror editing disabled"
+msgstr ""
+
+#: editor/editloop.cpp:1382 editor/editloop.cpp:1391
+msgid "Unit owner modified"
+msgstr ""
+
+#: editor/editloop.cpp:1463
+#, c-format
+msgid "Select player #%d"
+msgstr ""
+
+#: editor/editloop.cpp:1719
+#, c-format
+msgid "Script %s"
+msgstr ""
+
+#: game/game.cpp:157
+msgid "Do it! Do it now!"
+msgstr ""
+
+#: game/replay.cpp:811
+msgid "No sync info for this replay !"
+msgstr ""
+
+#: game/replay.cpp:813
+#, c-format
+msgid "Replay got out of sync (%lu) !"
+msgstr ""
+
+#: game/replay.cpp:822
+msgid "Replay got out of sync !"
+msgstr ""
+
+#: game/replay.cpp:939 game/replay.cpp:953
+msgid "End of replay"
+msgstr ""
+
+#: map/script_map.cpp:759
+#, c-format
+msgid "Tileset '%s'"
+msgstr ""
+
+#: missile/missileconfig.cpp:54
+#, c-format
+msgid "Missile %s"
+msgstr ""
+
+#: missile/missileconfig.cpp:58
+#, c-format
+msgid "Can't find missile %s\n"
+msgstr ""
+
+#: network/network.cpp:831
+#, c-format
+msgid "%s sent bad command"
+msgstr ""
+
+#: network/network.cpp:930
+msgid "Network out of sync"
+msgstr ""
+
+#: network/network.cpp:1125
+#, c-format
+msgid "Waiting for player \"%s\": %d:%02d"
+msgstr ""
+
+#: network/network.cpp:1138
+msgid "Timed out"
+msgstr ""
+
+#: stratagus/construct.cpp:98 stratagus/construct.cpp:107
+#, c-format
+msgid "Construction %s"
+msgstr ""
+
+#: stratagus/mainloop.cpp:312
+msgid "Autosave"
+msgstr ""
+
+#: stratagus/player.cpp:1031
+msgid "Building Limit Reached"
+msgstr ""
+
+#: stratagus/player.cpp:1035
+msgid "Unit Limit Reached"
+msgstr ""
+
+#: stratagus/player.cpp:1039
+msgid "Insufficient Supply, increase Supply."
+msgstr ""
+
+#: stratagus/player.cpp:1043
+msgid "Total Unit Limit Reached"
+msgstr ""
+
+#: stratagus/player.cpp:1047
+#, c-format
+msgid "Limit of %d reached for this unit type"
+msgstr ""
+
+#: stratagus/player.cpp:1073
+#, c-format
+msgid "Not enough %s...%s more %s."
+msgstr ""
+
+#: stratagus/player.cpp:1216
+#, c-format
+msgid "%s has not rebuilt their base and is being revealed!"
+msgstr ""
+
+#: stratagus/player.cpp:1218
+msgid "You have not rebuilt your base and have been revealed!"
+msgstr ""
+
+#: stratagus/script.cpp:2455
+#, c-format
+msgid "Script %s\n"
+msgstr ""
+
+#: stratagus/stratagus.cpp:413
+msgid "Thanks for playing Stratagus.\n"
+msgstr ""
+
+#: ui/botpanel.cpp:1125
+msgid "Select Target"
+msgstr ""
+
+#: ui/botpanel.cpp:1289
+msgid "Select Location"
+msgstr ""
+
+#: ui/botpanel.cpp:1321
+msgid "Unit training queue is full"
+msgstr ""
+
+#: ui/icons.cpp:272
+#, c-format
+msgid "Icon %s"
+msgstr ""
+
+#: ui/icons.cpp:275
+#, c-format
+msgid "Can't find icon %s\n"
+msgstr ""
+
+#: ui/icons.cpp:288
+#, c-format
+msgid "Icons %s"
+msgstr ""
+
+#: ui/interface.cpp:122
+#, c-format
+msgid "MESSAGE:%s"
+msgstr ""
+
+#: ui/interface.cpp:269
+msgid "Sound is on."
+msgstr ""
+
+#: ui/interface.cpp:271
+msgid "Sound is off."
+msgstr ""
+
+#: ui/interface.cpp:286
+msgid "Music is off."
+msgstr ""
+
+#: ui/interface.cpp:289
+msgid "Music is on."
+msgstr ""
+
+#: ui/interface.cpp:302 ui/mouse.cpp:1948
+msgid "Game Paused"
+msgstr ""
+
+#: ui/interface.cpp:304
+msgid "Game Resumed"
+msgstr ""
+
+#: ui/interface.cpp:335
+msgid "Big map enabled"
+msgstr ""
+
+#: ui/interface.cpp:344
+msgid "Returning to old map"
+msgstr ""
+
+#: ui/interface.cpp:358
+msgid "Faster"
+msgstr ""
+
+#: ui/interface.cpp:377
+msgid "Slower"
+msgstr ""
+
+#: ui/interface.cpp:390
+msgid "Set default game speed"
+msgstr ""
+
+#: ui/interface.cpp:441
+msgid "Terrain displayed."
+msgstr ""
+
+#: ui/interface.cpp:443
+msgid "Terrain hidden."
+msgstr ""
+
+#: ui/interface.cpp:487
+msgid "Grab mouse toggled."
+msgstr ""
+
+#: ui/interface.cpp:1070
+msgid "Screenshot made."
+msgstr ""
+
+#: ui/mainscr.cpp:892
+#, c-format
+msgid "Last message repeated ~<%d~> times"
+msgstr ""
+
+#: ui/mainscr.cpp:1024
+#, c-format
+msgid "~<Event: %s~>"
+msgstr ""
+
+#: ui/mainscr.cpp:1071
+msgid "Cycle:"
+msgstr ""
+
+#: ui/mouse.cpp:2126
+#, c-format
+msgid "You have ~<%d~> %ss"
+msgstr ""
+
+#: ui/mouse.cpp:2130
+#, c-format
+msgid "You have ~<%d~> %s(s)"
+msgstr ""
+
+#: unit/depend.cpp:256 unit/depend.cpp:314
+msgid "Requirements:\n"
+msgstr ""
+
+#: unit/unit.cpp:1402
+#, c-format
+msgid "%s has lost their last base, and will be revealed in thirty seconds!"
+msgstr ""
+
+#: unit/unit.cpp:1404
+msgid "You have lost your last base, and will be revealed in thirty seconds!"
+msgstr ""
+
+#: unit/unit.cpp:2815
+#, c-format
+msgid "%s attacked"
+msgstr ""
+
+#: unit/unit_draw.cpp:348
+#, c-format
+msgid "Decorations '%s'"
+msgstr ""
+
+#: unit/unittype.cpp:952
+#, c-format
+msgid "unit-type '%s' without animations, ignored.\n"
+msgstr ""
+
+#: unit/unittype.cpp:1070
+#, c-format
+msgid "Unit \"%s\""
+msgstr ""
+
+#: video/cursor.cpp:105
+#, c-format
+msgid "Cursor %s"
+msgstr ""
+
+#: video/sdl.cpp:165
+msgid "esc"
+msgstr ""
