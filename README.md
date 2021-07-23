@@ -7,3 +7,7 @@ Wargus is a Warcraft2 Mod that allows you to play Warcraft2 with the Stratagus e
 Status of latest builds:
 - Windows: <a href="https://ci.appveyor.com/project/timfel/wargus"><img width="100" src="https://ci.appveyor.com/api/projects/status/github/Wargus/wargus?branch=master&svg=true"></a>
 - Linux & OSX: [![Build Status](https://travis-ci.org/Wargus/wargus.svg?branch=master)](https://travis-ci.org/Wargus/wargus)
+
+To help with translations, visit these pages:
+Engine strings: https://poeditor.com/join/project?hash=BVo8MAZuys
+Game strings: https://poeditor.com/join/project?hash=7myZPTmcqq
