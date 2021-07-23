@@ -9,5 +9,5 @@ Status of latest builds:
 - Linux & OSX: [![Build Status](https://travis-ci.org/Wargus/wargus.svg?branch=master)](https://travis-ci.org/Wargus/wargus)
 
 To help with translations, visit these pages:
-Engine strings: https://poeditor.com/join/project?hash=BVo8MAZuys
-Game strings: https://poeditor.com/join/project?hash=7myZPTmcqq
+* Engine strings: https://poeditor.com/join/project?hash=BVo8MAZuys
+* Game strings: https://poeditor.com/join/project?hash=7myZPTmcqq
