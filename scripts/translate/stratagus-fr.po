@@ -1,438 +1,448 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: stratagus-fr\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-22 22:06+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Tim Felgentreff <timfelgentreff@gmail.com>\n"
-"Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Basepath: ../../../stratagus/src\n"
-"X-Poedit-KeywordsList: _\n"
-"X-Generator: Poedit 3.0\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Stratagus\n"
+"Language: fr\n"
 
 #: action/action_build.cpp:204
 msgid "You cannot reach building place"
-msgstr ""
+msgstr "Vous ne pouvez pas vous rendre ici"
 
 #: action/action_build.cpp:229
-#, c-format
 msgid "Not enough resources to build %s"
-msgstr ""
+msgstr "Pas assez de resource pour constuire %s"
 
 #: action/action_build.cpp:236
-#, c-format
 msgid "Can't build more units %s"
-msgstr ""
+msgstr "Impossible de constuire plus d'unité %s"
 
 #: action/action_build.cpp:322
-#, c-format
 msgid "Unable to create building %s"
-msgstr ""
+msgstr "Impossible de construire batiment %s"
 
 #: action/action_build.cpp:356
-#, c-format
 msgid "%s has rebuilt a base, and will no longer be revealed!"
-msgstr ""
+msgstr "%s a reconstruit sa base et ne sera plus révélé !"
 
 #: action/action_build.cpp:358
 msgid "You have rebuilt a base, and will no longer be revealed!"
-msgstr ""
+msgstr "Vous avez reconstruit la base, et ne serez plus révélé !"
 
 #: action/action_build.cpp:472
-#, c-format
 msgid "You cannot build %s here"
-msgstr ""
+msgstr "Vous ne pouvez pas construire %s ici"
 
 #: action/action_built.cpp:196
-#, c-format
 msgid "New %s done"
-msgstr ""
+msgstr "Nouveau \"%s\" effectué"
 
 #: action/action_repair.cpp:178
-#, c-format
 msgid "We need more %s for repair!"
-msgstr ""
+msgstr "Nous avons besoin de plus de %s pour réparer !"
 
 #: action/action_research.cpp:137 action/action_research.cpp:139
-#, c-format
 msgid "%s: research complete"
-msgstr ""
+msgstr "%s: recherche terminé"
 
 #: action/action_resource.cpp:785
-#, c-format
 msgid "%s has collapsed!"
-msgstr ""
+msgstr "%s s'est écroulé !"
 
 #: action/action_resource.cpp:861
-#, c-format
 msgid "%s is running low!"
-msgstr ""
+msgstr "%s est en faillite !"
 
 #: action/action_spellcast.cpp:321
-#, c-format
 msgid "%s: not enough mana for spell: %s"
-msgstr ""
+msgstr "%s: pas assez de mana pour invoquer : %s"
 
 #: action/action_spellcast.cpp:325
-#, c-format
 msgid "%s: spell is not ready yet: %s"
-msgstr ""
+msgstr "%s: le sort n'est pas encore prêt: %s"
 
 #: action/action_spellcast.cpp:329
-#, c-format
 msgid "%s: not enough resources to cast spell: %s"
-msgstr ""
+msgstr "%s: pas assez de ressource pour invoquer le sort : %s"
 
 #: action/action_spellcast.cpp:333
-#, c-format
 msgid "%s: can't cast spell: %s"
-msgstr ""
+msgstr "%s: ne peut pas lancer le sort: %s"
 
+#. The official French version of W2 use "Former" instead of "Entrainer"
 #: action/action_train.cpp:208
-#, c-format
 msgid "Unable to train %s"
-msgstr ""
+msgstr "Impossible de former %s"
 
 #: action/action_train.cpp:236
-#, c-format
 msgid "New %s ready"
-msgstr ""
+msgstr "Nouveau \"%s\" prêt"
 
 #: action/action_upgradeto.cpp:287
-#, c-format
 msgid "Upgrade to %s canceled"
-msgstr ""
+msgstr "Amélioration vers %s annulée"
 
 #: action/action_upgradeto.cpp:291
-#, c-format
 msgid "Upgrade to %s complete"
-msgstr ""
+msgstr "Amélioration vers %s terminée"
 
 #: action/command.cpp:987
-#, c-format
 msgid "Player \"%s\" has left the game"
-msgstr ""
+msgstr "Joueur \"%s\" est déconnecté"
 
 #: action/command.cpp:989
-#, c-format
 msgid "Player \"%s\" has been killed"
-msgstr ""
+msgstr "Joueur \"%s\" est mort"
 
 #: editor/editloop.cpp:313
 msgid "Unit deleted"
-msgstr ""
+msgstr "Unité effacée"
 
 #: editor/editloop.cpp:953
-#, c-format
 msgid "Editor (%d %d)"
-msgstr ""
+msgstr "Editeur (%d %d)"
 
 #: editor/editloop.cpp:1000
-#, c-format
 msgid "#%d '%s' Player:#%d %s"
-msgstr ""
+msgstr "#%d '%s' Joueur:#%d %s"
 
 #: editor/editloop.cpp:1004
-#, c-format
 msgid " Amount %d"
-msgstr ""
+msgstr " Montant %d"
 
 #: editor/editloop.cpp:1238
 msgid "Unit cannot be placed here."
-msgstr ""
+msgstr "L'unité ne peut être placé ici."
 
 #: editor/editloop.cpp:1328
 msgid "Mirror editing enabled: 2-side"
-msgstr ""
+msgstr "Édition miroir activée : 2 coté"
 
 #: editor/editloop.cpp:1331
 msgid "Mirror editing enabled: 4-side"
-msgstr ""
+msgstr "Édition miroir activée : 4 coté"
 
 #: editor/editloop.cpp:1334
 msgid "Mirror editing disabled"
-msgstr ""
+msgstr "Édition miroir désactivé"
 
 #: editor/editloop.cpp:1382 editor/editloop.cpp:1391
 msgid "Unit owner modified"
-msgstr ""
+msgstr "Propriétaire de l'unité modifié"
 
 #: editor/editloop.cpp:1463
-#, c-format
 msgid "Select player #%d"
-msgstr ""
+msgstr "Choisir joueur #%d"
 
 #: editor/editloop.cpp:1719
-#, c-format
 msgid "Script %s"
-msgstr ""
+msgstr "Script %s"
 
 #: game/game.cpp:157
 msgid "Do it! Do it now!"
-msgstr ""
+msgstr "En avant ! Au travail !"
 
 #: game/replay.cpp:811
 msgid "No sync info for this replay !"
-msgstr ""
+msgstr "Aucune info de synchro pour ce replay !"
 
 #: game/replay.cpp:813
-#, c-format
 msgid "Replay got out of sync (%lu) !"
-msgstr ""
+msgstr "Le replay s'est désynchronisé (%lu) !"
 
 #: game/replay.cpp:822
 msgid "Replay got out of sync !"
-msgstr ""
+msgstr "Le replay s'est désynchronisé !"
 
 #: game/replay.cpp:939 game/replay.cpp:953
 msgid "End of replay"
-msgstr ""
+msgstr "Fin du replay"
 
 #: map/script_map.cpp:759
-#, c-format
 msgid "Tileset '%s'"
-msgstr ""
+msgstr "Terrain '%s'"
 
 #: missile/missileconfig.cpp:54
-#, c-format
 msgid "Missile %s"
-msgstr ""
+msgstr "Missile %s"
 
 #: missile/missileconfig.cpp:58
-#, c-format
 msgid "Can't find missile %s\n"
-msgstr ""
+""
+msgstr "Impossible de trouver le missile %s\n"
+""
 
 #: network/network.cpp:831
-#, c-format
 msgid "%s sent bad command"
-msgstr ""
+msgstr "%s a envoyé une mauvaise commande"
 
 #: network/network.cpp:930
 msgid "Network out of sync"
-msgstr ""
+msgstr "Réseau désynchronisé"
 
 #: network/network.cpp:1125
-#, c-format
 msgid "Waiting for player \"%s\": %d:%02d"
-msgstr ""
+msgstr "En attente de joueur \"%s\": %d:%02d"
 
 #: network/network.cpp:1138
 msgid "Timed out"
-msgstr ""
+msgstr "Temps écoulé"
 
 #: stratagus/construct.cpp:98 stratagus/construct.cpp:107
-#, c-format
 msgid "Construction %s"
-msgstr ""
+msgstr "Construction %s"
 
 #: stratagus/mainloop.cpp:312
 msgid "Autosave"
-msgstr ""
+msgstr "Sauvegarde auto"
 
 #: stratagus/player.cpp:1031
 msgid "Building Limit Reached"
-msgstr ""
+msgstr "Limite de construction atteinte"
 
 #: stratagus/player.cpp:1035
 msgid "Unit Limit Reached"
-msgstr ""
+msgstr "Limite d'unité atteinte"
 
 #: stratagus/player.cpp:1039
 msgid "Insufficient Supply, increase Supply."
-msgstr ""
+msgstr "Nourriture insuffisante, construisez des fermes."
 
 #: stratagus/player.cpp:1043
 msgid "Total Unit Limit Reached"
-msgstr ""
+msgstr "Limite totale d'unité atteinte"
 
 #: stratagus/player.cpp:1047
-#, c-format
 msgid "Limit of %d reached for this unit type"
-msgstr ""
+msgstr "Limite de %d atteinte pour ce type d'unité"
 
 #: stratagus/player.cpp:1073
-#, c-format
 msgid "Not enough %s...%s more %s."
-msgstr ""
+msgstr "%s insuffisant...%s plus de %s."
 
 #: stratagus/player.cpp:1216
-#, c-format
 msgid "%s has not rebuilt their base and is being revealed!"
-msgstr ""
+msgstr "%s n'a pas reconstruit sa base et sera révélé !"
 
 #: stratagus/player.cpp:1218
 msgid "You have not rebuilt your base and have been revealed!"
-msgstr ""
+msgstr "Vous n'avez pas reconstruit votre base et serez révélé !"
 
 #: stratagus/script.cpp:2455
-#, c-format
 msgid "Script %s\n"
-msgstr ""
+""
+msgstr "Script %s\n"
+""
 
 #: stratagus/stratagus.cpp:413
 msgid "Thanks for playing Stratagus.\n"
-msgstr ""
+""
+msgstr "Merci d'avoir jouer à Stratagus."
 
 #: ui/botpanel.cpp:1125
 msgid "Select Target"
-msgstr ""
+msgstr "Choisir Cible"
 
 #: ui/botpanel.cpp:1289
 msgid "Select Location"
-msgstr ""
+msgstr "Choisir Emplacement"
 
 #: ui/botpanel.cpp:1321
 msgid "Unit training queue is full"
-msgstr ""
+msgstr "La file d'attente de formation est pleine"
 
 #: ui/icons.cpp:272
-#, c-format
 msgid "Icon %s"
-msgstr ""
+msgstr "Icône %s"
 
 #: ui/icons.cpp:275
-#, c-format
 msgid "Can't find icon %s\n"
-msgstr ""
+""
+msgstr "Impossible de trouver l'icone: %s"
 
 #: ui/icons.cpp:288
-#, c-format
 msgid "Icons %s"
-msgstr ""
+msgstr "Icônes %s"
 
 #: ui/interface.cpp:122
-#, c-format
 msgid "MESSAGE:%s"
-msgstr ""
+msgstr "MESSAGE:%s"
 
 #: ui/interface.cpp:269
 msgid "Sound is on."
-msgstr ""
+msgstr "Son activé."
 
 #: ui/interface.cpp:271
 msgid "Sound is off."
-msgstr ""
+msgstr "Son désactivé."
 
 #: ui/interface.cpp:286
 msgid "Music is off."
-msgstr ""
+msgstr "Musique activée."
 
 #: ui/interface.cpp:289
 msgid "Music is on."
-msgstr ""
+msgstr "Musique désactivée."
 
 #: ui/interface.cpp:302 ui/mouse.cpp:1948
 msgid "Game Paused"
-msgstr ""
+msgstr "Partie suspendue"
 
 #: ui/interface.cpp:304
 msgid "Game Resumed"
-msgstr ""
+msgstr "Partie reprise"
 
 #: ui/interface.cpp:335
 msgid "Big map enabled"
-msgstr ""
+msgstr "Grande carte activée"
 
 #: ui/interface.cpp:344
 msgid "Returning to old map"
-msgstr ""
+msgstr "Retourne à l'ancienne carte"
 
 #: ui/interface.cpp:358
 msgid "Faster"
-msgstr ""
+msgstr "Plus vite"
 
 #: ui/interface.cpp:377
 msgid "Slower"
-msgstr ""
+msgstr "Plus lent"
 
 #: ui/interface.cpp:390
 msgid "Set default game speed"
-msgstr ""
+msgstr "Vitesse du jeu par défaut"
 
 #: ui/interface.cpp:441
 msgid "Terrain displayed."
-msgstr ""
+msgstr "Terrain affiché."
 
 #: ui/interface.cpp:443
 msgid "Terrain hidden."
-msgstr ""
+msgstr "Terrain masqué."
 
 #: ui/interface.cpp:487
 msgid "Grab mouse toggled."
-msgstr ""
+msgstr "Capture de souris activé."
 
 #: ui/interface.cpp:1070
 msgid "Screenshot made."
-msgstr ""
+msgstr "Capture d'écran effectuée."
 
 #: ui/mainscr.cpp:892
-#, c-format
 msgid "Last message repeated ~<%d~> times"
-msgstr ""
+msgstr "Dernier message répété ~<%d~> fois"
 
 #: ui/mainscr.cpp:1024
-#, c-format
 msgid "~<Event: %s~>"
-msgstr ""
+msgstr "~<Evénement: %s~>"
 
 #: ui/mainscr.cpp:1071
 msgid "Cycle:"
-msgstr ""
+msgstr "Cycle:"
 
 #: ui/mouse.cpp:2126
-#, c-format
 msgid "You have ~<%d~> %ss"
-msgstr ""
+msgstr "Vous avez ~<%d~> %ss"
 
 #: ui/mouse.cpp:2130
-#, c-format
 msgid "You have ~<%d~> %s(s)"
-msgstr ""
+msgstr "Vous avez ~<%d~> %s(s)"
 
 #: unit/depend.cpp:256 unit/depend.cpp:314
 msgid "Requirements:\n"
-msgstr ""
+""
+msgstr "Prérequis:\n"
+""
 
 #: unit/unit.cpp:1402
-#, c-format
 msgid "%s has lost their last base, and will be revealed in thirty seconds!"
-msgstr ""
+msgstr "%s a perdu sa dernière base, et sera révélé dans 30 secondes !"
 
 #: unit/unit.cpp:1404
 msgid "You have lost your last base, and will be revealed in thirty seconds!"
-msgstr ""
+msgstr "Vous avez perdu votre base et serez révélé dans 30 secondes !"
 
 #: unit/unit.cpp:2815
-#, c-format
 msgid "%s attacked"
-msgstr ""
+msgstr "%s attaqué"
 
 #: unit/unit_draw.cpp:348
-#, c-format
 msgid "Decorations '%s'"
-msgstr ""
+msgstr "Décoration '%s'"
 
 #: unit/unittype.cpp:952
-#, c-format
 msgid "unit-type '%s' without animations, ignored.\n"
-msgstr ""
+""
+msgstr "Unité '%s' sans animation, ignoré.\n"
+""
 
 #: unit/unittype.cpp:1070
-#, c-format
 msgid "Unit \"%s\""
-msgstr ""
+msgstr "Unité \"%s\""
 
 #: video/cursor.cpp:105
-#, c-format
 msgid "Cursor %s"
-msgstr ""
+msgstr "Curseur %s"
 
 #: video/sdl.cpp:165
 msgid "esc"
-msgstr ""
+msgstr "esc"
+
+#: src/action/action_returngoods.cpp:68
+msgid "No Resources to Return."
+msgstr "Aucune ressource à retourner."
+
+#: src/editor/editloop.cpp:508 src/editor/editloop.cpp:592
+msgid "~!OK"
+msgstr "~!OK"
+
+#: src/editor/editloop.cpp:516 src/editor/editloop.cpp:600
+msgid "~!Cancel"
+msgstr "Annuler"
+
+#: src/editor/editloop.cpp:583
+msgid "Artificial Intelligence"
+msgstr "Intelligence Artificielle"
+
+#: src/editor/editloop.cpp:1376
+msgid "Unit can't be placed here."
+msgstr "L'unité ne peut se placer ici."
+
+#: src/editor/editloop.cpp:1831
+msgid "Select mode"
+msgstr "Choix du mode"
+
+#: src/editor/editloop.cpp:1841
+msgid "Unit mode"
+msgstr "Mode unité"
+
+#: src/editor/editloop.cpp:1852
+msgid "Tile mode"
+msgstr "Mode tuile"
+
+#: src/editor/editloop.cpp:1863
+msgid "Set start location mode"
+msgstr "Positionner le mode de position de démarrage"
+
+#: src/stratagus/player.cpp:575
+msgid "Cannot create more units."
+msgstr "Impossible de créer plus d'unité."
+
+#: src/ui/interface.cpp:95
+msgid "MESSAGE:%s~!_"
+msgstr "MESSAGE:%s~!_"
+
+#: 
+msgid "%s: complete"
+msgstr "%s: terminé"
+
+#: 
+msgid "Tileset `%s'"
+msgstr "Terrain `%s'"
+
+#: 
+msgid "Decorations `%s'"
+msgstr "Décorations `%s'"
+
