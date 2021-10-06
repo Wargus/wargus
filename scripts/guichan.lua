@@ -861,19 +861,21 @@ function RunMap(map, objective, fow, revealmap, results)
     if fow ~= nil then
       SetFogOfWar(fow)
     end
-    if revealmap == true then
-       RevealMap()
+    if revealmap ~= nil then
+        local revealTypes = {"hidden", "known", "explored"}
+        RevealMap(revealTypes[revealmap + 1])
+    else
+      if GameSettings.RevealMap >= 2 then
+        if fow == nil and not IsNetworkGame() then
+          SetFogOfWar(false)
+        end
+        RevealMap("explored")
+      elseif GameSettings.RevealMap == 1 then
+        RevealMap("known")
+      elseif GameSettings.RevealMap == 0 and fow == nil and not IsNetworkGame() then
+        SetFogOfWar(wc2.preferences.FogOfWar)
+      end
     end
-	if GameSettings.RevealMap == 2 then
-      SetFogOfWar(false)
-	  RevealMap()
-    end
-    if GameSettings.RevealMap == 1 then
-       RevealMap()
-    end
-	if GameSettings.RevealMap == 0 and not IsNetworkGame() then
-		SetFogOfWar(wc2.preferences.FogOfWar)
-	end
     StartMap(map)
     if GameResult ~= GameRestart then
       loop = false
@@ -893,7 +895,7 @@ function RunDemo()
   local mapname = "maps/demo/demo0" .. math.random(1, 4) .. ".smp"
   InitGameVariables()
   SetFogOfWar(false)
-  RevealMap()
+  RevealMap("explored")
   OldShowTips = wc2.preferences.ShowTips
   wc2.preferences.ShowTips = false
   OldSinglePlayerTriggers = SinglePlayerTriggers
@@ -1144,7 +1146,7 @@ function RunSinglePlayerGameMenu()
   local sidelist = {_("Map Default"), _("Human"),_("Orc"),_("Random")}
   local teamlist = {"-","1","2","3","4"}
   local playerlist = {_("Player"),_("Computer"),_("Rescue-passive"),_("Rescue-active"),_("None")}
-  local reveal_list = {_("Default"),_("Explored"),_("Revealed")}
+  local reveal_list = {_("Hidden"),_("Known"),_("Revealed")}
   local game_types = {_("Use map settings"), _("Melee"), _("Free for all"), _("Top vs bottom"), _("Left vs right"), _("Man vs Machine")}
   local tileset_names = {_("Map Default"), _("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}
   local numunit_types = {_("Map Default"), _("One Peasant Only")}
@@ -1489,7 +1491,7 @@ function RunSinglePlayerGameMenu()
   
   menu:addFullButton(_("~!Cancel Game"), "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function()  menu:stop(1); RunSinglePlayerTypeMenu() end)
 
-  menu:addLabel(_("~<Fog of War:~>"), offx + 450, offy + 74, Fonts["game"], false)
+  menu:addLabel(_("~<Terrain:~>"), offx + 450, offy + 74, Fonts["game"], false)
   reveal_type = menu:addDropDown(reveal_list, offx + 450, offy + 90,
     function(dd) end)
   reveal_type:setSize(170, 20)

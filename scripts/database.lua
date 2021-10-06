@@ -505,7 +505,7 @@ function BriefingAction(action, text, menu, x, y, z)
 		GameDefinition["Briefing"]["Active"] = true
 	elseif (action == "Start") then
 		--GameDefinition["Briefing"]["Active"] = false
-		RunMap(text, nil, nil, nil, false)
+		RunMap(text, nil, nil, nil, 0)
 		BriefingAction("Increment")
 		Load(GameDefinition["Map"]["Path"] .. GameDefinition["Map"]["File"] .. GameDefinition["Map"]["Type"])
 	elseif (action == "Character") then

@@ -80,8 +80,8 @@ function NewRunSinglePlayerGameMenu()
       GameSettings.NumUnits = numunits:getSelected()
       GameSettings.GameType = gametype:getSelected() - 1
       GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
-	  IsSkirmishClassic = true
-      RunMap(mapname, nil, wc2.preferences.FogOfWar, false)
+	    IsSkirmishClassic = true
+      RunMap(mapname, nil, wc2.preferences.FogOfWar, 0)
       menu:stop()
     end)
   menu:addFullButton(_("~!Cancel Game"), "c", offx + 640 - 224 - 16, offy + 360 + 36*2, function() CleanCustomGame_Lua(); menu:stop(1); RunSinglePlayerTypeMenu() end)

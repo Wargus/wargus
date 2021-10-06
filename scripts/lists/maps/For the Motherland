@@ -345,7 +345,7 @@ function NewRunSinglePlayerGameMenu()
 			end
 		end
 	end
-      RunMap(mapname, nil, wc2.preferences.FogOfWar, false)
+      RunMap(mapname, nil, wc2.preferences.FogOfWar, 0)
       menu:stop()
     end)
 	--TODO: Cancel Game button doesn't work.
