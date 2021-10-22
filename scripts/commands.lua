@@ -59,8 +59,6 @@ local function HandleIneditorCommandKey(key, ctrl, alt, shift)
     RunEditorSaveMenu()
   elseif (key == "f12") then -- Load
     RunEditorLoadMenu()
-  elseif (key == "g") then -- toggle map grid
-    SetEnableMapGrid(not GetIsMapGridEnabled())
   elseif (key == "q" and (ctrl or alt)) then -- Quit to menu
     RunQuitToMenuConfirmMenu()
   elseif (key == "x" and (ctrl or alt)) then -- Exit
