@@ -197,6 +197,7 @@ local keystrokes = {
    {"0", "unit under cursor to last player (neutral)"},
    {"1-9", "unit under cursor to player 1-9"},
    {"Alt+0-6", "unit under cursor to player 10-16"},
+   {"g", "toggle map grid"},
    {"F5", "Map properties"},
    {"F6", "Player properties"},
    {"F11", "Save map"},
