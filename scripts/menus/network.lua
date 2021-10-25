@@ -198,7 +198,10 @@ function RunJoiningMapMenu(optRace, optReady)
   ServerSetupState.Opponents = 0
   GameSettings.Opponents = 0
   fow:setEnabled(false)
-  local revealmap = menu:addImageCheckBox(_("Reveal map"), sx, sy*3+150, offi, offi2, oni, oni2, function() end)
+  
+  menu:writeText(_("Terrain:"), sx, sy*3+150)
+  local revealmap = menu:addDropDown({_("Hidden"), _("Known"), _("Explored")}, sx + 100, sy*3+150, function() end)
+  revealmap:setSize(190, 20)
   revealmap:setEnabled(false)
 
   menu:writeText(_("~<Your Race:~>"), sx, sy*11)
@@ -258,7 +261,7 @@ function RunJoiningMapMenu(optRace, optReady)
     NetworkProcessClientRequest()
     fow:setMarked(int2bool(ServerSetupState.FogOfWar))
     GameSettings.NoFogOfWar = not int2bool(ServerSetupState.FogOfWar)
-    revealmap:setMarked(int2bool(ServerSetupState.RevealMap))
+    revealmap:setSelected(ServerSetupState.RevealMap)
     GameSettings.RevealMap = ServerSetupState.RevealMap
     units:setSelected(ServerSetupState.UnitsOption)
     GameSettings.NumUnits = ServerSetupState.UnitsOption
@@ -289,10 +292,9 @@ function RunJoiningMapMenu(optRace, optReady)
       SetThisPlayer(1)
       joincounter = joincounter + 1
       if (joincounter == 30) then
-        SetFogOfWar(fow:isMarked())
-        if revealmap:isMarked() == true then
-          RevealMap()
-        end
+--        SetFogOfWar(fow:isMarked())
+--        local revealTypes = {"hidden", "known", "explored"}
+--        RevealMap(revealTypes[revealmap:getSelected() + 1])
         
         if StoreSharedSettingsInBits() ~= GameSettings.MapRichness then
           -- try one more time, then give up
@@ -302,8 +304,8 @@ function RunJoiningMapMenu(optRace, optReady)
           end)
         end
         NetworkGamePrepareGameSettings()
-        RunMap(NetworkMapName)
-	PresentMap = OldPresentMap
+        RunMap(NetworkMapName, nil, fow:isMarked(), revealmap:getSelected())
+	      PresentMap = OldPresentMap
         DefinePlayerTypes = oldDefinePlayerTypes
         menu:stop()
       end
@@ -550,12 +552,15 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   end
   local fow = menu:addImageCheckBox(_("Fog of war"), sx, sy*3+120, offi, offi2, oni, oni2, fowCb)
   fow:setMarked(true)
-  local function revealMapCb(dd)
-    ServerSetupState.RevealMap = bool2int(dd:isMarked())
+
+  menu:writeText(_("Terrain:"), sx, sy*3+150)
+  local function revealMapCb(dd) 
+    ServerSetupState.RevealMap =dd:getSelected()
     NetworkServerResyncClients()
-    GameSettings.RevealMap = bool2int(dd:isMarked())
+    GameSettings.RevealMap = dd:getSelected()
   end
-  local revealmap = menu:addImageCheckBox(_("Reveal map"), sx, sy*3+150, offi, offi2, oni, oni2, revealMapCb)
+  local revealmap = menu:addDropDown({_("Hidden"), _("Known"), _("Explored")}, sx + 100, sy*3+150, revealMapCb)
+  revealmap:setSize(190, 20)
 
   menu:writeText(_("Race:"), sx, sy*11)
   local race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, sx + 100, sy*11, function() end)
@@ -611,13 +616,12 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   ServerSetupState.FogOfWar = 1
   ServerSetupState.Opponents = optAiPlayerNum
   local function startFunc(s)
-    SetFogOfWar(fow:isMarked())
-    if revealmap:isMarked() == true then
-      RevealMap()
-    end
+--    SetFogOfWar(fow:isMarked())
+--    local revealTypes = {"hidden", "known", "explored"}
+--    RevealMap(revealTypes[revealmap:getSelected() + 1])
     NetworkServerStartGame()
     NetworkGamePrepareGameSettings()
-    RunMap(map)
+    RunMap(map, nil, fow:isMarked(), revealmap:getSelected())
     menu:stop()
   end
   local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11, sy*14, startFunc)
@@ -669,8 +673,8 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
         fow:setMarked(false)
         fowCb(fow)
         options.fow = -1
-      elseif (options.revealmap == 1) then
-        revealmap:setMarked(true)
+      elseif (options.revealmap) then
+        revealmap:setSelected(options.revealmap)
         revealMapCb(revealmap)
         options.revealmap = -1
       elseif (optAutostartNum) then
