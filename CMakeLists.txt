@@ -235,7 +235,7 @@ if (WITH_STORMLIB)
 		)
 		set(STORMLIB_FOUND true)
 		set(STORMLIB_INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR}/StormLib/src)
-		set(STORMLIB_LIBRARY ${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/libStorm.a)
+		set(STORMLIB_LIBRARY ${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/libstorm.a)
 	endif()
 
 	if (STORMLIB_FOUND)
