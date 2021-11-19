@@ -1,3 +1,4 @@
 #Ignore Visual Studio project files
 build/
 .vscode/*
+**/.DS_Store
