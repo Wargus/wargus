@@ -2,10 +2,14 @@ project(StormLib)
 cmake_minimum_required(VERSION 2.8.12)
 
 set(LIBRARY_NAME storm)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(CMakeDependentOption)
 
 option(BUILD_SHARED_LIBS "Compile shared libraries" OFF)
+option(STORM_SKIP_INSTALL "Skip installing files" OFF)
 option(STORM_BUILD_TESTS
     "Compile StormLib test application" OFF
 #   "BUILD_TESTING" OFF # Stay coherent with CTest variables
@@ -48,7 +52,7 @@ if(MSVC)
     # This file is used to create a DLL on windows
     # Use BUILD_SHARED_LIBS to create StormLib.dll
     set(STORM_DEF_FILES
-           stormlib_dll/StormLib.def
+           src/DllMain.def
     )
 endif()
 
@@ -328,44 +332,46 @@ else()
     message(STATUS "Linking against dependent libraries statically")
 endif()
 
-install(TARGETS ${LIBRARY_NAME} 
-	RUNTIME DESTINATION bin 
-	LIBRARY DESTINATION lib 
-	ARCHIVE DESTINATION lib 
-	FRAMEWORK DESTINATION /Library/Frameworks
-	PUBLIC_HEADER DESTINATION include
-	INCLUDES DESTINATION include)
+if (NOT STORM_SKIP_INSTALL)
+    install(TARGETS ${LIBRARY_NAME}
+	    RUNTIME DESTINATION bin
+	    LIBRARY DESTINATION lib
+	    ARCHIVE DESTINATION lib
+	    FRAMEWORK DESTINATION /Library/Frameworks
+	    PUBLIC_HEADER DESTINATION include
+	    INCLUDES DESTINATION include)
 
-    #CPack configurtion
-    SET(CPACK_GENERATOR "DEB" "RPM")
-    SET(CPACK_PACKAGE_NAME ${PROJECT_NAME})
-    SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MPQ manipulation library")
-    SET(CPACK_PACKAGE_VENDOR "Ladislav Zezula")
-    SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README")
-    SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-    SET(CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
-    SET(CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
-    SET(CPACK_PACKAGE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}")
+        #CPack configurtion
+        SET(CPACK_GENERATOR "DEB" "RPM")
+        SET(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+        SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MPQ manipulation library")
+        SET(CPACK_PACKAGE_VENDOR "Ladislav Zezula")
+        SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+        SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+        SET(CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
+        SET(CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
+        SET(CPACK_PACKAGE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}")
 
-    #DEB configuration
-    SET(CPACK_DEBIAN_PACKAGE_SECTION "libs")
-    SET(CPACK_DEBIAN_PACKAGE_HOMEPAGE "http://www.zezula.net/en/mpq/stormlib.html")
-    SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "imbacen@gmail.com")
-    SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
-    SET(CPACK_DEBIAN_PACKAGE_DEPENDS "zlib1g,bzip2")
+        #DEB configuration
+        SET(CPACK_DEBIAN_PACKAGE_SECTION "libs")
+        SET(CPACK_DEBIAN_PACKAGE_HOMEPAGE "http://www.zezula.net/en/mpq/stormlib.html")
+        SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "imbacen@gmail.com")
+        SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+        SET(CPACK_DEBIAN_PACKAGE_DEPENDS "zlib1g,bzip2")
 
-    #RPM configuration
-    SET(CPACK_RPM_PACKAGE_RELEASE 1)
-    SET(CPACK_RPM_PACKAGE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-    SET(CPACK_RPM_PACKAGE_GROUP "${PROJECT_NAME}")
-    SET(CPACK_RPM_PACKAGE_URL "http://www.zezula.net/en/mpq/stormlib.html")
-    SET(CPACK_RPM_PACKAGE_REQUIRES "zlib,bzip2")
+        #RPM configuration
+        SET(CPACK_RPM_PACKAGE_RELEASE 1)
+        SET(CPACK_RPM_PACKAGE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+        SET(CPACK_RPM_PACKAGE_GROUP "${PROJECT_NAME}")
+        SET(CPACK_RPM_PACKAGE_URL "http://www.zezula.net/en/mpq/stormlib.html")
+        SET(CPACK_RPM_PACKAGE_REQUIRES "zlib,bzip2")
 
-    INCLUDE(CPack)
+        INCLUDE(CPack)
+endif()
 
 if(STORM_BUILD_TESTS)
-    add_executable(storm_test ${TEST_SRC_FILES})
-    target_link_libraries(storm_test ${LIBRARY_NAME})
-    install(TARGETS storm_test RUNTIME DESTINATION bin)
+    add_executable(StormLib_test ${TEST_SRC_FILES})
+    target_link_libraries(StormLib_test ${LIBRARY_NAME})
+    install(TARGETS StormLib_test RUNTIME DESTINATION bin)
 endif()
 

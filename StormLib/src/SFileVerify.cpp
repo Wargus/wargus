@@ -216,7 +216,7 @@ static bool CalculateMpqHashMd5(
         if(dwToRead == 0)
             break;
 
-        // Read the next chunk 
+        // Read the next chunk
         if(!FileStream_Read(ha->pStream, &BeginBuffer, pbDigestBuffer, dwToRead))
         {
             STORM_FREE(pbDigestBuffer);
@@ -312,7 +312,7 @@ static bool CalculateMpqHashSha1(
         if(dwToRead == 0)
             break;
 
-        // Read the next chunk 
+        // Read the next chunk
         if(!FileStream_Read(ha->pStream, &BeginBuffer, pbDigestBuffer, dwToRead))
         {
             STORM_FREE(pbDigestBuffer);
@@ -344,7 +344,7 @@ static bool CalculateMpqHashSha1(
     return true;
 }
 
-static int VerifyRawMpqData(
+static DWORD VerifyRawMpqData(
     TMPQArchive * ha,
     ULONGLONG ByteOffset,
     DWORD dwDataSize)
@@ -357,7 +357,7 @@ static int VerifyRawMpqData(
     DWORD dwChunkCount;
     DWORD dwChunkSize = ha->pHeader->dwRawChunkSize;
     DWORD dwMD5Size;
-    int nError = ERROR_SUCCESS;
+    DWORD dwErrCode = ERROR_SUCCESS;
 
     // Don't verify zero-sized blocks
     if(dwDataSize == 0)
@@ -377,10 +377,10 @@ static int VerifyRawMpqData(
     pbMD5Array1 = STORM_ALLOC(BYTE, dwMD5Size);
     pbMD5Array2 = STORM_ALLOC(BYTE, dwMD5Size);
     if(pbMD5Array1 == NULL || pbMD5Array2 == NULL)
-        nError = ERROR_NOT_ENOUGH_MEMORY;
+        dwErrCode = ERROR_NOT_ENOUGH_MEMORY;
 
     // Calculate MD5 of each data chunk
-    if(nError == ERROR_SUCCESS)
+    if(dwErrCode == ERROR_SUCCESS)
     {
         LPBYTE pbMD5 = pbMD5Array1;
 
@@ -392,7 +392,7 @@ static int VerifyRawMpqData(
             // Read the data chunk
             if(!FileStream_Read(ha->pStream, &DataOffset, pbDataChunk, dwBytesInChunk))
             {
-                nError = ERROR_FILE_CORRUPT;
+                dwErrCode = ERROR_FILE_CORRUPT;
                 break;
             }
 
@@ -407,19 +407,19 @@ static int VerifyRawMpqData(
     }
 
     // Read the MD5 array
-    if(nError == ERROR_SUCCESS)
+    if(dwErrCode == ERROR_SUCCESS)
     {
         // Read the array of MD5
         if(!FileStream_Read(ha->pStream, &DataOffset, pbMD5Array2, dwMD5Size))
-            nError = GetLastError();
+            dwErrCode = GetLastError();
     }
 
     // Compare the array of MD5
-    if(nError == ERROR_SUCCESS)
+    if(dwErrCode == ERROR_SUCCESS)
     {
         // Compare the MD5
         if(memcmp(pbMD5Array1, pbMD5Array2, dwMD5Size))
-            nError = ERROR_FILE_CORRUPT;
+            dwErrCode = ERROR_FILE_CORRUPT;
     }
 
     // Free memory and return result
@@ -429,7 +429,7 @@ static int VerifyRawMpqData(
         STORM_FREE(pbMD5Array1);
     if(pbDataChunk != NULL)
         STORM_FREE(pbDataChunk);
-    return nError;
+    return dwErrCode;
 }
 
 static DWORD VerifyWeakSignature(
@@ -482,7 +482,7 @@ static DWORD VerifyStrongSignatureWithKey(
     // Verify the signature
     if(rsa_verify_simple(reversed_signature, MPQ_STRONG_SIGNATURE_SIZE, padded_digest, MPQ_STRONG_SIGNATURE_SIZE, &result, &key) != CRYPT_OK)
         return ERROR_VERIFY_FAILED;
-    
+
     // Free the key and return result
     rsa_free(&key);
     return result ? ERROR_STRONG_SIGNATURE_OK : ERROR_STRONG_SIGNATURE_ERROR;
@@ -592,7 +592,7 @@ static DWORD VerifyFile(
                 dwVerifyResult |= VERIFY_FILE_HAS_RAW_MD5;
 
                 // Find file entry for the file
-                pFileEntry = GetFileEntryLocale(ha, szFileName, lcFileLocale);
+                pFileEntry = GetFileEntryLocale(ha, szFileName, g_lcFileLocale);
                 if(pFileEntry != NULL)
                 {
                     // If the file's raw MD5 doesn't match, don't bother with more checks
@@ -639,7 +639,7 @@ static DWORD VerifyFile(
             // Update CRC32 value
             if(dwFlags & SFILE_VERIFY_FILE_CRC)
                 dwCrc32 = crc32(dwCrc32, Buffer, dwBytesRead);
-            
+
             // Update MD5 value
             if(dwFlags & SFILE_VERIFY_FILE_MD5)
                 md5_process(&md5_state, Buffer, dwBytesRead);
@@ -714,7 +714,7 @@ static DWORD VerifyFile(
     if(pdwCrc32 != NULL)
         *pdwCrc32 = dwCrc32;
     if(pMD5 != NULL)
-        memcpy(pMD5, md5, MD5_DIGEST_SIZE); 
+        memcpy(pMD5, md5, MD5_DIGEST_SIZE);
 
     return dwVerifyResult;
 }
@@ -767,7 +767,7 @@ bool QueryMpqSignatureInfo(
 
         // Check the signature header "NGIS"
         if(pSI->Signature[0] != 'N' || pSI->Signature[1] != 'G' || pSI->Signature[2] != 'I' || pSI->Signature[3] != 'S')
-            return false;
+            return true; //Not a valid signature, but another filetype could've been appended so not always an error.
 
         pSI->SignatureTypes |= SIGNATURE_TYPE_STRONG;
         return true;
@@ -780,11 +780,11 @@ bool QueryMpqSignatureInfo(
 //-----------------------------------------------------------------------------
 // Support for weak signature
 
-int SSignFileCreate(TMPQArchive * ha)
+DWORD SSignFileCreate(TMPQArchive * ha)
 {
     TMPQFile * hf = NULL;
     BYTE EmptySignature[MPQ_SIGNATURE_FILE_SIZE];
-    int nError = ERROR_SUCCESS;
+    DWORD dwErrCode = ERROR_SUCCESS;
 
     // Only save the signature if we should do so
     if(ha->dwFileFlags3 != 0)
@@ -796,7 +796,7 @@ int SSignFileCreate(TMPQArchive * ha)
 
         // Create the (signature) file file in the MPQ
         // Note that the file must not be compressed or encrypted
-        nError = SFileAddFile_Init(ha, SIGNATURE_NAME,
+        dwErrCode = SFileAddFile_Init(ha, SIGNATURE_NAME,
                                        0,
                                        sizeof(EmptySignature),
                                        LANG_NEUTRAL,
@@ -804,11 +804,11 @@ int SSignFileCreate(TMPQArchive * ha)
                                       &hf);
 
         // Write the empty signature file to the archive
-        if(nError == ERROR_SUCCESS)
+        if(dwErrCode == ERROR_SUCCESS)
         {
             // Write the empty zeroed file to the MPQ
             memset(EmptySignature, 0, sizeof(EmptySignature));
-            nError = SFileAddFile_Write(hf, EmptySignature, (DWORD)sizeof(EmptySignature), 0);
+            dwErrCode = SFileAddFile_Write(hf, EmptySignature, (DWORD)sizeof(EmptySignature), 0);
             SFileAddFile_Finish(hf);
 
             // Clear the invalid mark
@@ -817,10 +817,10 @@ int SSignFileCreate(TMPQArchive * ha)
         }
     }
 
-    return nError;
+    return dwErrCode;
 }
 
-int SSignFileFinish(TMPQArchive * ha)
+DWORD SSignFileFinish(TMPQArchive * ha)
 {
     MPQ_SIGNATURE_INFO si;
     unsigned long signature_len = MPQ_WEAK_SIGNATURE_SIZE;
@@ -853,7 +853,7 @@ int SSignFileFinish(TMPQArchive * ha)
     // Sign the hash
     memset(WeakSignature, 0, sizeof(WeakSignature));
     rsa_sign_hash_ex(Md5Digest, sizeof(Md5Digest), WeakSignature + 8, &signature_len, LTC_LTC_PKCS_1_V1_5, 0, 0, hash_idx, 0, &key);
-	memrev(WeakSignature + 8, MPQ_WEAK_SIGNATURE_SIZE); 
+	memrev(WeakSignature + 8, MPQ_WEAK_SIGNATURE_SIZE);
     rsa_free(&key);
 
     // Write the signature to the MPQ. Don't use SFile* functions, but write the hash directly
@@ -903,7 +903,7 @@ DWORD WINAPI SFileVerifyFile(HANDLE hMpq, const char * szFileName, DWORD dwFlags
 }
 
 // Verifies raw data of the archive Only works for MPQs version 4 or newer
-int WINAPI SFileVerifyRawData(HANDLE hMpq, DWORD dwWhatToVerify, const char * szFileName)
+DWORD WINAPI SFileVerifyRawData(HANDLE hMpq, DWORD dwWhatToVerify, const char * szFileName)
 {
     TMPQArchive * ha = (TMPQArchive *)hMpq;
     TFileEntry * pFileEntry;
@@ -922,7 +922,7 @@ int WINAPI SFileVerifyRawData(HANDLE hMpq, DWORD dwWhatToVerify, const char * sz
     switch(dwWhatToVerify)
     {
         case SFILE_VERIFY_MPQ_HEADER:
-            
+
             // Only if the header is of version 4 or newer
             if(pHeader->dwHeaderSize >= (MPQ_HEADER_SIZE_V4 - MD5_DIGEST_SIZE))
                 return VerifyRawMpqData(ha, 0, MPQ_HEADER_SIZE_V4 - MD5_DIGEST_SIZE);
@@ -964,7 +964,7 @@ int WINAPI SFileVerifyRawData(HANDLE hMpq, DWORD dwWhatToVerify, const char * sz
                 return ERROR_INVALID_PARAMETER;
 
             // Get the offset of a file
-            pFileEntry = GetFileEntryLocale(ha, szFileName, lcFileLocale);
+            pFileEntry = GetFileEntryLocale(ha, szFileName, g_lcFileLocale);
             if(pFileEntry == NULL)
                 return ERROR_FILE_NOT_FOUND;
 

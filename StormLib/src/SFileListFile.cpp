@@ -17,7 +17,7 @@
 // Listfile entry structure
 
 #define CACHE_BUFFER_SIZE  0x1000       // Size of the cache buffer
-#define MAX_LISTFILE_SIZE  0x04000000   // Maximum accepted listfile size is about 68 MB
+#define MAX_LISTFILE_SIZE  0x8000000    // Maximum accepted listfile size is 128 MB
 
 union TListFileHandle
 {
@@ -41,6 +41,9 @@ typedef bool (*LOAD_LISTFILE)(TListFileHandle * pHandle, void * pvBuffer, DWORD 
 
 //-----------------------------------------------------------------------------
 // Local functions (cache)
+
+// In SFileFindFile.cll
+bool SFileCheckWildCard(const char * szString, const char * szWildCard);
 
 static char * CopyListLine(char * szListLine, const char * szFileName)
 {
@@ -87,6 +90,7 @@ static TListFileCache * CreateListFileCache(
     DWORD dwFlags)
 {
     TListFileCache * pCache = NULL;
+    size_t cchWildCardAligned = 0;
     size_t cchWildCard = 0;
     DWORD dwBytesRead = 0;
 
@@ -96,10 +100,13 @@ static TListFileCache * CreateListFileCache(
 
     // Append buffer for name mask, if any
     if(szWildCard != NULL)
+    {
         cchWildCard = strlen(szWildCard) + 1;
+        cchWildCardAligned = (cchWildCard + 3) & 0xFFFFFFFC;
+    }
 
     // Allocate cache for one file block
-    pCache = (TListFileCache *)STORM_ALLOC(BYTE, sizeof(TListFileCache) + cchWildCard + dwFileSize + 1);
+    pCache = (TListFileCache *)STORM_ALLOC(BYTE, sizeof(TListFileCache) + cchWildCardAligned + dwFileSize + 1);
     if(pCache != NULL)
     {
         // Clear the entire structure
@@ -112,9 +119,9 @@ static TListFileCache * CreateListFileCache(
             pCache->szWildCard = (char *)(pCache + 1);
             memcpy(pCache->szWildCard, szWildCard, cchWildCard);
         }
-                          
+
         // Fill-in the rest of the cache pointers
-        pCache->pBegin = (LPBYTE)(pCache + 1) + cchWildCard;
+        pCache->pBegin = (LPBYTE)(pCache + 1) + cchWildCardAligned;
 
         // Load the entire listfile to the cache
         PfnLoadFile(pHandle, pCache->pBegin, dwFileSize, &dwBytesRead);
@@ -144,6 +151,10 @@ static TListFileCache * CreateListFileCache(
 {
     TListFileCache * pCache = NULL;
     TListFileHandle ListHandle = {NULL};
+
+    // Put default value to dwMaxSize
+    if(dwMaxSize == 0)
+        dwMaxSize = MAX_LISTFILE_SIZE;
 
     // Internal listfile: hMPQ must be non NULL and szListFile must be NULL.
     // We load the MPQ::(listfile) file
@@ -178,7 +189,7 @@ static TListFileCache * CreateListFileCache(
         {
             // Verify the file size
             FileStream_GetSize(ListHandle.pStream, &FileSize);
-            if(0 < FileSize && FileSize < MAX_LISTFILE_SIZE)
+            if(0 < FileSize && FileSize < dwMaxSize)
             {
                 pCache = CreateListFileCache(LoadListFile_Stream, &ListHandle, szWildCard, (DWORD)FileSize, dwMaxSize, dwFlags);
             }
@@ -265,11 +276,11 @@ static char * ReadListFileLine(TListFileCache * pCache, size_t * PtrLength)
 {
     LPBYTE pbLineBegin;
     LPBYTE pbLineEnd;
-    
+
     // Skip newlines. Keep spaces and tabs, as they can be a legal part of the file name
     while(pCache->pPos < pCache->pEnd && (pCache->pPos[0] == 0x0A || pCache->pPos[0] == 0x0D))
         pCache->pPos++;
-    
+
     // Set the line begin and end
     if(pCache->pPos >= pCache->pEnd)
         return NULL;
@@ -289,7 +300,7 @@ static char * ReadListFileLine(TListFileCache * pCache, size_t * PtrLength)
     return (char *)pbLineBegin;
 }
 
-static int CompareFileNodes(const void * p1, const void * p2) 
+static int STORMLIB_CDECL CompareFileNodes(const void * p1, const void * p2)
 {
     char * szFileName1 = *(char **)p1;
     char * szFileName2 = *(char **)p2;
@@ -395,7 +406,7 @@ static LPBYTE CreateListFile(TMPQArchive * ha, DWORD * pcbListFile)
 // Adds a name into the list of all names. For each locale in the MPQ,
 // one entry will be created
 // If the file name is already there, does nothing.
-static int SListFileCreateNodeForAllLocales(TMPQArchive * ha, const char * szFileName)
+static DWORD SListFileCreateNodeForAllLocales(TMPQArchive * ha, const char * szFileName)
 {
     TFileEntry * pFileEntry;
     TMPQHash * pFirstHash;
@@ -435,12 +446,12 @@ static int SListFileCreateNodeForAllLocales(TMPQArchive * ha, const char * szFil
 }
 
 // Saves the whole listfile to the MPQ
-int SListFileSaveToMpq(TMPQArchive * ha)
+DWORD SListFileSaveToMpq(TMPQArchive * ha)
 {
     TMPQFile * hf = NULL;
     LPBYTE pbListFile;
     DWORD cbListFile = 0;
-    int nError = ERROR_SUCCESS;
+    DWORD dwErrCode = ERROR_SUCCESS;
 
     // Only save the listfile if we should do so
     if(ha->dwFileFlags1 != 0)
@@ -461,7 +472,7 @@ int SListFileSaveToMpq(TMPQArchive * ha)
                 ha->dwFileFlags1 = GetDefaultSpecialFileFlags(cbListFile, ha->pHeader->wFormatVersion);
 
             // Create the listfile in the MPQ
-            nError = SFileAddFile_Init(ha, LISTFILE_NAME,
+            dwErrCode = SFileAddFile_Init(ha, LISTFILE_NAME,
                                            0,
                                            cbListFile,
                                            LANG_NEUTRAL,
@@ -469,10 +480,10 @@ int SListFileSaveToMpq(TMPQArchive * ha)
                                           &hf);
 
             // Write the listfile raw data to it
-            if(nError == ERROR_SUCCESS)
+            if(dwErrCode == ERROR_SUCCESS)
             {
                 // Write the content of the listfile to the MPQ
-                nError = SFileAddFile_Write(hf, pbListFile, cbListFile, MPQ_COMPRESSION_ZLIB);
+                dwErrCode = SFileAddFile_Write(hf, pbListFile, cbListFile, MPQ_COMPRESSION_ZLIB);
                 SFileAddFile_Finish(hf);
             }
 
@@ -486,14 +497,14 @@ int SListFileSaveToMpq(TMPQArchive * ha)
         else
         {
             // If the (listfile) file would be empty, its OK
-            nError = (cbListFile == 0) ? ERROR_SUCCESS : ERROR_NOT_ENOUGH_MEMORY;
+            dwErrCode = (cbListFile == 0) ? ERROR_SUCCESS : ERROR_NOT_ENOUGH_MEMORY;
         }
     }
 
-    return nError;
+    return dwErrCode;
 }
 
-static int SFileAddArbitraryListFile(
+static DWORD SFileAddArbitraryListFile(
     TMPQArchive * ha,
     HANDLE hMpq,
     const TCHAR * szListFile,
@@ -519,19 +530,19 @@ static int SFileAddArbitraryListFile(
         // Delete the cache
         FreeListFileCache(pCache);
     }
-    
+
     return (pCache != NULL) ? ERROR_SUCCESS : ERROR_FILE_CORRUPT;
 }
 
-static int SFileAddInternalListFile(
+static DWORD SFileAddInternalListFile(
     TMPQArchive * ha,
     HANDLE hMpq)
 {
     TMPQHash * pFirstHash;
     TMPQHash * pHash;
-    LCID lcSaveLocale = lcFileLocale;
+    LCID lcSaveLocale = g_lcFileLocale;
     DWORD dwMaxSize = MAX_LISTFILE_SIZE;
-    int nError = ERROR_SUCCESS;
+    DWORD dwErrCode = ERROR_SUCCESS;
 
     // If there is hash table, we need to support multiple listfiles
     // with different locales (BrooDat.mpq)
@@ -542,13 +553,13 @@ static int SFileAddInternalListFile(
             dwMaxSize = 0x40000;
 
         pFirstHash = pHash = GetFirstHashEntry(ha, LISTFILE_NAME);
-        while(nError == ERROR_SUCCESS && pHash != NULL)
-        {                                
+        while(dwErrCode == ERROR_SUCCESS && pHash != NULL)
+        {
             // Set the prefered locale to that from list file
             SFileSetLocale(pHash->lcLocale);
 
             // Add that listfile
-            nError = SFileAddArbitraryListFile(ha, hMpq, NULL, dwMaxSize);
+            dwErrCode = SFileAddArbitraryListFile(ha, hMpq, NULL, dwMaxSize);
 
             // Move to the next hash
             pHash = GetNextHashEntry(ha, pFirstHash, pHash);
@@ -560,11 +571,11 @@ static int SFileAddInternalListFile(
     else
     {
         // Add the single listfile
-        nError = SFileAddArbitraryListFile(ha, hMpq, NULL, dwMaxSize);
+        dwErrCode = SFileAddArbitraryListFile(ha, hMpq, NULL, dwMaxSize);
     }
 
     // Return the result of the operation
-    return nError;
+    return dwErrCode;
 }
 
 static bool DoListFileSearch(TListFileCache * pCache, SFILE_FIND_DATA * lpFindFileData)
@@ -579,7 +590,7 @@ static bool DoListFileSearch(TListFileCache * pCache, SFILE_FIND_DATA * lpFindFi
         while((szFileName = ReadListFileLine(pCache, &nLength)) != NULL)
         {
             // Check search mask
-            if(nLength != 0 && CheckWildCard(szFileName, pCache->szWildCard))
+            if(nLength != 0 && SFileCheckWildCard(szFileName, pCache->szWildCard))
             {
                 if(nLength >= sizeof(lpFindFileData->cFileName))
                     nLength = sizeof(lpFindFileData->cFileName) - 1;
@@ -601,18 +612,18 @@ static bool DoListFileSearch(TListFileCache * pCache, SFILE_FIND_DATA * lpFindFi
 // File functions
 
 // Adds a listfile into the MPQ archive.
-int WINAPI SFileAddListFile(HANDLE hMpq, const TCHAR * szListFile)
+DWORD WINAPI SFileAddListFile(HANDLE hMpq, const TCHAR * szListFile)
 {
     TMPQArchive * ha = (TMPQArchive *)hMpq;
-    int nError = ERROR_SUCCESS;
+    DWORD dwErrCode = ERROR_SUCCESS;
 
     // Add the listfile for each MPQ in the patch chain
     while(ha != NULL)
     {
         if(szListFile != NULL)
-            nError = SFileAddArbitraryListFile(ha, NULL, szListFile, MAX_LISTFILE_SIZE);
+            dwErrCode = SFileAddArbitraryListFile(ha, NULL, szListFile, MAX_LISTFILE_SIZE);
         else
-            nError = SFileAddInternalListFile(ha, hMpq);
+            dwErrCode = SFileAddInternalListFile(ha, hMpq);
 
         // Also, add three special files to the listfile:
         // (listfile) itself, (attributes) and (signature)
@@ -624,7 +635,7 @@ int WINAPI SFileAddListFile(HANDLE hMpq, const TCHAR * szListFile)
         ha = ha->haPatch;
     }
 
-    return nError;
+    return dwErrCode;
 }
 
 //-----------------------------------------------------------------------------

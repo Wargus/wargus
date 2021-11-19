@@ -219,24 +219,23 @@ endif()
 # For now, doesn't compile on OS X with StormLib
 if (WITH_STORMLIB)
 	if (NOT STORMLIB_FOUND AND UNIX)
-	  find_program(MAKE make)
-	  if (MAKE)
-		if (${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-		  message(STATUS "Attempting to build StormLib submodule")
-		  execute_process(COMMAND ${MAKE} -f Makefile.linux WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/StormLib TIMEOUT 240 RESULT_VARIABLE STORM_LIB_MAKE_RESULT OUTPUT_QUIET)
-		elseif (${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
-		  message(STATUS "Attempting to build StormLib submodule")
-		  execute_process(COMMAND ${MAKE} -f Makefile.mac WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/StormLib TIMEOUT 240 RESULT_VARIABLE STORM_LIB_MAKE_RESULT OUTPUT_QUIET)
-		endif()
-		if (${STORM_LIB_MAKE_RESULT} EQUAL 0)
-		  set(STORMLIB_FOUND true)
-		  set(STORMLIB_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/StormLib/src)
-		  set(STORMLIB_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/StormLib/libStorm.a)
-		  message(STATUS "StormLib locally built and included")
-		else()
-		  message(STATUS "StormLib NOT built successfully")
-		endif()
-	  endif()
+		set(BUILD_STORMLIB true)
+		include(ExternalProject)
+		message(STATUS "Will build StormLib as part of compilation.")
+		ExternalProject_Add(StormLib 
+		  PREFIX "${CMAKE_CURRENT_BINARY_DIR}/StormLib/"
+		  SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/StormLib/"
+		  INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/StormLib/"
+		  LOG_DIR "${CMAKE_CURRENT_BINARY_DIR}/StormLib/Logs/"
+		  LOG_CONFIGURE ON
+		  LOG_BUILD ON
+		  LOG_OUTPUT_ON_FAILURE ON
+		  CMAKE_ARGS -DSTORM_SKIP_INSTALL=ON
+		  INSTALL_COMMAND ""
+		)
+		set(STORMLIB_FOUND true)
+		set(STORMLIB_INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR}/StormLib/src)
+		set(STORMLIB_LIBRARY ${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/libStorm.a)
 	endif()
 
 	if (STORMLIB_FOUND)
@@ -256,6 +255,12 @@ target_link_libraries(wargus ${wargus_LIBS})
 
 add_executable(wartool ${wartool_SRCS} ${wartool_HDRS})
 target_link_libraries(wartool ${wartool_LIBS})
+
+if(BUILD_STORMLIB)
+	add_dependencies(wargus StormLib)
+	add_dependencies(wartool StormLib)
+	add_dependencies(pudconvert StormLib)
+endif()
 
 if(WIN32 AND MINGW AND ENABLE_STATIC)
 	set_target_properties(pudconvert PROPERTIES LINK_FLAGS "${LINK_FLAGS} -static-libgcc -static-libstdc++")
