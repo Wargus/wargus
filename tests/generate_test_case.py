@@ -39,7 +39,7 @@ def hash_dir(directory):
     return h.hexdigest()
 
 
-def generate_test_case(original_directory, directory, desc):
+def generate_case(original_directory, directory, desc):
     original_directory_hash = hash_dir(original_directory)
     output_file_list = get_file_list_from_root_dir(directory)
     with open(desc+'.testcase', "w") as out_file:
@@ -56,7 +56,7 @@ def generate_test_case(original_directory, directory, desc):
 
 def main():
     args = parser.parse_args()
-    generate_test_case(
+    generate_case(
         args.original_data_dir, args.previous_wartool_output_dir, args.short_description
     )
     return 0
