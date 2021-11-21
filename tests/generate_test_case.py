@@ -42,7 +42,7 @@ def hash_dir(directory):
 def generate_test_case(original_directory, directory, desc):
     original_directory_hash = hash_dir(original_directory)
     output_file_list = get_file_list_from_root_dir(directory)
-    with open(desc, "w") as out_file:
+    with open(desc+'.testcase', "w") as out_file:
         out_file.write(original_directory_hash + "\n")
         out_file.write("Found " + str(len(output_file_list)) + " files.\n")
         for item in output_file_list:
