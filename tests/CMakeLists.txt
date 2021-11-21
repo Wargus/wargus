@@ -56,7 +56,7 @@ set(wartool_HDRS
 if(WIN32)
 	set(wartool_SRCS
 		${wartool_SRCS}
-		rip_music_win32.cpp
+		../rip_music_win32.cpp
 	)
 else()
 	set(wartool_SRCS
@@ -100,14 +100,6 @@ endif()
 # Options for compiling
 
 option(WITH_STORMLIB "Compile wartool with StormLib support" ON)
-
-# Install paths
-set(BINDIR "bin" CACHE PATH "Where to install user binaries")
-set(GAMEDIR "games" CACHE PATH "Where to install games binaries")
-set(SHAREDIR "share/games/stratagus/wargus" CACHE PATH "Where to install data files")
-set(DATAROOTDIR "${CMAKE_INSTALL_PREFIX}/share" CACHE PATH "Sets the root of data directories to a non-default location")
-set(ICONDIR "${DATAROOTDIR}/pixmaps" CACHE PATH "Sets the icon directory for desktop entry to a non-default location.")
-set(DESKTOPDIR "${DATAROOTDIR}/applications" CACHE PATH "Sets the desktop file directory for desktop entry to a non-default location.")
 
 if(NOT IS_ABSOLUTE "${GAMEDIR}")
 	set(GAMEDIRABS "${CMAKE_INSTALL_PREFIX}/${GAMEDIR}")
@@ -215,6 +207,4 @@ if (WIN32 AND MSVC)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE=1)
 	set_target_properties(wartool PROPERTIES LINK_FLAGS "${LINK_FLAGS}")
 endif()
-
-install(TARGETS wartool DESTINATION ${BINDIR})
 
