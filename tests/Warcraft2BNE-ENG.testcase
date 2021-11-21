@@ -1,5 +1,5 @@
 3920fa14378b62cd0c62ef0726d03e8d999d6fd74841af7b67978d265562315a
-Found 2019 files.
+Found 1608 files.
 credits.txt.gz c7443aa71729d8d1702526ea64ac52efd91edfa9
 credits2.txt.gz 5531eb6e3de8eb64bd866838799ec6dd736ed4c6
 Act_III_-_The_Northlands.png bd54774f70a44b6456e2aaf0cd80e54180a9376f
@@ -16,93 +16,79 @@ level01h-intro2.wav.gz 25e0a656397a9479e26cb42b0d8d2dcb78185f4f
 level01h.smp.gz 3c7360ddd6db9ad24d5b73344a3e8588783321fe
 level01h.sms.gz b1aa7f8a44d9881a59f9795538c4fb0a5deb8a32
 level01h.txt.gz a914b799a69624272909c079bb0ceddaabc4ddaf
-level01h_c.sms af01f0d349c3875370578f28f38cee8b84829d2c
 level01h_c2.sms 1f4a04dce9260fa40b170236f381ab1763abf6b8
 level02h-intro1.wav.gz 0d2b7bf554e2a0c3fd1902a298b736a31161b872
 level02h-intro2.wav.gz 2ca43c66132c6ebc68482b3167910618fa92299d
 level02h.smp.gz c0341d3a7e5e0234360da52b26c9de59dcae725b
 level02h.sms.gz 85f93f4aeb3adb6095f2426e9f10cd40d3384dbf
 level02h.txt.gz 42810024d15f2ee4c72af2098fe6baca103f3362
-level02h_c.sms f81c0ad1e29114611168a5f4eb1399408c57cc09
 level02h_c2.sms 7a90f02773dfaca6229999b973767638bf6aace1
 level03h-intro1.wav.gz b63ad47cf46106635b92f687f6f6402f2f515318
 level03h-intro2.wav.gz 9d7a3b2e910c40affe7fdcf964453be9c06a88eb
 level03h.smp.gz b3b86b907bcf4ee5ab9b507de98d29d2fe5a89f7
 level03h.sms.gz 50e8d619c526041a6c304f40fdaf7e24732e176d
 level03h.txt.gz e4503a20c4f1c7a64da03d5da15d169e15f274e1
-level03h_c.sms 7b86339bf02a58906184b2fc88e417da30e3f719
 level03h_c2.sms 0e5bff1fa10f75141d4f144fae4cfdc40e748e14
 level04h-intro1.wav.gz cf96bc2f340333cd11acefb548fd8382820fb6b0
 level04h-intro2.wav.gz 4908941618ed2bdf6de84efca232a48832c8569a
 level04h.smp.gz 0d09517af6f5159868d7696c6edb7451c5d3361b
 level04h.sms.gz cfdb6394cba815636d1dde667f45e437563ec485
 level04h.txt.gz 1c0e5558bbb1138b45d85fe22890dc01c1e0da90
-level04h_c.sms 219b98782386de6f2c2c1a80b2fc334ec3d0bde8
 level04h_c2.sms 9008c9fc144e431931f03aefca1e386fdc528ec6
 level05h-intro1.wav.gz 2123fb8ab6b6676355ddca8dd6904eec66621179
 level05h-intro2.wav.gz 0ea9d1cf781a3e07d48ebea1ecb7130e31f19f98
 level05h.smp.gz 858b48efe97d9be132cf9763e7fee144b06b3c24
 level05h.sms.gz e4860ee3eacd85bb187bddd373b0836359b240aa
 level05h.txt.gz 06b03daa0e2dff6aab72d81820fb35c301682a64
-level05h_c.sms 85123dc5bf8d8be68f6df52694b3ee1240f00ff8
 level05h_c2.sms e3227b0ccfe5e20425093eef40bd7bfe8b2b9fe8
 level06h-intro1.wav.gz 04b18e97ae76e02a40046cc55eb30ecf69aceb34
 level06h.smp.gz 19047c68a55481bc3efbb43a69fd373084b2daeb
 level06h.sms.gz 9bf388ee8db6856abb3be2284465c3c109548160
 level06h.txt.gz b35b70f0ba1a4df9aa99dc35e01109e0a6743855
-level06h_c.sms ad96255f53af39bb9cd4a08a1df393efc259b500
 level06h_c2.sms 01983a2fabe2c3c1370cce961e0771a93ab52958
 level07h-intro1.wav.gz 276059d8ae6bef51ed09ce705ce605a66e86ac57
 level07h-intro2.wav.gz 2f2b4bcca161f4118f4c2d99c7699c653a812b3d
 level07h.smp.gz 4abda0771d31dd57745f093cee4e39816748d707
 level07h.sms.gz bc6dcb6fa51166ef7990d1a1ab291eda402aa6e8
 level07h.txt.gz e1c5eb6cd935affe9cc32c6d51281055cf92966f
-level07h_c.sms b559ae39bacf7ee07b9852cb7c3921e8783547eb
 level07h_c2.sms ef843f1280de31084497a6fde54e3f301b8e1c11
 level08h-intro1.wav.gz 5d2c846d50c2aa150eececd9023ff937a7915fd2
 level08h-intro2.wav.gz da5c90f27798f829f979116040c703c85d59e1d0
 level08h.smp.gz 86e9b748c8187d76cccd3f8047beea675f0ad3d1
 level08h.sms.gz 02f1d1c4b1d7f16424455b484f4dcecf40adc07a
 level08h.txt.gz a1905e2d7fe3ce86720f39b3cd766597895bd43e
-level08h_c.sms 47a8afea161e115737c579cb42afe5f326dc224a
 level08h_c2.sms 334e663829c6207468b06b8b7f1f28182d2a70a0
 level09h-intro1.wav.gz 8fce3e7391921af483bc0ffa6486e50588b79da3
 level09h.smp.gz e9bfd27d14b9fc8df651f66d427fed59761ff597
 level09h.sms.gz 275d62ce6e539b912a25991ed75ca6d1efcca126
 level09h.txt.gz 963e7029e33e9eeeae4ead2f8e706248c566d7c3
-level09h_c.sms c5d9eeed4f8645236206b9576bf67033f29dca89
 level09h_c2.sms 1be7f69728c88935cd037d930d101584b6f8afc4
 level10h-intro1.wav.gz 4d93cc9a5e1ea435d144f7d71004d45c27d53cf6
 level10h.smp.gz f861c11608feb8848116452b0bbea3ef3499dc80
 level10h.sms.gz 973368c83e0298631eefb36806befdd4c3d8bc28
 level10h.txt.gz ae4172c4fdb6bf3c7cdea4f5e01f867d90a7f05f
-level10h_c.sms a7bad1ebdd3d5bc8c4dd38eab08a08821ed45d70
 level10h_c2.sms 1def6b773c2606a516ca6be487f84154b9d02080
 level11h-intro1.wav.gz 3784c8aa1dc3a606f1d4b718d3ed5be2340b78b2
 level11h-intro2.wav.gz ce3b71b091d30f8695634fcccab63d41474b603d
 level11h.smp.gz 48684404dda19125ec4998a98672d3b44d3af9d2
 level11h.sms.gz 271649b81a73ed3c8587164c34a93362661908e5
 level11h.txt.gz 5fbf995df58cecf83757c36c8442cb374bd53807
-level11h_c.sms ebfd3b3d8364bf8bcf74080d4164d0b1a3077991
 level11h_c2.sms 54eb449d8dc4cc943894d5d7895676de455703ab
 level12h-intro1.wav.gz 991e88d99fe57ddc3bb9afcdf2d355a4450ca663
 level12h.smp.gz dbc4880b4b9b6da2507b70d1b6ec483e57c15e4b
 level12h.sms.gz 9501a77251ea1f9c092d02d86d37449d11739434
 level12h.txt.gz 3224d1fa4fa366acd3b655abb91165cf694650ef
-level12h_c.sms 65dd469afdc9e8742d5c4221b075446a5e0e8998
 level12h_c2.sms b4f7816c3a5e4cb2ffdc7b86185ba0e13950aead
 level13h-intro1.wav.gz 1144ffde8e368c56b3b1174097c7ebee5d6690e3
 level13h-intro2.wav.gz af0418ba6cd4b924d692c517efc28a4082e8de76
 level13h.smp.gz 9e3147425331643bf4493a6d1eb48a4c8ccb3e88
 level13h.sms.gz 11fdfcc2024e235c24819d3dfd7f1c4acea6ce12
 level13h.txt.gz c4dbf0cae5f437ab1b7b4ece7b9318526cce5bd5
-level13h_c.sms 4e26a65411c7d7dfaa444ef0596ad77725c47b4b
 level13h_c2.sms 6a0e11afcd8e40739476da6295ab9d13918c212e
 level14h-intro1.wav.gz 2e0e4d1ce43c3f2bd0b743ed9991a46128a1da4c
 level14h.smp.gz 6863965f8167c6d6a126e11476e8886b116e4a73
 level14h.sms.gz 75b62cc78224ce00bd02fe57d677cd1e5e6272be
 level14h.txt.gz 365d675091d273ecef54c14d670d16383b101801
-level14h_c.sms 21b69666c43491deabd70f8cdf7b8c8380e04095
 level14h_c2.sms a55edbce3b35036f1ba4969d2e0c7db60c575caf
 victory.txt.gz 502d7dd12b4f9678a3886fb7d86ce742dced1990
 victory.wav.gz bb698d8fa5eda654c742d8c43e5faf7b9001f6cc
@@ -115,21 +101,18 @@ levelx01h-intro2.wav.gz 5f26e3a8a4f6809b2e71abbdc1426ef712667309
 levelx01h.smp.gz 74a15c3f26bc06cfdc8f89a199721f4a8e823516
 levelx01h.sms.gz 3d4edbc8c88aba473abc36ffec6bbbc9cd146b66
 levelx01h.txt.gz b81a68973f00deb4442fc4052de3607c693f0a95
-levelx01h_c.sms 73583ccc859c8ea1d1cd1e5d08dc74afd2cabe31
 levelx01h_c2.sms 6ddfa6705ec04b96e8de9fe7fab3eb841e5ef4f0
 levelx02h-intro1.wav.gz a27bb18ba45a53a91e18b4f4abeaae20d62fffdb
 levelx02h-intro2.wav.gz 442879fe1bf4ede27eaa43edddc06f32231117aa
 levelx02h.smp.gz 5bf3a18e870eca4d7fc64266fc398df15ece6dc4
 levelx02h.sms.gz d309316583cbe528ca357fc9e3ca404ed29c1310
 levelx02h.txt.gz 24326216b89ae5e23ff2777e81ac21a86ceea9a0
-levelx02h_c.sms 55959614cfec59bbda83fafc6be0a5357b84558e
 levelx02h_c2.sms 41f891bc1e9b747f85d4cddb9ccdae36e3e4ee67
 levelx03h-intro1.wav.gz e6086db0bdcd3cc79402e8ee2b7b4f027f2feb0b
 levelx03h-intro2.wav.gz 144f0ed503c0a1d31617b5852b9e69b89e0e7c96
 levelx03h.smp.gz b9aa4bf7563a1d805fbe7de132ac9dafe5449561
 levelx03h.sms.gz 1e0e1796663c7be1d45876ebff669f5fe2686e47
 levelx03h.txt.gz 8663edd6f639d237874b4c3513a19736d5881617
-levelx03h_c.sms 9951ef6f36b79156edbca94547ec8c75086546a6
 levelx03h_c2.sms 5fd55a7249e167257991c13562a31f688277d0a2
 levelx04h-intro1.wav.gz bf1959851fbf4f995fc33ad1718e73f0ce32640d
 levelx04h-intro2.wav.gz 45faced02fbd8c99e5322a5cd88fe4288b805af8
@@ -137,14 +120,12 @@ levelx04h-intro3.wav.gz f394e7cedc51c9ec042cfb97c02fb33c835e5efd
 levelx04h.smp.gz b57937e87b43a73382e51473c160148a2249f647
 levelx04h.sms.gz 613ad704f03737610b30ae8f67362cd84e5f3522
 levelx04h.txt.gz ca6374ce2dedab69a834c1aece991be739a7caa6
-levelx04h_c.sms 69ac5d2e96668ef585d069fe7fce53db07c1c277
 levelx04h_c2.sms 2c068571198ad34a58cb20ff969c64ba85f36248
 levelx05h-intro1.wav.gz 1a1e7a984dc97d90f28301dd676e34e5b64df0dc
 levelx05h-intro2.wav.gz e674b0a82009960fd2aa4014377f3fc5ba346eca
 levelx05h.smp.gz f2c93ac6ba44142db08c740bbbfb536f4b0ca3a8
 levelx05h.sms.gz 703ac8594e09f0d16a434dea103cf1439eac0c09
 levelx05h.txt.gz 198803f57972e3cccd0ceb00d1c6cf57cc0c9db3
-levelx05h_c.sms b10b8f6ffda11ca8e420e5c3fb0200e660c656b7
 levelx05h_c2.sms 50666823d6cbe06dcbec661b0a6524407244611e
 levelx06h-intro1.wav.gz 20f22296aaa62a613e3875b54ae0f7e347f5196b
 levelx06h-intro2.wav.gz 3fab4f405e08fe8f5ade53c68847d4eb9a949cda
@@ -152,7 +133,6 @@ levelx06h-intro3.wav.gz 5970acce8ba1b5a2c665dad7eb15ff8046a55ef5
 levelx06h.smp.gz aff5bc51b511a275347a269ffd270c109cb99490
 levelx06h.sms.gz 07fcb42d2b2ab66a76f87dc036df41c2b9e01c78
 levelx06h.txt.gz 2845b9f2566bb74dfe32c5ffbe5ac8294a91c17e
-levelx06h_c.sms 6072b2128827a6fbc5c687e2bdeb3cf8b4660f33
 levelx06h_c2.sms a6afb01b67cf3f3c841da686b754892fed6e9e26
 levelx07h-intro1.wav.gz 82c2051b651a77897f4efc1c48e503f6b92a084b
 levelx07h-intro2.wav.gz 5eb3c38ed14e9943d36eeb1d7b46b557b0c47b4d
@@ -160,21 +140,18 @@ levelx07h-intro3.wav.gz 6f68b96d9ff7d463da8b3459147a0dabf0489e24
 levelx07h.smp.gz 628350ea65c5dffccf6b6f0d00d266ac70670c67
 levelx07h.sms.gz 8c1ed82a57203743358e541987ec8d3dfe3076fc
 levelx07h.txt.gz dc9685e3001e907cf723d244a80fb3ba2037245e
-levelx07h_c.sms 1f686b21906d76c32135d9780aea247922fd5c89
 levelx07h_c2.sms bb342fb48534140162726f57d262d4957efba914
 levelx08h-intro1.wav.gz 6c1a5d8348daa0a2a5c0902d2f74297aef96c489
 levelx08h-intro2.wav.gz 7c35ae71410a1bf6106eecc0591418b29161f9a9
 levelx08h.smp.gz 50ceb7621319db4be5e7b3572f41f959e672d0c9
 levelx08h.sms.gz 72d1d94777e950179621b928a8c6f76f7d4df5c4
 levelx08h.txt.gz c03f956fa74e12437d521845eef6c656536eac50
-levelx08h_c.sms 3021ee2711ca295b23463ee6280c052bac2842fe
 levelx08h_c2.sms 1bbe53f2d77e9830c19ac20f46a371cb473ddcc0
 levelx09h-intro1.wav.gz 5df1c5723564d16ea0fb81b4584d11a77fa61858
 levelx09h-intro2.wav.gz 8916db2c9c0eb077fe793ca3276c6d7f19f792a1
 levelx09h.smp.gz 31bd6cd0a48a051f99b03a7ef49522d2d012a4cc
 levelx09h.sms.gz 8ccd115b83dbdde84d5557f145123a290cf97404
 levelx09h.txt.gz ab0ab555fd5a5f6de215e997f40034fe8288c8f6
-levelx09h_c.sms 2dccfd6e0b40ec1e7d2bd2b2e1d6f7e8ef4e5b00
 levelx09h_c2.sms 9aa4074eb1301b8465ab869f6e2870f35d3f0d50
 levelx10h-intro1.wav.gz d12ad4b194a87c2f747bf2ac7a69634febf643b0
 levelx10h-intro2.wav.gz 298a15ae3432b175adf1e2b0e09d57e47d4b83e2
@@ -182,21 +159,18 @@ levelx10h-intro3.wav.gz 1980d98a2926958b8bf4540703128916c1ceab74
 levelx10h.smp.gz edfdff85e8162ec49a9d8ac4ee603e7a6b2b0a8b
 levelx10h.sms.gz 982564e23fc860fce7ede98324dc1e51788b580b
 levelx10h.txt.gz ce81ef2e967e819b65f6171a044ac57cbcd82b79
-levelx10h_c.sms 4faf2271756dbe713812d3482a26e9d0ce6bea1a
 levelx10h_c2.sms 9f60aebc345a69df3c772133a230987eaceddb33
 levelx11h-intro1.wav.gz 661fabe100d18aa79076367bee2044a8b6a1597f
 levelx11h-intro2.wav.gz 7742f154d5f930fe5bc1cf62861a3625ea0c3cf9
 levelx11h.smp.gz 466a7c6393fdecf42e8a27ec5000364423cd1755
 levelx11h.sms.gz c417d1b43ae9eef44ad54f668a79e2eb8eb6fd82
 levelx11h.txt.gz 77c0fa2ad38bd815c611acf54ae6e1d880adfc81
-levelx11h_c.sms 788f5e8549f0c191d11ab6336d9f5422e726e02f
 levelx11h_c2.sms d3d164bc92b0c6127f5ca21b8d8b8553baeaebd6
 levelx12h-intro1.wav.gz 21fbb4aaafa7d5923167e0857c032e5ac93244c7
 levelx12h-intro2.wav.gz 008942b6541cbdcd40c1e22cd699a4903456778f
 levelx12h.smp.gz f4320d34ba960b301586a3cf476f4eb9a254b3e2
 levelx12h.sms.gz 916637a9369fc3fb3b3e65cb3bf9992c4bde83ef
 levelx12h.txt.gz d40dd3152002b21de68e332c9284f75f0b3328e0
-levelx12h_c.sms a9d5d37af73c4784b770b3e2db59e62247184209
 levelx12h_c2.sms b30dcf5c16b694a80331d433cb5fe74970bd3af1
 victory-1.wav.gz 9fe4451a06ecfdf415618f36ec0a2ab2ab6d0697
 victory-2.wav.gz 405c0a3c96fea17e14412ee7794f7f88a4a45b29
@@ -214,90 +188,76 @@ level01o-intro1.wav.gz 1d7840a9c96d9c22227fb45ed71e3cb17059eb37
 level01o.smp.gz 2110bd9286aa88ef2b74a04fd4d526c1a2b74b9c
 level01o.sms.gz 72c0d1566a7b7b86a8fa09658cad44ab5ed52de2
 level01o.txt.gz a30941120fd9446bcda3bfeb94c252b414adc064
-level01o_c.sms 3983d6c2c8da72a883344bc3ea1e5a5fe0e16084
 level01o_c2.sms bc28e00c269d03af133eeb7194b18a9de45b04d3
 level02o-intro1.wav.gz 53ef033c2fd0ef9ddf63fb416d974f061083fcb8
 level02o.smp.gz 519fa91727e8828f7f3f0e75d2dc4c3e001c1ebe
 level02o.sms.gz 57d0494cede2bb98046b42e9a67992d2503e7c7a
 level02o.txt.gz d749e2b0b1afaceeb6096bd9bb753bf5760a6d4f
-level02o_c.sms 36fa36dc3783478eaa3f48f77e6b0e905fe204b3
 level02o_c2.sms 127aa7f255b5899b459b44e311a1aa8b27fb10a7
 level03o-intro1.wav.gz c5f18bac8c1c1b9ec732095cdbff96f6cc9f437f
 level03o-intro2.wav.gz df73e106b06f357c6dca606abc5dc980916334bb
 level03o.smp.gz c69daca4d458b1c9f00336ae5b02a7f191834e8e
 level03o.sms.gz 9ae8196af8258966a8b3ba7db7f89ca461765189
 level03o.txt.gz b9bcc2a84ec95a9321faa51bbaa02e04bc9ee71f
-level03o_c.sms f242b4465678a7204c3db086f59bd2f732886db3
 level03o_c2.sms 0e5bff1fa10f75141d4f144fae4cfdc40e748e14
 level04o-intro1.wav.gz c49f79fba1847f37a040593de272bd55df0738c7
 level04o.smp.gz f79cdfbec0dfe6a814183dbe8c8d7d8f6f7d2ee7
 level04o.sms.gz f3e1cec6f9ca1ea361a85974bdbf82de3f817e32
 level04o.txt.gz 3fbbee6c5fcd2af2b2c0bfdd8fba2bcf117a059b
-level04o_c.sms af88fd9736115ea0873e12430a2d6835518891d4
 level04o_c2.sms d7a8c5b6c81d97c42e6076d294106675cce7ecfb
 level05o-intro1.wav.gz 6f6fbd6f7ffa8f6fb3ac13d725dbcd88c8626fc1
 level05o.smp.gz 89081dc2c2984aad974c61853a5467849e1d092e
 level05o.sms.gz 9a3f04b28ad7fc01e81ac4265c84809f8c3cbf14
 level05o.txt.gz 18613b822425953217f0325de830f09727e6007c
-level05o_c.sms 1348b4a445bb1baa7fe02bf74b14e0424e586a80
 level05o_c2.sms 93837c3940abf7684da84af2d75e374bd6853949
 level06o-intro1.wav.gz cd8a9336de700a81e9879f27d6da89ef951559db
 level06o.smp.gz 8c9ca0150e34dae6def0b7dfb613ef9f2ab49d51
 level06o.sms.gz d161b65374dfa4f7d58cbf7b8ec5447d20e8666f
 level06o.txt.gz d7f3ee79e61c5584a64b7cd4de462ddab492d766
-level06o_c.sms e34fcbafacaf951d5d02b7dac999132082338349
 level06o_c2.sms fbad6db9f2ffddc89622fa8c568ac27a36ed69d9
 level07o-intro1.wav.gz 04002d58a06ab35110b70da1e2ddbe83a2bb7716
 level07o-intro2.wav.gz e09b4ecc01cdcbde1b2595ac1c5786a5331a5778
 level07o.smp.gz c3ba48381f65991c96964c86dfa21717e520b0f5
 level07o.sms.gz 074808552076e173eafac8f3be23ef85de03a542
 level07o.txt.gz ed90bd38fd91603d94a8cb76e5fa4a2e29b63a67
-level07o_c.sms 74e4354e1455343aa50d3ec688c4d9e3447a7150
 level07o_c2.sms 4c16e5da269959f91cdd8d318e77089af5dfe0fd
 level08o-intro1.wav.gz e41b4bdb30b41a17887860b21fa627b96b125f7e
 level08o.smp.gz dcedc030078678896efcd8bd37e8cc876601c9d8
 level08o.sms.gz 66a7466f8db9de8bab32b706c50f5ad87a87d3bd
 level08o.txt.gz 3e80bf258341d0fdf9ff5d80d9a8762acbcaf9ff
-level08o_c.sms 6c20450e296eaced25ba2644a6c428e92bd6fecf
 level08o_c2.sms 28310f846306e555d4be4eacf3c99843081063e7
 level09o-intro1.wav.gz b69ab09fc3614171b180a3bbd4edc217ec852903
 level09o.smp.gz c33aeb90fe6e34e6debea02263d76322510016dc
 level09o.sms.gz 5e82ce2cdeef4b4f2535901cfa7983272424906f
 level09o.txt.gz 7e513f897328961feaf9c6732873aa89a5142c67
-level09o_c.sms 6dfdd6b53f6adbf0088dadb71814006a3fa9d4d6
 level09o_c2.sms 644d4973be91917ef6bfb5c5673a8611ed67eefe
 level10o-intro1.wav.gz 36a62f2b688b421cd14eee3b663a758398fe9ecf
 level10o.smp.gz 576147f6f7190fcf89868cfc492e59563deb3159
 level10o.sms.gz b96f20688babfcb9ec9de9818b6e3bed18412aaa
 level10o.txt.gz eb3ac85c698c555c837f19fef8940cdd3efd028e
-level10o_c.sms 5f14e4667df5bc8c0e7385834be7c92f78b34d9b
 level10o_c2.sms 54abb77e637e0c94380898d974b7dc574b9f82e1
 level11o-intro1.wav.gz daeb2c5121f05a72b244654e5fb0dbb73184e528
 level11o-intro2.wav.gz bd9e0ea72358c80250a4187d1d6f4619d2b6248b
 level11o.smp.gz 0ddd2f3d5253aef4d5262512538df2e75b8f8559
 level11o.sms.gz fdf8836c4f96556f6b1b7f68bafc298a57ecd066
 level11o.txt.gz 0d00b49d976fa609d9274141e90273fbe89eeb90
-level11o_c.sms d5e185ad41b80515cc6d98e3124d38e5f6ef40dc
 level11o_c2.sms be2eff25acf03134c45eb2e9e62eb46cbf36b54b
 level12o-intro1.wav.gz c18e223b7e8d8fe080eeb9342d67851c88bf6ec8
 level12o-intro2.wav.gz 35aef0106fdc9baf2d76d30e6035cc2fc32ce052
 level12o.smp.gz 4e7e57d705c09f29c70df3f3efcdb9a8599721bd
 level12o.sms.gz 1960d2c4c73c10c9557541d3debcb8f8074bfaab
 level12o.txt.gz 5155ad6b3f28cd26995b4ec253b605cda1caafdc
-level12o_c.sms 0fd2d45cabbd7c78100688169942b6be5f6091e8
 level12o_c2.sms 9cc3605bdc6811f79721ba2ac3c63e26a9b6e9ee
 level13o-intro1.wav.gz 727a6b773d10c55f48129b86b945ff880a1c52be
 level13o-intro2.wav.gz 31147f2e05c1458bf411da2f977c379597d38407
 level13o.smp.gz 8049fd2998845f67940386854e27d39ea30e8ab6
 level13o.sms.gz 5e894f584e3618a552733312c1954c3027355d9d
 level13o.txt.gz 6250e19eab5fba616c6abefdaf80ad11614b670c
-level13o_c.sms f96cc711fb7ef4e6a3722ae1affcc1c34979b2a5
 level13o_c2.sms e295209d9b371959e84115973ca8b4c3ffff8e3c
 level14o-intro1.wav.gz e80c0fd7147fc86e368fbf7aa161ff8ee3dd9425
 level14o.smp.gz 7bf2448c62e7ae40ba379c107fb85099304c6b54
 level14o.sms.gz 0ce9cceb7b14bd59d617f0a05c91edfd7f1143bf
 level14o.txt.gz ef232334a6d036dca3816389d9a55a7541c7ec56
-level14o_c.sms ea784ba6b403b28f5d031d22f21f1fa488732d3e
 level14o_c2.sms 1b5c65c415265e9337d071718eaac5871600a02e
 victory.txt.gz 5901319baaef792389dceea49256424cdc99bc32
 victory.wav.gz 8cd1e3f724080be12d155274565cc7469726c9e7
@@ -311,42 +271,36 @@ levelx01o-intro3.wav.gz 9dab125cd411d18b3fbe9ffcab12bb9a23befdba
 levelx01o.smp.gz b1d80e1542b393483313da8feaf85d48ac49a491
 levelx01o.sms.gz bf57dd5e0d5a72bcd54738aea8daf03dbca71cf7
 levelx01o.txt.gz 5bcb26ea4c8927330136459673630bcd53748169
-levelx01o_c.sms ebd761418132d201323f73ff14ef6c895a2d7c9e
 levelx01o_c2.sms 5342ddedc02c2f2c6fcbeb6ac1e58fa9c44a046a
 levelx02o-intro1.wav.gz 79714a3cd7c306ea105e2ff681e195fe42f76050
 levelx02o-intro2.wav.gz f9dbd301e1ba9f661e83e1129f5aaf3a650848a0
 levelx02o.smp.gz 438065ae7ff71c7da88a864dac3fad5257a087a9
 levelx02o.sms.gz 29fa4ba6b2b108d5b3daaf6c1255ae37404c289a
 levelx02o.txt.gz e767317f4830675a68a7080e625a5272815d3a38
-levelx02o_c.sms 0259c694fd0469248d0032071dc8fadb67ecb49e
 levelx02o_c2.sms 431501fdc658d61875a28720e574bd2ba821d684
 levelx03o-intro1.wav.gz 4f3b10dbba6dd47d5632214374c7b5d353ab4089
 levelx03o-intro2.wav.gz 89a83bb143e591d1080c503a09d5d61534ac59d4
 levelx03o.smp.gz a02c41b1f8c653bc3b1147861461dd2e51c1b8a4
 levelx03o.sms.gz a26851604bfc91624ee775d63df8aca6c3206d7a
 levelx03o.txt.gz ad107a82e8efccb75ca1bc364e92f8cfeca4dc0c
-levelx03o_c.sms 8c070c33e7855289669c5b33f3fab181a483c4f7
 levelx03o_c2.sms 0d5847d7bb5a064b9ebdfc56b7c26a1836f13e5f
 levelx04o-intro1.wav.gz 87758a19155d27acc535abc7b1964c61d5037207
 levelx04o-intro2.wav.gz f729532788f74162203a5200129d59f2e7f05fa8
 levelx04o.smp.gz b5e1ca5bc816d575a244d460956704dc782a58af
 levelx04o.sms.gz 6facfa84f0d23145ca14e94cdf5e37aef7afe05c
 levelx04o.txt.gz 19b5855c52068871352e065fa3d8d66f8d03d327
-levelx04o_c.sms 8c0604da720b5a1472d115e8bcf8d49afe60288b
 levelx04o_c2.sms b2d1339b64bf5321743218d45c0852faa605c31e
 levelx05o-intro1.wav.gz ecad6759c103b878d9eb23b48121821be25f13d8
 levelx05o-intro2.wav.gz ba1c0125bd068bb9151292394be212a5141472a3
 levelx05o.smp.gz bd4e55533541cf157ed6b229e542e260d79d1266
 levelx05o.sms.gz 4307697619ebd6d6fafa0697d709643216af06e0
 levelx05o.txt.gz fb47dd4d5f6b877886f01842394a264bf486df5b
-levelx05o_c.sms 6c2680829ffa5b961995d21b77ba5a8310dc0f76
 levelx05o_c2.sms 1408d3e8b0473abc19852fac63b94501aecc1f05
 levelx06o-intro1.wav.gz 12fecec9593d54af92f4607e7573324102b2e368
 levelx06o-intro2.wav.gz a2d998112a5df88b71f867554dd9bbda39d3f8ce
 levelx06o.smp.gz 1444344a9ef507f0d213525e9619966fa5c3b7c5
 levelx06o.sms.gz 125a122027d5ace95dc119a50647a4be4a2ec4a2
 levelx06o.txt.gz adedb24eda5ac4700a64fd074745e2d4918da4c8
-levelx06o_c.sms a889a96d6b81c3d7d1a556a9e57ffdb4f97c67c4
 levelx06o_c2.sms 92aae97fe3f3b799dc98fc0e992f97d35988615d
 levelx07o-intro1.wav.gz 40a0ac128ac59dd3669d33f79b0d3ef22e01b5d1
 levelx07o-intro2.wav.gz ce364049e5951fa8ab649e868952a9e3e2a5a0f8
@@ -354,20 +308,17 @@ levelx07o-intro3.wav.gz bdff0cda1e54c3ac5defbc02994403e0aafd13f0
 levelx07o.smp.gz d8e273a5f252b49a8f2fb5f7ae64301b7fe1ff37
 levelx07o.sms.gz 86b53e8f8e0dc1042795ffd51adef56740301324
 levelx07o.txt.gz e38b8939d38b69de444275b5516bea7bc416e140
-levelx07o_c.sms e89a8ac396fecf4bc017b37a37390596c33058b7
 levelx07o_c2.sms ac6b619796fcf6f8438faf14117d5a0d92033393
 levelx08o-intro1.wav.gz 731a69f1fefb3d6b07605b0a10dee1706adfe7ef
 levelx08o.smp.gz a4783ae1053becae95a02a33cef66dc4d18aa95b
 levelx08o.sms.gz b34327b4d8e52563de7b2b71cc883c9ec566e31e
 levelx08o.txt.gz 27befcf9ceb1e8437aeab0f9f4d7d7f2a2245dab
-levelx08o_c.sms d4b7be07d13bb8c910da0b340aa8736c87cacce5
 levelx08o_c2.sms 421e3511e321365836c256a83f25d978129ddcfe
 levelx09o-intro1.wav.gz 8e6434ae299647bcb9ee640731853c2661feb3c6
 levelx09o-intro2.wav.gz 602897d62b2b47803ce6849512bd257f7a493ddf
 levelx09o.smp.gz 7facb47967ce86cc32e4e07ff24eac0ed7f7a726
 levelx09o.sms.gz 2396cba9a9408554d064e8f51d0d84f978a9418a
 levelx09o.txt.gz dc61f8ba442451823d38a2f8568924c7c53a5a7a
-levelx09o_c.sms 9cac5fe5ee5fbdc8775f8e6612416ef8dce021f1
 levelx09o_c2.sms 75bdf0b9ff4dd59ff3959b8882ff757e87351ab1
 levelx10o-intro1.wav.gz c23cdf2d4292939838482423032e65393e89f1ac
 levelx10o-intro2.wav.gz b18148e3ad62e0466e3276ba0acfbc7994d363fc
@@ -375,14 +326,12 @@ levelx10o-intro3.wav.gz 338825616b560459e1ac6fd04eee57beb8800a1c
 levelx10o.smp.gz 49571a469e0d2579f4c17c80947605e0e54f70eb
 levelx10o.sms.gz c23dcc423231de6961a711c9ceeadfdad45dcde8
 levelx10o.txt.gz 092dc2a6e3a26c8897c48b6f2f47831e940ffd70
-levelx10o_c.sms 01076e589cbc0947a6b38bf9e2a36e7d9cf5dde0
 levelx10o_c2.sms 3beae41b05c41546c8753cb23ee2e71e848377af
 levelx11o-intro1.wav.gz ff9101340110703c64c40fdee242b56e06e16685
 levelx11o-intro2.wav.gz a8bc60dc4a30d43d8f1b73158b4faa60b40526c1
 levelx11o.smp.gz 0f5b8f725c8cde84f41951b88e928952bfa9dd67
 levelx11o.sms.gz 30e5d7d7bc5436efd6fa71b2adc91985be246cc4
 levelx11o.txt.gz 8d345882e20afaf3d08461f56aa5b3555de55caf
-levelx11o_c.sms 3cad75afa162f03d94716078e969c981754c5e6f
 levelx11o_c2.sms d07008fd9cdfeeba6d1bccdf2646b7e9d77129a0
 levelx12o-intro1.wav.gz 82559eb8da62965232bae820d1841e18dd0d6bd3
 levelx12o-intro2.wav.gz 65344667bd4e6d8e1b40fb6c5dc63ce8c6b72d4d
@@ -390,7 +339,6 @@ levelx12o-intro3.wav.gz abd6d3a5a12e72ec86e2fc69e4b4a7af97277a4a
 levelx12o.smp.gz 985a6e4a70deb10ba71c33118faee0ddd720fe18
 levelx12o.sms.gz f26ece643a41709cf462223fbeffafcdf32da546
 levelx12o.txt.gz a340fe827c950edc7d3cf42dfae7b72c1e24e02d
-levelx12o_c.sms 0b5217a9966308c5a44ad19428ce8e350ba06801
 levelx12o_c2.sms 4b6ebf54d09749fc3eae8d5d9e5c9e0856ce04c4
 victory-1.wav.gz 30ee299575ec7df8913d52be50171e3d0e78ac06
 victory-2.wav.gz 38f67324609c38a98835cef831c6312fff69bae5
@@ -675,12 +623,10 @@ Credits_for_extension_background.png 507229f349ece69636a19958b162560491d25ba5
 Menu_background_with_title.png b1e5972dbab7c6a49834af3b943329a998576de6
 Menu_background_without_title.png f8e37aefbca58e013f1b02c218a6b959775c39b8
 Patch.png a308aeede8805a9659f77c037ff58b775675e8f6
-black_title.png ff921b0f9fc637dc35b27f8c7680debba0958ccf
 bloodlust,haste,slow,invisible,shield.png c4e632d996416153f3cb53d79686293b12a3dd72
 buttons_1.png da47c67f1268fe3705c838b70fda0b8aabafbcca
 buttons_2.png ac015e88df361de08d4dadb7ccc8121b672e1c63
 cd-icon.png 2a5912ed1066437bba5d6c1a9c72d91c1ae2f199
-cross.png c75df1cdada6818da2ba579c54370436673a1f50
 arrow_E.png 61c2261bfd34128f11a7157cb3ba50d1a4718e04
 arrow_N.png 242b2de5bb192bd893f42774645d531d743fd7a8
 arrow_NE.png 90490d36e95ac45cf1896d6d28c1a98c1cf73d92
@@ -698,10 +644,7 @@ large.png 4a24c0a14f6401987c0933b08468d820fbcd62d8
 large_episode_titles.png a69241ef4e6cfbe0acffe79e4e1686acf5391087
 small.png dc8d71853ec424de436a8534a8a11aaa1e4c3fbd
 small_episode_titles.png 5ece7cd6d7f3045c239eb950928df938d25d570a
-food.png 36da585917166fadd96e73b51d79c3c937e534c3
 gold,wood,oil,mana.png bd08abf0ec19d55705055e705bb2dd0c82e1a1ef
-health.png 76b8c766daf74e72ace2a9367a8d8f102860ab9b
-health2.png 9caf09bd06c104c489170cac161ee209393ec59a
 The_End.png ffc020c6a797c319faa57dc45fca6f583f204355
 buttonpanel.png 5ed9f47276c74c618aefef0073425a8fbcea5588
 green_eagle.png abdfb55b5b0bfc68b281df960ab9097c79cd662c
@@ -775,8 +718,6 @@ up-arrow-normal.png af8c1d5c8a878fd7f75969bf988b3be7c9438c00
 up-arrow-pressed.png 6a09441f5593a09a368e4b126140f3d120c09654
 vslider-bar-grayed.png 34698bc9bda17e3defca02f4ddf42f5647c3a260
 vslider-bar-normal.png 1e984dd29652c61f59be4901d4d8b1caf8f17216
-mana.png 184c18999d4be8424dfc7db7150e49bc38f98e6a
-mana2.png 6420e20b0324e9cdb0144ead00c70b5ea1a22297
 Smashing_of_Lordaeron_scroll.png 959f2dff3b4adb0cbb1e11e0943f91f34b802eab
 buttonpanel.png 8bbb4e12ebefb8045e17599585ca49f1b039acea
 green_crosshairs.png 6d3b93f8b110c27d23975785e2fed67ca95d23f1
@@ -850,11 +791,7 @@ up-arrow-normal.png 7f436b504d1bce25f9cdd1310499957998ae0f4c
 up-arrow-pressed.png e96b5d357535b23409a5f831f30b2b682c14fd6b
 vslider-bar-grayed.png 3e929a70fe58f1a7e0f9a8fdbc95421245de6625
 vslider-bar-normal.png 55e4d106ee7c704c2743018a81a5e3de2b8df38e
-ore,stone,coal.png e16e8a1af8bf1a21ab7442b2d7a6dc13f5f086b4
-red_cross.png 80d202b0e085761fc21b66ee89762887372dbc51
-score.png 9140d7cfcd810676c0f792f166312a710a5f782f
 title.png ce75837d1a868d1f5fba566d6019f6ce29f156ac
-workers.png f06d3bff9af332dd678001a58a26183d28e8df4f
 install.exe 06bf65bc10c249c555ec3901f8fb6edbb9398c3b
 All You Need BNE.pud.smp.gz ac4b268cbd2bc950ec01419d7aa07830f5a89a9e
 All You Need BNE.pud.sms.gz ab860a5db88bfa3bef73de6546b033c539fee04e
@@ -1126,51 +1063,6 @@ demo03.smp.gz 79902e400941b894a7f595d9ea5974f4c601faa0
 demo03.sms.gz 2aa7b61245d2d9a239c08029ad6d5c1077da7cd1
 demo04.smp.gz 79902e400941b894a7f595d9ea5974f4c601faa0
 demo04.sms.gz 4fbefd57ce377e5f271fcce10ad9e1962ec9c9f2
-(6)canyon-way.smp 84c4e324dc9fe5b95c238ca4831967f09175a4a0
-(6)canyon-way.sms 9d935aa77812fc9777f81cf8162d70f284825ec2
-(8)rockfort-arena.png be9489456ad5df3a532d36b64dffaada8d76e693
-(8)rockfort-arena.smp 478e36e9116d0e4f65ccf1bc53e6b2ddf54f75c6
-(8)rockfort-arena.sms daf155c6c7bd8b4809d1bfd5330b1de179690a2b
-(2)forgotten-forest.png 31cb58c5027d67762e28803bbb9b977c6a9ebf72
-(2)forgotten-forest.smp b94ad86798ef78482fcd6ad01c4a9940fc1b6ec9
-(2)forgotten-forest.sms 4d73f1340c27a846467d4288d63f994d445c399a
-(2)less-than-three.smp 8f84e1ca73ed2914182fd59c2d30fcb26f001bc7
-(2)less-than-three.sms 72959a191bf8abbaac181471e567559a43f17dce
-(2)mushroom-panic.png ca52c14773ffbd7da11abfc57fad9cb12efa1b82
-(2)mushroom-panic.smp 90808138ac1105c29b4208b9badc4ef436b54bf8
-(2)mushroom-panic.sms d029f60db76a5bd059b87875d76f0af8686d7a35
-(2)nicks-duel.png 6d16db7b661bc125beb52c7a6eb1f9dff3c50f0a
-(2)nicks-duel.smp 07644e1fda1d6909b36203feb7089516f9c21678
-(2)nicks-duel.sms c385df396275dc1a67eea6d18c057a0abb49428b
-(2)one-way-through.png d985d39f2449a122521e757b026e3b08b3a2daba
-(2)one-way-through.smp 31b61808fd8a970bd4a154c588ce14e67ef95e66
-(2)one-way-through.sms c8399d4ab5dde2e714a3ef6f4c3480a507ced551
-(4)beethoven-day.png 3b0893ff1f70cffaf0228509dc6f85de786e234c
-(4)beethoven-day.smp 2fab68233149e2f09749274af1e600b2a2f8716f
-(4)beethoven-day.sms 9f75332a332aa6af4ff5b49a51cf911a0ff60f0e
-(4)coastal-crusade.smp eb7539eab694c9227dc2416ab64e306a2193a669
-(4)coastal-crusade.sms 5eef7f1a2fa2ea267cae8e196034d891efe49ed4
-(4)river-crossing.png 55c89632612da17cbac8e6f91f14d9e1f2755ae1
-(4)river-crossing.smp 6002aa2e64e61954cb49bcd1736ba4efe420842f
-(4)river-crossing.sms 2b332d338113dfc43e7c0151219540432ac5c179
-(4)rockfort-arena.png f2a12785207aea17498a757b6f014102303b66de
-(4)rockfort-arena.smp 0e8bfb56221d2118b89375c5a7b7e94b75df1304
-(4)rockfort-arena.sms 0c41049e6e0e0044940d08a24dfd747c3053821e
-(4)winter-bloodbath.png 7e1bded91cde1e5fdb1aa1f28a0b65ff7b1b02ad
-(4)winter-bloodbath.smp e20ce89725e03eafca5dd0f87c4be62f2d0a6c43
-(4)winter-bloodbath.sms 5578699b0a1ea6039ecff861391df5b92033c728
-(5)black-flood.png 8bed6ce8a4f4fb7f43cae5f5b825ebe358ba9a1a
-(5)black-flood.smp c14fc279e767ecb618a7c3bbfa1ff6325903a595
-(5)black-flood.sms 84b99670e7e853fd308dd50a8a4b75dfe3dc146f
-(8)darius.png d2516527f615b96f02d6ea0e6a86be93866ab1a7
-(8)darius.smp ed75312bc3ec1efc8791cb004b562c3d10d75e62
-(8)darius.sms 6ec4c42614ee4249caff7c2e910083cda41ef9be
-(4)reticle.png e219fbb74ad549d40442738baf6ba178e82cfb6a
-(4)reticle.smp 5b82ec5013b0c685a5ec9f9f3a756ab5084b1852
-(4)reticle.sms bdb31c9376223568102de847e1f619fd0c588248
-(4)tournament-forest.png bcb0f6a7108493cea35743c6a55d12bb0fb0d804
-(4)tournament-forest.smp 5b6ed64da063991a6282ddc90ca28ed3e180b96f
-(4)tournament-forest.sms 4a05ae554395095641bb5db3bc0434253ca77435
 Arctic Circle BNE.pud.smp.gz cfb3834022031e9dacb10a11eaf7c8f673d6a410
 Arctic Circle BNE.pud.sms.gz 6b378b18af415cf562f6eead57ace43767eb6ddd
 Bridge to bridge combat BNE.pud.smp.gz 4d1dc9809b48d07b5c574b2b56f877e885bddb02
@@ -1271,348 +1163,45 @@ Ramparts BNE.pud.sms.gz 6146b61d1ec7485f9625e3d8ab7e1c17cff282b4
 (8)high-seas-combat.sms.gz 26c9be32b05b58f5a30fd164d762246bb5c8a650
 (8)plains-of-snow.smp.gz 37aa64371b4281c3bc522d5b35a8971bdcdcd593
 (8)plains-of-snow.sms.gz 157f4c1df2c5e1c11939e65969a2f9c01dbe0d19
-(2)timeless-isle.smp.gz aac6071f3ee3a3a9e836b76303085960402fda30
-(2)timeless-isle.sms.gz 21ac8699e15a7d026c771a9583172859ebbd93a8
-(4)central-park.smp.gz 04ed4660953b753038f622976ad1fa18a8747341
-(4)central-park.sms.gz e7f722ed9b8aa202c59564307893054795a5c9b3
-(4)central-park.txt 1ab1cf67044c64f45c67ad180d4c53b5955f95ba
-(4)just-land.png 19ab13d5020a433f67affe31b042d619521a0055
-(4)just-land.smp fa27422ad6544a35c4702a60361f5a0944a8c434
-(4)just-land.sms 0731b8c3499184b0e1cbf0725b3cda06e45194dc
-(4)lake-in-the-middle.smp.gz 04ed4660953b753038f622976ad1fa18a8747341
-(4)lake-in-the-middle.sms.gz 7a6babb940a4cc47180a5fb9c86256cd3f526f0e
-(4)lake-in-the-middle.txt 5876e2a2bd194bd0dfb7b617787c4fc7071eb940
-(6)many-ways-to-rome.bmp 47db66425643725f0cdb3e8d64a102880c48d383
-(6)many-ways-to-rome.smp.gz bf3520f4270940a8c03564e1968c218800ff639b
-(6)many-ways-to-rome.sms.gz 227106519882137b6b8bb712ed8215e22844c313
-(7)socotra.png a83682c42d42595a25d3de54a90d7d55a413200c
-(7)socotra.smp 581cf49669dafc48bb6b6ca34209e3299f8548f4
-(7)socotra.sms 4c7625624674ac4ccfb56682ece6b2c4224f9a9e
-(8)farscape2006.png 4bc8dd506e8b71ea62d071622d07da9a02b8fdb9
-(8)farscape2006.pud eb79d3ed20fb02dc8e688a95952699ff2094539d
-(8)farscape2006.smp.gz 9139720d69a803087cbe4d563d14757def775b92
-(8)farscape2006.sms.gz 5094977b0540bbc4490ec9d79e67c7690cff78d8
-(8)farscape2008.smp.gz 499255ca748a8635ed7d4524ace96a31695b4933
-(8)farscape2008.sms.gz a1370dd0ecdf8e395de38579774e3b6dd5462c5c
-(8)farscape2008.txt 99fcedc52ae673ed20789e2965a61adc960fdf13
-(2)blick-nach-oben.smp.gz 3caa12e6baf3d623b6beb8d86d605ecd7e8530d6
-(2)blick-nach-oben.sms.gz 4adbdefdd82a7d4f4f13ac27f3d43b8904a67b72
-(2)blick-nach-oben.txt 455018895569264498c319b9a1faa918044e42d4
-(2)east-west-conflict.bmp 89a2f79b54826195a0f84b603ab964b18f834a7e
-(2)east-west-conflict.smp.gz 445ca14676f54c9b002c0ab86fc5e8038cd27078
-(2)east-west-conflict.sms.gz bb81051a70b98f8144626cc8b867145e300279b7
-(2)east-west-conflict.txt 9a6e851ebb9b369e5940e6cb3036bdd47594f58e
-(2)king-in-stone.bmp 1c4658a9efe4b06a023507c6e67462c67a2a43df
-(2)king-in-stone.smp.gz c7fbfac705312275799a29b8d97d188f39e92ebc
-(2)king-in-stone.sms.gz e5c2bd1a115d8259b07fc9ae814282a2cca87f8b
-(2)no-mans-land.bmp e6141f1ff5135b71792c4ebfb58204e984b25aa4
-(2)no-mans-land.smp.gz 0a3c8e91d9c09f4a6969459a9f2be809493d3b2d
-(2)no-mans-land.sms.gz 4b51c1909b336feda14cb30ca6f2205527ed8834
-(2)nord-sued-konflikt.smp.gz 3caa12e6baf3d623b6beb8d86d605ecd7e8530d6
-(2)nord-sued-konflikt.sms.gz 736de2799b7d63996efd4e8a1ed7316c1a41cdc5
-(2)nord-sued-konflikt.txt ae3c73208a00249509868e6f522df1d5c01484ce
-(2)nordische-seenplatte.smp.gz 3caa12e6baf3d623b6beb8d86d605ecd7e8530d6
-(2)nordische-seenplatte.sms.gz bd0b6ba480597f41b65df6b215b489ea04d774b2
-(2)nordische-seenplatte.txt 4486d93d39d7ade40911fe58fd0f2b4793b93079
-(2)oily-wars.smp.gz 3caa12e6baf3d623b6beb8d86d605ecd7e8530d6
-(2)oily-wars.sms.gz f488987fb5bd5a19c2b9200277b051a481c9a3cb
-(2)the-right-strategy.bmp e999404b2fffd230ea79d2bda02902b92f63d306
-(2)the-right-strategy.smp.gz b1cc3df17c24e4471e903c44ec8708f90af3d414
-(2)the-right-strategy.sms.gz 068bb30bcf8bb7063d072da7368ea2464e01b43d
-(2)zeit-fuer-entscheidungen.smp.gz 3caa12e6baf3d623b6beb8d86d605ecd7e8530d6
-(2)zeit-fuer-entscheidungen.sms.gz e25f987294d1ff1a60a248bcdde96654e0c75117
-(2)zeit-fuer-entscheidungen.txt 0bb7339c05e3ccbdfc8408f6de48023c9b3f76b1
-(3)around-the-sea.bmp 9ab5d6f4f2a1436aef10ff452a2f0787d5b15eda
-(3)calculate.bmp 9905f4ee9b9cb26a0076a3e91f1e45904ce16006
-(3)calculate.smp.gz a2ebc73fd1428a6500a4f7febff73077841c071e
-(3)calculate.sms.gz 91f9f1b40f14de6c9833c4114d274808bea04437
-(3)calculate.txt 45b42378b028676c2cff8d11f59e9bd822027145
-(3)frosty-rescue.smp.gz 0f210bcad7d945162d45086dc2bb039d3fc3cc25
-(3)frosty-rescue.sms.gz 90f3da022f3045c89470e0bbb221dc1efbd4775b
-(3)frosty-rescue.txt 1972da8d65f65b987e99d3538fd827fc6058e183
-(3)little-ambush.pud.gz aa45ae2122edcd7e2e9e3fba01540dfb9c666e7e
-(3)little-ambush.txt 1fcdb9aaac92751211590087b28451530f2f554b
-(3)man-on-the-moon.bmp 64e92caa7c28e9e0f0a4ae2694c69a508393828b
-(3)man-on-the-moon.smp.gz c7724aeb91ce6ca0ac545866e6b1195f046d48f0
-(3)man-on-the-moon.sms.gz 5c8cf1e25f76c3bcc08bdad2377d8625f904d9d9
-(3)no-mans-land.smp.gz 4c1be8e3393c05537055530fccfae8a759c59be0
-(3)no-mans-land.sms.gz 319ba94025deddb22a53d6af39fdf7787dd06529
-(3)no-mans-land.txt dce5f129e9434ac3fbdb5cbb125c50699a412866
-(3)one-two-three.smp.gz 4c1be8e3393c05537055530fccfae8a759c59be0
-(3)one-two-three.sms.gz a5e2faa2dc56cad926d6f361c03f8b85b5e2538f
-(3)one-two-three.txt d2b29a41217dbd8ebeb321cfba8a12d7f9caa2ce
-(3)sea-wars.smp.gz 4c1be8e3393c05537055530fccfae8a759c59be0
-(3)sea-wars.sms.gz 866351cc97f2aefab491e22bf19e0014e6ac980d
-(3)three-frontiers.smp.gz 4c1be8e3393c05537055530fccfae8a759c59be0
-(3)three-frontiers.sms.gz 645d259a28e3e2112308f9206e531fbe931efdc6
-(4)4-corners.pud.gz 46536ebfb776b7594b86020726ed9741ca2e5274
-(4)4-corners.txt 5cef395a571fc11f0168d7edd06a9da8de995c47
-(4)4-isl.pud.gz 1d05410f2fac18c1dc31632fa68860c010612619
-(4)4-isl.txt 249f3767cb982aa2f5f34d5a86b863b2b7742370
-(4)arctic-goldrush.bmp 30b9f53cb245dedca4872ebba525de827235e690
-(4)arctic-goldrush.smp.gz 7f105bed6db92cd6527e30b709d800e5fd586602
-(4)arctic-goldrush.sms.gz f82c58e1d3691c4e2d3f635bef5ee5dc9d7ffb3c
-(4)chop-the-trees.pud.gz e6c7981dff0e4462e617e2d6e33145df39e7b548
-(4)chop-the-trees.txt 966ab1b61f560370efe8eec5ec248ff93999b078
-(4)circle-hill.bmp 7cf536851df1620260ac945153a1033c17aee6a3
-(4)circle-hill.smp.gz 59ff631b24a1e74972eaead7b85ad3fbacaff727
-(4)circle-hill.sms.gz 5c6b7bbf2150635fecc64b9e0d8db79157e845b1
-(4)criss_cross.pud.gz fb841a2117a85dc1861965e4e136069133a8a0e4
-(4)criss_cross2.pud.gz 8d016c58d491c4a3bd6400d786bd70076085c201
-(4)criss_cross2.txt 3cdc6e84f0431f9f101d296b5a4221186f4ce9a1
-(4)east-lakes.bmp fa5bf609b9d5a6ee207f4cec973ac7ad36c5574f
-(4)east-lakes.txt 9fe0b3ba9e11132286f88f777b48b9aa86130465
-(4)green-hell.smp.gz 15a6b15fcfe1cc2ca268eb8aae1c4021e447d598
-(4)green-hell.sms.gz daae89843d4dced96a0f75325985c6cb890452bf
-(4)green-hell.txt a8a19bcdb8c5dcfc62bf968485793b1a00e39fae
-(4)holy-forest.bmp 790501a9eeb02c1308acf25c6b9cc753e218442a
-(4)holy-forest.smp.gz 2176bfd5a830d2e8959745328b663788f16e6e29
-(4)holy-forest.sms.gz 802e447506c1a40b3b263b7ef31a5413c8373876
-(4)little-island.smp.gz 59ff631b24a1e74972eaead7b85ad3fbacaff727
-(4)little-island.sms.gz b51ddeb27f20df6a72c49c7bd7847b4b96e2d406
-(4)little-island.txt 64ae2975457fe0ff1f49705b908a19af4df957d6
-(4)look-around.smp.gz 8141fad7ce289c33eb28e36d51eb5f05012f9211
-(4)look-around.sms.gz 83a1da8a2b3fdeb04d7eabbb4cd3936c8714fd34
-(4)pathfinders.bmp d70fbf5d983ac790ac5f7211ba1f20a2c9db932e
-(4)pathfinders.smp.gz 161032a71f07790d24b351cd443592c9a63b658f
-(4)pathfinders.sms.gz 43ca2a01a80ec514169532a212efe2b2bb022159
-(4)scandinavia.pud.gz 0c428aef0e9ad6b9afb19ac5a7192c790d98ab30
-(4)scandinavia.txt 02b4f36c103cdcc50250d13515c9e0762e9617fd
-(4)smile.bmp eaadef4411a6611dc0c4ef5743bed979b41cc430
-(4)smile.smp.gz 95651cf7c508f966420e43c025c580edd52f4d2b
-(4)smile.sms.gz 51ddd4f3b0a5e5f74509a2703ae2bbec12fbd68e
-(4)smile.txt 71eb1bf68551c2bb8f3c2b60ed268082daf2a4c4
-(4)think-like-your-enemy.bmp ce88b11ea89a15ccc4544d840fedb53ad1a220f5
-(4)think-like-your-enemy.txt d4fd7775383a3045f6269db4587686f778993299
-(4)tournament-continent.bmp 2ae201dc7d670ce7dcbe73e88166aa8f063abca5
-(4)tournament-continent.smp.gz a6b859738d5100e87f66b56850575cfa1f4dcdf0
-(4)tournament-continent.sms.gz 1408d04e85db468c79bfaa28c187b60404ae70fc
-(4)tournament-forest.bmp 9f255fe4bf2833fdb7790926409b3e96d833d77d
-(4)tournament-forest.smp.gz f028b77a2513d1fb0074d5931620663aa5c929de
-(4)tournament-forest.sms.gz 54d897e48b30316f169d3f949356f66471ac935d
-(4)tournament-islands.bmp def736ccb24b051d0f34d774eccaefe1fb82b638
-(4)tournament-islands.smp.gz a6b859738d5100e87f66b56850575cfa1f4dcdf0
-(4)tournament-islands.sms.gz f7f2b9f0eecfe5d0df4d5c4bb89ec14ce8720c48
-(4)what-can-you-do.bmp 0b210d0be1ecb9f985054dd848b0c39980e23895
-(4)what-can-you-do.smp.gz 9c2dd63f3cf3fa9d5a6a47c904c840370b063738
-(4)what-can-you-do.sms.gz b6bb1abef756d0efe2feef09c7dcec397072d4dd
-(4)what-can-you-do.txt 5e5ac862e188c8a9c65cea7f4333bc468d8bdd74
-(4)woody-islands.bmp e358794ead07b177120791d14bfb433d7d835ed2
-(4)woody-islands.smp.gz 59ff631b24a1e74972eaead7b85ad3fbacaff727
-(4)woody-islands.sms.gz e8d654595c988af4b68b315a2cd4d78b5b640bf2
-(4)you-have-to-look-around.bmp 66f3142c5a1609d64a58cdc467b1b5d2ef59965e
-(4)you-have-to-look-around.smp.gz 1b8ff35c987c60faa9872b37aab5c6a99bc4542d
-(4)you-have-to-look-around.sms.gz 0e36d47908fa54b0616c5fe7c630e91abd4eeb30
-(4)you-have-to-look-around.txt 3d1231b0eb9aa354fb833251825cff027e76ea63
-(5)diablospiral.pud.gz d6bbbd0e09b51a76a7e9b2b473c6998de63bcd84
-(5)diablospiral.txt fb5d047d0f8b0b5ed051614f78b2eea8945f54e8
-(5)many-ways-to-beat.bmp 303f8bb9b003425f6affff9dfd003ce66e4db625
-(5)many-ways-to-beat.smp.gz 1b2149e339a45763777bc102627cf39cb76e543d
-(5)many-ways-to-beat.sms.gz 2462301fa42a39c52bac2b8d01e9416246c4c15f
-(5)many-ways-to-beat.txt 12afe18a2a777513e9150522465e5f2049c03bce
-(5)speed-is-the-key.bmp d24ad8fee710f0b01f39c4a68009cc1843480048
-(5)speed-is-the-key.smp.gz 714e83bd9bc8e0f7e41ae5c2b576afd6239a39c4
-(5)speed-is-the-key.sms.gz afba6ecd9964629ea2e519ed3c082d211930b865
-(5)the-pentagon.bmp 6c0eeba9e6b6cb19bc0628ed17531ecc8f5f3af7
-(5)the-pentagon.smp.gz a8372fcdb0617195a6710a7ea5680dec2a20b52e
-(5)the-pentagon.sms.gz 6fdf9804c28a7eb581c1d30b8c508a658d160abb
-(5)the-pentagon.txt 8a0ee60ead10420aae22f5b479428874aa1d622b
-(5)venedig.bmp 8e0a331eaf4e7f4b7e8c7e3ee01cd9fbe4417fac
-(5)venedig.smp.gz 25f906e5e567edf7441d8a314174ae58e53cd71f
-(5)venedig.sms.gz 7dd19e9e082c86008cdbca0b50399ba344025abb
-(5)venedig.txt 70ce4813c3b43402f395bf738215f9d7a8c79b77
-(6)all-against-the-floods.bmp b4eb8cd9403c225424bab96732b7f021eeb28e28
-(6)all-against-the-floods.smp.gz 6e16cc46f9a4e38996a58ba7ba75d36d14540229
-(6)all-against-the-floods.sms.gz e928c5bb3c9812dc805e510f88faff6f0609c45e
-(6)all-against-the-floods.txt 527d1024a926bd074d0b671f45b21428ba30842e
-(6)can-you-swim.bmp 5723728c54e7bdc848ef14566bc6d608fd9c3b47
-(6)can-you-swim.smp.gz 6e16cc46f9a4e38996a58ba7ba75d36d14540229
-(6)can-you-swim.sms.gz 764bfac596ce808cdccdca860f69fa95b53db57a
-(6)different-ways.bmp edb19386bb87d8369feee3f6a72389dd87a726d2
-(6)different-ways.smp.gz 338e444935b355509944075bda09f83fb21f992a
-(6)different-ways.sms.gz b5368c9e76880251526f58b8f5c9810d02d9736a
-(7)many-frontiers.bmp 79922bcc4b4f2d81fefb6cbdacc966396f2d3e6b
-(7)many-frontiers.smp.gz 2c657a331540188d9c6b4c9474bbc0b71e63e8bf
-(7)many-frontiers.sms.gz 4a134bea14dae9327b5589a451c4831df910d453
-(8)altar-in-the-middle.pud.gz f92988d3538cb4d5c5fb21723cbeaab83b9c74e6
-(8)altar-in-the-middle.txt 1248bce1c4848bbc5a99feca40615e157e412984
-(8)are-you-lucky.bmp 979b3d5587e9bb4672ed42caad306e37299d32a7
-(8)are-you-lucky.smp.gz dcd07cd9c37886801af2ed84af9ed07c10bd041c
-(8)are-you-lucky.sms.gz 6b8e50d92580d1fa49ffaadb655c3ddf8ec8c2a8
-(8)are-you-lucky.txt e85732c39b0e788fc3a277ba86bdd16a65f2c43d
-(8)death-in-the-rocks.bmp e72a6d61e6dbdfdbccd1a6ad1ba8436bbf203f9b
-(8)death-in-the-rocks.smp.gz cab5fc0c2b1bb201aca68f2eb66a8755bc28cd98
-(8)death-in-the-rocks.sms.gz 60f242dc5aa99a80e7c52dcd7bd3382311c6d912
-(8)diabloarena.pud.gz c2c3d3e8c44603498d6715ef62cc00926545c53a
-(8)diabloarena.txt 895e4d511dec7739fd289ab95e6c05760770fe3a
-(8)diablodarkwood.pud.gz 7757942ee07436a7935b7cc3eb01b00db3ceb85c
-(8)diablodarkwood.txt 491d9129315e355d0bd10335dcc79908032034d5
-(8)diablomaze.pud.gz d108ce43c8ed3bec6a83a8ad0e96d9b917660005
-(8)diablomaze.txt 7e14d03202a27998d1fb632b7bb5838dffc23f55
-(8)everywhere.bmp da1699f7aa3828b505ec1ed878f02a47cd74f366
-(8)everywhere.txt acdebd27d452150869a1cf2687800ee97bf7bf48
-(8)fc-deathmatch-plain.pud.gz 2715402cc9545443154e66b81eb8856fcebf335c
-(8)fc-deathmatch-x.pud.gz 20e0f39df1bf043c5ff1c5cfbc4b8ea197fa8e84
-(8)oil-is-the-key.bmp 0c2c935722fc9ee7adb3d63e86e55912031259d1
-(8)oil-is-the-key.smp.gz cab5fc0c2b1bb201aca68f2eb66a8755bc28cd98
-(8)oil-is-the-key.sms.gz cdfd2c13faaf77418aaa064fc4febae2596131c8
-(8)roads-to-the-coasts.bmp c2b0d11e3cb2ca25aa34b129ed56b78e9acab57e
-(8)roads-to-the-coasts.smp.gz cab5fc0c2b1bb201aca68f2eb66a8755bc28cd98
-(8)roads-to-the-coasts.sms.gz 5cab9ffd63606ad70caff5aca5d41445da17a577
-(8)roads-to-the-coasts.txt 9473ba83b4d4d951edbf38dee7fce11ff68b95dc
-(8)tournament-continent.bmp a5c5bcd63f40eb1381f598906abf3b61639a004f
-(8)tournament-continent.smp.gz cab5fc0c2b1bb201aca68f2eb66a8755bc28cd98
-(8)tournament-continent.sms.gz 8d625d9d709904c0dc1d00743c040c67a377fb08
-(8)tournament-islands.bmp 1677b591829b78bc40b6037fa6cdec9f32599c40
-(8)tournament-islands.smp.gz cab5fc0c2b1bb201aca68f2eb66a8755bc28cd98
-(8)tournament-islands.sms.gz 2f032788b23d7bc4e416d65b078b127b2ff2c48b
 Human Battle 1.mid 679b40787f23ec1ed3b576f305713176667b1f48
-Human Battle 1.ogg babb118d23a1487aa3b3ed4fe397f4129e578531
+Human Battle 1.ogg df4cab237dea57425f858904931d0fe549319f73
 Human Battle 2.mid f6f3eea322429bfe30efb2312a091e669e4bff66
-Human Battle 2.ogg 31de143d9c902a9f35ce8c9132e8a6cf812981ce
+Human Battle 2.ogg 71d8538d1e59b4fbfec9a96568211271bc897e04
 Human Battle 3.mid cb721e374342e7883ce7d10146f24de212965592
-Human Battle 3.ogg 996f2ae649ca8ff200d75e22302ac0fc1dd39e0a
+Human Battle 3.ogg c25aff98e899cb6061d4c4e607e97a3f2550b862
 Human Battle 4.mid 1d723a90cd3c855764fdd22a467fa0f3f7832b46
-Human Battle 4.ogg 061ee575c7f10f9f653db87914660c2b1a260381
+Human Battle 4.ogg 3fdd99480e7465eb9c0103579cccf336ccc48ace
 Human Battle 5.mid abb4d41182bd35aba947d8005eaa1a0d2ff5a408
-Human Battle 5.ogg fd0bddf9e777a28ae0525a224f5f6c0901e65798
-Human Battle 6.ogg ca7d4287a4a8f3dd234611323c3b8809f4082d93
+Human Battle 5.ogg 653c77513475df31db3b4198c738b9c74cc8f298
+Human Battle 6.ogg b05b46cc49fb888abdcaf3f81deae2327f6be1af
 Human Briefing.mid c0d82fbb1a5405739cc0028779fffbae500a3c3d
-Human Briefing.ogg a9b42ba8f9b034bc41a71ed5bbd0086c6a808ca3
+Human Briefing.ogg 91545cb9c87b21187bc118d640050f36bafe680a
 Human Defeat.mid f7e14d5e3c80060e776c99111dff0cf3f3e40792
-Human Defeat.ogg 02dfbadd062929121d1b8f7284552ed48b9578cf
+Human Defeat.ogg ea04fb12a882b6444fa419383df2e1435160be46
 Human Victory.mid 348b681929233be23d4fc6f2a482baa32e5d9f31
-Human Victory.ogg 307b5915ec87fd18436f576843478905dcfed432
+Human Victory.ogg 43b58cf0d15498f9f7934391ea3d6eb5dfec02d7
 I'm a Medieval Man.mid 73ba1331b52e31a46ffcf65642d31742f896c348
-I'm a Medieval Man.ogg 1d2579fe88a658778ec3b5e145332c73d2a71192
+I'm a Medieval Man.ogg 867c025e6068dc57cc28e540330b307d580e0550
 Main Menu.mid 80d05b4665525c7047f770e3018b0dc2ebb34d46
 Main Menu.wav b6cf76f4f4c955c5fec514e1f5218070e082bda1
 Orc Battle 1.mid c2e7c93589cfae4dadd8537d181a041f0503144f
-Orc Battle 1.ogg 395facbcb7165d8a0576efdedaa9f4601fcda6fb
+Orc Battle 1.ogg dc836c5ed84392b7f1e4338386067f0b92222122
 Orc Battle 2.mid 631e3f81ba1c690120c7f0057a72d89164372145
-Orc Battle 2.ogg 666241073b2011efd1641de87abf481fc5304911
+Orc Battle 2.ogg 57d2d06f45f464aed9824f5fee6adaa00a8e3d4c
 Orc Battle 3.mid 791d5eee4b59fdd23e0a542c371a77a8185023a2
-Orc Battle 3.ogg 005347078665ea5a1c1c96e02ea6c8e2c9f2eeb7
+Orc Battle 3.ogg 19d8f8a521bff08a7a1f93f3ba7f44edaeb8d53b
 Orc Battle 4.mid b0fa4e779de7db8d7c9aaa94bf32fa4f785e3e40
-Orc Battle 4.ogg 3bb315e121ce86792c2633d0fd29d935e07c5cb8
+Orc Battle 4.ogg 53dfe625d285a880b2ed7606fca64922fe54ca64
 Orc Battle 5.mid 13f4e471bd5293c017a479fc7fe82b17ce157847
-Orc Battle 5.ogg b8f744691f42b002e0624c08b003a86c17aea2f9
-Orc Battle 6.ogg 516138887224aa6e44bd69028c42fbcb71352257
+Orc Battle 5.ogg bfa2610aafb0996a28ed66c138b69062a4cc6385
+Orc Battle 6.ogg cde1555e791fe380f2946ef309d596ddf046abcb
 Orc Briefing.mid 80d05b4665525c7047f770e3018b0dc2ebb34d46
-Orc Briefing.ogg 6edcc23a52fbf96db36a9bdf7d3eea996325414d
+Orc Briefing.ogg 8e30e734c0f944973ab7b4e0a4937a848ac28c1c
 Orc Defeat.mid d34ed8c5cacb8413dd256995f04bc976b7bbf15d
-Orc Defeat.ogg f2c73e50f0029a24188642f9e22b7531a63ba1de
+Orc Defeat.ogg d94e25de074f4b3643eac264e7ca34ab03b4f971
 Orc Victory.mid 62cfc30fceeb265caec5c9efaad98d238aa2abb6
-Orc Victory.ogg 922ae6ae30a8ea054927f04c7aaa6e8bd1849c8c
-ai_jadeite_2010.lua 88e4cb316d441eab93b743e915309108879ab146
-ai_nephrite_2012.lua bb19df471521e4fc1664bd1d1436a988a6e3f350
-ai_nephrite_2013.lua 922a936f7e386f0b6878fb45cacc3ea6d0834802
-ai_redribbon_2012.lua acd9d418f39cc7e38a0a0aa818db046cb1df20c5
-ai_redribbon_2014.lua 5f263b96175880747f0b92878a8e04b253ed484c
-ai_redribbon_2015.lua 7ee901f15df3942debbb775d57b97921525f8455
-ai_zoisite_2013.lua d16cdfc3dbdb12831c5d34b89a93562aceaa274b
-air_attack.lua c78695215c60bbf47c2a740ebb473a8b6a45649e
-land_attack.lua d874e84cc6e3d8e094db4c47c6bdfc91c82cbf37
-names.lua 3709bb9de18cabe9f79e4111dcbf90b08fe14d37
-passive.lua eb6bf137070182a19c2038a2b76620b645ff6ffc
-sea_attack.lua b64a4960586ecbadfc61a7c4ab911b6929afe6b5
-ai.lua e1cd17d8cc0dfbfb9d1c8f08ec627725ed5cf038
-anim.lua e6cf5619f785fc08cdf18f18e28fe471799aac53
-buttons.lua fb80df67e8409416f0de46c99f1329e263e02993
-cheats.lua cbd5db015acb33ce574781ff7ccab5b1e17a7046
-commands.lua 0b7e2da939029dba4822f086f3b5a343eb4a4202
-constructions.lua ffb09809d4b60b1fad8451b881434baf294c4821
-database.lua b7bf9f0ac8a0ad55dad7f692e46910cf3e7fa275
-directcontrol.lua 454e7d7bb9220be37fa0f6d05b70a15543659438
-editor.lua 3a5dd05b0a302d7ed6b7ea5d2914d0280d756886
-fonts.lua b002dc2c1b3b7217ff6a67fa3a44562b9e6f9dc0
-fov.lua 947a5422f09c9f597a67c35cf4e074a98ad99081
-guichan.lua cd9859d8d66a3be4aa8a442d9002853199e7d2b7
-anim.lua 9740e50e0f2a9f108aa64a69e48d0dfaa8438383
-buttons.lua 9535cd4de99bfca585e458f0c5a89e7f5e0709f9
-campaign1.lua f6379bd920cb08c19612ed9d529ffade24342353
-campaign2.lua d0f1f52875eee752d391da1d169e3034d64b2d83
-constructions.lua 1e354bf6e618781ff0339d4be17cba21ee6270a6
-ui.lua 9849eafb48bb32813a7365d92919b79ee3a3212a
-ui_pandora.lua 12d97ea5e9edc65238d1e75b68331b48986788d1
-ui_tales.lua c1fc60d527248daef7abb40f623ece77cfaa22ee
-units.lua b9f125274320bee80dfd3a5a465579cc8ab7d120
-upgrade.lua 4efc2e39ef788123bd2a277d9da2dcdf68472dc1
-icons.lua 6fc50d47f6e251856c6bbd72c337b31d72eb57f4
-classes.lua 1e86f93fe9dbf9cf531402749246e6221ba29785
-layouts.lua e1fcc74d17d6817e80f2af1ddd82f66e59eb324c
-Beyond the Dark Portal (Alliance) fdf6846142b7bee28643830b33cbad5549b79227
-Beyond the Dark Portal (Horde) f959c5574e39f2f5a496c412fe9d9327ed175ffe
-Tides of Darkness (Alliance) 40aa704457aa2c52b640def15e2a814433849115
-Tides of Darkness (Horde) e19a83c6f08d6f67a768245ab67422977f35c8ae
-For the Motherland ed01b76fb24adf93a0147652e6e56136798de863
-Front Lines 61a443a630dda00765a22a6c15045f657e357e75
-Skirmish Classic 60b17c05a649d4df253f9463de181aa86a5d8f64
-Skirmish Modern a20b3687adc75e4ed03a3ac1773fb402e1d01792
-Wargus e9a261def61439f8a52bb99995d7d36cc058272e
-campaign.lua a94b862f4c9495d5b4d68cfe3b5ed1eda8a014f6
-compactmode.lua 5e7a365fdef072101d2d2f1329955edf29e8559b
-credits.lua ee2d988533477d197ae0f2d4e6733b2e75f1734c
-diplomacy.lua 0022d28f9f52c16b5c1e09b8548f3a6488ade0e9
-editor.lua 448a53c349f5e93e9e258266dc14126c8d83eb9f
-endscenario.lua 346c4480a250fff9a2f9b7d2d467bc87fc5c2575
-game.lua e7bb981ffb315d36f1cdd633f35dc2618840806e
-help.lua 57bf7daeb70080de8a9a789ef4bc45dc1ed59662
-load.lua 259e2df5d8440f5b120ebb215e35f18de3ea3b36
-network.lua efb9492509eba228cf15e662d909c8bd4dad5c26
-objectives.lua 2450a8cdb0e14ea1d16a373ef4552662c7b7f31e
-options.lua 8706f3f14f4ce95f20247ee25f1c40e7259632f9
-replay.lua ebae8608e2d0bcca7c595b0944cd63ce7b67cac7
-results.lua 11092215326d38821b5eb5c46ab597f0d8442f57
-save.lua 46639c8252a2b37ae4ce045aaba78999a8e0a6a2
-missiles.lua 45eb19e7a382a786884418b47de41b2af2013343
-multiplayer.lua be1638df8c5867c98ffb166964eb5d464fdfe8c5
-anim.lua 36bcf782d9fc145a9349908941fe455e3d4dfa93
-buttons.lua 7b6d29fc8e86bb681bb2810623c2f2b4295166cb
-campaign1.lua 656d7d956ac2c3b850b054ad86e41543ea3cffff
-campaign2.lua 3afab4240214004ae4eee19218a5d748c114ba58
-constructions.lua eec7252da0fb33226a9051fba4201ec9a5f2d49b
-ui.lua fe23d3776947b332738b26aca018c3fd5904f4f0
-ui_pandora.lua 73a757ed65ca2376a63b5c07955dc63cd965e926
-units.lua 1fac554d706c715b21cefa2ce00c4dfd30d68cfb
-upgrade.lua a29aa843f96f20d58716eaf3747196f3f966a16b
-scripts.lua efaa08106daf9e91cc82a7cd93c62cee868f6f05
-singleplayer.lua d87c77e536aa7633f66f409f12d2cb18f3815b64
-sound.lua e290930ce79dc73365deecbe113be867f5dbca5a
-spells.lua f371b6bae1f9aba763f590d6d0c5450822167c27
-stratagus.lua ff366bd6bc9275e35097f299956ca1f52b35f7ad
-summer.lua 9a03e40f96efc9d9f2a23b8e18c0c1eeca76de1f
-swamp.lua 7312280787369bc5b03f4121f8a223b6de7bd0fd
-summer.lua c113d349e8eec9498f21d4086989874d06b209e9
-swamp.lua 0cb89508902923781986f28c1aa34d0cc1bdc1b0
-wasteland.lua 2166bcd5a072a758be694891ebcc1ee45162fc4a
-winter.lua 89639fa2a4ae43d22d98a943f546e581e51bcd0e
-wasteland.lua d307e6fb5a731b980de6a3a14a97b3c146688815
-winter.lua cd7f6c62c531b8021a65930e54c8538e56a2cdbf
-de_DE.po 5dfdfb08776564baef674cd037a5f5632c3a70b0
-es_ES.po 41c11da510c3d434932489c5a0f5420d09a358c3
-fr_FR.po 145c3c38652717be06da3208c1892d4ef78307c3
-it_IT.po 14dff8c414febc7b1ef94541bcbd20d68acb93a0
-ru_RU.po 0dc5a947aa6f35a093f7964ce668c2d202692096
-stratagus-de.po 148997880a4ffa1862c2f94375dd8699fd22b4ea
-stratagus-es.po 06ecb36b809c734389e8c2fd59d45a692b8fe748
-stratagus-fr.po 4714f3310653eedd4fed85bdc99c6f21109acbe5
-stratagus-it.po 30c2e3b93929edec91b5a10c054df5d8335d0e03
-stratagus-ru.po a7fc53d8ed354b3cc0c649df6958809d137f17dd
-translate.lua 02f9fa9763a128af298f63fd12542d397cac7dae
-ui.lua 53d9f56adecc61d8a1e5a7baae133f55006ffc0f
-units.lua c47941f65293db34de5fdee14ce97367406adcc0
-upgrade.lua 117cdac74fe6675f75054069c8ae721212f0bb1b
-wc2-config.lua 68087b2766323d18b8bffe73eff8ef6857821cbe
-wc2.lua 7ca27be02dd04c17a20ce78c14cb2709a2491c7a
-widgets.lua c9586d7db8355475900681dcf18865dfdf3161ae
-aa-jinc2-sharp.cg.glsl 1a103714d4f46fad236996cb3e2b7d58c7a80022
-bloom.cg.glsl c6e6029ca0bf0d5ff63c36190081f3f22f2c8e3f
-crt-easymode.cg.glsl d20670dced727ef4b025a1901cf27e6df584ad4c
-crt-reverse-aa.cg.glsl d30ff3c43bea10ea6b9539c98da53cadf22a36ca
-dotmask.cg.glsl f71ea7c312f9ccfee0d1e75fbb6b8fb6f6a36ab1
-tv-highcontrast-hd.cg.glsl d81b226b5fb175e456a44d2bba470fe19527e610
-xbr-lv2.cg.glsl e5d04adac654757b6a614e95222fb810b479d33c
+Orc Victory.ogg 8b51850760f1a0724bc9f95e96dffa4f9cc988cd
+wc2-config.lua 2604dfde2db2ab4d408a4d001b0ce564dae4bacf
 blacksmith.wav.gz 582c387b92f46de4fdfeea5bdf5c6832a89f6fc5
 foundry.wav.gz a397282289dd44d21947afd22f94c997120a3ae3
 lumbermill.wav.gz e70f69ca5d99c3cee8ee5506fc39f92cf7455565
@@ -2006,16 +1595,16 @@ tome.1 0bea383d6bee3d785eb054f4fc3a53491548ea44
 tome.2 31db8a2f3aba36b87ec6711ba9b2ebfc06875b89
 tome.3 375f4571fccd0038ddbe373eaea7d84913e79364
 tome.4 84689621b894c77ac6a16a416eda2b4b6202637a
-exp-1.ogv b37b73dbebd083913d9cb9bb3fd83e1e16f1167a
-gameintro.ogv 751c1b97133c78ab0862666cca1d7698dafe4d8c
-human-1.ogv e0314ce0747691170e3c0910b226030beabba7db
-human-2.ogv 355896d4a3f7fd6e994c5cb89ab17e8693395952
-human-3.ogv 869f60ba1ede44861689d350e096cc75f189d102
-human-4.ogv 4ff5254adbabd88bcd59263c334126825a203ecd
-human-exp-2.ogv 1dc3e4d551ff1d9ae02618a0e4eae6f456fbea9b
-logo.ogv ef11ee8bf4f00b9350c8e6d9a6a1a17804e10012
-orc-1.ogv 993a1566038a70eb9593399f1d0f121c3b61ba06
-orc-2.ogv d8050fa75c0def89cdf3a0f834e54326069bb3ba
-orc-3.ogv 364a454787dab1bb79da2155dd64f928e8b3ecbe
-orc-4.ogv 4dbae4d424dad156e507831e865bdd089231216c
-orc-exp-2.ogv fee25fabe8df5d49dc43e540674a6c3fd76a3292
+exp-1.smk 09133a0925ac3dbc2fe37b0c10698abe7b5d1bbb
+gameintro.smk 5b927d032e0bfaea930e38ef3e7b40ca4f557309
+human-1.smk 2e5d390df82cc26e3d3609477aaa99efa34ddecd
+human-2.smk 128928306e6fed5137a8a1599113f31e31842637
+human-3.smk 9d4c2af2b9bd11f7aaf8a991d92927ab5c2f451d
+human-4.smk 2319ca3de9939da04ab952875e345523daf8facc
+human-exp-2.smk 66fe1164bb8a1684a4764484ad339e432360e042
+logo.smk 0b0dd89fc062a2c787aced590e367281c54b4f27
+orc-1.smk 08a6c982ba7322ff73c7caa3a6e1d70c55e01234
+orc-2.smk 1bdb6080308878819bf98f29254cec58239de71a
+orc-3.smk 1c5beff533977694c081821e346f178d0553023a
+orc-4.smk 993f7e1f9323176ad86a2e47843449edd2c302db
+orc-exp-2.smk 896d96f609b7e3578c467e87c78fd9a1709799da
