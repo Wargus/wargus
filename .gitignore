@@ -42,3 +42,4 @@ ui_*.h
 CMakeLists.txt.user*
 *creator.user*
 
+**/*.tar
