@@ -43,3 +43,4 @@ CMakeLists.txt.user*
 *creator.user*
 
 **/*.tar
+**/non-distributable/
