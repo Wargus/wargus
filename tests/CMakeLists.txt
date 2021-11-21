@@ -61,7 +61,7 @@ if(WIN32)
 else()
 	set(wartool_SRCS
 		${wartool_SRCS}
-		rip_music_unix.cpp
+		../rip_music_unix.cpp
 	)
 endif()
 

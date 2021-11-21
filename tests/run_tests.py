@@ -58,12 +58,12 @@ def run_test(original_data, new_output, executable):
             file_hash_mapping[file_name] = file_hash
     subprocess.run([executable, original_data, new_output])
     file_list = generate_test_case.get_file_list_from_root_dir(new_output)
-    out_file.write("Found " + str(len(output_file_list)) + " files.\n")
-    if len(output_file_list) != file_count:
-        print("Wrong number of files!\nExpected " + str(file_count)+" but found " + len(output_file_list))
+    print("Found " + str(len(file_list)) + " files.\n")
+    if len(file_list) != file_count:
+        print("Wrong number of files!\nExpected " + str(file_count)+" but found " + str(len(file_list)))
         errors = True
     new_file_hash_mapping = dict()
-    for item in output_file_list:
+    for item in file_list:
         h = hashlib.blake2b(digest_size=20)
         with open(item, "rb") as temp_file:
             h.update(temp_file.read())
