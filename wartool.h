@@ -143,8 +143,8 @@ typedef struct _control_ {
 	int   Arg2;          /// Extra argument 2
 	int   Arg3;          /// Extra argument 3
 	int   Arg4;          /// Extra argument 4
-    const char *MPQFile; /// MPQ file
-    const char *ArcFile; /// Archive file
+    const char *MPQFile{}; /// MPQ file
+    const char *ArcFile{}; /// Archive file
 } Control;
 
 /**

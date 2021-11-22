@@ -125,6 +125,43 @@ public:
     FILE *fp;
 };
 
+class Image
+{
+public:
+    Image(size_t height, size_t width): height{height}, width{width}
+    {
+        data.resize(height * width);
+        fill(0);
+    }
+    unsigned char &operator[](size_t ind)
+    {
+        if (ind < data.size()) {
+            return data[ind];
+        } else {
+            std::cerr << "Trying to write out of bounds: " << ind << " when size is: " << data.size() << std::endl;
+            abort();
+        }
+    }
+    const unsigned char &operator[](size_t ind)const
+    {
+        if (ind < data.size()) {
+            return data[ind];
+        } else {
+            std::cerr << "Trying to write out of bounds: " << ind << " when size is: " << data.size() << std::endl;
+            abort();
+        }
+    }
+    void fill(unsigned char in)
+    {
+        std::fill(data.begin(), data.end(), in);
+    }
+
+    unsigned char *ptr() {return &data[0];}
+    std::vector<unsigned char> data;
+    size_t height;
+    size_t width;
+};
+
 
 //----------------------------------------------------------------------------
 
@@ -174,8 +211,6 @@ static int UnitNamesLast = 0;
 */
 void CheckPath(const fs::path &path)
 {
-    std::cout << "Checking path: " << path << std::endl;
-    //FIXME: Possible error here!
     std::error_code error_code;
     if (path.filename().empty()) {
         fs::create_directories(path, error_code);
@@ -228,19 +263,16 @@ void ConvertToMac(std::string &filename)
 **
 **  @param name         File name
 **  @param image        Graphic data
-**  @param w            Graphic width
-**  @param h            Graphic height
 **  @param pal          Palette
 **  @param transparent  Image uses transparency
 */
-int SavePNG(const fs::path &name, unsigned char *image, int x, int y, int w,
-            int h, int pitch, unsigned char *pal, int transparent)
+int SavePNG(const fs::path &name,  Image &image, unsigned char *pal, int transparent)
 {
     SelfClosingFile fp{name, "wb"};
 	png_structp png_ptr;
 	png_infop info_ptr;
     std::vector<unsigned char *> lines{};
-	int i;
+    size_t i;
 
     if (!fp) {
         printf("%s:", name.c_str());
@@ -271,7 +303,7 @@ int SavePNG(const fs::path &name, unsigned char *image, int x, int y, int w,
 
 	// prepare the file information
 #if PNG_LIBPNG_VER >= 10504
-	png_set_IHDR(png_ptr, info_ptr, w, h, 8, PNG_COLOR_TYPE_PALETTE, 0,
+    png_set_IHDR(png_ptr, info_ptr, image.width, image.height, 8, PNG_COLOR_TYPE_PALETTE, 0,
                  PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 	png_set_PLTE(png_ptr, info_ptr, (png_colorp)pal, 256);
 #else
@@ -286,12 +318,12 @@ int SavePNG(const fs::path &name, unsigned char *image, int x, int y, int w,
 #endif
 
 	if (transparent) {
-        unsigned char *p;
-        unsigned char *end;
+        unsigned char  *p;
+        unsigned char const *end;
 		png_byte trans[256];
 
-		p = image + y * pitch + x;
-		end = image + (y + h) * pitch + x;
+        p = &image.data[0];
+        end = &image.data[0] + (image.height) * image.width;
 		while (p < end) {
 			if (!*p) {
 				*p = 0xFF;
@@ -310,15 +342,15 @@ int SavePNG(const fs::path &name, unsigned char *image, int x, int y, int w,
 	// set transformation
 
 	// prepare image
-    lines.resize(h);
-    if (lines.size() != h) {
+    lines.resize(image.height);
+    if (lines.size() != image.height) {
 		png_destroy_write_struct(&png_ptr, &info_ptr);
 		fclose(fp);
 		return 1;
 	}
 
-	for (i = 0; i < h; ++i) {
-		lines[i] = image + (i + y) * pitch + x;
+    for (i = 0; i < image.height; ++i) {
+        lines[i] = &image.data[0] + (i) * image.width ;
 	}
 
     png_write_image(png_ptr, &lines[0]);
@@ -326,6 +358,108 @@ int SavePNG(const fs::path &name, unsigned char *image, int x, int y, int w,
 
 	png_destroy_write_struct(&png_ptr, &info_ptr);
 	return 0;
+}
+
+/**
+**  Save a png file.
+**
+**  @param name         File name
+**  @param image        Graphic data
+**  @param pal          Palette
+**  @param transparent  Image uses transparency
+*/
+int SavePNG(const fs::path &name, Image &image, int x, int y, int w, int h, int pitch, unsigned char *pal, int transparent)
+{
+    SelfClosingFile fp{name, "wb"};
+    png_structp png_ptr;
+    png_infop info_ptr;
+    std::vector<unsigned char *> lines{};
+    size_t i;
+
+    if (!fp) {
+        printf("%s:", name.c_str());
+        perror("Can't open file");
+        fflush(stdout); fflush(stderr);
+        return 1;
+    }
+
+    png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    if (!png_ptr) {
+        return 1;
+    }
+    info_ptr = png_create_info_struct(png_ptr);
+    if (!info_ptr) {
+        png_destroy_write_struct(&png_ptr, NULL);
+        return 1;
+    }
+
+    if (setjmp(png_jmpbuf(png_ptr))) {
+        // FIXME: must free buffers!!
+        png_destroy_write_struct(&png_ptr, &info_ptr);
+        return 1;
+    }
+    png_init_io(png_ptr, fp);
+
+    // zlib parameters
+    png_set_compression_level(png_ptr, Z_BEST_COMPRESSION);
+
+    // prepare the file information
+#if PNG_LIBPNG_VER >= 10504
+    png_set_IHDR(png_ptr, info_ptr, w, h, 8, PNG_COLOR_TYPE_PALETTE, 0,
+                 PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+    png_set_PLTE(png_ptr, info_ptr, (png_colorp)pal, 256);
+#else
+    info_ptr->width = w;
+    info_ptr->height = h;
+    info_ptr->bit_depth = 8;
+    info_ptr->color_type = PNG_COLOR_TYPE_PALETTE;
+    info_ptr->interlace_type = 0;
+    info_ptr->valid |= PNG_INFO_PLTE;
+    info_ptr->palette = (png_colorp)pal;
+    info_ptr->num_palette = 256;
+#endif
+
+    if (transparent) {
+        unsigned char  *p;
+        unsigned char const *end;
+        png_byte trans[256];
+
+        p = &image.data[0] + y * pitch + x;
+        end = &image.data[0] + (y + h) * pitch + x;
+        while (p < end) {
+            if (!*p) {
+                *p = 0xFF;
+            }
+            ++p;
+        }
+
+        memset(trans, 0xFF, sizeof(trans));
+        trans[255] = 0x0;
+        png_set_tRNS(png_ptr, info_ptr, trans, 256, 0);
+    }
+
+    // write the file header information
+    png_write_info(png_ptr, info_ptr);
+
+    // set transformation
+
+    // prepare image
+    lines.resize(h);
+    if (lines.size() != h) {
+        png_destroy_write_struct(&png_ptr, &info_ptr);
+        fclose(fp);
+        return 1;
+    }
+
+    for (i = 0; i < h; ++i) {
+        lines[i] = &image.data[0] + (i + y) * pitch + x;
+    }
+
+    png_write_image(png_ptr, &lines[0]);
+    png_write_end(png_ptr, info_ptr);
+
+    png_destroy_write_struct(&png_ptr, &info_ptr);
+    return 0;
 }
 
 //----------------------------------------------------------------------------
@@ -687,125 +821,9 @@ int ConvertRgb(const char *file, int rgbe)
 //----------------------------------------------------------------------------
 
 /**
-**  Count used mega tiles for map.
-*/
-int CountUsedTiles(const unsigned char *map, const unsigned char *mega,
-                   int *map2tile)
-{
-
-    //FIXME: maybe delete this function since it doesn't seem to be called from anywhere
-	int i;
-	int j;
-	int used;
-    const unsigned char *tp;
-	int img2tile[0x9E0];
-
-	memset(map2tile, 0, sizeof(map2tile));
-
-	//
-	//  Build conversion table.
-	//
-	for (i = 0; i < 0x9E; ++i) {
-		tp = map + i * 42;
-        //		printf("%02X:", i);
-		for (j = 0; j < 0x10; ++j) {
-            //			printf("%04X ", AccessLE16(tp + j * 2));
-			map2tile[(i << 4) | j] = AccessLE16(tp + j * 2);
-		}
-        //		printf("\n");
-	}
-
-	//
-	//  Mark all used mega tiles.
-	//
-	used = 0;
-	for (i = 0; i < 0x9E0; ++i) {
-		if (!map2tile[i]) {
-			continue;
-		}
-		for (j = 0; j < used; ++j) {
-			if (img2tile[j] == map2tile[i]) {
-				break;
-			}
-		}
-		if (j == used) {
-			//
-			//  Check unique mega tiles.
-			//
-			for (j = 0; j < used; ++j) {
-				if (!memcmp(mega + img2tile[j] * 32, mega + map2tile[i] * 32, 32)) {
-					break;
-				}
-			}
-			if (j == used) {
-				img2tile[used++] = map2tile[i];
-			}
-		}
-	}
-    //	printf("Used mega tiles %d\n", used);
-#if 0
-	for (i = 0; i < used; ++i) {
-		if (!(i % 16)) {
-			printf("\n");
-		}
-        printf("%3d ", img2tile[i]);
-	}
-	printf("\n");
-#endif
-
-	return used;
-}
-
-/**
-**  Convert for ccl.
-*/
-static void SaveCCL(char *name, unsigned char *map __attribute__((unused)),
-                    const int *map2tile)
-{
-	int i;
-    char *cp;
-    FILE *f;
-	char file[8192] = {'\0'};
-	char tileset[8192] = {'\0'};
-
-	f = stdout;
-	// FIXME: open file!
-
-	// remove leading path
-	if ((cp = strrchr(name, '/'))) {
-		++cp;
-	} else {
-        cp = (char *)name;
-	}
-	strcpy(file, cp);
-	strcpy(tileset, cp);
-	// remove suffix
-	if ((cp = strrchr(tileset, '.'))) {
-		*cp = '\0';
-	}
-
-	fprintf(f, "(tileset Tileset%c%s \"%s\" \"%s\"\n",
-            toupper(*tileset), tileset + 1, tileset, file);
-
-	fprintf(f, "  #(");
-	for (i = 0; i < 0x9E0; ++i) {
-		if (i & 15) {
-			fprintf(f, " ");
-		} else if (i) {
-			fprintf(f, "\t; %03X\n	", i - 16);
-		}
-		fprintf(f, "%3d", map2tile[i]);
-	}
-
-	fprintf(f, "  ))\n");
-
-	// fclose(f);
-}
-
-/**
 **  Decode a minitile into the image.
 */
-void DecodeMiniTile(unsigned char *image, int ix, int iy, int iadd,
+void DecodeMiniTile(Image &image, int ix, int iy, int iadd,
                     unsigned char *mini, int index, int flipx, int flipy)
 {
 	static const int flip[] = {
@@ -825,13 +843,11 @@ void DecodeMiniTile(unsigned char *image, int ix, int iy, int iadd,
 /**
 **  Convert tiles into image.
 */
-unsigned char *ConvertTile(unsigned char *mini, const unsigned char *mega, int msize,
-                           const unsigned char *map __attribute__((unused)), int *wp, int *hp)
+Image ConvertTile(unsigned char *mini, const unsigned char *mega, int msize)
 {
-    unsigned char *image;
     const unsigned short *mp;
-	int height;
-	int width;
+    size_t height;
+    size_t width;
 	int i;
 	int x;
 	int y;
@@ -844,8 +860,7 @@ unsigned char *ConvertTile(unsigned char *mini, const unsigned char *mega, int m
 	width = TILE_PER_ROW * 32;
 	height = ((numtiles + TILE_PER_ROW - 1) / TILE_PER_ROW) * 32;
     //	printf("Image %dx%d\n", width, height);
-	image = (unsigned char *)malloc(height * width);
-	memset(image, 0, height * width);
+    Image image{height, width};
 
 	for (i = 0; i < numtiles; ++i) {
 		//mp = (const unsigned short*)(mega + img2tile[i] * 32);
@@ -853,9 +868,9 @@ unsigned char *ConvertTile(unsigned char *mini, const unsigned char *mega, int m
 		if (i < 16) {  // fog of war
 			for (y = 0; y < 32; ++y) {
 				offset = i * 32 * 32 + y * 32;
-				memcpy(image + (i % TILE_PER_ROW) * 32 +
-                       (((i / TILE_PER_ROW) * 32) + y) * width,
-                       mini + offset, 32);
+                std::memcpy(image.ptr() + (i % TILE_PER_ROW) * 32 +
+                            (((i / TILE_PER_ROW) * 32) + y) * width,
+                            mini + offset, 32);
 			}
 		} else {  // normal tile
 			for (y = 0; y < 4; ++y) {
@@ -869,9 +884,6 @@ unsigned char *ConvertTile(unsigned char *mini, const unsigned char *mega, int m
 		}
 	}
 
-	*wp = width;
-	*hp = height;
-
 	return image;
 }
 
@@ -884,9 +896,6 @@ int ConvertTileset(const char *file, int pale, int mege, int mine, int mape)
     unsigned char *megp;
     unsigned char *minp;
     unsigned char *mapp;
-    unsigned char *image;
-	int w;
-	int h;
 	size_t megl;
     fs::path buf{};
 
@@ -896,7 +905,7 @@ int ConvertTileset(const char *file, int pale, int mege, int mine, int mape)
 	mapp = ExtractEntry(ArchiveOffsets[mape], NULL);
 
     //	printf("%s:\t", file);
-	image = ConvertTile(minp, megp, megl, mapp, &w, &h);
+    Image image = ConvertTile(minp, megp, megl);
 
 	free(megp);
 	free(minp);
@@ -908,9 +917,8 @@ int ConvertTileset(const char *file, int pale, int mege, int mine, int mape)
     buf /= file;
     buf.replace_extension(".png");
 	CheckPath(buf);
-	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
+    SavePNG(buf, image, palp, 1);
 
-	free(image);
 	free(palp);
 
 	return 0;
@@ -1024,20 +1032,19 @@ void DecodeGfuEntry(int index, unsigned char *start,
 /**
 **  Convert graphics into image.
 */
-unsigned char *ConvertGraphic(int gfx, unsigned char *bp, int *wp, int *hp,
-                              unsigned char *bp2, int start2)
+Image ConvertGraphic(int gfx, unsigned char *bp,
+                     unsigned char *bp2, int start2)
 {
-	int i;
-	int count;
-	int length;
-	int max_width;
-	int max_height;
-	int minx;
-	int miny;
-	int best_width;
-	int best_height;
-    unsigned char *image;
-	int IPR;
+    size_t i;
+    size_t count;
+    size_t length;
+    size_t max_width;
+    size_t max_height;
+    size_t minx;
+    size_t miny;
+    size_t best_width;
+    size_t best_height;
+    size_t IPR;
 
 	// Init pointer to 2nd animation
 	if (bp2) {
@@ -1132,40 +1139,33 @@ unsigned char *ConvertGraphic(int gfx, unsigned char *bp, int *wp, int *hp,
 		length = count;
 	}
 
-	image = (unsigned char *)malloc(best_width * best_height * length);
+    //  Image: 0, 1, 2, 3, 4,
+    //         5, 6, 7, 8, 9, ...
+    // Set all to transparent.
+    Image image{best_height *(length / IPR),	best_width * IPR};
+    image.fill(255);
 
-	//  Image: 0, 1, 2, 3, 4,
-	//         5, 6, 7, 8, 9, ...
-	if (!image) {
-		printf("Can't allocate image\n");
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
-	// Set all to transparent.
-	memset(image, 255, best_width * best_height * length);
 
 	if (gfx) {
 		for (i = 0; i < count; ++i) {
 			// Hardcoded support for worker with resource repairing
 			if (i >= start2 && bp2) {
 				DecodeGfxEntry(i, bp2,
-                               image + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
+                               image.ptr() + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
                                minx, miny, best_width * IPR);
 			} else {
 				DecodeGfxEntry(i, bp,
-                               image + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
+                               image.ptr() + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
                                minx, miny, best_width * IPR);
 			}
 		}
 	} else {
 		for (i = 0; i < count; ++i) {
 			DecodeGfuEntry(i, bp,
-                           image + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
+                           image.ptr() + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
                            minx, miny, best_width * IPR);
 		}
 	}
-
-	*wp = best_width * IPR;
-	*hp = best_height * (length / IPR);
 
 	return image;
 }
@@ -1178,9 +1178,7 @@ int ConvertGfx(const char *file, int pale, int gfxe, int gfxe2, int start2)
     unsigned char *palp;
     unsigned char *gfxp;
     unsigned char *gfxp2;
-    unsigned char *image;
-	int w;
-	int h;
+
 	char buf[1024];
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
@@ -1191,7 +1189,7 @@ int ConvertGfx(const char *file, int pale, int gfxe, int gfxe2, int start2)
 		gfxp2 = NULL;
 	}
 
-	image = ConvertGraphic(1, gfxp, &w, &h, gfxp2, start2);
+    auto image = ConvertGraphic(1, gfxp, gfxp2, start2);
 
 	if (gfxp2) {
 		free(gfxp2);
@@ -1202,9 +1200,8 @@ int ConvertGfx(const char *file, int pale, int gfxe, int gfxe2, int start2)
 
     sprintf(buf, "%s/%s/%s.png", Dir.c_str(), GRAPHICS_PATH, file);
 	CheckPath(buf);
-	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
+    SavePNG(buf, image, palp, 1);
 
-	free(image);
 	free(palp);
 
 	return 0;
@@ -1217,24 +1214,22 @@ int ConvertGfu(const char *file, int pale, int gfue)
 {
     unsigned char *palp;
     unsigned char *gfup;
-    unsigned char *image;
-	int w;
-	int h;
-	char buf[8192] = {'\0'};
+    fs::path buf;
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	gfup = ExtractEntry(ArchiveOffsets[gfue], NULL);
 
-	image = ConvertGraphic(0, gfup, &w, &h, NULL, 0);
+    auto image = ConvertGraphic(0, gfup, NULL, 0);
 
 	free(gfup);
 	ConvertPalette(palp);
-
-    sprintf(buf, "%s/%s/%s.png", Dir.c_str(), GRAPHICS_PATH, file);
+    buf = Dir;
+    buf /= GRAPHICS_PATH;
+    buf /= file;
+    buf.replace_extension(".png");
 	CheckPath(buf);
-	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
+    SavePNG(buf, image, palp, 1);
 
-	free(image);
 	free(palp);
 
 	return 0;
@@ -1247,17 +1242,17 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 {
     unsigned char *palp;
     unsigned char *gfup;
-    unsigned char *image;
-	int w;
-	int h;
-	char buf[8192] = {'\0'};
+    size_t w;
+    size_t h;
 	int i;
 	const GroupedGraphic *gg;
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	gfup = ExtractEntry(ArchiveOffsets[gfue], NULL);
 
-	image = ConvertGraphic(0, gfup, &w, &h, NULL, 0);
+    auto image = ConvertGraphic(0, gfup, NULL, 0);
+    w = image.width;
+    h = image.height;
 
 	free(gfup);
 	ConvertPalette(palp);
@@ -1276,13 +1271,16 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 			palp = ExtractEntry(ArchiveOffsets[14], NULL);
 			ConvertPalette(palp);
 		}
-
-        sprintf(buf, "%s/%s/%s/%s.png", Dir.c_str(), GRAPHICS_PATH, path, gg->Name);
+        fs::path buf{};
+        buf = Dir;
+        buf /= GRAPHICS_PATH;
+        buf /= path;
+        buf /= gg->Name;
+        buf.replace_extension(".png");
 		CheckPath(buf);
-		SavePNG(buf, image, gg->X, gg->Y, gg->Width, gg->Height, w, palp, 1);
+        SavePNG(buf, image, gg->X, gg->Y, gg->Width, gg->Height, image.width, palp, 1);
 	}
 
-	free(image);
 	free(palp);
 
 	return 0;
@@ -1424,7 +1422,7 @@ void ConvertFilePuds(const char **pudlist)
 /**
 **  Convert font into image.
 */
-unsigned char *ConvertFnt(unsigned char *start, int *wp, int *hp)
+Image ConvertFnt(unsigned char *start)
 {
 	int i;
 	int count;
@@ -1432,17 +1430,14 @@ unsigned char *ConvertFnt(unsigned char *start, int *wp, int *hp)
 	int max_height;
 	int width;
 	int height;
-	int w;
-	int h;
 	int xoff;
 	int yoff;
     unsigned char *bp;
     unsigned char *dp;
-    unsigned char *image;
-    unsigned *offsets;
-	int image_width;
-	int image_height;
+    size_t image_width;
+    size_t image_height;
 	int IPR;
+    int h; int w;
 
 	bp = start + 5;  // skip "FONT "
 	count = FetchByte(bp);
@@ -1463,18 +1458,15 @@ unsigned char *ConvertFnt(unsigned char *start, int *wp, int *hp)
     //	printf("Font: count %d max-width %2d max-height %2d\n",
     //		count, max_width, max_height);
 
-	offsets = (unsigned *)malloc(count * sizeof(uint32_t));
+    std::vector<uint32_t> offsets;
+    offsets.resize(count);
 	for (i = 0; i < count; ++i) {
 		offsets[i] = FetchLE32(bp);
         //		printf("%03d: offset %d\n", i, offsets[i]);
 	}
 
-	image = (unsigned char *)malloc(image_width * image_height);
-	if (!image) {
-		printf("Can't allocate image\n");
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
-	memset(image, 255, image_width * image_height);
+    Image image{image_height, image_width};
+    image.fill(255);
 
 	for (i = 0; i < count; ++i) {
 		if (!offsets[i]) {
@@ -1490,7 +1482,7 @@ unsigned char *ConvertFnt(unsigned char *start, int *wp, int *hp)
         //		printf("%03d: width %d height %d xoff %d yoff %d\n",
         //			i, width, height, xoff, yoff);
 
-		dp = image + (i % IPR) * max_width + (i / IPR) * image_width * max_height;
+        dp = image.ptr() + (i % IPR) * max_width + (i / IPR) * image_width * max_height;
 		dp += xoff + yoff * image_width;
 		h = w = 0;
 		bool toBreak = false;
@@ -1525,10 +1517,6 @@ unsigned char *ConvertFnt(unsigned char *start, int *wp, int *hp)
 		}
 	}
 
-	free(offsets);
-
-	*wp = image_width;
-	*hp = image_height;
 
 	return image;
 }
@@ -1536,8 +1524,10 @@ unsigned char *ConvertFnt(unsigned char *start, int *wp, int *hp)
 /**
 **  Fix fonts for Russian SPK version.
 */
-void FixFont(const char *file, unsigned char *image, int w,	int h)
+void FixFont(Image &image)
 {
+    size_t w = image.width;
+    size_t h = image.height;
 	const int fontWidth = w / 15;
 	const int fontHeight = h / 14;
 	// First block of 3 lowercase letters at 168,168
@@ -1573,7 +1563,6 @@ int ConvertFont(const char *file, int pale, int fnte)
 {
     unsigned char *palp;
     unsigned char *fntp;
-    unsigned char *image;
 	int w;
 	int h;
     fs::path buf{};
@@ -1581,7 +1570,7 @@ int ConvertFont(const char *file, int pale, int fnte)
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	fntp = ExtractEntry(ArchiveOffsets[fnte], NULL);
 
-	image = ConvertFnt(fntp, &w, &h);
+    auto image = ConvertFnt(fntp);
 
 	free(fntp);
 	ConvertPalette(palp);
@@ -1589,17 +1578,16 @@ int ConvertFont(const char *file, int pale, int fnte)
     buf = Dir;
     buf /= FONT_PATH;
     buf /= file;
-    buf.replace_filename(".png");
+    buf.replace_extension(".png");
 	CheckPath(buf);
 	if (!strcmp(file, "game")) {
 		game_font_width = w / 15;
 	}
 	if (CDType & CD_RUSSIAN) {
-		FixFont(file, image, w, h);
+        FixFont(image);
 	}
-	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
+    SavePNG(buf, image, palp, 1);
 
-	free(image);
 	free(palp);
 
 	return 0;
@@ -1612,32 +1600,20 @@ int ConvertFont(const char *file, int pale, int fnte)
 /**
 **  Convert image into image.
 */
-unsigned char *ConvertImg(unsigned char *bp, int *wp, int *hp)
+Image ConvertImg(unsigned char *bp)
 {
-	int width;
-	int height;
-    unsigned char *image;
+    size_t width;
+    size_t height;
 
 	width = FetchLE16(bp);
 	height = FetchLE16(bp);
 
     //	printf("Image: width %3d height %3d\n", width, height);
 
-	image = (unsigned char *)malloc(width * height);
-	if (!image) {
-		printf("Can't allocate image\n");
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
-	memcpy(image, bp, width * height);
+    Image image{height, width};
+    std::memcpy(&image[0], bp, image.data.size());
 
-	*wp = width;
-	*hp = height;
-
-	if (!*wp || !*hp) {
-		return NULL;
-	} else {
-		return image;
-	}
+    return image;
 }
 
 /**
@@ -1649,28 +1625,24 @@ unsigned char *ConvertImg(unsigned char *bp, int *wp, int *hp)
 **  @param nw     new image width
 **  @param nh     new image height
 */
-void ResizeImage(unsigned char **image, int ow, int oh, int nw, int nh)
+Image ResizeImage(const Image &image, size_t nw, size_t nh)
 {
-	int i;
-	int j;
-	unsigned char *data;
-	int x;
 
-	if (ow == nw && nh == oh) {
-		return;
+
+    if (image.width == nw && nh == image.height) {
+        return image;
 	}
+    Image out{nh, nw};
+    out.fill(0);
 
-	data = (unsigned char *)malloc(nw * nh);
-	x = 0;
-	for (i = 0; i < nh; ++i) {
-		for (j = 0; j < nw; ++j) {
-            data[x] = ((unsigned char *) * image)[i * oh / nh * ow + j * ow / nw];
+    size_t x = 0;
+    for (size_t i = 0; i < nh; ++i) {
+        for (size_t j = 0; j < nw; ++j) {
+            out[x] = image [i * image.height / nh * image.width + j * image.width / nw];
 			++x;
 		}
 	}
-
-	free(*image);
-	*image = data;
+    return out;
 }
 
 /**
@@ -1680,10 +1652,6 @@ int ConvertImage(const char *file, int pale, int imge, int nw, int nh)
 {
     unsigned char *palp;
     unsigned char *imgp;
-    unsigned char *image;
-	int w;
-	int h;
-	char buf[8192] = {'\0'};
 
 	// Workaround for MAC expansion CD
 	if (CDType & CD_MAC) {
@@ -1701,28 +1669,25 @@ int ConvertImage(const char *file, int pale, int imge, int nw, int nh)
 	}
 	imgp = ExtractEntry(ArchiveOffsets[imge], NULL);
 
-	image = ConvertImg(imgp, &w, &h);
+    auto image = ConvertImg(imgp);
 
-	if (!image) {
-		printf("Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n",
-               file, pale, imge, nw, nh, CDType & CD_MAC);
-		error("Archive version error", "This version of the CD is not supported");
-	}
+
 	free(imgp);
 	ConvertPalette(palp);
 
-    sprintf(buf, "%s/%s/%s.png", Dir.c_str(), GRAPHIC_PATH, file);
+    fs::path buf;
+    buf = Dir;
+    buf /= GRAPHIC_PATH;
+    buf /= file;
+    buf.replace_extension(".png");
 	CheckPath(buf);
 
 	// Only resize if parameters 3 and 4 are non-zero
 	if (nw && nh) {
-		ResizeImage(&image, w, h, nw, nh);
-		w = nw;
-		h = nh;
+        image = ResizeImage(image, nw, nh);
 	}
-	SavePNG(buf, image, 0, 0, w, h, w, palp, 0);
+    SavePNG(buf, image, palp, 0);
 
-	free(image);
 	if (pale != 27 || imge != 28) {
 		free(palp);
 	}
@@ -1737,14 +1702,12 @@ int ConvertImage(const char *file, int pale, int imge, int nw, int nh)
 /**
 **  Convert cursor into image.
 */
-unsigned char *ConvertCur(unsigned char *bp, int *wp, int *hp)
+Image ConvertCur(unsigned char *bp)
 {
-	int i;
 	int hotx;
 	int hoty;
-	int width;
-	int height;
-    unsigned char *image;
+    size_t width;
+    size_t height;
 
 	hotx = FetchLE16(bp);
 	hoty = FetchLE16(bp);
@@ -1754,17 +1717,13 @@ unsigned char *ConvertCur(unsigned char *bp, int *wp, int *hp)
     //	printf("Cursor: hotx %d hoty %d width %d height %d\n",
     //		hotx, hoty, width, height);
 
-	image = (unsigned char *)malloc(width * height);
-	if (!image) {
-		printf("Can't allocate image\n");
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
-	for (i = 0; i < width * height; ++i) {
+    Image image{height, width};
+
+    for (size_t i = 0; i < width * height; ++i) {
 		image[i] = bp[i] ? bp[i] : 255;
 	}
 
-	*wp = width;
-	*hp = height;
+
 
 	return image;
 }
@@ -1776,9 +1735,6 @@ int ConvertCursor(const char *file, int pale, int cure)
 {
     unsigned char *palp;
     unsigned char *curp;
-    unsigned char *image;
-	int w;
-	int h;
     fs::path buf{};
 
     if (pale == 27 && cure == 314 && Pal27) {  // Credits arrow (Blue arrow NW)
@@ -1788,7 +1744,7 @@ int ConvertCursor(const char *file, int pale, int cure)
 	}
 	curp = ExtractEntry(ArchiveOffsets[cure], NULL);
 
-	image = ConvertCur(curp, &w, &h);
+    auto image = ConvertCur(curp);
 
 	free(curp);
 	ConvertPalette(palp);
@@ -1797,9 +1753,8 @@ int ConvertCursor(const char *file, int pale, int cure)
     buf /= file;
     buf.replace_extension(".png");
 	CheckPath(buf);
-	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
+    SavePNG(buf, image, palp, 1);
 
-	free(image);
 	if (pale != 27 || cure != 314 || !Pal27) {
 		free(palp);
 	}
