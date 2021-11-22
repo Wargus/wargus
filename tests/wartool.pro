@@ -10,10 +10,16 @@ SOURCES=../pud.cpp \
         ../rip_music_unix.cpp
 
 HEADERS=../wartool.h \
+    StormLib.h \
 	../endian.h \
 	../pud.h \
     ../rip_music.h \
 	../xmi2mid.h \
 
-DISTFILES +=
 
+DISTFILES +=
+DEFINES += USE_STORMLIB
+
+
+unix:!macx: LIBS +=../tests/libstorm.a -lpng -lz -lbz2
+DESTDIR=../tests/build/

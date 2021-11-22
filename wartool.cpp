@@ -106,6 +106,25 @@ void mkdir_p(const char *path)
 
 using byte = unsigned char; //maybe change to std::byte later.
 
+/**
+ * @brief The SelfClosingFile class exists to provide and RAII wrapper over a C FILE *, for interoperability with C libraries.
+ */
+class SelfClosingFile
+{
+public:
+    SelfClosingFile(const std::string &name, const std::string &mode)
+    {
+        fp = fopen(name.c_str(), mode.c_str());
+    }
+    ~SelfClosingFile()
+    {
+        fclose(fp);
+    }
+    operator FILE *() {return fp;}
+    operator bool()const { return fp != nullptr;}
+    FILE *fp;
+};
+
 
 //----------------------------------------------------------------------------
 
@@ -153,70 +172,51 @@ static int UnitNamesLast = 0;
 /**
 **  Check if path exists, if not make all directories.
 */
-void CheckPath(const char *path)
+void CheckPath(const fs::path &path)
 {
-    char *cp;
-    char *s;
-
-#ifdef WIN32
-	cp = _strdup(path);
-#else
-	cp = strdup(path);
-#endif
-	s = strrchr(cp, '/');
-	if (s) {
-		*s = '\0';  // remove file
-		s = cp;
-		for (;;) {  // make each path element
-			s = strchr(s, '/');
-			if (s) {
-				*s = '\0';
-			}
-#if defined(_MSC_VER) || defined(WIN32)
-			_mkdir(cp);
-#else
-			mkdir(cp, 0777);
-#endif
-			if (s) {
-				*s++ = '/';
-			} else {
-				break;
-			}
-		}
-	}
-	free(cp);
+    std::cout << "Checking path: " << path << std::endl;
+    //FIXME: Possible error here!
+    std::error_code error_code;
+    if (path.filename().empty()) {
+        fs::create_directories(path, error_code);
+    } else {
+        fs::create_directories(path.parent_path(), error_code);
+    }
+    if (error_code) {
+        std::cerr << "Error in CheckPath, could not create directories!\n" << error_code.message() << std::endl;
+    }
 }
 
 /**
 **  Given a file name that would appear in a PC archive convert it to what
 **  would appear on the Mac.
 */
-void ConvertToMac(char *filename)
+void ConvertToMac(std::string &filename)
 {
-	if (!strcmp(filename, "rezdat.war")) {
-		strcpy(filename, "War Resources");
-		return;
-	}
-	if (!strcmp(filename, "strdat.war")) {
-		strcpy(filename, "War Strings");
-		return;
-	}
-	if (!strcmp(filename, "maindat.war")) {
-		strcpy(filename, "War Data");
-		return;
-	}
-	if (!strcmp(filename, "snddat.war")) {
-		strcpy(filename, "War Music");
-		return;
-	}
-	if (!strcmp(filename, "muddat.cud")) {
-		strcpy(filename, "War Movies");
-		return;
-	}
-	if (!strcmp(filename, "sfxdat.sud")) {
-		strcpy(filename, "War Sounds");
-		return;
-	}
+    if (filename == "rezdat.war") {
+        filename = "War Resources";
+        return;
+    }
+    if (filename == "strdat.war") {
+        filename = "War Strings";
+        return;
+    }
+    if (filename == "maindat.war") {
+        filename = "War Data";
+        return;
+    }
+    if (filename == "snddat.war") {
+        filename = "War Music";
+        return;
+    }
+    if (filename == "muddat.cud") {
+        filename = "War Movies";
+        return;
+    }
+    if (filename == "sfxdat.sud") {
+        filename = "War Sounds";
+        return;
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -233,17 +233,17 @@ void ConvertToMac(char *filename)
 **  @param pal          Palette
 **  @param transparent  Image uses transparency
 */
-int SavePNG(const char *name, unsigned char *image, int x, int y, int w,
+int SavePNG(const fs::path &name, unsigned char *image, int x, int y, int w,
             int h, int pitch, unsigned char *pal, int transparent)
 {
-    FILE *fp;
+    SelfClosingFile fp{name, "wb"};
 	png_structp png_ptr;
 	png_infop info_ptr;
-    unsigned char **lines;
+    std::vector<unsigned char *> lines{};
 	int i;
 
-	if (!(fp = fopen(name, "wb"))) {
-		printf("%s:", name);
+    if (!fp) {
+        printf("%s:", name.c_str());
 		perror("Can't open file");
 		fflush(stdout); fflush(stderr);
 		return 1;
@@ -251,20 +251,17 @@ int SavePNG(const char *name, unsigned char *image, int x, int y, int w,
 
 	png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 	if (!png_ptr) {
-		fclose(fp);
 		return 1;
 	}
 	info_ptr = png_create_info_struct(png_ptr);
 	if (!info_ptr) {
 		png_destroy_write_struct(&png_ptr, NULL);
-		fclose(fp);
 		return 1;
 	}
 
 	if (setjmp(png_jmpbuf(png_ptr))) {
 		// FIXME: must free buffers!!
 		png_destroy_write_struct(&png_ptr, &info_ptr);
-		fclose(fp);
 		return 1;
 	}
 	png_init_io(png_ptr, fp);
@@ -313,8 +310,8 @@ int SavePNG(const char *name, unsigned char *image, int x, int y, int w,
 	// set transformation
 
 	// prepare image
-	lines = (unsigned char **)malloc(h * sizeof(*lines));
-	if (!lines) {
+    lines.resize(h);
+    if (lines.size() != h) {
 		png_destroy_write_struct(&png_ptr, &info_ptr);
 		fclose(fp);
 		return 1;
@@ -324,14 +321,10 @@ int SavePNG(const char *name, unsigned char *image, int x, int y, int w,
 		lines[i] = image + (i + y) * pitch + x;
 	}
 
-	png_write_image(png_ptr, lines);
+    png_write_image(png_ptr, &lines[0]);
 	png_write_end(png_ptr, info_ptr);
 
 	png_destroy_write_struct(&png_ptr, &info_ptr);
-	fclose(fp);
-
-	free(lines);
-
 	return 0;
 }
 
@@ -633,8 +626,7 @@ unsigned char *ConvertPalette(unsigned char *pal)
 int ConvertRgb(const char *file, int rgbe)
 {
     unsigned char *rgbp;
-	char buf[8192] = {'\0'};
-    FILE *f;
+    fs::path buf{Dir};
 	int i;
 	size_t l;
 
@@ -644,42 +636,47 @@ int ConvertRgb(const char *file, int rgbe)
 	//
 	//  Generate RGB File.
 	//
-	sprintf(buf, "%s/%s/%s.rgb", Dir, TILESET_PATH, file);
+    buf /= TILESET_PATH;
+    buf /= file;
+    buf.replace_extension(".rgb");
 	CheckPath(buf);
-	f = fopen(buf, "wb");
-	if (!f) {
-		perror("");
-		printf("Can't open %s\n", buf);
-		error("Memory error", "Could not allocate enough memory to read archive.");
+    {
+        SelfClosingFile f{buf, "wb"};
+        if (!f) {
+            perror("");
+            printf("Can't open %s\n", buf.c_str());
+            error("Memory error", "Could not allocate enough memory to read archive.");
+        }
+        if (l != fwrite(rgbp, 1, l, f)) {
+            printf("Can't write %d bytes\n", (int)l);
+            fflush(stdout);
+        }
 	}
-	if (l != fwrite(rgbp, 1, l, f)) {
-		printf("Can't write %d bytes\n", (int)l);
-		fflush(stdout);
-	}
-
-	fclose(f);
 
 	//
 	//  Generate GIMP palette
 	//
-	sprintf(buf, "%s/%s/%s.gimp", Dir, TILESET_PATH, file);
+    buf = Dir;
+    buf /= TILESET_PATH;
+    buf /= file;
+    buf.replace_extension(".gimp");
 	CheckPath(buf);
-	f = fopen(buf, "wb");
-	if (!f) {
-		perror("");
-		printf("Can't open %s\n", buf);
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
-	fprintf(f, "GIMP Palette\n# Stratagus %c%s -- GIMP Palette file\n",
-            toupper(*file), file + 1);
+    {
+        SelfClosingFile f{buf, "wb"};
+        if (!f) {
+            perror("");
+            printf("Can't open %s\n", buf.c_str());
+            error("Memory error", "Could not allocate enough memory to read archive.");
+        }
+        fprintf(f, "GIMP Palette\n# Stratagus %c%s -- GIMP Palette file\n",
+                toupper(*file), file + 1);
 
-	for (i = 0; i < 256; ++i) {
-		// FIXME: insert nice names!
-		fprintf(f, "%d %d %d\t#%d\n",
-                rgbp[i * 3], rgbp[i * 3 + 1], rgbp[i * 3 + 2], i);
+        for (i = 0; i < 256; ++i) {
+            // FIXME: insert nice names!
+            fprintf(f, "%d %d %d\t#%d\n",
+                    rgbp[i * 3], rgbp[i * 3 + 1], rgbp[i * 3 + 2], i);
+        }
 	}
-
-	fclose(f);
 	free(rgbp);
 
 	return 0;
@@ -695,6 +692,8 @@ int ConvertRgb(const char *file, int rgbe)
 int CountUsedTiles(const unsigned char *map, const unsigned char *mega,
                    int *map2tile)
 {
+
+    //FIXME: maybe delete this function since it doesn't seem to be called from anywhere
 	int i;
 	int j;
 	int used;
@@ -889,7 +888,7 @@ int ConvertTileset(const char *file, int pale, int mege, int mine, int mape)
 	int w;
 	int h;
 	size_t megl;
-	char buf[8192] = {'\0'};
+    fs::path buf{};
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	megp = ExtractEntry(ArchiveOffsets[mege], &megl);
@@ -904,8 +903,10 @@ int ConvertTileset(const char *file, int pale, int mege, int mine, int mape)
 	free(mapp);
 
 	ConvertPalette(palp);
-
-	sprintf(buf, "%s/%s/%s.png", Dir, TILESET_PATH, file);
+    buf = Dir;
+    buf /= TILESET_PATH;
+    buf /= file;
+    buf.replace_extension(".png");
 	CheckPath(buf);
 	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
@@ -1199,7 +1200,7 @@ int ConvertGfx(const char *file, int pale, int gfxe, int gfxe2, int start2)
 	free(gfxp);
 	ConvertPalette(palp);
 
-	sprintf(buf, "%s/%s/%s.png", Dir, GRAPHICS_PATH, file);
+    sprintf(buf, "%s/%s/%s.png", Dir.c_str(), GRAPHICS_PATH, file);
 	CheckPath(buf);
 	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
@@ -1229,7 +1230,7 @@ int ConvertGfu(const char *file, int pale, int gfue)
 	free(gfup);
 	ConvertPalette(palp);
 
-	sprintf(buf, "%s/%s/%s.png", Dir, GRAPHICS_PATH, file);
+    sprintf(buf, "%s/%s/%s.png", Dir.c_str(), GRAPHICS_PATH, file);
 	CheckPath(buf);
 	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
@@ -1276,7 +1277,7 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 			ConvertPalette(palp);
 		}
 
-		sprintf(buf, "%s/%s/%s/%s.png", Dir, GRAPHICS_PATH, path, gg->Name);
+        sprintf(buf, "%s/%s/%s/%s.png", Dir.c_str(), GRAPHICS_PATH, path, gg->Name);
 		CheckPath(buf);
 		SavePNG(buf, image, gg->X, gg->Y, gg->Width, gg->Height, w, palp, 1);
 	}
@@ -1294,57 +1295,58 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 /**
 **  Convert pud to my format.
 */
-void ConvertPud(const char *file, int pude, bool justconvert = false)
+void ConvertPud(const fs::path file, int pude, bool justconvert = false)
 {
     unsigned char *pudp = NULL;
-	char buf[8192] = {'\0'};
-	size_t l;
+    fs::path buf{};
+    size_t l;
 
 	if (justconvert == false) {
 		pudp = ExtractEntry(ArchiveOffsets[pude], &l);
-
-		sprintf(buf, "%s/%s/%s", Dir, PUD_PATH, file);
+        buf = Dir;
+        buf /= PUD_PATH;
+        buf /= file;
 		CheckPath(buf);
+        //FIXME: Check that this makes sense.
+        // Here I am assuming that the strrchr below was to get the parent path.
+        buf = buf.parent_path();
+        // *strrchr(buf, '/') = '\0';
 
-		*strrchr(buf, '/') = '\0';
-
-		PudToStratagus(pudp, l, strrchr(file, '/') + 1, buf);
+        PudToStratagus(pudp, l, /*strrchr(file, '/') + 1-- this should be just the file part.*/ file.filename().c_str(), buf.c_str());
 	} else {
-		char pudfile[8192] = {'\0'};
-		struct stat sb;
+        fs::path pudfile{};
 		size_t filesize = 0;
-		FILE *f = NULL;
-
-		sprintf(buf, "%s/%s", Dir, file);
-		strcpy(pudfile, buf);
+        buf = Dir;
+        buf /= file;
+        pudfile = buf;
 		CheckPath(buf);
-		if (stat(buf, &sb)) {
-			printf("Can't open pud file: %s\n", buf);
+        if (!fs::exists(buf)) {
+            printf("Can't open pud file: %s\n", buf.c_str());
 			return;
 		}
-		filesize = sb.st_size;
-		f = fopen(buf, "rb");
+        filesize = fs::file_size(buf);
+        SelfClosingFile f{buf, "rb"};
 		if (!f) {
-			printf("Can't open pud file: %s\n", buf);
+            printf("Can't open pud file: %s\n", buf.c_str());
 			return;
 		}
-        pudp = (unsigned char *)malloc(filesize);
-		if (fread(pudp, 1, filesize, f) != filesize) {
-			printf("Error reading pud file: %s\n", buf);
-			free(pudp);
+        std::vector<unsigned char> pudp{}; // Really should maybe mmap this.
+        pudp.resize(filesize);
+        if (fread(&pudp[0], 1, filesize, f) != filesize) {
+            printf("Error reading pud file: %s\n", buf.c_str());
 			return;
 		}
-		fclose(f);
-		*strrchr(buf, '/') = '\0';
+        //FIXME: See Note above.
+        buf = buf.parent_path();
+        //*strrchr(buf, '/') = '\0';
 
-		PudToStratagus(pudp, filesize, strrchr(file, '/') + 1, buf);
+        PudToStratagus(&pudp[0], filesize, /*strrchr(file, '/') + 1--Similar to above*/ file.filename().c_str(), buf.c_str());
 #ifdef WIN32
 		_unlink(pudfile);
 #else
-		unlink(pudfile);
+        unlink(pudfile.c_str());
 #endif
 	}
-	free(pudp);
 }
 
 /**
@@ -1357,7 +1359,6 @@ void ConvertFilePuds(const char **pudlist)
 	char outdir[8192] = {'\0'};
 	unsigned char *puddata;
 	struct stat sb;
-	FILE *f;
 	int i;
 
 	for (i = 0; pudlist[i][0] != '\0'; ++i) {
@@ -1377,17 +1378,19 @@ void ConvertFilePuds(const char **pudlist)
 		if (stat(pudname, &sb)) {
 			continue;
 		}
-		if (!(f = fopen(pudname, "rb"))) {
-			return;
+        {
+            SelfClosingFile f{pudname, "rb"};
+            if (!f) {
+                return;
+            }
+            puddata = (unsigned char *)malloc(sb.st_size);
+            if (!puddata) {
+                return;
+            }
+            if (!fread(puddata, 1, sb.st_size, f)) {
+                return;
+            }
 		}
-		puddata = (unsigned char *)malloc(sb.st_size);
-		if (!puddata) {
-			return;
-		}
-		if (!fread(puddata, 1, sb.st_size, f)) {
-			return;
-		}
-		fclose(f);
 
 		strcpy(base, strrchr(pudlist[i], '/') + 1);
 
@@ -1399,10 +1402,10 @@ void ConvertFilePuds(const char **pudlist)
 		}
 
 		if (strstr(pudlist[i], "puds/")) {
-			sprintf(outdir, "%s/maps/%s", Dir, strstr(pudlist[i], "puds/") + 5);
+            sprintf(outdir, "%s/maps/%s", Dir.c_str(), strstr(pudlist[i], "puds/") + 5);
 			*strrchr(outdir, '/') = '\0';
 		} else {
-			sprintf(outdir, "%s/maps", Dir);
+            sprintf(outdir, "%s/maps", Dir.c_str());
 		}
 
 		strcpy(pudname, outdir);
@@ -1573,7 +1576,7 @@ int ConvertFont(const char *file, int pale, int fnte)
     unsigned char *image;
 	int w;
 	int h;
-	char buf[8192] = {'\0'};
+    fs::path buf{};
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	fntp = ExtractEntry(ArchiveOffsets[fnte], NULL);
@@ -1583,7 +1586,10 @@ int ConvertFont(const char *file, int pale, int fnte)
 	free(fntp);
 	ConvertPalette(palp);
 
-	sprintf(buf, "%s/%s/%s.png", Dir, FONT_PATH, file);
+    buf = Dir;
+    buf /= FONT_PATH;
+    buf /= file;
+    buf.replace_filename(".png");
 	CheckPath(buf);
 	if (!strcmp(file, "game")) {
 		game_font_width = w / 15;
@@ -1705,7 +1711,7 @@ int ConvertImage(const char *file, int pale, int imge, int nw, int nh)
 	free(imgp);
 	ConvertPalette(palp);
 
-	sprintf(buf, "%s/%s/%s.png", Dir, GRAPHIC_PATH, file);
+    sprintf(buf, "%s/%s/%s.png", Dir.c_str(), GRAPHIC_PATH, file);
 	CheckPath(buf);
 
 	// Only resize if parameters 3 and 4 are non-zero
@@ -1773,7 +1779,7 @@ int ConvertCursor(const char *file, int pale, int cure)
     unsigned char *image;
 	int w;
 	int h;
-	char buf[8192] = {'\0'};
+    fs::path buf{};
 
     if (pale == 27 && cure == 314 && Pal27) {  // Credits arrow (Blue arrow NW)
 		palp = Pal27;
@@ -1786,8 +1792,10 @@ int ConvertCursor(const char *file, int pale, int cure)
 
 	free(curp);
 	ConvertPalette(palp);
-
-	sprintf(buf, "%s/%s/%s.png", Dir, CURSOR_PATH, file);
+    buf = Dir;
+    buf /= CURSOR_PATH;
+    buf /= file;
+    buf.replace_extension(".png");
 	CheckPath(buf);
 	SavePNG(buf, image, 0, 0, w, h, w, palp, 1);
 
@@ -1806,21 +1814,23 @@ int ConvertCursor(const char *file, int pale, int cure)
 /**
 **  Extract Wav
 */
-int ConvertWav(const char *file, int wave)
+int ConvertWav(const fs::path &file, int wave)
 {
     unsigned char *wavp;
-	char buf[8192] = {'\0'};
+    fs::path buf{};
 	gzFile gf;
 	size_t l;
 
 	wavp = ExtractEntry(ArchiveOffsets[wave], &l);
-
-	sprintf(buf, "%s/%s/%s.wav.gz", Dir, SOUND_PATH, file);
+    buf = Dir;
+    buf /= SOUND_PATH;
+    buf /= file;
+    buf.replace_extension(".wav.gz");
 	CheckPath(buf);
-	gf = gzopen(buf, "wb9");
+    gf = gzopen(buf.c_str(), "wb9");
 	if (!gf) {
 		perror("");
-		printf("Can't open %s\n", buf);
+        printf("Can't open %s\n", buf.c_str());
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	if (l != (size_t)gzwrite(gf, wavp, l)) {
@@ -1842,25 +1852,26 @@ int ConvertWav(const char *file, int wave)
 **  Convert XMI Midi sound to GM MIDI
 */
 
-int ConvertXmi(const char *file, int xmi)
+int ConvertXmi(const fs::path &file, int xmi)
 {
     unsigned char *xmip;
     unsigned char *midp;
-	char buf[8192] = {'\0'};
-	FILE *f;
+    fs::path buf{};
 	size_t xmil;
 	size_t midl;
 
 	xmip = ExtractEntry(ArchiveOffsets[xmi], &xmil);
 	midp = TranscodeXmiToMid(xmip, xmil, &midl);
 	free(xmip);
-
-	sprintf(buf, "%s/%s/%s.mid", Dir, MUSIC_PATH, file);
+    buf = Dir;
+    buf /= MUSIC_PATH;
+    buf /= file;
+    buf.replace_extension(".mid");
 	CheckPath(buf);
-	f = fopen(buf, "wb");
+    SelfClosingFile f{buf, "wb"};
 	if (!f) {
 		perror("");
-		printf("Can't open %s\n", buf);
+        printf("Can't open %s\n", buf.c_str());
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	if (midl != fwrite(midp, 1, midl, f)) {
@@ -1869,7 +1880,6 @@ int ConvertXmi(const char *file, int xmi)
 	}
 
 	free(midp);
-	fclose(f);
 
 	return 0;
 }
@@ -1886,31 +1896,18 @@ int ConvertXmi(const char *file, int xmi)
 #if ! defined(_MSC_VER) && ! defined(WIN32)
 int CopyFile(char *from, char *to, int overwrite)
 {
-	struct stat st;
-	char *cmd;
-	int cmdlen;
-	int ret;
-
-    if (!overwrite && !stat(to, &st)) {
-		return 0;
-    }
-
-	cmdlen = strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\" ");
-	cmd = (char *)calloc(cmdlen + 1, 1);
-	if (!cmd) {
-		fprintf(stderr, "Memory error\n");
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
-
-	snprintf(cmd, cmdlen, "cp \"%s\" \"%s\"", from, to);
-	ret = system(cmd);
-	free(cmd);
-
-    if (ret != 0) {
-		return 0;
+    std::error_code ec;
+    if (overwrite) {
+        fs::copy_file(from, to, fs::copy_options::overwrite_existing, ec);
     } else {
-		return 1;
+        fs::copy_file(from, to, fs::copy_options::skip_existing, ec);
     }
+
+    if (ec) {
+        std::cerr << ec.message() << std::endl;
+        return 1;
+    }
+    return 0;
 }
 #endif
 
@@ -1941,7 +1938,7 @@ int CopyMusic(void)
 		printf("Found ripped music file \"%s\"\n", buf1);
 		fflush(stdout);
 
-        sprintf(buf2, "%s/%s/%s.%s", Dir, MUSIC_PATH, MusicNames[i].c_str(), ext);
+        sprintf(buf2, "%s/%s/%s.%s", Dir.c_str(), MUSIC_PATH, MusicNames[i].c_str(), ext);
 		CheckPath(buf2);
         if (CopyFile(buf1, buf2, 0)) {
 			++count;
@@ -1969,7 +1966,7 @@ int ConvertMusic(void)
 	int count = 0;
 
     for (i = 0; !MusicNames[i].empty(); ++i) {
-        snprintf(buf, 4095, "%s/%s/%s.wav", Dir, MUSIC_PATH, MusicNames[i].c_str());
+        snprintf(buf, 4095, "%s/%s/%s.wav", Dir.c_str(), MUSIC_PATH, MusicNames[i].c_str());
 		CheckPath(buf);
 
         if (stat(buf, &st)) {
@@ -1983,7 +1980,7 @@ int ConvertMusic(void)
 			error("Memory error", "Could not allocate enough memory to read archive.");
 		}
 
-        snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, MusicNames[i].c_str());
+        snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir.c_str(), MUSIC_PATH, MusicNames[i].c_str());
 
 		ret = system(cmd);
 
@@ -1999,7 +1996,7 @@ int ConvertMusic(void)
 	}
 	if (CDType & CD_BNE) {
         for (i = 0; !BNEMusicNames[i].empty(); ++i) {
-            sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, BNEMusicNames[i].c_str());
+            sprintf(buf, "%s/%s/%s.wav", Dir.c_str(), MUSIC_PATH, BNEMusicNames[i].c_str());
 			CheckPath(buf);
 
             if (stat(buf, &st)) {
@@ -2013,7 +2010,7 @@ int ConvertMusic(void)
 				error("Memory error", "Could not allocate enough memory to read archive.");
 			}
 
-            snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, BNEMusicNames[i].c_str());
+            snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir.c_str(), MUSIC_PATH, BNEMusicNames[i].c_str());
 
 			ret = system(cmd);
 
@@ -2054,7 +2051,7 @@ int ConvertVideo(const char *file, int video, bool justconvert = false)
 	int cmdlen;
 	char outputfile[8192] = {'\0'};
 
-    snprintf(buf, 4095, "%s/%s.smk", Dir, file);
+    snprintf(buf, 4095, "%s/%s.smk", Dir.c_str(), file);
 	CheckPath(buf);
 	if (justconvert == false) {
 		vidp = ExtractEntry(ArchiveOffsets[video], &l);
@@ -2086,9 +2083,9 @@ int ConvertVideo(const char *file, int video, bool justconvert = false)
 	}
 
 	if (CDType & CD_BNE) {
-		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640:0,setsar=1:1 \"%s/%s.ogv\"", Dir, file, Dir, file);
+        snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640:0,setsar=1:1 \"%s/%s.ogv\"", Dir.c_str(), file, Dir.c_str(), file);
 	} else {
-		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir, file, Dir, file);
+        snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir.c_str(), file, Dir.c_str(), file);
 	}
 	printf("%s\n", cmd);
 	ret = system(cmd);
@@ -2097,7 +2094,7 @@ int ConvertVideo(const char *file, int video, bool justconvert = false)
 	remove(buf);
 
 	if (ret != 0) {
-		sprintf(outputfile, "%s/%s.ogv", Dir, file);
+        sprintf(outputfile, "%s/%s.ogv", Dir.c_str(), file);
 #ifdef WIN32
 		_unlink(outputfile);
 #else
@@ -2179,7 +2176,7 @@ int ConvertText(const char *file, int txte, int ofs)
 
 	txtp = ExtractEntry(ArchiveOffsets[txte], &l);
 
-	sprintf(buf, "%s/%s/%s.txt.gz", Dir, TEXT_PATH, file);
+    sprintf(buf, "%s/%s/%s.txt.gz", Dir.c_str(), TEXT_PATH, file);
 	CheckPath(buf);
 	gf = gzopen(buf, "wb9");
 	if (!gf) {
@@ -2404,8 +2401,8 @@ int CampaignsCreate(const char *file __attribute__((unused)), int txte, int ofs)
 	for (levelno = 0; levelno < expansion / 2; ++levelno) {
 		for (race = 0; race < 2; ++race) {
 			//Open Relevant file, to write stuff too.
-			sprintf(buf, "%s/%s/%s_c2.sms", Dir, TEXT_PATH,
-                    Todo[2 * levelno + 1 + race + 5].File);
+            sprintf(buf, "%s/%s/%s_c2.sms", Dir.c_str(), TEXT_PATH,
+                    Todo[2 * levelno + 1 + race + 5].File.c_str());
 			CheckPath(buf);
 			if (!(outlevel = fopen(buf, "wb"))) {
 				printf("Cannot Write File (Skipping Level: %s)\n", buf);
@@ -2483,7 +2480,7 @@ void copyArchive(const char *partialPath)
 	char srcname[PATH_MAX] = {'\0'};
 	char tgtname[PATH_MAX] = {'\0'};
 
-	strcpy(tgtname, Dir);
+    strcpy(tgtname, Dir.c_str());
 	strcat(tgtname, SLASH);
 	if (CDType & CD_EXPANSION && !(CDType & CD_BNE)) {
 		// expansion CD, copy the archive in a subdir
@@ -2790,13 +2787,13 @@ int main(int argc, char **argv)
 	}
 
 	if (argc == 3) {
-		Dir = argv[a + 1];
+        Dir = argv[a + 1];
 	} else {
 		Dir = "data";
 	}
 	teeStdout();
 
-	sprintf(buf, "%s/extracted", Dir);
+    sprintf(buf, "%s/extracted", Dir.c_str());
 	f = fopen(buf, "r");
 	if (f) {
 		char version[20];
@@ -2806,7 +2803,7 @@ int main(int argc, char **argv)
         }
         fclose(f);
 		if (len != 0 && strcmp(version, VERSION) == 0) {
-			printf("Note: Data is already extracted in Dir \"%s\" with this version of wartool\n", Dir);
+            printf("Note: Data is already extracted in Dir \"%s\" with this version of wartool\n", Dir.c_str());
 			fflush(stdout);
 		}
 	}
@@ -2941,13 +2938,13 @@ int main(int argc, char **argv)
 #endif
 	}
 
-	printf("Extract from \"%s\" to \"%s\"\n", ArchiveDir, Dir);
+    printf("Extract from \"%s\" to \"%s\"\n", ArchiveDir, Dir.c_str());
 	printf("Please be patient, the data may take a couple of minutes to extract...\n");
 	fflush(stdout);
 
 	for (u = 0; u < sizeof(Todo) / sizeof(*Todo); ++u) {
 		if (CDType & CD_MAC) {
-			strcpy(filename, Todo[u].File);
+            std::string filename = Todo[u].File;
 			ConvertToMac(filename);
 			Todo[u].File = filename;
 		}
@@ -2975,12 +2972,12 @@ int main(int argc, char **argv)
 			case F:
 				if (CDType & CD_BNE) {
 					for (int i = 0; i < sizeof(BNEReplaceTable) / sizeof(*BNEReplaceTable) ; i += 2) {
-						if (!strcmp(BNEReplaceTable[i], Todo[u].File)) {
-							Todo[u].File = BNEReplaceTable[i + 1];
+                        if (!strcmp(BNEReplaceTable[i], Todo[u].File.c_str())) {
+                            Todo[u].File = BNEReplaceTable[i + 1];
 							if (CDType & CD_BNE_CAPS) {
 								Todo[u].File = BNEReplaceTableCaps[i + 1];
 							} else if (CDType & CD_BNE_UPPER) {
-								strcpy(filename, Todo[u].File);
+                                strcpy(filename, Todo[u].File.c_str());
 								while (filename[i]) {
 									filename[i] = toupper(filename[i]);
 									++i;
@@ -2992,21 +2989,21 @@ int main(int argc, char **argv)
 					}
 				} else if (CDType & CD_UPPER) {
 					int i = 0;
-					strcpy(filename, Todo[u].File);
+                    strcpy(filename, Todo[u].File.c_str());
 					while (filename[i]) {
 						filename[i] = toupper(filename[i]);
 						++i;
 					}
 					Todo[u].File = filename;
 				}
-				sprintf(buf, "%s/%s", ArchiveDir, Todo[u].File);
+                sprintf(buf, "%s/%s", ArchiveDir, Todo[u].File.c_str());
 				printf("Archive \"%s\"\n", buf);
 				fflush(stdout);
 				if (ArchiveBuffer) {
 					CloseArchive();
 				}
 				OpenArchive(buf, Todo[u].Arg1);
-				copyArchive(Todo[u].File);
+                copyArchive(Todo[u].File.c_str());
 				break;
 			case Q:
 				if (!(CDType & CD_BNE)) {
@@ -3019,7 +3016,7 @@ int main(int argc, char **argv)
 				memset(mpqfile, 0, 8192);
 				memset(extract, 0, 8192);
 				if (Todo[u].Arg1 == 1) { // local archive
-					sprintf(mpqfile, "%s/%s", Dir, Todo[u].MPQFile);
+                    sprintf(mpqfile, "%s/%s", Dir.c_str(), Todo[u].MPQFile);
 					if (Todo[u].ArcFile == NULL) {
 						// delete
 						printf("deleting temporary MPQ file \"%s\"\n", mpqfile);
@@ -3091,7 +3088,7 @@ int main(int argc, char **argv)
 						sprintf(mpqfile, "%s/%s not found!", ArchiveDir, Todo[u].MPQFile);
 						error(mpqfile, "I also tried different cases and tried both .mpq and .exe extensions\n");
 					}
-					printf("%s from MPQ file \"%s\"\n", Todo[u].File, mpqfile);
+                    printf("%s from MPQ file \"%s\"\n", Todo[u].File.c_str(), mpqfile);
 					// strip ArchiveDir and slash before copying
 #ifdef WIN32
                     char *copyfile = _strdup(mpqfile);
@@ -3101,7 +3098,7 @@ int main(int argc, char **argv)
 					copyfile = copyfile + strlen(ArchiveDir);
 					copyArchive(copyfile);
 				}
-				sprintf(extract, "%s/%s", Dir, Todo[u].File);
+                sprintf(extract, "%s/%s", Dir.c_str(), Todo[u].File.c_str());
 				if (Todo[u].Arg2 == 1) { // compress
 					sprintf(extract, "%s.gz", extract);
 				}
@@ -3116,44 +3113,44 @@ int main(int argc, char **argv)
 				}
 				if (Todo[u].Arg2 == 2) { // convert videos
 					if (video) {
-						ConvertVideo(Todo[u].File, Todo[u].Arg1, true);
+                        ConvertVideo(Todo[u].File.c_str(), Todo[u].Arg1, true);
 					}
 				}
 				if (Todo[u].Arg2 == 4) { // convert videos
-					ConvertPud(Todo[u].File, 0, true);
+                    ConvertPud(Todo[u].File.c_str(), 0, true);
 				}
 #endif
 				break;
 			case R:
-				ConvertRgb(Todo[u].File, Todo[u].Arg1);
+                ConvertRgb(Todo[u].File.c_str(), Todo[u].Arg1);
 				break;
 			case T:
-				ConvertTileset(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2,
+                ConvertTileset(Todo[u].File.c_str(), Todo[u].Arg1, Todo[u].Arg2,
                                Todo[u].Arg3, Todo[u].Arg4);
 				break;
 			case G:
-				ConvertGfx(ParseString(Todo[u].File), Todo[u].Arg1, Todo[u].Arg2,
+                ConvertGfx(ParseString(Todo[u].File.c_str()), Todo[u].Arg1, Todo[u].Arg2,
                            Todo[u].Arg3, Todo[u].Arg4);
 				break;
 			case U:
-				ConvertGfu(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+                ConvertGfu(Todo[u].File.c_str(), Todo[u].Arg1, Todo[u].Arg2);
 				break;
 			case D:
-				ConvertGroupedGfu(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2,
+                ConvertGroupedGfu(Todo[u].File.c_str(), Todo[u].Arg1, Todo[u].Arg2,
                                   Todo[u].Arg3);
 				break;
 			case P:
 				ConvertPud(Todo[u].File, Todo[u].Arg1);
 				break;
 			case N:
-				ConvertFont(Todo[u].File, 2, Todo[u].Arg1);
+                ConvertFont(Todo[u].File.c_str(), 2, Todo[u].Arg1);
 				break;
 			case I:
-				ConvertImage(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2,
+                ConvertImage(Todo[u].File.c_str(), Todo[u].Arg1, Todo[u].Arg2,
                              Todo[u].Arg3, Todo[u].Arg4);
 				break;
 			case C:
-				ConvertCursor(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+                ConvertCursor(Todo[u].File.c_str(), Todo[u].Arg1, Todo[u].Arg2);
 				break;
 			case M:
 				ConvertXmi(Todo[u].File, Todo[u].Arg1);
@@ -3162,18 +3159,18 @@ int main(int argc, char **argv)
 				ConvertWav(Todo[u].File, Todo[u].Arg1);
 				break;
 			case X:
-				ConvertText(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+                ConvertText(Todo[u].File.c_str(), Todo[u].Arg1, Todo[u].Arg2);
 				break;
 			case S:
-				SetupNames(Todo[u].File, Todo[u].Arg1);
+                SetupNames(Todo[u].File.c_str(), Todo[u].Arg1);
 				break;
 			case V:
 				if (video) {
-					ConvertVideo(Todo[u].File, Todo[u].Arg1);
+                    ConvertVideo(Todo[u].File.c_str(), Todo[u].Arg1);
 				}
 				break;
 			case L:
-				CampaignsCreate(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+                CampaignsCreate(Todo[u].File.c_str(), Todo[u].Arg1, Todo[u].Arg2);
 				break;
 			default:
 				break;
@@ -3186,7 +3183,7 @@ int main(int argc, char **argv)
 	CopyMusic();
 
 	if (rip && !(CDType & CD_BNE)) {
-		sprintf(buf, "%s/%s/", Dir, MUSIC_PATH);
+        sprintf(buf, "%s/%s/", Dir.c_str(), MUSIC_PATH);
 		CheckPath(buf);
 		rip = (RipMusic(expansion_cd, ArchiveDir, buf) == 0);
 	}
@@ -3205,7 +3202,7 @@ int main(int argc, char **argv)
 		--UnitNamesLast;
 	}
 
-	sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
+    sprintf(buf, "%s/scripts/wc2-config.lua", Dir.c_str());
 	CheckPath(buf);
 	f = fopen(buf, "w");
 
@@ -3234,7 +3231,7 @@ int main(int argc, char **argv)
 	fprintf(f, "wargus.game_font_width = %d\n", game_font_width);
 	fclose(f);
 
-	sprintf(buf, "%s/extracted", Dir);
+    sprintf(buf, "%s/extracted", Dir.c_str());
 	f = fopen(buf, "w");
 
 	if (!f) {
@@ -3246,12 +3243,12 @@ int main(int argc, char **argv)
 	fputs(VERSION, f);
 	fclose(f);
 
-	sprintf(buf, "%s/scripts/translate/ru_RU.po", Dir);
+    sprintf(buf, "%s/scripts/translate/ru_RU.po", Dir.c_str());
 	FixTranslation(buf);
-	sprintf(buf, "%s/scripts/translate/stratagus-ru.po", Dir);
+    sprintf(buf, "%s/scripts/translate/stratagus-ru.po", Dir.c_str());
 	FixTranslation(buf);
 
-	sprintf(buf, "%s/%s", Dir, REEXTRACT_MARKER_FILE);
+    sprintf(buf, "%s/%s", Dir.c_str(), REEXTRACT_MARKER_FILE);
 	f = fopen(buf, "w");
 	fputs("data copied for re-extraction", f);
 	fclose(f);
