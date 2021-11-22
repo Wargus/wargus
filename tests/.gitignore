@@ -1,3 +1,6 @@
+#C headers for now
+*.h
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
