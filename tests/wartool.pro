@@ -12,6 +12,7 @@ SOURCES=../pud.cpp \
 HEADERS=../wartool.h \
 	../endian.h \
 	../pud.h \
+    ../rip_music.h \
 	../xmi2mid.h \
 
 DISTFILES +=
