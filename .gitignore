@@ -1,5 +1,5 @@
 #Ignore Visual Studio project files
-build/
+**/build/
 .vscode/*
 **/.DS_Store
 *.slo

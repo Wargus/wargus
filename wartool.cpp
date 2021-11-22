@@ -36,7 +36,7 @@
 
 #include "wargus.h"
 #include "wartool.h"
-#include <stratagus-gameutils.h>
+//#include <stratagus-gameutils.h>
 
 #if defined(_MSC_VER) || defined(WIN32)
 #include <windows.h>
@@ -67,29 +67,70 @@
 #define O_BINARY 0
 #endif
 
+#include <string>
+#include <iostream>
+
+//FIXME: Remove these later.
+/* Some workarounds to avoid depending on Stratagus */
+
+#include <libgen.h> //For dirname
+
+void error(const std::string &header, const std::string &message)
+{
+    std::cerr << header << ": \n" << message << std::endl;
+}
+
+#define SLASH "/"
+#if defined(USE_MAC)
+#define parentdir(x) strcpy(x, dirname(x))
+#else
+#define parentdir(x) dirname(x)
+#endif
+
+#if __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#elif __has_include(<experimental/filesystem>)
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#else
+error "Missing the <filesystem> header."
+#endif
+
+void mkdir_p(const char *path)
+{
+	fs::create_directories(path);
+}
+
+/*End of workarounds */
+
+using byte = unsigned char; //maybe change to std::byte later.
+
+
 //----------------------------------------------------------------------------
 
 /**
 **  Palette N27, for credits cursor
 */
-static unsigned char* Pal27;
+static unsigned char *Pal27;
 
 /**
 **  Original archive buffer.
 */
-static unsigned char* ArchiveBuffer;
+static unsigned char *ArchiveBuffer;
 
 /**
 **  Offsets for each entry into original archive buffer.
 */
-static unsigned char** ArchiveOffsets;
+static unsigned char **ArchiveOffsets;
 
 /**
 **  Fake empty entry
 */
 static unsigned int EmptyEntry[] = { 1, 1, 1 };
 
-static char* ArchiveDir;
+
+static char *ArchiveDir;
 
 /**
 **  What CD Type is it?
@@ -102,7 +143,7 @@ static int game_font_width;
 /**
 **  File names.
 */
-static char* UnitNames[110];
+static char *UnitNames[110];
 static int UnitNamesLast = 0;
 
 //----------------------------------------------------------------------------
@@ -112,10 +153,10 @@ static int UnitNamesLast = 0;
 /**
 **  Check if path exists, if not make all directories.
 */
-void CheckPath(const char* path)
+void CheckPath(const char *path)
 {
-	char* cp;
-	char* s;
+    char *cp;
+    char *s;
 
 #ifdef WIN32
 	cp = _strdup(path);
@@ -150,7 +191,7 @@ void CheckPath(const char* path)
 **  Given a file name that would appear in a PC archive convert it to what
 **  would appear on the Mac.
 */
-void ConvertToMac(char* filename)
+void ConvertToMac(char *filename)
 {
 	if (!strcmp(filename, "rezdat.war")) {
 		strcpy(filename, "War Resources");
@@ -192,13 +233,13 @@ void ConvertToMac(char* filename)
 **  @param pal          Palette
 **  @param transparent  Image uses transparency
 */
-int SavePNG(const char* name, unsigned char* image, int x, int y, int w,
-	int h, int pitch, unsigned char* pal, int transparent)
+int SavePNG(const char *name, unsigned char *image, int x, int y, int w,
+            int h, int pitch, unsigned char *pal, int transparent)
 {
-	FILE* fp;
+    FILE *fp;
 	png_structp png_ptr;
 	png_infop info_ptr;
-	unsigned char** lines;
+    unsigned char **lines;
 	int i;
 
 	if (!(fp = fopen(name, "wb"))) {
@@ -234,7 +275,7 @@ int SavePNG(const char* name, unsigned char* image, int x, int y, int w,
 	// prepare the file information
 #if PNG_LIBPNG_VER >= 10504
 	png_set_IHDR(png_ptr, info_ptr, w, h, 8, PNG_COLOR_TYPE_PALETTE, 0,
-				PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+                 PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 	png_set_PLTE(png_ptr, info_ptr, (png_colorp)pal, 256);
 #else
 	info_ptr->width = w;
@@ -248,8 +289,8 @@ int SavePNG(const char* name, unsigned char* image, int x, int y, int w,
 #endif
 
 	if (transparent) {
-		unsigned char* p;
-		unsigned char* end;
+        unsigned char *p;
+        unsigned char *end;
 		png_byte trans[256];
 
 		p = image + y * pitch + x;
@@ -304,13 +345,13 @@ int SavePNG(const char* name, unsigned char* image, int x, int y, int w,
 **  @param file  Archive file name
 **  @param type  Archive type requested
 */
-int OpenArchive(const char* file, int type)
+int OpenArchive(const char *file, int type)
 {
 	int f;
 	struct stat stat_buf;
-	unsigned char* buf;
-	unsigned char* cp;
-	unsigned char** op;
+    unsigned char *buf;
+    unsigned char *cp;
+    unsigned char **op;
 	int entries;
 	int i;
 
@@ -324,8 +365,8 @@ int OpenArchive(const char* file, int type)
 	if (stat(file, &stat_buf)) {
 		error("Can't stat file", file);
 	}
-//	printf("Filesize %ld %ldk\n",
-//		(long)stat_buf.st_size, stat_buf.st_size / 1024);
+    //	printf("Filesize %ld %ldk\n",
+    //		(long)stat_buf.st_size, stat_buf.st_size / 1024);
 
 	//
 	//  Read in the archive
@@ -343,15 +384,15 @@ int OpenArchive(const char* file, int type)
 
 	cp = buf;
 	i = FetchLE32(cp);
-//	printf("Magic\t%08X\t", i);
+    //	printf("Magic\t%08X\t", i);
 	if (i != 0x19) {
 		printf("Wrong magic %08x, expected %08x\n", i, 0x00000019);
 		error("Archive version error", "This version of the data is not supported");
 	}
 	entries = FetchLE16(cp);
-//	printf("Entries\t%5d\t", entries);
+    //	printf("Entries\t%5d\t", entries);
 	i = FetchLE16(cp);
-//	printf("ID\t%d\n", i);
+    //	printf("ID\t%d\n", i);
 	if (i != type) {
 		printf("Wrong type %08x, expected %08x\n", i, type);
 		error("Archive version error", "This version of the data is not supported");
@@ -360,7 +401,7 @@ int OpenArchive(const char* file, int type)
 	//
 	//  Read offsets.
 	//
-	op = (unsigned char **)malloc((entries + 1) * sizeof(unsigned char*));
+    op = (unsigned char **)malloc((entries + 1) * sizeof(unsigned char *));
 	if (!op) {
 		printf("Can't malloc %d entries\n", entries);
 		error("Memory error", "Could not allocate enough memory to read archive.");
@@ -373,7 +414,7 @@ int OpenArchive(const char* file, int type)
 			printf("Ignore entry %d in archive (invalid offset)\n", i);
 			fflush(stdout);
 		} else {
-			unsigned char* dp = op[i];
+            unsigned char *dp = op[i];
 			size_t length = FetchLE32(dp);
 			int flags = length >> 24;
 			length &= 0x00FFFFFF;
@@ -383,7 +424,7 @@ int OpenArchive(const char* file, int type)
 				fflush(stdout);
 			}
 		}
-//		printf("Offset\t%d\n", op[i]);
+        //		printf("Offset\t%d\n", op[i]);
 	}
 	op[i] = buf + stat_buf.st_size;
 
@@ -401,17 +442,17 @@ int OpenArchive(const char* file, int type)
 **
 **  @return      Pointer to uncompressed entry
 */
-unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
+unsigned char *ExtractEntry(unsigned char *cp, size_t *lenp)
 {
-	unsigned char* dp;
-	unsigned char* dest;
+    unsigned char *dp;
+    unsigned char *dest;
 	size_t uncompressed_length;
 	int flags;
 
 	uncompressed_length = FetchLE32(cp);
 	flags = uncompressed_length >> 24;
 	uncompressed_length &= 0x00FFFFFF;
-//	printf("Entry length %8d flags %02x\t", uncompressed_length, flags);
+    //	printf("Entry length %8d flags %02x\t", uncompressed_length, flags);
 
 	dp = dest = (unsigned char *)malloc(uncompressed_length);
 	if (!dest) {
@@ -421,10 +462,10 @@ unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
 
 	if (flags == 0x20) {
 		unsigned char buf[8192] = {'\0'};
-		unsigned char* ep;
+        unsigned char *ep;
 		int bi;
 
-//		printf("Compressed entry\n");
+        //		printf("Compressed entry\n");
 
 		bi = 0;
 		memset(buf, 0, sizeof(buf));
@@ -436,7 +477,7 @@ unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
 			int bflags;
 
 			bflags = FetchByte(cp);
-//			printf("Ctrl %02x ", bflags);
+            //			printf("Ctrl %02x ", bflags);
 			for (i = 0; i < 8; ++i) {
 				int j;
 				int o;
@@ -445,10 +486,10 @@ unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
 					j = FetchByte(cp);
 					*dp++ = j;
 					buf[bi++ & 0xFFF] = j;
-//					printf("=%02x", j);
+                    //					printf("=%02x", j);
 				} else {
 					o = FetchLE16(cp);
-//					printf("*%d,%d", o >> 12, o & 0xFFF);
+                    //					printf("*%d,%d", o >> 12, o & 0xFFF);
 					j = (o >> 12) + 3;
 					o &= 0xFFF;
 					while (j--) {
@@ -463,11 +504,11 @@ unsigned char* ExtractEntry(unsigned char* cp, size_t* lenp)
 				}
 				bflags >>= 1;
 			}
-//			printf("\n");
+            //			printf("\n");
 		}
 		//if (dp != ep) printf("%p,%p %d\n", dp, ep, dp - dest);
 	} else if (flags == 0x00) {
-//		printf("Uncompressed entry\n");
+        //		printf("Uncompressed entry\n");
 		memcpy(dest, cp, uncompressed_length);
 	} else {
 		printf("Unknown flags %x\n", flags);
@@ -505,19 +546,21 @@ int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName, 
 	int    nError = ERROR_SUCCESS; // Result value
 
 	// Open an archive, e.g. "d2music.mpq"
-	if(nError == ERROR_SUCCESS) {
-		if(!SFileOpenArchive(szArchiveName, 0, STREAM_FLAG_READ_ONLY, &hMpq))
+    if (nError == ERROR_SUCCESS) {
+        if (!SFileOpenArchive(szArchiveName, 0, STREAM_FLAG_READ_ONLY, &hMpq)) {
 			nError = GetLastError();
-	}
+        }
+    }
 
 	// Open a file in the archive, e.g. "data\global\music\Act1\tristram.wav"
-	if(nError == ERROR_SUCCESS) {
-		if(!SFileOpenFileEx(hMpq, szArchivedFile, 0, &hFile))
+    if (nError == ERROR_SUCCESS) {
+        if (!SFileOpenFileEx(hMpq, szArchivedFile, 0, &hFile)) {
 			nError = GetLastError();
-	}
+        }
+    }
 
 	// Create the target file
-	if(nError == ERROR_SUCCESS) {
+    if (nError == ERROR_SUCCESS) {
 		CheckPath(szFileName);
 		if (compress) {
 			gzfile = gzopen(szFileName, "wb9");
@@ -527,13 +570,13 @@ int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName, 
 	}
 
 	// Read the file from the archive
-	if(nError == ERROR_SUCCESS) {
+    if (nError == ERROR_SUCCESS) {
 		char  szBuffer[0x10000];
 		DWORD dwBytes = 1;
 
-		while(dwBytes > 0) {
+        while (dwBytes > 0) {
 			SFileReadFile(hFile, szBuffer, sizeof(szBuffer), &dwBytes, NULL);
-			if(dwBytes > 0) {
+            if (dwBytes > 0) {
 				if (compress) {
 					gzwrite(gzfile, szBuffer, dwBytes);
 				} else {
@@ -544,16 +587,18 @@ int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName, 
 	}
 
 	// Cleanup and exit
-	if(file != NULL) {
+    if (file != NULL) {
 		fclose(file);
 	}
-	if(gzfile != NULL) {
+    if (gzfile != NULL) {
 		gzclose(gzfile);
 	}
-	if(hFile != NULL)
+    if (hFile != NULL) {
 		SFileCloseFile(hFile);
-	if(hMpq != NULL)
+    }
+    if (hMpq != NULL) {
 		SFileCloseArchive(hMpq);
+    }
 
 	return nError;
 }
@@ -570,7 +615,7 @@ int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName, 
 **
 **  @return     Pointer to palette
 */
-unsigned char* ConvertPalette(unsigned char* pal)
+unsigned char *ConvertPalette(unsigned char *pal)
 {
 	int i;
 
@@ -585,11 +630,11 @@ unsigned char* ConvertPalette(unsigned char* pal)
 /**
 **  Convert rgb to my format.
 */
-int ConvertRgb(const char* file, int rgbe)
+int ConvertRgb(const char *file, int rgbe)
 {
-	unsigned char* rgbp;
+    unsigned char *rgbp;
 	char buf[8192] = {'\0'};
-	FILE* f;
+    FILE *f;
 	int i;
 	size_t l;
 
@@ -626,12 +671,12 @@ int ConvertRgb(const char* file, int rgbe)
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	fprintf(f, "GIMP Palette\n# Stratagus %c%s -- GIMP Palette file\n",
-		toupper(*file), file + 1);
+            toupper(*file), file + 1);
 
 	for (i = 0; i < 256; ++i) {
 		// FIXME: insert nice names!
 		fprintf(f, "%d %d %d\t#%d\n",
-			rgbp[i * 3], rgbp[i * 3 + 1], rgbp[i * 3 + 2], i);
+                rgbp[i * 3], rgbp[i * 3 + 1], rgbp[i * 3 + 2], i);
 	}
 
 	fclose(f);
@@ -647,13 +692,13 @@ int ConvertRgb(const char* file, int rgbe)
 /**
 **  Count used mega tiles for map.
 */
-int CountUsedTiles(const unsigned char* map, const unsigned char* mega,
-	int* map2tile)
+int CountUsedTiles(const unsigned char *map, const unsigned char *mega,
+                   int *map2tile)
 {
 	int i;
 	int j;
 	int used;
-	const unsigned char* tp;
+    const unsigned char *tp;
 	int img2tile[0x9E0];
 
 	memset(map2tile, 0, sizeof(map2tile));
@@ -663,12 +708,12 @@ int CountUsedTiles(const unsigned char* map, const unsigned char* mega,
 	//
 	for (i = 0; i < 0x9E; ++i) {
 		tp = map + i * 42;
-//		printf("%02X:", i);
+        //		printf("%02X:", i);
 		for (j = 0; j < 0x10; ++j) {
-//			printf("%04X ", AccessLE16(tp + j * 2));
+            //			printf("%04X ", AccessLE16(tp + j * 2));
 			map2tile[(i << 4) | j] = AccessLE16(tp + j * 2);
 		}
-//		printf("\n");
+        //		printf("\n");
 	}
 
 	//
@@ -698,13 +743,13 @@ int CountUsedTiles(const unsigned char* map, const unsigned char* mega,
 			}
 		}
 	}
-//	printf("Used mega tiles %d\n", used);
+    //	printf("Used mega tiles %d\n", used);
 #if 0
 	for (i = 0; i < used; ++i) {
 		if (!(i % 16)) {
 			printf("\n");
 		}
-		printf("%3d ",img2tile[i]);
+        printf("%3d ", img2tile[i]);
 	}
 	printf("\n");
 #endif
@@ -715,12 +760,12 @@ int CountUsedTiles(const unsigned char* map, const unsigned char* mega,
 /**
 **  Convert for ccl.
 */
-static void SaveCCL(char* name, unsigned char* map __attribute__((unused)),
-	const int* map2tile)
+static void SaveCCL(char *name, unsigned char *map __attribute__((unused)),
+                    const int *map2tile)
 {
 	int i;
-	char* cp;
-	FILE* f;
+    char *cp;
+    FILE *f;
 	char file[8192] = {'\0'};
 	char tileset[8192] = {'\0'};
 
@@ -731,7 +776,7 @@ static void SaveCCL(char* name, unsigned char* map __attribute__((unused)),
 	if ((cp = strrchr(name, '/'))) {
 		++cp;
 	} else {
-		cp = (char*)name;
+        cp = (char *)name;
 	}
 	strcpy(file, cp);
 	strcpy(tileset, cp);
@@ -741,7 +786,7 @@ static void SaveCCL(char* name, unsigned char* map __attribute__((unused)),
 	}
 
 	fprintf(f, "(tileset Tileset%c%s \"%s\" \"%s\"\n",
-		toupper(*tileset), tileset + 1, tileset, file);
+            toupper(*tileset), tileset + 1, tileset, file);
 
 	fprintf(f, "  #(");
 	for (i = 0; i < 0x9E0; ++i) {
@@ -761,8 +806,8 @@ static void SaveCCL(char* name, unsigned char* map __attribute__((unused)),
 /**
 **  Decode a minitile into the image.
 */
-void DecodeMiniTile(unsigned char* image, int ix, int iy, int iadd,
-	unsigned char* mini, int index, int flipx, int flipy)
+void DecodeMiniTile(unsigned char *image, int ix, int iy, int iadd,
+                    unsigned char *mini, int index, int flipx, int flipy)
 {
 	static const int flip[] = {
 		7, 6, 5, 4, 3, 2, 1, 0, 8
@@ -773,7 +818,7 @@ void DecodeMiniTile(unsigned char* image, int ix, int iy, int iadd,
 	for (y = 0; y < 8; ++y) {
 		for (x = 0; x < 8; ++x) {
 			image[(y + iy * 8) * iadd + ix * 8 + x] = mini[index +
-				(flipy ? flip[y] : y) * 8 + (flipx ? flip[x] : x)];
+                                                           (flipy ? flip[y] : y) * 8 + (flipx ? flip[x] : x)];
 		}
 	}
 }
@@ -781,11 +826,11 @@ void DecodeMiniTile(unsigned char* image, int ix, int iy, int iadd,
 /**
 **  Convert tiles into image.
 */
-unsigned char* ConvertTile(unsigned char* mini, const unsigned char* mega, int msize,
-	const unsigned char* map __attribute__((unused)), int *wp, int *hp)
+unsigned char *ConvertTile(unsigned char *mini, const unsigned char *mega, int msize,
+                           const unsigned char *map __attribute__((unused)), int *wp, int *hp)
 {
-	unsigned char* image;
-	const unsigned short* mp;
+    unsigned char *image;
+    const unsigned short *mp;
 	int height;
 	int width;
 	int i;
@@ -794,32 +839,32 @@ unsigned char* ConvertTile(unsigned char* mini, const unsigned char* mega, int m
 	int offset;
 	int numtiles;
 
-//	printf("Tiles in mega %d\t", msize / 32);
+    //	printf("Tiles in mega %d\t", msize / 32);
 	numtiles = msize / 32;
 
 	width = TILE_PER_ROW * 32;
 	height = ((numtiles + TILE_PER_ROW - 1) / TILE_PER_ROW) * 32;
-//	printf("Image %dx%d\n", width, height);
+    //	printf("Image %dx%d\n", width, height);
 	image = (unsigned char *)malloc(height * width);
 	memset(image, 0, height * width);
 
 	for (i = 0; i < numtiles; ++i) {
 		//mp = (const unsigned short*)(mega + img2tile[i] * 32);
-		mp = (const unsigned short*)(mega + i * 32);
+        mp = (const unsigned short *)(mega + i * 32);
 		if (i < 16) {  // fog of war
 			for (y = 0; y < 32; ++y) {
 				offset = i * 32 * 32 + y * 32;
 				memcpy(image + (i % TILE_PER_ROW) * 32 +
-					(((i / TILE_PER_ROW) * 32) + y) * width,
-					mini + offset, 32);
+                       (((i / TILE_PER_ROW) * 32) + y) * width,
+                       mini + offset, 32);
 			}
 		} else {  // normal tile
 			for (y = 0; y < 4; ++y) {
 				for (x = 0; x < 4; ++x) {
 					offset = ConvertLE16(mp[x + y * 4]);
 					DecodeMiniTile(image,
-						x + ((i % TILE_PER_ROW) * 4), y + (i / TILE_PER_ROW) * 4, width,
-						mini, (offset & 0xFFFC) * 16, offset & 2, offset & 1);
+                                   x + ((i % TILE_PER_ROW) * 4), y + (i / TILE_PER_ROW) * 4, width,
+                                   mini, (offset & 0xFFFC) * 16, offset & 2, offset & 1);
 				}
 			}
 		}
@@ -834,13 +879,13 @@ unsigned char* ConvertTile(unsigned char* mini, const unsigned char* mega, int m
 /**
 **  Convert a tileset to my format.
 */
-int ConvertTileset(const char* file, int pale, int mege, int mine, int mape)
+int ConvertTileset(const char *file, int pale, int mege, int mine, int mape)
 {
-	unsigned char* palp;
-	unsigned char* megp;
-	unsigned char* minp;
-	unsigned char* mapp;
-	unsigned char* image;
+    unsigned char *palp;
+    unsigned char *megp;
+    unsigned char *minp;
+    unsigned char *mapp;
+    unsigned char *image;
 	int w;
 	int h;
 	size_t megl;
@@ -851,7 +896,7 @@ int ConvertTileset(const char* file, int pale, int mege, int mine, int mape)
 	minp = ExtractEntry(ArchiveOffsets[mine], NULL);
 	mapp = ExtractEntry(ArchiveOffsets[mape], NULL);
 
-//	printf("%s:\t", file);
+    //	printf("%s:\t", file);
 	image = ConvertTile(minp, megp, megl, mapp, &w, &h);
 
 	free(megp);
@@ -877,18 +922,18 @@ int ConvertTileset(const char* file, int pale, int mege, int mine, int mape)
 /**
 **  Decode a entry(frame) into image.
 */
-void DecodeGfxEntry(int index, unsigned char* start,
-	unsigned char* image, int ix, int iy, int iadd)
+void DecodeGfxEntry(int index, unsigned char *start,
+                    unsigned char *image, int ix, int iy, int iadd)
 {
-	unsigned char* bp;
-	unsigned char* sp;
-	unsigned char* dp;
+    unsigned char *bp;
+    unsigned char *sp;
+    unsigned char *dp;
 	int xoff;
 	int yoff;
 	int width;
 	int height;
 	int offset;
-	unsigned char* rows;
+    unsigned char *rows;
 	int h;
 	int w;
 	int ctrl;
@@ -900,50 +945,50 @@ void DecodeGfxEntry(int index, unsigned char* start,
 	height = FetchByte(bp);
 	offset = FetchLE32(bp);
 
-//	printf("%2d: +x %2d +y %2d width %2d height %2d offset %d\n",
-//		index, xoff, yoff, width, height, offset);
+    //	printf("%2d: +x %2d +y %2d width %2d height %2d offset %d\n",
+    //		index, xoff, yoff, width, height, offset);
 
 	rows = start + offset - 6;
 	dp = image + xoff - ix + (yoff - iy) * iadd;
 
 	for (h = 0; h < height; ++h) {
-//		printf("%2d: row-offset %2d\t", index, AccessLE16(rows + h * 2));
+        //		printf("%2d: row-offset %2d\t", index, AccessLE16(rows + h * 2));
 		sp = rows + AccessLE16(rows + h * 2);
-		for (w = 0; w < width; ) {
+        for (w = 0; w < width;) {
 			ctrl = *sp++;
-//			printf("%02X", ctrl);
+            //			printf("%02X", ctrl);
 			if (ctrl & 0x80) {  // transparent
 				ctrl &= 0x7F;
-//				printf("-%d,", ctrl);
-				memset(dp+h*iadd+w,255,ctrl);
-				w+=ctrl;
+                //				printf("-%d,", ctrl);
+                memset(dp + h * iadd + w, 255, ctrl);
+                w += ctrl;
 			} else if (ctrl & 0x40) {  // repeat
 				ctrl &= 0x3F;
-//				printf("*%d,", ctrl);
+                //				printf("*%d,", ctrl);
 				memset(dp + h * iadd + w, *sp++, ctrl);
 				w += ctrl;
 			} else {						// set pixels
 				ctrl &= 0x3F;
-//				printf("=%d,", ctrl);
+                //				printf("=%d,", ctrl);
 				memcpy(dp + h * iadd + w, sp, ctrl);
 				sp += ctrl;
 				w += ctrl;
 			}
 		}
 		//dp[h * iadd + width - 1] = 0;
-//		printf("\n");
+        //		printf("\n");
 	}
 }
 
 /**
 **  Decode a entry(frame) into image.
 */
-void DecodeGfuEntry(int index, unsigned char* start,
-	unsigned char* image, int ix, int iy, int iadd)
+void DecodeGfuEntry(int index, unsigned char *start,
+                    unsigned char *image, int ix, int iy, int iadd)
 {
-	unsigned char* bp;
-	unsigned char* sp;
-	unsigned char* dp;
+    unsigned char *bp;
+    unsigned char *sp;
+    unsigned char *dp;
 	int i;
 	int xoff;
 	int yoff;
@@ -963,8 +1008,8 @@ void DecodeGfuEntry(int index, unsigned char* start,
 		width += 256;
 	}
 
-//	printf("%2d: +x %2d +y %2d width %2d height %2d offset %d\n",
-//		index, xoff, yoff, width, height, offset);
+    //	printf("%2d: +x %2d +y %2d width %2d height %2d offset %d\n",
+    //		index, xoff, yoff, width, height, offset);
 
 	sp = start + offset - 6;
 	dp = image + xoff - ix + (yoff - iy) * iadd;
@@ -978,8 +1023,8 @@ void DecodeGfuEntry(int index, unsigned char* start,
 /**
 **  Convert graphics into image.
 */
-unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
-	unsigned char* bp2, int start2)
+unsigned char *ConvertGraphic(int gfx, unsigned char *bp, int *wp, int *hp,
+                              unsigned char *bp2, int start2)
 {
 	int i;
 	int count;
@@ -990,7 +1035,7 @@ unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
 	int miny;
 	int best_width;
 	int best_height;
-	unsigned char* image;
+    unsigned char *image;
 	int IPR;
 
 	// Init pointer to 2nd animation
@@ -1004,8 +1049,8 @@ unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
 	max_height = FetchLE16(bp);
 
 
-//	printf("Entries %2d Max width %3d height %3d, ", count,
-//		max_width, max_height);
+    //	printf("Entries %2d Max width %3d height %3d, ", count,
+    //		max_width, max_height);
 
 	// Find best image size
 	minx = 999;
@@ -1013,7 +1058,7 @@ unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
 	best_width = 0;
 	best_height = 0;
 	for (i = 0; i < count; ++i) {
-		unsigned char* p;
+        unsigned char *p;
 		int xoff;
 		int yoff;
 		int width;
@@ -1064,7 +1109,7 @@ unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
 	//best_height -= miny;
 #endif
 
-//	printf("Best image size %3d, %3d\n", best_width, best_height);
+    //	printf("Best image size %3d, %3d\n", best_width, best_height);
 
 	minx = 0;
 	miny = 0;
@@ -1102,19 +1147,19 @@ unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
 			// Hardcoded support for worker with resource repairing
 			if (i >= start2 && bp2) {
 				DecodeGfxEntry(i, bp2,
-					image + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
-					minx, miny, best_width * IPR);
+                               image + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
+                               minx, miny, best_width * IPR);
 			} else {
 				DecodeGfxEntry(i, bp,
-					image + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
-					minx, miny, best_width * IPR);
+                               image + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
+                               minx, miny, best_width * IPR);
 			}
 		}
 	} else {
 		for (i = 0; i < count; ++i) {
 			DecodeGfuEntry(i, bp,
-				image + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
-				minx, miny, best_width * IPR);
+                           image + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
+                           minx, miny, best_width * IPR);
 		}
 	}
 
@@ -1127,12 +1172,12 @@ unsigned char* ConvertGraphic(int gfx, unsigned char* bp, int *wp, int *hp,
 /**
 **  Convert a graphic to my format.
 */
-int ConvertGfx(const char* file, int pale, int gfxe, int gfxe2, int start2)
+int ConvertGfx(const char *file, int pale, int gfxe, int gfxe2, int start2)
 {
-	unsigned char* palp;
-	unsigned char* gfxp;
-	unsigned char* gfxp2;
-	unsigned char* image;
+    unsigned char *palp;
+    unsigned char *gfxp;
+    unsigned char *gfxp2;
+    unsigned char *image;
 	int w;
 	int h;
 	char buf[1024];
@@ -1167,11 +1212,11 @@ int ConvertGfx(const char* file, int pale, int gfxe, int gfxe2, int start2)
 /**
 **  Convert a uncompressed graphic to my format.
 */
-int ConvertGfu(const char* file,int pale,int gfue)
+int ConvertGfu(const char *file, int pale, int gfue)
 {
-	unsigned char* palp;
-	unsigned char* gfup;
-	unsigned char* image;
+    unsigned char *palp;
+    unsigned char *gfup;
+    unsigned char *image;
 	int w;
 	int h;
 	char buf[8192] = {'\0'};
@@ -1199,9 +1244,9 @@ int ConvertGfu(const char* file,int pale,int gfue)
 */
 int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 {
-	unsigned char* palp;
-	unsigned char* gfup;
-	unsigned char* image;
+    unsigned char *palp;
+    unsigned char *gfup;
+    unsigned char *image;
 	int w;
 	int h;
 	char buf[8192] = {'\0'};
@@ -1249,9 +1294,9 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 /**
 **  Convert pud to my format.
 */
-void ConvertPud(const char* file, int pude, bool justconvert = false)
+void ConvertPud(const char *file, int pude, bool justconvert = false)
 {
-	unsigned char* pudp = NULL;
+    unsigned char *pudp = NULL;
 	char buf[8192] = {'\0'};
 	size_t l;
 
@@ -1283,7 +1328,7 @@ void ConvertPud(const char* file, int pude, bool justconvert = false)
 			printf("Can't open pud file: %s\n", buf);
 			return;
 		}
-		pudp = (unsigned char*)malloc(filesize);
+        pudp = (unsigned char *)malloc(filesize);
 		if (fread(pudp, 1, filesize, f) != filesize) {
 			printf("Error reading pud file: %s\n", buf);
 			free(pudp);
@@ -1376,7 +1421,7 @@ void ConvertFilePuds(const char **pudlist)
 /**
 **  Convert font into image.
 */
-unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
+unsigned char *ConvertFnt(unsigned char *start, int *wp, int *hp)
 {
 	int i;
 	int count;
@@ -1388,10 +1433,10 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 	int h;
 	int xoff;
 	int yoff;
-	unsigned char* bp;
-	unsigned char* dp;
-	unsigned char* image;
-	unsigned* offsets;
+    unsigned char *bp;
+    unsigned char *dp;
+    unsigned char *image;
+    unsigned *offsets;
 	int image_width;
 	int image_height;
 	int IPR;
@@ -1412,13 +1457,13 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 	image_width = max_width * IPR;
 	image_height = (count + IPR - 1) / IPR * max_height;
 
-//	printf("Font: count %d max-width %2d max-height %2d\n",
-//		count, max_width, max_height);
+    //	printf("Font: count %d max-width %2d max-height %2d\n",
+    //		count, max_width, max_height);
 
 	offsets = (unsigned *)malloc(count * sizeof(uint32_t));
 	for (i = 0; i < count; ++i) {
 		offsets[i] = FetchLE32(bp);
-//		printf("%03d: offset %d\n", i, offsets[i]);
+        //		printf("%03d: offset %d\n", i, offsets[i]);
 	}
 
 	image = (unsigned char *)malloc(image_width * image_height);
@@ -1430,7 +1475,7 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 
 	for (i = 0; i < count; ++i) {
 		if (!offsets[i]) {
-//			printf("%03d: unused\n", i);
+            //			printf("%03d: unused\n", i);
 			continue;
 		}
 		bp = start + offsets[i];
@@ -1439,8 +1484,8 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 		xoff = FetchByte(bp);
 		yoff = FetchByte(bp);
 
-//		printf("%03d: width %d height %d xoff %d yoff %d\n",
-//			i, width, height, xoff, yoff);
+        //		printf("%03d: width %d height %d xoff %d yoff %d\n",
+        //			i, width, height, xoff, yoff);
 
 		dp = image + (i % IPR) * max_width + (i / IPR) * image_width * max_height;
 		dp += xoff + yoff * image_width;
@@ -1450,10 +1495,10 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 			int ctrl;
 
 			ctrl = FetchByte(bp);
-//			printf("%d,%d ", ctrl >> 3, ctrl & 7);
+            //			printf("%d,%d ", ctrl >> 3, ctrl & 7);
 			w += (ctrl >> 3) & 0x1F;
 			while (w >= width) {
-//				printf("\n");
+                //				printf("\n");
 				w -= width;
 				++h;
 				if (h >= height) {
@@ -1467,7 +1512,7 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 			dp[h * image_width + w] = ctrl & 0x07;
 			++w;
 			if (w >= width) {
-//				printf("\n");
+                //				printf("\n");
 				w -= width;
 				++h;
 				if (h >= height) {
@@ -1488,30 +1533,30 @@ unsigned char* ConvertFnt(unsigned char* start, int *wp, int *hp)
 /**
 **  Fix fonts for Russian SPK version.
 */
-void FixFont(const char* file, unsigned char* image, int w,	int h)
+void FixFont(const char *file, unsigned char *image, int w,	int h)
 {
 	const int fontWidth = w / 15;
 	const int fontHeight = h / 14;
 	// First block of 3 lowercase letters at 168,168
 	for (int i = 0; i < fontHeight; ++i) {
-		unsigned char *pi = &image[w*(12*fontHeight + i) + fontWidth * 12];
-		unsigned char *po = &image[w *(9*fontHeight + i) + fontWidth * 9];
+        unsigned char *pi = &image[w * (12 * fontHeight + i) + fontWidth * 12];
+        unsigned char *po = &image[w * (9 * fontHeight + i) + fontWidth * 9];
 		for (int j = 0; j < 3 * fontWidth; ++j) {
 			*po++ = *pi++;
 		}
 	}
 	// Second block of 3 lowercase letters at 0,182
 	for (int i = 0; i < fontHeight; ++i) {
-		unsigned char *pi = &image[w*(13*fontHeight + i) + fontWidth * 0];
-		unsigned char *po = &image[w *(9*fontHeight + i) + fontWidth * 12];
+        unsigned char *pi = &image[w * (13 * fontHeight + i) + fontWidth * 0];
+        unsigned char *po = &image[w * (9 * fontHeight + i) + fontWidth * 12];
 		for (int j = 0; j < 3 * fontWidth; ++j) {
 			*po++ = *pi++;
 		}
 	}
 	// Third block of 7 lowercase letters at 42,182
 	for (int i = 0; i < fontHeight; ++i) {
-		unsigned char *pi = &image[w*(13*fontHeight + i) + fontWidth * 3];
-		unsigned char *po = &image[w *(10*fontHeight + i) + fontWidth * 0];
+        unsigned char *pi = &image[w * (13 * fontHeight + i) + fontWidth * 3];
+        unsigned char *po = &image[w * (10 * fontHeight + i) + fontWidth * 0];
 		for (int j = 0; j < 10 * fontWidth; ++j) {
 			*po++ = *pi++;
 		}
@@ -1521,11 +1566,11 @@ void FixFont(const char* file, unsigned char* image, int w,	int h)
 /**
 **  Convert a font to my format.
 */
-int ConvertFont(const char* file, int pale, int fnte)
+int ConvertFont(const char *file, int pale, int fnte)
 {
-	unsigned char* palp;
-	unsigned char* fntp;
-	unsigned char* image;
+    unsigned char *palp;
+    unsigned char *fntp;
+    unsigned char *image;
 	int w;
 	int h;
 	char buf[8192] = {'\0'};
@@ -1561,16 +1606,16 @@ int ConvertFont(const char* file, int pale, int fnte)
 /**
 **  Convert image into image.
 */
-unsigned char* ConvertImg(unsigned char* bp, int* wp, int* hp)
+unsigned char *ConvertImg(unsigned char *bp, int *wp, int *hp)
 {
 	int width;
 	int height;
-	unsigned char* image;
+    unsigned char *image;
 
 	width = FetchLE16(bp);
 	height = FetchLE16(bp);
 
-//	printf("Image: width %3d height %3d\n", width, height);
+    //	printf("Image: width %3d height %3d\n", width, height);
 
 	image = (unsigned char *)malloc(width * height);
 	if (!image) {
@@ -1598,7 +1643,7 @@ unsigned char* ConvertImg(unsigned char* bp, int* wp, int* hp)
 **  @param nw     new image width
 **  @param nh     new image height
 */
-void ResizeImage(unsigned char** image, int ow, int oh, int nw, int nh)
+void ResizeImage(unsigned char **image, int ow, int oh, int nw, int nh)
 {
 	int i;
 	int j;
@@ -1613,7 +1658,7 @@ void ResizeImage(unsigned char** image, int ow, int oh, int nw, int nh)
 	x = 0;
 	for (i = 0; i < nh; ++i) {
 		for (j = 0; j < nw; ++j) {
-			data[x] = ((unsigned char*) * image)[i * oh / nh * ow + j * ow / nw];
+            data[x] = ((unsigned char *) * image)[i * oh / nh * ow + j * ow / nw];
 			++x;
 		}
 	}
@@ -1625,11 +1670,11 @@ void ResizeImage(unsigned char** image, int ow, int oh, int nw, int nh)
 /**
 **  Convert an image to my format.
 */
-int ConvertImage(const char* file, int pale, int imge, int nw, int nh)
+int ConvertImage(const char *file, int pale, int imge, int nw, int nh)
 {
-	unsigned char* palp;
-	unsigned char* imgp;
-	unsigned char* image;
+    unsigned char *palp;
+    unsigned char *imgp;
+    unsigned char *image;
 	int w;
 	int h;
 	char buf[8192] = {'\0'};
@@ -1654,7 +1699,7 @@ int ConvertImage(const char* file, int pale, int imge, int nw, int nh)
 
 	if (!image) {
 		printf("Please report this bug, could not extract image: file=%s pale=%d imge=%d nw=%d nh=%d mac=%d\n",
-			file, pale, imge, nw, nh, CDType & CD_MAC);
+               file, pale, imge, nw, nh, CDType & CD_MAC);
 		error("Archive version error", "This version of the CD is not supported");
 	}
 	free(imgp);
@@ -1686,22 +1731,22 @@ int ConvertImage(const char* file, int pale, int imge, int nw, int nh)
 /**
 **  Convert cursor into image.
 */
-unsigned char* ConvertCur(unsigned char* bp, int* wp, int* hp)
+unsigned char *ConvertCur(unsigned char *bp, int *wp, int *hp)
 {
 	int i;
 	int hotx;
 	int hoty;
 	int width;
 	int height;
-	unsigned char* image;
+    unsigned char *image;
 
 	hotx = FetchLE16(bp);
 	hoty = FetchLE16(bp);
 	width = FetchLE16(bp);
 	height = FetchLE16(bp);
 
-//	printf("Cursor: hotx %d hoty %d width %d height %d\n",
-//		hotx, hoty, width, height);
+    //	printf("Cursor: hotx %d hoty %d width %d height %d\n",
+    //		hotx, hoty, width, height);
 
 	image = (unsigned char *)malloc(width * height);
 	if (!image) {
@@ -1721,16 +1766,16 @@ unsigned char* ConvertCur(unsigned char* bp, int* wp, int* hp)
 /**
 **  Convert a cursor to my format.
 */
-int ConvertCursor(const char* file, int pale, int cure)
+int ConvertCursor(const char *file, int pale, int cure)
 {
-	unsigned char* palp;
-	unsigned char* curp;
-	unsigned char* image;
+    unsigned char *palp;
+    unsigned char *curp;
+    unsigned char *image;
 	int w;
 	int h;
 	char buf[8192] = {'\0'};
 
-	if (pale == 27 && cure == 314 && Pal27 ) { // Credits arrow (Blue arrow NW)
+    if (pale == 27 && cure == 314 && Pal27) {  // Credits arrow (Blue arrow NW)
 		palp = Pal27;
 	} else {
 		palp = ExtractEntry(ArchiveOffsets[pale], NULL);
@@ -1761,9 +1806,9 @@ int ConvertCursor(const char* file, int pale, int cure)
 /**
 **  Extract Wav
 */
-int ConvertWav(const char* file, int wave)
+int ConvertWav(const char *file, int wave)
 {
-	unsigned char* wavp;
+    unsigned char *wavp;
 	char buf[8192] = {'\0'};
 	gzFile gf;
 	size_t l;
@@ -1797,10 +1842,10 @@ int ConvertWav(const char* file, int wave)
 **  Convert XMI Midi sound to GM MIDI
 */
 
-int ConvertXmi(const char* file, int xmi)
+int ConvertXmi(const char *file, int xmi)
 {
-	unsigned char* xmip;
-	unsigned char* midp;
+    unsigned char *xmip;
+    unsigned char *midp;
 	char buf[8192] = {'\0'};
 	FILE *f;
 	size_t xmil;
@@ -1846,8 +1891,9 @@ int CopyFile(char *from, char *to, int overwrite)
 	int cmdlen;
 	int ret;
 
-	if (!overwrite && !stat(to, &st))
+    if (!overwrite && !stat(to, &st)) {
 		return 0;
+    }
 
 	cmdlen = strlen("cp \"") + strlen(from) + strlen("\" \"") + strlen(to) + strlen("\" ");
 	cmd = (char *)calloc(cmdlen + 1, 1);
@@ -1860,10 +1906,11 @@ int CopyFile(char *from, char *to, int overwrite)
 	ret = system(cmd);
 	free(cmd);
 
-	if (ret != 0)
+    if (ret != 0) {
 		return 0;
-	else
+    } else {
 		return 1;
+    }
 }
 #endif
 
@@ -1880,29 +1927,32 @@ int CopyMusic(void)
 	int i;
 	int count = 0;
 
-	for (i = 0; MusicNames[i]; ++i) {
+    for (i = 0; !MusicNames[i].empty(); ++i) {
 		strcpy(ext, "wav");
-		sprintf(buf1, "%s/music/%s.%s", ArchiveDir, MusicNames[i], ext);
+        sprintf(buf1, "%s/music/%s.%s", ArchiveDir, MusicNames[i].c_str(), ext);
 		if (stat(buf1, &st)) {
 			strcpy(ext, "ogg");
-			sprintf(buf1, "%s/music/%s.%s", ArchiveDir, MusicNames[i], ext);
-			if (stat(buf1, &st))
+            sprintf(buf1, "%s/music/%s.%s", ArchiveDir, MusicNames[i].c_str(), ext);
+            if (stat(buf1, &st)) {
 				continue;
-		}
+            }
+        }
 
 		printf("Found ripped music file \"%s\"\n", buf1);
 		fflush(stdout);
 
-		sprintf(buf2, "%s/%s/%s.%s", Dir, MUSIC_PATH, MusicNames[i], ext);
+        sprintf(buf2, "%s/%s/%s.%s", Dir, MUSIC_PATH, MusicNames[i].c_str(), ext);
 		CheckPath(buf2);
-		if (CopyFile(buf1, buf2, 0))
+        if (CopyFile(buf1, buf2, 0)) {
 			++count;
-	}
+        }
+    }
 
-	if (count == 0)
+    if (count == 0) {
 		return 1;
-	else
+    } else {
 		return 0;
+    }
 }
 
 /**
@@ -1918,21 +1968,22 @@ int ConvertMusic(void)
 	int ret, i;
 	int count = 0;
 
-	for ( i = 0; MusicNames[i]; ++i ) {
-		snprintf(buf, 4095, "%s/%s/%s.wav", Dir, MUSIC_PATH, MusicNames[i]);
+    for (i = 0; !MusicNames[i].empty(); ++i) {
+        snprintf(buf, 4095, "%s/%s/%s.wav", Dir, MUSIC_PATH, MusicNames[i].c_str());
 		CheckPath(buf);
 
-		if (stat(buf, &st))
+        if (stat(buf, &st)) {
 			continue;
+        }
 
 		cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\" ");
-		cmd = (char*) calloc(cmdlen + 1, 1);
+        cmd = (char *) calloc(cmdlen + 1, 1);
 		if (!cmd) {
 			fprintf(stderr, "Memory error\n");
 			error("Memory error", "Could not allocate enough memory to read archive.");
 		}
 
-		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, MusicNames[i]);
+        snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, MusicNames[i].c_str());
 
 		ret = system(cmd);
 
@@ -1940,28 +1991,29 @@ int ConvertMusic(void)
 		remove(buf);
 
 		if (ret != 0) {
-			printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", MusicNames[i]);
+            printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", MusicNames[i].c_str());
 			fflush(stdout);
 		}
 
 		++count;
 	}
 	if (CDType & CD_BNE) {
-		for ( i = 0; BNEMusicNames[i]; ++i ) {
-			sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, BNEMusicNames[i]);
+        for (i = 0; !BNEMusicNames[i].empty(); ++i) {
+            sprintf(buf, "%s/%s/%s.wav", Dir, MUSIC_PATH, BNEMusicNames[i].c_str());
 			CheckPath(buf);
 
-			if (stat(buf, &st))
+            if (stat(buf, &st)) {
 				continue;
+            }
 
 			cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\" ");
-			cmd = (char*) calloc(cmdlen + 1, 1);
+            cmd = (char *) calloc(cmdlen + 1, 1);
 			if (!cmd) {
 				fprintf(stderr, "Memory error\n");
 				error("Memory error", "Could not allocate enough memory to read archive.");
 			}
 
-			snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, BNEMusicNames[i]);
+            snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir, MUSIC_PATH, BNEMusicNames[i].c_str());
 
 			ret = system(cmd);
 
@@ -1969,7 +2021,7 @@ int ConvertMusic(void)
 			remove(buf);
 
 			if (ret != 0) {
-				printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", BNEMusicNames[i]);
+                printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", BNEMusicNames[i].c_str());
 				fflush(stdout);
 			}
 
@@ -1977,10 +2029,11 @@ int ConvertMusic(void)
 		}
 	}
 
-	if (count == 0)
+    if (count == 0) {
 		return 1;
-	else
+    } else {
 		return 0;
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -1990,18 +2043,18 @@ int ConvertMusic(void)
 /**
 **  Convert SMK video to OGV
 */
-int ConvertVideo(const char* file, int video, bool justconvert = false)
+int ConvertVideo(const char *file, int video, bool justconvert = false)
 {
-	unsigned char* vidp;
+    unsigned char *vidp;
 	char buf[8192] = {'\0'};
-	char* cmd;
-	FILE* f;
+    char *cmd;
+    FILE *f;
 	size_t l;
 	int ret;
 	int cmdlen;
 	char outputfile[8192] = {'\0'};
 
-	snprintf(buf,4095,"%s/%s.smk", Dir, file);
+    snprintf(buf, 4095, "%s/%s.smk", Dir, file);
 	CheckPath(buf);
 	if (justconvert == false) {
 		vidp = ExtractEntry(ArchiveOffsets[video], &l);
@@ -2026,7 +2079,7 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 	} else {
 		cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"") + strlen(buf) + strlen("\" ");
 	}
-	cmd = (char*) calloc(cmdlen + 1, 1);
+    cmd = (char *) calloc(cmdlen + 1, 1);
 	if (!cmd) {
 		fprintf(stderr, "Memory error\n");
 		error("Memory error", "Could not allocate enough memory to read archive.");
@@ -2105,9 +2158,9 @@ unsigned char *ConvertString(unsigned char *buf, size_t len)
 /**
 **  Convert text to my format.
 */
-int ConvertText(const char* file, int txte, int ofs)
+int ConvertText(const char *file, int txte, int ofs)
 {
-	unsigned char* txtp;
+    unsigned char *txtp;
 	char buf[8192] = {'\0'};
 	gzFile gf;
 	size_t l;
@@ -2152,10 +2205,10 @@ int ConvertText(const char* file, int txte, int ofs)
 /**
 **  Convert text to my format.
 */
-int SetupNames(const char* file __attribute__((unused)), int txte __attribute__((unused)))
+int SetupNames(const char *file __attribute__((unused)), int txte __attribute__((unused)))
 {
-	unsigned char* txtp;
-	const unsigned short* mp;
+    unsigned char *txtp;
+    const unsigned short *mp;
 	size_t l;
 	unsigned u;
 	unsigned n;
@@ -2163,17 +2216,17 @@ int SetupNames(const char* file __attribute__((unused)), int txte __attribute__(
 	//txtp = ExtractEntry(ArchiveOffsets[txte], &l);
 	txtp = Names;
 	l = sizeof(Names);
-	mp = (const unsigned short*)txtp;
+    mp = (const unsigned short *)txtp;
 
 	n = ConvertLE16(mp[0]);
 	for (u = 1; u < n; ++u) {
-//		printf("%d %x ", u, ConvertLE16(mp[u]));
-//		printf("%s\n", txtp + ConvertLE16(mp[u]));
+        //		printf("%d %x ", u, ConvertLE16(mp[u]));
+        //		printf("%s\n", txtp + ConvertLE16(mp[u]));
 		if (u < sizeof(UnitNames) / sizeof(*UnitNames)) {
 #ifdef WIN32
-			UnitNames[u] = _strdup((char*)txtp + ConvertLE16(mp[u]));
+            UnitNames[u] = _strdup((char *)txtp + ConvertLE16(mp[u]));
 #else
-			UnitNames[u] = strdup((char*)txtp + ConvertLE16(mp[u]));
+            UnitNames[u] = strdup((char *)txtp + ConvertLE16(mp[u]));
 #endif
 			UnitNamesLast = u;
 		}
@@ -2188,17 +2241,17 @@ int SetupNames(const char* file __attribute__((unused)), int txte __attribute__(
 /**
 **  Parse string.
 */
-char* ParseString(const char* input)
+char *ParseString(const char *input)
 {
 	static char buf[8192] = {'\0'};
-	const char* sp;
-	char* strsp;
-	char* dp;
-	char* tp;
+    const char *sp;
+    char *strsp;
+    char *dp;
+    char *tp;
 	int i;
 	int f;
 
-//	printf("%s -> ", input);
+    //	printf("%s -> ", input);
 
 	for (sp = input, dp = buf; *sp;) {
 		if (*sp == '%') {
@@ -2230,7 +2283,7 @@ char* ParseString(const char* input)
 	}
 	*dp = '\0';
 
-//	printf("%s\n", buf);
+    //	printf("%s\n", buf);
 	return buf;
 }
 
@@ -2241,16 +2294,16 @@ char* ParseString(const char* input)
 /**
 **  FIXME: docu
 */
-int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
+int CampaignsCreate(const char *file __attribute__((unused)), int txte, int ofs)
 {
-	unsigned char* objectives;
+    unsigned char *objectives;
 	char buf[8192] = {'\0'};
-	unsigned char* CampaignData[2][26][10];
-	unsigned char* current;
-	unsigned char* next;
-	unsigned char* nextobj;
-	unsigned char* currentobj;
-	FILE* outlevel;
+    unsigned char *CampaignData[2][26][10];
+    unsigned char *current;
+    unsigned char *next;
+    unsigned char *nextobj;
+    unsigned char *currentobj;
+    FILE *outlevel;
 	size_t l;
 	int levelno;
 	int noobjs;
@@ -2302,11 +2355,11 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 	}
 	current = objectives + ofs;
 	for (l = 0; l < (size_t)expansion; ++l) {
-		next = current + strlen((char*)current) + 1;
+        next = current + strlen((char *)current) + 1;
 
 		noobjs = 1;  // Number of objectives is zero.
 		currentobj = current;
-		while ((nextobj = (unsigned char*)strchr((char*)currentobj, '\n')) != NULL) {
+        while ((nextobj = (unsigned char *)strchr((char *)currentobj, '\n')) != NULL) {
 			*nextobj = '\0';
 			++nextobj;
 			CampaignData[race][levelno][noobjs] = currentobj;
@@ -2332,10 +2385,10 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 	levelno = 0;
 	// Find the start of the Levels
 	while (current[0] && current[0] != 'I' && current[1] != '.') {
-		current = current + strlen((char*)current) + 1;
+        current = current + strlen((char *)current) + 1;
 	}
 	for (l = 0; l < (size_t)expansion; ++l) {
-		next = current + strlen((char*)current) + 1;
+        next = current + strlen((char *)current) + 1;
 		CampaignData[race][levelno][0] = current;
 		current = next;
 		if (race == 0) {
@@ -2352,7 +2405,7 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 		for (race = 0; race < 2; ++race) {
 			//Open Relevant file, to write stuff too.
 			sprintf(buf, "%s/%s/%s_c2.sms", Dir, TEXT_PATH,
-				Todo[2 * levelno + 1 + race + 5].File);
+                    Todo[2 * levelno + 1 + race + 5].File);
 			CheckPath(buf);
 			if (!(outlevel = fopen(buf, "wb"))) {
 				printf("Cannot Write File (Skipping Level: %s)\n", buf);
@@ -2424,7 +2477,8 @@ void FixTranslation(const char *translation)
 
 #define OUR_EXPANSION_SUBDIR "wargus.exp.data"
 
-void copyArchive(const char* partialPath) {
+void copyArchive(const char *partialPath)
+{
 	FILE *source, *target;
 	char srcname[PATH_MAX] = {'\0'};
 	char tgtname[PATH_MAX] = {'\0'};
@@ -2497,7 +2551,7 @@ void copyArchive(const char* partialPath) {
 /**
 **  Display the usage.
 */
-void Usage(const char* name)
+void Usage(const char *name)
 {
 	printf("%s\n\
 Usage: %s [-e|-n] [-v] [-r] [-V] [-h|--help] archive-directory [destination-directory]\n\
@@ -2509,11 +2563,12 @@ Usage: %s [-e|-n] [-v] [-r] [-V] [-h|--help] archive-directory [destination-dire
 \t-h\tShow usage (this text)\n\
 archive-directory\tDirectory which includes the archives maindat.war or the battle.net tomes...\n\
 destination-directory\tDirectory where the extracted files are placed.\n"
-	,NameLine, name);
+           , NameLine, name);
 	fflush(stdout);
 }
 
-int ExtractImplicitExpansion(char** argv, int a) {
+int ExtractImplicitExpansion(char **argv, int a)
+{
 	printf("Extracting from expansion subdir\n");
 	struct stat st;
 	char buf[PATH_MAX] = {'\0'};
@@ -2563,8 +2618,9 @@ static int stderrPipes[2] = {0, 0};
 static HANDLE threadStdout;
 static HANDLE threadStderr;
 
-DWORD WINAPI ThreadFunc(void* data) {
-	int *fds = (int*) data;
+DWORD WINAPI ThreadFunc(void *data)
+{
+    int *fds = (int *) data;
 	int readPipe = fds[0];
 	int oldStd = fds[1];
 	int logfile = fds[2];
@@ -2585,7 +2641,8 @@ DWORD WINAPI ThreadFunc(void* data) {
 	return 0;
 }
 
-void teeStdout() {
+void teeStdout()
+{
 	int stdDuplicates[2] = {0, 0};
 	stdDuplicates[0] = _dup(1);
 	stdDuplicates[1] = _dup(2);
@@ -2598,7 +2655,7 @@ void teeStdout() {
 		exit(1);
 	}
 
-	char* stdoutpath = GetExtractionLogPath("Wargus", (char*)Dir);
+    char *stdoutpath = GetExtractionLogPath("Wargus", (char *)Dir);
 	int logfilefd = _open(stdoutpath, _O_WRONLY | _O_CREAT | _O_BINARY | _O_TRUNC, _S_IWRITE);
 
     // make stdout/stderr write into the write ends of the pipes
@@ -2625,7 +2682,8 @@ void teeStdout() {
 	}
 }
 
-void endTee() {
+void endTee()
+{
 	// redirect stdout back to the original
 	_dup2(stdoutTeeFds[1], 1);
 	// close write end of pipe
@@ -2645,9 +2703,11 @@ void endTee() {
 	CloseHandle(threadStderr);
 }
 #else
-void teeStdout() {
+void teeStdout()
+{
 }
-void endTee() {
+void endTee()
+{
 }
 #endif
 
@@ -2655,7 +2715,7 @@ void endTee() {
 **		Main
 */
 #undef main
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
 	unsigned u;
 	char buf[8192] = {'\0'};
@@ -2665,9 +2725,9 @@ int main(int argc, char** argv)
 	int rip = 0;
 	int a = 1;
 	char filename[8192] = {'\0'};
-	FILE* f;
+    FILE *f;
 
-	if(argc == 1){
+    if (argc == 1) {
 		Usage(argv[0]);
 		return 1;
 	}
@@ -2716,7 +2776,7 @@ int main(int argc, char** argv)
 	ArchiveDir = argv[a];
 
 	// if the user selected the install.exe from the DOS CD, be gratious
-	char *extraPath = (char*)calloc(sizeof(char), strlen(ArchiveDir) + strlen("/data/rezdat.war") + 1);
+    char *extraPath = (char *)calloc(sizeof(char), strlen(ArchiveDir) + strlen("/data/rezdat.war") + 1);
 	sprintf(extraPath, "%s/data/rezdat.war", ArchiveDir);
 	if (stat(extraPath, &st) == 0) {
 		sprintf(extraPath, "%s/data", ArchiveDir);
@@ -2741,9 +2801,10 @@ int main(int argc, char** argv)
 	if (f) {
 		char version[20];
 		int len = 0;
-		if (fgets(version, 20, f))
+        if (fgets(version, 20, f)) {
 			len = 1;
-		fclose(f);
+        }
+        fclose(f);
 		if (len != 0 && strcmp(version, VERSION) == 0) {
 			printf("Note: Data is already extracted in Dir \"%s\" with this version of wartool\n", Dir);
 			fflush(stdout);
@@ -2895,7 +2956,7 @@ int main(int argc, char** argv)
 		// printf("%s:\n", ParseString(Todo[u].File));
 		fflush(stdout);
 #endif
-		if (!expansion_cd && (Todo[u].Version & 2) ) {
+        if (!expansion_cd && (Todo[u].Version & 2)) {
 			continue;
 		}
 		// Extract dummy expansion files
@@ -2972,9 +3033,9 @@ int main(int argc, char** argv)
 					printf("%s from MPQ file \"%s\"\n", Todo[u].ArcFile, mpqfile);
 				} else {
 #ifdef WIN32
-					char* filename = _strdup(Todo[u].MPQFile);
+                    char *filename = _strdup(Todo[u].MPQFile);
 #else
-					char* filename = strdup(Todo[u].MPQFile);
+                    char *filename = strdup(Todo[u].MPQFile);
 #endif
 					// initially all lowercase
 					for (unsigned int i = 0; i < strlen(filename); i++) {
@@ -3033,9 +3094,9 @@ int main(int argc, char** argv)
 					printf("%s from MPQ file \"%s\"\n", Todo[u].File, mpqfile);
 					// strip ArchiveDir and slash before copying
 #ifdef WIN32
-					char* copyfile = _strdup(mpqfile);
+                    char *copyfile = _strdup(mpqfile);
 #else
-					char* copyfile = strdup(mpqfile);
+                    char *copyfile = strdup(mpqfile);
 #endif
 					copyfile = copyfile + strlen(ArchiveDir);
 					copyArchive(copyfile);
@@ -3050,8 +3111,8 @@ int main(int argc, char** argv)
 				if (Todo[u].Arg2 == 8 && !rip) { // wav audio
 					continue;
 				}
-				if (ExtractMPQFile(mpqfile, (char*)Todo[u].ArcFile, extract, Todo[u].Arg2 == 1)) {
-					printf("Failed to extract \"%s\"\n", (char*)Todo[u].ArcFile);
+                if (ExtractMPQFile(mpqfile, (char *)Todo[u].ArcFile, extract, Todo[u].Arg2 == 1)) {
+                    printf("Failed to extract \"%s\"\n", (char *)Todo[u].ArcFile);
 				}
 				if (Todo[u].Arg2 == 2) { // convert videos
 					if (video) {
@@ -3068,18 +3129,18 @@ int main(int argc, char** argv)
 				break;
 			case T:
 				ConvertTileset(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2,
-					Todo[u].Arg3, Todo[u].Arg4);
+                               Todo[u].Arg3, Todo[u].Arg4);
 				break;
 			case G:
 				ConvertGfx(ParseString(Todo[u].File), Todo[u].Arg1, Todo[u].Arg2,
-					Todo[u].Arg3, Todo[u].Arg4);
+                           Todo[u].Arg3, Todo[u].Arg4);
 				break;
 			case U:
 				ConvertGfu(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
 				break;
 			case D:
 				ConvertGroupedGfu(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2,
-					Todo[u].Arg3);
+                                  Todo[u].Arg3);
 				break;
 			case P:
 				ConvertPud(Todo[u].File, Todo[u].Arg1);
@@ -3089,7 +3150,7 @@ int main(int argc, char** argv)
 				break;
 			case I:
 				ConvertImage(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2,
-					Todo[u].Arg3, Todo[u].Arg4);
+                             Todo[u].Arg3, Todo[u].Arg4);
 				break;
 			case C:
 				ConvertCursor(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
