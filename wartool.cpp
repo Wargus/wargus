@@ -496,8 +496,6 @@ int OpenArchive(const char *file, int type)
 	if (stat(file, &stat_buf)) {
 		error("Can't stat file", file);
 	}
-    //	std::cout << "Filesize %ld %ldk\n",
-    //		(long)stat_buf.st_size, stat_buf.st_size / 1024);
 
 	//
 	//  Read in the archive
@@ -515,15 +513,12 @@ int OpenArchive(const char *file, int type)
 
 	cp = buf;
 	i = FetchLE32(cp);
-    //	std::cout << "Magic\t%08X\t", i);
 	if (i != 0x19) {
         std::cout << "Wrong magic " << i << ", expected " << 0x00000019 << std::endl;
 		error("Archive version error", "This version of the data is not supported");
 	}
 	entries = FetchLE16(cp);
-    //	std::cout << "Entries\t%5d\t", entries);
 	i = FetchLE16(cp);
-    //	std::cout << "ID\t%d\n", i);
 	if (i != type) {
         std::cout << "Wrong type " << i << ", expected " << type << std::endl;
 		error("Archive version error", "This version of the data is not supported");
@@ -555,7 +550,6 @@ int OpenArchive(const char *file, int type)
                 std::flush(std::cout);
 			}
 		}
-        //		std::cout << "Offset\t%d\n", op[i]);
 	}
 	op[i] = buf + stat_buf.st_size;
 
@@ -602,13 +596,11 @@ ExtractEntry(unsigned char *cp, size_t *lenp)
 		memset(buf, 0, sizeof(buf));
 		ep = dp + uncompressed_length;
 
-		// FIXME: If the decompression is too slow, optimise this loop :->
 		while (dp < ep) {
 			int i;
 			int bflags;
 
 			bflags = FetchByte(cp);
-            //			std::cout << "Ctrl %02x ", bflags);
 			for (i = 0; i < 8; ++i) {
 				int j;
 				int o;
@@ -617,10 +609,8 @@ ExtractEntry(unsigned char *cp, size_t *lenp)
 					j = FetchByte(cp);
 					*dp++ = j;
 					buf[bi++ & 0xFFF] = j;
-                    //					std::cout << "=%02x", j);
 				} else {
 					o = FetchLE16(cp);
-                    //					std::cout << "*%d,%d", o >> 12, o & 0xFFF);
 					j = (o >> 12) + 3;
 					o &= 0xFFF;
 					while (j--) {
@@ -635,11 +625,8 @@ ExtractEntry(unsigned char *cp, size_t *lenp)
 				}
 				bflags >>= 1;
 			}
-            //			std::cout << "\n");
 		}
-        //if (dp != ep) std::cout << "%p,%p %d\n", dp, ep, dp - dest);
 	} else if (flags == 0x00) {
-        //		std::cout << "Uncompressed entry\n");
         std::memcpy(dest.get(), cp, uncompressed_length);
 	} else {
         std::cout << "Unknown flags " << flags << std::endl;
@@ -868,16 +855,13 @@ Image ConvertTile(unsigned char *mini, const unsigned char *mega, int msize)
 	int offset;
 	int numtiles;
 
-    //	std::cout << "Tiles in mega %d\t", msize / 32);
 	numtiles = msize / 32;
 
 	width = TILE_PER_ROW * 32;
 	height = ((numtiles + TILE_PER_ROW - 1) / TILE_PER_ROW) * 32;
-    //	std::cout << "Image %dx%d\n", width, height);
     Image image{height, width};
 
 	for (i = 0; i < numtiles; ++i) {
-		//mp = (const unsigned short*)(mega + img2tile[i] * 32);
         mp = (const unsigned short *)(mega + i * 32);
 		if (i < 16) {  // fog of war
 			for (y = 0; y < 32; ++y) {
@@ -915,9 +899,7 @@ int ConvertTileset(const char *file, int pale, int mege, int mine, int mape)
     auto minp = ExtractEntry(ArchiveOffsets[mine], NULL);
     auto mapp = ExtractEntry(ArchiveOffsets[mape], NULL);
 
-    //	std::cout << "%s:\t", file);
     Image image = ConvertTile(minp.get(), megp.get(), megl);
-
 
     ConvertPalette(palp.get());
     buf = Dir;
@@ -961,38 +943,28 @@ void DecodeGfxEntry(int index, unsigned char *start,
 	height = FetchByte(bp);
 	offset = FetchLE32(bp);
 
-    //	std::cout << "%2d: +x %2d +y %2d width %2d height %2d offset %d\n",
-    //		index, xoff, yoff, width, height, offset);
-
 	rows = start + offset - 6;
 	dp = image + xoff - ix + (yoff - iy) * iadd;
 
 	for (h = 0; h < height; ++h) {
-        //		std::cout << "%2d: row-offset %2d\t", index, AccessLE16(rows + h * 2));
 		sp = rows + AccessLE16(rows + h * 2);
         for (w = 0; w < width;) {
 			ctrl = *sp++;
-            //			std::cout << "%02X", ctrl);
 			if (ctrl & 0x80) {  // transparent
 				ctrl &= 0x7F;
-                //				std::cout << "-%d,", ctrl);
                 memset(dp + h * iadd + w, 255, ctrl);
                 w += ctrl;
 			} else if (ctrl & 0x40) {  // repeat
 				ctrl &= 0x3F;
-                //				std::cout << "*%d,", ctrl);
 				memset(dp + h * iadd + w, *sp++, ctrl);
 				w += ctrl;
 			} else {						// set pixels
 				ctrl &= 0x3F;
-                //				std::cout << "=%d,", ctrl);
 				memcpy(dp + h * iadd + w, sp, ctrl);
 				sp += ctrl;
 				w += ctrl;
 			}
 		}
-		//dp[h * iadd + width - 1] = 0;
-        //		std::cout << "\n");
 	}
 }
 
@@ -1023,9 +995,6 @@ void DecodeGfuEntry(int index, unsigned char *start,
 		offset &= 0x7FFFFFFF;
 		width += 256;
 	}
-
-    //	std::cout << "%2d: +x %2d +y %2d width %2d height %2d offset %d\n",
-    //		index, xoff, yoff, width, height, offset);
 
 	sp = start + offset - 6;
 	dp = image + xoff - ix + (yoff - iy) * iadd;
@@ -1062,10 +1031,6 @@ Image ConvertGraphic(int gfx, unsigned char *bp,
 	count = FetchLE16(bp);
 	max_width = FetchLE16(bp);
 	max_height = FetchLE16(bp);
-
-
-    //	std::cout << "Entries %2d Max width %3d height %3d, ", count,
-    //		max_width, max_height);
 
 	// Find best image size
 	minx = 999;
@@ -1105,27 +1070,6 @@ Image ConvertGraphic(int gfx, unsigned char *bp,
 	}
 	// FIXME: the image isn't centered!!
 
-#if 0
-	// Taken out, must be rewritten.
-	if (max_width - best_width < minx) {
-		minx = max_width - best_width;
-		best_width -= minx;
-	} else {
-		best_width = max_width - minx;
-	}
-	if (max_height - best_height < miny) {
-		miny = max_height - best_height;
-		best_height -= miny;
-	} else {
-		best_height = max_width - miny;
-	}
-
-	//best_width -= minx;
-	//best_height -= miny;
-#endif
-
-    //	std::cout << "Best image size %3d, %3d\n", best_width, best_height);
-
 	minx = 0;
 	miny = 0;
 
@@ -1154,7 +1098,7 @@ Image ConvertGraphic(int gfx, unsigned char *bp,
 
 
 	if (gfx) {
-		for (i = 0; i < count; ++i) {
+        for (size_t i = 0; i < count; ++i) {
 			// Hardcoded support for worker with resource repairing
 			if (i >= start2 && bp2) {
 				DecodeGfxEntry(i, bp2,
@@ -1167,7 +1111,7 @@ Image ConvertGraphic(int gfx, unsigned char *bp,
 			}
 		}
 	} else {
-		for (i = 0; i < count; ++i) {
+        for (size_t i = 0; i < count; ++i) {
 			DecodeGfuEntry(i, bp,
                            image.ptr() + best_width * (i % IPR) + best_height * best_width * IPR * (i / IPR),
                            minx, miny, best_width * IPR);
@@ -1515,8 +1459,6 @@ void FixFont(Image &image)
 */
 int ConvertFont(const char *file, int pale, int fnte)
 {
-
-    fs::path buf{};
     Image image;
     auto palp = ExtractEntry(ArchiveOffsets[pale], NULL);
     {
@@ -1525,7 +1467,7 @@ int ConvertFont(const char *file, int pale, int fnte)
     }
     ConvertPalette(palp.get());
 
-    buf = Dir;
+    auto buf = Dir;
     buf /= FONT_PATH;
     buf /= file;
     buf.replace_extension(".png");
@@ -1573,8 +1515,6 @@ Image ConvertImg(unsigned char *bp)
 */
 Image ResizeImage(const Image &image, size_t nw, size_t nh)
 {
-
-
     if (image.width == nw && nh == image.height) {
         return image;
 	}
@@ -2314,28 +2254,28 @@ int CampaignsCreate(int txte, int ofs)
 //  Fix SPK translation
 //----------------------------------------------------------------------------
 
-void FixTranslation(const char *translation)
+void FixTranslation(const fs::path &translation)
 {
-	struct stat st;
+    if (fs::exists(translation)) {
 
-	if (!stat(translation, &st)) {
-		FILE *iFile = fopen(translation, "rb");
+        FILE *iFile = fopen(translation.c_str(), "rb");
 		if (iFile == NULL) {
 			return;
-		}
-		unsigned char *buf = new unsigned char[st.st_size];
-		unsigned char *p = buf;
+        }
+        size_t filesize = fs::file_size(translation);
+        std::unique_ptr<unsigned char[]> buf = std::make_unique<unsigned char []>(filesize);
+        unsigned char *p = buf.get();
 		while (!feof(iFile)) {
 			*p++ = fgetc(iFile);
 		}
 		fclose(iFile);
 
-		FILE *oFile = fopen(translation, "wb");
+        FILE *oFile = fopen(translation.c_str(), "wb");
 		if (oFile == NULL) {
 			return;
 		}
-		p = buf;
-		for (long i = 0; i < st.st_size; ++i, ++p) {
+        p = buf.get();
+        for (size_t i = 0; i < filesize; ++i, ++p) {
 			unsigned char c = *p;
 			if (c >= 0x80) {
 				if (c >= 0xE0 && c < 0xF0) {
@@ -2366,15 +2306,10 @@ void copyArchive(const char *partialPath)
     tgtname /= partialPath;
     srcname /= partialPath;
 
-
     if (fs::exists(tgtname)) {
         return;
     }
 
-    // This should really be covered by the case above, but keeping for now.
-    if (srcname == tgtname) {
-		return;
-	}
     CheckPath(tgtname);
     std::error_code ec{};
     fs::copy_file(srcname, tgtname, ec);
@@ -2875,8 +2810,6 @@ int main(int argc, char **argv)
 					error("Archive version error", "This version of the CD is not supported");
 				}
 #ifdef USE_STORMLIB
-
-
 				if (Todo[u].Arg1 == 1) { // local archive
                     mpqfile = Dir;
                     mpqfile /= Todo[u].MPQFile;
