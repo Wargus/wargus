@@ -278,9 +278,9 @@ int SavePNG(const fs::path &name,  Image &image, unsigned char *pal, int transpa
     size_t i;
 
     if (!fp) {
-        printf("%s:", name.c_str());
+        std::cout << name <<  std::endl;
 		perror("Can't open file");
-		fflush(stdout); fflush(stderr);
+        std::flush(std::cout); fflush(stderr);
 		return 1;
 	}
 
@@ -380,9 +380,9 @@ int SavePNG(const fs::path &name, Image &image, int x, int y, int w, int h, int 
     size_t i;
 
     if (!fp) {
-        printf("%s:", name.c_str());
+        std::cout << name << ":" << std::endl;
         perror("Can't open file");
-        fflush(stdout); fflush(stderr);
+        std::flush(std::cout); fflush(stderr);
         return 1;
     }
 
@@ -495,7 +495,7 @@ int OpenArchive(const char *file, int type)
 	if (stat(file, &stat_buf)) {
 		error("Can't stat file", file);
 	}
-    //	printf("Filesize %ld %ldk\n",
+    //	std::cout << "Filesize %ld %ldk\n",
     //		(long)stat_buf.st_size, stat_buf.st_size / 1024);
 
 	//
@@ -503,28 +503,28 @@ int OpenArchive(const char *file, int type)
 	//
 	buf = (unsigned char *)malloc(stat_buf.st_size);
 	if (!buf) {
-		printf("Can't malloc %ld\n", (long)stat_buf.st_size);
+        std::cout << "Can't malloc " << stat_buf.st_size << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	if (read(f, buf, stat_buf.st_size) != stat_buf.st_size) {
-		printf("Can't read %ld\n", (long)stat_buf.st_size);
+        std::cout << "Can't read " << stat_buf.st_size << std::endl;
 		error("Memory error", "Could not read archive into RAM.");
 	}
 	close(f);
 
 	cp = buf;
 	i = FetchLE32(cp);
-    //	printf("Magic\t%08X\t", i);
+    //	std::cout << "Magic\t%08X\t", i);
 	if (i != 0x19) {
-		printf("Wrong magic %08x, expected %08x\n", i, 0x00000019);
+        std::cout << "Wrong magic " << i << ", expected " << 0x00000019 << std::endl;
 		error("Archive version error", "This version of the data is not supported");
 	}
 	entries = FetchLE16(cp);
-    //	printf("Entries\t%5d\t", entries);
+    //	std::cout << "Entries\t%5d\t", entries);
 	i = FetchLE16(cp);
-    //	printf("ID\t%d\n", i);
+    //	std::cout << "ID\t%d\n", i);
 	if (i != type) {
-		printf("Wrong type %08x, expected %08x\n", i, type);
+        std::cout << "Wrong type " << i << ", expected " << type << std::endl;
 		error("Archive version error", "This version of the data is not supported");
 	}
 
@@ -533,7 +533,7 @@ int OpenArchive(const char *file, int type)
 	//
     op = (unsigned char **)malloc((entries + 1) * sizeof(unsigned char *));
 	if (!op) {
-		printf("Can't malloc %d entries\n", entries);
+        std::cout << "Can't malloc " << entries << entries << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	for (i = 0; i < entries; ++i) {
@@ -541,8 +541,8 @@ int OpenArchive(const char *file, int type)
 		// check if entry size is not bigger then archive size
 		if (op[i] >= buf + stat_buf.st_size - 4) {
 			op[i] = (unsigned char *)&EmptyEntry;
-			printf("Ignore entry %d in archive (invalid offset)\n", i);
-			fflush(stdout);
+            std::cout << "Ignore entry " << i << " in archive (invalid offset)" << std::endl;
+            std::flush(std::cout);
 		} else {
             unsigned char *dp = op[i];
 			size_t length = FetchLE32(dp);
@@ -550,11 +550,11 @@ int OpenArchive(const char *file, int type)
 			length &= 0x00FFFFFF;
 			if (flags == 0x00 && op[i] + length >= buf + stat_buf.st_size) {
 				op[i] = (unsigned char *)&EmptyEntry;
-				printf("Ignore entry %d in archive (invalid uncompressed length)\n", i);
-				fflush(stdout);
+                std::cout << "Ignore entry " << i << " in archive (invalid uncompressed length)" << std::endl;
+                std::flush(std::cout);
 			}
 		}
-        //		printf("Offset\t%d\n", op[i]);
+        //		std::cout << "Offset\t%d\n", op[i]);
 	}
 	op[i] = buf + stat_buf.st_size;
 
@@ -582,11 +582,11 @@ unsigned char *ExtractEntry(unsigned char *cp, size_t *lenp)
 	uncompressed_length = FetchLE32(cp);
 	flags = uncompressed_length >> 24;
 	uncompressed_length &= 0x00FFFFFF;
-    //	printf("Entry length %8d flags %02x\t", uncompressed_length, flags);
+    //	std::cout << "Entry length %8d flags %02x\t", uncompressed_length, flags);
 
 	dp = dest = (unsigned char *)malloc(uncompressed_length);
 	if (!dest) {
-		printf("Can't malloc %d\n", (int)uncompressed_length);
+        std::cout << "Can't malloc " << uncompressed_length << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 
@@ -595,7 +595,7 @@ unsigned char *ExtractEntry(unsigned char *cp, size_t *lenp)
         unsigned char *ep;
 		int bi;
 
-        //		printf("Compressed entry\n");
+        //		std::cout << "Compressed entry\n");
 
 		bi = 0;
 		memset(buf, 0, sizeof(buf));
@@ -607,7 +607,7 @@ unsigned char *ExtractEntry(unsigned char *cp, size_t *lenp)
 			int bflags;
 
 			bflags = FetchByte(cp);
-            //			printf("Ctrl %02x ", bflags);
+            //			std::cout << "Ctrl %02x ", bflags);
 			for (i = 0; i < 8; ++i) {
 				int j;
 				int o;
@@ -616,10 +616,10 @@ unsigned char *ExtractEntry(unsigned char *cp, size_t *lenp)
 					j = FetchByte(cp);
 					*dp++ = j;
 					buf[bi++ & 0xFFF] = j;
-                    //					printf("=%02x", j);
+                    //					std::cout << "=%02x", j);
 				} else {
 					o = FetchLE16(cp);
-                    //					printf("*%d,%d", o >> 12, o & 0xFFF);
+                    //					std::cout << "*%d,%d", o >> 12, o & 0xFFF);
 					j = (o >> 12) + 3;
 					o &= 0xFFF;
 					while (j--) {
@@ -634,14 +634,14 @@ unsigned char *ExtractEntry(unsigned char *cp, size_t *lenp)
 				}
 				bflags >>= 1;
 			}
-            //			printf("\n");
+            //			std::cout << "\n");
 		}
-		//if (dp != ep) printf("%p,%p %d\n", dp, ep, dp - dest);
+        //if (dp != ep) std::cout << "%p,%p %d\n", dp, ep, dp - dest);
 	} else if (flags == 0x00) {
-        //		printf("Uncompressed entry\n");
+        //		std::cout << "Uncompressed entry\n");
 		memcpy(dest, cp, uncompressed_length);
 	} else {
-		printf("Unknown flags %x\n", flags);
+        std::cout << "Unknown flags " << flags << std::endl;
 		error("Archive version error", "This version of the data is not supported");
 	}
 
@@ -778,16 +778,28 @@ int ConvertRgb(const char *file, int rgbe)
     buf.replace_extension(".rgb");
 	CheckPath(buf);
     {
-        SelfClosingFile f{buf, "wb"};
-        if (!f) {
+        std::ofstream f;
+        f.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+
+        try {
+            f.open(buf, std::ios::binary);
+        } catch (std::system_error &e) {
+            std::cout << "Can't open " << buf << std::endl;
+            std::cerr << e.code().message() << std::endl;
+        }
+
+        if (!f.is_open()) {
             perror("");
-            printf("Can't open %s\n", buf.c_str());
+            std::cout << "Can't open " << buf << std::endl;
             error("Memory error", "Could not allocate enough memory to read archive.");
         }
-        if (l != fwrite(rgbp, 1, l, f)) {
-            printf("Can't write %d bytes\n", (int)l);
-            fflush(stdout);
+        try {
+            f.write(reinterpret_cast<char *>(rgbp), l);
+        } catch (std::system_error &e) {
+            std::cout << "Can't write to " << buf << std::endl;
+            std::cerr << e.code().message() << std::endl;
         }
+
 	}
 
 	//
@@ -802,7 +814,7 @@ int ConvertRgb(const char *file, int rgbe)
         SelfClosingFile f{buf, "wb"};
         if (!f) {
             perror("");
-            printf("Can't open %s\n", buf.c_str());
+            std::cout << "Can't open " << buf << std::endl;
             error("Memory error", "Could not allocate enough memory to read archive.");
         }
         fprintf(f, "GIMP Palette\n# Stratagus %c%s -- GIMP Palette file\n",
@@ -857,12 +869,12 @@ Image ConvertTile(unsigned char *mini, const unsigned char *mega, int msize)
 	int offset;
 	int numtiles;
 
-    //	printf("Tiles in mega %d\t", msize / 32);
+    //	std::cout << "Tiles in mega %d\t", msize / 32);
 	numtiles = msize / 32;
 
 	width = TILE_PER_ROW * 32;
 	height = ((numtiles + TILE_PER_ROW - 1) / TILE_PER_ROW) * 32;
-    //	printf("Image %dx%d\n", width, height);
+    //	std::cout << "Image %dx%d\n", width, height);
     Image image{height, width};
 
 	for (i = 0; i < numtiles; ++i) {
@@ -907,7 +919,7 @@ int ConvertTileset(const char *file, int pale, int mege, int mine, int mape)
 	minp = ExtractEntry(ArchiveOffsets[mine], NULL);
 	mapp = ExtractEntry(ArchiveOffsets[mape], NULL);
 
-    //	printf("%s:\t", file);
+    //	std::cout << "%s:\t", file);
     Image image = ConvertTile(minp, megp, megl);
 
 	free(megp);
@@ -957,38 +969,38 @@ void DecodeGfxEntry(int index, unsigned char *start,
 	height = FetchByte(bp);
 	offset = FetchLE32(bp);
 
-    //	printf("%2d: +x %2d +y %2d width %2d height %2d offset %d\n",
+    //	std::cout << "%2d: +x %2d +y %2d width %2d height %2d offset %d\n",
     //		index, xoff, yoff, width, height, offset);
 
 	rows = start + offset - 6;
 	dp = image + xoff - ix + (yoff - iy) * iadd;
 
 	for (h = 0; h < height; ++h) {
-        //		printf("%2d: row-offset %2d\t", index, AccessLE16(rows + h * 2));
+        //		std::cout << "%2d: row-offset %2d\t", index, AccessLE16(rows + h * 2));
 		sp = rows + AccessLE16(rows + h * 2);
         for (w = 0; w < width;) {
 			ctrl = *sp++;
-            //			printf("%02X", ctrl);
+            //			std::cout << "%02X", ctrl);
 			if (ctrl & 0x80) {  // transparent
 				ctrl &= 0x7F;
-                //				printf("-%d,", ctrl);
+                //				std::cout << "-%d,", ctrl);
                 memset(dp + h * iadd + w, 255, ctrl);
                 w += ctrl;
 			} else if (ctrl & 0x40) {  // repeat
 				ctrl &= 0x3F;
-                //				printf("*%d,", ctrl);
+                //				std::cout << "*%d,", ctrl);
 				memset(dp + h * iadd + w, *sp++, ctrl);
 				w += ctrl;
 			} else {						// set pixels
 				ctrl &= 0x3F;
-                //				printf("=%d,", ctrl);
+                //				std::cout << "=%d,", ctrl);
 				memcpy(dp + h * iadd + w, sp, ctrl);
 				sp += ctrl;
 				w += ctrl;
 			}
 		}
 		//dp[h * iadd + width - 1] = 0;
-        //		printf("\n");
+        //		std::cout << "\n");
 	}
 }
 
@@ -1020,7 +1032,7 @@ void DecodeGfuEntry(int index, unsigned char *start,
 		width += 256;
 	}
 
-    //	printf("%2d: +x %2d +y %2d width %2d height %2d offset %d\n",
+    //	std::cout << "%2d: +x %2d +y %2d width %2d height %2d offset %d\n",
     //		index, xoff, yoff, width, height, offset);
 
 	sp = start + offset - 6;
@@ -1060,7 +1072,7 @@ Image ConvertGraphic(int gfx, unsigned char *bp,
 	max_height = FetchLE16(bp);
 
 
-    //	printf("Entries %2d Max width %3d height %3d, ", count,
+    //	std::cout << "Entries %2d Max width %3d height %3d, ", count,
     //		max_width, max_height);
 
 	// Find best image size
@@ -1120,7 +1132,7 @@ Image ConvertGraphic(int gfx, unsigned char *bp,
 	//best_height -= miny;
 #endif
 
-    //	printf("Best image size %3d, %3d\n", best_width, best_height);
+    //	std::cout << "Best image size %3d, %3d\n", best_width, best_height);
 
 	minx = 0;
 	miny = 0;
@@ -1319,19 +1331,19 @@ void ConvertPud(const fs::path file, int pude, bool justconvert = false)
         pudfile = buf;
 		CheckPath(buf);
         if (!fs::exists(buf) && fs::is_regular_file(buf)) {
-            printf("Can't open pud file: %s\n", buf.c_str());
+            std::cout << "Can't open pud file: " << buf << std::endl;
 			return;
 		}
         filesize = fs::file_size(buf);
         SelfClosingFile f{buf, "rb"};
 		if (!f) {
-            printf("Can't open pud file: %s\n", buf.c_str());
-			return;
+            std::cout << "Can't open pud file: " << buf << std::endl;
+            return;
 		}
         std::vector<unsigned char> pudp{}; // Really should maybe mmap this.
         pudp.resize(filesize);
         if (fread(&pudp[0], 1, filesize, f) != filesize) {
-            printf("Error reading pud file: %s\n", buf.c_str());
+            std::cout << "Error reading pud file: " << buf << std::endl;
 			return;
 		}
         //FIXME: See Note above.
@@ -1339,11 +1351,7 @@ void ConvertPud(const fs::path file, int pude, bool justconvert = false)
         //*strrchr(buf, '/') = '\0';
 
         PudToStratagus(&pudp[0], filesize, /*strrchr(file, '/') + 1--Similar to above*/ file.filename().c_str(), buf.c_str());
-#ifdef WIN32
-		_unlink(pudfile);
-#else
-        unlink(pudfile.c_str());
-#endif
+        fs::remove(pudfile);
 	}
 }
 
@@ -1442,14 +1450,10 @@ Image ConvertFnt(unsigned char *start)
 	image_width = max_width * IPR;
 	image_height = (count + IPR - 1) / IPR * max_height;
 
-    //	printf("Font: count %d max-width %2d max-height %2d\n",
-    //		count, max_width, max_height);
-
     std::vector<uint32_t> offsets;
     offsets.resize(count);
 	for (i = 0; i < count; ++i) {
 		offsets[i] = FetchLE32(bp);
-        //		printf("%03d: offset %d\n", i, offsets[i]);
 	}
 
     Image image{image_height, image_width};
@@ -1457,7 +1461,6 @@ Image ConvertFnt(unsigned char *start)
 
 	for (i = 0; i < count; ++i) {
 		if (!offsets[i]) {
-            //			printf("%03d: unused\n", i);
 			continue;
 		}
 		bp = start + offsets[i];
@@ -1465,9 +1468,6 @@ Image ConvertFnt(unsigned char *start)
 		height = FetchByte(bp);
 		xoff = FetchByte(bp);
 		yoff = FetchByte(bp);
-
-        //		printf("%03d: width %d height %d xoff %d yoff %d\n",
-        //			i, width, height, xoff, yoff);
 
         dp = image.ptr() + (i % IPR) * max_width + (i / IPR) * image_width * max_height;
 		dp += xoff + yoff * image_width;
@@ -1477,10 +1477,8 @@ Image ConvertFnt(unsigned char *start)
 			int ctrl;
 
 			ctrl = FetchByte(bp);
-            //			printf("%d,%d ", ctrl >> 3, ctrl & 7);
 			w += (ctrl >> 3) & 0x1F;
 			while (w >= width) {
-                //				printf("\n");
 				w -= width;
 				++h;
 				if (h >= height) {
@@ -1494,7 +1492,6 @@ Image ConvertFnt(unsigned char *start)
 			dp[h * image_width + w] = ctrl & 0x07;
 			++w;
 			if (w >= width) {
-                //				printf("\n");
 				w -= width;
 				++h;
 				if (h >= height) {
@@ -1592,8 +1589,6 @@ Image ConvertImg(unsigned char *bp)
 
 	width = FetchLE16(bp);
 	height = FetchLE16(bp);
-
-    //	printf("Image: width %3d height %3d\n", width, height);
 
     Image image{height, width};
     std::memcpy(&image[0], bp, image.data.size());
@@ -1699,9 +1694,6 @@ Image ConvertCur(unsigned char *bp)
 	width = FetchLE16(bp);
 	height = FetchLE16(bp);
 
-    //	printf("Cursor: hotx %d hoty %d width %d height %d\n",
-    //		hotx, hoty, width, height);
-
     Image image{height, width};
 
     for (size_t i = 0; i < width * height; ++i) {
@@ -1770,12 +1762,12 @@ int ConvertWav(const fs::path &file, int wave)
     gf = gzopen(buf.c_str(), "wb9");
 	if (!gf) {
 		perror("");
-        printf("Can't open %s\n", buf.c_str());
+        std::cout << "Can't open " << buf << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	if (l != (size_t)gzwrite(gf, wavp, l)) {
-		printf("Can't write %d bytes\n", (int)l);
-		fflush(stdout);
+        std::cout << "Can't write " << l << " bytes" << std::endl;
+        std::flush(std::cout);
 	}
 
 	free(wavp);
@@ -1811,12 +1803,12 @@ int ConvertXmi(const fs::path &file, int xmi)
     SelfClosingFile f{buf, "wb"};
 	if (!f) {
 		perror("");
-        printf("Can't open %s\n", buf.c_str());
+        std::cout << "Can't open " << buf << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	if (midl != fwrite(midp, 1, midl, f)) {
-		printf("Can't write %d bytes\n", (int)midl);
-		fflush(stdout);
+        std::cout << "Can't write " << midl << " bytes" << std::endl;
+        std::flush(std::cout);
 	}
 
 	free(midp);
@@ -1932,8 +1924,8 @@ int ConvertMusic(void)
         fs::remove(buf);
 
 		if (ret != 0) {
-            printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", MusicNames[i].c_str());
-			fflush(stdout);
+            std::cout << "Can't convert wav sound " << MusicNames[i] << " to ogg format. Is ffmpeg installed in PATH?" << std::endl;
+            std::flush(std::cout);
 		}
 
 		++count;
@@ -2137,8 +2129,8 @@ int ConvertText(const std::string &file, int txte, int ofs)
 	l2 = strlen((char *)str) + 1;
 
 	if (l2 != (size_t)gzwrite(gf, str, l2)) {
-		printf("Can't write %d bytes\n", (int)l2);
-		fflush(stdout);
+        std::cout << "Can't write " << l2 << " bytes" << std::endl;
+        std::flush(std::cout);
 	}
     gzclose(gf);
 
@@ -2168,8 +2160,6 @@ int SetupNames(const char *file __attribute__((unused)), int txte __attribute__(
 
 	n = ConvertLE16(mp[0]);
     for (u = 1; u < std::min<unsigned>(n, UnitNames.size()); ++u) {
-        //		printf("%d %x ", u, ConvertLE16(mp[u]));
-        //		printf("%s\n", txtp + ConvertLE16(mp[u]));
         for (char const *cursor = (char *)txtp + ConvertLE16(mp[u]); *cursor; cursor++) {
             UnitNames[u].push_back(*cursor);
         }
@@ -2194,8 +2184,6 @@ char *ParseString(const char *input)
     char const *tp;
 	int i;
 	int f;
-
-    printf("%s -> ", input);
 
 	for (sp = input, dp = buf; *sp;) {
 		if (*sp == '%') {
@@ -2227,7 +2215,6 @@ char *ParseString(const char *input)
 	}
 	*dp = '\0';
 
-    printf("%s\n", buf);
 	return buf;
 }
 
@@ -2275,12 +2262,12 @@ int CampaignsCreate(int txte, int ofs)
 
 	objectives = ExtractEntry(ArchiveOffsets[txte], &l);
 	if (!objectives) {
-		printf("Objectives allocation failed\n");
+        std::cout << "Objectives allocation failed" << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	objectives = (unsigned char *)realloc(objectives, l + 1);
 	if (!objectives) {
-		printf("Objectives allocation failed\n");
+        std::cout << "Objectives allocation failed" << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	objectives[l] = '\0';
@@ -2465,7 +2452,7 @@ void copyArchive(const char *partialPath)
 */
 void Usage(const char *name)
 {
-	printf("%s\n\
+    printf("%s\n\
 Usage: %s [-e|-n] [-v] [-r] [-V] [-h|--help] archive-directory [destination-directory]\n\
 \t-e\tThe archive is expansion compatible (default: autodetect)\n\
 \t-n\tThe archive is not expansion compatible (default: autodetect)\n\
@@ -2476,12 +2463,12 @@ Usage: %s [-e|-n] [-v] [-r] [-V] [-h|--help] archive-directory [destination-dire
 archive-directory\tDirectory which includes the archives maindat.war or the battle.net tomes...\n\
 destination-directory\tDirectory where the extracted files are placed.\n"
            , NameLine, name);
-	fflush(stdout);
+    std::flush(std::cout);
 }
 
 int ExtractImplicitExpansion(char **argv, int a)
 {
-	printf("Extracting from expansion subdir\n");
+    std::cout << "Extracting from expansion subdir" << std::endl;
 	// detect if the expansion directory is next to the data directory
     if (strstr(ArchiveDir.c_str(), OUR_EXPANSION_SUBDIR)) {
 		// we're already trying to extract from our expansion subdir, don't recurse
@@ -2496,7 +2483,7 @@ int ExtractImplicitExpansion(char **argv, int a)
         ExpansionArchiveDir /= OUR_EXPANSION_SUBDIR;
 
         if (strcmp(argv[a], ArchiveDir.c_str())) {
-            fprintf(stderr, "assertion error: expected argv[a] (%s) to point to ArchiveDir (%s)\n", argv[a], ArchiveDir.c_str());
+            std::cerr << "Assertion error: expected argv[a] (" << argv[a] << ") to point to ArchiveDir (" << ArchiveDir << ")" << std::endl;
 			exit(-1);
 		}
         argv[a] = const_cast<char *>(ExpansionArchiveDir.c_str());
@@ -2506,7 +2493,7 @@ int ExtractImplicitExpansion(char **argv, int a)
 		int execresult = execv(argv[0], argv);
 #endif
 		if (execresult) {
-			fprintf(stderr, "an error occurred trying to extract from the expansion archives\n");
+            std::cerr << "an error occurred trying to extract from the expansion archives" << std::endl;
 			exit(-1);
 		}
 	}
@@ -2667,7 +2654,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 		if (!strcmp(argv[a], "-V")) {
-			printf(VERSION "\n");
+            std::cout << VERSION << std::endl;
 			++a;
 			--argc;
 			exit(0);
@@ -2775,7 +2762,7 @@ int main(int argc, char **argv)
 				if (ExtractImplicitExpansion(argv, a)) {
 					// try extracting from implicitly copied expansion data from
 					// a previous expansion-only extraction
-					printf("Could not find Warcraft 2 Data\n");
+                    std::cout << "Could not find Warcraft 2 Data" << std::endl;
 					error("Data not found", "Could not find Warcraft 2 data in folder. "
 						  "Make sure you have selected the DATA directory of the DOS version, "
 						  "or the root of the Battle.net CD.");
@@ -2783,12 +2770,13 @@ int main(int argc, char **argv)
 			}
             size_t file_size = fs::file_size(buf);
             if (expansion_cd == -1 || (expansion_cd != 1 && file_size != 2876978)) {
-				printf("Detected original MAC CD\n");
-				fflush(stdout);
+                std::cout << "Detected original MAC CD" << std::endl;
+                std::flush(std::cout);
+                std::flush(std::cout);
 			} else {
-				printf("Detected expansion MAC CD\n");
-				fflush(stdout);
-				CDType |= CD_EXPANSION;
+                std::cout << "Detected expansion MAC CD" << std::endl;
+                std::flush(std::cout);
+                CDType |= CD_EXPANSION;
 			}
 		} else {
             size_t file_size = fs::file_size(buf);
@@ -2798,50 +2786,50 @@ int main(int argc, char **argv)
 
                 switch (filename_size) {
 					case 51550:
-						printf("Detected US original DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Detected US original DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_US;
 						break;
 					case 53874:
-						printf("Detected Italian original DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Detected Italian original DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_ITALIAN;
 						break;
 					case 55014:
-						printf("Detected Spanish original DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Detected Spanish original DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_SPANISH;
 						break;
 					case 55724:
-						printf("Detected German original DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Detected German original DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_GERMAN;
 						break;
 					case 51451:
-						printf("Detected UK/Australian original DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Detected UK/Australian original DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_UK;
 						break;
 					case 52883:
-						printf("Detected Portuguese original DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Detected Portuguese original DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_PORTUGUESE;
 						break;
 					case 55079:
-						printf("Detected French original DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Detected French original DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_FRENCH;
 						break;
 					case 52152:
-						printf("Detected Russian SPK DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Detected Russian SPK DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_RUSSIAN;
 						break;
 
 					default:
-						printf("Could not detect CD version:\n");
-						printf("Defaulting to German original DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Could not detect CD version:" << std::endl;
+                        std::cout << "Defaulting to German original DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_GERMAN;
 						break;
 				}
@@ -2849,13 +2837,13 @@ int main(int argc, char **argv)
                 size_t filename_size = fs::file_size(filename);
                 switch (filename_size) {
 					case 74422:
-						printf("Detected Russian expansion DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Detected Russian expansion DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_EXPANSION | CD_RUSSIAN;
 						break;
 					default:
-						printf("Detected expansion DOS CD\n");
-						fflush(stdout);
+                        std::cout << "Detected expansion DOS CD" << std::endl;
+                        std::flush(std::cout);
 						CDType |= CD_EXPANSION | CD_US;
 						break;
 				}
@@ -2885,8 +2873,8 @@ int main(int argc, char **argv)
 		}
 		// Should only be on the expansion cd
 #ifdef DEBUG
-		// printf("%s:\n", ParseString(Todo[u].File));
-		fflush(stdout);
+        // std::cout << "%s:\n", ParseString(Todo[u].File));
+        std::flush(std::cout);
 #endif
         if (!expansion_cd && (Todo[u].Version & 2)) {
 			continue;
@@ -3012,7 +3000,7 @@ int main(int argc, char **argv)
                         mpqfile = ArchiveDir;
                         mpqfile /= Todo[u].MPQFile;
                         std::cerr << mpqfile << " not found!" << std::endl;
-						error(mpqfile, "I also tried different cases and tried both .mpq and .exe extensions\n");
+                        error(mpqfile, "I also tried different cases and tried both .mpq and .exe extensions\n");
 					}
                     std::cout << Todo[u].File << " from MPQ file \"" << mpqfile <<  "\"" << std::endl;
 					// strip ArchiveDir and slash before copying
