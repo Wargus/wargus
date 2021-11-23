@@ -131,6 +131,7 @@ public:
 class Image
 {
 public:
+    Image() = default;
     Image(size_t height, size_t width): height{height}, width{width}
     {
         data.resize(height * width);
@@ -171,7 +172,7 @@ public:
 /**
 **  Palette N27, for credits cursor
 */
-static unsigned char *Pal27;
+static std::shared_ptr<unsigned char []>Pal27;
 
 /**
 **  Original archive buffer.
@@ -572,19 +573,21 @@ int OpenArchive(const char *file, int type)
 **
 **  @return      Pointer to uncompressed entry
 */
-unsigned char *ExtractEntry(unsigned char *cp, size_t *lenp)
+std::unique_ptr<unsigned char []>
+ExtractEntry(unsigned char *cp, size_t *lenp)
 {
     unsigned char *dp;
-    unsigned char *dest;
+    std::unique_ptr<unsigned char []> dest;
 	size_t uncompressed_length;
 	int flags;
 
 	uncompressed_length = FetchLE32(cp);
 	flags = uncompressed_length >> 24;
 	uncompressed_length &= 0x00FFFFFF;
-    //	std::cout << "Entry length %8d flags %02x\t", uncompressed_length, flags);
 
-	dp = dest = (unsigned char *)malloc(uncompressed_length);
+    dest = std::make_unique<unsigned char []>(uncompressed_length);
+
+    dp = dest.get();
 	if (!dest) {
         std::cout << "Can't malloc " << uncompressed_length << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
@@ -594,8 +597,6 @@ unsigned char *ExtractEntry(unsigned char *cp, size_t *lenp)
 		unsigned char buf[8192] = {'\0'};
         unsigned char *ep;
 		int bi;
-
-        //		std::cout << "Compressed entry\n");
 
 		bi = 0;
 		memset(buf, 0, sizeof(buf));
@@ -639,7 +640,7 @@ unsigned char *ExtractEntry(unsigned char *cp, size_t *lenp)
         //if (dp != ep) std::cout << "%p,%p %d\n", dp, ep, dp - dest);
 	} else if (flags == 0x00) {
         //		std::cout << "Uncompressed entry\n");
-		memcpy(dest, cp, uncompressed_length);
+        std::memcpy(dest.get(), cp, uncompressed_length);
 	} else {
         std::cout << "Unknown flags " << flags << std::endl;
 		error("Archive version error", "This version of the data is not supported");
@@ -762,13 +763,12 @@ unsigned char *ConvertPalette(unsigned char *pal)
 */
 int ConvertRgb(const char *file, int rgbe)
 {
-    unsigned char *rgbp;
     fs::path buf{Dir};
 	int i;
 	size_t l;
 
-	rgbp = ExtractEntry(ArchiveOffsets[rgbe], &l);
-	ConvertPalette(rgbp);
+    auto rgbp = ExtractEntry(ArchiveOffsets[rgbe], &l);
+    ConvertPalette(rgbp.get());
 
 	//
 	//  Generate RGB File.
@@ -794,7 +794,7 @@ int ConvertRgb(const char *file, int rgbe)
             error("Memory error", "Could not allocate enough memory to read archive.");
         }
         try {
-            f.write(reinterpret_cast<char *>(rgbp), l);
+            f.write(reinterpret_cast<char *>(rgbp.get()), l);
         } catch (std::system_error &e) {
             std::cout << "Can't write to " << buf << std::endl;
             std::cerr << e.code().message() << std::endl;
@@ -826,7 +826,6 @@ int ConvertRgb(const char *file, int rgbe)
                     rgbp[i * 3], rgbp[i * 3 + 1], rgbp[i * 3 + 2], i);
         }
 	}
-	free(rgbp);
 
 	return 0;
 }
@@ -907,34 +906,27 @@ Image ConvertTile(unsigned char *mini, const unsigned char *mega, int msize)
 */
 int ConvertTileset(const char *file, int pale, int mege, int mine, int mape)
 {
-    unsigned char *palp;
-    unsigned char *megp;
-    unsigned char *minp;
-    unsigned char *mapp;
+
 	size_t megl;
     fs::path buf{};
 
-	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
-	megp = ExtractEntry(ArchiveOffsets[mege], &megl);
-	minp = ExtractEntry(ArchiveOffsets[mine], NULL);
-	mapp = ExtractEntry(ArchiveOffsets[mape], NULL);
+    auto palp = ExtractEntry(ArchiveOffsets[pale], NULL);
+    auto megp = ExtractEntry(ArchiveOffsets[mege], &megl);
+    auto minp = ExtractEntry(ArchiveOffsets[mine], NULL);
+    auto mapp = ExtractEntry(ArchiveOffsets[mape], NULL);
 
     //	std::cout << "%s:\t", file);
-    Image image = ConvertTile(minp, megp, megl);
+    Image image = ConvertTile(minp.get(), megp.get(), megl);
 
-	free(megp);
-	free(minp);
-	free(mapp);
 
-	ConvertPalette(palp);
+    ConvertPalette(palp.get());
     buf = Dir;
     buf /= TILESET_PATH;
     buf /= file;
     buf.replace_extension(".png");
 	CheckPath(buf);
-    SavePNG(buf, image, palp, 1);
+    SavePNG(buf, image, palp.get(), 1);
 
-	free(palp);
 
 	return 0;
 }
@@ -1190,35 +1182,25 @@ Image ConvertGraphic(int gfx, unsigned char *bp,
 */
 int ConvertGfx(const char *file, int pale, int gfxe, int gfxe2, int start2)
 {
-    unsigned char *palp;
-    unsigned char *gfxp;
-    unsigned char *gfxp2;
+    std::unique_ptr<unsigned char []>gfxp2;
 
-
-	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
-	gfxp = ExtractEntry(ArchiveOffsets[gfxe], NULL);
+    auto palp = ExtractEntry(ArchiveOffsets[pale], NULL);
+    auto gfxp = ExtractEntry(ArchiveOffsets[gfxe], NULL);
 	if (gfxe2) {
 		gfxp2 = ExtractEntry(ArchiveOffsets[gfxe2], NULL);
 	} else {
 		gfxp2 = NULL;
 	}
 
-    auto image = ConvertGraphic(1, gfxp, gfxp2, start2);
+    auto image = ConvertGraphic(1, gfxp.get(), gfxp2.get(), start2);
 
-	if (gfxp2) {
-		free(gfxp2);
-	}
-
-	free(gfxp);
-	ConvertPalette(palp);
+    ConvertPalette(palp.get());
     fs::path buf = Dir;
     buf /= GRAPHICS_PATH;
     buf /= file;
     buf.replace_extension(".png");
 	CheckPath(buf);
-    SavePNG(buf, image, palp, 1);
-
-	free(palp);
+    SavePNG(buf, image, palp.get(), 1);
 
 	return 0;
 }
@@ -1228,25 +1210,20 @@ int ConvertGfx(const char *file, int pale, int gfxe, int gfxe2, int start2)
 */
 int ConvertGfu(const char *file, int pale, int gfue)
 {
-    unsigned char *palp;
-    unsigned char *gfup;
     fs::path buf;
 
-	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
-	gfup = ExtractEntry(ArchiveOffsets[gfue], NULL);
+    auto palp = ExtractEntry(ArchiveOffsets[pale], NULL);
+    auto gfup = ExtractEntry(ArchiveOffsets[gfue], NULL);
 
-    auto image = ConvertGraphic(0, gfup, NULL, 0);
+    auto image = ConvertGraphic(0, gfup.get(), NULL, 0);
 
-	free(gfup);
-	ConvertPalette(palp);
+    ConvertPalette(palp.get());
     buf = Dir;
     buf /= GRAPHICS_PATH;
     buf /= file;
     buf.replace_extension(".png");
 	CheckPath(buf);
-    SavePNG(buf, image, palp, 1);
-
-	free(palp);
+    SavePNG(buf, image, palp.get(), 1);
 
 	return 0;
 }
@@ -1256,18 +1233,15 @@ int ConvertGfu(const char *file, int pale, int gfue)
 */
 int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 {
-    unsigned char *palp;
-    unsigned char *gfup;
 	int i;
 	const GroupedGraphic *gg;
 
-	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
-	gfup = ExtractEntry(ArchiveOffsets[gfue], NULL);
+    auto palp = ExtractEntry(ArchiveOffsets[pale], NULL);
+    auto gfup = ExtractEntry(ArchiveOffsets[gfue], NULL);
 
-    auto image = ConvertGraphic(0, gfup, NULL, 0);
+    auto image = ConvertGraphic(0, gfup.get(), NULL, 0);
 
-	free(gfup);
-	ConvertPalette(palp);
+    ConvertPalette(palp.get());
 
 	for (i = 0; GroupedGraphicsList[glist][i].Name[0]; ++i) {
 		gg = &GroupedGraphicsList[glist][i];
@@ -1279,9 +1253,8 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 
 		// hack for multiple palettes
 		if (i == 3 && strstr(path, "widgets")) {
-			free(palp);
 			palp = ExtractEntry(ArchiveOffsets[14], NULL);
-			ConvertPalette(palp);
+            ConvertPalette(palp.get());
 		}
         fs::path buf{};
         buf = Dir;
@@ -1290,10 +1263,8 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
         buf /= gg->Name;
         buf.replace_extension(".png");
 		CheckPath(buf);
-        SavePNG(buf, image, gg->X, gg->Y, gg->Width, gg->Height, image.width, palp, 1);
+        SavePNG(buf, image, gg->X, gg->Y, gg->Width, gg->Height, image.width, palp.get(), 1);
 	}
-
-	free(palp);
 
 	return 0;
 }
@@ -1307,12 +1278,11 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 */
 void ConvertPud(const fs::path file, int pude, bool justconvert = false)
 {
-    unsigned char *pudp = NULL;
     fs::path buf{};
     size_t l;
 
 	if (justconvert == false) {
-		pudp = ExtractEntry(ArchiveOffsets[pude], &l);
+        auto pudp = ExtractEntry(ArchiveOffsets[pude], &l);
         buf = Dir;
         buf /= PUD_PATH;
         buf /= file;
@@ -1322,7 +1292,7 @@ void ConvertPud(const fs::path file, int pude, bool justconvert = false)
         buf = buf.parent_path();
         // *strrchr(buf, '/') = '\0';
 
-        PudToStratagus(pudp, l, /*strrchr(file, '/') + 1-- this should be just the file part.*/ file.filename().c_str(), buf.c_str());
+        PudToStratagus(pudp.get(), l, /*strrchr(file, '/') + 1-- this should be just the file part.*/ file.filename().c_str(), buf.c_str());
 	} else {
         fs::path pudfile{};
 		size_t filesize = 0;
@@ -1545,17 +1515,15 @@ void FixFont(Image &image)
 */
 int ConvertFont(const char *file, int pale, int fnte)
 {
-    unsigned char *palp;
-    unsigned char *fntp;
+
     fs::path buf{};
-
-	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
-	fntp = ExtractEntry(ArchiveOffsets[fnte], NULL);
-
-    auto image = ConvertFnt(fntp);
-
-	free(fntp);
-	ConvertPalette(palp);
+    Image image;
+    auto palp = ExtractEntry(ArchiveOffsets[pale], NULL);
+    {
+        auto fntp = ExtractEntry(ArchiveOffsets[fnte], NULL);
+        image = ConvertFnt(fntp.get());
+    }
+    ConvertPalette(palp.get());
 
     buf = Dir;
     buf /= FONT_PATH;
@@ -1568,9 +1536,7 @@ int ConvertFont(const char *file, int pale, int fnte)
 	if (CDType & CD_RUSSIAN) {
         FixFont(image);
 	}
-    SavePNG(buf, image, palp, 1);
-
-	free(palp);
+    SavePNG(buf, image, palp.get(), 1);
 
 	return 0;
 }
@@ -1630,9 +1596,6 @@ Image ResizeImage(const Image &image, size_t nw, size_t nh)
 */
 int ConvertImage(const char *file, int pale, int imge, int nw, int nh)
 {
-    unsigned char *palp;
-    unsigned char *imgp;
-
 	// Workaround for MAC expansion CD
 	if (CDType & CD_MAC) {
 		if (imge >= 94 && imge <= 103) {
@@ -1643,17 +1606,17 @@ int ConvertImage(const char *file, int pale, int imge, int nw, int nh)
 		}
 	}
 
-	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
+    std::shared_ptr<unsigned char []> palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	if (pale == 27 && imge == 28) {
 		Pal27 = palp;
 	}
-	imgp = ExtractEntry(ArchiveOffsets[imge], NULL);
+    Image image;
+    {
+        auto imgp = ExtractEntry(ArchiveOffsets[imge], NULL);
+        image = ConvertImg(imgp.get());
+    }
 
-    auto image = ConvertImg(imgp);
-
-
-	free(imgp);
-	ConvertPalette(palp);
+    ConvertPalette(palp.get());
 
     fs::path buf;
     buf = Dir;
@@ -1666,11 +1629,7 @@ int ConvertImage(const char *file, int pale, int imge, int nw, int nh)
 	if (nw && nh) {
         image = ResizeImage(image, nw, nh);
 	}
-    SavePNG(buf, image, palp, 0);
-
-	if (pale != 27 || imge != 28) {
-		free(palp);
-	}
+    SavePNG(buf, image, palp.get(), 0);
 
 	return 0;
 }
@@ -1700,8 +1659,6 @@ Image ConvertCur(unsigned char *bp)
 		image[i] = bp[i] ? bp[i] : 255;
 	}
 
-
-
 	return image;
 }
 
@@ -1710,8 +1667,7 @@ Image ConvertCur(unsigned char *bp)
 */
 int ConvertCursor(const std::string &file, int pale, int cure)
 {
-    unsigned char *palp;
-    unsigned char *curp;
+    std::shared_ptr<unsigned char []>palp;
     fs::path buf{};
 
     if (pale == 27 && cure == 314 && Pal27) {  // Credits arrow (Blue arrow NW)
@@ -1719,22 +1675,18 @@ int ConvertCursor(const std::string &file, int pale, int cure)
 	} else {
 		palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	}
-	curp = ExtractEntry(ArchiveOffsets[cure], NULL);
-
-    auto image = ConvertCur(curp);
-
-	free(curp);
-	ConvertPalette(palp);
+    Image image;
+    {
+        auto curp = ExtractEntry(ArchiveOffsets[cure], NULL);
+        image = ConvertCur(curp.get());
+    }
+    ConvertPalette(palp.get());
     buf = Dir;
     buf /= CURSOR_PATH;
     buf /= file;
     buf.replace_extension(".png");
 	CheckPath(buf);
-    SavePNG(buf, image, palp, 1);
-
-	if (pale != 27 || cure != 314 || !Pal27) {
-		free(palp);
-	}
+    SavePNG(buf, image, palp.get(), 1);
 
 	return 0;
 }
@@ -1748,12 +1700,11 @@ int ConvertCursor(const std::string &file, int pale, int cure)
 */
 int ConvertWav(const fs::path &file, int wave)
 {
-    unsigned char *wavp;
     fs::path buf{};
 	gzFile gf;
 	size_t l;
 
-	wavp = ExtractEntry(ArchiveOffsets[wave], &l);
+    auto wavp = ExtractEntry(ArchiveOffsets[wave], &l);
     buf = Dir;
     buf /= SOUND_PATH;
     buf /= file;
@@ -1765,12 +1716,10 @@ int ConvertWav(const fs::path &file, int wave)
         std::cout << "Can't open " << buf << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
-	if (l != (size_t)gzwrite(gf, wavp, l)) {
+    if (l != (size_t)gzwrite(gf, wavp.get(), l)) {
         std::cout << "Can't write " << l << " bytes" << std::endl;
         std::flush(std::cout);
 	}
-
-	free(wavp);
 
 	gzclose(gf);
 	return 0;
@@ -1786,15 +1735,15 @@ int ConvertWav(const fs::path &file, int wave)
 
 int ConvertXmi(const fs::path &file, int xmi)
 {
-    unsigned char *xmip;
-    unsigned char *midp;
+
     fs::path buf{};
 	size_t xmil;
 	size_t midl;
-
-	xmip = ExtractEntry(ArchiveOffsets[xmi], &xmil);
-	midp = TranscodeXmiToMid(xmip, xmil, &midl);
-	free(xmip);
+    unsigned char *midp;
+    {
+        auto xmip = ExtractEntry(ArchiveOffsets[xmi], &xmil);
+        midp = TranscodeXmiToMid(xmip.get(), xmil, &midl);
+    }
     buf = Dir;
     buf /= MUSIC_PATH;
     buf /= file;
@@ -1983,7 +1932,6 @@ int ConvertMusic(void)
 */
 int ConvertVideo(const char *file, int video, bool justconvert = false)
 {
-    unsigned char *vidp;
 	size_t l;
 	int ret;
 
@@ -1993,7 +1941,7 @@ int ConvertVideo(const char *file, int video, bool justconvert = false)
     buf.replace_extension(".smk");
 	CheckPath(buf);
 	if (justconvert == false) {
-		vidp = ExtractEntry(ArchiveOffsets[video], &l);
+        auto vidp = ExtractEntry(ArchiveOffsets[video], &l);
         std::ofstream f;
         f.exceptions(std::ofstream::failbit | std::ofstream::badbit);
 
@@ -2005,14 +1953,12 @@ int ConvertVideo(const char *file, int video, bool justconvert = false)
         }
 
         try {
-            f.write(reinterpret_cast<char *>(vidp), l);
+            f.write(reinterpret_cast<char *>(vidp.get()), l);
         } catch (std::system_error &e) {
             std::cout << "Can't write " << l << " bytes" << std::endl;
             std::cerr << e.code().message() << std::endl;
             std::flush(std::cout);
         }
-
-		free(vidp);
 	}
 
     fs::path output_file = buf;
@@ -2033,11 +1979,7 @@ int ConvertVideo(const char *file, int video, bool justconvert = false)
 	remove(buf);
 
 	if (ret != 0) {
-#ifdef WIN32
-        _unlink(output_file.c_str());
-#else
-        unlink(output_file.c_str());
-#endif
+        fs::remove(output_file);
         std::cout << "Can't convert video " << buf << " to ogv format. Is ffmpeg installed in PATH?" << std::endl;
         std::flush(std::cout);
 		return ret;
@@ -2095,7 +2037,6 @@ unsigned char *ConvertString(unsigned char *buf, size_t len)
 */
 int ConvertText(const std::string &file, int txte, int ofs)
 {
-    unsigned char *txtp;
 	gzFile gf;
 	size_t l;
 	size_t l2;
@@ -2111,7 +2052,7 @@ int ConvertText(const std::string &file, int txte, int ofs)
 		txte += 6;
 	}
 
-	txtp = ExtractEntry(ArchiveOffsets[txte], &l);
+    auto txtp = ExtractEntry(ArchiveOffsets[txte], &l);
 
     fs::path buf{};
     buf = Dir;
@@ -2125,17 +2066,15 @@ int ConvertText(const std::string &file, int txte, int ofs)
 		perror("");
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
-	str = ConvertString(txtp + ofs, l - ofs);
+    str = ConvertString(txtp.get() + ofs, l - ofs);
 	l2 = strlen((char *)str) + 1;
 
 	if (l2 != (size_t)gzwrite(gf, str, l2)) {
         std::cout << "Can't write " << l2 << " bytes" << std::endl;
         std::flush(std::cout);
 	}
+
     gzclose(gf);
-
-
-	free(txtp);
 	free(str);
 
 	return 0;
@@ -2227,7 +2166,6 @@ char *ParseString(const char *input)
 */
 int CampaignsCreate(int txte, int ofs)
 {
-    unsigned char *objectives;
     unsigned char *CampaignData[2][26][10];
     unsigned char *current;
     unsigned char *next;
@@ -2260,15 +2198,19 @@ int CampaignsCreate(int txte, int ofs)
 		}
 	}
 
-	objectives = ExtractEntry(ArchiveOffsets[txte], &l);
-	if (!objectives) {
-        std::cout << "Objectives allocation failed" << std::endl;
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
-	objectives = (unsigned char *)realloc(objectives, l + 1);
-	if (!objectives) {
-        std::cout << "Objectives allocation failed" << std::endl;
-		error("Memory error", "Could not allocate enough memory to read archive.");
+    std::vector<unsigned char> objectives{};
+    {
+        // FIXME: this is a bit ugly, but works for now.
+        auto objectives_base = ExtractEntry(ArchiveOffsets[txte], &l);
+        if (!objectives_base) {
+            std::cout << "Objectives allocation failed" << std::endl;
+            error("Memory error", "Could not allocate enough memory to read archive.");
+        }
+
+        objectives.resize(l + 1);
+        for (size_t i = 0; i < l; i++) {
+            objectives[i] = objectives_base[i];
+        }
 	}
 	objectives[l] = '\0';
 
@@ -2282,7 +2224,7 @@ int CampaignsCreate(int txte, int ofs)
 	} else {
 		expansion = 28;
 	}
-	current = objectives + ofs;
+    current = &objectives[0] + ofs;
 	for (l = 0; l < (size_t)expansion; ++l) {
         next = current + strlen((char *)current) + 1;
 
@@ -2365,7 +2307,6 @@ int CampaignsCreate(int txte, int ofs)
 		}
 	}
 
-	free(objectives);
 	return 0;
 }
 
@@ -2674,7 +2615,6 @@ int main(int argc, char **argv)
 	// if the user selected the install.exe from the DOS CD, be gratious
     fs::path extraPath = ArchiveDir;
     extraPath /= "data/rezdat.war";
-    //if (stat(extraPath, &st) == 0) {
     if (fs::exists(extraPath)) {
         extraPath = ArchiveDir;
         extraPath /= "data";
@@ -3104,9 +3044,7 @@ int main(int argc, char **argv)
 	if (ArchiveBuffer) {
 		CloseArchive();
 	}
-	if (Pal27) {
-		free(Pal27);
-	}
+
     buf = Dir;
     buf /= "scripts/wc2-config.lua";
 
