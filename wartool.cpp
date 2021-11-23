@@ -69,6 +69,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 
 //FIXME: Remove these later.
 /* Some workarounds to avoid depending on Stratagus */
@@ -1730,7 +1731,7 @@ Image ConvertCur(unsigned char *bp)
 /**
 **  Convert a cursor to my format.
 */
-int ConvertCursor(const char *file, int pale, int cure)
+int ConvertCursor(const std::string &file, int pale, int cure)
 {
     unsigned char *palp;
     unsigned char *curp;
@@ -1912,7 +1913,6 @@ int CopyMusic(void)
 
 int ConvertMusic(void)
 {
-	struct stat st;
     std::string cmd{};
 	int ret, i;
 	int count = 0;
@@ -1980,8 +1980,8 @@ int ConvertMusic(void)
             remove(buf);
 
 			if (ret != 0) {
-                printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", BNEMusicNames[i].c_str());
-				fflush(stdout);
+                std::cout << "Can't convert wav sound " << BNEMusicNames[i] << " to ogg format. Is ffmpeg installed in PATH?" << std::endl;
+                std::flush(std::cout);
 			}
 
 			++count;
@@ -2005,65 +2005,62 @@ int ConvertMusic(void)
 int ConvertVideo(const char *file, int video, bool justconvert = false)
 {
     unsigned char *vidp;
-	char buf[8192] = {'\0'};
-    char *cmd;
-    FILE *f;
 	size_t l;
 	int ret;
-	int cmdlen;
-	char outputfile[8192] = {'\0'};
 
-    snprintf(buf, 4095, "%s/%s.smk", Dir.c_str(), file);
+    fs::path buf{};
+    buf = Dir;
+    buf /= file;
+    buf.replace_extension(".smk");
 	CheckPath(buf);
 	if (justconvert == false) {
 		vidp = ExtractEntry(ArchiveOffsets[video], &l);
+        std::ofstream f;
+        f.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
-		f = fopen(buf, "wb");
-		if (!f) {
-			perror("");
-			printf("Can't open %s\n", buf);
-			error("Memory error", "Could not allocate enough memory to read archive.");
-		}
-		if (l != fwrite(vidp, 1, l, f)) {
-			printf("Can't write %d bytes\n", (int)l);
-			fflush(stdout);
-		}
+        try {
+            f.open(buf, std::ios::binary);
+        } catch (std::system_error &e) {
+            std::cout << "Can't open " << buf << std::endl;
+            std::cerr << e.code().message() << std::endl;
+        }
+
+        try {
+            f.write(reinterpret_cast<char *>(vidp), l);
+        } catch (std::system_error &e) {
+            std::cout << "Can't write " << l << " bytes" << std::endl;
+            std::cerr << e.code().message() << std::endl;
+            std::flush(std::cout);
+        }
 
 		free(vidp);
-		fclose(f);
 	}
 
+    fs::path output_file = buf;
+    output_file.replace_extension(".ogv");
+    std::string cmd = "ffmpeg -y -i ";
+    cmd += '"';
+    cmd += buf;
+    cmd += '"';
+    cmd += " -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p ";
 	if (CDType & CD_BNE) {
-		cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640x0,setsar=1:1 \"") + strlen(buf) + strlen("\" ");
-	} else {
-		cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"") + strlen(buf) + strlen("\" ");
-	}
-    cmd = (char *) calloc(cmdlen + 1, 1);
-	if (!cmd) {
-		fprintf(stderr, "Memory error\n");
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
-
-	if (CDType & CD_BNE) {
-        snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640:0,setsar=1:1 \"%s/%s.ogv\"", Dir.c_str(), file, Dir.c_str(), file);
-	} else {
-        snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir.c_str(), file, Dir.c_str(), file);
-	}
-	printf("%s\n", cmd);
-	ret = system(cmd);
-
-	free(cmd);
+        cmd += "-aspect 4:3 -vf scale=640:0,setsar=1:1 ";
+    }
+    cmd += '"';
+    cmd += output_file;
+    cmd += '"';
+    std::cout << cmd << std::endl;
+    ret = system(cmd.c_str());
 	remove(buf);
 
 	if (ret != 0) {
-        sprintf(outputfile, "%s/%s.ogv", Dir.c_str(), file);
 #ifdef WIN32
-		_unlink(outputfile);
+        _unlink(output_file.c_str());
 #else
-		unlink(outputfile);
+        unlink(output_file.c_str());
 #endif
-		printf("Can't convert video %s to ogv format. Is ffmpeg installed in PATH?\n", file);
-		fflush(stdout);
+        std::cout << "Can't convert video " << buf << " to ogv format. Is ffmpeg installed in PATH?" << std::endl;
+        std::flush(std::cout);
 		return ret;
 	}
 
@@ -2117,10 +2114,9 @@ unsigned char *ConvertString(unsigned char *buf, size_t len)
 /**
 **  Convert text to my format.
 */
-int ConvertText(const char *file, int txte, int ofs)
+int ConvertText(const std::string &file, int txte, int ofs)
 {
     unsigned char *txtp;
-	char buf[8192] = {'\0'};
 	gzFile gf;
 	size_t l;
 	size_t l2;
@@ -2138,12 +2134,16 @@ int ConvertText(const char *file, int txte, int ofs)
 
 	txtp = ExtractEntry(ArchiveOffsets[txte], &l);
 
-    sprintf(buf, "%s/%s/%s.txt.gz", Dir.c_str(), TEXT_PATH, file);
+    fs::path buf{};
+    buf = Dir;
+    buf /= TEXT_PATH;
+    buf /= file;
+    buf.replace_extension(".txt.gz");
 	CheckPath(buf);
-	gf = gzopen(buf, "wb9");
+    gf = gzopen(buf.c_str(), "wb9");
 	if (!gf) {
+        std::cout << "Can't open " << buf << std::endl;
 		perror("");
-		printf("Can't open %s\n", buf);
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
 	str = ConvertString(txtp + ofs, l - ofs);
@@ -2153,11 +2153,12 @@ int ConvertText(const char *file, int txte, int ofs)
 		printf("Can't write %d bytes\n", (int)l2);
 		fflush(stdout);
 	}
+    gzclose(gf);
+
 
 	free(txtp);
 	free(str);
 
-	gzclose(gf);
 	return 0;
 }
 
@@ -2250,16 +2251,14 @@ char *ParseString(const char *input)
 /**
 **  FIXME: docu
 */
-int CampaignsCreate(const char *file __attribute__((unused)), int txte, int ofs)
+int CampaignsCreate(int txte, int ofs)
 {
     unsigned char *objectives;
-	char buf[8192] = {'\0'};
     unsigned char *CampaignData[2][26][10];
     unsigned char *current;
     unsigned char *next;
     unsigned char *nextobj;
     unsigned char *currentobj;
-    FILE *outlevel;
 	size_t l;
 	int levelno;
 	int noobjs;
@@ -2360,30 +2359,35 @@ int CampaignsCreate(const char *file __attribute__((unused)), int txte, int ofs)
 	for (levelno = 0; levelno < expansion / 2; ++levelno) {
 		for (race = 0; race < 2; ++race) {
 			//Open Relevant file, to write stuff too.
-            sprintf(buf, "%s/%s/%s_c2.sms", Dir.c_str(), TEXT_PATH,
-                    Todo[2 * levelno + 1 + race + 5].File.c_str());
+            fs::path buf{};
+            buf = Dir;
+            buf /= TEXT_PATH;
+            buf /= Todo[2 * levelno + 1 + race + 5].File + "_c2.sms";
+
 			CheckPath(buf);
-			if (!(outlevel = fopen(buf, "wb"))) {
-				printf("Cannot Write File (Skipping Level: %s)\n", buf);
-				fflush(stdout);
-				continue;
-			}
+            std::ofstream out_level;
+            out_level.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+
+            try {
+                out_level.open(buf, std::ios::binary);
+            } catch (std::system_error &e) {
+                std::cout << "Can't open " << buf << std::endl;
+                std::cerr << e.code().message() << std::endl;
+            }
+
+
 			unsigned char *str = ConvertString(CampaignData[race][levelno][0], 0);
-			sprintf(buf, "title = \"%s\"\n", str);
-			fputs(buf, outlevel);
+            out_level << "title = \"" << str << "\"\n";
 			free(str);
-			fputs("objectives = {", outlevel);
+            out_level << "objectives = {";
 			for (noobjs = 1; noobjs < 10; ++noobjs) {
 				if (CampaignData[race][levelno][noobjs] != NULL) {
 					unsigned char *str = ConvertString(CampaignData[race][levelno][noobjs], 0);
-					sprintf(buf, "%s\"%s\"", (noobjs > 1 ? "," : ""), str);
-					fputs(buf, outlevel);
+                    out_level << (noobjs > 1 ? "," : "") << "\"" << str << "\"";
 					free(str);
 				}
 			}
-			fputs("}\n", outlevel);
-			// Close levels and move on.
-			fclose(outlevel);
+            out_level << "}\n";
 		}
 	}
 
@@ -3109,7 +3113,7 @@ int main(int argc, char **argv)
                              Todo[u].Arg3, Todo[u].Arg4);
 				break;
 			case C:
-                ConvertCursor(Todo[u].File.c_str(), Todo[u].Arg1, Todo[u].Arg2);
+                ConvertCursor(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
 				break;
 			case M:
 				ConvertXmi(Todo[u].File, Todo[u].Arg1);
@@ -3118,7 +3122,7 @@ int main(int argc, char **argv)
 				ConvertWav(Todo[u].File, Todo[u].Arg1);
 				break;
 			case X:
-                ConvertText(Todo[u].File.c_str(), Todo[u].Arg1, Todo[u].Arg2);
+                ConvertText(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
 				break;
 			case S:
                 SetupNames(Todo[u].File.c_str(), Todo[u].Arg1);
@@ -3129,7 +3133,7 @@ int main(int argc, char **argv)
 				}
 				break;
 			case L:
-                CampaignsCreate(Todo[u].File.c_str(), Todo[u].Arg1, Todo[u].Arg2);
+                CampaignsCreate(Todo[u].Arg1, Todo[u].Arg2);
 				break;
 			default:
 				break;
