@@ -199,8 +199,8 @@ static int game_font_width;
 /**
 **  File names.
 */
-static char *UnitNames[110];
-static int UnitNamesLast = 0;
+static std::vector<std::string> UnitNames;
+//static char *UnitNames[110];
 
 //----------------------------------------------------------------------------
 //  TOOLS
@@ -1179,7 +1179,6 @@ int ConvertGfx(const char *file, int pale, int gfxe, int gfxe2, int start2)
     unsigned char *gfxp;
     unsigned char *gfxp2;
 
-	char buf[1024];
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
 	gfxp = ExtractEntry(ArchiveOffsets[gfxe], NULL);
@@ -1197,8 +1196,10 @@ int ConvertGfx(const char *file, int pale, int gfxe, int gfxe2, int start2)
 
 	free(gfxp);
 	ConvertPalette(palp);
-
-    sprintf(buf, "%s/%s/%s.png", Dir.c_str(), GRAPHICS_PATH, file);
+    fs::path buf = Dir;
+    buf /= GRAPHICS_PATH;
+    buf /= file;
+    buf.replace_extension(".png");
 	CheckPath(buf);
     SavePNG(buf, image, palp, 1);
 
@@ -2169,24 +2170,21 @@ int SetupNames(const char *file __attribute__((unused)), int txte __attribute__(
 	txtp = Names;
 	l = sizeof(Names);
     mp = (const unsigned short *)txtp;
+    UnitNames.resize(110);
 
 	n = ConvertLE16(mp[0]);
-	for (u = 1; u < n; ++u) {
+    for (u = 1; u < std::min<unsigned>(n, UnitNames.size()); ++u) {
         //		printf("%d %x ", u, ConvertLE16(mp[u]));
         //		printf("%s\n", txtp + ConvertLE16(mp[u]));
-		if (u < sizeof(UnitNames) / sizeof(*UnitNames)) {
-#ifdef WIN32
-            UnitNames[u] = _strdup((char *)txtp + ConvertLE16(mp[u]));
-#else
-            UnitNames[u] = strdup((char *)txtp + ConvertLE16(mp[u]));
-#endif
-			UnitNamesLast = u;
-		}
+        for (char const *cursor = (char *)txtp + ConvertLE16(mp[u]); *cursor; cursor++) {
+            UnitNames[u].push_back(*cursor);
+        }
+
 	}
 
-	if (txtp != Names) {
-		free(txtp);
-	}
+    //if (txtp != Names) {
+    //	free(txtp);
+    //}
 	return 0;
 }
 
@@ -2199,7 +2197,7 @@ char *ParseString(const char *input)
     const char *sp;
     char *strsp;
     char *dp;
-    char *tp;
+    char const *tp;
 	int i;
 	int f;
 
@@ -2214,7 +2212,7 @@ char *ParseString(const char *input)
 			}
 			i = strtol(sp, &strsp, 0);
 			sp = strsp;
-			tp = UnitNames[i];
+            tp = UnitNames[i].c_str();
 			if (f) {
 				tp = strchr(tp, ' ') + 1;
 			}
@@ -3150,11 +3148,6 @@ int main(int argc, char **argv)
 	}
 	if (Pal27) {
 		free(Pal27);
-	}
-
-	while (UnitNamesLast > 0) {
-		free(UnitNames[UnitNamesLast]);
-		--UnitNamesLast;
 	}
 
     sprintf(buf, "%s/scripts/wc2-config.lua", Dir.c_str());
