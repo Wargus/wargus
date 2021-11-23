@@ -1913,32 +1913,35 @@ int CopyMusic(void)
 int ConvertMusic(void)
 {
 	struct stat st;
-	char buf[8192] = {'\0'};
-	char *cmd;
-	int cmdlen;
+    std::string cmd{};
 	int ret, i;
 	int count = 0;
 
     for (i = 0; !MusicNames[i].empty(); ++i) {
-        snprintf(buf, 4095, "%s/%s/%s.wav", Dir.c_str(), MUSIC_PATH, MusicNames[i].c_str());
+        fs::path buf{};
+        buf = Dir;
+        buf /= MUSIC_PATH;
+        buf /= MusicNames[i];
+        buf.replace_extension(".wav");
 		CheckPath(buf);
 
-        if (stat(buf, &st)) {
+        fs::path output_path = buf;
+        output_path.replace_extension(".ogg");
+
+        if (!fs::exists(buf)) {
 			continue;
         }
+        cmd = "ffmpeg -y -i ";
+        cmd += '"';
+        cmd += buf;
+        cmd += '"';
+        cmd += " ";
+        cmd += '"';
+        cmd += output_path;
+        cmd += '"';
 
-		cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\" ");
-        cmd = (char *) calloc(cmdlen + 1, 1);
-		if (!cmd) {
-			fprintf(stderr, "Memory error\n");
-			error("Memory error", "Could not allocate enough memory to read archive.");
-		}
+        ret = system(cmd.c_str());
 
-        snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir.c_str(), MUSIC_PATH, MusicNames[i].c_str());
-
-		ret = system(cmd);
-
-		free(cmd);
 		remove(buf);
 
 		if (ret != 0) {
@@ -1950,26 +1953,31 @@ int ConvertMusic(void)
 	}
 	if (CDType & CD_BNE) {
         for (i = 0; !BNEMusicNames[i].empty(); ++i) {
-            sprintf(buf, "%s/%s/%s.wav", Dir.c_str(), MUSIC_PATH, BNEMusicNames[i].c_str());
+            fs::path buf{};
+            buf = Dir;
+            buf /= MUSIC_PATH;
+            buf /= BNEMusicNames[i];
+            buf.replace_extension(".wav");
 			CheckPath(buf);
 
-            if (stat(buf, &st)) {
+            fs::path output_path = buf;
+            output_path.replace_extension(".ogg");
+
+            if (!fs::exists(buf)) {
 				continue;
             }
+            cmd = "ffmpeg -y -i ";
+            cmd += '"';
+            cmd += buf;
+            cmd += '"';
+            cmd += " ";
+            cmd += '"';
+            cmd += output_path;
+            cmd += '"';
 
-			cmdlen = strlen("ffmpeg -y -i \"") + strlen(buf) + strlen("\" \"") + strlen(buf) + strlen("\" ");
-            cmd = (char *) calloc(cmdlen + 1, 1);
-			if (!cmd) {
-				fprintf(stderr, "Memory error\n");
-				error("Memory error", "Could not allocate enough memory to read archive.");
-			}
+            ret = system(cmd.c_str());
 
-            snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s\" \"%s/%s/%s.ogg\"", buf, Dir.c_str(), MUSIC_PATH, BNEMusicNames[i].c_str());
-
-			ret = system(cmd);
-
-			free(cmd);
-			remove(buf);
+            remove(buf);
 
 			if (ret != 0) {
                 printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", BNEMusicNames[i].c_str());
