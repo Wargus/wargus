@@ -59,6 +59,7 @@ def run_test(original_data, new_output, executable):
             file_hash_mapping[file_name] = file_hash
     s = subprocess.run([executable, original_data, new_output], capture_output=True)
     print(s.stderr.decode())
+    print(s.stdout.decode())
 
     file_list = generate_test_case.get_file_list_from_root_dir(new_output)
     print("Found " + str(len(file_list)) + " files.\n")

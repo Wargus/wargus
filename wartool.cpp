@@ -1564,8 +1564,6 @@ int ConvertFont(const char *file, int pale, int fnte)
 {
     unsigned char *palp;
     unsigned char *fntp;
-	int w;
-	int h;
     fs::path buf{};
 
 	palp = ExtractEntry(ArchiveOffsets[pale], NULL);
@@ -1582,7 +1580,7 @@ int ConvertFont(const char *file, int pale, int fnte)
     buf.replace_extension(".png");
 	CheckPath(buf);
 	if (!strcmp(file, "game")) {
-		game_font_width = w / 15;
+        game_font_width = image.width / 15;
 	}
 	if (CDType & CD_RUSSIAN) {
         FixFont(image);
@@ -2201,7 +2199,7 @@ char *ParseString(const char *input)
 	int i;
 	int f;
 
-    //	printf("%s -> ", input);
+    printf("%s -> ", input);
 
 	for (sp = input, dp = buf; *sp;) {
 		if (*sp == '%') {
@@ -2233,7 +2231,7 @@ char *ParseString(const char *input)
 	}
 	*dp = '\0';
 
-    //	printf("%s\n", buf);
+    printf("%s\n", buf);
 	return buf;
 }
 
