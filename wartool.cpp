@@ -1834,7 +1834,7 @@ int ConvertXmi(const fs::path &file, int xmi)
 */
 
 #if ! defined(_MSC_VER) && ! defined(WIN32)
-int CopyFile(char *from, char *to, int overwrite)
+int CopyFile(const fs::path &from, const fs::path &to, int overwrite)
 {
     std::error_code ec;
     if (overwrite) {
@@ -1857,28 +1857,30 @@ int CopyFile(char *from, char *to, int overwrite)
 
 int CopyMusic(void)
 {
-	struct stat st;
-	char buf1[8192] = {'\0'};
-	char buf2[8192] = {'\0'};
+    fs::path buf1;
+    fs::path buf2;
 	char ext[4];
-	int i;
 	int count = 0;
 
-    for (i = 0; !MusicNames[i].empty(); ++i) {
+    for (size_t i = 0; i < MusicNames.size(); ++i) {
 		strcpy(ext, "wav");
-        sprintf(buf1, "%s/music/%s.%s", ArchiveDir.c_str(), MusicNames[i].c_str(), ext);
-		if (stat(buf1, &st)) {
-			strcpy(ext, "ogg");
-            sprintf(buf1, "%s/music/%s.%s", ArchiveDir.c_str(), MusicNames[i].c_str(), ext);
-            if (stat(buf1, &st)) {
+        buf1 = ArchiveDir;
+        buf1 /= "music";
+        buf1 /= MusicNames[i];
+        buf1.replace_extension(".wav");
+        if (!fs::exists(buf1)) {
+            buf1.replace_extension(".ogg");
+            if (!fs::exists(buf1)) {
 				continue;
             }
         }
+        std::cout << "Found ripped music file \"" << buf1 << "\"" << std::endl;
+        std::flush(std::cout);
+        buf2 = Dir;
+        buf2 /= MUSIC_PATH;
+        buf2 /= MusicNames[i];
+        buf2.replace_extension(buf1.extension());
 
-		printf("Found ripped music file \"%s\"\n", buf1);
-		fflush(stdout);
-
-        sprintf(buf2, "%s/%s/%s.%s", Dir.c_str(), MUSIC_PATH, MusicNames[i].c_str(), ext);
 		CheckPath(buf2);
         if (CopyFile(buf1, buf2, 0)) {
 			++count;
