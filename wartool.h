@@ -57,6 +57,7 @@ const char NameLine[] = "wartool V" VERSION " for Stratagus, (c) 1998-2021 by Th
 #include <zlib.h>
 
 #include <string>
+#include <array>
 
 #if __has_include(<filesystem>)
 #include <filesystem>
@@ -135,7 +136,7 @@ std::filesystem::path Dir;
 /**
 **  Conversion control sturcture.
 */
-typedef struct _control_ {
+struct Control {
 	int   Type;          /// Entry type
 	int   Version;       /// Only in this version
     std::string File;    /// Save file
@@ -145,7 +146,7 @@ typedef struct _control_ {
 	int   Arg4;          /// Extra argument 4
     const char *MPQFile{}; /// MPQ file
     const char *ArcFile{}; /// Archive file
-} Control;
+};
 
 /**
 **  Possible entry types of archive file.
@@ -213,7 +214,6 @@ static Control Todo[] = {
     ///////////////////////////////////////////////////////////////////////////////
     //		TEXT		(must be done for all others!)
     ///////////////////////////////////////////////////////////////////////////////
-
     {F, 0, "rezdat.war",                                     3000 __},
     {I, 0, "ui/Credits_background",                          27, 28 _2},
 
@@ -2272,89 +2272,90 @@ static Control Todo[] = {
 };
 
 // puds that are in their own file
-static const char *OriginalPuds[] = {
-	"../alamo.pud",
-	"../channel.pud",
-	"../death.pud",
-	"../dragon.pud",
-	"../icebrdge.pud",
-	"../islands.pud",
-	"../land_sea.pud",
-	"../mutton.pud",
-	""
+static  std::array<std::filesystem::path, 8> OriginalPuds = {
+
+    "../alamo.pud",
+    "../channel.pud",
+    "../death.pud",
+    "../dragon.pud",
+    "../icebrdge.pud",
+    "../islands.pud",
+    "../land_sea.pud",
+    "../mutton.pud"
+
 };
 
-static const char *ExpansionPuds[] = {
-	"../puds/multi/3vs3.pud",
-	"../puds/multi/3vs5.pud",
-	"../puds/multi/arena.pud",
-	"../puds/multi/atols.pud",
-	"../puds/multi/battle_1.pud",
-	"../puds/multi/battle_2.pud",
-	"../puds/multi/blackgld.pud",
-	"../puds/multi/collapse.pud",
-	"../puds/multi/crowded.pud",
-	"../puds/multi/diamond.pud",
-	"../puds/multi/dup.pud",
-	"../puds/multi/ears.pud",
-	"../puds/multi/friends.pud",
-	"../puds/multi/funfor3.pud",
-	"../puds/multi/gauntlet.pud",
-	"../puds/multi/hell.pud",
-	"../puds/multi/hourglas.pud",
-	"../puds/multi/icewall.pud",
-	"../puds/multi/ironcros.pud",
-	"../puds/multi/isles.pud",
-	"../puds/multi/jimland.pud",
-	"../puds/multi/kanthar.pud",
-	"../puds/multi/king.pud",
-	"../puds/multi/mntnpass.pud",
-	"../puds/multi/passes.pud",
-	"../puds/multi/plots.pud",
-	"../puds/multi/raiders.pud",
-	"../puds/multi/ring.pud",
-	"../puds/multi/riverx.pud",
-	"../puds/multi/rockmaze.pud",
-	"../puds/multi/shared.pud",
-	"../puds/multi/siege.pud",
-	"../puds/multi/tandalos.pud",
-	"../puds/multi/theriver.pud",
-	"../puds/multi/tourney.pud",
-	"../puds/multi/twinhrbr.pud",
-	"../puds/multi/up4grabs.pud",
-	"../puds/multi/us.pud",
-	"../puds/multi/waratsea.pud",
-	"../puds/multi/web.pud",
-	"../puds/multi/wizard.pud",
-	"../puds/single/4_step.pud",
-	"../puds/single/anarchy.pud",
-	"../puds/single/burn_it.pud",
-	"../puds/single/deadmeat.pud",
-	"../puds/single/falsie.pud",
-	"../puds/single/firering.pud",
-	"../puds/single/fortress.pud",
-	"../puds/single/grtwall.pud",
-	"../puds/single/heroes1.pud",
-	"../puds/single/heroes2.pud",
-	"../puds/single/invasion.pud",
-	"../puds/single/magisle.pud",
-	"../puds/single/massacre.pud",
-	"../puds/single/midland.pud",
-	"../puds/single/minastir.pud",
-	"../puds/single/onslaugh.pud",
-	"../puds/single/rescue.pud",
-	"../puds/single/sacrific.pud",
-	"../puds/single/sparta.pud",
-	"../puds/single/s_stone.pud",
-	"../puds/single/trench.pud",
-	"../puds/single/tym.pud",
-	"../puds/single/waterres.pud",
-	"../puds/single/wish.pud",
-	"../puds/strange/chess.pud",
-	"../puds/strange/football.pud",
-	"../puds/strange/jail.pud",
-	"../puds/strange/suicide.pud",
-	""
+static  std::array<std::filesystem::path, 71> ExpansionPuds = {
+    "../puds/multi/3vs3.pud",
+    "../puds/multi/3vs5.pud",
+    "../puds/multi/arena.pud",
+    "../puds/multi/atols.pud",
+    "../puds/multi/battle_1.pud",
+    "../puds/multi/battle_2.pud",
+    "../puds/multi/blackgld.pud",
+    "../puds/multi/collapse.pud",
+    "../puds/multi/crowded.pud",
+    "../puds/multi/diamond.pud",
+    "../puds/multi/dup.pud",
+    "../puds/multi/ears.pud",
+    "../puds/multi/friends.pud",
+    "../puds/multi/funfor3.pud",
+    "../puds/multi/gauntlet.pud",
+    "../puds/multi/hell.pud",
+    "../puds/multi/hourglas.pud",
+    "../puds/multi/icewall.pud",
+    "../puds/multi/ironcros.pud",
+    "../puds/multi/isles.pud",
+    "../puds/multi/jimland.pud",
+    "../puds/multi/kanthar.pud",
+    "../puds/multi/king.pud",
+    "../puds/multi/mntnpass.pud",
+    "../puds/multi/passes.pud",
+    "../puds/multi/plots.pud",
+    "../puds/multi/raiders.pud",
+    "../puds/multi/ring.pud",
+    "../puds/multi/riverx.pud",
+    "../puds/multi/rockmaze.pud",
+    "../puds/multi/shared.pud",
+    "../puds/multi/siege.pud",
+    "../puds/multi/tandalos.pud",
+    "../puds/multi/theriver.pud",
+    "../puds/multi/tourney.pud",
+    "../puds/multi/twinhrbr.pud",
+    "../puds/multi/up4grabs.pud",
+    "../puds/multi/us.pud",
+    "../puds/multi/waratsea.pud",
+    "../puds/multi/web.pud",
+    "../puds/multi/wizard.pud",
+    "../puds/single/4_step.pud",
+    "../puds/single/anarchy.pud",
+    "../puds/single/burn_it.pud",
+    "../puds/single/deadmeat.pud",
+    "../puds/single/falsie.pud",
+    "../puds/single/firering.pud",
+    "../puds/single/fortress.pud",
+    "../puds/single/grtwall.pud",
+    "../puds/single/heroes1.pud",
+    "../puds/single/heroes2.pud",
+    "../puds/single/invasion.pud",
+    "../puds/single/magisle.pud",
+    "../puds/single/massacre.pud",
+    "../puds/single/midland.pud",
+    "../puds/single/minastir.pud",
+    "../puds/single/onslaugh.pud",
+    "../puds/single/rescue.pud",
+    "../puds/single/sacrific.pud",
+    "../puds/single/sparta.pud",
+    "../puds/single/s_stone.pud",
+    "../puds/single/trench.pud",
+    "../puds/single/tym.pud",
+    "../puds/single/waterres.pud",
+    "../puds/single/wish.pud",
+    "../puds/strange/chess.pud",
+    "../puds/strange/football.pud",
+    "../puds/strange/jail.pud",
+    "../puds/strange/suicide.pud"
+
 };
 
 static const char *BNEPuds[] = {

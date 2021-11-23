@@ -70,6 +70,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <array>
+#include <algorithm>
 
 //FIXME: Remove these later.
 /* Some workarounds to avoid depending on Stratagus */
@@ -187,7 +189,7 @@ static unsigned char **ArchiveOffsets;
 static unsigned int EmptyEntry[] = { 1, 1, 1 };
 
 
-static char *ArchiveDir;
+static std::string ArchiveDir;
 
 /**
 **  What CD Type is it?
@@ -665,7 +667,7 @@ int CloseArchive(void)
 }
 
 #ifdef USE_STORMLIB
-int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName, bool compress)
+int ExtractMPQFile(const char *szArchiveName, char *szArchivedFile, const char *szFileName, bool compress)
 {
 	HANDLE hMpq   = NULL;          // Open archive handle
 	HANDLE hFile  = NULL;          // Archived file handle
@@ -1244,8 +1246,6 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 {
     unsigned char *palp;
     unsigned char *gfup;
-    size_t w;
-    size_t h;
 	int i;
 	const GroupedGraphic *gg;
 
@@ -1253,8 +1253,6 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 	gfup = ExtractEntry(ArchiveOffsets[gfue], NULL);
 
     auto image = ConvertGraphic(0, gfup, NULL, 0);
-    w = image.width;
-    h = image.height;
 
 	free(gfup);
 	ConvertPalette(palp);
@@ -1263,7 +1261,7 @@ int ConvertGroupedGfu(const char *path, int pale, int gfue, int glist)
 		gg = &GroupedGraphicsList[glist][i];
 
 		// hack for expansion/original difference
-		if (gg->Y + gg->Height > h) {
+        if (gg->Y + gg->Height > image.height) {
 			break;
 		}
 
@@ -1320,7 +1318,7 @@ void ConvertPud(const fs::path file, int pude, bool justconvert = false)
         buf /= file;
         pudfile = buf;
 		CheckPath(buf);
-        if (!fs::exists(buf)) {
+        if (!fs::exists(buf) && fs::is_regular_file(buf)) {
             printf("Can't open pud file: %s\n", buf.c_str());
 			return;
 		}
@@ -1352,68 +1350,55 @@ void ConvertPud(const fs::path file, int pude, bool justconvert = false)
 /**
 **	Convert puds that are in their own file
 */
-void ConvertFilePuds(const char **pudlist)
+template<size_t N>
+void ConvertFilePuds(std::array<fs::path, N> &pudlist)
 {
-	char pudname[8192] = {'\0'};
-	char base[8192] = {'\0'};
-	char outdir[8192] = {'\0'};
-	unsigned char *puddata;
-	struct stat sb;
-	int i;
-
-	for (i = 0; pudlist[i][0] != '\0'; ++i) {
-		char origname[8192] = {'\0'};
+    for (size_t i = 0; i < pudlist.size(); ++i) {
+        fs::path origname{};
 		if (CDType & CD_UPPER) {
-			char filename[8192] = {'\0'};
-			int j = 0;
-			strcpy(filename, pudlist[i]);
-			strcpy(origname, pudlist[i]);
-			while (filename[j]) {
-				filename[j] = toupper(filename[j]);
-				++j;
-			}
+            std::string filename{};
+            origname = pudlist[i];
+            filename = pudlist[i];
+            std::transform(filename.begin(), filename.end(), filename.begin(), ::toupper);
 			pudlist[i] = filename;
 		}
-		sprintf(pudname, "%s/%s", ArchiveDir, pudlist[i]);
-		if (stat(pudname, &sb)) {
+        fs::path pudname = ArchiveDir;
+        pudname /= pudlist[i];
+        if (!fs::exists(pudname) || !fs::is_regular_file(pudname)) {
 			continue;
 		}
+        size_t pud_data_size;
+        std::vector<unsigned char> puddata{};
         {
-            SelfClosingFile f{pudname, "rb"};
-            if (!f) {
+            std::ifstream f;
+            try {
+                f.open(pudname, std::ios::binary);
+            } catch (std::system_error &e) {
+                std::cout << "Can't open " << pudname << std::endl;
+                std::cerr << e.code().message() << std::endl;
                 return;
             }
-            puddata = (unsigned char *)malloc(sb.st_size);
-            if (!puddata) {
-                return;
-            }
-            if (!fread(puddata, 1, sb.st_size, f)) {
-                return;
-            }
+
+            pud_data_size = fs::file_size(pudname);
+            puddata.resize(pud_data_size);
+            f.read(reinterpret_cast<char *>(puddata.data()), puddata.size());
 		}
 
-		strcpy(base, strrchr(pudlist[i], '/') + 1);
+        fs::path base = pudlist[i];
+        base = base.stem();
 
 		if (CDType & CD_UPPER) {
-			*strstr(base, ".PUD") = '\0';
 			pudlist[i] = origname;
-		} else {
-			*strstr(base, ".pud") = '\0';
-		}
+        }
+        fs::path outdir = Dir;
+        outdir /= "maps";
+        outdir /= fs::relative(pudlist[i], "../puds/").parent_path();
 
-		if (strstr(pudlist[i], "puds/")) {
-            sprintf(outdir, "%s/maps/%s", Dir.c_str(), strstr(pudlist[i], "puds/") + 5);
-			*strrchr(outdir, '/') = '\0';
-		} else {
-            sprintf(outdir, "%s/maps", Dir.c_str());
-		}
-
-		strcpy(pudname, outdir);
-		strcat(pudname, "/dummy");
+        pudname = outdir;
+        pudname /= "dummy";
 		CheckPath(pudname);
 
-		PudToStratagus(puddata, (size_t)(sb.st_size), base, outdir);
-		free(puddata);
+        PudToStratagus(puddata.data(), pud_data_size, base.c_str(), outdir.c_str());
 	}
 }
 
@@ -1881,10 +1866,10 @@ int CopyMusic(void)
 
     for (i = 0; !MusicNames[i].empty(); ++i) {
 		strcpy(ext, "wav");
-        sprintf(buf1, "%s/music/%s.%s", ArchiveDir, MusicNames[i].c_str(), ext);
+        sprintf(buf1, "%s/music/%s.%s", ArchiveDir.c_str(), MusicNames[i].c_str(), ext);
 		if (stat(buf1, &st)) {
 			strcpy(ext, "ogg");
-            sprintf(buf1, "%s/music/%s.%s", ArchiveDir, MusicNames[i].c_str(), ext);
+            sprintf(buf1, "%s/music/%s.%s", ArchiveDir.c_str(), MusicNames[i].c_str(), ext);
             if (stat(buf1, &st)) {
 				continue;
             }
@@ -1914,10 +1899,10 @@ int CopyMusic(void)
 int ConvertMusic(void)
 {
     std::string cmd{};
-	int ret, i;
+    int ret;
 	int count = 0;
 
-    for (i = 0; !MusicNames[i].empty(); ++i) {
+    for (size_t i = 0; i < MusicNames.size(); ++i) {
         fs::path buf{};
         buf = Dir;
         buf /= MUSIC_PATH;
@@ -1942,7 +1927,7 @@ int ConvertMusic(void)
 
         ret = system(cmd.c_str());
 
-		remove(buf);
+        fs::remove(buf);
 
 		if (ret != 0) {
             printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", MusicNames[i].c_str());
@@ -1952,7 +1937,7 @@ int ConvertMusic(void)
 		++count;
 	}
 	if (CDType & CD_BNE) {
-        for (i = 0; !BNEMusicNames[i].empty(); ++i) {
+        for (size_t i = 0; i < BNEMusicNames.size(); ++i) {
             fs::path buf{};
             buf = Dir;
             buf /= MUSIC_PATH;
@@ -1977,7 +1962,7 @@ int ConvertMusic(void)
 
             ret = system(cmd.c_str());
 
-            remove(buf);
+            fs::remove(buf);
 
 			if (ret != 0) {
                 std::cout << "Can't convert wav sound " << BNEMusicNames[i] << " to ogg format. Is ffmpeg installed in PATH?" << std::endl;
@@ -2016,7 +2001,7 @@ int ConvertVideo(const char *file, int video, bool justconvert = false)
 	if (justconvert == false) {
 		vidp = ExtractEntry(ArchiveOffsets[video], &l);
         std::ofstream f;
-        f.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+        f.exceptions(std::ofstream::failbit | std::ofstream::badbit);
 
         try {
             f.open(buf, std::ios::binary);
@@ -2366,7 +2351,7 @@ int CampaignsCreate(int txte, int ofs)
 
 			CheckPath(buf);
             std::ofstream out_level;
-            out_level.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+            out_level.exceptions(std::ofstream::failbit | std::ofstream::badbit);
 
             try {
                 out_level.open(buf, std::ios::binary);
@@ -2439,69 +2424,34 @@ void FixTranslation(const char *translation)
 
 void copyArchive(const char *partialPath)
 {
-	FILE *source, *target;
-	char srcname[PATH_MAX] = {'\0'};
-	char tgtname[PATH_MAX] = {'\0'};
+    std::ifstream source;
+    std::ifstream target;
+    fs::path srcname = ArchiveDir;
+    fs::path tgtname = Dir;
 
-    strcpy(tgtname, Dir.c_str());
-	strcat(tgtname, SLASH);
 	if (CDType & CD_EXPANSION && !(CDType & CD_BNE)) {
 		// expansion CD, copy the archive in a subdir
-		strcat(tgtname, OUR_EXPANSION_SUBDIR);
-		strcat(tgtname, SLASH);
+        tgtname /= OUR_EXPANSION_SUBDIR;
 	}
-	strcat(tgtname, partialPath);
-#ifdef WIN32
-	for (unsigned int i = 0; i < strlen(tgtname); i++) {
-		if (tgtname[i] == '/') {
-			tgtname[i] = '\\';
-		}
-	}
-#endif
+    tgtname /= partialPath;
+    srcname /= partialPath;
 
-	strcpy(srcname, ArchiveDir);
-	strcat(srcname, SLASH);
-	strcat(srcname, partialPath);
 
-	struct stat st;
-	if (stat(tgtname, &st) == 0) {
+    if (fs::exists(tgtname)) {
+        return;
+    }
+
+    // This should really be covered by the case above, but keeping for now.
+    if (srcname == tgtname) {
 		return;
 	}
-
-	if (!strcmp(srcname, tgtname)) {
-		return;
-	}
-
-
-	source = fopen(srcname, "rb");
-	if (source == NULL) {
-		fprintf(stderr, "Cannot copy %s...\n", srcname);
-		exit(-1);
-	}
-
-#ifdef WIN32
-	char *tgtname_copy = _strdup(tgtname);
-#else
-	char *tgtname_copy = strdup(tgtname);
-#endif
-	parentdir(tgtname_copy);
-	mkdir_p(tgtname_copy);
-	target = fopen(tgtname, "wb");
-	if (target == NULL) {
-		fclose(source);
-		fprintf(stderr, "Cannot open %s for writing.\n", tgtname);
-		exit(-1);
-	}
-
-	char buf[4096];
-	int c = 0;
-	while (c = fread(buf, sizeof(char), 4096, source)) {
-		fwrite(buf, sizeof(char), c, target);
-	}
-	printf("Copied %s->%s\n", srcname, tgtname);
-
-	fclose(source);
-	fclose(target);
+    CheckPath(tgtname);
+    std::error_code ec{};
+    fs::copy_file(srcname, tgtname, ec);
+    if (ec) {
+        std::cerr << "Error copying files (" << srcname << ", " << tgtname << "): " << ec.message() << std::endl;
+    }
+    std::cout << "Copied " << srcname << "->" << tgtname << std::endl;
 }
 
 //----------------------------------------------------------------------------
@@ -2530,25 +2480,24 @@ destination-directory\tDirectory where the extracted files are placed.\n"
 int ExtractImplicitExpansion(char **argv, int a)
 {
 	printf("Extracting from expansion subdir\n");
-	struct stat st;
-	char buf[PATH_MAX] = {'\0'};
 	// detect if the expansion directory is next to the data directory
-	if (strstr(ArchiveDir, OUR_EXPANSION_SUBDIR)) {
+    if (strstr(ArchiveDir.c_str(), OUR_EXPANSION_SUBDIR)) {
 		// we're already trying to extract from our expansion subdir, don't recurse
 		return -1;
 	}
-	sprintf(buf, "%s/%s", ArchiveDir, OUR_EXPANSION_SUBDIR);
-	if (!stat(buf, &st)) {
+    fs::path buf = ArchiveDir;
+    buf /= OUR_EXPANSION_SUBDIR;
+
+    if (fs::exists(buf)) {
 		// expansion subdir available, extract from it
-		char ExpansionArchiveDir[PATH_MAX] = {'\0'};
-		strcpy(ExpansionArchiveDir, ArchiveDir);
-		strcat(ExpansionArchiveDir, "/");
-		strcat(ExpansionArchiveDir, OUR_EXPANSION_SUBDIR);
-		if (strcmp(argv[a], ArchiveDir)) {
-			fprintf(stderr, "assertion error: expected argv[a] (%s) to point to ArchiveDir (%s)\n", argv[a], ArchiveDir);
+        fs::path ExpansionArchiveDir = ArchiveDir;
+        ExpansionArchiveDir /= OUR_EXPANSION_SUBDIR;
+
+        if (strcmp(argv[a], ArchiveDir.c_str())) {
+            fprintf(stderr, "assertion error: expected argv[a] (%s) to point to ArchiveDir (%s)\n", argv[a], ArchiveDir.c_str());
 			exit(-1);
 		}
-		argv[a] = ExpansionArchiveDir;
+        argv[a] = const_cast<char *>(ExpansionArchiveDir.c_str());
 #ifdef WIN32
 		int execresult = _execv(argv[0], argv);
 #else
@@ -2678,14 +2627,12 @@ void endTee()
 int main(int argc, char **argv)
 {
 	unsigned u;
-	char buf[8192] = {'\0'};
-	struct stat st;
 	int expansion_cd = 0;
 	int video = 0;
 	int rip = 0;
 	int a = 1;
-	char filename[8192] = {'\0'};
-    FILE *f;
+    fs::path filename;
+    fs::path buf;
 
     if (argc == 1) {
 		Usage(argv[0]);
@@ -2736,15 +2683,19 @@ int main(int argc, char **argv)
 	ArchiveDir = argv[a];
 
 	// if the user selected the install.exe from the DOS CD, be gratious
-    char *extraPath = (char *)calloc(sizeof(char), strlen(ArchiveDir) + strlen("/data/rezdat.war") + 1);
-	sprintf(extraPath, "%s/data/rezdat.war", ArchiveDir);
-	if (stat(extraPath, &st) == 0) {
-		sprintf(extraPath, "%s/data", ArchiveDir);
+    fs::path extraPath = ArchiveDir;
+    extraPath /= "data/rezdat.war";
+    //if (stat(extraPath, &st) == 0) {
+    if (fs::exists(extraPath)) {
+        extraPath = ArchiveDir;
+        extraPath /= "data";
 		ArchiveDir = extraPath;
 	} else {
-		sprintf(extraPath, "%s/DATA/REZDAT.WAR", ArchiveDir);
-		if (stat(extraPath, &st) == 0) {
-			sprintf(extraPath, "%s/DATA", ArchiveDir);
+        extraPath = ArchiveDir;
+        extraPath /= "DATA/REZDAT.WAR";
+        if (fs::exists(extraPath)) {
+            extraPath = ArchiveDir;
+            extraPath /= "DATA";
 			ArchiveDir = extraPath;
 		}
 	}
@@ -2755,51 +2706,70 @@ int main(int argc, char **argv)
 		Dir = "data";
 	}
 	teeStdout();
+    buf = Dir;
+    buf /= "extracted";
+    {
+        std::ifstream f;
+        f.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
-    sprintf(buf, "%s/extracted", Dir.c_str());
-	f = fopen(buf, "r");
-	if (f) {
-		char version[20];
-		int len = 0;
-        if (fgets(version, 20, f)) {
-			len = 1;
+        try {
+            f.open(buf);
+        } catch (std::system_error &e) {
+            std::cout << "Can't open " << buf << std::endl;
+            std::cerr << e.code().message() << std::endl;
         }
-        fclose(f);
-		if (len != 0 && strcmp(version, VERSION) == 0) {
-            printf("Note: Data is already extracted in Dir \"%s\" with this version of wartool\n", Dir.c_str());
-			fflush(stdout);
+
+        if (f.is_open()) {
+            char version[20];
+            int len = 0;
+            if (f.read(version, 20)) {
+                len = 1;
+            }
+            f.close();
+            if (len != 0 && strcmp(version, VERSION) == 0) {
+                std::cout << "Note: Data is already extracted in Dir \"" << Dir << "\" with this version of wartool" << std::endl;
+                std::flush(std::cout);
+            }
 		}
 	}
-
 	// Detect if CD is Mac/Dos, Expansion/Original/BNE, and language
-	sprintf(buf, "%s/support/tomes/tome.1", ArchiveDir);
-	if (!stat(buf, &st)) {
-		sprintf(filename, "%s/support/tomes/tome.4", ArchiveDir);
-		printf("Detected BNE CD\n");
-		fflush(stdout);
+    buf = ArchiveDir;
+    buf /= "support/tomes/tome.1";
+    if (fs::exists(buf)) {
+        filename = ArchiveDir;
+        filename /= "support/tomes/tome.4";
+        std::cout << "Detected BNE CD" << std::endl;
+        std::flush(std::cout);
 		CDType |= CD_BNE | CD_EXPANSION | CD_US;
-	} else if (sprintf(buf, "%s/Support/TOMES/TOME.1", ArchiveDir) && !stat(buf, &st)) {
-		sprintf(filename, "%s/Support/TOMES/TOME.4", ArchiveDir);
-		printf("Detected BNE CD Captialized\n");
-		fflush(stdout);
+    } else if (buf = ArchiveDir + std::string("/Support/TOMES/TOME.1"); fs::exists(buf)) {
+        filename = ArchiveDir;
+        filename /= "/Support/TOMES/TOME.4";
+        std::cout << "Detected BNE CD Captialized" << std::endl;
+        std::flush(std::cout);
 		CDType |= CD_BNE | CD_BNE_CAPS | CD_EXPANSION | CD_US;
-	} else if (sprintf(buf, "%s/SUPPORT/TOMES/TOME.1", ArchiveDir) && !stat(buf, &st)) {
-		sprintf(filename, "%s/SUPPORT/TOMES/TOME.4", ArchiveDir);
-		printf("Detected BNE CD Uppercase\n");
-		fflush(stdout);
-		CDType |= CD_BNE | CD_BNE_UPPER | CD_EXPANSION | CD_US;
+    } else if (buf = ArchiveDir + std::string("/SUPPORT/TOMES/TOME.1"); fs::exists(buf)) {
+        filename = ArchiveDir;
+        filename /= "/SUPPORT/TOMES/TOME.4";
+        std::cout << "Detected BNE CD Uppercase" << std::endl;
+        std::flush(std::cout);
+        CDType |= CD_BNE | CD_BNE_UPPER | CD_EXPANSION | CD_US;
 	} else {
-		sprintf(buf, "%s/rezdat.war", ArchiveDir);
-		sprintf(filename, "%s/strdat.war", ArchiveDir);
-		if (stat(buf, &st)) {
-			sprintf(buf, "%s/REZDAT.WAR", ArchiveDir);
-			sprintf(filename, "%s/STRDAT.WAR", ArchiveDir);
+        buf = ArchiveDir;
+        buf /= "rezdat.war";
+        filename = ArchiveDir;
+        filename /= "strdat.war";
+        if (!fs::exists(buf)) {
+            buf = ArchiveDir;
+            buf /= "REZDAT.WAR";
+            filename = ArchiveDir;
+            filename /= "STRDAT.WAR";
 			CDType |= CD_UPPER;
 		}
-		if (stat(buf, &st)) {
+        if (!fs::exists(buf)) {
 			CDType |= CD_MAC | CD_US;
-			sprintf(buf, "%s/War Resources", ArchiveDir);
-			if (stat(buf, &st)) {
+            buf = ArchiveDir;
+            buf /= "War Resources";
+            if (!fs::exists(buf)) {
 				if (ExtractImplicitExpansion(argv, a)) {
 					// try extracting from implicitly copied expansion data from
 					// a previous expansion-only extraction
@@ -2809,7 +2779,8 @@ int main(int argc, char **argv)
 						  "or the root of the Battle.net CD.");
 				}
 			}
-			if (expansion_cd == -1 || (expansion_cd != 1 && st.st_size != 2876978)) {
+            size_t file_size = fs::file_size(buf);
+            if (expansion_cd == -1 || (expansion_cd != 1 && file_size != 2876978)) {
 				printf("Detected original MAC CD\n");
 				fflush(stdout);
 			} else {
@@ -2818,10 +2789,12 @@ int main(int argc, char **argv)
 				CDType |= CD_EXPANSION;
 			}
 		} else {
-			if (st.st_size != 2811086) {
+            size_t file_size = fs::file_size(buf);
+            if (file_size != 2811086) {
 				expansion_cd = 0;
-				stat(filename, &st);
-				switch (st.st_size) {
+                size_t filename_size = fs::file_size(filename);
+
+                switch (filename_size) {
 					case 51550:
 						printf("Detected US original DOS CD\n");
 						fflush(stdout);
@@ -2871,8 +2844,8 @@ int main(int argc, char **argv)
 						break;
 				}
 			} else {
-				stat(filename, &st);
-				switch (st.st_size) {
+                size_t filename_size = fs::file_size(filename);
+                switch (filename_size) {
 					case 74422:
 						printf("Detected Russian expansion DOS CD\n");
 						fflush(stdout);
@@ -2895,21 +2868,18 @@ int main(int argc, char **argv)
 	}
 	if (CDType & CD_BNE) {
 #ifndef USE_STORMLIB
-		printf("Please compile wartool with StormLib library to extract the data.\n");
+        std::cout << "Please compile wartool with StormLib library to extract the data." << std::endl;
 		error("Archive version error", "The Battle.net edition is not supported by this version of "
 			  "the extractor tool. Please compile wartool with StormLib.");
 #endif
 	}
-
-    printf("Extract from \"%s\" to \"%s\"\n", ArchiveDir, Dir.c_str());
-	printf("Please be patient, the data may take a couple of minutes to extract...\n");
-	fflush(stdout);
+    std::cout << "Extract from \"" << ArchiveDir << "\" to \"" << Dir << "\"" << std::endl;
+    std::cout << "Please be patient, the data may take a couple of minutes to extract..." << std::endl;
+    std::flush(std::cout);
 
 	for (u = 0; u < sizeof(Todo) / sizeof(*Todo); ++u) {
 		if (CDType & CD_MAC) {
-            std::string filename = Todo[u].File;
-			ConvertToMac(filename);
-			Todo[u].File = filename;
+            ConvertToMac(Todo[u].File);
 		}
 		// Should only be on the expansion cd
 #ifdef DEBUG
@@ -2931,6 +2901,9 @@ int main(int argc, char **argv)
 		if (!(CDType & CD_BNE) && (Todo[u].Version & 8)) {
 			continue;
 		}
+        fs::path mpqfile {};
+        fs::path extract{};
+        std::string filename{};
 		switch (Todo[u].Type) {
 			case F:
 				if (CDType & CD_BNE) {
@@ -2940,139 +2913,123 @@ int main(int argc, char **argv)
 							if (CDType & CD_BNE_CAPS) {
 								Todo[u].File = BNEReplaceTableCaps[i + 1];
 							} else if (CDType & CD_BNE_UPPER) {
-                                strcpy(filename, Todo[u].File.c_str());
-								while (filename[i]) {
-									filename[i] = toupper(filename[i]);
-									++i;
-								}
+                                //FIXME: clean up later, currently keeping original logic.
+                                filename = Todo[u].File;
+                                std::transform(filename.begin(), filename.end(), filename.begin(), ::toupper);
 								Todo[u].File = filename;
 							}
 							break;
 						}
 					}
 				} else if (CDType & CD_UPPER) {
-					int i = 0;
-                    strcpy(filename, Todo[u].File.c_str());
-					while (filename[i]) {
-						filename[i] = toupper(filename[i]);
-						++i;
-					}
-					Todo[u].File = filename;
+                    //FIXME: See above.
+                    filename = Todo[u].File;
+                    std::transform(filename.begin(), filename.end(), filename.begin(), ::toupper);
+                    Todo[u].File = filename;
+
 				}
-                sprintf(buf, "%s/%s", ArchiveDir, Todo[u].File.c_str());
-				printf("Archive \"%s\"\n", buf);
-				fflush(stdout);
+                buf = ArchiveDir;
+                buf /= Todo[u].File;
+                std::cout << "Archive \"" << buf << "\"" << std::endl;
+                std::flush(std::cout);
 				if (ArchiveBuffer) {
 					CloseArchive();
 				}
-				OpenArchive(buf, Todo[u].Arg1);
+
+                OpenArchive(buf.c_str(), Todo[u].Arg1);
                 copyArchive(Todo[u].File.c_str());
 				break;
 			case Q:
 				if (!(CDType & CD_BNE)) {
-					printf("Error - not a BNE disk\n");
+                    std::cout << "Error - not a BNE disk" << std::endl;
 					error("Archive version error", "This version of the CD is not supported");
 				}
 #ifdef USE_STORMLIB
-				char mpqfile[8192];
-				char extract[8192];
-				memset(mpqfile, 0, 8192);
-				memset(extract, 0, 8192);
+
+
 				if (Todo[u].Arg1 == 1) { // local archive
-                    sprintf(mpqfile, "%s/%s", Dir.c_str(), Todo[u].MPQFile);
+                    mpqfile = Dir;
+                    mpqfile /= Todo[u].MPQFile;
 					if (Todo[u].ArcFile == NULL) {
 						// delete
-						printf("deleting temporary MPQ file \"%s\"\n", mpqfile);
-#ifdef WIN32
-						_unlink(mpqfile);
-#else
-						unlink(mpqfile);
-#endif
+                        std::cout << "Deleting temporary MPQ file \"" << mpqfile << "\"" << std::endl;
+                        fs::remove(mpqfile);
 						continue;
 					}
-					printf("%s from MPQ file \"%s\"\n", Todo[u].ArcFile, mpqfile);
+                    std::cout << Todo[u].ArcFile << " from MPQ file \"" << mpqfile << "\"" << std::endl;
 				} else {
-#ifdef WIN32
-                    char *filename = _strdup(Todo[u].MPQFile);
-#else
-                    char *filename = strdup(Todo[u].MPQFile);
-#endif
-					// initially all lowercase
-					for (unsigned int i = 0; i < strlen(filename); i++) {
-						filename[i] = tolower(filename[i]);
-					}
+                    std::string filename = Todo[u].MPQFile;
+                    // initially all lowercase
+                    std::transform(filename.begin(), filename.end(), filename.begin(), ::tolower);
+
 					// let's see....
-					sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
-					if (stat(mpqfile, &st)) {
-						// try with initial uppercase
+                    mpqfile = ArchiveDir;
+                    mpqfile /= filename;
+                    if (!fs::exists(mpqfile)) {
+                        // try with initial uppercase
 						filename[0] = toupper(filename[0]);
-						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+                        mpqfile = ArchiveDir;
+                        mpqfile /= filename;
 					}
-					if (stat(mpqfile, &st)) {
+                    if (!fs::exists(mpqfile)) {
 						// try all uppercase
-						for (unsigned int i = 0; i < strlen(filename); i++) {
-							filename[i] = toupper(filename[i]);
-						}
-						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+                        std::transform(filename.begin(), filename.end(), filename.begin(), ::toupper);
+                        mpqfile = ArchiveDir;
+                        mpqfile /= filename;
 					}
-					if (stat(mpqfile, &st)) {
+                    if (!fs::exists(mpqfile)) {
 						// try with alternative extension (mpq/exe)
-						free(filename);
-#ifdef WIN32
-						filename = _strdup(Todo[u].MPQFile);
-#else
-						filename = strdup(Todo[u].MPQFile);
-#endif
+                        filename = Todo[u].MPQFile;
+
 						// initially all lowercase
-						for (unsigned int i = 0; i < strlen(filename); i++) {
-							filename[i] = tolower(filename[i]);
-						}
+                        std::transform(filename.begin(), filename.end(), filename.begin(), ::tolower);
+
 						// swap extension
-						if (strstr(filename, ".exe")) {
-							strncpy(strstr(filename, ".exe"), ".mpq", 4);
-						} else if (strstr(filename, ".mpq")) {
-							strncpy(strstr(filename, ".mpq"), ".exe", 4);
-						}
-						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+                        mpqfile = ArchiveDir;
+                        mpqfile /= filename;
+                        if (mpqfile.extension() == ".exe") {
+                            mpqfile.replace_extension(".mpq");
+                        } else if (mpqfile.extension() == ".mpq") {
+                            mpqfile.replace_extension(".exe");
+                        }
+
 					}
-					if (stat(mpqfile, &st)) {
+                    if (!fs::exists(mpqfile)) {
 						// try with initial uppercase
 						filename[0] = toupper(filename[0]);
-						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+                        mpqfile = ArchiveDir;
+                        mpqfile /= filename;
 					}
-					if (stat(mpqfile, &st)) {
+                    if (!fs::exists(mpqfile)) {
 						// try all uppercase
-						for (unsigned int i = 0; i < strlen(filename); i++) {
-							filename[i] = toupper(filename[i]);
-						}
-						sprintf(mpqfile, "%s/%s", ArchiveDir, filename);
+                        std::transform(filename.begin(), filename.end(), filename.begin(), ::toupper);
+                        mpqfile = ArchiveDir;
+                        mpqfile /= filename;
 					}
-					if (stat(mpqfile, &st)) {
-						sprintf(mpqfile, "%s/%s not found!", ArchiveDir, Todo[u].MPQFile);
+                    if (!fs::exists(mpqfile)) {
+                        mpqfile = ArchiveDir;
+                        mpqfile /= Todo[u].MPQFile;
+                        std::cerr << mpqfile << " not found!" << std::endl;
 						error(mpqfile, "I also tried different cases and tried both .mpq and .exe extensions\n");
 					}
-                    printf("%s from MPQ file \"%s\"\n", Todo[u].File.c_str(), mpqfile);
+                    std::cout << Todo[u].File << " from MPQ file \"" << mpqfile <<  "\"" << std::endl;
 					// strip ArchiveDir and slash before copying
-#ifdef WIN32
-                    char *copyfile = _strdup(mpqfile);
-#else
-                    char *copyfile = strdup(mpqfile);
-#endif
-					copyfile = copyfile + strlen(ArchiveDir);
-					copyArchive(copyfile);
+                    fs::path copyfile = mpqfile.filename();
+                    copyArchive(copyfile.c_str());
 				}
-                sprintf(extract, "%s/%s", Dir.c_str(), Todo[u].File.c_str());
+                extract = Dir;
+                extract /= Todo[u].File;
 				if (Todo[u].Arg2 == 1) { // compress
-					sprintf(extract, "%s.gz", extract);
+                    extract.replace_extension(extract.extension().string() + std::string(".gz"));
 				}
 				if (Todo[u].Arg2 == 2) { // video file
-					sprintf(extract, "%s.smk", extract);
+                    extract.replace_extension(extract.extension().string() + std::string(".smk"));
 				}
 				if (Todo[u].Arg2 == 8 && !rip) { // wav audio
 					continue;
 				}
-                if (ExtractMPQFile(mpqfile, (char *)Todo[u].ArcFile, extract, Todo[u].Arg2 == 1)) {
-                    printf("Failed to extract \"%s\"\n", (char *)Todo[u].ArcFile);
+                if (ExtractMPQFile(mpqfile.c_str(), (char *)Todo[u].ArcFile, extract.c_str(), Todo[u].Arg2 == 1)) {
+                    std::cout << "Failed to extract \"" << Todo[u].ArcFile << std::endl;
 				}
 				if (Todo[u].Arg2 == 2) { // convert videos
 					if (video) {
@@ -3140,13 +3097,14 @@ int main(int argc, char **argv)
 		}
 	}
 
-	ConvertFilePuds(OriginalPuds);
-	ConvertFilePuds(ExpansionPuds);
+    ConvertFilePuds(OriginalPuds);
+    ConvertFilePuds(ExpansionPuds);
 
 	CopyMusic();
 
 	if (rip && !(CDType & CD_BNE)) {
-        sprintf(buf, "%s/%s/", Dir.c_str(), MUSIC_PATH);
+        buf = Dir;
+        buf /= MUSIC_PATH;
 		CheckPath(buf);
 		rip = (RipMusic(expansion_cd, ArchiveDir, buf) == 0);
 	}
@@ -3159,59 +3117,90 @@ int main(int argc, char **argv)
 	if (Pal27) {
 		free(Pal27);
 	}
+    buf = Dir;
+    buf /= "scripts/wc2-config.lua";
 
-    sprintf(buf, "%s/scripts/wc2-config.lua", Dir.c_str());
 	CheckPath(buf);
-	f = fopen(buf, "w");
+    std::ofstream f;
+    f.exceptions(std::ofstream::failbit | std::ofstream::badbit);
 
-	if (!f) {
+    try {
+        f.open(buf);
+    } catch (std::system_error &e) {
+        std::cout << "Can't open " << buf << std::endl;
+        std::cerr << e.code().message() << std::endl;
+    }
+
+    if (!f.is_open()) {
 		perror("");
-		printf("Can't open %s\n", buf);
+        std::cout << "Can't open " << buf << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
+    f << "wargus.tales = false\n";
 
-	fprintf(f, "wargus.tales = false\n");
 	if (expansion_cd) {
-		fprintf(f, "wargus.expansion = true\n");
+        f << "wargus.expansion = true\n";
 	} else {
-		fprintf(f, "wargus.expansion = false\n");
+        f << "wargus.expansion = false\n";
 	}
 	if (rip) {
-		fprintf(f, "wargus.music_extension = \".ogg\"\n");
+        f << "wargus.music_extension = \".ogg\"\n";
 	} else {
-		fprintf(f, "wargus.music_extension = \".mid\"\n");
+        f << "wargus.music_extension = \".mid\"\n";
 	}
 	if (CDType & CD_BNE) {
-		fprintf(f, "wargus.bne = true\n");
+        f << "wargus.bne = true\n";
 	} else {
-		fprintf(f, "wargus.bne = false\n");
+        f << "wargus.bne = false\n";
 	}
-	fprintf(f, "wargus.game_font_width = %d\n", game_font_width);
-	fclose(f);
+    f << "wargus.game_font_width = " << game_font_width << "\n";
+    f.close();
 
-    sprintf(buf, "%s/extracted", Dir.c_str());
-	f = fopen(buf, "w");
+    buf = Dir;
+    buf /= "extracted";
+    try {
+        f.open(buf);
+    } catch (std::system_error &e) {
+        std::cout << "Can't open " << buf << std::endl;
+        std::cerr << e.code().message() << std::endl;
+    }
 
-	if (!f) {
+    if (!f.is_open()) {
 		perror("");
-		printf("Can't open %s\n", buf);
+        std::cout << "Can't open " << buf << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
+    f << VERSION;
+    f.close();
 
-	fputs(VERSION, f);
-	fclose(f);
+    buf = Dir;
+    buf /= "/scripts/translate/ru_RU.po";
+    FixTranslation(buf.c_str());
 
-    sprintf(buf, "%s/scripts/translate/ru_RU.po", Dir.c_str());
-	FixTranslation(buf);
-    sprintf(buf, "%s/scripts/translate/stratagus-ru.po", Dir.c_str());
-	FixTranslation(buf);
+    buf = Dir;
+    buf /= "/scripts/translate/stratagus-ru.po";
+    FixTranslation(buf.c_str());
 
-    sprintf(buf, "%s/%s", Dir.c_str(), REEXTRACT_MARKER_FILE);
-	f = fopen(buf, "w");
-	fputs("data copied for re-extraction", f);
-	fclose(f);
+    buf = Dir;
+    buf /= REEXTRACT_MARKER_FILE;
 
-	printf("Done.\n");
+    try {
+        f.open(buf);
+    } catch (std::system_error &e) {
+        std::cout << "Can't open " << buf << std::endl;
+        std::cerr << e.code().message() << std::endl;
+    }
+
+    if (!f.is_open()) {
+        perror("");
+        std::cout << "Can't open " << buf << std::endl;
+        error("Memory error", "Could not allocate enough memory to read archive.");
+    }
+
+    f << "data copied for re-extraction" ;
+    f.close();
+
+    std::cout << "Done." << std::endl;
 
 	ExtractImplicitExpansion(argv, a);
 
