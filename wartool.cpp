@@ -1671,7 +1671,7 @@ int ConvertXmi(const fs::path &file, int xmi)
     fs::path buf{};
 	size_t xmil;
 	size_t midl;
-    unsigned char *midp;
+    std:: unique_ptr<unsigned char []>midp;
     {
         auto xmip = ExtractEntry(ArchiveOffsets[xmi], &xmil);
         midp = TranscodeXmiToMid(xmip.get(), xmil, &midl);
@@ -1687,12 +1687,10 @@ int ConvertXmi(const fs::path &file, int xmi)
         std::cout << "Can't open " << buf << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
-	if (midl != fwrite(midp, 1, midl, f)) {
+    if (midl != fwrite(midp.get(), 1, midl, f)) {
         std::cout << "Can't write " << midl << " bytes" << std::endl;
         std::flush(std::cout);
 	}
-
-	free(midp);
 
 	return 0;
 }
