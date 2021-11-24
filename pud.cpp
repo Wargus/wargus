@@ -28,18 +28,27 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <limits.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <climits>
 #include <zlib.h>
+#if __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#elif __has_include(<experimental/filesystem>)
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#else
+error "Missing the <filesystem> header."
+#endif
 
 #include "endian.h"
 #include "pud.h"
 
 #define VERSION "1.0"
 
-const char *PlayerTypeStrings[] = {
+const std::string PlayerTypeStrings[] = {
 	"",
 	"",
 	"neutral",
@@ -50,13 +59,13 @@ const char *PlayerTypeStrings[] = {
 	"rescue-active"
 };
 
-const char *RaceNames[] = {
+const std::string RaceNames[] = {
 	"human",
 	"orc",
 	"neutral"
 };
 
-const char *TilesetTypeStrings[] = {
+const std::string TilesetTypeStrings[] = {
 	"summer",
 	"winter",
 	"wasteland",
@@ -64,7 +73,7 @@ const char *TilesetTypeStrings[] = {
 };
 
 // unit script names that correspond to the unit types
-const char *UnitScriptNames[] = {
+const std::string UnitScriptNames[] = {
 	"unit-footman", "unit-grunt",
 	"unit-peasant", "unit-peon",
 	"unit-ballista", "unit-catapult",
@@ -129,7 +138,7 @@ const char *UnitScriptNames[] = {
 	"unit-human-wall", "unit-orc-wall"
 };
 
-const char *AiTypeNames[] = {
+const std::string AiTypeNames[] = {
 	"wc2-land-attack",
 	"wc2-passive",
 	"orc-03",
@@ -240,33 +249,44 @@ void PudData::WriteSMP(gzFile smpout, const char *smsname) const
 	gzprintf(smpout, "-- File generated automatically from pudconvert V" VERSION "\n");
 	gzprintf(smpout, "\n");
 
-	char buf[512];
-	strcpy(buf, "DefinePlayerTypes(");
+    std::string buf{};
+    buf += "DefinePlayerTypes(";
 	int playerCount = 0;
 	for (int i = 0; i != PLAYERMAX; ++i) {
-		sprintf(buf + strlen(buf), "\"%s\",", PlayerTypeStrings[pdata.Players[i]]);
+        buf += '"';
+        buf += PlayerTypeStrings[pdata.Players[i]];
+        buf += "\",";
 		if (pdata.Players[i] != PlayerNobody && pdata.Players[i] != PlayerNeutral) {
 			++playerCount;
 		}
 	}
-	strcpy(&buf[strlen(buf) - 1], ")\n");
-	gzprintf(smpout, buf);
+    buf.pop_back();
+    buf += ")\n";
+    gzprintf(smpout, buf.c_str());
 
 	gzprintf(smpout, "PresentMap(\"%s\", %d, %d, %d, %d)\n", pdata.Description,
-		playerCount, pdata.MapSizeX, pdata.MapSizeY, 1);
+             playerCount, pdata.MapSizeX, pdata.MapSizeY, 1);
 
 	// hack for campaigns
 	if (smsname) {
-		buf[0] = '\0';
+        buf.clear();
 		for (const char *c = strstr(smsname, "./campaigns"); *c != '\0'; ++c) {
 			if (*c == '\\') {
-				strcat(buf, "/");
+                buf += "/";
 			} else {
-				strncat(buf, c, 1);
+                buf += *c;
 			}
 		}
-		strcpy(strstr(buf, ".sms"), "_c.sms");
-		gzprintf(smpout, "DefineMapSetup(\"%s\")\n", buf);
+        auto temp = buf.find(".sms");
+        if (temp == std::string::npos) {
+            buf += ".sms";
+        } else {
+            buf.resize(temp);
+            buf += "_c.sms";
+        }
+        //buf.replace(buf.find(".sms"), 0, "_c.sms");
+        //strcpy(strstr(buf, ".sms"), "_c.sms");
+        gzprintf(smpout, "DefineMapSetup(\"%s\")\n", buf.c_str());
 	}
 }
 
@@ -283,27 +303,27 @@ void PudData::WriteSMS(gzFile smsout) const
 		}
 		gzprintf(smsout, "SetStartView(%d, %d, %d)\n", i, pdata.StartX[i], pdata.StartY[i]);
 		gzprintf(smsout, "SetPlayerData(%d, \"Resources\", \"gold\", %d)\n",
-			i, pdata.StartGold[i]);
+                 i, pdata.StartGold[i]);
 		gzprintf(smsout, "SetPlayerData(%d, \"Resources\", \"wood\", %d)\n",
-			i, pdata.StartLumber[i]);
+                 i, pdata.StartLumber[i]);
 		gzprintf(smsout, "SetPlayerData(%d, \"Resources\", \"oil\", %d)\n",
-			i, pdata.StartOil[i]);
-		gzprintf(smsout, "SetPlayerData(%d, \"RaceName\", \"%s\")\n", i, RaceNames[pdata.Races[i]]);
+                 i, pdata.StartOil[i]);
+        gzprintf(smsout, "SetPlayerData(%d, \"RaceName\", \"%s\")\n", i, RaceNames[pdata.Races[i]].c_str());
 		if (pdata.Players[i] != PlayerNeutral) {
-			gzprintf(smsout, "SetAiType(%d, \"%s\")\n", i, AiTypeNames[pdata.AiType[i]]);
+            gzprintf(smsout, "SetAiType(%d, \"%s\")\n", i, AiTypeNames[pdata.AiType[i]].c_str());
 		}
 	}
 	gzprintf(smsout, "SetPlayerData(%d, \"RaceName\", \"neutral\")\n", PLAYERMAX - 1);
 	gzprintf(smsout, "\n");
 
 	gzprintf(smsout, "LoadTileModels(\"scripts/tilesets/%s.lua\")\n\n",
-		TilesetTypeStrings[pdata.Tileset]);
+             TilesetTypeStrings[pdata.Tileset].c_str());
 
 	for (int y = 0; y < pdata.MapSizeY; ++y) {
 		for (int x = 0; x < pdata.MapSizeX; ++x) {
 			const int mapOffset = y * pdata.MapSizeX + x;
 			gzprintf(smsout, "SetTile(%d, %d, %d, %d)\n",
-				pdata.Tiles[mapOffset], x, y, pdata.Value[mapOffset]);
+                     pdata.Tiles[mapOffset], x, y, pdata.Value[mapOffset]);
 		}
 	}
 
@@ -314,15 +334,15 @@ void PudData::WriteSMS(gzFile smsout) const
 			|| pdata.Units[i].Type == UnitOrcStart) {
 			continue;
 		}
-		if (strlen(UnitScriptNames[pdata.Units[i].Type]) <= 1) {
+        if (UnitScriptNames[pdata.Units[i].Type].size() <= 1) {
 			fprintf(stderr, "Skipping unknown unit type %d for player %d at [%d, %d]\n", pdata.Units[i].Type, pdata.Units[i].Player, pdata.Units[i].X, pdata.Units[i].Y);
 			continue;
 		}
 		gzprintf(smsout, "unit = CreateUnit(\"%s\", %d, {%d, %d})\n",
-			UnitScriptNames[pdata.Units[i].Type], pdata.Units[i].Player,
-			pdata.Units[i].X, pdata.Units[i].Y);
+                 UnitScriptNames[pdata.Units[i].Type].c_str(), pdata.Units[i].Player,
+                 pdata.Units[i].X, pdata.Units[i].Y);
 		if (pdata.Units[i].Type == UnitHumanOilPlatform || pdata.Units[i].Type == UnitOrcOilPlatform ||
-				pdata.Units[i].Type == UnitGoldMine || pdata.Units[i].Type == UnitOilPatch) {
+            pdata.Units[i].Type == UnitGoldMine || pdata.Units[i].Type == UnitOilPatch) {
 			gzprintf(smsout, "SetResourcesHeld(unit, %d)\n", pdata.Units[i].Data * 2500);
 		}
 	}
