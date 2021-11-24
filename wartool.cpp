@@ -372,7 +372,7 @@ int SavePNG(const fs::path &name,  Image &image, unsigned char *pal, int transpa
 **  @param pal          Palette
 **  @param transparent  Image uses transparency
 */
-int SavePNG(const fs::path &name, Image &image, int x, int y, int w, int h, int pitch, unsigned char *pal, int transparent)
+int SavePNG(const fs::path &name, Image &image, int x, int y, int w, size_t h, int pitch, unsigned char *pal, int transparent)
 {
     SelfClosingFile fp{name, "wb"};
     png_structp png_ptr;
@@ -505,7 +505,7 @@ int OpenArchive(const char *file, int type)
         std::cout << "Can't malloc " << file_size << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
-    if (read(f, buf.get(), file_size) != file_size) {
+    if (read(f, buf.get(), file_size) != static_cast<ssize_t>(file_size)) {
         std::cout << "Can't read " << file_size << std::endl;
 		error("Memory error", "Could not read archive into RAM.");
 	}
@@ -1003,7 +1003,7 @@ void DecodeGfuEntry(int index, unsigned char *start,
 **  Convert graphics into image.
 */
 Image ConvertGraphic(int gfx, unsigned char *bp,
-                     unsigned char *bp2, int start2)
+                     unsigned char *bp2, size_t start2)
 {
     size_t i;
     size_t count;
@@ -1033,10 +1033,10 @@ Image ConvertGraphic(int gfx, unsigned char *bp,
 	best_height = 0;
 	for (i = 0; i < count; ++i) {
         unsigned char *p;
-		int xoff;
-		int yoff;
-		int width;
-		int height;
+        size_t xoff;
+        size_t yoff;
+        size_t width;
+        size_t height;
 
 		p = bp + i * 8;
 		xoff = FetchByte(p);
@@ -1577,13 +1577,11 @@ int ConvertImage(const char *file, int pale, int imge, int nw, int nh)
 */
 Image ConvertCur(unsigned char *bp)
 {
-	int hotx;
-	int hoty;
     size_t width;
     size_t height;
 
-	hotx = FetchLE16(bp);
-	hoty = FetchLE16(bp);
+    (void) FetchLE16(bp); // hotx
+    (void) FetchLE16(bp); // hoty
 	width = FetchLE16(bp);
 	height = FetchLE16(bp);
 
@@ -2021,13 +2019,11 @@ int SetupNames(const char *file __attribute__((unused)), int txte __attribute__(
 {
     unsigned char *txtp;
     const unsigned short *mp;
-	size_t l;
 	unsigned u;
 	unsigned n;
 
 	//txtp = ExtractEntry(ArchiveOffsets[txte], &l);
 	txtp = Names;
-	l = sizeof(Names);
     mp = (const unsigned short *)txtp;
     UnitNames.resize(110);
 
@@ -2039,9 +2035,6 @@ int SetupNames(const char *file __attribute__((unused)), int txte __attribute__(
 
 	}
 
-    //if (txtp != Names) {
-    //	free(txtp);
-    //}
 	return 0;
 }
 
@@ -2766,7 +2759,7 @@ int main(int argc, char **argv)
 		switch (Todo[u].Type) {
 			case F:
 				if (CDType & CD_BNE) {
-					for (int i = 0; i < sizeof(BNEReplaceTable) / sizeof(*BNEReplaceTable) ; i += 2) {
+                    for (size_t i = 0; i < sizeof(BNEReplaceTable) / sizeof(*BNEReplaceTable) ; i += 2) {
                         if (!strcmp(BNEReplaceTable[i], Todo[u].File.c_str())) {
                             Todo[u].File = BNEReplaceTable[i + 1];
 							if (CDType & CD_BNE_CAPS) {

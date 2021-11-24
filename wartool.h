@@ -2515,11 +2515,11 @@ static const char *BNEPuds[] = {
 };
 
 typedef struct _grouped_graphic_ {
-	int X;               // X offset
-	int Y;               // Y offset
-	int Width;           // width of image
-	int Height;          // height of image
-	char Name[100];      // name
+    size_t X;               // X offset
+    size_t Y;               // Y offset
+    size_t Width;           // width of image
+    size_t Height;          // height of image
+    std::string Name;      // name
 } GroupedGraphic;
 
 static const GroupedGraphic GroupedGraphicsList[][60] = {
