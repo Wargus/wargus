@@ -182,7 +182,7 @@ static unsigned char *ArchiveBuffer;
 /**
 **  Offsets for each entry into original archive buffer.
 */
-static unsigned char **ArchiveOffsets;
+static std::vector<unsigned char *>ArchiveOffsets;
 
 /**
 **  Fake empty entry
@@ -482,7 +482,6 @@ int OpenArchive(const char *file, int type)
 	struct stat stat_buf;
     unsigned char *buf;
     unsigned char *cp;
-    unsigned char **op;
 	int entries;
 	int i;
 
@@ -527,11 +526,9 @@ int OpenArchive(const char *file, int type)
 	//
 	//  Read offsets.
 	//
-    op = (unsigned char **)malloc((entries + 1) * sizeof(unsigned char *));
-	if (!op) {
-        std::cout << "Can't malloc " << entries << entries << std::endl;
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
+    std::vector<unsigned char *> op;
+    op.resize(entries + 1);
+
 	for (i = 0; i < entries; ++i) {
 		op[i] = buf + FetchLE32(cp);
 		// check if entry size is not bigger then archive size
@@ -553,7 +550,7 @@ int OpenArchive(const char *file, int type)
 	}
 	op[i] = buf + stat_buf.st_size;
 
-	ArchiveOffsets = op;
+    ArchiveOffsets = std::move(op);
 	ArchiveBuffer = buf;
 
 	return 0;
@@ -647,9 +644,7 @@ ExtractEntry(unsigned char *cp, size_t *lenp)
 int CloseArchive(void)
 {
 	free(ArchiveBuffer);
-	free(ArchiveOffsets);
 	ArchiveBuffer = 0;
-	ArchiveOffsets = 0;
 
 	return 0;
 }
