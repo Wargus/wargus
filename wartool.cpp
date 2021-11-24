@@ -177,7 +177,7 @@ static std::shared_ptr<unsigned char []>Pal27;
 /**
 **  Original archive buffer.
 */
-static unsigned char *ArchiveBuffer;
+static std::unique_ptr<unsigned char[]> ArchiveBuffer;
 
 /**
 **  Offsets for each entry into original archive buffer.
@@ -479,8 +479,6 @@ int SavePNG(const fs::path &name, Image &image, int x, int y, int w, int h, int 
 int OpenArchive(const char *file, int type)
 {
 	int f;
-	struct stat stat_buf;
-    unsigned char *buf;
     unsigned char *cp;
 	int entries;
 	int i;
@@ -492,25 +490,28 @@ int OpenArchive(const char *file, int type)
 	if (f == -1) {
 		error("Can't open file", file);
 	}
-	if (stat(file, &stat_buf)) {
-		error("Can't stat file", file);
+    std::error_code ec{};
+    size_t file_size = fs::file_size(file, ec);
+    if (ec) {
+        error("Can't determine file size", file);
 	}
+
 
 	//
 	//  Read in the archive
 	//
-	buf = (unsigned char *)malloc(stat_buf.st_size);
+    std::unique_ptr<unsigned char []> buf = std::make_unique<unsigned char[]>(file_size);
 	if (!buf) {
-        std::cout << "Can't malloc " << stat_buf.st_size << std::endl;
+        std::cout << "Can't malloc " << file_size << std::endl;
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
-	if (read(f, buf, stat_buf.st_size) != stat_buf.st_size) {
-        std::cout << "Can't read " << stat_buf.st_size << std::endl;
+    if (read(f, buf.get(), file_size) != file_size) {
+        std::cout << "Can't read " << file_size << std::endl;
 		error("Memory error", "Could not read archive into RAM.");
 	}
 	close(f);
 
-	cp = buf;
+    cp = buf.get();
 	i = FetchLE32(cp);
 	if (i != 0x19) {
         std::cout << "Wrong magic " << i << ", expected " << 0x00000019 << std::endl;
@@ -530,9 +531,9 @@ int OpenArchive(const char *file, int type)
     op.resize(entries + 1);
 
 	for (i = 0; i < entries; ++i) {
-		op[i] = buf + FetchLE32(cp);
+        op[i] = buf.get() + FetchLE32(cp);
 		// check if entry size is not bigger then archive size
-		if (op[i] >= buf + stat_buf.st_size - 4) {
+        if (op[i] >= buf.get() + file_size - 4) {
 			op[i] = (unsigned char *)&EmptyEntry;
             std::cout << "Ignore entry " << i << " in archive (invalid offset)" << std::endl;
             std::flush(std::cout);
@@ -541,17 +542,17 @@ int OpenArchive(const char *file, int type)
 			size_t length = FetchLE32(dp);
 			int flags = length >> 24;
 			length &= 0x00FFFFFF;
-			if (flags == 0x00 && op[i] + length >= buf + stat_buf.st_size) {
+            if (flags == 0x00 && op[i] + length >= buf.get() + file_size) {
 				op[i] = (unsigned char *)&EmptyEntry;
                 std::cout << "Ignore entry " << i << " in archive (invalid uncompressed length)" << std::endl;
                 std::flush(std::cout);
 			}
 		}
 	}
-	op[i] = buf + stat_buf.st_size;
+    op[i] = buf.get() + file_size;
 
     ArchiveOffsets = std::move(op);
-	ArchiveBuffer = buf;
+    ArchiveBuffer = std::move(buf);
 
 	return 0;
 }
@@ -643,9 +644,7 @@ ExtractEntry(unsigned char *cp, size_t *lenp)
 */
 int CloseArchive(void)
 {
-	free(ArchiveBuffer);
-	ArchiveBuffer = 0;
-
+    ArchiveBuffer.reset();
 	return 0;
 }
 
