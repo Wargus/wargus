@@ -193,14 +193,14 @@ enum _archive_type_ {
 **  FIXME: version alpha, demo, 1.00, 1.31, 1.40, 1.50 dependend!
 */
 
-const char *BNEReplaceTable[] = {
+const std::array<std::string, 8> BNEReplaceTable = {
 	"maindat.war", "support/tomes/tome.1",
 	"rezdat.war",  "support/tomes/tome.2",
 	"snddat.war",  "support/tomes/tome.3",
 	"strdat.war",  "support/tomes/tome.4"
 };
 
-const char *BNEReplaceTableCaps[] = {
+const std::array<std::string, 8> BNEReplaceTableCaps = {
 	"maindat.war", "Support/TOMES/TOME.1",
 	"rezdat.war",  "Support/TOMES/TOME.2",
 	"snddat.war",  "Support/TOMES/TOME.3",
@@ -2358,7 +2358,7 @@ static  std::array<std::filesystem::path, 71> ExpansionPuds = {
 
 };
 
-static const char *BNEPuds[] = {
+static const std::string BNEPuds[] = {
 	"maps/All You Need BNE.pud",
 	"maps/Ant Trails BNE.pud",
 	"maps/Big Rock Candy Mountain BNE.pud",

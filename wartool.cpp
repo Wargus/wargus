@@ -2759,8 +2759,8 @@ int main(int argc, char **argv)
 		switch (Todo[u].Type) {
 			case F:
 				if (CDType & CD_BNE) {
-                    for (size_t i = 0; i < sizeof(BNEReplaceTable) / sizeof(*BNEReplaceTable) ; i += 2) {
-                        if (!strcmp(BNEReplaceTable[i], Todo[u].File.c_str())) {
+                    for (size_t i = 0; i < BNEReplaceTable.size() ; i += 2) {
+                        if (BNEReplaceTable[i] == Todo[u].File) {
                             Todo[u].File = BNEReplaceTable[i + 1];
 							if (CDType & CD_BNE_CAPS) {
 								Todo[u].File = BNEReplaceTableCaps[i + 1];
