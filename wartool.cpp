@@ -1928,18 +1928,17 @@ int ConvertVideo(const char *file, int video, bool justconvert = false)
 **  Convert a string to utf8 format
 **  Note: this isn't a true conversion, buf could be any character set
 */
-unsigned char *ConvertString(unsigned char *buf, size_t len)
+std::unique_ptr<unsigned char []> ConvertString(unsigned char *buf, size_t len)
 {
-	unsigned char *str;
+
 	unsigned char *p;
 	size_t i;
 
 	if (len == 0) {
 		len = strlen((char *)buf);
 	}
-
-	str = (unsigned char *)malloc(2 * len + 1);
-	p = str;
+    std::unique_ptr<unsigned char []> str = std::make_unique<unsigned char []>(2 * len + 1);
+    p = str.get();
 
 	for (i = 0; i < len; ++i, ++buf) {
 		if (*buf > 0x7f) {
@@ -1972,7 +1971,6 @@ int ConvertText(const std::string &file, int txte, int ofs)
 	gzFile gf;
 	size_t l;
 	size_t l2;
-	unsigned char *str;
 
 	// workaround for German/UK/Australian CD's
 	if (!(CDType & CD_EXPANSION) && (CDType & (CD_GERMAN | CD_UK | CD_RUSSIAN))) {
@@ -1998,16 +1996,15 @@ int ConvertText(const std::string &file, int txte, int ofs)
 		perror("");
 		error("Memory error", "Could not allocate enough memory to read archive.");
 	}
-    str = ConvertString(txtp.get() + ofs, l - ofs);
-	l2 = strlen((char *)str) + 1;
+    auto str = ConvertString(txtp.get() + ofs, l - ofs);
+    l2 = strlen((char *)str.get()) + 1;
 
-	if (l2 != (size_t)gzwrite(gf, str, l2)) {
+    if (l2 != (size_t)gzwrite(gf, str.get(), l2)) {
         std::cout << "Can't write " << l2 << " bytes" << std::endl;
         std::flush(std::cout);
 	}
 
     gzclose(gf);
-	free(str);
 
 	return 0;
 }
@@ -2218,16 +2215,15 @@ int CampaignsCreate(int txte, int ofs)
                 std::cerr << e.code().message() << std::endl;
             }
 
-
-			unsigned char *str = ConvertString(CampaignData[race][levelno][0], 0);
-            out_level << "title = \"" << str << "\"\n";
-			free(str);
+            {
+                auto str = ConvertString(CampaignData[race][levelno][0], 0);
+                out_level << "title = \"" << str.get() << "\"\n";
+            }
             out_level << "objectives = {";
 			for (noobjs = 1; noobjs < 10; ++noobjs) {
 				if (CampaignData[race][levelno][noobjs] != NULL) {
-					unsigned char *str = ConvertString(CampaignData[race][levelno][noobjs], 0);
-                    out_level << (noobjs > 1 ? "," : "") << "\"" << str << "\"";
-					free(str);
+                    auto str = ConvertString(CampaignData[race][levelno][noobjs], 0);
+                    out_level << (noobjs > 1 ? "," : "") << "\"" << str.get() << "\"";
 				}
 			}
             out_level << "}\n";
