@@ -74,6 +74,10 @@
 #include <string>
 #include <vector>
 
+#ifdef WIN32
+using ssize_t = long long;
+#endif
+
 void error(const std::string &first, const std::string &second) {
   return error(first.c_str(), second.c_str());
 }
