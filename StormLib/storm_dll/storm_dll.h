@@ -13,13 +13,13 @@
 /* 11.04.03  1.00  Lad  Added some functions                                 */
 /*****************************************************************************/
 
-// We need the Windows data types for the Storm prototypes
-#include <windows.h>
-
 #ifndef __STORM_H__
 #define __STORM_H__
 
-// Somethimes is necessary to change the function names so they
+// We need the Windows data types for the Storm prototypes
+#include <windows.h>
+
+// Sometimes is necessary to change the function names so they
 // will not conflict with other MPQ tools.
 #ifdef STORM_ALTERNATE_NAMES
   #define SFILE(Name) Storm##Name

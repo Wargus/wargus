@@ -21,24 +21,24 @@
 typedef struct _TSQPHeader
 {
     // The ID_MPQ ('MPQ\x1A') signature
-    DWORD dwID;                         
+    DWORD dwID;
 
     // Size of the archive header
-    DWORD dwHeaderSize;                   
+    DWORD dwHeaderSize;
 
     // 32-bit size of MPQ archive
     DWORD dwArchiveSize;
 
     // Offset to the beginning of the hash table, relative to the beginning of the archive.
     DWORD dwHashTablePos;
-    
+
     // Offset to the beginning of the block table, relative to the beginning of the archive.
     DWORD dwBlockTablePos;
-    
+
     // Number of entries in the hash table. Must be a power of two, and must be less than 2^16 for
     // the original MoPaQ format, or less than 2^20 for the Burning Crusade format.
     DWORD dwHashTableSize;
-    
+
     // Number of entries in the block table
     DWORD dwBlockTableSize;
 
@@ -66,7 +66,7 @@ typedef struct _TSQPHash
 
     // The hash of the file path, using method A.
     DWORD dwName1;
-    
+
     // The hash of the file path, using method B.
     DWORD dwName2;
 
@@ -76,23 +76,23 @@ typedef struct _TSQPBlock
 {
     // Offset of the beginning of the file, relative to the beginning of the archive.
     DWORD dwFilePos;
-    
+
     // Flags for the file. See MPQ_FILE_XXXX constants
-    DWORD dwFlags;                      
+    DWORD dwFlags;
 
     // Compressed file size
     DWORD dwCSize;
-    
+
     // Uncompressed file size
-    DWORD dwFSize;                      
-    
+    DWORD dwFSize;
+
 } TSQPBlock;
 
 //-----------------------------------------------------------------------------
 // Functions - SQP file format
 
 // This function converts SQP file header into MPQ file header
-int ConvertSqpHeaderToFormat4(
+DWORD ConvertSqpHeaderToFormat4(
     TMPQArchive * ha,
     ULONGLONG FileSize,
     DWORD dwFlags)
@@ -131,7 +131,7 @@ int ConvertSqpHeaderToFormat4(
     Header.wSectorSize = BSWAP_INT16_UNSIGNED(pSqpHeader->wSectorSize);
 
     // Verify the SQP header
-    if(Header.dwID == ID_MPQ && Header.dwHeaderSize == sizeof(TSQPHeader) && Header.dwArchiveSize == FileSize)
+    if(Header.dwID == g_dwMpqSignature && Header.dwHeaderSize == sizeof(TSQPHeader) && Header.dwArchiveSize == FileSize)
     {
         // Check for fixed values of version and sector size
         if(Header.wFormatVersion == MPQ_FORMAT_VERSION_1 && Header.wSectorSize == 3)
@@ -143,7 +143,7 @@ int ConvertSqpHeaderToFormat4(
 
             // Copy the converted MPQ header back
             memcpy(ha->HeaderData, &Header, sizeof(TMPQHeader));
-            
+
             // Mark this file as SQP file
             ha->pfnHashString = HashStringSlash;
             ha->dwFlags |= MPQ_FLAG_READ_ONLY;
@@ -187,7 +187,7 @@ TMPQHash * LoadSqpHashTable(TMPQArchive * ha)
     TSQPHash * pSqpHashEnd;
     TSQPHash * pSqpHash;
     TMPQHash * pMpqHash;
-    int nError = ERROR_SUCCESS;
+    DWORD dwErrCode = ERROR_SUCCESS;
 
     // Load the hash table
     pSqpHashTable = (TSQPHash *)LoadSqpTable(ha, pHeader->dwHashTablePos, pHeader->dwHashTableSize * sizeof(TSQPHash), MPQ_KEY_HASH_TABLE);
@@ -201,28 +201,29 @@ TMPQHash * LoadSqpHashTable(TMPQArchive * ha)
             // Ignore free entries
             if(pSqpHash->dwBlockIndex != HASH_ENTRY_FREE)
             {
+                // Store the hash entry to a temporary variable
+                TSQPHash TempEntry = *pSqpHash;
+
                 // Check block index against the size of the block table
                 if(pHeader->dwBlockTableSize <= MPQ_BLOCK_INDEX(pSqpHash) && pSqpHash->dwBlockIndex < HASH_ENTRY_DELETED)
-                    nError = ERROR_FILE_CORRUPT;
+                    dwErrCode = ERROR_FILE_CORRUPT;
 
                 // We do not support nonzero locale and platform ID
                 if(pSqpHash->dwAlwaysZero != 0 && pSqpHash->dwAlwaysZero != HASH_ENTRY_FREE)
-                    nError = ERROR_FILE_CORRUPT;
+                    dwErrCode = ERROR_FILE_CORRUPT;
 
-                // Store the file name hash
-                pMpqHash->dwName1 = pSqpHash->dwName1;
-                pMpqHash->dwName2 = pSqpHash->dwName2;
-
-                // Store the rest. Note that this must be done last,
-                // because block index corresponds to pMpqHash->dwName2
-                pMpqHash->dwBlockIndex = MPQ_BLOCK_INDEX(pSqpHash);
+                // Copy the entry to the MPQ hash entry
+                pMpqHash->dwName1  = TempEntry.dwName1;
+                pMpqHash->dwName2  = TempEntry.dwName2;
+                pMpqHash->dwBlockIndex = MPQ_BLOCK_INDEX(&TempEntry);
                 pMpqHash->Platform = 0;
                 pMpqHash->lcLocale = 0;
+                pMpqHash->Reserved = 0;
             }
         }
 
         // If an error occured, we need to free the hash table
-        if(nError != ERROR_SUCCESS)
+        if(dwErrCode != ERROR_SUCCESS)
         {
             STORM_FREE(pSqpHashTable);
             pSqpHashTable = NULL;
@@ -241,8 +242,7 @@ TMPQBlock * LoadSqpBlockTable(TMPQArchive * ha)
     TSQPBlock * pSqpBlockEnd;
     TSQPBlock * pSqpBlock;
     TMPQBlock * pMpqBlock;
-    DWORD dwFlags;
-    int nError = ERROR_SUCCESS;
+    DWORD dwErrCode = ERROR_SUCCESS;
 
     // Load the hash table
     pSqpBlockTable = (TSQPBlock *)LoadSqpTable(ha, pHeader->dwBlockTablePos, pHeader->dwBlockTableSize * sizeof(TSQPBlock), MPQ_KEY_BLOCK_TABLE);
@@ -253,19 +253,22 @@ TMPQBlock * LoadSqpBlockTable(TMPQArchive * ha)
         pMpqBlock = (TMPQBlock *)pSqpBlockTable;
         for(pSqpBlock = pSqpBlockTable; pSqpBlock < pSqpBlockEnd; pSqpBlock++, pMpqBlock++)
         {
+            // Store the block entry to a temporary variable
+            TSQPBlock TempEntry = *pSqpBlock;
+
             // Check for valid flags
             if(pSqpBlock->dwFlags & ~MPQ_FILE_VALID_FLAGS)
-                nError = ERROR_FILE_CORRUPT;
+                dwErrCode = ERROR_FILE_CORRUPT;
 
             // Convert SQP block table entry to MPQ block table entry
-            dwFlags = pSqpBlock->dwFlags;
-            pMpqBlock->dwCSize = pSqpBlock->dwCSize;
-            pMpqBlock->dwFSize = pSqpBlock->dwFSize;
-            pMpqBlock->dwFlags = dwFlags;
+            pMpqBlock->dwFilePos = TempEntry.dwFilePos;
+            pMpqBlock->dwCSize   = TempEntry.dwCSize;
+            pMpqBlock->dwFSize   = TempEntry.dwFSize;
+            pMpqBlock->dwFlags   = TempEntry.dwFlags;
         }
 
         // If an error occured, we need to free the hash table
-        if(nError != ERROR_SUCCESS)
+        if(dwErrCode != ERROR_SUCCESS)
         {
             STORM_FREE(pSqpBlockTable);
             pSqpBlockTable = NULL;
@@ -292,13 +295,13 @@ typedef struct _TMPKHeader
 {
     // The ID_MPK ('MPK\x1A') signature
     DWORD dwID;
-    
+
     // Contains '2000'
     DWORD dwVersion;
-    
+
     // 32-bit size of the archive
     DWORD dwArchiveSize;
-    
+
     // Size of the archive header
     DWORD dwHeaderSize;
 
@@ -315,7 +318,7 @@ typedef struct _TMPKHash
 {
     // The hash of the file path, using method A.
     DWORD dwName1;
-    
+
     // The hash of the file path, using method B.
     DWORD dwName2;
 
@@ -334,7 +337,7 @@ typedef struct _TMPKHash
 
 typedef struct _TMPKBlock
 {
-    DWORD  dwFlags;         // 0x1121 - Compressed , 0x1120 - Not compressed 
+    DWORD  dwFlags;         // 0x1121 - Compressed , 0x1120 - Not compressed
     DWORD  dwFilePos;       // Offset of the beginning of the file, relative to the beginning of the archive.
     DWORD  dwFSize;         // Uncompressed file size
     DWORD  dwCSize;         // Compressed file size
@@ -384,7 +387,7 @@ static const unsigned char MpkDecryptionKey[512] =
 // Functions - MPK file format
 
 // This function converts MPK file header into MPQ file header
-int ConvertMpkHeaderToFormat4(
+DWORD ConvertMpkHeaderToFormat4(
     TMPQArchive * ha,
     ULONGLONG FileSize,
     DWORD dwFlags)
@@ -414,7 +417,7 @@ int ConvertMpkHeaderToFormat4(
     if(Header.dwID == ID_MPK && Header.dwHeaderSize == sizeof(TMPKHeader) && Header.dwArchiveSize == (DWORD)FileSize)
     {
         // The header ID must be ID_MPQ
-        Header.dwID = ID_MPQ;
+        Header.dwID = g_dwMpqSignature;
         Header.wFormatVersion = MPQ_FORMAT_VERSION_1;
         Header.wSectorSize = 3;
 

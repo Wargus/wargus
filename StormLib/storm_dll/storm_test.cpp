@@ -16,7 +16,7 @@
 #include <crtdbg.h>
 #endif
 
-#define STORM_ALTERNATE_NAMES
+#define STORM_ALTERNATE_NAMES               // Use Storm* prefix for functions
 #include "storm_dll.h"                      // Header file for Storm.dll
 
 //-----------------------------------------------------------------------------
@@ -24,18 +24,18 @@
 
 int main()
 {
-    LPCSTR szArchiveName = "e:\\Multimedia\\MPQs\\1995 - Test MPQs\\MPQ_2016_v1_123.w3x";
+    LPCSTR szArchiveName = "e:\\war3.mpq";
     HANDLE hMpq = NULL;
     HANDLE hFile = NULL;
     BYTE Buffer[0x100];
     DWORD dwBytesRead = 0;
 
     if(StormOpenArchive(szArchiveName, 0, 0, &hMpq))
-    {                             
-        if(StormOpenFileEx(hMpq, "war3map.j", 0, &hFile))
+    {
+        if(StormOpenFileEx(hMpq, "(1)TheDeathSheep.w3m", 0, &hFile))
         {
             dwBytesRead = StormGetFileSize(hFile, NULL);
-            StormReadFile(hFile, Buffer, sizeof(Buffer), &dwBytesRead, NULL); 
+            StormReadFile(hFile, Buffer, sizeof(Buffer), &dwBytesRead, NULL);
             StormCloseFile(hFile);
         }
 
