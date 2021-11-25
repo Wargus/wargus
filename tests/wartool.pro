@@ -10,6 +10,7 @@ SOURCES=../pud.cpp \
         ../rip_music_unix.cpp
 
 HEADERS=../wartool.h \
+    ../../stratagus/gameheaders/stratagus-gameutils.h \
     StormLib.h \
 	../endian.h \
 	../pud.h \
@@ -20,6 +21,7 @@ HEADERS=../wartool.h \
 DISTFILES +=
 DEFINES += USE_STORMLIB
 
+INCLUDEPATH += ../../stratagus/gameheaders/
 
 unix:!macx: LIBS +=../tests/libstorm.a -lpng -lz -lbz2
 DESTDIR=../tests/build/

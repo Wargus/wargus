@@ -74,6 +74,10 @@
 #include <string>
 #include <vector>
 
+void error(const std::string &first, const std::string &second) {
+  return error(first.c_str(), second.c_str());
+}
+
 /**
 **		Destination directory of the graphics
 */
