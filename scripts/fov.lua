@@ -28,7 +28,7 @@
 --
 
 -- Edit this to enable/disable shadow casting field of view for units
--- SetFieldOfViewType("shadow-casting") -- Legacy type of FOW doesn't work with shadow casting, so "enhanced" FOW will be activated automaticaly
+-- SetFieldOfViewType("shadow-casting") -- Tiled and fast types of FOW don't work with shadow casting, so "enhanced" FOW will be activated automaticaly
 SetFieldOfViewType("simple-radial") 
 
 -- Make these tiles opaque. Possible tile-types "forest", "rock" and "wall". Works only when shadow casting enabled.

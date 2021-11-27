@@ -428,7 +428,7 @@ local defaultPreferences = {
 	OnlineServer = "network.stratagus.de",
 	OnlinePort = 6112,
 	SimplifiedAutoTargeting = true,
-  FogOfWarType = "enhanced",  -- "enhanced" or "legacy". Legacy type of FOW doesn't work with shadow casting FOV.
+  FogOfWarType = "enhanced",  -- "enhanced", "tiled", "fast". Tiled and fast types of FOW don't work with shadow casting FOV.
   FogOfWarBilinear = false,     -- Enable/Disable bilinear filtration for fog of war
   MapGrid = false
 }
