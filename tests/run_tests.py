@@ -4,6 +4,7 @@ import sys
 import hashlib
 import subprocess
 import generate_test_case
+import platform
 
 parser = argparse.ArgumentParser(description="Python script to test wartool.")
 parser.add_argument(
@@ -27,6 +28,8 @@ def find_test_case(dir_hash):
     cur_path = pathlib.Path(".")
     for file in cur_path.iterdir():
         if not file.is_dir() and file.suffix == ".testcase":
+            if platform.system() == "Darwin" and not file.match("*MAC*"):
+                continue
             with open(file, "r") as temp:
                 first = temp.readline()
                 if first.strip() == dir_hash.strip():
