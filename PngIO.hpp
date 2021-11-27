@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <cassert>
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include "Image.hpp"
@@ -129,7 +130,7 @@ public:
         png_set_compression_level(png_ptr.get(), Z_BEST_COMPRESSION);
 
 
-        png_set_IHDR(png_ptr.get(), png_ptr.info_get(), image.width, image.height, 8,
+        png_set_IHDR(png_ptr.get(), png_ptr.info_get(), w, h, 8,
                      PNG_COLOR_TYPE_PALETTE, 0, PNG_COMPRESSION_TYPE_DEFAULT,
                      PNG_FILTER_TYPE_DEFAULT);
         png_set_PLTE(png_ptr.get(), png_ptr.info_get(), (png_colorp)pal, 256);
@@ -149,7 +150,7 @@ public:
                 ++p;
             }
 
-            memset(trans, 0xFF, sizeof(trans));
+            std::memset(trans, 0xFF, sizeof(trans));
             trans[255] = 0x0;
             png_set_tRNS(png_ptr.get(), png_ptr.info_get(), trans, 256, 0);
         }
@@ -162,12 +163,12 @@ public:
 
         // prepare image
         std::vector<unsigned char *> lines;
-        lines.resize(image.height);
-        if (lines.size() != image.height) {
+        lines.resize(h);
+        if (lines.size() != h) {
             return false;
         }
 
-        for (size_t i = 0; i < image.height; ++i) {
+        for (size_t i = 0; i < h; ++i) {
             lines[i] = &image.data[0] + (i + y) * pitch + x;
         }
 
