@@ -31,7 +31,7 @@
 #include <process.h>
 #include <errno.h>
 #include <stdio.h>
-
+#include <iostream>
 #include "rip_music.h"
 
 #if _MSC_VER
@@ -40,7 +40,7 @@
 
 
 #ifndef _NTDDSCSIH_
-#include <ctype.h>
+#include <cctype>
 #define IOCTL_SCSI_GET_ADDRESS		0x00041018
 #define IOCTL_SCSI_GET_INQUIRY_DATA	0x0004100C
 
@@ -66,16 +66,17 @@ typedef struct _SCSI_ADAPTER_BUS_INFO {
 
 #define SCSI_INFO_BUFFER_SIZE 2048	// just throw a huge buffer at it
 
-int GetSCSIAddressFromDriveLetter(const char drive_letter, PSCSI_ADDRESS scsi_address) {
+int GetSCSIAddressFromDriveLetter(const char drive_letter, PSCSI_ADDRESS scsi_address)
+{
 
-	char file_name[8];
+    wchar_t file_name[8];
 	int result = 0;
 	HANDLE device_handle;
 
-	wsprintf(file_name, "\\\\.\\%c:", drive_letter);
+    wsprintf(file_name, L"\\\\.\\%c:", drive_letter);
 	device_handle = CreateFile(file_name, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
 
-	if ( device_handle != INVALID_HANDLE_VALUE ) {
+    if (device_handle != INVALID_HANDLE_VALUE) {
 
 		scsi_address->Length = sizeof(SCSI_ADDRESS);
 		scsi_address->PortNumber = 0;
@@ -84,18 +85,19 @@ int GetSCSIAddressFromDriveLetter(const char drive_letter, PSCSI_ADDRESS scsi_ad
 		scsi_address->Lun = 0;
 		long bytes_returned;
 
-		if ( DeviceIoControl(device_handle, IOCTL_SCSI_GET_ADDRESS, NULL, 0, scsi_address, sizeof(SCSI_ADDRESS), (LPDWORD)&bytes_returned, FALSE) ) {
+        if (DeviceIoControl(device_handle, IOCTL_SCSI_GET_ADDRESS, NULL, 0, scsi_address, sizeof(SCSI_ADDRESS), (LPDWORD)&bytes_returned, FALSE)) {
 
-			if ( bytes_returned == sizeof(SCSI_ADDRESS) )
+            if (bytes_returned == sizeof(SCSI_ADDRESS)) {
 				result = 1;
+            }
 
 		} else {
 
-			if ( GetLastError() == 50 ) { // USB/FIREWIRE devices?
+            if (GetLastError() == 50) {   // USB/FIREWIRE devices?
 
 				// as per cdda2wav
 				int temp = (int)(toupper(drive_letter) - 'A');
-				scsi_address->PortNumber = temp+64;
+                scsi_address->PortNumber = temp + 64;
 				scsi_address->PathId = temp;
 				result = 1;
 
@@ -111,13 +113,13 @@ int GetSCSIAddressFromDriveLetter(const char drive_letter, PSCSI_ADDRESS scsi_ad
 }
 
 
-int GetSPTIAddressFromDriveLetter(const char drive_letter, char * spti_address) {
+int GetSPTIAddressFromDriveLetter(const char drive_letter, char *spti_address)
+{
 
 	SCSI_ADDRESS target_scsi_address;
 
-	if ( ! GetSCSIAddressFromDriveLetter(drive_letter, &target_scsi_address) ) {
-
-		printf("Error: Cannot get SCSI address of drive %c\n", drive_letter);
+    if (! GetSCSIAddressFromDriveLetter(drive_letter, &target_scsi_address)) {
+        std::cout <<  "Error: Cannot get SCSI address of drive " << drive_letter << std::endl;
 		return 1;
 
 	}
@@ -128,60 +130,67 @@ int GetSPTIAddressFromDriveLetter(const char drive_letter, char * spti_address) 
 	int i;
 
 	// add drives to the list
-	for ( i = 0; i < 26; i++ ) {
+    for (i = 0; i < 26; i++) {
 
 		SCSI_ADDRESS scsi_address;
 
-		if ( GetSCSIAddressFromDriveLetter((char)('A'+i), &scsi_address) ) {
+        if (GetSCSIAddressFromDriveLetter((char)('A' + i), &scsi_address)) {
 
 			int list_index;
-			short value = ( scsi_address.PortNumber << 8 ) | scsi_address.PathId;
+            short value = (scsi_address.PortNumber << 8) | scsi_address.PathId;
 
-			if ( num_list >= max_list )
-				break; // list is full
+            if (num_list >= max_list) {
+                break;    // list is full
+            }
 
-			for ( list_index = 0; list_index < num_list; list_index++)
-				if ( list[list_index] == value )
-					break; // no duplicates
+            for (list_index = 0; list_index < num_list; list_index++)
+                if (list[list_index] == value) {
+                    break;    // no duplicates
+                }
 
-			if ( list_index >= num_list )
-				list[num_list++] = value; // append to list
+            if (list_index >= num_list) {
+                list[num_list++] = value;    // append to list
+            }
 
 		}
 
 	}
 
 	// add scsi devices to the list
-	for ( i = 0; ; i++ ) {
+    for (i = 0; ; i++) {
 
 		static char inquiry_buffer[SCSI_INFO_BUFFER_SIZE];
 		long bytes_returned;
-		char file_name[24];
+        wchar_t file_name[24];
 		HANDLE device_handle;
 		int bus;
 
-		wsprintf(file_name, "\\\\.\\SCSI%u:", i);
+        wsprintf(file_name, L"\\\\.\\SCSI%u:", i);
 		device_handle = CreateFile(file_name, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
 
-		if ( device_handle == INVALID_HANDLE_VALUE )
+        if (device_handle == INVALID_HANDLE_VALUE) {
 			break;
+        }
 
-		if ( DeviceIoControl(device_handle, IOCTL_SCSI_GET_INQUIRY_DATA, NULL, 0, inquiry_buffer, SCSI_INFO_BUFFER_SIZE, (LPDWORD)&bytes_returned, NULL) ) {
+        if (DeviceIoControl(device_handle, IOCTL_SCSI_GET_INQUIRY_DATA, NULL, 0, inquiry_buffer, SCSI_INFO_BUFFER_SIZE, (LPDWORD)&bytes_returned, NULL)) {
 
-			for ( bus = 0; bus < ((PSCSI_ADAPTER_BUS_INFO)inquiry_buffer)->NumberOfBuses; bus++ ) {
+            for (bus = 0; bus < ((PSCSI_ADAPTER_BUS_INFO)inquiry_buffer)->NumberOfBuses; bus++) {
 
 				int list_index;
-				short value = ( i << 8 ) | bus;
+                short value = (i << 8) | bus;
 
-				if ( num_list >= max_list )
-					break; // list is full
+                if (num_list >= max_list) {
+                    break;    // list is full
+                }
 
-				for ( list_index = 0; list_index < num_list; list_index++ )
-					if ( list[list_index] == value )
-						break; // no duplicates
+                for (list_index = 0; list_index < num_list; list_index++)
+                    if (list[list_index] == value) {
+                        break;    // no duplicates
+                    }
 
-				if ( list_index >= num_list )
-					list[num_list++] = value; // append to list
+                if (list_index >= num_list) {
+                    list[num_list++] = value;    // append to list
+                }
 
 			}
 
@@ -192,22 +201,22 @@ int GetSPTIAddressFromDriveLetter(const char drive_letter, char * spti_address) 
 	}
 
 	// find what would be the cdda2wav "bus"
-	short value = ( target_scsi_address.PortNumber << 8 ) | target_scsi_address.PathId;
+    short value = (target_scsi_address.PortNumber << 8) | target_scsi_address.PathId;
 	int count = 0;
 	int found = 0;
 
-	for ( i = 0; i < num_list; i++ ) {
+    for (i = 0; i < num_list; i++) {
 
-		if ( list[i] < value )
+        if (list[i] < value) {
 			count++;
-		else if ( list[i] == value )
+        } else if (list[i] == value) {
 			found = 1;
+        }
 
 	}
 
-	if ( ! found || count >= 26 ) { // cdda2wav caps at 26
-
-		fprintf(stderr, "Unknown Error\n");
+    if (! found || count >= 26) {   // cdda2wav caps at 26
+        std::cerr << "Unknown Error" << std::endl;
 		return 1;
 
 	}
@@ -217,60 +226,61 @@ int GetSPTIAddressFromDriveLetter(const char drive_letter, char * spti_address) 
 
 }
 
-char GetDriveLetterFromPath(const char * path) {
+char GetDriveLetterFromPath(const wchar_t *path)
+{
 
-	char save_cwd[_MAX_PATH];
-	char cwd[_MAX_PATH];
+    wchar_t save_cwd[_MAX_PATH];
+    wchar_t cwd[_MAX_PATH];
 	int res;
 
-	if ( ! GetCurrentDirectory(sizeof(save_cwd), save_cwd) ) {
-
-		fprintf(stderr, "Error: Cannot store working directory: %s\n", strerror(errno));
+    if (! GetCurrentDirectory(sizeof(save_cwd), save_cwd)) {
+        std::cerr << "Error: Cannot store working directory: " <<  strerror(errno) << std::endl;
 		return 0;
 
 	}
 
-	if ( ! SetCurrentDirectory(path) ) {
-
-		fprintf(stderr, "Error: Cannot change directory to %s: %s\n", path, strerror(errno));
+    if (! SetCurrentDirectory(path)) {
+        std::cerr <<  "Error: Cannot change directory to " << path << ": " << strerror(errno) << std::endl;
 		return 0;
 
 	}
 
 	res = GetCurrentDirectory(sizeof(cwd), cwd);
 
-	if ( ! res )
-		fprintf(stderr, "Error: Cannot get working directory: %s\n", strerror(errno));
+    if (! res) {
+        std::cerr << "Error: Cannot get working directory: " << strerror(errno) << std::endl;
+    }
 
-	if ( ! SetCurrentDirectory(save_cwd) )
-		fprintf(stderr, "Error: Cannot restore working directory: %s\n", strerror(errno));
+    if (! SetCurrentDirectory(save_cwd)) {
+        std::cerr << "Error: Cannot restore working directory: " << strerror(errno) << std::endl;
+    }
 
-	if ( ! res )
+    if (! res) {
 		return 0;
-	else
+    } else {
 		return cwd[0];
+    }
 
 }
 
-int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
+int RipMusic(int expansion_cd, const wchar_t *data_dir, const char *dest_dir)
+{
 
 	const char cdda2wav[] = "cdda2wav.exe";
-	const char * args[7] = { cdda2wav, "-D", "", "-J", NULL, NULL, NULL };
+    const char *args[7] = { cdda2wav, "-D", "", "-J", NULL, NULL, NULL };
 	char drive;
 	char spti[20];
 	int count = 0;
 	int i;
 
-	if ( ! ( drive = GetDriveLetterFromPath(data_dir) ) ) {
-
-		fprintf(stderr, "Error: Cannot get drive letter of path %s\n", data_dir);
+    if (!(drive = GetDriveLetterFromPath(data_dir))) {
+        std::cerr << "Error: Cannot get drive letter of path " << data_dir << std::endl;
 		return 1;
 
 	}
 
-	if ( GetSPTIAddressFromDriveLetter(drive, spti) != 0 ) {
-
-		fprintf(stderr, "Error: Cannot get SPTI address of drive %c\n", drive);
+    if (GetSPTIAddressFromDriveLetter(drive, spti) != 0) {
+        std::cerr << "Error: Cannot get SPTI address of drive " << drive << std::endl;
 		return 1;
 
 	}
@@ -280,32 +290,36 @@ int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
 
 	args[2] = spti;
 
-	if ( _spawnvp(_P_WAIT, cdda2wav, args) != 0 )
+    if (_spawnvp(_P_WAIT, cdda2wav, args) != 0) {
 		return 1;
+    }
 
-	for ( i = 0; MusicNames[i]; ++i ) {
+    for (i = 0; !MusicNames[i].empty(); ++i) {
 
 		char num[3];
 		char file[_MAX_PATH];
 
-		if ( ! expansion_cd && ! MusicNames[i+1] )
+        if (! expansion_cd && ! MusicNames[i + 1].empty()) {
 			break;
+        }
 
-		snprintf(num, sizeof(num), "%d", i+2);
-		snprintf(file, sizeof(file), "\"%s/%s.wav\"", dest_dir, MusicNames[i]);
+        snprintf(num, sizeof(num), "%d", i + 2);
+        snprintf(file, sizeof(file), "\"%s/%s.wav\"", dest_dir, MusicNames[i].c_str());
 
 		args[3] = "-t";
 		args[4] = num;
 		args[5] = file;
 
-		if ( _spawnvp(_P_WAIT, cdda2wav, args) == 0 )
+        if (_spawnvp(_P_WAIT, cdda2wav, args) == 0) {
 			++count;
+        }
 
 	}
 
-	if ( count == 0 )
+    if (count == 0) {
 		return 1;
-	else
+    } else {
 		return 0;
+    }
 
 }

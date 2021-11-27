@@ -40,6 +40,9 @@ namespace fs = std::experimental::filesystem;
 error "Missing the <filesystem> header."
 #endif
 
+#include <array>
+#include <string>
+
 static const std::array<std::string, 17> MusicNames = {
 	"Human Battle 1",
 	"Human Battle 2",

@@ -45,6 +45,7 @@ error "Missing the <filesystem> header."
 
 #include "endian.h"
 #include "pud.h"
+#include <iostream>
 
 #define VERSION "1.0"
 
@@ -242,7 +243,7 @@ PudData::PudData()
 	memset(StartY, 0, sizeof(StartY));
 }
 
-void PudData::WriteSMP(gzFile smpout, const char *smsname) const
+void PudData::WriteSMP(gzFile smpout, const fs::path &smsname) const
 {
 	const PudData &pdata = *this;
 	gzprintf(smpout, "-- Stratagus Map Presentation\n");
@@ -268,14 +269,14 @@ void PudData::WriteSMP(gzFile smpout, const char *smsname) const
              playerCount, pdata.MapSizeX, pdata.MapSizeY, 1);
 
 	// hack for campaigns
-	if (smsname) {
+    if (!smsname.empty()) {
         buf.clear();
-		for (const char *c = strstr(smsname, "./campaigns"); *c != '\0'; ++c) {
-			if (*c == '\\') {
-                buf += "/";
-			} else {
-                buf += *c;
-			}
+        buf = smsname.string();
+        //This part is most likely unnecessary.
+        for (auto c = buf.find("./campaigns"); c < buf.size(); ++c) {
+            if (buf[c] == '\\') {
+                buf[c] = '/';
+            }
 		}
         auto temp = buf.find(".sms");
         if (temp == std::string::npos) {
@@ -284,8 +285,7 @@ void PudData::WriteSMP(gzFile smpout, const char *smsname) const
             buf.resize(temp);
             buf += "_c.sms";
         }
-        //buf.replace(buf.find(".sms"), 0, "_c.sms");
-        //strcpy(strstr(buf, ".sms"), "_c.sms");
+
         gzprintf(smpout, "DefineMapSetup(\"%s\")\n", buf.c_str());
 	}
 }
@@ -468,42 +468,49 @@ bool PudData::Parse(const unsigned char *puddata, size_t size)
 }
 
 // Convert pud to native stratagus format
-int PudToStratagus(const unsigned char *puddata, size_t size, const char *name, const char *outdir)
+int PudToStratagus(const unsigned char *puddata, size_t size, const fs::path &name, const fs::path &outdir)
 {
 	PudData pdata;
 
 	if (pdata.Parse(puddata, size) == false) {
-		fprintf(stderr, "invalid pud data\n");
+        std::cerr <<  "invalid pud data" << std::endl;
 		exit(-1);
 	}
 	gzFile smpout;
 	gzFile smsout;
-	char smpname[PATH_MAX];
-	char smsname[PATH_MAX];
+    fs::path smpname{outdir};
+    fs::path smsname{outdir};
 
-	strcpy(smpname, outdir);
-	strcat(smpname, "/");
-	strcat(smpname, name);
-	strcat(smpname, ".smp.gz");
+    smpname /= name;
+    smpname.replace_extension(".smp.gz");
 
-	strcpy(smsname, outdir);
-	strcat(smsname, "/");
-	strcat(smsname, name);
-	strcat(smsname, ".sms.gz");
+    smsname /= name;
+    smsname.replace_extension(".sms.gz");
+#ifndef WIN32
+    smpout = gzopen(smpname.c_str(), "wb");
+#else
+    smpout = gzopen_w(smpname.c_str(), "wb");
+#endif
 
-	if (!(smpout = gzopen(smpname, "wb"))) {
+#ifndef WIN32
+    smsout = gzopen(smsname.c_str(), "wb");
+#else
+    smsout = gzopen_w(smsname.c_str(), "wb");
+#endif
+
+    if (!smpout) {
 		fprintf(stderr, "cannot open smpfile\n");
 		return -1;
 	}
-	if (!(smsout = gzopen(smsname, "wb"))) {
+    if (!smsout) {
 		fprintf(stderr, "cannot open smsfile\n");
 		return -1;
 	}
 
-	if (strstr(smsname, "campaigns")) {
+    if (smsname.string().find("campaigns") != std::string::npos) {
 		pdata.WriteSMP(smpout, smsname);
 	} else {
-		pdata.WriteSMP(smpout, NULL);
+        pdata.WriteSMP(smpout, fs::path());
 	}
 	pdata.WriteSMS(smsout);
 

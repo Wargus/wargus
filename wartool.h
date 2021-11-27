@@ -134,38 +134,38 @@ error "Missing the <filesystem> header."
 **  Conversion control sturcture.
 */
 struct Control {
-  int Type;              /// Entry type
-  int Version;           /// Only in this version
-  std::string File;      /// Save file
-  int Arg1;              /// Extra argument 1
-  int Arg2;              /// Extra argument 2
-  int Arg3;              /// Extra argument 3
-  int Arg4;              /// Extra argument 4
-  const char *MPQFile{}; /// MPQ file
-  const char *ArcFile{}; /// Archive file
+    int Type;              /// Entry type
+    int Version;           /// Only in this version
+    std::string File;      /// Save file
+    int Arg1;              /// Extra argument 1
+    int Arg2;              /// Extra argument 2
+    int Arg3;              /// Extra argument 3
+    int Arg4;              /// Extra argument 4
+    const std::string MPQFile{}; /// MPQ file
+    const std::string ArcFile{}; /// Archive file
 };
 
 /**
 **  Possible entry types of archive file.
 */
 enum _archive_type_ {
-  S, // Setup
-  F, // File                          (name)
-  T, // Tileset                       (name,pal,mega,mini,map)
-  R, // RGB -> gimp                   (name,rgb)
-  G, // Graphics                      (name,pal,gfx)
-  U, // Uncompressed Graphics         (name,pal,gfu)
-  D, // Grouped Uncompressed Graphic  (name,pal,gfu,glist)
-  P, // Pud                           (name,idx)
-  N, // Font                          (name,idx)
-  I, // Image                         (name,pal,img)
-  W, // Wav                           (name,wav)
-  M, // XMI Midi Sound                (name,xmi)
-  X, // Text                          (name,text,ofs)
-  C, // Cursor                        (name,cursor)
-  V, // Video                         (name,video)
-  L, // Campaign Levels
-  Q  // MPQ archive
+    S, // Setup
+    F, // File                          (name)
+    T, // Tileset                       (name,pal,mega,mini,map)
+    R, // RGB -> gimp                   (name,rgb)
+    G, // Graphics                      (name,pal,gfx)
+    U, // Uncompressed Graphics         (name,pal,gfu)
+    D, // Grouped Uncompressed Graphic  (name,pal,gfu,glist)
+    P, // Pud                           (name,idx)
+    N, // Font                          (name,idx)
+    I, // Image                         (name,pal,img)
+    W, // Wav                           (name,wav)
+    M, // XMI Midi Sound                (name,xmi)
+    X, // Text                          (name,text,ofs)
+    C, // Cursor                        (name,cursor)
+    V, // Video                         (name,video)
+    L, // Campaign Levels
+    Q  // MPQ archive
 };
 
 #define CD_MAC (1)
@@ -182,9 +182,9 @@ enum _archive_type_ {
 #define CD_UPPER (1 << 13) // Filenames on CD are upper
 #define CD_BNE (1 << 14)   // This is a BNE version
 #define CD_BNE_CAPS                                                            \
-  (1 << 15) // This is a BNE version with capitalized Support folder
+    (1 << 15) // This is a BNE version with capitalized Support folder
 #define CD_BNE_UPPER                                                           \
-  (1 << 16) // This is a BNE version with upper Support folder
+    (1 << 16) // This is a BNE version with upper Support folder
 
 /**
 **  What, where, how to extract.
@@ -195,12 +195,14 @@ enum _archive_type_ {
 const std::array<std::string, 8> BNEReplaceTable = {
     "maindat.war",          "support/tomes/tome.1", "rezdat.war",
     "support/tomes/tome.2", "snddat.war",           "support/tomes/tome.3",
-    "strdat.war",           "support/tomes/tome.4"};
+    "strdat.war",           "support/tomes/tome.4"
+};
 
 const std::array<std::string, 8> BNEReplaceTableCaps = {
     "maindat.war",          "Support/TOMES/TOME.1", "rezdat.war",
     "Support/TOMES/TOME.2", "snddat.war",           "Support/TOMES/TOME.3",
-    "strdat.war",           "Support/TOMES/TOME.4"};
+    "strdat.war",           "Support/TOMES/TOME.4"
+};
 
 static Control Todo[] = {
 #define __ , 0, 0, 0, "", ""
@@ -490,12 +492,16 @@ static Control Todo[] = {
     {G, 3, "tilesets/swamp/neutral/buildings/%104", 2, 181 _2},
     {G, 0, "tilesets/winter/neutral/buildings/%104", 18, 186 _2},
     {U, 0, "ui/gold,wood,oil,mana", 2, 187 _2},
-    {G, 0, "tilesets/wasteland/neutral/buildings/small_destroyed_site", 10,
-     188 _2},
+    {
+        G, 0, "tilesets/wasteland/neutral/buildings/small_destroyed_site", 10,
+        188 _2
+    },
     {G, 3, "tilesets/swamp/neutral/buildings/small_destroyed_site", 10, 188 _2},
     {G, 0, "tilesets/summer/neutral/buildings/small_destroyed_site", 2, 189 _2},
-    {G, 0, "tilesets/winter/neutral/buildings/small_destroyed_site", 18,
-     190 _2},
+    {
+        G, 0, "tilesets/winter/neutral/buildings/small_destroyed_site", 18,
+        190 _2
+    },
     {G, 0, "tilesets/wasteland/neutral/buildings/destroyed_site", 10, 191 _2},
     {G, 3, "tilesets/swamp/neutral/buildings/destroyed_site", 10, 191 _2},
     //--------------------------------------------------
@@ -565,64 +571,114 @@ static Control Todo[] = {
     {G, 0, "neutral/buildings/land_construction_site", 2, 252 _2},
     {G, 0, "human/buildings/shipyard_construction_site", 2, 253 _2},
     {G, 0, "orc/buildings/shipyard_construction_site", 2, 254 _2},
-    {G, 3, "tilesets/swamp/neutral/buildings/land_construction_site", 2,
-     252 _2},
-    {G, 3, "tilesets/swamp/human/buildings/shipyard_construction_site", 2,
-     253 _2},
-    {G, 3, "tilesets/swamp/orc/buildings/shipyard_construction_site", 2,
-     254 _2},
-    {G, 0, "tilesets/summer/human/buildings/oil_well_construction_site", 2,
-     255 _2},
-    {G, 0, "tilesets/summer/orc/buildings/oil_well_construction_site", 2,
-     256 _2},
+    {
+        G, 3, "tilesets/swamp/neutral/buildings/land_construction_site", 2,
+        252 _2
+    },
+    {
+        G, 3, "tilesets/swamp/human/buildings/shipyard_construction_site", 2,
+        253 _2
+    },
+    {
+        G, 3, "tilesets/swamp/orc/buildings/shipyard_construction_site", 2,
+        254 _2
+    },
+    {
+        G, 0, "tilesets/summer/human/buildings/oil_well_construction_site", 2,
+        255 _2
+    },
+    {
+        G, 0, "tilesets/summer/orc/buildings/oil_well_construction_site", 2,
+        256 _2
+    },
     {G, 0, "human/buildings/refinery_construction_site", 2, 257 _2},
     {G, 0, "orc/buildings/refinery_construction_site", 2, 258 _2},
     {G, 0, "human/buildings/foundry_construction_site", 2, 259 _2},
     {G, 0, "orc/buildings/foundry_construction_site", 2, 260 _2},
-    {G, 3, "tilesets/swamp/human/buildings/refinery_construction_site", 2,
-     257 _2},
-    {G, 3, "tilesets/swamp/orc/buildings/refinery_construction_site", 2,
-     258 _2},
-    {G, 3, "tilesets/swamp/human/buildings/foundry_construction_site", 2,
-     259 _2},
+    {
+        G, 3, "tilesets/swamp/human/buildings/refinery_construction_site", 2,
+        257 _2
+    },
+    {
+        G, 3, "tilesets/swamp/orc/buildings/refinery_construction_site", 2,
+        258 _2
+    },
+    {
+        G, 3, "tilesets/swamp/human/buildings/foundry_construction_site", 2,
+        259 _2
+    },
     {G, 3, "tilesets/swamp/orc/buildings/foundry_construction_site", 2, 260 _2},
-    {G, 0, "tilesets/summer/neutral/buildings/wall_construction_site", 2,
-     261 _2},
-    {G, 0, "tilesets/winter/neutral/buildings/land_construction_site", 18,
-     262 _2},
-    {G, 0, "tilesets/winter/human/buildings/shipyard_construction_site", 18,
-     263 _2},
-    {G, 0, "tilesets/winter/orc/buildings/shipyard_construction_site", 18,
-     264 _2},
-    {G, 0, "tilesets/winter/human/buildings/oil_well_construction_site", 18,
-     265 _2},
-    {G, 0, "tilesets/winter/orc/buildings/oil_well_construction_site", 18,
-     266 _2},
-    {G, 0, "tilesets/winter/human/buildings/refinery_construction_site", 18,
-     267 _2},
-    {G, 0, "tilesets/winter/orc/buildings/refinery_construction_site", 18,
-     268 _2},
-    {G, 0, "tilesets/winter/human/buildings/foundry_construction_site", 18,
-     269 _2},
-    {G, 0, "tilesets/winter/orc/buildings/foundry_construction_site", 18,
-     270 _2},
-    {G, 0, "tilesets/wasteland/human/buildings/oil_well_construction_site", 10,
-     271 _2},
-    {G, 0, "tilesets/wasteland/orc/buildings/oil_well_construction_site", 10,
-     272 _2},
-    {G, 3, "tilesets/swamp/human/buildings/oil_platform_construction_site", 10,
-     271 _2},
-    {G, 3, "tilesets/swamp/orc/buildings/oil_platform_construction_site", 10,
-     272 _2},
+    {
+        G, 0, "tilesets/summer/neutral/buildings/wall_construction_site", 2,
+        261 _2
+    },
+    {
+        G, 0, "tilesets/winter/neutral/buildings/land_construction_site", 18,
+        262 _2
+    },
+    {
+        G, 0, "tilesets/winter/human/buildings/shipyard_construction_site", 18,
+        263 _2
+    },
+    {
+        G, 0, "tilesets/winter/orc/buildings/shipyard_construction_site", 18,
+        264 _2
+    },
+    {
+        G, 0, "tilesets/winter/human/buildings/oil_well_construction_site", 18,
+        265 _2
+    },
+    {
+        G, 0, "tilesets/winter/orc/buildings/oil_well_construction_site", 18,
+        266 _2
+    },
+    {
+        G, 0, "tilesets/winter/human/buildings/refinery_construction_site", 18,
+        267 _2
+    },
+    {
+        G, 0, "tilesets/winter/orc/buildings/refinery_construction_site", 18,
+        268 _2
+    },
+    {
+        G, 0, "tilesets/winter/human/buildings/foundry_construction_site", 18,
+        269 _2
+    },
+    {
+        G, 0, "tilesets/winter/orc/buildings/foundry_construction_site", 18,
+        270 _2
+    },
+    {
+        G, 0, "tilesets/wasteland/human/buildings/oil_well_construction_site", 10,
+        271 _2
+    },
+    {
+        G, 0, "tilesets/wasteland/orc/buildings/oil_well_construction_site", 10,
+        272 _2
+    },
+    {
+        G, 3, "tilesets/swamp/human/buildings/oil_platform_construction_site", 10,
+        271 _2
+    },
+    {
+        G, 3, "tilesets/swamp/orc/buildings/oil_platform_construction_site", 10,
+        272 _2
+    },
     {G, 0, "tilesets/winter/neutral/buildings/wall", 18, 273 _2},
     {G, 0, "tilesets/wasteland/neutral/buildings/wall", 10, 274 _2},
     {G, 3, "tilesets/swamp/neutral/buildings/wall", 10, 274 _2},
-    {G, 0, "tilesets/winter/neutral/buildings/wall_construction_site", 18,
-     275 _2},
-    {G, 0, "tilesets/wasteland/neutral/buildings/wall_construction_site", 10,
-     276 _2},
-    {G, 3, "tilesets/swamp/neutral/buildings/wall_construction_site", 10,
-     276 _2},
+    {
+        G, 0, "tilesets/winter/neutral/buildings/wall_construction_site", 18,
+        275 _2
+    },
+    {
+        G, 0, "tilesets/wasteland/neutral/buildings/wall_construction_site", 10,
+        276 _2
+    },
+    {
+        G, 3, "tilesets/swamp/neutral/buildings/wall_construction_site", 10,
+        276 _2
+    },
     // 277 Control programs for computer player AI
     // 278 Control programs for unit movement
     // --------------------------------------------------
@@ -829,20 +885,30 @@ static Control Todo[] = {
     {G, 2, "tilesets/swamp/neutral/buildings/%103", 438, 513 _2},
     {G, 2, "tilesets/swamp/neutral/buildings/%104", 438, 514 _2},
     {G, 2, "tilesets/swamp/neutral/buildings/%95", 438, 515 _2},
-    {G, 2, "tilesets/swamp/human/buildings/%-74_construction_site", 438,
-     516 _2},
+    {
+        G, 2, "tilesets/swamp/human/buildings/%-74_construction_site", 438,
+        516 _2
+    },
     {G, 2, "tilesets/swamp/orc/buildings/%-75_construction_site", 438, 517 _2},
-    {G, 2, "tilesets/swamp/human/buildings/%-88_construction_site", 438,
-     518 _2},
+    {
+        G, 2, "tilesets/swamp/human/buildings/%-88_construction_site", 438,
+        518 _2
+    },
     {G, 2, "tilesets/swamp/orc/buildings/%-89_construction_site", 438, 519 _2},
-    {G, 2, "tilesets/swamp/human/buildings/%-86_construction_site", 438,
-     520 _2},
+    {
+        G, 2, "tilesets/swamp/human/buildings/%-86_construction_site", 438,
+        520 _2
+    },
     {G, 2, "tilesets/swamp/orc/buildings/%-87_construction_site", 438, 521 _2},
-    {G, 2, "tilesets/swamp/human/buildings/%-80_construction_site", 438,
-     522 _2},
+    {
+        G, 2, "tilesets/swamp/human/buildings/%-80_construction_site", 438,
+        522 _2
+    },
     {G, 2, "tilesets/swamp/orc/buildings/%-81_construction_site", 438, 523 _2},
-    {G, 2, "tilesets/swamp/neutral/buildings/small_destroyed_site", 438,
-     524 _2},
+    {
+        G, 2, "tilesets/swamp/neutral/buildings/small_destroyed_site", 438,
+        524 _2
+    },
     {G, 2, "tilesets/swamp/neutral/buildings/%102", 438, 525 _2},
     {G, 2, "tilesets/swamp/human/units/%40", 438, 526 _2},
     {G, 2, "tilesets/swamp/orc/units/%41", 438, 527 _2},
@@ -1266,37 +1332,57 @@ static Control Todo[] = {
     {I, 0, "ui/orc/panel_5", 14, 12 _2},
     {I, 0, "ui/Menu_background_with_title", 14, 13 _2},
     {I, 0, "ui/Menu_background_without_title", 16, 15 _2},
-    {I, 0, "../campaigns/human/interface/Act_I_-_Shores_of_Lordareon", 17,
-     19 _2},
+    {
+        I, 0, "../campaigns/human/interface/Act_I_-_Shores_of_Lordareon", 17,
+        19 _2
+    },
     {I, 0, "../campaigns/orc/interface/Act_I_-_Seas_of_Blood", 17, 20 _2},
     {I, 0, "../campaigns/human/interface/Act_II_-_Khaz_Modan", 17, 21 _2},
     {I, 0, "../campaigns/orc/interface/Act_II_-_Khaz_Modan", 17, 22 _2},
     {I, 0, "../campaigns/human/interface/Act_III_-_The_Northlands", 17, 23 _2},
     {I, 0, "../campaigns/orc/interface/Act_III_-_Quel'Thalas", 17, 24 _2},
-    {I, 0, "../campaigns/human/interface/Act_IV_-_Return_to_Azeroth", 17,
-     25 _2},
+    {
+        I, 0, "../campaigns/human/interface/Act_IV_-_Return_to_Azeroth", 17,
+        25 _2
+    },
     {I, 0, "../campaigns/orc/interface/Act_IV_-_Tides_of_Darkness", 17, 26 _2},
 
     {I, 0, "ui/human/The_End", 27, 29 _2},
     {I, 0, "ui/orc/Smashing_of_Lordaeron_scroll", 32, 30 _2},
     {I, 2, "ui/Patch", 14, 91 _2},
     {I, 2, "ui/Credits_for_extension_background", 93, 94 _2},
-    {I, 2, "../campaigns/human-exp/interface/Act_I_-_A_Time_for_Heroes", 17,
-     96 _2},
-    {I, 2, "../campaigns/orc-exp/interface/Act_I_-_Draenor,_the_Red_World", 17,
-     97 _2},
-    {I, 2, "../campaigns/human-exp/interface/Act_II_-_Draenor,_the_Red_World",
-     17, 98 _2},
-    {I, 2, "../campaigns/orc-exp/interface/Act_II_-_The_Burning_of_Azeroth", 17,
-     99 _2},
-    {I, 2, "../campaigns/human-exp/interface/Act_III_-_War_in_the_Shadows", 17,
-     100 _2},
-    {I, 2, "../campaigns/orc-exp/interface/Act_III_-_The_Great_Sea", 17,
-     101 _2},
-    {I, 2, "../campaigns/human-exp/interface/Act_IV_-_The_Measure_of_Valor", 17,
-     102 _2},
-    {I, 2, "../campaigns/orc-exp/interface/Act_IV_-_Prelude_to_New_Worlds", 17,
-     103 _2},
+    {
+        I, 2, "../campaigns/human-exp/interface/Act_I_-_A_Time_for_Heroes", 17,
+        96 _2
+    },
+    {
+        I, 2, "../campaigns/orc-exp/interface/Act_I_-_Draenor,_the_Red_World", 17,
+        97 _2
+    },
+    {
+        I, 2, "../campaigns/human-exp/interface/Act_II_-_Draenor,_the_Red_World",
+        17, 98 _2
+    },
+    {
+        I, 2, "../campaigns/orc-exp/interface/Act_II_-_The_Burning_of_Azeroth", 17,
+        99 _2
+    },
+    {
+        I, 2, "../campaigns/human-exp/interface/Act_III_-_War_in_the_Shadows", 17,
+        100 _2
+    },
+    {
+        I, 2, "../campaigns/orc-exp/interface/Act_III_-_The_Great_Sea", 17,
+        101 _2
+    },
+    {
+        I, 2, "../campaigns/human-exp/interface/Act_IV_-_The_Measure_of_Valor", 17,
+        102 _2
+    },
+    {
+        I, 2, "../campaigns/orc-exp/interface/Act_IV_-_Prelude_to_New_Worlds", 17,
+        103 _2
+    },
 
     ///////////////////////////////////////////////////////////////////////////////
     //		SPEECH INTROS
@@ -1450,819 +1536,1593 @@ static Control Todo[] = {
     ///////////////////////////////////////////////////////////////////
 
     // female-hero
-    {Q, 8, "sounds/human/units/alleria/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\aleria\\alpissd1.wav"},
-    {Q, 8, "sounds/human/units/alleria/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\aleria\\alpissd2.wav"},
-    {Q, 8, "sounds/human/units/alleria/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\aleria\\alpissd3.wav"},
-    {Q, 8, "sounds/human/units/alleria/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\aleria\\alwhat1.wav"},
-    {Q, 8, "sounds/human/units/alleria/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\aleria\\alwhat2.wav"},
-    {Q, 8, "sounds/human/units/alleria/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\aleria\\alwhat3.wav"},
-    {Q, 8, "sounds/human/units/alleria/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\aleria\\alyessr1.wav"},
-    {Q, 8, "sounds/human/units/alleria/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\aleria\\alyessr2.wav"},
-    {Q, 8, "sounds/human/units/alleria/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\aleria\\alyessr3.wav"},
+    {
+        Q, 8, "sounds/human/units/alleria/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\aleria\\alpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/alleria/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\aleria\\alpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/alleria/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\aleria\\alpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/alleria/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\aleria\\alwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/alleria/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\aleria\\alwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/alleria/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\aleria\\alwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/alleria/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\aleria\\alyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/alleria/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\aleria\\alyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/alleria/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\aleria\\alyessr3.wav"
+    },
     // Buildings
-    {Q, 8, "sounds/orc/buildings/goblin_alchemist.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\bldg\\alchemst.wav"},
-    {Q, 8, "sounds/human/buildings/gryphon_aviary.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\bldg\\aviary.wav"},
-    {Q, 8, "sounds/orc/buildings/dragon_roost.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\dragon.wav"},
-    {Q, 8, "sounds/orc/buildings/temple_of_the_damned.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\bldg\\dthtower.wav"},
-    {Q, 8, "sounds/buildings/foundry.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\foundry.wav"},
-    {Q, 8, "sounds/human/buildings/church.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\hchant.wav"},
-    {Q, 8, "sounds/human/buildings/farm.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\hfarm.wav"},
-    {Q, 8, "sounds/human/buildings/gnomish_inventor.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\bldg\\inventor.wav"},
-    {Q, 8, "sounds/buildings/lumbermill.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\lumbmill.wav"},
-    {Q, 8, "sounds/neutral/buildings/gold_mine.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\mine.wav"},
-    {Q, 8, "sounds/orc/buildings/altar_of_storms.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\bldg\\ochant.wav"},
-    {Q, 8, "sounds/orc/buildings/pig_farm.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\ofarm.wav"},
-    {Q, 8, "sounds/orc/buildings/ogre_mound.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\ogrecamp.wav"},
-    {Q, 8, "sounds/buildings/oil_platform.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\oilplat.wav"},
-    {Q, 8, "sounds/buildings/oil_refinery.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\oilrefin.wav"},
-    {Q, 8, "sounds/buildings/shipyard.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\shipbell.wav"},
-    {Q, 8, "sounds/buildings/blacksmith.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\smith.wav"},
-    {Q, 8, "sounds/human/buildings/stables.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\stables.wav"},
-    {Q, 8, "sounds/human/buildings/mage_tower.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\bldg\\wzrdtowr.wav"},
+    {
+        Q, 8, "sounds/orc/buildings/goblin_alchemist.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\bldg\\alchemst.wav"
+    },
+    {
+        Q, 8, "sounds/human/buildings/gryphon_aviary.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\bldg\\aviary.wav"
+    },
+    {
+        Q, 8, "sounds/orc/buildings/dragon_roost.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\dragon.wav"
+    },
+    {
+        Q, 8, "sounds/orc/buildings/temple_of_the_damned.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\bldg\\dthtower.wav"
+    },
+    {
+        Q, 8, "sounds/buildings/foundry.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\foundry.wav"
+    },
+    {
+        Q, 8, "sounds/human/buildings/church.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\hchant.wav"
+    },
+    {
+        Q, 8, "sounds/human/buildings/farm.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\hfarm.wav"
+    },
+    {
+        Q, 8, "sounds/human/buildings/gnomish_inventor.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\bldg\\inventor.wav"
+    },
+    {
+        Q, 8, "sounds/buildings/lumbermill.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\lumbmill.wav"
+    },
+    {
+        Q, 8, "sounds/neutral/buildings/gold_mine.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\mine.wav"
+    },
+    {
+        Q, 8, "sounds/orc/buildings/altar_of_storms.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\bldg\\ochant.wav"
+    },
+    {
+        Q, 8, "sounds/orc/buildings/pig_farm.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\ofarm.wav"
+    },
+    {
+        Q, 8, "sounds/orc/buildings/ogre_mound.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\ogrecamp.wav"
+    },
+    {
+        Q, 8, "sounds/buildings/oil_platform.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\oilplat.wav"
+    },
+    {
+        Q, 8, "sounds/buildings/oil_refinery.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\oilrefin.wav"
+    },
+    {
+        Q, 8, "sounds/buildings/shipyard.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\shipbell.wav"
+    },
+    {
+        Q, 8, "sounds/buildings/blacksmith.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\smith.wav"
+    },
+    {
+        Q, 8, "sounds/human/buildings/stables.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\stables.wav"
+    },
+    {
+        Q, 8, "sounds/human/buildings/mage_tower.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\bldg\\wzrdtowr.wav"
+    },
     // arthor-literios
-    {Q, 8, "sounds/human/units/danath/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\danath\\dnpisd1.wav"},
-    {Q, 8, "sounds/human/units/danath/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\danath\\dnpisd2.wav"},
-    {Q, 8, "sounds/human/units/danath/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\danath\\dnpisd3.wav"},
-    {Q, 8, "sounds/human/units/danath/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\danath\\dnwhat1.wav"},
-    {Q, 8, "sounds/human/units/danath/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\danath\\dnwhat2.wav"},
-    {Q, 8, "sounds/human/units/danath/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\danath\\dnwhat3.wav"},
-    {Q, 8, "sounds/human/units/danath/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\danath\\dnyessr1.wav"},
-    {Q, 8, "sounds/human/units/danath/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\danath\\dnyessr2.wav"},
-    {Q, 8, "sounds/human/units/danath/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\danath\\dnyessr3.wav"},
+    {
+        Q, 8, "sounds/human/units/danath/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\danath\\dnpisd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/danath/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\danath\\dnpisd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/danath/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\danath\\dnpisd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/danath/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\danath\\dnwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/danath/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\danath\\dnwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/danath/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\danath\\dnwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/danath/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\danath\\dnyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/danath/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\danath\\dnyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/danath/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\danath\\dnyessr3.wav"
+    },
     // death knight
-    {Q, 8, "sounds/orc/units/death_knight/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathknt\\dkpissd1.wav"},
-    {Q, 8, "sounds/orc/units/death_knight/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathknt\\dkpissd2.wav"},
-    {Q, 8, "sounds/orc/units/death_knight/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathknt\\dkpissd3.wav"},
-    {Q, 8, "sounds/orc/units/death_knight/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathknt\\dkwhat1.wav"},
-    {Q, 8, "sounds/orc/units/death_knight/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathknt\\dkwhat2.wav"},
-    {Q, 8, "sounds/orc/units/death_knight/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathknt\\dkyessr1.wav"},
-    {Q, 8, "sounds/orc/units/death_knight/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathknt\\dkyessr2.wav"},
-    {Q, 8, "sounds/orc/units/death_knight/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathknt\\dkyessr3.wav"},
-    {Q, 8, "sounds/orc/units/death_knight/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\deathknt\\dkready.wav"},
+    {
+        Q, 8, "sounds/orc/units/death_knight/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathknt\\dkpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/death_knight/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathknt\\dkpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/death_knight/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathknt\\dkpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/death_knight/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathknt\\dkwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/death_knight/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathknt\\dkwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/death_knight/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathknt\\dkyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/death_knight/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathknt\\dkyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/death_knight/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathknt\\dkyessr3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/death_knight/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\deathknt\\dkready.wav"
+    },
     // fire-breeze
-    {Q, 8, "sounds/orc/units/deathwing/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathwng\\depissd1.wav"},
-    {Q, 8, "sounds/orc/units/deathwing/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathwng\\depissd2.wav"},
-    {Q, 8, "sounds/orc/units/deathwing/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathwng\\depissd3.wav"},
-    {Q, 8, "sounds/orc/units/deathwing/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathwng\\dewhat1.wav"},
-    {Q, 8, "sounds/orc/units/deathwing/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathwng\\dewhat2.wav"},
-    {Q, 8, "sounds/orc/units/deathwing/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathwng\\dewhat3.wav"},
-    {Q, 8, "sounds/orc/units/deathwing/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathwng\\deyessr1.wav"},
-    {Q, 8, "sounds/orc/units/deathwing/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathwng\\deyessr2.wav"},
-    {Q, 8, "sounds/orc/units/deathwing/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\deathwng\\deyessr3.wav"},
+    {
+        Q, 8, "sounds/orc/units/deathwing/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathwng\\depissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/deathwing/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathwng\\depissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/deathwing/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathwng\\depissd3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/deathwing/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathwng\\dewhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/deathwing/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathwng\\dewhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/deathwing/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathwng\\dewhat3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/deathwing/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathwng\\deyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/deathwing/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathwng\\deyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/deathwing/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\deathwng\\deyessr3.wav"
+    },
     // fad-man
-    {Q, 8, "sounds/orc/units/dentarg/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\dentarg\\odpissd1.wav"},
-    {Q, 8, "sounds/orc/units/dentarg/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\dentarg\\odpissd2.wav"},
-    {Q, 8, "sounds/orc/units/dentarg/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\dentarg\\odpissd3.wav"},
-    {Q, 8, "sounds/orc/units/dentarg/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\dentarg\\odwhat1.wav"},
-    {Q, 8, "sounds/orc/units/dentarg/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\dentarg\\odwhat2.wav"},
-    {Q, 8, "sounds/orc/units/dentarg/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\dentarg\\odwhat3.wav"},
-    {Q, 8, "sounds/orc/units/dentarg/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\dentarg\\odyessr1.wav"},
-    {Q, 8, "sounds/orc/units/dentarg/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\dentarg\\odyessr2.wav"},
-    {Q, 8, "sounds/orc/units/dentarg/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\dentarg\\odyessr3.wav"},
+    {
+        Q, 8, "sounds/orc/units/dentarg/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\dentarg\\odpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dentarg/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\dentarg\\odpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dentarg/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\dentarg\\odpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dentarg/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\dentarg\\odwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dentarg/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\dentarg\\odwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dentarg/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\dentarg\\odwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dentarg/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\dentarg\\odyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dentarg/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\dentarg\\odyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dentarg/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\dentarg\\odyessr3.wav"
+    },
     // dragon
-    {Q, 8, "sounds/orc/units/dragon/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\dragon\\drwhat.wav"},
-    {Q, 8, "sounds/orc/units/dragon/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\dragon\\dryessr1.wav"},
-    {Q, 8, "sounds/orc/units/dragon/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\dragon\\dryessr2.wav"},
-    {Q, 8, "sounds/orc/units/dragon/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\dragon\\drready.wav"},
+    {
+        Q, 8, "sounds/orc/units/dragon/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\dragon\\drwhat.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dragon/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\dragon\\dryessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dragon/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\dragon\\dryessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/dragon/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\dragon\\drready.wav"
+    },
     // dwarf
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/annoyed/1.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwpissd1.wav"},
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/annoyed/2.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwpissd2.wav"},
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/annoyed/3.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwpissd3.wav"},
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/selected/1.wav", 1, 1,
-     0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwhat1.wav"},
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/selected/2.wav", 1, 1,
-     0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwhat2.wav"},
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/acknowledgement/1.wav",
-     1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwyessr1.wav"},
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/acknowledgement/2.wav",
-     1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwyessr2.wav"},
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/acknowledgement/3.wav",
-     1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwyessr3.wav"},
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/acknowledgement/4.wav",
-     1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwyessr4.wav"},
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/acknowledgement/5.wav",
-     1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwyessr5.wav"},
-    {Q, 8, "sounds/human/units/dwarven_demolition_squad/ready.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\dwarf\\dwready.wav"},
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/annoyed/1.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/annoyed/2.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/annoyed/3.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/selected/1.wav", 1, 1,
+        0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/selected/2.wav", 1, 1,
+        0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/acknowledgement/1.wav",
+        1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/acknowledgement/2.wav",
+        1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/acknowledgement/3.wav",
+        1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwyessr3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/acknowledgement/4.wav",
+        1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwyessr4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/acknowledgement/5.wav",
+        1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\dwarf\\dwyessr5.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/dwarven_demolition_squad/ready.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\dwarf\\dwready.wav"
+    },
     // elves
-    {Q, 8, "sounds/human/units/elven_archer-ranger/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\elves\\epissed1.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\elves\\epissed2.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\elves\\epissed3.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\elves\\ewhat1.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\elves\\ewhat2.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\elves\\ewhat3.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/selected/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\elves\\ewhat4.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/acknowledgement/1.wav", 1, 1,
-     0, 0, "War2Dat.mpq", "Gamesfx\\elves\\eyessir1.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/acknowledgement/2.wav", 1, 1,
-     0, 0, "War2Dat.mpq", "Gamesfx\\elves\\eyessir2.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/acknowledgement/3.wav", 1, 1,
-     0, 0, "War2Dat.mpq", "Gamesfx\\elves\\eyessir3.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/acknowledgement/4.wav", 1, 1,
-     0, 0, "War2Dat.mpq", "Gamesfx\\elves\\eyessir4.wav"},
-    {Q, 8, "sounds/human/units/elven_archer-ranger/ready.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\elves\\eready.wav"},
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\elves\\epissed1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\elves\\epissed2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\elves\\epissed3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\elves\\ewhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\elves\\ewhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\elves\\ewhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/selected/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\elves\\ewhat4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/acknowledgement/1.wav", 1, 1,
+        0, 0, "War2Dat.mpq", "Gamesfx\\elves\\eyessir1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/acknowledgement/2.wav", 1, 1,
+        0, 0, "War2Dat.mpq", "Gamesfx\\elves\\eyessir2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/acknowledgement/3.wav", 1, 1,
+        0, 0, "War2Dat.mpq", "Gamesfx\\elves\\eyessir3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/acknowledgement/4.wav", 1, 1,
+        0, 0, "War2Dat.mpq", "Gamesfx\\elves\\eyessir4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/elven_archer-ranger/ready.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\elves\\eready.wav"
+    },
     // gnome
-    {Q, 8, "sounds/human/units/gnomish_flying_machine/annoyed/1.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\gnome\\gnpissd1.wav"},
-    {Q, 8, "sounds/human/units/gnomish_flying_machine/annoyed/2.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\gnome\\gnpissd2.wav"},
-    {Q, 8, "sounds/human/units/gnomish_flying_machine/annoyed/3.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\gnome\\gnpissd3.wav"},
-    {Q, 8, "sounds/human/units/gnomish_flying_machine/annoyed/4.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\gnome\\gnpissd4.wav"},
-    {Q, 8, "sounds/human/units/gnomish_flying_machine/annoyed/5.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\gnome\\gnpissd5.wav"},
-    {Q, 8, "sounds/human/units/gnomish_flying_machine/acknowledgement/1.wav", 1,
-     1, 0, 0, "War2Dat.mpq", "Gamesfx\\gnome\\gnyessr1.wav"},
-    {Q, 8, "sounds/human/units/gnomish_flying_machine/ready.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\gnome\\gnready.wav"},
+    {
+        Q, 8, "sounds/human/units/gnomish_flying_machine/annoyed/1.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\gnome\\gnpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/gnomish_flying_machine/annoyed/2.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\gnome\\gnpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/gnomish_flying_machine/annoyed/3.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\gnome\\gnpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/gnomish_flying_machine/annoyed/4.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\gnome\\gnpissd4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/gnomish_flying_machine/annoyed/5.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\gnome\\gnpissd5.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/gnomish_flying_machine/acknowledgement/1.wav", 1,
+        1, 0, 0, "War2Dat.mpq", "Gamesfx\\gnome\\gnyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/gnomish_flying_machine/ready.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\gnome\\gnready.wav"
+    },
     // goblin
-    {Q, 8, "sounds/orc/units/goblin_sappers/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\gopissd1.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\gopissd2.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\gopissd3.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\gowhat1.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\gowhat2.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\gowhat3.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/selected/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\gowhat4.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\goyessr1.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\goyessr2.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\goyessr3.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/acknowledgement/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\goyessr4.wav"},
-    {Q, 8, "sounds/orc/units/goblin_sappers/ready.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\goblin\\goready.wav"},
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\gopissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\gopissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\gopissd3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\gowhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\gowhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\gowhat3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/selected/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\gowhat4.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\goyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\goyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\goyessr3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/acknowledgement/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\goyessr4.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_sappers/ready.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\goblin\\goready.wav"
+    },
     // griffon
-    {Q, 8, "sounds/human/units/gryphon_rider/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\griffon\\grwhat.wav"},
-    {Q, 8, "sounds/human/units/gryphon_rider/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\griffon\\griffon1.wav"},
-    {Q, 8, "sounds/human/units/gryphon_rider/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\griffon\\griffon2.wav"},
-    {Q, 8, "sounds/human/units/gryphon_rider/ready.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\griffon\\griffon1.wav"},
+    {
+        Q, 8, "sounds/human/units/gryphon_rider/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\griffon\\grwhat.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/gryphon_rider/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\griffon\\griffon1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/gryphon_rider/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\griffon\\griffon2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/gryphon_rider/ready.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\griffon\\griffon1.wav"
+    },
     // grom
-    {Q, 8, "sounds/orc/units/grom_hellscream/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\grom\\grpissd1.wav"},
-    {Q, 8, "sounds/orc/units/grom_hellscream/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\grom\\grpissd2.wav"},
-    {Q, 8, "sounds/orc/units/grom_hellscream/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\grom\\grpissd3.wav"},
-    {Q, 8, "sounds/orc/units/grom_hellscream/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\grom\\grwhat1.wav"},
-    {Q, 8, "sounds/orc/units/grom_hellscream/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\grom\\grwhat2.wav"},
-    {Q, 8, "sounds/orc/units/grom_hellscream/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\grom\\grwhat3.wav"},
-    {Q, 8, "sounds/orc/units/grom_hellscream/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\grom\\gryessr1.wav"},
-    {Q, 8, "sounds/orc/units/grom_hellscream/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\grom\\gryessr2.wav"},
-    {Q, 8, "sounds/orc/units/grom_hellscream/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\grom\\gryessr3.wav"},
+    {
+        Q, 8, "sounds/orc/units/grom_hellscream/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\grom\\grpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/grom_hellscream/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\grom\\grpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/grom_hellscream/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\grom\\grpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/grom_hellscream/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\grom\\grwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/grom_hellscream/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\grom\\grwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/grom_hellscream/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\grom\\grwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/grom_hellscream/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\grom\\gryessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/grom_hellscream/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\grom\\gryessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/grom_hellscream/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\grom\\gryessr3.wav"
+    },
     // human
-    {Q, 8, "sounds/human/basic_voices/dead.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hdead.wav"},
-    {Q, 8, "sounds/human/basic_voices/help/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hhelp1.wav"},
-    {Q, 8, "sounds/human/basic_voices/help/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hhelp2.wav"},
-    {Q, 8, "sounds/human/basic_voices/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hpissed1.wav"},
-    {Q, 8, "sounds/human/basic_voices/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hpissed2.wav"},
-    {Q, 8, "sounds/human/basic_voices/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hpissed3.wav"},
-    {Q, 8, "sounds/human/basic_voices/annoyed/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hpissed4.wav"},
-    {Q, 8, "sounds/human/basic_voices/annoyed/5.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hpissed5.wav"},
-    {Q, 8, "sounds/human/basic_voices/annoyed/6.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hpissed6.wav"},
-    {Q, 8, "sounds/human/basic_voices/annoyed/7.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hpissed7.wav"},
-    {Q, 8, "sounds/human/basic_voices/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\human\\hready.wav"},
-    {Q, 8, "sounds/human/basic_voices/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hwhat1.wav"},
-    {Q, 8, "sounds/human/basic_voices/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hwhat2.wav"},
-    {Q, 8, "sounds/human/basic_voices/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hwhat3.wav"},
-    {Q, 8, "sounds/human/basic_voices/selected/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hwhat4.wav"},
-    {Q, 8, "sounds/human/basic_voices/selected/5.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hwhat5.wav"},
-    {Q, 8, "sounds/human/basic_voices/selected/6.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hwhat6.wav"},
-    {Q, 8, "sounds/human/basic_voices/work_complete.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hwrkdone.wav"},
-    {Q, 8, "sounds/human/units/peasant/work_complete.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pswrkdon.wav"},
-    {Q, 8, "sounds/human/basic_voices/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hyessir1.wav"},
-    {Q, 8, "sounds/human/basic_voices/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hyessir2.wav"},
-    {Q, 8, "sounds/human/basic_voices/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hyessir3.wav"},
-    {Q, 8, "sounds/human/basic_voices/acknowledgement/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\human\\hyessir4.wav"},
+    {
+        Q, 8, "sounds/human/basic_voices/dead.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hdead.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/help/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hhelp1.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/help/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hhelp2.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hpissed1.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hpissed2.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hpissed3.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/annoyed/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hpissed4.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/annoyed/5.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hpissed5.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/annoyed/6.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hpissed6.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/annoyed/7.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hpissed7.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\human\\hready.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/selected/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hwhat4.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/selected/5.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hwhat5.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/selected/6.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hwhat6.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/work_complete.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hwrkdone.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/work_complete.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pswrkdon.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hyessir1.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hyessir2.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hyessir3.wav"
+    },
+    {
+        Q, 8, "sounds/human/basic_voices/acknowledgement/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\human\\hyessir4.wav"
+    },
     // kargath
-    {Q, 8, "sounds/orc/units/korgath_bladefist/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kargath\\kapissd1.wav"},
-    {Q, 8, "sounds/orc/units/korgath_bladefist/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kargath\\kapissd2.wav"},
-    {Q, 8, "sounds/orc/units/korgath_bladefist/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kargath\\kapissd3.wav"},
-    {Q, 8, "sounds/orc/units/korgath_bladefist/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kargath\\kawhat1.wav"},
-    {Q, 8, "sounds/orc/units/korgath_bladefist/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kargath\\kawhat2.wav"},
-    {Q, 8, "sounds/orc/units/korgath_bladefist/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kargath\\kawhat3.wav"},
-    {Q, 8, "sounds/orc/units/korgath_bladefist/acknowledgement/1.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\kargath\\kayessr1.wav"},
-    {Q, 8, "sounds/orc/units/korgath_bladefist/acknowledgement/2.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\kargath\\kayessr2.wav"},
-    {Q, 8, "sounds/orc/units/korgath_bladefist/acknowledgement/3.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\kargath\\kayessr3.wav"},
+    {
+        Q, 8, "sounds/orc/units/korgath_bladefist/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kargath\\kapissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/korgath_bladefist/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kargath\\kapissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/korgath_bladefist/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kargath\\kapissd3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/korgath_bladefist/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kargath\\kawhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/korgath_bladefist/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kargath\\kawhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/korgath_bladefist/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kargath\\kawhat3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/korgath_bladefist/acknowledgement/1.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\kargath\\kayessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/korgath_bladefist/acknowledgement/2.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\kargath\\kayessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/korgath_bladefist/acknowledgement/3.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\kargath\\kayessr3.wav"
+    },
     // khadgar
-    {Q, 8, "sounds/human/units/khadgar/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\khadgar\\khpissd1.wav"},
-    {Q, 8, "sounds/human/units/khadgar/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\khadgar\\khpissd2.wav"},
-    {Q, 8, "sounds/human/units/khadgar/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\khadgar\\khpissd3.wav"},
-    {Q, 8, "sounds/human/units/khadgar/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\khadgar\\khwhat1.wav"},
-    {Q, 8, "sounds/human/units/khadgar/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\khadgar\\khwhat2.wav"},
-    {Q, 8, "sounds/human/units/khadgar/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\khadgar\\khwhat3.wav"},
-    {Q, 8, "sounds/human/units/khadgar/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\khadgar\\khyessr1.wav"},
-    {Q, 8, "sounds/human/units/khadgar/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\khadgar\\khyessr2.wav"},
-    {Q, 8, "sounds/human/units/khadgar/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\khadgar\\khyessr3.wav"},
+    {
+        Q, 8, "sounds/human/units/khadgar/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\khadgar\\khpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/khadgar/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\khadgar\\khpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/khadgar/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\khadgar\\khpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/khadgar/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\khadgar\\khwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/khadgar/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\khadgar\\khwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/khadgar/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\khadgar\\khwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/khadgar/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\khadgar\\khyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/khadgar/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\khadgar\\khyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/khadgar/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\khadgar\\khyessr3.wav"
+    },
     // knight
-    {Q, 8, "sounds/human/units/knight/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\knight\\knpissd1.wav"},
-    {Q, 8, "sounds/human/units/knight/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\knight\\knpissd2.wav"},
-    {Q, 8, "sounds/human/units/knight/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\knight\\knpissd3.wav"},
-    {Q, 8, "sounds/human/units/knight/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\knight\\knwhat1.wav"},
-    {Q, 8, "sounds/human/units/knight/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\knight\\knwhat2.wav"},
-    {Q, 8, "sounds/human/units/knight/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\knight\\knwhat3.wav"},
-    {Q, 8, "sounds/human/units/knight/selected/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\knight\\knwhat4.wav"},
-    {Q, 8, "sounds/human/units/knight/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\knight\\knyessr1.wav"},
-    {Q, 8, "sounds/human/units/knight/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\knight\\knyessr2.wav"},
-    {Q, 8, "sounds/human/units/knight/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\knight\\knyessr3.wav"},
-    {Q, 8, "sounds/human/units/knight/acknowledgement/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\knight\\knyessr4.wav"},
-    {Q, 8, "sounds/human/units/knight/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\knight\\knready.wav"},
+    {
+        Q, 8, "sounds/human/units/knight/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\knight\\knpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\knight\\knpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\knight\\knpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\knight\\knwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\knight\\knwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\knight\\knwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/selected/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\knight\\knwhat4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\knight\\knyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\knight\\knyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\knight\\knyessr3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/acknowledgement/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\knight\\knyessr4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/knight/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\knight\\knready.wav"
+    },
     // kurdran
-    {Q, 8, "sounds/human/units/kurdan/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\kurdran\\kupissd1.wav"},
-    {Q, 8, "sounds/human/units/kurdan/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\kurdran\\kupissd2.wav"},
-    {Q, 8, "sounds/human/units/kurdan/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\kurdran\\kupissd3.wav"},
-    {Q, 8, "sounds/human/units/kurdan/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kurdran\\kuwhat1.wav"},
-    {Q, 8, "sounds/human/units/kurdan/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kurdran\\kuwhat2.wav"},
-    {Q, 8, "sounds/human/units/kurdan/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kurdran\\kuwhat3.wav"},
-    {Q, 8, "sounds/human/units/kurdan/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kurdran\\kuyessr1.wav"},
-    {Q, 8, "sounds/human/units/kurdan/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kurdran\\kuyessr2.wav"},
-    {Q, 8, "sounds/human/units/kurdan/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\kurdran\\kuyessr3.wav"},
+    {
+        Q, 8, "sounds/human/units/kurdan/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\kurdran\\kupissd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/kurdan/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\kurdran\\kupissd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/kurdan/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\kurdran\\kupissd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/kurdan/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kurdran\\kuwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/kurdan/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kurdran\\kuwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/kurdan/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kurdran\\kuwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/kurdan/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kurdran\\kuyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/kurdan/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kurdran\\kuyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/kurdan/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\kurdran\\kuyessr3.wav"
+    },
     // misc
-    {Q, 8, "sounds/missiles/axe_throw.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\axe.wav"},
-    {Q, 8, "sounds/misc/building_explosion/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\bldexpl1.wav"},
-    {Q, 8, "sounds/misc/building_explosion/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\bldexpl2.wav"},
-    {Q, 8, "sounds/misc/building_explosion/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\bldexpl3.wav"},
-    {Q, 8, "sounds/missiles/bow_throw.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\bowfire.wav"},
-    {Q, 8, "sounds/missiles/bow_hit.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\bowhit.wav"},
-    {Q, 8, "sounds/misc/burning.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\burning.wav"},
-    {Q, 8, "sounds/missiles/catapult-ballista_attack.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\misc\\catapult.wav"},
-    {Q, 8, "sounds/units/catapult-ballista/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\misc\\catyessr.wav"},
-    {Q, 8, "sounds/misc/building_construction.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\constrct.wav"},
-    {Q, 8, "sounds/misc/transport_docking.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\dock.wav"},
-    {Q, 8, "sounds/ui/placement_error.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\error.wav"},
-    {Q, 8, "sounds/misc/explosion.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\explode.wav"},
-    {Q, 8, "sounds/missiles/fireball_throw.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\fireball.wav"},
-    {Q, 8, "sounds/missiles/fireball_hit.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\firehit.wav"},
-    {Q, 8, "sounds/missiles/fist.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\fist.wav"},
-    {Q, 8, "sounds/human/capture.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\hcapture.wav"},
-    {Q, 8, "sounds/human/rescue.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\hrescue.wav"},
-    {Q, 8, "sounds/orc/capture.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\ocapture.wav"},
-    {Q, 8, "sounds/orc/rescue.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\orescue.wav"},
-    {Q, 8, "sounds/human/units/peasant/attack.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\peonatak.wav"},
-    {Q, 8, "sounds/neutral/units/pig/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\pig.wav"},
-    {Q, 8, "sounds/neutral/units/pig/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\pigpissd.wav"},
-    {Q, 8, "sounds/missiles/punch.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\punch.wav"},
-    {Q, 8, "sounds/neutral/units/seal/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\misc\\seal.wav"},
-    {Q, 8, "sounds/neutral/units/seal/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\sealpisd.wav"},
-    {Q, 8, "sounds/neutral/units/sheep/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\misc\\sheep.wav"},
-    {Q, 8, "sounds/neutral/units/sheep/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\misc\\shpisd1.wav"},
-    {Q, 8, "sounds/missiles/sword_attack/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\sword1.wav"},
-    {Q, 8, "sounds/missiles/sword_attack/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\sword2.wav"},
-    {Q, 8, "sounds/missiles/sword_attack/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\sword3.wav"},
-    {Q, 8, "sounds/ui/placement_success.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\thunk.wav"},
-    {Q, 8, "sounds/misc/tree_chopping/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\tree1.wav"},
-    {Q, 8, "sounds/misc/tree_chopping/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\tree2.wav"},
-    {Q, 8, "sounds/misc/tree_chopping/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\tree3.wav"},
-    {Q, 8, "sounds/misc/tree_chopping/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\misc\\tree4.wav"},
-    {Q, 8, "sounds/neutral/units/warthog/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\misc\\warthog.wav"},
-    {Q, 8, "sounds/neutral/units/warthog/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\misc\\wartpisd.wav"},
+    {
+        Q, 8, "sounds/missiles/axe_throw.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\axe.wav"
+    },
+    {
+        Q, 8, "sounds/misc/building_explosion/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\bldexpl1.wav"
+    },
+    {
+        Q, 8, "sounds/misc/building_explosion/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\bldexpl2.wav"
+    },
+    {
+        Q, 8, "sounds/misc/building_explosion/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\bldexpl3.wav"
+    },
+    {
+        Q, 8, "sounds/missiles/bow_throw.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\bowfire.wav"
+    },
+    {
+        Q, 8, "sounds/missiles/bow_hit.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\bowhit.wav"
+    },
+    {
+        Q, 8, "sounds/misc/burning.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\burning.wav"
+    },
+    {
+        Q, 8, "sounds/missiles/catapult-ballista_attack.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\misc\\catapult.wav"
+    },
+    {
+        Q, 8, "sounds/units/catapult-ballista/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\misc\\catyessr.wav"
+    },
+    {
+        Q, 8, "sounds/misc/building_construction.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\constrct.wav"
+    },
+    {
+        Q, 8, "sounds/misc/transport_docking.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\dock.wav"
+    },
+    {
+        Q, 8, "sounds/ui/placement_error.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\error.wav"
+    },
+    {
+        Q, 8, "sounds/misc/explosion.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\explode.wav"
+    },
+    {
+        Q, 8, "sounds/missiles/fireball_throw.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\fireball.wav"
+    },
+    {
+        Q, 8, "sounds/missiles/fireball_hit.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\firehit.wav"
+    },
+    {
+        Q, 8, "sounds/missiles/fist.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\fist.wav"
+    },
+    {
+        Q, 8, "sounds/human/capture.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\hcapture.wav"
+    },
+    {
+        Q, 8, "sounds/human/rescue.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\hrescue.wav"
+    },
+    {
+        Q, 8, "sounds/orc/capture.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\ocapture.wav"
+    },
+    {
+        Q, 8, "sounds/orc/rescue.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\orescue.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/attack.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\peonatak.wav"
+    },
+    {
+        Q, 8, "sounds/neutral/units/pig/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\pig.wav"
+    },
+    {
+        Q, 8, "sounds/neutral/units/pig/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\pigpissd.wav"
+    },
+    {
+        Q, 8, "sounds/missiles/punch.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\punch.wav"
+    },
+    {
+        Q, 8, "sounds/neutral/units/seal/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\misc\\seal.wav"
+    },
+    {
+        Q, 8, "sounds/neutral/units/seal/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\sealpisd.wav"
+    },
+    {
+        Q, 8, "sounds/neutral/units/sheep/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\misc\\sheep.wav"
+    },
+    {
+        Q, 8, "sounds/neutral/units/sheep/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\misc\\shpisd1.wav"
+    },
+    {
+        Q, 8, "sounds/missiles/sword_attack/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\sword1.wav"
+    },
+    {
+        Q, 8, "sounds/missiles/sword_attack/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\sword2.wav"
+    },
+    {
+        Q, 8, "sounds/missiles/sword_attack/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\sword3.wav"
+    },
+    {
+        Q, 8, "sounds/ui/placement_success.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\thunk.wav"
+    },
+    {
+        Q, 8, "sounds/misc/tree_chopping/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\tree1.wav"
+    },
+    {
+        Q, 8, "sounds/misc/tree_chopping/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\tree2.wav"
+    },
+    {
+        Q, 8, "sounds/misc/tree_chopping/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\tree3.wav"
+    },
+    {
+        Q, 8, "sounds/misc/tree_chopping/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\misc\\tree4.wav"
+    },
+    {
+        Q, 8, "sounds/neutral/units/warthog/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\misc\\warthog.wav"
+    },
+    {
+        Q, 8, "sounds/neutral/units/warthog/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\misc\\wartpisd.wav"
+    },
     // skeleton
-    {Q, 8, "sounds/neutral/units/skeleton/dead.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamefx\\misc\\Skeleton Death.wav"},
-    {Q, 8, "sounds/neutral/units/skeleton/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\misc\\Skeleton Move.wav"},
+    {
+        Q, 8, "sounds/neutral/units/skeleton/dead.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamefx\\misc\\Skeleton Death.wav"
+    },
+    {
+        Q, 8, "sounds/neutral/units/skeleton/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\misc\\Skeleton Move.wav"
+    },
     // ogre
-    {Q, 8, "sounds/orc/units/ogre/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogre\\ogpissd1.wav"},
-    {Q, 8, "sounds/orc/units/ogre/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogre\\ogpissd2.wav"},
-    {Q, 8, "sounds/orc/units/ogre/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogre\\ogpissd3.wav"},
-    {Q, 8, "sounds/orc/units/ogre/annoyed/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogre\\ogpissd4.wav"},
-    {Q, 8, "sounds/orc/units/ogre/annoyed/5.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogre\\ogpissd5.wav"},
-    {Q, 8, "sounds/orc/units/ogre/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogre\\ogwhat1.wav"},
-    {Q, 8, "sounds/orc/units/ogre/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogre\\ogwhat2.wav"},
-    {Q, 8, "sounds/orc/units/ogre/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogre\\ogwhat3.wav"},
-    {Q, 8, "sounds/orc/units/ogre/selected/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogre\\ogwhat4.wav"},
-    {Q, 8, "sounds/orc/units/ogre/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogre\\ogyessr1.wav"},
-    {Q, 8, "sounds/orc/units/ogre/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogre\\ogyessr2.wav"},
-    {Q, 8, "sounds/orc/units/ogre/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogre\\ogyessr3.wav"},
-    {Q, 8, "sounds/orc/units/ogre/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogre\\ogready.wav"},
+    {
+        Q, 8, "sounds/orc/units/ogre/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogre\\ogpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogre\\ogpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogre\\ogpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/annoyed/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogre\\ogpissd4.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/annoyed/5.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogre\\ogpissd5.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogre\\ogwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogre\\ogwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogre\\ogwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/selected/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogre\\ogwhat4.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogre\\ogyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogre\\ogyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogre\\ogyessr3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogre\\ogready.wav"
+    },
     // ogremage
-    {Q, 8, "sounds/orc/units/ogre-mage/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogremage\\ompissd1.wav"},
-    {Q, 8, "sounds/orc/units/ogre-mage/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogremage\\ompissd2.wav"},
-    {Q, 8, "sounds/orc/units/ogre-mage/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogremage\\ompissd3.wav"},
-    {Q, 8, "sounds/orc/units/ogre-mage/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogremage\\omwhat1.wav"},
-    {Q, 8, "sounds/orc/units/ogre-mage/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogremage\\omwhat2.wav"},
-    {Q, 8, "sounds/orc/units/ogre-mage/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogremage\\omwhat3.wav"},
-    {Q, 8, "sounds/orc/units/ogre-mage/selected/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogremage\\omwhat4.wav"},
-    {Q, 8, "sounds/orc/units/ogre-mage/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogremage\\omyessr1.wav"},
-    {Q, 8, "sounds/orc/units/ogre-mage/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogremage\\omyessr2.wav"},
-    {Q, 8, "sounds/orc/units/ogre-mage/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ogremage\\omyessr3.wav"},
-    {Q, 8, "sounds/orc/units/ogre-mage/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ogremage\\omready.wav"},
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogremage\\ompissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogremage\\ompissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogremage\\ompissd3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogremage\\omwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogremage\\omwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogremage\\omwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/selected/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogremage\\omwhat4.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogremage\\omyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogremage\\omyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ogremage\\omyessr3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/ogre-mage/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ogremage\\omready.wav"
+    },
     // orc
-    {Q, 8, "sounds/orc/basic_voices/dead.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\odead.wav"},
-    {Q, 8, "sounds/orc/basic_voices/help/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\ohelp1.wav"},
-    {Q, 8, "sounds/orc/basic_voices/help/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\ohelp2.wav"},
-    {Q, 8, "sounds/orc/basic_voices/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\opissed1.wav"},
-    {Q, 8, "sounds/orc/basic_voices/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\opissed2.wav"},
-    {Q, 8, "sounds/orc/basic_voices/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\opissed3.wav"},
-    {Q, 8, "sounds/orc/basic_voices/annoyed/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\opissed4.wav"},
-    {Q, 8, "sounds/orc/basic_voices/annoyed/5.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\opissed5.wav"},
-    {Q, 8, "sounds/orc/basic_voices/annoyed/6.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\opissed6.wav"},
-    {Q, 8, "sounds/orc/basic_voices/annoyed/7.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\opissed7.wav"},
-    {Q, 8, "sounds/orc/basic_voices/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\oready.wav"},
-    {Q, 8, "sounds/orc/basic_voices/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\owhat1.wav"},
-    {Q, 8, "sounds/orc/basic_voices/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\owhat2.wav"},
-    {Q, 8, "sounds/orc/basic_voices/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\owhat3.wav"},
-    {Q, 8, "sounds/orc/basic_voices/selected/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\owhat4.wav"},
-    {Q, 8, "sounds/orc/basic_voices/selected/5.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\owhat5.wav"},
-    {Q, 8, "sounds/orc/basic_voices/selected/6.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\orc\\owhat6.wav"},
-    {Q, 8, "sounds/orc/basic_voices/work_complete.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\orc\\owrkdone.wav"},
-    {Q, 8, "sounds/orc/basic_voices/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\orc\\oyessir1.wav"},
-    {Q, 8, "sounds/orc/basic_voices/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\orc\\oyessir2.wav"},
-    {Q, 8, "sounds/orc/basic_voices/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\orc\\oyessir3.wav"},
-    {Q, 8, "sounds/orc/basic_voices/acknowledgement/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\orc\\oyessir4.wav"},
+    {
+        Q, 8, "sounds/orc/basic_voices/dead.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\odead.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/help/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\ohelp1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/help/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\ohelp2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\opissed1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\opissed2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\opissed3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/annoyed/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\opissed4.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/annoyed/5.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\opissed5.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/annoyed/6.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\opissed6.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/annoyed/7.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\opissed7.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\oready.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\owhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\owhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\owhat3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/selected/4.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\owhat4.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/selected/5.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\owhat5.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/selected/6.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\orc\\owhat6.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/work_complete.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\orc\\owrkdone.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\orc\\oyessir1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\orc\\oyessir2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\orc\\oyessir3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/basic_voices/acknowledgement/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\orc\\oyessir4.wav"
+    },
     // paladin
-    {Q, 8, "sounds/human/units/paladin/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkpissd1.wav"},
-    {Q, 8, "sounds/human/units/paladin/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkpissd2.wav"},
-    {Q, 8, "sounds/human/units/paladin/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkpissd3.wav"},
-    {Q, 8, "sounds/human/units/paladin/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkwhat1.wav"},
-    {Q, 8, "sounds/human/units/paladin/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkwhat2.wav"},
-    {Q, 8, "sounds/human/units/paladin/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkwhat3.wav"},
-    {Q, 8, "sounds/human/units/paladin/selected/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkwhat4.wav"},
-    {Q, 8, "sounds/human/units/paladin/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkyessr1.wav"},
-    {Q, 8, "sounds/human/units/paladin/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkyessr2.wav"},
-    {Q, 8, "sounds/human/units/paladin/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkyessr3.wav"},
-    {Q, 8, "sounds/human/units/paladin/acknowledgement/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\paladin\\pkyessr4.wav"},
-    {Q, 8, "sounds/human/units/paladin/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\paladin\\pkready.wav"},
+    {
+        Q, 8, "sounds/human/units/paladin/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/selected/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkwhat4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkyessr3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/acknowledgement/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\paladin\\pkyessr4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/paladin/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\paladin\\pkready.wav"
+    },
     // peasant
-    {Q, 8, "sounds/human/units/peasant/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pspissd1.wav"},
-    {Q, 8, "sounds/human/units/peasant/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pspissd2.wav"},
-    {Q, 8, "sounds/human/units/peasant/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pspissd3.wav"},
-    {Q, 8, "sounds/human/units/peasant/annoyed/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pspissd4.wav"},
-    {Q, 8, "sounds/human/units/peasant/annoyed/5.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pspissd5.wav"},
-    {Q, 8, "sounds/human/units/peasant/annoyed/6.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pspissd6.wav"},
-    {Q, 8, "sounds/human/units/peasant/annoyed/7.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pspissd7.wav"},
-    {Q, 8, "sounds/human/units/peasant/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pswhat1.wav"},
-    {Q, 8, "sounds/human/units/peasant/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pswhat2.wav"},
-    {Q, 8, "sounds/human/units/peasant/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pswhat3.wav"},
-    {Q, 8, "sounds/human/units/peasant/selected/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\pswhat4.wav"},
-    {Q, 8, "sounds/human/units/peasant/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\psyessr1.wav"},
-    {Q, 8, "sounds/human/units/peasant/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\psyessr2.wav"},
-    {Q, 8, "sounds/human/units/peasant/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\psyessr3.wav"},
-    {Q, 8, "sounds/human/units/peasant/acknowledgement/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\peasant\\psyessr4.wav"},
-    {Q, 8, "sounds/human/units/peasant/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\peasant\\psready.wav"},
+    {
+        Q, 8, "sounds/human/units/peasant/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pspissd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pspissd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pspissd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/annoyed/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pspissd4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/annoyed/5.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pspissd5.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/annoyed/6.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pspissd6.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/annoyed/7.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pspissd7.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pswhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pswhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pswhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/selected/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\pswhat4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\psyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\psyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\psyessr3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/acknowledgement/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\peasant\\psyessr4.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/peasant/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\peasant\\psready.wav"
+    },
     // peon
-    {Q, 8, "sounds/orc/peon/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\peon\\pnready.wav"},
+    {
+        Q, 8, "sounds/orc/peon/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\peon\\pnready.wav"
+    },
     // peasant
-    {Q, 8, "sounds/ships/tanker/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ships\\foghorn.wav"},
-    {Q, 8, "sounds/human/ships/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\hshppis1.wav"},
-    {Q, 8, "sounds/human/ships/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\hshppis2.wav"},
-    {Q, 8, "sounds/human/ships/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\hshppis3.wav"},
-    {Q, 8, "sounds/human/ships/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\hshpredy.wav"},
-    {Q, 8, "sounds/human/ships/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\hshpwht1.wav"},
-    {Q, 8, "sounds/human/ships/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\hshpwht2.wav"},
-    {Q, 8, "sounds/human/ships/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\hshpwht3.wav"},
-    {Q, 8, "sounds/human/ships/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ships\\hshpyes1.wav"},
-    {Q, 8, "sounds/human/ships/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ships\\hshpyes2.wav"},
-    {Q, 8, "sounds/human/ships/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ships\\hshpyes3.wav"},
-    {Q, 8, "sounds/orc/ships/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\oshppis1.wav"},
-    {Q, 8, "sounds/orc/ships/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\oshppis2.wav"},
-    {Q, 8, "sounds/orc/ships/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\oshppis3.wav"},
-    {Q, 8, "sounds/orc/ships/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\oshpredy.wav"},
-    {Q, 8, "sounds/orc/ships/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\oshpwht1.wav"},
-    {Q, 8, "sounds/orc/ships/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\oshpwht2.wav"},
-    {Q, 8, "sounds/orc/ships/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\oshpwht3.wav"},
-    {Q, 8, "sounds/orc/ships/acknowledgement/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\oshpyes1.wav"},
-    {Q, 8, "sounds/orc/ships/acknowledgement/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\oshpyes2.wav"},
-    {Q, 8, "sounds/orc/ships/acknowledgement/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\oshpyes3.wav"},
-    {Q, 8, "sounds/ships/sinking.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\ships\\shipsink.wav"},
-    {Q, 8, "sounds/human/ships/gnomish_submarine/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ships\\subpiss1.wav"},
-    {Q, 8, "sounds/human/ships/gnomish_submarine/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ships\\subpiss2.wav"},
-    {Q, 8, "sounds/human/ships/gnomish_submarine/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ships\\subpiss3.wav"},
-    {Q, 8, "sounds/human/ships/gnomish_submarine/annoyed/4.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\ships\\subpiss4.wav"},
+    {
+        Q, 8, "sounds/ships/tanker/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ships\\foghorn.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\hshppis1.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\hshppis2.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\hshppis3.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\hshpredy.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\hshpwht1.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\hshpwht2.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\hshpwht3.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ships\\hshpyes1.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ships\\hshpyes2.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ships\\hshpyes3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/ships/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\oshppis1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/ships/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\oshppis2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/ships/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\oshppis3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/ships/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\oshpredy.wav"
+    },
+    {
+        Q, 8, "sounds/orc/ships/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\oshpwht1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/ships/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\oshpwht2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/ships/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\oshpwht3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/ships/acknowledgement/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\oshpyes1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/ships/acknowledgement/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\oshpyes2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/ships/acknowledgement/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\oshpyes3.wav"
+    },
+    {
+        Q, 8, "sounds/ships/sinking.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\ships\\shipsink.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/gnomish_submarine/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ships\\subpiss1.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/gnomish_submarine/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ships\\subpiss2.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/gnomish_submarine/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ships\\subpiss3.wav"
+    },
+    {
+        Q, 8, "sounds/human/ships/gnomish_submarine/annoyed/4.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\ships\\subpiss4.wav"
+    },
     // spells
-    {Q, 8, "sounds/spells/bloodlust.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\blodlust.wav"},
-    {Q, 8, "sounds/spells/death_and_decay.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\decay.wav"},
-    {Q, 8, "sounds/spells/death_coil.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\dethcoil.wav"},
-    {Q, 8, "sounds/spells/exorcism.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\exorcism.wav"},
-    {Q, 8, "sounds/spells/flame_shield.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\flamshld.wav"},
-    {Q, 8, "sounds/spells/haste.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\haste.wav"},
-    {Q, 8, "sounds/spells/healing.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\heal.wav"},
-    {Q, 8, "sounds/spells/holy_vision.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\holyvisn.wav"},
-    {Q, 8, "sounds/spells/blizzard.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\icestorm.wav"},
-    {Q, 8, "sounds/spells/invisibility.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\invisibl.wav"},
-    {Q, 8, "sounds/spells/eye_of_kilrogg.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\iokilrog.wav"},
-    {Q, 8, "sounds/spells/polymorph.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\morph.wav"},
-    {Q, 8, "sounds/spells/slow.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\slow.wav"},
-    {Q, 8, "sounds/spells/lightning.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\thunder.wav"},
-    {Q, 8, "sounds/spells/touch_of_darkness.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\touchdrk.wav"},
-    {Q, 8, "sounds/spells/unholy_armor.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\unhlyarm.wav"},
-    {Q, 8, "sounds/spells/whirlwind.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\spells\\whrlwind.wav"},
+    {
+        Q, 8, "sounds/spells/bloodlust.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\blodlust.wav"
+    },
+    {
+        Q, 8, "sounds/spells/death_and_decay.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\decay.wav"
+    },
+    {
+        Q, 8, "sounds/spells/death_coil.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\dethcoil.wav"
+    },
+    {
+        Q, 8, "sounds/spells/exorcism.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\exorcism.wav"
+    },
+    {
+        Q, 8, "sounds/spells/flame_shield.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\flamshld.wav"
+    },
+    {
+        Q, 8, "sounds/spells/haste.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\haste.wav"
+    },
+    {
+        Q, 8, "sounds/spells/healing.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\heal.wav"
+    },
+    {
+        Q, 8, "sounds/spells/holy_vision.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\holyvisn.wav"
+    },
+    {
+        Q, 8, "sounds/spells/blizzard.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\icestorm.wav"
+    },
+    {
+        Q, 8, "sounds/spells/invisibility.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\invisibl.wav"
+    },
+    {
+        Q, 8, "sounds/spells/eye_of_kilrogg.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\iokilrog.wav"
+    },
+    {
+        Q, 8, "sounds/spells/polymorph.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\morph.wav"
+    },
+    {
+        Q, 8, "sounds/spells/slow.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\slow.wav"
+    },
+    {
+        Q, 8, "sounds/spells/lightning.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\thunder.wav"
+    },
+    {
+        Q, 8, "sounds/spells/touch_of_darkness.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\touchdrk.wav"
+    },
+    {
+        Q, 8, "sounds/spells/unholy_armor.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\unhlyarm.wav"
+    },
+    {
+        Q, 8, "sounds/spells/whirlwind.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\spells\\whrlwind.wav"
+    },
     // teron_gorefiend
-    {Q, 8, "sounds/orc/units/teron_gorefiend/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\teron\\tepissd1.wav"},
-    {Q, 8, "sounds/orc/units/teron_gorefiend/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\teron\\tepissd2.wav"},
-    {Q, 8, "sounds/orc/units/teron_gorefiend/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\teron\\tepissd3.wav"},
-    {Q, 8, "sounds/orc/units/teron_gorefiend/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\teron\\tewhat1.wav"},
-    {Q, 8, "sounds/orc/units/teron_gorefiend/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\teron\\tewhat2.wav"},
-    {Q, 8, "sounds/orc/units/teron_gorefiend/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\teron\\tewhat3.wav"},
-    {Q, 8, "sounds/orc/units/teron_gorefiend/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\teron\\teyessr1.wav"},
-    {Q, 8, "sounds/orc/units/teron_gorefiend/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\teron\\teyessr2.wav"},
-    {Q, 8, "sounds/orc/units/teron_gorefiend/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\teron\\teyessr3.wav"},
+    {
+        Q, 8, "sounds/orc/units/teron_gorefiend/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\teron\\tepissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/teron_gorefiend/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\teron\\tepissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/teron_gorefiend/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\teron\\tepissd3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/teron_gorefiend/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\teron\\tewhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/teron_gorefiend/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\teron\\tewhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/teron_gorefiend/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\teron\\tewhat3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/teron_gorefiend/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\teron\\teyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/teron_gorefiend/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\teron\\teyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/teron_gorefiend/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\teron\\teyessr3.wav"
+    },
     // troll
-    {Q, 8, "sounds/orc/units/troll_axethrower-berserker/annoyed/1.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\troll\\trpissd1.wav"},
-    {Q, 8, "sounds/orc/units/troll_axethrower-berserker/annoyed/2.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\troll\\trpissd2.wav"},
-    {Q, 8, "sounds/orc/units/troll_axethrower-berserker/annoyed/3.wav", 1, 1, 0,
-     0, "War2Dat.mpq", "Gamesfx\\troll\\trpissd3.wav"},
-    {Q, 8, "sounds/orc/units/troll_axethrower-berserker/selected/1.wav", 1, 1,
-     0, 0, "War2Dat.mpq", "Gamesfx\\troll\\trwhat1.wav"},
-    {Q, 8, "sounds/orc/units/troll_axethrower-berserker/selected/2.wav", 1, 1,
-     0, 0, "War2Dat.mpq", "Gamesfx\\troll\\trwhat2.wav"},
-    {Q, 8, "sounds/orc/units/troll_axethrower-berserker/selected/3.wav", 1, 1,
-     0, 0, "War2Dat.mpq", "Gamesfx\\troll\\trwhat3.wav"},
-    {Q, 8, "sounds/orc/units/troll_axethrower-berserker/acknowledgement/1.wav",
-     1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\troll\\tryessr1.wav"},
-    {Q, 8, "sounds/orc/units/troll_axethrower-berserker/acknowledgement/2.wav",
-     1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\troll\\tryessr2.wav"},
-    {Q, 8, "sounds/orc/units/troll_axethrower-berserker/acknowledgement/3.wav",
-     1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\troll\\tryessr3.wav"},
-    {Q, 8, "sounds/orc/units/troll_axethrower-berserker/ready.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\troll\\trready.wav"},
+    {
+        Q, 8, "sounds/orc/units/troll_axethrower-berserker/annoyed/1.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\troll\\trpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/troll_axethrower-berserker/annoyed/2.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\troll\\trpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/troll_axethrower-berserker/annoyed/3.wav", 1, 1, 0,
+        0, "War2Dat.mpq", "Gamesfx\\troll\\trpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/troll_axethrower-berserker/selected/1.wav", 1, 1,
+        0, 0, "War2Dat.mpq", "Gamesfx\\troll\\trwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/troll_axethrower-berserker/selected/2.wav", 1, 1,
+        0, 0, "War2Dat.mpq", "Gamesfx\\troll\\trwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/troll_axethrower-berserker/selected/3.wav", 1, 1,
+        0, 0, "War2Dat.mpq", "Gamesfx\\troll\\trwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/troll_axethrower-berserker/acknowledgement/1.wav",
+        1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\troll\\tryessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/troll_axethrower-berserker/acknowledgement/2.wav",
+        1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\troll\\tryessr2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/troll_axethrower-berserker/acknowledgement/3.wav",
+        1, 1, 0, 0, "War2Dat.mpq", "Gamesfx\\troll\\tryessr3.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/troll_axethrower-berserker/ready.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\troll\\trready.wav"
+    },
     // turalyon
-    {Q, 8, "sounds/human/units/turalyon/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\turalyon\\tupissd1.wav"},
-    {Q, 8, "sounds/human/units/turalyon/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\turalyon\\tupissd2.wav"},
-    {Q, 8, "sounds/human/units/turalyon/annoyed/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\turalyon\\tupissd3.wav"},
-    {Q, 8, "sounds/human/units/turalyon/selected/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\turalyon\\tuwhat1.wav"},
-    {Q, 8, "sounds/human/units/turalyon/selected/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\turalyon\\tuwhat2.wav"},
-    {Q, 8, "sounds/human/units/turalyon/selected/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\turalyon\\tuwhat3.wav"},
-    {Q, 8, "sounds/human/units/turalyon/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\turalyon\\tuyessr1.wav"},
-    {Q, 8, "sounds/human/units/turalyon/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\turalyon\\tuyessr2.wav"},
-    {Q, 8, "sounds/human/units/turalyon/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\turalyon\\tuyessr3.wav"},
+    {
+        Q, 8, "sounds/human/units/turalyon/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\turalyon\\tupissd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/turalyon/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\turalyon\\tupissd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/turalyon/annoyed/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\turalyon\\tupissd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/turalyon/selected/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\turalyon\\tuwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/turalyon/selected/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\turalyon\\tuwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/turalyon/selected/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\turalyon\\tuwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/turalyon/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\turalyon\\tuyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/turalyon/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\turalyon\\tuyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/turalyon/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\turalyon\\tuyessr3.wav"
+    },
     // wizard
-    {Q, 8, "sounds/human/units/mage/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\wizard\\wzpissd1.wav"},
-    {Q, 8, "sounds/human/units/mage/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\wizard\\wzpissd2.wav"},
-    {Q, 8, "sounds/human/units/mage/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\wizard\\wzpissd3.wav"},
-    {Q, 8, "sounds/human/units/mage/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\wizard\\wzwhat1.wav"},
-    {Q, 8, "sounds/human/units/mage/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\wizard\\wzwhat2.wav"},
-    {Q, 8, "sounds/human/units/mage/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\wizard\\wzwhat3.wav"},
-    {Q, 8, "sounds/human/units/mage/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\wizard\\wzyessr1.wav"},
-    {Q, 8, "sounds/human/units/mage/acknowledgement/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\wizard\\wzyessr2.wav"},
-    {Q, 8, "sounds/human/units/mage/acknowledgement/3.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\wizard\\wzyessr3.wav"},
-    {Q, 8, "sounds/human/units/mage/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Gamesfx\\wizard\\wzready.wav"},
+    {
+        Q, 8, "sounds/human/units/mage/annoyed/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\wizard\\wzpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/mage/annoyed/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\wizard\\wzpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/mage/annoyed/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\wizard\\wzpissd3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/mage/selected/1.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\wizard\\wzwhat1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/mage/selected/2.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\wizard\\wzwhat2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/mage/selected/3.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\wizard\\wzwhat3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/mage/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\wizard\\wzyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/mage/acknowledgement/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\wizard\\wzyessr2.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/mage/acknowledgement/3.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\wizard\\wzyessr3.wav"
+    },
+    {
+        Q, 8, "sounds/human/units/mage/ready.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Gamesfx\\wizard\\wzready.wav"
+    },
     // zeppelin
-    {Q, 8, "sounds/orc/units/goblin_zeppelin/annoyed/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\zeppelin\\gbpissd1.wav"},
-    {Q, 8, "sounds/orc/units/goblin_zeppelin/annoyed/2.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\zeppelin\\gbpissd2.wav"},
-    {Q, 8, "sounds/orc/units/goblin_zeppelin/acknowledgement/1.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\zeppelin\\gbyessr1.wav"},
-    {Q, 8, "sounds/orc/units/goblin_zeppelin/ready.wav", 1, 1, 0, 0,
-     "War2Dat.mpq", "Gamesfx\\zeppelin\\gbready.wav"},
+    {
+        Q, 8, "sounds/orc/units/goblin_zeppelin/annoyed/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\zeppelin\\gbpissd1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_zeppelin/annoyed/2.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\zeppelin\\gbpissd2.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_zeppelin/acknowledgement/1.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\zeppelin\\gbyessr1.wav"
+    },
+    {
+        Q, 8, "sounds/orc/units/goblin_zeppelin/ready.wav", 1, 1, 0, 0,
+        "War2Dat.mpq", "Gamesfx\\zeppelin\\gbready.wav"
+    },
     // Sfx
     {Q, 8, "sounds/ui/click.wav", 1, 1, 0, 0, "War2Dat.mpq", "Sfx\\Button.wav"},
-    {Q, 8, "sounds/ui/highclick.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Sfx\\numbers.wav"},
-    {Q, 8, "sounds/ui/statsthump.wav", 1, 1, 0, 0, "War2Dat.mpq",
-     "Sfx\\rank.wav"},
+    {
+        Q, 8, "sounds/ui/highclick.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Sfx\\numbers.wav"
+    },
+    {
+        Q, 8, "sounds/ui/statsthump.wav", 1, 1, 0, 0, "War2Dat.mpq",
+        "Sfx\\rank.wav"
+    },
     {Q, 8, "sounds/human/act.wav", 1, 1, 0, 0, "War2Dat.mpq", "Sfx\\hact.wav"},
     {Q, 8, "sounds/orc/act.wav", 1, 1, 0, 0, "War2Dat.mpq", "Sfx\\oact.wav"},
 
     // Delete temporary archive
-    {Q, 8, "", 1, 0, 0, 0, "War2Dat.mpq", NULL},
+    {Q, 8, "", 1, 0, 0, 0, "War2Dat.mpq", "DELETE"},
 
     /////// VIDEOS
     ///////////////////////////////////////////////////////////////////
@@ -2284,356 +3144,702 @@ static Control Todo[] = {
     /////// BNE MAPS
     //////////////////////////////////////////////////////////////////
 
-    {Q, 8, "maps/All You Need BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\All You Need BNE.pud"},
-    {Q, 8, "maps/Ant Trails BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Ant Trails BNE.pud"},
-    {Q, 8, "maps/Big Rock Candy Mountain BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Big Rock Candy Mountain BNE.pud"},
-    {Q, 8, "maps/Cramped BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Cramped BNE.pud"},
-    {Q, 8, "maps/Crosshair BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Crosshair BNE.pud"},
-    {Q, 8, "maps/Dark Paths BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Dark Paths BNE.pud"},
-    {Q, 8, "maps/Dark Peninsula BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Dark Peninsula BNE.pud"},
-    {Q, 8, "maps/Forsaken Isles BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Forsaken Isles BNE.pud"},
-    {Q, 8, "maps/Frosty Fjords BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Frosty Fjords BNE.pud"},
-    {Q, 8, "maps/Gold Rush BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Gold Rush BNE.pud"},
-    {Q, 8, "maps/Great White North BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Great White North BNE.pud"},
-    {Q, 8, "maps/Isolation BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Isolation BNE.pud"},
-    {Q, 8, "maps/Kaboom BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Kaboom BNE.pud"},
-    {Q, 8, "maps/More Precious than Gold BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\More Precious than Gold BNE.pud"},
-    {Q, 8, "maps/Mud in Your Eye BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Mud in Your Eye BNE.pud"},
-    {Q, 8, "maps/Murky River BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Murky River BNE.pud"},
-    {Q, 8, "maps/Rose Petal BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Rose Petal BNE.pud"},
-    {Q, 8, "maps/Schwartzwald BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Schwartzwald BNE.pud"},
-    {Q, 8, "maps/Skirmish BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Skirmish BNE.pud"},
-    {Q, 8, "maps/Stir Crazy BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Stir Crazy BNE.pud"},
-    {Q, 8, "maps/Taiga BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Taiga BNE.pud"},
-    {Q, 8, "maps/The River Kwai BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\The River Kwai BNE.pud"},
-    {Q, 8, "maps/Training Ground BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Training Ground BNE.pud"},
-    {Q, 8, "maps/Widow's End BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Widow's End BNE.pud"},
-    {Q, 8, "maps/Winding ways BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Winding ways BNE.pud"},
-    {Q, 8, "maps/World Domination BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\World Domination BNE.pud"},
-    {Q, 8, "maps/Classic/A continent to explore.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\A continent to explore.pud"},
-    {Q, 8, "maps/Classic/Bridge to bridge combat.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Bridge to bridge combat.pud"},
-    {Q, 8, "maps/Classic/Critter attack!.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Critter attack!.pud"},
-    {Q, 8, "maps/Classic/Cross the streams.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Cross the streams.pud"},
-    {Q, 8, "maps/Classic/Crossover.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Crossover.pud"},
-    {Q, 8, "maps/Classic/Death in the middle.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Death in the middle.pud"},
-    {Q, 8, "maps/Classic/Fierce ocean combat.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Fierce ocean combat.pud"},
-    {Q, 8, "maps/Classic/Garden of War.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Garden of War.pud"},
-    {Q, 8, "maps/Classic/Gold mines.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Gold mines.pud"},
-    {Q, 8, "maps/Classic/Gold Separates East & West.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Gold Separates East & West.pud"},
-    {Q, 8, "maps/Classic/High seas combat.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\High seas combat.pud"},
-    {Q, 8, "maps/Classic/Islands in the stream.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Islands in the stream.pud"},
-    {Q, 8, "maps/Classic/Mine the center.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Mine the center.pud"},
-    {Q, 8, "maps/Classic/Mysterious Dragon Isle.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Mysterious Dragon Isle.pud"},
-    {Q, 8, "maps/Classic/No way out of this maze.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\No way out of this maze.pud"},
-    {Q, 8, "maps/Classic/Nowhere to run or hide.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Nowhere to run or hide.pud"},
-    {Q, 8, "maps/Classic/Oil is the key.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Oil is the key.pud"},
-    {Q, 8, "maps/Classic/One way in, one way out.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\One way in, one way out.pud"},
-    {Q, 8, "maps/Classic/Opposing city-states.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Opposing city-states.pud"},
-    {Q, 8, "maps/Classic/Plains of snow.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Plains of snow.pud"},
-    {Q, 8, "maps/Classic/River fork.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\River fork.pud"},
-    {Q, 8, "maps/Classic/Rivers.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Rivers.pud"},
-    {Q, 8, "maps/Classic/Skull Isle.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Skull Isle.pud"},
-    {Q, 8, "maps/Classic/The four corners.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\The four corners.pud"},
-    {Q, 8, "maps/Classic/The spiral.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\The spiral.pud"},
-    {Q, 8, "maps/Classic/Three ways to cross.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Three ways to cross.pud"},
-    {Q, 8, "maps/Classic/Unyielding stone fortresses.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Unyielding stone fortresses.pud"},
-    {Q, 8, "maps/Classic/X marks the spot.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\X marks the spot.pud"},
-    {Q, 8, "maps/Classic/Expansion/3vs3.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\3vs3.pud"},
-    {Q, 8, "maps/Classic/Expansion/3vs5.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\3vs5.pud"},
-    {Q, 8, "maps/Classic/Expansion/Arena.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Arena.pud"},
-    {Q, 8, "maps/Classic/Expansion/Atols.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Atols.pud"},
-    {Q, 8, "maps/Classic/Expansion/Battle_1.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Battle_1.pud"},
-    {Q, 8, "maps/Classic/Expansion/Battle_2.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Battle_2.pud"},
-    {Q, 8, "maps/Classic/Expansion/BigEars.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\BigEars.pud"},
-    {Q, 8, "maps/Classic/Expansion/BlackGld.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\BlackGld.pud"},
-    {Q, 8, "maps/Classic/Expansion/Collapse.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Collapse.pud"},
-    {Q, 8, "maps/Classic/Expansion/Crowded.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Crowded.pud"},
-    {Q, 8, "maps/Classic/Expansion/Diamond.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Diamond.pud"},
-    {Q, 8, "maps/Classic/Expansion/Dup.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Dup.pud"},
-    {Q, 8, "maps/Classic/Expansion/Friends.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Friends.pud"},
-    {Q, 8, "maps/Classic/Expansion/Fun4Three.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Fun4Three.pud"},
-    {Q, 8, "maps/Classic/Expansion/Gauntlet.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Gauntlet.pud"},
-    {Q, 8, "maps/Classic/Expansion/Hell.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Hell.pud"},
-    {Q, 8, "maps/Classic/Expansion/Hourglas.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Hourglas.pud"},
-    {Q, 8, "maps/Classic/Expansion/Icewall.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Icewall.pud"},
-    {Q, 8, "maps/Classic/Expansion/Ironcros.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Ironcros.pud"},
-    {Q, 8, "maps/Classic/Expansion/Isle.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Isle.pud"},
-    {Q, 8, "maps/Classic/Expansion/JimLand.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\JimLand.pud"},
-    {Q, 8, "maps/Classic/Expansion/Kanthar.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Kanthar.pud"},
-    {Q, 8, "maps/Classic/Expansion/Khing.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Khing.pud"},
-    {Q, 8, "maps/Classic/Expansion/MntnPass.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\MntnPass.pud"},
-    {Q, 8, "maps/Classic/Expansion/Passes.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Passes.pud"},
-    {Q, 8, "maps/Classic/Expansion/Plots.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Plots.pud"},
-    {Q, 8, "maps/Classic/Expansion/Raiders.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Raiders.pud"},
-    {Q, 8, "maps/Classic/Expansion/Ring.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Ring.pud"},
-    {Q, 8, "maps/Classic/Expansion/RiversX.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\RiversX.pud"},
-    {Q, 8, "maps/Classic/Expansion/RockMaze.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\RockMaze.pud"},
-    {Q, 8, "maps/Classic/Expansion/SeaWar.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\SeaWar.pud"},
-    {Q, 8, "maps/Classic/Expansion/Shared.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Shared.pud"},
-    {Q, 8, "maps/Classic/Expansion/Tandalos.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Tandalos.pud"},
-    {Q, 8, "maps/Classic/Expansion/TheRiver.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\TheRiver.pud"},
-    {Q, 8, "maps/Classic/Expansion/theSiege.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\theSiege.pud"},
-    {Q, 8, "maps/Classic/Expansion/Tourney.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Tourney.pud"},
-    {Q, 8, "maps/Classic/Expansion/TwinHrbr.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\TwinHrbr.pud"},
-    {Q, 8, "maps/Classic/Expansion/Up4Grabs.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Up4Grabs.pud"},
-    {Q, 8, "maps/Classic/Expansion/Us.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Us.pud"},
-    {Q, 8, "maps/Classic/Expansion/Web.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\Web.pud"},
-    {Q, 8, "maps/Classic/Expansion/WizWar.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Expansion\\WizWar.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/4_step.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\4_step.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Anarchy.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Anarchy.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Burn_It.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Burn_It.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Chess.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Chess.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/DeadMeet.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\DeadMeet.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Falsie.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Falsie.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/FireRing.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\FireRing.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Football.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Football.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Fortress.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Fortress.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/GrtWall.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\GrtWall.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Heroes1.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Heroes1.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Heroes2.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Heroes2.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Invasion.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Invasion.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Jail.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Jail.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/MagIsle.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\MagIsle.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Massacre.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Massacre.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Midland.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Midland.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/MinasTir.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\MinasTir.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Onslaugh.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Onslaugh.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Rescue.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Rescue.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Sacrific.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Sacrific.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Sparta.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Sparta.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Stone.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Stone.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Suicide.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Suicide.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Time.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Time.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/TrenchWar.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\TrenchWar.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/WaterRes.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\WaterRes.pud"},
-    {Q, 8, "maps/Classic/Expansion/Scenario/Wish.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\Classic\\Expansion\\Scenario\\Wish.pud"},
-    {Q, 8, "maps/Classic/Scenario/Alamo.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Scenario\\Alamo.pud"},
-    {Q, 8, "maps/Classic/Scenario/Channel.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Scenario\\Channel.pud"},
-    {Q, 8, "maps/Classic/Scenario/Death.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Scenario\\Death.pud"},
-    {Q, 8, "maps/Classic/Scenario/Dragon.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Scenario\\Dragon.pud"},
-    {Q, 8, "maps/Classic/Scenario/Icebrdge.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Scenario\\Icebrdge.pud"},
-    {Q, 8, "maps/Classic/Scenario/Islands.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Scenario\\Islands.pud"},
-    {Q, 8, "maps/Classic/Scenario/Land_Sea.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Scenario\\Land_Sea.pud"},
-    {Q, 8, "maps/Classic/Scenario/Mutton.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\Classic\\Scenario\\Mutton.pud"},
-    {Q, 8, "maps/ladder/Arctic Circle BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\Arctic Circle BNE.pud"},
-    {Q, 8, "maps/ladder/Bridge to bridge combat BNE.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\ladder\\Bridge to bridge combat BNE.pud"},
-    {Q, 8, "maps/ladder/Fierce ocean combat BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\Fierce ocean combat BNE.pud"},
-    {Q, 8, "maps/ladder/Forest Trail BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\Forest Trail BNE.pud"},
-    {Q, 8, "maps/ladder/Frog Legs BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\Frog Legs BNE.pud"},
-    {Q, 8, "maps/ladder/Garden of war BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\Garden of war BNE.pud"},
-    {Q, 8, "maps/ladder/High seas combat BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\High seas combat BNE.pud"},
-    {Q, 8, "maps/ladder/Mine in the center BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\Mine in the center BNE.pud"},
-    {Q, 8, "maps/ladder/No way out of this maze BNE.pud", 0, 4, 0, 0,
-     "install.exe", "maps\\ladder\\No way out of this maze BNE.pud"},
-    {Q, 8, "maps/ladder/Plains of snow BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\Plains of snow BNE.pud"},
-    {Q, 8, "maps/ladder/Skull isle BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\Skull isle BNE.pud"},
-    {Q, 8, "maps/ladder/The four corners BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\The four corners BNE.pud"},
-    {Q, 8, "maps/ladder/The spiral BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\ladder\\The spiral BNE.pud"},
-    {Q, 8, "maps/scenario/A Tight Spot BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\scenario\\A Tight Spot BNE.pud"},
-    {Q, 8, "maps/scenario/Bombs Away BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\scenario\\Bombs Away BNE.pud"},
-    {Q, 8, "maps/scenario/Fire in the Water BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\scenario\\Fire in the Water BNE.pud"},
-    {Q, 8, "maps/scenario/Horse Shoe Island BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\scenario\\Horse Shoe Island BNE.pud"},
-    {Q, 8, "maps/scenario/Ice Fortress BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\scenario\\Ice Fortress BNE.pud"},
-    {Q, 8, "maps/scenario/Instant Action BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\scenario\\Instant Action BNE.pud"},
-    {Q, 8, "maps/scenario/Invasion BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\scenario\\Invasion BNE.pud"},
-    {Q, 8, "maps/scenario/Opposites Attract BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\scenario\\Opposites Attract BNE.pud"},
-    {Q, 8, "maps/scenario/Ramparts BNE.pud", 0, 4, 0, 0, "install.exe",
-     "maps\\scenario\\Ramparts BNE.pud"},
+    {
+        Q, 8, "maps/All You Need BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\All You Need BNE.pud"
+    },
+    {
+        Q, 8, "maps/Ant Trails BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Ant Trails BNE.pud"
+    },
+    {
+        Q, 8, "maps/Big Rock Candy Mountain BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Big Rock Candy Mountain BNE.pud"
+    },
+    {
+        Q, 8, "maps/Cramped BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Cramped BNE.pud"
+    },
+    {
+        Q, 8, "maps/Crosshair BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Crosshair BNE.pud"
+    },
+    {
+        Q, 8, "maps/Dark Paths BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Dark Paths BNE.pud"
+    },
+    {
+        Q, 8, "maps/Dark Peninsula BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Dark Peninsula BNE.pud"
+    },
+    {
+        Q, 8, "maps/Forsaken Isles BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Forsaken Isles BNE.pud"
+    },
+    {
+        Q, 8, "maps/Frosty Fjords BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Frosty Fjords BNE.pud"
+    },
+    {
+        Q, 8, "maps/Gold Rush BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Gold Rush BNE.pud"
+    },
+    {
+        Q, 8, "maps/Great White North BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Great White North BNE.pud"
+    },
+    {
+        Q, 8, "maps/Isolation BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Isolation BNE.pud"
+    },
+    {
+        Q, 8, "maps/Kaboom BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Kaboom BNE.pud"
+    },
+    {
+        Q, 8, "maps/More Precious than Gold BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\More Precious than Gold BNE.pud"
+    },
+    {
+        Q, 8, "maps/Mud in Your Eye BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Mud in Your Eye BNE.pud"
+    },
+    {
+        Q, 8, "maps/Murky River BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Murky River BNE.pud"
+    },
+    {
+        Q, 8, "maps/Rose Petal BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Rose Petal BNE.pud"
+    },
+    {
+        Q, 8, "maps/Schwartzwald BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Schwartzwald BNE.pud"
+    },
+    {
+        Q, 8, "maps/Skirmish BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Skirmish BNE.pud"
+    },
+    {
+        Q, 8, "maps/Stir Crazy BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Stir Crazy BNE.pud"
+    },
+    {
+        Q, 8, "maps/Taiga BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Taiga BNE.pud"
+    },
+    {
+        Q, 8, "maps/The River Kwai BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\The River Kwai BNE.pud"
+    },
+    {
+        Q, 8, "maps/Training Ground BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Training Ground BNE.pud"
+    },
+    {
+        Q, 8, "maps/Widow's End BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Widow's End BNE.pud"
+    },
+    {
+        Q, 8, "maps/Winding ways BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Winding ways BNE.pud"
+    },
+    {
+        Q, 8, "maps/World Domination BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\World Domination BNE.pud"
+    },
+    {
+        Q, 8, "maps/Classic/A continent to explore.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\A continent to explore.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Bridge to bridge combat.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Bridge to bridge combat.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Critter attack!.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Critter attack!.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Cross the streams.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Cross the streams.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Crossover.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Crossover.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Death in the middle.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Death in the middle.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Fierce ocean combat.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Fierce ocean combat.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Garden of War.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Garden of War.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Gold mines.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Gold mines.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Gold Separates East & West.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Gold Separates East & West.pud"
+    },
+    {
+        Q, 8, "maps/Classic/High seas combat.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\High seas combat.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Islands in the stream.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Islands in the stream.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Mine the center.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Mine the center.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Mysterious Dragon Isle.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Mysterious Dragon Isle.pud"
+    },
+    {
+        Q, 8, "maps/Classic/No way out of this maze.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\No way out of this maze.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Nowhere to run or hide.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Nowhere to run or hide.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Oil is the key.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Oil is the key.pud"
+    },
+    {
+        Q, 8, "maps/Classic/One way in, one way out.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\One way in, one way out.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Opposing city-states.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Opposing city-states.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Plains of snow.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Plains of snow.pud"
+    },
+    {
+        Q, 8, "maps/Classic/River fork.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\River fork.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Rivers.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Rivers.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Skull Isle.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Skull Isle.pud"
+    },
+    {
+        Q, 8, "maps/Classic/The four corners.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\The four corners.pud"
+    },
+    {
+        Q, 8, "maps/Classic/The spiral.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\The spiral.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Three ways to cross.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Three ways to cross.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Unyielding stone fortresses.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Unyielding stone fortresses.pud"
+    },
+    {
+        Q, 8, "maps/Classic/X marks the spot.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\X marks the spot.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/3vs3.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\3vs3.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/3vs5.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\3vs5.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Arena.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Arena.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Atols.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Atols.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Battle_1.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Battle_1.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Battle_2.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Battle_2.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/BigEars.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\BigEars.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/BlackGld.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\BlackGld.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Collapse.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Collapse.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Crowded.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Crowded.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Diamond.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Diamond.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Dup.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Dup.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Friends.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Friends.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Fun4Three.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Fun4Three.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Gauntlet.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Gauntlet.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Hell.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Hell.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Hourglas.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Hourglas.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Icewall.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Icewall.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Ironcros.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Ironcros.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Isle.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Isle.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/JimLand.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\JimLand.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Kanthar.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Kanthar.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Khing.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Khing.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/MntnPass.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\MntnPass.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Passes.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Passes.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Plots.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Plots.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Raiders.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Raiders.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Ring.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Ring.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/RiversX.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\RiversX.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/RockMaze.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\RockMaze.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/SeaWar.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\SeaWar.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Shared.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Shared.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Tandalos.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Tandalos.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/TheRiver.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\TheRiver.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/theSiege.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\theSiege.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Tourney.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Tourney.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/TwinHrbr.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\TwinHrbr.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Up4Grabs.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Up4Grabs.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Us.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Us.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Web.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\Web.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/WizWar.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Expansion\\WizWar.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/4_step.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\4_step.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Anarchy.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Anarchy.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Burn_It.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Burn_It.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Chess.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Chess.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/DeadMeet.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\DeadMeet.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Falsie.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Falsie.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/FireRing.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\FireRing.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Football.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Football.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Fortress.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Fortress.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/GrtWall.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\GrtWall.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Heroes1.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Heroes1.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Heroes2.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Heroes2.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Invasion.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Invasion.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Jail.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Jail.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/MagIsle.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\MagIsle.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Massacre.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Massacre.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Midland.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Midland.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/MinasTir.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\MinasTir.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Onslaugh.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Onslaugh.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Rescue.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Rescue.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Sacrific.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Sacrific.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Sparta.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Sparta.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Stone.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Stone.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Suicide.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Suicide.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Time.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Time.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/TrenchWar.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\TrenchWar.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/WaterRes.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\WaterRes.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Expansion/Scenario/Wish.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\Classic\\Expansion\\Scenario\\Wish.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Scenario/Alamo.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Scenario\\Alamo.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Scenario/Channel.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Scenario\\Channel.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Scenario/Death.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Scenario\\Death.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Scenario/Dragon.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Scenario\\Dragon.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Scenario/Icebrdge.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Scenario\\Icebrdge.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Scenario/Islands.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Scenario\\Islands.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Scenario/Land_Sea.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Scenario\\Land_Sea.pud"
+    },
+    {
+        Q, 8, "maps/Classic/Scenario/Mutton.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\Classic\\Scenario\\Mutton.pud"
+    },
+    {
+        Q, 8, "maps/ladder/Arctic Circle BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\Arctic Circle BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/Bridge to bridge combat BNE.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\ladder\\Bridge to bridge combat BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/Fierce ocean combat BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\Fierce ocean combat BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/Forest Trail BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\Forest Trail BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/Frog Legs BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\Frog Legs BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/Garden of war BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\Garden of war BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/High seas combat BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\High seas combat BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/Mine in the center BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\Mine in the center BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/No way out of this maze BNE.pud", 0, 4, 0, 0,
+        "install.exe", "maps\\ladder\\No way out of this maze BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/Plains of snow BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\Plains of snow BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/Skull isle BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\Skull isle BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/The four corners BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\The four corners BNE.pud"
+    },
+    {
+        Q, 8, "maps/ladder/The spiral BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\ladder\\The spiral BNE.pud"
+    },
+    {
+        Q, 8, "maps/scenario/A Tight Spot BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\scenario\\A Tight Spot BNE.pud"
+    },
+    {
+        Q, 8, "maps/scenario/Bombs Away BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\scenario\\Bombs Away BNE.pud"
+    },
+    {
+        Q, 8, "maps/scenario/Fire in the Water BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\scenario\\Fire in the Water BNE.pud"
+    },
+    {
+        Q, 8, "maps/scenario/Horse Shoe Island BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\scenario\\Horse Shoe Island BNE.pud"
+    },
+    {
+        Q, 8, "maps/scenario/Ice Fortress BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\scenario\\Ice Fortress BNE.pud"
+    },
+    {
+        Q, 8, "maps/scenario/Instant Action BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\scenario\\Instant Action BNE.pud"
+    },
+    {
+        Q, 8, "maps/scenario/Invasion BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\scenario\\Invasion BNE.pud"
+    },
+    {
+        Q, 8, "maps/scenario/Opposites Attract BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\scenario\\Opposites Attract BNE.pud"
+    },
+    {
+        Q, 8, "maps/scenario/Ramparts BNE.pud", 0, 4, 0, 0, "install.exe",
+        "maps\\scenario\\Ramparts BNE.pud"
+    },
 
     /////// BNE MUSIC
     //////////////////////////////////////////////////////////////////
 
-    {Q, 8, "music/Human Battle 1.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\HUMAN1.WAV"},
-    {Q, 8, "music/Human Battle 2.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\HUMAN2.WAV"},
-    {Q, 8, "music/Human Battle 3.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\HUMAN3.WAV"},
-    {Q, 8, "music/Human Battle 4.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\HUMAN4.WAV"},
-    {Q, 8, "music/Human Battle 5.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\HUMAN5.WAV"},
-    {Q, 8, "music/Human Battle 6.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\HUMAN6.WAV"},
-    {Q, 8, "music/Orc Battle 1.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\ORC1.WAV"},
-    {Q, 8, "music/Orc Battle 2.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\ORC2.WAV"},
-    {Q, 8, "music/Orc Battle 3.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\ORC3.WAV"},
-    {Q, 8, "music/Orc Battle 4.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\ORC4.WAV"},
-    {Q, 8, "music/Orc Battle 5.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\ORC5.WAV"},
-    {Q, 8, "music/Orc Battle 6.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\ORC6.WAV"},
-    {Q, 8, "music/Human Briefing.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\HWARROOM.WAV"},
-    {Q, 8, "music/Orc Briefing.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\OWARROOM.WAV"},
-    {Q, 8, "music/Human Victory.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\HVICTORY.WAV"},
-    {Q, 8, "music/Orc Victory.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\OVICTORY.WAV"},
-    {Q, 8, "music/Human Defeat.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\HDEFEAT.WAV"},
-    {Q, 8, "music/Orc Defeat.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\ODEFEAT.WAV"},
-    {Q, 8, "music/Main Menu.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\OWARROOM.WAV"},
-    {Q, 8, "music/I'm a Medieval Man.wav", 8, 0, 0, 0, "install.exe",
-     "Music\\DISCOWC.WAV"},
+    {
+        Q, 8, "music/Human Battle 1.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\HUMAN1.WAV"
+    },
+    {
+        Q, 8, "music/Human Battle 2.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\HUMAN2.WAV"
+    },
+    {
+        Q, 8, "music/Human Battle 3.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\HUMAN3.WAV"
+    },
+    {
+        Q, 8, "music/Human Battle 4.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\HUMAN4.WAV"
+    },
+    {
+        Q, 8, "music/Human Battle 5.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\HUMAN5.WAV"
+    },
+    {
+        Q, 8, "music/Human Battle 6.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\HUMAN6.WAV"
+    },
+    {
+        Q, 8, "music/Orc Battle 1.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\ORC1.WAV"
+    },
+    {
+        Q, 8, "music/Orc Battle 2.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\ORC2.WAV"
+    },
+    {
+        Q, 8, "music/Orc Battle 3.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\ORC3.WAV"
+    },
+    {
+        Q, 8, "music/Orc Battle 4.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\ORC4.WAV"
+    },
+    {
+        Q, 8, "music/Orc Battle 5.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\ORC5.WAV"
+    },
+    {
+        Q, 8, "music/Orc Battle 6.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\ORC6.WAV"
+    },
+    {
+        Q, 8, "music/Human Briefing.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\HWARROOM.WAV"
+    },
+    {
+        Q, 8, "music/Orc Briefing.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\OWARROOM.WAV"
+    },
+    {
+        Q, 8, "music/Human Victory.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\HVICTORY.WAV"
+    },
+    {
+        Q, 8, "music/Orc Victory.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\OVICTORY.WAV"
+    },
+    {
+        Q, 8, "music/Human Defeat.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\HDEFEAT.WAV"
+    },
+    {
+        Q, 8, "music/Orc Defeat.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\ODEFEAT.WAV"
+    },
+    {
+        Q, 8, "music/Main Menu.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\OWARROOM.WAV"
+    },
+    {
+        Q, 8, "music/I'm a Medieval Man.wav", 8, 0, 0, 0, "install.exe",
+        "Music\\DISCOWC.WAV"
+    },
 
 #undef __
 #undef _2
@@ -2844,11 +4050,11 @@ static const std::string BNEPuds[] = {
 };
 
 typedef struct _grouped_graphic_ {
-  size_t X;         // X offset
-  size_t Y;         // Y offset
-  size_t Width;     // width of image
-  size_t Height;    // height of image
-  std::string Name; // name
+    size_t X;         // X offset
+    size_t Y;         // Y offset
+    size_t Width;     // width of image
+    size_t Height;    // height of image
+    std::string Name; // name
 } GroupedGraphic;
 
 static const GroupedGraphic GroupedGraphicsList[][60] = {
@@ -2913,7 +4119,8 @@ static const GroupedGraphic GroupedGraphicsList[][60] = {
         {0, 51 * 144, 37, 24, "folder-up-normal"},
         {0, 52 * 144, 37, 24, "folder-up-pressed"},
         {0, 0, 0, 0, ""},
-    }};
+    }
+};
 
 /**
 **  Names for localized versions.

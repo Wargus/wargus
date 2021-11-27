@@ -32,16 +32,12 @@
 #include <zlib.h>
 #include <vector>
 
-
-#ifdef _MSC_VER
-#ifndef PATH_MAX
-#define PATH_MAX _MAX_PATH
-#endif
-#if _MSC_VER >= 1800
-#define open _open
-#define read _read
-#define close _close
-#endif
+#if __has_include(<filesystem>)
+#include <filesystem>
+#elif __has_include(<experimental/filesystem>)
+#include <experimental/filesystem>
+#else
+error "Missing the <filesystem> header."
 #endif
 
 #define PLAYERMAX 16
@@ -88,13 +84,14 @@ struct UnitData {
 	int Data;
 };
 
-class PudData {
+class PudData
+{
 public:
 	PudData();
 
 	bool Parse(const unsigned char *puddata, size_t size);
 
-	void WriteSMP(gzFile smpout, const char *smsname) const;
+    void WriteSMP(gzFile smpout, const std::filesystem::path &smsname) const;
 	void WriteSMS(gzFile smsout) const;
 
 private:
@@ -120,6 +117,6 @@ private:
 	int StartY[PLAYERMAX];
 };
 
-int PudToStratagus(const unsigned char *puddata, size_t size, const char *name, const char *outdir);
+int PudToStratagus(const unsigned char *puddata, size_t size, const std::filesystem::path &name, const std::filesystem::path &outdir);
 
 #endif
