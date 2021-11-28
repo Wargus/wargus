@@ -115,28 +115,6 @@ std::filesystem::path Dir;
 
 using byte = unsigned char; // maybe change to std::byte later.
 
-/**
- * @brief The SelfClosingFile class exists to provide and RAII wrapper over a C
- * FILE *, for interoperability with C libraries.
- */
-// class SelfClosingFile
-//{
-// public:
-//     SelfClosingFile(const std::string &name, const std::string &mode)
-//     {
-//         fp = fopen(name.c_str(), mode.c_str());
-//     }
-//     SelfClosingFile(const std::wstring &name, const std::wstring &mode)
-//     {
-//         fp = _wfopen(name.c_str(), mode.c_str());
-//     }
-
-//    ~SelfClosingFile() { fclose(fp); }
-//    operator FILE *() { return fp; }
-//    operator bool() const { return fp != nullptr; }
-//    FILE *fp;
-//};
-
 std::vector<unsigned char> read_file_to_vector(const fs::path &file)
 {
     std::vector<unsigned char> out{};

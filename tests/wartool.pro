@@ -29,8 +29,11 @@ DEFINES += USE_STORMLIB
 INCLUDEPATH += ../../stratagus/gameheaders/
 
 unix:!macx: LIBS +=../tests/libstorm.a -lpng -lz -lbz2
+
 DESTDIR=../tests/build/
 
 win32: QMAKE_INCDIR = ..\tests\build\dependencies\include
 win32: QMAKE_LIBDIR = ..\tests\build\dependencies\lib
 win32: LIBS += -lbz2
+
+win32: LIBS += -lstorm
