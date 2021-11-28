@@ -70,6 +70,8 @@
 
 #ifndef WIN32
 #define _T(x) x
+#else
+#define _T(x) L ## x
 #endif
 
 #include "Image.hpp"
@@ -465,6 +467,7 @@ int ExtractMPQFile(const fs::path &szArchiveName, std::string szArchivedFile,
 
     // Open an archive, e.g. "d2music.mpq"
     if (nError == ERROR_SUCCESS) {
+
         if (!SFileOpenArchive(szArchiveName.c_str(), 0, STREAM_FLAG_READ_ONLY,
                               &hMpq)) {
             nError = GetLastError();

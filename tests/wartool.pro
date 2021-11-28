@@ -9,6 +9,7 @@ SOURCES=../pud.cpp \
         ../xmi2mid.cpp
 
 HEADERS=../wartool.h \
+    ../../stratagus/gameheaders/stratagus-game-launcher.h \
     ../../stratagus/gameheaders/stratagus-gameutils.h \
     ../../stratagus/gameheaders/stratagus-tinyfiledialogs.h \
     ../Image.hpp \
