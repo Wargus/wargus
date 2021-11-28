@@ -86,7 +86,7 @@ void error(const std::string &first, const std::string &second)
 {
     return error(first.c_str(), second.c_str());
 }
-
+#ifdef WIN32
 void error(const char *first, const wchar_t *second)
 {
     auto temp_string = tinyfd_utf16to8(second);
@@ -108,6 +108,7 @@ void error(const std::wstring &first, const char *second)
     error(temp_string, second);
     free(temp_string);
 }
+#endif
 
 /**
 **		Destination directory of the graphics
