@@ -10,6 +10,7 @@ SOURCES=../pud.cpp \
 
 HEADERS=../wartool.h \
     ../../stratagus/gameheaders/stratagus-gameutils.h \
+    ../../stratagus/gameheaders/stratagus-tinyfiledialogs.h \
     ../Image.hpp \
     ../PngIO.hpp \
     StormLib.h \
