@@ -443,25 +443,35 @@ end
 --  Main menu in editor.
 --
 function RunInEditorMenu()
-  local menu = WarGameMenu(panel(1))
-
-  menu:addLabel(_("Editor Menu"), 128, 11)
-
-  menu:addHalfButton(_("Save (~<F11~>)"), "f11", 16, 40, RunEditorSaveMenu)
-  local buttonEditorLoad = -- To be removed when enabled.
-  menu:addHalfButton(_("Load (~<F12~>)"), "f12", 16 + 118, 40, RunEditorLoadMenu)
-  menu:addFullButton(_("Map Properties (~<F5~>)"), "f5", 16, 40 + 36 * 1, RunEditorMapProperties)
-  menu:addFullButton(_("Player Properties (~<F6~>)"), "f6", 16, 40 + 36 * 2, RunEditorPlayerProperties)
-  menu:addFullButton("~!Resize Map", "r", 16, 40 + 36 * 3, RunEditorEnlargeMenu)
-
-  buttonEditorLoad:setEnabled(false) -- To be removed when enabled.
-
-  menu:addFullButton(_("E~!xit to Menu"), "x", 16, 40 + 36 * 4,
-    function() Editor.Running = EditorNotRunning; menu:stopAll(); end)
-  menu:addFullButton(_("Return to Editor (~<Esc~>)"), "escape", 16, 288 - 40,
-    function() menu:stop() end)
-
-  menu:run(false)
+   local menu
+   menu = WarMenuWithLayout(
+      panel(1),
+      VBox({
+            HBox({
+                  LFiller(),
+                  LLabel(_("Editor Menu")),
+                  LFiller(),
+            }):withPadding(5),
+            LFiller(),
+            HBox({
+                  LHalfButton(_("Help (~<F1~>)"), "f1", RunEditorHelpMenu),
+                  LFiller(),
+                  LHalfButton(_("Save (~<F11~>)"), "f11", RunEditorSaveMenu),
+            }),
+            LButton(_("Map Properties (~<F5~>)"), "f5", RunEditorMapProperties),
+            LButton(_("Player Properties (~<F6~>)"), "f6", RunEditorPlayerProperties),
+            LButton(_("~!Resize Map"), "r", RunEditorEnlargeMenu),
+            HBox({
+                  LHalfButton(_("Pr~!eamble"), "e", EditPreamble),
+                  LFiller():expanding(),
+                  LHalfButton(_("~!Postamble"), "p", EditPostamble)
+            }),
+            LLabel(""),
+            LButton(_("E~!xit to Menu"), "x", function() Editor.Running = EditorNotRunning; menu:stopAll(); end),
+            LButton(_("Return to Editor (~<Esc~>)"), "escape", function() menu:stop() end),
+      }):withPadding({10, 8})
+   )
+   menu:run(false)
 end
 
 --
