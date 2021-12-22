@@ -548,3 +548,34 @@ function LDropDown:addWidgetTo(container)
    self:setId(container, self.dd)
    container:add(self.dd, self.x, self.y)
 end
+
+LTextBox = class(Element,
+                 function(instance, text)
+                    Element.init(instance)
+                    instance.b = TextBox(text)
+                    instance.b:setFont(Fonts["game"])
+                    instance.b:setBaseColor(clear)
+                    instance.b:setForegroundColor(clear)
+                    instance.b:setBackgroundColor(dark)
+                    instance.scroll = ScrollArea()
+                    instance.scroll:setContent(instance.b)
+                    instance.scroll:setBaseColor(clear)
+                    instance.scroll:setForegroundColor(clear)
+                    instance.scroll:setBackgroundColor(dark)
+                 end
+)
+
+function LTextBox:getWidth()
+   return nil
+end
+
+function LTextBox:getHeight()
+   return nil
+end
+
+function LTextBox:addWidgetTo(container)
+   self.scroll:setSize(self.width, self.height)
+   self.b:setSize(self.width, self.height)
+   self:setId(container, self.b)
+   container:add(self.scroll, self.x, self.y)
+end

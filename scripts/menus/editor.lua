@@ -30,6 +30,8 @@ local function RunEditorNewMapMenu()
       Map.Info.Description = mapDescription:getText()
       Map.Info.MapWidth = mapSizes[1 + mapSizex:getSelected()]
       Map.Info.MapHeight = mapSizes[1 + mapSizey:getSelected()]
+      Map.Info.Preamble = ""
+      Map.Info.Postamble = ""
       LoadTileModels("scripts/tilesets/" .. tilesets[1 + dropDownTileset:getSelected()] .. ".lua")
       menu:stop()
       StartEditor(nil)
@@ -439,11 +441,72 @@ function RunEditorMapProperties()
   menu:run(false)
 end
 
+function EditScript(filename)
+   local contents
+   local preamble = filename:sub(-#"preamble") == "preamble"
+   if preamble then
+      contents = Map.Info.Preamble
+   else
+      contents = Map.Info.Postamble
+   end
+   if contents == "" then
+      if CanAccessFile(filename) then
+         contents = GetFileContent(filename)
+      else
+         if preamble then
+            contents = [[
+-- Stratagus preamble script.
+-- Use this script to set up anything that needs to run before the map is loaded.
+-- Commonly, this would be things like patching functions that place units, define
+-- players etc to modify the behaviour of these functions.
+]]
+         else
+            contents = [[
+-- Stratagus postamble script.
+-- Use this script to set up anything after the map is loaded. Commonly this would
+-- be adding triggers or customizing players, their alliances or similar things.
+]]
+         end
+      end
+   end
+   local menu = WarMenu()
+   local menubox = VBox({
+         HBox({
+               LFiller(),
+               LLabel(filename),
+               LFiller(),
+         }):withPadding(5),
+         LTextBox(contents):expanding():id("textbox"),
+         HBox({
+               LFiller(),
+               LHalfButton(_("Save"), nil, function()
+                              if preamble then
+                                 Map.Info.Preamble = menu.textbox:getText()
+                              else
+                                 Map.Info.Postamble = menu.textbox:getText()
+                              end
+               end),
+               LHalfButton(_("Cancel"), nil, function() menu:stop() end),
+         }):withPadding(5)
+   }):withPadding(10)
+   menubox:addWidgetTo(menu, true)
+   menu:run()
+end
+
 --
 --  Main menu in editor.
 --
 function RunInEditorMenu()
    local menu
+
+   local function EditPreamble()
+      EditScript(mapname .. ".preamble")
+   end
+
+   local function EditPostamble()
+      EditScript(mapname .. ".postamble")
+   end
+
    menu = WarMenuWithLayout(
       panel(1),
       VBox({
