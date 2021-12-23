@@ -479,14 +479,14 @@ function EditScript(filename)
          LTextBox(contents):expanding():id("textbox"),
          HBox({
                LFiller(),
-               LHalfButton(_("Save"), nil, function()
+               LHalfButton(_("Accept"), nil, function()
                               if preamble then
                                  Map.Info.Preamble = menu.textbox:getText()
                               else
                                  Map.Info.Postamble = menu.textbox:getText()
                               end
                end),
-               LHalfButton(_("Cancel"), nil, function() menu:stop() end),
+               LHalfButton(_("Close"), nil, function() menu:stop() end),
          }):withPadding(5)
    }):withPadding(10)
    menubox:addWidgetTo(menu, true)
