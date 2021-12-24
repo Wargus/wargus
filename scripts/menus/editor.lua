@@ -459,12 +459,20 @@ function EditScript(filename)
 -- Use this script to set up anything that needs to run before the map is loaded.
 -- Commonly, this would be things like patching functions that place units, define
 -- players etc to modify the behaviour of these functions.
+
+if Editor.Running == EditorNotRunning then
+  -- Add code here
+end
 ]]
          else
             contents = [[
 -- Stratagus postamble script.
 -- Use this script to set up anything after the map is loaded. Commonly this would
 -- be adding triggers or customizing players, their alliances or similar things.
+
+if Editor.Running == EditorNotRunning then
+  -- Add code here
+end
 ]]
          end
       end
