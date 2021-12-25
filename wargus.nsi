@@ -45,7 +45,7 @@
 
 ; General variables
 !define NAME "Wargus"
-!define VERSION "3.2.0"
+!define VERSION "3.2.1"
 !define VIVERSION "${VERSION}.0"
 !define HOMEPAGE "https://wargus.github.io"
 !define LICENSE "GPL v2+"
