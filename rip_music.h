@@ -30,7 +30,20 @@
 #ifndef _RIP_MUSIC_H_
 #define _RIP_MUSIC_H_
 
-static const char * const MusicNames[] = {
+#if __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#elif __has_include(<experimental/filesystem>)
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#else
+error "Missing the <filesystem> header."
+#endif
+
+#include <array>
+#include <string>
+
+static const std::array<std::string, 17> MusicNames = {
 	"Human Battle 1",
 	"Human Battle 2",
 	"Human Battle 3",
@@ -47,16 +60,14 @@ static const char * const MusicNames[] = {
 	"Orc Briefing",
 	"Orc Victory",
 	"Orc Defeat",
-	"I'm a Medieval Man",
-	NULL
+    "I'm a Medieval Man"
 };
 
-static const char * const BNEMusicNames[] = {
+static const std::array<std::string, 2> BNEMusicNames = {
 	"Human Battle 6",
-	"Orc Battle 6",
-	NULL
+    "Orc Battle 6"
 };
 
-int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir);
+int RipMusic(int expansion_cd, const std::filesystem::path &data_dir, const std::filesystem::path &dest_dir);
 
 #endif

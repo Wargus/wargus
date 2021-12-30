@@ -38,6 +38,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <libgen.h>
+#include <spawn.h>
 
 #if defined(__linux__)
 #	include <mntent.h>
@@ -51,126 +52,132 @@
 
 #include "rip_music.h"
 
-static char * find_mnt_dir(const char * dir) {
+#include <iostream>
+namespace fs = std::filesystem;
 
-	char save_cwd[PATH_MAX];
-	char last_cwd[PATH_MAX];
-	char cwd[PATH_MAX];
-	char * mnt_dir = NULL;
+
+static fs::path find_mnt_dir(const fs::path &dir)
+{
+    fs::path out;
+    fs::path save_cwd;
+    fs::path last_cwd;
+    fs::path cwd;
+    fs::path mnt_dir;
+    std::error_code error_code;
+
 	struct stat st;
 	__dev_t last_dev;
 	__ino_t last_ino;
 
-	if ( ! getcwd(save_cwd, sizeof(save_cwd)) ) {
+    save_cwd = std::filesystem::current_path(error_code);
+    if (error_code) {
+        std::cerr << "Error: Cannot store working directory: " << error_code.message() << std::endl;
+        return fs::path();
+    }
 
-		fprintf(stderr, "Error: Cannot store working directory: %s\n", strerror(errno));
-		return NULL;
-
+    if (!fs::is_directory(dir)) {
+        std::cerr << "Not a directory" << std::endl;
+        return fs::path();
 	}
 
-	if ( stat(dir, &st) != 0 ) {
+    fs::current_path(dir, error_code);
+    if (error_code) {
+        std::cerr << "Error: Cannot change path to " << dir << ": " << error_code.message() << std::endl;
+    }
 
-		fprintf(stderr, "Error: Cannot stat %s: %s\n", dir, strerror(errno));
-		return NULL;
+    last_cwd = fs::current_path(error_code);
 
+    if (error_code) {
+
+        std::cerr <<  "Error: Cannot get working directory: " << dir << ": " << error_code.message() << std::endl;
+        error_code.clear();
+        fs::current_path(save_cwd, error_code);
+
+        if (error_code) {
+            std::cerr << "Error: Cannot restore working directory: " << error_code.message() << std::endl;
+        }
+
+        return fs::path();
+    }
+
+    if (stat(last_cwd.c_str(), &st) != 0) {
+        std::cerr << "Error: Cannot stat " << cwd << " " << strerror(errno) << std::endl;
+        return fs::path();
 	}
-
-	if ( chdir(dir) == -1 ) {
-
-		fprintf(stderr, "Error: Cannot change directory to %s: %s\n", dir, strerror(errno));
-		return NULL;
-
-	}
-
-	if ( ! getcwd(last_cwd, sizeof(last_cwd)) ) {
-
-		fprintf(stderr, "Error: Cannot get working directory: %s\n", strerror(errno));
-
-		if ( chdir(save_cwd) == -1 )
-			fprintf(stderr, "Error: Cannot restore working directory: %s\n", strerror(errno));
-
-		return NULL;
-
-	}
-
 	last_dev = st.st_dev;
 	last_ino = st.st_ino;
 
-	while ( 1 ) {
+    while (1) {
+        fs::current_path("..", error_code);
+        if (error_code) {
 
-		if ( chdir("..") == -1 ) {
-
-			fprintf(stderr, "Error: Cannot change working directory: %s\n", strerror(errno));
+            std::cerr << "Error: Cannot change working directory: " << error_code.message() << std::endl;
+            error_code.clear();
 			break;
 
 		}
+        cwd = fs::current_path(error_code);
 
-		if ( ! getcwd(cwd, sizeof(cwd)) ) {
-
-			fprintf(stderr, "Error: Cannot get working directory: %s\n", strerror(errno));
+        if (error_code) {
+            std::cerr << "Error: Cannot get working directory: " << error_code.message() << std::endl;
+            error_code.clear();
 			break;
-
 		}
 
-		if ( stat(cwd, &st) != 0 ) {
-
-			fprintf(stderr, "Error: Cannot stat %s: %s\n", cwd, strerror(errno));
-			break;
-
+        if (stat(cwd.c_str(), &st) != 0) {
+            std::cerr << "Error: Cannot stat " << cwd << " " << strerror(errno) << std::endl;
+            break;
 		}
 
-		if ( last_dev != st.st_dev || last_ino == st.st_ino ) {
-
-			mnt_dir = strdup(last_cwd);
+        if (last_dev != st.st_dev || fs::equivalent(last_cwd, cwd)) {
+            mnt_dir = last_cwd;
 			break;
-
 		}
 
-		if ( strcmp(cwd, "/") == 0 ) {
+        if (fs::equivalent(cwd, "/")) {
 
-			mnt_dir = strdup("/");
+            mnt_dir = fs::path("/");
 			break;
 
 		}
 
 		last_dev = st.st_dev;
 		last_ino = st.st_ino;
-		strcpy(last_cwd, cwd);
-
+        last_cwd = cwd;
 	}
 
-	if ( chdir(save_cwd) == -1 )
-		fprintf(stderr, "Error: Cannot restore working directory: %s\n", strerror(errno));
+    fs::current_path(save_cwd, error_code);
+    if (error_code) {
+        std::cerr << "Error: Cannot restore working directory: " << error_code.message() << std::endl;
+    }
 
 	return mnt_dir;
 
 }
 
-static char * find_dev(const char * mnt_dir) {
+static fs::path find_dev(const fs::path &mnt_dir)
+{
 
 #if defined(__linux__)
-	struct mntent * mnt;
-	char * dev = NULL;
-	FILE * file;
+    struct mntent *mnt;
+    fs::path dev{};
+    FILE *file;
 
 	file = setmntent("/proc/self/mounts", "r");
 
-	if ( ! file ) {
-
-		fprintf(stderr, "Error: Cannot open file /proc/self/mounts: %s\n", strerror(errno));
-		return NULL;
+    if (! file) {
+        std::cerr <<  "Error: Cannot open file /proc/self/mounts: " << strerror(errno) << std::endl;
+        return fs::path();
 
 	}
 
-	while ( ( mnt = getmntent(file) ) ) {
+    while ((mnt = getmntent(file))) {
+        std::string comp = mnt->mnt_dir;
 
-		if ( strcmp(mnt->mnt_dir, mnt_dir) == 0 ) {
-
-			dev = strdup(mnt->mnt_fsname);
+        if (comp == mnt_dir) {
+            dev = fs::path{comp};
 			break;
-
 		}
-
 	}
 
 	endmntent(file);
@@ -179,7 +186,7 @@ static char * find_dev(const char * mnt_dir) {
 #elif defined(__FreeBSD__)
 	struct statfs sfs;
 
-	if ( statfs(mnt_dir, &sfs) != 0 ) {
+    if (statfs(mnt_dir.c_str(), &sfs) != 0) {
 
 		fprintf(stderr, "Error: Cannot get mounted device: %s\n", strerror(errno));
 		return NULL;
@@ -188,111 +195,97 @@ static char * find_dev(const char * mnt_dir) {
 
 	return strdup(sfs.f_mntfromname);
 #else
-	return NULL;
+    return fs::path {};
 #endif
 
 }
 
-static int spawnvp(const char * file, char * const argv[]) {
-
+static int spawnvp(const std::string &file, char *const argv[])
+{
 	int status;
-	pid_t pid = fork();
+    pid_t pid;
 
-	if ( pid < 0 ) {
+    if (posix_spawnp(&pid, file.c_str(), nullptr, nullptr, argv, nullptr)) {
+        std::cerr << "Could not spawn process: " << file << std::endl;
+    }
 
-		fprintf(stderr, "Error: Cannot fork: %s\n", strerror(errno));
-		return -errno;
-
-	}
-
-	if ( pid == 0 ) {
-
-		execvp(file, argv);
-		fprintf(stderr, "Error: Cannot exec: %s\n", strerror(errno));
-		_exit(errno);
-
-	}
-
-	if ( waitpid(pid, &status, 0) == pid )
+    if (waitpid(pid, &status, 0) == pid) {
 		return WEXITSTATUS(status);
-	else
+    } else {
 		return -1;
-
+    }
 }
 
-int RipMusic(int expansion_cd, const char * data_dir, const char * dest_dir) {
+std::unique_ptr<char []> make_unique_from_string(const std::string &in)
+{
+    std::unique_ptr<char []>out = std::make_unique<char []>(in.length() + 1);
+    in.copy(out.get(), in.length());
+    out[in.length()] = '\0';
+    return out;
+}
 
-	struct stat st;
-	char * args[6] = { (char *)"cdparanoia", (char *)"-d", NULL, (char *)"-v", (char *)"-Q", NULL };
-	char * mnt_dir;
-	char * dev;
+int RipMusic(int expansion_cd, const fs::path &data_dir, const fs::path &dest_dir)
+{
+    //FIXME: clean this up more later.
+    fs::path dev;
 	int count = 0;
 	int i;
 
-	if ( stat(data_dir, &st) != 0 ) {
-
-		fprintf(stderr, "Error: Cannot stat %s: %s\n", data_dir, strerror(errno));
+    if (!fs::exists(data_dir)) {
+        std::cerr << "Directory does not exist! " << data_dir << std::endl;
 		return 1;
-
 	}
 
-	mnt_dir = find_mnt_dir(data_dir);
+    auto mnt_dir = find_mnt_dir(data_dir);
 
-	if ( ! mnt_dir ) {
-
-		fprintf(stderr, "Error: Cannot find mount dir\n");
+    if (mnt_dir == fs::path()) {
+        std::cerr << "Error: Cannot find mount dir" << std::endl;
 		return 1;
-
 	}
 
 	dev = find_dev(mnt_dir);
 
-	if ( ! dev ) {
-
-		fprintf(stderr, "Error: Cannot find device for mount dir %s\n", mnt_dir);
-		free(mnt_dir);
+    if (dev == fs::path()) {
+        std::cerr << "Error: Cannot find device for mount dir " << mnt_dir << std::endl;
 		return 1;
 
 	}
 
-	free(mnt_dir);
+    std::cout << "Found CD-ROM device: " << dev << std::endl;
+    std::flush(std::cout);
+    auto dev_string = make_unique_from_string(dev.string());
+    char *args[6] = { (char *)"cdparanoia", (char *)"-d", dev_string.get(), (char *)"-v", (char *)"-Q", NULL };
 
-	printf("Found CD-ROM device: %s\n", dev);
-	fflush(stdout);
-
-	args[2] = dev;
-
-	if ( spawnvp(args[0], args) != 0 ) {
-
-		free(dev);
+    if (spawnvp(args[0], args) != 0) {
 		return 1;
-
 	}
 
-	for ( i = 0; MusicNames[i]; ++i ) {
+    for (i = 0; !MusicNames[i].empty(); ++i) {
+        std::string num;
+        fs::path file{dest_dir};
 
-		char num[3];
-		char file[PATH_MAX];
-
-		if ( ! expansion_cd && ! MusicNames[i+1] )
+        if (! expansion_cd && ! MusicNames[i + 1].empty()) {
 			break;
+        }
+        num = std::to_string(i + 2);
 
-		snprintf(num, sizeof(num), "%d", i+2);
-		snprintf(file, sizeof(file), "%s/%s.wav", dest_dir, MusicNames[i]);
+        file /= MusicNames[i];
+        file.replace_extension(".wav");
+        auto num_string = make_unique_from_string(num);
+        auto file_string = make_unique_from_string(file.string());
+        args[3] = num_string.get();
+        args[4] = file_string.get();
 
-		args[3] = num;
-		args[4] = file;
-
-		if ( spawnvp(args[0], args) == 0 )
+        if (spawnvp(args[0], args) == 0) {
 			++count;
+        }
 
 	}
 
-	free(dev);
-
-	if ( count == 0 )
+    if (count == 0) {
 		return 1;
-	else
+    } else {
 		return 0;
+    }
 
 }

@@ -28,10 +28,11 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <limits.h>
+#include <cstdlib>
+#include <cstring>
+#include <climits>
+#include <iostream>
+#include <fstream>
 
 #include "pud.h"
 
@@ -45,11 +46,33 @@
 
 void usage()
 {
-	fprintf(stderr, "%s\n%s\n",
-	"pudconvert V" VERSION,
-	"usage: pudconvert inputfile [ outputdir ]\n"
-	);
+
+    std::cerr << "pudconvert V" << VERSION << std::endl << "usage: pudconvert inputfile [ outputdir ]" << std::endl;
 	exit(-1);
+}
+
+std::vector<unsigned char> read_file_to_vector(const std::filesystem::path &file)
+{
+    std::vector<unsigned char> out{};
+    std::error_code ec{};
+    size_t filesize = std::filesystem::file_size(file, ec);
+    if (ec) {
+        std::cerr << "Failed to get file size for file: " << file << std::endl;
+        return out;
+    }
+    out.resize(filesize);
+    std::ifstream f{file, std::ios::binary};
+    if (!f.is_open()) {
+
+        std::cerr << "Could not open file: " << file << std::endl;
+        return std::vector<unsigned char>();
+    }
+    f.read(reinterpret_cast<char *>(out.data()), out.size());
+    if (f.fail()) {
+        std::cerr << "Failed to read from file: " << file << std::endl;
+        return std::vector<unsigned char>();
+    }
+    return out;
 }
 
 int main(int argc, char **argv)
@@ -62,65 +85,34 @@ int main(int argc, char **argv)
 		usage();
 	}
 
-	char *infile = argv[1];
-	char *outdir;
+    std::filesystem::path infile = argv[1];
+    std::filesystem::path outdir;
 
-	struct stat sb;
-	if (stat(infile, &sb)) {
-		fprintf(stderr, "error finding file: %s\n", infile);
+
+    if (!std::filesystem::exists(infile)) {
+        std::cerr << "Error finding file: " << infile << std::endl;
 		return -1;
 	}
-	int len = sb.st_size;
+    size_t len = std::filesystem::file_size(infile);
 
 	if (argc == 3) {
 		outdir = argv[2];
 	} else {
-#ifdef WIN32
-		outdir = (char*)calloc(PATH_MAX, sizeof(char));
-		char dir[PATH_MAX];
-		char drive[PATH_MAX];
-		_splitpath(infile, drive, dir, NULL, NULL);
-		_makepath(outdir, drive, dir, NULL, NULL);
-#else
-		outdir = strdup(infile);
-		outdir = dirname(outdir);
-#endif
+        outdir = infile.parent_path();
 	}
 
-	if (stat(outdir, &sb)) {
-		fprintf(stderr, "error finding directory: %s\n", outdir);
+    if (!std::filesystem::exists(outdir)) {
+        std::cerr << "Error finding directory: " << outdir << std::endl;
 		return -1;
 	}
-	FILE *f = fopen(infile, "rb");
-	if (f == NULL) {
-		fprintf(stderr, "error opening file: %s\n", infile);
-		return -1;
-	}
-	unsigned char *buf = (unsigned char*) malloc(len);
-	clearerr(f);
-	len = fread(buf, 1, len, f);
-	if (ferror(f)) {
-		fprintf(stderr, "error reading from file: %s\n", infile);
-		free(buf);
-		return -1;
-	}
-	if (fclose(f)) {
-		fprintf(stderr, "error closing file: %s\n", infile);
-		free(buf);
-		return -1;
-	}
-#ifdef WIN32
-	char *newname = _strdup(infile);
-	_splitpath(infile, NULL, NULL, newname, NULL);
-#else
-	char *newname = strdup(infile);
-	newname = basename(newname);
-	char *tmp = strstr(newname, ".pud");
-	if (tmp != NULL) {
-		tmp[0] = '\0';
-	}
-#endif
-	PudToStratagus(buf, len, newname, outdir);
-	free(buf);
+
+    auto buf = read_file_to_vector(infile);
+    if (!buf.size()) {
+        std::cerr << "Couldn't read file in to vector: " << infile << std::endl;
+        return 1;
+    }
+    std::filesystem::path new_name = infile.filename().replace_extension("");
+
+    PudToStratagus(buf.data(), len, new_name, outdir);
 	return 0;
 }
