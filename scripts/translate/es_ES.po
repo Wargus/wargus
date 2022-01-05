@@ -1997,7 +1997,7 @@ msgstr "Mostrar mensajes"
 
 #: menus/options.lua:280
 msgid "Pause on leave"
-msgstr "Pausa al salír"
+msgstr "Pausar al salir"
 
 #: menus/options.lua:288
 msgid "~!*Enhanced effects"
