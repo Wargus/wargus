@@ -116,7 +116,7 @@ function RunShowCreditsMenu()
 	"Italian Translation",
 	"  Simone Starace",
 	"Spanish Translation",
-	"  Nahuel Medina",
+	"  Magaly Medina",
 	"Russian Translation",
 	"  cybermind aka Mistranger",
 	"",
