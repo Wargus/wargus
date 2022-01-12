@@ -816,6 +816,7 @@ function RunMultiPlayerGameMenu(s)
 
   menu:writeText(_("Password :"), 208 + offx, 248 + offy + 28)
   local pass = menu:addTextInputField("", offx + 298, 244 + offy + 28)
+  pass:setPassword(true);
 
   local loginBtn = menu:addHalfButton(_("Go ~!Online"), "o", 208 + offx, 298 + (36 * 0) + offy,
     function()
