@@ -363,9 +363,9 @@ function RunJoiningGameMenu(optRace, optReady, optExtraLabel, optStopDirect)
       -- got ICMMap => load map
       RunJoiningMapMenu(optRace, optReady)
       if (optExtraLabel ~= nil) then
-	 menu:stop(1) -- joining through metaserver menu
+	      menu:stop(1) -- joining through metaserver menu
       else
-	 menu:stop(0) -- joining through local server menu
+	      menu:stop(0) -- joining through local server menu
       end
     elseif (state == 4) then -- ccs_badmap
       ErrorMenu(_("Map not available"))
@@ -389,6 +389,9 @@ function RunJoiningGameMenu(optRace, optReady, optExtraLabel, optStopDirect)
     elseif (state == 17) then -- ccs_incompatibleluafiles
       ErrorMenu(_("Incompatible lua files"))
       menu:stop(1)
+    elseif (state == 18) then -- ccs_needmap
+      percent = 0
+      sb:setCaption(_("Getting map..."))
     end
   end
   local listener = LuaActionListener(checkconnection)
