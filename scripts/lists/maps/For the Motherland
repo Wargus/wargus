@@ -25,6 +25,2182 @@
 --      Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 
+function DefineMotherLandButtons()
+
+	print("Defining Motherland buttons.")
+
+	DefineAllow("unit-caanoo-wiseskeleton", "AAAAAAAAAAAAAAAA")
+		
+	DefineButton( { Pos = 7, Level = 0, Icon = "icon-build-basic",
+		Action = "button", Value = 1,
+		Key = "b", Hint = "~!BUILD BASIC STRUCTURE",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )
+
+	DefineButton( { Pos = 8, Level = 0, Icon = "icon-build-advanced",
+		Action = "button", Value = 2,
+		Key = "v", Hint = "BUILD AD~!VANCED STRUCTURE",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )
+		
+	-- Basic Units
+		
+	DefineButton( { Pos = 3, Level = 1, Icon = "icon-grunt",
+		Action = "cast-spell", Value = "spell-unit-grunt",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "g", Hint = "~!GRUNT",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )
+		
+	DefineButton( { Pos = 2, Level = 1, Icon = "icon-axethrower",
+		Action = "cast-spell", Value = "spell-unit-axethrower",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "a", Hint = "TROLL ~!AXETHROWER",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 1, Level = 1, Icon = "icon-ogre",
+		Action = "cast-spell", Value = "spell-unit-ogre",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "o", Hint = "~!OGRE",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 4, Level = 1, Icon = "icon-ogre-mage",
+		Action = "cast-spell", Value = "spell-unit-ogre-mage",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "m", Hint = "OGRE ~!MAGE",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 5, Level = 1, Icon = "icon-berserker",
+		Action = "cast-spell", Value = "spell-unit-berserker",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "b", Hint = "~!BERSERKER",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 6, Level = 1, Icon = "icon-quick-blade",
+		Action = "cast-spell", Value = "spell-unit-quick-blade",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "b", Hint = "~!BLADE",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 7, Level = 1, Icon = "icon-fad-man",
+		Action = "cast-spell", Value = "spell-unit-fad-man",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "r", Hint = "~!RIDER",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 8, Level = 1, Icon = "icon-sharp-axe",
+		Action = "cast-spell", Value = "spell-unit-sharp-axe",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "s", Hint = "~!SHARP",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
+		Action = "button", Value = 0,
+		Key = "ESC", Hint = "~<ESC~> CANCEL",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+
+	-- Advanced Units
+
+	DefineButton( { Pos = 2, Level = 2, Icon = "icon-goblin-sappers",
+		Action = "cast-spell", Value = "spell-unit-goblin-sappers",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "s", Hint = "GOBLIN ~!SAPPERS",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+
+	DefineButton( { Pos = 1, Level = 2, Icon = "icon-death-knight",
+		Action = "cast-spell", Value = "spell-unit-death-knight",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "k", Hint = "DEATH ~!KNIGHT",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+
+	DefineButton( { Pos = 3, Level = 2, Icon = "icon-catapult",
+		Action = "cast-spell", Value = "spell-unit-catapult",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "c", Hint = "~!CATAPULT",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+
+	DefineButton( { Pos = 4, Level = 2, Icon = "icon-peon",
+		Action = "cast-spell", Value = "spell-unit-peon",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "p", Hint = "~!PEON",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 5, Level = 2, Icon = "icon-axethrower",
+		Action = "cast-spell", Value = "spell-unit-nomad",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "o", Hint = "N~!OMAD",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 6, Level = 2, Icon = "icon-skeleton",
+		Action = "cast-spell", Value = "spell-unit-skeleton",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "u", Hint = "~!UNDEAD",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 8, Level = 2, Icon = "icon-dragon",
+		Action = "cast-spell", Value = "spell-unit-dragon",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "d", Hint = "~!DRAGON",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+		
+	DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
+		Action = "button", Value = 0,
+		Key = "ESC", Hint = "~<ESC~> CANCEL",
+		ForUnit = {"unit-caanoo-wiseskeleton"} } )	
+			
+
+
+	DefineAllow("unit-caanoo-wiseman", "AAAAAAAAAAAAAAAA")
+		
+	DefineButton( { Pos = 7, Level = 0, Icon = "icon-build-basic",
+		Action = "button", Value = 1,
+		Key = "b", Hint = "~!BUILD BASIC STRUCTURE",
+		ForUnit = {"unit-caanoo-wiseman"} } )
+
+	DefineButton( { Pos = 8, Level = 0, Icon = "icon-build-advanced",
+		Action = "button", Value = 2,
+		Key = "v", Hint = "BUILD AD~!VANCED STRUCTURE",
+		ForUnit = {"unit-caanoo-wiseman"} } )
+		
+	-- Basic Units
+		
+	DefineButton( { Pos = 3, Level = 1, Icon = "icon-footman",
+		Action = "cast-spell", Value = "spell-unit-footman",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "f", Hint = "~!FOOTMAN",
+		ForUnit = {"unit-caanoo-wiseman"} } )
+		
+	DefineButton( { Pos = 6, Level = 1, Icon = "icon-ugly-guy",
+		Action = "cast-spell", Value = "spell-unit-arthor-literios",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "d", Hint = "~!DANATH",
+		ForUnit = {"unit-caanoo-wiseman"} } )
+		
+	DefineButton( { Pos = 2, Level = 1, Icon = "icon-archer",
+		Action = "cast-spell", Value = "spell-unit-archer",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "a", Hint = "~!ARCHER",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	DefineButton( { Pos = 1, Level = 1, Icon = "icon-knight",
+		Action = "cast-spell", Value = "spell-unit-knight",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "k", Hint = "~!KNIGHT",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	DefineButton( { Pos = 4, Level = 1, Icon = "icon-paladin",
+		Action = "cast-spell", Value = "spell-unit-paladin",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "p", Hint = "~!PALADIN",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	DefineButton( { Pos = 5, Level = 1, Icon = "icon-ranger",
+		Action = "cast-spell", Value = "spell-unit-ranger",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "r", Hint = "~!RANGER",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	DefineButton( { Pos = 7, Level = 1, Icon = "icon-knight-rider",
+		Action = "cast-spell", Value = "spell-unit-knight-rider",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "h", Hint = "~!HERO",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	DefineButton( { Pos = 8, Level = 1, Icon = "icon-female-hero",
+		Action = "cast-spell", Value = "spell-unit-female-hero",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "a", Hint = "~!ALLERIA",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
+		Action = "button", Value = 0,
+		Key = "ESC", Hint = "~<ESC~> CANCEL",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	-- Advanced Units
+
+	DefineButton( { Pos = 2, Level = 2, Icon = "icon-dwarves",
+		Action = "cast-spell", Value = "spell-unit-dwarves",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "d", Hint = "~!DWARVES",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+
+	DefineButton( { Pos = 1, Level = 2, Icon = "icon-mage",
+		Action = "cast-spell", Value = "spell-unit-mage",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "m", Hint = "~!MAGE",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+
+	DefineButton( { Pos = 3, Level = 2, Icon = "icon-ballista",
+		Action = "cast-spell", Value = "spell-unit-ballista",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "b", Hint = "~!BALLISTA",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+
+	DefineButton( { Pos = 4, Level = 2, Icon = "icon-peasant",
+		Action = "cast-spell", Value = "spell-unit-peasant",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "p", Hint = "~!PEASANT",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	DefineButton( { Pos = 5, Level = 2, Icon = "icon-ranger",
+		Action = "cast-spell", Value = "spell-unit-yeoman",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "o", Hint = "YE~!OMAN",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	DefineButton( { Pos = 6, Level = 2, Icon = "icon-peasant",
+		Action = "cast-spell", Value = "spell-unit-attack-peasant",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "u", Hint = "MIN~!UTEMAN",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	DefineButton( { Pos = 8, Level = 2, Icon = "icon-gryphon-rider",
+		Action = "cast-spell", Value = "spell-unit-gryphon-rider",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "g", Hint = "~!GRYPHON",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+
+		
+		
+	DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
+		Action = "button", Value = 0,
+		Key = "ESC", Hint = "~<ESC~> CANCEL",
+		ForUnit = {"unit-caanoo-wiseman"} } )	
+		
+	-- Oathbreaker
+		
+	DefineAllow("unit-caanoo-oathbreaker",	"AAAAAAAAAAAAAAAA")
+			
+	DefineButton( { Pos = 1, Level = 0, Icon = "icon-move-peasant",
+		Action = "move",
+		Key = "m", Hint = "~!MOVE",
+		ForUnit = {"unit-caanoo-oathbreaker", "unit-caanoo-wiseman", "unit-human-adventurer"} } )
+
+	DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-shield1",
+		Action = "stop",
+		Key = "s", Hint = "~!STOP",
+		ForUnit = {"unit-caanoo-oathbreaker", "unit-caanoo-wiseman", "unit-human-adventurer"} } )
+
+	DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-shield2",
+		Action = "stop",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-human-shield1"},
+		Key = "s", Hint = "~!STOP",
+		ForUnit = {"unit-caanoo-oathbreaker", "unit-human-adventurer"} } )
+
+	DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-shield3",
+		Action = "stop",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-human-shield2"},
+		Key = "s", Hint = "~!STOP",
+		ForUnit = {"unit-caanoo-oathbreaker", "unit-human-adventurer"} } )
+
+	DefineButton( { Pos = 3, Level = 0, Icon = "icon-sword1",
+		Action = "attack",
+		Key = "a", Hint = "~!ATTACK",
+		ForUnit = {"unit-caanoo-oathbreaker", "unit-caanoo-wiseman", "unit-human-adventurer"} } )
+
+	DefineButton( { Pos = 3, Level = 0, Icon = "icon-sword2",
+		Action = "attack",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-sword1"},
+		Key = "a", Hint = "~!ATTACK",
+		ForUnit = {"unit-caanoo-oathbreaker", "unit-human-adventurer"} } )
+
+	DefineButton( { Pos = 3, Level = 0, Icon = "icon-sword3",
+		Action = "attack",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-sword2"},
+		Key = "a", Hint = "~!ATTACK",
+		ForUnit = {"unit-caanoo-oathbreaker", "unit-human-adventurer"} } )
+	
+	DefineButton( { Pos = 4, Level = 0, Icon = "icon-human-patrol-land",
+		Action = "patrol",
+		Key = "p", Hint = "~!PATROL",
+		ForUnit = {"unit-caanoo-oathbreaker", "unit-caanoo-wiseman", "unit-human-adventurer"} } )
+	
+	DefineButton( { Pos = 5, Level = 0, Icon = "icon-human-stand-ground",
+		Action = "stand-ground",
+		Key = "t", Hint = "S~!TAND GROUND",
+		ForUnit = {"unit-caanoo-oathbreaker", "unit-caanoo-wiseman", "unit-human-adventurer"} } )
+			
+	DefineButton( { Pos = 7, Level = 0, Icon = "icon-ranger",
+		Action = "cast-spell", Value = "spell-buildpoint-townhall",
+		Allowed = "check-upgrade", AllowArg = {"upgrade-eye-of-kilrogg"},
+		Key = "r", Hint = "~!RANGER",
+		ForUnit = {"unit-human-adventurer"} } )	
+		
+	-- ORC general buttons
+
+	DefineButton( { Pos = 1, Level = 0, Icon = "icon-move-peon",
+		Action = "move",
+		Key = "m", Hint = "~!MOVE",
+		ForUnit = {"unit-caanoo-wiseskeleton"}})
+
+	DefineButton( { Pos = 2, Level = 0, Icon = "icon-orc-shield1",
+		Action = "stop",
+		Key = "s", Hint = "~!STOP",
+		ForUnit = {"unit-caanoo-wiseskeleton"}})
+		
+	DefineButton( { Pos = 3, Level = 0, Icon = "icon-battle-axe1",
+		Action = "attack",
+		Key = "a", Hint = "~!ATTACK",
+		ForUnit = {"unit-caanoo-wiseskeleton"}})
+		
+	DefineButton( { Pos = 4, Level = 0, Icon = "icon-orc-patrol-land",
+		Action = "patrol",
+		Key = "p", Hint = "~!PATROL",
+		ForUnit = {"unit-caanoo-wiseskeleton"}})
+		
+	DefineButton( { Pos = 5, Level = 0, Icon = "icon-orc-stand-ground",
+		Action = "stand-ground",
+		Key = "t", Hint = "S~!TAND GROUND",
+		ForUnit = {"unit-caanoo-wiseskeleton"}})
+		
+	DefineAllow("unit-caanoo-pioneer",	"AAAAAAAAAAAAAAAA")
+			
+	DefineButton( { Pos = 1, Level = 0, Icon = "icon-move-peasant",
+		Action = "move",
+		Key = "m", Hint = "~!MOVE",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+		
+	DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-shield1",
+		Action = "stop",
+		Key = "s", Hint = "~!STOP",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+		
+	DefineButton( { Pos = 3, Level = 0, Icon = "icon-sword1",
+		Action = "attack",
+		Key = "a", Hint = "~!ATTACK",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+		
+	DefineButton( { Pos = 7, Level = 0, Icon = "icon-build-basic",
+		Action = "button", Value = 1,
+		Key = "b", Hint = "~!BUILD BASIC STRUCTURE",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 8, Level = 0, Icon = "icon-build-advanced",
+		Action = "button", Value = 2,
+		Key = "v", Hint = "BUILD AD~!VANCED STRUCTURE",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 4, Level = 0, Icon = "icon-repair",
+		Action = "repair",
+		Key = "r", Hint = "~!REPAIR",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 5, Level = 0, Icon = "icon-harvest",
+		Action = "harvest",
+		Key = "h", Hint = "~!HARVEST LUMBER/MINE GOLD",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 6, Level = 0, Icon = "icon-return-goods-peasant",
+		Action = "return-goods",
+		Key = "g", Hint = "RETURN WITH ~!GOODS",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 1, Level = 1, Icon = "icon-farm",
+		Action = "build", Value = "unit-caanoo-farm",
+		Key = "f", Hint = "BUILD ~!FARM",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 4, Level = 1, Icon = "icon-elven-lumber-mill",
+	Action = "build", Value = "unit-caanoo-lumber-mill",
+	Key = "l", Hint = "BUILD ~!LUMBER MILL",
+	ForUnit = {"unit-caanoo-pioneer"} } )
+		
+	DefineButton( { Pos = 2, Level = 1, Icon = "icon-human-barracks",
+		Action = "build", Value = "unit-caanoo-barracks",
+		Key = "b", Hint = "BUILD ~!BARRACKS",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+		
+	DefineButton( { Pos = 3, Level = 1, Icon = "icon-town-hall",
+		Action = "build", Value = "unit-caanoo-townhall",
+		Key = "h", Hint = "BUILD TOWN ~!HALL",
+		ForUnit = {"unit-caanoo-pioneer"} } )
+		
+	DefineButton( { Pos = 4, Level = 2, Icon = "icon-gnomish-inventor",
+	Action = "build", Value = "unit-caanoo-inventor",
+	Key = "i", Hint = "BUILD GNOMISH ~!INVENTOR",
+	ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 5, Level = 2, Icon = "icon-stables",
+	Action = "build", Value = "unit-caanoo-stables",
+	Key = "a", Hint = "BUILD ST~!ABLES",
+	ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 6, Level = 2, Icon = "icon-mage-tower",
+	Action = "build", Value = "unit-caanoo-mage-tower",
+	Key = "m", Hint = "BUILD ~!MAGE TOWER",
+	ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 7, Level = 2, Icon = "icon-church",
+	Action = "build", Value = "unit-caanoo-church",
+	Key = "c", Hint = "BUILD ~!CHURCH",
+	ForUnit = {"unit-caanoo-pioneer"} } )
+	
+	DefineButton( { Pos = 5, Level = 1, Icon = "icon-human-blacksmith",
+	Action = "build", Value = "unit-caanoo-blacksmith",
+	Key = "s", Hint = "BUILD BLACK~!SMITH",
+	ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 8, Level = 2, Icon = "icon-gryphon-aviary",
+	Action = "build", Value = "unit-caanoo-gryphon-aviary",
+	Key = "g", Hint = "BUILD ~!GRYPHON AVIARY",
+	ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineButton( { Pos = 9, Level = 2, Icon = "icon-cancel",
+	Action = "button", Value = 0,
+	Key = "ESC", Hint = "~<ESC~> CANCEL",
+	ForUnit = {"unit-caanoo-pioneer"} } )
+		
+	DefineButton( { Pos = 9, Level = 1, Icon = "icon-cancel",
+	Action = "button", Value = 0,
+	Key = "ESC", Hint = "~<ESC~> CANCEL",
+	ForUnit = {"unit-caanoo-pioneer"} } )
+
+	DefineAllow("unit-caanoo-blacksmith", "AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-caanoo-lumber-mill", "AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-caanoo-farm",	"AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-caanoo-barracks",	"AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-caanoo-stables",	"AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-caanoo-mage-tower",	"AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-caanoo-church",	"AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-caanoo-gryphon-aviary",	"AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-caanoo-townhall",	"AAAAAAAAAAAAAAAA")
+				
+	DefineButton( { Pos = 1, Level = 0, Icon = "icon-peasant",
+		Action = "train-unit", Value = "unit-peasant",
+		Allowed = "check-no-research",
+		Key = "p", Hint = "TRAIN ~!PEASANT",
+		ForUnit = {"unit-caanoo-townhall"} } )
+		
+	DefineButton( { Pos = 2, Level = 0, Icon = "icon-peasant",
+		Action = "train-unit", Value = "unit-caanoo-pioneer",
+		Allowed = "check-no-research",
+		Key = "f", Hint = "TRAIN ~!PEASANT",
+		ForUnit = {"unit-caanoo-townhall"} } )
+
+	if (wargus.extensions) then
+	do
+	DefineButton( { Pos = 5, Level = 0, Icon = "icon-harvest",
+		Action = "harvest",
+		Key = "h", Hint = "SET ~!HARVEST LUMBER/MINE GOLD",
+		ForUnit = {"unit-caanoo-townhall"} } )
+
+	DefineButton( { Pos = 7, Level = 0, Icon = "icon-move-peasant",
+		Action = "move",
+		Key = "m", Hint = "SET ~!MOVE",
+		ForUnit = {"unit-caanoo-townhall"} } )
+
+	DefineButton( { Pos = 8, Level = 0, Icon = "icon-human-shield1",
+		Action = "stop",
+		Key = "z", Hint = "SET ~!ZTOP",
+		ForUnit = {"unit-caanoo-townhall"} } )
+
+	DefineButton( { Pos = 9, Level = 0, Icon = "icon-sword1",
+		Action = "attack",
+		Key = "e", Hint = "S~!ET ATTACK",
+		ForUnit = {"unit-caanoo-townhall"} } )
+	end
+	end
+end
+function DefineMotherLandSpells()
+
+	print("Defining Motherland spells.")
+
+	DefineUnitType("unit-buildpoint-townhall", {})
+	DefineUnitType("unit-footman", {})
+	DefineUnitType("unit-archer", {})
+	DefineUnitType("unit-ballista", {})
+	DefineUnitType("unit-knight", {})
+	DefineUnitType("unit-mage", {})
+	DefineUnitType("unit-paladin", {})
+	DefineUnitType("unit-nomad", {})
+	DefineUnitType("unit-yeoman", {})
+	DefineUnitType("unit-dwarves", {})
+	DefineUnitType("unit-dragon", {})
+	DefineUnitType("unit-female-hero", {})
+	DefineUnitType("unit-ranger", {})
+	DefineUnitType("unit-sharp-axe", {})
+	DefineUnitType("unit-grunt", {})
+	DefineUnitType("unit-gryphon-rider", {})
+	DefineUnitType("unit-peasant", {})
+	DefineUnitType("unit-peon", {})
+	DefineUnitType("unit-axethrower", {})
+	DefineUnitType("unit-catapult", {})
+	DefineUnitType("unit-ogre", {})
+	DefineUnitType("unit-death-knight", {})
+	DefineUnitType("unit-ogre-mage", {})
+	DefineUnitType("unit-goblin-sappers", {})
+	DefineUnitType("unit-berserker", {})
+	DefineUnitType("unit-arthor-literios", {})
+	DefineUnitType("unit-quick-blade", {})
+	DefineUnitType("unit-knight-rider", {})
+	DefineUnitType("unit-fad-man", {})
+	DefineUnitType("unit-attack-peasant", {})
+
+	DefineSpell("spell-buildpoint-townhall",
+		"showname", "Townhall Foundation",
+		"manacost", 70,
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", "unit-buildpoint-townhall", "time-to-live", 5000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+
+	-- Spawn Human Units
+
+	unit = "unit-footman"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-footman",
+		"showname", "Footman",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-yeoman"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-yeoman",
+		"showname", "Yeoman",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-archer"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-archer",
+		"showname", "Archer",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-ballista"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-ballista",
+		"showname", "Ballista",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-knight"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-knight",
+		"showname", "Knight",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-female-hero"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-female-hero",
+		"showname", "Hero Archer",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-knight-rider"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-knight-rider",
+		"showname", "Hero Horseman",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-arthor-literios"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-arthor-literios",
+		"showname", "Hero Soldier",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-mage"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-mage",
+		"showname", "Mage",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-paladin"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-paladin",
+		"showname", "Paladin",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-dwarves"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-dwarves",
+		"showname", "Dwarves",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-peasant"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-peasant",
+		"showname", "Peasant",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-ranger"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-ranger",
+		"showname", "Ranger",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-gryphon-rider"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-gryphon-rider",
+		"showname", "Gryphon Rider",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-attack-peasant"
+	index = UnitDatabaseSetup("human", unit)
+	DefineSpell("spell-unit-attack-peasant",
+		"showname", "Minuteman",
+		"res-cost", {0, UnitDatabase["human"][index]["CastGold"], UnitDatabase["human"][index]["CastWood"], UnitDatabase["human"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	-- Spawn Orc Units
+
+	unit = "unit-sharp-axe"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-sharp-axe",
+		"showname", "Hero Axethrower",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-fad-man"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-fad-man",
+		"showname", "Hero Horseman",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-peon"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-peon",
+		"showname", "Peon",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-grunt"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-grunt",
+		"showname", "Grunt",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-axethrower"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-axethrower",
+		"showname", "Troll Axethrower",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-catapult"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-catapult",
+		"showname", "Catapult",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-ogre"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-ogre",
+		"showname", "Ogre",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-death-knight"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-death-knight",
+		"showname", "Death Knight",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-ogre-mage"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-ogre-mage",
+		"showname", "Ogre Mage",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-dragon"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-dragon",
+		"showname", "Dragon",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-quick-blade"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-quick-blade",
+		"showname", "Hero Soldier",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-goblin-sappers"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-goblin-sappers",
+		"showname", "Goblin Sappers",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-berserker"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-berserker",
+		"showname", "Berserker",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-skeleton"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-skeleton",
+		"showname", "Skeleton",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+	unit = "unit-nomad"
+	index = UnitDatabaseSetup("orc", unit)
+	DefineSpell("spell-unit-nomad",
+		"showname", "Nomad",
+		"res-cost", {0, UnitDatabase["orc"][index]["CastGold"], UnitDatabase["orc"][index]["CastWood"], UnitDatabase["orc"][index]["CastOil"], 0, 0, 0},
+		"range", 6,
+		"target", "position",
+			"action", {{"summon", "unit-type", unit, "time-to-live", 99000},
+			{"spawn-missile", "missile", "missile-normal-spell",
+				"start-point", {"base", "target"}}},
+		"sound-when-cast", "eye of vision"
+	)
+
+
+	-- Meh
+
+
+	DefineSpell("spell-aid",
+		"showname", "First Aid",
+		"manacost", 6,
+		"range", 6,
+		"target", "unit",
+		"action", {{"adjust-vitals", "hit-points", 1},
+			{"spawn-missile", "missile", "missile-heal-effect",
+				"start-point", {"base", "target"}}},
+		"condition", {
+			"organic", "only",
+			"Building", "false",
+			"HitPoints", {MaxValuePercent = 100}
+		},
+		"sound-when-cast", "healing",
+		"autocast", {"range", 6, "condition", {"alliance", "only", "HitPoints", {MaxValuePercent = 90}}}
+	)
+end
+function DefineMotherLandUnits()
+	print("Defining Motherland units.")
+	-- Mythic Command
+
+	UnitTypeFiles["unit-mythic-guard-tower"] = {summer = "tilesets/summer/human/buildings/guard_tower.png",
+	winter = "tilesets/winter/human/buildings/guard_tower.png",
+	wasteland = "tilesets/summer/human/buildings/guard_tower.png",
+	swamp = "tilesets/swamp/human/buildings/guard_tower.png"}
+
+	DefineUnitType("unit-mythic-guard-tower", { Name = _("Guard Tower"),
+	Image = {"size", {64, 64}},
+	Animations = "animations-human-guard-tower", Icon = "icon-human-guard-tower",
+	Costs = {"time", 140, "gold", 500, "wood", 150},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 130,
+	DrawLevel = 40,
+	TileSize = {2, 2}, BoxSize = {63, 63},
+	SightRange = 9, ComputerReactionRange = 6, PersonReactionRange = 6,
+	Armor = 25, BasicDamage = 4, PiercingDamage = 12, Missile = "missile-arrow",
+	MaxAttackRange = 6,
+	Priority = 40, AnnoyComputerFactor = 50,
+	Points = 200,
+	Corpse = "unit-destroyed-2x2-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	CanAttack = true,
+	CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
+	Building = true, VisibleUnderFog = true,
+	DetectCloak = true,
+	Elevated = true,
+	Sounds = {
+	"selected", "human-guard-tower-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+
+	UnitTypeFiles["unit-mythic-cannon-tower"] = {summer = "tilesets/summer/human/buildings/cannon_tower.png",
+	winter = "tilesets/winter/human/buildings/cannon_tower.png",
+	wasteland = "tilesets/summer/human/buildings/cannon_tower.png",
+	swamp = "tilesets/swamp/human/buildings/cannon_tower.png"}
+
+	DefineUnitType("unit-mythic-cannon-tower", { Name = _("Cannon Tower"),
+	Image = {"size", {64, 64}},
+	Animations = "animations-human-cannon-tower", Icon = "icon-human-cannon-tower",
+	Costs = {"time", 190, "gold", 1000, "wood", 300},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 160,
+	DrawLevel = 40,
+	TileSize = {2, 2}, BoxSize = {63, 63},
+	SightRange = 9, ComputerReactionRange = 7, PersonReactionRange = 7,
+	Armor = 25, BasicDamage = 50, PiercingDamage = 0, Missile = "missile-small-cannon",
+	MinAttackRange = 2, MaxAttackRange = 7,
+	Priority = 40, AnnoyComputerFactor = 50,
+	Points = 250,
+	Corpse = "unit-destroyed-2x2-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	CanAttack = true,
+	CanTargetLand = true, CanTargetSea = true,
+	Building = true, VisibleUnderFog = true,
+	DetectCloak = true,
+	Elevated = true,
+	Sounds = {
+	"selected", "human-cannon-tower-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+
+	-- Mythic Minion
+
+	UnitTypeFiles["unit-mythic-minion-cannon-tower"] = {summer = "tilesets/summer/orc/buildings/cannon_tower.png",
+	winter = "tilesets/winter/orc/buildings/cannon_tower.png",
+	wasteland = "tilesets/summer/orc/buildings/cannon_tower.png",
+	swamp = "tilesets/swamp/orc/buildings/cannon_tower.png"}
+
+	DefineUnitType("unit-mythic-minion-cannon-tower", { Name = _("Cannon Tower"),
+	Image = {"size", {64, 64}},
+	Animations = "animations-orc-cannon-tower", Icon = "icon-orc-cannon-tower",
+	Costs = {"time", 190, "gold", 1000, "wood", 300},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 160,
+	DrawLevel = 40,
+	TileSize = {2, 2}, BoxSize = {63, 63},
+	SightRange = 9, ComputerReactionRange = 7, PersonReactionRange = 7,
+	Armor = 10, BasicDamage = 50, PiercingDamage = 0, Missile = "missile-small-cannon",
+	MinAttackRange = 2, MaxAttackRange = 7,
+	Priority = 40, AnnoyComputerFactor = 50,
+	Points = 250,
+	Corpse = "unit-destroyed-2x2-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	CanAttack = true,
+	CanTargetLand = true, CanTargetSea = true,
+	Building = true, VisibleUnderFog = true,
+	DetectCloak = true,
+	Elevated = true,
+	Sounds = {
+	--    "selected", "orc-cannon-tower-selected",
+	--    "acknowledge", "orc-cannon-tower-acknowledge",
+	--    "ready", "orc-cannon-tower-ready",
+	"help", "basic orc voices help 2",
+	"dead", "building destroyed"} } )
+
+	UnitTypeFiles["unit-mythic-minion-guard-tower"] = {summer = "tilesets/summer/orc/buildings/guard_tower.png",
+	winter = "tilesets/winter/orc/buildings/guard_tower.png",
+	wasteland = "tilesets/summer/orc/buildings/guard_tower.png",
+	swamp = "tilesets/swamp/orc/buildings/guard_tower.png"}
+
+	DefineUnitType("unit-mythic-minion-guard-tower", { Name = _("Guard Tower"),
+	Image = {"size", {64, 64}},
+	Animations = "animations-orc-guard-tower", Icon = "icon-orc-guard-tower",
+	Costs = {"time", 140, "gold", 500, "wood", 150},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 130,
+	DrawLevel = 40,
+	TileSize = {2, 2}, BoxSize = {63, 63},
+	SightRange = 9, ComputerReactionRange = 6, PersonReactionRange = 6,
+	Armor = 10, BasicDamage = 4, PiercingDamage = 12, Missile = "missile-arrow",
+	MaxAttackRange = 6,
+	Priority = 40, AnnoyComputerFactor = 50,
+	Points = 200,
+	Corpse = "unit-destroyed-2x2-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	CanAttack = true,
+	CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
+	Building = true, VisibleUnderFog = true,
+	DetectCloak = true,
+	Elevated = true,
+	Sounds = {
+	"selected", "orc-guard-tower-selected",
+	"help", "basic orc voices help 2",
+	"dead", "building destroyed"} } )
+
+	DefineUnitType("unit-mythic-axethrower", { Name = _("Dark Axethrower"),
+	Image = {"file", "orc/units/troll_axethrower.png", "size", {72, 72}},
+	Animations = "animations-axethrower", Icon = "icon-axethrower",
+	Costs = {"time", 70, "gold", 500, "wood", 50},
+	Speed = 10,
+	HitPoints = 40,
+	DrawLevel = 40,
+	TileSize = {1, 1}, BoxSize = {36, 36},
+	SightRange = 5, ComputerReactionRange = 7, PersonReactionRange = 5,
+	BasicDamage = 3, PiercingDamage = 6, Missile = "missile-axe",
+	MaxAttackRange = 4,
+	Priority = 55,
+	Points = 60,
+	Demand = 1,
+	Corpse = "unit-orc-dead-body",
+	Type = "land",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
+	LandUnit = true,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+	"selected", "axethrower-selected",
+	"acknowledge", "axethrower-acknowledge",
+	"ready", "axethrower-ready",
+	"help", "basic orc voices help 1",
+	"dead", "basic orc voices dead"} } )
+
+	DefineUnitType("unit-mythic-grunt", { Name = _("Black Knight"),
+	Image = {"file", "orc/units/grunt.png", "size", {72, 72}},
+	Animations = "animations-grunt", Icon = "icon-grunt",
+	Costs = {"time", 60, "gold", 600},
+	Speed = 10,
+	HitPoints = 60,
+	DrawLevel = 40,
+	TileSize = {1, 1}, BoxSize = {31, 31},
+	SightRange = 4, ComputerReactionRange = 6, PersonReactionRange = 4,
+	Armor = 2, BasicDamage = 6, PiercingDamage = 3, Missile = "missile-none",
+	MaxAttackRange = 1,
+	Priority = 60,
+	Points = 50,
+	Demand = 1,
+	Corpse = "unit-orc-dead-body",
+	Type = "land",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true,
+	LandUnit = true,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+	"selected", "grunt-selected",
+	"acknowledge", "grunt-acknowledge",
+	"ready", "grunt-ready",
+	"help", "basic orc voices help 1",
+	"dead", "basic orc voices dead"} } )
+
+	DefineAnimations("animations-dwarf", {
+	Still = UnitStill,
+	Move = {"unbreakable begin", "frame 0", "move 3", "wait 3", "frame 5", "move 3", "wait 2",
+	"frame 5", "move 3", "wait 3", "frame 10", "move 2", "wait 2",
+	"frame 10", "move 3", "wait 2", "frame 0", "move 2", "wait 2",
+	"frame 0", "move 3", "wait 3", "frame 15", "move 3", "wait 2",
+	"frame 15", "move 3", "wait 3", "frame 20", "move 2", "wait 2",
+	"frame 20", "move 3", "wait 2", "frame 0", "move 2", "unbreakable end", "wait 1",},
+	Attack = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
+	"frame 40", "attack", "sound peasant-attack", "wait 5", "frame 45", "wait 3",
+	"frame 25", "wait 7", "frame 25", "unbreakable end", "wait 1",},
+	Harvest_wood = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
+	"frame 40", "sound tree-chopping", "wait 5", "frame 45", "wait 3",
+	"frame 25", "wait 7", "frame 25", "unbreakable end", "wait 1",},
+	Repair = {"unbreakable begin", "frame 25", "wait 3", "frame 30", "wait 3", "frame 35", "wait 3",
+	"frame 40", "sound peasant-attack", "wait 5", "frame 45", "wait 3",
+	"frame 25", "wait 7", "frame 25", "unbreakable end", "wait 1",},
+	Death = {"unbreakable begin", "frame 50", "wait 3", "frame 55", "wait 3", "frame 60", "wait 100",
+	"frame 60", "unbreakable end", "wait 1",},
+	})
+	
+	UnitTypeFiles["unit-mythic-barracks"] = {summer = "tilesets/summer/orc/buildings/barracks.png",
+	winter = "tilesets/winter/orc/buildings/barracks.png",
+	wasteland = "tilesets/summer/orc/buildings/barracks.png",
+	swamp = "tilesets/swamp/orc/buildings/barracks.png"}
+
+	DefineUnitType("unit-mythic-barracks", { Name = _("Barracks"),
+	Image = {"size", {96, 96}},
+	Animations = "animations-building", Icon = "icon-orc-barracks",
+	Costs = {"time", 200, "gold", 700, "wood", 450},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 800,
+	DrawLevel = 20,
+	TileSize = {3, 3}, BoxSize = {95, 95},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 30, AnnoyComputerFactor = 35,
+	Points = 160,
+	Corpse = "unit-destroyed-3x3-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	Sounds = {
+	"selected", "orc-barracks-selected",
+	"help", "basic orc voices help 2",
+	"dead", "building destroyed"} } )
+
+	-- Order Units
+
+	UnitTypeFiles["unit-order-church"] = {summer = "tilesets/summer/human/buildings/church.png",
+	winter = "tilesets/winter/human/buildings/church.png",
+	wasteland = "tilesets/summer/human/buildings/church.png",
+	swamp = "tilesets/swamp/human/buildings/church.png"}
+
+	DefineUnitType("unit-order-church", { Name = _("Church"),
+	Image = {"size", {96, 96}},
+	Animations = "animations-building", Icon = "icon-church",
+	Costs = {"time", 175, "gold", 900, "wood", 500},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 1500,
+	DrawLevel = 20,
+	TileSize = {3, 3}, BoxSize = {95, 95},
+	SightRange = 6,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 40, AnnoyComputerFactor = 50,
+	Points = 1500,
+	Supply = 1,
+	Corpse = "unit-destroyed-3x3-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	CanStore = {"gold", "wood"},
+	BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+					},
+	Sounds = {
+	"selected", "church-selected",
+	--    "acknowledge", "church-acknowledge",
+	--    "ready", "church-ready",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+
+	DefineUnitType("unit-order-paladin", { Name = _("Paladin"),
+	Image = {"file", "human/units/footman.png", "size", {72, 72}},
+	Animations = "animations-footman", Icon = "icon-footman",
+	Costs = {"time", 90, "gold", 800, "wood", 100},
+	Level = 1,
+	Speed = 13,
+	HitPoints = 90,
+	DrawLevel = 40,
+	Mana = {Enable = true},
+	TileSize = {1, 1}, BoxSize = {31, 31},
+	SightRange = 4, ComputerReactionRange = 6, PersonReactionRange = 4,
+	Armor = 5, BasicDamage = 8, PiercingDamage = 4, Missile = "missile-none",
+	MaxAttackRange = 1,
+	Priority = 65,
+	Points = 110,
+	Demand = 1,
+	Corpse = "unit-human-dead-body",
+	Type = "land",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true,
+	CanCastSpell = {"spell-holy-vision", "spell-aid", "spell-exorcism"},
+	LandUnit = true,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+	"selected", "footman-selected",
+	"acknowledge", "footman-acknowledge",
+	"ready", "footman-ready",
+	"help", "basic human voices help 1",
+	"dead", "basic human voices dead"} } )
+
+	-- Freeman Units
+
+	DefineUnitType("unit-yeoman", { Name = _("Yeoman"),
+	Image = {"file", "human/units/elven_archer.png", "size", {72, 72}},
+	Animations = "animations-ranger", Icon = "icon-ranger",
+	Costs = {"time", 70, "gold", 500, "wood", 50},
+	Level = 1,
+	Speed = 10,
+	HitPoints = 50,
+	RandomMovementProbability = 1,
+	DrawLevel = 40,
+	TileSize = {1, 1}, BoxSize = {33, 33},
+	SightRange = 6, ComputerReactionRange = 9, PersonReactionRange = 6,
+	BasicDamage = 3, PiercingDamage = 6, Missile = "missile-arrow",
+	MaxAttackRange = 6,
+	Priority = 57,
+	Points = 100,
+	Demand = 1,
+	Corpse = "unit-human-dead-body",
+	Type = "land",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
+	LandUnit = true,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+	"selected", "ranger-selected",
+	"acknowledge", "ranger-acknowledge",
+	"ready", "ranger-ready",
+	"help", "basic human voices help 1",
+	"dead", "basic human voices dead"} } )
+	
+	
+	-- Feral Units
+
+
+
+	-- Special Gamemode Buildings
+
+	UnitTypeFiles["unit-caanoo-townhall"] = {summer = "tilesets/summer/human/buildings/town_hall.png",
+	winter = "tilesets/winter/human/buildings/town_hall.png",
+	wasteland = "tilesets/summer/human/buildings/town_hall.png",
+	swamp = "tilesets/swamp/human/buildings/town_hall.png"}
+
+	DefineUnitType("unit-caanoo-townhall", { Name = _("Town Hall"),
+	Image = {"size", {128, 128}},
+	Animations = "animations-building", Icon = "icon-town-hall",
+	Costs = {"time", 255, "gold", 1200, "wood", 800},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 1200,
+	DrawLevel = 20,
+	TileSize = {4, 4}, BoxSize = {126, 126},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 35, AnnoyComputerFactor = 45,
+	Points = 200,
+	Supply = 1,
+	Corpse = "unit-destroyed-4x4-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	BuildingRules = { { "ontop", { Type = "unit-buildpoint-townhall", ReplaceOnDie = false, ReplaceOnBuild = true} } },
+	CanStore = {"wood", "gold"},
+	Sounds = {
+		"selected", "town-hall-selected",
+		"help", "basic human voices help 2",
+		"dead", "building destroyed"} } )
+	
+	
+	-- Other Buildings
+
+	UnitTypeFiles["unit-void-gateway"] = {summer = "tilesets/summer/neutral/buildings/dark_portal.png",
+	winter = "tilesets/winter/neutral/buildings/dark_portal.png",
+	wasteland = "tilesets/wasteland/neutral/buildings/dark_portal.png",
+	swamp = "tilesets/swamp/neutral/buildings/dark_portal.png"}
+
+	DefineUnitType("unit-void-gateway", { Name = _("Void Gateway"),
+	Image = {"size", {128, 128}},
+	Animations = "animations-building", Icon = "icon-dark-portal",
+	NeutralMinimapColor = {255, 255, 0},
+	Costs = {"time", 150},
+	Construction = "construction-land2",
+	Speed = 0,
+	HitPoints = 5000,
+	DrawLevel = 40,
+	TileSize = {4, 4}, BoxSize = {127, 127},
+	SightRange = 4,
+	BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 0,
+	Corpse = "unit-destroyed-3x3-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	BuildingRules = { { "distance", { Distance = 3, DistanceType = ">", Type = "unit-town-hall"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-keep"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-castle"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-great-hall"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-stronghold"}},
+					{ "distance", { Distance = 3, DistanceType = ">", Type = "unit-fortress"}}
+					},
+	GivesResource = "gold", CanHarvest = true,
+	Sounds = {
+	--    "selected", "dark-portal-selected",
+	--    "acknowledge", "dark-portal-acknowledge",
+	--    "ready", "dark-portal-ready",
+	"help", "basic orc voices help 2",
+	"dead", "building destroyed"} } )
+	
+	UnitTypeFiles["unit-nomad"] = {summer = "orc/units/troll_axethrower.png",
+	winter = "orc/units/troll_axethrower.png",
+	wasteland = "orc/units/troll_axethrower.png",
+	swamp = "orc/units/troll_axethrower.png"}
+
+	DefineUnitType("unit-nomad", { Name = _("Nomad"),
+	Image = {"file", "size", "size", {72, 72}},
+	Animations = "animations-axethrower", Icon = "icon-axethrower",
+	Costs = {"time", 70, "gold", 500, "wood", 50},
+	Level = 1,
+	Speed = 10,
+	HitPoints = 50,
+	DrawLevel = 40,
+	RandomMovementProbability = 1,
+	TileSize = {1, 1}, BoxSize = {33, 33},
+	SightRange = 6, ComputerReactionRange = 9, PersonReactionRange = 6,
+	BasicDamage = 3, PiercingDamage = 6, Missile = "missile-axe",
+	MaxAttackRange = 6,
+	Priority = 57,
+	Points = 100,
+	Demand = 1,
+	Corpse = "unit-orc-dead-body",
+	Type = "land",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
+	LandUnit = true,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+	"selected", "axethrower-selected",
+	"acknowledge", "axethrower-acknowledge",
+	"ready", "axethrower-ready",
+	"help", "basic orc voices help 1",
+	"dead", "basic orc voices dead"} } )
+	
+
+	-- Foundations
+
+	DefineUnitType("unit-buildpoint-townhall", { Name = _("Townhall Foundations"),
+	Image = {"file", "neutral/buildings/circle_of_power.png", "size", {64, 64}},
+	Animations = "animations-building", Icon = "icon-circle-of-power",
+	NeutralMinimapColor = {255, 255, 0},
+	Speed = 0,
+	HitPoints = 0,
+	DrawLevel = 5,
+	TileSize = {4, 4}, BoxSize = {126, 126},
+	SightRange = 0,
+	BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 0,
+	Corpse = "unit-destroyed-2x2-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	Sounds = {
+	--    "selected", "circle-of-power-selected",
+	--    "acknowledge", "circle-of-power-acknowledge",
+	--   "ready", "circle-of-power-ready",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+	
+	DefineUnitType("unit-human-adventurer", { Name = _("Adventurer"),
+	-- The Adventurer will not be mounted to start with.
+	-- This will be an upgrade.
+	Image = {"file", "human/units/knight.png", "size", {72, 72}},
+	Animations = "animations-knight", Icon = "icon-knight",
+	Costs = {"time", 90, "gold", 800, "wood", 100},
+	Speed = 13,
+	HitPoints = 90,
+	Mana = {Enable = true},
+	CanCastSpell = {"spell-buildpoint-townhall"},
+	Mana = {Enable = true},
+	DrawLevel = 40,
+	TileSize = {1, 1}, BoxSize = {42, 42},
+	SightRange = 4, ComputerReactionRange = 6, PersonReactionRange = 4,
+	Armor = 4, BasicDamage = 8, PiercingDamage = 4, Missile = "missile-none",
+	MaxAttackRange = 1,
+	Priority = 63,
+	Points = 100,
+	Demand = 1,
+	Corpse = "unit-human-dead-body",
+	Type = "land",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true,
+	LandUnit = true,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+	"selected", "knight-selected",
+	"acknowledge", "knight-acknowledge",
+	"ready", "knight-ready",
+	"help", "basic human voices help 1",
+	"dead", "basic human voices dead"} } )
+
+	DefineUnitType("unit-caanoo-wiseskeleton", { Name = _("Wise Skeleton"),
+	Image = {"file", "orc/units/death_knight.png", "size", {72, 72}},
+	Animations = "animations-death-knight", Icon = "icon-evil-knight",
+	Costs = {"time", 120, "gold", 1200},
+	Speed = 8,
+	HitPoints = 60,
+	DrawLevel = 40,
+	Mana = {Enable = false},
+	TileSize = {1, 1}, BoxSize = {39, 39},
+	SightRange = 9, ComputerReactionRange = 11, PersonReactionRange = 9,
+	BasicDamage = 0, PiercingDamage = 9, Missile = "missile-touch-of-death",
+	MaxAttackRange = 3,
+	Priority = 70,
+	Points = 100,
+	Demand = 1,
+	Type = "land",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
+	CanCastSpell = {
+		"spell-unit-peon",
+		"spell-unit-grunt",
+		"spell-unit-axethrower",
+		"spell-unit-catapult",
+		"spell-unit-ogre",
+		"spell-unit-death-knight",
+		"spell-unit-ogre-mage",
+		"spell-unit-dragon",
+		"spell-unit-quick-blade",
+		"spell-unit-goblin-sappers",
+		"spell-unit-nomad",
+		"spell-unit-berserker",
+		"spell-unit-skeleton"},
+		-- Am I missing some heroes?
+	LandUnit = true,
+	Coward = true,
+	isundead = true,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+		"selected", "death-knight-selected",
+		"acknowledge", "death-knight-acknowledge",
+		"ready", "death-knight-ready",
+		"help", "basic orc voices help 1",
+		"dead", "basic orc voices dead"} } )
+		
+	DefineUnitType("unit-caanoo-wiseman", { Name = _("Wise Man"),
+	Image = {"file", "human/units/mage.png", "size", {72, 72}},
+	Animations = "animations-mage", Icon = "icon-mage",
+	Costs = {"time", 120, "gold", 1200},
+	Speed = 8,
+	HitPoints = 60,
+	DrawLevel = 40,
+	Mana = {Enable = false},
+	TileSize = {1, 1}, BoxSize = {33, 33},
+	SightRange = 9, ComputerReactionRange = 11, PersonReactionRange = 9,
+	BasicDamage = 0, PiercingDamage = 9, Missile = "missile-lightning",
+	MaxAttackRange = 2,
+	Priority = 70,
+	Points = 100,
+	Demand = 1,
+	Type = "land",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
+	CanCastSpell = {
+		"spell-unit-footman",
+		"spell-unit-archer",
+		"spell-unit-ballista",
+		"spell-unit-knight",
+		"spell-unit-female-hero",
+		"spell-unit-knight-rider",
+		"spell-unit-peasant",
+		"spell-unit-ranger",
+		"spell-unit-yeoman",
+		"spell-unit-gryphon-rider",
+		"spell-unit-fad-man",
+		"spell-unit-arthor-literios",
+		"spell-unit-sharp-axe",
+		"spell-unit-mage",
+		"spell-unit-paladin",
+		"spell-unit-attack-peasant",
+		"spell-unit-dwarves"},
+	LandUnit = true,
+	Coward = true,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+		"selected", "mage-selected",
+		"acknowledge", "mage-acknowledge",
+		"ready", "mage-ready",
+		"help", "basic human voices help 1",
+		"dead", "basic human voices dead"} } )
+
+	DefineUnitType("unit-caanoo-oathbreaker", {
+	Name = _("Oathbreaker"),
+	Image = {"file", "human/units/footman.png", "size", {72, 72}},
+	Animations = "animations-footman", Icon = "icon-footman",
+	Costs = {"time", 60, "gold", 600},
+	Speed = 10,
+	HitPoints = 60,
+	DrawLevel = 40,
+	TileSize = {1, 1}, BoxSize = {31, 31},
+	SightRange = 4, ComputerReactionRange = 6, PersonReactionRange = 4,
+	Armor = 2, BasicDamage = 6, PiercingDamage = 3, Missile = "missile-none",
+	MaxAttackRange = 1,
+	Priority = 60,
+	Points = 50,
+	Demand = 1,
+	CanCastSpell = {"spell-buildpoint-townhall"},
+	Mana = {Enable = true},
+	Corpse = "unit-human-dead-body",
+	Type = "land",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true,
+	LandUnit = true,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+		"selected", "footman-selected",
+		"acknowledge", "footman-acknowledge",
+		"ready", "footman-ready",
+		"help", "basic human voices help 1",
+		"dead", "basic human voices dead"} } )
+		
+	DefineUnitType("unit-caanoo-pioneer", { Name = _("Pioneer"),
+	Image = {"file", "human/units/peasant.png", "size", {72, 72}},
+	DrawLevel = 19,
+	Animations = "animations-peasant", Icon = "icon-peasant",
+	Costs = {"time", 45, "gold", 400},
+	Speed = 10,
+	HitPoints = 30,
+	DrawLevel = 40,
+	TileSize = {1, 1}, BoxSize = {31, 31},
+	SightRange = 4, ComputerReactionRange = 6, PersonReactionRange = 4,
+	BasicDamage = 3, PiercingDamage = 2, Missile = "missile-none",
+	MaxAttackRange = 1,
+	Priority = 50,
+	Points = 30,
+	Demand = 1,
+	Corpse = "unit-human-dead-body",
+	Type = "land",
+	RightMouseAction = "harvest",
+	CanAttack = true, RepairRange = 1,
+	CanTargetLand = true,
+	LandUnit = true,
+	Coward = true,
+	CanGatherResources = {
+		{"file-when-loaded", "human/units/peasant_with_gold.png",
+		"resource-id", "gold",
+		"resource-capacity", 100,
+		"wait-at-resource", 150,
+		"wait-at-depot", 150},
+		{"file-when-loaded", "human/units/peasant_with_wood.png",
+		"resource-id", "wood",
+		"resource-capacity", 100,
+		"resource-step", 2,
+		"wait-at-resource", 24,
+		"wait-at-depot", 150,
+		"terrain-harvester"}},
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+		"selected", "peasant-selected",
+		"acknowledge", "peasant-acknowledge",
+		"ready", "peasant-ready",
+		"help", "basic human voices help 1",
+		"dead", "basic human voices dead"} } )
+		
+	-- Buildings
+
+	UnitTypeFiles["unit-caanoo-townhall"] = {summer = "tilesets/summer/human/buildings/town_hall.png",
+	winter = "tilesets/winter/human/buildings/town_hall.png",
+	wasteland = "tilesets/summer/human/buildings/town_hall.png",
+	swamp = "tilesets/swamp/human/buildings/town_hall.png"}
+
+	DefineUnitType("unit-caanoo-townhall", { Name = _("Town Hall"),
+	Image = {"size", {128, 128}},
+	Animations = "animations-building", Icon = "icon-town-hall",
+	Costs = {"time", 255, "gold", 1200, "wood", 800},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 1200,
+	DrawLevel = 20,
+	TileSize = {4, 4}, BoxSize = {126, 126},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 35, AnnoyComputerFactor = 45,
+	Points = 200,
+	Supply = 1,
+	Corpse = "unit-destroyed-4x4-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	BuildingRules = { { "ontop", { Type = "unit-buildpoint-townhall", ReplaceOnDie = false, ReplaceOnBuild = true} } },
+	CanStore = {"wood", "gold"},
+	Sounds = {
+		"selected", "town-hall-selected",
+		"help", "basic human voices help 2",
+		"dead", "building destroyed"} } )
+
+	UnitTypeFiles["unit-caanoo-farm"] = {summer = "tilesets/summer/human/buildings/farm.png",
+	winter = "tilesets/winter/human/buildings/farm.png",
+	wasteland = "tilesets/wasteland/human/buildings/farm.png",
+	swamp = "tilesets/swamp/human/buildings/farm.png"}
+
+	DefineUnitType("unit-caanoo-farm", { Name = _("Farm"),
+	Image = {"size", {64, 64}},
+	Animations = "animations-building", Icon = "icon-farm",
+	Costs = {"time", 100, "gold", 500, "wood", 250},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 400,
+	DrawLevel = 20,
+	TileSize = {2, 2}, BoxSize = {63, 63},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 20, AnnoyComputerFactor = 45,
+	Points = 100,
+	Supply = 4,
+	Corpse = "unit-destroyed-2x2-place",
+	ExplodeWhenKilled = "missile-explosion",
+	BuildingRules = { { "distance", { Distance = 10, DistanceType = ">", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 30, DistanceType = "<", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 10, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+					},
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	Sounds = {
+	"selected", "farm-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+
+
+	UnitTypeFiles["unit-caanoo-barracks"] = {summer = "tilesets/summer/human/buildings/barracks.png",
+	winter = "tilesets/winter/human/buildings/barracks.png",
+	wasteland = "tilesets/summer/human/buildings/barracks.png",
+	swamp = "tilesets/swamp/human/buildings/barracks.png"}
+
+	DefineUnitType("unit-caanoo-barracks", { Name = _("Barracks"),
+	Image = {"size", {96, 96}},
+	Animations = "animations-building", Icon = "icon-human-barracks",
+	Costs = {"time", 200, "gold", 700, "wood", 450},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 800,
+	DrawLevel = 20,
+	TileSize = {3, 3}, BoxSize = {95, 95},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 30, AnnoyComputerFactor = 35,
+	Points = 160,
+	Corpse = "unit-destroyed-3x3-place",
+	ExplodeWhenKilled = "missile-explosion",
+	BuildingRules = { { "distance", { Distance = 1, DistanceType = ">", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 15, DistanceType = "<", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+					},
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	Sounds = {
+	"selected", "human-barracks-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+
+
+	UnitTypeFiles["unit-caanoo-church"] = {summer = "tilesets/summer/human/buildings/church.png",
+	winter = "tilesets/winter/human/buildings/church.png",
+	wasteland = "tilesets/summer/human/buildings/church.png",
+	swamp = "tilesets/swamp/human/buildings/church.png"}
+
+	DefineUnitType("unit-caanoo-church", { Name = _("Church"),
+	Image = {"size", {96, 96}},
+	Animations = "animations-building", Icon = "icon-church",
+	Costs = {"time", 175, "gold", 900, "wood", 500},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 700,
+	DrawLevel = 20,
+	TileSize = {3, 3}, BoxSize = {95, 95},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 15, AnnoyComputerFactor = 35,
+	Points = 240,
+	Corpse = "unit-destroyed-3x3-place",
+	ExplodeWhenKilled = "missile-explosion",
+	BuildingRules = { { "distance", { Distance = 5, DistanceType = ">", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 30, DistanceType = "<", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 5, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+					},
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	Sounds = {
+	"selected", "church-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+
+
+	UnitTypeFiles["unit-caanoo-watch-tower"] = {summer = "tilesets/summer/human/buildings/scout_tower.png",
+	winter = "tilesets/winter/human/buildings/scout_tower.png",
+	wasteland = "tilesets/summer/human/buildings/scout_tower.png",
+	swamp = "tilesets/swamp/human/buildings/scout_tower.png"}
+
+	DefineUnitType("unit-caanoo-watch-tower", { Name = _("Scout Tower"),
+	Image = {"size", {64, 64}},
+	Animations = "animations-building", Icon = "icon-human-watch-tower",
+	Costs = {"time", 60, "gold", 550, "wood", 200},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 100,
+	DrawLevel = 20,
+	TileSize = {2, 2}, BoxSize = {63, 63},
+	SightRange = 9,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 55, AnnoyComputerFactor = 50,
+	Points = 95,
+	Corpse = "unit-destroyed-2x2-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
+	BuildingRules = { { "distance", { Distance = 10, DistanceType = ">", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 40, DistanceType = "<", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+					},
+	Building = true, VisibleUnderFog = true,
+	DetectCloak = true,
+	Elevated = true,
+	Sounds = {
+	"selected", "human-watch-tower-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+
+
+	UnitTypeFiles["unit-caanoo-stables"] = {summer = "tilesets/summer/human/buildings/stables.png",
+	winter = "tilesets/winter/human/buildings/stables.png",
+	wasteland = "tilesets/summer/human/buildings/stables.png",
+	swamp = "tilesets/swamp/human/buildings/stables.png"}
+
+	DefineUnitType("unit-caanoo-stables", { Name = _("Stables"),
+	Image = {"size", {96, 96}},
+	Animations = "animations-building", Icon = "icon-stables",
+	Costs = {"time", 150, "gold", 1000, "wood", 300},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 500,
+	DrawLevel = 20,
+	TileSize = {3, 3}, BoxSize = {95, 95},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 15, AnnoyComputerFactor = 15,
+	BuildingRules = { { "distance", { Distance = 1, DistanceType = ">", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 15, DistanceType = "<", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+					},
+	Points = 210,
+	Corpse = "unit-destroyed-3x3-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	Sounds = {
+	"selected", "stables-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+
+
+	UnitTypeFiles["unit-caanoo-inventor"] = {summer = "tilesets/summer/human/buildings/gnomish_inventor.png",
+	winter = "tilesets/winter/human/buildings/gnomish_inventor.png",
+	wasteland = "tilesets/summer/human/buildings/gnomish_inventor.png",
+	swamp = "tilesets/swamp/human/buildings/gnomish_inventor.png"}
+
+	DefineUnitType("unit-caanoo-inventor", { Name = _("Inventor"),
+	Image = {"size", {96, 96}},
+	Animations = "animations-building", Icon = "icon-gnomish-inventor",
+	Costs = {"time", 150, "gold", 1000, "wood", 400},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 500,
+	DrawLevel = 20,
+	TileSize = {3, 3}, BoxSize = {95, 95},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 15, AnnoyComputerFactor = 20,
+	BuildingRules = { { "distance", { Distance = 1, DistanceType = ">", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 15, DistanceType = "<", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+					},
+	Points = 230,
+	Corpse = "unit-destroyed-3x3-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	Sounds = {
+	"selected", "gnomish-inventor-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+
+
+	UnitTypeFiles["unit-caanoo-gryphon-aviary"] = {summer = "tilesets/summer/human/buildings/gryphon_aviary.png",
+	winter = "tilesets/winter/human/buildings/gryphon_aviary.png",
+	wasteland = "tilesets/summer/human/buildings/gryphon_aviary.png",
+	swamp = "tilesets/swamp/human/buildings/gryphon_aviary.png"}
+
+	DefineUnitType("unit-caanoo-gryphon-aviary", { Name = _("Gryphon Aviary"),
+	Image = {"size", {96, 96}},
+	Animations = "animations-building", Icon = "icon-gryphon-aviary",
+	Costs = {"time", 150, "gold", 1000, "wood", 400},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 500,
+	DrawLevel = 20,
+	TileSize = {3, 3}, BoxSize = {95, 95},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 15, AnnoyComputerFactor = 20,
+	Points = 280,
+	Corpse = "unit-destroyed-3x3-place",
+	ExplodeWhenKilled = "missile-explosion",
+	BuildingRules = { { "distance", { Distance = 1, DistanceType = ">", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 15, DistanceType = "<", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 3, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+					},
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	Sounds = {
+	"selected", "gryphon-aviary-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+	
+	UnitTypeFiles["unit-caanoo-lumber-mill"] = {summer = "tilesets/summer/human/buildings/elven_lumber_mill.png",
+	winter = "tilesets/winter/human/buildings/elven_lumber_mill.png",
+	wasteland = "tilesets/wasteland/human/buildings/elven_lumber_mill.png",
+	swamp = "tilesets/swamp/human/buildings/elven_lumber_mill.png"}
+
+	DefineUnitType("unit-caanoo-lumber-mill", { Name = _("Lumber Mill"),
+	Image = {"size", {96, 96}},
+	Animations = "animations-building", Icon = "icon-elven-lumber-mill",
+	Costs = {"time", 150, "gold", 600, "wood", 450},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	ImproveProduction = {"wood", 25},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 600,
+	DrawLevel = 20,
+	TileSize = {3, 3}, BoxSize = {95, 95},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 25, AnnoyComputerFactor = 15,
+	Points = 150,
+	Corpse = "unit-destroyed-3x3-place",
+	BuildingRules = { { "distance", { Distance = 15, DistanceType = ">", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 40, DistanceType = "<", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 10, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+					},
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	CanStore = {"wood"},
+	Sounds = {
+	"selected", "elven-lumber-mill-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+	
+	UnitTypeFiles["unit-caanoo-mage-tower"] = {summer = "tilesets/summer/human/buildings/mage_tower.png",
+	winter = "tilesets/winter/human/buildings/mage_tower.png",
+	wasteland = "tilesets/summer/human/buildings/mage_tower.png",
+	swamp = "tilesets/swamp/human/buildings/mage_tower.png"}
+
+	DefineUnitType("unit-caanoo-mage-tower", { Name = _("Mage Tower"),
+	Image = {"size", {96, 96}},
+	Animations = "animations-building", Icon = "icon-mage-tower",
+	Costs = {"time", 125, "gold", 1000, "wood", 200},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 500,
+	DrawLevel = 20,
+	TileSize = {3, 3}, BoxSize = {95, 95},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 35, AnnoyComputerFactor = 20,
+	Points = 240,
+	BuildingRules = { { "distance", { Distance = 15, DistanceType = ">", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 40, DistanceType = "<", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 10, DistanceType = ">", Type = "unit-gold-mine"}
+					}
+					},
+	Corpse = "unit-destroyed-3x3-place",
+	ExplodeWhenKilled = "missile-explosion",
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	Elevated = true,
+	Sounds = {
+	"selected", "mage-tower-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+	
+	UnitTypeFiles["unit-caanoo-blacksmith"] = {summer = "tilesets/summer/human/buildings/blacksmith.png",
+	winter = "tilesets/winter/human/buildings/blacksmith.png",
+	wasteland = "tilesets/summer/human/buildings/blacksmith.png",
+	swamp = "tilesets/swamp/human/buildings/blacksmith.png"}
+
+	DefineUnitType("unit-caanoo-blacksmith", { Name = _("Blacksmith"),
+	Image = {"size",  {96, 96}},
+	Animations = "animations-building", Icon = "icon-human-blacksmith",
+	Costs = {"time", 200, "gold", 800, "wood", 450, "oil", 100},
+	RepairHp = 4,
+	RepairCosts = {"gold", 1, "wood", 1, "oil", 1},
+	Construction = "construction-land",
+	Speed = 0,
+	HitPoints = 775,
+	DrawLevel = 20,
+	TileSize = {3, 3}, BoxSize = {95, 95},
+	SightRange = 1,
+	Armor = 20, BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
+	Priority = 15, AnnoyComputerFactor = 20,
+	Points = 170,
+	Corpse = "unit-destroyed-3x3-place",
+	ExplodeWhenKilled = "missile-explosion",
+	BuildingRules = { { "distance", { Distance = 15, DistanceType = ">", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 40, DistanceType = "<", Type = "unit-caanoo-townhall"},
+						"distance", { Distance = 10, DistanceType = "<", Type = "unit-caanoo-barracks"}
+					}
+					},
+	Type = "land",
+	Building = true, VisibleUnderFog = true,
+	Sounds = {
+	"selected", "human-blacksmith-selected",
+	"help", "basic human voices help 2",
+	"dead", "building destroyed"} } )
+	
+	DefineUnitType("unit-ernie", { Name = _("Ernie Wrigglebone"),
+	Image = {"file", "neutral/units/skeleton.png", "size", {56, 56}},
+	Animations = "animations-skeleton", Icon = "icon-skeleton",
+	Speed = 8,
+	HitPoints = 9001,
+	DrawLevel = 40,
+	TileSize = {1, 1}, BoxSize = {31, 31},
+	SightRange = 3, ComputerReactionRange = 4, PersonReactionRange = 2,
+	BasicDamage = 30, PiercingDamage = 15, Missile = "missile-none",
+	MaxAttackRange = 1,
+	Priority = 100,
+	Demand = 1,
+	Type = "land",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true,
+	LandUnit = true,
+	isundead = true,
+	RandomMovementProbability = 50,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+	"selected", "skeleton-selected",
+	--    "acknowledge", "skeleton-acknowledge",
+	--    "ready", "skeleton-ready",
+	"help", "basic orc voices help 1",
+	"dead", "basic orc voices dead"} } )
+	
+	DefineUnitType("unit-evildragon", { Name = _("Evil Dragon"),
+	Image = {"file", "orc/units/dragon.png", "size", {88, 80}},
+	Shadow = ShadowDefinition(2),
+	Animations = "animations-dragon", Icon = "icon-dragon",
+	Costs = {"time", 250, "gold", 2500},
+	Speed = 30,
+	RandomMovementProbability = 25,
+	HitPoints = 9085,
+	DrawLevel = 60,
+	TileSize = {2, 2}, BoxSize = {71, 71},
+	SightRange = 6, ComputerReactionRange = 8, PersonReactionRange = 6,
+	Armor = 5, BasicDamage = 40, PiercingDamage = 60, Missile = "missile-dragon-breath",
+	MaxAttackRange = 6,
+	Priority = 200,
+	Points = 15000,
+	Demand = 1,
+	Type = "fly",
+	RightMouseAction = "attack",
+	CanAttack = true,
+	CanTargetLand = true, CanTargetSea = true, CanTargetAir = true,
+	AirUnit = true,
+	DetectCloak = true,
+	organic = true,
+	SelectableByRectangle = true,
+	Sounds = {
+	"selected", "dragon-selected",
+	"acknowledge", "dragon-acknowledge",
+	"ready", "dragon-ready",
+	"help", "basic orc voices help 1",
+	"dead", "explosion"} } )
+	
+	DefineAllow("unit-mythic-barracks", "AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-mythic-grunt", "AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-mythic-axethrower", "AAAAAAAAAAAAAAAA")
+	DefineAllow("unit-evildragon", "AAAAAAAAAAAAAAAA")
+
+end
+function DefineMotherLandUpgrades()
+	print("Defining Motherland upgrades.")
+	DefineModifier("upgrade-sword1",
+	{"Level", 1},
+	{"PiercingDamage", 2},
+	{"apply-to", "unit-caanoo-oathbreaker"}, {"apply-to", "unit-human-adventurer"}, {"apply-to", "unit-order-paladin"})
+
+	DefineModifier("upgrade-sword2",
+	{"Level", 1},
+	{"PiercingDamage", 2},
+	{"apply-to", "unit-caanoo-oathbreaker"}, {"apply-to", "unit-human-adventurer"}, {"apply-to", "unit-order-paladin"})
+
+	DefineModifier("upgrade-arrow1",
+	{"Level", 1},
+	{"PiercingDamage", 1},
+	{"apply-to", "unit-yeoman"})
+
+	DefineModifier("upgrade-arrow2",
+	{"Level", 1},
+	{"PiercingDamage", 1},
+	{"apply-to", "unit-yeoman"})
+
+	DefineModifier("upgrade-human-shield1",
+	{"Level", 1},
+	{"Armor", 2},
+	{"apply-to", "unit-caanoo-oathbreaker"}, {"apply-to", "unit-human-adventurer"}, {"apply-to", "unit-order-paladin"})
+
+	DefineModifier("upgrade-human-shield2",
+	{"Level", 1},
+	{"Armor", 2},
+	{"apply-to", "unit-caanoo-oathbreaker"}, {"apply-to", "unit-human-adventurer"}, {"apply-to", "unit-order-paladin"})
+
+	DefineModifier("upgrade-longbow",
+	{"Level", 1},
+	{"SightRange", 1},
+	{"AttackRange", 1},
+	{"apply-to", "unit-yeoman"})
+
+	DefineModifier("upgrade-ranger-scouting",
+	{"Level", 1},
+	{"SightRange", 3},
+	{"apply-to", "unit-yeoman"})
+
+	DefineModifier("upgrade-ranger-marksmanship",
+	{"Level", 1},
+	{"PiercingDamage", 3},
+	{"apply-to", "unit-yeoman"})
+
+	DefineModifier("upgrade-holy-vision",
+	{"Level", 1},
+	{"apply-to", "unit-order-paladin"})
+
+	DefineModifier("upgrade-healing",
+	{"Level", 1},
+	{"apply-to", "unit-order-paladin"})
+
+	DefineModifier("upgrade-exorcism",
+	{"Level", 1},
+	{"apply-to", "unit-order-paladin"})
+
+	DefineModifier("upgrade-throwing-axe1",
+	{"Level", 1},
+	{"PiercingDamage", 1},
+	{"apply-to", "unit-nomad"})
+
+	DefineModifier("upgrade-throwing-axe2",
+	{"Level", 1},
+	{"PiercingDamage", 1},
+	{"apply-to", "unit-nomad"})
+
+	DefineModifier("upgrade-light-axes",
+	{"Level", 1},
+	{"SightRange", 1},
+	{"AttackRange", 1},
+	{"apply-to", "unit-nomad"})
+
+	DefineModifier("upgrade-berserker-scouting",
+	{"Level", 1},
+	{"SightRange", 3},
+	{"apply-to", "unit-nomad"})
+
+	DefineModifier("upgrade-berserker-regeneration",
+	{"Level", 1},
+	{"regeneration-rate", 1},
+	{"apply-to", "unit-nomad"})
+	
+end
+
 OldRunSinglePlayerGameMenu = RunSinglePlayerGameMenu
 
 function CleanCustomGame_Lua()
@@ -225,6 +2401,18 @@ end
 
 function StartCustomGame_Lua()
 	RunSinglePlayerGameMenu = NewRunSinglePlayerGameMenu
+
+	-- if this game mode has never run before.
+	if not motherland_mode then
+		-- Load all the necessary stuff
+		motherland_mode = true
+		Load("./scripts/anim.lua")
+		--OverrideUnits()
+		DefineMotherLandSpells()
+		DefineMotherLandUnits()
+		DefineMotherLandButtons()
+		DefineMotherLandUpgrades()
+	end
 	
 	-- Selecting the default map.
 	mapname = "maps/ftm/(4)beethoven-day.smp"
