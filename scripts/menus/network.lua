@@ -1063,6 +1063,7 @@ function RunOnlineMenu()
    local AddUser = function(name)
       table.insert(userList, name)
       users:setList(userList)
+      menu:setDirty(true)
    end
 
    local ClearUsers = function()
@@ -1070,6 +1071,7 @@ function RunOnlineMenu()
          table.remove(userList, i)
       end
       users:setList(userList)
+      menu:setDirty(true)
    end
 
    local RemoveUser = function(name)
@@ -1079,6 +1081,7 @@ function RunOnlineMenu()
          end
       end
       users:setList(userList)
+      menu:setDirty(true)
    end
 
    local SetFriends = function(...)
@@ -1087,6 +1090,7 @@ function RunOnlineMenu()
          table.insert(friendsList, v.Name .. "|" .. v.Product .. "(" .. v.Status .. ")")
       end
       friends:setList(friendsList)
+      menu:setDirty(true)
    end
 
    local SetGames = function(...)
@@ -1097,6 +1101,7 @@ function RunOnlineMenu()
          table.insert(gamesObjectList, game)
       end
       games:setList(gamesList)
+      menu:setDirty(true)
    end
 
    local SetChannels = function(...)
@@ -1106,6 +1111,7 @@ function RunOnlineMenu()
       end
       channels:setList(channelList)
       channels:setSelected(selectedChannelIdx)
+      menu:setDirty(true)
    end
 
    local SetActiveChannel = function(name)
@@ -1130,6 +1136,7 @@ function RunOnlineMenu()
       end
       messages:setList(messageList)
       messages:scrollToBottom()
+      menu:setDirty(true)
    end
 
    local ShowInfo = function(errmsg)
