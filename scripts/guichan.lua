@@ -27,6 +27,12 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
+if not CanAccessFile("scripts/wc2-config.lua") then
+  -- need to extract first, skip rest
+  RunExtraction()
+  return
+end
+
 SetDefaultRaceView()
 SetGrabMouse(wc2.preferences.GrabMouse)
 
@@ -960,7 +966,7 @@ function SetDefaultPlayerNames()
 end
 
 mapname = "maps/skirmish/singleplayer/(2)blick-nach-oben.smp.gz"
-local buttonStatut = 0 -- 0:not initialised, 1: Ok, 2: Cancel
+local buttonStatut = 0 -- 0:not initialised, 1: ok, 2: Cancel
 mapinfo = {
   playertypes = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
   playerais = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
