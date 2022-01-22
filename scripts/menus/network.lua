@@ -353,9 +353,15 @@ function RunJoiningGameMenu(optRace, optReady, optExtraLabel, optStopDirect)
   menu:add(sb, 15, 38)
   sb:setBackgroundColor(dark)
 
+  local startedRcvMap = false
+
   local function checkconnection()
     NetworkProcessClientRequest()
-    percent = percent + 100 / (24 * GetGameSpeed()) -- 24 seconds * fps
+    if startedRcvMap then
+      percent = percent + 100 / (120 * GetGameSpeed()) -- 48 seconds * fps
+    else
+      percent = percent + 100 / (24 * GetGameSpeed()) -- 24 seconds * fps
+    end
     sb:setPercent(percent)
     local state = GetNetworkState()
     -- FIXME: do not use numbers
@@ -390,8 +396,11 @@ function RunJoiningGameMenu(optRace, optReady, optExtraLabel, optStopDirect)
       ErrorMenu(_("Incompatible lua files"))
       menu:stop(1)
     elseif (state == 18) then -- ccs_needmap
-      percent = 0
-      sb:setCaption(_("Getting map..."))
+      if not startedRcvMap then
+        percent = 0
+        startedRcvMap = true
+      end
+      sb:setCaption("Get " .. NetworkMapFragmentName)
     end
   end
   local listener = LuaActionListener(checkconnection)
