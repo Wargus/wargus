@@ -3142,6 +3142,7 @@ int main(int argc, char** argv)
 							unsigned char *str;
 							str = ConvertString(buf + Todo[u].Arg3, sz - Todo[u].Arg3);
 							f.write((char*)str, strlen((char*)str));
+							f.write("\0", 1);
 							free(str);
 							delete[] buf;
 						}
