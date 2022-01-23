@@ -353,9 +353,15 @@ function RunJoiningGameMenu(optRace, optReady, optExtraLabel, optStopDirect)
   menu:add(sb, 15, 38)
   sb:setBackgroundColor(dark)
 
+  local startedRcvMap = false
+
   local function checkconnection()
     NetworkProcessClientRequest()
-    percent = percent + 100 / (24 * GetGameSpeed()) -- 24 seconds * fps
+    if startedRcvMap then
+      percent = percent + 100 / (120 * GetGameSpeed()) -- 48 seconds * fps
+    else
+      percent = percent + 100 / (24 * GetGameSpeed()) -- 24 seconds * fps
+    end
     sb:setPercent(percent)
     local state = GetNetworkState()
     -- FIXME: do not use numbers
@@ -363,9 +369,9 @@ function RunJoiningGameMenu(optRace, optReady, optExtraLabel, optStopDirect)
       -- got ICMMap => load map
       RunJoiningMapMenu(optRace, optReady)
       if (optExtraLabel ~= nil) then
-	 menu:stop(1) -- joining through metaserver menu
+	      menu:stop(1) -- joining through metaserver menu
       else
-	 menu:stop(0) -- joining through local server menu
+	      menu:stop(0) -- joining through local server menu
       end
     elseif (state == 4) then -- ccs_badmap
       ErrorMenu(_("Map not available"))
@@ -389,6 +395,12 @@ function RunJoiningGameMenu(optRace, optReady, optExtraLabel, optStopDirect)
     elseif (state == 17) then -- ccs_incompatibleluafiles
       ErrorMenu(_("Incompatible lua files"))
       menu:stop(1)
+    elseif (state == 18) then -- ccs_needmap
+      if not startedRcvMap then
+        percent = 0
+        startedRcvMap = true
+      end
+      sb:setCaption("Get " .. NetworkMapFragmentName)
     end
   end
   local listener = LuaActionListener(checkconnection)
@@ -816,6 +828,7 @@ function RunMultiPlayerGameMenu(s)
 
   menu:writeText(_("Password :"), 208 + offx, 248 + offy + 28)
   local pass = menu:addTextInputField("", offx + 298, 244 + offy + 28)
+  pass:setPassword(true);
 
   local loginBtn = menu:addHalfButton(_("Go ~!Online"), "o", 208 + offx, 298 + (36 * 0) + offy,
     function()
@@ -1059,6 +1072,7 @@ function RunOnlineMenu()
    local AddUser = function(name)
       table.insert(userList, name)
       users:setList(userList)
+      menu:setDirty(true)
    end
 
    local ClearUsers = function()
@@ -1066,6 +1080,7 @@ function RunOnlineMenu()
          table.remove(userList, i)
       end
       users:setList(userList)
+      menu:setDirty(true)
    end
 
    local RemoveUser = function(name)
@@ -1075,6 +1090,7 @@ function RunOnlineMenu()
          end
       end
       users:setList(userList)
+      menu:setDirty(true)
    end
 
    local SetFriends = function(...)
@@ -1083,6 +1099,7 @@ function RunOnlineMenu()
          table.insert(friendsList, v.Name .. "|" .. v.Product .. "(" .. v.Status .. ")")
       end
       friends:setList(friendsList)
+      menu:setDirty(true)
    end
 
    local SetGames = function(...)
@@ -1093,6 +1110,7 @@ function RunOnlineMenu()
          table.insert(gamesObjectList, game)
       end
       games:setList(gamesList)
+      menu:setDirty(true)
    end
 
    local SetChannels = function(...)
@@ -1102,6 +1120,7 @@ function RunOnlineMenu()
       end
       channels:setList(channelList)
       channels:setSelected(selectedChannelIdx)
+      menu:setDirty(true)
    end
 
    local SetActiveChannel = function(name)
@@ -1126,6 +1145,7 @@ function RunOnlineMenu()
       end
       messages:setList(messageList)
       messages:scrollToBottom()
+      menu:setDirty(true)
    end
 
    local ShowInfo = function(errmsg)
