@@ -57,10 +57,11 @@ function HandleCheats(str)
     AddMessage("!!! :)")
 
   elseif (str == "on screen") then
-    RevealMap()
+    SetFogOfWar(false)    
+    RevealMap("explored")
 
   elseif (str == "showpath") then
-    RevealMap()
+    RevealMap("known")
 
   elseif (str == "fow on") then
     SetFogOfWar(true)

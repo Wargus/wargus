@@ -196,13 +196,14 @@ local keystrokes = {
    {"backspace", "remove unit under cursor"},
    {"0", "unit under cursor to last player (neutral)"},
    {"1-9", "unit under cursor to player 1-9"},
+   {"Alt+0-6", "unit under cursor to player 10-16"},
    {"F5", "Map properties"},
    {"F6", "Player properties"},
    {"F11", "Save map"},
    {"F12", "Load map"},
    {"Right mouse", "Tile mode: Deselect current tile"},
    {"Right mouse", "Unit mode: Deselect current unit"},
-   {"Right mouse", "Select mode: Edit unit under cursor"},
+   {"Right mouse", "Select mode: Edit selection"},
  }
  
  function RunEditorHelpMenu()

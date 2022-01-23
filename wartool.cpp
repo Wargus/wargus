@@ -2705,6 +2705,11 @@ int main(int argc, char** argv)
 	char filename[8192] = {'\0'};
 	FILE* f;
 
+	if(argc == 1){
+		Usage(argv[0]);
+		return 1;
+	}
+
 	while (argc >= 2) {
 		if (!strcmp(argv[a], "-v")) {
 			video = 1;

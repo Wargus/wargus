@@ -323,40 +323,22 @@ LText = class(LLabel,
 
 LLargeText = class(LLabel)
 
-LButton = class(Element,
-                function(instance, caption, hotkey, callback)
-                   Element.init(instance)
-                   instance.b = ButtonWidget(caption)
-                   instance.b:setHotKey(hotkey)
-                   if callback then
-                      instance.b:setActionCallback(callback)
-                   end
-                   instance.b:setBackgroundColor(dark)
-                   instance.b:setBaseColor(dark)
-                end
-)
-
-function LButton:getWidth()
-   return 127
-end
-
-function LButton:getHeight()
-   return 28
-end
-
-function LButton:addWidgetTo(container)
-   self.b:setSize(self.width, self.height)
-   self:setId(container, self.b)
-   container:add(self.b, self.x, self.y)
-end
-
 LImageButton = class(Element,
                      function(instance, caption, hotkey, callback)
                         Element.init(instance)
                         instance.b = ImageButton(caption)
                         instance.b:setHotKey(hotkey)
+                        instance.b:setBorderSize(0)
                         if callback then
-                           instance.b:setActionCallback(callback)
+                           instance.b:setMouseCallback(function(evtname)
+                                 if evtname == "mousePress" then
+                                    PlaySound("click")
+                                 end
+                           end)
+                           instance.b:setActionCallback(function()
+                                 PlaySound("click")
+                                 callback()
+                           end)
                         end
                      end
 )
@@ -375,14 +357,43 @@ function LImageButton:addWidgetTo(container)
    container:add(self.b, self.x, self.y)
 end
 
+LButton = class(LImageButton,
+                function(instance, caption, hotkey, callback)
+                   LImageButton.init(instance, caption, hotkey, callback)
+                   if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+                      instance.b:setNormalImage(g_hbln)
+                      instance.b:setPressedImage(g_hblp)
+                      instance.b:setDisabledImage(g_hblg)
+                   else
+                      instance.b:setNormalImage(g_obln)
+                      instance.b:setPressedImage(g_oblp)
+                      instance.b:setDisabledImage(g_oblg)
+                   end
+                end
+)
+
+function LButton:getWidth()
+   return 224
+end
+
+function LButton:getHeight()
+   return 28
+end
+
+function LButton:addWidgetTo(container)
+   self.b:setSize(self.width, self.height)
+   self:setId(container, self.b)
+   container:add(self.b, self.x, self.y)
+end
+
 LHalfButton = class(LButton)
 
 function LHalfButton:getWidth()
-   return 60
+   return 106
 end
 
 function LHalfButton:getHeight()
-   return 14
+   return 28
 end
 
 LSlider = class(Element,
@@ -536,4 +547,35 @@ function LDropDown:addWidgetTo(container)
    self.dd:setSize(self.width, self.height)
    self:setId(container, self.dd)
    container:add(self.dd, self.x, self.y)
+end
+
+LTextBox = class(Element,
+                 function(instance, text)
+                    Element.init(instance)
+                    instance.b = TextBox(text)
+                    instance.b:setFont(Fonts["game"])
+                    instance.b:setBaseColor(clear)
+                    instance.b:setForegroundColor(clear)
+                    instance.b:setBackgroundColor(dark)
+                    instance.scroll = ScrollArea()
+                    instance.scroll:setContent(instance.b)
+                    instance.scroll:setBaseColor(clear)
+                    instance.scroll:setForegroundColor(clear)
+                    instance.scroll:setBackgroundColor(dark)
+                 end
+)
+
+function LTextBox:getWidth()
+   return nil
+end
+
+function LTextBox:getHeight()
+   return nil
+end
+
+function LTextBox:addWidgetTo(container)
+   self.scroll:setSize(self.width, self.height)
+   self.b:setSize(self.width, self.height)
+   self:setId(container, self.b)
+   container:add(self.scroll, self.x, self.y)
 end

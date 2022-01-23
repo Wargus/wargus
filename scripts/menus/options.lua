@@ -377,8 +377,8 @@ function RunPreferencesMenu()
       end
    end
 
-   local fogOfWarTypes    = {"legacy", "enhanced"}
-   local fogOfWarTypeList = {_("legacy"), _("enhanced")}
+   local fogOfWarTypes    = {"tiled", "enhanced", "fast"}
+   local fogOfWarTypeList = {_("tiled"), _("enhanced"), _("fast")}
    menu:addLabel(_("Fog of War type:"),  225, 28 + 19 * 6 + 5, Fonts["game"], false)
    local fogOfWarType = menu:addDropDown(fogOfWarTypeList, 225, 28 + 19 * 7 + 5, function(dd) end)
    fogOfWarType:setSelected(GetFogOfWarType())
@@ -454,8 +454,8 @@ function RunDebugMenu()
    -- Declared here because could be upadated by the fog of war type change
    local fieldOfViewType
 
-   local fogOfWarTypes    = {"legacy", "enhanced"}
-   local fogOfWarTypeList = {_("legacy"), _("enhanced")}
+   local fogOfWarTypes    = {"tiled", "enhanced", "fast"}
+   local fogOfWarTypeList = {_("tiled"), _("enhanced"), _("fast")}
    menu:addLabel(_("Fog of War type:"), 10, 28 + 19 * 3, Fonts["game"], false)
    local fogOfWarType = menu:addDropDown(fogOfWarTypeList, 10, 28 + 19 * 4, function(dd) end)
    fogOfWarType:setSelected(GetFogOfWarType())

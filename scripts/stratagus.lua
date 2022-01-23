@@ -62,7 +62,7 @@ wargus.Name = _("Wargus")
 wargus.Homepage = "https://wargus.github.io"
 wargus.Copyright = _("(c) 1998-2021 by The Stratagus Project.")
 
-wargus.Version = "3.1.3"
+wargus.Version = "3.2.1"
 wargus.Licence = "GPL v2+"
 
 
@@ -186,6 +186,11 @@ Load("scripts/fov.lua")
 -- Actual only for "enhanced" FOW type
 SetFogOfWarBlur(2.0, 1.5, 3) -- radiuses for simple and bilinear FOW postprocessing, number of blur iterations
 
+-- Set opacity levels of fog for explored, "known"(when map revealed) and hidden tiles
+SetFogOfWarOpacityLevels(0x7F, 0xBE, 0xFE)
+
+-- Set opacity levels of fog for explored, "known"(when map revealed) and hidden tiles in the minimap
+SetMMFogOfWarOpacityLevels(0x55, 0xAA, 0xFF) -- default values
 
 -------------------------------------------------------------------------------
 
@@ -201,9 +206,6 @@ RightButtonMoves()
 
 --  Set the name of the missile to use when clicking
 SetClickMissile("missile-green-cross")
-
---  Uncomment next, to reveal the complete map.
---RevealMap()
 
 SetFogOfWarGraphics("tilesets/summer/terrain/summer.png")
 
@@ -388,7 +390,6 @@ local defaultPreferences = {
 	EnableMouseScrolling = true,    --  Enable/disable mouse scrolling.
 	EnhancedEffects = true,
 	FogOfWar = true,
-	FogOfWarOpacity = 128,
 	GameSpeed = 30,
 	GameTranslation = "",
 	GrabMouse = false,              --  Enable/disable grabbing the mouse.
@@ -427,7 +428,7 @@ local defaultPreferences = {
 	OnlineServer = "network.stratagus.de",
 	OnlinePort = 6112,
 	SimplifiedAutoTargeting = true,
-  FogOfWarType = "enhanced",  -- "enhanced" or "legacy". Legacy type of FOW doesn't work with shadow casting FOV.
+  FogOfWarType = "enhanced",  -- "enhanced", "tiled", "fast". Tiled and fast types of FOW don't work with shadow casting FOV.
   FogOfWarBilinear = false,     -- Enable/Disable bilinear filtration for fog of war
   MapGrid = false
 }
@@ -475,7 +476,6 @@ SetEffectsEnabled(wc2.preferences.EffectsEnabled)
 SetEffectsVolume(wc2.preferences.EffectsVolume)
 SetFancyBuildings(wc2.preferences.UseFancyBuildings)
 SetFogOfWar(wc2.preferences.FogOfWar)
-SetFogOfWarOpacity(wc2.preferences.FogOfWarOpacity)
 SetGameSpeed(wc2.preferences.GameSpeed)
 SetGroupKeys(wc2.preferences.GroupKeys)
 SetHoldClickDelay(wc2.preferences.HoldClickDelayInMs)
