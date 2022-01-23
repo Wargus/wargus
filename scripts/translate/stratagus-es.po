@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: stratagus-es\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Nahuel Medina <pointify@e.email>\n"
+"Last-Translator: Magaly Medina <pointify@e.email>\n"
 "POT-Creation-Date: 2021-07-22 22:06+0200\n"
 "PO-Revision-Date: 2021-07-22 22:06+0200\n"
 "Language-Team: SPANISH\n"
@@ -37,11 +37,11 @@ msgstr "Incapaz de crear edificio %s"
 #: action/action_build.cpp:356
 #, c-format
 msgid "%s has rebuilt a base, and will no longer be revealed!"
-msgstr ""
+msgstr "¡%s ha hecho una nueva base, y ya no será revelado/a!"
 
 #: action/action_build.cpp:358
 msgid "You have rebuilt a base, and will no longer be revealed!"
-msgstr ""
+msgstr "¡Has hecho una nueva base, y ya no serás revelado/a!"
 
 #: action/action_build.cpp:472
 #, c-format
@@ -162,7 +162,7 @@ msgstr "Edición espejo deshabilitada"
 
 #: editor/editloop.cpp:1382 editor/editloop.cpp:1391
 msgid "Unit owner modified"
-msgstr "Dueño de unidad modificado/a"
+msgstr "Dueño/a de unidad modificado/a"
 
 #: editor/editloop.cpp:1463
 #, c-format
@@ -236,7 +236,7 @@ msgstr "Construcción %s"
 
 #: stratagus/mainloop.cpp:312
 msgid "Autosave"
-msgstr ""
+msgstr "Autoguardado"
 
 #: stratagus/player.cpp:1031
 msgid "Building Limit Reached"
@@ -267,11 +267,11 @@ msgstr "No hay %s suficiente...%s más %s."
 #: stratagus/player.cpp:1216
 #, c-format
 msgid "%s has not rebuilt their base and is being revealed!"
-msgstr ""
+msgstr "¡%s no ha hecho una nueva base y ha sido revelado/a!"
 
 #: stratagus/player.cpp:1218
 msgid "You have not rebuilt your base and have been revealed!"
-msgstr ""
+msgstr "¡No has hecho una nueva base y has sido revelado/a!"
 
 #: stratagus/script.cpp:2455
 #, c-format
@@ -406,11 +406,11 @@ msgstr "Requisitos:\n"
 #: unit/unit.cpp:1402
 #, c-format
 msgid "%s has lost their last base, and will be revealed in thirty seconds!"
-msgstr ""
+msgstr "¡%s perdió su última base, y será revelado/a en treinta segundos!"
 
 #: unit/unit.cpp:1404
 msgid "You have lost your last base, and will be revealed in thirty seconds!"
-msgstr ""
+msgstr "¡Has perdido tu última base, y serás revelado/a en treinta segundos!"
 
 #: unit/unit.cpp:2815
 #, c-format
