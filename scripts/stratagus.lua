@@ -56,6 +56,11 @@ end
 
 wargus = {}
 
+if not CanAccessFile("scripts/wc2-config.lua") then
+  Load("scripts/extraction.lua")
+  return
+end
+
 Load("scripts/wc2-config.lua")
 
 wargus.Name = _("Wargus")
