@@ -48,6 +48,7 @@
 #define DEBUG _DEBUG
 #include <direct.h>
 #include <io.h>
+#define W_OK 2
 #else
 #define __USE_XOPEN_EXTENDED 1 // to get strdup
 #include <unistd.h>
@@ -2002,9 +2003,15 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 	int ret;
 	int cmdlen;
 	char outputfile[8192] = {'\0'};
+	char backupfile[8192 + 4] = {'\0'};
 
 	snprintf(buf,4095,"%s/%s.smk", Dir, file);
+	sprintf(outputfile, "%s/%s.ogv", Dir, file);
+	sprintf(backupfile, "%s/%s.ogv.bak", Dir, file);
+
 	CheckPath(buf);
+	CheckPath(outputfile);
+
 	if (justconvert == false) {
 		vidp = ExtractEntry(ArchiveOffsets[video], &l);
 
@@ -2035,29 +2042,40 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 	}
 
 	if (CDType & CD_BNE) {
-		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640:0,setsar=1:1 \"%s/%s.ogv\"", Dir, file, Dir, file);
+		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640:0,setsar=1:1 \"%s\"", Dir, file, outputfile);
 	} else {
-		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir, file, Dir, file);
+		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"%s\"", Dir, file, outputfile);
 	}
 	printf("%s\n", cmd);
+
+	bool outputFileExists = false;
+	if (!access(outputfile, W_OK)) {
+		outputFileExists = true;
+		rename(outputfile, backupfile);
+	}
+
 	ret = system(cmd);
 
 	free(cmd);
-	remove(buf);
 
 	if (ret != 0) {
-		sprintf(outputfile, "%s/%s.ogv", Dir, file);
 #ifdef WIN32
 		_unlink(outputfile);
 #else
 		unlink(outputfile);
 #endif
-		printf("Can't convert video %s to ogv format. Is ffmpeg installed in PATH?\n", file);
-		fflush(stdout);
-		return ret;
+		if (outputFileExists) {
+			rename(backupfile, outputfile);
+		} else {
+			printf("Can't convert video %s to ogv format. Is ffmpeg installed in PATH?\n", file);
+			fflush(stdout);
+		}
+	} else if (outputFileExists) {
+		remove(backupfile);
 	}
 
-	return 0;
+	remove(buf);
+	return ret;
 }
 
 //----------------------------------------------------------------------------
@@ -2065,22 +2083,100 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 //----------------------------------------------------------------------------
 
 static const char *CP1252_TABLE[] = {
-	"\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07", "\x08", "\x09", "\x0a", "\x0b", "\x0c", "\x0d", "\x0e", "\x0f",
+	"\x00","\x01","\x02","\x03","\x04","\x05","\x06","\x07","\x08","\t","\n","\x0b","\x0c","\r","\x0e","\x0f",
+	"\x10","\x11","\x12","\x13","\x14","\x15","\x16","\x17","\x18","\x19","\x1a","\x1b","\x1c","\x1d","\x1e","\x1f",
+	" ","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/",
+	"0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?",
+	"@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O",
+	"P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_",
+	"`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
+	"p","q","r","s","t","u","v","w","x","y","z","{","|","}","~","\x7f",
+	
+	"\xe2\x82\xac","\xef\xbf\xbd","\xe2\x80\x9a","\xc6\x92","\xe2\x80\x9e","\xe2\x80\xa6","\xe2\x80\xa0","\xe2\x80\xa1",
+	"\xcb\x86","\xe2\x80\xb0","\xc5\xa0","\xe2\x80\xb9","\xc5\x92","\xef\xbf\xbd","\xc5\xbd","\xef\xbf\xbd",
+
+	"\xef\xbf\xbd","\xe2\x80\x98","\xe2\x80\x99","\xe2\x80\x9c","\xe2\x80\x9d","\xe2\x80\xa2","\xe2\x80\x93","\xe2\x80\x94",
+	"\xcb\x9c","\xe2\x84\xa2","\xc5\xa1","\xe2\x80\xba","\xc5\x93","\xef\xbf\xbd","\xc5\xbe","\xc5\xb8",
+	
+	"\xc2\xa0","\xc2\xa1","\xc2\xa2","\xc2\xa3","\xc2\xa4","\xc2\xa5","\xc2\xa6","\xc2\xa7",
+	"\xc2\xa8","\xc2\xa9","\xc2\xaa","\xc2\xab","\xc2\xac","\xc2\xad","\xc2\xae","\xc2\xaf",
+	
+	"\xc2\xb0","\xc2\xb1","\xc2\xb2","\xc2\xb3","\xc2\xb4","\xc2\xb5","\xc2\xb6","\xc2\xb7",
+	"\xc2\xb8","\xc2\xb9","\xc2\xba","\xc2\xbb","\xc2\xbc","\xc2\xbd","\xc2\xbe","\xc2\xbf",
+	
+	"\xc3\x80","\xc3\x81","\xc3\x82","\xc3\x83","\xc3\x84","\xc3\x85","\xc3\x86","\xc3\x87",
+	"\xc3\x88","\xc3\x89","\xc3\x8a","\xc3\x8b","\xc3\x8c","\xc3\x8d","\xc3\x8e","\xc3\x8f",
+	
+	"\xc3\x90","\xc3\x91","\xc3\x92","\xc3\x93","\xc3\x94","\xc3\x95","\xc3\x96","\xc3\x97",
+	"\xc3\x98","\xc3\x99","\xc3\x9a","\xc3\x9b","\xc3\x9c","\xc3\x9d","\xc3\x9e","\xc3\x9f",
+	
+	"\xc3\xa0","\xc3\xa1","\xc3\xa2","\xc3\xa3","\xc3\xa4","\xc3\xa5","\xc3\xa6","\xc3\xa7",
+	"\xc3\xa8","\xc3\xa9","\xc3\xaa","\xc3\xab","\xc3\xac","\xc3\xad","\xc3\xae","\xc3\xaf",
+	
+	"\xc3\xb0","\xc3\xb1","\xc3\xb2","\xc3\xb3","\xc3\xb4","\xc3\xb5","\xc3\xb6","\xc3\xb7",
+	"\xc3\xb8","\xc3\xb9","\xc3\xba","\xc3\xbb","\xc3\xbc","\xc3\xbd","\xc3\xbe","\xc3\xbf"
+};
+
+static const char *CP437_TABLE[] = {
+	"\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07", "\x08", "\t", "\n", "\x0b", "\x0c", "\r", "\x0e", "\x0f",
+	"\x10", "\x11", "\x12", "\x13", "\x14", "\x15", "\x16", "\x17",	"\x18", "\x19", "\x1a", "\x1b", "\x1c", "\x1d", "\x1e", "\x1f",
+	" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/",
+	"0", "1", "2", "3", "4", "5", "6", "7",	"8", "9", ":", ";", "<", "=", ">", "?",
+	"@", "A", "B", "C", "D", "E", "F", "G",	"H", "I", "J", "K", "L", "M", "N", "O",
+	"P", "Q", "R", "S", "T", "U", "V", "W",	"X", "Y", "Z", "[", "\\", "]", "^", "_",
+	"`", "a", "b", "c", "d", "e", "f", "g",	"h", "i", "j", "k", "l", "m", "n", "o",
+	"p", "q", "r", "s", "t", "u", "v", "w",	"x", "y", "z", "{", "|", "}", "~", "\x7f",
+	"\xc3\x87", "\xc3\xbc", "\xc3\xa9", "\xc3\xa2", "\xc3\xa4", "\xc3\xa0", "\xc3\xa5", "\xc3\xa7",
+	"\xc3\xaa", "\xc3\xab", "\xc3\xa8", "\xc3\xaf", "\xc3\xae", "\xc3\xac", "\xc3\x84", "\xc3\x85",
+	"\xc3\x89", "\xc3\xa6", "\xc3\x86", "\xc3\xb4", "\xc3\xb6", "\xc3\xb2", "\xc3\xbb", "\xc3\xb9",
+	"\xc3\xbf", "\xc3\x96", "\xc3\x9c", "\xc2\xa2", "\xc2\xa3", "\xc2\xa5", "\xe2\x82\xa7", "\xc6\x92",
+	"\xc3\xa1", "\xc3\xad", "\xc3\xb3", "\xc3\xba", "\xc3\xb1", "\xc3\x91", "\xc2\xaa", "\xc2\xba",
+	"\xc2\xbf", "\xe2\x8c\x90", "\xc2\xac", "\xc2\xbd", "\xc2\xbc", "\xc2\xa1", "\xc2\xab", "\xc2\xbb",
+	"\xe2\x96\x91", "\xe2\x96\x92", "\xe2\x96\x93", "\xe2\x94\x82", "\xe2\x94\xa4", "\xe2\x95\xa1", "\xe2\x95\xa2", "\xe2\x95\x96",
+	"\xe2\x95\x95", "\xe2\x95\xa3", "\xe2\x95\x91", "\xe2\x95\x97", "\xe2\x95\x9d", "\xe2\x95\x9c", "\xe2\x95\x9b", "\xe2\x94\x90",
+	"\xe2\x94\x94", "\xe2\x94\xb4", "\xe2\x94\xac", "\xe2\x94\x9c", "\xe2\x94\x80", "\xe2\x94\xbc", "\xe2\x95\x9e", "\xe2\x95\x9f",
+	"\xe2\x95\x9a", "\xe2\x95\x94", "\xe2\x95\xa9", "\xe2\x95\xa6", "\xe2\x95\xa0", "\xe2\x95\x90", "\xe2\x95\xac", "\xe2\x95\xa7",
+	"\xe2\x95\xa8", "\xe2\x95\xa4", "\xe2\x95\xa5", "\xe2\x95\x99", "\xe2\x95\x98", "\xe2\x95\x92", "\xe2\x95\x93", "\xe2\x95\xab",
+	"\xe2\x95\xaa", "\xe2\x94\x98", "\xe2\x94\x8c", "\xe2\x96\x88", "\xe2\x96\x84", "\xe2\x96\x8c", "\xe2\x96\x90", "\xe2\x96\x80",
+	"\xce\xb1", "\xc3\x9f", "\xce\x93", "\xcf\x80", "\xce\xa3", "\xcf\x83", "\xc2\xb5", "\xcf\x84",
+	"\xce\xa6", "\xce\x98", "\xce\xa9", "\xce\xb4", "\xe2\x88\x9e", "\xcf\x86", "\xce\xb5", "\xe2\x88\xa9",
+	"\xe2\x89\xa1", "\xc2\xb1", "\xe2\x89\xa5", "\xe2\x89\xa4", "\xe2\x8c\xa0", "\xe2\x8c\xa1", "\xc3\xb7", "\xe2\x89\x88",
+	"\xc2\xb0", "\xe2\x88\x99", "\xc2\xb7", "\xe2\x88\x9a", "\xe2\x81\xbf", "\xc2\xb2", "\xe2\x96\xa0", "\xc2\xa0",
+};
+
+static const char *CP866_TABLE[] = {
+	"\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07", "\x08",   "\t",   "\n", "\x0b", "\x0c",   "\r", "\x0e", "\x0f",
 	"\x10", "\x11", "\x12", "\x13", "\x14", "\x15", "\x16", "\x17", "\x18", "\x19", "\x1a", "\x1b", "\x1c", "\x1d", "\x1e", "\x1f",
-	"\x20", "\x21", "\x22", "\x23", "\x24", "\x25", "\x26", "\x27", "\x28", "\x29", "\x2a", "\x2b", "\x2c", "\x2d", "\x2e", "\x2f",
-	"\x30", "\x31", "\x32", "\x33", "\x34", "\x35", "\x36", "\x37", "\x38", "\x39", "\x3a", "\x3b", "\x3c", "\x3d", "\x3e", "\x3f",
-	"\x40", "\x41", "\x42", "\x43", "\x44", "\x45", "\x46", "\x47", "\x48", "\x49", "\x4a", "\x4b", "\x4c", "\x4d", "\x4e", "\x4f",
-	"\x50", "\x51", "\x52", "\x53", "\x54", "\x55", "\x56", "\x57", "\x58", "\x59", "\x5a", "\x5b", "\x5c", "\x5d", "\x5e", "\x5f",
-	"\x60", "\x61", "\x62", "\x63", "\x64", "\x65", "\x66", "\x67", "\x68", "\x69", "\x6a", "\x6b", "\x6c", "\x6d", "\x6e", "\x6f",
-	"\x70", "\x71", "\x72", "\x73", "\x74", "\x75", "\x76", "\x77", "\x78", "\x79", "\x7a", "\x7b", "\x7c", "\x7d", "\x7e", "\x7f",
-	"\u20ac", "\u0020", "\u201a", "\u0192", "\u201e", "\u2026", "\u2020", "\u2021", "\u02c6", "\u2030", "\u0160", "\u2039", "\u0152", "\u0020", "\u017d", "\u0020",
-	"\u0020", "\u2018", "\u2019", "\u201c", "\u201d", "\u2022", "\u2013", "\u2014", "\u02dc", "\u2122", "\u0161", "\u203a", "\u0153", "\u0020", "\u017e", "\u0178",
-	"\u00a0", "\u00a1", "\u00a2", "\u00a3", "\u00a4", "\u00a5", "\u00a6", "\u00a7", "\u00a8", "\u00a9", "\u00aa", "\u00ab", "\u00ac", "\u00ad", "\u00ae", "\u00af",
-	"\u00b0", "\u00b1", "\u00b2", "\u00b3", "\u00b4", "\u00b5", "\u00b6", "\u00b7", "\u00b8", "\u00b9", "\u00ba", "\u00bb", "\u00bc", "\u00bd", "\u00be", "\u00bf",
-	"\u00c0", "\u00c1", "\u00c2", "\u00c3", "\u00c4", "\u00c5", "\u00c6", "\u00c7", "\u00c8", "\u00c9", "\u00ca", "\u00cb", "\u00cc", "\u00cd", "\u00ce", "\u00cf",
-	"\u00d0", "\u00d1", "\u00d2", "\u00d3", "\u00d4", "\u00d5", "\u00d6", "\u00d7", "\u00d8", "\u00d9", "\u00da", "\u00db", "\u00dc", "\u00dd", "\u00de", "\u00df",
-	"\u00e0", "\u00e1", "\u00e2", "\u00e3", "\u00e4", "\u00e5", "\u00e6", "\u00e7", "\u00e8", "\u00e9", "\u00ea", "\u00eb", "\u00ec", "\u00ed", "\u00ee", "\u00ef",
-	"\u00f0", "\u00f1", "\u00f2", "\u00f3", "\u00f4", "\u00f5", "\u00f6", "\u00f7", "\u00f8", "\u00f9", "\u00fa", "\u00fb", "\u00fc", "\u00fd", "\u00fe", "\u00ff"
+	   " ",    "!",   "\"",    "#",    "$",    "%",    "&",    "'",    "(",    ")",    "*",    "+",    ",",    "-",    ".",    "/",
+	   "0",    "1",    "2",    "3",    "4",    "5",    "6",    "7",    "8",    "9",    ":",    ";",    "<",    "=",    ">",    "?",
+	   "@",    "A",    "B",    "C",    "D",    "E",    "F",    "G",    "H",    "I",    "J",    "K",    "L",    "M",    "N",    "O",
+	   "P",    "Q",    "R",    "S",    "T",    "U",    "V",    "W",    "X",    "Y",    "Z",    "[",   "\\",    "]",    "^",    "_",
+	   "`",    "a",    "b",    "c",    "d",    "e",    "f",    "g",    "h",    "i",    "j",    "k",    "l",    "m",    "n",    "o",
+	   "p",    "q",    "r",    "s",    "t",    "u",    "v",    "w",    "x",    "y",    "z",    "{",    "|",    "}",    "~", "\x7f",
+	
+	"\xd0\x90", "\xd0\x91", "\xd0\x92", "\xd0\x93", "\xd0\x94", "\xd0\x95", "\xd0\x96", "\xd0\x97",
+	"\xd0\x98", "\xd0\x99", "\xd0\x9a", "\xd0\x9b", "\xd0\x9c", "\xd0\x9d", "\xd0\x9e", "\xd0\x9f",
+	
+	"\xd0\xa0", "\xd0\xa1", "\xd0\xa2", "\xd0\xa3", "\xd0\xa4", "\xd0\xa5", "\xd0\xa6", "\xd0\xa7",
+	"\xd0\xa8", "\xd0\xa9", "\xd0\xaa", "\xd0\xab", "\xd0\xac", "\xd0\xad", "\xd0\xae", "\xd0\xaf",
+	
+	"\xd0\xb0", "\xd0\xb1", "\xd0\xb2", "\xd0\xb3", "\xd0\xb4", "\xd0\xb5", "\xd0\xb6", "\xd0\xb7",
+	"\xd0\xb8", "\xd0\xb9", "\xd0\xba", "\xd0\xbb", "\xd0\xbc", "\xd0\xbd", "\xd0\xbe", "\xd0\xbf",
+
+	"\xe2\x96\x91", "\xe2\x96\x92", "\xe2\x96\x93", "\xe2\x94\x82", "\xe2\x94\xa4", "\xe2\x95\xa1", "\xe2\x95\xa2", "\xe2\x95\x96",
+	"\xe2\x95\x95", "\xe2\x95\xa3", "\xe2\x95\x91", "\xe2\x95\x97", "\xe2\x95\x9d", "\xe2\x95\x9c", "\xe2\x95\x9b", "\xe2\x94\x90",
+	
+	"\xe2\x94\x94", "\xe2\x94\xb4", "\xe2\x94\xac", "\xe2\x94\x9c", "\xe2\x94\x80", "\xe2\x94\xbc", "\xe2\x95\x9e", "\xe2\x95\x9f",
+	"\xe2\x95\x9a", "\xe2\x95\x94", "\xe2\x95\xa9", "\xe2\x95\xa6", "\xe2\x95\xa0", "\xe2\x95\x90", "\xe2\x95\xac", "\xe2\x95\xa7",
+	
+	"\xe2\x95\xa8", "\xe2\x95\xa4", "\xe2\x95\xa5", "\xe2\x95\x99", "\xe2\x95\x98", "\xe2\x95\x92", "\xe2\x95\x93", "\xe2\x95\xab",
+	"\xe2\x95\xaa", "\xe2\x94\x98", "\xe2\x94\x8c", "\xe2\x96\x88", "\xe2\x96\x84", "\xe2\x96\x8c", "\xe2\x96\x90", "\xe2\x96\x80",
+
+	"\xd1\x80", "\xd1\x81", "\xd1\x82", "\xd1\x83", "\xd1\x84", "\xd1\x85", "\xd1\x86", "\xd1\x87",
+	"\xd1\x88", "\xd1\x89", "\xd1\x8a", "\xd1\x8b", "\xd1\x8c", "\xd1\x8d", "\xd1\x8e", "\xd1\x8f",
+
+	"\xd0\x81", "\xd1\x91", "\xd0\x84", "\xd1\x94", "\xd0\x87", "\xd1\x97", "\xd0\x8e", "\xd1\x9e",
+	"\xc2\xb0", "\xe2\x88\x99", "\xc2\xb7", "\xe2\x88\x9a", "\xe2\x84\x96", "\xc2\xa4", "\xe2\x96\xa0", "\xc2\xa0"
 };
 
 /**
@@ -2097,21 +2193,19 @@ unsigned char *ConvertString(unsigned char *inputBuffer, size_t len)
 		len = strlen((char *)buf);
 	}
 
-	str = (unsigned char *)malloc(2 * len + 1);
+	str = (unsigned char *)malloc(3 * len + 1);
 	p = str;
 
 	for (size_t i = 0; i < len; ++i, ++buf) {
 		if (*buf > 0x7f) {
 			if (CDType & (CD_RUSSIAN)) {
-				// Special cp866 hack for SPK version
-				*p++ = 0xc2;
-				if (*buf >= 0xE0 && *buf < 0xF0) {
-					*p++ = *buf - 0x30;
-				} else {
-					*p++ = *buf;
+				// CP866
+				const char *replacement = CP866_TABLE[*buf];
+				for (size_t j = 0; j < strlen(replacement); j++) {
+					*p++ = replacement[j];
 				}
 			} else {
-				// assume CP1252 for now
+				// assume CP1252
 				const char *replacement = CP1252_TABLE[*buf];
 				for (size_t j = 0; j < strlen(replacement); j++) {
 					*p++ = replacement[j];
@@ -2127,7 +2221,8 @@ unsigned char *ConvertString(unsigned char *inputBuffer, size_t len)
 	for (int i = 1; i < len; i++) {
 		printf(", 0x%02x", inputBuffer[i]);
 	}
-	printf("] to %s\n", (char*)str);
+	printf("]\n\nto %s\n", (char*)str);
+	printf("\nwas: %s\n", inputBuffer);
 #endif
 
 	return str;
@@ -3085,9 +3180,6 @@ int main(int argc, char** argv)
 				}
 				sprintf(extract, "%s/%s", Dir, Todo[u].File);
 				switch (Todo[u].Arg2) {
-					case 1:
-						sprintf(extract, "%s.gz", extract);
-						break;
 					case 'V':
 						sprintf(extract, "%s.smk", extract);
 						break;
@@ -3098,7 +3190,7 @@ int main(int argc, char** argv)
 					default:
 						break;
 				}
-				if (ExtractMPQFile(mpqfile, (char*)Todo[u].ArcFile, extract, Todo[u].Arg2 == 1)) {
+				if (ExtractMPQFile(mpqfile, (char*)Todo[u].ArcFile, extract, false)) {
 					printf("Failed to extract \"%s\"\n", (char*)Todo[u].ArcFile);
 				}
 				switch (Todo[u].Arg2) { // same mapping as outer loop

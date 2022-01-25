@@ -2071,6 +2071,7 @@ static Control Todo[] = {
 
 /////// VIDEOS ////////////////////////////////////////////////////////////////
 
+// normal names
 {Q,8,"videos/human-1",              0, 'V', 0, 0, "install.exe", "Smk\\Smoke_M.smk"},
 {Q,8,"videos/human-2",              0, 'V', 0, 0, "install.exe", "Smk\\Zepp_M.smk"},
 {Q,8,"videos/human-3",              0, 'V', 0, 0, "install.exe", "Smk\\Ships_M.smk"},
@@ -2084,20 +2085,6 @@ static Control Todo[] = {
 {Q,8,"videos/exp-1",                0, 'V', 0, 0, "install.exe", "Smk\\IntroX_M.smk"},
 {Q,8,"videos/human-exp-2",          0, 'V', 0, 0, "install.exe", "Smk\\HVicX_M.smk"},
 {Q,8,"videos/orc-exp-2",            0, 'V', 0, 0, "install.exe", "Smk\\OrcX_M.smk"},
-// alternative names we found. see github issue #418 Fix videos extraction from GOG's BNE download
-{Q,8,"videos/human-1",              0, 'V', 0, 0, "install.exe", "File00000350.smk"},
-{Q,8,"videos/human-2",              0, 'V', 0, 0, "install.exe", "File00000356.smk"},
-{Q,8,"videos/human-3",              0, 'V', 0, 0, "install.exe", "File00000349.smk"},
-{Q,8,"videos/human-4",              0, 'V', 0, 0, "install.exe", "File00000343.smk"},
-{Q,8,"videos/orc-1",                0, 'V', 0, 0, "install.exe", "File00000339.smk"},
-{Q,8,"videos/orc-2",                0, 'V', 0, 0, "install.exe", "File00000353.smk"},
-{Q,8,"videos/orc-3",                0, 'V', 0, 0, "install.exe", "File00000340.smk"},
-{Q,8,"videos/orc-4",                0, 'V', 0, 0, "install.exe", "File00000348.smk"},
-{Q,8,"videos/gameintro",            0, 'V', 0, 0, "install.exe", "File00000346.smk"},
-{Q,8,"videos/logo",                 0, 'V', 0, 0, "install.exe", "File00000338.smk"},
-{Q,8,"videos/exp-1",                0, 'V', 0, 0, "install.exe", "File00000345.smk"},
-{Q,8,"videos/human-exp-2",          0, 'V', 0, 0, "install.exe", "File00000344.smk"},
-{Q,8,"videos/orc-exp-2",            0, 'V', 0, 0, "install.exe", "File00000347.smk"},
 
 /////// BNE MAPS ///////////////////////////////////////////////////////////////
 

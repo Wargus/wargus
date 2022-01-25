@@ -8,7 +8,7 @@ msgstr ""
 "Language-Team: cybermind <iddqd_mail@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP866\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -17,387 +17,387 @@ msgstr ""
 
 #: src/action/action_build.cpp:119
 msgid "You cannot reach building place"
-msgstr "Невозможно достигнуть места строительства"
+msgstr "╨Э╨╡╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛ ╨┤╨╛╤Б╤В╨╕╨│╨╜╤Г╤В╤М ╨╝╨╡╤Б╤В╨░ ╤Б╤В╤А╨╛╨╕╤В╨╡╨╗╤М╤Б╤В╨▓╨░"
 
 #: src/action/action_build.cpp:177
 #, c-format
 msgid "You cannot build %s here"
-msgstr "Невозможно построить здесь %s"
+msgstr "╨Э╨╡╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛ ╨┐╨╛╤Б╤В╤А╨╛╨╕╤В╤М ╨╖╨┤╨╡╤Б╤М %s"
 
 #: src/action/action_build.cpp:197
 #, c-format
 msgid "Not enough resources to build %s"
-msgstr "Недостаточно ресурсов для постройки %s"
+msgstr "╨Э╨╡╨┤╨╛╤Б╤В╨░╤В╨╛╤З╨╜╨╛ ╤А╨╡╤Б╤Г╤А╤Б╨╛╨▓ ╨┤╨╗╤П ╨┐╨╛╤Б╤В╤А╨╛╨╣╨║╨╕ %s"
 
 #: src/action/action_build.cpp:215
 #, c-format
 msgid "Can't build more units %s"
-msgstr "Нельзя создать еще %s"
+msgstr "╨Э╨╡╨╗╤М╨╖╤П ╤Б╨╛╨╖╨┤╨░╤В╤М ╨╡╤Й╨╡ %s"
 
 #: src/action/action_build.cpp:255
 #, c-format
 msgid "Unable to create building %s"
-msgstr "Нельзя построить здание: %s"
+msgstr "╨Э╨╡╨╗╤М╨╖╤П ╨┐╨╛╤Б╤В╤А╨╛╨╕╤В╤М ╨╖╨┤╨░╨╜╨╕╨╡: %s"
 
 #: src/action/action_build.cpp:515
 #, c-format
 msgid "New %s done"
-msgstr "Готова новая постройка: %s"
+msgstr "╨У╨╛╤В╨╛╨▓╨░ ╨╜╨╛╨▓╨░╤П ╨┐╨╛╤Б╤В╤А╨╛╨╣╨║╨░: %s"
 
 #: src/action/action_repair.cpp:84
 #, c-format
 msgid "We need more %s for repair!"
-msgstr "Нам нужно больше %s для ремонта!"
+msgstr "╨Э╨░╨╝ ╨╜╤Г╨╢╨╜╨╛ ╨▒╨╛╨╗╤М╤И╨╡ %s ╨┤╨╗╤П ╤А╨╡╨╝╨╛╨╜╤В╨░!"
 
 #: src/action/action_research.cpp:103
 #, c-format
 msgid "%s: research complete"
-msgstr "%s: исследование завершено"
+msgstr "%s: ╨╕╤Б╤Б╨╗╨╡╨┤╨╛╨▓╨░╨╜╨╕╨╡ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨╛"
 
 #: src/action/action_resource.cpp:769
 #, c-format
 msgid "%s has collapsed!"
-msgstr "%s обрушился!"
+msgstr "%s ╨╛╨▒╤А╤Г╤И╨╕╨╗╤Б╤П!"
 
 #: src/action/action_resource.cpp:842
 #, c-format
 msgid "%s is running low!"
-msgstr "%s скоро иссякнет!"
+msgstr "%s ╤Б╨║╨╛╤А╨╛ ╨╕╤Б╤Б╤П╨║╨╜╨╡╤В!"
 
 #: src/action/action_returngoods.cpp:68
 msgid "No Resources to Return."
-msgstr "Нету возвращаемых ресурсов."
+msgstr "╨Э╨╡╤В╤Г ╨▓╨╛╨╖╨▓╤А╨░╤Й╨░╨╡╨╝╤Л╤Е ╤А╨╡╤Б╤Г╤А╤Б╨╛╨▓."
 
 #: src/action/action_spellcast.cpp:181
 #, c-format
 msgid "%s: not enough mana for spell: %s"
-msgstr "%s: не хватает маны для заклинания: %s"
+msgstr "%s: ╨╜╨╡ ╤Е╨▓╨░╤В╨░╨╡╤В ╨╝╨░╨╜╤Л ╨┤╨╗╤П ╨╖╨░╨║╨╗╨╕╨╜╨░╨╜╨╕╤П: %s"
 
 #: src/action/action_spellcast.cpp:185
 #, c-format
 msgid "%s: can't cast spell: %s"
-msgstr "%s: невозможно использовать заклинание : %s"
+msgstr "%s: ╨╜╨╡╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛ ╨╕╤Б╨┐╨╛╨╗╤М╨╖╨╛╨▓╨░╤В╤М ╨╖╨░╨║╨╗╨╕╨╜╨░╨╜╨╕╨╡ : %s"
 
 #: src/action/action_train.cpp:170
 #, c-format
 msgid "New %s ready"
-msgstr "Готов новый юнит %s"
+msgstr "╨У╨╛╤В╨╛╨▓ ╨╜╨╛╨▓╤Л╨╣ ╤О╨╜╨╕╤В %s"
 
 #: src/action/action_train.cpp:217
 #, c-format
 msgid "Unable to train %s"
-msgstr "Невозможно тренировать юнит %s"
+msgstr "╨Э╨╡╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛ ╤В╤А╨╡╨╜╨╕╤А╨╛╨▓╨░╤В╤М ╤О╨╜╨╕╤В %s"
 
 #: src/action/action_upgradeto.cpp:199
 #, c-format
 msgid "Upgrade to %s canceled"
-msgstr "Вы отменили модернизацию до %s"
+msgstr "╨Т╤Л ╨╛╤В╨╝╨╡╨╜╨╕╨╗╨╕ ╨╝╨╛╨┤╨╡╤А╨╜╨╕╨╖╨░╤Ж╨╕╤О ╨┤╨╛ %s"
 
 #: src/action/action_upgradeto.cpp:207
 #, c-format
 msgid "Upgrade to %s complete"
-msgstr "Модернизация до %s завершена"
+msgstr "╨Ь╨╛╨┤╨╡╤А╨╜╨╕╨╖╨░╤Ж╨╕╤П ╨┤╨╛ %s ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░"
 
 #: src/action/command.cpp:1319
 #, c-format
 msgid "Player \"%s\" has left the game"
-msgstr "Игрок %s покинул игру"
+msgstr "╨Ш╨│╤А╨╛╨║ %s ╨┐╨╛╨║╨╕╨╜╤Г╨╗ ╨╕╨│╤А╤Г"
 
 #: src/action/command.cpp:1321
 #, c-format
 msgid "Player \"%s\" has been killed"
-msgstr "Игрок \"%s\" был побежден"
+msgstr "╨Ш╨│╤А╨╛╨║ \"%s\" ╨▒╤Л╨╗ ╨┐╨╛╨▒╨╡╨╢╨┤╨╡╨╜"
 
 #: src/editor/editloop.cpp:508 src/editor/editloop.cpp:592
 msgid "~!OK"
-msgstr "ОК"
+msgstr "╨Ю╨Ъ"
 
 #: src/editor/editloop.cpp:516 src/editor/editloop.cpp:600
 msgid "~!Cancel"
-msgstr "Отмена"
+msgstr "╨Ю╤В╨╝╨╡╨╜╨░"
 
 #: src/editor/editloop.cpp:583
 msgid "Artificial Intelligence"
-msgstr "Искусственный интеллект"
+msgstr "╨Ш╤Б╨║╤Г╤Б╤Б╤В╨▓╨╡╨╜╨╜╤Л╨╣ ╨╕╨╜╤В╨╡╨╗╨╗╨╡╨║╤В"
 
 #: src/editor/editloop.cpp:1376
 msgid "Unit can't be placed here."
-msgstr "Вы не можете создать здесь этот юнит"
+msgstr "╨Т╤Л ╨╜╨╡ ╨╝╨╛╨╢╨╡╤В╨╡ ╤Б╨╛╨╖╨┤╨░╤В╤М ╨╖╨┤╨╡╤Б╤М ╤Н╤В╨╛╤В ╤О╨╜╨╕╤В"
 
 #: src/editor/editloop.cpp:1448
 msgid "Mirror editing enabled: 2-side"
-msgstr "Включен 2-стороний режим зеркального редактирования"
+msgstr "╨Т╨║╨╗╤О╤З╨╡╨╜ 2-╤Б╤В╨╛╤А╨╛╨╜╨╕╨╣ ╤А╨╡╨╢╨╕╨╝ ╨╖╨╡╤А╨║╨░╨╗╤М╨╜╨╛╨│╨╛ ╤А╨╡╨┤╨░╨║╤В╨╕╤А╨╛╨▓╨░╨╜╨╕╤П"
 
 #: src/editor/editloop.cpp:1451
 msgid "Mirror editing enabled: 4-side"
-msgstr "Включен 4-стороний режим зеркального редактирования"
+msgstr "╨Т╨║╨╗╤О╤З╨╡╨╜ 4-╤Б╤В╨╛╤А╨╛╨╜╨╕╨╣ ╤А╨╡╨╢╨╕╨╝ ╨╖╨╡╤А╨║╨░╨╗╤М╨╜╨╛╨│╨╛ ╤А╨╡╨┤╨░╨║╤В╨╕╤А╨╛╨▓╨░╨╜╨╕╤П"
 
 #: src/editor/editloop.cpp:1454
 msgid "Mirror editing disabled"
-msgstr "Режим зеркального редактирования выключен"
+msgstr "╨а╨╡╨╢╨╕╨╝ ╨╖╨╡╤А╨║╨░╨╗╤М╨╜╨╛╨│╨╛ ╤А╨╡╨┤╨░╨║╤В╨╕╤А╨╛╨▓╨░╨╜╨╕╤П ╨▓╤Л╨║╨╗╤О╤З╨╡╨╜"
 
 #: src/editor/editloop.cpp:1474
 msgid "Unit deleted"
-msgstr "Юнит удален"
+msgstr "╨о╨╜╨╕╤В ╤Г╨┤╨░╨╗╨╡╨╜"
 
 #: src/editor/editloop.cpp:1497 src/editor/editloop.cpp:1506
 msgid "Unit owner modified"
-msgstr "Изменен владелец юнита"
+msgstr "╨Ш╨╖╨╝╨╡╨╜╨╡╨╜ ╨▓╨╗╨░╨┤╨╡╨╗╨╡╤Ж ╤О╨╜╨╕╤В╨░"
 
 #: src/editor/editloop.cpp:1831
 msgid "Select mode"
-msgstr "Режим выбора"
+msgstr "╨а╨╡╨╢╨╕╨╝ ╨▓╤Л╨▒╨╛╤А╨░"
 
 #: src/editor/editloop.cpp:1841
 msgid "Unit mode"
-msgstr "Режим юнитов"
+msgstr "╨а╨╡╨╢╨╕╨╝ ╤О╨╜╨╕╤В╨╛╨▓"
 
 #: src/editor/editloop.cpp:1852
 msgid "Tile mode"
-msgstr "Режим ландшафта"
+msgstr "╨а╨╡╨╢╨╕╨╝ ╨╗╨░╨╜╨┤╤И╨░╤Д╤В╨░"
 
 #: src/editor/editloop.cpp:1863
 msgid "Set start location mode"
-msgstr "Режим стартовых позиций"
+msgstr "╨а╨╡╨╢╨╕╨╝ ╤Б╤В╨░╤А╤В╨╛╨▓╤Л╤Е ╨┐╨╛╨╖╨╕╤Ж╨╕╨╣"
 
 #: src/network/commands.cpp:824
 msgid "No sync info for this replay !"
-msgstr "Отсутствуют данные синхронизации!"
+msgstr "╨Ю╤В╤Б╤Г╤В╤Б╤В╨▓╤Г╤О╤В ╨┤╨░╨╜╨╜╤Л╨╡ ╤Б╨╕╨╜╤Е╤А╨╛╨╜╨╕╨╖╨░╤Ж╨╕╨╕!"
 
 #: src/network/commands.cpp:826
 #, c-format
 msgid "Replay got out of sync (%lu) !"
-msgstr "Нарушена синхронизация переигровки (%lu)!"
+msgstr "╨Э╨░╤А╤Г╤И╨╡╨╜╨░ ╤Б╨╕╨╜╤Е╤А╨╛╨╜╨╕╨╖╨░╤Ж╨╕╤П ╨┐╨╡╤А╨╡╨╕╨│╤А╨╛╨▓╨║╨╕ (%lu)!"
 
 #: src/network/commands.cpp:835
 msgid "Replay got out of sync !"
-msgstr "Нарушена синхронизация переигровки!"
+msgstr "╨Э╨░╤А╤Г╤И╨╡╨╜╨░ ╤Б╨╕╨╜╤Е╤А╨╛╨╜╨╕╨╖╨░╤Ж╨╕╤П ╨┐╨╡╤А╨╡╨╕╨│╤А╨╛╨▓╨║╨╕!"
 
 #: src/network/commands.cpp:946 src/network/commands.cpp:961
 msgid "End of replay"
-msgstr "Конец переигровки"
+msgstr "╨Ъ╨╛╨╜╨╡╤Ж ╨┐╨╡╤А╨╡╨╕╨│╤А╨╛╨▓╨║╨╕"
 
 #: src/network/network.cpp:928
 #, c-format
 msgid "%s sent bad command"
-msgstr "%s отослал команду с ошибкой"
+msgstr "%s ╨╛╤В╨╛╤Б╨╗╨░╨╗ ╨║╨╛╨╝╨░╨╜╨┤╤Г ╤Б ╨╛╤И╨╕╨▒╨║╨╛╨╣"
 
 #: src/network/network.cpp:1022
 msgid "Network out of sync"
-msgstr "Нарушена синхронизация сети"
+msgstr "╨Э╨░╤А╤Г╤И╨╡╨╜╨░ ╤Б╨╕╨╜╤Е╤А╨╛╨╜╨╕╨╖╨░╤Ж╨╕╤П ╤Б╨╡╤В╨╕"
 
 #: src/network/network.cpp:1256
 #, c-format
 msgid "Waiting for player \"%s\": %d:%02d"
-msgstr "Ожидание игрока \"%s\": %d:%02d"
+msgstr "╨Ю╨╢╨╕╨┤╨░╨╜╨╕╨╡ ╨╕╨│╤А╨╛╨║╨░ \"%s\": %d:%02d"
 
 #: src/network/network.cpp:1272
 msgid "Timed out"
-msgstr "Время вышло"
+msgstr "╨Т╤А╨╡╨╝╤П ╨▓╤Л╤И╨╗╨╛"
 
 #: src/stratagus/player.cpp:553
 msgid "Building Limit Reached"
-msgstr "Достигнут лимит построке"
+msgstr "╨Ф╨╛╤Б╤В╨╕╨│╨╜╤Г╤В ╨╗╨╕╨╝╨╕╤В ╨┐╨╛╤Б╤В╤А╨╛╨║╨╡"
 
 #: src/stratagus/player.cpp:557
 msgid "Unit Limit Reached"
-msgstr "Достигнут лимит юнитов"
+msgstr "╨Ф╨╛╤Б╤В╨╕╨│╨╜╤Г╤В ╨╗╨╕╨╝╨╕╤В ╤О╨╜╨╕╤В╨╛╨▓"
 
 #: src/stratagus/player.cpp:561
 msgid "Insufficient Supply, increase Supply."
-msgstr "Требуется больше пищи для юнитов"
+msgstr "╨в╤А╨╡╨▒╤Г╨╡╤В╤Б╤П ╨▒╨╛╨╗╤М╤И╨╡ ╨┐╨╕╤Й╨╕ ╨┤╨╗╤П ╤О╨╜╨╕╤В╨╛╨▓"
 
 #: src/stratagus/player.cpp:565
 msgid "Total Unit Limit Reached"
-msgstr "Достигнут общий лимит юнитов"
+msgstr "╨Ф╨╛╤Б╤В╨╕╨│╨╜╤Г╤В ╨╛╨▒╤Й╨╕╨╣ ╨╗╨╕╨╝╨╕╤В ╤О╨╜╨╕╤В╨╛╨▓"
 
 #: src/stratagus/player.cpp:569
 #, c-format
 msgid "Limit of %d reached for this unit type"
-msgstr "Достигнут предел в %d единиц для данного юнита"
+msgstr "╨Ф╨╛╤Б╤В╨╕╨│╨╜╤Г╤В ╨┐╤А╨╡╨┤╨╡╨╗ ╨▓ %d ╨╡╨┤╨╕╨╜╨╕╤Ж ╨┤╨╗╤П ╨┤╨░╨╜╨╜╨╛╨│╨╛ ╤О╨╜╨╕╤В╨░"
 
 #: src/stratagus/player.cpp:575
 msgid "Cannot create more units."
-msgstr "Невозможно создать больше юнитов."
+msgstr "╨Э╨╡╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛ ╤Б╨╛╨╖╨┤╨░╤В╤М ╨▒╨╛╨╗╤М╤И╨╡ ╤О╨╜╨╕╤В╨╛╨▓."
 
 #: src/stratagus/stratagus.cpp:548 src/stratagus/stratagus.cpp:681
 msgid "Do it! Do it now!"
-msgstr "Вперед! Давай же!"
+msgstr "╨Т╨┐╨╡╤А╨╡╨┤! ╨Ф╨░╨▓╨░╨╣ ╨╢╨╡!"
 
 #: src/stratagus/stratagus.cpp:812
 #, c-format
 msgid "Thanks for playing Stratagus.\n"
-msgstr "Спасибо за то, что сыграли в Wargus.\n"
+msgstr "╨б╨┐╨░╤Б╨╕╨▒╨╛ ╨╖╨░ ╤В╨╛, ╤З╤В╨╛ ╤Б╤Л╨│╤А╨░╨╗╨╕ ╨▓ Wargus.\n"
 
 #: src/ui/botpanel.cpp:724 src/ui/botpanel.cpp:789
 msgid "Select Target"
-msgstr "Выберите цель"
+msgstr "╨Т╤Л╨▒╨╡╤А╨╕╤В╨╡ ╤Ж╨╡╨╗╤М"
 
 #: src/ui/botpanel.cpp:852
 msgid "Select Location"
-msgstr "Выберите позицию"
+msgstr "╨Т╤Л╨▒╨╡╤А╨╕╤В╨╡ ╨┐╨╛╨╖╨╕╤Ж╨╕╤О"
 
 #: src/ui/botpanel.cpp:871
 msgid "Unit training queue is full"
-msgstr "Очередь строительства заполнена"
+msgstr "╨Ю╤З╨╡╤А╨╡╨┤╤М ╤Б╤В╤А╨╛╨╕╤В╨╡╨╗╤М╤Б╤В╨▓╨░ ╨╖╨░╨┐╨╛╨╗╨╜╨╡╨╜╨░"
 
 #: src/ui/interface.cpp:95
 #, c-format
 msgid "MESSAGE:%s~!_"
-msgstr "СООБЩЕНИЕ:%s~!_"
+msgstr "╨б╨Ю╨Ю╨С╨й╨Х╨Э╨Ш╨Х:%s~!_"
 
 #: src/ui/interface.cpp:247
 msgid "Sound is on."
-msgstr "Звук включен"
+msgstr "╨Ч╨▓╤Г╨║ ╨▓╨║╨╗╤О╤З╨╡╨╜"
 
 #: src/ui/interface.cpp:249
 msgid "Sound is off."
-msgstr "Звук выключен"
+msgstr "╨Ч╨▓╤Г╨║ ╨▓╤Л╨║╨╗╤О╤З╨╡╨╜"
 
 #: src/ui/interface.cpp:264
 msgid "Music is off."
-msgstr "Музыка включена"
+msgstr "╨Ь╤Г╨╖╤Л╨║╨░ ╨▓╨║╨╗╤О╤З╨╡╨╜╨░"
 
 #: src/ui/interface.cpp:267
 msgid "Music is on."
-msgstr "Музыка выключена"
+msgstr "╨Ь╤Г╨╖╤Л╨║╨░ ╨▓╤Л╨║╨╗╤О╤З╨╡╨╜╨░"
 
 #: src/ui/interface.cpp:280 src/ui/mouse.cpp:1736
 msgid "Game Paused"
-msgstr "Игра приостановлена"
+msgstr "╨Ш╨│╤А╨░ ╨┐╤А╨╕╨╛╤Б╤В╨░╨╜╨╛╨▓╨╗╨╡╨╜╨░"
 
 #: src/ui/interface.cpp:282
 msgid "Game Resumed"
-msgstr "Игра возобновлена"
+msgstr "╨Ш╨│╤А╨░ ╨▓╨╛╨╖╨╛╨▒╨╜╨╛╨▓╨╗╨╡╨╜╨░"
 
 #: src/ui/interface.cpp:313
 msgid "Big map enabled"
-msgstr "Включена большая карта"
+msgstr "╨Т╨║╨╗╤О╤З╨╡╨╜╨░ ╨▒╨╛╨╗╤М╤И╨░╤П ╨║╨░╤А╤В╨░"
 
 #: src/ui/interface.cpp:322
 msgid "Returning to old map"
-msgstr "Большая карта выключена"
+msgstr "╨С╨╛╨╗╤М╤И╨░╤П ╨║╨░╤А╤В╨░ ╨▓╤Л╨║╨╗╤О╤З╨╡╨╜╨░"
 
 #: src/ui/interface.cpp:333
 msgid "Faster"
-msgstr "Быстрее"
+msgstr "╨С╤Л╤Б╤В╤А╨╡╨╡"
 
 #: src/ui/interface.cpp:349
 msgid "Slower"
-msgstr "Медленнее"
+msgstr "╨Ь╨╡╨┤╨╗╨╡╨╜╨╜╨╡╨╡"
 
 #: src/ui/interface.cpp:404
 msgid "Terrain displayed."
-msgstr "Показ ландшафта включен"
+msgstr "╨Я╨╛╨║╨░╨╖ ╨╗╨░╨╜╨┤╤И╨░╤Д╤В╨░ ╨▓╨║╨╗╤О╤З╨╡╨╜"
 
 #: src/ui/interface.cpp:406
 msgid "Terrain hidden."
-msgstr "Показ ландшафта выключен"
+msgstr "╨Я╨╛╨║╨░╨╖ ╨╗╨░╨╜╨┤╤И╨░╤Д╤В╨░ ╨▓╤Л╨║╨╗╤О╤З╨╡╨╜"
 
 #: src/ui/interface.cpp:439
 msgid "Grab mouse toggled."
-msgstr "Захват мыши переключен"
+msgstr "╨Ч╨░╤Е╨▓╨░╤В ╨╝╤Л╤И╨╕ ╨┐╨╡╤А╨╡╨║╨╗╤О╤З╨╡╨╜"
 
 #: src/ui/interface.cpp:914
 msgid "Screenshot made."
-msgstr "Получен снимок экрана"
+msgstr "╨Я╨╛╨╗╤Г╤З╨╡╨╜ ╤Б╨╜╨╕╨╝╨╛╨║ ╤Н╨║╤А╨░╨╜╨░"
 
 #: src/ui/mainscr.cpp:971
 #, c-format
 msgid "Last message repeated ~<%d~> times"
-msgstr "Вы получили последнее сообщение ~<%d~> раз"
+msgstr "╨Т╤Л ╨┐╨╛╨╗╤Г╤З╨╕╨╗╨╕ ╨┐╨╛╤Б╨╗╨╡╨┤╨╜╨╡╨╡ ╤Б╨╛╨╛╨▒╤Й╨╡╨╜╨╕╨╡ ~<%d~> ╤А╨░╨╖"
 
 #: src/ui/mainscr.cpp:1047
 #, c-format
 msgid "~<Event: %s~>"
-msgstr "~<Событие: %s~>"
+msgstr "~<╨б╨╛╨▒╤Л╤В╨╕╨╡: %s~>"
 
 #: src/ui/mouse.cpp:1904
 #, c-format
 msgid "You have ~<%d~> %ss"
-msgstr "У вас есть ~<%d~> %s"
+msgstr "╨г ╨▓╨░╤Б ╨╡╤Б╤В╤М ~<%d~> %s"
 
 #: src/ui/mouse.cpp:1908
 #, c-format
 msgid "You have ~<%d~> %s(s)"
-msgstr "У вас есть ~<%d~> %s"
+msgstr "╨г ╨▓╨░╤Б ╨╡╤Б╤В╤М ~<%d~> %s"
 
 #: src/unit/unit.cpp:2990
 #, c-format
 msgid "%s attacked"
-msgstr "%s под огнем"
+msgstr "%s ╨┐╨╛╨┤ ╨╛╨│╨╜╨╡╨╝"
 
 msgid "%s: complete"
-msgstr "%s: завершено"
+msgstr "%s: ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨╛"
 
 msgid "%s: spell is not ready yet: %s"
-msgstr "%s: заклинание еще не готово: %s"
+msgstr "%s: ╨╖╨░╨║╨╗╨╕╨╜╨░╨╜╨╕╨╡ ╨╡╤Й╨╡ ╨╜╨╡ ╨│╨╛╤В╨╛╨▓╨╛: %s"
 
 msgid "%s: not enough resources to cast spell: %s"
-msgstr "%s: недостаточно ресурсов для заклинания: %s"
+msgstr "%s: ╨╜╨╡╨┤╨╛╤Б╤В╨░╤В╨╛╤З╨╜╨╛ ╤А╨╡╤Б╤Г╤А╤Б╨╛╨▓ ╨┤╨╗╤П ╨╖╨░╨║╨╗╨╕╨╜╨░╨╜╨╕╤П: %s"
 
 msgid "Editor (%d %d)"
-msgstr "Редактор (%d %d)"
+msgstr "╨а╨╡╨┤╨░╨║╤В╨╛╤А (%d %d)"
 
 msgid "#%d '%s' Player:#%d %s"
-msgstr "#%d '%s' Игрок:#%d %s"
+msgstr "#%d '%s' ╨Ш╨│╤А╨╛╨║:#%d %s"
 
 msgid " Amount %d"
-msgstr "Ресурсы %d"
+msgstr "╨а╨╡╤Б╤Г╤А╤Б╤Л %d"
 
 msgid "Select player #%d"
-msgstr "Выбор игрока #%d"
+msgstr "╨Т╤Л╨▒╨╛╤А ╨╕╨│╤А╨╛╨║╨░ #%d"
 
 msgid "Script %s"
-msgstr "Скрипт %s"
+msgstr "╨б╨║╤А╨╕╨┐╤В %s"
 
 msgid "Tileset `%s'"
-msgstr "Тайлсет `%s'"
+msgstr "╨в╨░╨╣╨╗╤Б╨╡╤В `%s'"
 
 msgid "Missile %s"
-msgstr "Снаряд %s"
+msgstr "╨б╨╜╨░╤А╤П╨┤ %s"
 
 msgid "Can't find missile %s\n"
-msgstr "Снаряд не найден: %s\n"
+msgstr "╨б╨╜╨░╤А╤П╨┤ ╨╜╨╡ ╨╜╨░╨╣╨┤╨╡╨╜: %s\n"
 
 msgid "Construction %s"
-msgstr "Конструкция %s"
+msgstr "╨Ъ╨╛╨╜╤Б╤В╤А╤Г╨║╤Ж╨╕╤П %s"
 
 msgid "Not enough %s...%s more %s."
-msgstr "Недостаточно %s...%s больше %s."
+msgstr "╨Э╨╡╨┤╨╛╤Б╤В╨░╤В╨╛╤З╨╜╨╛ %s...%s ╨▒╨╛╨╗╤М╤И╨╡ %s."
 
 msgid "Script %s\n"
-msgstr "Скрипт %s\n"
+msgstr "╨б╨║╤А╨╕╨┐╤В %s\n"
 
 msgid "Icon %s"
-msgstr "Иконка %s"
+msgstr "╨Ш╨║╨╛╨╜╨║╨░ %s"
 
 msgid "Can't find icon %s\n"
-msgstr "Иконка не найдена: %s\n"
+msgstr "╨Ш╨║╨╛╨╜╨║╨░ ╨╜╨╡ ╨╜╨░╨╣╨┤╨╡╨╜╨░: %s\n"
 
 msgid "Icons %s"
-msgstr "Иконка %s"
+msgstr "╨Ш╨║╨╛╨╜╨║╨░ %s"
 
 msgid "Set default game speed"
-msgstr "Установлена стандартная скорость игры"
+msgstr "╨г╤Б╤В╨░╨╜╨╛╨▓╨╗╨╡╨╜╨░ ╤Б╤В╨░╨╜╨┤╨░╤А╤В╨╜╨░╤П ╤Б╨║╨╛╤А╨╛╤Б╤В╤М ╨╕╨│╤А╤Л"
 
 msgid "Cycle:"
-msgstr "Цикл:"
+msgstr "╨ж╨╕╨║╨╗:"
 
 msgid "Requirements:\n"
-msgstr "Необходимо:\n"
+msgstr "╨Э╨╡╨╛╨▒╤Е╨╛╨┤╨╕╨╝╨╛:\n"
 
 msgid "unit-type '%s' without animations, ignored.\n"
-msgstr "юнит '%s' не имеет анимаций, пропускается.\n"
+msgstr "╤О╨╜╨╕╤В '%s' ╨╜╨╡ ╨╕╨╝╨╡╨╡╤В ╨░╨╜╨╕╨╝╨░╤Ж╨╕╨╣, ╨┐╤А╨╛╨┐╤Г╤Б╨║╨░╨╡╤В╤Б╤П.\n"
 
 msgid "Unit \"%s\""
-msgstr "Юнит \"%s\""
+msgstr "╨о╨╜╨╕╤В \"%s\""
 
 msgid "Decorations `%s'"
-msgstr "Декорация `%s'"
+msgstr "╨Ф╨╡╨║╨╛╤А╨░╤Ж╨╕╤П `%s'"
 
 msgid "Cursor %s"
-msgstr "Курсор %s"
+msgstr "╨Ъ╤Г╤А╤Б╨╛╤А %s"
 
 msgid "esc"
 msgstr "esc"

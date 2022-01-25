@@ -728,7 +728,7 @@ function RunConfirmRestart(menu)
    local confirm = WarGameMenu(panel(4))
    confirm:resize(288, 128)
 
-   local mes = MultiLineLabel(_("You need to restart game to apply changes, exit now?"))
+   local mes = MultiLineLabel(_("You need to restart game to apply changes, restart now?"))
    mes:setFont(Fonts["game"])
    mes:setAlignment(MultiLineLabel.CENTER)
    mes:setVerticalAlignment(MultiLineLabel.TOP)
@@ -742,7 +742,7 @@ function RunConfirmRestart(menu)
 			 function()
 			    confirm:stop()
 			    menu:stop()
-			    Exit(0)
+			    RestartStratagus()
    end)
 
    confirm:addHalfButton(_("~!No"), "n", 3 * (300 / 3) - 130, 120 - 16 - 27,
