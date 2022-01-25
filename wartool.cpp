@@ -2204,9 +2204,15 @@ unsigned char *ConvertString(unsigned char *inputBuffer, size_t len)
 				for (size_t j = 0; j < strlen(replacement); j++) {
 					*p++ = replacement[j];
 				}
-			} else {
+			} else if (CDType & (CD_BNE)) {
 				// assume CP1252
 				const char *replacement = CP1252_TABLE[*buf];
+				for (size_t j = 0; j < strlen(replacement); j++) {
+					*p++ = replacement[j];
+				}
+			} else {
+				// assume CP437 for DOS cd
+				const char *replacement = CP437_TABLE[*buf];
 				for (size_t j = 0; j < strlen(replacement); j++) {
 					*p++ = replacement[j];
 				}
@@ -2294,11 +2300,7 @@ int SetupNames(const char* file __attribute__((unused)), int txte __attribute__(
 //		printf("%d %x ", u, ConvertLE16(mp[u]));
 //		printf("%s\n", txtp + ConvertLE16(mp[u]));
 		if (u < sizeof(UnitNames) / sizeof(*UnitNames)) {
-#ifdef WIN32
-			UnitNames[u] = _strdup((char*)txtp + ConvertLE16(mp[u]));
-#else
-			UnitNames[u] = strdup((char*)txtp + ConvertLE16(mp[u]));
-#endif
+			UnitNames[u] = (char *)ConvertString(txtp + ConvertLE16(mp[u]), 0);
 			UnitNamesLast = u;
 		} else {
 			fprintf(stderr, "Too many strings: %d\n", u);
@@ -3200,17 +3202,13 @@ int main(int argc, char** argv)
 							f.seekg(0, std::ios::end);
 							int sz = f.tellg();
 							f.seekg(0, std::ios::beg);
-							char *buf = new char[sz];
-							char *currentBuf = buf + Todo[u].Arg3;
-							f.read(buf, sz);
+							unsigned char *buf = new unsigned char[sz];
+							unsigned char *currentBuf = buf + Todo[u].Arg3;
+							f.read((char *)buf, sz);
 							UnitNamesLast = 0;
 							while (UnitNamesLast < (sizeof(UnitNames) / sizeof(*UnitNames))) {
-#ifdef WIN32
-								UnitNames[UnitNamesLast] = _strdup(currentBuf);
-#else
-								UnitNames[UnitNamesLast] = strdup(currentBuf);
-#endif
-								currentBuf += strlen(currentBuf) + 1;
+								UnitNames[UnitNamesLast] = (char *)ConvertString(currentBuf, 0);
+								currentBuf += strlen((char *)currentBuf) + 1;
 								if (currentBuf - buf >= sz) {
 									break;
 								}

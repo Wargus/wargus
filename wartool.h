@@ -2265,6 +2265,13 @@ static Control Todo[] = {
 {Q,8,"music/Main Menu.wav",             0, 'W', 0, 0, "install.exe", "Music\\OWARROOM.WAV"},
 {Q,8,"music/I'm a Medieval Man.wav",    0, 'W', 0, 0, "install.exe", "Music\\DISCOWC.WAV"},
 
+// BNE fonts
+// {Q,8,"large_episode_titles",            0, 'N', 0, 0, "install.exe", "files\\font\\font50.fnt"},
+// {Q,8,"small_episode_titles",            0, 'N', 0, 0, "install.exe", "files\\font\\font32.fnt"},
+// {Q,8,"large",                           0, 'N', 0, 0, "install.exe", "files\\font\\font12.fnt"},
+// {Q,8,"game",                            0, 'N', 0, 0, "install.exe", "files\\font\\font10.fnt"},
+// {Q,8,"small",                           0, 'N', 0, 0, "install.exe", "files\\font\\font6.fnt"},
+
 #undef __
 #undef _2
 };
