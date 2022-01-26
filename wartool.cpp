@@ -2082,101 +2082,109 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 //  Text
 //----------------------------------------------------------------------------
 
-static const char *CP1252_TABLE[] = {
-	"\x00","\x01","\x02","\x03","\x04","\x05","\x06","\x07","\x08","\t","\n","\x0b","\x0c","\r","\x0e","\x0f",
-	"\x10","\x11","\x12","\x13","\x14","\x15","\x16","\x17","\x18","\x19","\x1a","\x1b","\x1c","\x1d","\x1e","\x1f",
-	" ","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/",
-	"0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?",
-	"@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O",
-	"P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_",
-	"`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
-	"p","q","r","s","t","u","v","w","x","y","z","{","|","}","~","\x7f",
-	
-	"\xe2\x82\xac","\xef\xbf\xbd","\xe2\x80\x9a","\xc6\x92","\xe2\x80\x9e","\xe2\x80\xa6","\xe2\x80\xa0","\xe2\x80\xa1",
-	"\xcb\x86","\xe2\x80\xb0","\xc5\xa0","\xe2\x80\xb9","\xc5\x92","\xef\xbf\xbd","\xc5\xbd","\xef\xbf\xbd",
-
-	"\xef\xbf\xbd","\xe2\x80\x98","\xe2\x80\x99","\xe2\x80\x9c","\xe2\x80\x9d","\xe2\x80\xa2","\xe2\x80\x93","\xe2\x80\x94",
-	"\xcb\x9c","\xe2\x84\xa2","\xc5\xa1","\xe2\x80\xba","\xc5\x93","\xef\xbf\xbd","\xc5\xbe","\xc5\xb8",
-	
-	"\xc2\xa0","\xc2\xa1","\xc2\xa2","\xc2\xa3","\xc2\xa4","\xc2\xa5","\xc2\xa6","\xc2\xa7",
-	"\xc2\xa8","\xc2\xa9","\xc2\xaa","\xc2\xab","\xc2\xac","\xc2\xad","\xc2\xae","\xc2\xaf",
-	
-	"\xc2\xb0","\xc2\xb1","\xc2\xb2","\xc2\xb3","\xc2\xb4","\xc2\xb5","\xc2\xb6","\xc2\xb7",
-	"\xc2\xb8","\xc2\xb9","\xc2\xba","\xc2\xbb","\xc2\xbc","\xc2\xbd","\xc2\xbe","\xc2\xbf",
-	
-	"\xc3\x80","\xc3\x81","\xc3\x82","\xc3\x83","\xc3\x84","\xc3\x85","\xc3\x86","\xc3\x87",
-	"\xc3\x88","\xc3\x89","\xc3\x8a","\xc3\x8b","\xc3\x8c","\xc3\x8d","\xc3\x8e","\xc3\x8f",
-	
-	"\xc3\x90","\xc3\x91","\xc3\x92","\xc3\x93","\xc3\x94","\xc3\x95","\xc3\x96","\xc3\x97",
-	"\xc3\x98","\xc3\x99","\xc3\x9a","\xc3\x9b","\xc3\x9c","\xc3\x9d","\xc3\x9e","\xc3\x9f",
-	
-	"\xc3\xa0","\xc3\xa1","\xc3\xa2","\xc3\xa3","\xc3\xa4","\xc3\xa5","\xc3\xa6","\xc3\xa7",
-	"\xc3\xa8","\xc3\xa9","\xc3\xaa","\xc3\xab","\xc3\xac","\xc3\xad","\xc3\xae","\xc3\xaf",
-	
-	"\xc3\xb0","\xc3\xb1","\xc3\xb2","\xc3\xb3","\xc3\xb4","\xc3\xb5","\xc3\xb6","\xc3\xb7",
-	"\xc3\xb8","\xc3\xb9","\xc3\xba","\xc3\xbb","\xc3\xbc","\xc3\xbd","\xc3\xbe","\xc3\xbf"
+static const char *cp437_to_utf8[] = {
+            "\x00",         "\x01",         "\x02",         "\x03",         "\x04",         "\x05",         "\x06",         "\x07", // 0x0
+            "\x08",           "\t",           "\n",         "\x0b",         "\x0c",           "\r",         "\x0e",         "\x0f", // 0x8
+            "\x10",         "\x11",         "\x12",         "\x13",         "\x14",         "\x15",         "\x16",         "\x17", // 0x10
+            "\x18",         "\x19",         "\x1a",         "\x1b",         "\x1c",         "\x1d",         "\x1e",         "\x1f", // 0x18
+               " ",            "!",           "\"",            "#",            "$",            "%",            "&",            "'", // 0x20
+               "(",            ")",            "*",            "+",            ",",            "-",            ".",            "/", // 0x28
+               "0",            "1",            "2",            "3",            "4",            "5",            "6",            "7", // 0x30
+               "8",            "9",            ":",            ";",            "<",            "=",            ">",            "?", // 0x38
+               "@",            "A",            "B",            "C",            "D",            "E",            "F",            "G", // 0x40
+               "H",            "I",            "J",            "K",            "L",            "M",            "N",            "O", // 0x48
+               "P",            "Q",            "R",            "S",            "T",            "U",            "V",            "W", // 0x50
+               "X",            "Y",            "Z",            "[",           "\\",            "]",            "^",            "_", // 0x58
+               "`",            "a",            "b",            "c",            "d",            "e",            "f",            "g", // 0x60
+               "h",            "i",            "j",            "k",            "l",            "m",            "n",            "o", // 0x68
+               "p",            "q",            "r",            "s",            "t",            "u",            "v",            "w", // 0x70
+               "x",            "y",            "z",            "{",            "|",            "}",            "~",         "\x7f", // 0x78
+        "\xc3\x87",     "\xc3\xbc",     "\xc3\xa9",     "\xc3\xa2",     "\xc3\xa4",     "\xc3\xa0",     "\xc3\xa5",     "\xc3\xa7", // 0x80
+        "\xc3\xaa",     "\xc3\xab",     "\xc3\xa8",     "\xc3\xaf",     "\xc3\xae",     "\xc3\xac",     "\xc3\x84",     "\xc3\x85", // 0x88
+        "\xc3\x89",     "\xc3\xa6",     "\xc3\x86",     "\xc3\xb4",     "\xc3\xb6",     "\xc3\xb2",     "\xc3\xbb",     "\xc3\xb9", // 0x90
+        "\xc3\xbf",     "\xc3\x96",     "\xc3\x9c",     "\xc2\xa2",     "\xc2\xa3",     "\xc2\xa5", "\xe2\x82\xa7",     "\xc6\x92", // 0x98
+        "\xc3\xa1",     "\xc3\xad",     "\xc3\xb3",     "\xc3\xba",     "\xc3\xb1",     "\xc3\x91",     "\xc2\xaa",     "\xc2\xba", // 0xa0
+        "\xc2\xbf", "\xe2\x8c\x90",     "\xc2\xac",     "\xc2\xbd",     "\xc2\xbc",     "\xc2\xa1",     "\xc2\xab",     "\xc2\xbb", // 0xa8
+    "\xe2\x96\x91", "\xe2\x96\x92", "\xe2\x96\x93", "\xe2\x94\x82", "\xe2\x94\xa4", "\xe2\x95\xa1", "\xe2\x95\xa2", "\xe2\x95\x96", // 0xb0
+    "\xe2\x95\x95", "\xe2\x95\xa3", "\xe2\x95\x91", "\xe2\x95\x97", "\xe2\x95\x9d", "\xe2\x95\x9c", "\xe2\x95\x9b", "\xe2\x94\x90", // 0xb8
+    "\xe2\x94\x94", "\xe2\x94\xb4", "\xe2\x94\xac", "\xe2\x94\x9c", "\xe2\x94\x80", "\xe2\x94\xbc", "\xe2\x95\x9e", "\xe2\x95\x9f", // 0xc0
+    "\xe2\x95\x9a", "\xe2\x95\x94", "\xe2\x95\xa9", "\xe2\x95\xa6", "\xe2\x95\xa0", "\xe2\x95\x90", "\xe2\x95\xac", "\xe2\x95\xa7", // 0xc8
+    "\xe2\x95\xa8", "\xe2\x95\xa4", "\xe2\x95\xa5", "\xe2\x95\x99", "\xe2\x95\x98", "\xe2\x95\x92", "\xe2\x95\x93", "\xe2\x95\xab", // 0xd0
+    "\xe2\x95\xaa", "\xe2\x94\x98", "\xe2\x94\x8c", "\xe2\x96\x88", "\xe2\x96\x84", "\xe2\x96\x8c", "\xe2\x96\x90", "\xe2\x96\x80", // 0xd8
+        "\xce\xb1",     "\xc3\x9f",     "\xce\x93",     "\xcf\x80",     "\xce\xa3",     "\xcf\x83",     "\xc2\xb5",     "\xcf\x84", // 0xe0
+        "\xce\xa6",     "\xce\x98",     "\xce\xa9",     "\xce\xb4", "\xe2\x88\x9e",     "\xcf\x86",     "\xce\xb5", "\xe2\x88\xa9", // 0xe8
+    "\xe2\x89\xa1",     "\xc2\xb1", "\xe2\x89\xa5", "\xe2\x89\xa4", "\xe2\x8c\xa0", "\xe2\x8c\xa1",     "\xc3\xb7", "\xe2\x89\x88", // 0xf0
+        "\xc2\xb0", "\xe2\x88\x99",     "\xc2\xb7", "\xe2\x88\x9a", "\xe2\x81\xbf",     "\xc2\xb2", "\xe2\x96\xa0",     "\xc2\xa0", // 0xf8
 };
 
-static const char *CP437_TABLE[] = {
-	"\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07", "\x08", "\t", "\n", "\x0b", "\x0c", "\r", "\x0e", "\x0f",
-	"\x10", "\x11", "\x12", "\x13", "\x14", "\x15", "\x16", "\x17",	"\x18", "\x19", "\x1a", "\x1b", "\x1c", "\x1d", "\x1e", "\x1f",
-	" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/",
-	"0", "1", "2", "3", "4", "5", "6", "7",	"8", "9", ":", ";", "<", "=", ">", "?",
-	"@", "A", "B", "C", "D", "E", "F", "G",	"H", "I", "J", "K", "L", "M", "N", "O",
-	"P", "Q", "R", "S", "T", "U", "V", "W",	"X", "Y", "Z", "[", "\\", "]", "^", "_",
-	"`", "a", "b", "c", "d", "e", "f", "g",	"h", "i", "j", "k", "l", "m", "n", "o",
-	"p", "q", "r", "s", "t", "u", "v", "w",	"x", "y", "z", "{", "|", "}", "~", "\x7f",
-	"\xc3\x87", "\xc3\xbc", "\xc3\xa9", "\xc3\xa2", "\xc3\xa4", "\xc3\xa0", "\xc3\xa5", "\xc3\xa7",
-	"\xc3\xaa", "\xc3\xab", "\xc3\xa8", "\xc3\xaf", "\xc3\xae", "\xc3\xac", "\xc3\x84", "\xc3\x85",
-	"\xc3\x89", "\xc3\xa6", "\xc3\x86", "\xc3\xb4", "\xc3\xb6", "\xc3\xb2", "\xc3\xbb", "\xc3\xb9",
-	"\xc3\xbf", "\xc3\x96", "\xc3\x9c", "\xc2\xa2", "\xc2\xa3", "\xc2\xa5", "\xe2\x82\xa7", "\xc6\x92",
-	"\xc3\xa1", "\xc3\xad", "\xc3\xb3", "\xc3\xba", "\xc3\xb1", "\xc3\x91", "\xc2\xaa", "\xc2\xba",
-	"\xc2\xbf", "\xe2\x8c\x90", "\xc2\xac", "\xc2\xbd", "\xc2\xbc", "\xc2\xa1", "\xc2\xab", "\xc2\xbb",
-	"\xe2\x96\x91", "\xe2\x96\x92", "\xe2\x96\x93", "\xe2\x94\x82", "\xe2\x94\xa4", "\xe2\x95\xa1", "\xe2\x95\xa2", "\xe2\x95\x96",
-	"\xe2\x95\x95", "\xe2\x95\xa3", "\xe2\x95\x91", "\xe2\x95\x97", "\xe2\x95\x9d", "\xe2\x95\x9c", "\xe2\x95\x9b", "\xe2\x94\x90",
-	"\xe2\x94\x94", "\xe2\x94\xb4", "\xe2\x94\xac", "\xe2\x94\x9c", "\xe2\x94\x80", "\xe2\x94\xbc", "\xe2\x95\x9e", "\xe2\x95\x9f",
-	"\xe2\x95\x9a", "\xe2\x95\x94", "\xe2\x95\xa9", "\xe2\x95\xa6", "\xe2\x95\xa0", "\xe2\x95\x90", "\xe2\x95\xac", "\xe2\x95\xa7",
-	"\xe2\x95\xa8", "\xe2\x95\xa4", "\xe2\x95\xa5", "\xe2\x95\x99", "\xe2\x95\x98", "\xe2\x95\x92", "\xe2\x95\x93", "\xe2\x95\xab",
-	"\xe2\x95\xaa", "\xe2\x94\x98", "\xe2\x94\x8c", "\xe2\x96\x88", "\xe2\x96\x84", "\xe2\x96\x8c", "\xe2\x96\x90", "\xe2\x96\x80",
-	"\xce\xb1", "\xc3\x9f", "\xce\x93", "\xcf\x80", "\xce\xa3", "\xcf\x83", "\xc2\xb5", "\xcf\x84",
-	"\xce\xa6", "\xce\x98", "\xce\xa9", "\xce\xb4", "\xe2\x88\x9e", "\xcf\x86", "\xce\xb5", "\xe2\x88\xa9",
-	"\xe2\x89\xa1", "\xc2\xb1", "\xe2\x89\xa5", "\xe2\x89\xa4", "\xe2\x8c\xa0", "\xe2\x8c\xa1", "\xc3\xb7", "\xe2\x89\x88",
-	"\xc2\xb0", "\xe2\x88\x99", "\xc2\xb7", "\xe2\x88\x9a", "\xe2\x81\xbf", "\xc2\xb2", "\xe2\x96\xa0", "\xc2\xa0",
+static const char *cp1252_to_utf8[] = {
+            "\x00",         "\x01",         "\x02",         "\x03",         "\x04",         "\x05",         "\x06",         "\x07", // 0x0
+            "\x08",           "\t",           "\n",         "\x0b",         "\x0c",           "\r",         "\x0e",         "\x0f", // 0x8
+            "\x10",         "\x11",         "\x12",         "\x13",         "\x14",         "\x15",         "\x16",         "\x17", // 0x10
+            "\x18",         "\x19",         "\x1a",         "\x1b",         "\x1c",         "\x1d",         "\x1e",         "\x1f", // 0x18
+               " ",            "!",           "\"",            "#",            "$",            "%",            "&",            "'", // 0x20
+               "(",            ")",            "*",            "+",            ",",            "-",            ".",            "/", // 0x28
+               "0",            "1",            "2",            "3",            "4",            "5",            "6",            "7", // 0x30
+               "8",            "9",            ":",            ";",            "<",            "=",            ">",            "?", // 0x38
+               "@",            "A",            "B",            "C",            "D",            "E",            "F",            "G", // 0x40
+               "H",            "I",            "J",            "K",            "L",            "M",            "N",            "O", // 0x48
+               "P",            "Q",            "R",            "S",            "T",            "U",            "V",            "W", // 0x50
+               "X",            "Y",            "Z",            "[",           "\\",            "]",            "^",            "_", // 0x58
+               "`",            "a",            "b",            "c",            "d",            "e",            "f",            "g", // 0x60
+               "h",            "i",            "j",            "k",            "l",            "m",            "n",            "o", // 0x68
+               "p",            "q",            "r",            "s",            "t",            "u",            "v",            "w", // 0x70
+               "x",            "y",            "z",            "{",            "|",            "}",            "~",         "\x7f", // 0x78
+    "\xe2\x82\xac", "\xef\xbf\xbd", "\xe2\x80\x9a",     "\xc6\x92", "\xe2\x80\x9e", "\xe2\x80\xa6", "\xe2\x80\xa0", "\xe2\x80\xa1", // 0x80
+        "\xcb\x86", "\xe2\x80\xb0",     "\xc5\xa0", "\xe2\x80\xb9",     "\xc5\x92", "\xef\xbf\xbd",     "\xc5\xbd", "\xef\xbf\xbd", // 0x88
+    "\xef\xbf\xbd", "\xe2\x80\x98", "\xe2\x80\x99", "\xe2\x80\x9c", "\xe2\x80\x9d", "\xe2\x80\xa2", "\xe2\x80\x93", "\xe2\x80\x94", // 0x90
+        "\xcb\x9c", "\xe2\x84\xa2",     "\xc5\xa1", "\xe2\x80\xba",     "\xc5\x93", "\xef\xbf\xbd",     "\xc5\xbe",     "\xc5\xb8", // 0x98
+        "\xc2\xa0",     "\xc2\xa1",     "\xc2\xa2",     "\xc2\xa3",     "\xc2\xa4",     "\xc2\xa5",     "\xc2\xa6",     "\xc2\xa7", // 0xa0
+        "\xc2\xa8",     "\xc2\xa9",     "\xc2\xaa",     "\xc2\xab",     "\xc2\xac",     "\xc2\xad",     "\xc2\xae",     "\xc2\xaf", // 0xa8
+        "\xc2\xb0",     "\xc2\xb1",     "\xc2\xb2",     "\xc2\xb3",     "\xc2\xb4",     "\xc2\xb5",     "\xc2\xb6",     "\xc2\xb7", // 0xb0
+        "\xc2\xb8",     "\xc2\xb9",     "\xc2\xba",     "\xc2\xbb",     "\xc2\xbc",     "\xc2\xbd",     "\xc2\xbe",     "\xc2\xbf", // 0xb8
+        "\xc3\x80",     "\xc3\x81",     "\xc3\x82",     "\xc3\x83",     "\xc3\x84",     "\xc3\x85",     "\xc3\x86",     "\xc3\x87", // 0xc0
+        "\xc3\x88",     "\xc3\x89",     "\xc3\x8a",     "\xc3\x8b",     "\xc3\x8c",     "\xc3\x8d",     "\xc3\x8e",     "\xc3\x8f", // 0xc8
+        "\xc3\x90",     "\xc3\x91",     "\xc3\x92",     "\xc3\x93",     "\xc3\x94",     "\xc3\x95",     "\xc3\x96",     "\xc3\x97", // 0xd0
+        "\xc3\x98",     "\xc3\x99",     "\xc3\x9a",     "\xc3\x9b",     "\xc3\x9c",     "\xc3\x9d",     "\xc3\x9e",     "\xc3\x9f", // 0xd8
+        "\xc3\xa0",     "\xc3\xa1",     "\xc3\xa2",     "\xc3\xa3",     "\xc3\xa4",     "\xc3\xa5",     "\xc3\xa6",     "\xc3\xa7", // 0xe0
+        "\xc3\xa8",     "\xc3\xa9",     "\xc3\xaa",     "\xc3\xab",     "\xc3\xac",     "\xc3\xad",     "\xc3\xae",     "\xc3\xaf", // 0xe8
+        "\xc3\xb0",     "\xc3\xb1",     "\xc3\xb2",     "\xc3\xb3",     "\xc3\xb4",     "\xc3\xb5",     "\xc3\xb6",     "\xc3\xb7", // 0xf0
+        "\xc3\xb8",     "\xc3\xb9",     "\xc3\xba",     "\xc3\xbb",     "\xc3\xbc",     "\xc3\xbd",     "\xc3\xbe",     "\xc3\xbf", // 0xf8
 };
 
-static const char *CP866_TABLE[] = {
-	"\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07", "\x08",   "\t",   "\n", "\x0b", "\x0c",   "\r", "\x0e", "\x0f",
-	"\x10", "\x11", "\x12", "\x13", "\x14", "\x15", "\x16", "\x17", "\x18", "\x19", "\x1a", "\x1b", "\x1c", "\x1d", "\x1e", "\x1f",
-	   " ",    "!",   "\"",    "#",    "$",    "%",    "&",    "'",    "(",    ")",    "*",    "+",    ",",    "-",    ".",    "/",
-	   "0",    "1",    "2",    "3",    "4",    "5",    "6",    "7",    "8",    "9",    ":",    ";",    "<",    "=",    ">",    "?",
-	   "@",    "A",    "B",    "C",    "D",    "E",    "F",    "G",    "H",    "I",    "J",    "K",    "L",    "M",    "N",    "O",
-	   "P",    "Q",    "R",    "S",    "T",    "U",    "V",    "W",    "X",    "Y",    "Z",    "[",   "\\",    "]",    "^",    "_",
-	   "`",    "a",    "b",    "c",    "d",    "e",    "f",    "g",    "h",    "i",    "j",    "k",    "l",    "m",    "n",    "o",
-	   "p",    "q",    "r",    "s",    "t",    "u",    "v",    "w",    "x",    "y",    "z",    "{",    "|",    "}",    "~", "\x7f",
-	
-	"\xd0\x90", "\xd0\x91", "\xd0\x92", "\xd0\x93", "\xd0\x94", "\xd0\x95", "\xd0\x96", "\xd0\x97",
-	"\xd0\x98", "\xd0\x99", "\xd0\x9a", "\xd0\x9b", "\xd0\x9c", "\xd0\x9d", "\xd0\x9e", "\xd0\x9f",
-	
-	"\xd0\xa0", "\xd0\xa1", "\xd0\xa2", "\xd0\xa3", "\xd0\xa4", "\xd0\xa5", "\xd0\xa6", "\xd0\xa7",
-	"\xd0\xa8", "\xd0\xa9", "\xd0\xaa", "\xd0\xab", "\xd0\xac", "\xd0\xad", "\xd0\xae", "\xd0\xaf",
-	
-	"\xd0\xb0", "\xd0\xb1", "\xd0\xb2", "\xd0\xb3", "\xd0\xb4", "\xd0\xb5", "\xd0\xb6", "\xd0\xb7",
-	"\xd0\xb8", "\xd0\xb9", "\xd0\xba", "\xd0\xbb", "\xd0\xbc", "\xd0\xbd", "\xd0\xbe", "\xd0\xbf",
-
-	"\xe2\x96\x91", "\xe2\x96\x92", "\xe2\x96\x93", "\xe2\x94\x82", "\xe2\x94\xa4", "\xe2\x95\xa1", "\xe2\x95\xa2", "\xe2\x95\x96",
-	"\xe2\x95\x95", "\xe2\x95\xa3", "\xe2\x95\x91", "\xe2\x95\x97", "\xe2\x95\x9d", "\xe2\x95\x9c", "\xe2\x95\x9b", "\xe2\x94\x90",
-	
-	"\xe2\x94\x94", "\xe2\x94\xb4", "\xe2\x94\xac", "\xe2\x94\x9c", "\xe2\x94\x80", "\xe2\x94\xbc", "\xe2\x95\x9e", "\xe2\x95\x9f",
-	"\xe2\x95\x9a", "\xe2\x95\x94", "\xe2\x95\xa9", "\xe2\x95\xa6", "\xe2\x95\xa0", "\xe2\x95\x90", "\xe2\x95\xac", "\xe2\x95\xa7",
-	
-	"\xe2\x95\xa8", "\xe2\x95\xa4", "\xe2\x95\xa5", "\xe2\x95\x99", "\xe2\x95\x98", "\xe2\x95\x92", "\xe2\x95\x93", "\xe2\x95\xab",
-	"\xe2\x95\xaa", "\xe2\x94\x98", "\xe2\x94\x8c", "\xe2\x96\x88", "\xe2\x96\x84", "\xe2\x96\x8c", "\xe2\x96\x90", "\xe2\x96\x80",
-
-	"\xd1\x80", "\xd1\x81", "\xd1\x82", "\xd1\x83", "\xd1\x84", "\xd1\x85", "\xd1\x86", "\xd1\x87",
-	"\xd1\x88", "\xd1\x89", "\xd1\x8a", "\xd1\x8b", "\xd1\x8c", "\xd1\x8d", "\xd1\x8e", "\xd1\x8f",
-
-	"\xd0\x81", "\xd1\x91", "\xd0\x84", "\xd1\x94", "\xd0\x87", "\xd1\x97", "\xd0\x8e", "\xd1\x9e",
-	"\xc2\xb0", "\xe2\x88\x99", "\xc2\xb7", "\xe2\x88\x9a", "\xe2\x84\x96", "\xc2\xa4", "\xe2\x96\xa0", "\xc2\xa0"
+static const char *cp866_to_utf8[] = {
+            "\x00",         "\x01",         "\x02",         "\x03",         "\x04",         "\x05",         "\x06",         "\x07", // 0x0
+            "\x08",           "\t",           "\n",         "\x0b",         "\x0c",           "\r",         "\x0e",         "\x0f", // 0x8
+            "\x10",         "\x11",         "\x12",         "\x13",         "\x14",         "\x15",         "\x16",         "\x17", // 0x10
+            "\x18",         "\x19",         "\x1a",         "\x1b",         "\x1c",         "\x1d",         "\x1e",         "\x1f", // 0x18
+               " ",            "!",           "\"",            "#",            "$",            "%",            "&",            "'", // 0x20
+               "(",            ")",            "*",            "+",            ",",            "-",            ".",            "/", // 0x28
+               "0",            "1",            "2",            "3",            "4",            "5",            "6",            "7", // 0x30
+               "8",            "9",            ":",            ";",            "<",            "=",            ">",            "?", // 0x38
+               "@",            "A",            "B",            "C",            "D",            "E",            "F",            "G", // 0x40
+               "H",            "I",            "J",            "K",            "L",            "M",            "N",            "O", // 0x48
+               "P",            "Q",            "R",            "S",            "T",            "U",            "V",            "W", // 0x50
+               "X",            "Y",            "Z",            "[",           "\\",            "]",            "^",            "_", // 0x58
+               "`",            "a",            "b",            "c",            "d",            "e",            "f",            "g", // 0x60
+               "h",            "i",            "j",            "k",            "l",            "m",            "n",            "o", // 0x68
+               "p",            "q",            "r",            "s",            "t",            "u",            "v",            "w", // 0x70
+               "x",            "y",            "z",            "{",            "|",            "}",            "~",         "\x7f", // 0x78
+        "\xd0\x90",     "\xd0\x91",     "\xd0\x92",     "\xd0\x93",     "\xd0\x94",     "\xd0\x95",     "\xd0\x96",     "\xd0\x97", // 0x80
+        "\xd0\x98",     "\xd0\x99",     "\xd0\x9a",     "\xd0\x9b",     "\xd0\x9c",     "\xd0\x9d",     "\xd0\x9e",     "\xd0\x9f", // 0x88
+        "\xd0\xa0",     "\xd0\xa1",     "\xd0\xa2",     "\xd0\xa3",     "\xd0\xa4",     "\xd0\xa5",     "\xd0\xa6",     "\xd0\xa7", // 0x90
+        "\xd0\xa8",     "\xd0\xa9",     "\xd0\xaa",     "\xd0\xab",     "\xd0\xac",     "\xd0\xad",     "\xd0\xae",     "\xd0\xaf", // 0x98
+        "\xd0\xb0",     "\xd0\xb1",     "\xd0\xb2",     "\xd0\xb3",     "\xd0\xb4",     "\xd0\xb5",     "\xd0\xb6",     "\xd0\xb7", // 0xa0
+        "\xd0\xb8",     "\xd0\xb9",     "\xd0\xba",     "\xd0\xbb",     "\xd0\xbc",     "\xd0\xbd",     "\xd0\xbe",     "\xd0\xbf", // 0xa8
+    "\xe2\x96\x91", "\xe2\x96\x92", "\xe2\x96\x93", "\xe2\x94\x82", "\xe2\x94\xa4", "\xe2\x95\xa1", "\xe2\x95\xa2", "\xe2\x95\x96", // 0xb0
+    "\xe2\x95\x95", "\xe2\x95\xa3", "\xe2\x95\x91", "\xe2\x95\x97", "\xe2\x95\x9d", "\xe2\x95\x9c", "\xe2\x95\x9b", "\xe2\x94\x90", // 0xb8
+    "\xe2\x94\x94", "\xe2\x94\xb4", "\xe2\x94\xac", "\xe2\x94\x9c", "\xe2\x94\x80", "\xe2\x94\xbc", "\xe2\x95\x9e", "\xe2\x95\x9f", // 0xc0
+    "\xe2\x95\x9a", "\xe2\x95\x94", "\xe2\x95\xa9", "\xe2\x95\xa6", "\xe2\x95\xa0", "\xe2\x95\x90", "\xe2\x95\xac", "\xe2\x95\xa7", // 0xc8
+    "\xe2\x95\xa8", "\xe2\x95\xa4", "\xe2\x95\xa5", "\xe2\x95\x99", "\xe2\x95\x98", "\xe2\x95\x92", "\xe2\x95\x93", "\xe2\x95\xab", // 0xd0
+    "\xe2\x95\xaa", "\xe2\x94\x98", "\xe2\x94\x8c", "\xe2\x96\x88", "\xe2\x96\x84", "\xe2\x96\x8c", "\xe2\x96\x90", "\xe2\x96\x80", // 0xd8
+        "\xd1\x80",     "\xd1\x81",     "\xd1\x82",     "\xd1\x83",     "\xd1\x84",     "\xd1\x85",     "\xd1\x86",     "\xd1\x87", // 0xe0
+        "\xd1\x88",     "\xd1\x89",     "\xd1\x8a",     "\xd1\x8b",     "\xd1\x8c",     "\xd1\x8d",     "\xd1\x8e",     "\xd1\x8f", // 0xe8
+        "\xd0\x81",     "\xd1\x91",     "\xd0\x84",     "\xd1\x94",     "\xd0\x87",     "\xd1\x97",     "\xd0\x8e",     "\xd1\x9e", // 0xf0
+        "\xc2\xb0", "\xe2\x88\x99",     "\xc2\xb7", "\xe2\x88\x9a", "\xe2\x84\x96",     "\xc2\xa4", "\xe2\x96\xa0",     "\xc2\xa0", // 0xf8
 };
 
 /**
@@ -2200,19 +2208,19 @@ unsigned char *ConvertString(unsigned char *inputBuffer, size_t len)
 		if (*buf > 0x7f) {
 			if (CDType & (CD_RUSSIAN)) {
 				// CP866
-				const char *replacement = CP866_TABLE[*buf];
+				const char *replacement = cp866_to_utf8[*buf];
 				for (size_t j = 0; j < strlen(replacement); j++) {
 					*p++ = replacement[j];
 				}
 			} else if (CDType & (CD_BNE)) {
 				// assume CP1252
-				const char *replacement = CP1252_TABLE[*buf];
+				const char *replacement = cp1252_to_utf8[*buf];
 				for (size_t j = 0; j < strlen(replacement); j++) {
 					*p++ = replacement[j];
 				}
 			} else {
 				// assume CP437 for DOS cd
-				const char *replacement = CP437_TABLE[*buf];
+				const char *replacement = cp437_to_utf8[*buf];
 				for (size_t j = 0; j < strlen(replacement); j++) {
 					*p++ = replacement[j];
 				}

@@ -20,7 +20,7 @@ for i in range(0xa0, 0xff + 1):
         print(f"// {hex(i - 15)}")
 print("};\n")
 
-print("static const unsigned char utf8_europe_to_cp866[] = {")
+print("static const unsigned char utf8_europe_to_ascii[] = {")
 for i in range(0xa0, 0xff + 1):
     if i % 16 == 0:
         print("    ", end="")
@@ -30,17 +30,7 @@ for i in range(0xa0, 0xff + 1):
         print(f"// {hex(i - 15)}")
 print("};\n")
 
-print("static const unsigned char utf8_cyrillic_to_cp437[] = {")
-for i in range(0x400, 0x45f + 1):
-    if i % 16 == 0:
-        print("    ", end="")
-    replacement = unidecode(chr(i)) or "\x00"
-    print("0x%02x" % replacement.encode('ascii')[0], ", ", sep="", end="")
-    if i % 16 == 15:
-        print(f"// {hex(i - 15)}")
-print("};\n")
-
-print("static const unsigned char utf8_cyrillic_to_cp1252[] = {")
+print("static const unsigned char utf8_cyrillic_to_ascii[] = {")
 for i in range(0x400, 0x45f + 1):
     if i % 16 == 0:
         print("    ", end="")
