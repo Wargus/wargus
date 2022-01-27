@@ -8,7 +8,7 @@ Briefing(
   "../campaigns/human/interface/introscreen4.png",
   "campaigns/human/level11h.txt",
   {"campaigns/human/level11h-intro1.wav",
-   "voice", "campaigns/human/level11h-intro2.wav"}
+   "campaigns/human/level11h-intro2.wav"}
 )
 
 Triggers = [[
