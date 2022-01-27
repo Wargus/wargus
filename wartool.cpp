@@ -3424,6 +3424,11 @@ int main(int argc, char** argv)
 		fprintf(f, "wargus.bne = false\n");
 	}
 	fprintf(f, "wargus.game_font_width = %d\n", game_font_width);
+	if (CDType & CD_RUSSIAN) {
+		fprintf(f, "SetFontCodePage(866)\n", game_font_width);	
+	} else {
+		fprintf(f, "SetFontCodePage(437)\n");
+	}
 
 	fprintf(f, "InGameStrings = {\n");
 	while (UnitNamesLast > 0) {
