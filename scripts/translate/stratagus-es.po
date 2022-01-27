@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: stratagus-es\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Magaly Medina <pointify@e.email>\n"
-"POT-Creation-Date: 2021-07-22 22:06+0200\n"
-"PO-Revision-Date: 2021-07-22 22:06+0200\n"
+"POT-Creation-Date: 2022-01-27 20:34+0100\n"
+"PO-Revision-Date: 2022-01-27 20:34+0100\n"
+"Last-Translator: Tim Felgentreff <timfelgentreff@gmail.com>\n"
 "Language-Team: SPANISH\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ../../../stratagus/src\n"
 "X-Poedit-KeywordsList: _\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: action/action_build.cpp:204
@@ -58,7 +58,7 @@ msgstr "Nuevo/a %s terminado/a"
 msgid "We need more %s for repair!"
 msgstr "¡Necesitamos más %s para la reparación!"
 
-#: action/action_research.cpp:137 action/action_research.cpp:139
+#: action/action_research.cpp:145 action/action_research.cpp:147
 #, c-format
 msgid "%s: research complete"
 msgstr "%s: investigación finalizada"
@@ -142,34 +142,34 @@ msgstr "#%d '%s' Jugador:#%d %s"
 msgid " Amount %d"
 msgstr " Cantidad %d"
 
-#: editor/editloop.cpp:1238
+#: editor/editloop.cpp:1287
 #, fuzzy
 #| msgid "Unit can't be placed here."
 msgid "Unit cannot be placed here."
 msgstr "La unidad no puede colocarse ahí."
 
-#: editor/editloop.cpp:1328
+#: editor/editloop.cpp:1382
 msgid "Mirror editing enabled: 2-side"
 msgstr "Edición espejo habilitada: 2 caras"
 
-#: editor/editloop.cpp:1331
+#: editor/editloop.cpp:1385
 msgid "Mirror editing enabled: 4-side"
 msgstr "Edición espejo habilitada: 4 caras"
 
-#: editor/editloop.cpp:1334
+#: editor/editloop.cpp:1388
 msgid "Mirror editing disabled"
 msgstr "Edición espejo deshabilitada"
 
-#: editor/editloop.cpp:1382 editor/editloop.cpp:1391
+#: editor/editloop.cpp:1437 editor/editloop.cpp:1456
 msgid "Unit owner modified"
 msgstr "Dueño/a de unidad modificado/a"
 
-#: editor/editloop.cpp:1463
+#: editor/editloop.cpp:1529
 #, c-format
 msgid "Select player #%d"
 msgstr "Selecciona el jugador #%d"
 
-#: editor/editloop.cpp:1719
+#: editor/editloop.cpp:1785
 #, c-format
 msgid "Script %s"
 msgstr "Script %s"
@@ -195,7 +195,7 @@ msgstr "¡La repetición se desincronizo!"
 msgid "End of replay"
 msgstr "Fin de la repetición"
 
-#: map/script_map.cpp:759
+#: map/script_map.cpp:848
 #, fuzzy, c-format
 #| msgid "Tileset `%s'"
 msgid "Tileset '%s'"
@@ -273,14 +273,14 @@ msgstr "¡%s no ha hecho una nueva base y ha sido revelado/a!"
 msgid "You have not rebuilt your base and have been revealed!"
 msgstr "¡No has hecho una nueva base y has sido revelado/a!"
 
-#: stratagus/script.cpp:2455
+#: stratagus/script.cpp:2562
 #, c-format
 msgid "Script %s\n"
 msgstr "Script %s\n"
 
-#: stratagus/stratagus.cpp:413
+#: stratagus/stratagus.cpp:416
 msgid "Thanks for playing Stratagus.\n"
-msgstr "Gracias por jugar Stratagus."
+msgstr "Gracias por jugar Stratagus.\n"
 
 #: ui/botpanel.cpp:1125
 msgid "Select Target"
@@ -371,7 +371,7 @@ msgstr "Terreno oculto."
 msgid "Grab mouse toggled."
 msgstr "Agarre de ratón alternado."
 
-#: ui/interface.cpp:1070
+#: ui/interface.cpp:1076
 msgid "Screenshot made."
 msgstr "Captura de pantalla hecha."
 
@@ -423,12 +423,12 @@ msgstr "%s atacado/a"
 msgid "Decorations '%s'"
 msgstr "Decoraciones `%s'"
 
-#: unit/unittype.cpp:952
+#: unit/unittype.cpp:953
 #, c-format
 msgid "unit-type '%s' without animations, ignored.\n"
 msgstr "El tipo de unidad '%s' no tiene animaciones, ignorado.\n"
 
-#: unit/unittype.cpp:1070
+#: unit/unittype.cpp:1071
 #, c-format
 msgid "Unit \"%s\""
 msgstr "Unidades' \"%s\""

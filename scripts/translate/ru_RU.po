@@ -1,18 +1,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wargus\n"
-"Last-Translator: cybermind <iddqd_mail@mail.ru>\n"
-"POT-Creation-Date: 2021-07-22 22:06+0200\n"
-"PO-Revision-Date: 2021-07-22 22:06+0200\n"
+"POT-Creation-Date: 2022-01-27 20:34+0100\n"
+"PO-Revision-Date: 2022-01-27 20:34+0100\n"
+"Last-Translator: Tim Felgentreff <timfelgentreff@gmail.com>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
-"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -130,418 +130,419 @@ msgstr "Здания:"
 msgid "Neutral Units"
 msgstr "Нейтрал"
 
-#: editor.lua:235 menus/help.lua:85
+#: editor.lua:236 menus/help.lua:85
 msgid "Keystroke Help Menu"
 msgstr "Горячие Клавиши"
 
-#: editor.lua:236 menus/endscenario.lua:16 menus/help.lua:9 menus/help.lua:86
+#: editor.lua:237 menus/endscenario.lua:16 menus/help.lua:9 menus/help.lua:86
 #: menus/options.lua:825 menus/options.lua:860
 msgid "Previous (~<Esc~>)"
 msgstr "Предыдущее (~<Esc~>)"
 
-#: guichan.lua:811
+#: guichan.lua:817
 msgid "-Destroy the enemy"
 msgstr "-Уничтожить всех врагов"
 
-#: guichan.lua:832 guichan.lua:1144 guichan.lua:1149 guichan.lua:1150
-#: guichan.lua:1152 menus/network.lua:205 menus/network.lua:214
-#: menus/network.lua:220 menus/network.lua:561 menus/network.lua:572
-#: menus/network.lua:582 stratagus.lua:100 wc2.lua:148
+#: guichan.lua:838 guichan.lua:1152 guichan.lua:1157 guichan.lua:1158
+#: guichan.lua:1160 menus/network.lua:208 menus/network.lua:217
+#: menus/network.lua:223 menus/network.lua:578 menus/network.lua:589
+#: menus/network.lua:599 stratagus.lua:105 wc2.lua:148
 msgid "Map Default"
 msgstr "По умолчанию"
 
-#: guichan.lua:922
+#: guichan.lua:930
 msgid "Nation of Stromgarde"
 msgstr "Нация Стромгарде"
 
-#: guichan.lua:924
+#: guichan.lua:932
 msgid "Nation of Azeroth"
 msgstr "Нация Азерота"
 
-#: guichan.lua:926
+#: guichan.lua:934
 msgid "Nation of Kul Tiras"
 msgstr "Нация Куль Тираса"
 
-#: guichan.lua:928
+#: guichan.lua:936
 msgid "Nation of Dalaran"
 msgstr "Нация Даларана"
 
-#: guichan.lua:930
+#: guichan.lua:938
 msgid "Nation of Alterac"
 msgstr "Нация Альтерака"
 
-#: guichan.lua:932
+#: guichan.lua:940
 msgid "Nation of Gilneas"
 msgstr "Нация Гилнеаса"
 
-#: guichan.lua:934
+#: guichan.lua:942
 msgid "Nation of Lordaeron"
 msgstr "Нация Лордерона"
 
-#: guichan.lua:936
+#: guichan.lua:944
 msgid "Alliance Traitors"
 msgstr "Предатели Альянса"
 
-#: guichan.lua:940
+#: guichan.lua:948
 msgid "Blackrock Clan"
 msgstr "Клан Черной Скалы"
 
-#: guichan.lua:942
+#: guichan.lua:950
 msgid "Stormreaver Clan"
 msgstr "Клан Похитителей"
 
-#: guichan.lua:944
+#: guichan.lua:952
 msgid "Bleeding Hollow Clan"
 msgstr "Клан Кровоточащих Десен"
 
-#: guichan.lua:946
+#: guichan.lua:954
 msgid "Twilight's Hammer Clan"
 msgstr "Клан Сумеречного Молота"
 
-#: guichan.lua:948
+#: guichan.lua:956
 msgid "Burning Blade Clan"
 msgstr "Клан Горящего Клинка"
 
-#: guichan.lua:950
+#: guichan.lua:958
 msgid "Black Tooth Grin Clan"
 msgstr "Клан Гнилозубых"
 
-#: guichan.lua:952
+#: guichan.lua:960
 msgid "Dragonmaw Clan"
 msgstr "Клан Драконьей Утробы"
 
-#: guichan.lua:954
+#: guichan.lua:962
 msgid "Laughing Skull Clan"
 msgstr "Клан Смеющегося Черепа"
 
-#: guichan.lua:1036
+#: guichan.lua:1044
 msgid "Select scenario"
 msgstr "Выбор миссии"
 
-#: guichan.lua:1063 guichan.lua:1668 menus/diplomacy.lua:118
-#: menus/editor.lua:38 menus/editor.lua:83 menus/editor.lua:109
-#: menus/editor.lua:149 menus/editor.lua:229 menus/editor.lua:390
-#: menus/editor.lua:436 menus/editor.lua:498 menus/endscenario.lua:30
-#: menus/endscenario.lua:44 menus/endscenario.lua:58 menus/endscenario.lua:72
-#: menus/load.lua:61 menus/network.lua:323 menus/network.lua:395
-#: menus/network.lua:466 menus/network.lua:492 menus/network.lua:516
-#: menus/network.lua:711 menus/network.lua:782 menus/options.lua:179
-#: menus/options.lua:431 menus/options.lua:546 menus/options.lua:636
-#: menus/options.lua:783 menus/replay.lua:38 menus/replay.lua:80
-#: menus/save.lua:89
+#: guichan.lua:1071 guichan.lua:1676 menus/diplomacy.lua:118
+#: menus/editor.lua:40 menus/editor.lua:85 menus/editor.lua:111
+#: menus/editor.lua:151 menus/editor.lua:231 menus/editor.lua:392
+#: menus/editor.lua:438 menus/endscenario.lua:30 menus/endscenario.lua:44
+#: menus/endscenario.lua:58 menus/endscenario.lua:72 menus/load.lua:61
+#: menus/network.lua:325 menus/network.lua:409 menus/network.lua:480
+#: menus/network.lua:506 menus/network.lua:530 menus/network.lua:727
+#: menus/network.lua:798 menus/options.lua:179 menus/options.lua:431
+#: menus/options.lua:546 menus/options.lua:636 menus/options.lua:783
+#: menus/replay.lua:38 menus/replay.lua:80 menus/save.lua:89
 msgid "Cancel (~<Esc~>)"
 msgstr "Отмена (~<Esc~>)"
 
-#: guichan.lua:1083
+#: guichan.lua:1091
 msgid "~<Single Player~>"
 msgstr "~<Одиночная игра~>"
 
-#: guichan.lua:1085
+#: guichan.lua:1093
 msgid "~!Standard Game"
 msgstr "Миссия пользователя"
 
-#: guichan.lua:1087
+#: guichan.lua:1095
 msgid "~!Campaign Game"
 msgstr "Кампания"
 
-#: guichan.lua:1089
+#: guichan.lua:1097
 msgid "~!Load Game"
 msgstr "~!Прочитать игру"
 
-#: guichan.lua:1091 guichan.lua:1723 menus/campaign.lua:337
-#: menus/network.lua:923
+#: guichan.lua:1099 guichan.lua:1731 menus/campaign.lua:337
+#: menus/network.lua:940
 #, fuzzy
 #| msgid "Previous (~<Esc~>)"
 msgid "Previous Menu (~<Esc~>)"
 msgstr "Предыдущее (~<Esc~>)"
 
-#: guichan.lua:1104
+#: guichan.lua:1112
 msgid "Standard Game"
 msgstr "Миссия пользователя"
 
-#: guichan.lua:1119
+#: guichan.lua:1127
 msgid "~!Cancel"
 msgstr "Отмена"
 
-#: guichan.lua:1142
+#: guichan.lua:1150
 msgid "~red~Red"
 msgstr "~red~Красный"
 
-#: guichan.lua:1142
+#: guichan.lua:1150
 msgid "~blue~Blue"
 msgstr "~blue~Синий"
 
-#: guichan.lua:1142
+#: guichan.lua:1150
 msgid "~green~Green"
 msgstr "~green~Зеленый"
 
-#: guichan.lua:1142
+#: guichan.lua:1150
 msgid "~violet~Violet"
 msgstr "~violet~Лиловый"
 
-#: guichan.lua:1142
+#: guichan.lua:1150
 msgid "~orange~Orange"
 msgstr "~orange~Оранжевый"
 
-#: guichan.lua:1142
+#: guichan.lua:1150
 msgid "~black~Black"
 msgstr "~black~Черный"
 
-#: guichan.lua:1143
+#: guichan.lua:1151
 msgid "~white~White"
 msgstr "~white~Белый"
 
-#: guichan.lua:1143
+#: guichan.lua:1151
 msgid "~yellow~Yellow"
 msgstr "~yellow~Желтый"
 
-#: guichan.lua:1144 menus/editor.lua:317 menus/network.lua:205
-#: menus/network.lua:561 wc2.lua:33
+#: guichan.lua:1152 menus/editor.lua:319 menus/network.lua:208
+#: menus/network.lua:578 wc2.lua:33
 msgid "Human"
 msgstr "Люди"
 
-#: guichan.lua:1144 menus/editor.lua:317 menus/network.lua:205
-#: menus/network.lua:561 wc2.lua:37
+#: guichan.lua:1152 menus/editor.lua:319 menus/network.lua:208
+#: menus/network.lua:578 wc2.lua:37
 msgid "Orc"
 msgstr "Орки"
 
-#: guichan.lua:1144
+#: guichan.lua:1152
 msgid "Random"
 msgstr "Случ."
 
-#: guichan.lua:1146 menus/network.lua:122
+#: guichan.lua:1154 menus/network.lua:122
 msgid "Player"
 msgstr "Игрок"
 
-#: guichan.lua:1146 menus/editor.lua:315
+#: guichan.lua:1154 menus/editor.lua:317
 msgid "Computer"
 msgstr "Компьютер"
 
-#: guichan.lua:1146 menus/editor.lua:315
+#: guichan.lua:1154 menus/editor.lua:317
 msgid "Rescue-passive"
 msgstr "Пассивный союзник"
 
-#: guichan.lua:1146 menus/editor.lua:315
+#: guichan.lua:1154 menus/editor.lua:317
 msgid "Rescue-active"
 msgstr "Активный союзник"
 
-#: guichan.lua:1146
+#: guichan.lua:1154
 msgid "None"
 msgstr "Нет"
 
-#: guichan.lua:1147
-msgid "Default"
-msgstr "По умолчанию"
+#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
+msgid "Hidden"
+msgstr ""
 
-#: guichan.lua:1147
-msgid "Explored"
-msgstr "Исследована"
+#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
+msgid "Known"
+msgstr ""
 
-#: guichan.lua:1147
+#: guichan.lua:1155
 msgid "Revealed"
 msgstr "Открыта"
 
-#: guichan.lua:1148
+#: guichan.lua:1156
 msgid "Use map settings"
 msgstr "Настройки карты"
 
-#: guichan.lua:1148
+#: guichan.lua:1156
 msgid "Melee"
 msgstr "Бой"
 
-#: guichan.lua:1148
+#: guichan.lua:1156
 msgid "Free for all"
 msgstr "Каждый сам за себя"
 
-#: guichan.lua:1148
+#: guichan.lua:1156
 msgid "Top vs bottom"
 msgstr "Сверху против снизу"
 
-#: guichan.lua:1148
+#: guichan.lua:1156
 msgid "Left vs right"
 msgstr "Слева против справа"
 
-#: guichan.lua:1148
+#: guichan.lua:1156
 msgid "Man vs Machine"
 msgstr "Люди против CPU"
 
-#: guichan.lua:1149 menus/editor.lua:8 menus/editor.lua:420
+#: guichan.lua:1157 menus/editor.lua:8 menus/editor.lua:422
 msgid "Summer"
 msgstr "Лес"
 
-#: guichan.lua:1149 menus/editor.lua:8 menus/editor.lua:420
+#: guichan.lua:1157 menus/editor.lua:8 menus/editor.lua:422
 msgid "Swamp"
 msgstr "Болото"
 
-#: guichan.lua:1149 menus/editor.lua:8 menus/editor.lua:420
+#: guichan.lua:1157 menus/editor.lua:8 menus/editor.lua:422
 msgid "Wasteland"
 msgstr "Пустыня"
 
-#: guichan.lua:1149 menus/editor.lua:8 menus/editor.lua:420
+#: guichan.lua:1157 menus/editor.lua:8 menus/editor.lua:422
 msgid "Winter"
 msgstr "Зима"
 
-#: guichan.lua:1150 menus/network.lua:214 menus/network.lua:572
+#: guichan.lua:1158 menus/network.lua:217 menus/network.lua:589
 msgid "One Peasant Only"
 msgstr "Один крестьянин"
 
-#: guichan.lua:1151 menus/campaign.lua:314
+#: guichan.lua:1159 menus/campaign.lua:314
 msgid "Easy"
 msgstr "Легкий"
 
-#: guichan.lua:1151 menus/campaign.lua:314
+#: guichan.lua:1159 menus/campaign.lua:314
 msgid "Normal"
 msgstr "Средний"
 
-#: guichan.lua:1151 menus/campaign.lua:314
+#: guichan.lua:1159 menus/campaign.lua:314
 msgid "Hard"
 msgstr "Сложный"
 
-#: guichan.lua:1151 menus/campaign.lua:314
+#: guichan.lua:1159 menus/campaign.lua:314
 msgid "Nightmare"
 msgstr "Кошмар"
 
-#: guichan.lua:1151 menus/campaign.lua:314
+#: guichan.lua:1159 menus/campaign.lua:314
 msgid "Hell"
 msgstr "Ад"
 
-#: guichan.lua:1152 menus/network.lua:220 menus/network.lua:582
+#: guichan.lua:1160 menus/network.lua:223 menus/network.lua:599
 msgid "Low"
 msgstr "Скудные"
 
-#: guichan.lua:1152 menus/network.lua:220 menus/network.lua:582
+#: guichan.lua:1160 menus/network.lua:223 menus/network.lua:599
 msgid "Medium"
 msgstr "Средние"
 
-#: guichan.lua:1152 menus/network.lua:220 menus/network.lua:582
+#: guichan.lua:1160 menus/network.lua:223 menus/network.lua:599
 msgid "High"
 msgstr "Обширные"
 
-#: guichan.lua:1152
+#: guichan.lua:1160
 msgid "Quick Start"
 msgstr "Быстрый старт"
 
-#: guichan.lua:1166
+#: guichan.lua:1174
 msgid "~<Single Player Game Setup~>"
 msgstr "~<Установки пользовательской игры~>"
 
-#: guichan.lua:1177 menus/network.lua:53
+#: guichan.lua:1185 menus/network.lua:53
 msgid "Error:"
 msgstr "Ошибка:"
 
-#: guichan.lua:1249
+#: guichan.lua:1257
 msgid "Scenario:"
 msgstr "Миссия:"
 
-#: guichan.lua:1254
+#: guichan.lua:1262
 msgid "S~!elect Scenario"
 msgstr "~!Выбор миссии"
 
-#: guichan.lua:1263 menus/network.lua:623
+#: guichan.lua:1271 menus/network.lua:639
 msgid "~!Start Game"
 msgstr "~!Начать игру"
 
-#: guichan.lua:1269
+#: guichan.lua:1277
 msgid "Need more than 1 team"
 msgstr "Нужно более 1 команды"
 
-#: guichan.lua:1271
+#: guichan.lua:1279
 msgid "No players selected"
 msgstr "Нет игроков"
 
-#: guichan.lua:1273
+#: guichan.lua:1281
 msgid "Need at least 1 person player"
 msgstr "Нужен 1 игрок-человек"
 
-#: guichan.lua:1275
+#: guichan.lua:1283
 msgid "Need at least 2 players"
 msgstr "Нужно минимум 2 игрока"
 
-#: guichan.lua:1361
+#: guichan.lua:1369
 msgid "~<Color:~>"
 msgstr "~<Цвет:~>"
 
-#: guichan.lua:1382
+#: guichan.lua:1390
 msgid "~<Type:~>"
 msgstr "~<Тип:~>"
 
-#: guichan.lua:1405
+#: guichan.lua:1413
 msgid "~<Race:~>"
 msgstr "~<Раса:~>"
 
-#: guichan.lua:1426
+#: guichan.lua:1434
 msgid "~<Teams:~>"
 msgstr "~<Команда:~>"
 
-#: guichan.lua:1442
+#: guichan.lua:1450
 msgid "~<AI Script:~>"
 msgstr "~<Скрипт ИИ:~>"
 
-#: guichan.lua:1490
+#: guichan.lua:1498
 msgid "~!Cancel Game"
 msgstr "~!Отмена игры"
 
-#: guichan.lua:1492
-msgid "~<Fog of War:~>"
-msgstr "~<Карта:~>"
+#: guichan.lua:1500
+#, fuzzy
+#| msgid "~<Teams:~>"
+msgid "~<Terrain:~>"
+msgstr "~<Команда:~>"
 
-#: guichan.lua:1504
+#: guichan.lua:1512
 msgid "~<Game Type:~>"
 msgstr "~<Тип игры:~>"
 
-#: guichan.lua:1516
+#: guichan.lua:1524
 msgid "~<Resources:~>"
 msgstr "~<Ресурсы:~>"
 
-#: guichan.lua:1528 menus/campaign.lua:324
+#: guichan.lua:1536 menus/campaign.lua:324
 msgid "~<AI Difficulty:~>"
 msgstr "~<Сложность ИИ:~>"
 
-#: guichan.lua:1541
+#: guichan.lua:1549
 msgid "~<Tileset:~>"
 msgstr "~<Местность:~>"
 
-#: guichan.lua:1552
+#: guichan.lua:1560
 msgid "~<Units:~>"
 msgstr "~<Еденицы:~>"
 
-#: guichan.lua:1597 menus/options.lua:846
+#: guichan.lua:1605 menus/options.lua:846
 msgid " V"
 msgstr " V"
 
-#: guichan.lua:1599
+#: guichan.lua:1607
 msgid "~!Single Player Game"
 msgstr "Одиночная игра"
 
-#: guichan.lua:1601
+#: guichan.lua:1609
 msgid "~!Multi Player Game"
 msgstr "Сетевая игра"
 
-#: guichan.lua:1603
+#: guichan.lua:1611
 msgid "~!Replay Game"
 msgstr "Пересмотреть игру"
 
-#: guichan.lua:1605
+#: guichan.lua:1613
 msgid "~!Options"
 msgstr "Опции"
 
-#: guichan.lua:1607
+#: guichan.lua:1615
 msgid "~!Load Mod"
 msgstr "Загрузить мод"
 
-#: guichan.lua:1609
+#: guichan.lua:1617
 msgid "Map ~!Editor"
 msgstr "Редактор"
 
-#: guichan.lua:1611
+#: guichan.lua:1619
 msgid "S~!how Credits"
 msgstr "Авторы"
 
-#: guichan.lua:1613 menus/endscenario.lua:14 menus/endscenario.lua:70
+#: guichan.lua:1621 menus/endscenario.lua:14 menus/endscenario.lua:70
 msgid "E~!xit Program"
 msgstr "Выйти из программы"
 
-#: guichan.lua:1653
+#: guichan.lua:1661
 msgid "Load Mod"
 msgstr "Загрузить мод"
 
@@ -1188,174 +1189,178 @@ msgstr "Размер :"
 msgid "Map description :"
 msgstr "Описание :"
 
-#: menus/editor.lua:27 menus/editor.lua:107
+#: menus/editor.lua:27 menus/editor.lua:109
 msgid "~!New map"
 msgstr "~!Новая карта"
 
-#: menus/editor.lua:54
+#: menus/editor.lua:56
 msgid "File : "
 msgstr "Файл : "
 
-#: menus/editor.lua:57
+#: menus/editor.lua:59
 msgid "Players : "
 msgstr "Игроков : "
 
-#: menus/editor.lua:60
+#: menus/editor.lua:62
 msgid "Scenario : "
 msgstr "Карта : "
 
-#: menus/editor.lua:63
+#: menus/editor.lua:65
 msgid "Size : "
 msgstr "Размер : "
 
-#: menus/editor.lua:72
+#: menus/editor.lua:74
 msgid "~!Select map"
 msgstr "~!Выбор карты"
 
-#: menus/editor.lua:82
+#: menus/editor.lua:84
 msgid "~!Edit map"
 msgstr "~!Редактировать"
 
-#: menus/editor.lua:105
+#: menus/editor.lua:107
 msgid "~<Map Editor~>"
 msgstr "~<Редактор карт~>"
 
-#: menus/editor.lua:108
+#: menus/editor.lua:110
 msgid "~!Load map"
 msgstr "~!Прочитать карту"
 
-#: menus/editor.lua:118 menus/editor.lua:196
+#: menus/editor.lua:120 menus/editor.lua:198
 msgid "Cannot save map to file:"
 msgstr "Нельзя сохранить в файл:"
 
-#: menus/editor.lua:123 menus/editor.lua:201
+#: menus/editor.lua:125 menus/editor.lua:203
 msgid "Saved map to: "
 msgstr "Сохранено в: "
 
-#: menus/editor.lua:137 menus/save.lua:41
+#: menus/editor.lua:139 menus/save.lua:41
 msgid "Save Game"
 msgstr "Сохранить игру"
 
-#: menus/editor.lua:150 menus/editor.lua:230 menus/replay.lua:60
+#: menus/editor.lua:152 menus/editor.lua:232 menus/replay.lua:60
 #: menus/save.lua:87
 msgid "~!Save"
 msgstr "~!Сохранить"
 
-#: menus/editor.lua:173 menus/editor.lua:264 menus/save.lua:21
+#: menus/editor.lua:175 menus/editor.lua:266 menus/save.lua:21
 msgid "File exists, are you sure ?"
 msgstr "Файл существует, продолжить?"
 
-#: menus/editor.lua:214
+#: menus/editor.lua:216
 msgid "Save Resized Map"
 msgstr ""
 
-#: menus/editor.lua:304
+#: menus/editor.lua:306
 msgid "Players properties"
 msgstr "Параметры игроков"
 
-#: menus/editor.lua:315 wc2.lua:41
+#: menus/editor.lua:317 wc2.lua:41
 msgid "Neutral"
 msgstr "Нейтрал"
 
-#: menus/editor.lua:315
+#: menus/editor.lua:317
 msgid "Nobody"
 msgstr "Нет"
 
-#: menus/editor.lua:315
+#: menus/editor.lua:317
 msgid "Person"
 msgstr "Человек"
 
-#: menus/editor.lua:322
+#: menus/editor.lua:324
 msgid "Type"
 msgstr "Тип"
 
-#: menus/editor.lua:323
+#: menus/editor.lua:325
 msgid "Race"
 msgstr "Раса"
 
-#: menus/editor.lua:324
+#: menus/editor.lua:326
 msgid "AI"
 msgstr "ИИ"
 
-#: menus/editor.lua:325
+#: menus/editor.lua:327
 msgid "Gold"
 msgstr "Золото"
 
-#: menus/editor.lua:326
+#: menus/editor.lua:328
 msgid "Lumber"
 msgstr "Лес"
 
-#: menus/editor.lua:327
+#: menus/editor.lua:329
 msgid "Oil"
 msgstr "Нефть"
 
-#: menus/editor.lua:407
+#: menus/editor.lua:409
 msgid "Map properties"
 msgstr "Параметры карты"
 
-#: menus/editor.lua:409
+#: menus/editor.lua:411
 msgid "Map descritption : "
 msgstr "Описание карты :"
 
-#: menus/editor.lua:412
+#: menus/editor.lua:414
 msgid "Size    : "
 msgstr "Размер   : "
 
-#: menus/editor.lua:418
+#: menus/editor.lua:420
 msgid "Tileset : "
 msgstr "Местность :"
 
-#: menus/editor.lua:448
+#: menus/editor.lua:490
+msgid "Accept"
+msgstr ""
+
+#: menus/editor.lua:497 menus/editor.lua:662
+#, fuzzy
+#| msgid "~!Close"
+msgid "Close"
+msgstr "~!Закрыть"
+
+#: menus/editor.lua:523
 msgid "Editor Menu"
 msgstr "Меню редактора"
 
-#: menus/editor.lua:450 menus/game.lua:39
+#: menus/editor.lua:528 menus/game.lua:45
+msgid "Help (~<F1~>)"
+msgstr "Помощь (~<F1~>)"
+
+#: menus/editor.lua:530 menus/game.lua:39
 msgid "Save (~<F11~>)"
 msgstr "Сохр.(~<F11~>)"
 
-#: menus/editor.lua:452 menus/game.lua:41
-msgid "Load (~<F12~>)"
-msgstr "Чтен.(~<F12~>)"
-
-#: menus/editor.lua:453
+#: menus/editor.lua:532
 msgid "Map Properties (~<F5~>)"
 msgstr "Параметры карты (~<F5~>)"
 
-#: menus/editor.lua:454
+#: menus/editor.lua:533
 msgid "Player Properties (~<F6~>)"
 msgstr "Параметры игроков (~<F6~>)"
 
-#: menus/editor.lua:459
+#: menus/editor.lua:534
+#, fuzzy
+#| msgid "Reveal Map"
+msgid "~!Resize Map"
+msgstr "Открыть карту"
+
+#: menus/editor.lua:536
+msgid "Pr~!eamble"
+msgstr ""
+
+#: menus/editor.lua:538
+msgid "~!Postamble"
+msgstr ""
+
+#: menus/editor.lua:541
 msgid "E~!xit to Menu"
 msgstr "~!Выйти в меню"
 
-#: menus/editor.lua:461
+#: menus/editor.lua:542
 msgid "Return to Editor (~<Esc~>)"
 msgstr "Вернуться в редактор (~<Esc~>)"
 
-#: menus/editor.lua:480
-msgid "Unit properties"
-msgstr "Параметры юнита"
-
-#: menus/editor.lua:483
-msgid "Artificial Intelligence"
-msgstr "Интеллект"
-
-#: menus/editor.lua:490 stratagus.lua:233
-msgid "gold"
-msgstr "золота"
-
-#: menus/editor.lua:490 stratagus.lua:233
-msgid "wood"
-msgstr "леса"
-
-#: menus/editor.lua:490 stratagus.lua:233
-msgid "oil"
-msgstr "нефти"
-
-#: menus/editor.lua:492
-msgid "Amount of "
-msgstr "Количество"
+#: menus/editor.lua:638
+msgid "Ok"
+msgstr ""
 
 #: menus/endscenario.lua:4
 msgid "End Scenario"
@@ -1414,13 +1419,13 @@ msgstr "программы Wargus?"
 msgid "Game Menu"
 msgstr "Игровое меню"
 
+#: menus/game.lua:41
+msgid "Load (~<F12~>)"
+msgstr "Чтен.(~<F12~>)"
+
 #: menus/game.lua:43
 msgid "Options (~<F5~>)"
 msgstr "Опции (~<F5~>)"
-
-#: menus/game.lua:45
-msgid "Help (~<F1~>)"
-msgstr "Помощь (~<F1~>)"
 
 #: menus/game.lua:47
 msgid "Scenario ~!Objectives"
@@ -1739,203 +1744,207 @@ msgstr "Готов"
 msgid "Joining game: Map"
 msgstr "Подключение к игре : Карта"
 
-#: menus/network.lua:187 menus/network.lua:538
+#: menus/network.lua:187 menus/network.lua:552
 msgid "Map"
 msgstr "Карта"
 
-#: menus/network.lua:188 menus/network.lua:539 menus/network.lua:732
+#: menus/network.lua:188 menus/network.lua:553 menus/network.lua:748
 msgid "File:"
 msgstr "Файл:"
 
-#: menus/network.lua:190 menus/network.lua:541 menus/network.lua:734
+#: menus/network.lua:190 menus/network.lua:555 menus/network.lua:750
 msgid "Players:"
 msgstr "Игроков:"
 
-#: menus/network.lua:192 menus/network.lua:543 menus/network.lua:736
+#: menus/network.lua:192 menus/network.lua:557 menus/network.lua:752
 msgid "Description:"
 msgstr "Описание:"
 
-#: menus/network.lua:195 menus/network.lua:551
+#: menus/network.lua:195 menus/network.lua:565
 msgid "Fog of war"
 msgstr "Туман войны"
 
-#: menus/network.lua:201 menus/network.lua:558
-msgid "Reveal map"
-msgstr "Открыть карту"
+#: menus/network.lua:202 menus/network.lua:568
+msgid "Terrain:"
+msgstr ""
 
-#: menus/network.lua:204
+#: menus/network.lua:203 menus/network.lua:574
+msgid "Explored"
+msgstr "Исследована"
+
+#: menus/network.lua:207
 msgid "~<Your Race:~>"
 msgstr "~<Ваша раса:~>"
 
-#: menus/network.lua:213 menus/network.lua:571 menus/results.lua:203
+#: menus/network.lua:216 menus/network.lua:588 menus/results.lua:203
 msgid "Units:"
 msgstr "Воины:"
 
-#: menus/network.lua:219 menus/network.lua:581
+#: menus/network.lua:222 menus/network.lua:598
 msgid "Resources:"
 msgstr "Ресурсы:"
 
-#: menus/network.lua:251
+#: menus/network.lua:254
 msgid "~!Ready"
 msgstr "~!Готов"
 
-#: menus/network.lua:311 menus/network.lua:375
+#: menus/network.lua:313 menus/network.lua:383
 msgid "Cannot reach server"
 msgstr "Сервер недоступен"
 
-#: menus/network.lua:332
+#: menus/network.lua:334
 msgid "Joining Game"
 msgstr ""
 
-#: menus/network.lua:343
+#: menus/network.lua:345
 msgid "Connecting to server"
 msgstr "Подключение к серверу"
 
-#: menus/network.lua:349
+#: menus/network.lua:351
 msgid "Connecting..."
 msgstr "Подключение..."
 
-#: menus/network.lua:369
+#: menus/network.lua:377
 msgid "Map not available"
 msgstr "Карта недоступна"
 
-#: menus/network.lua:379
+#: menus/network.lua:387
 msgid "Server is full"
 msgstr "Сервер полон"
 
-#: menus/network.lua:382
+#: menus/network.lua:390
 msgid "Server gone"
 msgstr "Связь с сервером потеряна"
 
-#: menus/network.lua:385
+#: menus/network.lua:393
 msgid "Incompatible engine version"
 msgstr "Другая версия игры"
 
-#: menus/network.lua:388
+#: menus/network.lua:396
 msgid "Incompatible lua files"
 msgstr ""
 
-#: menus/network.lua:407
+#: menus/network.lua:421
 msgid "Servers: "
 msgstr "Сервера"
 
-#: menus/network.lua:427
+#: menus/network.lua:441
 msgid "Co~!nnect"
 msgstr "Соединиться"
 
-#: menus/network.lua:439
+#: menus/network.lua:453
 msgid "~!Add server"
 msgstr "Добавить сервер"
 
-#: menus/network.lua:441
+#: menus/network.lua:455
 msgid "~!Edit server"
 msgstr "Редактировать"
 
-#: menus/network.lua:446
+#: menus/network.lua:460
 msgid "~!Delete server"
 msgstr "Удалить"
 
-#: menus/network.lua:475
+#: menus/network.lua:489
 msgid "Edit server"
 msgstr "Редактировать сервер"
 
-#: menus/network.lua:476 menus/network.lua:502
+#: menus/network.lua:490 menus/network.lua:516
 msgid "Server IP: "
 msgstr "IP сервера:"
 
-#: menus/network.lua:479 menus/network.lua:504
+#: menus/network.lua:493 menus/network.lua:518
 msgid "Description: "
 msgstr "Описание"
 
-#: menus/network.lua:484 menus/network.lua:508
+#: menus/network.lua:498 menus/network.lua:522
 msgid "Invalid server name"
 msgstr "Неверное имя сервера"
 
-#: menus/network.lua:501
+#: menus/network.lua:515
 msgid "Add server"
 msgstr "Добавить сервер"
 
-#: menus/network.lua:536 menus/network.lua:730
+#: menus/network.lua:550 menus/network.lua:746
 msgid "Create MultiPlayer game"
 msgstr "Создать многопользовательскую игру"
 
-#: menus/network.lua:544
+#: menus/network.lua:558
 msgid "Unknown map"
 msgstr ""
 
-#: menus/network.lua:560
+#: menus/network.lua:577
 msgid "Race:"
 msgstr "Раса:"
 
-#: menus/network.lua:591
+#: menus/network.lua:608
 msgid "Dedicated AI Server:"
 msgstr ""
 
-#: menus/network.lua:625
+#: menus/network.lua:641
 msgid "Waiting for players"
 msgstr "Ожидание игроков"
 
-#: menus/network.lua:780 menus/network.lua:912 menus/network.lua:1007
+#: menus/network.lua:796 menus/network.lua:929 menus/network.lua:1024
 msgid "~!Create Game"
 msgstr "~!Создать игру"
 
-#: menus/network.lua:808
+#: menus/network.lua:824
 msgid "~<Multiplayer Network Game~>"
 msgstr "~<Сетевая игра~>"
 
-#: menus/network.lua:810
+#: menus/network.lua:826
 msgid "Nickname :"
 msgstr "Ник"
 
-#: menus/network.lua:813
+#: menus/network.lua:829
 msgid "Password :"
 msgstr ""
 
-#: menus/network.lua:816
+#: menus/network.lua:833
 #, fuzzy
 #| msgid "Join ~!Online Game"
 msgid "Go ~!Online"
 msgstr "~!Онлайн игра"
 
-#: menus/network.lua:833
+#: menus/network.lua:850
 msgid "Sign up"
 msgstr ""
 
-#: menus/network.lua:902
+#: menus/network.lua:919
 msgid "~!Join Local Game"
 msgstr "~!По локальной сети"
 
-#: menus/network.lua:940
+#: menus/network.lua:957
 msgid "Users"
 msgstr ""
 
-#: menus/network.lua:950
+#: menus/network.lua:967
 msgid "Friends"
 msgstr ""
 
-#: menus/network.lua:959
+#: menus/network.lua:976
 msgid "Channels"
 msgstr ""
 
-#: menus/network.lua:974
+#: menus/network.lua:991
 msgid "Games"
 msgstr ""
 
-#: menus/network.lua:985
+#: menus/network.lua:1002
 msgid "Chat"
 msgstr ""
 
-#: menus/network.lua:1017
+#: menus/network.lua:1034
 msgid "~!Join Game"
 msgstr "~!Присоединиться"
 
-#: menus/network.lua:1038
+#: menus/network.lua:1055
 #, fuzzy
 #| msgid "No players selected"
 msgid "No game selected"
 msgstr "Нет игроков"
 
-#: menus/network.lua:1044
+#: menus/network.lua:1061
 msgid "~!Previous Menu"
 msgstr "Назад"
 
@@ -2051,7 +2060,7 @@ msgstr "круг"
 msgid "alpha-circle"
 msgstr "прозр. круг"
 
-#: menus/options.lua:334 stratagus.lua:409
+#: menus/options.lua:334 stratagus.lua:415
 msgid "corners"
 msgstr "уголки"
 
@@ -2088,12 +2097,17 @@ msgid "Shader:"
 msgstr ""
 
 #: menus/options.lua:381 menus/options.lua:458
-msgid "legacy"
+msgid "tiled"
 msgstr ""
 
 #: menus/options.lua:381 menus/options.lua:458
 msgid "enhanced"
 msgstr ""
+
+#: menus/options.lua:381 menus/options.lua:458 menus/options.lua:577
+#: menus/options.lua:598 menus/options.lua:622
+msgid "fast"
+msgstr "быстро"
 
 #: menus/options.lua:382 menus/options.lua:459
 #, fuzzy
@@ -2169,10 +2183,6 @@ msgstr "Скорость игры"
 msgid "slow "
 msgstr "медленно"
 
-#: menus/options.lua:577 menus/options.lua:598 menus/options.lua:622
-msgid "fast"
-msgstr "быстро"
-
 #: menus/options.lua:582
 msgid "Mouse Scroll Speed"
 msgstr "Скорость мыши"
@@ -2194,7 +2204,9 @@ msgid "Full Screen"
 msgstr "Полноэкранный режим"
 
 #: menus/options.lua:731
-msgid "You need to restart game to apply changes, exit now?"
+#, fuzzy
+#| msgid "You need to restart game to apply changes, exit now?"
+msgid "You need to restart game to apply changes, restart now?"
 msgstr "Нужно перезагрузить игру для принятия изменений, продолжить?"
 
 #: menus/options.lua:741 menus/save.lua:23
@@ -2909,97 +2921,109 @@ msgstr "воскрешение"
 msgid "whirlwind"
 msgstr "смерч"
 
-#: stratagus.lua:61
+#: stratagus.lua:66
 msgid "Wargus"
 msgstr "Wargus"
 
-#: stratagus.lua:63
+#: stratagus.lua:68
 #, fuzzy
 #| msgid "(c) 1998-2017 by The Stratagus Project."
 msgid "(c) 1998-2021 by The Stratagus Project."
 msgstr "(c) 1998-2017 by The Stratagus Project."
 
-#: stratagus.lua:229
+#: stratagus.lua:236
 msgid "stop"
 msgstr "стоп"
 
-#: stratagus.lua:229
+#: stratagus.lua:236
 msgid "mine"
 msgstr "добывайте"
 
-#: stratagus.lua:229
+#: stratagus.lua:236
 msgid "chop"
 msgstr "рубите"
 
-#: stratagus.lua:229
+#: stratagus.lua:236
 msgid "drill"
 msgstr "добывайте"
 
-#: stratagus.lua:231
+#: stratagus.lua:238
 msgid "Time Left: "
 msgstr "Время: "
 
-#: stratagus.lua:231
+#: stratagus.lua:238
 msgid "Gold Left: "
 msgstr "Золото: "
 
-#: stratagus.lua:231
+#: stratagus.lua:238
 msgid "Wood Left: "
 msgstr "Лес: "
 
-#: stratagus.lua:231
+#: stratagus.lua:238
 msgid "Oil Left: "
 msgstr "Нефть: "
 
-#: stratagus.lua:231
+#: stratagus.lua:238
 msgid "Ore Left: "
 msgstr "Руда: "
 
-#: stratagus.lua:231
+#: stratagus.lua:238
 msgid "Stone Left: "
 msgstr "Камень: "
 
-#: stratagus.lua:231
+#: stratagus.lua:238
 msgid "Coal Left: "
 msgstr "Уголь: "
 
-#: stratagus.lua:233
+#: stratagus.lua:240
 msgid "time"
 msgstr "время"
 
-#: stratagus.lua:233
+#: stratagus.lua:240
+msgid "gold"
+msgstr "золота"
+
+#: stratagus.lua:240
+msgid "wood"
+msgstr "леса"
+
+#: stratagus.lua:240
+msgid "oil"
+msgstr "нефти"
+
+#: stratagus.lua:240
 msgid "ore"
 msgstr "руда"
 
-#: stratagus.lua:233
+#: stratagus.lua:240
 msgid "stone"
 msgstr "камень"
 
-#: stratagus.lua:233
+#: stratagus.lua:240
 msgid "coal"
 msgstr "уголь"
 
-#: stratagus.lua:321
+#: stratagus.lua:328
 msgid "You failed to"
 msgstr "Вы проиграли"
 
-#: stratagus.lua:322
+#: stratagus.lua:329
 msgid "achieve victory!"
 msgstr "в этой битве!"
 
-#: stratagus.lua:340
+#: stratagus.lua:347
 msgid "Congratulations!"
 msgstr "Поздравляем!"
 
-#: stratagus.lua:341
+#: stratagus.lua:348
 msgid "You are victorious!"
 msgstr "Вы победитель!"
 
-#: stratagus.lua:343
+#: stratagus.lua:350
 msgid "Save Game (~<F11~>)"
 msgstr "Сохранить (~<F11~>)"
 
-#: stratagus.lua:349
+#: stratagus.lua:356
 msgid "~!Victory"
 msgstr "~!Победа"
 
@@ -3201,14 +3225,29 @@ msgstr "Разрушенное место"
 msgid "Dummy unit"
 msgstr "Не юнит"
 
+#~ msgid "Default"
+#~ msgstr "По умолчанию"
+
+#~ msgid "~<Fog of War:~>"
+#~ msgstr "~<Карта:~>"
+
+#~ msgid "Unit properties"
+#~ msgstr "Параметры юнита"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "Интеллект"
+
+#~ msgid "Amount of "
+#~ msgstr "Количество"
+
+#~ msgid "Reveal map"
+#~ msgstr "Открыть карту"
+
 #~ msgid "Campaign Game"
 #~ msgstr "Новая кампания"
 
 #~ msgid "~!OK"
 #~ msgstr "~!OK"
-
-#~ msgid "~!Close"
-#~ msgstr "~!Закрыть"
 
 #~ msgid "Open Games: "
 #~ msgstr "Открытые Игры:"
