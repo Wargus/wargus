@@ -34,6 +34,8 @@
 --  Includes
 ----------------------------------------------------------------------------*/
 
+#include <fstream>
+
 #include "wargus.h"
 #include "wartool.h"
 #include <stratagus-gameutils.h>
@@ -46,6 +48,7 @@
 #define DEBUG _DEBUG
 #include <direct.h>
 #include <io.h>
+#define W_OK 2
 #else
 #define __USE_XOPEN_EXTENDED 1 // to get strdup
 #include <unistd.h>
@@ -102,7 +105,7 @@ static int game_font_width;
 /**
 **  File names.
 */
-static char* UnitNames[110];
+static char* UnitNames[8192];
 static int UnitNamesLast = 0;
 
 //----------------------------------------------------------------------------
@@ -656,7 +659,7 @@ int CountUsedTiles(const unsigned char* map, const unsigned char* mega,
 	const unsigned char* tp;
 	int img2tile[0x9E0];
 
-	memset(map2tile, 0, sizeof(map2tile));
+	memset(map2tile, 0, sizeof(*map2tile));
 
 	//
 	//  Build conversion table.
@@ -1689,14 +1692,14 @@ int ConvertImage(const char* file, int pale, int imge, int nw, int nh)
 unsigned char* ConvertCur(unsigned char* bp, int* wp, int* hp)
 {
 	int i;
-	int hotx;
-	int hoty;
+	// int hotx;
+	// int hoty;
 	int width;
 	int height;
 	unsigned char* image;
 
-	hotx = FetchLE16(bp);
-	hoty = FetchLE16(bp);
+	FetchLE16(bp); // hotx
+	FetchLE16(bp); // hoty
 	width = FetchLE16(bp);
 	height = FetchLE16(bp);
 
@@ -2000,9 +2003,15 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 	int ret;
 	int cmdlen;
 	char outputfile[8192] = {'\0'};
+	char backupfile[8192 + 4] = {'\0'};
 
 	snprintf(buf,4095,"%s/%s.smk", Dir, file);
+	sprintf(outputfile, "%s/%s.ogv", Dir, file);
+	sprintf(backupfile, "%s/%s.ogv.bak", Dir, file);
+
 	CheckPath(buf);
+	CheckPath(outputfile);
+
 	if (justconvert == false) {
 		vidp = ExtractEntry(ArchiveOffsets[video], &l);
 
@@ -2033,71 +2042,202 @@ int ConvertVideo(const char* file, int video, bool justconvert = false)
 	}
 
 	if (CDType & CD_BNE) {
-		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640:0,setsar=1:1 \"%s/%s.ogv\"", Dir, file, Dir, file);
+		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p -aspect 4:3 -vf scale=640:0,setsar=1:1 \"%s\"", Dir, file, outputfile);
 	} else {
-		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"%s/%s.ogv\"", Dir, file, Dir, file);
+		snprintf(cmd, cmdlen, "ffmpeg -y -i \"%s/%s.smk\" -codec:v libtheora -qscale:v 31 -codec:a libvorbis -qscale:a 15 -pix_fmt yuv420p \"%s\"", Dir, file, outputfile);
 	}
 	printf("%s\n", cmd);
+
+	bool outputFileExists = false;
+	if (!access(outputfile, W_OK)) {
+		outputFileExists = true;
+		rename(outputfile, backupfile);
+	}
+
 	ret = system(cmd);
 
 	free(cmd);
-	remove(buf);
 
 	if (ret != 0) {
-		sprintf(outputfile, "%s/%s.ogv", Dir, file);
 #ifdef WIN32
 		_unlink(outputfile);
 #else
 		unlink(outputfile);
 #endif
-		printf("Can't convert video %s to ogv format. Is ffmpeg installed in PATH?\n", file);
-		fflush(stdout);
-		return ret;
+		if (outputFileExists) {
+			rename(backupfile, outputfile);
+		} else {
+			printf("Can't convert video %s to ogv format. Is ffmpeg installed in PATH?\n", file);
+			fflush(stdout);
+		}
+	} else if (outputFileExists) {
+		remove(backupfile);
 	}
 
-	return 0;
+	remove(buf);
+	return ret;
 }
 
 //----------------------------------------------------------------------------
 //  Text
 //----------------------------------------------------------------------------
 
+static const char *cp437_to_utf8[] = {
+            "\x00",         "\x01",         "\x02",         "\x03",         "\x04",         "\x05",         "\x06",         "\x07", // 0x0
+            "\x08",           "\t",           "\n",         "\x0b",         "\x0c",           "\r",         "\x0e",         "\x0f", // 0x8
+            "\x10",         "\x11",         "\x12",         "\x13",         "\x14",         "\x15",         "\x16",         "\x17", // 0x10
+            "\x18",         "\x19",         "\x1a",         "\x1b",         "\x1c",         "\x1d",         "\x1e",         "\x1f", // 0x18
+               " ",            "!",           "\"",            "#",            "$",            "%",            "&",            "'", // 0x20
+               "(",            ")",            "*",            "+",            ",",            "-",            ".",            "/", // 0x28
+               "0",            "1",            "2",            "3",            "4",            "5",            "6",            "7", // 0x30
+               "8",            "9",            ":",            ";",            "<",            "=",            ">",            "?", // 0x38
+               "@",            "A",            "B",            "C",            "D",            "E",            "F",            "G", // 0x40
+               "H",            "I",            "J",            "K",            "L",            "M",            "N",            "O", // 0x48
+               "P",            "Q",            "R",            "S",            "T",            "U",            "V",            "W", // 0x50
+               "X",            "Y",            "Z",            "[",           "\\",            "]",            "^",            "_", // 0x58
+               "`",            "a",            "b",            "c",            "d",            "e",            "f",            "g", // 0x60
+               "h",            "i",            "j",            "k",            "l",            "m",            "n",            "o", // 0x68
+               "p",            "q",            "r",            "s",            "t",            "u",            "v",            "w", // 0x70
+               "x",            "y",            "z",            "{",            "|",            "}",            "~",         "\x7f", // 0x78
+        "\xc3\x87",     "\xc3\xbc",     "\xc3\xa9",     "\xc3\xa2",     "\xc3\xa4",     "\xc3\xa0",     "\xc3\xa5",     "\xc3\xa7", // 0x80
+        "\xc3\xaa",     "\xc3\xab",     "\xc3\xa8",     "\xc3\xaf",     "\xc3\xae",     "\xc3\xac",     "\xc3\x84",     "\xc3\x85", // 0x88
+        "\xc3\x89",     "\xc3\xa6",     "\xc3\x86",     "\xc3\xb4",     "\xc3\xb6",     "\xc3\xb2",     "\xc3\xbb",     "\xc3\xb9", // 0x90
+        "\xc3\xbf",     "\xc3\x96",     "\xc3\x9c",     "\xc2\xa2",     "\xc2\xa3",     "\xc2\xa5", "\xe2\x82\xa7",     "\xc6\x92", // 0x98
+        "\xc3\xa1",     "\xc3\xad",     "\xc3\xb3",     "\xc3\xba",     "\xc3\xb1",     "\xc3\x91",     "\xc2\xaa",     "\xc2\xba", // 0xa0
+        "\xc2\xbf", "\xe2\x8c\x90",     "\xc2\xac",     "\xc2\xbd",     "\xc2\xbc",     "\xc2\xa1",     "\xc2\xab",     "\xc2\xbb", // 0xa8
+    "\xe2\x96\x91", "\xe2\x96\x92", "\xe2\x96\x93", "\xe2\x94\x82", "\xe2\x94\xa4", "\xe2\x95\xa1", "\xe2\x95\xa2", "\xe2\x95\x96", // 0xb0
+    "\xe2\x95\x95", "\xe2\x95\xa3", "\xe2\x95\x91", "\xe2\x95\x97", "\xe2\x95\x9d", "\xe2\x95\x9c", "\xe2\x95\x9b", "\xe2\x94\x90", // 0xb8
+    "\xe2\x94\x94", "\xe2\x94\xb4", "\xe2\x94\xac", "\xe2\x94\x9c", "\xe2\x94\x80", "\xe2\x94\xbc", "\xe2\x95\x9e", "\xe2\x95\x9f", // 0xc0
+    "\xe2\x95\x9a", "\xe2\x95\x94", "\xe2\x95\xa9", "\xe2\x95\xa6", "\xe2\x95\xa0", "\xe2\x95\x90", "\xe2\x95\xac", "\xe2\x95\xa7", // 0xc8
+    "\xe2\x95\xa8", "\xe2\x95\xa4", "\xe2\x95\xa5", "\xe2\x95\x99", "\xe2\x95\x98", "\xe2\x95\x92", "\xe2\x95\x93", "\xe2\x95\xab", // 0xd0
+    "\xe2\x95\xaa", "\xe2\x94\x98", "\xe2\x94\x8c", "\xe2\x96\x88", "\xe2\x96\x84", "\xe2\x96\x8c", "\xe2\x96\x90", "\xe2\x96\x80", // 0xd8
+        "\xce\xb1",     "\xc3\x9f",     "\xce\x93",     "\xcf\x80",     "\xce\xa3",     "\xcf\x83",     "\xc2\xb5",     "\xcf\x84", // 0xe0
+        "\xce\xa6",     "\xce\x98",     "\xce\xa9",     "\xce\xb4", "\xe2\x88\x9e",     "\xcf\x86",     "\xce\xb5", "\xe2\x88\xa9", // 0xe8
+    "\xe2\x89\xa1",     "\xc2\xb1", "\xe2\x89\xa5", "\xe2\x89\xa4", "\xe2\x8c\xa0", "\xe2\x8c\xa1",     "\xc3\xb7", "\xe2\x89\x88", // 0xf0
+        "\xc2\xb0", "\xe2\x88\x99",     "\xc2\xb7", "\xe2\x88\x9a", "\xe2\x81\xbf",     "\xc2\xb2", "\xe2\x96\xa0",     "\xc2\xa0", // 0xf8
+};
+
+static const char *cp1252_to_utf8[] = {
+            "\x00",         "\x01",         "\x02",         "\x03",         "\x04",         "\x05",         "\x06",         "\x07", // 0x0
+            "\x08",           "\t",           "\n",         "\x0b",         "\x0c",           "\r",         "\x0e",         "\x0f", // 0x8
+            "\x10",         "\x11",         "\x12",         "\x13",         "\x14",         "\x15",         "\x16",         "\x17", // 0x10
+            "\x18",         "\x19",         "\x1a",         "\x1b",         "\x1c",         "\x1d",         "\x1e",         "\x1f", // 0x18
+               " ",            "!",           "\"",            "#",            "$",            "%",            "&",            "'", // 0x20
+               "(",            ")",            "*",            "+",            ",",            "-",            ".",            "/", // 0x28
+               "0",            "1",            "2",            "3",            "4",            "5",            "6",            "7", // 0x30
+               "8",            "9",            ":",            ";",            "<",            "=",            ">",            "?", // 0x38
+               "@",            "A",            "B",            "C",            "D",            "E",            "F",            "G", // 0x40
+               "H",            "I",            "J",            "K",            "L",            "M",            "N",            "O", // 0x48
+               "P",            "Q",            "R",            "S",            "T",            "U",            "V",            "W", // 0x50
+               "X",            "Y",            "Z",            "[",           "\\",            "]",            "^",            "_", // 0x58
+               "`",            "a",            "b",            "c",            "d",            "e",            "f",            "g", // 0x60
+               "h",            "i",            "j",            "k",            "l",            "m",            "n",            "o", // 0x68
+               "p",            "q",            "r",            "s",            "t",            "u",            "v",            "w", // 0x70
+               "x",            "y",            "z",            "{",            "|",            "}",            "~",         "\x7f", // 0x78
+    "\xe2\x82\xac", "\xef\xbf\xbd", "\xe2\x80\x9a",     "\xc6\x92", "\xe2\x80\x9e", "\xe2\x80\xa6", "\xe2\x80\xa0", "\xe2\x80\xa1", // 0x80
+        "\xcb\x86", "\xe2\x80\xb0",     "\xc5\xa0", "\xe2\x80\xb9",     "\xc5\x92", "\xef\xbf\xbd",     "\xc5\xbd", "\xef\xbf\xbd", // 0x88
+    "\xef\xbf\xbd", "\xe2\x80\x98", "\xe2\x80\x99", "\xe2\x80\x9c", "\xe2\x80\x9d", "\xe2\x80\xa2", "\xe2\x80\x93", "\xe2\x80\x94", // 0x90
+        "\xcb\x9c", "\xe2\x84\xa2",     "\xc5\xa1", "\xe2\x80\xba",     "\xc5\x93", "\xef\xbf\xbd",     "\xc5\xbe",     "\xc5\xb8", // 0x98
+        "\xc2\xa0",     "\xc2\xa1",     "\xc2\xa2",     "\xc2\xa3",     "\xc2\xa4",     "\xc2\xa5",     "\xc2\xa6",     "\xc2\xa7", // 0xa0
+        "\xc2\xa8",     "\xc2\xa9",     "\xc2\xaa",     "\xc2\xab",     "\xc2\xac",     "\xc2\xad",     "\xc2\xae",     "\xc2\xaf", // 0xa8
+        "\xc2\xb0",     "\xc2\xb1",     "\xc2\xb2",     "\xc2\xb3",     "\xc2\xb4",     "\xc2\xb5",     "\xc2\xb6",     "\xc2\xb7", // 0xb0
+        "\xc2\xb8",     "\xc2\xb9",     "\xc2\xba",     "\xc2\xbb",     "\xc2\xbc",     "\xc2\xbd",     "\xc2\xbe",     "\xc2\xbf", // 0xb8
+        "\xc3\x80",     "\xc3\x81",     "\xc3\x82",     "\xc3\x83",     "\xc3\x84",     "\xc3\x85",     "\xc3\x86",     "\xc3\x87", // 0xc0
+        "\xc3\x88",     "\xc3\x89",     "\xc3\x8a",     "\xc3\x8b",     "\xc3\x8c",     "\xc3\x8d",     "\xc3\x8e",     "\xc3\x8f", // 0xc8
+        "\xc3\x90",     "\xc3\x91",     "\xc3\x92",     "\xc3\x93",     "\xc3\x94",     "\xc3\x95",     "\xc3\x96",     "\xc3\x97", // 0xd0
+        "\xc3\x98",     "\xc3\x99",     "\xc3\x9a",     "\xc3\x9b",     "\xc3\x9c",     "\xc3\x9d",     "\xc3\x9e",     "\xc3\x9f", // 0xd8
+        "\xc3\xa0",     "\xc3\xa1",     "\xc3\xa2",     "\xc3\xa3",     "\xc3\xa4",     "\xc3\xa5",     "\xc3\xa6",     "\xc3\xa7", // 0xe0
+        "\xc3\xa8",     "\xc3\xa9",     "\xc3\xaa",     "\xc3\xab",     "\xc3\xac",     "\xc3\xad",     "\xc3\xae",     "\xc3\xaf", // 0xe8
+        "\xc3\xb0",     "\xc3\xb1",     "\xc3\xb2",     "\xc3\xb3",     "\xc3\xb4",     "\xc3\xb5",     "\xc3\xb6",     "\xc3\xb7", // 0xf0
+        "\xc3\xb8",     "\xc3\xb9",     "\xc3\xba",     "\xc3\xbb",     "\xc3\xbc",     "\xc3\xbd",     "\xc3\xbe",     "\xc3\xbf", // 0xf8
+};
+
+static const char *cp866_to_utf8[] = {
+            "\x00",         "\x01",         "\x02",         "\x03",         "\x04",         "\x05",         "\x06",         "\x07", // 0x0
+            "\x08",           "\t",           "\n",         "\x0b",         "\x0c",           "\r",         "\x0e",         "\x0f", // 0x8
+            "\x10",         "\x11",         "\x12",         "\x13",         "\x14",         "\x15",         "\x16",         "\x17", // 0x10
+            "\x18",         "\x19",         "\x1a",         "\x1b",         "\x1c",         "\x1d",         "\x1e",         "\x1f", // 0x18
+               " ",            "!",           "\"",            "#",            "$",            "%",            "&",            "'", // 0x20
+               "(",            ")",            "*",            "+",            ",",            "-",            ".",            "/", // 0x28
+               "0",            "1",            "2",            "3",            "4",            "5",            "6",            "7", // 0x30
+               "8",            "9",            ":",            ";",            "<",            "=",            ">",            "?", // 0x38
+               "@",            "A",            "B",            "C",            "D",            "E",            "F",            "G", // 0x40
+               "H",            "I",            "J",            "K",            "L",            "M",            "N",            "O", // 0x48
+               "P",            "Q",            "R",            "S",            "T",            "U",            "V",            "W", // 0x50
+               "X",            "Y",            "Z",            "[",           "\\",            "]",            "^",            "_", // 0x58
+               "`",            "a",            "b",            "c",            "d",            "e",            "f",            "g", // 0x60
+               "h",            "i",            "j",            "k",            "l",            "m",            "n",            "o", // 0x68
+               "p",            "q",            "r",            "s",            "t",            "u",            "v",            "w", // 0x70
+               "x",            "y",            "z",            "{",            "|",            "}",            "~",         "\x7f", // 0x78
+        "\xd0\x90",     "\xd0\x91",     "\xd0\x92",     "\xd0\x93",     "\xd0\x94",     "\xd0\x95",     "\xd0\x96",     "\xd0\x97", // 0x80
+        "\xd0\x98",     "\xd0\x99",     "\xd0\x9a",     "\xd0\x9b",     "\xd0\x9c",     "\xd0\x9d",     "\xd0\x9e",     "\xd0\x9f", // 0x88
+        "\xd0\xa0",     "\xd0\xa1",     "\xd0\xa2",     "\xd0\xa3",     "\xd0\xa4",     "\xd0\xa5",     "\xd0\xa6",     "\xd0\xa7", // 0x90
+        "\xd0\xa8",     "\xd0\xa9",     "\xd0\xaa",     "\xd0\xab",     "\xd0\xac",     "\xd0\xad",     "\xd0\xae",     "\xd0\xaf", // 0x98
+        "\xd0\xb0",     "\xd0\xb1",     "\xd0\xb2",     "\xd0\xb3",     "\xd0\xb4",     "\xd0\xb5",     "\xd0\xb6",     "\xd0\xb7", // 0xa0
+        "\xd0\xb8",     "\xd0\xb9",     "\xd0\xba",     "\xd0\xbb",     "\xd0\xbc",     "\xd0\xbd",     "\xd0\xbe",     "\xd0\xbf", // 0xa8
+    "\xe2\x96\x91", "\xe2\x96\x92", "\xe2\x96\x93", "\xe2\x94\x82", "\xe2\x94\xa4", "\xe2\x95\xa1", "\xe2\x95\xa2", "\xe2\x95\x96", // 0xb0
+    "\xe2\x95\x95", "\xe2\x95\xa3", "\xe2\x95\x91", "\xe2\x95\x97", "\xe2\x95\x9d", "\xe2\x95\x9c", "\xe2\x95\x9b", "\xe2\x94\x90", // 0xb8
+    "\xe2\x94\x94", "\xe2\x94\xb4", "\xe2\x94\xac", "\xe2\x94\x9c", "\xe2\x94\x80", "\xe2\x94\xbc", "\xe2\x95\x9e", "\xe2\x95\x9f", // 0xc0
+    "\xe2\x95\x9a", "\xe2\x95\x94", "\xe2\x95\xa9", "\xe2\x95\xa6", "\xe2\x95\xa0", "\xe2\x95\x90", "\xe2\x95\xac", "\xe2\x95\xa7", // 0xc8
+    "\xe2\x95\xa8", "\xe2\x95\xa4", "\xe2\x95\xa5", "\xe2\x95\x99", "\xe2\x95\x98", "\xe2\x95\x92", "\xe2\x95\x93", "\xe2\x95\xab", // 0xd0
+    "\xe2\x95\xaa", "\xe2\x94\x98", "\xe2\x94\x8c", "\xe2\x96\x88", "\xe2\x96\x84", "\xe2\x96\x8c", "\xe2\x96\x90", "\xe2\x96\x80", // 0xd8
+        "\xd1\x80",     "\xd1\x81",     "\xd1\x82",     "\xd1\x83",     "\xd1\x84",     "\xd1\x85",     "\xd1\x86",     "\xd1\x87", // 0xe0
+        "\xd1\x88",     "\xd1\x89",     "\xd1\x8a",     "\xd1\x8b",     "\xd1\x8c",     "\xd1\x8d",     "\xd1\x8e",     "\xd1\x8f", // 0xe8
+        "\xd0\x81",     "\xd1\x91",     "\xd0\x84",     "\xd1\x94",     "\xd0\x87",     "\xd1\x97",     "\xd0\x8e",     "\xd1\x9e", // 0xf0
+        "\xc2\xb0", "\xe2\x88\x99",     "\xc2\xb7", "\xe2\x88\x9a", "\xe2\x84\x96",     "\xc2\xa4", "\xe2\x96\xa0",     "\xc2\xa0", // 0xf8
+};
+
 /**
 **  Convert a string to utf8 format
 **  Note: this isn't a true conversion, buf could be any character set
 */
-unsigned char *ConvertString(unsigned char *buf, size_t len)
+unsigned char *ConvertString(unsigned char *inputBuffer, size_t len)
 {
+	unsigned char *buf = inputBuffer;
 	unsigned char *str;
 	unsigned char *p;
-	size_t i;
 
 	if (len == 0) {
 		len = strlen((char *)buf);
 	}
 
-	str = (unsigned char *)malloc(2 * len + 1);
+	str = (unsigned char *)malloc(3 * len + 1);
 	p = str;
 
-	for (i = 0; i < len; ++i, ++buf) {
+	for (size_t i = 0; i < len; ++i, ++buf) {
 		if (*buf > 0x7f) {
 			if (CDType & (CD_RUSSIAN)) {
-				// Special cp866 hack for SPK version
-				*p++ = 0xc2;
-				if (*buf >= 0xE0 && *buf < 0xF0) {
-					*p++ = *buf - 0x30;
-				} else {
-					*p++ = *buf;
+				// CP866
+				const char *replacement = cp866_to_utf8[*buf];
+				for (size_t j = 0; j < strlen(replacement); j++) {
+					*p++ = replacement[j];
+				}
+			} else if (CDType & (CD_BNE)) {
+				// assume CP1252
+				const char *replacement = cp1252_to_utf8[*buf];
+				for (size_t j = 0; j < strlen(replacement); j++) {
+					*p++ = replacement[j];
 				}
 			} else {
-				*p++ = (0xc0 | (*buf >> 6));
-				*p++ = (0x80 | (*buf & 0x1f));
+				// assume CP437 for DOS cd
+				const char *replacement = cp437_to_utf8[*buf];
+				for (size_t j = 0; j < strlen(replacement); j++) {
+					*p++ = replacement[j];
+				}
 			}
 		} else {
 			*p++ = *buf;
 		}
 	}
 	*p = '\0';
+#ifdef DEBUG
+	printf("ConvertString: [0x%02x", inputBuffer[0]);
+	for (int i = 1; i < len; i++) {
+		printf(", 0x%02x", inputBuffer[i]);
+	}
+	printf("]\n\nto %s\n", (char*)str);
+	printf("\nwas: %s\n", inputBuffer);
+#endif
 
 	return str;
 }
@@ -2156,13 +2296,11 @@ int SetupNames(const char* file __attribute__((unused)), int txte __attribute__(
 {
 	unsigned char* txtp;
 	const unsigned short* mp;
-	size_t l;
 	unsigned u;
 	unsigned n;
 
 	//txtp = ExtractEntry(ArchiveOffsets[txte], &l);
 	txtp = Names;
-	l = sizeof(Names);
 	mp = (const unsigned short*)txtp;
 
 	n = ConvertLE16(mp[0]);
@@ -2170,12 +2308,10 @@ int SetupNames(const char* file __attribute__((unused)), int txte __attribute__(
 //		printf("%d %x ", u, ConvertLE16(mp[u]));
 //		printf("%s\n", txtp + ConvertLE16(mp[u]));
 		if (u < sizeof(UnitNames) / sizeof(*UnitNames)) {
-#ifdef WIN32
-			UnitNames[u] = _strdup((char*)txtp + ConvertLE16(mp[u]));
-#else
-			UnitNames[u] = strdup((char*)txtp + ConvertLE16(mp[u]));
-#endif
+			UnitNames[u] = (char *)ConvertString(txtp + ConvertLE16(mp[u]), 0);
 			UnitNamesLast = u;
+		} else {
+			fprintf(stderr, "Too many strings: %d\n", u);
 		}
 	}
 
@@ -2238,12 +2374,8 @@ char* ParseString(const char* input)
 //  Import the campaigns
 //----------------------------------------------------------------------------
 
-/**
-**  FIXME: docu
-*/
-int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
-{
-	unsigned char* objectives;
+
+int CampaignsLoadData(unsigned char* objectives, int expansion, int offset) {
 	char buf[8192] = {'\0'};
 	unsigned char* CampaignData[2][26][10];
 	unsigned char* current;
@@ -2251,44 +2383,9 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 	unsigned char* nextobj;
 	unsigned char* currentobj;
 	FILE* outlevel;
-	size_t l;
 	int levelno;
 	int noobjs;
 	int race;
-	int expansion;
-
-	// Campaign data is in different spots for different CD's
-	if (CDType & CD_EXPANSION) {
-		expansion = 1;
-		ofs = 236;
-		txte = 54;
-	} else {
-		expansion = 0;
-		// 53 for UK and German CD, else 54
-		if (CDType & (CD_UK | CD_GERMAN | CD_RUSSIAN)) {
-			txte = 53;
-		} else {
-			txte = 54;
-		}
-		// 172 for Spanish CD, 140 for anything else
-		if (CDType & CD_SPANISH) {
-			ofs = 172;
-		} else {
-			ofs = 140;
-		}
-	}
-
-	objectives = ExtractEntry(ArchiveOffsets[txte], &l);
-	if (!objectives) {
-		printf("Objectives allocation failed\n");
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
-	objectives = (unsigned char *)realloc(objectives, l + 1);
-	if (!objectives) {
-		printf("Objectives allocation failed\n");
-		error("Memory error", "Could not allocate enough memory to read archive.");
-	}
-	objectives[l] = '\0';
 
 	//Now Search from start of objective data
 	levelno = 0;
@@ -2300,8 +2397,8 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 	} else {
 		expansion = 28;
 	}
-	current = objectives + ofs;
-	for (l = 0; l < (size_t)expansion; ++l) {
+	current = objectives + offset;
+	for (int l = 0; l < expansion; ++l) {
 		next = current + strlen((char*)current) + 1;
 
 		noobjs = 1;  // Number of objectives is zero.
@@ -2334,7 +2431,7 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 	while (current[0] && current[0] != 'I' && current[1] != '.') {
 		current = current + strlen((char*)current) + 1;
 	}
-	for (l = 0; l < (size_t)expansion; ++l) {
+	for (int l = 0; l < expansion; ++l) {
 		next = current + strlen((char*)current) + 1;
 		CampaignData[race][levelno][0] = current;
 		current = next;
@@ -2378,8 +2475,54 @@ int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
 		}
 	}
 
-	free(objectives);
 	return 0;
+}
+
+/**
+**  FIXME: docu
+*/
+int CampaignsCreate(const char* file __attribute__((unused)), int txte, int ofs)
+{
+	unsigned char* objectives;
+	size_t l;
+	int expansion;
+
+	// Campaign data is in different spots for different CD's
+	if (CDType & CD_EXPANSION) {
+		expansion = 1;
+		ofs = 236;
+		txte = 54;
+	} else {
+		expansion = 0;
+		// 53 for UK and German CD, else 54
+		if (CDType & (CD_UK | CD_GERMAN | CD_RUSSIAN)) {
+			txte = 53;
+		} else {
+			txte = 54;
+		}
+		// 172 for Spanish CD, 140 for anything else
+		if (CDType & CD_SPANISH) {
+			ofs = 172;
+		} else {
+			ofs = 140;
+		}
+	}
+
+	objectives = ExtractEntry(ArchiveOffsets[txte], &l);
+	if (!objectives) {
+		printf("Objectives allocation failed\n");
+		error("Memory error", "Could not allocate enough memory to read archive.");
+	}
+	objectives = (unsigned char *)realloc(objectives, l + 1);
+	if (!objectives) {
+		printf("Objectives allocation failed\n");
+		error("Memory error", "Could not allocate enough memory to read archive.");
+	}
+	objectives[l] = '\0';
+
+	int result = CampaignsLoadData(objectives, expansion, ofs);
+	free(objectives);
+	return result;
 }
 
 //----------------------------------------------------------------------------
@@ -2912,7 +3055,11 @@ int main(int argc, char** argv)
 		}
 		switch (Todo[u].Type) {
 			case F:
+				if (ArchiveBuffer) {
+					CloseArchive();
+				}
 				if (CDType & CD_BNE) {
+					bool skip = true;
 					for (int i = 0; i < sizeof(BNEReplaceTable) / sizeof(*BNEReplaceTable) ; i += 2) {
 						if (!strcmp(BNEReplaceTable[i], Todo[u].File)) {
 							Todo[u].File = BNEReplaceTable[i + 1];
@@ -2920,14 +3067,18 @@ int main(int argc, char** argv)
 								Todo[u].File = BNEReplaceTableCaps[i + 1];
 							} else if (CDType & CD_BNE_UPPER) {
 								strcpy(filename, Todo[u].File);
-								while (filename[i]) {
-									filename[i] = toupper(filename[i]);
-									++i;
+								for (int fileNameIdx = 0; fileNameIdx < strlen(filename); fileNameIdx++) {
+									filename[fileNameIdx] = toupper(filename[fileNameIdx]);
 								}
 								Todo[u].File = filename;
 							}
+							skip = false;
 							break;
 						}
+					}
+					if (skip) {
+						printf("Skipping archive \"%s\"\n", Todo[u].File);
+						break;
 					}
 				} else if (CDType & CD_UPPER) {
 					int i = 0;
@@ -2941,9 +3092,6 @@ int main(int argc, char** argv)
 				sprintf(buf, "%s/%s", ArchiveDir, Todo[u].File);
 				printf("Archive \"%s\"\n", buf);
 				fflush(stdout);
-				if (ArchiveBuffer) {
-					CloseArchive();
-				}
 				OpenArchive(buf, Todo[u].Arg1);
 				copyArchive(Todo[u].File);
 				break;
@@ -3041,25 +3189,129 @@ int main(int argc, char** argv)
 					copyArchive(copyfile);
 				}
 				sprintf(extract, "%s/%s", Dir, Todo[u].File);
-				if (Todo[u].Arg2 == 1) { // compress
-					sprintf(extract, "%s.gz", extract);
+				switch (Todo[u].Arg2) {
+					case 'V':
+						sprintf(extract, "%s.smk", extract);
+						break;
+					case 'W':
+						if (!rip) { // wav audio
+							continue;
+						}
+					default:
+						break;
 				}
-				if (Todo[u].Arg2 == 2) { // video file
-					sprintf(extract, "%s.smk", extract);
-				}
-				if (Todo[u].Arg2 == 8 && !rip) { // wav audio
-					continue;
-				}
-				if (ExtractMPQFile(mpqfile, (char*)Todo[u].ArcFile, extract, Todo[u].Arg2 == 1)) {
+				if (ExtractMPQFile(mpqfile, (char*)Todo[u].ArcFile, extract, false)) {
 					printf("Failed to extract \"%s\"\n", (char*)Todo[u].ArcFile);
 				}
-				if (Todo[u].Arg2 == 2) { // convert videos
-					if (video) {
-						ConvertVideo(Todo[u].File, Todo[u].Arg1, true);
-					}
-				}
-				if (Todo[u].Arg2 == 4) { // convert videos
-					ConvertPud(Todo[u].File, 0, true);
+				switch (Todo[u].Arg2) { // same mapping as outer loop
+					case 'S':
+						{
+							std::ifstream f(extract, std::ios::in|std::ios::out|std::ios::binary);
+							f.seekg(0, std::ios::end);
+							int sz = f.tellg();
+							f.seekg(0, std::ios::beg);
+							unsigned char *buf = new unsigned char[sz];
+							unsigned char *currentBuf = buf + Todo[u].Arg3;
+							f.read((char *)buf, sz);
+							UnitNamesLast = 0;
+							while (UnitNamesLast < (sizeof(UnitNames) / sizeof(*UnitNames))) {
+								UnitNames[UnitNamesLast] = (char *)ConvertString(currentBuf, 0);
+								currentBuf += strlen((char *)currentBuf) + 1;
+								if (currentBuf - buf >= sz) {
+									break;
+								}
+								UnitNamesLast++;
+							}
+							delete[] buf;
+						}
+						break;
+					case 'V':
+						if (video) {
+							ConvertVideo(Todo[u].File, Todo[u].Arg1, true);
+						}
+						break;
+					case 'P':
+						ConvertPud(Todo[u].File, 0, true);
+						break;
+				    case 'X':
+						{
+							std::fstream f(extract, std::ios::in|std::ios::out|std::ios::binary);
+							f.seekg(0, std::ios::end);
+							int sz = f.tellg();
+							f.seekg(0, std::ios::beg);
+							unsigned char *buf = new unsigned char[sz];
+							f.read((char*)buf, sz);
+							f.seekg(0, std::ios::beg);
+							unsigned char *str;
+							str = ConvertString(buf + Todo[u].Arg3, sz - Todo[u].Arg3);
+							f.write((char*)str, strlen((char*)str));
+							f.write("\0", 1);
+							free(str);
+							delete[] buf;
+						}
+						break;
+				    case '?':
+						{
+							// 4 victory texts
+							std::ifstream f(extract, std::ios::binary);
+							f.seekg(0, std::ios::end);
+							int sz = f.tellg();
+							f.seekg(0, std::ios::beg);
+							unsigned char *buf = new unsigned char[sz];
+							f.read((char*)buf, sz);
+							unsigned char* currentBuffer = buf + Todo[u].Arg3;
+							std::ofstream of;
+							unsigned char *str;
+							// human
+							of.open(std::string(Dir) + TEXT_PATH "/human/victory.txt", std::ios::binary);
+							str = ConvertString(currentBuffer, 0);
+							of.write((char*)str, strlen((char*)str));
+							of.close();
+							free(str);
+							// orc
+							currentBuffer += strlen((char*)currentBuffer) + 1;
+							of.open(std::string(Dir) + TEXT_PATH "/orc/victory.txt", std::ios::binary);
+							str = ConvertString(currentBuffer, 0);
+							of.write((char*)str, strlen((char*)str));
+							of.close();
+							free(str);
+							// human-exp
+							currentBuffer += strlen((char*)currentBuffer) + 1;
+							of.open(std::string(Dir) + TEXT_PATH "/human-exp/victory.txt", std::ios::binary);
+							str = ConvertString(currentBuffer, 0);
+							of.write((char*)str, strlen((char*)str));
+							of.close();
+							free(str);
+							// orc-exp
+							currentBuffer += strlen((char*)currentBuffer) + 1;
+							of.open(std::string(Dir) + TEXT_PATH "/orc-exp/victory.txt", std::ios::binary);
+							str = ConvertString(currentBuffer, 0);
+							of.write((char*)str, strlen((char*)str));
+							of.close();
+							free(str);
+
+							delete[] buf;
+						}
+						break;
+					case 'L':
+						{
+							std::ifstream objectivesFile(extract, std::ios::binary);
+							objectivesFile.seekg(0, std::ios::end);
+							int fileSize = objectivesFile.tellg();
+							objectivesFile.seekg(0, std::ios::beg);
+							unsigned char *objectivesData = new unsigned char[fileSize];
+							objectivesFile.read((char*)objectivesData, fileSize);
+							CampaignsLoadData(objectivesData, 1, Todo[u].Arg3);
+							delete[] objectivesData;
+#ifdef WIN32
+							_unlink(extract);
+#else
+							unlink(extract);
+#endif							
+						}
+						break;
+					default:
+						break;
 				}
 #endif
 				break;
@@ -3098,10 +3350,14 @@ int main(int argc, char** argv)
 				ConvertXmi(Todo[u].File, Todo[u].Arg1);
 				break;
 			case W:
-				ConvertWav(Todo[u].File, Todo[u].Arg1);
+				if (ArchiveBuffer) {
+					ConvertWav(Todo[u].File, Todo[u].Arg1);
+				}
 				break;
 			case X:
-				ConvertText(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+				if (!(CDType & CD_BNE)) {
+					ConvertText(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+				}
 				break;
 			case S:
 				SetupNames(Todo[u].File, Todo[u].Arg1);
@@ -3112,7 +3368,9 @@ int main(int argc, char** argv)
 				}
 				break;
 			case L:
-				CampaignsCreate(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+				if (ArchiveBuffer) {
+					CampaignsCreate(Todo[u].File, Todo[u].Arg1, Todo[u].Arg2);
+				}
 				break;
 			default:
 				break;
@@ -3137,11 +3395,6 @@ int main(int argc, char** argv)
 	}
 	if (Pal27) {
 		free(Pal27);
-	}
-
-	while (UnitNamesLast > 0) {
-		free(UnitNames[UnitNamesLast]);
-		--UnitNamesLast;
 	}
 
 	sprintf(buf, "%s/scripts/wc2-config.lua", Dir);
@@ -3171,6 +3424,19 @@ int main(int argc, char** argv)
 		fprintf(f, "wargus.bne = false\n");
 	}
 	fprintf(f, "wargus.game_font_width = %d\n", game_font_width);
+	if (CDType & CD_RUSSIAN) {
+		fprintf(f, "SetFontCodePage(866)\n", game_font_width);	
+	} else {
+		fprintf(f, "SetFontCodePage(437)\n");
+	}
+
+	fprintf(f, "InGameStrings = {\n");
+	while (UnitNamesLast > 0) {
+		fprintf(f, "   [[%s]],\n", UnitNames[UnitNamesLast]);
+		free(UnitNames[UnitNamesLast]);
+		--UnitNamesLast;
+	}
+	fprintf(f, "}\n");
 	fclose(f);
 
 	sprintf(buf, "%s/extracted", Dir);

@@ -2,402 +2,473 @@ msgid ""
 msgstr ""
 "Project-Id-Version: stratagus-ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-12 21:22-0800\n"
+"POT-Creation-Date: 2022-01-27 20:32+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: cybermind <cybermindid@gmail.com>\n"
+"Last-Translator: Tim Felgentreff <timfelgentreff@gmail.com>\n"
 "Language-Team: cybermind <iddqd_mail@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP866\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: f:/Programming/Projects/stratag/trunk/src/\n"
-"X-Poedit-SearchPath-0: f:/Programming/Projects/stratag/trunk/src\n"
+"X-Poedit-Basepath: ../../../stratagus/src\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: src/action/action_build.cpp:119
+#: action/action_build.cpp:204
 msgid "You cannot reach building place"
-msgstr "ç•¢Æß¨Æ¶≠Æ §Æ·‚®£≠„‚Ï ¨•·‚† ·‚‡Æ®‚•´Ï·‚¢†"
+msgstr "–ù–µ–≤–æ–∑–º–æ–∂–Ω–æ –¥–æ—Å—Ç–∏–≥–Ω—É—Ç—å –º–µ—Å—Ç–∞ —Å—Ç—Ä–æ–∏—Ç–µ–ª—å—Å—Ç–≤–∞"
 
-#: src/action/action_build.cpp:177
-#, c-format
-msgid "You cannot build %s here"
-msgstr "ç•¢Æß¨Æ¶≠Æ ØÆ·‚‡Æ®‚Ï ß§•·Ï %s"
-
-#: src/action/action_build.cpp:197
+#: action/action_build.cpp:229
 #, c-format
 msgid "Not enough resources to build %s"
-msgstr "ç•§Æ·‚†‚ÆÁ≠Æ ‡•·„‡·Æ¢ §´Ô ØÆ·‚‡Æ©™® %s"
+msgstr "–ù–µ–¥–æ—Å—Ç–∞—Ç–æ—á–Ω–æ —Ä–µ—Å—É—Ä—Å–æ–≤ –¥–ª—è –ø–æ—Å—Ç—Ä–æ–π–∫–∏ %s"
 
-#: src/action/action_build.cpp:215
+#: action/action_build.cpp:236
 #, c-format
 msgid "Can't build more units %s"
-msgstr "ç•´ÏßÔ ·Æß§†‚Ï •È• %s"
+msgstr "–ù–µ–ª—å–∑—è —Å–æ–∑–¥–∞—Ç—å –µ—â–µ %s"
 
-#: src/action/action_build.cpp:255
+#: action/action_build.cpp:322
 #, c-format
 msgid "Unable to create building %s"
-msgstr "ç•´ÏßÔ ØÆ·‚‡Æ®‚Ï ß§†≠®•: %s"
+msgstr "–ù–µ–ª—å–∑—è –ø–æ—Å—Ç—Ä–æ–∏—Ç—å –∑–¥–∞–Ω–∏–µ: %s"
 
-#: src/action/action_build.cpp:515
+#: action/action_build.cpp:356
+#, c-format
+msgid "%s has rebuilt a base, and will no longer be revealed!"
+msgstr ""
+
+#: action/action_build.cpp:358
+msgid "You have rebuilt a base, and will no longer be revealed!"
+msgstr ""
+
+#: action/action_build.cpp:472
+#, c-format
+msgid "You cannot build %s here"
+msgstr "–ù–µ–≤–æ–∑–º–æ–∂–Ω–æ –ø–æ—Å—Ç—Ä–æ–∏—Ç—å –∑–¥–µ—Å—å %s"
+
+#: action/action_built.cpp:196
 #, c-format
 msgid "New %s done"
-msgstr "ÉÆ‚Æ¢† ≠Æ¢†Ô ØÆ·‚‡Æ©™†: %s"
+msgstr "–ì–æ—Ç–æ–≤–∞ –Ω–æ–≤–∞—è –ø–æ—Å—Ç—Ä–æ–π–∫–∞: %s"
 
-#: src/action/action_repair.cpp:84
+#: action/action_repair.cpp:178
 #, c-format
 msgid "We need more %s for repair!"
-msgstr "ç†¨ ≠„¶≠Æ °Æ´ÏË• %s §´Ô ‡•¨Æ≠‚†!"
+msgstr "–ù–∞–º –Ω—É–∂–Ω–æ –±–æ–ª—å—à–µ %s –¥–ª—è —Ä–µ–º–æ–Ω—Ç–∞!"
 
-#: src/action/action_research.cpp:103
+#: action/action_research.cpp:145 action/action_research.cpp:147
 #, c-format
 msgid "%s: research complete"
-msgstr "%s: ®··´•§Æ¢†≠®• ß†¢•‡Ë•≠Æ"
+msgstr "%s: –∏—Å—Å–ª–µ–¥–æ–≤–∞–Ω–∏–µ –∑–∞–≤–µ—Ä—à–µ–Ω–æ"
 
-#: src/action/action_resource.cpp:769
+#: action/action_resource.cpp:785
 #, c-format
 msgid "%s has collapsed!"
-msgstr "%s Æ°‡„Ë®´·Ô!"
+msgstr "%s –æ–±—Ä—É—à–∏–ª—Å—è!"
 
-#: src/action/action_resource.cpp:842
+#: action/action_resource.cpp:861
 #, c-format
 msgid "%s is running low!"
-msgstr "%s ·™Æ‡Æ ®··Ô™≠•‚!"
+msgstr "%s —Å–∫–æ—Ä–æ –∏—Å—Å—è–∫–Ω–µ—Ç!"
 
-#: src/action/action_returngoods.cpp:68
-msgid "No Resources to Return."
-msgstr "ç•‚„ ¢Æß¢‡†È†•¨ÎÂ ‡•·„‡·Æ¢."
-
-#: src/action/action_spellcast.cpp:181
+#: action/action_spellcast.cpp:321
 #, c-format
 msgid "%s: not enough mana for spell: %s"
-msgstr "%s: ≠• Â¢†‚†•‚ ¨†≠Î §´Ô ß†™´®≠†≠®Ô: %s"
+msgstr "%s: –Ω–µ —Ö–≤–∞—Ç–∞–µ—Ç –º–∞–Ω—ã –¥–ª—è –∑–∞–∫–ª–∏–Ω–∞–Ω–∏—è: %s"
 
-#: src/action/action_spellcast.cpp:185
+#: action/action_spellcast.cpp:325
+#, c-format
+msgid "%s: spell is not ready yet: %s"
+msgstr "%s: –∑–∞–∫–ª–∏–Ω–∞–Ω–∏–µ –µ—â–µ –Ω–µ –≥–æ—Ç–æ–≤–æ: %s"
+
+#: action/action_spellcast.cpp:329
+#, c-format
+msgid "%s: not enough resources to cast spell: %s"
+msgstr "%s: –Ω–µ–¥–æ—Å—Ç–∞—Ç–æ—á–Ω–æ —Ä–µ—Å—É—Ä—Å–æ–≤ –¥–ª—è –∑–∞–∫–ª–∏–Ω–∞–Ω–∏—è: %s"
+
+#: action/action_spellcast.cpp:333
 #, c-format
 msgid "%s: can't cast spell: %s"
-msgstr "%s: ≠•¢Æß¨Æ¶≠Æ ®·ØÆ´ÏßÆ¢†‚Ï ß†™´®≠†≠®• : %s"
+msgstr "%s: –Ω–µ–≤–æ–∑–º–æ–∂–Ω–æ –∏—Å–ø–æ–ª—å–∑–æ–≤–∞—Ç—å –∑–∞–∫–ª–∏–Ω–∞–Ω–∏–µ : %s"
 
-#: src/action/action_train.cpp:170
-#, c-format
-msgid "New %s ready"
-msgstr "ÉÆ‚Æ¢ ≠Æ¢Î© Ó≠®‚ %s"
-
-#: src/action/action_train.cpp:217
+#: action/action_train.cpp:208
 #, c-format
 msgid "Unable to train %s"
-msgstr "ç•¢Æß¨Æ¶≠Æ ‚‡•≠®‡Æ¢†‚Ï Ó≠®‚ %s"
+msgstr "–ù–µ–≤–æ–∑–º–æ–∂–Ω–æ —Ç—Ä–µ–Ω–∏—Ä–æ–≤–∞—Ç—å —é–Ω–∏—Ç %s"
 
-#: src/action/action_upgradeto.cpp:199
+#: action/action_train.cpp:236
+#, c-format
+msgid "New %s ready"
+msgstr "–ì–æ—Ç–æ–≤ –Ω–æ–≤—ã–π —é–Ω–∏—Ç %s"
+
+#: action/action_upgradeto.cpp:287
 #, c-format
 msgid "Upgrade to %s canceled"
-msgstr "ÇÎ Æ‚¨•≠®´® ¨Æ§•‡≠®ß†Ê®Ó §Æ %s"
+msgstr "–í—ã –æ—Ç–º–µ–Ω–∏–ª–∏ –º–æ–¥–µ—Ä–Ω–∏–∑–∞—Ü–∏—é –¥–æ %s"
 
-#: src/action/action_upgradeto.cpp:207
+#: action/action_upgradeto.cpp:291
 #, c-format
 msgid "Upgrade to %s complete"
-msgstr "åÆ§•‡≠®ß†Ê®Ô §Æ %s ß†¢•‡Ë•≠†"
+msgstr "–ú–æ–¥–µ—Ä–Ω–∏–∑–∞—Ü–∏—è –¥–æ %s –∑–∞–≤–µ—Ä—à–µ–Ω–∞"
 
-#: src/action/command.cpp:1319
+#: action/command.cpp:987
 #, c-format
 msgid "Player \"%s\" has left the game"
-msgstr "à£‡Æ™ %s ØÆ™®≠„´ ®£‡„"
+msgstr "–ò–≥—Ä–æ–∫ %s –ø–æ–∫–∏–Ω—É–ª –∏–≥—Ä—É"
 
-#: src/action/command.cpp:1321
+#: action/command.cpp:989
 #, c-format
 msgid "Player \"%s\" has been killed"
-msgstr "à£‡Æ™ \"%s\" °Î´ ØÆ°•¶§•≠"
+msgstr "–ò–≥—Ä–æ–∫ \"%s\" –±—ã–ª –ø–æ–±–µ–∂–¥–µ–Ω"
 
-#: src/editor/editloop.cpp:508 src/editor/editloop.cpp:592
-msgid "~!OK"
-msgstr "éä"
-
-#: src/editor/editloop.cpp:516 src/editor/editloop.cpp:600
-msgid "~!Cancel"
-msgstr "é‚¨•≠†"
-
-#: src/editor/editloop.cpp:583
-msgid "Artificial Intelligence"
-msgstr "à·™„··‚¢•≠≠Î© ®≠‚•´´•™‚"
-
-#: src/editor/editloop.cpp:1376
-msgid "Unit can't be placed here."
-msgstr "ÇÎ ≠• ¨Æ¶•‚• ·Æß§†‚Ï ß§•·Ï Ì‚Æ‚ Ó≠®‚"
-
-#: src/editor/editloop.cpp:1448
-msgid "Mirror editing enabled: 2-side"
-msgstr "Ç™´ÓÁ•≠ 2-·‚Æ‡Æ≠®© ‡•¶®¨ ß•‡™†´Ï≠Æ£Æ ‡•§†™‚®‡Æ¢†≠®Ô"
-
-#: src/editor/editloop.cpp:1451
-msgid "Mirror editing enabled: 4-side"
-msgstr "Ç™´ÓÁ•≠ 4-·‚Æ‡Æ≠®© ‡•¶®¨ ß•‡™†´Ï≠Æ£Æ ‡•§†™‚®‡Æ¢†≠®Ô"
-
-#: src/editor/editloop.cpp:1454
-msgid "Mirror editing disabled"
-msgstr "ê•¶®¨ ß•‡™†´Ï≠Æ£Æ ‡•§†™‚®‡Æ¢†≠®Ô ¢Î™´ÓÁ•≠"
-
-#: src/editor/editloop.cpp:1474
+#: editor/editloop.cpp:313
 msgid "Unit deleted"
-msgstr "û≠®‚ „§†´•≠"
+msgstr "–Æ–Ω–∏—Ç —É–¥–∞–ª–µ–Ω"
 
-#: src/editor/editloop.cpp:1497 src/editor/editloop.cpp:1506
+#: editor/editloop.cpp:953
+#, c-format
+msgid "Editor (%d %d)"
+msgstr "–†–µ–¥–∞–∫—Ç–æ—Ä (%d %d)"
+
+#: editor/editloop.cpp:1000
+#, c-format
+msgid "#%d '%s' Player:#%d %s"
+msgstr "#%d '%s' –ò–≥—Ä–æ–∫:#%d %s"
+
+#: editor/editloop.cpp:1004
+#, c-format
+msgid " Amount %d"
+msgstr "–†–µ—Å—É—Ä—Å—ã %d"
+
+#: editor/editloop.cpp:1287
+#, fuzzy
+#| msgid "Unit can't be placed here."
+msgid "Unit cannot be placed here."
+msgstr "–í—ã –Ω–µ –º–æ–∂–µ—Ç–µ —Å–æ–∑–¥–∞—Ç—å –∑–¥–µ—Å—å —ç—Ç–æ—Ç —é–Ω–∏—Ç"
+
+#: editor/editloop.cpp:1382
+msgid "Mirror editing enabled: 2-side"
+msgstr "–í–∫–ª—é—á–µ–Ω 2-—Å—Ç–æ—Ä–æ–Ω–∏–π —Ä–µ–∂–∏–º –∑–µ—Ä–∫–∞–ª—å–Ω–æ–≥–æ —Ä–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞–Ω–∏—è"
+
+#: editor/editloop.cpp:1385
+msgid "Mirror editing enabled: 4-side"
+msgstr "–í–∫–ª—é—á–µ–Ω 4-—Å—Ç–æ—Ä–æ–Ω–∏–π —Ä–µ–∂–∏–º –∑–µ—Ä–∫–∞–ª—å–Ω–æ–≥–æ —Ä–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞–Ω–∏—è"
+
+#: editor/editloop.cpp:1388
+msgid "Mirror editing disabled"
+msgstr "–†–µ–∂–∏–º –∑–µ—Ä–∫–∞–ª—å–Ω–æ–≥–æ —Ä–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞–Ω–∏—è –≤—ã–∫–ª—é—á–µ–Ω"
+
+#: editor/editloop.cpp:1437 editor/editloop.cpp:1456
 msgid "Unit owner modified"
-msgstr "àß¨•≠•≠ ¢´†§•´•Ê Ó≠®‚†"
+msgstr "–ò–∑–º–µ–Ω–µ–Ω –≤–ª–∞–¥–µ–ª–µ—Ü —é–Ω–∏—Ç–∞"
 
-#: src/editor/editloop.cpp:1831
-msgid "Select mode"
-msgstr "ê•¶®¨ ¢Î°Æ‡†"
+#: editor/editloop.cpp:1529
+#, c-format
+msgid "Select player #%d"
+msgstr "–í—ã–±–æ—Ä –∏–≥—Ä–æ–∫–∞ #%d"
 
-#: src/editor/editloop.cpp:1841
-msgid "Unit mode"
-msgstr "ê•¶®¨ Ó≠®‚Æ¢"
+#: editor/editloop.cpp:1785
+#, c-format
+msgid "Script %s"
+msgstr "–°–∫—Ä–∏–ø—Ç %s"
 
-#: src/editor/editloop.cpp:1852
-msgid "Tile mode"
-msgstr "ê•¶®¨ ´†≠§Ë†‰‚†"
+#: game/game.cpp:157
+msgid "Do it! Do it now!"
+msgstr "–í–ø–µ—Ä–µ–¥! –î–∞–≤–∞–π –∂–µ!"
 
-#: src/editor/editloop.cpp:1863
-msgid "Set start location mode"
-msgstr "ê•¶®¨ ·‚†‡‚Æ¢ÎÂ ØÆß®Ê®©"
-
-#: src/network/commands.cpp:824
+#: game/replay.cpp:811
 msgid "No sync info for this replay !"
-msgstr "é‚·„‚·‚¢„Ó‚ §†≠≠Î• ·®≠Â‡Æ≠®ß†Ê®®!"
+msgstr "–û—Ç—Å—É—Ç—Å—Ç–≤—É—é—Ç –¥–∞–Ω–Ω—ã–µ —Å–∏–Ω—Ö—Ä–æ–Ω–∏–∑–∞—Ü–∏–∏!"
 
-#: src/network/commands.cpp:826
+#: game/replay.cpp:813
 #, c-format
 msgid "Replay got out of sync (%lu) !"
-msgstr "ç†‡„Ë•≠† ·®≠Â‡Æ≠®ß†Ê®Ô Ø•‡•®£‡Æ¢™® (%lu)!"
+msgstr "–ù–∞—Ä—É—à–µ–Ω–∞ —Å–∏–Ω—Ö—Ä–æ–Ω–∏–∑–∞—Ü–∏—è –ø–µ—Ä–µ–∏–≥—Ä–æ–≤–∫–∏ (%lu)!"
 
-#: src/network/commands.cpp:835
+#: game/replay.cpp:822
 msgid "Replay got out of sync !"
-msgstr "ç†‡„Ë•≠† ·®≠Â‡Æ≠®ß†Ê®Ô Ø•‡•®£‡Æ¢™®!"
+msgstr "–ù–∞—Ä—É—à–µ–Ω–∞ —Å–∏–Ω—Ö—Ä–æ–Ω–∏–∑–∞—Ü–∏—è –ø–µ—Ä–µ–∏–≥—Ä–æ–≤–∫–∏!"
 
-#: src/network/commands.cpp:946 src/network/commands.cpp:961
+#: game/replay.cpp:939 game/replay.cpp:953
 msgid "End of replay"
-msgstr "äÆ≠•Ê Ø•‡•®£‡Æ¢™®"
+msgstr "–ö–æ–Ω–µ—Ü –ø–µ—Ä–µ–∏–≥—Ä–æ–≤–∫–∏"
 
-#: src/network/network.cpp:928
+#: map/script_map.cpp:848
+#, fuzzy, c-format
+#| msgid "Tileset `%s'"
+msgid "Tileset '%s'"
+msgstr "–¢–∞–π–ª—Å–µ—Ç `%s'"
+
+#: missile/missileconfig.cpp:54
+#, c-format
+msgid "Missile %s"
+msgstr "–°–Ω–∞—Ä—è–¥ %s"
+
+#: missile/missileconfig.cpp:58
+#, c-format
+msgid "Can't find missile %s\n"
+msgstr "–°–Ω–∞—Ä—è–¥ –Ω–µ –Ω–∞–π–¥–µ–Ω: %s\n"
+
+#: network/network.cpp:831
 #, c-format
 msgid "%s sent bad command"
-msgstr "%s Æ‚Æ·´†´ ™Æ¨†≠§„ · ÆË®°™Æ©"
+msgstr "%s –æ—Ç–æ—Å–ª–∞–ª –∫–æ–º–∞–Ω–¥—É —Å –æ—à–∏–±–∫–æ–π"
 
-#: src/network/network.cpp:1022
+#: network/network.cpp:930
 msgid "Network out of sync"
-msgstr "ç†‡„Ë•≠† ·®≠Â‡Æ≠®ß†Ê®Ô ·•‚®"
+msgstr "–ù–∞—Ä—É—à–µ–Ω–∞ —Å–∏–Ω—Ö—Ä–æ–Ω–∏–∑–∞—Ü–∏—è —Å–µ—Ç–∏"
 
-#: src/network/network.cpp:1256
+#: network/network.cpp:1125
 #, c-format
 msgid "Waiting for player \"%s\": %d:%02d"
-msgstr "é¶®§†≠®• ®£‡Æ™† \"%s\": %d:%02d"
+msgstr "–û–∂–∏–¥–∞–Ω–∏–µ –∏–≥—Ä–æ–∫–∞ \"%s\": %d:%02d"
 
-#: src/network/network.cpp:1272
+#: network/network.cpp:1138
 msgid "Timed out"
-msgstr "Ç‡•¨Ô ¢ÎË´Æ"
+msgstr "–í—Ä–µ–º—è –≤—ã—à–ª–æ"
 
-#: src/stratagus/player.cpp:553
+#: stratagus/construct.cpp:98 stratagus/construct.cpp:107
+#, c-format
+msgid "Construction %s"
+msgstr "–ö–æ–Ω—Å—Ç—Ä—É–∫—Ü–∏—è %s"
+
+#: stratagus/mainloop.cpp:312
+msgid "Autosave"
+msgstr ""
+
+#: stratagus/player.cpp:1031
 msgid "Building Limit Reached"
-msgstr "ÑÆ·‚®£≠„‚ ´®¨®‚ ØÆ·‚‡Æ™•"
+msgstr "–î–æ—Å—Ç–∏–≥–Ω—É—Ç –ª–∏–º–∏—Ç –ø–æ—Å—Ç—Ä–æ–∫–µ"
 
-#: src/stratagus/player.cpp:557
+#: stratagus/player.cpp:1035
 msgid "Unit Limit Reached"
-msgstr "ÑÆ·‚®£≠„‚ ´®¨®‚ Ó≠®‚Æ¢"
+msgstr "–î–æ—Å—Ç–∏–≥–Ω—É—Ç –ª–∏–º–∏—Ç —é–Ω–∏—Ç–æ–≤"
 
-#: src/stratagus/player.cpp:561
+#: stratagus/player.cpp:1039
 msgid "Insufficient Supply, increase Supply."
-msgstr "í‡•°„•‚·Ô °Æ´ÏË• Ø®È® §´Ô Ó≠®‚Æ¢"
+msgstr "–¢—Ä–µ–±—É–µ—Ç—Å—è –±–æ–ª—å—à–µ –ø–∏—â–∏ –¥–ª—è —é–Ω–∏—Ç–æ–≤"
 
-#: src/stratagus/player.cpp:565
+#: stratagus/player.cpp:1043
 msgid "Total Unit Limit Reached"
-msgstr "ÑÆ·‚®£≠„‚ Æ°È®© ´®¨®‚ Ó≠®‚Æ¢"
+msgstr "–î–æ—Å—Ç–∏–≥–Ω—É—Ç –æ–±—â–∏–π –ª–∏–º–∏—Ç —é–Ω–∏—Ç–æ–≤"
 
-#: src/stratagus/player.cpp:569
+#: stratagus/player.cpp:1047
 #, c-format
 msgid "Limit of %d reached for this unit type"
-msgstr "ÑÆ·‚®£≠„‚ Ø‡•§•´ ¢ %d •§®≠®Ê §´Ô §†≠≠Æ£Æ Ó≠®‚†"
+msgstr "–î–æ—Å—Ç–∏–≥–Ω—É—Ç –ø—Ä–µ–¥–µ–ª –≤ %d –µ–¥–∏–Ω–∏—Ü –¥–ª—è –¥–∞–Ω–Ω–æ–≥–æ —é–Ω–∏—Ç–∞"
 
-#: src/stratagus/player.cpp:575
-msgid "Cannot create more units."
-msgstr "ç•¢Æß¨Æ¶≠Æ ·Æß§†‚Ï °Æ´ÏË• Ó≠®‚Æ¢."
-
-#: src/stratagus/stratagus.cpp:548 src/stratagus/stratagus.cpp:681
-msgid "Do it! Do it now!"
-msgstr "ÇØ•‡•§! Ñ†¢†© ¶•!"
-
-#: src/stratagus/stratagus.cpp:812
+#: stratagus/player.cpp:1073
 #, c-format
+msgid "Not enough %s...%s more %s."
+msgstr "–ù–µ–¥–æ—Å—Ç–∞—Ç–æ—á–Ω–æ %s...%s –±–æ–ª—å—à–µ %s."
+
+#: stratagus/player.cpp:1216
+#, c-format
+msgid "%s has not rebuilt their base and is being revealed!"
+msgstr ""
+
+#: stratagus/player.cpp:1218
+msgid "You have not rebuilt your base and have been revealed!"
+msgstr ""
+
+#: stratagus/script.cpp:2562
+#, c-format
+msgid "Script %s\n"
+msgstr "–°–∫—Ä–∏–ø—Ç %s\n"
+
+#: stratagus/stratagus.cpp:416
 msgid "Thanks for playing Stratagus.\n"
-msgstr "ëØ†·®°Æ ß† ‚Æ, Á‚Æ ·Î£‡†´® ¢ Wargus.\n"
+msgstr "–°–ø–∞—Å–∏–±–æ –∑–∞ —Ç–æ, —á—Ç–æ —Å—ã–≥—Ä–∞–ª–∏ –≤ Wargus.\n"
 
-#: src/ui/botpanel.cpp:724 src/ui/botpanel.cpp:789
+#: ui/botpanel.cpp:1125
 msgid "Select Target"
-msgstr "ÇÎ°•‡®‚• Ê•´Ï"
+msgstr "–í—ã–±–µ—Ä–∏—Ç–µ —Ü–µ–ª—å"
 
-#: src/ui/botpanel.cpp:852
+#: ui/botpanel.cpp:1289
 msgid "Select Location"
-msgstr "ÇÎ°•‡®‚• ØÆß®Ê®Ó"
+msgstr "–í—ã–±–µ—Ä–∏—Ç–µ –ø–æ–∑–∏—Ü–∏—é"
 
-#: src/ui/botpanel.cpp:871
+#: ui/botpanel.cpp:1321
 msgid "Unit training queue is full"
-msgstr "éÁ•‡•§Ï ·‚‡Æ®‚•´Ï·‚¢† ß†ØÆ´≠•≠†"
+msgstr "–û—á–µ—Ä–µ–¥—å —Å—Ç—Ä–æ–∏—Ç–µ–ª—å—Å—Ç–≤–∞ –∑–∞–ø–æ–ª–Ω–µ–Ω–∞"
 
-#: src/ui/interface.cpp:95
+#: ui/icons.cpp:272
 #, c-format
-msgid "MESSAGE:%s~!_"
-msgstr "ëééÅôÖçàÖ:%s~!_"
+msgid "Icon %s"
+msgstr "–ò–∫–æ–Ω–∫–∞ %s"
 
-#: src/ui/interface.cpp:247
+#: ui/icons.cpp:275
+#, c-format
+msgid "Can't find icon %s\n"
+msgstr "–ò–∫–æ–Ω–∫–∞ –Ω–µ –Ω–∞–π–¥–µ–Ω–∞: %s\n"
+
+#: ui/icons.cpp:288
+#, c-format
+msgid "Icons %s"
+msgstr "–ò–∫–æ–Ω–∫–∞ %s"
+
+#: ui/interface.cpp:122
+#, fuzzy, c-format
+#| msgid "MESSAGE:%s~!_"
+msgid "MESSAGE:%s"
+msgstr "–°–û–û–ë–©–ï–ù–ò–ï:%s~!_"
+
+#: ui/interface.cpp:269
 msgid "Sound is on."
-msgstr "á¢„™ ¢™´ÓÁ•≠"
+msgstr "–ó–≤—É–∫ –≤–∫–ª—é—á–µ–Ω"
 
-#: src/ui/interface.cpp:249
+#: ui/interface.cpp:271
 msgid "Sound is off."
-msgstr "á¢„™ ¢Î™´ÓÁ•≠"
+msgstr "–ó–≤—É–∫ –≤—ã–∫–ª—é—á–µ–Ω"
 
-#: src/ui/interface.cpp:264
+#: ui/interface.cpp:286
 msgid "Music is off."
-msgstr "å„ßÎ™† ¢™´ÓÁ•≠†"
+msgstr "–ú—É–∑—ã–∫–∞ –≤–∫–ª—é—á–µ–Ω–∞"
 
-#: src/ui/interface.cpp:267
+#: ui/interface.cpp:289
 msgid "Music is on."
-msgstr "å„ßÎ™† ¢Î™´ÓÁ•≠†"
+msgstr "–ú—É–∑—ã–∫–∞ –≤—ã–∫–ª—é—á–µ–Ω–∞"
 
-#: src/ui/interface.cpp:280 src/ui/mouse.cpp:1736
+#: ui/interface.cpp:302 ui/mouse.cpp:1948
 msgid "Game Paused"
-msgstr "à£‡† Ø‡®Æ·‚†≠Æ¢´•≠†"
+msgstr "–ò–≥—Ä–∞ –ø—Ä–∏–æ—Å—Ç–∞–Ω–æ–≤–ª–µ–Ω–∞"
 
-#: src/ui/interface.cpp:282
+#: ui/interface.cpp:304
 msgid "Game Resumed"
-msgstr "à£‡† ¢ÆßÆ°≠Æ¢´•≠†"
+msgstr "–ò–≥—Ä–∞ –≤–æ–∑–æ–±–Ω–æ–≤–ª–µ–Ω–∞"
 
-#: src/ui/interface.cpp:313
+#: ui/interface.cpp:335
 msgid "Big map enabled"
-msgstr "Ç™´ÓÁ•≠† °Æ´ÏË†Ô ™†‡‚†"
+msgstr "–í–∫–ª—é—á–µ–Ω–∞ –±–æ–ª—å—à–∞—è –∫–∞—Ä—Ç–∞"
 
-#: src/ui/interface.cpp:322
+#: ui/interface.cpp:344
 msgid "Returning to old map"
-msgstr "ÅÆ´ÏË†Ô ™†‡‚† ¢Î™´ÓÁ•≠†"
+msgstr "–ë–æ–ª—å—à–∞—è –∫–∞—Ä—Ç–∞ –≤—ã–∫–ª—é—á–µ–Ω–∞"
 
-#: src/ui/interface.cpp:333
+#: ui/interface.cpp:358
 msgid "Faster"
-msgstr "ÅÎ·‚‡••"
+msgstr "–ë—ã—Å—Ç—Ä–µ–µ"
 
-#: src/ui/interface.cpp:349
+#: ui/interface.cpp:377
 msgid "Slower"
-msgstr "å•§´•≠≠••"
+msgstr "–ú–µ–¥–ª–µ–Ω–Ω–µ–µ"
 
-#: src/ui/interface.cpp:404
+#: ui/interface.cpp:390
+msgid "Set default game speed"
+msgstr "–£—Å—Ç–∞–Ω–æ–≤–ª–µ–Ω–∞ —Å—Ç–∞–Ω–¥–∞—Ä—Ç–Ω–∞—è —Å–∫–æ—Ä–æ—Å—Ç—å –∏–≥—Ä—ã"
+
+#: ui/interface.cpp:441
 msgid "Terrain displayed."
-msgstr "èÆ™†ß ´†≠§Ë†‰‚† ¢™´ÓÁ•≠"
+msgstr "–ü–æ–∫–∞–∑ –ª–∞–Ω–¥—à–∞—Ñ—Ç–∞ –≤–∫–ª—é—á–µ–Ω"
 
-#: src/ui/interface.cpp:406
+#: ui/interface.cpp:443
 msgid "Terrain hidden."
-msgstr "èÆ™†ß ´†≠§Ë†‰‚† ¢Î™´ÓÁ•≠"
+msgstr "–ü–æ–∫–∞–∑ –ª–∞–Ω–¥—à–∞—Ñ—Ç–∞ –≤—ã–∫–ª—é—á–µ–Ω"
 
-#: src/ui/interface.cpp:439
+#: ui/interface.cpp:487
 msgid "Grab mouse toggled."
-msgstr "á†Â¢†‚ ¨ÎË® Ø•‡•™´ÓÁ•≠"
+msgstr "–ó–∞—Ö–≤–∞—Ç –º—ã—à–∏ –ø–µ—Ä–µ–∫–ª—é—á–µ–Ω"
 
-#: src/ui/interface.cpp:914
+#: ui/interface.cpp:1076
 msgid "Screenshot made."
-msgstr "èÆ´„Á•≠ ·≠®¨Æ™ Ì™‡†≠†"
+msgstr "–ü–æ–ª—É—á–µ–Ω —Å–Ω–∏–º–æ–∫ —ç–∫—Ä–∞–Ω–∞"
 
-#: src/ui/mainscr.cpp:971
+#: ui/mainscr.cpp:892
 #, c-format
 msgid "Last message repeated ~<%d~> times"
-msgstr "ÇÎ ØÆ´„Á®´® ØÆ·´•§≠•• ·ÆÆ°È•≠®• ~<%d~> ‡†ß"
+msgstr "–í—ã –ø–æ–ª—É—á–∏–ª–∏ –ø–æ—Å–ª–µ–¥–Ω–µ–µ —Å–æ–æ–±—â–µ–Ω–∏–µ ~<%d~> —Ä–∞–∑"
 
-#: src/ui/mainscr.cpp:1047
+#: ui/mainscr.cpp:1024
 #, c-format
 msgid "~<Event: %s~>"
-msgstr "~<ëÆ°Î‚®•: %s~>"
+msgstr "~<–°–æ–±—ã—Ç–∏–µ: %s~>"
 
-#: src/ui/mouse.cpp:1904
+#: ui/mainscr.cpp:1071
+msgid "Cycle:"
+msgstr "–¶–∏–∫–ª:"
+
+#: ui/mouse.cpp:2126
 #, c-format
 msgid "You have ~<%d~> %ss"
-msgstr "ì ¢†· •·‚Ï ~<%d~> %s"
+msgstr "–£ –≤–∞—Å –µ—Å—Ç—å ~<%d~> %s"
 
-#: src/ui/mouse.cpp:1908
+#: ui/mouse.cpp:2130
 #, c-format
 msgid "You have ~<%d~> %s(s)"
-msgstr "ì ¢†· •·‚Ï ~<%d~> %s"
+msgstr "–£ –≤–∞—Å –µ—Å—Ç—å ~<%d~> %s"
 
-#: src/unit/unit.cpp:2990
+#: unit/depend.cpp:256 unit/depend.cpp:314
+msgid "Requirements:\n"
+msgstr "–ù–µ–æ–±—Ö–æ–¥–∏–º–æ:\n"
+
+#: unit/unit.cpp:1402
+#, c-format
+msgid "%s has lost their last base, and will be revealed in thirty seconds!"
+msgstr ""
+
+#: unit/unit.cpp:1404
+msgid "You have lost your last base, and will be revealed in thirty seconds!"
+msgstr ""
+
+#: unit/unit.cpp:2815
 #, c-format
 msgid "%s attacked"
-msgstr "%s ØÆ§ Æ£≠•¨"
+msgstr "%s –ø–æ–¥ –æ–≥–Ω–µ–º"
 
-msgid "%s: complete"
-msgstr "%s: ß†¢•‡Ë•≠Æ"
+#: unit/unit_draw.cpp:348
+#, fuzzy, c-format
+#| msgid "Decorations `%s'"
+msgid "Decorations '%s'"
+msgstr "–î–µ–∫–æ—Ä–∞—Ü–∏—è `%s'"
 
-msgid "%s: spell is not ready yet: %s"
-msgstr "%s: ß†™´®≠†≠®• •È• ≠• £Æ‚Æ¢Æ: %s"
-
-msgid "%s: not enough resources to cast spell: %s"
-msgstr "%s: ≠•§Æ·‚†‚ÆÁ≠Æ ‡•·„‡·Æ¢ §´Ô ß†™´®≠†≠®Ô: %s"
-
-msgid "Editor (%d %d)"
-msgstr "ê•§†™‚Æ‡ (%d %d)"
-
-msgid "#%d '%s' Player:#%d %s"
-msgstr "#%d '%s' à£‡Æ™:#%d %s"
-
-msgid " Amount %d"
-msgstr "ê•·„‡·Î %d"
-
-msgid "Select player #%d"
-msgstr "ÇÎ°Æ‡ ®£‡Æ™† #%d"
-
-msgid "Script %s"
-msgstr "ë™‡®Ø‚ %s"
-
-msgid "Tileset `%s'"
-msgstr "í†©´·•‚ `%s'"
-
-msgid "Missile %s"
-msgstr "ë≠†‡Ô§ %s"
-
-msgid "Can't find missile %s\n"
-msgstr "ë≠†‡Ô§ ≠• ≠†©§•≠: %s\n"
-
-msgid "Construction %s"
-msgstr "äÆ≠·‚‡„™Ê®Ô %s"
-
-msgid "Not enough %s...%s more %s."
-msgstr "ç•§Æ·‚†‚ÆÁ≠Æ %s...%s °Æ´ÏË• %s."
-
-msgid "Script %s\n"
-msgstr "ë™‡®Ø‚ %s\n"
-
-msgid "Icon %s"
-msgstr "à™Æ≠™† %s"
-
-msgid "Can't find icon %s\n"
-msgstr "à™Æ≠™† ≠• ≠†©§•≠†: %s\n"
-
-msgid "Icons %s"
-msgstr "à™Æ≠™† %s"
-
-msgid "Set default game speed"
-msgstr "ì·‚†≠Æ¢´•≠† ·‚†≠§†‡‚≠†Ô ·™Æ‡Æ·‚Ï ®£‡Î"
-
-msgid "Cycle:"
-msgstr "ñ®™´:"
-
-msgid "Requirements:\n"
-msgstr "ç•Æ°ÂÆ§®¨Æ:\n"
-
+#: unit/unittype.cpp:953
+#, c-format
 msgid "unit-type '%s' without animations, ignored.\n"
-msgstr "Ó≠®‚ '%s' ≠• ®¨••‚ †≠®¨†Ê®©, Ø‡ÆØ„·™†•‚·Ô.\n"
+msgstr "—é–Ω–∏—Ç '%s' –Ω–µ –∏–º–µ–µ—Ç –∞–Ω–∏–º–∞—Ü–∏–π, –ø—Ä–æ–ø—É—Å–∫–∞–µ—Ç—Å—è.\n"
 
+#: unit/unittype.cpp:1071
+#, c-format
 msgid "Unit \"%s\""
-msgstr "û≠®‚ \"%s\""
+msgstr "–Æ–Ω–∏—Ç \"%s\""
 
-msgid "Decorations `%s'"
-msgstr "Ñ•™Æ‡†Ê®Ô `%s'"
-
+#: video/cursor.cpp:105
+#, c-format
 msgid "Cursor %s"
-msgstr "ä„‡·Æ‡ %s"
+msgstr "–ö—É—Ä—Å–æ—Ä %s"
 
+#: video/sdl.cpp:165
 msgid "esc"
 msgstr "esc"
+
+#~ msgid "No Resources to Return."
+#~ msgstr "–ù–µ—Ç—É –≤–æ–∑–≤—Ä–∞—â–∞–µ–º—ã—Ö —Ä–µ—Å—É—Ä—Å–æ–≤."
+
+#~ msgid "~!OK"
+#~ msgstr "–û–ö"
+
+#~ msgid "~!Cancel"
+#~ msgstr "–û—Ç–º–µ–Ω–∞"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "–ò—Å–∫—É—Å—Å—Ç–≤–µ–Ω–Ω—ã–π –∏–Ω—Ç–µ–ª–ª–µ–∫—Ç"
+
+#~ msgid "Select mode"
+#~ msgstr "–†–µ–∂–∏–º –≤—ã–±–æ—Ä–∞"
+
+#~ msgid "Unit mode"
+#~ msgstr "–†–µ–∂–∏–º —é–Ω–∏—Ç–æ–≤"
+
+#~ msgid "Tile mode"
+#~ msgstr "–†–µ–∂–∏–º –ª–∞–Ω–¥—à–∞—Ñ—Ç–∞"
+
+#~ msgid "Set start location mode"
+#~ msgstr "–†–µ–∂–∏–º —Å—Ç–∞—Ä—Ç–æ–≤—ã—Ö –ø–æ–∑–∏—Ü–∏–π"
+
+#~ msgid "Cannot create more units."
+#~ msgstr "–ù–µ–≤–æ–∑–º–æ–∂–Ω–æ —Å–æ–∑–¥–∞—Ç—å –±–æ–ª—å—à–µ —é–Ω–∏—Ç–æ–≤."
+
+#~ msgid "%s: complete"
+#~ msgstr "%s: –∑–∞–≤–µ—Ä—à–µ–Ω–æ"
