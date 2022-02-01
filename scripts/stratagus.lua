@@ -385,6 +385,7 @@ end
 wc2 = {preferences = {}}
 Load("preferences.lua")
 local defaultPreferences = {
+  HardwareCursor = false,
 	CampaignBestScores = {},
 	CampaignProgress = {},
 	DeselectInMine = false,
@@ -508,6 +509,7 @@ SetNewViewportMode(wc2.preferences.ViewportMode)
 Preference.DeselectInMine = wc2.preferences.DeselectInMine
 Preference.StereoSound = wc2.preferences.StereoSound
 Preference.SimplifiedAutoTargeting = wc2.preferences.SimplifiedAutoTargeting
+Preference.HardwareCursor = wc2.preferences.HardwareCursor
 
 SetFogOfWarType(wc2.preferences.FogOfWarType)
 SetFogOfWarBilinear(wc2.preferences.FogOfWarBilinear)

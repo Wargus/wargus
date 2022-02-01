@@ -394,9 +394,17 @@ function RunPreferencesMenu()
       function()
          SetFogOfWarBilinear(fowBilinear:isMarked())
    end)
+   
+   local hwCursor = menu:addImageCheckBox(_("Hardware cursor"), 225, 28 + 19 * 9 + 10, offi, offi2, oni, oni2, function()end)
+   hwCursor:setMarked(wc2.preferences.HardwareCursor)
+   hwCursor:setActionCallback(
+      function()
+         wc2.preferences.HardwareCursor = hwCursor:isMarked()
+         Preference.HardwareCursor = hwCursor:isMarked()
+         SavePreferences()
+   end)
 
    menu:addLabel(_("~!* - requires restart"), 10, 10 + 18 * 16, Fonts["game"], false)
-
 
    menu:addHalfButton("~!OK", "o", 206, 352 - 40,
 		      function()
