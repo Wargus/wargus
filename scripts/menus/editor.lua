@@ -549,10 +549,10 @@ end
 --  Function to edit unit properties in Editor
 --
 function EditUnitProperties(units)
-  local function ResourceSetting()
+  local function ShowResources(labelWidget, textWidget, selectedUnits)
     local resource = nil
     local amount = -1
-    for i,unit in ipairs(units) do
+    for i,unit in ipairs(selectedUnits) do
       local type = GetUnitVariable(unit, "Ident")
       local r = GetUnitTypeData(type, "GivesResource")
       if #r > 0 then
@@ -575,20 +575,18 @@ function EditUnitProperties(units)
         break
       end
     end
-
     if #resource > 0 then
-      return HBox({
-        LLabel(resource .. ": "),
-        LTextInputField(amount .. ""):id("resource"),
-      })
+      labelWidget:setCaption(resource)
+      textWidget:setText(amount)
     else
-      return LFiller()
+      labelWidget:setCaption("no resource")
+      textWidget:setText("n/a")
     end
   end
 
-  local function LifePercentSetting()
+  local function ShowLifePercent(textWidget, selectedUnits)
     local pct = 0
-    for i,unit in ipairs(units) do
+    for i,unit in ipairs(selectedUnits) do
       local hp = GetUnitVariable(unit, "HitPoints")
       local maxHp = GetUnitTypeData(GetUnitVariable(unit, "Ident"), "HitPoints")
       local unitPct = math.floor((hp / maxHp) * 10) * 10
@@ -598,71 +596,131 @@ function EditUnitProperties(units)
         pct = -1
       end
     end
-    if pct < 0 then
-      return HBox({
-        LLabel("Life %: "),
-        LTextInputField("<different amounts>"):id("lifepct"),
-      })
+    if pct >= 0 then
+      textWidget:setText("" .. pct)
     else
-      return HBox({
-        LLabel("Life %: "),
-        LTextInputField(pct .. ""):id("lifepct"),
-      })
+      textWidget:setText("<different amounts>")
     end
   end
 
-  local unitstrings = {}
-  for i,unit in ipairs(units) do
-    unitstrings[i] = GetUnitVariable(unit, "Ident") .. " at " .. GetUnitVariable(unit, "PosX") .. "," .. GetUnitVariable(unit, "PosY") .. " from player " .. (GetUnitVariable(unit, "Player") + 1)
+  local function ShowPlayer(playerDropdown, selectedUnits)
+    playerDropdown:setSelected(GetUnitVariable(units[1], "Player"))
   end
 
-  local menu = WarMenu(nil, panel(5), {Video.Width * 0.7, Video.Height * 0.6})
+  local function ShowRectangle(label, selectedUnits)
+    local pos = {100000, 100000, 0, 0}
+    for i,unit in ipairs(selectedUnits) do
+      local posx = GetUnitVariable(unit, "PosX")
+      local posy = GetUnitVariable(unit, "PosY")
+      pos[1] = math.min(pos[1], posx)
+      pos[2] = math.min(pos[2], posy)
+      pos[3] = math.max(pos[3], posx)
+      pos[4] = math.max(pos[4], posy)
+    end
+    label:setCaption("Units in {" .. pos[1] .. "," .. pos[2] .. "}, {" .. pos[3] .. "," .. pos[4] .. "}")
+  end
+
+  local menu = WarMenu(nil, panel(5), {Video.Width * 0.9, Video.Height * 0.6})
+
+  local unitstrings = {}
+  local function UpdateAll(selectedUnits)
+    local prevSelectionIdx
+    for i,unit in ipairs(units) do
+      if selectedUnits[1] == unit then
+        prevSelectionIdx = i - 1
+      end
+      unitstrings[i] = GetUnitVariable(unit, "Ident") .. " at " .. GetUnitVariable(unit, "PosX") .. "," .. GetUnitVariable(unit, "PosY") .. " from player " .. (GetUnitVariable(unit, "Player") + 1)
+    end
+    menu.unitlist:setList(unitstrings)
+    if #selectedUnits == 1 then
+      menu.unitlist:setSelected(prevSelectionIdx)
+    end
+    ShowResources(menu.resourceName, menu.resource, selectedUnits)
+    ShowLifePercent(menu.lifepct, selectedUnits)
+    ShowPlayer(menu.owner, selectedUnits)
+    ShowRectangle(menu.location, selectedUnits)
+  end
+
+  local function GetSelectedUnits()
+    local idx = menu.unitlist:getSelected() + 1
+    local selectedUnits
+    if idx == 0 then
+      return units
+    else
+      return {units[idx]}
+    end
+  end
+
+  local function LifeCallback()
+    print("Life setting: " .. menu.lifepct:getText())
+    local lifepct = tonumber(menu.lifepct:getText())
+    print(lifepct)
+    if lifepct then
+      for i,unit in ipairs(GetSelectedUnits()) do
+        SetUnitVariable(unit, "HitPoints", GetUnitTypeData(GetUnitVariable(unit, "Ident"), "HitPoints") * lifepct / 100)
+      end
+    end
+  end
+
+  local function ResourceCallback()
+    print("Resource " .. menu.resourceName:getCaption() ..  " setting: " .. menu.resource:getText())
+    resource = tonumber(menu.resource:getText())
+    print(resource)
+    if resource then
+      for i,unit in ipairs(GetSelectedUnits()) do
+        SetResourcesHeld(unit, resource)
+      end
+    end
+  end
+
   local menubox = VBox({
     HBox({
-      LListBox(300, 200, unitstrings):expanding():id("unitlist"),
+      LListBox(300, 200, unitstrings, function(w) UpdateAll(GetSelectedUnits()) end):expanding():id("unitlist"),
       VBox({
+        LLabel("Units in {n/a, n/a}, {n/a, n/a}"):id("location"),
         HBox({
           LLabel("Owner: "),
           LDropDown({"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"}, function (dd)
-            for i,unit in ipairs(units) do
+            for i,unit in ipairs(GetSelectedUnits()) do
               SetUnitVariable(unit, "Player", dd:getSelected())
             end
-          end)
+            UpdateAll(GetSelectedUnits())
+          end):id("owner")
         }),
-        LifePercentSetting(),
-        ResourceSetting(),
+        HBox({
+          LLabel("Life %: "),
+          LTextInputField("n/a"):id("lifepct"),
+        }),
+        HBox({
+          LLabel("No resource"):id("resourceName"),
+          LTextInputField("n/a"):id("resource"),
+        }),
       })
     }),
     HBox({
       LFiller(),
       LHalfButton(_("Ok"), nil, function()
-        local lifepct = nil
-        if menu.lifepct then
-          print("Life setting: " .. menu.lifepct:getText())
-          lifepct = tonumber(menu.lifepct:getText())
-          print(lifepct)
-        end
-        local resource = nil
-        if menu.resource then
-          print("Resource setting: " .. menu.resource:getText())
-          resource = tonumber(menu.resource:getText())
-          print(resource)
-        end
-        if lifepct or resource then
-          for i,unit in ipairs(units) do
-            if lifepct then
-              SetUnitVariable(unit, "HitPoints", GetUnitTypeData(GetUnitVariable(unit, "Ident"), "HitPoints") * lifepct / 100)
-            end
-            if resource then
-              SetResourcesHeld(unit, resource)
-            end
-          end
-        end
+        LifeCallback()
+        ResourceCallback()
+        menu:stop()
       end),
       LHalfButton(_("Close"), nil, function() menu:stop() end),
     }):withPadding(5)
   }):withPadding(10)
-
   menubox:addWidgetTo(menu, true)
+
+  local lastIdx = 0
+  menu:addLogicCallback(LuaActionListener(function()
+    local selIdx = menu.unitlist:getSelected()
+    if selIdx ~= lastIdx then
+      lastIdx = selIdx
+      UpdateAll(GetSelectedUnits())
+    end
+  end))
+  menu.lifepct:setActionCallback(LifeCallback)
+  menu.resource:setActionCallback(ResourceCallback)
+
+  UpdateAll(units)
+
   menu:run(false)
 end

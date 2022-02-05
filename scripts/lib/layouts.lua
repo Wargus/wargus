@@ -429,7 +429,7 @@ function LSlider:addWidgetTo(container)
 end
 
 LListBox = class(Element,
-                 function(instance, w, h, list)
+                 function(instance, w, h, list, callback)
                     Element.init(instance)
                     instance.bq = ListBoxWidget(60, 60)
                     instance.bq:setList(list)
@@ -437,6 +437,9 @@ LListBox = class(Element,
                     instance.bq:setForegroundColor(clear)
                     instance.bq:setBackgroundColor(dark)
                     instance.bq:setFont(Fonts["game"])
+                    if callback then
+                      instance.bq:setActionCallback(callback)
+                    end
                     list = list or {}
                     instance.bq.itemslist = list
                     instance.width = w
