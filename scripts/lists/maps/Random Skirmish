@@ -1,0 +1,61 @@
+local OldRunInEditorMenu = RunInEditorMenu
+function RunInEditorMenu()
+    Editor.Running = EditorNotRunning;
+    Editor:CreateRandomMap(true)
+
+    local race = math.random(0,1)
+
+    Map.Info.PlayerType[0] = PlayerPerson
+    Players[0].Type = PlayerPerson
+    Players[0].Race = race
+    Players[0].AiName = "wc2-sea-attack"
+    Players[0].Resources[1] = 5000
+    Players[0].Resources[2] = 3000
+    if race == 0 then
+        CreateUnit("unit-peasant", 0, {0, 0})
+    else
+        CreateUnit("unit-peon", 0, {0, 0})
+    end
+
+    local numOpponents = math.random(1, 10)
+    if numOpponents > 7 then
+        numOpponents = 2
+    elseif numOpponents > 3 then
+        numOpponents = 3
+    end
+    local opponentRace
+    local opponentUnit
+    if race == 0 then
+        opponentRace = 1
+        opponentUnit = "unit-peon"
+    else
+        opponentRace = 0
+        opponentUnit = "unit-peasant"
+    end
+
+    for i=1,numOpponents,1 do
+        print("Setting up opponent " .. i)
+        Map.Info.PlayerType[i] = PlayerComputer
+        Players[i].Type = PlayerComputer
+        Players[i].Race = opponentRace
+        Players[i].AiName = "wc2-sea-attack"
+        Players[i].Resources[1] = 5000
+        Players[i].Resources[2] = 3000
+        CreateUnit(opponentUnit, i, {(Map.Info.MapWidth / i) - 1, Map.Info.MapHeight - 1})
+    end
+
+    mapname = "maps/randommap.smp"
+    EditorSaveMap(mapname)
+end
+Map.Info.Description = "Random map"
+Map.Info.MapWidth = 128
+Map.Info.MapHeight = 128
+LoadTileModels("scripts/tilesets/summer.lua")
+StartEditor(nil)
+RunInEditorMenu = OldRunInEditorMenu
+GetMapInfo(mapname)
+
+GameSettings.Difficulty = math.random(1, 3)
+GameSettings.NetGameType = 1
+Load(mapname)
+RunMap(mapname)
