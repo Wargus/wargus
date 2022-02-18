@@ -201,9 +201,10 @@ local keystrokes = {
    {"F6", "Player properties"},
    {"F11", "Save map"},
    {"F12", "Load map"},
-   {"Right mouse", "Tile mode: Deselect current tile"},
-   {"Right mouse", "Unit mode: Deselect current unit"},
-   {"Right mouse", "Select mode: Edit selection"},
+   {"Rightclick", "Tile mode: Deselect current tile"},
+   {"Rightclick", "Unit mode: Deselect current unit"},
+   {"Rightclick", "Select mode: Edit unit under cursor"},
+   {"Alt+click", "Tile mode when no tile is selected: Modify tile under cursor"}
  }
  
  function RunEditorHelpMenu()
