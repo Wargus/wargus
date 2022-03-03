@@ -1285,11 +1285,11 @@ function RunSinglePlayerGameMenu()
 			local wefoundperson = false
 			for i=0,14 do
 				if pside[i+1]==nil then
-					GameSettings.Presets[i].Race = 0
+					GameSettings.Presets[i].Race = -1
 				elseif (pside[i+1]:getSelected() == 3) then
-					GameSettings.Presets[i].Race = math.random(1, 2)
+					GameSettings.Presets[i].Race = math.random(0, 1)
 				else
-					GameSettings.Presets[i].Race = pside[i+1]:getSelected()
+					GameSettings.Presets[i].Race = pside[i+1]:getSelected() - 1
 				end
 				if teams[i+1]==nil then
 					GameSettings.Presets[i].Team = -1
@@ -1323,11 +1323,11 @@ function RunSinglePlayerGameMenu()
 					GameSettings.Presets[i].AIScript = AIStrategyTypes[paitype[i+1]:getSelected() + 1]
 				end
 			end
-			GameSettings.Difficulty = difficulty:getSelected() + 1
+			GameSettings.Difficulty = difficulty:getSelected()
 			GameSettings.GameType = game_type:getSelected() - 1
-			GameSettings.Resources = rescount:getSelected()
+			GameSettings.Resources = rescount:getSelected() - 1
 			GameSettings.RevealMap = reveal_type:getSelected()
-			GameSettings.NumUnits = numunits:getSelected()
+			GameSettings.NumUnits = numunits:getSelected() - 1
 			GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
 			GameSettings.NetGameType = 1
 			Load(mapname)
