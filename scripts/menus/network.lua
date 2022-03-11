@@ -78,13 +78,13 @@ function RunJoiningMapMenu(optRace, optReady)
     end
   end
 
-  local menu = CreateOnlineLobby(map, numplayers, false)
+  local menu = CreateOnlineLobby(NetworkMapName, numplayers, false)
 
   local joincounter = 0
   local delay = 4
   local function listen()
     NetworkProcessClientRequest()
-    menu.updateOptions()
+    menu:updateOptions()
     state = GetNetworkState()
     -- FIXME: don't use numbers
     if delay > 0 then
@@ -345,9 +345,20 @@ function CreateOnlineLobby(map, numplayers, isserver)
         local no = Hosts[i - 1].PlyNr
         local dd = menu.player_dropdown[no + 1]
         if playerNames[dd:getSelected() + 1] ~= name then
-          for j=1,#playerNames do
+          -- select this name in the appropriate drop down
+          local j = 1
+          while j <= #playerNames do
             if playerNames[j] == name then
               dd:setSelected(j - 1)
+              break
+            end
+            j = j + 1
+          end
+          -- deselect this name in any other drop down
+          for k=1,PlayerMax do
+            local ddo = menu.player_dropdown[k]
+            if ddo and ddo ~= dd and ddo:getSelected() == j - 1 then
+              ddo:setSelected(0)
             end
           end
         end
@@ -464,6 +475,7 @@ function CreateOnlineLobby(map, numplayers, isserver)
           end
           assignMissingHumanPlayersToDropdowns()
           calculateAiPlayers()
+          NetworkServerResyncClients()
         end):id("player_dropdown[" .. i .. "]"):withWidth(120),
         LLabel("", "game"):id("player_status[" .. i .. "]"),
       })
@@ -575,13 +587,11 @@ function CreateOnlineLobby(map, numplayers, isserver)
   end
 
   function menu:updateOptions()
-    if not isserver then
-      self.option_fow:setMarked(ServerSetupState.FogOfWar)
-      self.option_terrain:setSelected(ServerSetupState.RevealMap)
-      self.option_units:setSelected(ServerSetupState.UnitsOption + 1)
-      self.option_resources:setSelected(ServerSetupState.ResourcesOption + 1)
-      self.option_dedicated_ai_server:setMarked(ServerSetupState.CompOpt[0] == 2) -- host is closed
-    end
+    self.option_fow:setMarked(int2bool(ServerSetupState.FogOfWar))
+    self.option_terrain:setSelected(ServerSetupState.RevealMap)
+    self.option_units:setSelected(ServerSetupState.UnitsOption + 1)
+    self.option_resources:setSelected(ServerSetupState.ResourcesOption + 1)
+    self.option_dedicated_ai_server:setMarked(ServerSetupState.CompOpt[0] == 2) -- host is closed
     updatePlayerListFromHosts()
   end
 
@@ -715,7 +725,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   local listener = LuaActionListener(function(s)
     if counter == 0 then
       counter = 10
-      menu.updateOptions()
+      menu:updateOptions()
       updateStartButton(updateFromNetwork())
     else
       counter = counter - 1

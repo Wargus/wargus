@@ -1,0 +1,363 @@
+if CoopCount == nil then
+   CoopCount = 4
+end
+print("Loading coop mod for " .. CoopCount .. " players")
+
+-- First, we'll unload any older mods.
+CleanModGame_Lua()
+
+----------------------------------------------------------------------------------------
+-- Define Helper Functions
+----------------------------------------------------------------------------------------
+
+function GiveAllUnitsToPlayer(topLeft, bottomRight, fromPlayer, toPlayer)
+  GiveUnitsToPlayer("all", "any", topLeft, bottomRight, fromPlayer, toPlayer)
+end
+
+function ChangeUnitColor(unit, colorFromPlayer)
+  Unit(unit, {"rescued-from", colorFromPlayer})
+end
+
+function ChangeColorAt(topLeft, bottomRight, fromPlayer, toPlayer)
+	for i,unit in ipairs(GetUnits(fromPlayer)) do
+	  if GetUnitVariable(unit, "PosX") > topLeft[1] and GetUnitVariable(unit, "PosX") < bottomRight[1] and GetUnitVariable(unit, "PosY") > topLeft[2] and GetUnitVariable(unit, "PosY") < bottomRight[2] then
+      ChangeUnitColor(unit, toPlayer)
+	  end
+	end
+end
+
+function TotalUnits(type)
+  local sum = 0
+  for i=0,15,1 do
+    if type ~= nil then
+      -- print("Player " .. i .. " has " .. GetPlayerData(i, "UnitTypesCount", type) .. " units " .. type)
+      sum = sum + GetPlayerData(i, "UnitTypesCount", type)
+    else
+      sum = sum + GetPlayerData(i, "TotalNumUnits")
+    end
+  end
+  return sum
+end
+
+function HandOverControlFromPlayerToPlayer(fromPlayer, toPlayer)
+  local units = GetUnits(fromPlayer)
+  for i,unit in ipairs(units) do
+     SetUnitVariable(unit, "Player", toPlayer)
+     ChangeUnitColor(unit, fromPlayer)
+  end
+end
+
+function AssignAIToHuman()
+  local firstHuman = -1
+  -- find first human player
+  for i=0,15,1 do
+     if Map.Info.PlayerType[i] == PlayerPerson then
+        if firstHuman == -1 and (not GetPlayerData(i, "AiEnabled")) then
+           firstHuman = i
+           break
+        end
+     end
+  end
+  -- assign all AI players that should be humans to the human
+  if firstHuman ~= -1 then
+     for i=0,15,1 do
+        if Map.Info.PlayerType[i] == PlayerPerson then
+           if GetPlayerData(i, "AiEnabled") then
+              print("Handing over units from AI player " .. i .. " to " .. firstHuman)
+              HandOverControlFromPlayerToPlayer(i, firstHuman)
+           end
+        end
+     end
+  end
+end
+
+----------------------------------------------------------------------------------------
+-- Define New UI
+----------------------------------------------------------------------------------------
+
+function RunCoopServerMultiGameMenu(map, numplayers)
+  return RunServerMultiGameMenu(map, "", numplayers)
+end
+
+local OldCreateMapStep = CreateMapStep
+function CreateMapStep(map)
+   return function()
+      print("Loading coop variant of " .. map)
+      map = "coop" .. CoopCount .. "/" .. map
+      print("New mapfile is at " .. map)
+      Load(map)
+      RunCoopServerMultiGameMenu(map, CoopCount)
+      if (GameResult == GameVictory) then
+         IncreaseCampaignState(currentCampaign)
+      end
+   end
+end
+
+local OldRunMultiPlayerGameMenu = RunMultiPlayerGameMenu
+function RunMultiPlayerGameMenu(s)
+  local menu = WarMenu()
+  local offx = (Video.Width - 640) / 2
+  local offy = ((Video.Height - 480) / 2) - 70
+
+  local function FixMusic()
+    wargus.playlist = { "music/Orc Briefing" .. wargus.music_extension }
+    SetDefaultRaceView()
+
+    if not (IsMusicPlaying()) then
+      PlayMusic("music/Orc Briefing" .. wargus.music_extension)
+    end
+  end
+  InitGameSettings()
+  InitNetwork1()
+
+  menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
+
+  menu:addLabel(_("~<Multiplayer Network Game~>"), offx + 640/2 + 12, offy + 192)
+
+  menu:writeText(_("Nickname :"), 208 + offx, 248 + offy)
+  local nick = menu:addTextInputField(GetLocalPlayerName(), offx + 298, 244 + offy)
+
+  menu:addFullButton(_("~!Join Co-op"), "j", 208 + offx, 298 + (36 * 2) + offy,
+    function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        wc2.preferences.PlayerName = nick:getText()
+        SavePreferences()
+      end
+      RunJoinIpMenu()
+      FixMusic()
+    end)
+  menu:addFullButton(_("Host ~!Co-op"), "c", 208 + offx, 298 + (36 * 3) + offy,
+    function()
+      if nick:getText() ~= GetLocalPlayerName() then
+        SetLocalPlayerName(nick:getText())
+        wc2.preferences.PlayerName = nick:getText()
+        SavePreferences()
+      end
+      RunModCampaignGameMenu()
+      FixMusic()
+    end)
+
+  menu:addFullButton(_("Previous Menu (~<Esc~>)"), "escape", 208 + offx, 298 + (36 * 5) + offy,
+    function() menu:stop() end)
+
+  menu:run()
+
+  ExitNetwork1()
+end
+
+----------------------------------------------------------------------------------------
+-- Disable Normal Menus and UIs
+----------------------------------------------------------------------------------------
+
+local OldRunSinglePlayerTypeMenu = RunSinglePlayerTypeMenu
+function RunSinglePlayerTypeMenu()
+   local menu = WarMenu(nil, panel(5), false)
+   menu:setSize(352, 352)
+   menu:setPosition((Video.Width - 352) / 2, (Video.Height - 352) / 2)
+   menu:addLabel(_("No! Co-op mod is loaded"), 176, 20)
+   menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", 60, 300, function() menu:stop() end)
+   menu:run()
+end
+local OldRunReplayGameMenu = RunReplayGameMenu
+local OldRunEditorMenu = RunEditorMenu
+RunReplayGameMenu = RunSinglePlayerTypeMenu
+RunEditorMenu = RunSinglePlayerTypeMenu
+OldRandomPlacementMultiplayer = UsesRandomPlacementMultiplayer()
+
+-- Every Map needs to define a list called "Teams" that has a list of teams
+-- For example, like this
+--
+-- Teams = {
+--   {0, 3, 4, 5}, -- Human team
+--   {1, 2} -- Computer team
+-- }
+-- local OldGameStarting = GameStarting
+-- function GameStarting()
+--    if Teams ~= nil then
+--       for i,team in ipairs(Teams) do
+--          for i,thisPlayerIndex in ipairs(team) do
+--             local allies = {}
+
+--             -- work around a problem with the Player(...) function. It resets
+--             -- the units and buildings belonging to a player! So we need to save
+--             -- the units and restore them
+--             local units = GetUnits(thisPlayerIndex)
+--             for i,unit in ipairs(units) do
+--                SetUnitVariable(unit, "Player", 15)
+--             end
+
+--             -- become and enemy and do not share vision with all other teams
+--             for i,otherTeam in ipairs(Teams) do
+--                if team ~= otherTeam then
+--                   for i,enemyPlayerIndex in ipairs(otherTeam) do
+--                      allies[enemyPlayerIndex + 1] = false
+--                   end
+--                end
+--             end
+
+--             -- get allied and share vision with all allys on my team
+--             for i,allyPlayerIndex in ipairs(team) do
+--                allies[allyPlayerIndex + 1] = true
+--             end
+
+--             -- Now we have all the data for thisPlayerIndex to actually set the
+--             -- player data. We use the Player(...) function and not
+--             -- SetDiplomacy, because the Player function is for map setup, and
+--             -- SetDiplomacy is for in-game changes
+--             local alliesString = ""
+--             local enemiesString = ""
+
+--             for i=1,15,1 do
+--                local isAllied = allies[i]
+--                if isAllied == true then
+--                   alliesString = alliesString .. "+"
+--                   enemiesString = enemiesString .. "-"
+--                elseif isAllied == false then
+--                   alliesString = alliesString .. "-"
+--                   enemiesString = enemiesString .. "+"
+--                else
+--                   -- isAllied is the default, so this is neutral
+--                   alliesString = alliesString .. "-"
+--                   enemiesString = enemiesString .. "-"
+--                end
+--             end
+--             print("Player: " .. thisPlayerIndex .. " allied: " .. alliesString .. ", enemies " .. enemiesString)
+--             Player(thisPlayerIndex,
+--                    "allied", alliesString,
+--                    "enemy", enemiesString,
+--                    "shared-vision", alliesString)
+
+--             -- reassign units to updated player
+--             for i,unit in ipairs(units) do
+--                SetUnitVariable(unit, "Player", thisPlayerIndex)
+--             end
+--          end
+--       end
+--    end
+-- end
+
+-- Next, we'll let the next mod know how to unload this one.
+function CleanModGame_Lua()
+   RunMultiPlayerGameMenu = OldRunMultiPlayerGameMenu
+   CreateMapStep = OldCreateMapStep
+   RunSinglePlayerTypeMenu = OldRunSinglePlayerTypeMenu
+   RunReplayGameMenu = OldRunReplayGameMenu
+   RunEditorMenu = OldRunEditorMenu
+   NoRandomPlacementMultiplayer(not OldRandomPlacementMultiplayer)
+   -- TODO: Reset game settings, fog of war, and player colors to defaults
+end
+
+-- Now we'll define how to load this mod.
+function StartModGame_Lua()
+   SetFogOfWar(true) -- Fog of War always on
+   SetRevelationType("no-revelation") -- Don't reveal the base even after the palace/greathall is destroyed
+   GameSettings.NumUnits = SettingsPresetMapDefault -- Use default unit count
+   GameSettings.Difficulty = 5 -- Nightmare
+   GameSettings.Resources = SettingsPresetMapDefault -- Use always the map default Resources
+   NoRandomPlacementMultiplayer(true) -- do not randomize positions, assign the order we gave
+   -- SetTrainingQueue(false) -- Classic WC2 Training
+end
+
+DefineFontColor("light-cyan",
+{  0, 248, 248,	-- 246
+0, 224,  224,	-- 200
+0, 192,  192,	-- 199
+0, 140,  140,	-- 197
+0,  48,   48,	-- 192
+0,   0,   0,	-- 239
+0, 108, 108})	-- 104
+
+DefineFontColor("black",
+{    0,   0,   0,	-- 0
+98,  98,  118,	-- 228
+72,  72,  92,	-- 228
+52,  52,  72,	-- 228
+37,  37,  57,	-- 228
+0,   0,   0,	-- 239
+0,   0,   0})	-- 0
+DefineFontColor("blue",
+{    0,   0,   0,	-- 0
+18,   105,   239,	-- 208
+6,   58,   210,	-- 209
+0,   29,   166,	-- 210
+0,   6,   111,	-- 211
+0,   0,   0,	-- 239
+0,   0,   0})	-- 0
+DefineFontColor("violet",
+{    0,   0,   0,	-- 0
+161,  78, 183,	-- 220
+138,  54, 161,	-- 220
+121,  35, 145,	-- 220
+108,  21, 132,	-- 220
+0,   0,   0,	-- 239
+0,   0,   0})	-- 0
+DefineFontColor("orange",
+{    0,   0,   0,	-- 0
+245, 137,  17,	-- 224
+218, 116,  1,	-- 224
+169, 90,  1,	-- 224
+108, 58,  1,	-- 224
+0,   0,   0,	-- 239
+0,   0,   0})	-- 0
+DefineFontColor("green",
+{    0,   0,   0,	-- 0
+22, 191,  173,	-- 224
+21, 163,  134,	-- 224
+21, 133,  107,	-- 224
+21, 105,  85,	-- 224
+0,   0,   0,	-- 239
+0,   0,   0})	-- 0
+DefineFontColor("dark-green",
+{    0,   0,   0,	-- 0
+0,   164,   0,	-- 208
+0,   124,   0,	-- 209
+0,   92,   0,	-- 210
+0,   68,   0,	-- 211
+0,   0,   0,	-- 239
+0,   0,   0})	-- 0
+DefineFontColor("dark-teal",
+{    0,   0,   0,	-- 0
+23,   94,   64,	-- 208
+17,   81,  58,	-- 209
+11,   70,   51,	-- 210
+6,   56,   41,	-- 211
+0,   0,   0,	-- 239
+0,   0,   0})	-- 0
+DefineFontColor("burninglegion",
+{    0,   0,   0,	-- 0
+57,   57,   57,	-- 208
+42,   42,  42,	-- 209
+23,   23,   23,	-- 210
+15,   15,   15,	-- 211
+0,   0,   0,	-- 239
+0,   0,   0})	-- 0
+
+DefineFontColor("brown",
+{    0,   0,   0,	-- 0
+150, 107, 39,	-- 1
+124, 90, 33,	-- 1
+104, 85, 28,	-- 1
+86, 63, 22,	-- 1
+0,   0,   0,	-- 239
+0,   0,   0})	-- 0
+
+DefineFontColor("purple",
+{    125,   0,   255,	-- 0
+100, 0, 200,	-- 1
+80, 0, 180,	-- 1
+70, 0, 140,	-- 1
+50, 0, 90,	-- 1
+30,   0,   60,	-- 239
+18,   0,   38})	-- 0
+DefineFontColor("silver",
+{    144,   144,   144,	-- 0
+135, 135, 135,	-- 1
+177, 177, 177,	-- 1
+122, 122, 122,	-- 1
+100, 100, 100,	-- 1
+66,   66,   66,	-- 239
+34,   34,   34})	-- 0
+
+-- Finally, we'll load this mod.
+StartModGame_Lua()
