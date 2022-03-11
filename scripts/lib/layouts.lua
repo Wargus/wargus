@@ -75,13 +75,20 @@ Box = class(Element,
             end
 )
 
-function Box:withPadding(p)
+function Box:withPadding(p, recursive)
    if type(p) == "number" then
       self.paddingX = p
       self.paddingY = p
    else
       self.paddingX = p[1]
       self.paddingY = p[2]
+   end
+   if recursive then
+      for i,child in ipairs(self.children) do
+         if child.withPadding then
+            child:withPadding(p, recursive)
+         end
+      end
    end
    return self
 end
@@ -241,8 +248,13 @@ end
 
 function Box:addWidgetTo(container, sizeFromContainer)
    if sizeFromContainer then
-      self.x = 0 -- containers are relative inside
-      self.y = 0
+      if sizeFromContainer == true then
+         self.x = 0 -- containers are relative inside
+         self.y = 0
+      else
+         self.x = sizeFromContainer[1]
+         self.y = sizeFromContainer[2]
+      end
       self.width = container:getWidth()
       self.height = container:getHeight()
       dbgPrint("startsize:" .. self.width .. "x" .. self.height .. "+" .. self.x .. "+" .. self.y)
@@ -270,8 +282,12 @@ VBox = class(Box,
 LLabel = class(Element,
                function(instance, text, font, center, vCenter)
                   Element.init(instance)
-                  instance.label = Label(text)
-                  instance.label:setFont(font or Fonts["large"])
+                  instance.label = Label("" .. text)
+                  if type(font) == "string" then
+                     instance.label:setFont(Fonts[font])
+                  else
+                     instance.label:setFont(font or Fonts["large"])
+                  end
                   instance.label:adjustSize()
                   instance.center = center
                   instance.vCenter = vCenter
@@ -329,6 +345,7 @@ LImageButton = class(Element,
                         instance.b = ImageButton(caption)
                         instance.b:setHotKey(hotkey)
                         instance.b:setBorderSize(0)
+                        instance.b.callback = callback
                         if callback then
                            instance.b:setMouseCallback(function(evtname)
                                  if evtname == "mousePress" then
@@ -359,16 +376,16 @@ end
 
 LButton = class(LImageButton,
                 function(instance, caption, hotkey, callback)
-                   LImageButton.init(instance, caption, hotkey, callback)
-                   if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
-                      instance.b:setNormalImage(g_hbln)
-                      instance.b:setPressedImage(g_hblp)
-                      instance.b:setDisabledImage(g_hblg)
-                   else
-                      instance.b:setNormalImage(g_obln)
-                      instance.b:setPressedImage(g_oblp)
-                      instance.b:setDisabledImage(g_oblg)
-                   end
+                  LImageButton.init(instance, caption, hotkey, callback)
+                  if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+                     instance.b:setNormalImage(g_hbln)
+                     instance.b:setPressedImage(g_hblp)
+                     instance.b:setDisabledImage(g_hblg)
+                  else
+                     instance.b:setNormalImage(g_obln)
+                     instance.b:setPressedImage(g_oblp)
+                     instance.b:setDisabledImage(g_oblg)
+                  end
                 end
 )
 
@@ -403,6 +420,7 @@ LSlider = class(Element,
                    instance.s:setBaseColor(dark)
                    instance.s:setForegroundColor(clear)
                    instance.s:setBackgroundColor(clear)
+                   instance.s.callback = callback
                    if callback then
                       instance.s:setActionCallback(function(s) callback(instance.s, s) end)
                    end
@@ -437,6 +455,7 @@ LListBox = class(Element,
                     instance.bq:setForegroundColor(clear)
                     instance.bq:setBackgroundColor(dark)
                     instance.bq:setFont(Fonts["game"])
+                    instance.bq.callback = callback
                     if callback then
                       instance.bq:setActionCallback(callback)
                     end
@@ -464,9 +483,21 @@ end
 LCheckBox = class(Element,
                   function(instance, caption, callback)
                      Element.init(instance)
-                     instance.b = CheckBox(caption)
+                     instance.b = ImageCheckBox(caption)
                      instance.b:setForegroundColor(clear)
                      instance.b:setBackgroundColor(dark)
+                     if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+                        instance.b:setUncheckedNormalImage(g_hcheckbox_off)
+                        instance.b:setUncheckedPressedImage(g_hcheckbox_off2)
+                        instance.b:setCheckedNormalImage(g_hcheckbox_on)
+                        instance.b:setCheckedPressedImage(g_hcheckbox_on2)
+                     else
+                        instance.b:setUncheckedNormalImage(g_ocheckbox_off)
+                        instance.b:setUncheckedPressedImage(g_ocheckbox_off2)
+                        instance.b:setCheckedNormalImage(g_ocheckbox_on)
+                        instance.b:setCheckedPressedImage(g_ocheckbox_on2)
+                     end
+                     instance.b.callback = callback
                      if callback then
                         instance.b:setActionCallback(function(s) callback(instance.b, s) end)
                      end
@@ -498,6 +529,7 @@ LTextInputField = class(Element,
                         function(instance, text, callback)
                            Element.init(instance)
                            instance.b = TextField(text)
+                           instance.b.callback = callback
                            if callback then
                               instance.b:setActionCallback(callback)
                            end
@@ -525,12 +557,21 @@ end
 LDropDown = class(Element,
                   function(instance, list, callback)
                      Element.init(instance)
-                     local dd = DropDownWidget()
+                     local dd = ImageDropDownWidget()
+                     if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+                        dd:setItemImage(g_hibar)
+                        dd:setDownNormalImage(g_hdslider_n)
+                        dd:setDownPressedImage(g_hdslider_p)
+                     else
+                        dd:setItemImage(g_oibar)
+                        dd:setDownNormalImage(g_odslider_n)
+                        dd:setDownPressedImage(g_odslider_p)
+                     end
                      dd:setFont(Fonts["game"])
                      dd:setList(list)
                      dd.list = list
-                     dd:setActionCallback(function(s) callback(dd, s) end)
                      dd.callback = callback
+                     dd:setActionCallback(function(s) callback(dd, s) end)
                      dd:setBaseColor(dark)
                      dd:setForegroundColor(clear)
                      dd:setBackgroundColor(dark)
@@ -538,8 +579,13 @@ LDropDown = class(Element,
                   end
 )
 
+function LDropDown:withWidth(value)
+   self.width = value
+   return self
+end
+
 function LDropDown:getWidth()
-   return 60
+   return self.width or 60
 end
 
 function LDropDown:getHeight()
