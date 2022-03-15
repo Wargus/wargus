@@ -316,7 +316,7 @@ end
 
 function CreateOnlineLobby(map, numplayers, isserver)
   local menu
-  local playerTable = {}
+  local playerTable = {HBox({ _("Players") }),}
   local playerNames = {"", "AI"}
 
   local function updatePlayerNamesFromHosts()
@@ -439,8 +439,7 @@ function CreateOnlineLobby(map, numplayers, isserver)
   local teams = {""}
   for i=1,PlayerMax do
     if Map.Info.PlayerType[i - 1] == PlayerPerson then
-      playerTable[i] = HBox({
-        LLabel(tostring(i) .. ":", "game"),
+      playerTable[i + 1] = HBox({
         LDropDown(playerNames, function(dd)
           local newIdx = dd:getSelected()
           if newIdx < 2 then
@@ -494,19 +493,19 @@ function CreateOnlineLobby(map, numplayers, isserver)
       })
       teams[#teams + 1] = tostring(#teams)
     else
-      playerTable[i] = LLabel(string.format(_("Slot %d unavailable"), i), "game")
+      playerTable[i + 1] = LLabel(string.format(_("Slot %d unavailable"), i), "small")
     end
   end
 
   menu = WarMenuWithLayout(_("Create MultiPlayer game"), nil, VBox({
     LFiller(),
     HBox({ -- screen split
+      LFiller(),
       VBox({ -- game properties
         HBox({ _("Map") }),
         HBox({ LLabel(_("File:"), "game"), LLabel(map, "game") }),
         HBox({ LLabel(_("Players:"), "game"), LLabel(numplayers, "game") }),
         HBox({ LLabel(_("Description:"), "game"), LLabel(_("Unknown map"), "game") }),
-
         VBox({ -- game options
           LCheckBox(_("Fog of war"), function(dd)
             ServerSetupState.FogOfWar = bool2int(dd:isMarked())
@@ -556,9 +555,13 @@ function CreateOnlineLobby(map, numplayers, isserver)
           end):id("option_dedicated_ai_server"),
         }), -- end of game options
       }), -- end of game properties
-      VBox(playerTable)
-    }):withPadding(2, true), -- end of screen split
+      LFiller(),
+      VBox(playerTable):withPadding(2, true),
+      LFiller(),
+    }), -- end of screen split
+    LFiller(),
     HBox({
+      LFiller(),
       LButton(_("Cancel (~<Esc~>)"), "escape", function()
         InitGameSettings()
         if isserver then
@@ -577,8 +580,8 @@ function CreateOnlineLobby(map, numplayers, isserver)
         RunMap(map)
         menu:stop()
       end):id("button_start_game"),
+      LFiller(),
     }),
-    LFiller(),
   }):withPadding(4, true))
 
   for i=1,PlayerMax do

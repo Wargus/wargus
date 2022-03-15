@@ -823,7 +823,8 @@ function WarMenuWithLayout(title_or_background_or_box, background_or_box, box)
     menu:setDrawMenusUnder(true)
     box:addWidgetTo(menu)
   else
-    box:addWidgetTo(menu, {(Video.Width - box.width) / 2, (Video.Height - box.height) / 2})
+    menu:setSize(Video.Width, Video.Height)
+    box:addWidgetTo(menu, true)
   end
   return menu
 end
@@ -898,6 +899,9 @@ function RunMap(map, objective, fow, revealmap, results)
         RevealMap("known")
       elseif GameSettings.RevealMap == 0 and fow == nil and not IsNetworkGame() then
         SetFogOfWar(wc2.preferences.FogOfWar)
+      end
+      if GameSettings.NoFogOfWar then
+        SetFogOfWar(false)
       end
     end
     StartMap(map)

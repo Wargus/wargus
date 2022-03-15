@@ -43,6 +43,16 @@ function Element:setId(container, widget)
    end
 end
 
+function Element:withWidth(value)
+   self.width = value
+   return self
+end
+
+function Element:withHeight(value)
+   self.height = value
+   return self
+end
+
 function Element:expanding()
    self.expands = true
    return self
@@ -580,11 +590,6 @@ LDropDown = class(Element,
                      instance.dd = dd
                   end
 )
-
-function LDropDown:withWidth(value)
-   self.width = value
-   return self
-end
 
 function LDropDown:getWidth()
    return self.width or 60
