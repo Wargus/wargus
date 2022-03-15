@@ -207,8 +207,8 @@ function RunJoiningMapMenu(optRace, optReady)
   menu:writeText(_("~<Your Race:~>"), sx, sy*11)
   local race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, sx + 100, sy*11, function(dd) end)
   local raceCb = function(dd)
-    GameSettings.Presets[NetLocalHostsSlot].Race = race:getSelected()
-    LocalSetupState.Race[NetLocalHostsSlot] = race:getSelected()
+    GameSettings.Presets[NetLocalHostsSlot].Race = race:getSelected() - 1
+    LocalSetupState.Race[NetLocalHostsSlot] = race:getSelected() - 1
   end
   race:setActionCallback(raceCb)
   race:setSize(190, 20)
@@ -263,13 +263,12 @@ function RunJoiningMapMenu(optRace, optReady)
     GameSettings.NoFogOfWar = not int2bool(ServerSetupState.FogOfWar)
     revealmap:setSelected(ServerSetupState.RevealMap)
     GameSettings.RevealMap = ServerSetupState.RevealMap
-    units:setSelected(ServerSetupState.UnitsOption)
+    units:setSelected(ServerSetupState.UnitsOption + 1)
     GameSettings.NumUnits = ServerSetupState.UnitsOption
     resources:setSelected(ServerSetupState.ResourcesOption)
     GameSettings.Resources = ServerSetupState.ResourcesOption
     GameSettings.Opponents = ServerSetupState.Opponents
     GameSettings.MapRichness = ServerSetupState.MapRichness
-    RestoreSharedSettingsFromBits(ServerSetupState.MapRichness)
     updatePlayersList()
     state = GetNetworkState()
     -- FIXME: don't use numbers
@@ -296,15 +295,8 @@ function RunJoiningMapMenu(optRace, optReady)
 --        local revealTypes = {"hidden", "known", "explored"}
 --        RevealMap(revealTypes[revealmap:getSelected() + 1])
         
-        if StoreSharedSettingsInBits() ~= GameSettings.MapRichness then
-          -- try one more time, then give up
-          RestoreSharedSettingsFromBits(GameSettings.MapRichness, function(msg)
-                ErrorMenu(msg)
-                menu:stop()
-          end)
-        end
         NetworkGamePrepareGameSettings()
-        RunMap(NetworkMapName, nil, fow:isMarked(), revealmap:getSelected())
+        RunMap(NetworkMapName)
 	      PresentMap = OldPresentMap
         DefinePlayerTypes = oldDefinePlayerTypes
         menu:stop()
@@ -577,9 +569,9 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   menu:writeText(_("Race:"), sx, sy*11)
   local race = menu:addDropDown({_("Map Default"), _("Human"), _("Orc")}, sx + 100, sy*11, function() end)
   local raceCb = function()
-    GameSettings.Presets[0].Race = race:getSelected()
-    ServerSetupState.Race[0] = race:getSelected()
-    LocalSetupState.Race[0] = race:getSelected()
+    GameSettings.Presets[0].Race = race:getSelected() - 1
+    ServerSetupState.Race[0] = race:getSelected() - 1
+    LocalSetupState.Race[0] = race:getSelected() - 1
     NetworkServerResyncClients()
   end
   race:setActionCallback(raceCb)
@@ -588,7 +580,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   menu:writeText(_("Units:"), sx, sy*11+25)
   local units=menu:addDropDown({_("Map Default"), _("One Peasant Only")}, sx + 100, sy*11+25, function() end)
   local unitsCb = function()
-    GameSettings.NumUnits = units:getSelected()
+    GameSettings.NumUnits = units:getSelected() - 1
     ServerSetupState.UnitsOption = GameSettings.NumUnits
     NetworkServerResyncClients()
   end
@@ -598,7 +590,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
   menu:writeText(_("Resources:"), sx, sy*11+50)
   local resources=menu:addDropDown({_("Map Default"), _("Low"), _("Medium"), _("High")}, sx + 100, sy*11+50, function() end)
   local resourcesCb = function()
-    GameSettings.Resources = resources:getSelected()
+    GameSettings.Resources = resources:getSelected() - 1
     ServerSetupState.ResourcesOption = GameSettings.Resources
     NetworkServerResyncClients()
   end
@@ -623,8 +615,6 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
 
   NetworkMapName = map
   NetworkInitServerConnect(numplayers)
-  ServerSetupState.MapRichness = StoreSharedSettingsInBits()
-  GameSettings.MapRichness = StoreSharedSettingsInBits()
   ServerSetupState.FogOfWar = 1
   ServerSetupState.Opponents = optAiPlayerNum
   local function startFunc(s)
@@ -633,7 +623,7 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
 --    RevealMap(revealTypes[revealmap:getSelected() + 1])
     NetworkServerStartGame()
     NetworkGamePrepareGameSettings()
-    RunMap(map, nil, fow:isMarked(), revealmap:getSelected())
+    RunMap(map)
     menu:stop()
   end
   local startgame = menu:addFullButton(_("~!Start Game"), "s", sx * 11, sy*14, startFunc)

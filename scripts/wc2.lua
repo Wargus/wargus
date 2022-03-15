@@ -323,9 +323,9 @@ function SetPlayerData(player, data, arg1, arg2)
   local res = {arg2, arg2, arg2}
 
   if (data == "RaceName") then
-    if (GameSettings.Presets[player].Race == 1) then
+    if (GameSettings.Presets[player].Race == 0) then
         arg1 = "human"
-      elseif (GameSettings.Presets[player].Race == 2) then
+      elseif (GameSettings.Presets[player].Race == 1) then
         arg1 = "orc"
       end
   elseif (data == "Resources") then
