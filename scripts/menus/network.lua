@@ -344,6 +344,7 @@ function CreateOnlineLobby(map, numplayers, isserver)
       if name ~= "" then
         local no = Hosts[i - 1].PlyNr
         local dd = menu.player_dropdown[no + 1]
+        menu.player_team[no + 1]:setSelected(ServerSetupState.ServerGameSettings.Presets[no].Team + 1)
         if playerNames[dd:getSelected() + 1] ~= name then
           -- select this name in the appropriate drop down
           local j = 1
@@ -435,9 +436,11 @@ function CreateOnlineLobby(map, numplayers, isserver)
     end
   end
 
+  local teams = {""}
   for i=1,PlayerMax do
     if Map.Info.PlayerType[i - 1] == PlayerPerson then
       playerTable[i] = HBox({
+        LLabel(tostring(i) .. ":", "game"),
         LDropDown(playerNames, function(dd)
           local newIdx = dd:getSelected()
           if newIdx < 2 then
@@ -476,11 +479,22 @@ function CreateOnlineLobby(map, numplayers, isserver)
           assignMissingHumanPlayersToDropdowns()
           calculateAiPlayers()
           NetworkServerResyncClients()
-        end):id("player_dropdown[" .. i .. "]"):withWidth(120),
+        end):id("player_dropdown[" .. i .. "]"):withWidth(100),
+        LDropDown(teams, function(dd)
+           local playerIndex
+           for i=1,PlayerMax do
+              if menu.player_team[i] == dd then
+                 ServerSetupState.ServerGameSettings.Presets[i - 1].Team = dd:getSelected() - 1
+                 NetworkServerResyncClients()
+                 break
+              end
+           end
+        end):id("player_team[" .. i .. "]"):withWidth(Fonts["large"]:Width(tostring(PlayerMax))* 2),
         LLabel("", "game"):id("player_status[" .. i .. "]"),
       })
+      teams[#teams + 1] = tostring(#teams)
     else
-      playerTable[i] = LLabel(_("Player") .. " " .. i, "game")
+      playerTable[i] = LLabel(string.format(_("Slot %d unavailable"), i), "game")
     end
   end
 
@@ -543,7 +557,7 @@ function CreateOnlineLobby(map, numplayers, isserver)
         }), -- end of game options
       }), -- end of game properties
       VBox(playerTable)
-    }), -- end of screen split
+    }):withPadding(2, true), -- end of screen split
     HBox({
       LButton(_("Cancel (~<Esc~>)"), "escape", function()
         InitGameSettings()
@@ -566,6 +580,12 @@ function CreateOnlineLobby(map, numplayers, isserver)
     }),
     LFiller(),
   }):withPadding(4, true))
+
+  for i=1,PlayerMax do
+     if menu.player_team[i] then
+        menu.player_team[i]:setList(teams)
+     end
+  end
 
   menu.button_start_game:setEnabled(false)
   if isserver then

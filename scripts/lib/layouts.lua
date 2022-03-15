@@ -86,7 +86,9 @@ function Box:withPadding(p, recursive)
    if recursive then
       for i,child in ipairs(self.children) do
          if child.withPadding then
-            child:withPadding(p, recursive)
+            if child.paddingX == 0 and child.paddingY == 0 then
+               child:withPadding(p, recursive)
+            end
          end
       end
    end
