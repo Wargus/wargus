@@ -88,10 +88,10 @@ function RunSinglePlayerGameMenu()
   menu:addLabel("~<Singleplayer~>", offx + 640/2 + 12 + 60, offy + 192 - 30)
   menu:addHalfButton("~!Start", "s", 0, 30 + 55 + 28*4,
     function()
-      GameSettings.Presets[0].Race = race:getSelected()
-      GameSettings.Resources = resources:getSelected()
+      GameSettings.Presets[0].Race = race:getSelected() - 1
+      GameSettings.Resources = resources:getSelected() - 1
       -- GameSettings.Opponents = opponents:getSelected()
-      GameSettings.NumUnits = numunits:getSelected()
+      GameSettings.NumUnits = numunits:getSelected() - 1
       GameSettings.GameType = gametype:getSelected() - 1
       RunMap(mapname)
       menu:stop()

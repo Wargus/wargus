@@ -89,7 +89,7 @@ function DefineUnitType(name, tbl)
                            Indestructible = true, NonSolid = true, SelectableByRectangle = false,
                            BasicDamage = 0, PiercingDamage = 0, Missile = "missile-none",
                            Animations = "animations-dead-vision", Icon = "icon-holy-vision",
-                           Speed = 0, HitPoints = 1, Priority = 0, Type = tbl["Type"], VisibleUnderFog = true,
+                           Speed = 0, HitPoints = 1, Priority = 0, Type = tbl["Type"], VisibleUnderFog = false,
                            Revealer = true, Vanishes = true, DetectCloak = false, Sounds = {}})
 
       table.insert(animDeath, 1, "spawn-unit " .. deadVisionName .. " 0 0 0 l.this")

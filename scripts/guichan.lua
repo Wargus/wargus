@@ -800,13 +800,32 @@ function WarMenu(title, background, resize)
   return menu
 end
 
-function WarMenuWithLayout(background, box)
+-- create a menu with layout. takes 1, 2, or 3 arguments
+function WarMenuWithLayout(title_or_background_or_box, background_or_box, box)
+  local background, title
+  if not box then
+    box = background_or_box
+    background = title_or_background_or_box
+    title = nil
+  end
+  if not box then
+    box = background_or_box
+    background = title_or_background_or_box
+    title = nil
+  end
+
   box:calculateMinExtent()
-  local menu = WarMenu(title, background, {box.width, box.height})
-  menu:setSize(box.width, box.height)
-  menu:setPosition((Video.Width - menu:getWidth()) / 2, (Video.Height - menu:getHeight()) / 2)
-  menu:setDrawMenusUnder(true)
-  box:addWidgetTo(menu)
+  local menu
+  menu = WarMenu(title, background, {box.width, box.height})
+  if background then
+    menu:setSize(box.width, box.height)
+    menu:setPosition((Video.Width - menu:getWidth()) / 2, (Video.Height - menu:getHeight()) / 2)
+    menu:setDrawMenusUnder(true)
+    box:addWidgetTo(menu)
+  else
+    menu:setSize(Video.Width, Video.Height)
+    box:addWidgetTo(menu, true)
+  end
   return menu
 end
 
@@ -880,6 +899,9 @@ function RunMap(map, objective, fow, revealmap, results)
         RevealMap("known")
       elseif GameSettings.RevealMap == 0 and fow == nil and not IsNetworkGame() then
         SetFogOfWar(wc2.preferences.FogOfWar)
+      end
+      if GameSettings.NoFogOfWar then
+        SetFogOfWar(false)
       end
     end
     StartMap(map)
@@ -1285,11 +1307,11 @@ function RunSinglePlayerGameMenu()
 			local wefoundperson = false
 			for i=0,14 do
 				if pside[i+1]==nil then
-					GameSettings.Presets[i].Race = 0
+					GameSettings.Presets[i].Race = -1
 				elseif (pside[i+1]:getSelected() == 3) then
-					GameSettings.Presets[i].Race = math.random(1, 2)
+					GameSettings.Presets[i].Race = math.random(0, 1)
 				else
-					GameSettings.Presets[i].Race = pside[i+1]:getSelected()
+					GameSettings.Presets[i].Race = pside[i+1]:getSelected() - 1
 				end
 				if teams[i+1]==nil then
 					GameSettings.Presets[i].Team = -1
@@ -1323,11 +1345,11 @@ function RunSinglePlayerGameMenu()
 					GameSettings.Presets[i].AIScript = AIStrategyTypes[paitype[i+1]:getSelected() + 1]
 				end
 			end
-			GameSettings.Difficulty = difficulty:getSelected() + 1
+			GameSettings.Difficulty = difficulty:getSelected()
 			GameSettings.GameType = game_type:getSelected() - 1
-			GameSettings.Resources = rescount:getSelected()
+			GameSettings.Resources = rescount:getSelected() - 1
 			GameSettings.RevealMap = reveal_type:getSelected()
-			GameSettings.NumUnits = numunits:getSelected()
+			GameSettings.NumUnits = numunits:getSelected() - 1
 			GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
 			GameSettings.NetGameType = 1
 			Load(mapname)
