@@ -74,6 +74,7 @@ function addPlayersList(menu, numplayers, isserver)
   local i
   local players_name = {}
   local players_state = {}
+  local players_nr = {}
   local sx = Video.Width / 20
   local sy = Video.Height / 20
   local numplayers_text
@@ -117,10 +118,39 @@ function addPlayersList(menu, numplayers, isserver)
     end
   end
 
+  local players_nrlist = {}
+  for i=1,numplayers do
+    players_nrlist[i] = "" .. i
+  end
+  local playerNrCallback = function(dd)
+    local nr = dd:getSelected()
+    for i=1,numplayers do
+      if i ~= dd.i then
+        if players_nr[i].nr == nr then
+          local oldNr = dd.nr
+          dd.nr = nr
+          players_nr[i].nr = oldNr
+          players_nr[i]:setSelected(oldNr)
+          Hosts[dd.i - 1].PlyNr = nr
+          Hosts[i - 1].PlyNr = oldNr
+          return
+        end
+      end
+    end
+  end
+
   menu:writeLargeText(_("Players"), sx * 11, sy*3)
-  for i=1,8 do
-    players_name[i] = menu:writeText(_("Player")..i, sx * 11, sy*4 + i*18)
+  for i=1,numplayers do
+    players_name[i] = menu:writeText(_("Player")..i, sx * 11 + 10, sy*4 + i*18)
     players_state[i] = menu:writeText(_("Preparing"), sx * 11 + 80, sy*4 + i*18)
+    if not UsesRandomPlacementMultiplayer() then -- we can assign player numbers
+      players_nr[i] = menu:addDropDown(players_nrlist, sx * 11 - 28, sy*4 + i*18, playerNrCallback)
+      players_nr[i]:setSize(28, 20)
+      players_nr[i]:setSelected(i - 1)
+      players_nr[i].nr = i - 1
+      players_nr[i].i = i
+      players_nr[i]:setVisible(false)
+    end
   end
   if isserver then
     numplayers_text = menu:writeText(_("Open slots : ") .. numplayers - 1, sx *11, sy*4 + 144)
@@ -130,15 +160,21 @@ function addPlayersList(menu, numplayers, isserver)
     local connected_players = 0
     local ready_players = 0
     players_state[1]:setCaption(_("Creator"))
+    if not UsesRandomPlacementMultiplayer() then
+      players_nr[1]:setVisible(true)
+    end
     players_name[1]:setCaption(Hosts[0].PlyName)
     players_name[1]:adjustSize()
-    for i=2,8 do
+    for i=2,numplayers do
       if Hosts[i-1].PlyName == "" then
         players_name[i]:setCaption("")
         players_state[i]:setCaption("")
+        if not UsesRandomPlacementMultiplayer() then
+          players_nr[i]:setVisible(false)
+        end
       else
-	connected_players = connected_players + 1
-	if ServerSetupState.Ready[i-1] == 1 then
+        connected_players = connected_players + 1
+        if ServerSetupState.Ready[i-1] == 1 then
           ready_players = ready_players + 1
           players_state[i]:setCaption(_("Ready"))
         else
@@ -146,6 +182,9 @@ function addPlayersList(menu, numplayers, isserver)
         end
         players_name[i]:setCaption(Hosts[i-1].PlyName)
         players_name[i]:adjustSize()
+        if not UsesRandomPlacementMultiplayer() then
+          players_nr[i]:setVisible(true)
+        end
       end
     end
     local currentAInumber = 0
