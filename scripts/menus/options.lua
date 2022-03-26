@@ -330,14 +330,18 @@ function RunPreferencesMenu()
    useFancyShadows:setMarked(wc2.preferences.UseFancyShadows)
    row = row + 1;
 
-   local selectionStyleList = {"rectangle", "alpha-rectangle", "circle", "alpha-circle", "corners"}
-   local selectionStyleList1 = {_("rectangle"), _("alpha-rectangle"), _("circle"), _("alpha-circle"), _("corners")}
+   local selectionStyleList = {"rectangle", "alpha-rectangle", "circle", "alpha-circle", "corners", "ellipse"}
+   local selectionStyleList1 = {_("rectangle"), _("alpha-rectangle"), _("circle"), _("alpha-circle"), _("corners"), _("ellipse")}
    menu:addLabel(_("Selection style:"), 225, 28 + 19 * 0, Fonts["game"], false)
    local selectionStyle = menu:addDropDown(selectionStyleList1, 225, 28 + 19 * 1, function(dd) end)
    selectionStyle:setSelected(tableindex(selectionStyleList, wc2.preferences.SelectionStyle) - 1)
-   selectionStyle:setActionCallback(
-      function()
-	 SetSelectionStyle(selectionStyleList[selectionStyle:getSelected() + 1])
+   selectionStyle:setActionCallback(function()
+      local selection = selectionStyleList[selectionStyle:getSelected() + 1]
+      if selection == "ellipse" then
+	      SetSelectionStyle(selection, 0.4)
+      else
+         SetSelectionStyle(selection)
+      end
    end)
    selectionStyle:setSize(120, 16)
 

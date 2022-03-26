@@ -504,7 +504,11 @@ UI.ButtonPanel.ShowCommandKey = wc2.preferences.ShowCommandKey
 Preference.MineNotifications = wc2.preferences.MineNotifications
 Preference.ShowMessages = wc2.preferences.ShowMessages
 Preference.PauseOnLeave = wc2.preferences.PauseOnLeave
-SetSelectionStyle(wc2.preferences.SelectionStyle)
+if wc2.preferences.SelectionStyle == "ellipse" then
+  SetSelectionStyle(wc2.preferences.SelectionStyle, 0.4)
+else
+  SetSelectionStyle(wc2.preferences.SelectionStyle)
+end
 SetNewViewportMode(wc2.preferences.ViewportMode)
 Preference.DeselectInMine = wc2.preferences.DeselectInMine
 Preference.StereoSound = wc2.preferences.StereoSound
