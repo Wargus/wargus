@@ -1316,7 +1316,7 @@ function RunSinglePlayerGameMenu()
 				if teams[i+1]==nil then
 					GameSettings.Presets[i].Team = -1
 				else
-					GameSettings.Presets[i].Team = teams[i+1]:getSelected()
+					GameSettings.Presets[i].Team = teams[i+1]:getSelected() - 1
 				end
 				if ptype[i+1]==nil then
 					GameSettings.Presets[i].Type = -1
