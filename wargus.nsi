@@ -248,6 +248,7 @@ Section "-${NAME}"
 
 	; -- XXX TODO: include Stratagus and dependencies some better way
 	File "stratagus.exe"
+	File stratagus-midiplayer.exe
 	File "*.dll"
 
 	SetOutPath "$INSTDIR\music"
