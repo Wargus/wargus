@@ -356,7 +356,12 @@ DefineAnimations("animations-human-transport", {
 
 
 DefineAnimations("animations-elven-destroyer", {
-  Still = {"frame 0", "wait 4", "frame 0", "wait 1", },
+  Still = {
+    "frame 0", "wait 4",
+    "wiggle 0 1 absolute", "wiggle 1 0 heading", "wait 64",
+    "wiggle 0 -1 absolute", "wiggle -1 0 heading", "wait 64",
+    "frame 0", "wait 1",
+  },
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
@@ -372,7 +377,12 @@ DefineAnimations("animations-elven-destroyer", {
 
 
 DefineAnimations("animations-battleship", {
-  Still = {"frame 0", "wait 4", "frame 0", "wait 1", },
+  Still = {
+    "frame 0", "wait 4",
+    "wiggle 0 1 absolute", "wiggle 1 0 heading", "wait 64",
+    "wiggle 0 -1 absolute", "wiggle -1 0 heading", "wait 64",
+    "frame 0", "wait 1",
+  },
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 2", "frame 0", "move 2", "wait 2",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 2",
     "frame 0", "move 2", "wait 2", "frame 0", "move 2", "wait 1",

@@ -311,7 +311,12 @@ DefineAnimations("animations-orc-transport", {
 
 
 DefineAnimations("animations-troll-destroyer", {
-  Still = {"frame 0", "wait 4", "frame 0", "wait 1", },
+  Still = {
+    "frame 0", "wait 4",
+    "wiggle 0 1 absolute", "wiggle 1 0 heading", "wait 64",
+    "wiggle 0 -1 absolute", "wiggle -1 0 heading", "wait 64",
+    "frame 0", "wait 1",
+  },
   Move = {"unbreakable begin", "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
     "frame 0", "move 2", "wait 1", "frame 0", "move 2", "wait 1",
