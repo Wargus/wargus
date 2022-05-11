@@ -193,10 +193,10 @@ function AddTransportingButton(x, y)
 end
 
 AddTransportingButton(9, 387)
-AddTransportingButton(65, 387)
-AddTransportingButton(121, 387)
 AddTransportingButton(9, 434)
+AddTransportingButton(65, 387)
 AddTransportingButton(65, 434)
+AddTransportingButton(121, 387)
 AddTransportingButton(121, 434)
 
 UI.CompletedBarColorRGB = CColor(48, 100, 4)
