@@ -333,7 +333,16 @@ GenerateExtendedTileset(
                                                       {{"slot", 0x0490}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}}}},
                         -- lower left clear
                         {{"slot", 0x11A0}, {"layers", {"range", 0x0044, 0x0045}, 
-                                                      {{"slot", 0x04A0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}}}}},
+                                                      {{"slot", 0x04A0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}}}},
+                        -- bottom half filled
+                        {{"slot", 0x11B0}, {"layers", {0x0044, 0x0045, 0x004A}, 
+                                                      {{"slot", 0x04B0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}}}},
+                        -- upper right clear
+                        {{"slot", 0x11C0}, {"layers", {0x0040}, 
+                                                      {{"slot", 0x04C0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}}}},
+                        -- upper left clear
+                        {{"slot", 0x11D0}, {"layers", {0x0040}, 
+                                                      {{"slot", 0x04D0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}}}}},
               "mixed", {"highground-coast", "cliff", "land", "unpassable", "no-building",
                         -- upper left filled
                         {{"slot", 0x1400}, {"layers", {0x04D0, 0x0080, 0x0081, 0x0082, 0x0083},
@@ -344,18 +353,33 @@ GenerateExtendedTileset(
                         -- upper half filled
                         {{"slot", 0x1420}, {"layers", {"slot", 0x04B0},
                                                       {{"slot", 0x02B0}, {"remove", water_still, water_cycled}}}},
+                        -- lower left filled
+                        {{"slot", 0x1430}, {"layers", {"slot", 0x04A0},
+                                                      {{"slot", 0x02A0}, {"remove", water_still, water_cycled}}}},
                         -- left half filled
                         {{"slot", 0x1440}, {"layers", {"slot", 0x0490},
                                                       {{"slot", 0x0290}, {"remove", water_still, water_cycled}}}},
                         -- lower right clear
                         {{"slot", 0x1460}, {"layers", {"slot", 0x0470},
                                                       {{"slot", 0x0270}, {"remove", water_still, water_cycled}}}},
+                        -- lower right filled
+                        {{"slot", 0x1470}, {"layers", {"slot", 0x0460},
+                                                      {{"slot", 0x0260}, {"remove", water_still, water_cycled}}}},
                         -- right half filled
                         {{"slot", 0x1490}, {"layers", {0x0440, 0x0441}, -- last tile in the slot 0x0440 is broken
                                                       {{"slot", 0x0240}, {"remove", water_still, water_cycled}}}},
                         -- lower left clear
                         {{"slot", 0x14A0}, {"layers", {"slot", 0x0430},
-                                                      {{"slot", 0x0230}, {"remove", water_still, water_cycled}}}}},
+                                                      {{"slot", 0x0230}, {"remove", water_still, water_cycled}}}},
+                        -- bottom half filled
+                        {{"slot", 0x14B0}, {"layers", {"slot", 0x0420},
+                                                      {{"slot", 0x0220}, {"remove", water_still, water_cycled}}}},
+                        -- upper right clear
+                        {{"slot", 0x14C0}, {"layers", {"slot", 0x0410},
+                                                      {{"slot", 0x0210}, {"remove", water_still, water_cycled}}}},
+                        -- upper left clear
+                        {{"slot", 0x14D0}, {"layers", {"slot", 0x0400},
+                                                      {{"slot", 0x0200}, {"remove", water_still, water_cycled}}}}},
               "mixed", {"highground-grass", "cliff", "land", "unpassable", "no-building",
                         -- upper left filled
                         {{"slot", 0x1500}, {"layers", {0x04D0, 0x0080, 0x0081, 0x0082, 0x0083},
@@ -369,6 +393,10 @@ GenerateExtendedTileset(
                         {{"slot", 0x1520}, {"layers", {"slot", 0x04B0},
                                                       {{"slot", 0x02B0}, {"remove", water_still, water_cycled}},
                                                       {{"slot", 0x05B0}, {"remove", light_coast, light_coast_light_shadows}}}},
+                        -- lower left filled
+                        {{"slot", 0x1530}, {"layers", {"slot", 0x04A0},
+                                                      {{"slot", 0x02A0}, {"remove", water_still, water_cycled}},
+                                                      {{"slot", 0x05A0}, {"remove", light_coast, light_coast_light_shadows}}}},
                         -- left half filled
                         {{"slot", 0x1540}, {"layers", {"slot", 0x0490},
                                                       {{"slot", 0x0290}, {"remove", water_still, water_cycled}},
@@ -377,6 +405,10 @@ GenerateExtendedTileset(
                         {{"slot", 0x1560}, {"layers", {"slot", 0x0470},
                                                       {{"slot", 0x0270}, {"remove", water_still, water_cycled}},
                                                       {{"slot", 0x0570}, {"remove", light_coast, light_coast_light_shadows}}}},
+                        -- lower right filled
+                        {{"slot", 0x1570}, {"layers", {"slot", 0x0460},
+                                                      {{"slot", 0x0260}, {"remove", water_still, water_cycled}},
+                                                      {{"slot", 0x0560}, {"remove", light_coast, light_coast_light_shadows}}}},
                         -- right half filled
                         {{"slot", 0x1590}, {"layers", {0x0440, 0x0441}, -- last tile in the slot 0x0440 is broken
                                                       {{"slot", 0x0240}, {"remove", water_still, water_cycled}},
@@ -384,7 +416,19 @@ GenerateExtendedTileset(
                         -- lower left clear
                         {{"slot", 0x15A0}, {"layers", {"slot", 0x0430},
                                                       {{"slot", 0x0230}, {"remove", water_still, water_cycled}},
-                                                      {{"slot", 0x0530}, {"remove", light_coast, light_coast_light_shadows}}}}},
+                                                      {{"slot", 0x0530}, {"remove", light_coast, light_coast_light_shadows}}}},
+                        -- bottom half filled
+                        {{"slot", 0x15B0}, {"layers", {"slot", 0x0420},
+                                                      {{"slot", 0x0220}, {"remove", water_still, water_cycled}},
+                                                      {{"slot", 0x0520}, {"remove", light_coast, light_coast_light_shadows}}}},
+                        -- upper right clear
+                        {{"slot", 0x15C0}, {"layers", {0x0410},
+                                                      {{"slot", 0x0210}, {"remove", water_still, water_cycled}},
+                                                      {{"slot", 0x0510}, {"remove", light_coast, light_coast_light_shadows}}}},
+                        -- upper left clear                         
+                        {{"slot", 0x15D0}, {"layers", {0x0400},
+                                                      {{"slot", 0x0200}, {"remove", water_still, water_cycled}},
+                                                      {{"slot", 0x0500}, {"remove", light_coast, light_coast_light_shadows}}}}},
               "mixed", {"highground-coast", "dark-coast", "land", "unpassable", "no-building",
                         -- upper left filled
                         {{"slot", 0x1600}, {"layers", {0x0046, 0x004A},
