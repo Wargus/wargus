@@ -724,13 +724,18 @@ GenerateExtendedTileset(
                                                                {{"slot", 0x02A0}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
 
                         -- left half filled
-                        {{"range", 0x1D40, 0x1D4B}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
-                                                               {{"img-base", 161, 163, 166}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                        {{"range", 0x1D40, 0x1D46}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
+                                                               {{"img-base", 161, 163}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
                                                                {{"slot", 0x0290}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
-                        {0x1D4C, {0x0000}}, -- separator
+                        {0x1D47, {0x0000}}, -- separator
                           -- (with rock lower right clear)
-                        {{"range", 0x1D4D, 0x1D4F}, {"layers", {0x0044}, 
+                        {{"range", 0x1D48, 0x1D4A}, {"layers", {0x0044}, 
                                                                {0x0460, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                                               {{"slot", 0x0290}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
+                        {0x1D4B, {0x0000}}, -- separator
+                          -- (without rock)
+                        {{"range", 0x1D4C, 0x1D4F}, {"layers", {0x0044}, 
+                                                               {{"img-base", 166}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
                                                                {{"slot", 0x0290}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
 
                         -- lower right clear 
@@ -759,13 +764,18 @@ GenerateExtendedTileset(
                                                                {{"slot", 0x0260}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
 
                         -- right half filled
-                        {{"range", 0x1D90, 0x1D9B}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
-                                                               {{"img-base", 152, 162, 163, 166}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                        {{"range", 0x1D90, 0x1D96}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
+                                                               {{"img-base", 162, 163}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
                                                                {{"slot", 0x0240}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
-                        {0x1D9C, {0x0000}}, -- separator
+                        {0x1D97, {0x0000}}, -- separator
                           -- (with rock lower left clear)
-                        {{"range", 0x1D9D, 0x1D9F}, {"layers", {0x0044}, 
+                        {{"range", 0x1D98, 0x1D9A}, {"layers", {0x0044}, 
                                                                {0x04A0, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                                               {{"slot", 0x0240}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
+                        {0x1D9B, {0x0000}}, -- separator
+                          -- (without rock)
+                        {{"range", 0x1D9C, 0x1D9F}, {"layers", {0x0044}, 
+                                                               {{"img-base", 166}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
                                                                {{"slot", 0x0240}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
 
                         -- lower left clear
@@ -853,13 +863,18 @@ GenerateExtendedTileset(
                                                                {{"slot", 0x02A0}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
 
                         -- left half filled
-                        {{"range", 0x1E40, 0x1E4B}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                               {{"img-base", 161, 163, 166}, {"remove", light_coast, 89, 90}, {"shift", -67, light_coast_shadows}},
+                        {{"range", 0x1E40, 0x1E46}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                                                               {{"img-base", 161, 163, }, {"remove", light_coast, 89, 90}, {"shift", -67, light_coast_shadows}},
                                                                {{"slot", 0x0290}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
-                        {0x1E4C, {0x0000}}, -- separator
+                        {0x1E47, {0x0000}}, -- separator
                           -- (with rock lower right clear)
-                        {{"range", 0x1E4D, 0x1E4F}, {"layers", {0x0065}, 
-                                                               {0x0460, {"remove", light_coast, 89, 90}, {"shift", -67, light_coast_shadows}},
+                        {{"range", 0x1E48, 0x1E4A}, {"layers", {0x0065}, 
+                                                              {0x0460, {"remove", light_coast, 89, 90}, {"shift", -67, light_coast_shadows}},
+                                                              {{"slot", 0x0290}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
+                        {0x1E4B, {0x0000}}, -- separator
+                          -- (without rock)
+                        {{"range", 0x1E4C, 0x1E4F}, {"layers", {0x0065}, 
+                                                               {{"img-base", 166}, {"remove", light_coast, 89, 90}, {"shift", -67, light_coast_shadows}},
                                                                {{"slot", 0x0290}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
 
                         -- lower right clear
@@ -888,13 +903,18 @@ GenerateExtendedTileset(
                                                                {{"slot", 0x0260}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
 
                         -- right half filled
-                        {{"range", 0x1E90, 0x1E9B}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                               {{"img-base", 162, 163, 166}, {"remove", light_coast}, {"shift", -67, light_coast_shadows}},
+                        {{"range", 0x1E90, 0x1E96}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                                                               {{"img-base", 162, 163}, {"remove", light_coast}, {"shift", -67, light_coast_shadows}},
                                                                {{"slot", 0x0240}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
-                        {0x1E9C, {0x0000}}, -- separator
+                        {0x1E97, {0x0000}}, -- separator
                           -- (with rock lower left clear)
-                        {{"range", 0x1E9D, 0x1E9F}, {"layers", {0x0065}, 
+                        {{"range", 0x1E98, 0x1E9A}, {"layers", {0x0065}, 
                                                                {0x04A0, {"remove", light_coast}, {"shift", -67, light_coast_shadows}},
+                                                               {{"slot", 0x0240}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
+                        {0x1E9B, {0x0000}}, -- separator
+                          -- (without rock)
+                        {{"range", 0x1E9C, 0x1E9F}, {"layers", {0x0065}, 
+                                                               {{"img-base", 166}, {"remove", light_coast}, {"shift", -67, light_coast_shadows}},
                                                                {{"slot", 0x0240}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
 
                         -- lower left clear
