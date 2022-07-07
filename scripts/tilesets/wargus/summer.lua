@@ -1034,7 +1034,7 @@ GenerateExtendedTileset(
                         {0x1D95, {0x0005}}, -- separator
                           -- (with rock lower center filled)
                         {0x1D96, {"layers", {0x0044}, 
-                                             {{"img-base", 161}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                             {0x0471, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
                                              {{"slot", 0x0240}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
                         {0x1D97, {0x0000}}, -- separator
                           -- (with rock upper left clear)
@@ -1219,7 +1219,7 @@ GenerateExtendedTileset(
                         {0x1E95, {0x0000}}, -- separator
                           -- (with rock lower center filled)
                         {0x1E96, {"layers", {0x0068}, 
-                                            {{"img-base",161}, {"remove", light_coast}, {"shift", -67, light_coast_shadows}},
+                                            {0x0471, {"remove", light_coast}, {"shift", -67, light_coast_shadows}},
                                             {{"slot", 0x0240}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}},
                         {0x1E97, {0x0000}}, -- separator
                           -- (with rock upper left clear)
