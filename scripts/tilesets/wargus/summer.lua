@@ -1320,7 +1320,7 @@ GenerateExtendedTileset(
                         {{"range", 0x1F30, 0x1F31}, {{"slot", 0x03A0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
                         {0x1F32, {0x0000}},-- separator
                           -- (transition to grass highground)
-                        {{"range", 0x1F73, 0x1F74}, {"layers", {{"slot", 0x03A0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                        {{"range", 0x1F33, 0x1F34}, {"layers", {{"slot", 0x03A0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
                                                                {{"slot", 0x0530}, {"remove", light_coast}}}},
                 -- [0x1F40] left half filled
                           -- (transition to coast highground)
