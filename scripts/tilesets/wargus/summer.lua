@@ -275,7 +275,7 @@ boundry tiles
 1C..            ramp and cliff
 1D..            ramp and dark coast lowground
 1E..            ramp and dark grass lowground
-1F..            ramp and light coast
+1F..            ramp and highgrounds
 
 
 where .. is:
@@ -1267,37 +1267,284 @@ GenerateExtendedTileset(
                         {{"range", 0x1ED5, 0x1ED6}, {"layers", {0x0061},
                                                                {{"slot", 0x0200}, {"remove", water_still, water_cycled}, {"shift", 1, light_coast}}}}},
 
-              "mixed", {"ramp", "light-coast", "land", "no-building",
+              "mixed", {"ramp", "highgrounds", "land", "no-building",
                 -- [0x1F00] upper left filled
-                        {{"slot", 0x1F00}, {{"slot", 0x03D0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                          -- (transition to coast highground)
+                        {{"range", 0x1F00, 0x1F01}, {{"slot", 0x03D0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1F02, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1F03, 0x1F04}, {"layers", {{"slot", 0x03D0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x0500}, {"remove", light_coast}}}},
                 -- [0x1F10] upper right filled
-                        {{"slot", 0x1F10}, {{"slot", 0x03C0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                          -- (transition to coast highground)
+                        {{"range", 0x1F10, 0x1F11}, {{"slot", 0x03C0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1F12, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1F13, 0x1F14}, {"layers", {{"slot", 0x03C0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x0510}, {"remove", light_coast}}}},
                 -- [0x1F20] upper half filled
-                        {{"slot", 0x1F20}, {{"slot", 0x03B0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                          -- (transition to coast highground)
+                        {{"range", 0x1F20, 0x1F22}, {{"slot", 0x03B0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1F23, {0x0000}},-- separator
+                          -- (transition to coast highground with rock upper left filled)
+                        {0x1F24, {"layers", {"slot", 0x0400},
+                                            {{"slot", 0x0200}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x03B0}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1F25, {0x0000}},-- separator
+                          -- (transition to coast highground with rock upper right filled)
+                        {0x1F26, {"layers", {"slot", 0x0410},
+                                            {{"slot", 0x0210}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x03B0}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1F27, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1F28, 0x1F2A}, {"layers", {{"slot", 0x03B0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x0520}, {"remove", light_coast}}}},
+                        {0x1F2B, {0x0000}},-- separator
+                          -- (transition to grass highground with rock upper left filled)
+                        {0x1F2C, {"layers", {"slot", 0x0400},
+                                            {{"slot", 0x0200}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x03B0}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x0520}, {"remove", light_coast}}}},
+                        {0x1F2D, {0x0000}},-- separator
+                          -- (transition to grass highground with rock upper right filled)
+                        {0x1F2E, {"layers", {"slot", 0x0410},
+                                            {{"slot", 0x0210}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x03B0}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x0520}, {"remove", light_coast}}}},
                 -- [0x1F30] lower left filled
-                        {{"slot", 0x1F30}, {{"slot", 0x03A0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                          -- (transition to coast highground)
+                        {{"range", 0x1F30, 0x1F31}, {{"slot", 0x03A0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1F32, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1F73, 0x1F74}, {"layers", {{"slot", 0x03A0}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x0530}, {"remove", light_coast}}}},
                 -- [0x1F40] left half filled
-                        {{"slot", 0x1F40}, {{"slot", 0x0390}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                          -- (transition to coast highground)
+                        {{"range", 0x1F40, 0x1F42}, {{"slot", 0x0390}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1F43, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1F44, 0x1F46}, {"layers", {{"slot", 0x0390}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x0540}, {"remove", light_coast}}}},
                 -- [0x1F60] lower right clear
-                        {{"slot", 0x1F60}, {{"slot", 0x0370}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                          -- (transition to coast highground)
+                        {0x1F60, {0x0370, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1F61, {0x0000}},-- separator
+                          -- (transition to coast highground with coast lowground upper half filled)
+                        {0x1F62, {"layers", {0x0044},
+                                            {{"slot", 0x04B0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                            {{"slot", 0x0220}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0370}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1F63, {0x0000}},-- separator
+                          -- (transition to coast highground with grass lowground upper half filled)
+                        {0x1F64, {"layers", {0x0064},
+                                            {{"slot", 0x04B0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                            {{"slot", 0x0220}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0370}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1F65, {0x0000}},-- separator
+                          -- (transition to coast highground with rock lower left filled)
+                        {0x1F66, {"layers", {"slot", 0x0430},
+                                            {{"slot", 0x0230}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0370}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1F67, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1F68, 0x1F69}, {"layers", {{"slot", 0x0370}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x0560}, {"remove", light_coast}}}},
+                        {0x1F6A, {0x0000}},-- separator
+                          -- (transition to grass highground with coast lowground upper half filled)
+                        {0x1F6B, {"layers", {0x0044},
+                                            {{"slot", 0x04B0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                            {{"slot", 0x0220}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0370}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x0560}, {"remove", light_coast}}}},
+                        {0x1F6C, {0x0000}},-- separator
+                          -- (transition to grass highground with gtrass lowground upper half filled)
+                        {0x1F6D, {"layers", {0x0064},
+                                            {{"slot", 0x04B0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                            {{"slot", 0x0220}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0370}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x0560}, {"remove", light_coast}}}},
+                        {0x1F6E, {0x0000}},-- separator
+                          -- (transition to grass highground with rock lower left filled)
+                        {0x1F6F, {"layers", {"slot", 0x0430},
+                                            {{"slot", 0x0230}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0370}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x0560}, {"remove", light_coast}}}},
                 -- [0x1F70] lower right filed
-                        {{"slot", 0x1F70}, {{"slot", 0x0360}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                          -- (transition to coast highground)
+                        {{"range", 0x1F70, 0x1F71}, {{"slot", 0x0360}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1F72, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1F73, 0x1F74}, {"layers", {{"slot", 0x0360}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x0570}, {"remove", light_coast}}}},
                 -- [0x1F90] right half filled
-                        {{"slot", 0x1F90}, {{"slot", 0x0340}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                          -- (transition to coast highground)
+                        {{"range", 0x1F90, 0x1F92}, {{"slot", 0x0340}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1F93, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1F94, 0x1F96}, {"layers", {{"slot", 0x0340}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x0590}, {"remove", light_coast}}}},
                 -- [0x1FA0] lower left clear
-                        {{"slot", 0x1FA0}, {{0x0330, 0x0331}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}}, -- last tile in the slot 0x0330 is broken
+                          -- (transition to coast highground)
+                        {0x1FA0, {0x0330, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}}, -- last tile in the slot 0x0330 is broken
+                        {0x1FA1, {0x0000}},-- separator
+                          -- (transition to coast highground with coast lowground upper half filled)
+                        {0x1FA2, {"layers", {0x0044},
+                                            {{"slot", 0x04B0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                            {{"slot", 0x0220}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {0x0330, 0x0331}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1FA3, {0x0000}},-- separator
+                          -- (transition to coast highground with grass lowground upper half filled)
+                        {0x1FA4, {"layers", {0x0064},
+                                            {{"slot", 0x04B0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                            {{"slot", 0x0220}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {0x0330, 0x0331}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1FA5, {0x0000}},-- separator
+                          -- (transition to coast highground with rock lower right filled)
+                        {0x1FA6, {"layers", {"slot", 0x0470},
+                                            {{"slot", 0x0270}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {0x0330, 0x0331}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1FA7, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1FA8, 0x1FA9}, {"layers", {{0x0330, 0x0331}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x05A0}, {"remove", light_coast}}}},
+                        {0x1FAA, {0x0000}},-- separator
+                          -- (transition to grass highground with coast lowground upper half filled)
+                        {0x1FAB, {"layers", {0x0044},
+                                            {{"slot", 0x04B0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                            {{"slot", 0x0220}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {0x0330, 0x0331}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x05A0}, {"remove", light_coast}}}},
+                          -- (transition to grass highground with grass lowground upper half filled)
+                        {0x1FAC, {"layers", {0x0064},
+                                            {{"slot", 0x04B0}, {"remove", light_coast}, {"shift", -1, light_coast_shadows}},
+                                            {{"slot", 0x0220}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {0x0330, 0x0331}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x05A0}, {"remove", light_coast}}}},
+                        {0x1FAD, {0x0000}},-- separator
+                          -- (transition to grass highground with rock lower right filled)
+                        {0x1FAE, {"layers", {"slot", 0x0470},
+                                            {{"slot", 0x0270}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {0x0330, 0x0331}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x05A0}, {"remove", light_coast}}}},
                 -- [0x1FB0] upper half clear
-                        {{"slot", 0x1FB0}, {{"slot", 0x0320}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                          -- (transition to coast highground)
+                        {{"range", 0x1FB0, 0x1FB2}, {{"slot", 0x0320}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1FB3, {0x0000}},-- separator
+                          -- (transition to coast highground with rock lower left filled)
+                        {0x1FB4, {"layers", {"slot", 0x0430},
+                                            {{"slot", 0x0230}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0320}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1FB5, {0x0000}},-- separator
+                          -- (transition to coast highground with rock lower right filled)
+                        {0x1FB6, {"layers", {"slot", 0x0470},
+                                            {{"slot", 0x0270}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0320}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1FB7, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1FB8, 0x1FBA}, {"layers", {{"slot", 0x0320}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x05B0}, {"remove", light_coast}}}},
+                        {0x1FBB, {0x0000}},-- separator
+                          -- (transition to grass highground with rock lower left filled)
+                        {0x1FBC, {"layers", {"slot", 0x0430},
+                                            {{"slot", 0x0230}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0320}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x05B0}, {"remove", light_coast}}}},
+                        {0x1FBD, {0x0000}},-- separator
+                          -- (transition to grass highground with rock lower right filled)
+                        {0x1FBE, {"layers", {"slot", 0x0470},
+                                            {{"slot", 0x0270}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0320}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x05B0}, {"remove", light_coast}}}},
                 -- [0x1FC0] upper right clear
-                        {{"slot", 0x1FC0}, {{"slot", 0x0310}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                          -- (transition to coast highground)
+                        {{"range", 0x1FC0,  0x1FC1}, {{"slot", 0x0310}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1FC2, {0x0000}},-- separator
+                          -- (transition to coast highground with rock upper left filled)
+                        {0x1FC3, {"layers", {"slot", 0x0400},
+                                            {{"slot", 0x0200}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0310}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1FC4, {0x0000}},-- separator
+                          -- (transition to coast highground with rock lower right filled)
+                        {0x1FC5, {"layers", {"slot", 0x0470},
+                                            {{"slot", 0x0270}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0310}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1FC6, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1FC7, 0x1FC8}, {"layers", {{"slot", 0x0310}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x05C0}, {"remove", light_coast}}}},
+                        {0x1FC9, {0x0000}},-- separator
+                          -- (transition to coast grass with rock upper left filled)
+                        {0x1FCA, {"layers", {"slot", 0x0400},
+                                            {{"slot", 0x0200}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0310}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x05C0}, {"remove", light_coast}}}},
+                        {0x1FCB, {0x0000}},-- separator
+                          -- (transition to coast highground with rock lower right filled)
+                        {0x1FCC, {"layers", {"slot", 0x0470},
+                                            {{"slot", 0x0270}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0310}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x05C0}, {"remove", light_coast}}}},
                 -- [0x1FD0] upper left clear
-                        {{"slot", 0x1FD0}, {{"slot", 0x0300}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}}}
+                          -- (transition to coast highground)
+                        {{"range", 0x1FD0,  0x1FD1}, {{"slot", 0x0300}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}}},
+                        {0x1FD2, {0x0000}},-- separator
+                          -- (transition to coast highground with rock lower left filled)
+                        {0x1FD3, {"layers", {"slot", 0x0430},
+                                            {{"slot", 0x0230}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0300}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1FD4, {0x0000}},-- separator
+                          -- (transition to coast highground with rock upper right filled)
+                        {0x1FD5, {"layers", {"slot", 0x0410},
+                                            {{"slot", 0x0210}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0300}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}}}},
+                        {0x1FD6, {0x0000}},-- separator
+                          -- (transition to grass highground)
+                        {{"range", 0x1FD7, 0x1FD8}, {"layers", {{"slot", 0x0300}, {"shift", 1, light_coast}, {"shift", 1, dark_coast_dark}},
+                                                               {{"slot", 0x05D0}, {"remove", light_coast}}}},
+                        {0x1FD9, {0x0000}},-- separator
+                          -- (transition to coast grass with rock lower left filled)
+                        {0x1FDA, {"layers", {"slot", 0x0430},
+                                            {{"slot", 0x0230}, {"remove", water_still, water_cycled}, 
+                                                               {"chroma-key", {"slot", 0x0300}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x05D0}, {"remove", light_coast}}}},
+                        {0x1FDB, {0x0000}},-- separator
+                          -- (transition to coast highground with rock upper right filled)
+                        {0x1FDC, {"layers", {"slot", 0x0410},
+                                            {{"slot", 0x0210}, {"remove", water_still, water_cycled}, 
+                                                                {"chroma-key", {"slot", 0x0300}, light_coast},
+                                                                {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x05D0}, {"remove", light_coast}}}}}
             }
 )
-        
 
-
-  --[[
+--[[
     "image", path-to-image-with-tileset-graphic, -- optional for extended tileset
     "slots", {
               slot-type, {"terrain-name", ["terrain-name",] [list-of-flags-for-all-tiles-of-this-slot,]
