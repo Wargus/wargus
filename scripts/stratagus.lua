@@ -65,9 +65,9 @@ Load("scripts/wc2-config.lua")
 
 wargus.Name = _("Wargus")
 wargus.Homepage = "https://wargus.github.io"
-wargus.Copyright = _("(c) 1998-2021 by The Stratagus Project.")
+wargus.Copyright = _("(c) 1998-2022 by The Stratagus Project.")
 
-wargus.Version = "3.2.1"
+wargus.Version = "3.3.0"
 wargus.Licence = "GPL v2+"
 
 

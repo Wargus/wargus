@@ -45,11 +45,11 @@
 
 ; General variables
 !define NAME "Wargus"
-!define VERSION "3.2.1"
+!define VERSION "3.3.0"
 !define VIVERSION "${VERSION}.0"
 !define HOMEPAGE "https://wargus.github.io"
 !define LICENSE "GPL v2+"
-!define COPYRIGHT "Copyright (c) 1998-2021 by The Stratagus Project"
+!define COPYRIGHT "Copyright (c) 1998-2022 by The Stratagus Project"
 !define STRATAGUS_NAME "Stratagus"
 !define STRATAGUS_HOMEPAGE "https://github.com/Wargus/stratagus"
 

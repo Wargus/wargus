@@ -1,8 +1,72 @@
-wargus (3.2.1-1) UNRELEASED; urgency=medium
+wargus (3.3.0-1) focal; urgency=medium
 
-  * 
+  [ Tim Felgentreff ]
+  * store extracted game strings in wc2-config.lua for potential later use
+  * fix uppercasing for bnet translation table files
+  * extract more texts from mpq, since those are more likely to be in the right language
+  * also convert briefing speech from mpq instead of tome
+  * fix offset for BNE intro texts
+  * fix human lvl11 briefing sound
+  * no more need for snddat.war in bne
+  * no more need for strdat.war in BNE
+  * convert western language strings to UTF-8 via a CP1251 table
+  * fix windows build
+  * fix many build warnings
+  * add german translation
 
- -- Tim Felgentreff <timfelgentreff@gmail.com>  Sat, 25 Dec 2021 06:46:34 +0100
+  [ Pointify ]
+  * Update es_ES.po
+  * Update stratagus-es.po
+  * Update credits.lua
+  * Update credits.lua
+  * Update es_ES.po
+
+  [ Tim Felgentreff ]
+  * make password field show stars
+  * update caption when downloading map data
+  * refresh online screen when messages come in
+
+  [ Simone Starace ]
+  * Add function calls to For the Motherland.
+
+  [ Tim Felgentreff ]
+  * show filename when getting map from server
+  * prototype guichan-driven extraction
+  * update unit editor callback
+  * try to extract alternative smk names, too. fixes #418
+  * truncate bne text files
+  * utf8 language extraction fixes
+  * cp437 for dos cd, cp1252 for bne
+  * generate script for cp mapping tables
+  * codepage mapping for russian, dos, and bne cd
+  * update mapping table gen
+  * set the correct codepage for russian
+  * update translations from sources, autofill german
+  * Update de_DE.po (POEditor.com)
+  * Update it_IT.po (POEditor.com)
+  * Update stratagus-it.po (POEditor.com)
+  * add hardware cursor option
+  * better editor right click menu
+  * update editor help
+  * quick and dirty random skirmish option
+  * use some fancy scripting to get better random maps
+  * update code for new shared settings fix offsets for lots of gamesettings r.e. default values
+  * if random placement is off, allow setting player id
+  * minor flexibility improvements for gui layouting
+  * simplify multiplayer lobby using layouts
+  * include coop mod
+  * don't show death revealer under fog
+  * update network script with teams
+  * improve multiplayer game menu
+  * fast fow by default
+  * fix team setup in skirmish modern
+  * make ellipse selection an option
+  * ship external midi player
+  * let ships gently bob on the sea
+  * reorder the transporting buttons for large size units to look better
+  * filename fix for orc expansion
+
+ -- Tim Felgentreff <timfelgentreff@gmail.com>  Wed, 27 Jul 2022 15:49:02 +0200
 
 wargus (3.2.0) focal; urgency=medium
 
