@@ -12,7 +12,9 @@ before_build:
   - 7z x compiled-binaries.zip
   - appveyor DownloadFile https://github.com/Wargus/stratagus/archive/%SRCTAG%.zip
   - 7z x %SRCTAG%.zip
+  - move stratagus-midiplayer.exe stratagusmidiplayer.exe
   - IF DEFINED APPVEYOR_REPO_TAG_NAME (move stratagus-* stratagus-master)
+  - move stratagusmidiplayer.exe stratagus-midiplayer.exe
   - appveyor DownloadFile https://github.com/jimpark/unsis/releases/download/2.50.0/nsis-2.50.0-Unicode-setup.exe
   - nsis-2.50.0-Unicode-setup.exe /S /D=C:\Program Files (x86)\NSIS
   - cmake -G "Visual Studio 16 2019" -T v141_xp -A win32 -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON ..
