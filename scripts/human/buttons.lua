@@ -44,7 +44,7 @@ DefineButton( { Pos = 1, Level = 0, Icon = "icon-move-peasant",
     "unit-female-hero",
     "unit-flying-angel", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-white-mage", "unit-balloon",
-    "unit-gryphon-rider", "unit-mage", "unit-critter",
+    "unit-gryphon-rider", "unit-mage",
     "human-group"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-shield1",
@@ -55,7 +55,7 @@ DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-shield1",
     "unit-female-hero",
     "unit-flying-angel", "unit-arthor-literios", "unit-knight-rider", "unit-wise-man",
     "unit-man-of-light", "unit-white-mage", "unit-balloon",
-    "unit-gryphon-rider", "unit-mage", "unit-critter",
+    "unit-gryphon-rider", "unit-mage",
     "human-group"} } )
 
 DefineButton( { Pos = 2, Level = 0, Icon = "icon-human-shield2",
