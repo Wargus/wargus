@@ -2,3 +2,8 @@
 build/
 .vscode/*
 **/.DS_Store
+.attach_pid*
+.gdb_history
+a.out
+gmon.*
+libStorm.*
