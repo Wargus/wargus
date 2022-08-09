@@ -1,18 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Wargus\n"
-"POT-Creation-Date: 2022-01-27 20:35+0100\n"
-"PO-Revision-Date: 2022-01-27 20:35+0100\n"
-"Last-Translator: Tim Felgentreff <timfelgentreff@gmail.com>\n"
-"Language-Team: SPANISH\n"
-"Language: es_ES\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP866\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Wargus\n"
+"Language: es\n"
 
 #: buttons.lua:49 human/buttons.lua:304 human/buttons.lua:351
 #: orc/buttons.lua:327 orc/buttons.lua:374
@@ -312,13 +305,9 @@ msgstr "Rescate-activo"
 msgid "None"
 msgstr "Ninguno"
 
-#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
-msgid "Hidden"
-msgstr ""
-
-#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
-msgid "Known"
-msgstr ""
+#: menus/network.lua:203 menus/network.lua:574
+msgid "Explored"
+msgstr "Explorado"
 
 #: guichan.lua:1155
 msgid "Revealed"
@@ -463,12 +452,6 @@ msgstr "~<Script I.A:~>"
 #: guichan.lua:1498
 msgid "~!Cancel Game"
 msgstr "~!Cancelar Partida"
-
-#: guichan.lua:1500
-#, fuzzy
-#| msgid "~<Teams:~>"
-msgid "~<Terrain:~>"
-msgstr "~<Equipos:~>"
 
 #: guichan.lua:1512
 msgid "~<Game Type:~>"
@@ -1288,25 +1271,17 @@ msgstr "Tamaño   : "
 msgid "Tileset : "
 msgstr "Terreno :"
 
-#: menus/editor.lua:490
-msgid "Accept"
-msgstr ""
-
-#: menus/editor.lua:497 menus/editor.lua:662
-msgid "Close"
-msgstr ""
-
 #: menus/editor.lua:523
 msgid "Editor Menu"
 msgstr "Menú de Editor"
 
-#: menus/editor.lua:528 menus/game.lua:45
-msgid "Help (~<F1~>)"
-msgstr "Ayuda (~<F1~>)"
-
 #: menus/editor.lua:530 menus/game.lua:39
 msgid "Save (~<F11~>)"
 msgstr "Guardar (~<F11~>)"
+
+#: menus/game.lua:41
+msgid "Load (~<F12~>)"
+msgstr "Cargar (~<F12~>)"
 
 #: menus/editor.lua:532
 msgid "Map Properties (~<F5~>)"
@@ -1316,20 +1291,6 @@ msgstr "Propriedades del Mapa (~<F5~>)"
 msgid "Player Properties (~<F6~>)"
 msgstr "Propriedades de Jugador (~<F6~>)"
 
-#: menus/editor.lua:534
-#, fuzzy
-#| msgid "Save Resized Map"
-msgid "~!Resize Map"
-msgstr "Guardar Mapa con Nuevo Tamaño"
-
-#: menus/editor.lua:536
-msgid "Pr~!eamble"
-msgstr ""
-
-#: menus/editor.lua:538
-msgid "~!Postamble"
-msgstr ""
-
 #: menus/editor.lua:541
 msgid "E~!xit to Menu"
 msgstr "Salir al Menú"
@@ -1338,9 +1299,17 @@ msgstr "Salir al Menú"
 msgid "Return to Editor (~<Esc~>)"
 msgstr "Regresar al Editor (~<Esc~>)"
 
-#: menus/editor.lua:638
-msgid "Ok"
-msgstr ""
+#: stratagus.lua:240
+msgid "gold"
+msgstr "oro"
+
+#: stratagus.lua:240
+msgid "wood"
+msgstr "madera"
+
+#: stratagus.lua:240
+msgid "oil"
+msgstr "aceite"
 
 #: menus/endscenario.lua:4
 msgid "End Scenario"
@@ -1399,13 +1368,13 @@ msgstr "Wargus?"
 msgid "Game Menu"
 msgstr "Menú de Juego"
 
-#: menus/game.lua:41
-msgid "Load (~<F12~>)"
-msgstr "Cargar (~<F12~>)"
-
 #: menus/game.lua:43
 msgid "Options (~<F5~>)"
 msgstr "Opciones (~<F5~>)"
+
+#: menus/editor.lua:528 menus/game.lua:45
+msgid "Help (~<F1~>)"
+msgstr "Ayuda (~<F1~>)"
 
 #: menus/game.lua:47
 msgid "Scenario ~!Objectives"
@@ -1580,28 +1549,16 @@ msgid "- load game"
 msgstr "- cargar partida"
 
 #: menus/help.lua:93
-msgid ""
-"You can select all of your currently visible units of the same type by "
-"holding down the CTRL key and selecting a unit or by \"double clicking\" on "
-"a unit."
-msgstr ""
-"Puedes seleccionar todas las unidades visibles del mismo tipo manteniendo "
-"pulsado CTRL y seleccionando una unidad o haciende \"doble clic\" en una "
-"unidad."
+msgid "You can select all of your currently visible units of the same type by holding down the CTRL key and selecting a unit or by \"double clicking\" on a unit."
+msgstr "Puedes seleccionar todas las unidades visibles del mismo tipo manteniendo pulsado CTRL y seleccionando una unidad o haciende \"doble clic\" en una unidad."
 
 #: menus/help.lua:94
-msgid ""
-"The more workers you have collecting resources, the faster your economy will "
-"grow."
-msgstr ""
-"Mientras más trabajadores tengas recogiendo recursos, más rapido crecera "
-"tu economía."
+msgid "The more workers you have collecting resources, the faster your economy will grow."
+msgstr "Mientras más trabajadores tengas recogiendo recursos, más rapido crecera tu economía."
 
 #: menus/help.lua:95
 msgid "Building more than one barracks will let you train more units faster."
-msgstr ""
-"Construir múltiples barracones te permitirá entrenar más unidades más "
-"rapido."
+msgstr "Construir múltiples barracones te permitirá entrenar más unidades más rapido."
 
 #: menus/help.lua:96
 msgid "Use your workers to repair damaged buildings."
@@ -1617,58 +1574,31 @@ msgstr "Puedes demoler arboles y rocas."
 
 #: menus/help.lua:100
 msgid "Keep all workers working. Use ALT-I to find idle workers."
-msgstr ""
-"Mantiene a todos tus trabajadores trabajando. Pulsa ALT-I para encontrar "
-"trabajadores inactivos."
+msgstr "Mantiene a todos tus trabajadores trabajando. Pulsa ALT-I para encontrar trabajadores inactivos."
 
 #: menus/help.lua:101
-msgid ""
-"You can make units automatically cast spells by selecting a unit, holding "
-"down CTRL and clicking on the spell icon.  CTRL click again to turn off."
-msgstr ""
-"Puedes hacer que las unidades automaticamente lanzen un hechizo al "
-"seleccionar una unidad, si mantienes pulsada la tecla CTRL y haces clic en "
-"el icono del hechizo. Haz CTRL clic de nuevo para desactivarlo."
+msgid "You can make units automatically cast spells by selecting a unit, holding down CTRL and clicking on the spell icon.  CTRL click again to turn off."
+msgstr "Puedes hacer que las unidades automaticamente lanzen un hechizo al seleccionar una unidad, si mantienes pulsada la tecla CTRL y haces clic en el icono del hechizo. Haz CTRL clic de nuevo para desactivarlo."
 
 #: menus/help.lua:104
-msgid ""
-"You can give an unit an order which is executed after it finishes the "
-"current work, if you hold the SHIFT key."
-msgstr ""
-"Puedes darle a una unidad, una orden que se ejecuta después de la orden "
-"actual, si mantienes pulsada la tecla shift."
+msgid "You can give an unit an order which is executed after it finishes the current work, if you hold the SHIFT key."
+msgstr "Puedes darle a una unidad, una orden que se ejecuta después de la orden actual, si mantienes pulsada la tecla shift."
 
 #: menus/help.lua:105
-msgid ""
-"You can give way points, if you press the SHIFT key, while you click right "
-"for the move command."
-msgstr ""
-"Puedes dar puntos de camino, si mantienes pulsada la tecla SHIFT, mientras "
-"haces clic derecho en el comando de mover."
+msgid "You can give way points, if you press the SHIFT key, while you click right for the move command."
+msgstr "Puedes dar puntos de camino, si mantienes pulsada la tecla SHIFT, mientras haces clic derecho en el comando de mover."
 
 #: menus/help.lua:106
-msgid ""
-"You can order a worker to build one building after the other, if you hold "
-"the SHIFT key, while you place the building."
-msgstr ""
-"Puedes ordenar a un trabajador que construya un edificio después del otro, "
-"si mantienes pulsada la tecla SHIFT, mientras colocas el edificio."
+msgid "You can order a worker to build one building after the other, if you hold the SHIFT key, while you place the building."
+msgstr "Puedes ordenar a un trabajador que construya un edificio después del otro, si mantienes pulsada la tecla SHIFT, mientras colocas el edificio."
 
 #: menus/help.lua:107
-msgid ""
-"You can build many of the same building, if you hold the ALT and SHIFT keys "
-"while you place the buildings."
-msgstr ""
-"Puedes construir muchos del mismo edificio, si mantienes pulsada las teclas "
-"ALT y SHIFT, mientras colocas los edificios."
+msgid "You can build many of the same building, if you hold the ALT and SHIFT keys while you place the buildings."
+msgstr "Puedes construir muchos del mismo edificio, si mantienes pulsada las teclas ALT y SHIFT, mientras colocas los edificios."
 
 #: menus/help.lua:109
-msgid ""
-"Use CTRL-V or ALT-V to cycle through the viewport configuration, you can "
-"then monitor your base and lead an attack."
-msgstr ""
-"Usa CTRL-V o ALT-V para cambiar la ventana gráfica, para así poder "
-"monitorear tu base mientras manejas un ataque."
+msgid "Use CTRL-V or ALT-V to cycle through the viewport configuration, you can then monitor your base and lead an attack."
+msgstr "Usa CTRL-V o ALT-V para cambiar la ventana gráfica, para así poder monitorear tu base mientras manejas un ataque."
 
 #: menus/help.lua:111
 msgid "Know a useful tip?  Then add it here!"
@@ -1749,14 +1679,6 @@ msgstr "Descripción:"
 #: menus/network.lua:195 menus/network.lua:565
 msgid "Fog of war"
 msgstr "Niebla de guerra"
-
-#: menus/network.lua:202 menus/network.lua:568
-msgid "Terrain:"
-msgstr ""
-
-#: menus/network.lua:203 menus/network.lua:574
-msgid "Explored"
-msgstr "Explorado"
 
 #: menus/network.lua:207
 msgid "~<Your Race:~>"
@@ -2076,26 +1998,15 @@ msgstr "Modo de visión:"
 
 #: menus/options.lua:357
 #, fuzzy
-#| msgid "Pixel Shader"
 msgid "Shader:"
 msgstr "Shader:"
-
-#: menus/options.lua:381 menus/options.lua:458
-msgid "tiled"
-msgstr ""
 
 #: menus/options.lua:381 menus/options.lua:458
 msgid "enhanced"
 msgstr "Mejorada"
 
-#: menus/options.lua:381 menus/options.lua:458 menus/options.lua:577
-#: menus/options.lua:598 menus/options.lua:622
-msgid "fast"
-msgstr "Rapido"
-
 #: menus/options.lua:382 menus/options.lua:459
 #, fuzzy
-#| msgid "Fog of War"
 msgid "Fog of War type:"
 msgstr "Tipo de Niebla:"
 
@@ -2113,7 +2024,6 @@ msgstr ""
 
 #: menus/options.lua:447
 #, fuzzy
-#| msgid "Show messages"
 msgid "Show map grid"
 msgstr "Mostrar cuadrícula del mapa"
 
@@ -2147,7 +2057,6 @@ msgstr "Rocas"
 
 #: menus/options.lua:512
 #, fuzzy
-#| msgid "Wall"
 msgid "Walls"
 msgstr "Muros"
 
@@ -2166,6 +2075,11 @@ msgstr "Velocidad del Juego"
 #: menus/options.lua:576 menus/options.lua:597 menus/options.lua:621
 msgid "slow "
 msgstr "Lento"
+
+#: menus/options.lua:381 menus/options.lua:458 menus/options.lua:577
+#: menus/options.lua:598 menus/options.lua:622
+msgid "fast"
+msgstr "Rapido"
 
 #: menus/options.lua:582
 msgid "Mouse Scroll Speed"
@@ -2186,12 +2100,6 @@ msgstr "Resolución de Vídeo"
 #: menus/options.lua:713
 msgid "Full Screen"
 msgstr "Pantalla Completa"
-
-#: menus/options.lua:731
-#, fuzzy
-#| msgid "You need to restart game to apply changes, exit now?"
-msgid "You need to restart game to apply changes, restart now?"
-msgstr "Debe reiniciar el juego para aplicar los cambios, ¿salir ahora?"
 
 #: menus/options.lua:741 menus/save.lua:23
 msgid "~!Yes"
@@ -2243,7 +2151,6 @@ msgstr "Idioma"
 
 #: menus/options.lua:848
 #, fuzzy
-#| msgid "Game Options"
 msgid "~<Game Options~>"
 msgstr "~<Opciones de Juego~>"
 
@@ -2960,18 +2867,6 @@ msgid "time"
 msgstr "tiempo"
 
 #: stratagus.lua:240
-msgid "gold"
-msgstr "oro"
-
-#: stratagus.lua:240
-msgid "wood"
-msgstr "madera"
-
-#: stratagus.lua:240
-msgid "oil"
-msgstr "aceite"
-
-#: stratagus.lua:240
 msgid "ore"
 msgstr "mineral"
 
@@ -3064,17 +2959,14 @@ msgid "Upgrading~|:"
 msgstr "Actualizando~|:"
 
 #: ui.lua:244
-#, lua-format
 msgid "Carry~|: %d %s"
 msgstr "Carga~|: %d %s"
 
 #: ui.lua:258
-#, lua-format
 msgid "Level ~|~<%d~>"
 msgstr "Nivel ~|~<%d~>"
 
 #: ui.lua:262
-#, lua-format
 msgid "XP:~<%d~> Kills:~|~<%d~>"
 msgstr "XP:~<%d~> Muertes:~|~<%d~>"
 
@@ -3095,10 +2987,8 @@ msgid "~<SHIFT~>-click to make waypoints."
 msgstr "~<SHIFT~>-clic para hacer puntos de camino."
 
 #: ui.lua:437 ui.lua:595
-msgid ""
-"~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."
-msgstr ""
-"~<CTRL~>-clic habilita/deshabilita auto-reparación de edificios dañados."
+msgid "~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."
+msgstr "~<CTRL~>-clic habilita/deshabilita auto-reparación de edificios dañados."
 
 #: ui.lua:456 ui.lua:504 ui.lua:614 ui.lua:662
 msgid "Hit Points: "
@@ -3204,74 +3094,54 @@ msgstr "Lugar Destruido 4x4"
 msgid "Dummy unit"
 msgstr "Unidad Base"
 
-#~ msgid "Default"
-#~ msgstr "Por defecto"
+#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
+msgid "Hidden"
+msgstr ""
 
-#~ msgid "~<Fog of War:~>"
-#~ msgstr "~<Niebla de Guerra:~>"
+#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
+msgid "Known"
+msgstr ""
 
-#~ msgid "Unit properties"
-#~ msgstr "Propriedades de Unidad"
+#: guichan.lua:1500
+#, fuzzy
+msgid "~<Terrain:~>"
+msgstr "~<Equipos:~>"
 
-#~ msgid "Artificial Intelligence"
-#~ msgstr "Inteligencia Artificial"
+#: menus/editor.lua:490
+msgid "Accept"
+msgstr ""
 
-#~ msgid "Amount of "
-#~ msgstr "Cantidad de "
+#: menus/editor.lua:497 menus/editor.lua:662
+msgid "Close"
+msgstr ""
 
-#~ msgid "Reveal map"
-#~ msgstr "Revelar mapa"
+#: menus/editor.lua:534
+#, fuzzy
+msgid "~!Resize Map"
+msgstr "Guardar Mapa con Nuevo Tamaño"
 
-#~ msgid "legacy"
-#~ msgstr "Clásica"
+#: menus/editor.lua:536
+msgid "Pr~!eamble"
+msgstr ""
 
-#~ msgid "Campaign Game"
-#~ msgstr "Campaña"
+#: menus/editor.lua:538
+msgid "~!Postamble"
+msgstr ""
 
-#~ msgid "~!OK"
-#~ msgstr "~!OK"
+#: menus/editor.lua:638
+msgid "Ok"
+msgstr ""
 
-#~ msgid "~<Metaserver~>"
-#~ msgstr "~<Metaservidor~>"
+#: menus/network.lua:202 menus/network.lua:568
+msgid "Terrain:"
+msgstr ""
 
-#~ msgid "~!Send"
-#~ msgstr "Enviar"
+#: menus/options.lua:381 menus/options.lua:458
+msgid "tiled"
+msgstr ""
 
-#~ msgid "~!Clear"
-#~ msgstr "Limpiar"
+#: menus/options.lua:731
+#, fuzzy
+msgid "You need to restart game to apply changes, restart now?"
+msgstr "Debe reiniciar el juego para aplicar los cambios, ¿salir ahora?"
 
-#~ msgid "~!Main Menu"
-#~ msgstr "~!Menú principal"
-
-#~ msgid "Enter meta server address:"
-#~ msgstr "Introduzca la dirección del meta servidor:"
-
-#~ msgid "Unable to connect"
-#~ msgstr "No se pudo conectar"
-
-#~ msgid "Open Games: "
-#~ msgstr "Partidas abiertas: "
-
-#~ msgid "Connecting via "
-#~ msgstr "Conectandose a través de "
-
-#~ msgid "Meta-Server"
-#~ msgstr "Meta-Servidor"
-
-#~ msgid "(metaserver down)"
-#~ msgstr "(metaservidor caído)"
-
-#~ msgid "(metaserver error)"
-#~ msgstr "(error de metaservidor)"
-
-#~ msgid "~!*SF2 soundfont path :"
-#~ msgstr "~!*Ruta de fuente de sonido SF2 :"
-
-#~ msgid "Aleona's Tales"
-#~ msgstr "Cuentos de Aleona"
-
-#~ msgid "Freemen"
-#~ msgstr "Hombres libres"
-
-#~ msgid "Wilds"
-#~ msgstr "Salvajes"
