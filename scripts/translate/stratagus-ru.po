@@ -1,126 +1,89 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: stratagus-ru\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 20:32+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Tim Felgentreff <timfelgentreff@gmail.com>\n"
-"Language-Team: cybermind <iddqd_mail@mail.ru>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../../stratagus/src\n"
-"X-Poedit-KeywordsList: _\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Stratagus\n"
+"Language: ru\n"
 
 #: action/action_build.cpp:204
 msgid "You cannot reach building place"
 msgstr "Невозможно достигнуть места строительства"
 
 #: action/action_build.cpp:229
-#, c-format
 msgid "Not enough resources to build %s"
 msgstr "Недостаточно ресурсов для постройки %s"
 
 #: action/action_build.cpp:236
-#, c-format
 msgid "Can't build more units %s"
 msgstr "Нельзя создать еще %s"
 
 #: action/action_build.cpp:322
-#, c-format
 msgid "Unable to create building %s"
 msgstr "Нельзя построить здание: %s"
 
-#: action/action_build.cpp:356
-#, c-format
-msgid "%s has rebuilt a base, and will no longer be revealed!"
-msgstr ""
-
-#: action/action_build.cpp:358
-msgid "You have rebuilt a base, and will no longer be revealed!"
-msgstr ""
-
 #: action/action_build.cpp:472
-#, c-format
 msgid "You cannot build %s here"
 msgstr "Невозможно построить здесь %s"
 
 #: action/action_built.cpp:196
-#, c-format
 msgid "New %s done"
 msgstr "Готова новая постройка: %s"
 
 #: action/action_repair.cpp:178
-#, c-format
 msgid "We need more %s for repair!"
 msgstr "Нам нужно больше %s для ремонта!"
 
 #: action/action_research.cpp:145 action/action_research.cpp:147
-#, c-format
 msgid "%s: research complete"
 msgstr "%s: исследование завершено"
 
 #: action/action_resource.cpp:785
-#, c-format
 msgid "%s has collapsed!"
 msgstr "%s обрушился!"
 
 #: action/action_resource.cpp:861
-#, c-format
 msgid "%s is running low!"
 msgstr "%s скоро иссякнет!"
 
 #: action/action_spellcast.cpp:321
-#, c-format
 msgid "%s: not enough mana for spell: %s"
 msgstr "%s: не хватает маны для заклинания: %s"
 
 #: action/action_spellcast.cpp:325
-#, c-format
 msgid "%s: spell is not ready yet: %s"
 msgstr "%s: заклинание еще не готово: %s"
 
 #: action/action_spellcast.cpp:329
-#, c-format
 msgid "%s: not enough resources to cast spell: %s"
 msgstr "%s: недостаточно ресурсов для заклинания: %s"
 
 #: action/action_spellcast.cpp:333
-#, c-format
 msgid "%s: can't cast spell: %s"
 msgstr "%s: невозможно использовать заклинание : %s"
 
 #: action/action_train.cpp:208
-#, c-format
 msgid "Unable to train %s"
 msgstr "Невозможно тренировать юнит %s"
 
 #: action/action_train.cpp:236
-#, c-format
 msgid "New %s ready"
 msgstr "Готов новый юнит %s"
 
 #: action/action_upgradeto.cpp:287
-#, c-format
 msgid "Upgrade to %s canceled"
 msgstr "Вы отменили модернизацию до %s"
 
 #: action/action_upgradeto.cpp:291
-#, c-format
 msgid "Upgrade to %s complete"
 msgstr "Модернизация до %s завершена"
 
 #: action/command.cpp:987
-#, c-format
 msgid "Player \"%s\" has left the game"
 msgstr "Игрок %s покинул игру"
 
 #: action/command.cpp:989
-#, c-format
 msgid "Player \"%s\" has been killed"
 msgstr "Игрок \"%s\" был побежден"
 
@@ -129,25 +92,16 @@ msgid "Unit deleted"
 msgstr "Юнит удален"
 
 #: editor/editloop.cpp:953
-#, c-format
 msgid "Editor (%d %d)"
 msgstr "Редактор (%d %d)"
 
 #: editor/editloop.cpp:1000
-#, c-format
 msgid "#%d '%s' Player:#%d %s"
 msgstr "#%d '%s' Игрок:#%d %s"
 
 #: editor/editloop.cpp:1004
-#, c-format
 msgid " Amount %d"
 msgstr "Ресурсы %d"
-
-#: editor/editloop.cpp:1287
-#, fuzzy
-#| msgid "Unit can't be placed here."
-msgid "Unit cannot be placed here."
-msgstr "Вы не можете создать здесь этот юнит"
 
 #: editor/editloop.cpp:1382
 msgid "Mirror editing enabled: 2-side"
@@ -166,12 +120,10 @@ msgid "Unit owner modified"
 msgstr "Изменен владелец юнита"
 
 #: editor/editloop.cpp:1529
-#, c-format
 msgid "Select player #%d"
 msgstr "Выбор игрока #%d"
 
 #: editor/editloop.cpp:1785
-#, c-format
 msgid "Script %s"
 msgstr "Скрипт %s"
 
@@ -184,7 +136,6 @@ msgid "No sync info for this replay !"
 msgstr "Отсутствуют данные синхронизации!"
 
 #: game/replay.cpp:813
-#, c-format
 msgid "Replay got out of sync (%lu) !"
 msgstr "Нарушена синхронизация переигровки (%lu)!"
 
@@ -196,24 +147,17 @@ msgstr "Нарушена синхронизация переигровки!"
 msgid "End of replay"
 msgstr "Конец переигровки"
 
-#: map/script_map.cpp:848
-#, fuzzy, c-format
-#| msgid "Tileset `%s'"
-msgid "Tileset '%s'"
-msgstr "Тайлсет `%s'"
-
 #: missile/missileconfig.cpp:54
-#, c-format
 msgid "Missile %s"
 msgstr "Снаряд %s"
 
 #: missile/missileconfig.cpp:58
-#, c-format
 msgid "Can't find missile %s\n"
+""
 msgstr "Снаряд не найден: %s\n"
+""
 
 #: network/network.cpp:831
-#, c-format
 msgid "%s sent bad command"
 msgstr "%s отослал команду с ошибкой"
 
@@ -222,7 +166,6 @@ msgid "Network out of sync"
 msgstr "Нарушена синхронизация сети"
 
 #: network/network.cpp:1125
-#, c-format
 msgid "Waiting for player \"%s\": %d:%02d"
 msgstr "Ожидание игрока \"%s\": %d:%02d"
 
@@ -231,13 +174,8 @@ msgid "Timed out"
 msgstr "Время вышло"
 
 #: stratagus/construct.cpp:98 stratagus/construct.cpp:107
-#, c-format
 msgid "Construction %s"
 msgstr "Конструкция %s"
-
-#: stratagus/mainloop.cpp:312
-msgid "Autosave"
-msgstr ""
 
 #: stratagus/player.cpp:1031
 msgid "Building Limit Reached"
@@ -256,32 +194,24 @@ msgid "Total Unit Limit Reached"
 msgstr "Достигнут общий лимит юнитов"
 
 #: stratagus/player.cpp:1047
-#, c-format
 msgid "Limit of %d reached for this unit type"
 msgstr "Достигнут предел в %d единиц для данного юнита"
 
 #: stratagus/player.cpp:1073
-#, c-format
 msgid "Not enough %s...%s more %s."
 msgstr "Недостаточно %s...%s больше %s."
 
-#: stratagus/player.cpp:1216
-#, c-format
-msgid "%s has not rebuilt their base and is being revealed!"
-msgstr ""
-
-#: stratagus/player.cpp:1218
-msgid "You have not rebuilt your base and have been revealed!"
-msgstr ""
-
 #: stratagus/script.cpp:2562
-#, c-format
 msgid "Script %s\n"
+""
 msgstr "Скрипт %s\n"
+""
 
 #: stratagus/stratagus.cpp:416
 msgid "Thanks for playing Stratagus.\n"
+""
 msgstr "Спасибо за то, что сыграли в Wargus.\n"
+""
 
 #: ui/botpanel.cpp:1125
 msgid "Select Target"
@@ -296,25 +226,18 @@ msgid "Unit training queue is full"
 msgstr "Очередь строительства заполнена"
 
 #: ui/icons.cpp:272
-#, c-format
 msgid "Icon %s"
 msgstr "Иконка %s"
 
 #: ui/icons.cpp:275
-#, c-format
 msgid "Can't find icon %s\n"
+""
 msgstr "Иконка не найдена: %s\n"
+""
 
 #: ui/icons.cpp:288
-#, c-format
 msgid "Icons %s"
 msgstr "Иконка %s"
-
-#: ui/interface.cpp:122
-#, fuzzy, c-format
-#| msgid "MESSAGE:%s~!_"
-msgid "MESSAGE:%s"
-msgstr "СООБЩЕНИЕ:%s~!_"
 
 #: ui/interface.cpp:269
 msgid "Sound is on."
@@ -377,12 +300,10 @@ msgid "Screenshot made."
 msgstr "Получен снимок экрана"
 
 #: ui/mainscr.cpp:892
-#, c-format
 msgid "Last message repeated ~<%d~> times"
 msgstr "Вы получили последнее сообщение ~<%d~> раз"
 
 #: ui/mainscr.cpp:1024
-#, c-format
 msgid "~<Event: %s~>"
 msgstr "~<Событие: %s~>"
 
@@ -391,51 +312,34 @@ msgid "Cycle:"
 msgstr "Цикл:"
 
 #: ui/mouse.cpp:2126
-#, c-format
 msgid "You have ~<%d~> %ss"
 msgstr "У вас есть ~<%d~> %s"
 
 #: ui/mouse.cpp:2130
-#, c-format
 msgid "You have ~<%d~> %s(s)"
 msgstr "У вас есть ~<%d~> %s"
 
 #: unit/depend.cpp:256 unit/depend.cpp:314
 msgid "Requirements:\n"
+""
 msgstr "Необходимо:\n"
-
-#: unit/unit.cpp:1402
-#, c-format
-msgid "%s has lost their last base, and will be revealed in thirty seconds!"
-msgstr ""
-
-#: unit/unit.cpp:1404
-msgid "You have lost your last base, and will be revealed in thirty seconds!"
-msgstr ""
+""
 
 #: unit/unit.cpp:2815
-#, c-format
 msgid "%s attacked"
 msgstr "%s под огнем"
 
-#: unit/unit_draw.cpp:348
-#, fuzzy, c-format
-#| msgid "Decorations `%s'"
-msgid "Decorations '%s'"
-msgstr "Декорация `%s'"
-
 #: unit/unittype.cpp:953
-#, c-format
 msgid "unit-type '%s' without animations, ignored.\n"
+""
 msgstr "юнит '%s' не имеет анимаций, пропускается.\n"
+""
 
 #: unit/unittype.cpp:1071
-#, c-format
 msgid "Unit \"%s\""
 msgstr "Юнит \"%s\""
 
 #: video/cursor.cpp:105
-#, c-format
 msgid "Cursor %s"
 msgstr "Курсор %s"
 
@@ -443,32 +347,51 @@ msgstr "Курсор %s"
 msgid "esc"
 msgstr "esc"
 
-#~ msgid "No Resources to Return."
-#~ msgstr "Нету возвращаемых ресурсов."
+#: action/action_build.cpp:356
+msgid "%s has rebuilt a base, and will no longer be revealed!"
+msgstr ""
 
-#~ msgid "~!OK"
-#~ msgstr "ОК"
+#: action/action_build.cpp:358
+msgid "You have rebuilt a base, and will no longer be revealed!"
+msgstr ""
 
-#~ msgid "~!Cancel"
-#~ msgstr "Отмена"
+#: editor/editloop.cpp:1287
+#, fuzzy
+msgid "Unit cannot be placed here."
+msgstr "Вы не можете создать здесь этот юнит"
 
-#~ msgid "Artificial Intelligence"
-#~ msgstr "Искусственный интеллект"
+#: map/script_map.cpp:848
+#, fuzzy
+msgid "Tileset '%s'"
+msgstr "Тайлсет `%s'"
 
-#~ msgid "Select mode"
-#~ msgstr "Режим выбора"
+#: stratagus/mainloop.cpp:312
+msgid "Autosave"
+msgstr ""
 
-#~ msgid "Unit mode"
-#~ msgstr "Режим юнитов"
+#: stratagus/player.cpp:1216
+msgid "%s has not rebuilt their base and is being revealed!"
+msgstr ""
 
-#~ msgid "Tile mode"
-#~ msgstr "Режим ландшафта"
+#: stratagus/player.cpp:1218
+msgid "You have not rebuilt your base and have been revealed!"
+msgstr ""
 
-#~ msgid "Set start location mode"
-#~ msgstr "Режим стартовых позиций"
+#: ui/interface.cpp:122
+#, fuzzy
+msgid "MESSAGE:%s"
+msgstr "СООБЩЕНИЕ:%s~!_"
 
-#~ msgid "Cannot create more units."
-#~ msgstr "Невозможно создать больше юнитов."
+#: unit/unit.cpp:1402
+msgid "%s has lost their last base, and will be revealed in thirty seconds!"
+msgstr ""
 
-#~ msgid "%s: complete"
-#~ msgstr "%s: завершено"
+#: unit/unit.cpp:1404
+msgid "You have lost your last base, and will be revealed in thirty seconds!"
+msgstr ""
+
+#: unit/unit_draw.cpp:348
+#, fuzzy
+msgid "Decorations '%s'"
+msgstr "Декорация `%s'"
+
