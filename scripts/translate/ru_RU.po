@@ -1,20 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Wargus\n"
-"POT-Creation-Date: 2022-01-27 20:34+0100\n"
-"PO-Revision-Date: 2022-01-27 20:34+0100\n"
-"Last-Translator: Tim Felgentreff <timfelgentreff@gmail.com>\n"
-"Language-Team: \n"
-"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Wargus\n"
+"Language: ru\n"
 
 #: buttons.lua:49 human/buttons.lua:304 human/buttons.lua:351
 #: orc/buttons.lua:327 orc/buttons.lua:374
@@ -64,69 +55,63 @@ msgstr "Выйти"
 
 #: editor.lua:47
 msgid "Human Land Units"
-msgstr ""
+msgstr "Наземные юниты людей"
 
 #: editor.lua:58
 msgid "Human Sea Units"
-msgstr ""
+msgstr "Морские юниты людей"
 
 #: editor.lua:65
 msgid "Human Air Units"
-msgstr ""
+msgstr "Воздушные юниты людей"
 
 #: editor.lua:69
 #, fuzzy
-#| msgid "Buildings:"
 msgid "Human Land Buildings"
 msgstr "Здания:"
 
 #: editor.lua:86
 #, fuzzy
-#| msgid "Mirrored buildings"
 msgid "Human Shore Buildings"
 msgstr "Отражать постройки"
 
 #: editor.lua:92
 msgid "Human Heroes"
-msgstr ""
+msgstr "Герои людей"
 
 #: editor.lua:103
 msgid "Orc Land Units"
-msgstr ""
+msgstr "Наземные юниты орков"
 
 #: editor.lua:114
 msgid "Orc Sea Units"
-msgstr ""
+msgstr "Морские юниты орков"
 
 #: editor.lua:121
 msgid "Orc Air Units"
-msgstr ""
+msgstr "Воздушные юниты орков"
 
 #: editor.lua:126
 #, fuzzy
-#| msgid "Buildings:"
 msgid "Orc Land Buildings"
 msgstr "Здания:"
 
 #: editor.lua:143
 #, fuzzy
-#| msgid "Mirrored buildings"
 msgid "Orc Shore Buildings"
 msgstr "Отражать постройки"
 
 #: editor.lua:149
 msgid "Orc Heroes"
-msgstr ""
+msgstr "Герои орков"
 
 #: editor.lua:161
 #, fuzzy
-#| msgid "Buildings:"
 msgid "Neutral Buildings"
 msgstr "Здания:"
 
 #: editor.lua:168
 #, fuzzy
-#| msgid "Neutral"
 msgid "Neutral Units"
 msgstr "Нейтрал"
 
@@ -150,6 +135,8 @@ msgstr "-Уничтожить всех врагов"
 msgid "Map Default"
 msgstr "По умолчанию"
 
+#. Something is wrong with encoding here... It can be fixed here https://2cyr.com/decode/?lang=ru but I couldn't yet find a more automatic way to do this...
+#. Maybe if you let me know the source you pulled this from, it'd be easier to understand how this can be properly transformed.
 #: guichan.lua:930
 msgid "Nation of Stromgarde"
 msgstr "Нация Стромгарде"
@@ -250,7 +237,6 @@ msgstr "~!Прочитать игру"
 #: guichan.lua:1099 guichan.lua:1731 menus/campaign.lua:337
 #: menus/network.lua:940
 #, fuzzy
-#| msgid "Previous (~<Esc~>)"
 msgid "Previous Menu (~<Esc~>)"
 msgstr "Предыдущее (~<Esc~>)"
 
@@ -328,13 +314,9 @@ msgstr "Активный союзник"
 msgid "None"
 msgstr "Нет"
 
-#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
-msgid "Hidden"
-msgstr ""
-
-#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
-msgid "Known"
-msgstr ""
+#: menus/network.lua:203 menus/network.lua:574
+msgid "Explored"
+msgstr "Исследована"
 
 #: guichan.lua:1155
 msgid "Revealed"
@@ -479,12 +461,6 @@ msgstr "~<Скрипт ИИ:~>"
 #: guichan.lua:1498
 msgid "~!Cancel Game"
 msgstr "~!Отмена игры"
-
-#: guichan.lua:1500
-#, fuzzy
-#| msgid "~<Teams:~>"
-msgid "~<Terrain:~>"
-msgstr "~<Команда:~>"
 
 #: guichan.lua:1512
 msgid "~<Game Type:~>"
@@ -1161,7 +1137,6 @@ msgstr "Список миссий"
 
 #: menus/campaign.lua:330
 #, fuzzy
-#| msgid "~!Play mission"
 msgid "~!Start mission"
 msgstr "Начать миссию"
 
@@ -1248,7 +1223,7 @@ msgstr "Файл существует, продолжить?"
 
 #: menus/editor.lua:216
 msgid "Save Resized Map"
-msgstr ""
+msgstr "Сохранить карту"
 
 #: menus/editor.lua:306
 msgid "Players properties"
@@ -1306,27 +1281,17 @@ msgstr "Размер   : "
 msgid "Tileset : "
 msgstr "Местность :"
 
-#: menus/editor.lua:490
-msgid "Accept"
-msgstr ""
-
-#: menus/editor.lua:497 menus/editor.lua:662
-#, fuzzy
-#| msgid "~!Close"
-msgid "Close"
-msgstr "~!Закрыть"
-
 #: menus/editor.lua:523
 msgid "Editor Menu"
 msgstr "Меню редактора"
 
-#: menus/editor.lua:528 menus/game.lua:45
-msgid "Help (~<F1~>)"
-msgstr "Помощь (~<F1~>)"
-
 #: menus/editor.lua:530 menus/game.lua:39
 msgid "Save (~<F11~>)"
 msgstr "Сохр.(~<F11~>)"
+
+#: menus/game.lua:41
+msgid "Load (~<F12~>)"
+msgstr "Чтен.(~<F12~>)"
 
 #: menus/editor.lua:532
 msgid "Map Properties (~<F5~>)"
@@ -1336,20 +1301,6 @@ msgstr "Параметры карты (~<F5~>)"
 msgid "Player Properties (~<F6~>)"
 msgstr "Параметры игроков (~<F6~>)"
 
-#: menus/editor.lua:534
-#, fuzzy
-#| msgid "Reveal Map"
-msgid "~!Resize Map"
-msgstr "Открыть карту"
-
-#: menus/editor.lua:536
-msgid "Pr~!eamble"
-msgstr ""
-
-#: menus/editor.lua:538
-msgid "~!Postamble"
-msgstr ""
-
 #: menus/editor.lua:541
 msgid "E~!xit to Menu"
 msgstr "~!Выйти в меню"
@@ -1358,9 +1309,17 @@ msgstr "~!Выйти в меню"
 msgid "Return to Editor (~<Esc~>)"
 msgstr "Вернуться в редактор (~<Esc~>)"
 
-#: menus/editor.lua:638
-msgid "Ok"
-msgstr ""
+#: stratagus.lua:240
+msgid "gold"
+msgstr "золота"
+
+#: stratagus.lua:240
+msgid "wood"
+msgstr "леса"
+
+#: stratagus.lua:240
+msgid "oil"
+msgstr "нефти"
 
 #: menus/endscenario.lua:4
 msgid "End Scenario"
@@ -1419,13 +1378,13 @@ msgstr "программы Wargus?"
 msgid "Game Menu"
 msgstr "Игровое меню"
 
-#: menus/game.lua:41
-msgid "Load (~<F12~>)"
-msgstr "Чтен.(~<F12~>)"
-
 #: menus/game.lua:43
 msgid "Options (~<F5~>)"
 msgstr "Опции (~<F5~>)"
+
+#: menus/editor.lua:528 menus/game.lua:45
+msgid "Help (~<F1~>)"
+msgstr "Помощь (~<F1~>)"
 
 #: menus/game.lua:47
 msgid "Scenario ~!Objectives"
@@ -1541,23 +1500,23 @@ msgstr "- предыдущая конфигурация окна просмот�
 
 #: menus/help.lua:39
 msgid "- select nothing"
-msgstr ""
+msgstr "- убрать выделение"
 
 #: menus/help.lua:40
 msgid "- select group"
-msgstr ""
+msgstr "- выбрать группу"
 
 #: menus/help.lua:41
 msgid "- center on group"
-msgstr ""
+msgstr "- показать группу"
 
 #: menus/help.lua:42
 msgid "- define group"
-msgstr ""
+msgstr "- назначить группу"
 
 #: menus/help.lua:43
 msgid "- add to group"
-msgstr ""
+msgstr "- добавить в группу"
 
 #: menus/help.lua:44
 msgid "- add to alternate group"
@@ -1600,26 +1559,16 @@ msgid "- load game"
 msgstr "- загрузить игру"
 
 #: menus/help.lua:93
-msgid ""
-"You can select all of your currently visible units of the same type by "
-"holding down the CTRL key and selecting a unit or by \"double clicking\" on "
-"a unit."
-msgstr ""
-"Вы можете выбрать всех видимых в данный момент юнитов одного типа, удерживая "
-"клавишу CTRL и нажав левую кнопку мыши, или дважды щелкнув ЛКМ."
+msgid "You can select all of your currently visible units of the same type by holding down the CTRL key and selecting a unit or by \"double clicking\" on a unit."
+msgstr "Вы можете выбрать всех видимых в данный момент юнитов одного типа, удерживая клавишу CTRL и нажав левую кнопку мыши, или дважды щелкнув ЛКМ."
 
 #: menus/help.lua:94
-msgid ""
-"The more workers you have collecting resources, the faster your economy will "
-"grow."
-msgstr ""
-"Чем больше работников у вас будет собирать ресурсы, тем быстрее ваша "
-"экономика будет расти."
+msgid "The more workers you have collecting resources, the faster your economy will grow."
+msgstr "Чем больше работников у вас будет собирать ресурсы, тем быстрее ваша экономика будет расти."
 
 #: menus/help.lua:95
 msgid "Building more than one barracks will let you train more units faster."
-msgstr ""
-"Строительство более чем одного барака позволит вам быстрее обучать юнитов."
+msgstr "Строительство более чем одного барака позволит вам быстрее обучать юнитов."
 
 #: menus/help.lua:96
 msgid "Use your workers to repair damaged buildings."
@@ -1635,52 +1584,31 @@ msgstr "Вы можете сносить деревья и камни."
 
 #: menus/help.lua:100
 msgid "Keep all workers working. Use ALT-I to find idle workers."
-msgstr ""
-"Держите рабочих при работе. Используйте ALT-I для поиска свободных рабочих."
+msgstr "Держите рабочих при работе. Используйте ALT-I для поиска свободных рабочих."
 
 #: menus/help.lua:101
-msgid ""
-"You can make units automatically cast spells by selecting a unit, holding "
-"down CTRL and clicking on the spell icon.  CTRL click again to turn off."
+msgid "You can make units automatically cast spells by selecting a unit, holding down CTRL and clicking on the spell icon.  CTRL click again to turn off."
 msgstr ""
 
 #: menus/help.lua:104
-msgid ""
-"You can give an unit an order which is executed after it finishes the "
-"current work, if you hold the SHIFT key."
-msgstr ""
-"Вы можете дать юниту задание, которое выполнится  после завершения текущего, "
-"если вы удерживаете клавишу SHIFT."
+msgid "You can give an unit an order which is executed after it finishes the current work, if you hold the SHIFT key."
+msgstr "Вы можете дать юниту задание, которое выполнится  после завершения текущего, если вы удерживаете клавишу SHIFT."
 
 #: menus/help.lua:105
-msgid ""
-"You can give way points, if you press the SHIFT key, while you click right "
-"for the move command."
-msgstr ""
-"Вы можете указать точки перемещения, если вы зажмете клавишу SHIFT, когда "
-"щелкните правой кнопкой мыши для команды перемещения."
+msgid "You can give way points, if you press the SHIFT key, while you click right for the move command."
+msgstr "Вы можете указать точки перемещения, если вы зажмете клавишу SHIFT, когда щелкните правой кнопкой мыши для команды перемещения."
 
 #: menus/help.lua:106
-msgid ""
-"You can order a worker to build one building after the other, if you hold "
-"the SHIFT key, while you place the building."
-msgstr ""
-"Вы можете приказать работнику построить одно здание за другим, если вы "
-"удерживаете клавишу SHIFT, когда вы размещаете здание."
+msgid "You can order a worker to build one building after the other, if you hold the SHIFT key, while you place the building."
+msgstr "Вы можете приказать работнику построить одно здание за другим, если вы удерживаете клавишу SHIFT, когда вы размещаете здание."
 
 #: menus/help.lua:107
-msgid ""
-"You can build many of the same building, if you hold the ALT and SHIFT keys "
-"while you place the buildings."
+msgid "You can build many of the same building, if you hold the ALT and SHIFT keys while you place the buildings."
 msgstr ""
 
 #: menus/help.lua:109
-msgid ""
-"Use CTRL-V or ALT-V to cycle through the viewport configuration, you can "
-"then monitor your base and lead an attack."
-msgstr ""
-"Используйте CTRL-V или ALT-V для настройки окна просмотра, затем вы можете "
-"вести атаку и наблюдать за базой одновременно."
+msgid "Use CTRL-V or ALT-V to cycle through the viewport configuration, you can then monitor your base and lead an attack."
+msgstr "Используйте CTRL-V или ALT-V для настройки окна просмотра, затем вы можете вести атаку и наблюдать за базой одновременно."
 
 #: menus/help.lua:111
 msgid "Know a useful tip?  Then add it here!"
@@ -1700,7 +1628,6 @@ msgstr "~!Еще"
 
 #: menus/help.lua:159
 #, fuzzy
-#| msgid "Cancel (~<Esc~>)"
 msgid "Close (~<Esc~>)"
 msgstr "Отмена (~<Esc~>)"
 
@@ -1714,11 +1641,11 @@ msgstr "~!Прочитать"
 
 #: menus/network.lua:86
 msgid "AIs:"
-msgstr ""
+msgstr "ИИ:"
 
 #: menus/network.lua:94
 msgid " AI player(s)"
-msgstr ""
+msgstr " ИИ игрок(и)"
 
 #: menus/network.lua:120
 msgid "Players"
@@ -1763,14 +1690,6 @@ msgstr "Описание:"
 #: menus/network.lua:195 menus/network.lua:565
 msgid "Fog of war"
 msgstr "Туман войны"
-
-#: menus/network.lua:202 menus/network.lua:568
-msgid "Terrain:"
-msgstr ""
-
-#: menus/network.lua:203 menus/network.lua:574
-msgid "Explored"
-msgstr "Исследована"
 
 #: menus/network.lua:207
 msgid "~<Your Race:~>"
@@ -1902,7 +1821,6 @@ msgstr ""
 
 #: menus/network.lua:833
 #, fuzzy
-#| msgid "Join ~!Online Game"
 msgid "Go ~!Online"
 msgstr "~!Онлайн игра"
 
@@ -1940,7 +1858,6 @@ msgstr "~!Присоединиться"
 
 #: menus/network.lua:1055
 #, fuzzy
-#| msgid "No players selected"
 msgid "No game selected"
 msgstr "Нет игроков"
 
@@ -2097,21 +2014,11 @@ msgid "Shader:"
 msgstr ""
 
 #: menus/options.lua:381 menus/options.lua:458
-msgid "tiled"
-msgstr ""
-
-#: menus/options.lua:381 menus/options.lua:458
 msgid "enhanced"
 msgstr ""
 
-#: menus/options.lua:381 menus/options.lua:458 menus/options.lua:577
-#: menus/options.lua:598 menus/options.lua:622
-msgid "fast"
-msgstr "быстро"
-
 #: menus/options.lua:382 menus/options.lua:459
 #, fuzzy
-#| msgid "Fog of War"
 msgid "Fog of War type:"
 msgstr "Туман войны"
 
@@ -2129,7 +2036,6 @@ msgstr ""
 
 #: menus/options.lua:447
 #, fuzzy
-#| msgid "Show messages"
 msgid "Show map grid"
 msgstr "Показ. сообщения"
 
@@ -2163,7 +2069,6 @@ msgstr ""
 
 #: menus/options.lua:512
 #, fuzzy
-#| msgid "Wall"
 msgid "Walls"
 msgstr "Стена"
 
@@ -2182,6 +2087,11 @@ msgstr "Скорость игры"
 #: menus/options.lua:576 menus/options.lua:597 menus/options.lua:621
 msgid "slow "
 msgstr "медленно"
+
+#: menus/options.lua:381 menus/options.lua:458 menus/options.lua:577
+#: menus/options.lua:598 menus/options.lua:622
+msgid "fast"
+msgstr "быстро"
 
 #: menus/options.lua:582
 msgid "Mouse Scroll Speed"
@@ -2202,12 +2112,6 @@ msgstr "Разрешение экрана"
 #: menus/options.lua:713
 msgid "Full Screen"
 msgstr "Полноэкранный режим"
-
-#: menus/options.lua:731
-#, fuzzy
-#| msgid "You need to restart game to apply changes, exit now?"
-msgid "You need to restart game to apply changes, restart now?"
-msgstr "Нужно перезагрузить игру для принятия изменений, продолжить?"
 
 #: menus/options.lua:741 menus/save.lua:23
 msgid "~!Yes"
@@ -2259,7 +2163,6 @@ msgstr "Перевод"
 
 #: menus/options.lua:848
 #, fuzzy
-#| msgid "Game Options"
 msgid "~<Game Options~>"
 msgstr "Игровые опции"
 
@@ -2485,7 +2388,6 @@ msgstr "~!РУНЫ"
 
 #: orc/buttons.lua:193
 #, fuzzy
-#| msgid "EYE OF ~!KILROGG"
 msgid "~!EYE OF KILROGG"
 msgstr "~!ГЛАЗ КИЛЬРОГА"
 
@@ -2927,7 +2829,6 @@ msgstr "Wargus"
 
 #: stratagus.lua:68
 #, fuzzy
-#| msgid "(c) 1998-2017 by The Stratagus Project."
 msgid "(c) 1998-2021 by The Stratagus Project."
 msgstr "(c) 1998-2017 by The Stratagus Project."
 
@@ -2978,18 +2879,6 @@ msgstr "Уголь: "
 #: stratagus.lua:240
 msgid "time"
 msgstr "время"
-
-#: stratagus.lua:240
-msgid "gold"
-msgstr "золота"
-
-#: stratagus.lua:240
-msgid "wood"
-msgstr "леса"
-
-#: stratagus.lua:240
-msgid "oil"
-msgstr "нефти"
 
 #: stratagus.lua:240
 msgid "ore"
@@ -3084,17 +2973,14 @@ msgid "Upgrading~|:"
 msgstr "Улучшается~|:"
 
 #: ui.lua:244
-#, lua-format
 msgid "Carry~|: %d %s"
 msgstr "Несет~|: %d %s"
 
 #: ui.lua:258
-#, lua-format
 msgid "Level ~|~<%d~>"
 msgstr "Уровень ~|~<%d~>"
 
 #: ui.lua:262
-#, lua-format
 msgid "XP:~<%d~> Kills:~|~<%d~>"
 msgstr "XP:~<%d~> Убил:~|~<%d~>"
 
@@ -3115,10 +3001,8 @@ msgid "~<SHIFT~>-click to make waypoints."
 msgstr "~<SHIFT~>-клик, чтобы создавать точки следования."
 
 #: ui.lua:437 ui.lua:595
-msgid ""
-"~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."
-msgstr ""
-"~<CTRL~>-клик на кнопку включает/отключает авторемонт поврежденных зданий."
+msgid "~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."
+msgstr "~<CTRL~>-клик на кнопку включает/отключает авторемонт поврежденных зданий."
 
 #: ui.lua:456 ui.lua:504 ui.lua:614 ui.lua:662
 msgid "Hit Points: "
@@ -3130,8 +3014,7 @@ msgstr "Броня: "
 
 #: ui.lua:482 ui.lua:640
 msgid "~<SHIFT~>-click could be used to make a building queue."
-msgstr ""
-"Можно использовать ~<SHIFT~>-клик, чтобы создать очередь строительства."
+msgstr "Можно использовать ~<SHIFT~>-клик, чтобы создать очередь строительства."
 
 #: ui.lua:510 ui.lua:668
 msgid "Sight: "
@@ -3225,149 +3108,55 @@ msgstr "Разрушенное место"
 msgid "Dummy unit"
 msgstr "Не юнит"
 
-#~ msgid "Default"
-#~ msgstr "По умолчанию"
+#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
+msgid "Hidden"
+msgstr ""
 
-#~ msgid "~<Fog of War:~>"
-#~ msgstr "~<Карта:~>"
+#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
+msgid "Known"
+msgstr ""
 
-#~ msgid "Unit properties"
-#~ msgstr "Параметры юнита"
+#: guichan.lua:1500
+#, fuzzy
+msgid "~<Terrain:~>"
+msgstr "~<Команда:~>"
 
-#~ msgid "Artificial Intelligence"
-#~ msgstr "Интеллект"
+#: menus/editor.lua:490
+msgid "Accept"
+msgstr ""
 
-#~ msgid "Amount of "
-#~ msgstr "Количество"
+#: menus/editor.lua:497 menus/editor.lua:662
+#, fuzzy
+msgid "Close"
+msgstr "~!Закрыть"
 
-#~ msgid "Reveal map"
-#~ msgstr "Открыть карту"
+#: menus/editor.lua:534
+#, fuzzy
+msgid "~!Resize Map"
+msgstr "Открыть карту"
 
-#~ msgid "Campaign Game"
-#~ msgstr "Новая кампания"
+#: menus/editor.lua:536
+msgid "Pr~!eamble"
+msgstr ""
 
-#~ msgid "~!OK"
-#~ msgstr "~!OK"
+#: menus/editor.lua:538
+msgid "~!Postamble"
+msgstr ""
 
-#~ msgid "Open Games: "
-#~ msgstr "Открытые Игры:"
+#: menus/editor.lua:638
+msgid "Ok"
+msgstr ""
 
-#~ msgid "~!*SF2 soundfont path :"
-#~ msgstr "~!*SF2 банк :"
+#: menus/network.lua:202 menus/network.lua:568
+msgid "Terrain:"
+msgstr ""
 
-#~ msgid "Aleona's Tales"
-#~ msgstr "Сказания Алеоны"
+#: menus/options.lua:381 menus/options.lua:458
+msgid "tiled"
+msgstr ""
 
-#~ msgid "Freemen"
-#~ msgstr "Люди"
+#: menus/options.lua:731
+#, fuzzy
+msgid "You need to restart game to apply changes, restart now?"
+msgstr "Нужно перезагрузить игру для принятия изменений, продолжить?"
 
-#~ msgid "Wilds"
-#~ msgstr "Дикари"
-
-#~ msgid "want to surrender"
-#~ msgstr "хотите сдаться"
-
-#~ msgid "to your enemies?"
-#~ msgstr "врагу в плен?"
-
-#~ msgid "Incompatible network version"
-#~ msgstr "Другая версия игры"
-
-#~ msgid "Meta~!server"
-#~ msgstr "Метасервер"
-
-#~ msgid "(c) 2012-2016 by The Stratagus Project."
-#~ msgstr "(c) 2012-2016 by The Stratagus Project."
-
-#~ msgid "(c) 1998-2016 by The Stratagus Project."
-#~ msgstr "(c) 1998-2016 by The Stratagus Project."
-
-#~ msgid "1 Opponent"
-#~ msgstr "1 Оппонент"
-
-#~ msgid "2 Opponents"
-#~ msgstr "2 Оппонента"
-
-#~ msgid "3 Opponents"
-#~ msgstr "3 Оппонента"
-
-#~ msgid "4 Opponents"
-#~ msgstr "4 Оппонента"
-
-#~ msgid "5 Opponents"
-#~ msgstr "5 Оппонентов"
-
-#~ msgid "6 Opponents"
-#~ msgstr "6 Оппонентов"
-
-#~ msgid "7 Opponents"
-#~ msgstr "7 Оппонентов"
-
-#~ msgid "~<Opponents:~>"
-#~ msgstr "~<Оппоненты:~>"
-
-#~ msgid "Time Left~|: "
-#~ msgstr "Время~|:"
-
-#~ msgid "Gold Left~|: "
-#~ msgstr "Золото~|:"
-
-#~ msgid "Wood Left~|: "
-#~ msgstr "Лес~|:"
-
-#~ msgid "Oil Left~|: "
-#~ msgstr "Нефть~|:"
-
-#~ msgid "Ore Left~|: "
-#~ msgstr "Руда~|:"
-
-#~ msgid "Stone Left~|: "
-#~ msgstr "Камень~|:"
-
-#~ msgid "Coal Left~|: "
-#~ msgstr "Уголь~|:"
-
-#~ msgid "%s Left~|:%d"
-#~ msgstr "%s: %d"
-
-#~ msgid "Damage: "
-#~ msgstr "Повреждение: "
-
-#~ msgid "File      : "
-#~ msgstr "Файл      : "
-
-#~ msgid "Players  : "
-#~ msgstr "Игроки :"
-
-#~ msgid "Size      : "
-#~ msgstr "Размер     : "
-
-#~ msgid "lumber"
-#~ msgstr "лес"
-
-#~ msgid "~!Singleplayer"
-#~ msgstr "~!Одиночная игра"
-
-#~ msgid "~!Multiplayer"
-#~ msgstr "~!Мультиплеер"
-
-#~ msgid "~!Campaign"
-#~ msgstr "~!Кампания"
-
-#~ msgid "~!Replay"
-#~ msgstr "~!Переиграть"
-
-#~ msgid "~!Editor"
-#~ msgstr "Редактор"
-
-#~ msgid "~<Reveal Map:~>"
-#~ msgstr "~<Карта:~>"
-
-#~ msgid "Usage"
-#~ msgstr "Пища"
-
-#~ msgid "Supply ~|: "
-#~ msgstr "Выращено ~|: "
-
-#~ msgid "Demand ~|: "
-#~ msgstr "Расход ~|: "
