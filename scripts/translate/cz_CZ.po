@@ -1,0 +1,3144 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Wargus\n"
+"Language: cs\n"
+
+#: buttons.lua:49 human/buttons.lua:304 human/buttons.lua:351
+#: orc/buttons.lua:327 orc/buttons.lua:374
+msgid "~<ESC~> CANCEL"
+msgstr "~<ESC~> Zrušit"
+
+#: buttons.lua:54
+msgid "~<ESC~> CANCEL UPGRADE"
+msgstr "~<ESC~> Zrušit vylepšení"
+
+#: buttons.lua:59
+msgid "~<ESC~> CANCEL UNIT TRAINING"
+msgstr "~<ESC~> Zrušit výrobu jednotky"
+
+#: buttons.lua:64
+msgid "~<ESC~> CANCEL CONSTRUCTION"
+msgstr "~<ESC~> Zrušit výstavbu"
+
+#: database.lua:489 menus/campaign.lua:69
+msgid "Objectives:"
+msgstr "Cíle:"
+
+#: database.lua:560
+msgid "Combat Casualties"
+msgstr "Ztráty v boji"
+
+#: database.lua:561
+msgid "Infantry"
+msgstr "Pěchota"
+
+#: database.lua:562
+msgid "Artillery"
+msgstr "Dělostřelectvo"
+
+#: database.lua:563
+msgid "Cavalry"
+msgstr "Jízda"
+
+#: database.lua:713 menus/campaign.lua:85 menus/campaign.lua:214
+#: menus/credits.lua:166 menus/results.lua:408
+msgid "~!Continue"
+msgstr "~!Pokračovat"
+
+#: database.lua:721
+msgid "E~!xit"
+msgstr "K~!onec"
+
+#: editor.lua:47
+msgid "Human Land Units"
+msgstr "Lidské pozemní jednotky"
+
+#: editor.lua:58
+msgid "Human Sea Units"
+msgstr "Lidské námořnictvo"
+
+#: editor.lua:65
+msgid "Human Air Units"
+msgstr "Lidské vzdušné jednotky"
+
+#: editor.lua:69
+msgid "Human Land Buildings"
+msgstr "Lidské budovy"
+
+#: editor.lua:86
+msgid "Human Shore Buildings"
+msgstr "Lidské přístavní budovy"
+
+#: editor.lua:92
+msgid "Human Heroes"
+msgstr "Lidští hrdinové"
+
+#: editor.lua:103
+msgid "Orc Land Units"
+msgstr "Orkské pozemní jednotky"
+
+#: editor.lua:114
+msgid "Orc Sea Units"
+msgstr "Orkské námořnictvo"
+
+#: editor.lua:121
+msgid "Orc Air Units"
+msgstr "Orkské vzdušné jendotky"
+
+#: editor.lua:126
+msgid "Orc Land Buildings"
+msgstr "Orkské budovy"
+
+#: editor.lua:143
+msgid "Orc Shore Buildings"
+msgstr "Orkské přístavní budovy"
+
+#: editor.lua:149
+msgid "Orc Heroes"
+msgstr "Orkští hrdinové"
+
+#: editor.lua:161
+msgid "Neutral Buildings"
+msgstr "Neutrální budovy"
+
+#: editor.lua:168
+msgid "Neutral Units"
+msgstr "Neutrální jednotky"
+
+#: editor.lua:236 menus/help.lua:85
+msgid "Keystroke Help Menu"
+msgstr "Nápověda klávesnice"
+
+#: editor.lua:237 menus/endscenario.lua:16 menus/help.lua:9 menus/help.lua:86
+#: menus/options.lua:825 menus/options.lua:860
+msgid "Previous (~<Esc~>)"
+msgstr "Předešlé (~<Esc~>)"
+
+#: guichan.lua:817
+msgid "-Destroy the enemy"
+msgstr "-Znič nepřítele"
+
+#: guichan.lua:838 guichan.lua:1152 guichan.lua:1157 guichan.lua:1158
+#: guichan.lua:1160 menus/network.lua:208 menus/network.lua:217
+#: menus/network.lua:223 menus/network.lua:578 menus/network.lua:589
+#: menus/network.lua:599 stratagus.lua:105 wc2.lua:148
+msgid "Map Default"
+msgstr "Defaultní Mapa"
+
+#: guichan.lua:930
+msgid "Nation of Stromgarde"
+msgstr "Národ Stormgard"
+
+#: guichan.lua:932
+msgid "Nation of Azeroth"
+msgstr "Národ Azerothu"
+
+#: guichan.lua:934
+msgid "Nation of Kul Tiras"
+msgstr "Národ Kul Tiranu"
+
+#: guichan.lua:936
+msgid "Nation of Dalaran"
+msgstr "Národ Dalaranu"
+
+#: guichan.lua:938
+msgid "Nation of Alterac"
+msgstr "Národ Alteracu"
+
+#: guichan.lua:940
+msgid "Nation of Gilneas"
+msgstr "Národ Gilneasu"
+
+#: guichan.lua:942
+msgid "Nation of Lordaeron"
+msgstr "Národ Lordaeronu"
+
+#: guichan.lua:944
+msgid "Alliance Traitors"
+msgstr "Zrádci Aliance"
+
+#: guichan.lua:948
+msgid "Blackrock Clan"
+msgstr "Klan Blackrock"
+
+#: guichan.lua:950
+msgid "Stormreaver Clan"
+msgstr "Klan Stormreaver"
+
+#: guichan.lua:952
+msgid "Bleeding Hollow Clan"
+msgstr "Klan Bleeding Hollow"
+
+#: guichan.lua:954
+msgid "Twilight's Hammer Clan"
+msgstr "Klan Twilight's Hammer"
+
+#: guichan.lua:956
+msgid "Burning Blade Clan"
+msgstr "Klan Burning Blade"
+
+#: guichan.lua:958
+msgid "Black Tooth Grin Clan"
+msgstr "Klan Black Tooth Grin"
+
+#: guichan.lua:960
+msgid "Dragonmaw Clan"
+msgstr "Klan Dragonmaw"
+
+#: guichan.lua:962
+msgid "Laughing Skull Clan"
+msgstr "Klan Laughing Skull"
+
+#: guichan.lua:1044
+msgid "Select scenario"
+msgstr "Vyber scénář"
+
+#: guichan.lua:1071 guichan.lua:1676 menus/diplomacy.lua:118
+#: menus/editor.lua:40 menus/editor.lua:85 menus/editor.lua:111
+#: menus/editor.lua:151 menus/editor.lua:231 menus/editor.lua:392
+#: menus/editor.lua:438 menus/endscenario.lua:30 menus/endscenario.lua:44
+#: menus/endscenario.lua:58 menus/endscenario.lua:72 menus/load.lua:61
+#: menus/network.lua:325 menus/network.lua:409 menus/network.lua:480
+#: menus/network.lua:506 menus/network.lua:530 menus/network.lua:727
+#: menus/network.lua:798 menus/options.lua:179 menus/options.lua:431
+#: menus/options.lua:546 menus/options.lua:636 menus/options.lua:783
+#: menus/replay.lua:38 menus/replay.lua:80 menus/save.lua:89
+msgid "Cancel (~<Esc~>)"
+msgstr "Zruš (~<Esc~>)"
+
+#: guichan.lua:1091
+msgid "~<Single Player~>"
+msgstr "~<Jeden hráč~>"
+
+#: guichan.lua:1093
+msgid "~!Standard Game"
+msgstr "~!Normální hra"
+
+#: guichan.lua:1095
+msgid "~!Campaign Game"
+msgstr "~!Kampaň"
+
+#: guichan.lua:1097
+msgid "~!Load Game"
+msgstr "~!Nahrát"
+
+#: guichan.lua:1099 guichan.lua:1731 menus/campaign.lua:337
+#: menus/network.lua:940
+msgid "Previous Menu (~<Esc~>)"
+msgstr "Předchozí menu (~<Esc~>)"
+
+#: guichan.lua:1112
+msgid "Standard Game"
+msgstr "Standartní hra"
+
+#: guichan.lua:1127
+msgid "~!Cancel"
+msgstr "~!Zrušit"
+
+#: guichan.lua:1150
+msgid "~red~Red"
+msgstr "~red~Červený"
+
+#: guichan.lua:1150
+msgid "~blue~Blue"
+msgstr "~blue~Modrý"
+
+#: guichan.lua:1150
+msgid "~green~Green"
+msgstr "~green~Zelený"
+
+#: guichan.lua:1150
+msgid "~violet~Violet"
+msgstr "~violet~Fialový"
+
+#: guichan.lua:1150
+msgid "~orange~Orange"
+msgstr "~orange~Oranžový"
+
+#: guichan.lua:1150
+msgid "~black~Black"
+msgstr "~black~Černý"
+
+#: guichan.lua:1151
+msgid "~white~White"
+msgstr "~white~Bílý"
+
+#: guichan.lua:1151
+msgid "~yellow~Yellow"
+msgstr "~yellow~Žlutý"
+
+#: guichan.lua:1152 menus/editor.lua:319 menus/network.lua:208
+#: menus/network.lua:578 wc2.lua:33
+msgid "Human"
+msgstr "Lidé"
+
+#: guichan.lua:1152 menus/editor.lua:319 menus/network.lua:208
+#: menus/network.lua:578 wc2.lua:37
+msgid "Orc"
+msgstr "Ork"
+
+#: guichan.lua:1152
+msgid "Random"
+msgstr "Náhodný"
+
+#: guichan.lua:1154 menus/network.lua:122
+msgid "Player"
+msgstr "Hráč"
+
+#: guichan.lua:1154 menus/editor.lua:317
+msgid "Computer"
+msgstr "Počítač"
+
+#: guichan.lua:1154 menus/editor.lua:317
+msgid "Rescue-passive"
+msgstr "Záchrana-pasivní"
+
+#: guichan.lua:1154 menus/editor.lua:317
+msgid "Rescue-active"
+msgstr "Záchrana-aktivní"
+
+#: guichan.lua:1154
+msgid "None"
+msgstr "Nic"
+
+#: menus/network.lua:203 menus/network.lua:574
+msgid "Explored"
+msgstr "Prozkoumaný"
+
+#: guichan.lua:1155
+msgid "Revealed"
+msgstr "Odhalený"
+
+#: guichan.lua:1156
+msgid "Use map settings"
+msgstr "Použít nastavení mapy"
+
+#: guichan.lua:1156
+msgid "Melee"
+msgstr "Bitva"
+
+#: guichan.lua:1156
+msgid "Free for all"
+msgstr "Všichni proti všem"
+
+#: guichan.lua:1156
+msgid "Top vs bottom"
+msgstr "Vršek proti spodku"
+
+#: guichan.lua:1156
+msgid "Left vs right"
+msgstr "Levá proti pravé"
+
+#: guichan.lua:1156
+msgid "Man vs Machine"
+msgstr "Člověk proti počítači"
+
+#: guichan.lua:1157 menus/editor.lua:8 menus/editor.lua:422
+msgid "Summer"
+msgstr "Léto"
+
+#: guichan.lua:1157 menus/editor.lua:8 menus/editor.lua:422
+msgid "Swamp"
+msgstr "Močály"
+
+#: guichan.lua:1157 menus/editor.lua:8 menus/editor.lua:422
+msgid "Wasteland"
+msgstr "Pustiny"
+
+#: guichan.lua:1157 menus/editor.lua:8 menus/editor.lua:422
+msgid "Winter"
+msgstr "Zima"
+
+#: guichan.lua:1158 menus/network.lua:217 menus/network.lua:589
+msgid "One Peasant Only"
+msgstr "Pouze stavitel"
+
+#: guichan.lua:1159 menus/campaign.lua:314
+msgid "Easy"
+msgstr "Lehká"
+
+#: guichan.lua:1159 menus/campaign.lua:314
+msgid "Normal"
+msgstr "Střední"
+
+#: guichan.lua:1159 menus/campaign.lua:314
+msgid "Hard"
+msgstr "Těžká"
+
+#: guichan.lua:1159 menus/campaign.lua:314
+msgid "Nightmare"
+msgstr "Noční můra"
+
+#: guichan.lua:1159 menus/campaign.lua:314
+msgid "Hell"
+msgstr "Peklo"
+
+#: guichan.lua:1160 menus/network.lua:223 menus/network.lua:599
+msgid "Low"
+msgstr "Málo"
+
+#: guichan.lua:1160 menus/network.lua:223 menus/network.lua:599
+msgid "Medium"
+msgstr "Středně"
+
+#: guichan.lua:1160 menus/network.lua:223 menus/network.lua:599
+msgid "High"
+msgstr "Hodně"
+
+#: guichan.lua:1160
+msgid "Quick Start"
+msgstr "Rychlý start"
+
+#: guichan.lua:1174
+msgid "~<Single Player Game Setup~>"
+msgstr "~<Nastavení hry jednoho hráče~>"
+
+#: guichan.lua:1185 menus/network.lua:53
+msgid "Error:"
+msgstr "Chyba:"
+
+#: guichan.lua:1257
+msgid "Scenario:"
+msgstr "Scénář:"
+
+#: guichan.lua:1262
+msgid "S~!elect Scenario"
+msgstr "V~!ybrat Scénář"
+
+#: guichan.lua:1271 menus/network.lua:639
+msgid "~!Start Game"
+msgstr "~!Začít hru"
+
+#: guichan.lua:1277
+msgid "Need more than 1 team"
+msgstr "Potřebuješ více než 1 tým"
+
+#: guichan.lua:1279
+msgid "No players selected"
+msgstr "Nevybrán žádný hráč"
+
+#: guichan.lua:1281
+msgid "Need at least 1 person player"
+msgstr "1 hráč musí být člověk"
+
+#: guichan.lua:1283
+msgid "Need at least 2 players"
+msgstr "Potřebuješ alespoň 2 hráče"
+
+#: guichan.lua:1369
+msgid "~<Color:~>"
+msgstr "~<Barva:~>"
+
+#: guichan.lua:1390
+msgid "~<Type:~>"
+msgstr "~<Typ:~>"
+
+#: guichan.lua:1413
+msgid "~<Race:~>"
+msgstr "~<Rasa:~>"
+
+#: guichan.lua:1434
+msgid "~<Teams:~>"
+msgstr "~<Týmy:~>"
+
+#: guichan.lua:1450
+msgid "~<AI Script:~>"
+msgstr "~<Skript UI:~>"
+
+#: guichan.lua:1498
+msgid "~!Cancel Game"
+msgstr "~!Zrušit hru"
+
+#: guichan.lua:1512
+msgid "~<Game Type:~>"
+msgstr "~<Typ hry:~>"
+
+#: guichan.lua:1524
+msgid "~<Resources:~>"
+msgstr "~<Zdroje:~>"
+
+#: guichan.lua:1536 menus/campaign.lua:324
+msgid "~<AI Difficulty:~>"
+msgstr "~<Obtížnost UI:~>"
+
+#: guichan.lua:1549
+msgid "~<Tileset:~>"
+msgstr "~<Krajina:~>"
+
+#: guichan.lua:1560
+msgid "~<Units:~>"
+msgstr "~<Jednotky:~>"
+
+#: guichan.lua:1605 menus/options.lua:846
+msgid " V"
+msgstr " V"
+
+#: guichan.lua:1607
+msgid "~!Single Player Game"
+msgstr "~!Hra jednoho hráče"
+
+#: guichan.lua:1609
+msgid "~!Multi Player Game"
+msgstr "~!Hra více hráčů"
+
+#: guichan.lua:1611
+msgid "~!Replay Game"
+msgstr "~!Přehrát záznam"
+
+#: guichan.lua:1613
+msgid "~!Options"
+msgstr "~!Nastavení"
+
+#: guichan.lua:1615
+msgid "~!Load Mod"
+msgstr "~!Načíst Mód"
+
+#: guichan.lua:1617
+msgid "Map ~!Editor"
+msgstr "Mapový ~!Editor"
+
+#: guichan.lua:1619
+msgid "S~!how Credits"
+msgstr "U~!kaž titulky"
+
+#: guichan.lua:1621 menus/endscenario.lua:14 menus/endscenario.lua:70
+msgid "E~!xit Program"
+msgstr "O~!pusť Program"
+
+#: guichan.lua:1661
+msgid "Load Mod"
+msgstr "Načti mód"
+
+#: human/buttons.lua:41 human/buttons.lua:513 orc/buttons.lua:34
+#: orc/buttons.lua:534
+msgid "~!MOVE"
+msgstr "~!Pohyb"
+
+#: human/buttons.lua:52 human/buttons.lua:64 human/buttons.lua:72
+#: human/buttons.lua:520 orc/buttons.lua:45 orc/buttons.lua:57
+#: orc/buttons.lua:65 orc/buttons.lua:540
+msgid "~!STOP"
+msgstr "~!Stůj"
+
+#: human/buttons.lua:79 human/buttons.lua:89 human/buttons.lua:97
+#: human/buttons.lua:104 human/buttons.lua:110 human/buttons.lua:116
+#: human/buttons.lua:547 human/buttons.lua:553 human/buttons.lua:559
+#: orc/buttons.lua:72 orc/buttons.lua:83 orc/buttons.lua:91 orc/buttons.lua:98
+#: orc/buttons.lua:104 orc/buttons.lua:110 orc/buttons.lua:116
+#: orc/buttons.lua:122 orc/buttons.lua:566 orc/buttons.lua:572
+#: orc/buttons.lua:578
+msgid "~!ATTACK"
+msgstr "~!Útok"
+
+#: human/buttons.lua:122 human/buttons.lua:131 human/buttons.lua:564
+#: orc/buttons.lua:128 orc/buttons.lua:137 orc/buttons.lua:583
+msgid "~!PATROL"
+msgstr "~!Hlídej"
+
+#: human/buttons.lua:139 orc/buttons.lua:145
+msgid "E~!XPLORE"
+msgstr "P~!růzkum"
+
+#: human/buttons.lua:144 orc/buttons.lua:150
+msgid "S~!TAND GROUND"
+msgstr "H~!lídej tady"
+
+#: human/buttons.lua:153 orc/buttons.lua:159
+msgid "ATTACK ~!GROUND"
+msgstr "Zaútoč ~!tady"
+
+#: human/buttons.lua:159 orc/buttons.lua:165
+msgid "~!DEMOLISH"
+msgstr "~!Znič"
+
+#: human/buttons.lua:167
+msgid "HOLY ~!VISION"
+msgstr "Svaté ~!vidění"
+
+#: human/buttons.lua:174
+msgid "~!HEALING (per 1 HP)"
+msgstr "~!Vyleč (za 1 HP)"
+
+#: human/buttons.lua:181
+msgid "~!EXORCISM"
+msgstr "~!Exorcismus"
+
+#: human/buttons.lua:189
+msgid "LIGHTNING ~!ATTACK"
+msgstr "Bleskový ~!útok"
+
+#: human/buttons.lua:195
+msgid "~!FIREBALL"
+msgstr "~!Ohnivá koule"
+
+#: human/buttons.lua:201
+msgid "SL~!OW"
+msgstr "Zp~!omalení"
+
+#: human/buttons.lua:207
+msgid "F~!LAME SHIELD"
+msgstr "O~!hnivý štít"
+
+#: human/buttons.lua:213
+msgid "~!INVISIBILITY"
+msgstr "~!Neviditelnost"
+
+#: human/buttons.lua:219
+msgid "~!POLYMORPH"
+msgstr "~!Proměna"
+
+#: human/buttons.lua:225
+msgid "~!BLIZZARD"
+msgstr "~!Ledová bouře"
+
+#: human/buttons.lua:232 orc/buttons.lua:255
+msgid "~!REPAIR"
+msgstr "~!Oprav"
+
+#: human/buttons.lua:237 orc/buttons.lua:260
+msgid "~!HARVEST LUMBER/MINE GOLD"
+msgstr "~!Těž Dřevo/Zlato"
+
+#: human/buttons.lua:242 human/buttons.lua:542 orc/buttons.lua:265
+#: orc/buttons.lua:561
+msgid "RETURN WITH ~!GOODS"
+msgstr "Vrať se se ~!zdroji"
+
+#: human/buttons.lua:249 orc/buttons.lua:272
+msgid "~!BUILD BASIC STRUCTURE"
+msgstr "~!Stav základní stavby"
+
+#: human/buttons.lua:255 orc/buttons.lua:278
+msgid "BUILD AD~!VANCED STRUCTURE"
+msgstr "Stav po~!kročilé stavby"
+
+#: human/buttons.lua:262
+msgid "BUILD ~!FARM"
+msgstr "Postav ~!Farmu"
+
+#: human/buttons.lua:267 orc/buttons.lua:290
+msgid "BUILD ~!BARRACKS"
+msgstr "Postav ~!Kasárny"
+
+#: human/buttons.lua:272
+msgid "BUILD TOWN ~!HALL"
+msgstr "Postav Městskou ~!halu"
+
+#: human/buttons.lua:277
+msgid "BUILD ELVEN ~!LUMBER MILL"
+msgstr "Postav Elfí ~!pilu"
+
+#: human/buttons.lua:282 orc/buttons.lua:305
+msgid "BUILD BLACK~!SMITH"
+msgstr "Postav K~!ovárnu"
+
+#: human/buttons.lua:287 orc/buttons.lua:310
+msgid "BUILD ~!TOWER"
+msgstr "Postav ~!Věž"
+
+#: human/buttons.lua:293 human/buttons.lua:299 orc/buttons.lua:316
+#: orc/buttons.lua:322
+msgid "BUILD ~!WALL"
+msgstr "Postav ~!Zeď"
+
+#: human/buttons.lua:311 orc/buttons.lua:334
+msgid "BUILD ~!SHIPYARD"
+msgstr "Postav Př~!ístav"
+
+#: human/buttons.lua:316 orc/buttons.lua:339
+msgid "BUILD ~!FOUNDRY"
+msgstr "Postav S~!lévárnu"
+
+#: human/buttons.lua:321 orc/buttons.lua:344
+msgid "BUILD ~!REFINERY"
+msgstr "Postav ~!Rafinérii"
+
+#: human/buttons.lua:326
+msgid "BUILD GNOMISH ~!INVENTOR"
+msgstr "Postav Gnomskou ~!dílnu"
+
+#: human/buttons.lua:331
+msgid "BUILD ST~!ABLES"
+msgstr "Postav ~!Stáje"
+
+#: human/buttons.lua:336
+msgid "BUILD ~!MAGE TOWER"
+msgstr "Postav ~!Magickou věž"
+
+#: human/buttons.lua:341
+msgid "BUILD ~!CHURCH"
+msgstr "Postav Kos~!tel"
+
+#: human/buttons.lua:346
+msgid "BUILD ~!GRYPHON AVIARY"
+msgstr "Postav ~!Gryffí hnízdo"
+
+#: human/buttons.lua:359 orc/buttons.lua:382
+msgid "TRAIN ~!CRITTER"
+msgstr "Vycvič ~!Zvířátko"
+
+#: human/buttons.lua:366
+msgid "TRAIN ~!PEASANT"
+msgstr "Vycvič ~!Sedláka"
+
+#: human/buttons.lua:374
+msgid "UPGRADE TO ~!KEEP"
+msgstr "Vylepši na ~!Pevnost"
+
+#: human/buttons.lua:380
+msgid "UPGRADE TO ~!CASTLE"
+msgstr "Vylepši na ~!Hrad"
+
+#: human/buttons.lua:387 orc/buttons.lua:410
+msgid "SET ~!HARVEST LUMBER/MINE GOLD"
+msgstr "Nastav Těž~!ba dřeva/zlata"
+
+#: human/buttons.lua:392 human/buttons.lua:571 orc/buttons.lua:415
+#: orc/buttons.lua:590
+msgid "SET ~!MOVE"
+msgstr "Nastav ~!Pohyb"
+
+#: human/buttons.lua:398 human/buttons.lua:576 orc/buttons.lua:422
+#: orc/buttons.lua:595
+msgid "SET ~!ZTOP"
+msgstr "Nastav ~!Stůj"
+
+#: human/buttons.lua:404 human/buttons.lua:581 orc/buttons.lua:429
+#: orc/buttons.lua:600
+msgid "S~!ET ATTACK"
+msgstr "Nastav Ú~!tok"
+
+#. What is Minuteman in W? ;_°
+#: human/buttons.lua:412
+msgid "TRAIN ~!MINUTEMAN"
+msgstr "Vycvič ~!Milice"
+
+#: human/buttons.lua:417
+msgid "TRAIN ~!FOOTMAN"
+msgstr "Vycvič ~!Pěšáka"
+
+#: human/buttons.lua:422
+msgid "TRAIN ~!ARCHER"
+msgstr "Vycvič ~!Lučišníka"
+
+#: human/buttons.lua:427
+msgid "TRAIN ~!RANGER"
+msgstr "Vycvič ~!Hraničáře"
+
+#: human/buttons.lua:432
+msgid "BUILD ~!BALLISTA"
+msgstr "Vyrob ~!Balistu"
+
+#: human/buttons.lua:437
+msgid "TRAIN ~!KNIGHT"
+msgstr "Vycvič ~!Rytíře"
+
+#: human/buttons.lua:442
+msgid "TRAIN ~!PALADIN"
+msgstr "Vycvič P~!aladina"
+
+#: human/buttons.lua:447
+msgid "BUILD GNOMISH ~!FLYING MACHINE"
+msgstr "Vyrob ~!Gnomský větroplach"
+
+#: human/buttons.lua:452
+msgid "TRAIN ~!DWARVEN DEMOLITION SQUAD"
+msgstr "Vycvič ~!Demoliční tým"
+
+#: human/buttons.lua:457
+msgid "~!TRAIN MAGE"
+msgstr "~!Vycvič Mága"
+
+#: human/buttons.lua:462
+msgid "TRAIN ~!GRYPHON RIDER"
+msgstr "Vycvič ~!Jezdce na Gryffovi"
+
+#: human/buttons.lua:467 orc/buttons.lua:488
+msgid "BUILD ~!OIL TANKER"
+msgstr "Vyrob T~!anker"
+
+#: human/buttons.lua:472 orc/buttons.lua:493
+msgid "BUILD ~!DESTROYER"
+msgstr "Vyrob T~!orpédoborce"
+
+#: human/buttons.lua:477 orc/buttons.lua:498
+msgid "BUILD ~!TRANSPORT"
+msgstr "Vyrob ~!Transportér"
+
+#: human/buttons.lua:482
+msgid "BUILD GNOMISH ~!SUBMARINE"
+msgstr "Vyrob Gnomskou ~!ponorku"
+
+#: human/buttons.lua:487
+msgid "BUILD ~!BATTLESHIP"
+msgstr "Vyrob ~!Bitevní loď"
+
+#: human/buttons.lua:494 orc/buttons.lua:515
+msgid "SET ~!HAUL OIL"
+msgstr "Nastav ~!dopravu ropy"
+
+#: human/buttons.lua:501 orc/buttons.lua:522
+msgid "UPGRADE TO ~!GUARD TOWER"
+msgstr "Vylepši na ~!Strážní věž"
+
+#: human/buttons.lua:506 orc/buttons.lua:527
+msgid "UPGRADE TO ~!CANNON TOWER"
+msgstr "Vylepši na ~!Dělostřeleckou věž"
+
+#: human/buttons.lua:527 orc/buttons.lua:546
+msgid "~!UNLOAD"
+msgstr "~!Vylož"
+
+#: human/buttons.lua:532 orc/buttons.lua:551
+msgid "~!BUILD OIL PLATFORM"
+msgstr "~!Postav ropnou plošinu"
+
+#: human/buttons.lua:537 orc/buttons.lua:556
+msgid "~!HAUL OIL"
+msgstr "~!Doprav ropu"
+
+#: human/buttons.lua:591 human/buttons.lua:597
+msgid "UPGRADE S~!WORDS (Damage +2)"
+msgstr "Vylepši ~!čepel (Zranění +2)"
+
+#: human/buttons.lua:603 human/buttons.lua:609 orc/buttons.lua:622
+#: orc/buttons.lua:628
+msgid "UPGRADE ~!SHIELDS (Armor +2)"
+msgstr "Vylepši ~!štíty (Zbroj +2)"
+
+#: human/buttons.lua:615 human/buttons.lua:621
+msgid "UPGRADE ~!BALLISTA (Damage +15)"
+msgstr "Vylepši ~!balisty (Zranění +15)"
+
+#: human/buttons.lua:627 human/buttons.lua:633
+msgid "~!UPGRADE ARROWS (Damage +1)"
+msgstr "~!Vylepši šípy (Zranění +1)"
+
+#: human/buttons.lua:639
+msgid "ELVEN ~!RANGER TRAINING"
+msgstr "Trénování elfích ~!hraničářů"
+
+#: human/buttons.lua:645
+msgid "RANGER ~!SCOUTING (Sight:9)"
+msgstr "~!Přesný zrak (Dohled:9)"
+
+#: human/buttons.lua:651
+msgid "RESEARCH ~!LONGBOW (Range +1)"
+msgstr "Výzkum~!dlouhého luku (Dostřel +1)"
+
+#: human/buttons.lua:657
+msgid "RANGER ~!MARKSMANSHIP (Damage +3)"
+msgstr "~!Ostrostřelectví (Zranění +3)"
+
+#: human/buttons.lua:663
+msgid "UPGRADES KNIGHTS TO ~!PALADINS"
+msgstr "Vylepši rytíře na ~!Paladiny"
+
+#: human/buttons.lua:669
+msgid "RESEARCH ~!HEALING"
+msgstr "Vyzkoumej ~!Léčení"
+
+#: human/buttons.lua:675
+msgid "RESEARCH ~!EXORCISM"
+msgstr "Vyzkoumej ~!Exorcismus"
+
+#: human/buttons.lua:681
+msgid "RESEARCH SL~!OW"
+msgstr "Vyzkoumej ~!Zpomalení"
+
+#: human/buttons.lua:687
+msgid "RESEARCH F~!LAME SHIELD"
+msgstr "Vyzkoumej O~!hnivý štít"
+
+#: human/buttons.lua:693
+msgid "RESEARCH ~!INVISIBILITY"
+msgstr "Vyzkoumej ~!Neviditelnost"
+
+#: human/buttons.lua:699
+msgid "RESEARCH ~!POLYMORPH"
+msgstr "Vyzkoumej ~!Proměnu"
+
+#: human/buttons.lua:705
+msgid "RESEARCH ~!BLIZZARD"
+msgstr "Vyzkoumej ~!Bouři"
+
+#: human/buttons.lua:711 human/buttons.lua:717 orc/buttons.lua:730
+#: orc/buttons.lua:736
+msgid "UPGRADE ~!CANNONS (Damage +5)"
+msgstr "Vylepši ~!Děla (Zranění +5)"
+
+#: human/buttons.lua:723 human/buttons.lua:729 orc/buttons.lua:742
+#: orc/buttons.lua:748
+msgid "UPGRADE SHIP ~!ARMOR (Armor +5)"
+msgstr "Vylepši ~!Trup lodi (Zbroj +5)"
+
+#: human/campaign1.lua:34 human/campaign2.lua:35 orc/campaign1.lua:34
+#: orc/campaign2.lua:35
+msgid "Act I"
+msgstr "Dějství 1"
+
+#: human/campaign1.lua:34
+msgid "The Shores of Lordareon"
+msgstr "Břehy Lordareonu"
+
+#: human/campaign1.lua:40 human/campaign2.lua:40 orc/campaign1.lua:40
+#: orc/campaign2.lua:40
+msgid "Act II"
+msgstr "Dějství 2"
+
+#: human/campaign1.lua:40 orc/campaign1.lua:40
+msgid "Khaz Modan"
+msgstr "Khaz Modan"
+
+#: human/campaign1.lua:46 human/campaign2.lua:45 orc/campaign1.lua:46
+#: orc/campaign2.lua:45
+msgid "Act III"
+msgstr "Dějství 3"
+
+#: human/campaign1.lua:46
+msgid "The Northlands"
+msgstr "Severní země"
+
+#: human/campaign1.lua:53 human/campaign2.lua:50 orc/campaign1.lua:53
+#: orc/campaign2.lua:50
+msgid "Act IV"
+msgstr "Dějství 4"
+
+#: human/campaign1.lua:53
+msgid "Return to Azeroth"
+msgstr "Návrat na Azeroth"
+
+#: human/campaign2.lua:35
+msgid "A Time for Heroes"
+msgstr "Čas na hrdiny"
+
+#: human/campaign2.lua:40
+msgid "Draenor, The Red World"
+msgstr "Draenor, Rudý Svět"
+
+#: human/campaign2.lua:45
+msgid "War in the Shadows"
+msgstr "Válka ve stínech"
+
+#: human/campaign2.lua:50
+msgid "The Measure of Valor"
+msgstr "Míra udatnosti"
+
+#: human/ui_pandora.lua:309 human/ui_tales.lua:286 orc/ui_pandora.lua:309
+msgid "Menu (~<F10~>)"
+msgstr "Menu (~<F10~>)"
+
+#: human/ui_pandora.lua:322 human/ui_tales.lua:299 orc/ui_pandora.lua:322
+msgid "Menu"
+msgstr "Menu"
+
+#: human/ui_pandora.lua:328 human/ui_tales.lua:305 menus/diplomacy.lua:5
+#: orc/ui_pandora.lua:328
+msgid "Diplomacy"
+msgstr "Diplomacie"
+
+#: human/units.lua:36 menus/results.lua:10
+msgid "Footman"
+msgstr "Pěšák"
+
+#: human/units.lua:65 menus/results.lua:8
+msgid "Peasant"
+msgstr "Sedlák"
+
+#: human/units.lua:111
+msgid "Minuteman"
+msgstr "Minuteman"
+
+#: human/units.lua:141 human/units.lua:170
+msgid "Ballista"
+msgstr "Balista"
+
+#: human/units.lua:199 menus/results.lua:16 menus/results.lua:38
+msgid "Knight"
+msgstr "Rytíř"
+
+#: human/units.lua:228
+msgid "Archer"
+msgstr "Střelec"
+
+#: human/units.lua:257
+msgid "Mage"
+msgstr "Mág"
+
+#: human/units.lua:294
+msgid "Paladin"
+msgstr "Paladin"
+
+#: human/units.lua:326
+msgid "Dwarves"
+msgstr "Trpaslíci"
+
+#: human/units.lua:356
+msgid "Ranger"
+msgstr "Hraničář"
+
+#: human/units.lua:386
+msgid "Alleria"
+msgstr "Alleria"
+
+#: human/units.lua:415
+msgid "Gryphon Rider"
+msgstr "Jezdec na gryffovi"
+
+#: human/units.lua:446
+msgid "Kurdan and Sky'ree"
+msgstr "Kurdan a Sky´ree"
+
+#: human/units.lua:477
+msgid "Khadgar"
+msgstr "Khadgar"
+
+#: human/units.lua:514 orc/units.lua:495
+msgid "Oil tanker"
+msgstr "Ropný tanker"
+
+#: human/units.lua:551 orc/units.lua:529
+msgid "Transport"
+msgstr "Převozník"
+
+#: human/units.lua:581
+msgid "Elven Destroyer"
+msgstr "Elfí torpédoborec"
+
+#: human/units.lua:610
+msgid "Battleship"
+msgstr "Bitevní loď"
+
+#: human/units.lua:646
+msgid "Gnomish Submarine"
+msgstr "Gnomská ponorka"
+
+#: human/units.lua:676
+msgid "Gnomish Flying Machine"
+msgstr "Gnomský větroplach"
+
+#: human/units.lua:704
+msgid "Turalyon"
+msgstr "Tyralyon"
+
+#: human/units.lua:735
+msgid "Danath"
+msgstr "Danath"
+
+#: human/units.lua:764
+msgid "Lothar"
+msgstr "Lothar"
+
+#: human/units.lua:796
+msgid "Uther Lightbringer"
+msgstr "Uther Lightbringer"
+
+#: human/units.lua:834
+msgid "Farm"
+msgstr "Farma"
+
+#: human/units.lua:867 orc/units.lua:965
+msgid "Barracks"
+msgstr "Kasárny"
+
+#: human/units.lua:900
+msgid "Church"
+msgstr "Kostel"
+
+#: human/units.lua:932
+msgid "Scout Tower"
+msgstr "Rozhledna"
+
+#: human/units.lua:967
+msgid "Stables"
+msgstr "Stáje"
+
+#: human/units.lua:999
+msgid "Gnomish Inventor"
+msgstr "Gnomská dílna"
+
+#: human/units.lua:1031
+msgid "Gryphon Aviary"
+msgstr "Gryffí hnízdo"
+
+#: human/units.lua:1063 orc/units.lua:1161
+msgid "Shipyard"
+msgstr "Přístav"
+
+#: human/units.lua:1102
+msgid "Elven Lumber Mill"
+msgstr "Elfí pila"
+
+#: human/units.lua:1136 orc/units.lua:1271
+msgid "Foundry"
+msgstr "Slévárna"
+
+#: human/units.lua:1169
+msgid "Town Hall"
+msgstr "Mětská hala"
+
+#: human/units.lua:1206
+msgid "Mage Tower"
+msgstr "Magická věž"
+
+#: human/units.lua:1238 orc/units.lua:1336
+msgid "Blacksmith"
+msgstr "Kovárna"
+
+#: human/units.lua:1270 orc/units.lua:1368
+msgid "Refinery"
+msgstr "Rafinérie"
+
+#: human/units.lua:1310 orc/units.lua:1409
+msgid "Oil Platform"
+msgstr "Ropná plošina"
+
+#: human/units.lua:1342
+msgid "Keep"
+msgstr "Pevnost"
+
+#: human/units.lua:1380
+msgid "Castle"
+msgstr "Hrad"
+
+#: human/units.lua:1412 orc/units.lua:1511
+msgid "Start Location"
+msgstr "Startovní lokace"
+
+#: human/units.lua:1439 human/units.lua:1473 orc/units.lua:1538
+#: orc/units.lua:1574
+msgid "Guard Tower"
+msgstr "Střelecká věž"
+
+#: human/units.lua:1507 human/units.lua:1543 orc/units.lua:1610
+#: orc/units.lua:1646
+msgid "Cannon Tower"
+msgstr "Dělostřelecká věž"
+
+#: human/units.lua:1577 orc/units.lua:1682
+msgid "Wall"
+msgstr "Zeď"
+
+#: menus/campaign.lua:316
+msgid "~<Mission list~>"
+msgstr "~<Seznam misí~>"
+
+#: menus/campaign.lua:330
+msgid "~!Start mission"
+msgstr "~!Spusť misi"
+
+#: menus/diplomacy.lua:7
+msgid "Allied"
+msgstr "Spojenci"
+
+#: menus/diplomacy.lua:8
+msgid "Enemy"
+msgstr "Nepřátelé"
+
+#: menus/diplomacy.lua:9
+msgid "Shared Vision"
+msgstr "Sdílený pohled"
+
+#: menus/editor.lua:10
+msgid "TileSet : "
+msgstr "Typ krajiny: "
+
+#: menus/editor.lua:11
+msgid "Size :"
+msgstr "Velikost:"
+
+#: menus/editor.lua:13
+msgid "Map description :"
+msgstr "Popis mapy:"
+
+#: menus/editor.lua:27 menus/editor.lua:109
+msgid "~!New map"
+msgstr "~!Nová mapa"
+
+#: menus/editor.lua:56
+msgid "File : "
+msgstr "Soubor: "
+
+#: menus/editor.lua:59
+msgid "Players : "
+msgstr "Hráči: "
+
+#: menus/editor.lua:62
+msgid "Scenario : "
+msgstr "Scénář: "
+
+#: menus/editor.lua:65
+msgid "Size : "
+msgstr "Velikost: "
+
+#: menus/editor.lua:74
+msgid "~!Select map"
+msgstr "~!Vyber mapu"
+
+#: menus/editor.lua:84
+msgid "~!Edit map"
+msgstr "~!Edituj mapu"
+
+#: menus/editor.lua:107
+msgid "~<Map Editor~>"
+msgstr "~<Editor map~>"
+
+#: menus/editor.lua:110
+msgid "~!Load map"
+msgstr "~!Nahraj mapu"
+
+#: menus/editor.lua:120 menus/editor.lua:198
+msgid "Cannot save map to file:"
+msgstr "Nemohu uložit mapu do souboru:"
+
+#: menus/editor.lua:125 menus/editor.lua:203
+msgid "Saved map to: "
+msgstr "Mapa uložena do: "
+
+#: menus/editor.lua:139 menus/save.lua:41
+msgid "Save Game"
+msgstr "Ulož hru"
+
+#: menus/editor.lua:152 menus/editor.lua:232 menus/replay.lua:60
+#: menus/save.lua:87
+msgid "~!Save"
+msgstr "~!Ulož"
+
+#: menus/editor.lua:175 menus/editor.lua:266 menus/save.lua:21
+msgid "File exists, are you sure ?"
+msgstr "Soubor již existuje, seš si jistý ?"
+
+#: menus/editor.lua:216
+msgid "Save Resized Map"
+msgstr "Ulož změny mapy"
+
+#: menus/editor.lua:306
+msgid "Players properties"
+msgstr "Nastavení hráčů"
+
+#: menus/editor.lua:317 wc2.lua:41
+msgid "Neutral"
+msgstr "Neutrální"
+
+#: menus/editor.lua:317
+msgid "Nobody"
+msgstr "Nikdo"
+
+#: menus/editor.lua:317
+msgid "Person"
+msgstr "Osoba"
+
+#: menus/editor.lua:324
+msgid "Type"
+msgstr "Typ"
+
+#: menus/editor.lua:325
+msgid "Race"
+msgstr "Rasa"
+
+#: menus/editor.lua:326
+msgid "AI"
+msgstr "UI"
+
+#: menus/editor.lua:327
+msgid "Gold"
+msgstr "Zlato"
+
+#: menus/editor.lua:328
+msgid "Lumber"
+msgstr "Dřevo"
+
+#: menus/editor.lua:329
+msgid "Oil"
+msgstr "Ropa"
+
+#: menus/editor.lua:409
+msgid "Map properties"
+msgstr "Nastavení mapy"
+
+#: menus/editor.lua:411
+msgid "Map descritption : "
+msgstr "Popis mapy: "
+
+#: menus/editor.lua:414
+msgid "Size    : "
+msgstr "Velikost: "
+
+#: menus/editor.lua:420
+msgid "Tileset : "
+msgstr "Krajina: "
+
+#: menus/editor.lua:523
+msgid "Editor Menu"
+msgstr "Menu editoru"
+
+#: menus/editor.lua:530 menus/game.lua:39
+msgid "Save (~<F11~>)"
+msgstr "Ulož (~<F11~>)"
+
+#: menus/game.lua:41
+msgid "Load (~<F12~>)"
+msgstr "Nahraj (~<F12~>)"
+
+#: menus/editor.lua:532
+msgid "Map Properties (~<F5~>)"
+msgstr "Nastavení mapy (~<F5~>)"
+
+#: menus/editor.lua:533
+msgid "Player Properties (~<F6~>)"
+msgstr "Nastavení hráče (~<F6~>)"
+
+#: menus/editor.lua:541
+msgid "E~!xit to Menu"
+msgstr "O~!dejdi do Menu"
+
+#: menus/editor.lua:542
+msgid "Return to Editor (~<Esc~>)"
+msgstr "Vrať se do Editoru (~<Esc~>)"
+
+#: stratagus.lua:240
+msgid "gold"
+msgstr "Zlato"
+
+#: stratagus.lua:240
+msgid "wood"
+msgstr "Dřevo"
+
+#: stratagus.lua:240
+msgid "oil"
+msgstr "Ropa"
+
+#: menus/endscenario.lua:4
+msgid "End Scenario"
+msgstr "Ukonči scénář"
+
+#: menus/endscenario.lua:5 menus/endscenario.lua:28
+msgid "~!Restart Scenario"
+msgstr "~!Restartuj Scénář"
+
+#: menus/endscenario.lua:10 menus/endscenario.lua:42
+msgid "~!Surrender"
+msgstr "~!Vzdát se"
+
+#: menus/endscenario.lua:12 menus/endscenario.lua:56
+msgid "~!Quit to Menu"
+msgstr "~!Do menu"
+
+#: menus/endscenario.lua:25 menus/endscenario.lua:39 menus/endscenario.lua:53
+#: menus/endscenario.lua:67
+msgid "Are you sure you"
+msgstr "Jseš si jistý"
+
+#: menus/endscenario.lua:26
+msgid "want to restart"
+msgstr ",že chceš restartovat"
+
+#: menus/endscenario.lua:27
+msgid "the scenario?"
+msgstr "scénář?"
+
+#: menus/endscenario.lua:40
+msgid "want to withdraw"
+msgstr ",že chceš odstoupit"
+
+#: menus/endscenario.lua:41
+msgid "from the battle?"
+msgstr "z boje?"
+
+#: menus/endscenario.lua:54
+msgid "want to quit to"
+msgstr ",že chceš odejít"
+
+#: menus/endscenario.lua:55
+msgid "the main menu?"
+msgstr "do menu?"
+
+#: menus/endscenario.lua:68
+msgid "want to exit"
+msgstr ",že chceš ukončit"
+
+#: menus/endscenario.lua:69
+msgid "Stratagus?"
+msgstr "Stratagus?"
+
+#: menus/game.lua:37
+msgid "Game Menu"
+msgstr "Herní Menu"
+
+#: menus/game.lua:43
+msgid "Options (~<F5~>)"
+msgstr "Nastavení (~<F5~>)"
+
+#: menus/editor.lua:528 menus/game.lua:45
+msgid "Help (~<F1~>)"
+msgstr "Pomoc (~<F1~>)"
+
+#: menus/game.lua:47
+msgid "Scenario ~!Objectives"
+msgstr "Cíle ~!Scénáře"
+
+#: menus/game.lua:49
+msgid "~!End Scenario"
+msgstr "~!Ukončit scénář"
+
+#: menus/game.lua:51
+msgid "Return to Game (~<Esc~>)"
+msgstr "Zpátky do hry (~<Esc~>)"
+
+#: menus/help.lua:4
+msgid "Help Menu"
+msgstr "Nápověda"
+
+#: menus/help.lua:5
+msgid "Keystroke ~!Help"
+msgstr "Nápověda ~!kláves"
+
+#: menus/help.lua:7
+msgid "~!Tips"
+msgstr "~!Tipy"
+
+#: menus/help.lua:16
+msgid "- toggle full screen"
+msgstr "- zapnout full screen"
+
+#: menus/help.lua:17
+msgid "- toggle grab mouse"
+msgstr "- zapnout uchycení myši"
+
+#: menus/help.lua:18
+msgid "- mute sound"
+msgstr "- utišit zvuky"
+
+#: menus/help.lua:19
+msgid "- mute music"
+msgstr "- utišit hudbu"
+
+#: menus/help.lua:20
+msgid "- increase game speed"
+msgstr "- zvýšit rychlost hry"
+
+#: menus/help.lua:21
+msgid "- decrease game speed"
+msgstr "- snížit rychlost hry"
+
+#: menus/help.lua:22 menus/help.lua:23
+msgid "- pause game"
+msgstr "- pauza"
+
+#: menus/help.lua:24
+msgid "- make screen shot"
+msgstr "- vytvoř snímek"
+
+#: menus/help.lua:25
+msgid "- help menu"
+msgstr "- menu nápovědy"
+
+#: menus/help.lua:26
+msgid "- restart scenario"
+msgstr "- restart scénáře"
+
+#: menus/help.lua:27
+msgid "- quit to main menu"
+msgstr "- odejít do menu"
+
+#: menus/help.lua:28
+msgid "- quit game"
+msgstr "- ukončit hru"
+
+#: menus/help.lua:29
+msgid "- toggle expand map"
+msgstr "- zapnout rozšířenou mapu"
+
+#: menus/help.lua:30 menus/help.lua:52 menus/help.lua:53
+msgid "- game menu"
+msgstr "- herní menu"
+
+#: menus/help.lua:31
+msgid "- write a message"
+msgstr "- napsat zprávu"
+
+#: menus/help.lua:32
+msgid "- goto last event"
+msgstr "- poslední událost"
+
+#: menus/help.lua:33
+msgid "- hide/unhide terrain"
+msgstr "- skryj/odkryj terén"
+
+#: menus/help.lua:34
+msgid "- track unit"
+msgstr "- sleduj jednotku"
+
+#: menus/help.lua:35
+msgid "- find idle peon"
+msgstr "- najdi volného pracovníka"
+
+#: menus/help.lua:36
+msgid "- center on selected unit"
+msgstr "- vycentruj jednotku"
+
+#: menus/help.lua:37
+msgid "- next view port"
+msgstr "- další výřez"
+
+#: menus/help.lua:38
+msgid "- previous view port"
+msgstr "- předchozí výřez"
+
+#: menus/help.lua:39
+msgid "- select nothing"
+msgstr "- zruš výběr"
+
+#: menus/help.lua:40
+msgid "- select group"
+msgstr "- označ skupinu"
+
+#: menus/help.lua:41
+msgid "- center on group"
+msgstr "- vycentruj skupinu"
+
+#: menus/help.lua:42
+msgid "- define group"
+msgstr "- definuj skupinu"
+
+#: menus/help.lua:43
+msgid "- add to group"
+msgstr "- přidej do skupiny"
+
+#: menus/help.lua:44
+msgid "- add to alternate group"
+msgstr "- přidej do další skupiny"
+
+#: menus/help.lua:45
+msgid "- recall map position"
+msgstr "- resetuj pozici mapy"
+
+#: menus/help.lua:46
+msgid "- save map postition"
+msgstr "- ulož pozici mapy"
+
+#: menus/help.lua:47
+msgid "- game options"
+msgstr "- herní nastavení"
+
+#: menus/help.lua:48
+msgid "- speed options"
+msgstr "- nastavení rychlosti"
+
+#: menus/help.lua:49
+msgid "- sound options"
+msgstr "- nastavení zvuku"
+
+#: menus/help.lua:50
+msgid "- preferences"
+msgstr "- preference"
+
+#: menus/help.lua:51
+msgid "- diplomacy"
+msgstr "- diplomacie"
+
+#: menus/help.lua:54
+msgid "- save game"
+msgstr "- ulož hru"
+
+#: menus/help.lua:55
+msgid "- load game"
+msgstr "- nahraj hru"
+
+#: menus/help.lua:93
+msgid "You can select all of your currently visible units of the same type by holding down the CTRL key and selecting a unit or by \"double clicking\" on a unit."
+msgstr "Můžeš označit všechny jednotky, které právě vidíš podržením CTRL a \"dvojitým kliknutím\" na jednotku."
+
+#: menus/help.lua:94
+msgid "The more workers you have collecting resources, the faster your economy will grow."
+msgstr "Čím více máš pracovníků, tím rychlejší je přísun zdrojů."
+
+#: menus/help.lua:95
+msgid "Building more than one barracks will let you train more units faster."
+msgstr "Vybudování více kasáren ti umožní vyrábět více jednotek naráz."
+
+#: menus/help.lua:96
+msgid "Use your workers to repair damaged buildings."
+msgstr "Využívej svých pracovníků k opravě budov."
+
+#: menus/help.lua:97
+msgid "Explore your surroundings early in the game."
+msgstr "Prozkoumávej na začátku hry krajinu kolem."
+
+#: menus/help.lua:99
+msgid "You can demolish trees and rocks."
+msgstr "Můžeš ničit stromy a skály pomocí demolice."
+
+#: menus/help.lua:100
+msgid "Keep all workers working. Use ALT-I to find idle workers."
+msgstr "Nenechávej pracovníky lelkovat. Pomocí ALT-I najdeš každého lenocha."
+
+#: menus/help.lua:101
+msgid "You can make units automatically cast spells by selecting a unit, holding down CTRL and clicking on the spell icon.  CTRL click again to turn off."
+msgstr "Můžeš nastavit automatické sesílání kouzel při podržení CTRL a kliknutím na kouzlo. Zopakování tento proces zruší."
+
+#: menus/help.lua:104
+msgid "You can give an unit an order which is executed after it finishes the current work, if you hold the SHIFT key."
+msgstr "Můžeš přikázat jednotce vykonat další úkol, hned jak dokončí již stávající, stačí držet SHIFT při zadávání."
+
+#: menus/help.lua:105
+msgid "You can give way points, if you press the SHIFT key, while you click right for the move command."
+msgstr "Můžeš nastavit zastávky jednotek, když budeš při zadávání příkazu pohybu držet SHIFT."
+
+#: menus/help.lua:106
+msgid "You can order a worker to build one building after the other, if you hold the SHIFT key, while you place the building."
+msgstr "Delníkům můžeš přikázat stavet více budov hned po sobě, když při stavbě budeš držet SHIFT."
+
+#: menus/help.lua:107
+msgid "You can build many of the same building, if you hold the ALT and SHIFT keys while you place the buildings."
+msgstr "Můžeš stavět více stejných budov, když budeš držet ALT a SHIFT zatím co zadáváš budovy."
+
+#: menus/help.lua:109
+msgid "Use CTRL-V or ALT-V to cycle through the viewport configuration, you can then monitor your base and lead an attack."
+msgstr "Použij CTRL-V a ALT-V pro skákání mezi pohledy mapy, které sis uložil."
+
+#: menus/help.lua:111
+msgid "Know a useful tip?  Then add it here!"
+msgstr "Znáš další tipy? Přidej je zde!"
+
+#: menus/help.lua:118
+msgid "Tips"
+msgstr "Tipy"
+
+#: menus/help.lua:150
+msgid "Show tips at startup"
+msgstr "Ukaž tipy při spuštění"
+
+#: menus/help.lua:157
+msgid "~!Next Tip"
+msgstr "~!Další tip"
+
+#: menus/help.lua:159
+msgid "Close (~<Esc~>)"
+msgstr "Zavřít (~<Esc~>)"
+
+#: menus/load.lua:40
+msgid "Load Game"
+msgstr "Nahrát hru"
+
+#: menus/load.lua:60
+msgid "~!Load"
+msgstr "~!Nahrát"
+
+#: menus/network.lua:86
+msgid "AIs:"
+msgstr "Jako:"
+
+#: menus/network.lua:94
+msgid " AI player(s)"
+msgstr " UI hráč(i)"
+
+#: menus/network.lua:120
+msgid "Players"
+msgstr "Hráči"
+
+#: menus/network.lua:123 menus/network.lua:145
+msgid "Preparing"
+msgstr "Příprava"
+
+#: menus/network.lua:126 menus/network.lua:163
+msgid "Open slots : "
+msgstr "Otevřená pozice: "
+
+#: menus/network.lua:132
+msgid "Creator"
+msgstr "Tvůrce"
+
+#: menus/network.lua:143
+msgid "Ready"
+msgstr "Připraven"
+
+#: menus/network.lua:185
+msgid "Joining game: Map"
+msgstr "Připojuji: Mapa"
+
+#: menus/network.lua:187 menus/network.lua:552
+msgid "Map"
+msgstr "Mapa"
+
+#: menus/network.lua:188 menus/network.lua:553 menus/network.lua:748
+msgid "File:"
+msgstr "Soubor:"
+
+#: menus/network.lua:190 menus/network.lua:555 menus/network.lua:750
+msgid "Players:"
+msgstr "Hráč:"
+
+#: menus/network.lua:192 menus/network.lua:557 menus/network.lua:752
+msgid "Description:"
+msgstr "Popis:"
+
+#: menus/network.lua:195 menus/network.lua:565
+msgid "Fog of war"
+msgstr "Zakrytá mapa"
+
+#: menus/network.lua:207
+msgid "~<Your Race:~>"
+msgstr "~<Tvá rasa:~>"
+
+#: menus/network.lua:216 menus/network.lua:588 menus/results.lua:203
+msgid "Units:"
+msgstr "Jednotky:"
+
+#: menus/network.lua:222 menus/network.lua:598
+msgid "Resources:"
+msgstr "Zdroje:"
+
+#: menus/network.lua:254
+msgid "~!Ready"
+msgstr "~!Připraven"
+
+#: menus/network.lua:313 menus/network.lua:383
+msgid "Cannot reach server"
+msgstr "Nemohu se připojit"
+
+#: menus/network.lua:334
+msgid "Joining Game"
+msgstr "Připojit se do hry"
+
+#: menus/network.lua:345
+msgid "Connecting to server"
+msgstr "Připojuji se k serveru"
+
+#: menus/network.lua:351
+msgid "Connecting..."
+msgstr "Připojuji..."
+
+#: menus/network.lua:377
+msgid "Map not available"
+msgstr "Mapá není dostupná"
+
+#: menus/network.lua:387
+msgid "Server is full"
+msgstr "Server je plný"
+
+#: menus/network.lua:390
+msgid "Server gone"
+msgstr "Server zmizel"
+
+#: menus/network.lua:393
+msgid "Incompatible engine version"
+msgstr "Špatná verze zdroje"
+
+#: menus/network.lua:396
+msgid "Incompatible lua files"
+msgstr "Špatné soubory lua"
+
+#: menus/network.lua:421
+msgid "Servers: "
+msgstr "Servery: "
+
+#: menus/network.lua:441
+msgid "Co~!nnect"
+msgstr "Př~!ipojit"
+
+#: menus/network.lua:453
+msgid "~!Add server"
+msgstr "~!Přidat server"
+
+#: menus/network.lua:455
+msgid "~!Edit server"
+msgstr "~!Editovat server"
+
+#: menus/network.lua:460
+msgid "~!Delete server"
+msgstr "~!Smazat server"
+
+#: menus/network.lua:489
+msgid "Edit server"
+msgstr "Editovat server"
+
+#: menus/network.lua:490 menus/network.lua:516
+msgid "Server IP: "
+msgstr "IP serveru: "
+
+#: menus/network.lua:493 menus/network.lua:518
+msgid "Description: "
+msgstr "Popis: "
+
+#: menus/network.lua:498 menus/network.lua:522
+msgid "Invalid server name"
+msgstr "Špatné jméno serveru"
+
+#: menus/network.lua:515
+msgid "Add server"
+msgstr "Přidat server"
+
+#: menus/network.lua:550 menus/network.lua:746
+msgid "Create MultiPlayer game"
+msgstr "Vytvořit hru více hráčů"
+
+#: menus/network.lua:558
+msgid "Unknown map"
+msgstr "Neznámá mapa"
+
+#: menus/network.lua:577
+msgid "Race:"
+msgstr "Rasa:"
+
+#: menus/network.lua:608
+msgid "Dedicated AI Server:"
+msgstr "UI Server:"
+
+#: menus/network.lua:641
+msgid "Waiting for players"
+msgstr "Čekám na hráče"
+
+#: menus/network.lua:796 menus/network.lua:929 menus/network.lua:1024
+msgid "~!Create Game"
+msgstr "~!Vytvoři hru"
+
+#: menus/network.lua:824
+msgid "~<Multiplayer Network Game~>"
+msgstr "~<Síť pro více hráčů~>"
+
+#: menus/network.lua:826
+msgid "Nickname :"
+msgstr "Přezdívka :"
+
+#: menus/network.lua:829
+msgid "Password :"
+msgstr "Heslo :"
+
+#: menus/network.lua:833
+msgid "Go ~!Online"
+msgstr "Hraj ~!Online"
+
+#: menus/network.lua:850
+msgid "Sign up"
+msgstr "Přihlásit se"
+
+#: menus/network.lua:919
+msgid "~!Join Local Game"
+msgstr "~!Připoj se do lokální hry"
+
+#: menus/network.lua:957
+msgid "Users"
+msgstr "Uživatelé"
+
+#: menus/network.lua:967
+msgid "Friends"
+msgstr "Přátelé"
+
+#: menus/network.lua:976
+msgid "Channels"
+msgstr "Kanály"
+
+#: menus/network.lua:991
+msgid "Games"
+msgstr "Hry"
+
+#: menus/network.lua:1002
+msgid "Chat"
+msgstr "Chat"
+
+#: menus/network.lua:1034
+msgid "~!Join Game"
+msgstr "~!Připoj se"
+
+#: menus/network.lua:1055
+msgid "No game selected"
+msgstr "Žádná hra nevybrána"
+
+#: menus/network.lua:1061
+msgid "~!Previous Menu"
+msgstr "~!Předchozí menu"
+
+#: menus/objectives.lua:4
+msgid "Objectives"
+msgstr "Cíle"
+
+#: menus/options.lua:33
+msgid "Sound Options"
+msgstr "Nastavení zvuku"
+
+#: menus/options.lua:35
+msgid "Effects Volume"
+msgstr "Nastavení efektů"
+
+#: menus/options.lua:68
+msgid "Sound:"
+msgstr "Zvuk:"
+
+#: menus/options.lua:69 menus/options.lua:137
+msgid "On"
+msgstr "Ano"
+
+#: menus/options.lua:70 menus/options.lua:138
+msgid "Off"
+msgstr "Ne"
+
+#: menus/options.lua:99
+msgid "Music Volume"
+msgstr "Nastavení hudby"
+
+#: menus/options.lua:129
+msgid "Stereo Sound"
+msgstr "Stereo zvuk"
+
+#: menus/options.lua:136
+msgid "Music:"
+msgstr "Hudba:"
+
+#: menus/options.lua:201
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: menus/options.lua:204
+msgid "Show Hotkeys"
+msgstr "Ukaž zkratky"
+
+#: menus/options.lua:214
+msgid "Grab Mouse"
+msgstr "Chytlavá myš"
+
+#: menus/options.lua:222
+msgid "~!*Show damage"
+msgstr "~!*Ukaž zranění"
+
+#: menus/options.lua:234
+msgid "~!*Show button popups"
+msgstr "~!*Ukaž tlačítka"
+
+#: menus/options.lua:240
+msgid "Mine notifications"
+msgstr "Upozornění na důl"
+
+#: menus/options.lua:248
+msgid "Show orders"
+msgstr "Ukaž příkazy"
+
+#: menus/options.lua:264
+msgid "Mirrored buildings"
+msgstr "Zrcadlové stavění"
+
+#: menus/options.lua:272
+msgid "Show messages"
+msgstr "Ukaž zprávy"
+
+#: menus/options.lua:280
+msgid "Pause on leave"
+msgstr "Pauzni při odchodu"
+
+#: menus/options.lua:288
+msgid "~!*Enhanced effects"
+msgstr "~!*Vylepšené efekty"
+
+#: menus/options.lua:292
+msgid "Deselect in mines"
+msgstr "Zruš výběr u dolu"
+
+#: menus/options.lua:302
+msgid "Fog of War"
+msgstr "Mlha"
+
+#: menus/options.lua:313 menus/options.lua:530
+msgid "Simplified auto targ."
+msgstr "Zjednoduš zaměřování."
+
+#: menus/options.lua:323
+msgid "~!*Animated shadows"
+msgstr "~!*Animované stíny"
+
+#: menus/options.lua:334
+#, fuzzy
+msgid "rectangle"
+msgstr "obdelník"
+
+#: menus/options.lua:334
+#, fuzzy
+msgid "alpha-rectangle"
+msgstr "alfa-obdelník"
+
+#: menus/options.lua:334
+#, fuzzy
+msgid "circle"
+msgstr "kruh"
+
+#: menus/options.lua:334
+#, fuzzy
+msgid "alpha-circle"
+msgstr "alfa-kruh"
+
+#: menus/options.lua:334 stratagus.lua:415
+msgid "corners"
+msgstr "rohy"
+
+#: menus/options.lua:335
+msgid "Selection style:"
+msgstr "Styl výběru:"
+
+#: menus/options.lua:344
+msgid "single"
+msgstr "jednotně"
+
+#: menus/options.lua:344
+msgid "horizontal 1 + 1"
+msgstr "horizontální 1 + 1"
+
+#: menus/options.lua:344
+msgid "horizontal 1 + 2"
+msgstr "horizontální 1 + 2"
+
+#: menus/options.lua:344
+msgid "vertical 1 + 1"
+msgstr "vertikální 1 + 1"
+
+#: menus/options.lua:344
+msgid "quad"
+msgstr "čtyřkolka"
+
+#: menus/options.lua:345
+msgid "Viewport mode:"
+msgstr "Mód náhledu:"
+
+#: menus/options.lua:357
+msgid "Shader:"
+msgstr "Stíny:"
+
+#: menus/options.lua:381 menus/options.lua:458
+msgid "enhanced"
+msgstr "vylepšené"
+
+#: menus/options.lua:382 menus/options.lua:459
+msgid "Fog of War type:"
+msgstr "Typ mlhy:"
+
+#: menus/options.lua:391
+msgid "Bilinear fog"
+msgstr "Bilineární mlha"
+
+#: menus/options.lua:398
+msgid "~!* - requires restart"
+msgstr "~!* - vyžaduje restart"
+
+#: menus/options.lua:445
+msgid "Debug"
+msgstr "Debug"
+
+#: menus/options.lua:447
+msgid "Show map grid"
+msgstr "Ukaž mřížku"
+
+#: menus/options.lua:469
+msgid "Bilinear interp."
+msgstr "Bilineární int."
+
+#: menus/options.lua:480
+msgid "shadow-casting"
+msgstr "vykreslování-stínů"
+
+#: menus/options.lua:480
+msgid "radial"
+msgstr "radiální"
+
+#: menus/options.lua:481
+msgid "Field of View type:"
+msgstr "Typ výhledu na bojiště:"
+
+#: menus/options.lua:491
+msgid "Enable opacity for:"
+msgstr "Zapnout průhlednost pro:"
+
+#: menus/options.lua:492
+msgid "Forest"
+msgstr "Les"
+
+#: menus/options.lua:502
+msgid "Rocks"
+msgstr "Kameny"
+
+#: menus/options.lua:512
+msgid "Walls"
+msgstr "Zdi"
+
+#: menus/options.lua:523
+msgid "Enable walls"
+msgstr "Zapnout zdi"
+
+#: menus/options.lua:560
+msgid "Speed Settings"
+msgstr "Nastavení rychlosti"
+
+#: menus/options.lua:561
+msgid "Game Speed"
+msgstr "Herní rychlost"
+
+#: menus/options.lua:576 menus/options.lua:597 menus/options.lua:621
+msgid "slow "
+msgstr "pomalu "
+
+#: menus/options.lua:381 menus/options.lua:458 menus/options.lua:577
+#: menus/options.lua:598 menus/options.lua:622
+msgid "fast"
+msgstr "rychle"
+
+#: menus/options.lua:582
+msgid "Mouse Scroll Speed"
+msgstr "Rychlost kolečka myši"
+
+#: menus/options.lua:603
+msgid "Key Scroll Speed"
+msgstr "Rychlost posunu kláves"
+
+#: menus/options.lua:702
+msgid "Video Options"
+msgstr "Nastavení obrazu"
+
+#: menus/options.lua:703
+msgid "Video Resolution"
+msgstr "Rozlišení"
+
+#: menus/options.lua:713
+msgid "Full Screen"
+msgstr "Plný obraz"
+
+#: menus/options.lua:741 menus/save.lua:23
+msgid "~!Yes"
+msgstr "~!Ano"
+
+#: menus/options.lua:748 menus/save.lua:31
+msgid "~!No"
+msgstr "~!Ne"
+
+#: menus/options.lua:767
+msgid "Language Options"
+msgstr "Nastavení jazyka"
+
+#: menus/options.lua:769
+msgid "Available languages:"
+msgstr "Možné jazyky:"
+
+#: menus/options.lua:805
+msgid "Game Options"
+msgstr "Nastavení hry"
+
+#: menus/options.lua:806 menus/options.lua:849
+msgid "Speeds (~<F6~>)"
+msgstr "Rychlosti (~<F6~>)"
+
+#: menus/options.lua:808 menus/options.lua:851
+msgid "Sound (~<F7~>)"
+msgstr "Zvuky (~<F7~>)"
+
+#: menus/options.lua:810 menus/options.lua:853
+msgid "Preferences (~<F8~>)"
+msgstr "Preference (~<F8~>)"
+
+#: menus/options.lua:813
+msgid "Diplomacy (~<F9~>)"
+msgstr "Diplomacie (~<F9~>)"
+
+#: menus/options.lua:816
+msgid "~<D~>ebug"
+msgstr "~<D~>ebug"
+
+#: menus/options.lua:820 menus/options.lua:855
+msgid "Video (~<F9~>)"
+msgstr "Video (~<F9~>)"
+
+#: menus/options.lua:822 menus/options.lua:857
+msgid "Language"
+msgstr "Jazyk"
+
+#: menus/options.lua:848
+msgid "~<Game Options~>"
+msgstr "~<Herní nastavení~>"
+
+#: menus/replay.lua:7
+msgid "Select Game"
+msgstr "Vyber hru"
+
+#: menus/replay.lua:12
+msgid "Reveal Map"
+msgstr "Odhal mapu"
+
+#: menus/replay.lua:48
+msgid "Save Replay"
+msgstr "Ulož záznam"
+
+#: menus/results.lua:7
+msgid "Servant"
+msgstr "Služebník"
+
+#: menus/results.lua:9
+msgid "Squire"
+msgstr "Statkář"
+
+#: menus/results.lua:11
+msgid "Corporal"
+msgstr "Desátník"
+
+#: menus/results.lua:12
+msgid "Sergeant"
+msgstr "Seržant"
+
+#: menus/results.lua:13
+msgid "Lieutenant"
+msgstr "Poručík"
+
+#: menus/results.lua:14 menus/results.lua:36
+msgid "Captain"
+msgstr "Kapitán"
+
+#: menus/results.lua:15 menus/results.lua:37
+msgid "Major"
+msgstr "Major"
+
+#: menus/results.lua:17 menus/results.lua:39
+msgid "General"
+msgstr "Generál"
+
+#: menus/results.lua:18
+msgid "Admiral"
+msgstr "Admirál"
+
+#: menus/results.lua:19 menus/results.lua:41
+msgid "Marshall"
+msgstr "Maršál"
+
+#: menus/results.lua:20
+msgid "Lord"
+msgstr "Lord"
+
+#: menus/results.lua:21
+msgid "Grand Admiral"
+msgstr "Nejvyší Admirál"
+
+#: menus/results.lua:22
+msgid "Highlord"
+msgstr "Nejvyší lord"
+
+#: menus/results.lua:23
+msgid "Thundergod"
+msgstr "Hromovládce"
+
+#: menus/results.lua:24 menus/results.lua:46
+msgid "God"
+msgstr "Bůh"
+
+#: menus/results.lua:25 menus/results.lua:47 menus/results.lua:138
+msgid "Designer"
+msgstr "Návrhář"
+
+#: menus/results.lua:29
+msgid "Slave"
+msgstr "Otrok"
+
+#: menus/results.lua:30 orc/units.lua:64 orc/units.lua:108
+msgid "Peon"
+msgstr "Peón"
+
+#: menus/results.lua:31
+msgid "Rogue"
+msgstr "Zloděj"
+
+#: menus/results.lua:32 orc/units.lua:35
+msgid "Grunt"
+msgstr "Žump"
+
+#: menus/results.lua:33
+msgid "Slasher"
+msgstr "Zabiják"
+
+#: menus/results.lua:34
+msgid "Marauder"
+msgstr "Krve žíznivec"
+
+#: menus/results.lua:35
+msgid "Commander"
+msgstr "Velitel"
+
+#: menus/results.lua:40
+msgid "Master"
+msgstr "Mistr"
+
+#: menus/results.lua:42
+msgid "Chieftain"
+msgstr "Náčelník"
+
+#: menus/results.lua:43
+msgid "Overlord"
+msgstr "Vládce"
+
+#: menus/results.lua:44
+msgid "War Chief"
+msgstr "Válečný pán"
+
+#: menus/results.lua:45
+msgid "Demigod"
+msgstr "Polobůh"
+
+#: menus/results.lua:65
+msgid "Victory!"
+msgstr "Vítězství!"
+
+#: menus/results.lua:74
+msgid "Defeat!"
+msgstr "Porážka!"
+
+#: menus/results.lua:83
+msgid "Draw!"
+msgstr "Remíza!"
+
+#: menus/results.lua:132 menus/results.lua:140
+msgid "Cheater!"
+msgstr "Podvodník!"
+
+#: menus/results.lua:184
+msgid " - You"
+msgstr " - Ty"
+
+#: menus/results.lua:186
+msgid " - Ally"
+msgstr " - Spojenec"
+
+#: menus/results.lua:188
+msgid " - Enemy"
+msgstr " - Nepřítel"
+
+#: menus/results.lua:190
+msgid " - Neutral"
+msgstr " - Neutrální"
+
+#: menus/results.lua:207
+msgid "Buildings:"
+msgstr "Budovy:"
+
+#: menus/results.lua:210
+msgid "Gold:"
+msgstr "Zlato:"
+
+#: menus/results.lua:213
+msgid "Lumber:"
+msgstr "Dřevo:"
+
+#: menus/results.lua:216
+msgid "Oil:"
+msgstr "Ropa:"
+
+#: menus/results.lua:219
+msgid "Kills:"
+msgstr "Zabití:"
+
+#: menus/results.lua:222
+msgid "Razings:"
+msgstr "Zbouráno:"
+
+#: menus/results.lua:225
+msgid "Score:"
+msgstr "Skóre:"
+
+#: menus/results.lua:321
+msgid "Outcome"
+msgstr "Výsledek"
+
+#: menus/results.lua:328
+msgid "Rank"
+msgstr "Hodnost"
+
+#: menus/results.lua:338
+msgid "Score"
+msgstr "Skóre"
+
+#: menus/results.lua:405
+msgid "~!Save Replay"
+msgstr "~!Ulož záznam"
+
+#: menus/save.lua:5
+msgid "Cannot save game to file:"
+msgstr "Nemohu uložit do souboru:"
+
+#: menus/save.lua:10
+msgid "Saved game to: "
+msgstr "Uložit hru do: "
+
+#: orc/buttons.lua:173
+msgid "EYE OF ~!KILROGG"
+msgstr "Oko K~!illrogga"
+
+#: orc/buttons.lua:179 orc/buttons.lua:199
+msgid "~!BLOODLUST"
+msgstr "~!Krvežíznivost"
+
+#: orc/buttons.lua:185 orc/buttons.lua:205
+msgid "~!RUNES"
+msgstr "~!Runy"
+
+#: orc/buttons.lua:193
+msgid "~!EYE OF KILROGG"
+msgstr "~!Oko Killrogga"
+
+#: orc/buttons.lua:212
+msgid "TOUCH OF D~!ARKNESS"
+msgstr "~!Dotek temnoty"
+
+#: orc/buttons.lua:218
+msgid "DEATH ~!COIL"
+msgstr "Cívka ~!smrti"
+
+#: orc/buttons.lua:224
+msgid "~!HASTE"
+msgstr "~!Popohnání"
+
+#: orc/buttons.lua:230
+msgid "~!RAISE DEAD"
+msgstr "~!Vzbuď mrtvé"
+
+#: orc/buttons.lua:236
+msgid "~!WHIRLWIND"
+msgstr "~!Tornádo"
+
+#: orc/buttons.lua:242
+msgid "~!UNHOLY ARMOR"
+msgstr "~!Nesvatá zbroj"
+
+#: orc/buttons.lua:248
+msgid "~!DEATH AND DECAY"
+msgstr "~!Smrt a rozklad"
+
+#: orc/buttons.lua:285
+msgid "BUILD PIG ~!FARM"
+msgstr "Postav ~!Prasečí farmu"
+
+#: orc/buttons.lua:295
+msgid "BUILD GREAT ~!HALL"
+msgstr "Postav ~!Velkou halu"
+
+#: orc/buttons.lua:300
+msgid "BUILD TROLL ~!LUMBER MILL"
+msgstr "Postav Trolí ~!pilu"
+
+#: orc/buttons.lua:349
+msgid "BUILD GOBLIN ~!ALCHEMIST"
+msgstr "Postav Gobliní ~!kolonu"
+
+#: orc/buttons.lua:354
+msgid "BUILD ~!OGRE MOUND"
+msgstr "Postav ~!Zlobří baštu"
+
+#: orc/buttons.lua:359
+msgid "BUILD ~!TEMPLE OF THE DAMNED"
+msgstr "Postav Ch~!rám zatracených"
+
+#: orc/buttons.lua:364
+msgid "BUILD A~!LTAR OF STORMS"
+msgstr "Postav Oltář ~!bouří"
+
+#: orc/buttons.lua:369
+msgid "BUILD ~!DRAGON ROOST"
+msgstr "Postav Dr~!ačí hnízdo"
+
+#: orc/buttons.lua:389
+msgid "TRAIN ~!PEON"
+msgstr "Trénuj ~!Peóna"
+
+#: orc/buttons.lua:397
+msgid "UPGRADE TO ~!STRONGHOLD"
+msgstr "Vylepši na ~!Pevnost"
+
+#: orc/buttons.lua:403
+msgid "UPGRADE TO ~!FORTRESS"
+msgstr "Vylepši na ~!Temný hrad"
+
+#: orc/buttons.lua:438
+msgid "TRAIN ~!GRUNT"
+msgstr "Vycvič Ž~!umpa"
+
+#: orc/buttons.lua:443
+msgid "TRAIN ~!AXETHROWER"
+msgstr "Vycvič V~!rhače sekyr"
+
+#: orc/buttons.lua:448
+msgid "TRAIN ~!BERSERKER"
+msgstr "Vycvič ~!Berserkera"
+
+#: orc/buttons.lua:453
+msgid "BUILD ~!CATAPULT"
+msgstr "Postav Ka~!tapult"
+
+#: orc/buttons.lua:458
+msgid "TRAIN TWO-HEADED ~!OGRE"
+msgstr "Vycvič Dvouhlavého z~!lobra"
+
+#: orc/buttons.lua:463
+msgid "TRAIN ~!OGRE MAGE"
+msgstr "Vycvič Zlobra ~!mága"
+
+#: orc/buttons.lua:468
+msgid "BUILD GOBLIN ~!ZEPPELIN"
+msgstr "Postav gobliní V~!zducholoď"
+
+#: orc/buttons.lua:473
+msgid "TRAIN GOBLIN ~!SAPPERS"
+msgstr "Vycvič Tým go~!blinů"
+
+#: orc/buttons.lua:478
+msgid "~!TRAIN DEATH KNIGHT"
+msgstr "Vycvič Rytíře s~!mrti"
+
+#: orc/buttons.lua:483
+msgid "BUILD ~!DRAGON"
+msgstr "Vycvič ~!Draka"
+
+#: orc/buttons.lua:503
+msgid "BUILD ~!GIANT TURTLE"
+msgstr "Vycvič ~!Obří želvu"
+
+#: orc/buttons.lua:508
+msgid "BUILD ~!JUGGERNAUHGT"
+msgstr "Postav ~!Kolos"
+
+#: orc/buttons.lua:610 orc/buttons.lua:616
+msgid "UPGRADE ~!WEAPONS (Damage +2)"
+msgstr "Vylepši ~!Zbraně (Zranění +2)"
+
+#: orc/buttons.lua:634 orc/buttons.lua:640
+msgid "UPGRADE ~!CATAPULT (Damage +15)"
+msgstr "Vylepši ~!Katapult (Zranění + 15)"
+
+#: orc/buttons.lua:646 orc/buttons.lua:652
+msgid "~!UPGRADE THROWING AXE (Damage +1)"
+msgstr "Vylepši ~!Vrhače sekyr (zranění +1)"
+
+#: orc/buttons.lua:658
+msgid "TROLL ~!BERSERKER TRAINING"
+msgstr "Výcvič Trollí ~!krvežíznivce"
+
+#: orc/buttons.lua:664
+msgid "BERSERKER ~!SCOUTING (Sight:9)"
+msgstr "Trollí ~!průzkum (Dohled:9)"
+
+#: orc/buttons.lua:670
+msgid "RESEARCH LIGHTER ~!AXES (Range +1)"
+msgstr "Zkoumej ~!lehčí sekyry (Dostřel +1)"
+
+#: orc/buttons.lua:676
+msgid "BERSERKER ~!REGENERATION"
+msgstr "~!Regenerace"
+
+#: orc/buttons.lua:682
+msgid "UPGRADES OGRES TO ~!MAGES"
+msgstr "Vylepši zlobry na ~!mágy"
+
+#: orc/buttons.lua:688
+msgid "RESEARCH ~!BLOODLUST"
+msgstr "Zkoumej ~!Krvežíznivost"
+
+#: orc/buttons.lua:694
+msgid "RESEARCH ~!RUNES"
+msgstr "Zkoumej ~!Runy"
+
+#: orc/buttons.lua:700
+msgid "RESEARCH ~!HASTE"
+msgstr "Zkoumej ~!Popohnání"
+
+#: orc/buttons.lua:706
+msgid "RESEARCH ~!RAISE DEAD"
+msgstr "Zkoumej Pr~!obuď nemrtvé"
+
+#: orc/buttons.lua:712
+msgid "RESEARCH ~!WHIRLWIND"
+msgstr "Zkoumej ~!Tornádo"
+
+#: orc/buttons.lua:718
+msgid "RESEARCH ~!UNHOLY ARMOR"
+msgstr "Zkoumej ~!Nesvatá zbroj"
+
+#: orc/buttons.lua:724
+msgid "RESEARCH ~!DEATH AND DECAY"
+msgstr "Zkoumej ~!Smrt a rozklad"
+
+#: orc/campaign1.lua:34
+msgid "Seas of Blood"
+msgstr "Moře krve"
+
+#: orc/campaign1.lua:46
+msgid "Quel'Thalas"
+msgstr "Quel´Thalas"
+
+#: orc/campaign1.lua:53
+msgid "Tides of Darkness"
+msgstr "Vlny temnoty"
+
+#: orc/campaign2.lua:35
+msgid "Draenor, the Red World"
+msgstr "Draenor, Rudý Svět"
+
+#: orc/campaign2.lua:40
+msgid "The Burning of Azeroth"
+msgstr "Azeroth v plamenech"
+
+#: orc/campaign2.lua:45
+msgid "The Great Sea"
+msgstr "Velký Oceán"
+
+#: orc/campaign2.lua:50
+msgid "Prelude to New Worlds"
+msgstr "Předehra Nového Světa"
+
+#: orc/units.lua:150 orc/units.lua:179
+msgid "Catapult"
+msgstr "Katapult"
+
+#: orc/units.lua:208
+msgid "Ogre"
+msgstr "Zlobr"
+
+#: orc/units.lua:237
+msgid "Troll Axethrower"
+msgstr "Trollí vrhač sekyr"
+
+#: orc/units.lua:266
+msgid "Death Knight"
+msgstr "Rytíř smrti"
+
+#: orc/units.lua:304
+msgid "Ogre Mage"
+msgstr "Zlobří mág"
+
+#: orc/units.lua:336
+msgid "Goblin Sappers"
+msgstr "Gobliní sapéři"
+
+#: orc/units.lua:366
+msgid "Berserker"
+msgstr "Berserkr"
+
+#: orc/units.lua:396
+msgid "Teron Gorefiend"
+msgstr "Teron Gorefiend"
+
+#: orc/units.lua:435
+msgid "Dentarg"
+msgstr "Dentarg"
+
+#: orc/units.lua:466
+msgid "Grom Hellscream"
+msgstr "Grom Hellscream"
+
+#: orc/units.lua:559
+msgid "Troll Destroyer"
+msgstr "Trollí ničitel"
+
+#: orc/units.lua:588
+msgid "Ogre Juggernaught"
+msgstr "Zlobří kolos"
+
+#: orc/units.lua:618
+msgid "Dragon"
+msgstr "Drak"
+
+#: orc/units.lua:648
+msgid "Deathwing"
+msgstr "Deathwing"
+
+#: orc/units.lua:684
+msgid "Giant Turtle"
+msgstr "Velká želva"
+
+#: orc/units.lua:714
+msgid "Goblin Zeppelin"
+msgstr "Gobliní vzducholoď"
+
+#: orc/units.lua:742
+msgid "Eye of Kilrogg"
+msgstr "Oko Killrogga"
+
+#: orc/units.lua:769
+msgid "Korgath Bladefist"
+msgstr "Korgath Bladefist"
+
+#: orc/units.lua:798
+msgid "Cho'gall"
+msgstr "Cho´gall"
+
+#: orc/units.lua:830
+msgid "Gul'dan"
+msgstr "Gul´dan"
+
+#: orc/units.lua:868
+msgid "Zuljin"
+msgstr "Zuljin"
+
+#: orc/units.lua:898
+msgid "Skeleton"
+msgstr "Kostlivec"
+
+#: orc/units.lua:932
+msgid "Pig Farm"
+msgstr "Prasečí farma"
+
+#: orc/units.lua:998
+msgid "Altar of Storms"
+msgstr "Oltář bouří"
+
+#: orc/units.lua:1030
+msgid "Watch Tower"
+msgstr "Rozhledna"
+
+#: orc/units.lua:1065
+msgid "Ogre Mound"
+msgstr "Zlobří bašta"
+
+#: orc/units.lua:1097
+msgid "Goblin Alchemist"
+msgstr "Gobliní kolona"
+
+#: orc/units.lua:1129
+msgid "Dragon Roost"
+msgstr "Dračí hnízdo"
+
+#: orc/units.lua:1200
+msgid "Great Hall"
+msgstr "Velká hala"
+
+#: orc/units.lua:1237
+msgid "Troll Lumber Mill"
+msgstr "Trollí pila"
+
+#: orc/units.lua:1304
+msgid "Temple of the Damned"
+msgstr "Chrám zatracených"
+
+#: orc/units.lua:1441
+msgid "Stronghold"
+msgstr "Pevnost"
+
+#: orc/units.lua:1479
+msgid "Fortress"
+msgstr "Temný hrad"
+
+#: scripts.lua:37
+msgid "Sheep"
+msgstr "Ovce"
+
+#: scripts.lua:37
+msgid "Seal"
+msgstr "Tuleň"
+
+#: scripts.lua:37
+msgid "Pig"
+msgstr "Prase"
+
+#: scripts.lua:37
+msgid "Warthog"
+msgstr "Divočák"
+
+#: spells.lua:87
+msgid "Demolish"
+msgstr "Strhnout"
+
+#: spells.lua:103
+msgid "Holy Vision"
+msgstr "Svatá vize"
+
+#: spells.lua:117
+msgid "Healing"
+msgstr "Léčení"
+
+#: spells.lua:167
+msgid "Exorcism"
+msgstr "Exorcismus"
+
+#: spells.lua:207 spells.lua:221
+msgid "eye of vision"
+msgstr "Oko vidění"
+
+#: spells.lua:234
+msgid "haste"
+msgstr "Popohnání"
+
+#: spells.lua:252
+msgid "slow"
+msgstr "Zpomalení"
+
+#: spells.lua:269 spells.lua:286
+msgid "bloodlust"
+msgstr "Krvežíznivost"
+
+#: spells.lua:302
+msgid "invisibility"
+msgstr "Neviditelnost"
+
+#: spells.lua:333
+msgid "unholyarmor"
+msgstr "Nesvatá zbroj"
+
+#: spells.lua:350
+msgid "flame shield"
+msgstr "Plamenný štít"
+
+#: spells.lua:370
+msgid "polymorph"
+msgstr "Proměna"
+
+#: spells.lua:430
+msgid "blizzard"
+msgstr "Bouře"
+
+#: spells.lua:448
+msgid "death and decay"
+msgstr "Smrt a rozklad"
+
+#: spells.lua:462
+msgid "fireball"
+msgstr "Ohnivá koule"
+
+#: spells.lua:474 spells.lua:504
+msgid "runes"
+msgstr "Runy"
+
+#: spells.lua:550
+msgid "death coil"
+msgstr "Cívka smrti"
+
+#: spells.lua:563
+msgid "raise dead"
+msgstr "Vzbuď mrtvé"
+
+#: spells.lua:577
+msgid "whirlwind"
+msgstr "Tornádo"
+
+#: stratagus.lua:66
+msgid "Wargus"
+msgstr "Wargus"
+
+#: stratagus.lua:68
+msgid "(c) 1998-2021 by The Stratagus Project."
+msgstr "(c) 1998-2021 by The Stratagus Project."
+
+#: stratagus.lua:236
+msgid "stop"
+msgstr "stůj"
+
+#: stratagus.lua:236
+msgid "mine"
+msgstr "těž"
+
+#: stratagus.lua:236
+msgid "chop"
+msgstr "kácej"
+
+#: stratagus.lua:236
+msgid "drill"
+msgstr "kopej"
+
+#: stratagus.lua:238
+msgid "Time Left: "
+msgstr "Času zbýva : "
+
+#: stratagus.lua:238
+msgid "Gold Left: "
+msgstr "Zlata zbývá: "
+
+#: stratagus.lua:238
+msgid "Wood Left: "
+msgstr "Dřeva zbývá: "
+
+#: stratagus.lua:238
+msgid "Oil Left: "
+msgstr "Ropy zbývá: "
+
+#: stratagus.lua:238
+msgid "Ore Left: "
+msgstr "Rudy zbývá: "
+
+#: stratagus.lua:238
+msgid "Stone Left: "
+msgstr "Kamene zbývá: "
+
+#: stratagus.lua:238
+msgid "Coal Left: "
+msgstr "Uhlí zbývá: "
+
+#: stratagus.lua:240
+msgid "time"
+msgstr "Čas"
+
+#: stratagus.lua:240
+msgid "ore"
+msgstr "Ruda"
+
+#: stratagus.lua:240
+msgid "stone"
+msgstr "Kámen"
+
+#: stratagus.lua:240
+msgid "coal"
+msgstr "Uhlí"
+
+#: stratagus.lua:328
+msgid "You failed to"
+msgstr "Nepodařilo se ti"
+
+#: stratagus.lua:329
+msgid "achieve victory!"
+msgstr "zvítězit!"
+
+#: stratagus.lua:347
+msgid "Congratulations!"
+msgstr "Gratulace!"
+
+#: stratagus.lua:348
+msgid "You are victorious!"
+msgstr "Jsi vítěz!"
+
+#: stratagus.lua:350
+msgid "Save Game (~<F11~>)"
+msgstr "Ulož hru (~<F11~>)"
+
+#: stratagus.lua:356
+msgid "~!Victory"
+msgstr "~!Vítězství"
+
+#: ui.lua:108 ui.lua:230 ui.lua:235 ui.lua:241
+msgid "% Complete"
+msgstr "% Hotovo"
+
+#: ui.lua:121
+msgid "Usage~|"
+msgstr "Využití~|"
+
+#: ui.lua:126
+msgid "Supply~|: "
+msgstr "Zásoby~|: "
+
+#: ui.lua:135
+msgid "Demand~|: "
+msgstr "Poptávka~|: "
+
+#: ui.lua:151 ui.lua:175 ui.lua:176
+msgid "Production"
+msgstr "Produkce"
+
+#: ui.lua:152
+msgid "Gold~|: 100"
+msgstr "Zlato~|: 100"
+
+#: ui.lua:157 ui.lua:177
+msgid "Lumber~|: 100"
+msgstr "Dřevo~|: 100"
+
+#: ui.lua:162 ui.lua:182
+msgid "Oil~|: 100"
+msgstr "Ropa~|: 100"
+
+#: ui.lua:197 ui.lua:203 ui.lua:209 ui.lua:462 ui.lua:516 ui.lua:620 ui.lua:674
+msgid "Damage~|: "
+msgstr "Zranění~|: "
+
+#: ui.lua:216 ui.lua:266
+msgid "Armor~|: "
+msgstr "Zbroj~|: "
+
+#: ui.lua:219 ui.lua:269
+msgid "Sight~|: "
+msgstr "Dohled~|: "
+
+#: ui.lua:223
+msgid "Range~|: "
+msgstr "Dostřel~|: "
+
+#: ui.lua:229
+msgid "Researching~|:"
+msgstr "Výzkum~|:"
+
+#: ui.lua:240
+msgid "Upgrading~|:"
+msgstr "Vylepšení~|:"
+
+#: ui.lua:244
+msgid "Carry~|: %d %s"
+msgstr "Nese~|: %d %s"
+
+#: ui.lua:258
+msgid "Level ~|~<%d~>"
+msgstr "Level ~|~<%d~>"
+
+#: ui.lua:262
+msgid "XP:~<%d~> Kills:~|~<%d~>"
+msgstr "XP:~<%d~> Zabití:~|~<%d~>"
+
+#: ui.lua:272
+msgid "Speed~|: "
+msgstr "Rychlost~|: "
+
+#: ui.lua:276
+msgid "Mana~|: "
+msgstr "Mana~|: "
+
+#: ui.lua:427 ui.lua:585
+msgid "~<ALT~>-click to defend unit."
+msgstr "~<ALT~>-klik pro obranu."
+
+#: ui.lua:430 ui.lua:588
+msgid "~<SHIFT~>-click to make waypoints."
+msgstr "~<SHIFT~>-klik pro vytvoření cest."
+
+#: ui.lua:437 ui.lua:595
+msgid "~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."
+msgstr "~<CTRL~>klik na tlačítko pro aktivaci/deaktivaci auto opravování."
+
+#: ui.lua:456 ui.lua:504 ui.lua:614 ui.lua:662
+msgid "Hit Points: "
+msgstr "Životy: "
+
+#: ui.lua:459 ui.lua:507 ui.lua:617 ui.lua:665
+msgid "Armor: "
+msgstr "Zbroj: "
+
+#: ui.lua:482 ui.lua:640
+msgid "~<SHIFT~>-click could be used to make a building queue."
+msgstr "~<SHIFT~>klik pro vytvoření fronty budovy."
+
+#: ui.lua:510 ui.lua:668
+msgid "Sight: "
+msgstr "Dohled: "
+
+#: ui.lua:513 ui.lua:671
+msgid "Range: "
+msgstr "Dostřel: "
+
+#: ui.lua:560 ui.lua:718
+msgid "~<CTRL~>-click on button enables/disables auto-cast ability."
+msgstr "~<CTRL~>klik tlačítka pro aktivaci/deaktivaci auto kouzlení."
+
+#: units.lua:118
+msgid "Nothing 22"
+msgstr "Nic 22"
+
+#: units.lua:130
+msgid "Nothing 24"
+msgstr "Nic 24"
+
+#: units.lua:146
+msgid "Nothing 25"
+msgstr "Nic 25"
+
+#: units.lua:162
+msgid "Nothing 30"
+msgstr "Nic 30"
+
+#: units.lua:175
+msgid "Nothing 36"
+msgstr "Nic 36"
+
+#: units.lua:188
+msgid "Daemon"
+msgstr "Démon"
+
+#: units.lua:225
+msgid "Critter"
+msgstr "Zvířátko"
+
+#: units.lua:259
+msgid "Gold Mine"
+msgstr "Důl na zlato"
+
+#: units.lua:299
+msgid "Oil Patch"
+msgstr "Ropné pole"
+
+#: units.lua:327
+msgid "The Pile"
+msgstr "Hromada"
+
+#: units.lua:348
+msgid "Circle of Power"
+msgstr "Kruh síly"
+
+#: units.lua:375
+msgid "Dark Portal"
+msgstr "Temný portál"
+
+#: units.lua:409
+msgid "Runestone"
+msgstr "Runový kámen"
+
+#: units.lua:437 units.lua:451 units.lua:465
+msgid "Dead Body"
+msgstr "Mrtvé tělo"
+
+#: units.lua:486
+msgid "Destroyed 1x1 Place"
+msgstr "Znič 1x1 pole"
+
+#: units.lua:507
+msgid "Destroyed 2x2 Place"
+msgstr "Znič 2x2 pole"
+
+#: units.lua:528
+msgid "Destroyed 3x3 Place"
+msgstr "Znič 3x3 pole"
+
+#: units.lua:548
+msgid "Destroyed 3x3 Place Water"
+msgstr "Znič 3x3 pole vody"
+
+#: units.lua:568
+msgid "Destroyed 4x4 Place"
+msgstr "Znič 4x4 pole"
+
+#: units.lua:583
+msgid "Dummy unit"
+msgstr "Falešná jednotka"
+
+#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
+msgid "Hidden"
+msgstr "Schovaný"
+
+#: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
+msgid "Known"
+msgstr "Známý"
+
+#: guichan.lua:1500
+msgid "~<Terrain:~>"
+msgstr "~<Terén:~>"
+
+#: menus/editor.lua:490
+msgid "Accept"
+msgstr "Přijmout"
+
+#: menus/editor.lua:497 menus/editor.lua:662
+msgid "Close"
+msgstr "Zavřít"
+
+#: menus/editor.lua:534
+msgid "~!Resize Map"
+msgstr "~!Změnit mapu"
+
+#: menus/editor.lua:536
+msgid "Pr~!eamble"
+msgstr "Uv~!odní formule"
+
+#: menus/editor.lua:538
+msgid "~!Postamble"
+msgstr "Ko~!nečná formule"
+
+#: menus/editor.lua:638
+msgid "Ok"
+msgstr "Ok"
+
+#: menus/network.lua:202 menus/network.lua:568
+msgid "Terrain:"
+msgstr "Terén:"
+
+#: menus/options.lua:381 menus/options.lua:458
+msgid "tiled"
+msgstr "Kachle"
+
+#: menus/options.lua:731
+msgid "You need to restart game to apply changes, restart now?"
+msgstr "Pro změny musíš restartovat hru, provést?"
+
