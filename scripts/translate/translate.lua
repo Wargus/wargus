@@ -5,4 +5,5 @@ LanguageTable = {
 	"Russian", "scripts/translate/stratagus-ru.po", "scripts/translate/ru_RU.po",
 	"French", "scripts/translate/stratagus-fr.po", "scripts/translate/fr_FR.po",
 	"German", "scripts/translate/stratagus-de.po", "scripts/translate/de_DE.po",
+	"Czech", "scripts/translate/stratagus-cz.po", "scripts/translate/cz_CZ.po",
 }
