@@ -416,7 +416,10 @@ DefineAnimations("animations-orc-submarine", {
 
 
 DefineAnimations("animations-goblin-zeppelin", {
-  Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
+  Still = {"frame 0", "wait 4",
+    "wiggle 0 1 absolute z-displacement", "wait 16",
+    "wiggle 0 -1 absolute z-displacement", "wait 16",
+    "frame 0", "wait 1",},
   Move = {"unbreakable begin", "frame 0", "move 4", "wait 1", "frame 0", "move 3", "wait 1",
     "frame 0", "move 3", "wait 1", "frame 0", "move 3", "wait 1",
     "frame 0", "move 3", "wait 1", "frame 0", "move 4", "wait 1",
