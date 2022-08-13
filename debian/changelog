@@ -1,13 +1,9 @@
-wargus (3.3.3-1) UNRELEASED; urgency=medium
-
- -- Tim Felgentreff <timfelgentreff@gmail.com>  Thu, 11 Aug 2022 20:37:37 +0200
-
 wargus (3.3.2-1) focal; urgency=medium
 
   * Update translations
   * Add Czech translation
 
- -- Tim Felgentreff <timfelgentreff@gmail.com>  Wed, 10 Aug 2022 20:15:15 +0200
+ -- Tim Felgentreff <timfelgentreff@gmail.com>  Wed, 10 Aug 2022 20:25:15 +0200
 
 wargus (3.3.1-1) focal; urgency=medium
 
