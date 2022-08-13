@@ -6,7 +6,7 @@ local function RunEditorNewMapMenu()
   local offy = (Video.Height - 480) / 2
   local tilesets = { "summer", "swamp", "wasteland", "winter"}
   local tilesets1 = {_("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}
-  local mapSizes = {"32", "64", "96", "128", "160", "192", "224", "256"}
+  local mapSizes = {"32", "64", "96", "128", "160", "192", "224", "256", "512", "1024"}
   local tilesetLabel = _("TileSet : ")
   local sizeLabel = _("Size :")
 
