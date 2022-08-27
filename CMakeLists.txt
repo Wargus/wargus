@@ -39,6 +39,14 @@ if(EXISTS ${WIN32_CMAKE_PREFIX_PATH})
 	message("Using prefix path ${CMAKE_PREFIX_PATH}")
 endif()
 
+if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/third-party/CMakeLists.txt")
+  add_subdirectory(third-party)
+else()
+  message(WARNING "Third-party directory not populated, cannot vendor any dependencies.")
+endif()
+
+option(ENABLE_VENDORED_LIBS OFF)
+
 # Wargus sources
 
 set(pudconvert_SRCS
@@ -104,9 +112,16 @@ endif()
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
 find_package(Stratagus REQUIRED)
-find_package(PNG REQUIRED)
-find_package(ZLIB REQUIRED)
-find_package(StormLib)
+if(ENABLE_VENDORED_LIBS)
+  vendored_png()
+  vendored_zlib()
+  vendored_bzip2()
+  set(STORMLIB_FOUND false)
+else()
+  find_package(PNG REQUIRED)
+  find_package(ZLIB REQUIRED)
+  find_package(StormLib)
+endif()
 
 if(WIN32)
 	find_package(MakeNSIS)
@@ -218,24 +233,32 @@ endif()
 
 # For now, doesn't compile on OS X with StormLib
 if (WITH_STORMLIB)
-	if (NOT STORMLIB_FOUND AND UNIX)
+	if (NOT STORMLIB_FOUND)
 		set(BUILD_STORMLIB true)
 		include(ExternalProject)
 		message(STATUS "Will build StormLib as part of compilation.")
+                if(ENABLE_VENDORED_LIBS)
+                  set(
+                    STORM_CMAKE_CACHE_ARGS
+                    -DZLIB_FOUND:STRING=1 -DZLIB_INCLUDE_DIR:PATH=${ZLIB_INCLUDE_DIR} -DZLIB_LIBRARY:FILEPATH=${ZLIB_LIBRARIES}
+                    -DBZIP2_FOUND:STRING=1 -DBZIP2_INCLUDE_DIR:PATH=${BZIP2_INCLUDE_DIR} -DBZIP2_LIBRARIES:FILEPATH=${BZIP2_LIBRARIES}
+                  )
+                endif()
 		ExternalProject_Add(StormLib 
 		  PREFIX "${CMAKE_CURRENT_BINARY_DIR}/StormLib/"
 		  SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/StormLib/"
 		  INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/StormLib/"
-		  LOG_DIR "${CMAKE_CURRENT_BINARY_DIR}/StormLib/Logs/"
-		  LOG_CONFIGURE ON
-		  LOG_BUILD ON
-		  LOG_OUTPUT_ON_FAILURE ON
 		  CMAKE_ARGS -DSTORM_SKIP_INSTALL=ON
+                  CMAKE_CACHE_ARGS ${STORM_CMAKE_CACHE_ARGS}
 		  INSTALL_COMMAND ""
 		)
 		set(STORMLIB_FOUND true)
 		set(STORMLIB_INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR}/StormLib/src)
-		set(STORMLIB_LIBRARY ${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/libstorm.a)
+                if(MSVC)
+                  set(STORMLIB_LIBRARY "${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/$<CONFIGURATION>/storm.lib")
+                else()
+		  set(STORMLIB_LIBRARY "${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/libstorm.a")
+                endif()
 	endif()
 
 	if (STORMLIB_FOUND)
@@ -260,6 +283,12 @@ if(BUILD_STORMLIB)
 	add_dependencies(wargus StormLib)
 	add_dependencies(wartool StormLib)
 	add_dependencies(pudconvert StormLib)
+endif()
+
+if(ENABLE_VENDORED_LIBS)
+  add_dependencies(wargus png zlib)
+  add_dependencies(wartool png zlib)
+  add_dependencies(pudconvert png zlib)
 endif()
 
 if(WIN32 AND MINGW AND ENABLE_STATIC)
