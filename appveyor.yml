@@ -1,13 +1,13 @@
 os: Visual Studio 2019
+clone_depth: 2
 configuration:
   - Release
 before_build:
+  - git submodule update --init --recursive --depth 2
   - mkdir build
   - cd build
   - IF DEFINED APPVEYOR_REPO_TAG_NAME (SET RELEASE=%APPVEYOR_REPO_TAG_NAME%) ELSE (SET RELEASE=master-builds)
   - IF DEFINED APPVEYOR_REPO_TAG_NAME (SET SRCTAG=%APPVEYOR_REPO_TAG_NAME%) ELSE (SET SRCTAG=master)
-  - appveyor DownloadFile https://github.com/Wargus/win32-stratagus-dependencies/releases/download/%RELEASE%/dependencies.zip
-  - 7z x dependencies.zip
   - appveyor DownloadFile https://github.com/Wargus/stratagus/releases/download/%RELEASE%/compiled-binaries.zip
   - 7z x compiled-binaries.zip
   - appveyor DownloadFile https://github.com/Wargus/stratagus/archive/%SRCTAG%.zip
@@ -17,10 +17,9 @@ before_build:
   - move stratagusmidiplayer.exe stratagus-midiplayer.exe
   - appveyor DownloadFile https://github.com/jimpark/unsis/releases/download/2.50.0/nsis-2.50.0-Unicode-setup.exe
   - nsis-2.50.0-Unicode-setup.exe /S /D=C:\Program Files (x86)\NSIS
-  - cmake -G "Visual Studio 16 2019" -T v141_xp -A win32 -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON ..
+  - cmake -G "Visual Studio 16 2019" -T v141_xp -A win32 -DCMAKE_PREFIX_PATH="%cd%\\dependencies" -DSTRATAGUS=stratagus -DSTRATAGUS_INCLUDE_DIR="%cd%\\stratagus-master\\gameheaders" -DENABLE_NSIS=ON -DENABLE_VENDORED_LIBS=ON ..
   - cd ..
-build:
-  project: build\wargus.sln
+build_script: cmake --build build --config Release --target ALL_BUILD -j
 artifacts:
   - path: build\Wargus-*.exe
 deploy:
