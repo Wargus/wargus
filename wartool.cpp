@@ -1940,11 +1940,12 @@ int ConvertMusic(void)
 		ret = system(cmd);
 
 		free(cmd);
-		remove(buf);
+		if (ret == 0) remove(buf);
 
 		if (ret != 0) {
 			printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", MusicNames[i]);
 			fflush(stdout);
+			count--;
 		}
 
 		++count;
@@ -1969,11 +1970,12 @@ int ConvertMusic(void)
 			ret = system(cmd);
 
 			free(cmd);
-			remove(buf);
+			if (ret == 0) remove(buf);
 
 			if (ret != 0) {
 				printf("Can't convert wav sound %s to ogg format. Is ffmpeg installed in PATH?\n", BNEMusicNames[i]);
 				fflush(stdout);
+				count--;
 			}
 
 			++count;
@@ -3388,7 +3390,7 @@ int main(int argc, char** argv)
 		rip = (RipMusic(expansion_cd, ArchiveDir, buf) == 0);
 	}
 
-	ConvertMusic();
+	if (ConvertMusic()) rip = -1; // could not convert songs, use wav
 
 	if (ArchiveBuffer) {
 		CloseArchive();
@@ -3413,7 +3415,9 @@ int main(int argc, char** argv)
 	} else {
 		fprintf(f, "wargus.expansion = false\n");
 	}
-	if (rip) {
+	if (rip < 0) {
+		fprintf(f, "wargus.music_extension = \".wav\"\n");
+	} else if (rip) {
 		fprintf(f, "wargus.music_extension = \".ogg\"\n");
 	} else {
 		fprintf(f, "wargus.music_extension = \".mid\"\n");
