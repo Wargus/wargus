@@ -96,11 +96,6 @@ set(warextract_SRCS
 	warextract.c
 )
 
-# Additional platform checks
-if(NOT (WIN32 AND MSVC))
-	find_package(PkgConfig QUIET REQUIRED)
-endif()
-
 # Find all libraries
 
 option(ENABLE_STATIC "Compile Wargus binaries as static executable" OFF)
