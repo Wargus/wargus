@@ -7,3 +7,14 @@ build/
 a.out
 gmon.*
 libStorm.*
+# midi patches
+*.sf2
+DoomGUS*
+airfont*
+Eric_Welsh*
+freepats*
+FreePats*
+MT32
+Roland*
+SC-55
+SGM-V2.01

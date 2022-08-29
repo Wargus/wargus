@@ -3,6 +3,8 @@
 -- This will give each game the flexibility to drive extraction however it pleases.
 -- Important questions are how to expose the system-level Lua->C functions only during extraction.
 
+local ARGS=...
+
 local width = 640
 local height = 480
 
