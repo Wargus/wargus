@@ -56,6 +56,9 @@ local function tableShallowCopy(tbl)
    return res
 end
 function DefineUnitType(name, tbl)
+   if not tbl["TileSize"] then
+     return OldDefineUnitType(name, tbl)
+   end
    local sight = tbl["SightRange"]
    local size = tbl["TileSize"][1]
    local animName = tbl["Animations"]

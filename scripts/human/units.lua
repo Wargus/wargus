@@ -196,6 +196,11 @@ DefineUnitType("unit-ballista-super", { Name = _("Ballista"),
     "help", "basic human voices help 1",
     "dead", "explosion"} } )
 
+if wc2.preferences.EnhancedEffects then
+  DefineUnitType("unit-ballista", { RotationSpeed = 4 })
+  DefineUnitType("unit-ballista-super", { RotationSpeed = 4 })
+end
+
 DefineUnitType("unit-knight", { Name = _("Knight"),
   Image = {"file", "human/units/knight.png", "size", {72, 72}},
   Animations = "animations-knight", Icon = "icon-knight",

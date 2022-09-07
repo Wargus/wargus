@@ -91,23 +91,48 @@ DefineAnimations("animations-peon", {
     "frame 60", "unbreakable end", "wait 1",},
 })
 
-
-DefineAnimations("animations-catapult", {
-  Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
-  Move = {"unbreakable begin","frame 0", "wait 1", "frame 5", "move 2", "wait 2",
-    "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
-    "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
-    "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
-    "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
-    "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
-    "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
-    "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
-    "frame 0", "move 2", "unbreakable end", "wait 1",},
-  Attack = {"unbreakable begin", "frame 15", "attack", "sound catapult-attack","wait 4",
-    "frame 10", "wait 4", "frame 15", "wait 3", "frame 10", "wait 2", "frame 15", "wait 2",
-    "frame 10", "wait 30", "frame 15", "wait 4", "frame 15", "wait 100", "frame 0", "wait 50", "frame 0", "unbreakable end", "wait 1",},
-})
-
+if wc2.preferences.EnhancedEffects then
+  DefineAnimations("animations-catapult", {
+    Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
+    Move = {
+      -- if we're turning, don't move for a bit
+      "if-var R >= 60 turn", "if-var R <= -60 turn", "goto go",
+      "label turn", "unbreakable begin", "frame 0", "wait 30", "unbreakable end", "wait 1",
+      "label go",
+      "unbreakable begin","frame 0", "wait 1", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "unbreakable end", "wait 1",},
+    Attack = {
+      "if-var R >= 30 turn", "if-var R <= -30 turn", "goto go",
+      "label turn", "unbreakable begin", "frame 0", "wait 30", "unbreakable end", "wait 1",
+      "label go",
+      "unbreakable begin", "frame 15", "attack", "sound catapult-attack","wait 4",
+      "frame 10", "wait 4", "frame 15", "wait 3", "frame 10", "wait 2", "frame 15", "wait 2",
+      "frame 10", "wait 30", "frame 15", "wait 4", "frame 15", "wait 100", "frame 0", "wait 50", "frame 0", "unbreakable end", "wait 1",},
+  })
+else
+  DefineAnimations("animations-catapult", {
+    Still = {"frame 0", "wait 4", "frame 0", "wait 1",},
+    Move = {"unbreakable begin","frame 0", "wait 1", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "wait 2", "frame 5", "move 2", "wait 2",
+      "frame 0", "move 2", "unbreakable end", "wait 1",},
+    Attack = {"unbreakable begin", "frame 15", "attack", "sound catapult-attack","wait 4",
+      "frame 10", "wait 4", "frame 15", "wait 3", "frame 10", "wait 2", "frame 15", "wait 2",
+      "frame 10", "wait 30", "frame 15", "wait 4", "frame 15", "wait 100", "frame 0", "wait 50", "frame 0", "unbreakable end", "wait 1",},
+  })
+end
 
 --
 -- ogre, ogre-mage, fad-man, and double-head

@@ -205,6 +205,11 @@ DefineUnitType("unit-catapult-super", { Name = _("Catapult"),
     "help", "basic orc voices help 1",
     "dead", "explosion"} } )
 
+if wc2.preferences.EnhancedEffects then
+  DefineUnitType("unit-catapult", { RotationSpeed = 4 })
+  DefineUnitType("unit-catapult-super", { RotationSpeed = 4 })
+end
+
 DefineUnitType("unit-ogre", { Name = _("Ogre"),
   Image = {"file", "orc/units/ogre.png", "size", {72, 72}},
   Animations = "animations-ogre", Icon = "icon-ogre",
