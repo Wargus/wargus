@@ -1790,6 +1790,49 @@ GenerateExtendedTileset(
                                                 -- otherwise indexes from tile to tile (within main tileset) to get graphics from
         {"slot", slot_num}                      -- f.e. {"slot", 0x0430} - to take graphics continuously from tiles with indexes of slot 0x0430
 
+        'do_something' is a pixel modifier for src images. The form is:
+        {"do_something", parameter}
+        where 'do_something':
+          "remove"
+          usage:		{"remove", colors[, colors]..}
+                  where 'colors':
+                          color		    -- single color
+                          {from, to}	-- range of colors
+
+          "remove-all-except"
+          usage:		{"remove-all-except", colors[, colors]..}
+                  where 'colors':
+                          color		    -- single color
+                          {from, to}	-- range of colors
+
+          "shift"
+          usage		{"shift", inc, colors[, colors]..}
+                  where 	'inc':
+                        increment (positive or negative) to be implemented on the colors
+                      'colors':
+                        color		    -- single color
+                        {from, to}	-- range of colors
+
+          "flip"
+          usage:		{"flip", direction}
+                  where 'direction':
+                        "vertical"
+                        "horizontal"
+                        "both"
+
+          "chroma-key"
+          usage:		{"chroma-key", src_range2, key_colors[, key_colors]..}
+                  where 'src_range2': (set of images to compose with images from src_range. Are taken consecutively one for each from src_range)
+                        {tile}                                  -- tile index (within main tileset) to get graphic from
+                        {tile[, tile]...}}                      -- set of tiles indexes (within main tileset) to get graphics from
+                        {"img"|"img-base", image[, image]...}   -- set of numbers of frames from the extended (or base tileset) "image" file.
+                        {["img"|"img-base",] "range", from, to} -- if "img" then from frame to frame (for "image"),        
+                                            -- otherwise indexes from tile to tile (within main tileset) to get graphics from
+                        {"slot", slot_num}                      -- f.e. {"slot", 0x0430} - to take graphics continuously from tiles with indexes of slot 0x0430
+                    'key_colors': (chroma keys)
+                        color		    -- single color
+                        {from, to}	-- range of colors
+
       additional-flags-list:
         strings which started from position 3
         comma separated list of additional flags for this range of tiles
