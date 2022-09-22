@@ -292,6 +292,8 @@ filled  clear
 --]]
 -- Colors
 local light_coast = {87, 88}
+local light_coast_light = 88
+local light_coast_dark = 87
 local dark_coast = {86, 87}
 local dark_coast_dark = 86
 local light_coast_shadows = {83, 86}
@@ -301,6 +303,7 @@ local dark_grass = {19, 23}
 local light_grass_shadows = {17, 19}
 local water_still = {29, 49}
 local water_cycled = {53, 56}
+local water = {29, 49, 53, 56}
 
 GenerateExtendedTileset(
 --  "image", "",
