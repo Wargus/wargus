@@ -1538,10 +1538,193 @@ GenerateExtendedTileset(
                           -- (transition to coast highground with rock upper right filled)
                         {0x1FDC, {"layers", {"slot", 0x0410},
                                             {{"slot", 0x0210}, {"remove", water_still, water_cycled}, 
-                                                                {"chroma-key", {"slot", 0x0300}, light_coast},
-                                                                {"shift", 1, light_coast, dark_coast_dark}},
-                                            {{"slot", 0x05D0}, {"remove", light_coast}}}}}
-            }
+                                                               {"chroma-key", {"slot", 0x0300}, light_coast},
+                                                               {"shift", 1, light_coast, dark_coast_dark}},
+                                            {{"slot", 0x05D0}, {"remove", light_coast}}}}},
+                                            
+              "mixed", {"ramp", "lowgrounds", "land", "no-building",
+                 -- [0x2100] upper left filled
+                          -- (transition to coast lowround)
+                        {{"range", 0x2100, 0x2101}, {"layers", {{"slot", 0x03D0}, {"shift", 1, light_coast_light}},
+                                                               {0x0200, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x03D0}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x2102, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x2103, 0x2104}, {"layers", {{"slot", 0x03D0}, {"shift", 1, light_coast_light}},
+                                                               {0x0200, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x03D0}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x0500}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+                -- [0x2110] upper right filled
+                          -- (transition to coast lowground)
+                        {{"range", 0x2110, 0x2111}, {"layers", {{"slot", 0x03C0}, {"shift", 1, light_coast_light}},
+                                                               {0x0210, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x03C0}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x2112, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x2113, 0x2114}, {"layers", {{"slot", 0x03C0}, {"shift", 1, light_coast_light}},
+                                                               {0x0210, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x03C0}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x0510}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+                -- [0x2120] upper half filled
+                          -- (transition to coast lowground)
+                        {{"range", 0x2120, 0x2122}, {"layers", {{"slot", 0x03B0}, {"shift", 1, light_coast_light}},
+                                                               {0x0220, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x03B0}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x2123, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x2124, 0x2126}, {"layers", {{"slot", 0x03B0}, {"shift", 1, light_coast_light}},
+                                                               {0x0220, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x03B0}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x0520}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+
+                -- [0x2130] lower left filled
+                          -- (transition to coast lowground)
+                        {{"range", 0x2130, 0x2131}, {"layers", {{"slot", 0x03A0}, {"shift", 1, light_coast_light}},
+                                                               {0x0230, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x03A0}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},                        
+                        {0x2132, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x2133, 0x2134}, {"layers", {{"slot", 0x03A0}, {"shift", 1, light_coast_light}},
+                                                               {0x0230, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x03A0}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x0530}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+                -- [0x2140] left half filled
+                          -- (transition to coast lowground)
+                        {{"range", 0x2140, 0x2142}, {"layers", {{"slot", 0x0390}, {"shift", 1, light_coast_light}},
+                                                               {0x0240, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0390}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x2143, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x2144, 0x2146}, {"layers", {{"slot", 0x0390}, {"shift", 1, light_coast_light}},
+                                                               {0x0240, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0390}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x0540}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+                -- [0x2160] lower right clear
+                          -- (transition to coast lowground)
+                        {{"range", 0x2160, 0x2161}, {"layers", {{"slot", 0x0370}, {"shift", 1, light_coast_light}},
+                                                               {0x0260, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0370}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x2162, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x2163, 0x2164}, {"layers", {{"slot", 0x0370}, {"shift", 1, light_coast_light}},
+                                                               {0x0260, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0370}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x0560}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+                -- [0x2170] lower right filed
+                          -- (transition to coast lowground)
+                        {{"range", 0x2170, 0x2171}, {"layers", {{"slot", 0x0360}, {"shift", 1, light_coast_light}},
+                                                               {0x0270, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0360}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x2172, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x2173, 0x2174}, {"layers", {{"slot", 0x0360}, {"shift", 1, light_coast_light}},
+                                                               {0x0270, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0360}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x0570}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+                -- [0x2190] right half filled
+                          -- (transition to coast lowground)
+                        {{"range", 0x2190, 0x2192}, {"layers", {{"slot", 0x0340}, {"shift", 1, light_coast_light}},
+                                                               {0x0290, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0340}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x2193, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x2194, 0x2196}, {"layers", {{"slot", 0x0340}, {"shift", 1, light_coast_light}},
+                                                               {0x0290, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0340}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x0590}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+                -- [0x21A0] lower left clear
+                          -- (transition to coast lowground)
+                        {{"range", 0x21A0, 0x21A1}, {"layers", {{0x0330, 0x0331}, {"shift", 1, light_coast_light}}, -- last tile in the slot 0x0330 is broken
+                                                               {0x02A0, {"remove-all-except", water},
+                                                                        {"chroma-key", {0x0330, 0x0331}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x21A2, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x21A3, 0x21A4}, {"layers", {{0x0330, 0x0331}, {"shift", 1, light_coast_light}}, -- last tile in the slot 0x0330 is broken
+                                                               {0x02A0, {"remove-all-except", water},
+                                                                        {"chroma-key", {0x0330, 0x0331}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x05A0}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+                -- [0x21B0] upper half clear
+                          -- (transition to coast lowground)
+                        {{"range", 0x21B0, 0x21B2}, {"layers", {{"slot", 0x0320}, {"shift", 1, light_coast_light}},
+                                                               {0x02B0, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0320}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x21B3, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x21B4, 0x21B6}, {"layers", {{"slot", 0x0320}, {"shift", 1, light_coast_light}},
+                                                               {0x02B0, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0320}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x05B0}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+                -- [0x21C0] upper right clear
+                          -- (transition to coast lowground)
+                        {{"range", 0x21C0, 0x21C1}, {"layers", {{"slot", 0x0310}, {"shift", 1, light_coast_light}},
+                                                               {0x02C0, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0310}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x21C2, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x21C3, 0x21C4}, {"layers", {{"slot", 0x0310}, {"shift", 1, light_coast_light}},
+                                                               {0x02C0, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0310}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x05C0}, {"remove", light_coast}, {"shift", -1, dark_grass}}}},
+                -- [0x21D0] upper left clear
+                          -- (transition to coast lowground)
+                        {{"range", 0x21D0, 0x21D1}, {"layers", {{"slot", 0x0300}, {"shift", 1, light_coast_light}},
+                                                               {0x02D0, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0300}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}}}},
+                        {0x21D2, {0x0000}},-- separator
+                          -- (transition to grass lowground)
+                        {{"range", 0x21D3, 0x21D4}, {"layers", {{"slot", 0x0300}, {"shift", 1, light_coast_light}},
+                                                               {0x02D0, {"remove-all-except", water},
+                                                                        {"chroma-key", {"slot", 0x0300}, water},
+                                                                        {"remove", light_coast_light, dark_coast_dark},
+                                                                        {"shift", 1, light_coast_dark}},
+                                                               {{"slot", 0x05D0}, {"remove", light_coast}, {"shift", -1, dark_grass}}}}}
+        }
 )
 
 --[[
