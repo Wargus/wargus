@@ -276,6 +276,7 @@ boundry tiles
 1D..            ramp and dark coast lowground
 1E..            ramp and dark grass lowground
 1F..            ramp and highgrounds
+21..            ramp and lowgrounds
 
 
 where .. is:
