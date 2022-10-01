@@ -862,7 +862,7 @@ GenerateExtendedTileset(
                                                                {{"slot", 0x0200}, {"remove", water}},
                                                                {{"slot", 0x0500}, {"remove", light_coast, light_coast_light_shadows}}}}},
 
-              "mixed", {"ramp", "cliff", "land", "unpassable",
+              "mixed", {"ramp", "cliff", "land", "unpassable", "no-building",
                 -- [0x1C00] upper left filled
                         {{"slot", 0x1C00}, {"layers", {0x04D0, 0x0080, 0x0081, 0x0082, 0x0083},
                                                       {{"slot", 0x02D0}, {"remove", water}, {"shift", 1, light_coast}}}},
@@ -1856,7 +1856,7 @@ GenerateExtendedTileset(
                         {tile[, tile]...}}                      -- set of tiles indexes (within main tileset) to get graphics from
                         {"img"|"img-base", image[, image]...}   -- set of numbers of frames from the extended (or base tileset) "image" file.
                         {["img"|"img-base",] "range", from, to} -- if "img" then from frame to frame (for "image"),        
-                                            -- otherwise indexes from tile to tile (within main tileset) to get graphics from
+                                                                -- otherwise indexes from tile to tile (within main tileset) to get graphics from
                         {"slot", slot_num}                      -- f.e. {"slot", 0x0430} - to take graphics continuously from tiles with indexes of slot 0x0430
                     'key_colors': (chroma keys)
                         color		    -- single color
