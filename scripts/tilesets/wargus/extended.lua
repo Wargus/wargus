@@ -213,6 +213,9 @@ filled  clear
 
 function ExtendTileset(seed)
 
+  local rampSrc_baseIdx = seed.rampSrc_baseIdx
+  local rampSrc_colors = seed.rampSrc_colors
+
   local light_weakGround = seed.light_weakGround
   local light_weakGround_light = seed.light_weakGround_light
   local light_weakGround_dark = seed.light_weakGround_dark
@@ -225,6 +228,89 @@ function ExtendTileset(seed)
   local dim = seed.dim
   local dim_withGrndTypeConvert = seed.dim_withGrndTypeConvert
   local lighten = seed.lighten
+
+  local colorsShiftExeptionPairs = seed.colorsShiftExeptionPairs
+
+  local function checkForExceptionColor(range, exceptionPairs, direction)
+    local idxFrom = 1
+    local idxTo   = 2
+  
+    if type(range) == "table" then
+      for color = range[idxFrom], range[idxTo] do
+        local exception = checkForExceptionColor(color, exceptionPairs, direction)
+        if exception ~= nil then return exception end
+      end
+      return nil
+    end
+  
+    local idxFrom, idxTo
+    if direction < 0 then
+      idxFrom = 2
+      idxTo   = 1
+    else
+      idxFrom = 1
+      idxTo   = 2
+    end
+  
+    for i, pair in ipairs(exceptionPairs) do
+      if range == pair[idxFrom] then
+        if pair[idxTo] ~= nil then
+          return {pair[idxFrom], pair[idxTo]}
+        else
+          return {pair[idxFrom], pair[idxFrom]}
+        end
+      end
+    end
+    return nil
+  end
+  
+  local function shiftBrightness_byStep(direction, ...)
+    local args = {...}
+    
+    if direction == 0 then return nil end
+    direction = direction / math.abs(direction)
+  
+    local exceptionPairs = colorsShiftExeptionPairs -- ! FIXME: maybe to use pairs only for this type of terrain
+    local colors = {}
+    local result = {}
+    for i, range in ipairs(args) do
+  
+      repeat 
+        local done = false
+        local idxFrom = 1
+        local idxTo = 2
+  
+        local exception = checkForExceptionColor(range, exceptionPairs, direction)
+        if exception ~= nil then
+  
+          local shiftDelta = exception[idxTo] - exception[idxFrom];
+          if shiftDelta ~= 0 then
+            table.insert(result, {"shift", shiftDelta, exception[idxFrom]})
+          end
+  
+          if type(range == "table") then
+            if range[idxFrom] < exception[idxFrom] then
+              table.insert(colors, {range[idxFrom], exception[idxFrom] - 1})
+            end
+            range[idxFrom] = exception[idxFrom] + 1
+            if (range[idxTo] < range[idxFrom] ) then 
+              done = true 
+            end
+          else
+            done = true
+          end
+  
+        else
+          table.insert(colors, range)
+        end
+  
+      until (done or exception == nil)
+  
+    end
+    table.insert(result, {"shift", direction, unpack(colors)})
+    return unpack(result)
+  end
+
 
 
 
@@ -242,7 +328,7 @@ function ExtendTileset(seed)
                 "solid", {"cliff", "land", "unpassable", "no-building", 
                           {{"slot", 0x1010}, {"slot", 0x0080}}},
                 "solid", {"ramp", "land", "no-building",
-                          {{"slot", 0x1020}, {{"slot", 0x0030}, {"shift", lighten, light_weakGround, light_weakGround_shadows}}}},
+                          {{"slot", 0x1020}, {{"slot", rampSrc_baseIdx}, shiftBrightness_byStep(lighten, light_weakGround, light_weakGround_shadows)}}}, --{"shift", lighten, light_weakGround, light_weakGround_shadows}]--}}},
                 "mixed", {"cliff", "dark-coast", "land", "unpassable", "no-building",
                   -- [0x1100] upper left filled
                           {{"slot", 0x1100}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
