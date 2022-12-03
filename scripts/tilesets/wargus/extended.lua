@@ -229,7 +229,7 @@ function ExtendTileset(seed)
   local dim_withGrndTypeConvert = seed.dim_withGrndTypeConvert
   local lighten = seed.lighten
 
-  local colorsShiftExeptionPairs = seed.colorsShiftExeptionPairs
+  local colorsShiftExceptionPairs = seed.colorsShiftExceptionPairs
 
   local function checkForExceptionColor(range, exceptionPairs, direction)
     local idxFrom = 1
@@ -270,7 +270,7 @@ function ExtendTileset(seed)
     if direction == 0 then return nil end
     direction = direction / math.abs(direction)
   
-    local exceptionPairs = colorsShiftExeptionPairs -- ! FIXME: maybe to use pairs only for this type of terrain
+    local exceptionPairs = colorsShiftExceptionPairs -- ! FIXME: maybe to use pairs only for this type of terrain
     local colors = {}
     local result = {}
     for i, range in ipairs(args) do

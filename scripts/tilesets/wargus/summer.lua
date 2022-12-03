@@ -303,6 +303,9 @@ local extendedTilesetSeed = {
         weakGround is the coast
         Ground is the grass
   --]]
+  rampSrc_baseIdx                 = 0x0030, -- light-coast
+  rampSrc_colors                  = lightWeakGround,
+
   light_weakGround                = {87, 90},
   light_weakGround_light          =  88,
   light_weakGround_dark           =  87,
@@ -314,7 +317,8 @@ local extendedTilesetSeed = {
 
   dim                             = -1,
   dim_withGrndTypeConvert         = -67,
-  lighten                         =  1
+  lighten                         =  1,
+  colorsShiftExceptionPairs        = {}
 }
 
 Load("scripts/tilesets/wargus/extended.lua")
