@@ -308,14 +308,16 @@ local lightCoast = {
 
 
 local extendedTilesetSeed = {
-  --[[
-    Colors for summer tileset
-      where:
-        weakGround is the coast
-        Ground is the grass
-  --]]
+
   rampSrc_baseIdx                 = 0x0030, -- light-coast
-  rampSrc_colors                  = lightWeakGround,
+  rampSrc                         = lightCoast,
+
+  lightWeakGround                 = lightCoast,
+
+  lowgroundWeakGround             = "dark-coast",
+  lowgroundSolidGround            = "dark-grass",
+  highgroundWeakGround            = "highground-coast",
+  highgroundSolidGround           = "highground-grass",
 
   light_weakGround                = {87, 90},
   light_weakGround_light          =  88,
