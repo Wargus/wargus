@@ -216,6 +216,13 @@ function ExtendTileset(seed)
   local rampSrc_baseIdx = seed.rampSrc_baseIdx
   local rampSrc_colors = seed.rampSrc_colors
 
+  local lowgroundWeakGround = seed.lowgroundWeakGround
+  local lowgroundSolidGround = seed.lowgroundSolidGround
+  local highgroundWeakGround = seed.highgroundWeakGround
+  local highgroundSolidGround = seed.highgroundSolidGround
+  
+  local lightWeakGround = seed.lightWeakGround
+
   local light_weakGround = seed.light_weakGround
   local light_weakGround_light = seed.light_weakGround_light
   local light_weakGround_dark = seed.light_weakGround_dark
@@ -347,7 +354,7 @@ function ExtendTileset(seed)
                           {{"slot", 0x1010}, {"slot", 0x0080}}},
                 "solid", {"ramp", "land", "no-building",
                           {{"slot", 0x1020}, {{"slot", rampSrc_baseIdx}, shiftBrightness_byStep(lighten, light_weakGround, light_weakGround_shadows)}}}, --{"shift", lighten, light_weakGround, light_weakGround_shadows}]--}}},
-                "mixed", {"cliff", "dark-coast", "land", "unpassable", "no-building",
+                "mixed", {"cliff", lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1100] upper left filled
                           {{"slot", 0x1100}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
                                                         {{"slot", 0x0400}, removeWeakGroundAndDimShadows()}}},
@@ -385,7 +392,7 @@ function ExtendTileset(seed)
                           {{"slot", 0x11D0}, {"layers", {0x0040}, 
                                                         {{"slot", 0x04D0}, removeWeakGroundAndDimShadows()}}}},
 
-                "mixed", {"cliff", "dark-grass", "land", "unpassable", "no-building",
+                "mixed", {"cliff", lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1200] upper left filled
                           {{"slot", 0x1200}, {"layers", {0x0065, 0x0068, 0x0069},
                                                         {{"slot", 0x0400}, removeWeakGroundAndDimShadows(dim_withGrndTypeConvert)}}},
@@ -423,7 +430,7 @@ function ExtendTileset(seed)
                           {{"slot", 0x12D0}, {"layers", {0x0061}, 
                                                         {{"slot", 0x04D0}, removeWeakGroundAndDimShadows(dim_withGrndTypeConvert)}}}},
 
-                "mixed", {"highground-coast", "cliff", "land", "unpassable", "no-building",
+                "mixed", {highgroundWeakGround, "cliff", "land", "unpassable", "no-building",
                   -- [0x1400] upper left filled
                           {{"slot", 0x1400}, {"layers", {0x04D0, 0x0080, 0x0081, 0x0082, 0x0083},
                                                         {{"slot", 0x02D0}, {"remove", water}}}},
@@ -460,7 +467,7 @@ function ExtendTileset(seed)
                   -- [0x14D0] upper left clear
                           {{"slot", 0x14D0}, {"layers", {"slot", 0x0400},
                                                         {{"slot", 0x0200}, {"remove", water}}}}},
-                "mixed", {"highground-grass", "cliff", "land", "unpassable", "no-building",
+                "mixed", {highgroundSolidGround, "cliff", "land", "unpassable", "no-building",
                   -- [0x1500] upper left filled
                           {{"slot", 0x1500}, {"layers", {0x04D0, 0x0080, 0x0081, 0x0082, 0x0083},
                                                         {{"slot", 0x02D0}, {"remove", water}},
@@ -510,7 +517,7 @@ function ExtendTileset(seed)
                                                         {{"slot", 0x0200}, {"remove", water}},
                                                         {{"slot", 0x0500}, {"remove", light_weakGround, light_weakGround_light_shadows}}}}},
                                                         
-                "mixed", {"highground-coast", "dark-coast", "land", "unpassable", "no-building",
+                "mixed", {highgroundWeakGround, lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1600] upper left filled
                           {{"slot", 0x1600}, {"layers", {0x0046, 0x004A},
                                                         {{0x0440, 0x0441}, removeWeakGroundAndDimShadows()},
@@ -597,7 +604,7 @@ function ExtendTileset(seed)
                           {{"range", 0x16D8, 0x16D9}, {"layers", {0x0044},
                                                                 {{"slot", 0x0200}, {"remove", water}}}}},
                                                                 
-                "mixed", {"highground-coast", "dark-grass", "land", "unpassable", "no-building",
+                "mixed", {highgroundWeakGround, lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1700] upper left filled
                           {{"slot", 0x1700}, {"layers", {0x0068, 0x0069},
                                                         {{0x0440, 0x0441}, removeWeakGroundAndDimShadows(dim_withGrndTypeConvert)},
@@ -684,7 +691,7 @@ function ExtendTileset(seed)
                           {{"range", 0x17D8, 0x17D9}, {"layers", {0x0061},
                                                                 {{"slot", 0x0200}, {"remove", water}}}}},
 
-                "mixed", {"highground-grass", "dark-coast", "land", "unpassable", "no-building",
+                "mixed", {highgroundSolidGround, lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1900] upper left filled
                           {{"slot", 0x1900}, {"layers", {0x0046, 0x004A},
                                                         {{0x0440, 0x0441}, removeWeakGroundAndDimShadows()},
@@ -790,7 +797,7 @@ function ExtendTileset(seed)
                                                                 {{"slot", 0x0200}, {"remove", water}},
                                                                 {{"slot", 0x0500}, {"remove", light_weakGround, light_weakGround_light_shadows}}}}},
 
-                "mixed", {"highground-grass", "dark-grass", "land", "unpassable", "no-building",
+                "mixed", {highgroundSolidGround, lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1A00] upper left filled
                           {{"slot", 0x1A00}, {"layers", {0x0068, 0x0069},
                                                         {{0x0440, 0x0441}, removeWeakGroundAndDimShadows(dim_withGrndTypeConvert)},
@@ -934,7 +941,7 @@ function ExtendTileset(seed)
                           {{"slot", 0x1CD0}, {"layers", {"slot", 0x0400},
                                                         {{"slot", 0x0200}, {"remove", water}, {"shift", lighten, light_weakGround}}}}},
 
-                "mixed", {"ramp", "dark-coast", "land", "unpassable", "no-building",
+                "mixed", {"ramp", lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1D00] upper left filled 
                             -- (with rock lower right clear)
                           {{"range", 0x1D00, 0x1D01}, {"layers", {0x0046},
@@ -1119,7 +1126,7 @@ function ExtendTileset(seed)
                           {{"range", 0x1DD5, 0x1DD6}, {"layers", {0x0044},
                                                                 {{"slot", 0x0200}, {"remove", water}, {"shift", lighten, light_weakGround}}}}},
 
-                "mixed", {"ramp", "dark-grass", "land", "unpassable", "no-building",
+                "mixed", {"ramp", lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1E00] upper left filled
                             -- (with rock lower right clear)
                           {{"range", 0x1E00, 0x1E01}, {"layers", {0x0068},
