@@ -296,6 +296,17 @@ DefineTileset("name", "Forest",
                       {  50,   0,  86,   0,  99}}						      -- 9D0
   })
 
+local lightCoast = {
+  ["shadows"]       = {{82, 86}},
+  ["decorations"]   = {{69, 78}, {87, 94}},
+  ["base"]          = {87, 88},
+  ["base-light"]    = {88},
+  ["base-dark"]     = {87},
+  ["light-shadows"] = {86},
+  ["exceptions"]    = {{94, nil}}
+}
+
+
 local extendedTilesetSeed = {
   --[[
     Colors for summer tileset
@@ -317,8 +328,7 @@ local extendedTilesetSeed = {
 
   dim                             = -1,
   dim_withGrndTypeConvert         = -67,
-  lighten                         =  1,
-  colorsShiftExceptionPairs        = {}
+  lighten                         =  1
 }
 
 Load("scripts/tilesets/wargus/extended.lua")

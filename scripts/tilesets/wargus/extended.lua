@@ -229,7 +229,19 @@ function ExtendTileset(seed)
   local dim_withGrndTypeConvert = seed.dim_withGrndTypeConvert
   local lighten = seed.lighten
 
-  local colorsShiftExceptionPairs = seed.colorsShiftExceptionPairs
+  local function getColors(colorSet, ...)
+    local args = {...}
+    local returnValue = {}
+    
+    for i, range in ipairs(args) do
+      if colorSet[range] ~= nil then
+        for ii, inRangeValue in ipairs(colorSet[range]) do
+          table.insert(returnValue, inRangeValue)
+        end
+      end
+    end
+    return unpack(returnValue)
+  end
 
   local function checkForExceptionColor(range, exceptionPairs, direction)
     local idxFrom = 1
@@ -264,13 +276,12 @@ function ExtendTileset(seed)
     return nil
   end
   
-  local function shiftBrightness_byStep(direction, ...)
+  local function shiftBrightness_byStep(direction, exceptionPairs, ...)
     local args = {...}
     
     if direction == 0 then return nil end
     direction = direction / math.abs(direction)
   
-    local exceptionPairs = colorsShiftExceptionPairs -- ! FIXME: maybe to use pairs only for this type of terrain
     local colors = {}
     local result = {}
     for i, range in ipairs(args) do
@@ -311,8 +322,15 @@ function ExtendTileset(seed)
     return unpack(result)
   end
 
+  local function Lighten(colorSet, ...)
+    local subSets = {...}
+    shiftBrightness_byStep(lighten, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
+  end
 
-
+  local function Dim(colorSet, ...)
+    local subSets = {...}
+    shiftBrightness_byStep(lighten, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
+  end
 
   local function removeWeakGroundAndDimShadows(dimValue)
     if dimValue == nil then 
