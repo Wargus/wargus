@@ -331,12 +331,12 @@ function ExtendTileset(seed)
 
   local function Lighten(colorSet, ...)
     local subSets = {...}
-    shiftBrightness_byStep(lighten, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
+    return shiftBrightness_byStep(lighten, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
   end
 
   local function Dim(colorSet, ...)
     local subSets = {...}
-    shiftBrightness_byStep(lighten, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
+    return shiftBrightness_byStep(lighten, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
   end
 
   local function removeWeakGroundAndDimShadows(dimValue)
