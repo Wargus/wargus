@@ -300,6 +300,7 @@ local lightCoast = {
   ["shadows"]       = {{82, 86}},
   ["decorations"]   = {{69, 78}, {87, 94}},
   ["base"]          = {87, 88},
+  ["all"]           = {"decorations", "shadows"},
   ["base-light"]    = {88},
   ["base-dark"]     = {87},
   ["light-shadows"] = {86},
