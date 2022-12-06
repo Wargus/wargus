@@ -214,7 +214,7 @@ filled  clear
 function ExtendTileset(seed)
 
   local rampSrc_baseIdx = seed.rampSrc_baseIdx
-  local rampSrc_colors = seed.rampSrc_colors
+  local rampSrc = seed.rampSrc
 
   local lowgroundWeakGround = seed.lowgroundWeakGround
   local lowgroundSolidGround = seed.lowgroundSolidGround
@@ -239,6 +239,8 @@ function ExtendTileset(seed)
   local function getColors(colorSet, ...)
     local args = {...}
     local returnValue = {}
+
+    if #args == 0 then args = colorSet["all"] end -- if no subset given, then use "all" subset
     
     for i, range in ipairs(args) do
       if colorSet[range] ~= nil then
@@ -353,7 +355,7 @@ function ExtendTileset(seed)
                 "solid", {"cliff", "land", "unpassable", "no-building", 
                           {{"slot", 0x1010}, {"slot", 0x0080}}},
                 "solid", {"ramp", "land", "no-building",
-                          {{"slot", 0x1020}, {{"slot", rampSrc_baseIdx}, shiftBrightness_byStep(lighten, light_weakGround, light_weakGround_shadows)}}}, --{"shift", lighten, light_weakGround, light_weakGround_shadows}]--}}},
+                          {{"slot", 0x1020}, {{"slot", rampSrc_baseIdx + 0x00}, Lighten(rampSrc, "base", "shadows")}}},
                 "mixed", {"cliff", lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1100] upper left filled
                           {{"slot", 0x1100}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
