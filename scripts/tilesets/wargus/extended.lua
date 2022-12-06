@@ -371,7 +371,7 @@ function ExtendTileset(seed)
                                                         {{"slot", 0x0430}, removeWeakGroundAndDimShadows()}}},
                   -- [0x1140] left half filled
                           {{"slot", 0x1140}, {"layers", {0x0049, 0x004A}, 
-                                                        {{0x0440, 0x0441}, removeWeakGroundAndDimShadows()}}}, -- last tile in the slot 0x0440 is broken
+                                                        {{"slot", 0x0440}, removeWeakGroundAndDimShadows()}}},
                   -- [0x1160] lower right clear
                           {{"slot", 0x1160}, {"layers", {0x0049, 0x004A}, 
                                                         {{"slot", 0x0460}, removeWeakGroundAndDimShadows()}}},
@@ -409,7 +409,7 @@ function ExtendTileset(seed)
                                                         {{"slot", 0x0430}, removeWeakGroundAndDimShadows(dim_withGrndTypeConvert)}}},
                   -- [0x1240] left half filled
                           {{"slot", 0x1240}, {"layers", {0x0060}, 
-                                                        {{0x0440, 0x0441}, removeWeakGroundAndDimShadows(dim_withGrndTypeConvert)}}}, -- last tile in the slot 0x0440 is broken
+                                                        {{"slot", 0x0440}, removeWeakGroundAndDimShadows(dim_withGrndTypeConvert)}}},
                   -- [0x1260] lower right clear
                           {{"slot", 0x1260}, {"layers", {0x0060},
                                                         {{"slot", 0x0460}, removeWeakGroundAndDimShadows(dim_withGrndTypeConvert)}}},
@@ -455,7 +455,7 @@ function ExtendTileset(seed)
                           {{"slot", 0x1470}, {"layers", {"slot", 0x0460},
                                                         {{"slot", 0x0260}, {"remove", water}}}},
                   -- [0x1490] right half filled
-                          {{"slot", 0x1490}, {"layers", {0x0440, 0x0441}, -- last tile in the slot 0x0440 is broken
+                          {{"slot", 0x1490}, {"layers", {"slot", 0x0440},
                                                         {{"slot", 0x0240}, {"remove", water}}}},
                   -- [0x14A0] lower left clear
                           {{"slot", 0x14A0}, {"layers", {"slot", 0x0430},
@@ -499,7 +499,7 @@ function ExtendTileset(seed)
                                                         {{"slot", 0x0260}, {"remove", water}},
                                                         {{"slot", 0x0560}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
                   -- [0x1590] right half filled
-                          {{"slot", 0x1590}, {"layers", {0x0440, 0x0441}, -- last tile in the slot 0x0440 is broken
+                          {{"slot", 0x1590}, {"layers", {"slot", 0x0440},
                                                         {{"slot", 0x0240}, {"remove", water}},
                                                         {{"slot", 0x0540}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
                   -- [0x15A0] lower left clear
@@ -928,7 +928,7 @@ function ExtendTileset(seed)
                           {{"slot", 0x1C70}, {"layers", {"slot", 0x0460},
                                                         {{"slot", 0x0260}, {"remove", water}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1C90] right half filled
-                          {{"slot", 0x1C90}, {"layers", {0x0440, 0x0441}, -- last tile in the slot 0x0440 is broken
+                          {{"slot", 0x1C90}, {"layers", {"slot", 0x0440},
                                                         {{"slot", 0x0240}, {"remove", water}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1CA0] lower left clear
                           {{"slot", 0x1CA0}, {"layers", {"slot", 0x0430},
@@ -1452,7 +1452,7 @@ function ExtendTileset(seed)
                                                                 {{"slot", 0x0590}, {"remove", light_weakGround}}}},
                   -- [0x1FA0] lower left clear
                             -- (transition to coast highground)
-                          {0x1FA0, {0x0330, {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, -- last tile in the slot 0x0330 is broken
+                          {0x1FA0, {0x0330, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
                           {0x1FA1, {0x0000}},-- separator
                             -- (transition to coast highground with coast lowground upper half filled)
                           {0x1FA2, {"layers", {0x0044},
@@ -1741,14 +1741,14 @@ function ExtendTileset(seed)
                                                                 {{"slot", 0x0590}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x21A0] lower left clear
                             -- (transition to coast lowground)
-                          {{"range", 0x21A0, 0x21A1}, {"layers", {{0x0330, 0x0331}, {"shift", lighten, light_weakGround_light}}, -- last tile in the slot 0x0330 is broken
+                          {{"range", 0x21A0, 0x21A1}, {"layers", {{"slot", 0x0330}, {"shift", lighten, light_weakGround_light}},
                                                                 {0x02A0, {"remove-all-except", water},
                                                                           {"chroma-key", {0x0330, 0x0331}, water},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x21A2, {0x0000}},-- separator
                             -- (transition to grass lowground)
-                          {{"range", 0x21A3, 0x21A4}, {"layers", {{0x0330, 0x0331}, {"shift", lighten, light_weakGround_light}}, -- last tile in the slot 0x0330 is broken
+                          {{"range", 0x21A3, 0x21A4}, {"layers", {{"slot", 0x0330}, {"shift", lighten, light_weakGround_light}},
                                                                 {0x02A0, {"remove-all-except", water},
                                                                           {"chroma-key", {0x0330, 0x0331}, water},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
