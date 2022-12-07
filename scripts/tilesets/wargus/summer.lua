@@ -299,7 +299,7 @@ DefineTileset("name", "Forest",
 local lightCoast = {
   ["shadows"]       = {{82, 86}},
   ["decorations"]   = {{69, 78}, {87, 94}},
-  ["base"]          = {87, 88},
+  ["base"]          = {87, 90},
   ["all"]           = {"decorations", "shadows"},
   ["base-light"]    = {88},
   ["base-dark"]     = {87},
