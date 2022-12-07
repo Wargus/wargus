@@ -253,6 +253,8 @@ function ExtendTileset(seed)
   end
 
   local function checkForExceptionColor(range, exceptionPairs, direction)
+    if exceptionPairs == nil then return nil end
+
     local idxFrom = 1
     local idxTo   = 2
   
