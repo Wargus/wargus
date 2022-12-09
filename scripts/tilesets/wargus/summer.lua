@@ -299,7 +299,7 @@ DefineTileset("name", "Forest",
 local lightCoast = {
   ["shadows"]       = {{82, 86}},
   ["decorations"]   = {{69, 78}, {87, 94}},
-  ["base"]          = {87, 90},
+  ["base"]          = {{87, 90}},
   ["all"]           = {"decorations", "shadows"},
   ["base-light"]    = {88},
   ["base-dark"]     = {87},
@@ -330,7 +330,7 @@ local extendedTilesetSeed = {
   water                           = {29, 56},
 
   dim                             = -1,
-  dim_withGrndTypeConvert         = -67,
+  convertShadows_weakToSolidGnd   = -66,
   lighten                         =  1
 }
 
