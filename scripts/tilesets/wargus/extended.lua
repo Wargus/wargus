@@ -341,7 +341,7 @@ function ExtendTileset(seed)
 
   local function Dim(colorSet, ...)
     local subSets = {...}
-    return shiftBrightness_byStep(lighten, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
+    return shiftBrightness_byStep(dim, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
   end
 
   local function leaveStone_dimShadows(shiftValue)
@@ -350,7 +350,7 @@ function ExtendTileset(seed)
     if shiftValue == nil then 
       table.insert(result, Dim(lightWeakGround, "shadows"))
     else
-      table.insert(result, {"shift", dim + shiftValue, colorsFor(lightWeakGround, "shadows")})
+      table.insert(result, {"shift", dim + shiftValue, colorsFor(lightWeakGround, "convertable-shadows")})
     end
 
     return unpack(result)
