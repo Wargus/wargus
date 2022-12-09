@@ -301,11 +301,11 @@ local lightCoast = {
   ["convertable-shadows"] = {{83, 86}}, -- shadows which could be converted to grass shadows with color shift
   ["decorations"]         = {{69, 78}, {87, 94}},
   ["base"]                = {{87, 90}},
-  ["all"]                 = {"decorations", "shadows"},
+  ["all"]                 = {"base", "decorations", "shadows"},
   ["base-light"]          = {88},
   ["base-dark"]           = {87},
   ["light-shadows"]       = {86},
-  ["exceptions"]          = {{94, nil}}
+  ["exceptions"]          = {{nil, 82}, {94, nil}}
 }
 
 
