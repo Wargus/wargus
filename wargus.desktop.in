@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Wargus - Warcraft II
 Comment=Warcraft II data game set for the Stratagus engine
-Exec=@GAMEDIRABS@/wargus
+Exec=@GAMEDIRABS@wargus
 Icon=wargus
 Terminal=false
 Type=Application
