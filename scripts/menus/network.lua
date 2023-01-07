@@ -223,14 +223,16 @@ function RunJoinIpMenu()
   ServerListUpdate()
   menu:addFullButton(_("Co~!nnect"), "n", 60, 180, function()
       local selectedserver = servers[serverlist:getSelected() + 1]
-      local ip = string.match(selectedserver, "[0-9\.]+")
-      print("Joining " .. ip)
-      NetworkDiscoverServers(false)
-      NetworkSetupServerAddress(ip)
-      NetworkInitClientConnect()
-      if (RunJoiningGameMenu() ~= 0) then
-        -- connect failed, don't leave this menu
-        return
+      if selectedserver then
+         local ip = string.match(selectedserver, "[0-9\.]+")
+         print("Joining " .. ip)
+         NetworkDiscoverServers(false)
+         NetworkSetupServerAddress(ip)
+         NetworkInitClientConnect()
+         if (RunJoiningGameMenu() ~= 0) then
+            -- connect failed, don't leave this menu
+            return
+         end
       end
     end)
   menu:addFullButton(_("~!Add server"), "a", 60, 210, function() RunAddServerMenu(); ServerListUpdate() end)
