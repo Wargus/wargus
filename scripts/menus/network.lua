@@ -693,9 +693,10 @@ function RunServerMultiGameMenu(map, description, numplayers, options)
           else
             startIn = startIn - 1
             if (startIn == 0) then
-              startFunc()
+              menu.button_start_game.callback()
             end
           end
+          menu.button_start_game:setEnabled(true)
           menu.button_start_game:setCaption("Start in " .. startIn / 2)
           print("Starting in " .. startIn / 2)
         end
