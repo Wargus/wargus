@@ -186,6 +186,9 @@ Load("scripts/fov.lua")
 -- Actual only for "enhanced" FOW type
 SetFogOfWarBlur(2.0, 1.5, 3) -- radiuses for simple and bilinear FOW postprocessing, number of blur iterations
 
+-- Actual only for "enhanced" FOW type
+SetFogOfWarEasingSteps(8) -- Number of the fog texture easing steps [1..255]
+
 -- Set opacity levels of fog for explored, "known"(when map revealed) and hidden tiles
 SetFogOfWarOpacityLevels(0x7F, 0xBE, 0xFE)
 

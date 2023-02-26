@@ -317,8 +317,12 @@ function RunEditorPlayerProperties()
   local types1 = {_("Neutral"), _("Nobody"), _("Computer"), _("Person"), _("Rescue-passive"), _("Rescue-active")}
   local racenames = {"human", "orc"}
   local racenames1 = {_("Human"),_("Orc")}
-  local aiList = AIStrategyTypes
-  table.remove(aiList, 1)
+  local aiList = {}
+  for i,v in ipairs(AIStrategyTypes) do
+    if i > 1 then
+      aiList[#aiList + 1] = v
+    end
+  end
 
   menu:addLabel("#", 15, 36)
   menu:addLabel(_("Type"), offxType, 36)
