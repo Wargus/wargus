@@ -308,6 +308,10 @@ local lightCoast = {
   ["exceptions"]          = {{nil, 82}, {94, nil}}
 }
 
+local water = {
+  ["base"]          = {{29, 56}},
+  ["all"]           = {"base"}
+}
 
 local extendedTilesetSeed = {
 
@@ -328,7 +332,7 @@ local extendedTilesetSeed = {
   light_weakGround_shadows        = {83, 86},
   light_weakGround_light_shadows  =  86,
   dark_ground                     = {19, 23},
-  water                           = {29, 56},
+  water                           = water,
 
   dim                             = -1,
   convertShadows_weakToSolidGnd   = -66,
