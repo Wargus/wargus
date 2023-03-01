@@ -309,8 +309,10 @@ local lightCoast = {
 }
 
 local water = {
-  ["base"]          = {{29, 56}},
-  ["all"]           = {"base"}
+  ["base"]                  = {{29, 56}},
+  ["cycling"]               = {{38, 47}},
+  ["cycling-coast-boundry"] = {{48, 56}},
+  ["all"]                   = {"base"}
 }
 
 local extendedTilesetSeed = {
