@@ -297,15 +297,15 @@ DefineTileset("name", "Forest",
   })
 
 local lightCoast = {
-  ["shadows"]             = {{82, 86}},
-  ["convertable-shadows"] = {{83, 86}}, -- shadows which could be converted to grass shadows with color shift
-  ["decorations"]         = {{69, 78}, {87, 94}},
-  ["base"]                = {{87, 90}},
-  ["all"]                 = {"base", "decorations", "shadows"},
-  ["base-light"]          = {88},
-  ["base-dark"]           = {87},
-  ["light-shadows"]       = {86},
-  ["exceptions"]          = {{nil, 82}, {94, nil}}
+  ["shadows"]                     = {{82, 86}},
+  ["decorations"]                 = {{69, 78}, {87, 94}},
+  ["base"]                        = {{87, 90}},
+  ["all"]                         = {"base", "decorations", "shadows"},
+  ["base-light"]                  = {88},
+  ["base-dark"]                   = {87},
+  ["light-shadows"]               = {86},
+ 
+  ["exceptions"]                  = {{nil, 82}, {94, nil}}
 }
 
 local water = {
@@ -313,6 +313,32 @@ local water = {
   ["cycling"]               = {{38, 47}},
   ["cycling-coast-boundry"] = {{48, 56}},
   ["all"]                   = {"base"}
+}
+
+local cliff_gen = {
+  colors = {
+    ["remove-toCleanRocks"]         = lightCoast["base"], 
+    ["shadows-onRocks"]             = lightCoast["shadows"],
+    ["convertable-shadows-onRocks"] = {{83, 86}}, -- shadows which could be converted to grass shadows with color shift
+    ["shift-to-covert-shadows"]     = -66,
+    
+    ["exceptions"]                  = lightCoast["exceptions"]
+  },
+  cleanRocks = nil, -- local function to clean rocks (if present)
+  tiles = {
+    [0x1100]    = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
+    [0x1110]    = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
+    [0x1120]    = {0x0045, 0x0049}, 
+    [0x1130]    = {0x0044, 0x0046, 0x004A},
+    [0x1140]    = {0x0049, 0x004A},
+    [0x1160]    = {0x0049, 0x004A}, 
+    [0x1170]    = {0x0044, 0x0049, 0x004A},
+    [0x1190]    = {0x0045, 0x0049},
+    [0x11A0]    = {0x0044, 0x0045}, 
+    [0x11B0]    = {0x0044, 0x0045, 0x004A}, 
+    [0x11C0]    = {0x0040}, 
+    [0x11D0]    = {0x0040}
+  }  
 }
 
 local extendedTilesetSeed = {
@@ -326,6 +352,7 @@ local extendedTilesetSeed = {
   lowgroundSolidGround            = "dark-grass",
   highgroundWeakGround            = "highground-coast",
   highgroundSolidGround           = "highground-grass",
+  cliff_gen                       = cliff_gen,
 
   light_weakGround                = {87, 90},
   light_weakGround_light          =  88,
