@@ -319,9 +319,9 @@ local cliff_gen = {
   colors = {
     ["remove-toCleanRocks"]         = lightCoast["base"], 
     ["shadows-onRocks"]             = lightCoast["shadows"],
-    ["convertable-shadows-onRocks"] = {{83, 86}}, -- shadows which could be converted to grass shadows with color shift
-    ["shift-to-covert-shadows"]     = -66,
-    
+    ["convertable-shadows-onRocks"] = { -- shadows which could be converted from weak ground to solid ground. Possible values: {range} or color
+                                        { ["from"] = {83, 86}, ["to"] = {17, 20} }
+                                      },
     ["exceptions"]                  = lightCoast["exceptions"]
   },
   cleanRocks = nil, -- local function to clean rocks (if present)
@@ -364,7 +364,6 @@ local extendedTilesetSeed = {
   water                           = water,
 
   dim                             = -1,
-  convertShadows_weakToSolidGnd   = -66,
   lighten                         =  1
 }
 
