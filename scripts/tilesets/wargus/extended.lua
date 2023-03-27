@@ -397,13 +397,8 @@ function ExtendTileset(seed)
         for j, convertedColors in ipairs(convertColors(range["from"], range["to"])) do
           table.insert(result, convertedColors)
         end
-        colors = { 
-                    ["all"]        = { range["to"] },
-                    ["exceptions"] = seed.highgroundSolidGround["exceptions"] -- light solid ground
-                  }
-
-        table.insert(result, Dim(colors, "all"))
       end
+      -- shadows are already dimmed in the convertColors()
     end
     return unpack(result)
   end
@@ -417,78 +412,78 @@ function ExtendTileset(seed)
                           {{"slot", 0x1020}, {{"slot", rampSrc_baseIdx + 0x00}, Lighten(rampSrc, "base", "shadows")}}},
                 "mixed", {"cliff", lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1100] upper left filled
-                          {{"slot", 0x1100}, {"layers", cliff_gen.tiles[0x1100], 
+                          {{"slot", 0x1100}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0x00], 
                                                         {{"slot", 0x0400}, cleanRocksAndDimShadows()}}},
                   -- [0x1110] upper right filled
-                          {{"slot", 0x1110}, {"layers", cliff_gen.tiles[0x1110], 
+                          {{"slot", 0x1110}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0x10], 
                                                         {{"slot", 0x0410}, cleanRocksAndDimShadows()}}},
                   -- [0x1120] upper half filled
-                          {{"slot", 0x1120}, {"layers", cliff_gen.tiles[0x1120], 
+                          {{"slot", 0x1120}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0x20], 
                                                         {{"slot", 0x0420}, cleanRocksAndDimShadows()}}},
                   -- [0x1130] lower left filled
-                          {{"slot", 0x1130}, {"layers", cliff_gen.tiles[0x1130],
+                          {{"slot", 0x1130}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0x30],
                                                         {{"slot", 0x0430}, cleanRocksAndDimShadows()}}},
                   -- [0x1140] left half filled
-                          {{"slot", 0x1140}, {"layers", cliff_gen.tiles[0x1140], 
+                          {{"slot", 0x1140}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0x40], 
                                                         {{"slot", 0x0440}, cleanRocksAndDimShadows()}}},
                   -- [0x1160] lower right clear
-                          {{"slot", 0x1160}, {"layers", cliff_gen.tiles[0x1160], 
+                          {{"slot", 0x1160}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0x60], 
                                                         {{"slot", 0x0460}, cleanRocksAndDimShadows()}}},
                   -- [0x1170] lower right filled
-                          {{"slot", 0x1170}, {"layers", cliff_gen.tiles[0x1170],
+                          {{"slot", 0x1170}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0x70],
                                                         {{"slot", 0x0470}, cleanRocksAndDimShadows()}}},
                   -- [0x1190] right half filled
-                          {{"slot", 0x1190}, {"layers", cliff_gen.tiles[0x1190],
+                          {{"slot", 0x1190}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0x90],
                                                         {{"slot", 0x0490}, cleanRocksAndDimShadows()}}},
                   -- [0x11A0] lower left clear
-                          {{"slot", 0x11A0}, {"layers", cliff_gen.tiles[0x11A0], 
+                          {{"slot", 0x11A0}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0xA0], 
                                                         {{"slot", 0x04A0}, cleanRocksAndDimShadows()}}},
                   -- [0x11B0] bottom half filled
-                          {{"slot", 0x11B0}, {"layers", cliff_gen.tiles[0x11B0], 
+                          {{"slot", 0x11B0}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0xB0], 
                                                         {{"slot", 0x04B0}, cleanRocksAndDimShadows()}}},
                   -- [0x11C0] upper right clear
-                          {{"slot", 0x11C0}, {"layers", cliff_gen.tiles[0x11C0], 
+                          {{"slot", 0x11C0}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0xC0], 
                                                         {{"slot", 0x04C0}, cleanRocksAndDimShadows()}}},
                   -- [0x11D0] upper left clear
-                          {{"slot", 0x11D0}, {"layers", cliff_gen.tiles[0x11D0], 
+                          {{"slot", 0x11D0}, {"layers", cliff_gen.tiles_for["weak-ground-base"][0xD0], 
                                                         {{"slot", 0x04D0}, cleanRocksAndDimShadows()}}}},
 
                 "mixed", {"cliff", lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1200] upper left filled
-                          {{"slot", 0x1200}, {"layers", {0x0065, 0x0068, 0x0069},
+                          {{"slot", 0x1200}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x00],
                                                         {{"slot", 0x0400}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x1210] upper right filled
-                          {{"slot", 0x1210}, {"layers", {0x0065, 0x0068, 0x0069},
+                          {{"slot", 0x1210}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x10],
                                                         {{"slot", 0x0410}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x1220] upper half filled
-                          {{"slot", 0x1220}, {"layers", {0x0068, 0x0069}, 
+                          {{"slot", 0x1220}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x20],
                                                         {{"slot", 0x0420}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x1230] lower left filled
-                          {{"slot", 0x1230}, {"layers", {0x0065, 0x0068, 0x0069},
+                          {{"slot", 0x1230}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x30],
                                                         {{"slot", 0x0430}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x1240] left half filled
-                          {{"slot", 0x1240}, {"layers", {0x0060}, 
+                          {{"slot", 0x1240}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x40], 
                                                         {{"slot", 0x0440}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x1260] lower right clear
-                          {{"slot", 0x1260}, {"layers", {0x0060},
+                          {{"slot", 0x1260}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x60],
                                                         {{"slot", 0x0460}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x1270] lower right filled
-                          {{"slot", 0x1270}, {"layers", {0x0065, 0x0068, 0x0069},
+                          {{"slot", 0x1270}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x70],
                                                         {{"slot", 0x0470}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x1290] right half filled
-                          {{"slot", 0x1290}, {"layers", {0x0060},
+                          {{"slot", 0x1290}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x90],
                                                         {{"slot", 0x0490}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x12A0] lower left clear
-                          {{"slot", 0x12A0}, {"layers", {0x0061}, 
+                          {{"slot", 0x12A0}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0xA0], 
                                                         {{"slot", 0x04A0}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x12B0] bottom half filled
-                          {{"slot", 0x12B0}, {"layers", {0x0065, 0x0066, 0x0069}, 
+                          {{"slot", 0x12B0}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0xB0], 
                                                         {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x12C0] upper right clear
-                          {{"slot", 0x12C0}, {"layers", {0x0060}, 
+                          {{"slot", 0x12C0}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0xC0], 
                                                         {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertShadows)}}},
                   -- [0x12D0] upper left clear
-                          {{"slot", 0x12D0}, {"layers", {0x0061}, 
+                          {{"slot", 0x12D0}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0xD0], 
                                                         {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertShadows)}}}},
 
                 "mixed", {highgroundWeakGround, "cliff", "land", "unpassable", "no-building",

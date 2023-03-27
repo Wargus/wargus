@@ -291,6 +291,111 @@ DefineTileset("name", "Winter",
                       {  50,   0,  86,   0, 100}},                -- 9D0
   })
 
+local lightSnow = {
+  ["shadows"]       = {{17, 24}},
+  ["decorations"]   = {16, 29, {59, 61}, {82, 91}},
+  ["base"]          = {{25, 27}},
+  ["all"]           = {"base", "decorations", "shadows"},
+  ["base-light"]    = {26},
+  ["base-dark"]     = {25},
+  ["light-shadows"] = {},
+  ["exceptions"]    = {{16, 16}, {nil, 17}, {27, nil}, {29, 29}, {61, nil}}
+}
+
+local lightIce = {
+  ["shadows"]             = {35, 36},
+  ["decorations"]         = {{18, 25}, {31, 36}, 54, {63, 71}, 78, 79},
+  ["base"]                = {64, {71, 79}},
+  ["all"]                 = {},
+  ["remove-toCleanRocks"] = {64, 71}, 
+  ["shadows-onRocks"]             = {},
+  ["convertable-shadows-onRocks"] = {},
+  ["base-light"]          = {},
+  ["base-dark"]           = {},
+  ["light-shadows"]       = {},
+  ["exceptions"]          = {{54, nil}, {69, nil}, {nil, 70}, {79, nil}, {37, 64}, {73, 73}, {74, 74}, {75, 75}, {76, 76}},
+}
+
+local water = {
+  ["base"]                  = {{29, 56}}, -- check it
+  ["cycling"]               = {{40, 47}},
+  ["cycling-coast-boundry"] = {{48, 54}},
+  ["all"]                   = {"base"}
+}
+
+local cliff_gen = {
+  colors = {
+    ["remove-toCleanRocks"] = {64, {71, 79}},
+    ["shadows-onRocks"]             = {},
+    ["convertable-shadows-onRocks"] = { -- shadows which could be converted from light weak ground to dark solid ground. Possible values: {range} or color
+                                        { ["from"] = {31, 37}, ["to"] = {18, 24} }, 
+                                        { ["from"] = {65, 69}, ["to"] = {106, 110} } 
+                                      },
+    ["exceptions"]  = lightIce["exceptions"]
+  },
+  cleanRocks = nil, -- local function to clean rocks (if present)
+  tiles_for = {
+    ["weak-ground-base"] = {
+                              [0x00] = {0x0040, 0x0041, 0x0042, 0x0044, 0x0046},
+                              [0x10] = {0x0040, 0x0041, 0x0042, 0x0044, 0x0046},
+                              [0x20] = {0x0044, 0x0046}, 
+                              [0x30] = {0x0040, 0x0044, 0x0046},
+                              [0x40] = {0x0044, 0x0046},
+                              [0x60] = {0x0044, 0x0046}, 
+                              [0x70] = {0x0041, 0x0044, 0x0046},
+                              [0x90] = {0x0044, 0x0046},
+                              [0xA0] = {0x0044, 0x0046}, 
+                              [0xB0] = {0x0042, 0x0044, 0x0046}, 
+                              [0xC0] = {0x0044}, 
+                              [0xD0] = {0x0046}
+                            },
+    ["solid-ground-base"] = {
+                              [0x00] = {0x0060, 0x0061, 0x0062},
+                              [0x10] = {0x0060, 0x0061, 0x0062},
+                              [0x20] = {0x0060, 0x0061}, 
+                              [0x30] = {0x0060, 0x0061, 0x0062},
+                              [0x40] = {0x0060}, 
+                              [0x60] = {0x0061},
+                              [0x70] = {0x0060, 0x0061, 0x0062},
+                              [0x90] = {0x0062},
+                              [0xA0] = {0x0060},
+                              [0xB0] = {0x0060, 0x0061, 0x0062},
+                              [0xC0] = {0x0061},
+                              [0xD0] = {0x0062}
+                            }
+  }
+}
+
+local extendedTilesetSeed = {
+
+  rampSrc_baseIdx                 = 0x0050, -- light-snow
+  rampSrc                         = lightSnow,
+
+  lightWeakGround                 = lightIce,
+
+  lowgroundWeakGround             = "dark-ice",
+  lowgroundSolidGround            = "dark-snow",
+  highgroundWeakGround            = "highground-ice",
+  highgroundSolidGround           = "highground-snow",
+  cliff_gen                       = cliff_gen,
+
+  light_weakGround                = {87, 90},
+  light_weakGround_light          =  88,
+  light_weakGround_dark           =  87,
+  dark_weakGround_dark            =  86,
+  light_weakGround_shadows        = {83, 86},
+  light_weakGround_light_shadows  =  86,
+  dark_ground                     = {19, 23},
+  water                           = water,
+
+  dim                             = -1,
+  lighten                         =  1
+}
+  
+Load("scripts/tilesets/wargus/extended.lua")
+  
+ExtendTileset(extendedTilesetSeed)
+
 BuildTilesetTables()
 
 SetColorCycleAll(true)
