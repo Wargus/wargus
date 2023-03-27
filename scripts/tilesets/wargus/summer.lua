@@ -319,26 +319,42 @@ local cliff_gen = {
   colors = {
     ["remove-toCleanRocks"]         = lightCoast["base"], 
     ["shadows-onRocks"]             = lightCoast["shadows"],
-    ["convertable-shadows-onRocks"] = { -- shadows which could be converted from weak ground to solid ground. Possible values: {range} or color
-                                        { ["from"] = {83, 86}, ["to"] = {17, 20} }
+    ["convertable-shadows-onRocks"] = { -- shadows which could be converted from light weak ground to dark solid ground. Possible values: {range} or color
+                                        { ["from"] = {83, 86}, ["to"] = {16, 19} }
                                       },
     ["exceptions"]                  = lightCoast["exceptions"]
   },
   cleanRocks = nil, -- local function to clean rocks (if present)
-  tiles = {
-    [0x1100]    = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
-    [0x1110]    = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
-    [0x1120]    = {0x0045, 0x0049}, 
-    [0x1130]    = {0x0044, 0x0046, 0x004A},
-    [0x1140]    = {0x0049, 0x004A},
-    [0x1160]    = {0x0049, 0x004A}, 
-    [0x1170]    = {0x0044, 0x0049, 0x004A},
-    [0x1190]    = {0x0045, 0x0049},
-    [0x11A0]    = {0x0044, 0x0045}, 
-    [0x11B0]    = {0x0044, 0x0045, 0x004A}, 
-    [0x11C0]    = {0x0040}, 
-    [0x11D0]    = {0x0040}
-  }  
+  tiles_for = {
+    ["weak-ground-base"] = {
+                              [0x00] = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
+                              [0x10] = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
+                              [0x20] = {0x0045, 0x0049}, 
+                              [0x30] = {0x0044, 0x0046, 0x004A},
+                              [0x40] = {0x0049, 0x004A},
+                              [0x60] = {0x0049, 0x004A}, 
+                              [0x70] = {0x0044, 0x0049, 0x004A},
+                              [0x90] = {0x0045, 0x0049},
+                              [0xA0] = {0x0044, 0x0045}, 
+                              [0xB0] = {0x0044, 0x0045, 0x004A}, 
+                              [0xC0] = {0x0040}, 
+                              [0xD0] = {0x0040}
+                          },
+    ["solid-ground-base"] = {
+                              [0x00] = {0x0065, 0x0068, 0x0069},
+                              [0x10] = {0x0065, 0x0068, 0x0069},
+                              [0x20] = {0x0068, 0x0069}, 
+                              [0x30] = {0x0065, 0x0068, 0x0069},
+                              [0x40] = {0x0060}, 
+                              [0x60] = {0x0060},
+                              [0x70] = {0x0065, 0x0068, 0x0069},
+                              [0x90] = {0x0060},
+                              [0xA0] = {0x0061},
+                              [0xB0] = {0x0065, 0x0066, 0x0069},
+                              [0xC0] = {0x0060},
+                              [0xD0] = {0x0061}
+                            }
+      }
 }
 
 local extendedTilesetSeed = {
