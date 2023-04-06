@@ -333,7 +333,6 @@ local cliff_gen = {
                                       },
     ["exceptions"]  = lightIce["exceptions"]
   },
-  cleanRocks = nil, -- local function to clean rocks (if present)
   tiles_for = {
     ["weak-ground-base"] = {
 
@@ -364,7 +363,23 @@ local cliff_gen = {
                               [0xC0] = {0x0061},
                               [0xD0] = {0x0062}
                             }
-  }
+  },
+
+  -- functions --
+
+  colorsFor = nil, -- parser for ground colors. Declared in the extended.lua
+  cleanRocks = nil, -- local function to clean rocks (if present)
+  makeHighGroundEdge = function(self, groundType, slot) -- local function to make HG edge tiles (if present)
+    local returnValue = {}
+
+    if groundType == "weak-ground" then
+      table.insert(returnValue, {{"slot", 0x200 + (0xD0 - slot)}, {"remove", self.colorsFor(water)}})
+    elseif groundType == "solid-ground" then
+      table.insert(returnValue, {{"slot", 0x500 + (0xD0 - slot)}, {"remove", self.colorsFor(lightIce, "base", "shadows")}})
+    end
+    
+    return unpack(returnValue)
+  end
 }
 
 local extendedTilesetSeed = {

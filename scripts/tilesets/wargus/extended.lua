@@ -253,6 +253,7 @@ function ExtendTileset(seed)
     return unpack(returnValue)
   end
   local colorsFor = getColors -- alias
+  cliff_gen.colorsFor = getColors
 
   local function convertColors(rangeFrom, rangeTo)
     if rangeFrom == nil or rangeTo == nil then
