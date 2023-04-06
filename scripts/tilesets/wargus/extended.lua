@@ -235,7 +235,7 @@ function ExtendTileset(seed)
 
   local dim = seed.dim
   local lighten = seed.lighten
-  local convertShadows = true
+  local convertBaseGround = true
 
   local function getColors(colorSet, ...)
     local args = {...}
@@ -452,40 +452,40 @@ function ExtendTileset(seed)
                 "mixed", {"cliff", lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1200] upper left filled
                           {{"slot", 0x1200}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x00],
-                                                        {{"slot", 0x0400}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x0400}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x1210] upper right filled
                           {{"slot", 0x1210}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x10],
-                                                        {{"slot", 0x0410}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x0410}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x1220] upper half filled
                           {{"slot", 0x1220}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x20],
-                                                        {{"slot", 0x0420}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x0420}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x1230] lower left filled
                           {{"slot", 0x1230}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x30],
-                                                        {{"slot", 0x0430}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x0430}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x1240] left half filled
                           {{"slot", 0x1240}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x40], 
-                                                        {{"slot", 0x0440}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x0440}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x1260] lower right clear
                           {{"slot", 0x1260}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x60],
-                                                        {{"slot", 0x0460}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x0460}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x1270] lower right filled
                           {{"slot", 0x1270}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x70],
-                                                        {{"slot", 0x0470}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x0470}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x1290] right half filled
                           {{"slot", 0x1290}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0x90],
-                                                        {{"slot", 0x0490}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x0490}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x12A0] lower left clear
                           {{"slot", 0x12A0}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0xA0], 
-                                                        {{"slot", 0x04A0}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x04A0}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x12B0] bottom half filled
                           {{"slot", 0x12B0}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0xB0], 
-                                                        {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x12C0] upper right clear
                           {{"slot", 0x12C0}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0xC0], 
-                                                        {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertShadows)}}},
+                                                        {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertBaseGround)}}},
                   -- [0x12D0] upper left clear
                           {{"slot", 0x12D0}, {"layers", cliff_gen.tiles_for["solid-ground-base"][0xD0], 
-                                                        {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertShadows)}}}},
+                                                        {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertBaseGround)}}}},
 
                 "mixed", {highgroundWeakGround, "cliff", "land", "unpassable", "no-building",
                   -- [0x1400] upper left filled
@@ -664,71 +664,71 @@ function ExtendTileset(seed)
                 "mixed", {highgroundWeakGround, lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1700] upper left filled
                           {{"slot", 0x1700}, {"layers", {0x0068, 0x0069},
-                                                        {{0x0440, 0x0441}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{0x0440, 0x0441}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x02D0}, {"remove", colorsFor(water)}}}},
                   -- [0x1710] upper right filled
                           {{"slot", 0x1710}, {"layers", {0x0068, 0x0069},
-                                                        {{"slot", 0x0490}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{"slot", 0x0490}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x02C0}, {"remove", colorsFor(water)}}}},
                   -- [0x1730] lower left filled
                           {{"range", 0x1730, 0x173B}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}}}},
                           {0x173C, {0x0000}}, -- separator
                             -- (with rock lower right clear)                                   
                           {{"range", 0x173D, 0x173F}, {"layers", {0x0068, 0x0069},
-                                                      {{"slot", 0x0460}, cleanRocksAndDimShadows(convertShadows)},
+                                                      {{"slot", 0x0460}, cleanRocksAndDimShadows(convertBaseGround)},
                                                       {{"slot", 0x02A0}, {"remove", colorsFor(water)}}}},
                   -- [0x1740] left half filled
                           {{"slot", 0x1740}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                        {{"img-base", 161, 163, 166}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{"img-base", 161, 163, 166}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x0290}, {"remove", colorsFor(water)}}}},
                   -- [0x1770] lower right filled
                           {{"range", 0x1770, 0x177B}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}}}},
                           {0x177C, {0x0000}}, -- separator
                             -- (with rock lower left clear)                                   
                           {{"range", 0x177D, 0x177F}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x04A0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04A0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}}}},
                   -- [0x1790] right half filled
                           {{"slot", 0x1790}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                        {{"img-base", 162, 163, 166}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{"img-base", 162, 163, 166}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x0240}, {"remove", colorsFor(water)}}}},
                   -- [0x17B0] upper half clear
                             -- (with rock lower half filled)
                           {{"range", 0x17B0, 0x17B3}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}}}},
                           {0x17B4, {0x0000}}, -- separator
                             -- (with rock lower left filled)
                           {{"range", 0x17B5, 0x17B6}, {"layers", {0x0065}, 
-                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}}}},
                           {0x17B7, {0x0000}}, -- separator
                             -- (with rock lower right filled)
                           {{"range", 0x17B8, 0x17B9}, {"layers", {0x0065}, 
-                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}}}},
                           {0x17BA, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x17BB, 0x17BC}, {"layers", {0x0065}, 
-                                                                {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}}}},
                           {0x17BD, {0x0000}}, -- separator
                             -- (with rock upper right clear)
                           {{"range", 0x17BE, 0x17BF}, {"layers", {0x0065}, 
-                                                                {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}}}},
                   -- [0x17C0] upper right clear
                           {{"range", 0x17C0, 0x17C3}, {"layers", {0x0060},
-                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}}}},
                           {0x17C4, {0x0000}}, -- separator
                             -- (with rock upper right clear) 
                           {{"range", 0x17C5, 0x17C6}, {"layers", {0x0060},
-                                                                {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}}}},
                           {0x17C7, {0x0000}}, -- separator
                             -- (without rock) 
@@ -736,12 +736,12 @@ function ExtendTileset(seed)
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}}}},
                   -- [0x17D0] upper left clear
                           {{"range", 0x17D0, 0x17D3}, {"layers", {0x0061},
-                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}}}},
                           {0x17D4, {0x0000}}, -- separator
                             -- (with rock upper left clear) 
                           {{"range", 0x17D5, 0x17D6}, {"layers", {0x0061},
-                                                                {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}}}},
                           {0x17D7, {0x0000}}, -- separator
                             -- (without rock) 
@@ -753,212 +753,212 @@ function ExtendTileset(seed)
                           {{"slot", 0x1900}, {"layers", {0x0046, 0x004A},
                                                         {{0x0440, 0x0441}, cleanRocksAndDimShadows()},
                                                         {{"slot", 0x02D0}, {"remove", colorsFor(water)}},
-                                                        {{"slot", 0x05D0}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                        {{"slot", 0x05D0}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1910] upper right filled
                           {{"slot", 0x1910}, {"layers", {0x0044, 0x0049},
                                                         {{"slot", 0x0490}, cleanRocksAndDimShadows()},
                                                         {{"slot", 0x02C0}, {"remove", colorsFor(water)}},
-                                                        {{"slot", 0x05C0}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                        {{"slot", 0x05C0}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1930] lower left filled
                           {{"range", 0x1930, 0x193B}, {"layers", {0x0046, 0x004A},
                                                                 {{"slot", 0x0430}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x05A0}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x05A0}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x193C, {0x0000}}, -- separator
                             -- (with rock lower right clear)
                           {{"range", 0x193D, 0x193F}, {"layers", {0x0046, 0x004A},
                                                                 {{"slot", 0x0460}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x05A0}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x05A0}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1940] left half filled
                           {{"slot", 0x1940}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
                                                         {{"img-base", 161, 163, 166}, cleanRocksAndDimShadows()},
                                                         {{"slot", 0x0290}, {"remove", colorsFor(water)}},
-                                                        {{"slot", 0x0590}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                        {{"slot", 0x0590}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1970] lower right filled
                           {{"range", 0x1970, 0x197B}, {"layers", {0x0044, 0x0049},
                                                                 {{"slot", 0x0470}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0560}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0560}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x197C, {0x0000}}, -- separator
                             -- (with rock lower left clear)
                           {{"range", 0x197D, 0x197F}, {"layers", {0x0044, 0x0049},
                                                                 {{"slot", 0x04A0}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0560}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0560}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1990] right half filled
                           {{"slot", 0x1990}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
                                                         {{"img-base", 162, 163, 166}, cleanRocksAndDimShadows()},
                                                         {{"slot", 0x0240}, {"remove", colorsFor(water)}},
-                                                        {{"slot", 0x0540}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                        {{"slot", 0x0540}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x19B0] upper half clear
                             -- (with rock lower half filled)
                           {{"range", 0x19B0, 0x19B3}, {"layers", {"range", 0x0044, 0x004B}, 
                                                                 {{"slot", 0x04B0}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0520}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x19B4, {0x0000}}, -- separator
                             -- (with rock lower left filled)
                           {{"range", 0x19B5, 0x19B6}, {"layers", {0x0044}, 
                                                                 {{"slot", 0x0430}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0520}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x19B7, {0x0000}}, -- separator
                             -- (with rock lower right filled)
                           {{"range", 0x19B8, 0x19B9}, {"layers", {0x0044}, 
                                                                 {{"slot", 0x0470}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0520}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x19BA, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x19BB, 0x19BC}, {"layers", {0x0044}, 
                                                                 {{"slot", 0x04D0}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0520}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x19BD, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x19BE, 0x19BF}, {"layers", {0x0044}, 
                                                                 {{"slot", 0x04C0}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0520}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x19C0] upper right clear
                           {{"range", 0x19C0, 0x19C3}, {"layers", {0x0046, 0x004A},
                                                                 {{"slot", 0x04B0}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0510}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0510}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x19C4, {0x0000}}, -- separator
                             -- (with rock upper right clear)
                           {{"range", 0x19C5, 0x19C6}, {"layers", {0x0046, 0x004A},
                                                                 {{"slot", 0x04C0}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0510}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0510}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x19C7, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x19C8, 0x19C9}, {"layers", {0x0046, 0x004A},
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0510}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0510}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x19D0] upper left clear
                           {{"range", 0x19D0, 0x19D3}, {"layers", {0x0044, 0x0049},
                                                                 {{"slot", 0x04B0}, cleanRocksAndDimShadows()},
                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0500}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0500}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x19D4, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x19D5, 0x19D6}, {"layers", {0x0044, 0x0049},
                                                                 {{"slot", 0x04D0}, cleanRocksAndDimShadows()},
                                                                 {{0x0201}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0500}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0500}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x19D7, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x19D8, 0x19D9}, {"layers", {0x0044, 0x0049},
                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0500}, {"remove", light_weakGround, light_weakGround_light_shadows}}}}},
+                                                                {{"slot", 0x0500}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}}},
 
                 "mixed", {highgroundSolidGround, lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1A00] upper left filled
                           {{"slot", 0x1A00}, {"layers", {0x0068, 0x0069},
-                                                        {{0x0440, 0x0441}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{0x0440, 0x0441}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x02D0}, {"remove", colorsFor(water)}},
-                                                        {{"slot", 0x05D0}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                        {{"slot", 0x05D0}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1A10] upper right filled
                           {{"slot", 0x1A10}, {"layers", {0x0068, 0x0069},
-                                                        {{"slot", 0x0490}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{"slot", 0x0490}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x02C0}, {"remove", colorsFor(water)}},
-                                                        {{"slot", 0x05C0}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                        {{"slot", 0x05C0}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1A30] lower left filled
                           {{"range", 0x1A30, 0x1A3B}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x05A0}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x05A0}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x1A3C, {0x0000}}, -- separator
                             -- (with rock lower right clear)
                           {{"range", 0x1A3D, 0x1A3f}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0460}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0460}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x05A0}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x05A0}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1A40] left half filled
                           {{"slot", 0x1A40}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                        {{"img-base", 161, 163, 166}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{"img-base", 161, 163, 166}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x0290}, {"remove", colorsFor(water)}},
-                                                        {{"slot", 0x0590}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                        {{"slot", 0x0590}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1A70] lower right filled
                           {{"range", 0x1A70, 0x1A7B}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0560}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0560}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x1A7C, {0x0000}}, -- separator
                             -- (with rock lower left clear)
                           {{"range", 0x1A7D, 0x1A7F}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x04A0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04A0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0560}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},                          
+                                                                {{"slot", 0x0560}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},                          
                   -- [0x1A90] right half filled
                           {{"slot", 0x1A90}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                        {{"img-base", 162, 163, 166}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{"img-base", 162, 163, 166}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x0240}, {"remove", colorsFor(water)}},
-                                                        {{"slot", 0x0540}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                        {{"slot", 0x0540}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1AB0] upper half clear
                             -- (with rock lower half filled)
                           {{"range", 0x1AB0, 0x1AB3}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0520}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x1AB4, {0x0000}}, -- separator
                             -- (with rock lower left filled)
                           {{"range", 0x1AB5, 0x1AB6}, {"layers", {0x0065}, 
-                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0520}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x1AB7, {0x0000}}, -- separator
                             -- (with rock lower right filled)
                           {{"range", 0x1AB8, 0x1AB9}, {"layers", {0x0065}, 
-                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0520}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x1ABA, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x1ABB, 0x1ABC}, {"layers", {0x0065}, 
-                                                                {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0520}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x1ABD, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x1ABE, 0x1ABF}, {"layers", {0x0065}, 
-                                                                {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0220}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0520}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1AC0] upper right clear
                           {{"range", 0x1AC0, 0x1AC3}, {"layers", {0x0060},
-                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0510}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0510}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x1AC4, {0x0000}}, -- separator
                             -- (with rock upper right clear)
                           {{"range", 0x1AC5, 0x1AC6}, {"layers", {0x0060},
-                                                                {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04C0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0510}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0510}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x1AC7, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1AC8, 0x1AC9}, {"layers", {0x0060},
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0510}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0510}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                   -- [0x1AD0] upper left clear
                           {{"range", 0x1AD0, 0x1AD3}, {"layers", {0x0061},
-                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0500}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0500}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x1AD4, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x1AD5, 0x1AD6}, {"layers", {0x0061},
-                                                                {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04D0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{0x0201}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0500}, {"remove", light_weakGround, light_weakGround_light_shadows}}}},
+                                                                {{"slot", 0x0500}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}},
                           {0x1AD7, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1AD8, 0x1AD9}, {"layers", {0x0061},
                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}},
-                                                                {{"slot", 0x0500}, {"remove", light_weakGround, light_weakGround_light_shadows}}}}},
+                                                                {{"slot", 0x0500}, {"remove", colorsFor(lightWeakGround, "base", "light-shadows")}}}}},
 
                 "mixed", {"ramp", "cliff", "land", "unpassable", "no-building",
                   -- [0x1C00] upper left filled
@@ -1187,12 +1187,12 @@ function ExtendTileset(seed)
                   -- [0x1E00] upper left filled
                             -- (with rock lower right clear)
                           {{"range", 0x1E00, 0x1E01}, {"layers", {0x0068},
-                                                                {{"slot", 0x0460}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0460}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E02, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1E03, 0x1E09}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0410}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0410}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E0A, {0x0000}}, -- separator
                             -- (without rock)
@@ -1201,12 +1201,12 @@ function ExtendTileset(seed)
                   -- [0x1E10] upper right filled 
                             -- (with rock lower left clear)
                           {{"range", 0x1E10, 0x1E11}, {"layers", {0x0068},
-                                                                {{"slot", 0x04A0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04A0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E12, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1E13, 0x1E19}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0400}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0400}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E1A, {0x0000}}, -- separator
                           -- upper right filled (without rock)
@@ -1215,27 +1215,27 @@ function ExtendTileset(seed)
                   -- [0x1E20] upper half filled
                             -- (with rock upper half filled)
                           {{"range", 0x1E20, 0x1E22}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0420}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0420}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E23, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {0x1E24, {"layers", {0x0068},
-                                              {{"slot", 0x0400}, cleanRocksAndDimShadows(convertShadows)},
+                                              {{"slot", 0x0400}, cleanRocksAndDimShadows(convertBaseGround)},
                                               {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E25, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {0x1E24, {"layers", {0x0068},
-                                              {{"slot", 0x0410}, cleanRocksAndDimShadows(convertShadows)},
+                                              {{"slot", 0x0410}, cleanRocksAndDimShadows(convertBaseGround)},
                                               {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E27, {0x0000}}, -- separator
                             -- (with rock lower right filled)
                           {{"range", 0x1E28, 0x1E29}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E2A, {0x0000}}, -- separator
                             -- (with rock lower left filled)
                           {{"range", 0x1E2b, 0x1E2C}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E2D, {0x0000}}, -- separator
                             -- (without rock)
@@ -1244,12 +1244,12 @@ function ExtendTileset(seed)
                   -- [0x1E30] lower left filled
                             -- (with rock lower left filled)
                           {{"range", 0x1E30, 0x1E34}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0430}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E35, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1E36, 0x1E39}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0400}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0400}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E3A, {0x0000}}, -- separator
                             -- (without rock)
@@ -1258,37 +1258,37 @@ function ExtendTileset(seed)
                   -- [0x1E40] left half filled
                             -- (with rock left half filled)
                           {{"range", 0x1E40, 0x1E42}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                                {{0x0440, 0x0441}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{0x0440, 0x0441}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E43, {0x0000}}, -- separator
                             -- (with rock upper center filled)
                           {0x1E44, {"layers", {0x0065},
-                                              {{"img-base", 163}, cleanRocksAndDimShadows(convertShadows)},
+                                              {{"img-base", 163}, cleanRocksAndDimShadows(convertBaseGround)},
                                               {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E45, {0x0000}}, -- separator
                             -- (with rock lower center filled)
                           {0x1E46, {"layers", {0x0068},
-                                              {{"img-base", 161}, cleanRocksAndDimShadows(convertShadows)},
+                                              {{"img-base", 161}, cleanRocksAndDimShadows(convertBaseGround)},
                                               {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E47, {0x0000}}, -- separator
                             -- (with rock upper right clear)
                           {{"range", 0x1E48, 0x1E49}, {"layers", {0x0065},
-                                                                {0x04C0, cleanRocksAndDimShadows(convertShadows)},
+                                                                {0x04C0, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E4A, {0x0000}}, -- separator
                             -- (with rock lower right clear)
                           {{"range", 0x1E4B, 0x1E4C}, {"layers", {0x0065}, 
-                                                                {0x0460, cleanRocksAndDimShadows(convertShadows)},
+                                                                {0x0460, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E4D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E4E, 0x1E4F}, {"layers", {0x0065}, 
-                                                                {{"img-base", 166}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"img-base", 166}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1E60] lower right clear
                             -- (with rock lower right clear)
                           {{"range", 0x1E60, 0x1E61}, {"layers", {0x0069},
-                                                                {{0x0460}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{0x0460}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E62, {0x0000}}, -- separator
                             -- (without rock)
@@ -1297,12 +1297,12 @@ function ExtendTileset(seed)
                   -- [0x1E70] lower right filled
                             -- (with rock lower right filled)
                           {{"range", 0x1E70, 0x1E74}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0470}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E75, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1E76, 0x1E79}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0410}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0410}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E7A, {0x0000}}, -- separator
                             -- (without rock)
@@ -1311,50 +1311,50 @@ function ExtendTileset(seed)
                   -- [0x1E90] right half filled
                             -- (with rock right half filled)
                           {{"range", 0x1E90, 0x1E92}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                                {{"slot", 0x0490}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x0490}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E93, {0x0000}}, -- separator
                             -- (with rock upper center filled)
                           {0x1E94, {"layers", {0x0065}, 
-                                              {{"img-base",163}, cleanRocksAndDimShadows(convertShadows)},
+                                              {{"img-base",163}, cleanRocksAndDimShadows(convertBaseGround)},
                                               {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E95, {0x0000}}, -- separator
                             -- (with rock lower center filled)
                           {0x1E96, {"layers", {0x0068}, 
-                                              {0x0471, cleanRocksAndDimShadows(convertShadows)},
+                                              {0x0471, cleanRocksAndDimShadows(convertBaseGround)},
                                               {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E97, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x1E98, 0x1E99}, {"layers", {0x0065}, 
-                                                                {0x04D0, cleanRocksAndDimShadows(convertShadows)},
+                                                                {0x04D0, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E9A, {0x0000}}, -- separator
                             -- (with rock lower left clear)
                           {{"range", 0x1E9B, 0x1E9C}, {"layers", {0x0065}, 
-                                                                {0x04A0, cleanRocksAndDimShadows(convertShadows)},
+                                                                {0x04A0, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E9D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E9E, 0x1E9F}, {"layers", {0x0065, 0x0068}, 
-                                                                {{"img-base", 166}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"img-base", 166}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1EA0] lower left clear
                             -- (with rock lower left clear)
                           {{"range", 0x1EA0, 0x1EA1}, {"layers", {0x0068},
-                                                        {{0x04A0}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{0x04A0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1EA2, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1EA3, 0x1EA4}, {"layers", {0x0068},
-                                                        {{0x04A0, 0x0030}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{0x04A0, 0x0030}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1EB0] upper half clear
                           {{"slot", 0x1EB0}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                        {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)},
+                                                        {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                         {{"slot", 0x0220}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1EC0] upper right clear
                           {{"range", 0x1EC0, 0x1EC3}, {"layers", {0x0060},
-                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1EC4, {0x0000}}, -- separator
                             -- (without rock)
@@ -1362,7 +1362,7 @@ function ExtendTileset(seed)
                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1ED0] upper left clear
                           {{"range", 0x1ED0, 0x1ED3}, {"layers", {0x0061},
-                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertShadows)},
+                                                                {{"slot", 0x04B0}, cleanRocksAndDimShadows(convertBaseGround)},
                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1ED4, {0x0000}},-- separator
                             -- (without rock)
