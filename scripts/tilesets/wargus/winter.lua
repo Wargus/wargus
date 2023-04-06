@@ -303,7 +303,7 @@ local lightSnow = {
 }
 
 local lightIce = {
-  ["shadows"]             = {35, 36},
+  ["shadows"]             = {{33, 36}},
   ["decorations"]         = {{18, 25}, {31, 36}, 54, {63, 71}, 78, 79},
   ["base"]                = {64, {71, 79}},
   ["all"]                 = {},
