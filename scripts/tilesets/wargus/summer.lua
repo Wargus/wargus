@@ -115,11 +115,11 @@ DefineTileset("name", "Forest",
                         "mid-one-rock", 162, 
                         "bot-one-rock", 163,
                         "removed-rock", 166 },
-            "solid", { "unused", {}},								  -- 000
+            "solid", { "unused", {}},                                                                     -- 000
             "solid", { "light-water", "water",
-                      { 328, 329, 329, 330}},				  -- 010
+                      { 328, 329, 329, 330}},                                                             -- 010
             "solid", { "dark-water", "water",
-                      { 331, 332, 332, 333}},				  -- 020
+                      { 331, 332, 332, 333}},                                                             -- 020
             "solid", { "light-coast", "land", "no-building",
                       { 334, 335, 336,   0, 337, 338, 339, 340, 341, 342, 343, 344}},	                    -- 030
             "solid", { "dark-coast", "land", "no-building",
@@ -129,20 +129,20 @@ DefineTileset("name", "Forest",
             "solid", { "dark-grass", "land",
                       { 364, 365, 364,   0, 366, 367, 368, 369, 370, 371, 366, 367, 366, 367, 366, 367}},	-- 060
             "solid", { "forest", "land", "forest", "unpassable",
-                      { 125, 127, 128}},							-- 070
+                      { 125, 127, 128}},                                                                  -- 070
             "solid", { "rocks", "land", "rock", "unpassable",
-                      { 165, 177, 178, 179}},					-- 080
+                      { 165, 177, 178, 179}},                                                             -- 080
             "solid", { "human-closed-wall", "land", "human", "wall", "unpassable",
-                      {  16,   0,  52,   0,  88}},		-- 090
+                      {  16,   0,  52,   0,  88}},                                                        -- 090
             "solid", { "orc-closed-wall", "land", "wall", "unpassable",
-                      {  34,   0,  70,   0,  88}},		-- 0A0
+                      {  34,   0,  70,   0,  88}},                                                        -- 0A0
             "solid", { "human-open-wall", "land", "human", "wall", "unpassable",
-                      {  33,   0,  69,   0, 101}},		-- 0B0
+                      {  33,   0,  69,   0, 101}},                                                        -- 0B0
             "solid", { "orc-open-wall", "land", "wall", "unpassable",
-                      {  51,   0,  87,   0, 101}},		-- 0C0
-            "solid", { "unused", {}},								  -- 0D0
-            "solid", { "unused", {}},								  -- 0E0
-            "solid", { "unused", {}},								  -- 0F0
+                      {  51,   0,  87,   0, 101}},                                                        -- 0C0
+            "solid", { "unused", {}},                                                                     -- 0D0
+            "solid", { "unused", {}},                                                                     -- 0E0
+            "solid", { "unused", {}},                                                                     -- 0F0
             "mixed", { "dark-water", "light-water", "water",
                       { 300, 301},							-- 100
                       { 302, 303},							-- 110
