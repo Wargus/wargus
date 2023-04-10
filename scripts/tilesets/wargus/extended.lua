@@ -492,37 +492,37 @@ function ExtendTileset(seed)
                           {{"slot", 0x1400}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x00)}},
                   -- [0x1410] upper right filled
-                          {{"slot", 0x1410}, {"layers", {0x0080},
+                          {{"slot", 0x1410}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x10)}},
                   -- [0x1420] upper half filled
-                          {{"slot", 0x1420}, {"layers", {"slot", 0x04B0},
+                          {{"slot", 0x1420}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x20)}},
                   -- [0x1430] lower left filled
-                          {{"slot", 0x1430}, {"layers", {"slot", 0x04A0},
+                          {{"slot", 0x1430}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x030)}},
                   -- [0x1440] left half filled
-                          {{"slot", 0x1440}, {"layers", {"slot", 0x0490},
+                          {{"slot", 0x1440}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x40)}},
                   -- [0x1460] lower right clear
-                          {{"slot", 0x1460}, {"layers", {"slot", 0x0470},
+                          {{"slot", 0x1460}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x60)}},
                   -- [0x1470] lower right filled
-                          {{"slot", 0x1470}, {"layers", {"slot", 0x0460},
+                          {{"slot", 0x1470}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x70)}},
                   -- [0x1490] right half filled
-                          {{"slot", 0x1490}, {"layers", {"slot", 0x0440},
+                          {{"slot", 0x1490}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x90)}},
                   -- [0x14A0] lower left clear
-                          {{"slot", 0x14A0}, {"layers", {"slot", 0x0430},
+                          {{"slot", 0x14A0}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0xA0)}},
                   -- [0x14B0] bottom half filled
-                          {{"slot", 0x14B0}, {"layers", {"slot", 0x0420},
+                          {{"slot", 0x14B0}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0xB0)}},
                   -- [0x14C0] upper right clear
-                          {{"slot", 0x14C0}, {"layers", {"slot", 0x0410},
+                          {{"slot", 0x14C0}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0xC0)}},
                   -- [0x14D0] upper left clear
-                          {{"slot", 0x14D0}, {"layers", {"slot", 0x0400},
+                          {{"slot", 0x14D0}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0xD0)}}},
 
                 "mixed", {highgroundSolidGround, "cliff", "land", "unpassable", "no-building",
@@ -533,34 +533,34 @@ function ExtendTileset(seed)
                           {{"slot", 0x1510}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x10)}},
                   -- [0x1520] upper half filled
-                          {{"slot", 0x1520}, {"layers", {"slot", 0x04B0},
+                          {{"slot", 0x1520}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x20)}},
                   -- [0x1530] lower left filled
-                          {{"slot", 0x1530}, {"layers", {"slot", 0x04A0},
+                          {{"slot", 0x1530}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x30)}},
                   -- [0x1540] left half filled
-                          {{"slot", 0x1540}, {"layers", {"slot", 0x0490},
+                          {{"slot", 0x1540}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x40)}},
                   -- [0x1560] lower right clear
-                          {{"slot", 0x1560}, {"layers", {"slot", 0x0470},
+                          {{"slot", 0x1560}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x60)}},
                   -- [0x1570] lower right filled
-                          {{"slot", 0x1570}, {"layers", {"slot", 0x0460},
+                          {{"slot", 0x1570}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x70)}},
                   -- [0x1590] right half filled
-                          {{"slot", 0x1590}, {"layers", {"slot", 0x0440},
+                          {{"slot", 0x1590}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x90)}},
                   -- [0x15A0] lower left clear
-                          {{"slot", 0x15A0}, {"layers", {"slot", 0x0430},
+                          {{"slot", 0x15A0}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0xA0)}},
                   -- [0x15B0] bottom half filled
-                          {{"slot", 0x15B0}, {"layers", {"slot", 0x0420},
+                          {{"slot", 0x15B0}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0xB0)}},
                   -- [0x15C0] upper right clear
-                          {{"slot", 0x15C0}, {"layers", {0x0410},
+                          {{"slot", 0x15C0}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0xC0)}},
                   -- [0x15D0] upper left clear                         
-                          {{"slot", 0x15D0}, {"layers", {0x0400},
+                          {{"slot", 0x15D0}, {"layers", {"slot", 0x0080},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0xD0)}}},
                                                         
                 "mixed", {highgroundWeakGround, lowgroundWeakGround, "land", "unpassable", "no-building",
@@ -913,40 +913,40 @@ function ExtendTileset(seed)
 
                 "mixed", {"ramp", "cliff", "land", "unpassable", "no-building",
                   -- [0x1C00] upper left filled
-                          {{"slot", 0x1C00}, {"layers", {0x04D0, 0x0080, 0x0081, 0x0082, 0x0083},
+                          {{"slot", 0x1C00}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1C10] upper right filled
-                          {{"slot", 0x1C10}, {"layers", {0x04C0, 0x0080, 0x0081, 0x0082, 0x0083},
+                          {{"slot", 0x1C10}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1C20] upper half filled
-                          {{"slot", 0x1C20}, {"layers", {"slot", 0x04B0},
+                          {{"slot", 0x1C20}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1C30] lower left filled
-                          {{"slot", 0x1C30}, {"layers", {"slot", 0x04A0},
+                          {{"slot", 0x1C30}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1C40] left half filled
-                          {{"slot", 0x1C40}, {"layers", {"slot", 0x0490},
+                          {{"slot", 0x1C40}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1C60] lower right clear
-                          {{"slot", 0x1C60}, {"layers", {"slot", 0x0470},
+                          {{"slot", 0x1C60}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1C70] lower right filled
-                          {{"slot", 0x1C70}, {"layers", {"slot", 0x0460},
+                          {{"slot", 0x1C70}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1C90] right half filled
-                          {{"slot", 0x1C90}, {"layers", {"slot", 0x0440},
+                          {{"slot", 0x1C90}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1CA0] lower left clear
-                          {{"slot", 0x1CA0}, {"layers", {"slot", 0x0430},
+                          {{"slot", 0x1CA0}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1CB0] bottom half filled
-                          {{"slot", 0x1CB0}, {"layers", {"slot", 0x0420},
+                          {{"slot", 0x1CB0}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x0220}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1CC0] upper right clear
-                          {{"slot", 0x1CC0}, {"layers", {"slot", 0x0410},
+                          {{"slot", 0x1CC0}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1CD0] upper left clear
-                          {{"slot", 0x1CD0}, {"layers", {"slot", 0x0400},
+                          {{"slot", 0x1CD0}, {"layers", {"slot", 0x0080},
                                                         {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}}},
 
                 "mixed", {"ramp", lowgroundWeakGround, "land", "unpassable", "no-building",
