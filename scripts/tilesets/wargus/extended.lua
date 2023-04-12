@@ -351,7 +351,7 @@ function ExtendTileset(seed)
             table.insert(result, {"shift", shiftDelta, exception[idxFrom]})
           end
   
-          if type(range == "table") then
+          if type(range) == "table" then
             if range[idxFrom] < exception[idxFrom] then
               table.insert(colors, {range[idxFrom], exception[idxFrom] - 1})
             end
