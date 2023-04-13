@@ -417,7 +417,7 @@ function ExtendTileset(seed)
       0xD0
       {"pick", 0xD0, 0xD1}
       "fully-filled"
-      ? {"img-base", 123, 124, 126}
+      {"special", "singleRockUp", "singleRockMid", "singleRockBot", "removedRock"}
     baseTerrain: (optional)
        "weak-ground" 
        "solid-ground" 
@@ -432,12 +432,24 @@ function ExtendTileset(seed)
 
       elseif type(slot) == "table" then
         if slot[1] == "pick" then
-          local tiles = slot
-          table.remove(tiles, 1)
-          for i,tile in ipairs(tiles) do 
-            tiles[i] = tiles[i] + rocksOnWeakGrnd
+          local tiles = {}
+          for i,tile in ipairs(slot) do 
+            if i > 1 then
+              if tile >= 0x00 and tile <= 0xDF then
+                table.insert(tiles, tile + rocksOnWeakGrnd)
+              end
+            end
           end
-          table.insert(result, tiles)          
+          table.insert(result, tiles)
+
+        elseif slot[1] == "special" then 
+          local tiles = {"img-base"}
+          
+          for i,tile in ipairs(slot) do 
+            if i > 1 then table.insert(tiles, cliff_gen.tiles_for["cliff-special"][tile]) end
+          end
+          table.insert(result, tiles)
+
         else
           table.insert(result, {0x0000}) -- something goes wrong
         end
@@ -516,7 +528,7 @@ function ExtendTileset(seed)
                 "mixed", {highgroundWeakGround, lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1600] upper left filled
                           {{"slot", 0x1600}, {"layers", {0x0046, 0x004A},
-                                                        {{0x0440, 0x0441}, cleanRocksAndDimShadows("weak-ground")},
+                                                        {getCliffsTiles({"pick", 0x40, 0x41}, "weak-ground")},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x00)}},
                   -- [0x1610] upper right filled
                           {{"slot", 0x1610}, {"layers", {0x0044, 0x0049},
@@ -533,7 +545,7 @@ function ExtendTileset(seed)
                                                                  cliff_gen:makeHighGroundEdge("weak-ground", 0x30)}},
                   -- [0x1640] left half filled
                           {{"slot", 0x1640}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
-                                                        {{"img-base", 161, 163, 166}, cleanRocksAndDimShadows("weak-ground")},
+                                                        {getCliffsTiles({"special", "singleRockUp", "singleRockBot", "removedRock"}, "weak-ground")},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x40)}},
                   -- [0x1670] lower right filled
                           {{"range", 0x1670, 0x167B}, {"layers", {0x0044, 0x0049},
@@ -546,7 +558,7 @@ function ExtendTileset(seed)
                                                                  cliff_gen:makeHighGroundEdge("weak-ground", 0x70)}},
                   -- [0x1690] right half filled
                           {{"slot", 0x1690}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
-                                                        {{"img-base", 162, 163, 166}, cleanRocksAndDimShadows("weak-ground")},
+                                                        {getCliffsTiles({"special", "singleRockMid", "singleRockBot", "removedRock"}, "weak-ground")},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x90)}},
                   -- [0x16B0] upper half clear
                             -- (with rock lower half filled)
@@ -603,7 +615,7 @@ function ExtendTileset(seed)
                 "mixed", {highgroundWeakGround, lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1700] upper left filled
                           {{"slot", 0x1700}, {"layers", {0x0068, 0x0069},
-                                                        {{0x0440, 0x0441}, cleanRocksAndDimShadows("solid-ground")},
+                                                        {getCliffsTiles({"pick", 0x40, 0x41}, "solid-ground")},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x00)}},
                   -- [0x1710] upper right filled
                           {{"slot", 0x1710}, {"layers", {0x0068, 0x0069},
@@ -620,7 +632,7 @@ function ExtendTileset(seed)
                                                       cliff_gen:makeHighGroundEdge("weak-ground", 0x30)}},
                   -- [0x1740] left half filled
                           {{"slot", 0x1740}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                        {{"img-base", 161, 163, 166}, cleanRocksAndDimShadows("solid-ground")},
+                                                        {getCliffsTiles({"special", "singleRockUp", "singleRockBot", "removedRock"}, "solid-ground")},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x40)}},
                   -- [0x1770] lower right filled
                           {{"range", 0x1770, 0x177B}, {"layers", {0x0068, 0x0069},
@@ -633,7 +645,7 @@ function ExtendTileset(seed)
                                                                  cliff_gen:makeHighGroundEdge("weak-ground", 0x70)}},
                   -- [0x1790] right half filled
                           {{"slot", 0x1790}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                        {{"img-base", 162, 163, 166}, cleanRocksAndDimShadows("solid-ground")},
+                                                        {getCliffsTiles({"special", "singleRockMid", "singleRockBot", "removedRock"}, "solid-ground")},
                                                         cliff_gen:makeHighGroundEdge("weak-ground", 0x90)}},
                   -- [0x17B0] upper half clear
                             -- (with rock lower half filled)
@@ -690,7 +702,7 @@ function ExtendTileset(seed)
                 "mixed", {highgroundSolidGround, lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1900] upper left filled
                           {{"slot", 0x1900}, {"layers", {0x0046, 0x004A},
-                                                        {{0x0440, 0x0441}, cleanRocksAndDimShadows("weak-ground")},
+                                                        {getCliffsTiles({"pick", 0x40, 0x41}, "weak-ground")},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x00)}},
                   -- [0x1910] upper right filled
                           {{"slot", 0x1910}, {"layers", {0x0044, 0x0049},
@@ -707,7 +719,7 @@ function ExtendTileset(seed)
                                                                  cliff_gen:makeHighGroundEdge("solid-ground", 0x30)}},
                   -- [0x1940] left half filled
                           {{"slot", 0x1940}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
-                                                        {{"img-base", 161, 163, 166}, cleanRocksAndDimShadows("weak-ground")},
+                                                        {getCliffsTiles({"special", "singleRockUp", "singleRockBot", "removedRock"}, "weak-ground")},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x40)}},
                   -- [0x1970] lower right filled
                           {{"range", 0x1970, 0x197B}, {"layers", {0x0044, 0x0049},
@@ -720,7 +732,7 @@ function ExtendTileset(seed)
                                                                  cliff_gen:makeHighGroundEdge("solid-ground", 0x70)}},
                   -- [0x1990] right half filled
                           {{"slot", 0x1990}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
-                                                        {{"img-base", 162, 163, 166}, cleanRocksAndDimShadows("weak-ground")},
+                                                        {getCliffsTiles({"special", "singleRockMid", "singleRockBot", "removedRock"}, "weak-ground")},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x90)}},
                   -- [0x19B0] upper half clear
                             -- (with rock lower half filled)
@@ -762,8 +774,8 @@ function ExtendTileset(seed)
                                                                  cliff_gen:makeHighGroundEdge("solid-ground", 0xC0)}},
                   -- [0x19D0] upper left clear
                           {{"range", 0x19D0, 0x19D3}, {"layers", {0x0044, 0x0049},
-                                                                {getCliffsTiles(0xB0, "weak-ground")},
-                                                                cliff_gen:makeHighGroundEdge("solid-ground", 0xD0)}},
+                                                                 {getCliffsTiles(0xB0, "weak-ground")},
+                                                                 cliff_gen:makeHighGroundEdge("solid-ground", 0xD0)}},
                           {0x19D4, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x19D5, 0x19D6}, {"layers", {0x0044, 0x0049},
@@ -777,7 +789,7 @@ function ExtendTileset(seed)
                 "mixed", {highgroundSolidGround, lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1A00] upper left filled
                           {{"slot", 0x1A00}, {"layers", {0x0068, 0x0069},
-                                                        {{0x0440, 0x0441}, cleanRocksAndDimShadows("solid-ground")},
+                                                        {getCliffsTiles({"pick", 0x40, 0x41}, "solid-ground")},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x00)}},
                   -- [0x1A10] upper right filled
                           {{"slot", 0x1A10}, {"layers", {0x0068, 0x0069},
@@ -794,7 +806,7 @@ function ExtendTileset(seed)
                                                                  cliff_gen:makeHighGroundEdge("solid-ground", 0x30)}},
                   -- [0x1A40] left half filled
                           {{"slot", 0x1A40}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                        {{"img-base", 161, 163, 166}, cleanRocksAndDimShadows("solid-ground")},
+                                                        {getCliffsTiles({"special", "singleRockUp", "singleRockBot", "removedRock"}, "solid-ground")},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x40)}},
                   -- [0x1A70] lower right filled
                           {{"range", 0x1A70, 0x1A7B}, {"layers", {0x0068, 0x0069},
@@ -807,7 +819,7 @@ function ExtendTileset(seed)
                                                                  cliff_gen:makeHighGroundEdge("solid-ground", 0x70)}},                          
                   -- [0x1A90] right half filled
                           {{"slot", 0x1A90}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                        {{"img-base", 162, 163, 166}, cleanRocksAndDimShadows("solid-ground")},
+                                                        {getCliffsTiles({"special", "singleRockMid", "singleRockBot", "removedRock"}, "solid-ground")},
                                                         cliff_gen:makeHighGroundEdge("solid-ground", 0x90)}},
                   -- [0x1AB0] upper half clear
                             -- (with rock lower half filled)
@@ -863,42 +875,42 @@ function ExtendTileset(seed)
 
                 "mixed", {"ramp", "cliff", "land", "unpassable", "no-building",
                           genSeq_RampToCliff(0x1C00, 
-                                                   {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0})},
+                                             {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0})},
 
                 "mixed", {"ramp", lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1D00] upper left filled 
                             -- (with rock lower right clear)
                           {{"range", 0x1D00, 0x1D01}, {"layers", {0x0046},
-                                                                {getCliffsTiles(0x60, "weak-ground")},
-                                                                {{"slot", 0x02D0}, {"remove", colorsFor(water)}}}},
+                                                                 {getCliffsTiles(0x60, "weak-ground")},
+                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}}}},
                           {0x1D02, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1D03, 0x1D09}, {"layers", {0x0046, 0x004A},
-                                                                {getCliffsTiles(0x10, "weak-ground")},
-                                                                {{"slot", 0x02D0}, {"remove", colorsFor(water)}}}},
+                                                                 {getCliffsTiles(0x10, "weak-ground")},
+                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}}}},
                           {0x1D0A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D0B, 0x1D0F}, {"layers", {0x0044, 0x0046, 0x0049, 0x004A},
-                                                                {{"slot", 0x02D0}, {"remove", colorsFor(water)}}}},
+                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}}}},
                   -- [0x1D10] upper right filled 
                             -- (with rock lower left clear)
                           {{"range", 0x1D10, 0x1D11}, {"layers", {0x0044},
-                                                                {getCliffsTiles(0xA0, "weak-ground")},
-                                                                {{"slot", 0x02C0}, {"remove", colorsFor(water)}}}},
+                                                                 {getCliffsTiles(0xA0, "weak-ground")},
+                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}}}},
                           {0x1D12, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1D13, 0x1D19}, {"layers", {0x0044, 0x0049},
-                                                                {getCliffsTiles(0x00, "weak-ground")},
-                                                                {{"slot", 0x02C0}, {"remove", colorsFor(water)}}}},
+                                                                 {getCliffsTiles(0x00, "weak-ground")},
+                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}}}},
                           {0x1D1A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D1B, 0x1D1F}, {"layers", {0x0044, 0x0046, 0x0049, 0x004A},
-                                                                {{"slot", 0x02C0}, {"remove", colorsFor(water)}}}},
+                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}}}},
                   -- [0x1D20] upper half filled
                             -- (with rock upper half filled)
                           {{"range", 0x1D20, 0x1D22}, {"layers", {"range", 0x0044, 0x004B},
-                                                                {getCliffsTiles(0x20, "weak-ground")},
-                                                                {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x20, "weak-ground")},
+                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D23, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {0x1D24, {"layers", {0x0044},
@@ -912,178 +924,178 @@ function ExtendTileset(seed)
                           {0x1D27, {0x0000}}, -- separator
                             -- (with rock lower right filled)
                           {{"range", 0x1D28, 0x1D29}, {"layers", {"range", 0x0044, 0x004B},
-                                                                {getCliffsTiles(0x70, "weak-ground")},
-                                                                {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x70, "weak-ground")},
+                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D2A, {0x0000}}, -- separator
                             -- (with rock lower left filled)
                           {{"range", 0x1D2B, 0x1D2C}, {"layers", {"range", 0x0044, 0x004B},
-                                                                {getCliffsTiles(0x30, "weak-ground")},
-                                                                {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x30, "weak-ground")},
+                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D2D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D2E, 0x1D2F}, {"layers", {"range", 0x0044, 0x004B},
-                                                                {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1D30] lower left filled
                             -- (with rock lower left filled)
                           {{"range", 0x1D30, 0x1D34}, {"layers", {0x0046, 0x004A},
-                                                                {getCliffsTiles(0x30, "weak-ground")},
-                                                                {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x30, "weak-ground")},
+                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D35, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1D36, 0x1D39}, {"layers", {0x0046, 0x004A},
-                                                                {getCliffsTiles(0x00, "weak-ground")},
-                                                                {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x00, "weak-ground")},
+                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D3A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D3B, 0x1D3F}, {"layers", {0x0046, 0x004A},
-                                                                {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1D40] left half filled
                             -- (with rock left half filled)
                           {{"range", 0x1D40, 0x1D42}, {"layers", {0x0044, 0x0045, 0x0046}, 
-                                                                {{0x0440, 0x0441}, cleanRocksAndDimShadows("weak-ground")},
-                                                                {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0x40, 0x41}, "weak-ground")},
+                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D43, {0x0000}}, -- separator
                             -- (with rock upper center filled)
                           {0x1D44, {"layers", {0x0044}, 
-                                              {{"img-base",163}, cleanRocksAndDimShadows("weak-ground")},
+                                              {getCliffsTiles({"special", "singleRockBot"}, "weak-ground")},
                                               {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D45, {0x0000}}, -- separator
                             -- (with rock lower center filled)
                           {0x1D46, {"layers", {0x0045}, 
-                                              {{"img-base",161}, cleanRocksAndDimShadows("weak-ground")},
+                                              {getCliffsTiles({"special", "singleRockUp"}, "weak-ground")},
                                               {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D47, {0x0000}}, -- separator
                             -- (with rock upper right clear)
                           {{"range", 0x1D48, 0x1D49}, {"layers", {0x0044}, 
-                                                                {0x04C0, cleanRocksAndDimShadows("weak-ground")},
-                                                                {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0xC0}, "weak-ground")},
+                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D4A, {0x0000}}, -- separator
                             -- (with rock lower right clear)
                           {{"range", 0x1D4B, 0x1D4C}, {"layers", {0x0044}, 
-                                                                {0x0460, cleanRocksAndDimShadows("weak-ground")},
-                                                                {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0x60}, "weak-ground")},
+                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D4D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D4E, 0x1D4F}, {"layers", {0x0044, 0x0045}, 
-                                                                {{"img-base", 166}, cleanRocksAndDimShadows("weak-ground")},
-                                                                {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"special", "removedRock"}, "weak-ground")},
+                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1D60] lower right clear 
                             -- (with rock lower right clear)
                           {{"range", 0x1D60, 0x01D61}, {"layers", {0x0044},
-                                                                  {0x0460, cleanRocksAndDimShadows("weak-ground")},
+                                                                  {getCliffsTiles({"pick", 0x60}, "weak-ground")},
                                                                   {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D62, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D63, 0x1D64}, {"layers", {0x0044},
-                                                                {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1D70] lower right filled
                             -- (with rock lower right filled)
                           {{"range", 0x1D70, 0x1D74}, {"layers", {0x0044, 0x0049},
-                                                                {getCliffsTiles(0x70, "weak-ground")},
-                                                                {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x70, "weak-ground")},
+                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D75, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1D76, 0x1D79}, {"layers", {0x0044, 0x0049},
-                                                                {getCliffsTiles(0x10, "weak-ground")},
-                                                                {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x10, "weak-ground")},
+                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D7A, {0x0000}}, -- separator
                           -- lower right filled (without rock)
                           {{"range", 0x1D7B, 0x1D7F}, {"layers", {0x0044, 0x0049},
-                                                                {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1D90] right half filled
                             -- (with rock right half filled)
                           {{"range", 0x1D90, 0x1D92}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
-                                                                {getCliffsTiles(0x90, "weak-ground")},
-                                                                {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x90, "weak-ground")},
+                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D93, {0x0000}}, -- separator
                             -- (with rock upper center filled)
                           {0x1D94, {"layers", {0x0044}, 
-                                              {{"img-base",163}, cleanRocksAndDimShadows("weak-ground")},
+                                              {getCliffsTiles({"special", "singleRockBot"}, "weak-ground")},
                                               {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D95, {0x0005}}, -- separator
                             -- (with rock lower center filled)
                           {0x1D96, {"layers", {0x0044}, 
-                                              {0x0471, cleanRocksAndDimShadows("weak-ground")},
+                                              {getCliffsTiles({"pick", 0x71}, "weak-ground")},
                                               {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D97, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x1D98, 0x1D99}, {"layers", {0x0044}, 
-                                                                {0x04D0, cleanRocksAndDimShadows("weak-ground")},
-                                                                {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0xD0}, "weak-ground")},
+                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D9A, {0x0000}}, -- separator
                             -- (with rock lower left clear)
                           {{"range", 0x1D9B, 0x1D9C}, {"layers", {0x0044}, 
-                                                                {0x04A0, cleanRocksAndDimShadows("weak-ground")},
-                                                                {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0xA0}, "weak-ground")},
+                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D9D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D9E, 0x1D9F}, {"layers", {0x0044, 0x0045}, 
-                                                                {{"img-base", 166}, cleanRocksAndDimShadows("weak-ground")},
-                                                                {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"special", "removedRock"}, "weak-ground")},
+                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1DA0] lower left clear
                             -- (with rock lower left clear)
                           {{"range", 0x1DA0, 0x1DA1}, {"layers", {0x0046},
-                                                                {0x04A0, cleanRocksAndDimShadows("weak-ground")},
-                                                                {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0xA0}, "weak-ground")},
+                                                                 {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1DA2, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1DA3, 0x1DA4}, {"layers", {0x0046},
-                                                                {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1DB0] upper half clear
                           {{"slot", 0x1DB0}, {"layers", {"range", 0x0044, 0x004B}, 
                                                         {getCliffsTiles(0xB0, "weak-ground")},
                                                         {{"slot", 0x0220}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1DC0] upper right clear
                           {{"range", 0x1DC0, 0x1DC3}, {"layers", {0x0046},
-                                                                {getCliffsTiles(0xB0, "weak-ground")},
-                                                                {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0xB0, "weak-ground")},
+                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1DC4, {0x0000}}, -- separator
                             -- (without rocks)
                           {{"range", 0x1DC5, 0x1DC6}, {"layers", {0x004A},
-                                                                {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1DD0] upper left clear
                           {{"range", 0x1DD0, 0x1DD3}, {"layers", {0x0044, 0x0049},
-                                                                {getCliffsTiles(0xB0, "weak-ground")},
-                                                                {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0xB0, "weak-ground")},
+                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1DD4, {0x0000}}, -- separator
                             -- (without rocks)
                           {{"range", 0x1DD5, 0x1DD6}, {"layers", {0x0044},
-                                                                {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}}},
+                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}}},
 
                 "mixed", {"ramp", lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1E00] upper left filled
                             -- (with rock lower right clear)
                           {{"range", 0x1E00, 0x1E01}, {"layers", {0x0068},
-                                                                {getCliffsTiles(0x60, "solid-ground")},
-                                                                {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x60, "solid-ground")},
+                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E02, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1E03, 0x1E09}, {"layers", {0x0068, 0x0069},
-                                                                {getCliffsTiles(0x10, "solid-ground")},
-                                                                {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x10, "solid-ground")},
+                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E0A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E0B, 0x1E0F}, {"layers", {0x0065, 0x0068, 0x0069},
-                                                                {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1E10] upper right filled 
                             -- (with rock lower left clear)
                           {{"range", 0x1E10, 0x1E11}, {"layers", {0x0068},
-                                                                {getCliffsTiles(0xA0, "solid-ground")},
-                                                                {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0xA0, "solid-ground")},
+                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E12, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1E13, 0x1E19}, {"layers", {0x0068, 0x0069},
-                                                                {getCliffsTiles(0x00, "solid-ground")},
-                                                                {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x00, "solid-ground")},
+                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E1A, {0x0000}}, -- separator
                           -- upper right filled (without rock)
                           {{"range", 0x1E1B, 0x1E1F}, {"layers", {0x0065, 0x0068, 0x0069},
-                                                                {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}}, 
+                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}}, 
                   -- [0x1E20] upper half filled
                             -- (with rock upper half filled)
                           {{"range", 0x1E20, 0x1E22}, {"layers", {0x0068, 0x0069},
-                                                                {getCliffsTiles(0x20, "solid-ground")},
-                                                                {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x20, "solid-ground")},
+                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E23, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {0x1E24, {"layers", {0x0068},
@@ -1097,144 +1109,143 @@ function ExtendTileset(seed)
                           {0x1E27, {0x0000}}, -- separator
                             -- (with rock lower right filled)
                           {{"range", 0x1E28, 0x1E29}, {"layers", {0x0068, 0x0069},
-                                                                {getCliffsTiles(0x70, "solid-ground")},
-                                                                {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x70, "solid-ground")},
+                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E2A, {0x0000}}, -- separator
                             -- (with rock lower left filled)
                           {{"range", 0x1E2b, 0x1E2C}, {"layers", {0x0068, 0x0069},
-                                                                {getCliffsTiles(0x30, "solid-ground")},
-                                                                {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x30, "solid-ground")},
+                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E2D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E2E, 0x1E2F}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1E30] lower left filled
                             -- (with rock lower left filled)
                           {{"range", 0x1E30, 0x1E34}, {"layers", {0x0068, 0x0069},
-                                                                {getCliffsTiles(0x30, "solid-ground")},
-                                                                {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x30, "solid-ground")},
+                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E35, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1E36, 0x1E39}, {"layers", {0x0068, 0x0069},
-                                                                {getCliffsTiles(0x00, "solid-ground")},
-                                                                {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x00, "solid-ground")},
+                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E3A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E3B, 0x1E3F}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1E40] left half filled
                             -- (with rock left half filled)
                           {{"range", 0x1E40, 0x1E42}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                                {{0x0440, 0x0441}, cleanRocksAndDimShadows("solid-ground")},
-                                                                {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0x40, 0x41}, "solid-ground")},
+                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E43, {0x0000}}, -- separator
                             -- (with rock upper center filled)
                           {0x1E44, {"layers", {0x0065},
-                                              {{"img-base", 163}, cleanRocksAndDimShadows("solid-ground")},
+                                              {getCliffsTiles({"special", "singleRockBot"}, "solid-ground")},
                                               {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E45, {0x0000}}, -- separator
                             -- (with rock lower center filled)
                           {0x1E46, {"layers", {0x0068},
-                                              {{"img-base", 161}, cleanRocksAndDimShadows("solid-ground")},
+                                              {getCliffsTiles({"special", "singleRockUp"}, "solid-ground")},
                                               {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E47, {0x0000}}, -- separator
                             -- (with rock upper right clear)
                           {{"range", 0x1E48, 0x1E49}, {"layers", {0x0065},
-                                                                {0x04C0, cleanRocksAndDimShadows("solid-ground")},
-                                                                {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0xC0}, "solid-ground")},
+                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E4A, {0x0000}}, -- separator
                             -- (with rock lower right clear)
                           {{"range", 0x1E4B, 0x1E4C}, {"layers", {0x0065}, 
-                                                                {0x0460, cleanRocksAndDimShadows("solid-ground")},
-                                                                {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0x60}, "solid-ground")},
+                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E4D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E4E, 0x1E4F}, {"layers", {0x0065}, 
-                                                                {{"img-base", 166}, cleanRocksAndDimShadows("solid-ground")},
-                                                                {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"special", "removedRock"}, "solid-ground")},
+                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1E60] lower right clear
                             -- (with rock lower right clear)
                           {{"range", 0x1E60, 0x1E61}, {"layers", {0x0069},
-                                                                {{0x0460}, cleanRocksAndDimShadows("solid-ground")},
-                                                                {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0x60}, "solid-ground")},
+                                                                 {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E62, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E63, 0x1E64}, {"layers", {0x0069},
-                                                                {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1E70] lower right filled
                             -- (with rock lower right filled)
                           {{"range", 0x1E70, 0x1E74}, {"layers", {0x0068, 0x0069},
-                                                                {getCliffsTiles(0x70, "solid-ground")},
-                                                                {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x70, "solid-ground")},
+                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E75, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1E76, 0x1E79}, {"layers", {0x0068, 0x0069},
-                                                                {getCliffsTiles(0x10, "solid-ground")},
-                                                                {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x10, "solid-ground")},
+                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E7A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E7B, 0x1E7F}, {"layers", {0x0068, 0x0069},
-                                                                {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1E90] right half filled
                             -- (with rock right half filled)
                           {{"range", 0x1E90, 0x1E92}, {"layers", {0x0065, 0x0068, 0x0069}, 
-                                                                {getCliffsTiles(0x90, "solid-ground")},
-                                                                {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0x90, "solid-ground")},
+                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E93, {0x0000}}, -- separator
                             -- (with rock upper center filled)
                           {0x1E94, {"layers", {0x0065}, 
-                                              {{"img-base",163}, cleanRocksAndDimShadows("solid-ground")},
+                                              {getCliffsTiles({"special", "singleRockBot"}, "solid-ground")},
                                               {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E95, {0x0000}}, -- separator
                             -- (with rock lower center filled)
                           {0x1E96, {"layers", {0x0068}, 
-                                              {0x0471, cleanRocksAndDimShadows("solid-ground")},
+                                              {getCliffsTiles({"pick", 0x71}, "solid-ground")},
                                               {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E97, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x1E98, 0x1E99}, {"layers", {0x0065}, 
-                                                                {0x04D0, cleanRocksAndDimShadows("solid-ground")},
-                                                                {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0xD0}, "solid-ground")},
+                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E9A, {0x0000}}, -- separator
                             -- (with rock lower left clear)
                           {{"range", 0x1E9B, 0x1E9C}, {"layers", {0x0065}, 
-                                                                {0x04A0, cleanRocksAndDimShadows("solid-ground")},
-                                                                {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0xA0}, "solid-ground")},
+                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1E9D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E9E, 0x1E9F}, {"layers", {0x0065, 0x0068}, 
-                                                                {{"img-base", 166}, cleanRocksAndDimShadows("solid-ground")},
-                                                                {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"special", "removedRock"}, "solid-ground")},
+                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1EA0] lower left clear
                             -- (with rock lower left clear)
                           {{"range", 0x1EA0, 0x1EA1}, {"layers", {0x0068},
-                                                        {{0x04A0}, cleanRocksAndDimShadows("solid-ground")},
-                                                        {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles({"pick", 0xA0}, "solid-ground")},
+                                                                 {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1EA2, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1EA3, 0x1EA4}, {"layers", {0x0068},
-                                                        {{0x04A0, 0x0030}, cleanRocksAndDimShadows("solid-ground")},
-                                                        {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1EB0] upper half clear
                           {{"slot", 0x1EB0}, {"layers", {0x0065, 0x0068, 0x0069}, 
                                                         {getCliffsTiles(0xB0, "solid-ground")},
                                                         {{"slot", 0x0220}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1EC0] upper right clear
                           {{"range", 0x1EC0, 0x1EC3}, {"layers", {0x0060},
-                                                                {getCliffsTiles(0xB0, "solid-ground")},
-                                                                {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0xB0, "solid-ground")},
+                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1EC4, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1EC5, 0x1EC6}, {"layers", {0x0060},
-                                                                {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1ED0] upper left clear
                           {{"range", 0x1ED0, 0x1ED3}, {"layers", {0x0061},
-                                                                {getCliffsTiles(0xB0, "solid-ground")},
-                                                                {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {getCliffsTiles(0xB0, "solid-ground")},
+                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1ED4, {0x0000}},-- separator
                             -- (without rock)
                           {{"range", 0x1ED5, 0x1ED6}, {"layers", {0x0061},
-                                                                {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}}},
+                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}}},
 
                 "mixed", {"ramp", "highgrounds", "land", "no-building",
                   -- [0x1F00] upper left filled
@@ -1243,14 +1254,14 @@ function ExtendTileset(seed)
                           {0x1F02, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1F03, 0x1F04}, {"layers", {{"slot", 0x03D0}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x0500}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x0500}, {"remove", light_weakGround}}}},
                   -- [0x1F10] upper right filled
                             -- (transition to coast highground)
                           {{"range", 0x1F10, 0x1F11}, {{"slot", 0x03C0}, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
                           {0x1F12, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1F13, 0x1F14}, {"layers", {{"slot", 0x03C0}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x0510}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x0510}, {"remove", light_weakGround}}}},
                   -- [0x1F20] upper half filled
                             -- (transition to coast highground)
                           {{"range", 0x1F20, 0x1F22}, {{"slot", 0x03B0}, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
@@ -1258,34 +1269,34 @@ function ExtendTileset(seed)
                             -- (transition to coast highground with rock upper left filled)
                           {0x1F24, {"layers", {"slot", 0x0400},
                                               {{"slot", 0x0200}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x03B0}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x03B0}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1F25, {0x0000}},-- separator
                             -- (transition to coast highground with rock upper right filled)
                           {0x1F26, {"layers", {"slot", 0x0410},
                                               {{"slot", 0x0210}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x03B0}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x03B0}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1F27, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1F28, 0x1F2A}, {"layers", {{"slot", 0x03B0}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x0520}, {"remove", light_weakGround}}}},
                           {0x1F2B, {0x0000}},-- separator
                             -- (transition to grass highground with rock upper left filled)
                           {0x1F2C, {"layers", {"slot", 0x0400},
                                               {{"slot", 0x0200}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x03B0}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x03B0}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x0520}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                           {0x1F2D, {0x0000}},-- separator
                             -- (transition to grass highground with rock upper right filled)
                           {0x1F2E, {"layers", {"slot", 0x0410},
                                               {{"slot", 0x0210}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x03B0}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x03B0}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x0520}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                   -- [0x1F30] lower left filled
@@ -1294,14 +1305,14 @@ function ExtendTileset(seed)
                           {0x1F32, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1F33, 0x1F34}, {"layers", {{"slot", 0x03A0}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x0530}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x0530}, {"remove", light_weakGround}}}},
                   -- [0x1F40] left half filled
                             -- (transition to coast highground)
                           {{"range", 0x1F40, 0x1F42}, {{"slot", 0x0390}, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
                           {0x1F43, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1F44, 0x1F46}, {"layers", {{"slot", 0x0390}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x0540}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x0540}, {"remove", light_weakGround}}}},
                   -- [0x1F60] lower right clear
                             -- (transition to coast highground)
                           {0x1F60, {0x0370, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
@@ -1310,35 +1321,35 @@ function ExtendTileset(seed)
                           {0x1F62, {"layers", {0x0044},
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0370}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x0370}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1F63, {0x0000}},-- separator
                             -- (transition to coast highground with grass lowground upper half filled)
                           {0x1F64, {"layers", {0x0064},
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0370}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x0370}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1F65, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower left filled)
                           {0x1F66, {"layers", {"slot", 0x0430},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0370}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x0370}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1F67, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1F68, 0x1F69}, {"layers", {{"slot", 0x0370}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x0560}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x0560}, {"remove", light_weakGround}}}},
                           {0x1F6A, {0x0000}},-- separator
                             -- (transition to grass highground with coast lowground upper half filled)
                           {0x1F6B, {"layers", {0x0044},
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0370}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x0370}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x0560}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                           {0x1F6C, {0x0000}},-- separator
@@ -1346,16 +1357,16 @@ function ExtendTileset(seed)
                           {0x1F6D, {"layers", {0x0064},
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0370}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x0370}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x0560}, {"remove", light_weakGround}}},
                                     "unpassable"},
                           {0x1F6E, {0x0000}},-- separator
                             -- (transition to grass highground with rock lower left filled)
                           {0x1F6F, {"layers", {"slot", 0x0430},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0370}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x0370}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x0560}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                   -- [0x1F70] lower right filed
@@ -1364,14 +1375,14 @@ function ExtendTileset(seed)
                           {0x1F72, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1F73, 0x1F74}, {"layers", {{"slot", 0x0360}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x0570}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x0570}, {"remove", light_weakGround}}}},
                   -- [0x1F90] right half filled
                             -- (transition to coast highground)
                           {{"range", 0x1F90, 0x1F92}, {{"slot", 0x0340}, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
                           {0x1F93, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1F94, 0x1F96}, {"layers", {{"slot", 0x0340}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x0590}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x0590}, {"remove", light_weakGround}}}},
                   -- [0x1FA0] lower left clear
                             -- (transition to coast highground)
                           {0x1FA0, {0x0330, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
@@ -1380,51 +1391,51 @@ function ExtendTileset(seed)
                           {0x1FA2, {"layers", {0x0044},
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {0x0330, 0x0331}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {0x0330, 0x0331}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FA3, {0x0000}},-- separator
                             -- (transition to coast highground with grass lowground upper half filled)
                           {0x1FA4, {"layers", {0x0064},
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {0x0330, 0x0331}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {0x0330, 0x0331}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FA5, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower right filled)
                           {0x1FA6, {"layers", {"slot", 0x0470},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {0x0330, 0x0331}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {0x0330, 0x0331}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FA7, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1FA8, 0x1FA9}, {"layers", {{0x0330, 0x0331}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x05A0}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x05A0}, {"remove", light_weakGround}}}},
                           {0x1FAA, {0x0000}},-- separator
                             -- (transition to grass highground with coast lowground upper half filled)
                           {0x1FAB, {"layers", {0x0044},
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {0x0330, 0x0331}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {0x0330, 0x0331}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x05A0}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                             -- (transition to grass highground with grass lowground upper half filled)
                           {0x1FAC, {"layers", {0x0064},
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {0x0330, 0x0331}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {0x0330, 0x0331}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x05A0}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                           {0x1FAD, {0x0000}},-- separator
                             -- (transition to grass highground with rock lower right filled)
                           {0x1FAE, {"layers", {"slot", 0x0470},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {0x0330, 0x0331}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {0x0330, 0x0331}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x05A0}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                   -- [0x1FB0] upper half clear
@@ -1434,34 +1445,34 @@ function ExtendTileset(seed)
                             -- (transition to coast highground with rock lower left filled)
                           {0x1FB4, {"layers", {"slot", 0x0430},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0320}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x0320}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FB5, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower right filled)
                           {0x1FB6, {"layers", {"slot", 0x0470},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0320}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x0320}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FB7, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1FB8, 0x1FBA}, {"layers", {{"slot", 0x0320}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x05B0}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x05B0}, {"remove", light_weakGround}}}},
                           {0x1FBB, {0x0000}},-- separator
                             -- (transition to grass highground with rock lower left filled)
                           {0x1FBC, {"layers", {"slot", 0x0430},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0320}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x0320}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x05B0}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                           {0x1FBD, {0x0000}},-- separator
                             -- (transition to grass highground with rock lower right filled)
                           {0x1FBE, {"layers", {"slot", 0x0470},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0320}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x0320}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x05B0}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                   -- [0x1FC0] upper right clear
@@ -1471,34 +1482,34 @@ function ExtendTileset(seed)
                             -- (transition to coast highground with rock upper left filled)
                           {0x1FC3, {"layers", {"slot", 0x0400},
                                               {{"slot", 0x0200}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0310}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x0310}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FC4, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower right filled)
                           {0x1FC5, {"layers", {"slot", 0x0470},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0310}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x0310}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FC6, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1FC7, 0x1FC8}, {"layers", {{"slot", 0x0310}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x05C0}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x05C0}, {"remove", light_weakGround}}}},
                           {0x1FC9, {0x0000}},-- separator
                             -- (transition to coast grass with rock upper left filled)
                           {0x1FCA, {"layers", {"slot", 0x0400},
                                               {{"slot", 0x0200}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0310}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x0310}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x05C0}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                           {0x1FCB, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower right filled)
                           {0x1FCC, {"layers", {"slot", 0x0470},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0310}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x0310}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x05C0}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                   -- [0x1FD0] upper left clear
@@ -1508,34 +1519,34 @@ function ExtendTileset(seed)
                             -- (transition to coast highground with rock lower left filled)
                           {0x1FD3, {"layers", {"slot", 0x0430},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0300}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x0300}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FD4, {0x0000}},-- separator
                             -- (transition to coast highground with rock upper right filled)
                           {0x1FD5, {"layers", {"slot", 0x0410},
                                               {{"slot", 0x0210}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0300}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
+                                                                 {"chroma-key", {"slot", 0x0300}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FD6, {0x0000}},-- separator
                             -- (transition to grass highground)
                           {{"range", 0x1FD7, 0x1FD8}, {"layers", {{"slot", 0x0300}, {"shift", lighten, light_weakGround, dark_weakGround_dark}},
-                                                                {{"slot", 0x05D0}, {"remove", light_weakGround}}}},
+                                                                 {{"slot", 0x05D0}, {"remove", light_weakGround}}}},
                           {0x1FD9, {0x0000}},-- separator
                             -- (transition to coast grass with rock lower left filled)
                           {0x1FDA, {"layers", {"slot", 0x0430},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0300}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x0300}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x05D0}, {"remove", light_weakGround}}}, 
                                     "unpassable"},
                           {0x1FDB, {0x0000}},-- separator
                             -- (transition to coast highground with rock upper right filled)
                           {0x1FDC, {"layers", {"slot", 0x0410},
                                               {{"slot", 0x0210}, {"remove", colorsFor(water)}, 
-                                                                {"chroma-key", {"slot", 0x0300}, light_weakGround},
-                                                                {"shift", lighten, light_weakGround, dark_weakGround_dark}},
+                                                                 {"chroma-key", {"slot", 0x0300}, light_weakGround},
+                                                                 {"shift", lighten, light_weakGround, dark_weakGround_dark}},
                                               {{"slot", 0x05D0}, {"remove", light_weakGround}}}, 
                                     "unpassable"}},
                                               
@@ -1543,33 +1554,33 @@ function ExtendTileset(seed)
                   -- [0x2100] upper left filled
                             -- (transition to coast lowround)
                           {{"range", 0x2100, 0x2101}, {"layers", {{"slot", 0x03D0}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0200, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0200, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x03D0}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x2102, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x2103, 0x2104}, {"layers", {{"slot", 0x03D0}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0200, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0200, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x03D0}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x0500}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x0500}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x2110] upper right filled
                             -- (transition to coast lowground)
                           {{"range", 0x2110, 0x2111}, {"layers", {{"slot", 0x03C0}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0210, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0210, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x03C0}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x2112, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x2113, 0x2114}, {"layers", {{"slot", 0x03C0}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0210, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0210, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x03C0}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x0510}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x0510}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x2120] upper half filled
                             -- (transition to coast lowground)
                           {{"range", 0x2120, 0x2122}, {"layers", {{"slot", 0x03B0}, {"shift", lighten, light_weakGround_light}},
@@ -1580,147 +1591,147 @@ function ExtendTileset(seed)
                           {0x2123, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x2124, 0x2126}, {"layers", {{"slot", 0x03B0}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0220, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0220, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x03B0}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x0520}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x0520}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
 
                   -- [0x2130] lower left filled
                             -- (transition to coast lowground)
                           {{"range", 0x2130, 0x2131}, {"layers", {{"slot", 0x03A0}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0230, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0230, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x03A0}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},                        
                           {0x2132, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x2133, 0x2134}, {"layers", {{"slot", 0x03A0}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0230, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0230, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x03A0}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x0530}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x0530}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x2140] left half filled
                             -- (transition to coast lowground)
                           {{"range", 0x2140, 0x2142}, {"layers", {{"slot", 0x0390}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0240, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0240, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0390}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x2143, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x2144, 0x2146}, {"layers", {{"slot", 0x0390}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0240, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0240, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0390}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x0540}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x0540}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x2160] lower right clear
                             -- (transition to coast lowground)
                           {{"range", 0x2160, 0x2161}, {"layers", {{"slot", 0x0370}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0260, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0260, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0370}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x2162, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x2163, 0x2164}, {"layers", {{"slot", 0x0370}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0260, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0260, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0370}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x0560}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x0560}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x2170] lower right filed
                             -- (transition to coast lowground)
                           {{"range", 0x2170, 0x2171}, {"layers", {{"slot", 0x0360}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0270, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0270, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0360}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x2172, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x2173, 0x2174}, {"layers", {{"slot", 0x0360}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0270, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0270, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0360}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x0570}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x0570}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x2190] right half filled
                             -- (transition to coast lowground)
                           {{"range", 0x2190, 0x2192}, {"layers", {{"slot", 0x0340}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0290, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0290, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0340}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x2193, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x2194, 0x2196}, {"layers", {{"slot", 0x0340}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x0290, {"remove-all-except", colorsFor(water)},
+                                                                 {0x0290, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0340}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x0590}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x0590}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x21A0] lower left clear
                             -- (transition to coast lowground)
                           {{"range", 0x21A0, 0x21A1}, {"layers", {{"slot", 0x0330}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x02A0, {"remove-all-except", colorsFor(water)},
+                                                                 {0x02A0, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {0x0330, 0x0331}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x21A2, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x21A3, 0x21A4}, {"layers", {{"slot", 0x0330}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x02A0, {"remove-all-except", colorsFor(water)},
+                                                                 {0x02A0, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {0x0330, 0x0331}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x05A0}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x05A0}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x21B0] upper half clear
                             -- (transition to coast lowground)
                           {{"range", 0x21B0, 0x21B2}, {"layers", {{"slot", 0x0320}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x02B0, {"remove-all-except", colorsFor(water)},
+                                                                 {0x02B0, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0320}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x21B3, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x21B4, 0x21B6}, {"layers", {{"slot", 0x0320}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x02B0, {"remove-all-except", colorsFor(water)},
+                                                                 {0x02B0, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0320}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x05B0}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x05B0}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x21C0] upper right clear
                             -- (transition to coast lowground)
                           {{"range", 0x21C0, 0x21C1}, {"layers", {{"slot", 0x0310}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x02C0, {"remove-all-except", colorsFor(water)},
+                                                                 {0x02C0, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0310}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x21C2, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x21C3, 0x21C4}, {"layers", {{"slot", 0x0310}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x02C0, {"remove-all-except", colorsFor(water)},
+                                                                 {0x02C0, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0310}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x05C0}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
+                                                                 {{"slot", 0x05C0}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}},
                   -- [0x21D0] upper left clear
                             -- (transition to coast lowground)
                           {{"range", 0x21D0, 0x21D1}, {"layers", {{"slot", 0x0300}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x02D0, {"remove-all-except", colorsFor(water)},
+                                                                 {0x02D0, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0300}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}}}},
                           {0x21D2, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x21D3, 0x21D4}, {"layers", {{"slot", 0x0300}, {"shift", lighten, light_weakGround_light}},
-                                                                {0x02D0, {"remove-all-except", colorsFor(water)},
+                                                                 {0x02D0, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x0300}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
                                                                           {"shift", lighten, light_weakGround_dark}},
-                                                                {{"slot", 0x05D0}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}}}
+                                                                 {{"slot", 0x05D0}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}}}
           }
   )
 

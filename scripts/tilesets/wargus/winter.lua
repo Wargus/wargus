@@ -362,7 +362,14 @@ local cliff_gen = {
                         [0xC0] = {0x0061},
                         [0xD0] = {0x0062}
                        },
-    ["cliff"]        = nil  
+    ["cliff"]        = nil,
+    ["cliff-special"] = { -- tile index in the source image
+                          ["singleRockUp"]  = 156,
+                          ["singleRockMid"] = 157,
+                          ["singleRockBot"] = 158,
+                          ["removedRock"]   = 161
+                        }
+
   },
 
   -- functions --
