@@ -886,30 +886,30 @@ function ExtendTileset(seed)
                             -- (with rock lower right clear)
                           {{"range", 0x1D00, 0x1D01}, {"layers", {0x0046},
                                                                  {getCliffsTiles(0x60, "weak-ground")},
-                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}}}},
+                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D02, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1D03, 0x1D09}, {"layers", {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x10, "weak-ground")},
-                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}}}},
+                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D0A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D0B, 0x1D0F}, {"layers", {0x0044, 0x0046, 0x0049, 0x004A},
-                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}}}},
+                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1D10] upper right filled 
                             -- (with rock lower left clear)
                           {{"range", 0x1D10, 0x1D11}, {"layers", {0x0044},
                                                                  {getCliffsTiles(0xA0, "weak-ground")},
-                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}}}},
+                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D12, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1D13, 0x1D19}, {"layers", {0x0044, 0x0049},
                                                                  {getCliffsTiles(0x00, "weak-ground")},
-                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}}}},
+                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                           {0x1D1A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D1B, 0x1D1F}, {"layers", {0x0044, 0x0046, 0x0049, 0x004A},
-                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}}}},
+                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
                   -- [0x1D20] upper half filled
                             -- (with rock upper half filled)
                           {{"range", 0x1D20, 0x1D22}, {"layers", {"range", 0x0044, 0x004B},
