@@ -363,24 +363,33 @@ local cliff_gen = {
   },
     
   -- functions --
-
-  colorsFor = nil, -- parser for ground colors. Declared in the extended.lua
+  utils = {
+            colorsFor = nil, -- parser for ground colors. Declared in the extended.lua
+            Lighten = nil,
+            Dim = nil
+          },
   cleanRocks = nil, -- local function to clean rocks (if present)
+
   makeHighGroundEdge = function(self, groundType, slot) -- local function to make HG edge tiles (if present)
     local returnValue = {}
 
-    table.insert(returnValue, {{"slot", 0x200 + (0xD0 - slot)}, {"remove", self.colorsFor(water)}})
+    table.insert(returnValue, {{"slot", 0x200 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(water)}})
     if groundType == "solid-ground" then
-      table.insert(returnValue, {{"slot", 0x500 + (0xD0 - slot)}, {"remove", self.colorsFor(lightCoast, "base", "light-shadows")}})
+      table.insert(returnValue, {{"slot", 0x500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightCoast, "base", "light-shadows")}})
     end
 
     return unpack(returnValue)
+  end,
+
+  makeRampEdge = function(self)
+    return  {"remove", self.utils.colorsFor(water)}, self.utils.Lighten(lightCoast, "base", "shadows")
   end
 }
 
 local extendedTilesetSeed = {
 
   rampSrc_baseIdx                 = 0x0030, -- light-coast
+  rampEdgeSrc_baseIdx             = 0x0200, -- light-coast and water boundry
   rampSrc                         = lightCoast,
 
   lightWeakGround                 = lightCoast,

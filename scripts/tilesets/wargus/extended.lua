@@ -214,6 +214,8 @@ filled  clear
 function ExtendTileset(seed)
 
   local rampSrc_baseIdx = seed.rampSrc_baseIdx
+  local rampEdgeSrc_baseIdx = seed.rampEdgeSrc_baseIdx
+
   local rampSrc = seed.rampSrc
 
   local lowgroundWeakGround = seed.lowgroundWeakGround
@@ -235,7 +237,6 @@ function ExtendTileset(seed)
 
   local dim = seed.dim
   local lighten = seed.lighten
-  local convertBaseGround = true
 
   local function getColors(colorSet, ...)
     local args = {...}
@@ -253,7 +254,7 @@ function ExtendTileset(seed)
     return unpack(returnValue)
   end
   local colorsFor = getColors -- alias
-  cliff_gen.colorsFor = getColors
+  cliff_gen.utils.colorsFor = getColors
 
   local function convertColors(rangeFrom, rangeTo)
     if rangeFrom == nil or rangeTo == nil then
@@ -378,11 +379,13 @@ function ExtendTileset(seed)
     local subSets = {...}
     return shiftBrightness_byStep(lighten, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
   end
+  cliff_gen.utils.Lighten = Lighten
 
   local function Dim(colorSet, ...)
     local subSets = {...}
     return shiftBrightness_byStep(dim, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
   end
+  cliff_gen.utils.Dim = Dim
 
   local function cleanRocksAndDimShadows(baseTerrain, resultAsTable)
     local result = {}
@@ -472,6 +475,11 @@ function ExtendTileset(seed)
     return cliff_gen:makeHighGroundEdge(groundType, slot)
   end
 
+  local function makeRampEdge(slot)
+    
+    return {"slot", rampEdgeSrc_baseIdx + (0xD0 - slot)}, cliff_gen:makeRampEdge()
+  end
+
   local function genSeq_CliffsOnLowground(dstSlot, subSlots, baseTerrain)
     result = {}
   
@@ -497,7 +505,7 @@ function ExtendTileset(seed)
 
     for i, slot in ipairs(subSlots) do
       table.insert(result, {{"slot", dstSlot + slot}, {"layers", getCliffsTiles("fully-filled"), 
-                                                                             {{"slot", 0x02D0 - slot}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}})
+                                                                             {makeRampEdge(slot)}}})
     end
     return unpack(result)
   end
@@ -886,370 +894,370 @@ function ExtendTileset(seed)
                             -- (with rock lower right clear)
                           {{"range", 0x1D00, 0x1D01}, {"layers", {0x0046},
                                                                  {getCliffsTiles(0x60, "weak-ground")},
-                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x00)}}},
                           {0x1D02, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1D03, 0x1D09}, {"layers", {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x10, "weak-ground")},
-                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x00)}}},
                           {0x1D0A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D0B, 0x1D0F}, {"layers", {0x0044, 0x0046, 0x0049, 0x004A},
-                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x00)}}},
                   -- [0x1D10] upper right filled 
                             -- (with rock lower left clear)
                           {{"range", 0x1D10, 0x1D11}, {"layers", {0x0044},
                                                                  {getCliffsTiles(0xA0, "weak-ground")},
-                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x10)}}},
                           {0x1D12, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1D13, 0x1D19}, {"layers", {0x0044, 0x0049},
                                                                  {getCliffsTiles(0x00, "weak-ground")},
-                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x10)}}},
                           {0x1D1A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D1B, 0x1D1F}, {"layers", {0x0044, 0x0046, 0x0049, 0x004A},
-                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x10)}}},
                   -- [0x1D20] upper half filled
                             -- (with rock upper half filled)
                           {{"range", 0x1D20, 0x1D22}, {"layers", {"range", 0x0044, 0x004B},
                                                                  {getCliffsTiles(0x20, "weak-ground")},
-                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x20)}}},
                           {0x1D23, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {0x1D24, {"layers", {0x0044},
                                               {getCliffsTiles(0x00, "weak-ground")},
-                                              {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x20)}}},
                           {0x1D25, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {0x1D26, {"layers", {0x0044},
                                               {getCliffsTiles(0x10, "weak-ground")},
-                                              {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x20)}}},
                           {0x1D27, {0x0000}}, -- separator
                             -- (with rock lower right filled)
                           {{"range", 0x1D28, 0x1D29}, {"layers", {"range", 0x0044, 0x004B},
                                                                  {getCliffsTiles(0x70, "weak-ground")},
-                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x20)}}},
                           {0x1D2A, {0x0000}}, -- separator
                             -- (with rock lower left filled)
                           {{"range", 0x1D2B, 0x1D2C}, {"layers", {"range", 0x0044, 0x004B},
                                                                  {getCliffsTiles(0x30, "weak-ground")},
-                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x20)}}},
                           {0x1D2D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D2E, 0x1D2F}, {"layers", {"range", 0x0044, 0x004B},
-                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x20)}}},
                   -- [0x1D30] lower left filled
                             -- (with rock lower left filled)
                           {{"range", 0x1D30, 0x1D34}, {"layers", {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x30, "weak-ground")},
-                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x30)}}},
                           {0x1D35, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1D36, 0x1D39}, {"layers", {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x00, "weak-ground")},
-                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x30)}}},
                           {0x1D3A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D3B, 0x1D3F}, {"layers", {0x0046, 0x004A},
-                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x30)}}},
                   -- [0x1D40] left half filled
                             -- (with rock left half filled)
                           {{"range", 0x1D40, 0x1D42}, {"layers", {0x0044, 0x0045, 0x0046}, 
                                                                  {getCliffsTiles({"pick", 0x40, 0x41}, "weak-ground")},
-                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x40)}}},
                           {0x1D43, {0x0000}}, -- separator
                             -- (with rock upper center filled)
                           {0x1D44, {"layers", {0x0044}, 
                                               {getCliffsTiles({"special", "singleRockBot"}, "weak-ground")},
-                                              {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x40)}}},
                           {0x1D45, {0x0000}}, -- separator
                             -- (with rock lower center filled)
                           {0x1D46, {"layers", {0x0045}, 
                                               {getCliffsTiles({"special", "singleRockUp"}, "weak-ground")},
-                                              {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x40)}}},
                           {0x1D47, {0x0000}}, -- separator
                             -- (with rock upper right clear)
                           {{"range", 0x1D48, 0x1D49}, {"layers", {0x0044}, 
                                                                  {getCliffsTiles({"pick", 0xC0}, "weak-ground")},
-                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x40)}}},
                           {0x1D4A, {0x0000}}, -- separator
                             -- (with rock lower right clear)
                           {{"range", 0x1D4B, 0x1D4C}, {"layers", {0x0044}, 
                                                                  {getCliffsTiles({"pick", 0x60}, "weak-ground")},
-                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x40)}}},
                           {0x1D4D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D4E, 0x1D4F}, {"layers", {0x0044, 0x0045}, 
                                                                  {getCliffsTiles({"special", "removedRock"}, "weak-ground")},
-                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x40)}}},
                   -- [0x1D60] lower right clear 
                             -- (with rock lower right clear)
                           {{"range", 0x1D60, 0x01D61}, {"layers", {0x0044},
                                                                   {getCliffsTiles({"pick", 0x60}, "weak-ground")},
-                                                                  {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                  {makeRampEdge(0x60)}}},
                           {0x1D62, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D63, 0x1D64}, {"layers", {0x0044},
-                                                                 {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x60)}}},
                   -- [0x1D70] lower right filled
                             -- (with rock lower right filled)
                           {{"range", 0x1D70, 0x1D74}, {"layers", {0x0044, 0x0049},
                                                                  {getCliffsTiles(0x70, "weak-ground")},
-                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x70)}}},
                           {0x1D75, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1D76, 0x1D79}, {"layers", {0x0044, 0x0049},
                                                                  {getCliffsTiles(0x10, "weak-ground")},
-                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x70)}}},
                           {0x1D7A, {0x0000}}, -- separator
                           -- lower right filled (without rock)
                           {{"range", 0x1D7B, 0x1D7F}, {"layers", {0x0044, 0x0049},
-                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x70)}}},
                   -- [0x1D90] right half filled
                             -- (with rock right half filled)
                           {{"range", 0x1D90, 0x1D92}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
                                                                  {getCliffsTiles(0x90, "weak-ground")},
-                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x90)}}},
                           {0x1D93, {0x0000}}, -- separator
                             -- (with rock upper center filled)
                           {0x1D94, {"layers", {0x0044}, 
                                               {getCliffsTiles({"special", "singleRockBot"}, "weak-ground")},
-                                              {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x90)}}},
                           {0x1D95, {0x0005}}, -- separator
                             -- (with rock lower center filled)
                           {0x1D96, {"layers", {0x0044}, 
                                               {getCliffsTiles({"pick", 0x71}, "weak-ground")},
-                                              {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x90)}}},
                           {0x1D97, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x1D98, 0x1D99}, {"layers", {0x0044}, 
                                                                  {getCliffsTiles({"pick", 0xD0}, "weak-ground")},
-                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x90)}}},
                           {0x1D9A, {0x0000}}, -- separator
                             -- (with rock lower left clear)
                           {{"range", 0x1D9B, 0x1D9C}, {"layers", {0x0044}, 
                                                                  {getCliffsTiles({"pick", 0xA0}, "weak-ground")},
-                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x90)}}},
                           {0x1D9D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1D9E, 0x1D9F}, {"layers", {0x0044, 0x0045}, 
                                                                  {getCliffsTiles({"special", "removedRock"}, "weak-ground")},
-                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x90)}}},
                   -- [0x1DA0] lower left clear
                             -- (with rock lower left clear)
                           {{"range", 0x1DA0, 0x1DA1}, {"layers", {0x0046},
                                                                  {getCliffsTiles({"pick", 0xA0}, "weak-ground")},
-                                                                 {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0xA0)}}},
                           {0x1DA2, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1DA3, 0x1DA4}, {"layers", {0x0046},
-                                                                 {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0xA0)}}},
                   -- [0x1DB0] upper half clear
                           {{"slot", 0x1DB0}, {"layers", {"range", 0x0044, 0x004B}, 
                                                         {getCliffsTiles(0xB0, "weak-ground")},
-                                                        {{"slot", 0x0220}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                        {makeRampEdge(0xB0)}}},
                   -- [0x1DC0] upper right clear
                           {{"range", 0x1DC0, 0x1DC3}, {"layers", {0x0046},
                                                                  {getCliffsTiles(0xB0, "weak-ground")},
-                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0xC0)}}},
                           {0x1DC4, {0x0000}}, -- separator
                             -- (without rocks)
                           {{"range", 0x1DC5, 0x1DC6}, {"layers", {0x004A},
-                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0xC0)}}},
                   -- [0x1DD0] upper left clear
                           {{"range", 0x1DD0, 0x1DD3}, {"layers", {0x0044, 0x0049},
                                                                  {getCliffsTiles(0xB0, "weak-ground")},
-                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0xD0)}}},
                           {0x1DD4, {0x0000}}, -- separator
                             -- (without rocks)
                           {{"range", 0x1DD5, 0x1DD6}, {"layers", {0x0044},
-                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}}},
+                                                                 {makeRampEdge(0xD0)}}}},
 
                 "mixed", {"ramp", lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1E00] upper left filled
                             -- (with rock lower right clear)
                           {{"range", 0x1E00, 0x1E01}, {"layers", {0x0068},
                                                                  {getCliffsTiles(0x60, "solid-ground")},
-                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x00)}}},
                           {0x1E02, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1E03, 0x1E09}, {"layers", {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x10, "solid-ground")},
-                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x00)}}},
                           {0x1E0A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E0B, 0x1E0F}, {"layers", {0x0065, 0x0068, 0x0069},
-                                                                 {{"slot", 0x02D0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x00)}}},
                   -- [0x1E10] upper right filled 
                             -- (with rock lower left clear)
                           {{"range", 0x1E10, 0x1E11}, {"layers", {0x0068},
                                                                  {getCliffsTiles(0xA0, "solid-ground")},
-                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x10)}}},
                           {0x1E12, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1E13, 0x1E19}, {"layers", {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x00, "solid-ground")},
-                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x10)}}},
                           {0x1E1A, {0x0000}}, -- separator
                           -- upper right filled (without rock)
                           {{"range", 0x1E1B, 0x1E1F}, {"layers", {0x0065, 0x0068, 0x0069},
-                                                                 {{"slot", 0x02C0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}}, 
+                                                                 {makeRampEdge(0x10)}}}, 
                   -- [0x1E20] upper half filled
                             -- (with rock upper half filled)
                           {{"range", 0x1E20, 0x1E22}, {"layers", {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x20, "solid-ground")},
-                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x20)}}},
                           {0x1E23, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {0x1E24, {"layers", {0x0068},
                                               {getCliffsTiles(0x00, "solid-ground")},
-                                              {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x20)}}},
                           {0x1E25, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {0x1E24, {"layers", {0x0068},
                                               {getCliffsTiles(0x10, "solid-ground")},
-                                              {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x20)}}},
                           {0x1E27, {0x0000}}, -- separator
                             -- (with rock lower right filled)
                           {{"range", 0x1E28, 0x1E29}, {"layers", {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x70, "solid-ground")},
-                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x20)}}},
                           {0x1E2A, {0x0000}}, -- separator
                             -- (with rock lower left filled)
                           {{"range", 0x1E2b, 0x1E2C}, {"layers", {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x30, "solid-ground")},
-                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x20)}}},
                           {0x1E2D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E2E, 0x1E2F}, {"layers", {0x0068, 0x0069},
-                                                                 {{"slot", 0x02B0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x20)}}},
                   -- [0x1E30] lower left filled
                             -- (with rock lower left filled)
                           {{"range", 0x1E30, 0x1E34}, {"layers", {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x30, "solid-ground")},
-                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x30)}}},
                           {0x1E35, {0x0000}}, -- separator
                             -- (with rock upper left filled)
                           {{"range", 0x1E36, 0x1E39}, {"layers", {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x00, "solid-ground")},
-                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x30)}}},
                           {0x1E3A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E3B, 0x1E3F}, {"layers", {0x0068, 0x0069},
-                                                                 {{"slot", 0x02A0}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x30)}}},
                   -- [0x1E40] left half filled
                             -- (with rock left half filled)
                           {{"range", 0x1E40, 0x1E42}, {"layers", {0x0065, 0x0068, 0x0069}, 
                                                                  {getCliffsTiles({"pick", 0x40, 0x41}, "solid-ground")},
-                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x40)}}},
                           {0x1E43, {0x0000}}, -- separator
                             -- (with rock upper center filled)
                           {0x1E44, {"layers", {0x0065},
                                               {getCliffsTiles({"special", "singleRockBot"}, "solid-ground")},
-                                              {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x40)}}},
                           {0x1E45, {0x0000}}, -- separator
                             -- (with rock lower center filled)
                           {0x1E46, {"layers", {0x0068},
                                               {getCliffsTiles({"special", "singleRockUp"}, "solid-ground")},
-                                              {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x40)}}},
                           {0x1E47, {0x0000}}, -- separator
                             -- (with rock upper right clear)
                           {{"range", 0x1E48, 0x1E49}, {"layers", {0x0065},
                                                                  {getCliffsTiles({"pick", 0xC0}, "solid-ground")},
-                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x40)}}},
                           {0x1E4A, {0x0000}}, -- separator
                             -- (with rock lower right clear)
                           {{"range", 0x1E4B, 0x1E4C}, {"layers", {0x0065}, 
                                                                  {getCliffsTiles({"pick", 0x60}, "solid-ground")},
-                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x40)}}},
                           {0x1E4D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E4E, 0x1E4F}, {"layers", {0x0065}, 
                                                                  {getCliffsTiles({"special", "removedRock"}, "solid-ground")},
-                                                                 {{"slot", 0x0290}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x40)}}},
                   -- [0x1E60] lower right clear
                             -- (with rock lower right clear)
                           {{"range", 0x1E60, 0x1E61}, {"layers", {0x0069},
                                                                  {getCliffsTiles({"pick", 0x60}, "solid-ground")},
-                                                                 {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x60)}}},
                           {0x1E62, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E63, 0x1E64}, {"layers", {0x0069},
-                                                                 {{"slot", 0x0270}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x60)}}},
                   -- [0x1E70] lower right filled
                             -- (with rock lower right filled)
                           {{"range", 0x1E70, 0x1E74}, {"layers", {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x70, "solid-ground")},
-                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x70)}}},
                           {0x1E75, {0x0000}}, -- separator
                             -- (with rock upper right filled)
                           {{"range", 0x1E76, 0x1E79}, {"layers", {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x10, "solid-ground")},
-                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x70)}}},
                           {0x1E7A, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E7B, 0x1E7F}, {"layers", {0x0068, 0x0069},
-                                                                 {{"slot", 0x0260}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x70)}}},
                   -- [0x1E90] right half filled
                             -- (with rock right half filled)
                           {{"range", 0x1E90, 0x1E92}, {"layers", {0x0065, 0x0068, 0x0069}, 
                                                                  {getCliffsTiles(0x90, "solid-ground")},
-                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x90)}}},
                           {0x1E93, {0x0000}}, -- separator
                             -- (with rock upper center filled)
                           {0x1E94, {"layers", {0x0065}, 
                                               {getCliffsTiles({"special", "singleRockBot"}, "solid-ground")},
-                                              {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x90)}}},
                           {0x1E95, {0x0000}}, -- separator
                             -- (with rock lower center filled)
                           {0x1E96, {"layers", {0x0068}, 
                                               {getCliffsTiles({"pick", 0x71}, "solid-ground")},
-                                              {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                              {makeRampEdge(0x90)}}},
                           {0x1E97, {0x0000}}, -- separator
                             -- (with rock upper left clear)
                           {{"range", 0x1E98, 0x1E99}, {"layers", {0x0065}, 
                                                                  {getCliffsTiles({"pick", 0xD0}, "solid-ground")},
-                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x90)}}},
                           {0x1E9A, {0x0000}}, -- separator
                             -- (with rock lower left clear)
                           {{"range", 0x1E9B, 0x1E9C}, {"layers", {0x0065}, 
                                                                  {getCliffsTiles({"pick", 0xA0}, "solid-ground")},
-                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x90)}}},
                           {0x1E9D, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1E9E, 0x1E9F}, {"layers", {0x0065, 0x0068}, 
                                                                  {getCliffsTiles({"special", "removedRock"}, "solid-ground")},
-                                                                 {{"slot", 0x0240}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0x90)}}},
                   -- [0x1EA0] lower left clear
                             -- (with rock lower left clear)
                           {{"range", 0x1EA0, 0x1EA1}, {"layers", {0x0068},
                                                                  {getCliffsTiles({"pick", 0xA0}, "solid-ground")},
-                                                                 {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0xA0)}}},
                           {0x1EA2, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1EA3, 0x1EA4}, {"layers", {0x0068},
-                                                                 {{"slot", 0x0230}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0xA0)}}},
                   -- [0x1EB0] upper half clear
                           {{"slot", 0x1EB0}, {"layers", {0x0065, 0x0068, 0x0069}, 
                                                         {getCliffsTiles(0xB0, "solid-ground")},
-                                                        {{"slot", 0x0220}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                        {makeRampEdge(0xB0)}}},
                   -- [0x1EC0] upper right clear
                           {{"range", 0x1EC0, 0x1EC3}, {"layers", {0x0060},
                                                                  {getCliffsTiles(0xB0, "solid-ground")},
-                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0xC0)}}},
                           {0x1EC4, {0x0000}}, -- separator
                             -- (without rock)
                           {{"range", 0x1EC5, 0x1EC6}, {"layers", {0x0060},
-                                                                 {{"slot", 0x0210}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0xC0)}}},
                   -- [0x1ED0] upper left clear
                           {{"range", 0x1ED0, 0x1ED3}, {"layers", {0x0061},
                                                                  {getCliffsTiles(0xB0, "solid-ground")},
-                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}},
+                                                                 {makeRampEdge(0xD0)}}},
                           {0x1ED4, {0x0000}},-- separator
                             -- (without rock)
                           {{"range", 0x1ED5, 0x1ED6}, {"layers", {0x0061},
-                                                                 {{"slot", 0x0200}, {"remove", colorsFor(water)}, {"shift", lighten, light_weakGround}}}}},
+                                                                 {makeRampEdge(0xD0)}}}},
 
                 "mixed", {"ramp", "highgrounds", "land", "no-building",
                   -- [0x1F00] upper left filled

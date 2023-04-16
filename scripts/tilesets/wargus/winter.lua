@@ -293,8 +293,8 @@ DefineTileset("name", "Winter",
 
 local lightSnow = {
   ["shadows"]       = {{17, 24}},
-  ["decorations"]   = {16, 29, {59, 61}, {82, 91}},
-  ["base"]          = {{25, 27}},
+  ["decorations"]   = {16, 27, 29, {59, 61}, {82, 91}},
+  ["base"]          = {{25, 26}},
   ["all"]           = {"base", "decorations", "shadows"},
   ["base-light"]    = {26},
   ["base-dark"]     = {25},
@@ -306,7 +306,7 @@ local lightIce = {
   ["shadows"]             = {{33, 36}},
   ["decorations"]         = {{18, 25}, {31, 36}, 54, {63, 71}, 78, 79},
   ["base"]                = {64, {71, 79}},
-  ["all"]                 = {},
+  ["all"]                 = {"base", "shadows", "decorations"},
   ["remove-toCleanRocks"] = {64, 71}, 
   ["shadows-onRocks"]             = {},
   ["convertable-shadows-onRocks"] = {},
@@ -373,25 +373,34 @@ local cliff_gen = {
   },
 
   -- functions --
-
-  colorsFor = nil, -- parser for ground colors. Declared in the extended.lua
+  utils = {
+            colorsFor = nil, -- parser for ground colors. Declared in the extended.lua
+            Lighten = nil,
+            Dim = nil
+          },
   cleanRocks = nil, -- local function to clean rocks (if present)
+
   makeHighGroundEdge = function(self, groundType, slot) -- local function to make HG edge tiles (if present)
     local returnValue = {}
 
     if groundType == "weak-ground" then
-      table.insert(returnValue, {{"slot", 0x200 + (0xD0 - slot)}, {"remove", self.colorsFor(water)}})
+      table.insert(returnValue, {{"slot", 0x200 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(water)}})
     elseif groundType == "solid-ground" then
-      table.insert(returnValue, {{"slot", 0x500 + (0xD0 - slot)}, {"remove", self.colorsFor(lightIce, "base", "shadows")}})
+      table.insert(returnValue, {{"slot", 0x500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightIce, "base", "shadows")}})
     end
     
     return unpack(returnValue)
+  end,
+
+  makeRampEdge = function(self)
+    return  {"remove", self.utils.colorsFor(lightIce, "base", "shadows")},  self.utils.Lighten(lightSnow, "base", "shadows")
   end
 }
 
 local extendedTilesetSeed = {
 
   rampSrc_baseIdx                 = 0x0050, -- light-snow
+  rampEdgeSrc_baseIdx             = 0x0500, -- light-snow and light-ice boundry
   rampSrc                         = lightSnow,
 
   lightWeakGround                 = lightIce,
