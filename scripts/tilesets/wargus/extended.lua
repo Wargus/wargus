@@ -222,7 +222,7 @@ function ExtendTileset(seed)
   local lowgroundSolidGround = seed.lowgroundSolidGround
   local highgroundWeakGround = seed.highgroundWeakGround
   local highgroundSolidGround = seed.highgroundSolidGround
-  local cliff_gen = seed.cliff_gen
+  local cliffGen = seed.cliffGen
   
   local lightWeakGround = seed.lightWeakGround
 
@@ -237,6 +237,30 @@ function ExtendTileset(seed)
 
   local dim = seed.dim
   local lighten = seed.lighten
+
+  local function getListOfTilesWithoutExceptions(baseSlot, subSlot)
+
+    if cliffGen.tilesFor["cliff-edges-exceptions"][baseSlot][subSlot] == nil then
+      return {"slot", baseSlot + subSlot}
+    end
+
+    local result = {}
+    for tileIdx = 0, 0xF, 1 do
+        local isException = false
+        for i,exception in ipairs(cliffGen.tilesFor["cliff-edges-exceptions"][baseSlot][subSlot]) do
+            if tileIdx == exception then 
+                isException = true 
+                break
+            end
+        end
+        if not isException then
+          table.insert(result, baseSlot + subSlot + tileIdx)
+        end
+    end
+    return result
+  end
+  local srcTilesLst = getListOfTilesWithoutExceptions
+  cliffGen.utils.srcTilesLst = getListOfTilesWithoutExceptions
 
   local function getColors(colorSet, ...)
     local args = {...}
@@ -254,7 +278,7 @@ function ExtendTileset(seed)
     return unpack(returnValue)
   end
   local colorsFor = getColors -- alias
-  cliff_gen.utils.colorsFor = getColors
+  cliffGen.utils.colorsFor = getColors
 
   local function convertColors(rangeFrom, rangeTo)
     if rangeFrom == nil or rangeTo == nil then
@@ -379,25 +403,25 @@ function ExtendTileset(seed)
     local subSets = {...}
     return shiftBrightness_byStep(lighten, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
   end
-  cliff_gen.utils.Lighten = Lighten
+  cliffGen.utils.Lighten = Lighten
 
   local function Dim(colorSet, ...)
     local subSets = {...}
     return shiftBrightness_byStep(dim, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
   end
-  cliff_gen.utils.Dim = Dim
+  cliffGen.utils.Dim = Dim
 
   local function cleanRocksAndDimShadows(baseTerrain, resultAsTable)
     local result = {}
-    if cliff_gen.cleanRocks ~= nil then
-      result = {cliff_gen.cleanRocks(getColors, baseTerrain)}
+    if cliffGen.cleanRocks ~= nil then
+      result = {cliffGen.cleanRocks(getColors, baseTerrain)}
     else
-      result = {{"remove", getColors(cliff_gen.colors, "remove-toCleanRocks")}}
+      result = {{"remove", getColors(cliffGen.colors, "remove-toCleanRocks")}}
 
       if baseTerrain == "weak-ground" then 
-        table.insert(result, Dim(cliff_gen.colors, "shadows-onRocks"))
+        table.insert(result, Dim(cliffGen.colors, "shadows-onRocks"))
       else
-        for i, range in ipairs(cliff_gen.colors["convertable-shadows-onRocks"]) do
+        for i, range in ipairs(cliffGen.colors["convertable-shadows-onRocks"]) do
           for j, convertedColors in ipairs(convertColors(range["from"], range["to"])) do
             table.insert(result, convertedColors)
           end
@@ -429,7 +453,7 @@ function ExtendTileset(seed)
     local rocksOnWeakGrnd  = 0x0400
     local rocksFullyFilled = 0x0080
 
-    if cliff_gen.tiles_for["cliff"] == nil then -- in case if we have to generate cliffs from rocks
+    if cliffGen.tilesFor["cliff"] == nil then -- in case if we have to generate cliffs from rocks
       if slot == "fully-filled" then
         return {"slot", rocksFullyFilled}
 
@@ -449,7 +473,7 @@ function ExtendTileset(seed)
           local tiles = {"img-base"}
           
           for i,tile in ipairs(slot) do 
-            if i > 1 then table.insert(tiles, cliff_gen.tiles_for["cliff-special"][tile]) end
+            if i > 1 then table.insert(tiles, cliffGen.tilesFor["cliff-special"][tile]) end
           end
           table.insert(result, tiles)
 
@@ -472,19 +496,19 @@ function ExtendTileset(seed)
   end
  
   local function makeHighGroundEdge(groundType, slot)
-    return cliff_gen:makeHighGroundEdge(groundType, slot)
+    return cliffGen:makeHighGroundEdge(groundType, slot)
   end
 
   local function makeRampEdge(slot)
-    
-    return {"slot", rampEdgeSrc_baseIdx + (0xD0 - slot)}, cliff_gen:makeRampEdge()
+
+    return srcTilesLst(rampEdgeSrc_baseIdx, (0xD0 - slot)), cliffGen:makeRampEdge()
   end
 
   local function genSeq_CliffsOnLowground(dstSlot, subSlots, baseTerrain)
     result = {}
   
     for i, slot in ipairs(subSlots) do
-      table.insert(result, {{"slot", dstSlot + slot}, {"layers", cliff_gen.tiles_for[baseTerrain][slot], 
+      table.insert(result, {{"slot", dstSlot + slot}, {"layers", cliffGen.tilesFor[baseTerrain][slot], 
                                                                              {getCliffsTiles(slot, baseTerrain)}}})
     end
     return unpack(result)

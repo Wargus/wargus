@@ -315,7 +315,7 @@ local water = {
   ["all"]                   = {"base"}
 }
 
-local cliff_gen = {
+local cliffGen = {
   colors = {
     ["remove-toCleanRocks"]         = lightCoast["base"], 
     ["shadows-onRocks"]             = lightCoast["shadows"],
@@ -324,7 +324,7 @@ local cliff_gen = {
                                       },
     ["exceptions"]                  = lightCoast["exceptions"]
   },
-  tiles_for = {
+  tilesFor = {
     ["weak-ground"]  = {
                         [0x00] = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
                         [0x10] = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
@@ -359,11 +359,18 @@ local cliff_gen = {
                           ["singleRockMid"] = 162,
                           ["singleRockBot"] = 163,
                           ["removedRock"]   = 166
-                        }
+                        },
+    ["cliff-edges-exceptions"] =  {
+                                    [0x0200]  = {
+                                                },
+                                    [0x0500]  = {
+                                                }
+                                  }
   },
     
   -- functions --
   utils = {
+            srcTilesLst = nil,
             colorsFor = nil, -- parser for ground colors. Declared in the extended.lua
             Lighten = nil,
             Dim = nil
@@ -373,9 +380,9 @@ local cliff_gen = {
   makeHighGroundEdge = function(self, groundType, slot) -- local function to make HG edge tiles (if present)
     local returnValue = {}
 
-    table.insert(returnValue, {{"slot", 0x200 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(water)}})
+    table.insert(returnValue, {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}})
     if groundType == "solid-ground" then
-      table.insert(returnValue, {{"slot", 0x500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightCoast, "base", "light-shadows")}})
+      table.insert(returnValue, {self.utils.srcTilesLst(0x0500,  (0xD0 - slot)), {"remove", self.utils.colorsFor(lightCoast, "base", "light-shadows")}})
     end
 
     return unpack(returnValue)
@@ -398,7 +405,7 @@ local extendedTilesetSeed = {
   lowgroundSolidGround            = "dark-grass",
   highgroundWeakGround            = "highground-coast",
   highgroundSolidGround           = "highground-grass",
-  cliff_gen                       = cliff_gen,
+  cliffGen                       = cliffGen,
 
   light_weakGround                = {87, 90},
   light_weakGround_light          =  88,

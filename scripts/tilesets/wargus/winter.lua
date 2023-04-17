@@ -323,7 +323,7 @@ local water = {
   ["all"]                   = {"base"}
 }
 
-local cliff_gen = {
+local cliffGen = {
   colors = {
     ["remove-toCleanRocks"] = {64, {71, 79}},
     ["shadows-onRocks"]             = {},
@@ -333,7 +333,7 @@ local cliff_gen = {
                                       },
     ["exceptions"]  = lightIce["exceptions"]
   },
-  tiles_for = {
+  tilesFor = {
     ["weak-ground"] =  {
                         [0x00] = {0x0040, 0x0041},
                         [0x10] = {0x0040, 0x0041},
@@ -368,12 +368,23 @@ local cliff_gen = {
                           ["singleRockMid"] = 157,
                           ["singleRockBot"] = 158,
                           ["removedRock"]   = 161
-                        }
-
+                        },
+    ["cliff-edges-exceptions"] = {
+                                  [0x0200] =  {  
+                                                [0x20] = {1},
+                                                [0x40] = {2},
+                                                [0x90] = {1}
+                                              },
+                                  [0x0500] =  {
+                                                [0x20] = {2},
+                                                [0xA0] = {0}
+                                              }
+                                 }
   },
 
   -- functions --
   utils = {
+            srcTilesLst = nil,
             colorsFor = nil, -- parser for ground colors. Declared in the extended.lua
             Lighten = nil,
             Dim = nil
@@ -384,9 +395,9 @@ local cliff_gen = {
     local returnValue = {}
 
     if groundType == "weak-ground" then
-      table.insert(returnValue, {{"slot", 0x200 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(water)}})
+      table.insert(returnValue, {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}})
     elseif groundType == "solid-ground" then
-      table.insert(returnValue, {{"slot", 0x500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightIce, "base", "shadows")}})
+      table.insert(returnValue, {self.utils.srcTilesLst(0x0500,  (0xD0 - slot)), {"remove", self.utils.colorsFor(lightIce, "base", "shadows")}})
     end
     
     return unpack(returnValue)
@@ -409,7 +420,7 @@ local extendedTilesetSeed = {
   lowgroundSolidGround            = "dark-snow",
   highgroundWeakGround            = "highground-ice",
   highgroundSolidGround           = "highground-snow",
-  cliff_gen                       = cliff_gen,
+  cliffGen                        = cliffGen,
 
   light_weakGround                = {87, 90},
   light_weakGround_light          =  88,
