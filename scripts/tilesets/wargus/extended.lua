@@ -240,14 +240,14 @@ function ExtendTileset(seed)
 
   local function getListOfTilesWithoutExceptions(baseSlot, subSlot)
 
-    if cliffGen.tilesFor["cliff-edges-exceptions"][baseSlot][subSlot] == nil then
+    if cliffGen.baseTilesFor["cliff-edges-exceptions"][baseSlot][subSlot] == nil then
       return {"slot", baseSlot + subSlot}
     end
 
     local result = {}
     for tileIdx = 0, 0xF, 1 do
         local isException = false
-        for i,exception in ipairs(cliffGen.tilesFor["cliff-edges-exceptions"][baseSlot][subSlot]) do
+        for i,exception in ipairs(cliffGen.baseTilesFor["cliff-edges-exceptions"][baseSlot][subSlot]) do
             if tileIdx == exception then 
                 isException = true 
                 break
@@ -453,7 +453,7 @@ function ExtendTileset(seed)
     local rocksOnWeakGrnd  = 0x0400
     local rocksFullyFilled = 0x0080
 
-    if cliffGen.tilesFor["cliff"] == nil then -- in case if we have to generate cliffs from rocks
+    if cliffGen.baseTilesFor["cliff"] == nil then -- in case if we have to generate cliffs from rocks
       if slot == "fully-filled" then
         return {"slot", rocksFullyFilled}
 
@@ -473,7 +473,7 @@ function ExtendTileset(seed)
           local tiles = {"img-base"}
           
           for i,tile in ipairs(slot) do 
-            if i > 1 then table.insert(tiles, cliffGen.tilesFor["cliff-special"][tile]) end
+            if i > 1 then table.insert(tiles, cliffGen.baseTilesFor["cliff-special"][tile]) end
           end
           table.insert(result, tiles)
 
@@ -508,13 +508,13 @@ function ExtendTileset(seed)
     result = {}
   
     for i, slot in ipairs(subSlots) do
-      table.insert(result, {{"slot", dstSlot + slot}, {"layers", cliffGen.tilesFor[baseTerrain][slot], 
+      table.insert(result, {{"slot", dstSlot + slot}, {"layers", cliffGen.baseTilesFor[baseTerrain][slot], 
                                                                              {getCliffsTiles(slot, baseTerrain)}}})
     end
     return unpack(result)
   end
 
-  local function genSeq_HighgroundToLowground(dstSlot, subSlots, baseTerrain)
+  local function genSeq_HighgroundToCliff(dstSlot, subSlots, baseTerrain)
     result = {}
 
     for i, slot in ipairs(subSlots) do
@@ -552,361 +552,361 @@ function ExtendTileset(seed)
                                                    "solid-ground")},
 
                 "mixed", {highgroundWeakGround, "cliff", "land", "unpassable", "no-building",
-                          genSeq_HighgroundToLowground(0x1400, 
-                                                       {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0}, 
-                                                       "weak-ground")},
+                          genSeq_HighgroundToCliff(0x1400, 
+                                                   {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0}, 
+                                                   "weak-ground")},
 
                 "mixed", {highgroundSolidGround, "cliff", "land", "unpassable", "no-building",
-                          genSeq_HighgroundToLowground(0x1500, 
-                                                       {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0}, 
-                                                       "solid-ground")},
+                          genSeq_HighgroundToCliff(0x1500, 
+                                                   {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0}, 
+                                                   "solid-ground")},
 
                 "mixed", {highgroundWeakGround, lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1600] upper left filled
-                          {{"slot", 0x1600}, {"layers", {0x0046, 0x004A},
+                          {{"slot", 0x1600}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x00], -- {0x0046, 0x004A},
                                                         {getCliffsTiles({"pick", 0x40, 0x41}, "weak-ground")},
                                                         makeHighGroundEdge("weak-ground", 0x00)}},
                   -- [0x1610] upper right filled
-                          {{"slot", 0x1610}, {"layers", {0x0044, 0x0049},
+                          {{"slot", 0x1610}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x10], -- {0x0044, 0x0049},
                                                         {getCliffsTiles(0x90, "weak-ground")},
                                                         makeHighGroundEdge("weak-ground", 0x10)}},
                   -- [0x1630] lower left filled
-                          {{"range", 0x1630, 0x163B}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x1630, 0x163B}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x30], -- {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x30, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0x30)}},
                           {0x163C, {0x0000}}, -- separator
                             -- (with rock lower right clear)
-                          {{"range", 0x163D, 0x163F}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x163D, 0x163F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x30], -- {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x60, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0x30)}},
                   -- [0x1640] left half filled
-                          {{"slot", 0x1640}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
+                          {{"slot", 0x1640}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
                                                         {getCliffsTiles({"special", "singleRockUp", "singleRockBot", "removedRock"}, "weak-ground")},
                                                         makeHighGroundEdge("weak-ground", 0x40)}},
                   -- [0x1670] lower right filled
-                          {{"range", 0x1670, 0x167B}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x1670, 0x167B}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x70], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0x70, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0x70)}},
                           {0x167C, {0x0000}}, -- separator
                             -- (with rock lower left clear)
-                          {{"range", 0x167D, 0x167F}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x167D, 0x167F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x70], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0xA0, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0x70)}},
                   -- [0x1690] right half filled
-                          {{"slot", 0x1690}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
+                          {{"slot", 0x1690}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
                                                         {getCliffsTiles({"special", "singleRockMid", "singleRockBot", "removedRock"}, "weak-ground")},
                                                         makeHighGroundEdge("weak-ground", 0x90)}},
                   -- [0x16B0] upper half clear
                             -- (with rock lower half filled)
-                          {{"range", 0x16B0, 0x16B3}, {"layers", {"range", 0x0044, 0x004B}, 
+                          {{"range", 0x16B0, 0x16B3}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {"range", 0x0044, 0x004B}, 
                                                                  {getCliffsTiles(0xB0, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xB0)}},
                           {0x16B4, {0x0000}}, -- separator
                             -- (with rock lower left filled)
-                          {{"range", 0x16B5, 0x16B6}, {"layers", {0x0044}, 
+                          {{"range", 0x16B5, 0x16B6}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {0x0044}, 
                                                                  {getCliffsTiles(0x30, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xB0)}},
                           {0x16B7, {0x0000}}, -- separator
                             -- (with rock lower right filled)
-                          {{"range", 0x16B8, 0x16B9}, {"layers", {0x0044}, 
+                          {{"range", 0x16B8, 0x16B9}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {0x0044}, 
                                                                  {getCliffsTiles(0x70, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xB0)}},
                           {0x16BA, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x16BB, 0x16BC} , {"layers", {0x0044}, 
+                          {{"range", 0x16BB, 0x16BC} , {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {0x0044}, 
                                                                   {getCliffsTiles(0xD0, "weak-ground")},
                                                                   makeHighGroundEdge("weak-ground", 0xB0)}},
                           {0x16BD, {0x0000}}, -- separator
                             -- (with rock upper right clear)
-                          {{"range", 0x16BE, 0x16BF} , {"layers", {0x0044}, 
+                          {{"range", 0x16BE, 0x16BF} , {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {0x0044}, 
                                                                   {getCliffsTiles(0xC0, "weak-ground")},
                                                                   makeHighGroundEdge("weak-ground", 0xB0)}},
                   -- [0x16C0] upper right clear
-                          {{"range", 0x16C0, 0x16C3}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x16C0, 0x16C3}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xC0], -- {0x0046, 0x004A},
                                                                  {getCliffsTiles(0xB0, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xC0)}},
                           {0x16C4, {0x0000}}, -- separator
                             -- (with rock upper right clear) 
-                          {{"range", 0x16C5, 0x16C6}, {"layers", {0x0046},
+                          {{"range", 0x16C5, 0x16C6}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xC0], -- {0x0046},
                                                                  {getCliffsTiles(0xC0, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xC0)}},
                           {0x16C7, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x16C8, 0x16C9}, {"layers", {0x0046},
+                          {{"range", 0x16C8, 0x16C9}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xC0], -- {0x0046},
                                                                  makeHighGroundEdge("weak-ground", 0xC0)}},
                   -- [0x16D0] upper left clear
-                          {{"range", 0x16D0, 0x16D3}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x16D0, 0x16D3}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xD0], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0xB0, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xD0)}},
                           {0x16D4, {0x0000}}, -- separator
                             -- (with rock upper left clear) 
-                          {{"range", 0x16D5, 0x16D6}, {"layers", {0x0044},
+                          {{"range", 0x16D5, 0x16D6}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xD0], -- {0x0044},
                                                                  {getCliffsTiles(0xD0, "weak-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xD0)}},
                           {0x16D7, {0x0000}}, -- separator
                             -- (without rock) 
-                          {{"range", 0x16D8, 0x16D9}, {"layers", {0x0044},
+                          {{"range", 0x16D8, 0x16D9}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xD0], -- {0x0044},
                                                                  makeHighGroundEdge("weak-ground", 0xD0)}}},
                                                                 
                 "mixed", {highgroundWeakGround, lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1700] upper left filled
-                          {{"slot", 0x1700}, {"layers", {0x0068, 0x0069},
+                          {{"slot", 0x1700}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x00], -- {0x0068, 0x0069},
                                                         {getCliffsTiles({"pick", 0x40, 0x41}, "solid-ground")},
                                                         makeHighGroundEdge("weak-ground", 0x00)}},
                   -- [0x1710] upper right filled
-                          {{"slot", 0x1710}, {"layers", {0x0068, 0x0069},
+                          {{"slot", 0x1710}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x10], -- {0x0068, 0x0069},
                                                         {getCliffsTiles(0x90, "solid-ground")},
                                                         makeHighGroundEdge("weak-ground", 0x10)}},
                   -- [0x1730] lower left filled
-                          {{"range", 0x1730, 0x173B}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1730, 0x173B}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x30], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x30, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0x30)}},
                           {0x173C, {0x0000}}, -- separator
                             -- (with rock lower right clear)                                   
-                          {{"range", 0x173D, 0x173F}, {"layers", {0x0068, 0x0069},
-                                                      {getCliffsTiles(0x60, "solid-ground")},
-                                                      makeHighGroundEdge("weak-ground", 0x30)}},
+                          {{"range", 0x173D, 0x173F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x30], -- {0x0068, 0x0069},
+                                                                 {getCliffsTiles(0x60, "solid-ground")},
+                                                                 makeHighGroundEdge("weak-ground", 0x30)}},
                   -- [0x1740] left half filled
-                          {{"slot", 0x1740}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                          {{"slot", 0x1740}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065, 0x0068, 0x0069}, 
                                                         {getCliffsTiles({"special", "singleRockUp", "singleRockBot", "removedRock"}, "solid-ground")},
                                                         makeHighGroundEdge("weak-ground", 0x40)}},
                   -- [0x1770] lower right filled
-                          {{"range", 0x1770, 0x177B}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1770, 0x177B}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x70], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x70, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0x70)}},
                           {0x177C, {0x0000}}, -- separator
                             -- (with rock lower left clear)                                   
-                          {{"range", 0x177D, 0x177F}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x177D, 0x177F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x70], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0xA0, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0x70)}},
                   -- [0x1790] right half filled
-                          {{"slot", 0x1790}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                          {{"slot", 0x1790}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065, 0x0068, 0x0069}, 
                                                         {getCliffsTiles({"special", "singleRockMid", "singleRockBot", "removedRock"}, "solid-ground")},
                                                         makeHighGroundEdge("weak-ground", 0x90)}},
                   -- [0x17B0] upper half clear
                             -- (with rock lower half filled)
-                          {{"range", 0x17B0, 0x17B3}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                          {{"range", 0x17B0, 0x17B3}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065, 0x0068, 0x0069}, 
                                                                  {getCliffsTiles(0xB0, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xB0)}},
                           {0x17B4, {0x0000}}, -- separator
                             -- (with rock lower left filled)
-                          {{"range", 0x17B5, 0x17B6}, {"layers", {0x0065}, 
+                          {{"range", 0x17B5, 0x17B6}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065}, 
                                                                  {getCliffsTiles(0x30, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xB0)}},
                           {0x17B7, {0x0000}}, -- separator
                             -- (with rock lower right filled)
-                          {{"range", 0x17B8, 0x17B9}, {"layers", {0x0065}, 
+                          {{"range", 0x17B8, 0x17B9}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065}, 
                                                                  {getCliffsTiles(0x70, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xB0)}},
                           {0x17BA, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x17BB, 0x17BC}, {"layers", {0x0065}, 
+                          {{"range", 0x17BB, 0x17BC}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065}, 
                                                                  {getCliffsTiles(0xD0, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xB0)}},
                           {0x17BD, {0x0000}}, -- separator
                             -- (with rock upper right clear)
-                          {{"range", 0x17BE, 0x17BF}, {"layers", {0x0065}, 
+                          {{"range", 0x17BE, 0x17BF}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065}, 
                                                                  {getCliffsTiles(0xC0, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xB0)}},
                   -- [0x17C0] upper right clear
-                          {{"range", 0x17C0, 0x17C3}, {"layers", {0x0060},
+                          {{"range", 0x17C0, 0x17C3}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xC0], -- {0x0060},
                                                                  {getCliffsTiles(0xB0, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xC0)}},
                           {0x17C4, {0x0000}}, -- separator
                             -- (with rock upper right clear) 
-                          {{"range", 0x17C5, 0x17C6}, {"layers", {0x0060},
+                          {{"range", 0x17C5, 0x17C6}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xC0], -- {0x0060},
                                                                  {getCliffsTiles(0xC0, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xC0)}},
                           {0x17C7, {0x0000}}, -- separator
                             -- (without rock) 
-                          {{"range", 0x17C8, 0x17C9}, {"layers", {0x0060},
+                          {{"range", 0x17C8, 0x17C9}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xC0], -- {0x0060},
                                                                  makeHighGroundEdge("weak-ground", 0xC0)}},
                   -- [0x17D0] upper left clear
-                          {{"range", 0x17D0, 0x17D3}, {"layers", {0x0061},
+                          {{"range", 0x17D0, 0x17D3}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xD0], -- {0x0061},
                                                                  {getCliffsTiles(0xB0, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xD0)}},
                           {0x17D4, {0x0000}}, -- separator
                             -- (with rock upper left clear) 
-                          {{"range", 0x17D5, 0x17D6}, {"layers", {0x0061},
+                          {{"range", 0x17D5, 0x17D6}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xD0], -- {0x0061},
                                                                  {getCliffsTiles(0xD0, "solid-ground")},
                                                                  makeHighGroundEdge("weak-ground", 0xD0)}},
                           {0x17D7, {0x0000}}, -- separator
                             -- (without rock) 
-                          {{"range", 0x17D8, 0x17D9}, {"layers", {0x0061},
+                          {{"range", 0x17D8, 0x17D9}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xD0], -- {0x0061},
                                                                  makeHighGroundEdge("weak-ground", 0xD0)}}},
 
                 "mixed", {highgroundSolidGround, lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1900] upper left filled
-                          {{"slot", 0x1900}, {"layers", {0x0046, 0x004A},
+                          {{"slot", 0x1900}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x00], -- {0x0046, 0x004A},
                                                         {getCliffsTiles({"pick", 0x40, 0x41}, "weak-ground")},
                                                         makeHighGroundEdge("solid-ground", 0x00)}},
                   -- [0x1910] upper right filled
-                          {{"slot", 0x1910}, {"layers", {0x0044, 0x0049},
+                          {{"slot", 0x1910}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x10], -- {0x0044, 0x0049},
                                                         {getCliffsTiles(0x90, "weak-ground")},
                                                         makeHighGroundEdge("solid-ground", 0x10)}},
                   -- [0x1930] lower left filled
-                          {{"range", 0x1930, 0x193B}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x1930, 0x193B}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x30], -- {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x30, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0x30)}},
                           {0x193C, {0x0000}}, -- separator
                             -- (with rock lower right clear)
-                          {{"range", 0x193D, 0x193F}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x193D, 0x193F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x30], -- {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x60, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0x30)}},
                   -- [0x1940] left half filled
-                          {{"slot", 0x1940}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
+                          {{"slot", 0x1940}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
                                                         {getCliffsTiles({"special", "singleRockUp", "singleRockBot", "removedRock"}, "weak-ground")},
                                                         makeHighGroundEdge("solid-ground", 0x40)}},
                   -- [0x1970] lower right filled
-                          {{"range", 0x1970, 0x197B}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x1970, 0x197B}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x70], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0x70, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0x70)}},
                           {0x197C, {0x0000}}, -- separator
                             -- (with rock lower left clear)
-                          {{"range", 0x197D, 0x197F}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x197D, 0x197F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x70], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0xA0, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0x70)}},
                   -- [0x1990] right half filled
-                          {{"slot", 0x1990}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
+                          {{"slot", 0x1990}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
                                                         {getCliffsTiles({"special", "singleRockMid", "singleRockBot", "removedRock"}, "weak-ground")},
                                                         makeHighGroundEdge("solid-ground", 0x90)}},
                   -- [0x19B0] upper half clear
                             -- (with rock lower half filled)
-                          {{"range", 0x19B0, 0x19B3}, {"layers", {"range", 0x0044, 0x004B}, 
+                          {{"range", 0x19B0, 0x19B3}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {"range", 0x0044, 0x004B}, 
                                                                  {getCliffsTiles(0xB0, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xB0)}},
                           {0x19B4, {0x0000}}, -- separator
                             -- (with rock lower left filled)
-                          {{"range", 0x19B5, 0x19B6}, {"layers", {0x0044}, 
+                          {{"range", 0x19B5, 0x19B6}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {0x0044}, 
                                                                  {getCliffsTiles(0x30, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xB0)}},
                           {0x19B7, {0x0000}}, -- separator
                             -- (with rock lower right filled)
-                          {{"range", 0x19B8, 0x19B9}, {"layers", {0x0044}, 
+                          {{"range", 0x19B8, 0x19B9}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {0x0044}, 
                                                                  {getCliffsTiles(0x70, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xB0)}},
                           {0x19BA, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x19BB, 0x19BC}, {"layers", {0x0044}, 
+                          {{"range", 0x19BB, 0x19BC}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {0x0044}, 
                                                                  {getCliffsTiles(0xD0, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xB0)}},
                           {0x19BD, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x19BE, 0x19BF}, {"layers", {0x0044}, 
+                          {{"range", 0x19BE, 0x19BF}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {0x0044}, 
                                                                  {getCliffsTiles(0xC0, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xB0)}},
                   -- [0x19C0] upper right clear
-                          {{"range", 0x19C0, 0x19C3}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x19C0, 0x19C3}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xC0], -- {0x0046, 0x004A},
                                                                  {getCliffsTiles(0xB0, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xC0)}},
                           {0x19C4, {0x0000}}, -- separator
                             -- (with rock upper right clear)
-                          {{"range", 0x19C5, 0x19C6}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x19C5, 0x19C6}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xC0], -- {0x0046, 0x004A},
                                                                  {getCliffsTiles(0xC0, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xC0)}},
                           {0x19C7, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x19C8, 0x19C9}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x19C8, 0x19C9}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xC0], -- {0x0046, 0x004A},
                                                                  makeHighGroundEdge("solid-ground", 0xC0)}},
                   -- [0x19D0] upper left clear
-                          {{"range", 0x19D0, 0x19D3}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x19D0, 0x19D3}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xD0], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0xB0, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xD0)}},
                           {0x19D4, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x19D5, 0x19D6}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x19D5, 0x19D6}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xD0], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0xD0, "weak-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xD0)}}, -- was {0x0201} instead of {"slot", 0x0200}
                           {0x19D7, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x19D8, 0x19D9}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x19D8, 0x19D9}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xD0], -- {0x0044, 0x0049},
                                                                  makeHighGroundEdge("solid-ground", 0xD0)}}},
 
                 "mixed", {highgroundSolidGround, lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1A00] upper left filled
-                          {{"slot", 0x1A00}, {"layers", {0x0068, 0x0069},
+                          {{"slot", 0x1A00}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x00], -- {0x0068, 0x0069},
                                                         {getCliffsTiles({"pick", 0x40, 0x41}, "solid-ground")},
                                                         makeHighGroundEdge("solid-ground", 0x00)}},
                   -- [0x1A10] upper right filled
-                          {{"slot", 0x1A10}, {"layers", {0x0068, 0x0069},
+                          {{"slot", 0x1A10}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x10], -- {0x0068, 0x0069},
                                                         {getCliffsTiles(0x90, "solid-ground")},
                                                         makeHighGroundEdge("solid-ground", 0x10)}},
                   -- [0x1A30] lower left filled
-                          {{"range", 0x1A30, 0x1A3B}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1A30, 0x1A3B}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x30], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x30, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0x30)}},
                           {0x1A3C, {0x0000}}, -- separator
                             -- (with rock lower right clear)
-                          {{"range", 0x1A3D, 0x1A3f}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1A3D, 0x1A3f}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x30], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x60, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0x30)}},
                   -- [0x1A40] left half filled
-                          {{"slot", 0x1A40}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                          {{"slot", 0x1A40}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065, 0x0068, 0x0069}, 
                                                         {getCliffsTiles({"special", "singleRockUp", "singleRockBot", "removedRock"}, "solid-ground")},
                                                         makeHighGroundEdge("solid-ground", 0x40)}},
                   -- [0x1A70] lower right filled
-                          {{"range", 0x1A70, 0x1A7B}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1A70, 0x1A7B}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x70], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x70, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0x70)}},
                           {0x1A7C, {0x0000}}, -- separator
                             -- (with rock lower left clear)
-                          {{"range", 0x1A7D, 0x1A7F}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1A7D, 0x1A7F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x70], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0xA0, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0x70)}},                          
                   -- [0x1A90] right half filled
-                          {{"slot", 0x1A90}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                          {{"slot", 0x1A90}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065, 0x0068, 0x0069}, 
                                                         {getCliffsTiles({"special", "singleRockMid", "singleRockBot", "removedRock"}, "solid-ground")},
                                                         makeHighGroundEdge("solid-ground", 0x90)}},
                   -- [0x1AB0] upper half clear
                             -- (with rock lower half filled)
-                          {{"range", 0x1AB0, 0x1AB3}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                          {{"range", 0x1AB0, 0x1AB3}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065, 0x0068, 0x0069}, 
                                                                  {getCliffsTiles(0xB0, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xB0)}},
                           {0x1AB4, {0x0000}}, -- separator
                             -- (with rock lower left filled)
-                          {{"range", 0x1AB5, 0x1AB6}, {"layers", {0x0065}, 
+                          {{"range", 0x1AB5, 0x1AB6}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065}, 
                                                                  {getCliffsTiles(0x30, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xB0)}},
                           {0x1AB7, {0x0000}}, -- separator
                             -- (with rock lower right filled)
-                          {{"range", 0x1AB8, 0x1AB9}, {"layers", {0x0065}, 
+                          {{"range", 0x1AB8, 0x1AB9}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065}, 
                                                                  {getCliffsTiles(0x70, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xB0)}},
                           {0x1ABA, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x1ABB, 0x1ABC}, {"layers", {0x0065}, 
+                          {{"range", 0x1ABB, 0x1ABC}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065}, 
                                                                  {getCliffsTiles(0xD0, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xB0)}},
                           {0x1ABD, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x1ABE, 0x1ABF}, {"layers", {0x0065}, 
+                          {{"range", 0x1ABE, 0x1ABF}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065}, 
                                                                  {getCliffsTiles(0xC0, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xB0)}},
                   -- [0x1AC0] upper right clear
-                          {{"range", 0x1AC0, 0x1AC3}, {"layers", {0x0060},
+                          {{"range", 0x1AC0, 0x1AC3}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xC0], -- {0x0060},
                                                                  {getCliffsTiles(0xB0, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xC0)}},
                           {0x1AC4, {0x0000}}, -- separator
                             -- (with rock upper right clear)
-                          {{"range", 0x1AC5, 0x1AC6}, {"layers", {0x0060},
+                          {{"range", 0x1AC5, 0x1AC6}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xC0], -- {0x0060},
                                                                  {getCliffsTiles(0xC0, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xC0)}},
                           {0x1AC7, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1AC8, 0x1AC9}, {"layers", {0x0060},
+                          {{"range", 0x1AC8, 0x1AC9}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xC0], -- {0x0060},
                                                                  makeHighGroundEdge("solid-ground", 0xC0)}},
                   -- [0x1AD0] upper left clear
-                          {{"range", 0x1AD0, 0x1AD3}, {"layers", {0x0061},
+                          {{"range", 0x1AD0, 0x1AD3}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xD0], -- {0x0061},
                                                                  {getCliffsTiles(0xB0, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xD0)}},
                           {0x1AD4, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x1AD5, 0x1AD6}, {"layers", {0x0061},
+                          {{"range", 0x1AD5, 0x1AD6}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xD0], -- {0x0061},
                                                                  {getCliffsTiles(0xD0, "solid-ground")},
                                                                  makeHighGroundEdge("solid-ground", 0xD0)}},  -- was {0x0201} instead of {"slot", 0x0200}
                           {0x1AD7, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1AD8, 0x1AD9}, {"layers", {0x0061},
+                          {{"range", 0x1AD8, 0x1AD9}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xD0], -- 0x0061},
                                                                  makeHighGroundEdge("solid-ground", 0xD0)}}},
 
                 "mixed", {"ramp", "cliff", "land", "unpassable", "no-building",
@@ -916,371 +916,371 @@ function ExtendTileset(seed)
                 "mixed", {"ramp", lowgroundWeakGround, "land", "unpassable", "no-building",
                   -- [0x1D00] upper left filled 
                             -- (with rock lower right clear)
-                          {{"range", 0x1D00, 0x1D01}, {"layers", {0x0046},
+                          {{"range", 0x1D00, 0x1D01}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x00], -- {0x0046},
                                                                  {getCliffsTiles(0x60, "weak-ground")},
                                                                  {makeRampEdge(0x00)}}},
                           {0x1D02, {0x0000}}, -- separator
                             -- (with rock upper right filled)
-                          {{"range", 0x1D03, 0x1D09}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x1D03, 0x1D09}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x00], -- {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x10, "weak-ground")},
                                                                  {makeRampEdge(0x00)}}},
                           {0x1D0A, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1D0B, 0x1D0F}, {"layers", {0x0044, 0x0046, 0x0049, 0x004A},
+                          {{"range", 0x1D0B, 0x1D0F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x00], -- {0x0044, 0x0046, 0x0049, 0x004A},
                                                                  {makeRampEdge(0x00)}}},
                   -- [0x1D10] upper right filled 
                             -- (with rock lower left clear)
-                          {{"range", 0x1D10, 0x1D11}, {"layers", {0x0044},
+                          {{"range", 0x1D10, 0x1D11}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x10], -- {0x0044},
                                                                  {getCliffsTiles(0xA0, "weak-ground")},
                                                                  {makeRampEdge(0x10)}}},
                           {0x1D12, {0x0000}}, -- separator
                             -- (with rock upper left filled)
-                          {{"range", 0x1D13, 0x1D19}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x1D13, 0x1D19}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x10], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0x00, "weak-ground")},
                                                                  {makeRampEdge(0x10)}}},
                           {0x1D1A, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1D1B, 0x1D1F}, {"layers", {0x0044, 0x0046, 0x0049, 0x004A},
+                          {{"range", 0x1D1B, 0x1D1F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x10], -- {0x0044, 0x0046, 0x0049, 0x004A},
                                                                  {makeRampEdge(0x10)}}},
                   -- [0x1D20] upper half filled
                             -- (with rock upper half filled)
-                          {{"range", 0x1D20, 0x1D22}, {"layers", {"range", 0x0044, 0x004B},
+                          {{"range", 0x1D20, 0x1D22}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x20], -- {"range", 0x0044, 0x004B},
                                                                  {getCliffsTiles(0x20, "weak-ground")},
                                                                  {makeRampEdge(0x20)}}},
                           {0x1D23, {0x0000}}, -- separator
                             -- (with rock upper left filled)
-                          {0x1D24, {"layers", {0x0044},
+                          {0x1D24, {"layers", cliffGen.baseTilesFor["weak-ground"][0x20], -- {0x0044},
                                               {getCliffsTiles(0x00, "weak-ground")},
                                               {makeRampEdge(0x20)}}},
                           {0x1D25, {0x0000}}, -- separator
                             -- (with rock upper right filled)
-                          {0x1D26, {"layers", {0x0044},
+                          {0x1D26, {"layers", cliffGen.baseTilesFor["weak-ground"][0x20], -- {0x0044},
                                               {getCliffsTiles(0x10, "weak-ground")},
                                               {makeRampEdge(0x20)}}},
                           {0x1D27, {0x0000}}, -- separator
                             -- (with rock lower right filled)
-                          {{"range", 0x1D28, 0x1D29}, {"layers", {"range", 0x0044, 0x004B},
+                          {{"range", 0x1D28, 0x1D29}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x20], -- {"range", 0x0044, 0x004B},
                                                                  {getCliffsTiles(0x70, "weak-ground")},
                                                                  {makeRampEdge(0x20)}}},
                           {0x1D2A, {0x0000}}, -- separator
                             -- (with rock lower left filled)
-                          {{"range", 0x1D2B, 0x1D2C}, {"layers", {"range", 0x0044, 0x004B},
+                          {{"range", 0x1D2B, 0x1D2C}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x20], -- {"range", 0x0044, 0x004B},
                                                                  {getCliffsTiles(0x30, "weak-ground")},
                                                                  {makeRampEdge(0x20)}}},
                           {0x1D2D, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1D2E, 0x1D2F}, {"layers", {"range", 0x0044, 0x004B},
+                          {{"range", 0x1D2E, 0x1D2F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x20], -- {"range", 0x0044, 0x004B},
                                                                  {makeRampEdge(0x20)}}},
                   -- [0x1D30] lower left filled
                             -- (with rock lower left filled)
-                          {{"range", 0x1D30, 0x1D34}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x1D30, 0x1D34}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x30], -- {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x30, "weak-ground")},
                                                                  {makeRampEdge(0x30)}}},
                           {0x1D35, {0x0000}}, -- separator
                             -- (with rock upper left filled)
-                          {{"range", 0x1D36, 0x1D39}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x1D36, 0x1D39}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x30], -- {0x0046, 0x004A},
                                                                  {getCliffsTiles(0x00, "weak-ground")},
                                                                  {makeRampEdge(0x30)}}},
                           {0x1D3A, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1D3B, 0x1D3F}, {"layers", {0x0046, 0x004A},
+                          {{"range", 0x1D3B, 0x1D3F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x30], -- {0x0046, 0x004A},
                                                                  {makeRampEdge(0x30)}}},
                   -- [0x1D40] left half filled
                             -- (with rock left half filled)
-                          {{"range", 0x1D40, 0x1D42}, {"layers", {0x0044, 0x0045, 0x0046}, 
+                          {{"range", 0x1D40, 0x1D42}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044, 0x0045, 0x0046}, 
                                                                  {getCliffsTiles({"pick", 0x40, 0x41}, "weak-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1D43, {0x0000}}, -- separator
                             -- (with rock upper center filled)
-                          {0x1D44, {"layers", {0x0044}, 
+                          {0x1D44, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044}, 
                                               {getCliffsTiles({"special", "singleRockBot"}, "weak-ground")},
                                               {makeRampEdge(0x40)}}},
                           {0x1D45, {0x0000}}, -- separator
                             -- (with rock lower center filled)
-                          {0x1D46, {"layers", {0x0045}, 
+                          {0x1D46, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0045}, 
                                               {getCliffsTiles({"special", "singleRockUp"}, "weak-ground")},
                                               {makeRampEdge(0x40)}}},
                           {0x1D47, {0x0000}}, -- separator
                             -- (with rock upper right clear)
-                          {{"range", 0x1D48, 0x1D49}, {"layers", {0x0044}, 
+                          {{"range", 0x1D48, 0x1D49}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044}, 
                                                                  {getCliffsTiles({"pick", 0xC0}, "weak-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1D4A, {0x0000}}, -- separator
                             -- (with rock lower right clear)
-                          {{"range", 0x1D4B, 0x1D4C}, {"layers", {0x0044}, 
+                          {{"range", 0x1D4B, 0x1D4C}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044}, 
                                                                  {getCliffsTiles({"pick", 0x60}, "weak-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1D4D, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1D4E, 0x1D4F}, {"layers", {0x0044, 0x0045}, 
+                          {{"range", 0x1D4E, 0x1D4F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044, 0x0045}, 
                                                                  {getCliffsTiles({"special", "removedRock"}, "weak-ground")},
                                                                  {makeRampEdge(0x40)}}},
                   -- [0x1D60] lower right clear 
                             -- (with rock lower right clear)
-                          {{"range", 0x1D60, 0x01D61}, {"layers", {0x0044},
+                          {{"range", 0x1D60, 0x01D61}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x60], -- {0x0044},
                                                                   {getCliffsTiles({"pick", 0x60}, "weak-ground")},
                                                                   {makeRampEdge(0x60)}}},
                           {0x1D62, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1D63, 0x1D64}, {"layers", {0x0044},
+                          {{"range", 0x1D63, 0x1D64}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x60], -- {0x0044},
                                                                  {makeRampEdge(0x60)}}},
                   -- [0x1D70] lower right filled
                             -- (with rock lower right filled)
-                          {{"range", 0x1D70, 0x1D74}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x1D70, 0x1D74}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x70], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0x70, "weak-ground")},
                                                                  {makeRampEdge(0x70)}}},
                           {0x1D75, {0x0000}}, -- separator
                             -- (with rock upper right filled)
-                          {{"range", 0x1D76, 0x1D79}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x1D76, 0x1D79}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x70], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0x10, "weak-ground")},
                                                                  {makeRampEdge(0x70)}}},
                           {0x1D7A, {0x0000}}, -- separator
                           -- lower right filled (without rock)
-                          {{"range", 0x1D7B, 0x1D7F}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x1D7B, 0x1D7F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x70], -- {0x0044, 0x0049},
                                                                  {makeRampEdge(0x70)}}},
                   -- [0x1D90] right half filled
                             -- (with rock right half filled)
-                          {{"range", 0x1D90, 0x1D92}, {"layers", {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
+                          {{"range", 0x1D90, 0x1D92}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
                                                                  {getCliffsTiles(0x90, "weak-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1D93, {0x0000}}, -- separator
                             -- (with rock upper center filled)
-                          {0x1D94, {"layers", {0x0044}, 
+                          {0x1D94, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044}, 
                                               {getCliffsTiles({"special", "singleRockBot"}, "weak-ground")},
                                               {makeRampEdge(0x90)}}},
                           {0x1D95, {0x0005}}, -- separator
                             -- (with rock lower center filled)
-                          {0x1D96, {"layers", {0x0044}, 
+                          {0x1D96, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044}, 
                                               {getCliffsTiles({"pick", 0x71}, "weak-ground")},
                                               {makeRampEdge(0x90)}}},
                           {0x1D97, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x1D98, 0x1D99}, {"layers", {0x0044}, 
+                          {{"range", 0x1D98, 0x1D99}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044}, 
                                                                  {getCliffsTiles({"pick", 0xD0}, "weak-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1D9A, {0x0000}}, -- separator
                             -- (with rock lower left clear)
-                          {{"range", 0x1D9B, 0x1D9C}, {"layers", {0x0044}, 
+                          {{"range", 0x1D9B, 0x1D9C}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044}, 
                                                                  {getCliffsTiles({"pick", 0xA0}, "weak-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1D9D, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1D9E, 0x1D9F}, {"layers", {0x0044, 0x0045}, 
+                          {{"range", 0x1D9E, 0x1D9F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044, 0x0045}, 
                                                                  {getCliffsTiles({"special", "removedRock"}, "weak-ground")},
                                                                  {makeRampEdge(0x90)}}},
                   -- [0x1DA0] lower left clear
                             -- (with rock lower left clear)
-                          {{"range", 0x1DA0, 0x1DA1}, {"layers", {0x0046},
+                          {{"range", 0x1DA0, 0x1DA1}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xA0], -- {0x0046},
                                                                  {getCliffsTiles({"pick", 0xA0}, "weak-ground")},
                                                                  {makeRampEdge(0xA0)}}},
                           {0x1DA2, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1DA3, 0x1DA4}, {"layers", {0x0046},
+                          {{"range", 0x1DA3, 0x1DA4}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xA0], -- {0x0046},
                                                                  {makeRampEdge(0xA0)}}},
                   -- [0x1DB0] upper half clear
-                          {{"slot", 0x1DB0}, {"layers", {"range", 0x0044, 0x004B}, 
+                          {{"slot", 0x1DB0}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {"range", 0x0044, 0x004B}, 
                                                         {getCliffsTiles(0xB0, "weak-ground")},
                                                         {makeRampEdge(0xB0)}}},
                   -- [0x1DC0] upper right clear
-                          {{"range", 0x1DC0, 0x1DC3}, {"layers", {0x0046},
+                          {{"range", 0x1DC0, 0x1DC3}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xC0], -- {0x0046},
                                                                  {getCliffsTiles(0xB0, "weak-ground")},
                                                                  {makeRampEdge(0xC0)}}},
                           {0x1DC4, {0x0000}}, -- separator
                             -- (without rocks)
-                          {{"range", 0x1DC5, 0x1DC6}, {"layers", {0x004A},
+                          {{"range", 0x1DC5, 0x1DC6}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xC0], -- {0x004A},
                                                                  {makeRampEdge(0xC0)}}},
                   -- [0x1DD0] upper left clear
-                          {{"range", 0x1DD0, 0x1DD3}, {"layers", {0x0044, 0x0049},
+                          {{"range", 0x1DD0, 0x1DD3}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xD0], -- {0x0044, 0x0049},
                                                                  {getCliffsTiles(0xB0, "weak-ground")},
                                                                  {makeRampEdge(0xD0)}}},
                           {0x1DD4, {0x0000}}, -- separator
                             -- (without rocks)
-                          {{"range", 0x1DD5, 0x1DD6}, {"layers", {0x0044},
+                          {{"range", 0x1DD5, 0x1DD6}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xD0], -- {0x0044},
                                                                  {makeRampEdge(0xD0)}}}},
 
                 "mixed", {"ramp", lowgroundSolidGround, "land", "unpassable", "no-building",
                   -- [0x1E00] upper left filled
                             -- (with rock lower right clear)
-                          {{"range", 0x1E00, 0x1E01}, {"layers", {0x0068},
+                          {{"range", 0x1E00, 0x1E01}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x00], -- {0x0068},
                                                                  {getCliffsTiles(0x60, "solid-ground")},
                                                                  {makeRampEdge(0x00)}}},
                           {0x1E02, {0x0000}}, -- separator
                             -- (with rock upper right filled)
-                          {{"range", 0x1E03, 0x1E09}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E03, 0x1E09}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x00], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x10, "solid-ground")},
                                                                  {makeRampEdge(0x00)}}},
                           {0x1E0A, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1E0B, 0x1E0F}, {"layers", {0x0065, 0x0068, 0x0069},
+                          {{"range", 0x1E0B, 0x1E0F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x00], -- {0x0065, 0x0068, 0x0069},
                                                                  {makeRampEdge(0x00)}}},
                   -- [0x1E10] upper right filled 
                             -- (with rock lower left clear)
-                          {{"range", 0x1E10, 0x1E11}, {"layers", {0x0068},
+                          {{"range", 0x1E10, 0x1E11}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x10], -- {0x0068},
                                                                  {getCliffsTiles(0xA0, "solid-ground")},
                                                                  {makeRampEdge(0x10)}}},
                           {0x1E12, {0x0000}}, -- separator
                             -- (with rock upper left filled)
-                          {{"range", 0x1E13, 0x1E19}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E13, 0x1E19}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x10], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x00, "solid-ground")},
                                                                  {makeRampEdge(0x10)}}},
                           {0x1E1A, {0x0000}}, -- separator
                           -- upper right filled (without rock)
-                          {{"range", 0x1E1B, 0x1E1F}, {"layers", {0x0065, 0x0068, 0x0069},
+                          {{"range", 0x1E1B, 0x1E1F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x10], -- {0x0065, 0x0068, 0x0069},
                                                                  {makeRampEdge(0x10)}}}, 
                   -- [0x1E20] upper half filled
                             -- (with rock upper half filled)
-                          {{"range", 0x1E20, 0x1E22}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E20, 0x1E22}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x20], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x20, "solid-ground")},
                                                                  {makeRampEdge(0x20)}}},
                           {0x1E23, {0x0000}}, -- separator
                             -- (with rock upper left filled)
-                          {0x1E24, {"layers", {0x0068},
+                          {0x1E24, {"layers", cliffGen.baseTilesFor["solid-ground"][0x20], -- {0x0068},
                                               {getCliffsTiles(0x00, "solid-ground")},
                                               {makeRampEdge(0x20)}}},
                           {0x1E25, {0x0000}}, -- separator
                             -- (with rock upper right filled)
-                          {0x1E24, {"layers", {0x0068},
+                          {0x1E24, {"layers", cliffGen.baseTilesFor["solid-ground"][0x20], -- {0x0068},
                                               {getCliffsTiles(0x10, "solid-ground")},
                                               {makeRampEdge(0x20)}}},
                           {0x1E27, {0x0000}}, -- separator
                             -- (with rock lower right filled)
-                          {{"range", 0x1E28, 0x1E29}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E28, 0x1E29}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x20], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x70, "solid-ground")},
                                                                  {makeRampEdge(0x20)}}},
                           {0x1E2A, {0x0000}}, -- separator
                             -- (with rock lower left filled)
-                          {{"range", 0x1E2b, 0x1E2C}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E2b, 0x1E2C}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x20], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x30, "solid-ground")},
                                                                  {makeRampEdge(0x20)}}},
                           {0x1E2D, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1E2E, 0x1E2F}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E2E, 0x1E2F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x20], -- {0x0068, 0x0069},
                                                                  {makeRampEdge(0x20)}}},
                   -- [0x1E30] lower left filled
                             -- (with rock lower left filled)
-                          {{"range", 0x1E30, 0x1E34}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E30, 0x1E34}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x30], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x30, "solid-ground")},
                                                                  {makeRampEdge(0x30)}}},
                           {0x1E35, {0x0000}}, -- separator
                             -- (with rock upper left filled)
-                          {{"range", 0x1E36, 0x1E39}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E36, 0x1E39}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x30], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x00, "solid-ground")},
                                                                  {makeRampEdge(0x30)}}},
                           {0x1E3A, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1E3B, 0x1E3F}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E3B, 0x1E3F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x30], -- {0x0068, 0x0069},
                                                                  {makeRampEdge(0x30)}}},
                   -- [0x1E40] left half filled
                             -- (with rock left half filled)
-                          {{"range", 0x1E40, 0x1E42}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                          {{"range", 0x1E40, 0x1E42}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065, 0x0068, 0x0069}, 
                                                                  {getCliffsTiles({"pick", 0x40, 0x41}, "solid-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1E43, {0x0000}}, -- separator
                             -- (with rock upper center filled)
-                          {0x1E44, {"layers", {0x0065},
+                          {0x1E44, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065},
                                               {getCliffsTiles({"special", "singleRockBot"}, "solid-ground")},
                                               {makeRampEdge(0x40)}}},
                           {0x1E45, {0x0000}}, -- separator
                             -- (with rock lower center filled)
-                          {0x1E46, {"layers", {0x0068},
+                          {0x1E46, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0068},
                                               {getCliffsTiles({"special", "singleRockUp"}, "solid-ground")},
                                               {makeRampEdge(0x40)}}},
                           {0x1E47, {0x0000}}, -- separator
                             -- (with rock upper right clear)
-                          {{"range", 0x1E48, 0x1E49}, {"layers", {0x0065},
+                          {{"range", 0x1E48, 0x1E49}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065},
                                                                  {getCliffsTiles({"pick", 0xC0}, "solid-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1E4A, {0x0000}}, -- separator
                             -- (with rock lower right clear)
-                          {{"range", 0x1E4B, 0x1E4C}, {"layers", {0x0065}, 
+                          {{"range", 0x1E4B, 0x1E4C}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065}, 
                                                                  {getCliffsTiles({"pick", 0x60}, "solid-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1E4D, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1E4E, 0x1E4F}, {"layers", {0x0065}, 
+                          {{"range", 0x1E4E, 0x1E4F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065}, 
                                                                  {getCliffsTiles({"special", "removedRock"}, "solid-ground")},
                                                                  {makeRampEdge(0x40)}}},
                   -- [0x1E60] lower right clear
                             -- (with rock lower right clear)
-                          {{"range", 0x1E60, 0x1E61}, {"layers", {0x0069},
+                          {{"range", 0x1E60, 0x1E61}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x60], -- {0x0069},
                                                                  {getCliffsTiles({"pick", 0x60}, "solid-ground")},
                                                                  {makeRampEdge(0x60)}}},
                           {0x1E62, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1E63, 0x1E64}, {"layers", {0x0069},
+                          {{"range", 0x1E63, 0x1E64}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x60], -- {0x0069},
                                                                  {makeRampEdge(0x60)}}},
                   -- [0x1E70] lower right filled
                             -- (with rock lower right filled)
-                          {{"range", 0x1E70, 0x1E74}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E70, 0x1E74}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x70], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x70, "solid-ground")},
                                                                  {makeRampEdge(0x70)}}},
                           {0x1E75, {0x0000}}, -- separator
                             -- (with rock upper right filled)
-                          {{"range", 0x1E76, 0x1E79}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E76, 0x1E79}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x70], -- {0x0068, 0x0069},
                                                                  {getCliffsTiles(0x10, "solid-ground")},
                                                                  {makeRampEdge(0x70)}}},
                           {0x1E7A, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1E7B, 0x1E7F}, {"layers", {0x0068, 0x0069},
+                          {{"range", 0x1E7B, 0x1E7F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x70], -- {0x0068, 0x0069},
                                                                  {makeRampEdge(0x70)}}},
                   -- [0x1E90] right half filled
                             -- (with rock right half filled)
-                          {{"range", 0x1E90, 0x1E92}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                          {{"range", 0x1E90, 0x1E92}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065, 0x0068, 0x0069}, 
                                                                  {getCliffsTiles(0x90, "solid-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1E93, {0x0000}}, -- separator
                             -- (with rock upper center filled)
-                          {0x1E94, {"layers", {0x0065}, 
+                          {0x1E94, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065}, 
                                               {getCliffsTiles({"special", "singleRockBot"}, "solid-ground")},
                                               {makeRampEdge(0x90)}}},
                           {0x1E95, {0x0000}}, -- separator
                             -- (with rock lower center filled)
-                          {0x1E96, {"layers", {0x0068}, 
+                          {0x1E96, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0068}, 
                                               {getCliffsTiles({"pick", 0x71}, "solid-ground")},
                                               {makeRampEdge(0x90)}}},
                           {0x1E97, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x1E98, 0x1E99}, {"layers", {0x0065}, 
+                          {{"range", 0x1E98, 0x1E99}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065}, 
                                                                  {getCliffsTiles({"pick", 0xD0}, "solid-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1E9A, {0x0000}}, -- separator
                             -- (with rock lower left clear)
-                          {{"range", 0x1E9B, 0x1E9C}, {"layers", {0x0065}, 
+                          {{"range", 0x1E9B, 0x1E9C}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065}, 
                                                                  {getCliffsTiles({"pick", 0xA0}, "solid-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1E9D, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1E9E, 0x1E9F}, {"layers", {0x0065, 0x0068}, 
+                          {{"range", 0x1E9E, 0x1E9F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065, 0x0068}, 
                                                                  {getCliffsTiles({"special", "removedRock"}, "solid-ground")},
                                                                  {makeRampEdge(0x90)}}},
                   -- [0x1EA0] lower left clear
                             -- (with rock lower left clear)
-                          {{"range", 0x1EA0, 0x1EA1}, {"layers", {0x0068},
+                          {{"range", 0x1EA0, 0x1EA1}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xA0], -- {0x0068},
                                                                  {getCliffsTiles({"pick", 0xA0}, "solid-ground")},
                                                                  {makeRampEdge(0xA0)}}},
                           {0x1EA2, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1EA3, 0x1EA4}, {"layers", {0x0068},
+                          {{"range", 0x1EA3, 0x1EA4}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xA0], -- {0x0068},
                                                                  {makeRampEdge(0xA0)}}},
                   -- [0x1EB0] upper half clear
-                          {{"slot", 0x1EB0}, {"layers", {0x0065, 0x0068, 0x0069}, 
+                          {{"slot", 0x1EB0}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065, 0x0068, 0x0069}, 
                                                         {getCliffsTiles(0xB0, "solid-ground")},
                                                         {makeRampEdge(0xB0)}}},
                   -- [0x1EC0] upper right clear
-                          {{"range", 0x1EC0, 0x1EC3}, {"layers", {0x0060},
+                          {{"range", 0x1EC0, 0x1EC3}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xC0], -- {0x0060},
                                                                  {getCliffsTiles(0xB0, "solid-ground")},
                                                                  {makeRampEdge(0xC0)}}},
                           {0x1EC4, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1EC5, 0x1EC6}, {"layers", {0x0060},
+                          {{"range", 0x1EC5, 0x1EC6}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xC0], -- {0x0060},
                                                                  {makeRampEdge(0xC0)}}},
                   -- [0x1ED0] upper left clear
-                          {{"range", 0x1ED0, 0x1ED3}, {"layers", {0x0061},
+                          {{"range", 0x1ED0, 0x1ED3}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xD0], -- {0x0061},
                                                                  {getCliffsTiles(0xB0, "solid-ground")},
                                                                  {makeRampEdge(0xD0)}}},
                           {0x1ED4, {0x0000}},-- separator
                             -- (without rock)
-                          {{"range", 0x1ED5, 0x1ED6}, {"layers", {0x0061},
+                          {{"range", 0x1ED5, 0x1ED6}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xD0], -- {0x0061},
                                                                  {makeRampEdge(0xD0)}}}},
 
                 "mixed", {"ramp", "highgrounds", "land", "no-building",

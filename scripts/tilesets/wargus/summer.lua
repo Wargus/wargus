@@ -324,7 +324,7 @@ local cliffGen = {
                                       },
     ["exceptions"]                  = lightCoast["exceptions"]
   },
-  tilesFor = {
+  baseTilesFor = {
     ["weak-ground"]  = {
                         [0x00] = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
                         [0x10] = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
