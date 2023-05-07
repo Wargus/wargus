@@ -563,14 +563,14 @@ function ExtendTileset(seed)
                 "mixed", {highgroundWeakGround, "cliff", "land", "unpassable", "no-building",
                           genDstSrcSeq(0x1400, 
                                        {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0},
-                                       function (slot) return {"layers", getCliffsTiles("fully-filled"), 
+                                       function (slot) return {"layers", {getCliffsTiles("fully-filled")}, 
                                                                          makeHighGroundEdge("weak-ground", slot)}
                                        end)},
 
                 "mixed", {highgroundSolidGround, "cliff", "land", "unpassable", "no-building",
                           genDstSrcSeq(0x1500, 
                                        {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0}, 
-                                       function (slot) return {"layers", getCliffsTiles("fully-filled"), 
+                                       function (slot) return {"layers", {getCliffsTiles("fully-filled")}, 
                                                                          makeHighGroundEdge("solid-ground", slot)}
                                         end)},
 
@@ -925,7 +925,7 @@ function ExtendTileset(seed)
                 "mixed", {"ramp", "cliff", "land", "unpassable", "no-building",
                           genDstSrcSeq(0x1C00, 
                                        {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0},
-                                       function (slot) return {"layers", getCliffsTiles("fully-filled"), 
+                                       function (slot) return {"layers", {getCliffsTiles("fully-filled")}, 
                                                                          {makeRampEdge(slot)}}
                                        end)},
 
