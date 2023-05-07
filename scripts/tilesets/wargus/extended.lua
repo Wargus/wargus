@@ -167,18 +167,21 @@ filled  clear
         {"do_something", parameter}
         where 'do_something':
           "remove"
+            Remove certain colors from tiles images
           usage:		{"remove", colors[, colors]..}
                   where 'colors':
                           color		    -- single color
                           {from, to}	-- range of colors
 
           "remove-all-except"
+            Remove all colors from tiles images except given certain colors
           usage:		{"remove-all-except", colors[, colors]..}
                   where 'colors':
                           color		    -- single color
                           {from, to}	-- range of colors
 
           "shift"
+            Shift certain colors from tiles images by a given increment
           usage		{"shift", inc, colors[, colors]..}
                   where 	'inc':
                         increment (positive or negative) to be implemented on the colors
@@ -187,6 +190,7 @@ filled  clear
                         {from, to}	-- range of colors
 
           "flip"
+            Flip images
           usage:		{"flip", direction}
                   where 'direction':
                         "vertical"
@@ -194,6 +198,8 @@ filled  clear
                         "both"
 
           "chroma-key"
+            Compose set of images with images from src_range. Are taken consecutively one for each from src_range.
+            If pixel from src image has chroma key color it will be replaced by pixel from src2 image
           usage:		{"chroma-key", src_range2, key_colors[, key_colors]..}
                   where 'src_range2': (set of images to compose with images from src_range. Are taken consecutively one for each from src_range)
                         {tile}                                  -- tile index (within main tileset) to get graphic from
