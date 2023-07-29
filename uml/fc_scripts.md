@@ -5,6 +5,7 @@ In the following flowchart it is indicated the order of the script that are load
 ```mermaid
 flowchart TB;
 Start([Game Start]) --> stratagus[stratagus.lua];
+
 subgraph stratagusScript["stratagus lua script"]
   stratagus --> cond1{"Exists the file\nwc2-config.lua?"} -- No --> extraction[extraction.lua] -- Return --> stratagus;
   cond1 -- Yes --> wc2config["wc2-config.lua"]; 
@@ -26,6 +27,15 @@ subgraph stratagusScript["stratagus lua script"]
   buttons --> ui[ui.lua];
   ui --> commands[commands.lua];
   commands --> cheats[cheats.lua];
+end
+
+extraction --> extractionScript
+
+subgraph extractionScript[Extraction lua script]
+  setVideoResolution[Set Video Resolution] --> setDefaultTextColors[Set Default Text Colors];
+  setDefaultTextColors --> setGameSpeed[Set Game Speed];
+  setGameSpeed --> runExtraction[Define Run Extraction Function];
+  runExtraction -- Asks the user the file to extract the data --> extraction;
 end
 
 subgraph FolderAI["Folder scripts/ai/"]
