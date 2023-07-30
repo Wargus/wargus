@@ -33,9 +33,9 @@ end
 extraction --> extractionScript
 
 subgraph extractionScript[Extraction lua script]
-  setVideoResolution[Set Video Resolution] --> setDefaultTextColors[Set Default Text Colors];
-  setDefaultTextColors --> setGameSpeed[Set Game Speed];
-  setGameSpeed --> runExtraction[Define Run Extraction Function];
+  extSetVideoResolution[Set Video Resolution] --> extSetDefaultTextColors[Set Default Text Colors];
+  extSetDefaultTextColors --> extSetGameSpeed[Set Game Speed];
+  extSetGameSpeed --> runExtraction[Define Run Extraction Function];
   runExtraction -- Asks the user the file to extract the data --> extraction;
 end
 
@@ -49,6 +49,24 @@ end
 
 stratagusScript -- Load at the end of the script --> FolderAI;
 
-click stratagus "https://github.com/Wargus/wargus/blob/c5cbf8a15cc43961927f25d48d5e10ff57a4c660/scripts/stratagus.lua"
+click stratagus "https://github.com/Wargus/wargus/blob/master/scripts/stratagus.lua"
+click extraction "https://github.com/Wargus/wargus/blob/master/scripts/extract.lua"
+click fov "https://github.com/Wargus/wargus/blob/master/scripts/fov.lua"
+click wc2 "https://github.com/Wargus/wargus/blob/master/scripts/wc2.lua"
+click ai "https://github.com/Wargus/wargus/blob/master/scripts/ai.lua"
+click database "https://github.com/Wargus/wargus/blob/master/scripts/database.lua"
+click icons "https://github.com/Wargus/wargus/blob/master/scripts/icons.lua"
+click sound "https://github.com/Wargus/wargus/blob/master/scripts/sound.lua"
+click missiles "https://github.com/Wargus/wargus/blob/master/scripts/missiles.lua"
+click constructions "https://github.com/Wargus/wargus/blob/master/scripts/constructions.lua"
+click spells "https://github.com/Wargus/wargus/blob/master/scripts/spells.lua"
+click units "https://github.com/Wargus/wargus/blob/master/scripts/units.lua"
+click upgrade "https://github.com/Wargus/wargus/blob/master/scripts/upgrade.lua"
+click fonts "https://github.com/Wargus/wargus/blob/master/scripts/fonts.lua"
+click buttons "https://github.com/Wargus/wargus/blob/master/scripts/buttons.lua"
+click ui "https://github.com/Wargus/wargus/blob/master/scripts/ui.lua"
+click commands "https://github.com/Wargus/wargus/blob/master/scripts/commands.lua"
+click cheats "https://github.com/Wargus/wargus/blob/master/scripts/cheats.lua"
+
 classDef luascript stroke:#00f
 ```
