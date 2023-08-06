@@ -4,14 +4,14 @@ In the following flowchart it is indicated the order of the script that are load
 
 ```mermaid
 flowchart TB;
-Start([Game Start]) --> stratagus[stratagus.lua];
+Start([Start]) --> stratagus[stratagus.lua];
 
 subgraph stratagusScript["stratagus lua script"]
   stratagus:::luascript --> cond1{"Exists the file\nwc2-config.lua?"} -- No --> extraction[extraction.lua]:::luascript -- Return --> stratagus;
   cond1 -- Yes --> wc2config["wc2-config.lua\nContains the definition of some variables"]:::luascript;
   wc2config --> initFunc[Define Init Functions]; 
   initFunc --> fov["fov.lua\n(Field of View)"]:::luascript;
-  fov --> preferences[preferences.lua];
+  fov --> preferences[preferences.lua]:::luascript;
   preferences --> wc2[wc2.lua]:::luascript;
   wc2 --> ai[ai.lua]:::luascript;
   ai --> database[database.lua]:::luascript;
@@ -33,6 +33,7 @@ end
 extraction --> extractionScript
 
 subgraph extractionScript[Extraction lua script]
+  direction LR;
   extSetVideoResolution[Set Video Resolution] --> extSetDefaultTextColors[Set Default Text Colors];
   extSetDefaultTextColors --> extSetGameSpeed[Set Game Speed];
   extSetGameSpeed --> runExtraction[Define Run Extraction Function];
