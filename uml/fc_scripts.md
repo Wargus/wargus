@@ -11,7 +11,7 @@ subgraph stratagusScript["stratagus lua script"]
   cond1 -- Yes --> wc2config["wc2-config.lua\nContains the definition of some variables"]:::luascript;
   wc2config --> initFunc[Define Init Functions]; 
   initFunc --> fov["fov.lua\n(Field of View)"]:::luascript;
-  fov --> preferences[preferences.lua]:::luascript;
+  fov --> preferences["preferences.lua\n(File is created once game is started at least once)"]:::luascript;
   preferences --> wc2[wc2.lua]:::luascript;
   wc2 --> ai[ai.lua]:::luascript;
   ai --> database[database.lua]:::luascript;
@@ -30,14 +30,22 @@ subgraph stratagusScript["stratagus lua script"]
   commands --> cheats[cheats.lua]:::luascript;
 end
 
-extraction --> extractionScript
+extraction -.-> extractionScript
+wc2 -.-> wc2Script
 
 subgraph extractionScript[Extraction lua script]
   direction LR;
   extSetVideoResolution[Set Video Resolution] --> extSetDefaultTextColors[Set Default Text Colors];
   extSetDefaultTextColors --> extSetGameSpeed[Set Game Speed];
   extSetGameSpeed --> runExtraction[Define Run Extraction Function];
-  runExtraction -- Asks the user the file to extract the data --> extraction;
+  runExtraction -- Asks the user the file to extract the data -..-> extraction;
+end
+
+subgraph wc2Script[wc2 lua script]
+  direction TB;
+  defineRaces[Define Race Names] --> defineTableUnits[Define table of unit names];
+  defineTableUnits --> defineWC2Functions["Define functions"];
+  defineWC2Functions -.-> wc2;
 end
 
 subgraph FolderAI["Folder scripts/ai/"]
