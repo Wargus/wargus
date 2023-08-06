@@ -8,23 +8,23 @@ Start([Start]) --> stratagus[stratagus.lua];
 
 subgraph stratagusScript["stratagus lua script"]
   stratagus:::luascript --> cond1{"Exists the file\nwc2-config.lua?"} -- No --> extraction[extraction.lua]:::luascript -- Return --> stratagus;
-  cond1 -- Yes --> wc2config["wc2-config.lua\nContains the definition of some variables"]:::luascript;
+  cond1 -- Yes --> wc2config["wc2-config.lua\n(Contains the definition of some variables)"]:::luascript;
   wc2config --> initFunc[Define Init Functions]; 
   initFunc --> fov["fov.lua\n(Field of View)"]:::luascript;
   fov --> preferences["preferences.lua\n(File is created once game is started at least once)"]:::luascript;
   preferences --> wc2[wc2.lua]:::luascript;
   wc2 --> ai[ai.lua]:::luascript;
   ai --> database[database.lua]:::luascript;
-  database --> translate[translate.lua]:::luascript;
+  database --> translate["translate.lua\n(Load all the .po files in the translate folder)"]:::luascript;
   translate --> icons[icons.lua]:::luascript;
-  icons --> sound[sound.lua]:::luascript;
-  sound --> missiles[missiles.lua]:::luascript;
+  icons --> sound["sound.lua\n(Define all game sound effects)"]:::luascript;
+  sound --> missiles["missiles.lua\n(Define all missile/projectiles)"]:::luascript;
   missiles --> constructions[constructions.lua]:::luascript;
-  constructions --> spells[spells.lua]:::luascript;
+  constructions --> spells["spells.lua\n(Define all game spells)"]:::luascript;
   spells --> units[units.lua]:::luascript;
-  units --> upgrade[upgrade.lua]:::luascript;
-  upgrade --> fonts[fonts.lua]:::luascript;
-  fonts --> buttons[buttons.lua]:::luascript;
+  units --> upgrade["upgrade.lua\n(Define all upgrades)"]:::luascript;
+  upgrade --> fonts["fonts.lua\n(Load font data)"]:::luascript;
+  fonts --> buttons["buttons.lua\n(Define all buttons)"]:::luascript;
   buttons --> ui[ui.lua]:::luascript;
   ui --> commands[commands.lua]:::luascript;
   commands --> cheats[cheats.lua]:::luascript;
@@ -32,6 +32,10 @@ end
 
 extraction -.-> extractionScript
 wc2 -.-> wc2Script
+ai -.-> aiScript
+icons -.-> iconsScript
+units -.-> unitsScript
+ui -.-> uiScript
 
 subgraph extractionScript[Extraction lua script]
   direction LR;
@@ -48,15 +52,35 @@ subgraph wc2Script[wc2 lua script]
   defineWC2Functions -.-> wc2;
 end
 
-subgraph FolderAI["Folder scripts/ai/"]
-  passive.lua:::luascript
-  land_attack.lua:::luascript
-  air_attack.lua:::luascript
-  sea_attack.lua:::luascript
-  names.lua:::luascript
+subgraph aiScript[ai lua script]
+  direction TB;
+  defineAIUnitNames[Define functions for referecing unit names] --> defineAIFunctions[Define functions to use in the AI Scripts];
+  defineAIFunctions -.- ai;
 end
 
-stratagusScript -- Load at the end of the script --> FolderAI;
+subgraph iconsScript[icons lua script]
+  direction TB;
+  defineIconTable[Define table with unit names and indexes] --> applyIcons["Assign to each index the proper icon\n(This is repeated for each tileset)"];
+  applyIcons -.-> icons
+end
+
+subgraph unitsScript[units lua script]
+  direction TB;
+  defineNeutral["Define neutral units and buildings"] --> defineHuman["Define human units and buildings"];
+  defineHuman --> defineOrc["Define orc units and buildings"];
+  defineOrc -.-> units;
+end
+
+subgraph uiScript[ui lua script]
+  direction TB;
+  widgets[widgets.lua]:::luascript --> defineSD[Define sprites and decorations];
+  defineSD --> definePanel[Define contents for the panels];
+  definePanel --> uiHumOrc[Load the UI for both Human and Orc];
+  uiHumOrc --> defineCursor[Define the cursor];
+  defineCursor --> ui_cond_1{Popups on the buttons are enabled?} -- No -.-> ui;
+  ui_cond_1 -- Yes --> definePopups["Define Popups"];
+  definePopups -.-> ui;
+end
 
 click stratagus "https://github.com/Wargus/wargus/blob/master/scripts/stratagus.lua"
 click extraction "https://github.com/Wargus/wargus/blob/master/scripts/extract.lua"
