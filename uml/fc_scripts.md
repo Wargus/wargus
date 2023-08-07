@@ -28,7 +28,18 @@ subgraph stratagusScript["stratagus lua script"]
   buttons --> ui[ui.lua]:::luascript;
   ui --> commands[commands.lua]:::luascript;
   commands --> cheats[cheats.lua]:::luascript;
+  cheats --> AIHelper["Define equivalence of units to help the A.I"];
+  AIHelper --> loadAIScripts["Load Individual AI Scripts"];
 end
+
+extraction -.-> extSetVideoResolution
+wc2 -.-> defineRaces
+ai -.-> defineAIUnitNames
+database -.-> defineDBSetup
+icons -.-> defineIconTable
+units -.-> defineNeutral
+ui -.-> widgets
+loadAIScripts --> End([End])
 
 subgraph extractionScript[Extraction lua script]
   direction TB;
@@ -49,6 +60,14 @@ subgraph aiScript[ai lua script]
   direction TB;
   defineAIUnitNames[Define functions for referecing unit names] --> defineAIFunctions[Define functions to use in the AI Scripts];
   defineAIFunctions -.-> ai;
+end
+
+subgraph databaseScript[database lua script]
+  direction TB;
+  defineDBSetup["Define function for the database setup"] --> DBTable["Create a table variable for the database"];
+  DBTable --> characterTable["Define a table variable for the characters\n with also a series of functions"];
+  characterTable --> campaignFunctions["Define functions for modded campaigns"];
+  campaignFunctions -.-> database;
 end
 
 subgraph iconsScript[icons lua script]
@@ -75,13 +94,16 @@ subgraph uiScript[ui lua script]
   definePopups -.-> ui;
 end
 
-extraction -.-> extSetVideoResolution
-wc2 -.-> defineRaces
-ai -.-> defineAIUnitNames
-icons -.-> defineIconTable
-units -.-> defineNeutral
-ui -.-> widgets
-cheats --> End([End])
+subgraph aiScripts[lua scripts inside the ai folder]
+  direction TB;
+  passive[passive.lua]:::luascript
+  land_attack[land_attack.lua]:::luascript
+  air_attack[air_attack.lua]:::luascript
+  sea_attack[sea_attack.lua]:::luascript
+  passive & land_attack & air_attack & sea_attack -.- names["names.lua\n(Defines the AIs to use in skirmish modern mode)"]:::luascript
+end
+
+loadAIScripts -.-> passive & land_attack & air_attack & sea_attack;
 
 click stratagus "https://github.com/Wargus/wargus/blob/master/scripts/stratagus.lua"
 click extraction "https://github.com/Wargus/wargus/blob/master/scripts/extract.lua"
