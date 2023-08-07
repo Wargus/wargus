@@ -30,15 +30,8 @@ subgraph stratagusScript["stratagus lua script"]
   commands --> cheats[cheats.lua]:::luascript;
 end
 
-extraction -.-> extractionScript
-wc2 -.-> wc2Script
-ai -.-> aiScript
-icons -.-> iconsScript
-units -.-> unitsScript
-ui -.-> uiScript
-
 subgraph extractionScript[Extraction lua script]
-  direction LR;
+  direction TB;
   extSetVideoResolution[Set Video Resolution] --> extSetDefaultTextColors[Set Default Text Colors];
   extSetDefaultTextColors --> extSetGameSpeed[Set Game Speed];
   extSetGameSpeed --> runExtraction[Define Run Extraction Function];
@@ -55,7 +48,7 @@ end
 subgraph aiScript[ai lua script]
   direction TB;
   defineAIUnitNames[Define functions for referecing unit names] --> defineAIFunctions[Define functions to use in the AI Scripts];
-  defineAIFunctions -.- ai;
+  defineAIFunctions -.-> ai;
 end
 
 subgraph iconsScript[icons lua script]
@@ -81,6 +74,14 @@ subgraph uiScript[ui lua script]
   ui_cond_1 -- Yes --> definePopups["Define Popups"];
   definePopups -.-> ui;
 end
+
+extraction -.-> extSetVideoResolution
+wc2 -.-> defineRaces
+ai -.-> defineAIUnitNames
+icons -.-> defineIconTable
+units -.-> defineNeutral
+ui -.-> widgets
+cheats --> End([End])
 
 click stratagus "https://github.com/Wargus/wargus/blob/master/scripts/stratagus.lua"
 click extraction "https://github.com/Wargus/wargus/blob/master/scripts/extract.lua"
