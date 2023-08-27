@@ -1081,14 +1081,14 @@ function ExtendTileset(seed)
                           {{"range", 0x1F20, 0x1F22}, {{"slot", 0x03B0}, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
                           {0x1F23, {0x0000}},-- separator
                             -- (transition to coast highground with rock upper left filled)
-                          {0x1F24, {"layers", {"slot", 0x0400},
+                          {0x1F24, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0200}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x03B0}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1F25, {0x0000}},-- separator
                             -- (transition to coast highground with rock upper right filled)
-                          {0x1F26, {"layers", {"slot", 0x0410},
+                          {0x1F26, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0210}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x03B0}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
@@ -1099,7 +1099,7 @@ function ExtendTileset(seed)
                                                                  {{"slot", 0x0520}, {"remove", light_weakGround}}}},
                           {0x1F2B, {0x0000}},-- separator
                             -- (transition to grass highground with rock upper left filled)
-                          {0x1F2C, {"layers", {"slot", 0x0400},
+                          {0x1F2C, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0200}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x03B0}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
@@ -1107,7 +1107,7 @@ function ExtendTileset(seed)
                                     "unpassable"},
                           {0x1F2D, {0x0000}},-- separator
                             -- (transition to grass highground with rock upper right filled)
-                          {0x1F2E, {"layers", {"slot", 0x0410},
+                          {0x1F2E, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0210}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x03B0}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
@@ -1141,14 +1141,14 @@ function ExtendTileset(seed)
                           {0x1F63, {0x0000}},-- separator
                             -- (transition to coast highground with grass lowground upper half filled)
                           {0x1F64, {"layers", {0x0064},
-                                              {getCliffsTiles(0xB0, "weak-ground")},
+                                              {getCliffsTiles(0xB0, "solid-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0370}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1F65, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower left filled)
-                          {0x1F66, {"layers", {"slot", 0x0430},
+                          {0x1F66, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0370}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
@@ -1169,7 +1169,7 @@ function ExtendTileset(seed)
                           {0x1F6C, {0x0000}},-- separator
                             -- (transition to grass highground with grass lowground upper half filled)
                           {0x1F6D, {"layers", {0x0064},
-                                              {getCliffsTiles(0xB0, "weak-ground")},
+                                              {getCliffsTiles(0xB0, "solid-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0370}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
@@ -1211,14 +1211,14 @@ function ExtendTileset(seed)
                           {0x1FA3, {0x0000}},-- separator
                             -- (transition to coast highground with grass lowground upper half filled)
                           {0x1FA4, {"layers", {0x0064},
-                                              {getCliffsTiles(0xB0, "weak-ground")},
+                                              {getCliffsTiles(0xB0, "solid-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {0x0330, 0x0331}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FA5, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower right filled)
-                          {0x1FA6, {"layers", {"slot", 0x0470},
+                          {0x1FA6, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {0x0330, 0x0331}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
@@ -1238,7 +1238,7 @@ function ExtendTileset(seed)
                                     "unpassable"},
                             -- (transition to grass highground with grass lowground upper half filled)
                           {0x1FAC, {"layers", {0x0064},
-                                              {getCliffsTiles(0xB0, "weak-ground")},
+                                              {getCliffsTiles(0xB0, "solid-ground")},
                                               {{"slot", 0x0220}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {0x0330, 0x0331}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
@@ -1246,7 +1246,7 @@ function ExtendTileset(seed)
                                     "unpassable"},
                           {0x1FAD, {0x0000}},-- separator
                             -- (transition to grass highground with rock lower right filled)
-                          {0x1FAE, {"layers", {"slot", 0x0470},
+                          {0x1FAE, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {0x0330, 0x0331}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
@@ -1257,14 +1257,14 @@ function ExtendTileset(seed)
                           {{"range", 0x1FB0, 0x1FB2}, {{"slot", 0x0320}, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
                           {0x1FB3, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower left filled)
-                          {0x1FB4, {"layers", {"slot", 0x0430},
+                          {0x1FB4, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0320}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FB5, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower right filled)
-                          {0x1FB6, {"layers", {"slot", 0x0470},
+                          {0x1FB6, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0320}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
@@ -1275,7 +1275,7 @@ function ExtendTileset(seed)
                                                                  {{"slot", 0x05B0}, {"remove", light_weakGround}}}},
                           {0x1FBB, {0x0000}},-- separator
                             -- (transition to grass highground with rock lower left filled)
-                          {0x1FBC, {"layers", {"slot", 0x0430},
+                          {0x1FBC, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0320}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
@@ -1283,7 +1283,7 @@ function ExtendTileset(seed)
                                     "unpassable"},
                           {0x1FBD, {0x0000}},-- separator
                             -- (transition to grass highground with rock lower right filled)
-                          {0x1FBE, {"layers", {"slot", 0x0470},
+                          {0x1FBE, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0320}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
@@ -1294,14 +1294,14 @@ function ExtendTileset(seed)
                           {{"range", 0x1FC0,  0x1FC1}, {{"slot", 0x0310}, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
                           {0x1FC2, {0x0000}},-- separator
                             -- (transition to coast highground with rock upper left filled)
-                          {0x1FC3, {"layers", {"slot", 0x0400},
+                          {0x1FC3, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0200}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0310}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FC4, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower right filled)
-                          {0x1FC5, {"layers", {"slot", 0x0470},
+                          {0x1FC5, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0310}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
@@ -1312,7 +1312,7 @@ function ExtendTileset(seed)
                                                                  {{"slot", 0x05C0}, {"remove", light_weakGround}}}},
                           {0x1FC9, {0x0000}},-- separator
                             -- (transition to coast grass with rock upper left filled)
-                          {0x1FCA, {"layers", {"slot", 0x0400},
+                          {0x1FCA, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0200}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0310}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
@@ -1320,7 +1320,7 @@ function ExtendTileset(seed)
                                     "unpassable"},
                           {0x1FCB, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower right filled)
-                          {0x1FCC, {"layers", {"slot", 0x0470},
+                          {0x1FCC, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0270}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0310}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
@@ -1331,14 +1331,14 @@ function ExtendTileset(seed)
                           {{"range", 0x1FD0,  0x1FD1}, {{"slot", 0x0300}, {"shift", lighten, light_weakGround, dark_weakGround_dark}}},
                           {0x1FD2, {0x0000}},-- separator
                             -- (transition to coast highground with rock lower left filled)
-                          {0x1FD3, {"layers", {"slot", 0x0430},
+                          {0x1FD3, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0300}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
                                     "unpassable"},
                           {0x1FD4, {0x0000}},-- separator
                             -- (transition to coast highground with rock upper right filled)
-                          {0x1FD5, {"layers", {"slot", 0x0410},
+                          {0x1FD5, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0210}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0300}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}}}, 
@@ -1349,7 +1349,7 @@ function ExtendTileset(seed)
                                                                  {{"slot", 0x05D0}, {"remove", light_weakGround}}}},
                           {0x1FD9, {0x0000}},-- separator
                             -- (transition to coast grass with rock lower left filled)
-                          {0x1FDA, {"layers", {"slot", 0x0430},
+                          {0x1FDA, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0230}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0300}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
@@ -1357,7 +1357,7 @@ function ExtendTileset(seed)
                                     "unpassable"},
                           {0x1FDB, {0x0000}},-- separator
                             -- (transition to coast highground with rock upper right filled)
-                          {0x1FDC, {"layers", {"slot", 0x0410},
+                          {0x1FDC, {"layers", {getCliffsTiles("fully-filled")},
                                               {{"slot", 0x0210}, {"remove", colorsFor(water)}, 
                                                                  {"chroma-key", {"slot", 0x0300}, light_weakGround},
                                                                  {"shift", lighten, light_weakGround, dark_weakGround_dark}},
