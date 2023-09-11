@@ -304,6 +304,7 @@ local lightCoast = {
   ["base-light"]                  = {88},
   ["base-dark"]                   = {87},
   ["light-shadows"]               = {86},
+  ["transition-dark"]             = {86},
  
   ["exceptions"]                  = {{nil, 82}, {94, nil}}
 }
@@ -378,19 +379,68 @@ local cliffGen = {
   cleanRocks = nil, -- local function to clean rocks (if present)
 
   makeHighGroundEdge = function(self, groundType, slot) -- local function to make HG edge tiles (if present)
-    local returnValue = {}
-
-    table.insert(returnValue, {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}})
+    local layers = {}
+        
+    -- weak-ground layer
+    table.insert(layers, {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}})
+       
     if groundType == "solid-ground" then
-      table.insert(returnValue, {self.utils.srcTilesLst(0x0500,  (0xD0 - slot)), {"remove", self.utils.colorsFor(lightCoast, "base", "light-shadows")}})
+      table.insert(layers, {self.utils.srcTilesLst(0x0500,  (0xD0 - slot)), {"remove", self.utils.colorsFor(lightCoast, "base", "light-shadows")}})
     end
 
-    return unpack(returnValue)
+    return unpack(layers)
   end,
 
   makeRampEdge = function(self)
     return  {"remove", self.utils.colorsFor(water)}, self.utils.Lighten(lightCoast, "base", "shadows")
-  end
+  end,
+
+  makeRampToHighGround = function(self, groundType, slot, isMask, edgeSlot) -- local function to make transition from ramp to HG tiles (if present)
+    local returnValue = {}
+    local rampLayer = {}
+    local solidLayer
+    local layers = {}
+
+    if isMask == "edgeMask" then
+      local chromaKeyMask = {"slot", 0x0300 + (0xD0 - slot)}
+      
+      if chromaKeyMask == {"slot", 0x0330} then -- only thees two are usable for this tileset
+        chromaKeyMask = {0x0330, 0x0331}
+      end
+
+      rampLayer = {{"slot", 0x0200 + edgeSlot}, {"remove", self.utils.colorsFor(water)}, 
+                                                {"chroma-key", chromaKeyMask, self.utils.colorsFor(lightCoast, "base")},
+                                                self.utils.Lighten(lightCoast, "base", "transition-dark")}
+
+      table.insert(layers, rampLayer)
+
+      if groundType == "solid-ground" then
+        if slot == 0x60 or slot == 0xA0 then -- have to use chroma-key to remove highground grass shadows from the lowground
+          solidLayer = {{"slot", 0x0200 + edgeSlot}, {"remove", self.utils.colorsFor(water)},  
+                                                     {"chroma-key", {"slot", 0x0500 + slot}, self.utils.colorsFor(lightCoast, "base")},
+                                                     {"remove", self.utils.colorsFor(lightCoast, "base")}}
+        else
+          solidLayer = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast, "base")}}
+        end
+
+        table.insert(layers, solidLayer)
+      end
+      return unpack(layers)
+
+    else -- without edge
+      rampLayer = {{"slot", 0x0300 + (0xD0 - slot)}, self.utils.Lighten(lightCoast, "base", "transition-dark")}
+
+      table.insert(layers, rampLayer)
+
+      if groundType == "solid-ground" then -- add grass on top
+        solidLayer = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast, "base")}}
+        table.insert(layers, solidLayer)
+        return {"layers", unpack(layers)}
+      end
+
+      return unpack(layers)
+    end
+  end  
 }
 
 local extendedTilesetSeed = {
