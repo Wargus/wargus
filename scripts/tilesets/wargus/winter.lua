@@ -28,7 +28,7 @@
 --
 
 --=============================================================================
---	Define a tileset
+--  Define a tileset
 
 --[[
 
@@ -99,13 +99,13 @@ filled  clear
 --]]
 
 --
---	(define-tileset ident class name image palette slots animations)
+--  (define-tileset ident class name image palette slots animations)
 --
 DefineTileset("name", "Winter",
   "image", "tilesets/winter/terrain/winter.png",
   -- Slots descriptions
-  "slots", { 
-            "special", {	-- Can't be in pud
+  "slots", {
+            "special", {  -- Can't be in pud
                         "top-one-tree", 121, "mid-one-tree", 122, "bot-one-tree", 123,
                         "removed-tree", 126,
                         "top-one-rock", 156, "mid-one-rock", 157, "bot-one-rock", 158,
@@ -116,9 +116,9 @@ DefineTileset("name", "Winter",
             "solid", { "dark-water", "water",
                       { 325, 326, 326, 327,   0, 328, 329, 330}},                                         -- 020
             "solid", { "light-ice", "land", "no-building",
-                      { 331, 332, 333,   0, 334, 335, 336, 337, 338, 339, 334, 338}},	                    -- 030
+                      { 331, 332, 333,   0, 334, 335, 336, 337, 338, 339, 334, 338}},                     -- 030
             "solid", { "dark-ice", "land", "no-building",
-                      { 340, 341, 342,   0, 343, 344, 345, 346, 347, 348, 343, 347}},	                    -- 040
+                      { 340, 341, 342,   0, 343, 344, 345, 346, 347, 348, 343, 347}},                     -- 040
             "solid", { "light-snow", "land",
                       { 349, 350, 351,   0, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363}}, -- 050
             "solid", { "dark-snow", "land",
@@ -307,7 +307,7 @@ local lightIce = {
   ["decorations"]         = {{18, 25}, {31, 36}, 54, {63, 71}, 78, 79},
   ["base"]                = {64, {71, 79}},
   ["all"]                 = {"base", "shadows", "decorations"},
-  ["remove-toCleanRocks"] = {64, 71}, 
+  ["remove-toCleanRocks"] = {64, 71},
   ["shadows-onRocks"]             = {},
   ["convertable-shadows-onRocks"] = {},
   ["base-light"]          = {},
@@ -328,8 +328,8 @@ local cliffGen = {
     ["remove-toCleanRocks"] = {64, {71, 79}},
     ["shadows-onRocks"]             = {},
     ["convertable-shadows-onRocks"] = { -- shadows which could be converted from light weak ground to dark solid ground. Possible values: {range} or color
-                                        { ["from"] = {31, 37}, ["to"] = {18, 24} }, 
-                                        { ["from"] = {65, 69}, ["to"] = {106, 110} } 
+                                        { ["from"] = {31, 37}, ["to"] = {18, 24} },
+                                        { ["from"] = {65, 69}, ["to"] = {106, 110} }
                                       },
     ["exceptions"]  = lightIce["exceptions"]
   },
@@ -337,23 +337,23 @@ local cliffGen = {
     ["weak-ground"] =  {
                         [0x00] = {0x0040, 0x0041},
                         [0x10] = {0x0040, 0x0041},
-                        [0x20] = {0x0040}, 
+                        [0x20] = {0x0040},
                         [0x30] = {0x0040, 0x0041},
                         [0x40] = {0x0041},
-                        [0x60] = {0x0042}, 
+                        [0x60] = {0x0042},
                         [0x70] = {0x0040, 0x0041},
                         [0x90] = {0x0041},
-                        [0xA0] = {0x0042}, 
-                        [0xB0] = {0x0040, 0x0041}, 
-                        [0xC0] = {0x0041}, 
+                        [0xA0] = {0x0042},
+                        [0xB0] = {0x0040, 0x0041},
+                        [0xC0] = {0x0041},
                         [0xD0] = {0x0042}
                        },
     ["solid-ground"] = {
                         [0x00] = {0x0060, 0x0061},
                         [0x10] = {0x0060, 0x0061},
-                        [0x20] = {0x0060}, 
+                        [0x20] = {0x0060},
                         [0x30] = {0x0060, 0x0061},
-                        [0x40] = {0x0060}, 
+                        [0x40] = {0x0060},
                         [0x60] = {0x0061},
                         [0x70] = {0x0060, 0x0061},
                         [0x90] = {0x0062},
@@ -370,7 +370,7 @@ local cliffGen = {
                           ["removedRock"]   = 161
                         },
     ["cliff-edges-exceptions"] = {
-                                  [0x0200] =  {  
+                                  [0x0200] =  {
                                                 [0x20] = {1},
                                                 [0x40] = {2},
                                                 [0x90] = {1}
@@ -399,7 +399,7 @@ local cliffGen = {
     elseif groundType == "solid-ground" then
       table.insert(returnValue, {self.utils.srcTilesLst(0x0500,  (0xD0 - slot)), {"remove", self.utils.colorsFor(lightIce, "base", "shadows")}})
     end
-    
+
     return unpack(returnValue)
   end,
 
@@ -434,9 +434,9 @@ local extendedTilesetSeed = {
   dim                             = -1,
   lighten                         =  1
 }
-  
+
 Load("scripts/tilesets/wargus/extended.lua")
-  
+
 ExtendTileset(extendedTilesetSeed)
 
 BuildTilesetTables()

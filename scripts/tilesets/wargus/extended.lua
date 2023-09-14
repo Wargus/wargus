@@ -28,10 +28,10 @@
 --
 
 --=============================================================================
---	Define a tileset
+--  Define a tileset
 --
---	(define-tileset ident class name image palette slots animations)
--- 
+--  (define-tileset ident class name image palette slots animations)
+--
 
 --[[
 
@@ -113,28 +113,28 @@ filled  clear
                          }
                         ...
               }
-            
+
       where:
-      slot-type: 
+      slot-type:
         "solid" or "mixed"
-        Each slot consist of 16 tiles which represent one of terrain type ("solid") 
+        Each slot consist of 16 tiles which represent one of terrain type ("solid")
         or mix of two different solid terrains ("mixed" f.e. gras-coast, water-coast etc.)
         Second "terrain-name" in the slot definition is for mixed type.
 
-      list-of-flags-for-all-tiles-of-this-slot: 
+      list-of-flags-for-all-tiles-of-this-slot:
         comma separated list of flags wihich are common for all tiles in this slot
 
       dst:
         single agrgument (number or table) at position 1.
-        index of defined tile (or set of indexes). Each slot consist of 16 tiles only. 
+        index of defined tile (or set of indexes). Each slot consist of 16 tiles only.
         For extended tileset indexes must be greater than already defined.
         Each slot's indexes set starts from xxx0 and ended with xxxF (where discription of xxx see in PUD format explanation)
-        
+
         'dst' can take one of the following forms:
         tile                    -- single tile index
         {tile[, tile,] ...}     -- set of tile indexes
         {"range", from, to}     -- range of indexes [from, to]
-        {"slot", slot_num}      -- whole slot indexes f.e. {"slot", 0x1010} - put src continuously to slot 0x101[0..F] 
+        {"slot", slot_num}      -- whole slot indexes f.e. {"slot", 0x1010} - put src continuously to slot 0x101[0..F]
                                 -- until there is a src (up to 16, if less then fill slot with 0 for absent srcs)
 
       src:
@@ -151,15 +151,15 @@ filled  clear
         }
 
         "layers" can be omitted if we have a single layer, then src takes this form:
-        { src_range [,{"do_something", parameter}...] } 
-        or even: 
+        { src_range [,{"do_something", parameter}...] }
+        or even:
         src_range                     -- then we just use images from src_range without any manipulations with them
 
         'src_range' can take one of the following forms:
         tile                                    -- tile index (within main tileset) to get graphic from
         {tile[, tile]...}}                      -- set of tiles indexes (within main tileset) to get graphics from
         {"img"|"img-base", image[, image]...}   -- set of numbers of frames from the extended (or base tileset) "image" file.
-        {["img"|"img-base",] "range", from, to} -- if "img" then from frame to frame (for "image"),        
+        {["img"|"img-base",] "range", from, to} -- if "img" then from frame to frame (for "image"),
                                                 -- otherwise indexes from tile to tile (within main tileset) to get graphics from
         {"slot", slot_num}                      -- f.e. {"slot", 0x0430} - to take graphics continuously from tiles with indexes of slot 0x0430
 
@@ -168,30 +168,30 @@ filled  clear
         where 'do_something':
           "remove"
             Remove certain colors from tiles images
-          usage:		{"remove", colors[, colors]..}
+          usage:    {"remove", colors[, colors]..}
                   where 'colors':
-                          color		    -- single color
-                          {from, to}	-- range of colors
+                          color       -- single color
+                          {from, to}  -- range of colors
 
           "remove-all-except"
             Remove all colors from tiles images except given certain colors
-          usage:		{"remove-all-except", colors[, colors]..}
+          usage:    {"remove-all-except", colors[, colors]..}
                   where 'colors':
-                          color		    -- single color
-                          {from, to}	-- range of colors
+                          color       -- single color
+                          {from, to}  -- range of colors
 
           "shift"
             Shift certain colors from tiles images by a given increment
-          usage		{"shift", inc, colors[, colors]..}
-                  where 	'inc':
+          usage   {"shift", inc, colors[, colors]..}
+                  where   'inc':
                         increment (positive or negative) to be implemented on the colors
                       'colors':
-                        color		    -- single color
-                        {from, to}	-- range of colors
+                        color       -- single color
+                        {from, to}  -- range of colors
 
           "flip"
             Flip images
-          usage:		{"flip", direction}
+          usage:    {"flip", direction}
                   where 'direction':
                         "vertical"
                         "horizontal"
@@ -200,17 +200,17 @@ filled  clear
           "chroma-key"
             Compose set of images with images from src_range. Are taken consecutively one for each from src_range.
             If pixel from src image has chroma key color it will be replaced by pixel from src2 image
-          usage:		{"chroma-key", src_range2, key_colors[, key_colors]..}
+          usage:    {"chroma-key", src_range2, key_colors[, key_colors]..}
                   where 'src_range2': (set of images to compose with images from src_range. Are taken consecutively one for each from src_range)
                         {tile}                                  -- tile index (within main tileset) to get graphic from
                         {tile[, tile]...}}                      -- set of tiles indexes (within main tileset) to get graphics from
                         {"img"|"img-base", image[, image]...}   -- set of numbers of frames from the extended (or base tileset) "image" file.
-                        {["img"|"img-base",] "range", from, to} -- if "img" then from frame to frame (for "image"),        
+                        {["img"|"img-base",] "range", from, to} -- if "img" then from frame to frame (for "image"),
                                                                 -- otherwise indexes from tile to tile (within main tileset) to get graphics from
                         {"slot", slot_num}                      -- f.e. {"slot", 0x0430} - to take graphics continuously from tiles with indexes of slot 0x0430
                     'key_colors': (chroma keys)
-                        color		    -- single color
-                        {from, to}	-- range of colors
+                        color       -- single color
+                        {from, to}  -- range of colors
 
       additional-flags-list:
         strings which started from position 3
@@ -229,7 +229,7 @@ function ExtendTileset(seed)
   local highgroundWeakGround = seed.highgroundWeakGround
   local highgroundSolidGround = seed.highgroundSolidGround
   local cliffGen = seed.cliffGen
-  
+
   local lightWeakGround = seed.lightWeakGround
 
   local light_weakGround = seed.light_weakGround
@@ -254,8 +254,8 @@ function ExtendTileset(seed)
     for tileIdx = 0, 0xF, 1 do
         local isException = false
         for i,exception in ipairs(cliffGen.baseTilesFor["cliff-edges-exceptions"][baseSlot][subSlot]) do
-            if tileIdx == exception then 
-                isException = true 
+            if tileIdx == exception then
+                isException = true
                 break
             end
         end
@@ -273,7 +273,7 @@ function ExtendTileset(seed)
     local returnValue = {}
 
     if #args == 0 then args = colorSet["all"] end -- if no subset given, then use "all" subset
-    
+
     for i, range in ipairs(args) do
       if colorSet[range] ~= nil then
         for ii, inRangeValue in ipairs(colorSet[range]) do
@@ -290,31 +290,31 @@ function ExtendTileset(seed)
     if rangeFrom == nil or rangeTo == nil then
       return nil
     end
-    if type(rangeFrom) == "table" and #rangeFrom < 2 then 
+    if type(rangeFrom) == "table" and #rangeFrom < 2 then
       return nil
     end
-    if type(rangeTo) == "table" and #rangeTo < 2 then 
+    if type(rangeTo) == "table" and #rangeTo < 2 then
       return nil
     end
-    
+
     local result = {}
-    
+
     local srcColors = {}
-    if type(rangeFrom) == "table" then 
+    if type(rangeFrom) == "table" then
         for color = rangeFrom[1], rangeFrom[2] do
             table.insert(srcColors, color)
         end
     else
         table.insert(srcColors, rangeFrom)
     end
-    
+
     local dstColor = rangeTo
     local dstInc = 0
-    if type(rangeTo) == "table" then 
+    if type(rangeTo) == "table" then
       dstColor = rangeTo[1]
       dstInc  = (rangeTo[2] - rangeTo[1] + 1) / #srcColors
     end
-    
+
     for i, srcColor in ipairs(srcColors) do
       local shiftValue = math.floor(dstColor + 0.5) - srcColor
       table.insert(result, {"shift", shiftValue, srcColor})
@@ -329,7 +329,7 @@ function ExtendTileset(seed)
 
     local idxFrom = 1
     local idxTo   = 2
-  
+
     if type(range) == "table" then
       for color = range[idxFrom], range[idxTo] do
         local exception = checkForExceptionColor(color, exceptionPairs, direction)
@@ -337,7 +337,7 @@ function ExtendTileset(seed)
       end
       return nil
     end
-  
+
     local idxFrom, idxTo
     if direction < 0 then
       idxFrom = 2
@@ -346,7 +346,7 @@ function ExtendTileset(seed)
       idxFrom = 1
       idxTo   = 2
     end
-  
+
     for i, pair in ipairs(exceptionPairs) do
       if range == pair[idxFrom] then
         if pair[idxTo] ~= nil then
@@ -358,48 +358,48 @@ function ExtendTileset(seed)
     end
     return nil
   end
-  
+
   local function shiftBrightness_byStep(direction, exceptionPairs, ...)
     local args = {...}
-    
+
     if direction == 0 then return nil end
     direction = direction / math.abs(direction)
-  
+
     local colors = {}
     local result = {}
     for i, range in ipairs(args) do
-  
-      repeat 
+
+      repeat
         local done = false
         local idxFrom = 1
         local idxTo = 2
-  
+
         local exception = checkForExceptionColor(range, exceptionPairs, direction)
         if exception ~= nil then
-  
+
           local shiftDelta = exception[idxTo] - exception[idxFrom];
           if shiftDelta ~= 0 then
             table.insert(result, {"shift", shiftDelta, exception[idxFrom]})
           end
-  
+
           if type(range) == "table" then
             if range[idxFrom] < exception[idxFrom] then
               table.insert(colors, {range[idxFrom], exception[idxFrom] - 1})
             end
             range[idxFrom] = exception[idxFrom] + 1
-            if (range[idxTo] < range[idxFrom] ) then 
-              done = true 
+            if (range[idxTo] < range[idxFrom] ) then
+              done = true
             end
           else
             done = true
           end
-  
+
         else
           table.insert(colors, range)
         end
-  
+
       until (done or exception == nil)
-  
+
     end
     table.insert(result, {"shift", direction, unpack(colors)})
     return unpack(result)
@@ -424,7 +424,7 @@ function ExtendTileset(seed)
     else
       result = {{"remove", getColors(cliffGen.colors, "remove-toCleanRocks")}}
 
-      if baseTerrain == "weak-ground" then 
+      if baseTerrain == "weak-ground" then
         table.insert(result, Dim(cliffGen.colors, "shadows-onRocks"))
       else
         for i, range in ipairs(cliffGen.colors["convertable-shadows-onRocks"]) do
@@ -452,8 +452,8 @@ function ExtendTileset(seed)
       "fully-filled"
       {"special", "singleRockUp", "singleRockMid", "singleRockBot", "removedRock"}
     baseTerrain: (optional)
-       "weak-ground" 
-       "solid-ground" 
+       "weak-ground"
+       "solid-ground"
     --]]
     local result = {}
     local rocksOnWeakGrnd  = 0x0400
@@ -466,7 +466,7 @@ function ExtendTileset(seed)
       elseif type(slot) == "table" then
         if slot[1] == "pick" then
           local tiles = {}
-          for i,tile in ipairs(slot) do 
+          for i,tile in ipairs(slot) do
             if i > 1 then
               if tile >= 0x00 and tile <= 0xDF then
                 table.insert(tiles, tile + rocksOnWeakGrnd)
@@ -475,10 +475,10 @@ function ExtendTileset(seed)
           end
           table.insert(result, tiles)
 
-        elseif slot[1] == "special" then 
+        elseif slot[1] == "special" then
           local tiles = {"img-base"}
-          
-          for i,tile in ipairs(slot) do 
+
+          for i,tile in ipairs(slot) do
             if i > 1 then table.insert(tiles, cliffGen.baseTilesFor["cliff-special"][tile]) end
           end
           table.insert(result, tiles)
@@ -500,7 +500,7 @@ function ExtendTileset(seed)
     end
     return unpack(result)
   end
- 
+
   local function makeHighGroundEdge(groundType, slot)
     return cliffGen:makeHighGroundEdge(groundType, slot)
   end
@@ -514,12 +514,12 @@ function ExtendTileset(seed)
   end
 
   local function makeRampToLowGround(groundType, slot)
-    return cliffGen:makeRampToLowGround(groundType, slot)    
+    return cliffGen:makeRampToLowGround(groundType, slot)
   end
-  
+
   local function genDstSrcSeq(dstSlot, subSlots, src)
     result = {}
-  
+
     for i, slot in ipairs(subSlots) do
       table.insert(result, {{"slot", dstSlot + slot}, src(slot)})
     end
@@ -579,7 +579,7 @@ function ExtendTileset(seed)
 
       {["dst"] = {0xC0, 0xC3},  ["src"] = {["cliffs"] = 0xB0}}, -- upper right clear
       {["dst"] = 0xC4},  -- separator
-      {["dst"] = {0xC5, 0xC6},  ["src"] = {["cliffs"] = 0xC0}}, -- (with rock upper right clear) 
+      {["dst"] = {0xC5, 0xC6},  ["src"] = {["cliffs"] = 0xC0}}, -- (with rock upper right clear)
       {["dst"] = 0xC7},  -- separator
       {["dst"] = {0xC8, 0xC9},  ["src"] = {}}, -- (without rock)
 
@@ -619,10 +619,10 @@ function ExtendTileset(seed)
 
     for i, slotData in ipairs(genTable) do
       if type(slotData) ~= "table" then break end
-      
+
       local src
       local dst, slot, cliffs = genTable.parse(slotData, dstSlot)
-      if slot == nil then 
+      if slot == nil then
         src = {0x0000} -- separator
       else
         src = {"layers",  cliffGen.baseTilesFor[lowGroundType][slot],
@@ -640,59 +640,59 @@ function ExtendTileset(seed)
   GenerateExtendedTileset(
   --  "image", "",
     "slots",  {
-                "solid", {"cliff", "land", "unpassable", "no-building", 
+                "solid", {"cliff", "land", "unpassable", "no-building",
                           {{"slot", 0x1010}, {getCliffsTiles("fully-filled")}}},
                 "solid", {"ramp", "land", "no-building",
                           {{"slot", 0x1020}, {{"slot", rampSrc_baseIdx + 0x00}, Lighten(rampSrc, "base", "shadows")}}},
                 "mixed", {"cliff", lowgroundWeakGround, "land", "unpassable", "no-building",
-                          genDstSrcSeq(0x1100, 
+                          genDstSrcSeq(0x1100,
                                        {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0},
                                        function (slot) return {"layers", cliffGen.baseTilesFor["weak-ground"][slot],
                                                                          {getCliffsTiles(slot, "weak-ground")}}
                                        end)},
 
                 "mixed", {"cliff", lowgroundSolidGround, "land", "unpassable", "no-building",
-                          genDstSrcSeq(0x1200, 
+                          genDstSrcSeq(0x1200,
                                        {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0},
-                                       function (slot) return {"layers", cliffGen.baseTilesFor["solid-ground"][slot], 
+                                       function (slot) return {"layers", cliffGen.baseTilesFor["solid-ground"][slot],
                                                                          {getCliffsTiles(slot, "solid-ground")}}
                                        end)},
 
                 "mixed", {highgroundWeakGround, "cliff", "land", "unpassable", "no-building",
-                          genDstSrcSeq(0x1400, 
+                          genDstSrcSeq(0x1400,
                                        {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0},
-                                       function (slot) return {"layers", {getCliffsTiles("fully-filled")}, 
+                                       function (slot) return {"layers", {getCliffsTiles("fully-filled")},
                                                                          makeHighGroundEdge("weak-ground", slot)}
                                        end)},
 
                 "mixed", {highgroundSolidGround, "cliff", "land", "unpassable", "no-building",
-                          genDstSrcSeq(0x1500, 
-                                       {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0}, 
-                                       function (slot) return {"layers", {getCliffsTiles("fully-filled")}, 
+                          genDstSrcSeq(0x1500,
+                                       {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0},
+                                       function (slot) return {"layers", {getCliffsTiles("fully-filled")},
                                                                          makeHighGroundEdge("solid-ground", slot)}
                                        end)},
 
                 "mixed", {highgroundWeakGround, lowgroundWeakGround, "land", "unpassable", "no-building",
                           genHighToLowGroundSeq(0x1600, "weak-ground", "weak-ground")},
-                                                                
+
                 "mixed", {highgroundWeakGround, lowgroundSolidGround, "land", "unpassable", "no-building",
                           genHighToLowGroundSeq(0x1700, "weak-ground", "solid-ground")},
 
                 "mixed", {highgroundSolidGround, lowgroundWeakGround, "land", "unpassable", "no-building",
-                          genHighToLowGroundSeq(0x1900, "solid-ground", "weak-ground")},                
+                          genHighToLowGroundSeq(0x1900, "solid-ground", "weak-ground")},
 
                 "mixed", {highgroundSolidGround, lowgroundSolidGround, "land", "unpassable", "no-building",
                           genHighToLowGroundSeq(0x1A00, "solid-ground", "solid-ground")},
 
                 "mixed", {"ramp", "cliff", "land", "unpassable", "no-building",
-                          genDstSrcSeq(0x1C00, 
+                          genDstSrcSeq(0x1C00,
                                        {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0},
-                                       function (slot) return {"layers", {getCliffsTiles("fully-filled")}, 
+                                       function (slot) return {"layers", {getCliffsTiles("fully-filled")},
                                                                          {makeRampEdge(slot)}}
                                        end)},
 
                 "mixed", {"ramp", lowgroundWeakGround, "land", "unpassable", "no-building",
-                  -- [0x1D00] upper left filled 
+                  -- [0x1D00] upper left filled
                             -- (with rock lower right clear)
                           {{"range", 0x1D00, 0x1D01}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x00], -- {0x0046},
                                                                  {getCliffsTiles(0x60, "weak-ground")},
@@ -706,7 +706,7 @@ function ExtendTileset(seed)
                             -- (without rock)
                           {{"range", 0x1D0B, 0x1D0F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x00], -- {0x0044, 0x0046, 0x0049, 0x004A},
                                                                  {makeRampEdge(0x00)}}},
-                  -- [0x1D10] upper right filled 
+                  -- [0x1D10] upper right filled
                             -- (with rock lower left clear)
                           {{"range", 0x1D10, 0x1D11}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x10], -- {0x0044},
                                                                  {getCliffsTiles(0xA0, "weak-ground")},
@@ -765,35 +765,35 @@ function ExtendTileset(seed)
                                                                  {makeRampEdge(0x30)}}},
                   -- [0x1D40] left half filled
                             -- (with rock left half filled)
-                          {{"range", 0x1D40, 0x1D42}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044, 0x0045, 0x0046}, 
+                          {{"range", 0x1D40, 0x1D42}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044, 0x0045, 0x0046},
                                                                  {getCliffsTiles({"pick", 0x40, 0x41}, "weak-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1D43, {0x0000}}, -- separator
                             -- (with rock upper center filled)
-                          {0x1D44, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044}, 
+                          {0x1D44, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044},
                                               {getCliffsTiles({"special", "singleRockBot"}, "weak-ground")},
                                               {makeRampEdge(0x40)}}},
                           {0x1D45, {0x0000}}, -- separator
                             -- (with rock lower center filled)
-                          {0x1D46, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0045}, 
+                          {0x1D46, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0045},
                                               {getCliffsTiles({"special", "singleRockUp"}, "weak-ground")},
                                               {makeRampEdge(0x40)}}},
                           {0x1D47, {0x0000}}, -- separator
                             -- (with rock upper right clear)
-                          {{"range", 0x1D48, 0x1D49}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044}, 
+                          {{"range", 0x1D48, 0x1D49}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044},
                                                                  {getCliffsTiles({"pick", 0xC0}, "weak-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1D4A, {0x0000}}, -- separator
                             -- (with rock lower right clear)
-                          {{"range", 0x1D4B, 0x1D4C}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044}, 
+                          {{"range", 0x1D4B, 0x1D4C}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044},
                                                                  {getCliffsTiles({"pick", 0x60}, "weak-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1D4D, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1D4E, 0x1D4F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044, 0x0045}, 
+                          {{"range", 0x1D4E, 0x1D4F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x40], -- {0x0044, 0x0045},
                                                                  {getCliffsTiles({"special", "removedRock"}, "weak-ground")},
                                                                  {makeRampEdge(0x40)}}},
-                  -- [0x1D60] lower right clear 
+                  -- [0x1D60] lower right clear
                             -- (with rock lower right clear)
                           {{"range", 0x1D60, 0x01D61}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x60], -- {0x0044},
                                                                   {getCliffsTiles({"pick", 0x60}, "weak-ground")},
@@ -818,32 +818,32 @@ function ExtendTileset(seed)
                                                                  {makeRampEdge(0x70)}}},
                   -- [0x1D90] right half filled
                             -- (with rock right half filled)
-                          {{"range", 0x1D90, 0x1D92}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044, 0x0045, 0x0046, 0x0049, 0x004A}, 
+                          {{"range", 0x1D90, 0x1D92}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
                                                                  {getCliffsTiles(0x90, "weak-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1D93, {0x0000}}, -- separator
                             -- (with rock upper center filled)
-                          {0x1D94, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044}, 
+                          {0x1D94, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044},
                                               {getCliffsTiles({"special", "singleRockBot"}, "weak-ground")},
                                               {makeRampEdge(0x90)}}},
                           {0x1D95, {0x0005}}, -- separator
                             -- (with rock lower center filled)
-                          {0x1D96, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044}, 
+                          {0x1D96, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044},
                                               {getCliffsTiles({"pick", 0x71}, "weak-ground")},
                                               {makeRampEdge(0x90)}}},
                           {0x1D97, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x1D98, 0x1D99}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044}, 
+                          {{"range", 0x1D98, 0x1D99}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044},
                                                                  {getCliffsTiles({"pick", 0xD0}, "weak-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1D9A, {0x0000}}, -- separator
                             -- (with rock lower left clear)
-                          {{"range", 0x1D9B, 0x1D9C}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044}, 
+                          {{"range", 0x1D9B, 0x1D9C}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044},
                                                                  {getCliffsTiles({"pick", 0xA0}, "weak-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1D9D, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1D9E, 0x1D9F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044, 0x0045}, 
+                          {{"range", 0x1D9E, 0x1D9F}, {"layers", cliffGen.baseTilesFor["weak-ground"][0x90], -- {0x0044, 0x0045},
                                                                  {getCliffsTiles({"special", "removedRock"}, "weak-ground")},
                                                                  {makeRampEdge(0x90)}}},
                   -- [0x1DA0] lower left clear
@@ -856,7 +856,7 @@ function ExtendTileset(seed)
                           {{"range", 0x1DA3, 0x1DA4}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xA0], -- {0x0046},
                                                                  {makeRampEdge(0xA0)}}},
                   -- [0x1DB0] upper half clear
-                          {{"slot", 0x1DB0}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {"range", 0x0044, 0x004B}, 
+                          {{"slot", 0x1DB0}, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0], -- {"range", 0x0044, 0x004B},
                                                         {getCliffsTiles(0xB0, "weak-ground")},
                                                         {makeRampEdge(0xB0)}}},
                   -- [0x1DC0] upper right clear
@@ -891,7 +891,7 @@ function ExtendTileset(seed)
                             -- (without rock)
                           {{"range", 0x1E0B, 0x1E0F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x00], -- {0x0065, 0x0068, 0x0069},
                                                                  {makeRampEdge(0x00)}}},
-                  -- [0x1E10] upper right filled 
+                  -- [0x1E10] upper right filled
                             -- (with rock lower left clear)
                           {{"range", 0x1E10, 0x1E11}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x10], -- {0x0068},
                                                                  {getCliffsTiles(0xA0, "solid-ground")},
@@ -904,7 +904,7 @@ function ExtendTileset(seed)
                           {0x1E1A, {0x0000}}, -- separator
                           -- upper right filled (without rock)
                           {{"range", 0x1E1B, 0x1E1F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x10], -- {0x0065, 0x0068, 0x0069},
-                                                                 {makeRampEdge(0x10)}}}, 
+                                                                 {makeRampEdge(0x10)}}},
                   -- [0x1E20] upper half filled
                             -- (with rock upper half filled)
                           {{"range", 0x1E20, 0x1E22}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x20], -- {0x0068, 0x0069},
@@ -950,7 +950,7 @@ function ExtendTileset(seed)
                                                                  {makeRampEdge(0x30)}}},
                   -- [0x1E40] left half filled
                             -- (with rock left half filled)
-                          {{"range", 0x1E40, 0x1E42}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065, 0x0068, 0x0069}, 
+                          {{"range", 0x1E40, 0x1E42}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065, 0x0068, 0x0069},
                                                                  {getCliffsTiles({"pick", 0x40, 0x41}, "solid-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1E43, {0x0000}}, -- separator
@@ -970,12 +970,12 @@ function ExtendTileset(seed)
                                                                  {makeRampEdge(0x40)}}},
                           {0x1E4A, {0x0000}}, -- separator
                             -- (with rock lower right clear)
-                          {{"range", 0x1E4B, 0x1E4C}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065}, 
+                          {{"range", 0x1E4B, 0x1E4C}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065},
                                                                  {getCliffsTiles({"pick", 0x60}, "solid-ground")},
                                                                  {makeRampEdge(0x40)}}},
                           {0x1E4D, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1E4E, 0x1E4F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065}, 
+                          {{"range", 0x1E4E, 0x1E4F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x40], -- {0x0065},
                                                                  {getCliffsTiles({"special", "removedRock"}, "solid-ground")},
                                                                  {makeRampEdge(0x40)}}},
                   -- [0x1E60] lower right clear
@@ -1003,32 +1003,32 @@ function ExtendTileset(seed)
                                                                  {makeRampEdge(0x70)}}},
                   -- [0x1E90] right half filled
                             -- (with rock right half filled)
-                          {{"range", 0x1E90, 0x1E92}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065, 0x0068, 0x0069}, 
+                          {{"range", 0x1E90, 0x1E92}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065, 0x0068, 0x0069},
                                                                  {getCliffsTiles(0x90, "solid-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1E93, {0x0000}}, -- separator
                             -- (with rock upper center filled)
-                          {0x1E94, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065}, 
+                          {0x1E94, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065},
                                               {getCliffsTiles({"special", "singleRockBot"}, "solid-ground")},
                                               {makeRampEdge(0x90)}}},
                           {0x1E95, {0x0000}}, -- separator
                             -- (with rock lower center filled)
-                          {0x1E96, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0068}, 
+                          {0x1E96, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0068},
                                               {getCliffsTiles({"pick", 0x71}, "solid-ground")},
                                               {makeRampEdge(0x90)}}},
                           {0x1E97, {0x0000}}, -- separator
                             -- (with rock upper left clear)
-                          {{"range", 0x1E98, 0x1E99}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065}, 
+                          {{"range", 0x1E98, 0x1E99}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065},
                                                                  {getCliffsTiles({"pick", 0xD0}, "solid-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1E9A, {0x0000}}, -- separator
                             -- (with rock lower left clear)
-                          {{"range", 0x1E9B, 0x1E9C}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065}, 
+                          {{"range", 0x1E9B, 0x1E9C}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065},
                                                                  {getCliffsTiles({"pick", 0xA0}, "solid-ground")},
                                                                  {makeRampEdge(0x90)}}},
                           {0x1E9D, {0x0000}}, -- separator
                             -- (without rock)
-                          {{"range", 0x1E9E, 0x1E9F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065, 0x0068}, 
+                          {{"range", 0x1E9E, 0x1E9F}, {"layers", cliffGen.baseTilesFor["solid-ground"][0x90], -- {0x0065, 0x0068},
                                                                  {getCliffsTiles({"special", "removedRock"}, "solid-ground")},
                                                                  {makeRampEdge(0x90)}}},
                   -- [0x1EA0] lower left clear
@@ -1041,7 +1041,7 @@ function ExtendTileset(seed)
                           {{"range", 0x1EA3, 0x1EA4}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xA0], -- {0x0068},
                                                                  {makeRampEdge(0xA0)}}},
                   -- [0x1EB0] upper half clear
-                          {{"slot", 0x1EB0}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065, 0x0068, 0x0069}, 
+                          {{"slot", 0x1EB0}, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0], -- {0x0065, 0x0068, 0x0069},
                                                         {getCliffsTiles(0xB0, "solid-ground")},
                                                         {makeRampEdge(0xB0)}}},
                   -- [0x1EC0] upper right clear
@@ -1281,7 +1281,7 @@ function ExtendTileset(seed)
                           {0x1FDC, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0xD0, "edgeMask", 0x10)},
                                     "unpassable"}},
-                                              
+
                 "mixed", {"ramp", "lowgrounds", "land", "no-building",
                   -- [0x2100] upper left filled
                             -- (transition to coast lowround)
@@ -1335,7 +1335,7 @@ function ExtendTileset(seed)
                                                                  {0x0230, {"remove-all-except", colorsFor(water)},
                                                                           {"chroma-key", {"slot", 0x03A0}, colorsFor(water)},
                                                                           {"remove", light_weakGround_light, dark_weakGround_dark},
-                                                                          {"shift", lighten, light_weakGround_dark}}}},                        
+                                                                          {"shift", lighten, light_weakGround_dark}}}},
                           {0x2132, {0x0000}},-- separator
                             -- (transition to grass lowground)
                           {{"range", 0x2133, 0x2134}, {"layers", {{"slot", 0x03A0}, {"shift", lighten, light_weakGround_light}},
