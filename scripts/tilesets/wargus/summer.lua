@@ -396,45 +396,43 @@ local cliffGen = {
   end,
 
   makeRampToHighGround = function(self, groundType, slot, isMask, edgeSlot) -- local function to make transition from ramp to HG tiles (if present)
-    local returnValue = {}
-    local rampLayer = {}
-    local solidLayer
-    local layers = {}
+    local cBottom = 1
+    local cTop = 2
 
+    local layers = {{}} -- there is a single (bottom) layer
+    
     if isMask == "edgeMask" then
       local chromaKeyMask = {"slot", 0x0300 + (0xD0 - slot)}
 
-      if chromaKeyMask == {"slot", 0x0330} then -- only thees two are usable for this tileset
+      if chromaKeyMask == {"slot", 0x0330} then -- only these two are usable for this tileset
         chromaKeyMask = {0x0330, 0x0331}
       end
 
-      rampLayer = {{"slot", 0x0200 + edgeSlot}, {"remove", self.utils.colorsFor(water)},
-                                                {"chroma-key", chromaKeyMask, self.utils.colorsFor(lightCoast, "base")},
-                                                self.utils.Lighten(lightCoast, "base", "transition-dark")}
-
-      table.insert(layers, rampLayer)
+      layers[cBottom] = {{"slot", 0x0200 + edgeSlot}, {"remove", self.utils.colorsFor(water)},
+                                                      {"chroma-key", chromaKeyMask, self.utils.colorsFor(lightCoast, "base")},
+                                                      self.utils.Lighten(lightCoast, "base", "transition-dark")}
 
       if groundType == "solid-ground" then
+        table.insert(layers, {}) -- add top layer
+
         if slot == 0x60 or slot == 0xA0 then -- have to use chroma-key to remove highground grass shadows from the lowground
-          solidLayer = {{"slot", 0x0200 + edgeSlot}, {"remove", self.utils.colorsFor(water)},
+        layers[cTop] = {{"slot", 0x0200 + edgeSlot}, {"remove", self.utils.colorsFor(water)},
                                                      {"chroma-key", {"slot", 0x0500 + slot}, self.utils.colorsFor(lightCoast, "base")},
                                                      {"remove", self.utils.colorsFor(lightCoast, "base")}}
         else
-          solidLayer = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast, "base")}}
+          layers[cTop] = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast, "base")}}
         end
-
-        table.insert(layers, solidLayer)
       end
       return unpack(layers)
 
     else -- without edge
-      rampLayer = {{"slot", 0x0300 + (0xD0 - slot)}, self.utils.Lighten(lightCoast, "base", "transition-dark")}
-
-      table.insert(layers, rampLayer)
+      layers[cBottom] = {{"slot", 0x0300 + (0xD0 - slot)}, self.utils.Lighten(lightCoast, "base", "transition-dark")}
 
       if groundType == "solid-ground" then -- add grass on top
-        solidLayer = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast, "base")}}
-        table.insert(layers, solidLayer)
+
+        table.insert(layers, {}) -- add top layer
+        layers[cTop] = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast, "base")}}
+
         return {"layers", unpack(layers)}
       end
 
