@@ -10,7 +10,7 @@
 --
 --      extended.lua - Extended tileset generator's instructions.
 --
---     (c) Copyright 2022 by Alyokhin
+--     (c) Copyright 2023 by Alyokhin
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -38,10 +38,10 @@
 Base tileset
 001x            light water
 002x            dark water
-003x            light coast
-004x            dark coast
-005x            light ground/grass
-006x            dark ground/grass
+003x            weak ground
+004x            dark weak ground
+005x            solid ground
+006x            dark solid ground
 007x            forest
 008x            mountains
 009x            human wall
@@ -53,12 +53,12 @@ boundry tiles
 
 09..            orc wall
 08..            human wall
-07..            forest and grass
-06..            dark grass and grass
-05..            coast and grass
-04..            mount and coast
-03..            dark coast and coast
-02..            water and coast
+07..            forest and solid ground
+06..            dark solid and solid ground
+05..            weak ground and solid ground
+04..            mount and weak ground
+03..            dark weak ground and weak ground
+02..            water and weak ground
 01..            dark water and water
 
 Extended tileset
@@ -68,20 +68,20 @@ Extended tileset
 
 boundry tiles
 
-11..            cliff and dark coast lowground
-12..            cliff and dark grass lowground
+11..            cliff and dark weak lowground
+12..            cliff and dark solid lowground
 13..            cliff and water lowground
-14..            coast highground and cliff
-15..            grass highground and cliff
-16..            coast highground and dark coast lowground
-17..            coast highground and dark grass lowground
-18..            coast highground and light water lowground
-19..            grass highground and dark coast lowground
-1A..            grass highground and dark grass lowground
-1B..            grass highground and light water lowground
+14..            weak highground and cliff
+15..            solid highground and cliff
+16..            weak highground and dark weak lowground
+17..            weak highground and dark solid lowground
+18..            weak highground and light water lowground
+19..            solid highground and dark weak lowground
+1A..            solid highground and dark solid lowground
+1B..            solid highground and light water lowground
 1C..            ramp and cliff
-1D..            ramp and dark coast lowground
-1E..            ramp and dark grass lowground
+1D..            ramp and dark weak lowground
+1E..            ramp and dark solid lowground
 1F..            ramp and highgrounds
 21..            ramp and lowgrounds
 
@@ -229,17 +229,6 @@ function ExtendTileset(seed)
   local highgroundWeakGround = seed.highgroundWeakGround
   local highgroundSolidGround = seed.highgroundSolidGround
   local cliffGen = seed.cliffGen
-
-  local lightWeakGround = seed.lightWeakGround
-
-  local light_weakGround = seed.light_weakGround
-  local light_weakGround_light = seed.light_weakGround_light
-  local light_weakGround_dark = seed.light_weakGround_dark
-  local dark_weakGround_dark = seed.dark_weakGround_dark
-  local light_weakGround_shadows = seed.light_weakGround_shadows
-  local light_weakGround_light_shadows = seed.light_weakGround_light_shadows
-  local dark_ground = seed.dark_ground
-  local water = seed.water
 
   local dim = seed.dim
   local lighten = seed.lighten
@@ -648,14 +637,14 @@ function ExtendTileset(seed)
                                      
       local rngBeg = dstSlot + slot
       local rngEnd = rngBeg + rangeWidth - 1
-      -- (transition to coast lowground)
+      -- (transition to weak lowground)
       table.insert(result, {{"range", rngBeg, rngEnd}, makeRampToLowGround("weak-ground", slot)})
 
        -- separator
       rngEnd = rngEnd + 1
       table.insert(result, {rngEnd, {0x0000}})
 
-      -- (transition to grass lowground)
+      -- (transition to solid lowground)
       rngBeg = rngEnd + 1
       rngEnd = rngBeg + rangeWidth - 1
       table.insert(result, {{"range", rngBeg, rngEnd}, makeRampToLowGround("solid-ground", slot)})
@@ -1089,221 +1078,221 @@ function ExtendTileset(seed)
 
                 "mixed", {"ramp", "highgrounds", "land", "no-building",
                   -- [0x1F00] upper left filled
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {{"range", 0x1F00, 0x1F01}, makeRampToHighGround("weak-ground", 0x00)},
                           {0x1F02, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1F03, 0x1F04}, makeRampToHighGround("solid-ground", 0x00)},
                   -- [0x1F10] upper right filled
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {{"range", 0x1F10, 0x1F11}, makeRampToHighGround("weak-ground", 0x10)},
                           {0x1F12, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1F13, 0x1F14}, makeRampToHighGround("solid-ground", 0x10)},
                   -- [0x1F20] upper half filled
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {{"range", 0x1F20, 0x1F22}, makeRampToHighGround("weak-ground", 0x20)},
                           {0x1F23, {0x0000}},-- separator
-                            -- (transition to coast highground with rock upper left filled)
+                            -- (transition to weak highground with rock upper left filled)
                           {0x1F24, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("weak-ground", 0x20, "edgeMask", 0x00)},
                                     "unpassable"},
                           {0x1F25, {0x0000}},-- separator
-                            -- (transition to coast highground with rock upper right filled)
+                            -- (transition to weak highground with rock upper right filled)
                           {0x1F26, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("weak-ground", 0x20, "edgeMask", 0x10)},
                                     "unpassable"},
                           {0x1F27, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1F28, 0x1F2A}, makeRampToHighGround("solid-ground", 0x20)},
                           {0x1F2B, {0x0000}},-- separator
-                            -- (transition to grass highground with rock upper left filled)
+                            -- (transition to solid highground with rock upper left filled)
                           {0x1F2C, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0x20, "edgeMask", 0x00)},
                                     "unpassable"},
                           {0x1F2D, {0x0000}},-- separator
-                            -- (transition to grass highground with rock upper right filled)
+                            -- (transition to solid highground with rock upper right filled)
                           {0x1F2E, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0x20, "edgeMask", 0x10)},
                                     "unpassable"},
                   -- [0x1F30] lower left filled
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {{"range", 0x1F30, 0x1F31}, makeRampToHighGround("weak-ground", 0x30)},
                           {0x1F32, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1F33, 0x1F34}, makeRampToHighGround("solid-ground", 0x30)},
                   -- [0x1F40] left half filled
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {{"range", 0x1F40, 0x1F42}, makeRampToHighGround("weak-ground", 0x40)},
                           {0x1F43, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1F44, 0x1F46}, makeRampToHighGround("solid-ground", 0x40)},
                   -- [0x1F60] lower right clear
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {0x1F60, makeRampToHighGround("weak-ground", 0x60)},
                           {0x1F61, {0x0000}},-- separator
-                            -- (transition to coast highground with coast lowground upper half filled)
+                            -- (transition to weak highground with weak lowground upper half filled)
                           {0x1F62, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0],
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               makeRampToHighGround("weak-ground", 0x60, "edgeMask", 0x20)},
                                     "unpassable"},
                           {0x1F63, {0x0000}},-- separator
-                            -- (transition to coast highground with grass lowground upper half filled)
+                            -- (transition to weak highground with solid lowground upper half filled)
                           {0x1F64, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0],
                                               {getCliffsTiles(0xB0, "solid-ground")},
                                               makeRampToHighGround("weak-ground", 0x60, "edgeMask", 0x20)},
                                     "unpassable"},
                           {0x1F65, {0x0000}},-- separator
-                            -- (transition to coast highground with rock lower left filled)
+                            -- (transition to weak highground with rock lower left filled)
                           {0x1F66, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("weak-ground", 0x60, "edgeMask", 0x30)},
                                     "unpassable"},
                           {0x1F67, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1F68, 0x1F69}, makeRampToHighGround("solid-ground", 0x60)},
                           {0x1F6A, {0x0000}},-- separator
-                            -- (transition to grass highground with coast lowground upper half filled)
+                            -- (transition to solid highground with weak lowground upper half filled)
                           {0x1F6B, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0],
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               makeRampToHighGround("solid-ground", 0x60, "edgeMask", 0x20)},
                                     "unpassable"},
                           {0x1F6C, {0x0000}},-- separator
-                            -- (transition to grass highground with grass lowground upper half filled)
+                            -- (transition to solid highground with solid lowground upper half filled)
                           {0x1F6D, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0],
                                               {getCliffsTiles(0xB0, "solid-ground")},
                                               makeRampToHighGround("solid-ground", 0x60, "edgeMask", 0x20)},
                                     "unpassable"},
                           {0x1F6E, {0x0000}},-- separator
-                            -- (transition to grass highground with rock lower left filled)
+                            -- (transition to solid highground with rock lower left filled)
                           {0x1F6F, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0x60, "edgeMask", 0x30)},
                                     "unpassable"},
                   -- [0x1F70] lower right filed
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {{"range", 0x1F70, 0x1F71}, makeRampToHighGround("weak-ground", 0x70)},
                           {0x1F72, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1F73, 0x1F74}, makeRampToHighGround("solid-ground", 0x70)},
                   -- [0x1F90] right half filled
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {{"range", 0x1F90, 0x1F92}, makeRampToHighGround("weak-ground", 0x90)},
                           {0x1F93, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1F94, 0x1F96}, makeRampToHighGround("solid-ground", 0x90)},
                   -- [0x1FA0] lower left clear
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {0x1FA0, makeRampToHighGround("weak-ground", 0xA0)},
                           {0x1FA1, {0x0000}},-- separator
-                            -- (transition to coast highground with coast lowground upper half filled)
+                            -- (transition to weak highground with weak lowground upper half filled)
                           {0x1FA2, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0],
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               makeRampToHighGround("weak-ground", 0xA0, "edgeMask", 0x20)},
                                     "unpassable"},
                           {0x1FA3, {0x0000}},-- separator
-                            -- (transition to coast highground with grass lowground upper half filled)
+                            -- (transition to weak highground with solid lowground upper half filled)
                           {0x1FA4, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0],
                                               {getCliffsTiles(0xB0, "solid-ground")},
                                               makeRampToHighGround("weak-ground", 0xA0, "edgeMask", 0x20)},
                                     "unpassable"},
                           {0x1FA5, {0x0000}},-- separator
-                            -- (transition to coast highground with rock lower right filled)
+                            -- (transition to weak highground with rock lower right filled)
                           {0x1FA6, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("weak-ground", 0xA0, "edgeMask", 0x70)},
                                     "unpassable"},
                           {0x1FA7, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1FA8, 0x1FA9}, makeRampToHighGround("solid-ground", 0xA0)},
                           {0x1FAA, {0x0000}},-- separator
-                            -- (transition to grass highground with coast lowground upper half filled)
+                            -- (transition to solid highground with weak lowground upper half filled)
                           {0x1FAB, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0],
                                               {getCliffsTiles(0xB0, "weak-ground")},
                                               makeRampToHighGround("solid-ground", 0xA0, "edgeMask", 0x20)},
                                     "unpassable"},
-                            -- (transition to grass highground with grass lowground upper half filled)
+                            -- (transition to solid highground with solid lowground upper half filled)
                           {0x1FAC, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0],
                                               {getCliffsTiles(0xB0, "solid-ground")},
                                               makeRampToHighGround("solid-ground", 0xA0, "edgeMask", 0x20)},
                                     "unpassable"},
                           {0x1FAD, {0x0000}},-- separator
-                            -- (transition to grass highground with rock lower right filled)
+                            -- (transition to solid highground with rock lower right filled)
                           {0x1FAE, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0xA0, "edgeMask", 0x70)},
                                     "unpassable"},
                   -- [0x1FB0] upper half clear
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {{"range", 0x1FB0, 0x1FB2}, makeRampToHighGround("weak-ground", 0xB0)},
                           {0x1FB3, {0x0000}},-- separator
-                            -- (transition to coast highground with rock lower left filled)
+                            -- (transition to weak highground with rock lower left filled)
                           {0x1FB4, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("weak-ground", 0xB0, "edgeMask", 0x30)},
                                     "unpassable"},
                           {0x1FB5, {0x0000}},-- separator
-                            -- (transition to coast highground with rock lower right filled)
+                            -- (transition to weak highground with rock lower right filled)
                           {0x1FB6, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("weak-ground", 0xB0, "edgeMask", 0x70)},
                                     "unpassable"},
                           {0x1FB7, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1FB8, 0x1FBA}, makeRampToHighGround("solid-ground", 0xB0)},
                           {0x1FBB, {0x0000}},-- separator
-                            -- (transition to grass highground with rock lower left filled)
+                            -- (transition to solid highground with rock lower left filled)
                           {0x1FBC, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0xB0, "edgeMask", 0x30)},
                                     "unpassable"},
                           {0x1FBD, {0x0000}},-- separator
-                            -- (transition to grass highground with rock lower right filled)
+                            -- (transition to solid highground with rock lower right filled)
                           {0x1FBE, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0xB0, "edgeMask", 0x70)},
                                     "unpassable"},
                   -- [0x1FC0] upper right clear
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {{"range", 0x1FC0,  0x1FC1}, makeRampToHighGround("weak-ground", 0xC0)},
                           {0x1FC2, {0x0000}},-- separator
-                            -- (transition to coast highground with rock upper left filled)
+                            -- (transition to weak highground with rock upper left filled)
                           {0x1FC3, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("weak-ground", 0xC0, "edgeMask", 0x00)},
                                     "unpassable"},
                           {0x1FC4, {0x0000}},-- separator
-                            -- (transition to coast highground with rock lower right filled)
+                            -- (transition to weak highground with rock lower right filled)
                           {0x1FC5, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("weak-ground", 0xC0, "edgeMask", 0x70)},
                                     "unpassable"},
                           {0x1FC6, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1FC7, 0x1FC8}, makeRampToHighGround("solid-ground", 0xC0)},
                           {0x1FC9, {0x0000}},-- separator
-                            -- (transition to coast grass with rock upper left filled)
+                            -- (transition to solid highground with rock upper left filled)
                           {0x1FCA, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0xC0, "edgeMask", 0x00)},
                                     "unpassable"},
                           {0x1FCB, {0x0000}},-- separator
-                            -- (transition to coast highground with rock lower right filled)
+                            -- (transition to weak highground with rock lower right filled)
                           {0x1FCC, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0xC0, "edgeMask", 0x70)},
                                     "unpassable"},
                   -- [0x1FD0] upper left clear
-                            -- (transition to coast highground)
+                            -- (transition to weak highground)
                           {{"range", 0x1FD0,  0x1FD1}, makeRampToHighGround("weak-ground", 0xD0)},
                           {0x1FD2, {0x0000}},-- separator
-                            -- (transition to coast highground with rock lower left filled)
+                            -- (transition to weak highground with rock lower left filled)
                           {0x1FD3, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("weak-ground", 0xD0, "edgeMask", 0x30)},
                                     "unpassable"},
                           {0x1FD4, {0x0000}},-- separator
-                            -- (transition to coast highground with rock upper right filled)
+                            -- (transition to weak highground with rock upper right filled)
                           {0x1FD5, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("weak-ground", 0xD0, "edgeMask", 0x10)},
                                     "unpassable"},
                           {0x1FD6, {0x0000}},-- separator
-                            -- (transition to grass highground)
+                            -- (transition to solid highground)
                           {{"range", 0x1FD7, 0x1FD8}, makeRampToHighGround("solid-ground", 0xD0)},
                           {0x1FD9, {0x0000}},-- separator
-                            -- (transition to coast grass with rock lower left filled)
+                            -- (transition to solid highground with rock lower left filled)
                           {0x1FDA, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0xD0, "edgeMask", 0x30)},
                                     "unpassable"},
                           {0x1FDB, {0x0000}},-- separator
-                            -- (transition to coast highground with rock upper right filled)
+                            -- (transition to weak highground with rock upper right filled)
                           {0x1FDC, {"layers", {getCliffsTiles("fully-filled")},
                                               makeRampToHighGround("solid-ground", 0xD0, "edgeMask", 0x10)},
                                     "unpassable"}},

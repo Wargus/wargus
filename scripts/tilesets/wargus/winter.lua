@@ -10,7 +10,7 @@
 --
 --      winter.ccl - Define the winter tileset.
 --
---      (c) Copyright 2000-2003 by Lutz Sammer and Jimmy Salmon
+--      (c) Copyright 2000-2023 by Lutz Sammer and Jimmy Salmon
 --
 --      This program is free software-- you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -37,10 +37,10 @@ Base tileset
 solid tiles:
 001x            light water
 002x            dark water
-003x            light coast
-004x            dark coast
-005x            light ground/grass
-006x            dark ground/grass
+003x            light ice
+004x            dark ice
+005x            light snow
+006x            dark snow
 007x            forest
 008x            mountains
 009x            human wall
@@ -52,12 +52,12 @@ solid tiles:
 boundry tiles:
 09..            orc wall
 08..            human wall
-07..            forest and grass
-06..            dark grass and grass
-05..            coast and grass
-04..            mount and coast
-03..            dark coast and coast
-02..            water and coast
+07..            forest and snow
+06..            dark snow and snow
+05..            ice and snow
+04..            mount and ice
+03..            dark ice and ice
+02..            water and ice
 01..            dark water and water
 
 Extended tileset
@@ -67,20 +67,20 @@ solid tiles:
 102x  solid ramp
 
 boundry tiles:
-11..            cliff and dark coast lowground
-12..            cliff and dark grass lowground
+11..            cliff and dark ice lowground
+12..            cliff and dark snow lowground
 13..            cliff and water lowground
-14..            coast highground and cliff
-15..            grass highground and cliff
-16..            coast highground and dark coast lowground
-17..            coast highground and dark grass lowground
-18..            coast highground and light water lowground
-19..            grass highground and dark coast lowground
-1A..            grass highground and dark grass lowground
-1B..            grass highground and light water lowground
+14..            ice highground and cliff
+15..            snow highground and cliff
+16..            ice highground and dark ice lowground
+17..            ice highground and dark snow lowground
+18..            ice highground and light water lowground
+19..            snow highground and dark ice lowground
+1A..            snow highground and dark snow lowground
+1B..            snow highground and light water lowground
 1C..            ramp and cliff
-1D..            ramp and dark coast lowground
-1E..            ramp and dark grass lowground
+1D..            ramp and dark ice lowground
+1E..            ramp and dark snow lowground
 1F..            ramp and highgrounds
 21..            ramp and lowgrounds
 

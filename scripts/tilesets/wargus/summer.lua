@@ -10,7 +10,7 @@
 --
 --      summer.ccl - Define the summer tileset.
 --
---     (c) Copyright 2000-2022 by Lutz Sammer, Jimmy Salmon and Alyokhin
+--     (c) Copyright 2000-2023 by Lutz Sammer, Jimmy Salmon and Alyokhin
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -475,22 +475,11 @@ local extendedTilesetSeed = {
   rampEdgeSrc_baseIdx             = 0x0200, -- light-coast and water boundry
   rampSrc                         = lightCoast,
 
-  lightWeakGround                 = lightCoast,
-
   lowgroundWeakGround             = "dark-coast",
   lowgroundSolidGround            = "dark-grass",
   highgroundWeakGround            = "highground-coast",
   highgroundSolidGround           = "highground-grass",
   cliffGen                        = cliffGen,
-
-  light_weakGround                = {87, 90},
-  light_weakGround_light          =  88,
-  light_weakGround_dark           =  87,
-  dark_weakGround_dark            =  86,
-  light_weakGround_shadows        = {83, 86},
-  light_weakGround_light_shadows  =  86,
-  dark_ground                     = {19, 23},
-  water                           = water,
 
   dim                             = -1,
   lighten                         =  1
@@ -499,7 +488,6 @@ local extendedTilesetSeed = {
 Load("scripts/tilesets/wargus/extended.lua")
 
 ExtendTileset(extendedTilesetSeed)
-
 
 BuildTilesetTables()
 
