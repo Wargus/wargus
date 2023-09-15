@@ -309,6 +309,10 @@ local lightCoast = {
   ["exceptions"]      = {{nil, 82}, {94, nil}}
 }
 
+local lightGrass = {
+  ["base"]            = {{19, 25}}
+}
+
 local water = {
   ["base"]                  = {{29, 56}},
   ["cycling"]               = {{38, 47}},
@@ -438,6 +442,30 @@ local cliffGen = {
 
       return unpack(layers)
     end
+  end,
+
+  makeRampToLowGround = function(self, groundType, slot) -- local function to make transition from ramp to LG tiles (if present)
+  --[[
+    {"layers", {{"slot", 0x0300 + (0xD0 - slot)}, {"shift", lighten, light_weakGround_light}},
+               {0x0200 + slot, {"remove-all-except", colorsFor(water)},
+                      {"chroma-key", {"slot", 0x0300 + (0xD0 - slot)}, colorsFor(water)},
+                      {"remove", light_weakGround_light, dark_weakGround_dark},
+                      {"shift", lighten, light_weakGround_dark}},
+               {{"slot", 0x0500 + slot}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}
+  ]]
+
+    local layers = {"layers", {{"slot", 0x0300 + (0xD0 - slot)}, self.utils.Lighten(lightCoast,"base-light")},
+                              {0x0200 + slot, {"remove-all-except", self.utils.colorsFor(water)},
+                                              {"chroma-key", {"slot", 0x0300 + (0xD0 - slot)}, self.utils.colorsFor(water)},
+                                              {"remove", self.utils.colorsFor(lightCoast, "base-light", "transition-dark")},
+                                              self.utils.Lighten(lightCoast, "base-dark")}
+                   }
+    if groundType == "solid-ground" then
+      table.insert(layers, {}) -- add top layer
+      layers[#layers] = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast,"base")}, self.utils.Dim(lightGrass, "base")}
+    end
+
+    return layers
   end
 }
 
