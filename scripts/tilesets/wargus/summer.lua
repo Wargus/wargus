@@ -295,15 +295,15 @@ DefineTileset("name", "Forest",
                       {  49,   0,  85,   0,  95},                 -- 9C0
                       {  50,   0,  86,   0,  99}}                 -- 9D0
   })
-  
+
 local slotIdx = {
-  -- sloid tiles
+  -- solid tiles
     ["lightWater"]            = 0x0010,
     ["darkWater"]             = 0x0020,
     ["lightCoast"]            = 0x0030,
     ["darkCoast"]             = 0x0040,
-    ["lightCoast"]            = 0x0050,
-    ["lightGrass"]            = 0x0060,
+    ["lightGrass"]            = 0x0050,
+    ["darkGrass"]             = 0x0060,
     ["forest"]                = 0x0070,
     ["mountains"]             = 0x0080,
   -- boundry tiles
@@ -313,7 +313,7 @@ local slotIdx = {
     ["mountains-lightCoast"]  = 0x0400,
     ["lightCoast-lightGrass"] = 0x0500,
     ["darkGrass-lightGrass"]  = 0x0600,
-    ["forest-grass"]          = 0x0700
+    ["forest-lightGrass"]     = 0x0700
 }
 
 local lightCoast = {
@@ -377,7 +377,7 @@ generators.cliffs = {
                         [0xB0] = {0x0044, 0x0045, 0x004A},
                         [0xC0] = {0x0040},
                         [0xD0] = {0x0040}
-                      },
+                       },
     ["solid-ground"] = {
                         [0x00] = {0x0065, 0x0068, 0x0069},
                         [0x10] = {0x0065, 0x0068, 0x0069},
@@ -391,8 +391,8 @@ generators.cliffs = {
                         [0xB0] = {0x0065, 0x0066, 0x0069},
                         [0xC0] = {0x0060},
                         [0xD0] = {0x0061}
-                      },
-    ["cliff"]        = nil,
+                       },
+    ["cliff"]         = nil,
     ["cliff-special"] = { -- tile index in the source image
                           ["singleRockUp"]  = 161,
                           ["singleRockMid"] = 162,
@@ -448,7 +448,7 @@ function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- 
     end
     
     layers[cBottom] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)},
-                                                                  {"chroma-key", chromaKeyMask, self.utils.colorsFor(lightCoast, "base")},
+                                                                 {"chroma-key", chromaKeyMask, self.utils.colorsFor(lightCoast, "base")},
                                                                   self.utils.Lighten(lightCoast, "base", "transition-dark")}
 
     if groundType == "solid-ground" then
