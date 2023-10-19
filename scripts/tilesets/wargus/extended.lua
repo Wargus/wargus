@@ -218,17 +218,17 @@ filled  clear
 --]]
 
 function ExtendTileset(seed)
-
-  local rampSrc_baseIdx = seed.rampSrc_baseIdx
-  local rampEdgeSrc_baseIdx = seed.rampEdgeSrc_baseIdx
-
-  local rampSrc = seed.rampSrc
-
+  
   local lowgroundWeakGround = seed.lowgroundWeakGround
   local lowgroundSolidGround = seed.lowgroundSolidGround
   local highgroundWeakGround = seed.highgroundWeakGround
   local highgroundSolidGround = seed.highgroundSolidGround
-  local cliffGen = seed.cliffGen
+
+  local getRampSrcSlot = seed.getRampSrcSlot
+  local getRampSrc = seed.getRampSrc
+
+  local generators = seed.generators
+  local cliffGen = generators.cliffs
 
   local dim = seed.dim
   local lighten = seed.lighten
@@ -255,7 +255,7 @@ function ExtendTileset(seed)
     return result
   end
   local srcTilesLst = getListOfTilesWithoutExceptions
-  cliffGen.utils.srcTilesLst = getListOfTilesWithoutExceptions
+  generators.utils.srcTilesLst = getListOfTilesWithoutExceptions
 
   local function getColors(colorSet, ...)
     local args = {...}
@@ -273,7 +273,7 @@ function ExtendTileset(seed)
     return unpack(returnValue)
   end
   local colorsFor = getColors -- alias
-  cliffGen.utils.colorsFor = getColors
+  generators.utils.colorsFor = getColors
 
   local function convertColors(rangeFrom, rangeTo)
     if rangeFrom == nil or rangeTo == nil then
@@ -398,13 +398,13 @@ function ExtendTileset(seed)
     local subSets = {...}
     return shiftBrightness_byStep(lighten, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
   end
-  cliffGen.utils.Lighten = Lighten
+  generators.utils.Lighten = Lighten
 
   local function Dim(colorSet, ...)
     local subSets = {...}
     return shiftBrightness_byStep(dim, colorSet["exceptions"], getColors(colorSet, unpack(subSets)))
   end
-  cliffGen.utils.Dim = Dim
+  generators.utils.Dim = Dim
 
   local function cleanRocksAndDimShadows(baseTerrain, resultAsTable)
     local result = {}
@@ -491,19 +491,19 @@ function ExtendTileset(seed)
   end
 
   local function makeHighGroundEdge(groundType, slot)
-    return cliffGen:makeHighGroundEdge(groundType, slot)
+    return generators:makeHighGroundEdge(groundType, slot)
   end
 
   local function makeRampEdge(slot)
-    return srcTilesLst(rampEdgeSrc_baseIdx, (0xD0 - slot)), cliffGen:makeRampEdge()
+    return srcTilesLst(getRampSrcSlot("for-edges"), (0xD0 - slot)), generators:makeRampEdge()
   end
 
   local function makeRampToHighGround(groundType, slot, isMask, edgeSlot)
-    return cliffGen:makeRampToHighGround(groundType, slot, isMask, edgeSlot)
+    return generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot)
   end
 
   local function makeRampToLowGround(groundType, slot)
-    return cliffGen:makeRampToLowGround(groundType, slot)
+    return generators:makeRampToLowGround(groundType, slot)
   end
 
   local function genDstSrcSeq(dstSlot, subSlots, src)
@@ -651,14 +651,14 @@ function ExtendTileset(seed)
     end
     return unpack(result)
   end
-
+ 
   GenerateExtendedTileset(
   --  "image", "",
     "slots",  {
                 "solid", {"cliff", "land", "unpassable", "no-building",
                           {{"slot", 0x1010}, {getCliffsTiles("fully-filled")}}},
                 "solid", {"ramp", "land", "no-building",
-                          {{"slot", 0x1020}, {{"slot", rampSrc_baseIdx + 0x00}, Lighten(rampSrc, "base", "shadows")}}},
+                          {{"slot", 0x1020}, {{"slot", getRampSrcSlot() + 0x00}, Lighten(getRampSrc(), "base", "shadows")}}},
                 "mixed", {"cliff", lowgroundWeakGround, "land", "unpassable", "no-building",
                           genDstSrcSeq(0x1100,
                                        {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0},
