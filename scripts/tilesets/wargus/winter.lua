@@ -328,20 +328,14 @@ local lightIce = {
   ["decorations"]         = {{18, 25}, {31, 36}, 54, {63, 71}, 78, 79},
   ["base"]                = {64, {71, 79}},
   ["all"]                 = {"base", "shadows", "decorations"},
-  ["remove-toCleanRocks"] = {64, 71},
-  ["shadows-onRocks"]             = {},
-  ["convertable-shadows-onRocks"] = {},
-  ["base-light"]          = {},
-  ["base-dark"]           = {},
-  ["light-shadows"]       = {},
   ["exceptions"]          = {{54, nil}, {69, nil}, {nil, 70}, {79, nil}, {37, 64}, {73, 73}, {74, 74}, {75, 75}, {76, 76}},
 }
 
 local water = {
-  ["base"]                  = {{29, 56}}, -- check it
+  ["base"]                  = {{30, 39}},
   ["cycling"]               = {{40, 47}},
   ["cycling-coast-boundry"] = {{48, 54}},
-  ["all"]                   = {"base"}
+  ["all"]                   = {"base", "cycling", "cycling-coast-boundry"}
 }
 
 local getRampSrcSlot = function(slotType)
@@ -360,13 +354,13 @@ local generators = {}
 
 generators.cliffs = {
   colors = {
-    ["remove-toCleanRocks"] = {64, {71, 79}},
+    ["remove-toCleanRocks"]         = lightIce["base"],
     ["shadows-onRocks"]             = {},
     ["convertable-shadows-onRocks"] = { -- shadows which could be converted from light weak ground to dark solid ground. Possible values: {range} or color
                                         { ["from"] = {31, 37}, ["to"] = {18, 24} },
                                         { ["from"] = {65, 69}, ["to"] = {106, 110} }
                                       },
-    ["exceptions"]  = lightIce["exceptions"]
+    ["exceptions"]                  = lightIce["exceptions"]
   },
   baseTilesFor = {
     ["weak-ground"] =  {

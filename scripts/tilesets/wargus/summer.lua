@@ -334,10 +334,10 @@ local lightGrass = {
 }
 
 local water = {
-  ["base"]                  = {{29, 56}},
+  ["base"]                  = {{29, 37}},
   ["cycling"]               = {{38, 47}},
   ["cycling-coast-boundry"] = {{48, 56}},
-  ["all"]                   = {"base"}
+  ["all"]                   = {"base", "cycling", "cycling-coast-boundry"}
 }
 
 local getRampSrcSlot = function(slotType)
