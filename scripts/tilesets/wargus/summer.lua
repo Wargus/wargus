@@ -418,13 +418,15 @@ generators.utils = { -- references to utility functions from extended.lua
 }
 
 function generators:makeHighGroundEdge(groundType, slot) -- local function to make HG edge tiles (if present)
+  local cBottom = 1
+  local cTop = 2
   local layers = {}
 
   -- weak-ground layer
-  table.insert(layers, {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}})
+  layers[cBottom] = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
 
   if groundType == "solid-ground" then
-    table.insert(layers, {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightCoast, "base", "light-shadows")}})
+    layers[cTop] = {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightCoast, "base", "light-shadows")}}
   end
 
   return unpack(layers)
@@ -452,7 +454,6 @@ function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- 
                                                                   self.utils.Lighten(lightCoast, "base", "transition-dark")}
 
     if groundType == "solid-ground" then
-      table.insert(layers, {}) -- add top layer
 
       if slot == 0x60 or slot == 0xA0 then -- have to use chroma-key to remove highground grass shadows from the lowground
       layers[cTop] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)},
@@ -469,7 +470,6 @@ function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- 
 
     if groundType == "solid-ground" then -- add grass on top
 
-      table.insert(layers, {}) -- add top layer
       layers[cTop] = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast, "base")}}
 
       return {"layers", unpack(layers)}
@@ -496,8 +496,7 @@ function generators:makeRampToLowGround(groundType, slot) -- local function to m
                                             self.utils.Lighten(lightCoast, "base-dark")}
                   }
   if groundType == "solid-ground" then
-    table.insert(layers, {}) -- add top layer
-    layers[#layers] = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast,"base")}, self.utils.Dim(lightGrass, "base")}
+    layers[#layers + 1] = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast,"base")}, self.utils.Dim(lightGrass, "base")}
   end
 
   return layers

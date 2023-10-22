@@ -425,12 +425,12 @@ function generators:makeHighGroundEdge(groundType, slot) -- local function to ma
   local returnValue = {}
 
   if groundType == "weak-ground" then
-    table.insert(returnValue, {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}})
+    returnValue = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
   elseif groundType == "solid-ground" then
-    table.insert(returnValue, {self.utils.srcTilesLst(0x0500,  (0xD0 - slot)), {"remove", self.utils.colorsFor(lightIce, "base", "shadows")}})
+    returnValue = {self.utils.srcTilesLst(0x0500,  (0xD0 - slot)), {"remove", self.utils.colorsFor(lightIce, "base", "shadows")}}
   end
 
-  return unpack(returnValue)
+  return returnValue
 end
 
 function generators:makeRampEdge()
@@ -448,8 +448,6 @@ function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- 
     if groundType == "weak-ground" then
 
       layers[currLayer] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)}}
-
-      table.insert(layers, {}) -- add top layer
       currLayer = currLayer + 1
 
       local convertEdges = {
