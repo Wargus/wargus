@@ -945,46 +945,14 @@ function RunDemo()
 end
 
 function SetDefaultPlayerNames()
--- Add player names according to player color
+	-- Add player names according to player color
+  local default_names = {
+    ["human"] = {_("Nation of Stromgarde"), _("Nation of Azeroth"), _("Nation of Kul Tiras"), _("Nation of Dalaran"), _("Nation of Alterac"), _("Nation of Gilneas"), _("Nation of Lordaeron"), _("Alliance Traitors")},
+    ["orc"] = {_("Blackrock Clan"), _("Stormreaver Clan"), _("Bleeding Hollow Clan"), _("Twilight's Hammer Clan"), _("Burning Blade Clan"), _("Black Tooth Grin Clan"), _("Dragonmaw Clan"), _("Laughing Skull Clan")},
+  }
 	for i=0,7 do
-		if (GetPlayerData(i, "RaceName") == "human") then
-			if (i == 0) then
-				SetPlayerData(i, "Name", _("Nation of Stromgarde"))
-			elseif (i == 1) then
-				SetPlayerData(i, "Name", _("Nation of Azeroth"))
-			elseif (i == 2) then
-				SetPlayerData(i, "Name", _("Nation of Kul Tiras"))
-			elseif (i == 3) then
-				SetPlayerData(i, "Name", _("Nation of Dalaran"))
-			elseif (i == 4) then
-				SetPlayerData(i, "Name", _("Nation of Alterac"))
-			elseif (i == 5) then
-				SetPlayerData(i, "Name", _("Nation of Gilneas"))
-			elseif (i == 6) then
-				SetPlayerData(i, "Name", _("Nation of Lordaeron"))
-			elseif (i == 7) then
-				SetPlayerData(i, "Name", _("Alliance Traitors"))
-			end
-		elseif  (GetPlayerData(i, "RaceName") == "orc") then
-			if (i == 0) then
-				SetPlayerData(i, "Name", _("Blackrock Clan"))
-			elseif (i == 1) then
-				SetPlayerData(i, "Name", _("Stormreaver Clan"))
-			elseif (i == 2) then
-				SetPlayerData(i, "Name", _("Bleeding Hollow Clan"))
-			elseif (i == 3) then
-				SetPlayerData(i, "Name", _("Twilight's Hammer Clan"))
-			elseif (i == 4) then
-				SetPlayerData(i, "Name", _("Burning Blade Clan"))
-			elseif (i == 5) then
-				SetPlayerData(i, "Name", _("Black Tooth Grin Clan"))
-			elseif (i == 6) then
-				SetPlayerData(i, "Name", _("Dragonmaw Clan"))
-			elseif (i == 7) then
-				SetPlayerData(i, "Name", _("Laughing Skull Clan"))
-			end
-		end
-	end
+    SetPlayerData(i, "Name", default_names[GetPlayerData(i, "RaceName")][i+1])
+  end
 end
 
 mapname = "maps/skirmish/singleplayer/(2)blick-nach-oben.smp.gz"
