@@ -945,23 +945,13 @@ function RunDemo()
 end
 
 function SetDefaultPlayerNames()
-  -- Add player names according to player color
+	-- Add player names according to player color
   local default_names = {
-    {"Nation of Stromgarde", "Blackrock Clan"},
-    {"Nation of Azeroth", "Stormreaver Clan"},
-    {"Nation of Kul Tiras", "Bleeding Hollow Clan"},
-    {"Nation of Dalaran", "Twilight's Hammer Clan"},
-    {"Nation of Alterac", "Burning Blade Clan"},
-    {"Nation of Gilneas", "Black Tooth Grin Clan"},
-    {"Nation of Lordaeron", "Dragonmaw Clan"},
-    {"Alliance Traitors", "Laughing Skull Clan"},
+    ["human"] = {_("Nation of Stromgarde"), _("Nation of Azeroth"), _("Nation of Kul Tiras"), _("Nation of Dalaran"), _("Nation of Alterac"), _("Nation of Gilneas"), _("Nation of Lordaeron"), _("Alliance Traitors")},
+    ["orc"] = {_("Blackrock Clan"), _("Stormreaver Clan"), _("Bleeding Hollow Clan"), _("Twilight's Hammer Clan"), _("Burning Blade Clan"), _("Black Tooth Grin Clan"), _("Dragonmaw Clan"), _("Laughing Skull Clan")},
   }
-  for i=0,7 do
-    if (GetPlayerData(i, "RaceName") == "human") then
-      SetPlayerData(i, "Name", default_names[i+1][1])
-    elseif (GetPlayerData(i, "RaceName") == "orc") then
-      SetPlayerData(i, "Name", default_names[i+1][2])
-    end
+	for i=0,7 do
+    SetPlayerData(i, "Name", default_names[GetPlayerData(i, "RaceName")][i+1])
   end
 end
 
