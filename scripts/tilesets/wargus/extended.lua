@@ -406,7 +406,14 @@ function ExtendTileset(seed)
   end
   generators.utils.Dim = Dim
 
-  local function cleanRocksAndDimShadows(baseTerrain, resultAsTable)
+  local function multi_insertTo(dstTable, ...)
+    local insertValues = {...}
+      for i, value in ipairs(insertValues) do
+        table.insert(dstTable, value)
+      end
+  end
+  
+  local function cleanRocksAndDimShadows(baseTerrain)
     local result = {}
     if cliffGen.cleanRocks ~= nil then
       result = {cliffGen.cleanRocks(getColors, baseTerrain)}
@@ -414,7 +421,7 @@ function ExtendTileset(seed)
       result = {{"remove", getColors(cliffGen.colors, "remove-toCleanRocks")}}
 
       if baseTerrain == "weak-ground" then
-        table.insert(result, Dim(cliffGen.colors, "shadows-onRocks"))
+        multi_insertTo(result, Dim(cliffGen.colors, "shadows-onRocks"))
       else
         for i, range in ipairs(cliffGen.colors["convertable-shadows-onRocks"]) do
           for j, convertedColors in ipairs(convertColors(range["from"], range["to"])) do
@@ -425,11 +432,8 @@ function ExtendTileset(seed)
       end
     end
 
-    if resultAsTable == true then
-      return result
-    else
-      return unpack(result)
-    end
+    return unpack(result)
+
   end
 
   local function getCliffsTiles(slot, baseTerrain)
@@ -482,10 +486,8 @@ function ExtendTileset(seed)
         table.insert(result, {0x0000}) -- something goes wrong
       end
 
-      for i,v in ipairs(cleanRocksAndDimShadows(baseTerrain, true)) do
-        table.insert(result, v)
-      end
-
+      multi_insertTo(result, cleanRocksAndDimShadows(baseTerrain))
+ 
     end
     return unpack(result)
   end
