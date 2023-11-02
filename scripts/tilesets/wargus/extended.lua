@@ -233,6 +233,30 @@ function ExtendTileset(seed)
   local dim = seed.dim
   local lighten = seed.lighten
 
+  local function tableToString(toPrint) -- used for testing purposes
+
+    if type(toPrint) ~= "table" then
+        return toPrint
+    end
+
+    local result = "{"
+    local firstIn = true
+    for i,v in ipairs(toPrint) do
+        if firstIn == false then
+            result = result .. ", "
+        end
+        firstIn = false
+        
+        if type(v) == "table" then
+            v = tableToString(v)
+        elseif type(v) == "string" then
+            v = "\"" .. v .. "\""
+        end
+        result = result .. v
+    end
+    return result .. "}"
+  end
+
   local function getListOfTilesWithoutExceptions(baseSlot, subSlot)
 
     if cliffGen.baseTilesFor["cliff-edges-exceptions"][baseSlot][subSlot] == nil then
@@ -356,14 +380,20 @@ function ExtendTileset(seed)
 
     local colors = {}
     local result = {}
-    for i, range in ipairs(args) do
-
+    for i, colorsRange in ipairs(args) do
+      local wrkRange
+      if type(colorsRange) == "table" then -- a range
+        wrkRange = {unpack(colorsRange)} -- make a copy of rable
+      else -- a single color
+        wrkRange = colorsRange
+      end
+    
       repeat
         local done = false
         local idxFrom = 1
         local idxTo = 2
 
-        local exception = checkForExceptionColor(range, exceptionPairs, direction)
+        local exception = checkForExceptionColor(wrkRange, exceptionPairs, direction)
         if exception ~= nil then
 
           local shiftDelta = exception[idxTo] - exception[idxFrom];
@@ -371,12 +401,12 @@ function ExtendTileset(seed)
             table.insert(result, {"shift", shiftDelta, exception[idxFrom]})
           end
 
-          if type(range) == "table" then
-            if range[idxFrom] < exception[idxFrom] then
-              table.insert(colors, {range[idxFrom], exception[idxFrom] - 1})
+          if type(wrkRange) == "table" then
+            if wrkRange[idxFrom] < exception[idxFrom] then
+              table.insert(colors, {wrkRange[idxFrom], exception[idxFrom] - 1})
             end
-            range[idxFrom] = exception[idxFrom] + 1
-            if (range[idxTo] < range[idxFrom] ) then
+            wrkRange[idxFrom] = exception[idxFrom] + 1
+            if (wrkRange[idxTo] < wrkRange[idxFrom] ) then
               done = true
             end
           else
@@ -384,7 +414,7 @@ function ExtendTileset(seed)
           end
 
         else
-          table.insert(colors, range)
+          table.insert(colors, wrkRange)
         end
 
       until (done or exception == nil)
