@@ -427,7 +427,7 @@ function generators:makeHighGroundEdge(groundType, slot) -- local function to ma
   if groundType == "weak-ground" then
     returnValue = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
   elseif groundType == "solid-ground" then
-    returnValue = {self.utils.srcTilesLst(0x0500,  (0xD0 - slot)), {"remove", self.utils.colorsFor(lightIce, "base", "shadows")}}
+    returnValue = {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightIce, "base", "shadows")}}
   end
 
   return returnValue
