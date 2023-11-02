@@ -319,37 +319,30 @@ local lightGround = {
   ["decorations"]     = {{52, 63}, {73, 78}},
   ["base"]            = {{22, 27}},
   ["all"]             = {"base", "decorations", "shadows"},
-  ["base-light"]      = {},
-  ["base-dark"]       = {},
-  ["light-shadows"]   = {},
-  ["transition-dark"] = {},
   ["exceptions"]      = {{nil, 17}, {27, nil}, {63, nil}}
 }
 
 local lightDirt = {
   ["shadows"]             = {80, {86, 88}},
-  ["decorations"]         = {},
-  ["base"]                = {{81, 85}, {64, 70}},
+  ["decorations"]         = {{74, 77}},
+  ["base"]                = {{64, 70}, {81, 85}},
   ["all"]                 = {"base", "shadows", "decorations"},
-  ["base-light"]          = {82},
-  ["base-dark"]           = {81},
   ["light-shadows"]       = {80},
-  ["transition-dark"]     = {80},  
-  ["exceptions"]          = {{64, 64}, {65, 65}, {66, 66}, {67, 67}, {68, 68}, {69, 69}, {70, 70}, {85, nil}, {86, 80}, {87, 86}},
+  ["exceptions"]          = {{64, 64}, {65, 65}, {66, 66}, {67, 67}, {68, 68}, {69, 69}, {70, 70}, {85, nil}, {86, 80}, {87, 86}}
 }
 
 local water = {
   ["base"]                  = {{32, 37}},
   ["cycling"]               = {{38, 47}},
   ["cycling-coast-boundry"] = {{64, 70}},
-  ["all"]                   = {"base", "cycling", "cycling-coast-boundry"}
+  ["all"]                   = {"base", "cycling"}
 }
 
 
 local getRampSrcSlot = function(slotType)
   if slotType == "for-edges" then 
     return 0x0500 -- light-dirt and light-ground boundry
-  else 
+  else -- solid
     return 0x0050 -- light-ground
   end
 end
@@ -424,19 +417,22 @@ generators.utils = { -- pointers to utility functions from extended.lua
 }
 
 function generators:makeHighGroundEdge(groundType, slot) -- local function to make HG edge tiles (if present)
-  local returnValue = {}
+  local cBottom = 1
+  local cTop    = 2
+  local layers = {}
+
+  -- solid-ground layer (also basement for weak ground)
+  layers[cBottom] = {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}}
 
   if groundType == "weak-ground" then
-    returnValue = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
-  elseif groundType == "solid-ground" then
-    returnValue = {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}}
+    layers[cTop] = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
   end
 
-  return returnValue
+  return unpack(layers)
 end
 
 function generators:makeRampEdge()
-  return  {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")},  self.utils.Lighten(lightGround, "base", "shadows")
+  return  {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}, self.utils.Lighten(lightGround, "base")
 end
 
 function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- local function to make transition from ramp to HG tiles (if present)
@@ -447,59 +443,68 @@ function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- 
   local layers = {{}} -- there is a single (bottom) layer
   
   if isMask == "edgeMask" then
+   
+    layers[cBottom] = {self.utils.srcTilesLst(0x0500, edgeSlot), {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}}
+    currLayer = currLayer + 1
+
     if groundType == "weak-ground" then
-
       layers[currLayer] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)}}
-
-      table.insert(layers, {}) -- add top layer
       currLayer = currLayer + 1
-
-      local convertEdges = {
-        [0x20 .. 0x00] = 0x10,
-        [0x20 .. 0x10] = 0x00,
-        [0x60 .. 0x20] = 0x30,
-        [0x60 .. 0x30] = 0x20,
-        [0xA0 .. 0x20] = 0x70,
-        [0xA0 .. 0x70] = 0x20,
-        [0xB0 .. 0x30] = 0x70,
-        [0xB0 .. 0x70] = 0x30,
-        [0xC0 .. 0x00] = 0xB0,
-        [0xC0 .. 0x70] = 0x40,
-        [0xD0 .. 0x30] = 0x90,
-        [0xD0 .. 0x10] = 0xB0
-      }
-      edgeSlot = 0xD0 - convertEdges[slot .. edgeSlot]
     end
 
-    layers[currLayer] = {{"slot", 0x0500 + edgeSlot}, {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")},
-                                                      {"chroma-key", {"slot", 0x0600 + (0xD0 - slot)}, self.utils.colorsFor(lightGround, "base")},
-                                                      self.utils.Lighten(lightGround, "base", "transition-dark")}
+    local convertEdges = {
+      [0x20 .. 0x00] = 0x10,
+      [0x20 .. 0x10] = 0x00,
+      [0x60 .. 0x20] = 0x30,
+      [0x60 .. 0x30] = 0x20,
+      [0xA0 .. 0x20] = 0x70,
+      [0xA0 .. 0x70] = 0x20,
+      [0xB0 .. 0x30] = 0x70,
+      [0xB0 .. 0x70] = 0x30,
+      [0xC0 .. 0x00] = 0xB0,
+      [0xC0 .. 0x70] = 0x40,
+      [0xD0 .. 0x30] = 0x90,
+      [0xD0 .. 0x10] = 0xB0
+    }
+    edgeSlot = 0xD0 - convertEdges[slot .. edgeSlot]
+
+    local colorsToRemove = {
+      ["weak-ground"]  = {"base"},
+      ["solid-ground"] = {"base", "shadows"}
+    }
+
+    layers[currLayer] = {{"slot", 0x0500 + edgeSlot}, {"remove", self.utils.colorsFor(lightDirt, unpack(colorsToRemove[groundType]))},
+                                                      self.utils.Lighten(lightGround, "base","shadows")}
     return unpack(layers)
 
   else -- without edge
     if groundType == "weak-ground" then
-      layers[cBottom] = {{"slot", 0x0500 + (0xD0 - slot)}, self.utils.Lighten(lightGround, "base", "transition-dark")}
-    elseif groundType == "solid-ground" then
-      layers[cBottom] = {{"slot", 0x0600 + (0xD0 - slot)}, self.utils.Lighten(lightGround, "base", "transition-dark")}
+      return {{"slot", 0x0500 + (0xD0 - slot)}, self.utils.Lighten(lightGround, "base")}
+    else -- "solid-ground"
+      return {"layers", {"slot", 0x0050},
+                        {{"slot", 0x0500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")},
+                                                            self.utils.Lighten(lightGround, "base")}}
     end
-
-    return unpack(layers)
   end
 end
 
 function generators:makeRampToLowGround(groundType, slot) -- local function to make transition from ramp to LG tiles (if present)
-  if groundType == "weak-ground" then
-    return {"layers", {"range", 0x40, 0x42},
-                      {{"slot", 0x0500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightDirt, "base")},
-                                                          self.utils.Dim(lightDirt, "shadows"),
-                                                          self.utils.Lighten(lightGround, "base", "transition-dark")}}
-  else 
-    return {"layers", {{"slot", 0x0600 + (0xD0 - slot)}, self.utils.Lighten(lightGround,"base")},
-                      {0x0200 + (0xD0 - slot), {"remove-all-except", self.utils.colorsFor(water)},
-                                               {"chroma-key", {"slot", 0x0600 + (0xD0 - slot)}, self.utils.colorsFor(water)},
-                                               {"remove", self.utils.colorsFor(lightGround, "base-light", "transition-dark")}}}
 
-  end
+  local lowground = {
+    ["weak-ground"]   = {
+                          ["src"]             = {"slot", 0x0040},
+                          ["colorsToRemove"]  = {"base"}
+                        },
+    ["solid-ground"]  = {
+                          ["src"]             = {"slot", 0x0060},
+                          ["colorsToRemove"]  = {"base", "shadows"}
+                        }
+  }
+
+  return {"layers", lowground[groundType].src,
+                    {{"slot", 0x0500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightDirt, unpack(lowground[groundType].colorsToRemove))},
+                                                        self.utils.Lighten(lightGround, "base", "shadows")}}
+
 end
 
 local extendedTilesetSeed = {
