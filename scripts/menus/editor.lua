@@ -4,27 +4,72 @@ local function RunEditorNewMapMenu()
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
-  local tilesets = { "summer", "swamp", "wasteland", "winter"}
-  local tilesets1 = {_("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}
+  local tilesets = {
+                    current         = "classic",
+                    ["classic"]     = { "summer", "swamp", "wasteland", "winter"},
+                    ["highgrounds"] = { "summer", "wasteland", "winter"}, -- swamp has no highground tilesets
+                    ["labels"]      = {
+                                        ["summer"]    = _("Summer"),
+                                        ["swamp"]     = _("Swamp"),
+                                        ["wasteland"] = _("Wasteland"),
+                                        ["winter"]    = _("Winter")
+                                      },
+                    getLabels = function(self, list)
+                      local result = {}
+                      for i,tileset in ipairs(self[list]) do
+                        table.insert(result, self["labels"][tileset])
+                      end
+                      return result
+                    end
+                   }
+
   local mapSizes = {"32", "64", "96", "128", "160", "192", "224", "256", "512", "1024"}
-  local tilesetLabel = _("TileSet : ")
-  local sizeLabel = _("Size :")
+  local tilesetLabel = _("TileSet: ")
+  local sizeLabel = _("Size:")
 
-  menu:addLabel(_("Map description :"), offx + 208, offy + 104 + 32 * 0, Fonts["game"], false)
+  menu:addLabel(_("Map description:"), offx + 208, offy + 104 + 32 * 0, Fonts["game"], false)
   local mapDescription = menu:addTextInputField("", offx + 208, offy + 104 + 32 * 1, 200)
-  menu:addLabel(tilesetLabel, offx + 208, offy + 104 + 32 * 2, Fonts["game"], false)
-  local dropDownTileset = menu:addDropDown(tilesets1, offx + 208 + CFont:Get("game"):Width(tilesetLabel) + 10, offy + 104 + 32 * 2, function() end)
 
-  menu:addLabel(sizeLabel, offx + 208, offy + 104 + 32 * 3, Fonts["game"], false)
-  local mapSizex = menu:addDropDown(mapSizes, offx + 208 + CFont:Get("game"):Width(sizeLabel) + 10, offy + 104 + 32 * 3, function() end)
+  menu:addLabel(sizeLabel, offx + 208, offy + 104 + 32 * 2, Fonts["game"], false)
+  local mapSizex = menu:addDropDown(mapSizes, offx + 208 + CFont:Get("game"):Width(sizeLabel) + 10, offy + 104 + 32 * 2, function() end)
   mapSizex:setWidth(50)
   mapSizex:setSelected(3)
-  menu:addLabel("x", offx + 208 + CFont:Get("game"):Width(sizeLabel) + 70, offy + 104 + 32 * 3, Fonts["game"], false)
-  local mapSizey = menu:addDropDown(mapSizes, offx + 208 + CFont:Get("game"):Width(sizeLabel) + 90, offy + 104 + 32 * 3, function() end)
+  menu:addLabel("x", offx + 208 + CFont:Get("game"):Width(sizeLabel) + 70, offy + 104 + 32 * 2, Fonts["game"], false)
+  local mapSizey = menu:addDropDown(mapSizes, offx + 208 + CFont:Get("game"):Width(sizeLabel) + 90, offy + 104 + 32 * 2, function() end)
   mapSizey:setWidth(50)
   mapSizey:setSelected(3)
 
-  menu:addFullButton(_("~!New map"), "n", offx + 208, offy + 104 + 36 * 5,
+  menu:addLabel(tilesetLabel, offx + 208, offy + 104 + 32 * 3, Fonts["game"], false)
+  local dropDownTileset = menu:addDropDown(tilesets:getLabels("classic"), offx + 208 + CFont:Get("game"):Width(tilesetLabel) + 10, offy + 104 + 32 * 3, function() end)
+
+  local highgroundsCheckBox = menu:addImageCheckBox(_("Enable highgrounds"), offx + 208 + 10, offy + 104 + 32 * 4, offi, offi2, oni, oni2, function() end)
+
+  highgroundsCheckBox:setActionCallback( 
+    function()
+      local tilesetsList = {
+        [true] = "highgrounds",
+        [false] = "classic"
+      }
+      local newSet = tilesetsList[highgroundsCheckBox:isMarked()]
+      local prevSet = tilesetsList[not highgroundsCheckBox:isMarked()]
+
+
+      local selectedTileset = tilesets[prevSet][dropDownTileset:getSelected() + 1]
+      
+      dropDownTileset:setList(tilesets:getLabels(newSet))
+      tilesets.current = newSet
+
+      for i,v in ipairs(tilesets[newSet]) do
+        if v == selectedTileset then
+          dropDownTileset:setSelected(i - 1)
+          return
+        end
+      end
+      dropDownTileset:setSelected(0) -- defaul summer
+    end
+  )
+    
+  menu:addFullButton(_("~!New map"), "n", offx + 208, offy + 104 + 36 * 6,
     function()
       -- TODO : check value
       Map.Info.Description = mapDescription:getText()
@@ -32,12 +77,14 @@ local function RunEditorNewMapMenu()
       Map.Info.MapHeight = mapSizes[1 + mapSizey:getSelected()]
       Map.Info.Preamble = ""
       Map.Info.Postamble = ""
-      LoadTileModels("scripts/tilesets/" .. tilesets[1 + dropDownTileset:getSelected()] .. ".lua")
+      MapEnableHighgrounds(highgroundsCheckBox:isMarked())
+
+      LoadTileModels("scripts/tilesets/" .. tilesets[tilesets.current][1 + dropDownTileset:getSelected()] .. ".lua")
       menu:stop()
       StartEditor(nil)
       RunEditorMenu()
     end)
-  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
+  menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", offx + 208, offy + 104 + 36 * 7, function() menu:stop(1); RunEditorMenu() end)
   return menu:run()
 end
 
