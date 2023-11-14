@@ -23,9 +23,9 @@ local function RunEditorNewMapMenu()
                     end
                    }
 
-  local mapSizes = {"32", "64", "96", "128", "160", "192", "224", "256", "512", "1024"}
-  local tilesetLabel = _("TileSet: ")
-  local sizeLabel = _("Size:")
+  local mapSizes      = {"32", "64", "96", "128", "160", "192", "224", "256", "512", "1024"}
+  local tilesetLabel  = _("TileSet: ")
+  local sizeLabel     = _("Size:")
 
   menu:addLabel(_("Map description:"), offx + 208, offy + 104 + 32 * 0, Fonts["game"], false)
   local mapDescription = menu:addTextInputField("", offx + 208, offy + 104 + 32 * 1, 200)
@@ -40,7 +40,11 @@ local function RunEditorNewMapMenu()
   mapSizey:setSelected(3)
 
   menu:addLabel(tilesetLabel, offx + 208, offy + 104 + 32 * 3, Fonts["game"], false)
-  local dropDownTileset = menu:addDropDown(tilesets:getLabels("classic"), offx + 208 + CFont:Get("game"):Width(tilesetLabel) + 10, offy + 104 + 32 * 3, function() end)
+
+  if IsHighgroundsEnabled() then 
+    tilesets.current = "highgrounds"
+  end
+  local dropDownTileset = menu:addDropDown(tilesets:getLabels(tilesets.current), offx + 208 + CFont:Get("game"):Width(tilesetLabel) + 10, offy + 104 + 32 * 3, function() end)
 
   local highgroundsCheckBox = menu:addImageCheckBox(_("Enable highgrounds"), offx + 208 + 10, offy + 104 + 32 * 4, offi, offi2, oni, oni2, function() end)
 
@@ -51,10 +55,8 @@ local function RunEditorNewMapMenu()
         [false] = "classic"
       }
       local newSet = tilesetsList[highgroundsCheckBox:isMarked()]
-      local prevSet = tilesetsList[not highgroundsCheckBox:isMarked()]
 
-
-      local selectedTileset = tilesets[prevSet][dropDownTileset:getSelected() + 1]
+      local selectedTileset = tilesets[tilesets.current][dropDownTileset:getSelected() + 1]
       
       dropDownTileset:setList(tilesets:getLabels(newSet))
       tilesets.current = newSet
@@ -72,11 +74,11 @@ local function RunEditorNewMapMenu()
   menu:addFullButton(_("~!New map"), "n", offx + 208, offy + 104 + 36 * 6,
     function()
       -- TODO : check value
-      Map.Info.Description = mapDescription:getText()
-      Map.Info.MapWidth = mapSizes[1 + mapSizex:getSelected()]
-      Map.Info.MapHeight = mapSizes[1 + mapSizey:getSelected()]
-      Map.Info.Preamble = ""
-      Map.Info.Postamble = ""
+      Map.Info.Description  = mapDescription:getText()
+      Map.Info.MapWidth     = mapSizes[1 + mapSizex:getSelected()]
+      Map.Info.MapHeight    = mapSizes[1 + mapSizey:getSelected()]
+      Map.Info.Preamble     = ""
+      Map.Info.Postamble    = ""
       MapEnableHighgrounds(highgroundsCheckBox:isMarked())
 
       LoadTileModels("scripts/tilesets/" .. tilesets[tilesets.current][1 + dropDownTileset:getSelected()] .. ".lua")
