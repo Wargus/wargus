@@ -298,22 +298,22 @@ DefineTileset("name", "Forest",
 
 local slotIdx = {
   -- solid tiles
-    ["lightWater"]            = 0x0010,
-    ["darkWater"]             = 0x0020,
-    ["lightCoast"]            = 0x0030,
-    ["darkCoast"]             = 0x0040,
-    ["lightGrass"]            = 0x0050,
-    ["darkGrass"]             = 0x0060,
-    ["forest"]                = 0x0070,
-    ["mountains"]             = 0x0080,
+  ["lightWater"]            = 0x0010,
+  ["darkWater"]             = 0x0020,
+  ["lightCoast"]            = 0x0030,
+  ["darkCoast"]             = 0x0040,
+  ["lightGrass"]            = 0x0050,
+  ["darkGrass"]             = 0x0060,
+  ["forest"]                = 0x0070,
+  ["mountains"]             = 0x0080,
   -- boundry tiles
-    ["darkWater-lightWater"]  = 0x0100,
-    ["lightWater-lightCoast"] = 0x0200,
-    ["darkCoast-lightCoast"]  = 0x0300,
-    ["mountains-lightCoast"]  = 0x0400,
-    ["lightCoast-lightGrass"] = 0x0500,
-    ["darkGrass-lightGrass"]  = 0x0600,
-    ["forest-lightGrass"]     = 0x0700
+  ["darkWater-lightWater"]  = 0x0100,
+  ["lightWater-lightCoast"] = 0x0200,
+  ["darkCoast-lightCoast"]  = 0x0300,
+  ["mountains-lightCoast"]  = 0x0400,
+  ["lightCoast-lightGrass"] = 0x0500,
+  ["darkGrass-lightGrass"]  = 0x0600,
+  ["forest-lightGrass"]     = 0x0700
 }
 
 local lightCoast = {
@@ -480,14 +480,6 @@ function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- 
 end
 
 function generators:makeRampToLowGround(groundType, slot) -- local function to make transition from ramp to LG tiles (if present)
-  --[[
-    {"layers", {{"slot", 0x0300 + (0xD0 - slot)}, {"shift", lighten, light_weakGround_light}},
-               {0x0200 + slot, {"remove-all-except", colorsFor(water)},
-                      {"chroma-key", {"slot", 0x0300 + (0xD0 - slot)}, colorsFor(water)},
-                      {"remove", light_weakGround_light, dark_weakGround_dark},
-                      {"shift", lighten, light_weakGround_dark}},
-               {{"slot", 0x0500 + slot}, {"remove", light_weakGround}, {"shift", dim, dark_ground}}}
-  ]]
 
   local layers = {"layers", {{"slot", 0x0300 + (0xD0 - slot)}, self.utils.Lighten(lightCoast,"base-light")},
                             {0x0200 + slot, {"remove-all-except", self.utils.colorsFor(water)},
@@ -520,9 +512,10 @@ local extendedTilesetSeed = {
   lighten                         =  1
 }
 
-Load("scripts/tilesets/wargus/extended.lua")
-
-ExtendTileset(extendedTilesetSeed)
+if IsHighgroundsEnabled() then
+  Load("scripts/tilesets/wargus/extended.lua")
+  ExtendTileset(extendedTilesetSeed)
+end
 
 BuildTilesetTables()
 

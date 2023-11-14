@@ -296,22 +296,22 @@ DefineTileset("name", "Wasteland",
 
 local slotIdx = {
   -- solid tiles
-    ["lightWater"]              = 0x0010,
-    ["darkWater"]               = 0x0020,
-    ["lightDirt"]               = 0x0030,
-    ["darkDirt"]                = 0x0040,
-    ["lightGround"]             = 0x0050,
-    ["darkGround"]              = 0x0060,
-    ["forest"]                  = 0x0070,
-    ["mountains"]               = 0x0080,
+  ["lightWater"]              = 0x0010,
+  ["darkWater"]               = 0x0020,
+  ["lightDirt"]               = 0x0030,
+  ["darkDirt"]                = 0x0040,
+  ["lightGround"]             = 0x0050,
+  ["darkGround"]              = 0x0060,
+  ["forest"]                  = 0x0070,
+  ["mountains"]               = 0x0080,
   -- boundry tiles
-    ["darkWater-lightWater"]    = 0x0100,
-    ["lightWater-lightDirt"]    = 0x0200,
-    ["darkDirt-lightDirt"]      = 0x0300,
-    ["mountains-lightDirt"]     = 0x0400,
-    ["lightDirt-lightGround"]   = 0x0500,
-    ["darkGround-lightGround"]  = 0x0600,
-    ["forest-lightGround"]      = 0x0700
+  ["darkWater-lightWater"]    = 0x0100,
+  ["lightWater-lightDirt"]    = 0x0200,
+  ["darkDirt-lightDirt"]      = 0x0300,
+  ["mountains-lightDirt"]     = 0x0400,
+  ["lightDirt-lightGround"]   = 0x0500,
+  ["darkGround-lightGround"]  = 0x0600,
+  ["forest-lightGround"]      = 0x0700
 }
 
 local lightGround = {
@@ -523,10 +523,10 @@ local extendedTilesetSeed = {
   lighten                         =  1
 }
 
-
-Load("scripts/tilesets/wargus/extended.lua")
-
-ExtendTileset(extendedTilesetSeed)
+if IsHighgroundsEnabled() then
+  Load("scripts/tilesets/wargus/extended.lua")
+  ExtendTileset(extendedTilesetSeed)
+end
 
 
 BuildTilesetTables()

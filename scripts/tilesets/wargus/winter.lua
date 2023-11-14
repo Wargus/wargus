@@ -293,22 +293,22 @@ DefineTileset("name", "Winter",
 
 local slotIdx = {
   -- solid tiles
-    ["lightWater"]            = 0x0010,
-    ["darkWater"]             = 0x0020,
-    ["lightIce"]              = 0x0030,
-    ["darkIce"]               = 0x0040,
-    ["lightSnow"]             = 0x0050,
-    ["darkSnow"]              = 0x0060,
-    ["forest"]                = 0x0070,
-    ["mountains"]             = 0x0080,
+  ["lightWater"]            = 0x0010,
+  ["darkWater"]             = 0x0020,
+  ["lightIce"]              = 0x0030,
+  ["darkIce"]               = 0x0040,
+  ["lightSnow"]             = 0x0050,
+  ["darkSnow"]              = 0x0060,
+  ["forest"]                = 0x0070,
+  ["mountains"]             = 0x0080,
   -- boundry tiles
-    ["darkWater-lightWater"]  = 0x0100,
-    ["lightWater-lightIce"]   = 0x0200,
-    ["darkIce-lightIce"]      = 0x0300,
-    ["mountains-lightIce"]    = 0x0400,
-    ["lightIce-lightSnow"]    = 0x0500,
-    ["darkSnow-lightSnow"]    = 0x0600,
-    ["forest-snow"]           = 0x0700
+  ["darkWater-lightWater"]  = 0x0100,
+  ["lightWater-lightIce"]   = 0x0200,
+  ["darkIce-lightIce"]      = 0x0300,
+  ["mountains-lightIce"]    = 0x0400,
+  ["lightIce-lightSnow"]    = 0x0500,
+  ["darkSnow-lightSnow"]    = 0x0600,
+  ["forest-snow"]           = 0x0700
 }
 
 local lightSnow = {
@@ -514,9 +514,10 @@ local extendedTilesetSeed = {
   lighten                         =  1
 }
 
-Load("scripts/tilesets/wargus/extended.lua")
-
-ExtendTileset(extendedTilesetSeed)
+if IsHighgroundsEnabled() then
+  Load("scripts/tilesets/wargus/extended.lua")
+  ExtendTileset(extendedTilesetSeed)
+end
 
 BuildTilesetTables()
 
