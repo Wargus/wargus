@@ -4,24 +4,6 @@ local function RunEditorNewMapMenu()
   local menu = WarMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
-  local tilesets = {
-                    current         = "classic",
-                    ["classic"]     = { "summer", "swamp", "wasteland", "winter"},
-                    ["highgrounds"] = { "summer", "wasteland", "winter"}, -- swamp has no highground tilesets
-                    ["labels"]      = {
-                                        ["summer"]    = _("Summer"),
-                                        ["swamp"]     = _("Swamp"),
-                                        ["wasteland"] = _("Wasteland"),
-                                        ["winter"]    = _("Winter")
-                                      },
-                    getLabels = function(self, list)
-                      local result = {}
-                      for i,tileset in ipairs(self[list]) do
-                        table.insert(result, self["labels"][tileset])
-                      end
-                      return result
-                    end
-                   }
 
   local mapSizes      = {"32", "64", "96", "128", "160", "192", "224", "256", "512", "1024"}
   local tilesetLabel  = _("TileSet: ")
@@ -41,33 +23,20 @@ local function RunEditorNewMapMenu()
 
   menu:addLabel(tilesetLabel, offx + 208, offy + 104 + 32 * 3, Fonts["game"], false)
 
-  if IsHighgroundsEnabled() then 
-    tilesets.current = "highgrounds"
-  end
-  local dropDownTileset = menu:addDropDown(tilesets:getLabels(tilesets.current), offx + 208 + CFont:Get("game"):Width(tilesetLabel) + 10, offy + 104 + 32 * 3, function() end)
+  Load("scripts/tilesets/tilesets.lua")
+  local dropDownTileset = menu:addDropDown(tilesets:getLabels(IsHighgroundsEnabled(), false),
+                                           offx + 208 + CFont:Get("game"):Width(tilesetLabel) + 10, offy + 104 + 32 * 3,
+                                           function() end)
 
-  local highgroundsCheckBox = menu:addImageCheckBox(_("Enable highgrounds"), offx + 208 + 10, offy + 104 + 32 * 4, offi, offi2, oni, oni2, function() end)
 
-  highgroundsCheckBox:setActionCallback( 
-    function()
-      local tilesetsList = {
-        [true] = "highgrounds",
-        [false] = "classic"
-      }
-      local newSet = tilesetsList[highgroundsCheckBox:isMarked()]
+  local highgroundsCheckBox = menu:addImageCheckBox(_("Enable highgrounds"), 
+                                                    offx + 208 + 10, offy + 104 + 32 * 4, offi, offi2, oni, oni2,
+                                                    function() end,
+                                                    IsHighgroundsEnabled())
 
-      local selectedTileset = tilesets[tilesets.current][dropDownTileset:getSelected() + 1]
-      
-      dropDownTileset:setList(tilesets:getLabels(newSet))
-      tilesets.current = newSet
-
-      for i,v in ipairs(tilesets[newSet]) do
-        if v == selectedTileset then
-          dropDownTileset:setSelected(i - 1)
-          return
-        end
-      end
-      dropDownTileset:setSelected(0) -- defaul summer
+  highgroundsCheckBox:setActionCallback(
+    function ()
+      tilesets:dropDown_switchSets(dropDownTileset, highgroundsCheckBox:isMarked(), false)
     end
   )
     
@@ -81,7 +50,9 @@ local function RunEditorNewMapMenu()
       Map.Info.Postamble    = ""
       MapEnableHighgrounds(highgroundsCheckBox:isMarked())
 
-      LoadTileModels("scripts/tilesets/" .. tilesets[tilesets.current][1 + dropDownTileset:getSelected()] .. ".lua")
+      local tileset = tilesets:getTilesetByLabel(dropDownTileset:getSelectedItem())
+      LoadTileModels(tilesets:getScriptFor(tileset))
+
       menu:stop()
       StartEditor(nil)
       RunEditorMenu()

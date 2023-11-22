@@ -438,10 +438,10 @@ function LoadTileModels(tileset)
   if (GameCycle ~= 0) then
     return OldLoadTileModels(tileset)
   end
-  if (GameSettings.Tileset == nil) then
+  if (GameSettings.Tileset == "default") then
     return OldLoadTileModels(tileset)
   end
-  OldLoadTileModels("scripts/tilesets/" .. GameSettings.Tileset)
+  OldLoadTileModels(tilesets:getScriptFor(GameSettings.Tileset))
 end
 
 -- Called by Stratagus when unloading a mod.
