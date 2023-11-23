@@ -1018,7 +1018,7 @@ function GetMapInfo(mapname)
     mapinfo.w = w
     mapinfo.h = h
     mapinfo.id = id
-    mapinfo.highgrounds = isHighgroundsEnabled
+    mapinfo.highgrounds = isHighgroundsEnabled or false -- isHighgroundsEnabled could be nil so the "or false" construction
   end
 
   Load(mapname)
