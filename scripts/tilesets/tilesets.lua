@@ -67,7 +67,7 @@ function tilesets:getTilesetByLabel(label)
       return k
     end
   end
-  return nil
+  return "default"
 end
 
 function tilesets:getScriptFor(tileset)

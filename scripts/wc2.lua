@@ -433,12 +433,14 @@ if OldLoadTileModels == nil then
 	OldLoadTileModels = LoadTileModels
 end
 
+Load("scripts/tilesets/tilesets.lua")
 function LoadTileModels(tileset)
   DefineCustomMapRules()
   if (GameCycle ~= 0) then
     return OldLoadTileModels(tileset)
   end
-  if (GameSettings.Tileset == "default") then
+  if (GameSettings.Tileset == nil 
+  	  or GameSettings.Tileset == "default") then
     return OldLoadTileModels(tileset)
   end
   OldLoadTileModels(tilesets:getScriptFor(GameSettings.Tileset))
