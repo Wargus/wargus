@@ -113,8 +113,9 @@ function NewRunSinglePlayerGameMenu()
     function(dd) end)
   gametype:setSize(152, 20)
 
+  Load("scripts/tilesets/tilesets.lua")
   menu:addLabel(_("~<Tileset:~>"), offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
-  tilesetdd = menu:addDropDown({_("Map Default"), _("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}, offx + 640 - 224 - 16, offy + 10 + 300,
+  tilesetdd = menu:addDropDown(tilesets:getLabels(mapinfo.highgrounds, true), offx + 640 - 224 - 16, offy + 10 + 300,
     function(dd) end)
   tilesetdd:setSize(190, 20)
 
