@@ -71,11 +71,7 @@ function tilesets:getTilesetByLabel(label)
 end
 
 function tilesets:getScriptFor(tileset)
-  if tileset == "default" then
-    return nil
-  else
-    return self.scripts[tileset]
-  end
+  return self.scripts[tileset]
 end
 
 -- Tileset's dropDownList helper
