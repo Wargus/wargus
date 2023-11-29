@@ -66,7 +66,7 @@ solid tiles:
 101x  solid cliff
 102x  solid ramp
 
-boundry tiles:
+boundary tiles:
 11..            cliff and dark dirt lowground
 12..            cliff and dark ground lowground
 13..            cliff and water lowground
