@@ -49,7 +49,7 @@ solid tiles:
 00cx            orc walls
 
 
-boundry tiles:
+boundary tiles:
 09..            orc wall
 08..            human wall
 07..            forest and ground
@@ -304,7 +304,7 @@ local slotIdx = {
   ["darkGround"]              = 0x0060,
   ["forest"]                  = 0x0070,
   ["mountains"]               = 0x0080,
-  -- boundry tiles
+  -- boundary tiles
   ["darkWater-lightWater"]    = 0x0100,
   ["lightWater-lightDirt"]    = 0x0200,
   ["darkDirt-lightDirt"]      = 0x0300,
@@ -332,16 +332,16 @@ local lightDirt = {
 }
 
 local water = {
-  ["base"]                  = {{32, 37}},
-  ["cycling"]               = {{38, 47}},
-  ["cycling-coast-boundry"] = {{64, 70}},
-  ["all"]                   = {"base", "cycling"}
+  ["base"]                   = {{32, 37}},
+  ["cycling"]                = {{38, 47}},
+  ["cycling-coast-boundary"] = {{64, 70}},
+  ["all"]                    = {"base", "cycling"}
 }
 
 
 local getRampSrcSlot = function(slotType)
   if slotType == "for-edges" then 
-    return 0x0500 -- light-dirt and light-ground boundry
+    return 0x0500 -- light-dirt and light-ground boundary
   else -- solid
     return 0x0050 -- light-ground
   end
@@ -534,7 +534,7 @@ BuildTilesetTables()
 SetColorCycleAll(true)
 ClearAllColorCyclingRange()
 AddColorCyclingRange(38, 47) -- water
-AddColorCyclingRange(64, 70) -- water coast boundry
+AddColorCyclingRange(64, 70) -- water coast boundary
 AddColorCyclingRange(240, 244) -- icon
 
 wargus.tileset = "wasteland"

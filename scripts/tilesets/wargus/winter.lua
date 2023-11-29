@@ -49,7 +49,7 @@ solid tiles:
 00cx            orc walls
 
 
-boundry tiles:
+boundary tiles:
 09..            orc wall
 08..            human wall
 07..            forest and snow
@@ -301,7 +301,7 @@ local slotIdx = {
   ["darkSnow"]              = 0x0060,
   ["forest"]                = 0x0070,
   ["mountains"]             = 0x0080,
-  -- boundry tiles
+  -- boundary tiles
   ["darkWater-lightWater"]  = 0x0100,
   ["lightWater-lightIce"]   = 0x0200,
   ["darkIce-lightIce"]      = 0x0300,
@@ -332,15 +332,15 @@ local lightIce = {
 }
 
 local water = {
-  ["base"]                  = {{30, 39}},
-  ["cycling"]               = {{40, 47}},
-  ["cycling-coast-boundry"] = {{48, 54}},
-  ["all"]                   = {"base", "cycling", "cycling-coast-boundry"}
+  ["base"]                   = {{30, 39}},
+  ["cycling"]                = {{40, 47}},
+  ["cycling-coast-boundary"] = {{48, 54}},
+  ["all"]                    = {"base", "cycling", "cycling-coast-boundary"}
 }
 
 local getRampSrcSlot = function(slotType)
   if slotType == "for-edges" then 
-    return 0x0500 -- light-ice and light-snow boundry
+    return 0x0500 -- light-ice and light-snow boundary
   else 
     return 0x0050 -- light-snow
   end
@@ -524,7 +524,7 @@ BuildTilesetTables()
 SetColorCycleAll(true)
 ClearAllColorCyclingRange()
 AddColorCyclingRange(40, 47) -- water
-AddColorCyclingRange(48, 54) -- water coast boundry
+AddColorCyclingRange(48, 54) -- water coast boundary
 AddColorCyclingRange(205, 207) -- building
 AddColorCyclingRange(240, 244) -- icon
 

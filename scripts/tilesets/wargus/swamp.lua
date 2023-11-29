@@ -49,7 +49,7 @@ solid tiles:
 00cx            orc walls
 
 
-boundry tiles:
+boundary tiles:
 09..            orc wall
 08..            human wall
 07..            forest and dry mud
@@ -280,7 +280,7 @@ local slotIdx = {
     ["darkDryMud"]              = 0x0060,
     ["forest"]                  = 0x0070,
     ["mountains"]               = 0x0080,
-  -- boundry tiles
+  -- boundary tiles
     ["darkWater-lightWater"]    = 0x0100,
     ["lightWater-lightMud"]     = 0x0200,
     ["darkMud-lightMud"]        = 0x0300,
@@ -295,7 +295,7 @@ BuildTilesetTables()
 SetColorCycleAll(true)
 ClearAllColorCyclingRange()
 AddColorCyclingRange(5, 9) -- water
-AddColorCyclingRange(38, 47) -- water coast boundry
+AddColorCyclingRange(38, 47) -- water coast boundary
 AddColorCyclingRange(88, 95) -- building
 AddColorCyclingRange(240, 244) -- icon
 

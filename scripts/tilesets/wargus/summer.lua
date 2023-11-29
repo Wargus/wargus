@@ -49,7 +49,7 @@ solid tiles:
 00cx            orc walls
 
 
-boundry tiles:
+boundary tiles:
 09..            orc wall
 08..            human wall
 07..            forest and grass
@@ -66,7 +66,7 @@ solid tiles:
 101x  solid cliff
 102x  solid ramp
 
-boundry tiles:
+boundary tiles:
 11..            cliff and dark coast lowground
 12..            cliff and dark grass lowground
 13..            cliff and water lowground
@@ -334,15 +334,15 @@ local lightGrass = {
 }
 
 local water = {
-  ["base"]                  = {{29, 37}},
-  ["cycling"]               = {{38, 47}},
-  ["cycling-coast-boundry"] = {{48, 56}},
-  ["all"]                   = {"base", "cycling", "cycling-coast-boundry"}
+  ["base"]                   = {{29, 37}},
+  ["cycling"]                = {{38, 47}},
+  ["cycling-coast-boundary"] = {{48, 56}},
+  ["all"]                    = {"base", "cycling", "cycling-coast-boundary"}
 }
 
 local getRampSrcSlot = function(slotType)
   if slotType == "for-edges" then 
-    return 0x0200 -- light-coast and water boundry
+    return 0x0200 -- light-coast and water boundary
   else 
     return 0x0030 -- light-coast
   end
@@ -522,7 +522,7 @@ BuildTilesetTables()
 SetColorCycleAll(true)
 ClearAllColorCyclingRange()
 AddColorCyclingRange(38, 47) -- water
-AddColorCyclingRange(48, 56) -- water coast boundry
+AddColorCyclingRange(48, 56) -- water coast boundary
 AddColorCyclingRange(240, 244) -- icon
 
 wargus.tileset = "summer"
