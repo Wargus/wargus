@@ -383,7 +383,7 @@ function ExtendTileset(seed)
     for i, colorsRange in ipairs(args) do
       local wrkRange
       if type(colorsRange) == "table" then -- a range
-        wrkRange = {unpack(colorsRange)} -- make a copy of rable
+        wrkRange = {unpack(colorsRange)} -- make a copy of table
       else -- a single color
         wrkRange = colorsRange
       end
