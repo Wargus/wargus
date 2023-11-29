@@ -128,7 +128,7 @@ filled  clear
         single agrgument (number or table) at position 1.
         index of defined tile (or set of indexes). Each slot consist of 16 tiles only.
         For extended tileset indexes must be greater than already defined.
-        Each slot's indexes set starts from xxx0 and ended with xxxF (where discription of xxx see in PUD format explanation)
+        Each slot's indexes set starts from xxx0 and ended with xxxF (where description of xxx see in PUD format explanation)
 
         'dst' can take one of the following forms:
         tile                    -- single tile index
