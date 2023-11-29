@@ -66,7 +66,7 @@ Extended tileset
 101x  solid cliff
 102x  solid ramp
 
-boundry tiles
+boundary tiles
 
 11..            cliff and dark weak lowground
 12..            cliff and dark solid lowground
