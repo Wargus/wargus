@@ -306,7 +306,7 @@ local slotIdx = {
   ["darkGrass"]             = 0x0060,
   ["forest"]                = 0x0070,
   ["mountains"]             = 0x0080,
-  -- boundry tiles
+  -- boundary tiles
   ["darkWater-lightWater"]  = 0x0100,
   ["lightWater-lightCoast"] = 0x0200,
   ["darkCoast-lightCoast"]  = 0x0300,
