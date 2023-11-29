@@ -49,7 +49,7 @@ Base tileset
 00bx            human walls
 00cx            orc walls
 
-boundry tiles
+boundary tiles
 
 09..            orc wall
 08..            human wall
