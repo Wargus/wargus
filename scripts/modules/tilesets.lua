@@ -25,22 +25,22 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-tilesets = {
-            ["classic"]     = { "summer", "swamp", "wasteland", "winter"},
-            ["highgrounds"] = { "summer", "wasteland", "winter"}, -- swamp has no highground tilesets
-            labels      = {
-                            ["default"]   = _("Map Default"),
-                            ["summer"]    = _("Summer"),
-                            ["swamp"]     = _("Swamp"),
-                            ["wasteland"] = _("Wasteland"),
-                            ["winter"]    = _("Winter")
-                          },
-            scripts = {
-                        ["summer"]    = "scripts/tilesets/summer.lua",
-                        ["swamp"]     = "scripts/tilesets/swamp.lua",
-                        ["wasteland"] = "scripts/tilesets/wasteland.lua",
-                        ["winter"]    = "scripts/tilesets/winter.lua"
-            }
+local tilesets = {
+                  ["classic"]     = { "summer", "swamp", "wasteland", "winter"},
+                  ["highgrounds"] = { "summer", "wasteland", "winter"}, -- swamp has no highground tiles
+                  labels      = {
+                                  ["default"]   = _("Map Default"),
+                                  ["summer"]    = _("Summer"),
+                                  ["swamp"]     = _("Swamp"),
+                                  ["wasteland"] = _("Wasteland"),
+                                  ["winter"]    = _("Winter")
+                                },
+                  scripts = {
+                              ["summer"]    = "scripts/tilesets/summer.lua",
+                              ["swamp"]     = "scripts/tilesets/swamp.lua",
+                              ["wasteland"] = "scripts/tilesets/wasteland.lua",
+                              ["winter"]    = "scripts/tilesets/winter.lua"
+                  }
 }
 
 function tilesets:getLabels(isHighgroundsEnabled, isMapDefaultAllowed)
@@ -81,3 +81,4 @@ function tilesets:dropDown_switchSets(dropDownList, isHighgroundsEnabled, isMapD
   dropDownList:setSelectedItem(prev)
 end
 
+return tilesets

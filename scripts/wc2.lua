@@ -433,7 +433,6 @@ if OldLoadTileModels == nil then
 	OldLoadTileModels = LoadTileModels
 end
 
-Load("scripts/tilesets/tilesets.lua")
 function LoadTileModels(tileset)
   DefineCustomMapRules()
   if (GameCycle ~= 0) then
@@ -443,6 +442,9 @@ function LoadTileModels(tileset)
   	  or GameSettings.Tileset == "default") then
     return OldLoadTileModels(tileset)
   end
+
+  local tilesets = require("tilesets")
+
   OldLoadTileModels(tilesets:getScriptFor(GameSettings.Tileset))
 end
 

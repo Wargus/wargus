@@ -53,6 +53,7 @@ function NewRunSinglePlayerGameMenu()
   local mapl
   local descriptionl
   local tilesetdd
+  local tilesets = require("tilesets")
 
   menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"]) -- Copyright information.
   
@@ -113,7 +114,6 @@ function NewRunSinglePlayerGameMenu()
     function(dd) end)
   gametype:setSize(152, 20)
 
-  Load("scripts/tilesets/tilesets.lua")
   menu:addLabel(_("~<Tileset:~>"), offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
   tilesetdd = menu:addDropDown(tilesets:getLabels(mapinfo.highgrounds, true), offx + 640 - 224 - 16, offy + 10 + 300,
     function(dd) end)
