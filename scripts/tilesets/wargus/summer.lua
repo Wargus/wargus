@@ -316,205 +316,205 @@ local slotIdx = {
   ["forest-lightGrass"]     = 0x0700
 }
 
-if IsHighgroundsEnabled() then
+local lightCoast = {
+  ["shadows"]         = {{82, 86}},
+  ["decorations"]     = {{69, 78}, {87, 94}},
+  ["base"]            = {{87, 90}},
+  ["all"]             = {"base", "decorations", "shadows"},
+  ["base-light"]      = {88},
+  ["base-dark"]       = {87},
+  ["light-shadows"]   = {86},
+  ["transition-dark"] = {86},
 
-  local lightCoast = {
-    ["shadows"]         = {{82, 86}},
-    ["decorations"]     = {{69, 78}, {87, 94}},
-    ["base"]            = {{87, 90}},
-    ["all"]             = {"base", "decorations", "shadows"},
-    ["base-light"]      = {88},
-    ["base-dark"]       = {87},
-    ["light-shadows"]   = {86},
-    ["transition-dark"] = {86},
+  ["exceptions"]      = {{nil, 82}, {94, nil}}
+}
 
-    ["exceptions"]      = {{nil, 82}, {94, nil}}
-  }
+local lightGrass = {
+  ["base"]            = {{19, 25}}
+}
 
-  local lightGrass = {
-    ["base"]            = {{19, 25}}
-  }
+local water = {
+  ["base"]                   = {{29, 37}},
+  ["cycling"]                = {{38, 47}},
+  ["cycling-coast-boundary"] = {{48, 56}},
+  ["all"]                    = {"base", "cycling", "cycling-coast-boundary"}
+}
 
-  local water = {
-    ["base"]                   = {{29, 37}},
-    ["cycling"]                = {{38, 47}},
-    ["cycling-coast-boundary"] = {{48, 56}},
-    ["all"]                    = {"base", "cycling", "cycling-coast-boundary"}
-  }
+local getRampSrcSlot = function(slotType)
+  if slotType == "for-edges" then 
+    return 0x0200 -- light-coast and water boundary
+  else 
+    return 0x0030 -- light-coast
+  end
+end
 
-  local getRampSrcSlot = function(slotType)
-    if slotType == "for-edges" then 
-      return 0x0200 -- light-coast and water boundary
-    else 
-      return 0x0030 -- light-coast
+local getRampSrc = function()
+  return lightCoast
+end
+
+local generators = {}
+
+generators.cliffs = {
+  colors = {
+    ["remove-toCleanRocks"]         = lightCoast["base"],
+    ["shadows-onRocks"]             = lightCoast["shadows"],
+    ["convertable-shadows-onRocks"] = { -- shadows which could be converted from light weak ground to dark solid ground. Possible values: {range} or color
+                                        { ["from"] = {83, 86}, ["to"] = {16, 19} }
+                                      },
+    ["exceptions"]                  = lightCoast["exceptions"]
+  },
+  baseTilesFor = {
+    ["weak-ground"]  = {
+                        [0x00] = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
+                        [0x10] = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
+                        [0x20] = {0x0045, 0x0049},
+                        [0x30] = {0x0044, 0x0046, 0x004A},
+                        [0x40] = {0x0049, 0x004A},
+                        [0x60] = {0x0049, 0x004A},
+                        [0x70] = {0x0044, 0x0049, 0x004A},
+                        [0x90] = {0x0045, 0x0049},
+                        [0xA0] = {0x0044, 0x0045},
+                        [0xB0] = {0x0044, 0x0045, 0x004A},
+                        [0xC0] = {0x0040},
+                        [0xD0] = {0x0040}
+                       },
+    ["solid-ground"] = {
+                        [0x00] = {0x0065, 0x0068, 0x0069},
+                        [0x10] = {0x0065, 0x0068, 0x0069},
+                        [0x20] = {0x0068, 0x0069},
+                        [0x30] = {0x0065, 0x0068, 0x0069},
+                        [0x40] = {0x0060},
+                        [0x60] = {0x0060},
+                        [0x70] = {0x0065, 0x0068, 0x0069},
+                        [0x90] = {0x0060},
+                        [0xA0] = {0x0061},
+                        [0xB0] = {0x0065, 0x0066, 0x0069},
+                        [0xC0] = {0x0060},
+                        [0xD0] = {0x0061}
+                       },
+    ["cliff"]         = nil,
+    ["cliff-special"] = { -- tile index in the source image
+                          ["singleRockUp"]  = 161,
+                          ["singleRockMid"] = 162,
+                          ["singleRockBot"] = 163,
+                          ["removedRock"]   = 166
+                        },
+    ["cliff-edges-exceptions"] =  {
+                                    [0x0200]  = {
+                                                },
+                                    [0x0500]  = {
+                                                }
+                                  }
+  },
+  cleanRocks = nil -- local function to clean rocks (if present)
+}
+
+  -- functions --
+generators.utils = { -- references to utility functions from extended.lua
+  srcTilesLst = nil,
+  colorsFor   = nil, -- parser for ground colors. Declared in the extended.lua
+  Lighten     = nil,
+  Dim         = nil
+}
+
+function generators:makeHighGroundEdge(groundType, slot) -- local function to make HG edge tiles (if present)
+  local cBottom = 1
+  local cTop = 2
+  local layers = {}
+
+  -- weak-ground layer
+  layers[cBottom] = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
+
+  if groundType == "solid-ground" then
+    layers[cTop] = {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightCoast, "base", "light-shadows")}}
+  end
+
+  return unpack(layers)
+end
+
+function generators:makeRampEdge()
+  return  {"remove", self.utils.colorsFor(water)}, self.utils.Lighten(lightCoast, "base")
+end
+
+function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- local function to make transition from ramp to HG tiles (if present)
+  local cBottom = 1
+  local cTop = 2
+
+  local layers = {{}} -- there is a single (bottom) layer
+  
+  if isMask == "edgeMask" then
+    local chromaKeyMask = {"slot", 0x0300 + (0xD0 - slot)}
+
+    if chromaKeyMask == {"slot", 0x0330} then -- only these two are usable for this tileset
+      chromaKeyMask = {0x0330, 0x0331}
     end
-  end
-
-  local getRampSrc = function()
-    return lightCoast
-  end
-
-  local generators = {}
-
-  generators.cliffs = {
-    colors = {
-      ["remove-toCleanRocks"]         = lightCoast["base"],
-      ["shadows-onRocks"]             = lightCoast["shadows"],
-      ["convertable-shadows-onRocks"] = { -- shadows which could be converted from light weak ground to dark solid ground. Possible values: {range} or color
-                                          { ["from"] = {83, 86}, ["to"] = {16, 19} }
-                                        },
-      ["exceptions"]                  = lightCoast["exceptions"]
-    },
-    baseTilesFor = {
-      ["weak-ground"]  = {
-                          [0x00] = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
-                          [0x10] = {0x0044, 0x0045, 0x0046, 0x0049, 0x004A},
-                          [0x20] = {0x0045, 0x0049},
-                          [0x30] = {0x0044, 0x0046, 0x004A},
-                          [0x40] = {0x0049, 0x004A},
-                          [0x60] = {0x0049, 0x004A},
-                          [0x70] = {0x0044, 0x0049, 0x004A},
-                          [0x90] = {0x0045, 0x0049},
-                          [0xA0] = {0x0044, 0x0045},
-                          [0xB0] = {0x0044, 0x0045, 0x004A},
-                          [0xC0] = {0x0040},
-                          [0xD0] = {0x0040}
-                        },
-      ["solid-ground"] = {
-                          [0x00] = {0x0065, 0x0068, 0x0069},
-                          [0x10] = {0x0065, 0x0068, 0x0069},
-                          [0x20] = {0x0068, 0x0069},
-                          [0x30] = {0x0065, 0x0068, 0x0069},
-                          [0x40] = {0x0060},
-                          [0x60] = {0x0060},
-                          [0x70] = {0x0065, 0x0068, 0x0069},
-                          [0x90] = {0x0060},
-                          [0xA0] = {0x0061},
-                          [0xB0] = {0x0065, 0x0066, 0x0069},
-                          [0xC0] = {0x0060},
-                          [0xD0] = {0x0061}
-                        },
-      ["cliff"]         = nil,
-      ["cliff-special"] = { -- tile index in the source image
-                            ["singleRockUp"]  = 161,
-                            ["singleRockMid"] = 162,
-                            ["singleRockBot"] = 163,
-                            ["removedRock"]   = 166
-                          },
-      ["cliff-edges-exceptions"] =  {
-                                      [0x0200]  = {
-                                                  },
-                                      [0x0500]  = {
-                                                  }
-                                    }
-    },
-    cleanRocks = nil -- local function to clean rocks (if present)
-  }
-
-    -- functions --
-  generators.utils = { -- references to utility functions from extended.lua
-    srcTilesLst = nil,
-    colorsFor   = nil, -- parser for ground colors. Declared in the extended.lua
-    Lighten     = nil,
-    Dim         = nil
-  }
-
-  function generators:makeHighGroundEdge(groundType, slot) -- local function to make HG edge tiles (if present)
-    local cBottom = 1
-    local cTop = 2
-    local layers = {}
-
-    -- weak-ground layer
-    layers[cBottom] = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
+    
+    layers[cBottom] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)},
+                                                                 {"chroma-key", chromaKeyMask, self.utils.colorsFor(lightCoast, "base")},
+                                                                  self.utils.Lighten(lightCoast, "base", "transition-dark")}
 
     if groundType == "solid-ground" then
-      layers[cTop] = {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightCoast, "base", "light-shadows")}}
+
+      if slot == 0x60 or slot == 0xA0 then -- have to use chroma-key to remove highground grass shadows from the lowground
+      layers[cTop] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)},
+                                                                {"chroma-key", {"slot", 0x0500 + slot}, self.utils.colorsFor(lightCoast, "base")},
+                                                                {"remove", self.utils.colorsFor(lightCoast, "base")}}
+      else
+        layers[cTop] = {self.utils.srcTilesLst(0x0500, slot), {"remove", self.utils.colorsFor(lightCoast, "base")}}
+      end
+    end
+    return unpack(layers)
+
+  else -- without edge
+    layers[cBottom] = {{"slot", 0x0300 + (0xD0 - slot)}, self.utils.Lighten(lightCoast, "base", "transition-dark")}
+
+    if groundType == "solid-ground" then -- add grass on top
+
+      layers[cTop] = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast, "base")}}
+
+      return {"layers", unpack(layers)}
     end
 
     return unpack(layers)
   end
+end
 
-  function generators:makeRampEdge()
-    return  {"remove", self.utils.colorsFor(water)}, self.utils.Lighten(lightCoast, "base")
+function generators:makeRampToLowGround(groundType, slot) -- local function to make transition from ramp to LG tiles (if present)
+
+  local layers = {"layers", {{"slot", 0x0300 + (0xD0 - slot)}, self.utils.Lighten(lightCoast,"base-light")},
+                            {0x0200 + slot, {"remove-all-except", self.utils.colorsFor(water)},
+                                            {"chroma-key", {"slot", 0x0300 + (0xD0 - slot)}, self.utils.colorsFor(water)},
+                                            {"remove", self.utils.colorsFor(lightCoast, "base-light", "transition-dark")},
+                                            self.utils.Lighten(lightCoast, "base-dark")}
+                  }
+  if groundType == "solid-ground" then
+    layers[#layers + 1] = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast,"base")}, self.utils.Dim(lightGrass, "base")}
   end
 
-  function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- local function to make transition from ramp to HG tiles (if present)
-    local cBottom = 1
-    local cTop = 2
+  return layers
+end
 
-    local layers = {{}} -- there is a single (bottom) layer
-    
-    if isMask == "edgeMask" then
-      local chromaKeyMask = {"slot", 0x0300 + (0xD0 - slot)}
 
-      if chromaKeyMask == {"slot", 0x0330} then -- only these two are usable for this tileset
-        chromaKeyMask = {0x0330, 0x0331}
-      end
-      
-      layers[cBottom] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)},
-                                                                  {"chroma-key", chromaKeyMask, self.utils.colorsFor(lightCoast, "base")},
-                                                                    self.utils.Lighten(lightCoast, "base", "transition-dark")}
 
-      if groundType == "solid-ground" then
+local extendedTilesetSeed = {
 
-        if slot == 0x60 or slot == 0xA0 then -- have to use chroma-key to remove highground grass shadows from the lowground
-        layers[cTop] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)},
-                                                                  {"chroma-key", {"slot", 0x0500 + slot}, self.utils.colorsFor(lightCoast, "base")},
-                                                                  {"remove", self.utils.colorsFor(lightCoast, "base")}}
-        else
-          layers[cTop] = {self.utils.srcTilesLst(0x0500, slot), {"remove", self.utils.colorsFor(lightCoast, "base")}}
-        end
-      end
-      return unpack(layers)
+  lowgroundWeakGround             = "dark-coast",
+  lowgroundSolidGround            = "dark-grass",
+  highgroundWeakGround            = "highground-coast",
+  highgroundSolidGround           = "highground-grass",
 
-    else -- without edge
-      layers[cBottom] = {{"slot", 0x0300 + (0xD0 - slot)}, self.utils.Lighten(lightCoast, "base", "transition-dark")}
+  getRampSrcSlot                  = getRampSrcSlot,
+  getRampSrc                      = getRampSrc,
 
-      if groundType == "solid-ground" then -- add grass on top
+  generators                      = generators,
 
-        layers[cTop] = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast, "base")}}
+  dim                             = -1,
+  lighten                         =  1
+}
 
-        return {"layers", unpack(layers)}
-      end
-
-      return unpack(layers)
-    end
-  end
-
-  function generators:makeRampToLowGround(groundType, slot) -- local function to make transition from ramp to LG tiles (if present)
-
-    local layers = {"layers", {{"slot", 0x0300 + (0xD0 - slot)}, self.utils.Lighten(lightCoast,"base-light")},
-                              {0x0200 + slot, {"remove-all-except", self.utils.colorsFor(water)},
-                                              {"chroma-key", {"slot", 0x0300 + (0xD0 - slot)}, self.utils.colorsFor(water)},
-                                              {"remove", self.utils.colorsFor(lightCoast, "base-light", "transition-dark")},
-                                              self.utils.Lighten(lightCoast, "base-dark")}
-                    }
-    if groundType == "solid-ground" then
-      layers[#layers + 1] = {{"slot", 0x0500 + slot}, {"remove", self.utils.colorsFor(lightCoast,"base")}, self.utils.Dim(lightGrass, "base")}
-    end
-
-    return layers
-  end
-
-  local tilesetGenerator = require("tilesetGenerator")
-
-  tilesetGenerator.seed = {
-
-    lowgroundWeakGround             = "dark-coast",
-    lowgroundSolidGround            = "dark-grass",
-    highgroundWeakGround            = "highground-coast",
-    highgroundSolidGround           = "highground-grass",
-
-    getRampSrcSlot                  = getRampSrcSlot,
-    getRampSrc                      = getRampSrc,
-
-    generators                      = generators,
-
-    dim                             = -1,
-    lighten                         =  1
-  }
-
-  tilesetGenerator:ExtendTileset()
+if IsHighgroundsEnabled() then
+  Load("scripts/tilesets/wargus/extended.lua")
+  ExtendTileset(extendedTilesetSeed)
 end
 
 BuildTilesetTables()
