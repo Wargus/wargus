@@ -23,8 +23,8 @@ local function RunEditorNewMapMenu()
 
   menu:addLabel(tilesetLabel, offx + 208, offy + 104 + 32 * 3, Fonts["game"], false)
 
-  Load("scripts/tilesets/tilesets.lua")
-  local dropDownTileset = menu:addDropDown(tilesets:getLabels(IsHighgroundsEnabled(), false),
+  Load("scripts/tilesets/tilesetsList.lua") -- Load tilesets helper
+  local dropDownTileset = menu:addDropDown(Tilesets:getLabels(IsHighgroundsEnabled(), false),
                                            offx + 208 + CFont:Get("game"):Width(tilesetLabel) + 10, offy + 104 + 32 * 3,
                                            function() end)
 
@@ -36,7 +36,7 @@ local function RunEditorNewMapMenu()
 
   highgroundsCheckBox:setActionCallback(
     function ()
-      tilesets:dropDown_switchSets(dropDownTileset, highgroundsCheckBox:isMarked(), false)
+      Tilesets:dropDown_switchSets(dropDownTileset, highgroundsCheckBox:isMarked(), false)
     end
   )
     
@@ -50,8 +50,8 @@ local function RunEditorNewMapMenu()
       Map.Info.Postamble    = ""
       MapEnableHighgrounds(highgroundsCheckBox:isMarked())
 
-      local tileset = tilesets:getTilesetByLabel(dropDownTileset:getSelectedItem())
-      LoadTileModels(tilesets:getScriptFor(tileset))
+      local tileset = Tilesets:getTilesetByLabel(dropDownTileset:getSelectedItem())
+      LoadTileModels(Tilesets:getScriptFor(tileset))
 
       menu:stop()
       StartEditor(nil)

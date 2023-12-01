@@ -1319,7 +1319,7 @@ function RunSinglePlayerGameMenu()
 			GameSettings.Resources    = rescount:getSelected() - 1
 			GameSettings.RevealMap    = reveal_type:getSelected()
 			GameSettings.NumUnits     = numunits:getSelected() - 1
-			GameSettings.Tileset      = tilesets:getTilesetByLabel(tilesetdd:getSelectedItem())
+			GameSettings.Tileset      = Tilesets:getTilesetByLabel(tilesetdd:getSelectedItem())
 			GameSettings.NetGameType  = 1
 			Load(mapname)
 			RunMap(mapname)
@@ -1537,10 +1537,9 @@ function RunSinglePlayerGameMenu()
 		difficulty:setSelected(sk_difficulty)
 	end
 
-  Load("scripts/tilesets/tilesets.lua")
+  Load("scripts/tilesets/tilesetsList.lua") -- Load tilesets helper
   menu:addLabel(_("~<Tileset:~>"), offx + 450, offy + 234, Fonts["game"], false)
-  
-  tilesetdd = menu:addDropDown(tilesets:getLabels(mapinfo.highgrounds, true), offx + 450, offy + 250,
+  tilesetdd = menu:addDropDown(Tilesets:getLabels(mapinfo.highgrounds, true), offx + 450, offy + 250,
     function(dd) end)
   tilesetdd:setSize(170, 20)
   tilesetdd:setActionCallback(
@@ -1570,7 +1569,7 @@ function RunSinglePlayerGameMenu()
       " (" .. mapinfo.w .. " x " .. mapinfo.h .. ")")
     descriptionl:adjustSize()
 
-    tilesets:dropDown_switchSets(tilesetdd, mapinfo.highgrounds, true)
+    Tilesets:dropDown_switchSets(tilesetdd, mapinfo.highgrounds, true)
     
     PlayersRedraw()
   end

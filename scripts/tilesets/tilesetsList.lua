@@ -25,7 +25,7 @@
 --      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 
-tilesets = {
+Tilesets = {
             ["classic"]     = { "summer", "swamp", "wasteland", "winter"},
             ["highgrounds"] = { "summer", "wasteland", "winter"}, -- swamp has no highground tilesets
             labels      = {
@@ -40,10 +40,10 @@ tilesets = {
                         ["swamp"]     = "scripts/tilesets/swamp.lua",
                         ["wasteland"] = "scripts/tilesets/wasteland.lua",
                         ["winter"]    = "scripts/tilesets/winter.lua"
-            }
+           }
 }
 
-function tilesets:getLabels(isHighgroundsEnabled, isMapDefaultAllowed)
+function Tilesets:getLabels(isHighgroundsEnabled, isMapDefaultAllowed)
 
   local currentList = self["classic"]
   if isHighgroundsEnabled then
@@ -61,7 +61,7 @@ function tilesets:getLabels(isHighgroundsEnabled, isMapDefaultAllowed)
   return result
 end
 
-function tilesets:getTilesetByLabel(label)
+function Tilesets:getTilesetByLabel(label)
   for k,v in pairs(self.labels) do
     if v == label then
       return k
@@ -70,12 +70,12 @@ function tilesets:getTilesetByLabel(label)
   return "default"
 end
 
-function tilesets:getScriptFor(tileset)
+function Tilesets:getScriptFor(tileset)
   return self.scripts[tileset]
 end
 
 -- Tileset's dropDownList helper
-function tilesets:dropDown_switchSets(dropDownList, isHighgroundsEnabled, isMapDefaultAllowed)
+function Tilesets:dropDown_switchSets(dropDownList, isHighgroundsEnabled, isMapDefaultAllowed)
   local prev = dropDownList:getSelectedItem()
   dropDownList:setList(self:getLabels(isHighgroundsEnabled, isMapDefaultAllowed))
   dropDownList:setSelectedItem(prev)
