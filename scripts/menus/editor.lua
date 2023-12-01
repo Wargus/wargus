@@ -23,8 +23,7 @@ local function RunEditorNewMapMenu()
 
   menu:addLabel(tilesetLabel, offx + 208, offy + 104 + 32 * 3, Fonts["game"], false)
 
-  local tilesets = require("tilesets")
-
+  Load("scripts/tilesets/tilesets.lua")
   local dropDownTileset = menu:addDropDown(tilesets:getLabels(IsHighgroundsEnabled(), false),
                                            offx + 208 + CFont:Get("game"):Width(tilesetLabel) + 10, offy + 104 + 32 * 3,
                                            function() end)

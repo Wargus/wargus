@@ -50,9 +50,6 @@ if (_VERSION == "Lua 5.2" or _VERSION == "Lua 5.3") then
 
 end
 
--- Specify where to find the modules
-package.path = package.path .. ";"..LibraryPath().."/scripts/modules/?.lua;"
-
 -------------------------------------------------------------------------------
 --  Version
 -------------------------------------------------------------------------------

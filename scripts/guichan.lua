@@ -1137,7 +1137,6 @@ function RunSinglePlayerGameMenu()
   local mapl
   local descriptionl
   local tilesetdd
-  local tilesets = require("tilesets")
   
   -- Setup variables
   local nameslist = {"1:","2:","3:","4:","5:","6:","7:","8:","9:","10:","11:","12:","13:","14:","15:"}
@@ -1538,7 +1537,9 @@ function RunSinglePlayerGameMenu()
 		difficulty:setSelected(sk_difficulty)
 	end
 
+  Load("scripts/tilesets/tilesets.lua")
   menu:addLabel(_("~<Tileset:~>"), offx + 450, offy + 234, Fonts["game"], false)
+  
   tilesetdd = menu:addDropDown(tilesets:getLabels(mapinfo.highgrounds, true), offx + 450, offy + 250,
     function(dd) end)
   tilesetdd:setSize(170, 20)
