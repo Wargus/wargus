@@ -219,19 +219,17 @@ filled  clear
 
 function ExtendTileset(seed)
   
-  local lowgroundWeakGround = seed.lowgroundWeakGround
-  local lowgroundSolidGround = seed.lowgroundSolidGround
-  local highgroundWeakGround = seed.highgroundWeakGround
+  local lowgroundWeakGround   = seed.lowgroundWeakGround
+  local lowgroundSolidGround  = seed.lowgroundSolidGround
+  local highgroundWeakGround  = seed.highgroundWeakGround
   local highgroundSolidGround = seed.highgroundSolidGround
+  local getRampSrcSlot        = seed.getRampSrcSlot
+  local getRampSrc            = seed.getRampSrc
+  local generators            = seed.generators
+  local cliffGen              = generators.cliffs
 
-  local getRampSrcSlot = seed.getRampSrcSlot
-  local getRampSrc = seed.getRampSrc
-
-  local generators = seed.generators
-  local cliffGen = generators.cliffs
-
-  local dim = seed.dim
-  local lighten = seed.lighten
+  local dim     = -1
+  local lighten = 1
 
   local function tableToString(toPrint) -- used for testing purposes
 

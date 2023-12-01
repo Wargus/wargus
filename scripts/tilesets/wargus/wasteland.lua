@@ -314,216 +314,210 @@ local slotIdx = {
   ["forest-lightGround"]      = 0x0700
 }
 
-local lightGround = {
-  ["shadows"]         = {{17, 21}},
-  ["decorations"]     = {{52, 63}, {73, 78}},
-  ["base"]            = {{22, 27}},
-  ["all"]             = {"base", "decorations", "shadows"},
-  ["exceptions"]      = {{nil, 17}, {27, nil}, {63, nil}}
-}
-
-local lightDirt = {
-  ["shadows"]             = {80, {86, 88}},
-  ["decorations"]         = {{74, 77}},
-  ["base"]                = {{64, 70}, {81, 85}},
-  ["all"]                 = {"base", "shadows", "decorations"},
-  ["light-shadows"]       = {80},
-  ["exceptions"]          = {{64, 64}, {65, 65}, {66, 66}, {67, 67}, {68, 68}, {69, 69}, {70, 70}, {85, nil}, {86, 80}, {87, 86}}
-}
-
-local water = {
-  ["base"]                   = {{32, 37}},
-  ["cycling"]                = {{38, 47}},
-  ["cycling-coast-boundary"] = {{64, 70}},
-  ["all"]                    = {"base", "cycling"}
-}
-
-
-local getRampSrcSlot = function(slotType)
-  if slotType == "for-edges" then 
-    return 0x0500 -- light-dirt and light-ground boundary
-  else -- solid
-    return 0x0050 -- light-ground
-  end
-end
-
-local getRampSrc = function()
-  return lightGround
-end
-
-local generators = {}
-
-generators.cliffs = {
-  colors = {
-    ["remove-toCleanRocks"]         = lightDirt["base"],
-    ["shadows-onRocks"]             = lightDirt["light-shadows"],
-    ["convertable-shadows-onRocks"] = { -- shadows which could be converted from light weak ground to dark solid ground. Possible values: {range} or color
-                                        { ["from"] = 80, ["to"] = 19 }
-                                      },
-    ["exceptions"]                  = lightDirt["exceptions"]
-  },
-  baseTilesFor = {
-    ["weak-ground"] =  {
-                        [0x00] = {0x0042, 0x0044, 0x0045, 0x0046, 0x0047},
-                        [0x10] = {0x0042, 0x0044, 0x0045, 0x0046},
-                        [0x20] = {0x0040, 0x0041, 0x0042},
-                        [0x30] = {0x0044, 0x0045, 0x0046},
-                        [0x40] = {0x0040, 0x0041, 0x0042},
-                        [0x60] = {0x0040, 0x0041},
-                        [0x70] = {0x0044, 0x0045, 0x0046},
-                        [0x90] = {0x0040, 0x0041, 0x0042},
-                        [0xA0] = {0x0040, 0x0041},
-                        [0xB0] = {0x0044, 0x0045, 0x0046},
-                        [0xC0] = {0x0040, 0x0041},
-                        [0xD0] = {0x0041, 0x0042}
-                       },
-    ["solid-ground"] = {
-                        [0x00] = {0x0060, 0x0061, 0x0062, 0x0067, 0x0069, 0x006A},
-                        [0x10] = {0x0060, 0x0061, 0x0067, 0x0067, 0x0069, 0x006A},
-                        [0x20] = {0x0060, 0x0061, 0x0062, 0x006A},
-                        [0x30] = {0x0064, 0x0067, 0x0068, 0x0069, 0x006A, 0x006C},
-                        [0x40] = {0x0060, 0x0061, 0x0062},
-                        [0x60] = {0x0060, 0x0061},
-                        [0x70] = {0x0064, 0x0067, 0x0068, 0x0069, 0x006A, 0x006C},
-                        [0x90] = {0x0060, 0x0061, 0x0062},
-                        [0xA0] = {0x0061, 0x0062},
-                        [0xB0] = {0x0064, 0x0067, 0x0068, 0x0069, 0x006A, 0x006C},
-                        [0xC0] = {0x0060, 0x0061, 0x0062},
-                        [0xD0] = {0x0060, 0x0061, 0x0062}
-                       },
-    ["cliff"]         = nil,
-    ["cliff-special"] = { -- tile index in the source image
-                          ["singleRockUp"]  = 158,
-                          ["singleRockMid"] = 159,
-                          ["singleRockBot"] = 160,
-                          ["removedRock"]   = 163
-                        },
-    ["cliff-edges-exceptions"] = {
-                                  [0x0200] =  {
-                                              },
-                                  [0x0500] =  {
-                                              }
-                                 }
-  },
-  cleanRocks = nil -- local function to clean rocks (if present)
-}
-
-  -- functions --
-generators.utils = { -- pointers to utility functions from extended.lua
-  srcTilesLst = nil,
-  colorsFor   = nil, -- parser for ground colors. Declared in the extended.lua
-  Lighten     = nil,
-  Dim         = nil
-}
-
-function generators:makeHighGroundEdge(groundType, slot) -- local function to make HG edge tiles (if present)
-  local cBottom = 1
-  local cTop    = 2
-  local layers = {}
-
-  -- solid-ground layer (also basement for weak ground)
-  layers[cBottom] = {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}}
-
-  if groundType == "weak-ground" then
-    layers[cTop] = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
-  end
-
-  return unpack(layers)
-end
-
-function generators:makeRampEdge()
-  return  {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}, self.utils.Lighten(lightGround, "base")
-end
-
-function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- local function to make transition from ramp to HG tiles (if present)
-
-  local cBottom = 1
-  local currLayer = cBottom
-
-  local layers = {{}} -- there is a single (bottom) layer
-  
-  if isMask == "edgeMask" then
-   
-    layers[cBottom] = {self.utils.srcTilesLst(0x0500, edgeSlot), {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}}
-    currLayer = currLayer + 1
-
-    if groundType == "weak-ground" then
-      layers[currLayer] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)}}
-      currLayer = currLayer + 1
-    end
-
-    local convertEdges = {
-      [0x20 .. 0x00] = 0x10,
-      [0x20 .. 0x10] = 0x00,
-      [0x60 .. 0x20] = 0x30,
-      [0x60 .. 0x30] = 0x20,
-      [0xA0 .. 0x20] = 0x70,
-      [0xA0 .. 0x70] = 0x20,
-      [0xB0 .. 0x30] = 0x70,
-      [0xB0 .. 0x70] = 0x30,
-      [0xC0 .. 0x00] = 0xB0,
-      [0xC0 .. 0x70] = 0x40,
-      [0xD0 .. 0x30] = 0x90,
-      [0xD0 .. 0x10] = 0xB0
-    }
-    edgeSlot = 0xD0 - convertEdges[slot .. edgeSlot]
-
-    local colorsToRemove = {
-      ["weak-ground"]  = {"base"},
-      ["solid-ground"] = {"base", "shadows"}
-    }
-
-    layers[currLayer] = {{"slot", 0x0500 + edgeSlot}, {"remove", self.utils.colorsFor(lightDirt, unpack(colorsToRemove[groundType]))},
-                                                      self.utils.Lighten(lightGround, "base","shadows")}
-    return unpack(layers)
-
-  else -- without edge
-    if groundType == "weak-ground" then
-      return {{"slot", 0x0500 + (0xD0 - slot)}, self.utils.Lighten(lightGround, "base")}
-    else -- "solid-ground"
-      return {"layers", {"slot", 0x0050},
-                        {{"slot", 0x0500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")},
-                                                            self.utils.Lighten(lightGround, "base")}}
-    end
-  end
-end
-
-function generators:makeRampToLowGround(groundType, slot) -- local function to make transition from ramp to LG tiles (if present)
-
-  local lowground = {
-    ["weak-ground"]   = {
-                          ["src"]             = {"slot", 0x0040},
-                          ["colorsToRemove"]  = {"base"}
-                        },
-    ["solid-ground"]  = {
-                          ["src"]             = {"slot", 0x0060},
-                          ["colorsToRemove"]  = {"base", "shadows"}
-                        }
+if IsHighgroundsEnabled() then
+  local lightGround = {
+    ["shadows"]         = {{17, 21}},
+    ["decorations"]     = {{52, 63}, {73, 78}},
+    ["base"]            = {{22, 27}},
+    ["all"]             = {"base", "decorations", "shadows"},
+    ["exceptions"]      = {{nil, 17}, {27, nil}, {63, nil}}
   }
 
-  return {"layers", lowground[groundType].src,
-                    {{"slot", 0x0500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightDirt, unpack(lowground[groundType].colorsToRemove))},
-                                                        self.utils.Lighten(lightGround, "base", "shadows")}}
+  local lightDirt = {
+    ["shadows"]             = {80, {86, 88}},
+    ["decorations"]         = {{74, 77}},
+    ["base"]                = {{64, 70}, {81, 85}},
+    ["all"]                 = {"base", "shadows", "decorations"},
+    ["light-shadows"]       = {80},
+    ["exceptions"]          = {{64, 64}, {65, 65}, {66, 66}, {67, 67}, {68, 68}, {69, 69}, {70, 70}, {85, nil}, {86, 80}, {87, 86}}
+  }
 
-end
+  local water = {
+    ["base"]                   = {{32, 37}},
+    ["cycling"]                = {{38, 47}},
+    ["cycling-coast-boundary"] = {{64, 70}},
+    ["all"]                    = {"base", "cycling"}
+  }
 
-local extendedTilesetSeed = {
 
-  lowgroundWeakGround             = "dark-dirt",
-  lowgroundSolidGround            = "dark-ground",
-  highgroundWeakGround            = "highground-dirt",
-  highgroundSolidGround           = "highground-ground",
+  local getRampSrcSlot = function(slotType)
+    if slotType == "for-edges" then 
+      return 0x0500 -- light-dirt and light-ground boundary
+    else -- solid
+      return 0x0050 -- light-ground
+    end
+  end
 
-  getRampSrcSlot                  = getRampSrcSlot,
-  getRampSrc                      = getRampSrc,
+  local getRampSrc = function()
+    return lightGround
+  end
 
-  generators                      = generators,
+  local generators = {}
 
-  dim                             = -1,
-  lighten                         =  1
-}
+  generators.cliffs = {
+    colors = {
+      ["remove-toCleanRocks"]         = lightDirt["base"],
+      ["shadows-onRocks"]             = lightDirt["light-shadows"],
+      ["convertable-shadows-onRocks"] = { -- shadows which could be converted from light weak ground to dark solid ground. Possible values: {range} or color
+                                          { ["from"] = 80, ["to"] = 19 }
+                                        },
+      ["exceptions"]                  = lightDirt["exceptions"]
+    },
+    baseTilesFor = {
+      ["weak-ground"] =  {
+                          [0x00] = {0x0042, 0x0044, 0x0045, 0x0046, 0x0047},
+                          [0x10] = {0x0042, 0x0044, 0x0045, 0x0046},
+                          [0x20] = {0x0040, 0x0041, 0x0042},
+                          [0x30] = {0x0044, 0x0045, 0x0046},
+                          [0x40] = {0x0040, 0x0041, 0x0042},
+                          [0x60] = {0x0040, 0x0041},
+                          [0x70] = {0x0044, 0x0045, 0x0046},
+                          [0x90] = {0x0040, 0x0041, 0x0042},
+                          [0xA0] = {0x0040, 0x0041},
+                          [0xB0] = {0x0044, 0x0045, 0x0046},
+                          [0xC0] = {0x0040, 0x0041},
+                          [0xD0] = {0x0041, 0x0042}
+                        },
+      ["solid-ground"] = {
+                          [0x00] = {0x0060, 0x0061, 0x0062, 0x0067, 0x0069, 0x006A},
+                          [0x10] = {0x0060, 0x0061, 0x0067, 0x0067, 0x0069, 0x006A},
+                          [0x20] = {0x0060, 0x0061, 0x0062, 0x006A},
+                          [0x30] = {0x0064, 0x0067, 0x0068, 0x0069, 0x006A, 0x006C},
+                          [0x40] = {0x0060, 0x0061, 0x0062},
+                          [0x60] = {0x0060, 0x0061},
+                          [0x70] = {0x0064, 0x0067, 0x0068, 0x0069, 0x006A, 0x006C},
+                          [0x90] = {0x0060, 0x0061, 0x0062},
+                          [0xA0] = {0x0061, 0x0062},
+                          [0xB0] = {0x0064, 0x0067, 0x0068, 0x0069, 0x006A, 0x006C},
+                          [0xC0] = {0x0060, 0x0061, 0x0062},
+                          [0xD0] = {0x0060, 0x0061, 0x0062}
+                        },
+      ["cliff"]         = nil,
+      ["cliff-special"] = { -- tile index in the source image
+                            ["singleRockUp"]  = 158,
+                            ["singleRockMid"] = 159,
+                            ["singleRockBot"] = 160,
+                            ["removedRock"]   = 163
+                          },
+      ["cliff-edges-exceptions"] = {
+                                    [0x0200] =  {
+                                                },
+                                    [0x0500] =  {
+                                                }
+                                  }
+    },
+    cleanRocks = nil -- local function to clean rocks (if present)
+  }
 
-if IsHighgroundsEnabled() then
+    -- functions --
+  generators.utils = { -- pointers to utility functions from extended.lua
+    srcTilesLst = nil,
+    colorsFor   = nil, -- parser for ground colors. Declared in the extended.lua
+    Lighten     = nil,
+    Dim         = nil
+  }
+
+  function generators:makeHighGroundEdge(groundType, slot) -- local function to make HG edge tiles (if present)
+    local cBottom = 1
+    local cTop    = 2
+    local layers = {}
+
+    -- solid-ground layer (also basement for weak ground)
+    layers[cBottom] = {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}}
+
+    if groundType == "weak-ground" then
+      layers[cTop] = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
+    end
+
+    return unpack(layers)
+  end
+
+  function generators:makeRampEdge()
+    return  {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}, self.utils.Lighten(lightGround, "base")
+  end
+
+  function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- local function to make transition from ramp to HG tiles (if present)
+
+    local cBottom = 1
+    local currLayer = cBottom
+
+    local layers = {{}} -- there is a single (bottom) layer
+    
+    if isMask == "edgeMask" then
+    
+      layers[cBottom] = {self.utils.srcTilesLst(0x0500, edgeSlot), {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}}
+      currLayer = currLayer + 1
+
+      if groundType == "weak-ground" then
+        layers[currLayer] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)}}
+        currLayer = currLayer + 1
+      end
+
+      local convertEdges = {
+        [0x20 .. 0x00] = 0x10,
+        [0x20 .. 0x10] = 0x00,
+        [0x60 .. 0x20] = 0x30,
+        [0x60 .. 0x30] = 0x20,
+        [0xA0 .. 0x20] = 0x70,
+        [0xA0 .. 0x70] = 0x20,
+        [0xB0 .. 0x30] = 0x70,
+        [0xB0 .. 0x70] = 0x30,
+        [0xC0 .. 0x00] = 0xB0,
+        [0xC0 .. 0x70] = 0x40,
+        [0xD0 .. 0x30] = 0x90,
+        [0xD0 .. 0x10] = 0xB0
+      }
+      edgeSlot = 0xD0 - convertEdges[slot .. edgeSlot]
+
+      local colorsToRemove = {
+        ["weak-ground"]  = {"base"},
+        ["solid-ground"] = {"base", "shadows"}
+      }
+
+      layers[currLayer] = {{"slot", 0x0500 + edgeSlot}, {"remove", self.utils.colorsFor(lightDirt, unpack(colorsToRemove[groundType]))},
+                                                         self.utils.Lighten(lightGround, "base","shadows")}
+      return unpack(layers)
+
+    else -- without edge
+      if groundType == "weak-ground" then
+        return {{"slot", 0x0500 + (0xD0 - slot)}, self.utils.Lighten(lightGround, "base")}
+      else -- "solid-ground"
+        return {"layers", {"slot", 0x0050},
+                          {{"slot", 0x0500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")},
+                                                              self.utils.Lighten(lightGround, "base")}}
+      end
+    end
+  end
+
+  function generators:makeRampToLowGround(groundType, slot) -- local function to make transition from ramp to LG tiles (if present)
+
+    local lowground = {
+      ["weak-ground"]   = {
+                            ["src"]             = {"slot", 0x0040},
+                            ["colorsToRemove"]  = {"base"}
+                          },
+      ["solid-ground"]  = {
+                            ["src"]             = {"slot", 0x0060},
+                            ["colorsToRemove"]  = {"base", "shadows"}
+                          }
+    }
+
+    return {"layers", lowground[groundType].src,
+                      {{"slot", 0x0500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightDirt, unpack(lowground[groundType].colorsToRemove))},
+                                                          self.utils.Lighten(lightGround, "base", "shadows")}}
+  end
+
+  local extendedTilesetSeed = {
+
+    lowgroundWeakGround   = "dark-dirt",
+    lowgroundSolidGround  = "dark-ground",
+    highgroundWeakGround  = "highground-dirt",
+    highgroundSolidGround = "highground-ground",
+    getRampSrcSlot        = getRampSrcSlot,
+    getRampSrc            = getRampSrc,
+    generators            = generators,
+  }
+
   Load("scripts/tilesets/wargus/extended.lua")
   ExtendTileset(extendedTilesetSeed)
 end
