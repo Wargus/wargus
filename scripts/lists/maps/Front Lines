@@ -264,9 +264,8 @@ function NewRunSinglePlayerGameMenu()
     end)
   menu:addFullButton(_("~!Start Game"), "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
-      local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"};
       GameSettings.Resources = resources:getSelected()
-      GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
+      GameSettings.Tileset = tilesets:getTilesetByLabel(tilesetdd:getSelectedItem())
       RunMap(mapname, nil, wc2.preferences.FogOfWar, 0)
       menu:stop()
     end)

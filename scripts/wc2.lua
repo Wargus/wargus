@@ -433,15 +433,18 @@ if OldLoadTileModels == nil then
 	OldLoadTileModels = LoadTileModels
 end
 
+Load("scripts/tilesets/tilesetsList.lua") -- Load tilesets helper
+
 function LoadTileModels(tileset)
   DefineCustomMapRules()
   if (GameCycle ~= 0) then
     return OldLoadTileModels(tileset)
   end
-  if (GameSettings.Tileset == nil) then
+  if (GameSettings.Tileset == nil 
+  	  or GameSettings.Tileset == "default") then
     return OldLoadTileModels(tileset)
   end
-  OldLoadTileModels("scripts/tilesets/" .. GameSettings.Tileset)
+  OldLoadTileModels(Tilesets:getScriptFor(GameSettings.Tileset))
 end
 
 -- Called by Stratagus when unloading a mod.

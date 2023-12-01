@@ -666,24 +666,25 @@ end
     return b
   end
   
-  function menu:addImageCheckBox(caption, x, y, offi, offi2, oni, oni2, callback) --my new function
-	local b = ImageCheckBox(caption)
+  function menu:addImageCheckBox(caption, x, y, offi, offi2, oni, oni2, callback, initState) --my new function
+    local b = ImageCheckBox(caption)
     b:setBaseColor(clear)
     b:setForegroundColor(clear)
     b:setBackgroundColor(dark)
-	-- new functions to display checkbox graphics
-	if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
-        b:setUncheckedNormalImage(g_hcheckbox_off)
-		b:setUncheckedPressedImage(g_hcheckbox_off2)
-		b:setCheckedNormalImage(g_hcheckbox_on)
-		b:setCheckedPressedImage(g_hcheckbox_on2)
+    -- new functions to display checkbox graphics
+    if (GetPlayerData(GetThisPlayer(), "RaceName") == "human") then
+      b:setUncheckedNormalImage(g_hcheckbox_off)
+      b:setUncheckedPressedImage(g_hcheckbox_off2)
+      b:setCheckedNormalImage(g_hcheckbox_on)
+      b:setCheckedPressedImage(g_hcheckbox_on2)
     else
-		b:setUncheckedNormalImage(g_ocheckbox_off)
-		b:setUncheckedPressedImage(g_ocheckbox_off2)
-		b:setCheckedNormalImage(g_ocheckbox_on)
-		b:setCheckedPressedImage(g_ocheckbox_on2)
+      b:setUncheckedNormalImage(g_ocheckbox_off)
+      b:setUncheckedPressedImage(g_ocheckbox_off2)
+      b:setCheckedNormalImage(g_ocheckbox_on)
+      b:setCheckedPressedImage(g_ocheckbox_on2)
     end
-	if (callback ~= nil) then b:setActionCallback(function(s) callback(b, s) end) end
+    if (callback ~= nil) then b:setActionCallback(function(s) callback(b, s) end) end
+    if initState then b:setMarked(initState) end
     b:setFont(Fonts["game"])
     self:add(b, x, y)
     return b
@@ -867,7 +868,7 @@ function InitGameSettings()
 	GameSettings.GameType = -1
 	GameSettings.NoFogOfWar = false
 	GameSettings.RevealMap = 0
-	GameSettings.Tileset = nil
+	GameSettings.Tileset = "default"
 	IsSkirmishClassic = false
   Load("scripts/fov.lua") -- Reload Default FOV settings because some maps|tilesets could change it
   SetFogOfWarType(wc2.preferences.FogOfWarType) -- Reload default FOG type because changing fov type may cause to change it too
@@ -965,7 +966,8 @@ mapinfo = {
   nplayers = 1,
   w = 32,
   h = 32,
-  id = 0
+  id = 0,
+  highgrounds = false
 }
 
 function GetMapInfo(mapname)
@@ -1008,7 +1010,7 @@ function GetMapInfo(mapname)
     end
   end
 
-  function PresentMap(description, nplayers, w, h, id)
+  function PresentMap(description, nplayers, w, h, id, isHighgroundsEnabled)
     mapinfo.description = description
     -- nplayers includes rescue-passive and rescue-active
     -- calculate the real nplayers in DefinePlayerTypes
@@ -1016,6 +1018,7 @@ function GetMapInfo(mapname)
     mapinfo.w = w
     mapinfo.h = h
     mapinfo.id = id
+    mapinfo.highgrounds = isHighgroundsEnabled or false -- isHighgroundsEnabled could be nil so the "or false" construction
   end
 
   Load(mapname)
@@ -1079,7 +1082,7 @@ function RunSinglePlayerTypeMenu()
 
   menu:addLabel(wargus.Name .. " V" .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
   menu:addLabel(_("~<Single Player~>"), offx + 320, offy + 212 - 25)
-  local buttonNewMap =
+
   menu:addFullButton(_("~!Standard Game"), "s", offx + 208, offy + 104 + 36*3,
     function() RunSinglePlayerGameModeMenu(); menu:stop(1) end)
   menu:addFullButton(_("~!Campaign Game"), "c", offx + 208, offy + 104 + 36*4,
@@ -1144,7 +1147,6 @@ function RunSinglePlayerGameMenu()
   local playerlist = {_("Player"),_("Computer"),_("Rescue-passive"),_("Rescue-active"),_("None")}
   local reveal_list = {_("Hidden"),_("Known"),_("Revealed")}
   local game_types = {_("Use map settings"), _("Melee"), _("Free for all"), _("Top vs bottom"), _("Left vs right"), _("Man vs Machine")}
-  local tileset_names = {_("Map Default"), _("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}
   local numunit_types = {_("Map Default"), _("One Peasant Only")}
   local difficulty_types = {_("Easy"), _("Normal"), _("Hard"),_("Nightmare"),_("Hell")}
   local resource_types = {_("Map Default"), _("Low"), _("Medium"), _("High"),_("Quick Start")}
@@ -1260,7 +1262,6 @@ function RunSinglePlayerGameMenu()
     end)
   menu:addFullButton(_("~!Start Game"), "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
-      local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"}
 	  InitGameSettings()
 		local errorlevel = CheckCorrect()
 		if errorlevel==1 then
@@ -1313,13 +1314,13 @@ function RunSinglePlayerGameMenu()
 					GameSettings.Presets[i].AIScript = AIStrategyTypes[paitype[i+1]:getSelected() + 1]
 				end
 			end
-			GameSettings.Difficulty = difficulty:getSelected()
-			GameSettings.GameType = game_type:getSelected() - 1
-			GameSettings.Resources = rescount:getSelected() - 1
-			GameSettings.RevealMap = reveal_type:getSelected()
-			GameSettings.NumUnits = numunits:getSelected() - 1
-			GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
-			GameSettings.NetGameType = 1
+			GameSettings.Difficulty   = difficulty:getSelected()
+			GameSettings.GameType     = game_type:getSelected() - 1
+			GameSettings.Resources    = rescount:getSelected() - 1
+			GameSettings.RevealMap    = reveal_type:getSelected()
+			GameSettings.NumUnits     = numunits:getSelected() - 1
+			GameSettings.Tileset      = Tilesets:getTilesetByLabel(tilesetdd:getSelectedItem())
+			GameSettings.NetGameType  = 1
 			Load(mapname)
 			RunMap(mapname)
 			menu:stop()
@@ -1536,16 +1537,17 @@ function RunSinglePlayerGameMenu()
 		difficulty:setSelected(sk_difficulty)
 	end
 
+  Load("scripts/tilesets/tilesetsList.lua") -- Load tilesets helper
   menu:addLabel(_("~<Tileset:~>"), offx + 450, offy + 234, Fonts["game"], false)
-  tilesetdd = menu:addDropDown(tileset_names, offx + 450, offy + 250,
+  tilesetdd = menu:addDropDown(Tilesets:getLabels(mapinfo.highgrounds, true), offx + 450, offy + 250,
     function(dd) end)
   tilesetdd:setSize(170, 20)
   tilesetdd:setActionCallback(
-	function()
-		sk_tileset = tilesetdd:getSelected()
-	end)
-	if sk_tileset~=-1 then
-		tilesetdd:setSelected(sk_tileset)
+	  function()
+		  sk_tileset = tilesetdd:getSelectedItem()
+	  end)
+	if sk_tileset ~= -1 then
+		tilesetdd:setSelectedItem(sk_tileset)
 	end
   menu:addLabel(_("~<Units:~>"), offx + 450, offy + 274, Fonts["game"], false)
   numunits = menu:addDropDown(numunit_types, offx + 450, offy + 290,
@@ -1567,6 +1569,8 @@ function RunSinglePlayerGameMenu()
       " (" .. mapinfo.w .. " x " .. mapinfo.h .. ")")
     descriptionl:adjustSize()
 
+    Tilesets:dropDown_switchSets(tilesetdd, mapinfo.highgrounds, true)
+    
     PlayersRedraw()
   end
 
@@ -1588,10 +1592,6 @@ function BuildProgramStartMenu()
   local offx = (Video.Width - 640) / 2
   local offy = (Video.Height - 480) / 2
   
-  --menu:addLabel(wargus.Name .. " V" .. wargus.Version .. "  " .. wargus.Homepage, offx + 320, offy + 390 + 18*0)
-  --menu:addLabel("Stratagus V" .. GetStratagusVersion() .. "  " .. GetStratagusHomepage(), offx + 320, offy + 390 + 18*1)
-  --menu:addLabel(wargus.Copyright, offx + 320, offy + 390 + 18*4)
-
   menu:addLabel(wargus.Name .. _(" V") .. wargus.Version .. ", " .. wargus.Copyright, offx + 320, (Video.Height - 90) + 18*4, Fonts["small"])
   
   menu:addFullButton(_("~!Single Player Game"), "s", offx + 208, offy + 104 + 36*0,

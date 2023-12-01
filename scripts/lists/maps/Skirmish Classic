@@ -72,14 +72,13 @@ function NewRunSinglePlayerGameMenu()
     end)
   menu:addFullButton(_("~!Start Game"), "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
-      local tilesetFilename = {nil, "summer.lua", "swamp.lua", "wasteland.lua", "winter.lua"};
 
       GameSettings.Presets[0].Race = race:getSelected()
       GameSettings.Resources = resources:getSelected()
       GameSettings.Opponents = opponents:getSelected()
       GameSettings.NumUnits = numunits:getSelected()
       GameSettings.GameType = gametype:getSelected() - 1
-      GameSettings.Tileset = tilesetFilename[tilesetdd:getSelected() + 1]
+      GameSettings.Tileset = tilesets:getTilesetByLabel(tilesetdd:getSelectedItem())
 	    IsSkirmishClassic = true
       RunMap(mapname, nil, wc2.preferences.FogOfWar, 0)
       menu:stop()
@@ -114,8 +113,9 @@ function NewRunSinglePlayerGameMenu()
     function(dd) end)
   gametype:setSize(152, 20)
 
+  Load("scripts/tilesets/tilesetsList.lua") -- Load tilesets helper
   menu:addLabel(_("~<Tileset:~>"), offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
-  tilesetdd = menu:addDropDown({_("Map Default"), _("Summer"), _("Swamp"), _("Wasteland"), _("Winter")}, offx + 640 - 224 - 16, offy + 10 + 300,
+  tilesetdd = menu:addDropDown(tilesets:getLabels(mapinfo.highgrounds, true), offx + 640 - 224 - 16, offy + 10 + 300,
     function(dd) end)
   tilesetdd:setSize(190, 20)
 
