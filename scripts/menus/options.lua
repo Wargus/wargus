@@ -463,6 +463,13 @@ function RunDebugMenu()
          SetEnableMapGrid(showGrid:isMarked())
    end)
 
+   local highlightPassability = menu:addImageCheckBox(_("Show passability"), 200, 10 + 19 * 2,  offi, offi2, oni, oni2, function() end)
+   highlightPassability:setMarked(GetIsPassabilityHighlighted())
+   highlightPassability:setActionCallback(
+      function()
+         SetHighlightPassability(highlightPassability:isMarked())
+   end)
+
    -- Declared here because could be upadated by the fog of war type change
    local fieldOfViewType
 
