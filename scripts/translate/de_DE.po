@@ -1868,7 +1868,7 @@ msgstr "Registrieren"
 #: menus/network.lua:919
 #, fuzzy
 msgid "~!Join Local Game"
-msgstr "~! Lokalen Spiel beitreten"
+msgstr "Lokalen Spiel beitreten (~!J)"
 
 #: menus/network.lua:957
 msgid "Users"
