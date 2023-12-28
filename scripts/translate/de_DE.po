@@ -55,51 +55,51 @@ msgstr "E~!xit"
 
 #: editor.lua:47
 msgid "Human Land Units"
-msgstr "Menschliche Landeinheiten"
+msgstr "Landeinheiten"
 
 #: editor.lua:58
 msgid "Human Sea Units"
-msgstr "Menschliche Meereseinheiten"
+msgstr "Mensch Schiffe"
 
 #: editor.lua:65
 msgid "Human Air Units"
-msgstr "Menschliche Lufteinheiten"
+msgstr "Mensch Flug-Einheiten"
 
 #: editor.lua:69
 msgid "Human Land Buildings"
-msgstr "Menschliche Landgebäude"
+msgstr "Mensch Gebäude"
 
 #: editor.lua:86
 msgid "Human Shore Buildings"
-msgstr "Menschliche Ufergebäude"
+msgstr "Mensch Ufer-Gebäude"
 
 #: editor.lua:92
 msgid "Human Heroes"
-msgstr "Menschliche Helden"
+msgstr "Mensch Helden"
 
 #: editor.lua:103
 msgid "Orc Land Units"
-msgstr "Orc-Landeinheiten"
+msgstr "Orc Einheiten"
 
 #: editor.lua:114
 msgid "Orc Sea Units"
-msgstr "Orc-Meeresinheiten"
+msgstr "Orc Shiffe"
 
 #: editor.lua:121
 msgid "Orc Air Units"
-msgstr "Orc-Lufteinheiten"
+msgstr "Orc Flug-Einheiten"
 
 #: editor.lua:126
 msgid "Orc Land Buildings"
-msgstr "Orc-Landgebäude"
+msgstr "Orc Gebäude"
 
 #: editor.lua:143
 msgid "Orc Shore Buildings"
-msgstr "Orc-Ufergebäude"
+msgstr "Orc Ufer-Gebäude"
 
 #: editor.lua:149
 msgid "Orc Heroes"
-msgstr "Orc-Helden"
+msgstr "Orc Helden"
 
 #: editor.lua:161
 msgid "Neutral Buildings"
@@ -549,7 +549,7 @@ msgstr "S~!tellung Halten"
 
 #: human/buttons.lua:153 orc/buttons.lua:159
 msgid "ATTACK ~!GROUND"
-msgstr "Daueran~!griff"
+msgstr "An~!griff"
 
 #: human/buttons.lua:159 orc/buttons.lua:165
 msgid "~!DEMOLISH"
@@ -606,7 +606,7 @@ msgstr "~!Holz/Gold abbauen"
 #: human/buttons.lua:242 human/buttons.lua:542 orc/buttons.lua:265
 #: orc/buttons.lua:561
 msgid "RETURN WITH ~!GOODS"
-msgstr "~!Güter zurückbringen"
+msgstr "Waren zurückbrin~!gen"
 
 #: human/buttons.lua:249 orc/buttons.lua:272
 msgid "~!BUILD BASIC STRUCTURE"
@@ -630,7 +630,7 @@ msgstr "Rat~!haus bauen"
 
 #: human/buttons.lua:277
 msgid "BUILD ELVEN ~!LUMBER MILL"
-msgstr "E~!lfisches Sägewerk bauen"
+msgstr "E~!lfen Sägewerk bauen"
 
 #: human/buttons.lua:282 orc/buttons.lua:305
 msgid "BUILD BLACK~!SMITH"
@@ -651,7 +651,7 @@ msgstr "Hafen bauen (~!S)"
 
 #: human/buttons.lua:316 orc/buttons.lua:339
 msgid "BUILD ~!FOUNDRY"
-msgstr "~!Giesserei bauen (~!F)"
+msgstr "Giesserei bauen (~!F)"
 
 #: human/buttons.lua:321 orc/buttons.lua:344
 msgid "BUILD ~!REFINERY"
@@ -683,7 +683,7 @@ msgstr "~!Tier ausbilden"
 
 #: human/buttons.lua:366
 msgid "TRAIN ~!PEASANT"
-msgstr "~!Bauer ausbilden"
+msgstr "Arbeiter ausbilden (~!P)"
 
 #: human/buttons.lua:374
 msgid "UPGRADE TO ~!KEEP"
@@ -824,7 +824,7 @@ msgstr "Scharfschützenausbildung (~!R)"
 #: human/buttons.lua:645
 #, fuzzy
 msgid "RANGER ~!SCOUTING (Sight:9)"
-msgstr "RANGER ~! SCOUTING (Sehenswürdigkeit:9)"
+msgstr "RANGER ~! SCOUTING (Sicht:9)"
 
 #: human/buttons.lua:651
 #, fuzzy
@@ -964,7 +964,7 @@ msgstr "Soldat"
 
 #: human/units.lua:65 menus/results.lua:8
 msgid "Peasant"
-msgstr "Bauer"
+msgstr "Arbeiter"
 
 #: human/units.lua:111
 msgid "Minuteman"
@@ -1020,11 +1020,11 @@ msgstr "Öltanker"
 
 #: human/units.lua:551 orc/units.lua:529
 msgid "Transport"
-msgstr "Öffentlicher Nahverkehr"
+msgstr "Transporter"
 
 #: human/units.lua:581
 msgid "Elven Destroyer"
-msgstr "Elfenzerstörer"
+msgstr "Elfen-Zerstörer"
 
 #: human/units.lua:610
 msgid "Battleship"
@@ -1032,11 +1032,11 @@ msgstr "Schlachtschiff"
 
 #: human/units.lua:646
 msgid "Gnomish Submarine"
-msgstr "Gnomisches U-Boot"
+msgstr "U-Boot"
 
 #: human/units.lua:676
 msgid "Gnomish Flying Machine"
-msgstr "Gnomische Flugmaschine"
+msgstr "Flugmaschine"
 
 #: human/units.lua:704
 msgid "Turalyon"
@@ -1088,7 +1088,7 @@ msgstr "Hafen"
 
 #: human/units.lua:1102
 msgid "Elven Lumber Mill"
-msgstr "Elfisches Sägewerk"
+msgstr "Elfen-Sägewerk"
 
 #: human/units.lua:1136 orc/units.lua:1271
 msgid "Foundry"
@@ -1116,7 +1116,7 @@ msgstr "Ölplattform"
 
 #: human/units.lua:1342
 msgid "Keep"
-msgstr "Behalten"
+msgstr "Festung"
 
 #: human/units.lua:1380
 msgid "Castle"
@@ -1138,7 +1138,7 @@ msgstr "Kanonenturm"
 
 #: human/units.lua:1577 orc/units.lua:1682
 msgid "Wall"
-msgstr "Pinnwand"
+msgstr "Wall"
 
 #: menus/campaign.lua:316
 msgid "~<Mission list~>"
@@ -1344,7 +1344,7 @@ msgstr "Aufgeben (~!S)"
 
 #: menus/endscenario.lua:12 menus/endscenario.lua:56
 msgid "~!Quit to Menu"
-msgstr "Ins Menü zurückkehren (~!Q)"
+msgstr "Zun Hauptmenü (~!Q)"
 
 #: menus/endscenario.lua:25 menus/endscenario.lua:39 menus/endscenario.lua:53
 #: menus/endscenario.lua:67
@@ -1469,7 +1469,7 @@ msgstr "- Spiel beenden"
 
 #: menus/help.lua:29
 msgid "- toggle expand map"
-msgstr "- Karte erweitern umschalten"
+msgstr "- Karte erweitern"
 
 #: menus/help.lua:30 menus/help.lua:52 menus/help.lua:53
 msgid "- game menu"
@@ -1868,7 +1868,7 @@ msgstr "Registrieren"
 #: menus/network.lua:919
 #, fuzzy
 msgid "~!Join Local Game"
-msgstr "~! Treten Sie dem lokalen Spiel bei"
+msgstr "~! Lokalen Spiel beitreten"
 
 #: menus/network.lua:957
 msgid "Users"
@@ -1983,7 +1983,7 @@ msgstr "Bestellungen anzeigen"
 #: menus/options.lua:264
 #, fuzzy
 msgid "Mirrored buildings"
-msgstr "Verspiegelte Gebäude"
+msgstr "Gespiegelte Gebäude"
 
 #: menus/options.lua:272
 #, fuzzy
@@ -2441,7 +2441,7 @@ msgstr "Neutral"
 #: menus/results.lua:207
 #, fuzzy
 msgid "Buildings:"
-msgstr "Menschliche Landgebäude"
+msgstr "Gebäude"
 
 #: menus/results.lua:210
 #, fuzzy
@@ -2536,7 +2536,7 @@ msgstr "~! EILE"
 #: orc/buttons.lua:230
 #, fuzzy
 msgid "~!RAISE DEAD"
-msgstr "~! TOTE AUFERWECKEN"
+msgstr "~! TOTE ERWECKEN"
 
 #: orc/buttons.lua:236
 #, fuzzy
