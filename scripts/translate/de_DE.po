@@ -2526,7 +2526,7 @@ msgstr "HAUCH VON D~!ARKNESS"
 #: orc/buttons.lua:218
 #, fuzzy
 msgid "DEATH ~!COIL"
-msgstr "TOD SPULE (~!C)"
+msgstr "TODESSPULE (~!C)"
 
 #: orc/buttons.lua:224
 #, fuzzy
