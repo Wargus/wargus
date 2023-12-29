@@ -2536,7 +2536,7 @@ msgstr "~!HAST"
 #: orc/buttons.lua:230
 #, fuzzy
 msgid "~!RAISE DEAD"
-msgstr "TOTE ERWECKEN (~!R)"
+msgstr "TOTE E~!RWECKEN"
 
 #: orc/buttons.lua:236
 #, fuzzy
@@ -3041,7 +3041,7 @@ msgstr "Todesspule"
 #: spells.lua:563
 #, fuzzy
 msgid "raise dead"
-msgstr "Tote auferwecken"
+msgstr "Tote erwecken"
 
 #: spells.lua:577
 #, fuzzy
@@ -3172,12 +3172,12 @@ msgstr "Verwendung~|"
 #: ui.lua:126
 #, fuzzy
 msgid "Supply~|: "
-msgstr "Versorgung ~ |: "
+msgstr "Versorgung ~|: "
 
 #: ui.lua:135
 #, fuzzy
 msgid "Demand~|: "
-msgstr "Nachfrage ~ |: "
+msgstr "Nachfrage ~|: "
 
 #: ui.lua:151 ui.lua:175 ui.lua:176
 msgid "Production"
@@ -3186,17 +3186,17 @@ msgstr "Produktion"
 #: ui.lua:152
 #, fuzzy
 msgid "Gold~|: 100"
-msgstr "Gold ~ |: 100"
+msgstr "Gold ~|: 100"
 
 #: ui.lua:157 ui.lua:177
 #, fuzzy
 msgid "Lumber~|: 100"
-msgstr "Holz ~ |: 100"
+msgstr "Holz ~|: 100"
 
 #: ui.lua:162 ui.lua:182
 #, fuzzy
 msgid "Oil~|: 100"
-msgstr "Öl ~ |: 100"
+msgstr "Öl ~|: 100"
 
 #: ui.lua:197 ui.lua:203 ui.lua:209 ui.lua:462 ui.lua:516 ui.lua:620 ui.lua:674
 #, fuzzy
