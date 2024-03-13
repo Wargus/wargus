@@ -58,9 +58,9 @@ function RunDiplomacyMenu()
 	 alliedcb:setEnabled(false)
 	 enemycb:setEnabled(false)
 	 sharedvisioncb:setEnabled(false)
-	 alliedcb:setDisabledColor(dark)
-	 enemycb:setDisabledColor(clear)
-	 sharedvisioncb:setDisabledColor(dark)
+	 alliedcb:setBaseColor(dark)
+	 enemycb:setBaseColor(clear)
+	 sharedvisioncb:setBaseColor(dark)
       end
     end
   end
