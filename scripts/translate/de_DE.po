@@ -241,19 +241,19 @@ msgstr "Abbrechen (~!c)"
 
 #: guichan.lua:1150
 msgid "~red~Red"
-msgstr "~rot~Rot"
+msgstr "~red~Rot"
 
 #: guichan.lua:1150
 msgid "~blue~Blue"
-msgstr "~blau~Blau"
+msgstr "~blue~Blau"
 
 #: guichan.lua:1150
 msgid "~green~Green"
-msgstr "~grün~Grün"
+msgstr "~green~Grün"
 
 #: guichan.lua:1150
 msgid "~violet~Violet"
-msgstr "~violett~Violett"
+msgstr "~violet~Violett"
 
 #: guichan.lua:1150
 msgid "~orange~Orange"
@@ -261,15 +261,15 @@ msgstr "~orange~Orange"
 
 #: guichan.lua:1150
 msgid "~black~Black"
-msgstr "~schwarz~Schwarz"
+msgstr "~black~Schwarz"
 
 #: guichan.lua:1151
 msgid "~white~White"
-msgstr "~weiß~Weiß"
+msgstr "~white~Weiß"
 
 #: guichan.lua:1151
 msgid "~yellow~Yellow"
-msgstr "~gelb~Gelb"
+msgstr "~yellow~Gelb"
 
 #: guichan.lua:1152 menus/editor.lua:319 menus/network.lua:208
 #: menus/network.lua:578 wc2.lua:33
