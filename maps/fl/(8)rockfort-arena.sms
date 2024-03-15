@@ -12772,3 +12772,4 @@ AddTrigger(
 				end
 return true end)
 ]]
+assert(loadstring(Triggers))()

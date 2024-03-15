@@ -265,7 +265,7 @@ function NewRunSinglePlayerGameMenu()
   menu:addFullButton(_("~!Start Game"), "s", offx + 640 - 224 - 16, offy + 360 + 36*1,
     function()
       GameSettings.Resources = resources:getSelected()
-      GameSettings.Tileset = tilesets:getTilesetByLabel(tilesetdd:getSelectedItem())
+      GameSettings.Tileset = Tilesets:getTilesetByLabel(tilesetdd:getSelectedItem())
       RunMap(mapname, nil, wc2.preferences.FogOfWar, 0)
       menu:stop()
     end)

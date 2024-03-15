@@ -78,7 +78,7 @@ function NewRunSinglePlayerGameMenu()
       GameSettings.Opponents = opponents:getSelected()
       GameSettings.NumUnits = numunits:getSelected()
       GameSettings.GameType = gametype:getSelected() - 1
-      GameSettings.Tileset = tilesets:getTilesetByLabel(tilesetdd:getSelectedItem())
+      GameSettings.Tileset = Tilesets:getTilesetByLabel(tilesetdd:getSelectedItem())
 	    IsSkirmishClassic = true
       RunMap(mapname, nil, wc2.preferences.FogOfWar, 0)
       menu:stop()
@@ -115,7 +115,7 @@ function NewRunSinglePlayerGameMenu()
 
   Load("scripts/tilesets/tilesetsList.lua") -- Load tilesets helper
   menu:addLabel(_("~<Tileset:~>"), offx + 640 - 224 - 16, offy + (10 + 300) - 20, Fonts["game"], false)
-  tilesetdd = menu:addDropDown(tilesets:getLabels(mapinfo.highgrounds, true), offx + 640 - 224 - 16, offy + 10 + 300,
+  tilesetdd = menu:addDropDown(Tilesets:getLabels(mapinfo.highgrounds, true), offx + 640 - 224 - 16, offy + 10 + 300,
     function(dd) end)
   tilesetdd:setSize(190, 20)
 
