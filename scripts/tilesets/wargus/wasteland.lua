@@ -10,7 +10,7 @@
 --
 --      wasteland.ccl - Define the wasteland tileset.
 --
---      (c) Copyright 2000-2023 by Lutz Sammer, Jimmy Salmon and Alyokhin
+--      (c) Copyright 2000-2024 by Lutz Sammer, Jimmy Salmon and Alyokhin
 --
 --      This program is free software-- you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -43,10 +43,10 @@ solid tiles:
 006x            dark ground
 007x            forest
 008x            mountains
-009x            human wall
-00ax            orc walls
-00bx            human walls
-00cx            orc walls
+009x            human open walls
+00ax            orc open walls
+00bx            human closed walls
+00cx            orc closed walls
 
 
 boundary tiles:
@@ -104,7 +104,7 @@ filled  clear
 DefineTileset("name", "Wasteland",
   "image", "tilesets/wasteland/terrain/wasteland.png",
   -- Slots descriptions
-  "slots", {  
+  "slots", {
             "special", {
                         "top-one-tree", 121, "mid-one-tree", 122, "bot-one-tree", 123,
                         "removed-tree", 126,
@@ -294,27 +294,14 @@ DefineTileset("name", "Wasteland",
                       {  50,   0,  86,   0,  99}}                 -- 9D0
   })
 
-local slotIdx = {
-  -- solid tiles
-  ["lightWater"]              = 0x0010,
-  ["darkWater"]               = 0x0020,
-  ["lightDirt"]               = 0x0030,
-  ["darkDirt"]                = 0x0040,
-  ["lightGround"]             = 0x0050,
-  ["darkGround"]              = 0x0060,
-  ["forest"]                  = 0x0070,
-  ["mountains"]               = 0x0080,
-  -- boundary tiles
-  ["darkWater-lightWater"]    = 0x0100,
-  ["lightWater-lightDirt"]    = 0x0200,
-  ["darkDirt-lightDirt"]      = 0x0300,
-  ["mountains-lightDirt"]     = 0x0400,
-  ["lightDirt-lightGround"]   = 0x0500,
-  ["darkGround-lightGround"]  = 0x0600,
-  ["forest-lightGround"]      = 0x0700
-}
-
 if IsHighgroundsEnabled() then
+
+  local waterToDirtIdx    = TilesetSlotsIdx:get("light-water", "light-weak-ground")
+  local dirtToGroundIdx   = TilesetSlotsIdx:get("light-weak-ground", "dark-solid-ground")
+  local darkDirtIdx       = TilesetSlotsIdx:get("dark-weak-ground")
+  local lightGroundIdx    = TilesetSlotsIdx:get("light-solid-ground")
+  local darkGroundIdx     = TilesetSlotsIdx:get("dark-solid-ground")
+
   local lightGround = {
     ["shadows"]         = {{17, 21}},
     ["decorations"]     = {{52, 63}, {73, 78}},
@@ -341,10 +328,10 @@ if IsHighgroundsEnabled() then
 
 
   local getRampSrcSlot = function(slotType)
-    if slotType == "for-edges" then 
-      return 0x0500 -- light-dirt and light-ground boundary
+    if slotType == "for-edges" then
+      return dirtToGroundIdx  -- light-dirt and light-ground boundary
     else -- solid
-      return 0x0050 -- light-ground
+      return lightGroundIdx   -- light-ground
     end
   end
 
@@ -400,10 +387,8 @@ if IsHighgroundsEnabled() then
                             ["removedRock"]   = 163
                           },
       ["cliff-edges-exceptions"] = {
-                                    [0x0200] =  {
-                                                },
-                                    [0x0500] =  {
-                                                }
+                                    [waterToDirtIdx]  = {},
+                                    [dirtToGroundIdx] = {}
                                   }
     },
     cleanRocks = nil -- local function to clean rocks (if present)
@@ -423,17 +408,24 @@ if IsHighgroundsEnabled() then
     local layers = {}
 
     -- solid-ground layer (also basement for weak ground)
-    layers[cBottom] = {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}}
+    layers[cBottom] = {
+                        self.utils.srcTilesLst(dirtToGroundIdx, (0xD0 - slot)),
+                        {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}
+                      }
 
     if groundType == "weak-ground" then
-      layers[cTop] = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
+      layers[cTop] = {
+                       self.utils.srcTilesLst(waterToDirtIdx, (0xD0 - slot)),
+                       {"remove", self.utils.colorsFor(water)}
+                     }
     end
 
     return unpack(layers)
   end
 
   function generators:makeRampEdge()
-    return  {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}, self.utils.Lighten(lightGround, "base")
+    return  {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")},
+            self.utils.Lighten(lightGround, "base")
   end
 
   function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- local function to make transition from ramp to HG tiles (if present)
@@ -442,14 +434,20 @@ if IsHighgroundsEnabled() then
     local currLayer = cBottom
 
     local layers = {{}} -- there is a single (bottom) layer
-    
+
     if isMask == "edgeMask" then
-    
-      layers[cBottom] = {self.utils.srcTilesLst(0x0500, edgeSlot), {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}}
+
+      layers[cBottom] = {
+                          self.utils.srcTilesLst(dirtToGroundIdx, edgeSlot),
+                          {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")}
+                        }
       currLayer = currLayer + 1
 
       if groundType == "weak-ground" then
-        layers[currLayer] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)}}
+        layers[currLayer] = {
+                              self.utils.srcTilesLst(waterToDirtIdx, edgeSlot),
+                              {"remove", self.utils.colorsFor(water)}
+                            }
         currLayer = currLayer + 1
       end
 
@@ -474,17 +472,27 @@ if IsHighgroundsEnabled() then
         ["solid-ground"] = {"base", "shadows"}
       }
 
-      layers[currLayer] = {{"slot", 0x0500 + edgeSlot}, {"remove", self.utils.colorsFor(lightDirt, unpack(colorsToRemove[groundType]))},
-                                                         self.utils.Lighten(lightGround, "base","shadows")}
+      layers[currLayer] = {
+                            {"slot", dirtToGroundIdx + edgeSlot},
+                            {"remove", self.utils.colorsFor(lightDirt, unpack(colorsToRemove[groundType]))},
+                            self.utils.Lighten(lightGround, "base","shadows")
+                          }
       return unpack(layers)
 
     else -- without edge
       if groundType == "weak-ground" then
-        return {{"slot", 0x0500 + (0xD0 - slot)}, self.utils.Lighten(lightGround, "base")}
+        return {
+                 {"slot", dirtToGroundIdx + (0xD0 - slot)},
+                 self.utils.Lighten(lightGround, "base")
+               }
       else -- "solid-ground"
-        return {"layers", {"slot", 0x0050},
-                          {{"slot", 0x0500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")},
-                                                              self.utils.Lighten(lightGround, "base")}}
+        return {"layers", {"slot", lightGroundIdx},
+                          {
+                            {"slot", dirtToGroundIdx + (0xD0 - slot)},
+                            {"remove", self.utils.colorsFor(lightDirt, "base", "shadows")},
+                            self.utils.Lighten(lightGround, "base")
+                          }
+                }
       end
     end
   end
@@ -493,26 +501,30 @@ if IsHighgroundsEnabled() then
 
     local lowground = {
       ["weak-ground"]   = {
-                            ["src"]             = {"slot", 0x0040},
+                            ["src"]             = {"slot", darkDirtIdx},
                             ["colorsToRemove"]  = {"base"}
                           },
       ["solid-ground"]  = {
-                            ["src"]             = {"slot", 0x0060},
+                            ["src"]             = {"slot", darkGroundIdx},
                             ["colorsToRemove"]  = {"base", "shadows"}
                           }
     }
 
     return {"layers", lowground[groundType].src,
-                      {{"slot", 0x0500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightDirt, unpack(lowground[groundType].colorsToRemove))},
-                                                          self.utils.Lighten(lightGround, "base", "shadows")}}
+                      {
+                        {"slot", dirtToGroundIdx + (0xD0 - slot)},
+                        {"remove", self.utils.colorsFor(lightDirt, unpack(lowground[groundType].colorsToRemove))},
+                        self.utils.Lighten(lightGround, "base", "shadows")
+                      }
+           }
   end
 
   local extendedTilesetSeed = {
 
-    lowgroundWeakGround   = "dark-dirt",
-    lowgroundSolidGround  = "dark-ground",
-    highgroundWeakGround  = "highground-dirt",
-    highgroundSolidGround = "highground-ground",
+    lowgroundWeakGround   = "dirt-lowground",
+    lowgroundSolidGround  = "ground-lowground",
+    highgroundWeakGround  = "dirt-highground",
+    highgroundSolidGround = "ground-highground",
     getRampSrcSlot        = getRampSrcSlot,
     getRampSrc            = getRampSrc,
     generators            = generators,
