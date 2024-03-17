@@ -43,10 +43,10 @@ solid tiles:
 006x            dark dry mud
 007x            forest
 008x            mountains
-009x            human wall
-00ax            orc walls
-00bx            human walls
-00cx            orc walls
+009x            human open walls
+00ax            orc open walls
+00bx            human closed walls
+00cx            orc closed walls
 
 
 boundary tiles:
