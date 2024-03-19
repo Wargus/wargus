@@ -28,6 +28,73 @@
 --
 
 --=============================================================================
+
+--[[
+@FIXME: adjust to the actual indexes
+
+Base tileset
+001x            light water
+002x            dark water
+003x            weak ground
+004x            dark weak ground
+005x            solid ground
+006x            dark solid ground
+007x            forest
+008x            mountains
+009x            human wall
+00ax            orc walls
+00bx            human walls
+00cx            orc walls
+
+boundary tiles
+
+09..            orc wall
+08..            human wall
+07..            forest and solid ground
+06..            dark solid and solid ground
+05..            weak ground and solid ground
+04..            mount and weak ground
+03..            dark weak ground and weak ground
+02..            water and weak ground
+01..            dark water and water
+
+Extended tileset
+
+101x  solid cliff
+102x  solid ramp
+
+boundary tiles
+
+11..            cliff and dark weak lowground
+12..            cliff and dark solid lowground
+13..            cliff and water lowground
+14..            weak highground and cliff
+15..            solid highground and cliff
+16..            weak highground and dark weak lowground
+17..            weak highground and dark solid lowground
+18..            weak highground and light water lowground  -- FIXME: not implemented yet
+19..            solid highground and dark weak lowground
+1A..            solid highground and dark solid lowground
+1B..            solid highground and light water lowground -- FIXME: not implemented yet
+1C..            ramp and cliff
+1D..            ramp and dark weak lowground
+1E..            ramp and dark solid lowground
+1F..            ramp and highgrounds
+21..            ramp and lowgrounds
+
+
+where .. is:
+
+filled  clear
+0x      Dx      upper left
+1x      Cx      upper right
+2x      Bx      upper half
+3x      Ax      lower left
+4x      9x      left half
+7x      6x      lower right
+8x      5x      upper left, lower right
+
+--]]
 local TilesetSubslotsLayout = {}
 
 TilesetSlotsIdx = {
@@ -87,6 +154,25 @@ TilesetSlotsIdx = {
 }
 
 TilesetSubslotsLayout = {
+  --[[
+    slot format:
+      0x[dir][x]
+      where:
+        [x]   is postion of a tile in the slot
+        [dir] is direction:
+        filled  clear
+          0x      Dx      upper left
+          1x      Cx      upper right
+          2x      Bx      upper half
+          3x      Ax      lower left
+          4x      9x      left half
+          7x      6x      lower right
+          8x      5x      upper left, lower right
+
+      = {0x}      - whole slot (0..F)
+      = {0x, 0x}  - range
+      = 0x        - single index
+  ]]--
   ["highground"] = { 
       ["to-lowground"] = {  ["upper-left-filled"] = { -- 0x00
                                                       ["main"]                          = {0x00}
@@ -117,7 +203,7 @@ TilesetSubslotsLayout = {
                                                       ["separator-2"]                   = 0xB7,
                                                       ["with-rock-lower-right-filled"]  = {0xB8, 0xB9},
                                                       ["separator-3"]                   = 0xBA,
-                                                      ["with-rock-upper-left-clear"]   = {0xBB, 0xBC},
+                                                      ["with-rock-upper-left-clear"]    = {0xBB, 0xBC},
                                                       ["separator-4"]                   = 0xBD,
                                                       ["with-rock-upper-right-clear"]   = {0xBE, 0xBF}
                                                     },
@@ -215,7 +301,7 @@ TilesetSubslotsLayout = {
                                                       ["without-rock"]                  = {0xA3, 0xA4}
                                                     },
                             ["upper-half-clear"]  = { -- 0xB0
-                                                      ["with-rock"]                     = {0xB0} -- "whole slot"
+                                                      ["with-rock"]                     = {0xB0}
                                                     },
                             ["upper-right-clear"] = { -- 0xC0
                                                       ["with-rocks"]                    = {0xC0, 0xC3},
@@ -296,27 +382,9 @@ TilesetSubslotsLayout = {
   }
 }
 
-function TilesetSlotsIdx:get(base, mixed, dir, range)
-  dir = dir or 0 -- default value
-  range = dir or 0 -- default value
---[[
-  where dir is:
 
-  filled  clear
-   0x00    0xD0      upper left
-   0x10    0xC0      upper right
-   0x20    0xB0      upper half
-   0x30    0xA0      lower left
-   0x40    0x90      left half
-   0x70    0x60      lower right
-   0x80    0x50      upper left, lower right
+function TilesetSlotsIdx:get(base, mixed)
 
-  and range is:
-  0x0 .. 0xF               -- single
-  or
-  {0x0 .. 0xF, 0x0 .. 0xF} -- range
-
---]]
   local function parseIdx(slot)
     if type(slot) == "table" then -- there is subslots layout in the definition
       return slot[1] -- first member is always the base idx
@@ -325,31 +393,35 @@ function TilesetSlotsIdx:get(base, mixed, dir, range)
     end
   end
 
-  local slot
-
   if mixed then
-    slot = parseIdx(self["mixed"][base][mixed]) + dir
+    return parseIdx(self["mixed"][base][mixed])
   else
-    slot = parseIdx(self["solid"][base])
-  end
-
-  if type(range) == "table" then
-    return slot + range[1], slot + range[2]
-  else
-    return slot + range
+    return parseIdx(self["solid"][base])
   end
 end
 
 function TilesetSlotsIdx:initSubslots()
+  
   TilesetSlotsIdx["subslots-layout"] = TilesetSubslotsLayout
-  TilesetSlotsIdx["mixed"]["ramp-side"]["weak-lowground"]["subslots"] = TilesetSubslotsLayout["ramp-side"]["to-lowground"]
-  TilesetSlotsIdx["mixed"]["ramp-side"]["solid-lowground"]["subslots"] = TilesetSubslotsLayout["ramp-side"]["to-lowground"]
-  TilesetSlotsIdx["mixed"]["weak-highground"]["weak-lowground"]["subslots"] = TilesetSubslotsLayout["highground"]["to-lowground"]
-  TilesetSlotsIdx["mixed"]["weak-highground"]["solid-lowground"]["subslots"] = TilesetSubslotsLayout["highground"]["to-lowground"]
-  TilesetSlotsIdx["mixed"]["solid-highground"]["weak-lowground"]["subslots"] = TilesetSubslotsLayout["highground"]["to-lowground"]
-  TilesetSlotsIdx["mixed"]["solid-highground"]["solid-lowground"]["subslots"] = TilesetSubslotsLayout["highground"]["to-lowground"]
 
-
+  TilesetSlotsIdx["mixed"]
+                 ["ramp-side"]["weak-lowground"]
+                 ["subslots"] = TilesetSubslotsLayout["ramp-side"]["to-lowground"]
+  TilesetSlotsIdx["mixed"]
+                 ["ramp-side"]["solid-lowground"]
+                 ["subslots"] = TilesetSubslotsLayout["ramp-side"]["to-lowground"]
+  TilesetSlotsIdx["mixed"]
+                 ["weak-highground"]["weak-lowground"]
+                 ["subslots"] = TilesetSubslotsLayout["highground"]["to-lowground"]
+  TilesetSlotsIdx["mixed"]
+                 ["weak-highground"]["solid-lowground"]
+                 ["subslots"] = TilesetSubslotsLayout["highground"]["to-lowground"]
+  TilesetSlotsIdx["mixed"]
+                 ["solid-highground"]["weak-lowground"]
+                 ["subslots"] = TilesetSubslotsLayout["highground"]["to-lowground"]
+  TilesetSlotsIdx["mixed"]
+                 ["solid-highground"]["solid-lowground"]
+                 ["subslots"] = TilesetSubslotsLayout["highground"]["to-lowground"]
 end
 
 TilesetSlotsIdx:initSubslots()

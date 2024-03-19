@@ -28,76 +28,6 @@
 --
 
 --=============================================================================
---  Define a tileset
---
---  (define-tileset ident class name image palette slots animations)
---
-
---[[
-
-Base tileset
-001x            light water
-002x            dark water
-003x            weak ground
-004x            dark weak ground
-005x            solid ground
-006x            dark solid ground
-007x            forest
-008x            mountains
-009x            human wall
-00ax            orc walls
-00bx            human walls
-00cx            orc walls
-
-boundary tiles
-
-09..            orc wall
-08..            human wall
-07..            forest and solid ground
-06..            dark solid and solid ground
-05..            weak ground and solid ground
-04..            mount and weak ground
-03..            dark weak ground and weak ground
-02..            water and weak ground
-01..            dark water and water
-
-Extended tileset
-
-101x  solid cliff
-102x  solid ramp
-
-boundary tiles
-
-11..            cliff and dark weak lowground
-12..            cliff and dark solid lowground
-13..            cliff and water lowground
-14..            weak highground and cliff
-15..            solid highground and cliff
-16..            weak highground and dark weak lowground
-17..            weak highground and dark solid lowground
-18..            weak highground and light water lowground  -- FIXME: not implemented yet
-19..            solid highground and dark weak lowground
-1A..            solid highground and dark solid lowground
-1B..            solid highground and light water lowground -- FIXME: not implemented yet
-1C..            ramp and cliff
-1D..            ramp and dark weak lowground
-1E..            ramp and dark solid lowground
-1F..            ramp and highgrounds
-21..            ramp and lowgrounds
-
-
-where .. is:
-
-filled  clear
-0x      Dx      upper left
-1x      Cx      upper right
-2x      Bx      upper half
-3x      Ax      lower left
-4x      9x      left half
-7x      6x      lower right
-8x      5x      upper left, lower right
-
---]]
 
 --[[
     Usage:
@@ -942,8 +872,8 @@ function ExtendTileset(seed)
     return unpack(result)
   end
  
-  local function dst(base, mixed, dir, range)
-    return TilesetSlotsIdx:get(base, mixed, dir, range)
+  local function dst(base, mixed)
+    return TilesetSlotsIdx:get(base, mixed)
   end
 
   GenerateExtendedTileset(
@@ -1241,5 +1171,4 @@ function ExtendTileset(seed)
                          genRampToLowGroundSeq(0x2100, {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0})}
                 }
   )
-
 end
