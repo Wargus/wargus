@@ -135,7 +135,7 @@ msgstr "Nation de Stromgarde"
 
 #: guichan.lua:932
 msgid "Nation of Azeroth"
-msgstr "Nation de Azeroth"
+msgstr "Nation d'Azeroth"
 
 #: guichan.lua:934
 msgid "Nation of Kul Tiras"
@@ -147,7 +147,7 @@ msgstr "Nation de Dalaran"
 
 #: guichan.lua:938
 msgid "Nation of Alterac"
-msgstr "Nation de Alterac"
+msgstr "Nation d'Alterac"
 
 #: guichan.lua:940
 msgid "Nation of Gilneas"
@@ -629,7 +629,7 @@ msgstr "CONSTRUIRE ~!BASE MILITAIRE"
 
 #: human/buttons.lua:272
 msgid "BUILD TOWN ~!HALL"
-msgstr "CONSTRUIRE ~!HOTEL DE VILLE"
+msgstr "CONSTRUIRE ~!HÔTEL DE VILLE"
 
 #: human/buttons.lua:277
 msgid "BUILD ELVEN ~!LUMBER MILL"
@@ -694,7 +694,7 @@ msgstr "AMÉLIORER EN PLACE FORTE (~!K)"
 
 #: human/buttons.lua:380
 msgid "UPGRADE TO ~!CASTLE"
-msgstr "AMÉLIORER EN ~!CHATEAU"
+msgstr "AMÉLIORER EN ~!CHÂTEAU"
 
 #: human/buttons.lua:387 orc/buttons.lua:410
 msgid "SET ~!HARVEST LUMBER/MINE GOLD"
@@ -1084,7 +1084,7 @@ msgstr "Fonderie"
 
 #: human/units.lua:1169
 msgid "Town Hall"
-msgstr "Hotel de Ville"
+msgstr "Hôtel de Ville"
 
 #: human/units.lua:1206
 msgid "Mage Tower"
@@ -1108,7 +1108,7 @@ msgstr "Fort"
 
 #: human/units.lua:1380
 msgid "Castle"
-msgstr "Chateau"
+msgstr "Château"
 
 #: human/units.lua:1412 orc/units.lua:1511
 msgid "Start Location"
@@ -1130,7 +1130,7 @@ msgstr "Mur"
 
 #: menus/campaign.lua:316
 msgid "~<Mission list~>"
-msgstr "~<Liste Mission~>"
+msgstr "~<Liste des Missions~>"
 
 #: menus/campaign.lua:330
 msgid "~!Start mission"
@@ -1182,7 +1182,7 @@ msgstr "Taille : "
 
 #: menus/editor.lua:74
 msgid "~!Select map"
-msgstr "Choix carte"
+msgstr "Choix de la carte"
 
 #: menus/editor.lua:84
 msgid "~!Edit map"
@@ -1194,7 +1194,7 @@ msgstr "~<Éditeur de carte~>"
 
 #: menus/editor.lua:110
 msgid "~!Load map"
-msgstr "Charger carte"
+msgstr "Charger la carte"
 
 #: menus/editor.lua:120 menus/editor.lua:198
 msgid "Cannot save map to file:"
@@ -1215,7 +1215,7 @@ msgstr "~!Sauvegarder"
 
 #: menus/editor.lua:175 menus/editor.lua:266 menus/save.lua:21
 msgid "File exists, are you sure ?"
-msgstr "Fichier existant, êtes vous sûr ?"
+msgstr "Fichier existant, êtes-vous sûr ?"
 
 #: menus/editor.lua:216
 msgid "Save Resized Map"
@@ -1336,7 +1336,7 @@ msgstr "~!Quitter au menu"
 #: menus/endscenario.lua:25 menus/endscenario.lua:39 menus/endscenario.lua:53
 #: menus/endscenario.lua:67
 msgid "Are you sure you"
-msgstr "Etes vous sur de"
+msgstr "Êtes-vous sur de"
 
 #: menus/endscenario.lua:26
 msgid "want to restart"
@@ -1564,11 +1564,11 @@ msgstr "Plus vous avez de travailleurs collectant des ressources, mieux votre é
 
 #: menus/help.lua:95
 msgid "Building more than one barracks will let you train more units faster."
-msgstr "Construire plusieurs Base Militaire permet de former plus d'unités et plus vite."
+msgstr "Construire plusieurs Bases Militaires permet de former plus d'unités et plus vite."
 
 #: menus/help.lua:96
 msgid "Use your workers to repair damaged buildings."
-msgstr "Utilisez vos travailleurs pour réparrer les batiments endomagés."
+msgstr "Utilisez vos travailleurs pour réparer les bâtiments endomagés."
 
 #: menus/help.lua:97
 msgid "Explore your surroundings early in the game."
@@ -1580,15 +1580,15 @@ msgstr "Vous pouvez démolir des arbres et des rochers."
 
 #: menus/help.lua:100
 msgid "Keep all workers working. Use ALT-I to find idle workers."
-msgstr "Vos travailleurs doivent toujours avoir quelquechose à faire. Utilisez ALT-I pour trouver du personnel inactif"
+msgstr "Vos travailleurs doivent toujours avoir quelque chose à faire. Utilisez ALT-I pour trouver du personnel inactif"
 
 #: menus/help.lua:101
 msgid "You can make units automatically cast spells by selecting a unit, holding down CTRL and clicking on the spell icon.  CTRL click again to turn off."
-msgstr "Pour que vos unités jettent des sorts automatiquement, sélectionnez une unité, maintenez CTRL et cliquez sur l'icone de sort. CTRL-clic de nouveau pour désactiver."
+msgstr "Pour que vos unités jettent des sorts automatiquement, sélectionnez une unité, maintenez CTRL et cliquez sur l'icône de sort. CTRL-clic de nouveau pour désactiver."
 
 #: menus/help.lua:104
 msgid "You can give an unit an order which is executed after it finishes the current work, if you hold the SHIFT key."
-msgstr "Pour que vos unités executent un ordre après avoir terminé le travail en cours, maintenez la touche SHIFT en donnant un nouvel ordre."
+msgstr "Pour que vos unités éxécutent un ordre après avoir terminé le travail en cours, maintenez la touche SHIFT en donnant un nouvel ordre."
 
 #: menus/help.lua:105
 msgid "You can give way points, if you press the SHIFT key, while you click right for the move command."
@@ -1596,11 +1596,11 @@ msgstr "Vous pouvez donner des points de passage à un trajet en appuyant sur SH
 
 #: menus/help.lua:106
 msgid "You can order a worker to build one building after the other, if you hold the SHIFT key, while you place the building."
-msgstr "Vous pouvez demander à un travailleur de construire des batiments les uns après les autres en maintenant la touche SHIFT quand vous placer le batiment"
+msgstr "Vous pouvez demander à un travailleur de construire des bâtiments les uns après les autres en maintenant la touche SHIFT quand vous placer le bâtiment"
 
 #: menus/help.lua:107
 msgid "You can build many of the same building, if you hold the ALT and SHIFT keys while you place the buildings."
-msgstr "Vous pouvez construire plusieurs batiments identique en maintenant ALT et SHIFT pendant que vous placez vos batiments"
+msgstr "Vous pouvez construire plusieurs bâtiments identique en maintenant ALT et SHIFT pendant que vous placez vos bâtiments"
 
 #: menus/help.lua:109
 msgid "Use CTRL-V or ALT-V to cycle through the viewport configuration, you can then monitor your base and lead an attack."
@@ -1912,7 +1912,7 @@ msgstr "~!*Montrer les dommages"
 
 #: menus/options.lua:234
 msgid "~!*Show button popups"
-msgstr "~!*Show button popups"
+msgstr "Afficher les popup (~!*S)"
 
 #: menus/options.lua:240
 msgid "Mine notifications"
@@ -1928,7 +1928,7 @@ msgstr "Constructions mirroirs"
 
 #: menus/options.lua:272
 msgid "Show messages"
-msgstr "Montrer message"
+msgstr "Montrer les messages"
 
 #: menus/options.lua:280
 msgid "Pause on leave"
@@ -1940,7 +1940,7 @@ msgstr "~!*Effets avancés"
 
 #: menus/options.lua:292
 msgid "Deselect in mines"
-msgstr "Déslectionner dans les mines"
+msgstr "Désélectionner dans les mines"
 
 #: menus/options.lua:302
 msgid "Fog of War"
@@ -2028,7 +2028,7 @@ msgstr "Debug"
 
 #: menus/options.lua:447
 msgid "Show map grid"
-msgstr "Montrer la grille de carte"
+msgstr "Montrer la grille sur la carte"
 
 #: menus/options.lua:469
 msgid "Bilinear interp."
@@ -2157,7 +2157,7 @@ msgstr "~<Options du Jeu~>"
 
 #: menus/replay.lua:7
 msgid "Select Game"
-msgstr "Choix Partie"
+msgstr "Choix de la Partie"
 
 #: menus/replay.lua:12
 msgid "Reveal Map"
@@ -2314,7 +2314,7 @@ msgstr " - Neutre"
 
 #: menus/results.lua:207
 msgid "Buildings:"
-msgstr "Batiments:"
+msgstr "Bâtiments:"
 
 #: menus/results.lua:210
 msgid "Gold:"
@@ -2326,7 +2326,7 @@ msgstr "Bois:"
 
 #: menus/results.lua:216
 msgid "Oil:"
-msgstr "Pétrol:"
+msgstr "Pétrole:"
 
 #: menus/results.lua:219
 msgid "Kills:"
@@ -2470,7 +2470,7 @@ msgstr "CONSTRUIRE ~!CATAPULTE"
 
 #: orc/buttons.lua:458
 msgid "TRAIN TWO-HEADED ~!OGRE"
-msgstr "FORMER ~!OGRE A DEUX TÊTES"
+msgstr "FORMER ~!OGRE À DEUX TÊTES"
 
 #: orc/buttons.lua:463
 msgid "TRAIN ~!OGRE MAGE"
@@ -2853,7 +2853,7 @@ msgstr "Bois restant: "
 
 #: stratagus.lua:238
 msgid "Oil Left: "
-msgstr "Pétrol restant: "
+msgstr "Pétrole restant: "
 
 #: stratagus.lua:238
 msgid "Ore Left: "
@@ -2993,7 +2993,7 @@ msgstr "~<SHIFT~>-clic pour tracer un chemin."
 
 #: ui.lua:437 ui.lua:595
 msgid "~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."
-msgstr "~<CTRL~>-clic pour activer/désactiver la réparation automatique des batiments."
+msgstr "~<CTRL~>-clic pour activer/désactiver la réparation automatique des bâtiments."
 
 #: ui.lua:456 ui.lua:504 ui.lua:614 ui.lua:662
 msgid "Hit Points: "
@@ -3017,7 +3017,7 @@ msgstr "Portée: "
 
 #: ui.lua:560 ui.lua:718
 msgid "~<CTRL~>-click on button enables/disables auto-cast ability."
-msgstr "~<CTRL~>-click on button enables/disables auto-cast ability."
+msgstr "~<CTRL~>-click sur le bouton  pour activer/désactiver l'auto-cast."
 
 #: units.lua:118
 msgid "Nothing 22"
@@ -3053,7 +3053,7 @@ msgstr "Mine d'Or"
 
 #: units.lua:299
 msgid "Oil Patch"
-msgstr "Puit de Pétrol"
+msgstr "Puit de Pétrole"
 
 #: units.lua:327
 msgid "The Pile"
@@ -3101,52 +3101,49 @@ msgstr "Unité basique"
 
 #: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
 msgid "Hidden"
-msgstr ""
+msgstr "Caché"
 
 #: guichan.lua:1155 menus/network.lua:203 menus/network.lua:574
 msgid "Known"
-msgstr ""
+msgstr "Connu"
 
 #: guichan.lua:1500
-#, fuzzy
 msgid "~<Terrain:~>"
-msgstr "~<Équipe:~>"
+msgstr "~<Terrain:~>"
 
 #: menus/editor.lua:490
 msgid "Accept"
-msgstr ""
+msgstr "Accepter"
 
 #: menus/editor.lua:497 menus/editor.lua:662
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: menus/editor.lua:534
-#, fuzzy
 msgid "~!Resize Map"
 msgstr "Sauver la Carte Redimenssionée"
 
 #: menus/editor.lua:536
 msgid "Pr~!eamble"
-msgstr ""
+msgstr "Préambul~!e"
 
 #: menus/editor.lua:538
 msgid "~!Postamble"
-msgstr ""
+msgstr "~!Postambule"
 
 #: menus/editor.lua:638
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: menus/network.lua:202 menus/network.lua:568
 msgid "Terrain:"
-msgstr ""
+msgstr "Terrain:"
 
 #: menus/options.lua:381 menus/options.lua:458
 msgid "tiled"
 msgstr ""
 
 #: menus/options.lua:731
-#, fuzzy
 msgid "You need to restart game to apply changes, restart now?"
 msgstr "Vous devez redémarrer le jeu pour appliquer les changements. Voulez-vous redémarrer ?"
 
