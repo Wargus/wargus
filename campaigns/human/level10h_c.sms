@@ -15,10 +15,10 @@ AddTrigger(
   function() return IfRescuedNearUnit("this", ">=", 4, "unit-attack-peasant", "unit-circle-of-power") end,
   function() return ActionVictory() end)
 
--- If we one of the attack peasants we should rescue dies, we're done
+-- If too many of the attack peasants we should rescue die, we're done.
 AddTrigger(
   function() return (GetPlayerData(4, "UnitTypesCount", "unit-attack-peasant") +
-  GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-attack-peasant")) <= 3 end,
+  GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-attack-peasant")) < 4 end,
   function() return ActionDefeat() end)
 
 AddTrigger(
@@ -166,11 +166,11 @@ DefineAi("hum-10", "*", "hum-10", AiHuman10)
 
 -- Map
 
-Load("campaigns/human/level10h.sms")
-
--- Make the player 4 units attack peasants
-for i,unit in ipairs(GetUnits(4)) do
-   if GetUnitVariable(unit, "Ident") == "unit-peasant" then
-       TransformUnit(unit, "unit-attack-peasant")
-   end
+local origCreateUnit = CreateUnit
+function CreateUnit(type, player, pos)
+  -- Make the player 4 units attack peasants
+  if player == 4 and type == "unit-peasant" then type = "unit-attack-peasant" end
+  return origCreateUnit(type, player, pos)
 end
+Load("campaigns/human/level10h.sms")
+CreateUnit = origCreateUnit
