@@ -11,7 +11,6 @@ Briefing(
    "campaigns/human-exp/levelx02h-intro2.wav"}
 )
 
-Triggers = [[
 AddTrigger(
   function() return GetNumOpponents(GetThisPlayer()) == 0 and
     GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-arthor-literios") == 1 end,
@@ -23,9 +22,6 @@ AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-arthor-literios") == 0 and
     GetPlayerData(4, "UnitTypesCount", "unit-arthor-literios") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 --Units
 DefineAllowNormalHumanUnits("AAAAAAAAAAAAAAAA")

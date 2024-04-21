@@ -12754,7 +12754,6 @@ if (not IsNetworkGame()) then
 	AiRedRibbon_Diplomacy_Neutral_2014(0,9,13,"enemy")
 end
 
-Triggers = [[
 AddTrigger(
 	function() return (IsNetworkGame()) end, 
 	function()	if (GameCycle == 5) then
@@ -12771,5 +12770,3 @@ AddTrigger(
 					ActionVictory() 
 				end
 return true end)
-]]
-assert(loadstring(Triggers))()

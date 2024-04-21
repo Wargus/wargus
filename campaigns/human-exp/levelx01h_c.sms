@@ -11,7 +11,6 @@ Briefing(
    "campaigns/human-exp/levelx01h-intro2.wav"}
 )
 
-Triggers = [[
 AddTrigger(
   function() return IfRescuedNearUnit("this", "==", 1, "unit-female-hero", "unit-circle-of-power") and
     IfRescuedNearUnit("this", "==", 1, "unit-arthor-literios", "unit-circle-of-power") and
@@ -29,9 +28,6 @@ AddTrigger(
  function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-knight-rider") == 0 and
     GetPlayerData(0, "UnitTypesCount", "unit-knight-rider") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 --Units
 

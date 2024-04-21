@@ -1097,7 +1097,6 @@ if (not IsNetworkGame()) then
 	AiRedRibbon_Pickers_Add_2014(10, 11)
 end
 
-Triggers = [[
 AddTrigger(
 	function() return (IsNetworkGame()) end, 
 	function()	if (GameCycle == 5) then
@@ -1115,5 +1114,3 @@ AddTrigger(
 					ActionVictory() 
 				end
 return true end)
-]]
-assert(loadstring(Triggers))()

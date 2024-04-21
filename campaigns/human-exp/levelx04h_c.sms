@@ -12,7 +12,6 @@ Briefing(
    "campaigns/human-exp/levelx04h-intro3.wav"}
 )
 
-Triggers = [[
 AddTrigger(
   function() return GetNumOpponents(GetThisPlayer()) == 0 and
     GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-castle") >= 1 end,
@@ -20,9 +19,6 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 local hum_exp_04a_loop_funcs = {
 	function() DebugPrint("Looping !\n") return false end,

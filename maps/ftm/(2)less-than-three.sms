@@ -16548,7 +16548,6 @@ BlueFlyerBuilding_y = 126
 BlueTownHall_x = 117
 BlueTownHall_y = 96
 
-Triggers = [[
 
 AddTrigger(
 	function() return ((GameCycle > 300) and (GameCycle < 310)) end,
@@ -16669,5 +16668,3 @@ AddTrigger(
 					ActionVictory() 
 				end
 return true end)
-]]
-assert(loadstring(Triggers))()

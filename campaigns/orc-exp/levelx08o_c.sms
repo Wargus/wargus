@@ -10,7 +10,6 @@ Briefing(
   {"campaigns/orc-exp/levelx08o-intro1.wav"}
 )
 
-Triggers = [[
 -- FIXME: Check if units are destroyed.
 AddTrigger(
   function() return GetNumOpponents(GetThisPlayer()) == 0 end,
@@ -19,9 +18,6 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 --Units
 DefineAllowNormalHumanUnits("AAAAAAAAAAAAAAAA")

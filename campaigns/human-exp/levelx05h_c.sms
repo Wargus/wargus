@@ -11,7 +11,6 @@ Briefing(
    "campaigns/human-exp/levelx05h-intro2.wav"}
 )
 
-Triggers = [[
 AddTrigger(
   function() return GetPlayerData(2, "UnitTypesCount", "unit-orc-shipyard") == 0 and
     GetPlayerData(3, "UnitTypesCount", "unit-orc-shipyard") == 0 and
@@ -22,9 +21,6 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 local hum_exp_05a_loop_funcs = {
 	function() DebugPrint("Looping !\n") return false end,

@@ -13,16 +13,12 @@ Briefing(
 
 -- FIXME: Check if units are destroyed.
 
-Triggers = [[
 AddTrigger(
   function() return GetNumOpponents(GetThisPlayer()) == 0 end,
   function() return ActionVictory() end)
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 --Units
 local allowedHumanUnits = {"unit-farm",
