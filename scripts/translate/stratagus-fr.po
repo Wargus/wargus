@@ -13,15 +13,15 @@ msgstr "Vous ne pouvez pas vous rendre ici"
 
 #: action/action_build.cpp:229
 msgid "Not enough resources to build %s"
-msgstr "Pas assez de resource pour constuire %s"
+msgstr "Pas assez de ressources pour construire %s"
 
 #: action/action_build.cpp:236
 msgid "Can't build more units %s"
-msgstr "Impossible de constuire plus d'unité %s"
+msgstr "Impossible de construire plus d'unité %s"
 
 #: action/action_build.cpp:322
 msgid "Unable to create building %s"
-msgstr "Impossible de construire batiment %s"
+msgstr "Impossible de construire le bâtiment %s"
 
 #: action/action_build.cpp:472
 msgid "You cannot build %s here"
@@ -37,7 +37,7 @@ msgstr "Nous avons besoin de plus de %s pour réparer !"
 
 #: action/action_research.cpp:145 action/action_research.cpp:147
 msgid "%s: research complete"
-msgstr "%s: recherche terminé"
+msgstr "%s : recherche terminée"
 
 #: action/action_resource.cpp:785
 msgid "%s has collapsed!"
@@ -49,19 +49,19 @@ msgstr "%s est en faillite !"
 
 #: action/action_spellcast.cpp:321
 msgid "%s: not enough mana for spell: %s"
-msgstr "%s: pas assez de mana pour invoquer : %s"
+msgstr "%s : pas assez de mana pour invoquer : %s"
 
 #: action/action_spellcast.cpp:325
 msgid "%s: spell is not ready yet: %s"
-msgstr "%s: le sort n'est pas encore prêt: %s"
+msgstr "%s : le sort n'est pas encore prêt : %s"
 
 #: action/action_spellcast.cpp:329
 msgid "%s: not enough resources to cast spell: %s"
-msgstr "%s: pas assez de ressource pour invoquer le sort : %s"
+msgstr "%s : pas assez de ressources pour invoquer le sort : %s"
 
 #: action/action_spellcast.cpp:333
 msgid "%s: can't cast spell: %s"
-msgstr "%s: ne peut pas lancer le sort: %s"
+msgstr "%s : ne peut pas lancer le sort : %s"
 
 #. The official French version of W2 use "Former" instead of "Entrainer"
 #: action/action_train.cpp:208
@@ -98,7 +98,7 @@ msgstr "Editeur (%d %d)"
 
 #: editor/editloop.cpp:1000
 msgid "#%d '%s' Player:#%d %s"
-msgstr "#%d '%s' Joueur:#%d %s"
+msgstr "#%d '%s' Joueur : #%d %s"
 
 #: editor/editloop.cpp:1004
 msgid " Amount %d"
@@ -106,11 +106,11 @@ msgstr " Montant %d"
 
 #: editor/editloop.cpp:1382
 msgid "Mirror editing enabled: 2-side"
-msgstr "Édition miroir activée : 2 coté"
+msgstr "Édition miroir activée : 2 cotés"
 
 #: editor/editloop.cpp:1385
 msgid "Mirror editing enabled: 4-side"
-msgstr "Édition miroir activée : 4 coté"
+msgstr "Édition miroir activée : 4 cotés"
 
 #: editor/editloop.cpp:1388
 msgid "Mirror editing disabled"
@@ -168,7 +168,7 @@ msgstr "Réseau désynchronisé"
 
 #: network/network.cpp:1125
 msgid "Waiting for player \"%s\": %d:%02d"
-msgstr "En attente de joueur \"%s\": %d:%02d"
+msgstr "En attente de joueur \"%s\" : %d:%02d"
 
 #: network/network.cpp:1138
 msgid "Timed out"
@@ -200,7 +200,7 @@ msgstr "Limite de %d atteinte pour ce type d'unité"
 
 #: stratagus/player.cpp:1073
 msgid "Not enough %s...%s more %s."
-msgstr "%s insuffisant...%s plus de %s."
+msgstr "%s insuffisant... %s plus de %s."
 
 #: stratagus/script.cpp:2562
 msgid "Script %s\n"
@@ -233,7 +233,7 @@ msgstr "Icône %s"
 #: ui/icons.cpp:275
 msgid "Can't find icon %s\n"
 ""
-msgstr "Impossible de trouver l'icone: %s\n"
+msgstr "Impossible de trouver l'icône: %s\n"
 ""
 
 #: ui/icons.cpp:288
@@ -306,11 +306,11 @@ msgstr "Dernier message répété ~<%d~> fois"
 
 #: ui/mainscr.cpp:1024
 msgid "~<Event: %s~>"
-msgstr "~<Evénement: %s~>"
+msgstr "~<Evénement : %s~>"
 
 #: ui/mainscr.cpp:1071
 msgid "Cycle:"
-msgstr "Cycle:"
+msgstr "Cycle :"
 
 #: ui/mouse.cpp:2126
 msgid "You have ~<%d~> %ss"
@@ -323,7 +323,7 @@ msgstr "Vous avez ~<%d~> %s(s)"
 #: unit/depend.cpp:256 unit/depend.cpp:314
 msgid "Requirements:\n"
 ""
-msgstr "Prérequis:\n"
+msgstr "Prérequis :\n"
 ""
 
 #: unit/unit.cpp:2815
