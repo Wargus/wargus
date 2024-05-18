@@ -158,9 +158,8 @@ msgid "Script %s"
 msgstr "Skript-%s"
 
 #: game/game.cpp:157
-#, fuzzy
 msgid "Do it! Do it now!"
-msgstr "Tu es! Tun Sie es jetzt!"
+msgstr "Mach schon! Fang jetzt an!"
 
 #: game/replay.cpp:811
 #, fuzzy
@@ -229,9 +228,8 @@ msgid "Unit Limit Reached"
 msgstr "Einheitenlimit erreicht"
 
 #: stratagus/player.cpp:1039
-#, fuzzy
 msgid "Insufficient Supply, increase Supply."
-msgstr "Unzureichendes Angebot, Erhöhung des Angebots."
+msgstr "Unzureichende Versorgung, verbessern sie die Versorgung."
 
 #: stratagus/player.cpp:1043
 #, fuzzy
@@ -244,9 +242,8 @@ msgid "Limit of %d reached for this unit type"
 msgstr "Grenze der %d für diesen Gerätetyp erreicht"
 
 #: stratagus/player.cpp:1073
-#, fuzzy
 msgid "Not enough %s...%s more %s."
-msgstr "Nicht genug %s...% ist mehr %s."
+msgstr "Nicht genug %s..., wir müssen mehr %s (%s)."
 
 #: stratagus/script.cpp:2562
 #, fuzzy

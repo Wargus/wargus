@@ -55,51 +55,51 @@ msgstr "E~!xit"
 
 #: editor.lua:47
 msgid "Human Land Units"
-msgstr "Landeinheiten"
+msgstr "Menschliche Landeinheiten"
 
 #: editor.lua:58
 msgid "Human Sea Units"
-msgstr "Mensch Schiffe"
+msgstr "Menschliche Meereseinheiten"
 
 #: editor.lua:65
 msgid "Human Air Units"
-msgstr "Mensch Flug-Einheiten"
+msgstr "Menschliche Lufteinheiten"
 
 #: editor.lua:69
 msgid "Human Land Buildings"
-msgstr "Mensch Gebäude"
+msgstr "Menschliche Landgebäude"
 
 #: editor.lua:86
 msgid "Human Shore Buildings"
-msgstr "Mensch Ufer-Gebäude"
+msgstr "Menschliche Ufergebäude"
 
 #: editor.lua:92
 msgid "Human Heroes"
-msgstr "Mensch Helden"
+msgstr "Menschliche Helden"
 
 #: editor.lua:103
 msgid "Orc Land Units"
-msgstr "Orc Einheiten"
+msgstr "Orc-Landeinheiten"
 
 #: editor.lua:114
 msgid "Orc Sea Units"
-msgstr "Orc Shiffe"
+msgstr "Orc-Meeresinheiten"
 
 #: editor.lua:121
 msgid "Orc Air Units"
-msgstr "Orc Flug-Einheiten"
+msgstr "Orc-Lufteinheiten"
 
 #: editor.lua:126
 msgid "Orc Land Buildings"
-msgstr "Orc Gebäude"
+msgstr "Orc-Landgebäude"
 
 #: editor.lua:143
 msgid "Orc Shore Buildings"
-msgstr "Orc Ufer-Gebäude"
+msgstr "Orc-Ufergebäude"
 
 #: editor.lua:149
 msgid "Orc Heroes"
-msgstr "Orc Helden"
+msgstr "Orc-Helden"
 
 #: editor.lua:161
 msgid "Neutral Buildings"
@@ -127,7 +127,7 @@ msgstr "-Vernichte den Feind"
 #: menus/network.lua:223 menus/network.lua:578 menus/network.lua:589
 #: menus/network.lua:599 stratagus.lua:105 wc2.lua:148
 msgid "Map Default"
-msgstr "Standard für die Karte"
+msgstr "Kartenstandard"
 
 #: guichan.lua:930
 msgid "Nation of Stromgarde"
@@ -208,7 +208,7 @@ msgstr "Szenario auswählen"
 #: menus/options.lua:546 menus/options.lua:636 menus/options.lua:783
 #: menus/replay.lua:38 menus/replay.lua:80 menus/save.lua:89
 msgid "Cancel (~<Esc~>)"
-msgstr "Abbrechen (~<Esc~>)"
+msgstr "Zurück (~<Esc~>)"
 
 #: guichan.lua:1091
 msgid "~<Single Player~>"
@@ -237,23 +237,23 @@ msgstr "Standard-Spiel"
 
 #: guichan.lua:1127
 msgid "~!Cancel"
-msgstr "Abbrechen (~!c)"
+msgstr "Abbru~!ch"
 
 #: guichan.lua:1150
 msgid "~red~Red"
-msgstr "~red~Rot"
+msgstr "~rot~Rot"
 
 #: guichan.lua:1150
 msgid "~blue~Blue"
-msgstr "~blue~Blau"
+msgstr "~blau~Blau"
 
 #: guichan.lua:1150
 msgid "~green~Green"
-msgstr "~green~Grün"
+msgstr "~grün~Grün"
 
 #: guichan.lua:1150
 msgid "~violet~Violet"
-msgstr "~violet~Violett"
+msgstr "~violett~Violett"
 
 #: guichan.lua:1150
 msgid "~orange~Orange"
@@ -261,15 +261,15 @@ msgstr "~orange~Orange"
 
 #: guichan.lua:1150
 msgid "~black~Black"
-msgstr "~black~Schwarz"
+msgstr "~schwarz~Schwarz"
 
 #: guichan.lua:1151
 msgid "~white~White"
-msgstr "~white~Weiß"
+msgstr "~weiß~Weiß"
 
 #: guichan.lua:1151
 msgid "~yellow~Yellow"
-msgstr "~yellow~Gelb"
+msgstr "~gelb~Gelb"
 
 #: guichan.lua:1152 menus/editor.lua:319 menus/network.lua:208
 #: menus/network.lua:578 wc2.lua:33
@@ -295,11 +295,11 @@ msgstr "Computer"
 
 #: guichan.lua:1154 menus/editor.lua:317
 msgid "Rescue-passive"
-msgstr "Rettungs-passiv"
+msgstr "Passivrettung"
 
 #: guichan.lua:1154 menus/editor.lua:317
 msgid "Rescue-active"
-msgstr "Rettungs-aktiv"
+msgstr "Aktivrettung"
 
 #: guichan.lua:1154
 msgid "None"
@@ -315,7 +315,7 @@ msgstr "Aufgedeckt"
 
 #: guichan.lua:1156
 msgid "Use map settings"
-msgstr "Karteneinstellungen verwenden"
+msgstr "Karteneinstellung nutzen"
 
 #: guichan.lua:1156
 msgid "Melee"
@@ -323,7 +323,7 @@ msgstr "Nahkampf"
 
 #: guichan.lua:1156
 msgid "Free for all"
-msgstr "Free for all"
+msgstr "Frei für alle"
 
 #: guichan.lua:1156
 msgid "Top vs bottom"
@@ -415,7 +415,7 @@ msgstr "~!Spiel starten"
 
 #: guichan.lua:1277
 msgid "Need more than 1 team"
-msgstr "Brauche mehr als 1 Team"
+msgstr "Mehr als 1 Team benötigt"
 
 #: guichan.lua:1279
 msgid "No players selected"
@@ -423,11 +423,11 @@ msgstr "Keine Spieler ausgewählt"
 
 #: guichan.lua:1281
 msgid "Need at least 1 person player"
-msgstr "Brauche mind. 1 menschlichen Spieler"
+msgstr "Mind. 1 menschlichen Spieler benötigt"
 
 #: guichan.lua:1283
 msgid "Need at least 2 players"
-msgstr "Brauche mind. 2 Spieler"
+msgstr "Mind. 2 Spieler benötigt"
 
 #: guichan.lua:1369
 msgid "~<Color:~>"
@@ -447,11 +447,11 @@ msgstr "~<Teams:~>"
 
 #: guichan.lua:1450
 msgid "~<AI Script:~>"
-msgstr "~<AI Skript:~>"
+msgstr "~<KI Skript:~>"
 
 #: guichan.lua:1498
 msgid "~!Cancel Game"
-msgstr "Spiel abbrechen (~!c)"
+msgstr "Spiel Abbruch (~!c)"
 
 #: guichan.lua:1512
 msgid "~<Game Type:~>"
@@ -463,7 +463,7 @@ msgstr "~<Ressourcen:~>"
 
 #: guichan.lua:1536 menus/campaign.lua:324
 msgid "~<AI Difficulty:~>"
-msgstr "~<AI Schwierigkeit:~>"
+msgstr "~<KI Schwierigkeit:~>"
 
 #: guichan.lua:1549
 msgid "~<Tileset:~>"
@@ -541,15 +541,15 @@ msgstr "~!Patrouille"
 
 #: human/buttons.lua:139 orc/buttons.lua:145
 msgid "E~!XPLORE"
-msgstr "E~!xplorieren"
+msgstr "E~!rkunden"
 
 #: human/buttons.lua:144 orc/buttons.lua:150
 msgid "S~!TAND GROUND"
-msgstr "S~!tellung Halten"
+msgstr "S~!tellung halten"
 
 #: human/buttons.lua:153 orc/buttons.lua:159
 msgid "ATTACK ~!GROUND"
-msgstr "An~!griff"
+msgstr "Daueran~!griff"
 
 #: human/buttons.lua:159 orc/buttons.lua:165
 msgid "~!DEMOLISH"
@@ -606,15 +606,15 @@ msgstr "~!Holz/Gold abbauen"
 #: human/buttons.lua:242 human/buttons.lua:542 orc/buttons.lua:265
 #: orc/buttons.lua:561
 msgid "RETURN WITH ~!GOODS"
-msgstr "Waren zurückbrin~!gen"
+msgstr "~!Güter zurückbringen"
 
 #: human/buttons.lua:249 orc/buttons.lua:272
 msgid "~!BUILD BASIC STRUCTURE"
-msgstr "~!Basisgebäude errichten"
+msgstr "~!Basisgebäude bauen"
 
 #: human/buttons.lua:255 orc/buttons.lua:278
 msgid "BUILD AD~!VANCED STRUCTURE"
-msgstr "Besseres Gebäude errichten (~!V)"
+msgstr "Erweitertes Gebäude bauen (~!V)"
 
 #: human/buttons.lua:262
 msgid "BUILD ~!FARM"
@@ -630,7 +630,7 @@ msgstr "Rat~!haus bauen"
 
 #: human/buttons.lua:277
 msgid "BUILD ELVEN ~!LUMBER MILL"
-msgstr "E~!lfen Sägewerk bauen"
+msgstr "E~!lfisches Sägewerk bauen"
 
 #: human/buttons.lua:282 orc/buttons.lua:305
 msgid "BUILD BLACK~!SMITH"
@@ -687,30 +687,30 @@ msgstr "Arbeiter ausbilden (~!P)"
 
 #: human/buttons.lua:374
 msgid "UPGRADE TO ~!KEEP"
-msgstr "Zur Festung aufwerten (~!K)"
+msgstr "Zur Festung erweitern (~!K)"
 
 #: human/buttons.lua:380
 msgid "UPGRADE TO ~!CASTLE"
-msgstr "Zum aufwerten (~!C)"
+msgstr "Zum Schloss erweitern (~!C)"
 
 #: human/buttons.lua:387 orc/buttons.lua:410
 msgid "SET ~!HARVEST LUMBER/MINE GOLD"
-msgstr "Setze auf ~!Holz/Gold abbauen"
+msgstr "Beauftrage zum ~!Holz/Gold abbauen"
 
 #: human/buttons.lua:392 human/buttons.lua:571 orc/buttons.lua:415
 #: orc/buttons.lua:590
 msgid "SET ~!MOVE"
-msgstr "Setze auf Bewegen (~!M)"
+msgstr "Beauftrage zum Bewegen (~!M)"
 
 #: human/buttons.lua:398 human/buttons.lua:576 orc/buttons.lua:422
 #: orc/buttons.lua:595
 msgid "SET ~!ZTOP"
-msgstr "Setze auf Stop (~!Z)"
+msgstr "Kein Auftrag (~!Z)"
 
 #: human/buttons.lua:404 human/buttons.lua:581 orc/buttons.lua:429
 #: orc/buttons.lua:600
 msgid "S~!ET ATTACK"
-msgstr "Setze auf Angriff (~!E)"
+msgstr "Beauftrage zum Angriff (~!E)"
 
 #: human/buttons.lua:412
 msgid "TRAIN ~!MINUTEMAN"
@@ -754,7 +754,7 @@ msgstr "Magier ausbilden (~!T)"
 
 #: human/buttons.lua:462
 msgid "TRAIN ~!GRYPHON RIDER"
-msgstr "Greifenreiter ausbilden"
+msgstr "~!Greifenreiter ausbilden"
 
 #: human/buttons.lua:467 orc/buttons.lua:488
 msgid "BUILD ~!OIL TANKER"
@@ -782,7 +782,7 @@ msgstr "Setze auf Öl fördern (~!H)"
 
 #: human/buttons.lua:501 orc/buttons.lua:522
 msgid "UPGRADE TO ~!GUARD TOWER"
-msgstr "Wachturm"
+msgstr "Wachturm (~!G)"
 
 #: human/buttons.lua:506 orc/buttons.lua:527
 msgid "UPGRADE TO ~!CANNON TOWER"
@@ -822,97 +822,79 @@ msgid "ELVEN ~!RANGER TRAINING"
 msgstr "Scharfschützenausbildung (~!R)"
 
 #: human/buttons.lua:645
-#, fuzzy
 msgid "RANGER ~!SCOUTING (Sight:9)"
-msgstr "RANGER ~!SCOUTING (Sicht:9)"
+msgstr "Scharfschützen ~!Spähen (Sicht:9)"
 
 #: human/buttons.lua:651
-#, fuzzy
 msgid "RESEARCH ~!LONGBOW (Range +1)"
-msgstr "FORSCHUNG ~!LANGBOGEN (Reichweite +1)"
+msgstr "~!Langbogen erforschen (Reichweite +1)"
 
 #: human/buttons.lua:657
-#, fuzzy
 msgid "RANGER ~!MARKSMANSHIP (Damage +3)"
-msgstr "RANGER TREFFSICHERHEIT (~!M) (Schaden +3)"
+msgstr "Bogenschütze Treffsicherheit (Schaden +3)"
 
 #: human/buttons.lua:663
-#, fuzzy
 msgid "UPGRADES KNIGHTS TO ~!PALADINS"
-msgstr "UPGRADES KNIGHTS AUF ~!PALADINE"
+msgstr "Ritter zu ~!Paladin verbessern"
 
 #: human/buttons.lua:669
-#, fuzzy
 msgid "RESEARCH ~!HEALING"
-msgstr "FORSCHUNG ~!HEILUNG"
+msgstr "~!Heilung erforschen"
 
 #: human/buttons.lua:675
-#, fuzzy
 msgid "RESEARCH ~!EXORCISM"
-msgstr "FORSCHUNG ~!EXORZISMUS"
+msgstr "~!Exorzismus erforschen"
 
 #: human/buttons.lua:681
-#, fuzzy
 msgid "RESEARCH SL~!OW"
-msgstr "FORSCHUNG LANGSAM (~!O)"
+msgstr "Verlangsamung erforschen (~!O)"
 
 #: human/buttons.lua:687
-#, fuzzy
 msgid "RESEARCH F~!LAME SHIELD"
-msgstr "FORSCHUNG F~!LAMMENSCHILD"
+msgstr "F~!lammenschild erfoschen"
 
 #: human/buttons.lua:693
-#, fuzzy
 msgid "RESEARCH ~!INVISIBILITY"
-msgstr "FORSCHUNG UNS~!ICHTBARKEIT"
+msgstr "Uns~!ichtbarkeit erforschen"
 
 #: human/buttons.lua:699
-#, fuzzy
 msgid "RESEARCH ~!POLYMORPH"
-msgstr "FORSCHUNG ~!POLYMORPH"
+msgstr "Verwandlung erforschen (~!P)"
 
 #: human/buttons.lua:705
-#, fuzzy
 msgid "RESEARCH ~!BLIZZARD"
-msgstr "FORSCHUNG ~!BLIZZARD"
+msgstr "~!Blizzard erforschen"
 
 #: human/buttons.lua:711 human/buttons.lua:717 orc/buttons.lua:730
 #: orc/buttons.lua:736
-#, fuzzy
 msgid "UPGRADE ~!CANNONS (Damage +5)"
-msgstr "UPGRADE KANONEN (~!C) (Schaden +5)"
+msgstr "Kanonen verbessern (Schaden +5)"
 
 #: human/buttons.lua:723 human/buttons.lua:729 orc/buttons.lua:742
 #: orc/buttons.lua:748
-#, fuzzy
 msgid "UPGRADE SHIP ~!ARMOR (Armor +5)"
-msgstr "UPGRADE SHIP RÜSTUNG (~!A) (Rüstung +5)"
+msgstr "Schiffspanzerung verbessern (Rüstung +5)"
 
 #: human/campaign1.lua:34 human/campaign2.lua:35 orc/campaign1.lua:34
 #: orc/campaign2.lua:35
-#, fuzzy
 msgid "Act I"
 msgstr "Erster Akt"
 
 #: human/campaign1.lua:34
-#, fuzzy
 msgid "The Shores of Lordareon"
 msgstr "Die Küsten von Lordareon"
 
 #: human/campaign1.lua:40 human/campaign2.lua:40 orc/campaign1.lua:40
 #: orc/campaign2.lua:40
-#, fuzzy
 msgid "Act II"
 msgstr "Zweiter Akt"
 
 #: human/campaign1.lua:40 orc/campaign1.lua:40
-#, fuzzy
 msgid "Khaz Modan"
 msgstr "Khaz Modan"
 
 #: human/campaign1.lua:46 human/campaign2.lua:45 orc/campaign1.lua:46
 #: orc/campaign2.lua:45
-#, fuzzy
 msgid "Act III"
 msgstr "Dritter Akt"
 
@@ -935,7 +917,7 @@ msgstr "Eine Zeit für Helden"
 
 #: human/campaign2.lua:40
 msgid "Draenor, The Red World"
-msgstr "Draenor, Die Rote Welt"
+msgstr "Draenor, die rote Welt"
 
 #: human/campaign2.lua:45
 msgid "War in the Shadows"
@@ -968,7 +950,7 @@ msgstr "Arbeiter"
 
 #: human/units.lua:111
 msgid "Minuteman"
-msgstr "Minuteman"
+msgstr "Miliz"
 
 #: human/units.lua:141 human/units.lua:170
 msgid "Ballista"
@@ -1020,11 +1002,11 @@ msgstr "Öltanker"
 
 #: human/units.lua:551 orc/units.lua:529
 msgid "Transport"
-msgstr "Transporter"
+msgstr "Transport"
 
 #: human/units.lua:581
 msgid "Elven Destroyer"
-msgstr "Elfen-Zerstörer"
+msgstr "Elfenzerstörer"
 
 #: human/units.lua:610
 msgid "Battleship"
@@ -1032,11 +1014,11 @@ msgstr "Schlachtschiff"
 
 #: human/units.lua:646
 msgid "Gnomish Submarine"
-msgstr "U-Boot"
+msgstr "Gnomisches U-Boot"
 
 #: human/units.lua:676
 msgid "Gnomish Flying Machine"
-msgstr "Flugmaschine"
+msgstr "Gnomische Flugmaschine"
 
 #: human/units.lua:704
 msgid "Turalyon"
@@ -1088,7 +1070,7 @@ msgstr "Hafen"
 
 #: human/units.lua:1102
 msgid "Elven Lumber Mill"
-msgstr "Elfen-Sägewerk"
+msgstr "Elfisches Sägewerk"
 
 #: human/units.lua:1136 orc/units.lua:1271
 msgid "Foundry"
@@ -1116,7 +1098,7 @@ msgstr "Ölplattform"
 
 #: human/units.lua:1342
 msgid "Keep"
-msgstr "Festung"
+msgstr "Behalten"
 
 #: human/units.lua:1380
 msgid "Castle"
@@ -1138,7 +1120,7 @@ msgstr "Kanonenturm"
 
 #: human/units.lua:1577 orc/units.lua:1682
 msgid "Wall"
-msgstr "Wall"
+msgstr "Mauer"
 
 #: menus/campaign.lua:316
 msgid "~<Mission list~>"
@@ -1218,21 +1200,20 @@ msgstr "Karte gespeichert in: "
 
 #: menus/editor.lua:139 menus/save.lua:41
 msgid "Save Game"
-msgstr "Spiel speichern"
+msgstr "Spiel sichern"
 
 #: menus/editor.lua:152 menus/editor.lua:232 menus/replay.lua:60
 #: menus/save.lua:87
 msgid "~!Save"
-msgstr "~!Speichern"
+msgstr "~!Sichern"
 
 #: menus/editor.lua:175 menus/editor.lua:266 menus/save.lua:21
 msgid "File exists, are you sure ?"
 msgstr "Datei existiert, sind Sie sicher?"
 
 #: menus/editor.lua:216
-#, fuzzy
 msgid "Save Resized Map"
-msgstr "Geänderte Karte speichern"
+msgstr "Geänderte Karte sichern"
 
 #: menus/editor.lua:306
 msgid "Players properties"
@@ -1260,7 +1241,7 @@ msgstr "Rasse"
 
 #: menus/editor.lua:326
 msgid "AI"
-msgstr "Ai"
+msgstr "KI"
 
 #: menus/editor.lua:327
 msgid "Gold"
@@ -1284,7 +1265,7 @@ msgstr "Kartenbeschreibung : "
 
 #: menus/editor.lua:414
 msgid "Size    : "
-msgstr "Größe    : "
+msgstr "Größe   : "
 
 #: menus/editor.lua:420
 msgid "Tileset : "
@@ -1296,7 +1277,7 @@ msgstr "Editor-Menü"
 
 #: menus/editor.lua:530 menus/game.lua:39
 msgid "Save (~<F11~>)"
-msgstr "Speichern (~<F11~>)"
+msgstr "Sichern (~<F11~>)"
 
 #: menus/game.lua:41
 msgid "Load (~<F12~>)"
@@ -1320,7 +1301,7 @@ msgstr "Zurück zum Editor (~<Esc~>)"
 
 #: stratagus.lua:240
 msgid "gold"
-msgstr "gold"
+msgstr "Gold"
 
 #: stratagus.lua:240
 msgid "wood"
@@ -1344,7 +1325,7 @@ msgstr "Aufgeben (~!S)"
 
 #: menus/endscenario.lua:12 menus/endscenario.lua:56
 msgid "~!Quit to Menu"
-msgstr "Zun Hauptmenü (~!Q)"
+msgstr "Zurück zum Menü (~!Q)"
 
 #: menus/endscenario.lua:25 menus/endscenario.lua:39 menus/endscenario.lua:53
 #: menus/endscenario.lua:67
@@ -1469,7 +1450,7 @@ msgstr "- Spiel beenden"
 
 #: menus/help.lua:29
 msgid "- toggle expand map"
-msgstr "- Karte erweitern"
+msgstr "- Karte erweitern umschalten"
 
 #: menus/help.lua:30 menus/help.lua:52 menus/help.lua:53
 msgid "- game menu"
@@ -1537,7 +1518,7 @@ msgstr "- Kartenposition abrufen"
 
 #: menus/help.lua:46
 msgid "- save map postition"
-msgstr "- Kartenposition speichern"
+msgstr "- Kartenposition sichern"
 
 #: menus/help.lua:47
 msgid "- game options"
@@ -1561,7 +1542,7 @@ msgstr "- Diplomatie"
 
 #: menus/help.lua:54
 msgid "- save game"
-msgstr "- Spiel speichern"
+msgstr "- Spiel sichern"
 
 #: menus/help.lua:55
 msgid "- load game"
@@ -1648,12 +1629,10 @@ msgid "~!Load"
 msgstr "~!Laden"
 
 #: menus/network.lua:86
-#, fuzzy
 msgid "AIs:"
-msgstr "Ais:"
+msgstr "KIs:"
 
 #: menus/network.lua:94
-#, fuzzy
 msgid " AI player(s)"
 msgstr " KI-Spieler"
 
@@ -1666,9 +1645,8 @@ msgid "Preparing"
 msgstr "Vorbereiten"
 
 #: menus/network.lua:126 menus/network.lua:163
-#, fuzzy
 msgid "Open slots : "
-msgstr "Offene Slots : "
+msgstr "Offene Positionen : "
 
 #: menus/network.lua:132
 msgid "Creator"
@@ -1679,9 +1657,8 @@ msgid "Ready"
 msgstr "Fertig"
 
 #: menus/network.lua:185
-#, fuzzy
 msgid "Joining game: Map"
-msgstr "Beitreten zum Spiel: Karte"
+msgstr "Spiel beitreten: Karte"
 
 #: menus/network.lua:187 menus/network.lua:552
 msgid "Map"
@@ -1692,21 +1669,18 @@ msgid "File:"
 msgstr "Datei:"
 
 #: menus/network.lua:190 menus/network.lua:555 menus/network.lua:750
-#, fuzzy
 msgid "Players:"
-msgstr "Spieler"
+msgstr "Spieler:"
 
 #: menus/network.lua:192 menus/network.lua:557 menus/network.lua:752
 msgid "Description:"
 msgstr "Beschreibung:"
 
 #: menus/network.lua:195 menus/network.lua:565
-#, fuzzy
 msgid "Fog of war"
-msgstr "~<Nebel des Krieges:~>"
+msgstr "Nebel des Krieges"
 
 #: menus/network.lua:207
-#, fuzzy
 msgid "~<Your Race:~>"
 msgstr "~<Ihre Rasse:~>"
 
@@ -1716,88 +1690,73 @@ msgstr "Einheiten:"
 
 #: menus/network.lua:222 menus/network.lua:598
 msgid "Resources:"
-msgstr "Hilfreiche Links:"
+msgstr "Ressourcen:"
 
 #: menus/network.lua:254
-#, fuzzy
 msgid "~!Ready"
-msgstr "Fertig"
+msgstr "Fe~!rtig"
 
 #: menus/network.lua:313 menus/network.lua:383
-#, fuzzy
 msgid "Cannot reach server"
-msgstr "Server kann nicht erreicht werden"
+msgstr "Kann Server nicht erreichen"
 
 #: menus/network.lua:334
-#, fuzzy
 msgid "Joining Game"
 msgstr "Spiel beitreten"
 
 #: menus/network.lua:345
 msgid "Connecting to server"
-msgstr "Verbindung zum Server herstellen"
+msgstr "Mit Server verbinden"
 
 #: menus/network.lua:351
 msgid "Connecting..."
 msgstr "Verbinden..."
 
 #: menus/network.lua:377
-#, fuzzy
 msgid "Map not available"
 msgstr "Karte nicht verfügbar"
 
 #: menus/network.lua:387
-#, fuzzy
 msgid "Server is full"
 msgstr "Server ist voll"
 
 #: menus/network.lua:390
-#, fuzzy
 msgid "Server gone"
-msgstr "Server weg"
+msgstr "Server verschwunden"
 
 #: menus/network.lua:393
-#, fuzzy
 msgid "Incompatible engine version"
 msgstr "Inkompatible Engine-Version"
 
 #: menus/network.lua:396
-#, fuzzy
 msgid "Incompatible lua files"
 msgstr "Inkompatible Lua-Dateien"
 
 #: menus/network.lua:421
-#, fuzzy
 msgid "Servers: "
-msgstr "Diener: "
+msgstr "Servers: "
 
 #: menus/network.lua:441
-#, fuzzy
 msgid "Co~!nnect"
-msgstr "Co~!nnect"
+msgstr "Verbi~!nden"
 
 #: menus/network.lua:453
-#, fuzzy
 msgid "~!Add server"
-msgstr "Server hinzufügen (~!A)"
+msgstr "Server hinzufügen (~!a)"
 
 #: menus/network.lua:455
-#, fuzzy
 msgid "~!Edit server"
 msgstr "Server b~!earbeiten"
 
 #: menus/network.lua:460
-#, fuzzy
 msgid "~!Delete server"
-msgstr "Server löschen (~!D)"
+msgstr "Server löschen (~!d)"
 
 #: menus/network.lua:489
-#, fuzzy
 msgid "Edit server"
 msgstr "Server bearbeiten"
 
 #: menus/network.lua:490 menus/network.lua:516
-#, fuzzy
 msgid "Server IP: "
 msgstr "Server-IP: "
 
@@ -1806,22 +1765,18 @@ msgid "Description: "
 msgstr "Beschreibung: "
 
 #: menus/network.lua:498 menus/network.lua:522
-#, fuzzy
 msgid "Invalid server name"
 msgstr "Ungültiger Servername"
 
 #: menus/network.lua:515
-#, fuzzy
 msgid "Add server"
 msgstr "Server hinzufügen"
 
 #: menus/network.lua:550 menus/network.lua:746
-#, fuzzy
 msgid "Create MultiPlayer game"
-msgstr "MultiPlayer-Spiel erstellen"
+msgstr "Mehrspieler-Spiel erstellen"
 
 #: menus/network.lua:558
-#, fuzzy
 msgid "Unknown map"
 msgstr "Unbekannte Karte"
 
@@ -1830,7 +1785,6 @@ msgid "Race:"
 msgstr "Rennen:"
 
 #: menus/network.lua:608
-#, fuzzy
 msgid "Dedicated AI Server:"
 msgstr "Dedizierter KI-Server:"
 
@@ -1839,14 +1793,12 @@ msgid "Waiting for players"
 msgstr "Oczekiwanie na graczy"
 
 #: menus/network.lua:796 menus/network.lua:929 menus/network.lua:1024
-#, fuzzy
 msgid "~!Create Game"
-msgstr "Spiel erstellen (~!C)"
+msgstr "Spiel erstellen"
 
 #: menus/network.lua:824
-#, fuzzy
 msgid "~<Multiplayer Network Game~>"
-msgstr "~<Multiplayer-Netzwerkspiel~>"
+msgstr "~<Mehrspieler-Netzwerkspiel~>"
 
 #: menus/network.lua:826
 msgid "Nickname :"
@@ -1857,7 +1809,6 @@ msgid "Password :"
 msgstr "Passwort :"
 
 #: menus/network.lua:833
-#, fuzzy
 msgid "Go ~!Online"
 msgstr "Geh ~!Online"
 
@@ -1866,9 +1817,8 @@ msgid "Sign up"
 msgstr "Registrieren"
 
 #: menus/network.lua:919
-#, fuzzy
 msgid "~!Join Local Game"
-msgstr "Lokalen Spiel beitreten (~!J)"
+msgstr "Lokalem Spiel beitreten"
 
 #: menus/network.lua:957
 msgid "Users"
@@ -1891,17 +1841,14 @@ msgid "Chat"
 msgstr "Chat"
 
 #: menus/network.lua:1034
-#, fuzzy
 msgid "~!Join Game"
-msgstr "Spiel beitreten (~!J)"
+msgstr "Spiel beitreten"
 
 #: menus/network.lua:1055
-#, fuzzy
 msgid "No game selected"
 msgstr "Kein Spiel ausgewählt"
 
 #: menus/network.lua:1061
-#, fuzzy
 msgid "~!Previous Menu"
 msgstr "Vorheriges Menü (~<Esc~>)"
 
@@ -1910,17 +1857,14 @@ msgid "Objectives"
 msgstr "Ziele"
 
 #: menus/options.lua:33
-#, fuzzy
 msgid "Sound Options"
-msgstr "- Sound-Optionen"
+msgstr "Sound-Optionen"
 
 #: menus/options.lua:35
-#, fuzzy
 msgid "Effects Volume"
 msgstr "Lautstärke der Effekte"
 
 #: menus/options.lua:68
-#, fuzzy
 msgid "Sound:"
 msgstr "Ton:"
 
@@ -1937,12 +1881,10 @@ msgid "Music Volume"
 msgstr "Musik Lautstärke"
 
 #: menus/options.lua:129
-#, fuzzy
 msgid "Stereo Sound"
 msgstr "Stereo-Sound"
 
 #: menus/options.lua:136
-#, fuzzy
 msgid "Music:"
 msgstr "Musik:"
 
@@ -1951,82 +1893,66 @@ msgid "Preferences"
 msgstr "Einstellungen"
 
 #: menus/options.lua:204
-#, fuzzy
 msgid "Show Hotkeys"
 msgstr "Hotkeys anzeigen"
 
 #: menus/options.lua:214
-#, fuzzy
 msgid "Grab Mouse"
 msgstr "Maus greifen"
 
 #: menus/options.lua:222
-#, fuzzy
 msgid "~!*Show damage"
 msgstr "~!*Schaden anzeigen"
 
 #: menus/options.lua:234
-#, fuzzy
 msgid "~!*Show button popups"
 msgstr "~!*Schaltflächen-Popups anzeigen"
 
 #: menus/options.lua:240
-#, fuzzy
 msgid "Mine notifications"
 msgstr "Minen-Benachrichtigungen"
 
 #: menus/options.lua:248
-#, fuzzy
 msgid "Show orders"
-msgstr "Bestellungen anzeigen"
+msgstr "Anweisungen anzeigen"
 
 #: menus/options.lua:264
-#, fuzzy
 msgid "Mirrored buildings"
-msgstr "Gespiegelte Gebäude"
+msgstr "Verspiegelte Gebäude"
 
 #: menus/options.lua:272
-#, fuzzy
 msgid "Show messages"
 msgstr "Nachrichten anzeigen"
 
 #: menus/options.lua:280
-#, fuzzy
 msgid "Pause on leave"
 msgstr "Pause im Urlaub"
 
 #: menus/options.lua:288
-#, fuzzy
 msgid "~!*Enhanced effects"
 msgstr "~!*Verbesserte Effekte"
 
 #: menus/options.lua:292
-#, fuzzy
 msgid "Deselect in mines"
 msgstr "Abwählen in Minen"
 
 #: menus/options.lua:302
-#, fuzzy
 msgid "Fog of War"
-msgstr "~<Nebel des Krieges:~>"
+msgstr "Nebel des Krieges"
 
 #: menus/options.lua:313 menus/options.lua:530
-#, fuzzy
 msgid "Simplified auto targ."
-msgstr "Vereinfachte automatische Targ."
+msgstr "Vereinfachte automatische Zielfindung"
 
 #: menus/options.lua:323
-#, fuzzy
 msgid "~!*Animated shadows"
 msgstr "~!*Animierte Schatten"
 
 #: menus/options.lua:334
-#, fuzzy
 msgid "rectangle"
 msgstr "Rechteck"
 
 #: menus/options.lua:334
-#, fuzzy
 msgid "alpha-rectangle"
 msgstr "Alpha-Rechteck"
 
@@ -2035,7 +1961,6 @@ msgid "circle"
 msgstr "Kreis"
 
 #: menus/options.lua:334
-#, fuzzy
 msgid "alpha-circle"
 msgstr "Alpha-Kreis"
 
@@ -2044,7 +1969,6 @@ msgid "corners"
 msgstr "Ecken"
 
 #: menus/options.lua:335
-#, fuzzy
 msgid "Selection style:"
 msgstr "Auswahlstil:"
 
@@ -2053,32 +1977,26 @@ msgid "single"
 msgstr "einzeln"
 
 #: menus/options.lua:344
-#, fuzzy
 msgid "horizontal 1 + 1"
 msgstr "horizontal 1 + 1"
 
 #: menus/options.lua:344
-#, fuzzy
 msgid "horizontal 1 + 2"
 msgstr "horizontal 1 + 2"
 
 #: menus/options.lua:344
-#, fuzzy
 msgid "vertical 1 + 1"
 msgstr "vertikal 1 + 1"
 
 #: menus/options.lua:344
-#, fuzzy
 msgid "quad"
-msgstr "Viereck"
+msgstr "viereckig"
 
 #: menus/options.lua:345
-#, fuzzy
 msgid "Viewport mode:"
-msgstr "Viewport-Modus:"
+msgstr "Ansicht-Modus:"
 
 #: menus/options.lua:357
-#, fuzzy
 msgid "Shader:"
 msgstr "Shader:"
 
@@ -2087,17 +2005,14 @@ msgid "enhanced"
 msgstr "Erweitert"
 
 #: menus/options.lua:382 menus/options.lua:459
-#, fuzzy
 msgid "Fog of War type:"
-msgstr "Nebel des Krieges Typ:"
+msgstr "Nebel des Krieges Art:"
 
 #: menus/options.lua:391
-#, fuzzy
 msgid "Bilinear fog"
 msgstr "Bilinearer Nebel"
 
 #: menus/options.lua:398
-#, fuzzy
 msgid "~!* - requires restart"
 msgstr "~!* - erfordert Neustart"
 
@@ -2106,17 +2021,14 @@ msgid "Debug"
 msgstr "Debug"
 
 #: menus/options.lua:447
-#, fuzzy
 msgid "Show map grid"
 msgstr "Kartenraster anzeigen"
 
 #: menus/options.lua:469
-#, fuzzy
 msgid "Bilinear interp."
 msgstr "Bilineare Interp."
 
 #: menus/options.lua:480
-#, fuzzy
 msgid "shadow-casting"
 msgstr "Schattenwurf"
 
@@ -2125,48 +2037,40 @@ msgid "radial"
 msgstr "radial"
 
 #: menus/options.lua:481
-#, fuzzy
 msgid "Field of View type:"
-msgstr "Typ des Ansichtsfelds:"
+msgstr "Art des Ansichtsfelds:"
 
 #: menus/options.lua:491
-#, fuzzy
 msgid "Enable opacity for:"
-msgstr "Opazität aktivieren für:"
+msgstr "Durchsichtigkeit aktivieren für:"
 
 #: menus/options.lua:492
 msgid "Forest"
 msgstr "Wald"
 
 #: menus/options.lua:502
-#, fuzzy
 msgid "Rocks"
 msgstr "Felsen"
 
 #: menus/options.lua:512
-#, fuzzy
 msgid "Walls"
 msgstr "Mauern"
 
 #: menus/options.lua:523
-#, fuzzy
 msgid "Enable walls"
 msgstr "Wände aktivieren"
 
 #: menus/options.lua:560
-#, fuzzy
 msgid "Speed Settings"
 msgstr "Geschwindigkeitseinstellungen"
 
 #: menus/options.lua:561
-#, fuzzy
 msgid "Game Speed"
 msgstr "Spielgeschwindigkeit"
 
 #: menus/options.lua:576 menus/options.lua:597 menus/options.lua:621
-#, fuzzy
 msgid "slow "
-msgstr "langsam"
+msgstr "langsam "
 
 #: menus/options.lua:381 menus/options.lua:458 menus/options.lua:577
 #: menus/options.lua:598 menus/options.lua:622
@@ -2174,12 +2078,10 @@ msgid "fast"
 msgstr "schnell"
 
 #: menus/options.lua:582
-#, fuzzy
 msgid "Mouse Scroll Speed"
 msgstr "Maus-Scroll-Geschwindigkeit"
 
 #: menus/options.lua:603
-#, fuzzy
 msgid "Key Scroll Speed"
 msgstr "Tasten-Scroll-Geschwindigkeit"
 
@@ -2188,7 +2090,6 @@ msgid "Video Options"
 msgstr "Video Optionen"
 
 #: menus/options.lua:703
-#, fuzzy
 msgid "Video Resolution"
 msgstr "Videoauflösung"
 
@@ -2197,12 +2098,10 @@ msgid "Full Screen"
 msgstr "Vollbild"
 
 #: menus/options.lua:741 menus/save.lua:23
-#, fuzzy
 msgid "~!Yes"
 msgstr "Ja (~!Y)"
 
 #: menus/options.lua:748 menus/save.lua:31
-#, fuzzy
 msgid "~!No"
 msgstr "~!Nein"
 
@@ -2211,7 +2110,6 @@ msgid "Language Options"
 msgstr "Übersetzungen"
 
 #: menus/options.lua:769
-#, fuzzy
 msgid "Available languages:"
 msgstr "Verfügbare Sprachen:"
 
@@ -2220,32 +2118,26 @@ msgid "Game Options"
 msgstr "Spieloptionen"
 
 #: menus/options.lua:806 menus/options.lua:849
-#, fuzzy
 msgid "Speeds (~<F6~>)"
 msgstr "Geschwindigkeiten (~<F6~>)"
 
 #: menus/options.lua:808 menus/options.lua:851
-#, fuzzy
 msgid "Sound (~<F7~>)"
 msgstr "Ton (~<F7~>)"
 
 #: menus/options.lua:810 menus/options.lua:853
-#, fuzzy
 msgid "Preferences (~<F8~>)"
 msgstr "Einstellungen (~<F8~>)"
 
 #: menus/options.lua:813
-#, fuzzy
 msgid "Diplomacy (~<F9~>)"
 msgstr "Diplomatie (~<F9~>)"
 
 #: menus/options.lua:816
-#, fuzzy
 msgid "~<D~>ebug"
-msgstr "~ <D ~ >ebug"
+msgstr "~<D~>ebug"
 
 #: menus/options.lua:820 menus/options.lua:855
-#, fuzzy
 msgid "Video (~<F9~>)"
 msgstr "Video (~<F9~>)"
 
@@ -2254,26 +2146,22 @@ msgid "Language"
 msgstr "Sprache"
 
 #: menus/options.lua:848
-#, fuzzy
 msgid "~<Game Options~>"
-msgstr "- Spieloptionen"
+msgstr "~<Spieloptionen~>"
 
 #: menus/replay.lua:7
 msgid "Select Game"
-msgstr "Saison"
+msgstr "Spiel auswählen"
 
 #: menus/replay.lua:12
-#, fuzzy
 msgid "Reveal Map"
-msgstr "Karte anzeigen"
+msgstr "Karte aufdecken"
 
 #: menus/replay.lua:48
-#, fuzzy
 msgid "Save Replay"
-msgstr "Wiedergabe speichern"
+msgstr "Replay sichern"
 
 #: menus/results.lua:7
-#, fuzzy
 msgid "Servant"
 msgstr "Diener"
 
@@ -2282,12 +2170,10 @@ msgid "Squire"
 msgstr "Knappe"
 
 #: menus/results.lua:11
-#, fuzzy
 msgid "Corporal"
 msgstr "Korporal"
 
 #: menus/results.lua:12
-#, fuzzy
 msgid "Sergeant"
 msgstr "Feldwebel"
 
@@ -2308,12 +2194,10 @@ msgid "General"
 msgstr "Allgemein"
 
 #: menus/results.lua:18
-#, fuzzy
 msgid "Admiral"
 msgstr "Admiral"
 
 #: menus/results.lua:19 menus/results.lua:41
-#, fuzzy
 msgid "Marshall"
 msgstr "Marshall"
 
@@ -2322,17 +2206,14 @@ msgid "Lord"
 msgstr "Lord"
 
 #: menus/results.lua:21
-#, fuzzy
 msgid "Grand Admiral"
 msgstr "Großadmiral"
 
 #: menus/results.lua:22
-#, fuzzy
 msgid "Highlord"
 msgstr "Oberherr"
 
 #: menus/results.lua:23
-#, fuzzy
 msgid "Thundergod"
 msgstr "Donnergott"
 
@@ -2349,28 +2230,24 @@ msgid "Slave"
 msgstr "Sklave"
 
 #: menus/results.lua:30 orc/units.lua:64 orc/units.lua:108
-#, fuzzy
 msgid "Peon"
 msgstr "Peon"
 
 #: menus/results.lua:31
-#, fuzzy
 msgid "Rogue"
 msgstr "Schurke"
 
 #: menus/results.lua:32 orc/units.lua:35
-#, fuzzy
 msgid "Grunt"
-msgstr "Grunzen"
+msgstr "Grunzer"
 
 #: menus/results.lua:33
 msgid "Slasher"
-msgstr "Hächsler"
+msgstr "Messerstecher"
 
 #: menus/results.lua:34
-#, fuzzy
 msgid "Marauder"
-msgstr "MarauderaMarodeur"
+msgstr "Plünderer"
 
 #: menus/results.lua:35
 msgid "Commander"
@@ -2381,27 +2258,22 @@ msgid "Master"
 msgstr "Master"
 
 #: menus/results.lua:42
-#, fuzzy
 msgid "Chieftain"
 msgstr "Häuptling"
 
 #: menus/results.lua:43
-#, fuzzy
 msgid "Overlord"
 msgstr "Oberherr"
 
 #: menus/results.lua:44
-#, fuzzy
 msgid "War Chief"
 msgstr "Kriegshäuptling"
 
 #: menus/results.lua:45
-#, fuzzy
 msgid "Demigod"
 msgstr "Halbgott"
 
 #: menus/results.lua:65
-#, fuzzy
 msgid "Victory!"
 msgstr "Sieg!"
 
@@ -2414,58 +2286,48 @@ msgid "Draw!"
 msgstr "Gleichstand!"
 
 #: menus/results.lua:132 menus/results.lua:140
-#, fuzzy
 msgid "Cheater!"
 msgstr "Betrüger!"
 
 #: menus/results.lua:184
-#, fuzzy
 msgid " - You"
 msgstr " - Sie"
 
 #: menus/results.lua:186
-#, fuzzy
 msgid " - Ally"
 msgstr " - Verbündeter"
 
 #: menus/results.lua:188
-#, fuzzy
 msgid " - Enemy"
-msgstr "Feind"
+msgstr " - Feind"
 
 #: menus/results.lua:190
-#, fuzzy
 msgid " - Neutral"
-msgstr "Neutral"
+msgstr " - Neutral"
 
 #: menus/results.lua:207
-#, fuzzy
 msgid "Buildings:"
-msgstr "Gebäude"
+msgstr "Gebäude:"
 
 #: menus/results.lua:210
-#, fuzzy
 msgid "Gold:"
-msgstr "Gold"
+msgstr "Gold:"
 
 #: menus/results.lua:213
-#, fuzzy
 msgid "Lumber:"
-msgstr "Holz"
+msgstr "Holz:"
 
 #: menus/results.lua:216
-#, fuzzy
 msgid "Oil:"
-msgstr "Öl"
+msgstr "Öl:"
 
 #: menus/results.lua:219
 msgid "Kills:"
 msgstr "Tötungen:"
 
 #: menus/results.lua:222
-#, fuzzy
 msgid "Razings:"
-msgstr "Zerstörungen:"
+msgstr "Zerstörung:"
 
 #: menus/results.lua:225
 msgid "Score:"
@@ -2484,400 +2346,322 @@ msgid "Score"
 msgstr "Wertung"
 
 #: menus/results.lua:405
-#, fuzzy
 msgid "~!Save Replay"
-msgstr "Wiedergabe ~!speichern"
+msgstr "Wiedergabe ~!sichern"
 
 #: menus/save.lua:5
-#, fuzzy
 msgid "Cannot save game to file:"
 msgstr "Spiel kann nicht in Datei gespeichert werden:"
 
 #: menus/save.lua:10
-#, fuzzy
 msgid "Saved game to: "
 msgstr "Gespeichertes Spiel in: "
 
 #: orc/buttons.lua:173
-#, fuzzy
 msgid "EYE OF ~!KILROGG"
-msgstr "AUGE VON ~!KILROGG"
+msgstr "Auge von ~!Kilrogg"
 
 #: orc/buttons.lua:179 orc/buttons.lua:199
-#, fuzzy
 msgid "~!BLOODLUST"
-msgstr "MORDLUST (~!B)"
+msgstr "Mordlust (~!B)"
 
 #: orc/buttons.lua:185 orc/buttons.lua:205
-#, fuzzy
 msgid "~!RUNES"
-msgstr "~!RUNEN"
+msgstr "~!Runen"
 
 #: orc/buttons.lua:193
-#, fuzzy
 msgid "~!EYE OF KILROGG"
-msgstr "AUG~!E VON KILROGG"
+msgstr "Aug~!e von Kilrogg"
 
 #: orc/buttons.lua:212
-#, fuzzy
 msgid "TOUCH OF D~!ARKNESS"
-msgstr "HAUCH VON D~!ARKNESS"
+msgstr "Hauch der D~!unkelheit"
 
 #: orc/buttons.lua:218
-#, fuzzy
 msgid "DEATH ~!COIL"
-msgstr "TODESSPULE (~!C)"
+msgstr "Todesspule"
 
 #: orc/buttons.lua:224
-#, fuzzy
 msgid "~!HASTE"
-msgstr "~!HAST"
+msgstr "Hast"
 
 #: orc/buttons.lua:230
-#, fuzzy
 msgid "~!RAISE DEAD"
-msgstr "TOTE E~!RWECKEN"
+msgstr "Tote aufe~!rwecken"
 
 #: orc/buttons.lua:236
-#, fuzzy
 msgid "~!WHIRLWIND"
-msgstr "~!WIRBELWIND"
+msgstr "~!Wirbelwind"
 
 #: orc/buttons.lua:242
-#, fuzzy
 msgid "~!UNHOLY ARMOR"
-msgstr "~!UNHEILIGE RÜSTUNG"
+msgstr "~!Unheilige Rüstung"
 
 #: orc/buttons.lua:248
-#, fuzzy
 msgid "~!DEATH AND DECAY"
-msgstr "TO~!D UND VERFALL"
+msgstr "To~!d und Verfall"
 
 #: orc/buttons.lua:285
-#, fuzzy
 msgid "BUILD PIG ~!FARM"
-msgstr "SCHWEIN BAUEN BAUERNHO~!F"
+msgstr "Bauernho~!f bauen"
 
 #: orc/buttons.lua:295
-#, fuzzy
 msgid "BUILD GREAT ~!HALL"
-msgstr "BAUEN SIE SPEISESAAL (~!H)"
+msgstr "Große ~!Halle bauen"
 
 #: orc/buttons.lua:300
-#, fuzzy
 msgid "BUILD TROLL ~!LUMBER MILL"
-msgstr "BAUE TRO~!LL SÄGEWERK"
+msgstr "Troll-Sägewerk bauen (~!L)"
 
 #: orc/buttons.lua:349
-#, fuzzy
 msgid "BUILD GOBLIN ~!ALCHEMIST"
-msgstr "BAUE GOBLIN ~!ALCHIMIST"
+msgstr "Boblin-~!Alchimist bauen"
 
 #: orc/buttons.lua:354
-#, fuzzy
 msgid "BUILD ~!OGRE MOUND"
-msgstr "BAUEN ~!OGER HÜGEL"
+msgstr "~!Oger-Marstall bauen"
 
 #: orc/buttons.lua:359
-#, fuzzy
 msgid "BUILD ~!TEMPLE OF THE DAMNED"
-msgstr "BAUEN ~!TEMPEL DER VERDAMMTEN"
+msgstr "~!Tempel der Verdammten bauen"
 
 #: orc/buttons.lua:364
-#, fuzzy
 msgid "BUILD A~!LTAR OF STORMS"
-msgstr "BAUE A~!LTAR DER STÜRME"
+msgstr "A~!ltar der Stürme bauen"
 
 #: orc/buttons.lua:369
-#, fuzzy
 msgid "BUILD ~!DRAGON ROOST"
-msgstr "BAUEN ~!DRACHENSCHLAFPLATZ"
+msgstr "~!Drachenhorst bauen"
 
 #: orc/buttons.lua:389
-#, fuzzy
 msgid "TRAIN ~!PEON"
-msgstr "TRAINIERE ARBEITER (~!P)"
+msgstr "~!Peon ausbilden"
 
 #: orc/buttons.lua:397
-#, fuzzy
 msgid "UPGRADE TO ~!STRONGHOLD"
-msgstr "UPGRADE AUF FE~!STUNG"
+msgstr "Zur Hochburg au~!sbauen"
 
 #: orc/buttons.lua:403
-#, fuzzy
 msgid "UPGRADE TO ~!FORTRESS"
-msgstr "UPGRADE AUF ~!FESTUNG"
+msgstr "Zur Fe~!stung ausbauen"
 
 #: orc/buttons.lua:438
-#, fuzzy
 msgid "TRAIN ~!GRUNT"
-msgstr "TRAINIERE ~!GRUNZEN"
+msgstr "~!Grunzer ausbilden"
 
 #: orc/buttons.lua:443
-#, fuzzy
 msgid "TRAIN ~!AXETHROWER"
-msgstr "TRAINIERE ~!AXTWERFER"
+msgstr "~!Axtwerfer-Troll ausbilden"
 
 #: orc/buttons.lua:448
-#, fuzzy
 msgid "TRAIN ~!BERSERKER"
-msgstr "TRAINIERE ~!BERSERKER"
+msgstr "~!Berserker-Troll ausbilden"
 
 #: orc/buttons.lua:453
-#, fuzzy
 msgid "BUILD ~!CATAPULT"
-msgstr "BAUEN KATAPULT (~!C)"
+msgstr "Katapult bauen (~!C)"
 
 #: orc/buttons.lua:458
-#, fuzzy
 msgid "TRAIN TWO-HEADED ~!OGRE"
-msgstr "ZUG ZWEIKÖPFIG MENSCHENFRESSER (O~!)"
+msgstr "~!Oger ausbilden"
 
 #: orc/buttons.lua:463
-#, fuzzy
 msgid "TRAIN ~!OGRE MAGE"
-msgstr "TRAINIERE ~!OGER MAGIER"
+msgstr "~!Oger-Magier ausbilden"
 
 #: orc/buttons.lua:468
-#, fuzzy
 msgid "BUILD GOBLIN ~!ZEPPELIN"
-msgstr "BAUE GOBLIN ~!ZEPPELIN"
+msgstr "Kobold-~!Zeppelin bauen"
 
 #: orc/buttons.lua:473
-#, fuzzy
 msgid "TRAIN GOBLIN ~!SAPPERS"
-msgstr "TRAINIERE GOBLIN PIONIERE (~!S)"
+msgstr "Randalier-Kobold ausbilden"
 
 #: orc/buttons.lua:478
-#, fuzzy
 msgid "~!TRAIN DEATH KNIGHT"
-msgstr "ZUG ~!TODESRITTER"
+msgstr "~!Todesritter ausbilden"
 
 #: orc/buttons.lua:483
-#, fuzzy
 msgid "BUILD ~!DRAGON"
-msgstr "BAUEN ~!DRACHE"
+msgstr "~!Drachen zähmen"
 
 #: orc/buttons.lua:503
-#, fuzzy
 msgid "BUILD ~!GIANT TURTLE"
-msgstr "BAUEN RIESENSCHILDKRÖTE (~!G)"
+msgstr "Riesenschildkröte bauen (~!G)"
 
 #: orc/buttons.lua:508
-#, fuzzy
 msgid "BUILD ~!JUGGERNAUHGT"
-msgstr "BAUEN ~!JUGGERNAUHGT"
+msgstr "Oger-Kampfschiff bauen"
 
 #: orc/buttons.lua:610 orc/buttons.lua:616
-#, fuzzy
 msgid "UPGRADE ~!WEAPONS (Damage +2)"
-msgstr "UPGRADE ~!WAFFEN (Schaden +2)"
+msgstr "~!Waffen verbessern (Schaden +2)"
 
 #: orc/buttons.lua:634 orc/buttons.lua:640
-#, fuzzy
 msgid "UPGRADE ~!CATAPULT (Damage +15)"
-msgstr "UPGRADE KATAPULT (~!C) (Schaden +15)"
+msgstr "Katapult verbessern (Schaden +15)"
 
 #: orc/buttons.lua:646 orc/buttons.lua:652
-#, fuzzy
 msgid "~!UPGRADE THROWING AXE (Damage +1)"
-msgstr "~!UPGRADE WURFAXT (Schaden +1)"
+msgstr "~!Wurfaxt verbessern (Schaden +1)"
 
 #: orc/buttons.lua:658
-#, fuzzy
 msgid "TROLL ~!BERSERKER TRAINING"
-msgstr "TROLL ~!BERSERKER AUSBILDUNG"
+msgstr "~!Berserker-Troll Ausbildung"
 
 #: orc/buttons.lua:664
-#, fuzzy
 msgid "BERSERKER ~!SCOUTING (Sight:9)"
-msgstr "BERSERKER ~!SCOUTING (Sehenswürdigkeit:9)"
+msgstr "Berserker ~!Spähen (Sicht:9)"
 
 #: orc/buttons.lua:670
-#, fuzzy
 msgid "RESEARCH LIGHTER ~!AXES (Range +1)"
-msgstr "FORSCHUNG FEUERZEUG ~!AXES (Bereich +1)"
+msgstr "Leichte ~!Axt erforschen (Bereich +1)"
 
 #: orc/buttons.lua:676
-#, fuzzy
 msgid "BERSERKER ~!REGENERATION"
-msgstr "BERSERKER ~!REGENERIERUNG"
+msgstr "Berserker ~!Regeneration"
 
 #: orc/buttons.lua:682
-#, fuzzy
 msgid "UPGRADES OGRES TO ~!MAGES"
-msgstr "AKTUALISIERT OGRES AUF ~!MAGIER"
+msgstr "Verbessert Oger zu Oger-~!Magier"
 
 #: orc/buttons.lua:688
-#, fuzzy
 msgid "RESEARCH ~!BLOODLUST"
-msgstr "FORSCHUNG ~!MORDLUST"
+msgstr "Mordlust erforschen"
 
 #: orc/buttons.lua:694
-#, fuzzy
 msgid "RESEARCH ~!RUNES"
-msgstr "FORSCHUNG ~!RUNEN"
+msgstr "~!Runen erforschen"
 
 #: orc/buttons.lua:700
-#, fuzzy
 msgid "RESEARCH ~!HASTE"
-msgstr "FORSCHUNG ~!HAST"
+msgstr "Hast erforschen"
 
 #: orc/buttons.lua:706
-#, fuzzy
 msgid "RESEARCH ~!RAISE DEAD"
-msgstr "FORSCHUNG TOTE E~!RWECKEN"
+msgstr "Tote aufe~!rwecken"
 
 #: orc/buttons.lua:712
-#, fuzzy
 msgid "RESEARCH ~!WHIRLWIND"
-msgstr "FORSCHUNG ~!WIRBELWIND"
+msgstr "~!Wirbelwind erforschen"
 
 #: orc/buttons.lua:718
-#, fuzzy
 msgid "RESEARCH ~!UNHOLY ARMOR"
-msgstr "FORSCHUNG ~!UNHEILIGE RÜSTUNG"
+msgstr "~!Unheilige Rüstung erforschen"
 
 #: orc/buttons.lua:724
-#, fuzzy
 msgid "RESEARCH ~!DEATH AND DECAY"
-msgstr "FORSCHUNG TO~!D UND VERFALL"
+msgstr "To~!d und Verfall erfroschen"
 
 #: orc/campaign1.lua:34
-#, fuzzy
 msgid "Seas of Blood"
 msgstr "Meere aus Blut"
 
 #: orc/campaign1.lua:46
-#, fuzzy
 msgid "Quel'Thalas"
 msgstr "Quel'Thalas"
 
 #: orc/campaign1.lua:53
-#, fuzzy
 msgid "Tides of Darkness"
 msgstr "Gezeiten der Finsternis"
 
 #: orc/campaign2.lua:35
-#, fuzzy
 msgid "Draenor, the Red World"
-msgstr "Draenor, Die Rote Welt"
+msgstr "Draenor, die rote Welt"
 
 #: orc/campaign2.lua:40
-#, fuzzy
 msgid "The Burning of Azeroth"
 msgstr "Die Verbrennung von Azeroth"
 
 #: orc/campaign2.lua:45
-#, fuzzy
 msgid "The Great Sea"
-msgstr "Das Große Meer"
+msgstr "Das große Meer"
 
 #: orc/campaign2.lua:50
-#, fuzzy
 msgid "Prelude to New Worlds"
 msgstr "Auftakt zu neuen Welten"
 
 #: orc/units.lua:150 orc/units.lua:179
-#, fuzzy
 msgid "Catapult"
 msgstr "Katapult"
 
 #: orc/units.lua:208
-#, fuzzy
 msgid "Ogre"
-msgstr "Menschenfresser"
+msgstr "Oger"
 
 #: orc/units.lua:237
-#, fuzzy
 msgid "Troll Axethrower"
-msgstr "Troll Axtwerfer"
+msgstr "Axtwerfer-Troll"
 
 #: orc/units.lua:266
-#, fuzzy
 msgid "Death Knight"
 msgstr "Todesritter"
 
 #: orc/units.lua:304
-#, fuzzy
 msgid "Ogre Mage"
-msgstr "OgerMagier"
+msgstr "Oger-Magier"
 
 #: orc/units.lua:336
-#, fuzzy
 msgid "Goblin Sappers"
-msgstr "Goblin-Pioniere"
+msgstr "Kobold-Pioniere"
 
 #: orc/units.lua:366
 msgid "Berserker"
-msgstr "Berserker"
+msgstr "Berserker-Troll"
 
 #: orc/units.lua:396
-#, fuzzy
 msgid "Teron Gorefiend"
 msgstr "Teron Gorefiend"
 
 #: orc/units.lua:435
-#, fuzzy
 msgid "Dentarg"
 msgstr "Dentarg"
 
 #: orc/units.lua:466
-#, fuzzy
 msgid "Grom Hellscream"
 msgstr "Grom Hellscream"
 
 #: orc/units.lua:559
-#, fuzzy
 msgid "Troll Destroyer"
 msgstr "Trollzerstörer"
 
 #: orc/units.lua:588
-#, fuzzy
 msgid "Ogre Juggernaught"
-msgstr "Oger Juggernaught"
+msgstr "Ogerzerstörer"
 
 #: orc/units.lua:618
 msgid "Dragon"
 msgstr "Drache"
 
 #: orc/units.lua:648
-#, fuzzy
 msgid "Deathwing"
 msgstr "Todesschwinge"
 
 #: orc/units.lua:684
-#, fuzzy
 msgid "Giant Turtle"
 msgstr "Riesenschildkröte"
 
 #: orc/units.lua:714
-#, fuzzy
 msgid "Goblin Zeppelin"
 msgstr "Goblin Zeppelin"
 
 #: orc/units.lua:742
-#, fuzzy
 msgid "Eye of Kilrogg"
 msgstr "Auge von Kilrogg"
 
 #: orc/units.lua:769
-#, fuzzy
 msgid "Korgath Bladefist"
 msgstr "Korgath Bladefist"
 
 #: orc/units.lua:798
-#, fuzzy
 msgid "Cho'gall"
 msgstr "Cho'gall"
 
 #: orc/units.lua:830
-#, fuzzy
 msgid "Gul'dan"
 msgstr "Gul'dan"
 
 #: orc/units.lua:868
-#, fuzzy
 msgid "Zuljin"
 msgstr "Zuljin"
 
@@ -2886,12 +2670,10 @@ msgid "Skeleton"
 msgstr "Skelett"
 
 #: orc/units.lua:932
-#, fuzzy
 msgid "Pig Farm"
 msgstr "Schweinefarm"
 
 #: orc/units.lua:998
-#, fuzzy
 msgid "Altar of Storms"
 msgstr "Altar der Stürme"
 
@@ -2900,41 +2682,34 @@ msgid "Watch Tower"
 msgstr "Aussichtsturm"
 
 #: orc/units.lua:1065
-#, fuzzy
 msgid "Ogre Mound"
-msgstr "Oger Hügel"
+msgstr "Oger-Marstall"
 
 #: orc/units.lua:1097
-#, fuzzy
 msgid "Goblin Alchemist"
-msgstr "Goblin-Alchemist"
+msgstr "Kobold-Alchemist"
 
 #: orc/units.lua:1129
-#, fuzzy
 msgid "Dragon Roost"
-msgstr "Drachenschlafplatz"
+msgstr "Drachenhorst"
 
 #: orc/units.lua:1200
 msgid "Great Hall"
-msgstr "Speisesaal"
+msgstr "Haupthaus"
 
 #: orc/units.lua:1237
-#, fuzzy
 msgid "Troll Lumber Mill"
 msgstr "Trollholzmühle"
 
 #: orc/units.lua:1304
-#, fuzzy
 msgid "Temple of the Damned"
 msgstr "Tempel der Verdammten"
 
 #: orc/units.lua:1441
-#, fuzzy
 msgid "Stronghold"
-msgstr "Festung"
+msgstr "Hochburg"
 
 #: orc/units.lua:1479
-#, fuzzy
 msgid "Fortress"
 msgstr "Festung"
 
@@ -2944,24 +2719,21 @@ msgstr "Schaf"
 
 #: scripts.lua:37
 msgid "Seal"
-msgstr "Dichtung"
+msgstr "Seehund"
 
 #: scripts.lua:37
 msgid "Pig"
 msgstr "Schweinemast"
 
 #: scripts.lua:37
-#, fuzzy
 msgid "Warthog"
 msgstr "Warzenschwein"
 
 #: spells.lua:87
-#, fuzzy
 msgid "Demolish"
 msgstr "~!Demolieren"
 
 #: spells.lua:103
-#, fuzzy
 msgid "Holy Vision"
 msgstr "Heilige ~!Vision"
 
@@ -2970,17 +2742,14 @@ msgid "Healing"
 msgstr "Heilung"
 
 #: spells.lua:167
-#, fuzzy
 msgid "Exorcism"
 msgstr "~!Exorzismus"
 
 #: spells.lua:207 spells.lua:221
-#, fuzzy
 msgid "eye of vision"
 msgstr "Auge des Sehens"
 
 #: spells.lua:234
-#, fuzzy
 msgid "haste"
 msgstr "Hast"
 
@@ -2989,72 +2758,58 @@ msgid "slow"
 msgstr "langsam"
 
 #: spells.lua:269 spells.lua:286
-#, fuzzy
 msgid "bloodlust"
 msgstr "Mordlust"
 
 #: spells.lua:302
-#, fuzzy
 msgid "invisibility"
-msgstr "Uns~!ichtbarkeit"
+msgstr "Unsichtbarkeit"
 
 #: spells.lua:333
-#, fuzzy
 msgid "unholyarmor"
 msgstr "Unholyarmor"
 
 #: spells.lua:350
-#, fuzzy
 msgid "flame shield"
 msgstr "Flammenschild"
 
 #: spells.lua:370
-#, fuzzy
 msgid "polymorph"
-msgstr "Verwandlung (~!P)"
+msgstr "Verwandlung"
 
 #: spells.lua:430
-#, fuzzy
 msgid "blizzard"
-msgstr "~!Blizzard"
+msgstr "Blizzard"
 
 #: spells.lua:448
-#, fuzzy
 msgid "death and decay"
 msgstr "Tod und Verfall"
 
 #: spells.lua:462
-#, fuzzy
 msgid "fireball"
-msgstr "~!Feuerball"
+msgstr "Feuerball"
 
 #: spells.lua:474 spells.lua:504
-#, fuzzy
 msgid "runes"
 msgstr "Runen"
 
 #: spells.lua:550
-#, fuzzy
 msgid "death coil"
 msgstr "Todesspule"
 
 #: spells.lua:563
-#, fuzzy
 msgid "raise dead"
-msgstr "Tote erwecken"
+msgstr "Tote auferwecken"
 
 #: spells.lua:577
-#, fuzzy
 msgid "whirlwind"
 msgstr "Wirbelwind"
 
 #: stratagus.lua:66
-#, fuzzy
 msgid "Wargus"
 msgstr "Wargus"
 
 #: stratagus.lua:68
-#, fuzzy
 msgid "(c) 1998-2021 by The Stratagus Project."
 msgstr "(c) 1998-2021 von The Stratagus Project."
 
@@ -3063,52 +2818,42 @@ msgid "stop"
 msgstr "Stop"
 
 #: stratagus.lua:236
-#, fuzzy
 msgid "mine"
-msgstr "~!Holz/Gold abbauen"
+msgstr "abbauen"
 
 #: stratagus.lua:236
-#, fuzzy
 msgid "chop"
 msgstr "hacken"
 
 #: stratagus.lua:236
-#, fuzzy
 msgid "drill"
-msgstr "Bohrer"
+msgstr "bohren"
 
 #: stratagus.lua:238
-#, fuzzy
 msgid "Time Left: "
 msgstr "Verbleibende Zeit: "
 
 #: stratagus.lua:238
-#, fuzzy
 msgid "Gold Left: "
-msgstr "Gold links: "
+msgstr "Gold übrig: "
 
 #: stratagus.lua:238
-#, fuzzy
 msgid "Wood Left: "
-msgstr "Holz links: "
+msgstr "Holz übrig: "
 
 #: stratagus.lua:238
-#, fuzzy
 msgid "Oil Left: "
 msgstr "Öl übrig: "
 
 #: stratagus.lua:238
-#, fuzzy
 msgid "Ore Left: "
 msgstr "Erz übrig: "
 
 #: stratagus.lua:238
-#, fuzzy
 msgid "Stone Left: "
-msgstr "Stein links: "
+msgstr "Stein übrig: "
 
 #: stratagus.lua:238
-#, fuzzy
 msgid "Coal Left: "
 msgstr "Kohle übrig: "
 
@@ -3117,27 +2862,22 @@ msgid "time"
 msgstr "Zeit"
 
 #: stratagus.lua:240
-#, fuzzy
 msgid "ore"
 msgstr "Erz"
 
 #: stratagus.lua:240
-#, fuzzy
 msgid "stone"
 msgstr "Stein"
 
 #: stratagus.lua:240
-#, fuzzy
 msgid "coal"
 msgstr "Kohle"
 
 #: stratagus.lua:328
-#, fuzzy
 msgid "You failed to"
 msgstr "Sie haben es versäumt,"
 
 #: stratagus.lua:329
-#, fuzzy
 msgid "achieve victory!"
 msgstr "Den Sieg erringen!"
 
@@ -3146,145 +2886,118 @@ msgid "Congratulations!"
 msgstr "Glückwunsch!"
 
 #: stratagus.lua:348
-#, fuzzy
 msgid "You are victorious!"
 msgstr "Du bist siegreich!"
 
 #: stratagus.lua:350
-#, fuzzy
 msgid "Save Game (~<F11~>)"
-msgstr "Spiel speichern (~<F11~>)"
+msgstr "Spiel sichern (~<F11~>)"
 
 #: stratagus.lua:356
-#, fuzzy
 msgid "~!Victory"
-msgstr "Sieg (~!V)"
+msgstr "Sieg"
 
 #: ui.lua:108 ui.lua:230 ui.lua:235 ui.lua:241
 msgid "% Complete"
-msgstr "% fertig"
+msgstr "% Fortschritt"
 
 #: ui.lua:121
-#, fuzzy
 msgid "Usage~|"
 msgstr "Verwendung~|"
 
 #: ui.lua:126
-#, fuzzy
 msgid "Supply~|: "
-msgstr "Versorgung ~|: "
+msgstr "Versorgung~|: "
 
 #: ui.lua:135
-#, fuzzy
 msgid "Demand~|: "
-msgstr "Nachfrage ~|: "
+msgstr "Nachfrage~|: "
 
 #: ui.lua:151 ui.lua:175 ui.lua:176
 msgid "Production"
 msgstr "Produktion"
 
 #: ui.lua:152
-#, fuzzy
 msgid "Gold~|: 100"
-msgstr "Gold ~|: 100"
+msgstr "Gold~|: 100"
 
 #: ui.lua:157 ui.lua:177
-#, fuzzy
 msgid "Lumber~|: 100"
-msgstr "Holz ~|: 100"
+msgstr "Holz~|: 100"
 
 #: ui.lua:162 ui.lua:182
-#, fuzzy
 msgid "Oil~|: 100"
-msgstr "Öl ~|: 100"
+msgstr "Öl~|: 100"
 
 #: ui.lua:197 ui.lua:203 ui.lua:209 ui.lua:462 ui.lua:516 ui.lua:620 ui.lua:674
-#, fuzzy
 msgid "Damage~|: "
 msgstr "Schaden~|: "
 
 #: ui.lua:216 ui.lua:266
-#, fuzzy
 msgid "Armor~|: "
 msgstr "Rüstung~|: "
 
 #: ui.lua:219 ui.lua:269
-#, fuzzy
 msgid "Sight~|: "
 msgstr "Sichtweite~|: "
 
 #: ui.lua:223
-#, fuzzy
 msgid "Range~|: "
 msgstr "Reichweite~|: "
 
 #: ui.lua:229
-#, fuzzy
 msgid "Researching~|:"
-msgstr "Recherche~|:"
+msgstr "Forschung~|:"
 
 #: ui.lua:240
-#, fuzzy
 msgid "Upgrading~|:"
-msgstr "Upgrade~|:"
+msgstr "Verbessern~|:"
 
 #: ui.lua:244
-#, fuzzy
 msgid "Carry~|: %d %s"
-msgstr "Carry~|: %d %s"
+msgstr "Ladung~|: %d %s"
 
 #: ui.lua:258
-#, fuzzy
 msgid "Level ~|~<%d~>"
-msgstr "Ebene ~|~<%d~>"
+msgstr "Level ~|~<%d~>"
 
 #: ui.lua:262
-#, fuzzy
 msgid "XP:~<%d~> Kills:~|~<%d~>"
-msgstr "XP:~<%d~> Tötungen:~|~<%d~>"
+msgstr "XP:~<%d~> Kills:~|~<%d~>"
 
 #: ui.lua:272
-#, fuzzy
 msgid "Speed~|: "
-msgstr "- Spielgeschwindigkeit erhöhen"
+msgstr "Tempo~|: "
 
 #: ui.lua:276
-#, fuzzy
 msgid "Mana~|: "
-msgstr "Mana~|: "
+msgstr "Magie~|: "
 
 #: ui.lua:427 ui.lua:585
-#, fuzzy
 msgid "~<ALT~>-click to defend unit."
 msgstr "~<ALT~>-Klick, um die Einheit zu verteidigen."
 
 #: ui.lua:430 ui.lua:588
-#, fuzzy
 msgid "~<SHIFT~>-click to make waypoints."
 msgstr "~<SHIFT~>-Click, um Wegpunkte zu erstellen."
 
 #: ui.lua:437 ui.lua:595
-#, fuzzy
 msgid "~<CTRL~>-click on button enables/disables auto-repair of damaged buildings."
 msgstr "~<CTRL~>-Click-on-Button aktiviert/deaktiviert die automatische Reparatur beschädigter Gebäude."
 
 #: ui.lua:456 ui.lua:504 ui.lua:614 ui.lua:662
-#, fuzzy
 msgid "Hit Points: "
 msgstr "Trefferpunkte: "
 
 #: ui.lua:459 ui.lua:507 ui.lua:617 ui.lua:665
-#, fuzzy
 msgid "Armor: "
 msgstr "Rüstung: "
 
 #: ui.lua:482 ui.lua:640
-#, fuzzy
 msgid "~<SHIFT~>-click could be used to make a building queue."
-msgstr "~<SHIFT~>-Click könnte verwendet werden, um eine Gebäudewarteschlange zu erstellen."
+msgstr "~<SHIFT~>-Click verwenden, um eine Gebäudewarteschlange zu erstellen."
 
 #: ui.lua:510 ui.lua:668
-#, fuzzy
 msgid "Sight: "
 msgstr "Sichtweite: "
 
@@ -3293,32 +3006,26 @@ msgid "Range: "
 msgstr "Reichtweite: "
 
 #: ui.lua:560 ui.lua:718
-#, fuzzy
 msgid "~<CTRL~>-click on button enables/disables auto-cast ability."
 msgstr "~<CTRL~>-Klick auf die Schaltfläche aktiviert/deaktiviert die Auto-Cast-Fähigkeit."
 
 #: units.lua:118
-#, fuzzy
 msgid "Nothing 22"
 msgstr "Nichts 22"
 
 #: units.lua:130
-#, fuzzy
 msgid "Nothing 24"
 msgstr "Nichts 24"
 
 #: units.lua:146
-#, fuzzy
 msgid "Nothing 25"
 msgstr "Nichts 25"
 
 #: units.lua:162
-#, fuzzy
 msgid "Nothing 30"
 msgstr "Nichts 30"
 
 #: units.lua:175
-#, fuzzy
 msgid "Nothing 36"
 msgstr "Nichts 36"
 
@@ -3328,7 +3035,7 @@ msgstr "Dämon"
 
 #: units.lua:225
 msgid "Critter"
-msgstr "Tier"
+msgstr "Kreatur"
 
 #: units.lua:259
 msgid "Gold Mine"
@@ -3391,9 +3098,8 @@ msgid "Known"
 msgstr "Bekannt"
 
 #: guichan.lua:1500
-#, fuzzy
 msgid "~<Terrain:~>"
-msgstr "~<Terrasse:~>"
+msgstr "~<Gelände:~>"
 
 #: menus/editor.lua:490
 msgid "Accept"
@@ -3404,17 +3110,14 @@ msgid "Close"
 msgstr "Schließen"
 
 #: menus/editor.lua:534
-#, fuzzy
 msgid "~!Resize Map"
-msgstr "Ände~!rn der Größe der Karte"
+msgstr "Ka~!rtengröße ändern"
 
 #: menus/editor.lua:536
-#, fuzzy
 msgid "Pr~!eamble"
 msgstr "Pr~!eamble"
 
 #: menus/editor.lua:538
-#, fuzzy
 msgid "~!Postamble"
 msgstr "~!Postambel"
 
@@ -3423,17 +3126,14 @@ msgid "Ok"
 msgstr "Ok"
 
 #: menus/network.lua:202 menus/network.lua:568
-#, fuzzy
 msgid "Terrain:"
 msgstr "Gelände:"
 
 #: menus/options.lua:381 menus/options.lua:458
-#, fuzzy
 msgid "tiled"
-msgstr "gedeckt"
+msgstr "gekachelt"
 
 #: menus/options.lua:731
-#, fuzzy
 msgid "You need to restart game to apply changes, restart now?"
 msgstr "Sie müssen das Spiel neu starten, um Änderungen zu übernehmen, jetzt neu starten?"
 
