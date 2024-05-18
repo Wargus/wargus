@@ -241,19 +241,19 @@ msgstr "Abbru~!ch"
 
 #: guichan.lua:1150
 msgid "~red~Red"
-msgstr "~rot~Rot"
+msgstr "~red~Rot"
 
 #: guichan.lua:1150
 msgid "~blue~Blue"
-msgstr "~blau~Blau"
+msgstr "~blue~Blau"
 
 #: guichan.lua:1150
 msgid "~green~Green"
-msgstr "~grün~Grün"
+msgstr "~green~Grün"
 
 #: guichan.lua:1150
 msgid "~violet~Violet"
-msgstr "~violett~Violett"
+msgstr "~violet~Violett"
 
 #: guichan.lua:1150
 msgid "~orange~Orange"
@@ -261,15 +261,15 @@ msgstr "~orange~Orange"
 
 #: guichan.lua:1150
 msgid "~black~Black"
-msgstr "~schwarz~Schwarz"
+msgstr "~black~Schwarz"
 
 #: guichan.lua:1151
 msgid "~white~White"
-msgstr "~weiß~Weiß"
+msgstr "~white~Weiß"
 
 #: guichan.lua:1151
 msgid "~yellow~Yellow"
-msgstr "~gelb~Gelb"
+msgstr "~yellow~Gelb"
 
 #: guichan.lua:1152 menus/editor.lua:319 menus/network.lua:208
 #: menus/network.lua:578 wc2.lua:33
@@ -541,7 +541,7 @@ msgstr "~!Patrouille"
 
 #: human/buttons.lua:139 orc/buttons.lua:145
 msgid "E~!XPLORE"
-msgstr "E~!rkunden"
+msgstr "Erkunden (~!X)"
 
 #: human/buttons.lua:144 orc/buttons.lua:150
 msgid "S~!TAND GROUND"
@@ -710,7 +710,7 @@ msgstr "Kein Auftrag (~!Z)"
 #: human/buttons.lua:404 human/buttons.lua:581 orc/buttons.lua:429
 #: orc/buttons.lua:600
 msgid "S~!ET ATTACK"
-msgstr "Beauftrage zum Angriff (~!E)"
+msgstr "B~!eauftrage zum Angriff"
 
 #: human/buttons.lua:412
 msgid "TRAIN ~!MINUTEMAN"
@@ -831,7 +831,7 @@ msgstr "~!Langbogen erforschen (Reichweite +1)"
 
 #: human/buttons.lua:657
 msgid "RANGER ~!MARKSMANSHIP (Damage +3)"
-msgstr "Bogenschütze Treffsicherheit (Schaden +3)"
+msgstr "Bogenschütze Treffsicherheit (~!M) (Schaden +3)"
 
 #: human/buttons.lua:663
 msgid "UPGRADES KNIGHTS TO ~!PALADINS"
