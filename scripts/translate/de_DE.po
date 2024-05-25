@@ -868,12 +868,12 @@ msgstr "~!Blizzard erforschen"
 #: human/buttons.lua:711 human/buttons.lua:717 orc/buttons.lua:730
 #: orc/buttons.lua:736
 msgid "UPGRADE ~!CANNONS (Damage +5)"
-msgstr "Kanonen verbessern (Schaden +5)"
+msgstr "Kanonen verbessern (~!C) (Schaden +5)"
 
 #: human/buttons.lua:723 human/buttons.lua:729 orc/buttons.lua:742
 #: orc/buttons.lua:748
 msgid "UPGRADE SHIP ~!ARMOR (Armor +5)"
-msgstr "Schiffspanzerung verbessern (Rüstung +5)"
+msgstr "Schiffspanzerung verbessern (~!A) (Rüstung +5)"
 
 #: human/campaign1.lua:34 human/campaign2.lua:35 orc/campaign1.lua:34
 #: orc/campaign2.lua:35
@@ -1098,7 +1098,7 @@ msgstr "Ölplattform"
 
 #: human/units.lua:1342
 msgid "Keep"
-msgstr "Behalten"
+msgstr "Burg"
 
 #: human/units.lua:1380
 msgid "Castle"
@@ -1818,7 +1818,7 @@ msgstr "Registrieren"
 
 #: menus/network.lua:919
 msgid "~!Join Local Game"
-msgstr "Lokalem Spiel beitreten"
+msgstr "Lokalem Spiel beitreten (~!J)"
 
 #: menus/network.lua:957
 msgid "Users"
@@ -1842,7 +1842,7 @@ msgstr "Chat"
 
 #: menus/network.lua:1034
 msgid "~!Join Game"
-msgstr "Spiel beitreten"
+msgstr "Spiel beitreten (~!J)"
 
 #: menus/network.lua:1055
 msgid "No game selected"
@@ -2379,11 +2379,11 @@ msgstr "Hauch der D~!unkelheit"
 
 #: orc/buttons.lua:218
 msgid "DEATH ~!COIL"
-msgstr "Todesspule"
+msgstr "Todesspule (~!C)"
 
 #: orc/buttons.lua:224
 msgid "~!HASTE"
-msgstr "Hast"
+msgstr "~!Hast"
 
 #: orc/buttons.lua:230
 msgid "~!RAISE DEAD"
@@ -2443,7 +2443,7 @@ msgstr "Zur Hochburg au~!sbauen"
 
 #: orc/buttons.lua:403
 msgid "UPGRADE TO ~!FORTRESS"
-msgstr "Zur Fe~!stung ausbauen"
+msgstr "Zur ~!Festung ausbauen"
 
 #: orc/buttons.lua:438
 msgid "TRAIN ~!GRUNT"
@@ -2475,7 +2475,7 @@ msgstr "Kobold-~!Zeppelin bauen"
 
 #: orc/buttons.lua:473
 msgid "TRAIN GOBLIN ~!SAPPERS"
-msgstr "Randalier-Kobold ausbilden"
+msgstr "Randalier-Kobold au~!sbilden"
 
 #: orc/buttons.lua:478
 msgid "~!TRAIN DEATH KNIGHT"
@@ -2491,7 +2491,7 @@ msgstr "Riesenschildkröte bauen (~!G)"
 
 #: orc/buttons.lua:508
 msgid "BUILD ~!JUGGERNAUHGT"
-msgstr "Oger-Kampfschiff bauen"
+msgstr "Oger-Kampfschiff bauen (~!J)"
 
 #: orc/buttons.lua:610 orc/buttons.lua:616
 msgid "UPGRADE ~!WEAPONS (Damage +2)"
@@ -2499,11 +2499,11 @@ msgstr "~!Waffen verbessern (Schaden +2)"
 
 #: orc/buttons.lua:634 orc/buttons.lua:640
 msgid "UPGRADE ~!CATAPULT (Damage +15)"
-msgstr "Katapult verbessern (Schaden +15)"
+msgstr "Katapult verbessern (~!C) (Schaden +15)"
 
 #: orc/buttons.lua:646 orc/buttons.lua:652
 msgid "~!UPGRADE THROWING AXE (Damage +1)"
-msgstr "~!Wurfaxt verbessern (Schaden +1)"
+msgstr "W~!urfaxt verbessern (Schaden +1)"
 
 #: orc/buttons.lua:658
 msgid "TROLL ~!BERSERKER TRAINING"
@@ -2527,7 +2527,7 @@ msgstr "Verbessert Oger zu Oger-~!Magier"
 
 #: orc/buttons.lua:688
 msgid "RESEARCH ~!BLOODLUST"
-msgstr "Mordlust erforschen"
+msgstr "Mordlust erforschen (~!B)"
 
 #: orc/buttons.lua:694
 msgid "RESEARCH ~!RUNES"
@@ -2535,7 +2535,7 @@ msgstr "~!Runen erforschen"
 
 #: orc/buttons.lua:700
 msgid "RESEARCH ~!HASTE"
-msgstr "Hast erforschen"
+msgstr "~!Hast erforschen"
 
 #: orc/buttons.lua:706
 msgid "RESEARCH ~!RAISE DEAD"
@@ -2895,7 +2895,7 @@ msgstr "Spiel sichern (~<F11~>)"
 
 #: stratagus.lua:356
 msgid "~!Victory"
-msgstr "Sieg"
+msgstr "Sieg (~!V)"
 
 #: ui.lua:108 ui.lua:230 ui.lua:235 ui.lua:241
 msgid "% Complete"
