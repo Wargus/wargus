@@ -50,6 +50,20 @@ if (_VERSION == "Lua 5.2" or _VERSION == "Lua 5.3") then
 
 end
 
+function table_join(...)
+  local res = {}
+  for _, v in pairs({...}) do
+    if type(v) == "table" then
+      for _, v2 in pairs(v) do
+        table.insert(res, v2)
+      end
+    else
+      table.insert(res, v)
+    end
+  end
+  return res
+end
+
 -------------------------------------------------------------------------------
 --  Version
 -------------------------------------------------------------------------------
