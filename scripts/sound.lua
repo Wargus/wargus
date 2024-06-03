@@ -165,12 +165,20 @@ MakeSound("gryphon-rider-selected", "human/units/gryphon_rider/selected/1.wav")
 MakeSound("sheep selected", "neutral/units/sheep/selected/1.wav")
 MakeSound("seal selected", "neutral/units/seal/selected/1.wav")
 MakeSound("pig selected", "neutral/units/pig/selected/1.wav")
-MakeSound("warthog selected", "neutral/units/warthog/selected/1.wav")
+if wargus.expansion then
+  MakeSound("warthog selected", "neutral/units/warthog/selected/1.wav")
+else
+  MapSound("warthog selected", "pig selected")
+end
     -- annoyed sounds
 MakeSound("sheep annoyed", "neutral/units/sheep/annoyed/1.wav")
 MakeSound("seal annoyed", "neutral/units/seal/annoyed/1.wav")
 MakeSound("pig annoyed", "neutral/units/pig/annoyed/1.wav")
-MakeSound("warthog annoyed", "neutral/units/warthog/annoyed/1.wav")
+if wargus.expansion then
+  MakeSound("warthog annoyed", "neutral/units/warthog/annoyed/1.wav")
+else
+  MapSound("warthog annoyed", "pig annoyed")
+end
 
     --------------------------------------------------------------------------
     -- attack sounds
@@ -252,32 +260,7 @@ MakeSound("goblin-sappers-acknowledge",
 	"orc/units/goblin_sappers/acknowledgement/2.wav",
 	"orc/units/goblin_sappers/acknowledgement/3.wav",
 	"orc/units/goblin_sappers/acknowledgement/4.wav"})
-MakeSound("alleria-acknowledge",
-	{"human/units/alleria/acknowledgement/1.wav",
-	"human/units/alleria/acknowledgement/2.wav",
-	"human/units/alleria/acknowledgement/3.wav"})
-MakeSound("teron-gorefiend-acknowledge",
-	{"orc/units/teron_gorefiend/acknowledgement/1.wav",
-	"orc/units/teron_gorefiend/acknowledgement/2.wav",
-	"orc/units/teron_gorefiend/acknowledgement/3.wav"})
-MakeSound("kurdan-and-sky-ree-acknowledge",
-	{"human/units/kurdan/acknowledgement/1.wav",
-	"human/units/kurdan/acknowledgement/2.wav",
-	"human/units/kurdan/acknowledgement/3.wav"})
-MakeSound("dentarg-acknowledge",
-	{"orc/units/dentarg/acknowledgement/1.wav",
-	"orc/units/dentarg/acknowledgement/2.wav",
-	"orc/units/dentarg/acknowledgement/3.wav"})
-MakeSound("khadgar-acknowledge",
-	{"human/units/khadgar/acknowledgement/1.wav",
-	"human/units/khadgar/acknowledgement/2.wav",
-	"human/units/khadgar/acknowledgement/3.wav"})
-MakeSound("grom-hellscream-acknowledge",
-	{"orc/units/grom_hellscream/acknowledgement/1.wav",
-	"orc/units/grom_hellscream/acknowledgement/2.wav",
-	"orc/units/grom_hellscream/acknowledgement/3.wav"})
-MakeSound("tanker acknowledge",
-	{"ships/tanker/acknowledgement/1.wav"})
+MakeSound("tanker acknowledge", {"ships/tanker/acknowledgement/1.wav"})
 MakeSound("ships human acknowledge",
 	{"human/ships/acknowledgement/1.wav",
 	"human/ships/acknowledgement/2.wav",
@@ -286,31 +269,65 @@ MakeSound("ships orc acknowledge",
 	{"orc/ships/acknowledgement/1.wav",
 	"orc/ships/acknowledgement/2.wav",
 	"orc/ships/acknowledgement/3.wav"})
-MakeSound("deathwing-acknowledge",
-	{"orc/units/deathwing/acknowledgement/1.wav",
-	"orc/units/deathwing/acknowledgement/2.wav",
-	"orc/units/deathwing/acknowledgement/3.wav"})
-MakeSound("gnomish-flying-machine-acknowledge",
-	{"human/units/gnomish_flying_machine/acknowledgement/1.wav"})
-MakeSound("goblin-zeppelin-acknowledge",
-	{"orc/units/goblin_zeppelin/acknowledgement/1.wav"})
-MakeSound("gryphon-rider-acknowledge",
-	{"human/units/gryphon_rider/acknowledgement/2.wav"})
+MakeSound("gnomish-flying-machine-acknowledge", {"human/units/gnomish_flying_machine/acknowledgement/1.wav"})
+MakeSound("goblin-zeppelin-acknowledge", {"orc/units/goblin_zeppelin/acknowledgement/1.wav"})
+MakeSound("gryphon-rider-acknowledge", {"human/units/gryphon_rider/acknowledgement/2.wav"})
 MakeSound("dragon-acknowledge",
 	{"orc/units/dragon/acknowledgement/1.wav",
 	"orc/units/dragon/acknowledgement/2.wav"})
-MakeSound("turalyon-acknowledge",
+if wargus.expansion then
+  MakeSound("alleria-acknowledge",
+	{"human/units/alleria/acknowledgement/1.wav",
+	"human/units/alleria/acknowledgement/2.wav",
+	"human/units/alleria/acknowledgement/3.wav"})
+  MakeSound("teron-gorefiend-acknowledge",
+	{"orc/units/teron_gorefiend/acknowledgement/1.wav",
+	"orc/units/teron_gorefiend/acknowledgement/2.wav",
+	"orc/units/teron_gorefiend/acknowledgement/3.wav"})
+  MakeSound("kurdan-and-sky-ree-acknowledge",
+	{"human/units/kurdan/acknowledgement/1.wav",
+	"human/units/kurdan/acknowledgement/2.wav",
+	"human/units/kurdan/acknowledgement/3.wav"})
+  MakeSound("dentarg-acknowledge",
+	{"orc/units/dentarg/acknowledgement/1.wav",
+	"orc/units/dentarg/acknowledgement/2.wav",
+	"orc/units/dentarg/acknowledgement/3.wav"})
+  MakeSound("khadgar-acknowledge",
+	{"human/units/khadgar/acknowledgement/1.wav",
+	"human/units/khadgar/acknowledgement/2.wav",
+	"human/units/khadgar/acknowledgement/3.wav"})
+  MakeSound("grom-hellscream-acknowledge",
+	{"orc/units/grom_hellscream/acknowledgement/1.wav",
+	"orc/units/grom_hellscream/acknowledgement/2.wav",
+	"orc/units/grom_hellscream/acknowledgement/3.wav"})
+  MakeSound("deathwing-acknowledge",
+	{"orc/units/deathwing/acknowledgement/1.wav",
+	"orc/units/deathwing/acknowledgement/2.wav",
+	"orc/units/deathwing/acknowledgement/3.wav"})
+  MakeSound("turalyon-acknowledge",
 	{"human/units/turalyon/acknowledgement/1.wav",
 	"human/units/turalyon/acknowledgement/2.wav",
 	"human/units/turalyon/acknowledgement/3.wav"})
-MakeSound("danath-acknowledge",
+  MakeSound("danath-acknowledge",
 	{"human/units/danath/acknowledgement/1.wav",
 	"human/units/danath/acknowledgement/2.wav",
 	"human/units/danath/acknowledgement/3.wav"})
-MakeSound("korgath-bladefist-acknowledge",
+  MakeSound("korgath-bladefist-acknowledge",
 	{"orc/units/korgath_bladefist/acknowledgement/1.wav",
 	"orc/units/korgath_bladefist/acknowledgement/2.wav",
 	"orc/units/korgath_bladefist/acknowledgement/3.wav"})
+else
+  MapSound("alleria-acknowledge", "elven archer-ranger acknowledge")
+  MapSound("teron-gorefiend-acknowledge", "death-knight-acknowledge")
+  MapSound("kurdan-and-sky-ree-acknowledge", "gryphon-rider-acknowledge")
+  MapSound("dentarg-acknowledge", "ogre-acknowledge")
+  MapSound("khadgar-acknowledge", "mage-acknowledge")
+  MapSound("grom-hellscream-acknowledge", "basic orc voices acknowledge")
+  MapSound("deathwing-acknowledge", "dragon-acknowledge")
+  MapSound("turalyon-acknowledge", "knight-acknowledge")
+  MapSound("danath-acknowledge", "basic human voices acknowledge")
+  MapSound("korgath-bladefist-acknowledge", "basic orc voices acknowledge")
+end
     --
     --	Selection sounds -----------------------------------------------------
     --
@@ -385,46 +402,60 @@ MakeSound("peasant selected",
 	"human/units/peasant/selected/2.wav",
 	"human/units/peasant/selected/3.wav",
 	"human/units/peasant/selected/4.wav"})
-MakeSound("alleria selected",
+
+if wargus.expansion then
+  MakeSound("alleria selected",
 	{"human/units/alleria/selected/1.wav",
 	"human/units/alleria/selected/2.wav",
 	"human/units/alleria/selected/3.wav"})
-MakeSound("danath selected",
+  MakeSound("danath selected",
 	{"human/units/danath/selected/1.wav",
 	"human/units/danath/selected/2.wav",
 	"human/units/danath/selected/3.wav"})
-MakeSound("khadgar selected",
+  MakeSound("khadgar selected",
 	{"human/units/khadgar/selected/1.wav",
 	"human/units/khadgar/selected/2.wav",
 	"human/units/khadgar/selected/3.wav"})
-MakeSound("kurdan selected",
+  MakeSound("kurdan selected",
 	{"human/units/kurdan/selected/1.wav",
 	"human/units/kurdan/selected/2.wav",
 	"human/units/kurdan/selected/3.wav"})
-MakeSound("turalyon selected",
+  MakeSound("turalyon selected",
 	{"human/units/turalyon/selected/1.wav",
 	"human/units/turalyon/selected/2.wav",
 	"human/units/turalyon/selected/3.wav"})
-MakeSound("deathwing selected",
+  MakeSound("deathwing selected",
 	{"orc/units/deathwing/selected/1.wav",
 	"orc/units/deathwing/selected/2.wav",
 	"orc/units/deathwing/selected/3.wav"})
-MakeSound("dentarg selected",
+  MakeSound("dentarg selected",
 	{"orc/units/dentarg/selected/1.wav",
 	"orc/units/dentarg/selected/2.wav",
 	"orc/units/dentarg/selected/3.wav"})
-MakeSound("grom hellscream selected",
+  MakeSound("grom hellscream selected",
 	{"orc/units/grom_hellscream/selected/1.wav",
 	"orc/units/grom_hellscream/selected/2.wav",
 	"orc/units/grom_hellscream/selected/3.wav"})
-MakeSound("korgath bladefist selected",
+  MakeSound("korgath bladefist selected",
 	{"orc/units/korgath_bladefist/selected/1.wav",
 	"orc/units/korgath_bladefist/selected/2.wav",
 	"orc/units/korgath_bladefist/selected/3.wav"})
-MakeSound("teron gorefiend selected",
+  MakeSound("teron gorefiend selected",
 	{"orc/units/teron_gorefiend/selected/1.wav",
 	"orc/units/teron_gorefiend/selected/2.wav",
 	"orc/units/teron_gorefiend/selected/3.wav"})
+else
+  MapSound("alleria selected", "elven archer-ranger selected")
+  MapSound("danath selected", "basic human voices selected")
+  MapSound("khadgar selected", "mage selected")
+  MapSound("kurdan selected", "basic human voices selected")
+  MapSound("turalyon selected", "knight selected")
+  MapSound("deathwing selected", "basic orc voices selected")
+  MapSound("dentarg selected", "ogre selected")
+  MapSound("grom hellscream selected", "basic orc voices selected")
+  MapSound("korgath bladefist selected", "basic orc voices selected")
+  MapSound("teron gorefiend selected", "basic orc voices selected")
+end
     --
     --	Annoyed sounds --------------------------------------------------------
     --
@@ -516,46 +547,59 @@ MakeSound("peasant annoyed",
 	"human/units/peasant/annoyed/5.wav",
 	"human/units/peasant/annoyed/6.wav",
 	"human/units/peasant/annoyed/7.wav"})
-MakeSound("alleria annoyed",
+if wargus.expansion then
+  MakeSound("alleria annoyed",
 	{"human/units/alleria/annoyed/1.wav",
 	"human/units/alleria/annoyed/2.wav",
 	"human/units/alleria/annoyed/3.wav"})
-MakeSound("danath annoyed",
+  MakeSound("danath annoyed",
 	{"human/units/danath/annoyed/1.wav",
 	"human/units/danath/annoyed/2.wav",
 	"human/units/danath/annoyed/3.wav"})
-MakeSound("khadgar annoyed",
+  MakeSound("khadgar annoyed",
 	{"human/units/khadgar/annoyed/1.wav",
 	"human/units/khadgar/annoyed/2.wav",
 	"human/units/khadgar/annoyed/3.wav"})
-MakeSound("kurdan annoyed",
+  MakeSound("kurdan annoyed",
 	{"human/units/kurdan/annoyed/1.wav",
 	"human/units/kurdan/annoyed/2.wav",
 	"human/units/kurdan/annoyed/3.wav"})
-MakeSound("turalyon annoyed",
+  MakeSound("turalyon annoyed",
 	{"human/units/turalyon/annoyed/1.wav",
 	"human/units/turalyon/annoyed/2.wav",
 	"human/units/turalyon/annoyed/3.wav"})
-MakeSound("deathwing annoyed",
+  MakeSound("deathwing annoyed",
 	{"orc/units/deathwing/annoyed/1.wav",
 	"orc/units/deathwing/annoyed/2.wav",
 	"orc/units/deathwing/annoyed/3.wav"})
-MakeSound("dentarg annoyed",
+  MakeSound("dentarg annoyed",
 	{"orc/units/dentarg/annoyed/1.wav",
 	"orc/units/dentarg/annoyed/2.wav",
 	"orc/units/dentarg/annoyed/3.wav"})
-MakeSound("grom hellscream annoyed",
+  MakeSound("grom hellscream annoyed",
 	{"orc/units/grom_hellscream/annoyed/1.wav",
 	"orc/units/grom_hellscream/annoyed/2.wav",
 	"orc/units/grom_hellscream/annoyed/3.wav"})
-MakeSound("korgath bladefist annoyed",
+  MakeSound("korgath bladefist annoyed",
 	{"orc/units/korgath_bladefist/annoyed/1.wav",
 	"orc/units/korgath_bladefist/annoyed/2.wav",
 	"orc/units/korgath_bladefist/annoyed/3.wav"})
-MakeSound("teron gorefiend annoyed",
+  MakeSound("teron gorefiend annoyed",
 	{"orc/units/teron_gorefiend/annoyed/1.wav",
 	"orc/units/teron_gorefiend/annoyed/2.wav",
 	"orc/units/teron_gorefiend/annoyed/3.wav"})
+else
+  MapSound("alleria annoyed", "elven archer-ranger annoyed")
+  MapSound("danath annoyed", "basic human voices annoyed")
+  MapSound("khadgar annoyed", "mage annoyed")
+  MapSound("kurdan annoyed", "basic human voices annoyed")
+  MapSound("turalyon annoyed", "knight annoyed")
+  MapSound("deathwing annoyed", "basic orc voices annoyed")
+  MapSound("dentarg annoyed", "ogre annoyed")
+  MapSound("grom hellscream annoyed", "basic orc voices annoyed")
+  MapSound("korgath bladefist annoyed", "basic orc voices annoyed")
+  MapSound("teron gorefiend annoyed", "basic orc voices annoyed")
+end
     --
     --	Other sounds ---------------------------------------------------------
     --
@@ -825,14 +869,10 @@ DefineGameSounds(
 MakeSound("highclick", "ui/highclick.wav")
 MakeSound("statsthump", "ui/statsthump.wav")
 
-if (CanAccessFile("sounds/neutral/units/skeleton/dead.wav")) then
+if wargus.expansion then
 	MakeSound("skeleton-dead", "neutral/units/skeleton/dead.wav")
-else
-	MapSound("skeleton-dead", "basic orc voices dead")
-end
-
-if (CanAccessFile("sounds/neutral/units/skeleton/acknowledgement/1.wav")) then
 	MakeSound("skeleton-acknowledge", "sounds/neutral/units/skeleton/acknowledgement/1.wav")
 else
+	MapSound("skeleton-dead", "basic orc voices dead")
 	MapSound("skeleton-acknowledge", "click")
 end

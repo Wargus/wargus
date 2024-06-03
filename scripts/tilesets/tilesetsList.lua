@@ -26,7 +26,7 @@
 --
 
 Tilesets = {
-            ["classic"]     = { "summer", "swamp", "wasteland", "winter"},
+            ["classic"]     = table_join("summer", (wargus.expansion and "swamp") or {}, "wasteland", "winter"),
             ["highgrounds"] = { "summer", "wasteland", "winter"}, -- swamp has no highground tilesets
             labels      = {
                             ["default"]   = _("Map Default"),
