@@ -790,7 +790,7 @@ function WarMenu(title, background, resize)
     end
     bg = ImageWidget(bgg)
   end
-  if (menu:getWidth() == Video.Width) then
+  if (resize == nil or resize == true) then
     menu:add(bg, (Video.Width - Video.FourThreeWidth) / 2, (Video.Height - Video.FourThreeHeight) / 2)
   else
     menu:add(bg, 0, 0)
