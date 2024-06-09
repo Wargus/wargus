@@ -63,7 +63,7 @@ function Briefing(title, objs, bg, text, voices)
   l:setLineWidth(320)
   l:adjustSize()
   sw:add(l, 0, 0)
-  menu:add(sw, 70 * Video.Width / 640, 80 * Video.Height / 480)
+  menu:add(sw, Video.Width / 2 - 250 * Video.FourThreeWidth / 640, 80 * Video.Height / 480)
 
   if (objs ~= nil) then
     menu:addLabel(_("Objectives:"), 372 * Video.Width / 640, 306 * Video.Height / 480, Fonts["large"], false)

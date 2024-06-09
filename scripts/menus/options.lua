@@ -668,7 +668,7 @@ function SetVideoSize(width, height)
    if (Video:ResizeScreen(width, height) == false) then
       return
    end
-   bckground:Resize(Video.Width, Video.Height)
+   bckground:Resize(Video.FourThreeWidth, Video.FourThreeHeight)
    backgroundWidget = ImageWidget(bckground)
    Load("scripts/ui.lua")
    wc2.preferences.VideoWidth = Video.Width
@@ -872,7 +872,7 @@ function RunOptionsSubMenu()
    menu:addFullButton(_("Preferences (~<F8~>)"), "f8", offx + 208, offy + 104 + 36*3,
      function() RunPreferencesMenu(); end)
    menu:addFullButton(_("Video (~<F9~>)"), "f9", offx + 208, offy + 104 + 36*4,
-     function() RunVideoOptionsMenu(); end)
+     function() RunVideoOptionsMenu(); menu:stop(1); RunOptionsSubMenu() end)
    menu:addFullButton(_("Language"), "f13", offx + 208, offy + 104 + 36*5,
      function() RunLanguageMenu();  end)
     
