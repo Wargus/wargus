@@ -4,6 +4,7 @@ In the following flowchart it is indicated the order of the script that are load
 
 ```mermaid
 flowchart TB;
+classDef luascript stroke:#00f
 Start([Start]) --> stratagus[stratagus.lua];
 
 subgraph stratagusScript["stratagus lua script"]
@@ -83,14 +84,16 @@ subgraph unitsScript[units lua script]
   defineOrc -.-> units;
 end
 
+ui_script_cond_1{Popups on the buttons are enabled?}
+
 subgraph uiScript[ui lua script]
   direction TB;
   widgets[widgets.lua]:::luascript --> defineSD[Define sprites and decorations];
   defineSD --> definePanel[Define contents for the panels];
   definePanel --> uiHumOrc[Load the UI for both Human and Orc];
   uiHumOrc --> defineCursor[Define the cursor];
-  defineCursor --> ui_cond_1{Popups on the buttons are enabled?} -- No -.-> ui;
-  ui_cond_1 -- Yes --> definePopups["Define Popups"];
+  defineCursor --> ui_script_cond_1 -- No --> ui;
+  ui_script_cond_1 -- Yes --> definePopups["Define Popups"];
   definePopups -.-> ui;
 end
 
@@ -123,6 +126,4 @@ click buttons "https://github.com/Wargus/wargus/blob/master/scripts/buttons.lua"
 click ui "https://github.com/Wargus/wargus/blob/master/scripts/ui.lua"
 click commands "https://github.com/Wargus/wargus/blob/master/scripts/commands.lua"
 click cheats "https://github.com/Wargus/wargus/blob/master/scripts/cheats.lua"
-
-classDef luascript stroke:#00f
 ```
