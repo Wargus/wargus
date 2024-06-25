@@ -11,7 +11,6 @@ Briefing(
    "campaigns/human/level02h-intro2.wav"}
 )
 
-Triggers = [[
 local cycle2Win = 120
 AddTrigger(
   function()
@@ -34,9 +33,6 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 --Units
 local allowedHumanUnits = {"unit-farm",

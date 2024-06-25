@@ -12,7 +12,6 @@ Briefing(
    "campaigns/orc-exp/levelx10o-intro3.wav"}
 )
 
-Triggers = [[
 -- FIXME: Check if units are destroyed.
 AddTrigger(
   function() return IfRescuedNearUnit("this", "==", 1, "unit-mage", "unit-circle-of-power") and
@@ -22,9 +21,6 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 --Units
 DefineAllowNormalHumanUnits("AAAAAAAAAAAAAAAA")

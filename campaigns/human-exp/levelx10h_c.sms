@@ -12,7 +12,6 @@ Briefing(
    "campaigns/human-exp/levelx10h-intro3.wav"}
 )
 
-Triggers = [[
 AddTrigger(
   function() return GetPlayerData(2, "TotalNumUnits") == 0 and
     GetPlayerData(3, "TotalNumUnits") == 0 and
@@ -41,9 +40,6 @@ AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "UnitTypesCount", "unit-knight-rider") == 0 and
     GetPlayerData(0, "UnitTypesCount", "unit-knight-rider") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 local hum_exp_10a_loop_funcs = {
 	function() DebugPrint("Looping !\n") return false end,

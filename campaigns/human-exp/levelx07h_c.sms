@@ -12,7 +12,6 @@ Briefing(
    "campaigns/human-exp/levelx07h-intro3.wav"}
 )
 
-Triggers = [[
 AddTrigger(
   function() return
     GetPlayerData(2, "UnitTypesCount", "unit-fire-breeze") == 0 and
@@ -38,9 +37,6 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 local hum_exp_07a_loop_funcs = {
 	function() DebugPrint("Looping !\n") return false end,

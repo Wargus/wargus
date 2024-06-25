@@ -10,7 +10,6 @@ Briefing(
   {"campaigns/orc/level09o-intro1.wav"}
 )
 
-Triggers = [[
 AddTrigger(
   function() return GetNumUnitsAt(GetThisPlayer(), "unit-fortress", {52, 15}, {72, 40}) >0 and
     GetNumUnitsAt(GetThisPlayer(), "unit-orc-shipyard", {48, 20}, {69, 42}) >0 end,
@@ -34,9 +33,6 @@ AddTrigger(
 AddTrigger(
   function() return GetPlayerData(GetThisPlayer(), "TotalNumUnits") == 0 end,
   function() return ActionDefeat() end)
-]]
-
-assert(loadstring(Triggers))()
 
 --Units
 local allowedHumanUnits = {"unit-farm",
