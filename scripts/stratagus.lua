@@ -127,14 +127,6 @@ DefineBoolFlags("Center", "WoodImprove", "OilImprove")
 --  Note, some of those values are overridden by user preferences,
 --  see preferences.lua
 
---  Enter your default title screen.
-SetTitleScreens(
-  {Image = "ui/black_title.png", Timeout = 1},
-  {Image = "videos/logo.ogv"},
-  {Image = "videos/gameintro.ogv"},
-  {Image = "ui/title.png", Music = "music/Orc Briefing" .. wargus.music_extension, Timeout = 20}
-)
-
 -------------------------------------------------------------------------------
 --	Music play list -	Insert your titles here
 -------------------------------------------------------------------------------
@@ -413,6 +405,7 @@ local defaultPreferences = {
 	GrabMouse = false,              --  Enable/disable grabbing the mouse.
 	GroupKeys = "0123456789`",
 	HoldClickDelayInMs = 1000,      --  For the wanted hold-click delay (in ms).
+	KeepRatio = true,               -- Keep background image ratio in menu
 	KeyScrollSpeed = 4,
 	LastDifficulty = 2,
 	LeaveStopScrolling = true,      --  Enable/disable stopping scrolling when mouse leave.
@@ -470,6 +463,14 @@ end
 
 CompleteMissingValues(wc2.preferences, defaultPreferences)
 SavePreferences()
+
+SetTitleScreens(
+  {Image = "ui/black_title.png", Timeout = 1},
+  {Image = "videos/logo.ogv"},
+  {Image = "videos/gameintro.ogv"},
+  {Image = "ui/title.png", StretchMode = (wc2 and wc2.preferences and wc2.preferences.KeepRatio and "keep-ratio") or "stretch",
+  Music = "music/Orc Briefing" .. wargus.music_extension, Timeout = 20}
+)
 
 InitFuncs:add(function()
   if wc2.preferences.ShowDamage == true then

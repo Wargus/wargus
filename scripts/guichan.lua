@@ -43,7 +43,11 @@ black = Color(0, 0, 0)
 
 bckground = CGraphic:New("ui/Menu_background_with_title.png")
 bckground:Load()
-bckground:Resize(Video.Width, Video.Height)
+if wc2.preferences.KeepRatio then
+  bckground:ResizeKeepRatio(Video.Width, Video.Height)
+else
+  bckground:Resize(Video.Width, Video.Height)
+end
 backgroundWidget = ImageWidget(bckground)
 
 g_hbln = CGraphic:New("ui/human/widgets/button-large-normal.png")
@@ -783,14 +787,19 @@ function WarMenu(title, background, resize)
     bgg = CGraphic:ForceNew(background)
     bgg:Load()
     if (resize == nil or resize == true) then
-       bgg:Resize(Video.Width, Video.Height)
+      if wc2.preferences.KeepRatio then
+        bgg:ResizeKeepRatio(Video.Width, Video.Height)
+      else
+        bgg:Resize(Video.Width, Video.Height)
+    end
     elseif type(resize) == "table" then
       bgg:Resize(resize[1], resize[2])
       menu:resize(resize[1], resize[2])       
     end
     bg = ImageWidget(bgg)
   end
-  menu:add(bg, 0, 0)
+  local offset = {(Video.Width - bg:getWidth()) / 2, (Video.Height - bg:getHeight()) / 2}
+  menu:add(bg, offset[1], offset[2])
 
   AddMenuHelpers(menu)
 
