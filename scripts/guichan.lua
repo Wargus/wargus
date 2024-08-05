@@ -794,12 +794,16 @@ function WarMenu(title, background, resize)
     end
     elseif type(resize) == "table" then
       bgg:Resize(resize[1], resize[2])
-      menu:resize(resize[1], resize[2])       
+      menu:resize(resize[1], resize[2])
     end
     bg = ImageWidget(bgg)
   end
-  local offset = {(Video.Width - bg:getWidth()) / 2, (Video.Height - bg:getHeight()) / 2}
-  menu:add(bg, offset[1], offset[2])
+  local offset
+  if resize == nil or resize == true then
+    offset = {(Video.Width - bg:getWidth()) / 2, (Video.Height - bg:getHeight()) / 2}
+  else
+    offset = {0, 0}
+  end  menu:add(bg, offset[1], offset[2])
 
   AddMenuHelpers(menu)
 
