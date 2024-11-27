@@ -391,15 +391,27 @@ function RunPreferencesMenu()
          SetFogOfWarType(fogOfWarTypes[fogOfWarType:getSelected() + 1])
    end)
    fogOfWarType:setSize(120, 16)
+
+   local numberOfSelectableUnits = {9, 12, 18, 50, 100, 200}
+   local numberOfSelectableUnitsList = {"9", "12", "18", "50", "100", "200"}
+   menu:addLabel(_("Selectable units:"),  225, 28 + 19 * 8 + 5, Fonts["game"], false)
+   local numberOfSelectableUnitsMenu = menu:addDropDown(numberOfSelectableUnitsList, 225, 28 + 19 * 9 + 5, function(dd) end)
+   numberOfSelectableUnitsMenu:setSelected(2)
+   numberOfSelectableUnitsMenu:setActionCallback(
+      function()
+         SetMaxSelectable(numberOfSelectableUnits[numberOfSelectableUnitsMenu:getSelected() + 1])
+      end
+   )
+   numberOfSelectableUnitsMenu:setSize(40, 16)
    
-   local fowBilinear = menu:addImageCheckBox(_("Bilinear fog"), 225, 28 + 19 * 8 + 10, offi, offi2, oni, oni2, function()end)
+   local fowBilinear = menu:addImageCheckBox(_("Bilinear fog"), 225, 28 + 19 * 10 + 10, offi, offi2, oni, oni2, function()end)
    fowBilinear:setMarked(GetIsFogOfWarBilinear())
    fowBilinear:setActionCallback(
       function()
          SetFogOfWarBilinear(fowBilinear:isMarked())
    end)
    
-   local hwCursor = menu:addImageCheckBox(_("Hardware cursor"), 225, 28 + 19 * 9 + 10, offi, offi2, oni, oni2, function()end)
+   local hwCursor = menu:addImageCheckBox(_("Hardware cursor"), 225, 28 + 19 * 11 + 10, offi, offi2, oni, oni2, function()end)
    hwCursor:setMarked(wc2.preferences.HardwareCursor)
    hwCursor:setActionCallback(
       function()
