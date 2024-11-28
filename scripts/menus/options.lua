@@ -392,17 +392,25 @@ function RunPreferencesMenu()
    end)
    fogOfWarType:setSize(120, 16)
 
-   local numberOfSelectableUnits = {9, 12, 18, 50, 100, 200}
-   local numberOfSelectableUnitsList = {"9", "12", "18", "50", "100", "200"}
+   local maxSelectableUnits = {9, 12, 18, 50, 100, 200}
+   local maxSelectableUnitsList = {"9", "12", "18", "50", "100", "200"}
    menu:addLabel(_("Selectable units:"),  225, 28 + 19 * 8 + 5, Fonts["game"], false)
-   local numberOfSelectableUnitsMenu = menu:addDropDown(numberOfSelectableUnitsList, 225, 28 + 19 * 9 + 5, function(dd) end)
-   numberOfSelectableUnitsMenu:setSelected(2)
-   numberOfSelectableUnitsMenu:setActionCallback(
+   local maxSelectableUnitsListDD = menu:addDropDown(maxSelectableUnitsList, 225, 28 + 19 * 9 + 5, function(dd) end)
+   -- Get the index of the MaxSelectableUnits from list
+   local idx_msu = 0
+   for i,v in ipairs(maxSelectableUnits) do
+      if v == wc2.preferences.MaxSelectableUnits then
+         idx_msu = i - 1 
+         break
+      end
+   end
+   maxSelectableUnitsListDD:setSelected(idx_msu)
+   maxSelectableUnitsListDD:setActionCallback(
       function()
-         SetMaxSelectable(numberOfSelectableUnits[numberOfSelectableUnitsMenu:getSelected() + 1])
+         Preference.MaxSelectableUnits = maxSelectableUnits[maxSelectableUnitsListDD:getSelected() + 1]
       end
    )
-   numberOfSelectableUnitsMenu:setSize(40, 16)
+   maxSelectableUnitsListDD:setSize(40, 16)
    
    local fowBilinear = menu:addImageCheckBox(_("Bilinear fog"), 225, 28 + 19 * 10 + 10, offi, offi2, oni, oni2, function()end)
    fowBilinear:setMarked(GetIsFogOfWarBilinear())
@@ -435,8 +443,11 @@ function RunPreferencesMenu()
 			 wc2.preferences.EnhancedEffects = enhancedEffects:isMarked()
 			 wc2.preferences.DeselectInMine = Preference.DeselectInMine
 			 wc2.preferences.SimplifiedAutoTargeting = Preference.SimplifiedAutoTargeting
-          wc2.preferences.FogOfWarType = fogOfWarTypes[fogOfWarType:getSelected() + 1]
-          wc2.preferences.FogOfWarBilinear = fowBilinear:isMarked()
+			wc2.preferences.FogOfWarType = fogOfWarTypes[fogOfWarType:getSelected() + 1]
+          		wc2.preferences.FogOfWarBilinear = fowBilinear:isMarked()
+			if (Preference.MaxSelectableUnits ~= nil) then
+            			wc2.preferences.MaxSelectableUnits = Preference.MaxSelectableUnits
+          		end
           
 			 if (not IsNetworkGame()) then
 			    wc2.preferences.FogOfWar = fogOfWar:isMarked()
@@ -449,6 +460,9 @@ function RunPreferencesMenu()
 			 wc2.preferences.SelectionStyle = selectionStyleList[selectionStyle:getSelected() + 1]
 			 wc2.preferences.ViewportMode = viewportMode:getSelected()
 			 SavePreferences()
+
+			-- Apply the changes
+          		SetMaxSelectable(wc2.preferences.MaxSelectableUnits)
 			 menu:stop(1)
    end)
 
