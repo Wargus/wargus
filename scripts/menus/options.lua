@@ -392,14 +392,13 @@ function RunPreferencesMenu()
    end)
    fogOfWarType:setSize(120, 16)
 
-   local maxSelectableUnits = {9, 12, 18, 50, 100, 200}
    local maxSelectableUnitsList = {"9", "12", "18", "50", "100", "200"}
    menu:addLabel(_("Selectable units:"),  225, 28 + 19 * 8 + 5, Fonts["game"], false)
    local maxSelectableUnitsListDD = menu:addDropDown(maxSelectableUnitsList, 225, 28 + 19 * 9 + 5, function(dd) end)
    -- Get the index of the MaxSelectableUnits from list
    local idx_msu = 0
-   for i,v in ipairs(maxSelectableUnits) do
-      if v == wc2.preferences.MaxSelectableUnits then
+   for i,v in ipairs(maxSelectableUnitsList) do
+      if tonumber(v) == wc2.preferences.MaxSelectableUnits then
          idx_msu = i - 1
          break
       end
@@ -407,7 +406,7 @@ function RunPreferencesMenu()
    maxSelectableUnitsListDD:setSelected(idx_msu)
    maxSelectableUnitsListDD:setActionCallback(
       function()
-         Preference.MaxSelectableUnits = maxSelectableUnits[maxSelectableUnitsListDD:getSelected() + 1]
+         Preference.MaxSelectableUnits = tonumber(maxSelectableUnitsList[maxSelectableUnitsListDD:getSelected() + 1])
       end
    )
    maxSelectableUnitsListDD:setSize(40, 16)
