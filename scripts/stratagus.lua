@@ -308,9 +308,6 @@ AStar("fixed-unit-cost", 1000, "moving-unit-cost", 20, "know-unseen-terrain", "u
 
 -------------------------------------------------------------------------------
 
---  Maximum number of selectable units
-SetMaxSelectable(18)
-
 --  All player food unit limit
 SetAllPlayersUnitLimit(200)
 --  All player building limit
@@ -441,7 +438,8 @@ local defaultPreferences = {
 	SimplifiedAutoTargeting = true,
   FogOfWarType = "fast",  -- "enhanced", "tiled", "fast". Tiled and fast types of FOW don't work with shadow casting FOV.
   FogOfWarBilinear = false,     -- Enable/Disable bilinear filtration for fog of war
-  MapGrid = false
+  MapGrid = false,
+	MaxSelectableUnits = 18 -- Possible values: 9, 12, 18, 50, 100, 200
 }
 
 --- Skirmish Setup --------------
@@ -463,6 +461,9 @@ end
 
 CompleteMissingValues(wc2.preferences, defaultPreferences)
 SavePreferences()
+
+--  Maximum number of selectable units
+SetMaxSelectable(wc2.preferences.MaxSelectableUnits)
 
 SetTitleScreens(
   {Image = "ui/black_title.png", Timeout = 1},
