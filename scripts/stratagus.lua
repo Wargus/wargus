@@ -439,7 +439,7 @@ local defaultPreferences = {
   FogOfWarType = "fast",  -- "enhanced", "tiled", "fast". Tiled and fast types of FOW don't work with shadow casting FOV.
   FogOfWarBilinear = false,     -- Enable/Disable bilinear filtration for fog of war
   MapGrid = false,
-	MaxSelectableUnits = 18 -- Possible values: 9, 12, 18, 50, 100, 200
+  MaxSelectableUnits = 18 -- Possible values: 9, 12, 18, 50, 100, 200
 }
 
 --- Skirmish Setup --------------
