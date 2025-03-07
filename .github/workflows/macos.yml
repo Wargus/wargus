@@ -1,0 +1,102 @@
+name: macos-arm64
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '**'
+      - '!.github/**'
+      - '!**.yml'
+      - '.github/workflows/macos.yml'
+      - '!**.md'
+      - '!.vscode/**'
+      - '!doc/**'
+      - '!doc/**'
+
+  pull_request:
+    paths:
+      - '**'
+      - '!.github/**'
+      - '!**.yml'
+      - '.github/workflows/macos.yml'
+      - '!**.md'
+      - '!.vscode/**'
+      - '!doc/**'
+      - '!doc/**'
+
+jobs:
+  macos:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install dependencies
+      run: brew install dylibbundler sdl2 sdl2_mixer sdl2_image lua libpng ffmpeg meson
+
+    - name: cmake --version
+      run: cmake --version
+
+    - name: Build Stratagus
+      run: |
+        git clone --recursive https://github.com/Wargus/stratagus
+        cmake stratagus -B stratagus/build \ -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_VENDORED_LUA=ON \
+        -DBUILD_VENDORED_SDL=OFF \
+        -DBUILD_VENDORED_MEDIA_LIBS=OFF \
+        -DBUILD_TESTING=1
+        cmake --build stratagus/build --config Release
+    
+    - name: Build Wargus
+      run: |
+        cmake . -B build \
+        -DSTRATAGUS_INCLUDE_DIR=stratagus/gameheaders \
+        -DSTRATAGUS=stratagus/build/stratagus 
+        cmake --build build --config Release
+
+    - name: Create Wargus app bundle
+      run: |
+        rm -rf Wargus.app
+        mkdir -p Wargus.app/Contents/Resources
+        mkdir -p Wargus.app/Contents/MacOS
+        
+        cp mac/Info.plist Wargus.app/Contents/
+        
+        mkdir wargus.iconset
+        sips -z 16 16     wargus.png --out wargus.iconset/icon_16x16.png
+        sips -z 32 32     wargus.png --out wargus.iconset/icon_16x16@2x.png
+        sips -z 32 32     wargus.png --out wargus.iconset/icon_32x32.png
+        sips -z 64 64     wargus.png --out wargus.iconset/icon_32x32@2x.png
+        sips -z 128 128   wargus.png --out wargus.iconset/icon_128x128.png
+        sips -z 256 256   wargus.png --out wargus.iconset/icon_128x128@2x.png
+        sips -z 256 256   wargus.png --out wargus.iconset/icon_256x256.png
+        sips -z 512 512   wargus.png --out wargus.iconset/icon_256x256@2x.png
+        sips -z 512 512   wargus.png --out wargus.iconset/icon_512x512.png
+        sips -z 1024 1024   wargus.png --out wargus.iconset/icon_512x512@2x.png
+        iconutil -c icns wargus.iconset
+        rm -R wargus.iconset
+        mv wargus.icns Wargus.app/Contents/Resources/
+        
+        cp -R shaders campaigns contrib maps scripts Wargus.app/Contents/MacOS/
+        
+        cp build/wartool Wargus.app/Contents/MacOS/
+        cp build/wargus Wargus.app/Contents/MacOS/
+        cp stratagus/build/stratagus Wargus.app/Contents/MacOS/stratagus
+        
+        dylibbundler -of -cd -b -x Wargus.app/Contents/MacOS/stratagus -d Wargus.app/Contents/libs/
+        dylibbundler -of -cd -b -x Wargus.app/Contents/MacOS/wartool -d Wargus.app/Contents/libs/
+        
+        codesign --force --deep --sign - Wargus.app
+        
+    - name: Create dmg
+      run: hdiutil create -volname "Wargus" -srcfolder "Wargus.app" "Wargus-arm64"
+    
+    - name: Upload artifacts - macOS arm64
+      uses: actions/upload-artifact@v4
+      with:
+        name: Wargus-macOS-arm64
+        path: Wargus-arm64.dmg
+        if-no-files-found: error
