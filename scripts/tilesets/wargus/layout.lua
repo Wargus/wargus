@@ -95,6 +95,7 @@ filled  clear
 8x      5x      upper left, lower right
 
 --]]
+
 local TilesetSubslotsLayout = {}
 
 TilesetSlotsIdx = {
@@ -120,7 +121,7 @@ TilesetSlotsIdx = {
     ["light-water"]       = { ["light-weak-ground"]  = 0x0200 },
     ["dark-weak-ground"]  = { ["light-weak-ground"]  = 0x0300 },
     ["rocks"]             = { ["light-weak-ground"]  = 0x0400 },
-    ["light-weak-ground"] = { ["dark-solid-ground"]  = 0x0500 },
+    ["light-weak-ground"] = { ["light-solid-ground"] = 0x0500 },
     ["dark-solid-ground"] = { ["light-solid-ground"] = 0x0600 },
     ["forest"]            = { ["light-solid-ground"] = 0x0700 },
     ["human-wall"]        = { ["dark-solid-ground"]  = 0x0800 }, -- FIXME: check if it's really DARK
@@ -143,12 +144,14 @@ TilesetSlotsIdx = {
                                                         ["subslots"] = {}},
                               ["solid-lowground"]    = {0x1E00,
                                                         ["subslots"] = {}} },
-    ["ramp"]              = { ["highgrounds"]        = 0x1F00,  -- FIXME: separate highgrounds
-                              ["weak-highground"]    = {0x1F00,
+    ["ramp"]              = { ["weak-highground"]    = {0x1F00,
                                                         ["subslots"] = {}},
-                              ["solid-highground"]   = {0x1F00,
+                              ["solid-highground"]   = {0x2100,
                                                         ["subslots"] = {}},
-                              ["lowgrounds"]         = 0x2100 }  -- FIXME: separate lowgrounds
+                              ["weak-lowground"]     = {0x2200,
+                                                        ["subslots"] = {}},
+                              ["solid-lowground"]    = {0x2300,
+                                                        ["subslots"] = {}} }
   },
   ["subslots-layout"] = TilesetSubslotsLayout
 }
@@ -378,7 +381,8 @@ TilesetSubslotsLayout = {
                                                       ["with-rock-lower-left-filled"]   = 0xD3,
                                                       ["separator-2"]                   = 0xD4,
                                                       ["with-rock-upper-right-filled"]  = 0xD5
-                                                    }}
+                                                    }
+                          }
   }
 }
 
@@ -405,12 +409,6 @@ function TilesetSlotsIdx:initSubslots()
   TilesetSlotsIdx["subslots-layout"] = TilesetSubslotsLayout
 
   TilesetSlotsIdx["mixed"]
-                 ["ramp-side"]["weak-lowground"]
-                 ["subslots"] = TilesetSubslotsLayout["ramp-side"]["to-lowground"]
-  TilesetSlotsIdx["mixed"]
-                 ["ramp-side"]["solid-lowground"]
-                 ["subslots"] = TilesetSubslotsLayout["ramp-side"]["to-lowground"]
-  TilesetSlotsIdx["mixed"]
                  ["weak-highground"]["weak-lowground"]
                  ["subslots"] = TilesetSubslotsLayout["highground"]["to-lowground"]
   TilesetSlotsIdx["mixed"]
@@ -422,6 +420,19 @@ function TilesetSlotsIdx:initSubslots()
   TilesetSlotsIdx["mixed"]
                  ["solid-highground"]["solid-lowground"]
                  ["subslots"] = TilesetSubslotsLayout["highground"]["to-lowground"]
+
+  TilesetSlotsIdx["mixed"]
+                 ["ramp-side"]["weak-lowground"]
+                 ["subslots"] = TilesetSubslotsLayout["ramp-side"]["to-lowground"]
+  TilesetSlotsIdx["mixed"]
+                 ["ramp-side"]["solid-lowground"]
+                 ["subslots"] = TilesetSubslotsLayout["ramp-side"]["to-lowground"]
+  TilesetSlotsIdx["mixed"]
+                 ["ramp"]["weak-highground"]
+                 ["subslots"] = TilesetSubslotsLayout["ramp"]["to-highground"]
+  TilesetSlotsIdx["mixed"]
+                 ["ramp"]["solid-highground"]
+                 ["subslots"] = TilesetSubslotsLayout["ramp"]["to-highground"]
 end
 
 TilesetSlotsIdx:initSubslots()
