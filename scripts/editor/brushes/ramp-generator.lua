@@ -316,20 +316,39 @@ local function decodeRampTile(tileCode, highgroundType, lowgroundType)
   else
     dir = 0
   end
+  dir = dir * 0x10
 
   local idx = tonumber(tileCodeSeq[4], 16)
   if idx == nil then return 0 end
+
+    
+  --[[
+    This is a bit hacky, but these subslots has two types of lowground in the layout
+    piece of layout.lua:
+    ["ramp"] = {
+      ["to-highground"] = {
+        ["lower-right-clear"] = {
+          ["with-weak-lowground-upper-half-filled"]  = 0x62,
+          ["separator-2"]                            = 0x63,
+          ["with-solid-lowground-upper-half-filled"] = 0x64,
+  ]]--
+  if tileCodeSeq[1] == 'R' 
+     and  tileCodeSeq[2] == 'h' 
+     and (dir == 0x60 or dir == 0xA0) 
+     and idx == 2
+     and lowgroundType == "solid-lowground" then
+    
+     idx = idx + 2
+  end
   
   local baseSlotIdx = TilesetSlotsIdx:get(terrain1, terrain2)
-  return baseSlotIdx + dir * 0x10 + idx
+  return baseSlotIdx + dir + idx
 end
 
 local function GenerateRamp(direction, assemblyPart, highgroundType, lowgroundType)
 
   local result = {}
-print("-----")
-print (direction)
-print (assemblyPart)
+
   for _,row in ipairs(rampsTemplate[direction][assemblyPart]) do
     local decodedRow = {}
     for _,tileCode in ipairs(row) do
