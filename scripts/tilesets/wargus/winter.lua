@@ -296,7 +296,7 @@ DefineTileset("name", "Winter",
 if IsHighgroundsEnabled() then
 
   local waterToIceIdx = TilesetSlotsIdx:get("light-water", "light-weak-ground")
-  local iceToSnowIdx  = TilesetSlotsIdx:get("light-weak-ground", "dark-solid-ground")
+  local iceToSnowIdx  = TilesetSlotsIdx:get("light-weak-ground", "light-solid-ground")
   local snowToSnowIdx = TilesetSlotsIdx:get("dark-solid-ground", "light-solid-ground")
   local lightSnowIdx  = TilesetSlotsIdx:get("light-solid-ground")
   local darkIceIdx    = TilesetSlotsIdx:get("dark-weak-ground")
