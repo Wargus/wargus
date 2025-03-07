@@ -98,6 +98,8 @@ filled  clear
 
 --]]
 
+Load("scripts/tilesets/wargus/layout.lua")
+
 --
 --  (define-tileset ident class name image palette slots animations)
 --
@@ -297,7 +299,7 @@ DefineTileset("name", "Wasteland",
 if IsHighgroundsEnabled() then
 
   local waterToDirtIdx    = TilesetSlotsIdx:get("light-water", "light-weak-ground")
-  local dirtToGroundIdx   = TilesetSlotsIdx:get("light-weak-ground", "dark-solid-ground")
+  local dirtToGroundIdx   = TilesetSlotsIdx:get("light-weak-ground", "light-solid-ground")
   local darkDirtIdx       = TilesetSlotsIdx:get("dark-weak-ground")
   local lightGroundIdx    = TilesetSlotsIdx:get("light-solid-ground")
   local darkGroundIdx     = TilesetSlotsIdx:get("dark-solid-ground")

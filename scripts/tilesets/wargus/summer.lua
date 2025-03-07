@@ -300,7 +300,7 @@ DefineTileset("name", "Forest",
 if IsHighgroundsEnabled() then
 
   local waterToCoastIdx = TilesetSlotsIdx:get("light-water", "light-weak-ground")
-  local coastToGrassIdx = TilesetSlotsIdx:get("light-weak-ground", "dark-solid-ground")
+  local coastToGrassIdx = TilesetSlotsIdx:get("light-weak-ground", "light-solid-ground")
   local coastToCoastIdx = TilesetSlotsIdx:get("dark-weak-ground", "light-weak-ground")
   local lightCoastIdx   = TilesetSlotsIdx:get("light-weak-ground")
 
