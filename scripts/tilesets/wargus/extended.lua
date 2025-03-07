@@ -10,7 +10,7 @@
 --
 --      extended.lua - Extended tileset generator's instructions.
 --
---     (c) Copyright 2023 by Alyokhin
+--     (c) Copyright 2023-2025 by Alyokhin
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -846,7 +846,117 @@ function ExtendTileset(seed)
     return genUpperLevelToLowGroundSeq(dstSlot, "ramp-side", lowGroundType, genTable)
   end
 
-  local function genRampToLowGroundSeq(dstSlot, subSlots)
+  local function genRampToHighGroundSeq(dstSlot, highgroundType)
+    local function parseDst(subslotToParse, dstBaseSlot)
+      local dst = {}
+      local slot
+      if type(subslotToParse) == "table" then
+        if #subslotToParse == 1 then
+          dst = {"slot", dstBaseSlot + subslotToParse[1]}
+        else
+          dst = {"range", dstBaseSlot + subslotToParse[1], dstBaseSlot + subslotToParse[2]}
+        end
+        slot = bitAND(subslotToParse[1], 0xF0)
+      elseif type(subslotToParse) == "number" then
+        dst = {dstBaseSlot + subslotToParse}
+        slot = bitAND(subslotToParse, 0xF0)
+      end
+      return dst
+    end
+
+
+    local dst = TilesetSlotsIdx["subslots-layout"]["ramp"]["to-highground"]
+    
+    local result = {
+      -- 0x00 upper left filled
+      {parseDst(dst["upper-left-filled"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0x00)},
+      -- 0x10 upper right filled
+      {parseDst(dst["upper-right-filled"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0x10)},
+      -- 0x20 upper half filled
+      {parseDst(dst["upper-half-filled"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0x20)},
+      {parseDst(dst["upper-half-filled"]["separator-1"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["upper-half-filled"]["with-rock-upper-left-filled"], dstSlot), 
+          {"layers", {getCliffsTiles("fully-filled")},
+                      makeRampToHighGround(highgroundType, 0x20, "edgeMask", 0x00)}, "unpassable"},
+      {parseDst(dst["upper-half-filled"]["separator-2"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["upper-half-filled"]["with-rock-upper-right-filled"], dstSlot), 
+          {"layers", {getCliffsTiles("fully-filled")},
+                      makeRampToHighGround(highgroundType, 0x20, "edgeMask", 0x10)}, "unpassable"},
+      -- 0x30 lower left filled
+      {parseDst(dst["lower-left-filled"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0x30)},
+      -- 0x40 left half filled
+      {parseDst(dst["left-half-filled"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0x40)},
+      -- 0x60 lower right clear
+      {parseDst(dst["lower-right-clear"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0x60)},
+      {parseDst(dst["lower-right-clear"]["separator-1"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["lower-right-clear"]["with-weak-lowground-upper-half-filled"], dstSlot), 
+          {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0],
+                      {getCliffsTiles(0xB0, "weak-ground")},
+                      makeRampToHighGround(highgroundType, 0x60, "edgeMask", 0x20)}, "unpassable"},
+      {parseDst(dst["lower-right-clear"]["separator-2"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["lower-right-clear"]["with-solid-lowground-upper-half-filled"], dstSlot), 
+          {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0],
+                    {getCliffsTiles(0xB0, "solid-ground")},
+                    makeRampToHighGround(highgroundType, 0x60, "edgeMask", 0x20)}, "unpassable"},
+      {parseDst(dst["lower-right-clear"]["separator-3"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["lower-right-clear"]["with-rock-lower-left-filled"], dstSlot),
+          {"layers", {getCliffsTiles("fully-filled")},
+                      makeRampToHighGround(highgroundType, 0x60, "edgeMask", 0x30)}, "unpassable"},
+      -- 0x70 lower right filed
+      {parseDst(dst["lower-right-filled"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0x70)},
+      -- 0x90 right half filled
+      {parseDst(dst["right-half-filled"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0x90)},
+      -- 0xA0 lower left clear
+      {parseDst(dst["lower-left-clear"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0xA0)},
+      {parseDst(dst["lower-left-clear"]["separator-1"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["lower-left-clear"]["with-weak-lowground-upper-half-filled"], dstSlot),
+          {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0],
+                    {getCliffsTiles(0xB0, "weak-ground")},
+                    makeRampToHighGround(highgroundType, 0xA0, "edgeMask", 0x20)}, "unpassable"},
+      {parseDst(dst["lower-left-clear"]["separator-2"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["lower-left-clear"]["with-solid-lowground-upper-half-filled"], dstSlot),
+          {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0],
+                    {getCliffsTiles(0xB0, "solid-ground")},
+                    makeRampToHighGround(highgroundType, 0xA0, "edgeMask", 0x20)}, "unpassable"},
+      {parseDst(dst["lower-left-clear"]["separator-3"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["lower-left-clear"]["with-rock-lower-right-filled"], dstSlot),
+          {"layers", {getCliffsTiles("fully-filled")},
+                      makeRampToHighGround(highgroundType, 0xA0, "edgeMask", 0x70)}, "unpassable"},
+      -- 0xB0 upper half clear
+      {parseDst(dst["upper-half-clear"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0xB0)},
+      {parseDst(dst["upper-half-clear"]["separator-1"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["upper-half-clear"]["with-rock-lower-left-filled"], dstSlot),
+          {"layers", {getCliffsTiles("fully-filled")},
+                      makeRampToHighGround(highgroundType, 0xB0, "edgeMask", 0x30)}, "unpassable"},
+      {parseDst(dst["upper-half-clear"]["separator-2"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["upper-half-clear"]["with-rock-lower-right-filled"], dstSlot),
+          {"layers", {getCliffsTiles("fully-filled")},
+                      makeRampToHighGround(highgroundType, 0xB0, "edgeMask", 0x70)}, "unpassable"},
+      -- 0xC0 upper right clear
+      {parseDst(dst["upper-right-clear"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0xC0)},
+      {parseDst(dst["upper-right-clear"]["separator-1"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["upper-right-clear"]["with-rock-upper-left-filled"], dstSlot),
+          {"layers", {getCliffsTiles("fully-filled")},
+                      makeRampToHighGround(highgroundType, 0xC0, "edgeMask", 0x00)}, "unpassable"},
+      {parseDst(dst["upper-right-clear"]["separator-2"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["upper-right-clear"]["with-rock-lower-right-filled"], dstSlot),
+          {"layers", {getCliffsTiles("fully-filled")},
+                      makeRampToHighGround(highgroundType, 0xC0, "edgeMask", 0x70)}, "unpassable"},
+      -- 0xD0 upper left clear
+      {parseDst(dst["upper-left-clear"]["main"], dstSlot), makeRampToHighGround(highgroundType, 0xD0)},
+      {parseDst(dst["upper-left-clear"]["separator-1"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["upper-left-clear"]["with-rock-lower-left-filled"], dstSlot),
+          {"layers", {getCliffsTiles("fully-filled")},
+                      makeRampToHighGround(highgroundType, 0xD0, "edgeMask", 0x30)}, "unpassable"},
+      {parseDst(dst["upper-left-clear"]["separator-2"], dstSlot), {0x0000}},-- separator
+      {parseDst(dst["upper-left-clear"]["with-rock-upper-right-filled"], dstSlot),
+          {"layers", {getCliffsTiles("fully-filled")},
+                      makeRampToHighGround(highgroundType, 0xD0, "edgeMask", 0x10)}, "unpassable"}
+    }
+    return unpack(result)
+  end
+
+  local function genRampToLowGroundSeq(dstSlot, lowgroundType, subSlots)
     local result = {}
     for i, slot in ipairs(subSlots) do
 
@@ -858,16 +968,7 @@ function ExtendTileset(seed)
       local rngBeg = dstSlot + slot
       local rngEnd = rngBeg + rangeWidth - 1
       -- (transition to weak lowground)
-      table.insert(result, {{"range", rngBeg, rngEnd}, makeRampToLowGround("weak-ground", slot)})
-
-       -- separator
-      rngEnd = rngEnd + 1
-      table.insert(result, {rngEnd, {0x0000}})
-
-      -- (transition to solid lowground)
-      rngBeg = rngEnd + 1
-      rngEnd = rngBeg + rangeWidth - 1
-      table.insert(result, {{"range", rngBeg, rngEnd}, makeRampToLowGround("solid-ground", slot)})
+      table.insert(result, {{"range", rngBeg, rngEnd}, makeRampToLowGround(lowgroundType, slot)})
     end
     return unpack(result)
   end
@@ -946,229 +1047,21 @@ function ExtendTileset(seed)
                 "mixed", {"ramp-side", lowgroundSolidGround, "land", "unpassable", "no-building",
                           genRampSideToLowGroundSeq(dst("ramp-side", "solid-lowground"),"solid-ground")},
 
-                "mixed", {"ramp", "highgrounds", "land", "no-building",
-                  -- [0x1F00] upper left filled
-                            -- (transition to weak highground)
-                          {{"range", 0x1F00, 0x1F01}, makeRampToHighGround("weak-ground", 0x00)},
-                          {0x1F02, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1F03, 0x1F04}, makeRampToHighGround("solid-ground", 0x00)},
-                  -- [0x1F10] upper right filled
-                            -- (transition to weak highground)
-                          {{"range", 0x1F10, 0x1F11}, makeRampToHighGround("weak-ground", 0x10)},
-                          {0x1F12, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1F13, 0x1F14}, makeRampToHighGround("solid-ground", 0x10)},
-                  -- [0x1F20] upper half filled
-                            -- (transition to weak highground)
-                          {{"range", 0x1F20, 0x1F22}, makeRampToHighGround("weak-ground", 0x20)},
-                          {0x1F23, {0x0000}},-- separator
-                            -- (transition to weak highground with rock upper left filled)
-                          {0x1F24, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("weak-ground", 0x20, "edgeMask", 0x00)},
-                                    "unpassable"},
-                          {0x1F25, {0x0000}},-- separator
-                            -- (transition to weak highground with rock upper right filled)
-                          {0x1F26, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("weak-ground", 0x20, "edgeMask", 0x10)},
-                                    "unpassable"},
-                          {0x1F27, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1F28, 0x1F2A}, makeRampToHighGround("solid-ground", 0x20)},
-                          {0x1F2B, {0x0000}},-- separator
-                            -- (transition to solid highground with rock upper left filled)
-                          {0x1F2C, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("solid-ground", 0x20, "edgeMask", 0x00)},
-                                    "unpassable"},
-                          {0x1F2D, {0x0000}},-- separator
-                            -- (transition to solid highground with rock upper right filled)
-                          {0x1F2E, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("solid-ground", 0x20, "edgeMask", 0x10)},
-                                    "unpassable"},
-                  -- [0x1F30] lower left filled
-                            -- (transition to weak highground)
-                          {{"range", 0x1F30, 0x1F31}, makeRampToHighGround("weak-ground", 0x30)},
-                          {0x1F32, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1F33, 0x1F34}, makeRampToHighGround("solid-ground", 0x30)},
-                  -- [0x1F40] left half filled
-                            -- (transition to weak highground)
-                          {{"range", 0x1F40, 0x1F42}, makeRampToHighGround("weak-ground", 0x40)},
-                          {0x1F43, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1F44, 0x1F46}, makeRampToHighGround("solid-ground", 0x40)},
-                  -- [0x1F60] lower right clear
-                            -- (transition to weak highground)
-                          {0x1F60, makeRampToHighGround("weak-ground", 0x60)},
-                          {0x1F61, {0x0000}},-- separator
-                            -- (transition to weak highground with weak lowground upper half filled)
-                          {0x1F62, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0],
-                                              {getCliffsTiles(0xB0, "weak-ground")},
-                                              makeRampToHighGround("weak-ground", 0x60, "edgeMask", 0x20)},
-                                    "unpassable"},
-                          {0x1F63, {0x0000}},-- separator
-                            -- (transition to weak highground with solid lowground upper half filled)
-                          {0x1F64, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0],
-                                              {getCliffsTiles(0xB0, "solid-ground")},
-                                              makeRampToHighGround("weak-ground", 0x60, "edgeMask", 0x20)},
-                                    "unpassable"},
-                          {0x1F65, {0x0000}},-- separator
-                            -- (transition to weak highground with rock lower left filled)
-                          {0x1F66, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("weak-ground", 0x60, "edgeMask", 0x30)},
-                                    "unpassable"},
-                          {0x1F67, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1F68, 0x1F69}, makeRampToHighGround("solid-ground", 0x60)},
-                          {0x1F6A, {0x0000}},-- separator
-                            -- (transition to solid highground with weak lowground upper half filled)
-                          {0x1F6B, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0],
-                                              {getCliffsTiles(0xB0, "weak-ground")},
-                                              makeRampToHighGround("solid-ground", 0x60, "edgeMask", 0x20)},
-                                    "unpassable"},
-                          {0x1F6C, {0x0000}},-- separator
-                            -- (transition to solid highground with solid lowground upper half filled)
-                          {0x1F6D, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0],
-                                              {getCliffsTiles(0xB0, "solid-ground")},
-                                              makeRampToHighGround("solid-ground", 0x60, "edgeMask", 0x20)},
-                                    "unpassable"},
-                          {0x1F6E, {0x0000}},-- separator
-                            -- (transition to solid highground with rock lower left filled)
-                          {0x1F6F, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("solid-ground", 0x60, "edgeMask", 0x30)},
-                                    "unpassable"},
-                  -- [0x1F70] lower right filed
-                            -- (transition to weak highground)
-                          {{"range", 0x1F70, 0x1F71}, makeRampToHighGround("weak-ground", 0x70)},
-                          {0x1F72, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1F73, 0x1F74}, makeRampToHighGround("solid-ground", 0x70)},
-                  -- [0x1F90] right half filled
-                            -- (transition to weak highground)
-                          {{"range", 0x1F90, 0x1F92}, makeRampToHighGround("weak-ground", 0x90)},
-                          {0x1F93, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1F94, 0x1F96}, makeRampToHighGround("solid-ground", 0x90)},
-                  -- [0x1FA0] lower left clear
-                            -- (transition to weak highground)
-                          {0x1FA0, makeRampToHighGround("weak-ground", 0xA0)},
-                          {0x1FA1, {0x0000}},-- separator
-                            -- (transition to weak highground with weak lowground upper half filled)
-                          {0x1FA2, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0],
-                                              {getCliffsTiles(0xB0, "weak-ground")},
-                                              makeRampToHighGround("weak-ground", 0xA0, "edgeMask", 0x20)},
-                                    "unpassable"},
-                          {0x1FA3, {0x0000}},-- separator
-                            -- (transition to weak highground with solid lowground upper half filled)
-                          {0x1FA4, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0],
-                                              {getCliffsTiles(0xB0, "solid-ground")},
-                                              makeRampToHighGround("weak-ground", 0xA0, "edgeMask", 0x20)},
-                                    "unpassable"},
-                          {0x1FA5, {0x0000}},-- separator
-                            -- (transition to weak highground with rock lower right filled)
-                          {0x1FA6, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("weak-ground", 0xA0, "edgeMask", 0x70)},
-                                    "unpassable"},
-                          {0x1FA7, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1FA8, 0x1FA9}, makeRampToHighGround("solid-ground", 0xA0)},
-                          {0x1FAA, {0x0000}},-- separator
-                            -- (transition to solid highground with weak lowground upper half filled)
-                          {0x1FAB, {"layers", cliffGen.baseTilesFor["weak-ground"][0xB0],
-                                              {getCliffsTiles(0xB0, "weak-ground")},
-                                              makeRampToHighGround("solid-ground", 0xA0, "edgeMask", 0x20)},
-                                    "unpassable"},
-                            -- (transition to solid highground with solid lowground upper half filled)
-                          {0x1FAC, {"layers", cliffGen.baseTilesFor["solid-ground"][0xB0],
-                                              {getCliffsTiles(0xB0, "solid-ground")},
-                                              makeRampToHighGround("solid-ground", 0xA0, "edgeMask", 0x20)},
-                                    "unpassable"},
-                          {0x1FAD, {0x0000}},-- separator
-                            -- (transition to solid highground with rock lower right filled)
-                          {0x1FAE, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("solid-ground", 0xA0, "edgeMask", 0x70)},
-                                    "unpassable"},
-                  -- [0x1FB0] upper half clear
-                            -- (transition to weak highground)
-                          {{"range", 0x1FB0, 0x1FB2}, makeRampToHighGround("weak-ground", 0xB0)},
-                          {0x1FB3, {0x0000}},-- separator
-                            -- (transition to weak highground with rock lower left filled)
-                          {0x1FB4, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("weak-ground", 0xB0, "edgeMask", 0x30)},
-                                    "unpassable"},
-                          {0x1FB5, {0x0000}},-- separator
-                            -- (transition to weak highground with rock lower right filled)
-                          {0x1FB6, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("weak-ground", 0xB0, "edgeMask", 0x70)},
-                                    "unpassable"},
-                          {0x1FB7, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1FB8, 0x1FBA}, makeRampToHighGround("solid-ground", 0xB0)},
-                          {0x1FBB, {0x0000}},-- separator
-                            -- (transition to solid highground with rock lower left filled)
-                          {0x1FBC, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("solid-ground", 0xB0, "edgeMask", 0x30)},
-                                    "unpassable"},
-                          {0x1FBD, {0x0000}},-- separator
-                            -- (transition to solid highground with rock lower right filled)
-                          {0x1FBE, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("solid-ground", 0xB0, "edgeMask", 0x70)},
-                                    "unpassable"},
-                  -- [0x1FC0] upper right clear
-                            -- (transition to weak highground)
-                          {{"range", 0x1FC0,  0x1FC1}, makeRampToHighGround("weak-ground", 0xC0)},
-                          {0x1FC2, {0x0000}},-- separator
-                            -- (transition to weak highground with rock upper left filled)
-                          {0x1FC3, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("weak-ground", 0xC0, "edgeMask", 0x00)},
-                                    "unpassable"},
-                          {0x1FC4, {0x0000}},-- separator
-                            -- (transition to weak highground with rock lower right filled)
-                          {0x1FC5, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("weak-ground", 0xC0, "edgeMask", 0x70)},
-                                    "unpassable"},
-                          {0x1FC6, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1FC7, 0x1FC8}, makeRampToHighGround("solid-ground", 0xC0)},
-                          {0x1FC9, {0x0000}},-- separator
-                            -- (transition to solid highground with rock upper left filled)
-                          {0x1FCA, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("solid-ground", 0xC0, "edgeMask", 0x00)},
-                                    "unpassable"},
-                          {0x1FCB, {0x0000}},-- separator
-                            -- (transition to weak highground with rock lower right filled)
-                          {0x1FCC, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("solid-ground", 0xC0, "edgeMask", 0x70)},
-                                    "unpassable"},
-                  -- [0x1FD0] upper left clear
-                            -- (transition to weak highground)
-                          {{"range", 0x1FD0,  0x1FD1}, makeRampToHighGround("weak-ground", 0xD0)},
-                          {0x1FD2, {0x0000}},-- separator
-                            -- (transition to weak highground with rock lower left filled)
-                          {0x1FD3, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("weak-ground", 0xD0, "edgeMask", 0x30)},
-                                    "unpassable"},
-                          {0x1FD4, {0x0000}},-- separator
-                            -- (transition to weak highground with rock upper right filled)
-                          {0x1FD5, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("weak-ground", 0xD0, "edgeMask", 0x10)},
-                                    "unpassable"},
-                          {0x1FD6, {0x0000}},-- separator
-                            -- (transition to solid highground)
-                          {{"range", 0x1FD7, 0x1FD8}, makeRampToHighGround("solid-ground", 0xD0)},
-                          {0x1FD9, {0x0000}},-- separator
-                            -- (transition to solid highground with rock lower left filled)
-                          {0x1FDA, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("solid-ground", 0xD0, "edgeMask", 0x30)},
-                                    "unpassable"},
-                          {0x1FDB, {0x0000}},-- separator
-                            -- (transition to weak highground with rock upper right filled)
-                          {0x1FDC, {"layers", {getCliffsTiles("fully-filled")},
-                                              makeRampToHighGround("solid-ground", 0xD0, "edgeMask", 0x10)},
-                                    "unpassable"}},
+                "mixed", {"ramp", highgroundWeakGround, "land", "no-building",
+                          genRampToHighGroundSeq(dst("ramp", "weak-highground"), "weak-ground")},
 
-                "mixed", {"ramp", "lowgrounds", "land", "no-building",
-                         genRampToLowGroundSeq(0x2100, {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0})}
+                "mixed", {"ramp", highgroundSolidGround, "land", "no-building",
+                          genRampToHighGroundSeq(dst("ramp", "solid-highground"), "solid-ground")},
+
+                "mixed", {"ramp", lowgroundWeakGround, "land", "no-building",
+                         genRampToLowGroundSeq(dst("ramp", "weak-lowground"),
+                                               "weak-ground",
+                                               {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0})},
+
+                "mixed", {"ramp", lowgroundSolidGround, "land", "no-building",
+                         genRampToLowGroundSeq(dst("ramp", "solid-lowground"),
+                                               "solid-ground",
+                                               {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0})}
                 }
   )
 end
