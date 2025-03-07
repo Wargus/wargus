@@ -42,7 +42,7 @@ jobs:
         path: stratagus
 
     - name: Install dependencies
-      run: brew install dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg meson
+      run: brew install dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
 
     - name: cmake --version
       run: cmake --version
