@@ -466,6 +466,25 @@ function ExtendTileset(seed)
     return generators:makeRampToLowGround(groundType, slot)
   end
 
+  local function genSolidRampSeq(dstSlot, srcSlot, modifier)
+
+    local layout = {["main"] = {0, 0x2}, ["separator"] = 0x3, ["fillers"] = {0x4, 0xB}}
+    local function subslot(slotIdx)
+      return {
+        ["main"]      = {"range", slotIdx + layout["main"][1], slotIdx + layout["main"][2]},
+        ["separator"] = slotIdx + layout["main"][2] + 0x1,
+        ["fillers"]   = {"range",  slotIdx + layout["fillers"][1], slotIdx + layout["fillers"][2]}
+      }
+    end
+
+    local result = {
+      {subslot(dstSlot)["main"], {subslot(srcSlot)["main"], modifier}},
+      {subslot(dstSlot)["separator"], {0x0000}},
+      {subslot(dstSlot)["fillers"], {subslot(srcSlot)["fillers"], modifier}}
+    }
+    return unpack(result)
+  end
+
   local function genDstSrcSeq(dstSlot, subSlots, src)
     result = {}
 
@@ -983,9 +1002,12 @@ function ExtendTileset(seed)
                 "solid", {"cliff", "land", "unpassable", "no-building",
                           {{"slot", dst("cliff")},
                             {getCliffsTiles("fully-filled")}}},
+
                 "solid", {"ramp", "land", "no-building",
-                          {{"slot", dst("ramp")},
-                            {{"slot", getRampSrcSlot() + 0x00}, Lighten(getRampSrc(), "base", "shadows")}}},
+                          genSolidRampSeq(dst("ramp"),
+                                          getRampSrcSlot(),
+                                          Lighten(getRampSrc(), "base", "shadows"))},
+                                         
                 "mixed", {"cliff", lowgroundWeakGround, "land", "unpassable", "no-building",
                           genDstSrcSeq(dst("cliff", "weak-lowground"),
                                        {0x00, 0x10, 0x20, 0x30, 0x40, 0x60, 0x70, 0x90, 0xA0, 0xB0, 0xC0, 0xD0},
