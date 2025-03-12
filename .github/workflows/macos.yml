@@ -51,6 +51,7 @@ jobs:
       run: |
         cmake stratagus -B stratagus/build \
         -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_FIND_FRAMEWORK=LAST \
         -DBUILD_VENDORED_LUA=ON \
         -DBUILD_VENDORED_SDL=OFF \
         -DBUILD_VENDORED_MEDIA_LIBS=OFF \
@@ -60,6 +61,7 @@ jobs:
     - name: Build Wargus
       run: |
         cmake wargus -B wargus/build \
+        -DCMAKE_FIND_FRAMEWORK=LAST \
         -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
         -DSTRATAGUS=../stratagus/build/stratagus 
         cmake --build wargus/build --config Release
