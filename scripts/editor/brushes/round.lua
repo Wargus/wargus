@@ -25,7 +25,7 @@
 --
 
 local brush = {
-  Name = "Round-Simple",
+  Name = "Round",
   Type = "SingleTile",
   Shape = "Round",
   Symmetric = true,
