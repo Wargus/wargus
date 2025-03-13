@@ -7,7 +7,7 @@ Wargus is a Warcraft 2 mod that allows you to play Warcraft 2 with the Stratagus
 ### Extracting data for macOS
 
 In order to play Wargus on macOS you first need to extract the game data from your Warcraft 2 installer. The built-in extractor tool is currently not working correctly, but you can use
-[this third-party script](https://github.com/shinra-electric/Stratagus-Data-Extractor-Script/blob/488b069e1116f629198e9287d6fec16cac73a62e/Extractor%20script.sh) for now. <br>
+[this third-party script](https://github.com/shinra-electric/Stratagus-Data-Extractor-Script) for now. <br>
 
 Run the script in the same folder as your game data and the Wargus app. 
 
