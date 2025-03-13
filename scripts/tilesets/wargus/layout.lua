@@ -10,7 +10,7 @@
 --
 --      layout.lua - Layout of tileset slots
 --
---     (c) Copyright 2024 by Alyokhin
+--     (c) Copyright 2025 by Alyokhin
 --
 --      This program is free software; you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -30,7 +30,6 @@
 --=============================================================================
 
 --[[
-@FIXME: adjust to the actual indexes
 
 Base tileset
 001x            light water
@@ -148,10 +147,8 @@ TilesetSlotsIdx = {
                                                         ["subslots"] = {}},
                               ["solid-highground"]   = {0x2100,
                                                         ["subslots"] = {}},
-                              ["weak-lowground"]     = {0x2200,
-                                                        ["subslots"] = {}},
-                              ["solid-lowground"]    = {0x2300,
-                                                        ["subslots"] = {}} }
+                              ["weak-lowground"]     = 0x2200,
+                              ["solid-lowground"]    = 0x2300}
   },
   ["subslots-layout"] = TilesetSubslotsLayout
 }
