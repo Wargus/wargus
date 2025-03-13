@@ -88,65 +88,65 @@ jobs:
         if-no-files-found: error
 
   macOS-x86:
-  runs-on: macos-13
+    runs-on: macos-13
   
-  steps:
-  - name: Checkout Wargus
-    uses: actions/checkout@v4
-    with:
-      repository: Wargus/wargus
-      submodules: recursive
-      path: wargus
-      
-  - name: Checkout Stratagus
-    uses: actions/checkout@v4
-    with: 
-      repository: Wargus/stratagus
-      submodules: recursive
-      path: stratagus
-  
-  - name: Install dependencies
-    run: brew install dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
-  
-  - name: cmake --version
-    run: cmake --version
-  
-  - name: Build Stratagus
-    run: |
-      cmake stratagus -B stratagus/build \
-      -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_FIND_FRAMEWORK=LAST \
-      -DBUILD_VENDORED_LUA=ON \
-      -DBUILD_VENDORED_SDL=OFF \
-      -DBUILD_VENDORED_MEDIA_LIBS=OFF \
-      -DBUILD_TESTING=1
-      cmake --build stratagus/build --config Release
-  
-  - name: Build Wargus
-    run: |
-      cmake wargus -B wargus/build \
-      -DCMAKE_FIND_FRAMEWORK=LAST \
-      -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
-      -DSTRATAGUS=../stratagus/build/stratagus 
-      cmake --build wargus/build --config Release
-  
-  - name: Create Wargus app bundle
-    run: |
-      export STRATAGUS_INCLUDE_DIR=stratagus/gameheaders
-      export STRATAGUS=stratagus/build/stratagus
-      wargus/mac/bundle.sh
-      
-      dylibbundler -of -cd -b -x wargus/mac/Wargus.app/Contents/MacOS/stratagus -d wargus/mac/Wargus.app/Contents/libs/
-      dylibbundler -of -cd -b -x wargus/mac/Wargus.app/Contents/MacOS/wartool -d wargus/mac/Wargus.app/Contents/libs/
-      
-      codesign --force --deep --sign - wargus/mac/Wargus.app
-      
-  - name: Create dmg
-    run: hdiutil create -volname "Wargus" -srcfolder "wargus/mac/Wargus.app" "Wargus-x86"
-  
-  - name: Upload artifacts - macOS x86
-    uses: actions/upload-artifact@v4
-    with:
-      name: Wargus-macOS-x86
-      path: Wargus-x86.dmg
-      if-no-files-found: error
+    steps:
+    - name: Checkout Wargus
+      uses: actions/checkout@v4
+      with:
+        repository: Wargus/wargus
+        submodules: recursive
+        path: wargus
+        
+    - name: Checkout Stratagus
+      uses: actions/checkout@v4
+      with: 
+        repository: Wargus/stratagus
+        submodules: recursive
+        path: stratagus
+    
+    - name: Install dependencies
+      run: brew install dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
+    
+    - name: cmake --version
+      run: cmake --version
+    
+    - name: Build Stratagus
+      run: |
+        cmake stratagus -B stratagus/build \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_FIND_FRAMEWORK=LAST \
+        -DBUILD_VENDORED_LUA=ON \
+        -DBUILD_VENDORED_SDL=OFF \
+        -DBUILD_VENDORED_MEDIA_LIBS=OFF \
+        -DBUILD_TESTING=1
+        cmake --build stratagus/build --config Release
+    
+    - name: Build Wargus
+      run: |
+        cmake wargus -B wargus/build \
+        -DCMAKE_FIND_FRAMEWORK=LAST \
+        -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
+        -DSTRATAGUS=../stratagus/build/stratagus 
+        cmake --build wargus/build --config Release
+    
+    - name: Create Wargus app bundle
+      run: |
+        export STRATAGUS_INCLUDE_DIR=stratagus/gameheaders
+        export STRATAGUS=stratagus/build/stratagus
+        wargus/mac/bundle.sh
+        
+        dylibbundler -of -cd -b -x wargus/mac/Wargus.app/Contents/MacOS/stratagus -d wargus/mac/Wargus.app/Contents/libs/
+        dylibbundler -of -cd -b -x wargus/mac/Wargus.app/Contents/MacOS/wartool -d wargus/mac/Wargus.app/Contents/libs/
+        
+        codesign --force --deep --sign - wargus/mac/Wargus.app
+        
+    - name: Create dmg
+      run: hdiutil create -volname "Wargus" -srcfolder "wargus/mac/Wargus.app" "Wargus-x86"
+    
+    - name: Upload artifacts - macOS x86
+      uses: actions/upload-artifact@v4
+      with:
+        name: Wargus-macOS-x86
+        path: Wargus-x86.dmg
+        if-no-files-found: error
