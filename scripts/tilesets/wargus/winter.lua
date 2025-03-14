@@ -10,7 +10,7 @@
 --
 --      winter.ccl - Define the winter tileset.
 --
---      (c) Copyright 2000-2023 by Lutz Sammer, Jimmy Salmon and Alyokhin
+--      (c) Copyright 2000-2024 by Lutz Sammer, Jimmy Salmon and Alyokhin
 --
 --      This program is free software-- you can redistribute it and/or modify
 --      it under the terms of the GNU General Public License as published by
@@ -43,10 +43,10 @@ solid tiles:
 006x            dark snow
 007x            forest
 008x            mountains
-009x            human wall
-00ax            orc walls
-00bx            human walls
-00cx            orc walls
+009x            human open walls
+00ax            orc open walls
+00bx            human closed walls
+00cx            orc closed walls
 
 
 boundary tiles:
@@ -97,6 +97,8 @@ filled  clear
 8x      5x      upper left, lower right
 
 --]]
+
+Load("scripts/tilesets/wargus/layout.lua")
 
 --
 --  (define-tileset ident class name image palette slots animations)
@@ -291,27 +293,14 @@ DefineTileset("name", "Winter",
                       {  50,   0,  86,   0, 100}},                -- 9D0
   })
 
-local slotIdx = {
-  -- solid tiles
-  ["lightWater"]            = 0x0010,
-  ["darkWater"]             = 0x0020,
-  ["lightIce"]              = 0x0030,
-  ["darkIce"]               = 0x0040,
-  ["lightSnow"]             = 0x0050,
-  ["darkSnow"]              = 0x0060,
-  ["forest"]                = 0x0070,
-  ["mountains"]             = 0x0080,
-  -- boundary tiles
-  ["darkWater-lightWater"]  = 0x0100,
-  ["lightWater-lightIce"]   = 0x0200,
-  ["darkIce-lightIce"]      = 0x0300,
-  ["mountains-lightIce"]    = 0x0400,
-  ["lightIce-lightSnow"]    = 0x0500,
-  ["darkSnow-lightSnow"]    = 0x0600,
-  ["forest-snow"]           = 0x0700
-}
-
 if IsHighgroundsEnabled() then
+
+  local waterToIceIdx = TilesetSlotsIdx:get("light-water", "light-weak-ground")
+  local iceToSnowIdx  = TilesetSlotsIdx:get("light-weak-ground", "light-solid-ground")
+  local snowToSnowIdx = TilesetSlotsIdx:get("dark-solid-ground", "light-solid-ground")
+  local lightSnowIdx  = TilesetSlotsIdx:get("light-solid-ground")
+  local darkIceIdx    = TilesetSlotsIdx:get("dark-weak-ground")
+    
   local lightSnow = {
     ["shadows"]         = {{17, 24}},
     ["decorations"]     = {16, 27, 29, {59, 61}, {82, 91}},
@@ -340,10 +329,10 @@ if IsHighgroundsEnabled() then
   }
 
   local getRampSrcSlot = function(slotType)
-    if slotType == "for-edges" then 
-      return 0x0500 -- light-ice and light-snow boundary
-    else 
-      return 0x0050 -- light-snow
+    if slotType == "for-edges" then
+      return iceToSnowIdx -- light-ice and light-snow boundary
+    else
+      return lightSnowIdx -- light-snow
     end
   end
 
@@ -400,16 +389,16 @@ if IsHighgroundsEnabled() then
                             ["removedRock"]   = 161
                           },
       ["cliff-edges-exceptions"] = {
-                                    [0x0200] =  {
-                                                  [0x20] = {1},
-                                                  [0x40] = {2},
-                                                  [0x90] = {1}
-                                                },
-                                    [0x0500] =  {
-                                                  [0x20] = {2},
-                                                  [0xA0] = {0}
-                                                }
-                                  }
+                                    [waterToIceIdx] =  {
+                                                         [0x20] = {1},
+                                                         [0x40] = {2},
+                                                         [0x90] = {1}
+                                                       },
+                                    [iceToSnowIdx]  =  {
+                                                         [0x20] = {2},
+                                                         [0xA0] = {0}
+                                                       }
+                                   }
     },
     cleanRocks = nil -- local function to clean rocks (if present)
   }
@@ -426,16 +415,19 @@ if IsHighgroundsEnabled() then
     local returnValue = {}
 
     if groundType == "weak-ground" then
-      returnValue = {self.utils.srcTilesLst(0x0200, (0xD0 - slot)), {"remove", self.utils.colorsFor(water)}}
+      returnValue = {self.utils.srcTilesLst(waterToIceIdx, (0xD0 - slot)),
+                    {"remove", self.utils.colorsFor(water)}}
     elseif groundType == "solid-ground" then
-      returnValue = {self.utils.srcTilesLst(0x0500, (0xD0 - slot)), {"remove", self.utils.colorsFor(lightIce, "base", "shadows")}}
+      returnValue = {self.utils.srcTilesLst(iceToSnowIdx, (0xD0 - slot)),
+                    {"remove", self.utils.colorsFor(lightIce, "base", "shadows")}}
     end
 
     return returnValue
   end
 
   function generators:makeRampEdge()
-    return  {"remove", self.utils.colorsFor(lightIce, "base", "shadows")},  self.utils.Lighten(lightSnow, "base", "shadows")
+    return  {"remove", self.utils.colorsFor(lightIce, "base", "shadows")},
+            self.utils.Lighten(lightSnow, "base", "shadows")
   end
 
   function generators:makeRampToHighGround(groundType, slot, isMask, edgeSlot) -- local function to make transition from ramp to HG tiles (if present)
@@ -444,11 +436,14 @@ if IsHighgroundsEnabled() then
     local currLayer = cBottom
 
     local layers = {{}} -- there is a single (bottom) layer
-    
+
     if isMask == "edgeMask" then
       if groundType == "weak-ground" then
 
-        layers[currLayer] = {self.utils.srcTilesLst(0x0200, edgeSlot), {"remove", self.utils.colorsFor(water)}}
+        layers[currLayer] = {
+                              self.utils.srcTilesLst(waterToIceIdx, edgeSlot),
+                              {"remove", self.utils.colorsFor(water)}
+                            }
         currLayer = currLayer + 1
 
         local convertEdges = {
@@ -468,16 +463,25 @@ if IsHighgroundsEnabled() then
         edgeSlot = 0xD0 - convertEdges[slot .. edgeSlot]
       end
 
-      layers[currLayer] = {{"slot", 0x0500 + edgeSlot}, {"remove", self.utils.colorsFor(lightIce, "base", "shadows")},
-                                                        {"chroma-key", {"slot", 0x0600 + (0xD0 - slot)}, self.utils.colorsFor(lightSnow, "base")},
-                                                         self.utils.Lighten(lightSnow, "base", "transition-dark")}
+      layers[currLayer] = {
+                            {"slot", iceToSnowIdx + edgeSlot},
+                            {"remove", self.utils.colorsFor(lightIce, "base", "shadows")},
+                            {"chroma-key", {"slot", snowToSnowIdx + (0xD0 - slot)}, self.utils.colorsFor(lightSnow, "base")},
+                            self.utils.Lighten(lightSnow, "base", "transition-dark")
+                          }
       return unpack(layers)
 
     else -- without edge
       if groundType == "weak-ground" then
-        layers[cBottom] = {{"slot", 0x0500 + (0xD0 - slot)}, self.utils.Lighten(lightSnow, "base", "transition-dark")}
+        layers[cBottom] = {
+                            {"slot", iceToSnowIdx + (0xD0 - slot)},
+                            self.utils.Lighten(lightSnow, "base", "transition-dark")
+                          }
       elseif groundType == "solid-ground" then
-        layers[cBottom] = {{"slot", 0x0600 + (0xD0 - slot)}, self.utils.Lighten(lightSnow, "base", "transition-dark")}
+        layers[cBottom] = {
+                            {"slot", snowToSnowIdx + (0xD0 - slot)},
+                            self.utils.Lighten(lightSnow, "base", "transition-dark")
+                          }
       end
 
       return unpack(layers)
@@ -486,24 +490,35 @@ if IsHighgroundsEnabled() then
 
   function generators:makeRampToLowGround(groundType, slot) -- local function to make transition from ramp to LG tiles (if present)
     if groundType == "weak-ground" then
-      return {"layers", {"range", 0x40, 0x42},
-                        {{"slot", 0x0500 + (0xD0 - slot)}, {"remove", self.utils.colorsFor(lightIce, "base")},
-                                                            self.utils.Dim(lightIce, "shadows"),
-                                                            self.utils.Lighten(lightSnow, "base", "transition-dark")}}
-    else 
-      return {"layers", {{"slot", 0x0600 + (0xD0 - slot)}, self.utils.Lighten(lightSnow,"base")},
-                        {0x0200 + (0xD0 - slot), {"remove-all-except", self.utils.colorsFor(water)},
-                                                 {"chroma-key", {"slot", 0x0600 + (0xD0 - slot)}, self.utils.colorsFor(water)},
-                                                 {"remove", self.utils.colorsFor(lightSnow, "base-light", "transition-dark")}}}
+      return {"layers", {"range", darkIceIdx + 0x0, darkIceIdx + 0x2},
+                        {
+                          {"slot", iceToSnowIdx + (0xD0 - slot)},
+                          {"remove", self.utils.colorsFor(lightIce, "base")},
+                          self.utils.Dim(lightIce, "shadows"),
+                          self.utils.Lighten(lightSnow, "base", "transition-dark")
+                        }
+             }
+    else
+      return {"layers", {
+                          {"slot", snowToSnowIdx + (0xD0 - slot)},
+                          self.utils.Lighten(lightSnow,"base")
+                        },
+                        {
+                          waterToIceIdx + (0xD0 - slot),
+                          {"remove-all-except", self.utils.colorsFor(water)},
+                          {"chroma-key", {"slot", snowToSnowIdx + (0xD0 - slot)}, self.utils.colorsFor(water)},
+                          {"remove", self.utils.colorsFor(lightSnow, "base-light", "transition-dark")}
+                        }
+             }
     end
   end
 
   local extendedTilesetSeed = {
 
-    lowgroundWeakGround   = "dark-ice",
-    lowgroundSolidGround  = "dark-snow",
-    highgroundWeakGround  = "highground-ice",
-    highgroundSolidGround = "highground-snow",
+    lowgroundWeakGround   = "ice-lowground",
+    lowgroundSolidGround  = "snow-lowground",
+    highgroundWeakGround  = "ice-highground",
+    highgroundSolidGround = "snow-highground",
     getRampSrcSlot        = getRampSrcSlot,
     getRampSrc            = getRampSrc,
     generators            = generators,
