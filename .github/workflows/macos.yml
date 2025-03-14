@@ -1,4 +1,4 @@
-name: macOS-arm64
+name: macOS
 
 on:
   workflow_dispatch:
@@ -23,8 +23,16 @@ on:
       - '!doc/**'
 
 jobs:
-  macos:
-    runs-on: macos-latest
+  macOS:
+    
+    strategy:
+      matrix:
+        include:
+            - runner: macos-latest
+              suffix: arm64
+            - runner: macos-13
+              suffix: x86
+    runs-on: ${{ matrix.runner}}
 
     steps:
     - name: Checkout Wargus
@@ -78,11 +86,11 @@ jobs:
         codesign --force --deep --sign - wargus/mac/Wargus.app
         
     - name: Create dmg
-      run: hdiutil create -volname "Wargus" -srcfolder "wargus/mac/Wargus.app" "Wargus-arm64"
+      run: hdiutil create -volname "Wargus" -srcfolder "wargus/mac/Wargus.app" "Wargus-${{ matrix.suffix }}"
     
-    - name: Upload artifacts - macOS arm64
+    - name: Upload artifacts - macOS ${{ matrix.suffix }}
       uses: actions/upload-artifact@v4
       with:
-        name: Wargus-macOS-arm64
-        path: Wargus-arm64.dmg
+        name: Wargus-macOS-${{ matrix.suffix }}
+        path: Wargus-${{ matrix.suffix }}.dmg
         if-no-files-found: error
