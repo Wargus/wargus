@@ -70,6 +70,7 @@ local function RunEditorLoadMapMenu()
   local labelDescription
   local labelNbPlayer
   local labelMapSize
+  local labelHighgroundsEnabled
 
   -- update label content
   local function MapChanged()
@@ -84,12 +85,16 @@ local function RunEditorLoadMapMenu()
 
     labelMapSize:setCaption(_("Size : ") .. mapinfo.w .. " x " .. mapinfo.h)
     labelMapSize:adjustSize()
+
+    labelHighgroundsEnabled:setCaption(_("Highgrounds : " .. (mapinfo.highgrounds and "enabled" or "disabled")))
+    labelHighgroundsEnabled:adjustSize()
   end
 
   labelMapName = menu:addLabel("", offx + 208, offy + 104 + 36 * 0, Fonts["game"], false)
   labelDescription = menu:addLabel("", offx + 208, offy + 104 + 32 * 1, Fonts["game"], false)
   labelNbPlayer = menu:addLabel("", offx + 208, offy + 104 + 32 * 2, Fonts["game"], false)
   labelMapSize = menu:addLabel("", offx + 208, offy + 104 + 32 * 3, Fonts["game"], false)
+  labelHighgroundsEnabled = menu:addLabel("", offx + 208 + 150, offy + 104 + 32 * 3, Fonts["game"], false)
 
   menu:addFullButton(_("~!Select map"), "s", offx + 208, offy + 104 + 36 * 4,
     function()
@@ -100,8 +105,15 @@ local function RunEditorLoadMapMenu()
         MapChanged()
       end
     end)
+    
+  menu:addFullButton(_("~!Edit map"), "e", offx + 208, offy + 104 + 36 * 5, 
+    function()
+      MapEnableHighgrounds(mapinfo.highgrounds)
 
-  menu:addFullButton(_("~!Edit map"), "e", offx + 208, offy + 104 + 36 * 5, function() menu:stop(); StartEditor(mapname); RunEditorMenu() end)
+      menu:stop()
+      StartEditor(mapname)
+      RunEditorMenu()
+    end)
   menu:addFullButton(_("Cancel (~<Esc~>)"), "escape", offx + 208, offy + 104 + 36 * 6, function() menu:stop(1); RunEditorMenu() end)
 
   GetMapInfo(mapname)
