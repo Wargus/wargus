@@ -112,8 +112,8 @@ TilesetSlotsIdx = {
     ["human-wall-closed"]   = 0x00B0,
     ["orc-wall-closed"]     = 0x00C0,
     -- extended:
-    ["cliff"]               = 0x1010, -- FIXME: check if it possible to swich on 0x00D0
-    ["ramp"]                = 0x1020  -- FIXME: check if it possible to swich on 0x00E0
+    ["cliff"]               = 0x1010,
+    ["ramp"]                = 0x1020
   },
   ["mixed"] = {
     ["dark-water"]        = { ["light-water"]        = 0x0100 },
@@ -123,8 +123,8 @@ TilesetSlotsIdx = {
     ["light-weak-ground"] = { ["light-solid-ground"] = 0x0500 },
     ["dark-solid-ground"] = { ["light-solid-ground"] = 0x0600 },
     ["forest"]            = { ["light-solid-ground"] = 0x0700 },
-    ["human-wall"]        = { ["dark-solid-ground"]  = 0x0800 }, -- FIXME: check if it's really DARK
-    ["orc-wall"]          = { ["dark-solid-ground"]  = 0x0900 }, -- FIXME: check if it's really DARK
+    ["human-wall"]        = { ["dark-solid-ground"]  = 0x0800 },
+    ["orc-wall"]          = { ["dark-solid-ground"]  = 0x0900 },
     -- extended:
     ["cliff"]             = { ["weak-lowground"]     = 0x1100,
                               ["solid-lowground"]    = 0x1200 },
