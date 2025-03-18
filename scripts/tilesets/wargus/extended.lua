@@ -52,7 +52,7 @@
         Second "terrain-name" in the slot definition is for mixed type.
 
       list-of-flags-for-all-tiles-of-this-slot:
-        comma separated list of flags wihich are common for all tiles in this slot
+        comma separated list of flags which are common for all tiles in this slot
 
       dst:
         single argument (number or table) at position 1.

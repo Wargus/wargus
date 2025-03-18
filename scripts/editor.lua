@@ -198,7 +198,7 @@ local keystrokes = {
    {"1-9", "unit under cursor to player 1-9"},
    {"Alt+0-6", "unit under cursor to player 10-16"},
    {"g", "toggle map grid"},
-   {"-/+", "change elavation level to assign (brush)"},
+   {"-/+", "change elevation level to assign (brush)"},
    {"[/]", "change brush size"},
    {"</>", "change elevation level to highlight"},
    {"F5", "Map properties"},
