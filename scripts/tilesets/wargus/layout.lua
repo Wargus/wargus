@@ -158,7 +158,7 @@ TilesetSubslotsLayout = {
     slot format:
       0x[dir][x]
       where:
-        [x]   is postion of a tile in the slot
+        [x]   is position of a tile in the slot
         [dir] is direction:
         filled  clear
           0x      Dx      upper left
