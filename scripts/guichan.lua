@@ -885,6 +885,7 @@ function InitGameSettings()
 	IsSkirmishClassic = false
   Load("scripts/fov.lua") -- Reload Default FOV settings because some maps|tilesets could change it
   SetFogOfWarType(wc2.preferences.FogOfWarType) -- Reload default FOG type because changing fov type may cause to change it too
+  SetScrollMargins(15, 16, 16, 2); -- (top, right, bottom, left) Left is 2 to prevent overlaps with controls
 end
 InitGameSettings()
 

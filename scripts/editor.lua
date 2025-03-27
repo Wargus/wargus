@@ -32,6 +32,9 @@ SetEditorSelectIcon("icon-human-patrol-land")
 SetEditorUnitsIcon("icon-footman")
 SetEditorStartUnit("unit-human-start-location")
 
+-- To prevent overlaps with controls
+SetScrollMargins(2, 2, 2, 2);
+
 --
 --	editor-unit-types a sorted list of unit-types for the editor.
 --	FIXME: this is only a temporary hack, for better sorted units.
