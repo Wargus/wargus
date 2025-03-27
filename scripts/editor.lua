@@ -208,7 +208,8 @@ local keystrokes = {
    {"Rightclick", "Tile mode: Deselect current tile"},
    {"Rightclick", "Unit mode: Deselect current unit"},
    {"Rightclick", "Select mode: Edit unit under cursor"},
-   {"Alt+click", "Tile mode when no tile is selected: Modify tile under cursor"}
+   {"Alt+click", "Tile mode when no tile is selected: Modify tile under cursor"},
+   {"Ctrl+click", "Tile mode when no tile is selected: Select tile under cursor"}
  }
  
  function RunEditorHelpMenu()
