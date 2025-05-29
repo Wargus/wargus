@@ -148,6 +148,11 @@ DefineAllowOrcAlways()
 DefineAllow("upgrade-holy-vision", "RRRRRRRRRRRRRRRR")
 DefineAllow("upgrade-healing", "RRRRRRRRRRRRRRRR")
 DefineAllow("upgrade-exorcism", "RRRRRRRRRRRRRRRR")
-
+DefineAllow("upgrade-blizzard", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-fireball", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-polymorph", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-invisibility", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-flame-shield", "RRRRRRRRRRRRRRRR")
+DefineAllow("upgrade-slow", "RRRRRRRRRRRRRRRR")
 
 Load("campaigns/human-exp/levelx11h.sms")
