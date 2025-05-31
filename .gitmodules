@@ -1,3 +1,6 @@
 [submodule "third-party"]
 	path = third-party
 	url = https://github.com/Wargus/dependencies
+[submodule "StormLib"]
+	path = StormLib
+	url = https://github.com/ladislav-zezula/StormLib
