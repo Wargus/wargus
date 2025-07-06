@@ -282,6 +282,10 @@ function DefineAllowOrcAlways(flags)
 	DefineAllow("unit-orc-wall", "AAAAAAAAAAAAAAAA")
 	DefineAllow("upgrade-eye-of-kilrogg", "RRRRRRRRRRRRRRRR")
 	DefineAllow("upgrade-death-coil", "RRRRRRRRRRRRRRRR")
+
+	DefineAllow("upgrade-eye-of-kilrogg-double-head", "RRRRRRRRRRRRRRRR")
+	DefineAllow("upgrade-bloodlust-double-head", "RRRRRRRRRRRRRRRR")
+	DefineAllow("upgrade-runes-double-head", "RRRRRRRRRRRRRRRR")
 end
 
 
