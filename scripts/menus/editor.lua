@@ -162,7 +162,7 @@ end
 --
 --  Save map from the editor
 --
-editorMapName = "game.smp"
+local editorMapName = "game.smp"
 function RunEditorSaveMenu()
   local menu = WarGameMenu(panel(3))
 

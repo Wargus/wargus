@@ -49,7 +49,7 @@ function DefineAnimations(name, tbl)
    animationspecs[name] = tbl
 end
 local function tableShallowCopy(tbl)
-   res = {}
+   local res = {}
    for k,v in pairs(tbl) do
       res[k] = v
    end
