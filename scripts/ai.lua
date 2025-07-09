@@ -30,8 +30,8 @@
 
 --(define (ai:sleep) () #t)
 
-race1 = "human"
-race2 = "orc"
+local race1 = "human"
+local race2 = "orc"
 
 --
 --  City-center of the current race.
