@@ -36,14 +36,14 @@ jobs:
 
     steps:
     - name: Checkout Wargus
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         repository: Wargus/wargus
         submodules: recursive
         path: wargus
         
     - name: Checkout Stratagus
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with: 
         repository: Wargus/stratagus
         submodules: recursive
