@@ -1614,11 +1614,11 @@ msgstr "Tipps beim Start anzeigen"
 
 #: menus/help.lua:157
 msgid "~!Next Tip"
-msgstr "~!Nächster Tipp"
+msgstr "~!mehr Tipps"
 
 #: menus/help.lua:159
 msgid "Close (~<Esc~>)"
-msgstr "Schließen (~<Esc~>)"
+msgstr "~!OK"
 
 #: menus/load.lua:40
 msgid "Load Game"
@@ -2819,7 +2819,7 @@ msgstr "Stop"
 
 #: stratagus.lua:236
 msgid "mine"
-msgstr "abbauen"
+msgstr "fördern"
 
 #: stratagus.lua:236
 msgid "chop"
@@ -3136,4 +3136,3 @@ msgstr "gekachelt"
 #: menus/options.lua:731
 msgid "You need to restart game to apply changes, restart now?"
 msgstr "Sie müssen das Spiel neu starten, um Änderungen zu übernehmen, jetzt neu starten?"
-
