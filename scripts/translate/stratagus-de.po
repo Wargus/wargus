@@ -49,7 +49,7 @@ msgstr "%s geht zur Neige!"
 
 #: action/action_returngoods.cpp:68
 msgid "No Resources to Return."
-msgstr ""
+msgstr "Keine Ressourcen zum Zurückgeben"
 
 #: action/action_spellcast.cpp:181
 msgid "%s: not enough mana for spell: %s"
@@ -83,13 +83,13 @@ msgstr "Spieler \"%s\" hat das Spiel verlassen"
 msgid "Player \"%s\" has been killed"
 msgstr "Spieler \"%s\" wurde getötet"
 
-#: editor/editloop.cpp:508 src/editor/editloop.cpp:592
+#: editor/editloop.cpp:508 editor/editloop.cpp:592
 msgid "~!OK"
-msgstr ""
+msgstr "~!OK"
 
-#: editor/editloop.cpp:516 src/editor/editloop.cpp:600
+#: editor/editloop.cpp:516 editor/editloop.cpp:600
 msgid "~!Cancel"
-msgstr ""
+msgstr "~!Abbrechen"
 
 #: editor/editloop.cpp:583
 msgid "Artificial Intelligence"
@@ -115,7 +115,7 @@ msgstr "Spiegelbearbeitung deaktiviert"
 msgid "Unit deleted"
 msgstr "Einheit gelöscht"
 
-#: editor/editloop.cpp:1497 src/editor/editloop.cpp:1506
+#: editor/editloop.cpp:1497 editor/editloop.cpp:1506
 msgid "Unit owner modified"
 msgstr "Eigentümer der Einheit geändert"
 
@@ -125,17 +125,16 @@ msgid "Select mode"
 msgstr "Wähle Ziel"
 
 #: editor/editloop.cpp:1841
-#, fuzzy
 msgid "Unit mode"
-msgstr "Einheit gelöscht"
+msgstr "Einheiten-Modus"
 
 #: editor/editloop.cpp:1852
 msgid "Tile mode"
-msgstr ""
+msgstr "Tile-Modus"
 
 #: editor/editloop.cpp:1863
 msgid "Set start location mode"
-msgstr ""
+msgstr "Startpunkt-Setzen-Modus"
 
 #: network/commands.cpp:824
 msgid "No sync info for this replay !"
@@ -149,7 +148,7 @@ msgstr "Replay ist nicht mehr synchron (%lu) !"
 msgid "Replay got out of sync !"
 msgstr "Replay ist nicht mehr synchron!"
 
-#: network/commands.cpp:946 src/network/commands.cpp:961
+#: network/commands.cpp:946 network/commands.cpp:961
 msgid "End of replay"
 msgstr "Ende der Wiederholung"
 
@@ -198,7 +197,7 @@ msgstr "Nicht genug %s, %s Sie mehr %s."
 msgid "Cannot create more units."
 msgstr "Es können nicht mehr Einheiten gebaut werden."
 
-#: stratagus/stratagus.cpp:548 src/stratagus/stratagus.cpp:681
+#: stratagus/stratagus.cpp:548 stratagus/stratagus.cpp:681
 msgid "Do it! Do it now!"
 msgstr "Mach schon! Fang jetzt an!"
 
@@ -206,7 +205,7 @@ msgstr "Mach schon! Fang jetzt an!"
 msgid "Thanks for playing Stratagus.\n"
 msgstr "Danke, dass du Stratagus spielst.\n"
 
-#: ui/botpanel.cpp:724 src/ui/botpanel.cpp:789
+#: ui/botpanel.cpp:724 ui/botpanel.cpp:789
 msgid "Select Target"
 msgstr "Wähle Ziel"
 
@@ -220,9 +219,8 @@ msgid "Unit training queue is full"
 msgstr "Die Schulungswarteschlange für Einheiten ist voll"
 
 #: ui/interface.cpp:95
-#, fuzzy
 msgid "MESSAGE:%s~!_"
-msgstr "NACHRICHT:%s"
+msgstr "NACHRICHT:%s~!_"
 
 #: ui/interface.cpp:247
 msgid "Sound is on."
@@ -241,7 +239,7 @@ msgstr "Musik ist aus."
 msgid "Music is on."
 msgstr "Musik ist an."
 
-#: ui/interface.cpp:280 src/ui/mouse.cpp:1736
+#: ui/interface.cpp:280 ui/mouse.cpp:1736
 #, fuzzy
 msgid "Game Paused"
 msgstr "Spiel angehalten"
