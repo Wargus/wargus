@@ -1614,11 +1614,11 @@ msgstr "Tipps beim Start anzeigen"
 
 #: menus/help.lua:157
 msgid "~!Next Tip"
-msgstr "~!mehr Tipps"
+msgstr "mehr Tipps"
 
 #: menus/help.lua:159
 msgid "Close (~<Esc~>)"
-msgstr "~!OK"
+msgstr "OK (~<Esc~>)"
 
 #: menus/load.lua:40
 msgid "Load Game"
