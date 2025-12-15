@@ -89,7 +89,7 @@ jobs:
       run: hdiutil create -volname "Wargus" -srcfolder "wargus/mac/Wargus.app" "Wargus-${{ matrix.suffix }}"
     
     - name: Upload artifacts - macOS ${{ matrix.suffix }}
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: Wargus-macOS-${{ matrix.suffix }}
         path: Wargus-${{ matrix.suffix }}.dmg
