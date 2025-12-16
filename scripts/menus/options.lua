@@ -391,15 +391,34 @@ function RunPreferencesMenu()
          SetFogOfWarType(fogOfWarTypes[fogOfWarType:getSelected() + 1])
    end)
    fogOfWarType:setSize(120, 16)
+
+   local maxSelectableUnitsList = {"9", "12", "18", "50", "100", "200"}
+   menu:addLabel(_("Selectable units:"),  225, 28 + 19 * 8 + 5, Fonts["game"], false)
+   local maxSelectableUnitsListDD = menu:addDropDown(maxSelectableUnitsList, 225, 28 + 19 * 9 + 5, function(dd) end)
+   -- Get the index of the MaxSelectableUnits from list
+   local idx_msu = 0
+   for i,v in ipairs(maxSelectableUnitsList) do
+      if tonumber(v) == wc2.preferences.MaxSelectableUnits then
+         idx_msu = i - 1
+         break
+      end
+   end
+   maxSelectableUnitsListDD:setSelected(idx_msu)
+   maxSelectableUnitsListDD:setActionCallback(
+      function()
+         Preference.MaxSelectableUnits = tonumber(maxSelectableUnitsList[maxSelectableUnitsListDD:getSelected() + 1])
+      end
+   )
+   maxSelectableUnitsListDD:setSize(40, 16)
    
-   local fowBilinear = menu:addImageCheckBox(_("Bilinear fog"), 225, 28 + 19 * 8 + 10, offi, offi2, oni, oni2, function()end)
+   local fowBilinear = menu:addImageCheckBox(_("Bilinear fog"), 225, 28 + 19 * 10 + 10, offi, offi2, oni, oni2, function()end)
    fowBilinear:setMarked(GetIsFogOfWarBilinear())
    fowBilinear:setActionCallback(
       function()
          SetFogOfWarBilinear(fowBilinear:isMarked())
    end)
    
-   local hwCursor = menu:addImageCheckBox(_("Hardware cursor"), 225, 28 + 19 * 9 + 10, offi, offi2, oni, oni2, function()end)
+   local hwCursor = menu:addImageCheckBox(_("Hardware cursor"), 225, 28 + 19 * 11 + 10, offi, offi2, oni, oni2, function()end)
    hwCursor:setMarked(wc2.preferences.HardwareCursor)
    hwCursor:setActionCallback(
       function()
@@ -411,34 +430,39 @@ function RunPreferencesMenu()
    menu:addLabel(_("~!* - requires restart"), 10, 10 + 18 * 16, Fonts["game"], false)
 
    menu:addHalfButton("~!OK", "o", 206, 352 - 40,
-		      function()
-			 wc2.preferences.GrabMouse = GetGrabMouse()
-			 wc2.preferences.ShowCommandKey = UI.ButtonPanel.ShowCommandKey
-			 wc2.preferences.MineNotifications = Preference.MineNotifications
-			 wc2.preferences.ShowDamage = showDamage:isMarked()
-			 wc2.preferences.ShowButtonPopups = showButtonPopups:isMarked()
-			 wc2.preferences.UseFancyBuildings = useFancyBuildings:isMarked()
-			 wc2.preferences.ShowMessages = Preference.ShowMessages
-			 wc2.preferences.PauseOnLeave = Preference.PauseOnLeave
-			 wc2.preferences.EnhancedEffects = enhancedEffects:isMarked()
-			 wc2.preferences.DeselectInMine = Preference.DeselectInMine
-			 wc2.preferences.SimplifiedAutoTargeting = Preference.SimplifiedAutoTargeting
-          wc2.preferences.FogOfWarType = fogOfWarTypes[fogOfWarType:getSelected() + 1]
-          wc2.preferences.FogOfWarBilinear = fowBilinear:isMarked()
-          
-			 if (not IsNetworkGame()) then
-			    wc2.preferences.FogOfWar = fogOfWar:isMarked()
-			 end
-			 if Preference.ShowOrders > 0 then
-			    wc2.preferences.ShowOrders = true
-			 else
-			    wc2.preferences.ShowOrders = false
-			 end
-			 wc2.preferences.SelectionStyle = selectionStyleList[selectionStyle:getSelected() + 1]
-			 wc2.preferences.ViewportMode = viewportMode:getSelected()
-			 SavePreferences()
-			 menu:stop(1)
-   end)
+      function()
+         wc2.preferences.GrabMouse = GetGrabMouse()
+         wc2.preferences.ShowCommandKey = UI.ButtonPanel.ShowCommandKey
+         wc2.preferences.MineNotifications = Preference.MineNotifications
+         wc2.preferences.ShowDamage = showDamage:isMarked()
+         wc2.preferences.ShowButtonPopups = showButtonPopups:isMarked()
+         wc2.preferences.UseFancyBuildings = useFancyBuildings:isMarked()
+         wc2.preferences.ShowMessages = Preference.ShowMessages
+         wc2.preferences.PauseOnLeave = Preference.PauseOnLeave
+         wc2.preferences.EnhancedEffects = enhancedEffects:isMarked()
+         wc2.preferences.DeselectInMine = Preference.DeselectInMine
+         wc2.preferences.SimplifiedAutoTargeting = Preference.SimplifiedAutoTargeting
+         wc2.preferences.FogOfWarType = fogOfWarTypes[fogOfWarType:getSelected() + 1]
+         wc2.preferences.FogOfWarBilinear = fowBilinear:isMarked()
+         if (Preference.MaxSelectableUnits ~= nil) then
+            wc2.preferences.MaxSelectableUnits = Preference.MaxSelectableUnits
+         end
+         if (not IsNetworkGame()) then
+            wc2.preferences.FogOfWar = fogOfWar:isMarked()
+         end
+         if Preference.ShowOrders > 0 then
+            wc2.preferences.ShowOrders = true
+         else
+            wc2.preferences.ShowOrders = false
+         end
+         wc2.preferences.SelectionStyle = selectionStyleList[selectionStyle:getSelected() + 1]
+         wc2.preferences.ViewportMode = viewportMode:getSelected()
+         SavePreferences()
+         -- Apply the changes
+         SetMaxSelectable(wc2.preferences.MaxSelectableUnits)
+         menu:stop(1)
+      end
+)
 
    menu:addHalfButton(_("Cancel (~<Esc~>)"), "escape", 40, 352 - 40,
 		      function()
