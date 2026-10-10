@@ -3153,7 +3153,7 @@ int main(int argc, char** argv)
 				sprintf(extract, "%s/%s", Dir, Todo[u].File);
 				switch (Todo[u].Arg2) {
 					case 'V':
-						sprintf(extract, "%s.smk", extract);
+						strcat(extract, ".smk");
 						break;
 					case 'W':
 						if (!rip) { // wav audio
