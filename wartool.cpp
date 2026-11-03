@@ -499,6 +499,15 @@ int CloseArchive(void)
 }
 
 #ifdef USE_STORMLIB
+
+// added in StormLib 9.31
+#if STORMLIB_VERSION < 0x091F
+DWORD SErrGetLastError()
+{
+	return GetLastError();
+}
+#endif
+
 int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName, bool compress)
 {
 	HANDLE hMpq   = NULL;          // Open archive handle
@@ -510,13 +519,13 @@ int ExtractMPQFile(char *szArchiveName, char *szArchivedFile, char *szFileName, 
 	// Open an archive, e.g. "d2music.mpq"
 	if(nError == ERROR_SUCCESS) {
 		if(!SFileOpenArchive(szArchiveName, 0, STREAM_FLAG_READ_ONLY, &hMpq))
-			nError = GetLastError();
+			nError = SErrGetLastError();
 	}
 
 	// Open a file in the archive, e.g. "data\global\music\Act1\tristram.wav"
 	if(nError == ERROR_SUCCESS) {
 		if(!SFileOpenFileEx(hMpq, szArchivedFile, 0, &hFile))
-			nError = GetLastError();
+			nError = SErrGetLastError();
 	}
 
 	// Create the target file
