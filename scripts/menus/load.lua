@@ -2,13 +2,16 @@ function LoadGame(s)
   LoadGameFile = nil
   currentCampaign = nil
   local loop = true
+  local origBriefing = Briefing
+  Briefing = function() end
 
   while (loop) do
     InitGameVariables()
     StartSavedGame(s)
+    Briefing = origBriefing
     if (GameResult ~= GameRestart) then
       loop = false
-	end
+    end
   end
 
   RunResultsMenu()
