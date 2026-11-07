@@ -50,8 +50,7 @@ function RunSaveMenu(isreturn)
   end
   browser:setActionCallback(cb)
 
-  local saveFunc = function()
-     local name = t:getText()
+  local function saveFuncIntern(name, confirm)
      -- check for an empty string
      if (string.len(name) == 0) then
         return
@@ -68,7 +67,7 @@ function RunSaveMenu(isreturn)
      local t = {"\\", "/", ":", "*", "?", "\"", "<", ">", "|"}
      table.foreachi(t, function(k,v) name = string.gsub(name, v, "_") end)
 
-     if (browser:exists(name .. ".gz")) then
+     if (confirm and browser:exists(name .. ".gz")) then
         RunConfirmErase(name, menu)
      else
         RunSaveGame(name, menu)
@@ -77,12 +76,14 @@ function RunSaveMenu(isreturn)
 
   browser:setDoubleClickAction(function()
         -- no confirm
-        RunSaveGame(browser:getSelectedItem(), menu)
+        saveFuncIntern(browser:getSelectedItem(), false)
   end)
 
-  t:setActionCallback(function()
-        saveFunc()
-  end)
+  local function saveFunc()
+    saveFuncIntern(t:getText(), true)
+  end
+
+  t:setActionCallback(saveFunc)
 
   menu:addHalfButton(_("~!Save"), "s", (384 - 300 - 18) / 2, 256 - 16 - 27, saveFunc)
 
