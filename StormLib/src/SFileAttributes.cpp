@@ -391,7 +391,10 @@ DWORD SAttrLoadAttributes(TMPQArchive * ha)
                 pbAttrFile[cbAttrFile] = 0;
 
                 // Load the entire file to memory
-                SFileReadFile(hFile, pbAttrFile, cbAttrFile, &dwBytesRead, NULL);
+                if(!SFileReadFile(hFile, pbAttrFile, cbAttrFile, &dwBytesRead, NULL))
+                    ha->dwFlags |= (SErrGetLastError() == ERROR_FILE_CORRUPT) ? MPQ_FLAG_MALFORMED : 0;
+
+                // Parse the (attributes)
                 if(dwBytesRead == cbAttrFile)
                     dwErrCode = LoadAttributesFile(ha, pbAttrFile, cbAttrFile);
 
@@ -475,7 +478,7 @@ DWORD WINAPI SFileGetAttributes(HANDLE hMpq)
     // Verify the parameters
     if(!IsValidMpqHandle(hMpq))
     {
-        SetLastError(ERROR_INVALID_PARAMETER);
+        SErrSetLastError(ERROR_INVALID_PARAMETER);
         return SFILE_INVALID_ATTRIBUTES;
     }
 
@@ -489,14 +492,14 @@ bool WINAPI SFileSetAttributes(HANDLE hMpq, DWORD dwFlags)
     // Verify the parameters
     if(!IsValidMpqHandle(hMpq))
     {
-        SetLastError(ERROR_INVALID_PARAMETER);
+        SErrSetLastError(ERROR_INVALID_PARAMETER);
         return false;
     }
 
     // Not allowed when the archive is read-only
     if(ha->dwFlags & MPQ_FLAG_READ_ONLY)
     {
-        SetLastError(ERROR_ACCESS_DENIED);
+        SErrSetLastError(ERROR_ACCESS_DENIED);
         return false;
     }
 
@@ -508,7 +511,7 @@ bool WINAPI SFileSetAttributes(HANDLE hMpq, DWORD dwFlags)
 
 bool WINAPI SFileUpdateFileAttributes(HANDLE hMpq, const char * szFileName)
 {
-    hash_state md5_state;
+    hash_state md5_ctx;
     TMPQArchive * ha = (TMPQArchive *)hMpq;
     TMPQFile * hf;
     BYTE Buffer[0x1000];
@@ -520,14 +523,14 @@ bool WINAPI SFileUpdateFileAttributes(HANDLE hMpq, const char * szFileName)
     // Verify the parameters
     if(!IsValidMpqHandle(ha))
     {
-        SetLastError(ERROR_INVALID_PARAMETER);
+        SErrSetLastError(ERROR_INVALID_PARAMETER);
         return false;
     }
 
     // Not allowed when the archive is read-only
     if(ha->dwFlags & MPQ_FLAG_READ_ONLY)
     {
-        SetLastError(ERROR_ACCESS_DENIED);
+        SErrSetLastError(ERROR_ACCESS_DENIED);
         return false;
     }
 
@@ -540,7 +543,7 @@ bool WINAPI SFileUpdateFileAttributes(HANDLE hMpq, const char * szFileName)
     dwTotalBytes = hf->pFileEntry->dwFileSize;
 
     // Initialize the CRC32 and MD5 contexts
-    md5_init(&md5_state);
+    md5_init(&md5_ctx);
     dwCrc32 = crc32(0, Z_NULL, 0);
 
     // Go through entire file and calculate both CRC32 and MD5
@@ -553,7 +556,7 @@ bool WINAPI SFileUpdateFileAttributes(HANDLE hMpq, const char * szFileName)
 
         // Update CRC32 and MD5
         dwCrc32 = crc32(dwCrc32, Buffer, dwBytesRead);
-        md5_process(&md5_state, Buffer, dwBytesRead);
+        md5_process(&md5_ctx, Buffer, dwBytesRead);
 
         // Decrement the total size
         dwTotalBytes -= dwBytesRead;
@@ -561,7 +564,7 @@ bool WINAPI SFileUpdateFileAttributes(HANDLE hMpq, const char * szFileName)
 
     // Update both CRC32 and MD5
     hf->pFileEntry->dwCrc32 = dwCrc32;
-    md5_done(&md5_state, hf->pFileEntry->md5);
+    md5_done(&md5_ctx, hf->pFileEntry->md5);
 
     // Remember that we need to save the MPQ tables
     InvalidateInternalFiles(ha);

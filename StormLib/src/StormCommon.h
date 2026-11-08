@@ -51,7 +51,46 @@
 // Cryptography support
 
 // Headers from LibTomCrypt
-#include "libtomcrypt/src/headers/tomcrypt.h"
+#ifndef __SYS_LIBTOMCRYPT
+  #include "libtomcrypt/src/headers/tomcrypt.h"
+#else
+  // StormLib always uses LibTomMath as its bignum backend (see
+  // InitializeMpqCryptography() in SBaseCommon.cpp), but some distro
+  // packages of LibTomCrypt ship a tomcrypt_custom.h with LTM_DESC
+  // disabled by default. The symbol is still exported by the library
+  // itself, so force the declaration on regardless of the packaged config.
+  #ifndef LTM_DESC
+    #define LTM_DESC
+  #endif
+  #include <tomcrypt.h>
+
+  // Compatibility layer for custom additions StormLib makes to its bundled
+  // fork of LibTomCrypt, which are not present in upstream/system headers.
+
+  // StormLib's bundled headers use this (differently-named) enum value
+  // instead of the upstream LTC_PKCS_1_V1_5; the underlying value is the same.
+  #ifndef LTC_LTC_PKCS_1_V1_5
+    #define LTC_LTC_PKCS_1_V1_5 LTC_PKCS_1_V1_5
+  #endif
+
+  // rsa_verify_simple() is a StormLib-specific addition (see
+  // src/libtomcrypt/src/pk/rsa/rsa_verify_simple.c) that is not part of
+  // upstream LibTomCrypt, so the system header does not declare it.
+  // It is implemented in a plain .c file (C linkage), so the declaration
+  // needs to be wrapped in extern "C" when seen from C++ translation units.
+  #ifdef LTC_MRSA
+    #ifdef __cplusplus
+extern "C" {
+    #endif
+int rsa_verify_simple(const unsigned char *sig,  unsigned long siglen,
+                      const unsigned char *hash, unsigned long hashlen,
+                            int           *stat,
+                            rsa_key       *key);
+    #ifdef __cplusplus
+}
+    #endif
+  #endif
+#endif
 
 // For HashStringJenkins
 #include "jenkins/lookup.h"
@@ -70,17 +109,26 @@
 // Checks for data pointers aligned to 4-byte boundary
 #define STORMLIB_DWORD_ALIGNED(ptr) (((size_t)(ptr) & 0x03) == 0)
 
+// Check for masked flags
+#define STORMLIB_TEST_FLAGS(dwFlags, dwMask, dwValue)  ((dwFlags & (dwMask)) == (dwValue))
+
 // Macro for building 64-bit file offset from two 32-bit
 #define MAKE_OFFSET64(hi, lo)       (((ULONGLONG)hi << 32) | (ULONGLONG)lo)
 
+// Macro for checking a valid, non-empty ASCIIZ string
+#ifndef IS_VALID_STRING
+#define IS_VALID_STRING(str)    (str && str[0])
+#endif
+
 //-----------------------------------------------------------------------------
-// MTYPE definition - specifies what kind of MPQ is the map type
+// MTYPE definition - specifies what kind of MPQ is the file
 
 typedef enum _MTYPE
 {
     MapTypeNotChecked,                  // The map type was not checked yet
     MapTypeNotRecognized,               // The file does not seems to be a map
     MapTypeAviFile,                     // The file is actually an AVI file (Warcraft III cinematics)
+    MapTypeStarcraft,                   // The file is a Starcraft map
     MapTypeWarcraft3,                   // The file is a Warcraft III map
     MapTypeStarcraft2                   // The file is a Starcraft II map
 } MTYPE, *PMTYPE;
@@ -140,19 +188,20 @@ typedef struct _MPQ_SIGNATURE_INFO
 extern DWORD g_dwMpqSignature;                  // Marker for MPQ header
 extern DWORD g_dwHashTableKey;                  // Key for hash table
 extern DWORD g_dwBlockTableKey;                 // Key for block table
-extern LCID  g_lcFileLocale;                    // Preferred file locale
+extern LCID  g_lcFileLocale;                    // Preferred file locale and platform
 
 //-----------------------------------------------------------------------------
 // Conversion to uppercase/lowercase (and "/" to "\")
 
-extern unsigned char AsciiToLowerTable[256];
-extern unsigned char AsciiToUpperTable[256];
+extern const unsigned char AsciiToLowerTable[256];
+extern const unsigned char AsciiToUpperTable[256];
+extern const unsigned char SMemCharToByte[0x80];
 
 //-----------------------------------------------------------------------------
 // Safe string functions
 
 template <typename XCHAR, typename XINT>
-XCHAR * IntToString(XCHAR * szBuffer, size_t cchMaxChars, XINT nValue, size_t nDigitCount = 0)
+XCHAR * SMemIntToStr(XCHAR * szBuffer, size_t cchMaxChars, XINT nValue, size_t nDigitCount = 0)
 {
     XCHAR * szBufferEnd = szBuffer + cchMaxChars - 1;
     XCHAR szNumberRev[0x20];
@@ -188,6 +237,72 @@ XCHAR * IntToString(XCHAR * szBuffer, size_t cchMaxChars, XINT nValue, size_t nD
     return szBuffer;
 }
 
+template <typename XCHAR>
+DWORD SMemBinToStr(XCHAR * szBuffer, size_t cchBuffer, const void * pvBinary, size_t cbBinary)
+{
+    const unsigned char * pbBinary = (const unsigned char *)pvBinary;
+    const char * SMemIntToHex = "0123456789abcdef";
+
+    // The size of the string must be enough to hold the binary + EOS
+    if(cchBuffer < ((cbBinary * 2) + 1))
+        return ERROR_INSUFFICIENT_BUFFER;
+
+    // Convert the string to the array of MD5
+    // Copy the blob data as text
+    for(size_t i = 0; i < cbBinary; i++)
+    {
+        *szBuffer++ = SMemIntToHex[pbBinary[0] >> 0x04];
+        *szBuffer++ = SMemIntToHex[pbBinary[0] & 0x0F];
+        pbBinary++;
+    }
+
+    // Terminate the string
+    *szBuffer = 0;
+    return ERROR_SUCCESS;
+}
+
+template <typename XCHAR>
+DWORD SMemStrToBin(const XCHAR * szString, void * pvBinary, size_t cbBinary, size_t * PtrBinary = NULL)
+{
+    LPBYTE pbBinary = (LPBYTE)pvBinary;
+    LPBYTE pbBinaryEnd = pbBinary + cbBinary;
+    LPBYTE pbSaveBinary = pbBinary;
+
+    // Verify parameter
+    if(szString != NULL && szString[0] != 0)
+    {
+        // Work as long as we have at least 2 characters ready
+        while(szString[0] != 0 && szString[1] != 0)
+        {
+            // Convert both to unsigned char to get rid of negative indexes produced by szString[x]
+            BYTE StringByte0 = (BYTE)szString[0];
+            BYTE StringByte1 = (BYTE)szString[1];
+
+            // Each character must be within the range of 0x00-0x7F
+            if(StringByte0 >= 0x80 || StringByte1 >= 0x80)
+                return ERROR_INVALID_PARAMETER;
+            if(SMemCharToByte[StringByte0] == 0xFF || SMemCharToByte[StringByte1] == 0xFF)
+                return ERROR_INVALID_PARAMETER;
+
+            // Overflow check
+            if(pbBinary >= pbBinaryEnd)
+                return ERROR_INSUFFICIENT_BUFFER;
+
+            *pbBinary++ = (SMemCharToByte[StringByte0] << 0x04) | SMemCharToByte[StringByte1];
+            szString += 2;
+        }
+
+        // Odd number of chars?
+        if(szString[0] != 0 && szString[1] == 0)
+            return ERROR_INVALID_PARAMETER;
+    }
+
+    // Give the length
+    if(PtrBinary != NULL)
+        PtrBinary[0] = pbBinary - pbSaveBinary;
+    return ERROR_SUCCESS;
+}
+
 char * StringCopy(char * szTarget, size_t cchTarget, const char * szSource);
 void StringCat(char * szTarget, size_t cchTargetMax, const char * szSource);
 void StringCreatePseudoFileName(char * szBuffer, size_t cchMaxChars, unsigned int nIndex, const char * szExtension);
@@ -197,7 +312,14 @@ void StringCopy(TCHAR * szTarget, size_t cchTarget, const char * szSource);
 void StringCopy(char * szTarget, size_t cchTarget, const TCHAR * szSource);
 void StringCopy(TCHAR * szTarget, size_t cchTarget, const TCHAR * szSource);
 void StringCat(TCHAR * szTarget, size_t cchTargetMax, const TCHAR * szSource);
+void StringCat(TCHAR * szTarget, size_t cchTargetMax, const char * szSource);
 #endif
+
+//-----------------------------------------------------------------------------
+// UTF-8 support
+
+DWORD  UTF8_DecodeCodePoint(const BYTE * pbString, const BYTE * pbStringEnd, DWORD & dwCodePoint, size_t & ccBytesEaten, DWORD dwFlags = 0);
+size_t UTF8_EncodeCodePoint(DWORD dwCodePoint, LPBYTE Utf8Buffer);
 
 //-----------------------------------------------------------------------------
 // Encryption and decryption functions
@@ -242,6 +364,7 @@ TMPQFile * IsValidFileHandle(HANDLE hFile);
 //-----------------------------------------------------------------------------
 // Support for MPQ file tables
 
+ULONGLONG GetFileOffsetMask(TMPQArchive * ha);
 ULONGLONG FileOffsetFromMpqOffset(TMPQArchive * ha, ULONGLONG MpqOffset);
 ULONGLONG CalculateRawSectorOffset(TMPQFile * hf, DWORD dwSectorOffset);
 
@@ -249,10 +372,10 @@ DWORD ConvertMpqHeaderToFormat4(TMPQArchive * ha, ULONGLONG MpqOffset, ULONGLONG
 
 bool IsValidHashEntry(TMPQArchive * ha, TMPQHash * pHash);
 
-TMPQHash * FindFreeHashEntry(TMPQArchive * ha, DWORD dwStartIndex, DWORD dwName1, DWORD dwName2, LCID lcLocale);
+TMPQHash * FindFreeHashEntry(TMPQArchive * ha, DWORD dwStartIndex, DWORD dwHashCheck1, DWORD dwHashCheck2, LCID lcFileLocale);
 TMPQHash * GetFirstHashEntry(TMPQArchive * ha, const char * szFileName);
 TMPQHash * GetNextHashEntry(TMPQArchive * ha, TMPQHash * pFirstHash, TMPQHash * pPrevHash);
-TMPQHash * AllocateHashEntry(TMPQArchive * ha, TFileEntry * pFileEntry, LCID lcLocale);
+TMPQHash * AllocateHashEntry(TMPQArchive * ha, TFileEntry * pFileEntry, LCID lcFileLocale);
 
 TMPQExtHeader * LoadExtTable(TMPQArchive * ha, ULONGLONG ByteOffset, size_t Size, DWORD dwSignature, DWORD dwKey);
 TMPQHetTable * LoadHetTable(TMPQArchive * ha);
@@ -281,15 +404,14 @@ TMPQBetTable * CreateBetTable(DWORD dwMaxFileCount);
 void FreeBetTable(TMPQBetTable * pBetTable);
 
 // Functions for finding files in the file table
-TFileEntry * GetFileEntryLocale2(TMPQArchive * ha, const char * szFileName, LCID lcLocale, LPDWORD PtrHashIndex);
-TFileEntry * GetFileEntryLocale(TMPQArchive * ha, const char * szFileName, LCID lcLocale);
-TFileEntry * GetFileEntryExact(TMPQArchive * ha, const char * szFileName, LCID lcLocale, LPDWORD PtrHashIndex);
+TFileEntry * GetFileEntryLocale(TMPQArchive * ha, const char * szFileName, LCID lcFileLocale, LPDWORD PtrHashIndex = NULL);
+TFileEntry * GetFileEntryExact(TMPQArchive * ha, const char * szFileName, LCID lcFileLocale, LPDWORD PtrHashIndex = NULL);
 
 // Allocates file name in the file entry
 void AllocateFileName(TMPQArchive * ha, TFileEntry * pFileEntry, const char * szFileName);
 
 // Allocates new file entry in the MPQ tables. Reuses existing, if possible
-TFileEntry * AllocateFileEntry(TMPQArchive * ha, const char * szFileName, LCID lcLocale, LPDWORD PtrHashIndex);
+TFileEntry * AllocateFileEntry(TMPQArchive * ha, const char * szFileName, LCID lcFileLocale, LPDWORD PtrHashIndex);
 DWORD RenameFileEntry(TMPQArchive * ha, TMPQFile * hf, const char * szNewFileName);
 DWORD DeleteFileEntry(TMPQArchive * ha, TMPQFile * hf);
 
@@ -317,7 +439,7 @@ int SCompDecompressMpk(void * pvOutBuffer, int * pcbOutBuffer, void * pvInBuffer
 
 TMPQFile * CreateFileHandle(TMPQArchive * ha, TFileEntry * pFileEntry);
 TMPQFile * CreateWritableHandle(TMPQArchive * ha, DWORD dwFileSize);
-void * LoadMpqTable(TMPQArchive * ha, ULONGLONG ByteOffset, LPBYTE pbTableHash, DWORD dwCompressedSize, DWORD dwRealSize, DWORD dwKey, bool * pbTableIsCut);
+void * LoadMpqTable(TMPQArchive * ha, ULONGLONG ByteOffset, LPBYTE pbTableHash, DWORD dwCompressedSize, DWORD dwRealSize, DWORD dwKey, DWORD * PtrRealTableSize);
 DWORD AllocateSectorBuffer(TMPQFile * hf);
 DWORD AllocatePatchInfo(TMPQFile * hf, bool bLoadFromFile);
 DWORD AllocateSectorOffsets(TMPQFile * hf, bool bLoadFromFile);
@@ -327,8 +449,10 @@ DWORD WriteSectorOffsets(TMPQFile * hf);
 DWORD WriteSectorChecksums(TMPQFile * hf);
 DWORD WriteMemDataMD5(TFileStream * pStream, ULONGLONG RawDataOffs, void * pvRawData, DWORD dwRawDataSize, DWORD dwChunkSize, LPDWORD pcbTotalSize);
 DWORD WriteMpqDataMD5(TFileStream * pStream, ULONGLONG RawDataOffs, DWORD dwRawDataSize, DWORD dwChunkSize);
+
+bool DereferenceArchiveFiles(TMPQArchive * ha);
+bool DereferenceArchive(TMPQArchive * ha);
 void FreeFileHandle(TMPQFile *& hf);
-void FreeArchiveHandle(TMPQArchive *& ha);
 
 //-----------------------------------------------------------------------------
 // Patch functions
@@ -378,7 +502,7 @@ DWORD SFileAddFile_Init(
     const char * szArchivedName,
     ULONGLONG ft,
     DWORD dwFileSize,
-    LCID lcLocale,
+    LCID lcFileLocale,
     DWORD dwFlags,
     TMPQFile ** phf
     );
@@ -435,6 +559,14 @@ void DumpFileTable(TFileEntry * pFileTable, DWORD dwFileTableSize);
 #define DumpFileTable(t, s)         /* */
 
 #endif
+
+/*
+#ifdef _DEBUG
+void SFileLog(const char * format, ...);
+#else
+inline void SFileLog(...) {}
+#endif
+*/
 
 #endif // __STORMCOMMON_H__
 

@@ -5,7 +5,7 @@
 /*---------------------------------------------------------------------------*/
 /*   Date    Ver   Who  Comment                                              */
 /* --------  ----  ---  -------                                              */
-/* xx.xx.99  1.00  Lad  The first version of SFileOpenFileEx.cpp             */
+/* xx.xx.99  1.00  Lad  Created                                              */
 /*****************************************************************************/
 
 #define __STORMLIB_SELF__
@@ -16,11 +16,13 @@
 /* Local functions                                                           */
 /*****************************************************************************/
 
+// Finds hash index of the entry that was open by pseudo-name
 static DWORD FindHashIndex(TMPQArchive * ha, DWORD dwFileIndex)
 {
     TMPQHash * pHashTableEnd;
     TMPQHash * pHash;
-    DWORD dwFirstIndex = HASH_ENTRY_FREE;
+    DWORD dwHashIndex = HASH_ENTRY_FREE;
+    DWORD dwCount = 0;
 
     // Should only be called if the archive has hash table
     assert(ha->pHashTable != NULL);
@@ -32,15 +34,18 @@ static DWORD FindHashIndex(TMPQArchive * ha, DWORD dwFileIndex)
     {
         if(MPQ_BLOCK_INDEX(pHash) == dwFileIndex)
         {
-            // Duplicate hash entry found
-            if(dwFirstIndex != HASH_ENTRY_FREE)
+            // Example: MPQ_2023_v1_Lusin2Rpg1.28.w3x, file index 24483
+            // ReplaceableTextures\CommandButtons\BTNHaboss79.blp
+            // Hash Table Index #1 = 18
+            // Hash Table Index #2 = 8446
+            if(dwCount++ > 0)
                 return HASH_ENTRY_FREE;
-            dwFirstIndex = (DWORD)(pHash - ha->pHashTable);
+            dwHashIndex = (DWORD)(pHash - ha->pHashTable);
         }
     }
 
-    // Return the hash table entry index
-    return dwFirstIndex;
+    // Return the found hash index, if there are no duplicities
+    return dwHashIndex;
 }
 
 static const char * GetPatchFileName(TMPQArchive * ha, const char * szFileName, char * szBuffer)
@@ -92,7 +97,7 @@ static bool OpenLocalFile(const char * szFileName, HANDLE * PtrFile)
         else
         {
             FileStream_Close(pStream);
-            SetLastError(ERROR_NOT_ENOUGH_MEMORY);
+            SErrSetLastError(ERROR_NOT_ENOUGH_MEMORY);
         }
     }
     *PtrFile = NULL;
@@ -150,11 +155,19 @@ bool OpenPatchedFile(HANDLE hMpq, const char * szFileName, HANDLE * PtrFile)
                     hf = hfPatch;
                 }
             }
+
+            // If the opened file has the delete marker, we don't open the file
+            if(hfBase && hf && hf->pFileEntry->dwFlags & MPQ_FILE_DELETE_MARKER)
+            {
+                SFileCloseFile((HANDLE)(hfBase));
+                SErrSetLastError(ERROR_FILE_DELETED);
+                hfBase = NULL;
+            }
         }
     }
     else
     {
-        SetLastError(ERROR_FILE_NOT_FOUND);
+        SErrSetLastError(ERROR_FILE_NOT_FOUND);
     }
 
     // Give the updated base MPQ
@@ -170,13 +183,13 @@ bool OpenPatchedFile(HANDLE hMpq, const char * szFileName, HANDLE * PtrFile)
 //-----------------------------------------------------------------------------
 // SFileEnumLocales enums all locale versions within MPQ.
 // Functions fills all available language identifiers on a file into the buffer
-// pointed by plcLocales. There must be enough entries to copy the localed,
+// pointed by PtrFileLocales. There must be enough entries to copy the localed,
 // otherwise the function returns ERROR_INSUFFICIENT_BUFFER.
 
 DWORD WINAPI SFileEnumLocales(
     HANDLE hMpq,
     const char * szFileName,
-    LCID * PtrLocales,
+    LCID * PtrFileLocales,
     LPDWORD PtrMaxLocales,
     DWORD dwSearchScope)
 {
@@ -199,17 +212,17 @@ DWORD WINAPI SFileEnumLocales(
     if(IsPseudoFileName(szFileName, &dwFileIndex))
         return ERROR_INVALID_PARAMETER;
 
-    // Keep compiler happy
+    // Keep compilers happy
     dwMaxLocales = PtrMaxLocales[0];
-    dwSearchScope = dwSearchScope;
+    STORMLIB_UNUSED(dwSearchScope);
 
     // Parse all files with that name
     pFirstHash = pHash = GetFirstHashEntry(ha, szFileName);
     while(pHash != NULL)
     {
         // Put the locales to the buffer
-        if(PtrLocales != NULL && dwLocales < dwMaxLocales)
-            *PtrLocales++ = pHash->lcLocale;
+        if(PtrFileLocales != NULL && dwLocales < dwMaxLocales)
+            *PtrFileLocales++ = SFILE_MAKE_LCID(pHash->Locale, pHash->Platform);
         dwLocales++;
 
         // Get the next locale
@@ -263,7 +276,7 @@ bool WINAPI SFileOpenFileEx(HANDLE hMpq, const char * szFileName, DWORD dwSearch
                 // If this MPQ has no patches, open the file from this MPQ directly
                 if(ha->haPatch == NULL || dwSearchScope == SFILE_OPEN_BASE_FILE)
                 {
-                    pFileEntry = GetFileEntryLocale2(ha, szFileName, g_lcFileLocale, &dwHashIndex);
+                    pFileEntry = GetFileEntryLocale(ha, szFileName, g_lcFileLocale, &dwHashIndex);
                 }
 
                 // If this MPQ is a patched archive, open the file as patched
@@ -278,7 +291,7 @@ bool WINAPI SFileOpenFileEx(HANDLE hMpq, const char * szFileName, DWORD dwSearch
                 // This open option is reserved for opening MPQ internal listfile.
                 // No argument validation. Tries to open file with neutral locale first,
                 // then any other available.
-                pFileEntry = GetFileEntryLocale2(ha, szFileName, 0, &dwHashIndex);
+                pFileEntry = GetFileEntryLocale(ha, szFileName, 0, &dwHashIndex);
                 break;
 
             case SFILE_OPEN_LOCAL_FILE:
@@ -298,32 +311,32 @@ bool WINAPI SFileOpenFileEx(HANDLE hMpq, const char * szFileName, DWORD dwSearch
     if(dwErrCode == ERROR_SUCCESS)
     {
         // If we didn't find the file, try to open it using pseudo file name ("File
-        if (pFileEntry == NULL || (pFileEntry->dwFlags & MPQ_FILE_EXISTS) == 0)
+        if(pFileEntry == NULL || (pFileEntry->dwFlags & MPQ_FILE_EXISTS) == 0)
         {
             // Check the pseudo-file name ("File00000001.ext")
-            if ((bOpenByIndex = IsPseudoFileName(szFileName, &dwFileIndex)) == true)
+            if((bOpenByIndex = IsPseudoFileName(szFileName, &dwFileIndex)) == true)
             {
                 // Get the file entry for the file
-                if (dwFileIndex < ha->dwFileTableSize)
+                if(dwFileIndex < ha->dwFileTableSize)
                 {
                     pFileEntry = ha->pFileTable + dwFileIndex;
                 }
             }
 
             // Still not found?
-            if (pFileEntry == NULL)
+            if(pFileEntry == NULL || (pFileEntry->dwFlags & MPQ_FILE_EXISTS) == 0)
             {
                 dwErrCode = ERROR_FILE_NOT_FOUND;
             }
         }
 
         // Perform some checks of invalid files
-        if (pFileEntry != NULL)
+        if(pFileEntry != NULL)
         {
             // MPQ protectors use insanely amount of fake files, often with very high size.
             // We won't open any files whose compressed size is bigger than archive size
             // If the file is not compressed, its size cannot be bigger than archive size
-            if ((pFileEntry->dwFlags & MPQ_FILE_COMPRESS_MASK) == 0 && (pFileEntry->dwFileSize > ha->FileSize))
+            if((pFileEntry->dwFlags & MPQ_FILE_COMPRESS_MASK) == 0 && (pFileEntry->dwFileSize > ha->FileSize))
             {
                 dwErrCode = ERROR_FILE_CORRUPT;
                 pFileEntry = NULL;
@@ -384,7 +397,7 @@ bool WINAPI SFileOpenFileEx(HANDLE hMpq, const char * szFileName, DWORD dwSearch
 
     // Return error code
     if(dwErrCode != ERROR_SUCCESS)
-        SetLastError(dwErrCode);
+        SErrSetLastError(dwErrCode);
     return (dwErrCode == ERROR_SUCCESS);
 }
 
@@ -408,7 +421,7 @@ bool WINAPI SFileCloseFile(HANDLE hFile)
 
     if(!IsValidFileHandle(hFile))
     {
-        SetLastError(ERROR_INVALID_HANDLE);
+        SErrSetLastError(ERROR_INVALID_HANDLE);
         return false;
     }
 

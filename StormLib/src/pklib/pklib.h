@@ -5,11 +5,13 @@
 /*---------------------------------------------------------------------------*/
 /*   Date    Ver   Who  Comment                                              */
 /* --------  ----  ---  -------                                              */
-/* 31.03.03  1.00  Lad  The first version of pkware.h                        */
+/* 31.03.03  1.00  Lad  Created                                              */
 /*****************************************************************************/
 
 #ifndef __PKLIB_H__
 #define __PKLIB_H__
+
+#pragma once
 
 //-----------------------------------------------------------------------------
 // Defines
@@ -116,14 +118,14 @@ typedef struct
 //-----------------------------------------------------------------------------
 // Tables (in explode.c)
 
-extern unsigned char DistBits[0x40];
-extern unsigned char DistCode[0x40];
-extern unsigned char ExLenBits[0x10];
-extern unsigned short LenBase[0x10];
-extern unsigned char LenBits[0x10];
-extern unsigned char LenCode[0x10];
-extern unsigned char ChBitsAsc[0x100];
-extern unsigned short ChCodeAsc[0x100];
+extern const unsigned char DistBits[0x40];
+extern const unsigned char DistCode[0x40];
+extern const unsigned char ExLenBits[0x10];
+extern const unsigned short LenBase[0x10];
+extern const unsigned char LenBits[0x10];
+extern const unsigned char LenCode[0x10];
+extern const unsigned char ChBitsAsc[0x100];
+extern const unsigned short ChCodeAsc[0x100];
 
 //-----------------------------------------------------------------------------
 // Public functions
@@ -147,7 +149,7 @@ unsigned int PKEXPORT explode(
    char         *work_buf,
    void         *param);
 
-// The original name "crc32" was changed to "crc32pk" due
+// The original name "crc32" was changed to "crc32_pklib" due
 // to compatibility with zlib
 unsigned long PKEXPORT crc32_pklib(char *buffer, unsigned int *size, unsigned long *old_crc);
 

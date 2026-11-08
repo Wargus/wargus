@@ -17,7 +17,7 @@
 // Listfile entry structure
 
 #define CACHE_BUFFER_SIZE  0x1000       // Size of the cache buffer
-#define MAX_LISTFILE_SIZE  0x8000000    // Maximum accepted listfile size is 128 MB
+#define MAX_LISTFILE_SIZE  0xC000000    // Maximum accepted listfile size is 192 MB
 
 union TListFileHandle
 {
@@ -203,7 +203,7 @@ static TListFileCache * CreateListFileCache(
     }
 
     // This combination should never happen
-    SetLastError(ERROR_INVALID_PARAMETER);
+    SErrSetLastError(ERROR_INVALID_PARAMETER);
     assert(false);
     return NULL;
 }
@@ -409,8 +409,10 @@ static LPBYTE CreateListFile(TMPQArchive * ha, DWORD * pcbListFile)
 static DWORD SListFileCreateNodeForAllLocales(TMPQArchive * ha, const char * szFileName)
 {
     TFileEntry * pFileEntry;
-    TMPQHash * pFirstHash;
+    TMPQHash * pHashEnd;
     TMPQHash * pHash;
+    DWORD dwHashCheck1;
+    DWORD dwHashCheck2;
 
     // If we have HET table, use that one
     if(ha->pHetTable != NULL)
@@ -428,16 +430,38 @@ static DWORD SListFileCreateNodeForAllLocales(TMPQArchive * ha, const char * szF
     // If we have hash table, we use it
     if(ha->pHashTable != NULL)
     {
-        // Go while we found something
-        pFirstHash = pHash = GetFirstHashEntry(ha, szFileName);
-        while(pHash != NULL)
-        {
-            // Allocate file name for the file entry
-            AllocateFileName(ha, ha->pFileTable + MPQ_BLOCK_INDEX(pHash), szFileName);
+        // Get the end of the hash table and both names
+        pHashEnd = ha->pHashTable + ha->pHeader->dwHashTableSize;
+        dwHashCheck1 = ha->pfnHashString(szFileName, MPQ_HASH_NAME_A);
+        dwHashCheck2 = ha->pfnHashString(szFileName, MPQ_HASH_NAME_B);
 
-            // Now find the next language version of the file
-            pHash = GetNextHashEntry(ha, pFirstHash, pHash);
+        // Some protectors set very high hash table size (0x00400000 items or more)
+        // in order to make this process very slow. We will ignore items
+        // in the hash table that would be beyond the end of the file.
+        // Example MPQ: MPQ_2022_v1_Sniper.scx
+        if(ha->dwFlags & MPQ_FLAG_HASH_TABLE_CUT)
+            pHashEnd = ha->pHashTable + (ha->dwRealHashTableSize / sizeof(TMPQHash));
+
+        // Go through the hash table and put the name in each item that has the same name pair
+        for(pHash = ha->pHashTable; pHash < pHashEnd; pHash++)
+        {
+            if(pHash->dwHashCheck1 == dwHashCheck1 && pHash->dwHashCheck2 == dwHashCheck2 && MPQ_BLOCK_INDEX(pHash) < ha->dwFileTableSize)
+            {
+                // Allocate file name for the file entry
+                AllocateFileName(ha, ha->pFileTable + MPQ_BLOCK_INDEX(pHash), szFileName);
+            }
         }
+
+        // Go while we found something
+        //pFirstHash = pHash = GetFirstHashEntry(ha, szFileName);
+        //while(pHash != NULL)
+        //{
+        //    // Allocate file name for the file entry
+        //    AllocateFileName(ha, ha->pFileTable + MPQ_BLOCK_INDEX(pHash), szFileName);
+
+        //    // Now find the next language version of the file
+        //    pHash = GetNextHashEntry(ha, pFirstHash, pHash);
+        //}
 
         return ERROR_SUCCESS;
     }
@@ -534,6 +558,27 @@ static DWORD SFileAddArbitraryListFile(
     return (pCache != NULL) ? ERROR_SUCCESS : ERROR_FILE_CORRUPT;
 }
 
+static DWORD SFileAddArbitraryListFile(
+    TMPQArchive * ha,
+    const char ** listFileEntries,
+    DWORD dwEntryCount)
+{
+    if(listFileEntries != NULL && dwEntryCount > 0)
+    {
+        // Get the next line
+        for(DWORD dwListFileNum = 0; dwListFileNum < dwEntryCount; dwListFileNum++)
+        {
+            const char * listFileEntry = listFileEntries[dwListFileNum];
+            if(listFileEntry != NULL)
+            {
+                SListFileCreateNodeForAllLocales(ha, listFileEntry);
+            }
+        }
+    }
+
+    return (listFileEntries != NULL && dwEntryCount > 0) ? ERROR_SUCCESS : ERROR_INVALID_PARAMETER;
+}
+
 static DWORD SFileAddInternalListFile(
     TMPQArchive * ha,
     HANDLE hMpq)
@@ -549,14 +594,14 @@ static DWORD SFileAddInternalListFile(
     if(ha->pHashTable != NULL)
     {
         // If the archive is a malformed map, ignore too large listfiles
-        if(ha->dwFlags & MPQ_FLAG_MALFORMED)
+        if(STORMLIB_TEST_FLAGS(ha->dwFlags, MPQ_FLAG_MALFORMED | MPQ_FLAG_PATCH, MPQ_FLAG_MALFORMED))
             dwMaxSize = 0x40000;
 
         pFirstHash = pHash = GetFirstHashEntry(ha, LISTFILE_NAME);
         while(dwErrCode == ERROR_SUCCESS && pHash != NULL)
         {
             // Set the prefered locale to that from list file
-            SFileSetLocale(pHash->lcLocale);
+            SFileSetLocale(SFILE_MAKE_LCID(pHash->Locale, pHash->Platform));
 
             // Add that listfile
             dwErrCode = SFileAddArbitraryListFile(ha, hMpq, NULL, dwMaxSize);
@@ -604,7 +649,7 @@ static bool DoListFileSearch(TListFileCache * pCache, SFILE_FIND_DATA * lpFindFi
 
     // No more files
     memset(lpFindFileData, 0, sizeof(SFILE_FIND_DATA));
-    SetLastError(ERROR_NO_MORE_FILES);
+    SErrSetLastError(ERROR_NO_MORE_FILES);
     return false;
 }
 
@@ -638,6 +683,32 @@ DWORD WINAPI SFileAddListFile(HANDLE hMpq, const TCHAR * szListFile)
     return dwErrCode;
 }
 
+DWORD WINAPI SFileAddListFileEntries(HANDLE hMpq, const char ** listFileEntries, DWORD dwEntryCount)
+{
+    TMPQArchive * ha = (TMPQArchive *)hMpq;
+    DWORD dwErrCode = ERROR_SUCCESS;
+
+    // Add the listfile for each MPQ in the patch chain
+    while(ha != NULL)
+    {
+        if(listFileEntries != NULL && dwEntryCount > 0)
+            dwErrCode = SFileAddArbitraryListFile(ha, listFileEntries, dwEntryCount);
+        else
+            dwErrCode = SFileAddInternalListFile(ha, hMpq);
+
+        // Also, add three special files to the listfile:
+        // (listfile) itself, (attributes) and (signature)
+        SListFileCreateNodeForAllLocales(ha, LISTFILE_NAME);
+        SListFileCreateNodeForAllLocales(ha, SIGNATURE_NAME);
+        SListFileCreateNodeForAllLocales(ha, ATTRIBUTES_NAME);
+
+        // Move to the next archive in the chain
+        ha = ha->haPatch;
+    }
+    
+    return dwErrCode;
+}
+
 //-----------------------------------------------------------------------------
 // Enumerating files in listfile
 
@@ -655,7 +726,7 @@ HANDLE WINAPI SListFileFindFirstFile(HANDLE hMpq, const TCHAR * szListFile, cons
         if(!DoListFileSearch(pCache, lpFindFileData))
         {
             memset(lpFindFileData, 0, sizeof(SFILE_FIND_DATA));
-            SetLastError(ERROR_NO_MORE_FILES);
+            SErrSetLastError(ERROR_NO_MORE_FILES);
             FreeListFileCache(pCache);
             pCache = NULL;
         }

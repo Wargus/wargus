@@ -20,17 +20,15 @@
 /* 12.11.03  1.02  Dan  Macintosh compatibility                              */
 /* 24.07.04  1.03  Sam  Mac OS X compatibility                               */
 /* 22.11.06  1.04  Sam  Mac OS X compatibility (for StormLib 6.0)            */
-/* 31.12.06  1.05  XPinguin  Full GNU/Linux compatibility		             */
+/* 31.12.06  1.05  XPinguin  Full GNU/Linux compatibility                    */
 /* 17.10.12  1.05  Lad  Moved error codes so they don't overlap with errno.h */
 /*****************************************************************************/
 
 #ifndef __STORMPORT_H__
 #define __STORMPORT_H__
 
-#ifndef __cplusplus
-  #define bool char
-  #define true 1
-  #define false 0
+#if !defined(__cplusplus) && !defined(_MSC_VER)
+  #include <stdbool.h>
 #endif
 
 //-----------------------------------------------------------------------------
@@ -40,8 +38,11 @@
 
   // In MSVC 8.0, there are some functions declared as deprecated.
   #if _MSC_VER >= 1400
-  #define _CRT_SECURE_NO_DEPRECATE
   #define _CRT_NON_CONFORMING_SWPRINTFS
+  #endif
+
+  #if defined(UNICODE) || defined(_UNICODE)
+  #define STORMLIB_WIDE_CHAR
   #endif
 
   #include <tchar.h>
@@ -50,17 +51,13 @@
   #include <stdio.h>
 
   // Suppress definitions of `min` and `max` macros by <windows.h>:
+  #ifndef NOMINMAX
   #define NOMINMAX 1
-  #include <windows.h>
-
-  #include <wininet.h>
-  #define STORMLIB_LITTLE_ENDIAN
-
-  #ifdef _WIN64
-    #define STORMLIB_64BIT
-  #else
-    #define STORMLIB_32BIT
   #endif
+  #include <windows.h>
+  #include <wininet.h>
+
+  #define STORMLIB_LITTLE_ENDIAN
 
   #define STORMLIB_CDECL __cdecl
 
@@ -74,7 +71,6 @@
 
 #if !defined(STORMLIB_PLATFORM_DEFINED) && defined(__APPLE__)  // Mac BSD API
 
-  // Macintosh
   #include <sys/types.h>
   #include <sys/stat.h>
   #include <sys/mman.h>
@@ -255,6 +251,34 @@
 #endif
 
 //-----------------------------------------------------------------------------
+// Defines for Wii U platform
+
+#if !defined(STORMLIB_PLATFORM_DEFINED) && defined(__WIIU__)
+
+  #include <sys/types.h>
+  #include <sys/stat.h>
+  #include <fcntl.h>
+  #include <unistd.h>
+  #include <stdint.h>
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <stdarg.h>
+  #include <string.h>
+  #include <strings.h>
+  #include <ctype.h>
+  #include <assert.h>
+  #include <errno.h>
+  #include <malloc.h>
+
+  #undef STORMLIB_LITTLE_ENDIAN                     // Wii U is always big endian
+
+  #define STORMLIB_MAC                              // Use Mac compatible code
+  #define STORMLIB_WIIU
+  #define STORMLIB_PLATFORM_DEFINED
+
+#endif
+
+//-----------------------------------------------------------------------------
 // Assumption: If the platform is not defined, assume a Linux-like platform
 
 #if !defined(STORMLIB_PLATFORM_DEFINED)
@@ -292,13 +316,8 @@
 // Definition of Windows-specific types for non-Windows platforms
 
 #ifndef STORMLIB_WINDOWS
-  #if __LP64__
-    #define STORMLIB_64BIT
-  #else
-    #define STORMLIB_32BIT
-  #endif
 
-  // __cdecl meand nothing on non-Windows
+  // __cdecl means nothing on non-Windows
   #define STORMLIB_CDECL /* */
 
   // Typedefs for ANSI C
@@ -312,7 +331,7 @@
   typedef long long      LONGLONG;
   typedef unsigned long long ULONGLONG;
   typedef void         * HANDLE;
-  typedef void         * LPOVERLAPPED; // Unsupported on Linux and Mac
+  typedef void         * LPOVERLAPPED;
   typedef char           TCHAR;
   typedef unsigned int   LCID;
   typedef LONG         * PLONG;
@@ -323,7 +342,7 @@
   typedef char         * LPTSTR;
   typedef char         * LPSTR;
 
-  #ifdef STORMLIB_32BIT
+  #ifndef __LP64__
     #define _LZMA_UINT32_IS_ULONG
   #endif
 
@@ -358,14 +377,26 @@
 
 #endif // !STORMLIB_WINDOWS
 
-// 64-bit calls are supplied by "normal" calls on Mac
-#if defined(STORMLIB_MAC)
+// 64-bit calls are supplied by "normal" calls on *BSD and derivatives
+#if defined(STORMLIB_MAC) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
   #define stat64  stat
   #define fstat64 fstat
   #define lseek64 lseek
   #define ftruncate64 ftruncate
   #define off64_t off_t
   #define O_LARGEFILE 0
+#endif
+
+// 64-bit calls are supplied by "normal" calls on musl (like Mac)
+#if defined(__linux__) && !defined(__GLIBC__)
+  #define stat64  stat
+  #define fstat64 fstat
+  #define lseek64 lseek
+  #define ftruncate64 ftruncate
+  #define off64_t off_t
+  #ifndef O_LARGEFILE
+    #define O_LARGEFILE 0
+  #endif
 #endif
 
 // Platform-specific error codes for non-Windows platforms
@@ -381,11 +412,14 @@
   #define ERROR_DISK_FULL                ENOSPC
   #define ERROR_ALREADY_EXISTS           EEXIST
   #define ERROR_INSUFFICIENT_BUFFER      ENOBUFS
-  #define ERROR_BAD_FORMAT               1000        // No such error code under Linux
-  #define ERROR_NO_MORE_FILES            1001        // No such error code under Linux
-  #define ERROR_HANDLE_EOF               1002        // No such error code under Linux
-  #define ERROR_CAN_NOT_COMPLETE         1003        // No such error code under Linux
-  #define ERROR_FILE_CORRUPT             1004        // No such error code under Linux
+  #define ERROR_BAD_FORMAT               1000        // No such error codes under Linux
+  #define ERROR_NO_MORE_FILES            1001
+  #define ERROR_HANDLE_EOF               1002
+  #define ERROR_CAN_NOT_COMPLETE         1003
+  #define ERROR_FILE_CORRUPT             1004
+  #define ERROR_BUFFER_OVERFLOW          1005
+  #define ERROR_INVALID_DATA             1006
+  #define ERROR_NO_UNICODE_TRANSLATION   1007
 #endif
 
 // Macros that can sometimes be missing

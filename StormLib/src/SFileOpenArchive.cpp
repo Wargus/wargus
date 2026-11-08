@@ -22,10 +22,36 @@
 //-----------------------------------------------------------------------------
 // Local functions
 
+#ifndef IMAGE_DOS_SIGNATURE
+
+#define IMAGE_DOS_SIGNATURE                 0x5A4D      // MZ
+#define IMAGE_FILE_DLL                      0x2000  // File is a DLL.
+
+typedef struct _IMAGE_DOS_HEADER
+{
+    USHORT e_magic;
+    USHORT dummy[0x1D];
+    DWORD  e_lfanew;
+} IMAGE_DOS_HEADER, *PIMAGE_DOS_HEADER;
+
+typedef struct _IMAGE_FILE_HEADER
+{
+    USHORT  Machine;
+    USHORT  NumberOfSections;
+    DWORD   TimeDateStamp;
+    DWORD   PointerToSymbolTable;
+    DWORD   NumberOfSymbols;
+    USHORT  SizeOfOptionalHeader;
+    USHORT  Characteristics;
+} IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER;
+#endif
+
+
 static MTYPE CheckMapType(LPCTSTR szFileName, LPBYTE pbHeaderBuffer, size_t cbHeaderBuffer)
 {
     LPDWORD HeaderInt32 = (LPDWORD)pbHeaderBuffer;
     LPCTSTR szExtension;
+    MTYPE TypeByExtension = MapTypeNotRecognized;
 
     // Don't do any checks if there is not at least 16 bytes
     if(cbHeaderBuffer > 0x10)
@@ -35,20 +61,33 @@ static MTYPE CheckMapType(LPCTSTR szFileName, LPBYTE pbHeaderBuffer, size_t cbHe
         DWORD DwordValue2 = BSWAP_INT32_UNSIGNED(HeaderInt32[2]);
         DWORD DwordValue3 = BSWAP_INT32_UNSIGNED(HeaderInt32[3]);
 
-        // Test for AVI files (Warcraft III cinematics) - 'RIFF', 'AVI ' or 'LIST'
-        if(DwordValue0 == 0x46464952 && DwordValue2 == 0x20495641 && DwordValue3 == 0x5453494C)
-            return MapTypeAviFile;
-
-        // Check for Starcraft II maps
+        // Check maps by extension (Starcraft, Starcraft II). We must do this before
+        // checking actual data, because the "NP_Protect" protector places
+        // fake Warcraft III header into the Starcraft II maps
         if((szExtension = _tcsrchr(szFileName, _T('.'))) != NULL)
         {
-            // The "NP_Protect" protector places fake Warcraft III header
-            // into the Starcraft II maps, whilst SC2 maps have no other header but MPQ v4
+            // Check for Starcraft I maps by extension
+            if(!_tcsicmp(szExtension, _T(".scm")) || !_tcsicmp(szExtension, _T(".scx")))
+            {
+                return MapTypeStarcraft;
+            }
+
+            // Check for Starcraft II maps by extension
             if(!_tcsicmp(szExtension, _T(".s2ma")) || !_tcsicmp(szExtension, _T(".SC2Map")) || !_tcsicmp(szExtension, _T(".SC2Mod")))
             {
                 return MapTypeStarcraft2;
             }
+
+            // Check for Warcraft III maps by extension
+            if(!_tcsicmp(szExtension, _T(".w3m")) || !_tcsicmp(szExtension, _T(".w3x")))
+            {
+                TypeByExtension = MapTypeWarcraft3;
+            }
         }
+
+        // Test for AVI files (Warcraft III cinematics) - 'RIFF', 'AVI ' or 'LIST'
+        if(DwordValue0 == 0x46464952 && DwordValue2 == 0x20495641 && DwordValue3 == 0x5453494C)
+            return MapTypeAviFile;
 
         // Check for Warcraft III maps
         if(DwordValue0 == 0x57334D48 && DwordValue1 == 0x00000000)
@@ -57,15 +96,44 @@ static MTYPE CheckMapType(LPCTSTR szFileName, LPBYTE pbHeaderBuffer, size_t cbHe
 
     // MIX files are DLL files that contain MPQ in overlay.
     // Only Warcraft III is able to load them, so we consider them Warcraft III maps
-    if(cbHeaderBuffer > 0x200 && pbHeaderBuffer[0] == 'M' && pbHeaderBuffer[1] == 'Z')
+    // Do not include EXE files, because they may be World of Warcraft patches
+    if(cbHeaderBuffer > sizeof(IMAGE_DOS_HEADER))
     {
-        // Check the value of IMAGE_DOS_HEADER::e_lfanew at offset 0x3C
-        if(0 < HeaderInt32[0x0F] && HeaderInt32[0x0F] < 0x10000)
-            return MapTypeWarcraft3;
+        PIMAGE_FILE_HEADER pFileHeader;
+        PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)(pbHeaderBuffer);
+        size_t dwMaxAllowedSize = cbHeaderBuffer - sizeof(DWORD) - sizeof(IMAGE_FILE_HEADER);
+
+        // Verify the header of EXE/DLL files
+        if((pDosHeader->e_magic == IMAGE_DOS_SIGNATURE) && (0 < pDosHeader->e_lfanew && pDosHeader->e_lfanew < 0x10000))
+        {
+            // Is the file an EXE?
+            if((size_t)pDosHeader->e_lfanew <= dwMaxAllowedSize)
+            {
+                pFileHeader = (PIMAGE_FILE_HEADER)(pbHeaderBuffer + pDosHeader->e_lfanew + sizeof(DWORD));
+                if(pFileHeader->Characteristics & IMAGE_FILE_DLL)
+                {
+                    return MapTypeWarcraft3;
+                }
+            }
+        }
     }
 
     // No special map type recognized
-    return MapTypeNotRecognized;
+    return TypeByExtension;
+}
+
+static bool IsStarcraftBetaArchive(TMPQHeader * pHeader)
+{
+    // The archive must be version 1, with a standard header size
+    if(pHeader->dwID == ID_MPQ && pHeader->dwHeaderSize == MPQ_HEADER_SIZE_V1)
+    {
+        // Check for known archive sizes
+        return (pHeader->dwArchiveSize == 0x00028FB3 ||     // patch_rt.mpq
+                pHeader->dwArchiveSize == 0x0351853D ||     // StarDat.mpq
+                pHeader->dwArchiveSize == 0x0AEC8960);      // INSTALL.exe
+
+    }
+    return false;
 }
 
 static TMPQUserData * IsValidMpqUserData(ULONGLONG ByteOffset, ULONGLONG FileSize, void * pvUserData)
@@ -146,94 +214,18 @@ static DWORD VerifyMpqTablePositions(TMPQArchive * ha, ULONGLONG FileSize)
     return ERROR_SUCCESS;
 }
 
-//-----------------------------------------------------------------------------
-// Support for alternate markers. Call before opening an archive
-
-#define SFILE_MARKERS_MIN_SIZE   (sizeof(DWORD) + sizeof(DWORD) + sizeof(const char *) + sizeof(const char *))
-
-bool WINAPI SFileSetArchiveMarkers(PSFILE_MARKERS pMarkers)
+static bool OpenArchiveFromStream(TFileStream * pStream, HANDLE hParentMpq, DWORD dwPriority, DWORD dwFlags, HANDLE * phMpq)
 {
-    // Check structure minimum size
-    if(pMarkers == NULL || pMarkers->dwSize < SFILE_MARKERS_MIN_SIZE)
-    {
-        SetLastError(ERROR_INVALID_PARAMETER);
-        return false;
-    }
-
-    // Make sure that the MPQ cryptography is initialized at this time
-    InitializeMpqCryptography();
-
-    // Remember the marker for MPQ header
-    if(pMarkers->dwSignature != 0)
-        g_dwMpqSignature = pMarkers->dwSignature;
-
-    // Remember the encryption key for hash table
-    if(pMarkers->szHashTableKey != NULL)
-        g_dwHashTableKey = HashString(pMarkers->szHashTableKey, MPQ_HASH_FILE_KEY);
-
-    // Remember the encryption key for block table
-    if(pMarkers->szBlockTableKey != NULL)
-        g_dwBlockTableKey = HashString(pMarkers->szBlockTableKey, MPQ_HASH_FILE_KEY);
-
-    // Succeeded
-    return true;
-}
-
-//-----------------------------------------------------------------------------
-// SFileGetLocale and SFileSetLocale
-// Set the locale for all newly opened files
-
-LCID WINAPI SFileGetLocale()
-{
-    return g_lcFileLocale;
-}
-
-LCID WINAPI SFileSetLocale(LCID lcNewLocale)
-{
-    g_lcFileLocale = lcNewLocale;
-    return g_lcFileLocale;
-}
-
-//-----------------------------------------------------------------------------
-// SFileOpenArchive
-//
-//   szFileName - MPQ archive file name to open
-//   dwPriority - When SFileOpenFileEx called, this contains the search priority for searched archives
-//   dwFlags    - See MPQ_OPEN_XXX in StormLib.h
-//   phMpq      - Pointer to store open archive handle
-
-bool WINAPI SFileOpenArchive(
-    const TCHAR * szMpqName,
-    DWORD dwPriority,
-    DWORD dwFlags,
-    HANDLE * phMpq)
-{
-    TMPQUserData * pUserData;
-    TFileStream * pStream = NULL;       // Open file stream
+    TMPQUserData * pUserData = NULL;
     TMPQArchive * ha = NULL;            // Archive handle
     TFileEntry * pFileEntry;
     ULONGLONG FileSize = 0;             // Size of the file
     LPBYTE pbHeaderBuffer = NULL;       // Buffer for searching MPQ header
-    DWORD dwStreamFlags = (dwFlags & STREAM_FLAGS_MASK);
     MTYPE MapType = MapTypeNotChecked;
     DWORD dwErrCode = ERROR_SUCCESS;
 
-    // Verify the parameters
-    if(szMpqName == NULL || *szMpqName == 0 || phMpq == NULL)
-    {
-        SetLastError(ERROR_INVALID_PARAMETER);
-        return false;
-    }
-
     // One time initialization of MPQ cryptography
     InitializeMpqCryptography();
-    dwPriority = dwPriority;
-
-    // If not forcing MPQ v 1.0, also use file bitmap
-    dwStreamFlags |= (dwFlags & MPQ_OPEN_FORCE_MPQ_V1) ? 0 : STREAM_FLAG_USE_BITMAP;
-
-    // Open the MPQ archive file
-    pStream = FileStream_OpenFile(szMpqName, dwStreamFlags);
     if(pStream == NULL)
         return false;
 
@@ -248,7 +240,9 @@ bool WINAPI SFileOpenArchive(
     // Allocate the MPQhandle
     if(dwErrCode == ERROR_SUCCESS)
     {
-        if((ha = STORM_ALLOC(TMPQArchive, 1)) == NULL)
+        if((ha = STORM_ALLOC(TMPQArchive, 1)) != NULL)
+            memset(ha, 0, sizeof(TMPQArchive));
+        else
             dwErrCode = ERROR_NOT_ENOUGH_MEMORY;
     }
 
@@ -270,7 +264,7 @@ bool WINAPI SFileOpenArchive(
         DWORD dwHeaderID;
         bool bSearchComplete = false;
 
-        memset(ha, 0, sizeof(TMPQArchive));
+        ha->dwValidFileFlags = MPQ_FILE_VALID_FLAGS;
         ha->pfnHashString = HashStringSlash;
         ha->pStream = pStream;
         pStream = NULL;
@@ -285,9 +279,14 @@ bool WINAPI SFileOpenArchive(
         // Also remember if this MPQ is a patch
         ha->dwFlags |= (dwFlags & MPQ_OPEN_PATCH) ? MPQ_FLAG_PATCH : 0;
 
+        // Set the reference count to 1
+        ha->dwRefCount = 1;
+
         // Limit the header searching to about 130 MB of data
         if(EndOfSearch > 0x08000000)
             EndOfSearch = 0x08000000;
+        if(FileSize < HEADER_SEARCH_BUFFER_SIZE)
+            memset(pbHeaderBuffer, 0, HEADER_SEARCH_BUFFER_SIZE);
 
         // Find the offset of MPQ header within the file
         while(bSearchComplete == false && ByteOffset < EndOfSearch)
@@ -303,15 +302,17 @@ bool WINAPI SFileOpenArchive(
             // Read the eventual MPQ header
             if(!FileStream_Read(ha->pStream, &ByteOffset, pbHeaderBuffer, dwBytesAvailable))
             {
-                dwErrCode = GetLastError();
+                dwErrCode = SErrGetLastError();
                 break;
             }
 
             // Check whether the file is AVI file or a Warcraft III/Starcraft II map
             if(MapType == MapTypeNotChecked)
             {
+                LPCTSTR szFileName = FileStream_GetFileName(ha->pStream);
+
                 // Do nothing if the file is an AVI file
-                if((MapType = CheckMapType(szMpqName, pbHeaderBuffer, dwBytesAvailable)) == MapTypeAviFile)
+                if((MapType = CheckMapType(szFileName, pbHeaderBuffer, dwBytesAvailable)) == MapTypeAviFile)
                 {
                     dwErrCode = ERROR_AVI_FILE;
                     break;
@@ -331,18 +332,25 @@ bool WINAPI SFileOpenArchive(
                 {
                     if(ha->pUserData == NULL && dwHeaderID == ID_MPQ_USERDATA)
                     {
+                        // Copy the eventual user data to the separate buffer
+                        memcpy(&ha->UserData, ha->HeaderData, sizeof(TMPQUserData));
+
                         // Verify if this looks like a valid user data
-                        pUserData = IsValidMpqUserData(ByteOffset, FileSize, ha->HeaderData);
+                        pUserData = IsValidMpqUserData(ByteOffset, FileSize, &ha->UserData);
                         if(pUserData != NULL)
                         {
-                            // Fill the user data header
-                            ha->UserDataPos = ByteOffset;
-                            ha->pUserData = &ha->UserData;
-                            memcpy(ha->pUserData, pUserData, sizeof(TMPQUserData));
+                            // Set the byte offset to the loaded user data
+                            ULONGLONG TempByteOffset = ByteOffset + pUserData->dwHeaderOffs;
 
-                            // Continue searching from that position
-                            ByteOffset += ha->pUserData->dwHeaderOffs;
-                            break;
+                            // Read the eventual MPQ header from the position where the user data points
+                            if(!FileStream_Read(ha->pStream, &TempByteOffset, ha->HeaderData, sizeof(ha->HeaderData)))
+                            {
+                                dwErrCode = SErrGetLastError();
+                                break;
+                            }
+
+                            // Re-initialize the header ID
+                            dwHeaderID = BSWAP_INT32_UNSIGNED(ha->HeaderData[0]);
                         }
                     }
                 }
@@ -364,7 +372,7 @@ bool WINAPI SFileOpenArchive(
                 }
 
                 // Check for MPK archives (Longwu Online - MPQ fork)
-                if(MapType == MapTypeNotRecognized && dwHeaderID == ID_MPK)
+                if(MapType == MapTypeNotRecognized && (dwFlags & MPQ_OPEN_FORCE_MPQ_V1) == 0 && dwHeaderID == ID_MPK)
                 {
                     // Now convert the MPK header to MPQ Header version 4
                     dwErrCode = ConvertMpkHeaderToFormat4(ha, FileSize, dwFlags);
@@ -382,19 +390,31 @@ bool WINAPI SFileOpenArchive(
 
                 // Move the pointers
                 ByteOffset += 0x200;
+                pUserData = NULL;
             }
         }
 
         // Did we identify one of the supported headers?
         if(dwErrCode == ERROR_SUCCESS)
         {
+            // If we retrieved the offset from the user data offset, initialize the user data
+            if(pUserData != NULL)
+            {
+                // Fill the user data header
+                ha->pUserData = &ha->UserData;
+                ha->UserDataPos = ByteOffset;
+
+                // Set the real byte offset
+                ByteOffset = ByteOffset + pUserData->dwHeaderOffs;
+            }
+
             // Set the user data position to the MPQ header, if none
             if(ha->pUserData == NULL)
                 ha->UserDataPos = ByteOffset;
 
             // Set the position of the MPQ header
-            ha->pHeader  = (TMPQHeader *)ha->HeaderData;
-            ha->MpqPos   = ByteOffset;
+            ha->pHeader = (TMPQHeader *)ha->HeaderData;
+            ha->MpqPos = ByteOffset;
             ha->FileSize = FileSize;
 
             // Sector size must be nonzero.
@@ -428,6 +448,9 @@ bool WINAPI SFileOpenArchive(
         ha->pHeader->dwBlockTableSize = (ha->pHeader->dwBlockTableSize & BLOCK_INDEX_MASK);
         ha->pHeader->dwHashTableSize = (ha->pHeader->dwHashTableSize & BLOCK_INDEX_MASK);
 
+        // Remember the archive priority
+        ha->dwPriority = dwPriority;
+
         // Both MPQ_OPEN_NO_LISTFILE or MPQ_OPEN_NO_ATTRIBUTES trigger read only mode
         if(dwFlags & (MPQ_OPEN_NO_LISTFILE | MPQ_OPEN_NO_ATTRIBUTES))
             ha->dwFlags |= MPQ_FLAG_READ_ONLY;
@@ -436,14 +459,43 @@ bool WINAPI SFileOpenArchive(
         if(dwFlags & MPQ_OPEN_FORCE_LISTFILE)
             ha->dwFlags |= MPQ_FLAG_LISTFILE_FORCE;
 
-        // Remember whether whis is a map for Warcraft III
-        if(MapType == MapTypeWarcraft3)
-            ha->dwFlags |= MPQ_FLAG_WAR3_MAP;
+        // StarDat.mpq from Starcraft I BETA: Enable special compression types
+        if(IsStarcraftBetaArchive(ha->pHeader))
+            ha->dwFlags |= MPQ_FLAG_STARCRAFT_BETA;
 
-        // Set the size of file sector
-        ha->dwSectorSize = (0x200 << ha->pHeader->wSectorSize);
+        // Set the mask for the file offset. In MPQs version 1,
+        // all offsets are 32-bit and overflow is allowed.
+        // For MPQs v2+, file offset if 64-bit.
+        ha->FileOffsetMask = GetFileOffsetMask(ha);
 
-        // Verify if any of the tables doesn't start beyond the end of the file
+        // Maps from StarCraft and Warcraft III need special treatment
+        switch(MapType)
+        {
+            case MapTypeStarcraft:
+                ha->dwValidFileFlags = MPQ_FILE_VALID_FLAGS_SCX;
+                ha->dwFlags |= MPQ_FLAG_STARCRAFT;
+                break;
+
+            case MapTypeWarcraft3:
+                ha->dwValidFileFlags = MPQ_FILE_VALID_FLAGS_W3X;
+                ha->dwFlags |= MPQ_FLAG_WAR3_MAP;
+                break;
+            case MapTypeNotChecked:
+            case MapTypeNotRecognized:
+            case MapTypeAviFile:
+            case MapTypeStarcraft2:
+                // silence -Wswitch-enum
+                break;
+        }
+
+        // Set the size of file sector. Be sure to check for integer overflow
+        if((ha->dwSectorSize = (0x200 << ha->pHeader->wSectorSize)) == 0)
+            dwErrCode = ERROR_FILE_CORRUPT;
+    }
+
+    // Verify if any of the tables doesn't start beyond the end of the file
+    if(dwErrCode == ERROR_SUCCESS)
+    {
         dwErrCode = VerifyMpqTablePositions(ha, FileSize);
     }
 
@@ -503,12 +555,28 @@ bool WINAPI SFileOpenArchive(
         ha->dwFlags |= (ha->dwFlags & MPQ_FLAG_MALFORMED) ? MPQ_FLAG_READ_ONLY : 0;
     }
 
+    // Finally, we need to reference the parent archive, if any
+    if(dwErrCode == ERROR_SUCCESS && hParentMpq != NULL)
+    {
+        TMPQArchive * haParent = IsValidMpqHandle(hParentMpq);
+
+        // Assign the parent archive
+        ha->haParent = haParent;
+
+        // Reference all parent archives
+        while(haParent != NULL)
+        {
+            haParent->dwRefCount++;
+            haParent = haParent->haParent;
+        }
+    }
+
     // Cleanup and exit
     if(dwErrCode != ERROR_SUCCESS)
     {
         FileStream_Close(pStream);
-        FreeArchiveHandle(ha);
-        SetLastError(dwErrCode);
+        DereferenceArchive(ha);
+        SErrSetLastError(dwErrCode);
         ha = NULL;
     }
 
@@ -518,6 +586,120 @@ bool WINAPI SFileOpenArchive(
     if(phMpq != NULL)
         *phMpq = ha;
     return (dwErrCode == ERROR_SUCCESS);
+}
+
+//-----------------------------------------------------------------------------
+// Support for alternate markers. Call before opening an archive
+
+#define SFILE_MARKERS_MIN_SIZE   (sizeof(DWORD) + sizeof(DWORD) + sizeof(const char *) + sizeof(const char *))
+
+bool WINAPI SFileSetArchiveMarkers(PSFILE_MARKERS pMarkers)
+{
+    // Check structure minimum size
+    if(pMarkers == NULL || pMarkers->dwSize < SFILE_MARKERS_MIN_SIZE)
+    {
+        SErrSetLastError(ERROR_INVALID_PARAMETER);
+        return false;
+    }
+
+    // Make sure that the MPQ cryptography is initialized at this time
+    InitializeMpqCryptography();
+
+    // Remember the marker for MPQ header
+    if(pMarkers->dwSignature != 0)
+        g_dwMpqSignature = pMarkers->dwSignature;
+
+    // Remember the encryption key for hash table
+    if(pMarkers->szHashTableKey != NULL)
+        g_dwHashTableKey = HashString(pMarkers->szHashTableKey, MPQ_HASH_FILE_KEY);
+
+    // Remember the encryption key for block table
+    if(pMarkers->szBlockTableKey != NULL)
+        g_dwBlockTableKey = HashString(pMarkers->szBlockTableKey, MPQ_HASH_FILE_KEY);
+
+    // Succeeded
+    return true;
+}
+
+//-----------------------------------------------------------------------------
+// SFileGetLocale and SFileSetLocale
+// Set the locale for all newly opened files
+
+LCID WINAPI SFileGetLocale()
+{
+    return g_lcFileLocale;
+}
+
+LCID WINAPI SFileSetLocale(LCID lcFileLocale)
+{
+    return (g_lcFileLocale = lcFileLocale);
+}
+
+//-----------------------------------------------------------------------------
+// SFileOpenArchive
+//
+//   szFileName - MPQ archive file name to open
+//   dwPriority - When SFileOpenFileEx called, this contains the search priority for searched archives
+//   dwFlags    - See MPQ_OPEN_XXX in StormLib.h
+//   phMpq      - Pointer to store open archive handle
+
+bool WINAPI SFileOpenArchive(
+    LPCTSTR szMpqName,
+    DWORD dwPriority,
+    DWORD dwFlags,
+    HANDLE * phMpq)
+{
+    TFileStream * pStream;
+    DWORD dwStreamFlags = (dwFlags & STREAM_FLAGS_MASK);
+    bool bResult = false;
+
+    // Verify the parameters
+    if(szMpqName == NULL || *szMpqName == 0 || phMpq == NULL)
+    {
+        SErrSetLastError(ERROR_INVALID_PARAMETER);
+        return false;
+    }
+
+    // If not forcing MPQ v 1.0, also use file bitmap
+    dwStreamFlags |= (dwFlags & MPQ_OPEN_FORCE_MPQ_V1) ? 0 : STREAM_FLAG_USE_BITMAP;
+    if((pStream = FileStream_OpenFile(szMpqName, dwStreamFlags)) != NULL)
+        bResult = OpenArchiveFromStream(pStream, NULL, dwPriority, dwFlags, phMpq);
+    return bResult;
+}
+
+//-----------------------------------------------------------------------------
+// SFileOpenFileArchive
+//
+//   hMpq       - Handle to the MPQ archive
+//   szFileName - File name in the MPQ to be open as archive 
+//   dwPriority - When SFileOpenFileEx called, this contains the search priority for searched archives
+//   dwFlags    - See MPQ_OPEN_XXX in StormLib.h
+//   phMpq      - Pointer to store open archive handle
+
+bool WINAPI SFileOpenFileArchive(
+    HANDLE hParentMpq,
+    LPCSTR szFileName,
+    DWORD dwPriority,
+    DWORD dwFlags,
+    HANDLE * phMpq)
+{
+    TFileStream * pStream;
+    DWORD dwStreamFlags = dwFlags & (STREAM_OPTIONS_MASK | STREAM_PROVIDER_MASK);
+    bool bResult = false;
+
+    // Verify the parameters
+    if(hParentMpq == NULL || szFileName == NULL || *szFileName == 0 || phMpq == NULL)
+    {
+        SErrSetLastError(ERROR_INVALID_PARAMETER);
+        return false;
+    }
+
+    // If not forcing MPQ v 1.0, also use file bitmap
+    dwStreamFlags |= (dwFlags & MPQ_OPEN_FORCE_MPQ_V1) ? 0 : STREAM_FLAG_USE_BITMAP;
+    dwStreamFlags |= BASE_PROVIDER_MPQ;
+    if((pStream = FileStream_OpenFileArchive(hParentMpq, szFileName)) != NULL)
+        bResult = OpenArchiveFromStream(pStream, hParentMpq, dwPriority, dwFlags, phMpq);
+    return bResult;
 }
 
 //-----------------------------------------------------------------------------
@@ -533,7 +715,7 @@ bool WINAPI SFileSetDownloadCallback(HANDLE hMpq, SFILE_DOWNLOAD_CALLBACK Downlo
     // Do nothing if 'hMpq' is bad parameter
     if(!IsValidMpqHandle(hMpq))
     {
-        SetLastError(ERROR_INVALID_HANDLE);
+        SErrSetLastError(ERROR_INVALID_HANDLE);
         return false;
     }
 
@@ -558,7 +740,7 @@ bool WINAPI SFileFlushArchive(HANDLE hMpq)
     // Do nothing if 'hMpq' is bad parameter
     if((ha = IsValidMpqHandle(hMpq)) == NULL)
     {
-        SetLastError(ERROR_INVALID_HANDLE);
+        SErrSetLastError(ERROR_INVALID_HANDLE);
         return false;
     }
 
@@ -576,6 +758,10 @@ bool WINAPI SFileFlushArchive(HANDLE hMpq)
         // Note that the (signature) file is usually before (listfile) in the file table
         //
 
+        // Up the number of references to prevent it from going away during archive cleanup
+        ha->dwRefCount++;
+
+        // Add the (signature) file
         if(ha->dwFlags & MPQ_FLAG_SIGNATURE_NEW)
         {
             dwErrCode = SSignFileCreate(ha);
@@ -583,6 +769,7 @@ bool WINAPI SFileFlushArchive(HANDLE hMpq)
                 dwResultError = dwErrCode;
         }
 
+        // Add the (listfile) file
         if(ha->dwFlags & (MPQ_FLAG_LISTFILE_NEW | MPQ_FLAG_LISTFILE_FORCE))
         {
             dwErrCode = SListFileSaveToMpq(ha);
@@ -590,6 +777,7 @@ bool WINAPI SFileFlushArchive(HANDLE hMpq)
                 dwResultError = dwErrCode;
         }
 
+        // Add the (attributes) file
         if(ha->dwFlags & MPQ_FLAG_ATTRIBUTES_NEW)
         {
             dwErrCode = SAttrFileSaveToMpq(ha);
@@ -618,13 +806,17 @@ bool WINAPI SFileFlushArchive(HANDLE hMpq)
             }
         }
 
+        // Drop the reference count. Do NOT call DereferenceHandle() to prevent recursion
+        assert(ha->dwRefCount > 0);
+        ha->dwRefCount--;
+
         // We are no longer saving internal MPQ structures
         ha->dwFlags &= ~MPQ_FLAG_SAVING_TABLES;
     }
 
     // Return the error
     if(dwResultError != ERROR_SUCCESS)
-        SetLastError(dwResultError);
+        SErrSetLastError(dwResultError);
     return (dwResultError == ERROR_SUCCESS);
 }
 
@@ -635,24 +827,19 @@ bool WINAPI SFileFlushArchive(HANDLE hMpq)
 bool WINAPI SFileCloseArchive(HANDLE hMpq)
 {
     TMPQArchive * ha = IsValidMpqHandle(hMpq);
-    bool bResult = false;
 
     // Only if the handle is valid
     if(ha == NULL)
     {
-        SetLastError(ERROR_INVALID_HANDLE);
+        SErrSetLastError(ERROR_INVALID_HANDLE);
         return false;
     }
 
-    // Invalidate the add file callback so it won't be called
-    // when saving (listfile) and (attributes)
-    ha->pfnAddFileCB = NULL;
-    ha->pvAddFileUserData = NULL;
-
-    // Flush all unsaved data to the storage
-    bResult = SFileFlushArchive(hMpq);
-
-    // Free all memory used by MPQ archive
-    FreeArchiveHandle(ha);
-    return bResult;
+    // Dereference the archive
+    if(!DereferenceArchive(ha))
+    {
+        SErrSetLastError(ERROR_ACCESS_DENIED);
+        return false;
+    }
+    return true;
 }

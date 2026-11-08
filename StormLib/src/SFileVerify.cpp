@@ -185,7 +185,7 @@ static bool CalculateMpqHashMd5(
     PMPQ_SIGNATURE_INFO pSI,
     LPBYTE pMd5Digest)
 {
-    hash_state md5_state;
+    hash_state md5_ctx;
     ULONGLONG BeginBuffer;
     ULONGLONG EndBuffer;
     LPBYTE pbDigestBuffer = NULL;
@@ -196,7 +196,7 @@ static bool CalculateMpqHashMd5(
         return false;
 
     // Initialize the MD5 hash state
-    md5_init(&md5_state);
+    md5_init(&md5_ctx);
 
     // Set the byte offset of begin of the data
     BeginBuffer = pSI->BeginMpqData;
@@ -244,14 +244,14 @@ static bool CalculateMpqHashMd5(
         }
 
         // Pass the buffer to the hashing function
-        md5_process(&md5_state, pbDigestBuffer, dwToRead);
+        md5_process(&md5_ctx, pbDigestBuffer, dwToRead);
 
         // Move pointers
         BeginBuffer += dwToRead;
     }
 
     // Finalize the MD5 hash
-    md5_done(&md5_state, pMd5Digest);
+    md5_done(&md5_ctx, pMd5Digest);
     STORM_FREE(pbDigestBuffer);
     return true;
 }
@@ -411,7 +411,7 @@ static DWORD VerifyRawMpqData(
     {
         // Read the array of MD5
         if(!FileStream_Read(ha->pStream, &DataOffset, pbMD5Array2, dwMD5Size))
-            dwErrCode = GetLastError();
+            dwErrCode = SErrGetLastError();
     }
 
     // Compare the array of MD5
@@ -481,7 +481,10 @@ static DWORD VerifyStrongSignatureWithKey(
 
     // Verify the signature
     if(rsa_verify_simple(reversed_signature, MPQ_STRONG_SIGNATURE_SIZE, padded_digest, MPQ_STRONG_SIGNATURE_SIZE, &result, &key) != CRYPT_OK)
+    {
+        rsa_free(&key);
         return ERROR_VERIFY_FAILED;
+    }
 
     // Free the key and return result
     rsa_free(&key);
@@ -558,7 +561,7 @@ static DWORD VerifyFile(
     char * pMD5,
     DWORD dwFlags)
 {
-    hash_state md5_state;
+    hash_state md5_ctx;
     unsigned char * pFileMd5;
     unsigned char md5[MD5_DIGEST_SIZE];
     TFileEntry * pFileEntry;
@@ -615,7 +618,7 @@ static DWORD VerifyFile(
         dwTotalBytes = SFileGetFileSize(hFile, NULL);
 
         // Initialize the CRC32 and MD5 contexts
-        md5_init(&md5_state);
+        md5_init(&md5_ctx);
         dwCrc32 = crc32(0, Z_NULL, 0);
 
         // Also turn on sector checksum verification
@@ -631,7 +634,7 @@ static DWORD VerifyFile(
             SFileReadFile(hFile, Buffer, sizeof(Buffer), &dwBytesRead, NULL);
             if(dwBytesRead == 0)
             {
-                if(GetLastError() == ERROR_CHECKSUM_ERROR)
+                if(SErrGetLastError() == ERROR_CHECKSUM_ERROR)
                     dwVerifyResult |= VERIFY_FILE_SECTOR_CRC_ERROR;
                 break;
             }
@@ -642,7 +645,7 @@ static DWORD VerifyFile(
 
             // Update MD5 value
             if(dwFlags & SFILE_VERIFY_FILE_MD5)
-                md5_process(&md5_state, Buffer, dwBytesRead);
+                md5_process(&md5_ctx, Buffer, dwBytesRead);
 
             // Decrement the total size
             dwTotalBytes -= dwBytesRead;
@@ -680,7 +683,7 @@ static DWORD VerifyFile(
                 {
                     // Patch files have their MD5 saved in the patch info
                     pFileMd5 = (hf->pPatchInfo != NULL) ? hf->pPatchInfo->md5 : pFileEntry->md5;
-                    md5_done(&md5_state, md5);
+                    md5_done(&md5_ctx, md5);
 
                     // Only check the MD5 if it is valid
                     if(IsValidMD5(pFileMd5))
@@ -730,6 +733,10 @@ bool QueryMpqSignatureInfo(
 
     // Make sure it's all zeroed
     memset(pSI, 0, sizeof(MPQ_SIGNATURE_INFO));
+
+    // Flush the archive, if it was modified
+    if(ha->dwFlags & MPQ_FLAG_CHANGED)
+        SFileFlushArchive((HANDLE)(ha));
 
     // Calculate the range of the MPQ
     CalculateArchiveRange(ha, pSI);
@@ -797,11 +804,11 @@ DWORD SSignFileCreate(TMPQArchive * ha)
         // Create the (signature) file file in the MPQ
         // Note that the file must not be compressed or encrypted
         dwErrCode = SFileAddFile_Init(ha, SIGNATURE_NAME,
-                                       0,
-                                       sizeof(EmptySignature),
-                                       LANG_NEUTRAL,
-                                       ha->dwFileFlags3 | MPQ_FILE_REPLACEEXISTING,
-                                      &hf);
+                                      0,
+                                      sizeof(EmptySignature),
+                                      LANG_NEUTRAL,
+                                      ha->dwFileFlags3 | MPQ_FILE_REPLACEEXISTING,
+                                     &hf);
 
         // Write the empty signature file to the archive
         if(dwErrCode == ERROR_SUCCESS)
@@ -809,6 +816,13 @@ DWORD SSignFileCreate(TMPQArchive * ha)
             // Write the empty zeroed file to the MPQ
             memset(EmptySignature, 0, sizeof(EmptySignature));
             dwErrCode = SFileAddFile_Write(hf, EmptySignature, (DWORD)sizeof(EmptySignature), 0);
+        }
+
+        // Finalize the signature
+        if(dwErrCode == ERROR_SUCCESS)
+        {
+            // Clear the CRC as it will not be valid
+            hf->pFileEntry->dwCrc32 = hf->dwCrc32 = 0;
             SFileAddFile_Finish(hf);
 
             // Clear the invalid mark
@@ -822,7 +836,7 @@ DWORD SSignFileCreate(TMPQArchive * ha)
 
 DWORD SSignFileFinish(TMPQArchive * ha)
 {
-    MPQ_SIGNATURE_INFO si;
+    MPQ_SIGNATURE_INFO si = {0};
     unsigned long signature_len = MPQ_WEAK_SIGNATURE_SIZE;
     BYTE WeakSignature[MPQ_SIGNATURE_FILE_SIZE];
     BYTE Md5Digest[MD5_DIGEST_SIZE];
@@ -834,7 +848,6 @@ DWORD SSignFileFinish(TMPQArchive * ha)
     assert(ha->dwFileFlags3 == MPQ_FILE_EXISTS);
 
     // Query the weak signature info
-    memset(&si, 0, sizeof(MPQ_SIGNATURE_INFO));
     if(!QueryMpqSignatureInfo(ha, &si))
         return ERROR_FILE_CORRUPT;
 
@@ -853,12 +866,12 @@ DWORD SSignFileFinish(TMPQArchive * ha)
     // Sign the hash
     memset(WeakSignature, 0, sizeof(WeakSignature));
     rsa_sign_hash_ex(Md5Digest, sizeof(Md5Digest), WeakSignature + 8, &signature_len, LTC_LTC_PKCS_1_V1_5, 0, 0, hash_idx, 0, &key);
-	memrev(WeakSignature + 8, MPQ_WEAK_SIGNATURE_SIZE);
+    memrev(WeakSignature + 8, MPQ_WEAK_SIGNATURE_SIZE);
     rsa_free(&key);
 
     // Write the signature to the MPQ. Don't use SFile* functions, but write the hash directly
     if(!FileStream_Write(ha->pStream, &si.BeginExclude, WeakSignature, MPQ_SIGNATURE_FILE_SIZE))
-        return GetLastError();
+        return SErrGetLastError();
 
     return ERROR_SUCCESS;
 }
@@ -885,7 +898,7 @@ bool WINAPI SFileGetFileChecksums(HANDLE hMpq, const char * szFileName, LPDWORD 
     // If verification failed, return zero
     if(dwVerifyResult & VERIFY_FILE_ERROR_MASK)
     {
-        SetLastError(ERROR_FILE_CORRUPT);
+        SErrSetLastError(ERROR_FILE_CORRUPT);
         return false;
     }
 
@@ -978,19 +991,14 @@ DWORD WINAPI SFileVerifyRawData(HANDLE hMpq, DWORD dwWhatToVerify, const char * 
 // Verifies the archive against the signature
 DWORD WINAPI SFileVerifyArchive(HANDLE hMpq)
 {
-    MPQ_SIGNATURE_INFO si;
+    MPQ_SIGNATURE_INFO si = {0};
     TMPQArchive * ha = (TMPQArchive *)hMpq;
 
     // Verify input parameters
     if(!IsValidMpqHandle(hMpq))
         return ERROR_VERIFY_FAILED;
 
-    // If the archive was modified, we need to flush it
-    if(ha->dwFlags & MPQ_FLAG_CHANGED)
-        SFileFlushArchive(hMpq);
-
     // Get the MPQ signature and signature type
-    memset(&si, 0, sizeof(MPQ_SIGNATURE_INFO));
     if(!QueryMpqSignatureInfo(ha, &si))
         return ERROR_VERIFY_FAILED;
 
@@ -1021,21 +1029,21 @@ bool WINAPI SFileSignArchive(HANDLE hMpq, DWORD dwSignatureType)
     ha = IsValidMpqHandle(hMpq);
     if(ha == NULL)
     {
-        SetLastError(ERROR_INVALID_PARAMETER);
+        SErrSetLastError(ERROR_INVALID_PARAMETER);
         return false;
     }
 
     // We only support weak signature, and only for MPQs version 1.0
     if(dwSignatureType != SIGNATURE_TYPE_WEAK)
     {
-        SetLastError(ERROR_INVALID_PARAMETER);
+        SErrSetLastError(ERROR_INVALID_PARAMETER);
         return false;
     }
 
     // The archive must not be malformed and must not be read-only
     if(ha->dwFlags & (MPQ_FLAG_READ_ONLY | MPQ_FLAG_MALFORMED))
     {
-        SetLastError(ERROR_ACCESS_DENIED);
+        SErrSetLastError(ERROR_ACCESS_DENIED);
         return false;
     }
 
