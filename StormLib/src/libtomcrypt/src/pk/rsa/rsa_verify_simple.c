@@ -8,7 +8,27 @@
  *
  * Tom St Denis, tomstdenis@gmail.com, http://libtom.org
  */
-#include "../../headers/tomcrypt.h"
+
+// This file is always compiled, regardless of whether StormLib uses its
+// bundled LibTomCrypt or the system's. When linking against the system
+// library, the struct layout of ltc_math_descriptor (used indirectly via
+// the global ltc_mp) must match the system's, or accessing its members
+// (e.g. ltc_mp.rsa_me below) is undefined behavior. So mirror the same
+// header selection used by StormCommon.h instead of always including the
+// bundled header.
+#ifndef __SYS_LIBTOMCRYPT
+  #include "../../headers/tomcrypt.h"
+#else
+  #ifndef LTM_DESC
+    #define LTM_DESC
+  #endif
+  // This file uses the internal mp_* helper macros (e.g. mp_count_bits),
+  // which system packages only expose when LTC_SOURCE is defined.
+  #ifndef LTC_SOURCE
+    #define LTC_SOURCE
+  #endif
+  #include <tomcrypt.h>
+#endif
 
 /**
   @file rsa_verify_simple.c

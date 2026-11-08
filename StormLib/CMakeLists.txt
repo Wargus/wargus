@@ -1,5 +1,14 @@
-project(StormLib)
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.25)
+
+# Take the version from StormLib.h so that there is a single place to bump on release
+file(STRINGS "${CMAKE_CURRENT_LIST_DIR}/src/StormLib.h" STORM_VERSION_LINE
+    REGEX "#define[ \t]+STORMLIB_VERSION_STRING[ \t]+\""
+)
+if(NOT STORM_VERSION_LINE MATCHES "\"([0-9]+\\.[0-9]+(\\.[0-9]+)?)\"")
+    message(FATAL_ERROR "Unable to read STORMLIB_VERSION_STRING from src/StormLib.h")
+endif()
+
+project(StormLib VERSION ${CMAKE_MATCH_1} LANGUAGES C CXX)
 
 set(LIBRARY_NAME storm)
 set(CMAKE_CXX_STANDARD 11)
@@ -7,9 +16,22 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(CMakeDependentOption)
+include(GNUInstallDirs)
 
 option(BUILD_SHARED_LIBS "Compile shared libraries" OFF)
 option(STORM_SKIP_INSTALL "Skip installing files" OFF)
+option(STORM_USE_BUNDLED_LIBRARIES
+    "Force use of bundled dependencies instead of system libraries."
+    OFF
+)
+cmake_dependent_option(WITH_BUNDLED_LIBTOMMATH
+    "Bundle libtommath even when STORM_USE_BUNDLED_LIBRARIES is OFF."
+    OFF "NOT STORM_USE_BUNDLED_LIBRARIES" ON
+)
+cmake_dependent_option(WITH_BUNDLED_LIBTOMCRYPT
+    "Bundle libtomcrypt even when STORM_USE_BUNDLED_LIBRARIES is OFF."
+    OFF "NOT STORM_USE_BUNDLED_LIBRARIES" ON
+)
 option(STORM_BUILD_TESTS
     "Compile StormLib test application" OFF
 #   "BUILD_TESTING" OFF # Stay coherent with CTest variables
@@ -44,8 +66,8 @@ set(SRC_FILES
            src/SFilePatchArchives.cpp
            src/SFileReadFile.cpp
            src/SFileVerify.cpp
+           src/SMemUtf8.cpp
            src/libtomcrypt/src/pk/rsa/rsa_verify_simple.c
-           src/libtomcrypt/src/misc/crypt_libc.c
 )
 
 if(MSVC)
@@ -60,6 +82,7 @@ set(TOMCRYPT_FILES
            src/libtomcrypt/src/hashes/hash_memory.c
            src/libtomcrypt/src/hashes/md5.c
            src/libtomcrypt/src/hashes/sha1.c
+           src/libtomcrypt/src/hashes/sha256.c
            src/libtomcrypt/src/math/ltm_desc.c
            src/libtomcrypt/src/math/multi.c
            src/libtomcrypt/src/math/rand_prime.c
@@ -69,6 +92,7 @@ set(TOMCRYPT_FILES
            src/libtomcrypt/src/misc/crypt_find_prng.c
            src/libtomcrypt/src/misc/crypt_hash_descriptor.c
            src/libtomcrypt/src/misc/crypt_hash_is_valid.c
+           src/libtomcrypt/src/misc/crypt_libc.c
            src/libtomcrypt/src/misc/crypt_ltc_mp_descriptor.c
            src/libtomcrypt/src/misc/crypt_prng_descriptor.c
            src/libtomcrypt/src/misc/crypt_prng_is_valid.c
@@ -256,8 +280,7 @@ set(TOMMATH_FILES
            src/libtommath/bn_s_mp_sub.c
 )
 
-# Needed for Windows
-set(ZLIB_BZIP2_FILES
+set(BZIP2_FILES
            src/bzip2/blocksort.c
            src/bzip2/bzlib.c
            src/bzip2/compress.c
@@ -265,6 +288,9 @@ set(ZLIB_BZIP2_FILES
            src/bzip2/decompress.c
            src/bzip2/huffman.c
            src/bzip2/randtable.c
+)
+
+set(ZLIB_FILES
            src/zlib/adler32.c
            src/zlib/compress.c
            src/zlib/crc32.c
@@ -276,57 +302,110 @@ set(ZLIB_BZIP2_FILES
            src/zlib/zutil.c
 )
 
-set(TEST_SRC_FILES
-           test/StormTest.cpp
-)
+add_library(${LIBRARY_NAME})
 
-add_definitions(-D_7ZIP_ST -DBZ_STRICT_ANSI)
+target_compile_definitions(${LIBRARY_NAME} PRIVATE _7ZIP_ST BZ_STRICT_ANSI)
+
+if (NOT STORM_USE_BUNDLED_LIBRARIES)
+    find_package(ZLIB REQUIRED)
+    target_link_libraries(${LIBRARY_NAME} PRIVATE ZLIB::ZLIB)
+    target_compile_definitions(${LIBRARY_NAME} PRIVATE __SYS_ZLIB)
+else()
+    set(SRC_FILES ${SRC_FILES} ${ZLIB_FILES})
+endif()
+
+if (NOT STORM_USE_BUNDLED_LIBRARIES)
+    find_package(BZip2 REQUIRED)
+    target_link_libraries(${LIBRARY_NAME} PRIVATE BZip2::BZip2)
+    target_compile_definitions(${LIBRARY_NAME} PRIVATE __SYS_BZLIB)
+else()
+    set(SRC_FILES ${SRC_FILES} ${BZIP2_FILES})
+endif()
+
+if (NOT WITH_BUNDLED_LIBTOMMATH)
+    find_package(libtommath QUIET)
+    if (TARGET libtommath::libtommath)
+        message(STATUS "Found libtommath: using target libtommath::libtommath")
+        target_link_libraries(${LIBRARY_NAME} PRIVATE libtommath::libtommath)
+    elseif (TARGET libtommath)
+        message(STATUS "Found libtommath: using target libtommath")
+        target_link_libraries(${LIBRARY_NAME} PRIVATE libtommath)
+    else()
+        find_package(PkgConfig REQUIRED)
+        pkg_check_modules(libtommath REQUIRED IMPORTED_TARGET libtommath)
+        message(STATUS "Found libtommath via pkg-config")
+        target_link_libraries(${LIBRARY_NAME} PRIVATE PkgConfig::libtommath)
+    endif()
+else()
+    message(STATUS "Using bundled libtommath sources")
+    set(SRC_ADDITIONAL_FILES ${SRC_ADDITIONAL_FILES} ${TOMMATH_FILES})
+endif()
+
+if (NOT WITH_BUNDLED_LIBTOMCRYPT)
+    find_package(libtomcrypt QUIET)
+    if (TARGET libtomcrypt::libtomcrypt)
+        message(STATUS "Found libtomcrypt: using target libtomcrypt::libtomcrypt")
+        target_link_libraries(${LIBRARY_NAME} PRIVATE libtomcrypt::libtomcrypt)
+    elseif (TARGET libtomcrypt)
+        message(STATUS "Found libtomcrypt: using target libtomcrypt")
+        target_link_libraries(${LIBRARY_NAME} PRIVATE libtomcrypt)
+    else()
+        find_package(PkgConfig REQUIRED)
+        pkg_check_modules(libtomcrypt REQUIRED IMPORTED_TARGET libtomcrypt)
+        message(STATUS "Found libtomcrypt via pkg-config")
+        target_link_libraries(${LIBRARY_NAME} PRIVATE PkgConfig::libtomcrypt)
+    endif()
+    # Use the system's own tomcrypt.h instead of the bundled (vendored) copy,
+    # since the two can disagree on struct layouts (e.g. ltc_math_descriptor)
+    # across libtomcrypt versions, which is ABI-incompatible with the system .so.
+    target_compile_definitions(${LIBRARY_NAME} PRIVATE __SYS_LIBTOMCRYPT)
+else()
+    message(STATUS "Using bundled libtomcrypt sources")
+    set(SRC_ADDITIONAL_FILES ${SRC_ADDITIONAL_FILES} ${TOMCRYPT_FILES})
+endif()
 
 if(WIN32)
-    set(SRC_ADDITIONAL_FILES ${ZLIB_BZIP2_FILES} ${TOMCRYPT_FILES} ${TOMMATH_FILES})
-    set(LINK_LIBS wininet)
-else()
-    find_package(ZLIB REQUIRED)
-    find_package(BZip2 REQUIRED)
+    target_link_libraries(${LIBRARY_NAME} PRIVATE wininet)
+endif()
 
-    include_directories(${ZLIB_INCLUDE_DIR} ${BZIP2_INCLUDE_DIR})
-    set(LINK_LIBS ${ZLIB_LIBRARY} ${BZIP2_LIBRARIES})
+target_sources(${LIBRARY_NAME} PRIVATE ${SRC_FILES} ${SRC_ADDITIONAL_FILES} ${STORM_DEF_FILES})
+if(WIN32)
+    set_target_properties(${LIBRARY_NAME} PROPERTIES OUTPUT_NAME "StormLib")
+endif()
 
-    add_definitions(-D__SYS_ZLIB -D__SYS_BZLIB)
+option(STORM_UNICODE "Compile UNICODE version instead of ANSI one (Visual Studio only)" OFF)
 
-    option(WITH_LIBTOMCRYPT "Use system LibTomCrypt library" OFF)
-    if(WITH_LIBTOMCRYPT)
-        set(LINK_LIBS ${LINK_LIBS} tomcrypt)
+if(WIN32)
+    if(STORM_UNICODE)
+        message(STATUS "Build UNICODE version")
+        target_compile_definitions(${LIBRARY_NAME} PRIVATE UNICODE _UNICODE)
     else()
-        set(SRC_ADDITIONAL_FILES ${TOMCRYPT_FILES} ${TOMMATH_FILES})
+        message(STATUS "Build ANSI version")
     endif()
 endif()
 
-if(${CMAKE_SYSTEM_NAME} STREQUAL FreeBSD)
-    message(STATUS "Using FreeBSD port")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DO_LARGEFILE=0 -Dstat64=stat -Dlstat64=lstat -Dlseek64=lseek -Doff64_t=off_t -Dfstat64=fstat -Dftruncate64=ftruncate")
-endif()
-
-add_library(${LIBRARY_NAME} ${LIB_TYPE} ${SRC_FILES} ${SRC_ADDITIONAL_FILES} ${STORM_DEF_FILES})
-
-target_link_libraries(${LIBRARY_NAME} ${LINK_LIBS})
-target_compile_definitions(${LIBRARY_NAME} INTERFACE STORMLIB_NO_AUTO_LINK) #CMake will take care of the linking
-target_include_directories(${LIBRARY_NAME} PUBLIC src/)
+add_library(${PROJECT_NAME}::${LIBRARY_NAME} ALIAS ${LIBRARY_NAME}) # Allow users to link StormLib::storm when using add_subdirectory
+target_compile_definitions(${LIBRARY_NAME} INTERFACE __STORMLIB_NO_STATIC_LINK__) #CMake will take care of the linking
+target_include_directories(${LIBRARY_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>)
 set_target_properties(${LIBRARY_NAME} PROPERTIES PUBLIC_HEADER "src/StormLib.h;src/StormPort.h")
 if(BUILD_SHARED_LIBS)
     message(STATUS "Linking against dependent libraries dynamically")
 
     if(APPLE)
-        set_target_properties(${LIBRARY_NAME} PROPERTIES FRAMEWORK true)
-        set_target_properties(${LIBRARY_NAME} PROPERTIES LINK_FLAGS "-framework Carbon")
+        set_target_properties(${LIBRARY_NAME} PROPERTIES FRAMEWORK TRUE)
+        target_link_options(${LIBRARY_NAME} PRIVATE "-framework Carbon")
     endif()
     if(UNIX)
-        SET(VERSION_MAJOR "9")
-        SET(VERSION_MINOR "22")
-        SET(VERSION_PATCH "0")
-        SET(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
-        set_target_properties(${LIBRARY_NAME} PROPERTIES VERSION "${VERSION_STRING}")
-        set_target_properties(${LIBRARY_NAME} PROPERTIES SOVERSION "${VERSION_MAJOR}")
+        set_target_properties(${LIBRARY_NAME} PROPERTIES
+            VERSION "${PROJECT_VERSION}"
+            SOVERSION "${PROJECT_VERSION_MAJOR}"
+        )
+    endif()
+    if(WIN32)
+        target_sources(${LIBRARY_NAME}
+            PRIVATE
+                src/DllMain.rc
+        )
     endif()
 else()
     message(STATUS "Linking against dependent libraries statically")
@@ -334,44 +413,50 @@ endif()
 
 if (NOT STORM_SKIP_INSTALL)
     install(TARGETS ${LIBRARY_NAME}
-	    RUNTIME DESTINATION bin
-	    LIBRARY DESTINATION lib
-	    ARCHIVE DESTINATION lib
-	    FRAMEWORK DESTINATION /Library/Frameworks
-	    PUBLIC_HEADER DESTINATION include
-	    INCLUDES DESTINATION include)
+        EXPORT ${PROJECT_NAME}Config
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        FRAMEWORK DESTINATION /Library/Frameworks
+        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-        #CPack configurtion
-        SET(CPACK_GENERATOR "DEB" "RPM")
-        SET(CPACK_PACKAGE_NAME ${PROJECT_NAME})
-        SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MPQ manipulation library")
-        SET(CPACK_PACKAGE_VENDOR "Ladislav Zezula")
-        SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
-        SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-        SET(CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
-        SET(CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
-        SET(CPACK_PACKAGE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}")
+        install(EXPORT ${PROJECT_NAME}Config NAMESPACE ${PROJECT_NAME}:: DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME})
+
+        #CPack configuration
+        set(CPACK_GENERATOR "DEB" "RPM")
+        set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+        set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MPQ manipulation library")
+        set(CPACK_PACKAGE_VENDOR "Ladislav Zezula")
+        set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+        set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+        set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+        set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+        set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}")
+        set(CPACK_PACKAGING_INSTALL_PREFIX "/usr/local")
 
         #DEB configuration
-        SET(CPACK_DEBIAN_PACKAGE_SECTION "libs")
-        SET(CPACK_DEBIAN_PACKAGE_HOMEPAGE "http://www.zezula.net/en/mpq/stormlib.html")
-        SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "imbacen@gmail.com")
-        SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
-        SET(CPACK_DEBIAN_PACKAGE_DEPENDS "zlib1g,bzip2")
+        set(CPACK_DEBIAN_PACKAGE_NAME "libstorm-dev")
+        set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+        set(CPACK_DEBIAN_PACKAGE_SECTION "libs")
+        set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "http://www.zezula.net/en/mpq/stormlib.html")
+        set(CPACK_DEBIAN_PACKAGE_MAINTAINER "imbacen@gmail.com")
+        set(CPACK_DEBIAN_PACKAGE_DEPENDS "zlib1g,bzip2")
 
         #RPM configuration
-        SET(CPACK_RPM_PACKAGE_RELEASE 1)
-        SET(CPACK_RPM_PACKAGE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-        SET(CPACK_RPM_PACKAGE_GROUP "${PROJECT_NAME}")
-        SET(CPACK_RPM_PACKAGE_URL "http://www.zezula.net/en/mpq/stormlib.html")
-        SET(CPACK_RPM_PACKAGE_REQUIRES "zlib,bzip2")
+        set(CPACK_RPM_PACKAGE_NAME "libstorm-devel")
+        set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
+        set(CPACK_RPM_PACKAGE_RELEASE 1)
+        set(CPACK_RPM_PACKAGE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+        set(CPACK_RPM_PACKAGE_GROUP "${PROJECT_NAME}")
+        set(CPACK_RPM_PACKAGE_URL "http://www.zezula.net/en/mpq/stormlib.html")
+        set(CPACK_RPM_PACKAGE_REQUIRES "zlib,bzip2")
 
-        INCLUDE(CPack)
+        include(CPack)
 endif()
 
 if(STORM_BUILD_TESTS)
-    add_executable(StormLib_test ${TEST_SRC_FILES})
-    target_link_libraries(StormLib_test ${LIBRARY_NAME})
-    install(TARGETS StormLib_test RUNTIME DESTINATION bin)
+    enable_testing()
+    add_subdirectory(test)
 endif()
 

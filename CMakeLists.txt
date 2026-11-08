@@ -260,6 +260,7 @@ if (WITH_STORMLIB)
                     STORM_CMAKE_CACHE_ARGS
                     -DZLIB_FOUND:STRING=1 -DZLIB_INCLUDE_DIR:PATH=${ZLIB_INCLUDE_DIR} -DZLIB_LIBRARY:FILEPATH=${ZLIB_LIBRARIES}
                     -DBZIP2_FOUND:STRING=1 -DBZIP2_INCLUDE_DIR:PATH=${BZIP2_INCLUDE_DIR} -DBZIP2_LIBRARIES:FILEPATH=${BZIP2_LIBRARIES}
+                    -DBZIP2_LIBRARY:FILEPATH=${BZIP2_LIBRARIES}
                   )
                 endif()
 		ExternalProject_Add(StormLib 
@@ -267,13 +268,16 @@ if (WITH_STORMLIB)
 		  SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/StormLib/"
 		  INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/StormLib/"
 		  CMAKE_ARGS -DSTORM_SKIP_INSTALL=ON
+		    -DWITH_BUNDLED_LIBTOMMATH=ON -DWITH_BUNDLED_LIBTOMCRYPT=ON
                   CMAKE_CACHE_ARGS ${STORM_CMAKE_CACHE_ARGS}
 		  INSTALL_COMMAND ""
 		)
 		set(STORMLIB_FOUND true)
 		set(STORMLIB_INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR}/StormLib/src)
                 if(MSVC)
-                  set(STORMLIB_LIBRARY "${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/$<CONFIGURATION>/storm.lib")
+                  set(STORMLIB_LIBRARY "${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/$<CONFIGURATION>/StormLib.lib")
+                elseif(WIN32)
+                  set(STORMLIB_LIBRARY "${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/libStormLib.a")
                 else()
 		  set(STORMLIB_LIBRARY "${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/libstorm.a")
                 endif()
@@ -307,6 +311,9 @@ if(ENABLE_VENDORED_LIBS)
   add_dependencies(wargus png zlib)
   add_dependencies(wartool png zlib)
   add_dependencies(pudconvert png zlib)
+  if(BUILD_STORMLIB)
+    add_dependencies(StormLib zlib bzip2)
+  endif()
 endif()
 
 if(WIN32 AND MINGW AND ENABLE_STATIC)

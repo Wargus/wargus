@@ -213,7 +213,7 @@ static bool DoMPQSearch_FileEntry(
     TFileEntry * pPatchEntry;
     HANDLE hFile = NULL;
     const char * szFileName;
-    size_t nPrefixLength = (ha->pPatchPrefix != NULL) ? ha->pPatchPrefix->nLength : 0;
+    size_t nGlobalPrefixLength = (ha->pPatchPrefix != NULL) ? ha->pPatchPrefix->nLength : 0;
     DWORD dwBlockIndex;
     char szNameBuff[MAX_PATH];
 
@@ -221,12 +221,14 @@ static bool DoMPQSearch_FileEntry(
     if((pFileEntry->dwFlags & hs->dwFlagMask) == MPQ_FILE_EXISTS)
     {
         // Ignore fake files which are not compressed but have size higher than the archive
-        if ((pFileEntry->dwFlags & MPQ_FILE_COMPRESS_MASK) == 0 && (pFileEntry->dwFileSize > ha->FileSize))
+        if((pFileEntry->dwFlags & MPQ_FILE_COMPRESS_MASK) == 0 && (pFileEntry->dwFileSize > ha->FileSize))
             return false;
 
         // Now we have to check if this file was not enumerated before
         if(!FileWasFoundBefore(ha, hs, pFileEntry))
         {
+            size_t nPrefixLength = nGlobalPrefixLength;
+
 //          if(pFileEntry != NULL && !_stricmp(pFileEntry->szFileName, "TriggerLibs\\NativeLib.galaxy"))
 //              DebugBreak();
 
@@ -236,8 +238,6 @@ static bool DoMPQSearch_FileEntry(
 
             // Prepare the block index
             dwBlockIndex = (DWORD)(pFileEntry - ha->pFileTable);
-            if(dwBlockIndex == 569)
-                szNameBuff[0] = 'F';
 
             // Get the file name. If it's not known, we will create pseudo-name
             szFileName = pFileEntry->szFileName;
@@ -248,8 +248,9 @@ static bool DoMPQSearch_FileEntry(
                 if(SFileOpenFileEx((HANDLE)hs->ha, szNameBuff, SFILE_OPEN_BASE_FILE, &hFile))
                 {
                     SFileGetFileName(hFile, szNameBuff);
-                    szFileName = szNameBuff;
                     SFileCloseFile(hFile);
+                    szFileName = szNameBuff;
+                    nPrefixLength = 0;
                 }
             }
 
@@ -265,7 +266,7 @@ static bool DoMPQSearch_FileEntry(
                     lpFindFileData->dwFileSize   = pPatchEntry->dwFileSize;
                     lpFindFileData->dwFileFlags  = pPatchEntry->dwFlags;
                     lpFindFileData->dwCompSize   = pPatchEntry->dwCmpSize;
-                    lpFindFileData->lcLocale     = 0;   // pPatchEntry->lcLocale;
+                    lpFindFileData->lcLocale     = 0;   // pPatchEntry->lcFileLocale;
 
                     // Fill the filetime
                     lpFindFileData->dwFileTimeHi = (DWORD)(pPatchEntry->FileTime >> 32);
@@ -275,7 +276,7 @@ static bool DoMPQSearch_FileEntry(
                     if(pHashEntry != NULL)
                     {
                         lpFindFileData->dwHashIndex = (DWORD)(pHashEntry - ha->pHashTable);
-                        lpFindFileData->lcLocale = pHashEntry->lcLocale;
+                        lpFindFileData->lcLocale = SFILE_MAKE_LCID(pHashEntry->Locale, pHashEntry->Platform);
                     }
 
                     // Fill the file name and plain file name
@@ -351,7 +352,9 @@ static DWORD DoMPQSearch(TMPQSearch * hs, SFILE_FIND_DATA * lpFindFileData)
         dwErrCode = (ha->pHashTable != NULL) ? DoMPQSearch_HashTable(hs, lpFindFileData, ha)
                                              : DoMPQSearch_FileTable(hs, lpFindFileData, ha);
         if(dwErrCode == ERROR_SUCCESS)
+        {
             return dwErrCode;
+        }
 
         // If there is no more patches in the chain, stop it.
         // This also keeps hs->ha non-NULL, which is required
@@ -441,7 +444,7 @@ HANDLE WINAPI SFileFindFirstFile(HANDLE hMpq, const char * szMask, SFILE_FIND_DA
     if(dwErrCode != ERROR_SUCCESS)
     {
         FreeMPQSearch(hs);
-        SetLastError(dwErrCode);
+        SErrSetLastError(dwErrCode);
     }
 
     // Return the result value
@@ -463,7 +466,7 @@ bool WINAPI SFileFindNextFile(HANDLE hFind, SFILE_FIND_DATA * lpFindFileData)
         dwErrCode = DoMPQSearch(hs, lpFindFileData);
 
     if(dwErrCode != ERROR_SUCCESS)
-        SetLastError(dwErrCode);
+        SErrSetLastError(dwErrCode);
     return (dwErrCode == ERROR_SUCCESS);
 }
 
@@ -474,7 +477,7 @@ bool WINAPI SFileFindClose(HANDLE hFind)
     // Check the parameters
     if(hs == NULL)
     {
-        SetLastError(ERROR_INVALID_HANDLE);
+        SErrSetLastError(ERROR_INVALID_HANDLE);
         return false;
     }
 
