@@ -11,6 +11,11 @@ function LoadGame(s)
     Briefing = origBriefing
     if (GameResult ~= GameRestart) then
       loop = false
+    elseif (currentCampaign ~= nil) then
+      -- restart of campaign game is handled below
+      loop = false
+    else
+      -- TODO: Improve restart of non-campaign game
     end
   end
 
@@ -29,6 +34,7 @@ function LoadGame(s)
       position = position + 1
     elseif (GameResult == GameDefeat) then
     elseif (GameResult == GameDraw) then
+    elseif (GameResult == GameRestart) then
     elseif (GameResult == GameNoResult) then
       return
     else
