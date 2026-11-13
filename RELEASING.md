@@ -11,27 +11,23 @@ including its documentation and changelog.
 
 ## Release artifacts
 
-| artifact | workflow |
-| --- | --- |
-| Windows installer | [`windows.yml`](.github/workflows/windows.yml) |
-| macOS `dmg` | [`macos.yml`](.github/workflows/macos.yml) |
-| Linux AppImage | [`ubuntu.yml`](.github/workflows/ubuntu.yml) |
-
-A push to `master`, a tag, or a manual "Run workflow" makes all three build,
+All three artifacts are made by
+[`build.yml`](.github/workflows/build.yml), which is a matrix over the platforms
+rather than three workflows: a release of Wargus is its installer, its `dmg` and
+its AppImage together, and there is no revision of it for which only one of them
+is wanted. A push to `master`, a tag or a manual "Run workflow" builds all three,
 and so does [`engine.yml`](.github/workflows/engine.yml), which runs daily and
-starts them when the engine has moved since the artifacts went up. A pull
-request is built so that it can be reviewed, but publishes nothing, and it is
-the only build a branch gets: `master` and version tags are the refs that
-publish, so a branch with a pull request is not built twice. The AppVeyor-era
-packaging and the Launchpad recipes are gone with the CI that ran them. Each
-of the three workflows uploads its artifact to the release for the tag it ran
-for, creating that release if none of them has yet, and pushes to `master`
-upload to the [master-builds
+starts that build when the engine has moved since the artifacts went up. A pull
+request is built so that it can be reviewed, but publishes nothing, and it is the
+only build a branch gets: `master` and version tags are the refs that publish, so
+a branch with a pull request is not built twice. Each platform uploads what it
+built to the release for the revision it ran for, creating that release if none of
+them has yet, and pushes to `master` upload to the [master-builds
 release](https://github.com/Wargus/wargus/releases/tag/master-builds) instead.
 
-The Linux workflow runs `tools/ci-build.sh`, which takes one argument, the
+The Linux job runs `tools/ci-build.sh`, which takes one argument, the
 platform being built for, and does that platform's whole artifact. The AppImage
-can therefore be built locally the same way, which is what the workflow does:
+can therefore be built locally the same way, which is what the job does:
 
 ```sh
 git clone --recursive https://github.com/Wargus/stratagus ../stratagus

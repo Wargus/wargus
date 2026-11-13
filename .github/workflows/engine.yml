@@ -1,27 +1,16 @@
 name: engine
 
-# The engine is not built from this repository, so a merge to Wargus/stratagus
-# leaves the artifacts of the master-builds release stale without anything here
-# changing. Only a workflow can be scheduled, which is why the schedule is here;
-# what it runs is the check the three games share.
-
 on:
   workflow_dispatch:
   schedule:
-    # The hour differs between the games, so that the three of them do not start
-    # their builds at the same time. The check itself costs nothing.
     - cron: '7 5 * * *'
 
 permissions:
   contents: read
-  # to start the workflows that build the artifacts
   actions: write
 
 jobs:
   engine-changed:
-    # Taken from the engine repository: from its branch until that is merged, and
-    # from master afterwards. A ref whose name contains a slash does not resolve
-    # here, which is worth knowing when naming such a branch.
     uses: Wargus/stratagus/.github/workflows/game-engine-check.yml@timfel-release-refactoring
     with:
       game_id: wargus

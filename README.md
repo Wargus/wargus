@@ -24,13 +24,12 @@ Run the script in the same folder as your game data and the Wargus app.
 It will not be needed in the future when all the bugs are fixed. 
 
 ### Build status:
-- Windows: ![Build Status](https://github.com/Wargus/wargus/actions/workflows/windows.yml/badge.svg)
-- Linux: ![Build Status](https://github.com/Wargus/wargus/actions/workflows/ubuntu.yml/badge.svg)
-- macOS: ![Build Status](https://github.com/Wargus/wargus/actions/workflows/macos.yml/badge.svg)
+![Build Status](https://github.com/Wargus/wargus/actions/workflows/build.yml/badge.svg)
 
-The Windows workflow builds the installer, the Linux workflow the AppImage and
-the macOS workflow the `dmg`; pushing a version tag creates the release with
-those artifacts, and pushes to `master` update the `master-builds` release.
+The build makes the artifacts of all three platforms at once, the Windows
+installer, the Linux AppImage and the macOS `dmg`; pushing a version tag creates
+the release with those artifacts, and pushes to `master` update the
+`master-builds` release.
 `RELEASING.md` describes how a release is made.
 
 ### Join the community
