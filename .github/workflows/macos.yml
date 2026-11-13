@@ -84,11 +84,8 @@ jobs:
         submodules: recursive
         path: stratagus
 
-    # ffmpeg is only ever run as a tool by wartool, nothing here is linked against
-    # it: the libraries the game and the engine use come from the shared
-    # dependencies submodule.
     - name: Install dependencies
-      run: brew install dylibbundler ffmpeg
+      run: brew install dylibbundler sdl2 sdl2_mixer sdl2_image theora lua ffmpeg
 
     - name: cmake --version
       run: cmake --version
@@ -97,9 +94,10 @@ jobs:
       run: |
         cmake stratagus -B stratagus/build \
         -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_FIND_FRAMEWORK=LAST \
         -DBUILD_VENDORED_LUA=ON \
-        -DBUILD_VENDORED_SDL=ON \
-        -DBUILD_VENDORED_MEDIA_LIBS=ON \
+        -DBUILD_VENDORED_SDL=OFF \
+        -DBUILD_VENDORED_MEDIA_LIBS=OFF \
         -DBUILD_TESTING=1 \
         -DCMAKE_POLICY_VERSION_MINIMUM=3.5
         cmake --build stratagus/build --config Release
@@ -107,8 +105,10 @@ jobs:
     - name: Build Wargus
       run: |
         cmake wargus -B wargus/build \
+        -DCMAKE_FIND_FRAMEWORK=LAST \
         -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
         -DSTRATAGUS=../stratagus/build/stratagus \
+        -DENABLE_VENDORED_LIBS=OFF \
         -DCMAKE_POLICY_VERSION_MINIMUM=3.5
         cmake --build wargus/build --config Release
 
