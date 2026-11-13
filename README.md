@@ -14,8 +14,8 @@ Run the script in the same folder as your game data and the Wargus app.
 It will not be needed in the future when all the bugs are fixed. 
 
 ### Build status:
-- Windows: <a href="https://ci.appveyor.com/project/timfel/wargus"><img width="100" src="https://ci.appveyor.com/api/projects/status/github/Wargus/wargus?branch=master&svg=true"></a>
-- Linux: [![Build Status](https://travis-ci.org/Wargus/wargus.svg?branch=master)](https://travis-ci.org/Wargus/wargus)
+- Windows: ![Build Status](https://github.com/Wargus/wargus/actions/workflows/windows.yml/badge.svg)
+- Linux: ![Build Status](https://github.com/Wargus/wargus/actions/workflows/ubuntu.yml/badge.svg)
 - macOS: ![Build Status](https://github.com/Wargus/wargus/actions/workflows/macos.yml/badge.svg)
 
 ### Join the community

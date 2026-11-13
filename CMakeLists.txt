@@ -41,11 +41,16 @@ endif()
 
 if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/third-party/CMakeLists.txt")
   add_subdirectory(third-party)
+  set(have_vendored_deps ON)
 else()
   message(WARNING "Third-party directory not populated, cannot vendor any dependencies.")
+  set(have_vendored_deps OFF)
 endif()
 
-option(ENABLE_VENDORED_LIBS OFF)
+# Wargus ships the libraries it needs from the shared dependencies submodule, so
+# a plain build does not depend on which versions a distribution happens to
+# install. Packagers that insist on the system libraries can still turn this off.
+option(ENABLE_VENDORED_LIBS "Build the dependencies from third-party instead of finding them on the system" ${have_vendored_deps})
 
 # Wargus sources
 
@@ -252,35 +257,8 @@ endif()
 # For now, doesn't compile on OS X with StormLib
 if (WITH_STORMLIB)
 	if (NOT STORMLIB_FOUND)
-		set(BUILD_STORMLIB true)
-		include(ExternalProject)
 		message(STATUS "Will build StormLib as part of compilation.")
-                if(ENABLE_VENDORED_LIBS)
-                  set(
-                    STORM_CMAKE_CACHE_ARGS
-                    -DZLIB_FOUND:STRING=1 -DZLIB_INCLUDE_DIR:PATH=${ZLIB_INCLUDE_DIR} -DZLIB_LIBRARY:FILEPATH=${ZLIB_LIBRARIES}
-                    -DBZIP2_FOUND:STRING=1 -DBZIP2_INCLUDE_DIR:PATH=${BZIP2_INCLUDE_DIR} -DBZIP2_LIBRARIES:FILEPATH=${BZIP2_LIBRARIES}
-                    -DBZIP2_LIBRARY:FILEPATH=${BZIP2_LIBRARIES}
-                  )
-                endif()
-		ExternalProject_Add(StormLib 
-		  PREFIX "${CMAKE_CURRENT_BINARY_DIR}/StormLib/"
-		  SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/StormLib/"
-		  INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/StormLib/"
-		  CMAKE_ARGS -DSTORM_SKIP_INSTALL=ON
-		    -DWITH_BUNDLED_LIBTOMMATH=ON -DWITH_BUNDLED_LIBTOMCRYPT=ON
-                  CMAKE_CACHE_ARGS ${STORM_CMAKE_CACHE_ARGS}
-		  INSTALL_COMMAND ""
-		)
-		set(STORMLIB_FOUND true)
-		set(STORMLIB_INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR}/StormLib/src)
-                if(MSVC)
-                  set(STORMLIB_LIBRARY "${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/$<CONFIGURATION>/StormLib.lib")
-                elseif(WIN32)
-                  set(STORMLIB_LIBRARY "${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/libStormLib.a")
-                else()
-		  set(STORMLIB_LIBRARY "${CMAKE_CURRENT_BINARY_DIR}/StormLib/src/StormLib-build/libstorm.a")
-                endif()
+		vendored_stormlib()
 	endif()
 
 	if (STORMLIB_FOUND)
@@ -301,19 +279,10 @@ target_link_libraries(wargus ${wargus_LIBS})
 add_executable(wartool ${wartool_SRCS} ${wartool_HDRS})
 target_link_libraries(wartool ${wartool_LIBS})
 
-if(BUILD_STORMLIB)
-	add_dependencies(wargus StormLib)
-	add_dependencies(wartool StormLib)
-	add_dependencies(pudconvert StormLib)
-endif()
-
 if(ENABLE_VENDORED_LIBS)
   add_dependencies(wargus png zlib)
   add_dependencies(wartool png zlib)
   add_dependencies(pudconvert png zlib)
-  if(BUILD_STORMLIB)
-    add_dependencies(StormLib zlib bzip2)
-  endif()
 endif()
 
 if(WIN32 AND MINGW AND ENABLE_STATIC)

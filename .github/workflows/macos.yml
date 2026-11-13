@@ -2,6 +2,10 @@ name: macOS
 
 on:
   workflow_dispatch:
+  # Rebuilt when the engine or the shared dependencies move. See the
+  # "Downstream builds" workflow in Wargus/stratagus.
+  repository_dispatch:
+    types: [engine-update]
   push:
     paths:
       - '**'
@@ -30,8 +34,6 @@ jobs:
         include:
             - runner: macos-latest
               suffix: arm64
-            - runner: macos-15-intel
-              suffix: x86
     runs-on: ${{ matrix.runner}}
 
     steps:
@@ -42,15 +44,47 @@ jobs:
         submodules: recursive
         path: wargus
         
+    - name: Resolve which Stratagus to build against
+      id: stratagus
+      run: |
+        # The engine and the game are released in lockstep: a tag in this
+        # repository has an engine tag of the same name, and a change that spans
+        # both repositories is developed on branches of the same name. So look for
+        # the same kind of ref as the one we are running on, and build against the
+        # engine master branch when the engine does not have it.
+        engine=https://github.com/Wargus/stratagus
+        # A pull request builds the branch it came from, not the merge ref.
+        name=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}
+        if [ "$GITHUB_REF_TYPE" = tag ]; then
+          candidate=refs/tags/$name
+        else
+          candidate=refs/heads/$name
+        fi
+
+        if git ls-remote --exit-code --refs "$engine" "$candidate" > /dev/null; then
+          ref=$name
+          probe=$candidate
+        else
+          probe=refs/heads/master
+          if ! git ls-remote --exit-code --refs "$engine" "$probe" > /dev/null; then
+            echo "Wargus/stratagus has neither $candidate nor $probe" >&2
+            exit 1
+          fi
+          ref=master
+        fi
+        echo "ref=$ref" >> "$GITHUB_OUTPUT"
+        echo "building against Wargus/stratagus@$ref ($probe)"
+
     - name: Checkout Stratagus
       uses: actions/checkout@v7
-      with: 
+      with:
         repository: Wargus/stratagus
+        ref: ${{ steps.stratagus.outputs.ref }}
         submodules: recursive
         path: stratagus
 
     - name: Install dependencies
-      run: brew install dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
+      run: brew install dylibbundler sdl2 sdl2_mixer sdl2_image theora lua ffmpeg
 
     - name: cmake --version
       run: cmake --version
@@ -63,7 +97,8 @@ jobs:
         -DBUILD_VENDORED_LUA=ON \
         -DBUILD_VENDORED_SDL=OFF \
         -DBUILD_VENDORED_MEDIA_LIBS=OFF \
-        -DBUILD_TESTING=1
+        -DBUILD_TESTING=1 \
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.5
         cmake --build stratagus/build --config Release
     
     - name: Build Wargus
@@ -71,7 +106,9 @@ jobs:
         cmake wargus -B wargus/build \
         -DCMAKE_FIND_FRAMEWORK=LAST \
         -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
-        -DSTRATAGUS=../stratagus/build/stratagus 
+        -DSTRATAGUS=../stratagus/build/stratagus \
+        -DENABLE_VENDORED_LIBS=OFF \
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.5
         cmake --build wargus/build --config Release
 
     - name: Create Wargus app bundle
