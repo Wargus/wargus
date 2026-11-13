@@ -1,5 +1,8 @@
 name: ubuntu
 
+# What happens here is in Wargus/stratagus, next to the engine that is built with
+# it: this file only says when Wargus is built for the AppImage of this repository.
+
 on:
   workflow_dispatch:
   # A manual request to build against the current engine, e.g. with
@@ -7,187 +10,26 @@ on:
   repository_dispatch:
     types: [engine-update]
   push:
-    # master and version tags only: a push to a branch with a pull request
-    # would build what the pull_request event already builds, and a branch
-    # that is neither released nor reviewed needs no artifacts of its own.
+    # master and version tags only: a push to a branch with a pull request would
+    # build what the pull_request event already builds, and a branch that is
+    # neither released nor reviewed needs no artifacts of its own.
     branches: [master]
     tags: ['v*', '[0-9]*']
-    paths:
-      - '**'
-      - '!.github/**'
-      - '!**.yml'
-      - '.github/workflows/ubuntu.yml'
-      - '!**.md'
-      - '!.vscode/**'
-      - '!doc/**'
-
   pull_request:
-    paths:
-      - '**'
-      - '!.github/**'
-      - '!**.yml'
-      - '.github/workflows/ubuntu.yml'
-      - '!**.md'
-      - '!.vscode/**'
-      - '!doc/**'
 
-# The appimage job publishes its artifact to a release.
+# Pushing a tag or building master publishes the AppImage, and every artifact of a
+# revision goes to the release of that revision.
 permissions:
   contents: write
 
-env:
-  build_type: Release
-
 jobs:
-  ubuntu:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Wargus
-      uses: actions/checkout@v7
-      with:
-        submodules: recursive
-        path: wargus
-
-    - name: Resolve which Stratagus to build against
-      id: stratagus
-      run: |
-        # The engine and the game are released in lockstep: a tag in this
-        # repository has an engine tag of the same name, and a change that spans
-        # both repositories is developed on branches of the same name. So look for
-        # the same kind of ref as the one we are running on, and build against the
-        # engine master branch when the engine does not have it.
-        engine=https://github.com/Wargus/stratagus
-        # A pull request builds the branch it came from, not the merge ref.
-        name=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}
-        if [ "$GITHUB_REF_TYPE" = tag ]; then
-          candidate=refs/tags/$name
-        else
-          candidate=refs/heads/$name
-        fi
-
-        if git ls-remote --exit-code --refs "$engine" "$candidate" > /dev/null; then
-          ref=$name
-          probe=$candidate
-        else
-          probe=refs/heads/master
-          if ! git ls-remote --exit-code --refs "$engine" "$probe" > /dev/null; then
-            echo "Wargus/stratagus has neither $candidate nor $probe" >&2
-            exit 1
-          fi
-          ref=master
-        fi
-        echo "ref=$ref" >> "$GITHUB_OUTPUT"
-        echo "building against Wargus/stratagus@$ref ($probe)"
-
-    - name: Checkout Stratagus
-      uses: actions/checkout@v7
-      with:
-        repository: Wargus/stratagus
-        ref: ${{ steps.stratagus.outputs.ref }}
-        submodules: recursive
-        path: stratagus
-
-    # Nothing is installed for the game itself: png, zlib, bzip2 and StormLib
-    # are the ones from the shared dependencies submodule. Only the engine
-    # brings in what it cannot vendor, which is the same set its own Linux jobs
-    # rely on.
-    - name: build Stratagus
-      run: |
-        cmake -S stratagus -B stratagus/build -DCMAKE_BUILD_TYPE=$build_type -DBUILD_VENDORED_LUA=ON -DBUILD_VENDORED_SDL=ON -DBUILD_VENDORED_MEDIA_LIBS=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-        cmake --build stratagus/build --config $build_type
-
-    - name: build Wargus
-      run: |
-        cmake -S wargus -B wargus/build -DCMAKE_BUILD_TYPE=$build_type -DSTRATAGUS=$GITHUB_WORKSPACE/stratagus/build/stratagus -DSTRATAGUS_INCLUDE_DIR=$GITHUB_WORKSPACE/stratagus/gameheaders
-        cmake --build wargus/build --config $build_type
-
-  appimage:
-    name: Linux AppImage
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Wargus
-      uses: actions/checkout@v7
-      with:
-        submodules: recursive
-        path: wargus
-
-    - name: Resolve which Stratagus to build against
-      id: stratagus
-      run: |
-        # Same lockstep as in the other jobs: a release tag here means the
-        # AppImage is built against the engine tag of the same name.
-        engine=https://github.com/Wargus/stratagus
-        name=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}
-        if [ "$GITHUB_REF_TYPE" = tag ]; then
-          candidate=refs/tags/$name
-        else
-          candidate=refs/heads/$name
-        fi
-
-        if git ls-remote --exit-code --refs "$engine" "$candidate" > /dev/null; then
-          ref=$name
-          probe=$candidate
-        else
-          probe=refs/heads/master
-          if ! git ls-remote --exit-code --refs "$engine" "$probe" > /dev/null; then
-            echo "Wargus/stratagus has neither $candidate nor $probe" >&2
-            exit 1
-          fi
-          ref=master
-        fi
-        echo "ref=$ref" >> "$GITHUB_OUTPUT"
-        echo "building against Wargus/stratagus@$ref ($probe)"
-
-    - name: Checkout Stratagus
-      uses: actions/checkout@v7
-      with:
-        repository: Wargus/stratagus
-        ref: ${{ steps.stratagus.outputs.ref }}
-        submodules: recursive
-        path: stratagus
-
-    # The AppImage bundles the engine, the game and every library that is not
-    # part of a base Linux installation, so the only packages needed here are
-    # the build tools and the headers that the vendored SDL2 build looks for
-    # itself: what it finds decides which video and audio backends the shipped
-    # binary can use, so this is the list that says what an AppImage supports.
-    - name: install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -yy \
-          build-essential cmake file pkg-config \
-          libx11-dev libxext-dev libxrender-dev libxrandr-dev libxi-dev \
-          libxfixes-dev libxcursor-dev libxss-dev libxtst-dev libsm-dev \
-          libgl-dev libegl-dev libgles-dev libglx-dev \
-          libwayland-dev libxkbcommon-dev libxkbcommon-x11-dev libdecor-0-dev \
-          libdrm-dev libgbm-dev libudev-dev libdbus-1-dev \
-          libasound2-dev libpulse-dev
-
-    - name: build the Wargus AppImage
-      run: bash -x wargus/tools/build_appimage.sh "$GITHUB_WORKSPACE/stratagus"
-
-    - name: Upload artifacts - Linux AppImage
-      uses: actions/upload-artifact@v7
-      with:
-        name: Wargus-Linux
-        path: '*.AppImage'
-        retention-days: 90
-        if-no-files-found: error
-
-    - name: Upload to the matching GitHub release
-      if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/master' || github.ref_type == 'tag')
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        set -e
-        if [ "$GITHUB_REF_TYPE" = tag ]; then
-          tag=$GITHUB_REF_NAME
-          if ! gh release view "$tag" --exit-status --json tagName > /dev/null 2>&1; then
-            gh release create "$tag" --target "$GITHUB_SHA" --title "$tag" --notes "Wargus $tag"
-          fi
-        else
-          tag=master-builds
-        fi
-        gh release upload "$tag" --clobber ./*.AppImage
+  wargus:
+    # Taken from the engine repository: from its branch until that is merged, and
+    # from master afterwards. A ref whose name contains a slash does not resolve
+    # here, which is worth knowing when naming such a branch.
+    uses: Wargus/stratagus/.github/workflows/game-build.yml@timfel-release-refactoring
+    with:
+      game_id: wargus
+      game_name: Wargus
+      platform: linux
+    secrets: inherit

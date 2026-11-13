@@ -2,10 +2,8 @@ name: engine
 
 # The engine is not built from this repository, so a merge to Wargus/stratagus
 # leaves the artifacts of the master-builds release stale without anything here
-# changing. Looking for that once a day is enough, and looking from here rather
-# than having the engine announce it means nothing needs a token that is valid
-# in someone else's repository: workflow_dispatch events created with the token
-# of a run are allowed to start runs in the same repository.
+# changing. Only a workflow can be scheduled, which is why the schedule is here;
+# what it runs is the check the three games share.
 
 on:
   workflow_dispatch:
@@ -21,48 +19,10 @@ permissions:
 
 jobs:
   engine-changed:
-    name: Rebuild the master-builds artifacts when the engine moved
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check whether the engine moved since the artifacts went up
-        id: changed
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -e
-          # The date of the engine master against the date the newest artifact of
-          # the master-builds release went up. Dates rather than revisions, so a
-          # change can go unnoticed for a day, which is what it costs to avoid
-          # needing a token that is valid in the engine repository.
-          if ! engine=$(gh api repos/Wargus/stratagus/commits/master --jq .commit.committer.date); then
-            echo "could not read the engine master, building"
-            echo changed=true >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          published=$(gh api repos/Wargus/wargus/releases/tags/master-builds \
-            --jq '[.assets[].updated_at] | max' 2>/dev/null || true)
-          if [ -z "$published" ] || [ "$published" = null ]; then
-            echo "nothing is in the master-builds release yet, building"
-            echo changed=true >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          if [ "$(date -d "$engine" +%s)" -gt "$(date -d "$published" +%s)" ]; then
-            echo "the engine moved at $engine, the artifacts are from $published"
-            echo changed=true >> "$GITHUB_OUTPUT"
-          else
-            echo "the engine has not moved since the artifacts went up at $published"
-            echo changed=false >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Ask the workflows that build the artifacts to run
-        if: steps.changed.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # On the default branch, which is where the artifacts come from. Those
-          # workflows upload what they build to the master-builds release, so the
-          # next run of this one is quiet again.
-          for workflow in windows.yml ubuntu.yml macos.yml; do
-            gh workflow run "$workflow" --ref master
-          done
+    # Taken from the engine repository: from its branch until that is merged, and
+    # from master afterwards. A ref whose name contains a slash does not resolve
+    # here, which is worth knowing when naming such a branch.
+    uses: Wargus/stratagus/.github/workflows/game-engine-check.yml@timfel-release-refactoring
+    with:
+      game_id: wargus
+    secrets: inherit

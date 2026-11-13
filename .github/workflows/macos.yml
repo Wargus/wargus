@@ -1,5 +1,8 @@
 name: macOS
 
+# What happens here is in Wargus/stratagus, next to the engine that is built with
+# it: this file only says when Wargus is built for the dmg of this repository.
+
 on:
   workflow_dispatch:
   # A manual request to build against the current engine, e.g. with
@@ -7,168 +10,26 @@ on:
   repository_dispatch:
     types: [engine-update]
   push:
-    # master and version tags only: a push to a branch with a pull request
-    # would build what the pull_request event already builds, and a branch
-    # that is neither released nor reviewed needs no artifacts of its own.
+    # master and version tags only: a push to a branch with a pull request would
+    # build what the pull_request event already builds, and a branch that is
+    # neither released nor reviewed needs no artifacts of its own.
     branches: [master]
     tags: ['v*', '[0-9]*']
-    paths:
-      - '**'
-      - '!.github/**'
-      - '!**.yml'
-      - '.github/workflows/macos.yml'
-      - '!**.md'
-      - '!.vscode/**'
-      - '!doc/**'
-
   pull_request:
-    paths:
-      - '**'
-      - '!.github/**'
-      - '!**.yml'
-      - '.github/workflows/macos.yml'
-      - '!**.md'
-      - '!.vscode/**'
-      - '!doc/**'
 
-# The dmg of a tag or of master is published to a release.
+# Pushing a tag or building master publishes the dmg, and every artifact of a
+# revision goes to the release of that revision.
 permissions:
   contents: write
 
 jobs:
-  macOS:
-    
-    strategy:
-      matrix:
-        include:
-            - runner: macos-latest
-              suffix: arm64
-    runs-on: ${{ matrix.runner}}
-
-    steps:
-    - name: Checkout Wargus
-      uses: actions/checkout@v7
-      with:
-        repository: Wargus/wargus
-        submodules: recursive
-        path: wargus
-        
-    - name: Resolve which Stratagus to build against
-      id: stratagus
-      run: |
-        # The engine and the game are released in lockstep: a tag in this
-        # repository has an engine tag of the same name, and a change that spans
-        # both repositories is developed on branches of the same name. So look for
-        # the same kind of ref as the one we are running on, and build against the
-        # engine master branch when the engine does not have it.
-        engine=https://github.com/Wargus/stratagus
-        # A pull request builds the branch it came from, not the merge ref.
-        name=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}
-        if [ "$GITHUB_REF_TYPE" = tag ]; then
-          candidate=refs/tags/$name
-        else
-          candidate=refs/heads/$name
-        fi
-
-        if git ls-remote --exit-code --refs "$engine" "$candidate" > /dev/null; then
-          ref=$name
-          probe=$candidate
-        else
-          probe=refs/heads/master
-          if ! git ls-remote --exit-code --refs "$engine" "$probe" > /dev/null; then
-            echo "Wargus/stratagus has neither $candidate nor $probe" >&2
-            exit 1
-          fi
-          ref=master
-        fi
-        echo "ref=$ref" >> "$GITHUB_OUTPUT"
-        echo "building against Wargus/stratagus@$ref ($probe)"
-
-    - name: Checkout Stratagus
-      uses: actions/checkout@v7
-      with:
-        repository: Wargus/stratagus
-        ref: ${{ steps.stratagus.outputs.ref }}
-        submodules: recursive
-        path: stratagus
-
-    - name: Install dependencies
-      run: brew install dylibbundler sdl2 sdl2_mixer sdl2_image theora lua ffmpeg
-
-    - name: cmake --version
-      run: cmake --version
-
-    - name: Build Stratagus
-      run: |
-        cmake stratagus -B stratagus/build \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_FIND_FRAMEWORK=LAST \
-        -DBUILD_VENDORED_LUA=ON \
-        -DBUILD_VENDORED_SDL=OFF \
-        -DBUILD_VENDORED_MEDIA_LIBS=OFF \
-        -DBUILD_TESTING=1 \
-        -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-        cmake --build stratagus/build --config Release
-    
-    - name: Build Wargus
-      run: |
-        cmake wargus -B wargus/build \
-        -DCMAKE_FIND_FRAMEWORK=LAST \
-        -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
-        -DSTRATAGUS=../stratagus/build/stratagus \
-        -DENABLE_VENDORED_LIBS=OFF \
-        -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-        cmake --build wargus/build --config Release
-
-    - name: Create Wargus app bundle
-      run: |
-        export STRATAGUS_INCLUDE_DIR=stratagus/gameheaders
-        export STRATAGUS=stratagus/build/stratagus
-        wargus/mac/bundle.sh
-        
-        dylibbundler -of -cd -b -x wargus/mac/Wargus.app/Contents/MacOS/stratagus -d wargus/mac/Wargus.app/Contents/libs/
-        dylibbundler -of -cd -b -x wargus/mac/Wargus.app/Contents/MacOS/wartool -d wargus/mac/Wargus.app/Contents/libs/
-        
-        codesign --force --deep --sign - wargus/mac/Wargus.app
-        
-    - name: Create dmg
-      run: |
-        # Named after the game version in the bundle, so the asset of a release
-        # says which version it is and the master-builds release only ever
-        # holds the current development build.
-        version=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' wargus/mac/Info.plist)
-        output="Wargus-$version-${{ matrix.suffix }}"
-        rm -f "$output" "$output.dmg"
-        for attempt in 1 2 3; do
-          hdiutil detach "/Volumes/Wargus" -force || true
-          if hdiutil create -volname "Wargus" -srcfolder "wargus/mac/Wargus.app" "$output"; then
-            exit 0
-          fi
-          rm -f "$output" "$output.dmg"
-          sleep $((attempt * 10))
-        done
-        hdiutil create -volname "Wargus" -srcfolder "wargus/mac/Wargus.app" "$output"
-    
-    - name: Upload artifacts - macOS ${{ matrix.suffix }}
-      uses: actions/upload-artifact@v7
-      with:
-        name: Wargus-macOS-${{ matrix.suffix }}
-        path: '*.dmg'
-        retention-days: 90
-        if-no-files-found: error
-
-    - name: Upload to the matching GitHub release
-      if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/master' || github.ref_type == 'tag')
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        set -e
-        if [ "$GITHUB_REF_TYPE" = tag ]; then
-          tag=$GITHUB_REF_NAME
-          if ! gh release view "$tag" --exit-status --json tagName > /dev/null 2>&1; then
-            gh release create "$tag" --target "$GITHUB_SHA" --title "$tag" --notes "Wargus $tag"
-          fi
-        else
-          tag=master-builds
-        fi
-        gh release upload "$tag" --clobber ./*.dmg
+  wargus:
+    # Taken from the engine repository: from its branch until that is merged, and
+    # from master afterwards. A ref whose name contains a slash does not resolve
+    # here, which is worth knowing when naming such a branch.
+    uses: Wargus/stratagus/.github/workflows/game-build.yml@timfel-release-refactoring
+    with:
+      game_id: wargus
+      game_name: Wargus
+      platform: macos
+    secrets: inherit
