@@ -48,11 +48,36 @@ jobs:
         submodules: recursive
         path: wargus
 
+    - name: Resolve which Stratagus to build against
+      id: stratagus
+      env:
+        requested_ref: ${{ inputs.stratagus_ref }}
+      run: |
+        # A change that spans the engine and the game is developed on branches of
+        # the same name in both repositories, so prefer the engine branch that
+        # matches this one. Tags, and any branch the engine does not have, build
+        # against master. workflow_dispatch can name a revision explicitly.
+        branch=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}
+        for ref in "$requested_ref" "$branch" master; do
+          if [ -z "$ref" ]; then
+            continue
+          fi
+          if git ls-remote --exit-code https://github.com/Wargus/stratagus "refs/heads/$ref" > /dev/null; then
+            echo "ref=$ref" >> "$GITHUB_OUTPUT"
+            echo "building against Wargus/stratagus@$ref"
+            exit 0
+          fi
+          if [ "$ref" = "$requested_ref" ]; then
+            echo "workflow_dispatch asked for Wargus/stratagus@$ref, which does not exist" >&2
+            exit 1
+          fi
+        done
+
     - name: Checkout Stratagus
       uses: actions/checkout@v7
       with:
         repository: Wargus/stratagus
-        ref: ${{ inputs.stratagus_ref || 'master' }}
+        ref: ${{ steps.stratagus.outputs.ref }}
         submodules: recursive
         path: stratagus
 

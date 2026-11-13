@@ -60,11 +60,37 @@ jobs:
     # that the installers always ship the gameheaders the launcher was
     # configured with, and so that none of the platforms depend on a release
     # of the engine having been published first.
+    - name: Resolve which Stratagus to build against
+      id: stratagus
+      shell: pwsh
+      env:
+        requested_ref: ${{ inputs.stratagus_ref }}
+      run: |
+        # A change that spans the engine and the game is developed on branches of
+        # the same name in both repositories, so prefer the engine branch that
+        # matches this one. Tags, and any branch the engine does not have, build
+        # against master. workflow_dispatch can name a revision explicitly.
+        $branch = if ($env:GITHUB_HEAD_REF) { $env:GITHUB_HEAD_REF } else { $env:GITHUB_REF_NAME }
+        foreach ($ref in @($env:requested_ref, $branch, 'master')) {
+          if (-not $ref) {
+            continue
+          }
+          git ls-remote --exit-code https://github.com/Wargus/stratagus "refs/heads/$ref" | Out-Null
+          if ($LASTEXITCODE -eq 0) {
+            "ref=$ref" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+            "building against Wargus/stratagus@$ref"
+            return
+          }
+          if ($ref -eq $env:requested_ref) {
+            throw "workflow_dispatch asked for Wargus/stratagus@$ref, which does not exist"
+          }
+        }
+
     - name: Checkout Stratagus
       uses: actions/checkout@v7
       with:
         repository: Wargus/stratagus
-        ref: ${{ inputs.stratagus_ref || 'master' }}
+        ref: ${{ steps.stratagus.outputs.ref }}
         submodules: recursive
         path: stratagus
 
@@ -83,7 +109,7 @@ jobs:
     - name: build Stratagus
       shell: pwsh
       run: |
-        cmake -S stratagus -B stratagus/build -DCMAKE_BUILD_TYPE=$env:build_type -DBUILD_VENDORED_LUA=ON -DBUILD_VENDORED_SDL=ON -DBUILD_VENDORED_MEDIA_LIBS=ON "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+        cmake -S stratagus -B stratagus/build "-DCMAKE_BUILD_TYPE=$env:build_type" -DBUILD_VENDORED_LUA=ON -DBUILD_VENDORED_SDL=ON -DBUILD_VENDORED_MEDIA_LIBS=ON "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
         cmake --build stratagus/build --config $env:build_type
 
     # The libraries come from the shared dependencies submodule, so nothing here
@@ -91,7 +117,7 @@ jobs:
     - name: build Wargus
       shell: pwsh
       run: |
-        cmake -S wargus -B wargus/build -DCMAKE_BUILD_TYPE=$env:build_type -DENABLE_NSIS=ON -DSTRATAGUS=../stratagus/build/Release/stratagus.exe -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders
+        cmake -S wargus -B wargus/build "-DCMAKE_BUILD_TYPE=$env:build_type" -DENABLE_NSIS=ON "-DSTRATAGUS=$env:GITHUB_WORKSPACE/stratagus/build/Release/stratagus.exe" "-DSTRATAGUS_INCLUDE_DIR=$env:GITHUB_WORKSPACE/stratagus/gameheaders"
         # wargus.nsi ships the engine it finds next to it, and makensis runs in
         # the build directory.
         Copy-Item stratagus/build/Release/stratagus.exe, stratagus/build/Release/stratagus-midiplayer.exe wargus/build/
