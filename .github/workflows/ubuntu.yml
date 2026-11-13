@@ -2,15 +2,15 @@ name: ubuntu
 
 on:
   workflow_dispatch:
-  # Rebuilt when the engine or the shared dependencies move. See the
-  # "Downstream builds" workflow in Wargus/stratagus.
+  # A manual request to build against the current engine, e.g. with
+  # gh api --method POST -f event_type=engine-update repos/Wargus/wargus/dispatches/repository
   repository_dispatch:
     types: [engine-update]
   push:
-    # The branches filter is required: a tags filter on its own would stop
-    # branch pushes, i.e. the AppImages. Tags are filtered so that only
-    # version tags get a release.
-    branches: ['**']
+    # master and version tags only: a push to a branch with a pull request
+    # would build what the pull_request event already builds, and a branch
+    # that is neither released nor reviewed needs no artifacts of its own.
+    branches: [master]
     tags: ['v*', '[0-9]*']
     paths:
       - '**'
@@ -177,7 +177,7 @@ jobs:
         if-no-files-found: error
 
     - name: Upload to the matching GitHub release
-      if: (github.event_name == 'push' || github.event_name == 'repository_dispatch') && (github.ref == 'refs/heads/master' || github.ref_type == 'tag')
+      if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/master' || github.ref_type == 'tag')
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
