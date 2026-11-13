@@ -17,22 +17,29 @@ including its documentation and changelog.
 | macOS `dmg` | [`macos.yml`](.github/workflows/macos.yml) |
 | Linux AppImage | [`ubuntu.yml`](.github/workflows/ubuntu.yml) |
 
-A push to `master`, a tag, a manual "Run workflow", or a push to the engine
-`master` (which announces it with the "Downstream builds" workflow of
-[`Wargus/stratagus`](https://github.com/Wargus/stratagus)) makes all three
-build, and
-the AppVeyor-era packaging and the Launchpad recipes are gone with the CI that
-ran them. Each of the three workflows uploads its artifact to the release for
-the tag it ran for, creating that release if none of them has yet, and pushes to
-`master` upload to the [master-builds
+A push to `master`, a tag, or a manual "Run workflow" makes all three build,
+and so does [`engine.yml`](.github/workflows/engine.yml), which runs daily and
+starts them when the engine has moved since the artifacts went up. A pull
+request is built so that it can be reviewed, but publishes nothing, and it is
+the only build a branch gets: `master` and version tags are the refs that
+publish, so a branch with a pull request is not built twice. The AppVeyor-era
+packaging and the Launchpad recipes are gone with the CI that ran them. Each
+of the three workflows uploads its artifact to the release for the tag it ran
+for, creating that release if none of them has yet, and pushes to `master`
+upload to the [master-builds
 release](https://github.com/Wargus/wargus/releases/tag/master-builds) instead.
 
-The AppImage can also be built locally, which is what the Linux workflow runs:
+The Linux workflow runs `tools/ci-build.sh`, which takes one argument, the
+platform being built for, and does that platform's whole artifact. The AppImage
+can therefore be built locally the same way, which is what the workflow does:
 
 ```sh
 git clone --recursive https://github.com/Wargus/stratagus ../stratagus
-tools/build_appimage.sh ../stratagus
+tools/ci-build.sh linux   # and macos or windows, where the tools are
 ```
+
+It writes the artifact to `release-assets/`, and takes the engine from
+`../stratagus` unless `ENGINE_SRC` says otherwise.
 
 ## Tagging a release
 

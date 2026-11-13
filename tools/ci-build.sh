@@ -22,10 +22,16 @@
 #   ENGINE_BUILD  where the engine was built, see find_engine for the layout
 #   RELEASE_ASSETS
 #                 where the artifact that gets published goes
+#   APPIMAGE_BUILDER
+#                 an appimage-builder to use instead of downloading one
 #
-# The game is built in $GAME_BUILD, or build/ next to the checkout.
+# The game is built in $GAME_BUILD, or build/ next to the checkout, and the
+# AppImage of Linux in the one next to it.
 
 set -ex
+
+GAME_ID=wargus
+GAME_NAME=Wargus
 
 GAME_SRC=${GAME_SRC:-.}
 ENGINE_SRC=${ENGINE_SRC:-../stratagus}
@@ -54,12 +60,81 @@ find_engine() {
 
 case "$1" in
 linux)
-    # The AppImage is built from the vendored dependencies of both repositories,
-    # which is what makes it independent of the machine it runs on, so it brings
-    # its own engine and does not use the one built above.
-    bash "$GAME_SRC/tools/build_appimage.sh" "$ENGINE_SRC"
+    # The Linux artifact is an AppImage: the engine and the game installed into one
+    # directory with the prefix the AppImage runtime expects, and bundled with
+    # appimage-builder. Nothing needs to be installed on the machine the result runs
+    # on, and the game takes its libraries from third-party, so a build host only
+    # needs the headers that those pick up by itself. Everything about it is under one
+    # directory, absolutely named, because the bundler is run from inside it and finds
+    # nothing on a relative path there.
+    mkdir -p "$BUILD-appimage"
+    root=$(cd "$BUILD-appimage" && pwd)
+    appdir=$root/AppDir
+
+    version=$(head -1 "$GAME_SRC/debian/changelog" | sed -e 's/^[^(]*(//' -e 's/).*//' -e 's/-[^-]*$//')
+
+    # The engine is the one the workflow built, and it is configured with this prefix
+    # so that its binary lands in usr/bin, where the AppRun puts it on PATH and where
+    # the launcher looks for it.
+    DESTDIR="$appdir" cmake --install "$ENGINE_BUILD"
+
+    # The game is built against that engine. STRATAGUS is a bare name, so the launcher
+    # looks it up on PATH and falls back to its own directory, and DATA_PATH is
+    # relative to the launcher for the same reason: from usr/bin/wargus it resolves to
+    # usr/share/games/stratagus/wargus inside the AppDir.
+    cmake -S "$GAME_SRC" -B "$root/game" \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DENABLE_VENDORED_LIBS=ON \
+        -DSTRATAGUS=stratagus \
+        -DSTRATAGUS_INCLUDE_DIR="$ENGINE_SRC/gameheaders" \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DGAMEDIR=/usr/bin \
+        -DGAMEDIRABS= \
+        -DDATA_PATH="../../share/games/stratagus/$GAME_ID" \
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    cmake --build "$root/game" -j"$(nproc)" --config Release
+    DESTDIR="$appdir" cmake --install "$root/game"
+
+    cat > "$root/appimage-builder.yaml" <<EOF
+version: 1
+AppDir:
+  path: $appdir
+  app_info:
+    id: com.stratagus.$GAME_ID
+    name: '$GAME_NAME'
+    icon: '$GAME_ID'
+    version: '$version'
+    exec: 'usr/bin/$GAME_ID'
+    exec_args: '"--argv0=\$APPDIR/usr/bin/$GAME_ID" \$@'
+AppImage:
+  arch: '$(uname -m)'
+EOF
+
+    # --argv0 tells the launcher where it lives, because inside an AppImage it is
+    # invoked as usr/bin/wargus from the AppRun rather than from where it is installed,
+    # and it resolves its data path relative to that.
+
+    if [ -z "$APPIMAGE_BUILDER" ]; then
+        # not under $root, which is searched for the finished AppImages
+        builder=$root-tools/appimage-builder.AppImage
+        if [ ! -x "$builder" ]; then
+            mkdir -p "$(dirname "$builder")"
+            curl -L --output "$builder" \
+                https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage
+            chmod +x "$builder"
+        fi
+        APPIMAGE_BUILDER="$builder --appimage-extract-and-run"
+    fi
+
     mkdir -p "$ASSETS"
-    cp ./*.AppImage "$ASSETS"/
+    (
+        cd "$root"
+        # The name of the artifact comes from the recipe, so it says which version of
+        # the game it is, and the master-builds release only ever holds the current
+        # development build.
+        $APPIMAGE_BUILDER --recipe appimage-builder.yaml
+    )
+    cp -v "$root"/*.AppImage "$ASSETS"/
     ;;
 
 macos)
