@@ -1,0 +1,138 @@
+name: windows
+
+on:
+  workflow_dispatch:
+    inputs:
+      stratagus_ref:
+        description: 'Stratagus branch, tag or commit to build against'
+        required: false
+        default: 'master'
+  # Rebuilt when the engine or the shared dependencies move, and nightly so a
+  # broken engine is caught even without a dispatch token. See the
+  # "Downstream builds" workflow in Wargus/stratagus.
+  repository_dispatch:
+    types: [engine-update]
+  schedule:
+    - cron: '13 4 * * *'
+  push:
+    # The branches filter is required: a tags filter on its own would stop
+    # branch pushes, i.e. the daily installers. Tags are filtered so that only
+    # version tags get a release.
+    branches: ['**']
+    tags: ['v*', '[0-9]*']
+    paths:
+      - '**'
+      - '!.github/**'
+      - '!**.yml'
+      - '.github/workflows/windows.yml'
+      - '!**.md'
+      - '!.vscode/**'
+      - '!doc/**'
+
+  pull_request:
+    paths:
+      - '**'
+      - '!.github/**'
+      - '!**.yml'
+      - '.github/workflows/windows.yml'
+      - '!**.md'
+      - '!.vscode/**'
+      - '!doc/**'
+
+permissions:
+  contents: write
+
+env:
+  build_type: Release
+
+jobs:
+  windows:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Wargus
+      uses: actions/checkout@v7
+      with:
+        submodules: recursive
+        path: wargus
+
+    # The engine is built from the same sources as the macOS and Linux jobs, so
+    # that the installers always ship the gameheaders the launcher was
+    # configured with, and so that none of the platforms depend on a release
+    # of the engine having been published first.
+    - name: Checkout Stratagus
+      uses: actions/checkout@v7
+      with:
+        repository: Wargus/stratagus
+        ref: ${{ inputs.stratagus_ref || 'master' }}
+        submodules: recursive
+        path: stratagus
+
+    - name: install NSIS
+      shell: pwsh
+      run: |
+        $makensis = Join-Path ${env:ProgramFiles(x86)} 'NSIS\makensis.exe'
+        if (-not (Test-Path $makensis)) {
+          choco install nsis --yes --no-progress
+        }
+        if (-not (Test-Path $makensis)) {
+          throw "did not find makensis.exe at $makensis"
+        }
+        & $makensis -VERSION
+
+    - name: build Stratagus
+      shell: pwsh
+      run: |
+        cmake -S stratagus -B stratagus/build -DCMAKE_BUILD_TYPE=$env:build_type -DBUILD_VENDORED_LUA=ON -DBUILD_VENDORED_SDL=ON -DBUILD_VENDORED_MEDIA_LIBS=ON "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+        cmake --build stratagus/build --config $env:build_type
+
+    # The libraries come from the shared dependencies submodule, so nothing here
+    # needs the separate win32 dependency archive the AppVeyor builds unpacked.
+    - name: build Wargus
+      shell: pwsh
+      run: |
+        cmake -S wargus -B wargus/build -DCMAKE_BUILD_TYPE=$env:build_type -DENABLE_NSIS=ON -DSTRATAGUS=../stratagus/build/Release/stratagus.exe -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders
+        # wargus.nsi ships the engine it finds next to it, and makensis runs in
+        # the build directory.
+        Copy-Item stratagus/build/Release/stratagus.exe, stratagus/build/Release/stratagus-midiplayer.exe wargus/build/
+        cmake --build wargus/build --config $env:build_type
+
+    - name: collect installers
+      shell: pwsh
+      run: |
+        $ErrorActionPreference = 'Stop'
+        New-Item -ItemType Directory release-assets | Out-Null
+        $installers = @(Get-ChildItem wargus/build -Filter 'Wargus-*.exe' -File)
+        if ($installers.Count -eq 0) {
+          throw 'no NSIS installer was built'
+        }
+        Copy-Item $installers.FullName -Destination release-assets
+        Get-ChildItem release-assets | Format-Table Name, Length
+
+    - name: Upload installers
+      uses: actions/upload-artifact@v7
+      with:
+        name: Wargus-Windows
+        path: release-assets/*
+        retention-days: 90
+        if-no-files-found: error
+
+    - name: Upload to the matching GitHub release
+      if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref_type == 'tag')
+      shell: pwsh
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        $ErrorActionPreference = 'Stop'
+        if ($env:GITHUB_REF_TYPE -eq 'tag') {
+          $tag = $env:GITHUB_REF_NAME
+          gh release view $tag --exit-status --json tagName | Out-Null
+          $found = $LASTEXITCODE -eq 0
+          if (-not $found) {
+            gh release create $tag --target $env:GITHUB_SHA --title $tag --notes "Wargus $tag"
+          }
+        } else {
+          $tag = 'master-builds'
+        }
+        $assets = @(Get-ChildItem release-assets -File | ForEach-Object { $_.FullName })
+        gh release upload $tag --clobber $assets

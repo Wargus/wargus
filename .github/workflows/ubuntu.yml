@@ -1,0 +1,82 @@
+name: ubuntu
+
+on:
+  workflow_dispatch:
+    inputs:
+      stratagus_ref:
+        description: 'Stratagus branch, tag or commit to build against'
+        required: false
+        default: 'master'
+  # Rebuilt when the engine or the shared dependencies move, and nightly so a
+  # broken engine is caught even without a dispatch token. See the
+  # "Downstream builds" workflow in Wargus/stratagus.
+  repository_dispatch:
+    types: [engine-update]
+  schedule:
+    - cron: '23 4 * * *'
+  push:
+    paths:
+      - '**'
+      - '!.github/**'
+      - '!**.yml'
+      - '.github/workflows/ubuntu.yml'
+      - '!**.md'
+      - '!.vscode/**'
+      - '!doc/**'
+
+  pull_request:
+    paths:
+      - '**'
+      - '!.github/**'
+      - '!**.yml'
+      - '.github/workflows/ubuntu.yml'
+      - '!**.md'
+      - '!.vscode/**'
+      - '!doc/**'
+
+env:
+  build_type: Release
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Wargus
+      uses: actions/checkout@v7
+      with:
+        submodules: recursive
+        path: wargus
+
+    - name: Checkout Stratagus
+      uses: actions/checkout@v7
+      with:
+        repository: Wargus/stratagus
+        ref: ${{ inputs.stratagus_ref || 'master' }}
+        submodules: recursive
+        path: stratagus
+
+    # Nothing is installed for the game itself: png, zlib, bzip2 and StormLib
+    # are the ones from the shared dependencies submodule. Only the engine
+    # brings in what it cannot vendor, which is the same set its own Linux jobs
+    # rely on.
+    - name: build Stratagus
+      run: |
+        cmake -S stratagus -B stratagus/build -DCMAKE_BUILD_TYPE=$build_type -DBUILD_VENDORED_LUA=ON -DBUILD_VENDORED_SDL=ON -DBUILD_VENDORED_MEDIA_LIBS=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+        cmake --build stratagus/build --config $build_type
+
+    - name: build Wargus
+      run: |
+        cmake -S wargus -B wargus/build -DCMAKE_BUILD_TYPE=$build_type -DSTRATAGUS=$GITHUB_WORKSPACE/stratagus/build/stratagus -DSTRATAGUS_INCLUDE_DIR=$GITHUB_WORKSPACE/stratagus/gameheaders
+        cmake --build wargus/build --config $build_type
+
+    - name: upload binaries
+      uses: actions/upload-artifact@v7
+      with:
+        name: Wargus-Linux
+        path: |
+          wargus/build/wargus
+          wargus/build/wartool
+          wargus/build/pudconvert
+        retention-days: 90
+        if-no-files-found: error
