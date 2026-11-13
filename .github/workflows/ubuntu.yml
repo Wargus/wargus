@@ -2,11 +2,6 @@ name: ubuntu
 
 on:
   workflow_dispatch:
-    inputs:
-      stratagus_ref:
-        description: 'Stratagus branch, tag or commit to build against'
-        required: false
-        default: 'master'
   # Rebuilt when the engine or the shared dependencies move. See the
   # "Downstream builds" workflow in Wargus/stratagus.
   repository_dispatch:
@@ -47,28 +42,34 @@ jobs:
 
     - name: Resolve which Stratagus to build against
       id: stratagus
-      env:
-        requested_ref: ${{ inputs.stratagus_ref }}
       run: |
-        # A change that spans the engine and the game is developed on branches of
-        # the same name in both repositories, so prefer the engine branch that
-        # matches this one. Tags, and any branch the engine does not have, build
-        # against master. workflow_dispatch can name a revision explicitly.
-        branch=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}
-        for ref in "$requested_ref" "$branch" master; do
-          if [ -z "$ref" ]; then
-            continue
-          fi
-          if git ls-remote --exit-code https://github.com/Wargus/stratagus "refs/heads/$ref" > /dev/null; then
-            echo "ref=$ref" >> "$GITHUB_OUTPUT"
-            echo "building against Wargus/stratagus@$ref"
-            exit 0
-          fi
-          if [ "$ref" = "$requested_ref" ]; then
-            echo "workflow_dispatch asked for Wargus/stratagus@$ref, which does not exist" >&2
+        # The engine and the game are released in lockstep: a tag in this
+        # repository has an engine tag of the same name, and a change that spans
+        # both repositories is developed on branches of the same name. So look for
+        # the same kind of ref as the one we are running on, and build against the
+        # engine master branch when the engine does not have it.
+        engine=https://github.com/Wargus/stratagus
+        # A pull request builds the branch it came from, not the merge ref.
+        name=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}
+        if [ "$GITHUB_REF_TYPE" = tag ]; then
+          candidate=refs/tags/$name
+        else
+          candidate=refs/heads/$name
+        fi
+
+        if git ls-remote --exit-code --refs "$engine" "$candidate" > /dev/null; then
+          ref=$name
+          probe=$candidate
+        else
+          probe=refs/heads/master
+          if ! git ls-remote --exit-code --refs "$engine" "$probe" > /dev/null; then
+            echo "Wargus/stratagus has neither $candidate nor $probe" >&2
             exit 1
           fi
-        done
+          ref=master
+        fi
+        echo "ref=$ref" >> "$GITHUB_OUTPUT"
+        echo "building against Wargus/stratagus@$ref ($probe)"
 
     - name: Checkout Stratagus
       uses: actions/checkout@v7
