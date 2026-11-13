@@ -139,7 +139,7 @@ jobs:
         if-no-files-found: error
 
     - name: Upload to the matching GitHub release
-      if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref_type == 'tag')
+      if: (github.event_name == 'push' || github.event_name == 'repository_dispatch') && (github.ref == 'refs/heads/master' || github.ref_type == 'tag')
       shell: pwsh
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

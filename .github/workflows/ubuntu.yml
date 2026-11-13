@@ -7,6 +7,11 @@ on:
   repository_dispatch:
     types: [engine-update]
   push:
+    # The branches filter is required: a tags filter on its own would stop
+    # branch pushes, i.e. the AppImages. Tags are filtered so that only
+    # version tags get a release.
+    branches: ['**']
+    tags: ['v*', '[0-9]*']
     paths:
       - '**'
       - '!.github/**'
@@ -25,6 +30,10 @@ on:
       - '!**.md'
       - '!.vscode/**'
       - '!doc/**'
+
+# The appimage job publishes its artifact to a release.
+permissions:
+  contents: write
 
 env:
   build_type: Release
@@ -92,3 +101,93 @@ jobs:
       run: |
         cmake -S wargus -B wargus/build -DCMAKE_BUILD_TYPE=$build_type -DSTRATAGUS=$GITHUB_WORKSPACE/stratagus/build/stratagus -DSTRATAGUS_INCLUDE_DIR=$GITHUB_WORKSPACE/stratagus/gameheaders
         cmake --build wargus/build --config $build_type
+
+  appimage:
+    name: Linux AppImage
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Wargus
+      uses: actions/checkout@v7
+      with:
+        submodules: recursive
+        path: wargus
+
+    - name: Resolve which Stratagus to build against
+      id: stratagus
+      run: |
+        # Same lockstep as in the other jobs: a release tag here means the
+        # AppImage is built against the engine tag of the same name.
+        engine=https://github.com/Wargus/stratagus
+        name=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}
+        if [ "$GITHUB_REF_TYPE" = tag ]; then
+          candidate=refs/tags/$name
+        else
+          candidate=refs/heads/$name
+        fi
+
+        if git ls-remote --exit-code --refs "$engine" "$candidate" > /dev/null; then
+          ref=$name
+          probe=$candidate
+        else
+          probe=refs/heads/master
+          if ! git ls-remote --exit-code --refs "$engine" "$probe" > /dev/null; then
+            echo "Wargus/stratagus has neither $candidate nor $probe" >&2
+            exit 1
+          fi
+          ref=master
+        fi
+        echo "ref=$ref" >> "$GITHUB_OUTPUT"
+        echo "building against Wargus/stratagus@$ref ($probe)"
+
+    - name: Checkout Stratagus
+      uses: actions/checkout@v7
+      with:
+        repository: Wargus/stratagus
+        ref: ${{ steps.stratagus.outputs.ref }}
+        submodules: recursive
+        path: stratagus
+
+    # The AppImage bundles the engine, the game and every library that is not
+    # part of a base Linux installation, so the only packages needed here are
+    # the build tools and the headers that the vendored SDL2 build looks for
+    # itself: what it finds decides which video and audio backends the shipped
+    # binary can use, so this is the list that says what an AppImage supports.
+    - name: install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -yy \
+          build-essential cmake file pkg-config \
+          libx11-dev libxext-dev libxrender-dev libxrandr-dev libxi-dev \
+          libxfixes-dev libxcursor-dev libxss-dev libxtst-dev libsm-dev \
+          libgl-dev libegl-dev libgles-dev libglx-dev \
+          libwayland-dev libxkbcommon-dev libxkbcommon-x11-dev libdecor-0-dev \
+          libdrm-dev libgbm-dev libudev-dev libdbus-1-dev \
+          libasound2-dev libpulse-dev
+
+    - name: build the Wargus AppImage
+      run: bash -x wargus/tools/build_appimage.sh "$GITHUB_WORKSPACE/stratagus"
+
+    - name: Upload artifacts - Linux AppImage
+      uses: actions/upload-artifact@v7
+      with:
+        name: Wargus-Linux
+        path: '*.AppImage'
+        retention-days: 90
+        if-no-files-found: error
+
+    - name: Upload to the matching GitHub release
+      if: (github.event_name == 'push' || github.event_name == 'repository_dispatch') && (github.ref == 'refs/heads/master' || github.ref_type == 'tag')
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        set -e
+        if [ "$GITHUB_REF_TYPE" = tag ]; then
+          tag=$GITHUB_REF_NAME
+          if ! gh release view "$tag" --exit-status --json tagName > /dev/null 2>&1; then
+            gh release create "$tag" --target "$GITHUB_SHA" --title "$tag" --notes "Wargus $tag"
+          fi
+        else
+          tag=master-builds
+        fi
+        gh release upload "$tag" --clobber ./*.AppImage

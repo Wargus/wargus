@@ -7,6 +7,11 @@ on:
   repository_dispatch:
     types: [engine-update]
   push:
+    # The branches filter is required: a tags filter on its own would stop
+    # branch pushes, i.e. the dmgs. Tags are filtered so that only version tags
+    # get a release.
+    branches: ['**']
+    tags: ['v*', '[0-9]*']
     paths:
       - '**'
       - '!.github/**'
@@ -25,6 +30,10 @@ on:
       - '!**.md'
       - '!.vscode/**'
       - '!doc/**'
+
+# The dmg of a tag or of master is published to a release.
+permissions:
+  contents: write
 
 jobs:
   macOS:
@@ -124,7 +133,11 @@ jobs:
         
     - name: Create dmg
       run: |
-        output="Wargus-${{ matrix.suffix }}"
+        # Named after the game version in the bundle, so the asset of a release
+        # says which version it is and the master-builds release only ever
+        # holds the current development build.
+        version=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' wargus/mac/Info.plist)
+        output="Wargus-$version-${{ matrix.suffix }}"
         rm -f "$output" "$output.dmg"
         for attempt in 1 2 3; do
           hdiutil detach "/Volumes/Wargus" -force || true
@@ -140,5 +153,22 @@ jobs:
       uses: actions/upload-artifact@v7
       with:
         name: Wargus-macOS-${{ matrix.suffix }}
-        path: Wargus-${{ matrix.suffix }}.dmg
+        path: '*.dmg'
+        retention-days: 90
         if-no-files-found: error
+
+    - name: Upload to the matching GitHub release
+      if: (github.event_name == 'push' || github.event_name == 'repository_dispatch') && (github.ref == 'refs/heads/master' || github.ref_type == 'tag')
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        set -e
+        if [ "$GITHUB_REF_TYPE" = tag ]; then
+          tag=$GITHUB_REF_NAME
+          if ! gh release view "$tag" --exit-status --json tagName > /dev/null 2>&1; then
+            gh release create "$tag" --target "$GITHUB_SHA" --title "$tag" --notes "Wargus $tag"
+          fi
+        else
+          tag=master-builds
+        fi
+        gh release upload "$tag" --clobber ./*.dmg
