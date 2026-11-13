@@ -7,16 +7,13 @@ on:
         description: 'Stratagus branch, tag or commit to build against'
         required: false
         default: 'master'
-  # Rebuilt when the engine or the shared dependencies move, and nightly so a
-  # broken engine is caught even without a dispatch token. See the
+  # Rebuilt when the engine or the shared dependencies move. See the
   # "Downstream builds" workflow in Wargus/stratagus.
   repository_dispatch:
     types: [engine-update]
-  schedule:
-    - cron: '13 4 * * *'
   push:
     # The branches filter is required: a tags filter on its own would stop
-    # branch pushes, i.e. the daily installers. Tags are filtered so that only
+    # branch pushes, i.e. the installers. Tags are filtered so that only
     # version tags get a release.
     branches: ['**']
     tags: ['v*', '[0-9]*']

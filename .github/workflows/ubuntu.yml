@@ -7,13 +7,10 @@ on:
         description: 'Stratagus branch, tag or commit to build against'
         required: false
         default: 'master'
-  # Rebuilt when the engine or the shared dependencies move, and nightly so a
-  # broken engine is caught even without a dispatch token. See the
+  # Rebuilt when the engine or the shared dependencies move. See the
   # "Downstream builds" workflow in Wargus/stratagus.
   repository_dispatch:
     types: [engine-update]
-  schedule:
-    - cron: '23 4 * * *'
   push:
     paths:
       - '**'
