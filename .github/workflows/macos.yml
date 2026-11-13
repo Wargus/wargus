@@ -77,8 +77,9 @@ jobs:
       run: |
         cmake wargus -B wargus/build \
         -DCMAKE_FIND_FRAMEWORK=LAST \
+        -DENABLE_VENDORED_LIBS=OFF \
         -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
-        -DSTRATAGUS=../stratagus/build/stratagus 
+        -DSTRATAGUS=../stratagus/build/stratagus
         cmake --build wargus/build --config Release
 
     - name: Create Wargus app bundle
