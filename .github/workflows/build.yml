@@ -1,0 +1,24 @@
+name: build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    tags: ['v*', '[0-9]*']
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [linux, macos, windows]
+    uses: Wargus/stratagus/.github/workflows/game-build.yml@timfel-release-refactoring
+    with:
+      game_id: wargus
+      game_name: Wargus
+      platform: ${{ matrix.platform }}
+    secrets: inherit

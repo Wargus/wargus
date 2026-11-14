@@ -1,0 +1,17 @@
+name: engine
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7 5 * * *'
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  engine-changed:
+    uses: Wargus/stratagus/.github/workflows/game-engine-check.yml@timfel-release-refactoring
+    with:
+      game_id: wargus
+    secrets: inherit
